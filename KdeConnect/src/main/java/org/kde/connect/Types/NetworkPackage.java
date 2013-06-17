@@ -1,5 +1,9 @@
 package org.kde.connect.Types;
 
+import android.content.Context;
+import android.telephony.TelephonyManager;
+import android.util.Log;
+
 import org.json.JSONObject;
 
 import java.util.Calendar;
@@ -9,6 +13,8 @@ public class NetworkPackage {
 
     public enum Type {
         UNKNOWN,
+        ID_REQUEST,
+        PAIR_REQUEST,
         RING,
         MISSED,
         SMS,
@@ -26,8 +32,9 @@ public class NetworkPackage {
     private boolean mIsCancel;
     private JSONObject mExtras; //JSON
 
-    public NetworkPackage(long id) {
+    public NetworkPackage(long id/*, Context context*/) {
         mId = id;
+        // final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         mDeviceId = 42;
         mTime = Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTimeInMillis() / 1000L;
         mType = Type.UNKNOWN;
@@ -99,4 +106,15 @@ public class NetworkPackage {
         return sb.toString();
 
     }
+
+
+    static public NetworkPackage fromString(String s/*, Context context*/) {
+        Log.i("NetworkPackage.fromString",s);
+
+        NetworkPackage np = new NetworkPackage(123456789 /*, context*/);
+        np.mType = Type.PAIR_REQUEST;
+        return np;
+    }
+
+
 }

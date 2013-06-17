@@ -10,20 +10,6 @@ import android.view.View.OnClickListener;
 
 public class MainActivity extends Activity {
 
-	//http://developer.android.com/training/connect-devices-wirelessly/nsd.html
-    public void registerService(int port) {
-	    // Create the NsdServiceInfo object, and populate it.
-	    NsdServiceInfo serviceInfo  = new NsdServiceInfo();
-
-	    // The name is subject to change based on conflicts
-	    // with other services advertised on the same network.
-	    serviceInfo.setServiceName("NsdChat");
-	    serviceInfo.setServiceType("_http._tcp.");
-	    serviceInfo.setPort(port);
-	    //....
-	}
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

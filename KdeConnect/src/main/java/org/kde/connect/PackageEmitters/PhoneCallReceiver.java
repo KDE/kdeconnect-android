@@ -1,17 +1,17 @@
-package org.kde.connect.Receivers;
+package org.kde.connect.PackageEmitters;
 
 import android.content.Context;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import org.kde.connect.DesktopCommunication;
+import org.kde.connect.ComputerLink;
 import org.kde.connect.Types.NetworkPackage;
 
 
 public class PhoneCallReceiver implements BaseReceiver {
 
-    public PhoneCallReceiver(final Context ctx, final DesktopCommunication dc) {
+    public PhoneCallReceiver(final Context ctx, final ComputerLink dc) {
 
         Log.i("PhoneCallReceiver", "Registered");
 
@@ -34,7 +34,7 @@ public class PhoneCallReceiver implements BaseReceiver {
                         lastPackage.setType(NetworkPackage.Type.RING);
                         lastPackage.setBody(incomingNumber);
 
-                        dc.asyncSend(lastPackage.toString());
+                        dc.sendPackage(lastPackage);
 
                         break;
 
@@ -42,7 +42,7 @@ public class PhoneCallReceiver implements BaseReceiver {
 
                         if (lastPackage != null) {
                             lastPackage.cancel();
-                            dc.asyncSend(lastPackage.toString());
+                            dc.sendPackage(lastPackage);
                             lastPackage = null;
                         }
 
@@ -53,7 +53,7 @@ public class PhoneCallReceiver implements BaseReceiver {
                         if (lastState != TelephonyManager.CALL_STATE_IDLE && lastPackage != null) {
 
                             lastPackage.cancel();
-                            dc.asyncSend(lastPackage.toString());
+                            dc.sendPackage(lastPackage);
 
                             if (lastState == TelephonyManager.CALL_STATE_RINGING) {
 
@@ -64,7 +64,7 @@ public class PhoneCallReceiver implements BaseReceiver {
                                 lastPackage.setType(NetworkPackage.Type.MISSED);
                                 lastPackage.setBody(incomingNumber);
 
-                                dc.asyncSend(lastPackage.toString());
+                                dc.sendPackage(lastPackage);
 
                             }
 
