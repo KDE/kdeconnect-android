@@ -9,11 +9,11 @@ import org.kde.connect.ComputerLink;
 import org.kde.connect.Types.NetworkPackage;
 
 
-public class PhoneCallReceiver implements BaseReceiver {
+public class CallPackageEmitter extends BasePackageEmitter {
 
-    public PhoneCallReceiver(final Context ctx, final ComputerLink dc) {
+    public CallPackageEmitter(final Context ctx) {
 
-        Log.i("PhoneCallReceiver", "Registered");
+        Log.i("CallPackageEmitter", "Registered");
 
         PhoneStateListener callStateListener = new PhoneStateListener() {
 
@@ -34,7 +34,7 @@ public class PhoneCallReceiver implements BaseReceiver {
                         lastPackage.setType(NetworkPackage.Type.RING);
                         lastPackage.setBody(incomingNumber);
 
-                        dc.sendPackage(lastPackage);
+                        sendPackage(lastPackage);
 
                         break;
 
@@ -42,7 +42,7 @@ public class PhoneCallReceiver implements BaseReceiver {
 
                         if (lastPackage != null) {
                             lastPackage.cancel();
-                            dc.sendPackage(lastPackage);
+                            sendPackage(lastPackage);
                             lastPackage = null;
                         }
 
@@ -53,7 +53,7 @@ public class PhoneCallReceiver implements BaseReceiver {
                         if (lastState != TelephonyManager.CALL_STATE_IDLE && lastPackage != null) {
 
                             lastPackage.cancel();
-                            dc.sendPackage(lastPackage);
+                            sendPackage(lastPackage);
 
                             if (lastState == TelephonyManager.CALL_STATE_RINGING) {
 
@@ -64,7 +64,7 @@ public class PhoneCallReceiver implements BaseReceiver {
                                 lastPackage.setType(NetworkPackage.Type.MISSED);
                                 lastPackage.setBody(incomingNumber);
 
-                                dc.sendPackage(lastPackage);
+                                sendPackage(lastPackage);
 
                             }
 
