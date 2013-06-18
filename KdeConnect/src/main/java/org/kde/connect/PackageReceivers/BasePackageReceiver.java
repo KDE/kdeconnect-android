@@ -4,6 +4,6 @@ import org.kde.connect.Types.NetworkPackage;
 
 public interface BasePackageReceiver {
 
-    public void receivePackage(NetworkPackage np);
+    public void onPackageReceived(NetworkPackage np);
 
 }

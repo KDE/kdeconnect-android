@@ -21,24 +21,10 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.button1).setOnClickListener(new OnClickListener() {
+        BackgroundService.Start(MainActivity.this, new BackgroundService.ServiceStartCallback() {
             @Override
-            public void onClick(View view) {
-                Log.i("MainActivity", "Button1");
-
-                Intent serviceIntent = new Intent(MainActivity.this, BackgroundService.class);
-                startService(serviceIntent);
-                bindService(serviceIntent, new ServiceConnection() {
-
-                    public void onServiceDisconnected(ComponentName name) {
-                        service = null;
-                    }
-
-                    public void onServiceConnected(ComponentName name, IBinder binder) {
-                        service = ((BackgroundService.LocalBinder)binder).getInstance();
-                    }
-                },BIND_AUTO_CREATE);
-
+            public void onServiceStart(BackgroundService s) {
+                service = s;
             }
         });
 
@@ -46,10 +32,17 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Log.i("MainActivity","Button2");
-                if (service != null) service.sendPing();
+                if (service != null) service.reachComputers();
             }
         });
 
+        findViewById(R.id.button3).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("MainActivity","Button3");
+                if (service != null) service.sendPing();
+            }
+        });
 
     }
 

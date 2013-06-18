@@ -9,7 +9,8 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <Button android:id="@+id/button1" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Launch service"/>
-    <Button android:id="@+id/button2" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Ping computers"/>
+    <Button android:id="@+id/button1" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Phone boot (launch service)"/>
+    <Button android:id="@+id/button2" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Connectivity change (try to reach computers)"/>
+    <Button android:id="@+id/button3" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Send ping to connected computers"/>
 
 </LinearLayout>

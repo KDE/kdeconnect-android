@@ -12,11 +12,17 @@ import java.net.InetAddress;
 
 public class UdpComputerLink extends BaseComputerLink {
 
-    final int UDP_PORT = 10601;
-    final String IP = "192.168.1.48";
+    int UDP_PORT;
+    InetAddress IP;
+
     final int BUFFER_SIZE = 5*1024;
 
-    public UdpComputerLink() {
+    public UdpComputerLink(InetAddress ip, int port) {
+        UDP_PORT = port;
+        IP = ip;
+
+        Log.e("UdpComputerLink","" + ip + ":" + UDP_PORT);
+/*
         new AsyncTask<Void,Void,Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
@@ -36,22 +42,26 @@ public class UdpComputerLink extends BaseComputerLink {
                 return null;
             }
         }.execute();
+*/
     }
 
     @Override
     public void sendPackage(NetworkPackage np) {
+        Log.e("UdpComputerLink","sendPackage");
         final String messageStr = np.toString();
         new AsyncTask<Void,Void,Void>(){
             @Override
             protected Void doInBackground(Void... voids) {
                 try {
-                    int server_port = UDP_PORT;
+                    Log.e("UdpComputerLink","A");
                     DatagramSocket s = new DatagramSocket();
-                    InetAddress local = InetAddress.getByName(IP);
                     int msg_length = messageStr.length();
                     byte[] message = messageStr.getBytes();
-                    DatagramPacket p = new DatagramPacket(message, msg_length,local,server_port);
+                    Log.e("UdpComputerLink","B");
+                    DatagramPacket p = new DatagramPacket(message, msg_length,IP,UDP_PORT);
+                    Log.e("UdpComputerLink","C");
                     s.send(p);
+                    Log.e("UdpComputerLink","D");
                     Log.e("Sent", messageStr);
                 } catch(Exception e) {
                     e.printStackTrace();

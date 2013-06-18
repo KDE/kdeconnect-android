@@ -13,7 +13,7 @@ public class NetworkPackage {
 
     public enum Type {
         UNKNOWN,
-        ID_REQUEST,
+        IDENTIFY,
         PAIR_REQUEST,
         RING,
         MISSED,
