@@ -1,21 +1,17 @@
-package org.kde.connect;
+package org.kde.connect.Announcers;
 
 import android.content.Context;
 import android.net.nsd.NsdManager;
 import android.net.nsd.NsdServiceInfo;
 import android.util.Log;
 
-import org.kde.connect.Announcer;
-import org.kde.connect.ComputerLink;
+import org.kde.connect.ComputerLinks.BaseComputerLink;
+import org.kde.connect.ComputerLinks.UdpComputerLink;
 import org.kde.connect.Types.NetworkPackage;
-import org.kde.connect.UdpComputerLink;
 
 import java.lang.Override;
 
-/**
- * Created by vaka on 6/10/13.
- */
-public class AvahiAnnouncer implements Announcer {
+public class AvahiAnnouncer extends BaseAnnouncer {
 
     UdpComputerLink computerLink;
 
@@ -52,16 +48,19 @@ public class AvahiAnnouncer implements Announcer {
         }
     };
 
-    ComputerLink.PackageReceiver mPackageReceiver = new ComputerLink.PackageReceiver() {
+    BaseComputerLink.PackageReceiver mPackageReceiver = new BaseComputerLink.PackageReceiver() {
         @Override
         public void onPackageReceived(NetworkPackage np) {
+            Log.e("Avahi announcer","packageReceived");
+            connexionReceiver.onPair(new UdpComputerLink());
+            /*
             if (np.getType() == NetworkPackage.Type.ID_REQUEST) {
                 Log.i("Avahi announcer","ID_REQUEST");
             } else if (np.getType() == NetworkPackage.Type.PAIR_REQUEST) {
                 Log.i("Avahi announcer","PAIR_REQUEST");
             } else {
                 Log.i("Avahi announcer","Not paired, ignoring package "+np.getType());
-            }
+            }*/
         }
     };
 
@@ -84,6 +83,7 @@ public class AvahiAnnouncer implements Announcer {
 
     @Override
     public boolean startAnnouncing(ConnexionReceiver cr) {
+        super.startAnnouncing(cr);
         Log.i("AvahiAnnouncer","startAnnouncing");
         mNsdManager.registerService(serviceInfo, NsdManager.PROTOCOL_DNS_SD, mRegistrationListener);
         computerLink.addPackageReceiver(mPackageReceiver);
@@ -92,6 +92,7 @@ public class AvahiAnnouncer implements Announcer {
 
     @Override
     public void stopAnnouncing() {
+        super.stopAnnouncing();
         mNsdManager.unregisterService(mRegistrationListener);
         computerLink.removePackageReceiver(mPackageReceiver);
     }

@@ -1,11 +1,11 @@
-package org.kde.connect;
+package org.kde.connect.ComputerLinks;
 
 import org.kde.connect.Types.NetworkPackage;
 
 import java.util.ArrayList;
 
 
-public abstract class ComputerLink {
+public abstract class BaseComputerLink {
 
     public interface PackageReceiver {
         public void onPackageReceived(NetworkPackage np);
@@ -20,6 +20,7 @@ public abstract class ComputerLink {
         receivers.remove(pr);
     }
 
+    //Should be called from a background thread listening to packages
     protected void packageReceived(NetworkPackage np) {
         for(PackageReceiver pr : receivers) {
             pr.onPackageReceived(np);
@@ -28,8 +29,6 @@ public abstract class ComputerLink {
 
     //TO OVERRIDE
 
-    //Should set up a listener that calls packageReceived(NetworkPackage)
-    public abstract void startListening();
 
     //Should be async
     public abstract void sendPackage(NetworkPackage np);

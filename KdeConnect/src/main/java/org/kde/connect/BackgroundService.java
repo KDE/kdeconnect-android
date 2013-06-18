@@ -7,6 +7,9 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 
+import org.kde.connect.Announcers.BaseAnnouncer;
+import org.kde.connect.Announcers.AvahiAnnouncer;
+import org.kde.connect.ComputerLinks.BaseComputerLink;
 import org.kde.connect.PackageEmitters.BasePackageEmitter;
 import org.kde.connect.PackageEmitters.CallPackageEmitter;
 import org.kde.connect.PackageEmitters.PingPackageEmitter;
@@ -19,18 +22,22 @@ import java.util.ArrayList;
 public class BackgroundService extends Service {
 
     SharedPreferences settings;
-    ArrayList<Announcer> announcers = new ArrayList<Announcer>();
-    ArrayList<ComputerLink> computerLinks = new ArrayList<ComputerLink>();
+
+    ArrayList<BaseAnnouncer> mBaseAnnouncers = new ArrayList<BaseAnnouncer>();
+    ArrayList<BaseComputerLink> mBaseComputerLinks = new ArrayList<BaseComputerLink>();
 
     ArrayList<BasePackageEmitter> emitters = new ArrayList<BasePackageEmitter>();
     ArrayList<BasePackageReceiver> receivers = new ArrayList<BasePackageReceiver>();
 
     PingPackageEmitter pingEmitter;
 
-    private void addComputerLink(ComputerLink cl) {
+    private void addComputerLink(BaseComputerLink cl) {
 
-        computerLinks.add(cl);
+        Log.i("BackgroundService","addComputerLink");
 
+        mBaseComputerLinks.add(cl);
+
+        Log.i("BackgroundService","sending ping after connection");
 
         NetworkPackage p = new NetworkPackage(System.currentTimeMillis());
         p.setType(NetworkPackage.Type.PING);
@@ -43,7 +50,6 @@ public class BackgroundService extends Service {
             emitters.add(new CallPackageEmitter(getApplicationContext()));
         }
 
-        pingEmitter = new PingPackageEmitter(getApplicationContext());
         if (settings.getBoolean("emit_ping", true)) {
             emitters.add(pingEmitter);
         }
@@ -55,14 +61,20 @@ public class BackgroundService extends Service {
         }
     }
 
+    public void registerAnnouncers() {
+        if (settings.getBoolean("announce_avahi", true)) {
+            mBaseAnnouncers.add(new AvahiAnnouncer(this));
+        }
+    }
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.e("BackgroundService","Starting");
 
-        for (Announcer a : announcers) {
-            a.startAnnouncing(new Announcer.ConnexionReceiver() {
+        for (BaseAnnouncer a : mBaseAnnouncers) {
+            a.startAnnouncing(new BaseAnnouncer.ConnexionReceiver() {
                 @Override
-                public void onPair(ComputerLink cl) {
+                public void onPair(BaseComputerLink cl) {
                     addComputerLink(cl);
                 }
             });
@@ -79,12 +91,13 @@ public class BackgroundService extends Service {
     public void onCreate() {
         Log.e("BackgroundService","Creating");
 
-        registerEmitters();
-        registerReceivers();
-
         settings = getSharedPreferences("KdeConnect", 0);
 
-        announcers.add(new AvahiAnnouncer(this));
+        pingEmitter = new PingPackageEmitter(getApplicationContext());
+
+        registerEmitters();
+        registerReceivers();
+        registerAnnouncers();
 
         super.onCreate();
     }

@@ -7,6 +7,7 @@ import android.content.ServiceConnection;
 import android.net.nsd.NsdServiceInfo;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,6 +24,7 @@ public class MainActivity extends Activity {
         findViewById(R.id.button1).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.i("MainActivity", "Button1");
 
                 Intent serviceIntent = new Intent(MainActivity.this, BackgroundService.class);
                 startService(serviceIntent);
@@ -43,6 +45,7 @@ public class MainActivity extends Activity {
         findViewById(R.id.button2).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.i("MainActivity","Button2");
                 if (service != null) service.sendPing();
             }
         });
