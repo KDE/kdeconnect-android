@@ -11,7 +11,6 @@ import android.os.IBinder;
 import android.util.Log;
 
 import org.kde.connect.ComputerLinks.BaseComputerLink;
-import org.kde.connect.Extensions.SingletonService;
 import org.kde.connect.Locators.AvahiLocator;
 import org.kde.connect.Locators.BaseLocator;
 import org.kde.connect.PackageEmitters.BasePackageEmitter;
@@ -23,7 +22,7 @@ import org.kde.connect.Types.NetworkPackage;
 
 import java.util.ArrayList;
 
-public class BackgroundService extends SingletonService {
+public class BackgroundService extends Service {
 
     SharedPreferences settings;
 
@@ -89,9 +88,9 @@ public class BackgroundService extends SingletonService {
             a.reachComputers(new BaseLocator.ConnectionReceiver() {
                 @Override
                 public void onConnectionAccepted(BaseComputerLink link) {
-                    Log.e("BackgroundService","Connection accepted!");
-                    //TODO: Check if there are other links available, and keep the best one
-                    addComputerLink(link);
+                Log.e("BackgroundService","Connection accepted!");
+                //TODO: Check if there are other links available, and keep the best one
+                addComputerLink(link);
                 }
             });
         }
@@ -132,7 +131,6 @@ public class BackgroundService extends SingletonService {
 
     //Singleton service auxiliars
 
-
     private class LocalBinder extends Binder {
         public BackgroundService getInstance() {
             return BackgroundService.this;
@@ -154,10 +152,11 @@ public class BackgroundService extends SingletonService {
         Start(c,null);
     }
 
-    public static void Start(Context c, ServiceStartCallback callback) {
+    public static void Start(Context c, final ServiceStartCallback callback) {
 
         if (instance != null) {
             Log.e("SingletonService","Already started");
+            callback.onServiceStart(instance);
         }
 
         Intent serviceIntent = new Intent(c, BackgroundService.class);

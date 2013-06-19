@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        findViewById(R.id.button2).setOnClickListener(new OnClickListener() {
+        findViewById(R.id.button1).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i("MainActivity","Button2");
@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        findViewById(R.id.button3).setOnClickListener(new OnClickListener() {
+        findViewById(R.id.button2).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i("MainActivity","Button3");

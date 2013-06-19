@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.kde.connect"
+    package="org.kde.kdeconnect"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -27,13 +27,23 @@
 
         <service
             android:enabled="true"
-            android:name=".BackgroundService">
+            android:name="org.kde.connect.BackgroundService">
         </service>
 
 
-        <receiver android:name=".BootReceiver">
+        <receiver android:name="org.kde.connect.ServiceLauncher">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED"></action>
+                <data android:scheme="package" android:path="org.kde.kdeconnect" />
+            </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
             </intent-filter>
         </receiver>
 
