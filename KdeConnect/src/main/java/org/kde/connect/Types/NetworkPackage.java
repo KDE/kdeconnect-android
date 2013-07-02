@@ -111,6 +111,7 @@ public class NetworkPackage {
     static public NetworkPackage fromString(String s/*, Context context*/) {
         Log.i("NetworkPackage.fromString",s);
 
+        //TODO: Implement
         NetworkPackage np = new NetworkPackage(123456789 /*, context*/);
         np.mType = Type.PAIR_REQUEST;
         return np;

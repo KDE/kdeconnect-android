@@ -14,25 +14,24 @@ import android.view.View.OnClickListener;
 
 public class MainActivity extends Activity {
 
-    private BackgroundService service = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BackgroundService.Start(MainActivity.this, new BackgroundService.ServiceStartCallback() {
-            @Override
-            public void onServiceStart(BackgroundService s) {
-                service = s;
-            }
-        });
+        BackgroundService.Start(MainActivity.this);
 
         findViewById(R.id.button1).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i("MainActivity","Button2");
-                if (service != null) service.reachComputers();
+                BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(BackgroundService service) {
+                        service.reachComputers();
+                    }
+                });
             }
         });
 
@@ -40,7 +39,13 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Log.i("MainActivity","Button3");
-                if (service != null) service.sendPing();
+                BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(BackgroundService service) {
+                        service.sendPing();
+                    }
+                });
+
             }
         });
 

@@ -15,7 +15,8 @@ public class PingPackageReceiver implements BasePackageReceiver {
 
     @Override
     public void onPackageReceived(NetworkPackage np) {
-
-        Toast.makeText(context, "Ping!", Toast.LENGTH_LONG).show();
+        if (np.getType() == NetworkPackage.Type.PING) {
+            Toast.makeText(context, "Ping!", Toast.LENGTH_LONG).show();
+        }
     }
 }

@@ -11,8 +11,8 @@ import android.os.IBinder;
 import android.util.Log;
 
 import org.kde.connect.ComputerLinks.BaseComputerLink;
-import org.kde.connect.Locators.AvahiLocator;
-import org.kde.connect.Locators.BaseLocator;
+import org.kde.connect.LinkProviders.BaseLinkProvider;
+import org.kde.connect.LinkProviders.AvahiLinkProvider;
 import org.kde.connect.PackageEmitters.BasePackageEmitter;
 import org.kde.connect.PackageEmitters.CallPackageEmitter;
 import org.kde.connect.PackageEmitters.PingPackageEmitter;
@@ -26,7 +26,7 @@ public class BackgroundService extends Service {
 
     SharedPreferences settings;
 
-    ArrayList<BaseLocator> locators = new ArrayList<BaseLocator>();
+    ArrayList<BaseLinkProvider> locators = new ArrayList<BaseLinkProvider>();
     ArrayList<BaseComputerLink> computerLinks = new ArrayList<BaseComputerLink>();
 
     ArrayList<BasePackageEmitter> emitters = new ArrayList<BasePackageEmitter>();
@@ -41,7 +41,6 @@ public class BackgroundService extends Service {
         Log.i("BackgroundService","addComputerLink");
 
         computerLinks.add(cl);
-
 
         for(BasePackageEmitter pe : emitters) pe.addComputerLink(cl);
         for(BasePackageReceiver pr : receivers) cl.addPackageReceiver(pr);
@@ -72,25 +71,26 @@ public class BackgroundService extends Service {
 
     public void registerAnnouncers() {
         if (settings.getBoolean("announce_avahi", true)) {
-            locators.add(new AvahiLocator(this));
+            locators.add(new AvahiLinkProvider(this));
         }
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.e("BackgroundService","Starting");
-
+        instance=this;
+        attendCallbacks();
         return Service.START_STICKY;
     }
 
     public void reachComputers() {
-        for (BaseLocator a : locators) {
-            a.reachComputers(new BaseLocator.ConnectionReceiver() {
+        for (BaseLinkProvider a : locators) {
+            a.reachComputers(new BaseLinkProvider.ConnectionReceiver() {
                 @Override
                 public void onConnectionAccepted(BaseComputerLink link) {
-                Log.e("BackgroundService","Connection accepted!");
-                //TODO: Check if there are other links available, and keep the best one
-                addComputerLink(link);
+                    Log.e("BackgroundService", "Connection accepted!");
+                    //TODO: Check if there are other links available, and keep the best one
+                    addComputerLink(link);
                 }
             });
         }
@@ -102,6 +102,8 @@ public class BackgroundService extends Service {
 
     @Override
     public void onCreate() {
+        super.onCreate();
+
         Log.e("BackgroundService","Creating");
 
         settings = getSharedPreferences("KdeConnect", 0);
@@ -112,13 +114,15 @@ public class BackgroundService extends Service {
         registerReceivers();
         registerAnnouncers();
 
-        super.onCreate();
+        instance = this;
+        attendCallbacks();
     }
 
     @Override
     public void onDestroy() {
         Log.e("BackgroundService","Destroying");
         super.onDestroy();
+        instance = null;
     }
 
 
@@ -126,10 +130,50 @@ public class BackgroundService extends Service {
 
 
 
+    //All kind of black magic to make the service a singleton
 
+    public interface InstanceCallback {
+        void onServiceStart(BackgroundService service);
+    }
 
+    private static BackgroundService instance = null;
+    private static ArrayList<InstanceCallback> callbacks = new ArrayList<InstanceCallback>();
 
-    //Singleton service auxiliars
+    private static void attendCallbacks() {
+        for (InstanceCallback c : callbacks) {
+            c.onServiceStart(instance);
+        }
+        callbacks.clear();
+    }
+
+    public static void Start(Context c) {
+        RunCommand(c, null);
+    }
+
+    public static void RunCommand(Context c, final InstanceCallback callback) {
+
+        if (callback != null) callbacks.add(callback);
+
+        if (instance == null) {
+            Intent serviceIntent = new Intent(c, BackgroundService.class);
+            c.startService(serviceIntent);
+            try {
+                c.bindService(serviceIntent, new ServiceConnection() {
+                    public void onServiceDisconnected(ComponentName name) {
+                        instance = null;
+                    }
+                    public void onServiceConnected(ComponentName name, IBinder binder) {
+                        instance = ((LocalBinder) binder).getInstance();
+                        attendCallbacks();
+                    }
+                }, Service.BIND_AUTO_CREATE);
+            } catch(Exception e) {
+
+            }
+        } else {
+            attendCallbacks();
+        }
+    }
 
     private class LocalBinder extends Binder {
         public BackgroundService getInstance() {
@@ -137,48 +181,10 @@ public class BackgroundService extends Service {
         }
     }
 
-    public interface ServiceStartCallback {
-        void onServiceStart(BackgroundService service);
-    }
-
     private IBinder mBinder = new LocalBinder();
-    private static BackgroundService instance = null;
-
-    public static BackgroundService GetInstance() {
-        return instance;
-    }
-
-    public static void Start(Context c) {
-        Start(c,null);
-    }
-
-    public static void Start(Context c, final ServiceStartCallback callback) {
-
-        if (instance != null) {
-            Log.e("SingletonService","Already started");
-            callback.onServiceStart(instance);
-        }
-
-        Intent serviceIntent = new Intent(c, BackgroundService.class);
-        c.startService(serviceIntent);
-        c.bindService(serviceIntent, new ServiceConnection() {
-
-            public void onServiceDisconnected(ComponentName name) {
-                instance = null;
-            }
-
-            public void onServiceConnected(ComponentName name, IBinder binder) {
-                instance = ((LocalBinder) binder).getInstance();
-                if (callback != null) callback.onServiceStart(instance);
-            }
-
-        }, Service.BIND_AUTO_CREATE);
-
-    }
 
     @Override
     public IBinder onBind(Intent intent) {
         return mBinder;
     }
-
 }

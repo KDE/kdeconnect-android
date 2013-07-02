@@ -1,4 +1,4 @@
-package org.kde.connect.Locators;
+package org.kde.connect.LinkProviders;
 
 import android.content.Context;
 import android.net.nsd.NsdManager;
@@ -6,14 +6,13 @@ import android.net.nsd.NsdServiceInfo;
 import android.os.Build;
 import android.util.Log;
 
-import org.kde.connect.ComputerLinks.BaseComputerLink;
 import org.kde.connect.ComputerLinks.UdpComputerLink;
 import org.kde.connect.Types.NetworkPackage;
 
 import java.lang.Override;
 import java.util.ArrayList;
 
-public class AvahiLocator implements BaseLocator {
+public class AvahiLinkProvider implements BaseLinkProvider {
 
     String serviceType = "_kdeconnect._udp";
 
@@ -22,25 +21,25 @@ public class AvahiLocator implements BaseLocator {
     ArrayList<UdpComputerLink> visibleComputers = new ArrayList<UdpComputerLink>();
 
 
-    public AvahiLocator(Context context) {
+    public AvahiLinkProvider(Context context) {
         mNsdManager = (NsdManager)context.getSystemService(Context.NSD_SERVICE);
     }
 
     @Override
     public void reachComputers(final ConnectionReceiver cr) {
 
-        Log.e("AvahiLocator", "Discovering computers...");
+        Log.e("AvahiLinkProvider", "Discovering computers...");
 
         final NsdManager.ResolveListener mResolveListener = new NsdManager.ResolveListener() {
 
             @Override
             public void onResolveFailed(NsdServiceInfo serviceInfo, int errorCode) {
-                Log.e("AvahiLocator", "Resolve failed" + errorCode);
+                Log.e("AvahiLinkProvider", "Resolve failed" + errorCode);
             }
 
             @Override
             public void onServiceResolved(NsdServiceInfo serviceInfo) {
-                Log.e("AvahiLocator", "Resolve Succeeded. " + serviceInfo);
+                Log.e("AvahiLinkProvider", "Resolve Succeeded. " + serviceInfo);
 
                 //Computer found
 
@@ -67,17 +66,17 @@ public class AvahiLocator implements BaseLocator {
 
             @Override
             public void onDiscoveryStarted(String regType) {
-                Log.e("AvahiLocator", "Service discovery started");
+                Log.e("AvahiLinkProvider", "Service discovery started");
             }
 
             @Override
             public void onServiceFound(NsdServiceInfo service) {
-                Log.e("AvahiLocator", "Service discovery success" + service);
+                Log.e("AvahiLinkProvider", "Service discovery success" + service);
 
                 if (!service.getServiceType().startsWith(serviceType)) {
-                    Log.e("AvahiLocator", "Unknown Service Type: " + service.getServiceType());
+                    Log.e("AvahiLinkProvider", "Unknown Service Type: " + service.getServiceType());
                 } else  {
-                    Log.e("AvahiLocator", "Computer found, resolving...");
+                    Log.e("AvahiLinkProvider", "Computer found, resolving...");
                     mNsdManager.resolveService(service, mResolveListener);
                 }
 
@@ -85,24 +84,24 @@ public class AvahiLocator implements BaseLocator {
 
             @Override
             public void onServiceLost(NsdServiceInfo service) {
-                Log.e("AvahiLocator", "service lost" + service);
+                Log.e("AvahiLinkProvider", "service lost" + service);
                 visibleComputers.remove(service);
             }
 
             @Override
             public void onDiscoveryStopped(String serviceType) {
-                Log.e("AvahiLocator", "Discovery stopped: " + serviceType);
+                Log.e("AvahiLinkProvider", "Discovery stopped: " + serviceType);
             }
 
             @Override
             public void onStartDiscoveryFailed(String serviceType, int errorCode) {
-                Log.e("AvahiLocator", "Discovery failed: Error code:" + errorCode);
+                Log.e("AvahiLinkProvider", "Discovery failed: Error code:" + errorCode);
                 mNsdManager.stopServiceDiscovery(this);
             }
 
             @Override
             public void onStopDiscoveryFailed(String serviceType, int errorCode) {
-                Log.e("AvahiLocator", "Discovery failed: Error code:" + errorCode);
+                Log.e("AvahiLinkProvider", "Discovery failed: Error code:" + errorCode);
                 mNsdManager.stopServiceDiscovery(this);
             }
         };

@@ -53,15 +53,11 @@ public class UdpComputerLink extends BaseComputerLink {
             @Override
             protected Void doInBackground(Void... voids) {
                 try {
-                    Log.e("UdpComputerLink","A");
                     DatagramSocket s = new DatagramSocket();
                     int msg_length = messageStr.length();
                     byte[] message = messageStr.getBytes();
-                    Log.e("UdpComputerLink","B");
                     DatagramPacket p = new DatagramPacket(message, msg_length,IP,UDP_PORT);
-                    Log.e("UdpComputerLink","C");
                     s.send(p);
-                    Log.e("UdpComputerLink","D");
                     Log.e("Sent", messageStr);
                 } catch(Exception e) {
                     e.printStackTrace();

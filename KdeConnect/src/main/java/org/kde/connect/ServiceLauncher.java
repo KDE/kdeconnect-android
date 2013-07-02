@@ -29,8 +29,12 @@ public class ServiceLauncher extends BroadcastReceiver
             BackgroundService.Start(context);
         } else if (action.equals(WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION)) {
             Log.e("KdeConnect", "Connection state changed, trying to connect");
-            BackgroundService service = BackgroundService.GetInstance();
-            service.reachComputers();
+            BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
+                @Override
+                public void onServiceStart(BackgroundService service) {
+                    service.reachComputers();
+                }
+            });
         } else {
             Log.e("KdeConnect", "Ignoring broadcast event: "+intent.getAction());
         }
