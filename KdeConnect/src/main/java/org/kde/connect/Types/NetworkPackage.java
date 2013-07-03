@@ -25,18 +25,18 @@ public class NetworkPackage {
     }
 
     private long mId;
-    private long mDeviceId;
+    private String mDeviceId;
     private long mTime; //since epoch, utc
     private Type mType;
     private String mBody;
     private boolean mIsCancel;
     private JSONObject mExtras; //JSON
 
-    public NetworkPackage(long id/*, Context context*/) {
-        mId = id;
-        // final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        mDeviceId = 42;
+    public NetworkPackage(Context context) {
+        final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        mDeviceId = tm.getDeviceId();
         mTime = Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTimeInMillis() / 1000L;
+        mId = System.currentTimeMillis();
         mType = Type.UNKNOWN;
         mBody = "";
         mIsCancel = false;
@@ -75,6 +75,8 @@ public class NetworkPackage {
 
         sb.append(' ');
 
+        sb.append(mDeviceId.length());
+        sb.append(' ');
         sb.append(mDeviceId);
 
         sb.append(' ');
@@ -108,11 +110,11 @@ public class NetworkPackage {
     }
 
 
-    static public NetworkPackage fromString(String s/*, Context context*/) {
+    static public NetworkPackage fromString(String s, Context context) {
         Log.i("NetworkPackage.fromString",s);
 
         //TODO: Implement
-        NetworkPackage np = new NetworkPackage(123456789 /*, context*/);
+        NetworkPackage np = new NetworkPackage(context);
         np.mType = Type.PAIR_REQUEST;
         return np;
     }

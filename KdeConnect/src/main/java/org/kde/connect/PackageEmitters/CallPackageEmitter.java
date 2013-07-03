@@ -28,7 +28,7 @@ public class CallPackageEmitter extends BasePackageEmitter {
 
                         Log.i("IncomingCall", incomingNumber);
 
-                        lastPackage = new NetworkPackage(System.currentTimeMillis());
+                        lastPackage = new NetworkPackage(ctx);
 
                         lastPackage.setType(NetworkPackage.Type.RING);
                         lastPackage.setBody(incomingNumber);
@@ -58,7 +58,7 @@ public class CallPackageEmitter extends BasePackageEmitter {
 
                                 String number = lastPackage.getBody();
 
-                                lastPackage = new NetworkPackage(System.currentTimeMillis());
+                                lastPackage = new NetworkPackage(ctx);
 
                                 lastPackage.setType(NetworkPackage.Type.MISSED);
                                 lastPackage.setBody(incomingNumber);

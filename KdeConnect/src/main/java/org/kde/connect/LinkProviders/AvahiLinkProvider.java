@@ -20,9 +20,11 @@ public class AvahiLinkProvider implements BaseLinkProvider {
 
     ArrayList<UdpComputerLink> visibleComputers = new ArrayList<UdpComputerLink>();
 
+    Context ctx;
 
     public AvahiLinkProvider(Context context) {
         mNsdManager = (NsdManager)context.getSystemService(Context.NSD_SERVICE);
+        ctx = context;
     }
 
     @Override
@@ -45,7 +47,7 @@ public class AvahiLinkProvider implements BaseLinkProvider {
 
                 //Handshake link
                 UdpComputerLink link = new UdpComputerLink(serviceInfo.getHost(),serviceInfo.getPort());
-                NetworkPackage np = new NetworkPackage(System.currentTimeMillis());
+                NetworkPackage np = new NetworkPackage(ctx);
                 np.setType(NetworkPackage.Type.IDENTIFY);
                 np.setBody(Build.BRAND + " - " + Build.MODEL);
                 link.sendPackage(np);

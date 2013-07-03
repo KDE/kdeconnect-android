@@ -34,8 +34,6 @@ public class BackgroundService extends Service {
 
     PingPackageEmitter pingEmitter;
 
-
-
     private void addComputerLink(BaseComputerLink cl) {
 
         Log.i("BackgroundService","addComputerLink");
@@ -47,9 +45,9 @@ public class BackgroundService extends Service {
 
         Log.i("BackgroundService","sending ping after connection");
 
-        NetworkPackage p = new NetworkPackage(System.currentTimeMillis());
-        p.setType(NetworkPackage.Type.PING);
-        cl.sendPackage(p);
+        //NetworkPackage p = new NetworkPackage(System.currentTimeMillis());
+        //p.setType(NetworkPackage.Type.PING);
+        //cl.sendPackage(p);
 
     }
 

@@ -20,7 +20,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        BackgroundService.Start(MainActivity.this);
+        BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                service.reachComputers();
+            }
+        });
 
         findViewById(R.id.button1).setOnClickListener(new OnClickListener() {
             @Override
