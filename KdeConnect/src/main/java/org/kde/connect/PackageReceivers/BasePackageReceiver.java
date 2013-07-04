@@ -1,6 +1,6 @@
 package org.kde.connect.PackageReceivers;
 
-import org.kde.connect.Types.NetworkPackage;
+import org.kde.connect.NetworkPackage;
 
 public interface BasePackageReceiver {
 

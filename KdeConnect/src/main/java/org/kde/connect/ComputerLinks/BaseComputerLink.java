@@ -1,7 +1,7 @@
 package org.kde.connect.ComputerLinks;
 
 import org.kde.connect.PackageReceivers.BasePackageReceiver;
-import org.kde.connect.Types.NetworkPackage;
+import org.kde.connect.NetworkPackage;
 
 import java.util.ArrayList;
 

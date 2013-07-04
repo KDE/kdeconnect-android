@@ -1,4 +1,4 @@
-package org.kde.connect.Types;
+package org.kde.connect;
 
 import android.content.Context;
 import android.os.Build;
@@ -8,12 +8,14 @@ import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Calendar;
-import java.util.TimeZone;
-
 public class NetworkPackage {
 
     private final static int CURRENT_PACKAGE_VERSION = 1;
+
+    public final static String PACKAGE_TYPE_IDENTITY = "kdeconnect.identity";
+    public final static String PACKAGE_TYPE_PING = "kdeconnect.ping";
+    public final static String PACKAGE_TYPE_NOTIFICATION = "kdeconnect.notification";
+    public final static String PACKAGE_TYPE_CALL = "kdeconnect.call";
 
     private long mId;
     private String mType;
@@ -82,7 +84,7 @@ public class NetworkPackage {
 
     static public NetworkPackage createIdentityPackage(Context context) {
 
-        NetworkPackage np = new NetworkPackage("kdeconnect.identity");
+        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_IDENTITY);
 
         final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         try {

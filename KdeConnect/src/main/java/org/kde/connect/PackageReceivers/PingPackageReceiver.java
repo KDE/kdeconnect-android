@@ -3,7 +3,7 @@ package org.kde.connect.PackageReceivers;
 import android.content.Context;
 import android.widget.Toast;
 
-import org.kde.connect.Types.NetworkPackage;
+import org.kde.connect.NetworkPackage;
 
 public class PingPackageReceiver implements BasePackageReceiver {
 

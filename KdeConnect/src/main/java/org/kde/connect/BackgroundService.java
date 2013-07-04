@@ -18,7 +18,6 @@ import org.kde.connect.PackageEmitters.CallPackageEmitter;
 import org.kde.connect.PackageEmitters.PingPackageEmitter;
 import org.kde.connect.PackageReceivers.BasePackageReceiver;
 import org.kde.connect.PackageReceivers.PingPackageReceiver;
-import org.kde.connect.Types.NetworkPackage;
 
 import java.util.ArrayList;
 
@@ -34,21 +33,23 @@ public class BackgroundService extends Service {
 
     PingPackageEmitter pingEmitter;
 
+    private void clearComputerLinks() {
+        Log.i("BackgroundService","clearComputerLinks");
+        for(BasePackageEmitter pe : emitters) pe.clearComputerLinks();
+        computerLinks.clear();
+    }
+
+    private void removeComputerLink(BaseComputerLink cl) {
+        Log.i("BackgroundService","removeComputerLink");
+        for(BasePackageEmitter pe : emitters) pe.removeComputerLink(cl);
+        computerLinks.remove(cl);
+    }
+
     private void addComputerLink(BaseComputerLink cl) {
-
         Log.i("BackgroundService","addComputerLink");
-
         computerLinks.add(cl);
-
         for(BasePackageEmitter pe : emitters) pe.addComputerLink(cl);
         for(BasePackageReceiver pr : receivers) cl.addPackageReceiver(pr);
-
-        Log.i("BackgroundService","sending ping after connection");
-
-        //NetworkPackage p = new NetworkPackage(System.currentTimeMillis());
-        //p.setType(NetworkPackage.Type.PING);
-        //cl.sendPackage(p);
-
     }
 
     private void registerEmitters() {
@@ -73,15 +74,19 @@ public class BackgroundService extends Service {
         }
     }
 
+    //This will be called for each intent launch, even if the service is already started and is reused
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.e("BackgroundService","Starting");
-        instance=this;
-        attendCallbacks();
+        Log.e("BackgroundService","Running callbacks waiting service to be ready");
+        for (InstanceCallback c : callbacks) {
+            c.onServiceStart(this);
+        }
+        callbacks.clear();
         return Service.START_STICKY;
     }
 
     public void reachComputers() {
+        clearComputerLinks();
         for (BaseLinkProvider a : locators) {
             a.reachComputers(new BaseLinkProvider.ConnectionReceiver() {
                 @Override
@@ -98,11 +103,12 @@ public class BackgroundService extends Service {
         pingEmitter.sendPing();
     }
 
+    //This will called only once, even if we launch the service intent several times
     @Override
     public void onCreate() {
         super.onCreate();
 
-        Log.e("BackgroundService","Creating");
+        Log.e("BackgroundService","Service not started yet, initializing...");
 
         settings = getSharedPreferences("KdeConnect", 0);
 
@@ -112,77 +118,39 @@ public class BackgroundService extends Service {
         registerReceivers();
         registerAnnouncers();
 
-        instance = this;
-        attendCallbacks();
     }
 
     @Override
     public void onDestroy() {
-        Log.e("BackgroundService","Destroying");
+        Log.e("BackgroundService", "Destroying");
         super.onDestroy();
-        instance = null;
+    }
+
+    @Override
+    public IBinder onBind (Intent intent) {
+        return new Binder();
     }
 
 
 
 
-
-
-    //All kind of black magic to make the service a singleton
+    //To use the service from the gui
 
     public interface InstanceCallback {
         void onServiceStart(BackgroundService service);
     }
 
-    private static BackgroundService instance = null;
     private static ArrayList<InstanceCallback> callbacks = new ArrayList<InstanceCallback>();
-
-    private static void attendCallbacks() {
-        for (InstanceCallback c : callbacks) {
-            c.onServiceStart(instance);
-        }
-        callbacks.clear();
-    }
-
+/*
     public static void Start(Context c) {
         RunCommand(c, null);
     }
-
+*/
     public static void RunCommand(Context c, final InstanceCallback callback) {
-
         if (callback != null) callbacks.add(callback);
-
-        if (instance == null) {
-            Intent serviceIntent = new Intent(c, BackgroundService.class);
-            c.startService(serviceIntent);
-            try {
-                c.bindService(serviceIntent, new ServiceConnection() {
-                    public void onServiceDisconnected(ComponentName name) {
-                        instance = null;
-                    }
-                    public void onServiceConnected(ComponentName name, IBinder binder) {
-                        instance = ((LocalBinder) binder).getInstance();
-                        attendCallbacks();
-                    }
-                }, Service.BIND_AUTO_CREATE);
-            } catch(Exception e) {
-
-            }
-        } else {
-            attendCallbacks();
-        }
+        Intent serviceIntent = new Intent(c, BackgroundService.class);
+        c.startService(serviceIntent);
     }
 
-    private class LocalBinder extends Binder {
-        public BackgroundService getInstance() {
-            return BackgroundService.this;
-        }
-    }
 
-    private IBinder mBinder = new LocalBinder();
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        return mBinder;
-    }
 }

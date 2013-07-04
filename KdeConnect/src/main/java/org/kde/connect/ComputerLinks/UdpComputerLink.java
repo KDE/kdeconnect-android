@@ -3,9 +3,8 @@ package org.kde.connect.ComputerLinks;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import org.kde.connect.Types.NetworkPackage;
+import org.kde.connect.NetworkPackage;
 
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;

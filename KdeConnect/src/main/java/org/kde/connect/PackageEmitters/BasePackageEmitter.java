@@ -1,7 +1,7 @@
 package org.kde.connect.PackageEmitters;
 
 import org.kde.connect.ComputerLinks.BaseComputerLink;
-import org.kde.connect.Types.NetworkPackage;
+import org.kde.connect.NetworkPackage;
 
 import java.util.ArrayList;
 
@@ -11,6 +11,12 @@ public class BasePackageEmitter {
 
     public void addComputerLink(BaseComputerLink cl) {
         mBaseComputerLinks.add(cl);
+    }
+    public void removeComputerLink(BaseComputerLink cl) {
+        mBaseComputerLinks.remove(cl);
+    }
+    public void clearComputerLinks() {
+        mBaseComputerLinks.clear();
     }
 
     protected int countLinkedComputers() {

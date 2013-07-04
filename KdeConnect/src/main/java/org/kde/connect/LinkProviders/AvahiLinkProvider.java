@@ -3,11 +3,10 @@ package org.kde.connect.LinkProviders;
 import android.content.Context;
 import android.net.nsd.NsdManager;
 import android.net.nsd.NsdServiceInfo;
-import android.os.Build;
 import android.util.Log;
 
 import org.kde.connect.ComputerLinks.UdpComputerLink;
-import org.kde.connect.Types.NetworkPackage;
+import org.kde.connect.NetworkPackage;
 
 import java.lang.Override;
 import java.util.ArrayList;
@@ -29,6 +28,8 @@ public class AvahiLinkProvider implements BaseLinkProvider {
 
     @Override
     public void reachComputers(final ConnectionReceiver cr) {
+
+        visibleComputers.clear();
 
         Log.e("AvahiLinkProvider", "Discovering computers...");
 
