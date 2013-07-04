@@ -15,7 +15,7 @@ public class PingPackageReceiver implements BasePackageReceiver {
 
     @Override
     public void onPackageReceived(NetworkPackage np) {
-        if (np.getType() == NetworkPackage.Type.PING) {
+        if (np.getType() == "kdeconnect.ping") {
             Toast.makeText(context, "Ping!", Toast.LENGTH_LONG).show();
         }
     }

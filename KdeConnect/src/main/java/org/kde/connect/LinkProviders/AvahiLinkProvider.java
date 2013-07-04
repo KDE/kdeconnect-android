@@ -47,9 +47,7 @@ public class AvahiLinkProvider implements BaseLinkProvider {
 
                 //Handshake link
                 UdpComputerLink link = new UdpComputerLink(serviceInfo.getHost(),serviceInfo.getPort());
-                NetworkPackage np = new NetworkPackage(ctx);
-                np.setType(NetworkPackage.Type.IDENTIFY);
-                np.setBody(Build.BRAND + " - " + Build.MODEL);
+                NetworkPackage np = NetworkPackage.createIdentityPackage(ctx);
                 link.sendPackage(np);
 
                 //TODO: Wait for computer confirmation and ensure this is the device we want (requiring user interaction)

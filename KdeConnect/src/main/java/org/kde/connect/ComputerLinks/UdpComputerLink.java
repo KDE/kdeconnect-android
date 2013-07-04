@@ -48,7 +48,7 @@ public class UdpComputerLink extends BaseComputerLink {
     @Override
     public void sendPackage(NetworkPackage np) {
         Log.e("UdpComputerLink","sendPackage");
-        final String messageStr = np.toString();
+        final String messageStr = np.serialize();
         new AsyncTask<Void,Void,Void>(){
             @Override
             protected Void doInBackground(Void... voids) {

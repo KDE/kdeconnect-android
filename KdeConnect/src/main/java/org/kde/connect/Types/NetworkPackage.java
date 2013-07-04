@@ -1,9 +1,11 @@
 package org.kde.connect.Types;
 
 import android.content.Context;
+import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Calendar;
@@ -11,112 +13,81 @@ import java.util.TimeZone;
 
 public class NetworkPackage {
 
-    public enum Type {
-        UNKNOWN,
-        IDENTIFY,
-        PAIR_REQUEST,
-        RING,
-        MISSED,
-        SMS,
-        BATTERY,
-        NOTIFY,
-        PING,
-        TYPE_SIZE
-    }
+    private int mVersion = 1;
 
     private long mId;
-    private String mDeviceId;
-    private long mTime; //since epoch, utc
-    private Type mType;
-    private String mBody;
-    private boolean mIsCancel;
-    private JSONObject mExtras; //JSON
+    private String mType;
+    private JSONObject mBody;
 
-    public NetworkPackage(Context context) {
-        final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        mDeviceId = tm.getDeviceId();
-        mTime = Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTimeInMillis() / 1000L;
+    private NetworkPackage() {
+    }
+
+    public NetworkPackage(String type) {
         mId = System.currentTimeMillis();
-        mType = Type.UNKNOWN;
-        mBody = "";
-        mIsCancel = false;
-        mExtras = new JSONObject();
-    }
-
-    public void setType(Type type) {
         mType = type;
+        mBody = new JSONObject();
     }
 
-    public void setBody(String body) {
-        mBody = body;
-    }
-
-    public String getBody() {
-        return mBody;
-    }
-
-    public Type getType() {
+    public String getType() {
         return mType;
     }
 
-    public void updateTime() {
-        mTime = Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTimeInMillis() / 1000L;
+    public int getVersion() {
+        return mVersion;
     }
 
-    public void cancel() {
-        mIsCancel = true;
+    //Most commons getters and setters defined for convenience
+    public String getString(String key) { return mBody.optString(key,""); }
+    public String getString(String key, String defaultValue) { return mBody.optString(key,defaultValue); }
+    public void set(String key, String value) { try { mBody.put(key,value); } catch(Exception e) { } }
+    public int getInt(String key) { return mBody.optInt(key,-1); }
+    public int getInt(String key, int defaultValue) { return mBody.optInt(key,defaultValue); }
+    public void set(String key, int value) { try { mBody.put(key,value); } catch(Exception e) { } }
+    public boolean getBoolean(String key) { return mBody.optBoolean(key,false); }
+    public boolean getBoolean(String key, boolean defaultValue) { return mBody.optBoolean(key,defaultValue); }
+    public void set(String key, boolean value) { try { mBody.put(key,value); } catch(Exception e) { } }
+
+    public String serialize() {
+        JSONObject jo = new JSONObject();
+        try {
+            jo.put("id",mId);
+            jo.put("type",mType);
+            jo.put("body",mBody);
+            jo.put("version",mVersion);
+        } catch(Exception e) {
+        }
+        Log.e("NetworkPackage.serialize",jo.toString());
+        return jo.toString();
     }
 
-    public String toString() {
-
-        StringBuilder sb = new StringBuilder();
-
-        sb.append(mId);
-
-        sb.append(' ');
-
-        sb.append(mDeviceId.length());
-        sb.append(' ');
-        sb.append(mDeviceId);
-
-        sb.append(' ');
-
-        sb.append(mTime);
-
-        sb.append(' ');
-
-        sb.append(mType.toString());
-
-        sb.append(' ');
-
-        sb.append(mBody.length());
-        sb.append(' ');
-        sb.append(mBody);
-
-        sb.append(' ');
-
-        sb.append(mIsCancel?'1':'0');
-
-        sb.append(' ');
-
-        sb.append(mExtras.length());
-        sb.append(' ');
-        sb.append(mExtras);
-
-        sb.append("END");
-
-        return sb.toString();
-
-    }
-
-
-    static public NetworkPackage fromString(String s, Context context) {
-        Log.i("NetworkPackage.fromString",s);
-
-        //TODO: Implement
-        NetworkPackage np = new NetworkPackage(context);
-        np.mType = Type.PAIR_REQUEST;
+    static public NetworkPackage unserialize(String s) {
+        Log.e("NetworkPackage.unserialize", s);
+        NetworkPackage np = new NetworkPackage();
+        try {
+            JSONObject jo = new JSONObject(s);
+            np.mId = jo.getLong("id");
+            np.mType = jo.getString("type");
+            np.mBody = jo.getJSONObject("body");
+            np.mVersion = jo.getInt("version");
+        } catch (Exception e) {
+            return null;
+        }
         return np;
+    }
+
+    static public NetworkPackage createIdentityPackage(Context context) {
+
+        NetworkPackage np = new NetworkPackage("kdeconnect.identity");
+
+        final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        try {
+            np.mBody.put("deviceId",tm.getDeviceId());
+            np.mBody.put("deviceName", Build.BRAND + " " + Build.MODEL);
+        } catch (JSONException e) {
+        }
+
+        return np;
+
     }
 
 

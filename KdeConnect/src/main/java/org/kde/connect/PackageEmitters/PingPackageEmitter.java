@@ -17,11 +17,7 @@ public class PingPackageEmitter extends BasePackageEmitter {
     public void sendPing() {
         Log.e("PingPackageEmitter", "sendPing to "+countLinkedComputers());
 
-        NetworkPackage lastPackage = new NetworkPackage(context);
-
-        lastPackage.setType(NetworkPackage.Type.PING);
-        lastPackage.setBody("Ping!");
-
+        NetworkPackage lastPackage = new NetworkPackage("kdeconnect.ping");
         sendPackage(lastPackage);
     }
 

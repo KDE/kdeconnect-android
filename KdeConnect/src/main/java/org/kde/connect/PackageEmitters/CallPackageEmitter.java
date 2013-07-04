@@ -20,18 +20,18 @@ public class CallPackageEmitter extends BasePackageEmitter {
             NetworkPackage lastPackage;
 
             @Override
-            public void onCallStateChanged(int state, String incomingNumber) {
+            public void onCallStateChanged(int state, String phoneNumber) {
 
                 switch (state) {
 
                     case TelephonyManager.CALL_STATE_RINGING:
 
-                        Log.i("IncomingCall", incomingNumber);
+                        Log.e("IncomingCall", ":"+phoneNumber);
 
-                        lastPackage = new NetworkPackage(ctx);
+                        lastPackage = new NetworkPackage("kdeconnect.notification");
 
-                        lastPackage.setType(NetworkPackage.Type.RING);
-                        lastPackage.setBody(incomingNumber);
+                        lastPackage.set("notificationType","ringing");
+                        lastPackage.set("phoneNumber",phoneNumber);
 
                         sendPackage(lastPackage);
 
@@ -39,37 +39,42 @@ public class CallPackageEmitter extends BasePackageEmitter {
 
                     case TelephonyManager.CALL_STATE_OFFHOOK: //Ongoing call
 
-                        if (lastPackage != null) {
-                            lastPackage.cancel();
+                        Log.e("OngoingCall", ":"+phoneNumber);
+
+                        if (lastState == TelephonyManager.CALL_STATE_RINGING && lastPackage != null) {
+                            //Cancel previous ringing notification
+                            lastPackage.set("isCancel","true");
                             sendPackage(lastPackage);
-                            lastPackage = null;
                         }
+
+                        //Emit a "call" package
+                        lastPackage = new NetworkPackage("kdeconnect.call");
+                        lastPackage.set("phoneNumber",phoneNumber);
+                        sendPackage(lastPackage);
 
                         break;
 
                     case TelephonyManager.CALL_STATE_IDLE:
 
+                        Log.e("EndedCall", ":"+phoneNumber);
+
                         if (lastState != TelephonyManager.CALL_STATE_IDLE && lastPackage != null) {
 
-                            lastPackage.cancel();
+                            //End last notification (can either be a ring notification or a call event)
+                            lastPackage.set("isCancel","true");
                             sendPackage(lastPackage);
 
                             if (lastState == TelephonyManager.CALL_STATE_RINGING) {
-
-                                String number = lastPackage.getBody();
-
-                                lastPackage = new NetworkPackage(ctx);
-
-                                lastPackage.setType(NetworkPackage.Type.MISSED);
-                                lastPackage.setBody(incomingNumber);
-
-                                sendPackage(lastPackage);
-
+                                //Emit a missed call notification
+                                NetworkPackage missed = new NetworkPackage("kdeconnect.notification");
+                                missed.set("notificationType","missedCall");
+                                missed.set("phoneNumber",lastPackage.getString("phoneNumber"));
+                                sendPackage(missed);
                             }
 
-                        }
+                            lastPackage = null;
 
-                        lastPackage = null;
+                        }
 
                         break;
 
