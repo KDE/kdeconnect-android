@@ -13,11 +13,12 @@ import java.util.TimeZone;
 
 public class NetworkPackage {
 
-    private int mVersion = 1;
+    private final static int CURRENT_PACKAGE_VERSION = 1;
 
     private long mId;
     private String mType;
     private JSONObject mBody;
+    private int mVersion;
 
     private NetworkPackage() {
     }
@@ -26,6 +27,7 @@ public class NetworkPackage {
         mId = System.currentTimeMillis();
         mType = type;
         mBody = new JSONObject();
+        mVersion = CURRENT_PACKAGE_VERSION;
     }
 
     public String getType() {
@@ -71,6 +73,9 @@ public class NetworkPackage {
             np.mVersion = jo.getInt("version");
         } catch (Exception e) {
             return null;
+        }
+        if (np.mVersion > CURRENT_PACKAGE_VERSION) {
+            Log.e("NetworkPackage.unserialize","Version "+np.mVersion+" greater than supported version "+CURRENT_PACKAGE_VERSION);
         }
         return np;
     }
