@@ -5,10 +5,10 @@ import android.net.nsd.NsdManager;
 import android.net.nsd.NsdServiceInfo;
 import android.util.Log;
 
+import org.kde.connect.ComputerLinks.BaseComputerLink;
 import org.kde.connect.ComputerLinks.TcpComputerLink;
 import org.kde.connect.Device;
 import org.kde.connect.NetworkPackage;
-import org.kde.connect.PackageReceivers.BasePackageReceiver;
 
 import java.net.InetAddress;
 import java.util.ArrayList;
@@ -59,9 +59,9 @@ public class AvahiTcpLinkProvider implements BaseLinkProvider {
                     final int port = serviceInfo.getPort();
                     final TcpComputerLink link = new TcpComputerLink(AvahiTcpLinkProvider.this,host,port);
                     Log.e("AvahiTcpLinkProvider", "Waiting identity package");
-                    link.addPackageReceiver(new BasePackageReceiver() {
+                    link.addPackageReceiver(new BaseComputerLink.PackageReceiver() {
                         @Override
-                        public void onPackageReceived(Device d, NetworkPackage np) {
+                        public void onPackageReceived(NetworkPackage np) {
 
                             Log.e("AvahiTcpLinkProvider", "Received package: " + np.getType());
 

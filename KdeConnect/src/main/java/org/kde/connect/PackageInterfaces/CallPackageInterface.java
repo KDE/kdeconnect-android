@@ -1,18 +1,19 @@
-package org.kde.connect.PackageEmitters;
+package org.kde.connect.PackageInterfaces;
 
 import android.content.Context;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import org.kde.connect.Device;
 import org.kde.connect.NetworkPackage;
 
 
-public class CallPackageEmitter extends BasePackageEmitter {
+public class CallPackageInterface extends BasePackageInterface {
 
-    public CallPackageEmitter(final Context ctx) {
+    public CallPackageInterface(final Context ctx) {
 
-        Log.i("CallPackageEmitter", "Registered");
+        Log.i("CallPackageInterface", "Registered");
 
         PhoneStateListener callStateListener = new PhoneStateListener() {
 
@@ -93,4 +94,8 @@ public class CallPackageEmitter extends BasePackageEmitter {
 
     }
 
+    @Override
+    public void onPackageReceived(Device d, NetworkPackage np) {
+        //Do nothing
+    }
 }

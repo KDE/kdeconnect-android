@@ -1,17 +1,11 @@
-package org.kde.connect.PackageEmitters;
+package org.kde.connect.PackageInterfaces;
 
-import android.util.Log;
-
-import org.kde.connect.ComputerLinks.BaseComputerLink;
 import org.kde.connect.Device;
 import org.kde.connect.NetworkPackage;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 
-public class BasePackageEmitter {
+public abstract class BasePackageInterface {
 
     private ArrayList<Device> mDevices = new ArrayList<Device>();
 
@@ -39,4 +33,7 @@ public class BasePackageEmitter {
         }
         return true;
     }
+
+    //To override
+    public abstract void onPackageReceived(Device d, NetworkPackage np);
 }

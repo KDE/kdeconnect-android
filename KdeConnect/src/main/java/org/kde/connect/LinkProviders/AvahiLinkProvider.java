@@ -5,10 +5,10 @@ import android.net.nsd.NsdManager;
 import android.net.nsd.NsdServiceInfo;
 import android.util.Log;
 
+import org.kde.connect.ComputerLinks.BaseComputerLink;
 import org.kde.connect.ComputerLinks.UdpComputerLink;
 import org.kde.connect.Device;
 import org.kde.connect.NetworkPackage;
-import org.kde.connect.PackageReceivers.BasePackageReceiver;
 
 import java.lang.Override;
 import java.util.ArrayList;
@@ -53,9 +53,9 @@ public class AvahiLinkProvider implements BaseLinkProvider {
                 //Handshake link
                 try {
                     UdpComputerLink link = new UdpComputerLink(AvahiLinkProvider.this,serviceInfo.getHost(),serviceInfo.getPort());
-                    link.addPackageReceiver(new BasePackageReceiver() {
+                    link.addPackageReceiver(new BaseComputerLink.PackageReceiver() {
                         @Override
-                        public void onPackageReceived(Device d, NetworkPackage np) {
+                        public void onPackageReceived(NetworkPackage np) {
                             Log.e("AvahiLinkProvider","Received reply");
                             if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
                                 String id = np.getString("deviceId");
@@ -73,6 +73,7 @@ public class AvahiLinkProvider implements BaseLinkProvider {
                             }
                         }
                     });
+                    link.startReceivingPackages();
                     Log.e("AvahiLinkProvider","Sending identity package");
                     NetworkPackage np = NetworkPackage.createIdentityPackage(ctx);
                     link.sendPackage(np);

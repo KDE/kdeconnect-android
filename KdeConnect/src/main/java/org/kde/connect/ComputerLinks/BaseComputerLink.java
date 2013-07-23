@@ -2,7 +2,7 @@ package org.kde.connect.ComputerLinks;
 
 import org.kde.connect.Device;
 import org.kde.connect.LinkProviders.BaseLinkProvider;
-import org.kde.connect.PackageReceivers.BasePackageReceiver;
+import org.kde.connect.PackageInterfaces.BasePackageInterface;
 import org.kde.connect.NetworkPackage;
 
 import java.util.ArrayList;
@@ -31,19 +31,22 @@ public abstract class BaseComputerLink {
     }
 
 
-    ArrayList<BasePackageReceiver> receivers = new ArrayList<BasePackageReceiver>();
+    public interface PackageReceiver {
+        public void onPackageReceived(NetworkPackage np);
+    }
+    ArrayList<PackageReceiver> receivers = new ArrayList<PackageReceiver>();
 
-    public void addPackageReceiver(BasePackageReceiver pr) {
+    public void addPackageReceiver(PackageReceiver pr) {
         receivers.add(pr);
     }
-    public void removePackageReceiver(BasePackageReceiver pr) {
+    public void removePackageReceiver(PackageReceiver pr) {
         receivers.remove(pr);
     }
 
     //Should be called from a background thread listening to packages
-    protected void packageReceived(Device d, NetworkPackage np) {
-        for(BasePackageReceiver pr : receivers) {
-            pr.onPackageReceived(d, np);
+    protected void packageReceived(NetworkPackage np) {
+        for(PackageReceiver pr : receivers) {
+            pr.onPackageReceived(np);
         }
     }
 

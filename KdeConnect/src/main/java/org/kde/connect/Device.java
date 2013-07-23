@@ -4,7 +4,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import org.kde.connect.ComputerLinks.BaseComputerLink;
-import org.kde.connect.PackageReceivers.BasePackageReceiver;
+import org.kde.connect.PackageInterfaces.BasePackageInterface;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,7 +13,7 @@ import java.util.Comparator;
 public class Device {
 
     private ArrayList<BaseComputerLink> links = new ArrayList<BaseComputerLink>();
-    private ArrayList<BasePackageReceiver> receivers = new ArrayList<BasePackageReceiver>();
+    private ArrayList<BasePackageInterface> receivers = new ArrayList<BasePackageInterface>();
 
     private String deviceId;
     private String name;
@@ -43,10 +43,10 @@ public class Device {
             }
         });
 
-        link.addPackageReceiver(new BasePackageReceiver() {
+        link.addPackageReceiver(new BaseComputerLink.PackageReceiver() {
             @Override
-            public void onPackageReceived(Device d, NetworkPackage np) {
-                for (BasePackageReceiver receiver : receivers) {
+            public void onPackageReceived(NetworkPackage np) {
+                for (BasePackageInterface receiver : receivers) {
                     receiver.onPackageReceived(Device.this, np);
                 }
             }
@@ -63,12 +63,12 @@ public class Device {
 
     //Send and receive interfaces
 
-    public void addPackageReceiver(BasePackageReceiver receiver) {
+    public void addPackageReceiver(BasePackageInterface receiver) {
         receivers.add(receiver);
     }
 
     public boolean sendPackage(final NetworkPackage np) {
-        Log.e("Device","sendPackage");
+        Log.e("Device", "sendPackage");
 
         new AsyncTask<Void,Void,Void>() {
             @Override

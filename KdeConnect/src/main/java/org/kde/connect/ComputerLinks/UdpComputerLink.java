@@ -5,7 +5,6 @@ import android.util.Log;
 
 import org.kde.connect.LinkProviders.AvahiLinkProvider;
 import org.kde.connect.NetworkPackage;
-import org.kde.connect.PackageReceivers.BasePackageReceiver;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -44,13 +43,8 @@ public class UdpComputerLink extends BaseComputerLink {
         Log.e("UdpComputerLink", "sent");
         return true;
     }
-    @Override
-    public void addPackageReceiver(BasePackageReceiver pr) {
-        super.addPackageReceiver(pr);
-        if (socket == null) startReceivingPackages();
-    }
 
-    private void startReceivingPackages() {
+    public void startReceivingPackages() {
         try {
             socket = new DatagramSocket(UDP_PORT);
         }catch(Exception e) {
@@ -68,7 +62,7 @@ public class UdpComputerLink extends BaseComputerLink {
                         DatagramPacket packet = new DatagramPacket(buffer, buffer.length );
                         socket.receive(packet);
                         String s = new String(packet.getData(), 0, packet.getLength());
-                        packageReceived(null,NetworkPackage.unserialize(s));
+                        packageReceived(NetworkPackage.unserialize(s));
                     }
                 } catch (java.io.IOException e) {
                     Log.e("UdpComputerLink","Exception");

@@ -1,10 +1,8 @@
 package org.kde.connect;
 
 import android.app.Service;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.os.Binder;
 import android.os.IBinder;
@@ -13,15 +11,12 @@ import android.util.Log;
 import org.kde.connect.ComputerLinks.BaseComputerLink;
 import org.kde.connect.LinkProviders.AvahiTcpLinkProvider;
 import org.kde.connect.LinkProviders.BaseLinkProvider;
-import org.kde.connect.LinkProviders.AvahiLinkProvider;
-import org.kde.connect.PackageEmitters.BasePackageEmitter;
-import org.kde.connect.PackageEmitters.CallPackageEmitter;
-import org.kde.connect.PackageEmitters.PingPackageEmitter;
-import org.kde.connect.PackageReceivers.BasePackageReceiver;
-import org.kde.connect.PackageReceivers.PingPackageReceiver;
+import org.kde.connect.PackageInterfaces.BasePackageInterface;
+import org.kde.connect.PackageInterfaces.CallPackageInterface;
+import org.kde.connect.PackageInterfaces.ClipboardPackageInterface;
+import org.kde.connect.PackageInterfaces.PingPackageInterface;
 
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
 
 public class BackgroundService extends Service {
@@ -30,26 +25,23 @@ public class BackgroundService extends Service {
 
     ArrayList<BaseLinkProvider> locators = new ArrayList<BaseLinkProvider>();
 
-    ArrayList<BasePackageEmitter> emitters = new ArrayList<BasePackageEmitter>();
-    ArrayList<BasePackageReceiver> receivers = new ArrayList<BasePackageReceiver>();
+    ArrayList<BasePackageInterface> emitters = new ArrayList<BasePackageInterface>();
 
     HashMap<String, Device> devices = new HashMap<String, Device>();
 
-    PingPackageEmitter pingEmitter;
+    PingPackageInterface pingEmitter;
 
     private void registerEmitters() {
         if (settings.getBoolean("emit_call", true)) {
-            emitters.add(new CallPackageEmitter(getApplicationContext()));
+            emitters.add(new CallPackageInterface(getApplicationContext()));
         }
 
         if (settings.getBoolean("emit_ping", true)) {
             emitters.add(pingEmitter);
         }
-    }
 
-    private void registerReceivers() {
-        if (settings.getBoolean("receive_ping", true)) {
-            receivers.add(new PingPackageReceiver(getApplicationContext()));
+        if (settings.getBoolean("emit_clipboard", true)) {
+            emitters.add(new ClipboardPackageInterface(getApplicationContext()));
         }
     }
 
@@ -97,8 +89,10 @@ public class BackgroundService extends Service {
                         Log.e("BackgroundService", "unknown device");
                         Device device = new Device(deviceId, name, link);
                         devices.put(deviceId, device);
-                        for (BasePackageEmitter pe : emitters) pe.addDevice(device);
-                        for (BasePackageReceiver pr : receivers) device.addPackageReceiver(pr);
+                        for (BasePackageInterface pe : emitters) {
+                            pe.addDevice(device);
+                            device.addPackageReceiver(pe);
+                        }
                     }
 
                 }
@@ -129,10 +123,9 @@ public class BackgroundService extends Service {
 
         settings = getSharedPreferences("KdeConnect", 0);
 
-        pingEmitter = new PingPackageEmitter(getApplicationContext());
+        pingEmitter = new PingPackageInterface(getApplicationContext());
 
         registerEmitters();
-        registerReceivers();
         registerAnnouncers();
         startDiscovery();
 

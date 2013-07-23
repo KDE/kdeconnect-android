@@ -5,7 +5,6 @@ import android.util.Log;
 
 import org.kde.connect.LinkProviders.BaseLinkProvider;
 import org.kde.connect.NetworkPackage;
-import org.kde.connect.PackageReceivers.BasePackageReceiver;
 
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -53,14 +52,9 @@ public class TcpComputerLink extends BaseComputerLink {
         return true;
     }
 
-    @Override
-    public void addPackageReceiver(BasePackageReceiver pr) {
-        Log.e("TcpComputerLink","addPacakgeReceiver");
-        super.addPackageReceiver(pr);
-        if (!listenign) startReceivingPackages();
-    }
-
     public void startReceivingPackages() {
+        if (listenign) return;
+
         listenign = true;
 
         try {
@@ -123,7 +117,7 @@ public class TcpComputerLink extends BaseComputerLink {
                                     Log.e("readable","Read "+read+" bytes: "+s);
 
                                     NetworkPackage np = NetworkPackage.unserialize(s);
-                                    packageReceived(null, np);
+                                    packageReceived(np);
 
                                 }
                             }

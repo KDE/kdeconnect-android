@@ -1,22 +1,28 @@
-package org.kde.connect.PackageReceivers;
+package org.kde.connect.PackageInterfaces;
 
 import android.R;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
-import org.kde.connect.BackgroundToast;
 import org.kde.connect.Device;
 import org.kde.connect.NetworkPackage;
 
-public class PingPackageReceiver implements BasePackageReceiver {
+
+public class PingPackageInterface extends BasePackageInterface {
 
     Context context;
 
-    public PingPackageReceiver(Context ctx) {
+    public PingPackageInterface(Context ctx) {
         context = ctx;
+    }
+
+    public void sendPing() {
+        Log.e("PingPackageInterface", "sendPing to "+countLinkedDevices());
+
+        NetworkPackage lastPackage = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PING);
+        sendPackage(lastPackage);
     }
 
     @Override
@@ -39,4 +45,5 @@ public class PingPackageReceiver implements BasePackageReceiver {
 
         }
     }
+
 }
