@@ -1,31 +1,42 @@
 package org.kde.connect.PackageEmitters;
 
+import android.util.Log;
+
 import org.kde.connect.ComputerLinks.BaseComputerLink;
+import org.kde.connect.Device;
 import org.kde.connect.NetworkPackage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class BasePackageEmitter {
 
-    private ArrayList<BaseComputerLink> mBaseComputerLinks = new ArrayList<BaseComputerLink>();
+    private ArrayList<Device> mDevices = new ArrayList<Device>();
 
-    public void addComputerLink(BaseComputerLink cl) {
-        mBaseComputerLinks.add(cl);
+    public void addDevice(Device d) {
+        mDevices.add(d);
     }
-    public void removeComputerLink(BaseComputerLink cl) {
-        mBaseComputerLinks.remove(cl);
+
+    public void removeDevice(Device d) {
+        mDevices.remove(d);
     }
+
     public void clearComputerLinks() {
-        mBaseComputerLinks.clear();
+        mDevices.clear();
     }
 
-    protected int countLinkedComputers() {
-        return mBaseComputerLinks.size();
+    public int countLinkedDevices() {
+        return mDevices.size();
     }
 
-    protected void sendPackage(NetworkPackage np) {
-        for(BaseComputerLink cl : mBaseComputerLinks) {
-            cl.sendPackage(np);
+
+    protected boolean sendPackage(NetworkPackage np) {
+        if (mDevices.isEmpty()) return false;
+        for(Device d : mDevices) {
+            d.sendPackage(np);
         }
+        return true;
     }
 }

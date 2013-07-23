@@ -11,6 +11,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import org.kde.kdeconnect.R;
 
 public class MainActivity extends Activity {
 
@@ -23,18 +27,17 @@ public class MainActivity extends Activity {
         BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
-                service.reachComputers();
             }
         });
 
         findViewById(R.id.button1).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("MainActivity","Button2");
+                Log.i("MainActivity","Button1");
                 BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
                     @Override
                     public void onServiceStart(BackgroundService service) {
-                        service.reachComputers();
+                        service.restart();
                     }
                 });
             }
@@ -43,7 +46,7 @@ public class MainActivity extends Activity {
         findViewById(R.id.button2).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("MainActivity","Button3");
+                Log.i("MainActivity","Button2");
                 BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
                     @Override
                     public void onServiceStart(BackgroundService service) {
@@ -54,6 +57,28 @@ public class MainActivity extends Activity {
             }
         });
 
+        final ListView list = (ListView)findViewById(R.id.listView1);
+
+
+        findViewById(R.id.button3).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("MainActivity","Button3");
+                BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(final BackgroundService service) {
+                          runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                String[] listContent = service.getVisibleDevices().toArray(new String[0]);
+                                list.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, listContent));
+                            }
+                        });
+                    }
+                });
+
+            }
+        });
     }
 
     @Override

@@ -1,5 +1,7 @@
 package org.kde.connect.ComputerLinks;
 
+import org.kde.connect.Device;
+import org.kde.connect.LinkProviders.BaseLinkProvider;
 import org.kde.connect.PackageReceivers.BasePackageReceiver;
 import org.kde.connect.NetworkPackage;
 
@@ -7,6 +9,27 @@ import java.util.ArrayList;
 
 
 public abstract class BaseComputerLink {
+
+    private BaseLinkProvider linkProvider;
+
+    private String deviceId;
+
+    public BaseComputerLink(BaseLinkProvider linkProvider) {
+        this.linkProvider = linkProvider;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
+    }
+
+    public BaseLinkProvider getLinkProvider() {
+        return linkProvider;
+    }
+
 
     ArrayList<BasePackageReceiver> receivers = new ArrayList<BasePackageReceiver>();
 
@@ -18,17 +41,13 @@ public abstract class BaseComputerLink {
     }
 
     //Should be called from a background thread listening to packages
-    protected void packageReceived(NetworkPackage np) {
+    protected void packageReceived(Device d, NetworkPackage np) {
         for(BasePackageReceiver pr : receivers) {
-            pr.onPackageReceived(np);
+            pr.onPackageReceived(d, np);
         }
     }
 
     //TO OVERRIDE
-
-
-    //Should be async
-    public abstract void sendPackage(NetworkPackage np);
-
+    public abstract boolean sendPackage(NetworkPackage np);    //Should be async
 
 }

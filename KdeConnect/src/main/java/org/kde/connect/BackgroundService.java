@@ -11,6 +11,7 @@ import android.os.IBinder;
 import android.util.Log;
 
 import org.kde.connect.ComputerLinks.BaseComputerLink;
+import org.kde.connect.LinkProviders.AvahiTcpLinkProvider;
 import org.kde.connect.LinkProviders.BaseLinkProvider;
 import org.kde.connect.LinkProviders.AvahiLinkProvider;
 import org.kde.connect.PackageEmitters.BasePackageEmitter;
@@ -20,37 +21,21 @@ import org.kde.connect.PackageReceivers.BasePackageReceiver;
 import org.kde.connect.PackageReceivers.PingPackageReceiver;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
 
 public class BackgroundService extends Service {
 
     SharedPreferences settings;
 
     ArrayList<BaseLinkProvider> locators = new ArrayList<BaseLinkProvider>();
-    ArrayList<BaseComputerLink> computerLinks = new ArrayList<BaseComputerLink>();
 
     ArrayList<BasePackageEmitter> emitters = new ArrayList<BasePackageEmitter>();
     ArrayList<BasePackageReceiver> receivers = new ArrayList<BasePackageReceiver>();
 
+    HashMap<String, Device> devices = new HashMap<String, Device>();
+
     PingPackageEmitter pingEmitter;
-
-    private void clearComputerLinks() {
-        Log.i("BackgroundService","clearComputerLinks");
-        for(BasePackageEmitter pe : emitters) pe.clearComputerLinks();
-        computerLinks.clear();
-    }
-
-    private void removeComputerLink(BaseComputerLink cl) {
-        Log.i("BackgroundService","removeComputerLink");
-        for(BasePackageEmitter pe : emitters) pe.removeComputerLink(cl);
-        computerLinks.remove(cl);
-    }
-
-    private void addComputerLink(BaseComputerLink cl) {
-        Log.i("BackgroundService","addComputerLink");
-        computerLinks.add(cl);
-        for(BasePackageEmitter pe : emitters) pe.addComputerLink(cl);
-        for(BasePackageReceiver pr : receivers) cl.addPackageReceiver(pr);
-    }
 
     private void registerEmitters() {
         if (settings.getBoolean("emit_call", true)) {
@@ -69,9 +54,20 @@ public class BackgroundService extends Service {
     }
 
     public void registerAnnouncers() {
-        if (settings.getBoolean("announce_avahi", true)) {
+        /*if (settings.getBoolean("announce_avahi", true)) {
             locators.add(new AvahiLinkProvider(this));
+        }*/
+        if (settings.getBoolean("announce_avahi_tcp", true)) {
+            locators.add(new AvahiTcpLinkProvider(this));
         }
+    }
+
+    public ArrayList<String> getVisibleDevices() {
+        ArrayList<String> list = new ArrayList<String>();
+        for(Device d : devices.values()) {
+            list.add(d.getName());
+        }
+        return list;
     }
 
     //This will be called for each intent launch, even if the service is already started and is reused
@@ -85,15 +81,36 @@ public class BackgroundService extends Service {
         return Service.START_STICKY;
     }
 
-    public void reachComputers() {
-        clearComputerLinks();
+    private void startDiscovery() {
+        Log.e("StartDiscovery","Registering connection receivers");
         for (BaseLinkProvider a : locators) {
+            Log.e("Registerign", a.toString());
             a.reachComputers(new BaseLinkProvider.ConnectionReceiver() {
                 @Override
-                public void onConnectionAccepted(BaseComputerLink link) {
+                public void onConnectionAccepted(String deviceId, String name, BaseComputerLink link) {
                     Log.e("BackgroundService", "Connection accepted!");
-                    //TODO: Check if there are other links available, and keep the best one
-                    addComputerLink(link);
+
+                    if (devices.containsKey(deviceId)) {
+                        Log.e("BackgroundService", "known device");
+                        devices.get(deviceId).addLink(link);
+                    } else {
+                        Log.e("BackgroundService", "unknown device");
+                        Device device = new Device(deviceId, name, link);
+                        devices.put(deviceId, device);
+                        for (BasePackageEmitter pe : emitters) pe.addDevice(device);
+                        for (BasePackageReceiver pr : receivers) device.addPackageReceiver(pr);
+                    }
+
+                }
+
+                @Override
+                public void onConnectionLost(BaseComputerLink link) {
+                    Device d = devices.get(link.getDeviceId());
+                    if (d != null) {
+                        d.removeLink(link);
+                        //if (d.countLinkedDevices() == 0) devices.remove(link.getDeviceId);
+                    }
+
                 }
             });
         }
@@ -117,7 +134,13 @@ public class BackgroundService extends Service {
         registerEmitters();
         registerReceivers();
         registerAnnouncers();
+        startDiscovery();
 
+    }
+
+    public void restart() {
+        devices.clear();
+        startDiscovery();
     }
 
     @Override
@@ -141,11 +164,11 @@ public class BackgroundService extends Service {
     }
 
     private static ArrayList<InstanceCallback> callbacks = new ArrayList<InstanceCallback>();
-/*
+
     public static void Start(Context c) {
         RunCommand(c, null);
     }
-*/
+
     public static void RunCommand(Context c, final InstanceCallback callback) {
         if (callback != null) callbacks.add(callback);
         Intent serviceIntent = new Intent(c, BackgroundService.class);

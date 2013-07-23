@@ -5,27 +5,30 @@ import android.net.nsd.NsdManager;
 import android.net.nsd.NsdServiceInfo;
 import android.util.Log;
 
-import org.kde.connect.ComputerLinks.UdpComputerLink;
+import org.kde.connect.ComputerLinks.TcpComputerLink;
 import org.kde.connect.Device;
 import org.kde.connect.NetworkPackage;
 import org.kde.connect.PackageReceivers.BasePackageReceiver;
 
-import java.lang.Override;
+import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
-public class AvahiLinkProvider implements BaseLinkProvider {
+public class AvahiTcpLinkProvider implements BaseLinkProvider {
 
-    String serviceType = "_kdeconnect._udp";
+    String serviceType = "_kdeconnect._tcp";
 
     NsdManager mNsdManager;
 
-    ArrayList<UdpComputerLink> visibleComputers = new ArrayList<UdpComputerLink>();
+    HashMap<InetAddress, TcpComputerLink> visibleComputers = new HashMap<InetAddress, TcpComputerLink>();
 
     Context ctx;
-
     private NsdManager.DiscoveryListener oldListener = null;
 
-    public AvahiLinkProvider(Context context) {
+    public AvahiTcpLinkProvider(Context context) {
         mNsdManager = (NsdManager)context.getSystemService(Context.NSD_SERVICE);
         ctx = context;
     }
@@ -36,49 +39,51 @@ public class AvahiLinkProvider implements BaseLinkProvider {
         visibleComputers.clear();
 
         if (oldListener != null) mNsdManager.stopServiceDiscovery(oldListener);
-        
-        Log.e("AvahiLinkProvider", "Discovering computers...");
+
+        Log.e("AvahiTcpLinkProvider", "Discovering computers...");
 
         final NsdManager.ResolveListener mResolveListener = new NsdManager.ResolveListener() {
 
             @Override
             public void onResolveFailed(NsdServiceInfo serviceInfo, int errorCode) {
-                Log.e("AvahiLinkProvider", "Resolve failed: " + errorCode);
+                Log.e("AvahiTcpLinkProvider", "Resolve failed" + errorCode);
             }
 
             @Override
-            public void onServiceResolved(final NsdServiceInfo serviceInfo) {
-                Log.e("AvahiLinkProvider", "Resolve Succeeded: " + serviceInfo);
+            public void onServiceResolved(NsdServiceInfo serviceInfo) {
+                Log.e("AvahiTcpLinkProvider", "Resolve Succeeded. " + serviceInfo);
 
-                //Handshake link
                 try {
-                    UdpComputerLink link = new UdpComputerLink(AvahiLinkProvider.this,serviceInfo.getHost(),serviceInfo.getPort());
+                    Log.e("AvahiTcpLinkProvider", "Creating link");
+                    final InetAddress host = serviceInfo.getHost();
+                    final int port = serviceInfo.getPort();
+                    final TcpComputerLink link = new TcpComputerLink(AvahiTcpLinkProvider.this,host,port);
+                    Log.e("AvahiTcpLinkProvider", "Waiting identity package");
                     link.addPackageReceiver(new BasePackageReceiver() {
                         @Override
                         public void onPackageReceived(Device d, NetworkPackage np) {
-                            Log.e("AvahiLinkProvider","Received reply");
+
+                            Log.e("AvahiTcpLinkProvider", "Received package: " + np.getType());
+
                             if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
                                 String id = np.getString("deviceId");
                                 String name = np.getString("deviceName");
-                                //Real data link
-                                try {
-                                    UdpComputerLink link2 = new UdpComputerLink(AvahiLinkProvider.this,serviceInfo.getHost(),10603);
-                                    visibleComputers.add(link2);
-                                    cr.onConnectionAccepted(id, name, link2);
-                                } catch (Exception e) {
 
-                                }
-                            } else {
-                                Log.e("AvahiLinkProvider","Received non-identity package");
+                                link.setDeviceId(id);
+                                link.sendPackage(NetworkPackage.createIdentityPackage(ctx));
+                                visibleComputers.put(host,link);
+                                cr.onConnectionAccepted(id,name,link);
+
                             }
+
                         }
                     });
-                    Log.e("AvahiLinkProvider","Sending identity package");
-                    NetworkPackage np = NetworkPackage.createIdentityPackage(ctx);
-                    link.sendPackage(np);
+                    link.startReceivingPackages();
                 } catch (Exception e) {
-
+                    Log.e("AvahiTcpLinkProvider","Exception");
+                    e.printStackTrace();
                 }
+
             }
 
         };
@@ -87,17 +92,17 @@ public class AvahiLinkProvider implements BaseLinkProvider {
 
             @Override
             public void onDiscoveryStarted(String regType) {
-                Log.e("AvahiLinkProvider", "Service discovery started");
+                Log.e("AvahiTcpLinkProvider", "Service discovery started");
             }
 
             @Override
             public void onServiceFound(NsdServiceInfo service) {
-                Log.e("AvahiLinkProvider", "Service discovery success" + service);
+                Log.e("AvahiTcpLinkProvider", "Service discovery success" + service);
 
                 if (!service.getServiceType().startsWith(serviceType)) {
-                    Log.e("AvahiLinkProvider", "Unknown Service Type: " + service.getServiceType());
+                    Log.e("AvahiTcpLinkProvider", "Unknown Service Type: " + service.getServiceType());
                 } else  {
-                    Log.e("AvahiLinkProvider", "Computer found, resolving...");
+                    Log.e("AvahiTcpLinkProvider", "Computer found, resolving...");
                     mNsdManager.resolveService(service, mResolveListener);
                 }
 
@@ -105,23 +110,25 @@ public class AvahiLinkProvider implements BaseLinkProvider {
 
             @Override
             public void onServiceLost(NsdServiceInfo service) {
-                Log.e("AvahiLinkProvider", "Service lost: " + service);
+                Log.e("AvahiTcpLinkProvider", "service lost" + service);
+                TcpComputerLink link = visibleComputers.remove(service.getHost());
+                if (link != null) cr.onConnectionLost(link);
             }
 
             @Override
             public void onDiscoveryStopped(String serviceType) {
-                Log.e("AvahiLinkProvider", "Discovery stopped: " + serviceType);
+                Log.e("AvahiTcpLinkProvider", "Discovery stopped: " + serviceType);
             }
 
             @Override
             public void onStartDiscoveryFailed(String serviceType, int errorCode) {
-                Log.e("AvahiLinkProvider", "Discovery failed: Error code:" + errorCode);
+                Log.e("AvahiTcpLinkProvider", "Discovery failed: Error code:" + errorCode);
                 mNsdManager.stopServiceDiscovery(this);
             }
 
             @Override
             public void onStopDiscoveryFailed(String serviceType, int errorCode) {
-                Log.e("AvahiLinkProvider", "Discovery failed: Error code:" + errorCode);
+                Log.e("AvahiTcpLinkProvider", "Discovery failed: Error code:" + errorCode);
                 mNsdManager.stopServiceDiscovery(this);
             }
         };
@@ -131,16 +138,13 @@ public class AvahiLinkProvider implements BaseLinkProvider {
 
     }
 
-
     @Override
     public int getPriority() {
-        return 100;
+        return 101;
     }
-
 
     @Override
     public String getName() {
-        return "AvahiUdpLinkProvider";
+        return "AvahiTcpLinkProvider";
     }
-
 }
