@@ -27,8 +27,10 @@ public class TcpComputerLink extends BaseComputerLink {
         super(linkProvider);
 
         sChannel = SocketChannel.open();
-        sChannel.connect(new InetSocketAddress(ip, port));
+        sChannel.socket().setSoTimeout(0);
+        sChannel.socket().setKeepAlive(true);
         sChannel.configureBlocking(false);
+        sChannel.connect(new InetSocketAddress(ip, port));
 
     }
 
@@ -112,7 +114,7 @@ public class TcpComputerLink extends BaseComputerLink {
 
                                     ByteBuffer buffer = ByteBuffer.allocate(4096);
                                     int read = sChannel.read(buffer);
-                                    //TODO: Check if there is more to read (or we have read more than one package)
+                                    //TODO: Check if there is more to read (or otherwise if we have read more than one package)
                                     String s = new String( buffer.array(), 0, read, charset );
                                     Log.e("readable","Read "+read+" bytes: "+s);
 

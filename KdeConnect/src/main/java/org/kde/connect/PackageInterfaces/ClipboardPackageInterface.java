@@ -43,5 +43,4 @@ public class ClipboardPackageInterface extends BasePackageInterface {
             cm.setText(np.getString("content"));
         }
     }
-
 }

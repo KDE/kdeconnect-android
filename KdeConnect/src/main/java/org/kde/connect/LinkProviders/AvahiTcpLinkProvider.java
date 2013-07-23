@@ -71,6 +71,10 @@ public class AvahiTcpLinkProvider implements BaseLinkProvider {
 
                                 link.setDeviceId(id);
                                 link.sendPackage(NetworkPackage.createIdentityPackage(ctx));
+                                if (visibleComputers.containsKey(host)) {
+                                    //Remove old connection to same host, probably down
+                                    cr.onConnectionLost(visibleComputers.get(host));
+                                }
                                 visibleComputers.put(host,link);
                                 cr.onConnectionAccepted(id,name,link);
 
