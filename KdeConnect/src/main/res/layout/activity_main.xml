@@ -20,12 +20,4 @@
             android:id="@+id/listView1"
             android:layout_weight="1"/>
 
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/editText"
-            android:layout_gravity="left|center_vertical"
-            android:layout_weight="1"
-            android:text="I'm a test text field"/>
-
 </LinearLayout>

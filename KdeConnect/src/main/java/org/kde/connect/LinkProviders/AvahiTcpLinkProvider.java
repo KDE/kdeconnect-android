@@ -54,11 +54,10 @@ public class AvahiTcpLinkProvider implements BaseLinkProvider {
                 Log.e("AvahiTcpLinkProvider", "Resolve Succeeded. " + serviceInfo);
 
                 try {
-                    Log.e("AvahiTcpLinkProvider", "Creating link");
+                    Log.e("AvahiTcpLinkProvider", "Connecting and waiting identity package");
                     final InetAddress host = serviceInfo.getHost();
                     final int port = serviceInfo.getPort();
-                    final TcpComputerLink link = new TcpComputerLink(AvahiTcpLinkProvider.this,host,port);
-                    Log.e("AvahiTcpLinkProvider", "Waiting identity package");
+                    final TcpComputerLink link = new TcpComputerLink(AvahiTcpLinkProvider.this);
                     link.addPackageReceiver(new BaseComputerLink.PackageReceiver() {
                         @Override
                         public void onPackageReceived(NetworkPackage np) {
@@ -77,12 +76,13 @@ public class AvahiTcpLinkProvider implements BaseLinkProvider {
                                 }
                                 visibleComputers.put(host,link);
                                 cr.onConnectionAccepted(id,name,link);
+                                link.removePackageReceiver(this);
 
                             }
 
                         }
                     });
-                    link.startReceivingPackages();
+                    link.connect(host,port);
                 } catch (Exception e) {
                     Log.e("AvahiTcpLinkProvider","Exception");
                     e.printStackTrace();

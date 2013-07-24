@@ -31,25 +31,22 @@ public class BackgroundService extends Service {
 
     PingPackageInterface pingEmitter;
 
-    private void registerEmitters() {
-        if (settings.getBoolean("emit_call", true)) {
+    private void registerPackageInterfaces() {
+        if (settings.getBoolean("call_interface", true)) {
             emitters.add(new CallPackageInterface(getApplicationContext()));
         }
 
-        if (settings.getBoolean("emit_ping", true)) {
+        if (settings.getBoolean("ping_interface", true)) {
             emitters.add(pingEmitter);
         }
 
-        if (settings.getBoolean("emit_clipboard", true)) {
+        if (settings.getBoolean("clipboard_interface", true)) {
             emitters.add(new ClipboardPackageInterface(getApplicationContext()));
         }
     }
 
-    public void registerAnnouncers() {
-        /*if (settings.getBoolean("announce_avahi", true)) {
-            locators.add(new AvahiLinkProvider(this));
-        }*/
-        if (settings.getBoolean("announce_avahi_tcp", true)) {
+    public void registerLinkProviders() {
+        if (settings.getBoolean("avahitcp_link", true)) {
             locators.add(new AvahiTcpLinkProvider(this));
         }
     }
@@ -65,7 +62,7 @@ public class BackgroundService extends Service {
     //This will be called for each intent launch, even if the service is already started and is reused
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.e("BackgroundService","Running callbacks waiting service to be ready");
+        Log.i("BackgroundService","onStartCommand");
         for (InstanceCallback c : callbacks) {
             c.onServiceStart(this);
         }
@@ -74,19 +71,18 @@ public class BackgroundService extends Service {
     }
 
     private void startDiscovery() {
-        Log.e("StartDiscovery","Registering connection receivers");
+        Log.i("StartDiscovery","Registering connection receivers");
         for (BaseLinkProvider a : locators) {
-            Log.e("Registerign", a.toString());
             a.reachComputers(new BaseLinkProvider.ConnectionReceiver() {
                 @Override
                 public void onConnectionAccepted(String deviceId, String name, BaseComputerLink link) {
-                    Log.e("BackgroundService", "Connection accepted!");
+                    Log.i("BackgroundService", "Connection accepted!");
 
                     if (devices.containsKey(deviceId)) {
-                        Log.e("BackgroundService", "known device");
+                        Log.i("BackgroundService", "known device");
                         devices.get(deviceId).addLink(link);
                     } else {
-                        Log.e("BackgroundService", "unknown device");
+                        Log.i("BackgroundService", "unknown device");
                         Device device = new Device(deviceId, name, link);
                         devices.put(deviceId, device);
                         for (BasePackageInterface pe : emitters) {
@@ -119,14 +115,14 @@ public class BackgroundService extends Service {
     public void onCreate() {
         super.onCreate();
 
-        Log.e("BackgroundService","Service not started yet, initializing...");
+        Log.i("BackgroundService","Service not started yet, initializing...");
 
         settings = getSharedPreferences("KdeConnect", 0);
 
         pingEmitter = new PingPackageInterface(getApplicationContext());
 
-        registerEmitters();
-        registerAnnouncers();
+        registerPackageInterfaces();
+        registerLinkProviders();
         startDiscovery();
 
     }
@@ -138,7 +134,7 @@ public class BackgroundService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.e("BackgroundService", "Destroying");
+        Log.i("BackgroundService", "Destroying");
         super.onDestroy();
     }
 

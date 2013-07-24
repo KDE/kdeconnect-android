@@ -3,142 +3,82 @@ package org.kde.connect.ComputerLinks;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.apache.mina.core.buffer.SimpleBufferAllocator;
+import org.apache.mina.core.filterchain.IoFilter;
+import org.apache.mina.core.future.ConnectFuture;
+import org.apache.mina.core.service.IoHandlerAdapter;
+import org.apache.mina.core.session.IoSession;
+import org.apache.mina.filter.codec.ProtocolCodecFilter;
+import org.apache.mina.filter.codec.textline.LineDelimiter;
+import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
+import org.apache.mina.filter.keepalive.KeepAliveFilter;
+import org.apache.mina.transport.socket.nio.NioSocketConnector;
 import org.kde.connect.LinkProviders.BaseLinkProvider;
 import org.kde.connect.NetworkPackage;
 
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.SocketChannel;
 import java.nio.charset.Charset;
-import java.nio.charset.CharsetEncoder;
-import java.util.Iterator;
 
 public class TcpComputerLink extends BaseComputerLink {
 
-    private boolean listenign = false;
-    private SocketChannel sChannel;
-    private Charset charset = Charset.forName("US-ASCII");
+    private IoSession session = null;
 
-    public TcpComputerLink(BaseLinkProvider linkProvider, InetAddress ip, int port) throws java.io.IOException {
+    public TcpComputerLink(BaseLinkProvider linkProvider) {
         super(linkProvider);
+    }
 
-        sChannel = SocketChannel.open();
-        sChannel.socket().setSoTimeout(0);
-        sChannel.socket().setKeepAlive(true);
-        sChannel.configureBlocking(false);
-        sChannel.connect(new InetSocketAddress(ip, port));
+    public void connect(final InetAddress ip, final int port) {
+
+        final NioSocketConnector connector = new NioSocketConnector();
+        connector.setHandler(new IoHandlerAdapter() {
+            @Override
+            public void messageReceived(IoSession session, Object message) throws Exception {
+                super.messageReceived(session, message);
+                Log.e("TcpComputerLink","messageReceived (" + message.getClass() + ") " + message.toString());
+                try {
+                    String theMessage = (String) message;
+                    NetworkPackage np = NetworkPackage.unserialize(theMessage);
+                    packageReceived(np);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.e("TcpComputerLink","Could not unserialize package");
+                }
+            }
+        });
+
+        //TextLineCodecFactory will split incoming data delimited by the given string
+        connector.getFilterChain().addLast("codec",
+                new ProtocolCodecFilter(
+                        new TextLineCodecFactory(Charset.forName("UTF-8"), LineDelimiter.UNIX, LineDelimiter.UNIX)
+                )
+        );
+        connector.getSessionConfig().setKeepAlive(true);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ConnectFuture future = connector.connect(new InetSocketAddress(ip, port));
+                //Wait unit it is connected (this call makes it blocking, but we are on a thread anyway)
+                future.awaitUninterruptibly();
+                if (!future.isConnected()) Log.e("TcpComputerLink","Could not connect");
+                Log.e("TcpComputerLink","connected");
+                session = future.getSession();
+            }
+        }).run();
 
     }
 
     @Override
     public boolean sendPackage(NetworkPackage np) {
-        Log.e("TcpComputerLink","sendPackage");
-        try {
-            String s = np.serialize();
-            Log.e("SendPackage",s);
-
-            CharsetEncoder enc = charset.newEncoder();
-            ByteBuffer bytes = enc.encode(CharBuffer.wrap(s));
-            Log.e("asdads",""+bytes.array().length);
-            int written = sChannel.write(bytes);
-
-            Log.e("SendPackage","sent "+written+" bytes");
-        } catch(Exception e) {
-            Log.e("TcpComputerLink","Exception");
-            e.printStackTrace();
+        Log.e("TcpComputerLink", "sendPackage");
+        if (session == null) {
+            Log.e("TcpComputerLink","not yet connected");
+            return false;
+        } else {
+            session.write(np.serialize());
+            return true;
         }
-        return true;
     }
 
-    public void startReceivingPackages() {
-        if (listenign) return;
-
-        listenign = true;
-
-        try {
-
-            /*
-            Log.e("TcpComputerLink","start receiving packages");
-            InputStreamReader reader =  new InputStreamReader(socket.getInputStream());
-            Log.e("TcpComputerLink","Entering loop");
-
-            while (socket.isConnected()) {
-                if (serverMessage == null) {
-                    //wait(100);
-                    continue;
-                }
-                NetworkPackage np = NetworkPackage.unserialize(serverMessage);
-                Log.e("TcpComputerLink",serverMessage);
-                packageReceived(np);
-            }*/
-
-
-            final Selector selector = Selector.open();
-            sChannel.register(selector, SelectionKey.OP_CONNECT + SelectionKey.OP_READ);
-
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    while (true) {
-                        try {
-                            selector.select(); //blocking
-                            Iterator it = selector.selectedKeys().iterator();
-                            // Process each key at a time
-                            while (it.hasNext()) {
-                                // Get the selection key
-                                SelectionKey selKey = (SelectionKey)it.next();
-
-                                // Remove it from the list to indicate that it is being processed
-                                it.remove();
-
-                                if (selKey.isValid() && selKey.isConnectable()) {
-                                    // Get channel with connection request
-                                    SocketChannel sChannel = (SocketChannel)selKey.channel();
-
-                                    boolean success = sChannel.finishConnect();
-                                    if (!success) {
-                                        // An error occurred; handle it
-
-                                        // Unregister the channel with this selector
-                                        selKey.cancel();
-                                    }
-                                }
-                                if (selKey.isValid() && selKey.isReadable()) {
-                                    // Get channel with bytes to read
-
-                                    SocketChannel sChannel = (SocketChannel)selKey.channel();
-
-                                    ByteBuffer buffer = ByteBuffer.allocate(4096);
-                                    int read = sChannel.read(buffer);
-                                    //TODO: Check if there is more to read (or otherwise if we have read more than one package)
-                                    String s = new String( buffer.array(), 0, read, charset );
-                                    Log.e("readable","Read "+read+" bytes: "+s);
-
-                                    NetworkPackage np = NetworkPackage.unserialize(s);
-                                    packageReceived(np);
-
-                                }
-                            }
-                        } catch (Exception e) {
-                            Log.e("TcpComputerLink","Inner loop exception");
-                            e.printStackTrace();
-                            listenign = false;
-                            break;
-                        }
-                    }
-                    Log.e("TcpComputerLink","Exiting loop");
-                }
-            }).run();
-
-        } catch (Exception e) {
-            Log.e("TcpComputerLink","Exception");
-            listenign = false;
-            e.printStackTrace();
-        }
-
-    }
 }

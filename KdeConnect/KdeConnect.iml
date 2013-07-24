@@ -68,6 +68,8 @@
     <orderEntry type="jdk" jdkName="Android 4.2.2" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="android-support-v4" level="project" />
+    <orderEntry type="library" name="mina-core-2.0.7" level="project" />
+    <orderEntry type="library" name="slf4j-api-1.6.6" level="project" />
   </component>
 </module>
 
