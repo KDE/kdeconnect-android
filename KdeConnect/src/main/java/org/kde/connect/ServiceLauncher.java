@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.os.IBinder;
 import android.util.Log;
@@ -38,7 +39,9 @@ public class ServiceLauncher extends BroadcastReceiver
                 }
             });
         } else if (action.equals(WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION)
-                || action.equals(WifiManager.WIFI_STATE_CHANGED_ACTION)) {
+                || action.equals(WifiManager.WIFI_STATE_CHANGED_ACTION)
+                || action.equals(ConnectivityManager.CONNECTIVITY_ACTION)
+                ) {
             Log.e("KdeConnect", "Connection state changed, trying to connect");
             BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
                 @Override

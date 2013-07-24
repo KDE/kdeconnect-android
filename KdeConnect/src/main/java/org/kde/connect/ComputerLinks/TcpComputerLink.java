@@ -37,6 +37,7 @@ public class TcpComputerLink extends BaseComputerLink {
                 super.messageReceived(session, message);
                 Log.e("TcpComputerLink","messageReceived (" + message.getClass() + ") " + message.toString());
                 try {
+                    //We should receive a string thanks to the TextLineCodecFactory filter
                     String theMessage = (String) message;
                     NetworkPackage np = NetworkPackage.unserialize(theMessage);
                     packageReceived(np);
