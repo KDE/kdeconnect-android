@@ -13,7 +13,7 @@ public class CallPackageInterface extends BasePackageInterface {
 
     public CallPackageInterface(final Context ctx) {
 
-        Log.i("CallPackageInterface", "Registered");
+        //Log.i("CallPackageInterface", "Registered");
 
         PhoneStateListener callStateListener = new PhoneStateListener() {
 
@@ -27,12 +27,14 @@ public class CallPackageInterface extends BasePackageInterface {
 
                     case TelephonyManager.CALL_STATE_RINGING:
 
-                        Log.e("IncomingCall", ":" + phoneNumber);
+                        //Log.i("IncomingCall", ":" + phoneNumber);
 
                         lastPackage = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_NOTIFICATION);
 
                         lastPackage.set("notificationType", "ringing");
-                        lastPackage.set("phoneNumber", phoneNumber);
+                        if (phoneNumber != null && !phoneNumber.isEmpty()) {
+                            lastPackage.set("phoneNumber", phoneNumber);
+                        }
 
                         sendPackage(lastPackage);
 
@@ -40,7 +42,7 @@ public class CallPackageInterface extends BasePackageInterface {
 
                     case TelephonyManager.CALL_STATE_OFFHOOK: //Ongoing call
 
-                        Log.e("OngoingCall", ":"+phoneNumber);
+                        //Log.i("OngoingCall", ":"+phoneNumber);
 
                         /*
                         //Actually we do not want to cancel it
@@ -53,7 +55,9 @@ public class CallPackageInterface extends BasePackageInterface {
 
                         //Emit a "call" package
                         lastPackage = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_CALL);
-                        lastPackage.set("phoneNumber",phoneNumber);
+                        if (phoneNumber != null && !phoneNumber.isEmpty()) {
+                            lastPackage.set("phoneNumber",phoneNumber);
+                        }
                         sendPackage(lastPackage);
 
                         break;
@@ -62,7 +66,7 @@ public class CallPackageInterface extends BasePackageInterface {
 
                         if (lastState != TelephonyManager.CALL_STATE_IDLE && lastPackage != null) {
 
-                            Log.e("EndedCall", ":"+phoneNumber);
+                            //Log.i("EndedCall", ":"+phoneNumber);
 
                             //End last notification (can either be a ring notification or a call event)
                             lastPackage.set("isCancel","true");
@@ -72,7 +76,9 @@ public class CallPackageInterface extends BasePackageInterface {
                                 //Emit a missed call notification
                                 NetworkPackage missed = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_NOTIFICATION);
                                 missed.set("notificationType","missedCall");
-                                missed.set("phoneNumber", lastPackage.getString("phoneNumber"));
+                                if (phoneNumber != null && !phoneNumber.isEmpty()) {
+                                    missed.set("phoneNumber", lastPackage.getString("phoneNumber"));
+                                }
                                 sendPackage(missed);
                             }
 
