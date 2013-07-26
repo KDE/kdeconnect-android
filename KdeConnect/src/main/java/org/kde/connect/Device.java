@@ -85,7 +85,7 @@ public class Device {
                 return null;
             }
         }.execute();
-        Log.e("Device","/sendPackage");
+
         return true; //FIXME
     }
 

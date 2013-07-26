@@ -34,6 +34,6 @@ public abstract class BasePackageInterface {
         return true;
     }
 
-    //To override
-    public abstract void onPackageReceived(Device d, NetworkPackage np);
+    //To override, returns true if package was handled
+    public abstract boolean onPackageReceived(Device d, NetworkPackage np);
 }

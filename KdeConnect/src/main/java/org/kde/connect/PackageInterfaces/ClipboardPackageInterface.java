@@ -37,10 +37,12 @@ public class ClipboardPackageInterface extends BasePackageInterface {
     }
 
     @Override
-    public void onPackageReceived(Device d, NetworkPackage np) {
+    public boolean onPackageReceived(Device d, NetworkPackage np) {
         if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_CLIPBOARD)) {
             ignore_next_clipboard_change = true;
             cm.setText(np.getString("content"));
+            return true;
         }
+        return false;
     }
 }

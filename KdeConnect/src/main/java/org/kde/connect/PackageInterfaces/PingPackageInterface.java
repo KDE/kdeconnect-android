@@ -26,7 +26,7 @@ public class PingPackageInterface extends BasePackageInterface {
     }
 
     @Override
-    public void onPackageReceived(Device d, NetworkPackage np) {
+    public boolean onPackageReceived(Device d, NetworkPackage np) {
         Log.e("PingPackageReceiver", "onPackageReceived");
         if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_PING)) {
             Log.e("PingPackageReceiver", "was a ping!");
@@ -42,8 +42,9 @@ public class PingPackageInterface extends BasePackageInterface {
 
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.notify(0, noti);
-
+            return true;
         }
+        return false;
     }
 
 }

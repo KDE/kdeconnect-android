@@ -12,6 +12,7 @@ import org.kde.connect.ComputerLinks.BaseComputerLink;
 import org.kde.connect.LinkProviders.AvahiTcpLinkProvider;
 import org.kde.connect.LinkProviders.BaseLinkProvider;
 import org.kde.connect.PackageInterfaces.BasePackageInterface;
+import org.kde.connect.PackageInterfaces.BatteryMonitorPackageInterface;
 import org.kde.connect.PackageInterfaces.CallPackageInterface;
 import org.kde.connect.PackageInterfaces.ClipboardPackageInterface;
 import org.kde.connect.PackageInterfaces.PingPackageInterface;
@@ -43,6 +44,11 @@ public class BackgroundService extends Service {
         if (settings.getBoolean("clipboard_interface", true)) {
             emitters.add(new ClipboardPackageInterface(getApplicationContext()));
         }
+
+        if (settings.getBoolean("battery_interface", true)) {
+            emitters.add(new BatteryMonitorPackageInterface(getApplicationContext()));
+        }
+
     }
 
     public void registerLinkProviders() {

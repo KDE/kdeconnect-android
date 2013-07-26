@@ -15,6 +15,7 @@ public class NetworkPackage {
     public final static String PACKAGE_TYPE_IDENTITY = "kdeconnect.identity";
     public final static String PACKAGE_TYPE_PING = "kdeconnect.ping";
     public final static String PACKAGE_TYPE_NOTIFICATION = "kdeconnect.notification";
+    public final static String PACKAGE_TYPE_BATTERY = "kdeconnect.battery";
     public final static String PACKAGE_TYPE_CALL = "kdeconnect.call";
     public final static String PACKAGE_TYPE_CLIPBOARD = "kdeconnect.clipboard";
 
@@ -51,6 +52,9 @@ public class NetworkPackage {
     public boolean getBoolean(String key) { return mBody.optBoolean(key,false); }
     public boolean getBoolean(String key, boolean defaultValue) { return mBody.optBoolean(key,defaultValue); }
     public void set(String key, boolean value) { try { mBody.put(key,value); } catch(Exception e) { } }
+    public double getDouble(String key) { return mBody.optDouble(key,Double.NaN); }
+    public double getDouble(String key, double defaultValue) { return mBody.optDouble(key,defaultValue); }
+    public void set(String key, double value) { try { mBody.put(key,value); } catch(Exception e) { } }
 
     public String serialize() {
         JSONObject jo = new JSONObject();

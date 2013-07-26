@@ -63,7 +63,7 @@ public class TcpComputerLink extends BaseComputerLink {
                 //Wait unit it is connected (this call makes it blocking, but we are on a thread anyway)
                 future.awaitUninterruptibly();
                 if (!future.isConnected()) Log.e("TcpComputerLink","Could not connect");
-                Log.e("TcpComputerLink","connected");
+                else Log.e("TcpComputerLink","connected");
                 session = future.getSession();
             }
         }).run();

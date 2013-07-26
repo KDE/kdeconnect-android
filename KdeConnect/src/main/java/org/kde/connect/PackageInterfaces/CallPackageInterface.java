@@ -101,7 +101,8 @@ public class CallPackageInterface extends BasePackageInterface {
     }
 
     @Override
-    public void onPackageReceived(Device d, NetworkPackage np) {
+    public boolean onPackageReceived(Device d, NetworkPackage np) {
         //Do nothing
+        return false;
     }
 }
