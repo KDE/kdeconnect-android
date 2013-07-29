@@ -15,6 +15,7 @@ import org.kde.connect.PackageInterfaces.BasePackageInterface;
 import org.kde.connect.PackageInterfaces.BatteryMonitorPackageInterface;
 import org.kde.connect.PackageInterfaces.CallPackageInterface;
 import org.kde.connect.PackageInterfaces.ClipboardPackageInterface;
+import org.kde.connect.PackageInterfaces.MprisControlPackageInterface;
 import org.kde.connect.PackageInterfaces.PingPackageInterface;
 
 import java.util.ArrayList;
@@ -24,36 +25,46 @@ public class BackgroundService extends Service {
 
     SharedPreferences settings;
 
-    ArrayList<BaseLinkProvider> locators = new ArrayList<BaseLinkProvider>();
+    ArrayList<BaseLinkProvider> linkProviders = new ArrayList<BaseLinkProvider>();
 
-    ArrayList<BasePackageInterface> emitters = new ArrayList<BasePackageInterface>();
+    ArrayList<BasePackageInterface> packageInterfaces = new ArrayList<BasePackageInterface>();
 
     HashMap<String, Device> devices = new HashMap<String, Device>();
 
-    PingPackageInterface pingEmitter;
-
     private void registerPackageInterfaces() {
         if (settings.getBoolean("call_interface", true)) {
-            emitters.add(new CallPackageInterface(getApplicationContext()));
+            packageInterfaces.add(new CallPackageInterface(getApplicationContext()));
         }
 
         if (settings.getBoolean("ping_interface", true)) {
-            emitters.add(pingEmitter);
+            packageInterfaces.add(new PingPackageInterface(getApplicationContext()));
         }
 
         if (settings.getBoolean("clipboard_interface", true)) {
-            emitters.add(new ClipboardPackageInterface(getApplicationContext()));
+            packageInterfaces.add(new ClipboardPackageInterface(getApplicationContext()));
         }
 
         if (settings.getBoolean("battery_interface", true)) {
-            emitters.add(new BatteryMonitorPackageInterface(getApplicationContext()));
+            packageInterfaces.add(new BatteryMonitorPackageInterface(getApplicationContext()));
         }
 
+        if (settings.getBoolean("mpris_interface", true)) {
+            packageInterfaces.add(new MprisControlPackageInterface(getApplicationContext()));
+        }
+
+
+    }
+
+    public BasePackageInterface getPackageInterface(Class c) {
+        for (BasePackageInterface pi : packageInterfaces) {
+            if (c.isInstance(pi)) return pi;
+        }
+        return null;
     }
 
     public void registerLinkProviders() {
         if (settings.getBoolean("avahitcp_link", true)) {
-            locators.add(new AvahiTcpLinkProvider(this));
+            linkProviders.add(new AvahiTcpLinkProvider(this));
         }
     }
 
@@ -78,7 +89,7 @@ public class BackgroundService extends Service {
 
     private void startDiscovery() {
         Log.i("StartDiscovery","Registering connection receivers");
-        for (BaseLinkProvider a : locators) {
+        for (BaseLinkProvider a : linkProviders) {
             a.reachComputers(new BaseLinkProvider.ConnectionReceiver() {
                 @Override
                 public void onConnectionAccepted(String deviceId, String name, BaseComputerLink link) {
@@ -91,7 +102,7 @@ public class BackgroundService extends Service {
                         Log.i("BackgroundService", "unknown device");
                         Device device = new Device(deviceId, name, link);
                         devices.put(deviceId, device);
-                        for (BasePackageInterface pe : emitters) {
+                        for (BasePackageInterface pe : packageInterfaces) {
                             pe.addDevice(device);
                             device.addPackageReceiver(pe);
                         }
@@ -112,10 +123,6 @@ public class BackgroundService extends Service {
         }
     }
 
-    public void sendPing() {
-        pingEmitter.sendPing();
-    }
-
     //This will called only once, even if we launch the service intent several times
     @Override
     public void onCreate() {
@@ -124,8 +131,6 @@ public class BackgroundService extends Service {
         Log.i("BackgroundService","Service not started yet, initializing...");
 
         settings = getSharedPreferences("KdeConnect", 0);
-
-        pingEmitter = new PingPackageInterface(getApplicationContext());
 
         registerPackageInterfaces();
         registerLinkProviders();

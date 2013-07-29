@@ -18,6 +18,7 @@ public class NetworkPackage {
     public final static String PACKAGE_TYPE_BATTERY = "kdeconnect.battery";
     public final static String PACKAGE_TYPE_CALL = "kdeconnect.call";
     public final static String PACKAGE_TYPE_CLIPBOARD = "kdeconnect.clipboard";
+    public final static String PACKAGE_TYPE_MPRIS = "kdeconnect.mpris";
 
     private long mId;
     private String mType;

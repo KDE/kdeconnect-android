@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:gravity="center"
+              android:layout_height="match_parent">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/textView"
+            android:layout_gravity="center"/>
+
+    <ImageButton
+            android:layout_width="200dip"
+            android:layout_height="75dip"
+            android:id="@+id/play_button"
+            android:src="@android:drawable/ic_media_play"
+            android:layout_gravity="center"/>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="200dip"
+            android:layout_height="70dip"
+            android:layout_gravity="center">
+
+        <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/prev_button"
+                android:src="@android:drawable/ic_media_rew"
+                android:layout_weight="0.5"/>
+
+        <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/next_button"
+                android:src="@android:drawable/ic_media_ff"
+                android:layout_gravity="center"
+                android:layout_weight="0.5"/>
+
+    </LinearLayout>
+    <!--
+        <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pause_button"
+                android:src="@android:drawable/ic_media_pause"
+                android:layout_gravity="center"/>
+
+        <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pause_button"
+                android:src="@android:drawable/ic_media_stop"
+                android:layout_gravity="center"/>
+    -->
+</LinearLayout>

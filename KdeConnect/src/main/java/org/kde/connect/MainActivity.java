@@ -1,19 +1,15 @@
 package org.kde.connect;
 
 import android.app.Activity;
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.ServiceConnection;
-import android.net.nsd.NsdServiceInfo;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import org.kde.connect.PackageInterfaces.PingPackageInterface;
 import org.kde.kdeconnect.R;
 
 public class MainActivity extends Activity {
@@ -33,7 +29,6 @@ public class MainActivity extends Activity {
         findViewById(R.id.button1).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("MainActivity","Button1");
                 BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
                     @Override
                     public void onServiceStart(BackgroundService service) {
@@ -46,24 +41,34 @@ public class MainActivity extends Activity {
         findViewById(R.id.button2).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("MainActivity","Button2");
                 BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
                     @Override
                     public void onServiceStart(BackgroundService service) {
-                        service.sendPing();
+                        PingPackageInterface pi = (PingPackageInterface) service.getPackageInterface(PingPackageInterface.class);
+                        pi.sendPing();
                     }
                 });
 
             }
         });
 
-        final ListView list = (ListView)findViewById(R.id.listView1);
-
-
         findViewById(R.id.button3).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("MainActivity","Button3");
+                BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(BackgroundService service) {
+                        Intent intent = new Intent(MainActivity.this, MprisActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+            }
+        });
+
+        findViewById(R.id.button4).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
                     @Override
                     public void onServiceStart(final BackgroundService service) {
@@ -71,6 +76,7 @@ public class MainActivity extends Activity {
                             @Override
                             public void run() {
                                 String[] listContent = service.getVisibleDevices().toArray(new String[0]);
+                                ListView list = (ListView)findViewById(R.id.listView1);
                                 list.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, listContent));
                             }
                         });

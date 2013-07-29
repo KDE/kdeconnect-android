@@ -11,8 +11,8 @@
 
     <Button android:id="@+id/button1" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Restart service"/>
     <Button android:id="@+id/button2" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Send ping"/>
-
-    <Button android:id="@+id/button3" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="List paired computers"/>
+    <Button android:id="@+id/button3" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Mpris controls"/>
+    <Button android:id="@+id/button4" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="List paired computers"/>
 
     <ListView
             android:layout_width="fill_parent"

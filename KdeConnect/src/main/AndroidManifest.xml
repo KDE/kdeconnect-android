@@ -14,7 +14,6 @@
         android:theme="@style/AppTheme" >
 
 
-
         <activity
             android:name="org.kde.connect.MainActivity"
             android:label="@string/app_name" >
@@ -24,6 +23,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="org.kde.connect.MprisActivity"
+            android:label="KdeConnect - Mpris controls"
+        />
+
 
         <service
             android:enabled="true"

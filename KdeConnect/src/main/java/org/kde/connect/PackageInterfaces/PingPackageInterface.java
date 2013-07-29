@@ -27,9 +27,9 @@ public class PingPackageInterface extends BasePackageInterface {
 
     @Override
     public boolean onPackageReceived(Device d, NetworkPackage np) {
-        Log.e("PingPackageReceiver", "onPackageReceived");
+        //Log.e("PingPackageReceiver", "onPackageReceived");
         if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_PING)) {
-            Log.e("PingPackageReceiver", "was a ping!");
+            //Log.e("PingPackageReceiver", "was a ping!");
 
             Notification noti = new Notification.Builder(context)
                     .setContentTitle(d.getName())
