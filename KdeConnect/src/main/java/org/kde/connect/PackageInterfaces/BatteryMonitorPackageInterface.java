@@ -12,11 +12,11 @@ import org.kde.connect.NetworkPackage;
 
 public class BatteryMonitorPackageInterface extends BasePackageInterface {
 
+    NetworkPackage lastPackage = null;
+
     public BatteryMonitorPackageInterface(final Context context) {
         final IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         context.registerReceiver(new BroadcastReceiver() {
-            public int oldCurrentCharge;
-            public boolean oldIsCharging;
             @Override
             public void onReceive(Context context, Intent intent) {
 
@@ -34,13 +34,16 @@ public class BatteryMonitorPackageInterface extends BasePackageInterface {
                 }
 
                 //Only notify if change is meaningful enough
-                if (isCharging != oldIsCharging || currentCharge != oldCurrentCharge) {
+                if (lastPackage == null || (
+                    isCharging != lastPackage.getBoolean("isCharging")
+                    || currentCharge != lastPackage.getInt("currentCharge")
+                    )
+                ) {
                     NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_BATTERY);
                     np.set("isCharging", isCharging);
                     np.set("currentCharge", currentCharge);
                     sendPackage(np);
-                    oldIsCharging = isCharging;
-                    oldCurrentCharge = currentCharge;
+                    lastPackage = np;
                 }
             }
         }, ifilter);
@@ -52,4 +55,9 @@ public class BatteryMonitorPackageInterface extends BasePackageInterface {
         return false;
     }
 
+    @Override
+    public boolean onDeviceConnected(Device d) {
+        if (lastPackage != null) sendPackage(lastPackage);
+        return true;
+    }
 }

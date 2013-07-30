@@ -103,8 +103,8 @@ public class BackgroundService extends Service {
                         Device device = new Device(deviceId, name, link);
                         devices.put(deviceId, device);
                         for (BasePackageInterface pe : packageInterfaces) {
-                            pe.addDevice(device);
                             device.addPackageReceiver(pe);
+                            pe.addDevice(device);
                         }
                     }
 

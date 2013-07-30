@@ -45,4 +45,9 @@ public class ClipboardPackageInterface extends BasePackageInterface {
         }
         return false;
     }
+
+    public boolean onDeviceConnected(Device d) {
+        return false;
+    }
+
 }

@@ -105,4 +105,10 @@ public class CallPackageInterface extends BasePackageInterface {
         //Do nothing
         return false;
     }
+
+    public boolean onDeviceConnected(Device d) {
+        //Do nothing
+        return false;
+    }
+
 }

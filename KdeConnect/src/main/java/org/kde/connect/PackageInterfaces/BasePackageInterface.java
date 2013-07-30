@@ -11,6 +11,7 @@ public abstract class BasePackageInterface {
 
     public void addDevice(Device d) {
         mDevices.add(d);
+        onDeviceConnected(d);
     }
 
     public void removeDevice(Device d) {
@@ -36,4 +37,6 @@ public abstract class BasePackageInterface {
 
     //To override, returns true if package was handled
     public abstract boolean onPackageReceived(Device d, NetworkPackage np);
+
+    public abstract boolean onDeviceConnected(Device d);
 }

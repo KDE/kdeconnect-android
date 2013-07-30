@@ -5,8 +5,11 @@ import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class NetworkPackage {
 
@@ -56,6 +59,37 @@ public class NetworkPackage {
     public double getDouble(String key) { return mBody.optDouble(key,Double.NaN); }
     public double getDouble(String key, double defaultValue) { return mBody.optDouble(key,defaultValue); }
     public void set(String key, double value) { try { mBody.put(key,value); } catch(Exception e) { } }
+    public ArrayList<String> getStringList(String key) {
+        JSONArray jsonArray = mBody.optJSONArray(key);
+        ArrayList<String> list = new ArrayList<String>();
+        int length = jsonArray.length();
+        for (int i = 0; i < length; i++) {
+            try {
+                String str = jsonArray.getString(i);
+                list.add(str);
+            } catch(Exception e) {
+
+            }
+        }
+        return list;
+    }
+    public ArrayList<String> getStringList(String key, ArrayList<String> defaultValue) {
+        if (mBody.has(key)) return getStringList(key);
+        else return defaultValue;
+    }
+    public void set(String key, ArrayList<String> value) {
+        try {
+            JSONArray jsonArray = new JSONArray();
+            for(String str : value) {
+                jsonArray.put(str);
+            }
+            mBody.put(key,jsonArray);
+        } catch(Exception e) {
+
+        }
+    }
+
+    public boolean has(String key) { return mBody.has(key); }
 
     public String serialize() {
         JSONObject jo = new JSONObject();

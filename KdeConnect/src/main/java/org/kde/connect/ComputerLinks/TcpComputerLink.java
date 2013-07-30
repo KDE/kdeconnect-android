@@ -36,15 +36,16 @@ public class TcpComputerLink extends BaseComputerLink {
             public void messageReceived(IoSession session, Object message) throws Exception {
                 super.messageReceived(session, message);
                 Log.e("TcpComputerLink","messageReceived (" + message.getClass() + ") " + message.toString());
+                NetworkPackage np = null;
                 try {
                     //We should receive a string thanks to the TextLineCodecFactory filter
                     String theMessage = (String) message;
-                    NetworkPackage np = NetworkPackage.unserialize(theMessage);
-                    packageReceived(np);
+                    np = NetworkPackage.unserialize(theMessage);
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.e("TcpComputerLink","Could not unserialize package");
                 }
+                if (np != null) packageReceived(np);
             }
         });
 
