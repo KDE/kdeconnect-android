@@ -11,38 +11,36 @@ import org.kde.connect.NetworkPackage;
 
 public class CallPackageInterface extends BasePackageInterface {
 
-    public CallPackageInterface(final Context ctx) {
+    private Context context;
 
-        //Log.i("CallPackageInterface", "Registered");
+    private PhoneStateListener callStateListener = new PhoneStateListener() {
 
-        PhoneStateListener callStateListener = new PhoneStateListener() {
+        int lastState = TelephonyManager.CALL_STATE_IDLE;
+        NetworkPackage lastPackage = null;
 
-            int lastState = TelephonyManager.CALL_STATE_IDLE;
-            NetworkPackage lastPackage = null;
+        @Override
+        public void onCallStateChanged(int state, String phoneNumber) {
 
-            @Override
-            public void onCallStateChanged(int state, String phoneNumber) {
+            switch (state) {
 
-                switch (state) {
+                case TelephonyManager.CALL_STATE_RINGING:
 
-                    case TelephonyManager.CALL_STATE_RINGING:
+                    //Log.i("IncomingCall", ":" + phoneNumber);
 
-                        //Log.i("IncomingCall", ":" + phoneNumber);
+                    lastPackage = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_NOTIFICATION);
 
-                        lastPackage = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_NOTIFICATION);
+                    lastPackage.set("notificationType", "ringing");
+                    if (phoneNumber != null && !phoneNumber.isEmpty()) {
+                        lastPackage.set("phoneNumber", phoneNumber);
+                    }
 
-                        lastPackage.set("notificationType", "ringing");
-                        if (phoneNumber != null && !phoneNumber.isEmpty()) {
-                            lastPackage.set("phoneNumber", phoneNumber);
-                        }
+                    sendPackage(lastPackage);
 
-                        sendPackage(lastPackage);
+                    break;
 
-                        break;
+                case TelephonyManager.CALL_STATE_OFFHOOK: //Ongoing call
 
-                    case TelephonyManager.CALL_STATE_OFFHOOK: //Ongoing call
-
-                        //Log.i("OngoingCall", ":"+phoneNumber);
+                    //Log.i("OngoingCall", ":"+phoneNumber);
 
                         /*
                         //Actually we do not want to cancel it
@@ -53,51 +51,64 @@ public class CallPackageInterface extends BasePackageInterface {
                         }
                         */
 
-                        //Emit a "call" package
-                        lastPackage = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_CALL);
-                        if (phoneNumber != null && !phoneNumber.isEmpty()) {
-                            lastPackage.set("phoneNumber",phoneNumber);
-                        }
+                    //Emit a "call" package
+                    lastPackage = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_CALL);
+                    if (phoneNumber != null && !phoneNumber.isEmpty()) {
+                        lastPackage.set("phoneNumber",phoneNumber);
+                    }
+                    sendPackage(lastPackage);
+
+                    break;
+
+                case TelephonyManager.CALL_STATE_IDLE:
+
+                    if (lastState != TelephonyManager.CALL_STATE_IDLE && lastPackage != null) {
+
+                        //Log.i("EndedCall", ":"+phoneNumber);
+
+                        //End last notification (can either be a ring notification or a call event)
+                        lastPackage.set("isCancel","true");
                         sendPackage(lastPackage);
 
-                        break;
-
-                    case TelephonyManager.CALL_STATE_IDLE:
-
-                        if (lastState != TelephonyManager.CALL_STATE_IDLE && lastPackage != null) {
-
-                            //Log.i("EndedCall", ":"+phoneNumber);
-
-                            //End last notification (can either be a ring notification or a call event)
-                            lastPackage.set("isCancel","true");
-                            sendPackage(lastPackage);
-
-                            if (lastState == TelephonyManager.CALL_STATE_RINGING) {
-                                //Emit a missed call notification
-                                NetworkPackage missed = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_NOTIFICATION);
-                                missed.set("notificationType","missedCall");
-                                if (phoneNumber != null && !phoneNumber.isEmpty()) {
-                                    missed.set("phoneNumber", lastPackage.getString("phoneNumber"));
-                                }
-                                sendPackage(missed);
+                        if (lastState == TelephonyManager.CALL_STATE_RINGING) {
+                            //Emit a missed call notification
+                            NetworkPackage missed = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_NOTIFICATION);
+                            missed.set("notificationType","missedCall");
+                            if (phoneNumber != null && !phoneNumber.isEmpty()) {
+                                missed.set("phoneNumber", lastPackage.getString("phoneNumber"));
                             }
-
-                            lastPackage = null;
-
+                            sendPackage(missed);
                         }
 
-                        break;
+                        lastPackage = null;
 
-                }
+                    }
 
-                lastState = state;
+                    break;
 
             }
-        };
 
-        TelephonyManager tm = (TelephonyManager) ctx.getSystemService(Context.TELEPHONY_SERVICE);
+            lastState = state;
+
+        }
+    };
+
+    @Override
+    public boolean onCreate(final Context context) {
+
+        this.context = context;
+        
+        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         tm.listen(callStateListener, PhoneStateListener.LISTEN_CALL_STATE);
 
+        return true;
+
+    }
+
+    @Override
+    public void onDestroy() {
+        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        tm.listen(callStateListener, PhoneStateListener.LISTEN_NONE);
     }
 
     @Override

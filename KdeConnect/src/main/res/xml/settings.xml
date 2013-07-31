@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <CheckBoxPreference
+            android:key="call_interface"
+            android:title="@string/pref_enable_call_interface"
+            android:summary="@string/pref_enable_call_interface_desc"
+            android:defaultValue="true" />
+
+    <CheckBoxPreference
+            android:key="ping_interface"
+            android:title="@string/pref_enable_ping_interface"
+            android:summary="@string/pref_enable_ping_interface_desc"
+            android:defaultValue="true" />
+
+    <CheckBoxPreference
+            android:key="clipboard_interface"
+            android:title="@string/pref_enable_clipboard_interface"
+            android:summary="@string/pref_enable_clipboard_interface_desc"
+            android:defaultValue="true" />
+
+    <CheckBoxPreference
+            android:key="battery_interface"
+            android:title="@string/pref_enable_battery_interface"
+            android:summary="@string/pref_enable_battery_interface_desc"
+            android:defaultValue="true" />
+
+    <CheckBoxPreference
+            android:key="mpris_interface"
+            android:title="@string/pref_enable_mpris_interface"
+            android:summary="@string/pref_enable_mpris_interface_desc"
+            android:defaultValue="true" />
+
+</PreferenceScreen>

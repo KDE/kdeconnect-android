@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Binder;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.kde.connect.ComputerLinks.BaseComputerLink;
@@ -17,13 +18,12 @@ import org.kde.connect.PackageInterfaces.CallPackageInterface;
 import org.kde.connect.PackageInterfaces.ClipboardPackageInterface;
 import org.kde.connect.PackageInterfaces.MprisControlPackageInterface;
 import org.kde.connect.PackageInterfaces.PingPackageInterface;
+import org.kde.kdeconnect.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class BackgroundService extends Service {
-
-    SharedPreferences settings;
 
     ArrayList<BaseLinkProvider> linkProviders = new ArrayList<BaseLinkProvider>();
 
@@ -31,27 +31,50 @@ public class BackgroundService extends Service {
 
     HashMap<String, Device> devices = new HashMap<String, Device>();
 
-    private void registerPackageInterfaces() {
+    public void registerLinkProviders() {
+
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+
+        if (settings.getBoolean("avahitcp_link", true)) {
+            linkProviders.add(new AvahiTcpLinkProvider(this));
+        }
+    }
+
+    public void registerPackageInterfacesFromSettings() {
+
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+
+        Log.e("registerPackageInterfacesFromSettings","registerPackageInterfacesFromSettings");
+
         if (settings.getBoolean("call_interface", true)) {
-            packageInterfaces.add(new CallPackageInterface(getApplicationContext()));
+            addPackageInterface(CallPackageInterface.class);
+        } else {
+            removePackageInterface(CallPackageInterface.class);
         }
 
         if (settings.getBoolean("ping_interface", true)) {
-            packageInterfaces.add(new PingPackageInterface(getApplicationContext()));
+            addPackageInterface(PingPackageInterface.class);
+        } else {
+            removePackageInterface(PingPackageInterface.class);
         }
 
         if (settings.getBoolean("clipboard_interface", true)) {
-            packageInterfaces.add(new ClipboardPackageInterface(getApplicationContext()));
+            addPackageInterface(ClipboardPackageInterface.class);
+        } else {
+            removePackageInterface(ClipboardPackageInterface.class);
         }
 
         if (settings.getBoolean("battery_interface", true)) {
-            packageInterfaces.add(new BatteryMonitorPackageInterface(getApplicationContext()));
+            addPackageInterface(BatteryMonitorPackageInterface.class);
+        } else {
+            removePackageInterface(BatteryMonitorPackageInterface.class);
         }
 
         if (settings.getBoolean("mpris_interface", true)) {
-            packageInterfaces.add(new MprisControlPackageInterface(getApplicationContext()));
+            addPackageInterface(MprisControlPackageInterface.class);
+        } else {
+            removePackageInterface(MprisControlPackageInterface.class);
         }
-
 
     }
 
@@ -62,11 +85,78 @@ public class BackgroundService extends Service {
         return null;
     }
 
-    public void registerLinkProviders() {
-        if (settings.getBoolean("avahitcp_link", true)) {
-            linkProviders.add(new AvahiTcpLinkProvider(this));
+    public BasePackageInterface addPackageInterface(Class c) {
+        BasePackageInterface pi = getPackageInterface(c);
+        if (pi != null) {
+            Log.e("addPackageInterface","package interface already existent");
+            return pi;
         }
+        try {
+            pi = (BasePackageInterface)c.newInstance();
+        } catch(Exception e) {
+            e.printStackTrace();
+            Log.e("addPackageInterface","Error instantiating packageinterface");
+            return null;
+        }
+        packageInterfaces.add(pi);
+        pi.onCreate(getApplicationContext());
+        for (Device dev : devices.values()) {
+            dev.addPackageReceiver(pi);
+            pi.addDevice(dev);
+        }
+        return pi;
     }
+
+    public boolean removePackageInterface(Class c) {
+        for (BasePackageInterface pi : packageInterfaces) {
+            if (c.isInstance(pi)) {
+                packageInterfaces.remove(pi);
+                for (Device dev : devices.values()) {
+                    dev.removePackageReceiver(pi);
+                    pi.removeDevice(dev);
+                }
+                pi.onDestroy();
+                return true;
+            }
+        }
+        Log.e("removePackageInterface","Unexistent preference");
+        return false;
+    }
+
+    public Device getDevice(String id) {
+        return devices.get(id);
+    }
+
+    private BaseLinkProvider.ConnectionReceiver deviceListener = new BaseLinkProvider.ConnectionReceiver() {
+        @Override
+        public void onConnectionAccepted(String deviceId, String name, BaseComputerLink link) {
+            Log.i("BackgroundService", "Connection accepted!");
+
+            if (devices.containsKey(deviceId)) {
+                Log.i("BackgroundService", "known device");
+                devices.get(deviceId).addLink(link);
+            } else {
+                Log.i("BackgroundService", "unknown device");
+                Device device = new Device(deviceId, name, link);
+                devices.put(deviceId, device);
+                for (BasePackageInterface pe : packageInterfaces) {
+                    device.addPackageReceiver(pe);
+                    pe.addDevice(device);
+                }
+            }
+
+        }
+
+        @Override
+        public void onConnectionLost(BaseComputerLink link) {
+            Device d = devices.get(link.getDeviceId());
+            if (d != null) {
+                d.removeLink(link);
+                //if (d.countLinkedDevices() == 0) devices.remove(link.getDeviceId);
+            }
+
+        }
+    };
 
     public ArrayList<String> getVisibleDevices() {
         ArrayList<String> list = new ArrayList<String>();
@@ -90,36 +180,7 @@ public class BackgroundService extends Service {
     private void startDiscovery() {
         Log.i("StartDiscovery","Registering connection receivers");
         for (BaseLinkProvider a : linkProviders) {
-            a.reachComputers(new BaseLinkProvider.ConnectionReceiver() {
-                @Override
-                public void onConnectionAccepted(String deviceId, String name, BaseComputerLink link) {
-                    Log.i("BackgroundService", "Connection accepted!");
-
-                    if (devices.containsKey(deviceId)) {
-                        Log.i("BackgroundService", "known device");
-                        devices.get(deviceId).addLink(link);
-                    } else {
-                        Log.i("BackgroundService", "unknown device");
-                        Device device = new Device(deviceId, name, link);
-                        devices.put(deviceId, device);
-                        for (BasePackageInterface pe : packageInterfaces) {
-                            device.addPackageReceiver(pe);
-                            pe.addDevice(device);
-                        }
-                    }
-
-                }
-
-                @Override
-                public void onConnectionLost(BaseComputerLink link) {
-                    Device d = devices.get(link.getDeviceId());
-                    if (d != null) {
-                        d.removeLink(link);
-                        //if (d.countLinkedDevices() == 0) devices.remove(link.getDeviceId);
-                    }
-
-                }
-            });
+            a.reachComputers(deviceListener);
         }
     }
 
@@ -130,9 +191,7 @@ public class BackgroundService extends Service {
 
         Log.i("BackgroundService","Service not started yet, initializing...");
 
-        settings = getSharedPreferences("KdeConnect", 0);
-
-        registerPackageInterfaces();
+        registerPackageInterfacesFromSettings();
         registerLinkProviders();
         startDiscovery();
 

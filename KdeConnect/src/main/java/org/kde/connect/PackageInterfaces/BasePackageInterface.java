@@ -1,5 +1,7 @@
 package org.kde.connect.PackageInterfaces;
 
+import android.content.Context;
+
 import org.kde.connect.Device;
 import org.kde.connect.NetworkPackage;
 
@@ -35,8 +37,9 @@ public abstract class BasePackageInterface {
         return true;
     }
 
-    //To override, returns true if package was handled
+    //To override
+    public abstract boolean onCreate(Context context);
+    public abstract void onDestroy();
     public abstract boolean onPackageReceived(Device d, NetworkPackage np);
-
     public abstract boolean onDeviceConnected(Device d);
 }

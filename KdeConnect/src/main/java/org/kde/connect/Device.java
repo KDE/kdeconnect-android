@@ -67,6 +67,10 @@ public class Device {
         receivers.add(receiver);
     }
 
+    public void removePackageReceiver(BasePackageInterface receiver) {
+        receivers.remove(receiver);
+    }
+
     public boolean sendPackage(final NetworkPackage np) {
         Log.e("Device", "sendPackage");
 
@@ -86,7 +90,7 @@ public class Device {
             }
         }.execute();
 
-        return true; //FIXME
+        return true; //FIXME: Detect when unable to send a package and try again somehow
     }
 
 }

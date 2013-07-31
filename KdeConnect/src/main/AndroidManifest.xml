@@ -10,13 +10,13 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
+        android:label="KdeConnect "
         android:theme="@style/AppTheme" >
 
 
         <activity
             android:name="org.kde.connect.MainActivity"
-            android:label="@string/app_name" >
+            android:label="KdeConnect " >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,9 +26,13 @@
 
         <activity
             android:name="org.kde.connect.MprisActivity"
-            android:label="KdeConnect - Mpris controls"
+            android:label="KdeConnect Mpris controls"
         />
 
+        <activity
+                android:name="org.kde.connect.SettingsActivity"
+                android:label="KdeConnect Settings"
+                />
 
         <service
             android:enabled="true"

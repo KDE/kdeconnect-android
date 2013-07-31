@@ -30,6 +30,7 @@ public class MprisActivity extends Activity {
             public void onServiceStart(BackgroundService service) {
 
                 final MprisControlPackageInterface mpris = (MprisControlPackageInterface)service.getPackageInterface(MprisControlPackageInterface.class);
+                if (mpris == null) return;
 
                 mpris.setNowPlayingUpdatedHandler(new Handler() {
                     @Override
@@ -84,6 +85,7 @@ public class MprisActivity extends Activity {
                     @Override
                     public void onServiceStart(BackgroundService service) {
                         MprisControlPackageInterface mpris = (MprisControlPackageInterface)service.getPackageInterface(MprisControlPackageInterface.class);
+                        if (mpris == null) return;
                         mpris.sendAction("PlayPause");
                     }
                 });
@@ -97,6 +99,7 @@ public class MprisActivity extends Activity {
                     @Override
                     public void onServiceStart(BackgroundService service) {
                         MprisControlPackageInterface mpris = (MprisControlPackageInterface)service.getPackageInterface(MprisControlPackageInterface.class);
+                        if (mpris == null) return;
                         mpris.sendAction("Previous");
                     }
                 });
@@ -110,6 +113,7 @@ public class MprisActivity extends Activity {
                     @Override
                     public void onServiceStart(BackgroundService service) {
                         MprisControlPackageInterface mpris = (MprisControlPackageInterface)service.getPackageInterface(MprisControlPackageInterface.class);
+                        if (mpris == null) return;
                         mpris.sendAction("Next");
                     }
                 });

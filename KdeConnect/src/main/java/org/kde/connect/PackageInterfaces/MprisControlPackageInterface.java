@@ -26,8 +26,15 @@ public class MprisControlPackageInterface extends BasePackageInterface {
 
     String player = "";
 
-    public MprisControlPackageInterface(Context ctx) {
+    @Override
+    public boolean onCreate(Context ctx) {
         context = ctx;
+        return true;
+    }
+
+    @Override
+    public void onDestroy() {
+        playerList.clear();
     }
 
     public void sendAction(String s) {

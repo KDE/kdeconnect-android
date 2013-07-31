@@ -14,8 +14,15 @@ public class PingPackageInterface extends BasePackageInterface {
 
     Context context;
 
-    public PingPackageInterface(Context ctx) {
+    @Override
+    public boolean onCreate(Context ctx) {
         context = ctx;
+        return true;
+    }
+
+    @Override
+    public void onDestroy() {
+
     }
 
     public void sendPing() {
