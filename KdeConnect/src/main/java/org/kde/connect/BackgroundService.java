@@ -149,10 +149,11 @@ public class BackgroundService extends Service {
 
         @Override
         public void onConnectionLost(BaseComputerLink link) {
+            Log.e("BackgroundService","onConnectionLost");
             Device d = devices.get(link.getDeviceId());
             if (d != null) {
                 d.removeLink(link);
-                //if (d.countLinkedDevices() == 0) devices.remove(link.getDeviceId);
+                if (d.countLinkedDevices() == 0) devices.remove(link.getDeviceId());
             }
 
         }
@@ -177,10 +178,24 @@ public class BackgroundService extends Service {
         return Service.START_STICKY;
     }
 
-    private void startDiscovery() {
-        Log.i("StartDiscovery","Registering connection receivers");
+    public void startDiscovery() {
+        Log.i("BackgroundService","StartDiscovery");
         for (BaseLinkProvider a : linkProviders) {
-            a.reachComputers(deviceListener);
+            a.onStart();
+        }
+    }
+
+    public void stopDiscovery() {
+        Log.i("BackgroundService","StopDiscovery");
+        for (BaseLinkProvider a : linkProviders) {
+            a.onStop();
+        }
+    }
+
+    public void addConnectionListener(BaseLinkProvider.ConnectionReceiver cr) {
+        Log.i("BackgroundService","Registering connection listener");
+        for (BaseLinkProvider a : linkProviders) {
+            a.addConnectionReceiver(cr);
         }
     }
 
@@ -193,12 +208,16 @@ public class BackgroundService extends Service {
 
         registerPackageInterfacesFromSettings();
         registerLinkProviders();
+
+        //Link Providers need to be already registered
+        addConnectionListener(deviceListener);
         startDiscovery();
 
     }
 
     public void restart() {
         devices.clear();
+        stopDiscovery();
         startDiscovery();
     }
 
@@ -233,6 +252,5 @@ public class BackgroundService extends Service {
         Intent serviceIntent = new Intent(c, BackgroundService.class);
         c.startService(serviceIntent);
     }
-
 
 }

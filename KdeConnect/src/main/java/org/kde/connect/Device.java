@@ -53,12 +53,13 @@ public class Device {
         });
     }
 
-
-
     public void removeLink(BaseComputerLink link) {
         links.remove(link);
     }
 
+    public int countLinkedDevices() {
+        return links.size();
+    }
 
 
     //Send and receive interfaces

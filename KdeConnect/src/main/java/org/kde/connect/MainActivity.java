@@ -3,6 +3,7 @@ package org.kde.connect;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import org.kde.connect.ComputerLinks.BaseComputerLink;
+import org.kde.connect.LinkProviders.BaseLinkProvider;
 import org.kde.connect.PackageInterfaces.PingPackageInterface;
 import org.kde.kdeconnect.R;
 
@@ -46,7 +49,7 @@ public class MainActivity extends Activity {
                     @Override
                     public void onServiceStart(BackgroundService service) {
                         PingPackageInterface pi = (PingPackageInterface) service.getPackageInterface(PingPackageInterface.class);
-                        pi.sendPing();
+                        if (pi != null) pi.sendPing();
                     }
                 });
 
@@ -67,22 +70,34 @@ public class MainActivity extends Activity {
             }
         });
 
-        findViewById(R.id.button4).setOnClickListener(new OnClickListener() {
+        BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
             @Override
-            public void onClick(View view) {
-                BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
+            public void onServiceStart(final BackgroundService service) {
+
+                final Runnable updateComputerList = new Runnable() {
                     @Override
-                    public void onServiceStart(final BackgroundService service) {
-                          runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                String[] listContent = service.getVisibleDevices().toArray(new String[0]);
-                                ListView list = (ListView)findViewById(R.id.listView1);
-                                list.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, listContent));
-                            }
-                        });
+                    public void run() {
+                        Log.e("MainActivity","updateComputerList");
+                        String[] listContent = service.getVisibleDevices().toArray(new String[0]);
+                        ListView list = (ListView)findViewById(R.id.listView1);
+                        list.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, listContent));
+                    }
+                };
+
+                service.addConnectionListener(new BaseLinkProvider.ConnectionReceiver() {
+                    @Override
+                    public void onConnectionAccepted(String deviceId, String name, BaseComputerLink link) {
+                        runOnUiThread(updateComputerList);
+                    }
+
+                    @Override
+                    public void onConnectionLost(BaseComputerLink link) {
+                        Log.e("MainActivity","onConnectionLost");
+                        runOnUiThread(updateComputerList);
                     }
                 });
+
+                updateComputerList.run();
 
             }
         });

@@ -17,28 +17,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class AvahiTcpLinkProvider implements BaseLinkProvider {
+public class AvahiTcpLinkProvider extends BaseLinkProvider {
 
     String serviceType = "_kdeconnect._tcp";
 
+    Context context;
     NsdManager mNsdManager;
-
-    HashMap<InetAddress, TcpComputerLink> visibleComputers = new HashMap<InetAddress, TcpComputerLink>();
-
-    Context ctx;
     private NsdManager.DiscoveryListener oldListener = null;
 
+    HashMap<String, TcpComputerLink> visibleComputers = new HashMap<String, TcpComputerLink>();
+
     public AvahiTcpLinkProvider(Context context) {
+        this.context = context;
         mNsdManager = (NsdManager)context.getSystemService(Context.NSD_SERVICE);
-        ctx = context;
     }
 
     @Override
-    public void reachComputers(final ConnectionReceiver cr) {
+    public void onStart() {
 
-        visibleComputers.clear();
-
-        if (oldListener != null) mNsdManager.stopServiceDiscovery(oldListener);
+        if (oldListener != null) return;
 
         Log.e("AvahiTcpLinkProvider", "Discovering computers...");
 
@@ -50,7 +47,7 @@ public class AvahiTcpLinkProvider implements BaseLinkProvider {
             }
 
             @Override
-            public void onServiceResolved(NsdServiceInfo serviceInfo) {
+            public void onServiceResolved(final NsdServiceInfo serviceInfo) {
                 Log.e("AvahiTcpLinkProvider", "Resolve Succeeded. " + serviceInfo);
 
                 try {
@@ -69,13 +66,13 @@ public class AvahiTcpLinkProvider implements BaseLinkProvider {
                                 String name = np.getString("deviceName");
 
                                 link.setDeviceId(id);
-                                link.sendPackage(NetworkPackage.createIdentityPackage(ctx));
-                                if (visibleComputers.containsKey(host)) {
+                                link.sendPackage(NetworkPackage.createIdentityPackage(context));
+                                if (visibleComputers.containsKey(serviceInfo.toString())) {
                                     //Remove old connection to same host, probably down
-                                    cr.onConnectionLost(visibleComputers.get(host));
+                                    connectionLost(visibleComputers.get(serviceInfo.getServiceName()));
                                 }
-                                visibleComputers.put(host,link);
-                                cr.onConnectionAccepted(id,name,link);
+                                visibleComputers.put(serviceInfo.getServiceName(),link);
+                                connectionAccepted(id,name,link);
                                 link.removePackageReceiver(this);
 
                             }
@@ -113,10 +110,11 @@ public class AvahiTcpLinkProvider implements BaseLinkProvider {
             }
 
             @Override
-            public void onServiceLost(NsdServiceInfo service) {
-                Log.e("AvahiTcpLinkProvider", "service lost" + service);
-                TcpComputerLink link = visibleComputers.remove(service.getHost());
-                if (link != null) cr.onConnectionLost(link);
+            public void onServiceLost(NsdServiceInfo serviceInfo) {
+                Log.e("AvahiTcpLinkProvider", "Service lost: " + serviceInfo.getServiceName());
+                TcpComputerLink link = visibleComputers.remove(serviceInfo.getServiceName());
+                if (link != null) connectionLost(link);
+                else Log.e("AvahiTcpLinkProvider","Host unknown! (?)");
             }
 
             @Override
@@ -139,6 +137,15 @@ public class AvahiTcpLinkProvider implements BaseLinkProvider {
 
         oldListener = mDiscoveryListener;
         mNsdManager.discoverServices(serviceType, NsdManager.PROTOCOL_DNS_SD, mDiscoveryListener);
+
+    }
+
+    @Override
+    public void onStop() {
+
+        if (oldListener != null) mNsdManager.stopServiceDiscovery(oldListener);
+        oldListener = null;
+        visibleComputers.clear();
 
     }
 
