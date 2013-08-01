@@ -7,8 +7,14 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
+import android.os.Bundle;
 import android.os.IBinder;
+import android.telephony.SmsMessage;
+import android.telephony.TelephonyManager;
 import android.util.Log;
+
+import org.kde.connect.PackageInterfaces.SmsNotificationPackageInterface;
+import org.kde.kdeconnect.R;
 
 public class ServiceLauncher extends BroadcastReceiver
 {
@@ -49,8 +55,29 @@ public class ServiceLauncher extends BroadcastReceiver
 
                 }
             });
+        } else if(action.equals("android.provider.Telephony.SMS_RECEIVED")) {
+            Log.e("ServiceLauncher","Sms receiver");
+            final Bundle bundle = intent.getExtras();
+            if (bundle == null) return;
+            BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
+                @Override
+                public void onServiceStart(BackgroundService service) {
+                    SmsNotificationPackageInterface smsnotify = (SmsNotificationPackageInterface)service.getPackageInterface(SmsNotificationPackageInterface.class);
+                    if (smsnotify == null) return;
+                    try {
+                        Object[] pdus = (Object[]) bundle.get("pdus");
+                        for (int i = 0; i < pdus.length; i++) {
+                            SmsMessage message = SmsMessage.createFromPdu((byte[])pdus[i]);
+                            smsnotify.smsBroadcastReceived(message);
+                        }
+                    } catch(Exception e) {
+                        e.printStackTrace();
+                        Log.e("ServiceLauncher","Sms receiver exception");
+                    }
+                }
+            });
         } else {
-            Log.e("KdeConnect", "Ignoring broadcast event: "+intent.getAction());
+            Log.e("ServiceLauncher", "Ignoring broadcast event: "+intent.getAction());
         }
 
     }

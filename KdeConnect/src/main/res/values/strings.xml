@@ -4,13 +4,16 @@
     <string name="action_settings" >Settings</string>
     <string name="pref_enable_call_interface">Call notifications</string>
     <string name="pref_enable_call_interface_desc">Send incoming and missed call notifications</string>
-    <string name="pref_enable_clipboard_interface">Clipboard sync</string>
-    <string name="pref_enable_clipboard_interface_desc">Share the clipboard content</string>
+    <string name="pref_enable_sms_interface">SMS notifications</string>
+    <string name="pref_enable_sms_interface_desc">Send incoming sms notifications</string>
     <string name="pref_enable_battery_interface">Battery report</string>
     <string name="pref_enable_battery_interface_desc">Periodically report battery status</string>
+    <string name="pref_enable_clipboard_interface">Clipboard sync</string>
+    <string name="pref_enable_clipboard_interface_desc">Share the clipboard content</string>
     <string name="pref_enable_mpris_interface">MPRIS controls</string>
     <string name="pref_enable_mpris_interface_desc">Control audio/video from your phone</string>
     <string name="pref_enable_ping_interface">Pings</string>
     <string name="pref_enable_ping_interface_desc">Enable sending and receiving ping notifications</string>
+
 
 </resources>

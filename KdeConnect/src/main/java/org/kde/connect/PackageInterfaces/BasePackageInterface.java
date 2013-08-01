@@ -1,5 +1,6 @@
 package org.kde.connect.PackageInterfaces;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 
 import org.kde.connect.Device;

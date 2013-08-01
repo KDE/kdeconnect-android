@@ -17,10 +17,14 @@ public class NetworkPackage {
 
     public final static String PACKAGE_TYPE_IDENTITY = "kdeconnect.identity";
     public final static String PACKAGE_TYPE_PING = "kdeconnect.ping";
-    public final static String PACKAGE_TYPE_NOTIFICATION = "kdeconnect.notification";
-    public final static String PACKAGE_TYPE_BATTERY = "kdeconnect.battery";
+
     public final static String PACKAGE_TYPE_CALL = "kdeconnect.call";
+    //public final static String PACKAGE_TYPE_SMS = "kdeconnect.sms";
+    public final static String PACKAGE_TYPE_BATTERY = "kdeconnect.battery";
+    public final static String PACKAGE_TYPE_NOTIFICATION = "kdeconnect.notification";
+
     public final static String PACKAGE_TYPE_CLIPBOARD = "kdeconnect.clipboard";
+
     public final static String PACKAGE_TYPE_MPRIS = "kdeconnect.mpris";
 
     private long mId;

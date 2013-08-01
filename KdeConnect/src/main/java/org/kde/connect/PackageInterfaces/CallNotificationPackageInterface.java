@@ -5,11 +5,12 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import org.kde.connect.ContactsHelper;
 import org.kde.connect.Device;
 import org.kde.connect.NetworkPackage;
 
 
-public class CallPackageInterface extends BasePackageInterface {
+public class CallNotificationPackageInterface extends BasePackageInterface {
 
     private Context context;
 
@@ -31,6 +32,7 @@ public class CallPackageInterface extends BasePackageInterface {
 
                     lastPackage.set("notificationType", "ringing");
                     if (phoneNumber != null && !phoneNumber.isEmpty()) {
+                        phoneNumber = ContactsHelper.phoneNumberLookup(context,phoneNumber);
                         lastPackage.set("phoneNumber", phoneNumber);
                     }
 
@@ -54,7 +56,8 @@ public class CallPackageInterface extends BasePackageInterface {
                     //Emit a "call" package
                     lastPackage = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_CALL);
                     if (phoneNumber != null && !phoneNumber.isEmpty()) {
-                        lastPackage.set("phoneNumber",phoneNumber);
+                        phoneNumber = ContactsHelper.phoneNumberLookup(context,phoneNumber);
+                        lastPackage.set("phoneNumber", phoneNumber);
                     }
                     sendPackage(lastPackage);
 

@@ -14,11 +14,11 @@ import org.kde.connect.LinkProviders.AvahiTcpLinkProvider;
 import org.kde.connect.LinkProviders.BaseLinkProvider;
 import org.kde.connect.PackageInterfaces.BasePackageInterface;
 import org.kde.connect.PackageInterfaces.BatteryMonitorPackageInterface;
-import org.kde.connect.PackageInterfaces.CallPackageInterface;
+import org.kde.connect.PackageInterfaces.CallNotificationPackageInterface;
 import org.kde.connect.PackageInterfaces.ClipboardPackageInterface;
 import org.kde.connect.PackageInterfaces.MprisControlPackageInterface;
 import org.kde.connect.PackageInterfaces.PingPackageInterface;
-import org.kde.kdeconnect.R;
+import org.kde.connect.PackageInterfaces.SmsNotificationPackageInterface;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,21 +47,15 @@ public class BackgroundService extends Service {
         Log.e("registerPackageInterfacesFromSettings","registerPackageInterfacesFromSettings");
 
         if (settings.getBoolean("call_interface", true)) {
-            addPackageInterface(CallPackageInterface.class);
+            addPackageInterface(CallNotificationPackageInterface.class);
         } else {
-            removePackageInterface(CallPackageInterface.class);
+            removePackageInterface(CallNotificationPackageInterface.class);
         }
 
-        if (settings.getBoolean("ping_interface", true)) {
-            addPackageInterface(PingPackageInterface.class);
+        if (settings.getBoolean("sms_interface", true)) {
+            addPackageInterface(SmsNotificationPackageInterface.class);
         } else {
-            removePackageInterface(PingPackageInterface.class);
-        }
-
-        if (settings.getBoolean("clipboard_interface", true)) {
-            addPackageInterface(ClipboardPackageInterface.class);
-        } else {
-            removePackageInterface(ClipboardPackageInterface.class);
+            removePackageInterface(SmsNotificationPackageInterface.class);
         }
 
         if (settings.getBoolean("battery_interface", true)) {
@@ -70,10 +64,22 @@ public class BackgroundService extends Service {
             removePackageInterface(BatteryMonitorPackageInterface.class);
         }
 
+        if (settings.getBoolean("clipboard_interface", true)) {
+            addPackageInterface(ClipboardPackageInterface.class);
+        } else {
+            removePackageInterface(ClipboardPackageInterface.class);
+        }
+
         if (settings.getBoolean("mpris_interface", true)) {
             addPackageInterface(MprisControlPackageInterface.class);
         } else {
             removePackageInterface(MprisControlPackageInterface.class);
+        }
+
+        if (settings.getBoolean("ping_interface", true)) {
+            addPackageInterface(PingPackageInterface.class);
+        } else {
+            removePackageInterface(PingPackageInterface.class);
         }
 
     }

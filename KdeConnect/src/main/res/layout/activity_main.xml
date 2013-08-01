@@ -10,8 +10,8 @@
     android:orientation="vertical">
 
     <Button android:id="@+id/button1" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Restart avahi"/>
+    <Button android:id="@+id/button2" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Send ping"/>
     <Button android:id="@+id/button3" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Mpris controls"/>
-    <Button android:id="@+id/button2" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Send ping to all"/>
 
     <ListView
             android:layout_width="fill_parent"
