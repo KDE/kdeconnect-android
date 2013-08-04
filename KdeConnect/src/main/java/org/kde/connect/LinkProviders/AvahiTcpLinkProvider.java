@@ -67,7 +67,8 @@ public class AvahiTcpLinkProvider extends BaseLinkProvider {
 
                                 link.setDeviceId(id);
                                 link.sendPackage(NetworkPackage.createIdentityPackage(context));
-                                if (visibleComputers.containsKey(serviceInfo.toString())) {
+                                if (visibleComputers.containsKey(serviceInfo.getServiceName())) {
+                                    Log.e("AvahiTcpLinkProvider","Removing old connection to same device");
                                     //Remove old connection to same host, probably down
                                     connectionLost(visibleComputers.get(serviceInfo.getServiceName()));
                                 }
@@ -145,7 +146,6 @@ public class AvahiTcpLinkProvider extends BaseLinkProvider {
 
         if (oldListener != null) mNsdManager.stopServiceDiscovery(oldListener);
         oldListener = null;
-        visibleComputers.clear();
 
     }
 

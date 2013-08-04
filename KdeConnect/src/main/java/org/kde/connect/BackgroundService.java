@@ -221,12 +221,6 @@ public class BackgroundService extends Service {
 
     }
 
-    public void restart() {
-        devices.clear();
-        stopDiscovery();
-        startDiscovery();
-    }
-
     @Override
     public void onDestroy() {
         Log.i("BackgroundService", "Destroying");
