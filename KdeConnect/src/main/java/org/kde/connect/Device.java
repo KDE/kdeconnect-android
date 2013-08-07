@@ -73,16 +73,15 @@ public class Device {
     }
 
     public boolean sendPackage(final NetworkPackage np) {
-        Log.e("Device", "sendPackage");
-
+        Log.e("Device", "sendPackage, "+links.size()+" links available");
         new AsyncTask<Void,Void,Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
-                Log.e("sendPackage","Do in background");
+                //Log.e("sendPackage","Do in background");
                 for(BaseComputerLink link : links) {
-                    Log.e("sendPackage","Trying "+link.getLinkProvider().getName());
+                    //Log.e("sendPackage","Trying "+link.getLinkProvider().getName());
                     if (link.sendPackage(np)) {
-                        Log.e("sent using", link.getLinkProvider().getName());
+                        //Log.e("sent using", link.getLinkProvider().getName());
                         return null;
                     }
                 }

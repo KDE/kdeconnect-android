@@ -3,6 +3,7 @@ package org.kde.connect.LinkProviders;
 import android.util.Log;
 
 import org.kde.connect.ComputerLinks.BaseComputerLink;
+import org.kde.connect.NetworkPackage;
 
 import java.util.ArrayList;
 
@@ -11,7 +12,7 @@ public abstract class BaseLinkProvider {
     ArrayList<ConnectionReceiver> connectionReceivers = new ArrayList<ConnectionReceiver>();
 
     public interface ConnectionReceiver {
-        public void onConnectionAccepted(String deviceId, String name, BaseComputerLink link);
+        public void onConnectionAccepted(NetworkPackage identityPackage, BaseComputerLink link);
         public void onConnectionLost(BaseComputerLink link);
     }
 
@@ -24,10 +25,10 @@ public abstract class BaseLinkProvider {
     }
 
     //These two should be called when the provider links to a new computer
-    protected void connectionAccepted(String deviceId, String name, BaseComputerLink link) {
+    protected void connectionAccepted(NetworkPackage identityPackage, BaseComputerLink link) {
         Log.e("LinkProvider", "connectionAccepted");
         for(ConnectionReceiver cr : connectionReceivers) {
-            cr.onConnectionAccepted(deviceId,name,link);
+            cr.onConnectionAccepted(identityPackage,link);
         }
     }
     protected void connectionLost(BaseComputerLink link) {
@@ -40,6 +41,7 @@ public abstract class BaseLinkProvider {
     //To override
     public abstract void onStart();
     public abstract void onStop();
+    public abstract void onNetworkChange();
 
     public abstract int getPriority();
     public abstract String getName();

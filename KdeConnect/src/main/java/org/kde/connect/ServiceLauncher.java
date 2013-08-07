@@ -1,20 +1,15 @@
 package org.kde.connect;
 
-import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.telephony.SmsMessage;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import org.kde.connect.PackageInterfaces.SmsNotificationPackageInterface;
-import org.kde.kdeconnect.R;
 
 public class ServiceLauncher extends BroadcastReceiver
 {
@@ -52,7 +47,7 @@ public class ServiceLauncher extends BroadcastReceiver
             BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
                 @Override
                 public void onServiceStart(BackgroundService service) {
-
+                    service.onNetworkChange();
                 }
             });
         } else if(action.equals("android.provider.Telephony.SMS_RECEIVED")) {

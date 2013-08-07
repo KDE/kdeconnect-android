@@ -36,8 +36,9 @@ public class MainActivity extends Activity {
                 BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
                     @Override
                     public void onServiceStart(BackgroundService service) {
-                        service.stopDiscovery();
-                        service.startDiscovery();
+                        /*service.stopDiscovery();
+                        service.startDiscovery();*/
+                        service.onNetworkChange();
                     }
                 });
             }
@@ -87,7 +88,7 @@ public class MainActivity extends Activity {
 
                 service.addConnectionListener(new BaseLinkProvider.ConnectionReceiver() {
                     @Override
-                    public void onConnectionAccepted(String deviceId, String name, BaseComputerLink link) {
+                    public void onConnectionAccepted(NetworkPackage identityPackage, BaseComputerLink link) {
                         runOnUiThread(updateComputerList);
                     }
 

@@ -9,7 +9,6 @@ import org.kde.connect.ContactsHelper;
 import org.kde.connect.Device;
 import org.kde.connect.NetworkPackage;
 
-
 public class CallNotificationPackageInterface extends BasePackageInterface {
 
     private Context context;

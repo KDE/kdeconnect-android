@@ -7,15 +7,10 @@ import android.util.Log;
 
 import org.kde.connect.ComputerLinks.BaseComputerLink;
 import org.kde.connect.ComputerLinks.TcpComputerLink;
-import org.kde.connect.Device;
 import org.kde.connect.NetworkPackage;
 
 import java.net.InetAddress;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 public class AvahiTcpLinkProvider extends BaseLinkProvider {
 
@@ -54,7 +49,7 @@ public class AvahiTcpLinkProvider extends BaseLinkProvider {
                     Log.e("AvahiTcpLinkProvider", "Connecting and waiting identity package");
                     final InetAddress host = serviceInfo.getHost();
                     final int port = serviceInfo.getPort();
-                    final TcpComputerLink link = new TcpComputerLink(AvahiTcpLinkProvider.this);
+                    final TcpComputerLink link = new TcpComputerLink("NO_DEVICE_ID_YET", AvahiTcpLinkProvider.this);
                     link.addPackageReceiver(new BaseComputerLink.PackageReceiver() {
                         @Override
                         public void onPackageReceived(NetworkPackage np) {
@@ -63,7 +58,6 @@ public class AvahiTcpLinkProvider extends BaseLinkProvider {
 
                             if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
                                 String id = np.getString("deviceId");
-                                String name = np.getString("deviceName");
 
                                 link.setDeviceId(id);
                                 link.sendPackage(NetworkPackage.createIdentityPackage(context));
@@ -73,7 +67,7 @@ public class AvahiTcpLinkProvider extends BaseLinkProvider {
                                     connectionLost(visibleComputers.get(serviceInfo.getServiceName()));
                                 }
                                 visibleComputers.put(serviceInfo.getServiceName(),link);
-                                connectionAccepted(id,name,link);
+                                connectionAccepted(np,link);
                                 link.removePackageReceiver(this);
 
                             }
@@ -147,6 +141,11 @@ public class AvahiTcpLinkProvider extends BaseLinkProvider {
         if (oldListener != null) mNsdManager.stopServiceDiscovery(oldListener);
         oldListener = null;
 
+    }
+
+    @Override
+    public void onNetworkChange() {
+        //Nothing to do, Avahi will handle it for us
     }
 
     @Override

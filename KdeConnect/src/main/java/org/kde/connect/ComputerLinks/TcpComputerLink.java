@@ -1,17 +1,15 @@
 package org.kde.connect.ComputerLinks;
 
-import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
-import org.apache.mina.core.buffer.SimpleBufferAllocator;
-import org.apache.mina.core.filterchain.IoFilter;
 import org.apache.mina.core.future.ConnectFuture;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
 import org.apache.mina.filter.codec.textline.LineDelimiter;
 import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
-import org.apache.mina.filter.keepalive.KeepAliveFilter;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
 import org.kde.connect.LinkProviders.BaseLinkProvider;
 import org.kde.connect.NetworkPackage;
@@ -24,11 +22,29 @@ public class TcpComputerLink extends BaseComputerLink {
 
     private IoSession session = null;
 
-    public TcpComputerLink(BaseLinkProvider linkProvider) {
-        super(linkProvider);
+    public TcpComputerLink(String deviceId, BaseLinkProvider linkProvider) {
+        super(deviceId, linkProvider);
     }
 
     public void connect(final InetAddress ip, final int port) {
+        connect(ip,port,null,null);
+    }
+
+    @Override
+    public boolean sendPackage(NetworkPackage np) {
+        Log.e("TcpComputerLink", "sendPackage");
+        if (session == null) {
+            Log.e("TcpComputerLink","not yet connected");
+            return false;
+        } else {
+            session.write(np.serialize());
+            return true;
+        }
+    }
+
+    public void connect(final InetAddress ip, final int port, final Handler callback, final Handler brokenHandler) {
+
+        Log.e("TcpComputerLink","connect: "+ip.toString()+":"+port);
 
         final NioSocketConnector connector = new NioSocketConnector();
         connector.setHandler(new IoHandlerAdapter() {
@@ -46,6 +62,12 @@ public class TcpComputerLink extends BaseComputerLink {
                     Log.e("TcpComputerLink","Could not unserialize package");
                 }
                 if (np != null) packageReceived(np);
+            }
+
+            @Override
+            public void sessionClosed(IoSession session) throws Exception {
+                super.sessionClosed(session);
+                if (brokenHandler != null) brokenHandler.dispatchMessage(new Message());
             }
         });
 
@@ -66,21 +88,10 @@ public class TcpComputerLink extends BaseComputerLink {
                 if (!future.isConnected()) Log.e("TcpComputerLink","Could not connect");
                 else Log.e("TcpComputerLink","connected");
                 session = future.getSession();
+                if (callback != null) callback.dispatchMessage(new Message());
             }
         }).run();
 
-    }
-
-    @Override
-    public boolean sendPackage(NetworkPackage np) {
-        Log.e("TcpComputerLink", "sendPackage");
-        if (session == null) {
-            Log.e("TcpComputerLink","not yet connected");
-            return false;
-        } else {
-            session.write(np.serialize());
-            return true;
-        }
     }
 
 }

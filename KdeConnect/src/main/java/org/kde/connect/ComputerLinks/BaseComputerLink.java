@@ -14,8 +14,9 @@ public abstract class BaseComputerLink {
 
     private String deviceId;
 
-    public BaseComputerLink(BaseLinkProvider linkProvider) {
+    public BaseComputerLink(String deviceId, BaseLinkProvider linkProvider) {
         this.linkProvider = linkProvider;
+        this.deviceId = deviceId;
     }
 
     public String getDeviceId() {

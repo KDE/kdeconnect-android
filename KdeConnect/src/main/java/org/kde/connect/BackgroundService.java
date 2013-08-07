@@ -12,6 +12,7 @@ import android.util.Log;
 import org.kde.connect.ComputerLinks.BaseComputerLink;
 import org.kde.connect.LinkProviders.AvahiTcpLinkProvider;
 import org.kde.connect.LinkProviders.BaseLinkProvider;
+import org.kde.connect.LinkProviders.BroadcastTcpLinkProvider;
 import org.kde.connect.PackageInterfaces.BasePackageInterface;
 import org.kde.connect.PackageInterfaces.BatteryMonitorPackageInterface;
 import org.kde.connect.PackageInterfaces.CallNotificationPackageInterface;
@@ -36,7 +37,10 @@ public class BackgroundService extends Service {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
 
         if (settings.getBoolean("avahitcp_link", true)) {
-            linkProviders.add(new AvahiTcpLinkProvider(this));
+            //linkProviders.add(new AvahiTcpLinkProvider(this));
+        }
+        if (settings.getBoolean("broadcasttcp_link", true)) {
+            linkProviders.add(new BroadcastTcpLinkProvider(this));
         }
     }
 
@@ -135,8 +139,11 @@ public class BackgroundService extends Service {
 
     private BaseLinkProvider.ConnectionReceiver deviceListener = new BaseLinkProvider.ConnectionReceiver() {
         @Override
-        public void onConnectionAccepted(String deviceId, String name, BaseComputerLink link) {
+        public void onConnectionAccepted(NetworkPackage identityPackage, BaseComputerLink link) {
             Log.i("BackgroundService", "Connection accepted!");
+
+            String deviceId = identityPackage.getString("deviceId");
+            String name = identityPackage.getString("deviceName");
 
             if (devices.containsKey(deviceId)) {
                 Log.i("BackgroundService", "known device");
@@ -195,6 +202,13 @@ public class BackgroundService extends Service {
         Log.i("BackgroundService","StopDiscovery");
         for (BaseLinkProvider a : linkProviders) {
             a.onStop();
+        }
+    }
+
+    public void onNetworkChange() {
+        Log.i("BackgroundService","OnNetworkChange");
+        for (BaseLinkProvider a : linkProviders) {
+            a.onNetworkChange();
         }
     }
 
