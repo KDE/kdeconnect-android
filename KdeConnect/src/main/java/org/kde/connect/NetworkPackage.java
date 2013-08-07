@@ -104,8 +104,9 @@ public class NetworkPackage {
             jo.put("version",mVersion);
         } catch(Exception e) {
         }
-        Log.e("NetworkPackage.serialize",jo.toString()+"\n");
-        return jo.toString();
+        String json = jo.toString()+"\n";
+        Log.e("NetworkPackage.serialize",json);
+        return json;
     }
 
     static public NetworkPackage unserialize(String s) {

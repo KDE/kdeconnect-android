@@ -145,6 +145,11 @@ public class BroadcastTcpLinkProvider extends BaseLinkProvider {
                     if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
                         Log.e("BroadcastTcpLinkProvider", "1 Expecting an identity package");
                         return;
+                    } else {
+                        String myId = NetworkPackage.createIdentityPackage(context).getString("deviceId");
+                        if (np.getType().equals(myId)) {
+                            return;
+                        }
                     }
 
                     Log.e("BroadcastTcpLinkProvider", "It is an identity package, creating link");
