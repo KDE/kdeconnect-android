@@ -7,7 +7,11 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
+import org.apache.mina.core.future.ConnectFuture;
+import org.apache.mina.core.future.IoFuture;
+import org.apache.mina.core.future.IoFutureListener;
 import org.apache.mina.core.future.ReadFuture;
+import org.apache.mina.core.service.IoHandler;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
@@ -15,6 +19,7 @@ import org.apache.mina.filter.codec.textline.LineDelimiter;
 import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.transport.socket.nio.NioDatagramAcceptor;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
+import org.apache.mina.transport.socket.nio.NioSocketConnector;
 import org.kde.connect.ComputerLinks.BaseComputerLink;
 import org.kde.connect.ComputerLinks.NioSessionComputerLink;
 import org.kde.connect.ComputerLinks.TcpComputerLink;
@@ -30,6 +35,46 @@ import java.util.HashMap;
 public class BroadcastTcpLinkProvider extends BaseLinkProvider {
 
     private final static int port = 1714;
+    private final IoHandler tcpHandler = new IoHandlerAdapter() {
+        @Override
+        public void sessionClosed(IoSession session) throws Exception {
+
+            String address = ((InetSocketAddress) session.getRemoteAddress()).toString();
+            NioSessionComputerLink brokenLink = nioSessions.remove(address);
+            if (brokenLink != null) {
+                connectionLost(brokenLink);
+                String id = brokenLink.getDeviceId();
+                visibleComputers.remove(id);
+            }
+
+        }
+
+        @Override
+        public void messageReceived(IoSession session, Object message) throws Exception {
+            super.messageReceived(session, message);
+
+            String address = ((InetSocketAddress) session.getRemoteAddress()).toString();
+            Log.e("BroadcastTcpLinkProvider","Incoming package, address: "+address);
+
+            String theMessage = (String) message;
+            NetworkPackage np = NetworkPackage.unserialize(theMessage);
+
+            NioSessionComputerLink prevLink = nioSessions.get(address);
+
+            if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
+                NioSessionComputerLink link = new NioSessionComputerLink(session, np.getString("deviceId"), BroadcastTcpLinkProvider.this);
+                nioSessions.put(address,link);
+                addLink(np, link);
+            } else {
+                if (prevLink == null) {
+                    Log.e("BroadcastTcpLinkProvider","2 Expecting an identity package");
+                } else {
+                    prevLink.injectNetworkPackage(np);
+                }
+            }
+
+        }
+    };
 
     Context context;
     HashMap<String, BaseComputerLink> visibleComputers = new HashMap<String, BaseComputerLink>();
@@ -57,45 +102,7 @@ public class BroadcastTcpLinkProvider extends BaseLinkProvider {
 
         //This handles the case when I'm the new device in the network and somebody answers my introduction package
         tcpAcceptor = new NioSocketAcceptor();
-        tcpAcceptor.setHandler(new IoHandlerAdapter() {
-            @Override
-            public void sessionClosed(IoSession session) throws Exception {
-
-                String address = ((InetSocketAddress) session.getRemoteAddress()).toString();
-                NioSessionComputerLink brokenLink = nioSessions.remove(address);
-                if (brokenLink != null) {
-                    connectionLost(brokenLink);
-                    String id = brokenLink.getDeviceId();
-                    visibleComputers.remove(id);
-                }
-            }
-
-            @Override
-            public void messageReceived(IoSession session, Object message) throws Exception {
-                super.messageReceived(session, message);
-
-                String address = ((InetSocketAddress) session.getRemoteAddress()).toString();
-                Log.e("BroadcastTcpLinkProvider","Incoming package, address: "+address);
-
-                String theMessage = (String) message;
-                NetworkPackage np = NetworkPackage.unserialize(theMessage);
-
-                NioSessionComputerLink prevLink = nioSessions.get(address);
-
-                if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
-                    NioSessionComputerLink link = new NioSessionComputerLink(session, np.getString("deviceId"), BroadcastTcpLinkProvider.this);
-                    nioSessions.put(address,link);
-                    addLink(np, link);
-                } else {
-                    if (prevLink == null) {
-                        Log.e("BroadcastTcpLinkProvider","2 Expecting an identity package");
-                    } else {
-                        prevLink.injectNetworkPackage(np);
-                    }
-                }
-
-            }
-        });
+        tcpAcceptor.setHandler(tcpHandler);
         tcpAcceptor.getSessionConfig().setKeepAlive(true);
         //TextLineCodecFactory will split incoming data delimited by the given string
         tcpAcceptor.getFilterChain().addLast("codec",
@@ -120,12 +127,12 @@ public class BroadcastTcpLinkProvider extends BaseLinkProvider {
         //This handles the case when I'm the existing device in the network and receive a "hello" UDP package
         updAcceptor = new NioDatagramAcceptor();
         updAcceptor.getSessionConfig().setReuseAddress(true);        //Share port if existing
-        updAcceptor.setHandler(new IoHandlerAdapter(){
+        updAcceptor.setHandler(new IoHandlerAdapter() {
             @Override
             public void messageReceived(IoSession session, Object message) throws Exception {
                 super.messageReceived(session, message);
 
-                Log.e("BroadcastTcpLinkProvider","Udp message received (" + message.getClass() + ") " + message.toString());
+                Log.e("BroadcastTcpLinkProvider", "Udp message received (" + message.getClass() + ") " + message.toString());
 
                 NetworkPackage np = null;
 
@@ -135,74 +142,52 @@ public class BroadcastTcpLinkProvider extends BaseLinkProvider {
                     np = NetworkPackage.unserialize(theMessage);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Log.e("BroadcastTcpLinkProvider","Could not unserialize package");
+                    Log.e("BroadcastTcpLinkProvider", "Could not unserialize package");
                 }
 
                 if (np != null) {
 
                     final NetworkPackage identityPackage = np;
                     if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
-                        Log.e("BroadcastTcpLinkProvider","1 Expecting an identity package");
+                        Log.e("BroadcastTcpLinkProvider", "1 Expecting an identity package");
                         return;
                     }
 
-                    Log.e("BroadcastTcpLinkProvider","It is an identity package, creating link");
-
-                    final TcpComputerLink link = new TcpComputerLink(np.getString("deviceId"), BroadcastTcpLinkProvider.this);
+                    Log.e("BroadcastTcpLinkProvider", "It is an identity package, creating link");
 
                     final InetSocketAddress address = (InetSocketAddress) session.getRemoteAddress();
 
-                    //This handler inside a thread with a looper inside a handler is ultra hackish
-                    new Thread(new Runnable() {
+                    final NioSocketConnector connector = new NioSocketConnector();
+                    connector.setHandler(tcpHandler);
+                    //TextLineCodecFactory will split incoming data delimited by the given string
+                    connector.getFilterChain().addLast("codec",
+                            new ProtocolCodecFilter(
+                                    new TextLineCodecFactory(Charset.defaultCharset(), LineDelimiter.UNIX, LineDelimiter.UNIX)
+                            )
+                    );
+                    connector.getSessionConfig().setKeepAlive(true);
+
+                    ConnectFuture future = connector.connect(new InetSocketAddress(address.getAddress(), port));
+                    future.addListener(new IoFutureListener<IoFuture>() {
                         @Override
-                        public void run() {
-                            try {
-                                Looper l = Looper.myLooper();
-                                if (l != null) l.quit();
-                                try {
-                                    Looper.prepare();
-                                } catch(Exception e) {
-                                    e.printStackTrace();
-                                    Log.e("BroadcastTcpLinkProvider","Looper prepare exception");
-                                }
-                                final Looper l2 = Looper.myLooper();
-                                link.connect(address.getAddress(), port, new Handler() {
-                                    @Override
-                                    public void handleMessage(Message msg) {
+                        public void operationComplete(IoFuture ioFuture) {
+                            IoSession session = ioFuture.getSession();
 
-                                        Log.e("BroadcastTcpLinkProvider","Link established, sending own identity");
+                            Log.e("BroadcastTcpLinkProvider","Connection successful: "+session.isConnected());
 
-                                        NetworkPackage np2 = NetworkPackage.createIdentityPackage(context);
-                                        link.sendPackage(np2);
+                            NioSessionComputerLink link = new NioSessionComputerLink(session,identityPackage.getString("deviceId"),BroadcastTcpLinkProvider.this);
 
-                                        addLink(identityPackage, link);
+                            NetworkPackage np2 = NetworkPackage.createIdentityPackage(context);
+                            link.sendPackage(np2);
 
-                                        l2.quit();
-                                    }
-                                }, new Handler() {
-                                    @Override
-                                    public void handleMessage(Message msg) {
-                                        connectionLost(link);
-                                        visibleComputers.remove(identityPackage.getString("deviceId"));
-                                    }
-                                });
-                                Looper.loop();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                                Log.e("BroadcastTcpLinkProvider","Exception");
-                                Looper l = Looper.myLooper();
-                                if (l != null) l.quit();
-                            }
-
+                            nioSessions.put(address.toString(),link);
+                            addLink(identityPackage, link);
                         }
-                    }).run();
-
-                    Log.e("DONE","DONE0");
+                    });
 
                 }
-                Log.e("DONE","DONE2");
-
             }
+
         });
         //TextLineCodecFactory will split incoming data delimited by the given string
         updAcceptor.getFilterChain().addLast("codec",
