@@ -27,6 +27,7 @@ public class MainActivity extends Activity {
         BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
+                service.onNetworkChange();
             }
         });
 

@@ -73,7 +73,7 @@ public class Device {
     }
 
     public boolean sendPackage(final NetworkPackage np) {
-        Log.e("Device", "sendPackage, "+links.size()+" links available");
+        Log.e("Device", "sendPackage "+np.getType()+". "+links.size()+" links available");
         new AsyncTask<Void,Void,Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
