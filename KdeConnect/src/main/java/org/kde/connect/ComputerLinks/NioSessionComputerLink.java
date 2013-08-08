@@ -25,6 +25,11 @@ public class NioSessionComputerLink extends BaseComputerLink {
 
     private IoSession session = null;
 
+    public void disconnect() {
+        Log.e("NioSessionComputerLink","Disconnect: "+session.getRemoteAddress().toString());
+        session.close(true);
+    }
+
     public NioSessionComputerLink(IoSession session, String deviceId, BaseLinkProvider linkProvider) {
         super(deviceId, linkProvider);
         this.session = session;

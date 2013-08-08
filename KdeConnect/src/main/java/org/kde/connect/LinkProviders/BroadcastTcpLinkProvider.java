@@ -64,6 +64,10 @@ public class BroadcastTcpLinkProvider extends BaseLinkProvider {
             NioSessionComputerLink prevLink = nioSessions.get(session.getId());
 
             if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
+                String myId = NetworkPackage.createIdentityPackage(context).getString("deviceId");
+                if (np.getString("deviceId").equals(myId)) {
+                    return;
+                }
                 NioSessionComputerLink link = new NioSessionComputerLink(session, np.getString("deviceId"), BroadcastTcpLinkProvider.this);
                 nioSessions.put(session.getId(),link);
                 addLink(np, link);
@@ -78,7 +82,81 @@ public class BroadcastTcpLinkProvider extends BaseLinkProvider {
         }
     };
 
-    private void addLink(NetworkPackage identityPackage, NioSessionComputerLink link) {
+    private IoHandler udpHandler = new IoHandlerAdapter() {
+        @Override
+        public void messageReceived(IoSession udpSession, Object message) throws Exception {
+            super.messageReceived(udpSession, message);
+
+            Log.e("BroadcastTcpLinkProvider", "Udp message received (" + message.getClass() + ") " + message.toString());
+
+            NetworkPackage np = null;
+
+            try {
+                //We should receive a string thanks to the TextLineCodecFactory filter
+                String theMessage = (String) message;
+                np = NetworkPackage.unserialize(theMessage);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e("BroadcastTcpLinkProvider", "Could not unserialize package");
+            }
+
+            if (np != null) {
+
+                final NetworkPackage identityPackage = np;
+                if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
+                    Log.e("BroadcastTcpLinkProvider", "1 Expecting an identity package");
+                    return;
+                } else {
+                    String myId = NetworkPackage.createIdentityPackage(context).getString("deviceId");
+                    if (np.getString("deviceId").equals(myId)) {
+                        return;
+                    }
+                }
+
+                Log.e("BroadcastTcpLinkProvider", "It is an identity package, creating link");
+
+                try {
+                    final InetSocketAddress address = (InetSocketAddress) udpSession.getRemoteAddress();
+
+                    final NioSocketConnector connector = new NioSocketConnector();
+                    connector.setHandler(tcpHandler);
+                    //TextLineCodecFactory will split incoming data delimited by the given string
+                    connector.getFilterChain().addLast("codec",
+                            new ProtocolCodecFilter(
+                                    new TextLineCodecFactory(Charset.defaultCharset(), LineDelimiter.UNIX, LineDelimiter.UNIX)
+                            )
+                    );
+                    connector.getSessionConfig().setKeepAlive(true);
+
+                    int tcpPort = np.getInt("tcpPort",port);
+                    ConnectFuture future = connector.connect(new InetSocketAddress(address.getAddress(), tcpPort));
+                    future.addListener(new IoFutureListener<IoFuture>() {
+                        @Override
+                        public void operationComplete(IoFuture ioFuture) {
+                            IoSession session = ioFuture.getSession();
+
+                            Log.e("BroadcastTcpLinkProvider", "Connection successful: " + session.isConnected());
+
+                            NioSessionComputerLink link = new NioSessionComputerLink(session, identityPackage.getString("deviceId"), BroadcastTcpLinkProvider.this);
+
+                            NetworkPackage np2 = NetworkPackage.createIdentityPackage(context);
+                            link.sendPackage(np2);
+
+                            nioSessions.put(session.getId(), link);
+                            addLink(identityPackage, link);
+                        }
+                    });
+
+                } catch (Exception e) {
+                    Log.e("BroadcastTcpLinkProvider","Exception!!");
+                    e.printStackTrace();
+                }
+
+            }
+        }
+    };
+
+        private void addLink(NetworkPackage identityPackage, NioSessionComputerLink link) {
         Log.e("BroadcastTcpLinkProvider","addLink to "+identityPackage.getString("deviceName"));
         String deviceId = identityPackage.getString("deviceId");
         BaseComputerLink oldLink = visibleComputers.get(deviceId);
@@ -98,20 +176,24 @@ public class BroadcastTcpLinkProvider extends BaseLinkProvider {
         tcpAcceptor = new NioSocketAcceptor();
         tcpAcceptor.setHandler(tcpHandler);
         tcpAcceptor.getSessionConfig().setKeepAlive(true);
+        tcpAcceptor.getSessionConfig().setReuseAddress(true);
+        tcpAcceptor.setCloseOnDeactivation(false);
         //TextLineCodecFactory will split incoming data delimited by the given string
         tcpAcceptor.getFilterChain().addLast("codec",
                 new ProtocolCodecFilter(
                         new TextLineCodecFactory(Charset.defaultCharset(), LineDelimiter.UNIX, LineDelimiter.UNIX)
                 )
         );
-        try {
-            tcpAcceptor.getSessionConfig().setReuseAddress(true);
-            tcpAcceptor.bind(new InetSocketAddress(port));
-        } catch(Exception e) {
-            Log.e("BroadcastTcpLinkProvider", "Error: Could not bind tcp socket");
-            e.printStackTrace();
-        }
 
+
+        udpAcceptor = new NioDatagramAcceptor();
+        udpAcceptor.getSessionConfig().setReuseAddress(true);        //Share port if existing
+        //TextLineCodecFactory will split incoming data delimited by the given string
+        udpAcceptor.getFilterChain().addLast("codec",
+                new ProtocolCodecFilter(
+                        new TextLineCodecFactory(Charset.defaultCharset(), LineDelimiter.UNIX, LineDelimiter.UNIX)
+                )
+        );
 
     }
 
@@ -119,81 +201,9 @@ public class BroadcastTcpLinkProvider extends BaseLinkProvider {
     public void onStart() {
 
         //This handles the case when I'm the existing device in the network and receive a "hello" UDP package
-        udpAcceptor = new NioDatagramAcceptor();
-        udpAcceptor.getSessionConfig().setReuseAddress(true);        //Share port if existing
-        udpAcceptor.setHandler(new IoHandlerAdapter() {
-            @Override
-            public void messageReceived(IoSession udpSession, Object message) throws Exception {
-                super.messageReceived(udpSession, message);
 
-                Log.e("BroadcastTcpLinkProvider", "Udp message received (" + message.getClass() + ") " + message.toString());
+        udpAcceptor.setHandler(udpHandler);
 
-                NetworkPackage np = null;
-
-                try {
-                    //We should receive a string thanks to the TextLineCodecFactory filter
-                    String theMessage = (String) message;
-                    np = NetworkPackage.unserialize(theMessage);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.e("BroadcastTcpLinkProvider", "Could not unserialize package");
-                }
-
-                if (np != null) {
-
-                    final NetworkPackage identityPackage = np;
-                    if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
-                        Log.e("BroadcastTcpLinkProvider", "1 Expecting an identity package");
-                        return;
-                    } else {
-                        String myId = NetworkPackage.createIdentityPackage(context).getString("deviceId");
-                        if (np.getType().equals(myId)) {
-                            return;
-                        }
-                    }
-
-                    Log.e("BroadcastTcpLinkProvider", "It is an identity package, creating link");
-
-                    final InetSocketAddress address = (InetSocketAddress) udpSession.getRemoteAddress();
-
-                    final NioSocketConnector connector = new NioSocketConnector();
-                    connector.setHandler(tcpHandler);
-                    //TextLineCodecFactory will split incoming data delimited by the given string
-                    connector.getFilterChain().addLast("codec",
-                            new ProtocolCodecFilter(
-                                    new TextLineCodecFactory(Charset.defaultCharset(), LineDelimiter.UNIX, LineDelimiter.UNIX)
-                            )
-                    );
-                    connector.getSessionConfig().setKeepAlive(true);
-
-                    ConnectFuture future = connector.connect(new InetSocketAddress(address.getAddress(), port));
-                    future.addListener(new IoFutureListener<IoFuture>() {
-                        @Override
-                        public void operationComplete(IoFuture ioFuture) {
-                            IoSession session = ioFuture.getSession();
-
-                            Log.e("BroadcastTcpLinkProvider", "Connection successful: " + session.isConnected());
-
-                            NioSessionComputerLink link = new NioSessionComputerLink(session, identityPackage.getString("deviceId"), BroadcastTcpLinkProvider.this);
-
-                            NetworkPackage np2 = NetworkPackage.createIdentityPackage(context);
-                            link.sendPackage(np2);
-
-                            nioSessions.put(session.getId(), link);
-                            addLink(identityPackage, link);
-                        }
-                    });
-
-                }
-            }
-
-        });
-        //TextLineCodecFactory will split incoming data delimited by the given string
-        udpAcceptor.getFilterChain().addLast("codec",
-                new ProtocolCodecFilter(
-                        new TextLineCodecFactory(Charset.defaultCharset(), LineDelimiter.UNIX, LineDelimiter.UNIX)
-                )
-        );
         try {
             udpAcceptor.bind(new InetSocketAddress(port));
         } catch(Exception e) {
@@ -201,25 +211,29 @@ public class BroadcastTcpLinkProvider extends BaseLinkProvider {
             e.printStackTrace();
         }
 
-        onNetworkChange();
+        boolean success = false;
+        int tcpPort = port;
+        while(!success) {
+            try {
+                tcpAcceptor.bind(new InetSocketAddress(tcpPort));
+                success = true;
+            } catch(Exception e) {
+                tcpPort++;
+            }
+        }
 
-    }
-
-    @Override
-    public void onNetworkChange() {
-
-        Log.e("BroadcastTcpLinkProvider","OnNetworkChange: " + (udpAcceptor != null));
-
-        if (udpAcceptor == null) return;
+        Log.e("BroadcastTcpLinkProvider","Using tcpPort "+tcpPort);
 
         //I'm on a new network, let's be polite and introduce myself
+        final int finalTcpPort = tcpPort;
         new AsyncTask<Void,Void,Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
 
                 try {
-                    String s = NetworkPackage.createIdentityPackage(context).serialize();
-                    byte[] b = s.getBytes("UTF-8");
+                    NetworkPackage identity = NetworkPackage.createIdentityPackage(context);
+                    identity.set("tcpPort",finalTcpPort);
+                    byte[] b = identity.serialize().getBytes("UTF-8");
                     DatagramPacket packet = new DatagramPacket(b, b.length, InetAddress.getByAddress(new byte[]{-1,-1,-1,-1}), port);
                     DatagramSocket socket = new DatagramSocket();
                     socket.setReuseAddress(true);
@@ -232,18 +246,28 @@ public class BroadcastTcpLinkProvider extends BaseLinkProvider {
                 }
 
                 return null;
+
             }
 
         }.execute();
+
+    }
+
+    @Override
+    public void onNetworkChange() {
+
+        Log.e("BroadcastTcpLinkProvider","OnNetworkChange: " + (udpAcceptor != null));
+
+        onStop();
+        onStart();
+
     }
 
     @Override
     public void onStop() {
 
-        if (udpAcceptor != null) {
-            udpAcceptor.unbind();
-            udpAcceptor = null;
-        }
+        udpAcceptor.unbind();
+        tcpAcceptor.unbind();
 
     }
 

@@ -238,6 +238,7 @@ public class BackgroundService extends Service {
     @Override
     public void onDestroy() {
         Log.i("BackgroundService", "Destroying");
+        stopDiscovery();
         super.onDestroy();
     }
 
