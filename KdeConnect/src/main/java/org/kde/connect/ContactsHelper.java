@@ -14,6 +14,7 @@ public class ContactsHelper {
         Log.e("PhoneNumberLookup", number);
 
         Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
+        Cursor cursor = null;
         try {
             cursor = context.getContentResolver().query(
                     uri,
