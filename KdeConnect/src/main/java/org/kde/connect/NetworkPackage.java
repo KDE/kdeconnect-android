@@ -2,6 +2,7 @@ package org.kde.connect;
 
 import android.content.Context;
 import android.os.Build;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
@@ -131,9 +132,9 @@ public class NetworkPackage {
 
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_IDENTITY);
 
-        final TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        String deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
         try {
-            np.mBody.put("deviceId",tm.getDeviceId());
+            np.mBody.put("deviceId", deviceId);
             np.mBody.put("deviceName", Build.BRAND + " " + Build.MODEL);
         } catch (JSONException e) {
         }
