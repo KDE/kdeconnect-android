@@ -31,12 +31,12 @@ public class BroadcastTcpLinkProvider extends BaseLinkProvider {
 
     private final static int port = 1714;
 
-    Context context;
-    HashMap<String, NioSessionComputerLink> visibleComputers = new HashMap<String, NioSessionComputerLink>();
-    HashMap<Long, NioSessionComputerLink> nioSessions = new HashMap<Long, NioSessionComputerLink>();
+    private Context context;
+    private HashMap<String, NioSessionComputerLink> visibleComputers = new HashMap<String, NioSessionComputerLink>();
+    private HashMap<Long, NioSessionComputerLink> nioSessions = new HashMap<Long, NioSessionComputerLink>();
 
-    NioSocketAcceptor tcpAcceptor = null;
-    NioDatagramAcceptor udpAcceptor = null;
+    private NioSocketAcceptor tcpAcceptor = null;
+    private NioDatagramAcceptor udpAcceptor = null;
 
     private final IoHandler tcpHandler = new IoHandlerAdapter() {
         @Override

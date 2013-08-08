@@ -18,7 +18,6 @@ public class Device {
     private String deviceId;
     private String name;
 
-
     Device(String deviceId, String name, BaseComputerLink dl) {
         this.deviceId = deviceId;
         this.name = name;

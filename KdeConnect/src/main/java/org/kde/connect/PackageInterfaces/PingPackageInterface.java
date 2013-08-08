@@ -12,7 +12,7 @@ import org.kde.connect.NetworkPackage;
 
 public class PingPackageInterface extends BasePackageInterface {
 
-    Context context;
+    private Context context;
 
     @Override
     public boolean onCreate(Context ctx) {

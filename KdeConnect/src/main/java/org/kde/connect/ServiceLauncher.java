@@ -61,8 +61,8 @@ public class ServiceLauncher extends BroadcastReceiver
                     if (smsnotify == null) return;
                     try {
                         Object[] pdus = (Object[]) bundle.get("pdus");
-                        for (int i = 0; i < pdus.length; i++) {
-                            SmsMessage message = SmsMessage.createFromPdu((byte[])pdus[i]);
+                        for (Object pdu : pdus) {
+                            SmsMessage message = SmsMessage.createFromPdu((byte[])pdu);
                             smsnotify.smsBroadcastReceived(message);
                         }
                     } catch(Exception e) {

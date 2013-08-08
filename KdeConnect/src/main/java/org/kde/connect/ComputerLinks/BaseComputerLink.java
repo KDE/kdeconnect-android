@@ -11,10 +11,10 @@ import java.util.ArrayList;
 public abstract class BaseComputerLink {
 
     private BaseLinkProvider linkProvider;
-
     private String deviceId;
+    private ArrayList<PackageReceiver> receivers = new ArrayList<PackageReceiver>();
 
-    public BaseComputerLink(String deviceId, BaseLinkProvider linkProvider) {
+    protected BaseComputerLink(String deviceId, BaseLinkProvider linkProvider) {
         this.linkProvider = linkProvider;
         this.deviceId = deviceId;
     }
@@ -35,7 +35,6 @@ public abstract class BaseComputerLink {
     public interface PackageReceiver {
         public void onPackageReceived(NetworkPackage np);
     }
-    ArrayList<PackageReceiver> receivers = new ArrayList<PackageReceiver>();
 
     public void addPackageReceiver(PackageReceiver pr) {
         receivers.add(pr);

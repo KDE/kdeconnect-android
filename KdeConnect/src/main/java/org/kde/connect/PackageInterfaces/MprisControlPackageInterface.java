@@ -1,6 +1,5 @@
 package org.kde.connect.PackageInterfaces;
 
-import android.R;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
@@ -16,15 +15,15 @@ import java.util.ArrayList;
 
 public class MprisControlPackageInterface extends BasePackageInterface {
 
-    Context context;
+    private Context context;
 
-    String nowPlaying = "";
-    Handler nowPlayingUpdated = null;
+    private String nowPlaying = "";
+    private Handler nowPlayingUpdated = null;
 
-    ArrayList<String> playerList = new ArrayList<String>();
-    Handler playerListUpdated = null;
+    private ArrayList<String> playerList = new ArrayList<String>();
+    private Handler playerListUpdated = null;
 
-    String player = "";
+    private String player = "";
 
     @Override
     public boolean onCreate(Context ctx) {

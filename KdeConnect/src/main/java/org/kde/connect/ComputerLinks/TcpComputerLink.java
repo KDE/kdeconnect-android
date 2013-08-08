@@ -30,18 +30,6 @@ public class TcpComputerLink extends BaseComputerLink {
         connect(ip,port,null,null);
     }
 
-    @Override
-    public boolean sendPackage(NetworkPackage np) {
-        Log.e("TcpComputerLink", "sendPackage");
-        if (session == null) {
-            Log.e("TcpComputerLink","not yet connected");
-            return false;
-        } else {
-            session.write(np.serialize());
-            return true;
-        }
-    }
-
     public void connect(final InetAddress ip, final int port, final Handler callback, final Handler brokenHandler) {
 
         Log.e("TcpComputerLink","connect: "+ip.toString()+":"+port);
@@ -94,4 +82,15 @@ public class TcpComputerLink extends BaseComputerLink {
 
     }
 
+    @Override
+    public boolean sendPackage(NetworkPackage np) {
+        Log.e("TcpComputerLink", "sendPackage");
+        if (session == null) {
+            Log.e("TcpComputerLink","not yet connected");
+            return false;
+        } else {
+            session.write(np.serialize());
+            return true;
+        }
+    }
 }

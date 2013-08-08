@@ -16,6 +16,8 @@ import org.kde.connect.LinkProviders.BaseLinkProvider;
 import org.kde.connect.PackageInterfaces.PingPackageInterface;
 import org.kde.kdeconnect.R;
 
+import java.util.ArrayList;
+
 public class MainActivity extends Activity {
 
 
@@ -81,7 +83,8 @@ public class MainActivity extends Activity {
                     @Override
                     public void run() {
                         Log.e("MainActivity","updateComputerList");
-                        String[] listContent = service.getVisibleDevices().toArray(new String[0]);
+                        ArrayList<String> devices = service.getVisibleDevices();
+                        String[] listContent = devices.toArray(new String[devices.size()]);
                         ListView list = (ListView)findViewById(R.id.listView1);
                         list.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, listContent));
                     }

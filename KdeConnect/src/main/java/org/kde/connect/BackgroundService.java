@@ -26,11 +26,11 @@ import java.util.HashMap;
 
 public class BackgroundService extends Service {
 
-    ArrayList<BaseLinkProvider> linkProviders = new ArrayList<BaseLinkProvider>();
+    private ArrayList<BaseLinkProvider> linkProviders = new ArrayList<BaseLinkProvider>();
 
-    ArrayList<BasePackageInterface> packageInterfaces = new ArrayList<BasePackageInterface>();
+    private ArrayList<BasePackageInterface> packageInterfaces = new ArrayList<BasePackageInterface>();
 
-    HashMap<String, Device> devices = new HashMap<String, Device>();
+    private HashMap<String, Device> devices = new HashMap<String, Device>();
 
     public void registerLinkProviders() {
 

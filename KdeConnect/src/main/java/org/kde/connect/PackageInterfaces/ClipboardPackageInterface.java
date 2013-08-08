@@ -9,11 +9,11 @@ import org.kde.connect.NetworkPackage;
 
 public class ClipboardPackageInterface extends BasePackageInterface {
 
-    boolean ignore_next_clipboard_change = false;
+    private boolean ignore_next_clipboard_change = false;
 
-    Context context;
-    ClipboardManager cm;
-    ClipboardManager.OnPrimaryClipChangedListener listener = new ClipboardManager.OnPrimaryClipChangedListener() {
+    private Context context;
+    private ClipboardManager cm;
+    private ClipboardManager.OnPrimaryClipChangedListener listener = new ClipboardManager.OnPrimaryClipChangedListener() {
         @Override
         public void onPrimaryClipChanged() {
             try {

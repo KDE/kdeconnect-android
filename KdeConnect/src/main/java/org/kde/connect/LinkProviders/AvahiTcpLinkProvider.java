@@ -14,13 +14,13 @@ import java.util.HashMap;
 
 public class AvahiTcpLinkProvider extends BaseLinkProvider {
 
-    String serviceType = "_kdeconnect._tcp";
+    private final String serviceType = "_kdeconnect._tcp";
 
-    Context context;
-    NsdManager mNsdManager;
+    private Context context;
+    private NsdManager mNsdManager;
     private NsdManager.DiscoveryListener oldListener = null;
 
-    HashMap<String, TcpComputerLink> visibleComputers = new HashMap<String, TcpComputerLink>();
+    private HashMap<String, TcpComputerLink> visibleComputers = new HashMap<String, TcpComputerLink>();
 
     public AvahiTcpLinkProvider(Context context) {
         this.context = context;

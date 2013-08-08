@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public abstract class BaseLinkProvider {
 
-    ArrayList<ConnectionReceiver> connectionReceivers = new ArrayList<ConnectionReceiver>();
+    private ArrayList<ConnectionReceiver> connectionReceivers = new ArrayList<ConnectionReceiver>();
 
     public interface ConnectionReceiver {
         public void onConnectionAccepted(NetworkPackage identityPackage, BaseComputerLink link);

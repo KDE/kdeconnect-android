@@ -12,11 +12,11 @@ import org.kde.connect.NetworkPackage;
 
 public class BatteryMonitorPackageInterface extends BasePackageInterface {
 
-    NetworkPackage lastPackage = null;
+    private NetworkPackage lastPackage = null;
 
-    Context context;
-    IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-    BroadcastReceiver receiver = new BroadcastReceiver() {
+    private Context context;
+    private IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
 
