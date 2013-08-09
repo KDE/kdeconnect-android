@@ -38,6 +38,11 @@
         />
 
         <activity
+                android:name="org.kde.connect.CompatSettingsActivity"
+                android:label="KDE Connect Settings"
+                />
+
+        <activity
                 android:name="org.kde.connect.SettingsActivity"
                 android:label="KDE Connect Settings"
                 />

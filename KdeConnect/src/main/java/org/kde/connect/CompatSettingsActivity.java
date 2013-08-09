@@ -6,26 +6,26 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
+import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.util.Log;
 
 import org.kde.kdeconnect.R;
 
-public class SettingsFragment extends PreferenceFragment {
+public class CompatSettingsActivity extends PreferenceActivity {
 
     private SharedPreferences.OnSharedPreferenceChangeListener preferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
             Log.e("onSharedPreferenceChanged",key+"->"+sharedPreferences.getBoolean(key,true));
-            Activity activity = getActivity();
-            if (activity == null) return;
-            BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
+            BackgroundService.RunCommand(getApplicationContext(), new BackgroundService.InstanceCallback() {
                 @Override
                 public void onServiceStart(BackgroundService service) {
                     service.registerPackageInterfacesFromSettings();
                 }
             });
+
         }
     };
 

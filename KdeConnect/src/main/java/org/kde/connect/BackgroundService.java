@@ -5,12 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Binder;
+import android.os.Build;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
 import org.kde.connect.ComputerLinks.BaseComputerLink;
-import org.kde.connect.LinkProviders.AvahiTcpLinkProvider;
 import org.kde.connect.LinkProviders.BaseLinkProvider;
 import org.kde.connect.LinkProviders.BroadcastTcpLinkProvider;
 import org.kde.connect.PackageInterfaces.BasePackageInterface;
@@ -68,10 +68,12 @@ public class BackgroundService extends Service {
             removePackageInterface(BatteryMonitorPackageInterface.class);
         }
 
-        if (settings.getBoolean("clipboard_interface", true)) {
-            addPackageInterface(ClipboardPackageInterface.class);
-        } else {
-            removePackageInterface(ClipboardPackageInterface.class);
+        if (Build.VERSION.SDK_INT > 10 && Build.VERSION.SDK_INT != 18) {
+            if (settings.getBoolean("clipboard_interface", true)) {
+                addPackageInterface(ClipboardPackageInterface.class);
+            } else {
+                removePackageInterface(ClipboardPackageInterface.class);
+            }
         }
 
         if (settings.getBoolean("mpris_interface", true)) {

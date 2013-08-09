@@ -2,6 +2,7 @@ package org.kde.connect;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -120,8 +121,13 @@ public class MainActivity extends Activity {
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         switch(item.getItemId()){
             case R.id.action_settings:
-                Intent intent = new Intent(this,SettingsActivity.class);
-                startActivity(intent);
+                if (Build.VERSION.SDK_INT > 10) {
+                    Intent intent = new Intent(this,SettingsActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(this,CompatSettingsActivity.class);
+                    startActivity(intent);
+                }
                 return true;
             default:
                 return super.onMenuItemSelected(featureId, item);

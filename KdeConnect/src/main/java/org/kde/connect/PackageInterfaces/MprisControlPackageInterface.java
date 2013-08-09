@@ -84,7 +84,7 @@ public class MprisControlPackageInterface extends BasePackageInterface {
 
     public void setNowPlayingUpdatedHandler(Handler h) {
         nowPlayingUpdated = h;
-        if (!nowPlaying.isEmpty()) h.dispatchMessage(new Message());
+        if (nowPlaying.length() > 0) h.dispatchMessage(new Message());
         requestNowPlaying();
     }
 
@@ -94,7 +94,7 @@ public class MprisControlPackageInterface extends BasePackageInterface {
 
     public void setPlayerListUpdatedHandler(Handler h) {
         playerListUpdated = h;
-        if (!playerList.isEmpty()) h.dispatchMessage(new Message());
+        if (playerList.size() > 0) h.dispatchMessage(new Message());
         requestPlayerList();
     }
 
