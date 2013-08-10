@@ -1,7 +1,5 @@
 package org.kde.connect.PackageInterfaces;
 
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
@@ -17,13 +15,16 @@ public class MprisControlPackageInterface extends BasePackageInterface {
 
     private Context context;
 
-    private String nowPlaying = "";
-    private Handler nowPlayingUpdated = null;
+    private String currentSong = "";
+    int volume = 50;
+    private Handler playerStatusUpdated = null;
 
     private ArrayList<String> playerList = new ArrayList<String>();
     private Handler playerListUpdated = null;
 
     private String player = "";
+    private boolean playing = false;
+
 
     @Override
     public boolean onCreate(Context ctx) {
@@ -38,8 +39,15 @@ public class MprisControlPackageInterface extends BasePackageInterface {
 
     public void sendAction(String s) {
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
-        np.set("action",s);
         np.set("player",player);
+        np.set("action",s);
+        sendPackage(np);
+    }
+
+    public void setVolume(int volume) {
+        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
+        np.set("player",player);
+        np.set("setVolume",volume);
         sendPackage(np);
     }
 
@@ -53,28 +61,46 @@ public class MprisControlPackageInterface extends BasePackageInterface {
     public boolean onPackageReceived(Device d, NetworkPackage np) {
         if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_MPRIS)) return false;
 
-        if (np.has("nowPlaying")) {
-            nowPlaying = np.getString("nowPlaying");
-            if (nowPlayingUpdated != null) {
-                try {
-                    nowPlayingUpdated.dispatchMessage(new Message());
-                } catch(Exception e) {
-                    e.printStackTrace();
-                    Log.e("MprisControl","Exception");
-                    nowPlayingUpdated = null;
+        if (np.has("nowPlaying") || np.has("volume") || np.has("isPlaying")) {
+            if (np.getString("player").equals(player)) {
+                currentSong = np.getString("nowPlaying", currentSong);
+                volume = np.getInt("volume", volume);
+                playing = np.getBoolean("isPlaying", playing);
+                if (playerStatusUpdated != null) {
+                    try {
+                        playerStatusUpdated.dispatchMessage(new Message());
+                    } catch(Exception e) {
+                        e.printStackTrace();
+                        Log.e("MprisControl","Exception");
+                        playerStatusUpdated = null;
+                    }
                 }
             }
         }
 
         if (np.has("playerList")) {
-            playerList = np.getStringList("playerList");
-            if (playerListUpdated != null) {
-                try {
-                    playerListUpdated.dispatchMessage(new Message());
-                } catch(Exception e) {
-                    e.printStackTrace();
-                    Log.e("MprisControl","Exception");
-                    playerListUpdated = null;
+
+            ArrayList<String> newPlayerList = np.getStringList("playerList");
+            boolean equals = false;
+            if (newPlayerList.size() == playerList.size()) {
+                equals = true;
+                for (int i=0; i<newPlayerList.size(); i++) {
+                    if (!newPlayerList.get(i).equals(playerList.get(i))) {
+                        equals = false;
+                        break;
+                    }
+                }
+            }
+            if (!equals) {
+                playerList = newPlayerList;
+                if (playerListUpdated != null) {
+                    try {
+                        playerListUpdated.dispatchMessage(new Message());
+                    } catch(Exception e) {
+                        e.printStackTrace();
+                        Log.e("MprisControl","Exception");
+                        playerListUpdated = null;
+                    }
                 }
             }
         }
@@ -82,14 +108,14 @@ public class MprisControlPackageInterface extends BasePackageInterface {
         return true;
     }
 
-    public void setNowPlayingUpdatedHandler(Handler h) {
-        nowPlayingUpdated = h;
-        if (nowPlaying.length() > 0) h.dispatchMessage(new Message());
-        requestNowPlaying();
+    public void setPlayerStatusUpdatedHandler(Handler h) {
+        playerStatusUpdated = h;
+        if (currentSong.length() > 0) h.dispatchMessage(new Message());
+        requestPlayerStatus();
     }
 
-    public String getNowPlaying() {
-        return nowPlaying;
+    public String getCurrentSong() {
+        return currentSong;
     }
 
     public void setPlayerListUpdatedHandler(Handler h) {
@@ -104,10 +130,28 @@ public class MprisControlPackageInterface extends BasePackageInterface {
 
     public void setPlayer(String s) {
         player = s;
-
-        requestNowPlaying();
+        currentSong = "";
+        volume = 50;
+        playing = false;
+        if (playerStatusUpdated != null) {
+            try {
+                playerStatusUpdated.dispatchMessage(new Message());
+            } catch(Exception e) {
+                e.printStackTrace();
+                Log.e("MprisControl","Exception");
+                playerStatusUpdated = null;
+            }
+        }
+        requestPlayerStatus();
     }
 
+    public int getVolume() {
+        return volume;
+    }
+
+    public boolean isPlaying() {
+        return playing;
+    }
 
     private void requestPlayerList() {
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
@@ -116,10 +160,11 @@ public class MprisControlPackageInterface extends BasePackageInterface {
     }
 
 
-    private void requestNowPlaying() {
+    private void requestPlayerStatus() {
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
         np.set("player",player);
         np.set("requestNowPlaying",true);
+        np.set("requestVolume",true);
         sendPackage(np);
     }
 

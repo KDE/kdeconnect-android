@@ -11,7 +11,8 @@
             android:layout_width="200dip"
             android:layout_height="wrap_content"
             android:id="@+id/player_spinner"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            />
 
     <TextView
             android:layout_width="match_parent"
@@ -50,6 +51,33 @@
                 android:src="@android:drawable/ic_media_ff"
                 android:layout_gravity="center"
                 android:layout_weight="0.5"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="200dip"
+            android:layout_height="70dip"
+            android:id="@+id/volume_layout"
+            android:layout_gravity="center">
+
+        <ImageView
+                android:layout_width="50dip"
+                android:layout_height="50dip"
+                android:layout_marginRight="10dip"
+                android:id="@+id/imageView"
+                android:layout_weight="1"
+                android:layout_gravity="left|center_vertical"
+                android:src="@drawable/volume"/>
+
+
+        <SeekBar
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/volume_seek"
+                android:layout_weight="1"
+                android:max="100"
+                android:layout_gravity="center"/>
 
     </LinearLayout>
 

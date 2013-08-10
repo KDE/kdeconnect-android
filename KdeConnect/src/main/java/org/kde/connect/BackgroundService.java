@@ -1,8 +1,10 @@
 package org.kde.connect;
 
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Binder;
 import android.os.Build;
@@ -141,7 +143,7 @@ public class BackgroundService extends Service {
 
     private BaseLinkProvider.ConnectionReceiver deviceListener = new BaseLinkProvider.ConnectionReceiver() {
         @Override
-        public void onConnectionAccepted(NetworkPackage identityPackage, BaseComputerLink link) {
+        public void onConnectionReceived(NetworkPackage identityPackage, BaseComputerLink link) {
             Log.i("BackgroundService", "Connection accepted!");
 
             String deviceId = identityPackage.getString("deviceId");
@@ -225,6 +227,11 @@ public class BackgroundService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        // Register screen on listener
+        IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
+        registerReceiver(new ServiceLauncher(), filter);
+
 
         Log.i("BackgroundService","Service not started yet, initializing...");
 

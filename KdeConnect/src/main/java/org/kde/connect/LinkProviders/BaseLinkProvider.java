@@ -12,7 +12,7 @@ public abstract class BaseLinkProvider {
     private ArrayList<ConnectionReceiver> connectionReceivers = new ArrayList<ConnectionReceiver>();
 
     public interface ConnectionReceiver {
-        public void onConnectionAccepted(NetworkPackage identityPackage, BaseComputerLink link);
+        public void onConnectionReceived(NetworkPackage identityPackage, BaseComputerLink link);
         public void onConnectionLost(BaseComputerLink link);
     }
 
@@ -28,7 +28,7 @@ public abstract class BaseLinkProvider {
     protected void connectionAccepted(NetworkPackage identityPackage, BaseComputerLink link) {
         Log.e("LinkProvider", "connectionAccepted");
         for(ConnectionReceiver cr : connectionReceivers) {
-            cr.onConnectionAccepted(identityPackage,link);
+            cr.onConnectionReceived(identityPackage, link);
         }
     }
     protected void connectionLost(BaseComputerLink link) {

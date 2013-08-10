@@ -93,7 +93,7 @@ public class MainActivity extends Activity {
 
                 service.addConnectionListener(new BaseLinkProvider.ConnectionReceiver() {
                     @Override
-                    public void onConnectionAccepted(NetworkPackage identityPackage, BaseComputerLink link) {
+                    public void onConnectionReceived(NetworkPackage identityPackage, BaseComputerLink link) {
                         runOnUiThread(updateComputerList);
                     }
 

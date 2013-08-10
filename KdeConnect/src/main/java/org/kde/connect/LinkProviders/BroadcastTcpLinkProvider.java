@@ -46,6 +46,7 @@ public class BroadcastTcpLinkProvider extends BaseLinkProvider {
             if (brokenLink != null) {
                 connectionLost(brokenLink);
                 String deviceId = brokenLink.getDeviceId();
+                connectionLost(brokenLink);
                 visibleComputers.remove(deviceId);
             }
 
@@ -56,7 +57,7 @@ public class BroadcastTcpLinkProvider extends BaseLinkProvider {
             super.messageReceived(session, message);
 
             String address = ((InetSocketAddress) session.getRemoteAddress()).toString();
-            Log.e("BroadcastTcpLinkProvider","Incoming package, address: "+address);
+            //Log.e("BroadcastTcpLinkProvider","Incoming package, address: "+address);
 
             String theMessage = (String) message;
             NetworkPackage np = NetworkPackage.unserialize(theMessage);

@@ -13,6 +13,7 @@ import org.kde.connect.PackageInterfaces.SmsNotificationPackageInterface;
 
 public class ServiceLauncher extends BroadcastReceiver
 {
+
     public void onReceive(Context context, Intent intent)
     {
 
@@ -44,6 +45,13 @@ public class ServiceLauncher extends BroadcastReceiver
                 || action.equals(ConnectivityManager.CONNECTIVITY_ACTION)
                 ) {
             Log.e("KdeConnect", "Connection state changed, trying to connect");
+            BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
+                @Override
+                public void onServiceStart(BackgroundService service) {
+                    service.onNetworkChange();
+                }
+            });
+        } else if (action.equals(Intent.ACTION_SCREEN_ON)) {
             BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
                 @Override
                 public void onServiceStart(BackgroundService service) {
