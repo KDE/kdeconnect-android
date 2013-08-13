@@ -34,11 +34,12 @@ public class BatteryMonitorPackageInterface extends BasePackageInterface {
             }
 
             //Only notify if change is meaningful enough
-            if (lastPackage == null || (
+            if (lastPackage == null
+                || (
                     isCharging != lastPackage.getBoolean("isCharging")
-                            || currentCharge != lastPackage.getInt("currentCharge")
-            )
-                    ) {
+                    || currentCharge != lastPackage.getInt("currentCharge")
+                )
+            ) {
                 NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_BATTERY);
                 np.set("isCharging", isCharging);
                 np.set("currentCharge", currentCharge);
@@ -63,8 +64,15 @@ public class BatteryMonitorPackageInterface extends BasePackageInterface {
 
     @Override
     public boolean onPackageReceived(Device d, NetworkPackage np) {
-        //Do nothing
-        return false;
+        if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_BATTERY)) return false;
+
+        if (np.getBoolean("request")) {
+            if (lastPackage != null) {
+                sendPackage(lastPackage);
+            }
+        }
+
+        return true;
     }
 
     @Override
