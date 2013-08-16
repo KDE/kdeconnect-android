@@ -1,6 +1,10 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+            android:id="@+id/menu_load"
+            android:icon="@drawable/navigation_refresh"
+            android:orderInCategory="200"
+            android:showAsAction="always"
+            android:title="Reconnect"/>
+
 </menu>

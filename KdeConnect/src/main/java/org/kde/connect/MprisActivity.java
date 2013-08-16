@@ -13,7 +13,7 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.kde.connect.PackageInterfaces.MprisControlPackageInterface;
+import org.kde.connect.Plugins.MprisPlugin;
 import org.kde.kdeconnect.R;
 
 import java.util.ArrayList;
@@ -25,12 +25,20 @@ public class MprisActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mpris_control);
 
+        final String deviceId = getIntent().getStringExtra("deviceId");
+
+
         BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
 
-                final MprisControlPackageInterface mpris = (MprisControlPackageInterface) service.getPackageInterface(MprisControlPackageInterface.class);
-                if (mpris == null) return;
+                Device device = service.getDevice(deviceId);
+                final MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
+                if (mpris == null) {
+                    Log.e("MprisActivity","device has no mpris plugin!");
+                    //TODO: Show error
+                    return;
+                }
 
                 mpris.setPlayerStatusUpdatedHandler(new Handler() {
                     @Override
@@ -70,7 +78,7 @@ public class MprisActivity extends Activity {
                             @Override
                             public void run() {
                                 Spinner spinner = (Spinner) findViewById(R.id.player_spinner);
-                                String prevPlayer = (String)spinner.getSelectedItem();
+                                //String prevPlayer = (String)spinner.getSelectedItem();
                                 spinner.setAdapter(adapter);
 
                                 spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -112,7 +120,8 @@ public class MprisActivity extends Activity {
                 BackgroundService.RunCommand(MprisActivity.this, new BackgroundService.InstanceCallback() {
                     @Override
                     public void onServiceStart(BackgroundService service) {
-                        MprisControlPackageInterface mpris = (MprisControlPackageInterface)service.getPackageInterface(MprisControlPackageInterface.class);
+                        Device device = service.getDevice(deviceId);
+                        MprisPlugin mpris = (MprisPlugin)device.getPlugin("plugin_mpris");
                         if (mpris == null) return;
                         mpris.sendAction("PlayPause");
                     }
@@ -126,7 +135,8 @@ public class MprisActivity extends Activity {
                 BackgroundService.RunCommand(MprisActivity.this, new BackgroundService.InstanceCallback() {
                     @Override
                     public void onServiceStart(BackgroundService service) {
-                        MprisControlPackageInterface mpris = (MprisControlPackageInterface)service.getPackageInterface(MprisControlPackageInterface.class);
+                        Device device = service.getDevice(deviceId);
+                        MprisPlugin mpris = (MprisPlugin)device.getPlugin("plugin_mpris");
                         if (mpris == null) return;
                         mpris.sendAction("Previous");
                     }
@@ -140,7 +150,8 @@ public class MprisActivity extends Activity {
                 BackgroundService.RunCommand(MprisActivity.this, new BackgroundService.InstanceCallback() {
                     @Override
                     public void onServiceStart(BackgroundService service) {
-                        MprisControlPackageInterface mpris = (MprisControlPackageInterface)service.getPackageInterface(MprisControlPackageInterface.class);
+                        Device device = service.getDevice(deviceId);
+                        MprisPlugin mpris = (MprisPlugin)device.getPlugin("plugin_mpris");
                         if (mpris == null) return;
                         mpris.sendAction("Next");
                     }
@@ -160,7 +171,8 @@ public class MprisActivity extends Activity {
                 BackgroundService.RunCommand(MprisActivity.this, new BackgroundService.InstanceCallback() {
                     @Override
                     public void onServiceStart(BackgroundService service) {
-                        MprisControlPackageInterface mpris = (MprisControlPackageInterface) service.getPackageInterface(MprisControlPackageInterface.class);
+                        Device device = service.getDevice(deviceId);
+                        MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
                         if (mpris == null) return;
                         mpris.setVolume(seekBar.getProgress());
                     }

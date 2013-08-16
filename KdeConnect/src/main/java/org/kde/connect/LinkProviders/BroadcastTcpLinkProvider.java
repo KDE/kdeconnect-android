@@ -46,8 +46,9 @@ public class BroadcastTcpLinkProvider extends BaseLinkProvider {
             if (brokenLink != null) {
                 connectionLost(brokenLink);
                 String deviceId = brokenLink.getDeviceId();
-                connectionLost(brokenLink);
-                visibleComputers.remove(deviceId);
+                if (visibleComputers.get(deviceId) == brokenLink) {
+                    visibleComputers.remove(deviceId);
+                }
             }
 
         }
@@ -56,8 +57,7 @@ public class BroadcastTcpLinkProvider extends BaseLinkProvider {
         public void messageReceived(IoSession session, Object message) throws Exception {
             super.messageReceived(session, message);
 
-            String address = ((InetSocketAddress) session.getRemoteAddress()).toString();
-            //Log.e("BroadcastTcpLinkProvider","Incoming package, address: "+address);
+            //Log.e("BroadcastTcpLinkProvider","Incoming package, address: "+session.getRemoteAddress()).toString());
 
             String theMessage = (String) message;
             NetworkPackage np = NetworkPackage.unserialize(theMessage);
@@ -157,7 +157,7 @@ public class BroadcastTcpLinkProvider extends BaseLinkProvider {
         }
     };
 
-        private void addLink(NetworkPackage identityPackage, NioSessionComputerLink link) {
+    private void addLink(NetworkPackage identityPackage, NioSessionComputerLink link) {
         Log.e("BroadcastTcpLinkProvider","addLink to "+identityPackage.getString("deviceName"));
         String deviceId = identityPackage.getString("deviceId");
         BaseComputerLink oldLink = visibleComputers.get(deviceId);

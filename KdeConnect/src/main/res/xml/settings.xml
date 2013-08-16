@@ -4,39 +4,33 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
 
     <CheckBoxPreference
-            android:key="call_interface"
-            android:title="@string/pref_enable_call_interface"
-            android:summary="@string/pref_enable_call_interface_desc"
+            android:key="plugin_telephony"
+            android:title="@string/pref_plugin_telephony"
+            android:summary="@string/pref_plugin_telephony_desc"
             android:defaultValue="true" />
 
     <CheckBoxPreference
-            android:key="sms_interface"
-            android:title="@string/pref_enable_sms_interface"
-            android:summary="@string/pref_enable_sms_interface_desc"
+            android:key="plugin_battery"
+            android:title="@string/pref_plugin_battery"
+            android:summary="@string/pref_plugin_battery_desc"
             android:defaultValue="true" />
 
     <CheckBoxPreference
-            android:key="battery_interface"
-            android:title="@string/pref_enable_battery_interface"
-            android:summary="@string/pref_enable_battery_interface_desc"
+            android:key="plugin_clipboard"
+            android:title="@string/pref_plugin_clipboard"
+            android:summary="@string/pref_plugin_clipboard_desc"
             android:defaultValue="true" />
 
     <CheckBoxPreference
-            android:key="clipboard_interface"
-            android:title="@string/pref_enable_clipboard_interface"
-            android:summary="@string/pref_enable_clipboard_interface_desc"
+            android:key="plugin_mpris"
+            android:title="@string/pref_plugin_mpris"
+            android:summary="@string/pref_plugin_mpris_desc"
             android:defaultValue="true" />
 
     <CheckBoxPreference
-            android:key="mpris_interface"
-            android:title="@string/pref_enable_mpris_interface"
-            android:summary="@string/pref_enable_mpris_interface_desc"
-            android:defaultValue="true" />
-
-    <CheckBoxPreference
-            android:key="ping_interface"
-            android:title="@string/pref_enable_ping_interface"
-            android:summary="@string/pref_enable_ping_interface_desc"
+            android:key="plugin_ping"
+            android:title="@string/pref_plugin_ping"
+            android:summary="@string/pref_plugin_ping_desc"
             android:defaultValue="true" />
 
 </PreferenceScreen>

@@ -1,17 +1,15 @@
-package org.kde.connect.PackageInterfaces;
+package org.kde.connect.Plugins;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 
-import org.kde.connect.Device;
 import org.kde.connect.NetworkPackage;
 
-public class ClipboardPackageInterface extends BasePackageInterface {
+public class ClipboardPlugin extends Plugin {
 
     private boolean ignore_next_clipboard_change = false;
 
-    private Context context;
     private ClipboardManager cm;
     private ClipboardManager.OnPrimaryClipChangedListener listener = new ClipboardManager.OnPrimaryClipChangedListener() {
         @Override
@@ -24,7 +22,7 @@ public class ClipboardPackageInterface extends BasePackageInterface {
                 NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_CLIPBOARD);
                 ClipData.Item item = cm.getPrimaryClip().getItemAt(0);
                 np.set("content",item.coerceToText(context).toString());
-                sendPackage(np);
+                device.sendPackage(np);
             } catch(Exception e) {
                 //Probably clipboard was not text
             }
@@ -32,34 +30,31 @@ public class ClipboardPackageInterface extends BasePackageInterface {
     };
 
     @Override
-    public boolean onCreate(Context context) {
-
-        this.context = context;
+    public boolean onCreate() {
 
         cm = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
         cm.addPrimaryClipChangedListener(listener);
 
-        return false;
+        return true;
 
     }
 
     @Override
     public void onDestroy() {
+
         cm.removePrimaryClipChangedListener(listener);
     }
 
     @Override
-    public boolean onPackageReceived(Device d, NetworkPackage np) {
-        if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_CLIPBOARD)) {
-            ignore_next_clipboard_change = true;
-            cm.setText(np.getString("content"));
-            return true;
+    public boolean onPackageReceived(NetworkPackage np) {
+        if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_CLIPBOARD)) {
+            return false;
         }
-        return false;
-    }
 
-    public boolean onDeviceConnected(Device d) {
-        return false;
+        ignore_next_clipboard_change = true;
+        cm.setText(np.getString("content"));
+        return true;
+
     }
 
 }

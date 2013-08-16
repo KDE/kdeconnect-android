@@ -1,9 +1,7 @@
 package org.kde.connect;
 
 import android.content.Context;
-import android.os.Build;
 import android.provider.Settings;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -18,14 +16,10 @@ public class NetworkPackage {
 
     public final static String PACKAGE_TYPE_IDENTITY = "kdeconnect.identity";
     public final static String PACKAGE_TYPE_PING = "kdeconnect.ping";
-
-    public final static String PACKAGE_TYPE_CALL = "kdeconnect.call";
-    //public final static String PACKAGE_TYPE_SMS = "kdeconnect.sms";
+    public final static String PACKAGE_TYPE_TELEPHONY = "kdeconnect.telephony";
     public final static String PACKAGE_TYPE_BATTERY = "kdeconnect.battery";
     public final static String PACKAGE_TYPE_NOTIFICATION = "kdeconnect.notification";
-
     public final static String PACKAGE_TYPE_CLIPBOARD = "kdeconnect.clipboard";
-
     public final static String PACKAGE_TYPE_MPRIS = "kdeconnect.mpris";
 
     private long mId;
@@ -54,7 +48,7 @@ public class NetworkPackage {
     //Most commons getters and setters defined for convenience
     public String getString(String key) { return mBody.optString(key,""); }
     public String getString(String key, String defaultValue) { return mBody.optString(key,defaultValue); }
-    public void set(String key, String value) { try { mBody.put(key,value); } catch(Exception e) { } }
+    public void set(String key, String value) { if (value == null) return; try { mBody.put(key,value); } catch(Exception e) { } }
     public int getInt(String key) { return mBody.optInt(key,-1); }
     public int getInt(String key, int defaultValue) { return mBody.optInt(key,defaultValue); }
     public void set(String key, int value) { try { mBody.put(key,value); } catch(Exception e) { } }
@@ -135,7 +129,7 @@ public class NetworkPackage {
         String deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
         try {
             np.mBody.put("deviceId", deviceId);
-            np.mBody.put("deviceName", Build.BRAND + " " + Build.MODEL);
+            np.mBody.put("deviceName", HumanDeviceNames.getDeviceName());
         } catch (JSONException e) {
         }
 

@@ -4,8 +4,8 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-sdk android:minSdkVersion="16"
-              android:targetSdkVersion="16" />
+    <uses-sdk android:minSdkVersion="9"
+              android:targetSdkVersion="18" />
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -20,11 +20,13 @@
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="KDE Connect"
-        android:theme="@style/AppTheme" >
+        >
 
         <activity
+            android:theme="@style/Theme.AppCompat"
             android:name="org.kde.connect.MainActivity"
             android:label="KDE Connect" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,26 +35,40 @@
         </activity>
 
         <activity
-            android:name="org.kde.connect.MprisActivity"
-            android:label="MPRIS controls"
-        />
+                android:theme="@style/Theme.AppCompat"
+                android:name="org.kde.connect.DeviceActivity"
+                android:label="Device"
+                android:parentActivityName=".MainActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value=".MainActivity" />
+
+                </activity>
+
+
 
         <activity
-                android:name="org.kde.connect.CompatSettingsActivity"
-                android:label="KDE Connect Settings"
-                />
+            android:theme="@style/Theme.AppCompat"
+            android:name="org.kde.connect.MprisActivity"
+            android:label="MPRIS controls"
+            android:parentActivityName=".DeviceActivity">
+        <meta-data android:name="android.support.PARENT_ACTIVITY"
+                   android:value=".DeviceActivity" />
+        </activity>
 
         <activity
                 android:name="org.kde.connect.SettingsActivity"
                 android:label="KDE Connect Settings"
-                />
+                android:parentActivityName=".DeviceActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value=".DeviceActivity" />
+        </activity>
 
         <service
             android:enabled="true"
             android:name="org.kde.connect.BackgroundService">
         </service>
 
-        <receiver android:name="org.kde.connect.ServiceLauncher">
+        <receiver android:name="org.kde.connect.KdeConnectBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REPLACED"></action>
                 <data android:scheme="package" android:path="org.kde.kdeconnect" />
@@ -66,9 +82,15 @@
             <intent-filter>
                 <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
             </intent-filter>
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
+            </intent-filter>-->
         </receiver>
 
     </application>

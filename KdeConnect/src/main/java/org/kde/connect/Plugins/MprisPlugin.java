@@ -1,19 +1,15 @@
-package org.kde.connect.PackageInterfaces;
+package org.kde.connect.Plugins;
 
-import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import org.kde.connect.Device;
 import org.kde.connect.NetworkPackage;
 
 import java.util.ArrayList;
 
 
-public class MprisControlPackageInterface extends BasePackageInterface {
-
-    private Context context;
+public class MprisPlugin extends Plugin {
 
     private String currentSong = "";
     int volume = 50;
@@ -27,8 +23,8 @@ public class MprisControlPackageInterface extends BasePackageInterface {
 
 
     @Override
-    public boolean onCreate(Context ctx) {
-        context = ctx;
+    public boolean onCreate() {
+        requestPlayerList();
         return true;
     }
 
@@ -41,24 +37,18 @@ public class MprisControlPackageInterface extends BasePackageInterface {
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
         np.set("player",player);
         np.set("action",s);
-        sendPackage(np);
+        device.sendPackage(np);
     }
 
     public void setVolume(int volume) {
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
         np.set("player",player);
         np.set("setVolume",volume);
-        sendPackage(np);
+        device.sendPackage(np);
     }
 
     @Override
-    public boolean onDeviceConnected(Device d) {
-        requestPlayerList();
-        return true;
-    }
-
-    @Override
-    public boolean onPackageReceived(Device d, NetworkPackage np) {
+    public boolean onPackageReceived(NetworkPackage np) {
         if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_MPRIS)) return false;
 
         if (np.has("nowPlaying") || np.has("volume") || np.has("isPlaying")) {
@@ -156,7 +146,7 @@ public class MprisControlPackageInterface extends BasePackageInterface {
     private void requestPlayerList() {
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
         np.set("requestPlayerList",true);
-        sendPackage(np);
+        device.sendPackage(np);
     }
 
 
@@ -165,7 +155,7 @@ public class MprisControlPackageInterface extends BasePackageInterface {
         np.set("player",player);
         np.set("requestNowPlaying",true);
         np.set("requestVolume",true);
-        sendPackage(np);
+        device.sendPackage(np);
     }
 
 

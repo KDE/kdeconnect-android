@@ -1,4 +1,4 @@
-package org.kde.connect.PackageInterfaces;
+package org.kde.connect.Plugins;
 
 import android.R;
 import android.app.Notification;
@@ -6,17 +6,13 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.util.Log;
 
-import org.kde.connect.Device;
 import org.kde.connect.NetworkPackage;
 
 
-public class PingPackageInterface extends BasePackageInterface {
-
-    private Context context;
+public class PingPlugin extends Plugin {
 
     @Override
-    public boolean onCreate(Context ctx) {
-        context = ctx;
+    public boolean onCreate() {
         return true;
     }
 
@@ -25,21 +21,15 @@ public class PingPackageInterface extends BasePackageInterface {
 
     }
 
-    public void sendPing() {
-        Log.e("PingPackageInterface", "sendPing to "+countLinkedDevices());
-
-        NetworkPackage lastPackage = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PING);
-        sendPackage(lastPackage);
-    }
-
     @Override
-    public boolean onPackageReceived(Device d, NetworkPackage np) {
+    public boolean onPackageReceived(NetworkPackage np) {
+
         //Log.e("PingPackageReceiver", "onPackageReceived");
         if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_PING)) {
             //Log.e("PingPackageReceiver", "was a ping!");
 
             Notification noti = new Notification.Builder(context)
-                    .setContentTitle(d.getName())
+                    .setContentTitle(device.getName())
                     .setContentText("Ping!")
                     .setTicker("Ping!")
                     .setSmallIcon(R.drawable.ic_dialog_alert)
@@ -50,12 +40,15 @@ public class PingPackageInterface extends BasePackageInterface {
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             notificationManager.notify(0, noti);
             return true;
+
         }
         return false;
     }
 
-    public boolean onDeviceConnected(Device d) {
-        return false;
+    public void sendPing() {
+        Log.e("PingPlugin", "sendPing");
+        NetworkPackage lastPackage = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PING);
+        device.sendPackage(lastPackage);
     }
 
 }

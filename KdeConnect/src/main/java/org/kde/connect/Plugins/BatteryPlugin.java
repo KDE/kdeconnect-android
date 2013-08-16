@@ -1,4 +1,4 @@
-package org.kde.connect.PackageInterfaces;
+package org.kde.connect.Plugins;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -7,20 +7,19 @@ import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.util.Log;
 
-import org.kde.connect.Device;
 import org.kde.connect.NetworkPackage;
 
-public class BatteryMonitorPackageInterface extends BasePackageInterface {
+public class BatteryPlugin extends Plugin {
 
     private NetworkPackage lastPackage = null;
 
-    private Context context;
     private IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+
     private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
 
-            Log.e("BatteryMonitorPackageInterface", "Battery event");
+            Log.e("BatteryPlugin", "Battery event");
 
             boolean isCharging = (0 != intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0));
 
@@ -43,7 +42,7 @@ public class BatteryMonitorPackageInterface extends BasePackageInterface {
                 NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_BATTERY);
                 np.set("isCharging", isCharging);
                 np.set("currentCharge", currentCharge);
-                sendPackage(np);
+                device.sendPackage(np);
                 lastPackage = np;
             }
 
@@ -51,8 +50,7 @@ public class BatteryMonitorPackageInterface extends BasePackageInterface {
     };
 
     @Override
-    public boolean onCreate(final Context context) {
-        this.context = context;
+    public boolean onCreate() {
         context.registerReceiver(receiver, filter);
         return true;
     }
@@ -63,21 +61,16 @@ public class BatteryMonitorPackageInterface extends BasePackageInterface {
     }
 
     @Override
-    public boolean onPackageReceived(Device d, NetworkPackage np) {
+    public boolean onPackageReceived(NetworkPackage np) {
         if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_BATTERY)) return false;
 
         if (np.getBoolean("request")) {
             if (lastPackage != null) {
-                sendPackage(lastPackage);
+                device.sendPackage(lastPackage);
             }
         }
 
         return true;
     }
 
-    @Override
-    public boolean onDeviceConnected(Device d) {
-        if (lastPackage != null) sendPackage(lastPackage);
-        return true;
-    }
 }

@@ -1,8 +1,6 @@
 package org.kde.connect.ComputerLinks;
 
-import org.kde.connect.Device;
 import org.kde.connect.LinkProviders.BaseLinkProvider;
-import org.kde.connect.PackageInterfaces.BasePackageInterface;
 import org.kde.connect.NetworkPackage;
 
 import java.util.ArrayList;
