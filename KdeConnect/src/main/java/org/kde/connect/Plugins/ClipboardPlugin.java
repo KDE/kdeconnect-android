@@ -1,28 +1,67 @@
 package org.kde.connect.Plugins;
 
+import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.util.Log;
 
 import org.kde.connect.NetworkPackage;
+import org.kde.connect.PluginFactory;
+import org.kde.kdeconnect.R;
 
 public class ClipboardPlugin extends Plugin {
 
-    private boolean ignore_next_clipboard_change = false;
+    private String currentContent;
+
+    /*static {
+        PluginFactory.registerPlugin(ClipboardPlugin.class);
+    }*/
+
+    @Override
+    public String getPluginName() {
+        return "plugin_clipboard";
+    }
+    @Override
+    public String getDisplayName() {
+        return context.getResources().getString(R.string.pref_plugin_clipboard);
+    }
+
+    @Override
+    public String getDescription() {
+        return context.getResources().getString(R.string.pref_plugin_clipboard_desc);
+    }
+
+    @Override
+    public Drawable getIcon() {
+        return context.getResources().getDrawable(R.drawable.icon);
+    }
+
+    @Override
+    public boolean isEnabledByDefault() {
+        return true;
+    }
 
     private ClipboardManager cm;
     private ClipboardManager.OnPrimaryClipChangedListener listener = new ClipboardManager.OnPrimaryClipChangedListener() {
         @Override
         public void onPrimaryClipChanged() {
             try {
-                if (ignore_next_clipboard_change) {
-                    ignore_next_clipboard_change = false;
-                    return;
-                }
-                NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_CLIPBOARD);
+
                 ClipData.Item item = cm.getPrimaryClip().getItemAt(0);
-                np.set("content",item.coerceToText(context).toString());
-                device.sendPackage(np);
+                String content = item.coerceToText(context).toString();
+
+                if (!content.equals(currentContent)) {
+                    NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_CLIPBOARD);
+                    np.set("content", content);
+                    device.sendPackage(np);
+                    currentContent = content;
+                }
+
             } catch(Exception e) {
                 //Probably clipboard was not text
             }
@@ -33,6 +72,11 @@ public class ClipboardPlugin extends Plugin {
     public boolean onCreate() {
 
         cm = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
+
+        if (Build.VERSION.SDK_INT == 18) {
+            return false;
+        }
+
         cm.addPrimaryClipChangedListener(listener);
 
         return true;
@@ -43,6 +87,7 @@ public class ClipboardPlugin extends Plugin {
     public void onDestroy() {
 
         cm.removePrimaryClipChangedListener(listener);
+
     }
 
     @Override
@@ -51,10 +96,24 @@ public class ClipboardPlugin extends Plugin {
             return false;
         }
 
-        ignore_next_clipboard_change = true;
-        cm.setText(np.getString("content"));
+        currentContent = np.getString("content");
+        cm.setText(currentContent);
         return true;
 
+    }
+
+    @Override
+    public AlertDialog getErrorDialog(Context baseContext) {
+        return new AlertDialog.Builder(baseContext)
+                .setTitle("ClipBoard Plugin")
+                .setMessage("This plugin is not compatible with Android 4.3")
+                .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+                .create();
     }
 
 }

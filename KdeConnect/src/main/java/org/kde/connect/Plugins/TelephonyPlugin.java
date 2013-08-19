@@ -1,19 +1,51 @@
 package org.kde.connect.Plugins;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import org.kde.connect.ContactsHelper;
+import org.kde.connect.Helpers.ContactsHelper;
 import org.kde.connect.NetworkPackage;
+import org.kde.connect.PluginFactory;
+import org.kde.kdeconnect.R;
 
 public class TelephonyPlugin extends Plugin {
 
+    /*static {
+        PluginFactory.registerPlugin(TelephonyPlugin.class);
+    }*/
+
+    @Override
+    public String getPluginName() {
+        return "plugin_telephony";
+    }
+
+    @Override
+    public String getDisplayName() {
+        return context.getResources().getString(R.string.pref_plugin_telephony);
+    }
+
+    @Override
+    public String getDescription() {
+        return context.getResources().getString(R.string.pref_plugin_telephony_desc);
+    }
+
+    @Override
+    public Drawable getIcon() {
+        return context.getResources().getDrawable(R.drawable.icon);
+    }
+
+    @Override
+    public boolean isEnabledByDefault() {
+        return true;
+    }
 
     private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
@@ -145,5 +177,9 @@ public class TelephonyPlugin extends Plugin {
         return false;
     }
 
+    @Override
+    public AlertDialog getErrorDialog(Context baseContext) {
+        return null;
+    }
 
 }

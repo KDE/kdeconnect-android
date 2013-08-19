@@ -2,21 +2,71 @@ package org.kde.connect;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
+import android.widget.ListView;
 import android.widget.Switch;
 
 import org.kde.connect.Plugins.PingPlugin;
+import org.kde.connect.Plugins.Plugin;
 import org.kde.kdeconnect.R;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class DeviceActivity extends Activity {
 
     private String deviceId;
+    private Device.PluginsChangedListener pluginsChangedListener = new Device.PluginsChangedListener() {
+        @Override
+        public void onPluginsChanged(final Device device) {
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.e("MainActivity", "updateComputerList");
+
+                    final HashMap<String, Plugin> plugins = device.getFailedPlugins();
+                    final String[] ids = plugins.keySet().toArray(new String[plugins.size()]);
+                    String[] names = new String[plugins.size()];
+                    for(int i = 0; i < ids.length; i++) {
+                        Plugin p = plugins.get(ids[i]);
+                        names[i] = p.getDisplayName();
+                    }
+
+                    ListView list = (ListView)findViewById(R.id.listView1);
+
+                    list.setAdapter(new ArrayAdapter<String>(DeviceActivity.this, android.R.layout.simple_list_item_1, names));
+
+                    list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                            Plugin p = plugins.get(ids[position]);
+                            p.getErrorDialog(DeviceActivity.this).show();
+                        }
+                    });
+
+                   findViewById(R.id.textView).setVisibility(plugins.size() > 0? View.VISIBLE : View.GONE);
+
+                }
+            });
+
+
+
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -63,6 +113,8 @@ public class DeviceActivity extends Activity {
             public void onServiceStart(BackgroundService service) {
                 Device device = service.getDevice(deviceId);
                 setTitle(device.getName());
+                device.addPluginsChangedListener(pluginsChangedListener);
+                pluginsChangedListener.onPluginsChanged(device);
             }
         });
 
@@ -83,8 +135,7 @@ public class DeviceActivity extends Activity {
                     @Override
                     public void onServiceStart(BackgroundService service) {
                         Device device = service.getDevice(deviceId);
-                        PingPlugin pi = (PingPlugin) device.getPlugin("plugin_ping");
-                        if (pi != null) pi.sendPing();
+                        device.sendPackage(new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PING));
                     }
                 });
 
@@ -105,6 +156,19 @@ public class DeviceActivity extends Activity {
             }
         });
 
+
+
     }
 
+    @Override
+    protected void onDestroy() {
+        BackgroundService.RunCommand(DeviceActivity.this, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                Device device = service.getDevice(deviceId);
+                device.removePluginsChangedListener(pluginsChangedListener);
+            }
+        });
+        super.onDestroy();
+    }
 }

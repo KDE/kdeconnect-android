@@ -20,6 +20,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
 
     private ArrayList<BaseComputerLink> links = new ArrayList<BaseComputerLink>();
     private HashMap<String, Plugin> plugins = new HashMap<String, Plugin>();
+    private HashMap<String, Plugin> failedPlugins = new HashMap<String, Plugin>();
 
     private Context context;
     private String deviceId;
@@ -184,7 +185,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
         return plugins.get(name);
     }
 
-    public Plugin addPlugin(String name) {
+    private Plugin addPlugin(String name) {
         Plugin existing = plugins.get(name);
         if (existing != null) {
             Log.e("addPlugin","plugin already present:" + name);
@@ -194,12 +195,18 @@ public class Device implements BaseComputerLink.PackageReceiver {
         Plugin plugin = PluginFactory.instantiatePluginForDevice(context, name, this);
         if (plugin == null) {
             Log.e("addPlugin","could not create plugin: "+name);
+            failedPlugins.put(name, plugin);
             return null;
         }
 
         try {
-            plugin.onCreate();
+            boolean success = plugin.onCreate();
+            if (!success) {
+                failedPlugins.put(name, plugin);
+                return null;
+            }
         } catch (Exception e) {
+            failedPlugins.put(name, plugin);
             Log.e("addPlugin","Exception calling onCreate for "+name);
             e.printStackTrace();
             return null;
@@ -207,14 +214,22 @@ public class Device implements BaseComputerLink.PackageReceiver {
 
         Log.e("addPlugin",name);
 
+        failedPlugins.remove(name);
         plugins.put(name, plugin);
+
         return plugin;
     }
 
-    public boolean removePlugin(String name) {
+    private boolean removePlugin(String name) {
+
         Plugin plugin = plugins.remove(name);
+        Plugin failedPlugin = failedPlugins.remove(name);
+
         if (plugin == null) {
-            return false;
+            if (failedPlugin == null) {
+                return false;
+            }
+            plugin = failedPlugin;
         }
 
         try {
@@ -230,21 +245,32 @@ public class Device implements BaseComputerLink.PackageReceiver {
         return true;
     }
 
-    public void setPluginEnabled(String key, boolean value) {
-        settings.edit().putBoolean(key,value).commit();
-        if (value) addPlugin(key);
-        else removePlugin(key);
+    public void setPluginEnabled(String pluginName, boolean value) {
+        settings.edit().putBoolean(pluginName,value).commit();
+        if (value) addPlugin(pluginName);
+        else removePlugin(pluginName);
+        for (PluginsChangedListener listener : pluginsChangedListeners) {
+            listener.onPluginsChanged(this);
+        }
     }
 
+    public boolean isPluginEnabled(String pluginName) {
+        boolean enabledByDefault = PluginFactory.getPluginInfo(context, pluginName).isEnabledByDefault();
+        boolean enabled = settings.getBoolean(pluginName, enabledByDefault);
+        return enabled;
+    }
+
+
     public void reloadPluginsFromSettings() {
+
+        failedPlugins.clear();
 
         Set<String> availablePlugins = PluginFactory.getAvailablePlugins();
 
         for(String pluginName : availablePlugins) {
             boolean enabled = false;
             if (isTrusted() && isReachable()) {
-                boolean enabledByDefault = PluginFactory.isPluginEnabledByDefault(pluginName);
-                enabled = settings.getBoolean(pluginName, enabledByDefault);
+                enabled = isPluginEnabled(pluginName);
             }
             //Log.e("reloadPluginsFromSettings",pluginName+"->"+enabled);
             if (enabled) {
@@ -254,20 +280,27 @@ public class Device implements BaseComputerLink.PackageReceiver {
             }
         }
 
+        for (PluginsChangedListener listener : pluginsChangedListeners) {
+            listener.onPluginsChanged(this);
+        }
     }
 
-    public void readPluginPreferences(SharedPreferences outSettings) {
-        SharedPreferences.Editor editor = outSettings.edit();
+    public HashMap<String,Plugin> getFailedPlugins() {
+        return failedPlugins;
+    }
 
-        Set<String> availablePlugins = PluginFactory.getAvailablePlugins();
-        for(String pluginName : availablePlugins) {
-            boolean enabledByDefault = PluginFactory.isPluginEnabledByDefault(pluginName);
-            boolean enabled = settings.getBoolean(pluginName, enabledByDefault);
-            editor.putBoolean(pluginName, enabled);
-            //Log.e("readPluginPreferences",pluginName+"->"+enabled);
-        }
+    interface PluginsChangedListener {
+        void onPluginsChanged(Device device);
+    }
 
-        editor.commit();
+    ArrayList<PluginsChangedListener> pluginsChangedListeners = new ArrayList<PluginsChangedListener>();
+
+    public void addPluginsChangedListener(PluginsChangedListener listener) {
+        pluginsChangedListeners.add(listener);
+    }
+
+    public void removePluginsChangedListener(PluginsChangedListener listener) {
+        pluginsChangedListeners.remove(listener);
     }
 
 }

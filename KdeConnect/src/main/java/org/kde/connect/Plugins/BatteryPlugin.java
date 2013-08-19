@@ -1,19 +1,53 @@
 package org.kde.connect.Plugins;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.drawable.Drawable;
 import android.os.BatteryManager;
 import android.util.Log;
 
 import org.kde.connect.NetworkPackage;
+import org.kde.connect.PluginFactory;
+import org.kde.kdeconnect.R;
 
 public class BatteryPlugin extends Plugin {
 
     private NetworkPackage lastPackage = null;
 
     private IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+
+    /*static {
+        PluginFactory.registerPlugin(BatteryPlugin.class);
+    }*/
+
+    @Override
+    public String getPluginName() {
+        return "plugin_battery";
+    }
+
+    @Override
+    public String getDisplayName() {
+        return context.getResources().getString(R.string.pref_plugin_battery);
+    }
+
+    @Override
+    public String getDescription() {
+        return context.getResources().getString(R.string.pref_plugin_battery_desc);
+    }
+
+    @Override
+    public Drawable getIcon() {
+        return context.getResources().getDrawable(R.drawable.icon);
+    }
+
+    @Override
+    public boolean isEnabledByDefault() {
+        return true;
+    }
+
 
     private BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
@@ -71,6 +105,11 @@ public class BatteryPlugin extends Plugin {
         }
 
         return true;
+    }
+
+    @Override
+    public AlertDialog getErrorDialog(Context baseContext) {
+        return null;
     }
 
 }

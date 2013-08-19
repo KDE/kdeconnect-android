@@ -12,7 +12,8 @@
     <string name="pref_plugin_mpris_desc">Control audio/video from your phone</string>
     <string name="pref_plugin_ping">Ping</string>
     <string name="pref_plugin_ping_desc">Send and receive pings</string>
-
+    <string name="pref_plugin_notifications">Notification sync</string>
+    <string name="pref_plugin_notifications_desc">Access your notifications from other devices</string>
     <string name="plugin_not_available">This feature is not available in your Android version</string>
 
 

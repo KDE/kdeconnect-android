@@ -1,10 +1,15 @@
 package org.kde.connect.Plugins;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
 import org.kde.connect.NetworkPackage;
+import org.kde.connect.PluginFactory;
+import org.kde.kdeconnect.R;
 
 import java.util.ArrayList;
 
@@ -21,6 +26,34 @@ public class MprisPlugin extends Plugin {
     private String player = "";
     private boolean playing = false;
 
+    /*static {
+        PluginFactory.registerPlugin(MprisPlugin.class);
+    }*/
+
+    @Override
+    public String getPluginName() {
+        return "plugin_mpris";
+    }
+
+    @Override
+    public String getDisplayName() {
+        return context.getResources().getString(R.string.pref_plugin_mpris);
+    }
+
+    @Override
+    public String getDescription() {
+        return context.getResources().getString(R.string.pref_plugin_mpris_desc);
+    }
+
+    @Override
+    public Drawable getIcon() {
+        return context.getResources().getDrawable(R.drawable.icon);
+    }
+
+    @Override
+    public boolean isEnabledByDefault() {
+        return true;
+    }
 
     @Override
     public boolean onCreate() {
@@ -158,5 +191,9 @@ public class MprisPlugin extends Plugin {
         device.sendPackage(np);
     }
 
+    @Override
+    public AlertDialog getErrorDialog(Context baseContext) {
+        return null;
+    }
 
 }

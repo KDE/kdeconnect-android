@@ -32,7 +32,7 @@ public class BackgroundService extends Service {
         Set<String> trustedDevices = preferences.getStringSet("trusted", new HashSet<String>());
         for(String deviceId : trustedDevices) {
             Log.e("loadRememberedDevicesFromSettings",deviceId);
-            devices.put(deviceId,new Device(getApplicationContext(), deviceId));
+            devices.put(deviceId,new Device(getBaseContext(), deviceId));
         }
     }
 
@@ -74,7 +74,7 @@ public class BackgroundService extends Service {
                         device.addLink(link);
                     } else {
                         Log.i("BackgroundService", "unknown device");
-                        Device device = new Device(getApplicationContext(), deviceId, name, link);
+                        Device device = new Device(getBaseContext(), deviceId, name, link);
                         devices.put(deviceId, device);
                     }
                 }

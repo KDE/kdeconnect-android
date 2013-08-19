@@ -1,4 +1,4 @@
-package org.kde.connect;
+package org.kde.connect.Helpers;
 
 import android.content.Context;
 import android.database.Cursor;

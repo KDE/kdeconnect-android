@@ -49,6 +49,6 @@ public abstract class BaseComputerLink {
     }
 
     //TO OVERRIDE
-    public abstract boolean sendPackage(NetworkPackage np);    //Should be async
+    public abstract boolean sendPackage(NetworkPackage np);
 
 }

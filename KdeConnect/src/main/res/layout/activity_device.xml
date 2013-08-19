@@ -13,4 +13,19 @@
     <Button android:id="@+id/button2" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Send Ping"/>
     <Button android:id="@+id/button3" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Mpris controls"/>
 
+
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Plugins failed to load (tap for more info):"
+            android:visibility="gone"
+            android:id="@+id/textView"/>
+
+    <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/listView1"
+            android:layout_weight="1"/>
+
 </LinearLayout>
