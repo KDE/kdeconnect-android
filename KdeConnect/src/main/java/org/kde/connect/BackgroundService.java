@@ -6,9 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Binder;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -17,8 +15,10 @@ import org.kde.connect.LinkProviders.BaseLinkProvider;
 import org.kde.connect.LinkProviders.BroadcastTcpLinkProvider;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class BackgroundService extends Service {
@@ -28,11 +28,12 @@ public class BackgroundService extends Service {
     private HashMap<String, Device> devices = new HashMap<String, Device>();
 
     private void loadRememberedDevicesFromSettings() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        Set<String> trustedDevices = preferences.getStringSet("trusted", new HashSet<String>());
+        SharedPreferences preferences = getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
+        Set<String> trustedDevices = preferences.getAll().keySet();
         for(String deviceId : trustedDevices) {
-            Log.e("loadRememberedDevicesFromSettings",deviceId);
-            devices.put(deviceId,new Device(getBaseContext(), deviceId));
+            if (preferences.getBoolean(deviceId, false)) {
+                devices.put(deviceId,new Device(getBaseContext(), deviceId));
+            }
         }
     }
 

@@ -31,13 +31,13 @@ public class Device implements BaseComputerLink.PackageReceiver {
 
     //Remembered trusted device, we need to wait for a incoming devicelink to communicate
     Device(Context context, String deviceId) {
-        settings = context.getSharedPreferences(deviceId,Context.MODE_PRIVATE);
+        settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
 
         //Log.e("Device","Constructor A");
 
         this.context = context;
         this.deviceId = deviceId;
-        this.name = settings.getString("deviceName",null);
+        this.name = settings.getString("deviceName", null);
         this.trusted = true;
 
         reloadPluginsFromSettings();
@@ -45,7 +45,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
 
     //Device known via an incoming connection sent to us via a devicelink, we know everything but we don't trust it yet
     Device(Context context, String deviceId, String name, BaseComputerLink dl) {
-        settings = context.getSharedPreferences(deviceId,Context.MODE_PRIVATE);
+        settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
 
         //Log.e("Device","Constructor B");
 
@@ -86,23 +86,14 @@ public class Device implements BaseComputerLink.PackageReceiver {
     public void setTrusted(boolean b) {
         trusted = b;
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        Set<String> trustedDevices = preferences.getStringSet("trusted", new HashSet<String>());
+        SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
 
-        boolean wasTrusted = trustedDevices.contains(deviceId);
+        boolean wasTrusted = preferences.getBoolean(deviceId, false);
 
-        if (trusted != wasTrusted) {
-            if (trusted) {
-                //Log.e("trust",deviceId);
-                trustedDevices.add(deviceId);
-            } else {
-                //Log.e("untrust",deviceId);
-                trustedDevices.remove(deviceId);
-            }
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putStringSet("trusted",trustedDevices);
-            editor.commit();
-
+        if (trusted && !wasTrusted) {
+            preferences.edit().putBoolean(deviceId, true).commit();
+        } else if(!trusted && wasTrusted) {
+            preferences.edit().remove(deviceId).commit();
         }
 
         reloadPluginsFromSettings();
@@ -121,7 +112,6 @@ public class Device implements BaseComputerLink.PackageReceiver {
         links.add(link);
 
         Log.e("Device","addLink "+link.getLinkProvider().getName()+" -> "+getName() + " active links: "+ links.size());
-
 
         Collections.sort(links, new Comparator<BaseComputerLink>() {
             @Override
