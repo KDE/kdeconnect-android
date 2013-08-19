@@ -58,38 +58,37 @@ public class BackgroundService extends Service {
         @Override
         public void onConnectionReceived(final NetworkPackage identityPackage, final BaseComputerLink link) {
 
-            Log.i("BackgroundService", "Connection accepted!");
+            Log.e("BackgroundService", "Connection accepted!");
 
-            runOnMainThread(new Runnable() { //Some plugins that create Handlers will crash if started from a different thread!
-                @Override
-                public void run() {
+            new Throwable().printStackTrace();
 
-                    String deviceId = identityPackage.getString("deviceId");
-                    String name = identityPackage.getString("deviceName");
+            String deviceId = identityPackage.getString("deviceId");
 
-                    if (devices.containsKey(deviceId)) {
-                        Log.i("BackgroundService", "known device");
-                        Device device = devices.get(deviceId);
-                        if (!device.hasName()) device.setName(identityPackage.getString("deviceName"));
-                        device.addLink(link);
-                    } else {
-                        Log.i("BackgroundService", "unknown device");
-                        Device device = new Device(getBaseContext(), deviceId, name, link);
-                        devices.put(deviceId, device);
-                    }
-                }
-            });
+            Device device = devices.get(deviceId);
 
+            if (device != null) {
+                Log.e("BackgroundService", "addLink, known device: "+deviceId);
+                if (!device.hasName()) device.setName(identityPackage.getString("deviceName"));
+                device.addLink(link);
+            } else {
+                Log.e("BackgroundService", "addLink,unknown device: "+deviceId);
+                String name = identityPackage.getString("deviceName");
+                device = new Device(getBaseContext(), deviceId, name, link);
+                devices.put(deviceId, device);
+            }
         }
 
         @Override
         public void onConnectionLost(BaseComputerLink link) {
             Device d = devices.get(link.getDeviceId());
+            Log.e("onConnectionLost","removeLink, deviceId: "+link.getDeviceId());
             if (d != null) {
                 d.removeLink(link);
                 if (!d.isReachable() && !d.isTrusted()) {
                     devices.remove(link.getDeviceId());
                 }
+            } else {
+                Log.e("onConnectionLost","Removing connection to unknown device, this should not happen");
             }
 
         }
@@ -187,12 +186,6 @@ public class BackgroundService extends Service {
         if (callback != null) callbacks.add(callback);
         Intent serviceIntent = new Intent(c, BackgroundService.class);
         c.startService(serviceIntent);
-    }
-
-
-    Handler mainHandler = new Handler(Looper.getMainLooper());
-    private void runOnMainThread(Runnable runnable) {
-        mainHandler.post(runnable);
     }
 
 }

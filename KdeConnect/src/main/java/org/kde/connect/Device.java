@@ -117,9 +117,11 @@ public class Device implements BaseComputerLink.PackageReceiver {
     //
 
     public void addLink(BaseComputerLink link) {
-        Log.e("Device","addLink "+link.getLinkProvider().getName()+" -> "+getName());
 
         links.add(link);
+
+        Log.e("Device","addLink "+link.getLinkProvider().getName()+" -> "+getName() + " active links: "+ links.size());
+
 
         Collections.sort(links, new Comparator<BaseComputerLink>() {
             @Override
@@ -138,6 +140,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
     public void removeLink(BaseComputerLink link) {
         link.removePackageReceiver(this);
         links.remove(link);
+        Log.e("Device","removeLink: "+link.getLinkProvider().getName() + " -> "+getName() + " active links: "+ links.size());
         if (links.isEmpty()) {
             reloadPluginsFromSettings();
         }

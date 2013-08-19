@@ -92,6 +92,7 @@ public class ClipboardPlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
+
         if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_CLIPBOARD)) {
             return false;
         }

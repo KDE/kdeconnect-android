@@ -190,11 +190,11 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             byte[] bitmapData = outStream.toByteArray();
             byte[] serializedBitmapData = Base64.encode(bitmapData, Base64.NO_WRAP);
             String stringBitmapData = new String(serializedBitmapData, Charset.defaultCharset());
-            //Es super gran lol, millor ho fem quan puguem enviar arxius
+            //The icon is super big, better sending it as a file transfer when we support that
             //np.set("base64icon", stringBitmapData);
         } catch(Exception e) {
             e.printStackTrace();
-            Log.e("NotificationsPlugin","Error retrieveing icon");
+            Log.e("NotificationsPlugin","Error retrieving icon");
         }
 
         np.set("id", id.serialize());
@@ -251,33 +251,33 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
         if (Build.VERSION.SDK_INT < 18) {
             return new AlertDialog.Builder(baseContext)
-                    .setTitle("Notifications Plugin")
-                    .setMessage("This plugin is not compatible with Android 4.3")
-                    .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
+                .setTitle("Notifications Plugin")
+                .setMessage("This plugin is not compatible with Android 4.3")
+                .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
 
-                        }
-                    })
-                    .create();
+                    }
+                })
+                .create();
         } else {
             return new AlertDialog.Builder(baseContext)
-                    .setTitle("Notifications Plugin")
-                    .setMessage("You need to grant permission to access notifications")
-                    .setPositiveButton("Open settings",new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            Intent intent=new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
-                            baseContext.startActivity(intent);
-                        }
-                    })
-                    .setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            //Do nothing
-                        }
-                    })
-                    .create();
+                .setTitle("Notifications Plugin")
+                .setMessage("You need to grant permission to access notifications")
+                .setPositiveButton("Open settings",new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent=new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+                        baseContext.startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //Do nothing
+                    }
+                })
+                .create();
         }
     }
 

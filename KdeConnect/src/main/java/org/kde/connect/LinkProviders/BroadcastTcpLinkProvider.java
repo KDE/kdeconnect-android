@@ -48,6 +48,7 @@ public class BroadcastTcpLinkProvider extends BaseLinkProvider {
                 String deviceId = brokenLink.getDeviceId();
                 if (visibleComputers.get(deviceId) == brokenLink) {
                     visibleComputers.remove(deviceId);
+                    connectionLost(brokenLink);
                 }
             }
 
@@ -158,8 +159,8 @@ public class BroadcastTcpLinkProvider extends BaseLinkProvider {
     };
 
     private void addLink(NetworkPackage identityPackage, NioSessionComputerLink link) {
-        Log.e("BroadcastTcpLinkProvider","addLink to "+identityPackage.getString("deviceName"));
         String deviceId = identityPackage.getString("deviceId");
+        Log.e("BroadcastTcpLinkProvider","addLink to "+deviceId);
         BaseComputerLink oldLink = visibleComputers.get(deviceId);
         if (oldLink != null) {
             Log.e("BroadcastTcpLinkProvider","Removing old connection to same device");

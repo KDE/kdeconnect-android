@@ -13,6 +13,8 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.kde.connect.ComputerLinks.BaseComputerLink;
+import org.kde.connect.LinkProviders.BaseLinkProvider;
 import org.kde.connect.Plugins.MprisPlugin;
 import org.kde.kdeconnect.R;
 
@@ -20,23 +22,20 @@ import java.util.ArrayList;
 
 public class MprisActivity extends Activity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.mpris_control);
+    protected void connectToPlugin() {
 
         final String deviceId = getIntent().getStringExtra("deviceId");
-
 
         BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
 
+                Log.e("MprisActivity", "onService start");
+
                 Device device = service.getDevice(deviceId);
                 final MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
                 if (mpris == null) {
-                    Log.e("MprisActivity","device has no mpris plugin!");
-                    //TODO: Show error
+                    Log.e("MprisActivity", "device has no mpris plugin!");
                     return;
                 }
 
@@ -66,6 +65,7 @@ public class MprisActivity extends Activity {
 
                 mpris.setPlayerListUpdatedHandler(new Handler() {
                     boolean firstLoad = true;
+
                     @Override
                     public void handleMessage(Message msg) {
                         final ArrayList<String> playerList = mpris.getPlayerList();
@@ -81,11 +81,14 @@ public class MprisActivity extends Activity {
                                 //String prevPlayer = (String)spinner.getSelectedItem();
                                 spinner.setAdapter(adapter);
 
+                                Log.e("MprisActivity", "playerListUpdatedHandler");
+
                                 spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                     @Override
                                     public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
                                         ((TextView) findViewById(R.id.now_playing_textview)).setText("");
                                         String player = playerList.get(pos);
+                                        Log.e("MprisActivity", "onPlayerSelected: " + player);
                                         mpris.setPlayer(player);
                                         //Spotify doesn't support changing the volume yet...
                                         if (player.equals("Spotify")) {
@@ -113,6 +116,33 @@ public class MprisActivity extends Activity {
 
             }
         });
+
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.mpris_control);
+
+        final String deviceId = getIntent().getStringExtra("deviceId");
+
+        BackgroundService.RunCommand(MprisActivity.this, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                service.addConnectionListener(new BaseLinkProvider.ConnectionReceiver() {
+                    @Override
+                    public void onConnectionReceived(NetworkPackage identityPackage, BaseComputerLink link) {
+                        connectToPlugin();
+                    }
+
+                    @Override
+                    public void onConnectionLost(BaseComputerLink link) {
+
+                    }
+                });
+            }
+        });
+        connectToPlugin();
 
         findViewById(R.id.play_button).setOnClickListener(new View.OnClickListener() {
             @Override
