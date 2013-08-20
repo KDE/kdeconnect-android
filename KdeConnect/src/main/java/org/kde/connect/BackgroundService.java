@@ -61,8 +61,6 @@ public class BackgroundService extends Service {
 
             Log.e("BackgroundService", "Connection accepted!");
 
-            new Throwable().printStackTrace();
-
             String deviceId = identityPackage.getString("deviceId");
 
             Device device = devices.get(deviceId);
@@ -135,6 +133,12 @@ public class BackgroundService extends Service {
         Log.i("BackgroundService","Registering connection listener");
         for (BaseLinkProvider a : linkProviders) {
             a.addConnectionReceiver(cr);
+        }
+    }
+
+    public void removeConnectionListener(BaseLinkProvider.ConnectionReceiver cr) {
+        for (BaseLinkProvider a : linkProviders) {
+            a.removeConnectionReceiver(cr);
         }
     }
 
