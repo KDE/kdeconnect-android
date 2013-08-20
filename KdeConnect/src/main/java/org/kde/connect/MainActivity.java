@@ -75,6 +75,53 @@ public class MainActivity extends Activity {
         }
     };
 
+    void updateComputerList() {
+        Log.e("MainActivity","updateComputerList");
+
+        BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+
+                HashMap<String, Device> devices = service.getDevices();
+                final String[] ids = devices.keySet().toArray(new String[devices.size()]);
+                final String[] names = new String[devices.size()];
+                for(int i = 0; i < ids.length; i++) {
+                    Device d = devices.get(ids[i]);
+                    names[i] = d.getName() + " " + d.isTrusted() + " " + d.isReachable();
+                }
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ListView list = (ListView)findViewById(R.id.listView1);
+                        list.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, names));
+                        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                                Intent intent = new Intent(MainActivity.this, DeviceActivity.class);
+                                intent.putExtra("deviceId", ids[position]);
+                                startActivity(intent);
+                            }
+                        });
+                    }
+                });
+
+            }
+        });
+    };
+
+    BaseLinkProvider.ConnectionReceiver connectionReceiver = new BaseLinkProvider.ConnectionReceiver() {
+        @Override
+        public void onConnectionReceived(NetworkPackage identityPackage, BaseComputerLink link) {
+            updateComputerList();
+        }
+
+        @Override
+        public void onConnectionLost(BaseComputerLink link) {
+            updateComputerList();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,55 +136,22 @@ public class MainActivity extends Activity {
             @Override
             public void onServiceStart(BackgroundService service) {
                 service.onNetworkChange();
+
+                service.addConnectionListener(connectionReceiver);
             }
         });
 
+        updateComputerList();
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
         BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
             @Override
-            public void onServiceStart(final BackgroundService service) {
-
-                final Runnable updateComputerList = new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.e("MainActivity","updateComputerList");
-
-                        HashMap<String, Device> devices = service.getDevices();
-                        final String[] ids = devices.keySet().toArray(new String[devices.size()]);
-                        String[] names = new String[devices.size()];
-                        for(int i = 0; i < ids.length; i++) {
-                            Device d = devices.get(ids[i]);
-                            names[i] = d.getName() + " " + d.isTrusted() + " " + d.isReachable();
-                        }
-
-                        ListView list = (ListView)findViewById(R.id.listView1);
-
-                        list.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, names));
-
-                        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                                Intent intent = new Intent(MainActivity.this, DeviceActivity.class);
-                                intent.putExtra("deviceId", ids[position]);
-                                startActivity(intent);
-                            }
-                        });
-                    }
-                };
-
-                service.addConnectionListener(new BaseLinkProvider.ConnectionReceiver() {
-                    @Override
-                    public void onConnectionReceived(NetworkPackage identityPackage, BaseComputerLink link) {
-                        runOnUiThread(updateComputerList);
-                    }
-
-                    @Override
-                    public void onConnectionLost(BaseComputerLink link) {
-                        runOnUiThread(updateComputerList);
-                    }
-                });
-
-                updateComputerList.run();
-
+            public void onServiceStart(BackgroundService service) {
+                service.removeConnectionListener(connectionReceiver);
             }
         });
     }

@@ -122,6 +122,29 @@ public class MprisActivity extends Activity {
 
     }
 
+    BaseLinkProvider.ConnectionReceiver connectionReceiver = new BaseLinkProvider.ConnectionReceiver() {
+        @Override
+        public void onConnectionReceived(NetworkPackage identityPackage, BaseComputerLink link) {
+            connectToPlugin();
+        }
+
+        @Override
+        public void onConnectionLost(BaseComputerLink link) {
+
+        }
+    };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        BackgroundService.RunCommand(MprisActivity.this, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                service.removeConnectionListener(connectionReceiver);
+            }
+        });
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,17 +155,7 @@ public class MprisActivity extends Activity {
         BackgroundService.RunCommand(MprisActivity.this, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
-                service.addConnectionListener(new BaseLinkProvider.ConnectionReceiver() {
-                    @Override
-                    public void onConnectionReceived(NetworkPackage identityPackage, BaseComputerLink link) {
-                        connectToPlugin();
-                    }
-
-                    @Override
-                    public void onConnectionLost(BaseComputerLink link) {
-
-                    }
-                });
+                service.addConnectionListener(connectionReceiver);
             }
         });
         connectToPlugin();

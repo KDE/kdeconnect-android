@@ -162,12 +162,12 @@ public class BroadcastTcpLinkProvider extends BaseLinkProvider {
         String deviceId = identityPackage.getString("deviceId");
         Log.e("BroadcastTcpLinkProvider","addLink to "+deviceId);
         BaseComputerLink oldLink = visibleComputers.get(deviceId);
+        visibleComputers.put(deviceId, link);
+        connectionAccepted(identityPackage, link);
         if (oldLink != null) {
             Log.e("BroadcastTcpLinkProvider","Removing old connection to same device");
             connectionLost(oldLink);
         }
-        visibleComputers.put(deviceId, link);
-        connectionAccepted(identityPackage, link);
     }
 
     public BroadcastTcpLinkProvider(Context context) {
