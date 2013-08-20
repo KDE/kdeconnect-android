@@ -70,7 +70,7 @@ public class PingPlugin extends Plugin {
                     .build();
 
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.notify(0, noti);
+            notificationManager.notify((int)System.currentTimeMillis(), noti);
             return true;
 
         }

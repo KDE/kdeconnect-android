@@ -3,6 +3,8 @@ package org.kde.connect;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
@@ -178,39 +180,45 @@ public class Device implements BaseComputerLink.PackageReceiver {
         return plugins.get(name);
     }
 
-    private Plugin addPlugin(String name) {
+    private void addPlugin(final String name) {
         Plugin existing = plugins.get(name);
         if (existing != null) {
             Log.e("addPlugin","plugin already present:" + name);
-            return existing;
+            return;
         }
 
-        Plugin plugin = PluginFactory.instantiatePluginForDevice(context, name, this);
+        final Plugin plugin = PluginFactory.instantiatePluginForDevice(context, name, this);
         if (plugin == null) {
-            Log.e("addPlugin","could not create plugin: "+name);
+            Log.e("addPlugin","could not instantiate plugin: "+name);
             failedPlugins.put(name, plugin);
-            return null;
+            return;
         }
 
-        try {
-            boolean success = plugin.onCreate();
-            if (!success) {
-                failedPlugins.put(name, plugin);
-                return null;
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+                    boolean success = plugin.onCreate();
+                    if (!success) {
+                        Log.e("addPlugin", "plugin failed to load " + name);
+                        failedPlugins.put(name, plugin);
+                        return;
+                    }
+                } catch (Exception e) {
+                    failedPlugins.put(name, plugin);
+                    e.printStackTrace();
+                    Log.e("addPlugin", "Exception loading plugin " + name);
+                    return;
+                }
+
+                //Log.e("addPlugin","added " + name);
+
+                failedPlugins.remove(name);
+                plugins.put(name, plugin);
             }
-        } catch (Exception e) {
-            failedPlugins.put(name, plugin);
-            Log.e("addPlugin","Exception calling onCreate for "+name);
-            e.printStackTrace();
-            return null;
-        }
+        });
 
-        Log.e("addPlugin",name);
-
-        failedPlugins.remove(name);
-        plugins.put(name, plugin);
-
-        return plugin;
     }
 
     private boolean removePlugin(String name) {
@@ -228,12 +236,12 @@ public class Device implements BaseComputerLink.PackageReceiver {
         try {
             plugin.onDestroy();
         } catch (Exception e) {
-            Log.e("addPlugin","Exception calling onCreate for "+name);
             e.printStackTrace();
+            Log.e("removePlugin","Exception calling onDestroy for plugin "+name);
             return false;
         }
 
-        Log.e("removePlugin",name);
+        //Log.e("removePlugin","removed " + name);
 
         return true;
     }

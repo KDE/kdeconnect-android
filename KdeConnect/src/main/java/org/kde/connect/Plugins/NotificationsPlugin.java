@@ -1,6 +1,5 @@
 package org.kde.connect.Plugins;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Notification;
 import android.content.Context;
@@ -19,15 +18,12 @@ import org.kde.connect.Helpers.AppsHelper;
 import org.kde.connect.Helpers.ImagesHelper;
 import org.kde.connect.NetworkPackage;
 import org.kde.connect.NotificationReceiver;
-import org.kde.connect.PluginFactory;
 import org.kde.kdeconnect.R;
 
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.Charset;
 
 public class NotificationsPlugin extends Plugin implements NotificationReceiver.NotificationListener {
-
-    private NotificationId lastId;
 
     /*static {
         PluginFactory.registerPlugin(NotificationsPlugin.class);
@@ -58,6 +54,9 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         return true;
     }
 
+
+
+
     static class NotificationId {
         String packageName;
         String tag;
@@ -75,12 +74,19 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             int first = s.indexOf(':');
             int last = s.lastIndexOf(':');
             nid.packageName = s.substring(0, first);
-            nid.tag = s.substring(first, last);
+            nid.tag = s.substring(first+1, last);
             if (nid.tag.length() == 0) nid.tag = null;
-            nid.id = Integer.parseInt(s.substring(last));
+            String idString = s.substring(last+1);
+            try {
+                nid.id = Integer.parseInt(idString);
+            } catch(Exception e) {
+                nid.id = 0;
+            }
+            Log.e("NotificationId","unserialize: " + nid.packageName+ ", "+nid.tag+ ", "+nid.id);
             return nid;
         }
         public String serialize() {
+            Log.e("NotificationId","serialize: " + packageName+ ", "+tag+ ", "+id);
             String safePackageName = (packageName == null)? "" : packageName;
             String safeTag = (tag == null)? "" : tag;
             return safePackageName+":"+safeTag+":"+id;
@@ -104,8 +110,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
 
 
-
-    private boolean hasPermissions;
 
     @Override
     public boolean onCreate() {
@@ -155,19 +159,14 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
 
 
-
     @Override
     public void onNotificationRemoved(StatusBarNotification statusBarNotification) {
         NotificationId id = NotificationId.fromNotification(statusBarNotification);
 
-        if (!id.equals(lastId)) {
-            NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_NOTIFICATION);
-
-            np.set("id", id.serialize());
-            np.set("isCancel", true);
-
-            device.sendPackage(np);
-        }
+        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_NOTIFICATION);
+        np.set("id", id.serialize());
+        np.set("isCancel", true);
+        device.sendPackage(np);
     }
 
     @Override
@@ -211,7 +210,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
 
     @Override
-    public boolean onPackageReceived(NetworkPackage np) {
+    public boolean onPackageReceived(final NetworkPackage np) {
         if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_NOTIFICATION)) return false;
 
         if (np.getBoolean("request")) {
@@ -226,13 +225,14 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 }
             });
 
-        } else if (np.getBoolean("isCancel")) {
+        } else if (np.has("cancel")) {
 
-            lastId = NotificationId.unserialize(np.getString("id"));
             NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
                 @Override
                 public void onServiceStart(NotificationReceiver service) {
-                    service.cancelNotification(lastId.getPackageName(), lastId.getTag(), lastId.getId());
+
+                    NotificationId dismissedId = NotificationId.unserialize(np.getString("cancel"));
+                    service.cancelNotification(dismissedId.getPackageName(), dismissedId.getTag(), dismissedId.getId());
                 }
             });
 
@@ -252,7 +252,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         if (Build.VERSION.SDK_INT < 18) {
             return new AlertDialog.Builder(baseContext)
                 .setTitle("Notifications Plugin")
-                .setMessage("This plugin is not compatible with Android 4.3")
+                .setMessage("This plugin is not compatible with Android prior 4.3")
                 .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
