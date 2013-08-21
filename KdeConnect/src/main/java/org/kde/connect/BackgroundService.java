@@ -20,6 +20,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class BackgroundService extends Service {
 
@@ -97,17 +99,6 @@ public class BackgroundService extends Service {
         return devices;
     }
 
-    //This will be called for each intent launch, even if the service is already started and is reused
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.i("BackgroundService","onStartCommand");
-        for (InstanceCallback c : callbacks) {
-            c.onServiceStart(this);
-        }
-        callbacks.clear();
-        return Service.START_STICKY;
-    }
-
     public void startDiscovery() {
         Log.i("BackgroundService","StartDiscovery");
         for (BaseLinkProvider a : linkProviders) {
@@ -183,12 +174,31 @@ public class BackgroundService extends Service {
 
     private static ArrayList<InstanceCallback> callbacks = new ArrayList<InstanceCallback>();
 
+    private final Lock mutex = new ReentrantLock(true);
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        //This will be called for each intent launch, even if the service is already started and it is reused
+        Log.i("BackgroundService","onStartCommand");
+        mutex.lock();
+        for (InstanceCallback c : callbacks) {
+            c.onServiceStart(this);
+        }
+        callbacks.clear();
+        mutex.unlock();
+        return Service.START_STICKY;
+    }
+
     public static void Start(Context c) {
         RunCommand(c, null);
     }
 
     public static void RunCommand(Context c, final InstanceCallback callback) {
-        if (callback != null) callbacks.add(callback);
+        if (callback != null) {
+            mutex.lock();
+            callbacks.add(callback);
+            mutex.unlock();
+        }
         Intent serviceIntent = new Intent(c, BackgroundService.class);
         c.startService(serviceIntent);
     }

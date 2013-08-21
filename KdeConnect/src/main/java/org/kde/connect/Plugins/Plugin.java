@@ -76,4 +76,6 @@ public abstract class Plugin {
      */
     public abstract AlertDialog getErrorDialog(Context baseContext);
 
+    //TODO: Add a getInterfaceButton to show in the device activity
+
 }
