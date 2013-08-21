@@ -174,7 +174,7 @@ public class BackgroundService extends Service {
 
     private static ArrayList<InstanceCallback> callbacks = new ArrayList<InstanceCallback>();
 
-    private final Lock mutex = new ReentrantLock(true);
+    private static final Lock mutex = new ReentrantLock(true);
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
