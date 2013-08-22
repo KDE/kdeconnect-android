@@ -171,6 +171,10 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public void onNotificationPosted(StatusBarNotification statusBarNotification) {
+        onNotificationPosted(statusBarNotification, false);
+    }
+
+    public void onNotificationPosted(StatusBarNotification statusBarNotification, boolean requestAnswer) {
 
         Notification notification = statusBarNotification.getNotification();
         NotificationId id = NotificationId.fromNotification(statusBarNotification);
@@ -201,6 +205,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         np.set("isClearable", statusBarNotification.isClearable());
         np.set("ticker", notification.tickerText.toString());
         np.set("time", new Long(statusBarNotification.getPostTime()).toString());
+        if (requestAnswer) np.set("requestAnswer", true);
 
         device.sendPackage(np);
     }
@@ -220,7 +225,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 public void onServiceStart(NotificationReceiver service) {
                     StatusBarNotification[] notifications = service.getActiveNotifications();
                     for (StatusBarNotification notification : notifications) {
-                        onNotificationPosted(notification);
+                        onNotificationPosted(notification, true);
                     }
                 }
             });
