@@ -43,7 +43,7 @@ public class ClipboardPlugin extends Plugin {
 
     @Override
     public boolean isEnabledByDefault() {
-        return true;
+        return (Build.VERSION.SDK_INT >= 11);
     }
 
     private ClipboardManager cm;
@@ -73,7 +73,7 @@ public class ClipboardPlugin extends Plugin {
 
         cm = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
 
-        if (Build.VERSION.SDK_INT == 18) {
+        if (Build.VERSION.SDK_INT < 11) {
             return false;
         }
 
