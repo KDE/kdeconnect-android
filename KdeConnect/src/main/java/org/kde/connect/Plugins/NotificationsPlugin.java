@@ -221,11 +221,34 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         if (np.getBoolean("request")) {
 
             NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
-                @Override
-                public void onServiceStart(NotificationReceiver service) {
+                private void sendCurrentNotifications(NotificationReceiver service) {
                     StatusBarNotification[] notifications = service.getActiveNotifications();
                     for (StatusBarNotification notification : notifications) {
                         onNotificationPosted(notification, true);
+                    }
+                }
+
+
+                @Override
+                public void onServiceStart(final NotificationReceiver service) {
+                    try {
+                        //If service just started, this call will throw an exception because the answer is not ready yet
+                        sendCurrentNotifications(service);
+                    } catch(Exception e) {
+                        Log.e("onPackageReceived","Error when answering 'request': Service failed to start. Retrying in 100ms...");
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Thread.sleep(100);
+                                    Log.e("onPackageReceived","Error when answering 'request': Service failed to start. Retrying...");
+                                    sendCurrentNotifications(service);
+                                } catch (Exception e) {
+                                    Log.e("onPackageReceived","Error when answering 'request': Service failed to start twice!");
+                                    e.printStackTrace();
+                                }
+                            }
+                        }).run();
                     }
                 }
             });
