@@ -1,0 +1,21 @@
+package org.kde.connect.UserInterface.List;
+
+import android.app.Activity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+
+public class ButtonItem implements ListAdapter.Item {
+
+	private final Button button;
+
+	public ButtonItem(Button b) {
+        this.button = b;
+	}
+
+    @Override
+    public View inflateView(LayoutInflater layoutInflater) {
+        return button;
+    }
+
+}

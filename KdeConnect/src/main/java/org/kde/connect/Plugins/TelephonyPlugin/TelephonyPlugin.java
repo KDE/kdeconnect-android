@@ -1,5 +1,6 @@
-package org.kde.connect.Plugins;
+package org.kde.connect.Plugins.TelephonyPlugin;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -10,10 +11,11 @@ import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.widget.Button;
 
 import org.kde.connect.Helpers.ContactsHelper;
 import org.kde.connect.NetworkPackage;
-import org.kde.connect.PluginFactory;
+import org.kde.connect.Plugins.Plugin;
 import org.kde.kdeconnect.R;
 
 public class TelephonyPlugin extends Plugin {
@@ -182,4 +184,8 @@ public class TelephonyPlugin extends Plugin {
         return null;
     }
 
+    @Override
+    public Button getInterfaceButton(Activity activity) {
+        return null;
+    }
 }

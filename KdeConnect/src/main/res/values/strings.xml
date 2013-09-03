@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="action_settings" >Settings</string>
+    <string name="action_settings">Settings</string>
     <string name="pref_plugin_telephony">Telephony notifier</string>
     <string name="pref_plugin_telephony_desc">Send notifications for SMS and calls</string>
     <string name="pref_plugin_battery">Battery report</string>
@@ -15,6 +15,6 @@
     <string name="pref_plugin_notifications">Notification sync</string>
     <string name="pref_plugin_notifications_desc">Access your notifications from other devices</string>
     <string name="plugin_not_available">This feature is not available in your Android version</string>
-
+    <string name="device_list_empty">No devices</string>
 
 </resources>

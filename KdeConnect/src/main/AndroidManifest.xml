@@ -24,7 +24,7 @@
 
         <activity
             android:theme="@style/Theme.AppCompat"
-            android:name="org.kde.connect.MainActivity"
+            android:name="org.kde.connect.UserInterface.MainActivity"
             android:label="KDE Connect" >
 
             <intent-filter>
@@ -36,11 +36,12 @@
 
         <activity
                 android:theme="@style/Theme.AppCompat"
-                android:name="org.kde.connect.DeviceActivity"
+                android:name="org.kde.connect.UserInterface.DeviceActivity"
                 android:label="Device"
-                android:parentActivityName=".MainActivity">
+                android:parentActivityName="org.kde.connect.UserInterface.MainActivity"
+                >
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                       android:value=".MainActivity" />
+                       android:value="org.kde.connect.UserInterface.MainActivity" />
 
                 </activity>
 
@@ -48,17 +49,30 @@
 
         <activity
             android:theme="@style/Theme.AppCompat"
-            android:name="org.kde.connect.MprisActivity"
+            android:name="org.kde.connect.UserInterface.PairActivity"
+            android:label="Device"
+            android:parentActivityName="org.kde.connect.UserInterface.MainActivity"
+            >
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.kde.connect.UserInterface.MainActivity" />
+
+        </activity>
+
+
+
+        <activity
+            android:theme="@style/Theme.AppCompat"
+            android:name="org.kde.connect.Plugins.MprisPlugin.MprisActivity"
             android:label="MPRIS controls"
-            android:parentActivityName=".DeviceActivity">
+            >
         <meta-data android:name="android.support.PARENT_ACTIVITY"
                    android:value=".DeviceActivity" />
         </activity>
 
         <activity
-                android:name="org.kde.connect.SettingsActivity"
+                android:name="org.kde.connect.UserInterface.SettingsActivity"
                 android:label="KDE Connect Settings"
-                android:parentActivityName=".DeviceActivity">
+                >
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                        android:value=".DeviceActivity" />
         </activity>
@@ -68,7 +82,7 @@
             android:name="org.kde.connect.BackgroundService">
         </service>
 
-        <service android:name="org.kde.connect.NotificationReceiver"
+        <service android:name="org.kde.connect.Plugins.NotificationsPlugin.NotificationReceiver"
              android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />

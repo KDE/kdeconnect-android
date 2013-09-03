@@ -1,20 +1,32 @@
 package org.kde.connect;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.util.Base64;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.nio.charset.Charset;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.util.ArrayList;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
 
 public class NetworkPackage {
 
-    private final static int CURRENT_PACKAGE_VERSION = 1;
+    public final static int ProtocolVersion = 3;
 
     public final static String PACKAGE_TYPE_IDENTITY = "kdeconnect.identity";
+    public final static String PACKAGE_TYPE_PAIR = "kdeconnect.pair";
+    public final static String PACKAGE_TYPE_ENCRYPTED = "kdeconnect.encrypted";
     public final static String PACKAGE_TYPE_PING = "kdeconnect.ping";
     public final static String PACKAGE_TYPE_TELEPHONY = "kdeconnect.telephony";
     public final static String PACKAGE_TYPE_BATTERY = "kdeconnect.battery";
@@ -25,7 +37,6 @@ public class NetworkPackage {
     private long mId;
     private String mType;
     private JSONObject mBody;
-    private int mVersion;
 
     private NetworkPackage() {
     }
@@ -34,15 +45,10 @@ public class NetworkPackage {
         mId = System.currentTimeMillis();
         mType = type;
         mBody = new JSONObject();
-        mVersion = CURRENT_PACKAGE_VERSION;
     }
 
     public String getType() {
         return mType;
-    }
-
-    public int getVersion() {
-        return mVersion;
     }
 
     //Most commons getters and setters defined for convenience
@@ -96,10 +102,10 @@ public class NetworkPackage {
             jo.put("id",mId);
             jo.put("type",mType);
             jo.put("body",mBody);
-            jo.put("version",mVersion);
         } catch(Exception e) {
         }
-        String json = jo.toString()+"\n";
+        //QJSon does not escape slashes, but Java JSONObject does. Converting to QJson format.
+        String json = jo.toString().replace("\\/","/")+"\n";
         Log.e("NetworkPackage.serialize",json);
         return json;
     }
@@ -112,15 +118,67 @@ public class NetworkPackage {
             np.mId = jo.getLong("id");
             np.mType = jo.getString("type");
             np.mBody = jo.getJSONObject("body");
-            np.mVersion = jo.getInt("version");
         } catch (Exception e) {
             return null;
         }
-        if (np.mVersion > CURRENT_PACKAGE_VERSION) {
-            Log.e("NetworkPackage.unserialize","Version "+np.mVersion+" greater than supported version "+CURRENT_PACKAGE_VERSION);
-        }
         return np;
     }
+
+
+
+    public void encrypt(PublicKey publicKey) throws Exception {
+
+        String serialized = serialize();
+
+        int chunkSize = 128;
+
+        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1PADDING");
+        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+
+        JSONArray chunks = new JSONArray();
+        while (serialized.length() > 0) {
+            if (serialized.length() < chunkSize) {
+                chunkSize = serialized.length();
+            }
+            String chunk = serialized.substring(0, chunkSize);
+            serialized = serialized.substring(chunkSize);
+            byte[] chunkBytes = chunk.getBytes(Charset.defaultCharset());
+            byte[] encryptedChunk;
+            encryptedChunk = cipher.doFinal(chunkBytes);
+            chunks.put(Base64.encodeToString(encryptedChunk, Base64.NO_WRAP));
+        }
+
+        mId = System.currentTimeMillis();
+        mType = NetworkPackage.PACKAGE_TYPE_ENCRYPTED;
+        mBody = new JSONObject();
+        try {
+            mBody.put("data", chunks);
+        }catch(Exception e){
+            e.printStackTrace();
+            Log.e("NetworkPackage","Exception");
+        }
+
+        Log.e("NetworkPackage", "Encrypted " + chunks.length()+" chunks");
+
+    }
+
+    public NetworkPackage decrypt(PrivateKey privateKey) throws Exception {
+
+        JSONArray chunks = mBody.getJSONArray("data");
+
+        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1PADDING");
+        cipher.init(Cipher.DECRYPT_MODE, privateKey);
+
+        String decryptedJson = "";
+        for (int i = 0; i < chunks.length(); i++) {
+            byte[] encryptedChunk = Base64.decode(chunks.getString(i), Base64.NO_WRAP);
+            String decryptedChunk = new String(cipher.doFinal(encryptedChunk));
+            decryptedJson += decryptedChunk;
+        }
+
+        return unserialize(decryptedJson);
+    }
+
 
     static public NetworkPackage createIdentityPackage(Context context) {
 
@@ -130,6 +188,7 @@ public class NetworkPackage {
         try {
             np.mBody.put("deviceId", deviceId);
             np.mBody.put("deviceName", HumanDeviceNames.getDeviceName());
+            np.mBody.put("protocolVersion", NetworkPackage.ProtocolVersion);
         } catch (JSONException e) {
         }
 
@@ -137,5 +196,18 @@ public class NetworkPackage {
 
     }
 
+    static public NetworkPackage createPublicKeyPackage(Context context) {
+
+        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
+
+        np.set("pair", true);
+
+        SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(context);
+        String publicKey = "-----BEGIN PUBLIC KEY-----\n" + globalSettings.getString("publicKey", "").trim()+ "\n-----END PUBLIC KEY-----\n";
+        np.set("publicKey", publicKey);
+
+        return np;
+
+    }
 
 }

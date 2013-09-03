@@ -6,6 +6,7 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.widget.Button;
 
 import org.kde.connect.Device;
 import org.kde.connect.NetworkPackage;
@@ -60,22 +61,29 @@ public abstract class Plugin {
 
     /**
      * Finish any ongoing operations, remove listeners... so
-     * this object could be garbage collected
+     * this object could be garbage collected.
      */
     public abstract void onDestroy();
 
     /**
      * If onCreate returns false, should create a dialog explaining
-     * the problem (and how to fix it, if possible) to the user
+     * the problem (and how to fix it, if possible) to the user.
      */
     public abstract boolean onPackageReceived(NetworkPackage np);
 
     /**
      * If onCreate returns false, should create a dialog explaining
-     * the problem (and how to fix it, if possible) to the user
+     * the problem (and how to fix it, if possible) to the user.
      */
     public abstract AlertDialog getErrorDialog(Context baseContext);
 
-    //TODO: Add a getInterfaceButton to show in the device activity
+    /**
+     * Creates a button that will be displayed in the user interface
+     * It can open an activity or perform any other action that the
+     * plugin would wants to expose to the user. Return null if no
+     * button should be displayed.
+     */
+    public abstract Button getInterfaceButton(Activity activity);
+
 
 }

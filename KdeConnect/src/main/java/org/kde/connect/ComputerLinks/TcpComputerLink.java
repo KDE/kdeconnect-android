@@ -78,7 +78,7 @@ public class TcpComputerLink extends BaseComputerLink {
                 session = future.getSession();
                 if (callback != null) callback.dispatchMessage(new Message());
             }
-        }).run();
+        }).start();
 
     }
 

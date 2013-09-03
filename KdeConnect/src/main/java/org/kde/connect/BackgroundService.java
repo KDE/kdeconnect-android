@@ -8,17 +8,23 @@ import android.content.SharedPreferences;
 import android.os.Binder;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.util.Base64;
 import android.util.Log;
 
 import org.kde.connect.ComputerLinks.BaseComputerLink;
 import org.kde.connect.LinkProviders.BaseLinkProvider;
 import org.kde.connect.LinkProviders.BroadcastTcpLinkProvider;
 
+import java.math.BigInteger;
+import java.security.KeyFactory;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -29,12 +35,33 @@ public class BackgroundService extends Service {
 
     private HashMap<String, Device> devices = new HashMap<String, Device>();
 
+    Device.PairingCallback devicePairingCallback = new Device.PairingCallback() {
+        @Override
+        public void incomingRequest() {
+            if (deviceListChangedCallback != null) deviceListChangedCallback.onDeviceListChanged();
+        }
+        @Override
+        public void pairingSuccessful() {
+            if (deviceListChangedCallback != null) deviceListChangedCallback.onDeviceListChanged();
+        }
+        @Override
+        public void pairingFailed(String error) {
+            if (deviceListChangedCallback != null) deviceListChangedCallback.onDeviceListChanged();
+        }
+        @Override
+        public void unpaired() {
+            if (deviceListChangedCallback != null) deviceListChangedCallback.onDeviceListChanged();
+        }
+    };
+
     private void loadRememberedDevicesFromSettings() {
         SharedPreferences preferences = getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
         Set<String> trustedDevices = preferences.getAll().keySet();
         for(String deviceId : trustedDevices) {
             if (preferences.getBoolean(deviceId, false)) {
-                devices.put(deviceId,new Device(getBaseContext(), deviceId));
+                Device device = new Device(getBaseContext(), deviceId);
+                devices.put(deviceId,device);
+                device.addPairingCallback(devicePairingCallback);
             }
         }
     }
@@ -69,14 +96,16 @@ public class BackgroundService extends Service {
 
             if (device != null) {
                 Log.e("BackgroundService", "addLink, known device: "+deviceId);
-                if (!device.hasName()) device.setName(identityPackage.getString("deviceName"));
                 device.addLink(link);
             } else {
                 Log.e("BackgroundService", "addLink,unknown device: "+deviceId);
                 String name = identityPackage.getString("deviceName");
                 device = new Device(getBaseContext(), deviceId, name, link);
                 devices.put(deviceId, device);
+                device.addPairingCallback(devicePairingCallback);
             }
+
+            if (deviceListChangedCallback != null) deviceListChangedCallback.onDeviceListChanged();
         }
 
         @Override
@@ -85,13 +114,14 @@ public class BackgroundService extends Service {
             Log.e("onConnectionLost","removeLink, deviceId: "+link.getDeviceId());
             if (d != null) {
                 d.removeLink(link);
-                if (!d.isReachable() && !d.isTrusted()) {
+                if (!d.isReachable() && !d.isPaired()) {
                     devices.remove(link.getDeviceId());
+                    d.removePairingCallback(devicePairingCallback);
                 }
             } else {
                 Log.e("onConnectionLost","Removing connection to unknown device, this should not happen");
             }
-
+            if (deviceListChangedCallback != null) deviceListChangedCallback.onDeviceListChanged();
         }
     };
 
@@ -133,6 +163,15 @@ public class BackgroundService extends Service {
         }
     }
 
+    public interface DeviceListChangedCallback {
+        void onDeviceListChanged();
+    }
+    private DeviceListChangedCallback deviceListChangedCallback = null;
+    public void setDeviceListChangedCallback(DeviceListChangedCallback callback) {
+        this.deviceListChangedCallback = callback;
+    }
+
+
     //This will called only once, even if we launch the service intent several times
     @Override
     public void onCreate() {
@@ -144,12 +183,68 @@ public class BackgroundService extends Service {
 
         Log.i("BackgroundService","Service not started yet, initializing...");
 
+        initializeRsaKeys();
         loadRememberedDevicesFromSettings();
         registerLinkProviders();
 
         //Link Providers need to be already registered
         addConnectionListener(deviceListener);
         startDiscovery();
+
+    }
+
+    private void initializeRsaKeys() {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+
+        if (!settings.contains("publicKey") || !settings.contains("privateKey")) {
+
+            KeyPair keyPair;
+            try {
+                KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
+                keyGen.initialize(2048);
+                keyPair = keyGen.genKeyPair();
+            } catch(Exception e) {
+                e.printStackTrace();
+                Log.e("initializeRsaKeys","Exception");
+                return;
+            }
+
+            byte[] publicKey = keyPair.getPublic().getEncoded();
+            byte[] privateKey = keyPair.getPrivate().getEncoded();
+
+            SharedPreferences.Editor edit = settings.edit();
+            edit.putString("publicKey",Base64.encodeToString(publicKey, 0).trim()+"\n");
+            edit.putString("privateKey",Base64.encodeToString(privateKey, 0));
+            edit.commit();
+
+        }
+
+
+/*
+        // Encryption and decryption test
+        //================================
+
+        try {
+
+            NetworkPackage np = NetworkPackage.createIdentityPackage(this);
+
+            SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(this);
+
+            byte[] publicKeyBytes = Base64.decode(globalSettings.getString("publicKey",""), 0);
+            PublicKey publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
+
+            np.encrypt(publicKey);
+
+            byte[] privateKeyBytes = Base64.decode(globalSettings.getString("privateKey",""), 0);
+            PrivateKey privateKey = KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(privateKeyBytes));
+
+            NetworkPackage decrypted = np.decrypt(privateKey);
+            Log.e("ENCRYPTION AND DECRYPTION TEST", decrypted.serialize());
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("ENCRYPTION AND DECRYPTION TEST","Exception: "+e);
+        }
+*/
 
     }
 

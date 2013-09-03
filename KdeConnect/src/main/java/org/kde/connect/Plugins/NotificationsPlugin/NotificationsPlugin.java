@@ -1,5 +1,6 @@
-package org.kde.connect.Plugins;
+package org.kde.connect.Plugins.NotificationsPlugin;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Notification;
 import android.content.Context;
@@ -13,11 +14,12 @@ import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
 import android.util.Base64;
 import android.util.Log;
+import android.widget.Button;
 
 import org.kde.connect.Helpers.AppsHelper;
 import org.kde.connect.Helpers.ImagesHelper;
 import org.kde.connect.NetworkPackage;
-import org.kde.connect.NotificationReceiver;
+import org.kde.connect.Plugins.Plugin;
 import org.kde.kdeconnect.R;
 
 import java.io.ByteArrayOutputStream;
@@ -248,7 +250,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                                     e.printStackTrace();
                                 }
                             }
-                        }).run();
+                        }).start();
                     }
                 }
             });
@@ -279,9 +281,9 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
         if (Build.VERSION.SDK_INT < 18) {
             return new AlertDialog.Builder(baseContext)
-                .setTitle("Notifications Plugin")
-                .setMessage("This plugin is not compatible with Android prior 4.3")
-                .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+                .setTitle("Notifications Plugin") //TODO: i18n
+                .setMessage("This plugin is not compatible with Android prior 4.3") //TODO: i18n
+                .setPositiveButton("Ok",new DialogInterface.OnClickListener() { //TODO: i18n
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -290,18 +292,18 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 .create();
         } else {
             return new AlertDialog.Builder(baseContext)
-                .setTitle("Notifications Plugin")
-                .setMessage("You need to grant permission to access notifications")
+                .setTitle("Notifications Plugin") //TODO: i18n
+                .setMessage("You need to grant permission to access notifications") //TODO: i18n
                 .setPositiveButton("Open settings",new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                    public void onClick(DialogInterface dialogInterface, int i) { //TODO: i18n
                         Intent intent=new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
                         baseContext.startActivity(intent);
                     }
                 })
                 .setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                    public void onClick(DialogInterface dialogInterface, int i) { //TODO: i18n
                         //Do nothing
                     }
                 })
@@ -309,5 +311,9 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         }
     }
 
+    @Override
+    public Button getInterfaceButton(Activity activity) {
+        return null;
+    }
 
 }

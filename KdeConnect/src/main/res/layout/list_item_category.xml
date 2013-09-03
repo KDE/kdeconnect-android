@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical">
+
+	<include
+		android:id="@+id/list_item_category_text"
+		layout="@android:layout/preference_category" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dip"
+        android:visibility="gone"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/device_list_empty"
+        android:id="@+id/list_item_category_empty_placeholder"
+        android:layout_gravity="center" />
+
+
+</LinearLayout>

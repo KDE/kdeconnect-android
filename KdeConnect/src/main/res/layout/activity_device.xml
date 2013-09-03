@@ -9,23 +9,19 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <Button android:id="@+id/button1" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Select plugins"/>
-    <Button android:id="@+id/button2" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Send Ping"/>
-    <Button android:id="@+id/button3" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Mpris controls"/>
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/buttons_list"
+        android:layout_weight="1"
+    />
 
-
-    <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Plugins failed to load (tap for more info):"
-            android:visibility="gone"
-            android:id="@+id/textView"/>
 
     <ListView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/listView1"
-            android:layout_weight="1"/>
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/errors_list"
+        android:layout_weight="1"
+    />
 
 </LinearLayout>

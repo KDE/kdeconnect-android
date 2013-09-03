@@ -1,19 +1,17 @@
-package org.kde.connect;
+package org.kde.connect.Plugins;
 
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.preference.CheckBoxPreference;
 import android.util.Log;
 
-import org.kde.connect.Plugins.BatteryPlugin;
-import org.kde.connect.Plugins.ClipboardPlugin;
-import org.kde.connect.Plugins.MprisPlugin;
-import org.kde.connect.Plugins.NotificationsPlugin;
-import org.kde.connect.Plugins.PingPlugin;
-import org.kde.connect.Plugins.Plugin;
-import org.kde.connect.Plugins.TelephonyPlugin;
+import org.kde.connect.Device;
+import org.kde.connect.Plugins.BatteryPlugin.BatteryPlugin;
+import org.kde.connect.Plugins.ClibpoardPlugin.ClipboardPlugin;
+import org.kde.connect.Plugins.MprisPlugin.MprisPlugin;
+import org.kde.connect.Plugins.NotificationsPlugin.NotificationsPlugin;
+import org.kde.connect.Plugins.PingPlugin.PingPlugin;
+import org.kde.connect.Plugins.TelephonyPlugin.TelephonyPlugin;
 
 import java.util.Map;
 import java.util.Set;

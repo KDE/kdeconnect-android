@@ -1,4 +1,4 @@
-package org.kde.connect;
+package org.kde.connect.Plugins.MprisPlugin;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -13,9 +13,11 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.kde.connect.BackgroundService;
 import org.kde.connect.ComputerLinks.BaseComputerLink;
+import org.kde.connect.Device;
 import org.kde.connect.LinkProviders.BaseLinkProvider;
-import org.kde.connect.Plugins.MprisPlugin;
+import org.kde.connect.NetworkPackage;
 import org.kde.kdeconnect.R;
 
 import java.util.ArrayList;

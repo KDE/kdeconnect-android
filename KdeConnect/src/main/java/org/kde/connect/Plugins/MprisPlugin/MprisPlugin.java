@@ -1,14 +1,18 @@
-package org.kde.connect.Plugins;
+package org.kde.connect.Plugins.MprisPlugin;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import org.kde.connect.NetworkPackage;
-import org.kde.connect.PluginFactory;
+import org.kde.connect.Plugins.Plugin;
 import org.kde.kdeconnect.R;
 
 import java.util.ArrayList;
@@ -196,4 +200,18 @@ public class MprisPlugin extends Plugin {
         return null;
     }
 
+    @Override
+    public Button getInterfaceButton(final Activity activity) {
+        Button b = new Button(activity);
+        b.setText("Open remote control"); //TODO: i18n
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, MprisActivity.class);
+                intent.putExtra("deviceId", device.getDeviceId());
+                activity.startActivity(intent);
+            }
+        });
+        return b;
+    }
 }

@@ -1,4 +1,4 @@
-package org.kde.connect;
+package org.kde.connect.Plugins.NotificationsPlugin;
 
 import android.app.Service;
 import android.content.Context;

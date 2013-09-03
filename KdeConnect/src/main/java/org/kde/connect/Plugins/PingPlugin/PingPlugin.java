@@ -1,15 +1,19 @@
-package org.kde.connect.Plugins;
+package org.kde.connect.Plugins.PingPlugin;
 
 import android.R;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
+import android.support.v4.app.NotificationCompat;
+import android.view.View;
+import android.widget.Button;
 
+import org.kde.connect.Device;
 import org.kde.connect.NetworkPackage;
-import org.kde.connect.PluginFactory;
+import org.kde.connect.Plugins.Plugin;
 
 
 public class PingPlugin extends Plugin {
@@ -60,7 +64,7 @@ public class PingPlugin extends Plugin {
         if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_PING)) {
             //Log.e("PingPackageReceiver", "was a ping!");
 
-            Notification noti = new Notification.Builder(context)
+            Notification noti = new NotificationCompat.Builder(context)
                     .setContentTitle(device.getName())
                     .setContentText("Ping!")
                     .setTicker("Ping!")
@@ -80,6 +84,19 @@ public class PingPlugin extends Plugin {
     @Override
     public AlertDialog getErrorDialog(Context baseContext) {
         return null;
+    }
+
+    @Override
+    public Button getInterfaceButton(Activity activity) {
+        Button b = new Button(activity);
+        b.setText("Send ping"); //TODO: i18n
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                device.sendPackage(new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PING));
+            }
+        });
+        return b;
     }
 
 }
