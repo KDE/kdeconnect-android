@@ -11,7 +11,6 @@ import android.support.v4.app.NotificationCompat;
 import android.view.View;
 import android.widget.Button;
 
-import org.kde.connect.Device;
 import org.kde.connect.NetworkPackage;
 import org.kde.connect.Plugins.Plugin;
 
