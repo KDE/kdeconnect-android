@@ -17,7 +17,7 @@ import org.apache.mina.transport.socket.nio.NioDatagramAcceptor;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
 import org.kde.connect.ComputerLinks.BaseComputerLink;
-import org.kde.connect.ComputerLinks.NioSessionComputerLink;
+import org.kde.connect.ComputerLinks.LanComputerLink;
 import org.kde.connect.NetworkPackage;
 
 import java.net.DatagramPacket;
@@ -32,8 +32,8 @@ public class LanLinkProvider extends BaseLinkProvider {
     private final static int port = 1714;
 
     private Context context;
-    private HashMap<String, NioSessionComputerLink> visibleComputers = new HashMap<String, NioSessionComputerLink>();
-    private HashMap<Long, NioSessionComputerLink> nioSessions = new HashMap<Long, NioSessionComputerLink>();
+    private HashMap<String, LanComputerLink> visibleComputers = new HashMap<String, LanComputerLink>();
+    private HashMap<Long, LanComputerLink> nioSessions = new HashMap<Long, LanComputerLink>();
 
     private NioSocketAcceptor tcpAcceptor = null;
     private NioDatagramAcceptor udpAcceptor = null;
@@ -42,7 +42,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         @Override
         public void sessionClosed(IoSession session) throws Exception {
 
-            NioSessionComputerLink brokenLink = nioSessions.remove(session.getId());
+            LanComputerLink brokenLink = nioSessions.remove(session.getId());
             if (brokenLink != null) {
                 connectionLost(brokenLink);
                 String deviceId = brokenLink.getDeviceId();
@@ -58,24 +58,24 @@ public class LanLinkProvider extends BaseLinkProvider {
         public void messageReceived(IoSession session, Object message) throws Exception {
             super.messageReceived(session, message);
 
-            //Log.e("BroadcastTcpLinkProvider","Incoming package, address: "+session.getRemoteAddress()).toString());
+            //Log.e("LanLinkProvider","Incoming package, address: "+session.getRemoteAddress()).toString());
 
             String theMessage = (String) message;
             NetworkPackage np = NetworkPackage.unserialize(theMessage);
 
-            NioSessionComputerLink prevLink = nioSessions.get(session.getId());
+            LanComputerLink prevLink = nioSessions.get(session.getId());
 
             if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
                 String myId = NetworkPackage.createIdentityPackage(context).getString("deviceId");
                 if (np.getString("deviceId").equals(myId)) {
                     return;
                 }
-                NioSessionComputerLink link = new NioSessionComputerLink(session, np.getString("deviceId"), LanLinkProvider.this);
+                LanComputerLink link = new LanComputerLink(session, np.getString("deviceId"), LanLinkProvider.this);
                 nioSessions.put(session.getId(),link);
                 addLink(np, link);
             } else {
                 if (prevLink == null) {
-                    Log.e("BroadcastTcpLinkProvider","2 Expecting an identity package");
+                    Log.e("LanLinkProvider","2 Expecting an identity package");
                 } else {
                     prevLink.injectNetworkPackage(np);
                 }
@@ -89,7 +89,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         public void messageReceived(IoSession udpSession, Object message) throws Exception {
             super.messageReceived(udpSession, message);
 
-            Log.e("BroadcastTcpLinkProvider", "Udp message received (" + message.getClass() + ") " + message.toString());
+            Log.e("LanLinkProvider", "Udp message received (" + message.getClass() + ") " + message.toString());
 
             NetworkPackage np = null;
 
@@ -99,14 +99,14 @@ public class LanLinkProvider extends BaseLinkProvider {
                 np = NetworkPackage.unserialize(theMessage);
             } catch (Exception e) {
                 e.printStackTrace();
-                Log.e("BroadcastTcpLinkProvider", "Could not unserialize package");
+                Log.e("LanLinkProvider", "Could not unserialize package");
             }
 
             if (np != null) {
 
                 final NetworkPackage identityPackage = np;
                 if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
-                    Log.e("BroadcastTcpLinkProvider", "1 Expecting an identity package");
+                    Log.e("LanLinkProvider", "1 Expecting an identity package");
                     return;
                 } else {
                     String myId = NetworkPackage.createIdentityPackage(context).getString("deviceId");
@@ -115,7 +115,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                     }
                 }
 
-                Log.e("BroadcastTcpLinkProvider", "It is an identity package, creating link");
+                Log.e("LanLinkProvider", "It is an identity package, creating link");
 
                 try {
                     final InetSocketAddress address = (InetSocketAddress) udpSession.getRemoteAddress();
@@ -137,9 +137,9 @@ public class LanLinkProvider extends BaseLinkProvider {
                         public void operationComplete(IoFuture ioFuture) {
                             IoSession session = ioFuture.getSession();
 
-                            Log.e("BroadcastTcpLinkProvider", "Connection successful: " + session.isConnected());
+                            Log.e("LanLinkProvider", "Connection successful: " + session.isConnected());
 
-                            NioSessionComputerLink link = new NioSessionComputerLink(session, identityPackage.getString("deviceId"), LanLinkProvider.this);
+                            LanComputerLink link = new LanComputerLink(session, identityPackage.getString("deviceId"), LanLinkProvider.this);
 
                             NetworkPackage np2 = NetworkPackage.createIdentityPackage(context);
                             link.sendPackage(np2);
@@ -150,7 +150,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                     });
 
                 } catch (Exception e) {
-                    Log.e("BroadcastTcpLinkProvider","Exception!!");
+                    Log.e("LanLinkProvider","Exception!!");
                     e.printStackTrace();
                 }
 
@@ -158,14 +158,14 @@ public class LanLinkProvider extends BaseLinkProvider {
         }
     };
 
-    private void addLink(NetworkPackage identityPackage, NioSessionComputerLink link) {
+    private void addLink(NetworkPackage identityPackage, LanComputerLink link) {
         String deviceId = identityPackage.getString("deviceId");
-        Log.e("BroadcastTcpLinkProvider","addLink to "+deviceId);
+        Log.e("LanLinkProvider","addLink to "+deviceId);
         BaseComputerLink oldLink = visibleComputers.get(deviceId);
         visibleComputers.put(deviceId, link);
         connectionAccepted(identityPackage, link);
         if (oldLink != null) {
-            Log.e("BroadcastTcpLinkProvider","Removing old connection to same device");
+            Log.e("LanLinkProvider","Removing old connection to same device");
             connectionLost(oldLink);
         }
     }
@@ -209,7 +209,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         try {
             udpAcceptor.bind(new InetSocketAddress(port));
         } catch(Exception e) {
-            Log.e("BroadcastTcpLinkProvider", "Error: Could not bind udp socket");
+            Log.e("LanLinkProvider", "Error: Could not bind udp socket");
             e.printStackTrace();
         }
 
@@ -224,7 +224,7 @@ public class LanLinkProvider extends BaseLinkProvider {
             }
         }
 
-        Log.e("BroadcastTcpLinkProvider","Using tcpPort "+tcpPort);
+        Log.e("LanLinkProvider","Using tcpPort "+tcpPort);
 
         //I'm on a new network, let's be polite and introduce myself
         final int finalTcpPort = tcpPort;
@@ -241,10 +241,10 @@ public class LanLinkProvider extends BaseLinkProvider {
                     socket.setReuseAddress(true);
                     socket.setBroadcast(true);
                     socket.send(packet);
-                    Log.e("BroadcastTcpLinkProvider","Udp identity package sent");
+                    Log.e("LanLinkProvider","Udp identity package sent");
                 } catch(Exception e) {
                     e.printStackTrace();
-                    Log.e("BroadcastTcpLinkProvider","Sending udp identity package failed");
+                    Log.e("LanLinkProvider","Sending udp identity package failed");
                 }
 
                 return null;
@@ -258,7 +258,7 @@ public class LanLinkProvider extends BaseLinkProvider {
     @Override
     public void onNetworkChange() {
 
-        Log.e("BroadcastTcpLinkProvider","OnNetworkChange: " + (udpAcceptor != null));
+        Log.e("LanLinkProvider","OnNetworkChange: " + (udpAcceptor != null));
 
         onStop();
         onStart();
@@ -280,6 +280,6 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     @Override
     public String getName() {
-        return "BroadcastTcpLinkProvider";
+        return "LanLinkProvider";
     }
 }

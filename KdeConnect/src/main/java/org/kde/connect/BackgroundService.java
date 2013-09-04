@@ -13,16 +13,10 @@ import android.util.Log;
 
 import org.kde.connect.ComputerLinks.BaseComputerLink;
 import org.kde.connect.LinkProviders.BaseLinkProvider;
-import org.kde.connect.LinkProviders.BroadcastTcpLinkProvider;
+import org.kde.connect.LinkProviders.LanLinkProvider;
 
-import java.math.BigInteger;
-import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
-import java.security.PrivateKey;
-import java.security.PublicKey;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -70,12 +64,8 @@ public class BackgroundService extends Service {
 
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
 
-        if (settings.getBoolean("avahitcp_link", true)) {
-            //linkProviders.add(new AvahiTcpLinkProvider(this));
-        }
-
         if (settings.getBoolean("broadcasttcp_link", true)) {
-            linkProviders.add(new BroadcastTcpLinkProvider(this));
+            linkProviders.add(new LanLinkProvider(this));
         }
 
     }
