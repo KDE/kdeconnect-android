@@ -18,7 +18,7 @@ import org.kde.connect.ComputerLinks.BaseComputerLink;
 import org.kde.connect.Device;
 import org.kde.connect.LinkProviders.BaseLinkProvider;
 import org.kde.connect.NetworkPackage;
-import org.kde.kdeconnect.R;
+import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 

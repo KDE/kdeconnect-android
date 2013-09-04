@@ -20,7 +20,7 @@ import org.kde.connect.Helpers.AppsHelper;
 import org.kde.connect.Helpers.ImagesHelper;
 import org.kde.connect.NetworkPackage;
 import org.kde.connect.Plugins.Plugin;
-import org.kde.kdeconnect.R;
+import org.kde.kdeconnect_tp.R;
 
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.Charset;

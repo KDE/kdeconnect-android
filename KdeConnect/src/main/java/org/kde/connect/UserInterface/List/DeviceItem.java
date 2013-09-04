@@ -10,7 +10,7 @@ import android.widget.TextView;
 import org.kde.connect.Device;
 import org.kde.connect.UserInterface.DeviceActivity;
 import org.kde.connect.UserInterface.PairActivity;
-import org.kde.kdeconnect.R;
+import org.kde.kdeconnect_tp.R;
 
 public class DeviceItem implements ListAdapter.Item {
 

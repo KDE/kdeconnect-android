@@ -12,7 +12,7 @@ import android.widget.Button;
 
 import org.kde.connect.NetworkPackage;
 import org.kde.connect.Plugins.Plugin;
-import org.kde.kdeconnect.R;
+import org.kde.kdeconnect_tp.R;
 
 public class ClipboardPlugin extends Plugin {
 

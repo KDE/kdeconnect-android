@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import org.kde.connect.BackgroundService;
 import org.kde.connect.Device;
-import org.kde.kdeconnect.R;
+import org.kde.kdeconnect_tp.R;
 
 public class PairActivity extends ActionBarActivity {
 

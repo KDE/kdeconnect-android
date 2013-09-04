@@ -1,6 +1,7 @@
 package org.kde.connect.UserInterface;
 
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -17,7 +18,7 @@ import org.kde.connect.Device;
 import org.kde.connect.UserInterface.List.DeviceItem;
 import org.kde.connect.UserInterface.List.ListAdapter;
 import org.kde.connect.UserInterface.List.SectionItem;
-import org.kde.kdeconnect.R;
+import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -1,6 +1,5 @@
 package org.kde.connect.Plugins.PingPlugin;
 
-import android.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Notification;
@@ -13,6 +12,7 @@ import android.widget.Button;
 
 import org.kde.connect.NetworkPackage;
 import org.kde.connect.Plugins.Plugin;
+import org.kde.kdeconnect_tp.R;
 
 
 public class PingPlugin extends Plugin {

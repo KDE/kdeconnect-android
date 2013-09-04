@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import org.kde.kdeconnect.R;
+import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 
