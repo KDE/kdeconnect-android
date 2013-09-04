@@ -16,7 +16,6 @@ import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.transport.socket.nio.NioDatagramAcceptor;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
-import org.kde.connect.ComputerLinks.BaseComputerLink;
 import org.kde.connect.ComputerLinks.LanComputerLink;
 import org.kde.connect.NetworkPackage;
 
@@ -45,10 +44,10 @@ public class LanLinkProvider extends BaseLinkProvider {
             LanComputerLink brokenLink = nioSessions.remove(session.getId());
             if (brokenLink != null) {
                 connectionLost(brokenLink);
+                brokenLink.disconnect();
                 String deviceId = brokenLink.getDeviceId();
                 if (visibleComputers.get(deviceId) == brokenLink) {
                     visibleComputers.remove(deviceId);
-                    connectionLost(brokenLink);
                 }
             }
 
@@ -161,11 +160,12 @@ public class LanLinkProvider extends BaseLinkProvider {
     private void addLink(NetworkPackage identityPackage, LanComputerLink link) {
         String deviceId = identityPackage.getString("deviceId");
         Log.e("LanLinkProvider","addLink to "+deviceId);
-        BaseComputerLink oldLink = visibleComputers.get(deviceId);
+        LanComputerLink oldLink = visibleComputers.get(deviceId);
         visibleComputers.put(deviceId, link);
         connectionAccepted(identityPackage, link);
         if (oldLink != null) {
             Log.e("LanLinkProvider","Removing old connection to same device");
+            oldLink.disconnect();
             connectionLost(oldLink);
         }
     }
