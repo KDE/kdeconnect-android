@@ -42,6 +42,7 @@ public class MainActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_refresh:
+                updateComputerList();
                 BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
                     @Override
                     public void onServiceStart(BackgroundService service) {
