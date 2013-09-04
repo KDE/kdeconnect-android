@@ -98,7 +98,9 @@ public class MainActivity extends ActionBarActivity {
 
                 SectionItem section;
 
-                section = new SectionItem("Connected devices"); //TODO: i18n
+                Resources res = getResources();
+
+                section = new SectionItem(res.getString(R.string.category_connected_devices));
                 section.isEmpty = true;
                 items.add(section);
                 for(Device d : devices) {
@@ -108,7 +110,7 @@ public class MainActivity extends ActionBarActivity {
                     }
                 }
 
-                section = new SectionItem("Not paired devices"); //TODO: i18n
+                section = new SectionItem(res.getString(R.string.category_not_paired_devices));
                 section.isEmpty = true;
                 items.add(section);
                 for(Device d : devices) {
@@ -118,7 +120,7 @@ public class MainActivity extends ActionBarActivity {
                     }
                 }
 
-                section = new SectionItem("Remembered devices"); //TODO: i18n
+                section = new SectionItem(res.getString(R.string.category_remembered_devices));
                 section.isEmpty = true;
                 items.add(section);
                 for(Device d : devices) {
@@ -128,7 +130,7 @@ public class MainActivity extends ActionBarActivity {
                     }
                 }
                 if (section.isEmpty) {
-                    items.remove(items.size()-1); //Remove this section
+                    items.remove(items.size()-1); //Remove section
                 }
 
                 runOnUiThread(new Runnable() {

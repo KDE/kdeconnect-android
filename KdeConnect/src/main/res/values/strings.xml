@@ -16,5 +16,34 @@
     <string name="pref_plugin_notifications_desc">Access your notifications from other devices</string>
     <string name="plugin_not_available">This feature is not available in your Android version</string>
     <string name="device_list_empty">No devices</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="open_settings">Open settings</string>
+    <string name="no_permissions">You need to grant permission to access notifications</string>
+    <string name="send_ping">Send ping</string>
+    <string name="open_mpris_controls">Open remote control</string>
+    <string name="category_connected_devices">Connected devices</string>
+    <string name="category_not_paired_devices">Not paired devices</string>
+    <string name="category_remembered_devices">Remembered devices</string>
+    <string name="plugins_failed_to_load">Plugins failed to load (tap for more info):</string>
+    <string name="device_menu_plugins">Select plugins</string>
+    <string name="device_menu_unpair">Unpair</string>
+    <string name="unknown_device">Unknown device</string>
+    <string name="error_not_reachable">Device not reachable</string>
+    <string name="error_already_requested">Pairing already requested</string>
+    <string name="error_already_paired">Device already paired</string>
+    <string name="error_could_not_send_package">Could not send package</string>
+    <string name="error_timed_out">Timed out</string>
+    <string name="error_canceled_by_user">Canceled by user</string>
+    <string name="error_canceled_by_other_peer">Canceled by other peer</string>
+    <string name="error_invalid_key">Invalid key received</string>
+    <string name="pair_requested">Pair requested</string>
+    <string name="pairing_request_from">Pairing request from %1s</string>
+    <string name="tap_to_answer">Tap to answer</string>
+    <string name="reconnect">Reconnect</string>
+    <string name="device_not_paired">Device not paired</string>
+    <string name="request_pairing">Request pairing</string>
+    <string name="pairing_accept">Accept</string>
+    <string name="pairing_reject">Reject</string>
 
 </resources>

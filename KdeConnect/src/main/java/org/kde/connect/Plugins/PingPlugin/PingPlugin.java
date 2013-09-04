@@ -28,17 +28,17 @@ public class PingPlugin extends Plugin {
 
     @Override
     public String getDisplayName() {
-        return context.getResources().getString(org.kde.kdeconnect.R.string.pref_plugin_ping);
+        return context.getResources().getString(R.string.pref_plugin_ping);
     }
 
     @Override
     public String getDescription() {
-        return context.getResources().getString(org.kde.kdeconnect.R.string.pref_plugin_ping_desc);
+        return context.getResources().getString(R.string.pref_plugin_ping_desc);
     }
 
     @Override
     public Drawable getIcon() {
-        return context.getResources().getDrawable(org.kde.kdeconnect.R.drawable.icon);
+        return context.getResources().getDrawable(R.drawable.icon);
     }
 
     @Override
@@ -67,7 +67,7 @@ public class PingPlugin extends Plugin {
                     .setContentTitle(device.getName())
                     .setContentText("Ping!")
                     .setTicker("Ping!")
-                    .setSmallIcon(R.drawable.ic_dialog_alert)
+                    .setSmallIcon(android.R.drawable.ic_dialog_alert)
                     .setAutoCancel(true)
                     .setDefaults(Notification.DEFAULT_SOUND)
                     .build();
@@ -88,7 +88,7 @@ public class PingPlugin extends Plugin {
     @Override
     public Button getInterfaceButton(Activity activity) {
         Button b = new Button(activity);
-        b.setText("Send ping"); //TODO: i18n
+        b.setText(R.string.send_ping);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

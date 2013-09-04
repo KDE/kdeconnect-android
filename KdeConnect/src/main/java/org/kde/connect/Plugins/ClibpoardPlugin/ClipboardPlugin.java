@@ -106,8 +106,8 @@ public class ClipboardPlugin extends Plugin {
     @Override
     public AlertDialog getErrorDialog(Context baseContext) {
         return new AlertDialog.Builder(baseContext)
-                .setTitle("ClipBoard Plugin")
-                .setMessage("This plugin is not compatible with Android 4.3")
+                .setTitle(R.string.pref_plugin_clipboard)
+                .setMessage(R.string.plugin_not_available)
                 .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

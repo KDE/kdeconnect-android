@@ -52,7 +52,7 @@ public class DeviceActivity extends ActionBarActivity {
                     if (!failedPlugins.isEmpty() && errorList.getHeaderViewsCount() == 0) {
                         TextView header = new TextView(DeviceActivity.this);
                         header.setPadding(0,24,0,0);
-                        header.setText("Plugins failed to load (tap for more info):"); //TODO: i18n
+                        header.setText(getResources().getString(R.string.plugins_failed_to_load));
                         errorList.addHeaderView(header);
                     }
                     errorList.setAdapter(new ArrayAdapter<String>(DeviceActivity.this, android.R.layout.simple_list_item_1, names));
@@ -123,8 +123,7 @@ public class DeviceActivity extends ActionBarActivity {
         super.onPrepareOptionsMenu(menu);
         menu.clear();
         if (device.isPaired()) {
-            //TODO: i18n
-            menu.add("Select plugins").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            menu.add(R.string.device_menu_plugins).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     Intent intent = new Intent(DeviceActivity.this, SettingsActivity.class);
@@ -133,8 +132,7 @@ public class DeviceActivity extends ActionBarActivity {
                     return true;
                 }
             });
-            //TODO: i18n
-            menu.add("Unpair").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            menu.add(R.string.device_menu_unpair).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     device.unpair();

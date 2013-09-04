@@ -25,7 +25,7 @@ public class PairActivity extends ActionBarActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    ((TextView) findViewById(R.id.pair_message)).setText("Pairing requested"); //TODO: i18n
+                    ((TextView) findViewById(R.id.pair_message)).setText(R.string.pair_requested);
                     findViewById(R.id.pair_progress).setVisibility(View.GONE);
                     findViewById(R.id.pair_button).setVisibility(View.GONE);
                     findViewById(R.id.pair_request).setVisibility(View.VISIBLE);

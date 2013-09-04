@@ -1,12 +1,12 @@
 package org.kde.connect;
 
-import android.R;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
@@ -19,6 +19,7 @@ import org.kde.connect.ComputerLinks.BaseComputerLink;
 import org.kde.connect.Plugins.Plugin;
 import org.kde.connect.Plugins.PluginFactory;
 import org.kde.connect.UserInterface.PairActivity;
+import org.kde.kdeconnect.R;
 
 import java.security.KeyFactory;
 import java.security.PrivateKey;
@@ -109,7 +110,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
     }
 
     public String getName() {
-        return name != null? name : "unknown device"; //TODO: i18n
+        return name != null? name : context.getString(R.string.unknown_device);
     }
 
     public String getDeviceId() {
@@ -145,16 +146,18 @@ public class Device implements BaseComputerLink.PackageReceiver {
 
     public void requestPairing() {
 
+        Resources res = context.getResources();
+
         if (pairStatus == PairStatus.Paired) {
-            for (PairingCallback cb : pairingCallback) cb.pairingFailed("Device already paired"); //TODO: i18n
+            for (PairingCallback cb : pairingCallback) cb.pairingFailed(res.getString(R.string.error_already_paired));
             return;
         }
         if (pairStatus == PairStatus.Requested) {
-            for (PairingCallback cb : pairingCallback) cb.pairingFailed("Pairing already requested"); //TODO: i18n
+            for (PairingCallback cb : pairingCallback) cb.pairingFailed(res.getString(R.string.error_already_requested));
             return;
         }
         if (!isReachable()) {
-            for (PairingCallback cb : pairingCallback) cb.pairingFailed("Device not reachable"); //TODO: i18n
+            for (PairingCallback cb : pairingCallback) cb.pairingFailed(res.getString(R.string.error_not_reachable));
             return;
         }
 
@@ -163,7 +166,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
         boolean success = sendPackage(np);
 
         if (!success) {
-            for (PairingCallback cb : pairingCallback) cb.pairingFailed("Could not send package");
+            for (PairingCallback cb : pairingCallback) cb.pairingFailed(res.getString(R.string.error_could_not_send_package));
             return;
         }
 
@@ -171,7 +174,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
         pairingTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-                for (PairingCallback cb : pairingCallback) cb.pairingFailed("Timed out"); //TODO: i18n
+                for (PairingCallback cb : pairingCallback) cb.pairingFailed(context.getString(R.string.error_timed_out));
                 pairStatus = PairStatus.NotPaired;
             }
         }, 20*1000);
@@ -242,7 +245,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
         np.set("pair", false);
         sendPackage(np);
 
-        for (PairingCallback cb : pairingCallback) cb.pairingFailed("Canceled by the user"); //TODO: i18n
+        for (PairingCallback cb : pairingCallback) cb.pairingFailed(context.getString(R.string.error_canceled_by_user));
 
     }
 
@@ -299,7 +302,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
                 if (pairStatus == PairStatus.Requested) {
                     pairStatus = PairStatus.NotPaired;
                     pairingTimer.cancel();
-                    for (PairingCallback cb : pairingCallback) cb.pairingFailed("Canceled by other peer"); //TODO: i18n
+                    for (PairingCallback cb : pairingCallback) cb.pairingFailed(context.getString(R.string.error_canceled_by_other_peer));
                 }
                 return;
             }
@@ -310,12 +313,11 @@ public class Device implements BaseComputerLink.PackageReceiver {
                 try {
                     String publicKeyContent = np.getString("publicKey").replace("-----BEGIN PUBLIC KEY-----\n","").replace("-----END PUBLIC KEY-----\n","");
                     byte[] publicKeyBytes = Base64.decode(publicKeyContent, 0);
-                    Log.e("asdasd","key bytes: " + publicKeyBytes);
                     publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
                 } catch(Exception e) {
                     e.printStackTrace();
                     Log.e("Device","Pairing exception: Received incorrect key");
-                    for (PairingCallback cb : pairingCallback) cb.pairingFailed("Incorrect key received"); //TODO: i18n
+                    for (PairingCallback cb : pairingCallback) cb.pairingFailed(context.getString(R.string.error_invalid_key));
                     return;
                 }
 
@@ -349,12 +351,14 @@ public class Device implements BaseComputerLink.PackageReceiver {
                     intent.putExtra("deviceId", deviceId);
                     PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
+                    Resources res = context.getResources();
+
                     Notification noti = new NotificationCompat.Builder(context)
-                            .setContentTitle("Pairing request from" + getName()) //TODO: i18n
-                            .setContentText("Tap to answer") //TODO: i18n
+                            .setContentTitle(res.getString(R.string.pairing_request_from, getName()))
+                            .setContentText(res.getString(R.string.tap_to_answer))
                             .setContentIntent(pendingIntent)
-                            .setTicker("Pair requested") //TODO: i18n
-                            .setSmallIcon(R.drawable.ic_menu_help)
+                            .setTicker(res.getString(R.string.pair_requested))
+                            .setSmallIcon(android.R.drawable.ic_menu_help)
                             .setAutoCancel(true)
                             .setDefaults(Notification.DEFAULT_SOUND)
                             .build();
@@ -382,7 +386,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
 
                 if (pairStatus == PairStatus.Requested) {
                     pairingTimer.cancel();
-                    for (PairingCallback cb : pairingCallback) cb.pairingFailed("Canceled by other peer"); //TODO: i18n
+                    for (PairingCallback cb : pairingCallback) cb.pairingFailed(context.getString(R.string.error_canceled_by_other_peer));
                 } else if (pairStatus == PairStatus.Paired) {
                     SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
                     preferences.edit().remove(deviceId).commit();

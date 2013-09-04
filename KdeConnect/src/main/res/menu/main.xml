@@ -6,7 +6,7 @@
             android:icon="@drawable/navigation_refresh"
             android:orderInCategory="200"
             kdeconnect:showAsAction="always"
-            android:title="Reconnect"
+            android:title="@string/reconnect"
         />
 
     <item

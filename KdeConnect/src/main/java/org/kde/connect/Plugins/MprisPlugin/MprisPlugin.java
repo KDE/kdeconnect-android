@@ -203,7 +203,7 @@ public class MprisPlugin extends Plugin {
     @Override
     public Button getInterfaceButton(final Activity activity) {
         Button b = new Button(activity);
-        b.setText("Open remote control"); //TODO: i18n
+        b.setText(R.string.open_mpris_controls);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

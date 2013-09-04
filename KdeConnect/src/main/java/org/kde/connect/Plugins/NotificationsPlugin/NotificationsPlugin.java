@@ -281,9 +281,9 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
         if (Build.VERSION.SDK_INT < 18) {
             return new AlertDialog.Builder(baseContext)
-                .setTitle("Notifications Plugin") //TODO: i18n
-                .setMessage("This plugin is not compatible with Android prior 4.3") //TODO: i18n
-                .setPositiveButton("Ok",new DialogInterface.OnClickListener() { //TODO: i18n
+                .setTitle(R.string.pref_plugin_notifications)
+                .setMessage(R.string.plugin_not_available)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -292,18 +292,18 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 .create();
         } else {
             return new AlertDialog.Builder(baseContext)
-                .setTitle("Notifications Plugin") //TODO: i18n
-                .setMessage("You need to grant permission to access notifications") //TODO: i18n
-                .setPositiveButton("Open settings",new DialogInterface.OnClickListener() {
+                .setTitle(R.string.pref_plugin_notifications)
+                .setMessage(R.string.no_permissions)
+                .setPositiveButton(R.string.open_settings, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) { //TODO: i18n
-                        Intent intent=new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
                         baseContext.startActivity(intent);
                     }
                 })
-                .setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.cancel,new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) { //TODO: i18n
+                    public void onClick(DialogInterface dialogInterface, int i) {
                         //Do nothing
                     }
                 })
