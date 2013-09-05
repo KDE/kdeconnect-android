@@ -14,6 +14,7 @@ import android.util.Log;
 import org.kde.kdeconnect.ComputerLinks.BaseComputerLink;
 import org.kde.kdeconnect.LinkProviders.BaseLinkProvider;
 import org.kde.kdeconnect.LinkProviders.LanLinkProvider;
+import org.kde.kdeconnect.LinkProviders.LoopbackLinkProvider;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -64,7 +65,11 @@ public class BackgroundService extends Service {
 
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
 
-        if (settings.getBoolean("broadcasttcp_link", true)) {
+        if (settings.getBoolean("loopback_link", true)) {
+            linkProviders.add(new LoopbackLinkProvider(this));
+        }
+
+        if (settings.getBoolean("lan_link", true)) {
             linkProviders.add(new LanLinkProvider(this));
         }
 
@@ -85,10 +90,10 @@ public class BackgroundService extends Service {
             Device device = devices.get(deviceId);
 
             if (device != null) {
-                Log.i("BackgroundService", "addLink, known device: "+deviceId);
+                Log.i("BackgroundService", "addLink, known device: " + deviceId);
                 device.addLink(link);
             } else {
-                Log.i("BackgroundService", "addLink,unknown device: "+deviceId);
+                Log.i("BackgroundService", "addLink,unknown device: " + deviceId);
                 String name = identityPackage.getString("deviceName");
                 device = new Device(getBaseContext(), deviceId, name, link);
                 devices.put(deviceId, device);
@@ -101,7 +106,7 @@ public class BackgroundService extends Service {
         @Override
         public void onConnectionLost(BaseComputerLink link) {
             Device d = devices.get(link.getDeviceId());
-            Log.i("onConnectionLost","removeLink, deviceId: "+link.getDeviceId());
+            Log.i("onConnectionLost", "removeLink, deviceId: " + link.getDeviceId());
             if (d != null) {
                 d.removeLink(link);
                 if (!d.isReachable() && !d.isPaired()) {
