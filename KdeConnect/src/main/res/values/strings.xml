@@ -45,5 +45,9 @@
     <string name="request_pairing">Request pairing</string>
     <string name="pairing_accept">Accept</string>
     <string name="pairing_reject">Reject</string>
+    <string name="device">Device</string>
+    <string name="pair_device">Pair device</string>
+    <string name="remote_control">Remote control</string>
+    <string name="settings">KDE Connect Settings</string>
 
 </resources>

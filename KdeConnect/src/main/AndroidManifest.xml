@@ -37,7 +37,7 @@
         <activity
                 android:theme="@style/Theme.AppCompat"
                 android:name="org.kde.kdeconnect.UserInterface.DeviceActivity"
-                android:label="Device"
+                android:label="@string/device"
                 android:parentActivityName="org.kde.connect.UserInterface.MainActivity"
                 >
             <meta-data android:name="android.support.PARENT_ACTIVITY"
@@ -50,7 +50,7 @@
         <activity
             android:theme="@style/Theme.AppCompat"
             android:name="org.kde.kdeconnect.UserInterface.PairActivity"
-            android:label="Device"
+            android:label="@string/pair_device"
             android:parentActivityName="org.kde.connect.UserInterface.MainActivity"
             >
             <meta-data android:name="android.support.PARENT_ACTIVITY"
@@ -63,7 +63,7 @@
         <activity
             android:theme="@style/Theme.AppCompat"
             android:name="org.kde.kdeconnect.Plugins.MprisPlugin.MprisActivity"
-            android:label="MPRIS controls"
+            android:label="@string/remote_control"
             >
         <meta-data android:name="android.support.PARENT_ACTIVITY"
                    android:value=".DeviceActivity" />
@@ -71,7 +71,7 @@
 
         <activity
                 android:name="org.kde.kdeconnect.UserInterface.SettingsActivity"
-                android:label="KDE Connect Settings"
+                android:label="@string/settings"
                 >
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                        android:value=".DeviceActivity" />
