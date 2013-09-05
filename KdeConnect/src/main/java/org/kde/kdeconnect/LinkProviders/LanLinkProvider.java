@@ -224,7 +224,7 @@ public class LanLinkProvider extends BaseLinkProvider {
             }
         }
 
-        Log.e("LanLinkProvider","Using tcpPort "+tcpPort);
+        Log.i("LanLinkProvider","Using tcpPort "+tcpPort);
 
         //I'm on a new network, let's be polite and introduce myself
         final int finalTcpPort = tcpPort;
@@ -241,7 +241,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                     socket.setReuseAddress(true);
                     socket.setBroadcast(true);
                     socket.send(packet);
-                    Log.e("LanLinkProvider","Udp identity package sent");
+                    //Log.e("LanLinkProvider","Udp identity package sent");
                 } catch(Exception e) {
                     e.printStackTrace();
                     Log.e("LanLinkProvider","Sending udp identity package failed");
