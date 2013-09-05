@@ -84,11 +84,11 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             } catch(Exception e) {
                 nid.id = 0;
             }
-            Log.e("NotificationId","unserialize: " + nid.packageName+ ", "+nid.tag+ ", "+nid.id);
+            //Log.e("NotificationId","unserialize: " + nid.packageName+ ", "+nid.tag+ ", "+nid.id);
             return nid;
         }
         public String serialize() {
-            Log.e("NotificationId","serialize: " + packageName+ ", "+tag+ ", "+id);
+            //Log.e("NotificationId","serialize: " + packageName+ ", "+tag+ ", "+id);
             String safePackageName = (packageName == null)? "" : packageName;
             String safeTag = (tag == null)? "" : tag;
             return safePackageName+":"+safeTag+":"+id;
@@ -115,7 +115,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public boolean onCreate() {
-        Log.e("NotificationsPlugin", "onCreate");
 
         if (Build.VERSION.SDK_INT < 18) return false;
 
@@ -267,7 +266,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
         } else {
 
-            Log.e("NotificationsPlugin","Nothing to do");
+            Log.w("NotificationsPlugin","Nothing to do");
 
         }
 

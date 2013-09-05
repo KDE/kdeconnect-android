@@ -55,7 +55,7 @@ public class BatteryPlugin extends Plugin {
         @Override
         public void onReceive(Context context, Intent intent) {
 
-            Log.e("BatteryPlugin", "Battery event");
+            Log.i("BatteryPlugin", "Battery event");
 
             boolean isCharging = (0 != intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0));
 

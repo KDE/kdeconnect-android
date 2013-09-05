@@ -26,13 +26,13 @@ public abstract class BaseLinkProvider {
 
     //These two should be called when the provider links to a new computer
     protected void connectionAccepted(NetworkPackage identityPackage, BaseComputerLink link) {
-        Log.e("LinkProvider", "connectionAccepted");
+        Log.i("LinkProvider", "connectionAccepted");
         for(ConnectionReceiver cr : connectionReceivers) {
             cr.onConnectionReceived(identityPackage, link);
         }
     }
     protected void connectionLost(BaseComputerLink link) {
-        Log.e("LinkProvider", "connectionLost");
+        Log.i("LinkProvider", "connectionLost");
         for(ConnectionReceiver cr : connectionReceivers) {
             cr.onConnectionLost(link);
         }

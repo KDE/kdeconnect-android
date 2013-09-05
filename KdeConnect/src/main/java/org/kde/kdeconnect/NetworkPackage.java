@@ -104,12 +104,12 @@ public class NetworkPackage {
         }
         //QJSon does not escape slashes, but Java JSONObject does. Converting to QJson format.
         String json = jo.toString().replace("\\/","/")+"\n";
-        Log.e("NetworkPackage.serialize",json);
+        //Log.e("NetworkPackage.serialize",json);
         return json;
     }
 
     static public NetworkPackage unserialize(String s) {
-        Log.e("NetworkPackage.unserialize", s);
+        //Log.e("NetworkPackage.unserialize", s);
         NetworkPackage np = new NetworkPackage();
         try {
             JSONObject jo = new JSONObject(s);
@@ -156,7 +156,7 @@ public class NetworkPackage {
             Log.e("NetworkPackage","Exception");
         }
 
-        Log.e("NetworkPackage", "Encrypted " + chunks.length()+" chunks");
+        Log.i("NetworkPackage", "Encrypted " + chunks.length()+" chunks");
 
     }
 

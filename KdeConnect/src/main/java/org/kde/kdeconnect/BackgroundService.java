@@ -78,17 +78,17 @@ public class BackgroundService extends Service {
         @Override
         public void onConnectionReceived(final NetworkPackage identityPackage, final BaseComputerLink link) {
 
-            Log.e("BackgroundService", "Connection accepted!");
+            Log.i("BackgroundService", "Connection accepted!");
 
             String deviceId = identityPackage.getString("deviceId");
 
             Device device = devices.get(deviceId);
 
             if (device != null) {
-                Log.e("BackgroundService", "addLink, known device: "+deviceId);
+                Log.i("BackgroundService", "addLink, known device: "+deviceId);
                 device.addLink(link);
             } else {
-                Log.e("BackgroundService", "addLink,unknown device: "+deviceId);
+                Log.i("BackgroundService", "addLink,unknown device: "+deviceId);
                 String name = identityPackage.getString("deviceName");
                 device = new Device(getBaseContext(), deviceId, name, link);
                 devices.put(deviceId, device);
@@ -101,7 +101,7 @@ public class BackgroundService extends Service {
         @Override
         public void onConnectionLost(BaseComputerLink link) {
             Device d = devices.get(link.getDeviceId());
-            Log.e("onConnectionLost","removeLink, deviceId: "+link.getDeviceId());
+            Log.i("onConnectionLost","removeLink, deviceId: "+link.getDeviceId());
             if (d != null) {
                 d.removeLink(link);
                 if (!d.isReachable() && !d.isPaired()) {

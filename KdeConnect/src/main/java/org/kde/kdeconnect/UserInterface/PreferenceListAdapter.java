@@ -16,7 +16,6 @@ public class PreferenceListAdapter extends ArrayAdapter<Preference> {
 
     public PreferenceListAdapter(Context context, ArrayList<Preference> items) {
         super(context,0, items);
-        Log.e("PreferenceListAdapter", ""+items.size());
         localList = items;
     }
 

@@ -31,7 +31,6 @@ public class SettingsActivity extends ListActivity {
 
                 final ArrayList<Preference> preferences = new ArrayList<Preference>();
                 for (final String pluginName : plugins) {
-                    Log.e("SettingsActivity", pluginName);
                     CheckBoxPreference pref = new CheckBoxPreference(getBaseContext());
                     PluginFactory.PluginInfo info = PluginFactory.getPluginInfo(getBaseContext(), pluginName);
                     pref.setKey(pluginName);

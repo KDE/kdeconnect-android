@@ -203,7 +203,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
 
     public void acceptPairing() {
 
-        Log.e("Device","Accepted pairing");
+        Log.i("Device","Accepted pairing");
 
         //Send our own public key
         NetworkPackage np = NetworkPackage.createPublicKeyPackage(context);
@@ -232,7 +232,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
 
     public void rejectPairing() {
 
-        Log.e("Device","Rejected pairing");
+        Log.i("Device","Rejected pairing");
 
         pairStatus = PairStatus.NotPaired;
 
@@ -259,7 +259,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
 
         links.add(link);
 
-        Log.e("Device","addLink "+link.getLinkProvider().getName()+" -> "+getName() + " active links: "+ links.size());
+        Log.i("Device","addLink "+link.getLinkProvider().getName()+" -> "+getName() + " active links: "+ links.size());
 
         Collections.sort(links, new Comparator<BaseComputerLink>() {
             @Override
@@ -278,7 +278,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
     public void removeLink(BaseComputerLink link) {
         link.removePackageReceiver(this);
         links.remove(link);
-        Log.e("Device","removeLink: "+link.getLinkProvider().getName() + " -> "+getName() + " active links: "+ links.size());
+        Log.i("Device","removeLink: "+link.getLinkProvider().getName() + " -> "+getName() + " active links: "+ links.size());
         if (links.isEmpty()) {
             reloadPluginsFromSettings();
         }
@@ -289,7 +289,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
 
         if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR)) {
 
-            Log.e("Device","Pair package");
+            Log.i("Device","Pair package");
 
             boolean wantsPair = np.getBoolean("pair");
 
@@ -318,7 +318,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
 
                 if (pairStatus == PairStatus.Requested)  { //We started pairing
 
-                    Log.e("Pairing","Pair answer");
+                    Log.i("Pairing","Pair answer");
 
                     pairStatus = PairStatus.Paired;
                     pairingTimer.cancel();
@@ -340,7 +340,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
 
                 } else {
 
-                    Log.e("Pairing","Pair request");
+                    Log.i("Pairing","Pair request");
 
                     Intent intent = new Intent(context, PairActivity.class);
                     intent.putExtra("deviceId", deviceId);
@@ -377,7 +377,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
 
                 }
             } else {
-                Log.e("Pairing","Unpair request");
+                Log.i("Pairing","Unpair request");
 
                 if (pairStatus == PairStatus.Requested) {
                     pairingTimer.cancel();
@@ -438,7 +438,6 @@ public class Device implements BaseComputerLink.PackageReceiver {
         new AsyncTask<Void,Void,Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
-                //Log.e("sendPackage","Do in background");
                 for(BaseComputerLink link : links) {
                     //Log.e("sendPackage","Trying "+link.getLinkProvider().getName());
                     if (link.sendPackage(np)) {
@@ -471,7 +470,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
     private void addPlugin(final String name) {
         Plugin existing = plugins.get(name);
         if (existing != null) {
-            Log.e("addPlugin","plugin already present:" + name);
+            Log.w("addPlugin","plugin already present:" + name);
             return;
         }
 
@@ -568,7 +567,6 @@ public class Device implements BaseComputerLink.PackageReceiver {
             if (isPaired() && isReachable()) {
                 enabled = isPluginEnabled(pluginName);
             }
-            //Log.e("reloadPluginsFromSettings",pluginName+"->"+enabled);
             if (enabled) {
                 addPlugin(pluginName);
             } else {

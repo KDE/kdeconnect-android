@@ -11,7 +11,7 @@ public class LanComputerLink extends BaseComputerLink {
     private IoSession session = null;
 
     public void disconnect() {
-        Log.e("LanComputerLink","Disconnect: "+session.getRemoteAddress().toString());
+        Log.i("LanComputerLink","Disconnect: "+session.getRemoteAddress().toString());
         session.close(true);
     }
 
@@ -22,9 +22,8 @@ public class LanComputerLink extends BaseComputerLink {
 
     @Override
     public boolean sendPackage(NetworkPackage np) {
-        Log.e("TcpComputerLink", "sendPackage");
         if (session == null) {
-            Log.e("TcpComputerLink","not yet connected");
+            Log.e("LanComputerLink","sendPackage failed: not yet connected");
             return false;
         } else {
             session.write(np.serialize());

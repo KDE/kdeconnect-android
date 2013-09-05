@@ -27,7 +27,7 @@ public class NotificationReceiver extends NotificationListenerService {
 
     @Override
     public void onNotificationPosted(StatusBarNotification statusBarNotification) {
-        Log.e("NotificationReceiver.onNotificationPosted","listeners: " + listeners.size());
+        Log.i("NotificationReceiver.onNotificationPosted","listeners: " + listeners.size());
         for(NotificationListener listener : listeners) {
             listener.onNotificationPosted(statusBarNotification);
         }
@@ -49,7 +49,7 @@ public class NotificationReceiver extends NotificationListenerService {
     //This will be called for each intent launch, even if the service is already started and is reused
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.e("NotificationReceiver", "onStartCommand");
+        Log.i("NotificationReceiver", "onStartCommand");
         for (InstanceCallback c : callbacks) {
             c.onServiceStart(this);
         }

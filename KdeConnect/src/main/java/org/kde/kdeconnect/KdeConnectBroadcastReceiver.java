@@ -13,14 +13,14 @@ public class KdeConnectBroadcastReceiver extends BroadcastReceiver
 
     public void onReceive(Context context, Intent intent) {
 
-        Log.e("KdeConnect", "Broadcast event: "+intent.getAction());
+        //Log.e("KdeConnect", "Broadcast event: "+intent.getAction());
 
         String action = intent.getAction();
 
         if(action.equals(Intent.ACTION_PACKAGE_REPLACED)) {
-            Log.e("KdeConnect", "UpdateReceiver");
+            Log.i("KdeConnect", "UpdateReceiver");
             if (!intent.getData().getSchemeSpecificPart().equals(context.getPackageName())) {
-                Log.e("KdeConnect", "Ignoring, it's not me!");
+                Log.i("KdeConnect", "Ignoring, it's not me!");
                 return;
             }
             BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
@@ -30,7 +30,7 @@ public class KdeConnectBroadcastReceiver extends BroadcastReceiver
                 }
             });
         } else if (action.equals(Intent.ACTION_BOOT_COMPLETED)) {
-            Log.e("KdeConnect", "KdeConnectBroadcastReceiver");
+            Log.i("KdeConnect", "KdeConnectBroadcastReceiver");
             BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
                 @Override
                 public void onServiceStart(BackgroundService service) {
@@ -41,7 +41,7 @@ public class KdeConnectBroadcastReceiver extends BroadcastReceiver
                 || action.equals(WifiManager.WIFI_STATE_CHANGED_ACTION)
                 || action.equals(ConnectivityManager.CONNECTIVITY_ACTION)
                 ) {
-            Log.e("KdeConnect", "Connection state changed, trying to connect");
+            Log.i("KdeConnect", "Connection state changed, trying to connect");
             BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
                 @Override
                 public void onServiceStart(BackgroundService service) {
@@ -56,7 +56,7 @@ public class KdeConnectBroadcastReceiver extends BroadcastReceiver
                 }
             });
         } else {
-            Log.e("KdeConnectBroadcastReceiver", "Ignoring broadcast event: "+intent.getAction());
+            Log.i("KdeConnectBroadcastReceiver", "Ignoring broadcast event: "+intent.getAction());
         }
 
     }

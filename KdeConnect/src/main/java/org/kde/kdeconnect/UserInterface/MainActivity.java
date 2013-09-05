@@ -89,7 +89,6 @@ public class MainActivity extends ActionBarActivity {
     //
 
     void updateComputerList() {
-        Log.e("MainActivity","updateComputerList");
 
         BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
             @Override

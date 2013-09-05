@@ -55,7 +55,7 @@ public class TelephonyPlugin extends Plugin {
 
             String action = intent.getAction();
 
-            Log.e("TelephonyPlugin","Telephony event: " + action);
+            //Log.e("TelephonyPlugin","Telephony event: " + action);
 
             if("android.provider.Telephony.SMS_RECEIVED".equals(action)) {
 
@@ -140,7 +140,7 @@ public class TelephonyPlugin extends Plugin {
 
     public void smsBroadcastReceived(SmsMessage message) {
 
-        Log.e("SmsBroadcastReceived", message.toString());
+        //Log.e("SmsBroadcastReceived", message.toString());
 
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_TELEPHONY);
 

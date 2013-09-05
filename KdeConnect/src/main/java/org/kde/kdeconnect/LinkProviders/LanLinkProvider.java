@@ -88,7 +88,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         public void messageReceived(IoSession udpSession, Object message) throws Exception {
             super.messageReceived(udpSession, message);
 
-            Log.e("LanLinkProvider", "Udp message received (" + message.getClass() + ") " + message.toString());
+            //Log.e("LanLinkProvider", "Udp message received (" + message.getClass() + ") " + message.toString());
 
             NetworkPackage np = null;
 
@@ -114,7 +114,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                     }
                 }
 
-                Log.e("LanLinkProvider", "It is an identity package, creating link");
+                Log.i("LanLinkProvider", "Identity package received, creating link");
 
                 try {
                     final InetSocketAddress address = (InetSocketAddress) udpSession.getRemoteAddress();
@@ -136,7 +136,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                         public void operationComplete(IoFuture ioFuture) {
                             IoSession session = ioFuture.getSession();
 
-                            Log.e("LanLinkProvider", "Connection successful: " + session.isConnected());
+                            Log.i("LanLinkProvider", "Connection successful: " + session.isConnected());
 
                             LanComputerLink link = new LanComputerLink(session, identityPackage.getString("deviceId"), LanLinkProvider.this);
 
@@ -159,12 +159,12 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     private void addLink(NetworkPackage identityPackage, LanComputerLink link) {
         String deviceId = identityPackage.getString("deviceId");
-        Log.e("LanLinkProvider","addLink to "+deviceId);
+        Log.i("LanLinkProvider","addLink to "+deviceId);
         LanComputerLink oldLink = visibleComputers.get(deviceId);
         visibleComputers.put(deviceId, link);
         connectionAccepted(identityPackage, link);
         if (oldLink != null) {
-            Log.e("LanLinkProvider","Removing old connection to same device");
+            Log.i("LanLinkProvider","Removing old connection to same device");
             oldLink.disconnect();
             connectionLost(oldLink);
         }
@@ -257,8 +257,6 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     @Override
     public void onNetworkChange() {
-
-        Log.e("LanLinkProvider","OnNetworkChange: " + (udpAcceptor != null));
 
         onStop();
         onStart();

@@ -35,8 +35,6 @@ public class MprisActivity extends Activity {
             @Override
             public void onServiceStart(BackgroundService service) {
 
-                Log.e("MprisActivity", "onService start");
-
                 Device device = service.getDevice(deviceId);
                 final MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
                 if (mpris == null) {
@@ -86,14 +84,11 @@ public class MprisActivity extends Activity {
                                 //String prevPlayer = (String)spinner.getSelectedItem();
                                 spinner.setAdapter(adapter);
 
-                                Log.e("MprisActivity", "playerListUpdatedHandler");
-
                                 spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                     @Override
                                     public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
                                         ((TextView) findViewById(R.id.now_playing_textview)).setText("");
                                         String player = playerList.get(pos);
-                                        Log.e("MprisActivity", "onPlayerSelected: " + player);
                                         mpris.setPlayer(player);
                                         //Spotify doesn't support changing the volume yet...
                                         if (player.equals("Spotify")) {

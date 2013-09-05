@@ -11,7 +11,7 @@ public class ContactsHelper {
 
     public static String phoneNumberLookup(Context context, String number) {
 
-        Log.e("PhoneNumberLookup", number);
+        //Log.e("PhoneNumberLookup", number);
 
         Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
         Cursor cursor = null;
@@ -34,7 +34,7 @@ public class ContactsHelper {
             int nameIndex = cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME);
             if (nameIndex != -1) {
                 String name = cursor.getString(nameIndex);
-                Log.e("PhoneNumberLookup", "success: " + name);
+                //Log.e("PhoneNumberLookup", "success: " + name);
                 return name;
             }
         }

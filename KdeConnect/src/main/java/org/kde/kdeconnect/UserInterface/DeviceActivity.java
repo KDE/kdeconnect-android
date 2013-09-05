@@ -38,7 +38,6 @@ public class DeviceActivity extends ActionBarActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Log.e("MainActivity", "updateComputerList");
 
                     //Errors list
                     final HashMap<String, Plugin> failedPlugins = device.getFailedPlugins();
