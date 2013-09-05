@@ -2,8 +2,6 @@ package org.kde.kdeconnect.Plugins.ClibpoardPlugin;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
@@ -15,8 +13,6 @@ import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
 public class ClipboardPlugin extends Plugin {
-
-    private String currentContent;
 
     /*static {
         PluginFactory.registerPlugin(ClipboardPlugin.class);
@@ -46,38 +42,16 @@ public class ClipboardPlugin extends Plugin {
         return (Build.VERSION.SDK_INT >= 11);
     }
 
-    private ClipboardManager cm;
-    private ClipboardManager.OnPrimaryClipChangedListener listener = new ClipboardManager.OnPrimaryClipChangedListener() {
-        @Override
-        public void onPrimaryClipChanged() {
-            try {
-
-                ClipData.Item item = cm.getPrimaryClip().getItemAt(0);
-                String content = item.coerceToText(context).toString();
-
-                if (!content.equals(currentContent)) {
-                    NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_CLIPBOARD);
-                    np.set("content", content);
-                    device.sendPackage(np);
-                    currentContent = content;
-                }
-
-            } catch(Exception e) {
-                //Probably clipboard was not text
-            }
-        }
-    };
+    private ClipboardListener listener;
 
     @Override
     public boolean onCreate() {
-
-        cm = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
 
         if (Build.VERSION.SDK_INT < 11) {
             return false;
         }
 
-        cm.addPrimaryClipChangedListener(listener);
+        listener = new ClipboardListener(context, device);
 
         return true;
 
@@ -86,7 +60,9 @@ public class ClipboardPlugin extends Plugin {
     @Override
     public void onDestroy() {
 
-        cm.removePrimaryClipChangedListener(listener);
+        if (Build.VERSION.SDK_INT < 11) return;
+
+        listener.stop();
 
     }
 
@@ -97,8 +73,8 @@ public class ClipboardPlugin extends Plugin {
             return false;
         }
 
-        currentContent = np.getString("content");
-        cm.setText(currentContent);
+        String content = np.getString("content");
+        listener.setText(content);
         return true;
 
     }
