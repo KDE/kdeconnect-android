@@ -104,11 +104,6 @@ public class Device implements BaseComputerLink.PackageReceiver {
         addLink(dl);
     }
 
-
-    public boolean hasName() {
-        return name != null;
-    }
-
     public String getName() {
         return name != null? name : context.getString(R.string.unknown_device);
     }

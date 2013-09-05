@@ -91,8 +91,8 @@ public class TelephonyPlugin extends Plugin {
 
 
 
-    int lastState = TelephonyManager.CALL_STATE_IDLE;
-    NetworkPackage lastPackage = null;
+    private int lastState = TelephonyManager.CALL_STATE_IDLE;
+    private NetworkPackage lastPackage = null;
 
     public void callBroadcastReceived(int state, String phoneNumber) {
 

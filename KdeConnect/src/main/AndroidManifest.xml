@@ -91,7 +91,7 @@
 
         <receiver android:name="org.kde.kdeconnect.KdeConnectBroadcastReceiver">
             <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_REPLACED"></action>
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
                 <data android:scheme="package" android:path="org.kde.kdeconnect" />
             </intent-filter>
             <intent-filter>

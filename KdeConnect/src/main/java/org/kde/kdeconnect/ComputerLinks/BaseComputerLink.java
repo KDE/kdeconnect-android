@@ -21,10 +21,6 @@ public abstract class BaseComputerLink {
         return deviceId;
     }
 
-    public void setDeviceId(String deviceId) {
-        this.deviceId = deviceId;
-    }
-
     public BaseLinkProvider getLinkProvider() {
         return linkProvider;
     }

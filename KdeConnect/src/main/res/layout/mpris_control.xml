@@ -1,56 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:id="@+id/mpris_control_view"
-              android:gravity="center">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mpris_control_view"
+    android:gravity="center">
 
     <Spinner
-            android:layout_width="200dip"
-            android:layout_height="wrap_content"
-            android:id="@+id/player_spinner"
-            android:layout_gravity="center"
-            />
+        android:layout_width="200dip"
+        android:layout_height="wrap_content"
+        android:id="@+id/player_spinner"
+        android:layout_gravity="center"
+    />
 
     <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/now_playing_textview"
-            android:singleLine="true"
-            android:gravity="center"
-            android:padding="5dip"
-            android:layout_gravity="center"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/now_playing_textview"
+        android:singleLine="true"
+        android:gravity="center"
+        android:padding="5dip"
+        android:layout_gravity="center"
+    />
 
     <ImageButton
-            android:layout_width="200dip"
-            android:layout_height="75dip"
-            android:id="@+id/play_button"
-            android:src="@android:drawable/ic_media_play"
-            android:layout_gravity="center"/>
+        android:layout_width="200dip"
+        android:layout_height="75dip"
+        android:id="@+id/play_button"
+        android:src="@android:drawable/ic_media_play"
+        android:contentDescription="@string/mpris_play"
+        android:layout_gravity="center"
+    />
 
     <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="200dip"
-            android:layout_height="70dip"
-            android:layout_gravity="center">
+        android:orientation="horizontal"
+        android:layout_width="200dip"
+        android:layout_height="70dip"
+        android:layout_gravity="center"
+    >
 
         <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/prev_button"
-                android:src="@android:drawable/ic_media_rew"
-                android:layout_weight="0.5"/>
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/prev_button"
+            android:src="@android:drawable/ic_media_rew"
+            android:contentDescription="@string/mpris_previous"
+            android:layout_weight="0.5"
+        />
 
         <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/next_button"
-                android:src="@android:drawable/ic_media_ff"
-                android:layout_gravity="center"
-                android:layout_weight="0.5"/>
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/next_button"
+            android:src="@android:drawable/ic_media_ff"
+            android:layout_gravity="center"
+            android:contentDescription="@string/mpris_next"
+            android:layout_weight="0.5"
+        />
 
     </LinearLayout>
 
@@ -62,22 +70,25 @@
             android:layout_gravity="center">
 
         <ImageView
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                android:layout_marginRight="10dip"
-                android:id="@+id/imageView"
-                android:layout_weight="1"
-                android:layout_gravity="left|center_vertical"
-                android:src="@drawable/volume"/>
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:layout_marginRight="10dip"
+            android:id="@+id/imageView"
+            android:layout_weight="1"
+            android:layout_gravity="left|center_vertical"
+            android:contentDescription="@string/mpris_volume"
+            android:src="@drawable/volume"
+        />
 
 
         <SeekBar
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/volume_seek"
-                android:layout_weight="1"
-                android:max="100"
-                android:layout_gravity="center"/>
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/volume_seek"
+            android:layout_weight="1"
+            android:max="100"
+            android:layout_gravity="center"
+        />
 
     </LinearLayout>
 

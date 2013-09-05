@@ -34,9 +34,7 @@ public class AppsHelper {
 
             PackageManager pm = context.getPackageManager();
             ApplicationInfo ai = pm.getApplicationInfo( packageName, 0);
-            Drawable drawable = pm.getApplicationIcon(ai);
-
-            return drawable;
+            return pm.getApplicationIcon(ai);
 
         } catch (final PackageManager.NameNotFoundException e) {
 

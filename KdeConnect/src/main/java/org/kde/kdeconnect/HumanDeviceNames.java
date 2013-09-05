@@ -9,7 +9,7 @@ public class HumanDeviceNames {
     //from https://github.com/meetup/android-device-names
     //Converted to java using:
     //cat android_models.properties | awk -F'=' '{sub(/ *$/, "", $1)} sub(/^ */, "", $2) { if ($2 != "") print "humanReadableNames.put(\""$1"\",\"" $2 "\");"}'
-    static HashMap<String,String> humanReadableNames = new HashMap<String,String>();
+    private static HashMap<String,String> humanReadableNames = new HashMap<String,String>();
     static {
         humanReadableNames.put("5860E","Coolpad Quattro 4G");
         humanReadableNames.put("ADR6300","HTC Droid Incredible");

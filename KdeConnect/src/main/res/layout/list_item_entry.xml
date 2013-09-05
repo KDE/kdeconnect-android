@@ -2,6 +2,7 @@
   
   <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
     android:layout_width="fill_parent"
+    android:baselineAligned="false"
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:gravity="center_vertical"
@@ -13,16 +14,16 @@
         android:layout_height="fill_parent"
         android:src="@android:drawable/ic_menu_preferences"
         android:paddingLeft="9dp"/>
-    -->
+
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dip"
         android:layout_marginRight="6dip"
         android:layout_marginTop="3dip"
         android:layout_marginBottom="3dip"
-        android:layout_weight="1">
-    
+        android:layout_weight="0">
+        -->
         <TextView android:id="@+id/list_item_entry_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,8 +41,8 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:singleLine="true"
             android:textColor="?android:attr/textColorSecondary" />
-        -->
+
 
     </RelativeLayout>
-    
+            -->
 </LinearLayout>

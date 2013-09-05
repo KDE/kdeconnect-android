@@ -29,7 +29,7 @@ public class BackgroundService extends Service {
 
     private HashMap<String, Device> devices = new HashMap<String, Device>();
 
-    Device.PairingCallback devicePairingCallback = new Device.PairingCallback() {
+    private Device.PairingCallback devicePairingCallback = new Device.PairingCallback() {
         @Override
         public void incomingRequest() {
             if (deviceListChangedCallback != null) deviceListChangedCallback.onDeviceListChanged();

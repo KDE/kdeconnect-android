@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class MprisPlugin extends Plugin {
 
     private String currentSong = "";
-    int volume = 50;
+    private int volume = 50;
     private Handler playerStatusUpdated = null;
 
     private ArrayList<String> playerList = new ArrayList<String>();

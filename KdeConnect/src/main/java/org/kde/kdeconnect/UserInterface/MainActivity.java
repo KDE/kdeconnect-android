@@ -29,7 +29,7 @@ public class MainActivity extends ActionBarActivity {
     // Action bar
     //
 
-    MenuItem menuProgress;
+    private MenuItem menuProgress;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -151,7 +151,7 @@ public class MainActivity extends ActionBarActivity {
 
             }
         });
-    };
+    }
 
     @Override
     protected void onStart() {

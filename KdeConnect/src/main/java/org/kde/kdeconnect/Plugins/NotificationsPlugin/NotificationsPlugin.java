@@ -180,7 +180,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
         Notification notification = statusBarNotification.getNotification();
         NotificationId id = NotificationId.fromNotification(statusBarNotification);
-        PackageManager packageManager = context.getPackageManager();
 
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_NOTIFICATION);
 
@@ -206,7 +205,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         np.set("appName", appName == null? packageName : appName);
         np.set("isClearable", statusBarNotification.isClearable());
         np.set("ticker", notification.tickerText.toString());
-        np.set("time", new Long(statusBarNotification.getPostTime()).toString());
+        np.set("time", Long.toString(statusBarNotification.getPostTime()));
         if (requestAnswer) np.set("requestAnswer", true);
 
         device.sendPackage(np);
