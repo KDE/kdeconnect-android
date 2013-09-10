@@ -66,7 +66,7 @@ public class PluginFactory {
         PluginFactory.registerPlugin(PingPlugin.class);
         PluginFactory.registerPlugin(MprisPlugin.class);
         PluginFactory.registerPlugin(ClipboardPlugin.class);
-        PluginFactory.registerPlugin(BatteryPlugin.class);
+        //PluginFactory.registerPlugin(BatteryPlugin.class);
         PluginFactory.registerPlugin(NotificationsPlugin.class);
     }
 
