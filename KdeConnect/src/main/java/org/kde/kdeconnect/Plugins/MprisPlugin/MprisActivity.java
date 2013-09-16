@@ -14,9 +14,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.kde.kdeconnect.BackgroundService;
-import org.kde.kdeconnect.ComputerLinks.BaseComputerLink;
+import org.kde.kdeconnect.Backends.BaseComputerLink;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.LinkProviders.BaseLinkProvider;
+import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect_tp.R;
 

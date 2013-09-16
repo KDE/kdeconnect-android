@@ -15,7 +15,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Base64;
 import android.util.Log;
 
-import org.kde.kdeconnect.ComputerLinks.BaseComputerLink;
+import org.kde.kdeconnect.Backends.BaseComputerLink;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.PairActivity;

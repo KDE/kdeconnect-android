@@ -1,4 +1,4 @@
-package org.kde.kdeconnect.LinkProviders;
+package org.kde.kdeconnect.Backends.LanBackend;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -16,7 +16,7 @@ import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.transport.socket.nio.NioDatagramAcceptor;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
-import org.kde.kdeconnect.ComputerLinks.LanComputerLink;
+import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.NetworkPackage;
 
 import java.net.DatagramPacket;

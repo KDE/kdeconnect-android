@@ -1,9 +1,10 @@
-package org.kde.kdeconnect.ComputerLinks;
+package org.kde.kdeconnect.Backends.LanBackend;
 
 import android.util.Log;
 
 import org.apache.mina.core.session.IoSession;
-import org.kde.kdeconnect.LinkProviders.BaseLinkProvider;
+import org.kde.kdeconnect.Backends.BaseComputerLink;
+import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.NetworkPackage;
 
 public class LanComputerLink extends BaseComputerLink {

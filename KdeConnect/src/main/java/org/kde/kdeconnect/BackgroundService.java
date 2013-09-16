@@ -11,10 +11,10 @@ import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 
-import org.kde.kdeconnect.ComputerLinks.BaseComputerLink;
-import org.kde.kdeconnect.LinkProviders.BaseLinkProvider;
-import org.kde.kdeconnect.LinkProviders.LanLinkProvider;
-import org.kde.kdeconnect.LinkProviders.LoopbackLinkProvider;
+import org.kde.kdeconnect.Backends.BaseComputerLink;
+import org.kde.kdeconnect.Backends.BaseLinkProvider;
+import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
+import org.kde.kdeconnect.Backends.LoopbackBackend.LoopbackLinkProvider;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;

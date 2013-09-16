@@ -1,6 +1,5 @@
-package org.kde.kdeconnect.ComputerLinks;
+package org.kde.kdeconnect.Backends;
 
-import org.kde.kdeconnect.LinkProviders.BaseLinkProvider;
 import org.kde.kdeconnect.NetworkPackage;
 
 import java.util.ArrayList;

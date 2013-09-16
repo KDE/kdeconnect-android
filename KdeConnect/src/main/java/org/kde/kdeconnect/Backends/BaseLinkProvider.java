@@ -1,8 +1,8 @@
-package org.kde.kdeconnect.LinkProviders;
+package org.kde.kdeconnect.Backends;
 
 import android.util.Log;
 
-import org.kde.kdeconnect.ComputerLinks.BaseComputerLink;
+import org.kde.kdeconnect.Backends.BaseComputerLink;
 import org.kde.kdeconnect.NetworkPackage;
 
 import java.util.ArrayList;
