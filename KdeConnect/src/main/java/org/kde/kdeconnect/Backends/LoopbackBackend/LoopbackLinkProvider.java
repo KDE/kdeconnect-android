@@ -27,7 +27,7 @@ public class LoopbackLinkProvider extends BaseLinkProvider {
     public void onNetworkChange() {
 
         NetworkPackage np = NetworkPackage.createIdentityPackage(context);
-        connectionAccepted(np, new LoopbackComputerLink(this));
+        connectionAccepted(np, new LoopbackLink(this));
 
     }
 

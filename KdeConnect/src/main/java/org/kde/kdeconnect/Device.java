@@ -15,7 +15,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Base64;
 import android.util.Log;
 
-import org.kde.kdeconnect.Backends.BaseComputerLink;
+import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.PairActivity;
@@ -34,7 +34,7 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Device implements BaseComputerLink.PackageReceiver {
+public class Device implements BaseLink.PackageReceiver {
 
     private Context context;
 
@@ -61,7 +61,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
     private ArrayList<PairingCallback> pairingCallback = new ArrayList<PairingCallback>();
     private Timer pairingTimer;
 
-    private ArrayList<BaseComputerLink> links = new ArrayList<BaseComputerLink>();
+    private ArrayList<BaseLink> links = new ArrayList<BaseLink>();
     private HashMap<String, Plugin> plugins = new HashMap<String, Plugin>();
     private HashMap<String, Plugin> failedPlugins = new HashMap<String, Plugin>();
 
@@ -90,7 +90,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
     }
 
     //Device known via an incoming connection sent to us via a devicelink, we know everything but we don't trust it yet
-    Device(Context context, String deviceId, String name, BaseComputerLink dl) {
+    Device(Context context, String deviceId, String name, BaseLink dl) {
         settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
 
         //Log.e("Device","Constructor B");
@@ -255,15 +255,25 @@ public class Device implements BaseComputerLink.PackageReceiver {
         return !links.isEmpty();
     }
 
-    public void addLink(BaseComputerLink link) {
+    public void addLink(BaseLink link) {
 
         links.add(link);
 
+        try {
+            SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(context);
+            byte[] privateKeyBytes = Base64.decode(globalSettings.getString("privateKey", ""), 0);
+            PrivateKey privateKey = KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(privateKeyBytes));
+            link.setPrivateKey(privateKey);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("Device", "Exception reading our own private key"); //Should not happen
+        }
+
         Log.i("Device","addLink "+link.getLinkProvider().getName()+" -> "+getName() + " active links: "+ links.size());
 
-        Collections.sort(links, new Comparator<BaseComputerLink>() {
+        Collections.sort(links, new Comparator<BaseLink>() {
             @Override
-            public int compare(BaseComputerLink o, BaseComputerLink o2) {
+            public int compare(BaseLink o, BaseLink o2) {
                 return o2.getLinkProvider().getPriority() - o.getLinkProvider().getPriority();
             }
         });
@@ -275,7 +285,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
         }
     }
 
-    public void removeLink(BaseComputerLink link) {
+    public void removeLink(BaseLink link) {
         link.removePackageReceiver(this);
         links.remove(link);
         Log.i("Device","removeLink: "+link.getLinkProvider().getName() + " -> "+getName() + " active links: "+ links.size());
@@ -398,23 +408,6 @@ public class Device implements BaseComputerLink.PackageReceiver {
             Log.e("onPackageReceived","Device not paired, ignoring package!");
 
         } else {
-            if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_ENCRYPTED)) {
-
-                try {
-                    //TODO: Do not read the key every time
-                    SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(context);
-                    byte[] privateKeyBytes = Base64.decode(globalSettings.getString("privateKey",""), 0);
-                    PrivateKey privateKey = KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(privateKeyBytes));
-                    np = np.decrypt(privateKey);
-                } catch(Exception e) {
-                    e.printStackTrace();
-                    Log.e("onPackageReceived","Exception reading the key needed to decrypt the package");
-                }
-
-            } else {
-                //TODO: The other side doesn't know that we are already paired, do something
-                Log.e("onPackageReceived","WARNING: Received unencrypted package from paired device!");
-            }
 
             for (Plugin plugin : plugins.values()) {
                 plugin.onPackageReceived(np);
@@ -426,27 +419,26 @@ public class Device implements BaseComputerLink.PackageReceiver {
 
     public boolean sendPackage(final NetworkPackage np) {
 
-        if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR) && isPaired()) {
-            try {
-                np.encrypt(publicKey);
-            } catch(Exception e) {
-                e.printStackTrace();
-                Log.e("Device","sendPackage exception - could not encrypt");
-            }
-        }
-
         new AsyncTask<Void,Void,Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
-                for(BaseComputerLink link : links) {
-                    //Log.e("sendPackage","Trying "+link.getLinkProvider().getName());
-                    if (link.sendPackage(np)) {
-                        //Log.e("sent using", link.getLinkProvider().getName());
-                        return null;
+
+                boolean useEncryption = (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR) && isPaired());
+
+                for(BaseLink link : links) {
+
+                    if (useEncryption) {
+                        if (link.sendPackageEncrypted(np, publicKey)) return null;
+                    } else {
+                        if (link.sendPackage(np)) return null;
                     }
+
                 }
+
                 Log.e("sendPackage","Error: Package could not be sent ("+links.size()+" links available)");
+
                 return null;
+
             }
         }.execute();
 

@@ -31,8 +31,8 @@ public class LanLinkProvider extends BaseLinkProvider {
     private final static int port = 1714;
 
     private Context context;
-    private HashMap<String, LanComputerLink> visibleComputers = new HashMap<String, LanComputerLink>();
-    private HashMap<Long, LanComputerLink> nioSessions = new HashMap<Long, LanComputerLink>();
+    private HashMap<String, LanLink> visibleComputers = new HashMap<String, LanLink>();
+    private HashMap<Long, LanLink> nioSessions = new HashMap<Long, LanLink>();
 
     private NioSocketAcceptor tcpAcceptor = null;
     private NioDatagramAcceptor udpAcceptor = null;
@@ -41,7 +41,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         @Override
         public void sessionClosed(IoSession session) throws Exception {
 
-            LanComputerLink brokenLink = nioSessions.remove(session.getId());
+            LanLink brokenLink = nioSessions.remove(session.getId());
             if (brokenLink != null) {
                 connectionLost(brokenLink);
                 brokenLink.disconnect();
@@ -62,14 +62,14 @@ public class LanLinkProvider extends BaseLinkProvider {
             String theMessage = (String) message;
             NetworkPackage np = NetworkPackage.unserialize(theMessage);
 
-            LanComputerLink prevLink = nioSessions.get(session.getId());
+            LanLink prevLink = nioSessions.get(session.getId());
 
             if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
                 String myId = NetworkPackage.createIdentityPackage(context).getString("deviceId");
                 if (np.getString("deviceId").equals(myId)) {
                     return;
                 }
-                LanComputerLink link = new LanComputerLink(session, np.getString("deviceId"), LanLinkProvider.this);
+                LanLink link = new LanLink(session, np.getString("deviceId"), LanLinkProvider.this);
                 nioSessions.put(session.getId(),link);
                 addLink(np, link);
             } else {
@@ -138,7 +138,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
                             Log.i("LanLinkProvider", "Connection successful: " + session.isConnected());
 
-                            LanComputerLink link = new LanComputerLink(session, identityPackage.getString("deviceId"), LanLinkProvider.this);
+                            LanLink link = new LanLink(session, identityPackage.getString("deviceId"), LanLinkProvider.this);
 
                             NetworkPackage np2 = NetworkPackage.createIdentityPackage(context);
                             link.sendPackage(np2);
@@ -157,10 +157,10 @@ public class LanLinkProvider extends BaseLinkProvider {
         }
     };
 
-    private void addLink(NetworkPackage identityPackage, LanComputerLink link) {
+    private void addLink(NetworkPackage identityPackage, LanLink link) {
         String deviceId = identityPackage.getString("deviceId");
         Log.i("LanLinkProvider","addLink to "+deviceId);
-        LanComputerLink oldLink = visibleComputers.get(deviceId);
+        LanLink oldLink = visibleComputers.get(deviceId);
         visibleComputers.put(deviceId, link);
         connectionAccepted(identityPackage, link);
         if (oldLink != null) {

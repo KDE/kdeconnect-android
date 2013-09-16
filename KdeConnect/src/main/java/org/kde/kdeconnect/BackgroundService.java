@@ -11,7 +11,7 @@ import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 
-import org.kde.kdeconnect.Backends.BaseComputerLink;
+import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.kde.kdeconnect.Backends.LoopbackBackend.LoopbackLinkProvider;
@@ -81,7 +81,7 @@ public class BackgroundService extends Service {
 
     private BaseLinkProvider.ConnectionReceiver deviceListener = new BaseLinkProvider.ConnectionReceiver() {
         @Override
-        public void onConnectionReceived(final NetworkPackage identityPackage, final BaseComputerLink link) {
+        public void onConnectionReceived(final NetworkPackage identityPackage, final BaseLink link) {
 
             Log.i("BackgroundService", "Connection accepted!");
 
@@ -104,7 +104,7 @@ public class BackgroundService extends Service {
         }
 
         @Override
-        public void onConnectionLost(BaseComputerLink link) {
+        public void onConnectionLost(BaseLink link) {
             Device d = devices.get(link.getDeviceId());
             Log.i("onConnectionLost", "removeLink, deviceId: " + link.getDeviceId());
             if (d != null) {
