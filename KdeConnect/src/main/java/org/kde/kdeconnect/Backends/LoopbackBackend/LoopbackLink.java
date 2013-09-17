@@ -18,6 +18,9 @@ public class LoopbackLink extends BaseLink {
     public boolean sendPackage(NetworkPackage in) {
         String s = in.serialize();
         NetworkPackage out= NetworkPackage.unserialize(s);
+        if (in.hasPayload()) {
+            out.setPayload(in.getPayload());
+        }
         packageReceived(out);
         return true;
     }
