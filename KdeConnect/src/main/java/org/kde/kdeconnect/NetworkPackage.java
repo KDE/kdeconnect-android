@@ -11,6 +11,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -35,6 +39,8 @@ public class NetworkPackage {
     private long mId;
     private String mType;
     private JSONObject mBody;
+    private InputStream mPayload;
+    private JSONObject mPayloadTransferInfo;
 
     private NetworkPackage() {
     }
@@ -43,6 +49,7 @@ public class NetworkPackage {
         mId = System.currentTimeMillis();
         mType = type;
         mBody = new JSONObject();
+        mPayloadTransferInfo = new JSONObject();
     }
 
     public String getType() {
@@ -116,13 +123,16 @@ public class NetworkPackage {
             np.mId = jo.getLong("id");
             np.mType = jo.getString("type");
             np.mBody = jo.getJSONObject("body");
+            if (jo.has("payloadTransferInfo")) {
+                np.mPayloadTransferInfo = jo.getJSONObject("payloadTransferInfo");
+            } else {
+                np.mPayloadTransferInfo = new JSONObject();
+            }
         } catch (Exception e) {
             return null;
         }
         return np;
     }
-
-
 
     public void encrypt(PublicKey publicKey) throws Exception {
 
@@ -177,7 +187,6 @@ public class NetworkPackage {
         return unserialize(decryptedJson);
     }
 
-
     static public NetworkPackage createIdentityPackage(Context context) {
 
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_IDENTITY);
@@ -206,6 +215,26 @@ public class NetworkPackage {
 
         return np;
 
+    }
+
+    public void setPayload(byte[] data) {
+        mPayload = new ByteArrayInputStream(data);
+    }
+
+    public void setPayload(InputStream stream) {
+        mPayload = stream;
+    }
+
+    public InputStream getPayload() {
+        return mPayload;
+    }
+
+    public boolean hasPayload() {
+        return (mPayload == null);
+    }
+
+    public boolean hasPayloadTransferInfo() {
+        return (mPayloadTransferInfo.length() > 0);
     }
 
 }
