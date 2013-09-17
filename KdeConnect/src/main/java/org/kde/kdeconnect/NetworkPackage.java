@@ -43,6 +43,7 @@ public class NetworkPackage {
     private JSONObject mPayloadTransferInfo;
 
     private NetworkPackage() {
+
     }
 
     public NetworkPackage(String type) {
@@ -237,4 +238,11 @@ public class NetworkPackage {
         return (mPayloadTransferInfo.length() > 0);
     }
 
+    public JSONObject getpayloadTransferInfo() {
+        return payloadTransferInfo;
+    }
+
+    public void setpayloadTransferInfo(JSONObject payloadTransferInfo) {
+        this.mPayloadTransferInfo = payloadTransferInfo;
+    }
 }
