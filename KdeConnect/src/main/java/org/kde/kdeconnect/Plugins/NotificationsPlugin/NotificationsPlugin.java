@@ -172,10 +172,10 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public void onNotificationPosted(StatusBarNotification statusBarNotification) {
-        onNotificationPosted(statusBarNotification, false);
+        sendNotification(statusBarNotification, false);
     }
 
-    public void onNotificationPosted(StatusBarNotification statusBarNotification, boolean requestAnswer) {
+    public void sendNotification(StatusBarNotification statusBarNotification, boolean requestAnswer) {
 
         Notification notification = statusBarNotification.getNotification();
         NotificationId id = NotificationId.fromNotification(statusBarNotification);
@@ -191,10 +191,11 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             ByteArrayOutputStream outStream = new ByteArrayOutputStream();
             appIcon.compress(Bitmap.CompressFormat.PNG, 90, outStream);
             byte[] bitmapData = outStream.toByteArray();
-            byte[] serializedBitmapData = Base64.encode(bitmapData, Base64.NO_WRAP);
-            String stringBitmapData = new String(serializedBitmapData, Charset.defaultCharset());
+            //byte[] serializedBitmapData = Base64.encode(bitmapData, Base64.NO_WRAP);
+            //String stringBitmapData = new String(serializedBitmapData, Charset.defaultCharset());
             //The icon is super big, better sending it as a file transfer when we support that
             //np.set("base64icon", stringBitmapData);
+            np.setPayload(bitmapData);
         } catch(Exception e) {
             e.printStackTrace();
             Log.e("NotificationsPlugin","Error retrieving icon");
@@ -224,7 +225,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 private void sendCurrentNotifications(NotificationReceiver service) {
                     StatusBarNotification[] notifications = service.getActiveNotifications();
                     for (StatusBarNotification notification : notifications) {
-                        onNotificationPosted(notification, true);
+                        sendNotification(notification, true);
                     }
                 }
 
