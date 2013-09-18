@@ -50,6 +50,7 @@ public class NetworkPackage {
         mId = System.currentTimeMillis();
         mType = type;
         mBody = new JSONObject();
+        mPayload = null;
         mPayloadTransferInfo = new JSONObject();
     }
 
@@ -105,19 +106,29 @@ public class NetworkPackage {
     public String serialize() {
         JSONObject jo = new JSONObject();
         try {
-            jo.put("id",mId);
-            jo.put("type",mType);
-            jo.put("body",mBody);
+            jo.put("id", mId);
+            jo.put("type", mType);
+            jo.put("body", mBody);
+            if (hasPayload()) {
+                jo.put("payloadTransferInfo", mPayloadTransferInfo);
+            }
         } catch(Exception e) {
+            e.printStackTrace();
+            Log.e("NetworkPackage", "Serialization exception");
         }
+
         //QJSon does not escape slashes, but Java JSONObject does. Converting to QJson format.
         String json = jo.toString().replace("\\/","/")+"\n";
+
         //Log.e("NetworkPackage.serialize",json);
+
         return json;
     }
 
     static public NetworkPackage unserialize(String s) {
+
         //Log.e("NetworkPackage.unserialize", s);
+
         NetworkPackage np = new NetworkPackage();
         try {
             JSONObject jo = new JSONObject(s);
@@ -130,6 +141,8 @@ public class NetworkPackage {
                 np.mPayloadTransferInfo = new JSONObject();
             }
         } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("NetworkPackage", "Unserialization exception");
             return null;
         }
         return np;
@@ -231,18 +244,18 @@ public class NetworkPackage {
     }
 
     public boolean hasPayload() {
-        return (mPayload == null);
+        return (mPayload != null);
     }
 
     public boolean hasPayloadTransferInfo() {
         return (mPayloadTransferInfo.length() > 0);
     }
 
-    public JSONObject getpayloadTransferInfo() {
-        return payloadTransferInfo;
+    public JSONObject getPayloadTransferInfo() {
+        return mPayloadTransferInfo;
     }
 
-    public void setpayloadTransferInfo(JSONObject payloadTransferInfo) {
-        this.mPayloadTransferInfo = payloadTransferInfo;
+    public void setPayloadTransferInfo(JSONObject payloadTransferInfo) {
+        mPayloadTransferInfo = payloadTransferInfo;
     }
 }
