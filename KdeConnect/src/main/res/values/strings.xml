@@ -52,5 +52,7 @@
     <string name="mpris_previous">Previous</string>
     <string name="mpris_next">Next</string>
     <string name="mpris_volume">Volume</string>
+    <string name="share_to">Share To...</string>
+
 
 </resources>

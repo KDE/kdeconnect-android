@@ -117,6 +117,18 @@
                    android:value="org.kde.kdeconnect.UserInterface.DeviceActivity" />
         </activity>
 
+        <activity
+            android:theme="@style/Theme.AppCompat"
+            android:name="org.kde.kdeconnect.Plugins.FileTransferPlugin.ShareToReceiver"
+            android:label="@string/share_to"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="*/*" />
+            </intent-filter>
+        </activity>
+
         <service android:name="org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationReceiver"
              android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
