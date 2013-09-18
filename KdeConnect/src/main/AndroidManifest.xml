@@ -32,6 +32,11 @@
         android:label="KDE Connect"
         >
 
+        <service
+            android:enabled="true"
+            android:name="org.kde.kdeconnect.BackgroundService">
+        </service>
+
         <activity
             android:theme="@style/Theme.AppCompat"
             android:name="org.kde.kdeconnect.UserInterface.MainActivity"
@@ -48,56 +53,32 @@
                 android:theme="@style/Theme.AppCompat"
                 android:name="org.kde.kdeconnect.UserInterface.DeviceActivity"
                 android:label="@string/device"
-                android:parentActivityName="org.kde.connect.UserInterface.MainActivity"
+                android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity"
                 >
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                       android:value="org.kde.connect.UserInterface.MainActivity" />
+                       android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
 
                 </activity>
-
-
 
         <activity
             android:theme="@style/Theme.AppCompat"
             android:name="org.kde.kdeconnect.UserInterface.PairActivity"
             android:label="@string/pair_device"
-            android:parentActivityName="org.kde.connect.UserInterface.MainActivity"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity"
             >
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.kde.connect.UserInterface.MainActivity" />
+                android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
 
-        </activity>
-
-
-
-        <activity
-            android:theme="@style/Theme.AppCompat"
-            android:name="org.kde.kdeconnect.Plugins.MprisPlugin.MprisActivity"
-            android:label="@string/remote_control"
-            >
-        <meta-data android:name="android.support.PARENT_ACTIVITY"
-                   android:value=".DeviceActivity" />
         </activity>
 
         <activity
-                android:name="org.kde.kdeconnect.UserInterface.SettingsActivity"
-                android:label="@string/settings"
-                >
+            android:name="org.kde.kdeconnect.UserInterface.SettingsActivity"
+            android:label="@string/settings"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.DeviceActivity"
+            >
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                       android:value=".DeviceActivity" />
+                android:value="org.kde.kdeconnect.UserInterface.DeviceActivity" />
         </activity>
-
-        <service
-            android:enabled="true"
-            android:name="org.kde.kdeconnect.BackgroundService">
-        </service>
-
-        <service android:name="org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationReceiver"
-             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
-            <intent-filter>
-                <action android:name="android.service.notification.NotificationListenerService" />
-            </intent-filter>
-        </service>
 
         <receiver android:name="org.kde.kdeconnect.KdeConnectBroadcastReceiver">
             <intent-filter>
@@ -123,6 +104,26 @@
                 <action android:name="android.intent.action.BATTERY_CHANGED" />
             </intent-filter>-->
         </receiver>
+
+        <!-- Plugin-related activities and services -->
+
+        <activity
+            android:theme="@style/Theme.AppCompat"
+            android:name="org.kde.kdeconnect.Plugins.MprisPlugin.MprisActivity"
+            android:label="@string/remote_control"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.DeviceActivity"
+            >
+        <meta-data android:name="android.support.PARENT_ACTIVITY"
+                   android:value="org.kde.kdeconnect.UserInterface.DeviceActivity" />
+        </activity>
+
+        <service android:name="org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationReceiver"
+             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
 
     </application>
 
