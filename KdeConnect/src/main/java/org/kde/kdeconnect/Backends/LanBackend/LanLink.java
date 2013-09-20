@@ -68,6 +68,7 @@ public class LanLink extends BaseLink {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
+                    //TODO: Timeout when waiting for a connection and close the socket
                     try {
                         OutputStream socket = server.accept().getOutputStream();
                         byte[] buffer = new byte[2048];
@@ -77,6 +78,8 @@ public class LanLink extends BaseLink {
                             Log.e("ok",""+bytesRead);
                             socket.write(buffer, 0, bytesRead);
                         }
+                        socket.close();
+                        server.close();
                         Log.e("LanLink","Finished sending payload");
                     } catch(Exception e) {
                         e.printStackTrace();
@@ -121,18 +124,13 @@ public class LanLink extends BaseLink {
         }
 
         try {
-
             if (np.hasPayload()) {
                 JSONObject transferInfo = sendPayload(np.getPayload());
                 np.setPayloadTransferInfo(transferInfo);
             }
-
             np.encrypt(key);
-
             session.write(np.serialize());
-
             return true;
-
         } catch (Exception e) {
             e.printStackTrace();
             Log.e("LanLink", "Encryption exception");
@@ -140,7 +138,6 @@ public class LanLink extends BaseLink {
         }
 
     }
-
 
     public void injectNetworkPackage(NetworkPackage np) {
 
@@ -162,7 +159,7 @@ public class LanLink extends BaseLink {
                 int tcpPort = np.getPayloadTransferInfo().getInt("port");
                 InetSocketAddress address = (InetSocketAddress)session.getRemoteAddress();
                 socket.connect(new InetSocketAddress(address.getAddress(), tcpPort));
-                np.setPayload(socket.getInputStream());
+                np.setPayload(socket.getInputStream(), np.getPayloadSize());
             } catch (Exception e) {
                 e.printStackTrace();
                 Log.e("LanLink", "Exception connecting to payload remote socket");

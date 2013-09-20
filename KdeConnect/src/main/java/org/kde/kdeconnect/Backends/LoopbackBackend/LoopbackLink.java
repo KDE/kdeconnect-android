@@ -18,9 +18,7 @@ public class LoopbackLink extends BaseLink {
     public boolean sendPackage(NetworkPackage in) {
         String s = in.serialize();
         NetworkPackage out= NetworkPackage.unserialize(s);
-        if (in.hasPayload()) {
-            out.setPayload(in.getPayload());
-        }
+        if (in.hasPayload()) out.setPayload(in.getPayload(), in.getPayloadSize());
         packageReceived(out);
         return true;
     }
@@ -33,6 +31,7 @@ public class LoopbackLink extends BaseLink {
             NetworkPackage out= NetworkPackage.unserialize(s);
             out.decrypt(privateKey);
             packageReceived(out);
+            if (in.hasPayload()) out.setPayload(in.getPayload(), in.getPayloadSize());
             return true;
         } catch(Exception e) {
             e.printStackTrace();

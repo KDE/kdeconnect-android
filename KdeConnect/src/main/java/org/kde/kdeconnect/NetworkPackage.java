@@ -24,7 +24,7 @@ import javax.crypto.Cipher;
 
 public class NetworkPackage {
 
-    public final static int ProtocolVersion = 3;
+    public final static int ProtocolVersion = 5;
 
     public final static String PACKAGE_TYPE_IDENTITY = "kdeconnect.identity";
     public final static String PACKAGE_TYPE_PAIR = "kdeconnect.pair";
@@ -35,12 +35,14 @@ public class NetworkPackage {
     public final static String PACKAGE_TYPE_NOTIFICATION = "kdeconnect.notification";
     public final static String PACKAGE_TYPE_CLIPBOARD = "kdeconnect.clipboard";
     public final static String PACKAGE_TYPE_MPRIS = "kdeconnect.mpris";
+    public final static String PACKAGE_TYPE_FILETRANSFER = "kdeconnect.filetransfer";
 
     private long mId;
     private String mType;
     private JSONObject mBody;
     private InputStream mPayload;
     private JSONObject mPayloadTransferInfo;
+    private int mPayloadSize;
 
     private NetworkPackage() {
 
@@ -51,6 +53,7 @@ public class NetworkPackage {
         mType = type;
         mBody = new JSONObject();
         mPayload = null;
+        mPayloadSize = 0;
         mPayloadTransferInfo = new JSONObject();
     }
 
@@ -103,6 +106,8 @@ public class NetworkPackage {
 
     public boolean has(String key) { return mBody.has(key); }
 
+    public boolean isEncrypted() { return mType.equals(PACKAGE_TYPE_ENCRYPTED); }
+
     public String serialize() {
         JSONObject jo = new JSONObject();
         try {
@@ -110,6 +115,7 @@ public class NetworkPackage {
             jo.put("type", mType);
             jo.put("body", mBody);
             if (hasPayload()) {
+                jo.put("payloadSize", mPayloadSize);
                 jo.put("payloadTransferInfo", mPayloadTransferInfo);
             }
         } catch(Exception e) {
@@ -120,14 +126,14 @@ public class NetworkPackage {
         //QJSon does not escape slashes, but Java JSONObject does. Converting to QJson format.
         String json = jo.toString().replace("\\/","/")+"\n";
 
-        //Log.e("NetworkPackage.serialize",json);
+        if (!isEncrypted()) {
+            Log.e("NetworkPackage.serialize", json);
+        }
 
         return json;
     }
 
     static public NetworkPackage unserialize(String s) {
-
-        //Log.e("NetworkPackage.unserialize", s);
 
         NetworkPackage np = new NetworkPackage();
         try {
@@ -135,16 +141,23 @@ public class NetworkPackage {
             np.mId = jo.getLong("id");
             np.mType = jo.getString("type");
             np.mBody = jo.getJSONObject("body");
-            if (jo.has("payloadTransferInfo")) {
+            if (jo.has("payloadSize")) {
                 np.mPayloadTransferInfo = jo.getJSONObject("payloadTransferInfo");
+                np.mPayloadSize = jo.getInt("payloadSize");
             } else {
                 np.mPayloadTransferInfo = new JSONObject();
+                np.mPayloadSize = 0;
             }
         } catch (Exception e) {
             e.printStackTrace();
             Log.e("NetworkPackage", "Unserialization exception");
             return null;
         }
+
+        if (!np.isEncrypted()) {
+            Log.e("NetworkPackage.unserialize", s);
+        }
+
         return np;
     }
 
@@ -232,15 +245,24 @@ public class NetworkPackage {
     }
 
     public void setPayload(byte[] data) {
-        mPayload = new ByteArrayInputStream(data);
+        setPayload(new ByteArrayInputStream(data), data.length);
     }
 
-    public void setPayload(InputStream stream) {
+    public void setPayload(InputStream stream, int size) {
         mPayload = stream;
+        mPayloadSize = size;
     }
+
+    /*public void setPayload(InputStream stream) {
+        setPayload(stream, -1);
+    }*/
 
     public InputStream getPayload() {
         return mPayload;
+    }
+
+    public int getPayloadSize() {
+        return mPayloadSize;
     }
 
     public boolean hasPayload() {
