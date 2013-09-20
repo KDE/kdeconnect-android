@@ -13,6 +13,7 @@ public class SectionItem implements ListAdapter.Item {
 	
 	public SectionItem(String title) {
 		this.title = title;
+        this.isEmpty = false;
 	}
 
     @Override
