@@ -120,7 +120,7 @@
         <activity
             android:theme="@style/Theme.AppCompat"
             android:name="org.kde.kdeconnect.Plugins.FileTransferPlugin.ShareToReceiver"
-            android:label="@string/share_to"
+            android:label="KDE Connect"
             >
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
