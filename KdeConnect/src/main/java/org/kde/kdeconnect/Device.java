@@ -419,30 +419,34 @@ public class Device implements BaseLink.PackageReceiver {
 
     public boolean sendPackage(final NetworkPackage np) {
 
-        new AsyncTask<Void,Void,Void>() {
+        new Thread(new Runnable() {
             @Override
-            protected Void doInBackground(Void... voids) {
+            public void run() {
 
                 boolean useEncryption = (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR) && isPaired());
+
+                //Log.e("sendPackage", "Sending...");
 
                 for(BaseLink link : links) {
 
                     if (useEncryption) {
-                        if (link.sendPackageEncrypted(np, publicKey)) return null;
+                        if (link.sendPackageEncrypted(np, publicKey)) {
+                            //Log.e("sendPackage", "Sent");
+                            return;
+                        }
                     } else {
-                        if (link.sendPackage(np)) return null;
+                        if (link.sendPackage(np)) {
+                            //Log.e("sendPackage", "Sent");
+                            return;
+                        }
                     }
 
                 }
 
                 Log.e("sendPackage","Error: Package could not be sent ("+links.size()+" links available)");
 
-                return null;
-
             }
-        }.execute();
-
-        //TODO: Detect when unable to send a package and try again somehow
+        }).start();
 
         return !links.isEmpty();
     }

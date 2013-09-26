@@ -150,7 +150,7 @@ public class NetworkPackage {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("NetworkPackage", "Unserialization exception");
+            Log.e("NetworkPackage", "Unserialization exception unserializing "+s);
             return null;
         }
 

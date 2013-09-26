@@ -37,7 +37,7 @@ public class LanLink extends BaseLink {
     private IoSession session = null;
 
     public void disconnect() {
-        Log.i("LanLink","Disconnect: "+session.getRemoteAddress().toString());
+        Log.i("LanLink", "Disconnect: "+session.getRemoteAddress().toString());
         session.close(true);
     }
 
@@ -50,40 +50,47 @@ public class LanLink extends BaseLink {
 
         try {
 
-            final ServerSocket server = new ServerSocket();
+            ServerSocket candidateServer = null;
             boolean success = false;
-            int tcpPort = 1764;
+            int tcpPort = 1739;
             while(!success) {
                 try {
-                    server.bind(new InetSocketAddress(tcpPort));
+                    candidateServer = new ServerSocket();
+                    candidateServer.bind(new InetSocketAddress(tcpPort));
                     success = true;
                 } catch(Exception e) {
+                    Log.e("LanLink", "Exception openning serversocket: "+e);
                     tcpPort++;
+                    if (tcpPort >= 1764) return new JSONObject();
                 }
             }
-
             JSONObject payloadTransferInfo = new JSONObject();
             payloadTransferInfo.put("port", tcpPort);
 
+            final ServerSocket server = candidateServer;
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     //TODO: Timeout when waiting for a connection and close the socket
+                    OutputStream socket = null;
                     try {
-                        OutputStream socket = server.accept().getOutputStream();
-                        byte[] buffer = new byte[2048];
+                        socket = server.accept().getOutputStream();
+                        byte[] buffer = new byte[4096];
                         int bytesRead;
                         Log.e("LanLink","Beginning to send payload");
                         while ((bytesRead = stream.read(buffer)) != -1) {
-                            Log.e("ok",""+bytesRead);
+                            //Log.e("ok",""+bytesRead);
                             socket.write(buffer, 0, bytesRead);
                         }
-                        socket.close();
-                        server.close();
                         Log.e("LanLink","Finished sending payload");
                     } catch(Exception e) {
                         e.printStackTrace();
                         Log.e("LanLink", "Exception with payload upload socket");
+                    } finally {
+                        if (socket != null) {
+                            try { socket.close(); } catch(Exception e) { }
+                        }
+                        try { server.close(); } catch(Exception e) { }
                     }
                 }
             }).start();
@@ -118,18 +125,23 @@ public class LanLink extends BaseLink {
 
     @Override
     public boolean sendPackageEncrypted(NetworkPackage np, PublicKey key) {
+
         if (session == null) {
             Log.e("LanLink","sendPackage failed: not yet connected");
             return false;
         }
 
         try {
+
             if (np.hasPayload()) {
                 JSONObject transferInfo = sendPayload(np.getPayload());
                 np.setPayloadTransferInfo(transferInfo);
             }
+
             np.encrypt(key);
+
             session.write(np.serialize());
+
             return true;
         } catch (Exception e) {
             e.printStackTrace();

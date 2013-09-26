@@ -65,10 +65,14 @@ public class LanLinkProvider extends BaseLinkProvider {
             LanLink prevLink = nioSessions.get(session.getId());
 
             if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
+
                 String myId = NetworkPackage.createIdentityPackage(context).getString("deviceId");
                 if (np.getString("deviceId").equals(myId)) {
                     return;
                 }
+
+                //Log.e("LanLinkProvider", "Identity package received from "+np.getString("deviceName"));
+
                 LanLink link = new LanLink(session, np.getString("deviceId"), LanLinkProvider.this);
                 nioSessions.put(session.getId(),link);
                 addLink(np, link);
@@ -90,70 +94,59 @@ public class LanLinkProvider extends BaseLinkProvider {
 
             //Log.e("LanLinkProvider", "Udp message received (" + message.getClass() + ") " + message.toString());
 
-            NetworkPackage np = null;
-
             try {
                 //We should receive a string thanks to the TextLineCodecFactory filter
                 String theMessage = (String) message;
-                np = NetworkPackage.unserialize(theMessage);
-            } catch (Exception e) {
-                e.printStackTrace();
-                Log.e("LanLinkProvider", "Could not unserialize package");
-            }
+                final NetworkPackage identityPackage = NetworkPackage.unserialize(theMessage);
 
-            if (np != null) {
-
-                final NetworkPackage identityPackage = np;
-                if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
+                if (!identityPackage.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
                     Log.e("LanLinkProvider", "1 Expecting an identity package");
                     return;
                 } else {
                     String myId = NetworkPackage.createIdentityPackage(context).getString("deviceId");
-                    if (np.getString("deviceId").equals(myId)) {
+                    if (identityPackage.getString("deviceId").equals(myId)) {
                         return;
                     }
                 }
 
                 Log.i("LanLinkProvider", "Identity package received, creating link");
 
-                try {
-                    final InetSocketAddress address = (InetSocketAddress) udpSession.getRemoteAddress();
+                final InetSocketAddress address = (InetSocketAddress) udpSession.getRemoteAddress();
 
-                    final NioSocketConnector connector = new NioSocketConnector();
-                    connector.setHandler(tcpHandler);
-                    //TextLineCodecFactory will split incoming data delimited by the given string
-                    connector.getFilterChain().addLast("codec",
-                            new ProtocolCodecFilter(
-                                    new TextLineCodecFactory(Charset.defaultCharset(), LineDelimiter.UNIX, LineDelimiter.UNIX)
-                            )
-                    );
-                    connector.getSessionConfig().setKeepAlive(true);
+                final NioSocketConnector connector = new NioSocketConnector();
+                connector.setHandler(tcpHandler);
+                //TextLineCodecFactory will split incoming data delimited by the given string
+                connector.getFilterChain().addLast("codec",
+                        new ProtocolCodecFilter(
+                                new TextLineCodecFactory(Charset.defaultCharset(), LineDelimiter.UNIX, LineDelimiter.UNIX)
+                        )
+                );
+                connector.getSessionConfig().setKeepAlive(true);
 
-                    int tcpPort = np.getInt("tcpPort",port);
-                    ConnectFuture future = connector.connect(new InetSocketAddress(address.getAddress(), tcpPort));
-                    future.addListener(new IoFutureListener<IoFuture>() {
-                        @Override
-                        public void operationComplete(IoFuture ioFuture) {
-                            IoSession session = ioFuture.getSession();
+                int tcpPort = identityPackage.getInt("tcpPort",port);
+                ConnectFuture future = connector.connect(new InetSocketAddress(address.getAddress(), tcpPort));
+                future.addListener(new IoFutureListener<IoFuture>() {
+                    @Override
+                    public void operationComplete(IoFuture ioFuture) {
+                        IoSession session = ioFuture.getSession();
 
-                            Log.i("LanLinkProvider", "Connection successful: " + session.isConnected());
+                        Log.i("LanLinkProvider", "Connection successful: " + session.isConnected());
 
-                            LanLink link = new LanLink(session, identityPackage.getString("deviceId"), LanLinkProvider.this);
+                        LanLink link = new LanLink(session, identityPackage.getString("deviceId"), LanLinkProvider.this);
 
-                            NetworkPackage np2 = NetworkPackage.createIdentityPackage(context);
-                            link.sendPackage(np2);
+                        NetworkPackage np2 = NetworkPackage.createIdentityPackage(context);
+                        link.sendPackage(np2);
 
-                            nioSessions.put(session.getId(), link);
-                            addLink(identityPackage, link);
-                        }
-                    });
+                        nioSessions.put(session.getId(), link);
+                        addLink(identityPackage, link);
+                    }
+                });
 
-                } catch (Exception e) {
-                    Log.e("LanLinkProvider","Exception!!");
-                    e.printStackTrace();
-                }
-
+            } catch (Exception e) {
+                Log.e("LanLinkProvider","Exception receiving udp package!!");
+                e.printStackTrace();
             }
+
         }
     };
 
