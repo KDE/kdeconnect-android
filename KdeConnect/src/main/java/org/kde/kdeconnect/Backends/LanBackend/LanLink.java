@@ -127,7 +127,7 @@ public class LanLink extends BaseLink {
     public boolean sendPackageEncrypted(NetworkPackage np, PublicKey key) {
 
         if (session == null) {
-            Log.e("LanLink","sendPackage failed: not yet connected");
+            Log.e("LanLink", "sendPackage failed: not yet connected");
             return false;
         }
 

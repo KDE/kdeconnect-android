@@ -158,23 +158,32 @@ public class Device implements BaseLink.PackageReceiver {
 
         //Send our own public key
         NetworkPackage np = NetworkPackage.createPublicKeyPackage(context);
-        boolean success = sendPackage(np);
+        sendPackage(np, new SendPackageFinishedCallback(){
 
-        if (!success) {
-            for (PairingCallback cb : pairingCallback) cb.pairingFailed(res.getString(R.string.error_could_not_send_package));
-            return;
-        }
-
-        pairingTimer = new Timer();
-        pairingTimer.schedule(new TimerTask() {
             @Override
-            public void run() {
-                for (PairingCallback cb : pairingCallback) cb.pairingFailed(context.getString(R.string.error_timed_out));
+            public void sendSuccessful() {
+                pairingTimer = new Timer();
+                pairingTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        for (PairingCallback cb : pairingCallback) {
+                            cb.pairingFailed(context.getString(R.string.error_timed_out));
+                        }
+                        pairStatus = PairStatus.NotPaired;
+                    }
+                }, 20*1000);
+                pairStatus = PairStatus.Requested;
+            }
+
+            @Override
+            public void sendFailed() {
+                for (PairingCallback cb : pairingCallback) {
+                    cb.pairingFailed(context.getString(R.string.error_could_not_send_package));
+                }
                 pairStatus = PairStatus.NotPaired;
             }
-        }, 20*1000);
 
-        pairStatus = PairStatus.Requested;
+        });
 
     }
 
@@ -207,9 +216,7 @@ public class Device implements BaseLink.PackageReceiver {
 
         //Send our own public key
         NetworkPackage np = NetworkPackage.createPublicKeyPackage(context);
-        boolean success = sendPackage(np);
-
-        if (!success) return;
+        sendPackage(np); //TODO: Set a callback
 
         pairStatus = PairStatus.Paired;
 
@@ -416,8 +423,16 @@ public class Device implements BaseLink.PackageReceiver {
 
     }
 
+    public interface SendPackageFinishedCallback {
+        void sendSuccessful();
+        void sendFailed();
+    }
 
-    public boolean sendPackage(final NetworkPackage np) {
+    public void sendPackage(NetworkPackage np) {
+        sendPackage(np,null);
+    }
+
+    public void sendPackage(final NetworkPackage np, final SendPackageFinishedCallback callback) {
 
         new Thread(new Runnable() {
             @Override
@@ -429,26 +444,25 @@ public class Device implements BaseLink.PackageReceiver {
 
                 for(BaseLink link : links) {
 
+                    boolean success;
                     if (useEncryption) {
-                        if (link.sendPackageEncrypted(np, publicKey)) {
-                            //Log.e("sendPackage", "Sent");
-                            return;
-                        }
+                        success = link.sendPackageEncrypted(np, publicKey);
                     } else {
-                        if (link.sendPackage(np)) {
-                            //Log.e("sendPackage", "Sent");
-                            return;
-                        }
+                        success = link.sendPackage(np);
                     }
-
+                    if (success) {
+                        //Log.e("sendPackage", "Sent");
+                        if (callback != null) callback.sendSuccessful();
+                        return;
+                    }
                 }
 
+                if (callback != null) callback.sendFailed();
                 Log.e("sendPackage","Error: Package could not be sent ("+links.size()+" links available)");
 
             }
         }).start();
 
-        return !links.isEmpty();
     }
 
 

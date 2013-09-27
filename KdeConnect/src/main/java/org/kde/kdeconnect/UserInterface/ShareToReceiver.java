@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import org.apache.http.client.utils.URIUtils;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
@@ -26,6 +27,7 @@ import org.kde.kdeconnect.UserInterface.List.SectionItem;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -84,7 +86,8 @@ public class ShareToReceiver extends ActionBarActivity {
 
         final Intent intent = getIntent();
 
-        if (!Intent.ACTION_SEND.equals(intent.getAction())) {
+        String action = intent.getAction();
+        if (!Intent.ACTION_SEND.equals(action) && !Intent.ACTION_SEND_MULTIPLE.equals(action)) {
             finish();
             return;
         }
@@ -117,28 +120,45 @@ public class ShareToReceiver extends ActionBarActivity {
 
                                 Device device = devicesList.get(i-1); //NOTE: -1 because of the title!
 
-                                NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_FILETRANSFER);
-
                                 Bundle extras = intent.getExtras();
                                 if (extras.containsKey(Intent.EXTRA_STREAM)) {
+
                                     try {
-                                        Uri uri = extras.getParcelable(Intent.EXTRA_STREAM);
 
-                                        ContentResolver cr = getContentResolver();
+                                        ArrayList<Uri> uriList;
+                                        if (!Intent.ACTION_SEND.equals(intent.getAction())) {
+                                            uriList = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
+                                        } else {
+                                            Uri uri = extras.getParcelable(Intent.EXTRA_STREAM);
+                                            uriList = new ArrayList<Uri>();
+                                            uriList.add(uri);
+                                        }
 
-                                        InputStream inputStream = cr.openInputStream(uri);
-
-                                        //TODO: Figure out a way to find the file size, so we can show a progress bar in KDE
-                                        np.setPayload(inputStream, -1);
+                                        queuedSendUriList(device, uriList);
 
                                     } catch (Exception e) {
                                         Log.e(this.getClass().getName(), e.toString());
                                     }
+
                                 } else if (extras.containsKey(Intent.EXTRA_TEXT)) {
-                                    np.set("text",extras.getString(Intent.EXTRA_TEXT));
+                                    String text = extras.getString(Intent.EXTRA_TEXT);
+                                    boolean isUrl;
+                                    try {
+                                        new URL(text);
+                                        isUrl = true;
+                                    } catch(Exception e) {
+                                        isUrl = false;
+                                    }
+                                    NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_FILETRANSFER);
+                                    if (isUrl) {
+                                        np.set("url", text);
+                                    } else {
+                                        np.set("text", text);
+                                    }
+                                    device.sendPackage(np);
                                 }
 
-                                device.sendPackage(np);
+
 
                                 finish();
                             }
@@ -150,6 +170,65 @@ public class ShareToReceiver extends ActionBarActivity {
         });
     }
 
+    private void queuedSendUriList(final Device device, final ArrayList<Uri> uriList) {
+        try {
+            Uri uri = uriList.remove(0);
+            ContentResolver cr = getContentResolver();
+            InputStream inputStream = cr.openInputStream(uri);
+
+            NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_FILETRANSFER);
+
+            String[] proj = { MediaStore.MediaColumns.DATA, MediaStore.MediaColumns.SIZE, MediaStore.MediaColumns.DISPLAY_NAME };
+            Cursor cursor = managedQuery(uri, proj, null, null, null);
+
+            int size = -1;
+            try {
+                int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.SIZE);
+                cursor.moveToFirst();
+                size = cursor.getInt(column_index);
+            } catch(Exception e) {
+                e.printStackTrace();
+                Log.e("ShareToReceiver", "Could not obtain file size");
+            }
+
+            //Log.e("ShareToReceiver", "Size "+size);
+            np.setPayload(inputStream, size);
+
+            try {
+                int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+                cursor.moveToFirst();
+                String path = cursor.getString(column_index);
+                np.set("filename", Uri.parse(path).getLastPathSegment());
+            } catch(Exception _) {
+                try {
+                    int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DISPLAY_NAME);
+                    cursor.moveToFirst();
+                    String name = cursor.getString(column_index);
+                    np.set("filename", name);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.e("ShareToReceiver", "Could not obtain file name");
+                }
+            }
+
+            device.sendPackage(np, new Device.SendPackageFinishedCallback() {
+                @Override
+                public void sendSuccessful() {
+                    if (!uriList.isEmpty()) queuedSendUriList(device, uriList);
+                    else Log.e("ShareToReceiver", "All files sent");
+                }
+
+                @Override
+                public void sendFailed() {
+                    Log.e("ShareToReceiver", "Failed to send attachment");
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("ShareToReceiver", "Failed to send attachment");
+        }
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
