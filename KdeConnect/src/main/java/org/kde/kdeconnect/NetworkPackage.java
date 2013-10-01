@@ -127,7 +127,7 @@ public class NetworkPackage {
         String json = jo.toString().replace("\\/","/")+"\n";
 
         if (!isEncrypted()) {
-            Log.e("NetworkPackage.serialize", json);
+            //Log.e("NetworkPackage.serialize", json);
         }
 
         return json;
@@ -155,7 +155,7 @@ public class NetworkPackage {
         }
 
         if (!np.isEncrypted()) {
-            Log.e("NetworkPackage.unserialize", s);
+            //Log.e("NetworkPackage.unserialize", s);
         }
 
         return np;
