@@ -42,6 +42,7 @@ public class Device implements BaseLink.PackageReceiver {
     private String name;
     private PublicKey publicKey;
     private int notificationId;
+    private int protocolVersion;
 
     private enum PairStatus {
         NotPaired,
@@ -77,6 +78,7 @@ public class Device implements BaseLink.PackageReceiver {
         this.deviceId = deviceId;
         this.name = settings.getString("deviceName", "unknown device");
         this.pairStatus = PairStatus.Paired;
+        this.protocolVersion = NetworkPackage.ProtocolVersion; //We don't know it yet
 
         try {
             byte[] publicKeyBytes = Base64.decode(settings.getString("publicKey", ""), 0);
@@ -90,18 +92,19 @@ public class Device implements BaseLink.PackageReceiver {
     }
 
     //Device known via an incoming connection sent to us via a devicelink, we know everything but we don't trust it yet
-    Device(Context context, String deviceId, String name, BaseLink dl) {
+    Device(Context context, NetworkPackage np, BaseLink dl) {
         settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
 
         //Log.e("Device","Constructor B");
 
         this.context = context;
-        this.deviceId = deviceId;
-        this.name = name;
+        this.deviceId = np.getString("deviceId");
+        this.name = np.getString("deviceName");
+        this.protocolVersion = np.getInt("protocolVersion");
         this.pairStatus = PairStatus.NotPaired;
         this.publicKey = null;
 
-        addLink(dl);
+        addLink(np, dl);
     }
 
     public String getName() {
@@ -112,6 +115,10 @@ public class Device implements BaseLink.PackageReceiver {
         return deviceId;
     }
 
+    //Returns 0 if the version matches, < 0 if it is older or > 0 if it is newer
+    public int compareProtocolVersion() {
+        return protocolVersion - NetworkPackage.ProtocolVersion;
+    }
 
 
 
@@ -262,7 +269,9 @@ public class Device implements BaseLink.PackageReceiver {
         return !links.isEmpty();
     }
 
-    public void addLink(BaseLink link) {
+    public void addLink(NetworkPackage identityPackage, BaseLink link) {
+
+        this.protocolVersion = identityPackage.getInt("protocolVersion");
 
         links.add(link);
 

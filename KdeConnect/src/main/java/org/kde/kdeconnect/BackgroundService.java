@@ -54,7 +54,7 @@ public class BackgroundService extends Service {
         Set<String> trustedDevices = preferences.getAll().keySet();
         for(String deviceId : trustedDevices) {
             if (preferences.getBoolean(deviceId, false)) {
-                Device device = new Device(getBaseContext(), deviceId);
+                Device device = new Device(this, deviceId);
                 devices.put(deviceId,device);
                 device.addPairingCallback(devicePairingCallback);
             }
@@ -91,11 +91,11 @@ public class BackgroundService extends Service {
 
             if (device != null) {
                 Log.i("BackgroundService", "addLink, known device: " + deviceId);
-                device.addLink(link);
+                device.addLink(identityPackage, link);
             } else {
                 Log.i("BackgroundService", "addLink,unknown device: " + deviceId);
                 String name = identityPackage.getString("deviceName");
-                device = new Device(getBaseContext(), deviceId, name, link);
+                device = new Device(BackgroundService.this, identityPackage, link);
                 devices.put(deviceId, device);
                 device.addPairingCallback(devicePairingCallback);
             }
