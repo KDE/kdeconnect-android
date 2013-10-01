@@ -1,4 +1,4 @@
-package org.kde.kdeconnect.LinkProviders;
+package org.kde.kdeconnect.Backends.LanBackend;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -16,7 +16,7 @@ import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.transport.socket.nio.NioDatagramAcceptor;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
-import org.kde.kdeconnect.ComputerLinks.LanComputerLink;
+import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.NetworkPackage;
 
 import java.net.DatagramPacket;
@@ -31,8 +31,8 @@ public class LanLinkProvider extends BaseLinkProvider {
     private final static int port = 1714;
 
     private Context context;
-    private HashMap<String, LanComputerLink> visibleComputers = new HashMap<String, LanComputerLink>();
-    private HashMap<Long, LanComputerLink> nioSessions = new HashMap<Long, LanComputerLink>();
+    private HashMap<String, LanLink> visibleComputers = new HashMap<String, LanLink>();
+    private HashMap<Long, LanLink> nioSessions = new HashMap<Long, LanLink>();
 
     private NioSocketAcceptor tcpAcceptor = null;
     private NioDatagramAcceptor udpAcceptor = null;
@@ -41,7 +41,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         @Override
         public void sessionClosed(IoSession session) throws Exception {
 
-            LanComputerLink brokenLink = nioSessions.remove(session.getId());
+            LanLink brokenLink = nioSessions.remove(session.getId());
             if (brokenLink != null) {
                 connectionLost(brokenLink);
                 brokenLink.disconnect();
@@ -62,14 +62,18 @@ public class LanLinkProvider extends BaseLinkProvider {
             String theMessage = (String) message;
             NetworkPackage np = NetworkPackage.unserialize(theMessage);
 
-            LanComputerLink prevLink = nioSessions.get(session.getId());
+            LanLink prevLink = nioSessions.get(session.getId());
 
             if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
+
                 String myId = NetworkPackage.createIdentityPackage(context).getString("deviceId");
                 if (np.getString("deviceId").equals(myId)) {
                     return;
                 }
-                LanComputerLink link = new LanComputerLink(session, np.getString("deviceId"), LanLinkProvider.this);
+
+                //Log.e("LanLinkProvider", "Identity package received from "+np.getString("deviceName"));
+
+                LanLink link = new LanLink(session, np.getString("deviceId"), LanLinkProvider.this);
                 nioSessions.put(session.getId(),link);
                 addLink(np, link);
             } else {
@@ -90,77 +94,66 @@ public class LanLinkProvider extends BaseLinkProvider {
 
             //Log.e("LanLinkProvider", "Udp message received (" + message.getClass() + ") " + message.toString());
 
-            NetworkPackage np = null;
-
             try {
                 //We should receive a string thanks to the TextLineCodecFactory filter
                 String theMessage = (String) message;
-                np = NetworkPackage.unserialize(theMessage);
-            } catch (Exception e) {
-                e.printStackTrace();
-                Log.e("LanLinkProvider", "Could not unserialize package");
-            }
+                final NetworkPackage identityPackage = NetworkPackage.unserialize(theMessage);
 
-            if (np != null) {
-
-                final NetworkPackage identityPackage = np;
-                if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
+                if (!identityPackage.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
                     Log.e("LanLinkProvider", "1 Expecting an identity package");
                     return;
                 } else {
                     String myId = NetworkPackage.createIdentityPackage(context).getString("deviceId");
-                    if (np.getString("deviceId").equals(myId)) {
+                    if (identityPackage.getString("deviceId").equals(myId)) {
                         return;
                     }
                 }
 
                 Log.i("LanLinkProvider", "Identity package received, creating link");
 
-                try {
-                    final InetSocketAddress address = (InetSocketAddress) udpSession.getRemoteAddress();
+                final InetSocketAddress address = (InetSocketAddress) udpSession.getRemoteAddress();
 
-                    final NioSocketConnector connector = new NioSocketConnector();
-                    connector.setHandler(tcpHandler);
-                    //TextLineCodecFactory will split incoming data delimited by the given string
-                    connector.getFilterChain().addLast("codec",
-                            new ProtocolCodecFilter(
-                                    new TextLineCodecFactory(Charset.defaultCharset(), LineDelimiter.UNIX, LineDelimiter.UNIX)
-                            )
-                    );
-                    connector.getSessionConfig().setKeepAlive(true);
+                final NioSocketConnector connector = new NioSocketConnector();
+                connector.setHandler(tcpHandler);
+                //TextLineCodecFactory will split incoming data delimited by the given string
+                connector.getFilterChain().addLast("codec",
+                        new ProtocolCodecFilter(
+                                new TextLineCodecFactory(Charset.defaultCharset(), LineDelimiter.UNIX, LineDelimiter.UNIX)
+                        )
+                );
+                connector.getSessionConfig().setKeepAlive(true);
 
-                    int tcpPort = np.getInt("tcpPort",port);
-                    ConnectFuture future = connector.connect(new InetSocketAddress(address.getAddress(), tcpPort));
-                    future.addListener(new IoFutureListener<IoFuture>() {
-                        @Override
-                        public void operationComplete(IoFuture ioFuture) {
-                            IoSession session = ioFuture.getSession();
+                int tcpPort = identityPackage.getInt("tcpPort",port);
+                ConnectFuture future = connector.connect(new InetSocketAddress(address.getAddress(), tcpPort));
+                future.addListener(new IoFutureListener<IoFuture>() {
+                    @Override
+                    public void operationComplete(IoFuture ioFuture) {
+                        IoSession session = ioFuture.getSession();
 
-                            Log.i("LanLinkProvider", "Connection successful: " + session.isConnected());
+                        Log.i("LanLinkProvider", "Connection successful: " + session.isConnected());
 
-                            LanComputerLink link = new LanComputerLink(session, identityPackage.getString("deviceId"), LanLinkProvider.this);
+                        LanLink link = new LanLink(session, identityPackage.getString("deviceId"), LanLinkProvider.this);
 
-                            NetworkPackage np2 = NetworkPackage.createIdentityPackage(context);
-                            link.sendPackage(np2);
+                        NetworkPackage np2 = NetworkPackage.createIdentityPackage(context);
+                        link.sendPackage(np2);
 
-                            nioSessions.put(session.getId(), link);
-                            addLink(identityPackage, link);
-                        }
-                    });
+                        nioSessions.put(session.getId(), link);
+                        addLink(identityPackage, link);
+                    }
+                });
 
-                } catch (Exception e) {
-                    Log.e("LanLinkProvider","Exception!!");
-                    e.printStackTrace();
-                }
-
+            } catch (Exception e) {
+                Log.e("LanLinkProvider","Exception receiving udp package!!");
+                e.printStackTrace();
             }
+
         }
     };
 
-    private void addLink(NetworkPackage identityPackage, LanComputerLink link) {
+    private void addLink(NetworkPackage identityPackage, LanLink link) {
         String deviceId = identityPackage.getString("deviceId");
         Log.i("LanLinkProvider","addLink to "+deviceId);
-        LanComputerLink oldLink = visibleComputers.get(deviceId);
+        LanLink oldLink = visibleComputers.get(deviceId);
         visibleComputers.put(deviceId, link);
         connectionAccepted(identityPackage, link);
         if (oldLink != null) {

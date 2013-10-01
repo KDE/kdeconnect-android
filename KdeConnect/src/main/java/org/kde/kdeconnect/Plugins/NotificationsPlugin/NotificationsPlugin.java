@@ -172,10 +172,10 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public void onNotificationPosted(StatusBarNotification statusBarNotification) {
-        onNotificationPosted(statusBarNotification, false);
+        sendNotification(statusBarNotification, false);
     }
 
-    public void onNotificationPosted(StatusBarNotification statusBarNotification, boolean requestAnswer) {
+    public void sendNotification(StatusBarNotification statusBarNotification, boolean requestAnswer) {
 
         Notification notification = statusBarNotification.getNotification();
         NotificationId id = NotificationId.fromNotification(statusBarNotification);
@@ -185,20 +185,21 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         String packageName = statusBarNotification.getPackageName();
         String appName = AppsHelper.appNameLookup(context, packageName);
 
+        //TODO: Add support for displaying app icons to desktop plasmoid and uncomment this piece of code
+        /*
         try {
+            //TODO: Scale down app icon if too big and compress as JPG
             Drawable drawableAppIcon = AppsHelper.appIconLookup(context, packageName);
             Bitmap appIcon = ImagesHelper.drawableToBitmap(drawableAppIcon);
             ByteArrayOutputStream outStream = new ByteArrayOutputStream();
             appIcon.compress(Bitmap.CompressFormat.PNG, 90, outStream);
             byte[] bitmapData = outStream.toByteArray();
-            byte[] serializedBitmapData = Base64.encode(bitmapData, Base64.NO_WRAP);
-            String stringBitmapData = new String(serializedBitmapData, Charset.defaultCharset());
-            //The icon is super big, better sending it as a file transfer when we support that
-            //np.set("base64icon", stringBitmapData);
+            np.setPayload(bitmapData);
         } catch(Exception e) {
             e.printStackTrace();
             Log.e("NotificationsPlugin","Error retrieving icon");
         }
+        */
 
         np.set("id", id.serialize());
         np.set("appName", appName == null? packageName : appName);
@@ -224,7 +225,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 private void sendCurrentNotifications(NotificationReceiver service) {
                     StatusBarNotification[] notifications = service.getActiveNotifications();
                     for (StatusBarNotification notification : notifications) {
-                        onNotificationPosted(notification, true);
+                        sendNotification(notification, true);
                     }
                 }
 

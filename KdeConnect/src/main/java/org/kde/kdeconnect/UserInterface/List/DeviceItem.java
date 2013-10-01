@@ -28,6 +28,17 @@ public class DeviceItem implements ListAdapter.Item {
 
         TextView titleView = (TextView)v.findViewById(R.id.list_item_entry_title);
         if (titleView != null) titleView.setText(device.getName());
+        if (device.compareProtocolVersion() != 0) {
+            TextView summaryView = (TextView)v.findViewById(R.id.list_item_entry_summary);
+            summaryView.setVisibility(View.VISIBLE);
+            if (device.compareProtocolVersion() > 0) {
+                summaryView.setText(R.string.protocol_version_newer);
+            } else {
+                summaryView.setText(R.string.protocol_version_older);
+            }
+        } else {
+            v.findViewById(R.id.list_item_entry_summary).setVisibility(View.GONE);
+        }
 
         v.setOnClickListener(new View.OnClickListener() {
             @Override

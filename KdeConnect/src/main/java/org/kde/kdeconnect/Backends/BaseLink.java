@@ -1,24 +1,36 @@
-package org.kde.kdeconnect.ComputerLinks;
+package org.kde.kdeconnect.Backends;
 
-import org.kde.kdeconnect.LinkProviders.BaseLinkProvider;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.util.Base64;
+
 import org.kde.kdeconnect.NetworkPackage;
 
+import java.security.KeyFactory;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.ArrayList;
 
 
-public abstract class BaseComputerLink {
+public abstract class BaseLink {
 
     private BaseLinkProvider linkProvider;
     private String deviceId;
     private ArrayList<PackageReceiver> receivers = new ArrayList<PackageReceiver>();
+    protected PrivateKey privateKey;
 
-    protected BaseComputerLink(String deviceId, BaseLinkProvider linkProvider) {
+    protected BaseLink(String deviceId, BaseLinkProvider linkProvider) {
         this.linkProvider = linkProvider;
         this.deviceId = deviceId;
     }
 
     public String getDeviceId() {
         return deviceId;
+    }
+
+    public void setPrivateKey(PrivateKey key) {
+        privateKey = key;
     }
 
     public BaseLinkProvider getLinkProvider() {
@@ -46,5 +58,6 @@ public abstract class BaseComputerLink {
 
     //TO OVERRIDE
     public abstract boolean sendPackage(NetworkPackage np);
+    public abstract boolean sendPackageEncrypted(NetworkPackage np, PublicKey key);
 
 }

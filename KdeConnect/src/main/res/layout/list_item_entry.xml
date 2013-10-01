@@ -6,43 +6,27 @@
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:gravity="center_vertical"
-    android:paddingRight="?android:attr/scrollbarSize">
-    <!--
-    <ImageView
-        android:id="@+id/list_item_entry_drawable"
+    android:paddingRight="?android:attr/scrollbarSize"
+    android:orientation="vertical">
+
+
+    <TextView android:id="@+id/list_item_entry_title"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:src="@android:drawable/ic_menu_preferences"
-        android:paddingLeft="9dp"/>
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="6dip"
-        android:layout_marginTop="3dip"
-        android:layout_marginBottom="3dip"
-        android:layout_weight="0">
-        -->
-        <TextView android:id="@+id/list_item_entry_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:ellipsize="marquee"
-            android:fadingEdge="horizontal" />
+        android:singleLine="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:ellipsize="marquee"
+        android:fadingEdge="horizontal"
+        android:text="" />
 
-        <!--
-        <TextView android:id="@+id/list_item_entry_summary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/list_item_entry_title"
-            android:layout_alignLeft="@id/list_item_entry_title"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:singleLine="true"
-            android:textColor="?android:attr/textColorSecondary" />
+    <TextView android:id="@+id/list_item_entry_summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:singleLine="true"
+        android:textColor="#CC2222"
+        android:visibility="gone"
+        android:text="" />
 
 
-    </RelativeLayout>
-            -->
 </LinearLayout>

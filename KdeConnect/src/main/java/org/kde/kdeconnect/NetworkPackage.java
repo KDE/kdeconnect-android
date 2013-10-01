@@ -11,6 +11,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -20,7 +24,7 @@ import javax.crypto.Cipher;
 
 public class NetworkPackage {
 
-    public final static int ProtocolVersion = 3;
+    public final static int ProtocolVersion = 5;
 
     public final static String PACKAGE_TYPE_IDENTITY = "kdeconnect.identity";
     public final static String PACKAGE_TYPE_PAIR = "kdeconnect.pair";
@@ -31,18 +35,26 @@ public class NetworkPackage {
     public final static String PACKAGE_TYPE_NOTIFICATION = "kdeconnect.notification";
     public final static String PACKAGE_TYPE_CLIPBOARD = "kdeconnect.clipboard";
     public final static String PACKAGE_TYPE_MPRIS = "kdeconnect.mpris";
+    public final static String PACKAGE_TYPE_SHARE = "kdeconnect.share";
 
     private long mId;
     private String mType;
     private JSONObject mBody;
+    private InputStream mPayload;
+    private JSONObject mPayloadTransferInfo;
+    private int mPayloadSize;
 
     private NetworkPackage() {
+
     }
 
     public NetworkPackage(String type) {
         mId = System.currentTimeMillis();
         mType = type;
         mBody = new JSONObject();
+        mPayload = null;
+        mPayloadSize = 0;
+        mPayloadTransferInfo = new JSONObject();
     }
 
     public String getType() {
@@ -94,35 +106,60 @@ public class NetworkPackage {
 
     public boolean has(String key) { return mBody.has(key); }
 
+    public boolean isEncrypted() { return mType.equals(PACKAGE_TYPE_ENCRYPTED); }
+
     public String serialize() {
         JSONObject jo = new JSONObject();
         try {
-            jo.put("id",mId);
-            jo.put("type",mType);
-            jo.put("body",mBody);
+            jo.put("id", mId);
+            jo.put("type", mType);
+            jo.put("body", mBody);
+            if (hasPayload()) {
+                jo.put("payloadSize", mPayloadSize);
+                jo.put("payloadTransferInfo", mPayloadTransferInfo);
+            }
         } catch(Exception e) {
+            e.printStackTrace();
+            Log.e("NetworkPackage", "Serialization exception");
         }
+
         //QJSon does not escape slashes, but Java JSONObject does. Converting to QJson format.
         String json = jo.toString().replace("\\/","/")+"\n";
-        //Log.e("NetworkPackage.serialize",json);
+
+        if (!isEncrypted()) {
+            //Log.e("NetworkPackage.serialize", json);
+        }
+
         return json;
     }
 
     static public NetworkPackage unserialize(String s) {
-        //Log.e("NetworkPackage.unserialize", s);
+
         NetworkPackage np = new NetworkPackage();
         try {
             JSONObject jo = new JSONObject(s);
             np.mId = jo.getLong("id");
             np.mType = jo.getString("type");
             np.mBody = jo.getJSONObject("body");
+            if (jo.has("payloadSize")) {
+                np.mPayloadTransferInfo = jo.getJSONObject("payloadTransferInfo");
+                np.mPayloadSize = jo.getInt("payloadSize");
+            } else {
+                np.mPayloadTransferInfo = new JSONObject();
+                np.mPayloadSize = 0;
+            }
         } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("NetworkPackage", "Unserialization exception unserializing "+s);
             return null;
         }
+
+        if (!np.isEncrypted()) {
+            //Log.e("NetworkPackage.unserialize", s);
+        }
+
         return np;
     }
-
-
 
     public void encrypt(PublicKey publicKey) throws Exception {
 
@@ -177,7 +214,6 @@ public class NetworkPackage {
         return unserialize(decryptedJson);
     }
 
-
     static public NetworkPackage createIdentityPackage(Context context) {
 
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_IDENTITY);
@@ -208,4 +244,40 @@ public class NetworkPackage {
 
     }
 
+    public void setPayload(byte[] data) {
+        setPayload(new ByteArrayInputStream(data), data.length);
+    }
+
+    public void setPayload(InputStream stream, int size) {
+        mPayload = stream;
+        mPayloadSize = size;
+    }
+
+    /*public void setPayload(InputStream stream) {
+        setPayload(stream, -1);
+    }*/
+
+    public InputStream getPayload() {
+        return mPayload;
+    }
+
+    public int getPayloadSize() {
+        return mPayloadSize;
+    }
+
+    public boolean hasPayload() {
+        return (mPayload != null);
+    }
+
+    public boolean hasPayloadTransferInfo() {
+        return (mPayloadTransferInfo.length() > 0);
+    }
+
+    public JSONObject getPayloadTransferInfo() {
+        return mPayloadTransferInfo;
+    }
+
+    public void setPayloadTransferInfo(JSONObject payloadTransferInfo) {
+        mPayloadTransferInfo = payloadTransferInfo;
+    }
 }

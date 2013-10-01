@@ -13,10 +13,10 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.BackgroundService;
-import org.kde.kdeconnect.ComputerLinks.BaseComputerLink;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.LinkProviders.BaseLinkProvider;
+import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect_tp.R;
 
@@ -121,12 +121,12 @@ public class MprisActivity extends Activity {
 
     BaseLinkProvider.ConnectionReceiver connectionReceiver = new BaseLinkProvider.ConnectionReceiver() {
         @Override
-        public void onConnectionReceived(NetworkPackage identityPackage, BaseComputerLink link) {
+        public void onConnectionReceived(NetworkPackage identityPackage, BaseLink link) {
             connectToPlugin();
         }
 
         @Override
-        public void onConnectionLost(BaseComputerLink link) {
+        public void onConnectionLost(BaseLink link) {
 
         }
     };

@@ -11,10 +11,10 @@ import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 
-import org.kde.kdeconnect.ComputerLinks.BaseComputerLink;
-import org.kde.kdeconnect.LinkProviders.BaseLinkProvider;
-import org.kde.kdeconnect.LinkProviders.LanLinkProvider;
-import org.kde.kdeconnect.LinkProviders.LoopbackLinkProvider;
+import org.kde.kdeconnect.Backends.BaseLink;
+import org.kde.kdeconnect.Backends.BaseLinkProvider;
+import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
+import org.kde.kdeconnect.Backends.LoopbackBackend.LoopbackLinkProvider;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -54,7 +54,7 @@ public class BackgroundService extends Service {
         Set<String> trustedDevices = preferences.getAll().keySet();
         for(String deviceId : trustedDevices) {
             if (preferences.getBoolean(deviceId, false)) {
-                Device device = new Device(getBaseContext(), deviceId);
+                Device device = new Device(this, deviceId);
                 devices.put(deviceId,device);
                 device.addPairingCallback(devicePairingCallback);
             }
@@ -81,7 +81,7 @@ public class BackgroundService extends Service {
 
     private BaseLinkProvider.ConnectionReceiver deviceListener = new BaseLinkProvider.ConnectionReceiver() {
         @Override
-        public void onConnectionReceived(final NetworkPackage identityPackage, final BaseComputerLink link) {
+        public void onConnectionReceived(final NetworkPackage identityPackage, final BaseLink link) {
 
             Log.i("BackgroundService", "Connection accepted!");
 
@@ -91,11 +91,11 @@ public class BackgroundService extends Service {
 
             if (device != null) {
                 Log.i("BackgroundService", "addLink, known device: " + deviceId);
-                device.addLink(link);
+                device.addLink(identityPackage, link);
             } else {
                 Log.i("BackgroundService", "addLink,unknown device: " + deviceId);
                 String name = identityPackage.getString("deviceName");
-                device = new Device(getBaseContext(), deviceId, name, link);
+                device = new Device(BackgroundService.this, identityPackage, link);
                 devices.put(deviceId, device);
                 device.addPairingCallback(devicePairingCallback);
             }
@@ -104,7 +104,7 @@ public class BackgroundService extends Service {
         }
 
         @Override
-        public void onConnectionLost(BaseComputerLink link) {
+        public void onConnectionLost(BaseLink link) {
             Device d = devices.get(link.getDeviceId());
             Log.i("onConnectionLost", "removeLink, deviceId: " + link.getDeviceId());
             if (d != null) {

@@ -15,7 +15,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Base64;
 import android.util.Log;
 
-import org.kde.kdeconnect.ComputerLinks.BaseComputerLink;
+import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.PairActivity;
@@ -34,7 +34,7 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Device implements BaseComputerLink.PackageReceiver {
+public class Device implements BaseLink.PackageReceiver {
 
     private Context context;
 
@@ -42,6 +42,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
     private String name;
     private PublicKey publicKey;
     private int notificationId;
+    private int protocolVersion;
 
     private enum PairStatus {
         NotPaired,
@@ -61,7 +62,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
     private ArrayList<PairingCallback> pairingCallback = new ArrayList<PairingCallback>();
     private Timer pairingTimer;
 
-    private ArrayList<BaseComputerLink> links = new ArrayList<BaseComputerLink>();
+    private ArrayList<BaseLink> links = new ArrayList<BaseLink>();
     private HashMap<String, Plugin> plugins = new HashMap<String, Plugin>();
     private HashMap<String, Plugin> failedPlugins = new HashMap<String, Plugin>();
 
@@ -77,6 +78,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
         this.deviceId = deviceId;
         this.name = settings.getString("deviceName", "unknown device");
         this.pairStatus = PairStatus.Paired;
+        this.protocolVersion = NetworkPackage.ProtocolVersion; //We don't know it yet
 
         try {
             byte[] publicKeyBytes = Base64.decode(settings.getString("publicKey", ""), 0);
@@ -90,18 +92,19 @@ public class Device implements BaseComputerLink.PackageReceiver {
     }
 
     //Device known via an incoming connection sent to us via a devicelink, we know everything but we don't trust it yet
-    Device(Context context, String deviceId, String name, BaseComputerLink dl) {
+    Device(Context context, NetworkPackage np, BaseLink dl) {
         settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
 
         //Log.e("Device","Constructor B");
 
         this.context = context;
-        this.deviceId = deviceId;
-        this.name = name;
+        this.deviceId = np.getString("deviceId");
+        this.name = np.getString("deviceName");
+        this.protocolVersion = np.getInt("protocolVersion");
         this.pairStatus = PairStatus.NotPaired;
         this.publicKey = null;
 
-        addLink(dl);
+        addLink(np, dl);
     }
 
     public String getName() {
@@ -112,6 +115,10 @@ public class Device implements BaseComputerLink.PackageReceiver {
         return deviceId;
     }
 
+    //Returns 0 if the version matches, < 0 if it is older or > 0 if it is newer
+    public int compareProtocolVersion() {
+        return protocolVersion - NetworkPackage.ProtocolVersion;
+    }
 
 
 
@@ -158,23 +165,32 @@ public class Device implements BaseComputerLink.PackageReceiver {
 
         //Send our own public key
         NetworkPackage np = NetworkPackage.createPublicKeyPackage(context);
-        boolean success = sendPackage(np);
+        sendPackage(np, new SendPackageFinishedCallback(){
 
-        if (!success) {
-            for (PairingCallback cb : pairingCallback) cb.pairingFailed(res.getString(R.string.error_could_not_send_package));
-            return;
-        }
-
-        pairingTimer = new Timer();
-        pairingTimer.schedule(new TimerTask() {
             @Override
-            public void run() {
-                for (PairingCallback cb : pairingCallback) cb.pairingFailed(context.getString(R.string.error_timed_out));
+            public void sendSuccessful() {
+                pairingTimer = new Timer();
+                pairingTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        for (PairingCallback cb : pairingCallback) {
+                            cb.pairingFailed(context.getString(R.string.error_timed_out));
+                        }
+                        pairStatus = PairStatus.NotPaired;
+                    }
+                }, 20*1000);
+                pairStatus = PairStatus.Requested;
+            }
+
+            @Override
+            public void sendFailed() {
+                for (PairingCallback cb : pairingCallback) {
+                    cb.pairingFailed(context.getString(R.string.error_could_not_send_package));
+                }
                 pairStatus = PairStatus.NotPaired;
             }
-        }, 20*1000);
 
-        pairStatus = PairStatus.Requested;
+        });
 
     }
 
@@ -207,9 +223,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
 
         //Send our own public key
         NetworkPackage np = NetworkPackage.createPublicKeyPackage(context);
-        boolean success = sendPackage(np);
-
-        if (!success) return;
+        sendPackage(np); //TODO: Set a callback
 
         pairStatus = PairStatus.Paired;
 
@@ -255,15 +269,27 @@ public class Device implements BaseComputerLink.PackageReceiver {
         return !links.isEmpty();
     }
 
-    public void addLink(BaseComputerLink link) {
+    public void addLink(NetworkPackage identityPackage, BaseLink link) {
+
+        this.protocolVersion = identityPackage.getInt("protocolVersion");
 
         links.add(link);
 
+        try {
+            SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(context);
+            byte[] privateKeyBytes = Base64.decode(globalSettings.getString("privateKey", ""), 0);
+            PrivateKey privateKey = KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(privateKeyBytes));
+            link.setPrivateKey(privateKey);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("Device", "Exception reading our own private key"); //Should not happen
+        }
+
         Log.i("Device","addLink "+link.getLinkProvider().getName()+" -> "+getName() + " active links: "+ links.size());
 
-        Collections.sort(links, new Comparator<BaseComputerLink>() {
+        Collections.sort(links, new Comparator<BaseLink>() {
             @Override
-            public int compare(BaseComputerLink o, BaseComputerLink o2) {
+            public int compare(BaseLink o, BaseLink o2) {
                 return o2.getLinkProvider().getPriority() - o.getLinkProvider().getPriority();
             }
         });
@@ -275,7 +301,7 @@ public class Device implements BaseComputerLink.PackageReceiver {
         }
     }
 
-    public void removeLink(BaseComputerLink link) {
+    public void removeLink(BaseLink link) {
         link.removePackageReceiver(this);
         links.remove(link);
         Log.i("Device","removeLink: "+link.getLinkProvider().getName() + " -> "+getName() + " active links: "+ links.size());
@@ -398,23 +424,6 @@ public class Device implements BaseComputerLink.PackageReceiver {
             Log.e("onPackageReceived","Device not paired, ignoring package!");
 
         } else {
-            if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_ENCRYPTED)) {
-
-                try {
-                    //TODO: Do not read the key every time
-                    SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(context);
-                    byte[] privateKeyBytes = Base64.decode(globalSettings.getString("privateKey",""), 0);
-                    PrivateKey privateKey = KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(privateKeyBytes));
-                    np = np.decrypt(privateKey);
-                } catch(Exception e) {
-                    e.printStackTrace();
-                    Log.e("onPackageReceived","Exception reading the key needed to decrypt the package");
-                }
-
-            } else {
-                //TODO: The other side doesn't know that we are already paired, do something
-                Log.e("onPackageReceived","WARNING: Received unencrypted package from paired device!");
-            }
 
             for (Plugin plugin : plugins.values()) {
                 plugin.onPackageReceived(np);
@@ -423,36 +432,46 @@ public class Device implements BaseComputerLink.PackageReceiver {
 
     }
 
+    public interface SendPackageFinishedCallback {
+        void sendSuccessful();
+        void sendFailed();
+    }
 
-    public boolean sendPackage(final NetworkPackage np) {
+    public void sendPackage(NetworkPackage np) {
+        sendPackage(np,null);
+    }
 
-        if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR) && isPaired()) {
-            try {
-                np.encrypt(publicKey);
-            } catch(Exception e) {
-                e.printStackTrace();
-                Log.e("Device","sendPackage exception - could not encrypt");
-            }
-        }
+    public void sendPackage(final NetworkPackage np, final SendPackageFinishedCallback callback) {
 
-        new AsyncTask<Void,Void,Void>() {
+        new Thread(new Runnable() {
             @Override
-            protected Void doInBackground(Void... voids) {
-                for(BaseComputerLink link : links) {
-                    //Log.e("sendPackage","Trying "+link.getLinkProvider().getName());
-                    if (link.sendPackage(np)) {
-                        //Log.e("sent using", link.getLinkProvider().getName());
-                        return null;
+            public void run() {
+
+                boolean useEncryption = (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR) && isPaired());
+
+                //Log.e("sendPackage", "Sending...");
+
+                for(BaseLink link : links) {
+
+                    boolean success;
+                    if (useEncryption) {
+                        success = link.sendPackageEncrypted(np, publicKey);
+                    } else {
+                        success = link.sendPackage(np);
+                    }
+                    if (success) {
+                        //Log.e("sendPackage", "Sent");
+                        if (callback != null) callback.sendSuccessful();
+                        return;
                     }
                 }
+
+                if (callback != null) callback.sendFailed();
                 Log.e("sendPackage","Error: Package could not be sent ("+links.size()+" links available)");
-                return null;
+
             }
-        }.execute();
+        }).start();
 
-        //TODO: Detect when unable to send a package and try again somehow
-
-        return !links.isEmpty();
     }
 
 
