@@ -1,6 +1,5 @@
 package org.kde.kdeconnect.UserInterface;
 
-import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
@@ -17,7 +16,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import org.apache.http.client.utils.URIUtils;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
@@ -149,7 +147,7 @@ public class ShareToReceiver extends ActionBarActivity {
                                     } catch(Exception e) {
                                         isUrl = false;
                                     }
-                                    NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_FILETRANSFER);
+                                    NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_SHARE);
                                     if (isUrl) {
                                         np.set("url", text);
                                     } else {
@@ -176,7 +174,7 @@ public class ShareToReceiver extends ActionBarActivity {
             ContentResolver cr = getContentResolver();
             InputStream inputStream = cr.openInputStream(uri);
 
-            NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_FILETRANSFER);
+            NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_SHARE);
 
             String[] proj = { MediaStore.MediaColumns.DATA, MediaStore.MediaColumns.SIZE, MediaStore.MediaColumns.DISPLAY_NAME };
             Cursor cursor = managedQuery(uri, proj, null, null, null);

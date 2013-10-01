@@ -35,7 +35,7 @@ public class NetworkPackage {
     public final static String PACKAGE_TYPE_NOTIFICATION = "kdeconnect.notification";
     public final static String PACKAGE_TYPE_CLIPBOARD = "kdeconnect.clipboard";
     public final static String PACKAGE_TYPE_MPRIS = "kdeconnect.mpris";
-    public final static String PACKAGE_TYPE_FILETRANSFER = "kdeconnect.filetransfer";
+    public final static String PACKAGE_TYPE_SHARE = "kdeconnect.share";
 
     private long mId;
     private String mType;
