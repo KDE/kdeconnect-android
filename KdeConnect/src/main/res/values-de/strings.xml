@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="pref_plugin_telephony_desc">Benachrichtigungen über SMS und Anrufe senden</string>
+  <string name="pref_plugin_battery">Akkubericht</string>
+  <string name="pref_plugin_clipboard">Abgleich der Zwischenablage</string>
+  <string name="pref_plugin_clipboard_desc">Inhalt der Zwischenablage freigeben</string>
+  <string name="pref_plugin_mpris">Multimedia-Fernbedienungen</string>
+  <string name="pref_plugin_ping">Ping</string>
+  <string name="pref_plugin_ping_desc">Senden und Empfangen von Pings</string>
+  <string name="pref_plugin_notifications_desc">Zugriff auf Ihre Benachrichtigungen von anderen Geräten</string>
+  <string name="plugin_not_available">Diese Funktion ist in Ihrer Android-Version nicht verfügbar</string>
+  <string name="device_list_empty">Keine Geräte</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Abbrechen</string>
+  <string name="open_settings">Einstellungen öffnen</string>
+  <string name="send_ping">Ping senden</string>
+  <string name="category_connected_devices">Verbundene Geräte</string>
+  <string name="device_menu_plugins">Module auswählen</string>
+  <string name="unknown_device">Unbekanntes Gerät</string>
+  <string name="error_not_reachable">Das Gerät ist nicht erreichbar</string>
+  <string name="error_could_not_send_package">Das Paket kann nicht gesendet werden</string>
+  <string name="error_timed_out">Zeitüberschreitung</string>
+  <string name="error_canceled_by_user">Abbruch durch Benutzer</string>
+  <string name="error_canceled_by_other_peer">Abbruch durch Gegenstelle</string>
+  <string name="error_invalid_key">Ungültiger Schlüssel empfangen</string>
+  <string name="reconnect">Erneut verbinden</string>
+  <string name="pairing_accept">Annehmen</string>
+  <string name="pairing_reject">Ablehnen</string>
+  <string name="device">Gerät</string>
+  <string name="remote_control">Fernsteuerung</string>
+  <string name="settings">KDE-Verbindungseinstellungen</string>
+  <string name="mpris_play">Wiedergabe</string>
+  <string name="mpris_previous">Zurück</string>
+  <string name="mpris_next">Weiter</string>
+  <string name="mpris_volume">Lautstärke</string>
+</resources>

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="pref_plugin_telephony">Telefoniemelder</string>
+  <string name="pref_plugin_telephony_desc">Stuur meldingen voor SMS en oproepen</string>
+  <string name="pref_plugin_battery">Batterijrapportage</string>
+  <string name="pref_plugin_battery_desc">Rapporteer periodiek de status van de batterij</string>
+  <string name="pref_plugin_clipboard">Klembordsynchronisatie</string>
+  <string name="pref_plugin_clipboard_desc">De inhoud van het klembord delen</string>
+  <string name="pref_plugin_mpris">Afstandsbediening van multimedia</string>
+  <string name="pref_plugin_mpris_desc">Bedien de audio/video vanaf uw telefoon</string>
+  <string name="pref_plugin_ping">Ping</string>
+  <string name="pref_plugin_ping_desc">Pings verzenden en ontvangen</string>
+  <string name="pref_plugin_notifications">Synchronisatie van meldingen</string>
+  <string name="pref_plugin_notifications_desc">Bekijk uw meldingen van andere apparaten</string>
+  <string name="plugin_not_available">Deze functie is niet beschikbaar in uw versie van Android</string>
+  <string name="device_list_empty">Geen apparaten</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Annuleren</string>
+  <string name="open_settings">Instellingen openen</string>
+  <string name="no_permissions">U moet toestemming geven voor toegang tot meldingen</string>
+  <string name="send_ping">Ping verzenden</string>
+  <string name="category_connected_devices">Verbonden apparaten</string>
+  <string name="device_menu_unpair">Paar uit elkaar halen</string>
+  <string name="unknown_device">Onbekend apparaat</string>
+  <string name="error_not_reachable">Apparaat niet bereikbaar</string>
+  <string name="error_timed_out">Tijdslimiet overschreden</string>
+  <string name="error_canceled_by_user">Geannuleerd door gebruiker</string>
+  <string name="error_canceled_by_other_peer">Geannuleerd door andere kant</string>
+  <string name="reconnect">Opnieuw verbinden</string>
+  <string name="pairing_accept">Accepteren</string>
+  <string name="pairing_reject">Afwijzen</string>
+  <string name="device">Apparaat</string>
+  <string name="remote_control">Afstandsbediening</string>
+  <string name="settings">Instellingen van KDE Connect</string>
+  <string name="mpris_play">Afspelen</string>
+  <string name="mpris_previous">Vorige</string>
+  <string name="mpris_next">Volgende</string>
+  <string name="mpris_volume">Volume</string>
+</resources>

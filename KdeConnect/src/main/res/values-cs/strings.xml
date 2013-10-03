@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="pref_plugin_battery">Hlášení baterie</string>
+  <string name="pref_plugin_ping">Ping</string>
+  <string name="pref_plugin_ping_desc">Posílat a přijímat ping</string>
+  <string name="device_list_empty">Žádná zařízení</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Zrušit</string>
+  <string name="open_settings">Otevřít nastavení</string>
+  <string name="send_ping">Poslat ping</string>
+  <string name="category_connected_devices">Připojená zařízení</string>
+  <string name="category_not_paired_devices">Nespárovaná zařízení</string>
+  <string name="category_remembered_devices">Zapamatovaná zařízení</string>
+  <string name="device_menu_plugins">Vyberte moduly</string>
+  <string name="error_timed_out">Čas vypršel</string>
+  <string name="error_canceled_by_user">Přerušeno uživatelem</string>
+  <string name="reconnect">Znovu připojit</string>
+  <string name="pairing_accept">Přijmout</string>
+  <string name="pairing_reject">Odmítnout</string>
+  <string name="device">Zařízení</string>
+  <string name="remote_control">Vzdálené ovládání</string>
+  <string name="mpris_play">Přehrát</string>
+  <string name="mpris_previous">Předchozí</string>
+  <string name="mpris_next">Následující</string>
+  <string name="mpris_volume">Hlasitost</string>
+</resources>
