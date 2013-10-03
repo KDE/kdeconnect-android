@@ -28,7 +28,7 @@ import java.util.HashMap;
 
 public class DeviceActivity extends ActionBarActivity {
 
-    private String deviceId;
+    static private String deviceId; //Static because if we get here by using the back button in the action bar, the extra deviceId will not be set.
     private Device device;
 
     private Device.PluginsChangedListener pluginsChangedListener = new Device.PluginsChangedListener() {
@@ -58,7 +58,7 @@ public class DeviceActivity extends ActionBarActivity {
                     errorList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                            Plugin p = failedPlugins.get(ids[position - 1]); //Header is position 0, so we have to substract one
+                            Plugin p = failedPlugins.get(ids[position - 1]); //Header is position 0, so we have to subtract one
                             p.getErrorDialog(DeviceActivity.this).show();
                         }
                     });
@@ -91,12 +91,15 @@ public class DeviceActivity extends ActionBarActivity {
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        deviceId = getIntent().getStringExtra("deviceId");
+        if (getIntent().hasExtra("deviceId")) {
+            deviceId = getIntent().getStringExtra("deviceId");
+        }
 
         BackgroundService.RunCommand(DeviceActivity.this, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
                 device = service.getDevice(deviceId);
+                if (device == null) return;
                 setTitle(device.getName());
                 device.addPluginsChangedListener(pluginsChangedListener);
                 pluginsChangedListener.onPluginsChanged(device);
