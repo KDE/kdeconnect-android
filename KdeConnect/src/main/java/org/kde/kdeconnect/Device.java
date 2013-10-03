@@ -33,6 +33,8 @@ import java.util.HashMap;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Device implements BaseLink.PackageReceiver {
 
@@ -441,33 +443,43 @@ public class Device implements BaseLink.PackageReceiver {
         sendPackage(np,null);
     }
 
+    private Lock mutex = new ReentrantLock(true);
+
     public void sendPackage(final NetworkPackage np, final SendPackageFinishedCallback callback) {
+
 
         new Thread(new Runnable() {
             @Override
             public void run() {
 
-                boolean useEncryption = (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR) && isPaired());
+                mutex.lock();
 
                 //Log.e("sendPackage", "Sending...");
 
-                for(BaseLink link : links) {
+                boolean useEncryption = (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR) && isPaired());
 
-                    boolean success;
+                boolean success = false;
+                for(BaseLink link : links) {
                     if (useEncryption) {
                         success = link.sendPackageEncrypted(np, publicKey);
                     } else {
                         success = link.sendPackage(np);
                     }
-                    if (success) {
-                        //Log.e("sendPackage", "Sent");
-                        if (callback != null) callback.sendSuccessful();
-                        return;
-                    }
+                    if (success) break;
                 }
 
-                if (callback != null) callback.sendFailed();
-                Log.e("sendPackage","Error: Package could not be sent ("+links.size()+" links available)");
+                if (callback != null) {
+                    if (success) callback.sendSuccessful();
+                    else callback.sendFailed();
+                }
+
+                if (success) {
+                    //Log.e("sendPackage","sent");
+                } else {
+                    Log.e("sendPackage","Error: Package could not be sent ("+links.size()+" links available)");
+                }
+
+                mutex.unlock();
 
             }
         }).start();
