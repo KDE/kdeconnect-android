@@ -51,4 +51,7 @@
   <string name="mpris_previous">Föregående</string>
   <string name="mpris_next">Nästa</string>
   <string name="mpris_volume">Volym</string>
+  <string name="share_to">Dela med...</string>
+  <string name="protocol_version_older">Apparaten använder en gammal protokollversion</string>
+  <string name="protocol_version_newer">Apparaten använder en nyare protokollversion</string>
 </resources>

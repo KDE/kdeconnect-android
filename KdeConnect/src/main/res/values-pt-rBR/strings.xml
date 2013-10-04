@@ -51,4 +51,7 @@
   <string name="mpris_previous">Anterior</string>
   <string name="mpris_next">Próximo</string>
   <string name="mpris_volume">Volume</string>
+  <string name="share_to">Compartilhar com...</string>
+  <string name="protocol_version_older">Este dispositivo usa uma versão antiga do protocolo</string>
+  <string name="protocol_version_newer">Este dispositivo usa uma versão mais recente do protocolo</string>
 </resources>

@@ -51,4 +51,7 @@
   <string name="mpris_previous">Назад</string>
   <string name="mpris_next">Далі</string>
   <string name="mpris_volume">Гучність</string>
+  <string name="share_to">Спільно використовувати з…</string>
+  <string name="protocol_version_older">На цьому пристрої використовується стара версія протоколу</string>
+  <string name="protocol_version_newer">На цьому пристрої використовується новіша версія протоколу</string>
 </resources>
