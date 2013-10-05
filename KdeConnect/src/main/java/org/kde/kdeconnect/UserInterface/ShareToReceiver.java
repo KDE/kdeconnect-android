@@ -209,6 +209,8 @@ public class ShareToReceiver extends ActionBarActivity {
                 }
             }
 
+            cursor.close();
+
             device.sendPackage(np, new Device.SendPackageFinishedCallback() {
                 @Override
                 public void sendSuccessful() {
@@ -218,12 +220,12 @@ public class ShareToReceiver extends ActionBarActivity {
 
                 @Override
                 public void sendFailed() {
-                    Log.e("ShareToReceiver", "Failed to send attachment");
+                    Log.e("ShareToReceiver", "Failed to send file");
                 }
             });
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("ShareToReceiver", "Failed to send attachment");
+            Log.e("ShareToReceiver", "Exception sending files");
         }
 
     }
