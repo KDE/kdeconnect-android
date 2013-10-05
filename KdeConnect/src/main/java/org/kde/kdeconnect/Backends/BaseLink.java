@@ -56,7 +56,7 @@ public abstract class BaseLink {
         }
     }
 
-    //TO OVERRIDE
+    //TO OVERRIDE, should be sync
     public abstract boolean sendPackage(NetworkPackage np);
     public abstract boolean sendPackageEncrypted(NetworkPackage np, PublicKey key);
 

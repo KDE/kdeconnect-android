@@ -1,36 +1,20 @@
 package org.kde.kdeconnect.Backends.LanBackend;
 
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.util.Base64;
 import android.util.Log;
 
-import org.apache.mina.core.future.ConnectFuture;
-import org.apache.mina.core.future.IoFuture;
-import org.apache.mina.core.future.IoFutureListener;
-import org.apache.mina.core.service.IoHandlerAdapter;
+import org.apache.mina.core.future.WriteFuture;
 import org.apache.mina.core.session.IoSession;
-import org.apache.mina.filter.codec.ProtocolCodecFilter;
-import org.apache.mina.filter.codec.textline.LineDelimiter;
-import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
-import org.apache.mina.transport.socket.nio.NioSocketConnector;
 import org.json.JSONObject;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.NetworkPackage;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.SocketAddress;
-import java.nio.charset.Charset;
-import java.security.KeyFactory;
-import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.security.spec.PKCS8EncodedKeySpec;
 
 public class LanLink extends BaseLink {
 
@@ -46,9 +30,11 @@ public class LanLink extends BaseLink {
         this.session = session;
     }
 
-    private JSONObject sendPayload(final InputStream stream) {
+    private Thread sendPayload(NetworkPackage np) {
 
         try {
+
+            final InputStream stream = np.getPayload();
 
             ServerSocket candidateServer = null;
             boolean success = false;
@@ -61,14 +47,17 @@ public class LanLink extends BaseLink {
                 } catch(Exception e) {
                     Log.e("LanLink", "Exception openning serversocket: "+e);
                     tcpPort++;
-                    if (tcpPort >= 1764) return new JSONObject();
+                    if (tcpPort >= 1764) {
+                        Log.e("LanLink", "No more ports available");
+                        return null;
+                    }
                 }
             }
             JSONObject payloadTransferInfo = new JSONObject();
             payloadTransferInfo.put("port", tcpPort);
 
             final ServerSocket server = candidateServer;
-            new Thread(new Runnable() {
+            Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     //TODO: Timeout when waiting for a connection and close the socket
@@ -93,9 +82,12 @@ public class LanLink extends BaseLink {
                         try { server.close(); } catch(Exception e) { }
                     }
                 }
-            }).start();
+            });
+            thread.start();
 
-            return payloadTransferInfo;
+            np.setPayloadTransferInfo(payloadTransferInfo);
+
+            return thread;
 
         } catch(Exception e) {
 
@@ -108,19 +100,33 @@ public class LanLink extends BaseLink {
     }
     @Override
     public boolean sendPackage(final NetworkPackage np) {
+
         if (session == null) {
             Log.e("LanLink", "sendPackage failed: not yet connected");
             return false;
         }
 
-        if (np.hasPayload()) {
-            JSONObject transferInfo = sendPayload(np.getPayload());
-            np.setPayloadTransferInfo(transferInfo);
+        try {
+            Thread thread = null;
+            if (np.hasPayload()) {
+                thread = sendPayload(np);
+                if (thread == null) return false;
+            }
+
+            WriteFuture future = session.write(np.serialize());
+            if (!future.await().isWritten()) return false;
+
+            if (thread != null) {
+                thread.join(); //Wait for thread to finish
+            }
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("LanLink", "sendPackage exception");
+            return false;
         }
 
-        session.write(np.serialize());
-
-        return true;
     }
 
     @Override
@@ -133,19 +139,25 @@ public class LanLink extends BaseLink {
 
         try {
 
+            Thread thread = null;
             if (np.hasPayload()) {
-                JSONObject transferInfo = sendPayload(np.getPayload());
-                np.setPayloadTransferInfo(transferInfo);
+                thread = sendPayload(np);
+                if (thread == null) return false;
             }
 
             np.encrypt(key);
+            WriteFuture future = session.write(np.serialize());
+            if (!future.await().isWritten()) return false;
 
-            session.write(np.serialize());
+            if (thread != null) {
+                thread.join(); //Wait for thread to finish
+            }
 
             return true;
+
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("LanLink", "Encryption exception");
+            Log.e("LanLink", "sendPackageEncrypted exception");
             return false;
         }
 

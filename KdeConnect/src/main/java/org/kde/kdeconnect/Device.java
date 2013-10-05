@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
@@ -33,8 +32,6 @@ import java.util.HashMap;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class Device implements BaseLink.PackageReceiver {
 
@@ -443,23 +440,22 @@ public class Device implements BaseLink.PackageReceiver {
         sendPackage(np,null);
     }
 
-    private Lock mutex = new ReentrantLock(true);
-
+    //Async
     public void sendPackage(final NetworkPackage np, final SendPackageFinishedCallback callback) {
-
 
         new Thread(new Runnable() {
             @Override
             public void run() {
 
-                mutex.lock();
-
-                //Log.e("sendPackage", "Sending...");
+                //Log.e("sendPackage", "Sending package...");
 
                 boolean useEncryption = (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR) && isPaired());
 
+                //We need a copy to avoid concurrent modification exception if the original list changes
+                ArrayList<BaseLink> mLinks = new ArrayList<BaseLink>(links);
+
                 boolean success = false;
-                for(BaseLink link : links) {
+                for(BaseLink link : mLinks) {
                     if (useEncryption) {
                         success = link.sendPackageEncrypted(np, publicKey);
                     } else {
@@ -468,18 +464,16 @@ public class Device implements BaseLink.PackageReceiver {
                     if (success) break;
                 }
 
-                if (callback != null) {
-                    if (success) callback.sendSuccessful();
-                    else callback.sendFailed();
-                }
-
                 if (success) {
-                    //Log.e("sendPackage","sent");
+                   // Log.e("sendPackage","Package sent");
                 } else {
                     Log.e("sendPackage","Error: Package could not be sent ("+links.size()+" links available)");
                 }
 
-                mutex.unlock();
+                if (callback != null) {
+                    if (success) callback.sendSuccessful();
+                    else callback.sendFailed();
+                }
 
             }
         }).start();
