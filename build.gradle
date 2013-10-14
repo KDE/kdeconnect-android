@@ -1,2 +1,27 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.5.+'
+    }
+}
 
+apply plugin: 'android'
+
+dependencies {
+    compile "com.android.support:support-v4:18.0.+"
+    compile "com.android.support:appcompat-v7:18.0.+"
+    compile files('libs/mina-core-2.0.7.jar')
+    compile files('libs/slf4j-api-1.6.6.jar')
+}
+
+android {
+    compileSdkVersion 18
+    buildToolsVersion "18.1"
+
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 18
+    }
+}

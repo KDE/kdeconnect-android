@@ -10,7 +10,7 @@ public class SectionItem implements ListAdapter.Item {
 
 	private final String title;
     public boolean isEmpty;
-	
+
 	public SectionItem(String title) {
 		this.title = title;
         this.isEmpty = false;

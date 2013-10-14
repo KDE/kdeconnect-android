@@ -1,4 +1,7 @@
 local.properties
-.gradle
-.idea
-out
+.gradle/
+.idea/
+out/
+build/
+target/
+classes/

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$/.." external.system.id="GRADLE" type="JAVA_MODULE" version="4">
+<module external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="android" name="Android">
       <configuration>
@@ -17,13 +17,13 @@
     </facet>
     <facet type="android-gradle" name="Android-Gradle">
       <configuration>
-        <option name="GRADLE_PROJECT_PATH" value=":KdeConnect" />
+        <option name="GRADLE_PROJECT_PATH" value=":" />
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6" inherit-compiler-output="true">
     <output url="file://$MODULE_DIR$/build/classes/debug" />
-    <exclude-output />
+    <output-test url="file://$MODULE_DIR$/classes/test/kdeconnect-android" />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/build/source/r/debug" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/build/source/aidl/debug" isTestSource="false" />
@@ -56,6 +56,9 @@
       <sourceFolder url="file://$MODULE_DIR$/src/instrumentTest/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/instrumentTest/res" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/instrumentTest/resources" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/.git" />
+      <excludeFolder url="file://$MODULE_DIR$/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/build/apk" />
       <excludeFolder url="file://$MODULE_DIR$/build/assets" />
       <excludeFolder url="file://$MODULE_DIR$/build/bundles" />
@@ -67,13 +70,11 @@
       <excludeFolder url="file://$MODULE_DIR$/build/symbols" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
-    <orderEntry type="jdk" jdkName="Android 4.3 Platform" jdkType="Android SDK" />
+    <orderEntry type="jdk" jdkName="Android API 18 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="android-support-v4" level="project" />
     <orderEntry type="library" exported="" name="support-v4-18.0.0" level="project" />
     <orderEntry type="library" exported="" name="ComAndroidSupportAppcompatV71800.aar" level="project" />
     <orderEntry type="library" exported="" name="slf4j-api-1.6.6" level="project" />
     <orderEntry type="library" exported="" name="mina-core-2.0.7" level="project" />
   </component>
 </module>
-
