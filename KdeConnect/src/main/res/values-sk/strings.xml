@@ -51,4 +51,7 @@
   <string name="mpris_previous">Predošlé</string>
   <string name="mpris_next">Nasledovné</string>
   <string name="mpris_volume">Hlasitosť</string>
+  <string name="share_to">Zdieľať pre...</string>
+  <string name="protocol_version_older">Toto zariadenie používa starú verziu protokolu</string>
+  <string name="protocol_version_newer">Toto zariadenie používa novšiu verziu protokolu</string>
 </resources>
