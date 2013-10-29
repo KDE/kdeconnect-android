@@ -84,6 +84,13 @@ public class MprisPlugin extends Plugin {
         device.sendPackage(np);
     }
 
+    public void Seek(int offset) {
+        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
+        np.set("player",player);
+        np.set("Seek",offset);
+        device.sendPackage(np);
+    }
+
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
         if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_MPRIS)) return false;

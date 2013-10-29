@@ -187,6 +187,36 @@ public class MprisActivity extends Activity {
             }
         });
 
+        findViewById(R.id.rew_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BackgroundService.RunCommand(MprisActivity.this, new BackgroundService.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(BackgroundService service) {
+                        Device device = service.getDevice(deviceId);
+                        MprisPlugin mpris = (MprisPlugin)device.getPlugin("plugin_mpris");
+                        if (mpris == null) return;
+                        mpris.Seek(-10000000); // -10 seconds. TODO: plugin settings UI?
+                    }
+                });
+            }
+        });
+
+        findViewById(R.id.ff_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BackgroundService.RunCommand(MprisActivity.this, new BackgroundService.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(BackgroundService service) {
+                        Device device = service.getDevice(deviceId);
+                        MprisPlugin mpris = (MprisPlugin)device.getPlugin("plugin_mpris");
+                        if (mpris == null) return;
+                        mpris.Seek(10000000); // 10 seconds. TODO: plugin settings UI?
+                    }
+                });
+            }
+        });
+
         findViewById(R.id.next_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

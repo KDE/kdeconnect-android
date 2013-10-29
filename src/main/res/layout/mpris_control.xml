@@ -37,7 +37,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="200dip"
-        android:layout_height="70dip"
+        android:layout_height="50dip"
         android:layout_gravity="center"
     >
 
@@ -45,19 +45,36 @@
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:id="@+id/prev_button"
-            android:src="@android:drawable/ic_media_rew"
+            android:src="@android:drawable/ic_media_previous"
             android:contentDescription="@string/mpris_previous"
-            android:layout_weight="0.5"
+            android:layout_weight="0.25"
+        />
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/rew_button"
+            android:src="@android:drawable/ic_media_rew"
+            android:contentDescription="@string/mpris_rew"
+            android:layout_weight="0.25"
+        />
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/ff_button"
+            android:src="@android:drawable/ic_media_ff"
+            android:contentDescription="@string/mpris_ff"
+            android:layout_weight="0.25"
         />
 
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:id="@+id/next_button"
-            android:src="@android:drawable/ic_media_ff"
-            android:layout_gravity="center"
+            android:src="@android:drawable/ic_media_next"
             android:contentDescription="@string/mpris_next"
-            android:layout_weight="0.5"
+            android:layout_weight="0.25"
         />
 
     </LinearLayout>

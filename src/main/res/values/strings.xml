@@ -50,6 +50,8 @@
     <string name="settings">KDE Connect Settings</string>
     <string name="mpris_play">Play</string>
     <string name="mpris_previous">Previous</string>
+    <string name="mpris_rew">Rewind</string>
+    <string name="mpris_ff">Fast-forward</string>
     <string name="mpris_next">Next</string>
     <string name="mpris_volume">Volume</string>
     <string name="share_to">Share To...</string>
