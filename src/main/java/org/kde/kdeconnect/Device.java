@@ -92,16 +92,17 @@ public class Device implements BaseLink.PackageReceiver {
 
     //Device known via an incoming connection sent to us via a devicelink, we know everything but we don't trust it yet
     Device(Context context, NetworkPackage np, BaseLink dl) {
-        settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
 
         //Log.e("Device","Constructor B");
 
         this.context = context;
         this.deviceId = np.getString("deviceId");
-        this.name = np.getString("deviceName");
+        this.name = np.getString("deviceName", "unidentified device");
         this.protocolVersion = np.getInt("protocolVersion");
         this.pairStatus = PairStatus.NotPaired;
         this.publicKey = null;
+
+        settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
 
         addLink(np, dl);
     }
@@ -150,15 +151,21 @@ public class Device implements BaseLink.PackageReceiver {
         Resources res = context.getResources();
 
         if (pairStatus == PairStatus.Paired) {
-            for (PairingCallback cb : pairingCallback) cb.pairingFailed(res.getString(R.string.error_already_paired));
+            for (PairingCallback cb : pairingCallback) {
+                cb.pairingFailed(res.getString(R.string.error_already_paired));
+            }
             return;
         }
         if (pairStatus == PairStatus.Requested) {
-            for (PairingCallback cb : pairingCallback) cb.pairingFailed(res.getString(R.string.error_already_requested));
+            for (PairingCallback cb : pairingCallback) {
+                cb.pairingFailed(res.getString(R.string.error_already_requested));
+            }
             return;
         }
         if (!isReachable()) {
-            for (PairingCallback cb : pairingCallback) cb.pairingFailed(res.getString(R.string.error_not_reachable));
+            for (PairingCallback cb : pairingCallback) {
+                cb.pairingFailed(res.getString(R.string.error_not_reachable));
+            }
             return;
         }
 
@@ -177,7 +184,7 @@ public class Device implements BaseLink.PackageReceiver {
                         }
                         pairStatus = PairStatus.NotPaired;
                     }
-                }, 20*1000);
+                }, 30*1000);
                 pairStatus = PairStatus.Requested;
             }
 
@@ -216,13 +223,7 @@ public class Device implements BaseLink.PackageReceiver {
 
     }
 
-    public void acceptPairing() {
-
-        Log.i("Device","Accepted pairing");
-
-        //Send our own public key
-        NetworkPackage np = NetworkPackage.createPublicKeyPackage(context);
-        sendPackage(np); //TODO: Set a callback
+    private void pairingDone() {
 
         pairStatus = PairStatus.Paired;
 
@@ -239,13 +240,37 @@ public class Device implements BaseLink.PackageReceiver {
 
         reloadPluginsFromSettings();
 
-        for (PairingCallback cb : pairingCallback) cb.pairingSuccessful();
+        for (PairingCallback cb : pairingCallback) {
+            cb.pairingSuccessful();
+        }
+
+    }
+
+    public void acceptPairing() {
+
+        Log.i("Device","Accepted pair request started by the other device");
+
+        //Send our own public key
+        NetworkPackage np = NetworkPackage.createPublicKeyPackage(context);
+        sendPackage(np, new SendPackageFinishedCallback() {
+            @Override
+            public void sendSuccessful() {
+                pairingDone();
+            }
+            @Override
+            public void sendFailed() {
+                pairStatus = PairStatus.NotPaired;
+                for (PairingCallback cb : pairingCallback) {
+                    cb.pairingFailed(context.getString(R.string.error_not_reachable));
+                }
+            }
+        });
 
     }
 
     public void rejectPairing() {
 
-        Log.i("Device","Rejected pairing");
+        Log.i("Device","Rejected pair request started by the other device");
 
         pairStatus = PairStatus.NotPaired;
 
@@ -253,7 +278,9 @@ public class Device implements BaseLink.PackageReceiver {
         np.set("pair", false);
         sendPackage(np);
 
-        for (PairingCallback cb : pairingCallback) cb.pairingFailed(context.getString(R.string.error_canceled_by_user));
+        for (PairingCallback cb : pairingCallback) {
+            cb.pairingFailed(context.getString(R.string.error_canceled_by_user));
+        }
 
     }
 
@@ -322,7 +349,9 @@ public class Device implements BaseLink.PackageReceiver {
                 if (pairStatus == PairStatus.Requested) {
                     pairStatus = PairStatus.NotPaired;
                     pairingTimer.cancel();
-                    for (PairingCallback cb : pairingCallback) cb.pairingFailed(context.getString(R.string.error_canceled_by_other_peer));
+                    for (PairingCallback cb : pairingCallback) {
+                        cb.pairingFailed(context.getString(R.string.error_canceled_by_other_peer));
+                    }
                 }
                 return;
             }
@@ -337,7 +366,9 @@ public class Device implements BaseLink.PackageReceiver {
                 } catch(Exception e) {
                     e.printStackTrace();
                     Log.e("Device","Pairing exception: Received incorrect key");
-                    for (PairingCallback cb : pairingCallback) cb.pairingFailed(context.getString(R.string.error_invalid_key));
+                    for (PairingCallback cb : pairingCallback) {
+                        cb.pairingFailed(context.getString(R.string.error_invalid_key));
+                    }
                     return;
                 }
 
@@ -345,23 +376,9 @@ public class Device implements BaseLink.PackageReceiver {
 
                     Log.i("Pairing","Pair answer");
 
-                    pairStatus = PairStatus.Paired;
                     pairingTimer.cancel();
 
-                    //Store as trusted device
-                    String encodedPublicKey  = Base64.encodeToString(publicKey.getEncoded(), 0);
-                    SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
-                    preferences.edit().putBoolean(deviceId,true).commit();
-
-                    //Store device information needed to create a Device object in a future
-                    SharedPreferences.Editor editor = settings.edit();
-                    editor.putString("deviceName", getName());
-                    editor.putString("publicKey", encodedPublicKey);
-                    editor.commit();
-
-                    reloadPluginsFromSettings();
-
-                    for (PairingCallback cb : pairingCallback) cb.pairingSuccessful();
+                    pairingDone();
 
                 } else {
 
@@ -395,7 +412,7 @@ public class Device implements BaseLink.PackageReceiver {
                             pairStatus = PairStatus.NotPaired;
                             notificationManager.cancel(notificationId);
                         }
-                    }, 19*1000); //Time to show notification
+                    }, 25*1000); //Time to show notification
 
                     pairStatus = PairStatus.RequestedByPeer;
                     for (PairingCallback cb : pairingCallback) cb.incomingRequest();
@@ -406,7 +423,9 @@ public class Device implements BaseLink.PackageReceiver {
 
                 if (pairStatus == PairStatus.Requested) {
                     pairingTimer.cancel();
-                    for (PairingCallback cb : pairingCallback) cb.pairingFailed(context.getString(R.string.error_canceled_by_other_peer));
+                    for (PairingCallback cb : pairingCallback) {
+                        cb.pairingFailed(context.getString(R.string.error_canceled_by_other_peer));
+                    }
                 } else if (pairStatus == PairStatus.Paired) {
                     SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
                     preferences.edit().remove(deviceId).commit();
@@ -443,6 +462,8 @@ public class Device implements BaseLink.PackageReceiver {
     //Async
     public void sendPackage(final NetworkPackage np, final SendPackageFinishedCallback callback) {
 
+
+        final Exception backtrace = new Exception();
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -467,7 +488,8 @@ public class Device implements BaseLink.PackageReceiver {
                 if (success) {
                    // Log.e("sendPackage","Package sent");
                 } else {
-                    Log.e("sendPackage","Error: Package could not be sent ("+links.size()+" links available)");
+                    backtrace.printStackTrace();
+                    Log.e("sendPackage","Error: Package could not be sent ("+mLinks.size()+" links available)");
                 }
 
                 if (callback != null) {

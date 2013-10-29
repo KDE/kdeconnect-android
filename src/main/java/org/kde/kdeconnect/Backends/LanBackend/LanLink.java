@@ -98,6 +98,8 @@ public class LanLink extends BaseLink {
         }
 
     }
+
+    //Blocking, do not call from main thread
     @Override
     public boolean sendPackage(final NetworkPackage np) {
 
@@ -114,7 +116,8 @@ public class LanLink extends BaseLink {
             }
 
             WriteFuture future = session.write(np.serialize());
-            if (!future.await().isWritten()) return false;
+            future.awaitUninterruptibly();
+            if (!future.isWritten()) return false;
 
             if (thread != null) {
                 thread.join(); //Wait for thread to finish
@@ -129,6 +132,7 @@ public class LanLink extends BaseLink {
 
     }
 
+    //Blocking, do not call from main thread
     @Override
     public boolean sendPackageEncrypted(NetworkPackage np, PublicKey key) {
 

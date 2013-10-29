@@ -128,17 +128,23 @@ public class LanLinkProvider extends BaseLinkProvider {
                 future.addListener(new IoFutureListener<IoFuture>() {
                     @Override
                     public void operationComplete(IoFuture ioFuture) {
-                        IoSession session = ioFuture.getSession();
+                        final IoSession session = ioFuture.getSession();
+
+                        final LanLink link = new LanLink(session, identityPackage.getString("deviceId"), LanLinkProvider.this);
 
                         Log.i("LanLinkProvider", "Connection successful: " + session.isConnected());
 
-                        LanLink link = new LanLink(session, identityPackage.getString("deviceId"), LanLinkProvider.this);
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                NetworkPackage np2 = NetworkPackage.createIdentityPackage(context);
+                                link.sendPackage(np2);
 
-                        NetworkPackage np2 = NetworkPackage.createIdentityPackage(context);
-                        link.sendPackage(np2);
+                                nioSessions.put(session.getId(), link);
+                                addLink(identityPackage, link);
+                            }
+                        }).start();
 
-                        nioSessions.put(session.getId(), link);
-                        addLink(identityPackage, link);
                     }
                 });
 
