@@ -21,6 +21,7 @@ public class LanLink extends BaseLink {
     private IoSession session = null;
 
     public void disconnect() {
+        if (session == null) return;
         Log.i("LanLink", "Disconnect: "+session.getRemoteAddress().toString());
         session.close(true);
     }
