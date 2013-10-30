@@ -10,6 +10,8 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.kde.kdeconnect.UserInterface.MainSettingsActivity;
+import org.kde.kdeconnect_tp.R;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -221,7 +223,10 @@ public class NetworkPackage {
         String deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
         try {
             np.mBody.put("deviceId", deviceId);
-            np.mBody.put("deviceName", HumanDeviceNames.getDeviceName());
+            np.mBody.put("deviceName",
+                    PreferenceManager.getDefaultSharedPreferences(context).getString(
+                            MainSettingsActivity.KEY_DEVICE_NAME_PREFERENCE,
+                            HumanDeviceNames.getDeviceName()));
             np.mBody.put("protocolVersion", NetworkPackage.ProtocolVersion);
         } catch (JSONException e) {
         }

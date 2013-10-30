@@ -154,7 +154,7 @@ public class HumanDeviceNames {
         humanReadableNames.put("XT907","Motorola Droid Razr M");
     }
 
-    static String getDeviceName() {
+    public static String getDeviceName() {
 
         String dictName = humanReadableNames.get(Build.MODEL.replace(' ','_'));
         if (dictName != null) return dictName;

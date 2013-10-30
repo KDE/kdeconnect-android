@@ -49,6 +49,15 @@
         </activity>
 
         <activity
+            android:name="org.kde.kdeconnect.UserInterface.MainSettingsActivity"
+            android:label="@string/settings"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity"
+            >
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
+        </activity>
+
+        <activity
                 android:theme="@style/Theme.AppCompat"
                 android:name="org.kde.kdeconnect.UserInterface.DeviceActivity"
                 android:label="@string/device"

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="@string/general_settings">
+
+        <EditTextPreference
+            android:key="device_name_preference"
+            android:title="@string/device_name"
+            android:summary="@string/device_name_preference_summary"
+            android:dialogTitle="@string/device_name"
+            android:singleLine="true" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

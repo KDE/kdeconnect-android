@@ -14,7 +14,7 @@ import android.util.Log;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
-import org.kde.kdeconnect.Backends.LoopbackBackend.LoopbackLinkProvider;
+import org.kde.kdeconnect.UserInterface.MainSettingsActivity;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -179,6 +179,7 @@ public class BackgroundService extends Service {
         Log.i("BackgroundService","Service not started yet, initializing...");
 
         initializeRsaKeys();
+        MainSettingsActivity.initializeDeviceName(this);
         loadRememberedDevicesFromSettings();
         registerLinkProviders();
 

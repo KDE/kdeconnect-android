@@ -1,6 +1,7 @@
 package org.kde.kdeconnect.UserInterface;
 
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -66,6 +67,9 @@ public class MainActivity extends ActionBarActivity {
                     }
                 }).start();
                 break;
+            case R.id.menu_settings:
+                startActivity(new Intent(this,MainSettingsActivity.class));
+                break;
             default:
                 break;
         }
@@ -79,7 +83,6 @@ public class MainActivity extends ActionBarActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_CUSTOM);
-
     }
 
 

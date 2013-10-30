@@ -18,4 +18,11 @@
             kdeconnect:actionViewClass="android.widget.ProgressBar"
         />
 
+    <item
+        android:id="@+id/menu_settings"
+        android:icon="@drawable/action_settings"
+        android:orderInCategory="300"
+        android:title="@string/settings"
+        kdeconnect:showAsAction="never"
+        />
 </menu>
