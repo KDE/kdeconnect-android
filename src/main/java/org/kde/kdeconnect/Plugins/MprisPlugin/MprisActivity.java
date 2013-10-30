@@ -93,8 +93,12 @@ public class MprisActivity extends Activity {
                                         //Spotify doesn't support changing the volume yet...
                                         if (player.equals("Spotify")) {
                                             findViewById(R.id.volume_layout).setVisibility(View.INVISIBLE);
+                                            findViewById(R.id.rew_button).setVisibility(View.GONE);
+                                            findViewById(R.id.ff_button).setVisibility(View.GONE);
                                         } else {
                                             findViewById(R.id.volume_layout).setVisibility(View.VISIBLE);
+                                            findViewById(R.id.rew_button).setVisibility(View.VISIBLE);
+                                            findViewById(R.id.ff_button).setVisibility(View.VISIBLE);
                                         }
                                     }
 
