@@ -26,7 +26,7 @@ public class LoopbackLink extends BaseLink {
     @Override
     public boolean sendPackageEncrypted(NetworkPackage in, PublicKey key) {
         try {
-            in.encrypt(key);
+            in = in.encrypt(key);
             String s = in.serialize();
             NetworkPackage out= NetworkPackage.unserialize(s);
             out.decrypt(privateKey);

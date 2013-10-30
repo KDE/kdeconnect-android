@@ -22,7 +22,7 @@ public class LanLink extends BaseLink {
 
     public void disconnect() {
         if (session == null) return;
-        Log.i("LanLink", "Disconnect: "+session.getRemoteAddress().toString());
+        //Log.i("LanLink", "Disconnect: "+session.getRemoteAddress().toString());
         session.close(true);
     }
 
@@ -150,7 +150,7 @@ public class LanLink extends BaseLink {
                 if (thread == null) return false;
             }
 
-            np.encrypt(key);
+            np = np.encrypt(key);
             WriteFuture future = session.write(np.serialize());
             if (!future.await().isWritten()) return false;
 

@@ -469,6 +469,7 @@ public class Device implements BaseLink.PackageReceiver {
             public void run() {
 
                 //Log.e("sendPackage", "Sending package...");
+                //Log.e("sendPackage", np.serialize());
 
                 boolean useEncryption = (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR) && isPaired());
 

@@ -76,6 +76,9 @@ public class NetworkPackage {
     public double getDouble(String key) { return mBody.optDouble(key,Double.NaN); }
     public double getDouble(String key, double defaultValue) { return mBody.optDouble(key,defaultValue); }
     public void set(String key, double value) { try { mBody.put(key,value); } catch(Exception e) { } }
+    public JSONArray getJSONArray(String key) { return mBody.optJSONArray(key); }
+    public void set(String key, JSONArray value) { try { mBody.put(key,value); } catch(Exception e) { } }
+
     public ArrayList<String> getStringList(String key) {
         JSONArray jsonArray = mBody.optJSONArray(key);
         ArrayList<String> list = new ArrayList<String>();
@@ -105,7 +108,6 @@ public class NetworkPackage {
 
         }
     }
-
     public boolean has(String key) { return mBody.has(key); }
 
     public boolean isEncrypted() { return mType.equals(PACKAGE_TYPE_ENCRYPTED); }
@@ -163,7 +165,7 @@ public class NetworkPackage {
         return np;
     }
 
-    public void encrypt(PublicKey publicKey) throws Exception {
+    public NetworkPackage encrypt(PublicKey publicKey) throws Exception {
 
         String serialized = serialize();
 
@@ -185,17 +187,11 @@ public class NetworkPackage {
             chunks.put(Base64.encodeToString(encryptedChunk, Base64.NO_WRAP));
         }
 
-        mId = System.currentTimeMillis();
-        mType = NetworkPackage.PACKAGE_TYPE_ENCRYPTED;
-        mBody = new JSONObject();
-        try {
-            mBody.put("data", chunks);
-        }catch(Exception e){
-            e.printStackTrace();
-            Log.e("NetworkPackage","Exception");
-        }
+        //Log.i("NetworkPackage", "Encrypted " + chunks.length()+" chunks");
 
-        Log.i("NetworkPackage", "Encrypted " + chunks.length()+" chunks");
+        NetworkPackage encrypted = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_ENCRYPTED);
+        encrypted.set("data", chunks);
+        return encrypted;
 
     }
 
