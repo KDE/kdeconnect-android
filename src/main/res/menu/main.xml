@@ -3,7 +3,7 @@
 
     <item
             android:id="@+id/menu_refresh"
-            android:icon="@drawable/navigation_refresh"
+            android:icon="@drawable/ic_action_refresh"
             android:orderInCategory="200"
             kdeconnect:showAsAction="always"
             android:title="@string/reconnect"
@@ -11,7 +11,6 @@
 
     <item
             android:id="@+id/menu_progress"
-            android:icon="@drawable/navigation_refresh"
             android:orderInCategory="200"
             android:visible="false"
             kdeconnect:showAsAction="always"
@@ -20,7 +19,7 @@
 
     <item
         android:id="@+id/menu_settings"
-        android:icon="@drawable/action_settings"
+        android:icon="@drawable/ic_action_settings"
         android:orderInCategory="300"
         android:title="@string/settings"
         kdeconnect:showAsAction="never"

@@ -94,7 +94,7 @@
             android:layout_weight="1"
             android:layout_gravity="left|center_vertical"
             android:contentDescription="@string/mpris_volume"
-            android:src="@drawable/volume"
+            android:src="@drawable/ic_volume"
         />
 
 
