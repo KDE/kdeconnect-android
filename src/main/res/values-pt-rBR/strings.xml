@@ -49,9 +49,15 @@
   <string name="settings">Configurações do KDE Connect</string>
   <string name="mpris_play">Reproduzir</string>
   <string name="mpris_previous">Anterior</string>
+  <string name="mpris_rew">Retornar</string>
+  <string name="mpris_ff">Avançar rapidamente</string>
   <string name="mpris_next">Próximo</string>
   <string name="mpris_volume">Volume</string>
   <string name="share_to">Compartilhar com...</string>
   <string name="protocol_version_older">Este dispositivo usa uma versão antiga do protocolo</string>
   <string name="protocol_version_newer">Este dispositivo usa uma versão mais recente do protocolo</string>
+  <string name="general_settings">Configurações gerais</string>
+  <string name="device_name">Nome do dispositivo</string>
+  <string name="device_name_preference_summary">%s</string>
+  <string name="invalid_device_name">Nome do dispositivo inválido</string>
 </resources>

@@ -54,4 +54,7 @@
   <string name="share_to">Сделать общим с...</string>
   <string name="protocol_version_older">Это устройство использует старую версию протокола</string>
   <string name="protocol_version_newer">Это устройство использует более свежую версию протокола</string>
+  <string name="general_settings">Открыть настройки</string>
+  <string name="device_name">Устройство не спарено</string>
+  <string name="invalid_device_name">Недопустимый получатель ключа</string>
 </resources>

@@ -49,9 +49,15 @@
   <string name="settings">KDE anslutningsinställningar</string>
   <string name="mpris_play">Spela</string>
   <string name="mpris_previous">Föregående</string>
+  <string name="mpris_rew">Snabbspola bakåt</string>
+  <string name="mpris_ff">Snabbspola framåt</string>
   <string name="mpris_next">Nästa</string>
   <string name="mpris_volume">Volym</string>
   <string name="share_to">Dela med...</string>
   <string name="protocol_version_older">Apparaten använder en gammal protokollversion</string>
   <string name="protocol_version_newer">Apparaten använder en nyare protokollversion</string>
+  <string name="general_settings">Allmänna inställningar</string>
+  <string name="device_name">Apparatnamn</string>
+  <string name="device_name_preference_summary">%s</string>
+  <string name="invalid_device_name">Ogiltigt apparatnamn</string>
 </resources>

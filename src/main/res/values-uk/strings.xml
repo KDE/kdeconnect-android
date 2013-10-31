@@ -49,9 +49,15 @@
   <string name="settings">Параметри з’єднання з KDE</string>
   <string name="mpris_play">Пуск</string>
   <string name="mpris_previous">Назад</string>
+  <string name="mpris_rew">Повний назад</string>
+  <string name="mpris_ff">Повний вперед</string>
   <string name="mpris_next">Далі</string>
   <string name="mpris_volume">Гучність</string>
   <string name="share_to">Спільно використовувати з…</string>
   <string name="protocol_version_older">На цьому пристрої використовується стара версія протоколу</string>
   <string name="protocol_version_newer">На цьому пристрої використовується новіша версія протоколу</string>
+  <string name="general_settings">Загальні параметри</string>
+  <string name="device_name">Назва пристрою</string>
+  <string name="device_name_preference_summary">%s</string>
+  <string name="invalid_device_name">Некоректна назва пристрою</string>
 </resources>

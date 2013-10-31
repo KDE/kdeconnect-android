@@ -54,4 +54,7 @@
   <string name="share_to">Megosztás…</string>
   <string name="protocol_version_older">Ez az eszköz egy régi protokollverziót használ</string>
   <string name="protocol_version_newer">Ez az eszköz egy újabb protokollverziót használ</string>
+  <string name="general_settings">Beállítások megnyitása</string>
+  <string name="device_name">Az eszköz nincs párosítva</string>
+  <string name="invalid_device_name">Érvénytelen kulcs érkezett</string>
 </resources>

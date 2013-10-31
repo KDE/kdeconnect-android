@@ -54,4 +54,7 @@
   <string name="share_to">Zdieľať pre...</string>
   <string name="protocol_version_older">Toto zariadenie používa starú verziu protokolu</string>
   <string name="protocol_version_newer">Toto zariadenie používa novšiu verziu protokolu</string>
+  <string name="general_settings">Otvoriť nastavenia</string>
+  <string name="device_name">Zariadenie nespárované</string>
+  <string name="invalid_device_name">Získaný nesprávny kľúč</string>
 </resources>

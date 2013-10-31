@@ -49,9 +49,15 @@
   <string name="settings">Instellingen van KDE Connect</string>
   <string name="mpris_play">Afspelen</string>
   <string name="mpris_previous">Vorige</string>
+  <string name="mpris_rew">Terugspoelen</string>
+  <string name="mpris_ff">Snel vooruit</string>
   <string name="mpris_next">Volgende</string>
   <string name="mpris_volume">Volume</string>
   <string name="share_to">Delen met...</string>
   <string name="protocol_version_older">Dit apparaat gebruikt een oude protocolversie</string>
   <string name="protocol_version_newer">Dit apparaat gebruikt een nieuwere protocolversie</string>
+  <string name="general_settings">Algemene instellingen</string>
+  <string name="device_name">Apparaatnaam</string>
+  <string name="device_name_preference_summary">%s</string>
+  <string name="invalid_device_name">Ongeldige apparaatnaam</string>
 </resources>

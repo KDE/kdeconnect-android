@@ -54,4 +54,7 @@
   <string name="share_to">Compartir con...</string>
   <string name="protocol_version_older">Este dispositivo usa una versión antigua del protocolo</string>
   <string name="protocol_version_newer">Este dispositivo usa una versión más reciente del protocolo</string>
+  <string name="general_settings">Abrir preferencias</string>
+  <string name="device_name">Dispositivo no vinculado</string>
+  <string name="invalid_device_name">Se ha recibido una clave no valida</string>
 </resources>
