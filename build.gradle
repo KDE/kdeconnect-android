@@ -3,25 +3,27 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.5.+'
+        classpath 'com.android.tools.build:gradle:0.6.+'
     }
 }
 
 apply plugin: 'android'
 
 android {
-    compileSdkVersion 18
-    buildToolsVersion "18.1.1"
+    compileSdkVersion 19
+    buildToolsVersion "19"
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 18
+        targetSdkVersion 19
     }
 }
 
 dependencies {
-    compile "com.android.support:support-v4:18.0.+"
-    compile "com.android.support:appcompat-v7:18.0.+"
-    compile files('libs/mina-core-2.0.7.jar')
-    compile files('libs/slf4j-api-1.6.6.jar')
+    repositories {
+        mavenCentral()
+    }
+    compile "com.android.support:support-v4:19.0.+"
+    compile "com.android.support:appcompat-v7:19.0.+"
+    compile "org.apache.mina:mina-core:2.0.+"
 }
