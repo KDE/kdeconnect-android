@@ -51,4 +51,7 @@
   <string name="mpris_previous">Précédent</string>
   <string name="mpris_next">Suivant</string>
   <string name="mpris_volume">Volume</string>
+  <string name="general_settings">Accéder aux paramètres</string>
+  <string name="device_name">Périphérique non apparié</string>
+  <string name="invalid_device_name">Clé reçue non valable</string>
 </resources>
