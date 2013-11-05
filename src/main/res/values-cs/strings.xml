@@ -23,6 +23,8 @@
   <string name="mpris_previous">Předchozí</string>
   <string name="mpris_next">Následující</string>
   <string name="mpris_volume">Hlasitost</string>
-  <string name="general_settings">Otevřít nastavení</string>
-  <string name="device_name">Zařízení</string>
+  <string name="general_settings">Obecná nastavení</string>
+  <string name="device_name">Název zařízení</string>
+  <string name="device_name_preference_summary">%s</string>
+  <string name="invalid_device_name">Neplatný název zařízení</string>
 </resources>
