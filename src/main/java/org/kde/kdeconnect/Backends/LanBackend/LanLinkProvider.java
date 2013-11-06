@@ -58,11 +58,15 @@ public class LanLinkProvider extends BaseLinkProvider {
             super.messageReceived(session, message);
 
             //Log.e("LanLinkProvider","Incoming package, address: "+session.getRemoteAddress()).toString());
+            //Log.e("LanLinkProvider","Received:"+message);
 
             String theMessage = (String) message;
-            NetworkPackage np = NetworkPackage.unserialize(theMessage);
+            if (theMessage.isEmpty()) {
+                Log.e("LanLinkProvider","Empty package received");
+                return;
+            }
 
-            LanLink prevLink = nioSessions.get(session.getId());
+            NetworkPackage np = NetworkPackage.unserialize(theMessage);
 
             if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
 
@@ -77,6 +81,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                 nioSessions.put(session.getId(),link);
                 addLink(np, link);
             } else {
+                LanLink prevLink = nioSessions.get(session.getId());
                 if (prevLink == null) {
                     Log.e("LanLinkProvider","2 Expecting an identity package");
                 } else {

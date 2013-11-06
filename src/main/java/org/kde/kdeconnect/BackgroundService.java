@@ -50,9 +50,11 @@ public class BackgroundService extends Service {
     };
 
     private void loadRememberedDevicesFromSettings() {
+        //Log.e("BackgroundService", "Loading remembered trusted devices");
         SharedPreferences preferences = getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
         Set<String> trustedDevices = preferences.getAll().keySet();
         for(String deviceId : trustedDevices) {
+            //Log.e("BackgroundService", "Loading device "+deviceId);
             if (preferences.getBoolean(deviceId, false)) {
                 Device device = new Device(this, deviceId);
                 devices.put(deviceId,device);
@@ -110,6 +112,7 @@ public class BackgroundService extends Service {
             if (d != null) {
                 d.removeLink(link);
                 if (!d.isReachable() && !d.isPaired()) {
+                    //Log.e("onConnectionLost","Removing connection device because it was not paired");
                     devices.remove(link.getDeviceId());
                     d.removePairingCallback(devicePairingCallback);
                 }

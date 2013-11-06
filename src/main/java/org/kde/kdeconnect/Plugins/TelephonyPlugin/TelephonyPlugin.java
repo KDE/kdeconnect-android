@@ -96,6 +96,8 @@ public class TelephonyPlugin extends Plugin {
 
     public void callBroadcastReceived(int state, String phoneNumber) {
 
+        //Log.e("TelephonyPlugin", "callBroadcastReceived");
+
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_TELEPHONY);
         if (phoneNumber != null) {
             phoneNumber = ContactsHelper.phoneNumberLookup(context,phoneNumber);
@@ -162,6 +164,7 @@ public class TelephonyPlugin extends Plugin {
 
     @Override
     public boolean onCreate() {
+        //Log.e("TelephonyPlugin", "onCreate");
         IntentFilter filter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
         filter.addAction(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
         context.registerReceiver(receiver, filter);

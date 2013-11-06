@@ -175,6 +175,7 @@ public class Device implements BaseLink.PackageReceiver {
 
             @Override
             public void sendSuccessful() {
+                if (pairingTimer != null) pairingTimer.cancel();
                 pairingTimer = new Timer();
                 pairingTimer.schedule(new TimerTask() {
                     @Override
@@ -182,9 +183,10 @@ public class Device implements BaseLink.PackageReceiver {
                         for (PairingCallback cb : pairingCallback) {
                             cb.pairingFailed(context.getString(R.string.error_timed_out));
                         }
+                        Log.e("Device","Unpairing (timeout A)");
                         pairStatus = PairStatus.NotPaired;
                     }
-                }, 30*1000);
+                }, 30*1000); //Time to wait for the other to accept
                 pairStatus = PairStatus.Requested;
             }
 
@@ -193,6 +195,7 @@ public class Device implements BaseLink.PackageReceiver {
                 for (PairingCallback cb : pairingCallback) {
                     cb.pairingFailed(context.getString(R.string.error_could_not_send_package));
                 }
+                Log.e("Device","Unpairing (sendFailed A)");
                 pairStatus = PairStatus.NotPaired;
             }
 
@@ -208,6 +211,7 @@ public class Device implements BaseLink.PackageReceiver {
 
         if (!isPaired()) return;
 
+        //Log.e("Device","Unpairing (unpair)");
         pairStatus = PairStatus.NotPaired;
 
         SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
@@ -225,16 +229,20 @@ public class Device implements BaseLink.PackageReceiver {
 
     private void pairingDone() {
 
+        //Log.e("Device", "Storing as trusted, deviceId: "+deviceId);
+
+        if (pairingTimer != null) pairingTimer.cancel();
+
         pairStatus = PairStatus.Paired;
 
         //Store as trusted device
-        String encodedPublicKey  = Base64.encodeToString(publicKey.getEncoded(), 0);
         SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
         preferences.edit().putBoolean(deviceId,true).commit();
 
         //Store device information needed to create a Device object in a future
         SharedPreferences.Editor editor = settings.edit();
         editor.putString("deviceName", getName());
+        String encodedPublicKey = Base64.encodeToString(publicKey.getEncoded(), 0);
         editor.putString("publicKey", encodedPublicKey);
         editor.commit();
 
@@ -259,6 +267,7 @@ public class Device implements BaseLink.PackageReceiver {
             }
             @Override
             public void sendFailed() {
+                Log.e("Device","Unpairing (sendFailed B)");
                 pairStatus = PairStatus.NotPaired;
                 for (PairingCallback cb : pairingCallback) {
                     cb.pairingFailed(context.getString(R.string.error_not_reachable));
@@ -272,6 +281,7 @@ public class Device implements BaseLink.PackageReceiver {
 
         Log.i("Device","Rejected pair request started by the other device");
 
+        //Log.e("Device","Unpairing (rejectPairing)");
         pairStatus = PairStatus.NotPaired;
 
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
@@ -347,8 +357,9 @@ public class Device implements BaseLink.PackageReceiver {
 
             if (wantsPair == isPaired()) {
                 if (pairStatus == PairStatus.Requested) {
+                    //Log.e("Device","Unpairing (pair rejected)");
                     pairStatus = PairStatus.NotPaired;
-                    pairingTimer.cancel();
+                    if (pairingTimer != null) pairingTimer.cancel();
                     for (PairingCallback cb : pairingCallback) {
                         cb.pairingFailed(context.getString(R.string.error_canceled_by_other_peer));
                     }
@@ -376,7 +387,7 @@ public class Device implements BaseLink.PackageReceiver {
 
                     Log.i("Pairing","Pair answer");
 
-                    pairingTimer.cancel();
+                    if (pairingTimer != null) pairingTimer.cancel();
 
                     pairingDone();
 
@@ -405,15 +416,17 @@ public class Device implements BaseLink.PackageReceiver {
                     notificationId = (int)System.currentTimeMillis();
                     notificationManager.notify(notificationId, noti);
 
+                    if (pairingTimer != null) pairingTimer.cancel();
                     pairingTimer = new Timer();
+
                     pairingTimer.schedule(new TimerTask() {
                         @Override
                         public void run() {
+                            Log.e("Device","Unpairing (timeout B)");
                             pairStatus = PairStatus.NotPaired;
                             notificationManager.cancel(notificationId);
                         }
-                    }, 25*1000); //Time to show notification
-
+                    }, 25*1000); //Time to show notification, waiting for user to accept (peer will timeout in 30 seconds)
                     pairStatus = PairStatus.RequestedByPeer;
                     for (PairingCallback cb : pairingCallback) cb.incomingRequest();
 
@@ -432,6 +445,7 @@ public class Device implements BaseLink.PackageReceiver {
                     reloadPluginsFromSettings();
                 }
 
+                //Log.e("Device","Unpairing (unpair request)");
                 pairStatus = PairStatus.NotPaired;
                 for (PairingCallback cb : pairingCallback) cb.unpaired();
 
