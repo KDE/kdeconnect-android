@@ -1,10 +1,12 @@
-package org.kde.kdeconnect;
+package org.kde.kdeconnect.Helpers;
 
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Build;
 
 import java.util.HashMap;
 
-public class HumanDeviceNames {
+public class DeviceHelper {
 
     //from https://github.com/meetup/android-device-names
     //Converted to java using:
@@ -165,6 +167,13 @@ public class HumanDeviceNames {
 
         return Build.MODEL;
 
+    }
+
+    public static boolean isTablet() {
+        Configuration config = Resources.getSystem().getConfiguration();
+        //This assumes that the values for the screen sizes are consecutive, so XXLARGE > XLARGE > LARGE
+        boolean isLarge = ((config.screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE);
+        return isLarge;
     }
 
 }

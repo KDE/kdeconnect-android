@@ -13,7 +13,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
-import org.kde.kdeconnect.HumanDeviceNames;
+import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect_tp.R;
 
 public class MainSettingsActivity extends PreferenceActivity{
@@ -79,7 +79,7 @@ public class MainSettingsActivity extends PreferenceActivity{
             Log.i("MainSettingsActivity", "New device name: " + deviceName);
             PreferenceManager.getDefaultSharedPreferences(context).edit().putString(
                     KEY_DEVICE_NAME_PREFERENCE,
-                    HumanDeviceNames.getDeviceName()).commit();
+                    DeviceHelper.getDeviceName()).commit();
         }
     }
 

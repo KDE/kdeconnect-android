@@ -10,13 +10,11 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.UserInterface.MainSettingsActivity;
-import org.kde.kdeconnect_tp.R;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -28,6 +26,7 @@ public class NetworkPackage {
 
     public final static int ProtocolVersion = 5;
 
+    //TODO: Move these to their respective plugins
     public final static String PACKAGE_TYPE_IDENTITY = "kdeconnect.identity";
     public final static String PACKAGE_TYPE_PAIR = "kdeconnect.pair";
     public final static String PACKAGE_TYPE_ENCRYPTED = "kdeconnect.encrypted";
@@ -222,14 +221,18 @@ public class NetworkPackage {
             np.mBody.put("deviceName",
                     PreferenceManager.getDefaultSharedPreferences(context).getString(
                             MainSettingsActivity.KEY_DEVICE_NAME_PREFERENCE,
-                            HumanDeviceNames.getDeviceName()));
+                            DeviceHelper.getDeviceName()));
             np.mBody.put("protocolVersion", NetworkPackage.ProtocolVersion);
-        } catch (JSONException e) {
+            np.mBody.put("deviceType", DeviceHelper.isTablet()? "tablet" : "phone");
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("NetworkPacakge","Exception on createIdentityPackage");
         }
 
         return np;
 
     }
+
 
     static public NetworkPackage createPublicKeyPackage(Context context) {
 
