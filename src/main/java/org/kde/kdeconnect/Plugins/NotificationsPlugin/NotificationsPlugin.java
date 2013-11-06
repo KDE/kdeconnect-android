@@ -126,12 +126,10 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 public void onServiceStart(NotificationReceiver service) {
                     try {
                         service.addListener(NotificationsPlugin.this);
-                        /*
                         StatusBarNotification[] notifications = service.getActiveNotifications();
                         for (StatusBarNotification notification : notifications) {
                             onNotificationPosted(notification);
                         }
-                        */
                     } catch(Exception e) {
                         e.printStackTrace();
                         Log.e("NotificationsPlugin","Exception");
@@ -204,7 +202,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         np.set("id", id.serialize());
         np.set("appName", appName == null? packageName : appName);
         np.set("isClearable", statusBarNotification.isClearable());
-        np.set("ticker", notification.tickerText.toString());
+        np.set("ticker", (notification != null && notification.tickerText != null)? notification.tickerText.toString() : "");
         np.set("time", Long.toString(statusBarNotification.getPostTime()));
         if (requestAnswer) np.set("requestAnswer", true);
 
