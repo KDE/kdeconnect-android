@@ -44,6 +44,8 @@
   <string name="settings">KDE-Verbindungseinstellungen</string>
   <string name="mpris_play">Wiedergabe</string>
   <string name="mpris_previous">Zurück</string>
+  <string name="mpris_rew">Schneller Rücklauf</string>
+  <string name="mpris_ff">Vorlauf</string>
   <string name="mpris_next">Weiter</string>
   <string name="mpris_volume">Lautstärke</string>
   <string name="protocol_version_older">Dieses Gerät verwendet ein alte Protokollversion</string>
