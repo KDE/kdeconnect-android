@@ -529,7 +529,7 @@ public class Device implements BaseLink.PackageReceiver {
         return plugins.get(name);
     }
 
-    private void addPlugin(final String name) {
+    private synchronized void addPlugin(final String name) {
         Plugin existing = plugins.get(name);
         if (existing != null) {
             Log.w("addPlugin","plugin already present:" + name);
@@ -575,7 +575,7 @@ public class Device implements BaseLink.PackageReceiver {
 
     }
 
-    private boolean removePlugin(String name) {
+    private synchronized boolean removePlugin(String name) {
 
         Plugin plugin = plugins.remove(name);
         Plugin failedPlugin = failedPlugins.remove(name);
