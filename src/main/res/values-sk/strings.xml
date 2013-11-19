@@ -49,12 +49,15 @@
   <string name="settings">Nastavenia KDE Connect</string>
   <string name="mpris_play">Prehrať</string>
   <string name="mpris_previous">Predošlé</string>
+  <string name="mpris_rew">Pretočiť dozadu</string>
+  <string name="mpris_ff">Pretočiť dopredu</string>
   <string name="mpris_next">Nasledovné</string>
   <string name="mpris_volume">Hlasitosť</string>
   <string name="share_to">Zdieľať pre...</string>
   <string name="protocol_version_older">Toto zariadenie používa starú verziu protokolu</string>
   <string name="protocol_version_newer">Toto zariadenie používa novšiu verziu protokolu</string>
-  <string name="general_settings">Otvoriť nastavenia</string>
-  <string name="device_name">Zariadenie nespárované</string>
-  <string name="invalid_device_name">Získaný nesprávny kľúč</string>
+  <string name="general_settings">Všeobecné nastavenia</string>
+  <string name="device_name">Názov zariadenia</string>
+  <string name="device_name_preference_summary">%s</string>
+  <string name="invalid_device_name">Neplatný názov zariadenia</string>
 </resources>
