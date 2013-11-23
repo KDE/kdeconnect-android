@@ -24,6 +24,7 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 
 public class DeviceActivity extends ActionBarActivity {
@@ -63,18 +64,25 @@ public class DeviceActivity extends ActionBarActivity {
                         }
                     });
 
-                    //Buttons list
-                    ArrayList<ListAdapter.Item> items = new ArrayList<ListAdapter.Item>();
-                    final Collection<Plugin> plugins = device.getLoadedPlugins().values();
-                    for (Plugin p : plugins) {
-                        Button b = p.getInterfaceButton(DeviceActivity.this);
-                        if (b != null) {
-                            items.add(new SectionItem(p.getDisplayName()));
-                            items.add(new ButtonItem(b));
+                    try {
+                        //Buttons list
+                        ArrayList<ListAdapter.Item> items = new ArrayList<ListAdapter.Item>();
+                        final Collection<Plugin> plugins = device.getLoadedPlugins().values();
+                        for (Plugin p : plugins) {
+                            Button b = p.getInterfaceButton(DeviceActivity.this);
+                            if (b != null) {
+                                items.add(new SectionItem(p.getDisplayName()));
+                                items.add(new ButtonItem(b));
+                            }
                         }
+
+                        ListView buttonsList = (ListView)findViewById(R.id.buttons_list);
+                        buttonsList.setAdapter(new ListAdapter(DeviceActivity.this, items));
+
+                    } catch(ConcurrentModificationException e) {
+                        Log.e("DeviceActivity", "ConcurrentModificationException");
+                        this.run(); //Try again
                     }
-                    ListView buttonsList = (ListView)findViewById(R.id.buttons_list);
-                    buttonsList.setAdapter(new ListAdapter(DeviceActivity.this, items));
 
                 }
             });
