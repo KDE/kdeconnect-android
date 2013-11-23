@@ -180,6 +180,9 @@ public class ShareToReceiver extends ActionBarActivity {
 
             if (uri.getScheme().equals("file")) {
                 // file:// is a non media uri, so we cannot query the ContentProvider
+
+                np.set("filename", uri.getLastPathSegment());
+
                 try {
                     size = (int)new File(uri.getPath()).length();
                     np.setPayload(inputStream, size);
@@ -187,35 +190,23 @@ public class ShareToReceiver extends ActionBarActivity {
                     e.printStackTrace();
                     Log.e("ShareToReceiver", "Could not obtain file size");
                 }
-                try{
-                    np.set("filename", uri.getLastPathSegment());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.e("ShareToReceiver", "Could not obtain file name");
-                }
 
             }else{
                 // Probably a content:// uri, so we query the Media content provider
-                String[] proj = { MediaStore.MediaColumns.DATA, MediaStore.MediaColumns.SIZE, MediaStore.MediaColumns.DISPLAY_NAME };
-                Cursor cursor = managedQuery(uri, proj, null, null, null);
-                try {
-                    int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.SIZE);
-                    cursor.moveToFirst();
-                    size = cursor.getInt(column_index);
-                } catch(Exception e) {
-                    e.printStackTrace();
-                    Log.e("ShareToReceiver", "Could not obtain file size");
-                }
 
-                //Log.e("ShareToReceiver", "Size "+size);
-                np.setPayload(inputStream, size);
-
+                Cursor cursor = null;
                 try {
+                    String[] proj = { MediaStore.MediaColumns.DATA, MediaStore.MediaColumns.SIZE, MediaStore.MediaColumns.DISPLAY_NAME };
+                    cursor = getContentResolver().query(uri, proj, null, null, null);
                     int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
                     cursor.moveToFirst();
                     String path = cursor.getString(column_index);
                     np.set("filename", Uri.parse(path).getLastPathSegment());
+                    np.set("size", (int)new File(path).length());
                 } catch(Exception _) {
+
+                    Log.e("ShareToReceiver", "Could not resolve media to a file, trying to get info as media");
+
                     try {
                         int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DISPLAY_NAME);
                         cursor.moveToFirst();
@@ -225,9 +216,22 @@ public class ShareToReceiver extends ActionBarActivity {
                         e.printStackTrace();
                         Log.e("ShareToReceiver", "Could not obtain file name");
                     }
+
+                    try {
+                        int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.SIZE);
+                        cursor.moveToFirst();
+                        //For some reason this size can differ from the actual file size!
+                        size = cursor.getInt(column_index);
+                    } catch(Exception e) {
+                        e.printStackTrace();
+                        Log.e("ShareToReceiver", "Could not obtain file size");
+                    }
+                } finally {
+                    cursor.close();
                 }
 
-                cursor.close();
+                np.setPayload(inputStream, size);
+
             }
 
             device.sendPackage(np, new Device.SendPackageFinishedCallback() {
