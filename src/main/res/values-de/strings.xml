@@ -17,10 +17,12 @@
   <string name="ok">OK</string>
   <string name="cancel">Abbrechen</string>
   <string name="open_settings">Einstellungen öffnen</string>
+  <string name="no_permissions">Sie müssen die Erlaubnis zum Zugriff auf Benachrichtigungen erteilen</string>
   <string name="send_ping">Ping senden</string>
   <string name="open_mpris_controls">Fernbedienung öffnen</string>
   <string name="category_connected_devices">Verbundene Geräte</string>
   <string name="category_not_paired_devices">Keine angeschlossenen Geräte</string>
+  <string name="category_remembered_devices">Gemerkte Geräte</string>
   <string name="device_menu_plugins">Module auswählen</string>
   <string name="device_menu_unpair">Verbindung trennen</string>
   <string name="unknown_device">Unbekanntes Gerät</string>
