@@ -23,6 +23,7 @@
   <string name="category_connected_devices">Verbundene Geräte</string>
   <string name="category_not_paired_devices">Keine angeschlossenen Geräte</string>
   <string name="category_remembered_devices">Gemerkte Geräte</string>
+  <string name="plugins_failed_to_load">Laden der Module fehlgeschlagen, tippen Sie für weitere Details:</string>
   <string name="device_menu_plugins">Module auswählen</string>
   <string name="device_menu_unpair">Verbindung trennen</string>
   <string name="unknown_device">Unbekanntes Gerät</string>
@@ -36,6 +37,7 @@
   <string name="error_invalid_key">Ungültiger Schlüssel empfangen</string>
   <string name="pair_requested">Verbindung angefordert</string>
   <string name="pairing_request_from">Verbindungsanfrage von %1s</string>
+  <string name="tap_to_answer">Tippen zum Antworten</string>
   <string name="reconnect">Erneut verbinden</string>
   <string name="device_not_paired">Das Gerät ist nicht verbunden</string>
   <string name="request_pairing">Verbindung angefordert</string>
@@ -51,6 +53,7 @@
   <string name="mpris_ff">Vorlauf</string>
   <string name="mpris_next">Weiter</string>
   <string name="mpris_volume">Lautstärke</string>
+  <string name="share_to">Freigeben für ...</string>
   <string name="protocol_version_older">Dieses Gerät verwendet ein alte Protokollversion</string>
   <string name="protocol_version_newer">Dieses Gerät verwendet ein neuere Protokollversion</string>
   <string name="general_settings">Allgemeine Einstellungen</string>
