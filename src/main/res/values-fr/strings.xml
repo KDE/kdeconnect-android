@@ -8,7 +8,7 @@
   <string name="pref_plugin_clipboard_desc">Partage le contenu du presse-papiers</string>
   <string name="pref_plugin_mpris">Contrôles distants multimédia</string>
   <string name="pref_plugin_mpris_desc">Contrôle l\'audio / la vidéo depuis votre téléphone</string>
-  <string name="pref_plugin_ping">Commande « Ping »</string>
+  <string name="pref_plugin_ping">Commande « Ping »</string>
   <string name="pref_plugin_ping_desc">Envoie et reçoit des commandes « Ping »</string>
   <string name="pref_plugin_notifications">Synchronisation des notifications</string>
   <string name="pref_plugin_notifications_desc">Accédez à vos notifications depuis d\'autres périphériques</string>
@@ -49,9 +49,15 @@
   <string name="settings">Paramètres de connexion de KDE</string>
   <string name="mpris_play">Lire</string>
   <string name="mpris_previous">Précédent</string>
+  <string name="mpris_rew">Retour rapide</string>
+  <string name="mpris_ff">Avance rapide</string>
   <string name="mpris_next">Suivant</string>
   <string name="mpris_volume">Volume</string>
-  <string name="general_settings">Accéder aux paramètres</string>
-  <string name="device_name">Périphérique non apparié</string>
-  <string name="invalid_device_name">Clé reçue non valable</string>
+  <string name="share_to">Partager vers...</string>
+  <string name="protocol_version_older">Le périphérique utilise une version ancienne du protocole</string>
+  <string name="protocol_version_newer">Le périphérique utilise une version plus récente du protocole</string>
+  <string name="general_settings">Paramètres généraux</string>
+  <string name="device_name">Nom du périphérique</string>
+  <string name="device_name_preference_summary">%s</string>
+  <string name="invalid_device_name">Nom de périphérique non valable</string>
 </resources>
