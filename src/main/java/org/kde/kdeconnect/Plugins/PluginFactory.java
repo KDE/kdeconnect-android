@@ -7,6 +7,7 @@ import android.util.Log;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Plugins.BatteryPlugin.BatteryPlugin;
+import org.kde.kdeconnect.Plugins.SftpPlugin.SftpPlugin;
 import org.kde.kdeconnect.Plugins.ClibpoardPlugin.ClipboardPlugin;
 import org.kde.kdeconnect.Plugins.MprisPlugin.MprisPlugin;
 import org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationsPlugin;
@@ -67,6 +68,7 @@ public class PluginFactory {
         PluginFactory.registerPlugin(MprisPlugin.class);
         PluginFactory.registerPlugin(ClipboardPlugin.class);
         PluginFactory.registerPlugin(BatteryPlugin.class);
+        PluginFactory.registerPlugin(SftpPlugin.class);
         PluginFactory.registerPlugin(NotificationsPlugin.class);
     }
 

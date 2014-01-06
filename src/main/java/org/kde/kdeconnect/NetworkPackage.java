@@ -33,6 +33,7 @@ public class NetworkPackage {
     public final static String PACKAGE_TYPE_PING = "kdeconnect.ping";
     public final static String PACKAGE_TYPE_TELEPHONY = "kdeconnect.telephony";
     public final static String PACKAGE_TYPE_BATTERY = "kdeconnect.battery";
+    public final static String PACKAGE_TYPE_SFTP = "kdeconnect.sftp";
     public final static String PACKAGE_TYPE_NOTIFICATION = "kdeconnect.notification";
     public final static String PACKAGE_TYPE_CLIPBOARD = "kdeconnect.clipboard";
     public final static String PACKAGE_TYPE_MPRIS = "kdeconnect.mpris";

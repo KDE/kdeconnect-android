@@ -4,6 +4,8 @@
   <string name="pref_plugin_telephony_desc">Отправлять уведомления о SMS и звонках</string>
   <string name="pref_plugin_battery">Состояние батареи</string>
   <string name="pref_plugin_battery_desc">Периодически сообщать о состоянии батареи</string>
+  <string name="pref_plugin_sftp">Доступ по SFTP</string>
+  <string name="pref_plugin_sftp_desc">Возможность доступа к файлам по SFTP</string>
   <string name="pref_plugin_clipboard">Синхронизация буфера обмена</string>
   <string name="pref_plugin_clipboard_desc">Сделать содержимое буфера обмена общим</string>
   <string name="pref_plugin_mpris">ДУ для мультимедия</string>
