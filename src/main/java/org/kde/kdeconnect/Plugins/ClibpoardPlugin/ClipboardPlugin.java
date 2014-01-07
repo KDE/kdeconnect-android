@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.widget.Button;
 
 import org.kde.kdeconnect.NetworkPackage;
@@ -39,31 +38,21 @@ public class ClipboardPlugin extends Plugin {
 
     @Override
     public boolean isEnabledByDefault() {
-        return (Build.VERSION.SDK_INT >= 11);
+        //Disabled by default due to just one direction sync(incoming clipboard change) in early version of android.
+        return (android.os.Build.VERSION.SDK_INT >= 11);
     }
 
     private ClipboardListener listener;
 
     @Override
     public boolean onCreate() {
-
-        if (Build.VERSION.SDK_INT < 11) {
-            return false;
-        }
-
         listener = new ClipboardListener(context, device);
-
         return true;
-
     }
 
     @Override
     public void onDestroy() {
-
-        if (Build.VERSION.SDK_INT < 11) return;
-
         listener.stop();
-
     }
 
     @Override
@@ -76,7 +65,6 @@ public class ClipboardPlugin extends Plugin {
         String content = np.getString("content");
         listener.setText(content);
         return true;
-
     }
 
     @Override

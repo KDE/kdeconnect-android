@@ -10,12 +10,18 @@ import org.kde.kdeconnect.NetworkPackage;
 public class ClipboardListener {
 
 
+    private Context context;
     private String currentContent;
 
     private ClipboardManager cm = null;
     ClipboardManager.OnPrimaryClipChangedListener listener;
 
-    ClipboardListener(final Context context, final Device device) {
+    ClipboardListener(final Context ctx, final Device device) {
+        context = ctx;
+        if(android.os.Build.VERSION.SDK_INT < 11) {
+            return;
+        }
+
         cm = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
         listener = new ClipboardManager.OnPrimaryClipChangedListener() {
             @Override
@@ -41,12 +47,24 @@ public class ClipboardListener {
     }
 
     public void stop() {
+        if(android.os.Build.VERSION.SDK_INT < 11) {
+            return;
+        }
+
         cm.removePrimaryClipChangedListener(listener);
     }
 
+    @SuppressWarnings("deprecation")
     public void setText(String text) {
         currentContent = text;
-        cm.setText(text);
+        if(android.os.Build.VERSION.SDK_INT < 11) {
+            android.text.ClipboardManager clipboard = (android.text.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+            clipboard.setText(text);
+        }
+        else
+        {
+            cm.setText(text);
+        }
     }
 
 }
