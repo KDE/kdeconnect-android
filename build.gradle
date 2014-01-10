@@ -17,6 +17,11 @@ android {
         minSdkVersion 9
         targetSdkVersion 19
     }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
 }
 
 dependencies {
@@ -26,5 +31,8 @@ dependencies {
     compile "com.android.support:support-v4:19.0.+"
     compile "com.android.support:appcompat-v7:19.0.+"
     compile "org.apache.mina:mina-core:2.0.+"
-    compile fileTree(dir: 'libs', include: '*.jar')
+    compile 'org.bouncycastle:bcprov-jdk16:1.45'
+    compile 'org.apache.sshd:sshd-core:0.7.+'
+    compile 'tomcat:tomcat-apr:5.5.+'
+    //compile fileTree(dir: 'libs', include: '*.jar')
 }
