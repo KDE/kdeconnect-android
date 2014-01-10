@@ -176,6 +176,12 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     public void sendNotification(StatusBarNotification statusBarNotification, boolean requestAnswer) {
 
         Notification notification = statusBarNotification.getNotification();
+
+         if ((notification.flags & Notification.FLAG_FOREGROUND_SERVICE) != 0) {
+            //This is not a notification!
+            return;
+        }
+
         NotificationId id = NotificationId.fromNotification(statusBarNotification);
 
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_NOTIFICATION);
