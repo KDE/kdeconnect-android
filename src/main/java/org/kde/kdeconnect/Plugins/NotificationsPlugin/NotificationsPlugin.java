@@ -128,7 +128,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                         service.addListener(NotificationsPlugin.this);
                         StatusBarNotification[] notifications = service.getActiveNotifications();
                         for (StatusBarNotification notification : notifications) {
-                            onNotificationPosted(notification);
+                            sendNotification(notification, true);
                         }
                     } catch(Exception e) {
                         e.printStackTrace();
@@ -177,7 +177,8 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
         Notification notification = statusBarNotification.getNotification();
 
-         if ((notification.flags & Notification.FLAG_FOREGROUND_SERVICE) != 0) {
+         if ((notification.flags & Notification.FLAG_FOREGROUND_SERVICE) != 0
+             || (notification.flags & Notification.FLAG_ONGOING_EVENT) != 0 ) {
             //This is not a notification!
             return;
         }
