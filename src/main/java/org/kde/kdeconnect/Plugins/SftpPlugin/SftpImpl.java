@@ -147,13 +147,11 @@ class SimpleSftpServer {
         //
         @Override
         public SshFile getFile(final String file) {
-            Log.e("getFile:", file);
             return getFile(currDir, file);
         }
 
         @Override
         public SshFile getFile(final SshFile baseDir, final String file) {
-            Log.e("getFile2:", baseDir.getAbsolutePath() + " -- " + file);
             return getFile(baseDir.getAbsolutePath(), file);
         }
 
