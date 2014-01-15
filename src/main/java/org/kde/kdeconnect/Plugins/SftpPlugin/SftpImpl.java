@@ -3,6 +3,7 @@ package org.kde.kdeconnect.Plugins.SftpPlugin;
 import android.content.Context;
 import android.util.Log;
 
+import org.apache.http.conn.util.InetAddressUtils;
 import org.apache.sshd.SshServer;
 import org.apache.sshd.common.NamedFactory;
 import org.apache.sshd.common.Session;
@@ -103,19 +104,25 @@ class SimpleSftpServer {
     }
 
     public String getLocalIpAddress() {
+        String ip6 = null;
         try {
             for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
                 NetworkInterface intf = en.nextElement();
                 for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
                     InetAddress inetAddress = enumIpAddr.nextElement();
                     if (!inetAddress.isLoopbackAddress()) {
-                        return inetAddress.getHostAddress().toString();
+                        String address = inetAddress.getHostAddress();
+                        if (InetAddressUtils.isIPv4Address(address)) { //Prefer IPv4 over IPv6, because sshfs doesn't seem to like IPv6
+                            return address;
+                        } else {
+                            ip6 = address;
+                        }
                     }
                 }
             }
         } catch (SocketException ex) {
         }
-        return null;
+        return ip6;
     }
 
 }
