@@ -39,7 +39,7 @@ public class Device implements BaseLink.PackageReceiver {
 
     private String deviceId;
     private String name;
-    private PublicKey publicKey;
+    public PublicKey publicKey;
     private int notificationId;
     private int protocolVersion;
 

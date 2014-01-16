@@ -42,7 +42,7 @@ public class SftpPlugin extends Plugin {
 
     @Override
     public boolean onCreate() {
-        server.init(context);
+        server.init(context, device);
         return true;
     }
 

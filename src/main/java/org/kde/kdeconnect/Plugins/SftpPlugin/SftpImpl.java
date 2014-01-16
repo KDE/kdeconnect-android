@@ -11,6 +11,7 @@ import org.apache.sshd.server.Command;
 import org.apache.sshd.server.FileSystemFactory;
 import org.apache.sshd.server.FileSystemView;
 import org.apache.sshd.server.PasswordAuthenticator;
+import org.apache.sshd.server.PublickeyAuthenticator;
 import org.apache.sshd.server.SshFile;
 import org.apache.sshd.server.command.ScpCommandFactory;
 import org.apache.sshd.server.filesystem.NativeFileSystemView;
@@ -18,13 +19,17 @@ import org.apache.sshd.server.filesystem.NativeSshFile;
 import org.apache.sshd.server.keyprovider.SimpleGeneratorHostKeyProvider;
 import org.apache.sshd.server.session.ServerSession;
 import org.apache.sshd.server.sftp.SftpSubsystem;
+import org.kde.kdeconnect.Device;
 
 import java.io.File;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.security.PublicKey;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.List;
 
 class SimplePasswordAuthenticator implements PasswordAuthenticator {
 
@@ -43,6 +48,26 @@ class SimplePasswordAuthenticator implements PasswordAuthenticator {
     private String password;
 }
 
+class SimplePublicKeyAuthenticator implements PublickeyAuthenticator {
+
+    private List<PublicKey> keys = new ArrayList<PublicKey>();
+
+    public void addKey(PublicKey key) {
+        keys.add(key);
+    }
+
+    @Override
+    public boolean authenticate(String user, PublicKey key, ServerSession session) {
+        for (PublicKey k : keys) {
+            if (key.equals(k)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+}
+
 class SimpleSftpServer {
     private static final int STARTPORT = 1739;
     private static final int ENDPORT = 1764;
@@ -53,11 +78,13 @@ class SimpleSftpServer {
     private static boolean started = false;
 
     public final SimplePasswordAuthenticator passwordAuth = new SimplePasswordAuthenticator();
+    public final SimplePublicKeyAuthenticator keyAuth = new SimplePublicKeyAuthenticator();
     private final SshServer sshd = SshServer.setUpDefaultServer();
 
 
-    public void init(Context ctx) {
+    public void init(Context ctx, Device device) {
         passwordAuth.setUser(USER);
+        keyAuth.addKey(device.publicKey);
         sshd.setKeyPairProvider(new SimpleGeneratorHostKeyProvider(ctx.getFilesDir() + "/sftpd.ser"));
 
         //sshd.setFileSystemFactory(new NativeFileSystemFactory());
@@ -67,6 +94,7 @@ class SimpleSftpServer {
         sshd.setSubsystemFactories(Arrays.<NamedFactory<Command>>asList(new SftpSubsystem.Factory()));
 
         sshd.setPasswordAuthenticator(passwordAuth);
+        sshd.setPublickeyAuthenticator(keyAuth);
     }
 
     public boolean start() {
