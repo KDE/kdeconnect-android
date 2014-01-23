@@ -49,12 +49,15 @@
   <string name="settings">KDE csatlakozás beállítások</string>
   <string name="mpris_play">Lejátszás</string>
   <string name="mpris_previous">Előző</string>
+  <string name="mpris_rew">Visszatekerés</string>
+  <string name="mpris_ff">Gyors előretekerés</string>
   <string name="mpris_next">Következő</string>
   <string name="mpris_volume">Hangerő</string>
   <string name="share_to">Megosztás…</string>
   <string name="protocol_version_older">Ez az eszköz egy régi protokollverziót használ</string>
   <string name="protocol_version_newer">Ez az eszköz egy újabb protokollverziót használ</string>
-  <string name="general_settings">Beállítások megnyitása</string>
-  <string name="device_name">Az eszköz nincs párosítva</string>
-  <string name="invalid_device_name">Érvénytelen kulcs érkezett</string>
+  <string name="general_settings">Általános beállítások</string>
+  <string name="device_name">Eszköznév</string>
+  <string name="device_name_preference_summary">%s</string>
+  <string name="invalid_device_name">Érvénytelen eszköznév</string>
 </resources>
