@@ -12,6 +12,7 @@
   <string name="category_not_paired_devices">Nespárovaná zařízení</string>
   <string name="category_remembered_devices">Zapamatovaná zařízení</string>
   <string name="device_menu_plugins">Vyberte moduly</string>
+  <string name="unknown_device">Neznámé zařízení</string>
   <string name="error_timed_out">Čas vypršel</string>
   <string name="error_canceled_by_user">Přerušeno uživatelem</string>
   <string name="reconnect">Znovu připojit</string>
@@ -21,6 +22,8 @@
   <string name="remote_control">Vzdálené ovládání</string>
   <string name="mpris_play">Přehrát</string>
   <string name="mpris_previous">Předchozí</string>
+  <string name="mpris_rew">Přetočit zpět</string>
+  <string name="mpris_ff">Rychle vpřed</string>
   <string name="mpris_next">Následující</string>
   <string name="mpris_volume">Hlasitost</string>
   <string name="general_settings">Obecná nastavení</string>
