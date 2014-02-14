@@ -16,7 +16,7 @@ public class SftpPlugin extends Plugin {
     private static final SimpleSftpServer server = new SimpleSftpServer();
 
     /*static {
-        PluginFactory.registerPlugin(BatteryPlugin.class);
+        PluginFactory.registerPlugin(SftpPlugin.class);
     }*/
 
     @Override
@@ -54,7 +54,7 @@ public class SftpPlugin extends Plugin {
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
         if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_SFTP)) return false;
-//
+
         if (np.getBoolean("startBrowsing")) {
             if (server.start()) {
                 NetworkPackage np2 = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_SFTP);

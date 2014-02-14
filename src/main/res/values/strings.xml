@@ -5,8 +5,8 @@
     <string name="pref_plugin_telephony_desc">Send notifications for SMS and calls</string>
     <string name="pref_plugin_battery">Battery report</string>
     <string name="pref_plugin_battery_desc">Periodically report battery status</string>
-    <string name="pref_plugin_sftp">SFTP access</string>
-    <string name="pref_plugin_sftp_desc">Possibility to browse filesystem through SFTP</string>
+    <string name="pref_plugin_sftp">Filesystem expose</string>
+    <string name="pref_plugin_sftp_desc">Allows to browse the phone\'s filesystem remotely</string>
     <string name="pref_plugin_clipboard">Clipboard sync</string>
     <string name="pref_plugin_clipboard_desc">Share the clipboard content</string>
     <string name="pref_plugin_mpris">Multimedia remote controls</string>
