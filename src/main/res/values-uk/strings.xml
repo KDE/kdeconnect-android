@@ -4,8 +4,6 @@
   <string name="pref_plugin_telephony_desc">Надсилання сповіщень щодо SMS та дзвінків</string>
   <string name="pref_plugin_battery">Звіт щодо заряду</string>
   <string name="pref_plugin_battery_desc">Періодична інформація щодо стану акумулятора</string>
-  <string name="pref_plugin_sftp">Доступ по SFTP</string>
-  <string name="pref_plugin_sftp_desc">Возможность доступа к файлам по SFTP</string>
   <string name="pref_plugin_clipboard">Синхронізація буфера</string>
   <string name="pref_plugin_clipboard_desc">Спільне використання буфера обміну даними</string>
   <string name="pref_plugin_mpris">Дистанційне керування відтворенням</string>
