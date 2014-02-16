@@ -4,6 +4,8 @@
   <string name="pref_plugin_telephony_desc">Stuur meldingen voor SMS en oproepen</string>
   <string name="pref_plugin_battery">Batterijrapportage</string>
   <string name="pref_plugin_battery_desc">Rapporteer periodiek de status van de batterij</string>
+  <string name="pref_plugin_sftp">Bestandssysteem blootstellen</string>
+  <string name="pref_plugin_sftp_desc">Het bladeren in het bestandssysteem op afstand in de telefoon toestaan</string>
   <string name="pref_plugin_clipboard">Klembordsynchronisatie</string>
   <string name="pref_plugin_clipboard_desc">De inhoud van het klembord delen</string>
   <string name="pref_plugin_mpris">Afstandsbediening van multimedia</string>

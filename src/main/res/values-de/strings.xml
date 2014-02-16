@@ -4,6 +4,8 @@
   <string name="pref_plugin_telephony_desc">Benachrichtigungen über SMS und Anrufe senden</string>
   <string name="pref_plugin_battery">Akkubericht</string>
   <string name="pref_plugin_battery_desc">Akkustatus periodisch berichten</string>
+  <string name="pref_plugin_sftp">Dateisystem zeigen</string>
+  <string name="pref_plugin_sftp_desc">Erlaubt das Browsen des Dateisystems auf dem entfernten Handy</string>
   <string name="pref_plugin_clipboard">Abgleich der Zwischenablage</string>
   <string name="pref_plugin_clipboard_desc">Inhalt der Zwischenablage freigeben</string>
   <string name="pref_plugin_mpris">Multimedia-Fernbedienungen</string>

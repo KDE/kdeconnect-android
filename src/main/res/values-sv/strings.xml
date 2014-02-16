@@ -4,6 +4,8 @@
   <string name="pref_plugin_telephony_desc">Skicka underrättelser för SMS och samtal</string>
   <string name="pref_plugin_battery">Batterirapport</string>
   <string name="pref_plugin_battery_desc">Rapportera periodiskt batteriets status</string>
+  <string name="pref_plugin_sftp">Exponera filsystem</string>
+  <string name="pref_plugin_sftp_desc">Gör det möjligt att bläddra i telefonens filsystem från annan enhet</string>
   <string name="pref_plugin_clipboard">Synkronisera klippbord</string>
   <string name="pref_plugin_clipboard_desc">Dela klippbordets innehåll</string>
   <string name="pref_plugin_mpris">Fjärrkontroll av multimedia</string>
