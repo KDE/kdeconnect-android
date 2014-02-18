@@ -4,6 +4,8 @@
   <string name="pref_plugin_telephony_desc">Envia notificações de SMS e chamadas</string>
   <string name="pref_plugin_battery">Relatório da bateria</string>
   <string name="pref_plugin_battery_desc">Informa o status da bateria periodicamente</string>
+  <string name="pref_plugin_sftp">Exposição do sistema de arquivos</string>
+  <string name="pref_plugin_sftp_desc">Permite navegar remotamente pelo sistema de arquivos telefone</string>
   <string name="pref_plugin_clipboard">Sincronizar área de transferência</string>
   <string name="pref_plugin_clipboard_desc">Compartilha o conteúdo da área de transferência</string>
   <string name="pref_plugin_mpris">Controle remoto multimídia</string>
