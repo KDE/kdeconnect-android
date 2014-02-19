@@ -4,6 +4,8 @@
   <string name="pref_plugin_telephony_desc">Enviar notificaciones de SMS y llamadas</string>
   <string name="pref_plugin_battery">Informe de la batería</string>
   <string name="pref_plugin_battery_desc">Informar periódicamente del estado de la batería</string>
+  <string name="pref_plugin_sftp">Revelar el sistema de archivos</string>
+  <string name="pref_plugin_sftp_desc">Permite explorar de forma remota el sistema de archivos del teléfono</string>
   <string name="pref_plugin_clipboard">Sincronización del portapapeles</string>
   <string name="pref_plugin_clipboard_desc">Compartir el contenido del portapapeles</string>
   <string name="pref_plugin_mpris">Controles remotos multimedia</string>
@@ -49,12 +51,15 @@
   <string name="settings">Preferencias de KDE Connect</string>
   <string name="mpris_play">Reproducir</string>
   <string name="mpris_previous">Anterior</string>
+  <string name="mpris_rew">Rebobinar</string>
+  <string name="mpris_ff">Avance rápido</string>
   <string name="mpris_next">Siguiente</string>
   <string name="mpris_volume">Volumen</string>
   <string name="share_to">Compartir con...</string>
   <string name="protocol_version_older">Este dispositivo usa una versión antigua del protocolo</string>
   <string name="protocol_version_newer">Este dispositivo usa una versión más reciente del protocolo</string>
-  <string name="general_settings">Abrir preferencias</string>
-  <string name="device_name">Dispositivo no vinculado</string>
-  <string name="invalid_device_name">Se ha recibido una clave no valida</string>
+  <string name="general_settings">Preferencias generales</string>
+  <string name="device_name">Nombre de dispositivo</string>
+  <string name="device_name_preference_summary">%s</string>
+  <string name="invalid_device_name">Nombre de dispositivo no valido</string>
 </resources>
