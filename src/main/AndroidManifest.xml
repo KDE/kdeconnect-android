@@ -32,6 +32,7 @@
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="KDE Connect"
+        android:debuggable="false"
         >
 
         <service
