@@ -4,6 +4,8 @@
   <string name="pref_plugin_telephony_desc">Send bekendtgørelser om SMS\'er og opkald</string>
   <string name="pref_plugin_battery">Batterirapport</string>
   <string name="pref_plugin_battery_desc">Rapportér batteristatus periodisk</string>
+  <string name="pref_plugin_sftp">Filsystem-expose</string>
+  <string name="pref_plugin_sftp_desc">Muliggør at gennemsøge telefonens filsystem eksternt</string>
   <string name="pref_plugin_clipboard">Synk. af udklipsholder</string>
   <string name="pref_plugin_clipboard_desc">Del indholdet af udklipsholderen</string>
   <string name="pref_plugin_mpris">Fjernbetjening af multimedie</string>
