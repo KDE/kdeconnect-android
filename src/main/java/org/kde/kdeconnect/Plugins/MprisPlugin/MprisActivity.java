@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,6 +27,8 @@ public class MprisActivity extends Activity {
 
     //TODO: Add a loading spinner at the begginning (to distinguish the loading state from a no-players state).
     //TODO 2: Add a message when no players are detected after loading completes
+
+    private String deviceId;
 
     protected void connectToPlugin() {
 
@@ -146,12 +149,73 @@ public class MprisActivity extends Activity {
         });
     }
 
+    /**
+     * Change current volume with provided step.
+     *
+     * @param mpris multimedia controller
+     * @param step  step size volume change
+     */
+    private void updateVolume(MprisPlugin mpris, int step) {
+        final int currentVolume = mpris.getVolume();
+        if(currentVolume < 100 || currentVolume > 0) {
+            int newVolume = currentVolume + step;
+            if(newVolume > 100) {
+                newVolume = 100;
+            } else if (newVolume <0 ) {
+                newVolume = 0;
+            }
+            mpris.setVolume(newVolume);
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_VOLUME_UP:
+                BackgroundService.RunCommand(MprisActivity.this, new BackgroundService.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(BackgroundService service) {
+                        Device device = service.getDevice(deviceId);
+                        MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
+                        if (mpris == null) return;
+                        updateVolume(mpris, 5);
+                    }
+                });
+                return true;
+            case KeyEvent.KEYCODE_VOLUME_DOWN:
+                BackgroundService.RunCommand(MprisActivity.this, new BackgroundService.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(BackgroundService service) {
+                        Device device = service.getDevice(deviceId);
+                        MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
+                        if (mpris == null) return;
+                        updateVolume(mpris, -5);
+                    }
+                });
+                return true;
+            default:
+                return super.onKeyDown(keyCode, event);
+        }
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_VOLUME_UP:
+                return true;
+            case KeyEvent.KEYCODE_VOLUME_DOWN:
+                return true;
+            default:
+                return super.onKeyUp(keyCode, event);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mpris_control);
 
-        final String deviceId = getIntent().getStringExtra("deviceId");
+        deviceId = getIntent().getStringExtra("deviceId");
 
         BackgroundService.RunCommand(MprisActivity.this, new BackgroundService.InstanceCallback() {
             @Override
@@ -238,10 +302,12 @@ public class MprisActivity extends Activity {
 
         ((SeekBar)findViewById(R.id.volume_seek)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) { }
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+            }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) { }
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
 
             @Override
             public void onStopTrackingTouch(final SeekBar seekBar) {
@@ -253,10 +319,12 @@ public class MprisActivity extends Activity {
                         if (mpris == null) return;
                         mpris.setVolume(seekBar.getProgress());
                     }
-               });
+                });
             }
 
         });
+
+
 
 
     }
