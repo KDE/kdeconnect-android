@@ -116,7 +116,9 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     @Override
     public boolean onCreate() {
 
-        if (Build.VERSION.SDK_INT < 18) return false;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            return false;
+        }
 
         //Check for permissions
         String notificationListenerList = Settings.Secure.getString(context.getContentResolver(), "enabled_notification_listeners");
@@ -146,6 +148,11 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public void onDestroy() {
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            return;
+        }
+
         NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
             @Override
             public void onServiceStart(NotificationReceiver service) {
