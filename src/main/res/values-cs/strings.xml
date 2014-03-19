@@ -19,6 +19,7 @@
   <string name="open_settings">Otevřít nastavení</string>
   <string name="no_permissions">Pro zpřístupnění upozornění potřebujete oprávnění</string>
   <string name="send_ping">Poslat ping</string>
+  <string name="open_mpris_controls">Otevřít vzdálené ovládání</string>
   <string name="category_connected_devices">Připojená zařízení</string>
   <string name="category_not_paired_devices">Nespárovaná zařízení</string>
   <string name="category_remembered_devices">Zapamatovaná zařízení</string>
@@ -52,6 +53,7 @@
   <string name="mpris_ff">Rychle vpřed</string>
   <string name="mpris_next">Následující</string>
   <string name="mpris_volume">Hlasitost</string>
+  <string name="share_to">Sdílet s...</string>
   <string name="protocol_version_older">Toto zařízení používá starou verzi protokolu</string>
   <string name="protocol_version_newer">Toto zařízení používá novější verzi protokolu</string>
   <string name="general_settings">Obecná nastavení</string>
