@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="pref_plugin_telephony">Oznamování telefonie</string>
   <string name="pref_plugin_telephony_desc">Posílat upozorňování na SMS a hovory</string>
   <string name="pref_plugin_battery">Hlášení baterie</string>
   <string name="pref_plugin_battery_desc">Periodicky hlásit stav baterky</string>
