@@ -6,24 +6,18 @@ import android.app.Notification;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
-import android.util.Base64;
 import android.util.Log;
 import android.widget.Button;
 
 import org.kde.kdeconnect.Helpers.AppsHelper;
-import org.kde.kdeconnect.Helpers.ImagesHelper;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
-
-import java.io.ByteArrayOutputStream;
-import java.nio.charset.Charset;
 
 public class NotificationsPlugin extends Plugin implements NotificationReceiver.NotificationListener {
 
@@ -216,7 +210,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         np.set("id", id.serialize());
         np.set("appName", appName == null? packageName : appName);
         np.set("isClearable", statusBarNotification.isClearable());
-        np.set("ticker", (notification != null && notification.tickerText != null)? notification.tickerText.toString() : "");
+        np.set("ticker", getTickerText(notification));
         np.set("time", Long.toString(statusBarNotification.getPostTime()));
         if (requestAnswer) np.set("requestAnswer", true);
 
@@ -224,7 +218,38 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     }
 
 
+    /**
+     * Returns the ticker text of the notification.
+     * If device android version is KitKat or newer, the title and text of the notification is used
+     * instead the ticker text.
+     */
+    private String getTickerText(Notification notification) {
+        final String TITLE_KEY = "android.title";
+        final String TEXT_KEY = "android.text";
+        String ticker = "";
 
+        if(notification != null) {
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                Bundle extras = notification.extras;
+                String extraTitle = extras.getString(TITLE_KEY);
+                String extraText = extras.getString(TEXT_KEY);
+
+                if(extraTitle != null && extraText != null) {
+                    ticker = extraTitle + " ‐ " + extraText;
+                } else if(extraTitle != null) {
+                    ticker = extraTitle;
+                } else if(extraText != null) {
+                    ticker = extraText;
+                }
+            }
+
+            if (ticker == "") {
+                ticker =  (notification.tickerText != null)? notification.tickerText.toString() : "";
+            }
+        }
+
+        return ticker;
+    }
 
 
     @Override
