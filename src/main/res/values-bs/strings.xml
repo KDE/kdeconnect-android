@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="pref_plugin_battery">Baterijski izvještaj</string>
+  <string name="pref_plugin_battery_desc">Periodično javi baterijski status</string>
+  <string name="pref_plugin_ping">Ping</string>
+  <string name="pref_plugin_ping_desc">Šalji i primaj ping-ove</string>
+  <string name="pref_plugin_notifications">Sinhronizovano obavještenje</string>
+</resources>
