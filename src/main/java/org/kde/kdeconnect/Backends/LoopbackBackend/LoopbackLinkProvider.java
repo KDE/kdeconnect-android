@@ -7,7 +7,7 @@ import org.kde.kdeconnect.NetworkPackage;
 
 public class LoopbackLinkProvider extends BaseLinkProvider {
 
-    private Context context;
+    private final Context context;
 
     public LoopbackLinkProvider(Context context) {
         this.context = context;

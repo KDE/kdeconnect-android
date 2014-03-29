@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
 import android.os.BatteryManager;
-import android.util.Log;
 import android.widget.Button;
 
 import org.kde.kdeconnect.NetworkPackage;
@@ -21,7 +20,7 @@ public class BatteryPlugin extends Plugin {
     private static final int THRESHOLD_EVENT_NONE= 0;
     private static final int THRESHOLD_EVENT_BATTERY_LOW = 1;
 
-    NetworkPackage lastInfo = null;
+    private NetworkPackage lastInfo = null;
 
     /*static {
         PluginFactory.registerPlugin(BatteryPlugin.class);
@@ -52,7 +51,7 @@ public class BatteryPlugin extends Plugin {
         return true;
     }
 
-    private BroadcastReceiver receiver = new BroadcastReceiver() {
+    private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent batteryIntent) {
 

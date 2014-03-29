@@ -13,7 +13,7 @@ public class AppsHelper {
         try {
 
             PackageManager pm = context.getPackageManager();
-            ApplicationInfo ai = pm.getApplicationInfo( packageName, 0);
+            ApplicationInfo ai = pm.getApplicationInfo(packageName, 0);
 
             return pm.getApplicationLabel(ai).toString();
 

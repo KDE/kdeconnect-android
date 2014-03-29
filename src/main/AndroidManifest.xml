@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.kde.kdeconnect_tp"
-    android:versionCode="17"
+    android:versionCode="18"
     android:versionName="0.6.3">
 
     <uses-sdk android:minSdkVersion="9"
-              android:targetSdkVersion="18" />
+              android:targetSdkVersion="19" />
 
     <supports-screens
         android:smallScreens="true"
@@ -32,7 +32,6 @@
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="KDE Connect"
-        android:debuggable="false"
         >
 
         <service

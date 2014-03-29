@@ -5,7 +5,7 @@
             android:id="@+id/menu_refresh"
             android:icon="@drawable/ic_action_refresh"
             android:orderInCategory="200"
-            kdeconnect:showAsAction="always"
+            kdeconnect:showAsAction="ifRoom"
             android:title="@string/reconnect"
         />
 
@@ -13,7 +13,7 @@
             android:id="@+id/menu_progress"
             android:orderInCategory="200"
             android:visible="false"
-            kdeconnect:showAsAction="always"
+            kdeconnect:showAsAction="ifRoom"
             kdeconnect:actionViewClass="android.widget.ProgressBar"
         />
 

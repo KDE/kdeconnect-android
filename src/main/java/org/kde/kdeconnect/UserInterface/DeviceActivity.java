@@ -32,7 +32,7 @@ public class DeviceActivity extends ActionBarActivity {
     static private String deviceId; //Static because if we get here by using the back button in the action bar, the extra deviceId will not be set.
     private Device device;
 
-    private Device.PluginsChangedListener pluginsChangedListener = new Device.PluginsChangedListener() {
+    private final Device.PluginsChangedListener pluginsChangedListener = new Device.PluginsChangedListener() {
         @Override
         public void onPluginsChanged(final Device device) {
 
@@ -59,6 +59,7 @@ public class DeviceActivity extends ActionBarActivity {
                     errorList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                            if (position == 0) return;
                             Plugin p = failedPlugins.get(ids[position - 1]); //Header is position 0, so we have to subtract one
                             p.getErrorDialog(DeviceActivity.this).show();
                         }

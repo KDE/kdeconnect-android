@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -16,7 +15,7 @@ public class NotificationReceiver extends NotificationListenerService {
         void onNotificationRemoved(StatusBarNotification statusBarNotification);
     }
 
-    private ArrayList<NotificationListener> listeners = new ArrayList<NotificationListener>();
+    private final ArrayList<NotificationListener> listeners = new ArrayList<NotificationListener>();
 
     public void addListener(NotificationListener listener) {
         listeners.add(listener);
@@ -61,7 +60,7 @@ public class NotificationReceiver extends NotificationListenerService {
         void onServiceStart(NotificationReceiver service);
     }
 
-    private static ArrayList<InstanceCallback> callbacks = new ArrayList<InstanceCallback>();
+    private final static ArrayList<InstanceCallback> callbacks = new ArrayList<InstanceCallback>();
 
     public static void Start(Context c) {
         RunCommand(c, null);

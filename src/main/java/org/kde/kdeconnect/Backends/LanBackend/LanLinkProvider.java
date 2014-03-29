@@ -3,6 +3,7 @@ package org.kde.kdeconnect.Backends.LanBackend;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.support.v4.util.LongSparseArray;
 
 import org.apache.mina.core.future.ConnectFuture;
 import org.apache.mina.core.future.IoFuture;
@@ -30,9 +31,9 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     private final static int port = 1714;
 
-    private Context context;
-    private HashMap<String, LanLink> visibleComputers = new HashMap<String, LanLink>();
-    private HashMap<Long, LanLink> nioSessions = new HashMap<Long, LanLink>();
+    private final Context context;
+    private final HashMap<String, LanLink> visibleComputers = new HashMap<String, LanLink>();
+    private final LongSparseArray<LanLink> nioSessions = new LongSparseArray<LanLink>();
 
     private NioSocketAcceptor tcpAcceptor = null;
     private NioDatagramAcceptor udpAcceptor = null;
@@ -41,8 +42,9 @@ public class LanLinkProvider extends BaseLinkProvider {
         @Override
         public void sessionClosed(IoSession session) throws Exception {
 
-            LanLink brokenLink = nioSessions.remove(session.getId());
+            LanLink brokenLink = nioSessions.get(session.getId());
             if (brokenLink != null) {
+                nioSessions.remove(session.getId());
                 connectionLost(brokenLink);
                 brokenLink.disconnect();
                 String deviceId = brokenLink.getDeviceId();
@@ -92,7 +94,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         }
     };
 
-    private IoHandler udpHandler = new IoHandlerAdapter() {
+    private final IoHandler udpHandler = new IoHandlerAdapter() {
         @Override
         public void messageReceived(IoSession udpSession, Object message) throws Exception {
             super.messageReceived(udpSession, message);

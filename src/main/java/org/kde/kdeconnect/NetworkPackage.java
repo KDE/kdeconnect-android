@@ -8,7 +8,6 @@ import android.util.Base64;
 import android.util.Log;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.UserInterface.MainSettingsActivity;

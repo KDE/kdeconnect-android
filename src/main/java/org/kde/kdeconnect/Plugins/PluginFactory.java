@@ -50,11 +50,11 @@ public class PluginFactory {
             return enabledByDefault;
         }
 
-        private String pluginName;
-        private String displayName;
-        private String description;
+        private final String pluginName;
+        private final String displayName;
+        private final String description;
         private final Drawable icon;
-        private boolean enabledByDefault;
+        private final boolean enabledByDefault;
 
     }
 

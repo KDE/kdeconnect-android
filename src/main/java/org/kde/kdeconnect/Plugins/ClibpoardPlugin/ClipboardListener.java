@@ -10,11 +10,11 @@ import org.kde.kdeconnect.NetworkPackage;
 public class ClipboardListener {
 
 
-    private Context context;
+    private final Context context;
     private String currentContent;
 
     private ClipboardManager cm = null;
-    ClipboardManager.OnPrimaryClipChangedListener listener;
+    private ClipboardManager.OnPrimaryClipChangedListener listener;
 
     ClipboardListener(final Context ctx, final Device device) {
         context = ctx;

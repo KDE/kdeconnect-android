@@ -35,10 +35,10 @@ import java.util.TimerTask;
 
 public class Device implements BaseLink.PackageReceiver {
 
-    private Context context;
+    private final Context context;
 
-    private String deviceId;
-    private String name;
+    private final String deviceId;
+    private final String name;
     public PublicKey publicKey;
     private int notificationId;
     private int protocolVersion;
@@ -61,11 +61,11 @@ public class Device implements BaseLink.PackageReceiver {
     private ArrayList<PairingCallback> pairingCallback = new ArrayList<PairingCallback>();
     private Timer pairingTimer;
 
-    private ArrayList<BaseLink> links = new ArrayList<BaseLink>();
-    private HashMap<String, Plugin> plugins = new HashMap<String, Plugin>();
-    private HashMap<String, Plugin> failedPlugins = new HashMap<String, Plugin>();
+    private final ArrayList<BaseLink> links = new ArrayList<BaseLink>();
+    private final HashMap<String, Plugin> plugins = new HashMap<String, Plugin>();
+    private final HashMap<String, Plugin> failedPlugins = new HashMap<String, Plugin>();
 
-    SharedPreferences settings;
+    private final SharedPreferences settings;
 
     //Remembered trusted device, we need to wait for a incoming devicelink to communicate
     Device(Context context, String deviceId) {
@@ -653,7 +653,7 @@ public class Device implements BaseLink.PackageReceiver {
         void onPluginsChanged(Device device);
     }
 
-    private ArrayList<PluginsChangedListener> pluginsChangedListeners = new ArrayList<PluginsChangedListener>();
+    private final ArrayList<PluginsChangedListener> pluginsChangedListeners = new ArrayList<PluginsChangedListener>();
 
     public void addPluginsChangedListener(PluginsChangedListener listener) {
         pluginsChangedListeners.add(listener);

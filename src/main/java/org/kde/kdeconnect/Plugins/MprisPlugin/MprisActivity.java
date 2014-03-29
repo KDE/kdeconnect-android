@@ -126,7 +126,7 @@ public class MprisActivity extends Activity {
 
     }
 
-    BaseLinkProvider.ConnectionReceiver connectionReceiver = new BaseLinkProvider.ConnectionReceiver() {
+    private final BaseLinkProvider.ConnectionReceiver connectionReceiver = new BaseLinkProvider.ConnectionReceiver() {
         @Override
         public void onConnectionReceived(NetworkPackage identityPackage, BaseLink link) {
             connectToPlugin();

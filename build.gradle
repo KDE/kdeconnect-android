@@ -24,14 +24,18 @@ android {
         exclude "META-INF/LICENSE.txt"
         exclude "META-INF/NOTICE.txt"
     }
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 dependencies {
     repositories {
         mavenCentral()
     }
-    compile "com.android.support:support-v4:19.0.+"
-    compile "com.android.support:appcompat-v7:19.0.+"
+    compile "com.android.support:support-v4:19.1.+"
+    compile "com.android.support:appcompat-v7:19.1.+"
     compile "org.apache.mina:mina-core:2.0.+"
     compile 'org.bouncycastle:bcprov-jdk16:1.45'
     compile 'org.apache.sshd:sshd-core:0.8.0'

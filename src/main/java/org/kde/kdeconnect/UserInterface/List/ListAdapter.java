@@ -14,8 +14,8 @@ public class ListAdapter extends ArrayAdapter<ListAdapter.Item> {
         public View inflateView(LayoutInflater layoutInflater);
     }
 
-	private ArrayList<Item> items;
-	private LayoutInflater layoutInflater;
+	private final ArrayList<Item> items;
+	private final LayoutInflater layoutInflater;
 
 	public ListAdapter(Context context, ArrayList<Item> items) {
 		super(context, 0, items);

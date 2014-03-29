@@ -3,9 +3,7 @@ package org.kde.kdeconnect.Helpers;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.provider.ContactsContract;
 import android.provider.ContactsContract.PhoneLookup;
-import android.util.Log;
 
 public class ContactsHelper {
 
@@ -31,7 +29,7 @@ public class ContactsHelper {
 
         // Take the first match only
         if (cursor != null && cursor.moveToFirst()) {
-            int nameIndex = cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME);
+            int nameIndex = cursor.getColumnIndex(PhoneLookup.DISPLAY_NAME);
             if (nameIndex != -1) {
                 String name = cursor.getString(nameIndex);
                 //Log.e("PhoneNumberLookup", "success: " + name);

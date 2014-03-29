@@ -243,7 +243,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 }
             }
 
-            if (ticker == "") {
+            if (ticker.isEmpty()) {
                 ticker =  (notification.tickerText != null)? notification.tickerText.toString() : "";
             }
         }

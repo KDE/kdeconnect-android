@@ -67,7 +67,7 @@ public class MainSettingsActivity extends PreferenceActivity{
     /**
      * Until now it sets only the default deviceName (if not already set).
      * It's safe to call this multiple time because doesn't override any previous value.
-     * @param context
+     * @param context the application context
      */
     public static void initializeDeviceName(Context context){
         // I could have used getDefaultSharedPreferences(context).contains but we need to check
@@ -84,7 +84,7 @@ public class MainSettingsActivity extends PreferenceActivity{
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public static class GeneralPrefsFragment extends PreferenceFragment {
+    private static class GeneralPrefsFragment extends PreferenceFragment {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);

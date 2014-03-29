@@ -18,7 +18,7 @@ public class PairActivity extends ActionBarActivity {
     private String deviceId;
     private Device device = null;
 
-    private Device.PairingCallback pairingCallback = new Device.PairingCallback() {
+    private final Device.PairingCallback pairingCallback = new Device.PairingCallback() {
 
         @Override
         public void incomingRequest() {

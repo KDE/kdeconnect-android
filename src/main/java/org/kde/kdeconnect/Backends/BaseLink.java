@@ -1,23 +1,17 @@
 package org.kde.kdeconnect.Backends;
 
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.util.Base64;
-
 import org.kde.kdeconnect.NetworkPackage;
 
-import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.ArrayList;
 
 
 public abstract class BaseLink {
 
-    private BaseLinkProvider linkProvider;
-    private String deviceId;
-    private ArrayList<PackageReceiver> receivers = new ArrayList<PackageReceiver>();
+    private final BaseLinkProvider linkProvider;
+    private final String deviceId;
+    private final ArrayList<PackageReceiver> receivers = new ArrayList<PackageReceiver>();
     protected PrivateKey privateKey;
 
     protected BaseLink(String deviceId, BaseLinkProvider linkProvider) {

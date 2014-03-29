@@ -26,11 +26,11 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class BackgroundService extends Service {
 
-    private ArrayList<BaseLinkProvider> linkProviders = new ArrayList<BaseLinkProvider>();
+    private final ArrayList<BaseLinkProvider> linkProviders = new ArrayList<BaseLinkProvider>();
 
-    private HashMap<String, Device> devices = new HashMap<String, Device>();
+    private final HashMap<String, Device> devices = new HashMap<String, Device>();
 
-    private Device.PairingCallback devicePairingCallback = new Device.PairingCallback() {
+    private final Device.PairingCallback devicePairingCallback = new Device.PairingCallback() {
         @Override
         public void incomingRequest() {
             if (deviceListChangedCallback != null) deviceListChangedCallback.onDeviceListChanged();
@@ -63,7 +63,7 @@ public class BackgroundService extends Service {
         }
     }
 
-    public void registerLinkProviders() {
+    private void registerLinkProviders() {
 
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -81,7 +81,7 @@ public class BackgroundService extends Service {
         return devices.get(id);
     }
 
-    private BaseLinkProvider.ConnectionReceiver deviceListener = new BaseLinkProvider.ConnectionReceiver() {
+    private final BaseLinkProvider.ConnectionReceiver deviceListener = new BaseLinkProvider.ConnectionReceiver() {
         @Override
         public void onConnectionReceived(final NetworkPackage identityPackage, final BaseLink link) {
 
@@ -266,9 +266,9 @@ public class BackgroundService extends Service {
         void onServiceStart(BackgroundService service);
     }
 
-    private static ArrayList<InstanceCallback> callbacks = new ArrayList<InstanceCallback>();
+    private final static ArrayList<InstanceCallback> callbacks = new ArrayList<InstanceCallback>();
 
-    private static final Lock mutex = new ReentrantLock(true);
+    private final static Lock mutex = new ReentrantLock(true);
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
