@@ -13,10 +13,11 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect_tp.R;
 
-public class MainSettingsActivity extends PreferenceActivity{
+public class MainSettingsActivity extends PreferenceActivity {
 
     public static final String KEY_DEVICE_NAME_PREFERENCE = "device_name_preference";
 
@@ -55,6 +56,14 @@ public class MainSettingsActivity extends PreferenceActivity{
                     deviceNamePref.setSummary(getString(
                             R.string.device_name_preference_summary,
                             newDeviceName.toString()));
+
+                    //Broadcast the device information again since it has changed
+                    BackgroundService.RunCommand(MainSettingsActivity.this, new BackgroundService.InstanceCallback() {
+                        @Override
+                        public void onServiceStart(BackgroundService service) {
+                            service.onNetworkChange();
+                        }
+                    });
                     return true;
                 }
             }
