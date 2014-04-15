@@ -491,13 +491,19 @@ public class Device implements BaseLink.PackageReceiver {
                 ArrayList<BaseLink> mLinks = new ArrayList<BaseLink>(links);
 
                 boolean success = false;
-                for(BaseLink link : mLinks) {
-                    if (useEncryption) {
-                        success = link.sendPackageEncrypted(np, publicKey);
-                    } else {
-                        success = link.sendPackage(np);
+                try {
+                    for (BaseLink link : mLinks) {
+                        if (useEncryption) {
+                            success = link.sendPackageEncrypted(np, publicKey);
+                        } else {
+                            success = link.sendPackage(np);
+                        }
+                        if (success) break;
                     }
-                    if (success) break;
+                } catch(Exception e) {
+                    e.printStackTrace();
+                    Log.e("sendPackage","Error while sending package");
+                    success = false;
                 }
 
                 if (success) {
