@@ -209,8 +209,6 @@ public class Device implements BaseLink.PackageReceiver {
 
     public void unpair() {
 
-        if (!isPaired()) return;
-
         //Log.e("Device","Unpairing (unpair)");
         pairStatus = PairStatus.NotPaired;
 
@@ -452,7 +450,7 @@ public class Device implements BaseLink.PackageReceiver {
             }
         } else if (!isPaired()) {
 
-            //TODO: Notify the other side that we don't trust them
+            unpair();
             Log.e("onPackageReceived","Device not paired, ignoring package!");
 
         } else {
