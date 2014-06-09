@@ -29,6 +29,7 @@
     <string name="plugins_failed_to_load">Plugins failed to load (tap for more info):</string>
     <string name="device_menu_plugins">Select plugins</string>
     <string name="device_menu_unpair">Unpair</string>
+    <string name="device_not_reachable">Paired device not reachable</string>
     <string name="unknown_device">Unknown device</string>
     <string name="error_not_reachable">Device not reachable</string>
     <string name="error_already_requested">Pairing already requested</string>
