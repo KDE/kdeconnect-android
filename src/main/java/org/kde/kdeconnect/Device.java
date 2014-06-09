@@ -611,7 +611,7 @@ public class Device implements BaseLink.PackageReceiver {
 
     public void setPluginEnabled(String pluginName, boolean value) {
         settings.edit().putBoolean(pluginName,value).commit();
-        if (value) addPlugin(pluginName);
+        if (value && isPaired() && isReachable()) addPlugin(pluginName);
         else removePlugin(pluginName);
     }
 
