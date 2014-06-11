@@ -28,6 +28,7 @@
   <string name="plugins_failed_to_load">Додатки, які не вдалося завантажити (натисніть, щоб дізнатися більше):</string>
   <string name="device_menu_plugins">Виберіть додатки</string>
   <string name="device_menu_unpair">Скасувати пов’язування</string>
+  <string name="device_not_reachable">Немає доступу до пов’язаного пристрою</string>
   <string name="unknown_device">Невідомий пристрій</string>
   <string name="error_not_reachable">Немає доступу до пристрою</string>
   <string name="error_already_requested">Запит щодо пов’язування вже надіслано</string>

@@ -28,6 +28,7 @@
   <string name="plugins_failed_to_load">Plugins kunne ikke indlæses (tap for mere info):</string>
   <string name="device_menu_plugins">Vælg plugins</string>
   <string name="device_menu_unpair">Fjern parring</string>
+  <string name="device_not_reachable">Enheden kan ikke nås</string>
   <string name="unknown_device">Ukendt enhed</string>
   <string name="error_not_reachable">Enheden kan ikke nås</string>
   <string name="error_already_requested">Allerede anmodet om parring</string>

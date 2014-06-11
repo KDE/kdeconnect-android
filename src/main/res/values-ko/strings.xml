@@ -28,6 +28,7 @@
   <string name="plugins_failed_to_load">불러올 수 없는 플러그인(정보를 보려면 누르기)</string>
   <string name="device_menu_plugins">플러그인 선택</string>
   <string name="device_menu_unpair">페어링 해제</string>
+  <string name="device_not_reachable">장치에 접근할 수 없음</string>
   <string name="unknown_device">알 수 없는 장치</string>
   <string name="error_not_reachable">장치에 접근할 수 없음</string>
   <string name="error_already_requested">페어링이 이미 요청됨</string>

@@ -28,6 +28,7 @@
   <string name="plugins_failed_to_load">Laden der Module fehlgeschlagen, tippen Sie für weitere Details:</string>
   <string name="device_menu_plugins">Module auswählen</string>
   <string name="device_menu_unpair">Verbindung trennen</string>
+  <string name="device_not_reachable">Das Gerät ist nicht erreichbar</string>
   <string name="unknown_device">Unbekanntes Gerät</string>
   <string name="error_not_reachable">Das Gerät ist nicht erreichbar</string>
   <string name="error_already_requested">Die Verbindung wurde bereits angefragt</string>
