@@ -28,7 +28,7 @@
   <string name="plugins_failed_to_load">Nieudane wczytywanie wtyczki (stuknij po więcej informacji):</string>
   <string name="device_menu_plugins">Wybierz wtyczki</string>
   <string name="device_menu_unpair">Odparuj</string>
-  <string name="device_not_reachable">Urządzenie nieosiągalne</string>
+  <string name="device_not_reachable">Sparowane urządzenie nieosiągalne</string>
   <string name="unknown_device">Nieznane urządzenie</string>
   <string name="error_not_reachable">Urządzenie nieosiągalne</string>
   <string name="error_already_requested">Już zażądano parowania</string>
