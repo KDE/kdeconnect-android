@@ -456,7 +456,13 @@ public class Device implements BaseLink.PackageReceiver {
         } else {
 
             for (Plugin plugin : plugins.values()) {
-                plugin.onPackageReceived(np);
+                try {
+                    plugin.onPackageReceived(np);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.e("Device", "Exception in "+plugin.getDisplayName()+"'s onPackageReceived()");
+                }
+
             }
         }
 
