@@ -4,6 +4,7 @@
   <string name="pref_plugin_telephony_desc">Posílat upozorňování na SMS a hovory</string>
   <string name="pref_plugin_battery">Hlášení baterie</string>
   <string name="pref_plugin_battery_desc">Periodicky hlásit stav baterky</string>
+  <string name="pref_plugin_sftp">Přístup k souborovému systému</string>
   <string name="pref_plugin_sftp_desc">Umožní vám vzdáleně prohlížet souborový systém telefonu</string>
   <string name="pref_plugin_clipboard">Synchronizace schránky</string>
   <string name="pref_plugin_clipboard_desc">Sdílet obsah schránky</string>
@@ -27,6 +28,7 @@
   <string name="plugins_failed_to_load">Moduly nebyly načteny (ťukněte pro více informací):</string>
   <string name="device_menu_plugins">Vyberte moduly</string>
   <string name="device_menu_unpair">Zrušit párování</string>
+  <string name="device_not_reachable">Spárované zařízení je nedostupné</string>
   <string name="unknown_device">Neznámé zařízení</string>
   <string name="error_not_reachable">Zařízení je nedostupné</string>
   <string name="error_already_requested">Párování již bylo vyžádáno</string>
