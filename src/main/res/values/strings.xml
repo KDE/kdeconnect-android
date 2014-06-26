@@ -9,6 +9,8 @@
     <string name="pref_plugin_sftp_desc">Allows to browse the phone\'s filesystem remotely</string>
     <string name="pref_plugin_clipboard">Clipboard sync</string>
     <string name="pref_plugin_clipboard_desc">Share the clipboard content</string>
+    <string name="pref_plugin_mousepad">Mouse Remote Control</string>
+    <string name="pref_plugin_mousepad_desc">Control your mouse remotely</string>
     <string name="pref_plugin_mpris">Multimedia remote controls</string>
     <string name="pref_plugin_mpris_desc">Control audio/video from your phone</string>
     <string name="pref_plugin_ping">Ping</string>
@@ -23,6 +25,8 @@
     <string name="no_permissions">You need to grant permission to access notifications</string>
     <string name="send_ping">Send ping</string>
     <string name="open_mpris_controls">Open remote control</string>
+    <string name="open_mousepad">Open mousepad control</string>
+    <string name="mousepad_info">Move your thumb on the screen to move the mouse cursor</string>
     <string name="category_connected_devices">Connected devices</string>
     <string name="category_not_paired_devices">Not paired devices</string>
     <string name="category_remembered_devices">Remembered devices</string>

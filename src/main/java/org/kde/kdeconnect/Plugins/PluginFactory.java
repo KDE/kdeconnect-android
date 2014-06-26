@@ -7,6 +7,8 @@ import android.util.Log;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Plugins.BatteryPlugin.BatteryPlugin;
+import org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadActivity;
+import org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadPlugin;
 import org.kde.kdeconnect.Plugins.SftpPlugin.SftpPlugin;
 import org.kde.kdeconnect.Plugins.ClibpoardPlugin.ClipboardPlugin;
 import org.kde.kdeconnect.Plugins.MprisPlugin.MprisPlugin;
@@ -70,6 +72,7 @@ public class PluginFactory {
         PluginFactory.registerPlugin(BatteryPlugin.class);
         PluginFactory.registerPlugin(SftpPlugin.class);
         PluginFactory.registerPlugin(NotificationsPlugin.class);
+        PluginFactory.registerPlugin(MousePadPlugin.class);
     }
 
     public static PluginInfo getPluginInfo(Context context, String pluginName) {
@@ -111,10 +114,10 @@ public class PluginFactory {
 
     }
 
-    public static void registerPlugin(Class pluginClass) {
+    public static void registerPlugin(Class<? extends Plugin> pluginClass) {
         try {
             //I hate this but I need to create an instance because abstract static functions can't be declared
-            String pluginName = ((Plugin)pluginClass.newInstance()).getPluginName();
+            String pluginName = (pluginClass.newInstance()).getPluginName();
             availablePlugins.put(pluginName, pluginClass);
         } catch(Exception e) {
             Log.e("PluginFactory","addPlugin exception");
