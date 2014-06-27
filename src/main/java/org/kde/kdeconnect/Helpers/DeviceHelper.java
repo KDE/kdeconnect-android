@@ -26,6 +26,7 @@ public class DeviceHelper {
         humanReadableNames.put("C6603","Sony Xperia Z");
         humanReadableNames.put("C6606","Sony Xperia Z");
         humanReadableNames.put("C6903","Sony Xperia Z1");
+        humanReadableNames.put("D6503","Sony Xperia Z2");
         humanReadableNames.put("Desire_HD","HTC Desire HD");
         humanReadableNames.put("DROID2_GLOBAL","Motorola Droid 2 Global");
         humanReadableNames.put("DROID2","Motorola Droid 2");
