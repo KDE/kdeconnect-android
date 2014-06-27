@@ -2,7 +2,6 @@ package org.kde.kdeconnect.Plugins.MousePadPlugin;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
