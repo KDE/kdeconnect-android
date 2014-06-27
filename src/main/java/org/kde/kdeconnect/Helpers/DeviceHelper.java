@@ -114,12 +114,12 @@ public class DeviceHelper {
         humanReadableNames.put("MOTWX435KT","Motorola Triumph");
         humanReadableNames.put("myTouch_4G_Slide","HTC myTouch 4G Slide");
         humanReadableNames.put("N860","ZTE Warp N860");
-        humanReadableNames.put("Nexus_10","Google Nexus 10");
-        humanReadableNames.put("Nexus_4","Google Nexus 4");
-        humanReadableNames.put("Nexus_5","Google Nexus 5");
-        humanReadableNames.put("Nexus_7","Asus Nexus 7");
-        humanReadableNames.put("Nexus_S_4G","Samsung Nexus S 4G");
-        humanReadableNames.put("Nexus_S","Samsung Nexus S");
+        humanReadableNames.put("Nexus_10","Nexus 10");
+        humanReadableNames.put("Nexus_4","Nexus 4");
+        humanReadableNames.put("Nexus_5","Nexus 5");
+        humanReadableNames.put("Nexus_7","Nexus 7");
+        humanReadableNames.put("Nexus_S_4G","Nexus S 4G");
+        humanReadableNames.put("Nexus_S","Nexus S");
         humanReadableNames.put("PantechP9070","Pantech Burst");
         humanReadableNames.put("PC36100","HTC Evo 4G");
         humanReadableNames.put("PG06100","HTC EVO Shift 4G");
