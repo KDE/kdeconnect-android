@@ -28,6 +28,7 @@
   <string name="plugins_failed_to_load">Încărcarea extensiilor a eșuat (atingeți pentru mai multe informații):</string>
   <string name="device_menu_plugins">Alege extensii</string>
   <string name="device_menu_unpair">Dezasociază</string>
+  <string name="device_not_reachable">Dispozitivul nu e accesibil</string>
   <string name="unknown_device">Dispozitiv necunoscut</string>
   <string name="error_not_reachable">Dispozitivul nu e accesibil</string>
   <string name="error_already_requested">Asocierea a fost cerută deja</string>

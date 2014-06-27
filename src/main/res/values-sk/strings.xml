@@ -28,6 +28,7 @@
   <string name="plugins_failed_to_load">Zlyhalo načítanie pluginov (tapnite pre viac info):</string>
   <string name="device_menu_plugins">Vybrať pluginy</string>
   <string name="device_menu_unpair">Odpárovať</string>
+  <string name="device_not_reachable">Spárované zariadenie nedostupné</string>
   <string name="unknown_device">Neznáme zariadenie</string>
   <string name="error_not_reachable">Zariadenie nedostupné</string>
   <string name="error_already_requested">Spárovanie už vyžiadané</string>

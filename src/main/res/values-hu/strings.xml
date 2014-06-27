@@ -28,6 +28,7 @@
   <string name="plugins_failed_to_load">A bővítményeket nem sikerült betölteni (érintse meg a további információkért):</string>
   <string name="device_menu_plugins">Bővítmények kijelölése</string>
   <string name="device_menu_unpair">Leválasztás</string>
+  <string name="device_not_reachable">A párosított eszköz nem érhető el</string>
   <string name="unknown_device">Ismeretlen eszköz</string>
   <string name="error_not_reachable">Az eszköz nem érhető el</string>
   <string name="error_already_requested">A párosítás már kérve lett</string>

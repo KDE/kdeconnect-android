@@ -28,6 +28,7 @@
   <string name="plugins_failed_to_load">Plugins não carregados (toque para mais informações):</string>
   <string name="device_menu_plugins">Selecionar plugins</string>
   <string name="device_menu_unpair">Cancelar emparelhamento</string>
+  <string name="device_not_reachable">O dispositivo pareado está inacessível</string>
   <string name="unknown_device">Dispositivo desconhecido</string>
   <string name="error_not_reachable">Dispositivo inacessível</string>
   <string name="error_already_requested">O emparelhamento já foi solicitado</string>

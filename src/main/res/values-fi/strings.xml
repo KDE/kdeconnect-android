@@ -28,6 +28,7 @@
   <string name="plugins_failed_to_load">Liitännäisten lataus epäonnistui (lisätietoa napsauttamalla):</string>
   <string name="device_menu_plugins">Valitse liitännäiset</string>
   <string name="device_menu_unpair">Irrota paritus</string>
+  <string name="device_not_reachable">Laitepari tavoittamattomissa</string>
   <string name="unknown_device">Tuntematon laite</string>
   <string name="error_not_reachable">Laite tavoittamattomissa</string>
   <string name="error_already_requested">Paritusta on jo pyydetty</string>

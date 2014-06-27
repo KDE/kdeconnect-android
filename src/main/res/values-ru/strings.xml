@@ -26,6 +26,7 @@
   <string name="plugins_failed_to_load">Сбой загрузки следующих модулей (прикоснитесь чтобы получить подробности):</string>
   <string name="device_menu_plugins">Выбрать модули</string>
   <string name="device_menu_unpair">Разделить спаренные устройства</string>
+  <string name="device_not_reachable">Устройство недоступно</string>
   <string name="unknown_device">Неизвестное устройство</string>
   <string name="error_not_reachable">Устройство недоступно</string>
   <string name="error_already_requested">Запрос на спаривание уже был сделан</string>

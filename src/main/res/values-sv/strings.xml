@@ -28,6 +28,7 @@
   <string name="plugins_failed_to_load">Misslyckades ladda insticksprogram (rör för mer information):</string>
   <string name="device_menu_plugins">Välj insticksprogram</string>
   <string name="device_menu_unpair">Ta bort ihopparning</string>
+  <string name="device_not_reachable">Ihopparad enhet kan inte nås</string>
   <string name="unknown_device">Okänd apparat</string>
   <string name="error_not_reachable">Apparaten kan inte nås</string>
   <string name="error_already_requested">Ihopparning redan begärd</string>
