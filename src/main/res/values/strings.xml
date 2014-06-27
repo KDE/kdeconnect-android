@@ -17,6 +17,8 @@
     <string name="pref_plugin_ping_desc">Send and receive pings</string>
     <string name="pref_plugin_notifications">Notification sync</string>
     <string name="pref_plugin_notifications_desc">Access your notifications from other devices</string>
+    <string name="pref_plugin_sharereceiver">Share receiver</string>
+    <string name="pref_plugin_sharereceiver_desc">Save incoming files to the phone storage</string>
     <string name="plugin_not_available">This feature is not available in your Android version</string>
     <string name="device_list_empty">No devices</string>
     <string name="ok">OK</string>
@@ -45,6 +47,12 @@
     <string name="error_invalid_key">Invalid key received</string>
     <string name="pair_requested">Pair requested</string>
     <string name="pairing_request_from">Pairing request from %1s</string>
+    <string name="received_url_title">Received link from %1s</string>
+    <string name="received_url_text">Tap to open \'%1s\'</string>
+    <string name="incoming_file_title">Incoming file from %1s</string>
+    <string name="incoming_file_text">%1s</string>
+    <string name="received_file_title">Received file from %1s</string>
+    <string name="received_file_text">Tap to open \'%1s\'</string>
     <string name="tap_to_answer">Tap to answer</string>
     <string name="reconnect">Reconnect</string>
     <string name="device_not_paired">Device not paired</string>
@@ -68,5 +76,6 @@
     <string name="device_name">Device name</string>
     <string name="device_name_preference_summary">%s</string>
     <string name="invalid_device_name">Invalid device name</string>
+    <string name="shareplugin_text_saved">Received text, saved to clipboard</string>
 
 </resources>
