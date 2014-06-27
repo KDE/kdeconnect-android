@@ -3,7 +3,6 @@ package org.kde.kdeconnect.Plugins.MousePadPlugin;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.View;
@@ -56,18 +55,7 @@ public class MousePadPlugin extends Plugin {
     }
 
     @Override
-    public AlertDialog getErrorDialog(Context baseContext) {
-        return new AlertDialog.Builder(baseContext)
-                .setTitle(R.string.pref_plugin_mousepad)
-                .setMessage(R.string.plugin_not_available)
-                .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                })
-                .create();
-    }
+    public AlertDialog getErrorDialog(Context baseContext) { return null; }
 
     public void sendPoints(float dx, float dy) {
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MOUSEPAD);
