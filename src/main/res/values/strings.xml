@@ -27,8 +27,8 @@
     <string name="no_permissions">You need to grant permission to access notifications</string>
     <string name="send_ping">Send ping</string>
     <string name="open_mpris_controls">Open remote control</string>
-    <string name="open_mousepad">Open mousepad control</string>
-    <string name="mousepad_info">Move your thumb on the screen to move the mouse cursor</string>
+    <string name="open_mousepad">Open touchpad control</string>
+    <string name="mousepad_info">Move a finger on the screen to move the mouse cursor</string>
     <string name="category_connected_devices">Connected devices</string>
     <string name="category_not_paired_devices">Not paired devices</string>
     <string name="category_remembered_devices">Remembered devices</string>
