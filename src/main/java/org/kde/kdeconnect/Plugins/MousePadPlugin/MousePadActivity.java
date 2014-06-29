@@ -30,7 +30,9 @@ public class MousePadActivity extends Activity implements GestureDetector.OnGest
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        mDetector.onTouchEvent(event);
+        if ( mDetector.onTouchEvent(event) ) {
+            return true;
+        }
         int actionType = event.getAction();
         final float x = event.getX();
         final float y = event.getY();
@@ -74,8 +76,21 @@ public class MousePadActivity extends Activity implements GestureDetector.OnGest
     }
 
     @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        return false;
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, final float distanceX, final float distanceY) {
+        // If only one thumb is used then cancel the scroll gesture
+        if (e2.getPointerCount() <= 1) {
+            return false;
+        }
+        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                Device device = service.getDevice(deviceId);
+                MousePadPlugin mousePadPlugin = (MousePadPlugin)device.getPlugin("plugin_mousepad");
+                if (mousePadPlugin == null) return;
+                mousePadPlugin.sendScroll(distanceX, distanceY);
+            }
+        });
+        return true;
     }
 
     @Override
