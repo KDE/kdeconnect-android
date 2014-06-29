@@ -76,6 +76,18 @@ public class MousePadPlugin extends Plugin {
         device.sendPackage(np);
     }
 
+    public void sendMiddleClick() {
+        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MOUSEPAD);
+        np.set("middleclick", true);
+        device.sendPackage(np);
+    }
+
+    public void sendRightClick() {
+        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MOUSEPAD);
+        np.set("rightclick", true);
+        device.sendPackage(np);
+    }
+
     public void sendScroll(float dx, float dy) {
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MOUSEPAD);
         np.set("scroll", true);
