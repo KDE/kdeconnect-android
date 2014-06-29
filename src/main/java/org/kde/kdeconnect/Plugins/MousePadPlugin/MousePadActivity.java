@@ -15,6 +15,8 @@ public class MousePadActivity extends Activity implements GestureDetector.OnGest
     private float mCurrentX;
     private float mCurrentY;
 
+    boolean isScrolling = false;
+
     private String deviceId;
 
     private GestureDetector mDetector;
@@ -36,6 +38,14 @@ public class MousePadActivity extends Activity implements GestureDetector.OnGest
         int actionType = event.getAction();
         final float x = event.getX();
         final float y = event.getY();
+        if (isScrolling) {
+            if (actionType == MotionEvent.ACTION_UP) {
+                isScrolling = false;
+            } else {
+                return false;
+
+            }
+        }
         switch (actionType) {
             case MotionEvent.ACTION_DOWN:
                 mPrevX = x;
@@ -81,6 +91,7 @@ public class MousePadActivity extends Activity implements GestureDetector.OnGest
         if (e2.getPointerCount() <= 1) {
             return false;
         }
+        isScrolling = true;
         BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
