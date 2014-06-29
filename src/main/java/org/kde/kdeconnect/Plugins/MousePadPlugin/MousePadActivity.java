@@ -10,12 +10,17 @@ import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect_tp.R;
 
 public class MousePadActivity extends Activity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
+
+    private final static float MinDistanceToSendScroll = 2.5f;
+
     private float mPrevX;
     private float mPrevY;
     private float mCurrentX;
     private float mCurrentY;
 
     boolean isScrolling = false;
+
+    float accumulatedDistanceY = 0;
 
     private String deviceId;
 
@@ -91,16 +96,27 @@ public class MousePadActivity extends Activity implements GestureDetector.OnGest
         if (e2.getPointerCount() <= 1) {
             return false;
         }
+
         isScrolling = true;
-        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                Device device = service.getDevice(deviceId);
-                MousePadPlugin mousePadPlugin = (MousePadPlugin)device.getPlugin("plugin_mousepad");
-                if (mousePadPlugin == null) return;
-                mousePadPlugin.sendScroll(distanceX, distanceY);
-            }
-        });
+
+        accumulatedDistanceY += distanceY;
+        if (accumulatedDistanceY > MinDistanceToSendScroll || accumulatedDistanceY < -MinDistanceToSendScroll)
+        {
+            final float scrollToSendY = accumulatedDistanceY;
+
+            BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
+                @Override
+                public void onServiceStart(BackgroundService service) {
+                    Device device = service.getDevice(deviceId);
+                    MousePadPlugin mousePadPlugin = (MousePadPlugin)device.getPlugin("plugin_mousepad");
+                    if (mousePadPlugin == null) return;
+                    mousePadPlugin.sendScroll(0, scrollToSendY);
+                }
+            });
+
+            accumulatedDistanceY = 0;
+        }
+
         return true;
     }
 
