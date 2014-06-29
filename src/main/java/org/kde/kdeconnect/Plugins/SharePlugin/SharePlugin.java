@@ -137,13 +137,15 @@ public class SharePlugin extends Plugin {
 
                             Log.e("SharePlugin", "Transfer finished");
 
+                            //Make sure it is added to the Android Gallery
+                            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                            mediaScanIntent.setData(Uri.fromFile(destinationFullPath));
+                            context.sendBroadcast(mediaScanIntent);
+
+                            //Update the notification and allow to open the file from it
                             Intent intent = new Intent(Intent.ACTION_VIEW);
                             intent.setDataAndType(Uri.fromFile(destinationFullPath), FilesHelper.getMimeTypeFromFile(destinationFullPath.getPath()));
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                            //Do not launch it directly, show a notification instead
-                            //context.startActivity(browserIntent);
-
                             TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
                             stackBuilder.addNextIntent(intent);
                             PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
@@ -163,6 +165,7 @@ public class SharePlugin extends Plugin {
                                     .build();
                             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
                             notificationManager.notify(notificationId, noti);
+                            
                         } catch (Exception e) {
                             Log.e("SharePlugin", "Receiver thread exception");
                             e.printStackTrace();
