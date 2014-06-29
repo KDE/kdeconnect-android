@@ -8,6 +8,7 @@
   <string name="pref_plugin_sftp_desc">Permettre de parcourir le système de fichiers du téléphone à distance</string>
   <string name="pref_plugin_clipboard">Synchronisation avec le presse-papiers</string>
   <string name="pref_plugin_clipboard_desc">Partage le contenu du presse-papiers</string>
+  <string name="pref_plugin_mousepad">Contrôle distant</string>
   <string name="pref_plugin_mpris">Contrôles distants multimédia</string>
   <string name="pref_plugin_mpris_desc">Contrôle l\'audio / la vidéo depuis votre téléphone</string>
   <string name="pref_plugin_ping">Commande « Ping »</string>
@@ -22,6 +23,7 @@
   <string name="no_permissions">Vous devez accorder la permission d\'accéder aux notifications</string>
   <string name="send_ping">Envoyer un « Ping »</string>
   <string name="open_mpris_controls">Ouvrir un contrôle distant</string>
+  <string name="open_mousepad">Ouvrir un contrôle distant</string>
   <string name="category_connected_devices">Périphériques connectés</string>
   <string name="category_not_paired_devices">Pas de périphériques appariés</string>
   <string name="category_remembered_devices">Périphériques mémorisés</string>

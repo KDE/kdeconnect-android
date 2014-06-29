@@ -8,6 +8,8 @@
   <string name="pref_plugin_sftp_desc">Het bladeren in het bestandssysteem op afstand in de telefoon toestaan</string>
   <string name="pref_plugin_clipboard">Klembordsynchronisatie</string>
   <string name="pref_plugin_clipboard_desc">De inhoud van het klembord delen</string>
+  <string name="pref_plugin_mousepad">Afstandsbediening voor muis</string>
+  <string name="pref_plugin_mousepad_desc">Bedien uw muis van afstand</string>
   <string name="pref_plugin_mpris">Afstandsbediening van multimedia</string>
   <string name="pref_plugin_mpris_desc">Bedien de audio/video vanaf uw telefoon</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -22,6 +24,8 @@
   <string name="no_permissions">U moet toestemming geven voor toegang tot meldingen</string>
   <string name="send_ping">Ping verzenden</string>
   <string name="open_mpris_controls">Afstandsbediening openen</string>
+  <string name="open_mousepad">Afstandsbediening van muispad openen</string>
+  <string name="mousepad_info">Verplaats uw vinger op het scherm om de muiscursor te verplaatsen</string>
   <string name="category_connected_devices">Verbonden apparaten</string>
   <string name="category_not_paired_devices">Geen gepaarde apparaten</string>
   <string name="category_remembered_devices">Onthouden apparaten</string>

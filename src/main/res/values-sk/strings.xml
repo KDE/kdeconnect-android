@@ -8,6 +8,7 @@
   <string name="pref_plugin_sftp_desc">Umožní prístup na súborový systém telefónu vzdialene</string>
   <string name="pref_plugin_clipboard">Synchronizácia schránky</string>
   <string name="pref_plugin_clipboard_desc">Zdieľať obsah schránky</string>
+  <string name="pref_plugin_mousepad">Diaľkové ovládanie</string>
   <string name="pref_plugin_mpris">Multimediálne diaľkové ovládače</string>
   <string name="pref_plugin_mpris_desc">Ovládať audio/video z vášho telefónu</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -22,6 +23,7 @@
   <string name="no_permissions">Musíte povoliť oprávnenia na prístup k pripomienkam</string>
   <string name="send_ping">Poslať ping</string>
   <string name="open_mpris_controls">Otvoriť diaľkové ovládanie</string>
+  <string name="open_mousepad">Otvoriť diaľkové ovládanie</string>
   <string name="category_connected_devices">Pripojené zariadenia</string>
   <string name="category_not_paired_devices">Nespárované zariadenia</string>
   <string name="category_remembered_devices">Zapamätané zariadenia</string>

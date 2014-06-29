@@ -8,6 +8,8 @@
   <string name="pref_plugin_sftp_desc">Permet navegar de forma remota pel sistema de fitxers del telèfon</string>
   <string name="pref_plugin_clipboard">Sincronitza el porta-retalls</string>
   <string name="pref_plugin_clipboard_desc">Comparteix el contingut del porta-retalls</string>
+  <string name="pref_plugin_mousepad">Comandament a distància del ratolí</string>
+  <string name="pref_plugin_mousepad_desc">Controla el vostre ratolí de forma remota</string>
   <string name="pref_plugin_mpris">Comandament a distància multimèdia</string>
   <string name="pref_plugin_mpris_desc">Controla l\'àudio i el vídeo del vostre telèfon</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -22,6 +24,8 @@
   <string name="no_permissions">Us caldrà concedir permís per accedir a les notificacions</string>
   <string name="send_ping">Envia un ping</string>
   <string name="open_mpris_controls">Obre el comandament a distància</string>
+  <string name="open_mousepad">Obre el control per a la catifa del ratolí</string>
+  <string name="mousepad_info">Moveu el dit per la pantalla per a moure el cursor del ratolí</string>
   <string name="category_connected_devices">Dispositius connectats</string>
   <string name="category_not_paired_devices">No hi ha dispositius aparellats</string>
   <string name="category_remembered_devices">Dispositius recordats</string>

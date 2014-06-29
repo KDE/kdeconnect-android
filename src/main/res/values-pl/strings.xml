@@ -8,6 +8,7 @@
   <string name="pref_plugin_sftp_desc">Zezwala na zdalne przeglądanie systemu plików telefonu</string>
   <string name="pref_plugin_clipboard">Synchronizacja schowka</string>
   <string name="pref_plugin_clipboard_desc">Udostępnij zawartość schowka</string>
+  <string name="pref_plugin_mousepad">Zdalne sterowanie</string>
   <string name="pref_plugin_mpris">Zdalne sterowanie multimediami</string>
   <string name="pref_plugin_mpris_desc">Steruj dźwiękiem/obrazem ze swojego telefonu</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -22,6 +23,7 @@
   <string name="no_permissions">Musisz przydzielić uprawnienia, aby uzyskać dostęp do powiadomień</string>
   <string name="send_ping">Wyślij ping</string>
   <string name="open_mpris_controls">Otwórz zdalne sterowanie</string>
+  <string name="open_mousepad">Otwórz zdalne sterowanie</string>
   <string name="category_connected_devices">Podłączone urządzenia</string>
   <string name="category_not_paired_devices">Brak sparowanych urządzeń</string>
   <string name="category_remembered_devices">Zapamiętane urządzenia</string>

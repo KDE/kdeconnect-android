@@ -8,6 +8,8 @@
   <string name="pref_plugin_sftp_desc">Permite navegar remotamente pelo sistema de arquivos telefone</string>
   <string name="pref_plugin_clipboard">Sincronizar área de transferência</string>
   <string name="pref_plugin_clipboard_desc">Compartilha o conteúdo da área de transferência</string>
+  <string name="pref_plugin_mousepad">Controle remoto do mouse</string>
+  <string name="pref_plugin_mousepad_desc">Controle seu mouse à distância</string>
   <string name="pref_plugin_mpris">Controle remoto multimídia</string>
   <string name="pref_plugin_mpris_desc">Controla áudio e vídeo a partir do seu telefone</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -22,6 +24,8 @@
   <string name="no_permissions">Você precisa conceder permissão para acessar as notificações</string>
   <string name="send_ping">Enviar ping</string>
   <string name="open_mpris_controls">Abra o controle remoto</string>
+  <string name="open_mousepad">Abrir o controle do mousepad</string>
+  <string name="mousepad_info">Mova seu dedo na tela para mover o ponteiro do mouse</string>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos não emparelhados</string>
   <string name="category_remembered_devices">Dispositivos lembrados</string>

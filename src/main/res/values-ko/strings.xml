@@ -8,6 +8,7 @@
   <string name="pref_plugin_sftp_desc">휴대폰의 파일 시스템 보기</string>
   <string name="pref_plugin_clipboard">클립보드 동기화</string>
   <string name="pref_plugin_clipboard_desc">클립보드 내용 동기화</string>
+  <string name="pref_plugin_mousepad">원격 제어</string>
   <string name="pref_plugin_mpris">멀티미디어 제어</string>
   <string name="pref_plugin_mpris_desc">휴대폰에서 오디오/비디오 제어</string>
   <string name="pref_plugin_ping">핑</string>
@@ -22,6 +23,7 @@
   <string name="no_permissions">알림 접근 권한을 허가해야 합니다</string>
   <string name="send_ping">핑 보내기</string>
   <string name="open_mpris_controls">원격 제어 열기</string>
+  <string name="open_mousepad">원격 제어 열기</string>
   <string name="category_connected_devices">연결된 장치</string>
   <string name="category_not_paired_devices">페어링되지 않은 장치</string>
   <string name="category_remembered_devices">기억하는 장치</string>

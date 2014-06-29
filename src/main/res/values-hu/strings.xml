@@ -8,6 +8,7 @@
   <string name="pref_plugin_sftp_desc">Lehetővé teszi a telefon fájlrendszerének távolról történő tallózását</string>
   <string name="pref_plugin_clipboard">Vágólap szinkronizáció</string>
   <string name="pref_plugin_clipboard_desc">A vágólap tartalmának megosztása</string>
+  <string name="pref_plugin_mousepad">Távirányító</string>
   <string name="pref_plugin_mpris">Multimedia távirányítók</string>
   <string name="pref_plugin_mpris_desc">Hang vagy videó vezérlése a telefonról</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -22,6 +23,7 @@
   <string name="no_permissions">Jogot kell adnia az értesítésekhez való hozzáféréshez</string>
   <string name="send_ping">Ping küldése</string>
   <string name="open_mpris_controls">Távirányító megnyitása</string>
+  <string name="open_mousepad">Távirányító megnyitása</string>
   <string name="category_connected_devices">Csatlakoztatott eszközök</string>
   <string name="category_not_paired_devices">Nincsenek párosított eszközök</string>
   <string name="category_remembered_devices">Megjegyzett eszközök</string>

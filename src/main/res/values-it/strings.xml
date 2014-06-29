@@ -6,6 +6,7 @@
   <string name="pref_plugin_battery_desc">Comunica periodicamente lo stato della batteria</string>
   <string name="pref_plugin_clipboard">Sincronizzazione appunti</string>
   <string name="pref_plugin_clipboard_desc">Condividi il contenuto degli appunti</string>
+  <string name="pref_plugin_mousepad">Telecomando</string>
   <string name="pref_plugin_mpris">Telecomando multimediale</string>
   <string name="pref_plugin_mpris_desc">Controlla la riproduzione audio/video dal telefono</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -20,6 +21,7 @@
   <string name="no_permissions">Devi garantire a KDE Connect l\'accesso alle notifiche</string>
   <string name="send_ping">Invia ping</string>
   <string name="open_mpris_controls">Apri il telecomando multimediale</string>
+  <string name="open_mousepad">Apri il telecomando multimediale</string>
   <string name="category_connected_devices">Dispositivi connessi</string>
   <string name="category_not_paired_devices">Dispositivi non associati</string>
   <string name="category_remembered_devices">Dispositivi memorizzati</string>

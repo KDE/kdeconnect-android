@@ -8,6 +8,8 @@
   <string name="pref_plugin_sftp_desc">Gör det möjligt att bläddra i telefonens filsystem från annan enhet</string>
   <string name="pref_plugin_clipboard">Synkronisera klippbord</string>
   <string name="pref_plugin_clipboard_desc">Dela klippbordets innehåll</string>
+  <string name="pref_plugin_mousepad">Musfjärrkontroll</string>
+  <string name="pref_plugin_mousepad_desc">Fjärrstyr musen</string>
   <string name="pref_plugin_mpris">Fjärrkontroll av multimedia</string>
   <string name="pref_plugin_mpris_desc">Styr ljud och video från telefonen</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -22,6 +24,8 @@
   <string name="no_permissions">Du måste ge rättighet att komma åt underrättelser</string>
   <string name="send_ping">Skicka ping</string>
   <string name="open_mpris_controls">Öppna fjärrkontroll</string>
+  <string name="open_mousepad">Öppna kontroll med musplatta</string>
+  <string name="mousepad_info">Flytta tummen över skärmen för att flytta muspekaren</string>
   <string name="category_connected_devices">Anslutna apparater</string>
   <string name="category_not_paired_devices">Inga parade apparater</string>
   <string name="category_remembered_devices">Ihågkomna apparater</string>
