@@ -3,6 +3,9 @@ package org.kde.kdeconnect.Plugins.MousePadPlugin;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.GestureDetector;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 
 import org.kde.kdeconnect.BackgroundService;
@@ -33,6 +36,42 @@ public class MousePadActivity extends Activity implements GestureDetector.OnGest
         deviceId = getIntent().getStringExtra("deviceId");
         mDetector = new GestureDetector(this, this);
         mDetector.setOnDoubleTapListener(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_mousepad, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_right_click:
+                BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(BackgroundService service) {
+                        Device device = service.getDevice(deviceId);
+                        MousePadPlugin mousePadPlugin = (MousePadPlugin)device.getPlugin("plugin_mousepad");
+                        if (mousePadPlugin == null) return;
+                        mousePadPlugin.sendRightClick();
+                    }
+                });
+                break;
+            case R.id.menu_middle_click:
+                BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(BackgroundService service) {
+                        Device device = service.getDevice(deviceId);
+                        MousePadPlugin mousePadPlugin = (MousePadPlugin)device.getPlugin("plugin_mousepad");
+                        if (mousePadPlugin == null) return;
+                        mousePadPlugin.sendMiddleClick();
+                    }
+                });
+                break;
+        }
+        return true;
     }
 
     @Override

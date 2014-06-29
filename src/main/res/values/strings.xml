@@ -55,6 +55,8 @@
     <string name="received_file_text">Tap to open \'%1s\'</string>
     <string name="tap_to_answer">Tap to answer</string>
     <string name="reconnect">Reconnect</string>
+    <string name="right_click">Send Right Click</string>
+    <string name="middle_click">Send Middle Click</string>
     <string name="device_not_paired">Device not paired</string>
     <string name="request_pairing">Request pairing</string>
     <string name="pairing_accept">Accept</string>
