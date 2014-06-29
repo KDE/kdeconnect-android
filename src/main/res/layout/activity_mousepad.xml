@@ -10,5 +10,6 @@
         android:text="@string/mousepad_info"
         android:gravity="center"
         style="@android:style/TextAppearance.Medium"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:padding="12dip" />
 </RelativeLayout>
