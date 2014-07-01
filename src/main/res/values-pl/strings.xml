@@ -44,6 +44,8 @@
   <string name="error_invalid_key">Otrzymano nieprawidłowy klucz</string>
   <string name="pair_requested">Zażądano parowania</string>
   <string name="pairing_request_from">Żądanie parowania z %1s</string>
+  <string name="incoming_file_title">Żądanie parowania z %1s</string>
+  <string name="incoming_file_text">%s</string>
   <string name="tap_to_answer">Stuknij, aby odpowiedzieć</string>
   <string name="reconnect">Połącz ponownie</string>
   <string name="device_not_paired">Urządzenie niesparowane</string>

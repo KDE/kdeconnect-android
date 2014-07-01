@@ -42,6 +42,8 @@
   <string name="error_invalid_key">Cheie nevalidă recepționată</string>
   <string name="pair_requested">Asociere cerută</string>
   <string name="pairing_request_from">Cerere de asociere de la %1s</string>
+  <string name="incoming_file_title">Cerere de asociere de la %1s</string>
+  <string name="incoming_file_text">%s</string>
   <string name="tap_to_answer">Atingeți pentru a răspunde</string>
   <string name="reconnect">Reconectează</string>
   <string name="device_not_paired">Dispozitiv neasociat</string>

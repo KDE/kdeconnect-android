@@ -42,6 +42,8 @@
   <string name="error_invalid_key">Получен е неправилен ключ</string>
   <string name="pair_requested">Заявено е сдвояване</string>
   <string name="pairing_request_from">Заявено е сдвояване от %1s</string>
+  <string name="incoming_file_title">Заявено е сдвояване от %1s</string>
+  <string name="incoming_file_text">%s</string>
   <string name="tap_to_answer">Докоснете за да отговорите</string>
   <string name="reconnect">Ново свързване</string>
   <string name="device_not_paired">Устройството не е сдвоено</string>

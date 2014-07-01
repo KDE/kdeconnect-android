@@ -16,6 +16,8 @@
   <string name="pref_plugin_ping_desc">Надсилання і отримання сигналів підтримання зв’язку</string>
   <string name="pref_plugin_notifications">Синхронізація сповіщень</string>
   <string name="pref_plugin_notifications_desc">Доступ до ваших сповіщень з інших пристроїв</string>
+  <string name="pref_plugin_sharereceiver">Отримувач спільних ресурсів</string>
+  <string name="pref_plugin_sharereceiver_desc">Зберігає вхідні файли на носій даних телефону</string>
   <string name="plugin_not_available">Ця можливість є недоступною для вашої версії для Android</string>
   <string name="device_list_empty">Немає пристроїв</string>
   <string name="ok">Гаразд</string>
@@ -24,7 +26,7 @@
   <string name="no_permissions">Вам слід надати доступ до сповіщень</string>
   <string name="send_ping">Надіслати сигнал підтримання зв’язку</string>
   <string name="open_mpris_controls">Відкрити дистанційне керування</string>
-  <string name="open_mousepad">Відкрити керування килимком для миші</string>
+  <string name="open_mousepad">Відкрити керування сенсорною панеллю</string>
   <string name="mousepad_info">Проведіть по екрану пальцем, щоб пересунути вказівник миші</string>
   <string name="category_connected_devices">З’єднані пристрої</string>
   <string name="category_not_paired_devices">Непов’язані пристрої</string>
@@ -44,8 +46,16 @@
   <string name="error_invalid_key">Отримано некоректний ключ</string>
   <string name="pair_requested">Запит щодо пов’язування</string>
   <string name="pairing_request_from">Запит щодо пов’язування від %1s</string>
+  <string name="received_url_title">Отримано посилання від %1s</string>
+  <string name="received_url_text">Натисніть, щоб відкрити «%1s»</string>
+  <string name="incoming_file_title">Вхідний файл з %1s</string>
+  <string name="incoming_file_text">%1s</string>
+  <string name="received_file_title">Отримано файл з %1s</string>
+  <string name="received_file_text">Натисніть, щоб відкрити «%1s»</string>
   <string name="tap_to_answer">Натисніть, щоб відповісти</string>
   <string name="reconnect">З\'єднати знову</string>
+  <string name="right_click">Надіслати клацання правою кнопкою</string>
+  <string name="middle_click">Надіслати клацання лівою кнопкою</string>
   <string name="device_not_paired">Пристрій не пов’язано</string>
   <string name="request_pairing">Надіслати запит щодо пов’язування</string>
   <string name="pairing_accept">Прийняти</string>
@@ -67,4 +77,5 @@
   <string name="device_name">Назва пристрою</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Некоректна назва пристрою</string>
+  <string name="shareplugin_text_saved">Отримано текст, збережено до буфера обміну даними</string>
 </resources>

@@ -42,6 +42,8 @@
   <string name="error_invalid_key">Byl přijat neplatný klíč</string>
   <string name="pair_requested">Bylo vyžádáno párování</string>
   <string name="pairing_request_from">Požadavek o párování z %1s</string>
+  <string name="incoming_file_title">Požadavek o párování z %1s</string>
+  <string name="incoming_file_text">%s</string>
   <string name="tap_to_answer">Ťukněte pro odpovězení</string>
   <string name="reconnect">Znovu připojit</string>
   <string name="device_not_paired">Zařízení není spárované</string>

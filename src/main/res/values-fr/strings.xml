@@ -42,6 +42,8 @@
   <string name="error_invalid_key">Clé reçue non valable</string>
   <string name="pair_requested">Paire demandée</string>
   <string name="pairing_request_from">Demande d\'appariement provenant de %1s</string>
+  <string name="incoming_file_title">Demande d\'appariement provenant de %1s</string>
+  <string name="incoming_file_text">%s</string>
   <string name="tap_to_answer">Cliquer pour répondre</string>
   <string name="reconnect">Reconnecter</string>
   <string name="device_not_paired">Périphérique non apparié</string>

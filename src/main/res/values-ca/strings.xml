@@ -16,6 +16,8 @@
   <string name="pref_plugin_ping_desc">Envia i rep els pings</string>
   <string name="pref_plugin_notifications">Sincronitza les notificacions</string>
   <string name="pref_plugin_notifications_desc">Accedeix a les vostres notificacions des d\'altres dispositius</string>
+  <string name="pref_plugin_sharereceiver">Receptor de compartits</string>
+  <string name="pref_plugin_sharereceiver_desc">Desa els fitxers entrants a l\'emmagatzematge del telèfon</string>
   <string name="plugin_not_available">Aquesta característica no està disponible en la vostra versió d\'Android</string>
   <string name="device_list_empty">No hi ha dispositius</string>
   <string name="ok">D\'acord</string>
@@ -24,8 +26,8 @@
   <string name="no_permissions">Us caldrà concedir permís per accedir a les notificacions</string>
   <string name="send_ping">Envia un ping</string>
   <string name="open_mpris_controls">Obre el comandament a distància</string>
-  <string name="open_mousepad">Obre el control per a la catifa del ratolí</string>
-  <string name="mousepad_info">Moveu el dit per la pantalla per a moure el cursor del ratolí</string>
+  <string name="open_mousepad">Obre el control pel plafó tàctil</string>
+  <string name="mousepad_info">Moveu un dit per la pantalla per a moure el cursor del ratolí</string>
   <string name="category_connected_devices">Dispositius connectats</string>
   <string name="category_not_paired_devices">No hi ha dispositius aparellats</string>
   <string name="category_remembered_devices">Dispositius recordats</string>
@@ -44,8 +46,16 @@
   <string name="error_invalid_key">S\'ha rebut una clau no vàlida</string>
   <string name="pair_requested">S\'ha demanat aparellar</string>
   <string name="pairing_request_from">S\'ha demanat aparellar des de %1s</string>
+  <string name="received_url_title">S\'ha rebut un vincle des de %1s</string>
+  <string name="received_url_text">Puntegeu per obrir «%1s»</string>
+  <string name="incoming_file_title">Fitxer entrant des de %1s</string>
+  <string name="incoming_file_text">%1s</string>
+  <string name="received_file_title">Fitxer rebut des de %1s</string>
+  <string name="received_file_text">Puntegeu per obrir «%1s»</string>
   <string name="tap_to_answer">Puntegeu per a respondre</string>
   <string name="reconnect">Reconnecta</string>
+  <string name="right_click">Envia un clic del botó dret</string>
+  <string name="middle_click">Envia un clic del botó del mig</string>
   <string name="device_not_paired">El dispositiu no està aparellat</string>
   <string name="request_pairing">Demana aparellar</string>
   <string name="pairing_accept">Accepta</string>
@@ -67,4 +77,5 @@
   <string name="device_name">Nom del dispositiu</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">El nom del dispositiu no és vàlid</string>
+  <string name="shareplugin_text_saved">S\'ha rebut text i s\'ha desat al porta-retalls</string>
 </resources>

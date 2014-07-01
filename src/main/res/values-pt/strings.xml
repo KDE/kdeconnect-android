@@ -16,6 +16,8 @@
   <string name="pref_plugin_ping_desc">Enviar e receber pedidos de contacto (\'ping\')</string>
   <string name="pref_plugin_notifications">Sincronização da notificação</string>
   <string name="pref_plugin_notifications_desc">Aceder às suas notificações a partir de outros dispositivos</string>
+  <string name="pref_plugin_sharereceiver">Destinatário da partilha</string>
+  <string name="pref_plugin_sharereceiver_desc">Gravar os ficheiros recebidos no armazenamento do telemóvel</string>
   <string name="plugin_not_available">Esta funcionalidade não está disponível na sua versão do Android</string>
   <string name="device_list_empty">Sem dispositivos</string>
   <string name="ok">OK</string>
@@ -25,7 +27,7 @@
   <string name="send_ping">Enviar um pedido de contacto</string>
   <string name="open_mpris_controls">Abrir o comando à distância</string>
   <string name="open_mousepad">Abrir o controlo do painel do rato</string>
-  <string name="mousepad_info">Mova o seu dedo no ecrã para mover o cursor do rato</string>
+  <string name="mousepad_info">Mova um dedo no ecrã para mover o cursor do rato</string>
   <string name="category_connected_devices">Dispositivos ligados</string>
   <string name="category_not_paired_devices">Dispositivos não emparelhados</string>
   <string name="category_remembered_devices">Dispositivos recordados</string>
@@ -44,8 +46,16 @@
   <string name="error_invalid_key">Chave inválida recebida</string>
   <string name="pair_requested">Emparelhamento pedido</string>
   <string name="pairing_request_from">Pedido de emparelhamento de %1s</string>
+  <string name="received_url_title">Ligação recebida de %1s</string>
+  <string name="received_url_text">Toque para abrir o \'%1s\'</string>
+  <string name="incoming_file_title">Ficheiro recebido de %1s</string>
+  <string name="incoming_file_text">%1s</string>
+  <string name="received_file_title">Ficheiro recebido de %1s</string>
+  <string name="received_file_text">Toque para abrir o \'%1s\'</string>
   <string name="tap_to_answer">Toque para responder</string>
   <string name="reconnect">Ligar de Novo</string>
+  <string name="right_click">Enviar um Botão Direito</string>
+  <string name="middle_click">Enviar um Botão do Meio</string>
   <string name="device_not_paired">Dispositivo não emparelhado</string>
   <string name="request_pairing">Pedir o emparelhamento</string>
   <string name="pairing_accept">Aceitar</string>
@@ -67,4 +77,5 @@
   <string name="device_name">Nome do dispositivo</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nome do dispositivo inválido</string>
+  <string name="shareplugin_text_saved">Texto recebido e guardado na área de transferência</string>
 </resources>

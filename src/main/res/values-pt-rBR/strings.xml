@@ -44,6 +44,8 @@
   <string name="error_invalid_key">Chave inválida recebida</string>
   <string name="pair_requested">Emparelhamento solicitado</string>
   <string name="pairing_request_from">Emparelhando solicitação de %1s</string>
+  <string name="incoming_file_title">Emparelhando solicitação de %1s</string>
+  <string name="incoming_file_text">%s</string>
   <string name="tap_to_answer">Toque para responder</string>
   <string name="reconnect">Reconectar</string>
   <string name="device_not_paired">Dispositivo não emparelhado</string>

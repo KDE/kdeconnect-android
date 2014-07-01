@@ -42,6 +42,8 @@
   <string name="error_invalid_key">Érvénytelen kulcs érkezett</string>
   <string name="pair_requested">Párosítás kérve</string>
   <string name="pairing_request_from">Párosítási kérés innen: %1s</string>
+  <string name="incoming_file_title">Párosítási kérés innen: %1s</string>
+  <string name="incoming_file_text">%s</string>
   <string name="tap_to_answer">Érintse meg a válaszhoz</string>
   <string name="reconnect">Újracsatlakozás</string>
   <string name="device_not_paired">Az eszköz nincs párosítva</string>

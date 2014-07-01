@@ -44,6 +44,8 @@
   <string name="error_invalid_key">Ugyldige nøgle modtaget</string>
   <string name="pair_requested">Anmodet om parring</string>
   <string name="pairing_request_from">Parringsanmodning fra %1s</string>
+  <string name="incoming_file_title">Parringsanmodning fra %1s</string>
+  <string name="incoming_file_text">%s</string>
   <string name="tap_to_answer">Tap for at svare</string>
   <string name="reconnect">Forbind igen</string>
   <string name="device_not_paired">Enhed ikke parret</string>

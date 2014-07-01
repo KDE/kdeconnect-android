@@ -42,6 +42,8 @@
   <string name="error_invalid_key">Se ha recibido una clave no valida</string>
   <string name="pair_requested">Vinculación solicitada</string>
   <string name="pairing_request_from">Solicitud de vinculación de %1s</string>
+  <string name="incoming_file_title">Solicitud de vinculación de %1s</string>
+  <string name="incoming_file_text">%s</string>
   <string name="tap_to_answer">Toque para responder</string>
   <string name="reconnect">Reconectar</string>
   <string name="device_not_paired">Dispositivo no vinculado</string>

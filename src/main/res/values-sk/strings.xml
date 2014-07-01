@@ -42,6 +42,8 @@
   <string name="error_invalid_key">Získaný nesprávny kľúč</string>
   <string name="pair_requested">Spárovanie vyžiadané</string>
   <string name="pairing_request_from">Požiadavka na spárovanie od %1s</string>
+  <string name="incoming_file_title">Požiadavka na spárovanie od %1s</string>
+  <string name="incoming_file_text">%s</string>
   <string name="tap_to_answer">Tapnite na odpoveď</string>
   <string name="reconnect">Znovu pripojiť</string>
   <string name="device_not_paired">Zariadenie nespárované</string>
