@@ -12,8 +12,7 @@ import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect_tp.R;
 
-public class MousePadActivity extends Activity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
-
+public class MousePadActivity extends Activity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener, MousePadGestureDetector.OnGestureListener {
     private final static float MinDistanceToSendScroll = 2.5f;
 
     private float mPrevX;
@@ -29,12 +28,15 @@ public class MousePadActivity extends Activity implements GestureDetector.OnGest
 
     private GestureDetector mDetector;
 
+    private MousePadGestureDetector mMousePadGestureDetector;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mousepad);
         deviceId = getIntent().getStringExtra("deviceId");
         mDetector = new GestureDetector(this, this);
+        mMousePadGestureDetector = new MousePadGestureDetector(this, this);
         mDetector.setOnDoubleTapListener(this);
     }
 
@@ -49,33 +51,22 @@ public class MousePadActivity extends Activity implements GestureDetector.OnGest
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_right_click:
-                BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-                    @Override
-                    public void onServiceStart(BackgroundService service) {
-                        Device device = service.getDevice(deviceId);
-                        MousePadPlugin mousePadPlugin = (MousePadPlugin)device.getPlugin("plugin_mousepad");
-                        if (mousePadPlugin == null) return;
-                        mousePadPlugin.sendRightClick();
-                    }
-                });
-                break;
+                sendRightClick();
+                return true;
             case R.id.menu_middle_click:
-                BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-                    @Override
-                    public void onServiceStart(BackgroundService service) {
-                        Device device = service.getDevice(deviceId);
-                        MousePadPlugin mousePadPlugin = (MousePadPlugin)device.getPlugin("plugin_mousepad");
-                        if (mousePadPlugin == null) return;
-                        mousePadPlugin.sendMiddleClick();
-                    }
-                });
-                break;
+                sendMiddleClick();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return true;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if (mMousePadGestureDetector.onTouchEvent(event)) {
+            return true;
+        }
+
         if ( mDetector.onTouchEvent(event) ) {
             return true;
         }
@@ -200,5 +191,41 @@ public class MousePadActivity extends Activity implements GestureDetector.OnGest
     @Override
     public boolean onDoubleTapEvent(MotionEvent e) {
         return false;
+    }
+
+    @Override
+    public boolean onTripleFingerTap(MotionEvent ev) {
+        sendMiddleClick();
+        return true;
+    }
+
+    @Override
+    public boolean onDoubleFingerTap(MotionEvent ev) {
+        sendRightClick();
+        return true;
+    }
+
+    private void sendMiddleClick() {
+        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                Device device = service.getDevice(deviceId);
+                MousePadPlugin mousePadPlugin = (MousePadPlugin)device.getPlugin("plugin_mousepad");
+                if (mousePadPlugin == null) return;
+                mousePadPlugin.sendMiddleClick();
+            }
+        });
+    }
+
+    private void sendRightClick() {
+        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                Device device = service.getDevice(deviceId);
+                MousePadPlugin mousePadPlugin = (MousePadPlugin)device.getPlugin("plugin_mousepad");
+                if (mousePadPlugin == null) return;
+                mousePadPlugin.sendRightClick();
+            }
+        });
     }
 }
