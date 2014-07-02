@@ -16,6 +16,8 @@
   <string name="pref_plugin_ping_desc">Skicka och ta emot ping</string>
   <string name="pref_plugin_notifications">Synkronisering av underrättelser</string>
   <string name="pref_plugin_notifications_desc">Kom åt underrättelser från andra apparater</string>
+  <string name="pref_plugin_sharereceiver">Dela mottagare</string>
+  <string name="pref_plugin_sharereceiver_desc">Spara inkommande filer i telefonens minne</string>
   <string name="plugin_not_available">Funktionen är inte tillgänglig i Android-versionen</string>
   <string name="device_list_empty">Inga apparater</string>
   <string name="ok">Ok</string>
@@ -24,8 +26,8 @@
   <string name="no_permissions">Du måste ge rättighet att komma åt underrättelser</string>
   <string name="send_ping">Skicka ping</string>
   <string name="open_mpris_controls">Öppna fjärrkontroll</string>
-  <string name="open_mousepad">Öppna kontroll med musplatta</string>
-  <string name="mousepad_info">Flytta tummen över skärmen för att flytta muspekaren</string>
+  <string name="open_mousepad">Öppna kontroll med tryckplatta</string>
+  <string name="mousepad_info">Flytta ett finger på skärmen för att flytta muspekaren</string>
   <string name="category_connected_devices">Anslutna apparater</string>
   <string name="category_not_paired_devices">Inga parade apparater</string>
   <string name="category_remembered_devices">Ihågkomna apparater</string>
@@ -44,10 +46,16 @@
   <string name="error_invalid_key">Ogiltig nyckel mottagen</string>
   <string name="pair_requested">Ihopparning begärd</string>
   <string name="pairing_request_from">Begäran om ihopparning från %1s</string>
-  <string name="incoming_file_title">Begäran om ihopparning från %1s</string>
-  <string name="incoming_file_text">%s</string>
+  <string name="received_url_title">Tog emot länk från %1s</string>
+  <string name="received_url_text">Klicka för att öppna \'%1s\'</string>
+  <string name="incoming_file_title">Inkommande fil från %1s</string>
+  <string name="incoming_file_text">%1s</string>
+  <string name="received_file_title">Tog emot fil från %1s</string>
+  <string name="received_file_text">Klicka för att öppna \'%1s\'</string>
   <string name="tap_to_answer">Rör för att svara</string>
   <string name="reconnect">Anslut igen</string>
+  <string name="right_click">Skicka högerklick</string>
+  <string name="middle_click">Skicka mittenklick</string>
   <string name="device_not_paired">Apparat inte ihopparad</string>
   <string name="request_pairing">Begära ihopparning</string>
   <string name="pairing_accept">Acceptera</string>
@@ -69,4 +77,5 @@
   <string name="device_name">Apparatnamn</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Ogiltigt apparatnamn</string>
+  <string name="shareplugin_text_saved">Tog emot text, spara på klippbordet</string>
 </resources>

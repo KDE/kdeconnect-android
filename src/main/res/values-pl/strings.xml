@@ -16,6 +16,8 @@
   <string name="pref_plugin_ping_desc">Wysyłaj i otrzymuj pingi</string>
   <string name="pref_plugin_notifications">Powiadomienia synchronizacji</string>
   <string name="pref_plugin_notifications_desc">Uzyskaj dostęp do swoich powiadomień z innego urządzenia</string>
+  <string name="pref_plugin_sharereceiver">Udostępnij odbiornik</string>
+  <string name="pref_plugin_sharereceiver_desc">Zapisz przychodzące pliki do pamięci telefonu</string>
   <string name="plugin_not_available">Funkcja ta nie jest dostępna w twojej wersji Androida</string>
   <string name="device_list_empty">Brak urządzeń</string>
   <string name="ok">OK</string>
@@ -24,7 +26,7 @@
   <string name="no_permissions">Musisz przydzielić uprawnienia, aby uzyskać dostęp do powiadomień</string>
   <string name="send_ping">Wyślij ping</string>
   <string name="open_mpris_controls">Otwórz zdalne sterowanie</string>
-  <string name="open_mousepad">Otwórz sterowanie podkładką myszy</string>
+  <string name="open_mousepad">Otwórz sterowanie gładzikiem</string>
   <string name="mousepad_info">Przesuń kciukiem po ekranie, aby przesunąć wskaźnik myszy</string>
   <string name="category_connected_devices">Podłączone urządzenia</string>
   <string name="category_not_paired_devices">Brak sparowanych urządzeń</string>
@@ -44,10 +46,16 @@
   <string name="error_invalid_key">Otrzymano nieprawidłowy klucz</string>
   <string name="pair_requested">Zażądano parowania</string>
   <string name="pairing_request_from">Żądanie parowania z %1s</string>
-  <string name="incoming_file_title">Żądanie parowania z %1s</string>
-  <string name="incoming_file_text">%s</string>
+  <string name="received_url_title">Odebrano odsyłacz od %1s</string>
+  <string name="received_url_text">Znacznik do otwarcia \'%1s\'</string>
+  <string name="incoming_file_title">Plik przychodzący od %1s</string>
+  <string name="incoming_file_text">%1s</string>
+  <string name="received_file_title">Odebrano plik od %1s</string>
+  <string name="received_file_text">Znacznik do otwarcia \'%1s\'</string>
   <string name="tap_to_answer">Stuknij, aby odpowiedzieć</string>
   <string name="reconnect">Połącz ponownie</string>
+  <string name="right_click">Wyślij naciskając prawym</string>
+  <string name="middle_click">Wyślij naciskając środkowym</string>
   <string name="device_not_paired">Urządzenie niesparowane</string>
   <string name="request_pairing">Zażądaj sparowania</string>
   <string name="pairing_accept">Przyjmij</string>
@@ -69,4 +77,5 @@
   <string name="device_name">Nazwa urządzenia</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nieprawidłowa nazwa urządzenia</string>
+  <string name="shareplugin_text_saved">Otrzymano tekst, zapisano do schowka</string>
 </resources>

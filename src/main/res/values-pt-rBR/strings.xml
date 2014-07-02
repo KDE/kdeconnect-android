@@ -16,6 +16,8 @@
   <string name="pref_plugin_ping_desc">Envia e recebe pings</string>
   <string name="pref_plugin_notifications">Sincronização de notificações</string>
   <string name="pref_plugin_notifications_desc">Acesse suas notificações a partir de outros dispositivos</string>
+  <string name="pref_plugin_sharereceiver">Destinatário do compartilhamento</string>
+  <string name="pref_plugin_sharereceiver_desc">Salvar os arquivos recebidos no armazenamento do celular</string>
   <string name="plugin_not_available">Esta funcionalidade não está disponível na sua versão do Android</string>
   <string name="device_list_empty">Sem dispositivos</string>
   <string name="ok">OK</string>
@@ -24,8 +26,8 @@
   <string name="no_permissions">Você precisa conceder permissão para acessar as notificações</string>
   <string name="send_ping">Enviar ping</string>
   <string name="open_mpris_controls">Abra o controle remoto</string>
-  <string name="open_mousepad">Abrir o controle do mousepad</string>
-  <string name="mousepad_info">Mova seu dedo na tela para mover o ponteiro do mouse</string>
+  <string name="open_mousepad">Abrir o controle do touchpad</string>
+  <string name="mousepad_info">Mova um dedo na tela para mover o ponteiro do mouse</string>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos não emparelhados</string>
   <string name="category_remembered_devices">Dispositivos lembrados</string>
@@ -44,10 +46,16 @@
   <string name="error_invalid_key">Chave inválida recebida</string>
   <string name="pair_requested">Emparelhamento solicitado</string>
   <string name="pairing_request_from">Emparelhando solicitação de %1s</string>
-  <string name="incoming_file_title">Emparelhando solicitação de %1s</string>
-  <string name="incoming_file_text">%s</string>
+  <string name="received_url_title">Link recebido de %1s</string>
+  <string name="received_url_text">Toque para abrir o \'%1s\'</string>
+  <string name="incoming_file_title">Arquivo recebido de %1s</string>
+  <string name="incoming_file_text">%1s</string>
+  <string name="received_file_title">Arquivo recebido de %1s</string>
+  <string name="received_file_text">Toque para abrir o \'%1s\'</string>
   <string name="tap_to_answer">Toque para responder</string>
   <string name="reconnect">Reconectar</string>
+  <string name="right_click">Enviar um Botão Direito</string>
+  <string name="middle_click">Enviar um Botão do Meio</string>
   <string name="device_not_paired">Dispositivo não emparelhado</string>
   <string name="request_pairing">Solicitar emparelhamento</string>
   <string name="pairing_accept">Aceitar</string>
@@ -69,4 +77,5 @@
   <string name="device_name">Nome do dispositivo</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nome do dispositivo inválido</string>
+  <string name="shareplugin_text_saved">Texto recebido e salvo na área de transferência</string>
 </resources>
