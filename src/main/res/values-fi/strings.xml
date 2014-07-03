@@ -45,7 +45,7 @@
   <string name="pair_requested">Parituspyyntö</string>
   <string name="pairing_request_from">Parituspyyntö kohteesta %1s</string>
   <string name="incoming_file_title">Parituspyyntö kohteesta %1s</string>
-  <string name="incoming_file_text">%s</string>
+  <string name="incoming_file_text">%1s</string>
   <string name="tap_to_answer">Vastaa napsauttamalla</string>
   <string name="reconnect">Yhdistä uudelleen</string>
   <string name="device_not_paired">Ei laiteparia</string>
