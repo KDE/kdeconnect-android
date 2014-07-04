@@ -50,8 +50,7 @@ public class MousePadPlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
-        if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_MOUSEPAD)) return false;
-        return true;
+        return false;
     }
 
     @Override

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mousepad_view">
 
     <TextView
         android:layout_width="match_parent"
@@ -12,4 +14,5 @@
         style="@android:style/TextAppearance.Medium"
         android:layout_centerInParent="true"
         android:padding="12dip" />
+
 </RelativeLayout>

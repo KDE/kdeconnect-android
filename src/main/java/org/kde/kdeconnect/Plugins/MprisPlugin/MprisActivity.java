@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class MprisActivity extends Activity {
 
-    //TODO: Add a loading spinner at the begginning (to distinguish the loading state from a no-players state).
+    //TODO: Add a loading spinner at the beginning (to distinguish the loading state from a no-players state).
     //TODO 2: Add a message when no players are detected after loading completes
 
     private String deviceId;

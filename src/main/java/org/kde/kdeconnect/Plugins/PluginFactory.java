@@ -7,7 +7,6 @@ import android.util.Log;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Plugins.BatteryPlugin.BatteryPlugin;
-import org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadActivity;
 import org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadPlugin;
 import org.kde.kdeconnect.Plugins.SftpPlugin.SftpPlugin;
 import org.kde.kdeconnect.Plugins.ClibpoardPlugin.ClipboardPlugin;

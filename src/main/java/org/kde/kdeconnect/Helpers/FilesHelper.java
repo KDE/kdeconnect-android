@@ -23,11 +23,11 @@ public class FilesHelper {
      * @param name
      * @param dirSeparators
      * @param maxFileLength
-     * @return the resulting string
+     * @return
      */
     public static String toFileSystemSafeName(String name, boolean dirSeparators, int maxFileLength) {
         int size = name.length();
-        StringBuffer rc = new StringBuffer(size * 2);
+        StringBuilder rc = new StringBuilder(size * 2);
         for (int i = 0; i < size; i++) {
             char c = name.charAt(i);
             boolean valid = c >= 'a' && c <= 'z';

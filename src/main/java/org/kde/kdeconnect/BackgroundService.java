@@ -96,7 +96,6 @@ public class BackgroundService extends Service {
                 device.addLink(identityPackage, link);
             } else {
                 Log.i("BackgroundService", "addLink,unknown device: " + deviceId);
-                String name = identityPackage.getString("deviceName");
                 device = new Device(BackgroundService.this, identityPackage, link);
                 devices.put(deviceId, device);
                 device.addPairingCallback(devicePairingCallback);
