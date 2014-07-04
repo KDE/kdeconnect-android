@@ -3,16 +3,15 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.11.+'
+        classpath 'com.android.tools.build:gradle:0.12.+'
     }
 }
 
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.1.0"
-
+    buildToolsVersion '20.0.0'
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 19
@@ -27,16 +26,19 @@ android {
     lintOptions {
         abortOnError false
     }
-
+    productFlavors {
+    }
+    buildTypes {
+    }
 }
 
 dependencies {
     repositories {
         mavenCentral()
     }
-    compile "com.android.support:support-v4:19.1.+"
-    compile "com.android.support:appcompat-v7:19.1.+"
-    compile "org.apache.mina:mina-core:2.0.+"
+    compile 'com.android.support:support-v4:19.1.+'
+    compile 'com.android.support:appcompat-v7:19.1.+'
+    compile 'org.apache.mina:mina-core:2.0.+'
     compile 'org.bouncycastle:bcprov-jdk16:1.45'
     compile 'org.apache.sshd:sshd-core:0.8.0'
     compile 'tomcat:tomcat-apr:5.5.+'
