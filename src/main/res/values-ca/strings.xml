@@ -19,7 +19,7 @@
   <string name="pref_plugin_sharereceiver">Receptor de compartits</string>
   <string name="pref_plugin_sharereceiver_desc">Desa els fitxers entrants a l\'emmagatzematge del telèfon</string>
   <string name="plugin_not_available">Aquesta característica no està disponible en la vostra versió d\'Android</string>
-  <string name="device_list_empty">No hi ha dispositius</string>
+  <string name="device_list_empty">No hi ha cap dispositiu</string>
   <string name="ok">D\'acord</string>
   <string name="cancel">Cancel·la</string>
   <string name="open_settings">Obre l\'arranjament</string>
@@ -29,7 +29,7 @@
   <string name="open_mousepad">Obre el control pel plafó tàctil</string>
   <string name="mousepad_info">Moveu un dit per la pantalla per a moure el cursor del ratolí</string>
   <string name="category_connected_devices">Dispositius connectats</string>
-  <string name="category_not_paired_devices">No hi ha dispositius aparellats</string>
+  <string name="category_not_paired_devices">Dispositius sense aparellar</string>
   <string name="category_remembered_devices">Dispositius recordats</string>
   <string name="plugins_failed_to_load">Els connectors han fallat en carregar-los (puntegeu per a més informació):</string>
   <string name="device_menu_plugins">Selecció dels connectors</string>
