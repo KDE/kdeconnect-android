@@ -8,13 +8,16 @@
   <string name="pref_plugin_sftp_desc">Umožní prístup na súborový systém telefónu vzdialene</string>
   <string name="pref_plugin_clipboard">Synchronizácia schránky</string>
   <string name="pref_plugin_clipboard_desc">Zdieľať obsah schránky</string>
-  <string name="pref_plugin_mousepad">Diaľkové ovládanie</string>
+  <string name="pref_plugin_mousepad">Diaľkové ovládanie myšou</string>
+  <string name="pref_plugin_mousepad_desc">Ovládať vašu myš vzdialene</string>
   <string name="pref_plugin_mpris">Multimediálne diaľkové ovládače</string>
   <string name="pref_plugin_mpris_desc">Ovládať audio/video z vášho telefónu</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Poslať a prijať pingy</string>
   <string name="pref_plugin_notifications">Synchronizácia pripomienok</string>
   <string name="pref_plugin_notifications_desc">Prístup k vašim pripomienkam z iných zariadení</string>
+  <string name="pref_plugin_sharereceiver">Zdieľať prijímač</string>
+  <string name="pref_plugin_sharereceiver_desc">Uložiť prichádzajúce súbory na úložiska telefónu</string>
   <string name="plugin_not_available">Táto funkcia nie je dostupná vo vašej verzii Androidu</string>
   <string name="device_list_empty">Žiadne zariadenia</string>
   <string name="ok">OK</string>
@@ -23,7 +26,8 @@
   <string name="no_permissions">Musíte povoliť oprávnenia na prístup k pripomienkam</string>
   <string name="send_ping">Poslať ping</string>
   <string name="open_mpris_controls">Otvoriť diaľkové ovládanie</string>
-  <string name="open_mousepad">Otvoriť diaľkové ovládanie</string>
+  <string name="open_mousepad">Otvoriť ovládanie touchpadu</string>
+  <string name="mousepad_info">Presuňte prst na obrazovke na presun kurzora myši</string>
   <string name="category_connected_devices">Pripojené zariadenia</string>
   <string name="category_not_paired_devices">Nespárované zariadenia</string>
   <string name="category_remembered_devices">Zapamätané zariadenia</string>
@@ -42,10 +46,16 @@
   <string name="error_invalid_key">Získaný nesprávny kľúč</string>
   <string name="pair_requested">Spárovanie vyžiadané</string>
   <string name="pairing_request_from">Požiadavka na spárovanie od %1s</string>
-  <string name="incoming_file_title">Požiadavka na spárovanie od %1s</string>
-  <string name="incoming_file_text">%s</string>
+  <string name="received_url_title">Prijatý odkaz od %1s</string>
+  <string name="received_url_text">Ťuknite na otvorenie \'%1s\'</string>
+  <string name="incoming_file_title">Prichádzajúci súbor od %s</string>
+  <string name="incoming_file_text">%1s</string>
+  <string name="received_file_title">Prijatý súbor od %1s</string>
+  <string name="received_file_text">Ťuknite na otvorenie \'%1s\'</string>
   <string name="tap_to_answer">Tapnite na odpoveď</string>
   <string name="reconnect">Znovu pripojiť</string>
+  <string name="right_click">Poslať kliknutie pravým</string>
+  <string name="middle_click">Poslať kliknutie stredným</string>
   <string name="device_not_paired">Zariadenie nespárované</string>
   <string name="request_pairing">Požiadavka na spárovanie</string>
   <string name="pairing_accept">Prijať</string>
@@ -67,4 +77,5 @@
   <string name="device_name">Názov zariadenia</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Neplatný názov zariadenia</string>
+  <string name="shareplugin_text_saved">Prijatý text, uložený do schránky</string>
 </resources>
