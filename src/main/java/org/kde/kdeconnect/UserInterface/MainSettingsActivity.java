@@ -93,7 +93,7 @@ public class MainSettingsActivity extends PreferenceActivity {
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private static class GeneralPrefsFragment extends PreferenceFragment {
+    public static class GeneralPrefsFragment extends PreferenceFragment {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
