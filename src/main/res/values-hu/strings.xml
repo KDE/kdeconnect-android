@@ -8,13 +8,16 @@
   <string name="pref_plugin_sftp_desc">Lehetővé teszi a telefon fájlrendszerének távolról történő tallózását</string>
   <string name="pref_plugin_clipboard">Vágólap szinkronizáció</string>
   <string name="pref_plugin_clipboard_desc">A vágólap tartalmának megosztása</string>
-  <string name="pref_plugin_mousepad">Távirányító</string>
+  <string name="pref_plugin_mousepad">Egér távirányító</string>
+  <string name="pref_plugin_mousepad_desc">Az egér vezérlése távolról</string>
   <string name="pref_plugin_mpris">Multimedia távirányítók</string>
   <string name="pref_plugin_mpris_desc">Hang vagy videó vezérlése a telefonról</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Pingek küldése és fogadása</string>
   <string name="pref_plugin_notifications">Értesítés szinkronizáció</string>
   <string name="pref_plugin_notifications_desc">Hozzáférés az értesítésekhez más eszközökről</string>
+  <string name="pref_plugin_sharereceiver">Megosztás vevő</string>
+  <string name="pref_plugin_sharereceiver_desc">Bejövő fájlok mentése a telefon háttértárára</string>
   <string name="plugin_not_available">Ez a funkció nem érhető el az ön Android verziójában</string>
   <string name="device_list_empty">Nincsenek eszközök</string>
   <string name="ok">OK</string>
@@ -23,7 +26,8 @@
   <string name="no_permissions">Jogot kell adnia az értesítésekhez való hozzáféréshez</string>
   <string name="send_ping">Ping küldése</string>
   <string name="open_mpris_controls">Távirányító megnyitása</string>
-  <string name="open_mousepad">Távirányító megnyitása</string>
+  <string name="open_mousepad">Érintőtábla vezérlő megnyitása</string>
+  <string name="mousepad_info">Mozgassa az ujját a képernyőn az egérkurzor mozgatásához</string>
   <string name="category_connected_devices">Csatlakoztatott eszközök</string>
   <string name="category_not_paired_devices">Nincsenek párosított eszközök</string>
   <string name="category_remembered_devices">Megjegyzett eszközök</string>
@@ -42,10 +46,16 @@
   <string name="error_invalid_key">Érvénytelen kulcs érkezett</string>
   <string name="pair_requested">Párosítás kérve</string>
   <string name="pairing_request_from">Párosítási kérés innen: %1s</string>
-  <string name="incoming_file_title">Párosítási kérés innen: %1s</string>
-  <string name="incoming_file_text">%s</string>
+  <string name="received_url_title">Hivatkozás érkezett innen: %1s</string>
+  <string name="received_url_text">Koppintson „%1s” megnyitásához</string>
+  <string name="incoming_file_title">Bejövő fájl innen: %1s</string>
+  <string name="incoming_file_text">%1s</string>
+  <string name="received_file_title">Fájl érkezett innen: %1s</string>
+  <string name="received_file_text">Koppintson „%1s” megnyitásához</string>
   <string name="tap_to_answer">Érintse meg a válaszhoz</string>
   <string name="reconnect">Újracsatlakozás</string>
+  <string name="right_click">Jobb kattintás küldése</string>
+  <string name="middle_click">Középső kattintás küldése</string>
   <string name="device_not_paired">Az eszköz nincs párosítva</string>
   <string name="request_pairing">Párosítás kérése</string>
   <string name="pairing_accept">Elfogadás</string>
@@ -67,4 +77,5 @@
   <string name="device_name">Eszköznév</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Érvénytelen eszköznév</string>
+  <string name="shareplugin_text_saved">Szöveg érkezett, elmentve a vágólapra</string>
 </resources>
