@@ -57,6 +57,7 @@
     <string name="reconnect">Reconnect</string>
     <string name="right_click">Send Right Click</string>
     <string name="middle_click">Send Middle Click</string>
+    <string name="show_keyboard">Show Keyboard</string>
     <string name="device_not_paired">Device not paired</string>
     <string name="request_pairing">Request pairing</string>
     <string name="pairing_accept">Accept</string>

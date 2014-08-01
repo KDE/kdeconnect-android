@@ -1,8 +1,11 @@
 package org.kde.kdeconnect.Plugins.MousePadPlugin;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.GestureDetector;
+import android.view.inputmethod.InputMethodManager;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -55,6 +58,9 @@ public class MousePadActivity extends Activity implements GestureDetector.OnGest
                 return true;
             case R.id.menu_middle_click:
                 sendMiddleClick();
+                return true;
+            case R.id.menu_show_keyboard:
+                showKeyboard();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -205,6 +211,56 @@ public class MousePadActivity extends Activity implements GestureDetector.OnGest
         return true;
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, final KeyEvent event) {
+		String character = new String(new char[] {(char) event.getUnicodeChar(0)});
+        int modifier = 0;
+		if (keyCode == KeyEvent.KEYCODE_DEL) {
+			modifier = 1;
+		} else if (keyCode == KeyEvent.KEYCODE_ENTER) {
+			modifier = 1 << 1;
+		} else if (keyCode == KeyEvent.KEYCODE_TAB) {
+			modifier = 1 << 1 | 1;
+		}
+        // Add space for Home, End, Page Up, and Page Down
+
+        if (event.isShiftPressed()) {
+            modifier |= 1 << 3;
+        }
+        if (android.os.Build.VERSION.SDK_INT >= 11) {
+            if (event.isCtrlPressed()) {
+                modifier |= 1 << 4;
+            }
+        }
+        if (character.charAt(0) == 0 && modifier == 0) {
+            return super.onKeyDown(keyCode, event);
+        }
+        final String characterToSend;
+		if (character.charAt(0) == 0) {
+			characterToSend = "";
+		} else {
+			characterToSend = character;
+		}
+        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                Device device = service.getDevice(deviceId);
+                MousePadPlugin mousePadPlugin = (MousePadPlugin)device.getPlugin("plugin_mousepad");
+                if (mousePadPlugin == null) return;
+                mousePadPlugin.sendKey(characterToSend, 0);
+            }
+        });
+        return true;
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (event.getUnicodeChar() == 0) {
+            return super.onKeyDown(keyCode, event);
+        }
+        return true;
+    }
+
     private void sendMiddleClick() {
         BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
             @Override
@@ -227,5 +283,10 @@ public class MousePadActivity extends Activity implements GestureDetector.OnGest
                 mousePadPlugin.sendRightClick();
             }
         });
+    }
+
+    private void showKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
     }
 }

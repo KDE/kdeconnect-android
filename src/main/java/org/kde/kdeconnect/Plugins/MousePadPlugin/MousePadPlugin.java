@@ -95,6 +95,13 @@ public class MousePadPlugin extends Plugin {
         device.sendPackage(np);
     }
 
+    public void sendKey(String key, int modifier) {
+        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MOUSEPAD);
+        np.set("key", key);
+        np.set("modifier", modifier);
+        device.sendPackage(np);
+    }
+
     @Override
     public Button getInterfaceButton(final Activity activity) {
         Button button = new Button(activity);

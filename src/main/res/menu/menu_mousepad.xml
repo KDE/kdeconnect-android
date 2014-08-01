@@ -9,4 +9,8 @@ xmlns:kdeconnect="http://schemas.android.com/apk/res-auto/android">
     <item android:id="@+id/menu_middle_click"
         android:title="@string/middle_click"
         kdeconnect:showAsAction="never" />
+
+    <item android:id="@+id/menu_show_keyboard"
+        android:title="@string/show_keyboard"
+        kdeconnect:showAsAction="never" />
 </menu>
