@@ -16,6 +16,8 @@
   <string name="pref_plugin_ping_desc">Send og modtag ping</string>
   <string name="pref_plugin_notifications">Synk. af bekendtgørelser</string>
   <string name="pref_plugin_notifications_desc">Tilgå dine bekendtgørelser fra andre enheder</string>
+  <string name="pref_plugin_sharereceiver">Del modtager</string>
+  <string name="pref_plugin_sharereceiver_desc">Gem indkommende filer til telefonens lager</string>
   <string name="plugin_not_available">Denne funktion er ikke tilgængelig i din Android-version</string>
   <string name="device_list_empty">Ingen enheder</string>
   <string name="ok">O.k.</string>
@@ -24,8 +26,8 @@
   <string name="no_permissions">Du skal give tilladelse for at tilgå bekendtgørelser</string>
   <string name="send_ping">Send ping</string>
   <string name="open_mpris_controls">Åbn fjernbetjening</string>
-  <string name="open_mousepad">Åbn museplade-kontrol</string>
-  <string name="mousepad_info">Bevæg din tommelfinger på skærmen for at flytte musemarkøren</string>
+  <string name="open_mousepad">Åbn touchpad-kontrol</string>
+  <string name="mousepad_info">Bevæg en finger på skærmen for at flytte musemarkøren</string>
   <string name="category_connected_devices">Forbundne enheder</string>
   <string name="category_not_paired_devices">Ikke parrede enheder</string>
   <string name="category_remembered_devices">Huskede enheder</string>
@@ -44,10 +46,16 @@
   <string name="error_invalid_key">Ugyldige nøgle modtaget</string>
   <string name="pair_requested">Anmodet om parring</string>
   <string name="pairing_request_from">Parringsanmodning fra %1s</string>
-  <string name="incoming_file_title">Parringsanmodning fra %1s</string>
-  <string name="incoming_file_text">%s</string>
+  <string name="received_url_title">Modtog link fra %1s</string>
+  <string name="received_url_text">Tap for at åbne \"%1s\"</string>
+  <string name="incoming_file_title">Indkommende fil fra %1s</string>
+  <string name="incoming_file_text">%1s</string>
+  <string name="received_file_title">Modtog fil fra %1s</string>
+  <string name="received_file_text">Tap for at åbne \"%1s\"</string>
   <string name="tap_to_answer">Tap for at svare</string>
   <string name="reconnect">Forbind igen</string>
+  <string name="right_click">Send højreklik</string>
+  <string name="middle_click">Send midterklik</string>
   <string name="device_not_paired">Enhed ikke parret</string>
   <string name="request_pairing">Anmod om parring</string>
   <string name="pairing_accept">Acceptér</string>
@@ -69,4 +77,5 @@
   <string name="device_name">Enhedsnavn</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Ugyldigt enhedsnavn</string>
+  <string name="shareplugin_text_saved">Modtog tekst, gemt til udklipsholder</string>
 </resources>
