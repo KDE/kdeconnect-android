@@ -179,6 +179,10 @@ public class MprisPlugin extends Plugin {
         requestPlayerStatus();
     }
 
+    public String getPlayer() {
+        return player;
+    }
+
     public int getVolume() {
         return volume;
     }

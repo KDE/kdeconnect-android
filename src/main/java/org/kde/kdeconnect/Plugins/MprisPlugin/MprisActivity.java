@@ -70,8 +70,6 @@ public class MprisActivity extends Activity {
                 });
 
                 mpris.setPlayerListUpdatedHandler(new Handler() {
-                    boolean firstLoad = true;
-
                     @Override
                     public void handleMessage(Message msg) {
                         final ArrayList<String> playerList = mpris.getPlayerList();
@@ -107,17 +105,18 @@ public class MprisActivity extends Activity {
 
                                     @Override
                                     public void onNothingSelected(AdapterView<?> arg0) {
-
+                                        mpris.setPlayer(null);
                                     }
                                 });
+
+                                // restore the selected player
+                                int position = adapter.getPosition(mpris.getPlayer());
+
+                                if (position >= 0) {
+                                    spinner.setSelection(position);
+                                }
                             }
                         });
-                        if (firstLoad) {
-                            firstLoad = false;
-                            if (playerList.size() > 0) {
-                                mpris.setPlayer(playerList.get(0));
-                            }
-                        }
                     }
                 });
 
