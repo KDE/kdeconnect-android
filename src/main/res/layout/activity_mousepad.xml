@@ -15,4 +15,13 @@
         android:layout_centerInParent="true"
         android:padding="12dip" />
 
+    <view
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        class="org.kde.kdeconnect.Plugins.MousePadPlugin.KeyListenerView"
+        android:id="@+id/keyListener"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58dp" />
+
 </RelativeLayout>
