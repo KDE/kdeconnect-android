@@ -56,6 +56,7 @@
   <string name="reconnect">Anslut igen</string>
   <string name="right_click">Skicka högerklick</string>
   <string name="middle_click">Skicka mittenklick</string>
+  <string name="show_keyboard">Visa tangentbord</string>
   <string name="device_not_paired">Apparat inte ihopparad</string>
   <string name="request_pairing">Begära ihopparning</string>
   <string name="pairing_accept">Acceptera</string>

@@ -56,6 +56,7 @@
   <string name="reconnect">Połącz ponownie</string>
   <string name="right_click">Wyślij naciskając prawym</string>
   <string name="middle_click">Wyślij naciskając środkowym</string>
+  <string name="show_keyboard">Pokaż klawiaturę</string>
   <string name="device_not_paired">Urządzenie niesparowane</string>
   <string name="request_pairing">Zażądaj sparowania</string>
   <string name="pairing_accept">Przyjmij</string>

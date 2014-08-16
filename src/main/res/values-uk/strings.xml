@@ -56,6 +56,7 @@
   <string name="reconnect">З\'єднати знову</string>
   <string name="right_click">Надіслати клацання правою кнопкою</string>
   <string name="middle_click">Надіслати клацання лівою кнопкою</string>
+  <string name="show_keyboard">Показати клавіатуру</string>
   <string name="device_not_paired">Пристрій не пов’язано</string>
   <string name="request_pairing">Надіслати запит щодо пов’язування</string>
   <string name="pairing_accept">Прийняти</string>
