@@ -56,6 +56,7 @@
   <string name="reconnect">Reconnecta</string>
   <string name="right_click">Envia un clic del botó dret</string>
   <string name="middle_click">Envia un clic del botó del mig</string>
+  <string name="show_keyboard">Mostra el teclat</string>
   <string name="device_not_paired">El dispositiu no està aparellat</string>
   <string name="request_pairing">Demana aparellar</string>
   <string name="pairing_accept">Accepta</string>
