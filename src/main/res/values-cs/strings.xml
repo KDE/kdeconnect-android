@@ -56,6 +56,7 @@
   <string name="reconnect">Znovu připojit</string>
   <string name="right_click">Poslat kliknutí pravým tlačítkem</string>
   <string name="middle_click">Poslat kliknutí prostředním tlačítkem</string>
+  <string name="show_keyboard">Zobrazit klávesnici</string>
   <string name="device_not_paired">Zařízení není spárované</string>
   <string name="request_pairing">Vyžádat párování</string>
   <string name="pairing_accept">Přijmout</string>
