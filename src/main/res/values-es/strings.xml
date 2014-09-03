@@ -56,6 +56,7 @@
   <string name="reconnect">Reconectar</string>
   <string name="right_click">Enviar clic derecho</string>
   <string name="middle_click">Enviar clic del botón central</string>
+  <string name="show_keyboard">Mostrar teclado</string>
   <string name="device_not_paired">Dispositivo no vinculado</string>
   <string name="request_pairing">Solicitar vinculación</string>
   <string name="pairing_accept">Aceptar</string>
