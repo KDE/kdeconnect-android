@@ -42,10 +42,11 @@
   <string name="error_invalid_key">Ungültiger Schlüssel empfangen</string>
   <string name="pair_requested">Verbindung angefordert</string>
   <string name="pairing_request_from">Verbindungsanfrage von %1s</string>
-  <string name="incoming_file_title">Verbindungsanfrage von %1s</string>
-  <string name="incoming_file_text">%s</string>
+  <string name="incoming_file_title">Eingehende Datei von %1s</string>
+  <string name="incoming_file_text">%1s</string>
   <string name="tap_to_answer">Tippen zum Antworten</string>
   <string name="reconnect">Erneut verbinden</string>
+  <string name="show_keyboard">Tastatur anzeigen</string>
   <string name="device_not_paired">Das Gerät ist nicht verbunden</string>
   <string name="request_pairing">Verbindung angefordert</string>
   <string name="pairing_accept">Annehmen</string>
