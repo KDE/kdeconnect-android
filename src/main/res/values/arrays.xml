@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="mpris_time_entries">
+        <item>10 seconds</item>
+        <item>20 seconds</item>
+        <item>30 seconds</item>
+        <item>1 minute</item>
+        <item>2 minutes</item>
+    </string-array>
+
+    <string-array name="mpris_time_entries_values">
+        <item>10000000</item>
+        <item>20000000</item>
+        <item>30000000</item>
+        <item>60000000</item>
+        <item>120000000</item>
+    </string-array>
+</resources>

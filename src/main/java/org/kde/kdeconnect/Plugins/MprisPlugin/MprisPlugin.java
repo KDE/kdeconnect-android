@@ -55,6 +55,11 @@ public class MprisPlugin extends Plugin {
     }
 
     @Override
+    public boolean hasSettings() {
+        return true;
+    }
+
+    @Override
     public boolean isEnabledByDefault() {
         return true;
     }

@@ -1,9 +1,11 @@
 package org.kde.kdeconnect.Plugins.MprisPlugin;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -216,6 +218,11 @@ public class MprisActivity extends Activity {
 
         deviceId = getIntent().getStringExtra("deviceId");
 
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String interval_time_str = prefs.getString(getString(R.string.mpris_time_key),
+                getString(R.string.mpris_time_default));
+        final int interval_time = Integer.parseInt(interval_time_str);
+
         BackgroundService.RunCommand(MprisActivity.this, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
@@ -263,7 +270,7 @@ public class MprisActivity extends Activity {
                         Device device = service.getDevice(deviceId);
                         MprisPlugin mpris = (MprisPlugin)device.getPlugin("plugin_mpris");
                         if (mpris == null) return;
-                        mpris.Seek(-10000000); // -10 seconds. TODO: plugin settings UI?
+                        mpris.Seek(interval_time * -1);
                     }
                 });
             }
@@ -278,7 +285,7 @@ public class MprisActivity extends Activity {
                         Device device = service.getDevice(deviceId);
                         MprisPlugin mpris = (MprisPlugin)device.getPlugin("plugin_mpris");
                         if (mpris == null) return;
-                        mpris.Seek(10000000); // 10 seconds. TODO: plugin settings UI?
+                        mpris.Seek(interval_time);
                     }
                 });
             }

@@ -48,6 +48,11 @@ public class TelephonyPlugin extends Plugin {
         return true;
     }
 
+    @Override
+    public boolean hasSettings() {
+        return false;
+    }
+
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {

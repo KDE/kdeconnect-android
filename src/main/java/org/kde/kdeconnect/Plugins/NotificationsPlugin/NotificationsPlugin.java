@@ -46,6 +46,11 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     }
 
     @Override
+    public boolean hasSettings() {
+        return false;
+    }
+
+    @Override
     public boolean isEnabledByDefault() {
         return true;
     }

@@ -39,6 +39,11 @@ public class MousePadPlugin extends Plugin {
     }
 
     @Override
+    public boolean hasSettings() {
+        return false;
+    }
+
+    @Override
     public boolean onCreate() {
         return true;
     }

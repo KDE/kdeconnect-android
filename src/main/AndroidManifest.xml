@@ -88,6 +88,15 @@
                 android:value="org.kde.kdeconnect.UserInterface.DeviceActivity" />
         </activity>
 
+        <activity
+            android:name="org.kde.kdeconnect.UserInterface.PluginSettingsActivity"
+            android:label="@string/mpris_settings"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.SettingsActivity"
+            >
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.kde.kdeconnect.UserInterface.SettingsActivity" />
+        </activity>
+
         <receiver android:name="org.kde.kdeconnect.KdeConnectBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REPLACED" />

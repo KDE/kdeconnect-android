@@ -36,6 +36,11 @@ public class ClipboardPlugin extends Plugin {
     }
 
     @Override
+    public boolean hasSettings() {
+        return false;
+    }
+
+    @Override
     public boolean isEnabledByDefault() {
         //Disabled by default due to just one direction sync(incoming clipboard change) in early version of android.
         return (android.os.Build.VERSION.SDK_INT >= 11);

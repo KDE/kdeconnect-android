@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListPreference
+        android:id="@+id/mpris_time_preference"
+        android:key="@string/mpris_time_key"
+        android:title="@string/mpris_time_settings_title"
+        android:summary="@string/mpris_time_settings_summary"
+        android:entries="@array/mpris_time_entries"
+        android:entryValues="@array/mpris_time_entries_values"
+        android:defaultValue="@string/mpris_time_default" />
+
+</PreferenceScreen>

@@ -47,6 +47,11 @@ public class BatteryPlugin extends Plugin {
     }
 
     @Override
+    public boolean hasSettings() {
+        return false;
+    }
+
+    @Override
     public boolean isEnabledByDefault() {
         return true;
     }

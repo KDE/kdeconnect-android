@@ -24,12 +24,14 @@ public class PluginFactory {
 
     public static class PluginInfo {
 
-        public PluginInfo(String pluginName, String displayName, String description, Drawable icon, boolean enabledByDefault) {
+        public PluginInfo(String pluginName, String displayName, String description, Drawable icon,
+                          boolean enabledByDefault, boolean hasSettings) {
             this.pluginName = pluginName;
             this.displayName = displayName;
             this.description = description;
             this.icon = icon;
             this.enabledByDefault = enabledByDefault;
+            this.hasSettings = hasSettings;
         }
 
         public String getPluginName() {
@@ -48,6 +50,8 @@ public class PluginFactory {
             return icon;
         }
 
+        public boolean hasSettings() { return hasSettings; }
+
         public boolean isEnabledByDefault() {
             return enabledByDefault;
         }
@@ -57,6 +61,7 @@ public class PluginFactory {
         private final String description;
         private final Drawable icon;
         private final boolean enabledByDefault;
+        private final boolean hasSettings;
 
     }
 
@@ -82,7 +87,8 @@ public class PluginFactory {
         try {
             Plugin p = ((Plugin)availablePlugins.get(pluginName).newInstance());
             p.setContext(context, null);
-            info = new PluginInfo(pluginName, p.getDisplayName(), p.getDescription(), p.getIcon(), p.isEnabledByDefault());
+            info = new PluginInfo(pluginName, p.getDisplayName(), p.getDescription(), p.getIcon(),
+                    p.isEnabledByDefault(), p.hasSettings());
             availablePluginsInfo.put(pluginName, info); //Cache it
             return info;
         } catch(Exception e) {

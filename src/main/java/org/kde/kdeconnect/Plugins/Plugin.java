@@ -51,6 +51,12 @@ public abstract class Plugin {
      */
     public abstract boolean isEnabledByDefault();
 
+
+    /**
+     * Return true if this plugin needs an specific UI settings.
+     */
+    public abstract boolean hasSettings();
+
     /**
      * Initialize the listeners and structures in your plugin.
      * Should return true if initialization was successful.

@@ -72,13 +72,19 @@
     <string name="mpris_ff">Fast-forward</string>
     <string name="mpris_next">Next</string>
     <string name="mpris_volume">Volume</string>
+    <string name="mpris_settings">Multimedia Settings</string>
+    <string name="mpris_time_settings_title">Interval Time</string>
+    <string name="mpris_time_settings_summary">Adjust the time to fast forward or rewind a multimedia file.</string>
+    <string name="mpris_time_key" translatable="false">mpris_interval_time</string>
+    <string name="mpris_time_default" translatable="false">10000000</string>
     <string name="share_to">Share To...</string>
     <string name="protocol_version_older">This device uses an old protocol version</string>
     <string name="protocol_version_newer">This device uses a newer protocol version</string>
     <string name="general_settings">General Settings</string>
+    <string name="plugin_settings">Settings</string>
+    <string name="plugin_settings_key" translatable="false">_preferences</string>
     <string name="device_name">Device name</string>
     <string name="device_name_preference_summary">%s</string>
     <string name="invalid_device_name">Invalid device name</string>
     <string name="shareplugin_text_saved">Received text, saved to clipboard</string>
-
 </resources>

@@ -56,6 +56,11 @@ public class SharePlugin extends Plugin {
     }
 
     @Override
+    public boolean hasSettings() {
+        return false;
+    }
+
+    @Override
     public boolean isEnabledByDefault() {
         return true;
     }
