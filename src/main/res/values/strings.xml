@@ -87,4 +87,7 @@
     <string name="device_name_preference_summary">%s</string>
     <string name="invalid_device_name">Invalid device name</string>
     <string name="shareplugin_text_saved">Received text, saved to clipboard</string>
+    <string name="share_notification_preference">Noisy notifications</string>
+    <string name="share_notification_preference_summary">Vibrate and play a sound when receiving a file</string>
+
 </resources>
