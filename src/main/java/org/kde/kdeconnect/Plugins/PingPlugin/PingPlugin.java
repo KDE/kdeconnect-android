@@ -83,7 +83,7 @@ public class PingPlugin extends Plugin {
                     .setTicker("Ping!")
                     .setSmallIcon(android.R.drawable.ic_dialog_alert)
                     .setAutoCancel(true)
-                    .setDefaults(Notification.DEFAULT_SOUND)
+                    .setDefaults(Notification.DEFAULT_ALL)
                     .build();
 
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

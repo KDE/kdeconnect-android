@@ -47,7 +47,7 @@ public class SettingsActivity extends PreferenceActivity {
 
                     if (info.hasSettings()) {
                         final Preference pluginPreference = new Preference(getBaseContext());
-                        pluginPreference.setKey(info.getPluginName() + getString(R.string.plugin_settings_key));
+                        pluginPreference.setKey(pluginName + getString(R.string.plugin_settings_key));
                         pluginPreference.setTitle(info.getDisplayName());
                         pluginPreference.setSummary(R.string.plugin_settings);
                         pluginPreference.setSelectable(false);
@@ -67,7 +67,6 @@ public class SettingsActivity extends PreferenceActivity {
                             CheckBoxPreference pref = (CheckBoxPreference) current_preference;
                             boolean enabled = device.isPluginEnabled(pref.getKey());
                             device.setPluginEnabled(pref.getKey(), !enabled);
-
                             pref.setChecked(!enabled);
                         } else {
                             Intent intent = new Intent(SettingsActivity.this, PluginSettingsActivity.class);

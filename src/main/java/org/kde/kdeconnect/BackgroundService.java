@@ -272,7 +272,6 @@ public class BackgroundService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         //This will be called for each intent launch, even if the service is already started and it is reused
-        Log.i("BackgroundService","onStartCommand");
         mutex.lock();
         for (InstanceCallback c : callbacks) {
             c.onServiceStart(this);

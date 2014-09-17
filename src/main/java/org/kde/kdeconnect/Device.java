@@ -406,7 +406,7 @@ public class Device implements BaseLink.PackageReceiver {
                             .setTicker(res.getString(R.string.pair_requested))
                             .setSmallIcon(android.R.drawable.ic_menu_help)
                             .setAutoCancel(true)
-                            .setDefaults(Notification.DEFAULT_SOUND)
+                            .setDefaults(Notification.DEFAULT_ALL)
                             .build();
 
 
