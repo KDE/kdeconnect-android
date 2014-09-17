@@ -21,7 +21,8 @@ public class PreferenceListAdapter extends ArrayAdapter<Preference> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Preference preference = localList.get(position);
-        return preference.getView(convertView, parent);
+        //We can not reuse the convertView as some views have checkboxes and other don't
+        return preference.getView(null, parent);
     }
 
 }
