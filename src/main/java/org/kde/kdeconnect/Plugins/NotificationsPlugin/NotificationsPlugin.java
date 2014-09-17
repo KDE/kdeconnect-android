@@ -21,10 +21,6 @@ import org.kde.kdeconnect_tp.R;
 
 public class NotificationsPlugin extends Plugin implements NotificationReceiver.NotificationListener {
 
-    /*static {
-        PluginFactory.registerPlugin(NotificationsPlugin.class);
-    }*/
-
     @Override
     public String getPluginName() {
         return "plugin_notifications";

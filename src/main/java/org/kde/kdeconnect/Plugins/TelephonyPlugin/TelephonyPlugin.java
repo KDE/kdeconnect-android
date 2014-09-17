@@ -19,10 +19,6 @@ import org.kde.kdeconnect_tp.R;
 
 public class TelephonyPlugin extends Plugin {
 
-    /*static {
-        PluginFactory.registerPlugin(TelephonyPlugin.class);
-    }*/
-
     @Override
     public String getPluginName() {
         return "plugin_telephony";

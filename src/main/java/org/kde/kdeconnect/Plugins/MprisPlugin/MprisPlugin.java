@@ -30,10 +30,6 @@ public class MprisPlugin extends Plugin {
     private String player = "";
     private boolean playing = false;
 
-    /*static {
-        PluginFactory.registerPlugin(MprisPlugin.class);
-    }*/
-
     @Override
     public String getPluginName() {
         return "plugin_mpris";

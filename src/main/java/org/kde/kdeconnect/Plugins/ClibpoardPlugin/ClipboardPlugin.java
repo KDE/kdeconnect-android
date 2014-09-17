@@ -12,10 +12,6 @@ import org.kde.kdeconnect_tp.R;
 
 public class ClipboardPlugin extends Plugin {
 
-    /*static {
-        PluginFactory.registerPlugin(ClipboardPlugin.class);
-    }*/
-
     @Override
     public String getPluginName() {
         return "plugin_clipboard";

@@ -69,7 +69,7 @@ public class PluginFactory {
     private static final Map<String, PluginInfo> availablePluginsInfo = new TreeMap<String, PluginInfo>();
 
     static {
-        //TODO: Avoid this factory having to know every plugin
+        //TODO: Use reflection to find all subclasses of Plugin, instead of adding them manually
         PluginFactory.registerPlugin(TelephonyPlugin.class);
         PluginFactory.registerPlugin(PingPlugin.class);
         PluginFactory.registerPlugin(MprisPlugin.class);

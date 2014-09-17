@@ -22,10 +22,6 @@ public class BatteryPlugin extends Plugin {
 
     private NetworkPackage lastInfo = null;
 
-    /*static {
-        PluginFactory.registerPlugin(BatteryPlugin.class);
-    }*/
-
     @Override
     public String getPluginName() {
         return "plugin_battery";

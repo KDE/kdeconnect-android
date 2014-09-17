@@ -31,10 +31,6 @@ import java.io.OutputStream;
 
 public class SharePlugin extends Plugin {
 
-    /*static {
-        PluginFactory.registerPlugin(PingPlugin.class);
-    }*/
-
     @Override
     public String getPluginName() {
         return "share_ping";

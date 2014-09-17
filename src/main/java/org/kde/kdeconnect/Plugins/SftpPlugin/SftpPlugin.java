@@ -15,10 +15,6 @@ public class SftpPlugin extends Plugin {
 
     private static final SimpleSftpServer server = new SimpleSftpServer();
 
-    /*static {
-        PluginFactory.registerPlugin(SftpPlugin.class);
-    }*/
-
     @Override
     public String getPluginName() {return "plugin_sftp";}
 

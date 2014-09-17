@@ -21,10 +21,6 @@ import org.kde.kdeconnect_tp.R;
 
 public class PingPlugin extends Plugin {
 
-    /*static {
-        PluginFactory.registerPlugin(PingPlugin.class);
-    }*/
-
     @Override
     public String getPluginName() {
         return "plugin_ping";

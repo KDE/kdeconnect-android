@@ -13,6 +13,7 @@ import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
 public class MousePadPlugin extends Plugin {
+
     @Override
     public String getPluginName() {
         return "plugin_mousepad";
