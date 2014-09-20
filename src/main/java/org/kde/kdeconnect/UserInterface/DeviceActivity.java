@@ -1,5 +1,6 @@
 package org.kde.kdeconnect.UserInterface;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -33,6 +34,10 @@ public class DeviceActivity extends ActionBarActivity {
     static private String deviceId; //Static because if we get here by using the back button in the action bar, the extra deviceId will not be set.
     private Device device;
 
+    public static final int RESULT_NEEDS_RELOAD = Activity.RESULT_FIRST_USER;
+
+    TextView errorHeader;
+
     private final Device.PluginsChangedListener pluginsChangedListener = new Device.PluginsChangedListener() {
         @Override
         public void onPluginsChanged(final Device device) {
@@ -53,10 +58,14 @@ public class DeviceActivity extends ActionBarActivity {
                         }
                         ListView errorList = (ListView)findViewById(R.id.errors_list);
                         if (!failedPlugins.isEmpty() && errorList.getHeaderViewsCount() == 0) {
-                            TextView header = new TextView(DeviceActivity.this);
-                            header.setPadding(0,24,0,0);
-                            header.setText(getResources().getString(R.string.plugins_failed_to_load));
-                            errorList.addHeaderView(header);
+                            if (errorHeader == null) {
+                                errorHeader = new TextView(DeviceActivity.this);
+                                errorHeader.setPadding(0,24,0,0);
+                                errorHeader.setText(getResources().getString(R.string.plugins_failed_to_load));
+                            }
+                            errorList.addHeaderView(errorHeader);
+                        } else {
+                            errorList.removeHeaderView(errorHeader);
                         }
                         errorList.setAdapter(new ArrayAdapter<String>(DeviceActivity.this, android.R.layout.simple_list_item_1, names));
                         errorList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -65,6 +74,7 @@ public class DeviceActivity extends ActionBarActivity {
                                 if (position == 0) return;
                                 Plugin p = failedPlugins.get(ids[position - 1]); //Header is position 0, so we have to subtract one
                                 p.getErrorDialog(DeviceActivity.this).show();
+
                             }
                         });
 
@@ -172,6 +182,25 @@ public class DeviceActivity extends ActionBarActivity {
         } else {
             return false;
         }
-
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode)
+        {
+            case RESULT_NEEDS_RELOAD:
+                BackgroundService.RunCommand(DeviceActivity.this, new BackgroundService.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(BackgroundService service) {
+                        Device device = service.getDevice(deviceId);
+                        device.reloadPluginsFromSettings();
+                    }
+                });
+                break;
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+
 }

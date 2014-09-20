@@ -60,7 +60,7 @@ public class MousePadPlugin extends Plugin {
     }
 
     @Override
-    public AlertDialog getErrorDialog(Context baseContext) { return null; }
+    public AlertDialog getErrorDialog(Activity deviceActivity) { return null; }
 
     @Override
     public Button getInterfaceButton(final Activity activity) {

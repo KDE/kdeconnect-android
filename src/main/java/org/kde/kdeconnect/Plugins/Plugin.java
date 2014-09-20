@@ -79,7 +79,7 @@ public abstract class Plugin {
      * If onCreate returns false, should create a dialog explaining
      * the problem (and how to fix it, if possible) to the user.
      */
-    public abstract AlertDialog getErrorDialog(Context baseContext);
+    public abstract AlertDialog getErrorDialog(Activity deviceActivity);
 
     /**
      * Creates a button that will be displayed in the user interface
