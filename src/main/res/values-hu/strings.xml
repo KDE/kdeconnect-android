@@ -70,12 +70,22 @@
   <string name="mpris_ff">Gyors előretekerés</string>
   <string name="mpris_next">Következő</string>
   <string name="mpris_volume">Hangerő</string>
+  <string name="mpris_settings">Multimedia távirányítók</string>
   <string name="share_to">Megosztás…</string>
   <string name="protocol_version_older">Ez az eszköz egy régi protokollverziót használ</string>
   <string name="protocol_version_newer">Ez az eszköz egy újabb protokollverziót használ</string>
   <string name="general_settings">Általános beállítások</string>
+  <string name="plugin_settings">Általános beállítások</string>
   <string name="device_name">Eszköznév</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Érvénytelen eszköznév</string>
   <string name="shareplugin_text_saved">Szöveg érkezett, elmentve a vágólapra</string>
+  <string name="share_notification_preference">Értesítés szinkronizáció</string>
+  <string-array name="mpris_time_entries">
+    <item>10 seconds</item>
+    <item>20 seconds</item>
+    <item>30 seconds</item>
+    <item>1 minute</item>
+    <item>2 minutes</item>
+  </string-array>
 </resources>

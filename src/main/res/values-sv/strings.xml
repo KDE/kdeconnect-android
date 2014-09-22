@@ -71,12 +71,25 @@
   <string name="mpris_ff">Snabbspola framåt</string>
   <string name="mpris_next">Nästa</string>
   <string name="mpris_volume">Volym</string>
+  <string name="mpris_settings">Multimediainställningar</string>
+  <string name="mpris_time_settings_title">Intervalltid</string>
+  <string name="mpris_time_settings_summary">Justera tiden för att snabbspola framåt eller tillbaka en multimediafil.</string>
   <string name="share_to">Dela med...</string>
   <string name="protocol_version_older">Apparaten använder en gammal protokollversion</string>
   <string name="protocol_version_newer">Apparaten använder en nyare protokollversion</string>
   <string name="general_settings">Allmänna inställningar</string>
+  <string name="plugin_settings">Inställningar</string>
   <string name="device_name">Apparatnamn</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Ogiltigt apparatnamn</string>
   <string name="shareplugin_text_saved">Tog emot text, spara på klippbordet</string>
+  <string name="share_notification_preference">Ljudliga underrättelser</string>
+  <string name="share_notification_preference_summary">Vibrera och spela ett ljud när en fil tas emot</string>
+  <string-array name="mpris_time_entries">
+    <item>10 sekunder</item>
+    <item>20 sekunder</item>
+    <item>30 sekunder</item>
+    <item>1 minut</item>
+    <item>2 minuter</item>
+  </string-array>
 </resources>

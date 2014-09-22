@@ -71,12 +71,22 @@
   <string name="mpris_ff">Pretočiť dopredu</string>
   <string name="mpris_next">Nasledovné</string>
   <string name="mpris_volume">Hlasitosť</string>
+  <string name="mpris_settings">Multimediálne diaľkové ovládače</string>
   <string name="share_to">Zdieľať pre...</string>
   <string name="protocol_version_older">Toto zariadenie používa starú verziu protokolu</string>
   <string name="protocol_version_newer">Toto zariadenie používa novšiu verziu protokolu</string>
   <string name="general_settings">Všeobecné nastavenia</string>
+  <string name="plugin_settings">Všeobecné nastavenia</string>
   <string name="device_name">Názov zariadenia</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Neplatný názov zariadenia</string>
   <string name="shareplugin_text_saved">Prijatý text, uložený do schránky</string>
+  <string name="share_notification_preference">Synchronizácia pripomienok</string>
+  <string-array name="mpris_time_entries">
+    <item>10 seconds</item>
+    <item>20 seconds</item>
+    <item>30 seconds</item>
+    <item>1 minute</item>
+    <item>2 minutes</item>
+  </string-array>
 </resources>

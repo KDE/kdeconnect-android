@@ -58,11 +58,21 @@
   <string name="mpris_ff">Avanti veloce</string>
   <string name="mpris_next">Successivo</string>
   <string name="mpris_volume">Volume</string>
+  <string name="mpris_settings">Telecomando multimediale</string>
   <string name="share_to">Condividi…</string>
   <string name="protocol_version_older">Questo dispositivo usa una vecchia versione del protocollo di rete</string>
   <string name="protocol_version_newer">Questo dispositivo usa una nuova versione del protocollo di rete</string>
   <string name="general_settings">Impostazioni generali</string>
+  <string name="plugin_settings">Impostazioni generali</string>
   <string name="device_name">Nome dispositivo</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nome non valido</string>
+  <string name="share_notification_preference">Sincronizzazione notifiche</string>
+  <string-array name="mpris_time_entries">
+    <item>10 seconds</item>
+    <item>20 seconds</item>
+    <item>30 seconds</item>
+    <item>1 minute</item>
+    <item>2 minutes</item>
+  </string-array>
 </resources>

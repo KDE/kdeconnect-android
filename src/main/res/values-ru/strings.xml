@@ -55,10 +55,20 @@
   <string name="mpris_previous">Предыдущий</string>
   <string name="mpris_next">Следующее</string>
   <string name="mpris_volume">Громкость</string>
+  <string name="mpris_settings">ДУ для мультимедия</string>
   <string name="share_to">Сделать общим с...</string>
   <string name="protocol_version_older">Это устройство использует старую версию протокола</string>
   <string name="protocol_version_newer">Это устройство использует более свежую версию протокола</string>
   <string name="general_settings">Открыть настройки</string>
+  <string name="plugin_settings">Открыть настройки</string>
   <string name="device_name">Устройство не спарено</string>
   <string name="invalid_device_name">Недопустимый получатель ключа</string>
+  <string name="share_notification_preference">Синхронизация уведомлений</string>
+  <string-array name="mpris_time_entries">
+    <item>10 seconds</item>
+    <item>20 seconds</item>
+    <item>30 seconds</item>
+    <item>1 minute</item>
+    <item>2 minutes</item>
+  </string-array>
 </resources>

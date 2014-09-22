@@ -71,12 +71,25 @@
   <string name="mpris_ff">Avanç ràpid</string>
   <string name="mpris_next">Següent</string>
   <string name="mpris_volume">Volum</string>
+  <string name="mpris_settings">Arranjament multimèdia</string>
+  <string name="mpris_time_settings_title">Interval de temps</string>
+  <string name="mpris_time_settings_summary">Ajusta el temps per avançar o rebobinar un fitxer multimèdia.</string>
   <string name="share_to">Comparteix amb...</string>
   <string name="protocol_version_older">Aquest dispositiu usa una versió antiga del protocol</string>
   <string name="protocol_version_newer">Aquest dispositiu usa una versió nova del protocol</string>
   <string name="general_settings">Arranjament general</string>
+  <string name="plugin_settings">Arranjament</string>
   <string name="device_name">Nom del dispositiu</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">El nom del dispositiu no és vàlid</string>
   <string name="shareplugin_text_saved">S\'ha rebut text i s\'ha desat al porta-retalls</string>
+  <string name="share_notification_preference">Rebombori de les notificacions</string>
+  <string name="share_notification_preference_summary">Vibra i reprodueix un so en rebre un fitxer</string>
+  <string-array name="mpris_time_entries">
+    <item>10 segons</item>
+    <item>20 segons</item>
+    <item>30 segons</item>
+    <item>1 minut</item>
+    <item>2 minuts</item>
+  </string-array>
 </resources>

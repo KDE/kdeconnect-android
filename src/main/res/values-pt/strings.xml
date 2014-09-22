@@ -71,12 +71,25 @@
   <string name="mpris_ff">Avançar</string>
   <string name="mpris_next">Seguinte</string>
   <string name="mpris_volume">Volume</string>
+  <string name="mpris_settings">Configuração Multimédia</string>
+  <string name="mpris_time_settings_title">Tempo do Intervalo</string>
+  <string name="mpris_time_settings_summary">Ajusta o tempo de avanço ou de recuo de um ficheiro multimédia.</string>
   <string name="share_to">Partilhar Com...</string>
   <string name="protocol_version_older">Este dispositivo usa uma versão antiga do protocolo</string>
   <string name="protocol_version_newer">Este dispositivo usa uma versão mais recente do protocolo</string>
   <string name="general_settings">Configuração Geral</string>
+  <string name="plugin_settings">Configuração</string>
   <string name="device_name">Nome do dispositivo</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nome do dispositivo inválido</string>
   <string name="shareplugin_text_saved">Texto recebido e guardado na área de transferência</string>
+  <string name="share_notification_preference">Notificações com ruído</string>
+  <string name="share_notification_preference_summary">Vibrar e tocar um som ao receber um ficheiro</string>
+  <string-array name="mpris_time_entries">
+    <item>10 segundos</item>
+    <item>20 segundos</item>
+    <item>30 segundos</item>
+    <item>1 minuto</item>
+    <item>2 minutos</item>
+  </string-array>
 </resources>

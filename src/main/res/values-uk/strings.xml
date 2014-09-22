@@ -71,12 +71,25 @@
   <string name="mpris_ff">Повний вперед</string>
   <string name="mpris_next">Далі</string>
   <string name="mpris_volume">Гучність</string>
+  <string name="mpris_settings">Мультимедійні параметри</string>
+  <string name="mpris_time_settings_title">Часовий інтервал</string>
+  <string name="mpris_time_settings_summary">Скоригувати час швидкого гортання вперед або назад у мультимедійному файлі.</string>
   <string name="share_to">Спільно використовувати з…</string>
   <string name="protocol_version_older">На цьому пристрої використовується стара версія протоколу</string>
   <string name="protocol_version_newer">На цьому пристрої використовується новіша версія протоколу</string>
   <string name="general_settings">Загальні параметри</string>
+  <string name="plugin_settings">Параметри</string>
   <string name="device_name">Назва пристрою</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Некоректна назва пристрою</string>
   <string name="shareplugin_text_saved">Отримано текст, збережено до буфера обміну даними</string>
+  <string name="share_notification_preference">Звукові сповіщення</string>
+  <string name="share_notification_preference_summary">Вібрація і відтворення звуку у відповідь на отримання файла</string>
+  <string-array name="mpris_time_entries">
+    <item>10 секунд</item>
+    <item>20 секунд</item>
+    <item>30 секунд</item>
+    <item>1 хвилина</item>
+    <item>2 хвилини</item>
+  </string-array>
 </resources>

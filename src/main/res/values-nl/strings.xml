@@ -71,12 +71,25 @@
   <string name="mpris_ff">Snel vooruit</string>
   <string name="mpris_next">Volgende</string>
   <string name="mpris_volume">Volume</string>
+  <string name="mpris_settings">Instellingen voor multimedia</string>
+  <string name="mpris_time_settings_title">Intervaltijd</string>
+  <string name="mpris_time_settings_summary">Pas de tijd aan om snel voorwaarts te gaan or terug te spoelen in een multimedia bestand.</string>
   <string name="share_to">Delen met...</string>
   <string name="protocol_version_older">Dit apparaat gebruikt een oude protocolversie</string>
   <string name="protocol_version_newer">Dit apparaat gebruikt een nieuwere protocolversie</string>
   <string name="general_settings">Algemene instellingen</string>
+  <string name="plugin_settings">Instellingen</string>
   <string name="device_name">Apparaatnaam</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Ongeldige apparaatnaam</string>
   <string name="shareplugin_text_saved">Oontvangen tekst, opgeslagen op klembord</string>
+  <string name="share_notification_preference">Luidruchtige meldingen</string>
+  <string name="share_notification_preference_summary">Vibreer en speel een geluidje bij ontvangen van een bestand</string>
+  <string-array name="mpris_time_entries">
+    <item>10 seconden</item>
+    <item>20 seconden</item>
+    <item>30 seconden</item>
+    <item>1 minuut</item>
+    <item>2 minuten</item>
+  </string-array>
 </resources>

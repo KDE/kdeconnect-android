@@ -60,11 +60,21 @@
   <string name="mpris_ff">빨리 감기</string>
   <string name="mpris_next">다음</string>
   <string name="mpris_volume">음량</string>
+  <string name="mpris_settings">멀티미디어 제어</string>
   <string name="share_to">다음으로 공유...</string>
   <string name="protocol_version_older">이 장치의 프로토콜 버전이 오래되었습니다</string>
   <string name="protocol_version_newer">이 장치의 프로토콜 버전이 더 새롭습니다</string>
   <string name="general_settings">일반 설정</string>
+  <string name="plugin_settings">일반 설정</string>
   <string name="device_name">장치 이름</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">잘못된 장치 이름</string>
+  <string name="share_notification_preference">알림 동기화</string>
+  <string-array name="mpris_time_entries">
+    <item>10 seconds</item>
+    <item>20 seconds</item>
+    <item>30 seconds</item>
+    <item>1 minute</item>
+    <item>2 minutes</item>
+  </string-array>
 </resources>

@@ -60,11 +60,21 @@
   <string name="mpris_ff">Avance rapide</string>
   <string name="mpris_next">Suivant</string>
   <string name="mpris_volume">Volume</string>
+  <string name="mpris_settings">Contrôles distants multimédia</string>
   <string name="share_to">Partager vers...</string>
   <string name="protocol_version_older">Le périphérique utilise une version ancienne du protocole</string>
   <string name="protocol_version_newer">Le périphérique utilise une version plus récente du protocole</string>
   <string name="general_settings">Paramètres généraux</string>
+  <string name="plugin_settings">Paramètres généraux</string>
   <string name="device_name">Nom du périphérique</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nom de périphérique non valable</string>
+  <string name="share_notification_preference">Synchronisation des notifications</string>
+  <string-array name="mpris_time_entries">
+    <item>10 seconds</item>
+    <item>20 seconds</item>
+    <item>30 seconds</item>
+    <item>1 minute</item>
+    <item>2 minutes</item>
+  </string-array>
 </resources>

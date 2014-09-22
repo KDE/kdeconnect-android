@@ -71,12 +71,22 @@
   <string name="mpris_ff">Avance rápido</string>
   <string name="mpris_next">Siguiente</string>
   <string name="mpris_volume">Volumen</string>
+  <string name="mpris_settings">Controles remotos multimedia</string>
   <string name="share_to">Compartir con...</string>
   <string name="protocol_version_older">Este dispositivo usa una versión antigua del protocolo</string>
   <string name="protocol_version_newer">Este dispositivo usa una versión más reciente del protocolo</string>
   <string name="general_settings">Preferencias generales</string>
+  <string name="plugin_settings">Preferencias generales</string>
   <string name="device_name">Nombre de dispositivo</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nombre de dispositivo no válido</string>
   <string name="shareplugin_text_saved">Texto recibido y guardado en el portapapeles</string>
+  <string name="share_notification_preference">Sincronizar notificaciones</string>
+  <string-array name="mpris_time_entries">
+    <item>10 seconds</item>
+    <item>20 seconds</item>
+    <item>30 seconds</item>
+    <item>1 minute</item>
+    <item>2 minutes</item>
+  </string-array>
 </resources>
