@@ -163,7 +163,7 @@ public class DeviceActivity extends ActionBarActivity {
     public boolean onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
         menu.clear();
-        if (device.isPaired()) {
+        if (device != null && device.isPaired()) {
             menu.add(R.string.device_menu_plugins).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem menuItem) {
