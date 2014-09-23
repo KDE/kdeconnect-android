@@ -139,6 +139,9 @@ public class DeviceActivity extends ActionBarActivity {
                 setTitle(device.getName());
                 device.addPluginsChangedListener(pluginsChangedListener);
                 pluginsChangedListener.onPluginsChanged(device);
+                if (!device.hasPluginsLoaded()) {
+                    device.reloadPluginsFromSettings();
+                }
             }
         });
 

@@ -627,6 +627,9 @@ public class Device implements BaseLink.PackageReceiver {
         return enabled;
     }
 
+    public boolean hasPluginsLoaded() {
+        return !plugins.isEmpty();
+    }
 
     public void reloadPluginsFromSettings() {
 
