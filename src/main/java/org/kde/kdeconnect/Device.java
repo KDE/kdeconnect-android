@@ -321,12 +321,14 @@ public class Device implements BaseLink.PackageReceiver {
 
         Log.i("Device","addLink "+link.getLinkProvider().getName()+" -> "+getName() + " active links: "+ links.size());
 
+        /*
         Collections.sort(links, new Comparator<BaseLink>() {
             @Override
             public int compare(BaseLink o, BaseLink o2) {
                 return o2.getLinkProvider().getPriority() - o.getLinkProvider().getPriority();
             }
         });
+        */
 
         link.addPackageReceiver(this);
 

@@ -263,25 +263,21 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     @Override
     public void onNetworkChange() {
-
         onStop();
         onStart();
-
     }
 
     @Override
     public void onStop() {
-
         udpAcceptor.unbind();
         tcpAcceptor.unbind();
-
     }
-
+/*
     @Override
     public int getPriority() {
         return 1000;
     }
-
+*/
     @Override
     public String getName() {
         return "LanLinkProvider";

@@ -43,7 +43,7 @@ public abstract class BaseLinkProvider {
     public abstract void onStop();
     public abstract void onNetworkChange();
 
-    public abstract int getPriority();
+    //public abstract int getPriority();
     public abstract String getName();
 
 }

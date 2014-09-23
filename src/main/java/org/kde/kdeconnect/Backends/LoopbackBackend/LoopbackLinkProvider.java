@@ -20,22 +20,19 @@ public class LoopbackLinkProvider extends BaseLinkProvider {
 
     @Override
     public void onStop() {
-
     }
 
     @Override
     public void onNetworkChange() {
-
         NetworkPackage np = NetworkPackage.createIdentityPackage(context);
         connectionAccepted(np, new LoopbackLink(this));
-
     }
-
+/*
     @Override
     public int getPriority() {
         return 0;
     }
-
+*/
     @Override
     public String getName() {
         return "LoopbackLinkProvider";
