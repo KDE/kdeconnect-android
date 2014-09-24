@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="pref_plugin_telephony">Oznamování telefonie</string>
-  <string name="pref_plugin_telephony_desc">Posílat upozorňování na SMS a hovory</string>
+  <string name="pref_plugin_telephony">Upozornění telefonie</string>
+  <string name="pref_plugin_telephony_desc">Posílat upozornění na SMS a hovory</string>
   <string name="pref_plugin_battery">Hlášení baterie</string>
   <string name="pref_plugin_battery_desc">Periodicky hlásit stav baterky</string>
   <string name="pref_plugin_sftp">Přístup k souborovému systému</string>
@@ -14,7 +14,7 @@
   <string name="pref_plugin_mpris_desc">Ovládejte audio/video z vašeho telefonu</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Posílat a přijímat ping</string>
-  <string name="pref_plugin_notifications">Synchronizace hlášení</string>
+  <string name="pref_plugin_notifications">Synchronizace upozornění</string>
   <string name="pref_plugin_notifications_desc">Zpřístupněte si upozornění z jiných zařízení</string>
   <string name="pref_plugin_sharereceiver">Sdílet příjemce</string>
   <string name="pref_plugin_sharereceiver_desc">Ukládat příchozí soubory do úložiště telefonu</string>
@@ -71,22 +71,25 @@
   <string name="mpris_ff">Rychle vpřed</string>
   <string name="mpris_next">Následující</string>
   <string name="mpris_volume">Hlasitost</string>
-  <string name="mpris_settings">Vzdálené ovládání multimédií</string>
+  <string name="mpris_settings">Nastavení multimédií</string>
+  <string name="mpris_time_settings_title">Časový interval</string>
+  <string name="mpris_time_settings_summary">Upravit čas pro rychlý posun multimediálním souborem vpřed a zpět.</string>
   <string name="share_to">Sdílet s...</string>
   <string name="protocol_version_older">Toto zařízení používá starou verzi protokolu</string>
   <string name="protocol_version_newer">Toto zařízení používá novější verzi protokolu</string>
   <string name="general_settings">Obecná nastavení</string>
-  <string name="plugin_settings">Obecná nastavení</string>
+  <string name="plugin_settings">Nastavení</string>
   <string name="device_name">Název zařízení</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Neplatný název zařízení</string>
   <string name="shareplugin_text_saved">Přijatý text byl uložen do schránky</string>
-  <string name="share_notification_preference">Synchronizace hlášení</string>
+  <string name="share_notification_preference">Hlasitá upozornění</string>
+  <string name="share_notification_preference_summary">Vibrovat a přehrát melodii při přijímání souboru</string>
   <string-array name="mpris_time_entries">
-    <item>10 seconds</item>
-    <item>20 seconds</item>
-    <item>30 seconds</item>
-    <item>1 minute</item>
-    <item>2 minutes</item>
+    <item>10 sekund</item>
+    <item>20 sekund</item>
+    <item>30 sekund</item>
+    <item>1 minuta</item>
+    <item>2 minuty</item>
   </string-array>
 </resources>
