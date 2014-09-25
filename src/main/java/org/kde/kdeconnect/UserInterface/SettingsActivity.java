@@ -50,37 +50,30 @@ public class SettingsActivity extends PreferenceActivity {
                         pluginPreference.setKey(pluginName + getString(R.string.plugin_settings_key));
                         pluginPreference.setTitle(info.getDisplayName());
                         pluginPreference.setSummary(R.string.plugin_settings);
-                        pluginPreference.setSelectable(false);
                         preferences.add(pluginPreference);
                         preferenceScreen.addPreference(pluginPreference);
                         pluginPreference.setDependency(pref.getKey());
                     }
                 }
 
-                setListAdapter(new PreferenceListAdapter(SettingsActivity.this, preferences));
                 getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Preference current_preference = preferences.get(i);
-
-                        if (current_preference.isSelectable()) {
-                            CheckBoxPreference pref = (CheckBoxPreference) current_preference;
+                        Preference pref = preferences.get(i);
+                        if (pref.getDependency() == null) { //Is a plugin check
+                            CheckBoxPreference check = (CheckBoxPreference)pref;
                             boolean enabled = device.isPluginEnabled(pref.getKey());
                             device.setPluginEnabled(pref.getKey(), !enabled);
-                            pref.setChecked(!enabled);
-                        } else {
-                            Intent intent = new Intent(SettingsActivity.this, PluginSettingsActivity.class);
-                            intent.putExtra(Intent.EXTRA_INTENT, current_preference.getKey());
-                            startActivity(intent);
+                            check.setChecked(!enabled);
+                        } else { //Is a plugin suboption
+                            if (pref.isEnabled()) {
+                                Intent intent = new Intent(SettingsActivity.this, PluginSettingsActivity.class);
+                                intent.putExtra(Intent.EXTRA_INTENT, pref.getKey());
+                                startActivity(intent);
+                            }
                         }
-
-                        getListAdapter().getView(i, view, null); //This will refresh the view (yes, this is the way to do it)
-
                     }
                 });
-
-                getListView().setPadding(16,16,16,16);
-
             }
         });
 
