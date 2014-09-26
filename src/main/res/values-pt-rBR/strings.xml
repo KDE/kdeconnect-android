@@ -71,22 +71,25 @@
   <string name="mpris_ff">Avançar rapidamente</string>
   <string name="mpris_next">Próximo</string>
   <string name="mpris_volume">Volume</string>
-  <string name="mpris_settings">Controle remoto multimídia</string>
+  <string name="mpris_settings">Configurações de multimídia</string>
+  <string name="mpris_time_settings_title">Intervalo de tempo</string>
+  <string name="mpris_time_settings_summary">Ajuste o tempo para avançar ou retroceder um arquivo multimídia.</string>
   <string name="share_to">Compartilhar com...</string>
   <string name="protocol_version_older">Este dispositivo usa uma versão antiga do protocolo</string>
   <string name="protocol_version_newer">Este dispositivo usa uma versão mais recente do protocolo</string>
   <string name="general_settings">Configurações gerais</string>
-  <string name="plugin_settings">Configurações gerais</string>
+  <string name="plugin_settings">Configurações</string>
   <string name="device_name">Nome do dispositivo</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nome do dispositivo inválido</string>
   <string name="shareplugin_text_saved">Texto recebido e salvo na área de transferência</string>
-  <string name="share_notification_preference">Sincronização de notificações</string>
+  <string name="share_notification_preference">Notificações barulhentas</string>
+  <string name="share_notification_preference_summary">Vibrar e tocar um som ao receber um arquivo</string>
   <string-array name="mpris_time_entries">
-    <item>10 seconds</item>
-    <item>20 seconds</item>
-    <item>30 seconds</item>
-    <item>1 minute</item>
-    <item>2 minutes</item>
+    <item>10 segundos</item>
+    <item>20 segundos</item>
+    <item>30 segundos</item>
+    <item>1 minuto</item>
+    <item>2 minutos</item>
   </string-array>
 </resources>
