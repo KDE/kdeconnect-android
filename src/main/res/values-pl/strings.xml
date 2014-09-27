@@ -71,22 +71,25 @@
   <string name="mpris_ff">Przewiń do przodu</string>
   <string name="mpris_next">Następny</string>
   <string name="mpris_volume">Głośność</string>
-  <string name="mpris_settings">Zdalne sterowanie multimediami</string>
+  <string name="mpris_settings">Ustawienia multimediów</string>
+  <string name="mpris_time_settings_title">Czas okresu</string>
+  <string name="mpris_time_settings_summary">Dostosuj czas do przewijania wprzód lub wstecz w pliku multimedialnym.</string>
   <string name="share_to">Współdziel z...</string>
   <string name="protocol_version_older">Urządzenie to używa starej wersji protokołu</string>
   <string name="protocol_version_newer">Urządzenie to używa nowszej wersji protokołu</string>
   <string name="general_settings">Ustawienia ogólne</string>
-  <string name="plugin_settings">Ustawienia ogólne</string>
+  <string name="plugin_settings">Ustawienia</string>
   <string name="device_name">Nazwa urządzenia</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nieprawidłowa nazwa urządzenia</string>
   <string name="shareplugin_text_saved">Otrzymano tekst, zapisano do schowka</string>
-  <string name="share_notification_preference">Powiadomienia synchronizacji</string>
+  <string name="share_notification_preference">Hałaśliwe powiadomienia</string>
+  <string name="share_notification_preference_summary">Zadrżyj i odegraj dźwięk przy odebraniu pliku</string>
   <string-array name="mpris_time_entries">
-    <item>10 seconds</item>
-    <item>20 seconds</item>
-    <item>30 seconds</item>
-    <item>1 minute</item>
-    <item>2 minutes</item>
+    <item>10 sekund</item>
+    <item>20 sekund</item>
+    <item>30 sekund</item>
+    <item>1 minuta</item>
+    <item>2 minuty</item>
   </string-array>
 </resources>
