@@ -48,6 +48,7 @@
   <string name="incoming_file_text">%1s</string>
   <string name="tap_to_answer">Vastaa napsauttamalla</string>
   <string name="reconnect">Yhdistä uudelleen</string>
+  <string name="show_keyboard">Näytä näppäimistö</string>
   <string name="device_not_paired">Ei laiteparia</string>
   <string name="request_pairing">Pyydä paritusta</string>
   <string name="pairing_accept">Hyväksy</string>
@@ -62,16 +63,16 @@
   <string name="mpris_ff">Nopeasti eteenpäin</string>
   <string name="mpris_next">Seuraava</string>
   <string name="mpris_volume">Äänenvoimakkuus</string>
-  <string name="mpris_settings">Multimediakauko-ohjaimet</string>
+  <string name="mpris_settings">Multimedia-asetukset</string>
   <string name="share_to">Jaa…</string>
   <string name="protocol_version_older">Laite käyttää vanha yhteyskäytäntöversiota</string>
   <string name="protocol_version_newer">Laite käyttää uudempaa yhteyskäytäntöversiota</string>
   <string name="general_settings">Yleisasetukset</string>
-  <string name="plugin_settings">Yleisasetukset</string>
+  <string name="plugin_settings">Asetukset</string>
   <string name="device_name">Laitenimi</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Virheellinen laitenimi</string>
-  <string name="share_notification_preference">Ilmoitusten synkronointi</string>
+  <string name="share_notification_preference">Äänekkäät ilmoitukset</string>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>
     <item>20 seconds</item>
