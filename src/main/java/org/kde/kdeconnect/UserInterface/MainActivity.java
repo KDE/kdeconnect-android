@@ -104,35 +104,35 @@ public class MainActivity extends ActionBarActivity {
                 Resources res = getResources();
 
                 section = new SectionItem(res.getString(R.string.category_connected_devices));
-                section.isEmpty = true;
+                section.isSectionEmpty = true;
                 items.add(section);
                 for(Device d : devices) {
                     if (d.isReachable() && d.isPaired()) {
                         items.add(new DeviceItem(MainActivity.this, d));
-                        section.isEmpty = false;
+                        section.isSectionEmpty = false;
                     }
                 }
 
                 section = new SectionItem(res.getString(R.string.category_not_paired_devices));
-                section.isEmpty = true;
+                section.isSectionEmpty = true;
                 items.add(section);
                 for(Device d : devices) {
                     if (d.isReachable() && !d.isPaired()) {
                         items.add(new DeviceItem(MainActivity.this, d));
-                        section.isEmpty = false;
+                        section.isSectionEmpty = false;
                     }
                 }
 
                 section = new SectionItem(res.getString(R.string.category_remembered_devices));
-                section.isEmpty = true;
+                section.isSectionEmpty = true;
                 items.add(section);
                 for(Device d : devices) {
                     if (!d.isReachable() && d.isPaired()) {
                         items.add(new DeviceItem(MainActivity.this, d));
-                        section.isEmpty = false;
+                        section.isSectionEmpty = false;
                     }
                 }
-                if (section.isEmpty) {
+                if (section.isSectionEmpty) {
                     items.remove(items.size()-1); //Remove remembered devices section if empty
                 }
 

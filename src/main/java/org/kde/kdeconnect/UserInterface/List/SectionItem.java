@@ -9,11 +9,11 @@ import org.kde.kdeconnect_tp.R;
 public class SectionItem implements ListAdapter.Item {
 
 	private final String title;
-    public boolean isEmpty;
+    public boolean isSectionEmpty;
 
 	public SectionItem(String title) {
 		this.title = title;
-        this.isEmpty = false;
+        this.isSectionEmpty = false;
 	}
 
     @Override
@@ -21,13 +21,14 @@ public class SectionItem implements ListAdapter.Item {
 
         View v = layoutInflater.inflate(R.layout.list_item_category, null);
 
+        //Make it not selectable
         v.setOnClickListener(null);
         v.setOnLongClickListener(null);
 
         TextView sectionView = (TextView) v.findViewById(R.id.list_item_category_text);
         sectionView.setText(title);
 
-        if (isEmpty) {
+        if (isSectionEmpty) {
             v.findViewById(R.id.list_item_category_empty_placeholder).setVisibility(View.VISIBLE);
         }
 

@@ -136,7 +136,8 @@ public class ShareToReceiver extends ActionBarActivity {
                                         queuedSendUriList(device, uriList);
 
                                     } catch (Exception e) {
-                                        Log.e(this.getClass().getName(), e.toString());
+                                        e.printStackTrace();
+                                        Log.e("ShareToReceiver", "Exception");
                                     }
 
                                 } else if (extras.containsKey(Intent.EXTRA_TEXT)) {
