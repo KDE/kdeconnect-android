@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <style name="KitKatCompatSelector" parent="Theme.AppCompat">
+
+    <item name="android:listViewStyle">@style/ListViewKitKatCompatSelector</item>
+
+    <item name="android:listViewWhiteStyle">@style/ListViewKitKatCompatSelector.White</item>
+
+    <item name="android:spinnerItemStyle">@style/SpinnerItemKitKatCompatSelector</item>
+
+  </style>
+
+</resources>

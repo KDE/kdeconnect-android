@@ -4,6 +4,7 @@ package org.kde.kdeconnect.UserInterface.List;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,7 +25,10 @@ public class DeviceItem implements ListAdapter.Item {
 
     @Override
     public View inflateView(LayoutInflater layoutInflater) {
-        View v = layoutInflater.inflate(R.layout.list_item_entry, null);
+        final View v = layoutInflater.inflate(R.layout.list_item_entry, null);
+
+        //Highlight when selected effect
+        v.setBackgroundDrawable(layoutInflater.getContext().getResources().getDrawable(R.drawable.kitkatcompatselector_list_selector_holo_dark));
 
         TextView titleView = (TextView)v.findViewById(R.id.list_item_entry_title);
         if (titleView != null) titleView.setText(device.getName());

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <style name="ListViewKitKatCompatSelector" parent="android:Widget.ListView">
+      <item name="android:listSelector">@drawable/kitkatcompatselector_list_selector_holo_dark</item>
+  </style>
+
+  <style name="ListViewKitKatCompatSelector.White" parent="android:Widget.ListView.White">
+      <item name="android:listSelector">@drawable/kitkatcompatselector_list_selector_holo_dark</item>
+  </style>
+
+  <style name="SpinnerItemKitKatCompatSelector" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+      <item name="android:textColor">#ffffff</item>
+  </style>
+
+</resources>
