@@ -133,7 +133,7 @@ public class MainActivity extends ActionBarActivity {
                     }
                 }
                 if (section.isEmpty) {
-                    items.remove(items.size()-1); //Remove section
+                    items.remove(items.size()-1); //Remove remembered devices section if empty
                 }
 
                 runOnUiThread(new Runnable() {

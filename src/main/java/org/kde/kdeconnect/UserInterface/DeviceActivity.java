@@ -62,6 +62,9 @@ public class DeviceActivity extends ActionBarActivity {
                                 if (errorHeader == null) {
                                     errorHeader = new TextView(DeviceActivity.this);
                                     errorHeader.setPadding(0,24,0,0);
+                                    errorHeader.setOnClickListener(null);
+                                    errorHeader.setOnLongClickListener(null);
+
                                     errorHeader.setText(getResources().getString(R.string.plugins_failed_to_load));
                                 }
                                 errorList.addHeaderView(errorHeader);
