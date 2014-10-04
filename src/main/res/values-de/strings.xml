@@ -61,21 +61,21 @@
   <string name="mpris_ff">Vorlauf</string>
   <string name="mpris_next">Weiter</string>
   <string name="mpris_volume">Lautstärke</string>
-  <string name="mpris_settings">Multimedia-Fernbedienungen</string>
+  <string name="mpris_settings">Multimedia-Einstellungen</string>
   <string name="share_to">Freigeben für ...</string>
   <string name="protocol_version_older">Dieses Gerät verwendet ein alte Protokollversion</string>
   <string name="protocol_version_newer">Dieses Gerät verwendet ein neuere Protokollversion</string>
   <string name="general_settings">Allgemeine Einstellungen</string>
-  <string name="plugin_settings">Allgemeine Einstellungen</string>
+  <string name="plugin_settings">Einstellungen</string>
   <string name="device_name">Gerätename</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Ungültiger Gerätename</string>
   <string name="share_notification_preference">Benachrichtigungs-Abgleich</string>
   <string-array name="mpris_time_entries">
-    <item>10 seconds</item>
-    <item>20 seconds</item>
-    <item>30 seconds</item>
-    <item>1 minute</item>
-    <item>2 minutes</item>
+    <item>10 Sekunden</item>
+    <item>20 Sekunden</item>
+    <item>30 Sekunden</item>
+    <item>1 Minute</item>
+    <item>2 Minuten</item>
   </string-array>
 </resources>
