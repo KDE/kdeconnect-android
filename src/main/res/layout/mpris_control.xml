@@ -7,9 +7,9 @@
     android:layout_height="match_parent"
     android:id="@+id/mpris_control_view"
     android:gravity="center"
-    android:paddingLeft="50dip"
+    android:paddingLeft="60dip"
     android:paddingTop="5dip"
-    android:paddingRight="50dip"
+    android:paddingRight="60dip"
     android:paddingBottom="5dip">
 
     <Spinner
@@ -26,7 +26,7 @@
         android:id="@+id/now_playing_textview"
         android:singleLine="true"
         android:gravity="center"
-        android:padding="5dip"
+        android:padding="8dip"
         android:layout_gravity="center"
     />
 
@@ -46,7 +46,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="50dip"
+        android:layout_height="60dip"
         android:layout_gravity="center"
     >
 
