@@ -48,6 +48,8 @@
   <string name="received_file_title">Datei von %1s erhalten</string>
   <string name="tap_to_answer">Tippen zum Antworten</string>
   <string name="reconnect">Erneut verbinden</string>
+  <string name="right_click">Rechtsklick senden</string>
+  <string name="middle_click">Mittelklick senden</string>
   <string name="show_keyboard">Tastatur anzeigen</string>
   <string name="device_not_paired">Das Gerät ist nicht verbunden</string>
   <string name="request_pairing">Verbindung angefordert</string>
