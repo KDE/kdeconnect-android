@@ -89,6 +89,12 @@
     <string name="shareplugin_text_saved">Received text, saved to clipboard</string>
     <string name="share_notification_preference">Noisy notifications</string>
     <string name="share_notification_preference_summary">Vibrate and play a sound when receiving a file</string>
+    <string name="sftp_internal_storage">Internal storage</string>
+    <string name="sftp_all_files">All files</string>
+    <string name="sftp_sdcard_num">SD card %d</string>
+    <string name="sftp_sdcard">SD card</string>
+    <string name="sftp_readonly">(read only)</string>
+    <string name="sftp_camera">Camera pictures</string>
 
     <string-array name="mpris_time_entries">
         <item>10 seconds</item>
