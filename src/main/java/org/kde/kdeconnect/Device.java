@@ -559,24 +559,25 @@ public class Device implements BaseLink.PackageReceiver {
             @Override
             public void run() {
 
+                boolean success;
                 try {
-                    boolean success = plugin.onCreate();
-                    if (!success) {
-                        Log.e("addPlugin", "plugin failed to load " + name);
-                        failedPlugins.put(name, plugin);
-                        return;
-                    }
+                    success = plugin.onCreate();
                 } catch (Exception e) {
-                    failedPlugins.put(name, plugin);
+                    success = false;
                     e.printStackTrace();
                     Log.e("addPlugin", "Exception loading plugin " + name);
                     return;
                 }
 
-                //Log.e("addPlugin","added " + name);
-
-                failedPlugins.remove(name);
-                plugins.put(name, plugin);
+                if (success) {
+                    //Log.e("addPlugin","added " + name);
+                    failedPlugins.remove(name);
+                    plugins.put(name, plugin);
+                } else {
+                    Log.e("addPlugin", "plugin failed to load " + name);
+                    plugins.remove(name);
+                    failedPlugins.put(name, plugin);
+                }
 
                 for (PluginsChangedListener listener : pluginsChangedListeners) {
                     listener.onPluginsChanged(Device.this);
@@ -594,6 +595,7 @@ public class Device implements BaseLink.PackageReceiver {
 
         if (plugin == null) {
             if (failedPlugin == null) {
+                //Not found
                 return false;
             }
             plugin = failedPlugin;
@@ -601,20 +603,17 @@ public class Device implements BaseLink.PackageReceiver {
 
         try {
             plugin.onDestroy();
+            //Log.e("removePlugin","removed " + name);
         } catch (Exception e) {
             e.printStackTrace();
             Log.e("removePlugin","Exception calling onDestroy for plugin "+name);
-            return false;
         }
-
-        //Log.e("removePlugin","removed " + name);
 
         for (PluginsChangedListener listener : pluginsChangedListeners) {
             listener.onPluginsChanged(this);
         }
 
         return true;
-
     }
 
     public void setPluginEnabled(String pluginName, boolean value) {
@@ -651,9 +650,7 @@ public class Device implements BaseLink.PackageReceiver {
             }
         }
 
-        for (PluginsChangedListener listener : pluginsChangedListeners) {
-            listener.onPluginsChanged(this);
-        }
+        //No need to call PluginsChangedListeners because addPlugin and removePlugin already do so
     }
 
     public HashMap<String,Plugin> getLoadedPlugins() {
