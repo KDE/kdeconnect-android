@@ -85,6 +85,12 @@
   <string name="shareplugin_text_saved">Отримано текст, збережено до буфера обміну даними</string>
   <string name="share_notification_preference">Звукові сповіщення</string>
   <string name="share_notification_preference_summary">Вібрація і відтворення звуку у відповідь на отримання файла</string>
+  <string name="sftp_internal_storage">Вбудоване сховище даних</string>
+  <string name="sftp_all_files">Усі файли</string>
+  <string name="sftp_sdcard_num">Картка SD %d</string>
+  <string name="sftp_sdcard">Картка SD</string>
+  <string name="sftp_readonly">(лише читання)</string>
+  <string name="sftp_camera">Знімки фотоапарата</string>
   <string-array name="mpris_time_entries">
     <item>10 секунд</item>
     <item>20 секунд</item>

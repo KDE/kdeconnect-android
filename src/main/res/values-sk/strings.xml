@@ -85,6 +85,12 @@
   <string name="shareplugin_text_saved">Prijatý text, uložený do schránky</string>
   <string name="share_notification_preference">Hlučné pripomienky</string>
   <string name="share_notification_preference_summary">Vibrovať a prehrať zvuk pri prijatí súboru</string>
+  <string name="sftp_internal_storage">Interné úložisko</string>
+  <string name="sftp_all_files">Všetky súbory</string>
+  <string name="sftp_sdcard_num">SD karta %d</string>
+  <string name="sftp_sdcard">SD karta</string>
+  <string name="sftp_readonly">(iba na čítanie)</string>
+  <string name="sftp_camera">Obrázky fotoaparátu</string>
   <string-array name="mpris_time_entries">
     <item>10 sekúnd</item>
     <item>20 sekúnd</item>

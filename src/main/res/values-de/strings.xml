@@ -43,6 +43,7 @@
   <string name="error_invalid_key">Ungültiger Schlüssel empfangen</string>
   <string name="pair_requested">Verbindung angefordert</string>
   <string name="pairing_request_from">Verbindungsanfrage von %1s</string>
+  <string name="received_url_title">Verknüpfung von %1s erhalten</string>
   <string name="incoming_file_title">Eingehende Datei von %1s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="received_file_title">Datei von %1s erhalten</string>
@@ -77,6 +78,12 @@
   <string name="shareplugin_text_saved">Text empfangen und in der Zwischenablage gespeichert</string>
   <string name="share_notification_preference">Benachrichtigungs-Abgleich</string>
   <string name="share_notification_preference_summary">Beim Empfang einer Datei vibrieren und einen Sound abspielen</string>
+  <string name="sftp_internal_storage">Interner Speicher</string>
+  <string name="sftp_all_files">Alle Dateien</string>
+  <string name="sftp_sdcard_num">SD-Karte %d</string>
+  <string name="sftp_sdcard">SD-Karte</string>
+  <string name="sftp_readonly">(Nur lesen)</string>
+  <string name="sftp_camera">Kamerabilder</string>
   <string-array name="mpris_time_entries">
     <item>10 Sekunden</item>
     <item>20 Sekunden</item>

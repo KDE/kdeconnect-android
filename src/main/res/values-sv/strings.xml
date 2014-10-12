@@ -85,6 +85,12 @@
   <string name="shareplugin_text_saved">Tog emot text, spara på klippbordet</string>
   <string name="share_notification_preference">Ljudliga underrättelser</string>
   <string name="share_notification_preference_summary">Vibrera och spela ett ljud när en fil tas emot</string>
+  <string name="sftp_internal_storage">Intern lagring</string>
+  <string name="sftp_all_files">Alla filer</string>
+  <string name="sftp_sdcard_num">SD-kort %d</string>
+  <string name="sftp_sdcard">SD-kort</string>
+  <string name="sftp_readonly">(skrivskyddat)</string>
+  <string name="sftp_camera">Kamerabilder</string>
   <string-array name="mpris_time_entries">
     <item>10 sekunder</item>
     <item>20 sekunder</item>
