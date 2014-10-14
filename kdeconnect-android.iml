@@ -80,13 +80,13 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 19 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="support-v4-19.1.0" level="project" />
     <orderEntry type="library" exported="" name="sshd-core-0.8.0" level="project" />
+    <orderEntry type="library" exported="" name="bcprov-jdk16-1.45" level="project" />
+    <orderEntry type="library" exported="" name="appcompat-v7-19.1.0" level="project" />
+    <orderEntry type="library" exported="" name="mina-core-2.0.8" level="project" />
     <orderEntry type="library" exported="" name="tomcat-apr-5.5.15" level="project" />
     <orderEntry type="library" exported="" name="slf4j-api-1.6.6" level="project" />
-    <orderEntry type="library" exported="" name="appcompat-v7-19.1.0" level="project" />
-    <orderEntry type="library" exported="" name="support-v4-19.1.0" level="project" />
-    <orderEntry type="library" exported="" name="bcprov-jdk16-1.45" level="project" />
-    <orderEntry type="library" exported="" name="mina-core-2.0.8" level="project" />
   </component>
 </module>
 
