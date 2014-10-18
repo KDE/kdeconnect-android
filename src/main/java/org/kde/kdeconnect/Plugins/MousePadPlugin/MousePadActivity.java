@@ -1,8 +1,8 @@
 package org.kde.kdeconnect.Plugins.MousePadPlugin;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.GestureDetector;
 import android.view.inputmethod.InputMethodManager;
 import android.view.Menu;
@@ -14,7 +14,7 @@ import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect_tp.R;
 
-public class MousePadActivity extends Activity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener, MousePadGestureDetector.OnGestureListener {
+public class MousePadActivity extends ActionBarActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener, MousePadGestureDetector.OnGestureListener {
 
     String deviceId;
 

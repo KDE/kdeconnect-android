@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:kdeconnect="http://schemas.android.com/apk/res-auto/android">
 
+    <item android:id="@+id/menu_show_keyboard"
+        android:title="@string/show_keyboard"
+        android:icon="@drawable/ic_action_keyboard"
+        kdeconnect:showAsAction="ifRoom" />
+
     <item android:id="@+id/menu_right_click"
         android:title="@string/right_click"
         kdeconnect:showAsAction="never" />
@@ -10,7 +15,4 @@ xmlns:kdeconnect="http://schemas.android.com/apk/res-auto/android">
         android:title="@string/middle_click"
         kdeconnect:showAsAction="never" />
 
-    <item android:id="@+id/menu_show_keyboard"
-        android:title="@string/show_keyboard"
-        kdeconnect:showAsAction="never" />
 </menu>
