@@ -138,6 +138,7 @@
             android:theme="@style/Theme.AppCompat"
             android:name="org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadActivity"
             android:label="@string/remote_control"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="fullSensor"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.DeviceActivity"
             >
