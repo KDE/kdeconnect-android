@@ -48,7 +48,6 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
 
         keyListenerView = (KeyListenerView)findViewById(R.id.keyListener);
         keyListenerView.setDeviceId(deviceId);
-
     }
 
     @Override
@@ -248,7 +247,7 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
 
     private void showKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(keyListenerView, InputMethodManager.SHOW_IMPLICIT);
+        imm.toggleSoftInputFromWindow(keyListenerView.getWindowToken(), 0, 0);
     }
 
 }
