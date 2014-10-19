@@ -167,6 +167,10 @@ public class LanLinkProvider extends BaseLinkProvider {
         String deviceId = identityPackage.getString("deviceId");
         Log.i("LanLinkProvider","addLink to "+deviceId);
         LanLink oldLink = visibleComputers.get(deviceId);
+        if (oldLink == link) {
+            Log.e("KDEConnect", "LanLinkProvider: oldLink == link. This should not happen!");
+            return;
+        }
         visibleComputers.put(deviceId, link);
         connectionAccepted(identityPackage, link);
         if (oldLink != null) {
