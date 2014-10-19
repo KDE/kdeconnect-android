@@ -85,6 +85,12 @@
   <string name="shareplugin_text_saved">Otrzymano tekst, zapisano do schowka</string>
   <string name="share_notification_preference">Hałaśliwe powiadomienia</string>
   <string name="share_notification_preference_summary">Zadrżyj i odegraj dźwięk przy odebraniu pliku</string>
+  <string name="sftp_internal_storage">"Pamięć wewnętrzna "</string>
+  <string name="sftp_all_files">Wszystkie pliki</string>
+  <string name="sftp_sdcard_num">Karta SD %d</string>
+  <string name="sftp_sdcard">Karta SD</string>
+  <string name="sftp_readonly">(tylko do odczytu)</string>
+  <string name="sftp_camera">Zdjęcia z aparatu</string>
   <string-array name="mpris_time_entries">
     <item>10 sekund</item>
     <item>20 sekund</item>
