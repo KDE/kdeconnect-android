@@ -76,6 +76,7 @@ public class PairActivity extends ActionBarActivity {
             @Override
             public void onServiceStart(BackgroundService service) {
                 device = service.getDevice(deviceId);
+                if (device == null) return;
                 setTitle(device.getName());
                 NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
                 notificationManager.cancel(device.getNotificationId());
@@ -94,6 +95,7 @@ public class PairActivity extends ActionBarActivity {
                     @Override
                     public void onServiceStart(BackgroundService service) {
                         device = service.getDevice(deviceId);
+                        if (device == null) return;
                         device.requestPairing();
                     }
                 });
@@ -134,6 +136,8 @@ public class PairActivity extends ActionBarActivity {
         BackgroundService.RunCommand(PairActivity.this, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
+                device = service.getDevice(deviceId);
+                if (device == null) return;
                 device.addPairingCallback(pairingCallback);
             }
         });

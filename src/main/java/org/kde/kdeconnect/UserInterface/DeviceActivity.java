@@ -144,6 +144,7 @@ public class DeviceActivity extends ActionBarActivity {
             @Override
             public void onServiceStart(BackgroundService service) {
                 Device device = service.getDevice(deviceId);
+                if (device == null) return;
                 device.removePluginsChangedListener(pluginsChangedListener);
             }
         });
