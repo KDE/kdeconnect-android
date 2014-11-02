@@ -16,6 +16,8 @@
   <string name="pref_plugin_ping_desc">Lähetä ja vastaanota tiedustelupaketteja</string>
   <string name="pref_plugin_notifications">Ilmoitusten synkronointi</string>
   <string name="pref_plugin_notifications_desc">Näe ilmoituksesi muissa laitteissa</string>
+  <string name="pref_plugin_sharereceiver">Jaon vastaanottaja</string>
+  <string name="pref_plugin_sharereceiver_desc">Tallenna tulevat tiedoston puhelimen muistiin</string>
   <string name="plugin_not_available">Piirre ei ole käytettävissä Android-versiossasi</string>
   <string name="device_list_empty">Ei laitteita</string>
   <string name="ok">OK</string>
@@ -29,7 +31,7 @@
   <string name="category_connected_devices">Yhdistetyt laitteet</string>
   <string name="category_not_paired_devices">Ei laitepareja</string>
   <string name="category_remembered_devices">Muistetut laitteet</string>
-  <string name="plugins_failed_to_load">Liitännäisten lataus epäonnistui (lisätietoa napsauttamalla):</string>
+  <string name="plugins_failed_to_load">Liitännäisten lataus epäonnistui (lisätietoa napauttamalla):</string>
   <string name="device_menu_plugins">Valitse liitännäiset</string>
   <string name="device_menu_unpair">Irrota paritus</string>
   <string name="device_not_reachable">Laitepari tavoittamattomissa</string>
@@ -44,10 +46,16 @@
   <string name="error_invalid_key">Vastaanotettiin väärä avain</string>
   <string name="pair_requested">Parituspyyntö</string>
   <string name="pairing_request_from">Parituspyyntö kohteesta %1s</string>
-  <string name="incoming_file_title">Parituspyyntö kohteesta %1s</string>
+  <string name="received_url_title">Vastaanotettiin linkki lähettäjältä %1s</string>
+  <string name="received_url_text">Avaa ”%1s” napauttamalla</string>
+  <string name="incoming_file_title">Saapuva tiedosto lähettäjältä %1s</string>
   <string name="incoming_file_text">%1s</string>
-  <string name="tap_to_answer">Vastaa napsauttamalla</string>
+  <string name="received_file_title">Vastaanotettiin tiedosto lähettäjältä %1s</string>
+  <string name="received_file_text">Avaa ”%1s” napauttamalla</string>
+  <string name="tap_to_answer">Vastaa napauttamalla</string>
   <string name="reconnect">Yhdistä uudelleen</string>
+  <string name="right_click">Lähetä oikean painikkeen napsautus</string>
+  <string name="middle_click">Lähetä keskipainikkeen napsautus</string>
   <string name="show_keyboard">Näytä näppäimistö</string>
   <string name="device_not_paired">Ei laiteparia</string>
   <string name="request_pairing">Pyydä paritusta</string>
@@ -64,6 +72,8 @@
   <string name="mpris_next">Seuraava</string>
   <string name="mpris_volume">Äänenvoimakkuus</string>
   <string name="mpris_settings">Multimedia-asetukset</string>
+  <string name="mpris_time_settings_title">Aikaväli</string>
+  <string name="mpris_time_settings_summary">Säädä multimediatiedoston pikakelauksen aikaa.</string>
   <string name="share_to">Jaa…</string>
   <string name="protocol_version_older">Laite käyttää vanha yhteyskäytäntöversiota</string>
   <string name="protocol_version_newer">Laite käyttää uudempaa yhteyskäytäntöversiota</string>
@@ -72,12 +82,20 @@
   <string name="device_name">Laitenimi</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Virheellinen laitenimi</string>
+  <string name="shareplugin_text_saved">Vastaanotettiin tekstiä, tallennettiin leikepöydälle</string>
   <string name="share_notification_preference">Äänekkäät ilmoitukset</string>
+  <string name="share_notification_preference_summary">Värise ja soita ääni tiedoston saapuessa</string>
+  <string name="sftp_internal_storage">Sisäinen muisti</string>
+  <string name="sftp_all_files">Kaikki tiedostot</string>
+  <string name="sftp_sdcard_num">SD-kortti %d</string>
+  <string name="sftp_sdcard">SD-kortti</string>
+  <string name="sftp_readonly">(vain luku)</string>
+  <string name="sftp_camera">Kamerakuvat</string>
   <string-array name="mpris_time_entries">
-    <item>10 seconds</item>
-    <item>20 seconds</item>
-    <item>30 seconds</item>
-    <item>1 minute</item>
-    <item>2 minutes</item>
+    <item>10 sekuntia</item>
+    <item>20 sekuntia</item>
+    <item>30 sekuntia</item>
+    <item>1 minuutti</item>
+    <item>2 minuuttia</item>
   </string-array>
 </resources>
