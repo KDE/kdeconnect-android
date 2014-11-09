@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListPreference
+        android:id="@+id/mousepad_double_tap_preference"
+        android:key="@string/mousepad_double_tap_key"
+        android:title="@string/mousepad_double_tap_settings_title"
+        android:summary="%s"
+        android:entries="@array/mousepad_tap_entries"
+        android:entryValues="@array/mousepad_tap_values"
+        android:defaultValue="@string/mousepad_double_default" />
+
+    <ListPreference
+        android:id="@+id/mousepad_triple_tap_preference"
+        android:key="@string/mousepad_triple_tap_key"
+        android:title="@string/mousepad_triple_tap_settings_title"
+        android:summary="%s"
+        android:entries="@array/mousepad_tap_entries"
+        android:entryValues="@array/mousepad_tap_values"
+        android:defaultValue="@string/mousepad_triple_default" />
+
+</PreferenceScreen>

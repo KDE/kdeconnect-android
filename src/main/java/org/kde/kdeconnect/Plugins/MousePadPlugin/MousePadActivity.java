@@ -1,7 +1,9 @@
 package org.kde.kdeconnect.Plugins.MousePadPlugin;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.GestureDetector;
 import android.view.inputmethod.InputMethodManager;
@@ -33,6 +35,9 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
 
     KeyListenerView keyListenerView;
 
+    enum ClickType {RIGHT,MIDDLE}
+
+    private ClickType doubleTapAction, tripleTapAction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,17 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
 
         keyListenerView = (KeyListenerView)findViewById(R.id.keyListener);
         keyListenerView.setDeviceId(deviceId);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String doubleTapSetting = prefs.getString(getString(R.string.mousepad_double_tap_key),
+                getString(R.string.mousepad_double_default));
+        String tripleTapSetting = prefs.getString(getString(R.string.mousepad_triple_tap_key),
+                getString(R.string.mousepad_triple_default));
+
+        doubleTapAction = getString(R.string.mousepad_right_value).equals(doubleTapSetting)?
+                ClickType.RIGHT : ClickType.MIDDLE;
+        tripleTapAction = getString(R.string.mousepad_right_value).equals(tripleTapSetting)?
+                ClickType.RIGHT : ClickType.MIDDLE;
     }
 
     @Override
@@ -210,13 +226,29 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
 
     @Override
     public boolean onTripleFingerTap(MotionEvent ev) {
-        sendMiddleClick();
+        switch(tripleTapAction){
+            case RIGHT:
+                sendRightClick();
+                break;
+            default:
+            case MIDDLE:
+                sendMiddleClick();
+                break;
+        }
         return true;
     }
 
     @Override
     public boolean onDoubleFingerTap(MotionEvent ev) {
-        sendRightClick();
+        switch(doubleTapAction){
+            default:
+            case RIGHT:
+                sendRightClick();
+                break;
+            case MIDDLE:
+                sendMiddleClick();
+                break;
+        }
         return true;
     }
 
