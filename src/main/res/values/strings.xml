@@ -9,8 +9,8 @@
     <string name="pref_plugin_sftp_desc">Allows to browse the phone\'s filesystem remotely</string>
     <string name="pref_plugin_clipboard">Clipboard sync</string>
     <string name="pref_plugin_clipboard_desc">Share the clipboard content</string>
-    <string name="pref_plugin_mousepad">Mouse Remote Control</string>
-    <string name="pref_plugin_mousepad_desc">Control your mouse remotely</string>
+    <string name="pref_plugin_mousepad">Remote input</string>
+    <string name="pref_plugin_mousepad_desc">Use your phone as a mouse and keyboard</string>
     <string name="pref_plugin_mpris">Multimedia remote controls</string>
     <string name="pref_plugin_mpris_desc">Control audio/video from your phone</string>
     <string name="pref_plugin_ping">Ping</string>

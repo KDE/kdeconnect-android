@@ -53,8 +53,7 @@ public class SettingsActivity extends PreferenceActivity {
                     if (info.hasSettings()) {
                         final Preference pluginPreference = new Preference(getBaseContext());
                         pluginPreference.setKey(pluginName + getString(R.string.plugin_settings_key));
-                        pluginPreference.setTitle(info.getDisplayName());
-                        pluginPreference.setSummary(R.string.plugin_settings);
+                        pluginPreference.setSummary(getString(R.string.plugin_settings_with_name, info.getDisplayName()));
                         preferences.add(pluginPreference);
                         preferenceScreen.addPreference(pluginPreference);
                         pluginPreference.setDependency(pref.getKey());
