@@ -61,6 +61,7 @@
   <string name="protocol_version_newer">Это устройство использует более свежую версию протокола</string>
   <string name="general_settings">Открыть настройки</string>
   <string name="plugin_settings">Открыть настройки</string>
+  <string name="plugin_settings_with_name">Открыть настройки</string>
   <string name="device_name">Устройство не спарено</string>
   <string name="invalid_device_name">Недопустимый получатель ключа</string>
   <string name="share_notification_preference">Синхронизация уведомлений</string>

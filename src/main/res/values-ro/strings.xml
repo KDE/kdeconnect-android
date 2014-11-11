@@ -66,6 +66,7 @@
   <string name="protocol_version_newer">Acest dispozitiv folosește o versiune mai nouă a protocolului</string>
   <string name="general_settings">Configurări generale</string>
   <string name="plugin_settings">Configurări generale</string>
+  <string name="plugin_settings_with_name">Deschide configurările</string>
   <string name="device_name">Denumire dispozitiv</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Denumire nevalidă a dispozitivului</string>

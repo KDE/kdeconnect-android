@@ -8,8 +8,8 @@
   <string name="pref_plugin_sftp_desc">Надає змогу віддалено переглядати файлову систему телефону</string>
   <string name="pref_plugin_clipboard">Синхронізація буфера</string>
   <string name="pref_plugin_clipboard_desc">Спільне використання буфера обміну даними</string>
-  <string name="pref_plugin_mousepad">Дистанційне керування мишею</string>
-  <string name="pref_plugin_mousepad_desc">Віддалене керування вашою мишею</string>
+  <string name="pref_plugin_mousepad">Дистанційне введення</string>
+  <string name="pref_plugin_mousepad_desc">Скористайтеся телефоном як замінником миші і клавіатури</string>
   <string name="pref_plugin_mpris">Дистанційне керування відтворенням</string>
   <string name="pref_plugin_mpris_desc">Керування відтворенням звуку та відео з вашого телефону</string>
   <string name="pref_plugin_ping">Підтримання зв’язку</string>
@@ -28,6 +28,10 @@
   <string name="open_mpris_controls">Відкрити дистанційне керування</string>
   <string name="open_mousepad">Відкрити керування сенсорною панеллю</string>
   <string name="mousepad_info">Проведіть по екрану пальцем, щоб пересунути вказівник миші</string>
+  <string name="mousepad_double_tap_settings_title">Встановлення дії для торкання двома пальцями</string>
+  <string name="mousepad_triple_tap_settings_title">Встановлення дії для торкання трьома пальцями</string>
+  <string name="mousepad_right_click">Клацання правою</string>
+  <string name="mousepad_middle_click">Клацання середньою</string>
   <string name="category_connected_devices">З’єднані пристрої</string>
   <string name="category_not_paired_devices">Непов’язані пристрої</string>
   <string name="category_remembered_devices">Відомі пристрої</string>
@@ -79,6 +83,7 @@
   <string name="protocol_version_newer">На цьому пристрої використовується новіша версія протоколу</string>
   <string name="general_settings">Загальні параметри</string>
   <string name="plugin_settings">Параметри</string>
+  <string name="plugin_settings_with_name">Параметри %s</string>
   <string name="device_name">Назва пристрою</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Некоректна назва пристрою</string>

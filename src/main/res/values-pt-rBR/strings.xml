@@ -8,8 +8,7 @@
   <string name="pref_plugin_sftp_desc">Permite navegar remotamente pelo sistema de arquivos telefone</string>
   <string name="pref_plugin_clipboard">Sincronizar área de transferência</string>
   <string name="pref_plugin_clipboard_desc">Compartilha o conteúdo da área de transferência</string>
-  <string name="pref_plugin_mousepad">Controle remoto do mouse</string>
-  <string name="pref_plugin_mousepad_desc">Controle seu mouse à distância</string>
+  <string name="pref_plugin_mousepad">Controle remoto</string>
   <string name="pref_plugin_mpris">Controle remoto multimídia</string>
   <string name="pref_plugin_mpris_desc">Controla áudio e vídeo a partir do seu telefone</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -28,6 +27,8 @@
   <string name="open_mpris_controls">Abra o controle remoto</string>
   <string name="open_mousepad">Abrir o controle do touchpad</string>
   <string name="mousepad_info">Mova um dedo na tela para mover o ponteiro do mouse</string>
+  <string name="mousepad_right_click">Enviar um Botão Direito</string>
+  <string name="mousepad_middle_click">Enviar um Botão do Meio</string>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos não emparelhados</string>
   <string name="category_remembered_devices">Dispositivos lembrados</string>
@@ -79,6 +80,7 @@
   <string name="protocol_version_newer">Este dispositivo usa uma versão mais recente do protocolo</string>
   <string name="general_settings">Configurações gerais</string>
   <string name="plugin_settings">Configurações</string>
+  <string name="plugin_settings_with_name">Abrir configurações</string>
   <string name="device_name">Nome do dispositivo</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nome do dispositivo inválido</string>

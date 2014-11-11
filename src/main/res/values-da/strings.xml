@@ -8,8 +8,7 @@
   <string name="pref_plugin_sftp_desc">Muliggør at gennemsøge telefonens filsystem eksternt</string>
   <string name="pref_plugin_clipboard">Synk. af udklipsholder</string>
   <string name="pref_plugin_clipboard_desc">Del indholdet af udklipsholderen</string>
-  <string name="pref_plugin_mousepad">Fjernbetjening af mus</string>
-  <string name="pref_plugin_mousepad_desc">Styrer din mus på afstand</string>
+  <string name="pref_plugin_mousepad">Fjernbetjening</string>
   <string name="pref_plugin_mpris">Fjernbetjening af multimedie</string>
   <string name="pref_plugin_mpris_desc">Styr lyd og video fra din telefon</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -28,6 +27,8 @@
   <string name="open_mpris_controls">Åbn fjernbetjening</string>
   <string name="open_mousepad">Åbn touchpad-kontrol</string>
   <string name="mousepad_info">Bevæg en finger på skærmen for at flytte musemarkøren</string>
+  <string name="mousepad_right_click">Send højreklik</string>
+  <string name="mousepad_middle_click">Send midterklik</string>
   <string name="category_connected_devices">Forbundne enheder</string>
   <string name="category_not_paired_devices">Ikke parrede enheder</string>
   <string name="category_remembered_devices">Huskede enheder</string>
@@ -77,6 +78,7 @@
   <string name="protocol_version_newer">Denne enhed bruger en nyere protokolversion</string>
   <string name="general_settings">Generelle indstillinger</string>
   <string name="plugin_settings">Generelle indstillinger</string>
+  <string name="plugin_settings_with_name">Åbn indstillinger</string>
   <string name="device_name">Enhedsnavn</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Ugyldigt enhedsnavn</string>

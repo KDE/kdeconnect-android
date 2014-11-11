@@ -8,8 +8,8 @@
   <string name="pref_plugin_sftp_desc">Permet navegar de forma remota pel sistema de fitxers del telèfon</string>
   <string name="pref_plugin_clipboard">Sincronitza el porta-retalls</string>
   <string name="pref_plugin_clipboard_desc">Comparteix el contingut del porta-retalls</string>
-  <string name="pref_plugin_mousepad">Comandament a distància del ratolí</string>
-  <string name="pref_plugin_mousepad_desc">Controla el vostre ratolí de forma remota</string>
+  <string name="pref_plugin_mousepad">Entrada remota</string>
+  <string name="pref_plugin_mousepad_desc">Usa el vostre telèfon com un ratolí i un teclat</string>
   <string name="pref_plugin_mpris">Comandament a distància multimèdia</string>
   <string name="pref_plugin_mpris_desc">Controla l\'àudio i el vídeo del vostre telèfon</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -28,6 +28,10 @@
   <string name="open_mpris_controls">Obre el comandament a distància</string>
   <string name="open_mousepad">Obre el control pel plafó tàctil</string>
   <string name="mousepad_info">Moveu un dit per la pantalla per a moure el cursor del ratolí</string>
+  <string name="mousepad_double_tap_settings_title">Estableix l\'acció de tocar amb dos dits</string>
+  <string name="mousepad_triple_tap_settings_title">Estableix l\'acció de tocar amb tres dits</string>
+  <string name="mousepad_right_click">Clic dret</string>
+  <string name="mousepad_middle_click">Clic del mig</string>
   <string name="category_connected_devices">Dispositius connectats</string>
   <string name="category_not_paired_devices">Dispositius sense aparellar</string>
   <string name="category_remembered_devices">Dispositius recordats</string>
@@ -79,6 +83,7 @@
   <string name="protocol_version_newer">Aquest dispositiu usa una versió nova del protocol</string>
   <string name="general_settings">Arranjament general</string>
   <string name="plugin_settings">Arranjament</string>
+  <string name="plugin_settings_with_name">Ajustaments de %s</string>
   <string name="device_name">Nom del dispositiu</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">El nom del dispositiu no és vàlid</string>

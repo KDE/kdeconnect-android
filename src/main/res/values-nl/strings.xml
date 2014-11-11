@@ -8,8 +8,8 @@
   <string name="pref_plugin_sftp_desc">Het bladeren in het bestandssysteem op afstand in de telefoon toestaan</string>
   <string name="pref_plugin_clipboard">Klembordsynchronisatie</string>
   <string name="pref_plugin_clipboard_desc">De inhoud van het klembord delen</string>
-  <string name="pref_plugin_mousepad">Afstandsbediening voor muis</string>
-  <string name="pref_plugin_mousepad_desc">Bedien uw muis van afstand</string>
+  <string name="pref_plugin_mousepad">Invoer op afstand</string>
+  <string name="pref_plugin_mousepad_desc">Uw telefoon gebruiken als een muis en toetsenbord</string>
   <string name="pref_plugin_mpris">Afstandsbediening van multimedia</string>
   <string name="pref_plugin_mpris_desc">Bedien de audio/video vanaf uw telefoon</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -28,6 +28,10 @@
   <string name="open_mpris_controls">Afstandsbediening openen</string>
   <string name="open_mousepad">Afstandsbediening van touchpad openen</string>
   <string name="mousepad_info">Veeg met een vinger op het scherm om de muiscursor te verplaatsen</string>
+  <string name="mousepad_double_tap_settings_title">Klopactie met twee vingers instellen</string>
+  <string name="mousepad_triple_tap_settings_title">Klopactie met drie vingers instellen</string>
+  <string name="mousepad_right_click">Rechter muisklik</string>
+  <string name="mousepad_middle_click">Middelste muisklik</string>
   <string name="category_connected_devices">Verbonden apparaten</string>
   <string name="category_not_paired_devices">Geen gepaarde apparaten</string>
   <string name="category_remembered_devices">Onthouden apparaten</string>
@@ -79,6 +83,7 @@
   <string name="protocol_version_newer">Dit apparaat gebruikt een nieuwere protocolversie</string>
   <string name="general_settings">Algemene instellingen</string>
   <string name="plugin_settings">Instellingen</string>
+  <string name="plugin_settings_with_name">Instellingen van %s</string>
   <string name="device_name">Apparaatnaam</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Ongeldige apparaatnaam</string>

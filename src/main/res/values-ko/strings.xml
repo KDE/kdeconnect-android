@@ -66,6 +66,7 @@
   <string name="protocol_version_newer">이 장치의 프로토콜 버전이 더 새롭습니다</string>
   <string name="general_settings">일반 설정</string>
   <string name="plugin_settings">일반 설정</string>
+  <string name="plugin_settings_with_name">설정 열기</string>
   <string name="device_name">장치 이름</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">잘못된 장치 이름</string>

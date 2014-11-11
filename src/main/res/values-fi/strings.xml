@@ -8,8 +8,7 @@
   <string name="pref_plugin_sftp_desc">Mahdollistaa puhelimen tiedostojärjestelmän etäselaamisen</string>
   <string name="pref_plugin_clipboard">Leikepöydän synkronointi</string>
   <string name="pref_plugin_clipboard_desc">Jaa leikepöydän sisältö</string>
-  <string name="pref_plugin_mousepad">Hiiren kauko-ohjain</string>
-  <string name="pref_plugin_mousepad_desc">Kauko-ohjaa hiirtä</string>
+  <string name="pref_plugin_mousepad">Kauko-ohjain</string>
   <string name="pref_plugin_mpris">Multimediakauko-ohjaimet</string>
   <string name="pref_plugin_mpris_desc">Ohjaa ääntä ja videota puhelimestasi</string>
   <string name="pref_plugin_ping">Tiedustelupaketti</string>
@@ -28,6 +27,8 @@
   <string name="open_mpris_controls">Avaa kauko-ohjain</string>
   <string name="open_mousepad">Avaa hiiren ohjain</string>
   <string name="mousepad_info">Liikuta hiiren osoitinta liikuttamalla sormeasi näytöllä</string>
+  <string name="mousepad_right_click">Lähetä oikean painikkeen napsautus</string>
+  <string name="mousepad_middle_click">Lähetä keskipainikkeen napsautus</string>
   <string name="category_connected_devices">Yhdistetyt laitteet</string>
   <string name="category_not_paired_devices">Ei laitepareja</string>
   <string name="category_remembered_devices">Muistetut laitteet</string>
@@ -79,6 +80,7 @@
   <string name="protocol_version_newer">Laite käyttää uudempaa yhteyskäytäntöversiota</string>
   <string name="general_settings">Yleisasetukset</string>
   <string name="plugin_settings">Asetukset</string>
+  <string name="plugin_settings_with_name">Avaa asetukset</string>
   <string name="device_name">Laitenimi</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Virheellinen laitenimi</string>

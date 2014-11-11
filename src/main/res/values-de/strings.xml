@@ -8,7 +8,7 @@
   <string name="pref_plugin_sftp_desc">Erlaubt das Browsen des Dateisystems auf dem entfernten Handy</string>
   <string name="pref_plugin_clipboard">Abgleich der Zwischenablage</string>
   <string name="pref_plugin_clipboard_desc">Inhalt der Zwischenablage freigeben</string>
-  <string name="pref_plugin_mousepad">Maus-Fernbedienung</string>
+  <string name="pref_plugin_mousepad">Fernbedienung</string>
   <string name="pref_plugin_mpris">Multimedia-Fernbedienungen</string>
   <string name="pref_plugin_mpris_desc">Audio und Video mit Ihrem Telefon steuern</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -25,6 +25,8 @@
   <string name="send_ping">Ping senden</string>
   <string name="open_mpris_controls">Fernbedienung öffnen</string>
   <string name="open_mousepad">Touchpad-Steuerung öffnen</string>
+  <string name="mousepad_right_click">Rechtsklick</string>
+  <string name="mousepad_middle_click">Mittelklick</string>
   <string name="category_connected_devices">Verbundene Geräte</string>
   <string name="category_not_paired_devices">Keine angeschlossenen Geräte</string>
   <string name="category_remembered_devices">Gemerkte Geräte</string>
@@ -72,6 +74,7 @@
   <string name="protocol_version_newer">Dieses Gerät verwendet ein neuere Protokollversion</string>
   <string name="general_settings">Allgemeine Einstellungen</string>
   <string name="plugin_settings">Einstellungen</string>
+  <string name="plugin_settings_with_name">%s-Einstellungen</string>
   <string name="device_name">Gerätename</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Ungültiger Gerätename</string>

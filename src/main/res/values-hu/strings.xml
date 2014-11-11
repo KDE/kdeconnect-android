@@ -8,8 +8,7 @@
   <string name="pref_plugin_sftp_desc">Lehetővé teszi a telefon fájlrendszerének távolról történő tallózását</string>
   <string name="pref_plugin_clipboard">Vágólap szinkronizáció</string>
   <string name="pref_plugin_clipboard_desc">A vágólap tartalmának megosztása</string>
-  <string name="pref_plugin_mousepad">Egér távirányító</string>
-  <string name="pref_plugin_mousepad_desc">Az egér vezérlése távolról</string>
+  <string name="pref_plugin_mousepad">Távirányító</string>
   <string name="pref_plugin_mpris">Multimedia távirányítók</string>
   <string name="pref_plugin_mpris_desc">Hang vagy videó vezérlése a telefonról</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -28,6 +27,8 @@
   <string name="open_mpris_controls">Távirányító megnyitása</string>
   <string name="open_mousepad">Érintőtábla vezérlő megnyitása</string>
   <string name="mousepad_info">Mozgassa az ujját a képernyőn az egérkurzor mozgatásához</string>
+  <string name="mousepad_right_click">Jobb kattintás küldése</string>
+  <string name="mousepad_middle_click">Középső kattintás küldése</string>
   <string name="category_connected_devices">Csatlakoztatott eszközök</string>
   <string name="category_not_paired_devices">Nincsenek párosított eszközök</string>
   <string name="category_remembered_devices">Megjegyzett eszközök</string>
@@ -76,6 +77,7 @@
   <string name="protocol_version_newer">Ez az eszköz egy újabb protokollverziót használ</string>
   <string name="general_settings">Általános beállítások</string>
   <string name="plugin_settings">Általános beállítások</string>
+  <string name="plugin_settings_with_name">Beállítások megnyitása</string>
   <string name="device_name">Eszköznév</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Érvénytelen eszköznév</string>

@@ -8,8 +8,8 @@
   <string name="pref_plugin_sftp_desc">Zezwala na zdalne przeglądanie systemu plików telefonu</string>
   <string name="pref_plugin_clipboard">Synchronizacja schowka</string>
   <string name="pref_plugin_clipboard_desc">Udostępnij zawartość schowka</string>
-  <string name="pref_plugin_mousepad">Zdalne sterowanie myszą</string>
-  <string name="pref_plugin_mousepad_desc">Steruj swoją myszą zdalnie</string>
+  <string name="pref_plugin_mousepad">Zdalne sterowanie</string>
+  <string name="pref_plugin_mousepad_desc">Użyj swojego telefonu jako myszy i klawiatury</string>
   <string name="pref_plugin_mpris">Zdalne sterowanie multimediami</string>
   <string name="pref_plugin_mpris_desc">Steruj dźwiękiem/obrazem ze swojego telefonu</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -28,6 +28,10 @@
   <string name="open_mpris_controls">Otwórz zdalne sterowanie</string>
   <string name="open_mousepad">Otwórz sterowanie gładzikiem</string>
   <string name="mousepad_info">Przesuń kciukiem po ekranie, aby przesunąć wskaźnik myszy</string>
+  <string name="mousepad_double_tap_settings_title">Ustaw działanie po dwukrotnym stuknięciu palcem</string>
+  <string name="mousepad_triple_tap_settings_title">Ustaw działanie po trzykrotnym stuknięciu palcem</string>
+  <string name="mousepad_right_click">Naciśnięcie prawym</string>
+  <string name="mousepad_middle_click">Naciśnięcie środkowym</string>
   <string name="category_connected_devices">Podłączone urządzenia</string>
   <string name="category_not_paired_devices">Brak sparowanych urządzeń</string>
   <string name="category_remembered_devices">Zapamiętane urządzenia</string>
@@ -79,6 +83,7 @@
   <string name="protocol_version_newer">Urządzenie to używa nowszej wersji protokołu</string>
   <string name="general_settings">Ustawienia ogólne</string>
   <string name="plugin_settings">Ustawienia</string>
+  <string name="plugin_settings_with_name">Ustawienia %s</string>
   <string name="device_name">Nazwa urządzenia</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nieprawidłowa nazwa urządzenia</string>

@@ -66,6 +66,7 @@
   <string name="protocol_version_newer">Le périphérique utilise une version plus récente du protocole</string>
   <string name="general_settings">Paramètres généraux</string>
   <string name="plugin_settings">Paramètres généraux</string>
+  <string name="plugin_settings_with_name">Accéder aux paramètres</string>
   <string name="device_name">Nom du périphérique</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nom de périphérique non valable</string>
