@@ -8,7 +8,8 @@
   <string name="pref_plugin_sftp_desc">Permite navegar pelo sistema de ficheiros remoto do telefone</string>
   <string name="pref_plugin_clipboard">Sincronização da área de transferência</string>
   <string name="pref_plugin_clipboard_desc">Partilhar o conteúdo da área de transferência</string>
-  <string name="pref_plugin_mousepad">Comando à distância</string>
+  <string name="pref_plugin_mousepad">Introdução remota de dados</string>
+  <string name="pref_plugin_mousepad_desc">Usar o seu telefone como um rato ou teclado</string>
   <string name="pref_plugin_mpris">Comando à distância multimédia</string>
   <string name="pref_plugin_mpris_desc">Controlar o áudio/vídeo a partir do seu telefone</string>
   <string name="pref_plugin_ping">Contacto</string>
@@ -27,8 +28,10 @@
   <string name="open_mpris_controls">Abrir o comando à distância</string>
   <string name="open_mousepad">Abrir o controlo do painel do rato</string>
   <string name="mousepad_info">Mova um dedo no ecrã para mover o cursor do rato</string>
-  <string name="mousepad_right_click">Enviar um Botão Direito</string>
-  <string name="mousepad_middle_click">Enviar um Botão do Meio</string>
+  <string name="mousepad_double_tap_settings_title">Definir a Acção do Toque com Dois Dedos</string>
+  <string name="mousepad_triple_tap_settings_title">Definir a Acção do Toque com Três Dedos</string>
+  <string name="mousepad_right_click">Botão direito</string>
+  <string name="mousepad_middle_click">Botão do meio</string>
   <string name="category_connected_devices">Dispositivos ligados</string>
   <string name="category_not_paired_devices">Dispositivos não emparelhados</string>
   <string name="category_remembered_devices">Dispositivos recordados</string>
@@ -80,7 +83,7 @@
   <string name="protocol_version_newer">Este dispositivo usa uma versão mais recente do protocolo</string>
   <string name="general_settings">Configuração Geral</string>
   <string name="plugin_settings">Configuração</string>
-  <string name="plugin_settings_with_name">Abrir a configuração</string>
+  <string name="plugin_settings_with_name">Configuração do %s</string>
   <string name="device_name">Nome do dispositivo</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nome do dispositivo inválido</string>
