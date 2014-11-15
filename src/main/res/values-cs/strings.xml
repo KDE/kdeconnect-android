@@ -8,7 +8,8 @@
   <string name="pref_plugin_sftp_desc">Umožní vám vzdáleně prohlížet souborový systém telefonu</string>
   <string name="pref_plugin_clipboard">Synchronizace schránky</string>
   <string name="pref_plugin_clipboard_desc">Sdílet obsah schránky</string>
-  <string name="pref_plugin_mousepad">Vzdálené ovládání</string>
+  <string name="pref_plugin_mousepad">Vzdálený vstup</string>
+  <string name="pref_plugin_mousepad_desc">Používejte svůj telefon jako myš a klávesnici</string>
   <string name="pref_plugin_mpris">Vzdálené ovládání multimédií</string>
   <string name="pref_plugin_mpris_desc">Ovládejte audio/video z vašeho telefonu</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -27,8 +28,10 @@
   <string name="open_mpris_controls">Otevřít vzdálené ovládání</string>
   <string name="open_mousepad">Otevřít dotykové ovládání</string>
   <string name="mousepad_info">Pohybujte prstem po monitoru pro pohybování kurzorem myši</string>
-  <string name="mousepad_right_click">Poslat kliknutí pravým tlačítkem</string>
-  <string name="mousepad_middle_click">Poslat kliknutí prostředním tlačítkem</string>
+  <string name="mousepad_double_tap_settings_title">Nastavit činnost pro ťuknutí dvěma prsty</string>
+  <string name="mousepad_triple_tap_settings_title">Nastavit činnost pro ťuknutí třemi prsty</string>
+  <string name="mousepad_right_click">Kliknutí pravým tlačítkem myši</string>
+  <string name="mousepad_middle_click">Kliknutí prostředním tlačítkem myši</string>
   <string name="category_connected_devices">Připojená zařízení</string>
   <string name="category_not_paired_devices">Nespárovaná zařízení</string>
   <string name="category_remembered_devices">Zapamatovaná zařízení</string>
@@ -80,7 +83,7 @@
   <string name="protocol_version_newer">Toto zařízení používá novější verzi protokolu</string>
   <string name="general_settings">Obecná nastavení</string>
   <string name="plugin_settings">Nastavení</string>
-  <string name="plugin_settings_with_name">Otevřít nastavení</string>
+  <string name="plugin_settings_with_name">Nastavení %s</string>
   <string name="device_name">Název zařízení</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Neplatný název zařízení</string>
