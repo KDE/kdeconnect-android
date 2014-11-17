@@ -7,6 +7,8 @@ import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 
 import java.util.ArrayList;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class NotificationReceiver extends NotificationListenerService {
 
@@ -45,29 +47,38 @@ public class NotificationReceiver extends NotificationListenerService {
 
     //To use the service from the outer (name)space
 
-    //This will be called for each intent launch, even if the service is already started and is reused
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        //Log.e("NotificationReceiver", "onStartCommand");
-        for (InstanceCallback c : callbacks) {
-            c.onServiceStart(this);
-        }
-        callbacks.clear();
-        return Service.START_STICKY;
-    }
-
     public interface InstanceCallback {
         void onServiceStart(NotificationReceiver service);
     }
 
     private final static ArrayList<InstanceCallback> callbacks = new ArrayList<InstanceCallback>();
 
+    private final static Lock mutex = new ReentrantLock(true);
+
+    //This will be called for each intent launch, even if the service is already started and is reused
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        //Log.e("NotificationReceiver", "onStartCommand");
+        mutex.lock();
+        for (InstanceCallback c : callbacks) {
+            c.onServiceStart(this);
+        }
+        callbacks.clear();
+        mutex.unlock();
+        return Service.START_STICKY;
+    }
+
+
     public static void Start(Context c) {
         RunCommand(c, null);
     }
 
     public static void RunCommand(Context c, final InstanceCallback callback) {
-        if (callback != null) callbacks.add(callback);
+        if (callback != null) {
+            mutex.lock();
+            callbacks.add(callback);
+            mutex.unlock();
+        }
         Intent serviceIntent = new Intent(c, NotificationReceiver.class);
         c.startService(serviceIntent);
     }
