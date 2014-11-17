@@ -8,7 +8,8 @@
   <string name="pref_plugin_sftp_desc">Umožní prístup na súborový systém telefónu vzdialene</string>
   <string name="pref_plugin_clipboard">Synchronizácia schránky</string>
   <string name="pref_plugin_clipboard_desc">Zdieľať obsah schránky</string>
-  <string name="pref_plugin_mousepad">Diaľkové ovládanie</string>
+  <string name="pref_plugin_mousepad">Vzdialený vstup</string>
+  <string name="pref_plugin_mousepad_desc">Použiť váš telefón ako myš a klávesnicu</string>
   <string name="pref_plugin_mpris">Multimediálne diaľkové ovládače</string>
   <string name="pref_plugin_mpris_desc">Ovládať audio/video z vášho telefónu</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -27,8 +28,10 @@
   <string name="open_mpris_controls">Otvoriť diaľkové ovládanie</string>
   <string name="open_mousepad">Otvoriť ovládanie touchpadu</string>
   <string name="mousepad_info">Presuňte prst na obrazovke na presun kurzora myši</string>
-  <string name="mousepad_right_click">Poslať kliknutie pravým</string>
-  <string name="mousepad_middle_click">Poslať kliknutie stredným</string>
+  <string name="mousepad_double_tap_settings_title">Nastaviť akciu dvoch prstov</string>
+  <string name="mousepad_triple_tap_settings_title">Nastaviť akciu troch prstov</string>
+  <string name="mousepad_right_click">Kliknutie pravým tlačidlom</string>
+  <string name="mousepad_middle_click">Stredný klik</string>
   <string name="category_connected_devices">Pripojené zariadenia</string>
   <string name="category_not_paired_devices">Nespárované zariadenia</string>
   <string name="category_remembered_devices">Zapamätané zariadenia</string>
@@ -80,7 +83,7 @@
   <string name="protocol_version_newer">Toto zariadenie používa novšiu verziu protokolu</string>
   <string name="general_settings">Všeobecné nastavenia</string>
   <string name="plugin_settings">Nastavenia</string>
-  <string name="plugin_settings_with_name">Otvoriť nastavenia</string>
+  <string name="plugin_settings_with_name">%s nastavenia</string>
   <string name="device_name">Názov zariadenia</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Neplatný názov zariadenia</string>
