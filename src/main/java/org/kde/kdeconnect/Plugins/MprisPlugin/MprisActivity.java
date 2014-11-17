@@ -90,6 +90,9 @@ public class MprisActivity extends Activity {
                                 spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                     @Override
                                     public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
+
+                                        if (pos >= playerList.size()) return;
+
                                         ((TextView) findViewById(R.id.now_playing_textview)).setText("");
                                         String player = playerList.get(pos);
                                         mpris.setPlayer(player);
