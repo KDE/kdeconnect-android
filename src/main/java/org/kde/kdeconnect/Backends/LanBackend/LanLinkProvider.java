@@ -22,8 +22,9 @@ package org.kde.kdeconnect.Backends.LanBackend;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
+import android.preference.PreferenceManager;
 import android.support.v4.util.LongSparseArray;
+import android.util.Log;
 
 import org.apache.mina.core.future.ConnectFuture;
 import org.apache.mina.core.future.IoFuture;
@@ -39,16 +40,19 @@ import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.UserInterface.CustomDevicesActivity;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class LanLinkProvider extends BaseLinkProvider {
 
+    public static final String KEY_CUSTOM_DEVLIST_PREFERENCE  = "device_list_preference";
     private final static int port = 1714;
 
     private final Context context;
@@ -261,20 +265,29 @@ public class LanLinkProvider extends BaseLinkProvider {
         new AsyncTask<Void,Void,Void>() {
             @Override
             protected Void doInBackground(Void... voids) {
-
-                try {
-                    NetworkPackage identity = NetworkPackage.createIdentityPackage(context);
-                    identity.set("tcpPort",finalTcpPort);
-                    byte[] b = identity.serialize().getBytes("UTF-8");
-                    DatagramPacket packet = new DatagramPacket(b, b.length, InetAddress.getByAddress(new byte[]{-1,-1,-1,-1}), port);
-                    DatagramSocket socket = new DatagramSocket();
-                    socket.setReuseAddress(true);
-                    socket.setBroadcast(true);
-                    socket.send(packet);
-                    //Log.e("LanLinkProvider","Udp identity package sent");
-                } catch(Exception e) {
-                    e.printStackTrace();
-                    Log.e("LanLinkProvider","Sending udp identity package failed");
+                String deviceListPrefs = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                        KEY_CUSTOM_DEVLIST_PREFERENCE, "");
+                ArrayList<String> iplist = new ArrayList<String>();
+                if (!deviceListPrefs.isEmpty()) {
+                    iplist = CustomDevicesActivity.deserializeIpList(deviceListPrefs);
+                }
+                iplist.add("255.255.255.255");
+                for (String ipstr : iplist) {
+                    try {
+                        InetAddress client = InetAddress.getByName(ipstr);
+                        NetworkPackage identity = NetworkPackage.createIdentityPackage(context);
+                        identity.set("tcpPort", finalTcpPort);
+                        byte[] b = identity.serialize().getBytes("UTF-8");
+                        DatagramPacket packet = new DatagramPacket(b, b.length, client, port);
+                        DatagramSocket socket = new DatagramSocket();
+                        socket.setReuseAddress(true);
+                        socket.setBroadcast(true);
+                        socket.send(packet);
+                        //Log.i("LanLinkProvider","Udp identity package sent to address "+packet.getAddress());
+                    } catch(Exception e) {
+                        e.printStackTrace();
+                        Log.e("LanLinkProvider","Sending udp identity package failed. Invalid address? ("+ipstr+")");
+                    }
                 }
 
                 return null;

@@ -88,6 +88,17 @@
                 android:value="org.kde.kdeconnect.UserInterface.DeviceActivity" />
         </activity>
 
+
+        <activity
+                android:name="org.kde.kdeconnect.UserInterface.CustomDevicesActivity"
+                android:label="@string/custom_device_list"
+                android:parentActivityName="org.kde.kdeconnect.UserInterface.DeviceActivity"
+                >
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value="org.kde.kdeconnect.UserInterface.DeviceActivity" />
+        </activity>
+
+
         <activity
             android:name="org.kde.kdeconnect.UserInterface.PluginSettingsActivity"
             android:label="@string/mpris_settings"

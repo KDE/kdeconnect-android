@@ -89,6 +89,9 @@ public class MainActivity extends ActionBarActivity {
             case R.id.menu_settings:
                 startActivity(new Intent(this,MainSettingsActivity.class));
                 break;
+            case R.id.menu_custom_device_list:
+                startActivity(new Intent(this, CustomDevicesActivity.class));
+                break;
             default:
                 break;
         }

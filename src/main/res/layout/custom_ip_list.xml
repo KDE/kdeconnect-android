@@ -1,0 +1,36 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical">
+
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@android:id/list"
+        android:layout_weight="1"
+    />
+
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            android:text="@string/custom_dev_list_help"/>
+
+    <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/abc_action_bar_default_height"
+            android:imeOptions="actionSend"
+            android:id="@+id/ip_edittext"/>
+
+    <Button
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/abc_action_bar_default_height"
+            android:text="@string/add_host"
+            android:onClick="addNewIp"
+            android:id="@android:id/button1"/>
+
+
+</LinearLayout>
