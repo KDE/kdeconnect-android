@@ -22,7 +22,6 @@ package org.kde.kdeconnect.Plugins.SftpPlugin;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.widget.Button;
@@ -114,18 +113,23 @@ public class SftpPlugin extends Plugin {
                     } else {
                         res.append(context.getString(R.string.sftp_all_files));
                     }
+                    String pathName = res.toString();
                     if (storage.readonly) {
                         res.append(" ");
                         res.append(context.getString(R.string.sftp_readonly));
                     }
                     pathNames.add(res.toString());
-                }
 
-                //Shortcut for users that only want to browse camera pictures
-                String cameraDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/DCIM/Camera";
-                if (new File(cameraDir).exists()) {
-                    paths.add(cameraDir);
-                    pathNames.add(context.getString(R.string.sftp_camera));
+                    //Shortcut for users that only want to browse camera pictures
+                    String dcim = storage.path + "/DCIM/Camera";
+                    if (new File(dcim).exists()) {
+                        paths.add(dcim);
+                        if (storageList.size() > 1) {
+                            pathNames.add(context.getString(R.string.sftp_camera) + "(" + pathName + ")");
+                        } else {
+                            pathNames.add(context.getString(R.string.sftp_camera));
+                        }
+                    }
                 }
 
                 np2.set("multiPaths", paths);
