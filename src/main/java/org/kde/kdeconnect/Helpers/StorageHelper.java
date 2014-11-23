@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 //Code from http://stackoverflow.com/questions/9340332/how-can-i-get-the-list-of-mounted-external-storage-of-android-device/19982338#19982338
+//modified to work on Lollipop and other devices
 public class StorageHelper {
 
     private static final String TAG = "StorageHelper";
@@ -55,9 +56,16 @@ public class StorageHelper {
 
     }
 
+    /*
+     * This function is bullshit because there is no proper way to do this in Android.
+     * Patch after patch I'm making it even more horrible by trying to make it work for *more*
+     * devices while trying no to break previously working ones.
+     * If this function was a living being, it would be begging "please kill me".
+     */
     public static List<StorageInfo> getStorageList() {
 
         List<StorageInfo> list = new ArrayList<StorageInfo>();
+        File def = Environment.getExternalStorageDirectory();
         String def_path = Environment.getExternalStorageDirectory().getPath();
         boolean def_path_removable = Environment.isExternalStorageRemovable();
         String def_path_state = Environment.getExternalStorageState();
@@ -73,14 +81,45 @@ public class StorageHelper {
             list.add(0, new StorageInfo(def_path, def_path_readonly, def_path_removable, def_path_removable ? cur_removable_number++ : -1));
         }
 
-        BufferedReader buf_reader = null;
-        try {
-            buf_reader = new BufferedReader(new FileReader("/proc/mounts"));
-            String line;
-            Log.d(TAG, "/proc/mounts");
-            while ((line = buf_reader.readLine()) != null) {
-                Log.d(TAG, line);
-                if (line.contains("vfat") || line.contains("/mnt")) {
+        File storage = new File("/storage/");
+        if (storage.exists() && storage.isDirectory()) {
+            File dirs[] = storage.listFiles();
+            for (File dir : dirs)
+            {
+                Log.e("getStorageList", "path: "+dir.getAbsolutePath());
+                if (dir.isDirectory()) {
+                    String path;
+                    try {
+                        Log.e(dir.getAbsolutePath(), dir.getCanonicalPath());
+                        path = dir.getCanonicalPath();
+                    } catch(Exception e){
+                        path = dir.getAbsolutePath();
+                    }
+                    if (!path.startsWith("/storage/emulated") || dirs.length == 1) {
+                        if (!paths.contains(path) && !paths.contains(dir.getAbsolutePath())) {
+                            list.add(0, new StorageInfo(path, false, true, cur_removable_number++));
+                            paths.add(path);
+                        }
+                    }
+                }
+            }
+        } else {
+
+            BufferedReader buf_reader = null;
+            try {
+
+                buf_reader = new BufferedReader(new FileReader("/proc/mounts"));
+                ArrayList<String> entries = new ArrayList<String>();
+                String entry;
+                while ((entry = buf_reader.readLine()) != null) {
+                    Log.e("getStorageList", entry);
+                    if (entry.contains("vfat") || entry.contains("/mnt")) {
+                        if (entry.contains("/storage/sdcard")) entries.add(0, entry);
+                        else entries.add(entry);
+                    }
+                }
+
+                for (String line : entries) {
                     StringTokenizer tokens = new StringTokenizer(line, " ");
                     String unused = tokens.nextToken(); //device
                     String mount_point = tokens.nextToken(); //mount point
@@ -102,17 +141,18 @@ public class StorageHelper {
                         }
                     }
                 }
-            }
 
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            if (buf_reader != null) {
-                try {
-                    buf_reader.close();
-                } catch (IOException ex) {}
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            } finally {
+                if (buf_reader != null) {
+                    try {
+                        buf_reader.close();
+                    } catch (IOException ex) {
+                    }
+                }
             }
         }
         return list;
