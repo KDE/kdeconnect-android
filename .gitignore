@@ -2,6 +2,13 @@ local.properties
 .gradle/
 .idea/
 out/
+gen/
+bin/
 build/
 target/
 classes/
+gradle
+gradlew
+gradlew.bat
+*.iml
+*.keystore

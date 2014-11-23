@@ -21,13 +21,13 @@
 
     <EditText
             android:layout_width="fill_parent"
-            android:layout_height="@dimen/abc_action_bar_default_height"
+            android:layout_height="wrap_content"
             android:imeOptions="actionSend"
             android:id="@+id/ip_edittext"/>
 
     <Button
             android:layout_width="fill_parent"
-            android:layout_height="@dimen/abc_action_bar_default_height"
+            android:layout_height="wrap_content"
             android:text="@string/add_host"
             android:onClick="addNewIp"
             android:id="@android:id/button1"/>
