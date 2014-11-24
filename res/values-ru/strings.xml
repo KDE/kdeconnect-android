@@ -64,6 +64,9 @@
   <string name="plugin_settings_with_name">Открыть настройки</string>
   <string name="device_name">Устройство не спарено</string>
   <string name="invalid_device_name">Недопустимый получатель ключа</string>
+  <string name="custom_devices_settings">Нет устройств</string>
+  <string name="custom_device_list">Нет устройств</string>
+  <string name="custom_device_list_summary">Нет устройств</string>
   <string name="share_notification_preference">Синхронизация уведомлений</string>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>

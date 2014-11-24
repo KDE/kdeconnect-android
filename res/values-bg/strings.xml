@@ -70,6 +70,9 @@
   <string name="device_name">Име на устройството</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Невалидно име на устройство</string>
+  <string name="custom_devices_settings">Няма устройства</string>
+  <string name="custom_device_list">Няма устройства</string>
+  <string name="custom_device_list_summary">Няма устройства</string>
   <string name="share_notification_preference">Синхронизиране на уведомленията</string>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>

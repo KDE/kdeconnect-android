@@ -88,6 +88,9 @@
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nombre de dispositivo no válido</string>
   <string name="shareplugin_text_saved">Texto recibido y guardado en el portapapeles</string>
+  <string name="custom_devices_settings">Lista de dispositivos personalizada</string>
+  <string name="custom_device_list">Lista de dispositivos personalizada</string>
+  <string name="custom_device_list_summary">Lista de dispositivos personalizada</string>
   <string name="share_notification_preference">Notificaciones ruidosas</string>
   <string name="share_notification_preference_summary">Vibrar y reproducir un sonido cuando se reciba un archivo</string>
   <string name="sftp_internal_storage">Almacenamiento interno</string>
@@ -96,6 +99,8 @@
   <string name="sftp_sdcard">Tarjeta SD</string>
   <string name="sftp_readonly">(solo lectura)</string>
   <string name="sftp_camera">Imágenes de la cámara</string>
+  <string name="add_host">Añadir IP/nombre</string>
+  <string name="custom_dev_list_help">Use esta opción solo si su dispositivo no es detectado automáticamente. Introduzca la dirección IP o nombre debajo y pulse el botón para añadirlo a la lista. Pulse un ítem existente para eliminarlo de la lista.</string>
   <string-array name="mpris_time_entries">
     <item>10 segundos</item>
     <item>20 segundos</item>

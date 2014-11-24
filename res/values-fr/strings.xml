@@ -70,6 +70,9 @@
   <string name="device_name">Nom du périphérique</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nom de périphérique non valable</string>
+  <string name="custom_devices_settings">Pas de périphériques</string>
+  <string name="custom_device_list">Pas de périphériques</string>
+  <string name="custom_device_list_summary">Pas de périphériques</string>
   <string name="share_notification_preference">Synchronisation des notifications</string>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>

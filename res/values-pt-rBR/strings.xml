@@ -88,6 +88,9 @@
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nome do dispositivo inválido</string>
   <string name="shareplugin_text_saved">Texto recebido e salvo na área de transferência</string>
+  <string name="custom_devices_settings">Lista de dispositivos personalizada</string>
+  <string name="custom_device_list">Lista de dispositivos personalizada</string>
+  <string name="custom_device_list_summary">Lista de dispositivos personalizada</string>
   <string name="share_notification_preference">Notificações barulhentas</string>
   <string name="share_notification_preference_summary">Vibrar e tocar um som ao receber um arquivo</string>
   <string name="sftp_internal_storage">Armazenamento interno</string>
@@ -96,6 +99,8 @@
   <string name="sftp_sdcard">Cartão SD</string>
   <string name="sftp_readonly">(somente leitura)</string>
   <string name="sftp_camera">Imagens da câmera</string>
+  <string name="add_host">Adicionar máquina/IP</string>
+  <string name="custom_dev_list_help">Use esta opção apenas se o seu dispositivo não for detectado automaticamente. Digite o endereço IP ou nome da máquina no campo abaixo e toque o botão para adicioná-lo à lista. Toque em um item existente para removê-lo da lista.</string>
   <string-array name="mpris_time_entries">
     <item>10 segundos</item>
     <item>20 segundos</item>

@@ -82,6 +82,9 @@
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Érvénytelen eszköznév</string>
   <string name="shareplugin_text_saved">Szöveg érkezett, elmentve a vágólapra</string>
+  <string name="custom_devices_settings">Nincsenek eszközök</string>
+  <string name="custom_device_list">Nincsenek eszközök</string>
+  <string name="custom_device_list_summary">Nincsenek eszközök</string>
   <string name="share_notification_preference">Értesítés szinkronizáció</string>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>

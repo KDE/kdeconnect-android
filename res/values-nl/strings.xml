@@ -88,6 +88,9 @@
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Ongeldige apparaatnaam</string>
   <string name="shareplugin_text_saved">Oontvangen tekst, opgeslagen op klembord</string>
+  <string name="custom_devices_settings">Aangepaste lijst apparaten</string>
+  <string name="custom_device_list">Aangepaste lijst apparaten</string>
+  <string name="custom_device_list_summary">Aangepaste lijst apparaten</string>
   <string name="share_notification_preference">Luidruchtige meldingen</string>
   <string name="share_notification_preference_summary">Vibreer en speel een geluidje bij ontvangen van een bestand</string>
   <string name="sftp_internal_storage">Interne opslag</string>
@@ -96,6 +99,8 @@
   <string name="sftp_sdcard">SD-kaartje</string>
   <string name="sftp_readonly">(alleen-lezen)</string>
   <string name="sftp_camera">Afbeeldingen van camera</string>
+  <string name="add_host">Host/IP-adres toevoegen</string>
+  <string name="custom_dev_list_help">Deze optie alleen gebruiken als uw apparaat niet automatisch gedetecteerd wordt. Voer IP-adres of hostnaam hieronder in en klik op de knop om het aan de lijst toe te voegen. Klik op een bestaand item om het uit de lijst te verwijderen.</string>
   <string-array name="mpris_time_entries">
     <item>10 seconden</item>
     <item>20 seconden</item>

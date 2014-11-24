@@ -88,6 +88,9 @@
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Neplatný název zařízení</string>
   <string name="shareplugin_text_saved">Přijatý text byl uložen do schránky</string>
+  <string name="custom_devices_settings">Žádná zařízení</string>
+  <string name="custom_device_list">Žádná zařízení</string>
+  <string name="custom_device_list_summary">Žádná zařízení</string>
   <string name="share_notification_preference">Hlasitá upozornění</string>
   <string name="share_notification_preference_summary">Vibrovat a přehrát melodii při přijímání souboru</string>
   <string name="sftp_internal_storage">Interní úložiště</string>

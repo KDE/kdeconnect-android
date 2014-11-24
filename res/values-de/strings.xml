@@ -79,6 +79,9 @@
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Ungültiger Gerätename</string>
   <string name="shareplugin_text_saved">Text empfangen und in der Zwischenablage gespeichert</string>
+  <string name="custom_devices_settings">Keine Geräte</string>
+  <string name="custom_device_list">Keine Geräte</string>
+  <string name="custom_device_list_summary">Keine Geräte</string>
   <string name="share_notification_preference">Benachrichtigungs-Abgleich</string>
   <string name="share_notification_preference_summary">Beim Empfang einer Datei vibrieren und einen Sound abspielen</string>
   <string name="sftp_internal_storage">Interner Speicher</string>

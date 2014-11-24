@@ -83,6 +83,9 @@
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Ugyldigt enhedsnavn</string>
   <string name="shareplugin_text_saved">Modtog tekst, gemt til udklipsholder</string>
+  <string name="custom_devices_settings">Ingen enheder</string>
+  <string name="custom_device_list">Ingen enheder</string>
+  <string name="custom_device_list_summary">Ingen enheder</string>
   <string name="share_notification_preference">Synk. af bekendtgørelser</string>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>

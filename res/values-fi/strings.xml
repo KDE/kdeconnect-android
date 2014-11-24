@@ -88,6 +88,9 @@
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Virheellinen laitenimi</string>
   <string name="shareplugin_text_saved">Vastaanotettiin tekstiä, tallennettiin leikepöydälle</string>
+  <string name="custom_devices_settings">Omien laitteiden luettelo</string>
+  <string name="custom_device_list">Omien laitteiden luettelo</string>
+  <string name="custom_device_list_summary">Omien laitteiden luettelo</string>
   <string name="share_notification_preference">Äänekkäät ilmoitukset</string>
   <string name="share_notification_preference_summary">Värise ja soita ääni tiedoston saapuessa</string>
   <string name="sftp_internal_storage">Sisäinen muisti</string>
@@ -96,6 +99,8 @@
   <string name="sftp_sdcard">SD-kortti</string>
   <string name="sftp_readonly">(vain luku)</string>
   <string name="sftp_camera">Kamerakuvat</string>
+  <string name="add_host">Lisää kone/IP</string>
+  <string name="custom_dev_list_help">Käytä tätä vain, jos laitettasi ei tunnisteta automaattisesti. Kirjoita IP-osoite tai konenimi alle ja kosketa painiketta lisätäksesi sen luetteloon. Kosketa olemassa olevaa kohtaa poistaaksesi sen luettelosta.</string>
   <string-array name="mpris_time_entries">
     <item>10 sekuntia</item>
     <item>20 sekuntia</item>

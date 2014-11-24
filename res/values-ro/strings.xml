@@ -70,6 +70,9 @@
   <string name="device_name">Denumire dispozitiv</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Denumire nevalidă a dispozitivului</string>
+  <string name="custom_devices_settings">Niciun dispozitiv</string>
+  <string name="custom_device_list">Niciun dispozitiv</string>
+  <string name="custom_device_list_summary">Niciun dispozitiv</string>
   <string name="share_notification_preference">Sincronizare notificări</string>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>
