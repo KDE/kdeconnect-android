@@ -88,9 +88,9 @@
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">El nom del dispositiu no és vàlid</string>
   <string name="shareplugin_text_saved">S\'ha rebut text i s\'ha desat al porta-retalls</string>
-  <string name="custom_devices_settings">No hi ha cap dispositiu</string>
-  <string name="custom_device_list">No hi ha cap dispositiu</string>
-  <string name="custom_device_list_summary">No hi ha cap dispositiu</string>
+  <string name="custom_devices_settings">Llista personalitzada de dispositius</string>
+  <string name="custom_device_list">Llista personalitzada de dispositius</string>
+  <string name="custom_device_list_summary">Llista personalitzada de dispositius</string>
   <string name="share_notification_preference">Rebombori de les notificacions</string>
   <string name="share_notification_preference_summary">Vibra i reprodueix un so en rebre un fitxer</string>
   <string name="sftp_internal_storage">Emmagatzematge intern</string>
@@ -99,6 +99,8 @@
   <string name="sftp_sdcard">Targeta SD</string>
   <string name="sftp_readonly">(només de lectura)</string>
   <string name="sftp_camera">Imatges de la càmera</string>
+  <string name="add_host">Afegeix una màquina/IP</string>
+  <string name="custom_dev_list_help">Empreu aquesta opció només si el dispositiu no és detectat automàticament. Introduïu a sota l\'adreça IP o nom de la màquina i premeu el botó per afegir-lo a la llista. Seleccioneu un element existent per eliminar-lo de la llista.</string>
   <string-array name="mpris_time_entries">
     <item>10 segons</item>
     <item>20 segons</item>

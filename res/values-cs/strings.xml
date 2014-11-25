@@ -88,9 +88,9 @@
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Neplatný název zařízení</string>
   <string name="shareplugin_text_saved">Přijatý text byl uložen do schránky</string>
-  <string name="custom_devices_settings">Žádná zařízení</string>
-  <string name="custom_device_list">Žádná zařízení</string>
-  <string name="custom_device_list_summary">Žádná zařízení</string>
+  <string name="custom_devices_settings">Seznam vlastních zařízení</string>
+  <string name="custom_device_list">Seznam vlastních zařízení</string>
+  <string name="custom_device_list_summary">Seznam vlastních zařízení</string>
   <string name="share_notification_preference">Hlasitá upozornění</string>
   <string name="share_notification_preference_summary">Vibrovat a přehrát melodii při přijímání souboru</string>
   <string name="sftp_internal_storage">Interní úložiště</string>
@@ -99,6 +99,8 @@
   <string name="sftp_sdcard">SD karta</string>
   <string name="sftp_readonly">(pouze ke čtení)</string>
   <string name="sftp_camera">Obrázky z fotoaparátu</string>
+  <string name="add_host">Přidat stroj/IP</string>
+  <string name="custom_dev_list_help">Použijte tuto možnost pouze pokud není vaše zařízení automaticky detekováno. Zadejte níže IP adresu a název hostitele a stiskněte tlačítko pro přidání do seznamu. Stiskněte existující položku pro odstranění ze seznamu.</string>
   <string-array name="mpris_time_entries">
     <item>10 sekund</item>
     <item>20 sekund</item>
