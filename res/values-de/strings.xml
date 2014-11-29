@@ -79,9 +79,9 @@
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Ungültiger Gerätename</string>
   <string name="shareplugin_text_saved">Text empfangen und in der Zwischenablage gespeichert</string>
-  <string name="custom_devices_settings">Keine Geräte</string>
-  <string name="custom_device_list">Keine Geräte</string>
-  <string name="custom_device_list_summary">Keine Geräte</string>
+  <string name="custom_devices_settings">Benutzerdefinierte Geräteliste</string>
+  <string name="custom_device_list">Benutzerdefinierte Geräteliste</string>
+  <string name="custom_device_list_summary">Benutzerdefinierte Geräteliste</string>
   <string name="share_notification_preference">Benachrichtigungs-Abgleich</string>
   <string name="share_notification_preference_summary">Beim Empfang einer Datei vibrieren und einen Sound abspielen</string>
   <string name="sftp_internal_storage">Interner Speicher</string>
@@ -90,6 +90,7 @@
   <string name="sftp_sdcard">SD-Karte</string>
   <string name="sftp_readonly">(Nur lesen)</string>
   <string name="sftp_camera">Kamerabilder</string>
+  <string name="add_host">Rechner/IP hinzufügen</string>
   <string-array name="mpris_time_entries">
     <item>10 Sekunden</item>
     <item>20 Sekunden</item>
