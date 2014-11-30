@@ -50,8 +50,7 @@ public class SmallEntryItem implements ListAdapter.Item {
         if (titleView != null) titleView.setText(title);
         if (clickListener != null) {
             titleView.setOnClickListener(clickListener);
-            v.setBackgroundDrawable(layoutInflater.getContext().getResources().getDrawable(R.drawable.kitkatcompatselector_list_selector_holo_dark));
-
+            v.setBackgroundDrawable(layoutInflater.getContext().getResources().getDrawable(R.drawable.abc_list_selector_holo_dark));
         }
 
         return v;
