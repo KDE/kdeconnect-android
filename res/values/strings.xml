@@ -40,7 +40,7 @@
     <string name="mousepad_right_click">Right click</string>
     <string name="mousepad_middle_click">Middle click</string>
     <string name="category_connected_devices">Connected devices</string>
-    <string name="category_not_paired_devices">Not paired devices</string>
+    <string name="category_not_paired_devices">Available devices</string>
     <string name="category_remembered_devices">Remembered devices</string>
     <string name="plugins_failed_to_load">Plugins failed to load (tap for more info):</string>
     <string name="device_menu_plugins">Select plugins</string>
