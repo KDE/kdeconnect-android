@@ -88,9 +88,9 @@
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nieprawidłowa nazwa urządzenia</string>
   <string name="shareplugin_text_saved">Otrzymano tekst, zapisano do schowka</string>
-  <string name="custom_devices_settings">Brak urządzeń</string>
-  <string name="custom_device_list">Brak urządzeń</string>
-  <string name="custom_device_list_summary">Brak urządzeń</string>
+  <string name="custom_devices_settings">Lista własnych urządzeń</string>
+  <string name="custom_device_list">Lista własnych urządzeń</string>
+  <string name="custom_device_list_summary">Lista własnych urządzeń</string>
   <string name="share_notification_preference">Hałaśliwe powiadomienia</string>
   <string name="share_notification_preference_summary">Zadrżyj i odegraj dźwięk przy odebraniu pliku</string>
   <string name="sftp_internal_storage">"Pamięć wewnętrzna "</string>
@@ -99,6 +99,8 @@
   <string name="sftp_sdcard">Karta SD</string>
   <string name="sftp_readonly">(tylko do odczytu)</string>
   <string name="sftp_camera">Zdjęcia z aparatu</string>
+  <string name="add_host">Dodaj gospodarza/IP</string>
+  <string name="custom_dev_list_help">Użyj tej opcji tylko wtedy, gdy twoje urządzenie nie jest samoczynnie wykrywane. Podaj adres IP i nazwę gospodarza poniżej i dotknij przycisku, aby dodać je do listy. Dotknij istniejącego elementu, aby usunąć go z listy.</string>
   <string-array name="mpris_time_entries">
     <item>10 sekund</item>
     <item>20 sekund</item>

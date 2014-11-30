@@ -15,11 +15,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: Short description
+#: dummy:1
 msgid "Integrate Android with the KDE Plasma Desktop."
 msgstr ""
 
-#: Long description
+#: dummy:2
 msgid ""
 "KDE Connect provides several features to integrate your phone and your "
 "computer:\n"
