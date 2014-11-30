@@ -4,6 +4,7 @@
     android:layout_width="fill_parent"
     android:baselineAligned="false"
     android:layout_height="wrap_content"
+    android:paddingLeft="12dip"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:gravity="center_vertical"
     android:paddingRight="?android:attr/scrollbarSize"
