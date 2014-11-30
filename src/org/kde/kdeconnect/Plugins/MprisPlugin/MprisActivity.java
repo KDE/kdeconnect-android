@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -45,7 +46,7 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 
-public class MprisActivity extends Activity {
+public class MprisActivity extends ActionBarActivity {
 
     //TODO: Add a loading spinner at the beginning (to distinguish the loading state from a no-players state).
     //TODO 2: Add a message when no players are detected after loading completes
