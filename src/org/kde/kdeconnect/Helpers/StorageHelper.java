@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 //Code from http://stackoverflow.com/questions/9340332/how-can-i-get-the-list-of-mounted-external-storage-of-android-device/19982338#19982338
@@ -83,20 +84,29 @@ public class StorageHelper {
 
         File storage = new File("/storage/");
         if (storage.exists() && storage.isDirectory()) {
+            String mounts = null;
+            try {
+                mounts = new Scanner( new File("/proc/mounts") ).useDelimiter("\\A").next();
+                //Log.e("Mounts",mounts);
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
+
             File dirs[] = storage.listFiles();
-            for (File dir : dirs)
-            {
-                Log.e("getStorageList", "path: "+dir.getAbsolutePath());
+            for (File dir : dirs) {
+                //Log.e("getStorageList", "path: "+dir.getAbsolutePath());
                 if (dir.isDirectory()) {
-                    String path;
+                    String path, path2;
+                    path2 = dir.getAbsolutePath();
                     try {
-                        Log.e(dir.getAbsolutePath(), dir.getCanonicalPath());
+                        //Log.e(dir.getAbsolutePath(), dir.getCanonicalPath());
                         path = dir.getCanonicalPath();
                     } catch(Exception e){
-                        path = dir.getAbsolutePath();
+                        path = path2;
                     }
                     if (!path.startsWith("/storage/emulated") || dirs.length == 1) {
-                        if (!paths.contains(path) && !paths.contains(dir.getAbsolutePath())) {
+                        if (!paths.contains(path) && !paths.contains(path2)) {
+                            if (mounts != null || mounts.contains(path) || mounts.contains(path2))
                             list.add(0, new StorageInfo(path, false, true, cur_removable_number++));
                             paths.add(path);
                         }
@@ -105,47 +115,22 @@ public class StorageHelper {
             }
         } else {
 
+            //Legacy code for Android < 4.0 that still didn't have /storage
+
+            ArrayList<String> entries = new ArrayList<String>();
             BufferedReader buf_reader = null;
             try {
-
                 buf_reader = new BufferedReader(new FileReader("/proc/mounts"));
-                ArrayList<String> entries = new ArrayList<String>();
                 String entry;
-                while ((entry = buf_reader.readLine()) != null) {
-                    Log.e("getStorageList", entry);
-                    if (entry.contains("vfat") || entry.contains("/mnt")) {
+                while((entry = buf_reader.readLine()) != null) {
+                    //Log.e("getStorageList", entry);
+                    if (entry.contains("vfat") || entry.contains("exfat") || entry.contains("ntfs") || entry.contains("/mnt")) {
                         if (entry.contains("/storage/sdcard")) entries.add(0, entry);
                         else entries.add(entry);
                     }
                 }
-
-                for (String line : entries) {
-                    StringTokenizer tokens = new StringTokenizer(line, " ");
-                    String unused = tokens.nextToken(); //device
-                    String mount_point = tokens.nextToken(); //mount point
-                    if (paths.contains(mount_point)) {
-                        continue;
-                    }
-                    unused = tokens.nextToken(); //file system
-                    List<String> flags = Arrays.asList(tokens.nextToken().split(",")); //flags
-                    boolean readonly = flags.contains("ro");
-
-                    if (line.contains("/dev/block/vold")) {
-                        if (!line.contains("/mnt/secure")
-                                && !line.contains("/mnt/asec")
-                                && !line.contains("/mnt/obb")
-                                && !line.contains("/dev/mapper")
-                                && !line.contains("tmpfs")) {
-                            paths.add(mount_point);
-                            list.add(new StorageInfo(mount_point, readonly, true, cur_removable_number++));
-                        }
-                    }
-                }
-
-            } catch (FileNotFoundException ex) {
-                ex.printStackTrace();
-            } catch (IOException ex) {
-                ex.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             } finally {
                 if (buf_reader != null) {
                     try {
@@ -154,7 +139,32 @@ public class StorageHelper {
                     }
                 }
             }
+
+            for (String line : entries) {
+                StringTokenizer tokens = new StringTokenizer(line, " ");
+                String unused = tokens.nextToken(); //device
+                String mount_point = tokens.nextToken(); //mount point
+                if (paths.contains(mount_point)) {
+                    continue;
+                }
+                unused = tokens.nextToken(); //file system
+                List<String> flags = Arrays.asList(tokens.nextToken().split(",")); //flags
+                boolean readonly = flags.contains("ro");
+
+                if (line.contains("/dev/block/vold")) {
+                    if (!line.contains("/mnt/secure")
+                            && !line.contains("/mnt/asec")
+                            && !line.contains("/mnt/obb")
+                            && !line.contains("/dev/mapper")
+                            && !line.contains("tmpfs")) {
+                        paths.add(mount_point);
+                        list.add(new StorageInfo(mount_point, readonly, true, cur_removable_number++));
+                    }
+                }
+            }
+
         }
+
         return list;
     }
 
