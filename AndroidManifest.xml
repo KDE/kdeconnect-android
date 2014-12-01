@@ -91,7 +91,7 @@
 
         <activity
                 android:name="org.kde.kdeconnect.UserInterface.CustomDevicesActivity"
-                android:label="@string/custom_device_list"
+                android:label="@string/custom_devices_settings"
                 android:parentActivityName="org.kde.kdeconnect.UserInterface.DeviceActivity"
                 >
             <meta-data android:name="android.support.PARENT_ACTIVITY"

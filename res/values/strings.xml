@@ -99,8 +99,7 @@
     <string name="invalid_device_name">Invalid device name</string>
     <string name="shareplugin_text_saved">Received text, saved to clipboard</string>
     <string name="custom_devices_settings">Custom device list</string>
-    <string name="custom_device_list">Custom device list</string>
-    <string name="custom_device_list_summary">Custom device list</string>
+    <string name="custom_device_list">Add devices by IP</string>
     <string name="share_notification_preference">Noisy notifications</string>
     <string name="share_notification_preference_summary">Vibrate and play a sound when receiving a file</string>
     <string name="sftp_internal_storage">Internal storage</string>
