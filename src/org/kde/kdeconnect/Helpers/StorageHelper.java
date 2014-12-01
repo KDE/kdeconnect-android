@@ -106,7 +106,7 @@ public class StorageHelper {
                     }
                     if (!path.startsWith("/storage/emulated") || dirs.length == 1) {
                         if (!paths.contains(path) && !paths.contains(path2)) {
-                            if (mounts != null || mounts.contains(path) || mounts.contains(path2))
+                            if (mounts == null || mounts.contains(path) || mounts.contains(path2))
                             list.add(0, new StorageInfo(path, false, true, cur_removable_number++));
                             paths.add(path);
                         }
