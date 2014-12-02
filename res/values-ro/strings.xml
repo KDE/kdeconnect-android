@@ -25,7 +25,7 @@
   <string name="open_mpris_controls">Deschide controlul de la distanță</string>
   <string name="open_mousepad">Deschide controlul de la distanță</string>
   <string name="category_connected_devices">Dispozitive conectate</string>
-  <string name="category_not_paired_devices">Dispozitive neasociate</string>
+  <string name="category_not_paired_devices">Asociază dispozitiv</string>
   <string name="category_remembered_devices">Dispozitive memorizate</string>
   <string name="plugins_failed_to_load">Încărcarea extensiilor a eșuat (atingeți pentru mai multe informații):</string>
   <string name="device_menu_plugins">Alege extensii</string>

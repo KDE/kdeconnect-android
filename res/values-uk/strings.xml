@@ -33,7 +33,7 @@
   <string name="mousepad_right_click">Клацання правою</string>
   <string name="mousepad_middle_click">Клацання середньою</string>
   <string name="category_connected_devices">З’єднані пристрої</string>
-  <string name="category_not_paired_devices">Непов’язані пристрої</string>
+  <string name="category_not_paired_devices">Доступні пристрої</string>
   <string name="category_remembered_devices">Відомі пристрої</string>
   <string name="plugins_failed_to_load">Додатки, які не вдалося завантажити (натисніть, щоб дізнатися більше):</string>
   <string name="device_menu_plugins">Виберіть додатки</string>

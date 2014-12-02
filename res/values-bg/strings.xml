@@ -25,7 +25,7 @@
   <string name="open_mpris_controls">Отваряне на отдалечен контрол</string>
   <string name="open_mousepad">Отваряне на отдалечен контрол</string>
   <string name="category_connected_devices">Свързани устройства</string>
-  <string name="category_not_paired_devices">Несдвоени устройства</string>
+  <string name="category_not_paired_devices">Сдвояване с устройството</string>
   <string name="category_remembered_devices">Запомнени устройства</string>
   <string name="plugins_failed_to_load">Неуспешно зареждане на приставки (докоснете за подробности)</string>
   <string name="device_menu_plugins">Изберете приставки</string>

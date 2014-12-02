@@ -25,7 +25,7 @@
   <string name="open_mpris_controls">Ouvrir un contrôle distant</string>
   <string name="open_mousepad">Ouvrir un contrôle distant</string>
   <string name="category_connected_devices">Périphériques connectés</string>
-  <string name="category_not_paired_devices">Pas de périphériques appariés</string>
+  <string name="category_not_paired_devices">Apparier un périphérique</string>
   <string name="category_remembered_devices">Périphériques mémorisés</string>
   <string name="plugins_failed_to_load">Le chargement des modules externes a échoué (cliquez pour plus d\'informations) :</string>
   <string name="device_menu_plugins">Sélectionner des modules externes</string>

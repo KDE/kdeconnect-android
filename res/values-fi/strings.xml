@@ -33,7 +33,7 @@
   <string name="mousepad_right_click">Oikea napsautus</string>
   <string name="mousepad_middle_click">Keskinapsautus</string>
   <string name="category_connected_devices">Yhdistetyt laitteet</string>
-  <string name="category_not_paired_devices">Pariksi liitetyt laitteet</string>
+  <string name="category_not_paired_devices">Kytke laite pariksi</string>
   <string name="category_remembered_devices">Muistetut laitteet</string>
   <string name="plugins_failed_to_load">Liitännäisten lataus epäonnistui (lisätietoa napauttamalla):</string>
   <string name="device_menu_plugins">Valitse liitännäiset</string>

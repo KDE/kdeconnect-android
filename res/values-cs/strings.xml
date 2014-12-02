@@ -33,7 +33,7 @@
   <string name="mousepad_right_click">Kliknutí pravým tlačítkem myši</string>
   <string name="mousepad_middle_click">Kliknutí prostředním tlačítkem myši</string>
   <string name="category_connected_devices">Připojená zařízení</string>
-  <string name="category_not_paired_devices">Nespárovaná zařízení</string>
+  <string name="category_not_paired_devices">Spárovat zařízení</string>
   <string name="category_remembered_devices">Zapamatovaná zařízení</string>
   <string name="plugins_failed_to_load">Moduly nebyly načteny (ťukněte pro více informací):</string>
   <string name="device_menu_plugins">Vyberte moduly</string>

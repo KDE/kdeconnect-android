@@ -33,7 +33,7 @@
   <string name="mousepad_right_click">Naciśnięcie prawym</string>
   <string name="mousepad_middle_click">Naciśnięcie środkowym</string>
   <string name="category_connected_devices">Podłączone urządzenia</string>
-  <string name="category_not_paired_devices">Brak sparowanych urządzeń</string>
+  <string name="category_not_paired_devices">Sparuj urządzenie</string>
   <string name="category_remembered_devices">Zapamiętane urządzenia</string>
   <string name="plugins_failed_to_load">Nieudane wczytywanie wtyczki (stuknij po więcej informacji):</string>
   <string name="device_menu_plugins">Wybierz wtyczki</string>

@@ -28,7 +28,7 @@
   <string name="mousepad_right_click">Rechtsklick</string>
   <string name="mousepad_middle_click">Mittelklick</string>
   <string name="category_connected_devices">Verbundene Geräte</string>
-  <string name="category_not_paired_devices">Keine angeschlossenen Geräte</string>
+  <string name="category_not_paired_devices">Gerät verbinden</string>
   <string name="category_remembered_devices">Gemerkte Geräte</string>
   <string name="plugins_failed_to_load">Laden der Module fehlgeschlagen, tippen Sie für weitere Details:</string>
   <string name="device_menu_plugins">Module auswählen</string>

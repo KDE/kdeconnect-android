@@ -30,7 +30,7 @@
   <string name="mousepad_right_click">Skicka högerklick</string>
   <string name="mousepad_middle_click">Skicka mittenklick</string>
   <string name="category_connected_devices">Anslutna apparater</string>
-  <string name="category_not_paired_devices">Inga parade apparater</string>
+  <string name="category_not_paired_devices">Para ihop apparat</string>
   <string name="category_remembered_devices">Ihågkomna apparater</string>
   <string name="plugins_failed_to_load">Misslyckades ladda insticksprogram (rör för mer information):</string>
   <string name="device_menu_plugins">Välj insticksprogram</string>

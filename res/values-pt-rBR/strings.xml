@@ -33,7 +33,7 @@
   <string name="mousepad_right_click">Botão direito</string>
   <string name="mousepad_middle_click">Botão do meio</string>
   <string name="category_connected_devices">Dispositivos conectados</string>
-  <string name="category_not_paired_devices">Dispositivos não emparelhados</string>
+  <string name="category_not_paired_devices">Emparelhar dispositivo</string>
   <string name="category_remembered_devices">Dispositivos lembrados</string>
   <string name="plugins_failed_to_load">Plugins não carregados (toque para mais informações):</string>
   <string name="device_menu_plugins">Selecionar plugins</string>

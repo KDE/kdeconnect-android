@@ -30,7 +30,7 @@
   <string name="mousepad_right_click">Jobb kattintás küldése</string>
   <string name="mousepad_middle_click">Középső kattintás küldése</string>
   <string name="category_connected_devices">Csatlakoztatott eszközök</string>
-  <string name="category_not_paired_devices">Nincsenek párosított eszközök</string>
+  <string name="category_not_paired_devices">Eszköz párosítása</string>
   <string name="category_remembered_devices">Megjegyzett eszközök</string>
   <string name="plugins_failed_to_load">A bővítményeket nem sikerült betölteni (érintse meg a további információkért):</string>
   <string name="device_menu_plugins">Bővítmények kijelölése</string>

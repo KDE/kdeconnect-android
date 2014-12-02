@@ -25,7 +25,7 @@
   <string name="open_mpris_controls">원격 제어 열기</string>
   <string name="open_mousepad">원격 제어 열기</string>
   <string name="category_connected_devices">연결된 장치</string>
-  <string name="category_not_paired_devices">페어링되지 않은 장치</string>
+  <string name="category_not_paired_devices">장치 페어링</string>
   <string name="category_remembered_devices">기억하는 장치</string>
   <string name="plugins_failed_to_load">불러올 수 없는 플러그인(정보를 보려면 누르기)</string>
   <string name="device_menu_plugins">플러그인 선택</string>

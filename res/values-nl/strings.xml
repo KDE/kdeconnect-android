@@ -33,7 +33,7 @@
   <string name="mousepad_right_click">Rechter muisklik</string>
   <string name="mousepad_middle_click">Middelste muisklik</string>
   <string name="category_connected_devices">Verbonden apparaten</string>
-  <string name="category_not_paired_devices">Geen gepaarde apparaten</string>
+  <string name="category_not_paired_devices">Beschikbare apparaten</string>
   <string name="category_remembered_devices">Onthouden apparaten</string>
   <string name="plugins_failed_to_load">Laden van plug-ins is mislukt (tap voor meer informatie):</string>
   <string name="device_menu_plugins">Plug-ins selecteren</string>

@@ -30,7 +30,7 @@
   <string name="mousepad_right_click">Send højreklik</string>
   <string name="mousepad_middle_click">Send midterklik</string>
   <string name="category_connected_devices">Forbundne enheder</string>
-  <string name="category_not_paired_devices">Ikke parrede enheder</string>
+  <string name="category_not_paired_devices">Par med enhed</string>
   <string name="category_remembered_devices">Huskede enheder</string>
   <string name="plugins_failed_to_load">Plugins kunne ikke indlæses (tap for mere info):</string>
   <string name="device_menu_plugins">Vælg plugins</string>

@@ -23,7 +23,7 @@
   <string name="open_mpris_controls">Apri il telecomando multimediale</string>
   <string name="open_mousepad">Apri il telecomando multimediale</string>
   <string name="category_connected_devices">Dispositivi connessi</string>
-  <string name="category_not_paired_devices">Dispositivi non associati</string>
+  <string name="category_not_paired_devices">Associa dispositivo</string>
   <string name="category_remembered_devices">Dispositivi memorizzati</string>
   <string name="plugins_failed_to_load">Alcune estensioni non si sono avviate correttamente (tocca per maggiori informazioni):</string>
   <string name="device_menu_plugins">Estensioni</string>

@@ -23,7 +23,7 @@
   <string name="open_mpris_controls">Открыть дистанционное управление</string>
   <string name="open_mousepad">Открыть дистанционное управление</string>
   <string name="category_connected_devices">Подключённые устройства</string>
-  <string name="category_not_paired_devices">Не спаренные устройства</string>
+  <string name="category_not_paired_devices">Спарить устройство</string>
   <string name="category_remembered_devices">Запомненные устройства</string>
   <string name="plugins_failed_to_load">Сбой загрузки следующих модулей (прикоснитесь чтобы получить подробности):</string>
   <string name="device_menu_plugins">Выбрать модули</string>
