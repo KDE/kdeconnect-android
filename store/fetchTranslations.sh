@@ -21,10 +21,13 @@ for subdir in `cat l10n-kde4/subdirs`; do
             else
                 echo "Translation for $subdir changed"
                 mv localized/$subdir.new.po localized/$subdir.po
+                rm localized/$subdir.txt
+                msgexec 0 < localized/$subdir.po | xargs --null -I line echo line >> localized/$subdir.txt
             fi
         else
             echo "New translation for $subdir"
             mv localized/$subdir.new.po localized/$subdir.po
+            msgexec 0 < localized/$subdir.po | xargs --null -I line echo line >> localized/$subdir.txt
         fi
     fi
 done
