@@ -80,8 +80,6 @@
   <string name="invalid_device_name">Ungültiger Gerätename</string>
   <string name="shareplugin_text_saved">Text empfangen und in der Zwischenablage gespeichert</string>
   <string name="custom_devices_settings">Benutzerdefinierte Geräteliste</string>
-  <string name="custom_device_list">Benutzerdefinierte Geräteliste</string>
-  <string name="custom_device_list_summary">Benutzerdefinierte Geräteliste</string>
   <string name="share_notification_preference">Benachrichtigungs-Abgleich</string>
   <string name="share_notification_preference_summary">Beim Empfang einer Datei vibrieren und einen Sound abspielen</string>
   <string name="sftp_internal_storage">Interner Speicher</string>

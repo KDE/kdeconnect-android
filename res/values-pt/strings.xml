@@ -89,8 +89,7 @@
   <string name="invalid_device_name">Nome do dispositivo inválido</string>
   <string name="shareplugin_text_saved">Texto recebido e guardado na área de transferência</string>
   <string name="custom_devices_settings">Lista de dispositivos personalizada</string>
-  <string name="custom_device_list">Lista de dispositivos personalizada</string>
-  <string name="custom_device_list_summary">Lista de dispositivos personalizada</string>
+  <string name="custom_device_list">Adicionar dispositivos pelo IP</string>
   <string name="share_notification_preference">Notificações com ruído</string>
   <string name="share_notification_preference_summary">Vibrar e tocar um som ao receber um ficheiro</string>
   <string name="sftp_internal_storage">Armazenamento interno</string>

@@ -86,8 +86,6 @@
   <string name="invalid_device_name">Ogiltigt apparatnamn</string>
   <string name="shareplugin_text_saved">Tog emot text, spara på klippbordet</string>
   <string name="custom_devices_settings">Inga apparater</string>
-  <string name="custom_device_list">Inga apparater</string>
-  <string name="custom_device_list_summary">Inga apparater</string>
   <string name="share_notification_preference">Ljudliga underrättelser</string>
   <string name="share_notification_preference_summary">Vibrera och spela ett ljud när en fil tas emot</string>
   <string name="sftp_internal_storage">Intern lagring</string>

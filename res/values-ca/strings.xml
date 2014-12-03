@@ -89,8 +89,6 @@
   <string name="invalid_device_name">El nom del dispositiu no és vàlid</string>
   <string name="shareplugin_text_saved">S\'ha rebut text i s\'ha desat al porta-retalls</string>
   <string name="custom_devices_settings">Llista personalitzada de dispositius</string>
-  <string name="custom_device_list">Llista personalitzada de dispositius</string>
-  <string name="custom_device_list_summary">Llista personalitzada de dispositius</string>
   <string name="share_notification_preference">Rebombori de les notificacions</string>
   <string name="share_notification_preference_summary">Vibra i reprodueix un so en rebre un fitxer</string>
   <string name="sftp_internal_storage">Emmagatzematge intern</string>

@@ -33,7 +33,7 @@
   <string name="mousepad_right_click">Botão direito</string>
   <string name="mousepad_middle_click">Botão do meio</string>
   <string name="category_connected_devices">Dispositivos conectados</string>
-  <string name="category_not_paired_devices">Emparelhar dispositivo</string>
+  <string name="category_not_paired_devices">Dispositivos disponíveis</string>
   <string name="category_remembered_devices">Dispositivos lembrados</string>
   <string name="plugins_failed_to_load">Plugins não carregados (toque para mais informações):</string>
   <string name="device_menu_plugins">Selecionar plugins</string>
@@ -89,8 +89,7 @@
   <string name="invalid_device_name">Nome do dispositivo inválido</string>
   <string name="shareplugin_text_saved">Texto recebido e salvo na área de transferência</string>
   <string name="custom_devices_settings">Lista de dispositivos personalizada</string>
-  <string name="custom_device_list">Lista de dispositivos personalizada</string>
-  <string name="custom_device_list_summary">Lista de dispositivos personalizada</string>
+  <string name="custom_device_list">Adicionar dispositivos pelo IP</string>
   <string name="share_notification_preference">Notificações barulhentas</string>
   <string name="share_notification_preference_summary">Vibrar e tocar um som ao receber um arquivo</string>
   <string name="sftp_internal_storage">Armazenamento interno</string>

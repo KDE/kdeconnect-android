@@ -89,8 +89,7 @@
   <string name="invalid_device_name">Некоректна назва пристрою</string>
   <string name="shareplugin_text_saved">Отримано текст, збережено до буфера обміну даними</string>
   <string name="custom_devices_settings">Список нетипових пристроїв</string>
-  <string name="custom_device_list">Список нетипових пристроїв</string>
-  <string name="custom_device_list_summary">Список нетипових пристроїв</string>
+  <string name="custom_device_list">Додати пристрої за IP</string>
   <string name="share_notification_preference">Звукові сповіщення</string>
   <string name="share_notification_preference_summary">Вібрація і відтворення звуку у відповідь на отримання файла</string>
   <string name="sftp_internal_storage">Вбудоване сховище даних</string>

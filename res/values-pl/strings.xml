@@ -89,8 +89,6 @@
   <string name="invalid_device_name">Nieprawidłowa nazwa urządzenia</string>
   <string name="shareplugin_text_saved">Otrzymano tekst, zapisano do schowka</string>
   <string name="custom_devices_settings">Lista własnych urządzeń</string>
-  <string name="custom_device_list">Lista własnych urządzeń</string>
-  <string name="custom_device_list_summary">Lista własnych urządzeń</string>
   <string name="share_notification_preference">Hałaśliwe powiadomienia</string>
   <string name="share_notification_preference_summary">Zadrżyj i odegraj dźwięk przy odebraniu pliku</string>
   <string name="sftp_internal_storage">"Pamięć wewnętrzna "</string>

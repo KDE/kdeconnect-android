@@ -69,8 +69,6 @@
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nome non valido</string>
   <string name="custom_devices_settings">Nessun dispositivo</string>
-  <string name="custom_device_list">Nessun dispositivo</string>
-  <string name="custom_device_list_summary">Nessun dispositivo</string>
   <string name="share_notification_preference">Sincronizzazione notifiche</string>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>

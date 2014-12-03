@@ -89,8 +89,7 @@
   <string name="invalid_device_name">Ongeldige apparaatnaam</string>
   <string name="shareplugin_text_saved">Oontvangen tekst, opgeslagen op klembord</string>
   <string name="custom_devices_settings">Aangepaste lijst apparaten</string>
-  <string name="custom_device_list">Aangepaste lijst apparaten</string>
-  <string name="custom_device_list_summary">Aangepaste lijst apparaten</string>
+  <string name="custom_device_list">Voeg apparaten toe per IP-adres</string>
   <string name="share_notification_preference">Luidruchtige meldingen</string>
   <string name="share_notification_preference_summary">Vibreer en speel een geluidje bij ontvangen van een bestand</string>
   <string name="sftp_internal_storage">Interne opslag</string>

@@ -89,8 +89,6 @@
   <string name="invalid_device_name">Virheellinen laitenimi</string>
   <string name="shareplugin_text_saved">Vastaanotettiin tekstiä, tallennettiin leikepöydälle</string>
   <string name="custom_devices_settings">Omien laitteiden luettelo</string>
-  <string name="custom_device_list">Omien laitteiden luettelo</string>
-  <string name="custom_device_list_summary">Omien laitteiden luettelo</string>
   <string name="share_notification_preference">Äänekkäät ilmoitukset</string>
   <string name="share_notification_preference_summary">Värise ja soita ääni tiedoston saapuessa</string>
   <string name="sftp_internal_storage">Sisäinen muisti</string>
