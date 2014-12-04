@@ -33,7 +33,7 @@
   <string name="mousepad_right_click">Oikea napsautus</string>
   <string name="mousepad_middle_click">Keskinapsautus</string>
   <string name="category_connected_devices">Yhdistetyt laitteet</string>
-  <string name="category_not_paired_devices">Kytke laite pariksi</string>
+  <string name="category_not_paired_devices">Saatavilla olevat laitteet</string>
   <string name="category_remembered_devices">Muistetut laitteet</string>
   <string name="plugins_failed_to_load">Liitännäisten lataus epäonnistui (lisätietoa napauttamalla):</string>
   <string name="device_menu_plugins">Valitse liitännäiset</string>
@@ -89,6 +89,7 @@
   <string name="invalid_device_name">Virheellinen laitenimi</string>
   <string name="shareplugin_text_saved">Vastaanotettiin tekstiä, tallennettiin leikepöydälle</string>
   <string name="custom_devices_settings">Omien laitteiden luettelo</string>
+  <string name="custom_device_list">Lisää laitteita IP:llä</string>
   <string name="share_notification_preference">Äänekkäät ilmoitukset</string>
   <string name="share_notification_preference_summary">Värise ja soita ääni tiedoston saapuessa</string>
   <string name="sftp_internal_storage">Sisäinen muisti</string>
