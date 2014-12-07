@@ -33,7 +33,7 @@
   <string name="mousepad_right_click">Clic dret</string>
   <string name="mousepad_middle_click">Clic del mig</string>
   <string name="category_connected_devices">Dispositius connectats</string>
-  <string name="category_not_paired_devices">Dispositiu parell</string>
+  <string name="category_not_paired_devices">Dispositius disponibles</string>
   <string name="category_remembered_devices">Dispositius recordats</string>
   <string name="plugins_failed_to_load">Els connectors han fallat en carregar-los (puntegeu per a més informació):</string>
   <string name="device_menu_plugins">Selecció dels connectors</string>
@@ -89,6 +89,7 @@
   <string name="invalid_device_name">El nom del dispositiu no és vàlid</string>
   <string name="shareplugin_text_saved">S\'ha rebut text i s\'ha desat al porta-retalls</string>
   <string name="custom_devices_settings">Llista personalitzada de dispositius</string>
+  <string name="custom_device_list">Afegeix dispositius per la IP</string>
   <string name="share_notification_preference">Rebombori de les notificacions</string>
   <string name="share_notification_preference_summary">Vibra i reprodueix un so en rebre un fitxer</string>
   <string name="sftp_internal_storage">Emmagatzematge intern</string>
