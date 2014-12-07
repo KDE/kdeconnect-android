@@ -15,7 +15,7 @@ function export_pot_file # First parameter will be the path of the pot file we h
 function import_po_files # First parameter will be a path that will contain several .po files with the format LANG.po
 {
 	podir=$1
-	a2po import --android res/ --gettext $podir
+	a2po import --ignore-fuzzy --android res/ --gettext $podir
 }
 
 
