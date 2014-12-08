@@ -8,7 +8,6 @@
   <string name="pref_plugin_sftp_desc">Позволява отдалечен достъп до файловата система на телефона</string>
   <string name="pref_plugin_clipboard">Синхронизиране на буфера</string>
   <string name="pref_plugin_clipboard_desc">Споделяне съдържанието на буфера</string>
-  <string name="pref_plugin_mousepad">Отдалечен контрол</string>
   <string name="pref_plugin_mpris">Отдалечен мултимедиен контрол</string>
   <string name="pref_plugin_mpris_desc">Управление на звук/видео от телефона</string>
   <string name="pref_plugin_ping">Пинг</string>
@@ -23,14 +22,11 @@
   <string name="no_permissions">Трябва да осигурите права за достъп до уведомленията</string>
   <string name="send_ping">Изпращане на пинг</string>
   <string name="open_mpris_controls">Отваряне на отдалечен контрол</string>
-  <string name="open_mousepad">Отваряне на отдалечен контрол</string>
   <string name="category_connected_devices">Свързани устройства</string>
-  <string name="category_not_paired_devices">Сдвояване с устройството</string>
   <string name="category_remembered_devices">Запомнени устройства</string>
   <string name="plugins_failed_to_load">Неуспешно зареждане на приставки (докоснете за подробности)</string>
   <string name="device_menu_plugins">Изберете приставки</string>
   <string name="device_menu_unpair">Разкачване</string>
-  <string name="device_not_reachable">Устройството е недостъпно</string>
   <string name="unknown_device">Неизвестно устройство</string>
   <string name="error_not_reachable">Устройството е недостъпно</string>
   <string name="error_already_requested">Вече е заявено сдвояване</string>
@@ -42,8 +38,6 @@
   <string name="error_invalid_key">Получен е неправилен ключ</string>
   <string name="pair_requested">Заявено е сдвояване</string>
   <string name="pairing_request_from">Заявено е сдвояване от %1s</string>
-  <string name="incoming_file_title">Заявено е сдвояване от %1s</string>
-  <string name="incoming_file_text">%s</string>
   <string name="tap_to_answer">Докоснете за да отговорите</string>
   <string name="reconnect">Ново свързване</string>
   <string name="device_not_paired">Устройството не е сдвоено</string>
@@ -60,18 +54,13 @@
   <string name="mpris_ff">Превъртане напред</string>
   <string name="mpris_next">Следващ</string>
   <string name="mpris_volume">Сила на звука</string>
-  <string name="mpris_settings">Отдалечен мултимедиен контрол</string>
   <string name="share_to">Споделяне...</string>
   <string name="protocol_version_older">Това устройство използва стара версия на протокола</string>
   <string name="protocol_version_newer">Това устройство използва по-нова версия на протокола</string>
   <string name="general_settings">Общи настройки</string>
-  <string name="plugin_settings">Общи настройки</string>
-  <string name="plugin_settings_with_name">Отваряне на настройките</string>
   <string name="device_name">Име на устройството</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Невалидно име на устройство</string>
-  <string name="custom_devices_settings">Няма устройства</string>
-  <string name="share_notification_preference">Синхронизиране на уведомленията</string>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>
     <item>20 seconds</item>

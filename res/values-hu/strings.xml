@@ -8,7 +8,6 @@
   <string name="pref_plugin_sftp_desc">Lehetővé teszi a telefon fájlrendszerének távolról történő tallózását</string>
   <string name="pref_plugin_clipboard">Vágólap szinkronizáció</string>
   <string name="pref_plugin_clipboard_desc">A vágólap tartalmának megosztása</string>
-  <string name="pref_plugin_mousepad">Távirányító</string>
   <string name="pref_plugin_mpris">Multimedia távirányítók</string>
   <string name="pref_plugin_mpris_desc">Hang vagy videó vezérlése a telefonról</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -27,10 +26,7 @@
   <string name="open_mpris_controls">Távirányító megnyitása</string>
   <string name="open_mousepad">Érintőtábla vezérlő megnyitása</string>
   <string name="mousepad_info">Mozgassa az ujját a képernyőn az egérkurzor mozgatásához</string>
-  <string name="mousepad_right_click">Jobb kattintás küldése</string>
-  <string name="mousepad_middle_click">Középső kattintás küldése</string>
   <string name="category_connected_devices">Csatlakoztatott eszközök</string>
-  <string name="category_not_paired_devices">Eszköz párosítása</string>
   <string name="category_remembered_devices">Megjegyzett eszközök</string>
   <string name="plugins_failed_to_load">A bővítményeket nem sikerült betölteni (érintse meg a további információkért):</string>
   <string name="device_menu_plugins">Bővítmények kijelölése</string>
@@ -71,19 +67,14 @@
   <string name="mpris_ff">Gyors előretekerés</string>
   <string name="mpris_next">Következő</string>
   <string name="mpris_volume">Hangerő</string>
-  <string name="mpris_settings">Multimedia távirányítók</string>
   <string name="share_to">Megosztás…</string>
   <string name="protocol_version_older">Ez az eszköz egy régi protokollverziót használ</string>
   <string name="protocol_version_newer">Ez az eszköz egy újabb protokollverziót használ</string>
   <string name="general_settings">Általános beállítások</string>
-  <string name="plugin_settings">Általános beállítások</string>
-  <string name="plugin_settings_with_name">Beállítások megnyitása</string>
   <string name="device_name">Eszköznév</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Érvénytelen eszköznév</string>
   <string name="shareplugin_text_saved">Szöveg érkezett, elmentve a vágólapra</string>
-  <string name="custom_devices_settings">Nincsenek eszközök</string>
-  <string name="share_notification_preference">Értesítés szinkronizáció</string>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>
     <item>20 seconds</item>

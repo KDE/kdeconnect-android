@@ -8,7 +8,6 @@
   <string name="pref_plugin_sftp_desc">Gör det möjligt att bläddra i telefonens filsystem från annan enhet</string>
   <string name="pref_plugin_clipboard">Synkronisera klippbord</string>
   <string name="pref_plugin_clipboard_desc">Dela klippbordets innehåll</string>
-  <string name="pref_plugin_mousepad">Fjärrkontroll</string>
   <string name="pref_plugin_mpris">Fjärrkontroll av multimedia</string>
   <string name="pref_plugin_mpris_desc">Styr ljud och video från telefonen</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -27,10 +26,7 @@
   <string name="open_mpris_controls">Öppna fjärrkontroll</string>
   <string name="open_mousepad">Öppna kontroll med tryckplatta</string>
   <string name="mousepad_info">Flytta ett finger på skärmen för att flytta muspekaren</string>
-  <string name="mousepad_right_click">Skicka högerklick</string>
-  <string name="mousepad_middle_click">Skicka mittenklick</string>
   <string name="category_connected_devices">Anslutna apparater</string>
-  <string name="category_not_paired_devices">Para ihop apparat</string>
   <string name="category_remembered_devices">Ihågkomna apparater</string>
   <string name="plugins_failed_to_load">Misslyckades ladda insticksprogram (rör för mer information):</string>
   <string name="device_menu_plugins">Välj insticksprogram</string>
@@ -80,12 +76,10 @@
   <string name="protocol_version_newer">Apparaten använder en nyare protokollversion</string>
   <string name="general_settings">Allmänna inställningar</string>
   <string name="plugin_settings">Inställningar</string>
-  <string name="plugin_settings_with_name">Öppna inställningarna</string>
   <string name="device_name">Apparatnamn</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Ogiltigt apparatnamn</string>
   <string name="shareplugin_text_saved">Tog emot text, spara på klippbordet</string>
-  <string name="custom_devices_settings">Inga apparater</string>
   <string name="share_notification_preference">Ljudliga underrättelser</string>
   <string name="share_notification_preference_summary">Vibrera och spela ett ljud när en fil tas emot</string>
   <string name="sftp_internal_storage">Intern lagring</string>

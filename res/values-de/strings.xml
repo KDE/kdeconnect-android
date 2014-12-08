@@ -8,7 +8,6 @@
   <string name="pref_plugin_sftp_desc">Erlaubt das Browsen des Dateisystems auf dem entfernten Handy</string>
   <string name="pref_plugin_clipboard">Abgleich der Zwischenablage</string>
   <string name="pref_plugin_clipboard_desc">Inhalt der Zwischenablage freigeben</string>
-  <string name="pref_plugin_mousepad">Fernbedienung</string>
   <string name="pref_plugin_mpris">Multimedia-Fernbedienungen</string>
   <string name="pref_plugin_mpris_desc">Audio und Video mit Ihrem Telefon steuern</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -28,7 +27,6 @@
   <string name="mousepad_right_click">Rechtsklick</string>
   <string name="mousepad_middle_click">Mittelklick</string>
   <string name="category_connected_devices">Verbundene Geräte</string>
-  <string name="category_not_paired_devices">Gerät verbinden</string>
   <string name="category_remembered_devices">Gemerkte Geräte</string>
   <string name="plugins_failed_to_load">Laden der Module fehlgeschlagen, tippen Sie für weitere Details:</string>
   <string name="device_menu_plugins">Module auswählen</string>
@@ -80,7 +78,6 @@
   <string name="invalid_device_name">Ungültiger Gerätename</string>
   <string name="shareplugin_text_saved">Text empfangen und in der Zwischenablage gespeichert</string>
   <string name="custom_devices_settings">Benutzerdefinierte Geräteliste</string>
-  <string name="share_notification_preference">Benachrichtigungs-Abgleich</string>
   <string name="share_notification_preference_summary">Beim Empfang einer Datei vibrieren und einen Sound abspielen</string>
   <string name="sftp_internal_storage">Interner Speicher</string>
   <string name="sftp_all_files">Alle Dateien</string>

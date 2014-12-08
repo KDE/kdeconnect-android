@@ -8,7 +8,6 @@
   <string name="pref_plugin_sftp_desc">Permettre de parcourir le système de fichiers du téléphone à distance</string>
   <string name="pref_plugin_clipboard">Synchronisation avec le presse-papiers</string>
   <string name="pref_plugin_clipboard_desc">Partage le contenu du presse-papiers</string>
-  <string name="pref_plugin_mousepad">Contrôle distant</string>
   <string name="pref_plugin_mpris">Contrôles distants multimédia</string>
   <string name="pref_plugin_mpris_desc">Contrôle l\'audio / la vidéo depuis votre téléphone</string>
   <string name="pref_plugin_ping">Commande « Ping »</string>
@@ -23,14 +22,11 @@
   <string name="no_permissions">Vous devez accorder la permission d\'accéder aux notifications</string>
   <string name="send_ping">Envoyer un « Ping »</string>
   <string name="open_mpris_controls">Ouvrir un contrôle distant</string>
-  <string name="open_mousepad">Ouvrir un contrôle distant</string>
   <string name="category_connected_devices">Périphériques connectés</string>
-  <string name="category_not_paired_devices">Apparier un périphérique</string>
   <string name="category_remembered_devices">Périphériques mémorisés</string>
   <string name="plugins_failed_to_load">Le chargement des modules externes a échoué (cliquez pour plus d\'informations) :</string>
   <string name="device_menu_plugins">Sélectionner des modules externes</string>
   <string name="device_menu_unpair">Désapparier</string>
-  <string name="device_not_reachable">Périphérique inaccessible</string>
   <string name="unknown_device">Périphérique inconnu</string>
   <string name="error_not_reachable">Périphérique inaccessible</string>
   <string name="error_already_requested">L\'appariement a déjà été demandé</string>
@@ -42,8 +38,6 @@
   <string name="error_invalid_key">Clé reçue non valable</string>
   <string name="pair_requested">Paire demandée</string>
   <string name="pairing_request_from">Demande d\'appariement provenant de %1s</string>
-  <string name="incoming_file_title">Demande d\'appariement provenant de %1s</string>
-  <string name="incoming_file_text">%s</string>
   <string name="tap_to_answer">Cliquer pour répondre</string>
   <string name="reconnect">Reconnecter</string>
   <string name="device_not_paired">Périphérique non apparié</string>
@@ -60,18 +54,13 @@
   <string name="mpris_ff">Avance rapide</string>
   <string name="mpris_next">Suivant</string>
   <string name="mpris_volume">Volume</string>
-  <string name="mpris_settings">Contrôles distants multimédia</string>
   <string name="share_to">Partager vers...</string>
   <string name="protocol_version_older">Le périphérique utilise une version ancienne du protocole</string>
   <string name="protocol_version_newer">Le périphérique utilise une version plus récente du protocole</string>
   <string name="general_settings">Paramètres généraux</string>
-  <string name="plugin_settings">Paramètres généraux</string>
-  <string name="plugin_settings_with_name">Accéder aux paramètres</string>
   <string name="device_name">Nom du périphérique</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nom de périphérique non valable</string>
-  <string name="custom_devices_settings">Pas de périphériques</string>
-  <string name="share_notification_preference">Synchronisation des notifications</string>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>
     <item>20 seconds</item>

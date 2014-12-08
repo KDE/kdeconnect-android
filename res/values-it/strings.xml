@@ -6,7 +6,6 @@
   <string name="pref_plugin_battery_desc">Comunica periodicamente lo stato della batteria</string>
   <string name="pref_plugin_clipboard">Sincronizzazione appunti</string>
   <string name="pref_plugin_clipboard_desc">Condividi il contenuto degli appunti</string>
-  <string name="pref_plugin_mousepad">Telecomando</string>
   <string name="pref_plugin_mpris">Telecomando multimediale</string>
   <string name="pref_plugin_mpris_desc">Controlla la riproduzione audio/video dal telefono</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -21,14 +20,11 @@
   <string name="no_permissions">Devi garantire a KDE Connect l\'accesso alle notifiche</string>
   <string name="send_ping">Invia ping</string>
   <string name="open_mpris_controls">Apri il telecomando multimediale</string>
-  <string name="open_mousepad">Apri il telecomando multimediale</string>
   <string name="category_connected_devices">Dispositivi connessi</string>
-  <string name="category_not_paired_devices">Associa dispositivo</string>
   <string name="category_remembered_devices">Dispositivi memorizzati</string>
   <string name="plugins_failed_to_load">Alcune estensioni non si sono avviate correttamente (tocca per maggiori informazioni):</string>
   <string name="device_menu_plugins">Estensioni</string>
   <string name="device_menu_unpair">Disassocia</string>
-  <string name="device_not_reachable">Dispositivo fuori portata</string>
   <string name="unknown_device">Dispositivo sconosciuto</string>
   <string name="error_not_reachable">Dispositivo fuori portata</string>
   <string name="error_already_requested">Richiesta già inviata</string>
@@ -40,8 +36,6 @@
   <string name="error_invalid_key">Ricevuta chiave non valida</string>
   <string name="pair_requested">Richiesta di associazione</string>
   <string name="pairing_request_from">Richiesta associazione da %1s</string>
-  <string name="incoming_file_title">Richiesta associazione da %1s</string>
-  <string name="incoming_file_text">%s</string>
   <string name="tap_to_answer">Tocca per rispondere</string>
   <string name="reconnect">Riconnetti</string>
   <string name="device_not_paired">Dispositivo non associato</string>
@@ -58,18 +52,13 @@
   <string name="mpris_ff">Avanti veloce</string>
   <string name="mpris_next">Successivo</string>
   <string name="mpris_volume">Volume</string>
-  <string name="mpris_settings">Telecomando multimediale</string>
   <string name="share_to">Condividi…</string>
   <string name="protocol_version_older">Questo dispositivo usa una vecchia versione del protocollo di rete</string>
   <string name="protocol_version_newer">Questo dispositivo usa una nuova versione del protocollo di rete</string>
   <string name="general_settings">Impostazioni generali</string>
-  <string name="plugin_settings">Impostazioni generali</string>
-  <string name="plugin_settings_with_name">Apri impostazioni</string>
   <string name="device_name">Nome dispositivo</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nome non valido</string>
-  <string name="custom_devices_settings">Nessun dispositivo</string>
-  <string name="share_notification_preference">Sincronizzazione notifiche</string>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>
     <item>20 seconds</item>

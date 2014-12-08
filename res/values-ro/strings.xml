@@ -8,7 +8,6 @@
   <string name="pref_plugin_sftp_desc">Vă permite să răsfoiți de la distanță sistemul de fișiere al dispozitivului</string>
   <string name="pref_plugin_clipboard">Sincronizare clipboard</string>
   <string name="pref_plugin_clipboard_desc">Partajează conținutul clipboardului</string>
-  <string name="pref_plugin_mousepad">Control de la distanță</string>
   <string name="pref_plugin_mpris">Controale multimedia distante</string>
   <string name="pref_plugin_mpris_desc">Controlați audio/video de pe telefon</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -23,14 +22,11 @@
   <string name="no_permissions">Trebuie să acordați permisiunea pentru accesarea notificărilor</string>
   <string name="send_ping">Trimite ping</string>
   <string name="open_mpris_controls">Deschide controlul de la distanță</string>
-  <string name="open_mousepad">Deschide controlul de la distanță</string>
   <string name="category_connected_devices">Dispozitive conectate</string>
-  <string name="category_not_paired_devices">Asociază dispozitiv</string>
   <string name="category_remembered_devices">Dispozitive memorizate</string>
   <string name="plugins_failed_to_load">Încărcarea extensiilor a eșuat (atingeți pentru mai multe informații):</string>
   <string name="device_menu_plugins">Alege extensii</string>
   <string name="device_menu_unpair">Dezasociază</string>
-  <string name="device_not_reachable">Dispozitivul nu e accesibil</string>
   <string name="unknown_device">Dispozitiv necunoscut</string>
   <string name="error_not_reachable">Dispozitivul nu e accesibil</string>
   <string name="error_already_requested">Asocierea a fost cerută deja</string>
@@ -42,8 +38,6 @@
   <string name="error_invalid_key">Cheie nevalidă recepționată</string>
   <string name="pair_requested">Asociere cerută</string>
   <string name="pairing_request_from">Cerere de asociere de la %1s</string>
-  <string name="incoming_file_title">Cerere de asociere de la %1s</string>
-  <string name="incoming_file_text">%s</string>
   <string name="tap_to_answer">Atingeți pentru a răspunde</string>
   <string name="reconnect">Reconectează</string>
   <string name="device_not_paired">Dispozitiv neasociat</string>
@@ -60,18 +54,13 @@
   <string name="mpris_ff">Derulare rapidă înainte</string>
   <string name="mpris_next">Următor</string>
   <string name="mpris_volume">Volum</string>
-  <string name="mpris_settings">Controale multimedia distante</string>
   <string name="share_to">Partajează cu...</string>
   <string name="protocol_version_older">Acest dispozitiv folosește o versiune veche a protocolului</string>
   <string name="protocol_version_newer">Acest dispozitiv folosește o versiune mai nouă a protocolului</string>
   <string name="general_settings">Configurări generale</string>
-  <string name="plugin_settings">Configurări generale</string>
-  <string name="plugin_settings_with_name">Deschide configurările</string>
   <string name="device_name">Denumire dispozitiv</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Denumire nevalidă a dispozitivului</string>
-  <string name="custom_devices_settings">Niciun dispozitiv</string>
-  <string name="share_notification_preference">Sincronizare notificări</string>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>
     <item>20 seconds</item>

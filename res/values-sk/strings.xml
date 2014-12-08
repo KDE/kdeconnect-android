@@ -33,7 +33,6 @@
   <string name="mousepad_right_click">Kliknutie pravým tlačidlom</string>
   <string name="mousepad_middle_click">Stredný klik</string>
   <string name="category_connected_devices">Pripojené zariadenia</string>
-  <string name="category_not_paired_devices">Spárovať zariadenie</string>
   <string name="category_remembered_devices">Zapamätané zariadenia</string>
   <string name="plugins_failed_to_load">Zlyhalo načítanie pluginov (tapnite pre viac info):</string>
   <string name="device_menu_plugins">Vybrať pluginy</string>

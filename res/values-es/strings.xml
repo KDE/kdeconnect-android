@@ -33,7 +33,6 @@
   <string name="mousepad_right_click">Clic derecho</string>
   <string name="mousepad_middle_click">Clic del botón central</string>
   <string name="category_connected_devices">Dispositivos conectados</string>
-  <string name="category_not_paired_devices">Vincular dispositivo</string>
   <string name="category_remembered_devices">Dispositivos recordados</string>
   <string name="plugins_failed_to_load">Complementos cuya carga ha fallado (toque para más información):</string>
   <string name="device_menu_plugins">Seleccionar complementos</string>

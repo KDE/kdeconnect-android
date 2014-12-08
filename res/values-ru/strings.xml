@@ -6,7 +6,6 @@
   <string name="pref_plugin_battery_desc">Периодически сообщать о состоянии батареи</string>
   <string name="pref_plugin_clipboard">Синхронизация буфера обмена</string>
   <string name="pref_plugin_clipboard_desc">Сделать содержимое буфера обмена общим</string>
-  <string name="pref_plugin_mousepad">Дистанционное управление</string>
   <string name="pref_plugin_mpris">ДУ для мультимедия</string>
   <string name="pref_plugin_mpris_desc">Управление аудио/видео с устройства</string>
   <string name="pref_plugin_ping">Пинг</string>
@@ -21,14 +20,11 @@
   <string name="no_permissions">Вы должны разрешить доступ к уведомлениям</string>
   <string name="send_ping">Послать пинг</string>
   <string name="open_mpris_controls">Открыть дистанционное управление</string>
-  <string name="open_mousepad">Открыть дистанционное управление</string>
   <string name="category_connected_devices">Подключённые устройства</string>
-  <string name="category_not_paired_devices">Спарить устройство</string>
   <string name="category_remembered_devices">Запомненные устройства</string>
   <string name="plugins_failed_to_load">Сбой загрузки следующих модулей (прикоснитесь чтобы получить подробности):</string>
   <string name="device_menu_plugins">Выбрать модули</string>
   <string name="device_menu_unpair">Разделить спаренные устройства</string>
-  <string name="device_not_reachable">Устройство недоступно</string>
   <string name="unknown_device">Неизвестное устройство</string>
   <string name="error_not_reachable">Устройство недоступно</string>
   <string name="error_already_requested">Запрос на спаривание уже был сделан</string>
@@ -40,7 +36,6 @@
   <string name="error_invalid_key">Недопустимый получатель ключа</string>
   <string name="pair_requested">Запрошено спаривание</string>
   <string name="pairing_request_from">Запрос на спаривание от %1s</string>
-  <string name="incoming_file_title">Запрос на спаривание от %1s</string>
   <string name="tap_to_answer">Коснитесь чтобы ответить</string>
   <string name="reconnect">Переподключить</string>
   <string name="device_not_paired">Устройство не спарено</string>
@@ -55,17 +50,9 @@
   <string name="mpris_previous">Предыдущий</string>
   <string name="mpris_next">Следующее</string>
   <string name="mpris_volume">Громкость</string>
-  <string name="mpris_settings">ДУ для мультимедия</string>
   <string name="share_to">Сделать общим с...</string>
   <string name="protocol_version_older">Это устройство использует старую версию протокола</string>
   <string name="protocol_version_newer">Это устройство использует более свежую версию протокола</string>
-  <string name="general_settings">Открыть настройки</string>
-  <string name="plugin_settings">Открыть настройки</string>
-  <string name="plugin_settings_with_name">Открыть настройки</string>
-  <string name="device_name">Устройство не спарено</string>
-  <string name="invalid_device_name">Недопустимый получатель ключа</string>
-  <string name="custom_devices_settings">Нет устройств</string>
-  <string name="share_notification_preference">Синхронизация уведомлений</string>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>
     <item>20 seconds</item>
