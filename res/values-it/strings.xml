@@ -4,14 +4,20 @@
   <string name="pref_plugin_telephony_desc">Invia notifiche di SMS e chiamate</string>
   <string name="pref_plugin_battery">Livello batteria</string>
   <string name="pref_plugin_battery_desc">Comunica periodicamente lo stato della batteria</string>
+  <string name="pref_plugin_sftp">Esposizione filesystem</string>
+  <string name="pref_plugin_sftp_desc">Consente di navigare da remoto il filesystem del telefono</string>
   <string name="pref_plugin_clipboard">Sincronizzazione appunti</string>
   <string name="pref_plugin_clipboard_desc">Condividi il contenuto degli appunti</string>
+  <string name="pref_plugin_mousepad">Impulso remoto</string>
+  <string name="pref_plugin_mousepad_desc">Usa il tuo telefono come mouse e tastiera</string>
   <string name="pref_plugin_mpris">Telecomando multimediale</string>
   <string name="pref_plugin_mpris_desc">Controlla la riproduzione audio/video dal telefono</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Invia e ricevi ping</string>
   <string name="pref_plugin_notifications">Sincronizzazione notifiche</string>
   <string name="pref_plugin_notifications_desc">Consenti l\'accesso alle notifiche dagli altri dispositivi</string>
+  <string name="pref_plugin_sharereceiver">Condivisione ricevitore</string>
+  <string name="pref_plugin_sharereceiver_desc">Salva i file in ingresso nella memoria del telefono</string>
   <string name="plugin_not_available">Questa funzionalità non è disponibile sulla tua versione di Android</string>
   <string name="device_list_empty">Nessun dispositivo</string>
   <string name="ok">OK</string>
@@ -20,11 +26,19 @@
   <string name="no_permissions">Devi garantire a KDE Connect l\'accesso alle notifiche</string>
   <string name="send_ping">Invia ping</string>
   <string name="open_mpris_controls">Apri il telecomando multimediale</string>
+  <string name="open_mousepad">Apri controllo del touchpad</string>
+  <string name="mousepad_info">Sposta un dito sullo schermo per spostare il cursore del mouse</string>
+  <string name="mousepad_double_tap_settings_title">Imposta azione tocco a due dita</string>
+  <string name="mousepad_triple_tap_settings_title">Imposta azione tocco a tre dita</string>
+  <string name="mousepad_right_click">Clic destro</string>
+  <string name="mousepad_middle_click">Clic centrale</string>
   <string name="category_connected_devices">Dispositivi connessi</string>
+  <string name="category_not_paired_devices">Dispositivi disponibili</string>
   <string name="category_remembered_devices">Dispositivi memorizzati</string>
   <string name="plugins_failed_to_load">Alcune estensioni non si sono avviate correttamente (tocca per maggiori informazioni):</string>
   <string name="device_menu_plugins">Estensioni</string>
   <string name="device_menu_unpair">Disassocia</string>
+  <string name="device_not_reachable">Dispositivo accoppiato non raggiungibile</string>
   <string name="unknown_device">Dispositivo sconosciuto</string>
   <string name="error_not_reachable">Dispositivo fuori portata</string>
   <string name="error_already_requested">Richiesta già inviata</string>
@@ -36,8 +50,17 @@
   <string name="error_invalid_key">Ricevuta chiave non valida</string>
   <string name="pair_requested">Richiesta di associazione</string>
   <string name="pairing_request_from">Richiesta associazione da %1s</string>
+  <string name="received_url_title">Collegamento ricevuto da %1s</string>
+  <string name="received_url_text">Tocca per aprire «%1s»</string>
+  <string name="incoming_file_title">File in ingresso da %1s</string>
+  <string name="incoming_file_text">%1s</string>
+  <string name="received_file_title">File ricevuto da %1s</string>
+  <string name="received_file_text">Tocca per aprire «%1s»</string>
   <string name="tap_to_answer">Tocca per rispondere</string>
   <string name="reconnect">Riconnetti</string>
+  <string name="right_click">Invia clic tasto destro</string>
+  <string name="middle_click">Invia clic tasto centrale</string>
+  <string name="show_keyboard">Mostra tastiera</string>
   <string name="device_not_paired">Dispositivo non associato</string>
   <string name="request_pairing">Richiedi associazione</string>
   <string name="pairing_accept">Accetta</string>
@@ -52,18 +75,36 @@
   <string name="mpris_ff">Avanti veloce</string>
   <string name="mpris_next">Successivo</string>
   <string name="mpris_volume">Volume</string>
+  <string name="mpris_settings">Impostazioni multimediali</string>
+  <string name="mpris_time_settings_title">Tempo di intervallo</string>
+  <string name="mpris_time_settings_summary">Regola l\'ora per avanzare rapidamente o riavvolgere un file multimediale.</string>
   <string name="share_to">Condividi…</string>
   <string name="protocol_version_older">Questo dispositivo usa una vecchia versione del protocollo di rete</string>
   <string name="protocol_version_newer">Questo dispositivo usa una nuova versione del protocollo di rete</string>
   <string name="general_settings">Impostazioni generali</string>
+  <string name="plugin_settings">Impostazioni</string>
+  <string name="plugin_settings_with_name">Impostazioni di %s</string>
   <string name="device_name">Nome dispositivo</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nome non valido</string>
+  <string name="shareplugin_text_saved">Testo ricevuto, salvato negli appunti</string>
+  <string name="custom_devices_settings">Elenco dispositivi personalizzato</string>
+  <string name="custom_device_list">Aggiungi dispositivi per IP</string>
+  <string name="share_notification_preference">Notifiche rumorose</string>
+  <string name="share_notification_preference_summary">Vibra e riproduci un suono alla ricezione di un file</string>
+  <string name="sftp_internal_storage">Archiviazione interna</string>
+  <string name="sftp_all_files">Tutti i file</string>
+  <string name="sftp_sdcard_num">Scheda SD %d</string>
+  <string name="sftp_sdcard">Scheda SD</string>
+  <string name="sftp_readonly">(sola lettura)</string>
+  <string name="sftp_camera">Immagini fotocamera</string>
+  <string name="add_host">Aggiungi host/IP</string>
+  <string name="custom_dev_list_help">Usa questa opzioone solo se il tuo dispositivo non è rilevato automaticamente. Digita l\'indirizzo IP o il nome host in basso e tocca il pulsante per aggiungerlo all\'elenco. Tocca un elemento esistente per rimuoverlo dall\'elenco.</string>
   <string-array name="mpris_time_entries">
-    <item>10 seconds</item>
-    <item>20 seconds</item>
-    <item>30 seconds</item>
-    <item>1 minute</item>
-    <item>2 minutes</item>
+    <item>10 secondi</item>
+    <item>20 secondi</item>
+    <item>30 secondi</item>
+    <item>1 minuto</item>
+    <item>2 minuti</item>
   </string-array>
 </resources>
