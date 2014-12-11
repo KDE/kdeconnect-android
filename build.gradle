@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.12.+' //Update to 14 when Studio 0.9 gets to beta
+        classpath 'com.android.tools.build:gradle:1.0.+'
     }
 }
 
@@ -11,7 +11,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion '21.1.1'
+    buildToolsVersion '21.1.2'
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 21
@@ -43,8 +43,8 @@ dependencies {
     repositories {
         mavenCentral()
     }
-    compile 'com.android.support:support-v4:21.0.2'
-    compile 'com.android.support:appcompat-v7:21.0.2'
+    compile 'com.android.support:support-v4:21.0.3'
+    compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'org.apache.mina:mina-core:2.0.9'
     compile 'org.apache.sshd:sshd-core:0.8.0'
     compile 'org.bouncycastle:bcprov-jdk16:1.46'
