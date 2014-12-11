@@ -110,8 +110,6 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
         }
     }
 
-
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (mMousePadGestureDetector.onTouchEvent(event)) {
@@ -203,7 +201,15 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
 
     @Override
     public void onLongPress(MotionEvent e) {
-        //From GestureDetector, left empty
+        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                Device device = service.getDevice(deviceId);
+                MousePadPlugin mousePadPlugin = (MousePadPlugin)device.getPlugin("plugin_mousepad");
+                if (mousePadPlugin == null) return;
+                mousePadPlugin.sendSingleHold();
+            }
+        });
     }
 
     @Override
@@ -290,12 +296,23 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
             @Override
             public void onServiceStart(BackgroundService service) {
                 Device device = service.getDevice(deviceId);
-                MousePadPlugin mousePadPlugin = (MousePadPlugin)device.getPlugin("plugin_mousepad");
+                MousePadPlugin mousePadPlugin = (MousePadPlugin) device.getPlugin("plugin_mousepad");
                 if (mousePadPlugin == null) return;
                 mousePadPlugin.sendRightClick();
             }
         });
     }
+        private void sendSingleHold() {
+            BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
+                @Override
+                public void onServiceStart(BackgroundService service) {
+                    Device device = service.getDevice(deviceId);
+                    MousePadPlugin mousePadPlugin = (MousePadPlugin) device.getPlugin("plugin_mousepad");
+                    if (mousePadPlugin == null) return;
+                    mousePadPlugin.sendSingleHold();
+                }
+            });
+        }
 
     private void showKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);

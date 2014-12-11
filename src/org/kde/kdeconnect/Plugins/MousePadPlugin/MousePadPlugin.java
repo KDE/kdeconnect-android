@@ -128,6 +128,12 @@ public class MousePadPlugin extends Plugin {
         device.sendPackage(np);
     }
 
+    public void sendSingleHold(){
+        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MOUSEPAD);
+        np.set("singlehold", true);
+        device.sendPackage(np);
+    }
+
     public void sendScroll(float dx, float dy) {
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MOUSEPAD);
         np.set("scroll", true);
