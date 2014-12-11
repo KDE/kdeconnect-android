@@ -26,6 +26,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.GestureDetector;
+import android.view.HapticFeedbackConstants;
 import android.view.inputmethod.InputMethodManager;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -66,6 +67,8 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
         setContentView(R.layout.activity_mousepad);
 
         deviceId = getIntent().getStringExtra("deviceId");
+
+        getWindow().getDecorView().setHapticFeedbackEnabled(true);
 
         mDetector = new GestureDetector(this, this);
         mMousePadGestureDetector = new MousePadGestureDetector(this, this);
@@ -201,6 +204,9 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
 
     @Override
     public void onLongPress(MotionEvent e) {
+
+        getWindow().getDecorView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+
         BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
