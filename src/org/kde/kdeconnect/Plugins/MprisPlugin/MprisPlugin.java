@@ -42,6 +42,9 @@ public class MprisPlugin extends Plugin {
 
     private String currentSong = "";
     private int volume = 50;
+    private int length = 0;
+    private int lastPosition;
+    private long lastPositionTime;
     private Handler playerStatusUpdated = null;
 
     private ArrayList<String> playerList = new ArrayList<String>();
@@ -49,6 +52,8 @@ public class MprisPlugin extends Plugin {
 
     private String player = "";
     private boolean playing = false;
+
+
 
     @Override
     public String getPluginName() {
@@ -83,6 +88,7 @@ public class MprisPlugin extends Plugin {
     @Override
     public boolean onCreate() {
         requestPlayerList();
+        lastPositionTime = System.currentTimeMillis();
         return true;
     }
 
@@ -97,12 +103,20 @@ public class MprisPlugin extends Plugin {
         np.set("action",s);
         device.sendPackage(np);
     }
-
     public void setVolume(int volume) {
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
         np.set("player",player);
         np.set("setVolume",volume);
         device.sendPackage(np);
+    }
+
+    public void setPosition(int position) {
+        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
+        np.set("player",player);
+        np.set("SetPosition", position);
+        device.sendPackage(np);
+        this.lastPosition = position;
+        this.lastPositionTime = System.currentTimeMillis();
     }
 
     public void Seek(int offset) {
@@ -116,10 +130,15 @@ public class MprisPlugin extends Plugin {
     public boolean onPackageReceived(NetworkPackage np) {
         if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_MPRIS)) return false;
 
-        if (np.has("nowPlaying") || np.has("volume") || np.has("isPlaying")) {
+        if (np.has("nowPlaying") || np.has("volume") || np.has("isPlaying") || np.has("length") || np.has("pos")) {
             if (np.getString("player").equals(player)) {
                 currentSong = np.getString("nowPlaying", currentSong);
                 volume = np.getInt("volume", volume);
+                length = np.getInt("length", length);
+                if(np.has("pos")){
+                    lastPosition = np.getInt("pos", lastPosition);
+                    lastPositionTime = System.currentTimeMillis();
+                }
                 playing = np.getBoolean("isPlaying", playing);
                 if (playerStatusUpdated != null) {
                     try {
@@ -208,8 +227,18 @@ public class MprisPlugin extends Plugin {
         return volume;
     }
 
+    public int getLength(){ return length; }
+
     public boolean isPlaying() {
         return playing;
+    }
+
+    public int getPosition(){
+
+        if(playing)
+            return lastPosition + (int)(System.currentTimeMillis() - lastPositionTime)*1000;
+        else
+            return lastPosition;
     }
 
     private void requestPlayerList() {

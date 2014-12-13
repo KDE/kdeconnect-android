@@ -20,7 +20,6 @@
 
 package org.kde.kdeconnect.Plugins.MprisPlugin;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -52,6 +51,9 @@ public class MprisActivity extends ActionBarActivity {
     //TODO 2: Add a message when no players are detected after loading completes
 
     private String deviceId;
+    private final Handler positionSeekUpdateHandler = new Handler();
+    private Runnable positionSeekUpdateRunnable;
+    private boolean positionSeekUpdateScheduled = false;
 
     protected void connectToPlugin() {
 
@@ -77,12 +79,31 @@ public class MprisActivity extends ActionBarActivity {
                                 String s = mpris.getCurrentSong();
                                 ((TextView) findViewById(R.id.now_playing_textview)).setText(s);
 
+
+                                String text = mpris.getLength() / 60000000 + ":";
+                                int seconds = (mpris.getLength() % 60000000) / 1000000;
+                                // needed to show length properly (eg 4:05 instead of 4:5)
+                                if(seconds < 10) text = text + "0";
+                                text = text + seconds;
+
+                                SeekBar positionSeek = (SeekBar)findViewById(R.id.positionSeek);
+                                positionSeek.setMax(mpris.getLength());
+                                positionSeek.setProgress(mpris.getPosition());
+
                                 int volume = mpris.getVolume();
+                                ((TextView) findViewById(R.id.time_textview)).setText(text);
+
+
                                 ((SeekBar) findViewById(R.id.volume_seek)).setProgress(volume);
+
+
 
                                 boolean isPlaying = mpris.isPlaying();
                                 if (isPlaying) {
                                     ((ImageButton) findViewById(R.id.play_button)).setImageResource(android.R.drawable.ic_media_pause);
+                                    if(!positionSeekUpdateScheduled) {
+                                        positionSeekUpdateRunnable.run();
+                                    }
                                 } else {
                                     ((ImageButton) findViewById(R.id.play_button)).setImageResource(android.R.drawable.ic_media_play);
                                 }
@@ -118,14 +139,17 @@ public class MprisActivity extends ActionBarActivity {
                                         String player = playerList.get(pos);
                                         mpris.setPlayer(player);
                                         //Spotify doesn't support changing the volume yet...
+                                        //Also doesn't support seeking and telling actual position...
                                         if (player.equals("Spotify")) {
                                             findViewById(R.id.volume_layout).setVisibility(View.INVISIBLE);
                                             findViewById(R.id.rew_button).setVisibility(View.GONE);
                                             findViewById(R.id.ff_button).setVisibility(View.GONE);
+                                            findViewById(R.id.positionSeek).setVisibility(View.INVISIBLE);
                                         } else {
                                             findViewById(R.id.volume_layout).setVisibility(View.VISIBLE);
                                             findViewById(R.id.rew_button).setVisibility(View.VISIBLE);
                                             findViewById(R.id.ff_button).setVisibility(View.VISIBLE);
+                                            findViewById(R.id.positionSeek).setVisibility(View.VISIBLE);
                                         }
                                     }
 
@@ -348,6 +372,68 @@ public class MprisActivity extends ActionBarActivity {
                         MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
                         if (mpris == null) return;
                         mpris.setVolume(seekBar.getProgress());
+                        positionSeekUpdateRunnable.run();
+                    }
+                });
+            }
+
+        });
+
+
+
+
+        positionSeekUpdateRunnable = new Runnable() {
+
+            private long lastTime;
+
+            @Override
+            public void run() {
+                final SeekBar positionSeek = (SeekBar)findViewById(R.id.positionSeek);
+                final Runnable thisRunnable = this;
+                BackgroundService.RunCommand(MprisActivity.this, new BackgroundService.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(BackgroundService service) {
+                        positionSeekUpdateScheduled = false;
+                        Device device = service.getDevice(deviceId);
+                        MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
+                        if (mpris == null) return;
+                        positionSeek.setProgress(mpris.getPosition());
+                        if(!mpris.isPlaying()) return;
+                        positionSeekUpdateHandler.postDelayed(thisRunnable, 1000);
+                        positionSeekUpdateScheduled = true;
+                    }
+                });
+
+            }
+
+        };
+
+
+        ((SeekBar)findViewById(R.id.positionSeek)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean byUser) {
+                String text = progress / 60000000 + ":";
+                int seconds = (progress % 60000000) / 1000000;
+                if(seconds < 10) text = text + "0";
+                text = text + seconds;
+                ((TextView)findViewById(R.id.progress_textview)).setText(text);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                positionSeekUpdateHandler.removeCallbacks(positionSeekUpdateRunnable);
+                positionSeekUpdateScheduled = false;
+            }
+
+            @Override
+            public void onStopTrackingTouch(final SeekBar seekBar) {
+                BackgroundService.RunCommand(MprisActivity.this, new BackgroundService.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(BackgroundService service) {
+                        Device device = service.getDevice(deviceId);
+                        MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
+                        if (mpris == null) return;
+                        mpris.setPosition(seekBar.getProgress());
                     }
                 });
             }
