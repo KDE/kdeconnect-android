@@ -37,9 +37,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.kde.kdeconnect.Backends.BaseLink;
+import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect_tp.R;
 
@@ -54,6 +54,7 @@ public class MprisActivity extends ActionBarActivity {
     private final Handler positionSeekUpdateHandler = new Handler();
     private Runnable positionSeekUpdateRunnable;
     private boolean positionSeekUpdateScheduled = false;
+    NotificationPanel nPanel;
 
     private static String milisToProgress(long milis) {
         int length = (int)(milis / 1000); //From milis to seconds
@@ -71,6 +72,7 @@ public class MprisActivity extends ActionBarActivity {
         text.append(seconds);
         return text.toString();
     }
+
     protected void connectToPlugin() {
 
         final String deviceId = getIntent().getStringExtra("deviceId");
@@ -119,7 +121,7 @@ public class MprisActivity extends ActionBarActivity {
                                 } else {
                                     ((ImageButton) findViewById(R.id.play_button)).setImageResource(android.R.drawable.ic_media_play);
                                 }
-
+                                nPanel.updateStatus(s,isPlaying);
                             }
                         });
                     }
@@ -278,6 +280,9 @@ public class MprisActivity extends ActionBarActivity {
         setContentView(R.layout.mpris_control);
 
         deviceId = getIntent().getStringExtra("deviceId");
+
+        nPanel = new NotificationPanel(this, deviceId);
+
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String interval_time_str = prefs.getString(getString(R.string.mpris_time_key),
