@@ -47,14 +47,11 @@ import java.util.ArrayList;
 
 public class MprisActivity extends ActionBarActivity {
 
-    //TODO: Add a loading spinner at the beginning (to distinguish the loading state from a no-players state).
-    //TODO 2: Add a message when no players are detected after loading completes
-
     private String deviceId;
     private final Handler positionSeekUpdateHandler = new Handler();
-    private Runnable positionSeekUpdateRunnable;
-    private boolean positionSeekUpdateScheduled = false;
-    NotificationPanel nPanel;
+    private Runnable positionSeekUpdateRunnable = null;
+    private NotificationPanel nPanel = null;
+    private String targetPlayer = null;
 
     private static String milisToProgress(long milis) {
         int length = (int)(milis / 1000); //From milis to seconds
@@ -75,27 +72,25 @@ public class MprisActivity extends ActionBarActivity {
 
     protected void connectToPlugin() {
 
-        final String deviceId = getIntent().getStringExtra("deviceId");
-
         BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
 
-                Device device = service.getDevice(deviceId);
+                final Device device = service.getDevice(deviceId);
                 final MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
                 if (mpris == null) {
                     Log.e("MprisActivity", "device has no mpris plugin!");
                     return;
                 }
 
-                mpris.setPlayerStatusUpdatedHandler(new Handler() {
+                mpris.setPlayerStatusUpdatedHandler("activity", new Handler() {
                     @Override
                     public void handleMessage(Message msg) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                String s = mpris.getCurrentSong();
-                                ((TextView) findViewById(R.id.now_playing_textview)).setText(s);
+                                String song = mpris.getCurrentSong();
+                                ((TextView) findViewById(R.id.now_playing_textview)).setText(song);
 
                                 if (mpris.getLength() > -1 && mpris.getPosition() > -1 && !"Spotify".equals(mpris.getPlayer())) {
                                     ((TextView) findViewById(R.id.time_textview)).setText(milisToProgress(mpris.getLength()));
@@ -115,19 +110,15 @@ public class MprisActivity extends ActionBarActivity {
                                 boolean isPlaying = mpris.isPlaying();
                                 if (isPlaying) {
                                     ((ImageButton) findViewById(R.id.play_button)).setImageResource(android.R.drawable.ic_media_pause);
-                                    if(!positionSeekUpdateScheduled) {
-                                        positionSeekUpdateRunnable.run();
-                                    }
                                 } else {
                                     ((ImageButton) findViewById(R.id.play_button)).setImageResource(android.R.drawable.ic_media_play);
                                 }
-                                nPanel.updateStatus(s,isPlaying);
                             }
                         });
                     }
                 });
 
-                mpris.setPlayerListUpdatedHandler(new Handler() {
+                mpris.setPlayerListUpdatedHandler("activity", new Handler() {
                     @Override
                     public void handleMessage(Message msg) {
                         final ArrayList<String> playerList = mpris.getPlayerList();
@@ -135,6 +126,7 @@ public class MprisActivity extends ActionBarActivity {
                                 android.R.layout.simple_spinner_item,
                                 playerList.toArray(new String[playerList.size()])
                         );
+
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         runOnUiThread(new Runnable() {
                             @Override
@@ -166,6 +158,9 @@ public class MprisActivity extends ActionBarActivity {
                                             findViewById(R.id.ff_button).setVisibility(View.VISIBLE);
                                             findViewById(R.id.positionSeek).setVisibility(View.VISIBLE);
                                         }
+
+                                        //If there was a panel already, this will override it
+                                        nPanel = new NotificationPanel(getApplicationContext(), device, player);
                                     }
 
                                     @Override
@@ -174,11 +169,18 @@ public class MprisActivity extends ActionBarActivity {
                                     }
                                 });
 
-                                // restore the selected player
-                                int position = adapter.getPosition(mpris.getPlayer());
-
-                                if (position >= 0) {
-                                    spinner.setSelection(position);
+                                if (targetPlayer != null) {
+                                    int targetIndex = adapter.getPosition(targetPlayer);
+                                    if (targetIndex >= 0) {
+                                        spinner.setSelection(targetIndex);
+                                    }
+                                    targetPlayer = null;
+                                } else {
+                                    // restore last selected player
+                                    int position = adapter.getPosition(mpris.getPlayer());
+                                    if (position >= 0) {
+                                        spinner.setSelection(position);
+                                    }
                                 }
                             }
                         });
@@ -279,10 +281,9 @@ public class MprisActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mpris_control);
 
+        targetPlayer = getIntent().getStringExtra("player");
+        getIntent().removeExtra("player");
         deviceId = getIntent().getStringExtra("deviceId");
-
-        nPanel = new NotificationPanel(this, deviceId);
-
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String interval_time_str = prefs.getString(getString(R.string.mpris_time_key),
@@ -390,20 +391,13 @@ public class MprisActivity extends ActionBarActivity {
                         MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
                         if (mpris == null) return;
                         mpris.setVolume(seekBar.getProgress());
-                        positionSeekUpdateRunnable.run();
                     }
                 });
             }
 
         });
 
-
-
-
         positionSeekUpdateRunnable = new Runnable() {
-
-            private long lastTime;
-
             @Override
             public void run() {
                 final SeekBar positionSeek = (SeekBar)findViewById(R.id.positionSeek);
@@ -411,21 +405,18 @@ public class MprisActivity extends ActionBarActivity {
                 BackgroundService.RunCommand(MprisActivity.this, new BackgroundService.InstanceCallback() {
                     @Override
                     public void onServiceStart(BackgroundService service) {
-                        positionSeekUpdateScheduled = false;
                         Device device = service.getDevice(deviceId);
                         MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
-                        if (mpris == null) return;
-                        positionSeek.setProgress((int)(mpris.getPosition()));
-                        if(!mpris.isPlaying()) return;
-                        positionSeekUpdateHandler.postDelayed(thisRunnable, 1000);
-                        positionSeekUpdateScheduled = true;
+                        if (mpris != null) {
+                            positionSeek.setProgress((int) (mpris.getPosition()));
+                        }
+                        positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 1000);
                     }
                 });
-
             }
 
         };
-
+        positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 200);
 
         ((SeekBar)findViewById(R.id.positionSeek)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -436,7 +427,6 @@ public class MprisActivity extends ActionBarActivity {
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 positionSeekUpdateHandler.removeCallbacks(positionSeekUpdateRunnable);
-                positionSeekUpdateScheduled = false;
             }
 
             @Override
@@ -446,17 +436,22 @@ public class MprisActivity extends ActionBarActivity {
                     public void onServiceStart(BackgroundService service) {
                         Device device = service.getDevice(deviceId);
                         MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
-                        if (mpris == null) return;
-                        mpris.setPosition(seekBar.getProgress());
+                        if (mpris != null) {
+                            mpris.setPosition(seekBar.getProgress());
+                        }
+                        positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 200);
                     }
                 });
             }
 
         });
 
+    }
 
-
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        positionSeekUpdateHandler.removeCallbacks(positionSeekUpdateRunnable);
     }
 
 }

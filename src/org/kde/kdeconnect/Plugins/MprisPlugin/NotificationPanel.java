@@ -23,73 +23,113 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Helpers.NotificationsHelper;
 import org.kde.kdeconnect_tp.R;
 
 public class NotificationPanel {
 
-    String deviceId;
+    private static final int notificationId = 182144338; //Random number, fixed id to make sure we don't produce more than one notification
 
-    private MprisActivity parent;
+    private String deviceId;
+    private String player;
+
     private NotificationManager nManager;
     private NotificationCompat.Builder nBuilder;
     private RemoteViews remoteView;
 
-    public NotificationPanel(MprisActivity parent, String deviceId) {
-        this.parent = parent;
-        this.deviceId = deviceId;
-        nBuilder = new NotificationCompat.Builder(parent)
-                .setContentTitle("Mpris Activity")
+    public NotificationPanel(Context context, Device device, String player) {
+        this.deviceId = device.getDeviceId();
+        this.player = player;
+
+        //FIXME: When the mpris plugin gets destroyed and recreated, we should add this listener again
+        final MprisPlugin mpris = (MprisPlugin)device.getPlugin("plugin_mpris");
+        if (mpris != null) {
+            mpris.setPlayerStatusUpdatedHandler("notification", new Handler() {
+                @Override
+                public void handleMessage(Message msg) {
+                    String song = mpris.getCurrentSong();
+                    boolean isPlaying = mpris.isPlaying();
+                    updateStatus(song, isPlaying);
+                }
+            });
+        }
+
+        Intent launch = new Intent(context, MprisActivity.class);
+        launch.putExtra("deviceId", deviceId);
+        launch.putExtra("player", player);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+        stackBuilder.addParentStack(MprisActivity.class);
+        stackBuilder.addNextIntent(launch);
+        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        nManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        remoteView = new RemoteViews(context.getPackageName(), R.layout.mpris_notification);
+        nBuilder = new NotificationCompat.Builder(context)
+                .setContentTitle("KDE Connect")
+                .setLocalOnly(true)
                 .setSmallIcon(android.R.drawable.ic_media_play)
+                .setContentIntent(resultPendingIntent)
                 .setOngoing(true);
 
-        remoteView = new RemoteViews(parent.getPackageName(), R.layout.notification_layout);
+        String deviceName = device.getName();
+        String playerOnDevice = context.getString(R.string.mpris_player_on_device, player, deviceName);
+        remoteView.setTextViewText(R.id.notification_player, playerOnDevice);
 
-        //set the button listeners
-        setListeners(remoteView);
+        Intent playpause = new Intent(context, NotificationReturnSlot.class);
+        playpause.putExtra("action", "play");
+        playpause.putExtra("deviceId", deviceId);
+        playpause.putExtra("player", player);
+        PendingIntent btn1 = PendingIntent.getBroadcast(context, NotificationsHelper.getUniqueId(), playpause, 0);
+        remoteView.setOnClickPendingIntent(R.id.notification_play_pause, btn1);
+
+        Intent next = new Intent(context, NotificationReturnSlot.class);
+        next.putExtra("action", "next");
+        next.putExtra("deviceId", deviceId);
+        next.putExtra("player", player);
+        PendingIntent btn2 = PendingIntent.getBroadcast(context, NotificationsHelper.getUniqueId(), next, 0);
+        remoteView.setOnClickPendingIntent(R.id.notification_next, btn2);
+
+        Intent prev = new Intent(context, NotificationReturnSlot.class);
+        prev.putExtra("action", "prev");
+        prev.putExtra("deviceId", deviceId);
+        prev.putExtra("player", player);
+        PendingIntent btn3 = PendingIntent.getBroadcast(context, NotificationsHelper.getUniqueId(), prev, 0);
+        remoteView.setOnClickPendingIntent(R.id.notification_prev, btn3);
+
         nBuilder.setContent(remoteView);
-
-        nManager = (NotificationManager) parent.getSystemService(Context.NOTIFICATION_SERVICE);
-        nManager.notify(2, nBuilder.build());
+        nManager.notify(notificationId, nBuilder.build());
     }
 
-    public void updateStatus(String songName, boolean isPlaying){
+    protected void updateStatus(String songName, boolean isPlaying) {
+        if (remoteView == null) return;
         remoteView.setTextViewText(R.id.notification_song, songName);
-        if(isPlaying){
+        if (isPlaying) {
             remoteView.setImageViewResource(R.id.notification_play_pause, android.R.drawable.ic_media_pause);
-        }else{
+        } else {
             remoteView.setImageViewResource(R.id.notification_play_pause, android.R.drawable.ic_media_play);
         }
         nBuilder.setContent(remoteView);
-        nManager.notify(2,nBuilder.build());
+        nManager.notify(notificationId, nBuilder.build());
     }
 
-    public void setListeners(RemoteViews view){
-        Intent playpause = new Intent(parent,NotificationReturnSlot.class);
-        playpause.putExtra("action", "play");
-        playpause.putExtra("deviceId",deviceId);
-        Log.i("Panel", deviceId);
-        PendingIntent btn1 = PendingIntent.getBroadcast(parent, 1, playpause, 0);
-        view.setOnClickPendingIntent(R.id.notification_play_pause, btn1);
-
-        Intent next = new Intent(parent, NotificationReturnSlot.class);
-        next.putExtra("action", "next");
-        next.putExtra("deviceId",deviceId);
-        PendingIntent btn2 = PendingIntent.getBroadcast(parent, 2, next, 0);
-        view.setOnClickPendingIntent(R.id.notification_next, btn2);
-
-        Intent prev = new Intent(parent, NotificationReturnSlot.class);
-        prev.putExtra("action", "prev");
-        prev.putExtra("deviceId",deviceId);
-        PendingIntent btn3 = PendingIntent.getBroadcast(
-                parent, 3, prev, 0);
-        view.setOnClickPendingIntent(R.id.notification_prev, btn3);
+    public void dismiss() {
+        nManager.cancel(notificationId);
+        remoteView = null;
     }
 
-    public void notificationCancel() {
-        nManager.cancel(2);
+    public String getPlayer() {
+        return player;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
     }
 }

@@ -36,24 +36,23 @@ import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MprisPlugin extends Plugin {
 
+    private String player = "";
+    private boolean playing = false;
     private String currentSong = "";
     private int volume = 50;
     private long length = -1;
     private long lastPosition;
     private long lastPositionTime;
-    private Handler playerStatusUpdated = null;
+    private HashMap<String,Handler> playerStatusUpdated = new HashMap<String,Handler>();
 
     private ArrayList<String> playerList = new ArrayList<String>();
-    private Handler playerListUpdated = null;
-
-    private String player = "";
-    private boolean playing = false;
-
-
+    private HashMap<String,Handler> playerListUpdated = new HashMap<String,Handler>();
 
     @Override
     public String getPluginName() {
@@ -97,22 +96,26 @@ public class MprisPlugin extends Plugin {
         playerList.clear();
     }
 
-    public void sendAction(String s) {
+    public void sendAction(String player, String action) {
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
-        np.set("player",player);
-        np.set("action",s);
+        np.set("player", player);
+        np.set("action", action);
         device.sendPackage(np);
     }
+    public void sendAction(String action) {
+        sendAction(player, action);
+    }
+
     public void setVolume(int volume) {
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
-        np.set("player",player);
+        np.set("player", player);
         np.set("setVolume",volume);
         device.sendPackage(np);
     }
 
     public void setPosition(int position) {
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
-        np.set("player",player);
+        np.set("player", player);
         np.set("SetPosition", position);
         device.sendPackage(np);
         this.lastPosition = position;
@@ -121,8 +124,8 @@ public class MprisPlugin extends Plugin {
 
     public void Seek(int offset) {
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
-        np.set("player",player);
-        np.set("Seek",offset);
+        np.set("player", player);
+        np.set("Seek", offset);
         device.sendPackage(np);
     }
 
@@ -140,13 +143,13 @@ public class MprisPlugin extends Plugin {
                     lastPositionTime = System.currentTimeMillis();
                 }
                 playing = np.getBoolean("isPlaying", playing);
-                if (playerStatusUpdated != null) {
+                for (String key : playerStatusUpdated.keySet()) {
                     try {
-                        playerStatusUpdated.dispatchMessage(new Message());
+                        playerStatusUpdated.get(key).dispatchMessage(new Message());
                     } catch(Exception e) {
                         e.printStackTrace();
                         Log.e("MprisControl","Exception");
-                        playerStatusUpdated = null;
+                        playerStatusUpdated.remove(key);
                     }
                 }
             }
@@ -167,13 +170,13 @@ public class MprisPlugin extends Plugin {
             }
             if (!equals) {
                 playerList = newPlayerList;
-                if (playerListUpdated != null) {
+                for (String key : playerListUpdated.keySet()) {
                     try {
-                        playerListUpdated.dispatchMessage(new Message());
+                        playerListUpdated.get(key).dispatchMessage(new Message());
                     } catch(Exception e) {
                         e.printStackTrace();
                         Log.e("MprisControl","Exception");
-                        playerListUpdated = null;
+                        playerListUpdated.remove(key);
                     }
                 }
             }
@@ -182,41 +185,50 @@ public class MprisPlugin extends Plugin {
         return true;
     }
 
-    public void setPlayerStatusUpdatedHandler(Handler h) {
-        playerStatusUpdated = h;
-        if (currentSong.length() > 0) h.dispatchMessage(new Message());
+    public void setPlayerStatusUpdatedHandler(String id, Handler h) {
+        playerStatusUpdated.put(id, h);
+        if (playerListUpdated.size() == 1) {
+            requestPlayerStatus();
+        }
+
+        h.dispatchMessage(new Message());
+    }
+
+    public void setPlayerListUpdatedHandler(String id, Handler h) {
+        if (playerList.size() > 0) {
+            h.dispatchMessage(new Message());
+        }
+
+        playerListUpdated.put(id,h);
+        if (playerListUpdated.size() == 1) {
+            requestPlayerList();
+        }
+    }
+
+    public void setPlayer(String player) {
+        if (player == null || player.equals(this.player)) return;
+        this.player = player;
+        currentSong = "";
+        volume = 50;
+        playing = false;
+        for (String key : playerStatusUpdated.keySet()) {
+            try {
+                playerStatusUpdated.get(key).dispatchMessage(new Message());
+            } catch(Exception e) {
+                e.printStackTrace();
+                Log.e("MprisControl","Exception");
+                playerStatusUpdated.remove(key);
+            }
+        }
         requestPlayerStatus();
-    }
-
-    public String getCurrentSong() {
-        return currentSong;
-    }
-
-    public void setPlayerListUpdatedHandler(Handler h) {
-        playerListUpdated = h;
-        if (playerList.size() > 0) h.dispatchMessage(new Message());
-        requestPlayerList();
     }
 
     public ArrayList<String> getPlayerList() {
         return playerList;
     }
 
-    public void setPlayer(String s) {
-        player = s;
-        currentSong = "";
-        volume = 50;
-        playing = false;
-        if (playerStatusUpdated != null) {
-            try {
-                playerStatusUpdated.dispatchMessage(new Message());
-            } catch(Exception e) {
-                e.printStackTrace();
-                Log.e("MprisControl","Exception");
-                playerStatusUpdated = null;
-            }
-        }
-        requestPlayerStatus();
+    public String getCurrentSong() {
+        return currentSong;
     }
 
     public String getPlayer() {

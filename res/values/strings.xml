@@ -110,6 +110,7 @@
     <string name="sftp_camera">Camera pictures</string>
     <string name="add_host">Add host/IP</string>
     <string name="custom_dev_list_help">Use this option only if your device is not automatically detected. Enter IP address or hostname below and touch the button to add it to the list. Touch an existing item to remove it from the list.</string>
+    <string name="mpris_player_on_device">%1$s on %2$s</string>
 
     <string-array name="mpris_time_entries">
         <item>10 seconds</item>

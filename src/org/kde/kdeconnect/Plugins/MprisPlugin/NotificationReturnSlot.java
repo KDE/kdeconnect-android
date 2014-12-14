@@ -33,7 +33,9 @@ public class NotificationReturnSlot extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String action = intent.getStringExtra("action");
         final String deviceId = intent.getStringExtra("deviceId");
-        Log.i("NotificationReturnSlot", action+deviceId);
+        final String player = intent.getStringExtra("player");
+
+        //Log.e("onReceive",""+deviceId+player);
         if (action.equals("play")) {
             BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
                 @Override
@@ -41,6 +43,7 @@ public class NotificationReturnSlot extends BroadcastReceiver {
                     Device device = service.getDevice(deviceId);
                     MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
                     if (mpris == null) return;
+                    mpris.setPlayer(player);
                     mpris.sendAction("PlayPause");
                 }
             });
@@ -51,6 +54,7 @@ public class NotificationReturnSlot extends BroadcastReceiver {
                     Device device = service.getDevice(deviceId);
                     MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
                     if (mpris == null) return;
+                    mpris.setPlayer(player);
                     mpris.sendAction("Next");
                 }
             });
@@ -61,6 +65,7 @@ public class NotificationReturnSlot extends BroadcastReceiver {
                     Device device = service.getDevice(deviceId);
                     MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
                     if (mpris == null) return;
+                    mpris.setPlayer(player);
                     mpris.sendAction("Previous");
                 }
             });
