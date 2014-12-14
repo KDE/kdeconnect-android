@@ -55,6 +55,22 @@ public class MprisActivity extends ActionBarActivity {
     private Runnable positionSeekUpdateRunnable;
     private boolean positionSeekUpdateScheduled = false;
 
+    private static String milisToProgress(long milis) {
+        int length = (int)(milis / 1000); //From milis to seconds
+        StringBuilder text = new StringBuilder();
+        int minutes = length / 60;
+        if (minutes > 60) {
+            int hours = minutes / 60;
+            minutes = minutes % 60;
+            text.append(hours).append(':');
+            if (minutes < 10) text.append('0');
+        }
+        text.append(minutes).append(':');
+        int seconds = (length % 60);
+        if(seconds < 10) text.append('0'); // needed to show length properly (eg 4:05 instead of 4:5)
+        text.append(seconds);
+        return text.toString();
+    }
     protected void connectToPlugin() {
 
         final String deviceId = getIntent().getStringExtra("deviceId");
@@ -79,24 +95,20 @@ public class MprisActivity extends ActionBarActivity {
                                 String s = mpris.getCurrentSong();
                                 ((TextView) findViewById(R.id.now_playing_textview)).setText(s);
 
+                                if (mpris.getLength() > -1 && mpris.getPosition() > -1 && !"Spotify".equals(mpris.getPlayer())) {
+                                    ((TextView) findViewById(R.id.time_textview)).setText(milisToProgress(mpris.getLength()));
 
-                                String text = mpris.getLength() / 60000000 + ":";
-                                int seconds = (mpris.getLength() % 60000000) / 1000000;
-                                // needed to show length properly (eg 4:05 instead of 4:5)
-                                if(seconds < 10) text = text + "0";
-                                text = text + seconds;
+                                    SeekBar positionSeek = (SeekBar)findViewById(R.id.positionSeek);
+                                    positionSeek.setMax((int)(mpris.getLength()));
+                                    positionSeek.setProgress((int)(mpris.getPosition()));
 
-                                SeekBar positionSeek = (SeekBar)findViewById(R.id.positionSeek);
-                                positionSeek.setMax(mpris.getLength());
-                                positionSeek.setProgress(mpris.getPosition());
+                                    findViewById(R.id.progress_slider).setVisibility(View.VISIBLE);
+                                } else {
+                                    findViewById(R.id.progress_slider).setVisibility(View.GONE);
+                                }
 
                                 int volume = mpris.getVolume();
-                                ((TextView) findViewById(R.id.time_textview)).setText(text);
-
-
                                 ((SeekBar) findViewById(R.id.volume_seek)).setProgress(volume);
-
-
 
                                 boolean isPlaying = mpris.isPlaying();
                                 if (isPlaying) {
@@ -145,6 +157,7 @@ public class MprisActivity extends ActionBarActivity {
                                             findViewById(R.id.rew_button).setVisibility(View.GONE);
                                             findViewById(R.id.ff_button).setVisibility(View.GONE);
                                             findViewById(R.id.positionSeek).setVisibility(View.INVISIBLE);
+                                            findViewById(R.id.progress_slider).setVisibility(View.GONE);
                                         } else {
                                             findViewById(R.id.volume_layout).setVisibility(View.VISIBLE);
                                             findViewById(R.id.rew_button).setVisibility(View.VISIBLE);
@@ -397,7 +410,7 @@ public class MprisActivity extends ActionBarActivity {
                         Device device = service.getDevice(deviceId);
                         MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
                         if (mpris == null) return;
-                        positionSeek.setProgress(mpris.getPosition());
+                        positionSeek.setProgress((int)(mpris.getPosition()));
                         if(!mpris.isPlaying()) return;
                         positionSeekUpdateHandler.postDelayed(thisRunnable, 1000);
                         positionSeekUpdateScheduled = true;
@@ -412,11 +425,7 @@ public class MprisActivity extends ActionBarActivity {
         ((SeekBar)findViewById(R.id.positionSeek)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean byUser) {
-                String text = progress / 60000000 + ":";
-                int seconds = (progress % 60000000) / 1000000;
-                if(seconds < 10) text = text + "0";
-                text = text + seconds;
-                ((TextView)findViewById(R.id.progress_textview)).setText(text);
+                ((TextView)findViewById(R.id.progress_textview)).setText(milisToProgress(progress));
             }
 
             @Override

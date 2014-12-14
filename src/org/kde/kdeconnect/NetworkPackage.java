@@ -89,6 +89,8 @@ public class NetworkPackage {
     public void set(String key, String value) { if (value == null) return; try { mBody.put(key,value); } catch(Exception e) { } }
     public int getInt(String key) { return mBody.optInt(key,-1); }
     public int getInt(String key, int defaultValue) { return mBody.optInt(key,defaultValue); }
+    public long getLong(String key) { return mBody.optLong(key,-1); }
+    public long getLong(String key,long defaultValue) { return mBody.optLong(key,defaultValue); }
     public void set(String key, int value) { try { mBody.put(key,value); } catch(Exception e) { } }
     public boolean getBoolean(String key) { return mBody.optBoolean(key,false); }
     public boolean getBoolean(String key, boolean defaultValue) { return mBody.optBoolean(key,defaultValue); }

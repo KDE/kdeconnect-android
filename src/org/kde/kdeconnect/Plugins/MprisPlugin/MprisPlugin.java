@@ -42,8 +42,8 @@ public class MprisPlugin extends Plugin {
 
     private String currentSong = "";
     private int volume = 50;
-    private int length = 0;
-    private int lastPosition;
+    private long length = -1;
+    private long lastPosition;
     private long lastPositionTime;
     private Handler playerStatusUpdated = null;
 
@@ -134,9 +134,9 @@ public class MprisPlugin extends Plugin {
             if (np.getString("player").equals(player)) {
                 currentSong = np.getString("nowPlaying", currentSong);
                 volume = np.getInt("volume", volume);
-                length = np.getInt("length", length);
+                length = np.getLong("length", length);
                 if(np.has("pos")){
-                    lastPosition = np.getInt("pos", lastPosition);
+                    lastPosition = np.getLong("pos", lastPosition);
                     lastPositionTime = System.currentTimeMillis();
                 }
                 playing = np.getBoolean("isPlaying", playing);
@@ -227,18 +227,18 @@ public class MprisPlugin extends Plugin {
         return volume;
     }
 
-    public int getLength(){ return length; }
+    public long getLength(){ return length; }
 
     public boolean isPlaying() {
         return playing;
     }
 
-    public int getPosition(){
-
-        if(playing)
-            return lastPosition + (int)(System.currentTimeMillis() - lastPositionTime)*1000;
-        else
+    public long getPosition(){
+        if(playing) {
+            return lastPosition + (System.currentTimeMillis() - lastPositionTime);
+        } else {
             return lastPosition;
+        }
     }
 
     private void requestPlayerList() {
@@ -246,7 +246,6 @@ public class MprisPlugin extends Plugin {
         np.set("requestPlayerList",true);
         device.sendPackage(np);
     }
-
 
     private void requestPlayerStatus() {
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
