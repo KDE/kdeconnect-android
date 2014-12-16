@@ -83,7 +83,7 @@
   <string name="protocol_version_newer">Aquest dispositiu usa una versió nova del protocol</string>
   <string name="general_settings">Arranjament general</string>
   <string name="plugin_settings">Arranjament</string>
-  <string name="plugin_settings_with_name">Ajustaments de %s</string>
+  <string name="plugin_settings_with_name">Ajustaments del %s</string>
   <string name="device_name">Nom del dispositiu</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">El nom del dispositiu no és vàlid</string>
@@ -100,6 +100,7 @@
   <string name="sftp_camera">Imatges de la càmera</string>
   <string name="add_host">Afegeix una màquina/IP</string>
   <string name="custom_dev_list_help">Empreu aquesta opció només si el dispositiu no és detectat automàticament. Introduïu a sota l\'adreça IP o nom de la màquina i premeu el botó per afegir-lo a la llista. Seleccioneu un element existent per eliminar-lo de la llista.</string>
+  <string name="mpris_player_on_device">%1$s sobre el %2$s</string>
   <string-array name="mpris_time_entries">
     <item>10 segons</item>
     <item>20 segons</item>
