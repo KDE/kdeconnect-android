@@ -100,6 +100,7 @@
   <string name="sftp_camera">Kamerakuvat</string>
   <string name="add_host">Lisää kone/IP</string>
   <string name="custom_dev_list_help">Käytä tätä vain, jos laitettasi ei tunnisteta automaattisesti. Kirjoita IP-osoite tai konenimi alle ja kosketa painiketta lisätäksesi sen luetteloon. Kosketa olemassa olevaa kohtaa poistaaksesi sen luettelosta.</string>
+  <string name="mpris_player_on_device">%1$s laitteella %2$s</string>
   <string-array name="mpris_time_entries">
     <item>10 sekuntia</item>
     <item>20 sekuntia</item>
