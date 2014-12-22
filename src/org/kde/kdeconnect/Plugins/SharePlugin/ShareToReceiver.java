@@ -159,6 +159,7 @@ public class ShareToReceiver extends ActionBarActivity {
                                     String text = extras.getString(Intent.EXTRA_TEXT);
                                     String subject = extras.getString(Intent.EXTRA_SUBJECT);
 
+                                    //Hack: Detect shared youtube videos, so we can open them in the browser instead of as text
                                     if (subject != null && subject.endsWith("YouTube")) {
                                         int index = text.indexOf(": http://youtu.be/");
                                         if (index > 0) {
