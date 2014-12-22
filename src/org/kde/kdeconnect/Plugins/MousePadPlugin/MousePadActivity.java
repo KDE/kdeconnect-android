@@ -22,11 +22,13 @@ package org.kde.kdeconnect.Plugins.MousePadPlugin;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.GestureDetector;
 import android.view.HapticFeedbackConstants;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -87,6 +89,35 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
                 ClickType.RIGHT : ClickType.MIDDLE;
         tripleTapAction = getString(R.string.mousepad_right_value).equals(tripleTapSetting)?
                 ClickType.RIGHT : ClickType.MIDDLE;
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            final View decorView = getWindow().getDecorView();
+            decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+                @Override
+                public void onSystemUiVisibilityChange(int visibility) {
+                    if ((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0) {
+
+                        int fullscreenType = 0;
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+                            fullscreenType |= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+                        }
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            fullscreenType |= View.SYSTEM_UI_FLAG_FULLSCREEN;
+                        }
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                            fullscreenType |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+                        }
+
+                        getWindow().getDecorView().setSystemUiVisibility(fullscreenType);
+                    }
+                }
+            });
+        }
+
     }
 
     @Override
