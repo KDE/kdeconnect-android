@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:keepScreenOn="true"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,9 +20,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         class="org.kde.kdeconnect.Plugins.MousePadPlugin.KeyListenerView"
-        android:id="@+id/keyListener"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="58dp" />
+        android:id="@+id/keyListener" />
 
 </RelativeLayout>
