@@ -157,6 +157,15 @@ public class ShareToReceiver extends ActionBarActivity {
 
                                 } else if (extras.containsKey(Intent.EXTRA_TEXT)) {
                                     String text = extras.getString(Intent.EXTRA_TEXT);
+                                    String subject = extras.getString(Intent.EXTRA_SUBJECT);
+
+                                    if (subject != null && subject.endsWith("YouTube")) {
+                                        int index = text.indexOf(": http://youtu.be/");
+                                        if (index > 0) {
+                                            text = text.substring(index+2); //Skip ": "
+                                        }
+                                    }
+
                                     boolean isUrl;
                                     try {
                                         new URL(text);
