@@ -160,7 +160,7 @@
 
         <activity
             android:theme="@style/Theme.AppCompat"
-            android:name="org.kde.kdeconnect.UserInterface.ShareToReceiver"
+            android:name="org.kde.kdeconnect.Plugins.SharePlugin.ShareToReceiver"
             android:label="KDE Connect"
             >
             <intent-filter>

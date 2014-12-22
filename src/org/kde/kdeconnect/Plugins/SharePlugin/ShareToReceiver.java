@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-package org.kde.kdeconnect.UserInterface;
+package org.kde.kdeconnect.Plugins.SharePlugin;
 
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -52,11 +52,6 @@ import java.util.Collection;
 
 
 public class ShareToReceiver extends ActionBarActivity {
-
-
-    //
-    // Action bar
-    //
 
     private MenuItem menuProgress;
 
@@ -274,6 +269,7 @@ public class ShareToReceiver extends ActionBarActivity {
         }
 
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -284,7 +280,6 @@ public class ShareToReceiver extends ActionBarActivity {
 
         setContentView(R.layout.activity_main);
     }
-
 
 
     @Override
@@ -320,4 +315,5 @@ public class ShareToReceiver extends ActionBarActivity {
         super.onResume();
         updateComputerList();
     }
+
 }
