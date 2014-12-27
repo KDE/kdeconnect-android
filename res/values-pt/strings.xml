@@ -99,6 +99,7 @@
   <string name="sftp_readonly">(apenas para leitura)</string>
   <string name="sftp_camera">Fotografias</string>
   <string name="add_host">Adicionar uma máquina/IP</string>
+  <string name="no_players_connected">Não foram encontrados leitores</string>
   <string name="custom_dev_list_help">Use esta opção apenas se o seu dispositivo não for detectado automaticamente. Indique o endereço IP ou nome da máquina em baixo e carregue no botão para a adicionar à lista. Carregue sobre um item existente para o remover da lista.</string>
   <string name="mpris_player_on_device">%1$s em %2$s</string>
   <string-array name="mpris_time_entries">

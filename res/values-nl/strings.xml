@@ -99,6 +99,7 @@
   <string name="sftp_readonly">(alleen-lezen)</string>
   <string name="sftp_camera">Afbeeldingen van camera</string>
   <string name="add_host">Host/IP-adres toevoegen</string>
+  <string name="no_players_connected">Geen spelers gevonden</string>
   <string name="custom_dev_list_help">Deze optie alleen gebruiken als uw apparaat niet automatisch gedetecteerd wordt. Voer IP-adres of hostnaam hieronder in en klik op de knop om het aan de lijst toe te voegen. Klik op een bestaand item om het uit de lijst te verwijderen.</string>
   <string name="mpris_player_on_device">%1$s op %2$s</string>
   <string-array name="mpris_time_entries">

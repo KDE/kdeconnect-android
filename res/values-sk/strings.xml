@@ -99,6 +99,7 @@
   <string name="sftp_readonly">(iba na čítanie)</string>
   <string name="sftp_camera">Obrázky fotoaparátu</string>
   <string name="add_host">Pridať hostiteľa/IP</string>
+  <string name="no_players_connected">Nenašli sa žiadne prehrávače</string>
   <string name="custom_dev_list_help">Túto voľbu použite iba vtedy, ak vaše zariadenie nie je automaticky detekované. Zadajte IP adresu alebo názov hostiteľa nižšie a kliknite na tlačidlo na pridanie do zoznamu. Kliknite na existujúcu položku na odstránenie jej zo zoznamu.</string>
   <string name="mpris_player_on_device">%1$s na %2$s</string>
   <string-array name="mpris_time_entries">

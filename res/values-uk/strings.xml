@@ -99,6 +99,7 @@
   <string name="sftp_readonly">(лише читання)</string>
   <string name="sftp_camera">Знімки фотоапарата</string>
   <string name="add_host">Додати вузол/IP</string>
+  <string name="no_players_connected">Не знайдено програвачів</string>
   <string name="custom_dev_list_help">Цим пунктом слід користуватися, лише якщо ваш пристрій не було визначено у автоматичному режимі. Введіть IP-адресу або назву вузла нижче і натисніть кнопку, щоб додати пункт до списку. Натисніть наявний пункт, щоб вилучити його зі списку.</string>
   <string name="mpris_player_on_device">%1$s на %2$s</string>
   <string-array name="mpris_time_entries">
