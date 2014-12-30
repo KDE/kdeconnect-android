@@ -99,6 +99,7 @@
   <string name="sftp_readonly">(tylko do odczytu)</string>
   <string name="sftp_camera">Zdjęcia z aparatu</string>
   <string name="add_host">Dodaj gospodarza/IP</string>
+  <string name="no_players_connected">Nie znaleziono żadnego odtwarzacza</string>
   <string name="custom_dev_list_help">Użyj tej opcji tylko wtedy, gdy twoje urządzenie nie jest samoczynnie wykrywane. Podaj adres IP i nazwę gospodarza poniżej i dotknij przycisku, aby dodać je do listy. Dotknij istniejącego elementu, aby usunąć go z listy.</string>
   <string name="mpris_player_on_device">%1$s na %2$s</string>
   <string-array name="mpris_time_entries">
