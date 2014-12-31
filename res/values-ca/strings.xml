@@ -99,6 +99,7 @@
   <string name="sftp_readonly">(només de lectura)</string>
   <string name="sftp_camera">Imatges de la càmera</string>
   <string name="add_host">Afegeix una màquina/IP</string>
+  <string name="no_players_connected">No s\'ha trobat cap reproductor</string>
   <string name="custom_dev_list_help">Empreu aquesta opció només si el dispositiu no és detectat automàticament. Introduïu a sota l\'adreça IP o nom de la màquina i premeu el botó per afegir-lo a la llista. Seleccioneu un element existent per eliminar-lo de la llista.</string>
   <string name="mpris_player_on_device">%1$s sobre el %2$s</string>
   <string-array name="mpris_time_entries">

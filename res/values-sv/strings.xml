@@ -8,6 +8,8 @@
   <string name="pref_plugin_sftp_desc">Gör det möjligt att bläddra i telefonens filsystem från annan enhet</string>
   <string name="pref_plugin_clipboard">Synkronisera klippbord</string>
   <string name="pref_plugin_clipboard_desc">Dela klippbordets innehåll</string>
+  <string name="pref_plugin_mousepad">Fjärrinmatning</string>
+  <string name="pref_plugin_mousepad_desc">Använd telefonen som mus och tangentbord</string>
   <string name="pref_plugin_mpris">Fjärrkontroll av multimedia</string>
   <string name="pref_plugin_mpris_desc">Styr ljud och video från telefonen</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -26,7 +28,12 @@
   <string name="open_mpris_controls">Öppna fjärrkontroll</string>
   <string name="open_mousepad">Öppna kontroll med tryckplatta</string>
   <string name="mousepad_info">Flytta ett finger på skärmen för att flytta muspekaren</string>
+  <string name="mousepad_double_tap_settings_title">Ställ in åtgärd vid två fingerberöringar</string>
+  <string name="mousepad_triple_tap_settings_title">Ställ in åtgärd vid tre fingerberöringar</string>
+  <string name="mousepad_right_click">Högerklick</string>
+  <string name="mousepad_middle_click">Mittenklick</string>
   <string name="category_connected_devices">Anslutna apparater</string>
+  <string name="category_not_paired_devices">Tillgängliga enheter</string>
   <string name="category_remembered_devices">Ihågkomna apparater</string>
   <string name="plugins_failed_to_load">Misslyckades ladda insticksprogram (rör för mer information):</string>
   <string name="device_menu_plugins">Välj insticksprogram</string>
@@ -44,11 +51,11 @@
   <string name="pair_requested">Ihopparning begärd</string>
   <string name="pairing_request_from">Begäran om ihopparning från %1s</string>
   <string name="received_url_title">Tog emot länk från %1s</string>
-  <string name="received_url_text">Klicka för att öppna \'%1s\'</string>
+  <string name="received_url_text">Rör för att öppna \'%1s\'</string>
   <string name="incoming_file_title">Inkommande fil från %1s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="received_file_title">Tog emot fil från %1s</string>
-  <string name="received_file_text">Klicka för att öppna \'%1s\'</string>
+  <string name="received_file_text">Rör för att öppna \'%1s\'</string>
   <string name="tap_to_answer">Rör för att svara</string>
   <string name="reconnect">Anslut igen</string>
   <string name="right_click">Skicka högerklick</string>
@@ -76,10 +83,13 @@
   <string name="protocol_version_newer">Apparaten använder en nyare protokollversion</string>
   <string name="general_settings">Allmänna inställningar</string>
   <string name="plugin_settings">Inställningar</string>
+  <string name="plugin_settings_with_name">Inställningar av %s</string>
   <string name="device_name">Apparatnamn</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Ogiltigt apparatnamn</string>
   <string name="shareplugin_text_saved">Tog emot text, spara på klippbordet</string>
+  <string name="custom_devices_settings">Egen apparatlista</string>
+  <string name="custom_device_list">Lägg till apparater enligt IP-adress</string>
   <string name="share_notification_preference">Ljudliga underrättelser</string>
   <string name="share_notification_preference_summary">Vibrera och spela ett ljud när en fil tas emot</string>
   <string name="sftp_internal_storage">Intern lagring</string>
@@ -88,6 +98,10 @@
   <string name="sftp_sdcard">SD-kort</string>
   <string name="sftp_readonly">(skrivskyddat)</string>
   <string name="sftp_camera">Kamerabilder</string>
+  <string name="add_host">Lägg till värddator/IP-adress</string>
+  <string name="no_players_connected">Inga spelare hittades</string>
+  <string name="custom_dev_list_help">Använd bara alternativet om apparaten inte detekteras automatiskt. Skriv in IP-adress eller värddatornamn nedan och rör vid knappen för att lägga till den i listan. Rör vid ett befintligt objekt för att ta bort det från listan.</string>
+  <string name="mpris_player_on_device">%1$s på %2$s</string>
   <string-array name="mpris_time_entries">
     <item>10 sekunder</item>
     <item>20 sekunder</item>
