@@ -10,7 +10,7 @@
   <string name="pref_plugin_clipboard_desc">Jaa leikepöydän sisältö</string>
   <string name="pref_plugin_mousepad">Kaukosyöte</string>
   <string name="pref_plugin_mousepad_desc">Käytä puhelintasi hiirenä ja näppäimistönä</string>
-  <string name="pref_plugin_mpris">Multimediakauko-ohjaimet</string>
+  <string name="pref_plugin_mpris">Multimedian kauko-ohjaus</string>
   <string name="pref_plugin_mpris_desc">Ohjaa ääntä ja videota puhelimestasi</string>
   <string name="pref_plugin_ping">Tiedustelupaketti</string>
   <string name="pref_plugin_ping_desc">Lähetä ja vastaanota tiedustelupaketteja</string>
@@ -49,7 +49,7 @@
   <string name="error_canceled_by_other_peer">Vertaiskäyttäjä perui</string>
   <string name="error_invalid_key">Vastaanotettiin väärä avain</string>
   <string name="pair_requested">Paripyyntö</string>
-  <string name="pairing_request_from">Paripyyntö kohteesta %1s</string>
+  <string name="pairing_request_from">Paripyyntö laitteesta %1s</string>
   <string name="received_url_title">Vastaanotettiin linkki lähettäjältä %1s</string>
   <string name="received_url_text">Avaa ”%1s” napauttamalla</string>
   <string name="incoming_file_title">Saapuva tiedosto lähettäjältä %1s</string>
@@ -99,6 +99,7 @@
   <string name="sftp_readonly">(vain luku)</string>
   <string name="sftp_camera">Kamerakuvat</string>
   <string name="add_host">Lisää kone/IP</string>
+  <string name="no_players_connected">Soittimia ei löytynyt</string>
   <string name="custom_dev_list_help">Käytä tätä vain, jos laitettasi ei tunnisteta automaattisesti. Kirjoita IP-osoite tai konenimi alle ja kosketa painiketta lisätäksesi sen luetteloon. Kosketa olemassa olevaa kohtaa poistaaksesi sen luettelosta.</string>
   <string name="mpris_player_on_device">%1$s laitteella %2$s</string>
   <string-array name="mpris_time_entries">
