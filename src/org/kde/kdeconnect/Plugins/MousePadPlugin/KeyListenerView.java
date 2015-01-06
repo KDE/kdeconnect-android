@@ -23,7 +23,6 @@ package org.kde.kdeconnect.Plugins.MousePadPlugin;
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -31,8 +30,8 @@ import android.view.inputmethod.InputConnection;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.NetworkPackage;
 
-import java.nio.ByteBuffer;
 import java.util.HashMap;
 
 public class KeyListenerView extends View  {
@@ -52,11 +51,29 @@ public class KeyListenerView extends View  {
         SpecialKeysMap.put(KeyEvent.KEYCODE_PAGE_UP, ++i);          // 8
         SpecialKeysMap.put(KeyEvent.KEYCODE_PAGE_DOWN, ++i);        // 9
         if (Build.VERSION.SDK_INT >= 11) {
-            SpecialKeysMap.put(KeyEvent.KEYCODE_MOVE_HOME, ++i);        // 10
-            SpecialKeysMap.put(KeyEvent.KEYCODE_MOVE_END, ++i);         // 11
-            SpecialKeysMap.put(KeyEvent.KEYCODE_NUMPAD_ENTER, ++i);     // 12
-            SpecialKeysMap.put(KeyEvent.KEYCODE_FORWARD_DEL, ++i);      // 13
-            SpecialKeysMap.put(KeyEvent.KEYCODE_ESCAPE, ++i);           // 14
+            SpecialKeysMap.put(KeyEvent.KEYCODE_MOVE_HOME, ++i);    // 10
+            SpecialKeysMap.put(KeyEvent.KEYCODE_MOVE_END, ++i);     // 11
+            SpecialKeysMap.put(KeyEvent.KEYCODE_NUMPAD_ENTER, ++i); // 12
+            SpecialKeysMap.put(KeyEvent.KEYCODE_FORWARD_DEL, ++i);  // 13
+            SpecialKeysMap.put(KeyEvent.KEYCODE_ESCAPE, ++i);       // 14
+            SpecialKeysMap.put(KeyEvent.KEYCODE_SYSRQ, ++i);        // 15
+            SpecialKeysMap.put(KeyEvent.KEYCODE_SCROLL_LOCK, ++i);  // 16
+            ++i;           // 17
+            ++i;           // 18
+            ++i;           // 19
+            ++i;           // 20
+            SpecialKeysMap.put(KeyEvent.KEYCODE_F1, ++i);           // 21
+            SpecialKeysMap.put(KeyEvent.KEYCODE_F2, ++i);           // 22
+            SpecialKeysMap.put(KeyEvent.KEYCODE_F3, ++i);           // 23
+            SpecialKeysMap.put(KeyEvent.KEYCODE_F4, ++i);           // 24
+            SpecialKeysMap.put(KeyEvent.KEYCODE_F5, ++i);           // 25
+            SpecialKeysMap.put(KeyEvent.KEYCODE_F6, ++i);           // 26
+            SpecialKeysMap.put(KeyEvent.KEYCODE_F7, ++i);           // 27
+            SpecialKeysMap.put(KeyEvent.KEYCODE_F8, ++i);           // 28
+            SpecialKeysMap.put(KeyEvent.KEYCODE_F9, ++i);           // 29
+            SpecialKeysMap.put(KeyEvent.KEYCODE_F10, ++i);          // 30
+            SpecialKeysMap.put(KeyEvent.KEYCODE_F11, ++i);          // 31
+            SpecialKeysMap.put(KeyEvent.KEYCODE_F12, ++i);          // 21
         }
     }
 
@@ -85,37 +102,77 @@ public class KeyListenerView extends View  {
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
 
-        char utfChar = (char)event.getUnicodeChar();
-        if (utfChar == 9 || utfChar == 10) utfChar = 0; //Workaround to send enter and tab as special keys instead of characters
+        //Log.e("KeyDown", "------------");
+        //Log.e("KeyDown", "keyChar:" + (int) event.getDisplayLabel());
+        //Log.e("KeyDown", "utfChar:" + (char)event.getUnicodeChar());
+        //Log.e("KeyDown", "intUtfChar:" + event.getUnicodeChar());
 
-        if (utfChar != 0) {
-            final String utfString = new String(new char[]{utfChar});
-            BackgroundService.RunCommand(getContext(), new BackgroundService.InstanceCallback() {
-                @Override
-                public void onServiceStart(BackgroundService service) {
-                    Device device = service.getDevice(deviceId);
-                    MousePadPlugin mousePadPlugin = (MousePadPlugin)device.getPlugin("plugin_mousepad");
-                    if (mousePadPlugin == null) return;
+        final NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MOUSEPAD);
 
-                    mousePadPlugin.sendKey(utfString);
-                }
-            });
-        } else {
-            if (!SpecialKeysMap.containsKey(keyCode)) {
-                return false;
+        boolean modifier = false;
+        if (event.isAltPressed()) {
+            np.set("alt", true);
+            modifier = true;
+        }
+        if (Build.VERSION.SDK_INT >= 11) {
+            if (event.isCtrlPressed()) {
+                np.set("ctrl", true);
+                modifier = true;
+            }
+        }
+
+        if (modifier) {
+
+            //Only send shift in combination with other modifiers or special keys. Otherwise let it modify the letter itself and get the final result in utf.
+            if (event.isShiftPressed()) {
+                np.set("shift", true);
             }
 
-            final int specialKey = SpecialKeysMap.get(keyCode);
-            BackgroundService.RunCommand(getContext(), new BackgroundService.InstanceCallback() {
-                @Override
-                public void onServiceStart(BackgroundService service) {
-                    Device device = service.getDevice(deviceId);
-                    MousePadPlugin mousePadPlugin = (MousePadPlugin)device.getPlugin("plugin_mousepad");
-                    if (mousePadPlugin == null) return;
-                    mousePadPlugin.sendSpecialKey(specialKey);
+            if (SpecialKeysMap.containsKey(keyCode)) {
+                int specialKey = SpecialKeysMap.get(keyCode);
+                np.set("specialKey", specialKey);
+            } else if (event.getDisplayLabel() != 0) {
+                //Alt will change the utf symbol to non-ascii characters, we want the plain original letter
+                //Since getDisplayLabel will always have a value, we have to check for special keys before
+                char keyCharacter = event.getDisplayLabel();
+                np.set("key", new String(new char[]{keyCharacter}).toLowerCase());
+            } else {
+                return false;  //We don't know what to send, better send nothing. Probably this is the modifier key itself.
+            }
+
+        } else {
+
+            //If it's not a modifier+key combination, we want the fancy (potentially utf) version of the key pressed
+            char utfChar = (char) event.getUnicodeChar();
+
+            //Workaround to send enter and tab as special keys instead of characters
+            if (utfChar == 9 || utfChar == 10) utfChar = 0;
+
+            if (utfChar != 0) {
+                String utfString = new String(new char[]{utfChar});
+                np.set("key", utfString);
+            } else if (SpecialKeysMap.containsKey(keyCode)) {
+                //Only send shift in combination with other modifiers or special keys. Otherwise let it modify the letter itself and get the final result in utf.
+                if (event.isShiftPressed()) {
+                    np.set("shift", true);
                 }
-            });
+                //If it was not a displayable character, check if it was a special key
+                int specialKey = SpecialKeysMap.get(keyCode);
+                np.set("specialKey", specialKey);
+            } else {
+                return false; //We don't know what to send, better send nothing. Probably this is an unhandled special key.
+            }
         }
+
+        BackgroundService.RunCommand(getContext(), new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                Device device = service.getDevice(deviceId);
+                MousePadPlugin mousePadPlugin = (MousePadPlugin) device.getPlugin("plugin_mousepad");
+                if (mousePadPlugin == null) return;
+                mousePadPlugin.sendKeyboardPacket(np);
+            }
+        });
 
         return true;
     }

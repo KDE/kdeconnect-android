@@ -22,7 +22,6 @@ package org.kde.kdeconnect.Plugins.MousePadPlugin;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.View;
@@ -142,15 +141,7 @@ public class MousePadPlugin extends Plugin {
         device.sendPackage(np);
     }
 
-    public void sendKey(String utfChar) {
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MOUSEPAD);
-        np.set("key", utfChar);
-        device.sendPackage(np);
-    }
-
-    public void sendSpecialKey(int specialKey) {
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MOUSEPAD);
-        np.set("specialKey", specialKey);
+    public void sendKeyboardPacket(NetworkPackage np) {
         device.sendPackage(np);
     }
 
