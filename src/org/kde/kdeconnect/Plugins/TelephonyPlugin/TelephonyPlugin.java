@@ -27,6 +27,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.telephony.TelephonyManager;
@@ -37,7 +38,14 @@ import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class TelephonyPlugin extends Plugin {
+
+    private int lastState = TelephonyManager.CALL_STATE_IDLE;
+    private NetworkPackage lastPackage = null;
+    boolean isMuted = false;
 
     @Override
     public String getPluginName() {
@@ -105,14 +113,8 @@ public class TelephonyPlugin extends Plugin {
                 callBroadcastReceived(finalIntState, finalNumber);
 
             }
-
         }
     };
-
-
-
-    private int lastState = TelephonyManager.CALL_STATE_IDLE;
-    private NetworkPackage lastPackage = null;
 
     public void callBroadcastReceived(int state, String phoneNumber) {
 
@@ -126,6 +128,11 @@ public class TelephonyPlugin extends Plugin {
 
         switch (state) {
             case TelephonyManager.CALL_STATE_RINGING:
+                if (isMuted) {
+                    AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+                    am.setStreamMute(AudioManager.STREAM_RING, false);
+                    isMuted = false;
+                }
                 np.set("event", "ringing");
                 device.sendPackage(np);
                 break;
@@ -142,6 +149,20 @@ public class TelephonyPlugin extends Plugin {
                     //Resend a cancel of the last event (can either be "ringing" or "talking")
                     lastPackage.set("isCancel","true");
                     device.sendPackage(lastPackage);
+
+                    if (isMuted) {
+                        Timer timer = new Timer();
+                        timer.schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                if (isMuted) {
+                                    AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+                                    am.setStreamMute(AudioManager.STREAM_RING, false);
+                                    isMuted = false;
+                                }
+                            }
+                        }, 500);
+                    }
 
                     //Emit a missed call notification if needed
                     if (lastState == TelephonyManager.CALL_STATE_RINGING) {
@@ -198,8 +219,19 @@ public class TelephonyPlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
+        if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_TELEPHONY)) {
+            return false;
+        }
+        if (np.getString("action").equals("mute")) {
+            if (!isMuted) {
+                AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+                am.setStreamMute(AudioManager.STREAM_RING, true);
+                isMuted = true;
+            }
+            //Log.e("TelephonyPlugin", "mute");
+        }
         //Do nothing
-        return false;
+        return true;
     }
 
     @Override
