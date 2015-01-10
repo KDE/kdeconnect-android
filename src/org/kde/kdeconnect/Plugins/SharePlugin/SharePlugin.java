@@ -123,18 +123,20 @@ public class SharePlugin extends Plugin {
 
                 Log.e("SharePlugin", "destinationFullPath:" + destinationFullPath);
 
+                final NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
                 final int notificationId = (int)System.currentTimeMillis();
                 Resources res = context.getResources();
-                Notification noti = new NotificationCompat.Builder(context)
+                final NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                         .setContentTitle(res.getString(R.string.incoming_file_title, device.getName()))
                         .setContentText(res.getString(R.string.incoming_file_text, filename))
                         .setTicker(res.getString(R.string.incoming_file_title, device.getName()))
-                        .setSmallIcon(android.R.drawable.ic_dialog_alert)
+                        .setSmallIcon(android.R.drawable.stat_sys_download)
                         .setAutoCancel(true)
-                        .build();
+                        .setOngoing(true)
+                        .setProgress(100,0,true);
 
-                NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                notificationManager.notify(notificationId, noti);
+                notificationManager.notify(notificationId,builder.build());
 
                 new Thread(new Runnable() {
                     @Override
@@ -151,6 +153,8 @@ public class SharePlugin extends Plugin {
                                 if (fileLength > 0) {
                                     if (total >= fileLength) break;
                                     float progress = (total * 100 / fileLength);
+                                    builder.setProgress(100,(int)progress,false);
+                                    notificationManager.notify(notificationId,builder.build());
                                 }
                                 //else Log.e("SharePlugin", "Infinite loop? :D");
                             }
@@ -184,7 +188,7 @@ public class SharePlugin extends Plugin {
                                     .setContentText(res.getString(R.string.received_file_text, filename))
                                     .setContentIntent(resultPendingIntent)
                                     .setTicker(res.getString(R.string.received_file_title, device.getName()))
-                                    .setSmallIcon(android.R.drawable.ic_dialog_alert)
+                                    .setSmallIcon(android.R.drawable.stat_sys_download_done)
                                     .setAutoCancel(true);
 
 
@@ -195,9 +199,8 @@ public class SharePlugin extends Plugin {
 
                             Notification noti = builder.build();
 
-                            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
                             notificationManager.notify(notificationId, noti);
-                            
+
                         } catch (Exception e) {
                             Log.e("SharePlugin", "Receiver thread exception");
                             e.printStackTrace();
