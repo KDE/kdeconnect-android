@@ -26,11 +26,13 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
@@ -72,7 +74,7 @@ public class SettingsActivity extends PreferenceActivity {
 
                     if (info.hasSettings()) {
                         final Preference pluginPreference = new Preference(getBaseContext());
-                        pluginPreference.setKey(pluginName + getString(R.string.plugin_settings_key));
+                        pluginPreference.setKey(pluginName + "_preferences");
                         pluginPreference.setSummary(getString(R.string.plugin_settings_with_name, info.getDisplayName()));
                         preferences.add(pluginPreference);
                         preferenceScreen.addPreference(pluginPreference);
@@ -84,23 +86,22 @@ public class SettingsActivity extends PreferenceActivity {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         Preference pref = preferences.get(i);
-                        if (pref.getDependency() == null) { //Is a plugin check
+                        if (pref.getDependency() == null) { //Is a check to enable/disable a plugin
                             CheckBoxPreference check = (CheckBoxPreference)pref;
                             boolean enabled = device.isPluginEnabled(pref.getKey());
                             device.setPluginEnabled(pref.getKey(), !enabled);
                             check.setChecked(!enabled);
                         } else { //Is a plugin suboption
                             if (pref.isEnabled()) {
-                                Intent intent = new Intent(SettingsActivity.this, PluginSettingsActivity.class);
-                                intent.putExtra(Intent.EXTRA_INTENT, pref.getKey());
-                                startActivity(intent);
+                                String pluginName = pref.getDependency(); //The parent pref will be named like the plugin
+                                Plugin plugin = device.getPlugin(pluginName, true);
+                                plugin.startPreferencesActivity(SettingsActivity.this);
                             }
                         }
                     }
                 });
             }
         });
-
 
 
     }

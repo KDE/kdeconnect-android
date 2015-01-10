@@ -81,7 +81,7 @@
 
         <activity
             android:name="org.kde.kdeconnect.UserInterface.SettingsActivity"
-            android:label="@string/settings"
+            android:label="@string/device_menu_plugins"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.DeviceActivity"
             >
             <meta-data android:name="android.support.PARENT_ACTIVITY"
@@ -101,7 +101,7 @@
 
         <activity
             android:name="org.kde.kdeconnect.UserInterface.PluginSettingsActivity"
-            android:label="@string/mpris_settings"
+            android:label="@string/device_menu_plugins"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.SettingsActivity"
             >
             <meta-data android:name="android.support.PARENT_ACTIVITY"
@@ -194,6 +194,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.PluginSettingsActivity" />
         </activity>
+
     </application>
 
 </manifest>

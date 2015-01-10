@@ -29,21 +29,25 @@
     <string name="open_mpris_controls">Open remote control</string>
     <string name="open_mousepad">Open touchpad control</string>
     <string name="mousepad_info">Move a finger on the screen to move the mouse cursor</string>
+    <string name="mousepad_double_tap_settings_title">Set two finger tap action</string>
+    <string name="mousepad_triple_tap_settings_title">Set three finger tap action</string>
     <string name="mousepad_double_tap_key" translatable="false">mousepad_double_tap_key</string>
     <string name="mousepad_triple_tap_key" translatable="false">mousepad_triple_tap_key</string>
-    <string name="mousepad_right_value" translatable="false">right</string>
-    <string name="mousepad_middle_value" translatable="false">middle</string>
-    <string name="mousepad_double_tap_settings_title">Set Two Finger Tap Action</string>
-    <string name="mousepad_double_default" translatable="false">@string/mousepad_right_value</string>
-    <string name="mousepad_triple_default" translatable="false">@string/mousepad_middle_value</string>
-    <string name="mousepad_triple_tap_settings_title">Set Three Finger Tap Action</string>
-    <string name="mousepad_right_click">Right click</string>
-    <string name="mousepad_middle_click">Middle click</string>
+    <string-array name="mousepad_tap_entries">
+        <item>Right click</item>
+        <item>Middle click</item>
+    </string-array>
+    <string name="mousepad_double_default">right</string>
+    <string name="mousepad_triple_default">middle</string>
+    <string-array name="mousepad_tap_values" translatable="false">
+        <item>right</item>
+        <item>middle</item>
+    </string-array>
     <string name="category_connected_devices">Connected devices</string>
     <string name="category_not_paired_devices">Available devices</string>
     <string name="category_remembered_devices">Remembered devices</string>
     <string name="plugins_failed_to_load">Plugins failed to load (tap for more info):</string>
-    <string name="device_menu_plugins">Select plugins</string>
+    <string name="device_menu_plugins">Plugin settings</string>
     <string name="device_menu_unpair">Unpair</string>
     <string name="device_not_reachable">Paired device not reachable</string>
     <string name="unknown_device">Unknown device</string>
@@ -83,17 +87,30 @@
     <string name="mpris_next">Next</string>
     <string name="mpris_volume">Volume</string>
     <string name="mpris_settings">Multimedia Settings</string>
-    <string name="mpris_time_settings_title">Interval Time</string>
-    <string name="mpris_time_settings_summary">Adjust the time to fast forward or rewind a multimedia file.</string>
+    <string name="mpris_time_settings_title">Forward/rewind buttons</string>
+    <string name="mpris_time_settings_summary">Adjust the time to fast forward/rewind when pressed.</string>
     <string name="mpris_time_key" translatable="false">mpris_interval_time</string>
+    <string-array name="mpris_time_entries">
+        <item>10 seconds</item>
+        <item>20 seconds</item>
+        <item>30 seconds</item>
+        <item>1 minute</item>
+        <item>2 minutes</item>
+    </string-array>
     <string name="mpris_time_default" translatable="false">10000000</string>
+    <string-array name="mpris_time_entries_values" translatable="false">
+        <item>10000000</item>
+        <item>20000000</item>
+        <item>30000000</item>
+        <item>60000000</item>
+        <item>120000000</item>
+    </string-array>
     <string name="share_to">Share To...</string>
     <string name="protocol_version_older">This device uses an old protocol version</string>
     <string name="protocol_version_newer">This device uses a newer protocol version</string>
     <string name="general_settings">General Settings</string>
     <string name="plugin_settings">Settings</string>
     <string name="plugin_settings_with_name">%s settings</string>
-    <string name="plugin_settings_key" translatable="false">_preferences</string>
     <string name="device_name">Device name</string>
     <string name="device_name_preference_summary">%s</string>
     <string name="invalid_device_name">Invalid device name</string>
@@ -103,7 +120,7 @@
     <string name="share_notification_preference">Noisy notifications</string>
     <string name="share_notification_preference_summary">Vibrate and play a sound when receiving a file</string>
     <string name="title_activity_notification_filter">Notification filter</string>
-    <string name="filter_apps_info">Notifications will be synchronized for selected applications</string>
+    <string name="filter_apps_info">Notifications will be synchronized for the selected apps.</string>
     <string name="sftp_internal_storage">Internal storage</string>
     <string name="sftp_all_files">All files</string>
     <string name="sftp_sdcard_num">SD card %d</string>
@@ -114,30 +131,5 @@
     <string name="no_players_connected">No players found</string>
     <string name="custom_dev_list_help">Use this option only if your device is not automatically detected. Enter IP address or hostname below and touch the button to add it to the list. Touch an existing item to remove it from the list.</string>
     <string name="mpris_player_on_device">%1$s on %2$s</string>
-
-    <string-array name="mpris_time_entries">
-        <item>10 seconds</item>
-        <item>20 seconds</item>
-        <item>30 seconds</item>
-        <item>1 minute</item>
-        <item>2 minutes</item>
-    </string-array>
-    <string-array name="mpris_time_entries_values" translatable="false">
-        <item>10000000</item>
-        <item>20000000</item>
-        <item>30000000</item>
-        <item>60000000</item>
-        <item>120000000</item>
-    </string-array>
-
-    <string-array name="mousepad_tap_entries" translatable="false">
-        <item>@string/mousepad_right_click</item>
-        <item>@string/mousepad_middle_click</item>
-    </string-array>
-
-    <string-array name="mousepad_tap_values" translatable="false">
-        <item>@string/mousepad_right_value</item>
-        <item>@string/mousepad_middle_value</item>
-    </string-array>
 
 </resources>

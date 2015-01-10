@@ -558,7 +558,15 @@ public class Device implements BaseLink.PackageReceiver {
     //
 
     public Plugin getPlugin(String name) {
-        return plugins.get(name);
+        return getPlugin(name, false);
+    }
+
+    public Plugin getPlugin(String name, boolean includeFailed) {
+        Plugin plugin = plugins.get(name);
+        if (includeFailed && plugin == null) {
+            plugin = failedPlugins.get(name);
+        }
+        return plugin;
     }
 
     private synchronized void addPlugin(final String name) {

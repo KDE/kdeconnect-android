@@ -23,18 +23,22 @@ package org.kde.kdeconnect.Plugins;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.preference.PreferenceActivity;
 import android.widget.Button;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
+import org.kde.kdeconnect.UserInterface.SettingsActivity;
 
 public abstract class Plugin {
 
     protected Device device;
     protected Context context;
 
-    public void setContext(Context context, Device device) {
+    public final void setContext(Context context, Device device) {
         this.device = device;
         this.context = context;
     }
@@ -71,11 +75,23 @@ public abstract class Plugin {
      */
     public abstract boolean isEnabledByDefault();
 
-
     /**
      * Return true if this plugin needs an specific UI settings.
      */
     public abstract boolean hasSettings();
+
+    /**
+     * If hasSettings returns true, this will be called when the user
+     * wants to access this plugin preferences and should launch some
+     * kind of interface. The default implementation will launch a
+     * SettingsActivity with content from "yourplugin"_preferences.xml.
+     */
+    public void startPreferencesActivity(SettingsActivity parentActivity) {
+        Intent intent = new Intent(parentActivity, PluginSettingsActivity.class);
+        intent.putExtra("plugin_display_name", getDisplayName());
+        intent.putExtra("plugin_name", getPluginName());
+        parentActivity.startActivity(intent);
+    }
 
     /**
      * Initialize the listeners and structures in your plugin.

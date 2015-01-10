@@ -38,6 +38,7 @@ import org.kde.kdeconnect.Helpers.AppsHelper;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.UserInterface.DeviceActivity;
+import org.kde.kdeconnect.UserInterface.SettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
 public class NotificationsPlugin extends Plugin implements NotificationReceiver.NotificationListener {
@@ -68,12 +69,41 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     }
 
     @Override
+    public void startPreferencesActivity(final SettingsActivity parentActivity) {
+        if (hasPermission()) {
+            Intent intent = new Intent(parentActivity, NotificationFilterActivity.class);
+            parentActivity.startActivity(intent);
+        } else {
+            new AlertDialog.Builder(parentActivity)
+                    .setTitle(R.string.pref_plugin_notifications)
+                    .setMessage(R.string.no_permissions)
+                    .setPositiveButton(R.string.open_settings, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+                            parentActivity.startActivityForResult(intent, DeviceActivity.RESULT_NEEDS_RELOAD);
+                        }
+                    })
+                    .setNegativeButton(R.string.cancel,new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            //Do nothing
+                        }
+                    })
+                    .create().show();
+
+        }
+    }
+
+    @Override
     public boolean isEnabledByDefault() {
         return true;
     }
 
-
-
+    private boolean hasPermission() {
+        String notificationListenerList = Settings.Secure.getString(context.getContentResolver(), "enabled_notification_listeners");
+        return (notificationListenerList != null && notificationListenerList.contains(context.getPackageName()));
+    }
 
     static class NotificationId {
         String packageName;
@@ -136,9 +166,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             return false;
         }
 
-        //Check for permissions
-        String notificationListenerList = Settings.Secure.getString(context.getContentResolver(), "enabled_notification_listeners");
-        if (notificationListenerList != null && notificationListenerList.contains(context.getPackageName())) {
+        if (hasPermission()) {
             NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
                 @Override
                 public void onServiceStart(NotificationReceiver service) {
