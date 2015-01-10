@@ -58,7 +58,16 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
 
     KeyListenerView keyListenerView;
 
-    enum ClickType {RIGHT,MIDDLE}
+    static enum ClickType {
+        RIGHT, MIDDLE, NONE;
+        static ClickType fromString(String s) {
+            switch(s) {
+                case "right": return RIGHT;
+                case "middle": return MIDDLE;
+                default: return NONE;
+            }
+        }
+    }
 
     private ClickType doubleTapAction, tripleTapAction;
 
@@ -85,11 +94,8 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
         String tripleTapSetting = prefs.getString(getString(R.string.mousepad_triple_tap_key),
                 getString(R.string.mousepad_triple_default));
 
-        doubleTapAction = getString(R.string.mousepad_right_value).equals(doubleTapSetting)?
-                ClickType.RIGHT : ClickType.MIDDLE;
-        tripleTapAction = getString(R.string.mousepad_right_value).equals(tripleTapSetting)?
-                ClickType.RIGHT : ClickType.MIDDLE;
-
+        doubleTapAction = ClickType.fromString(doubleTapSetting);
+        tripleTapAction = ClickType.fromString(tripleTapSetting);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             final View decorView = getWindow().getDecorView();
@@ -293,10 +299,10 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
             case RIGHT:
                 sendRightClick();
                 break;
-            default:
             case MIDDLE:
                 sendMiddleClick();
                 break;
+            default:
         }
         return true;
     }
@@ -304,13 +310,13 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
     @Override
     public boolean onDoubleFingerTap(MotionEvent ev) {
         switch(doubleTapAction){
-            default:
             case RIGHT:
                 sendRightClick();
                 break;
             case MIDDLE:
                 sendMiddleClick();
                 break;
+            default:
         }
         return true;
     }

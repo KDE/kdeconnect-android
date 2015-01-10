@@ -28,7 +28,7 @@
     <string name="send_ping">Send ping</string>
     <string name="open_mpris_controls">Open remote control</string>
     <string name="open_mousepad">Open touchpad control</string>
-    <string name="mousepad_info">Move a finger on the screen to move the mouse cursor</string>
+    <string name="mousepad_info">Move a finger on the screen to move the mouse cursor. Tap for a click, and use two/three fingers for right and middle buttons. Use a long press to drag\'n drop.</string>
     <string name="mousepad_double_tap_settings_title">Set two finger tap action</string>
     <string name="mousepad_triple_tap_settings_title">Set three finger tap action</string>
     <string name="mousepad_double_tap_key" translatable="false">mousepad_double_tap_key</string>
@@ -36,12 +36,14 @@
     <string-array name="mousepad_tap_entries">
         <item>Right click</item>
         <item>Middle click</item>
+        <item>Nothing</item>
     </string-array>
     <string name="mousepad_double_default">right</string>
     <string name="mousepad_triple_default">middle</string>
     <string-array name="mousepad_tap_values" translatable="false">
         <item>right</item>
         <item>middle</item>
+        <item>none</item>
     </string-array>
     <string name="category_connected_devices">Connected devices</string>
     <string name="category_not_paired_devices">Available devices</string>
