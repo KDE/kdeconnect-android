@@ -292,9 +292,11 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 try {
                     Bundle extras = notification.extras;
                     String extraTitle = extras.getString(TITLE_KEY);
-                    String extraText = extras.getString(TEXT_KEY);
+                    String extraText = null;
+                    Object extraTextExtra = extras.get(TEXT_KEY);
+                    if (extraTextExtra != null) extraText = extraTextExtra.toString();
 
-                    if (extraTitle != null && extraText != null) {
+                    if (extraTitle != null && extraText != null && !extraText.isEmpty()) {
                         ticker = extraTitle + " ‐ " + extraText;
                     } else if (extraTitle != null) {
                         ticker = extraTitle;
@@ -302,7 +304,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                         ticker = extraText;
                     }
                 } catch(Exception e) {
-                    Log.w("NotificationPlugin","problem parsing notification extras");
+                    Log.w("NotificationPlugin","problem parsing notification extras for " + notification.tickerText);
                     e.printStackTrace();
                 }
             }
