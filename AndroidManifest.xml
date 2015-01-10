@@ -185,7 +185,15 @@
             </intent-filter>
         </service>
 
-
+        <activity
+            android:name="org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationFilterActivity"
+            android:label="@string/title_activity_notification_filter"
+            android:theme="@style/Theme.AppCompat"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.PluginSettingsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.kde.kdeconnect.UserInterface.PluginSettingsActivity" />
+        </activity>
     </application>
 
 </manifest>

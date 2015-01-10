@@ -23,6 +23,9 @@ package org.kde.kdeconnect.UserInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.util.Log;
+
+import org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationFilterActivity;
 
 public class PluginSettingsActivity extends PreferenceActivity {
 
@@ -31,7 +34,13 @@ public class PluginSettingsActivity extends PreferenceActivity {
         super.onCreate(savedInstanceState);
 
         String resource_name = getIntent().getStringExtra(Intent.EXTRA_INTENT);
-        int resource_file = getResources().getIdentifier(resource_name, "xml", getPackageName());
-        addPreferencesFromResource(resource_file);
+        if (resource_name.equals("plugin_notifications_preferences")){
+            Intent intent = new Intent(PluginSettingsActivity.this,NotificationFilterActivity.class);
+            startActivity(intent);
+            finish();
+        }else {
+            int resource_file = getResources().getIdentifier(resource_name, "xml", getPackageName());
+            addPreferencesFromResource(resource_file);
+        }
     }
 }

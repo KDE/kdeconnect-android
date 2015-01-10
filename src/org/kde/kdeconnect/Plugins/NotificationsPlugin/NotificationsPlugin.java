@@ -64,7 +64,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public boolean hasSettings() {
-        return false;
+        return true;
     }
 
     @Override
@@ -199,6 +199,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     public void sendNotification(StatusBarNotification statusBarNotification, boolean requestAnswer) {
 
         Notification notification = statusBarNotification.getNotification();
+        AppDatabase appDatabase = new AppDatabase(context);
 
          if ((notification.flags & Notification.FLAG_FOREGROUND_SERVICE) != 0
              || (notification.flags & Notification.FLAG_ONGOING_EVENT) != 0
@@ -206,6 +207,13 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             //This is not a notification we want!
             return;
         }
+
+        appDatabase.open();
+        if (!appDatabase.isFilterEnabled(statusBarNotification.getPackageName())){
+            return;
+            // we dont want notification from this app
+        }
+        appDatabase.close();
 
         NotificationId id = NotificationId.fromNotification(statusBarNotification);
 

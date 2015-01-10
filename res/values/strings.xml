@@ -102,6 +102,8 @@
     <string name="custom_device_list">Add devices by IP</string>
     <string name="share_notification_preference">Noisy notifications</string>
     <string name="share_notification_preference_summary">Vibrate and play a sound when receiving a file</string>
+    <string name="title_activity_notification_filter">Notification filter</string>
+    <string name="filter_apps_info">Notifications will be synchronized for selected applications</string>
     <string name="sftp_internal_storage">Internal storage</string>
     <string name="sftp_all_files">All files</string>
     <string name="sftp_sdcard_num">SD card %d</string>
@@ -120,7 +122,6 @@
         <item>1 minute</item>
         <item>2 minutes</item>
     </string-array>
-
     <string-array name="mpris_time_entries_values" translatable="false">
         <item>10000000</item>
         <item>20000000</item>
