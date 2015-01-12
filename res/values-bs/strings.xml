@@ -5,6 +5,11 @@
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Šalji i primaj ping-ove</string>
   <string name="pref_plugin_notifications">Sinhronizovano obavještenje</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Right click</item>
+    <item>Middle click</item>
+    <item>Nothing</item>
+  </string-array>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>
     <item>20 seconds</item>

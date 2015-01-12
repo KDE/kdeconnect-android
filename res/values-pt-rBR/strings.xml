@@ -27,16 +27,15 @@
   <string name="send_ping">Enviar ping</string>
   <string name="open_mpris_controls">Abra o controle remoto</string>
   <string name="open_mousepad">Abrir o controle do touchpad</string>
-  <string name="mousepad_info">Mova um dedo na tela para mover o ponteiro do mouse</string>
-  <string name="mousepad_double_tap_settings_title">Definir a ação do toque com dois dedos</string>
-  <string name="mousepad_triple_tap_settings_title">Definir a ação do toque com três dedos</string>
-  <string name="mousepad_right_click">Botão direito</string>
-  <string name="mousepad_middle_click">Botão do meio</string>
+  <string-array name="mousepad_tap_entries">
+    <item/>
+    <item/>
+    <item>Nothing</item>
+  </string-array>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos disponíveis</string>
   <string name="category_remembered_devices">Dispositivos lembrados</string>
   <string name="plugins_failed_to_load">Plugins não carregados (toque para mais informações):</string>
-  <string name="device_menu_plugins">Selecionar plugins</string>
   <string name="device_menu_unpair">Cancelar emparelhamento</string>
   <string name="device_not_reachable">O dispositivo pareado está inacessível</string>
   <string name="unknown_device">Dispositivo desconhecido</string>
@@ -76,8 +75,13 @@
   <string name="mpris_next">Próximo</string>
   <string name="mpris_volume">Volume</string>
   <string name="mpris_settings">Configurações de multimídia</string>
-  <string name="mpris_time_settings_title">Intervalo de tempo</string>
-  <string name="mpris_time_settings_summary">Ajuste o tempo para avançar ou retroceder um arquivo multimídia.</string>
+  <string-array name="mpris_time_entries">
+    <item>10 segundos</item>
+    <item>20 segundos</item>
+    <item>30 segundos</item>
+    <item>1 minuto</item>
+    <item>2 minutos</item>
+  </string-array>
   <string name="share_to">Compartilhar com...</string>
   <string name="protocol_version_older">Este dispositivo usa uma versão antiga do protocolo</string>
   <string name="protocol_version_newer">Este dispositivo usa uma versão mais recente do protocolo</string>
@@ -102,11 +106,4 @@
   <string name="no_players_connected">Nenhum reprodutor encontrado</string>
   <string name="custom_dev_list_help">Use esta opção apenas se o seu dispositivo não for detectado automaticamente. Digite o endereço IP ou nome da máquina no campo abaixo e toque o botão para adicioná-lo à lista. Toque em um item existente para removê-lo da lista.</string>
   <string name="mpris_player_on_device">%1$s em %2$s</string>
-  <string-array name="mpris_time_entries">
-    <item>10 segundos</item>
-    <item>20 segundos</item>
-    <item>30 segundos</item>
-    <item>1 minuto</item>
-    <item>2 minutos</item>
-  </string-array>
 </resources>

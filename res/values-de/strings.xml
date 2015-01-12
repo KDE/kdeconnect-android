@@ -24,12 +24,14 @@
   <string name="send_ping">Ping senden</string>
   <string name="open_mpris_controls">Fernbedienung öffnen</string>
   <string name="open_mousepad">Touchpad-Steuerung öffnen</string>
-  <string name="mousepad_right_click">Rechtsklick</string>
-  <string name="mousepad_middle_click">Mittelklick</string>
+  <string-array name="mousepad_tap_entries">
+    <item/>
+    <item/>
+    <item>Nothing</item>
+  </string-array>
   <string name="category_connected_devices">Verbundene Geräte</string>
   <string name="category_remembered_devices">Gemerkte Geräte</string>
   <string name="plugins_failed_to_load">Laden der Module fehlgeschlagen, tippen Sie für weitere Details:</string>
-  <string name="device_menu_plugins">Module auswählen</string>
   <string name="device_menu_unpair">Verbindung trennen</string>
   <string name="device_not_reachable">Das angegeben Gerät ist nicht erreichbar</string>
   <string name="unknown_device">Unbekanntes Gerät</string>
@@ -67,6 +69,13 @@
   <string name="mpris_next">Weiter</string>
   <string name="mpris_volume">Lautstärke</string>
   <string name="mpris_settings">Multimedia-Einstellungen</string>
+  <string-array name="mpris_time_entries">
+    <item>10 Sekunden</item>
+    <item>20 Sekunden</item>
+    <item>30 Sekunden</item>
+    <item>1 Minute</item>
+    <item>2 Minuten</item>
+  </string-array>
   <string name="share_to">Freigeben für ...</string>
   <string name="protocol_version_older">Dieses Gerät verwendet ein alte Protokollversion</string>
   <string name="protocol_version_newer">Dieses Gerät verwendet ein neuere Protokollversion</string>
@@ -86,11 +95,4 @@
   <string name="sftp_readonly">(Nur lesen)</string>
   <string name="sftp_camera">Kamerabilder</string>
   <string name="add_host">Rechner/IP hinzufügen</string>
-  <string-array name="mpris_time_entries">
-    <item>10 Sekunden</item>
-    <item>20 Sekunden</item>
-    <item>30 Sekunden</item>
-    <item>1 Minute</item>
-    <item>2 Minuten</item>
-  </string-array>
 </resources>

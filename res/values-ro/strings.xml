@@ -22,10 +22,14 @@
   <string name="no_permissions">Trebuie să acordați permisiunea pentru accesarea notificărilor</string>
   <string name="send_ping">Trimite ping</string>
   <string name="open_mpris_controls">Deschide controlul de la distanță</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Right click</item>
+    <item>Middle click</item>
+    <item>Nothing</item>
+  </string-array>
   <string name="category_connected_devices">Dispozitive conectate</string>
   <string name="category_remembered_devices">Dispozitive memorizate</string>
   <string name="plugins_failed_to_load">Încărcarea extensiilor a eșuat (atingeți pentru mai multe informații):</string>
-  <string name="device_menu_plugins">Alege extensii</string>
   <string name="device_menu_unpair">Dezasociază</string>
   <string name="unknown_device">Dispozitiv necunoscut</string>
   <string name="error_not_reachable">Dispozitivul nu e accesibil</string>
@@ -54,13 +58,6 @@
   <string name="mpris_ff">Derulare rapidă înainte</string>
   <string name="mpris_next">Următor</string>
   <string name="mpris_volume">Volum</string>
-  <string name="share_to">Partajează cu...</string>
-  <string name="protocol_version_older">Acest dispozitiv folosește o versiune veche a protocolului</string>
-  <string name="protocol_version_newer">Acest dispozitiv folosește o versiune mai nouă a protocolului</string>
-  <string name="general_settings">Configurări generale</string>
-  <string name="device_name">Denumire dispozitiv</string>
-  <string name="device_name_preference_summary">%s</string>
-  <string name="invalid_device_name">Denumire nevalidă a dispozitivului</string>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>
     <item>20 seconds</item>
@@ -68,4 +65,11 @@
     <item>1 minute</item>
     <item>2 minutes</item>
   </string-array>
+  <string name="share_to">Partajează cu...</string>
+  <string name="protocol_version_older">Acest dispozitiv folosește o versiune veche a protocolului</string>
+  <string name="protocol_version_newer">Acest dispozitiv folosește o versiune mai nouă a protocolului</string>
+  <string name="general_settings">Configurări generale</string>
+  <string name="device_name">Denumire dispozitiv</string>
+  <string name="device_name_preference_summary">%s</string>
+  <string name="invalid_device_name">Denumire nevalidă a dispozitivului</string>
 </resources>

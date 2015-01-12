@@ -27,16 +27,21 @@
   <string name="send_ping">Enviar um pedido de contacto</string>
   <string name="open_mpris_controls">Abrir o comando à distância</string>
   <string name="open_mousepad">Abrir o controlo do painel do rato</string>
-  <string name="mousepad_info">Mova um dedo no ecrã para mover o cursor do rato</string>
-  <string name="mousepad_double_tap_settings_title">Definir a Acção do Toque com Dois Dedos</string>
-  <string name="mousepad_triple_tap_settings_title">Definir a Acção do Toque com Três Dedos</string>
-  <string name="mousepad_right_click">Botão direito</string>
-  <string name="mousepad_middle_click">Botão do meio</string>
+  <string name="mousepad_info">Mova um dedo pelo ecrã para mover o cursor do rato. Dê um toque para carregar no botão esquerdo e use dois/três dedos para os botões direito e do meio. Use uma pressão longa para arrastar e largar.</string>
+  <string name="mousepad_double_tap_settings_title">Definir a acção do toque com dois dedos</string>
+  <string name="mousepad_triple_tap_settings_title">Definir a acção do toque com três dedos</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Botão direito</item>
+    <item>Botão do meio</item>
+    <item>Nada</item>
+  </string-array>
+  <string name="mousepad_double_default">direita</string>
+  <string name="mousepad_triple_default">meio</string>
   <string name="category_connected_devices">Dispositivos ligados</string>
   <string name="category_not_paired_devices">Dispositivos disponíveis</string>
   <string name="category_remembered_devices">Dispositivos recordados</string>
   <string name="plugins_failed_to_load">Não foi possível carregar os \'plugin\' (toque para mais informações):</string>
-  <string name="device_menu_plugins">Seleccionar os \'plugins\'</string>
+  <string name="device_menu_plugins">Configuração do \'plugin\'</string>
   <string name="device_menu_unpair">Desemparelhar</string>
   <string name="device_not_reachable">O dispositivo emparelhado está inacessível</string>
   <string name="unknown_device">Dispositivo desconhecido</string>
@@ -76,8 +81,15 @@
   <string name="mpris_next">Seguinte</string>
   <string name="mpris_volume">Volume</string>
   <string name="mpris_settings">Configuração Multimédia</string>
-  <string name="mpris_time_settings_title">Tempo do Intervalo</string>
-  <string name="mpris_time_settings_summary">Ajusta o tempo de avanço ou de recuo de um ficheiro multimédia.</string>
+  <string name="mpris_time_settings_title">Botões para avançar/recuar</string>
+  <string name="mpris_time_settings_summary">Ajusta o tempo para o avanço/recuo quando pressionar.</string>
+  <string-array name="mpris_time_entries">
+    <item>10 segundos</item>
+    <item>20 segundos</item>
+    <item>30 segundos</item>
+    <item>1 minuto</item>
+    <item>2 minutos</item>
+  </string-array>
   <string name="share_to">Partilhar Com...</string>
   <string name="protocol_version_older">Este dispositivo usa uma versão antiga do protocolo</string>
   <string name="protocol_version_newer">Este dispositivo usa uma versão mais recente do protocolo</string>
@@ -92,6 +104,8 @@
   <string name="custom_device_list">Adicionar dispositivos pelo IP</string>
   <string name="share_notification_preference">Notificações com ruído</string>
   <string name="share_notification_preference_summary">Vibrar e tocar um som ao receber um ficheiro</string>
+  <string name="title_activity_notification_filter">Filtro de notificações</string>
+  <string name="filter_apps_info">As notificações serão sincronizadas para as aplicações seleccionadas.</string>
   <string name="sftp_internal_storage">Armazenamento interno</string>
   <string name="sftp_all_files">Todos os ficheiros</string>
   <string name="sftp_sdcard_num">Cartão SD %d</string>
@@ -102,11 +116,4 @@
   <string name="no_players_connected">Não foram encontrados leitores</string>
   <string name="custom_dev_list_help">Use esta opção apenas se o seu dispositivo não for detectado automaticamente. Indique o endereço IP ou nome da máquina em baixo e carregue no botão para a adicionar à lista. Carregue sobre um item existente para o remover da lista.</string>
   <string name="mpris_player_on_device">%1$s em %2$s</string>
-  <string-array name="mpris_time_entries">
-    <item>10 segundos</item>
-    <item>20 segundos</item>
-    <item>30 segundos</item>
-    <item>1 minuto</item>
-    <item>2 minutos</item>
-  </string-array>
 </resources>

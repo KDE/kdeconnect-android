@@ -22,10 +22,14 @@
   <string name="no_permissions">Трябва да осигурите права за достъп до уведомленията</string>
   <string name="send_ping">Изпращане на пинг</string>
   <string name="open_mpris_controls">Отваряне на отдалечен контрол</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Right click</item>
+    <item>Middle click</item>
+    <item>Nothing</item>
+  </string-array>
   <string name="category_connected_devices">Свързани устройства</string>
   <string name="category_remembered_devices">Запомнени устройства</string>
   <string name="plugins_failed_to_load">Неуспешно зареждане на приставки (докоснете за подробности)</string>
-  <string name="device_menu_plugins">Изберете приставки</string>
   <string name="device_menu_unpair">Разкачване</string>
   <string name="unknown_device">Неизвестно устройство</string>
   <string name="error_not_reachable">Устройството е недостъпно</string>
@@ -54,13 +58,6 @@
   <string name="mpris_ff">Превъртане напред</string>
   <string name="mpris_next">Следващ</string>
   <string name="mpris_volume">Сила на звука</string>
-  <string name="share_to">Споделяне...</string>
-  <string name="protocol_version_older">Това устройство използва стара версия на протокола</string>
-  <string name="protocol_version_newer">Това устройство използва по-нова версия на протокола</string>
-  <string name="general_settings">Общи настройки</string>
-  <string name="device_name">Име на устройството</string>
-  <string name="device_name_preference_summary">%s</string>
-  <string name="invalid_device_name">Невалидно име на устройство</string>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>
     <item>20 seconds</item>
@@ -68,4 +65,11 @@
     <item>1 minute</item>
     <item>2 minutes</item>
   </string-array>
+  <string name="share_to">Споделяне...</string>
+  <string name="protocol_version_older">Това устройство използва стара версия на протокола</string>
+  <string name="protocol_version_newer">Това устройство използва по-нова версия на протокола</string>
+  <string name="general_settings">Общи настройки</string>
+  <string name="device_name">Име на устройството</string>
+  <string name="device_name_preference_summary">%s</string>
+  <string name="invalid_device_name">Невалидно име на устройство</string>
 </resources>

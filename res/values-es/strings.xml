@@ -4,7 +4,7 @@
   <string name="pref_plugin_telephony_desc">Enviar notificaciones de SMS y llamadas</string>
   <string name="pref_plugin_battery">Informe de la batería</string>
   <string name="pref_plugin_battery_desc">Informar periódicamente del estado de la batería</string>
-  <string name="pref_plugin_sftp">Revelar el sistema de archivos</string>
+  <string name="pref_plugin_sftp">Mostrar el sistema de archivos</string>
   <string name="pref_plugin_sftp_desc">Permite examinar de forma remota el sistema de archivos del teléfono</string>
   <string name="pref_plugin_clipboard">Sincronización del portapapeles</string>
   <string name="pref_plugin_clipboard_desc">Compartir el contenido del portapapeles</string>
@@ -27,16 +27,21 @@
   <string name="send_ping">Enviar ping</string>
   <string name="open_mpris_controls">Abrir control remoto</string>
   <string name="open_mousepad">Abrir control del panel táctil</string>
-  <string name="mousepad_info">Mueva un dedo sobre la pantalla para mover el cursor del ratón</string>
-  <string name="mousepad_double_tap_settings_title">Establecer la acción al golpetear con dos dedos</string>
-  <string name="mousepad_triple_tap_settings_title">Establecer la acción al golpetear con tres dedos</string>
-  <string name="mousepad_right_click">Clic derecho</string>
-  <string name="mousepad_middle_click">Clic del botón central</string>
+  <string name="mousepad_info">Mueva un dedo sobre la pantalla para mover el cursor del ratón. Pulse para ejecutar un clic y use dos/tres dedos para emular los botones derecho y central. Use una pulsación larga para arrastrar y soltar.</string>
+  <string name="mousepad_double_tap_settings_title">Establecer la acción al pulsar con dos dedos</string>
+  <string name="mousepad_triple_tap_settings_title">Establecer la acción al pulsar con tres dedos</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Clic derecho</item>
+    <item>Clic del botón central</item>
+    <item>Nada</item>
+  </string-array>
+  <string name="mousepad_double_default">derecho</string>
+  <string name="mousepad_triple_default">medio</string>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos disponibles</string>
   <string name="category_remembered_devices">Dispositivos recordados</string>
-  <string name="plugins_failed_to_load">Complementos cuya carga ha fallado (toque para más información):</string>
-  <string name="device_menu_plugins">Seleccionar complementos</string>
+  <string name="plugins_failed_to_load">Complementos cuya carga ha fallado (pulse para más información):</string>
+  <string name="device_menu_plugins">Preferencias del complemento</string>
   <string name="device_menu_unpair">Desvincular</string>
   <string name="device_not_reachable">No se encuentra el dispositivo aparejado</string>
   <string name="unknown_device">Dispositivo desconocido</string>
@@ -56,7 +61,7 @@
   <string name="incoming_file_text">%1s</string>
   <string name="received_file_title">Archivo recibido desde %1s</string>
   <string name="received_file_text">Pulse para abrir «%1s»</string>
-  <string name="tap_to_answer">Toque para responder</string>
+  <string name="tap_to_answer">Pulse para responder</string>
   <string name="reconnect">Reconectar</string>
   <string name="right_click">Enviar clic derecho</string>
   <string name="middle_click">Enviar clic del botón central</string>
@@ -76,8 +81,15 @@
   <string name="mpris_next">Siguiente</string>
   <string name="mpris_volume">Volumen</string>
   <string name="mpris_settings">Preferencias multimedia</string>
-  <string name="mpris_time_settings_title">Intervalo de tiempo</string>
-  <string name="mpris_time_settings_summary">Ajustar el tiempo a avanzar o rebobinar un archivo multimedia.</string>
+  <string name="mpris_time_settings_title">Botones de avance/rebobinado</string>
+  <string name="mpris_time_settings_summary">Ajustar el tiempo a avanzar o rebobinar rápidamente al pulsar.</string>
+  <string-array name="mpris_time_entries">
+    <item>10 segundos</item>
+    <item>20 segundos</item>
+    <item>30 segundos</item>
+    <item>1 minuto</item>
+    <item>2 minutos</item>
+  </string-array>
   <string name="share_to">Compartir con...</string>
   <string name="protocol_version_older">Este dispositivo usa una versión antigua del protocolo</string>
   <string name="protocol_version_newer">Este dispositivo usa una versión más reciente del protocolo</string>
@@ -92,6 +104,8 @@
   <string name="custom_device_list">Añadir dispositivos por IP</string>
   <string name="share_notification_preference">Notificaciones ruidosas</string>
   <string name="share_notification_preference_summary">Vibrar y reproducir un sonido cuando se reciba un archivo</string>
+  <string name="title_activity_notification_filter">Filtro de notificaciones</string>
+  <string name="filter_apps_info">Las notificaciones se sincronizarán en las aplicaciones seleccionadas.</string>
   <string name="sftp_internal_storage">Almacenamiento interno</string>
   <string name="sftp_all_files">Todos los archivos</string>
   <string name="sftp_sdcard_num">Tarjeta SD %d</string>
@@ -102,11 +116,4 @@
   <string name="no_players_connected">Ningún reproductor encontrado</string>
   <string name="custom_dev_list_help">Use esta opción solo si su dispositivo no es detectado automáticamente. Introduzca la dirección IP o nombre debajo y pulse el botón para añadirlo a la lista. Pulse un ítem existente para eliminarlo de la lista.</string>
   <string name="mpris_player_on_device">%1$s en %2$s</string>
-  <string-array name="mpris_time_entries">
-    <item>10 segundos</item>
-    <item>20 segundos</item>
-    <item>30 segundos</item>
-    <item>1 minuto</item>
-    <item>2 minutos</item>
-  </string-array>
 </resources>

@@ -25,11 +25,14 @@
   <string name="send_ping">Send ping</string>
   <string name="open_mpris_controls">Åbn fjernbetjening</string>
   <string name="open_mousepad">Åbn touchpad-kontrol</string>
-  <string name="mousepad_info">Bevæg en finger på skærmen for at flytte musemarkøren</string>
+  <string-array name="mousepad_tap_entries">
+    <item/>
+    <item/>
+    <item>Nothing</item>
+  </string-array>
   <string name="category_connected_devices">Forbundne enheder</string>
   <string name="category_remembered_devices">Huskede enheder</string>
   <string name="plugins_failed_to_load">Plugins kunne ikke indlæses (tap for mere info):</string>
-  <string name="device_menu_plugins">Vælg plugins</string>
   <string name="device_menu_unpair">Fjern parring</string>
   <string name="device_not_reachable">Den parrede enhed kan ikke tilgås</string>
   <string name="unknown_device">Ukendt enhed</string>
@@ -68,6 +71,13 @@
   <string name="mpris_ff">Spol frem</string>
   <string name="mpris_next">Næste</string>
   <string name="mpris_volume">Lydstyrke</string>
+  <string-array name="mpris_time_entries">
+    <item>10 seconds</item>
+    <item>20 seconds</item>
+    <item>30 seconds</item>
+    <item>1 minute</item>
+    <item>2 minutes</item>
+  </string-array>
   <string name="share_to">Del på...</string>
   <string name="protocol_version_older">Denne enhed bruger en gammel protokolversion</string>
   <string name="protocol_version_newer">Denne enhed bruger en nyere protokolversion</string>
@@ -76,11 +86,4 @@
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Ugyldigt enhedsnavn</string>
   <string name="shareplugin_text_saved">Modtog tekst, gemt til udklipsholder</string>
-  <string-array name="mpris_time_entries">
-    <item>10 seconds</item>
-    <item>20 seconds</item>
-    <item>30 seconds</item>
-    <item>1 minute</item>
-    <item>2 minutes</item>
-  </string-array>
 </resources>

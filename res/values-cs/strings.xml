@@ -27,16 +27,15 @@
   <string name="send_ping">Poslat ping</string>
   <string name="open_mpris_controls">Otevřít vzdálené ovládání</string>
   <string name="open_mousepad">Otevřít dotykové ovládání</string>
-  <string name="mousepad_info">Pohybujte prstem po monitoru pro pohybování kurzorem myši</string>
-  <string name="mousepad_double_tap_settings_title">Nastavit činnost pro ťuknutí dvěma prsty</string>
-  <string name="mousepad_triple_tap_settings_title">Nastavit činnost pro ťuknutí třemi prsty</string>
-  <string name="mousepad_right_click">Kliknutí pravým tlačítkem myši</string>
-  <string name="mousepad_middle_click">Kliknutí prostředním tlačítkem myši</string>
+  <string-array name="mousepad_tap_entries">
+    <item/>
+    <item/>
+    <item>Nothing</item>
+  </string-array>
   <string name="category_connected_devices">Připojená zařízení</string>
   <string name="category_not_paired_devices">Dostupná zařízení</string>
   <string name="category_remembered_devices">Zapamatovaná zařízení</string>
   <string name="plugins_failed_to_load">Moduly nebyly načteny (ťukněte pro více informací):</string>
-  <string name="device_menu_plugins">Vyberte moduly</string>
   <string name="device_menu_unpair">Zrušit párování</string>
   <string name="device_not_reachable">Spárované zařízení je nedostupné</string>
   <string name="unknown_device">Neznámé zařízení</string>
@@ -76,8 +75,13 @@
   <string name="mpris_next">Následující</string>
   <string name="mpris_volume">Hlasitost</string>
   <string name="mpris_settings">Nastavení multimédií</string>
-  <string name="mpris_time_settings_title">Časový interval</string>
-  <string name="mpris_time_settings_summary">Upravit čas pro rychlý posun multimediálním souborem vpřed a zpět.</string>
+  <string-array name="mpris_time_entries">
+    <item>10 sekund</item>
+    <item>20 sekund</item>
+    <item>30 sekund</item>
+    <item>1 minuta</item>
+    <item>2 minuty</item>
+  </string-array>
   <string name="share_to">Sdílet s...</string>
   <string name="protocol_version_older">Toto zařízení používá starou verzi protokolu</string>
   <string name="protocol_version_newer">Toto zařízení používá novější verzi protokolu</string>
@@ -101,11 +105,4 @@
   <string name="add_host">Přidat stroj/IP</string>
   <string name="custom_dev_list_help">Použijte tuto možnost pouze pokud není vaše zařízení automaticky detekováno. Zadejte níže IP adresu a název hostitele a stiskněte tlačítko pro přidání do seznamu. Stiskněte existující položku pro odstranění ze seznamu.</string>
   <string name="mpris_player_on_device">%1$s na %2$s</string>
-  <string-array name="mpris_time_entries">
-    <item>10 sekund</item>
-    <item>20 sekund</item>
-    <item>30 sekund</item>
-    <item>1 minuta</item>
-    <item>2 minuty</item>
-  </string-array>
 </resources>

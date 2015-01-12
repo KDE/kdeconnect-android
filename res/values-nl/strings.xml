@@ -27,16 +27,21 @@
   <string name="send_ping">Ping verzenden</string>
   <string name="open_mpris_controls">Afstandsbediening openen</string>
   <string name="open_mousepad">Afstandsbediening van touchpad openen</string>
-  <string name="mousepad_info">Veeg met een vinger op het scherm om de muiscursor te verplaatsen</string>
-  <string name="mousepad_double_tap_settings_title">Klopactie met twee vingers instellen</string>
-  <string name="mousepad_triple_tap_settings_title">Klopactie met drie vingers instellen</string>
-  <string name="mousepad_right_click">Rechter muisklik</string>
-  <string name="mousepad_middle_click">Middelste muisklik</string>
+  <string name="mousepad_info">Veeg met een vinger op het scherm om de muiscursor te verplaatsen. Tik om te klikken en gebruik twee/drie vingers voor rechter en middelste knop. Druk lang voor slepen en loslaten.</string>
+  <string name="mousepad_double_tap_settings_title">Tikactie met twee vingers instellen</string>
+  <string name="mousepad_triple_tap_settings_title">Tikactie met drie vingers instellen</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Rechter muisklik</item>
+    <item>Middelste muisklik</item>
+    <item>Niets</item>
+  </string-array>
+  <string name="mousepad_double_default">rechts</string>
+  <string name="mousepad_triple_default">midden</string>
   <string name="category_connected_devices">Verbonden apparaten</string>
   <string name="category_not_paired_devices">Beschikbare apparaten</string>
   <string name="category_remembered_devices">Onthouden apparaten</string>
   <string name="plugins_failed_to_load">Laden van plug-ins is mislukt (tap voor meer informatie):</string>
-  <string name="device_menu_plugins">Plug-ins selecteren</string>
+  <string name="device_menu_plugins">Plugin-instellingen</string>
   <string name="device_menu_unpair">Paar uit elkaar halen</string>
   <string name="device_not_reachable">Gepaard apparaat niet bereikbaar</string>
   <string name="unknown_device">Onbekend apparaat</string>
@@ -76,8 +81,15 @@
   <string name="mpris_next">Volgende</string>
   <string name="mpris_volume">Volume</string>
   <string name="mpris_settings">Instellingen voor multimedia</string>
-  <string name="mpris_time_settings_title">Intervaltijd</string>
-  <string name="mpris_time_settings_summary">Pas de tijd aan om snel voorwaarts te gaan or terug te spoelen in een multimedia bestand.</string>
+  <string name="mpris_time_settings_title">Knoppen vooruit/terug</string>
+  <string name="mpris_time_settings_summary">Pas de tijd aan om snel voorwaarts/terug te gaan bij indrukken.</string>
+  <string-array name="mpris_time_entries">
+    <item>10 seconden</item>
+    <item>20 seconden</item>
+    <item>30 seconden</item>
+    <item>1 minuut</item>
+    <item>2 minuten</item>
+  </string-array>
   <string name="share_to">Delen met...</string>
   <string name="protocol_version_older">Dit apparaat gebruikt een oude protocolversie</string>
   <string name="protocol_version_newer">Dit apparaat gebruikt een nieuwere protocolversie</string>
@@ -92,6 +104,8 @@
   <string name="custom_device_list">Voeg apparaten toe per IP-adres</string>
   <string name="share_notification_preference">Luidruchtige meldingen</string>
   <string name="share_notification_preference_summary">Vibreer en speel een geluidje bij ontvangen van een bestand</string>
+  <string name="title_activity_notification_filter">Filter voor meldingen</string>
+  <string name="filter_apps_info">Meldingen zullen gesynchroniseerd worden voor de geselecteerde apps.</string>
   <string name="sftp_internal_storage">Interne opslag</string>
   <string name="sftp_all_files">Alle bestanden</string>
   <string name="sftp_sdcard_num">SD-kaartje %d</string>
@@ -102,11 +116,4 @@
   <string name="no_players_connected">Geen spelers gevonden</string>
   <string name="custom_dev_list_help">Deze optie alleen gebruiken als uw apparaat niet automatisch gedetecteerd wordt. Voer IP-adres of hostnaam hieronder in en klik op de knop om het aan de lijst toe te voegen. Klik op een bestaand item om het uit de lijst te verwijderen.</string>
   <string name="mpris_player_on_device">%1$s op %2$s</string>
-  <string-array name="mpris_time_entries">
-    <item>10 seconden</item>
-    <item>20 seconden</item>
-    <item>30 seconden</item>
-    <item>1 minuut</item>
-    <item>2 minuten</item>
-  </string-array>
 </resources>

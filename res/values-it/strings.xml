@@ -27,16 +27,15 @@
   <string name="send_ping">Invia ping</string>
   <string name="open_mpris_controls">Apri il telecomando multimediale</string>
   <string name="open_mousepad">Apri controllo del touchpad</string>
-  <string name="mousepad_info">Sposta un dito sullo schermo per spostare il cursore del mouse</string>
-  <string name="mousepad_double_tap_settings_title">Imposta azione tocco a due dita</string>
-  <string name="mousepad_triple_tap_settings_title">Imposta azione tocco a tre dita</string>
-  <string name="mousepad_right_click">Clic destro</string>
-  <string name="mousepad_middle_click">Clic centrale</string>
+  <string-array name="mousepad_tap_entries">
+    <item/>
+    <item/>
+    <item>Nothing</item>
+  </string-array>
   <string name="category_connected_devices">Dispositivi connessi</string>
   <string name="category_not_paired_devices">Dispositivi disponibili</string>
   <string name="category_remembered_devices">Dispositivi memorizzati</string>
   <string name="plugins_failed_to_load">Alcune estensioni non si sono avviate correttamente (tocca per maggiori informazioni):</string>
-  <string name="device_menu_plugins">Estensioni</string>
   <string name="device_menu_unpair">Disassocia</string>
   <string name="device_not_reachable">Dispositivo accoppiato non raggiungibile</string>
   <string name="unknown_device">Dispositivo sconosciuto</string>
@@ -76,8 +75,13 @@
   <string name="mpris_next">Successivo</string>
   <string name="mpris_volume">Volume</string>
   <string name="mpris_settings">Impostazioni multimediali</string>
-  <string name="mpris_time_settings_title">Tempo di intervallo</string>
-  <string name="mpris_time_settings_summary">Regola l\'ora per avanzare rapidamente o riavvolgere un file multimediale.</string>
+  <string-array name="mpris_time_entries">
+    <item>10 secondi</item>
+    <item>20 secondi</item>
+    <item>30 secondi</item>
+    <item>1 minuto</item>
+    <item>2 minuti</item>
+  </string-array>
   <string name="share_to">Condividi…</string>
   <string name="protocol_version_older">Questo dispositivo usa una vecchia versione del protocollo di rete</string>
   <string name="protocol_version_newer">Questo dispositivo usa una nuova versione del protocollo di rete</string>
@@ -100,11 +104,4 @@
   <string name="sftp_camera">Immagini fotocamera</string>
   <string name="add_host">Aggiungi host/IP</string>
   <string name="custom_dev_list_help">Usa questa opzioone solo se il tuo dispositivo non è rilevato automaticamente. Digita l\'indirizzo IP o il nome host in basso e tocca il pulsante per aggiungerlo all\'elenco. Tocca un elemento esistente per rimuoverlo dall\'elenco.</string>
-  <string-array name="mpris_time_entries">
-    <item>10 secondi</item>
-    <item>20 secondi</item>
-    <item>30 secondi</item>
-    <item>1 minuto</item>
-    <item>2 minuti</item>
-  </string-array>
 </resources>

@@ -27,16 +27,21 @@
   <string name="send_ping">Envia un ping</string>
   <string name="open_mpris_controls">Obre el comandament a distància</string>
   <string name="open_mousepad">Obre el control pel plafó tàctil</string>
-  <string name="mousepad_info">Moveu un dit per la pantalla per a moure el cursor del ratolí</string>
+  <string name="mousepad_info">Moveu un dit per la pantalla per a moure el cursor del ratolí. Toqueu per un clic, i empreu dos/tres dits pels botons dret i mig. Empreu un toc llarg per arrossegar i deixar anar.</string>
   <string name="mousepad_double_tap_settings_title">Estableix l\'acció de tocar amb dos dits</string>
   <string name="mousepad_triple_tap_settings_title">Estableix l\'acció de tocar amb tres dits</string>
-  <string name="mousepad_right_click">Clic dret</string>
-  <string name="mousepad_middle_click">Clic del mig</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Clic dret</item>
+    <item>Clic del mig</item>
+    <item>No fer res</item>
+  </string-array>
+  <string name="mousepad_double_default">dret</string>
+  <string name="mousepad_triple_default">mig</string>
   <string name="category_connected_devices">Dispositius connectats</string>
   <string name="category_not_paired_devices">Dispositius disponibles</string>
   <string name="category_remembered_devices">Dispositius recordats</string>
   <string name="plugins_failed_to_load">Els connectors han fallat en carregar-los (puntegeu per a més informació):</string>
-  <string name="device_menu_plugins">Selecció dels connectors</string>
+  <string name="device_menu_plugins">Arranjament del connector</string>
   <string name="device_menu_unpair">Desparella</string>
   <string name="device_not_reachable">No s\'ha pogut accedir al dispositiu parell</string>
   <string name="unknown_device">Dispositiu desconegut</string>
@@ -76,8 +81,15 @@
   <string name="mpris_next">Següent</string>
   <string name="mpris_volume">Volum</string>
   <string name="mpris_settings">Arranjament multimèdia</string>
-  <string name="mpris_time_settings_title">Interval de temps</string>
-  <string name="mpris_time_settings_summary">Ajusta el temps per avançar o rebobinar un fitxer multimèdia.</string>
+  <string name="mpris_time_settings_title">Botons per avançar o rebobinar</string>
+  <string name="mpris_time_settings_summary">Ajusta el temps per avançar o rebobinar quan es toca.</string>
+  <string-array name="mpris_time_entries">
+    <item>10 segons</item>
+    <item>20 segons</item>
+    <item>30 segons</item>
+    <item>1 minut</item>
+    <item>2 minuts</item>
+  </string-array>
   <string name="share_to">Comparteix amb...</string>
   <string name="protocol_version_older">Aquest dispositiu usa una versió antiga del protocol</string>
   <string name="protocol_version_newer">Aquest dispositiu usa una versió nova del protocol</string>
@@ -92,6 +104,8 @@
   <string name="custom_device_list">Afegeix dispositius per la IP</string>
   <string name="share_notification_preference">Rebombori de les notificacions</string>
   <string name="share_notification_preference_summary">Vibra i reprodueix un so en rebre un fitxer</string>
+  <string name="title_activity_notification_filter">Filtre per a les notificacions</string>
+  <string name="filter_apps_info">Les notificacions es sincronitzaran per a les aplicacions seleccionades.</string>
   <string name="sftp_internal_storage">Emmagatzematge intern</string>
   <string name="sftp_all_files">Tots els fitxers</string>
   <string name="sftp_sdcard_num">Targeta SD %d</string>
@@ -102,11 +116,4 @@
   <string name="no_players_connected">No s\'ha trobat cap reproductor</string>
   <string name="custom_dev_list_help">Empreu aquesta opció només si el dispositiu no és detectat automàticament. Introduïu a sota l\'adreça IP o nom de la màquina i premeu el botó per afegir-lo a la llista. Seleccioneu un element existent per eliminar-lo de la llista.</string>
   <string name="mpris_player_on_device">%1$s sobre el %2$s</string>
-  <string-array name="mpris_time_entries">
-    <item>10 segons</item>
-    <item>20 segons</item>
-    <item>30 segons</item>
-    <item>1 minut</item>
-    <item>2 minuts</item>
-  </string-array>
 </resources>

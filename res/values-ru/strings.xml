@@ -20,10 +20,14 @@
   <string name="no_permissions">Вы должны разрешить доступ к уведомлениям</string>
   <string name="send_ping">Послать пинг</string>
   <string name="open_mpris_controls">Открыть дистанционное управление</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Right click</item>
+    <item>Middle click</item>
+    <item>Nothing</item>
+  </string-array>
   <string name="category_connected_devices">Подключённые устройства</string>
   <string name="category_remembered_devices">Запомненные устройства</string>
   <string name="plugins_failed_to_load">Сбой загрузки следующих модулей (прикоснитесь чтобы получить подробности):</string>
-  <string name="device_menu_plugins">Выбрать модули</string>
   <string name="device_menu_unpair">Разделить спаренные устройства</string>
   <string name="unknown_device">Неизвестное устройство</string>
   <string name="error_not_reachable">Устройство недоступно</string>
@@ -50,9 +54,6 @@
   <string name="mpris_previous">Предыдущий</string>
   <string name="mpris_next">Следующее</string>
   <string name="mpris_volume">Громкость</string>
-  <string name="share_to">Сделать общим с...</string>
-  <string name="protocol_version_older">Это устройство использует старую версию протокола</string>
-  <string name="protocol_version_newer">Это устройство использует более свежую версию протокола</string>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>
     <item>20 seconds</item>
@@ -60,4 +61,7 @@
     <item>1 minute</item>
     <item>2 minutes</item>
   </string-array>
+  <string name="share_to">Сделать общим с...</string>
+  <string name="protocol_version_older">Это устройство использует старую версию протокола</string>
+  <string name="protocol_version_newer">Это устройство использует более свежую версию протокола</string>
 </resources>

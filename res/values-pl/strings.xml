@@ -27,16 +27,15 @@
   <string name="send_ping">Wyślij ping</string>
   <string name="open_mpris_controls">Otwórz zdalne sterowanie</string>
   <string name="open_mousepad">Otwórz sterowanie gładzikiem</string>
-  <string name="mousepad_info">Przesuń kciukiem po ekranie, aby przesunąć wskaźnik myszy</string>
-  <string name="mousepad_double_tap_settings_title">Ustaw działanie po dwukrotnym stuknięciu palcem</string>
-  <string name="mousepad_triple_tap_settings_title">Ustaw działanie po trzykrotnym stuknięciu palcem</string>
-  <string name="mousepad_right_click">Naciśnięcie prawym</string>
-  <string name="mousepad_middle_click">Naciśnięcie środkowym</string>
+  <string-array name="mousepad_tap_entries">
+    <item/>
+    <item/>
+    <item>Nothing</item>
+  </string-array>
   <string name="category_connected_devices">Podłączone urządzenia</string>
   <string name="category_not_paired_devices">Dostępne urządzenia</string>
   <string name="category_remembered_devices">Zapamiętane urządzenia</string>
   <string name="plugins_failed_to_load">Nieudane wczytywanie wtyczki (stuknij po więcej informacji):</string>
-  <string name="device_menu_plugins">Wybierz wtyczki</string>
   <string name="device_menu_unpair">Odparuj</string>
   <string name="device_not_reachable">Sparowane urządzenie nieosiągalne</string>
   <string name="unknown_device">Nieznane urządzenie</string>
@@ -76,8 +75,13 @@
   <string name="mpris_next">Następny</string>
   <string name="mpris_volume">Głośność</string>
   <string name="mpris_settings">Ustawienia multimediów</string>
-  <string name="mpris_time_settings_title">Czas okresu</string>
-  <string name="mpris_time_settings_summary">Dostosuj czas do przewijania wprzód lub wstecz w pliku multimedialnym.</string>
+  <string-array name="mpris_time_entries">
+    <item>10 sekund</item>
+    <item>20 sekund</item>
+    <item>30 sekund</item>
+    <item>1 minuta</item>
+    <item>2 minuty</item>
+  </string-array>
   <string name="share_to">Współdziel z...</string>
   <string name="protocol_version_older">Urządzenie to używa starej wersji protokołu</string>
   <string name="protocol_version_newer">Urządzenie to używa nowszej wersji protokołu</string>
@@ -102,11 +106,4 @@
   <string name="no_players_connected">Nie znaleziono żadnego odtwarzacza</string>
   <string name="custom_dev_list_help">Użyj tej opcji tylko wtedy, gdy twoje urządzenie nie jest samoczynnie wykrywane. Podaj adres IP i nazwę gospodarza poniżej i dotknij przycisku, aby dodać je do listy. Dotknij istniejącego elementu, aby usunąć go z listy.</string>
   <string name="mpris_player_on_device">%1$s na %2$s</string>
-  <string-array name="mpris_time_entries">
-    <item>10 sekund</item>
-    <item>20 sekund</item>
-    <item>30 sekund</item>
-    <item>1 minuta</item>
-    <item>2 minuty</item>
-  </string-array>
 </resources>
