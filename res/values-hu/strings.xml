@@ -25,11 +25,14 @@
   <string name="send_ping">Ping küldése</string>
   <string name="open_mpris_controls">Távirányító megnyitása</string>
   <string name="open_mousepad">Érintőtábla vezérlő megnyitása</string>
-  <string name="mousepad_info">Mozgassa az ujját a képernyőn az egérkurzor mozgatásához</string>
+  <string-array name="mousepad_tap_entries">
+    <item/>
+    <item/>
+    <item>Nothing</item>
+  </string-array>
   <string name="category_connected_devices">Csatlakoztatott eszközök</string>
   <string name="category_remembered_devices">Megjegyzett eszközök</string>
   <string name="plugins_failed_to_load">A bővítményeket nem sikerült betölteni (érintse meg a további információkért):</string>
-  <string name="device_menu_plugins">Bővítmények kijelölése</string>
   <string name="device_menu_unpair">Leválasztás</string>
   <string name="device_not_reachable">A párosított eszköz nem érhető el</string>
   <string name="unknown_device">Ismeretlen eszköz</string>
@@ -67,6 +70,13 @@
   <string name="mpris_ff">Gyors előretekerés</string>
   <string name="mpris_next">Következő</string>
   <string name="mpris_volume">Hangerő</string>
+  <string-array name="mpris_time_entries">
+    <item>10 seconds</item>
+    <item>20 seconds</item>
+    <item>30 seconds</item>
+    <item>1 minute</item>
+    <item>2 minutes</item>
+  </string-array>
   <string name="share_to">Megosztás…</string>
   <string name="protocol_version_older">Ez az eszköz egy régi protokollverziót használ</string>
   <string name="protocol_version_newer">Ez az eszköz egy újabb protokollverziót használ</string>
@@ -75,11 +85,4 @@
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Érvénytelen eszköznév</string>
   <string name="shareplugin_text_saved">Szöveg érkezett, elmentve a vágólapra</string>
-  <string-array name="mpris_time_entries">
-    <item>10 seconds</item>
-    <item>20 seconds</item>
-    <item>30 seconds</item>
-    <item>1 minute</item>
-    <item>2 minutes</item>
-  </string-array>
 </resources>

@@ -25,7 +25,6 @@
   <string name="category_connected_devices">Périphériques connectés</string>
   <string name="category_remembered_devices">Périphériques mémorisés</string>
   <string name="plugins_failed_to_load">Le chargement des modules externes a échoué (cliquez pour plus d\'informations) :</string>
-  <string name="device_menu_plugins">Sélectionner des modules externes</string>
   <string name="device_menu_unpair">Désapparier</string>
   <string name="unknown_device">Périphérique inconnu</string>
   <string name="error_not_reachable">Périphérique inaccessible</string>

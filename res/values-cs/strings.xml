@@ -27,15 +27,21 @@
   <string name="send_ping">Poslat ping</string>
   <string name="open_mpris_controls">Otevřít vzdálené ovládání</string>
   <string name="open_mousepad">Otevřít dotykové ovládání</string>
+  <string name="mousepad_info">Pohybujte prstem po obrazovce pro pohybování kurzorem myši. Ťukněte pro kliknutí a použijte dva/tři prsty jako pravé a prostřední tlačítko. Pro přetažení dlouze podržte.</string>
+  <string name="mousepad_double_tap_settings_title">Nastavit činnost pro ťuknutí dvěma prsty</string>
+  <string name="mousepad_triple_tap_settings_title">Nastavit činnost pro ťuknutí třemi prsty</string>
   <string-array name="mousepad_tap_entries">
-    <item/>
-    <item/>
-    <item>Nothing</item>
+    <item>Kliknutí pravým tlačítkem myši</item>
+    <item>Kliknutí prostředním tlačítkem myši</item>
+    <item>Nic</item>
   </string-array>
+  <string name="mousepad_double_default">pravé</string>
+  <string name="mousepad_triple_default">prostřední</string>
   <string name="category_connected_devices">Připojená zařízení</string>
   <string name="category_not_paired_devices">Dostupná zařízení</string>
   <string name="category_remembered_devices">Zapamatovaná zařízení</string>
   <string name="plugins_failed_to_load">Moduly nebyly načteny (ťukněte pro více informací):</string>
+  <string name="device_menu_plugins">Nastavení modulů</string>
   <string name="device_menu_unpair">Zrušit párování</string>
   <string name="device_not_reachable">Spárované zařízení je nedostupné</string>
   <string name="unknown_device">Neznámé zařízení</string>
@@ -75,6 +81,8 @@
   <string name="mpris_next">Následující</string>
   <string name="mpris_volume">Hlasitost</string>
   <string name="mpris_settings">Nastavení multimédií</string>
+  <string name="mpris_time_settings_title">Tlačítka vpřed/přetočit</string>
+  <string name="mpris_time_settings_summary">Upravit čas pro rychlý posun/přetočení při stisku.</string>
   <string-array name="mpris_time_entries">
     <item>10 sekund</item>
     <item>20 sekund</item>
@@ -96,6 +104,8 @@
   <string name="custom_device_list">Přidat zařízení podle IP</string>
   <string name="share_notification_preference">Hlasitá upozornění</string>
   <string name="share_notification_preference_summary">Vibrovat a přehrát melodii při přijímání souboru</string>
+  <string name="title_activity_notification_filter">Filtr upozornění</string>
+  <string name="filter_apps_info">Upozorňování mezi vybranými aplikacemi bude synchronizováno.</string>
   <string name="sftp_internal_storage">Interní úložiště</string>
   <string name="sftp_all_files">Všechny soubory</string>
   <string name="sftp_sdcard_num">SD karta %d</string>
@@ -103,6 +113,7 @@
   <string name="sftp_readonly">(pouze ke čtení)</string>
   <string name="sftp_camera">Obrázky z fotoaparátu</string>
   <string name="add_host">Přidat stroj/IP</string>
+  <string name="no_players_connected">Přehrávač nenalezen</string>
   <string name="custom_dev_list_help">Použijte tuto možnost pouze pokud není vaše zařízení automaticky detekováno. Zadejte níže IP adresu a název hostitele a stiskněte tlačítko pro přidání do seznamu. Stiskněte existující položku pro odstranění ze seznamu.</string>
   <string name="mpris_player_on_device">%1$s na %2$s</string>
 </resources>

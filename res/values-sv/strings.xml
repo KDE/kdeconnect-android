@@ -27,16 +27,21 @@
   <string name="send_ping">Skicka ping</string>
   <string name="open_mpris_controls">Öppna fjärrkontroll</string>
   <string name="open_mousepad">Öppna kontroll med tryckplatta</string>
-  <string name="mousepad_info">Flytta ett finger på skärmen för att flytta muspekaren</string>
+  <string name="mousepad_info">Flytta fingret på skärmen för att röra muspekaren. Rör för att klicka, och använd två eller tre fingrar för höger- och mittenknapparna. Använd en längre beröring för drag och släpp.</string>
   <string name="mousepad_double_tap_settings_title">Ställ in åtgärd vid två fingerberöringar</string>
   <string name="mousepad_triple_tap_settings_title">Ställ in åtgärd vid tre fingerberöringar</string>
-  <string name="mousepad_right_click">Högerklick</string>
-  <string name="mousepad_middle_click">Mittenklick</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Högerklick</item>
+    <item>Mittenklick</item>
+    <item>Ingenting</item>
+  </string-array>
+  <string name="mousepad_double_default">höger</string>
+  <string name="mousepad_triple_default">mitten</string>
   <string name="category_connected_devices">Anslutna apparater</string>
   <string name="category_not_paired_devices">Tillgängliga enheter</string>
   <string name="category_remembered_devices">Ihågkomna apparater</string>
   <string name="plugins_failed_to_load">Misslyckades ladda insticksprogram (rör för mer information):</string>
-  <string name="device_menu_plugins">Välj insticksprogram</string>
+  <string name="device_menu_plugins">Inställningar av insticksprogram</string>
   <string name="device_menu_unpair">Ta bort ihopparning</string>
   <string name="device_not_reachable">Ihopparad enhet kan inte nås</string>
   <string name="unknown_device">Okänd apparat</string>
@@ -76,8 +81,15 @@
   <string name="mpris_next">Nästa</string>
   <string name="mpris_volume">Volym</string>
   <string name="mpris_settings">Multimediainställningar</string>
-  <string name="mpris_time_settings_title">Intervalltid</string>
-  <string name="mpris_time_settings_summary">Justera tiden för att snabbspola framåt eller tillbaka en multimediafil.</string>
+  <string name="mpris_time_settings_title">Framåt- och bakåt-knappar</string>
+  <string name="mpris_time_settings_summary">Justera tiden för att snabbspola framåt eller tillbaka om nertryckt.</string>
+  <string-array name="mpris_time_entries">
+    <item>10 sekunder</item>
+    <item>20 sekunder</item>
+    <item>30 sekunder</item>
+    <item>1 minut</item>
+    <item>2 minuter</item>
+  </string-array>
   <string name="share_to">Dela med...</string>
   <string name="protocol_version_older">Apparaten använder en gammal protokollversion</string>
   <string name="protocol_version_newer">Apparaten använder en nyare protokollversion</string>
@@ -92,6 +104,8 @@
   <string name="custom_device_list">Lägg till apparater enligt IP-adress</string>
   <string name="share_notification_preference">Ljudliga underrättelser</string>
   <string name="share_notification_preference_summary">Vibrera och spela ett ljud när en fil tas emot</string>
+  <string name="title_activity_notification_filter">Underrättelsefilter</string>
+  <string name="filter_apps_info">Underrättelser synkroniseras för markerade applikationer.</string>
   <string name="sftp_internal_storage">Intern lagring</string>
   <string name="sftp_all_files">Alla filer</string>
   <string name="sftp_sdcard_num">SD-kort %d</string>
@@ -102,11 +116,4 @@
   <string name="no_players_connected">Inga spelare hittades</string>
   <string name="custom_dev_list_help">Använd bara alternativet om apparaten inte detekteras automatiskt. Skriv in IP-adress eller värddatornamn nedan och rör vid knappen för att lägga till den i listan. Rör vid ett befintligt objekt för att ta bort det från listan.</string>
   <string name="mpris_player_on_device">%1$s på %2$s</string>
-  <string-array name="mpris_time_entries">
-    <item>10 sekunder</item>
-    <item>20 sekunder</item>
-    <item>30 sekunder</item>
-    <item>1 minut</item>
-    <item>2 minuter</item>
-  </string-array>
 </resources>

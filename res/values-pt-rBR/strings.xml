@@ -28,10 +28,12 @@
   <string name="open_mpris_controls">Abra o controle remoto</string>
   <string name="open_mousepad">Abrir o controle do touchpad</string>
   <string-array name="mousepad_tap_entries">
-    <item/>
-    <item/>
-    <item>Nothing</item>
+    <item>Botão direito</item>
+    <item>Botão do meio</item>
+    <item>Nada</item>
   </string-array>
+  <string name="mousepad_double_default">direita</string>
+  <string name="mousepad_triple_default">meio</string>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos disponíveis</string>
   <string name="category_remembered_devices">Dispositivos lembrados</string>
@@ -96,6 +98,7 @@
   <string name="custom_device_list">Adicionar dispositivos pelo IP</string>
   <string name="share_notification_preference">Notificações barulhentas</string>
   <string name="share_notification_preference_summary">Vibrar e tocar um som ao receber um arquivo</string>
+  <string name="title_activity_notification_filter">Filtro de notificações</string>
   <string name="sftp_internal_storage">Armazenamento interno</string>
   <string name="sftp_all_files">Todos os arquivos</string>
   <string name="sftp_sdcard_num">Cartão SD %d</string>

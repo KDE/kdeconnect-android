@@ -27,16 +27,15 @@
   <string name="send_ping">Poslať ping</string>
   <string name="open_mpris_controls">Otvoriť diaľkové ovládanie</string>
   <string name="open_mousepad">Otvoriť ovládanie touchpadu</string>
-  <string name="mousepad_info">Presuňte prst na obrazovke na presun kurzora myši</string>
-  <string name="mousepad_double_tap_settings_title">Nastaviť akciu dvoch prstov</string>
-  <string name="mousepad_triple_tap_settings_title">Nastaviť akciu troch prstov</string>
-  <string name="mousepad_right_click">Kliknutie pravým tlačidlom</string>
-  <string name="mousepad_middle_click">Stredný klik</string>
+  <string-array name="mousepad_tap_entries">
+    <item/>
+    <item/>
+    <item>Nothing</item>
+  </string-array>
   <string name="category_connected_devices">Pripojené zariadenia</string>
   <string name="category_not_paired_devices">Dostupné zariadenia</string>
   <string name="category_remembered_devices">Zapamätané zariadenia</string>
   <string name="plugins_failed_to_load">Zlyhalo načítanie pluginov (tapnite pre viac info):</string>
-  <string name="device_menu_plugins">Vybrať pluginy</string>
   <string name="device_menu_unpair">Odpárovať</string>
   <string name="device_not_reachable">Spárované zariadenie nedostupné</string>
   <string name="unknown_device">Neznáme zariadenie</string>
@@ -76,8 +75,13 @@
   <string name="mpris_next">Nasledovné</string>
   <string name="mpris_volume">Hlasitosť</string>
   <string name="mpris_settings">Multimediálne nastavenia</string>
-  <string name="mpris_time_settings_title">Časový interval</string>
-  <string name="mpris_time_settings_summary">Prispôsobiť čas na pretáčanie dopredu alebo späť pre multimediálne súbory.</string>
+  <string-array name="mpris_time_entries">
+    <item>10 sekúnd</item>
+    <item>20 sekúnd</item>
+    <item>30 sekúnd</item>
+    <item>1 minúta</item>
+    <item>2 minúty</item>
+  </string-array>
   <string name="share_to">Zdieľať pre...</string>
   <string name="protocol_version_older">Toto zariadenie používa starú verziu protokolu</string>
   <string name="protocol_version_newer">Toto zariadenie používa novšiu verziu protokolu</string>
@@ -102,11 +106,4 @@
   <string name="no_players_connected">Nenašli sa žiadne prehrávače</string>
   <string name="custom_dev_list_help">Túto voľbu použite iba vtedy, ak vaše zariadenie nie je automaticky detekované. Zadajte IP adresu alebo názov hostiteľa nižšie a kliknite na tlačidlo na pridanie do zoznamu. Kliknite na existujúcu položku na odstránenie jej zo zoznamu.</string>
   <string name="mpris_player_on_device">%1$s na %2$s</string>
-  <string-array name="mpris_time_entries">
-    <item>10 sekúnd</item>
-    <item>20 sekúnd</item>
-    <item>30 sekúnd</item>
-    <item>1 minúta</item>
-    <item>2 minúty</item>
-  </string-array>
 </resources>
