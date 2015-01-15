@@ -27,15 +27,20 @@
   <string name="send_ping">Poslať ping</string>
   <string name="open_mpris_controls">Otvoriť diaľkové ovládanie</string>
   <string name="open_mousepad">Otvoriť ovládanie touchpadu</string>
+  <string name="mousepad_double_tap_settings_title">Nastaviť akciu dvoch prstov</string>
+  <string name="mousepad_triple_tap_settings_title">Nastaviť akciu troch prstov</string>
   <string-array name="mousepad_tap_entries">
-    <item/>
-    <item/>
-    <item>Nothing</item>
+    <item>Kliknutie pravým tlačidlom</item>
+    <item>Stredný klik</item>
+    <item>Nič</item>
   </string-array>
+  <string name="mousepad_double_default">vpravo</string>
+  <string name="mousepad_triple_default">stred</string>
   <string name="category_connected_devices">Pripojené zariadenia</string>
   <string name="category_not_paired_devices">Dostupné zariadenia</string>
   <string name="category_remembered_devices">Zapamätané zariadenia</string>
   <string name="plugins_failed_to_load">Zlyhalo načítanie pluginov (tapnite pre viac info):</string>
+  <string name="device_menu_plugins">Nastavenia pluginu</string>
   <string name="device_menu_unpair">Odpárovať</string>
   <string name="device_not_reachable">Spárované zariadenie nedostupné</string>
   <string name="unknown_device">Neznáme zariadenie</string>
