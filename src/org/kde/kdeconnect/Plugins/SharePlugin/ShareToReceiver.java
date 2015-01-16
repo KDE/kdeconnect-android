@@ -252,7 +252,7 @@ public class ShareToReceiver extends ActionBarActivity {
                     cursor.moveToFirst();
                     String path = cursor.getString(column_index);
                     np.set("filename", Uri.parse(path).getLastPathSegment());
-                    np.set("size", (int)new File(path).length());
+                    size = (int)new File(path).length();
                 } catch(Exception unused) {
 
                     Log.e("ShareToReceiver", "Could not resolve media to a file, trying to get info as media");
