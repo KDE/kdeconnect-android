@@ -37,9 +37,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.kde.kdeconnect.Backends.BaseLink;
-import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect_tp.R;
 
@@ -50,7 +50,6 @@ public class MprisActivity extends ActionBarActivity {
     private String deviceId;
     private final Handler positionSeekUpdateHandler = new Handler();
     private Runnable positionSeekUpdateRunnable = null;
-    private NotificationPanel nPanel = null;
     private String targetPlayer = null;
 
     private static String milisToProgress(long milis) {
@@ -69,7 +68,6 @@ public class MprisActivity extends ActionBarActivity {
         text.append(seconds);
         return text.toString();
     }
-
     protected void connectToPlugin() {
 
         BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
@@ -166,9 +164,6 @@ public class MprisActivity extends ActionBarActivity {
                                             findViewById(R.id.ff_button).setVisibility(View.VISIBLE);
                                             findViewById(R.id.positionSeek).setVisibility(View.VISIBLE);
                                         }
-
-                                        //If there was a panel already, this will override it
-                                        nPanel = new NotificationPanel(getApplicationContext(), device, player);
                                     }
 
                                     @Override
