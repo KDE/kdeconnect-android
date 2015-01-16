@@ -169,7 +169,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                             @Override
                             public void run() {
                                 NetworkPackage np2 = NetworkPackage.createIdentityPackage(context);
-                                link.sendPackage(np2);
+                                link.sendPackage(np2,null);
 
                                 nioSessions.put(session.getId(), link);
                                 addLink(identityPackage, link);

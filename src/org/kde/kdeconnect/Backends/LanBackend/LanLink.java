@@ -27,6 +27,7 @@ import org.apache.mina.core.session.IoSession;
 import org.json.JSONObject;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
+import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
 
 import java.io.InputStream;
@@ -51,7 +52,7 @@ public class LanLink extends BaseLink {
         this.session = session;
     }
 
-    private Thread sendPayload(NetworkPackage np) {
+    private Thread sendPayload(NetworkPackage np, final Device.SendPackageStatusCallback callback) {
 
         try {
 
@@ -87,10 +88,13 @@ public class LanLink extends BaseLink {
                         socket = server.accept().getOutputStream();
                         byte[] buffer = new byte[4096];
                         int bytesRead;
+                        long progress = 0 ;
                         Log.e("LanLink","Beginning to send payload");
                         while ((bytesRead = stream.read(buffer)) != -1) {
                             //Log.e("ok",""+bytesRead);
+                            progress += bytesRead;
                             socket.write(buffer, 0, bytesRead);
+                            if (callback != null) callback.progressChanged(progress);
                         }
                         Log.e("LanLink","Finished sending payload");
                     } catch(Exception e) {
@@ -122,7 +126,7 @@ public class LanLink extends BaseLink {
 
     //Blocking, do not call from main thread
     @Override
-    public boolean sendPackage(final NetworkPackage np) {
+    public boolean sendPackage(final NetworkPackage np,Device.SendPackageStatusCallback callback) {
 
         if (session == null) {
             Log.e("LanLink", "sendPackage failed: not yet connected");
@@ -132,7 +136,7 @@ public class LanLink extends BaseLink {
         try {
             Thread thread = null;
             if (np.hasPayload()) {
-                thread = sendPayload(np);
+                thread = sendPayload(np,callback);
                 if (thread == null) return false;
             }
 
@@ -155,7 +159,7 @@ public class LanLink extends BaseLink {
 
     //Blocking, do not call from main thread
     @Override
-    public boolean sendPackageEncrypted(NetworkPackage np, PublicKey key) {
+    public boolean sendPackageEncrypted(NetworkPackage np,Device.SendPackageStatusCallback callback, PublicKey key) {
 
         if (session == null) {
             Log.e("LanLink", "sendPackage failed: not yet connected");
@@ -166,7 +170,7 @@ public class LanLink extends BaseLink {
 
             Thread thread = null;
             if (np.hasPayload()) {
-                thread = sendPayload(np);
+                thread = sendPayload(np,callback);
                 if (thread == null) return false;
             }
 

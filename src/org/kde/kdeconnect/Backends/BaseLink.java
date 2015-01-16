@@ -20,6 +20,7 @@
 
 package org.kde.kdeconnect.Backends;
 
+import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
 
 import java.security.PrivateKey;
@@ -71,7 +72,7 @@ public abstract class BaseLink {
     }
 
     //TO OVERRIDE, should be sync
-    public abstract boolean sendPackage(NetworkPackage np);
-    public abstract boolean sendPackageEncrypted(NetworkPackage np, PublicKey key);
+    public abstract boolean sendPackage(NetworkPackage np,Device.SendPackageStatusCallback callback);
+    public abstract boolean sendPackageEncrypted(NetworkPackage np,Device.SendPackageStatusCallback callback, PublicKey key);
 
 }

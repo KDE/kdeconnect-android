@@ -24,6 +24,7 @@ import android.util.Log;
 
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
+import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
 
 import java.security.PublicKey;
@@ -35,7 +36,7 @@ public class LoopbackLink extends BaseLink {
     }
 
     @Override
-    public boolean sendPackage(NetworkPackage in) {
+    public boolean sendPackage(NetworkPackage in,Device.SendPackageStatusCallback callback) {
         String s = in.serialize();
         NetworkPackage out= NetworkPackage.unserialize(s);
         if (in.hasPayload()) out.setPayload(in.getPayload(), in.getPayloadSize());
@@ -44,7 +45,7 @@ public class LoopbackLink extends BaseLink {
     }
 
     @Override
-    public boolean sendPackageEncrypted(NetworkPackage in, PublicKey key) {
+    public boolean sendPackageEncrypted(NetworkPackage in,Device.SendPackageStatusCallback callback, PublicKey key) {
         try {
             in = in.encrypt(key);
             String s = in.serialize();

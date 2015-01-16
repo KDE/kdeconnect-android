@@ -191,7 +191,12 @@ public class Device implements BaseLink.PackageReceiver {
 
         //Send our own public key
         NetworkPackage np = NetworkPackage.createPublicKeyPackage(context);
-        sendPackage(np, new SendPackageFinishedCallback(){
+        sendPackage(np, new SendPackageStatusCallback(){
+
+            @Override
+            public void progressChanged(long progress) {
+                // Do nothing
+            }
 
             @Override
             public void sendSuccessful() {
@@ -278,7 +283,12 @@ public class Device implements BaseLink.PackageReceiver {
 
         //Send our own public key
         NetworkPackage np = NetworkPackage.createPublicKeyPackage(context);
-        sendPackage(np, new SendPackageFinishedCallback() {
+        sendPackage(np, new SendPackageStatusCallback() {
+            @Override
+            public void progressChanged(long progress) {
+                // Do nothng
+            }
+
             @Override
             public void sendSuccessful() {
                 pairingDone();
@@ -490,7 +500,8 @@ public class Device implements BaseLink.PackageReceiver {
 
     }
 
-    public interface SendPackageFinishedCallback {
+    public interface SendPackageStatusCallback {
+        void progressChanged(long progress);
         void sendSuccessful();
         void sendFailed();
     }
@@ -500,7 +511,7 @@ public class Device implements BaseLink.PackageReceiver {
     }
 
     //Async
-    public void sendPackage(final NetworkPackage np, final SendPackageFinishedCallback callback) {
+    public void sendPackage(final NetworkPackage np, final SendPackageStatusCallback callback) {
 
 
         final Exception backtrace = new Exception();
@@ -520,9 +531,9 @@ public class Device implements BaseLink.PackageReceiver {
                 try {
                     for (BaseLink link : mLinks) {
                         if (useEncryption) {
-                            success = link.sendPackageEncrypted(np, publicKey);
+                            success = link.sendPackageEncrypted(np,callback, publicKey);
                         } else {
-                            success = link.sendPackage(np);
+                            success = link.sendPackage(np,callback);
                         }
                         if (success) break;
                     }

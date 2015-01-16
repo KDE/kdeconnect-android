@@ -20,12 +20,21 @@
 
 package org.kde.kdeconnect.Plugins.SharePlugin;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -204,6 +213,21 @@ public class ShareToReceiver extends ActionBarActivity {
             NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_SHARE);
             int size = -1;
 
+            final NotificationManager notificationManager = (NotificationManager)getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+            final int notificationId = (int)System.currentTimeMillis();
+            final NotificationCompat.Builder builder ;
+            Resources res = getApplicationContext().getResources();
+            builder = new NotificationCompat.Builder(getApplicationContext())
+                    .setContentTitle(res.getString(R.string.outgoing_file_title, device.getName()))
+                    .setTicker(res.getString(R.string.outgoing_file_title, device.getName()))
+                    .setSmallIcon(android.R.drawable.stat_sys_upload)
+                    .setAutoCancel(true)
+                    .setOngoing(true)
+                    .setProgress(100,0,true);
+            notificationManager.notify(notificationId,builder.build());
+
+            final Handler progressBarHandler = new Handler(Looper.getMainLooper());
+
             if (uri.getScheme().equals("file")) {
                 // file:// is a non media uri, so we cannot query the ContentProvider
 
@@ -260,15 +284,83 @@ public class ShareToReceiver extends ActionBarActivity {
 
             }
 
-            device.sendPackage(np, new Device.SendPackageFinishedCallback() {
+            final long filesize = size;
+            final String filename = np.getString("filename");
+
+            builder.setContentText(res.getString(R.string.outgoing_file_text,filename));
+            notificationManager.notify(notificationId,builder.build());
+
+            device.sendPackage(np, new Device.SendPackageStatusCallback() {
+
+                int prevProgressPercentage = 0,progressPercentage;
+
+                @Override
+                public void progressChanged(final long progress) {
+                    // update notification progress
+                    progressPercentage = (int)((progress * 100) / filesize);
+                    if (filesize > 0 && (progressPercentage - prevProgressPercentage) > 0) {
+                        prevProgressPercentage = progressPercentage;
+                        progressBarHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                builder.setProgress(100, progressPercentage, false);
+                                notificationManager.notify(notificationId, builder.build());
+                            }
+                        });
+                    }
+
+                }
+
                 @Override
                 public void sendSuccessful() {
+
+                    progressBarHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Resources res = getApplicationContext().getResources();
+                            NotificationCompat.Builder builder1 = new NotificationCompat.Builder(getApplicationContext())
+                                    .setContentTitle(res.getString(R.string.sent_file_title, device.getName()))
+                                    .setContentText(res.getString(R.string.sent_file_text, filename))
+                                    .setTicker(res.getString(R.string.sent_file_title, device.getName()))
+                                    .setSmallIcon(android.R.drawable.stat_sys_upload_done)
+                                    .setOngoing(false)
+                                    .setAutoCancel(true);
+
+                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                            if (prefs.getBoolean("share_notification_preference", true)) {
+                                builder1.setDefaults(Notification.DEFAULT_ALL);
+                            }
+                            notificationManager.notify(notificationId, builder1.build());
+                        }
+                    });
+
                     if (!uriList.isEmpty()) queuedSendUriList(device, uriList);
                     else Log.e("ShareToReceiver", "All files sent");
                 }
 
                 @Override
                 public void sendFailed() {
+
+                    progressBarHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Resources res = getApplicationContext().getResources();
+                            NotificationCompat.Builder builder2 = new NotificationCompat.Builder(getApplicationContext())
+                                    .setContentTitle(res.getString(R.string.sent_file_failed_title, device.getName()))
+                                    .setContentText(res.getString(R.string.sent_file_failed_text, filename))
+                                    .setTicker(res.getString(R.string.sent_file_title, device.getName()))
+                                    .setSmallIcon(android.R.drawable.stat_notify_error)
+                                    .setOngoing(false)
+                                    .setAutoCancel(true);
+
+                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                            if (prefs.getBoolean("share_notification_preference", true)) {
+                                builder2.setDefaults(Notification.DEFAULT_ALL);
+                            }
+                            notificationManager.notify(notificationId, builder2.build());
+                        }
+                    });
+
                     Log.e("ShareToReceiver", "Failed to send file");
                 }
             });

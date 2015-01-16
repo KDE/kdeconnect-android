@@ -143,18 +143,20 @@ public class SharePlugin extends Plugin {
                     public void run() {
                         try {
                             OutputStream output = new FileOutputStream(destinationFullPath.getPath());
-
                             byte data[] = new byte[1024];
-                            long total = 0;
+                            long progress = 0,prevProgressPercentage = 0;
                             int count;
                             while ((count = input.read(data)) >= 0) {
-                                total += count;
+                                progress += count;
                                 output.write(data, 0, count);
                                 if (fileLength > 0) {
-                                    if (total >= fileLength) break;
-                                    float progress = (total * 100 / fileLength);
-                                    builder.setProgress(100,(int)progress,false);
-                                    notificationManager.notify(notificationId,builder.build());
+                                    if (progress >= fileLength) break;
+                                    long progressPercentage = (progress * 100 / fileLength);
+                                    if ((progressPercentage - prevProgressPercentage) > 0) {
+                                        prevProgressPercentage = progressPercentage;
+                                        builder.setProgress(100, (int) progressPercentage, false);
+                                        notificationManager.notify(notificationId, builder.build());
+                                    }
                                 }
                                 //else Log.e("SharePlugin", "Infinite loop? :D");
                             }
