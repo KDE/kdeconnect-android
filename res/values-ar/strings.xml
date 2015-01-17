@@ -27,16 +27,15 @@
   <string name="send_ping">أرسل وخزة</string>
   <string name="open_mpris_controls">افتح التّحكّم البعيد</string>
   <string name="open_mousepad">افتح تحكّم لوحة اللمس</string>
-  <string name="mousepad_info">حرّك إصبعك على الشّاشة لتحريك مؤشّر الفأرة</string>
-  <string name="mousepad_double_tap_settings_title">عيّن إجراء اللمس الثّنائيّ</string>
-  <string name="mousepad_triple_tap_settings_title">عيّن إجراء اللمس الثّلاثيّ</string>
-  <string name="mousepad_right_click">النقر باليمين</string>
-  <string name="mousepad_middle_click">النقر بالوسط</string>
+  <string-array name="mousepad_tap_entries">
+    <item/>
+    <item/>
+    <item>Nothing</item>
+  </string-array>
   <string name="category_connected_devices">الأجهزة المقترن بها</string>
   <string name="category_not_paired_devices">الأجهزة المتوفّرة</string>
   <string name="category_remembered_devices">الأجهزة المتذكَّرة</string>
   <string name="plugins_failed_to_load">فشل تحميل الملحقات (المس لمعلومات اكثر):</string>
-  <string name="device_menu_plugins">حدّد الملحقات</string>
   <string name="device_menu_unpair">أزل الاقتران</string>
   <string name="device_not_reachable">الجهاز المقترن غير قابل الوصول</string>
   <string name="unknown_device">جهاز مجهول</string>
@@ -76,8 +75,13 @@
   <string name="mpris_next">التّالي</string>
   <string name="mpris_volume">المستوى</string>
   <string name="mpris_settings">إعدادات الوسائط المتعدّدة</string>
-  <string name="mpris_time_settings_title">وقت الفترة</string>
-  <string name="mpris_time_settings_summary">اضبط وقت التقدّم السريع أو .. لملفّ وسائط متعدّدة.</string>
+  <string-array name="mpris_time_entries">
+    <item>10 ثوان</item>
+    <item>20 ثانية</item>
+    <item>30 ثانية</item>
+    <item>دقيقة واحدة</item>
+    <item>دقيقتان</item>
+  </string-array>
   <string name="share_to">شارك مع...</string>
   <string name="protocol_version_older">يستخدم هذا الجهاز إصدار ميفاق أقدم</string>
   <string name="protocol_version_newer">يستخدم هذا الجهاز إصدار ميفاق أحدث</string>
@@ -102,11 +106,4 @@
   <string name="no_players_connected">لم يُعثر على مشغّلات</string>
   <string name="custom_dev_list_help">استخدم هذا الخيار فقط إن لم يُكتَشف جهازك آليًّا. أدخِل عنوان م​إ أو اسم المضيف أدناه والمس الزرّ لإضافته إلى القائمة. المس عنصرًا موجودًا لإزالته من القائمة.</string>
   <string name="mpris_player_on_device">%1$s على %2$s</string>
-  <string-array name="mpris_time_entries">
-    <item>10 ثوان</item>
-    <item>20 ثانية</item>
-    <item>30 ثانية</item>
-    <item>دقيقة واحدة</item>
-    <item>دقيقتان</item>
-  </string-array>
 </resources>
