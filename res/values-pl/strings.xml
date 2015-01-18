@@ -27,15 +27,21 @@
   <string name="send_ping">Wyślij ping</string>
   <string name="open_mpris_controls">Otwórz zdalne sterowanie</string>
   <string name="open_mousepad">Otwórz sterowanie gładzikiem</string>
+  <string name="mousepad_info">Przesuń palcem po ekranie, aby przesunąć wskaźnik myszy. Stuknij, aby wywołać naciśniecie lewym przyciskiem myszy i użyj dwóch/trzech palców, aby wywołać naciśniecie prawym i środkowym przyciskiem myszy. Przyciśnij na dłużej, aby przeciągnąć i upuścić.</string>
+  <string name="mousepad_double_tap_settings_title">Ustaw działanie po dwukrotnym stuknięciu palcem</string>
+  <string name="mousepad_triple_tap_settings_title">Ustaw działanie po trzykrotnym stuknięciu palcem</string>
   <string-array name="mousepad_tap_entries">
-    <item/>
-    <item/>
-    <item>Nothing</item>
+    <item>Naciśnięcie prawym</item>
+    <item>Naciśnięcie środkowym</item>
+    <item>Nic</item>
   </string-array>
+  <string name="mousepad_double_default">prawo</string>
+  <string name="mousepad_triple_default">środek</string>
   <string name="category_connected_devices">Podłączone urządzenia</string>
   <string name="category_not_paired_devices">Dostępne urządzenia</string>
   <string name="category_remembered_devices">Zapamiętane urządzenia</string>
   <string name="plugins_failed_to_load">Nieudane wczytywanie wtyczki (stuknij po więcej informacji):</string>
+  <string name="device_menu_plugins">Ustawienia wtyczki</string>
   <string name="device_menu_unpair">Odparuj</string>
   <string name="device_not_reachable">Sparowane urządzenie nieosiągalne</string>
   <string name="unknown_device">Nieznane urządzenie</string>
@@ -75,6 +81,8 @@
   <string name="mpris_next">Następny</string>
   <string name="mpris_volume">Głośność</string>
   <string name="mpris_settings">Ustawienia multimediów</string>
+  <string name="mpris_time_settings_title">Przyciski naprzód/wstecz</string>
+  <string name="mpris_time_settings_summary">Dostosuj czas do przewijania wprzód lub wstecz po naciśnięciu.</string>
   <string-array name="mpris_time_entries">
     <item>10 sekund</item>
     <item>20 sekund</item>
@@ -96,6 +104,8 @@
   <string name="custom_device_list">Dodaj urządzenia po numerze IP</string>
   <string name="share_notification_preference">Hałaśliwe powiadomienia</string>
   <string name="share_notification_preference_summary">Zadrżyj i odegraj dźwięk przy odebraniu pliku</string>
+  <string name="title_activity_notification_filter">Filtr powiadomień</string>
+  <string name="filter_apps_info">Powiadomienia zostaną zsynchronizowane z wybranymi aplikacjami.</string>
   <string name="sftp_internal_storage">"Pamięć wewnętrzna "</string>
   <string name="sftp_all_files">Wszystkie pliki</string>
   <string name="sftp_sdcard_num">Karta SD %d</string>
