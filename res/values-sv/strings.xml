@@ -59,8 +59,14 @@
   <string name="received_url_text">Rör för att öppna \'%1s\'</string>
   <string name="incoming_file_title">Inkommande fil från %1s</string>
   <string name="incoming_file_text">%1s</string>
+  <string name="outgoing_file_title">Skickar fil till %1s</string>
+  <string name="outgoing_file_text">%1s</string>
   <string name="received_file_title">Tog emot fil från %1s</string>
   <string name="received_file_text">Rör för att öppna \'%1s\'</string>
+  <string name="sent_file_title">Skickade fil till %1s</string>
+  <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Misslyckades skicka fil %1s</string>
+  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Rör för att svara</string>
   <string name="reconnect">Anslut igen</string>
   <string name="right_click">Skicka högerklick</string>

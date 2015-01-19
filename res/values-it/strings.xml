@@ -27,15 +27,21 @@
   <string name="send_ping">Invia ping</string>
   <string name="open_mpris_controls">Apri il telecomando multimediale</string>
   <string name="open_mousepad">Apri controllo del touchpad</string>
+  <string name="mousepad_info">Muovi un dito sullo schermo per spostare il puntatore del mouse. Tocca per un clic e usa due/tre dita per i pulsanti destro e centrale. Utilizza una pressione lunga per trascinare e rilasciare.</string>
+  <string name="mousepad_double_tap_settings_title">Imposta azione per il tocco a due dita</string>
+  <string name="mousepad_triple_tap_settings_title">Imposta azione per il tocco a tre dita</string>
   <string-array name="mousepad_tap_entries">
-    <item/>
-    <item/>
-    <item>Nothing</item>
+    <item>Clic destro</item>
+    <item>Clic centrale</item>
+    <item>Niente</item>
   </string-array>
+  <string name="mousepad_double_default">destra</string>
+  <string name="mousepad_triple_default">centro</string>
   <string name="category_connected_devices">Dispositivi connessi</string>
   <string name="category_not_paired_devices">Dispositivi disponibili</string>
   <string name="category_remembered_devices">Dispositivi memorizzati</string>
   <string name="plugins_failed_to_load">Alcune estensioni non si sono avviate correttamente (tocca per maggiori informazioni):</string>
+  <string name="device_menu_plugins">Impostazioni estensioni</string>
   <string name="device_menu_unpair">Disassocia</string>
   <string name="device_not_reachable">Dispositivo accoppiato non raggiungibile</string>
   <string name="unknown_device">Dispositivo sconosciuto</string>
@@ -75,6 +81,8 @@
   <string name="mpris_next">Successivo</string>
   <string name="mpris_volume">Volume</string>
   <string name="mpris_settings">Impostazioni multimediali</string>
+  <string name="mpris_time_settings_title">I pulsanti di avanzamento/riavvolgimento</string>
+  <string name="mpris_time_settings_summary">Regola l\'ora per avanzare rapidamente o riavvolgere in caso di pressione.</string>
   <string-array name="mpris_time_entries">
     <item>10 secondi</item>
     <item>20 secondi</item>
@@ -96,6 +104,8 @@
   <string name="custom_device_list">Aggiungi dispositivi per IP</string>
   <string name="share_notification_preference">Notifiche rumorose</string>
   <string name="share_notification_preference_summary">Vibra e riproduci un suono alla ricezione di un file</string>
+  <string name="title_activity_notification_filter">Filtro delle notifiche</string>
+  <string name="filter_apps_info">Le notifiche saranno sincronizzate per le applicazioni selezionate.</string>
   <string name="sftp_internal_storage">Archiviazione interna</string>
   <string name="sftp_all_files">Tutti i file</string>
   <string name="sftp_sdcard_num">Scheda SD %d</string>
@@ -103,5 +113,7 @@
   <string name="sftp_readonly">(sola lettura)</string>
   <string name="sftp_camera">Immagini fotocamera</string>
   <string name="add_host">Aggiungi host/IP</string>
+  <string name="no_players_connected">Nessun lettore trovato</string>
   <string name="custom_dev_list_help">Usa questa opzioone solo se il tuo dispositivo non è rilevato automaticamente. Digita l\'indirizzo IP o il nome host in basso e tocca il pulsante per aggiungerlo all\'elenco. Tocca un elemento esistente per rimuoverlo dall\'elenco.</string>
+  <string name="mpris_player_on_device">%1$s su %2$s</string>
 </resources>

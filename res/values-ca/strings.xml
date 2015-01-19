@@ -105,7 +105,7 @@
   <string name="share_notification_preference">Rebombori de les notificacions</string>
   <string name="share_notification_preference_summary">Vibra i reprodueix un so en rebre un fitxer</string>
   <string name="title_activity_notification_filter">Filtre per a les notificacions</string>
-  <string name="filter_apps_info">Les notificacions es sincronitzaran per a les aplicacions seleccionades.</string>
+  <string name="filter_apps_info">Les notificacions se sincronitzaran per a les aplicacions seleccionades.</string>
   <string name="sftp_internal_storage">Emmagatzematge intern</string>
   <string name="sftp_all_files">Tots els fitxers</string>
   <string name="sftp_sdcard_num">Targeta SD %d</string>
