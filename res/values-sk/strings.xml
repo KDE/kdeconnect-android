@@ -58,8 +58,11 @@
   <string name="received_url_text">Ťuknite na otvorenie \'%1s\'</string>
   <string name="incoming_file_title">Prichádzajúci súbor od %s</string>
   <string name="incoming_file_text">%1s</string>
+  <string name="outgoing_file_text">%1s</string>
   <string name="received_file_title">Prijatý súbor od %1s</string>
   <string name="received_file_text">Ťuknite na otvorenie \'%1s\'</string>
+  <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Tapnite na odpoveď</string>
   <string name="reconnect">Znovu pripojiť</string>
   <string name="right_click">Poslať kliknutie pravým</string>
