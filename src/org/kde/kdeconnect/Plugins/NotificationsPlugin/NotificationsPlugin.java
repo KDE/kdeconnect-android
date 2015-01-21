@@ -258,6 +258,13 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_NOTIFICATION);
 
+        if (packageName.equals("org.kde.kdeconnect_tp"))
+        {
+            //Make our own notifications silent :)
+            np.set("silent", true);
+            np.set("requestAnswer", true); //For compatibility with old desktop versions of KDE Connect that don't support "silent"
+        }
+
         /*
         //TODO: Add support for displaying app icons to desktop plasmoid and uncomment this piece of code
         try {
@@ -281,7 +288,10 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         np.set("isClearable", statusBarNotification.isClearable());
         np.set("ticker", getTickerText(notification));
         np.set("time", Long.toString(statusBarNotification.getPostTime()));
-        if (requestAnswer) np.set("requestAnswer", true);
+        if (requestAnswer) {
+            np.set("requestAnswer", true);
+            np.set("silent", true);
+        }
 
         device.sendPackage(np);
     }
