@@ -247,7 +247,12 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         String appName = AppsHelper.appNameLookup(context, packageName);
 
         if (id.serialize().equals("com.facebook.orca::10012") && notification.tickerText == null && appName.equals("Messenger")) {
-            //HACK: Weird Facebook empty "Messenger" notification
+            //HACK: Hide weird Facebook empty "Messenger" notification that is actually not shown in the phone
+            return;
+        }
+
+        if (packageName.equals("com.google.android.googlequicksearchbox")) {
+            //HACK: Hide Google Now notifications that keep constantly popping up (and without text because we don't know how to read them properly)
             return;
         }
 
