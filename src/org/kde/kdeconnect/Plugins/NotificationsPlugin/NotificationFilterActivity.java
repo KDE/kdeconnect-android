@@ -37,17 +37,13 @@ import java.util.List;
 
 public class NotificationFilterActivity extends ActionBarActivity {
 
-    ListView listView;
-    AppDatabase appDatabase;
-    String[] appName;
-    String[][] database;
-    int i=0;
+    private AppDatabase appDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_filter);
-        listView = (ListView)findViewById(R.id.lvFilterApps);
+        final ListView listView = (ListView)findViewById(R.id.lvFilterApps);
         appDatabase = new AppDatabase(this);
 
         deleteUninstalledApps();
@@ -57,43 +53,36 @@ public class NotificationFilterActivity extends ActionBarActivity {
         Cursor res = appDatabase.getAllApplications();
         res.moveToFirst();
 
-        appName = new String[res.getCount()];
-        database = new String [res.getCount()][3];
+        String[] appName = new String[res.getCount()];
+        final String[] pkgName = new String[res.getCount()];
+        Boolean[] isFiltered = new Boolean[res.getCount()];
 
+        int i = 0;
         while(!res.isAfterLast()){
             appName[i] = res.getString(res.getColumnIndex(AppDatabase.KEY_NAME));
-            database[i][0] = res.getString(res.getColumnIndex(AppDatabase.KEY_NAME));
-            database[i][1] = res.getString(res.getColumnIndex(AppDatabase.KEY_PACKAGE_NAME));
-            database[i][2] = res.getString(res.getColumnIndex(AppDatabase.KEY_IS_FILTERED));
-
+            pkgName[i] = res.getString(res.getColumnIndex(AppDatabase.KEY_PACKAGE_NAME));
+            isFiltered[i] = res.getString(res.getColumnIndex(AppDatabase.KEY_IS_FILTERED)).equals("true");
             res.moveToNext();
             i++;
         }
         appDatabase.close();
 
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_multiple_choice,android.R.id.text1, appName);
         listView.setAdapter(adapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-
-        for (i=0 ; i<res.getCount() ; i++){
-            if (database[i][2].equals("true")){
-                listView.setItemChecked(i,true);
+        for (i = 0 ; i < res.getCount(); i++){
+            if (isFiltered[i]) {
+                listView.setItemChecked(i, true);
             }
         }
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                boolean checked = listView.isItemChecked(i);
+                Log.e("NotificationFilterActivity", pkgName[i] + ":" + checked);
                 appDatabase.open();
-                if (listView.isItemChecked(i)){
-                    database[i][2] = "true" ;
-                    appDatabase.updateEntry(database[i][1],"true");
-                }else{
-                    database[i][2] = "false";
-                    appDatabase.updateEntry(database[i][1],"false");
-                }
+                appDatabase.updateEntry(pkgName[i], checked);
                 appDatabase.close();
             }
         });
@@ -104,11 +93,11 @@ public class NotificationFilterActivity extends ActionBarActivity {
         Cursor res;
         appDatabase.open();
         res = appDatabase.getAllApplications();
-        if (res != null){
+        if (res != null) {
             res.moveToFirst();
-            while(res.isAfterLast() == false){
+            while (!res.isAfterLast()) {
                 String packageName = res.getString(res.getColumnIndex(AppDatabase.KEY_PACKAGE_NAME));
-                if (!isPackageInstalled(packageName)){
+                if (!isPackageInstalled(packageName)) {
                     appDatabase.delete(packageName);
                 }
                 res.moveToNext();
@@ -119,7 +108,7 @@ public class NotificationFilterActivity extends ActionBarActivity {
     }
 
     // Adding newly installed apps in database
-    private void addNewlyInstalledApps(){
+    private void addNewlyInstalledApps() {
 
         List<ApplicationInfo> PackList = getPackageManager().getInstalledApplications(0);
         appDatabase.open();
@@ -128,26 +117,27 @@ public class NotificationFilterActivity extends ActionBarActivity {
         {
             ApplicationInfo PackInfo = PackList.get(i);
 
-            if (  (PackInfo.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0 )
-            {
-                String AppName = PackInfo.loadLabel(getPackageManager()).toString();
-                String packageName = PackInfo.packageName;
-                if (!appDatabase.checkEntry(packageName)){
-                    appDatabase.createEntry(PackInfo.loadLabel(getPackageManager()).toString(),
-                            PackInfo.packageName,
-                            "true");
+            String appName = PackInfo.loadLabel(getPackageManager()).toString();
+            String packageName = PackInfo.packageName;
+
+            if ( (PackInfo.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0 ) {
+
+                if (!appDatabase.checkEntry(packageName)) {
+                    appDatabase.createEntry(appName, packageName, true);
                 }
-//                Log.e("App : " + Integer.toString(i), AppName);
-            }else if ((PackInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0){
+                //Log.e("App FLAG_UPDATED_SYSTEM_APP: " + Integer.toString(i), appName);
+
+            } else if ( (PackInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
+
                 //ignore these apps
-            }else{
-                String packageName = PackInfo.packageName;
-                if (!appDatabase.checkEntry(packageName)){
-                    appDatabase.createEntry(PackInfo.loadLabel(getPackageManager()).toString(),
-                            PackInfo.packageName,
-                            "true");
+
+            } else {
+
+                if (!appDatabase.checkEntry(packageName)) {
+                    appDatabase.createEntry(appName, packageName, true);
                 }
-                //Log.e("App : " + Integer.toString(i), AppName);
+                //Log.e("App : " + Integer.toString(i), appName);
+
             }
         }
 
@@ -157,15 +147,12 @@ public class NotificationFilterActivity extends ActionBarActivity {
 
     private boolean isPackageInstalled(String packageName){
         PackageManager pm = getPackageManager();
-        try{
-            pm.getPackageInfo(packageName,PackageManager.GET_META_DATA);
-        }catch (Exception e){
+        try {
+            pm.getPackageInfo(packageName, PackageManager.GET_META_DATA);
+        } catch (Exception e) {
             return false;
         }
         return true;
     }
-
-
-   
 
 }

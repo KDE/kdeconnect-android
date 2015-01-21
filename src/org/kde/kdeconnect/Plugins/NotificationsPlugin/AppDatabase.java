@@ -34,7 +34,6 @@ public class AppDatabase {
     public static final String KEY_PACKAGE_NAME = "packageName";
     public static final String KEY_IS_FILTERED = "isFiltered";
 
-
     private static final String DATABASE_NAME = "Applications";
     private static final String DATABASE_TABLE = "Applications";
     private static final int DATABASE_VESRION = 1;
@@ -86,18 +85,17 @@ public class AppDatabase {
         return res;
     }
 
-
-    public long createEntry(String app, String packagename,String isFiltered) {
+    public long createEntry(String appName, String packageName, boolean isFiltered) {
         ContentValues cv = new ContentValues();
-        cv.put(KEY_NAME,app);
-        cv.put(KEY_PACKAGE_NAME,packagename);
-        cv.put(KEY_IS_FILTERED,isFiltered);
-        return ourDatabase.insert(DATABASE_TABLE,null,cv);
+        cv.put(KEY_NAME, appName);
+        cv.put(KEY_PACKAGE_NAME, packageName);
+        cv.put(KEY_IS_FILTERED, isFiltered?"true":"false");
+        return ourDatabase.insert(DATABASE_TABLE, null, cv);
     }
 
-    public long updateEntry(String packageName, String value) {
+    public long updateEntry(String packageName, boolean isFiltered) {
         ContentValues cvUpdate = new ContentValues();
-        cvUpdate.put(KEY_IS_FILTERED,value);
+        cvUpdate.put(KEY_IS_FILTERED, isFiltered?"true":"false");
         return ourDatabase.update(DATABASE_TABLE,cvUpdate,KEY_PACKAGE_NAME + "=?",new String[]{packageName});
     }
 
@@ -109,7 +107,6 @@ public class AppDatabase {
         }else {
             return false;
         }
-
     }
 
     public boolean isFilterEnabled(String packageName){
