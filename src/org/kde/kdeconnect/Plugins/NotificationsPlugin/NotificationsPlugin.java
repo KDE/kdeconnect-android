@@ -23,7 +23,6 @@ package org.kde.kdeconnect.Plugins.NotificationsPlugin;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Notification;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -179,7 +178,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                     } catch(Exception e) {
                         e.printStackTrace();
                         Log.e("NotificationsPlugin","Exception");
-}
+                }
                 }
             });
             return true;
@@ -244,19 +243,25 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         appDatabase.close();
 
         NotificationId id = NotificationId.fromNotification(statusBarNotification);
-
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_NOTIFICATION);
-
         String packageName = statusBarNotification.getPackageName();
         String appName = AppsHelper.appNameLookup(context, packageName);
 
-        //TODO: Add support for displaying app icons to desktop plasmoid and uncomment this piece of code
+        if (id.serialize().equals("com.facebook.orca::10012") && notification.tickerText == null && appName.equals("Messenger")) {
+            //HACK: Weird Facebook empty "Messenger" notification
+            return;
+        }
+
+        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_NOTIFICATION);
+
         /*
+        //TODO: Add support for displaying app icons to desktop plasmoid and uncomment this piece of code
         try {
-            //TODO: Scale down app icon if too big and compress as JPG
             Drawable drawableAppIcon = AppsHelper.appIconLookup(context, packageName);
             Bitmap appIcon = ImagesHelper.drawableToBitmap(drawableAppIcon);
             ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+            if (appIcon.getWidth() > 128) {
+                appIcon = Bitmap.createScaledBitmap(appIcon, 96, 96, true);
+            }
             appIcon.compress(Bitmap.CompressFormat.PNG, 90, outStream);
             byte[] bitmapData = outStream.toByteArray();
             np.setPayload(bitmapData);
