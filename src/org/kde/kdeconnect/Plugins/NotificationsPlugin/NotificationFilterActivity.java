@@ -80,7 +80,7 @@ public class NotificationFilterActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 boolean checked = listView.isItemChecked(i);
-                Log.e("NotificationFilterActivity", pkgName[i] + ":" + checked);
+                //Log.e("NotificationFilterActivity", pkgName[i] + ":" + checked);
                 appDatabase.open();
                 appDatabase.updateEntry(pkgName[i], checked);
                 appDatabase.close();

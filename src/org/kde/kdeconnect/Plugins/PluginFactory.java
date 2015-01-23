@@ -112,8 +112,8 @@ public class PluginFactory {
             availablePluginsInfo.put(pluginName, info); //Cache it
             return info;
         } catch(Exception e) {
-            e.printStackTrace();
             Log.e("PluginFactory","getPluginInfo exception");
+            e.printStackTrace();
             return null;
         }
     }
@@ -134,8 +134,8 @@ public class PluginFactory {
             plugin.setContext(context, device);
             return plugin;
         } catch(Exception e) {
-            e.printStackTrace();
             Log.e("PluginFactory", "Could not instantiate plugin: "+pluginName);
+            e.printStackTrace();
             return null;
         }
 

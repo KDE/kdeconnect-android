@@ -103,7 +103,7 @@ public class SharePlugin extends Plugin {
         try {
             if (np.hasPayload()) {
 
-                Log.e("SharePlugin", "hasPayload");
+                Log.i("SharePlugin", "hasPayload");
 
                 final InputStream input = np.getPayload();
                 final long fileLength = np.getPayloadSize();
@@ -121,7 +121,7 @@ public class SharePlugin extends Plugin {
                 //Append filename to the destination path
                 final File destinationFullPath = new File(destinationDir, filename);
 
-                Log.e("SharePlugin", "destinationFullPath:" + destinationFullPath);
+                //Log.e("SharePlugin", "destinationFullPath:" + destinationFullPath);
 
                 final NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -165,7 +165,7 @@ public class SharePlugin extends Plugin {
                             output.close();
                             input.close();
 
-                            Log.e("SharePlugin", "Transfer finished");
+                            Log.i("SharePlugin", "Transfer finished");
 
                             //Make sure it is added to the Android Gallery
                             Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
@@ -212,7 +212,7 @@ public class SharePlugin extends Plugin {
                 }).start();
 
             } else if (np.has("text")) {
-                Log.e("SharePlugin", "hasText");
+                Log.i("SharePlugin", "hasText");
 
                 String text = np.getString("text");
                 if(android.os.Build.VERSION.SDK_INT >= 11) {
@@ -227,13 +227,12 @@ public class SharePlugin extends Plugin {
 
                 String url = np.getString("url");
 
-                Log.e("SharePlugin", "hasUrl: "+url);
+                Log.i("SharePlugin", "hasUrl: "+url);
 
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                //Do not launch it directly, show a notification instead
-                //context.startActivity(browserIntent);
+                //Do not launch url directly, show a notification instead
 
                 Resources res = context.getResources();
                 TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);

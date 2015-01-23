@@ -160,8 +160,8 @@ public class ShareToReceiver extends ActionBarActivity {
                                         queuedSendUriList(device, uriList);
 
                                     } catch (Exception e) {
-                                        e.printStackTrace();
                                         Log.e("ShareToReceiver", "Exception");
+                                        e.printStackTrace();
                                     }
 
                                 } else if (extras.containsKey(Intent.EXTRA_TEXT)) {
@@ -237,8 +237,8 @@ public class ShareToReceiver extends ActionBarActivity {
                     size = new File(uri.getPath()).length();
                     np.setPayload(inputStream, size);
                 } catch(Exception e) {
-                    e.printStackTrace();
                     Log.e("ShareToReceiver", "Could not obtain file size");
+                    e.printStackTrace();
                 }
 
             }else{
@@ -273,8 +273,8 @@ public class ShareToReceiver extends ActionBarActivity {
                         //For some reason this size can differ from the actual file size!
                         size = cursor.getInt(column_index);
                     } catch(Exception e) {
-                        e.printStackTrace();
                         Log.e("ShareToReceiver", "Could not obtain file size");
+                        e.printStackTrace();
                     }
                 } finally {
                     cursor.close();
@@ -335,7 +335,7 @@ public class ShareToReceiver extends ActionBarActivity {
                     });
 
                     if (!uriList.isEmpty()) queuedSendUriList(device, uriList);
-                    else Log.e("ShareToReceiver", "All files sent");
+                    else Log.i("ShareToReceiver", "All files sent");
                 }
 
                 @Override
@@ -366,8 +366,8 @@ public class ShareToReceiver extends ActionBarActivity {
             });
 
         } catch (Exception e) {
-            e.printStackTrace();
             Log.e("ShareToReceiver", "Exception sending files");
+            e.printStackTrace();
         }
 
     }

@@ -176,8 +176,8 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                             sendNotification(notification, true);
                         }
                     } catch(Exception e) {
-                        e.printStackTrace();
                         Log.e("NotificationsPlugin","Exception");
+                        e.printStackTrace();
                 }
                 }
             });
@@ -365,7 +365,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                             public void run() {
                                 try {
                                     Thread.sleep(100);
-                                    Log.e("onPackageReceived","Error when answering 'request': Service failed to start. Retrying...");
                                     sendCurrentNotifications(service);
                                 } catch (Exception e) {
                                     Log.e("onPackageReceived","Error when answering 'request': Service failed to start twice!");
