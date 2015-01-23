@@ -66,7 +66,7 @@ public class NetworkPackage {
     private JSONObject mBody;
     private InputStream mPayload;
     private JSONObject mPayloadTransferInfo;
-    private int mPayloadSize;
+    private long mPayloadSize;
 
     private NetworkPackage() {
 
@@ -171,7 +171,7 @@ public class NetworkPackage {
             np.mBody = jo.getJSONObject("body");
             if (jo.has("payloadSize")) {
                 np.mPayloadTransferInfo = jo.getJSONObject("payloadTransferInfo");
-                np.mPayloadSize = jo.getInt("payloadSize");
+                np.mPayloadSize = jo.getLong("payloadSize");
             } else {
                 np.mPayloadTransferInfo = new JSONObject();
                 np.mPayloadSize = 0;
@@ -277,7 +277,7 @@ public class NetworkPackage {
         setPayload(new ByteArrayInputStream(data), data.length);
     }
 
-    public void setPayload(InputStream stream, int size) {
+    public void setPayload(InputStream stream, long size) {
         mPayload = stream;
         mPayloadSize = size;
     }
@@ -290,7 +290,7 @@ public class NetworkPackage {
         return mPayload;
     }
 
-    public int getPayloadSize() {
+    public long getPayloadSize() {
         return mPayloadSize;
     }
 

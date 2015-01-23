@@ -106,7 +106,7 @@ public class SharePlugin extends Plugin {
                 Log.e("SharePlugin", "hasPayload");
 
                 final InputStream input = np.getPayload();
-                final int fileLength = np.getPayloadSize();
+                final long fileLength = np.getPayloadSize();
                 final String filename = np.getString("filename", new Long(System.currentTimeMillis()).toString());
 
                 String deviceDir = FilesHelper.toFileSystemSafeName(device.getName());

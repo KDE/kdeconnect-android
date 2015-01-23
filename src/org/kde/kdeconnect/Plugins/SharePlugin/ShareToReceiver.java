@@ -211,7 +211,7 @@ public class ShareToReceiver extends ActionBarActivity {
             InputStream inputStream = cr.openInputStream(uri);
 
             NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_SHARE);
-            int size = -1;
+            long size = -1;
 
             final NotificationManager notificationManager = (NotificationManager)getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
             final int notificationId = (int)System.currentTimeMillis();
@@ -234,7 +234,7 @@ public class ShareToReceiver extends ActionBarActivity {
                 np.set("filename", uri.getLastPathSegment());
 
                 try {
-                    size = (int)new File(uri.getPath()).length();
+                    size = new File(uri.getPath()).length();
                     np.setPayload(inputStream, size);
                 } catch(Exception e) {
                     e.printStackTrace();
@@ -252,7 +252,7 @@ public class ShareToReceiver extends ActionBarActivity {
                     cursor.moveToFirst();
                     String path = cursor.getString(column_index);
                     np.set("filename", Uri.parse(path).getLastPathSegment());
-                    size = (int)new File(path).length();
+                    size = new File(path).length();
                 } catch(Exception unused) {
 
                     Log.e("ShareToReceiver", "Could not resolve media to a file, trying to get info as media");
@@ -284,7 +284,7 @@ public class ShareToReceiver extends ActionBarActivity {
 
             }
 
-            final long filesize = size;
+            final long fileSize = size;
             final String filename = np.getString("filename");
 
             builder.setContentText(res.getString(R.string.outgoing_file_text,filename));
