@@ -8,7 +8,7 @@
   <string name="pref_plugin_sftp_desc">Mahdollistaa puhelimen tiedostojärjestelmän etäselaamisen</string>
   <string name="pref_plugin_clipboard">Leikepöydän synkronointi</string>
   <string name="pref_plugin_clipboard_desc">Jaa leikepöydän sisältö</string>
-  <string name="pref_plugin_mousepad">Kaukosyöte</string>
+  <string name="pref_plugin_mousepad">Kauko-ohjaus</string>
   <string name="pref_plugin_mousepad_desc">Käytä puhelintasi hiirenä ja näppäimistönä</string>
   <string name="pref_plugin_mpris">Multimedian kauko-ohjaus</string>
   <string name="pref_plugin_mpris_desc">Ohjaa ääntä ja videota puhelimestasi</string>
@@ -27,17 +27,21 @@
   <string name="send_ping">Lähetä tiedustelupaketti</string>
   <string name="open_mpris_controls">Avaa kauko-ohjain</string>
   <string name="open_mousepad">Avaa hiiren ohjain</string>
+  <string name="mousepad_info">Liikuta hiiren osoitinta liikuttamalla sormeasi näytöllä. Napsauta napauttamalla yhdellä sormella, käytä oikeaa painiketta kahdella sormella ja keskipainiketta kolmella. Vedä ja pudota painamalla pitkään.</string>
   <string name="mousepad_double_tap_settings_title">Aseta kahden sormen napautuksen toiminto</string>
   <string name="mousepad_triple_tap_settings_title">Aseta kolmen sormen napautuksen toiminto</string>
   <string-array name="mousepad_tap_entries">
     <item>Oikea napsautus</item>
     <item>Keskinapsautus</item>
-    <item>Nothing</item>
+    <item>Ei toimintoa</item>
   </string-array>
+  <string name="mousepad_double_default">Oikea painike</string>
+  <string name="mousepad_triple_default">Keskipainike</string>
   <string name="category_connected_devices">Yhdistetyt laitteet</string>
   <string name="category_not_paired_devices">Saatavilla olevat laitteet</string>
   <string name="category_remembered_devices">Muistetut laitteet</string>
-  <string name="plugins_failed_to_load">Liitännäisten lataus epäonnistui (lisätietoa napauttamalla):</string>
+  <string name="plugins_failed_to_load">Seuraavien liitännäisten lataus epäonnistui (lisätietoa painamalla):</string>
+  <string name="device_menu_plugins">Liitännäisten asetukset</string>
   <string name="device_menu_unpair">Poista laitepari</string>
   <string name="device_not_reachable">Laitepari tavoittamattomissa</string>
   <string name="unknown_device">Tuntematon laite</string>
@@ -55,8 +59,14 @@
   <string name="received_url_text">Avaa ”%1s” napauttamalla</string>
   <string name="incoming_file_title">Saapuva tiedosto lähettäjältä %1s</string>
   <string name="incoming_file_text">%1s</string>
+  <string name="outgoing_file_title">Lähetetään tiedostoa laitteeseen %1s</string>
+  <string name="outgoing_file_text">%1s</string>
   <string name="received_file_title">Vastaanotettiin tiedosto lähettäjältä %1s</string>
   <string name="received_file_text">Avaa ”%1s” napauttamalla</string>
+  <string name="sent_file_title">Tiedosto lähetetty laitteeseen %1s</string>
+  <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Tiedoston lähetys epäonnistui: %1s</string>
+  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Vastaa napauttamalla</string>
   <string name="reconnect">Yhdistä uudelleen</string>
   <string name="right_click">Lähetä oikean painikkeen napsautus</string>
@@ -73,10 +83,12 @@
   <string name="mpris_play">Toista</string>
   <string name="mpris_previous">Edellinen</string>
   <string name="mpris_rew">Kelaa takaisin</string>
-  <string name="mpris_ff">Nopeasti eteenpäin</string>
+  <string name="mpris_ff">Pikakelaa</string>
   <string name="mpris_next">Seuraava</string>
   <string name="mpris_volume">Äänenvoimakkuus</string>
   <string name="mpris_settings">Multimedia-asetukset</string>
+  <string name="mpris_time_settings_title">Kelauspainikkeet</string>
+  <string name="mpris_time_settings_summary">Säädä painettaessa tapahtuvan kelauksen kestoa.</string>
   <string-array name="mpris_time_entries">
     <item>10 sekuntia</item>
     <item>20 sekuntia</item>
@@ -99,6 +111,7 @@
   <string name="share_notification_preference">Äänekkäät ilmoitukset</string>
   <string name="share_notification_preference_summary">Värise ja soita ääni tiedoston saapuessa</string>
   <string name="title_activity_notification_filter">Ilmoitussuodatin</string>
+  <string name="filter_apps_info">Valittujen sovellusten ilmoitukset synkronoidaan.</string>
   <string name="sftp_internal_storage">Sisäinen muisti</string>
   <string name="sftp_all_files">Kaikki tiedostot</string>
   <string name="sftp_sdcard_num">SD-kortti %d</string>
