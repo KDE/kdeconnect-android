@@ -292,28 +292,24 @@ public class ShareToReceiver extends ActionBarActivity {
 
             device.sendPackage(np, new Device.SendPackageStatusCallback() {
 
-                int prevProgressPercentage = 0,progressPercentage;
+                int prevProgress = 0;
 
                 @Override
-                public void progressChanged(final long progress) {
-                    // update notification progress
-                    progressPercentage = (int)((progress * 100) / filesize);
-                    if (filesize > 0 && (progressPercentage - prevProgressPercentage) > 0) {
-                        prevProgressPercentage = progressPercentage;
+                public void onProgressChanged(final int progress) {
+                    if (progress != prevProgress) {
+                        prevProgress = progress;
                         progressBarHandler.post(new Runnable() {
                             @Override
                             public void run() {
-                                builder.setProgress(100, progressPercentage, false);
+                                builder.setProgress(100, progress, false);
                                 notificationManager.notify(notificationId, builder.build());
                             }
                         });
                     }
-
                 }
 
                 @Override
-                public void sendSuccessful() {
-
+                public void onSuccess() {
                     progressBarHandler.post(new Runnable() {
                         @Override
                         public void run() {
@@ -339,8 +335,7 @@ public class ShareToReceiver extends ActionBarActivity {
                 }
 
                 @Override
-                public void sendFailed() {
-
+                public void onFailure(Throwable e) {
                     progressBarHandler.post(new Runnable() {
                         @Override
                         public void run() {

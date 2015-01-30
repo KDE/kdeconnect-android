@@ -30,12 +30,17 @@ import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.channels.NotYetConnectedException;
 import java.security.PublicKey;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeoutException;
 
 public class LanLink extends BaseLink {
 
@@ -52,144 +57,100 @@ public class LanLink extends BaseLink {
         this.session = session;
     }
 
-    private Thread sendPayload(NetworkPackage np, final Device.SendPackageStatusCallback callback) {
-
-        try {
-
-            final InputStream stream = np.getPayload();
-
-            ServerSocket candidateServer = null;
-            boolean success = false;
-            int tcpPort = 1739;
-            while(!success) {
-                try {
-                    candidateServer = new ServerSocket();
-                    candidateServer.bind(new InetSocketAddress(tcpPort));
-                    success = true;
-                } catch(Exception e) {
-                    Log.e("LanLink", "Exception openning serversocket: "+e);
-                    tcpPort++;
-                    if (tcpPort >= 1764) {
-                        Log.e("LanLink", "No more ports available");
-                        return null;
-                    }
-                }
-            }
-            JSONObject payloadTransferInfo = new JSONObject();
-            payloadTransferInfo.put("port", tcpPort);
-
-            final ServerSocket server = candidateServer;
-            Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    //TODO: Timeout when waiting for a connection and close the socket
-                    OutputStream socket = null;
-                    try {
-                        socket = server.accept().getOutputStream();
-                        byte[] buffer = new byte[4096];
-                        int bytesRead;
-                        long progress = 0 ;
-                        Log.e("LanLink","Beginning to send payload");
-                        while ((bytesRead = stream.read(buffer)) != -1) {
-                            //Log.e("ok",""+bytesRead);
-                            progress += bytesRead;
-                            socket.write(buffer, 0, bytesRead);
-                            if (callback != null) callback.progressChanged(progress);
-                        }
-                        Log.e("LanLink","Finished sending payload");
-                    } catch(Exception e) {
-                        e.printStackTrace();
-                        Log.e("LanLink", "Exception with payload upload socket");
-                    } finally {
-                        if (socket != null) {
-                            try { socket.close(); } catch(Exception e) { }
-                        }
-                        try { server.close(); } catch(Exception e) { }
-                    }
-                }
-            });
-            thread.start();
-
-            np.setPayloadTransferInfo(payloadTransferInfo);
-
-            return thread;
-
-        } catch(Exception e) {
-
-            e.printStackTrace();
-            Log.e("LanLink", "Exception with payload upload socket");
-
-            return null;
-        }
-
-    }
-
     //Blocking, do not call from main thread
-    @Override
-    public boolean sendPackage(final NetworkPackage np,Device.SendPackageStatusCallback callback) {
-
+    private void sendPackageInternal(NetworkPackage np, final Device.SendPackageStatusCallback callback, PublicKey key) {
         if (session == null) {
-            Log.e("LanLink", "sendPackage failed: not yet connected");
-            return false;
+            callback.sendFailure(new NotYetConnectedException());
+            return;
         }
 
         try {
-            Thread thread = null;
+
+            //Prepare socket for the payload
+            final ServerSocket server;
             if (np.hasPayload()) {
-                thread = sendPayload(np,callback);
-                if (thread == null) return false;
+                server = openTcpSocketOnFreePort();
+                JSONObject payloadTransferInfo = new JSONObject();
+                payloadTransferInfo.put("port", server.getLocalPort());
+                np.setPayloadTransferInfo(payloadTransferInfo);
+            } else {
+                server = null;
             }
 
+            //Encrypt if key provided
+            if (key != null) {
+                np = np.encrypt(key);
+            }
+
+            //Send body of the network package
             WriteFuture future = session.write(np.serialize());
             future.awaitUninterruptibly();
-            if (!future.isWritten()) return false;
-
-            if (thread != null) {
-                thread.join(); //Wait for thread to finish
+            if (!future.isWritten()) {
+                callback.sendFailure(future.getException());
+                return;
             }
 
-            return true;
+            //Send payload
+            if (server != null) {
+                OutputStream socket = null;
+                try {
+                    //Wait a maximum of 10 seconds for the other end to establish a connection with our socket, close it afterwards
+                    Timer timeout = new Timer();
+                    timeout.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            try { server.close(); } catch (Exception e) { }
+                            callback.sendFailure(new TimeoutException("Timed out waiting for other end to establish a connection to receive the payload."));
+                        }
+                    },10*1000);
+                    socket = server.accept().getOutputStream();
+                    timeout.cancel();
+
+                    Log.i("LanLink", "Beginning to send payload");
+
+                    byte[] buffer = new byte[4096];
+                    int bytesRead;
+                    long progress = 0;
+                    InputStream stream = np.getPayload();
+                    while ((bytesRead = stream.read(buffer)) != -1) {
+                        //Log.e("ok",""+bytesRead);
+                        progress += bytesRead;
+                        socket.write(buffer, 0, bytesRead);
+                        if (np.getPayloadSize() > 0) {
+                            callback.sendProgress((int)(progress / np.getPayloadSize()));
+                        }
+                    }
+                    Log.i("LanLink", "Finished sending payload");
+                } catch (Exception e) {
+                    callback.sendFailure(e);
+                    return;
+                } finally {
+                    if (socket != null) {
+                        try { socket.close(); } catch (Exception e) { }
+                    }
+                    try { server.close(); } catch (Exception e) { }
+                }
+            }
+
+            callback.sendSuccess();
+
         } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("LanLink", "sendPackage exception");
-            return false;
+            callback.sendFailure(e);
         }
+    }
+
+
+    //Blocking, do not call from main thread
+    @Override
+    public void sendPackage(NetworkPackage np,Device.SendPackageStatusCallback callback) {
+        sendPackageInternal(np, callback, null);
 
     }
 
     //Blocking, do not call from main thread
     @Override
-    public boolean sendPackageEncrypted(NetworkPackage np,Device.SendPackageStatusCallback callback, PublicKey key) {
-
-        if (session == null) {
-            Log.e("LanLink", "sendPackage failed: not yet connected");
-            return false;
-        }
-
-        try {
-
-            Thread thread = null;
-            if (np.hasPayload()) {
-                thread = sendPayload(np,callback);
-                if (thread == null) return false;
-            }
-
-            np = np.encrypt(key);
-            WriteFuture future = session.write(np.serialize());
-            if (!future.await().isWritten()) return false;
-
-            if (thread != null) {
-                thread.join(); //Wait for thread to finish
-            }
-
-            return true;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("LanLink", "sendPackageEncrypted exception");
-            return false;
-        }
-
+    public void sendPackageEncrypted(NetworkPackage np, Device.SendPackageStatusCallback callback, PublicKey key) {
+        sendPackageInternal(np, callback, key);
     }
 
     public void injectNetworkPackage(NetworkPackage np) {
@@ -222,4 +183,28 @@ public class LanLink extends BaseLink {
 
         packageReceived(np);
     }
+
+
+    static ServerSocket openTcpSocketOnFreePort() throws IOException {
+        boolean success = false;
+        int tcpPort = 1739;
+        ServerSocket candidateServer = null;
+        while(!success) {
+            try {
+                candidateServer = new ServerSocket();
+                candidateServer.bind(new InetSocketAddress(tcpPort));
+                success = true;
+                Log.i("LanLink", "Using port "+tcpPort);
+            } catch(IOException e) {
+                //Log.e("LanLink", "Exception openning serversocket: "+e);
+                tcpPort++;
+                if (tcpPort >= 1764) {
+                    Log.e("LanLink", "No more ports available");
+                    throw e;
+                }
+            }
+        }
+        return candidateServer;
+    }
+
 }

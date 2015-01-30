@@ -144,7 +144,7 @@ public class SharePlugin extends Plugin {
                         try {
                             OutputStream output = new FileOutputStream(destinationFullPath.getPath());
                             byte data[] = new byte[1024];
-                            long progress = 0,prevProgressPercentage = 0;
+                            long progress = 0, prevProgressPercentage = 0;
                             int count;
                             while ((count = input.read(data)) >= 0) {
                                 progress += count;
@@ -152,7 +152,7 @@ public class SharePlugin extends Plugin {
                                 if (fileLength > 0) {
                                     if (progress >= fileLength) break;
                                     long progressPercentage = (progress * 100 / fileLength);
-                                    if ((progressPercentage - prevProgressPercentage) > 0) {
+                                    if (progressPercentage != prevProgressPercentage) {
                                         prevProgressPercentage = progressPercentage;
                                         builder.setProgress(100, (int) progressPercentage, false);
                                         notificationManager.notify(notificationId, builder.build());

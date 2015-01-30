@@ -36,29 +36,30 @@ public class LoopbackLink extends BaseLink {
     }
 
     @Override
-    public boolean sendPackage(NetworkPackage in,Device.SendPackageStatusCallback callback) {
-        String s = in.serialize();
-        NetworkPackage out= NetworkPackage.unserialize(s);
-        if (in.hasPayload()) out.setPayload(in.getPayload(), in.getPayloadSize());
-        packageReceived(out);
-        return true;
+    public void sendPackage(NetworkPackage in, Device.SendPackageStatusCallback callback) {
+        sendPackageEncrypted(in, callback, null);
     }
 
     @Override
-    public boolean sendPackageEncrypted(NetworkPackage in,Device.SendPackageStatusCallback callback, PublicKey key) {
+    public void sendPackageEncrypted(NetworkPackage in, Device.SendPackageStatusCallback callback, PublicKey key) {
         try {
-            in = in.encrypt(key);
+            if (key != null) {
+                in = in.encrypt(key);
+            }
             String s = in.serialize();
             NetworkPackage out= NetworkPackage.unserialize(s);
-            out.decrypt(privateKey);
+            if (key != null) {
+                out.decrypt(privateKey);
+            }
             packageReceived(out);
-            if (in.hasPayload()) out.setPayload(in.getPayload(), in.getPayloadSize());
-            return true;
+            if (in.hasPayload()) {
+                callback.sendProgress(0);
+                out.setPayload(in.getPayload(), in.getPayloadSize());
+                callback.sendProgress(100);
+            }
+            callback.sendSuccess();
         } catch(Exception e) {
-            e.printStackTrace();
-            Log.e("LoopbackLink", "Encryption exception");
-            return false;
+            callback.sendFailure(e);
         }
-
     }
 }

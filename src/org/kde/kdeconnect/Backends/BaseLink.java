@@ -72,7 +72,7 @@ public abstract class BaseLink {
     }
 
     //TO OVERRIDE, should be sync
-    public abstract boolean sendPackage(NetworkPackage np,Device.SendPackageStatusCallback callback);
-    public abstract boolean sendPackageEncrypted(NetworkPackage np,Device.SendPackageStatusCallback callback, PublicKey key);
+    public abstract void sendPackage(NetworkPackage np,Device.SendPackageStatusCallback callback);
+    public abstract void sendPackageEncrypted(NetworkPackage np,Device.SendPackageStatusCallback callback, PublicKey key);
 
 }

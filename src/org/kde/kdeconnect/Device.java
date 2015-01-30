@@ -46,8 +46,6 @@ import java.security.PublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Timer;
@@ -192,14 +190,8 @@ public class Device implements BaseLink.PackageReceiver {
         //Send our own public key
         NetworkPackage np = NetworkPackage.createPublicKeyPackage(context);
         sendPackage(np, new SendPackageStatusCallback(){
-
             @Override
-            public void progressChanged(long progress) {
-                // Do nothing
-            }
-
-            @Override
-            public void sendSuccessful() {
+            public void onSuccess() {
                 if (pairingTimer != null) pairingTimer.cancel();
                 pairingTimer = new Timer();
                 pairingTimer.schedule(new TimerTask() {
@@ -216,7 +208,7 @@ public class Device implements BaseLink.PackageReceiver {
             }
 
             @Override
-            public void sendFailed() {
+            public void onFailure(Throwable e) {
                 for (PairingCallback cb : pairingCallback) {
                     cb.pairingFailed(context.getString(R.string.error_could_not_send_package));
                 }
@@ -285,16 +277,11 @@ public class Device implements BaseLink.PackageReceiver {
         NetworkPackage np = NetworkPackage.createPublicKeyPackage(context);
         sendPackage(np, new SendPackageStatusCallback() {
             @Override
-            public void progressChanged(long progress) {
-                // Do nothng
-            }
-
-            @Override
-            public void sendSuccessful() {
+            protected void onSuccess() {
                 pairingDone();
             }
             @Override
-            public void sendFailed() {
+            protected void onFailure(Throwable e) {
                 Log.e("Device","Unpairing (sendFailed B)");
                 pairStatus = PairStatus.NotPaired;
                 for (PairingCallback cb : pairingCallback) {
@@ -500,69 +487,65 @@ public class Device implements BaseLink.PackageReceiver {
 
     }
 
-    public interface SendPackageStatusCallback {
-        void progressChanged(long progress);
-        void sendSuccessful();
-        void sendFailed();
+    public static abstract class SendPackageStatusCallback {
+        protected abstract void onSuccess();
+        protected abstract void onFailure(Throwable e);
+        protected void onProgressChanged(int percent) { }
+
+        private boolean success = false;
+        public void sendSuccess() {
+            success = true;
+            onSuccess();
+        }
+        public void sendFailure(Throwable e) {
+            if (e != null) {
+                e.printStackTrace();
+                Log.e("sendPackage", "Exception: " + e.getMessage());
+            } else {
+                Log.e("sendPackage", "Unknown (null) exception");
+            }
+            onFailure(e);
+        }
+        public void sendProgress(int percent) { onProgressChanged(percent); }
     }
 
+
     public void sendPackage(NetworkPackage np) {
-        sendPackage(np,null);
+        sendPackage(np,new SendPackageStatusCallback() {
+            @Override
+            protected void onSuccess() { }
+            @Override
+            protected void onFailure(Throwable e) { }
+        });
     }
 
     //Async
     public void sendPackage(final NetworkPackage np, final SendPackageStatusCallback callback) {
 
+        //Log.e("sendPackage", "Sending package...");
+        //Log.e("sendPackage", np.serialize());
 
-        final Exception backtrace = new Exception();
         new Thread(new Runnable() {
             @Override
             public void run() {
 
-                //Log.e("sendPackage", "Sending package...");
-                //Log.e("sendPackage", np.serialize());
-
                 boolean useEncryption = (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR) && isPaired());
 
-                //We need a copy to avoid concurrent modification exception if the original list changes
+                //Make a copy to avoid concurrent modification exception if the original list changes
                 ArrayList<BaseLink> mLinks = new ArrayList<BaseLink>(links);
-
-                boolean success = false;
-                try {
-                    for (BaseLink link : mLinks) {
-                        if (useEncryption) {
-                            success = link.sendPackageEncrypted(np,callback, publicKey);
-                        } else {
-                            success = link.sendPackage(np,callback);
-                        }
-                        if (success) break;
+                for (final BaseLink link : mLinks) {
+                    if (useEncryption) {
+                        link.sendPackageEncrypted(np, callback, publicKey);
+                    } else {
+                        link.sendPackage(np, callback);
                     }
-                } catch(Exception e) {
-                    e.printStackTrace();
-                    Log.e("sendPackage","Error while sending package");
-                    success = false;
-                }
-
-                if (success) {
-                   // Log.e("sendPackage","Package sent");
-                } else {
-                    backtrace.printStackTrace();
-                    Log.e("sendPackage","Error: Package could not be sent ("+mLinks.size()+" links available)");
-                }
-
-                if (callback != null) {
-                    if (success) callback.sendSuccessful();
-                    else callback.sendFailed();
+                    if (callback.success) break; //If the link didn't call sendSuccess(), try the next one
                 }
 
             }
         }).start();
 
     }
-
-
-
-
 
     //
     // Plugin-related functions
