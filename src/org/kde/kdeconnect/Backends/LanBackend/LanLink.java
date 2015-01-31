@@ -60,6 +60,7 @@ public class LanLink extends BaseLink {
     //Blocking, do not call from main thread
     private void sendPackageInternal(NetworkPackage np, final Device.SendPackageStatusCallback callback, PublicKey key) {
         if (session == null) {
+            Log.e("sendPackage", "Not yet connected");
             callback.sendFailure(new NotYetConnectedException());
             return;
         }
@@ -86,6 +87,7 @@ public class LanLink extends BaseLink {
             WriteFuture future = session.write(np.serialize());
             future.awaitUninterruptibly();
             if (!future.isWritten()) {
+                Log.e("sendPackage", "!future.isWritten()");
                 callback.sendFailure(future.getException());
                 return;
             }
@@ -99,6 +101,7 @@ public class LanLink extends BaseLink {
                     timeout.schedule(new TimerTask() {
                         @Override
                         public void run() {
+                            Log.e("sendPackage","Timeout");
                             try { server.close(); } catch (Exception e) { }
                             callback.sendFailure(new TimeoutException("Timed out waiting for other end to establish a connection to receive the payload."));
                         }
@@ -122,6 +125,7 @@ public class LanLink extends BaseLink {
                     }
                     Log.i("LanLink", "Finished sending payload");
                 } catch (Exception e) {
+                    Log.e("sendPackage", "Exception: "+e);
                     callback.sendFailure(e);
                     return;
                 } finally {
@@ -135,7 +139,9 @@ public class LanLink extends BaseLink {
             callback.sendSuccess();
 
         } catch (Exception e) {
-            callback.sendFailure(e);
+            if (callback != null) {
+                callback.sendFailure(e);
+            }
         }
     }
 

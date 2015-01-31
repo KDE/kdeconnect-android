@@ -215,6 +215,7 @@ public class NetworkPackage {
 
         NetworkPackage encrypted = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_ENCRYPTED);
         encrypted.set("data", chunks);
+        encrypted.setPayload(mPayload, mPayloadSize);
         return encrypted;
 
     }
@@ -233,7 +234,9 @@ public class NetworkPackage {
             decryptedJson += decryptedChunk;
         }
 
-        return unserialize(decryptedJson);
+        NetworkPackage decrypted = unserialize(decryptedJson);
+        decrypted.setPayload(mPayload, mPayloadSize);
+        return decrypted;
     }
 
     static public NetworkPackage createIdentityPackage(Context context) {

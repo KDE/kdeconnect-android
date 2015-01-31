@@ -39,6 +39,7 @@ import org.apache.mina.transport.socket.nio.NioDatagramAcceptor;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
+import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.UserInterface.CustomDevicesActivity;
 
@@ -66,15 +67,26 @@ public class LanLinkProvider extends BaseLinkProvider {
         @Override
         public void sessionClosed(IoSession session) throws Exception {
 
-            LanLink brokenLink = nioSessions.get(session.getId());
+            final LanLink brokenLink = nioSessions.get(session.getId());
             if (brokenLink != null) {
                 nioSessions.remove(session.getId());
-                connectionLost(brokenLink);
                 brokenLink.disconnect();
                 String deviceId = brokenLink.getDeviceId();
                 if (visibleComputers.get(deviceId) == brokenLink) {
                     visibleComputers.remove(deviceId);
                 }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Wait a bit before emiting connectionLost, in case the same device re-appears
+                        try {
+                            Thread.sleep(200);
+                        } catch (InterruptedException e) { }
+                        connectionLost(brokenLink);
+
+                    }
+                }).start();
+
             }
 
         }
@@ -169,10 +181,19 @@ public class LanLinkProvider extends BaseLinkProvider {
                             @Override
                             public void run() {
                                 NetworkPackage np2 = NetworkPackage.createIdentityPackage(context);
-                                link.sendPackage(np2,null);
+                                link.sendPackage(np2,new Device.SendPackageStatusCallback() {
+                                    @Override
+                                    protected void onSuccess() {
+                                        nioSessions.put(session.getId(), link);
+                                        addLink(identityPackage, link);
+                                    }
 
-                                nioSessions.put(session.getId(), link);
-                                addLink(identityPackage, link);
+                                    @Override
+                                    protected void onFailure(Throwable e) {
+
+                                    }
+                                });
+
                             }
                         }).start();
 

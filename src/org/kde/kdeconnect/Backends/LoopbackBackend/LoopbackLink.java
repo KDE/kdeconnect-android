@@ -47,7 +47,7 @@ public class LoopbackLink extends BaseLink {
             String s = in.serialize();
             NetworkPackage out= NetworkPackage.unserialize(s);
             if (key != null) {
-                out.decrypt(privateKey);
+                out = out.decrypt(privateKey);
             }
             packageReceived(out);
             if (in.hasPayload()) {

@@ -544,7 +544,7 @@ public class Device implements BaseLink.PackageReceiver {
                 }
 
                 if (!callback.success) {
-                    Log.e("sendPackage", "No device link could send the package. package lost!");
+                    Log.e("sendPackage", "No device link (of "+mLinks.size()+" available) could send the package. Package lost!");
                     backtrace.printStackTrace();
                 }
 
