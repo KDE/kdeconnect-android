@@ -85,9 +85,9 @@ public class BatteryPlugin extends Plugin {
             int thresholdEvent = lowBattery? THRESHOLD_EVENT_BATTERY_LOW : THRESHOLD_EVENT_NONE;
 
             if (lastInfo != null
-                && isCharging != lastInfo.getBoolean("isCharging")
-                && currentCharge != lastInfo.getInt("currentCharge")
-                && thresholdEvent != lastInfo.getInt("thresholdEvent")
+                && isCharging == lastInfo.getBoolean("isCharging")
+                && currentCharge == lastInfo.getInt("currentCharge")
+                && thresholdEvent == lastInfo.getInt("thresholdEvent")
             ) {
 
                 //Do not send again if nothing has changed
