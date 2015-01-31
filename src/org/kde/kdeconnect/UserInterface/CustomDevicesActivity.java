@@ -53,7 +53,7 @@ public class CustomDevicesActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         initializeDeviceList(this);
         setContentView(R.layout.custom_ip_list);
-        setListAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, ipAddressList));
+        setListAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ipAddressList));
 
 
         EditText ipEntryBox = (EditText)findViewById(R.id.ip_edittext);

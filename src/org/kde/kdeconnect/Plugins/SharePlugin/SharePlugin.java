@@ -107,7 +107,7 @@ public class SharePlugin extends Plugin {
 
                 final InputStream input = np.getPayload();
                 final long fileLength = np.getPayloadSize();
-                final String filename = np.getString("filename", new Long(System.currentTimeMillis()).toString());
+                final String filename = np.getString("filename", Long.toString(System.currentTimeMillis()));
 
                 String deviceDir = FilesHelper.toFileSystemSafeName(device.getName());
                 //Get the external storage and append "/kdeconnect/DEVICE_NAME/"

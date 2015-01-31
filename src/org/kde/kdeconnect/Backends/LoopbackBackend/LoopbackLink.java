@@ -20,8 +20,6 @@
 
 package org.kde.kdeconnect.Backends.LoopbackBackend;
 
-import android.util.Log;
-
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;

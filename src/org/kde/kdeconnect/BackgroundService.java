@@ -233,7 +233,7 @@ public class BackgroundService extends Service {
             SharedPreferences.Editor edit = settings.edit();
             edit.putString("publicKey",Base64.encodeToString(publicKey, 0).trim()+"\n");
             edit.putString("privateKey",Base64.encodeToString(privateKey, 0));
-            edit.commit();
+            edit.apply();
 
         }
 

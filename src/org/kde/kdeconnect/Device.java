@@ -230,7 +230,7 @@ public class Device implements BaseLink.PackageReceiver {
         pairStatus = PairStatus.NotPaired;
 
         SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
-        preferences.edit().remove(deviceId).commit();
+        preferences.edit().remove(deviceId).apply();
 
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
         np.set("pair", false);
@@ -252,14 +252,14 @@ public class Device implements BaseLink.PackageReceiver {
 
         //Store as trusted device
         SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
-        preferences.edit().putBoolean(deviceId,true).commit();
+        preferences.edit().putBoolean(deviceId,true).apply();
 
         //Store device information needed to create a Device object in a future
         SharedPreferences.Editor editor = settings.edit();
         editor.putString("deviceName", getName());
         String encodedPublicKey = Base64.encodeToString(publicKey.getEncoded(), 0);
         editor.putString("publicKey", encodedPublicKey);
-        editor.commit();
+        editor.apply();
 
         reloadPluginsFromSettings();
 
@@ -458,7 +458,7 @@ public class Device implements BaseLink.PackageReceiver {
                     }
                 } else if (pairStatus == PairStatus.Paired) {
                     SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
-                    preferences.edit().remove(deviceId).commit();
+                    preferences.edit().remove(deviceId).apply();
                     reloadPluginsFromSettings();
                 }
 
@@ -525,6 +525,7 @@ public class Device implements BaseLink.PackageReceiver {
         //Log.e("sendPackage", "Sending package...");
         //Log.e("sendPackage", np.serialize());
 
+        final Throwable backtrace = new Throwable();
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -540,6 +541,11 @@ public class Device implements BaseLink.PackageReceiver {
                         link.sendPackage(np, callback);
                     }
                     if (callback.success) break; //If the link didn't call sendSuccess(), try the next one
+                }
+
+                if (!callback.success) {
+                    Log.e("sendPackage", "No device link could send the package. package lost!");
+                    backtrace.printStackTrace();
                 }
 
             }
@@ -588,7 +594,6 @@ public class Device implements BaseLink.PackageReceiver {
                     success = false;
                     e.printStackTrace();
                     Log.e("addPlugin", "Exception loading plugin " + name);
-                    return;
                 }
 
                 if (success) {
@@ -639,7 +644,7 @@ public class Device implements BaseLink.PackageReceiver {
     }
 
     public void setPluginEnabled(String pluginName, boolean value) {
-        settings.edit().putBoolean(pluginName,value).commit();
+        settings.edit().putBoolean(pluginName,value).apply();
         if (value && isPaired() && isReachable()) addPlugin(pluginName);
         else removePlugin(pluginName);
     }

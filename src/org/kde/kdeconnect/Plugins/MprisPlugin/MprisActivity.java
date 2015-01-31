@@ -404,7 +404,6 @@ public class MprisActivity extends ActionBarActivity {
             @Override
             public void run() {
                 final SeekBar positionSeek = (SeekBar)findViewById(R.id.positionSeek);
-                final Runnable thisRunnable = this;
                 BackgroundService.RunCommand(MprisActivity.this, new BackgroundService.InstanceCallback() {
                     @Override
                     public void onServiceStart(BackgroundService service) {

@@ -45,7 +45,7 @@ public class TelephonyPlugin extends Plugin {
 
     private int lastState = TelephonyManager.CALL_STATE_IDLE;
     private NetworkPackage lastPackage = null;
-    boolean isMuted = false;
+    private boolean isMuted = false;
 
     @Override
     public String getPluginName() {

@@ -22,7 +22,6 @@ package org.kde.kdeconnect.Plugins.ClibpoardPlugin;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.widget.Button;
 

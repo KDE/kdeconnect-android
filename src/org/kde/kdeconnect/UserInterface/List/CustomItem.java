@@ -22,7 +22,6 @@ package org.kde.kdeconnect.UserInterface.List;
 
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 
 public class CustomItem implements ListAdapter.Item {
 

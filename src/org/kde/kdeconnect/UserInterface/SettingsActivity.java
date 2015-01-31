@@ -20,13 +20,11 @@
 
 package org.kde.kdeconnect.UserInterface;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 

@@ -25,7 +25,6 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -61,7 +60,7 @@ public class NotificationFilterActivity extends ActionBarActivity {
         while(!res.isAfterLast()){
             appName[i] = res.getString(res.getColumnIndex(AppDatabase.KEY_NAME));
             pkgName[i] = res.getString(res.getColumnIndex(AppDatabase.KEY_PACKAGE_NAME));
-            isFiltered[i] = res.getString(res.getColumnIndex(AppDatabase.KEY_IS_FILTERED)).equals("true");
+            isFiltered[i] = res.getString(res.getColumnIndex(AppDatabase.KEY_IS_ENABLED)).equals("true");
             res.moveToNext();
             i++;
         }
@@ -82,7 +81,7 @@ public class NotificationFilterActivity extends ActionBarActivity {
                 boolean checked = listView.isItemChecked(i);
                 //Log.e("NotificationFilterActivity", pkgName[i] + ":" + checked);
                 appDatabase.open();
-                appDatabase.updateEntry(pkgName[i], checked);
+                appDatabase.update(pkgName[i], checked);
                 appDatabase.close();
             }
         });
@@ -122,8 +121,8 @@ public class NotificationFilterActivity extends ActionBarActivity {
 
             if ( (PackInfo.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0 ) {
 
-                if (!appDatabase.checkEntry(packageName)) {
-                    appDatabase.createEntry(appName, packageName, true);
+                if (!appDatabase.exists(packageName)) {
+                    appDatabase.create(appName, packageName, true);
                 }
                 //Log.e("App FLAG_UPDATED_SYSTEM_APP: " + Integer.toString(i), appName);
 
@@ -133,8 +132,8 @@ public class NotificationFilterActivity extends ActionBarActivity {
 
             } else {
 
-                if (!appDatabase.checkEntry(packageName)) {
-                    appDatabase.createEntry(appName, packageName, true);
+                if (!appDatabase.exists(packageName)) {
+                    appDatabase.create(appName, packageName, true);
                 }
                 //Log.e("App : " + Integer.toString(i), appName);
 

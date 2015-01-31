@@ -21,11 +21,9 @@
 package org.kde.kdeconnect.Helpers;
 
 import android.os.Environment;
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,8 +36,6 @@ import java.util.StringTokenizer;
 //Code from http://stackoverflow.com/questions/9340332/how-can-i-get-the-list-of-mounted-external-storage-of-android-device/19982338#19982338
 //modified to work on Lollipop and other devices
 public class StorageHelper {
-
-    private static final String TAG = "StorageHelper";
 
     public static class StorageInfo {
 
@@ -66,7 +62,6 @@ public class StorageHelper {
     public static List<StorageInfo> getStorageList() {
 
         List<StorageInfo> list = new ArrayList<StorageInfo>();
-        File def = Environment.getExternalStorageDirectory();
         String def_path = Environment.getExternalStorageDirectory().getPath();
         boolean def_path_removable = Environment.isExternalStorageRemovable();
         String def_path_state = Environment.getExternalStorageState();
@@ -142,12 +137,12 @@ public class StorageHelper {
 
             for (String line : entries) {
                 StringTokenizer tokens = new StringTokenizer(line, " ");
-                String unused = tokens.nextToken(); //device
+                tokens.nextToken(); //device
                 String mount_point = tokens.nextToken(); //mount point
                 if (paths.contains(mount_point)) {
                     continue;
                 }
-                unused = tokens.nextToken(); //file system
+                tokens.nextToken(); //file system
                 List<String> flags = Arrays.asList(tokens.nextToken().split(",")); //flags
                 boolean readonly = flags.contains("ro");
 

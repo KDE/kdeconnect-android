@@ -25,7 +25,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.preference.PreferenceActivity;
 import android.widget.Button;
 
 import org.kde.kdeconnect.Device;

@@ -22,7 +22,6 @@ package org.kde.kdeconnect.Plugins.MprisPlugin;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
@@ -37,8 +36,6 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-
 
 public class MprisPlugin extends Plugin {
 

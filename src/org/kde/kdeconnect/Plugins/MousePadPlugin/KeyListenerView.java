@@ -23,6 +23,7 @@ package org.kde.kdeconnect.Plugins.MousePadPlugin;
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.SparseIntArray;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -38,7 +39,7 @@ public class KeyListenerView extends View  {
 
     private String deviceId;
 
-    private static HashMap<Integer, Integer> SpecialKeysMap = new HashMap<Integer, Integer>();
+    private static SparseIntArray SpecialKeysMap = new SparseIntArray();
     static {
         int i = 0;
         SpecialKeysMap.put(KeyEvent.KEYCODE_DEL, ++i);              // 1
@@ -133,8 +134,8 @@ public class KeyListenerView extends View  {
                 np.set("shift", true);
             }
 
-            if (SpecialKeysMap.containsKey(keyCode)) {
-                int specialKey = SpecialKeysMap.get(keyCode);
+            int specialKey = SpecialKeysMap.get(keyCode, -1);
+            if (specialKey != -1) {
                 np.set("specialKey", specialKey);
             } else if (event.getDisplayLabel() != 0) {
                 //Alt will change the utf symbol to non-ascii characters, we want the plain original letter
@@ -156,16 +157,18 @@ public class KeyListenerView extends View  {
             if (utfChar != 0) {
                 String utfString = new String(new char[]{utfChar});
                 np.set("key", utfString);
-            } else if (SpecialKeysMap.containsKey(keyCode)) {
-                //Only send shift in combination with other modifiers or special keys. Otherwise let it modify the letter itself and get the final result in utf.
-                if (event.isShiftPressed()) {
-                    np.set("shift", true);
-                }
-                //If it was not a displayable character, check if it was a special key
-                int specialKey = SpecialKeysMap.get(keyCode);
-                np.set("specialKey", specialKey);
             } else {
-                return false; //We don't know what to send, better send nothing. Probably this is an unhandled special key.
+                int specialKey = SpecialKeysMap.get(keyCode, -1);
+                if (specialKey != -1) {
+                    //Only send shift in combination with other modifiers or special keys. Otherwise let it modify the letter itself and get the final result in utf.
+                    if (event.isShiftPressed()) {
+                        np.set("shift", true);
+                    }
+                    //If it was not a displayable character, check if it was a special key
+                    np.set("specialKey", specialKey);
+                } else {
+                    return false; //We don't know what to send, better send nothing. Probably this is an unhandled special key.
+                }
             }
         }
 

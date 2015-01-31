@@ -60,7 +60,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 
-public class ShareToReceiver extends ActionBarActivity {
+public class ShareActivity extends ActionBarActivity {
 
     private MenuItem menuProgress;
 
@@ -77,7 +77,7 @@ public class ShareToReceiver extends ActionBarActivity {
         switch (item.getItemId()) {
             case R.id.menu_refresh:
                 updateComputerList();
-                BackgroundService.RunCommand(ShareToReceiver.this, new BackgroundService.InstanceCallback() {
+                BackgroundService.RunCommand(ShareActivity.this, new BackgroundService.InstanceCallback() {
                     @Override
                     public void onServiceStart(BackgroundService service) {
                         service.onNetworkChange();
@@ -136,7 +136,7 @@ public class ShareToReceiver extends ActionBarActivity {
                     @Override
                     public void run() {
                         ListView list = (ListView) findViewById(R.id.listView1);
-                        list.setAdapter(new ListAdapter(ShareToReceiver.this, items));
+                        list.setAdapter(new ListAdapter(ShareActivity.this, items));
                         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -160,7 +160,7 @@ public class ShareToReceiver extends ActionBarActivity {
                                         queuedSendUriList(device, uriList);
 
                                     } catch (Exception e) {
-                                        Log.e("ShareToReceiver", "Exception");
+                                        Log.e("ShareActivity", "Exception");
                                         e.printStackTrace();
                                     }
 
@@ -237,7 +237,7 @@ public class ShareToReceiver extends ActionBarActivity {
                     size = new File(uri.getPath()).length();
                     np.setPayload(inputStream, size);
                 } catch(Exception e) {
-                    Log.e("ShareToReceiver", "Could not obtain file size");
+                    Log.e("ShareActivity", "Could not obtain file size");
                     e.printStackTrace();
                 }
 
@@ -255,7 +255,7 @@ public class ShareToReceiver extends ActionBarActivity {
                     size = new File(path).length();
                 } catch(Exception unused) {
 
-                    Log.e("ShareToReceiver", "Could not resolve media to a file, trying to get info as media");
+                    Log.e("ShareActivity", "Could not resolve media to a file, trying to get info as media");
 
                     try {
                         int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DISPLAY_NAME);
@@ -264,7 +264,7 @@ public class ShareToReceiver extends ActionBarActivity {
                         np.set("filename", name);
                     } catch (Exception e) {
                         e.printStackTrace();
-                        Log.e("ShareToReceiver", "Could not obtain file name");
+                        Log.e("ShareActivity", "Could not obtain file name");
                     }
 
                     try {
@@ -273,7 +273,7 @@ public class ShareToReceiver extends ActionBarActivity {
                         //For some reason this size can differ from the actual file size!
                         size = cursor.getInt(column_index);
                     } catch(Exception e) {
-                        Log.e("ShareToReceiver", "Could not obtain file size");
+                        Log.e("ShareActivity", "Could not obtain file size");
                         e.printStackTrace();
                     }
                 } finally {
@@ -284,7 +284,6 @@ public class ShareToReceiver extends ActionBarActivity {
 
             }
 
-            final long fileSize = size;
             final String filename = np.getString("filename");
 
             builder.setContentText(res.getString(R.string.outgoing_file_text,filename));
@@ -331,7 +330,7 @@ public class ShareToReceiver extends ActionBarActivity {
                     });
 
                     if (!uriList.isEmpty()) queuedSendUriList(device, uriList);
-                    else Log.i("ShareToReceiver", "All files sent");
+                    else Log.i("ShareActivity", "All files sent");
                 }
 
                 @Override
@@ -356,12 +355,12 @@ public class ShareToReceiver extends ActionBarActivity {
                         }
                     });
 
-                    Log.e("ShareToReceiver", "Failed to send file");
+                    Log.e("ShareActivity", "Failed to send file");
                 }
             });
 
         } catch (Exception e) {
-            Log.e("ShareToReceiver", "Exception sending files");
+            Log.e("ShareActivity", "Exception sending files");
             e.printStackTrace();
         }
 
