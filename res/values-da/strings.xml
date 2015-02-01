@@ -8,6 +8,8 @@
   <string name="pref_plugin_sftp_desc">Muliggør at gennemsøge telefonens filsystem eksternt</string>
   <string name="pref_plugin_clipboard">Synk. af udklipsholder</string>
   <string name="pref_plugin_clipboard_desc">Del indholdet af udklipsholderen</string>
+  <string name="pref_plugin_mousepad">Eksternt input</string>
+  <string name="pref_plugin_mousepad_desc">Brug din telefon som mus og tastatur</string>
   <string name="pref_plugin_mpris">Fjernbetjening af multimedie</string>
   <string name="pref_plugin_mpris_desc">Styr lyd og video fra din telefon</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -25,14 +27,21 @@
   <string name="send_ping">Send ping</string>
   <string name="open_mpris_controls">Åbn fjernbetjening</string>
   <string name="open_mousepad">Åbn touchpad-kontrol</string>
+  <string name="mousepad_info">Bevæg en finger på skærmen for at flytte musemarkøren. Tap for at klikke og brug to/tre-fingre for højre og midterste museknap. Brug et langt tryk til at trække og slippe.</string>
+  <string name="mousepad_double_tap_settings_title">Angiv handling for tap med to fingre</string>
+  <string name="mousepad_triple_tap_settings_title">Angiv handling for tap med tre fingre</string>
   <string-array name="mousepad_tap_entries">
-    <item/>
-    <item/>
-    <item>Nothing</item>
+    <item>Højreklik</item>
+    <item>Midterklik</item>
+    <item>Intet</item>
   </string-array>
+  <string name="mousepad_double_default">højre</string>
+  <string name="mousepad_triple_default">midter</string>
   <string name="category_connected_devices">Forbundne enheder</string>
+  <string name="category_not_paired_devices">Tilgængelig enheder</string>
   <string name="category_remembered_devices">Huskede enheder</string>
   <string name="plugins_failed_to_load">Plugins kunne ikke indlæses (tap for mere info):</string>
+  <string name="device_menu_plugins">Plugin-indstillinger</string>
   <string name="device_menu_unpair">Fjern parring</string>
   <string name="device_not_reachable">Den parrede enhed kan ikke tilgås</string>
   <string name="unknown_device">Ukendt enhed</string>
@@ -50,8 +59,14 @@
   <string name="received_url_text">Tap for at åbne \"%1s\"</string>
   <string name="incoming_file_title">Indkommende fil fra %1s</string>
   <string name="incoming_file_text">%1s</string>
+  <string name="outgoing_file_title">Sender fil til %1s</string>
+  <string name="outgoing_file_text">%1s</string>
   <string name="received_file_title">Modtog fil fra %1s</string>
   <string name="received_file_text">Tap for at åbne \"%1s\"</string>
+  <string name="sent_file_title">Fil sendt til %1s</string>
+  <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Kunne ikke sende filen %1s</string>
+  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Tap for at svare</string>
   <string name="reconnect">Forbind igen</string>
   <string name="right_click">Send højreklik</string>
@@ -71,19 +86,40 @@
   <string name="mpris_ff">Spol frem</string>
   <string name="mpris_next">Næste</string>
   <string name="mpris_volume">Lydstyrke</string>
+  <string name="mpris_settings">Multimedieindstillinger</string>
+  <string name="mpris_time_settings_title">Spol frem/tilbage-knapper</string>
+  <string name="mpris_time_settings_summary">Justér tiden for når der trykkes på spol frem/tilbage.</string>
   <string-array name="mpris_time_entries">
-    <item>10 seconds</item>
-    <item>20 seconds</item>
-    <item>30 seconds</item>
-    <item>1 minute</item>
-    <item>2 minutes</item>
+    <item>10 sekunder</item>
+    <item>20 sekunder</item>
+    <item>30 sekunder</item>
+    <item>1 minut</item>
+    <item>2 minutter</item>
   </string-array>
   <string name="share_to">Del på...</string>
   <string name="protocol_version_older">Denne enhed bruger en gammel protokolversion</string>
   <string name="protocol_version_newer">Denne enhed bruger en nyere protokolversion</string>
   <string name="general_settings">Generelle indstillinger</string>
+  <string name="plugin_settings">Indstillinger</string>
+  <string name="plugin_settings_with_name">Indstilling af %s</string>
   <string name="device_name">Enhedsnavn</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Ugyldigt enhedsnavn</string>
   <string name="shareplugin_text_saved">Modtog tekst, gemt til udklipsholder</string>
+  <string name="custom_devices_settings">Brugertilpasset liste over enheder</string>
+  <string name="custom_device_list">Tilføj enheder via IP</string>
+  <string name="share_notification_preference">Støjende bekendtgørelser</string>
+  <string name="share_notification_preference_summary">Vibrér og afspil en lyd når en fil modtages</string>
+  <string name="title_activity_notification_filter">Bekendtgørelsesfilter</string>
+  <string name="filter_apps_info">Bekendtgørelser vil blive synkroniseret for de valgte apps.</string>
+  <string name="sftp_internal_storage">Intern lagring</string>
+  <string name="sftp_all_files">Alle filer</string>
+  <string name="sftp_sdcard_num">SD-kort %d</string>
+  <string name="sftp_sdcard">SD-kort</string>
+  <string name="sftp_readonly">(skrivebeskyttet)</string>
+  <string name="sftp_camera">Kamerabilleder</string>
+  <string name="add_host">Tilføj vært/IP</string>
+  <string name="no_players_connected">Ingen afspillere fundet</string>
+  <string name="custom_dev_list_help">Brug kun denne indstilling hvis din enhed ikke opdages automatisk. Angiv IP-adresse eller værtsnavn nedenfor og tryk på knappen for at føje den til listen. Tryk på et eksisterende element for at fjerne det fra listen.</string>
+  <string name="mpris_player_on_device">%1$s på %2$s</string>
 </resources>
