@@ -79,24 +79,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             Intent intent = new Intent(parentActivity, NotificationFilterActivity.class);
             parentActivity.startActivity(intent);
         } else {
-            new AlertDialog.Builder(parentActivity)
-                    .setTitle(R.string.pref_plugin_notifications)
-                    .setMessage(R.string.no_permissions)
-                    .setPositiveButton(R.string.open_settings, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
-                            parentActivity.startActivityForResult(intent, DeviceActivity.RESULT_NEEDS_RELOAD);
-                        }
-                    })
-                    .setNegativeButton(R.string.cancel,new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            //Do nothing
-                        }
-                    })
-                    .create().show();
-
+            getErrorDialog(parentActivity).show();
         }
     }
 
