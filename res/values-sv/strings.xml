@@ -119,6 +119,7 @@
   <string name="sftp_readonly">(skrivskyddat)</string>
   <string name="sftp_camera">Kamerabilder</string>
   <string name="add_host">Lägg till värddator/IP-adress</string>
+  <string name="add_host_hint">Värddatornamn eller IP-adress</string>
   <string name="no_players_connected">Inga spelare hittades</string>
   <string name="custom_dev_list_help">Använd bara alternativet om apparaten inte detekteras automatiskt. Skriv in IP-adress eller värddatornamn nedan och rör vid knappen för att lägga till den i listan. Rör vid ett befintligt objekt för att ta bort det från listan.</string>
   <string name="mpris_player_on_device">%1$s på %2$s</string>
