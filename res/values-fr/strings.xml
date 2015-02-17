@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="pref_plugin_telephony">Notificateur de téléphonie</string>
+  <string name="pref_plugin_telephony">Notifications du téléphonie</string>
   <string name="pref_plugin_telephony_desc">Envoie des notifications pour les SMS et les appels</string>
   <string name="pref_plugin_battery">Rapport sur la batterie</string>
   <string name="pref_plugin_battery_desc">Rapport périodique sur l\'état de la batterie</string>
@@ -8,12 +8,15 @@
   <string name="pref_plugin_sftp_desc">Permettre de parcourir le système de fichiers du téléphone à distance</string>
   <string name="pref_plugin_clipboard">Synchronisation avec le presse-papiers</string>
   <string name="pref_plugin_clipboard_desc">Partage le contenu du presse-papiers</string>
+  <string name="pref_plugin_mousepad">Contrôle distant</string>
+  <string name="pref_plugin_mousepad_desc">Utilisez votre téléphone comme une souris et un clavier</string>
   <string name="pref_plugin_mpris">Contrôles distants multimédia</string>
   <string name="pref_plugin_mpris_desc">Contrôle l\'audio / la vidéo depuis votre téléphone</string>
   <string name="pref_plugin_ping">Commande « Ping »</string>
   <string name="pref_plugin_ping_desc">Envoie et reçoit des commandes « Ping »</string>
   <string name="pref_plugin_notifications">Synchronisation des notifications</string>
   <string name="pref_plugin_notifications_desc">Accédez à vos notifications depuis d\'autres périphériques</string>
+  <string name="pref_plugin_sharereceiver_desc">Enregistrer les fichiers reçus dans le stockage du téléphone</string>
   <string name="plugin_not_available">Cette fonctionnalité n\'est pas disponible dans votre version de Android</string>
   <string name="device_list_empty">Pas de périphériques</string>
   <string name="ok">Ok</string>
@@ -22,15 +25,21 @@
   <string name="no_permissions">Vous devez accorder la permission d\'accéder aux notifications</string>
   <string name="send_ping">Envoyer un « Ping »</string>
   <string name="open_mpris_controls">Ouvrir un contrôle distant</string>
+  <string name="open_mousepad">Ouvrir le pavé tactile</string>
   <string-array name="mousepad_tap_entries">
-    <item>Right click</item>
-    <item>Middle click</item>
-    <item>Nothing</item>
+    <item>Clic droit</item>
+    <item>Clic central</item>
+    <item>Rien</item>
   </string-array>
+  <string name="mousepad_double_default">Droite</string>
+  <string name="mousepad_triple_default">Milieu</string>
   <string name="category_connected_devices">Périphériques connectés</string>
+  <string name="category_not_paired_devices">Périphériques disponibles</string>
   <string name="category_remembered_devices">Périphériques mémorisés</string>
   <string name="plugins_failed_to_load">Le chargement des modules externes a échoué (cliquez pour plus d\'informations) :</string>
+  <string name="device_menu_plugins">Paramètres du module externe</string>
   <string name="device_menu_unpair">Désapparier</string>
+  <string name="device_not_reachable">Périphérique inaccessible</string>
   <string name="unknown_device">Périphérique inconnu</string>
   <string name="error_not_reachable">Périphérique inaccessible</string>
   <string name="error_already_requested">L\'appariement a déjà été demandé</string>
@@ -42,8 +51,16 @@
   <string name="error_invalid_key">Clé reçue non valable</string>
   <string name="pair_requested">Paire demandée</string>
   <string name="pairing_request_from">Demande d\'appariement provenant de %1s</string>
+  <string name="incoming_file_text">%1s</string>
+  <string name="outgoing_file_text">%1s</string>
+  <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Impossible d\'envoyer le fichier %1s</string>
+  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Cliquer pour répondre</string>
   <string name="reconnect">Reconnecter</string>
+  <string name="right_click">Envoyer un clic droit</string>
+  <string name="middle_click">Envoyer un clic central</string>
+  <string name="show_keyboard">Afficher le clavier</string>
   <string name="device_not_paired">Périphérique non apparié</string>
   <string name="request_pairing">Demande d\'appariement</string>
   <string name="pairing_accept">Accepter</string>
@@ -58,10 +75,11 @@
   <string name="mpris_ff">Avance rapide</string>
   <string name="mpris_next">Suivant</string>
   <string name="mpris_volume">Volume</string>
+  <string name="mpris_settings">Configuration multimédia</string>
   <string-array name="mpris_time_entries">
-    <item>10 seconds</item>
-    <item>20 seconds</item>
-    <item>30 seconds</item>
+    <item>10 secondes</item>
+    <item>20 secondes</item>
+    <item>30 secondes</item>
     <item>1 minute</item>
     <item>2 minutes</item>
   </string-array>
@@ -69,7 +87,21 @@
   <string name="protocol_version_older">Le périphérique utilise une version ancienne du protocole</string>
   <string name="protocol_version_newer">Le périphérique utilise une version plus récente du protocole</string>
   <string name="general_settings">Paramètres généraux</string>
+  <string name="plugin_settings">Configuration</string>
+  <string name="plugin_settings_with_name">Configuration %s</string>
   <string name="device_name">Nom du périphérique</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nom de périphérique non valable</string>
+  <string name="custom_devices_settings">Liste personnalisée de périphériques</string>
+  <string name="custom_device_list">Ajouter des périphériques par IP</string>
+  <string name="title_activity_notification_filter">Filtre des notifications</string>
+  <string name="sftp_internal_storage">Stockage interne</string>
+  <string name="sftp_all_files">Tous les fichiers</string>
+  <string name="sftp_sdcard_num">Carte SD %d</string>
+  <string name="sftp_sdcard">Carte SD</string>
+  <string name="sftp_readonly">(lecture seule)</string>
+  <string name="sftp_camera">Images de l\'appareil photo</string>
+  <string name="add_host">Ajouter hôte/IP</string>
+  <string name="no_players_connected">Aucun lecteur trouvé</string>
+  <string name="mpris_player_on_device">%1$s sur %2$s</string>
 </resources>

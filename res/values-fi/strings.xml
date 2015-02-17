@@ -119,6 +119,7 @@
   <string name="sftp_readonly">(vain luku)</string>
   <string name="sftp_camera">Kamerakuvat</string>
   <string name="add_host">Lisää kone/IP</string>
+  <string name="add_host_hint">Konenimi tai IP-osoite</string>
   <string name="no_players_connected">Soittimia ei löytynyt</string>
   <string name="custom_dev_list_help">Käytä tätä vain, jos laitettasi ei tunnisteta automaattisesti. Kirjoita IP-osoite tai konenimi alle ja kosketa painiketta lisätäksesi sen luetteloon. Kosketa olemassa olevaa kohtaa poistaaksesi sen luettelosta.</string>
   <string name="mpris_player_on_device">%1$s laitteella %2$s</string>
