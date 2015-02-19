@@ -119,6 +119,7 @@
   <string name="sftp_readonly">(pouze ke čtení)</string>
   <string name="sftp_camera">Obrázky z fotoaparátu</string>
   <string name="add_host">Přidat stroj/IP</string>
+  <string name="add_host_hint">Název hostitele nebo IP</string>
   <string name="no_players_connected">Přehrávač nenalezen</string>
   <string name="custom_dev_list_help">Použijte tuto možnost pouze pokud není vaše zařízení automaticky detekováno. Zadejte níže IP adresu a název hostitele a stiskněte tlačítko pro přidání do seznamu. Stiskněte existující položku pro odstranění ze seznamu.</string>
   <string name="mpris_player_on_device">%1$s na %2$s</string>
