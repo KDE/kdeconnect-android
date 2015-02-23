@@ -25,11 +25,6 @@
   <string name="send_ping">Pošalji ping</string>
   <string name="open_mpris_controls">Otvori daljinsku kontrolu</string>
   <string name="open_mousepad">Otvori touchpad kontrolu</string>
-  <string-array name="mousepad_tap_entries">
-    <item/>
-    <item/>
-    <item>Nothing</item>
-  </string-array>
   <string name="category_connected_devices">Spojeni uređaji</string>
   <string name="category_remembered_devices">Zapamćeni uređaji</string>
   <string name="plugins_failed_to_load">Dodaci se nisu uspjeli učitati (kucnite za više informacija):</string>
