@@ -8,6 +8,8 @@
   <string name="pref_plugin_sftp_desc">Dopušta daljinsko pretraživanje datotečnog sistema telefona</string>
   <string name="pref_plugin_clipboard">Sinhronizovanje sandučića</string>
   <string name="pref_plugin_clipboard_desc">Podijeli sadržaj sandučića</string>
+  <string name="pref_plugin_mousepad">Daljinska kontrola ulaza</string>
+  <string name="pref_plugin_mousepad_desc">Koristi telofon kao miš i tastaturu</string>
   <string name="pref_plugin_mpris">Daljinske kontrole multimedije</string>
   <string name="pref_plugin_mpris_desc">Upravljajte zvukom/slikom sa vašeg telefona</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -25,9 +27,18 @@
   <string name="send_ping">Pošalji ping</string>
   <string name="open_mpris_controls">Otvori daljinsku kontrolu</string>
   <string name="open_mousepad">Otvori touchpad kontrolu</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Desni klik</item>
+    <item>Srednji klik</item>
+    <item>Ništa</item>
+  </string-array>
+  <string name="mousepad_double_default">desno</string>
+  <string name="mousepad_triple_default">Srednje</string>
   <string name="category_connected_devices">Spojeni uređaji</string>
+  <string name="category_not_paired_devices">Dostupni uređaji</string>
   <string name="category_remembered_devices">Zapamćeni uređaji</string>
   <string name="plugins_failed_to_load">Dodaci se nisu uspjeli učitati (kucnite za više informacija):</string>
+  <string name="device_menu_plugins">Postavke dodatka</string>
   <string name="device_menu_unpair">Razdvoji</string>
   <string name="device_not_reachable">Upareni uređaj nije dostupan</string>
   <string name="unknown_device">Nepoznat uređaj</string>
@@ -45,8 +56,13 @@
   <string name="received_url_text">Kucni za otvaranje \'%1s\'</string>
   <string name="incoming_file_title">Dolazna datoteka od %1s</string>
   <string name="incoming_file_text">%1s</string>
+  <string name="outgoing_file_title">Slanje datoteke na %1s</string>
+  <string name="outgoing_file_text">%1s</string>
   <string name="received_file_title">Primljena datoteka od %1s</string>
   <string name="received_file_text">Kucni za otvaranje \'%1s\'</string>
+  <string name="sent_file_title">Poslana datoteka na %1s</string>
+  <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Kucni za odgovor</string>
   <string name="reconnect">Ponovo uspostavi vezu</string>
   <string name="right_click">Pošalji Desni Klik</string>
@@ -67,6 +83,7 @@
   <string name="mpris_next">Sljedeći</string>
   <string name="mpris_volume">Glasnoća</string>
   <string name="mpris_settings">Postavke multimedije</string>
+  <string name="mpris_time_settings_summary">Postavi vrijeme na ubrzano ili premotaj multimedijalnu datoteku.</string>
   <string-array name="mpris_time_entries">
     <item>10 sekundi</item>
     <item>20 sekundi</item>
@@ -79,16 +96,22 @@
   <string name="protocol_version_newer">Ovaj uređaj koristi noviju verziju protokola</string>
   <string name="general_settings">Opšte postavke</string>
   <string name="plugin_settings">Postavke</string>
+  <string name="plugin_settings_with_name">%s Postavke</string>
   <string name="device_name">Naziv uređaja</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Pogrešnan naziv uređaja</string>
   <string name="shareplugin_text_saved">Primljeni tekst, spašen u ormarić</string>
+  <string name="custom_devices_settings">Lista vlastitih uređaja</string>
   <string name="share_notification_preference">Glasne notifikacije</string>
   <string name="share_notification_preference_summary">Vibriraj i reprodukuj zvuk kad se prima datoteka</string>
+  <string name="title_activity_notification_filter">Filter napomena</string>
   <string name="sftp_internal_storage">Unutrašnji smještaj</string>
   <string name="sftp_all_files">Sve fajlove</string>
   <string name="sftp_sdcard_num">SD kartica %d</string>
   <string name="sftp_sdcard">SD kartica</string>
   <string name="sftp_readonly">(samo za čitanje)</string>
   <string name="sftp_camera">Slike sa kamere</string>
+  <string name="add_host">Dodaj host/IP</string>
+  <string name="add_host_hint">IP ili ime računara</string>
+  <string name="mpris_player_on_device">%1$s na %2$s</string>
 </resources>
