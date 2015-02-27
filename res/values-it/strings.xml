@@ -23,9 +23,9 @@
   <string name="ok">OK</string>
   <string name="cancel">Annulla</string>
   <string name="open_settings">Apri impostazioni</string>
-  <string name="no_permissions">Devi garantire a KDE Connect l\'accesso alle notifiche</string>
+  <string name="no_permissions">Devi concedere i permessi per l\'accesso alle notifiche</string>
   <string name="send_ping">Invia ping</string>
-  <string name="open_mpris_controls">Apri il telecomando multimediale</string>
+  <string name="open_mpris_controls">Apri telecomando</string>
   <string name="open_mousepad">Apri controllo del touchpad</string>
   <string name="mousepad_info">Muovi un dito sullo schermo per spostare il puntatore del mouse. Tocca per un clic e usa due/tre dita per i pulsanti destro e centrale. Utilizza una pressione lunga per trascinare e rilasciare.</string>
   <string name="mousepad_double_tap_settings_title">Imposta azione per il tocco a due dita</string>
@@ -40,18 +40,18 @@
   <string name="category_connected_devices">Dispositivi connessi</string>
   <string name="category_not_paired_devices">Dispositivi disponibili</string>
   <string name="category_remembered_devices">Dispositivi memorizzati</string>
-  <string name="plugins_failed_to_load">Alcune estensioni non si sono avviate correttamente (tocca per maggiori informazioni):</string>
+  <string name="plugins_failed_to_load">Impossibile caricare alcune estensioni (tocca per maggiori informazioni):</string>
   <string name="device_menu_plugins">Impostazioni estensioni</string>
   <string name="device_menu_unpair">Disassocia</string>
-  <string name="device_not_reachable">Dispositivo accoppiato non raggiungibile</string>
+  <string name="device_not_reachable">Dispositivo associato non raggiungibile</string>
   <string name="unknown_device">Dispositivo sconosciuto</string>
   <string name="error_not_reachable">Dispositivo fuori portata</string>
   <string name="error_already_requested">Richiesta già inviata</string>
   <string name="error_already_paired">Dispositivo già associato</string>
   <string name="error_could_not_send_package">Impossibile inviare i dati</string>
   <string name="error_timed_out">Richiesta scaduta</string>
-  <string name="error_canceled_by_user">Richiesta annullata dall\'utente</string>
-  <string name="error_canceled_by_other_peer">Richiesta annullata dal dispositivo remoto</string>
+  <string name="error_canceled_by_user">Annullata dall\'utente</string>
+  <string name="error_canceled_by_other_peer">Annullata dal dispositivo remoto</string>
   <string name="error_invalid_key">Ricevuta chiave non valida</string>
   <string name="pair_requested">Richiesta di associazione</string>
   <string name="pairing_request_from">Richiesta associazione da %1s</string>
@@ -87,7 +87,7 @@
   <string name="mpris_next">Successivo</string>
   <string name="mpris_volume">Volume</string>
   <string name="mpris_settings">Impostazioni multimediali</string>
-  <string name="mpris_time_settings_title">I pulsanti di avanzamento/riavvolgimento</string>
+  <string name="mpris_time_settings_title">Pulsanti di avanzamento/riavvolgimento</string>
   <string name="mpris_time_settings_summary">Regola l\'ora per avanzare rapidamente o riavvolgere in caso di pressione.</string>
   <string-array name="mpris_time_entries">
     <item>10 secondi</item>
@@ -104,7 +104,7 @@
   <string name="plugin_settings_with_name">Impostazioni di %s</string>
   <string name="device_name">Nome dispositivo</string>
   <string name="device_name_preference_summary">%s</string>
-  <string name="invalid_device_name">Nome non valido</string>
+  <string name="invalid_device_name">Nome dispositivo non valido</string>
   <string name="shareplugin_text_saved">Testo ricevuto, salvato negli appunti</string>
   <string name="custom_devices_settings">Elenco dispositivi personalizzato</string>
   <string name="custom_device_list">Aggiungi dispositivi per IP</string>
@@ -119,7 +119,8 @@
   <string name="sftp_readonly">(sola lettura)</string>
   <string name="sftp_camera">Immagini fotocamera</string>
   <string name="add_host">Aggiungi host/IP</string>
+  <string name="add_host_hint">Nome host o IP</string>
   <string name="no_players_connected">Nessun lettore trovato</string>
-  <string name="custom_dev_list_help">Usa questa opzioone solo se il tuo dispositivo non è rilevato automaticamente. Digita l\'indirizzo IP o il nome host in basso e tocca il pulsante per aggiungerlo all\'elenco. Tocca un elemento esistente per rimuoverlo dall\'elenco.</string>
+  <string name="custom_dev_list_help">Usa questa opzione solo se il tuo dispositivo non è rilevato automaticamente. Digita l\'indirizzo IP o il nome host in basso e tocca il pulsante per aggiungerlo all\'elenco. Tocca un elemento esistente per rimuoverlo dall\'elenco.</string>
   <string name="mpris_player_on_device">%1$s su %2$s</string>
 </resources>
