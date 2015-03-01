@@ -119,6 +119,7 @@
   <string name="sftp_readonly">(skrivebeskyttet)</string>
   <string name="sftp_camera">Kamerabilleder</string>
   <string name="add_host">Tilføj vært/IP</string>
+  <string name="add_host_hint">Værtsnavn eller IP</string>
   <string name="no_players_connected">Ingen afspillere fundet</string>
   <string name="custom_dev_list_help">Brug kun denne indstilling hvis din enhed ikke opdages automatisk. Angiv IP-adresse eller værtsnavn nedenfor og tryk på knappen for at føje den til listen. Tryk på et eksisterende element for at fjerne det fra listen.</string>
   <string name="mpris_player_on_device">%1$s på %2$s</string>
