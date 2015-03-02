@@ -56,7 +56,7 @@ public class Device implements BaseLink.PackageReceiver {
     private final Context context;
 
     private final String deviceId;
-    private final String name;
+    private String name;
     public PublicKey publicKey;
     private int notificationId;
     private int protocolVersion;
@@ -93,7 +93,7 @@ public class Device implements BaseLink.PackageReceiver {
 
         this.context = context;
         this.deviceId = deviceId;
-        this.name = settings.getString("deviceName", "unknown device");
+        this.name = settings.getString("deviceName", context.getString(R.string.unknown_device));
         this.pairStatus = PairStatus.Paired;
         this.protocolVersion = NetworkPackage.ProtocolVersion; //We don't know it yet
 
@@ -115,7 +115,7 @@ public class Device implements BaseLink.PackageReceiver {
 
         this.context = context;
         this.deviceId = np.getString("deviceId");
-        this.name = np.getString("deviceName", "unidentified device");
+        this.name = np.getString("deviceName", context.getString(R.string.unknown_device));
         this.protocolVersion = np.getInt("protocolVersion");
         this.pairStatus = PairStatus.NotPaired;
         this.publicKey = null;
@@ -323,6 +323,16 @@ public class Device implements BaseLink.PackageReceiver {
     public void addLink(NetworkPackage identityPackage, BaseLink link) {
 
         this.protocolVersion = identityPackage.getInt("protocolVersion");
+
+        if (identityPackage.has("deviceName")) {
+            this.name = identityPackage.getString("deviceName", this.name);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putString("deviceName", this.name);
+            String encodedPublicKey = Base64.encodeToString(publicKey.getEncoded(), 0);
+            editor.putString("publicKey", encodedPublicKey);
+            editor.apply();
+        }
+
 
         links.add(link);
 
