@@ -128,7 +128,9 @@ public class PairActivity extends ActionBarActivity {
                 BackgroundService.RunCommand(PairActivity.this, new BackgroundService.InstanceCallback() {
                     @Override
                     public void onServiceStart(BackgroundService service) {
-                        device.acceptPairing();
+                        if (device != null) {
+                            device.acceptPairing();
+                        }
                         finish();
                     }
                 });
@@ -141,7 +143,9 @@ public class PairActivity extends ActionBarActivity {
                 BackgroundService.RunCommand(PairActivity.this, new BackgroundService.InstanceCallback() {
                     @Override
                     public void onServiceStart(BackgroundService service) {
-                        device.rejectPairing();
+                        if (device != null) {
+                            device.rejectPairing();
+                        }
                         finish();
                     }
                 });
