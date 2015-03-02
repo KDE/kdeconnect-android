@@ -93,7 +93,11 @@ public class SettingsActivity extends PreferenceActivity {
                             if (pref.isEnabled()) {
                                 String pluginName = pref.getDependency(); //The parent pref will be named like the plugin
                                 Plugin plugin = device.getPlugin(pluginName, true);
-                                plugin.startPreferencesActivity(SettingsActivity.this);
+                                if (plugin != null) {
+                                    plugin.startPreferencesActivity(SettingsActivity.this);
+                                } else { //Could happen if the device is not connected anymore
+                                    finish(); //End this activity so we go to the "device not reachable" screen
+                                }
                             }
                         }
                     }
