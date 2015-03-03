@@ -16,6 +16,7 @@
   <string name="pref_plugin_ping_desc">Envoie et reçoit des commandes « Ping »</string>
   <string name="pref_plugin_notifications">Synchronisation des notifications</string>
   <string name="pref_plugin_notifications_desc">Accédez à vos notifications depuis d\'autres périphériques</string>
+  <string name="pref_plugin_sharereceiver">Réception de fichier</string>
   <string name="pref_plugin_sharereceiver_desc">Enregistrer les fichiers reçus dans le stockage du téléphone</string>
   <string name="plugin_not_available">Cette fonctionnalité n\'est pas disponible dans votre version de Android</string>
   <string name="device_list_empty">Pas de périphériques</string>
@@ -26,6 +27,9 @@
   <string name="send_ping">Envoyer un « Ping »</string>
   <string name="open_mpris_controls">Ouvrir un contrôle distant</string>
   <string name="open_mousepad">Ouvrir le pavé tactile</string>
+  <string name="mousepad_info">Déplacer le doigt sur l\'écran pour bouger le pointeur de la souris. Appuyez pour cliquer et utiliser deux/trois doigts pour les clic droit et centre. Appuyez longtemps pour faire un glisser déplacer.</string>
+  <string name="mousepad_double_tap_settings_title">Action pour l\'appui à deux doigts</string>
+  <string name="mousepad_triple_tap_settings_title">Action pour l\'appui à trois doigts</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic droit</item>
     <item>Clic central</item>
@@ -51,8 +55,15 @@
   <string name="error_invalid_key">Clé reçue non valable</string>
   <string name="pair_requested">Paire demandée</string>
   <string name="pairing_request_from">Demande d\'appariement provenant de %1s</string>
+  <string name="received_url_title">Lien reçu de %1s</string>
+  <string name="received_url_text">Appuyez pour ouvrir %1s</string>
+  <string name="incoming_file_title">Réception d\'un fichier en cours depuis %1s</string>
   <string name="incoming_file_text">%1s</string>
+  <string name="outgoing_file_title">Envoi d\'un fichier à %1s</string>
   <string name="outgoing_file_text">%1s</string>
+  <string name="received_file_title">Fichier reçu de %1s</string>
+  <string name="received_file_text">Appuyez pour ouvrir %1s</string>
+  <string name="sent_file_title">Fichier envoyé à %1s</string>
   <string name="sent_file_text">%1s</string>
   <string name="sent_file_failed_title">Impossible d\'envoyer le fichier %1s</string>
   <string name="sent_file_failed_text">%1s</string>
@@ -76,6 +87,8 @@
   <string name="mpris_next">Suivant</string>
   <string name="mpris_volume">Volume</string>
   <string name="mpris_settings">Configuration multimédia</string>
+  <string name="mpris_time_settings_title">Boutons avance / retour rapide.</string>
+  <string name="mpris_time_settings_summary">Ajustez le temps pour l\'avance ou retour rapide</string>
   <string-array name="mpris_time_entries">
     <item>10 secondes</item>
     <item>20 secondes</item>
@@ -92,9 +105,13 @@
   <string name="device_name">Nom du périphérique</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nom de périphérique non valable</string>
+  <string name="shareplugin_text_saved">Texte reçu et enregistré dans le presse-papiers</string>
   <string name="custom_devices_settings">Liste personnalisée de périphériques</string>
   <string name="custom_device_list">Ajouter des périphériques par IP</string>
+  <string name="share_notification_preference">Notifications sonores</string>
+  <string name="share_notification_preference_summary">Vibrer et jouer un son quand un fichier est reçu</string>
   <string name="title_activity_notification_filter">Filtre des notifications</string>
+  <string name="filter_apps_info">Les notifications seront synchronisées pour les applications sélectionnées.</string>
   <string name="sftp_internal_storage">Stockage interne</string>
   <string name="sftp_all_files">Tous les fichiers</string>
   <string name="sftp_sdcard_num">Carte SD %d</string>
@@ -102,6 +119,8 @@
   <string name="sftp_readonly">(lecture seule)</string>
   <string name="sftp_camera">Images de l\'appareil photo</string>
   <string name="add_host">Ajouter hôte/IP</string>
+  <string name="add_host_hint">Nom d\'hôte ou adresse IP </string>
   <string name="no_players_connected">Aucun lecteur trouvé</string>
+  <string name="custom_dev_list_help">N\'utilisez cette option que si votre périphérique n\'est pas détecté automatiquement. Saisissez l\'adresse IP ou le nom d\'hôte ci-dessous et appuyez sur le bouton pour l\'ajouter à la liste. Appuyez sur un élément existant pour le retirer de la liste.</string>
   <string name="mpris_player_on_device">%1$s sur %2$s</string>
 </resources>
