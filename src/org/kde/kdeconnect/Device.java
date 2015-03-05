@@ -328,8 +328,6 @@ public class Device implements BaseLink.PackageReceiver {
             this.name = identityPackage.getString("deviceName", this.name);
             SharedPreferences.Editor editor = settings.edit();
             editor.putString("deviceName", this.name);
-            String encodedPublicKey = Base64.encodeToString(publicKey.getEncoded(), 0);
-            editor.putString("publicKey", encodedPublicKey);
             editor.apply();
         }
 
