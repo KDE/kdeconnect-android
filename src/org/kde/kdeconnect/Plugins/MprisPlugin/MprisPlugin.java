@@ -184,19 +184,21 @@ public class MprisPlugin extends Plugin {
 
     public void setPlayerStatusUpdatedHandler(String id, Handler h) {
         playerStatusUpdated.put(id, h);
+
+        h.dispatchMessage(new Message());
+
+        //Get the status if this is the first handler we have
         if (playerListUpdated.size() == 1) {
             requestPlayerStatus();
         }
-
-        h.dispatchMessage(new Message());
     }
 
     public void setPlayerListUpdatedHandler(String id, Handler h) {
-        if (playerList.size() > 0) {
-            h.dispatchMessage(new Message());
-        }
-
         playerListUpdated.put(id,h);
+
+        h.dispatchMessage(new Message());
+
+        //Get the status if this is the first handler we have
         if (playerListUpdated.size() == 1) {
             requestPlayerList();
         }
