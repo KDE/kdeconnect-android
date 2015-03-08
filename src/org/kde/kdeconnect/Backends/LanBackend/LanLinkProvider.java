@@ -158,13 +158,11 @@ public class LanLinkProvider extends BaseLinkProvider {
 
                 final NioSocketConnector connector = new NioSocketConnector();
                 connector.setHandler(tcpHandler);
-                //TextLineCodecFactory will split incoming data delimited by the given string
-                connector.getFilterChain().addLast("codec",
-                        new ProtocolCodecFilter(
-                                new TextLineCodecFactory(Charset.defaultCharset(), LineDelimiter.UNIX, LineDelimiter.UNIX)
-                        )
-                );
                 connector.getSessionConfig().setKeepAlive(true);
+                //TextLineCodecFactory will buffer incoming data and emit a message very time it finds a \n
+                TextLineCodecFactory textLineFactory = new TextLineCodecFactory(Charset.defaultCharset(), LineDelimiter.UNIX, LineDelimiter.UNIX);
+                textLineFactory.setDecoderMaxLineLength(512*1024); //Allow to receive up to 512kb of data
+                tcpAcceptor.getFilterChain().addLast("codec", new ProtocolCodecFilter(textLineFactory));
 
                 int tcpPort = identityPackage.getInt("tcpPort",port);
                 ConnectFuture future = connector.connect(new InetSocketAddress(address.getAddress(), tcpPort));
@@ -235,17 +233,16 @@ public class LanLinkProvider extends BaseLinkProvider {
         tcpAcceptor.getSessionConfig().setKeepAlive(true);
         tcpAcceptor.getSessionConfig().setReuseAddress(true);
         tcpAcceptor.setCloseOnDeactivation(false);
-        //TextLineCodecFactory will split incoming data delimited by the given string
-        tcpAcceptor.getFilterChain().addLast("codec",
-                new ProtocolCodecFilter(
-                        new TextLineCodecFactory(Charset.defaultCharset(), LineDelimiter.UNIX, LineDelimiter.UNIX)
-                )
-        );
+        //TextLineCodecFactory will buffer incoming data and emit a message very time it finds a \n
+        TextLineCodecFactory textLineFactory = new TextLineCodecFactory(Charset.defaultCharset(), LineDelimiter.UNIX, LineDelimiter.UNIX);
+        textLineFactory.setDecoderMaxLineLength(512*1024); //Allow to receive up to 512kb of data
+        tcpAcceptor.getFilterChain().addLast("codec", new ProtocolCodecFilter(textLineFactory));
 
 
         udpAcceptor = new NioDatagramAcceptor();
-        udpAcceptor.getSessionConfig().setReuseAddress(true);        //Share port if existing
-        //TextLineCodecFactory will split incoming data delimited by the given string
+        udpAcceptor.getSessionConfig().setReuseAddress(true); //Share port if existing
+        //TextLineCodecFactory will buffer incoming data and emit a message very time it finds a \n
+        //This one will have the default MaxLineLength of 1KB
         udpAcceptor.getFilterChain().addLast("codec",
                 new ProtocolCodecFilter(
                         new TextLineCodecFactory(Charset.defaultCharset(), LineDelimiter.UNIX, LineDelimiter.UNIX)
