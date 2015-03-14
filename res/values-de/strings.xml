@@ -52,7 +52,10 @@
   <string name="received_url_title">Verknüpfung von %1s erhalten</string>
   <string name="incoming_file_title">Eingehende Datei von %1s</string>
   <string name="incoming_file_text">%1s</string>
+  <string name="outgoing_file_text">%1s</string>
   <string name="received_file_title">Datei von %1s erhalten</string>
+  <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Tippen zum Antworten</string>
   <string name="reconnect">Erneut verbinden</string>
   <string name="right_click">Rechtsklick senden</string>
@@ -99,5 +102,6 @@
   <string name="sftp_readonly">(Nur lesen)</string>
   <string name="sftp_camera">Kamerabilder</string>
   <string name="add_host">Rechner/IP hinzufügen</string>
+  <string name="add_host_hint">Rechnername oder IP</string>
   <string name="mpris_player_on_device">%1$s auf %2$s</string>
 </resources>
