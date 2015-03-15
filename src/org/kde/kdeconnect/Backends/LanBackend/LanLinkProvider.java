@@ -162,7 +162,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                 //TextLineCodecFactory will buffer incoming data and emit a message very time it finds a \n
                 TextLineCodecFactory textLineFactory = new TextLineCodecFactory(Charset.defaultCharset(), LineDelimiter.UNIX, LineDelimiter.UNIX);
                 textLineFactory.setDecoderMaxLineLength(512*1024); //Allow to receive up to 512kb of data
-                tcpAcceptor.getFilterChain().addLast("codec", new ProtocolCodecFilter(textLineFactory));
+                connector.getFilterChain().addLast("codec", new ProtocolCodecFilter(textLineFactory));
 
                 int tcpPort = identityPackage.getInt("tcpPort",port);
                 ConnectFuture future = connector.connect(new InetSocketAddress(address.getAddress(), tcpPort));
