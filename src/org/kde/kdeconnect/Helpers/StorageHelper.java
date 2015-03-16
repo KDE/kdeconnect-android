@@ -90,7 +90,7 @@ public class StorageHelper {
             File dirs[] = storage.listFiles();
             for (File dir : dirs) {
                 //Log.e("getStorageList", "path: "+dir.getAbsolutePath());
-                if (dir.isDirectory()) {
+                if (dir.isDirectory() && dir.canRead() && dir.canExecute()) {
                     String path, path2;
                     path2 = dir.getAbsolutePath();
                     try {
@@ -101,9 +101,10 @@ public class StorageHelper {
                     }
                     if (!path.startsWith("/storage/emulated") || dirs.length == 1) {
                         if (!paths.contains(path) && !paths.contains(path2)) {
-                            if (mounts == null || mounts.contains(path) || mounts.contains(path2))
-                            list.add(0, new StorageInfo(path, false, true, cur_removable_number++));
-                            paths.add(path);
+                            if (mounts == null || mounts.contains(path) || mounts.contains(path2)) {
+                                list.add(0, new StorageInfo(path, false, true, cur_removable_number++));
+                                paths.add(path);
+                            }
                         }
                     }
                 }

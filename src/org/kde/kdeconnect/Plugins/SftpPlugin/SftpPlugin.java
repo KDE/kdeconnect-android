@@ -90,50 +90,54 @@ public class SftpPlugin extends Plugin {
                 np2.set("user", server.passwordAuth.getUser());
                 np2.set("password", server.passwordAuth.getPassword());
 
-                //Kept for compatibility, but new desktop clients will read "multiPaths" instead,
-                // that supports devices with more than one external storage
+                //Kept for compatibility, in case "multiPaths" is not possible or the other end does not support it
                 np2.set("path", Environment.getExternalStorageDirectory().getAbsolutePath());
 
-                List<StorageHelper.StorageInfo> storageList = StorageHelper.getStorageList();
-                ArrayList<String> paths = new ArrayList<String>();
-                ArrayList<String> pathNames = new ArrayList<String>();
+                File root = new File("/");
+                if (root.canExecute() && root.canRead()) {
+                    List<StorageHelper.StorageInfo> storageList = StorageHelper.getStorageList();
+                    ArrayList<String> paths = new ArrayList<String>();
+                    ArrayList<String> pathNames = new ArrayList<String>();
 
-                for (StorageHelper.StorageInfo storage : storageList) {
-                    paths.add(storage.path);
-                    StringBuilder res = new StringBuilder();
+                    for (StorageHelper.StorageInfo storage : storageList) {
+                        paths.add(storage.path);
+                        StringBuilder res = new StringBuilder();
 
-                    if (storageList.size() > 1) {
-                        if (!storage.removable) {
-                            res.append(context.getString(R.string.sftp_internal_storage));
-                        } else if (storage.number > 1) {
-                            res.append(context.getString(R.string.sftp_sdcard_num, storage.number));
-                        } else {
-                            res.append(context.getString(R.string.sftp_sdcard));
-                        }
-                    } else {
-                        res.append(context.getString(R.string.sftp_all_files));
-                    }
-                    String pathName = res.toString();
-                    if (storage.readonly) {
-                        res.append(" ");
-                        res.append(context.getString(R.string.sftp_readonly));
-                    }
-                    pathNames.add(res.toString());
-
-                    //Shortcut for users that only want to browse camera pictures
-                    String dcim = storage.path + "/DCIM/Camera";
-                    if (new File(dcim).exists()) {
-                        paths.add(dcim);
                         if (storageList.size() > 1) {
-                            pathNames.add(context.getString(R.string.sftp_camera) + "(" + pathName + ")");
+                            if (!storage.removable) {
+                                res.append(context.getString(R.string.sftp_internal_storage));
+                            } else if (storage.number > 1) {
+                                res.append(context.getString(R.string.sftp_sdcard_num, storage.number));
+                            } else {
+                                res.append(context.getString(R.string.sftp_sdcard));
+                            }
                         } else {
-                            pathNames.add(context.getString(R.string.sftp_camera));
+                            res.append(context.getString(R.string.sftp_all_files));
                         }
+                        String pathName = res.toString();
+                        if (storage.readonly) {
+                            res.append(" ");
+                            res.append(context.getString(R.string.sftp_readonly));
+                        }
+                        pathNames.add(res.toString());
+
+                        //Shortcut for users that only want to browse camera pictures
+                        String dcim = storage.path + "/DCIM/Camera";
+                        if (new File(dcim).exists()) {
+                            paths.add(dcim);
+                            if (storageList.size() > 1) {
+                                pathNames.add(context.getString(R.string.sftp_camera) + "(" + pathName + ")");
+                            } else {
+                                pathNames.add(context.getString(R.string.sftp_camera));
+                            }
+                        }
+                    }
+
+                    if (paths.size() > 0) {
+                        np2.set("multiPaths", paths);
+                        np2.set("pathNames", pathNames);
                     }
                 }
-
-                np2.set("multiPaths", paths);
-                np2.set("pathNames", pathNames);
 
                 device.sendPackage(np2);
 
