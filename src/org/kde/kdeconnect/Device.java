@@ -475,12 +475,7 @@ public class Device implements BaseLink.PackageReceiver {
                 for (PairingCallback cb : pairingCallback) cb.unpaired();
 
             }
-        } else if (!isPaired()) {
-
-            unpair();
-            Log.e("onPackageReceived","Device not paired, ignoring package!");
-
-        } else {
+        } else if (isPaired()) {
 
             for (Plugin plugin : plugins.values()) {
                 try {
@@ -491,6 +486,15 @@ public class Device implements BaseLink.PackageReceiver {
                 }
 
             }
+
+        } else {
+
+            Log.e("onPackageReceived","Device not paired, ignoring package!");
+
+            if (pairStatus != PairStatus.Requested) {
+                unpair();
+            }
+
         }
 
     }
