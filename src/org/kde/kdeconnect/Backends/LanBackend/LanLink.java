@@ -47,8 +47,10 @@ public class LanLink extends BaseLink {
     private IoSession session = null;
 
     public void disconnect() {
-        if (session == null) return;
-        //Log.i("LanLink", "Disconnect: "+session.getRemoteAddress().toString());
+        if (session == null) {
+            Log.e("KDE/LanLink", "Not yet connected");
+            return;
+        }
         session.close(true);
     }
 
@@ -60,7 +62,7 @@ public class LanLink extends BaseLink {
     //Blocking, do not call from main thread
     private void sendPackageInternal(NetworkPackage np, final Device.SendPackageStatusCallback callback, PublicKey key) {
         if (session == null) {
-            Log.e("sendPackage", "Not yet connected");
+            Log.e("KDE/sendPackage", "Not yet connected");
             callback.sendFailure(new NotYetConnectedException());
             return;
         }
@@ -87,7 +89,7 @@ public class LanLink extends BaseLink {
             WriteFuture future = session.write(np.serialize());
             future.awaitUninterruptibly();
             if (!future.isWritten()) {
-                Log.e("sendPackage", "!future.isWritten()");
+                Log.e("KDE/sendPackage", "!future.isWritten()");
                 callback.sendFailure(future.getException());
                 return;
             }
@@ -101,7 +103,7 @@ public class LanLink extends BaseLink {
                     timeout.schedule(new TimerTask() {
                         @Override
                         public void run() {
-                            Log.e("sendPackage","Timeout");
+                            Log.e("KDE/sendPackage","Timeout");
                             try { server.close(); } catch (Exception e) { }
                             callback.sendFailure(new TimeoutException("Timed out waiting for other end to establish a connection to receive the payload."));
                         }
@@ -109,7 +111,7 @@ public class LanLink extends BaseLink {
                     socket = server.accept().getOutputStream();
                     timeout.cancel();
 
-                    Log.i("LanLink", "Beginning to send payload");
+                    Log.i("KDE/LanLink", "Beginning to send payload");
 
                     byte[] buffer = new byte[4096];
                     int bytesRead;
@@ -123,9 +125,9 @@ public class LanLink extends BaseLink {
                             callback.sendProgress((int)(progress / np.getPayloadSize()));
                         }
                     }
-                    Log.i("LanLink", "Finished sending payload");
+                    Log.i("KDE/LanLink", "Finished sending payload");
                 } catch (Exception e) {
-                    Log.e("sendPackage", "Exception: "+e);
+                    Log.e("KDE/sendPackage", "Exception: "+e);
                     callback.sendFailure(e);
                     return;
                 } finally {
@@ -167,7 +169,7 @@ public class LanLink extends BaseLink {
                 np = np.decrypt(privateKey);
             } catch(Exception e) {
                 e.printStackTrace();
-                Log.e("onPackageReceived","Exception reading the key needed to decrypt the package");
+                Log.e("KDE/onPackageReceived","Exception reading the key needed to decrypt the package");
             }
 
         }
@@ -182,7 +184,7 @@ public class LanLink extends BaseLink {
                 np.setPayload(socket.getInputStream(), np.getPayloadSize());
             } catch (Exception e) {
                 e.printStackTrace();
-                Log.e("LanLink", "Exception connecting to payload remote socket");
+                Log.e("KDE/LanLink", "Exception connecting to payload remote socket");
             }
 
         }
@@ -200,12 +202,12 @@ public class LanLink extends BaseLink {
                 candidateServer = new ServerSocket();
                 candidateServer.bind(new InetSocketAddress(tcpPort));
                 success = true;
-                Log.i("LanLink", "Using port "+tcpPort);
+                Log.i("KDE/LanLink", "Using port "+tcpPort);
             } catch(IOException e) {
                 //Log.e("LanLink", "Exception openning serversocket: "+e);
                 tcpPort++;
                 if (tcpPort >= 1764) {
-                    Log.e("LanLink", "No more ports available");
+                    Log.e("KDE/LanLink", "No more ports available");
                     throw e;
                 }
             }

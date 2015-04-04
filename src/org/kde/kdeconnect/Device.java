@@ -102,7 +102,7 @@ public class Device implements BaseLink.PackageReceiver {
             publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("Device","Exception");
+            Log.e("KDE/Device","Exception");
         }
 
         reloadPluginsFromSettings();
@@ -200,7 +200,7 @@ public class Device implements BaseLink.PackageReceiver {
                         for (PairingCallback cb : pairingCallback) {
                             cb.pairingFailed(context.getString(R.string.error_timed_out));
                         }
-                        Log.e("Device","Unpairing (timeout A)");
+                        Log.e("KDE/Device","Unpairing (timeout A)");
                         pairStatus = PairStatus.NotPaired;
                     }
                 }, 30*1000); //Time to wait for the other to accept
@@ -212,7 +212,7 @@ public class Device implements BaseLink.PackageReceiver {
                 for (PairingCallback cb : pairingCallback) {
                     cb.pairingFailed(context.getString(R.string.error_could_not_send_package));
                 }
-                Log.e("Device","Unpairing (sendFailed A)");
+                Log.e("KDE/Device","Unpairing (sendFailed A)");
                 pairStatus = PairStatus.NotPaired;
             }
 
@@ -271,7 +271,7 @@ public class Device implements BaseLink.PackageReceiver {
 
     public void acceptPairing() {
 
-        Log.i("Device","Accepted pair request started by the other device");
+        Log.i("KDE/Device","Accepted pair request started by the other device");
 
         //Send our own public key
         NetworkPackage np = NetworkPackage.createPublicKeyPackage(context);
@@ -294,7 +294,7 @@ public class Device implements BaseLink.PackageReceiver {
 
     public void rejectPairing() {
 
-        Log.i("Device","Rejected pair request started by the other device");
+        Log.i("KDE/Device","Rejected pair request started by the other device");
 
         //Log.e("Device","Unpairing (rejectPairing)");
         pairStatus = PairStatus.NotPaired;
@@ -321,6 +321,7 @@ public class Device implements BaseLink.PackageReceiver {
     }
 
     public void addLink(NetworkPackage identityPackage, BaseLink link) {
+        //FilesHelper.LogOpenFileCount();
 
         this.protocolVersion = identityPackage.getInt("protocolVersion");
 
@@ -341,10 +342,10 @@ public class Device implements BaseLink.PackageReceiver {
             link.setPrivateKey(privateKey);
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("Device", "Exception reading our own private key"); //Should not happen
+            Log.e("KDE/Device", "Exception reading our own private key"); //Should not happen
         }
 
-        Log.i("Device","addLink "+link.getLinkProvider().getName()+" -> "+getName() + " active links: "+ links.size());
+        Log.i("KDE/Device","addLink "+link.getLinkProvider().getName()+" -> "+getName() + " active links: "+ links.size());
 
         /*
         Collections.sort(links, new Comparator<BaseLink>() {
@@ -363,9 +364,11 @@ public class Device implements BaseLink.PackageReceiver {
     }
 
     public void removeLink(BaseLink link) {
+        //FilesHelper.LogOpenFileCount();
+
         link.removePackageReceiver(this);
         links.remove(link);
-        Log.i("Device","removeLink: "+link.getLinkProvider().getName() + " -> "+getName() + " active links: "+ links.size());
+        Log.i("KDE/Device","removeLink: "+link.getLinkProvider().getName() + " -> "+getName() + " active links: "+ links.size());
         if (links.isEmpty()) {
             reloadPluginsFromSettings();
         }
@@ -376,7 +379,7 @@ public class Device implements BaseLink.PackageReceiver {
 
         if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR)) {
 
-            Log.i("Device","Pair package");
+            Log.i("KDE/Device","Pair package");
 
             boolean wantsPair = np.getBoolean("pair");
 
@@ -401,7 +404,7 @@ public class Device implements BaseLink.PackageReceiver {
                     publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
                 } catch(Exception e) {
                     e.printStackTrace();
-                    Log.e("Device","Pairing exception: Received incorrect key");
+                    Log.e("KDE/Device","Pairing exception: Received incorrect key");
                     for (PairingCallback cb : pairingCallback) {
                         cb.pairingFailed(context.getString(R.string.error_invalid_key));
                     }
@@ -410,7 +413,7 @@ public class Device implements BaseLink.PackageReceiver {
 
                 if (pairStatus == PairStatus.Requested)  { //We started pairing
 
-                    Log.i("Pairing","Pair answer");
+                    Log.i("KDE/Pairing","Pair answer");
 
                     if (pairingTimer != null) pairingTimer.cancel();
 
@@ -418,7 +421,7 @@ public class Device implements BaseLink.PackageReceiver {
 
                 } else {
 
-                    Log.i("Pairing","Pair request");
+                    Log.i("KDE/Pairing","Pair request");
 
                     Intent intent = new Intent(context, PairActivity.class);
                     intent.putExtra("deviceId", deviceId);
@@ -447,7 +450,7 @@ public class Device implements BaseLink.PackageReceiver {
                     pairingTimer.schedule(new TimerTask() {
                         @Override
                         public void run() {
-                            Log.e("Device","Unpairing (timeout B)");
+                            Log.e("KDE/Device","Unpairing (timeout B)");
                             pairStatus = PairStatus.NotPaired;
                             notificationManager.cancel(notificationId);
                         }
@@ -457,7 +460,7 @@ public class Device implements BaseLink.PackageReceiver {
 
                 }
             } else {
-                Log.i("Pairing","Unpair request");
+                Log.i("KDE/Pairing","Unpair request");
 
                 if (pairStatus == PairStatus.Requested) {
                     pairingTimer.cancel();
@@ -470,7 +473,6 @@ public class Device implements BaseLink.PackageReceiver {
                     reloadPluginsFromSettings();
                 }
 
-                //Log.e("Device","Unpairing (unpair request)");
                 pairStatus = PairStatus.NotPaired;
                 for (PairingCallback cb : pairingCallback) cb.unpaired();
 
@@ -482,14 +484,14 @@ public class Device implements BaseLink.PackageReceiver {
                     plugin.onPackageReceived(np);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Log.e("Device", "Exception in "+plugin.getDisplayName()+"'s onPackageReceived()");
+                    Log.e("KDE/Device", "Exception in "+plugin.getDisplayName()+"'s onPackageReceived()");
                 }
 
             }
 
         } else {
 
-            Log.e("onPackageReceived","Device not paired, ignoring package!");
+            Log.e("KDE/onPackageReceived","Device not paired, ignoring package!");
 
             if (pairStatus != PairStatus.Requested) {
                 unpair();
@@ -512,9 +514,9 @@ public class Device implements BaseLink.PackageReceiver {
         public void sendFailure(Throwable e) {
             if (e != null) {
                 e.printStackTrace();
-                Log.e("sendPackage", "Exception: " + e.getMessage());
+                Log.e("KDE/sendPackage", "Exception: " + e.getMessage());
             } else {
-                Log.e("sendPackage", "Unknown (null) exception");
+                Log.e("KDE/sendPackage", "Unknown (null) exception");
             }
             onFailure(e);
         }
@@ -556,7 +558,7 @@ public class Device implements BaseLink.PackageReceiver {
                 }
 
                 if (!callback.success) {
-                    Log.e("sendPackage", "No device link (of "+mLinks.size()+" available) could send the package. Package lost!");
+                    Log.e("KDE/sendPackage", "No device link (of "+mLinks.size()+" available) could send the package. Package lost!");
                     backtrace.printStackTrace();
                 }
 
@@ -584,13 +586,13 @@ public class Device implements BaseLink.PackageReceiver {
     private synchronized void addPlugin(final String name) {
         Plugin existing = plugins.get(name);
         if (existing != null) {
-            Log.w("addPlugin","plugin already present:" + name);
+            Log.w("KDE/addPlugin","plugin already present:" + name);
             return;
         }
 
         final Plugin plugin = PluginFactory.instantiatePluginForDevice(context, name, this);
         if (plugin == null) {
-            Log.e("addPlugin","could not instantiate plugin: "+name);
+            Log.e("KDE/addPlugin","could not instantiate plugin: "+name);
             failedPlugins.put(name, plugin);
             return;
         }
@@ -605,7 +607,7 @@ public class Device implements BaseLink.PackageReceiver {
                 } catch (Exception e) {
                     success = false;
                     e.printStackTrace();
-                    Log.e("addPlugin", "Exception loading plugin " + name);
+                    Log.e("KDE/addPlugin", "Exception loading plugin " + name);
                 }
 
                 if (success) {
@@ -613,7 +615,7 @@ public class Device implements BaseLink.PackageReceiver {
                     failedPlugins.remove(name);
                     plugins.put(name, plugin);
                 } else {
-                    Log.e("addPlugin", "plugin failed to load " + name);
+                    Log.e("KDE/addPlugin", "plugin failed to load " + name);
                     plugins.remove(name);
                     failedPlugins.put(name, plugin);
                 }
@@ -645,7 +647,7 @@ public class Device implements BaseLink.PackageReceiver {
             //Log.e("removePlugin","removed " + name);
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("removePlugin","Exception calling onDestroy for plugin "+name);
+            Log.e("KDE/removePlugin","Exception calling onDestroy for plugin "+name);
         }
 
         for (PluginsChangedListener listener : pluginsChangedListeners) {

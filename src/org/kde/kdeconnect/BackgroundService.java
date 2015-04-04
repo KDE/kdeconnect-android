@@ -105,17 +105,17 @@ public class BackgroundService extends Service {
         @Override
         public void onConnectionReceived(final NetworkPackage identityPackage, final BaseLink link) {
 
-            Log.i("BackgroundService", "Connection accepted!");
+            Log.i("KDE/BackgroundService", "Connection accepted!");
 
             String deviceId = identityPackage.getString("deviceId");
 
             Device device = devices.get(deviceId);
 
             if (device != null) {
-                Log.i("BackgroundService", "addLink, known device: " + deviceId);
+                Log.i("KDE/BackgroundService", "addLink, known device: " + deviceId);
                 device.addLink(identityPackage, link);
             } else {
-                Log.i("BackgroundService", "addLink,unknown device: " + deviceId);
+                Log.i("KDE/BackgroundService", "addLink,unknown device: " + deviceId);
                 device = new Device(BackgroundService.this, identityPackage, link);
                 devices.put(deviceId, device);
                 device.addPairingCallback(devicePairingCallback);
@@ -127,7 +127,7 @@ public class BackgroundService extends Service {
         @Override
         public void onConnectionLost(BaseLink link) {
             Device d = devices.get(link.getDeviceId());
-            Log.i("onConnectionLost", "removeLink, deviceId: " + link.getDeviceId());
+            Log.i("KDE/onConnectionLost", "removeLink, deviceId: " + link.getDeviceId());
             if (d != null) {
                 d.removeLink(link);
                 if (!d.isReachable() && !d.isPaired()) {
@@ -136,7 +136,7 @@ public class BackgroundService extends Service {
                     d.removePairingCallback(devicePairingCallback);
                 }
             } else {
-                Log.e("onConnectionLost","Removing connection to unknown device, this should not happen");
+                Log.e("KDE/onConnectionLost","Removing connection to unknown device, this should not happen");
             }
             if (deviceListChangedCallback != null) deviceListChangedCallback.onDeviceListChanged();
         }
@@ -147,34 +147,35 @@ public class BackgroundService extends Service {
     }
 
     public void startDiscovery() {
-        Log.i("BackgroundService","StartDiscovery");
+        Log.i("KDE/BackgroundService","StartDiscovery");
         for (BaseLinkProvider a : linkProviders) {
             a.onStart();
         }
     }
 
     public void stopDiscovery() {
-        Log.i("BackgroundService","StopDiscovery");
+        Log.i("KDE/BackgroundService","StopDiscovery");
         for (BaseLinkProvider a : linkProviders) {
             a.onStop();
         }
     }
 
     public void onNetworkChange() {
-        Log.i("BackgroundService","OnNetworkChange");
+        Log.i("KDE/BackgroundService","OnNetworkChange");
         for (BaseLinkProvider a : linkProviders) {
             a.onNetworkChange();
         }
     }
 
     public void addConnectionListener(BaseLinkProvider.ConnectionReceiver cr) {
-        Log.i("BackgroundService","Registering connection listener");
+        Log.i("KDE/BackgroundService","Registering connection listener");
         for (BaseLinkProvider a : linkProviders) {
             a.addConnectionReceiver(cr);
         }
     }
 
     public void removeConnectionListener(BaseLinkProvider.ConnectionReceiver cr) {
+        Log.i("KDE/BackgroundService","Removing connection listener");
         for (BaseLinkProvider a : linkProviders) {
             a.removeConnectionReceiver(cr);
         }
@@ -198,7 +199,7 @@ public class BackgroundService extends Service {
         IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
         registerReceiver(new KdeConnectBroadcastReceiver(), filter);
 
-        Log.i("BackgroundService","Service not started yet, initializing...");
+        Log.i("KDE/BackgroundService","Service not started yet, initializing...");
 
         initializeRsaKeys();
         MainSettingsActivity.initializeDeviceName(this);
@@ -223,7 +224,7 @@ public class BackgroundService extends Service {
                 keyPair = keyGen.genKeyPair();
             } catch(Exception e) {
                 e.printStackTrace();
-                Log.e("initializeRsaKeys","Exception");
+                Log.e("KDE/initializeRsaKeys","Exception");
                 return;
             }
 
@@ -268,7 +269,7 @@ public class BackgroundService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.i("BackgroundService", "Destroying");
+        Log.i("KDE/BackgroundService", "Destroying");
         stopDiscovery();
         super.onDestroy();
     }
