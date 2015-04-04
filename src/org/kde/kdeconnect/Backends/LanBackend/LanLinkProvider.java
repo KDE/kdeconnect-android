@@ -328,18 +328,22 @@ public class LanLinkProvider extends BaseLinkProvider {
                     e.printStackTrace();
                     Log.e("KDE/LanLinkProvider","Failed to create DatagramSocket");
                 }
-                //Log.e("KDE/LanLinkProvider","Sending packet to "+iplist.size()+" ips");
-                for (String ipstr : iplist) {
-                    try {
-                        InetAddress client = InetAddress.getByName(ipstr);
-                        DatagramPacket packet = new DatagramPacket(bytes, bytes.length, client, port);
-                        socket.send(packet);
-                        //Log.i("KDE/LanLinkProvider","Udp identity package sent to address "+packet.getAddress());
-                    } catch(Exception e) {
-                        e.printStackTrace();
-                        Log.e("KDE/LanLinkProvider","Sending udp identity package failed. Invalid address? ("+ipstr+")");
+
+                if (bytes != null) {
+                    //Log.e("KDE/LanLinkProvider","Sending packet to "+iplist.size()+" ips");
+                    for (String ipstr : iplist) {
+                        try {
+                            InetAddress client = InetAddress.getByName(ipstr);
+                            DatagramPacket packet = new DatagramPacket(bytes, bytes.length, client, port);
+                            socket.send(packet);
+                            //Log.i("KDE/LanLinkProvider","Udp identity package sent to address "+packet.getAddress());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Log.e("KDE/LanLinkProvider", "Sending udp identity package failed. Invalid address? (" + ipstr + ")");
+                        }
                     }
                 }
+
                 socket.close();
 
             }

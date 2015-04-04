@@ -108,8 +108,11 @@ public class CustomDevicesActivity extends ListActivity {
         InputMethodManager inputManager = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                InputMethodManager.HIDE_NOT_ALWAYS);
+        View focus = getCurrentFocus();
+        if (focus != null) {
+            inputManager.hideSoftInputFromWindow(focus.getWindowToken(),
+                    InputMethodManager.HIDE_NOT_ALWAYS);
+        }
     }
 
     void saveList() {

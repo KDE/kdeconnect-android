@@ -144,55 +144,55 @@ public class ShareActivity extends ActionBarActivity {
                                 Device device = devicesList.get(i-1); //NOTE: -1 because of the title!
 
                                 Bundle extras = intent.getExtras();
-                                if (extras.containsKey(Intent.EXTRA_STREAM)) {
+                                if (extras != null) {
+                                    if (extras.containsKey(Intent.EXTRA_STREAM)) {
 
-                                    try {
+                                        try {
 
-                                        ArrayList<Uri> uriList;
-                                        if (!Intent.ACTION_SEND.equals(intent.getAction())) {
-                                            uriList = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
+                                            ArrayList<Uri> uriList;
+                                            if (!Intent.ACTION_SEND.equals(intent.getAction())) {
+                                                uriList = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
+                                            } else {
+                                                Uri uri = extras.getParcelable(Intent.EXTRA_STREAM);
+                                                uriList = new ArrayList<Uri>();
+                                                uriList.add(uri);
+                                            }
+
+                                            queuedSendUriList(device, uriList);
+
+                                        } catch (Exception e) {
+                                            Log.e("ShareActivity", "Exception");
+                                            e.printStackTrace();
+                                        }
+
+                                    } else if (extras.containsKey(Intent.EXTRA_TEXT)) {
+                                        String text = extras.getString(Intent.EXTRA_TEXT);
+                                        String subject = extras.getString(Intent.EXTRA_SUBJECT);
+
+                                        //Hack: Detect shared youtube videos, so we can open them in the browser instead of as text
+                                        if (subject != null && subject.endsWith("YouTube")) {
+                                            int index = text.indexOf(": http://youtu.be/");
+                                            if (index > 0) {
+                                                text = text.substring(index + 2); //Skip ": "
+                                            }
+                                        }
+
+                                        boolean isUrl;
+                                        try {
+                                            new URL(text);
+                                            isUrl = true;
+                                        } catch (Exception e) {
+                                            isUrl = false;
+                                        }
+                                        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_SHARE);
+                                        if (isUrl) {
+                                            np.set("url", text);
                                         } else {
-                                            Uri uri = extras.getParcelable(Intent.EXTRA_STREAM);
-                                            uriList = new ArrayList<Uri>();
-                                            uriList.add(uri);
+                                            np.set("text", text);
                                         }
-
-                                        queuedSendUriList(device, uriList);
-
-                                    } catch (Exception e) {
-                                        Log.e("ShareActivity", "Exception");
-                                        e.printStackTrace();
+                                        device.sendPackage(np);
                                     }
-
-                                } else if (extras.containsKey(Intent.EXTRA_TEXT)) {
-                                    String text = extras.getString(Intent.EXTRA_TEXT);
-                                    String subject = extras.getString(Intent.EXTRA_SUBJECT);
-
-                                    //Hack: Detect shared youtube videos, so we can open them in the browser instead of as text
-                                    if (subject != null && subject.endsWith("YouTube")) {
-                                        int index = text.indexOf(": http://youtu.be/");
-                                        if (index > 0) {
-                                            text = text.substring(index+2); //Skip ": "
-                                        }
-                                    }
-
-                                    boolean isUrl;
-                                    try {
-                                        new URL(text);
-                                        isUrl = true;
-                                    } catch(Exception e) {
-                                        isUrl = false;
-                                    }
-                                    NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_SHARE);
-                                    if (isUrl) {
-                                        np.set("url", text);
-                                    } else {
-                                        np.set("text", text);
-                                    }
-                                    device.sendPackage(np);
                                 }
-
-
 
                                 finish();
                             }
