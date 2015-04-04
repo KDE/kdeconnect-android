@@ -61,7 +61,7 @@ public class MainSettingsActivity extends PreferenceActivity {
     }
 
     private void initPreferences(final EditTextPreference deviceNamePref) {
-        final SharedPreferences sharedPreferences=PreferenceManager.getDefaultSharedPreferences(this);
+        final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         deviceNamePref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object newDeviceName) {
@@ -99,16 +99,12 @@ public class MainSettingsActivity extends PreferenceActivity {
      * @param context the application context
      */
     public static void initializeDeviceName(Context context){
-        // I could have used getDefaultSharedPreferences(context).contains but we need to check
-        // to checkAgainst empty String also.
-        String deviceName=PreferenceManager.getDefaultSharedPreferences(context).getString(
-                KEY_DEVICE_NAME_PREFERENCE,
-                "");
-        if(deviceName.isEmpty()){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        // Could use prefrences.contains but would need to check for empty String anyway.
+        String deviceName = preferences.getString(KEY_DEVICE_NAME_PREFERENCE, "");
+        if (deviceName.isEmpty()){
             Log.i("MainSettingsActivity", "New device name: " + deviceName);
-            PreferenceManager.getDefaultSharedPreferences(context).edit().putString(
-                    KEY_DEVICE_NAME_PREFERENCE,
-                    DeviceHelper.getDeviceName()).commit();
+            preferences.edit().putString(KEY_DEVICE_NAME_PREFERENCE, DeviceHelper.getDeviceName()).commit();
         }
     }
 
