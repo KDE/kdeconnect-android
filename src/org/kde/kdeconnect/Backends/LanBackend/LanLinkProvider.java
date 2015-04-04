@@ -21,7 +21,6 @@
 package org.kde.kdeconnect.Backends.LanBackend;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v4.util.LongSparseArray;
 import android.util.Log;
@@ -59,6 +58,7 @@ public class LanLinkProvider extends BaseLinkProvider {
     private final Context context;
     private final HashMap<String, LanLink> visibleComputers = new HashMap<String, LanLink>();
     private final LongSparseArray<LanLink> nioSessions = new LongSparseArray<LanLink>();
+    private final LongSparseArray<NioSocketConnector> nioConnectors = new LongSparseArray<NioSocketConnector>();
 
     private NioSocketAcceptor tcpAcceptor = null;
     private NioDatagramAcceptor udpAcceptor = null;
@@ -66,29 +66,46 @@ public class LanLinkProvider extends BaseLinkProvider {
     private final IoHandler tcpHandler = new IoHandlerAdapter() {
         @Override
         public void sessionClosed(IoSession session) throws Exception {
-
-            final LanLink brokenLink = nioSessions.get(session.getId());
-            if (brokenLink != null) {
-                nioSessions.remove(session.getId());
-                brokenLink.disconnect();
-                String deviceId = brokenLink.getDeviceId();
-                if (visibleComputers.get(deviceId) == brokenLink) {
-                    visibleComputers.remove(deviceId);
+            try {
+                long id = session.getId();
+                final LanLink brokenLink = nioSessions.get(id);
+                NioSocketConnector connector = nioConnectors.get(id);
+                if (connector != null) {
+                    connector.dispose();
+                    nioConnectors.remove(id);
                 }
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        //Wait a bit before emiting connectionLost, in case the same device re-appears
-                        try {
-                            Thread.sleep(200);
-                        } catch (InterruptedException e) { }
-                        connectionLost(brokenLink);
-
+                if (brokenLink != null) {
+                    nioSessions.remove(id);
+                    //Log.i("KDE/LanLinkProvider", "nioSessions.size(): " + nioSessions.size() + " (-)");
+                    try {
+                        brokenLink.disconnect();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Log.e("KDE/LanLinkProvider", "Exception. Already disconnected?");
                     }
-                }).start();
+                    //Log.i("KDE/LanLinkProvider", "Disconnected!");
+                    String deviceId = brokenLink.getDeviceId();
+                    if (visibleComputers.get(deviceId) == brokenLink) {
+                        visibleComputers.remove(deviceId);
+                    }
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            //Wait a bit before emiting connectionLost, in case the same device re-appears
+                            try {
+                                Thread.sleep(200);
+                            } catch (InterruptedException e) {
+                            }
+                            connectionLost(brokenLink);
 
+                        }
+                    }).start();
+
+                }
+            } catch (Exception e) { //If we don't catch it here, Mina will swallow it :/
+                e.printStackTrace();
+                Log.e("KDE/LanLinkProvider", "sessionClosed exception");
             }
-
         }
 
         @Override
@@ -166,36 +183,43 @@ public class LanLinkProvider extends BaseLinkProvider {
                 connector.getFilterChain().addLast("codec", new ProtocolCodecFilter(textLineFactory));
 
                 int tcpPort = identityPackage.getInt("tcpPort",port);
-                ConnectFuture future = connector.connect(new InetSocketAddress(address.getAddress(), tcpPort));
+                final ConnectFuture future = connector.connect(new InetSocketAddress(address.getAddress(), tcpPort));
                 future.addListener(new IoFutureListener<IoFuture>() {
+
                     @Override
                     public void operationComplete(IoFuture ioFuture) {
-                        final IoSession session = ioFuture.getSession();
+                        try {
+                            future.removeListener(this);
+                            final IoSession session = ioFuture.getSession();
+                            final LanLink link = new LanLink(session, identityPackage.getString("deviceId"), LanLinkProvider.this);
 
-                        final LanLink link = new LanLink(session, identityPackage.getString("deviceId"), LanLinkProvider.this);
+                            //Log.i("KDE/LanLinkProvider", "Connection successful: " + session.isConnected());
 
-                        Log.i("LanLinkProvider", "Connection successful: " + session.isConnected());
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    NetworkPackage np2 = NetworkPackage.createIdentityPackage(context);
+                                    link.sendPackage(np2,new Device.SendPackageStatusCallback() {
+                                        @Override
+                                        protected void onSuccess() {
+                                            nioSessions.put(session.getId(), link);
+                                            nioConnectors.put(session.getId(), connector);
+                                            //Log.e("KDE/LanLinkProvider","nioSessions.size(): " + nioSessions.size());
+                                            addLink(identityPackage, link);
+                                        }
 
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                NetworkPackage np2 = NetworkPackage.createIdentityPackage(context);
-                                link.sendPackage(np2,new Device.SendPackageStatusCallback() {
-                                    @Override
-                                    protected void onSuccess() {
-                                        nioSessions.put(session.getId(), link);
-                                        addLink(identityPackage, link);
-                                    }
+                                        @Override
+                                        protected void onFailure(Throwable e) {
+                                            Log.e("KDE/LanLinkProvider", "Connection failed: could not send identity package back");
+                                        }
+                                    });
 
-                                    @Override
-                                    protected void onFailure(Throwable e) {
-
-                                    }
-                                });
-
-                            }
-                        }).start();
-
+                                }
+                            }).start();
+                        } catch (Exception e) { //If we don't catch it here, Mina will swallow it :/
+                            e.printStackTrace();
+                            Log.e("KDE/LanLinkProvider", "sessionClosed exception");
+                        }
                     }
                 });
 
@@ -233,12 +257,10 @@ public class LanLinkProvider extends BaseLinkProvider {
         tcpAcceptor.setHandler(tcpHandler);
         tcpAcceptor.getSessionConfig().setKeepAlive(true);
         tcpAcceptor.getSessionConfig().setReuseAddress(true);
-        tcpAcceptor.setCloseOnDeactivation(false);
         //TextLineCodecFactory will buffer incoming data and emit a message very time it finds a \n
         TextLineCodecFactory textLineFactory = new TextLineCodecFactory(Charset.defaultCharset(), LineDelimiter.UNIX, LineDelimiter.UNIX);
         textLineFactory.setDecoderMaxLineLength(512*1024); //Allow to receive up to 512kb of data
         tcpAcceptor.getFilterChain().addLast("codec", new ProtocolCodecFilter(textLineFactory));
-
 
         udpAcceptor = new NioDatagramAcceptor();
         udpAcceptor.getSessionConfig().setReuseAddress(true); //Share port if existing
@@ -281,26 +303,36 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         //I'm on a new network, let's be polite and introduce myself
         final int finalTcpPort = tcpPort;
-        new AsyncTask<Void,Void,Void>() {
+        new Thread(new Runnable() {
             @Override
-            protected Void doInBackground(Void... voids) {
+            public void run() {
+
                 String deviceListPrefs = PreferenceManager.getDefaultSharedPreferences(context).getString(
                         KEY_CUSTOM_DEVLIST_PREFERENCE, "");
                 ArrayList<String> iplist = new ArrayList<String>();
                 if (!deviceListPrefs.isEmpty()) {
                     iplist = CustomDevicesActivity.deserializeIpList(deviceListPrefs);
                 }
-                iplist.add("255.255.255.255");
+                iplist.add("255.255.255.255"); //Default: broadcast.
+
+                NetworkPackage identity = NetworkPackage.createIdentityPackage(context);
+                identity.set("tcpPort", finalTcpPort);
+                DatagramSocket socket = null;
+                byte[] bytes = null;
+                try {
+                    socket = new DatagramSocket();
+                    socket.setReuseAddress(true);
+                    socket.setBroadcast(true);
+                    bytes = identity.serialize().getBytes("UTF-8");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.e("KDE/LanLinkProvider","Failed to create DatagramSocket");
+                }
+                //Log.e("KDE/LanLinkProvider","Sending packet to "+iplist.size()+" ips");
                 for (String ipstr : iplist) {
                     try {
                         InetAddress client = InetAddress.getByName(ipstr);
-                        NetworkPackage identity = NetworkPackage.createIdentityPackage(context);
-                        identity.set("tcpPort", finalTcpPort);
-                        byte[] b = identity.serialize().getBytes("UTF-8");
-                        DatagramPacket packet = new DatagramPacket(b, b.length, client, port);
-                        DatagramSocket socket = new DatagramSocket();
-                        socket.setReuseAddress(true);
-                        socket.setBroadcast(true);
+                        DatagramPacket packet = new DatagramPacket(bytes, bytes.length, client, port);
                         socket.send(packet);
                         //Log.i("KDE/LanLinkProvider","Udp identity package sent to address "+packet.getAddress());
                     } catch(Exception e) {
@@ -308,13 +340,10 @@ public class LanLinkProvider extends BaseLinkProvider {
                         Log.e("KDE/LanLinkProvider","Sending udp identity package failed. Invalid address? ("+ipstr+")");
                     }
                 }
-
-                return null;
+                socket.close();
 
             }
-
-        }.execute();
-
+        }).start();
     }
 
     @Override
@@ -332,14 +361,12 @@ public class LanLinkProvider extends BaseLinkProvider {
         udpAcceptor.unbind();
         tcpAcceptor.unbind();
     }
-/*
-    @Override
-    public int getPriority() {
-        return 1000;
-    }
-*/
+
     @Override
     public String getName() {
         return "LanLinkProvider";
     }
+
+
+
 }
