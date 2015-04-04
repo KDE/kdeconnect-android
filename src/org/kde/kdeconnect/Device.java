@@ -549,6 +549,7 @@ public class Device implements BaseLink.PackageReceiver {
                 //Make a copy to avoid concurrent modification exception if the original list changes
                 ArrayList<BaseLink> mLinks = new ArrayList<BaseLink>(links);
                 for (final BaseLink link : mLinks) {
+                    if (link == null) continue; //Since we made a copy, maybe somebody destroyed the link in the meanwhile
                     if (useEncryption) {
                         link.sendPackageEncrypted(np, callback, publicKey);
                     } else {
