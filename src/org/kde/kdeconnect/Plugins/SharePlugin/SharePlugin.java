@@ -142,6 +142,7 @@ public class SharePlugin extends Plugin {
                     @Override
                     public void run() {
                         OutputStream output = null;
+                        boolean successul = true;
                         try {
                             output = new FileOutputStream(destinationFullPath.getPath());
                             byte data[] = new byte[1024];
@@ -165,6 +166,7 @@ public class SharePlugin extends Plugin {
                             output.flush();
 
                         } catch (Exception e) {
+                            successul = false;
                             Log.e("SharePlugin", "Receiver thread exception");
                             e.printStackTrace();
                         } finally {
@@ -193,23 +195,25 @@ public class SharePlugin extends Plugin {
 
                             Resources res = context.getResources();
 
+                            String message = successul? res.getString(R.string.received_file_title, device.getName()) : res.getString(R.string.received_file_fail_title, device.getName());
                             NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
-                                    .setContentTitle(res.getString(R.string.received_file_title, device.getName()))
-                                    .setContentText(res.getString(R.string.received_file_text, filename))
-                                    .setContentIntent(resultPendingIntent)
-                                    .setTicker(res.getString(R.string.received_file_title, device.getName()))
+                                    .setContentTitle(message)
+                                    .setTicker(message)
                                     .setSmallIcon(android.R.drawable.stat_sys_download_done)
                                     .setAutoCancel(true);
 
+                            if (successul) {
+                                builder.setContentText(res.getString(R.string.received_file_text, filename))
+                                       .setContentIntent(resultPendingIntent);
+                            }
 
                             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
                             if (prefs.getBoolean("share_notification_preference", true)) {
                                 builder.setDefaults(Notification.DEFAULT_ALL);
                             }
 
-                            Notification noti = builder.build();
-
-                            notificationManager.notify(notificationId, noti);
+                            Notification notification = builder.build();
+                            notificationManager.notify(notificationId, notification);
 
                         } catch (Exception e) {
                             Log.e("SharePlugin", "Receiver thread exception");
