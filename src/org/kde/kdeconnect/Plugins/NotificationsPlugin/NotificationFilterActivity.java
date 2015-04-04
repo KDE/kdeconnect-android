@@ -64,13 +64,14 @@ public class NotificationFilterActivity extends ActionBarActivity {
             res.moveToNext();
             i++;
         }
+        res.close();
         appDatabase.close();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_multiple_choice,android.R.id.text1, appName);
         listView.setAdapter(adapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        for (i = 0 ; i < res.getCount(); i++){
+        for (i = 0 ; i < isFiltered.length; i++){
             if (isFiltered[i]) {
                 listView.setItemChecked(i, true);
             }
@@ -85,6 +86,7 @@ public class NotificationFilterActivity extends ActionBarActivity {
                 appDatabase.close();
             }
         });
+
     }
 
     // Delete apps from database which are uninstalled
@@ -101,6 +103,7 @@ public class NotificationFilterActivity extends ActionBarActivity {
                 }
                 res.moveToNext();
             }
+            res.close();
         }
         appDatabase.close();
 

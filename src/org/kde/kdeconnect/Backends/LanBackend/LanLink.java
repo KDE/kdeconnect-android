@@ -125,6 +125,7 @@ public class LanLink extends BaseLink {
                             callback.sendProgress((int)(progress / np.getPayloadSize()));
                         }
                     }
+                    stream.close();
                     Log.i("KDE/LanLink", "Finished sending payload");
                 } catch (Exception e) {
                     Log.e("KDE/sendPackage", "Exception: "+e);
@@ -176,13 +177,15 @@ public class LanLink extends BaseLink {
 
         if (np.hasPayloadTransferInfo()) {
 
+            Socket socket = null;
             try {
-                Socket socket = new Socket();
+                socket = new Socket();
                 int tcpPort = np.getPayloadTransferInfo().getInt("port");
                 InetSocketAddress address = (InetSocketAddress)session.getRemoteAddress();
                 socket.connect(new InetSocketAddress(address.getAddress(), tcpPort));
                 np.setPayload(socket.getInputStream(), np.getPayloadSize());
             } catch (Exception e) {
+                try { socket.close(); } catch(Exception ignored) { }
                 e.printStackTrace();
                 Log.e("KDE/LanLink", "Exception connecting to payload remote socket");
             }

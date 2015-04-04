@@ -235,11 +235,12 @@ public class ShareActivity extends ActionBarActivity {
 
                 try {
                     size = new File(uri.getPath()).length();
-                    np.setPayload(inputStream, size);
                 } catch(Exception e) {
                     Log.e("ShareActivity", "Could not obtain file size");
                     e.printStackTrace();
                 }
+
+                np.setPayload(inputStream, size);
 
             }else{
                 // Probably a content:// uri, so we query the Media content provider

@@ -81,7 +81,9 @@ public class StorageHelper {
         if (storage.exists() && storage.isDirectory()) {
             String mounts = null;
             try {
-                mounts = new Scanner( new File("/proc/mounts") ).useDelimiter("\\A").next();
+                Scanner scanner = new Scanner( new File("/proc/mounts") );
+                mounts = scanner.useDelimiter("\\A").next();
+                scanner.close();
                 //Log.e("Mounts",mounts);
             } catch(Exception e) {
                 e.printStackTrace();

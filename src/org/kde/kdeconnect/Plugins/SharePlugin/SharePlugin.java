@@ -141,8 +141,9 @@ public class SharePlugin extends Plugin {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        OutputStream output = null;
                         try {
-                            OutputStream output = new FileOutputStream(destinationFullPath.getPath());
+                            output = new FileOutputStream(destinationFullPath.getPath());
                             byte data[] = new byte[1024];
                             long progress = 0, prevProgressPercentage = 0;
                             int count;
@@ -162,9 +163,16 @@ public class SharePlugin extends Plugin {
                             }
 
                             output.flush();
-                            output.close();
-                            input.close();
 
+                        } catch (Exception e) {
+                            Log.e("SharePlugin", "Receiver thread exception");
+                            e.printStackTrace();
+                        } finally {
+                            try { output.close(); } catch (Exception e) {}
+                            try { input.close(); } catch (Exception e) {}
+                        }
+
+                        try {
                             Log.i("SharePlugin", "Transfer finished");
 
                             //Make sure it is added to the Android Gallery
