@@ -125,6 +125,7 @@ public class LanLink extends BaseLink {
                             callback.sendProgress((int)(progress / np.getPayloadSize()));
                         }
                     }
+                    socket.flush();
                     stream.close();
                     Log.i("KDE/LanLink", "Finished sending payload");
                 } catch (Exception e) {
