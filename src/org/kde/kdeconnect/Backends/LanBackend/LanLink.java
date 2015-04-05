@@ -99,17 +99,8 @@ public class LanLink extends BaseLink {
                 OutputStream socket = null;
                 try {
                     //Wait a maximum of 10 seconds for the other end to establish a connection with our socket, close it afterwards
-                    Timer timeout = new Timer();
-                    timeout.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            Log.e("KDE/sendPackage","Timeout");
-                            try { server.close(); } catch (Exception e) { }
-                            callback.sendFailure(new TimeoutException("Timed out waiting for other end to establish a connection to receive the payload."));
-                        }
-                    },10*1000);
+                    server.setSoTimeout(10*1000);
                     socket = server.accept().getOutputStream();
-                    timeout.cancel();
 
                     Log.i("KDE/LanLink", "Beginning to send payload");
 
@@ -127,7 +118,7 @@ public class LanLink extends BaseLink {
                     }
                     socket.flush();
                     stream.close();
-                    Log.i("KDE/LanLink", "Finished sending payload");
+                    Log.i("KDE/LanLink", "Finished sending payload ("+progress+" bytes written)");
                 } catch (Exception e) {
                     Log.e("KDE/sendPackage", "Exception: "+e);
                     callback.sendFailure(e);
