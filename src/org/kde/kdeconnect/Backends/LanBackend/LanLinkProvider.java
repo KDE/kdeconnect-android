@@ -46,9 +46,11 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.net.SocketAddress;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 public class LanLinkProvider extends BaseLinkProvider {
 
@@ -182,7 +184,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                 textLineFactory.setDecoderMaxLineLength(512*1024); //Allow to receive up to 512kb of data
                 connector.getFilterChain().addLast("codec", new ProtocolCodecFilter(textLineFactory));
 
-                int tcpPort = identityPackage.getInt("tcpPort",port);
+                int tcpPort = identityPackage.getInt("tcpPort", port);
                 final ConnectFuture future = connector.connect(new InetSocketAddress(address.getAddress(), tcpPort));
                 future.addListener(new IoFutureListener<IoFuture>() {
 
@@ -191,10 +193,9 @@ public class LanLinkProvider extends BaseLinkProvider {
                         try {
                             future.removeListener(this);
                             final IoSession session = ioFuture.getSession();
+                            Log.i("KDE/LanLinkProvider", "Connection successful: " + session.isConnected());
+
                             final LanLink link = new LanLink(session, identityPackage.getString("deviceId"), LanLinkProvider.this);
-
-                            //Log.i("KDE/LanLinkProvider", "Connection successful: " + session.isConnected());
-
                             new Thread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -279,6 +280,13 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         //This handles the case when I'm the existing device in the network and receive a "hello" UDP package
 
+        Set<SocketAddress> addresses = udpAcceptor.getLocalAddresses();
+        for (SocketAddress address : addresses) {
+            Log.i("KDE/LanLinkProvider", "UDP unbind old address");
+            udpAcceptor.unbind(address);
+        }
+
+        //Log.i("KDE/LanLinkProvider", "UDP Bind.");
         udpAcceptor.setHandler(udpHandler);
 
         try {
