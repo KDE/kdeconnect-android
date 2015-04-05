@@ -361,10 +361,18 @@ public class LanLinkProvider extends BaseLinkProvider {
     @Override
     public void onNetworkChange() {
         //Log.e("KDE/LanLinkProvider","onNetworkChange");
+
         //FilesHelper.LogOpenFileCount();
+
+        //Keep existing connections open while unbinding the socket
+        tcpAcceptor.setCloseOnDeactivation(false);
         onStop();
+        tcpAcceptor.setCloseOnDeactivation(true);
+
         //FilesHelper.LogOpenFileCount();
+
         onStart();
+
         //FilesHelper.LogOpenFileCount();
     }
 
