@@ -62,6 +62,7 @@
   <string name="outgoing_file_title">Invio file a %1s</string>
   <string name="outgoing_file_text">%1s</string>
   <string name="received_file_title">File ricevuto da %1s</string>
+  <string name="received_file_fail_title">Ricezione file da %1s non riuscita</string>
   <string name="received_file_text">Tocca per aprire «%1s»</string>
   <string name="sent_file_title">File inviato a %1s</string>
   <string name="sent_file_text">%1s</string>

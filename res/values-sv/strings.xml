@@ -62,6 +62,7 @@
   <string name="outgoing_file_title">Skickar fil till %1s</string>
   <string name="outgoing_file_text">%1s</string>
   <string name="received_file_title">Tog emot fil från %1s</string>
+  <string name="received_file_fail_title">Misslyckades ta emot fil från %1s</string>
   <string name="received_file_text">Rör för att öppna \'%1s\'</string>
   <string name="sent_file_title">Skickade fil till %1s</string>
   <string name="sent_file_text">%1s</string>
