@@ -57,11 +57,6 @@ public class BatteryPlugin extends Plugin {
         return context.getResources().getString(R.string.pref_plugin_battery_desc);
     }
 
-    @Override
-    public Drawable getIcon() {
-        return context.getResources().getDrawable(R.drawable.icon);
-    }
-
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent batteryIntent) {

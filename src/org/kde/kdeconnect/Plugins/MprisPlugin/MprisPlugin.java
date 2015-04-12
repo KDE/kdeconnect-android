@@ -68,7 +68,7 @@ public class MprisPlugin extends Plugin {
 
     @Override
     public Drawable getIcon() {
-        return context.getResources().getDrawable(R.drawable.icon);
+        return context.getResources().getDrawable(R.drawable.mpris_plugin_action);
     }
 
     @Override

@@ -51,7 +51,7 @@ public class MousePadPlugin extends Plugin {
 
     @Override
     public Drawable getIcon() {
-        return context.getResources().getDrawable(R.drawable.icon);
+        return context.getResources().getDrawable(R.drawable.touchpad_plugin_action);
     }
 
     @Override

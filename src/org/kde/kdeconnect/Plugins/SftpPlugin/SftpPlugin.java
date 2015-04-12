@@ -53,9 +53,6 @@ public class SftpPlugin extends Plugin {
     }
 
     @Override
-    public Drawable getIcon() {
-        return context.getResources().getDrawable(R.drawable.icon);
-    }
     public boolean onCreate() {
         server.init(context, device);
         return true;

@@ -57,11 +57,6 @@ public class PingPlugin extends Plugin {
     }
 
     @Override
-    public Drawable getIcon() {
-        return context.getResources().getDrawable(R.drawable.icon);
-    }
-
-    @Override
     public boolean onPackageReceived(NetworkPackage np) {
 
         //Log.e("PingPackageReceiver", "onPackageReceived");
