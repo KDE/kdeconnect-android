@@ -77,11 +77,6 @@ public class MprisPlugin extends Plugin {
     }
 
     @Override
-    public boolean isEnabledByDefault() {
-        return true;
-    }
-
-    @Override
     public boolean onCreate() {
         requestPlayerList();
         lastPositionTime = System.currentTimeMillis();
@@ -267,22 +262,20 @@ public class MprisPlugin extends Plugin {
     }
 
     @Override
-    public AlertDialog getErrorDialog(Activity deviceActivity) {
-        return null;
+    public boolean hasMainActivity() {
+        return true;
     }
 
     @Override
-    public Button getInterfaceButton(final Activity activity) {
-        Button b = new Button(activity);
-        b.setText(R.string.open_mpris_controls);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(activity, MprisActivity.class);
-                intent.putExtra("deviceId", device.getDeviceId());
-                activity.startActivity(intent);
-            }
-        });
-        return b;
+    public void startMainActivity(Activity parentActivity) {
+        Intent intent = new Intent(parentActivity, MprisActivity.class);
+        intent.putExtra("deviceId", device.getDeviceId());
+        parentActivity.startActivity(intent);
     }
+
+    @Override
+    public String getActionName() {
+        return context.getString(R.string.open_mpris_controls);
+    }
+
 }

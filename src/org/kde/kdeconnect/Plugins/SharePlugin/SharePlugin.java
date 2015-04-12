@@ -64,33 +64,18 @@ public class SharePlugin extends Plugin {
     }
 
     @Override
-    public String getDescription() {
-        return context.getResources().getString(R.string.pref_plugin_sharereceiver_desc);
-    }
-
-    @Override
     public Drawable getIcon() {
         return context.getResources().getDrawable(R.drawable.icon);
     }
 
     @Override
+    public String getDescription() {
+        return context.getResources().getString(R.string.pref_plugin_sharereceiver_desc);
+    }
+
+    @Override
     public boolean hasSettings() {
         return true;
-    }
-
-    @Override
-    public boolean isEnabledByDefault() {
-        return true;
-    }
-
-    @Override
-    public boolean onCreate() {
-        return true;
-    }
-
-    @Override
-    public void onDestroy() {
-
     }
 
     @Override
@@ -279,13 +264,5 @@ public class SharePlugin extends Plugin {
 
         return true;
     }
-
-    @Override
-    public AlertDialog getErrorDialog(Activity deviceActivity) {
-        return null;
-    }
-
-    @Override
-    public Button getInterfaceButton(Activity activity) { return null; }
 
 }

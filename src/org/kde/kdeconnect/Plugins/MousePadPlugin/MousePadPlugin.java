@@ -28,6 +28,7 @@ import android.view.View;
 import android.widget.Button;
 
 import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.Plugins.MprisPlugin.MprisActivity;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
@@ -54,46 +55,25 @@ public class MousePadPlugin extends Plugin {
     }
 
     @Override
-    public boolean isEnabledByDefault() {
-        return true;
-    }
-
-    @Override
     public boolean hasSettings() {
         return true;
     }
 
     @Override
-    public boolean onCreate() {
+    public boolean hasMainActivity() {
         return true;
     }
 
     @Override
-    public void onDestroy() {
-
+    public void startMainActivity(Activity parentActivity) {
+        Intent intent = new Intent(parentActivity, MousePadActivity.class);
+        intent.putExtra("deviceId", device.getDeviceId());
+        parentActivity.startActivity(intent);
     }
 
     @Override
-    public boolean onPackageReceived(NetworkPackage np) {
-        return false;
-    }
-
-    @Override
-    public AlertDialog getErrorDialog(Activity deviceActivity) { return null; }
-
-    @Override
-    public Button getInterfaceButton(final Activity activity) {
-        Button button = new Button(activity);
-        button.setText(R.string.open_mousepad);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(activity, MousePadActivity.class);
-                intent.putExtra("deviceId", device.getDeviceId());
-                activity.startActivity(intent);
-            }
-        });
-        return button;
+    public String getActionName() {
+        return context.getString(R.string.open_mousepad);
     }
 
     public void sendMouseDelta(float dx, float dy) {

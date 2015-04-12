@@ -25,7 +25,6 @@ import android.app.AlertDialog;
 import android.app.Notification;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -60,11 +59,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     }
 
     @Override
-    public Drawable getIcon() {
-        return context.getResources().getDrawable(R.drawable.icon);
-    }
-
-    @Override
     public boolean hasSettings() {
         return true;
     }
@@ -77,11 +71,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         } else {
             getErrorDialog(parentActivity).show();
         }
-    }
-
-    @Override
-    public boolean isEnabledByDefault() {
-        return true;
     }
 
     private boolean hasPermission() {
@@ -140,9 +129,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         }
     }
 
-
-
-
     @Override
     public boolean onCreate() {
 
@@ -173,7 +159,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     }
 
-
     @Override
     public void onDestroy() {
 
@@ -188,9 +173,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             }
         });
     }
-
-
-
 
 
     @Override
@@ -419,11 +401,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 })
                 .create();
         }
-    }
-
-    @Override
-    public Button getInterfaceButton(Activity activity) {
-        return null;
     }
 
 }

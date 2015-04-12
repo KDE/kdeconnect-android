@@ -56,16 +56,6 @@ public class SftpPlugin extends Plugin {
     public Drawable getIcon() {
         return context.getResources().getDrawable(R.drawable.icon);
     }
-
-    @Override
-    public boolean hasSettings() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabledByDefault() { return true; }
-
-    @Override
     public boolean onCreate() {
         server.init(context, device);
         return true;
@@ -146,11 +136,5 @@ public class SftpPlugin extends Plugin {
         }
         return false;
     }
-
-    @Override
-    public AlertDialog getErrorDialog(Activity deviceActivity) { return null; }
-
-    @Override
-    public Button getInterfaceButton(Activity activity) { return null; }
 
 }

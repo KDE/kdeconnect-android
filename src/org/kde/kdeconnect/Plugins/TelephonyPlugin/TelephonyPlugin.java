@@ -67,16 +67,6 @@ public class TelephonyPlugin extends Plugin {
         return context.getResources().getDrawable(R.drawable.icon);
     }
 
-    @Override
-    public boolean isEnabledByDefault() {
-        return true;
-    }
-
-    @Override
-    public boolean hasSettings() {
-        return false;
-    }
-
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -235,13 +225,4 @@ public class TelephonyPlugin extends Plugin {
         return true;
     }
 
-    @Override
-    public AlertDialog getErrorDialog(Activity deviceActivity) {
-        return null;
-    }
-
-    @Override
-    public Button getInterfaceButton(Activity activity) {
-        return null;
-    }
 }

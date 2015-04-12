@@ -62,16 +62,6 @@ public class BatteryPlugin extends Plugin {
         return context.getResources().getDrawable(R.drawable.icon);
     }
 
-    @Override
-    public boolean hasSettings() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabledByDefault() {
-        return true;
-    }
-
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent batteryIntent) {
@@ -133,13 +123,4 @@ public class BatteryPlugin extends Plugin {
         return true;
     }
 
-    @Override
-    public AlertDialog getErrorDialog(Activity deviceActivity) {
-        return null;
-    }
-
-    @Override
-    public Button getInterfaceButton(Activity activity) {
-        return null;
-    }
 }

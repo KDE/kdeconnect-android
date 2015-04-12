@@ -62,26 +62,6 @@ public class PingPlugin extends Plugin {
     }
 
     @Override
-    public boolean hasSettings() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabledByDefault() {
-        return true;
-    }
-
-    @Override
-    public boolean onCreate() {
-        return true;
-    }
-
-    @Override
-    public void onDestroy() {
-
-    }
-
-    @Override
     public boolean onPackageReceived(NetworkPackage np) {
 
         //Log.e("PingPackageReceiver", "onPackageReceived");
@@ -125,21 +105,24 @@ public class PingPlugin extends Plugin {
     }
 
     @Override
-    public AlertDialog getErrorDialog(Activity deviceActivity) {
-        return null;
+    public String getActionName() {
+        return context.getString(R.string.send_ping);
     }
 
     @Override
-    public Button getInterfaceButton(Activity activity) {
-        Button b = new Button(activity);
-        b.setText(R.string.send_ping);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                device.sendPackage(new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PING));
-            }
-        });
-        return b;
+    public void startMainActivity(Activity activity) {
+        if (device != null) {
+            device.sendPackage(new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PING));
+        }
     }
 
+    @Override
+    public boolean hasMainActivity() {
+        return true;
+    }
+
+    @Override
+    public boolean displayInContextMenu() {
+        return true;
+    }
 }
