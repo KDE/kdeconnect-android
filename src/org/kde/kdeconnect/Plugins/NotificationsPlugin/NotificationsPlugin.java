@@ -25,7 +25,6 @@ import android.app.AlertDialog;
 import android.app.Notification;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,19 +34,16 @@ import android.util.Log;
 import android.widget.Button;
 
 import org.kde.kdeconnect.Helpers.AppsHelper;
-import org.kde.kdeconnect.Helpers.ImagesHelper;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.UserInterface.DeviceActivity;
 import org.kde.kdeconnect.UserInterface.SettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
-import java.io.ByteArrayOutputStream;
-
 public class NotificationsPlugin extends Plugin implements NotificationReceiver.NotificationListener {
-
+/*
     private boolean sendIcons = false;
-
+*/
     @Override
     public String getPluginName() {
         return "plugin_notifications";
@@ -253,7 +249,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             np.set("silent", true);
             np.set("requestAnswer", true); //For compatibility with old desktop versions of KDE Connect that don't support "silent"
         }
-
+/*
         if (sendIcons) {
             try {
                 Drawable drawableAppIcon = AppsHelper.appIconLookup(context, packageName);
@@ -270,7 +266,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 Log.e("NotificationsPlugin", "Error retrieving icon");
             }
         }
-
+*/
         np.set("id", id.serialize());
         np.set("appName", appName == null? packageName : appName);
         np.set("isClearable", statusBarNotification.isClearable());
@@ -329,11 +325,11 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     @Override
     public boolean onPackageReceived(final NetworkPackage np) {
         if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_NOTIFICATION)) return false;
-
+/*
         if (np.getBoolean("sendIcons")) {
             sendIcons = true;
         }
-
+*/
         if (np.getBoolean("request")) {
 
             NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
