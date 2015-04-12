@@ -207,6 +207,7 @@ public class TelephonyPlugin extends Plugin {
     public boolean onCreate() {
         //Log.e("TelephonyPlugin", "onCreate");
         IntentFilter filter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+        filter.setPriority(500);
         filter.addAction(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
         context.registerReceiver(receiver, filter);
         return true;
