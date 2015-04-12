@@ -27,6 +27,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
@@ -68,6 +69,25 @@ public class Device implements BaseLink.PackageReceiver {
         Paired
     }
 
+    private enum DeviceType {
+        Phone,
+        Tablet,
+        Computer;
+
+        public static DeviceType FromString(String s) {
+            if ("tablet".equals(s)) return Tablet;
+            if ("computer".equals(s)) return Computer;
+            return Phone; //Default
+        }
+        public String toString() {
+            switch (this) {
+                case Tablet: return "tablet";
+                case Computer: return "computer";
+                default: return "tablet";
+            }
+        }
+    }
+
     public interface PairingCallback {
         abstract void incomingRequest();
         abstract void pairingSuccessful();
@@ -75,6 +95,7 @@ public class Device implements BaseLink.PackageReceiver {
         abstract void unpaired();
     }
 
+    private DeviceType deviceType;
     private PairStatus pairStatus;
     private ArrayList<PairingCallback> pairingCallback = new ArrayList<PairingCallback>();
     private Timer pairingTimer;
@@ -96,6 +117,7 @@ public class Device implements BaseLink.PackageReceiver {
         this.name = settings.getString("deviceName", context.getString(R.string.unknown_device));
         this.pairStatus = PairStatus.Paired;
         this.protocolVersion = NetworkPackage.ProtocolVersion; //We don't know it yet
+        this.deviceType = DeviceType.FromString(settings.getString("deviceType", "computer"));
 
         try {
             byte[] publicKeyBytes = Base64.decode(settings.getString("publicKey", ""), 0);
@@ -117,8 +139,9 @@ public class Device implements BaseLink.PackageReceiver {
         this.context = context;
         this.deviceId = np.getString("deviceId");
         this.name = np.getString("deviceName", context.getString(R.string.unknown_device));
-        this.protocolVersion = np.getInt("protocolVersion");
         this.pairStatus = PairStatus.NotPaired;
+        this.protocolVersion = np.getInt("protocolVersion");
+        this.deviceType = DeviceType.FromString(np.getString("deviceType", "computer"));
         this.publicKey = null;
 
         settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
@@ -128,6 +151,19 @@ public class Device implements BaseLink.PackageReceiver {
 
     public String getName() {
         return name != null? name : context.getString(R.string.unknown_device);
+    }
+
+    public Drawable getIcon()
+    {
+        switch (deviceType) {
+            case Phone: return context.getResources().getDrawable(R.drawable.ic_device_phone);
+            case Tablet: return context.getResources().getDrawable(R.drawable.ic_device_tablet);
+            default: return context.getResources().getDrawable(R.drawable.ic_device_laptop);
+        }
+    }
+
+    public DeviceType getDeviceType() {
+        return deviceType;
     }
 
     public String getDeviceId() {
@@ -258,6 +294,7 @@ public class Device implements BaseLink.PackageReceiver {
         //Store device information needed to create a Device object in a future
         SharedPreferences.Editor editor = settings.edit();
         editor.putString("deviceName", getName());
+        editor.putString("deviceType", deviceType.toString());
         String encodedPublicKey = Base64.encodeToString(publicKey.getEncoded(), 0);
         editor.putString("publicKey", encodedPublicKey);
         editor.apply();
@@ -331,6 +368,10 @@ public class Device implements BaseLink.PackageReceiver {
             SharedPreferences.Editor editor = settings.edit();
             editor.putString("deviceName", this.name);
             editor.apply();
+        }
+
+        if (identityPackage.has("deviceType")) {
+            this.deviceType = DeviceType.FromString(identityPackage.getString("deviceType", "computer"));
         }
 
 
