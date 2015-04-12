@@ -102,6 +102,7 @@ public class Device implements BaseLink.PackageReceiver {
             publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
         } catch (Exception e) {
             e.printStackTrace();
+            unpair();
             Log.e("KDE/Device","Exception");
         }
 
