@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="pref_plugin_ping">Ping</string>
+  <string name="pref_plugin_ping_desc">Enviar e recibir pings.</string>
+  <string name="pref_plugin_notifications">Sincronización de notificacións</string>
+  <string name="device_list_empty">Non hai dispositivos.</string>
+  <string name="ok">Aceptar</string>
+  <string name="cancel">Cancelar</string>
+  <string name="open_settings">Abrir a configuración</string>
+  <string name="send_ping">Enviar un ping</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Clic dereito</item>
+    <item>Clic central</item>
+    <item>Nada</item>
+  </string-array>
+  <string name="mousepad_double_default">dereita</string>
+  <string name="mousepad_triple_default">medio</string>
+  <string name="category_connected_devices">Dispositivos conectados</string>
+  <string name="category_not_paired_devices">Dispositivos dispoñíbeis</string>
+  <string name="device_menu_plugins">Configuración do engadido</string>
+  <string name="device_menu_unpair">Desemparellarse</string>
+  <string name="unknown_device">Dispositivo descoñecido</string>
+  <string name="error_not_reachable">Dispositivo fóra do alcance</string>
+  <string name="error_timed_out">Esgotouse o tempo límite</string>
+  <string name="error_canceled_by_user">Cancelouno o usuario.</string>
+  <string name="error_canceled_by_other_peer">Cancelouse remotamente</string>
+  <string name="incoming_file_text">%1s</string>
+  <string name="outgoing_file_text">%1s</string>
+  <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_text">%1s</string>
+  <string name="reconnect">Conectar de novo</string>
+  <string name="show_keyboard">Mostrar o teclado</string>
+  <string name="pairing_accept">Aceptar</string>
+  <string name="pairing_reject">Rexeitar</string>
+  <string name="device">Dispositivo</string>
+  <string name="remote_control">Control remoto</string>
+  <string name="settings">Configuración de KDE Connect</string>
+  <string name="mpris_play">Reproducir</string>
+  <string name="mpris_previous">Anterior</string>
+  <string name="mpris_rew">Retroceder</string>
+  <string name="mpris_ff">Cara a adiante</string>
+  <string name="mpris_next">Seguinte</string>
+  <string name="mpris_volume">Volume</string>
+  <string-array name="mpris_time_entries">
+    <item>10 segundos</item>
+    <item>20 segundos</item>
+    <item>30 segundos</item>
+    <item>1 minuto</item>
+    <item>2 minutos</item>
+  </string-array>
+  <string name="general_settings">Configuración xeral</string>
+  <string name="plugin_settings">Configuración</string>
+  <string name="device_name">Nome do dispositivo</string>
+  <string name="device_name_preference_summary">%s</string>
+  <string name="sftp_internal_storage">Almacenamento interno</string>
+  <string name="sftp_all_files">Todos os ficheiros</string>
+  <string name="sftp_readonly">(só lectura)</string>
+  <string name="sftp_camera">Imaxes da cámara</string>
+</resources>
