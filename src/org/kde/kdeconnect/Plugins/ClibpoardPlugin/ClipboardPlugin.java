@@ -32,10 +32,6 @@ import org.kde.kdeconnect_tp.R;
 public class ClipboardPlugin extends Plugin {
 
     @Override
-    public String getPluginName() {
-        return "plugin_clipboard";
-    }
-    @Override
     public String getDisplayName() {
         return context.getResources().getString(R.string.pref_plugin_clipboard);
     }

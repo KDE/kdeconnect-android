@@ -176,7 +176,7 @@ public class KeyListenerView extends View  {
             @Override
             public void onServiceStart(BackgroundService service) {
                 Device device = service.getDevice(deviceId);
-                MousePadPlugin mousePadPlugin = (MousePadPlugin) device.getPlugin("plugin_mousepad");
+                MousePadPlugin mousePadPlugin = (MousePadPlugin) device.getPlugin(MousePadPlugin.class);
                 if (mousePadPlugin == null) return;
                 mousePadPlugin.sendKeyboardPacket(np);
             }

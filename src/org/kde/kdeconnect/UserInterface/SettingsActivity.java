@@ -35,6 +35,7 @@ import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Set;
 
 public class SettingsActivity extends PreferenceActivity {
@@ -59,20 +60,20 @@ public class SettingsActivity extends PreferenceActivity {
                 Set<String> plugins = PluginFactory.getAvailablePlugins();
 
                 final ArrayList<Preference> preferences = new ArrayList<Preference>();
-                for (final String pluginName : plugins) {
+                for (final String pluginKey : plugins) {
                     final CheckBoxPreference pref = new CheckBoxPreference(getBaseContext());
 
-                    PluginFactory.PluginInfo info = PluginFactory.getPluginInfo(getBaseContext(), pluginName);
-                    pref.setKey(pluginName);
+                    PluginFactory.PluginInfo info = PluginFactory.getPluginInfo(getBaseContext(), pluginKey);
+                    pref.setKey(pluginKey);
                     pref.setTitle(info.getDisplayName());
                     pref.setSummary(info.getDescription());
-                    pref.setChecked(device.isPluginEnabled(pluginName));
+                    pref.setChecked(device.isPluginEnabled(pluginKey));
                     preferences.add(pref);
                     preferenceScreen.addPreference(pref);
 
                     if (info.hasSettings()) {
                         final Preference pluginPreference = new Preference(getBaseContext());
-                        pluginPreference.setKey(pluginName + "_preferences");
+                        pluginPreference.setKey(pluginKey.toLowerCase(Locale.ENGLISH) + "_preferences");
                         pluginPreference.setSummary(getString(R.string.plugin_settings_with_name, info.getDisplayName()));
                         preferences.add(pluginPreference);
                         preferenceScreen.addPreference(pluginPreference);
@@ -91,8 +92,8 @@ public class SettingsActivity extends PreferenceActivity {
                             check.setChecked(!enabled);
                         } else { //Is a plugin suboption
                             if (pref.isEnabled()) {
-                                String pluginName = pref.getDependency(); //The parent pref will be named like the plugin
-                                Plugin plugin = device.getPlugin(pluginName, true);
+                                String pluginKey = pref.getDependency(); //The parent pref will be named like the plugin
+                                Plugin plugin = device.getPlugin(pluginKey, true);
                                 if (plugin != null) {
                                     plugin.startPreferencesActivity(SettingsActivity.this);
                                 } else { //Could happen if the device is not connected anymore

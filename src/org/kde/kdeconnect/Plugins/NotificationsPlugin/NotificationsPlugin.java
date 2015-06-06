@@ -30,7 +30,6 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
-import android.widget.Button;
 
 import org.kde.kdeconnect.Helpers.AppsHelper;
 import org.kde.kdeconnect.NetworkPackage;
@@ -43,10 +42,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 /*
     private boolean sendIcons = false;
 */
-    @Override
-    public String getPluginName() {
-        return "plugin_notifications";
-    }
 
     @Override
     public String getDisplayName() {

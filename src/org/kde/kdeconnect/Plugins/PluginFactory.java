@@ -44,18 +44,13 @@ public class PluginFactory {
 
     public static class PluginInfo {
 
-        public PluginInfo(String pluginName, String displayName, String description, Drawable icon,
+        public PluginInfo(String displayName, String description, Drawable icon,
                           boolean enabledByDefault, boolean hasSettings) {
-            this.pluginName = pluginName;
             this.displayName = displayName;
             this.description = description;
             this.icon = icon;
             this.enabledByDefault = enabledByDefault;
             this.hasSettings = hasSettings;
-        }
-
-        public String getPluginName() {
-            return pluginName;
         }
 
         public String getDisplayName() {
@@ -76,7 +71,6 @@ public class PluginFactory {
             return enabledByDefault;
         }
 
-        private final String pluginName;
         private final String displayName;
         private final String description;
         private final Drawable icon;
@@ -101,15 +95,15 @@ public class PluginFactory {
         PluginFactory.registerPlugin(SharePlugin.class);
     }
 
-    public static PluginInfo getPluginInfo(Context context, String pluginName) {
-        PluginInfo info = availablePluginsInfo.get(pluginName); //Is it cached?
+    public static PluginInfo getPluginInfo(Context context, String pluginKey) {
+        PluginInfo info = availablePluginsInfo.get(pluginKey); //Is it cached?
         if (info != null) return info;
         try {
-            Plugin p = ((Plugin)availablePlugins.get(pluginName).newInstance());
+            Plugin p = ((Plugin)availablePlugins.get(pluginKey).newInstance());
             p.setContext(context, null);
-            info = new PluginInfo(pluginName, p.getDisplayName(), p.getDescription(), p.getIcon(),
+            info = new PluginInfo(p.getDisplayName(), p.getDescription(), p.getIcon(),
                     p.isEnabledByDefault(), p.hasSettings());
-            availablePluginsInfo.put(pluginName, info); //Cache it
+            availablePluginsInfo.put(pluginKey, info); //Cache it
             return info;
         } catch(Exception e) {
             Log.e("PluginFactory","getPluginInfo exception");
@@ -122,10 +116,10 @@ public class PluginFactory {
         return availablePlugins.keySet();
     }
 
-    public static Plugin instantiatePluginForDevice(Context context, String pluginName, Device device) {
-        Class c = availablePlugins.get(pluginName);
+    public static Plugin instantiatePluginForDevice(Context context, String pluginKey, Device device) {
+        Class c = availablePlugins.get(pluginKey);
         if (c == null) {
-            Log.e("PluginFactory", "Plugin not found: "+pluginName);
+            Log.e("PluginFactory", "Plugin not found: "+pluginKey);
             return null;
         }
 
@@ -134,7 +128,7 @@ public class PluginFactory {
             plugin.setContext(context, device);
             return plugin;
         } catch(Exception e) {
-            Log.e("PluginFactory", "Could not instantiate plugin: "+pluginName);
+            Log.e("PluginFactory", "Could not instantiate plugin: "+pluginKey);
             e.printStackTrace();
             return null;
         }
@@ -144,8 +138,8 @@ public class PluginFactory {
     public static void registerPlugin(Class<? extends Plugin> pluginClass) {
         try {
             //I hate this but I need to create an instance because abstract static functions can't be declared
-            String pluginName = (pluginClass.newInstance()).getPluginName();
-            availablePlugins.put(pluginName, pluginClass);
+            String pluginKey = Plugin.getPluginKey(pluginClass);
+            availablePlugins.put(pluginKey, pluginClass);
         } catch(Exception e) {
             Log.e("PluginFactory","addPlugin exception");
             e.printStackTrace();

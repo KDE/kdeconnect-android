@@ -32,7 +32,6 @@ import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
 import org.kde.kdeconnect.UserInterface.SettingsActivity;
-import org.kde.kdeconnect_tp.R;
 
 public abstract class Plugin {
 
@@ -46,10 +45,14 @@ public abstract class Plugin {
 
     /**
      * Return the internal plugin name, that will be used as a
-     * unique key to distinguish it. This function can not access
-     * this.context nor this.device.
+     * unique key to distinguish it. Use the class name as key.
      */
-    public abstract String getPluginName();
+    public String getPluginKey() {
+        return getPluginKey(this.getClass());
+    }
+    public static String getPluginKey(Class<? extends Plugin> p) {
+        return p.getSimpleName();
+    }
 
     /**
      * Return the human-readable plugin name. This function can
@@ -104,7 +107,7 @@ public abstract class Plugin {
     public void startPreferencesActivity(SettingsActivity parentActivity) {
         Intent intent = new Intent(parentActivity, PluginSettingsActivity.class);
         intent.putExtra("plugin_display_name", getDisplayName());
-        intent.putExtra("plugin_name", getPluginName());
+        intent.putExtra("plugin_key", getPluginKey());
         parentActivity.startActivity(intent);
     }
 

@@ -20,18 +20,14 @@
 
 package org.kde.kdeconnect.Plugins.TelephonyPlugin;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.telephony.TelephonyManager;
-import android.widget.Button;
 
 import org.kde.kdeconnect.Helpers.ContactsHelper;
 import org.kde.kdeconnect.NetworkPackage;
@@ -46,11 +42,6 @@ public class TelephonyPlugin extends Plugin {
     private int lastState = TelephonyManager.CALL_STATE_IDLE;
     private NetworkPackage lastPackage = null;
     private boolean isMuted = false;
-
-    @Override
-    public String getPluginName() {
-        return "plugin_telephony";
-    }
 
     @Override
     public String getDisplayName() {

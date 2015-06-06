@@ -20,19 +20,16 @@
 
 package org.kde.kdeconnect.Plugins.BatteryPlugin;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.drawable.Drawable;
 import android.os.BatteryManager;
-import android.widget.Button;
 
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
+
 
 public class BatteryPlugin extends Plugin {
 
@@ -41,11 +38,6 @@ public class BatteryPlugin extends Plugin {
     private static final int THRESHOLD_EVENT_BATTERY_LOW = 1;
 
     private NetworkPackage lastInfo = null;
-
-    @Override
-    public String getPluginName() {
-        return "plugin_battery";
-    }
 
     @Override
     public String getDisplayName() {

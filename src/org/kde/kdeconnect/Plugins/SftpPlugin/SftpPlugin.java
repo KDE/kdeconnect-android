@@ -20,11 +20,7 @@
 
 package org.kde.kdeconnect.Plugins.SftpPlugin;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.graphics.drawable.Drawable;
 import android.os.Environment;
-import android.widget.Button;
 
 import org.kde.kdeconnect.Helpers.StorageHelper;
 import org.kde.kdeconnect.NetworkPackage;
@@ -38,9 +34,6 @@ import java.util.List;
 public class SftpPlugin extends Plugin {
 
     private static final SimpleSftpServer server = new SimpleSftpServer();
-
-    @Override
-    public String getPluginName() {return "plugin_sftp";}
 
     @Override
     public String getDisplayName() {

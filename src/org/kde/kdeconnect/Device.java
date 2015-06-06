@@ -614,29 +614,37 @@ public class Device implements BaseLink.PackageReceiver {
     // Plugin-related functions
     //
 
-    public Plugin getPlugin(String name) {
-        return getPlugin(name, false);
+    public <T extends Plugin> T getPlugin(Class<T> pluginClass) {
+        return (T)getPlugin(Plugin.getPluginKey(pluginClass));
     }
 
-    public Plugin getPlugin(String name, boolean includeFailed) {
-        Plugin plugin = plugins.get(name);
+    public <T extends Plugin> T getPlugin(Class<T> pluginClass, boolean includeFailed) {
+        return (T)getPlugin(Plugin.getPluginKey(pluginClass), includeFailed);
+    }
+
+    public Plugin getPlugin(String pluginKey) {
+        return getPlugin(pluginKey, false);
+    }
+
+    public Plugin getPlugin(String pluginKey, boolean includeFailed) {
+        Plugin plugin = plugins.get(pluginKey);
         if (includeFailed && plugin == null) {
-            plugin = failedPlugins.get(name);
+            plugin = failedPlugins.get(pluginKey);
         }
         return plugin;
     }
 
-    private synchronized void addPlugin(final String name) {
-        Plugin existing = plugins.get(name);
+    private synchronized void addPlugin(final String pluginKey) {
+        Plugin existing = plugins.get(pluginKey);
         if (existing != null) {
-            Log.w("KDE/addPlugin","plugin already present:" + name);
+            Log.w("KDE/addPlugin","plugin already present:" + pluginKey);
             return;
         }
 
-        final Plugin plugin = PluginFactory.instantiatePluginForDevice(context, name, this);
+        final Plugin plugin = PluginFactory.instantiatePluginForDevice(context, pluginKey, this);
         if (plugin == null) {
-            Log.e("KDE/addPlugin","could not instantiate plugin: "+name);
-            failedPlugins.put(name, plugin);
+            Log.e("KDE/addPlugin","could not instantiate plugin: "+pluginKey);
+            failedPlugins.put(pluginKey, plugin);
             return;
         }
 
@@ -650,17 +658,17 @@ public class Device implements BaseLink.PackageReceiver {
                 } catch (Exception e) {
                     success = false;
                     e.printStackTrace();
-                    Log.e("KDE/addPlugin", "Exception loading plugin " + name);
+                    Log.e("KDE/addPlugin", "Exception loading plugin " + pluginKey);
                 }
 
                 if (success) {
-                    //Log.e("addPlugin","added " + name);
-                    failedPlugins.remove(name);
-                    plugins.put(name, plugin);
+                    //Log.e("addPlugin","added " + pluginKey);
+                    failedPlugins.remove(pluginKey);
+                    plugins.put(pluginKey, plugin);
                 } else {
-                    Log.e("KDE/addPlugin", "plugin failed to load " + name);
-                    plugins.remove(name);
-                    failedPlugins.put(name, plugin);
+                    Log.e("KDE/addPlugin", "plugin failed to load " + pluginKey);
+                    plugins.remove(pluginKey);
+                    failedPlugins.put(pluginKey, plugin);
                 }
 
                 for (PluginsChangedListener listener : pluginsChangedListeners) {
@@ -672,10 +680,10 @@ public class Device implements BaseLink.PackageReceiver {
 
     }
 
-    private synchronized boolean removePlugin(String name) {
+    private synchronized boolean removePlugin(String pluginKey) {
 
-        Plugin plugin = plugins.remove(name);
-        Plugin failedPlugin = failedPlugins.remove(name);
+        Plugin plugin = plugins.remove(pluginKey);
+        Plugin failedPlugin = failedPlugins.remove(pluginKey);
 
         if (plugin == null) {
             if (failedPlugin == null) {
@@ -687,10 +695,10 @@ public class Device implements BaseLink.PackageReceiver {
 
         try {
             plugin.onDestroy();
-            //Log.e("removePlugin","removed " + name);
+            //Log.e("removePlugin","removed " + pluginKey);
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("KDE/removePlugin","Exception calling onDestroy for plugin "+name);
+            Log.e("KDE/removePlugin","Exception calling onDestroy for plugin "+pluginKey);
         }
 
         for (PluginsChangedListener listener : pluginsChangedListeners) {
@@ -700,15 +708,15 @@ public class Device implements BaseLink.PackageReceiver {
         return true;
     }
 
-    public void setPluginEnabled(String pluginName, boolean value) {
-        settings.edit().putBoolean(pluginName,value).apply();
-        if (value && isPaired() && isReachable()) addPlugin(pluginName);
-        else removePlugin(pluginName);
+    public void setPluginEnabled(String pluginKey, boolean value) {
+        settings.edit().putBoolean(pluginKey,value).apply();
+        if (value && isPaired() && isReachable()) addPlugin(pluginKey);
+        else removePlugin(pluginKey);
     }
 
-    public boolean isPluginEnabled(String pluginName) {
-        boolean enabledByDefault = PluginFactory.getPluginInfo(context, pluginName).isEnabledByDefault();
-        boolean enabled = settings.getBoolean(pluginName, enabledByDefault);
+    public boolean isPluginEnabled(String pluginKey) {
+        boolean enabledByDefault = PluginFactory.getPluginInfo(context, pluginKey).isEnabledByDefault();
+        boolean enabled = settings.getBoolean(pluginKey, enabledByDefault);
         return enabled;
     }
 
@@ -722,15 +730,15 @@ public class Device implements BaseLink.PackageReceiver {
 
         Set<String> availablePlugins = PluginFactory.getAvailablePlugins();
 
-        for(String pluginName : availablePlugins) {
+        for(String pluginKey : availablePlugins) {
             boolean enabled = false;
             if (isPaired() && isReachable()) {
-                enabled = isPluginEnabled(pluginName);
+                enabled = isPluginEnabled(pluginKey);
             }
             if (enabled) {
-                addPlugin(pluginName);
+                addPlugin(pluginKey);
             } else {
-                removePlugin(pluginName);
+                removePlugin(pluginKey);
             }
         }
 

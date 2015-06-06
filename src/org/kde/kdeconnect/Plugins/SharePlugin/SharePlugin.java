@@ -21,7 +21,6 @@
 package org.kde.kdeconnect.Plugins.SharePlugin;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -37,7 +36,6 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.Toast;
 
 import org.kde.kdeconnect.Helpers.FilesHelper;
@@ -50,13 +48,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-
 public class SharePlugin extends Plugin {
-
-    @Override
-    public String getPluginName() {
-        return "plugin_share";
-    }
 
     @Override
     public String getDisplayName() {

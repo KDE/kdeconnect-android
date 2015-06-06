@@ -75,7 +75,7 @@ public class MprisActivity extends ActionBarActivity {
             public void onServiceStart(BackgroundService service) {
 
                 final Device device = service.getDevice(deviceId);
-                final MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
+                final MprisPlugin mpris = device.getPlugin(MprisPlugin.class);
                 if (mpris == null) {
                     Log.e("MprisActivity", "device has no mpris plugin!");
                     return;
@@ -246,7 +246,7 @@ public class MprisActivity extends ActionBarActivity {
                     @Override
                     public void onServiceStart(BackgroundService service) {
                         Device device = service.getDevice(deviceId);
-                        MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
+                        MprisPlugin mpris = device.getPlugin(MprisPlugin.class);
                         if (mpris == null) return;
                         updateVolume(mpris, 5);
                     }
@@ -257,7 +257,7 @@ public class MprisActivity extends ActionBarActivity {
                     @Override
                     public void onServiceStart(BackgroundService service) {
                         Device device = service.getDevice(deviceId);
-                        MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
+                        MprisPlugin mpris = device.getPlugin(MprisPlugin.class);
                         if (mpris == null) return;
                         updateVolume(mpris, -5);
                     }
@@ -309,7 +309,7 @@ public class MprisActivity extends ActionBarActivity {
                     @Override
                     public void onServiceStart(BackgroundService service) {
                         Device device = service.getDevice(deviceId);
-                        MprisPlugin mpris = (MprisPlugin)device.getPlugin("plugin_mpris");
+                        MprisPlugin mpris = device.getPlugin(MprisPlugin.class);
                         if (mpris == null) return;
                         mpris.sendAction("PlayPause");
                     }
@@ -324,7 +324,7 @@ public class MprisActivity extends ActionBarActivity {
                     @Override
                     public void onServiceStart(BackgroundService service) {
                         Device device = service.getDevice(deviceId);
-                        MprisPlugin mpris = (MprisPlugin)device.getPlugin("plugin_mpris");
+                        MprisPlugin mpris = device.getPlugin(MprisPlugin.class);
                         if (mpris == null) return;
                         mpris.sendAction("Previous");
                     }
@@ -339,7 +339,7 @@ public class MprisActivity extends ActionBarActivity {
                     @Override
                     public void onServiceStart(BackgroundService service) {
                         Device device = service.getDevice(deviceId);
-                        MprisPlugin mpris = (MprisPlugin)device.getPlugin("plugin_mpris");
+                        MprisPlugin mpris = device.getPlugin(MprisPlugin.class);
                         if (mpris == null) return;
                         mpris.Seek(interval_time * -1);
                     }
@@ -354,7 +354,7 @@ public class MprisActivity extends ActionBarActivity {
                     @Override
                     public void onServiceStart(BackgroundService service) {
                         Device device = service.getDevice(deviceId);
-                        MprisPlugin mpris = (MprisPlugin)device.getPlugin("plugin_mpris");
+                        MprisPlugin mpris = device.getPlugin(MprisPlugin.class);
                         if (mpris == null) return;
                         mpris.Seek(interval_time);
                     }
@@ -369,7 +369,7 @@ public class MprisActivity extends ActionBarActivity {
                     @Override
                     public void onServiceStart(BackgroundService service) {
                         Device device = service.getDevice(deviceId);
-                        MprisPlugin mpris = (MprisPlugin)device.getPlugin("plugin_mpris");
+                        MprisPlugin mpris = device.getPlugin(MprisPlugin.class);
                         if (mpris == null) return;
                         mpris.sendAction("Next");
                     }
@@ -392,7 +392,7 @@ public class MprisActivity extends ActionBarActivity {
                     @Override
                     public void onServiceStart(BackgroundService service) {
                         Device device = service.getDevice(deviceId);
-                        MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
+                        MprisPlugin mpris = device.getPlugin(MprisPlugin.class);
                         if (mpris == null) return;
                         mpris.setVolume(seekBar.getProgress());
                     }
@@ -409,7 +409,7 @@ public class MprisActivity extends ActionBarActivity {
                     @Override
                     public void onServiceStart(BackgroundService service) {
                         Device device = service.getDevice(deviceId);
-                        MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
+                        MprisPlugin mpris = device.getPlugin(MprisPlugin.class);
                         if (mpris != null) {
                             positionSeek.setProgress((int) (mpris.getPosition()));
                         }
@@ -438,7 +438,7 @@ public class MprisActivity extends ActionBarActivity {
                     @Override
                     public void onServiceStart(BackgroundService service) {
                         Device device = service.getDevice(deviceId);
-                        MprisPlugin mpris = (MprisPlugin) device.getPlugin("plugin_mpris");
+                        MprisPlugin mpris = device.getPlugin(MprisPlugin.class);
                         if (mpris != null) {
                             mpris.setPosition(seekBar.getProgress());
                         }

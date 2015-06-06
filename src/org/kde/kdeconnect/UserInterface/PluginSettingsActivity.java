@@ -25,6 +25,8 @@ import android.preference.PreferenceActivity;
 
 import org.kde.kdeconnect_tp.R;
 
+import java.util.Locale;
+
 public class PluginSettingsActivity extends PreferenceActivity {
 
     @Override
@@ -34,8 +36,8 @@ public class PluginSettingsActivity extends PreferenceActivity {
         String pluginDisplayName = getIntent().getStringExtra("plugin_display_name");
         setTitle(getString(R.string.plugin_settings_with_name, pluginDisplayName));
 
-        String pluginName = getIntent().getStringExtra("plugin_name");
-        int resFile = getResources().getIdentifier(pluginName + "_preferences", "xml", getPackageName());
+        String pluginKey = getIntent().getStringExtra("plugin_key");
+        int resFile = getResources().getIdentifier(pluginKey.toLowerCase(Locale.ENGLISH) + "_preferences", "xml", getPackageName());
         addPreferencesFromResource(resFile);
     }
 
