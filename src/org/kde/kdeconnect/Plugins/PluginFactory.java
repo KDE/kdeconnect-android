@@ -20,7 +20,6 @@
 
 package org.kde.kdeconnect.Plugins;
 
-
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
@@ -137,7 +136,6 @@ public class PluginFactory {
 
     public static void registerPlugin(Class<? extends Plugin> pluginClass) {
         try {
-            //I hate this but I need to create an instance because abstract static functions can't be declared
             String pluginKey = Plugin.getPluginKey(pluginClass);
             availablePlugins.put(pluginKey, pluginClass);
         } catch(Exception e) {
