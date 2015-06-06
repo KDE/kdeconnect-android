@@ -17,8 +17,8 @@
     <string name="pref_plugin_ping_desc">Send and receive pings</string>
     <string name="pref_plugin_notifications">Notification sync</string>
     <string name="pref_plugin_notifications_desc">Access your notifications from other devices</string>
-    <string name="pref_plugin_sharereceiver">Share receiver</string>
-    <string name="pref_plugin_sharereceiver_desc">Save incoming files to the phone storage</string>
+    <string name="pref_plugin_sharereceiver">Share and receive</string>
+    <string name="pref_plugin_sharereceiver_desc">Share files and URLs between devices</string>
     <string name="plugin_not_available">This feature is not available in your Android version</string>
     <string name="device_list_empty">No devices</string>
     <string name="ok">OK</string>
@@ -26,8 +26,8 @@
     <string name="open_settings">Open settings</string>
     <string name="no_permissions">You need to grant permission to access notifications</string>
     <string name="send_ping">Send ping</string>
-    <string name="open_mpris_controls">Open remote control</string>
-    <string name="open_mousepad">Open touchpad control</string>
+    <string name="open_mpris_controls">Multimedia control</string>
+    <string name="open_mousepad">Virtual input</string>
     <string name="mousepad_info">Move a finger on the screen to move the mouse cursor. Tap for a click, and use two/three fingers for right and middle buttons. Use a long press to drag\'n drop.</string>
     <string name="mousepad_double_tap_settings_title">Set two finger tap action</string>
     <string name="mousepad_triple_tap_settings_title">Set three finger tap action</string>
