@@ -306,14 +306,19 @@ public class BackgroundService extends Service {
         RunCommand(c, null);
     }
 
-    public static void RunCommand(Context c, final InstanceCallback callback) {
-        if (callback != null) {
-            mutex.lock();
-            callbacks.add(callback);
-            mutex.unlock();
-        }
-        Intent serviceIntent = new Intent(c, BackgroundService.class);
-        c.startService(serviceIntent);
+    public static void RunCommand(final Context c, final InstanceCallback callback) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (callback != null) {
+                    mutex.lock();
+                    callbacks.add(callback);
+                    mutex.unlock();
+                }
+                Intent serviceIntent = new Intent(c, BackgroundService.class);
+                c.startService(serviceIntent);
+            }
+        }).start();
     }
 
 }
