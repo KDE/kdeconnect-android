@@ -83,7 +83,7 @@ public class Device implements BaseLink.PackageReceiver {
             switch (this) {
                 case Tablet: return "tablet";
                 case Computer: return "computer";
-                default: return "tablet";
+                default: return "phone";
             }
         }
     }
