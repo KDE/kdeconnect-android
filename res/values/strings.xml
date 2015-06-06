@@ -11,7 +11,7 @@
     <string name="pref_plugin_clipboard_desc">Share the clipboard content</string>
     <string name="pref_plugin_mousepad">Remote input</string>
     <string name="pref_plugin_mousepad_desc">Use your phone as a mouse and keyboard</string>
-    <string name="pref_plugin_mpris">Multimedia remote controls</string>
+    <string name="pref_plugin_mpris">Multimedia controls</string>
     <string name="pref_plugin_mpris_desc">Control audio/video from your phone</string>
     <string name="pref_plugin_ping">Ping</string>
     <string name="pref_plugin_ping_desc">Send and receive pings</string>
@@ -27,7 +27,7 @@
     <string name="no_permissions">You need to grant permission to access notifications</string>
     <string name="send_ping">Send ping</string>
     <string name="open_mpris_controls">Multimedia control</string>
-    <string name="open_mousepad">Virtual input</string>
+    <string name="open_mousepad">Remote input</string>
     <string name="mousepad_info">Move a finger on the screen to move the mouse cursor. Tap for a click, and use two/three fingers for right and middle buttons. Use a long press to drag\'n drop.</string>
     <string name="mousepad_double_tap_settings_title">Set two finger tap action</string>
     <string name="mousepad_triple_tap_settings_title">Set three finger tap action</string>
