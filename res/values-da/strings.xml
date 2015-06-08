@@ -10,14 +10,11 @@
   <string name="pref_plugin_clipboard_desc">Del indholdet af udklipsholderen</string>
   <string name="pref_plugin_mousepad">Eksternt input</string>
   <string name="pref_plugin_mousepad_desc">Brug din telefon som mus og tastatur</string>
-  <string name="pref_plugin_mpris">Fjernbetjening af multimedie</string>
   <string name="pref_plugin_mpris_desc">Styr lyd og video fra din telefon</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Send og modtag ping</string>
   <string name="pref_plugin_notifications">Synk. af bekendtgørelser</string>
   <string name="pref_plugin_notifications_desc">Tilgå dine bekendtgørelser fra andre enheder</string>
-  <string name="pref_plugin_sharereceiver">Del modtager</string>
-  <string name="pref_plugin_sharereceiver_desc">Gem indkommende filer til telefonens lager</string>
   <string name="plugin_not_available">Denne funktion er ikke tilgængelig i din Android-version</string>
   <string name="device_list_empty">Ingen enheder</string>
   <string name="ok">O.k.</string>
@@ -25,8 +22,6 @@
   <string name="open_settings">Åbn indstillinger</string>
   <string name="no_permissions">Du skal give tilladelse for at tilgå bekendtgørelser</string>
   <string name="send_ping">Send ping</string>
-  <string name="open_mpris_controls">Åbn fjernbetjening</string>
-  <string name="open_mousepad">Åbn touchpad-kontrol</string>
   <string name="mousepad_info">Bevæg en finger på skærmen for at flytte musemarkøren. Tap for at klikke og brug to/tre-fingre for højre og midterste museknap. Brug et langt tryk til at trække og slippe.</string>
   <string name="mousepad_double_tap_settings_title">Angiv handling for tap med to fingre</string>
   <string name="mousepad_triple_tap_settings_title">Angiv handling for tap med tre fingre</string>

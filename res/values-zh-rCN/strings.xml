@@ -10,14 +10,11 @@
   <string name="pref_plugin_clipboard_desc">共享剪贴板内容</string>
   <string name="pref_plugin_mousepad">远程输入</string>
   <string name="pref_plugin_mousepad_desc">将手机用作鼠标和键盘</string>
-  <string name="pref_plugin_mpris">多媒体远程控制</string>
   <string name="pref_plugin_mpris_desc">从手机控制音频或视频</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">发送和接受ping</string>
   <string name="pref_plugin_notifications">通知同步</string>
   <string name="pref_plugin_notifications_desc">从其他设备访问你的通知</string>
-  <string name="pref_plugin_sharereceiver">文件接收器</string>
-  <string name="pref_plugin_sharereceiver_desc">保存收到的文件到手机存储中</string>
   <string name="plugin_not_available">该特性不适用于您的Android版本</string>
   <string name="device_list_empty">无设备</string>
   <string name="ok">确认</string>
@@ -25,8 +22,6 @@
   <string name="open_settings">开启设置</string>
   <string name="no_permissions">你需要授予权限以便访问通知</string>
   <string name="send_ping">发送ping</string>
-  <string name="open_mpris_controls">开启远程控制</string>
-  <string name="open_mousepad">打开触摸板控制</string>
   <string name="mousepad_info">在屏幕上移动手指来移动光标。轻击代表左键，双指或三指点击代表右键或中键。用长按来拖放。</string>
   <string name="mousepad_double_tap_settings_title">设置双指点击动作</string>
   <string name="mousepad_triple_tap_settings_title">设置三指点击动作</string>

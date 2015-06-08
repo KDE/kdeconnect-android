@@ -10,14 +10,11 @@
   <string name="pref_plugin_clipboard_desc">Podijeli sadržaj sandučića</string>
   <string name="pref_plugin_mousepad">Daljinska kontrola ulaza</string>
   <string name="pref_plugin_mousepad_desc">Koristi telofon kao miš i tastaturu</string>
-  <string name="pref_plugin_mpris">Daljinske kontrole multimedije</string>
   <string name="pref_plugin_mpris_desc">Upravljajte zvukom/slikom sa vašeg telefona</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Šalji i primaj ping-ove</string>
   <string name="pref_plugin_notifications">Sinhronizovano obavještenje</string>
   <string name="pref_plugin_notifications_desc">Pristupite vašim notifikacijama sa drugog uređaja</string>
-  <string name="pref_plugin_sharereceiver">Podijeli prijemnik</string>
-  <string name="pref_plugin_sharereceiver_desc">Spasi dolazeće datoteke na telefonsku memoriju</string>
   <string name="plugin_not_available">Ovo svojstvo nije dostupno i vašoj Android verziji</string>
   <string name="device_list_empty">Nema uređaja</string>
   <string name="ok">OK</string>
@@ -25,8 +22,6 @@
   <string name="open_settings">Otvori postavke</string>
   <string name="no_permissions">Morate odobriti dopuštenje da pristupite notifikacijama</string>
   <string name="send_ping">Pošalji ping</string>
-  <string name="open_mpris_controls">Otvori daljinsku kontrolu</string>
-  <string name="open_mousepad">Otvori touchpad kontrolu</string>
   <string name="mousepad_info">Pomjerite prst na ekranu da opmjerite kursor miša. Tapnite za klik i koristite dva ili tri prsta za srednje i desno dugme. Koristite dugi pritisak za prevlačenje.</string>
   <string name="mousepad_double_tap_settings_title">Postavite akciju tapa sa dva prsta</string>
   <string name="mousepad_triple_tap_settings_title">Postavite akciju tapa sa tri prsta</string>

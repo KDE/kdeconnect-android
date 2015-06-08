@@ -10,14 +10,11 @@
   <string name="pref_plugin_clipboard_desc">Sdílet obsah schránky</string>
   <string name="pref_plugin_mousepad">Vzdálený vstup</string>
   <string name="pref_plugin_mousepad_desc">Používejte svůj telefon jako myš a klávesnici</string>
-  <string name="pref_plugin_mpris">Vzdálené ovládání multimédií</string>
   <string name="pref_plugin_mpris_desc">Ovládejte audio/video z vašeho telefonu</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Posílat a přijímat ping</string>
   <string name="pref_plugin_notifications">Synchronizace upozornění</string>
   <string name="pref_plugin_notifications_desc">Zpřístupněte si upozornění z jiných zařízení</string>
-  <string name="pref_plugin_sharereceiver">Sdílet příjemce</string>
-  <string name="pref_plugin_sharereceiver_desc">Ukládat příchozí soubory do úložiště telefonu</string>
   <string name="plugin_not_available">Tato vlastnost není pro vaši verzi Androidu platná</string>
   <string name="device_list_empty">Žádná zařízení</string>
   <string name="ok">OK</string>
@@ -25,8 +22,6 @@
   <string name="open_settings">Otevřít nastavení</string>
   <string name="no_permissions">Pro zpřístupnění upozornění potřebujete oprávnění</string>
   <string name="send_ping">Poslat ping</string>
-  <string name="open_mpris_controls">Otevřít vzdálené ovládání</string>
-  <string name="open_mousepad">Otevřít dotykové ovládání</string>
   <string name="mousepad_info">Pohybujte prstem po obrazovce pro pohybování kurzorem myši. Ťukněte pro kliknutí a použijte dva/tři prsty jako pravé a prostřední tlačítko. Pro přetažení dlouze podržte.</string>
   <string name="mousepad_double_tap_settings_title">Nastavit činnost pro ťuknutí dvěma prsty</string>
   <string name="mousepad_triple_tap_settings_title">Nastavit činnost pro ťuknutí třemi prsty</string>

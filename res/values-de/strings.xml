@@ -9,13 +9,11 @@
   <string name="pref_plugin_clipboard">Abgleich der Zwischenablage</string>
   <string name="pref_plugin_clipboard_desc">Inhalt der Zwischenablage freigeben</string>
   <string name="pref_plugin_mousepad_desc">Verwendet Ihr Handy als Maus und Tastatur</string>
-  <string name="pref_plugin_mpris">Multimedia-Fernbedienungen</string>
   <string name="pref_plugin_mpris_desc">Audio und Video mit Ihrem Telefon steuern</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Senden und Empfangen von Pings</string>
   <string name="pref_plugin_notifications">Benachrichtigungs-Abgleich</string>
   <string name="pref_plugin_notifications_desc">Zugriff auf Ihre Benachrichtigungen von anderen Geräten</string>
-  <string name="pref_plugin_sharereceiver_desc">Eingehende Dateien auf dem Telefonspeicher ablegen</string>
   <string name="plugin_not_available">Diese Funktion ist in Ihrer Android-Version nicht verfügbar</string>
   <string name="device_list_empty">Keine Geräte</string>
   <string name="ok">OK</string>
@@ -23,8 +21,6 @@
   <string name="open_settings">Einstellungen öffnen</string>
   <string name="no_permissions">Sie müssen die Erlaubnis zum Zugriff auf Benachrichtigungen erteilen</string>
   <string name="send_ping">Ping senden</string>
-  <string name="open_mpris_controls">Fernbedienung öffnen</string>
-  <string name="open_mousepad">Touchpad-Steuerung öffnen</string>
   <string-array name="mousepad_tap_entries">
     <item>Rechtsklick</item>
     <item>Mittelklick</item>

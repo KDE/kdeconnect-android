@@ -10,14 +10,11 @@
   <string name="pref_plugin_clipboard_desc">Partage le contenu du presse-papiers</string>
   <string name="pref_plugin_mousepad">Contrôle distant</string>
   <string name="pref_plugin_mousepad_desc">Utilisez votre téléphone comme une souris et un clavier</string>
-  <string name="pref_plugin_mpris">Contrôles distants multimédia</string>
   <string name="pref_plugin_mpris_desc">Contrôle l\'audio / la vidéo depuis votre téléphone</string>
   <string name="pref_plugin_ping">Commande « Ping »</string>
   <string name="pref_plugin_ping_desc">Envoie et reçoit des commandes « Ping »</string>
   <string name="pref_plugin_notifications">Synchronisation des notifications</string>
   <string name="pref_plugin_notifications_desc">Accédez à vos notifications depuis d\'autres périphériques</string>
-  <string name="pref_plugin_sharereceiver">Réception de fichier</string>
-  <string name="pref_plugin_sharereceiver_desc">Enregistrer les fichiers reçus dans le stockage du téléphone</string>
   <string name="plugin_not_available">Cette fonctionnalité n\'est pas disponible dans votre version de Android</string>
   <string name="device_list_empty">Pas de périphériques</string>
   <string name="ok">Ok</string>
@@ -25,8 +22,6 @@
   <string name="open_settings">Accéder aux paramètres</string>
   <string name="no_permissions">Vous devez accorder la permission d\'accéder aux notifications</string>
   <string name="send_ping">Envoyer un « Ping »</string>
-  <string name="open_mpris_controls">Ouvrir un contrôle distant</string>
-  <string name="open_mousepad">Ouvrir le pavé tactile</string>
   <string name="mousepad_info">Déplacer le doigt sur l\'écran pour bouger le pointeur de la souris. Appuyez pour cliquer et utiliser deux/trois doigts pour les clic droit et centre. Appuyez longtemps pour faire un glisser déplacer.</string>
   <string name="mousepad_double_tap_settings_title">Action pour l\'appui à deux doigts</string>
   <string name="mousepad_triple_tap_settings_title">Action pour l\'appui à trois doigts</string>

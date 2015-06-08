@@ -10,14 +10,11 @@
   <string name="pref_plugin_clipboard_desc">شارك محتوى الحافظة</string>
   <string name="pref_plugin_mousepad">الدَّخل البعيد</string>
   <string name="pref_plugin_mousepad_desc">استخدم هاتفك كفأرة ولوحة مفاتيح</string>
-  <string name="pref_plugin_mpris">تحكّمات الوسائط المتعدّدة البعيدة</string>
   <string name="pref_plugin_mpris_desc">تحكّم بالصّوت والصّورة من هاتفك</string>
   <string name="pref_plugin_ping">وخزة</string>
   <string name="pref_plugin_ping_desc">أرسل واستقبل وخزات</string>
   <string name="pref_plugin_notifications">مزامنة الإخطارات</string>
   <string name="pref_plugin_notifications_desc">انفذ إلى إخطاراتك من أجهزة أخرى</string>
-  <string name="pref_plugin_sharereceiver">شارك المستقبل</string>
-  <string name="pref_plugin_sharereceiver_desc">احفظ الملفّات الواردة إلى تخزين الهاتف</string>
   <string name="plugin_not_available">هذه الميزة غير متوفّرة في إصدار أندرويد لديك</string>
   <string name="device_list_empty">لا أجهزة</string>
   <string name="ok">حسنًا</string>
@@ -25,8 +22,6 @@
   <string name="open_settings">افتح الإعدادات</string>
   <string name="no_permissions">عليك إعطاء التّطبيق صلاحيّات للنّفاذ إلى الإخطارات</string>
   <string name="send_ping">أرسل وخزة</string>
-  <string name="open_mpris_controls">افتح التّحكّم البعيد</string>
-  <string name="open_mousepad">افتح تحكّم لوحة اللمس</string>
   <string-array name="mousepad_tap_entries">
     <item/>
     <item/>

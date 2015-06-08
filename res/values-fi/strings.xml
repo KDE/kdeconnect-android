@@ -10,14 +10,11 @@
   <string name="pref_plugin_clipboard_desc">Jaa leikepöydän sisältö</string>
   <string name="pref_plugin_mousepad">Kauko-ohjaus</string>
   <string name="pref_plugin_mousepad_desc">Käytä puhelintasi hiirenä ja näppäimistönä</string>
-  <string name="pref_plugin_mpris">Multimedian kauko-ohjaus</string>
   <string name="pref_plugin_mpris_desc">Ohjaa ääntä ja videota puhelimestasi</string>
   <string name="pref_plugin_ping">Tiedustelupaketti</string>
   <string name="pref_plugin_ping_desc">Lähetä ja vastaanota tiedustelupaketteja</string>
   <string name="pref_plugin_notifications">Ilmoitusten synkronointi</string>
   <string name="pref_plugin_notifications_desc">Näe ilmoituksesi muissa laitteissa</string>
-  <string name="pref_plugin_sharereceiver">Jaon vastaanottaja</string>
-  <string name="pref_plugin_sharereceiver_desc">Tallenna tulevat tiedoston puhelimen muistiin</string>
   <string name="plugin_not_available">Piirre ei ole käytettävissä Android-versiossasi</string>
   <string name="device_list_empty">Ei laitteita</string>
   <string name="ok">OK</string>
@@ -25,8 +22,6 @@
   <string name="open_settings">Avaa asetukset</string>
   <string name="no_permissions">Sinun on annettava lupa ilmoitusten näkemiseen</string>
   <string name="send_ping">Lähetä tiedustelupaketti</string>
-  <string name="open_mpris_controls">Avaa kauko-ohjain</string>
-  <string name="open_mousepad">Avaa hiiren ohjain</string>
   <string name="mousepad_info">Liikuta hiiren osoitinta liikuttamalla sormeasi näytöllä. Napsauta napauttamalla yhdellä sormella, käytä oikeaa painiketta kahdella sormella ja keskipainiketta kolmella. Vedä ja pudota painamalla pitkään.</string>
   <string name="mousepad_double_tap_settings_title">Aseta kahden sormen napautuksen toiminto</string>
   <string name="mousepad_triple_tap_settings_title">Aseta kolmen sormen napautuksen toiminto</string>
