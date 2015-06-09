@@ -10,11 +10,14 @@
   <string name="pref_plugin_clipboard_desc">Partilhar o conteúdo da área de transferência</string>
   <string name="pref_plugin_mousepad">Introdução remota de dados</string>
   <string name="pref_plugin_mousepad_desc">Usar o seu telefone como um rato ou teclado</string>
+  <string name="pref_plugin_mpris">Comandos multimédia</string>
   <string name="pref_plugin_mpris_desc">Controlar o áudio/vídeo a partir do seu telefone</string>
   <string name="pref_plugin_ping">Contacto</string>
   <string name="pref_plugin_ping_desc">Enviar e receber pedidos de contacto (\'ping\')</string>
   <string name="pref_plugin_notifications">Sincronização da notificação</string>
   <string name="pref_plugin_notifications_desc">Aceder às suas notificações a partir de outros dispositivos</string>
+  <string name="pref_plugin_sharereceiver">Partilhar e receber</string>
+  <string name="pref_plugin_sharereceiver_desc">Partilhar ficheiros e URL\'s entre dispositivos</string>
   <string name="plugin_not_available">Esta funcionalidade não está disponível na sua versão do Android</string>
   <string name="device_list_empty">Sem dispositivos</string>
   <string name="ok">OK</string>
@@ -22,6 +25,8 @@
   <string name="open_settings">Abrir a configuração</string>
   <string name="no_permissions">Precisa de dar permissões de acesso às notificações</string>
   <string name="send_ping">Enviar um pedido de contacto</string>
+  <string name="open_mpris_controls">Comando multimédia</string>
+  <string name="open_mousepad">Introdução remota de dados</string>
   <string name="mousepad_info">Mova um dedo pelo ecrã para mover o cursor do rato. Dê um toque para carregar no botão esquerdo e use dois/três dedos para os botões direito e do meio. Use uma pressão longa para arrastar e largar.</string>
   <string name="mousepad_double_tap_settings_title">Definir a acção do toque com dois dedos</string>
   <string name="mousepad_triple_tap_settings_title">Definir a acção do toque com três dedos</string>

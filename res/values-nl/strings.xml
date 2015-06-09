@@ -10,11 +10,14 @@
   <string name="pref_plugin_clipboard_desc">De inhoud van het klembord delen</string>
   <string name="pref_plugin_mousepad">Invoer op afstand</string>
   <string name="pref_plugin_mousepad_desc">Uw telefoon gebruiken als een muis en toetsenbord</string>
+  <string name="pref_plugin_mpris">Bediening van multimedia</string>
   <string name="pref_plugin_mpris_desc">Bedien de audio/video vanaf uw telefoon</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Pings verzenden en ontvangen</string>
   <string name="pref_plugin_notifications">Synchronisatie van meldingen</string>
   <string name="pref_plugin_notifications_desc">Bekijk uw meldingen van andere apparaten</string>
+  <string name="pref_plugin_sharereceiver">Delen en Ontvangen</string>
+  <string name="pref_plugin_sharereceiver_desc">Bestanden en URL\'s delen tussen apparaten</string>
   <string name="plugin_not_available">Deze functie is niet beschikbaar in uw versie van Android</string>
   <string name="device_list_empty">Geen apparaten</string>
   <string name="ok">OK</string>
@@ -22,6 +25,8 @@
   <string name="open_settings">Instellingen openen</string>
   <string name="no_permissions">U moet toestemming geven voor toegang tot meldingen</string>
   <string name="send_ping">Ping verzenden</string>
+  <string name="open_mpris_controls">Bediening van multimedia</string>
+  <string name="open_mousepad">Invoer op afstand</string>
   <string name="mousepad_info">Veeg met een vinger op het scherm om de muiscursor te verplaatsen. Tik om te klikken en gebruik twee/drie vingers voor rechter en middelste knop. Druk lang voor slepen en loslaten.</string>
   <string name="mousepad_double_tap_settings_title">Tikactie met twee vingers instellen</string>
   <string name="mousepad_triple_tap_settings_title">Tikactie met drie vingers instellen</string>
