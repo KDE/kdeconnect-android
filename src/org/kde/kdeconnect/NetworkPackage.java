@@ -85,6 +85,10 @@ public class NetworkPackage {
         return mType;
     }
 
+    public long getId() {
+        return mId;
+    }
+
     //Most commons getters and setters defined for convenience
     public String getString(String key) { return mBody.optString(key,""); }
     public String getString(String key, String defaultValue) { return mBody.optString(key,defaultValue); }

@@ -62,14 +62,14 @@ public class Device implements BaseLink.PackageReceiver {
     private int notificationId;
     private int protocolVersion;
 
-    private enum PairStatus {
+    public enum PairStatus {
         NotPaired,
         Requested,
         RequestedByPeer,
         Paired
     }
 
-    private enum DeviceType {
+    public enum DeviceType {
         Phone,
         Tablet,
         Computer;
