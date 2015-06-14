@@ -23,6 +23,7 @@ package org.kde.kdeconnect.Helpers;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
+import android.util.Log;
 
 import java.util.HashMap;
 
@@ -335,16 +336,26 @@ public class DeviceHelper {
     }
 
     public static String getDeviceName() {
-
-        String dictName = humanReadableNames.get(Build.MODEL.replace(' ','_'));
-        if (dictName != null) return dictName;
-
-        if (Build.BRAND.equals("samsung") || Build.BRAND.equals("Samsung")) {
-            return "Samsung" + Build.MODEL;
+        String deviceName = null;
+        try {
+            String dictName = humanReadableNames.get(Build.MODEL.replace(' ', '_'));
+            if (dictName != null) {
+                deviceName = dictName;
+            } else if (Build.BRAND.equalsIgnoreCase("samsung")) {
+                deviceName = "Samsung " + Build.MODEL;
+            } else {
+                deviceName = Build.BRAND;
+            }
+        } catch (Exception e) {
+            //Some phones might not define BRAND or MODEL, ignore exceptions
+            Log.e("Exception", e.getMessage());
+            e.printStackTrace();
         }
-
-        return Build.MODEL;
-
+        if (deviceName == null || deviceName.isEmpty()) {
+            return "Android"; //Could not find a name
+        } else {
+            return deviceName;
+        }
     }
 
     public static boolean isTablet() {

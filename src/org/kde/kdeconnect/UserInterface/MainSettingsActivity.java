@@ -29,7 +29,6 @@ import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -73,21 +72,27 @@ public class MainSettingsActivity extends AppCompatPreferenceActivity {
     }
 
     private void initPreferences(final EditTextPreference deviceNamePref) {
+
         final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         deviceNamePref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
-            public boolean onPreferenceChange(Preference preference, Object newDeviceName) {
-                if (newDeviceName.toString().isEmpty()) {
+            public boolean onPreferenceChange(Preference preference, Object newDeviceNameObject) {
+
+                String newDeviceName = newDeviceNameObject == null ? "" : newDeviceNameObject.toString();
+
+                if (newDeviceName.isEmpty()) {
+
                     Toast.makeText(
                             MainSettingsActivity.this,
                             getString(R.string.invalid_device_name),
                             Toast.LENGTH_SHORT).show();
+
                     return false;
-                }else{
+
+                } else {
+
                     Log.i("MainSettingsActivity", "New device name: " + newDeviceName);
-                    deviceNamePref.setSummary(getString(
-                            R.string.device_name_preference_summary,
-                            newDeviceName.toString()));
+                    deviceNamePref.setSummary(newDeviceName);
 
                     //Broadcast the device information again since it has changed
                     BackgroundService.RunCommand(MainSettingsActivity.this, new BackgroundService.InstanceCallback() {
@@ -96,13 +101,13 @@ public class MainSettingsActivity extends AppCompatPreferenceActivity {
                             service.onNetworkChange();
                         }
                     });
+
                     return true;
                 }
             }
         });
-        deviceNamePref.setSummary(getString(
-                R.string.device_name_preference_summary,
-                sharedPreferences.getString(KEY_DEVICE_NAME_PREFERENCE,"")));
+
+        deviceNamePref.setSummary(sharedPreferences.getString(KEY_DEVICE_NAME_PREFERENCE,""));
     }
 
     /**
@@ -115,8 +120,9 @@ public class MainSettingsActivity extends AppCompatPreferenceActivity {
         // Could use prefrences.contains but would need to check for empty String anyway.
         String deviceName = preferences.getString(KEY_DEVICE_NAME_PREFERENCE, "");
         if (deviceName.isEmpty()){
+            deviceName = DeviceHelper.getDeviceName();
             Log.i("MainSettingsActivity", "New device name: " + deviceName);
-            preferences.edit().putString(KEY_DEVICE_NAME_PREFERENCE, DeviceHelper.getDeviceName()).commit();
+            preferences.edit().putString(KEY_DEVICE_NAME_PREFERENCE, deviceName).commit();
         }
     }
 

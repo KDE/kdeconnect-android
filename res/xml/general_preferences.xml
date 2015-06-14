@@ -7,7 +7,7 @@
         <EditTextPreference
             android:key="device_name_preference"
             android:title="@string/device_name"
-            android:summary="@string/device_name_preference_summary"
+            android:summary=""
             android:dialogTitle="@string/device_name"
             android:singleLine="true" />
 
