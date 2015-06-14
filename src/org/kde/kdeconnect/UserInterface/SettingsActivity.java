@@ -62,9 +62,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
                 final ArrayList<Preference> preferences = new ArrayList<Preference>();
                 for (final String pluginKey : plugins) {
-                    final CheckBoxPreference pref = new CheckBoxPreference(getBaseContext());
 
                     PluginFactory.PluginInfo info = PluginFactory.getPluginInfo(getBaseContext(), pluginKey);
+
+                    CheckBoxPreference pref = new CheckBoxPreference(preferenceScreen.getContext());
                     pref.setKey(pluginKey);
                     pref.setTitle(info.getDisplayName());
                     pref.setSummary(info.getDescription());
@@ -73,7 +74,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     preferenceScreen.addPreference(pref);
 
                     if (info.hasSettings()) {
-                        final Preference pluginPreference = new Preference(getBaseContext());
+                        Preference pluginPreference = new Preference(preferenceScreen.getContext());
                         pluginPreference.setKey(pluginKey.toLowerCase(Locale.ENGLISH) + "_preferences");
                         pluginPreference.setSummary(getString(R.string.plugin_settings_with_name, info.getDisplayName()));
                         preferences.add(pluginPreference);
