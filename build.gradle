@@ -10,11 +10,11 @@ buildscript {
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion '21.1.2'
+    compileSdkVersion 22
+    buildToolsVersion '22.0.1'
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 21
+        targetSdkVersion 22
     }
 	sourceSets {
         main {
@@ -49,8 +49,8 @@ dependencies {
     repositories {
         mavenCentral()
     }
-    compile 'com.android.support:support-v4:21.0.3'
-    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.android.support:support-v4:22.2.0'
+    compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'org.apache.mina:mina-core:2.0.9'
     compile 'org.apache.sshd:sshd-core:0.8.0'
     compile 'org.bouncycastle:bcprov-jdk16:1.46'
