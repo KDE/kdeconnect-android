@@ -83,7 +83,13 @@ public class PingPlugin extends Plugin {
                     .build();
 
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.notify(id, noti);
+            try {
+                notificationManager.notify(id, noti);
+            } catch(Exception e) {
+                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+            }
+
             return true;
 
         }

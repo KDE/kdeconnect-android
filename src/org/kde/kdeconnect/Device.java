@@ -28,6 +28,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
@@ -484,7 +485,12 @@ public class Device implements BaseLink.PackageReceiver {
 
                     final NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
                     notificationId = (int)System.currentTimeMillis();
-                    notificationManager.notify(notificationId, noti);
+                    try {
+                        notificationManager.notify(notificationId, noti);
+                    } catch(Exception e) {
+                        //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                        //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                    }
 
                     if (pairingTimer != null) pairingTimer.cancel();
                     pairingTimer = new Timer();

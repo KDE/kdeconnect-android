@@ -29,6 +29,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -224,7 +225,13 @@ public class ShareActivity extends ActionBarActivity {
                     .setAutoCancel(true)
                     .setOngoing(true)
                     .setProgress(100,0,true);
-            notificationManager.notify(notificationId,builder.build());
+
+            try {
+                notificationManager.notify(notificationId,builder.build());
+            } catch(Exception e) {
+                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+            }
 
             final Handler progressBarHandler = new Handler(Looper.getMainLooper());
 
@@ -288,7 +295,12 @@ public class ShareActivity extends ActionBarActivity {
             final String filename = np.getString("filename");
 
             builder.setContentText(res.getString(R.string.outgoing_file_text,filename));
-            notificationManager.notify(notificationId,builder.build());
+            try {
+                notificationManager.notify(notificationId,builder.build());
+            } catch(Exception e) {
+                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+            }
 
             device.sendPackage(np, new Device.SendPackageStatusCallback() {
 
@@ -302,7 +314,12 @@ public class ShareActivity extends ActionBarActivity {
                             @Override
                             public void run() {
                                 builder.setProgress(100, progress, false);
-                                notificationManager.notify(notificationId, builder.build());
+                                try {
+                                    notificationManager.notify(notificationId,builder.build());
+                                } catch(Exception e) {
+                                    //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                                    //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                                }
                             }
                         });
                     }
@@ -314,7 +331,7 @@ public class ShareActivity extends ActionBarActivity {
                         @Override
                         public void run() {
                             Resources res = getApplicationContext().getResources();
-                            NotificationCompat.Builder builder1 = new NotificationCompat.Builder(getApplicationContext())
+                            NotificationCompat.Builder anotherBuilder = new NotificationCompat.Builder(getApplicationContext())
                                     .setContentTitle(res.getString(R.string.sent_file_title, device.getName()))
                                     .setContentText(res.getString(R.string.sent_file_text, filename))
                                     .setTicker(res.getString(R.string.sent_file_title, device.getName()))
@@ -324,9 +341,14 @@ public class ShareActivity extends ActionBarActivity {
 
                             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                             if (prefs.getBoolean("share_notification_preference", true)) {
-                                builder1.setDefaults(Notification.DEFAULT_ALL);
+                                anotherBuilder.setDefaults(Notification.DEFAULT_ALL);
                             }
-                            notificationManager.notify(notificationId, builder1.build());
+                            try {
+                                notificationManager.notify(notificationId,anotherBuilder.build());
+                            } catch(Exception e) {
+                                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                            }
                         }
                     });
 
@@ -340,7 +362,7 @@ public class ShareActivity extends ActionBarActivity {
                         @Override
                         public void run() {
                             Resources res = getApplicationContext().getResources();
-                            NotificationCompat.Builder builder2 = new NotificationCompat.Builder(getApplicationContext())
+                            NotificationCompat.Builder anotherBuilder = new NotificationCompat.Builder(getApplicationContext())
                                     .setContentTitle(res.getString(R.string.sent_file_failed_title, device.getName()))
                                     .setContentText(res.getString(R.string.sent_file_failed_text, filename))
                                     .setTicker(res.getString(R.string.sent_file_title, device.getName()))
@@ -350,9 +372,14 @@ public class ShareActivity extends ActionBarActivity {
 
                             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                             if (prefs.getBoolean("share_notification_preference", true)) {
-                                builder2.setDefaults(Notification.DEFAULT_ALL);
+                                anotherBuilder.setDefaults(Notification.DEFAULT_ALL);
                             }
-                            notificationManager.notify(notificationId, builder2.build());
+                            try {
+                                notificationManager.notify(notificationId,anotherBuilder.build());
+                            } catch(Exception e) {
+                                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                            }
                         }
                     });
 

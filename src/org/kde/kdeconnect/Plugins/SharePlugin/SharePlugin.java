@@ -113,7 +113,12 @@ public class SharePlugin extends Plugin {
                         .setOngoing(true)
                         .setProgress(100,0,true);
 
-                notificationManager.notify(notificationId,builder.build());
+                try {
+                    notificationManager.notify(notificationId,builder.build());
+                } catch(Exception e) {
+                    //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                    //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                }
 
                 new Thread(new Runnable() {
                     @Override
@@ -134,7 +139,12 @@ public class SharePlugin extends Plugin {
                                     if (progressPercentage != prevProgressPercentage) {
                                         prevProgressPercentage = progressPercentage;
                                         builder.setProgress(100, (int) progressPercentage, false);
-                                        notificationManager.notify(notificationId, builder.build());
+                                        try {
+                                            notificationManager.notify(notificationId,builder.build());
+                                        } catch(Exception e) {
+                                            //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                                            //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                                        }
                                     }
                                 }
                                 //else Log.e("SharePlugin", "Infinite loop? :D");
@@ -189,8 +199,12 @@ public class SharePlugin extends Plugin {
                                 builder.setDefaults(Notification.DEFAULT_ALL);
                             }
 
-                            Notification notification = builder.build();
-                            notificationManager.notify(notificationId, notification);
+                            try {
+                                notificationManager.notify(notificationId,builder.build());
+                            } catch(Exception e) {
+                                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                            }
 
                         } catch (Exception e) {
                             Log.e("SharePlugin", "Receiver thread exception");
@@ -242,7 +256,12 @@ public class SharePlugin extends Plugin {
                         .build();
 
                 NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                notificationManager.notify((int)System.currentTimeMillis(), noti);
+                try {
+                    notificationManager.notify((int)System.currentTimeMillis(), noti);
+                } catch(Exception e) {
+                    //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                    //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                }
 
             } else {
                 Log.e("SharePlugin", "Error: Nothing attached!");
