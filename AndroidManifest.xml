@@ -32,7 +32,7 @@
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="KDE Connect"
-        android:theme="@style/Theme.AppCompat"
+        android:theme="@style/KdeConnectTheme"
         >
 
         <service
