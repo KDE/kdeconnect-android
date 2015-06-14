@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.kde.kdeconnect_tp"
-    android:versionCode="807"
-    android:versionName="0.8g">
+    android:versionCode="808"
+    android:versionName="0.8h">
 
     <uses-sdk android:minSdkVersion="9"
-              android:targetSdkVersion="21" />
+              android:targetSdkVersion="22" />
 
     <supports-screens
         android:smallScreens="true"
