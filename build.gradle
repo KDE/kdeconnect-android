@@ -29,11 +29,9 @@ android {
         }
     }
     packagingOptions {
-        exclude "META-INF/DEPENDENCIES"
-        exclude "META-INF/NOTICE"
-        exclude "META-INF/LICENSE"
-        exclude "META-INF/LICENSE.txt"
-        exclude "META-INF/NOTICE.txt"
+        pickFirst "META-INF/DEPENDENCIES"
+        pickFirst "META-INF/LICENSE"
+        pickFirst "META-INF/NOTICE"
     }
     lintOptions {
         abortOnError false
