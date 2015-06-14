@@ -27,17 +27,18 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect_tp.R;
 
-public class MainSettingsActivity extends PreferenceActivity {
+public class MainSettingsActivity extends AppCompatPreferenceActivity {
 
     public static final String KEY_DEVICE_NAME_PREFERENCE = "device_name_preference";
 
@@ -51,6 +52,17 @@ public class MainSettingsActivity extends PreferenceActivity {
         } else {
             getFragmentManager().beginTransaction().
                     replace(android.R.id.content, new GeneralPrefsFragment()).commit();
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //ActionBar's back button
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 

@@ -23,8 +23,8 @@ package org.kde.kdeconnect.UserInterface;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -38,13 +38,14 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Set;
 
-public class SettingsActivity extends PreferenceActivity {
+public class SettingsActivity extends AppCompatPreferenceActivity {
 
     static private String deviceId; //Static because if we get here by using the back button in the action bar, the extra deviceId will not be set.
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         final PreferenceScreen preferenceScreen = getPreferenceManager().createPreferenceScreen(this);
         setPreferenceScreen(preferenceScreen);
 
@@ -105,7 +106,16 @@ public class SettingsActivity extends PreferenceActivity {
                 });
             }
         });
+    }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //ActionBar's back button
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 }

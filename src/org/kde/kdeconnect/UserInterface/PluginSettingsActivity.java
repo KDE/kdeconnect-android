@@ -21,13 +21,13 @@
 package org.kde.kdeconnect.UserInterface;
 
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
+import android.view.MenuItem;
 
 import org.kde.kdeconnect_tp.R;
 
 import java.util.Locale;
 
-public class PluginSettingsActivity extends PreferenceActivity {
+public class PluginSettingsActivity extends AppCompatPreferenceActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,17 @@ public class PluginSettingsActivity extends PreferenceActivity {
         String pluginKey = getIntent().getStringExtra("plugin_key");
         int resFile = getResources().getIdentifier(pluginKey.toLowerCase(Locale.ENGLISH) + "_preferences", "xml", getPackageName());
         addPreferencesFromResource(resFile);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //ActionBar's back button
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 
 }
