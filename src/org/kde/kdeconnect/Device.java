@@ -206,18 +206,25 @@ public class Device implements BaseLink.PackageReceiver {
 
         Resources res = context.getResources();
 
-        if (pairStatus == PairStatus.Paired) {
-            for (PairingCallback cb : pairingCallback) {
-                cb.pairingFailed(res.getString(R.string.error_already_paired));
-            }
-            return;
+        switch(pairStatus) {
+            case Paired:
+                for (PairingCallback cb : pairingCallback) {
+                    cb.pairingFailed(res.getString(R.string.error_already_paired));
+                }
+                return;
+            case Requested:
+                for (PairingCallback cb : pairingCallback) {
+                    cb.pairingFailed(res.getString(R.string.error_already_requested));
+                }
+                return;
+            case RequestedByPeer:
+                Log.d("requestPairing", "Pairing already started by the other end, accepting their request.");
+                acceptPairing();
+                return;
+            case NotPaired:
+                ;
         }
-        if (pairStatus == PairStatus.Requested) {
-            for (PairingCallback cb : pairingCallback) {
-                cb.pairingFailed(res.getString(R.string.error_already_requested));
-            }
-            return;
-        }
+
         if (!isReachable()) {
             for (PairingCallback cb : pairingCallback) {
                 cb.pairingFailed(res.getString(R.string.error_not_reachable));
