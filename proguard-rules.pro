@@ -26,3 +26,5 @@
 -dontwarn org.bouncycastle.**
 -dontwarn org.slf4j.**
 
+-keepattributes SourceFile,LineNumberTable
+
