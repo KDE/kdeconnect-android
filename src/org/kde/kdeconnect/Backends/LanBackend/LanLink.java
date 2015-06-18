@@ -42,19 +42,23 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeoutException;
 
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
+
 public class LanLink extends BaseLink {
 
-    private IoSession session = null;
+//    private IoSession session = null;
+    private Channel session = null;
 
     public void disconnect() {
         if (session == null) {
             Log.e("KDE/LanLink", "Not yet connected");
             return;
         }
-        session.close(true);
+        session.close();
     }
 
-    public LanLink(IoSession session, String deviceId, BaseLinkProvider linkProvider) {
+    public LanLink(Channel session, String deviceId, BaseLinkProvider linkProvider) {
         super(deviceId, linkProvider);
         this.session = session;
     }
@@ -86,13 +90,13 @@ public class LanLink extends BaseLink {
             }
 
             //Send body of the network package
-            WriteFuture future = session.write(np.serialize());
-            future.awaitUninterruptibly();
-            if (!future.isWritten()) {
+            ChannelFuture future = session.writeAndFlush(np.serialize()).sync();
+            if (!future.isSuccess()) {
                 Log.e("KDE/sendPackage", "!future.isWritten()");
-                callback.sendFailure(future.getException());
+                callback.sendFailure(future.cause());
                 return;
             }
+
 
             //Send payload
             if (server != null) {
@@ -173,7 +177,7 @@ public class LanLink extends BaseLink {
             try {
                 socket = new Socket();
                 int tcpPort = np.getPayloadTransferInfo().getInt("port");
-                InetSocketAddress address = (InetSocketAddress)session.getRemoteAddress();
+                InetSocketAddress address = (InetSocketAddress)session.remoteAddress();
                 socket.connect(new InetSocketAddress(address.getAddress(), tcpPort));
                 np.setPayload(socket.getInputStream(), np.getPayloadSize());
             } catch (Exception e) {
