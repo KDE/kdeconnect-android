@@ -46,6 +46,7 @@ import io.netty.channel.ChannelFuture;
 public class LanLink extends BaseLink {
 
     private Channel channel = null;
+    private boolean onSsl = false;
 
     public void disconnect() {
         if (channel == null) {
@@ -53,6 +54,10 @@ public class LanLink extends BaseLink {
             return;
         }
         channel.close();
+    }
+
+    public void setOnSsl(boolean value) {
+        this.onSsl = value;
     }
 
     public LanLink(Channel channel, String deviceId, BaseLinkProvider linkProvider) {
@@ -152,7 +157,11 @@ public class LanLink extends BaseLink {
     //Blocking, do not call from main thread
     @Override
     public void sendPackageEncrypted(NetworkPackage np, Device.SendPackageStatusCallback callback, PublicKey key) {
-        sendPackageInternal(np, callback, key);
+        if (onSsl) {
+            sendPackageInternal(np, callback, null); // No need to encrypt
+        }else {
+            sendPackageInternal(np, callback, key);
+        }
     }
 
     public void injectNetworkPackage(NetworkPackage np) {

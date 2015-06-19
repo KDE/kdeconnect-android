@@ -182,6 +182,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                                     Certificate certificate = sslEngine.getSession().getPeerCertificates()[0];
                                     np.set("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
                                 }
+                                link.setOnSsl(true);
                                 addLink(np, link);
                             }
                         });
@@ -288,6 +289,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                                                                 e.printStackTrace();
                                                             }
                                                         }
+                                                        link.setOnSsl(true);
                                                         addLink(identityPackage, link);
                                                     }
                                                 });
