@@ -73,7 +73,6 @@ public class LanLinkProvider extends BaseLinkProvider {
     
     private ServerBootstrap tcpBootstrap = null;
     private Bootstrap udpBootstrap = null;
-    private Channel udpChannel = null;
 
     private class TcpHandler extends ChannelInboundHandlerAdapter{
         @Override
@@ -308,7 +307,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                     pipeline.addLast(new UdpHandler());
                 }
             });
-            udpChannel = udpBootstrap.bind(new InetSocketAddress(port)).sync().channel();
+            udpBootstrap.bind(new InetSocketAddress(port)).sync();
         }catch (Exception e){
             e.printStackTrace();
         }
