@@ -23,18 +23,24 @@ package org.kde.kdeconnect.Backends.LanBackend;
 import android.content.Context;
 import android.preference.PreferenceManager;
 import android.support.v4.util.LongSparseArray;
+import android.util.Base64;
 import android.util.Log;
 
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.UserInterface.CustomDevicesActivity;
 
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.security.cert.Certificate;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import javax.net.ssl.SSLEngine;
+import javax.security.auth.login.LoginException;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.bootstrap.ServerBootstrap;
@@ -48,6 +54,7 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.nio.NioEventLoop;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.DatagramPacket;
 import io.netty.channel.socket.nio.NioDatagramChannel;
@@ -59,7 +66,10 @@ import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import io.netty.handler.ssl.SslHandler;
 import io.netty.util.CharsetUtil;
+import io.netty.util.concurrent.Future;
+import io.netty.util.concurrent.GenericFutureListener;
 
 public class LanLinkProvider extends BaseLinkProvider {
 
@@ -70,21 +80,29 @@ public class LanLinkProvider extends BaseLinkProvider {
     private final HashMap<String, LanLink> visibleComputers = new HashMap<String, LanLink>();
     private final LongSparseArray<LanLink> nioLinks = new LongSparseArray<LanLink>();
     private final LongSparseArray<Channel> nioChannels = new LongSparseArray<Channel>();
-    
-    private ServerBootstrap tcpBootstrap = null;
-    private Bootstrap udpBootstrap = null;
 
-    private class TcpHandler extends ChannelInboundHandlerAdapter{
+    private EventLoopGroup bossGroup, workerGroup, udpGroup, clientGroup;
+
+    private class TcpHandler extends SimpleChannelInboundHandler{
+        @Override
+        public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+            super.exceptionCaught(ctx, cause);
+            cause.printStackTrace();
+        }
+
+        @Override
+        public void channelActive(ChannelHandlerContext ctx) throws Exception {
+            Log.e("KDE/LanLinkProvider", "Channel Active : " + ctx.channel().hashCode());
+        }
+
         @Override
         public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-            super.channelInactive(ctx);
-
+            Log.e("KDE/LanLinkProvider", "Channel In active :" + ctx.channel().hashCode());
             try {
                 long id = ctx.channel().hashCode();
                 final LanLink brokenLink = nioLinks.get(id);
                 Channel channel = nioChannels.get(id);
                 if (channel != null) {
-                    channel.close();
                     nioChannels.remove(id);
                 }
                 if (brokenLink != null) {
@@ -104,7 +122,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            //Wait a bit before emiting connectionLost, in case the same device re-appears
+                            //Wait a bit before emitting connectionLost, in case the same device re-appears
                             try {
                                 Thread.sleep(200);
                             } catch (InterruptedException e) {
@@ -123,9 +141,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
 
         @Override
-        public void channelRead(ChannelHandlerContext ctx, Object message) throws Exception {
-            super.channelRead(ctx, message);
-
+        public void channelRead0(ChannelHandlerContext ctx, Object message) throws Exception {
 //            Log.e("LanLinkProvider","Incoming package, address: " + ctx.channel().remoteAddress());
 //            Log.e("LanLinkProvider","Received:"+message);
 
@@ -135,7 +151,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                 return;
             }
 
-            NetworkPackage np = NetworkPackage.unserialize(theMessage);
+            final NetworkPackage np = NetworkPackage.unserialize(theMessage);
 
             if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
 
@@ -146,10 +162,37 @@ public class LanLinkProvider extends BaseLinkProvider {
 
                 //Log.i("KDE/LanLinkProvider", "Identity package received from " + np.getString("deviceName"));
 
-                LanLink link = new LanLink(ctx.channel(), np.getString("deviceId"), LanLinkProvider.this);
+                final LanLink link = new LanLink(ctx.channel(), np.getString("deviceId"), LanLinkProvider.this);
                 nioLinks.put(ctx.channel().hashCode(), link);
                 //Log.i("KDE/LanLinkProvider","nioLinks.size(): " + nioLinks.size());
-                addLink(np, link);
+
+                // Check if ssl supported, and add ssl handler
+                // Sslengine is returning null in some cases
+                try {
+                    if (np.getBoolean("sslSupported", false)) {
+                        Log.e("KDE/LanLinkProvider", "Remote device " + np.getString("deviceName") + " supports ssl");
+                        final SSLEngine sslEngine = SslHelper.getSslEngine(context, np.getString("deviceId"), SslHelper.SslMode.Client);
+                        SslHandler sslHandler = new SslHandler(sslEngine);
+                        ctx.channel().pipeline().addFirst(sslHandler);
+                        sslHandler.handshakeFuture().addListener(new GenericFutureListener<Future<? super Channel>>() {
+                            @Override
+                            public void operationComplete(Future<? super Channel> future) throws Exception {
+                                Log.e("KDE/LanLinkProvider", "Handshake complete with " + np.getString("deviceName"));
+                                if (future.isSuccess()) {
+                                    Certificate certificate = sslEngine.getSession().getPeerCertificates()[0];
+                                    np.set("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
+                                }
+                                addLink(np, link);
+                            }
+                        });
+                    } else {
+                        addLink(np, link);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    addLink(np, link);
+                }
+
             } else {
                 LanLink prevLink = nioLinks.get(ctx.channel().hashCode());
                 if (prevLink == null) {
@@ -165,9 +208,10 @@ public class LanLinkProvider extends BaseLinkProvider {
     private class UdpHandler extends SimpleChannelInboundHandler<DatagramPacket> {
 
         @Override
-        protected void channelRead0(ChannelHandlerContext ctx, DatagramPacket packet) throws Exception {
+        protected void channelRead0(final ChannelHandlerContext ctx, DatagramPacket packet) throws Exception {
             try {
                 String theMessage = packet.content().toString(CharsetUtil.UTF_8);
+                Log.e("KDE/LanLinkProvider", "Udp message received : " + theMessage);
 
                 final NetworkPackage identityPackage = NetworkPackage.unserialize(theMessage);
 
@@ -177,14 +221,13 @@ public class LanLinkProvider extends BaseLinkProvider {
                 } else {
                     String myId = NetworkPackage.createIdentityPackage(context).getString("deviceId");
                     if (identityPackage.getString("deviceId").equals(myId)) {
+                        Log.e("KDE/LanLinkProvider", "Oh, its my identity package");
                         return;
                     }
                 }
 
                 Log.i("KDE/LanLinkProvider", "Identity package received, creating link");
 
-
-                EventLoopGroup clientGroup = new NioEventLoopGroup();
                 try{
                     Bootstrap b = new Bootstrap();
                     b.group(clientGroup);
@@ -204,10 +247,18 @@ public class LanLinkProvider extends BaseLinkProvider {
                     channelFuture.addListener(new ChannelFutureListener() {
                         @Override
                         public void operationComplete(ChannelFuture future) throws Exception {
-                            channelFuture.removeListener(this);
                             final Channel channel = channelFuture.channel();
 
                             Log.i("KDE/LanLinkProvider", "Connection successful: " + channel.isActive());
+
+                            // If remote device supports ssl, add ssl handler to channel
+                            if (identityPackage.getBoolean("sslSupported", false)) {
+                                // add ssl handler with start tls true
+                                SSLEngine sslEngine = SslHelper.getSslEngine(context, identityPackage.getString("deviceId"), SslHelper.SslMode.Server);
+                                SslHandler sslHandler = new SslHandler(sslEngine, true);
+                                channel.pipeline().addFirst(sslHandler);
+                                Log.e("KDE/LanLinkProvider", "Remote device supports ssl, ssl handler added");
+                            }
 
                             final LanLink link = new LanLink(channel, identityPackage.getString("deviceId"), LanLinkProvider.this);
                             new Thread(new Runnable() {
@@ -219,8 +270,31 @@ public class LanLinkProvider extends BaseLinkProvider {
                                         protected void onSuccess() {
                                             nioLinks.put(channel.hashCode(), link);
                                             nioChannels.put(channel.hashCode(), channel);
-                                            Log.i("KDE/LanLinkProvider","nioLinks.size(): " + nioLinks.size());
-                                            addLink(identityPackage, link);
+                                            Log.i("KDE/LanLinkProvider", "nioLinks.size(): " + nioLinks.size());
+
+                                            // If ssl handler is in channel, add link after handshake is completed
+                                            final SslHandler sslHandler = channel.pipeline().get(SslHandler.class);
+                                            if (sslHandler != null) {
+                                                Log.e("KDE/LanLinkProvider", "Remote device " + identityPackage.getString("deviceName") + " supports ssl");
+                                                sslHandler.handshakeFuture().addListener(new GenericFutureListener<Future<? super Channel>>() {
+                                                    @Override
+                                                    public void operationComplete(Future<? super Channel> future) throws Exception {
+                                                        Log.e("KDE/LanLinkProvider", "Handshake completed with " + identityPackage.getString("deviceName"));
+                                                        if (future.isSuccess()) {
+                                                            try {
+                                                                Certificate certificate = sslHandler.engine().getSession().getPeerCertificates()[0];
+                                                                identityPackage.set("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
+                                                            } catch (Exception e){
+                                                                e.printStackTrace();
+                                                            }
+                                                        }
+                                                        addLink(identityPackage, link);
+                                                    }
+                                                });
+                                            } else {
+                                                addLink(identityPackage, link);
+                                            }
+
                                         }
 
                                         @Override
@@ -266,10 +340,10 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         this.context = context;
 
-        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
+        bossGroup = new NioEventLoopGroup(1);
+        workerGroup = new NioEventLoopGroup();
         try{
-            tcpBootstrap = new ServerBootstrap();
+            ServerBootstrap tcpBootstrap = new ServerBootstrap();
             tcpBootstrap.group(bossGroup, workerGroup);
             tcpBootstrap.channel(NioServerSocketChannel.class);
             tcpBootstrap.option(ChannelOption.SO_BACKLOG, 100);
@@ -291,10 +365,10 @@ public class LanLinkProvider extends BaseLinkProvider {
             e.printStackTrace();
         }
 
-        EventLoopGroup udpEventLoopGroup = new NioEventLoopGroup();
+        udpGroup = new NioEventLoopGroup();
         try {
-            udpBootstrap = new Bootstrap();
-            udpBootstrap.group(udpEventLoopGroup);
+            Bootstrap udpBootstrap = new Bootstrap();
+            udpBootstrap.group(udpGroup);
             udpBootstrap.channel(NioDatagramChannel.class);
             udpBootstrap.option(ChannelOption.SO_BROADCAST, true);
             udpBootstrap.handler(new ChannelInitializer<Channel>() {
@@ -311,6 +385,8 @@ public class LanLinkProvider extends BaseLinkProvider {
         }catch (Exception e){
             e.printStackTrace();
         }
+
+        clientGroup = new NioEventLoopGroup();
 
     }
 
@@ -388,9 +464,10 @@ public class LanLinkProvider extends BaseLinkProvider {
     public void onStop() {
         Log.e("KDE/LanLinkProvider", "onStop");
         try {
-            udpBootstrap.group().shutdownGracefully().sync();
-            tcpBootstrap.group().shutdownGracefully().sync();
-            tcpBootstrap.childGroup().shutdownGracefully().sync();
+            workerGroup.shutdownGracefully();
+            bossGroup.shutdownGracefully();
+            udpGroup.shutdownGracefully();
+            clientGroup.shutdownGracefully();
         }catch (Exception e){
             e.printStackTrace();
         }

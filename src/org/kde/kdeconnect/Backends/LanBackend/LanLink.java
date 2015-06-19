@@ -22,8 +22,6 @@ package org.kde.kdeconnect.Backends.LanBackend;
 
 import android.util.Log;
 
-import org.apache.mina.core.future.WriteFuture;
-import org.apache.mina.core.session.IoSession;
 import org.json.JSONObject;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
@@ -47,25 +45,24 @@ import io.netty.channel.ChannelFuture;
 
 public class LanLink extends BaseLink {
 
-//    private IoSession session = null;
-    private Channel session = null;
+    private Channel channel = null;
 
     public void disconnect() {
-        if (session == null) {
+        if (channel == null) {
             Log.e("KDE/LanLink", "Not yet connected");
             return;
         }
-        session.close();
+        channel.close();
     }
 
-    public LanLink(Channel session, String deviceId, BaseLinkProvider linkProvider) {
+    public LanLink(Channel channel, String deviceId, BaseLinkProvider linkProvider) {
         super(deviceId, linkProvider);
-        this.session = session;
+        this.channel = channel;
     }
 
     //Blocking, do not call from main thread
     private void sendPackageInternal(NetworkPackage np, final Device.SendPackageStatusCallback callback, PublicKey key) {
-        if (session == null) {
+        if (channel == null) {
             Log.e("KDE/sendPackage", "Not yet connected");
             callback.sendFailure(new NotYetConnectedException());
             return;
@@ -90,7 +87,7 @@ public class LanLink extends BaseLink {
             }
 
             //Send body of the network package
-            ChannelFuture future = session.writeAndFlush(np.serialize()).sync();
+            ChannelFuture future = channel.writeAndFlush(np.serialize()).sync();
             if (!future.isSuccess()) {
                 Log.e("KDE/sendPackage", "!future.isWritten()");
                 callback.sendFailure(future.cause());
@@ -177,7 +174,7 @@ public class LanLink extends BaseLink {
             try {
                 socket = new Socket();
                 int tcpPort = np.getPayloadTransferInfo().getInt("port");
-                InetSocketAddress address = (InetSocketAddress)session.remoteAddress();
+                InetSocketAddress address = (InetSocketAddress)channel.remoteAddress();
                 socket.connect(new InetSocketAddress(address.getAddress(), tcpPort));
                 np.setPayload(socket.getInputStream(), np.getPayloadSize());
             } catch (Exception e) {

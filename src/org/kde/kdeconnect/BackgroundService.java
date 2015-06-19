@@ -34,6 +34,8 @@ import android.util.Log;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
+import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
+import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.UserInterface.MainSettingsActivity;
 
 import java.security.KeyPair;
@@ -201,7 +203,7 @@ public class BackgroundService extends Service {
 
         Log.i("KDE/BackgroundService","Service not started yet, initializing...");
 
-        initializeRsaKeys();
+        initializeSecurityParameters();
         MainSettingsActivity.initializeDeviceName(this);
         loadRememberedDevicesFromSettings();
         registerLinkProviders();
@@ -212,59 +214,9 @@ public class BackgroundService extends Service {
 
     }
 
-    private void initializeRsaKeys() {
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-
-        if (!settings.contains("publicKey") || !settings.contains("privateKey")) {
-
-            KeyPair keyPair;
-            try {
-                KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
-                keyGen.initialize(2048);
-                keyPair = keyGen.genKeyPair();
-            } catch(Exception e) {
-                e.printStackTrace();
-                Log.e("KDE/initializeRsaKeys","Exception");
-                return;
-            }
-
-            byte[] publicKey = keyPair.getPublic().getEncoded();
-            byte[] privateKey = keyPair.getPrivate().getEncoded();
-
-            SharedPreferences.Editor edit = settings.edit();
-            edit.putString("publicKey",Base64.encodeToString(publicKey, 0).trim()+"\n");
-            edit.putString("privateKey",Base64.encodeToString(privateKey, 0));
-            edit.apply();
-
-        }
-
-
-/*
-        // Encryption and decryption test
-        //================================
-
-        try {
-
-            NetworkPackage np = NetworkPackage.createIdentityPackage(this);
-
-            SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(this);
-
-            byte[] publicKeyBytes = Base64.decode(globalSettings.getString("publicKey",""), 0);
-            PublicKey publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
-
-            np.encrypt(publicKey);
-
-            byte[] privateKeyBytes = Base64.decode(globalSettings.getString("privateKey",""), 0);
-            PrivateKey privateKey = KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(privateKeyBytes));
-
-            NetworkPackage decrypted = np.decrypt(privateKey);
-            Log.e("ENCRYPTION AND DECRYPTION TEST", decrypted.serialize());
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("ENCRYPTION AND DECRYPTION TEST","Exception: "+e);
-        }
-*/
-
+    void initializeSecurityParameters() {
+        RsaHelper.initialiseRsaKeys(this);
+        SslHelper.initialiseCertificate(this);
     }
 
     @Override
