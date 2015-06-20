@@ -31,6 +31,7 @@ import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.UserInterface.CustomDevicesActivity;
+import org.kde.kdeconnect.UserInterface.MainSettingsActivity;
 
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -153,8 +154,8 @@ public class LanLinkProvider extends BaseLinkProvider {
 
             if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
 
-                String myId = NetworkPackage.createIdentityPackage(context).getString("deviceId");
-                if (np.getString("deviceId").equals(myId)) {
+                NetworkPackage myIdentityPackage = NetworkPackage.createIdentityPackage(context);
+                if (np.getString("deviceId").equals(myIdentityPackage.getString("deviceId"))) {
                     return;
                 }
 
@@ -167,7 +168,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                 // Check if ssl supported, and add ssl handler
                 // Sslengine is returning null in some cases
                 try {
-                    if (np.getBoolean("sslSupported", false)) {
+                    if (myIdentityPackage.getBoolean("sslSupported") && np.getBoolean("sslSupported", false)) {
                         Log.e("KDE/LanLinkProvider", "Remote device " + np.getString("deviceName") + " supports ssl");
                         final SSLEngine sslEngine = SslHelper.getSslEngine(context, np.getString("deviceId"), SslHelper.SslMode.Client);
                         SslHandler sslHandler = new SslHandler(sslEngine);
@@ -250,8 +251,9 @@ public class LanLinkProvider extends BaseLinkProvider {
 
                             Log.i("KDE/LanLinkProvider", "Connection successful: " + channel.isActive());
 
-                            // If remote device supports ssl, add ssl handler to channel
-                            if (identityPackage.getBoolean("sslSupported", false)) {
+                            // If I and remote device supports ssl, add ssl handler to channel
+                            if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(MainSettingsActivity.KEY_USE_SSL_PREFERENCE, true)
+                                && identityPackage.getBoolean("sslSupported", false)) {
                                 // add ssl handler with start tls true
                                 SSLEngine sslEngine = SslHelper.getSslEngine(context, identityPackage.getString("deviceId"), SslHelper.SslMode.Server);
                                 SslHandler sslHandler = new SslHandler(sslEngine, true);

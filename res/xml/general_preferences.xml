@@ -11,5 +11,11 @@
             android:dialogTitle="@string/device_name"
             android:singleLine="true" />
 
+        <CheckBoxPreference
+            android:key="use_ssl_preference"
+            android:title="@string/use_ssl"
+            android:defaultValue="true"
+            />
+
     </PreferenceCategory>
 </PreferenceScreen>

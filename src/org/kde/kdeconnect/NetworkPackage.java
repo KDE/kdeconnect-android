@@ -206,7 +206,7 @@ public class NetworkPackage {
                             DeviceHelper.getDeviceName()));
             np.mBody.put("protocolVersion", NetworkPackage.ProtocolVersion);
             np.mBody.put("deviceType", DeviceHelper.isTablet()? "tablet" : "phone");
-            np.mBody.put("sslSupported", true);
+            np.mBody.put("sslSupported", PreferenceManager.getDefaultSharedPreferences(context).getBoolean(MainSettingsActivity.KEY_USE_SSL_PREFERENCE, true));
         } catch (Exception e) {
             e.printStackTrace();
             Log.e("NetworkPacakge","Exception on createIdentityPackage");
