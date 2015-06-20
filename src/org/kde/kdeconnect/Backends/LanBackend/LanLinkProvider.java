@@ -149,6 +149,7 @@ public class LanLinkProvider extends BaseLinkProvider {
             }
 
             final NetworkPackage np = NetworkPackage.unserialize(theMessage);
+            Log.e("KDE/LanLinkProvider", theMessage);
 
             if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
 
@@ -159,7 +160,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
                 //Log.i("KDE/LanLinkProvider", "Identity package received from " + np.getString("deviceName"));
 
-                final LanLink link = new LanLink(ctx.channel(), np.getString("deviceId"), LanLinkProvider.this);
+                final LanLink link = new LanLink(context, ctx.channel(), np.getString("deviceId"), LanLinkProvider.this);
                 nioLinks.put(ctx.channel().hashCode(), link);
                 //Log.i("KDE/LanLinkProvider","nioLinks.size(): " + nioLinks.size());
 
@@ -258,7 +259,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                                 Log.e("KDE/LanLinkProvider", "Remote device supports ssl, ssl handler added");
                             }
 
-                            final LanLink link = new LanLink(channel, identityPackage.getString("deviceId"), LanLinkProvider.this);
+                            final LanLink link = new LanLink(context, channel, identityPackage.getString("deviceId"), LanLinkProvider.this);
                             new Thread(new Runnable() {
                                 @Override
                                 public void run() {

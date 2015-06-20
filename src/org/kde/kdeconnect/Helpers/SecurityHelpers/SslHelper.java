@@ -45,6 +45,7 @@ import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
 import java.util.Date;
 
+import javax.net.ssl.KeyManager;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLEngine;
@@ -121,13 +122,8 @@ public class SslHelper {
         }
     }
 
-    public static SSLEngine getSslEngine(final Context context, final String deviceId, SslMode sslMode) {
-
-        try{
-            // Check whether device is trusted or not
-            SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
-            final boolean isDeviceTrusted = preferences.getBoolean(deviceId, false);
-
+    public static SSLContext getSslContext(Context context, String deviceId, boolean isDeviceTrusted) {
+        try {
             // Get device private key
             PrivateKey privateKey = RsaHelper.getPrivateKey(context);
 
@@ -181,7 +177,23 @@ public class SslHelper {
             }else {
                 tlsContext.init(keyManagerFactory.getKeyManagers(), trustAllCerts, new SecureRandom());
             }
+            return tlsContext;
+        } catch (Exception e) {
+            Log.e("KDE/SslHelper", "Error creating tls context");
+            e.printStackTrace();
+        }
+        return null;
 
+    }
+
+    public static SSLEngine getSslEngine(final Context context, final String deviceId, SslMode sslMode) {
+
+        try{
+
+            SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
+            final boolean isDeviceTrusted = preferences.getBoolean(deviceId, false);
+
+            SSLContext tlsContext = getSslContext(context, deviceId, isDeviceTrusted);
             SSLEngine sslEngine = tlsContext.createSSLEngine();
 
             if (sslMode == SslMode.Client){

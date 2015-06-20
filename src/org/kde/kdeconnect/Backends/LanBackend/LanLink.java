@@ -20,6 +20,7 @@
 
 package org.kde.kdeconnect.Backends.LanBackend;
 
+import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONObject;
@@ -27,6 +28,7 @@ import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
+import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.NetworkPackage;
 
 import java.io.IOException;
@@ -37,9 +39,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.channels.NotYetConnectedException;
 import java.security.PublicKey;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeoutException;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLServerSocketFactory;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
@@ -61,8 +63,8 @@ public class LanLink extends BaseLink {
         this.onSsl = value;
     }
 
-    public LanLink(Channel channel, String deviceId, BaseLinkProvider linkProvider) {
-        super(deviceId, linkProvider);
+    public LanLink(Context context,Channel channel, String deviceId, BaseLinkProvider linkProvider) {
+        super(context,deviceId, linkProvider);
         this.channel = channel;
     }
 
@@ -79,7 +81,7 @@ public class LanLink extends BaseLink {
             //Prepare socket for the payload
             final ServerSocket server;
             if (np.hasPayload()) {
-                server = openTcpSocketOnFreePort();
+                server = openTcpSocketOnFreePort(context, deviceId, onSsl);
                 JSONObject payloadTransferInfo = new JSONObject();
                 payloadTransferInfo.put("port", server.getLocalPort());
                 np.setPayloadTransferInfo(payloadTransferInfo);
@@ -182,11 +184,19 @@ public class LanLink extends BaseLink {
 
             Socket socket = null;
             try {
-                socket = new Socket();
+                // Use ssl if existing link is on ssl
+                if (onSsl) {
+                    SSLContext sslContext = SslHelper.getSslContext(context, deviceId, true);
+                    socket = sslContext.getSocketFactory().createSocket();
+                } else {
+                    socket = new Socket();
+                }
+
                 int tcpPort = np.getPayloadTransferInfo().getInt("port");
                 InetSocketAddress address = (InetSocketAddress)channel.remoteAddress();
                 socket.connect(new InetSocketAddress(address.getAddress(), tcpPort));
                 np.setPayload(socket.getInputStream(), np.getPayloadSize());
+                Log.e("KDE/LanLink", "Has payload ");
             } catch (Exception e) {
                 try { socket.close(); } catch(Exception ignored) { }
                 e.printStackTrace();
@@ -198,8 +208,16 @@ public class LanLink extends BaseLink {
         packageReceived(np);
     }
 
+    static ServerSocket openTcpSocketOnFreePort(Context context, String deviceId, boolean onSsl) throws IOException {
+        if (onSsl) {
+            return openSecureServerSocket(context, deviceId);
+        } else {
+            return openUnsecureSocketOnFreePort();
+        }
+    }
 
-    static ServerSocket openTcpSocketOnFreePort() throws IOException {
+
+    static ServerSocket openUnsecureSocketOnFreePort() throws IOException {
         boolean success = false;
         int tcpPort = 1739;
         ServerSocket candidateServer = null;
@@ -214,6 +232,32 @@ public class LanLink extends BaseLink {
                 tcpPort++;
                 if (tcpPort >= 1764) {
                     Log.e("KDE/LanLink", "No more ports available");
+                    throw e;
+                }
+            }
+        }
+        return candidateServer;
+    }
+
+    static ServerSocket openSecureServerSocket(Context context, String deviceId) throws IOException{
+        boolean success = false;
+        int tcpPort = 1739;
+
+        SSLContext tlsContext = SslHelper.getSslContext(context, deviceId, true);
+        SSLServerSocketFactory sslServerSocketFactory = tlsContext.getServerSocketFactory();
+
+        ServerSocket candidateServer = null;
+        while(!success) {
+            try {
+                candidateServer = sslServerSocketFactory.createServerSocket();
+                candidateServer.bind(new InetSocketAddress(tcpPort));
+                success = true;
+                Log.i("LanLink", "Using port "+tcpPort);
+            } catch(IOException e) {
+                //Log.e("LanLink", "Exception opening serversocket: "+e);
+                tcpPort++;
+                if (tcpPort >= 1764) {
+                    Log.e("LanLink", "No more ports available");
                     throw e;
                 }
             }

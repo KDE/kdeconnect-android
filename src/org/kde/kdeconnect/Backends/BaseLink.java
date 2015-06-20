@@ -20,6 +20,8 @@
 
 package org.kde.kdeconnect.Backends;
 
+import android.content.Context;
+
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
 
@@ -30,12 +32,14 @@ import java.util.ArrayList;
 
 public abstract class BaseLink {
 
+    protected final Context context;
     private final BaseLinkProvider linkProvider;
-    private final String deviceId;
+    protected final String deviceId;
     private final ArrayList<PackageReceiver> receivers = new ArrayList<PackageReceiver>();
     protected PrivateKey privateKey;
 
-    protected BaseLink(String deviceId, BaseLinkProvider linkProvider) {
+    protected BaseLink(Context context,String deviceId, BaseLinkProvider linkProvider) {
+        this.context = context;
         this.linkProvider = linkProvider;
         this.deviceId = deviceId;
     }

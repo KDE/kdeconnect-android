@@ -20,6 +20,8 @@
 
 package org.kde.kdeconnect.Backends.LoopbackBackend;
 
+import android.content.Context;
+
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
@@ -30,8 +32,8 @@ import java.security.PublicKey;
 
 public class LoopbackLink extends BaseLink {
 
-    public LoopbackLink(BaseLinkProvider linkProvider) {
-        super("loopback", linkProvider);
+    public LoopbackLink(Context context, BaseLinkProvider linkProvider) {
+        super(context, "loopback", linkProvider);
     }
 
     @Override
