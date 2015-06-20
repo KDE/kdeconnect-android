@@ -26,6 +26,7 @@ import org.json.JSONObject;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.NetworkPackage;
 
 import java.io.IOException;
@@ -88,7 +89,7 @@ public class LanLink extends BaseLink {
 
             //Encrypt if key provided
             if (key != null) {
-                np = np.encrypt(key);
+                np = RsaHelper.encrypt(np, key);
             }
 
             //Send body of the network package
@@ -169,7 +170,7 @@ public class LanLink extends BaseLink {
         if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_ENCRYPTED)) {
 
             try {
-                np = np.decrypt(privateKey);
+                np = RsaHelper.decrypt(np, privateKey);
             } catch(Exception e) {
                 e.printStackTrace();
                 Log.e("KDE/onPackageReceived","Exception reading the key needed to decrypt the package");

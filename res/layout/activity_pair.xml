@@ -25,6 +25,39 @@
         android:layout_gravity="left|center_vertical"
     />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/secret_keys"
+        android:layout_gravity="center"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:id="@+id/my_device_key"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pairing_accept"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:id="@+id/remote_device_key"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pairing_reject"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/security_message"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/pair_button"
         android:layout_width="match_parent"

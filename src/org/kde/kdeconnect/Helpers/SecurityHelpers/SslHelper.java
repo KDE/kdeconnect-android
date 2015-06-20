@@ -62,6 +62,8 @@ public class SslHelper {
         Server
     }
 
+    public static X509Certificate certificate; //my device's certificate
+
     public static void initialiseCertificate(Context context){
         PrivateKey privateKey;
         PublicKey publicKey;
@@ -94,7 +96,7 @@ public class SslHelper {
                         publicKey
                 );
                 ContentSigner contentSigner = new JcaContentSignerBuilder("SHA256WithRSAEncryption").setProvider(BC).build(privateKey);
-                X509Certificate certificate = new JcaX509CertificateConverter().setProvider(BC).getCertificate(certificateBuilder.build(contentSigner));
+                certificate = new JcaX509CertificateConverter().setProvider(BC).getCertificate(certificateBuilder.build(contentSigner));
 
                 SharedPreferences.Editor edit = settings.edit();
                 edit.putString("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
@@ -106,6 +108,16 @@ public class SslHelper {
                 return;
             }
 
+        } else {
+            try {
+                SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(context);
+                byte[] certificateBytes = Base64.decode(globalSettings.getString("certificate", ""), 0);
+                X509CertificateHolder certificateHolder = new X509CertificateHolder(certificateBytes);
+                certificate = new JcaX509CertificateConverter().setProvider(new BouncyCastleProvider()).getCertificate(certificateHolder);
+            } catch (Exception e) {
+                Log.e("KDE/SslHelper", "Exception reading own certificate");
+                e.printStackTrace();
+            }
         }
     }
 
@@ -119,12 +131,6 @@ public class SslHelper {
             // Get device private key
             PrivateKey privateKey = RsaHelper.getPrivateKey(context);
 
-            // Get my certificate
-            SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(context);
-            byte[] myCertificateBytes = Base64.decode(globalSettings.getString("certificate", ""), 0);
-            X509CertificateHolder myCertificateHolder = new X509CertificateHolder(myCertificateBytes);
-            X509Certificate myCertificate = new JcaX509CertificateConverter().setProvider(new BouncyCastleProvider()).getCertificate(myCertificateHolder);
-
             // Get remote device certificate if trusted
             java.security.cert.Certificate remoteDeviceCertificate = null;
             if (isDeviceTrusted){
@@ -137,7 +143,7 @@ public class SslHelper {
             // Setup keystore
             KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
             keyStore.load(null, null);
-            keyStore.setKeyEntry("key", privateKey, "".toCharArray(), new java.security.cert.Certificate[]{myCertificate});;
+            keyStore.setKeyEntry("key", privateKey, "".toCharArray(), new java.security.cert.Certificate[]{certificate});;
             // Set certificate if device trusted
             if (remoteDeviceCertificate != null){
                 keyStore.setCertificateEntry("remoteCertificate", remoteDeviceCertificate);

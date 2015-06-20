@@ -40,7 +40,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.net.ssl.SSLEngine;
-import javax.security.auth.login.LoginException;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.bootstrap.ServerBootstrap;
@@ -48,13 +47,11 @@ import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.SimpleChannelInboundHandler;
-import io.netty.channel.nio.NioEventLoop;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.DatagramPacket;
 import io.netty.channel.socket.nio.NioDatagramChannel;
@@ -86,8 +83,8 @@ public class LanLinkProvider extends BaseLinkProvider {
     private class TcpHandler extends SimpleChannelInboundHandler{
         @Override
         public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-            super.exceptionCaught(ctx, cause);
             cause.printStackTrace();
+            // TODO : Add necessary action on ssl handshake failure
         }
 
         @Override
@@ -181,8 +178,8 @@ public class LanLinkProvider extends BaseLinkProvider {
                                 if (future.isSuccess()) {
                                     Certificate certificate = sslEngine.getSession().getPeerCertificates()[0];
                                     np.set("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
+                                    link.setOnSsl(true);
                                 }
-                                link.setOnSsl(true);
                                 addLink(np, link);
                             }
                         });
@@ -191,7 +188,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    addLink(np, link);
+                    addLink(np, link); // If error in ssl engine, which is returning null in some cases
                 }
 
             } else {
@@ -285,11 +282,11 @@ public class LanLinkProvider extends BaseLinkProvider {
                                                             try {
                                                                 Certificate certificate = sslHandler.engine().getSession().getPeerCertificates()[0];
                                                                 identityPackage.set("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
+                                                                link.setOnSsl(true);
                                                             } catch (Exception e){
                                                                 e.printStackTrace();
                                                             }
                                                         }
-                                                        link.setOnSsl(true);
                                                         addLink(identityPackage, link);
                                                     }
                                                 });
@@ -447,13 +444,6 @@ public class LanLinkProvider extends BaseLinkProvider {
     @Override
     public void onNetworkChange() {
         Log.e("KDE/LanLinkProvider","onNetworkChange");
-
-        //FilesHelper.LogOpenFileCount();
-
-        //Keep existing connections open while unbinding the socket
-//        tcpAcceptor.setCloseOnDeactivation(false);
-//        onStop();
-//        tcpAcceptor.setCloseOnDeactivation(true);
 
         //FilesHelper.LogOpenFileCount();
 

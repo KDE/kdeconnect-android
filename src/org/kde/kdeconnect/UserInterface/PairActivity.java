@@ -25,13 +25,20 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect_tp.R;
+
+import java.security.MessageDigest;
+import java.util.Formatter;
 
 public class PairActivity extends ActionBarActivity {
 
@@ -48,6 +55,7 @@ public class PairActivity extends ActionBarActivity {
                     ((TextView) findViewById(R.id.pair_message)).setText(R.string.pair_requested);
                     findViewById(R.id.pair_progress).setVisibility(View.GONE);
                     findViewById(R.id.pair_button).setVisibility(View.GONE);
+                    findViewById(R.id.secret_keys).setVisibility(View.VISIBLE);
                     findViewById(R.id.pair_request).setVisibility(View.VISIBLE);
                 }
             });
@@ -67,6 +75,7 @@ public class PairActivity extends ActionBarActivity {
                 public void run() {
                     ((TextView) findViewById(R.id.pair_message)).setText(error);
                     findViewById(R.id.pair_progress).setVisibility(View.GONE);
+                    findViewById(R.id.secret_keys).setVisibility(View.VISIBLE);
                     findViewById(R.id.pair_button).setVisibility(View.VISIBLE);
                     findViewById(R.id.pair_request).setVisibility(View.GONE);
                 }
@@ -104,12 +113,39 @@ public class PairActivity extends ActionBarActivity {
 
         });
 
+        // Show secret keys based on certificate if device are connected using ssl
+        BackgroundService.RunCommand(PairActivity.this, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                device = service.getDevice(deviceId);
+                if (device == null) {
+                    Log.e("KDE/PairActivity", "Device is null");
+                    return;
+                }
+
+                if (device.certificate == null) {
+                    Log.e("KDE/PairActivity", "Device certificate is null");
+                    return;
+                }
+
+                try {
+                    ((TextView) findViewById(R.id.remote_device_key)).setText(getApplicationContext().getResources().getString(R.string.remote_device_key) + byteArray2Hex(MessageDigest.getInstance("SHA-1").digest(device.certificate.getEncoded())).toUpperCase());
+                    ((TextView) findViewById(R.id.my_device_key)).setText(getApplicationContext().getResources().getString(R.string.my_device_key) + byteArray2Hex(MessageDigest.getInstance("SHA-1").digest(SslHelper.certificate.getEncoded())).toUpperCase());
+                    findViewById(R.id.secret_keys).setVisibility(View.VISIBLE);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+
         final Button pairButton = (Button)findViewById(R.id.pair_button);
         pairButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 pairButton.setVisibility(View.GONE);
                 ((TextView) findViewById(R.id.pair_message)).setText("");
+                findViewById(R.id.secret_keys).setVisibility(View.GONE);
                 findViewById(R.id.pair_progress).setVisibility(View.VISIBLE);
                 BackgroundService.RunCommand(PairActivity.this, new BackgroundService.InstanceCallback() {
                     @Override
@@ -171,6 +207,15 @@ public class PairActivity extends ActionBarActivity {
     protected void onStop() {
         if (device != null) device.removePairingCallback(pairingCallback);
         super.onStop();
+    }
+
+    private static String byteArray2Hex(final byte[] hash) {
+        Formatter formatter = new Formatter();
+        // Using first 4 bytes out of 20, is this secure ?
+        for (int i=0 ; i<4 ; i++) {
+            formatter.format("%02x", hash[i]);
+        }
+        return formatter.toString();
     }
 
 }

@@ -193,56 +193,6 @@ public class NetworkPackage {
         return np;
     }
 
-    public NetworkPackage encrypt(PublicKey publicKey) throws GeneralSecurityException {
-
-        String serialized = serialize();
-
-        int chunkSize = 128;
-
-        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1PADDING");
-        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
-
-        JSONArray chunks = new JSONArray();
-        while (serialized.length() > 0) {
-            if (serialized.length() < chunkSize) {
-                chunkSize = serialized.length();
-            }
-            String chunk = serialized.substring(0, chunkSize);
-            serialized = serialized.substring(chunkSize);
-            byte[] chunkBytes = chunk.getBytes(Charset.defaultCharset());
-            byte[] encryptedChunk;
-            encryptedChunk = cipher.doFinal(chunkBytes);
-            chunks.put(Base64.encodeToString(encryptedChunk, Base64.NO_WRAP));
-        }
-
-        //Log.i("NetworkPackage", "Encrypted " + chunks.length()+" chunks");
-
-        NetworkPackage encrypted = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_ENCRYPTED);
-        encrypted.set("data", chunks);
-        encrypted.setPayload(mPayload, mPayloadSize);
-        return encrypted;
-
-    }
-
-    public NetworkPackage decrypt(PrivateKey privateKey)  throws GeneralSecurityException, JSONException {
-
-        JSONArray chunks = mBody.getJSONArray("data");
-
-        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1PADDING");
-        cipher.init(Cipher.DECRYPT_MODE, privateKey);
-
-        String decryptedJson = "";
-        for (int i = 0; i < chunks.length(); i++) {
-            byte[] encryptedChunk = Base64.decode(chunks.getString(i), Base64.NO_WRAP);
-            String decryptedChunk = new String(cipher.doFinal(encryptedChunk));
-            decryptedJson += decryptedChunk;
-        }
-
-        NetworkPackage decrypted = unserialize(decryptedJson);
-        decrypted.setPayload(mPayload, mPayloadSize);
-        return decrypted;
-    }
-
     static public NetworkPackage createIdentityPackage(Context context) {
 
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_IDENTITY);

@@ -23,6 +23,7 @@ package org.kde.kdeconnect.Backends.LoopbackBackend;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.NetworkPackage;
 
 import java.security.PublicKey;
@@ -42,12 +43,12 @@ public class LoopbackLink extends BaseLink {
     public void sendPackageEncrypted(NetworkPackage in, Device.SendPackageStatusCallback callback, PublicKey key) {
         try {
             if (key != null) {
-                in = in.encrypt(key);
+                in = RsaHelper.encrypt(in, key);
             }
             String s = in.serialize();
             NetworkPackage out= NetworkPackage.unserialize(s);
             if (key != null) {
-                out = out.decrypt(privateKey);
+                out = RsaHelper.decrypt(out, privateKey);
             }
             packageReceived(out);
             if (in.hasPayload()) {
