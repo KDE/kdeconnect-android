@@ -1,13 +1,17 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="pref_plugin_mpris">Controis multimedia</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Enviar e recibir pings.</string>
   <string name="pref_plugin_notifications">Sincronización de notificacións</string>
+  <string name="pref_plugin_sharereceiver">Compartir e recibir</string>
   <string name="device_list_empty">Non hai dispositivos.</string>
   <string name="ok">Aceptar</string>
   <string name="cancel">Cancelar</string>
   <string name="open_settings">Abrir a configuración</string>
   <string name="send_ping">Enviar un ping</string>
+  <string name="open_mpris_controls">Control multimedia</string>
+  <string name="open_mousepad">Entrada remota</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic dereito</item>
     <item>Clic central</item>
