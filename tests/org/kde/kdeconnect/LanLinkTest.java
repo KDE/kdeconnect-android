@@ -23,8 +23,6 @@ package org.kde.kdeconnect;
 import android.test.AndroidTestCase;
 import android.util.Log;
 
-import org.apache.mina.core.future.WriteFuture;
-import org.apache.mina.core.session.IoSession;
 import org.json.JSONObject;
 import org.kde.kdeconnect.Backends.LanBackend.LanLink;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
@@ -34,17 +32,21 @@ import org.mockito.stubbing.Answer;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
+
 public class LanLinkTest extends AndroidTestCase {
 
     LanLink lanLink;
-    IoSession session;
+    Channel channel;
     Device.SendPackageStatusCallback callback;
 
-    WriteFuture writeFutureSuccess, writeFutureFailure;
+    ChannelFuture channelFutureSuccess, channelFutureFailure;
 
     @Override
     protected void setUp() throws Exception {
@@ -55,9 +57,10 @@ public class LanLinkTest extends AndroidTestCase {
         LanLinkProvider linkProvider = Mockito.mock(LanLinkProvider.class);
         Mockito.when(linkProvider.getName()).thenReturn("LanLinkProvider");
 
-        session = Mockito.mock(IoSession.class);
-        Mockito.when(session.getId()).thenReturn(12345l);
-        Mockito.when(session.getRemoteAddress()).thenReturn(new InetSocketAddress(5000));
+        channel = Mockito.mock(Channel.class);
+//        Mockito.when(channel.hashCode()).thenReturn(12345);
+        Mockito.when(channel.remoteAddress()).thenReturn(new InetSocketAddress(5000));
+//        Mockito.doReturn(new InetSocketAddress(5000)).when(channel).remoteAddress();
 
         callback = Mockito.mock(Device.SendPackageStatusCallback.class);
         Mockito.doNothing().when(callback).sendSuccess();
@@ -69,18 +72,20 @@ public class LanLinkTest extends AndroidTestCase {
             }
         }).when(callback).sendFailure(Mockito.any(Throwable.class));
 
-        writeFutureSuccess = Mockito.mock(WriteFuture.class);
-        Mockito.when(writeFutureSuccess.isWritten()).thenReturn(true);
-        Mockito.when(writeFutureSuccess.getSession()).thenReturn(session);
-        Mockito.when(writeFutureSuccess.isDone()).thenReturn(true);
+        channelFutureSuccess = Mockito.mock(ChannelFuture.class);
+        Mockito.when(channelFutureSuccess.isDone()).thenReturn(true);
+        Mockito.when(channelFutureSuccess.isSuccess()).thenReturn(true);
+        Mockito.when(channelFutureSuccess.channel()).thenReturn(channel);
+        Mockito.when(channelFutureSuccess.sync()).thenReturn(channelFutureSuccess);
 
-        writeFutureFailure = Mockito.mock(WriteFuture.class);
-        Mockito.when(writeFutureFailure.isWritten()).thenReturn(false);
-        Mockito.when(writeFutureFailure.getSession()).thenReturn(session);
-        Mockito.when(writeFutureFailure.isDone()).thenReturn(true);
-        Mockito.when(writeFutureFailure.getException()).thenReturn(new RuntimeException());
+        channelFutureFailure = Mockito.mock(ChannelFuture.class);
+        Mockito.when(channelFutureFailure.isDone()).thenReturn(true);
+        Mockito.when(channelFutureFailure.isSuccess()).thenReturn(false);
+        Mockito.when(channelFutureFailure.cause()).thenReturn(new IOException("Cannot send package"));
+        Mockito.when(channelFutureFailure.channel()).thenReturn(channel);
+        Mockito.when(channelFutureFailure.sync()).thenReturn(channelFutureFailure);
 
-        lanLink = new LanLink(session, "testDevice", linkProvider);
+        lanLink = new LanLink(getContext(), channel, "testDevice", linkProvider);
     }
 
     @Override
@@ -96,8 +101,15 @@ public class LanLinkTest extends AndroidTestCase {
         Mockito.when(testPackage.getString("testName")).thenReturn("testSendPackageSuccess");
         Mockito.when(testPackage.serialize()).thenReturn("{\"id\":123,\"type\":\"kdeconnect.test\",\"body\":{\"isTesting\":true,\"testName\":\"testSendPackageSuccess\"}}");
 
-        Mockito.when(session.write(testPackage.serialize())).thenReturn(writeFutureSuccess);
-        lanLink.sendPackage(testPackage, callback);
+        try {
+            Mockito.when(channel.writeAndFlush(testPackage.serialize())).thenReturn(channelFutureSuccess);
+            lanLink.sendPackage(testPackage, callback);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        assertEquals(channelFutureSuccess.isDone(), true);
+        assertEquals(channelFutureSuccess.isSuccess(), true);
     }
 
     public void testSendPackageFail(){
@@ -108,17 +120,16 @@ public class LanLinkTest extends AndroidTestCase {
         Mockito.when(testPackage.getString("testName")).thenReturn("testSendPackageFail");
         Mockito.when(testPackage.serialize()).thenReturn("{\"id\":123,\"type\":\"kdeconnect.test\",\"body\":{\"isTesting\":true,\"testName\":\"testSendPackageFail\"}}");
 
-        Mockito.when(session.write(testPackage.serialize())).thenReturn(writeFutureFailure);
         try {
+            Mockito.when(channel.writeAndFlush(testPackage.serialize())).thenReturn(channelFutureFailure);
             lanLink.sendPackage(testPackage, callback);
-        }catch (RuntimeException r){
-            // Do nothing, test is fine, callback should throw this exception
-        }catch (Exception e){
-            // This should not happen
-            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-
+        assertEquals(channelFutureFailure.isDone(), true);
+        assertEquals(channelFutureFailure.isSuccess(), false);
+        assertEquals(channelFutureFailure.cause() instanceof IOException, true );
     }
 
 
@@ -145,7 +156,7 @@ public class LanLinkTest extends AndroidTestCase {
                     try {
                         socket = new Socket();
                         int tcpPort = np.getPayloadTransferInfo().getInt("port");
-                        InetSocketAddress address = (InetSocketAddress)session.getRemoteAddress();
+                        InetSocketAddress address = (InetSocketAddress)channel.remoteAddress();
                         socket.connect(new InetSocketAddress(address.getAddress(), tcpPort));
                         np.setPayload(socket.getInputStream(), np.getPayloadSize());
                     } catch (Exception e) {
@@ -246,9 +257,9 @@ public class LanLinkTest extends AndroidTestCase {
                 downloader.setNetworkPackage(np);
                 downloader.start();
 
-                return writeFutureSuccess;
+                return channelFutureSuccess;
             }
-        }).when(session).write(Mockito.anyString());
+        }).when(channel).writeAndFlush(Mockito.anyString());
 
         lanLink.sendPackage(sharePackage, callback);
 

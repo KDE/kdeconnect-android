@@ -26,7 +26,6 @@ import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 
-import org.apache.mina.filter.ssl.SslFilter;
 import org.bouncycastle.asn1.x500.X500NameBuilder;
 import org.bouncycastle.asn1.x500.style.BCStyle;
 import org.bouncycastle.cert.X509CertificateHolder;
@@ -45,16 +44,12 @@ import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
 import java.util.Date;
 
-import javax.net.ssl.KeyManager;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLEngine;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
-
-import io.netty.handler.ssl.SslContext;
-
 
 public class SslHelper {
 
@@ -208,72 +203,6 @@ public class SslHelper {
             }
 
             return sslEngine;
-        }catch (Exception e){
-            e.printStackTrace();
-            Log.e("SslHelper", "Error creating ssl filter");
-        }
-        return null;
-    }
-
-    // TODO : Remove this method, and use the above one, since it trusts all certificates
-    public static SslFilter getTrustAllCertsFilter(Context context, SslMode sslMode){
-        try{
-
-            // Get device private key
-            PrivateKey privateKey = RsaHelper.getPrivateKey(context);
-
-            // Get my certificate
-            SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(context);
-            byte[] myCertificateBytes = Base64.decode(globalSettings.getString("certificate", ""), 0);
-            X509CertificateHolder myCertificateHolder = new X509CertificateHolder(myCertificateBytes);
-            X509Certificate myCertificate = new JcaX509CertificateConverter().setProvider(new BouncyCastleProvider()).getCertificate(myCertificateHolder);
-
-
-            // Setup keystore
-            KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
-            keyStore.load(null, null);
-            keyStore.setKeyEntry("key", privateKey, "".toCharArray(), new java.security.cert.Certificate[]{myCertificate});;
-
-            // Setup key manager factory
-            KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
-            keyManagerFactory.init(keyStore, "".toCharArray());
-
-
-            // Setup default trust manager
-            TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
-            trustManagerFactory.init(keyStore);
-
-            // Setup custom trust manager if device not trusted
-            TrustManager[] trustAllCerts = new TrustManager[] {new X509TrustManager() {
-                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                    return new X509Certificate[0];
-                }
-
-                @Override
-                public void checkClientTrusted(X509Certificate[] certs, String authType) {
-                }
-
-                @Override
-                public void checkServerTrusted(X509Certificate[] certs, String authType) {
-                }
-
-            }
-            };
-
-            // TODO : if device trusted, set need client auth
-
-            SSLContext tlsContext = SSLContext.getInstance("TLS");
-            tlsContext.init(keyManagerFactory.getKeyManagers(), trustAllCerts, new SecureRandom());
-            SslFilter filter = new SslFilter(tlsContext,true);
-
-            if (sslMode == SslMode.Client){
-                filter.setUseClientMode(true);
-            }else{
-                filter.setUseClientMode(false);
-                filter.setWantClientAuth(true);
-            }
-
-            return filter;
         }catch (Exception e){
             e.printStackTrace();
             Log.e("SslHelper", "Error creating ssl filter");

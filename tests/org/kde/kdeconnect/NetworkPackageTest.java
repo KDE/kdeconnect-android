@@ -23,6 +23,8 @@ package org.kde.kdeconnect;
 import android.test.AndroidTestCase;
 import android.util.Log;
 
+import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
+
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
@@ -106,10 +108,10 @@ public class NetworkPackageTest extends AndroidTestCase{
         // Encrypt and decrypt np
         assertEquals(original.getType(), "com.test");
         try {
-            NetworkPackage encrypted = original.encrypt(publicKey);
+            NetworkPackage encrypted = RsaHelper.encrypt(original,publicKey);
             assertEquals(encrypted.getType(), NetworkPackage.PACKAGE_TYPE_ENCRYPTED);
 
-            decrypted = encrypted.decrypt(privateKey);
+            decrypted = RsaHelper.decrypt(encrypted, privateKey);
             assertEquals(decrypted.getType(), "com.test");
 
         }catch (Exception e){
@@ -124,8 +126,8 @@ public class NetworkPackageTest extends AndroidTestCase{
         String json = "{\"body\":{\"nowPlaying\":\"A really long song name - A really long artist name\",\"player\":\"A really long player name\",\"the_meaning_of_life_the_universe_and_everything\":\"42\"},\"id\":\"A really long package id\",\"payloadSize\":0,\"payloadTransferInfo\":{},\"type\":\"kdeconnect.a_really_really_long_package_type\"}\n";
         NetworkPackage longJsonNp = NetworkPackage.unserialize(json);
         try {
-            NetworkPackage encrypted = longJsonNp.encrypt(publicKey);
-            decrypted = encrypted.decrypt(privateKey);
+            NetworkPackage encrypted = RsaHelper.encrypt(longJsonNp, publicKey);
+            decrypted = RsaHelper.decrypt(encrypted, privateKey);
 
             String decryptedJson = decrypted.serialize();
             assertEquals(json, decryptedJson);

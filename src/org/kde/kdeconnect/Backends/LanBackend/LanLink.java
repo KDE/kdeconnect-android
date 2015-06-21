@@ -196,7 +196,6 @@ public class LanLink extends BaseLink {
                 InetSocketAddress address = (InetSocketAddress)channel.remoteAddress();
                 socket.connect(new InetSocketAddress(address.getAddress(), tcpPort));
                 np.setPayload(socket.getInputStream(), np.getPayloadSize());
-                Log.e("KDE/LanLink", "Has payload ");
             } catch (Exception e) {
                 try { socket.close(); } catch(Exception ignored) { }
                 e.printStackTrace();
@@ -208,8 +207,8 @@ public class LanLink extends BaseLink {
         packageReceived(np);
     }
 
-    static ServerSocket openTcpSocketOnFreePort(Context context, String deviceId, boolean onSsl) throws IOException {
-        if (onSsl) {
+    static ServerSocket openTcpSocketOnFreePort(Context context, String deviceId, boolean useSsl) throws IOException {
+        if (useSsl) {
             return openSecureServerSocket(context, deviceId);
         } else {
             return openUnsecureSocketOnFreePort();

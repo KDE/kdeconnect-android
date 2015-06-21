@@ -25,11 +25,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.kde.kdeconnect.BackgroundService;
@@ -145,7 +143,6 @@ public class PairActivity extends ActionBarActivity {
             public void onClick(View view) {
                 pairButton.setVisibility(View.GONE);
                 ((TextView) findViewById(R.id.pair_message)).setText("");
-                findViewById(R.id.secret_keys).setVisibility(View.GONE);
                 findViewById(R.id.pair_progress).setVisibility(View.VISIBLE);
                 BackgroundService.RunCommand(PairActivity.this, new BackgroundService.InstanceCallback() {
                     @Override

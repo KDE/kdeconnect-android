@@ -28,7 +28,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
@@ -305,17 +304,19 @@ public class Device implements BaseLink.PackageReceiver {
         preferences.edit().putBoolean(deviceId,true).apply();
 
         //Store device information needed to create a Device object in a future
+        SharedPreferences.Editor editor = settings.edit();
         try {
-            SharedPreferences.Editor editor = settings.edit();
             editor.putString("deviceName", getName());
             editor.putString("deviceType", deviceType.toString());
             String encodedPublicKey = Base64.encodeToString(publicKey.getEncoded(), 0);
             editor.putString("publicKey", encodedPublicKey);
             String encodedCertificate = Base64.encodeToString(certificate.getEncoded(), 0);
             editor.putString("certificate", encodedCertificate);
-            editor.apply();
         } catch (Exception e){
+            Log.e("KDE/Device", "Exception pairing done");
             e.printStackTrace();
+        } finally {
+            editor.apply();
         }
 
         reloadPluginsFromSettings();

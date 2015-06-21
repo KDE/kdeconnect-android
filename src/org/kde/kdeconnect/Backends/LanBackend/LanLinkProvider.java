@@ -85,17 +85,12 @@ public class LanLinkProvider extends BaseLinkProvider {
         @Override
         public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
             cause.printStackTrace();
-            // TODO : Add necessary action on ssl handshake failure
-        }
-
-        @Override
-        public void channelActive(ChannelHandlerContext ctx) throws Exception {
-            Log.e("KDE/LanLinkProvider", "Channel Active : " + ctx.channel().hashCode());
+            // If certificate changed, getting SocketException, connection reset by peer
+            // Ssl engines closes by itself, so do channel and link is removed
         }
 
         @Override
         public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-            Log.e("KDE/LanLinkProvider", "Channel In active :" + ctx.channel().hashCode());
             try {
                 long id = ctx.channel().hashCode();
                 final LanLink brokenLink = nioLinks.get(id);
@@ -131,9 +126,9 @@ public class LanLinkProvider extends BaseLinkProvider {
                     }).start();
 
                 }
-            } catch (Exception e) { //If we don't catch it here, Mina will swallow it :/
+            } catch (Exception e) {
                 e.printStackTrace();
-                Log.e("KDE/LanLinkProvider", "sessionClosed exception");
+                Log.e("KDE/LanLinkProvider", "channelInactive exception");
             }
         }
 
@@ -150,7 +145,6 @@ public class LanLinkProvider extends BaseLinkProvider {
             }
 
             final NetworkPackage np = NetworkPackage.unserialize(theMessage);
-            Log.e("KDE/LanLinkProvider", theMessage);
 
             if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
 
@@ -165,8 +159,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                 nioLinks.put(ctx.channel().hashCode(), link);
                 //Log.i("KDE/LanLinkProvider","nioLinks.size(): " + nioLinks.size());
 
-                // Check if ssl supported, and add ssl handler
-                // Sslengine is returning null in some cases
+                // Check if ssl supported on other device and enabled on my device, and add ssl handler
                 try {
                     if (myIdentityPackage.getBoolean("sslSupported") && np.getBoolean("sslSupported", false)) {
                         Log.e("KDE/LanLinkProvider", "Remote device " + np.getString("deviceName") + " supports ssl");
@@ -190,7 +183,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    addLink(np, link); // If error in ssl engine, which is returning null in some cases
+                    addLink(np, link); // If exception getting ssl engine
                 }
 
             } else {
@@ -211,7 +204,6 @@ public class LanLinkProvider extends BaseLinkProvider {
         protected void channelRead0(final ChannelHandlerContext ctx, DatagramPacket packet) throws Exception {
             try {
                 String theMessage = packet.content().toString(CharsetUtil.UTF_8);
-                Log.e("KDE/LanLinkProvider", "Udp message received : " + theMessage);
 
                 final NetworkPackage identityPackage = NetworkPackage.unserialize(theMessage);
 
@@ -221,7 +213,6 @@ public class LanLinkProvider extends BaseLinkProvider {
                 } else {
                     String myId = NetworkPackage.createIdentityPackage(context).getString("deviceId");
                     if (identityPackage.getString("deviceId").equals(myId)) {
-                        Log.e("KDE/LanLinkProvider", "Oh, its my identity package");
                         return;
                     }
                 }
