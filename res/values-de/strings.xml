@@ -9,6 +9,7 @@
   <string name="pref_plugin_clipboard">Abgleich der Zwischenablage</string>
   <string name="pref_plugin_clipboard_desc">Inhalt der Zwischenablage freigeben</string>
   <string name="pref_plugin_mousepad_desc">Verwendet Ihr Handy als Maus und Tastatur</string>
+  <string name="pref_plugin_mpris">Multimedia-Bedienung</string>
   <string name="pref_plugin_mpris_desc">Audio und Video mit Ihrem Telefon steuern</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Senden und Empfangen von Pings</string>
@@ -21,6 +22,7 @@
   <string name="open_settings">Einstellungen öffnen</string>
   <string name="no_permissions">Sie müssen die Erlaubnis zum Zugriff auf Benachrichtigungen erteilen</string>
   <string name="send_ping">Ping senden</string>
+  <string name="open_mpris_controls">Multimedia-Bedienung</string>
   <string-array name="mousepad_tap_entries">
     <item>Rechtsklick</item>
     <item>Mittelklick</item>
@@ -52,6 +54,7 @@
   <string name="outgoing_file_title">Datei wird an %1s gesendet</string>
   <string name="outgoing_file_text">%1s</string>
   <string name="received_file_title">Datei von %1s erhalten</string>
+  <string name="received_file_fail_title">Der Empfang der Datei %1s ist fehlgeschlagen</string>
   <string name="sent_file_title">Datei an %1s gesendet</string>
   <string name="sent_file_text">%1s</string>
   <string name="sent_file_failed_title">Das Senden der Datei an %1s ist fehlgeschlagen</string>
