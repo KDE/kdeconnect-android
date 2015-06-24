@@ -61,9 +61,10 @@
     <string name="error_canceled_by_user">Canceled by user</string>
     <string name="error_canceled_by_other_peer">Canceled by other peer</string>
     <string name="error_invalid_key">Invalid key received</string>
+    <string name="encryption_info_title">Encryption Info</string>
+    <string name="encryption_info_msg_no_ssl">The other device doesn\'t use a recent version of KDE Connect, using the legacy encryption method.</string>
     <string name="my_device_key">My device key : </string>
     <string name="remote_device_key">Remote device key : </string>
-    <string name="security_message">Be sure to match these keys before pairing for security purposes</string>
     <string name="pair_requested">Pair requested</string>
     <string name="pairing_request_from">Pairing request from %1s</string>
     <string name="received_url_title">Received link from %1s</string>

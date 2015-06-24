@@ -38,11 +38,13 @@ import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
 
 import java.math.BigInteger;
 import java.security.KeyStore;
+import java.security.MessageDigest;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
 import java.util.Date;
+import java.util.Formatter;
 
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
@@ -209,4 +211,20 @@ public class SslHelper {
         }
         return null;
     }
+
+    public static String getCertificateHash(X509Certificate certificate) {
+        try {
+            byte[] hash = MessageDigest.getInstance("SHA-1").digest(certificate.getEncoded());
+            Formatter formatter = new Formatter();
+            // Using first 4 bytes out of 20, is this secure ?
+            for (int i = 0; i < 4; i++) {
+                formatter.format("%02x", hash[i]);
+            }
+            return formatter.toString().toUpperCase();
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
 }

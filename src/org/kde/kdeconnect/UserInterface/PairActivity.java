@@ -20,12 +20,15 @@
 
 package org.kde.kdeconnect.UserInterface;
 
+import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -34,9 +37,6 @@ import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect_tp.R;
-
-import java.security.MessageDigest;
-import java.util.Formatter;
 
 public class PairActivity extends ActionBarActivity {
 
@@ -53,7 +53,6 @@ public class PairActivity extends ActionBarActivity {
                     ((TextView) findViewById(R.id.pair_message)).setText(R.string.pair_requested);
                     findViewById(R.id.pair_progress).setVisibility(View.GONE);
                     findViewById(R.id.pair_button).setVisibility(View.GONE);
-                    findViewById(R.id.secret_keys).setVisibility(View.VISIBLE);
                     findViewById(R.id.pair_request).setVisibility(View.VISIBLE);
                 }
             });
@@ -73,7 +72,6 @@ public class PairActivity extends ActionBarActivity {
                 public void run() {
                     ((TextView) findViewById(R.id.pair_message)).setText(error);
                     findViewById(R.id.pair_progress).setVisibility(View.GONE);
-                    findViewById(R.id.secret_keys).setVisibility(View.VISIBLE);
                     findViewById(R.id.pair_button).setVisibility(View.VISIBLE);
                     findViewById(R.id.pair_request).setVisibility(View.GONE);
                 }
@@ -109,32 +107,6 @@ public class PairActivity extends ActionBarActivity {
                 notificationManager.cancel(device.getNotificationId());
             }
 
-        });
-
-        // Show secret keys based on certificate if device are connected using ssl
-        BackgroundService.RunCommand(PairActivity.this, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                device = service.getDevice(deviceId);
-                if (device == null) {
-                    Log.e("KDE/PairActivity", "Device is null");
-                    return;
-                }
-
-                if (device.certificate == null) {
-                    Log.e("KDE/PairActivity", "Device certificate is null");
-                    return;
-                }
-
-                try {
-                    ((TextView) findViewById(R.id.remote_device_key)).setText(getApplicationContext().getResources().getString(R.string.remote_device_key) + byteArray2Hex(MessageDigest.getInstance("SHA-1").digest(device.certificate.getEncoded())).toUpperCase());
-                    ((TextView) findViewById(R.id.my_device_key)).setText(getApplicationContext().getResources().getString(R.string.my_device_key) + byteArray2Hex(MessageDigest.getInstance("SHA-1").digest(SslHelper.certificate.getEncoded())).toUpperCase());
-                    findViewById(R.id.secret_keys).setVisibility(View.VISIBLE);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
         });
 
         final Button pairButton = (Button)findViewById(R.id.pair_button);
@@ -206,13 +178,32 @@ public class PairActivity extends ActionBarActivity {
         super.onStop();
     }
 
-    private static String byteArray2Hex(final byte[] hash) {
-        Formatter formatter = new Formatter();
-        // Using first 4 bytes out of 20, is this secure ?
-        for (int i=0 ; i<4 ; i++) {
-            formatter.format("%02x", hash[i]);
-        }
-        return formatter.toString();
-    }
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menu.clear();
+        menu.add(R.string.encryption_info_title).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                Context context = PairActivity.this;
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle(context.getResources().getString(R.string.encryption_info_title));
+                builder.setPositiveButton(context.getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
 
+                if (device.certificate == null) {
+                    builder.setMessage(R.string.encryption_info_msg_no_ssl);
+                } else {
+                    builder.setMessage(context.getResources().getString(R.string.my_device_key) + " " + SslHelper.getCertificateHash(device.certificate) + "\n"
+                            + context.getResources().getString(R.string.remote_device_key) + " " + SslHelper.getCertificateHash(SslHelper.certificate));
+                }
+                builder.create().show();
+                return true;
+            }
+        });
+        return true;
+    }
 }

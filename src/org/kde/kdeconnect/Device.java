@@ -39,6 +39,7 @@ import org.bouncycastle.cert.X509CertificateHolder;
 import org.bouncycastle.cert.jcajce.JcaX509CertificateConverter;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.kde.kdeconnect.Backends.BaseLink;
+import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.PairActivity;
@@ -175,6 +176,10 @@ public class Device implements BaseLink.PackageReceiver {
         return deviceId;
     }
 
+    public Context getContext() {
+        return context;
+    }
+
     //Returns 0 if the version matches, < 0 if it is older or > 0 if it is newer
     public int compareProtocolVersion() {
         return protocolVersion - NetworkPackage.ProtocolVersion;
@@ -236,9 +241,14 @@ public class Device implements BaseLink.PackageReceiver {
             return;
         }
 
-        //Send our own public key
-        NetworkPackage np = NetworkPackage.createPublicKeyPackage(context);
-        sendPackage(np, new SendPackageStatusCallback(){
+        // Each link can set whatever they want in pair package
+        NetworkPackage pairPackage = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
+        for (BaseLinkProvider linkProvider : ((BackgroundService)context).getLinkProviders()) {
+            linkProvider.pairingHandler.requestPairing(this, pairPackage);
+        }
+        pairPackage.set("pair", true);
+
+        sendPackage(pairPackage, new SendPackageStatusCallback() {
             @Override
             public void onSuccess() {
                 if (pairingTimer != null) pairingTimer.cancel();
@@ -281,7 +291,13 @@ public class Device implements BaseLink.PackageReceiver {
         SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
         preferences.edit().remove(deviceId).apply();
 
+        SharedPreferences devicePreferences = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
+        devicePreferences.edit().clear().apply();
+
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
+        for (BaseLinkProvider linkProvider : ((BackgroundService)context).getLinkProviders()) {
+            linkProvider.pairingHandler.unpair(this, np);
+        }
         np.set("pair", false);
         sendPackage(np);
 
@@ -303,20 +319,8 @@ public class Device implements BaseLink.PackageReceiver {
         SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
         preferences.edit().putBoolean(deviceId,true).apply();
 
-        //Store device information needed to create a Device object in a future
-        SharedPreferences.Editor editor = settings.edit();
-        try {
-            editor.putString("deviceName", getName());
-            editor.putString("deviceType", deviceType.toString());
-            String encodedPublicKey = Base64.encodeToString(publicKey.getEncoded(), 0);
-            editor.putString("publicKey", encodedPublicKey);
-            String encodedCertificate = Base64.encodeToString(certificate.getEncoded(), 0);
-            editor.putString("certificate", encodedCertificate);
-        } catch (Exception e){
-            Log.e("KDE/Device", "Exception pairing done");
-            e.printStackTrace();
-        } finally {
-            editor.apply();
+        for (BaseLinkProvider linkProvider : ((BackgroundService)context).getLinkProviders()) {
+            linkProvider.pairingHandler.pairingDone(this);
         }
 
         reloadPluginsFromSettings();
@@ -329,10 +333,16 @@ public class Device implements BaseLink.PackageReceiver {
 
     public void acceptPairing() {
 
-        Log.i("KDE/Device","Accepted pair request started by the other device");
+        Log.i("KDE/Device", "Accepted pair request started by the other device");
+
+        final NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
+        for (BaseLinkProvider linkProvider : ((BackgroundService)context).getLinkProviders()) {
+            linkProvider.pairingHandler.accept_pairing(this, np);
+        }
+        np.set("pair", true);
 
         //Send our own public key
-        NetworkPackage np = NetworkPackage.createPublicKeyPackage(context);
+//        NetworkPackage np = NetworkPackage.createPublicKeyPackage(context);
         sendPackage(np, new SendPackageStatusCallback() {
             @Override
             protected void onSuccess() {
@@ -358,6 +368,9 @@ public class Device implements BaseLink.PackageReceiver {
         pairStatus = PairStatus.NotPaired;
 
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
+        for (BaseLinkProvider linkProvider : ((BackgroundService)context).getLinkProviders()) {
+            linkProvider.pairingHandler.rejectPairing(this, np);
+        }
         np.set("pair", false);
         sendPackage(np);
 
@@ -445,7 +458,7 @@ public class Device implements BaseLink.PackageReceiver {
 
         link.removePackageReceiver(this);
         links.remove(link);
-        Log.i("KDE/Device","removeLink: "+link.getLinkProvider().getName() + " -> "+getName() + " active links: "+ links.size());
+        Log.i("KDE/Device", "removeLink: " + link.getLinkProvider().getName() + " -> " + getName() + " active links: " + links.size());
         if (links.isEmpty()) {
             reloadPluginsFromSettings();
         }
@@ -456,7 +469,7 @@ public class Device implements BaseLink.PackageReceiver {
 
         if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR)) {
 
-            Log.i("KDE/Device","Pair package");
+            Log.i("KDE/Device", "Pair package");
 
             boolean wantsPair = np.getBoolean("pair");
 
@@ -468,24 +481,27 @@ public class Device implements BaseLink.PackageReceiver {
                     for (PairingCallback cb : pairingCallback) {
                         cb.pairingFailed(context.getString(R.string.error_canceled_by_other_peer));
                     }
+                    return;
+                } if (pairStatus == PairStatus.Paired) {
+                    // Simple unpair without sending pair package
+                    pairStatus = PairStatus.NotPaired;
+                    for (PairingCallback cb : pairingCallback) cb.unpaired();
+                    reloadPluginsFromSettings();
                 }
-                return;
             }
 
             if (wantsPair) {
 
                 //Retrieve their public key
-                try {
-                    String publicKeyContent = np.getString("publicKey").replace("-----BEGIN PUBLIC KEY-----\n","").replace("-----END PUBLIC KEY-----\n", "");
-                    byte[] publicKeyBytes = Base64.decode(publicKeyContent, 0);
-                    publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
-                } catch(Exception e) {
-                    e.printStackTrace();
-                    Log.e("KDE/Device","Pairing exception: Received incorrect key");
-                    for (PairingCallback cb : pairingCallback) {
-                        cb.pairingFailed(context.getString(R.string.error_invalid_key));
+                for (BaseLinkProvider linkProvider : ((BackgroundService)context).getLinkProviders()) {
+                    try {
+                        linkProvider.pairingHandler.packageReceived(this, np);
+                    } catch (Exception e) {
+                        for (Device.PairingCallback cb : pairingCallback) {
+                            cb.pairingFailed(context.getString(R.string.error_invalid_key));
+                        }
+                        return;
                     }
-                    return;
                 }
 
                 if (pairStatus == PairStatus.Requested)  { //We started pairing

@@ -45,6 +45,7 @@ import javax.net.ssl.SSLServerSocketFactory;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 
 public class LanLink extends BaseLink {
 

@@ -28,7 +28,6 @@ import android.content.SharedPreferences;
 import android.os.Binder;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.util.Base64;
 import android.util.Log;
 
 import org.kde.kdeconnect.Backends.BaseLink;
@@ -38,8 +37,6 @@ import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.UserInterface.MainSettingsActivity;
 
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -97,6 +94,10 @@ public class BackgroundService extends Service {
             linkProviders.add(new LanLinkProvider(this));
         }
 
+    }
+
+    public ArrayList<BaseLinkProvider> getLinkProviders() {
+        return linkProviders;
     }
 
     public Device getDevice(String id) {

@@ -31,6 +31,7 @@ public class LoopbackLinkProvider extends BaseLinkProvider {
 
     public LoopbackLinkProvider(Context context) {
         this.context = context;
+        pairingHandler = new LoopbackPairingHandler();
     }
 
     @Override

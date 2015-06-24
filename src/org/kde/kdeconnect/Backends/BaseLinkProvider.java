@@ -30,6 +30,7 @@ import java.util.ArrayList;
 public abstract class BaseLinkProvider {
 
     private final ArrayList<ConnectionReceiver> connectionReceivers = new ArrayList<ConnectionReceiver>();
+    public BasePairingHandler pairingHandler;
 
     public interface ConnectionReceiver {
         public void onConnectionReceived(NetworkPackage identityPackage, BaseLink link);

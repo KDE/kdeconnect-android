@@ -22,6 +22,7 @@ package org.kde.kdeconnect;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Base64;
@@ -45,7 +46,7 @@ import javax.crypto.Cipher;
 
 public class NetworkPackage {
 
-    public final static int ProtocolVersion = 5;
+    public final static int ProtocolVersion = 6;
 
     //TODO: Move these to their respective plugins
     public final static String PACKAGE_TYPE_IDENTITY = "kdeconnect.identity";
@@ -206,26 +207,10 @@ public class NetworkPackage {
                             DeviceHelper.getDeviceName()));
             np.mBody.put("protocolVersion", NetworkPackage.ProtocolVersion);
             np.mBody.put("deviceType", DeviceHelper.isTablet()? "tablet" : "phone");
-            np.mBody.put("sslSupported", PreferenceManager.getDefaultSharedPreferences(context).getBoolean(MainSettingsActivity.KEY_USE_SSL_PREFERENCE, true));
         } catch (Exception e) {
             e.printStackTrace();
             Log.e("NetworkPacakge","Exception on createIdentityPackage");
         }
-
-        return np;
-
-    }
-
-
-    static public NetworkPackage createPublicKeyPackage(Context context) {
-
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
-
-        np.set("pair", true);
-
-        SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(context);
-        String publicKey = "-----BEGIN PUBLIC KEY-----\n" + globalSettings.getString("publicKey", "").trim()+ "\n-----END PUBLIC KEY-----\n";
-        np.set("publicKey", publicKey);
 
         return np;
 
