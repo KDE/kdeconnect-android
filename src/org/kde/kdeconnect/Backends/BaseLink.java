@@ -34,7 +34,7 @@ public abstract class BaseLink {
 
     protected final Context context;
     private final BaseLinkProvider linkProvider;
-    protected final String deviceId;
+    private final String deviceId;
     private final ArrayList<PackageReceiver> receivers = new ArrayList<PackageReceiver>();
     protected PrivateKey privateKey;
 

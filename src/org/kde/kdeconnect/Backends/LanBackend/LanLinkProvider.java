@@ -36,7 +36,6 @@ import org.kde.kdeconnect.UserInterface.CustomDevicesActivity;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.net.SocketException;
 import java.security.cert.Certificate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -98,8 +97,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         @Override
         public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-            // Not called if remote device closes session unexpectedly, like wifi off
-            Log.e("KDE/LanLinkProvider", "Channel inactive");
+            // Called after a long time if remote device closes session unexpectedly, like wifi off
             try {
                 long id = ctx.channel().hashCode();
                 final LanLink brokenLink = nioLinks.get(id);
@@ -169,20 +167,18 @@ public class LanLinkProvider extends BaseLinkProvider {
                 // Add ssl handler if device uses new protocol
                 try {
                     if (NetworkPackage.ProtocolVersion <= np.getInt("protocolVersion")) {
-                        Log.e("KDE/LanLinkProvider", "Remote device " + np.getString("deviceName") + " supports ssl");
                         final SSLEngine sslEngine = SslHelper.getSslEngine(context, np.getString("deviceId"), SslHelper.SslMode.Client);
                         SslHandler sslHandler = new SslHandler(sslEngine);
                         ctx.channel().pipeline().addFirst(sslHandler);
                         sslHandler.handshakeFuture().addListener(new GenericFutureListener<Future<? super Channel>>() {
                             @Override
                             public void operationComplete(Future<? super Channel> future) throws Exception {
-                                Log.e("KDE/LanLinkProvider", "Handshake complete with " + np.getString("deviceName"));
                                 if (future.isSuccess()) {
                                     Certificate certificate = sslEngine.getSession().getPeerCertificates()[0];
                                     np.set("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
                                     link.setOnSsl(true);
                                     addLink(np, link);
-                                    Log.i("KDE/LanLinkProvider","Session with " + np.getString("deviceName") + " secured with " + sslEngine.getSession().getCipherSuite());
+                                    Log.i("KDE/LanLinkProvider","Handshake successful with " + np.getString("deviceName") + " secured with " + sslEngine.getSession().getCipherSuite());
                                 } else {
                                     // Unpair if handshake failed
                                     Log.e("KDE/LanLinkProvider", "Handshake failed with " + np.getString("deviceName"));
@@ -260,7 +256,6 @@ public class LanLinkProvider extends BaseLinkProvider {
                                 SSLEngine sslEngine = SslHelper.getSslEngine(context, identityPackage.getString("deviceId"), SslHelper.SslMode.Server);
                                 SslHandler sslHandler = new SslHandler(sslEngine, true);
                                 channel.pipeline().addFirst(sslHandler);
-                                Log.i("KDE/LanLinkProvider", "Remote device supports ssl, ssl handler added");
                             }
 
                             final LanLink link = new LanLink(context, channel, identityPackage.getString("deviceId"), LanLinkProvider.this);
@@ -278,13 +273,12 @@ public class LanLinkProvider extends BaseLinkProvider {
                                             // If ssl handler is in channel, add link after handshake is completed
                                             final SslHandler sslHandler = channel.pipeline().get(SslHandler.class);
                                             if (sslHandler != null) {
-                                                Log.e("KDE/LanLinkProvider", "Remote device " + identityPackage.getString("deviceName") + " supports ssl");
                                                 sslHandler.handshakeFuture().addListener(new GenericFutureListener<Future<? super Channel>>() {
                                                     @Override
                                                     public void operationComplete(Future<? super Channel> future) throws Exception {
-                                                        Log.e("KDE/LanLinkProvider", "Handshake completed with " + identityPackage.getString("deviceName"));
                                                         if (future.isSuccess()) {
                                                             try {
+                                                                Log.i("KDE/LanLinkProvider", "Handshake successfully completed with " + identityPackage.getString("deviceName") + ", session secured with " + sslHandler.engine().getSession().getCipherSuite());
                                                                 Certificate certificate = sslHandler.engine().getSession().getPeerCertificates()[0];
                                                                 identityPackage.set("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
                                                                 link.setOnSsl(true);

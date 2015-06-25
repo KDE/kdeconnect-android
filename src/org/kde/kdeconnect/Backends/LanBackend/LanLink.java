@@ -82,7 +82,7 @@ public class LanLink extends BaseLink {
             //Prepare socket for the payload
             final ServerSocket server;
             if (np.hasPayload()) {
-                server = openTcpSocketOnFreePort(context, deviceId, onSsl);
+                server = openTcpSocketOnFreePort(context, getDeviceId(), onSsl);
                 JSONObject payloadTransferInfo = new JSONObject();
                 payloadTransferInfo.put("port", server.getLocalPort());
                 np.setPayloadTransferInfo(payloadTransferInfo);
@@ -187,7 +187,7 @@ public class LanLink extends BaseLink {
             try {
                 // Use ssl if existing link is on ssl
                 if (onSsl) {
-                    SSLContext sslContext = SslHelper.getSslContext(context, deviceId, true);
+                    SSLContext sslContext = SslHelper.getSslContext(context, getDeviceId(), true);
                     socket = sslContext.getSocketFactory().createSocket();
                 } else {
                     socket = new Socket();

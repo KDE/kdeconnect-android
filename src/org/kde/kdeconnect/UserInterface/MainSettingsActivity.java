@@ -40,7 +40,6 @@ import org.kde.kdeconnect_tp.R;
 public class MainSettingsActivity extends AppCompatPreferenceActivity {
 
     public static final String KEY_DEVICE_NAME_PREFERENCE = "device_name_preference";
-    public static final String KEY_USE_SSL_PREFERENCE = "use_ssl_preference";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
