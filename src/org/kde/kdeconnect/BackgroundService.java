@@ -199,7 +199,7 @@ public class BackgroundService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        
+
         Security.insertProviderAt(new OpenSSLProvider("KDEConnect SSL Provider"), 1);
 
         // Register screen on listener
