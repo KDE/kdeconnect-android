@@ -244,7 +244,7 @@ public class Device implements BaseLink.PackageReceiver {
         // Each link can set whatever they want in pair package
         NetworkPackage pairPackage = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
         for (BaseLinkProvider linkProvider : ((BackgroundService)context).getLinkProviders()) {
-            linkProvider.pairingHandler.requestPairing(this, pairPackage);
+            linkProvider.getPairingHandler().requestPairing(this, pairPackage);
         }
         pairPackage.set("pair", true);
 
@@ -296,7 +296,7 @@ public class Device implements BaseLink.PackageReceiver {
 
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
         for (BaseLinkProvider linkProvider : ((BackgroundService)context).getLinkProviders()) {
-            linkProvider.pairingHandler.unpair(this, np);
+            linkProvider.getPairingHandler().unpair(this, np);
         }
         np.set("pair", false);
         sendPackage(np);
@@ -320,7 +320,7 @@ public class Device implements BaseLink.PackageReceiver {
         preferences.edit().putBoolean(deviceId,true).apply();
 
         for (BaseLinkProvider linkProvider : ((BackgroundService)context).getLinkProviders()) {
-            linkProvider.pairingHandler.pairingDone(this);
+            linkProvider.getPairingHandler().pairingDone(this);
         }
 
         reloadPluginsFromSettings();
@@ -337,7 +337,7 @@ public class Device implements BaseLink.PackageReceiver {
 
         final NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
         for (BaseLinkProvider linkProvider : ((BackgroundService)context).getLinkProviders()) {
-            linkProvider.pairingHandler.accept_pairing(this, np);
+            linkProvider.getPairingHandler().acceptPairing(this, np);
         }
         np.set("pair", true);
 
@@ -369,7 +369,7 @@ public class Device implements BaseLink.PackageReceiver {
 
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
         for (BaseLinkProvider linkProvider : ((BackgroundService)context).getLinkProviders()) {
-            linkProvider.pairingHandler.rejectPairing(this, np);
+            linkProvider.getPairingHandler().rejectPairing(this, np);
         }
         np.set("pair", false);
         sendPackage(np);
@@ -414,7 +414,7 @@ public class Device implements BaseLink.PackageReceiver {
                 byte[] certificateBytes = Base64.decode(certificateString, 0);
                 X509CertificateHolder certificateHolder = new X509CertificateHolder(certificateBytes);
                 certificate = new JcaX509CertificateConverter().setProvider(new BouncyCastleProvider()).getCertificate(certificateHolder);
-                Log.e("KDE/Device", "Got certificate ");
+                Log.i("KDE/Device", "Got certificate ");
             } catch (Exception e) {
                 e.printStackTrace();
                 Log.e("KDE/Device", "Error getting certificate");
@@ -495,7 +495,7 @@ public class Device implements BaseLink.PackageReceiver {
                 //Retrieve their public key
                 for (BaseLinkProvider linkProvider : ((BackgroundService)context).getLinkProviders()) {
                     try {
-                        linkProvider.pairingHandler.packageReceived(this, np);
+                        linkProvider.getPairingHandler().packageReceived(this, np);
                     } catch (Exception e) {
                         for (Device.PairingCallback cb : pairingCallback) {
                             cb.pairingFailed(context.getString(R.string.error_invalid_key));

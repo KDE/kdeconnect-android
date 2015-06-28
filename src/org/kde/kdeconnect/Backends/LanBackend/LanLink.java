@@ -171,7 +171,6 @@ public class LanLink extends BaseLink {
     public void injectNetworkPackage(NetworkPackage np) {
 
         if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_ENCRYPTED)) {
-
             try {
                 np = RsaHelper.decrypt(np, privateKey);
             } catch(Exception e) {

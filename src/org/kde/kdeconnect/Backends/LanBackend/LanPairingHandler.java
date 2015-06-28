@@ -35,7 +35,7 @@ import java.security.KeyFactory;
 import java.security.cert.CertificateEncodingException;
 import java.security.spec.X509EncodedKeySpec;
 
-public class LanPairingHandler extends BasePairingHandler{
+public class LanPairingHandler implements BasePairingHandler {
 
     @Override
     public void packageReceived(Device device, NetworkPackage np) throws Exception{
@@ -58,10 +58,15 @@ public class LanPairingHandler extends BasePairingHandler{
     }
 
     @Override
-    public void accept_pairing(Device device, NetworkPackage np) {
+    public void acceptPairing(Device device, NetworkPackage np) {
         SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(device.getContext());
         String publicKey = "-----BEGIN PUBLIC KEY-----\n" + globalSettings.getString("publicKey", "").trim()+ "\n-----END PUBLIC KEY-----\n";
         np.set("publicKey", publicKey);
+    }
+
+    @Override
+    public void rejectPairing(Device device, NetworkPackage np) {
+
     }
 
     @Override
@@ -85,6 +90,11 @@ public class LanPairingHandler extends BasePairingHandler{
             Log.e("KDE/Pairng", "Some exception while encoding string");
         }
         editor.apply();
+
+    }
+
+    @Override
+    public void unpair(Device device, NetworkPackage np) {
 
     }
 }

@@ -23,13 +23,13 @@ package org.kde.kdeconnect.Backends;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
 
-public abstract class BasePairingHandler {
+public interface BasePairingHandler {
 
-    public void packageReceived(Device device, NetworkPackage np) throws Exception{}
-    public void requestPairing(Device device, NetworkPackage np) {}
-    public void accept_pairing(Device device, NetworkPackage np) {}
-    public void rejectPairing(Device device, NetworkPackage np) {}
-    public void pairingDone(Device device) {}
-    public void unpair(Device device, NetworkPackage np) {}
+    void packageReceived(Device device, NetworkPackage np) throws Exception;
+    void requestPairing(Device device, NetworkPackage np);
+    void acceptPairing(Device device, NetworkPackage np);
+    void rejectPairing(Device device, NetworkPackage np);
+    void pairingDone(Device device);
+    void unpair(Device device, NetworkPackage np);
 
 }

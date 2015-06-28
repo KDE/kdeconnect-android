@@ -30,6 +30,7 @@ import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import org.conscrypt.OpenSSLProvider;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
@@ -37,6 +38,7 @@ import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.UserInterface.MainSettingsActivity;
 
+import java.security.Security;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -197,6 +199,8 @@ public class BackgroundService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        
+        Security.insertProviderAt(new OpenSSLProvider("KDEConnect SSL Provider"), 1);
 
         // Register screen on listener
         IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);

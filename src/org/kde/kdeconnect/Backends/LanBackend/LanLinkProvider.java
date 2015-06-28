@@ -57,7 +57,6 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.DatagramPacket;
 import io.netty.channel.socket.SocketChannel;
-import io.netty.channel.socket.SocketChannelConfig;
 import io.netty.channel.socket.nio.NioDatagramChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -144,6 +143,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 //            Log.e("LanLinkProvider","Incoming package, address: " + ctx.channel().remoteAddress());
 //            Log.e("LanLinkProvider","Received:"+message);
 
+
             if (message.isEmpty()) {
                 Log.e("KDE/LanLinkProvider", "Empty package received");
                 return;
@@ -168,6 +168,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                 try {
                     if (NetworkPackage.ProtocolVersion <= np.getInt("protocolVersion")) {
                         final SSLEngine sslEngine = SslHelper.getSslEngine(context, np.getString("deviceId"), SslHelper.SslMode.Client);
+
                         SslHandler sslHandler = new SslHandler(sslEngine);
                         ctx.channel().pipeline().addFirst(sslHandler);
                         sslHandler.handshakeFuture().addListener(new GenericFutureListener<Future<? super Channel>>() {
