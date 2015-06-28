@@ -200,7 +200,11 @@ public class BackgroundService extends Service {
     public void onCreate() {
         super.onCreate();
 
-        Security.insertProviderAt(new OpenSSLProvider("KDEConnect SSL Provider"), 1);
+        try {
+            Security.insertProviderAt(new OpenSSLProvider("KDEConnect SSL Provider"), 1);
+        } catch (Exception e) {
+            Log.e("KDE/BackgroundService", "Cannot add security provider");
+        }
 
         // Register screen on listener
         IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
