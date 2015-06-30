@@ -100,6 +100,7 @@
   <string name="custom_device_list">Geräte nach IP hinzufügen</string>
   <string name="share_notification_preference_summary">Beim Empfang einer Datei vibrieren und einen Sound abspielen</string>
   <string name="title_activity_notification_filter">Benachrichtigungs-Filter</string>
+  <string name="filter_apps_info">Benachrichtigungen werden zwischen den ausgewählten Anwendungen abgeglichen.</string>
   <string name="sftp_internal_storage">Interner Speicher</string>
   <string name="sftp_all_files">Alle Dateien</string>
   <string name="sftp_sdcard_num">SD-Karte %d</string>
@@ -108,5 +109,6 @@
   <string name="sftp_camera">Kamerabilder</string>
   <string name="add_host">Rechner/IP hinzufügen</string>
   <string name="add_host_hint">Rechnername oder IP</string>
+  <string name="no_players_connected">Keine Medienspieler gefunden</string>
   <string name="mpris_player_on_device">%1$s auf %2$s</string>
 </resources>
