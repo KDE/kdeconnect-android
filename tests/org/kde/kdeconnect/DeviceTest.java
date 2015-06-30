@@ -26,17 +26,17 @@ import android.test.AndroidTestCase;
 import android.util.Base64;
 import android.util.Log;
 
-import org.bouncycastle.asn1.x500.X500NameBuilder;
-import org.bouncycastle.asn1.x500.style.BCStyle;
-import org.bouncycastle.cert.X509v3CertificateBuilder;
-import org.bouncycastle.cert.jcajce.JcaX509CertificateConverter;
-import org.bouncycastle.cert.jcajce.JcaX509v3CertificateBuilder;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.bouncycastle.operator.ContentSigner;
-import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
 import org.kde.kdeconnect.Backends.LanBackend.LanLink;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.mockito.Mockito;
+import org.spongycastle.asn1.x500.X500NameBuilder;
+import org.spongycastle.asn1.x500.style.BCStyle;
+import org.spongycastle.cert.X509v3CertificateBuilder;
+import org.spongycastle.cert.jcajce.JcaX509CertificateConverter;
+import org.spongycastle.cert.jcajce.JcaX509v3CertificateBuilder;
+import org.spongycastle.jce.provider.BouncyCastleProvider;
+import org.spongycastle.operator.ContentSigner;
+import org.spongycastle.operator.jcajce.JcaContentSignerBuilder;
 
 import java.lang.reflect.Method;
 import java.math.BigInteger;
@@ -171,7 +171,6 @@ public class DeviceTest extends AndroidTestCase {
         SharedPreferences settings = getContext().getSharedPreferences(device.getDeviceId(),Context.MODE_PRIVATE);
         assertEquals(settings.getString("deviceName", "Unknown device"), "Unpaired Test Device");
         assertEquals(settings.getString("deviceType", "tablet"), "phone");
-        assertEquals(settings.getString("publicKey", ""), Base64.encodeToString(keyPair.getPublic().getEncoded(), 0));
 
         // Cleanup for unpaired test device
         preferences.edit().remove(device.getDeviceId()).apply();
@@ -255,8 +254,6 @@ public class DeviceTest extends AndroidTestCase {
         SharedPreferences settings = getContext().getSharedPreferences(device.getDeviceId(),Context.MODE_PRIVATE);
         assertEquals(settings.getString("deviceName", "Unknown device"), "Unpaired Test Device");
         assertEquals(settings.getString("deviceType", "tablet"), "phone");
-        assertEquals(settings.getString("publicKey", ""), Base64.encodeToString(keyPair.getPublic().getEncoded(), 0));
-        assertEquals(settings.getString("certificate", ""), Base64.encodeToString(certificate.getEncoded(), 0));;
 
         // Cleanup for unpaired test device
         preferences.edit().remove(device.getDeviceId()).apply();

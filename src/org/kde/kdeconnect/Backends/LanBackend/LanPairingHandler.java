@@ -26,7 +26,9 @@ import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 
+import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
+import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect_tp.R;
@@ -36,6 +38,16 @@ import java.security.cert.CertificateEncodingException;
 import java.security.spec.X509EncodedKeySpec;
 
 public class LanPairingHandler implements BasePairingHandler {
+
+    @Override
+    public NetworkPackage createPairPackage(Device device) {
+        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
+        np.set("pair", true);
+        SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(device.getContext());
+        String publicKey = "-----BEGIN PUBLIC KEY-----\n" + globalSettings.getString("publicKey", "").trim()+ "\n-----END PUBLIC KEY-----\n";
+        np.set("publicKey", publicKey);
+        return np;
+    }
 
     @Override
     public void packageReceived(Device device, NetworkPackage np) throws Exception{
@@ -51,22 +63,28 @@ public class LanPairingHandler implements BasePairingHandler {
     }
 
     @Override
-    public void requestPairing(Device device, NetworkPackage np) {
-        SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(device.getContext());
-        String publicKey = "-----BEGIN PUBLIC KEY-----\n" + globalSettings.getString("publicKey", "").trim()+ "\n-----END PUBLIC KEY-----\n";
-        np.set("publicKey", publicKey);
+    public void requestPairing(Device device, Device.SendPackageStatusCallback callback) {
+        if (callback == null) {
+            device.sendPackage(createPairPackage(device));
+        } else {
+            device.sendPackage(createPairPackage(device), callback);
+        }
     }
 
     @Override
-    public void acceptPairing(Device device, NetworkPackage np) {
-        SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(device.getContext());
-        String publicKey = "-----BEGIN PUBLIC KEY-----\n" + globalSettings.getString("publicKey", "").trim()+ "\n-----END PUBLIC KEY-----\n";
-        np.set("publicKey", publicKey);
+    public void acceptPairing(Device device, Device.SendPackageStatusCallback callback) {
+        if (callback == null) {
+            device.sendPackage(createPairPackage(device));
+        } else {
+            device.sendPackage(createPairPackage(device), callback);
+        }
     }
 
     @Override
-    public void rejectPairing(Device device, NetworkPackage np) {
-
+    public void rejectPairing(Device device) {
+        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
+        np.set("pair", false);
+        device.sendPackage(np);
     }
 
     @Override
@@ -74,10 +92,13 @@ public class LanPairingHandler implements BasePairingHandler {
         //Store device information needed to create a Device object in a future
         SharedPreferences.Editor editor = device.getContext().getSharedPreferences(device.getDeviceId(), Context.MODE_PRIVATE).edit();
 
-        editor.putString("deviceName", device.getName());
-        editor.putString("deviceType", device.getDeviceType().toString());
-        String encodedPublicKey = Base64.encodeToString(device.publicKey.getEncoded(), 0);
-        editor.putString("publicKey", encodedPublicKey);
+        try {
+            String encodedPublicKey = Base64.encodeToString(device.publicKey.getEncoded(), 0);
+            editor.putString("publicKey", encodedPublicKey);
+        } catch (Exception e) {
+            Log.e("KDE/PairingDone", "Error encoding public key");
+        }
+
         try {
             String encodedCertificate = Base64.encodeToString(device.certificate.getEncoded(), 0);
             editor.putString("certificate", encodedCertificate);
@@ -94,7 +115,9 @@ public class LanPairingHandler implements BasePairingHandler {
     }
 
     @Override
-    public void unpair(Device device, NetworkPackage np) {
-
+    public void unpair(Device device) {
+        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
+        np.set("pair", false);
+        device.sendPackage(np);
     }
 }

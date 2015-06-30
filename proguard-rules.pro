@@ -25,6 +25,8 @@
 -dontwarn org.apache.mina.**
 -dontwarn org.bouncycastle.**
 -dontwarn org.slf4j.**
+-dontwarn io.netty.**
+-dontwarn org.conscrypt.**
+-dontwarn org.spongycastle.**
 
 -keepattributes SourceFile,LineNumberTable
-

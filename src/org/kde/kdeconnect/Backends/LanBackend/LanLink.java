@@ -21,11 +21,13 @@
 package org.kde.kdeconnect.Backends.LanBackend;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import org.json.JSONObject;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
+import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
@@ -46,11 +48,15 @@ import javax.net.ssl.SSLServerSocketFactory;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
+import io.netty.util.AttributeKey;
 
 public class LanLink extends BaseLink {
 
     private Channel channel = null;
     private boolean onSsl = false;
+
+    // Using time stamp, because if both devices emit their identity package at the same time, both the links tends to cancel each other
+    private long startTime = 0;
 
     public void disconnect() {
         if (channel == null) {
@@ -65,8 +71,30 @@ public class LanLink extends BaseLink {
     }
 
     public LanLink(Context context,Channel channel, String deviceId, BaseLinkProvider linkProvider) {
-        super(context,deviceId, linkProvider);
+        super(context, deviceId, linkProvider);
         this.channel = channel;
+        this.startTime = System.currentTimeMillis();
+    }
+
+    public long getStartTime() {
+        return startTime;
+    }
+
+    @Override
+    public void addPackageReceiver(PackageReceiver pr) {
+        super.addPackageReceiver(pr);
+        BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                Device device = service.getDevice(getDeviceId());
+                if (device == null) return;
+                if (!device.isPaired()) return;
+                // If the device is already paired due to other link, just send a pairing request to get required attributes for this link
+                if (device.publicKey == null) {
+                    getLinkProvider().getPairingHandler().requestPairing(device, null);
+                }
+            }
+        });
     }
 
     //Blocking, do not call from main thread

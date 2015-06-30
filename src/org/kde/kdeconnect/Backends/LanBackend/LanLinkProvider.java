@@ -67,6 +67,7 @@ import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.ssl.SslHandler;
+import io.netty.util.AttributeKey;
 import io.netty.util.CharsetUtil;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
@@ -91,7 +92,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
             cause.printStackTrace();
             // Close channel for any sudden exception
-            ctx.fireChannelInactive();
+            ctx.channel().close();
         }
 
         @Override
@@ -123,7 +124,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                         public void run() {
                             //Wait a bit before emitting connectionLost, in case the same device re-appears
                             try {
-                                Thread.sleep(500);
+                                Thread.sleep(200);
                             } catch (InterruptedException e) {
                             }
                             connectionLost(brokenLink);
@@ -162,6 +163,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
                 final LanLink link = new LanLink(context, ctx.channel(), np.getString("deviceId"), LanLinkProvider.this);
                 nioLinks.put(ctx.channel().hashCode(), link);
+                nioChannels.put(ctx.channel().hashCode(), ctx.channel());
                 //Log.i("KDE/LanLinkProvider","nioLinks.size(): " + nioLinks.size());
 
                 // Add ssl handler if device uses new protocol
@@ -175,11 +177,11 @@ public class LanLinkProvider extends BaseLinkProvider {
                             @Override
                             public void operationComplete(Future<? super Channel> future) throws Exception {
                                 if (future.isSuccess()) {
+                                    Log.i("KDE/LanLinkProvider","Handshake successful with " + np.getString("deviceName") + " secured with " + sslEngine.getSession().getCipherSuite());
                                     Certificate certificate = sslEngine.getSession().getPeerCertificates()[0];
                                     np.set("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
                                     link.setOnSsl(true);
                                     addLink(np, link);
-                                    Log.i("KDE/LanLinkProvider","Handshake successful with " + np.getString("deviceName") + " secured with " + sslEngine.getSession().getCipherSuite());
                                 } else {
                                     // Unpair if handshake failed
                                     Log.e("KDE/LanLinkProvider", "Handshake failed with " + np.getString("deviceName"));
@@ -243,10 +245,16 @@ public class LanLinkProvider extends BaseLinkProvider {
                     b.channel(NioSocketChannel.class);
                     b.handler(new TcpInitializer());
                     int tcpPort = identityPackage.getInt("tcpPort", port);
-                    final ChannelFuture channelFuture = b.connect(packet.sender().getAddress(), tcpPort).sync();
+                    final ChannelFuture channelFuture = b.connect(packet.sender().getAddress(), tcpPort);
                     channelFuture.addListener(new ChannelFutureListener() {
                         @Override
                         public void operationComplete(ChannelFuture future) throws Exception {
+
+                            if (!future.isSuccess()) {
+                                Log.e("KDE/LanLinkProvider", "Cannot connect to " + identityPackage.getString("deviceId"));
+                                return;
+                            }
+
                             final Channel channel = channelFuture.channel();
 
                             Log.i("KDE/LanLinkProvider", "Connection successful: " + channel.isActive());
@@ -260,9 +268,6 @@ public class LanLinkProvider extends BaseLinkProvider {
                             }
 
                             final LanLink link = new LanLink(context, channel, identityPackage.getString("deviceId"), LanLinkProvider.this);
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
                                     NetworkPackage np2 = NetworkPackage.createIdentityPackage(context);
                                     link.sendPackage(np2,new Device.SendPackageStatusCallback() {
                                         @Override
@@ -316,8 +321,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                                         }
                                     });
 
-                                }
-                            }).start();
+
                         }
                     });
                 } catch (Exception e) {
@@ -353,12 +357,19 @@ public class LanLinkProvider extends BaseLinkProvider {
             Log.e("KDE/LanLinkProvider", "oldLink == link. This should not happen!");
             return;
         }
+
         visibleComputers.put(deviceId, link);
         connectionAccepted(identityPackage, link);
         if (oldLink != null) {
-            Log.i("KDE/LanLinkProvider","Removing old connection to same device");
-            oldLink.disconnect();
-            connectionLost(oldLink);
+            if (link.getStartTime() < oldLink.getStartTime()) {
+                // New link is not so new, it just took more time to be establish successfully and get here
+                link.disconnect();
+                connectionLost(link);
+            } else {
+                Log.i("KDE/LanLinkProvider", "Removing old connection to same device");
+                oldLink.disconnect();
+                connectionLost(oldLink);
+            }
         }
     }
 

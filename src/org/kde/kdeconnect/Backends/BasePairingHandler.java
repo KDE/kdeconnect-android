@@ -25,11 +25,12 @@ import org.kde.kdeconnect.NetworkPackage;
 
 public interface BasePairingHandler {
 
+    NetworkPackage createPairPackage(Device device);
     void packageReceived(Device device, NetworkPackage np) throws Exception;
-    void requestPairing(Device device, NetworkPackage np);
-    void acceptPairing(Device device, NetworkPackage np);
-    void rejectPairing(Device device, NetworkPackage np);
+    void requestPairing(Device device, Device.SendPackageStatusCallback callback);
+    void acceptPairing(Device device, Device.SendPackageStatusCallback callback);
+    void rejectPairing(Device device);
     void pairingDone(Device device);
-    void unpair(Device device, NetworkPackage np);
+    void unpair(Device device);
 
 }
