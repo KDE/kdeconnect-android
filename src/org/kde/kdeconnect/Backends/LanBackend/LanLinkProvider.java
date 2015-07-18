@@ -159,7 +159,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                     return;
                 }
 
-                //Log.i("KDE/LanLinkProvider", "Identity package received from " + np.getString("deviceName"));
+                Log.i("KDE/LanLinkProvider", "Identity package received from " + np.getString("deviceName"));
 
                 final LanLink link = new LanLink(context, ctx.channel(), np.getString("deviceId"), LanLinkProvider.this);
                 nioLinks.put(ctx.channel().hashCode(), link);
@@ -297,6 +297,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                                                             // Any exception or handshake exception ?
                                                             Log.e("KDE/LanLinkProvider", "Handshake failed with " + identityPackage.getString("deviceName"));
                                                             future.cause().printStackTrace();
+
                                                             BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
                                                                 @Override
                                                                 public void onServiceStart(BackgroundService service) {

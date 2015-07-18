@@ -12,6 +12,9 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 22
     buildToolsVersion '22.0.1'
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 22

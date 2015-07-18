@@ -23,9 +23,12 @@ package org.kde.kdeconnect.Helpers.SecurityHelpers;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.util.Base64;
 import android.util.Log;
 
+import org.kde.kdeconnect.UserInterface.MainActivity;
+import org.kde.kdeconnect.UserInterface.MainSettingsActivity;
 import org.spongycastle.asn1.x500.X500NameBuilder;
 import org.spongycastle.asn1.x500.style.BCStyle;
 import org.spongycastle.cert.X509CertificateHolder;
@@ -42,7 +45,6 @@ import java.security.MessageDigest;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.SecureRandom;
-import java.security.Security;
 import java.security.cert.X509Certificate;
 import java.util.Date;
 import java.util.Formatter;
@@ -50,6 +52,7 @@ import java.util.Formatter;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLEngine;
+import javax.net.ssl.SSLException;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
@@ -81,7 +84,7 @@ public class SslHelper {
             try {
 
                 X500NameBuilder nameBuilder = new X500NameBuilder(BCStyle.INSTANCE);
-                nameBuilder.addRDN(BCStyle.CN, settings.getString("device_name_preference", "")); // TODO : Chamge it to deviceId
+                nameBuilder.addRDN(BCStyle.CN, Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID));
                 nameBuilder.addRDN(BCStyle.OU, "KDE Connect");
                 nameBuilder.addRDN(BCStyle.O, "KDE");
                 Date notBefore = new Date(System.currentTimeMillis());
@@ -126,7 +129,7 @@ public class SslHelper {
             PrivateKey privateKey = RsaHelper.getPrivateKey(context);
 
             // Get remote device certificate if trusted
-            java.security.cert.Certificate remoteDeviceCertificate = null;
+            X509Certificate remoteDeviceCertificate = null;
             if (isDeviceTrusted){
                 SharedPreferences devicePreferences = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
                 byte[] certificateBytes = Base64.decode(devicePreferences.getString("certificate", ""), 0);
@@ -205,6 +208,9 @@ public class SslHelper {
                 }
             }
 
+//            for (String cipher : sslEngine.getEnabledCipherSuites()) {
+//                Log.e("Enabled cipher", cipher);
+//            }
             return sslEngine;
         }catch (Exception e){
             e.printStackTrace();

@@ -12,7 +12,15 @@ conscrypt_jni.jar is shared library for JNI for OpenSSL Provider, packed into a 
 
 To update these libraries, they can be diretly built from AOSP with build type as "user"
 
-conscrypt.jar = $OUT_DIR/target/common/obj/JAVA_LIBRARIES/conscrypt_unbundled_intermediates/javalib.jar
-conscrypt_jni.jar = $OUT_DIR/target/product/generic/obj/lib/libconscrypt_jni.so
-and put as lib/armeabi/libconscrypt_jni.so and compress lib directory as jar archive.
+To build this library, follow these steps :
+1. Download the AOSP source,proceed as mentioned on aosp site.
+2. Run ". build/envsetup.sh", from source root
+3. Run "lunch aosp_<architecture>-user", the architecture can be arm, x86, mips
+4. Run "cd external/conscrypt"
+5. Run "mma -j8"
+6. conscrypt.jar can be found at $OUT_DIR/target/common/obj/JAVA_LIBRARIES/                       conscrypt_unbundled_intermediates/javalib.jar
+7. For arm, libconscrypt_jni.so will be at $OUT_DIR/target/product/generic/obj/lib/libconscrypt_jni.so
+For x86, libconscrypt_jni.so will be at $OUT_DIR/target/product/generic_x86/obj/lib/libconscrypt_jni.so
+For mips, libconscrypt_jni.so will be at $OUT_DIR/target/product/generic_mips/obj/lib/libconscrypt_jni.so
+Put these libraries under lib/<architecture>/libconscrypt_jni.so, and compress lib directory as jar archive.
 
