@@ -223,10 +223,11 @@ public class SslHelper {
         try {
             byte[] hash = MessageDigest.getInstance("SHA-1").digest(certificate.getEncoded());
             Formatter formatter = new Formatter();
-            // Using first 4 bytes out of 20, is this secure ?
-            for (int i = 0; i < 4; i++) {
-                formatter.format("%02x", hash[i]);
+            int i;
+            for (i = 0; i < hash.length-1; i++) {
+                formatter.format("%02x:", hash[i]);
             }
+            formatter.format("%02x", hash[i]);
             return formatter.toString().toUpperCase();
         } catch (Exception e) {
             return null;

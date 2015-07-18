@@ -197,8 +197,8 @@ public class PairActivity extends ActionBarActivity {
                 if (device.certificate == null) {
                     builder.setMessage(R.string.encryption_info_msg_no_ssl);
                 } else {
-                    builder.setMessage(context.getResources().getString(R.string.my_device_key) + " " + SslHelper.getCertificateHash(device.certificate) + "\n"
-                            + context.getResources().getString(R.string.remote_device_key) + " " + SslHelper.getCertificateHash(SslHelper.certificate));
+                    builder.setMessage(context.getResources().getString(R.string.my_device_key) + " " + SslHelper.getCertificateHash(SslHelper.certificate) + "\n"
+                            + context.getResources().getString(R.string.remote_device_key) + " " + SslHelper.getCertificateHash(device.certificate));
                 }
                 builder.create().show();
                 return true;
