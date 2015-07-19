@@ -228,7 +228,7 @@ public class SslHelper {
                 formatter.format("%02x:", hash[i]);
             }
             formatter.format("%02x", hash[i]);
-            return formatter.toString().toUpperCase();
+            return formatter.toString();
         } catch (Exception e) {
             return null;
         }
