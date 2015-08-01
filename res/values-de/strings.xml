@@ -15,6 +15,8 @@
   <string name="pref_plugin_ping_desc">Senden und Empfangen von Pings</string>
   <string name="pref_plugin_notifications">Benachrichtigungs-Abgleich</string>
   <string name="pref_plugin_notifications_desc">Zugriff auf Ihre Benachrichtigungen von anderen Geräten</string>
+  <string name="pref_plugin_sharereceiver">Veröffentlichen und Empfangen</string>
+  <string name="pref_plugin_sharereceiver_desc">Dateien und Adressen (URLs) zwischen Geräten teilen</string>
   <string name="plugin_not_available">Diese Funktion ist in Ihrer Android-Version nicht verfügbar</string>
   <string name="device_list_empty">Keine Geräte</string>
   <string name="ok">OK</string>
