@@ -8,7 +8,6 @@
   <string name="pref_plugin_sftp_desc">Позволява отдалечен достъп до файловата система на телефона</string>
   <string name="pref_plugin_clipboard">Синхронизиране на буфера</string>
   <string name="pref_plugin_clipboard_desc">Споделяне съдържанието на буфера</string>
-  <string name="pref_plugin_mpris">Отдалечен мултимедиен контрол</string>
   <string name="pref_plugin_mpris_desc">Управление на звук/видео от телефона</string>
   <string name="pref_plugin_ping">Пинг</string>
   <string name="pref_plugin_ping_desc">Изпращане и получаване на пинг</string>
@@ -21,7 +20,6 @@
   <string name="open_settings">Отваряне на настройките</string>
   <string name="no_permissions">Трябва да осигурите права за достъп до уведомленията</string>
   <string name="send_ping">Изпращане на пинг</string>
-  <string name="open_mpris_controls">Отваряне на отдалечен контрол</string>
   <string-array name="mousepad_tap_entries">
     <item>Right click</item>
     <item>Middle click</item>

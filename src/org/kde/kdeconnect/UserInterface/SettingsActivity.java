@@ -20,13 +20,11 @@
 
 package org.kde.kdeconnect.UserInterface;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
-import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -37,15 +35,17 @@ import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Set;
 
-public class SettingsActivity extends PreferenceActivity {
+public class SettingsActivity extends AppCompatPreferenceActivity {
 
     static private String deviceId; //Static because if we get here by using the back button in the action bar, the extra deviceId will not be set.
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         final PreferenceScreen preferenceScreen = getPreferenceManager().createPreferenceScreen(this);
         setPreferenceScreen(preferenceScreen);
 
@@ -61,20 +61,21 @@ public class SettingsActivity extends PreferenceActivity {
                 Set<String> plugins = PluginFactory.getAvailablePlugins();
 
                 final ArrayList<Preference> preferences = new ArrayList<Preference>();
-                for (final String pluginName : plugins) {
-                    final CheckBoxPreference pref = new CheckBoxPreference(getBaseContext());
+                for (final String pluginKey : plugins) {
 
-                    PluginFactory.PluginInfo info = PluginFactory.getPluginInfo(getBaseContext(), pluginName);
-                    pref.setKey(pluginName);
+                    PluginFactory.PluginInfo info = PluginFactory.getPluginInfo(getBaseContext(), pluginKey);
+
+                    CheckBoxPreference pref = new CheckBoxPreference(preferenceScreen.getContext());
+                    pref.setKey(pluginKey);
                     pref.setTitle(info.getDisplayName());
                     pref.setSummary(info.getDescription());
-                    pref.setChecked(device.isPluginEnabled(pluginName));
+                    pref.setChecked(device.isPluginEnabled(pluginKey));
                     preferences.add(pref);
                     preferenceScreen.addPreference(pref);
 
                     if (info.hasSettings()) {
-                        final Preference pluginPreference = new Preference(getBaseContext());
-                        pluginPreference.setKey(pluginName + "_preferences");
+                        Preference pluginPreference = new Preference(preferenceScreen.getContext());
+                        pluginPreference.setKey(pluginKey.toLowerCase(Locale.ENGLISH) + "_preferences");
                         pluginPreference.setSummary(getString(R.string.plugin_settings_with_name, info.getDisplayName()));
                         preferences.add(pluginPreference);
                         preferenceScreen.addPreference(pluginPreference);
@@ -93,16 +94,29 @@ public class SettingsActivity extends PreferenceActivity {
                             check.setChecked(!enabled);
                         } else { //Is a plugin suboption
                             if (pref.isEnabled()) {
-                                String pluginName = pref.getDependency(); //The parent pref will be named like the plugin
-                                Plugin plugin = device.getPlugin(pluginName, true);
-                                plugin.startPreferencesActivity(SettingsActivity.this);
+                                String pluginKey = pref.getDependency(); //The parent pref will be named like the plugin
+                                Plugin plugin = device.getPlugin(pluginKey, true);
+                                if (plugin != null) {
+                                    plugin.startPreferencesActivity(SettingsActivity.this);
+                                } else { //Could happen if the device is not connected anymore
+                                    finish(); //End this activity so we go to the "device not reachable" screen
+                                }
                             }
                         }
                     }
                 });
             }
         });
+    }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //ActionBar's back button
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 }

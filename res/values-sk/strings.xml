@@ -10,14 +10,14 @@
   <string name="pref_plugin_clipboard_desc">Zdieľať obsah schránky</string>
   <string name="pref_plugin_mousepad">Vzdialený vstup</string>
   <string name="pref_plugin_mousepad_desc">Použiť váš telefón ako myš a klávesnicu</string>
-  <string name="pref_plugin_mpris">Multimediálne diaľkové ovládače</string>
+  <string name="pref_plugin_mpris">Multimediálne ovládače</string>
   <string name="pref_plugin_mpris_desc">Ovládať audio/video z vášho telefónu</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Poslať a prijať pingy</string>
   <string name="pref_plugin_notifications">Synchronizácia pripomienok</string>
   <string name="pref_plugin_notifications_desc">Prístup k vašim pripomienkam z iných zariadení</string>
-  <string name="pref_plugin_sharereceiver">Zdieľať prijímač</string>
-  <string name="pref_plugin_sharereceiver_desc">Uložiť prichádzajúce súbory na úložiska telefónu</string>
+  <string name="pref_plugin_sharereceiver">Zdieľať a prijať</string>
+  <string name="pref_plugin_sharereceiver_desc">Zdieľať súbory a medzi zariadeniami</string>
   <string name="plugin_not_available">Táto funkcia nie je dostupná vo vašej verzii Androidu</string>
   <string name="device_list_empty">Žiadne zariadenia</string>
   <string name="ok">OK</string>
@@ -25,8 +25,9 @@
   <string name="open_settings">Otvoriť nastavenia</string>
   <string name="no_permissions">Musíte povoliť oprávnenia na prístup k pripomienkam</string>
   <string name="send_ping">Poslať ping</string>
-  <string name="open_mpris_controls">Otvoriť diaľkové ovládanie</string>
-  <string name="open_mousepad">Otvoriť ovládanie touchpadu</string>
+  <string name="open_mpris_controls">Multimediálny ovládač</string>
+  <string name="open_mousepad">Vzdialený vstup</string>
+  <string name="mousepad_info">Posúvajte prst na obrazovke na posun kurzora. Ťuknutie vyvolá klik a použite dva/tri prsty pre pravé a stredné tlačidlo. Použite dlhé stlačenie pre drag and drop.</string>
   <string name="mousepad_double_tap_settings_title">Nastaviť akciu dvoch prstov</string>
   <string name="mousepad_triple_tap_settings_title">Nastaviť akciu troch prstov</string>
   <string-array name="mousepad_tap_entries">
@@ -58,10 +59,14 @@
   <string name="received_url_text">Ťuknite na otvorenie \'%1s\'</string>
   <string name="incoming_file_title">Prichádzajúci súbor od %s</string>
   <string name="incoming_file_text">%1s</string>
+  <string name="outgoing_file_title">Posielam súbor pre %1s</string>
   <string name="outgoing_file_text">%1s</string>
   <string name="received_file_title">Prijatý súbor od %1s</string>
+  <string name="received_file_fail_title">Zlyhalo prijatie súboru od %1s</string>
   <string name="received_file_text">Ťuknite na otvorenie \'%1s\'</string>
+  <string name="sent_file_title">Poslať súbor pre %1s</string>
   <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Zlyhalo poslanie súboru %1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Tapnite na odpoveď</string>
   <string name="reconnect">Znovu pripojiť</string>
@@ -83,6 +88,8 @@
   <string name="mpris_next">Nasledovné</string>
   <string name="mpris_volume">Hlasitosť</string>
   <string name="mpris_settings">Multimediálne nastavenia</string>
+  <string name="mpris_time_settings_title">Tlačidlá dopredu/pretočiť</string>
+  <string name="mpris_time_settings_summary">Prispôsobiť čas na pretáčanie dopredu alebo dozadu pri stlačení.</string>
   <string-array name="mpris_time_entries">
     <item>10 sekúnd</item>
     <item>20 sekúnd</item>
@@ -104,6 +111,8 @@
   <string name="custom_device_list">Pridať zariadenia podľa IP</string>
   <string name="share_notification_preference">Hlučné pripomienky</string>
   <string name="share_notification_preference_summary">Vibrovať a prehrať zvuk pri prijatí súboru</string>
+  <string name="title_activity_notification_filter">Filter upozornení</string>
+  <string name="filter_apps_info">Upozornenia budú synchronizované pre vybrané aplikácie.</string>
   <string name="sftp_internal_storage">Interné úložisko</string>
   <string name="sftp_all_files">Všetky súbory</string>
   <string name="sftp_sdcard_num">SD karta %d</string>
@@ -111,6 +120,7 @@
   <string name="sftp_readonly">(iba na čítanie)</string>
   <string name="sftp_camera">Obrázky fotoaparátu</string>
   <string name="add_host">Pridať hostiteľa/IP</string>
+  <string name="add_host_hint">Názov hostiteľa alebo IP</string>
   <string name="no_players_connected">Nenašli sa žiadne prehrávače</string>
   <string name="custom_dev_list_help">Túto voľbu použite iba vtedy, ak vaše zariadenie nie je automaticky detekované. Zadajte IP adresu alebo názov hostiteľa nižšie a kliknite na tlačidlo na pridanie do zoznamu. Kliknite na existujúcu položku na odstránenie jej zo zoznamu.</string>
   <string name="mpris_player_on_device">%1$s na %2$s</string>

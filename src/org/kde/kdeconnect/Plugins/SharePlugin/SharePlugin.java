@@ -21,7 +21,6 @@
 package org.kde.kdeconnect.Plugins.SharePlugin;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -37,7 +36,6 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.Toast;
 
 import org.kde.kdeconnect.Helpers.FilesHelper;
@@ -50,17 +48,16 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-
 public class SharePlugin extends Plugin {
-
-    @Override
-    public String getPluginName() {
-        return "plugin_share";
-    }
 
     @Override
     public String getDisplayName() {
         return context.getResources().getString(R.string.pref_plugin_sharereceiver);
+    }
+
+    @Override
+    public Drawable getIcon() {
+        return context.getResources().getDrawable(R.drawable.share_plugin_action);
     }
 
     @Override
@@ -69,28 +66,8 @@ public class SharePlugin extends Plugin {
     }
 
     @Override
-    public Drawable getIcon() {
-        return context.getResources().getDrawable(R.drawable.icon);
-    }
-
-    @Override
     public boolean hasSettings() {
         return true;
-    }
-
-    @Override
-    public boolean isEnabledByDefault() {
-        return true;
-    }
-
-    @Override
-    public boolean onCreate() {
-        return true;
-    }
-
-    @Override
-    public void onDestroy() {
-
     }
 
     @Override
@@ -103,11 +80,11 @@ public class SharePlugin extends Plugin {
         try {
             if (np.hasPayload()) {
 
-                Log.e("SharePlugin", "hasPayload");
+                Log.i("SharePlugin", "hasPayload");
 
                 final InputStream input = np.getPayload();
-                final int fileLength = np.getPayloadSize();
-                final String filename = np.getString("filename", new Long(System.currentTimeMillis()).toString());
+                final long fileLength = np.getPayloadSize();
+                final String filename = np.getString("filename", Long.toString(System.currentTimeMillis()));
 
                 String deviceDir = FilesHelper.toFileSystemSafeName(device.getName());
                 //Get the external storage and append "/kdeconnect/DEVICE_NAME/"
@@ -121,7 +98,7 @@ public class SharePlugin extends Plugin {
                 //Append filename to the destination path
                 final File destinationFullPath = new File(destinationDir, filename);
 
-                Log.e("SharePlugin", "destinationFullPath:" + destinationFullPath);
+                //Log.e("SharePlugin", "destinationFullPath:" + destinationFullPath);
 
                 final NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -136,15 +113,22 @@ public class SharePlugin extends Plugin {
                         .setOngoing(true)
                         .setProgress(100,0,true);
 
-                notificationManager.notify(notificationId,builder.build());
+                try {
+                    notificationManager.notify(notificationId,builder.build());
+                } catch(Exception e) {
+                    //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                    //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                }
 
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        OutputStream output = null;
+                        boolean successul = true;
                         try {
-                            OutputStream output = new FileOutputStream(destinationFullPath.getPath());
+                            output = new FileOutputStream(destinationFullPath.getPath());
                             byte data[] = new byte[1024];
-                            long progress = 0,prevProgressPercentage = 0;
+                            long progress = 0, prevProgressPercentage = 0;
                             int count;
                             while ((count = input.read(data)) >= 0) {
                                 progress += count;
@@ -152,20 +136,33 @@ public class SharePlugin extends Plugin {
                                 if (fileLength > 0) {
                                     if (progress >= fileLength) break;
                                     long progressPercentage = (progress * 100 / fileLength);
-                                    if ((progressPercentage - prevProgressPercentage) > 0) {
+                                    if (progressPercentage != prevProgressPercentage) {
                                         prevProgressPercentage = progressPercentage;
                                         builder.setProgress(100, (int) progressPercentage, false);
-                                        notificationManager.notify(notificationId, builder.build());
+                                        try {
+                                            notificationManager.notify(notificationId,builder.build());
+                                        } catch(Exception e) {
+                                            //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                                            //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                                        }
                                     }
                                 }
                                 //else Log.e("SharePlugin", "Infinite loop? :D");
                             }
 
                             output.flush();
-                            output.close();
-                            input.close();
 
-                            Log.e("SharePlugin", "Transfer finished");
+                        } catch (Exception e) {
+                            successul = false;
+                            Log.e("SharePlugin", "Receiver thread exception");
+                            e.printStackTrace();
+                        } finally {
+                            try { output.close(); } catch (Exception e) {}
+                            try { input.close(); } catch (Exception e) {}
+                        }
+
+                        try {
+                            Log.i("SharePlugin", "Transfer finished");
 
                             //Make sure it is added to the Android Gallery
                             Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
@@ -185,23 +182,29 @@ public class SharePlugin extends Plugin {
 
                             Resources res = context.getResources();
 
+                            String message = successul? res.getString(R.string.received_file_title, device.getName()) : res.getString(R.string.received_file_fail_title, device.getName());
                             NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
-                                    .setContentTitle(res.getString(R.string.received_file_title, device.getName()))
-                                    .setContentText(res.getString(R.string.received_file_text, filename))
-                                    .setContentIntent(resultPendingIntent)
-                                    .setTicker(res.getString(R.string.received_file_title, device.getName()))
+                                    .setContentTitle(message)
+                                    .setTicker(message)
                                     .setSmallIcon(android.R.drawable.stat_sys_download_done)
                                     .setAutoCancel(true);
 
+                            if (successul) {
+                                builder.setContentText(res.getString(R.string.received_file_text, filename))
+                                       .setContentIntent(resultPendingIntent);
+                            }
 
                             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
                             if (prefs.getBoolean("share_notification_preference", true)) {
                                 builder.setDefaults(Notification.DEFAULT_ALL);
                             }
 
-                            Notification noti = builder.build();
-
-                            notificationManager.notify(notificationId, noti);
+                            try {
+                                notificationManager.notify(notificationId,builder.build());
+                            } catch(Exception e) {
+                                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                            }
 
                         } catch (Exception e) {
                             Log.e("SharePlugin", "Receiver thread exception");
@@ -212,7 +215,7 @@ public class SharePlugin extends Plugin {
                 }).start();
 
             } else if (np.has("text")) {
-                Log.e("SharePlugin", "hasText");
+                Log.i("SharePlugin", "hasText");
 
                 String text = np.getString("text");
                 if(android.os.Build.VERSION.SDK_INT >= 11) {
@@ -227,13 +230,12 @@ public class SharePlugin extends Plugin {
 
                 String url = np.getString("url");
 
-                Log.e("SharePlugin", "hasUrl: "+url);
+                Log.i("SharePlugin", "hasUrl: "+url);
 
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                //Do not launch it directly, show a notification instead
-                //context.startActivity(browserIntent);
+                //Do not launch url directly, show a notification instead
 
                 Resources res = context.getResources();
                 TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
@@ -254,7 +256,12 @@ public class SharePlugin extends Plugin {
                         .build();
 
                 NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                notificationManager.notify((int)System.currentTimeMillis(), noti);
+                try {
+                    notificationManager.notify((int)System.currentTimeMillis(), noti);
+                } catch(Exception e) {
+                    //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                    //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                }
 
             } else {
                 Log.e("SharePlugin", "Error: Nothing attached!");
@@ -268,13 +275,5 @@ public class SharePlugin extends Plugin {
 
         return true;
     }
-
-    @Override
-    public AlertDialog getErrorDialog(Activity deviceActivity) {
-        return null;
-    }
-
-    @Override
-    public Button getInterfaceButton(Activity activity) { return null; }
 
 }

@@ -37,46 +37,51 @@ public class KdeConnectBroadcastReceiver extends BroadcastReceiver
 
         String action = intent.getAction();
 
-        if(action.equals(Intent.ACTION_PACKAGE_REPLACED)) {
-            Log.i("KdeConnect", "UpdateReceiver");
-            if (!intent.getData().getSchemeSpecificPart().equals(context.getPackageName())) {
-                Log.i("KdeConnect", "Ignoring, it's not me!");
-                return;
-            }
-            BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
-                @Override
-                public void onServiceStart(BackgroundService service) {
+        switch(action) {
+            case Intent.ACTION_PACKAGE_REPLACED:
+                Log.i("KdeConnect", "UpdateReceiver");
+                if (!intent.getData().getSchemeSpecificPart().equals(context.getPackageName())) {
+                    Log.i("KdeConnect", "Ignoring, it's not me!");
+                    return;
+                }
+                BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(BackgroundService service) {
 
-                }
-            });
-        } else if (action.equals(Intent.ACTION_BOOT_COMPLETED)) {
-            Log.i("KdeConnect", "KdeConnectBroadcastReceiver");
-            BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
-                @Override
-                public void onServiceStart(BackgroundService service) {
+                    }
+                });
+                break;
+            case Intent.ACTION_BOOT_COMPLETED:
+                Log.i("KdeConnect", "KdeConnectBroadcastReceiver");
+                BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(BackgroundService service) {
 
-                }
-            });
-        } else if (action.equals(WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION)
-                || action.equals(WifiManager.WIFI_STATE_CHANGED_ACTION)
-                || action.equals(ConnectivityManager.CONNECTIVITY_ACTION)
-                ) {
-            Log.i("KdeConnect", "Connection state changed, trying to connect");
-            BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
-                @Override
-                public void onServiceStart(BackgroundService service) {
-                    service.onNetworkChange();
-                }
-            });
-        } else if (action.equals(Intent.ACTION_SCREEN_ON)) {
-            BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
-                @Override
-                public void onServiceStart(BackgroundService service) {
-                    service.onNetworkChange();
-                }
-            });
-        } else {
-            Log.i("KdeConnectBroadcastReceiver", "Ignoring broadcast event: "+intent.getAction());
+                    }
+                });
+                break;
+            case WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION:
+            case WifiManager.WIFI_STATE_CHANGED_ACTION:
+            case ConnectivityManager.CONNECTIVITY_ACTION:
+                Log.i("KdeConnect", "Connection state changed, trying to connect");
+                BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(BackgroundService service) {
+                        service.onNetworkChange();
+                    }
+                });
+                break;
+            case Intent.ACTION_SCREEN_ON:
+                BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(BackgroundService service) {
+                        service.onNetworkChange();
+                    }
+                });
+                break;
+            default:
+                Log.i("BroadcastReceiver", "Ignoring broadcast event: "+intent.getAction());
+                break;
         }
 
     }

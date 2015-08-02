@@ -3,18 +3,18 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.+'
+        classpath 'com.android.tools.build:gradle:1.2.3'
     }
 }
 
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion '21.1.2'
+    compileSdkVersion 22
+    buildToolsVersion '22.0.1'
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 21
+        targetSdkVersion 22
     }
 	sourceSets {
         main {
@@ -24,18 +24,24 @@ android {
             res.srcDirs = ['res']
             assets.srcDirs = ['assets']
         }
+        androidTest {
+            java.srcDirs = ['tests']
+        }
     }
     packagingOptions {
-        exclude "META-INF/DEPENDENCIES"
-        exclude "META-INF/NOTICE"
-        exclude "META-INF/LICENSE"
-        exclude "META-INF/LICENSE.txt"
-        exclude "META-INF/NOTICE.txt"
+        pickFirst "META-INF/DEPENDENCIES"
+        pickFirst "META-INF/LICENSE"
+        pickFirst "META-INF/NOTICE"
     }
     lintOptions {
         abortOnError false
+        checkReleaseBuilds false
     }
     buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),'proguard-rules.pro'
+        }
     }
 }
 
@@ -43,11 +49,18 @@ dependencies {
     repositories {
         mavenCentral()
     }
-    compile 'com.android.support:support-v4:21.0.2'
-    compile 'com.android.support:appcompat-v7:21.0.2'
+    compile 'com.android.support:support-v4:22.2.0'
+    compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'org.apache.mina:mina-core:2.0.9'
     compile 'org.apache.sshd:sshd-core:0.8.0'
     compile 'org.bouncycastle:bcprov-jdk16:1.46'
+
+
+    androidTestCompile 'org.mockito:mockito-core:1.10.19'
+
+    // Because mockito has some problems with dex environment
+    androidTestCompile 'com.google.dexmaker:dexmaker:1.1'
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.1'
 
     //compile fileTree(dir: 'libs', include: '*.jar')
 }

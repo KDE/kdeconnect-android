@@ -45,10 +45,6 @@ import java.util.Collection;
 
 public class MainActivity extends ActionBarActivity {
 
-    //
-    // Action bar
-    //
-
     private MenuItem menuProgress;
 
     @Override

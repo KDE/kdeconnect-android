@@ -182,7 +182,7 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
                     @Override
                     public void onServiceStart(BackgroundService service) {
                         Device device = service.getDevice(deviceId);
-                        MousePadPlugin mousePadPlugin = (MousePadPlugin)device.getPlugin("plugin_mousepad");
+                        MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
                         if (mousePadPlugin == null) return;
                         mousePadPlugin.sendMouseDelta(mCurrentX - mPrevX, mCurrentY - mPrevY);
                         mPrevX = mCurrentX;
@@ -227,7 +227,7 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
                 @Override
                 public void onServiceStart(BackgroundService service) {
                     Device device = service.getDevice(deviceId);
-                    MousePadPlugin mousePadPlugin = (MousePadPlugin)device.getPlugin("plugin_mousepad");
+                    MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
                     if (mousePadPlugin == null) return;
                     mousePadPlugin.sendScroll(0, scrollToSendY);
                 }
@@ -248,7 +248,7 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
             @Override
             public void onServiceStart(BackgroundService service) {
                 Device device = service.getDevice(deviceId);
-                MousePadPlugin mousePadPlugin = (MousePadPlugin)device.getPlugin("plugin_mousepad");
+                MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
                 if (mousePadPlugin == null) return;
                 mousePadPlugin.sendSingleHold();
             }
@@ -266,7 +266,7 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
             @Override
             public void onServiceStart(BackgroundService service) {
                 Device device = service.getDevice(deviceId);
-                MousePadPlugin mousePadPlugin = (MousePadPlugin)device.getPlugin("plugin_mousepad");
+                MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
                 if (mousePadPlugin == null) return;
                 mousePadPlugin.sendSingleClick();
             }
@@ -280,7 +280,7 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
             @Override
             public void onServiceStart(BackgroundService service) {
                 Device device = service.getDevice(deviceId);
-                MousePadPlugin mousePadPlugin = (MousePadPlugin)device.getPlugin("plugin_mousepad");
+                MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
                 if (mousePadPlugin == null) return;
                 mousePadPlugin.sendDoubleClick();
             }
@@ -327,7 +327,7 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
             @Override
             public void onServiceStart(BackgroundService service) {
                 Device device = service.getDevice(deviceId);
-                MousePadPlugin mousePadPlugin = (MousePadPlugin)device.getPlugin("plugin_mousepad");
+                MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
                 if (mousePadPlugin == null) return;
                 mousePadPlugin.sendMiddleClick();
             }
@@ -339,7 +339,7 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
             @Override
             public void onServiceStart(BackgroundService service) {
                 Device device = service.getDevice(deviceId);
-                MousePadPlugin mousePadPlugin = (MousePadPlugin) device.getPlugin("plugin_mousepad");
+                MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
                 if (mousePadPlugin == null) return;
                 mousePadPlugin.sendRightClick();
             }
@@ -350,7 +350,7 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
                 @Override
                 public void onServiceStart(BackgroundService service) {
                     Device device = service.getDevice(deviceId);
-                    MousePadPlugin mousePadPlugin = (MousePadPlugin) device.getPlugin("plugin_mousepad");
+                    MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
                     if (mousePadPlugin == null) return;
                     mousePadPlugin.sendSingleHold();
                 }

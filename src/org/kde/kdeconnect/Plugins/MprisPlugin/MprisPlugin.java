@@ -21,15 +21,11 @@
 package org.kde.kdeconnect.Plugins.MprisPlugin;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
@@ -37,8 +33,6 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-
 
 public class MprisPlugin extends Plugin {
 
@@ -55,11 +49,6 @@ public class MprisPlugin extends Plugin {
     private HashMap<String,Handler> playerListUpdated = new HashMap<String,Handler>();
 
     @Override
-    public String getPluginName() {
-        return "plugin_mpris";
-    }
-
-    @Override
     public String getDisplayName() {
         return context.getResources().getString(R.string.pref_plugin_mpris);
     }
@@ -71,16 +60,11 @@ public class MprisPlugin extends Plugin {
 
     @Override
     public Drawable getIcon() {
-        return context.getResources().getDrawable(R.drawable.icon);
+        return context.getResources().getDrawable(R.drawable.mpris_plugin_action);
     }
 
     @Override
     public boolean hasSettings() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabledByDefault() {
         return true;
     }
 
@@ -187,19 +171,21 @@ public class MprisPlugin extends Plugin {
 
     public void setPlayerStatusUpdatedHandler(String id, Handler h) {
         playerStatusUpdated.put(id, h);
+
+        h.dispatchMessage(new Message());
+
+        //Get the status if this is the first handler we have
         if (playerListUpdated.size() == 1) {
             requestPlayerStatus();
         }
-
-        h.dispatchMessage(new Message());
     }
 
     public void setPlayerListUpdatedHandler(String id, Handler h) {
-        if (playerList.size() > 0) {
-            h.dispatchMessage(new Message());
-        }
-
         playerListUpdated.put(id,h);
+
+        h.dispatchMessage(new Message());
+
+        //Get the status if this is the first handler we have
         if (playerListUpdated.size() == 1) {
             requestPlayerList();
         }
@@ -268,22 +254,20 @@ public class MprisPlugin extends Plugin {
     }
 
     @Override
-    public AlertDialog getErrorDialog(Activity deviceActivity) {
-        return null;
+    public boolean hasMainActivity() {
+        return true;
     }
 
     @Override
-    public Button getInterfaceButton(final Activity activity) {
-        Button b = new Button(activity);
-        b.setText(R.string.open_mpris_controls);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(activity, MprisActivity.class);
-                intent.putExtra("deviceId", device.getDeviceId());
-                activity.startActivity(intent);
-            }
-        });
-        return b;
+    public void startMainActivity(Activity parentActivity) {
+        Intent intent = new Intent(parentActivity, MprisActivity.class);
+        intent.putExtra("deviceId", device.getDeviceId());
+        parentActivity.startActivity(intent);
     }
+
+    @Override
+    public String getActionName() {
+        return context.getString(R.string.open_mpris_controls);
+    }
+
 }

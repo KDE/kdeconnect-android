@@ -10,14 +10,14 @@
   <string name="pref_plugin_clipboard_desc">Jaa leikepöydän sisältö</string>
   <string name="pref_plugin_mousepad">Kauko-ohjaus</string>
   <string name="pref_plugin_mousepad_desc">Käytä puhelintasi hiirenä ja näppäimistönä</string>
-  <string name="pref_plugin_mpris">Multimedian kauko-ohjaus</string>
+  <string name="pref_plugin_mpris">Multimedian ohjaus</string>
   <string name="pref_plugin_mpris_desc">Ohjaa ääntä ja videota puhelimestasi</string>
   <string name="pref_plugin_ping">Tiedustelupaketti</string>
   <string name="pref_plugin_ping_desc">Lähetä ja vastaanota tiedustelupaketteja</string>
   <string name="pref_plugin_notifications">Ilmoitusten synkronointi</string>
   <string name="pref_plugin_notifications_desc">Näe ilmoituksesi muissa laitteissa</string>
-  <string name="pref_plugin_sharereceiver">Jaon vastaanottaja</string>
-  <string name="pref_plugin_sharereceiver_desc">Tallenna tulevat tiedoston puhelimen muistiin</string>
+  <string name="pref_plugin_sharereceiver">Jako ja vastaanottaminen</string>
+  <string name="pref_plugin_sharereceiver_desc">Jaa tiedostoja ja osoitteita laitteiden välillä</string>
   <string name="plugin_not_available">Piirre ei ole käytettävissä Android-versiossasi</string>
   <string name="device_list_empty">Ei laitteita</string>
   <string name="ok">OK</string>
@@ -25,8 +25,8 @@
   <string name="open_settings">Avaa asetukset</string>
   <string name="no_permissions">Sinun on annettava lupa ilmoitusten näkemiseen</string>
   <string name="send_ping">Lähetä tiedustelupaketti</string>
-  <string name="open_mpris_controls">Avaa kauko-ohjain</string>
-  <string name="open_mousepad">Avaa hiiren ohjain</string>
+  <string name="open_mpris_controls">Multimedian ohjaus</string>
+  <string name="open_mousepad">Kauko-ohjaus</string>
   <string name="mousepad_info">Liikuta hiiren osoitinta liikuttamalla sormeasi näytöllä. Napsauta napauttamalla yhdellä sormella, käytä oikeaa painiketta kahdella sormella ja keskipainiketta kolmella. Vedä ja pudota painamalla pitkään.</string>
   <string name="mousepad_double_tap_settings_title">Aseta kahden sormen napautuksen toiminto</string>
   <string name="mousepad_triple_tap_settings_title">Aseta kolmen sormen napautuksen toiminto</string>
@@ -62,6 +62,7 @@
   <string name="outgoing_file_title">Lähetetään tiedostoa laitteeseen %1s</string>
   <string name="outgoing_file_text">%1s</string>
   <string name="received_file_title">Vastaanotettiin tiedosto lähettäjältä %1s</string>
+  <string name="received_file_fail_title">Ei voitu vastaanottaa tiedostoa lähettäjältä %1s</string>
   <string name="received_file_text">Avaa ”%1s” napauttamalla</string>
   <string name="sent_file_title">Tiedosto lähetetty laitteeseen %1s</string>
   <string name="sent_file_text">%1s</string>
@@ -119,6 +120,7 @@
   <string name="sftp_readonly">(vain luku)</string>
   <string name="sftp_camera">Kamerakuvat</string>
   <string name="add_host">Lisää kone/IP</string>
+  <string name="add_host_hint">Konenimi tai IP-osoite</string>
   <string name="no_players_connected">Soittimia ei löytynyt</string>
   <string name="custom_dev_list_help">Käytä tätä vain, jos laitettasi ei tunnisteta automaattisesti. Kirjoita IP-osoite tai konenimi alle ja kosketa painiketta lisätäksesi sen luetteloon. Kosketa olemassa olevaa kohtaa poistaaksesi sen luettelosta.</string>
   <string name="mpris_player_on_device">%1$s laitteella %2$s</string>

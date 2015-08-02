@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.kde.kdeconnect_tp"
-    android:versionCode="736"
-    android:versionName="0.7.3.6">
+    android:versionCode="808"
+    android:versionName="0.8h">
 
     <uses-sdk android:minSdkVersion="9"
-              android:targetSdkVersion="21" />
+              android:targetSdkVersion="22" />
 
     <supports-screens
         android:smallScreens="true"
@@ -32,6 +32,7 @@
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="KDE Connect"
+        android:theme="@style/KdeConnectTheme"
         >
 
         <service
@@ -40,7 +41,6 @@
         </service>
 
         <activity
-            android:theme="@style/Theme.AppCompat"
             android:name="org.kde.kdeconnect.UserInterface.MainActivity"
             android:label="KDE Connect" >
 
@@ -60,7 +60,6 @@
         </activity>
 
         <activity
-                android:theme="@style/Theme.AppCompat"
                 android:name="org.kde.kdeconnect.UserInterface.DeviceActivity"
                 android:label="@string/device"
                 android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity"
@@ -70,7 +69,6 @@
         </activity>
 
         <activity
-            android:theme="@style/Theme.AppCompat"
             android:name="org.kde.kdeconnect.UserInterface.PairActivity"
             android:label="@string/pair_device"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity"
@@ -136,7 +134,6 @@
         <!-- Plugin-related activities and services -->
 
         <activity
-            android:theme="@style/Theme.AppCompat"
             android:name="org.kde.kdeconnect.Plugins.MprisPlugin.MprisActivity"
             android:label="@string/remote_control"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.DeviceActivity"
@@ -146,7 +143,6 @@
         </activity>
 
         <activity
-            android:theme="@style/Theme.AppCompat"
             android:name="org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadActivity"
             android:label="@string/remote_control"
             android:windowSoftInputMode="stateHidden|adjustResize"
@@ -159,8 +155,7 @@
         </activity>
 
         <activity
-            android:theme="@style/Theme.AppCompat"
-            android:name="org.kde.kdeconnect.Plugins.SharePlugin.ShareToReceiver"
+            android:name="org.kde.kdeconnect.Plugins.SharePlugin.ShareActivity"
             android:label="KDE Connect"
             >
             <intent-filter>
@@ -185,7 +180,6 @@
         <activity
             android:name="org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationFilterActivity"
             android:label="@string/title_activity_notification_filter"
-            android:theme="@style/Theme.AppCompat"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.PluginSettingsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

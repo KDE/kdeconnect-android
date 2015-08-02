@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="pref_plugin_telephony">电话通知</string>
+  <string name="pref_plugin_telephony_desc">为短信和来电发送通知</string>
+  <string name="pref_plugin_battery">电池报告</string>
+  <string name="pref_plugin_battery_desc">定期报告电池状态</string>
+  <string name="pref_plugin_sftp">开放文件系统</string>
+  <string name="pref_plugin_sftp_desc">允许远程浏览手机的文件系统</string>
+  <string name="pref_plugin_clipboard">剪贴板同步</string>
+  <string name="pref_plugin_clipboard_desc">共享剪贴板内容</string>
+  <string name="pref_plugin_mousepad">远程输入</string>
+  <string name="pref_plugin_mousepad_desc">将手机用作鼠标和键盘</string>
+  <string name="pref_plugin_mpris_desc">从手机控制音频或视频</string>
+  <string name="pref_plugin_ping">Ping</string>
+  <string name="pref_plugin_ping_desc">发送和接受ping</string>
+  <string name="pref_plugin_notifications">通知同步</string>
+  <string name="pref_plugin_notifications_desc">从其他设备访问你的通知</string>
+  <string name="plugin_not_available">该特性不适用于您的Android版本</string>
+  <string name="device_list_empty">无设备</string>
+  <string name="ok">确认</string>
+  <string name="cancel">取消</string>
+  <string name="open_settings">开启设置</string>
+  <string name="no_permissions">你需要授予权限以便访问通知</string>
+  <string name="send_ping">发送ping</string>
+  <string name="mousepad_info">在屏幕上移动手指来移动光标。轻击代表左键，双指或三指点击代表右键或中键。用长按来拖放。</string>
+  <string name="mousepad_double_tap_settings_title">设置双指点击动作</string>
+  <string name="mousepad_triple_tap_settings_title">设置三指点击动作</string>
+  <string-array name="mousepad_tap_entries">
+    <item>右键点击</item>
+    <item>中键点击</item>
+    <item>无</item>
+  </string-array>
+  <string name="mousepad_double_default">右</string>
+  <string name="mousepad_triple_default">中</string>
+  <string name="category_connected_devices">已连接设备</string>
+  <string name="category_not_paired_devices">可用设备</string>
+  <string name="category_remembered_devices">已记住设备</string>
+  <string name="plugins_failed_to_load">插件载入失败 (按下以查看更多信息)：</string>
+  <string name="device_menu_plugins">插件设置</string>
+  <string name="device_menu_unpair">取消配对</string>
+  <string name="device_not_reachable">配对设备不可及</string>
+  <string name="unknown_device">未知设备</string>
+  <string name="error_not_reachable">设备不可及</string>
+  <string name="error_already_requested">已在请求配对</string>
+  <string name="error_already_paired">设备已配对</string>
+  <string name="error_could_not_send_package">数据包无法发送</string>
+  <string name="error_timed_out">超时</string>
+  <string name="error_canceled_by_user">已被用户取消</string>
+  <string name="error_canceled_by_other_peer">已被另一方取消</string>
+  <string name="error_invalid_key">收到无效密钥</string>
+  <string name="pair_requested">已请求配对</string>
+  <string name="pairing_request_from">来自%1s的配对请求</string>
+  <string name="received_url_title">已从%1s接收链接</string>
+  <string name="received_url_text">点击以打开“%1s”</string>
+  <string name="incoming_file_title">来自%1s的文件</string>
+  <string name="incoming_file_text">%1s</string>
+  <string name="outgoing_file_title">正在向%1s发送文件</string>
+  <string name="outgoing_file_text">%1s</string>
+  <string name="received_file_title">已从%1s接收文件</string>
+  <string name="received_file_fail_title">未能从%1s接收文件</string>
+  <string name="received_file_text">点击以打开“%1s”</string>
+  <string name="sent_file_title">发送文件到%1s</string>
+  <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">未能发送文件%1s</string>
+  <string name="sent_file_failed_text">%1s</string>
+  <string name="tap_to_answer">点击以应答</string>
+  <string name="reconnect">重新连接</string>
+  <string name="right_click">发送右键点击</string>
+  <string name="middle_click">发送中键点击</string>
+  <string name="show_keyboard">显示键盘</string>
+  <string name="device_not_paired">设备未配对</string>
+  <string name="request_pairing">请求配对</string>
+  <string name="pairing_accept">接受</string>
+  <string name="pairing_reject">拒绝</string>
+  <string name="device">设备</string>
+  <string name="pair_device">进行配对</string>
+  <string name="remote_control">远程控制</string>
+  <string name="settings">KDE Connect设置</string>
+  <string name="mpris_play">播放</string>
+  <string name="mpris_previous">前一个</string>
+  <string name="mpris_rew">后退</string>
+  <string name="mpris_ff">快进</string>
+  <string name="mpris_next">下一个</string>
+  <string name="mpris_volume">音量</string>
+  <string name="mpris_settings">多媒体设置</string>
+  <string name="mpris_time_settings_title">快进/后退按钮</string>
+  <string name="mpris_time_settings_summary">调整快进或后退的时间 (当按下时)</string>
+  <string-array name="mpris_time_entries">
+    <item>10秒</item>
+    <item>20秒</item>
+    <item>30秒</item>
+    <item>1分钟</item>
+    <item>2分钟</item>
+  </string-array>
+  <string name="share_to">分享到...</string>
+  <string name="protocol_version_older">该设备使用旧版本的协议</string>
+  <string name="protocol_version_newer">该设备使用较新版本的协议</string>
+  <string name="general_settings">通用设置</string>
+  <string name="plugin_settings">设置</string>
+  <string name="plugin_settings_with_name">%s设置</string>
+  <string name="device_name">设备名</string>
+  <string name="device_name_preference_summary">%s</string>
+  <string name="invalid_device_name">设备名无效</string>
+  <string name="shareplugin_text_saved">已收到文本，存至剪贴板</string>
+  <string name="custom_devices_settings">自定义设备列表</string>
+  <string name="custom_device_list">通过IP增加设备</string>
+  <string name="share_notification_preference">出声通知</string>
+  <string name="share_notification_preference_summary">当收到文件时震动并播放声音</string>
+  <string name="title_activity_notification_filter">通知过滤器</string>
+  <string name="filter_apps_info">所选软件的通知将会被同步。</string>
+  <string name="sftp_internal_storage">内部存储</string>
+  <string name="sftp_all_files">所有文件</string>
+  <string name="sftp_sdcard_num">SD卡%d</string>
+  <string name="sftp_sdcard">SD卡</string>
+  <string name="sftp_readonly">(只读)</string>
+  <string name="sftp_camera">相机照片</string>
+  <string name="add_host">增加主机/IP</string>
+  <string name="add_host_hint">主机名或IP</string>
+  <string name="no_players_connected">未找到播放器</string>
+  <string name="custom_dev_list_help">仅当你的设备没有被自动检测出时再使用本选项。在下方输入IP地址或主机名，然后点击按钮以添加其到列表中。点击已有条目来从列表中删除它。</string>
+  <string name="mpris_player_on_device">%2$s上的%1$s</string>
+</resources>

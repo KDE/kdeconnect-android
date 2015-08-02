@@ -28,6 +28,7 @@ import android.util.Base64;
 import android.util.Log;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.UserInterface.MainSettingsActivity;
@@ -35,6 +36,7 @@ import org.kde.kdeconnect.UserInterface.MainSettingsActivity;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.security.GeneralSecurityException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.ArrayList;
@@ -64,7 +66,7 @@ public class NetworkPackage {
     private JSONObject mBody;
     private InputStream mPayload;
     private JSONObject mPayloadTransferInfo;
-    private int mPayloadSize;
+    private long mPayloadSize;
 
     private NetworkPackage() {
 
@@ -81,6 +83,10 @@ public class NetworkPackage {
 
     public String getType() {
         return mType;
+    }
+
+    public long getId() {
+        return mId;
     }
 
     //Most commons getters and setters defined for convenience
@@ -169,7 +175,7 @@ public class NetworkPackage {
             np.mBody = jo.getJSONObject("body");
             if (jo.has("payloadSize")) {
                 np.mPayloadTransferInfo = jo.getJSONObject("payloadTransferInfo");
-                np.mPayloadSize = jo.getInt("payloadSize");
+                np.mPayloadSize = jo.getLong("payloadSize");
             } else {
                 np.mPayloadTransferInfo = new JSONObject();
                 np.mPayloadSize = 0;
@@ -187,7 +193,7 @@ public class NetworkPackage {
         return np;
     }
 
-    public NetworkPackage encrypt(PublicKey publicKey) throws Exception {
+    public NetworkPackage encrypt(PublicKey publicKey) throws GeneralSecurityException {
 
         String serialized = serialize();
 
@@ -213,11 +219,12 @@ public class NetworkPackage {
 
         NetworkPackage encrypted = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_ENCRYPTED);
         encrypted.set("data", chunks);
+        encrypted.setPayload(mPayload, mPayloadSize);
         return encrypted;
 
     }
 
-    public NetworkPackage decrypt(PrivateKey privateKey) throws Exception {
+    public NetworkPackage decrypt(PrivateKey privateKey)  throws GeneralSecurityException, JSONException {
 
         JSONArray chunks = mBody.getJSONArray("data");
 
@@ -231,7 +238,9 @@ public class NetworkPackage {
             decryptedJson += decryptedChunk;
         }
 
-        return unserialize(decryptedJson);
+        NetworkPackage decrypted = unserialize(decryptedJson);
+        decrypted.setPayload(mPayload, mPayloadSize);
+        return decrypted;
     }
 
     static public NetworkPackage createIdentityPackage(Context context) {
@@ -275,7 +284,7 @@ public class NetworkPackage {
         setPayload(new ByteArrayInputStream(data), data.length);
     }
 
-    public void setPayload(InputStream stream, int size) {
+    public void setPayload(InputStream stream, long size) {
         mPayload = stream;
         mPayloadSize = size;
     }
@@ -288,7 +297,7 @@ public class NetworkPackage {
         return mPayload;
     }
 
-    public int getPayloadSize() {
+    public long getPayloadSize() {
         return mPayloadSize;
     }
 

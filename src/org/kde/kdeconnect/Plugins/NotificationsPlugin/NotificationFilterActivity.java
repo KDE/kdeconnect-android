@@ -25,7 +25,6 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -61,17 +60,18 @@ public class NotificationFilterActivity extends ActionBarActivity {
         while(!res.isAfterLast()){
             appName[i] = res.getString(res.getColumnIndex(AppDatabase.KEY_NAME));
             pkgName[i] = res.getString(res.getColumnIndex(AppDatabase.KEY_PACKAGE_NAME));
-            isFiltered[i] = res.getString(res.getColumnIndex(AppDatabase.KEY_IS_FILTERED)).equals("true");
+            isFiltered[i] = res.getString(res.getColumnIndex(AppDatabase.KEY_IS_ENABLED)).equals("true");
             res.moveToNext();
             i++;
         }
+        res.close();
         appDatabase.close();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_multiple_choice,android.R.id.text1, appName);
         listView.setAdapter(adapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        for (i = 0 ; i < res.getCount(); i++){
+        for (i = 0 ; i < isFiltered.length; i++){
             if (isFiltered[i]) {
                 listView.setItemChecked(i, true);
             }
@@ -80,12 +80,13 @@ public class NotificationFilterActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 boolean checked = listView.isItemChecked(i);
-                Log.e("NotificationFilterActivity", pkgName[i] + ":" + checked);
+                //Log.e("NotificationFilterActivity", pkgName[i] + ":" + checked);
                 appDatabase.open();
-                appDatabase.updateEntry(pkgName[i], checked);
+                appDatabase.update(pkgName[i], checked);
                 appDatabase.close();
             }
         });
+
     }
 
     // Delete apps from database which are uninstalled
@@ -102,6 +103,7 @@ public class NotificationFilterActivity extends ActionBarActivity {
                 }
                 res.moveToNext();
             }
+            res.close();
         }
         appDatabase.close();
 
@@ -122,8 +124,8 @@ public class NotificationFilterActivity extends ActionBarActivity {
 
             if ( (PackInfo.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0 ) {
 
-                if (!appDatabase.checkEntry(packageName)) {
-                    appDatabase.createEntry(appName, packageName, true);
+                if (!appDatabase.exists(packageName)) {
+                    appDatabase.create(appName, packageName, true);
                 }
                 //Log.e("App FLAG_UPDATED_SYSTEM_APP: " + Integer.toString(i), appName);
 
@@ -133,8 +135,8 @@ public class NotificationFilterActivity extends ActionBarActivity {
 
             } else {
 
-                if (!appDatabase.checkEntry(packageName)) {
-                    appDatabase.createEntry(appName, packageName, true);
+                if (!appDatabase.exists(packageName)) {
+                    appDatabase.create(appName, packageName, true);
                 }
                 //Log.e("App : " + Integer.toString(i), appName);
 

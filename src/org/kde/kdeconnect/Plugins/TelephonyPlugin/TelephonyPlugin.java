@@ -20,18 +20,14 @@
 
 package org.kde.kdeconnect.Plugins.TelephonyPlugin;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.telephony.TelephonyManager;
-import android.widget.Button;
 
 import org.kde.kdeconnect.Helpers.ContactsHelper;
 import org.kde.kdeconnect.NetworkPackage;
@@ -45,12 +41,7 @@ public class TelephonyPlugin extends Plugin {
 
     private int lastState = TelephonyManager.CALL_STATE_IDLE;
     private NetworkPackage lastPackage = null;
-    boolean isMuted = false;
-
-    @Override
-    public String getPluginName() {
-        return "plugin_telephony";
-    }
+    private boolean isMuted = false;
 
     @Override
     public String getDisplayName() {
@@ -60,21 +51,6 @@ public class TelephonyPlugin extends Plugin {
     @Override
     public String getDescription() {
         return context.getResources().getString(R.string.pref_plugin_telephony_desc);
-    }
-
-    @Override
-    public Drawable getIcon() {
-        return context.getResources().getDrawable(R.drawable.icon);
-    }
-
-    @Override
-    public boolean isEnabledByDefault() {
-        return true;
-    }
-
-    @Override
-    public boolean hasSettings() {
-        return false;
     }
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
@@ -207,6 +183,7 @@ public class TelephonyPlugin extends Plugin {
     public boolean onCreate() {
         //Log.e("TelephonyPlugin", "onCreate");
         IntentFilter filter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+        filter.setPriority(500);
         filter.addAction(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
         context.registerReceiver(receiver, filter);
         return true;
@@ -234,13 +211,4 @@ public class TelephonyPlugin extends Plugin {
         return true;
     }
 
-    @Override
-    public AlertDialog getErrorDialog(Activity deviceActivity) {
-        return null;
-    }
-
-    @Override
-    public Button getInterfaceButton(Activity activity) {
-        return null;
-    }
 }

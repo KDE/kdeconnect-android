@@ -20,19 +20,16 @@
 
 package org.kde.kdeconnect.Plugins.BatteryPlugin;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.drawable.Drawable;
 import android.os.BatteryManager;
-import android.widget.Button;
 
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
+
 
 public class BatteryPlugin extends Plugin {
 
@@ -43,11 +40,6 @@ public class BatteryPlugin extends Plugin {
     private NetworkPackage lastInfo = null;
 
     @Override
-    public String getPluginName() {
-        return "plugin_battery";
-    }
-
-    @Override
     public String getDisplayName() {
         return context.getResources().getString(R.string.pref_plugin_battery);
     }
@@ -55,21 +47,6 @@ public class BatteryPlugin extends Plugin {
     @Override
     public String getDescription() {
         return context.getResources().getString(R.string.pref_plugin_battery_desc);
-    }
-
-    @Override
-    public Drawable getIcon() {
-        return context.getResources().getDrawable(R.drawable.icon);
-    }
-
-    @Override
-    public boolean hasSettings() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabledByDefault() {
-        return true;
     }
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
@@ -85,9 +62,9 @@ public class BatteryPlugin extends Plugin {
             int thresholdEvent = lowBattery? THRESHOLD_EVENT_BATTERY_LOW : THRESHOLD_EVENT_NONE;
 
             if (lastInfo != null
-                && isCharging != lastInfo.getBoolean("isCharging")
-                && currentCharge != lastInfo.getInt("currentCharge")
-                && thresholdEvent != lastInfo.getInt("thresholdEvent")
+                && isCharging == lastInfo.getBoolean("isCharging")
+                && currentCharge == lastInfo.getInt("currentCharge")
+                && thresholdEvent == lastInfo.getInt("thresholdEvent")
             ) {
 
                 //Do not send again if nothing has changed
@@ -133,13 +110,4 @@ public class BatteryPlugin extends Plugin {
         return true;
     }
 
-    @Override
-    public AlertDialog getErrorDialog(Activity deviceActivity) {
-        return null;
-    }
-
-    @Override
-    public Button getInterfaceButton(Activity activity) {
-        return null;
-    }
 }

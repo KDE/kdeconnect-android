@@ -21,11 +21,9 @@
 package org.kde.kdeconnect.Helpers;
 
 import android.os.Environment;
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,8 +36,6 @@ import java.util.StringTokenizer;
 //Code from http://stackoverflow.com/questions/9340332/how-can-i-get-the-list-of-mounted-external-storage-of-android-device/19982338#19982338
 //modified to work on Lollipop and other devices
 public class StorageHelper {
-
-    private static final String TAG = "StorageHelper";
 
     public static class StorageInfo {
 
@@ -66,7 +62,6 @@ public class StorageHelper {
     public static List<StorageInfo> getStorageList() {
 
         List<StorageInfo> list = new ArrayList<StorageInfo>();
-        File def = Environment.getExternalStorageDirectory();
         String def_path = Environment.getExternalStorageDirectory().getPath();
         boolean def_path_removable = Environment.isExternalStorageRemovable();
         String def_path_state = Environment.getExternalStorageState();
@@ -86,7 +81,9 @@ public class StorageHelper {
         if (storage.exists() && storage.isDirectory()) {
             String mounts = null;
             try {
-                mounts = new Scanner( new File("/proc/mounts") ).useDelimiter("\\A").next();
+                Scanner scanner = new Scanner( new File("/proc/mounts") );
+                mounts = scanner.useDelimiter("\\A").next();
+                scanner.close();
                 //Log.e("Mounts",mounts);
             } catch(Exception e) {
                 e.printStackTrace();
@@ -95,7 +92,7 @@ public class StorageHelper {
             File dirs[] = storage.listFiles();
             for (File dir : dirs) {
                 //Log.e("getStorageList", "path: "+dir.getAbsolutePath());
-                if (dir.isDirectory()) {
+                if (dir.isDirectory() && dir.canRead() && dir.canExecute()) {
                     String path, path2;
                     path2 = dir.getAbsolutePath();
                     try {
@@ -106,9 +103,10 @@ public class StorageHelper {
                     }
                     if (!path.startsWith("/storage/emulated") || dirs.length == 1) {
                         if (!paths.contains(path) && !paths.contains(path2)) {
-                            if (mounts == null || mounts.contains(path) || mounts.contains(path2))
-                            list.add(0, new StorageInfo(path, false, true, cur_removable_number++));
-                            paths.add(path);
+                            if (mounts == null || mounts.contains(path) || mounts.contains(path2)) {
+                                list.add(0, new StorageInfo(path, false, true, cur_removable_number++));
+                                paths.add(path);
+                            }
                         }
                     }
                 }
@@ -142,12 +140,12 @@ public class StorageHelper {
 
             for (String line : entries) {
                 StringTokenizer tokens = new StringTokenizer(line, " ");
-                String unused = tokens.nextToken(); //device
+                tokens.nextToken(); //device
                 String mount_point = tokens.nextToken(); //mount point
                 if (paths.contains(mount_point)) {
                     continue;
                 }
-                unused = tokens.nextToken(); //file system
+                tokens.nextToken(); //file system
                 List<String> flags = Arrays.asList(tokens.nextToken().split(",")); //flags
                 boolean readonly = flags.contains("ro");
 

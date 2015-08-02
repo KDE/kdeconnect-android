@@ -10,14 +10,14 @@
   <string name="pref_plugin_clipboard_desc">Udostępnij zawartość schowka</string>
   <string name="pref_plugin_mousepad">Zdalne sterowanie</string>
   <string name="pref_plugin_mousepad_desc">Użyj swojego telefonu jako myszy i klawiatury</string>
-  <string name="pref_plugin_mpris">Zdalne sterowanie multimediami</string>
+  <string name="pref_plugin_mpris">Sterowanie multimediami</string>
   <string name="pref_plugin_mpris_desc">Steruj dźwiękiem/obrazem ze swojego telefonu</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Wysyłaj i otrzymuj pingi</string>
   <string name="pref_plugin_notifications">Powiadomienia synchronizacji</string>
   <string name="pref_plugin_notifications_desc">Uzyskaj dostęp do swoich powiadomień z innego urządzenia</string>
-  <string name="pref_plugin_sharereceiver">Udostępnij odbiornik</string>
-  <string name="pref_plugin_sharereceiver_desc">Zapisz przychodzące pliki do pamięci telefonu</string>
+  <string name="pref_plugin_sharereceiver">Udostępniaj i otrzymuj</string>
+  <string name="pref_plugin_sharereceiver_desc">Współdziel pliki i adresy URL pomiędzy urządzeniami</string>
   <string name="plugin_not_available">Funkcja ta nie jest dostępna w twojej wersji Androida</string>
   <string name="device_list_empty">Brak urządzeń</string>
   <string name="ok">OK</string>
@@ -25,8 +25,8 @@
   <string name="open_settings">Otwórz ustawienia</string>
   <string name="no_permissions">Musisz przydzielić uprawnienia, aby uzyskać dostęp do powiadomień</string>
   <string name="send_ping">Wyślij ping</string>
-  <string name="open_mpris_controls">Otwórz zdalne sterowanie</string>
-  <string name="open_mousepad">Otwórz sterowanie gładzikiem</string>
+  <string name="open_mpris_controls">Sterowanie multimediami</string>
+  <string name="open_mousepad">Zdalne sterowanie</string>
   <string name="mousepad_info">Przesuń palcem po ekranie, aby przesunąć wskaźnik myszy. Stuknij, aby wywołać naciśniecie lewym przyciskiem myszy i użyj dwóch/trzech palców, aby wywołać naciśniecie prawym i środkowym przyciskiem myszy. Przyciśnij na dłużej, aby przeciągnąć i upuścić.</string>
   <string name="mousepad_double_tap_settings_title">Ustaw działanie po dwukrotnym stuknięciu palcem</string>
   <string name="mousepad_triple_tap_settings_title">Ustaw działanie po trzykrotnym stuknięciu palcem</string>
@@ -62,6 +62,7 @@
   <string name="outgoing_file_title">Wysyłanie pliku do %1s</string>
   <string name="outgoing_file_text">%1s</string>
   <string name="received_file_title">Odebrano plik od %1s</string>
+  <string name="received_file_fail_title">Nieudane odbieranie pliku z %1s</string>
   <string name="received_file_text">Znacznik do otwarcia \'%1s\'</string>
   <string name="sent_file_title">Plik wysłano do %1s</string>
   <string name="sent_file_text">%1s</string>
@@ -119,6 +120,7 @@
   <string name="sftp_readonly">(tylko do odczytu)</string>
   <string name="sftp_camera">Zdjęcia z aparatu</string>
   <string name="add_host">Dodaj gospodarza/IP</string>
+  <string name="add_host_hint">Gospodarz lub IP</string>
   <string name="no_players_connected">Nie znaleziono żadnego odtwarzacza</string>
   <string name="custom_dev_list_help">Użyj tej opcji tylko wtedy, gdy twoje urządzenie nie jest samoczynnie wykrywane. Podaj adres IP i nazwę gospodarza poniżej i dotknij przycisku, aby dodać je do listy. Dotknij istniejącego elementu, aby usunąć go z listy.</string>
   <string name="mpris_player_on_device">%1$s na %2$s</string>

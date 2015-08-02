@@ -29,6 +29,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -60,7 +61,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 
-public class ShareToReceiver extends ActionBarActivity {
+public class ShareActivity extends ActionBarActivity {
 
     private MenuItem menuProgress;
 
@@ -77,7 +78,7 @@ public class ShareToReceiver extends ActionBarActivity {
         switch (item.getItemId()) {
             case R.id.menu_refresh:
                 updateComputerList();
-                BackgroundService.RunCommand(ShareToReceiver.this, new BackgroundService.InstanceCallback() {
+                BackgroundService.RunCommand(ShareActivity.this, new BackgroundService.InstanceCallback() {
                     @Override
                     public void onServiceStart(BackgroundService service) {
                         service.onNetworkChange();
@@ -136,7 +137,7 @@ public class ShareToReceiver extends ActionBarActivity {
                     @Override
                     public void run() {
                         ListView list = (ListView) findViewById(R.id.listView1);
-                        list.setAdapter(new ListAdapter(ShareToReceiver.this, items));
+                        list.setAdapter(new ListAdapter(ShareActivity.this, items));
                         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -144,55 +145,55 @@ public class ShareToReceiver extends ActionBarActivity {
                                 Device device = devicesList.get(i-1); //NOTE: -1 because of the title!
 
                                 Bundle extras = intent.getExtras();
-                                if (extras.containsKey(Intent.EXTRA_STREAM)) {
+                                if (extras != null) {
+                                    if (extras.containsKey(Intent.EXTRA_STREAM)) {
 
-                                    try {
+                                        try {
 
-                                        ArrayList<Uri> uriList;
-                                        if (!Intent.ACTION_SEND.equals(intent.getAction())) {
-                                            uriList = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
+                                            ArrayList<Uri> uriList;
+                                            if (!Intent.ACTION_SEND.equals(intent.getAction())) {
+                                                uriList = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
+                                            } else {
+                                                Uri uri = extras.getParcelable(Intent.EXTRA_STREAM);
+                                                uriList = new ArrayList<Uri>();
+                                                uriList.add(uri);
+                                            }
+
+                                            queuedSendUriList(device, uriList);
+
+                                        } catch (Exception e) {
+                                            Log.e("ShareActivity", "Exception");
+                                            e.printStackTrace();
+                                        }
+
+                                    } else if (extras.containsKey(Intent.EXTRA_TEXT)) {
+                                        String text = extras.getString(Intent.EXTRA_TEXT);
+                                        String subject = extras.getString(Intent.EXTRA_SUBJECT);
+
+                                        //Hack: Detect shared youtube videos, so we can open them in the browser instead of as text
+                                        if (subject != null && subject.endsWith("YouTube")) {
+                                            int index = text.indexOf(": http://youtu.be/");
+                                            if (index > 0) {
+                                                text = text.substring(index + 2); //Skip ": "
+                                            }
+                                        }
+
+                                        boolean isUrl;
+                                        try {
+                                            new URL(text);
+                                            isUrl = true;
+                                        } catch (Exception e) {
+                                            isUrl = false;
+                                        }
+                                        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_SHARE);
+                                        if (isUrl) {
+                                            np.set("url", text);
                                         } else {
-                                            Uri uri = extras.getParcelable(Intent.EXTRA_STREAM);
-                                            uriList = new ArrayList<Uri>();
-                                            uriList.add(uri);
+                                            np.set("text", text);
                                         }
-
-                                        queuedSendUriList(device, uriList);
-
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                        Log.e("ShareToReceiver", "Exception");
+                                        device.sendPackage(np);
                                     }
-
-                                } else if (extras.containsKey(Intent.EXTRA_TEXT)) {
-                                    String text = extras.getString(Intent.EXTRA_TEXT);
-                                    String subject = extras.getString(Intent.EXTRA_SUBJECT);
-
-                                    //Hack: Detect shared youtube videos, so we can open them in the browser instead of as text
-                                    if (subject != null && subject.endsWith("YouTube")) {
-                                        int index = text.indexOf(": http://youtu.be/");
-                                        if (index > 0) {
-                                            text = text.substring(index+2); //Skip ": "
-                                        }
-                                    }
-
-                                    boolean isUrl;
-                                    try {
-                                        new URL(text);
-                                        isUrl = true;
-                                    } catch(Exception e) {
-                                        isUrl = false;
-                                    }
-                                    NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_SHARE);
-                                    if (isUrl) {
-                                        np.set("url", text);
-                                    } else {
-                                        np.set("text", text);
-                                    }
-                                    device.sendPackage(np);
                                 }
-
-
 
                                 finish();
                             }
@@ -211,7 +212,7 @@ public class ShareToReceiver extends ActionBarActivity {
             InputStream inputStream = cr.openInputStream(uri);
 
             NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_SHARE);
-            int size = -1;
+            long size = -1;
 
             final NotificationManager notificationManager = (NotificationManager)getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
             final int notificationId = (int)System.currentTimeMillis();
@@ -224,7 +225,13 @@ public class ShareToReceiver extends ActionBarActivity {
                     .setAutoCancel(true)
                     .setOngoing(true)
                     .setProgress(100,0,true);
-            notificationManager.notify(notificationId,builder.build());
+
+            try {
+                notificationManager.notify(notificationId,builder.build());
+            } catch(Exception e) {
+                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+            }
 
             final Handler progressBarHandler = new Handler(Looper.getMainLooper());
 
@@ -234,12 +241,13 @@ public class ShareToReceiver extends ActionBarActivity {
                 np.set("filename", uri.getLastPathSegment());
 
                 try {
-                    size = (int)new File(uri.getPath()).length();
-                    np.setPayload(inputStream, size);
+                    size = new File(uri.getPath()).length();
                 } catch(Exception e) {
+                    Log.e("ShareActivity", "Could not obtain file size");
                     e.printStackTrace();
-                    Log.e("ShareToReceiver", "Could not obtain file size");
                 }
+
+                np.setPayload(inputStream, size);
 
             }else{
                 // Probably a content:// uri, so we query the Media content provider
@@ -252,10 +260,10 @@ public class ShareToReceiver extends ActionBarActivity {
                     cursor.moveToFirst();
                     String path = cursor.getString(column_index);
                     np.set("filename", Uri.parse(path).getLastPathSegment());
-                    size = (int)new File(path).length();
+                    size = new File(path).length();
                 } catch(Exception unused) {
 
-                    Log.e("ShareToReceiver", "Could not resolve media to a file, trying to get info as media");
+                    Log.e("ShareActivity", "Could not resolve media to a file, trying to get info as media");
 
                     try {
                         int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DISPLAY_NAME);
@@ -264,7 +272,7 @@ public class ShareToReceiver extends ActionBarActivity {
                         np.set("filename", name);
                     } catch (Exception e) {
                         e.printStackTrace();
-                        Log.e("ShareToReceiver", "Could not obtain file name");
+                        Log.e("ShareActivity", "Could not obtain file name");
                     }
 
                     try {
@@ -273,8 +281,8 @@ public class ShareToReceiver extends ActionBarActivity {
                         //For some reason this size can differ from the actual file size!
                         size = cursor.getInt(column_index);
                     } catch(Exception e) {
+                        Log.e("ShareActivity", "Could not obtain file size");
                         e.printStackTrace();
-                        Log.e("ShareToReceiver", "Could not obtain file size");
                     }
                 } finally {
                     cursor.close();
@@ -284,41 +292,46 @@ public class ShareToReceiver extends ActionBarActivity {
 
             }
 
-            final long filesize = size;
             final String filename = np.getString("filename");
 
             builder.setContentText(res.getString(R.string.outgoing_file_text,filename));
-            notificationManager.notify(notificationId,builder.build());
+            try {
+                notificationManager.notify(notificationId,builder.build());
+            } catch(Exception e) {
+                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+            }
 
             device.sendPackage(np, new Device.SendPackageStatusCallback() {
 
-                int prevProgressPercentage = 0,progressPercentage;
+                int prevProgress = 0;
 
                 @Override
-                public void progressChanged(final long progress) {
-                    // update notification progress
-                    progressPercentage = (int)((progress * 100) / filesize);
-                    if (filesize > 0 && (progressPercentage - prevProgressPercentage) > 0) {
-                        prevProgressPercentage = progressPercentage;
+                public void onProgressChanged(final int progress) {
+                    if (progress != prevProgress) {
+                        prevProgress = progress;
                         progressBarHandler.post(new Runnable() {
                             @Override
                             public void run() {
-                                builder.setProgress(100, progressPercentage, false);
-                                notificationManager.notify(notificationId, builder.build());
+                                builder.setProgress(100, progress, false);
+                                try {
+                                    notificationManager.notify(notificationId,builder.build());
+                                } catch(Exception e) {
+                                    //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                                    //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                                }
                             }
                         });
                     }
-
                 }
 
                 @Override
-                public void sendSuccessful() {
-
+                public void onSuccess() {
                     progressBarHandler.post(new Runnable() {
                         @Override
                         public void run() {
                             Resources res = getApplicationContext().getResources();
-                            NotificationCompat.Builder builder1 = new NotificationCompat.Builder(getApplicationContext())
+                            NotificationCompat.Builder anotherBuilder = new NotificationCompat.Builder(getApplicationContext())
                                     .setContentTitle(res.getString(R.string.sent_file_title, device.getName()))
                                     .setContentText(res.getString(R.string.sent_file_text, filename))
                                     .setTicker(res.getString(R.string.sent_file_title, device.getName()))
@@ -328,24 +341,28 @@ public class ShareToReceiver extends ActionBarActivity {
 
                             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                             if (prefs.getBoolean("share_notification_preference", true)) {
-                                builder1.setDefaults(Notification.DEFAULT_ALL);
+                                anotherBuilder.setDefaults(Notification.DEFAULT_ALL);
                             }
-                            notificationManager.notify(notificationId, builder1.build());
+                            try {
+                                notificationManager.notify(notificationId,anotherBuilder.build());
+                            } catch(Exception e) {
+                                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                            }
                         }
                     });
 
                     if (!uriList.isEmpty()) queuedSendUriList(device, uriList);
-                    else Log.e("ShareToReceiver", "All files sent");
+                    else Log.i("ShareActivity", "All files sent");
                 }
 
                 @Override
-                public void sendFailed() {
-
+                public void onFailure(Throwable e) {
                     progressBarHandler.post(new Runnable() {
                         @Override
                         public void run() {
                             Resources res = getApplicationContext().getResources();
-                            NotificationCompat.Builder builder2 = new NotificationCompat.Builder(getApplicationContext())
+                            NotificationCompat.Builder anotherBuilder = new NotificationCompat.Builder(getApplicationContext())
                                     .setContentTitle(res.getString(R.string.sent_file_failed_title, device.getName()))
                                     .setContentText(res.getString(R.string.sent_file_failed_text, filename))
                                     .setTicker(res.getString(R.string.sent_file_title, device.getName()))
@@ -355,19 +372,24 @@ public class ShareToReceiver extends ActionBarActivity {
 
                             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                             if (prefs.getBoolean("share_notification_preference", true)) {
-                                builder2.setDefaults(Notification.DEFAULT_ALL);
+                                anotherBuilder.setDefaults(Notification.DEFAULT_ALL);
                             }
-                            notificationManager.notify(notificationId, builder2.build());
+                            try {
+                                notificationManager.notify(notificationId,anotherBuilder.build());
+                            } catch(Exception e) {
+                                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                            }
                         }
                     });
 
-                    Log.e("ShareToReceiver", "Failed to send file");
+                    Log.e("ShareActivity", "Failed to send file");
                 }
             });
 
         } catch (Exception e) {
+            Log.e("ShareActivity", "Exception sending files");
             e.printStackTrace();
-            Log.e("ShareToReceiver", "Exception sending files");
         }
 
     }

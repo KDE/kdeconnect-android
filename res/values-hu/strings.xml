@@ -8,14 +8,11 @@
   <string name="pref_plugin_sftp_desc">Lehetővé teszi a telefon fájlrendszerének távolról történő tallózását</string>
   <string name="pref_plugin_clipboard">Vágólap szinkronizáció</string>
   <string name="pref_plugin_clipboard_desc">A vágólap tartalmának megosztása</string>
-  <string name="pref_plugin_mpris">Multimedia távirányítók</string>
   <string name="pref_plugin_mpris_desc">Hang vagy videó vezérlése a telefonról</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Pingek küldése és fogadása</string>
   <string name="pref_plugin_notifications">Értesítés szinkronizáció</string>
   <string name="pref_plugin_notifications_desc">Hozzáférés az értesítésekhez más eszközökről</string>
-  <string name="pref_plugin_sharereceiver">Megosztás vevő</string>
-  <string name="pref_plugin_sharereceiver_desc">Bejövő fájlok mentése a telefon háttértárára</string>
   <string name="plugin_not_available">Ez a funkció nem érhető el az ön Android verziójában</string>
   <string name="device_list_empty">Nincsenek eszközök</string>
   <string name="ok">OK</string>
@@ -23,8 +20,6 @@
   <string name="open_settings">Beállítások megnyitása</string>
   <string name="no_permissions">Jogot kell adnia az értesítésekhez való hozzáféréshez</string>
   <string name="send_ping">Ping küldése</string>
-  <string name="open_mpris_controls">Távirányító megnyitása</string>
-  <string name="open_mousepad">Érintőtábla vezérlő megnyitása</string>
   <string-array name="mousepad_tap_entries">
     <item/>
     <item/>

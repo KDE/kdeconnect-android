@@ -11,14 +11,14 @@
     <string name="pref_plugin_clipboard_desc">Share the clipboard content</string>
     <string name="pref_plugin_mousepad">Remote input</string>
     <string name="pref_plugin_mousepad_desc">Use your phone as a mouse and keyboard</string>
-    <string name="pref_plugin_mpris">Multimedia remote controls</string>
+    <string name="pref_plugin_mpris">Multimedia controls</string>
     <string name="pref_plugin_mpris_desc">Control audio/video from your phone</string>
     <string name="pref_plugin_ping">Ping</string>
     <string name="pref_plugin_ping_desc">Send and receive pings</string>
     <string name="pref_plugin_notifications">Notification sync</string>
     <string name="pref_plugin_notifications_desc">Access your notifications from other devices</string>
-    <string name="pref_plugin_sharereceiver">Share receiver</string>
-    <string name="pref_plugin_sharereceiver_desc">Save incoming files to the phone storage</string>
+    <string name="pref_plugin_sharereceiver">Share and receive</string>
+    <string name="pref_plugin_sharereceiver_desc">Share files and URLs between devices</string>
     <string name="plugin_not_available">This feature is not available in your Android version</string>
     <string name="device_list_empty">No devices</string>
     <string name="ok">OK</string>
@@ -26,8 +26,8 @@
     <string name="open_settings">Open settings</string>
     <string name="no_permissions">You need to grant permission to access notifications</string>
     <string name="send_ping">Send ping</string>
-    <string name="open_mpris_controls">Open remote control</string>
-    <string name="open_mousepad">Open touchpad control</string>
+    <string name="open_mpris_controls">Multimedia control</string>
+    <string name="open_mousepad">Remote input</string>
     <string name="mousepad_info">Move a finger on the screen to move the mouse cursor. Tap for a click, and use two/three fingers for right and middle buttons. Use a long press to drag\'n drop.</string>
     <string name="mousepad_double_tap_settings_title">Set two finger tap action</string>
     <string name="mousepad_triple_tap_settings_title">Set three finger tap action</string>
@@ -70,6 +70,7 @@
     <string name="outgoing_file_title">Sending file to %1s</string>
     <string name="outgoing_file_text">%1s</string>
     <string name="received_file_title">Received file from %1s</string>
+    <string name="received_file_fail_title">Failed receiving file from %1s</string>
     <string name="received_file_text">Tap to open \'%1s\'</string>
     <string name="sent_file_title">Sent file to %1s</string>
     <string name="sent_file_text">%1s</string>
@@ -136,6 +137,7 @@
     <string name="sftp_readonly">(read only)</string>
     <string name="sftp_camera">Camera pictures</string>
     <string name="add_host">Add host/IP</string>
+    <string name="add_host_hint">Hostname or IP</string>
     <string name="no_players_connected">No players found</string>
     <string name="custom_dev_list_help">Use this option only if your device is not automatically detected. Enter IP address or hostname below and touch the button to add it to the list. Touch an existing item to remove it from the list.</string>
     <string name="mpris_player_on_device">%1$s on %2$s</string>

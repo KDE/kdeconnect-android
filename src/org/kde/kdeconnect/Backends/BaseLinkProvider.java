@@ -46,13 +46,13 @@ public abstract class BaseLinkProvider {
 
     //These two should be called when the provider links to a new computer
     protected void connectionAccepted(NetworkPackage identityPackage, BaseLink link) {
-        Log.i("LinkProvider", "connectionAccepted");
+        //Log.i("KDE/LinkProvider", "connectionAccepted");
         for(ConnectionReceiver cr : connectionReceivers) {
             cr.onConnectionReceived(identityPackage, link);
         }
     }
     protected void connectionLost(BaseLink link) {
-        Log.i("LinkProvider", "connectionLost");
+        //Log.i("KDE/LinkProvider", "connectionLost");
         for(ConnectionReceiver cr : connectionReceivers) {
             cr.onConnectionLost(link);
         }

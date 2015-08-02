@@ -8,7 +8,6 @@
   <string name="pref_plugin_sftp_desc">Vă permite să răsfoiți de la distanță sistemul de fișiere al dispozitivului</string>
   <string name="pref_plugin_clipboard">Sincronizare clipboard</string>
   <string name="pref_plugin_clipboard_desc">Partajează conținutul clipboardului</string>
-  <string name="pref_plugin_mpris">Controale multimedia distante</string>
   <string name="pref_plugin_mpris_desc">Controlați audio/video de pe telefon</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Trimite și primește ping-uri</string>
@@ -21,7 +20,6 @@
   <string name="open_settings">Deschide configurările</string>
   <string name="no_permissions">Trebuie să acordați permisiunea pentru accesarea notificărilor</string>
   <string name="send_ping">Trimite ping</string>
-  <string name="open_mpris_controls">Deschide controlul de la distanță</string>
   <string-array name="mousepad_tap_entries">
     <item>Right click</item>
     <item>Middle click</item>

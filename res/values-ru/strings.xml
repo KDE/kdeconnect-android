@@ -6,7 +6,6 @@
   <string name="pref_plugin_battery_desc">Периодически сообщать о состоянии батареи</string>
   <string name="pref_plugin_clipboard">Синхронизация буфера обмена</string>
   <string name="pref_plugin_clipboard_desc">Сделать содержимое буфера обмена общим</string>
-  <string name="pref_plugin_mpris">ДУ для мультимедия</string>
   <string name="pref_plugin_mpris_desc">Управление аудио/видео с устройства</string>
   <string name="pref_plugin_ping">Пинг</string>
   <string name="pref_plugin_ping_desc">Посылать и получать пинги</string>
@@ -19,7 +18,6 @@
   <string name="open_settings">Открыть настройки</string>
   <string name="no_permissions">Вы должны разрешить доступ к уведомлениям</string>
   <string name="send_ping">Послать пинг</string>
-  <string name="open_mpris_controls">Открыть дистанционное управление</string>
   <string-array name="mousepad_tap_entries">
     <item>Right click</item>
     <item>Middle click</item>

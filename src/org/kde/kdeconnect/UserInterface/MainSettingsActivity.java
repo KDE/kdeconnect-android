@@ -27,17 +27,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect_tp.R;
 
-public class MainSettingsActivity extends PreferenceActivity {
+public class MainSettingsActivity extends AppCompatPreferenceActivity {
 
     public static final String KEY_DEVICE_NAME_PREFERENCE = "device_name_preference";
 
@@ -54,6 +54,17 @@ public class MainSettingsActivity extends PreferenceActivity {
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //ActionBar's back button
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
     @SuppressWarnings("deprecation")
     private void addPreferencesOldApi() {
         addPreferencesFromResource(R.xml.general_preferences);
@@ -61,21 +72,27 @@ public class MainSettingsActivity extends PreferenceActivity {
     }
 
     private void initPreferences(final EditTextPreference deviceNamePref) {
-        final SharedPreferences sharedPreferences=PreferenceManager.getDefaultSharedPreferences(this);
+
+        final SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         deviceNamePref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
             @Override
-            public boolean onPreferenceChange(Preference preference, Object newDeviceName) {
-                if (newDeviceName.toString().isEmpty()) {
+            public boolean onPreferenceChange(Preference preference, Object newDeviceNameObject) {
+
+                String newDeviceName = newDeviceNameObject == null ? "" : newDeviceNameObject.toString();
+
+                if (newDeviceName.isEmpty()) {
+
                     Toast.makeText(
                             MainSettingsActivity.this,
                             getString(R.string.invalid_device_name),
                             Toast.LENGTH_SHORT).show();
+
                     return false;
-                }else{
+
+                } else {
+
                     Log.i("MainSettingsActivity", "New device name: " + newDeviceName);
-                    deviceNamePref.setSummary(getString(
-                            R.string.device_name_preference_summary,
-                            newDeviceName.toString()));
+                    deviceNamePref.setSummary(newDeviceName);
 
                     //Broadcast the device information again since it has changed
                     BackgroundService.RunCommand(MainSettingsActivity.this, new BackgroundService.InstanceCallback() {
@@ -84,13 +101,13 @@ public class MainSettingsActivity extends PreferenceActivity {
                             service.onNetworkChange();
                         }
                     });
+
                     return true;
                 }
             }
         });
-        deviceNamePref.setSummary(getString(
-                R.string.device_name_preference_summary,
-                sharedPreferences.getString(KEY_DEVICE_NAME_PREFERENCE,"")));
+
+        deviceNamePref.setSummary(sharedPreferences.getString(KEY_DEVICE_NAME_PREFERENCE,""));
     }
 
     /**
@@ -99,16 +116,13 @@ public class MainSettingsActivity extends PreferenceActivity {
      * @param context the application context
      */
     public static void initializeDeviceName(Context context){
-        // I could have used getDefaultSharedPreferences(context).contains but we need to check
-        // to checkAgainst empty String also.
-        String deviceName=PreferenceManager.getDefaultSharedPreferences(context).getString(
-                KEY_DEVICE_NAME_PREFERENCE,
-                "");
-        if(deviceName.isEmpty()){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        // Could use prefrences.contains but would need to check for empty String anyway.
+        String deviceName = preferences.getString(KEY_DEVICE_NAME_PREFERENCE, "");
+        if (deviceName.isEmpty()){
+            deviceName = DeviceHelper.getDeviceName();
             Log.i("MainSettingsActivity", "New device name: " + deviceName);
-            PreferenceManager.getDefaultSharedPreferences(context).edit().putString(
-                    KEY_DEVICE_NAME_PREFERENCE,
-                    DeviceHelper.getDeviceName()).commit();
+            preferences.edit().putString(KEY_DEVICE_NAME_PREFERENCE, deviceName).commit();
         }
     }
 

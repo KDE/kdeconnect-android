@@ -10,14 +10,11 @@
   <string name="pref_plugin_clipboard_desc">Del indholdet af udklipsholderen</string>
   <string name="pref_plugin_mousepad">Eksternt input</string>
   <string name="pref_plugin_mousepad_desc">Brug din telefon som mus og tastatur</string>
-  <string name="pref_plugin_mpris">Fjernbetjening af multimedie</string>
   <string name="pref_plugin_mpris_desc">Styr lyd og video fra din telefon</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Send og modtag ping</string>
   <string name="pref_plugin_notifications">Synk. af bekendtgørelser</string>
   <string name="pref_plugin_notifications_desc">Tilgå dine bekendtgørelser fra andre enheder</string>
-  <string name="pref_plugin_sharereceiver">Del modtager</string>
-  <string name="pref_plugin_sharereceiver_desc">Gem indkommende filer til telefonens lager</string>
   <string name="plugin_not_available">Denne funktion er ikke tilgængelig i din Android-version</string>
   <string name="device_list_empty">Ingen enheder</string>
   <string name="ok">O.k.</string>
@@ -25,8 +22,6 @@
   <string name="open_settings">Åbn indstillinger</string>
   <string name="no_permissions">Du skal give tilladelse for at tilgå bekendtgørelser</string>
   <string name="send_ping">Send ping</string>
-  <string name="open_mpris_controls">Åbn fjernbetjening</string>
-  <string name="open_mousepad">Åbn touchpad-kontrol</string>
   <string name="mousepad_info">Bevæg en finger på skærmen for at flytte musemarkøren. Tap for at klikke og brug to/tre-fingre for højre og midterste museknap. Brug et langt tryk til at trække og slippe.</string>
   <string name="mousepad_double_tap_settings_title">Angiv handling for tap med to fingre</string>
   <string name="mousepad_triple_tap_settings_title">Angiv handling for tap med tre fingre</string>
@@ -62,6 +57,7 @@
   <string name="outgoing_file_title">Sender fil til %1s</string>
   <string name="outgoing_file_text">%1s</string>
   <string name="received_file_title">Modtog fil fra %1s</string>
+  <string name="received_file_fail_title">Kunne ikke modtage fil fra %1s</string>
   <string name="received_file_text">Tap for at åbne \"%1s\"</string>
   <string name="sent_file_title">Fil sendt til %1s</string>
   <string name="sent_file_text">%1s</string>
@@ -119,6 +115,7 @@
   <string name="sftp_readonly">(skrivebeskyttet)</string>
   <string name="sftp_camera">Kamerabilleder</string>
   <string name="add_host">Tilføj vært/IP</string>
+  <string name="add_host_hint">Værtsnavn eller IP</string>
   <string name="no_players_connected">Ingen afspillere fundet</string>
   <string name="custom_dev_list_help">Brug kun denne indstilling hvis din enhed ikke opdages automatisk. Angiv IP-adresse eller værtsnavn nedenfor og tryk på knappen for at føje den til listen. Tryk på et eksisterende element for at fjerne det fra listen.</string>
   <string name="mpris_player_on_device">%1$s på %2$s</string>

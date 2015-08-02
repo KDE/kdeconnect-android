@@ -8,13 +8,15 @@
   <string name="pref_plugin_sftp_desc">Erlaubt das Browsen des Dateisystems auf dem entfernten Handy</string>
   <string name="pref_plugin_clipboard">Abgleich der Zwischenablage</string>
   <string name="pref_plugin_clipboard_desc">Inhalt der Zwischenablage freigeben</string>
-  <string name="pref_plugin_mpris">Multimedia-Fernbedienungen</string>
+  <string name="pref_plugin_mousepad_desc">Verwendet Ihr Handy als Maus und Tastatur</string>
+  <string name="pref_plugin_mpris">Multimedia-Bedienung</string>
   <string name="pref_plugin_mpris_desc">Audio und Video mit Ihrem Telefon steuern</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Senden und Empfangen von Pings</string>
   <string name="pref_plugin_notifications">Benachrichtigungs-Abgleich</string>
   <string name="pref_plugin_notifications_desc">Zugriff auf Ihre Benachrichtigungen von anderen Geräten</string>
-  <string name="pref_plugin_sharereceiver_desc">Eingehende Dateien auf dem Telefonspeicher ablegen</string>
+  <string name="pref_plugin_sharereceiver">Veröffentlichen und Empfangen</string>
+  <string name="pref_plugin_sharereceiver_desc">Dateien und Adressen (URLs) zwischen Geräten teilen</string>
   <string name="plugin_not_available">Diese Funktion ist in Ihrer Android-Version nicht verfügbar</string>
   <string name="device_list_empty">Keine Geräte</string>
   <string name="ok">OK</string>
@@ -22,8 +24,7 @@
   <string name="open_settings">Einstellungen öffnen</string>
   <string name="no_permissions">Sie müssen die Erlaubnis zum Zugriff auf Benachrichtigungen erteilen</string>
   <string name="send_ping">Ping senden</string>
-  <string name="open_mpris_controls">Fernbedienung öffnen</string>
-  <string name="open_mousepad">Touchpad-Steuerung öffnen</string>
+  <string name="open_mpris_controls">Multimedia-Bedienung</string>
   <string-array name="mousepad_tap_entries">
     <item>Rechtsklick</item>
     <item>Mittelklick</item>
@@ -52,7 +53,14 @@
   <string name="received_url_title">Verknüpfung von %1s erhalten</string>
   <string name="incoming_file_title">Eingehende Datei von %1s</string>
   <string name="incoming_file_text">%1s</string>
+  <string name="outgoing_file_title">Datei wird an %1s gesendet</string>
+  <string name="outgoing_file_text">%1s</string>
   <string name="received_file_title">Datei von %1s erhalten</string>
+  <string name="received_file_fail_title">Der Empfang der Datei %1s ist fehlgeschlagen</string>
+  <string name="sent_file_title">Datei an %1s gesendet</string>
+  <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Das Senden der Datei an %1s ist fehlgeschlagen</string>
+  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Tippen zum Antworten</string>
   <string name="reconnect">Erneut verbinden</string>
   <string name="right_click">Rechtsklick senden</string>
@@ -65,7 +73,7 @@
   <string name="device">Gerät</string>
   <string name="pair_device">Gerät verbinden</string>
   <string name="remote_control">Fernbedienung</string>
-  <string name="settings">KDE-Verbindungseinstellungen</string>
+  <string name="settings">KDE-Connect-Einstellungen</string>
   <string name="mpris_play">Wiedergabe</string>
   <string name="mpris_previous">Zurück</string>
   <string name="mpris_rew">Schneller Rücklauf</string>
@@ -91,7 +99,10 @@
   <string name="invalid_device_name">Ungültiger Gerätename</string>
   <string name="shareplugin_text_saved">Text empfangen und in der Zwischenablage gespeichert</string>
   <string name="custom_devices_settings">Benutzerdefinierte Geräteliste</string>
+  <string name="custom_device_list">Geräte nach IP hinzufügen</string>
   <string name="share_notification_preference_summary">Beim Empfang einer Datei vibrieren und einen Sound abspielen</string>
+  <string name="title_activity_notification_filter">Benachrichtigungs-Filter</string>
+  <string name="filter_apps_info">Benachrichtigungen werden zwischen den ausgewählten Anwendungen abgeglichen.</string>
   <string name="sftp_internal_storage">Interner Speicher</string>
   <string name="sftp_all_files">Alle Dateien</string>
   <string name="sftp_sdcard_num">SD-Karte %d</string>
@@ -99,5 +110,7 @@
   <string name="sftp_readonly">(Nur lesen)</string>
   <string name="sftp_camera">Kamerabilder</string>
   <string name="add_host">Rechner/IP hinzufügen</string>
+  <string name="add_host_hint">Rechnername oder IP</string>
+  <string name="no_players_connected">Keine Medienspieler gefunden</string>
   <string name="mpris_player_on_device">%1$s auf %2$s</string>
 </resources>

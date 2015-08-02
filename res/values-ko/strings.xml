@@ -10,14 +10,11 @@
   <string name="pref_plugin_clipboard_desc">클립보드 내용 동기화</string>
   <string name="pref_plugin_mousepad">원격 입력</string>
   <string name="pref_plugin_mousepad_desc">내 장치를 마우스와 키보드로 사용하기</string>
-  <string name="pref_plugin_mpris">멀티미디어 제어</string>
   <string name="pref_plugin_mpris_desc">휴대폰에서 오디오/비디오 제어</string>
   <string name="pref_plugin_ping">핑</string>
   <string name="pref_plugin_ping_desc">핑 보내고 받기</string>
   <string name="pref_plugin_notifications">알림 동기화</string>
   <string name="pref_plugin_notifications_desc">다른 장치에서 알림 보기</string>
-  <string name="pref_plugin_sharereceiver">공유 수신자</string>
-  <string name="pref_plugin_sharereceiver_desc">보낸 파일을 장치에 저장합니다</string>
   <string name="plugin_not_available">현재 안드로이드 버전에서 사용할 수 없습니다</string>
   <string name="device_list_empty">장치 없음</string>
   <string name="ok">확인</string>
@@ -25,8 +22,6 @@
   <string name="open_settings">설정 열기</string>
   <string name="no_permissions">알림 접근 권한을 허가해야 합니다</string>
   <string name="send_ping">핑 보내기</string>
-  <string name="open_mpris_controls">원격 제어 열기</string>
-  <string name="open_mousepad">터치패드 제어 열기</string>
   <string-array name="mousepad_tap_entries">
     <item/>
     <item/>

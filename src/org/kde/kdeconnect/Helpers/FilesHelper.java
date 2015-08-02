@@ -20,7 +20,10 @@
 
 package org.kde.kdeconnect.Helpers;
 
+import android.util.Log;
 import android.webkit.MimeTypeMap;
+
+import java.io.File;
 
 public class FilesHelper {
 
@@ -73,4 +76,11 @@ public class FilesHelper {
         return toFileSystemSafeName(name, true, 255);
     }
 
+    public static int GetOpenFileCount() {
+        return new File("/proc/self/fd").listFiles().length;
+    }
+
+    public static void LogOpenFileCount() {
+        Log.e("KDE/FileCount",""+GetOpenFileCount());
+    }
 }

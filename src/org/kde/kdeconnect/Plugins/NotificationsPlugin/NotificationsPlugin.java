@@ -25,13 +25,11 @@ import android.app.AlertDialog;
 import android.app.Notification;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
-import android.widget.Button;
 
 import org.kde.kdeconnect.Helpers.AppsHelper;
 import org.kde.kdeconnect.NetworkPackage;
@@ -41,11 +39,9 @@ import org.kde.kdeconnect.UserInterface.SettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
 public class NotificationsPlugin extends Plugin implements NotificationReceiver.NotificationListener {
-
-    @Override
-    public String getPluginName() {
-        return "plugin_notifications";
-    }
+/*
+    private boolean sendIcons = false;
+*/
 
     @Override
     public String getDisplayName() {
@@ -55,11 +51,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     @Override
     public String getDescription() {
         return context.getResources().getString(R.string.pref_plugin_notifications_desc);
-    }
-
-    @Override
-    public Drawable getIcon() {
-        return context.getResources().getDrawable(R.drawable.icon);
     }
 
     @Override
@@ -75,11 +66,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         } else {
             getErrorDialog(parentActivity).show();
         }
-    }
-
-    @Override
-    public boolean isEnabledByDefault() {
-        return true;
     }
 
     private boolean hasPermission() {
@@ -138,9 +124,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         }
     }
 
-
-
-
     @Override
     public boolean onCreate() {
 
@@ -159,8 +142,8 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                             sendNotification(notification, true);
                         }
                     } catch(Exception e) {
-                        e.printStackTrace();
                         Log.e("NotificationsPlugin","Exception");
+                        e.printStackTrace();
                 }
                 }
             });
@@ -170,7 +153,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         }
 
     }
-
 
     @Override
     public void onDestroy() {
@@ -186,9 +168,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             }
         });
     }
-
-
-
 
 
     @Override
@@ -219,7 +198,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         }
 
         appDatabase.open();
-        if (!appDatabase.isFilterEnabled(statusBarNotification.getPackageName())){
+        if (!appDatabase.isEnabled(statusBarNotification.getPackageName())){
             return;
             // we dont want notification from this app
         }
@@ -247,25 +226,24 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             np.set("silent", true);
             np.set("requestAnswer", true); //For compatibility with old desktop versions of KDE Connect that don't support "silent"
         }
-
-        /*
-        //TODO: Add support for displaying app icons to desktop plasmoid and uncomment this piece of code
-        try {
-            Drawable drawableAppIcon = AppsHelper.appIconLookup(context, packageName);
-            Bitmap appIcon = ImagesHelper.drawableToBitmap(drawableAppIcon);
-            ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-            if (appIcon.getWidth() > 128) {
-                appIcon = Bitmap.createScaledBitmap(appIcon, 96, 96, true);
+/*
+        if (sendIcons) {
+            try {
+                Drawable drawableAppIcon = AppsHelper.appIconLookup(context, packageName);
+                Bitmap appIcon = ImagesHelper.drawableToBitmap(drawableAppIcon);
+                ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+                if (appIcon.getWidth() > 128) {
+                    appIcon = Bitmap.createScaledBitmap(appIcon, 96, 96, true);
+                }
+                appIcon.compress(Bitmap.CompressFormat.PNG, 90, outStream);
+                byte[] bitmapData = outStream.toByteArray();
+                np.setPayload(bitmapData);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e("NotificationsPlugin", "Error retrieving icon");
             }
-            appIcon.compress(Bitmap.CompressFormat.PNG, 90, outStream);
-            byte[] bitmapData = outStream.toByteArray();
-            np.setPayload(bitmapData);
-        } catch(Exception e) {
-            e.printStackTrace();
-            Log.e("NotificationsPlugin","Error retrieving icon");
         }
-        */
-
+*/
         np.set("id", id.serialize());
         np.set("appName", appName == null? packageName : appName);
         np.set("isClearable", statusBarNotification.isClearable());
@@ -324,7 +302,11 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     @Override
     public boolean onPackageReceived(final NetworkPackage np) {
         if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_NOTIFICATION)) return false;
-
+/*
+        if (np.getBoolean("sendIcons")) {
+            sendIcons = true;
+        }
+*/
         if (np.getBoolean("request")) {
 
             NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
@@ -414,11 +396,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 })
                 .create();
         }
-    }
-
-    @Override
-    public Button getInterfaceButton(Activity activity) {
-        return null;
     }
 
 }

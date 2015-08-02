@@ -25,7 +25,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.preference.PreferenceActivity;
+import android.view.View;
 import android.widget.Button;
 
 import org.kde.kdeconnect.Device;
@@ -45,10 +45,14 @@ public abstract class Plugin {
 
     /**
      * Return the internal plugin name, that will be used as a
-     * unique key to distinguish it. This function can not access
-     * this.context nor this.device.
+     * unique key to distinguish it. Use the class name as key.
      */
-    public abstract String getPluginName();
+    public String getPluginKey() {
+        return getPluginKey(this.getClass());
+    }
+    public static String getPluginKey(Class<? extends Plugin> p) {
+        return p.getSimpleName();
+    }
 
     /**
      * Return the human-readable plugin name. This function can
@@ -63,22 +67,36 @@ public abstract class Plugin {
     public abstract String getDescription();
 
     /**
+     * Return the action name displayed in the main activity, that
+     * will call startMainActivity when clicked
+     */
+    public String getActionName() {
+        return getDisplayName();
+    }
+
+    /**
      * Return an icon associated to this plugin. This function can
      * access this.context to load the image from resources.
      */
-    public abstract Drawable getIcon();
+    public Drawable getIcon() {
+        return null;
+    }
 
     /**
      * Return true if this plugin should be enabled on new devices.
      * This function can access this.context and perform compatibility
      * checks with the Android version, but can not access this.device.
      */
-    public abstract boolean isEnabledByDefault();
+    public boolean isEnabledByDefault() {
+        return true;
+    }
 
     /**
      * Return true if this plugin needs an specific UI settings.
      */
-    public abstract boolean hasSettings();
+    public boolean hasSettings() {
+        return false;
+    }
 
     /**
      * If hasSettings returns true, this will be called when the user
@@ -89,33 +107,56 @@ public abstract class Plugin {
     public void startPreferencesActivity(SettingsActivity parentActivity) {
         Intent intent = new Intent(parentActivity, PluginSettingsActivity.class);
         intent.putExtra("plugin_display_name", getDisplayName());
-        intent.putExtra("plugin_name", getPluginName());
+        intent.putExtra("plugin_key", getPluginKey());
         parentActivity.startActivity(intent);
+    }
+
+    /**
+     * Return true if the plugin should display something in the Device main view
+     */
+    public boolean hasMainActivity() {
+        return false;
+    }
+
+    /**
+     * Implement here what your plugin should do when clicked
+     */
+    public void startMainActivity(Activity parentActivity) { }
+
+    /**
+     * Return true if the entry for this app should appear in the context menu instead of the main view
+     */
+    public boolean displayInContextMenu() {
+        return false;
     }
 
     /**
      * Initialize the listeners and structures in your plugin.
      * Should return true if initialization was successful.
      */
-    public abstract boolean onCreate();
+    public boolean onCreate() {
+        return true;
+    }
 
     /**
      * Finish any ongoing operations, remove listeners... so
      * this object could be garbage collected.
      */
-    public abstract void onDestroy();
+    public void onDestroy() { }
 
     /**
      * If onCreate returns false, should create a dialog explaining
      * the problem (and how to fix it, if possible) to the user.
      */
-    public abstract boolean onPackageReceived(NetworkPackage np);
+    public boolean onPackageReceived(NetworkPackage np) { return false; }
 
     /**
      * If onCreate returns false, should create a dialog explaining
      * the problem (and how to fix it, if possible) to the user.
      */
-    public abstract AlertDialog getErrorDialog(Activity deviceActivity);
+    public AlertDialog getErrorDialog(Activity deviceActivity) {
+        return null;
+    }
 
     /**
      * Creates a button that will be displayed in the user interface
@@ -123,7 +164,18 @@ public abstract class Plugin {
      * plugin would wants to expose to the user. Return null if no
      * button should be displayed.
      */
-    public abstract Button getInterfaceButton(Activity activity);
-
+    @Deprecated
+    public Button getInterfaceButton(final Activity activity) {
+        if (!hasMainActivity()) return null;
+        Button b = new Button(activity);
+        b.setText(getActionName());
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startMainActivity(activity);
+            }
+        });
+        return b;
+    }
 
 }
