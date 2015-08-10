@@ -115,15 +115,16 @@ public class MainSettingsActivity extends AppCompatPreferenceActivity {
      * It's safe to call this multiple time because doesn't override any previous value.
      * @param context the application context
      */
-    public static void initializeDeviceName(Context context){
+    public static String initializeDeviceName(Context context){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         // Could use prefrences.contains but would need to check for empty String anyway.
         String deviceName = preferences.getString(KEY_DEVICE_NAME_PREFERENCE, "");
         if (deviceName.isEmpty()){
             deviceName = DeviceHelper.getDeviceName();
             Log.i("MainSettingsActivity", "New device name: " + deviceName);
-            preferences.edit().putString(KEY_DEVICE_NAME_PREFERENCE, deviceName).commit();
+            preferences.edit().putString(KEY_DEVICE_NAME_PREFERENCE, deviceName).apply();
         }
+        return deviceName;
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)

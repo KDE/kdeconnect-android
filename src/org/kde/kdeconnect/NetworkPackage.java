@@ -109,7 +109,7 @@ public class NetworkPackage {
 
     public ArrayList<String> getStringList(String key) {
         JSONArray jsonArray = mBody.optJSONArray(key);
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<String> list = new ArrayList<>();
         int length = jsonArray.length();
         for (int i = 0; i < length; i++) {
             try {

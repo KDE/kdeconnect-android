@@ -58,9 +58,9 @@ public class LanLinkProvider extends BaseLinkProvider {
     private final static int port = 1714;
 
     private final Context context;
-    private final HashMap<String, LanLink> visibleComputers = new HashMap<String, LanLink>();
-    private final LongSparseArray<LanLink> nioSessions = new LongSparseArray<LanLink>();
-    private final LongSparseArray<NioSocketConnector> nioConnectors = new LongSparseArray<NioSocketConnector>();
+    private final HashMap<String, LanLink> visibleComputers = new HashMap<>();
+    private final LongSparseArray<LanLink> nioSessions = new LongSparseArray<>();
+    private final LongSparseArray<NioSocketConnector> nioConnectors = new LongSparseArray<>();
 
     private NioSocketAcceptor tcpAcceptor = null;
     private NioDatagramAcceptor udpAcceptor = null;
@@ -317,7 +317,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
                 String deviceListPrefs = PreferenceManager.getDefaultSharedPreferences(context).getString(
                         KEY_CUSTOM_DEVLIST_PREFERENCE, "");
-                ArrayList<String> iplist = new ArrayList<String>();
+                ArrayList<String> iplist = new ArrayList<>();
                 if (!deviceListPrefs.isEmpty()) {
                     iplist = CustomDevicesActivity.deserializeIpList(deviceListPrefs);
                 }

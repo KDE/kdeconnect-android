@@ -67,8 +67,8 @@ public class NotificationFilterActivity extends ActionBarActivity {
         res.close();
         appDatabase.close();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_multiple_choice,android.R.id.text1, appName);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_multiple_choice, android.R.id.text1, appName);
         listView.setAdapter(adapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         for (i = 0 ; i < isFiltered.length; i++){

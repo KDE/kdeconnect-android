@@ -58,7 +58,7 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
 
     KeyListenerView keyListenerView;
 
-    static enum ClickType {
+    enum ClickType {
         RIGHT, MIDDLE, NONE;
         static ClickType fromString(String s) {
             switch(s) {

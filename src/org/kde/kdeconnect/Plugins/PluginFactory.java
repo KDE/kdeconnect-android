@@ -78,8 +78,8 @@ public class PluginFactory {
 
     }
 
-    private static final Map<String, Class> availablePlugins = new TreeMap<String, Class>();
-    private static final Map<String, PluginInfo> availablePluginsInfo = new TreeMap<String, PluginInfo>();
+    private static final Map<String, Class> availablePlugins = new TreeMap<>();
+    private static final Map<String, PluginInfo> availablePluginsInfo = new TreeMap<>();
 
     static {
         //TODO: Use reflection to find all subclasses of Plugin, instead of adding them manually

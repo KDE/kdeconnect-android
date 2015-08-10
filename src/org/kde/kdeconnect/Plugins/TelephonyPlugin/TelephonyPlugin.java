@@ -92,7 +92,7 @@ public class TelephonyPlugin extends Plugin {
         }
     };
 
-    public void callBroadcastReceived(int state, String phoneNumber) {
+    private void callBroadcastReceived(int state, String phoneNumber) {
 
         //Log.e("TelephonyPlugin", "callBroadcastReceived");
 
@@ -157,7 +157,7 @@ public class TelephonyPlugin extends Plugin {
         lastState = state;
     }
 
-    public void smsBroadcastReceived(SmsMessage message) {
+    private void smsBroadcastReceived(SmsMessage message) {
 
         //Log.e("SmsBroadcastReceived", message.toString());
 

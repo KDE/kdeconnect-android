@@ -61,7 +61,7 @@ public class StorageHelper {
      */
     public static List<StorageInfo> getStorageList() {
 
-        List<StorageInfo> list = new ArrayList<StorageInfo>();
+        List<StorageInfo> list = new ArrayList<>();
         String def_path = Environment.getExternalStorageDirectory().getPath();
         boolean def_path_removable = Environment.isExternalStorageRemovable();
         String def_path_state = Environment.getExternalStorageState();
@@ -69,7 +69,7 @@ public class StorageHelper {
                 || def_path_state.equals(Environment.MEDIA_MOUNTED_READ_ONLY);
         boolean def_path_readonly = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED_READ_ONLY);
 
-        HashSet<String> paths = new HashSet<String>();
+        HashSet<String> paths = new HashSet<>();
         int cur_removable_number = 1;
 
         if (def_path_available) {
@@ -115,7 +115,7 @@ public class StorageHelper {
 
             //Legacy code for Android < 4.0 that still didn't have /storage
 
-            ArrayList<String> entries = new ArrayList<String>();
+            ArrayList<String> entries = new ArrayList<>();
             BufferedReader buf_reader = null;
             try {
                 buf_reader = new BufferedReader(new FileReader("/proc/mounts"));

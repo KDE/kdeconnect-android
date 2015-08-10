@@ -145,6 +145,7 @@
             android:layout_height="30dip"
             android:maxWidth="30dip"
             android:layout_marginRight="10dip"
+            android:layout_marginEnd="10dip"
             android:id="@+id/imageView"
             android:layout_weight="0"
             android:layout_gravity="left|center_vertical"

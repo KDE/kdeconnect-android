@@ -35,6 +35,7 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -57,7 +58,7 @@ public class SharePlugin extends Plugin {
 
     @Override
     public Drawable getIcon() {
-        return context.getResources().getDrawable(R.drawable.share_plugin_action);
+        return ContextCompat.getDrawable(context, R.drawable.share_plugin_action);
     }
 
     @Override

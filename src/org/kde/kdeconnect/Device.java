@@ -28,11 +28,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Base64;
 import android.util.Log;
 
@@ -90,20 +90,20 @@ public class Device implements BaseLink.PackageReceiver {
     }
 
     public interface PairingCallback {
-        abstract void incomingRequest();
-        abstract void pairingSuccessful();
-        abstract void pairingFailed(String error);
-        abstract void unpaired();
+        void incomingRequest();
+        void pairingSuccessful();
+        void pairingFailed(String error);
+        void unpaired();
     }
 
     private DeviceType deviceType;
     private PairStatus pairStatus;
-    private ArrayList<PairingCallback> pairingCallback = new ArrayList<PairingCallback>();
+    private final ArrayList<PairingCallback> pairingCallback = new ArrayList<>();
     private Timer pairingTimer;
 
-    private final ArrayList<BaseLink> links = new ArrayList<BaseLink>();
-    private final HashMap<String, Plugin> plugins = new HashMap<String, Plugin>();
-    private final HashMap<String, Plugin> failedPlugins = new HashMap<String, Plugin>();
+    private final ArrayList<BaseLink> links = new ArrayList<>();
+    private final HashMap<String, Plugin> plugins = new HashMap<>();
+    private final HashMap<String, Plugin> failedPlugins = new HashMap<>();
 
     private final SharedPreferences settings;
 
@@ -156,11 +156,13 @@ public class Device implements BaseLink.PackageReceiver {
 
     public Drawable getIcon()
     {
+        int drawableId;
         switch (deviceType) {
-            case Phone: return context.getResources().getDrawable(R.drawable.ic_device_phone);
-            case Tablet: return context.getResources().getDrawable(R.drawable.ic_device_tablet);
-            default: return context.getResources().getDrawable(R.drawable.ic_device_laptop);
+            case Phone: drawableId = R.drawable.ic_device_phone;
+            case Tablet: drawableId = R.drawable.ic_device_tablet;
+            default: drawableId = R.drawable.ic_device_laptop;
         }
+        return ContextCompat.getDrawable(context, drawableId);
     }
 
     public DeviceType getDeviceType() {
@@ -602,7 +604,7 @@ public class Device implements BaseLink.PackageReceiver {
                 boolean useEncryption = (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR) && isPaired());
 
                 //Make a copy to avoid concurrent modification exception if the original list changes
-                ArrayList<BaseLink> mLinks = new ArrayList<BaseLink>(links);
+                ArrayList<BaseLink> mLinks = new ArrayList<>(links);
                 for (final BaseLink link : mLinks) {
                     if (link == null) continue; //Since we made a copy, maybe somebody destroyed the link in the meanwhile
                     if (useEncryption) {
@@ -657,7 +659,7 @@ public class Device implements BaseLink.PackageReceiver {
         final Plugin plugin = PluginFactory.instantiatePluginForDevice(context, pluginKey, this);
         if (plugin == null) {
             Log.e("KDE/addPlugin","could not instantiate plugin: "+pluginKey);
-            failedPlugins.put(pluginKey, plugin);
+            failedPlugins.put(pluginKey, null);
             return;
         }
 
@@ -770,7 +772,7 @@ public class Device implements BaseLink.PackageReceiver {
         void onPluginsChanged(Device device);
     }
 
-    private final ArrayList<PluginsChangedListener> pluginsChangedListeners = new ArrayList<PluginsChangedListener>();
+    private final ArrayList<PluginsChangedListener> pluginsChangedListeners = new ArrayList<>();
 
     public void addPluginsChangedListener(PluginsChangedListener listener) {
         pluginsChangedListeners.add(listener);

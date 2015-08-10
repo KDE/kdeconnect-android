@@ -5,9 +5,11 @@
     android:baselineAligned="false"
     android:layout_height="wrap_content"
     android:paddingLeft="12dip"
+    android:paddingStart="12dip"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:gravity="center_vertical"
     android:paddingRight="?android:attr/scrollbarSize"
+    android:paddingEnd="?android:attr/scrollbarSize"
     android:background="@drawable/abc_list_selector_holo_dark"
     android:orientation="vertical">
     <!-- We should use android:background="@android:/listChoiceBackgroundIndicator"

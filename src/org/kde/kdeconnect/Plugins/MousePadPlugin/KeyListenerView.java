@@ -33,8 +33,6 @@ import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
 
-import java.util.HashMap;
-
 public class KeyListenerView extends View  {
 
     private String deviceId;
@@ -91,7 +89,9 @@ public class KeyListenerView extends View  {
 
     @Override
     public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
-        outAttrs.imeOptions = EditorInfo.IME_FLAG_NO_FULLSCREEN;
+        if (android.os.Build.VERSION.SDK_INT >= 11) {
+            outAttrs.imeOptions = EditorInfo.IME_FLAG_NO_FULLSCREEN;
+        }
         return null;
     }
 
@@ -176,7 +176,7 @@ public class KeyListenerView extends View  {
             @Override
             public void onServiceStart(BackgroundService service) {
                 Device device = service.getDevice(deviceId);
-                MousePadPlugin mousePadPlugin = (MousePadPlugin) device.getPlugin(MousePadPlugin.class);
+                MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
                 if (mousePadPlugin == null) return;
                 mousePadPlugin.sendKeyboardPacket(np);
             }

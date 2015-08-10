@@ -46,9 +46,9 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class BackgroundService extends Service {
 
-    private final ArrayList<BaseLinkProvider> linkProviders = new ArrayList<BaseLinkProvider>();
+    private final ArrayList<BaseLinkProvider> linkProviders = new ArrayList<>();
 
-    private final HashMap<String, Device> devices = new HashMap<String, Device>();
+    private final HashMap<String, Device> devices = new HashMap<>();
 
     private final Device.PairingCallback devicePairingCallback = new Device.PairingCallback() {
         @Override
@@ -286,7 +286,7 @@ public class BackgroundService extends Service {
         void onServiceStart(BackgroundService service);
     }
 
-    private final static ArrayList<InstanceCallback> callbacks = new ArrayList<InstanceCallback>();
+    private final static ArrayList<InstanceCallback> callbacks = new ArrayList<>();
 
     private final static Lock mutex = new ReentrantLock(true);
 

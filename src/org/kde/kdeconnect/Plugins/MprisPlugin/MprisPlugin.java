@@ -25,6 +25,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import org.kde.kdeconnect.NetworkPackage;
@@ -43,10 +44,10 @@ public class MprisPlugin extends Plugin {
     private long length = -1;
     private long lastPosition;
     private long lastPositionTime;
-    private HashMap<String,Handler> playerStatusUpdated = new HashMap<String,Handler>();
+    private HashMap<String,Handler> playerStatusUpdated = new HashMap<>();
 
-    private ArrayList<String> playerList = new ArrayList<String>();
-    private HashMap<String,Handler> playerListUpdated = new HashMap<String,Handler>();
+    private ArrayList<String> playerList = new ArrayList<>();
+    private HashMap<String,Handler> playerListUpdated = new HashMap<>();
 
     @Override
     public String getDisplayName() {
@@ -60,7 +61,7 @@ public class MprisPlugin extends Plugin {
 
     @Override
     public Drawable getIcon() {
-        return context.getResources().getDrawable(R.drawable.mpris_plugin_action);
+        return ContextCompat.getDrawable(context, R.drawable.mpris_plugin_action);
     }
 
     @Override

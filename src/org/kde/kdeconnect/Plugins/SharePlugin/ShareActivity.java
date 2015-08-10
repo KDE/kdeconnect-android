@@ -29,7 +29,6 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -121,8 +120,8 @@ public class ShareActivity extends ActionBarActivity {
             public void onServiceStart(final BackgroundService service) {
 
                 Collection<Device> devices = service.getDevices().values();
-                final ArrayList<Device> devicesList = new ArrayList<Device>();
-                final ArrayList<ListAdapter.Item> items = new ArrayList<ListAdapter.Item>();
+                final ArrayList<Device> devicesList = new ArrayList<>();
+                final ArrayList<ListAdapter.Item> items = new ArrayList<>();
 
                 items.add(new SectionItem(getString(R.string.share_to)));
 
@@ -155,7 +154,7 @@ public class ShareActivity extends ActionBarActivity {
                                                 uriList = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
                                             } else {
                                                 Uri uri = extras.getParcelable(Intent.EXTRA_STREAM);
-                                                uriList = new ArrayList<Uri>();
+                                                uriList = new ArrayList<>();
                                                 uriList.add(uri);
                                             }
 

@@ -46,7 +46,7 @@ public class CustomDevicesActivity extends ListActivity {
     public static final String KEY_CUSTOM_DEVLIST_PREFERENCE  = "device_list_preference";
     private static final String IP_DELIM = ",";
 
-    ArrayList<String> ipAddressList = new ArrayList<String>();
+    private ArrayList<String> ipAddressList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class CustomDevicesActivity extends ListActivity {
         ipEntryBox.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEND) {
-                    addNewIp(v);
+                    addNewIp();
                     return true;
                 }
                 return false;
@@ -70,7 +70,7 @@ public class CustomDevicesActivity extends ListActivity {
 
     @Override
     public void onListItemClick(ListView l, View v, final int position, final long id) {
-        Log.i(LOG_ID, "Item clicked pos: "+position+" id: "+id);
+        Log.i(LOG_ID, "Item clicked pos: " + position + " id: " + id);
         // remove touched item after confirmation
         DialogInterface.OnClickListener confirmationListener = new DialogInterface.OnClickListener() {
             @Override
@@ -94,7 +94,7 @@ public class CustomDevicesActivity extends ListActivity {
         ((ArrayAdapter)getListAdapter()).notifyDataSetChanged();
     }
 
-    public void addNewIp(View v) {
+    private void addNewIp() {
         EditText ipEntryBox = (EditText)findViewById(R.id.ip_edittext);
         String enteredText = ipEntryBox.getText().toString().trim();
         if (!enteredText.equals("")) {
@@ -115,7 +115,7 @@ public class CustomDevicesActivity extends ListActivity {
         }
     }
 
-    void saveList() {
+    private void saveList() {
         // add entry to list and save to preferences (unless empty)
         String serialized = "";
         if (!ipAddressList.isEmpty()) {
@@ -127,7 +127,7 @@ public class CustomDevicesActivity extends ListActivity {
 
     }
 
-    static String serializeIpList(ArrayList<String> iplist) {
+    public static String serializeIpList(ArrayList<String> iplist) {
         String serialized = "";
         for (String ipaddr : iplist) {
             serialized += IP_DELIM+ipaddr;
@@ -139,7 +139,7 @@ public class CustomDevicesActivity extends ListActivity {
     }
 
     public static ArrayList<String> deserializeIpList(String serialized) {
-        ArrayList<String> iplist = new ArrayList<String>();
+        ArrayList<String> iplist = new ArrayList<>();
         Log.d(LOG_ID, serialized);
         for (String ipaddr : serialized.split(IP_DELIM)) {
             iplist.add(ipaddr);
@@ -148,7 +148,7 @@ public class CustomDevicesActivity extends ListActivity {
         return iplist;
     }
 
-    void initializeDeviceList(Context context){
+    private void initializeDeviceList(Context context){
         String deviceListPrefs = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 KEY_CUSTOM_DEVLIST_PREFERENCE,
                 "");

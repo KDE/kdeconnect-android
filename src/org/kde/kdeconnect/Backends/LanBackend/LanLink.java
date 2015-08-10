@@ -38,9 +38,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.channels.NotYetConnectedException;
 import java.security.PublicKey;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeoutException;
 
 public class LanLink extends BaseLink {
 

@@ -66,7 +66,7 @@ public class DeviceActivity extends ActionBarActivity {
                 public void run() {
 
                     try {
-                        ArrayList<ListAdapter.Item> items = new ArrayList<ListAdapter.Item>();
+                        ArrayList<ListAdapter.Item> items = new ArrayList<>();
 
                         if (!device.isReachable()) {
                             //Not reachable, show unpair button

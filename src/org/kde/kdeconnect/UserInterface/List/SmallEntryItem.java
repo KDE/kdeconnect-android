@@ -20,6 +20,8 @@
 
 package org.kde.kdeconnect.UserInterface.List;
 
+import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -50,7 +52,7 @@ public class SmallEntryItem implements ListAdapter.Item {
             titleView.setText(title);
             if (clickListener != null) {
                 titleView.setOnClickListener(clickListener);
-                v.setBackgroundDrawable(layoutInflater.getContext().getResources().getDrawable(R.drawable.abc_list_selector_holo_dark));
+                v.setBackgroundDrawable(ContextCompat.getDrawable(layoutInflater.getContext(), R.drawable.abc_list_selector_holo_dark));
             }
         }
 

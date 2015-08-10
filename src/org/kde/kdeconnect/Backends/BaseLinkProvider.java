@@ -20,20 +20,17 @@
 
 package org.kde.kdeconnect.Backends;
 
-import android.util.Log;
-
-import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.NetworkPackage;
 
 import java.util.ArrayList;
 
 public abstract class BaseLinkProvider {
 
-    private final ArrayList<ConnectionReceiver> connectionReceivers = new ArrayList<ConnectionReceiver>();
+    private final ArrayList<ConnectionReceiver> connectionReceivers = new ArrayList<>();
 
     public interface ConnectionReceiver {
-        public void onConnectionReceived(NetworkPackage identityPackage, BaseLink link);
-        public void onConnectionLost(BaseLink link);
+        void onConnectionReceived(NetworkPackage identityPackage, BaseLink link);
+        void onConnectionLost(BaseLink link);
     }
 
     public void addConnectionReceiver(ConnectionReceiver cr) {

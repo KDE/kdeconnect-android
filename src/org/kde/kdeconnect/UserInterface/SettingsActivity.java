@@ -60,7 +60,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 final Device device = service.getDevice(deviceId);
                 Set<String> plugins = PluginFactory.getAvailablePlugins();
 
-                final ArrayList<Preference> preferences = new ArrayList<Preference>();
+                final ArrayList<Preference> preferences = new ArrayList<>();
                 for (final String pluginKey : plugins) {
 
                     PluginFactory.PluginInfo info = PluginFactory.getPluginInfo(getBaseContext(), pluginKey);

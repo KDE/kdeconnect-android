@@ -83,10 +83,10 @@ public class MainActivity extends ActionBarActivity {
                 }).start();
                 break;
             case R.id.menu_settings:
-                startActivity(new Intent(this,MainSettingsActivity.class));
+                startActivity(new Intent(this, org.kde.kdeconnect.UserInterface.MainSettingsActivity.class));
                 break;
             case R.id.menu_custom_device_list:
-                startActivity(new Intent(this, CustomDevicesActivity.class));
+                startActivity(new Intent(this, org.kde.kdeconnect.UserInterface.CustomDevicesActivity.class));
                 break;
             default:
                 break;
@@ -116,7 +116,7 @@ public class MainActivity extends ActionBarActivity {
             public void onServiceStart(final BackgroundService service) {
 
                 Collection<Device> devices = service.getDevices().values();
-                final ArrayList<ListAdapter.Item> items = new ArrayList<ListAdapter.Item>();
+                final ArrayList<ListAdapter.Item> items = new ArrayList<>();
 
                 SectionItem section;
 
