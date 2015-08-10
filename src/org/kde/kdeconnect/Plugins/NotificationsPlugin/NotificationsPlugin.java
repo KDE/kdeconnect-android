@@ -73,57 +73,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         return (notificationListenerList != null && notificationListenerList.contains(context.getPackageName()));
     }
 
-    static class NotificationId {
-        String packageName;
-        String tag;
-        int id;
-
-        public static NotificationId fromNotification(StatusBarNotification statusBarNotification) {
-            NotificationId nid  = new NotificationId();
-            nid.packageName = statusBarNotification.getPackageName();
-            nid.tag = statusBarNotification.getTag();
-            nid.id = statusBarNotification.getId();
-            return nid;
-        }
-        public static NotificationId unserialize(String s) {
-            NotificationId nid  = new NotificationId();
-            int first = s.indexOf(':');
-            int last = s.lastIndexOf(':');
-            nid.packageName = s.substring(0, first);
-            nid.tag = s.substring(first+1, last);
-            if (nid.tag.length() == 0) nid.tag = null;
-            String idString = s.substring(last+1);
-            try {
-                nid.id = Integer.parseInt(idString);
-            } catch(Exception e) {
-                nid.id = 0;
-            }
-            //Log.e("NotificationId","unserialize: " + nid.packageName+ ", "+nid.tag+ ", "+nid.id);
-            return nid;
-        }
-        public String serialize() {
-            //Log.e("NotificationId","serialize: " + packageName+ ", "+tag+ ", "+id);
-            String safePackageName = (packageName == null)? "" : packageName;
-            String safeTag = (tag == null)? "" : tag;
-            return safePackageName+":"+safeTag+":"+id;
-        }
-        public String getPackageName() {
-            return packageName;
-        }
-        public String getTag() {
-            return tag;
-        }
-        public int getId() {
-            return id;
-        }
-        @Override
-        public boolean equals(Object o) {
-            if (!(o instanceof NotificationId)) return false;
-            NotificationId other = (NotificationId)o;
-            return other.getTag().equals(tag) && other.getId() == id && other.getPackageName().equals(packageName);
-        }
-    }
-
     @Override
     public boolean onCreate() {
 
@@ -172,10 +121,9 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public void onNotificationRemoved(StatusBarNotification statusBarNotification) {
-        NotificationId id = NotificationId.fromNotification(statusBarNotification);
-
+        String id = statusBarNotification.getKey();
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_NOTIFICATION);
-        np.set("id", id.serialize());
+        np.set("id", id);
         np.set("isCancel", true);
         device.sendPackage(np);
     }
@@ -204,11 +152,11 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         }
         appDatabase.close();
 
-        NotificationId id = NotificationId.fromNotification(statusBarNotification);
+        String id = statusBarNotification.getKey();
         String packageName = statusBarNotification.getPackageName();
         String appName = AppsHelper.appNameLookup(context, packageName);
 
-        if (id.serialize().equals("com.facebook.orca::10012") && notification.tickerText == null && appName.equals("Messenger")) {
+        if ("com.facebook.orca".equals(packageName) && "10012".equals(statusBarNotification.getId()) && appName.equals("Messenger") && notification.tickerText == null) {
             //HACK: Hide weird Facebook empty "Messenger" notification that is actually not shown in the phone
             return;
         }
@@ -244,7 +192,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             }
         }
 */
-        np.set("id", id.serialize());
+        np.set("id", id);
         np.set("appName", appName == null? packageName : appName);
         np.set("isClearable", statusBarNotification.isClearable());
         np.set("ticker", getTickerText(notification));
@@ -347,9 +295,8 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
                 @Override
                 public void onServiceStart(NotificationReceiver service) {
-
-                    NotificationId dismissedId = NotificationId.unserialize(np.getString("cancel"));
-                    service.cancelNotification(dismissedId.getPackageName(), dismissedId.getTag(), dismissedId.getId());
+                    String dismissedId = np.getString("cancel");
+                    service.cancelNotification(dismissedId);
                 }
             });
 
