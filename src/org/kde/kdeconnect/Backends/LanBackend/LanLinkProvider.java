@@ -416,8 +416,6 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         clientGroup = new NioEventLoopGroup();
 
-        pairingHandler = new LanPairingHandler();
-
     }
 
     @Override

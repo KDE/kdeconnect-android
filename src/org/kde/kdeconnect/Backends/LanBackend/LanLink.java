@@ -27,6 +27,7 @@ import android.util.Log;
 import org.json.JSONObject;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
+import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
@@ -40,7 +41,9 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.channels.NotYetConnectedException;
+import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.util.ArrayList;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLServerSocketFactory;
@@ -81,6 +84,16 @@ public class LanLink extends BaseLink {
     }
 
     @Override
+    public String getName() {
+        return "LanLink";
+    }
+
+    @Override
+    public BasePairingHandler getPairingHandler(Device device, BasePairingHandler.PairingHandlerCallback callback) {
+        return new LanPairingHandler(device, callback);
+    }
+
+    @Override
     public void addPackageReceiver(PackageReceiver pr) {
         super.addPackageReceiver(pr);
         BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
@@ -91,7 +104,7 @@ public class LanLink extends BaseLink {
                 if (!device.isPaired()) return;
                 // If the device is already paired due to other link, just send a pairing request to get required attributes for this link
                 if (device.publicKey == null) {
-                    getLinkProvider().getPairingHandler().requestPairing(device, null);
+                    device.requestPairing();
                 }
             }
         });

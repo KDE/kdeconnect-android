@@ -44,6 +44,10 @@ public abstract class BaseLink {
         this.deviceId = deviceId;
     }
 
+    /* To be implemented by each link for pairing handlers */
+    public abstract String getName();
+    public abstract BasePairingHandler getPairingHandler(Device device, BasePairingHandler.PairingHandlerCallback callback);
+
     public String getDeviceId() {
         return deviceId;
     }

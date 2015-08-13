@@ -21,7 +21,12 @@
 package org.kde.kdeconnect.Backends.LoopbackBackend;
 
 import org.kde.kdeconnect.Backends.LanBackend.LanPairingHandler;
+import org.kde.kdeconnect.Device;
 
 public class LoopbackPairingHandler extends LanPairingHandler{
+
+    public LoopbackPairingHandler(Device device, PairingHandlerCallback callback) {
+        super(device, callback);
+    }
     // Extending from LanPairingHandler, as it is similar to it
 }

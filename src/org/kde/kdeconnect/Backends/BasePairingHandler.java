@@ -23,14 +23,70 @@ package org.kde.kdeconnect.Backends;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
 
-public interface BasePairingHandler {
+import java.util.Timer;
 
-    NetworkPackage createPairPackage(Device device);
-    void packageReceived(Device device, NetworkPackage np) throws Exception;
-    void requestPairing(Device device, Device.SendPackageStatusCallback callback);
-    void acceptPairing(Device device, Device.SendPackageStatusCallback callback);
-    void rejectPairing(Device device);
-    void pairingDone(Device device);
-    void unpair(Device device);
+/**
+ * This class separates the pairing interface for each type of link.
+ * Since different links can pair via different methods, like for LanLink certificate and public key should be shared,
+ * for Bluetooth link they should be paired via bluetooth etc.
+ * Each "Device" instance maintains a hash map for these pairing handlers so that there can be single pairing handler per
+ * per link type per device.
+ * Pairing handler keeps information about device, latest link, and pair status of the link
+ * During first pairing process, the pairing process is nearly same as old process.
+ * After that if any one of the link is paired, then we can say that device is paired, so new link will pair automatically
+ */
+
+public abstract class BasePairingHandler {
+
+    protected enum PairStatus{
+        NotPaired,
+        Requested,
+        RequestedByPeer,
+        Paired
+    }
+
+    public interface PairingHandlerCallback {
+        void incomingRequest();
+        void pairingDone();
+        void pairingFailed(String error);
+        void unpaired();
+    }
+
+
+    protected Device mDevice;
+    protected BaseLink mBaseLink;
+    protected PairStatus mPairStatus;
+    protected PairingHandlerCallback mCallback;
+    protected Timer mPairingTimer;
+
+    public BasePairingHandler(Device device, PairingHandlerCallback callback) {
+        this.mDevice = device;
+        this.mCallback = callback;
+    }
+
+    public void setLink(BaseLink baseLink) {
+        this.mBaseLink = baseLink;
+    }
+
+    public boolean isPaired() {
+        return mPairStatus == PairStatus.Paired;
+    }
+
+    public boolean isPairRequested() {
+        return mPairStatus == PairStatus.Requested;
+    }
+
+    public boolean isPairRequestedByPeer() {
+        return mPairStatus == PairStatus.RequestedByPeer;
+    }
+
+    /* To be implemented by respective pairing handler */
+    public abstract NetworkPackage createPairPackage();
+    public abstract void packageReceived(NetworkPackage np) throws Exception;
+    public abstract void requestPairing();
+    public abstract void acceptPairing();
+    public abstract void rejectPairing();
+    public abstract void pairingDone();
+    public abstract void unpair();
 
 }
