@@ -46,6 +46,7 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Formatter;
 
@@ -87,8 +88,11 @@ public class SslHelper {
                 nameBuilder.addRDN(BCStyle.CN, Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID));
                 nameBuilder.addRDN(BCStyle.OU, "KDE Connect");
                 nameBuilder.addRDN(BCStyle.O, "KDE");
-                Date notBefore = new Date(System.currentTimeMillis());
-                Date notAfter = new Date(System.currentTimeMillis() + System.currentTimeMillis());
+                Calendar calendar = Calendar.getInstance();
+                calendar.add(Calendar.YEAR, -1);
+                Date notBefore = calendar.getTime();
+                calendar.add(Calendar.YEAR, 10);
+                Date notAfter = calendar.getTime();
                 X509v3CertificateBuilder certificateBuilder = new JcaX509v3CertificateBuilder(
                         nameBuilder.build(),
                         BigInteger.ONE,
