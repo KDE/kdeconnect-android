@@ -68,7 +68,7 @@ public class LanPairingHandler extends BasePairingHandler {
     @Override
     public void packageReceived(NetworkPackage np) throws Exception{
 
-        if (!np.getString("link").equals(mBaseLink.getName())) {
+        if (!np.getString("link", mDevice.getName()).equals(mBaseLink.getName())) {
             return;
         }
 
