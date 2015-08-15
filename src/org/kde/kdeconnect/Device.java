@@ -506,7 +506,7 @@ public class Device implements BaseLink.PackageReceiver {
         if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR)) {
 
             Log.i("KDE/Device", "Pair package");
-            Log.e("KDE/Device", "Pairing Handler Count " + pairingHandlers.size());
+
             for (BasePairingHandler ph: pairingHandlers.values()) {
                 try {
                     ph.packageReceived(np);

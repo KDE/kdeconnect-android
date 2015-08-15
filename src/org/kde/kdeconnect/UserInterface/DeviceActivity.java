@@ -21,6 +21,9 @@
 package org.kde.kdeconnect.UserInterface;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -35,6 +38,7 @@ import android.widget.TextView;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.UserInterface.List.ButtonItem;
 import org.kde.kdeconnect.UserInterface.List.CustomItem;
@@ -182,6 +186,28 @@ public class DeviceActivity extends ActionBarActivity {
                     Intent intent = new Intent(DeviceActivity.this, SettingsActivity.class);
                     intent.putExtra("deviceId", deviceId);
                     startActivity(intent);
+                    return true;
+                }
+            });
+            menu.add(R.string.encryption_info_title).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    Context context = DeviceActivity.this;
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle(context.getResources().getString(R.string.encryption_info_title));
+                    builder.setPositiveButton(context.getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    if (device.certificate == null) {
+                        builder.setMessage(R.string.encryption_info_msg_no_ssl);
+                    } else {
+                        builder.setMessage(context.getResources().getString(R.string.my_device_fingerprint) + " " + SslHelper.getCertificateHash(SslHelper.certificate) + "\n\n"
+                                + context.getResources().getString(R.string.remote_device_fingerprint) + " " + SslHelper.getCertificateHash(device.certificate));
+                    }
+                    builder.create().show();
                     return true;
                 }
             });
