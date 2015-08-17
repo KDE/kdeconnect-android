@@ -230,9 +230,9 @@ public class DeviceHelper {
         humanReadableNames.put("MOTWX435KT","Motorola Triumph");
         humanReadableNames.put("N3","Star NO.1 N3");
         humanReadableNames.put("N860","ZTE Warp N860");
-        humanReadableNames.put("NEXUS\ 4","Nexus 4");
-        humanReadableNames.put("NEXUS\ 5","Nexus 5");
-        humanReadableNames.put("NEXUS\ 6","Nexus 6");
+        humanReadableNames.put("NEXUS_4","Nexus 4");
+        humanReadableNames.put("NEXUS_5","Nexus 5");
+        humanReadableNames.put("NEXUS_6","Nexus 6");
         humanReadableNames.put("Nexus_10","Google Nexus 10");
         humanReadableNames.put("Nexus_4","Google Nexus 4");
         humanReadableNames.put("Nexus_7","Asus Nexus 7");

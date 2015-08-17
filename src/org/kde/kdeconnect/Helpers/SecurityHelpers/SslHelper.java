@@ -27,8 +27,6 @@ import android.provider.Settings;
 import android.util.Base64;
 import android.util.Log;
 
-import org.kde.kdeconnect.UserInterface.MainActivity;
-import org.kde.kdeconnect.UserInterface.MainSettingsActivity;
 import org.spongycastle.asn1.x500.X500NameBuilder;
 import org.spongycastle.asn1.x500.style.BCStyle;
 import org.spongycastle.cert.X509CertificateHolder;
@@ -53,7 +51,6 @@ import java.util.Formatter;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLEngine;
-import javax.net.ssl.SSLException;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
@@ -147,7 +144,7 @@ public class SslHelper {
             keyStore.setKeyEntry("key", privateKey, "".toCharArray(), new java.security.cert.Certificate[]{certificate});
             // Set certificate if device trusted
             if (remoteDeviceCertificate != null){
-                keyStore.setCertificateEntry("remoteCertificate", remoteDeviceCertificate);
+                keyStore.setCertificateEntry(deviceId, remoteDeviceCertificate);
             }
 
             // Setup key manager factory
@@ -176,7 +173,7 @@ public class SslHelper {
             }
             };
 
-            SSLContext tlsContext = SSLContext.getInstance("TLSv1.2");
+            SSLContext tlsContext = SSLContext.getInstance("TLS");
             if (isDeviceTrusted) {
                 tlsContext.init(keyManagerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), new SecureRandom());
             }else {

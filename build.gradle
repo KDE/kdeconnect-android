@@ -18,7 +18,6 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 22
-        multiDexEnabled true
     }
 	sourceSets {
         main {
@@ -53,17 +52,16 @@ dependencies {
     repositories {
         mavenCentral()
     }
-    compile 'com.android.support:multidex:1.0.0'
     compile 'com.android.support:support-v4:22.2.0'
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile 'com.madgag.spongycastle:pkix:1.52.0.0'
     compile 'org.apache.sshd:sshd-core:0.8.0'
     compile 'org.bouncycastle:bcprov-jdk16:1.46'
-    compile 'io.netty:netty-all:4.0.29.Final'
-    compile fileTree(dir: 'libs', include: '*.jar')
-
+    //    compile 'io.netty:netty-all:4.0.29.Final' // We use a custom build netty in libs directory due to ssl related bug
+//    compile fileTree(include: '*.jar', dir: 'libs')
     androidTestCompile 'org.mockito:mockito-core:1.10.19'
     // Because mockito has some problems with dex environment
     androidTestCompile 'com.google.dexmaker:dexmaker:1.1'
     androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.1'
+    compile files('libs/netty-handler.jar')
 }

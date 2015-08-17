@@ -33,7 +33,6 @@
         android:icon="@drawable/icon"
         android:label="KDE Connect"
         android:theme="@style/KdeConnectTheme"
-        android:name="android.support.multidex.MultiDexApplication"
         >
 
         <service
