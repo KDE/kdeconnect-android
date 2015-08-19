@@ -548,10 +548,19 @@ public class Device implements BaseLink.PackageReceiver {
 
         } else {
 
-            Log.e("KDE/onPackageReceived","Device not paired, ignoring package!");
+            Log.e("KDE/onPackageReceived","Device not paired, will pass package to unpairedPackageListeners");
 
             if (pairStatus != PairStatus.Requested) {
                 unpair();
+            }
+
+            for (Plugin plugin : unpairedPackageListeners) {
+                try {
+                    plugin.onUnpairedDevicePackageReceived(np);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.e("KDE/Device", "Exception in "+plugin.getDisplayName()+"'s onPackageReceived() in unPairedPackageListeners");
+                }
             }
 
         }
@@ -716,6 +725,10 @@ public class Device implements BaseLink.PackageReceiver {
             Log.e("KDE/removePlugin","Exception calling onDestroy for plugin "+pluginKey);
         }
 
+        if (unpairedPackageListeners.contains(plugin)) {
+            unpairedPackageListeners.remove(plugin);
+        }
+
         for (PluginsChangedListener listener : pluginsChangedListeners) {
             listener.onPluginsChanged(this);
         }
@@ -780,6 +793,13 @@ public class Device implements BaseLink.PackageReceiver {
 
     public void removePluginsChangedListener(PluginsChangedListener listener) {
         pluginsChangedListeners.remove(listener);
+    }
+
+    private final ArrayList<Plugin> unpairedPackageListeners = new ArrayList<>();
+
+    public void registerUnpairedPackageListener(Plugin p) {
+        Log.e("KDE/registerUnpairedPackageListener", p.getPluginKey() + " plugin registered to receive package from unpaired device");
+        unpairedPackageListeners.add(p);
     }
 
 }

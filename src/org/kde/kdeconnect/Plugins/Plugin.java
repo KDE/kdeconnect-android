@@ -44,6 +44,14 @@ public abstract class Plugin {
     }
 
     /**
+     * To receive the network package from the unpaired device, Register your plugin
+     * using Device::registerUnpairedPackageListener and override this method.
+     */
+    public boolean onUnpairedDevicePackageReceived(NetworkPackage np) {
+        return false;
+    }
+
+    /**
      * Return the internal plugin name, that will be used as a
      * unique key to distinguish it. Use the class name as key.
      */
