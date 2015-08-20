@@ -125,6 +125,8 @@
     <string name="invalid_device_name">Invalid device name</string>
     <string name="shareplugin_text_saved">Received text, saved to clipboard</string>
     <string name="custom_devices_settings">Custom device list</string>
+    <string name="pair_device_action">Pair a new device</string>
+    <string name="unpair_device_action">Unpair %s</string>
     <string name="custom_device_list">Add devices by IP</string>
     <string name="share_notification_preference">Noisy notifications</string>
     <string name="share_notification_preference_summary">Vibrate and play a sound when receiving a file</string>
@@ -141,5 +143,8 @@
     <string name="no_players_connected">No players found</string>
     <string name="custom_dev_list_help">Use this option only if your device is not automatically detected. Enter IP address or hostname below and touch the button to add it to the list. Touch an existing item to remove it from the list.</string>
     <string name="mpris_player_on_device">%1$s on %2$s</string>
+    <string name="send_files">Send files</string>
+
+    <string name="pairing_title">KDE Connect Devices</string>
 
 </resources>

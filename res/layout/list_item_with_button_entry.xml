@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:baselineAligned="false"
+    android:layout_height="wrap_content"
+    android:paddingLeft="12dip"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:gravity="center_vertical"
+    android:paddingRight="?android:attr/scrollbarSize"
+    android:orientation="horizontal">
+
+        <ImageView android:id="@+id/list_item_entry_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_device_laptop"
+            android:layout_weight="0" />
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+        <TextView android:id="@+id/list_item_entry_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dip"
+                android:singleLine="true"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:ellipsize="marquee"
+                android:fadingEdge="horizontal"
+                android:text=""/>
+
+
+        <TextView android:id="@+id/list_item_entry_summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:singleLine="true"
+                android:textColor="#CC2222"
+                android:visibility="gone"
+                android:text="" />
+
+        </LinearLayout>
+
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_weight="0"
+        android:indeterminate="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:minWidth="128dip"
+        android:layout_height="wrap_content"
+        android:text="Request pair"
+        android:padding="8dip"
+        android:background="@drawable/button_round"
+        android:textColor="#FFFFFF"
+        android:id="@+id/entry_pair_button"
+        android:layout_weight="0"
+        android:nestedScrollingEnabled="false" />
+
+</LinearLayout>
+
+

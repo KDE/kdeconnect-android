@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:kdeconnect="http://schemas.android.com/apk/res-auto/android">
+
+    <item
+            android:id="@+id/menu_refresh"
+            android:icon="@drawable/ic_action_refresh"
+            android:orderInCategory="200"
+            kdeconnect:showAsAction="ifRoom"
+            android:title="@string/reconnect"
+        />
+
+    <item
+            android:id="@+id/menu_progress"
+            android:orderInCategory="200"
+            android:visible="false"
+            kdeconnect:showAsAction="ifRoom"
+            kdeconnect:actionViewClass="android.widget.ProgressBar"
+        />
+
+</menu>

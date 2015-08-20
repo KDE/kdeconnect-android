@@ -67,6 +67,21 @@ public class SharePlugin extends Plugin {
     }
 
     @Override
+    public boolean hasMainActivity() {
+        return true;
+    }
+
+    @Override
+    public String getActionName() {
+        return context.getString(R.string.send_files);
+    }
+
+    @Override
+    public void startMainActivity(Activity parentActivity) {
+        //TODO
+    }
+
+    @Override
     public boolean hasSettings() {
         return true;
     }

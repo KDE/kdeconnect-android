@@ -1,7 +1,22 @@
 <resources>
+    <color name="primary">#3daee9</color>
+    <color name="primaryDark">#318bba</color>
+    <color name="accent">#4ebffa</color>
 
-    <style name="KdeConnectTheme" parent="Theme.AppCompat">
+    <color name="positive">#689F38</color>
+    <color name="negative">#FF5252</color>
 
+    <!-- NoActionBar because we use a Toolbar widget as ActionBar -->
+    <style name="KdeConnectTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- The three colors used by system widgets, according to https://chris.banes.me/2014/10/17/appcompat-v21/ -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
+
+    <style name="KdeConnectTheme.NoActionBar" parent="KdeConnectTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
 </resources>
