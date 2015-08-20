@@ -158,8 +158,8 @@ public class Device implements BaseLink.PackageReceiver {
     {
         int drawableId;
         switch (deviceType) {
-            case Phone: drawableId = R.drawable.ic_device_phone;
-            case Tablet: drawableId = R.drawable.ic_device_tablet;
+            case Phone: drawableId = R.drawable.ic_device_phone; break;
+            case Tablet: drawableId = R.drawable.ic_device_tablet; break;
             default: drawableId = R.drawable.ic_device_laptop;
         }
         return ContextCompat.getDrawable(context, drawableId);
