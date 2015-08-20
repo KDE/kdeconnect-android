@@ -2,13 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:padding="@dimen/activity_vertical_margin"
     tools:context=".MainActivity"
     android:orientation="vertical">
-
 
     <ProgressBar
         android:visibility="gone"
@@ -31,6 +27,14 @@
         android:layout_height="wrap_content"
         android:text="@string/request_pairing"
     />
+
+    <Button
+        android:id="@+id/unpair_button"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/device_menu_unpair"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"

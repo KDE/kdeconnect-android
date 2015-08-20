@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -54,12 +55,8 @@ import java.util.ConcurrentModificationException;
 /**
  * Main view. Displays the current device and its plugins
  */
-
 public class DeviceFragment extends Fragment {
-    /**
-     * The fragment argument representing the section number for this
-     * fragment.
-     */
+
     private static final String ARG_DEVICE_ID = "deviceId";
     private View rootView;
     static private String mDeviceId; //Static because if we get here by using the back button in the action bar, the extra deviceId will not be set.
@@ -68,7 +65,8 @@ public class DeviceFragment extends Fragment {
     public static final int RESULT_NEEDS_RELOAD = Activity.RESULT_FIRST_USER;
 
     private TextView errorHeader;
-    private Activity mActivity;
+
+    private AppCompatActivity mActivity;
 
     public DeviceFragment(String deviceId) {
         Bundle args = new Bundle();
@@ -77,10 +75,14 @@ public class DeviceFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mActivity = ((AppCompatActivity) getActivity());
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        mActivity = getActivity();
 
         rootView = inflater.inflate(R.layout.activity_device, container, false);
 
@@ -96,9 +98,12 @@ public class DeviceFragment extends Fragment {
             public void onServiceStart(BackgroundService service) {
                 device = service.getDevice(mDeviceId);
                 if (device == null) return;
-                mActivity.setTitle(device.getName());
+
+                mActivity.getSupportActionBar().setTitle(device.getName());
+
                 device.addPluginsChangedListener(pluginsChangedListener);
                 pluginsChangedListener.onPluginsChanged(device);
+
                 if (!device.hasPluginsLoaded()) {
                     device.reloadPluginsFromSettings();
                 }
@@ -110,10 +115,6 @@ public class DeviceFragment extends Fragment {
         return rootView;
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
 
     private final Device.PluginsChangedListener pluginsChangedListener = new Device.PluginsChangedListener() {
         @Override
@@ -124,7 +125,7 @@ public class DeviceFragment extends Fragment {
                 public void run() {
 
                     try {
-                        ArrayList<ListAdapter.Item> items = new ArrayList<ListAdapter.Item>();
+                        ArrayList<ListAdapter.Item> items = new ArrayList<>();
 
                         if (!device.isReachable()) {
                             //Not reachable, show unpair button

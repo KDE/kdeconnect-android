@@ -22,6 +22,7 @@ package org.kde.kdeconnect.UserInterface;
 
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -57,6 +58,7 @@ public class PairActivity extends ActionBarActivity {
 
         @Override
         public void pairingSuccessful() {
+            setResult(1, getIntent());
             finish();
         }
 
@@ -92,18 +94,6 @@ public class PairActivity extends ActionBarActivity {
 
         deviceId = getIntent().getStringExtra("deviceId");
 
-        BackgroundService.RunCommand(PairActivity.this, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                device = service.getDevice(deviceId);
-                if (device == null) return;
-                setTitle(device.getName());
-                NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-                notificationManager.cancel(device.getNotificationId());
-            }
-
-        });
-
         final Button pairButton = (Button)findViewById(R.id.pair_button);
         pairButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +112,24 @@ public class PairActivity extends ActionBarActivity {
             }
         });
 
+        final Button unpairButton = (Button)findViewById(R.id.unpair_button);
+        unpairButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((TextView) findViewById(R.id.pair_message)).setText(getString(R.string.device_not_paired));
+                unpairButton.setVisibility(View.GONE);
+                pairButton.setVisibility(View.VISIBLE);
+                BackgroundService.RunCommand(PairActivity.this, new BackgroundService.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(BackgroundService service) {
+                        device = service.getDevice(deviceId);
+                        if (device == null) return;
+                        device.unpair();
+                    }
+                });
+            }
+        });
+
         findViewById(R.id.accept_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,6 +139,7 @@ public class PairActivity extends ActionBarActivity {
                         if (device != null) {
                             device.acceptPairing();
                         }
+                        setResult(1, getIntent());
                         finish();
                     }
                 });
@@ -146,10 +155,26 @@ public class PairActivity extends ActionBarActivity {
                         if (device != null) {
                             device.rejectPairing();
                         }
+                        setResult(0, getIntent());
                         finish();
                     }
                 });
             }
+        });
+
+        BackgroundService.RunCommand(PairActivity.this, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                device = service.getDevice(deviceId);
+                if (device == null) return;
+                setTitle(device.getName());
+                NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                notificationManager.cancel(device.getNotificationId());
+                ((TextView) findViewById(R.id.pair_message)).setText(getString(device.isPaired() ? R.string.device_paired : R.string.device_not_paired));
+                pairButton.setVisibility(device.isPaired() ? View.GONE : View.VISIBLE);
+                unpairButton.setVisibility(device.isPaired() ? View.VISIBLE : View.GONE);
+            }
+
         });
 
     }

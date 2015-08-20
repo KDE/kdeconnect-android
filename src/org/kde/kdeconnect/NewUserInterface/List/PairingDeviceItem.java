@@ -22,6 +22,7 @@ package org.kde.kdeconnect.NewUserInterface.List;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -29,25 +30,34 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.UserInterface.DeviceActivity;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.PairActivity;
 import org.kde.kdeconnect_tp.R;
 
 public class PairingDeviceItem implements ListAdapter.Item {
 
-	private final Device device;
-    private final Activity activity;
+    public interface Callback {
+        void pairingClicked(Device d);
+    }
+
+    private final Callback callback;
+    private final Device device;
     private TextView titleView;
     private ImageView icon;
 
-    public PairingDeviceItem(Activity activity, Device device) {
-		this.device = device;
-        this.activity = activity;
-	}
+    public PairingDeviceItem(Device device, Callback callback) {
+        this.device = device;
+        this.callback = callback;
+    }
+
+    public Device getDevice() {
+        return this.device;
+    }
 
     @Override
     public View inflateView(LayoutInflater layoutInflater) {
-        final View v = layoutInflater.inflate(R.layout.list_item_with_button_entry, null);
+        final View v = layoutInflater.inflate(R.layout.list_item_with_icon_entry, null);
 
         icon = (ImageView)v.findViewById(R.id.list_item_entry_icon);
         icon.setImageDrawable(device.getIcon());
@@ -67,23 +77,10 @@ public class PairingDeviceItem implements ListAdapter.Item {
             v.findViewById(R.id.list_item_entry_summary).setVisibility(View.GONE);
         }
 
-        Button b = (Button)v.findViewById(R.id.entry_pair_button);
-        b.setOnClickListener(new View.OnClickListener() {
+        v.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent;
-                /*if (device.isPaired()) {
-                    //intent = new Intent(activity, DeviceActivity.class);
-                    //intent.putExtra("deviceId", device.getDeviceId());
-                    //activity.startActivity(intent);
-                    //callback.onDeviceSelected(device);
-                } else {
-                    intent = new Intent(activity, PairActivity.class);
-                    intent.putExtra("deviceId", device.getDeviceId());
-                    activity.startActivity(intent);
-                }*/
-
-
+            public void onClick(View v) {
+                callback.pairingClicked(device);
             }
         });
 

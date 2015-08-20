@@ -122,7 +122,8 @@
                 <action android:name="android.intent.action.PACKAGE_REPLACED" />
 
                 <data
-                    android:path="org.kde.kdeconnect"
+                    android:host="kdeconnect"
+                    android:path="/"
                     android:scheme="package" />
             </intent-filter>
             <intent-filter>

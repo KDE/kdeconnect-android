@@ -21,6 +21,8 @@
 package org.kde.kdeconnect.NewUserInterface;
 
 import android.app.Activity;
+import android.app.LauncherActivity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -38,6 +40,7 @@ import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NewUserInterface.List.PairingDeviceItem;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.SectionItem;
+import org.kde.kdeconnect.UserInterface.PairActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
@@ -48,13 +51,16 @@ import java.util.Collection;
  * The view that the user will see when there are no devices paired, or when you choose "add a new device" from the sidebar.
  */
 
-public class PairingFragment extends Fragment {
+public class PairingFragment extends Fragment implements PairingDeviceItem.Callback {
+
+    private static final int RESULT_PAIRING_SUCCESFUL = Activity.RESULT_FIRST_USER;
+
     /**
      * The fragment argument representing the section number for this
      * fragment.
      */
     private View rootView;
-    private AppCompatActivity mActivity;
+    private MaterialActivity mActivity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,17 +71,17 @@ public class PairingFragment extends Fragment {
         rootView = inflater.inflate(R.layout.activity_main, container, false);
 
         TextView text = new TextView(inflater.getContext());
-        text.setText("Other devices running KDE Connect in your same network should appear here.");
+        text.setText(getString(R.string.pairing_description));
+        text.setPadding(0, 0, 0, (int) (12 * getResources().getDisplayMetrics().density));
         ((ListView)rootView).addHeaderView(text);
 
         return rootView;
     }
 
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        mActivity = ((AppCompatActivity) getActivity());
+        mActivity = ((MaterialActivity) getActivity());
     }
 
     void updateComputerList() {
@@ -85,18 +91,17 @@ public class PairingFragment extends Fragment {
             public void onServiceStart(final BackgroundService service) {
 
                 Collection<Device> devices = service.getDevices().values();
-                final ArrayList<ListAdapter.Item> items = new ArrayList<ListAdapter.Item>();
+                final ArrayList<ListAdapter.Item> items = new ArrayList<>();
 
                 SectionItem section;
-
                 Resources res = getResources();
 
                 section = new SectionItem(res.getString(R.string.category_not_paired_devices));
                 section.isSectionEmpty = true;
                 items.add(section);
-                for (Device d : devices) {
-                    if (d.isReachable() && !d.isPaired()) {
-                        items.add(new PairingDeviceItem(mActivity, d));
+                for (Device device : devices) {
+                    if (device.isReachable() && !device.isPaired()) {
+                        items.add(new PairingDeviceItem(device, PairingFragment.this));
                         section.isSectionEmpty = false;
                     }
                 }
@@ -104,9 +109,9 @@ public class PairingFragment extends Fragment {
                 section = new SectionItem(res.getString(R.string.category_connected_devices));
                 section.isSectionEmpty = true;
                 items.add(section);
-                for (Device d : devices) {
-                    if (d.isReachable() && d.isPaired()) {
-                        items.add(new PairingDeviceItem(mActivity, d));
+                for (Device device : devices) {
+                    if (device.isReachable() && device.isPaired()) {
+                        items.add(new PairingDeviceItem(device, PairingFragment.this));
                         section.isSectionEmpty = false;
                     }
                 }
@@ -119,16 +124,8 @@ public class PairingFragment extends Fragment {
                     public void run() {
                         ListView list = (ListView) rootView.findViewById(R.id.listView1);
                         list.setAdapter(new ListAdapter(mActivity, items));
-                        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                view.performClick();
-                            }
-                        });
                     }
                 });
-
-
             }
         });
     }
@@ -166,6 +163,26 @@ public class PairingFragment extends Fragment {
     public void onResume() {
         super.onResume();
         updateComputerList();
+    }
+
+    @Override
+    public void pairingClicked(Device device) {
+        Intent intent = new Intent(mActivity, PairActivity.class);
+        intent.putExtra("deviceId", device.getDeviceId());
+        startActivityForResult(intent, RESULT_PAIRING_SUCCESFUL);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch(requestCode) {
+            case RESULT_PAIRING_SUCCESFUL:
+                if (resultCode == 1) {
+                    String deviceId = data.getStringExtra("deviceId");
+                    mActivity.onDeviceSelected(deviceId);
+                }
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
 }
