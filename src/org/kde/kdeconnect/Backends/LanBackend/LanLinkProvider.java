@@ -21,6 +21,7 @@
 package org.kde.kdeconnect.Backends.LanBackend;
 
 import android.content.Context;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.util.LongSparseArray;
@@ -194,14 +195,16 @@ public class LanLinkProvider extends BaseLinkProvider {
                                     // Unpair if handshake failed
                                     Log.e("KDE/LanLinkProvider", "Handshake failed with " + np.getString("deviceName"));
                                     future.cause().printStackTrace();
-                                    BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
-                                        @Override
-                                        public void onServiceStart(BackgroundService service) {
-                                            Device device = service.getDevice(np.getString("deviceId"));
-                                            if (device == null) return;
-                                            device.unpair();
-                                        }
-                                    });
+                                    if (future.cause() instanceof SSLHandshakeException) {
+                                        BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
+                                            @Override
+                                            public void onServiceStart(BackgroundService service) {
+                                                Device device = service.getDevice(np.getString("deviceId"));
+                                                if (device == null) return;
+                                                device.unpair();
+                                            }
+                                        });
+                                    }
                                 }
 
                             }
@@ -322,15 +325,16 @@ public class LanLinkProvider extends BaseLinkProvider {
                                                             // Any exception or handshake exception ?
                                                             Log.e("KDE/LanLinkProvider", "Handshake failed with " + identityPackage.getString("deviceName"));
                                                             future.cause().printStackTrace();
-
-                                                            BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
-                                                                @Override
-                                                                public void onServiceStart(BackgroundService service) {
-                                                                    Device device = service.getDevice(identityPackage.getString("deviceId"));
-                                                                    if (device == null) return;
-                                                                    device.unpair();
-                                                                }
-                                                            });
+                                                            if (future.cause() instanceof SSLHandshakeException) {
+                                                                BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
+                                                                    @Override
+                                                                    public void onServiceStart(BackgroundService service) {
+                                                                        Device device = service.getDevice(identityPackage.getString("deviceId"));
+                                                                        if (device == null) return;
+                                                                        device.unpair();
+                                                                    }
+                                                                });
+                                                            }
                                                         }
 
                                                     }
