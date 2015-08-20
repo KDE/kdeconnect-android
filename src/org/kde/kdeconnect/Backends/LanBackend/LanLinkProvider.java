@@ -21,6 +21,7 @@
 package org.kde.kdeconnect.Backends.LanBackend;
 
 import android.content.Context;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.util.LongSparseArray;
 import android.util.Base64;
@@ -39,8 +40,13 @@ import java.net.InetSocketAddress;
 import java.security.cert.Certificate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.SSLEngine;
+import javax.net.ssl.SSLHandshakeException;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.bootstrap.ServerBootstrap;
@@ -67,7 +73,6 @@ import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.ssl.SslHandler;
-import io.netty.util.AttributeKey;
 import io.netty.util.CharsetUtil;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
@@ -85,6 +90,9 @@ public class LanLinkProvider extends BaseLinkProvider {
     private EventLoopGroup bossGroup, workerGroup, udpGroup, clientGroup;
     private TcpHandler tcpHandler = new TcpHandler();
     private UdpHandler udpHandler = new UdpHandler();
+
+    private ArrayList<String> reverseConnectionBlacklist = new ArrayList<>();
+    private Timer reverseConnectionTimer;
 
     @ChannelHandler.Sharable
     private class TcpHandler extends SimpleChannelInboundHandler<String>{
@@ -252,6 +260,23 @@ public class LanLinkProvider extends BaseLinkProvider {
 
                             if (!future.isSuccess()) {
                                 Log.e("KDE/LanLinkProvider", "Cannot connect to " + identityPackage.getString("deviceId"));
+                                // Try reverse connection
+
+                                if (!reverseConnectionBlacklist.contains(identityPackage.getString("deviceId"))) {
+                                    // We are waiting for 3 seconds after trying reverse connection, to avoid any further emmission
+                                    // Without this, infinite loop is created between two devices with Android 5.0, because server will not work on it
+                                    // and it will cause trouble for ohter devices too
+                                    reverseConnectionTimer = new Timer();
+                                    reverseConnectionTimer.schedule(new TimerTask() {
+                                        @Override
+                                        public void run() {
+                                            reverseConnectionBlacklist.remove(identityPackage.getString("deviceId"));
+                                        }
+                                    }, 3*1000);
+                                    reverseConnectionBlacklist.add(identityPackage.getString("deviceId"));
+                                    onNetworkChange();
+                                }
+
                                 return;
                             }
 
@@ -378,21 +403,6 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         this.context = context;
 
-        bossGroup = new NioEventLoopGroup(1);
-        workerGroup = new NioEventLoopGroup();
-        try{
-            ServerBootstrap tcpBootstrap = new ServerBootstrap();
-            tcpBootstrap.group(bossGroup, workerGroup);
-            tcpBootstrap.channel(NioServerSocketChannel.class);
-            tcpBootstrap.option(ChannelOption.SO_BACKLOG, 100);
-            tcpBootstrap.handler(new LoggingHandler(LogLevel.INFO));
-            tcpBootstrap.option(ChannelOption.SO_REUSEADDR, true);
-            tcpBootstrap.childHandler(new TcpInitializer());
-            tcpBootstrap.bind(new InetSocketAddress(port)).sync();
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-
         udpGroup = new NioEventLoopGroup();
         try {
             Bootstrap udpBootstrap = new Bootstrap();
@@ -415,6 +425,26 @@ public class LanLinkProvider extends BaseLinkProvider {
         }
 
         clientGroup = new NioEventLoopGroup();
+
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.LOLLIPOP) {
+            // Server not working in Android Lollipop due to ssl bug
+            return ;
+        }
+
+        bossGroup = new NioEventLoopGroup(1);
+        workerGroup = new NioEventLoopGroup();
+        try{
+            ServerBootstrap tcpBootstrap = new ServerBootstrap();
+            tcpBootstrap.group(bossGroup, workerGroup);
+            tcpBootstrap.channel(NioServerSocketChannel.class);
+            tcpBootstrap.option(ChannelOption.SO_BACKLOG, 100);
+            tcpBootstrap.handler(new LoggingHandler(LogLevel.INFO));
+            tcpBootstrap.option(ChannelOption.SO_REUSEADDR, true);
+            tcpBootstrap.childHandler(new TcpInitializer());
+            tcpBootstrap.bind(new InetSocketAddress(port)).sync();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
