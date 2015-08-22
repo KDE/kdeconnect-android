@@ -88,6 +88,11 @@ public class LanLinkProvider extends BaseLinkProvider {
     private TcpHandler tcpHandler = new TcpHandler();
     private UdpHandler udpHandler = new UdpHandler();
 
+    // To prevent infinte loop if both device can only broadcast identity package but cannot connect via TCO
+    private ArrayList<String> reverseConnectionBlackList = new ArrayList<>();
+    private Timer reverseConnectionTimer;
+
+
     @ChannelHandler.Sharable
     private class TcpHandler extends SimpleChannelInboundHandler<String>{
         @Override
@@ -257,7 +262,17 @@ public class LanLinkProvider extends BaseLinkProvider {
                             if (!future.isSuccess()) {
                                 Log.e("KDE/LanLinkProvider", "Cannot connect to " + identityPackage.getString("deviceId"));
                                 // Try reverse connection
-                                onNetworkChange();
+                                if (!reverseConnectionBlackList.contains(identityPackage.getString("deviceId"))) {
+                                    reverseConnectionBlackList.add(identityPackage.getString("deviceId"));
+                                    reverseConnectionTimer = new Timer();
+                                    reverseConnectionTimer.schedule(new TimerTask() {
+                                        @Override
+                                        public void run() {
+                                            reverseConnectionBlackList.add(identityPackage.getString("deviceId"));
+                                        }
+                                    }, 5*1000);
+                                    onNetworkChange();
+                                }
                                 return;
                             }
 
