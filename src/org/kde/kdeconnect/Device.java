@@ -35,20 +35,22 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Base64;
 import android.util.Log;
 
-import org.bouncycastle.cert.X509CertificateHolder;
-import org.bouncycastle.cert.jcajce.JcaX509CertificateConverter;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.PairActivity;
 import org.kde.kdeconnect_tp.R;
+import org.spongycastle.cert.X509CertificateHolder;
+import org.spongycastle.cert.jcajce.JcaX509CertificateConverter;
+import org.spongycastle.jce.provider.BouncyCastleProvider;
 
+import java.io.ByteArrayInputStream;
 import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.security.cert.X509Certificate;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateFactory;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
@@ -63,7 +65,7 @@ public class Device implements BaseLink.PackageReceiver {
     private final String deviceId;
     private String name;
     public PublicKey publicKey;
-    public X509Certificate certificate;
+    public Certificate certificate;
     private int notificationId;
     private int protocolVersion;
 

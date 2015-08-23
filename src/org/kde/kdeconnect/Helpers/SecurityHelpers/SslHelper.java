@@ -27,15 +27,15 @@ import android.provider.Settings;
 import android.util.Base64;
 import android.util.Log;
 
-import org.bouncycastle.asn1.x500.X500NameBuilder;
-import org.bouncycastle.asn1.x500.style.BCStyle;
-import org.bouncycastle.cert.X509CertificateHolder;
-import org.bouncycastle.cert.X509v3CertificateBuilder;
-import org.bouncycastle.cert.jcajce.JcaX509CertificateConverter;
-import org.bouncycastle.cert.jcajce.JcaX509v3CertificateBuilder;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.bouncycastle.operator.ContentSigner;
-import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
+import org.spongycastle.asn1.x500.X500NameBuilder;
+import org.spongycastle.asn1.x500.style.BCStyle;
+import org.spongycastle.cert.X509CertificateHolder;
+import org.spongycastle.cert.X509v3CertificateBuilder;
+import org.spongycastle.cert.jcajce.JcaX509CertificateConverter;
+import org.spongycastle.cert.jcajce.JcaX509v3CertificateBuilder;
+import org.spongycastle.jce.provider.BouncyCastleProvider;
+import org.spongycastle.operator.ContentSigner;
+import org.spongycastle.operator.jcajce.JcaContentSignerBuilder;
 
 import java.math.BigInteger;
 import java.security.KeyStore;
@@ -43,6 +43,7 @@ import java.security.MessageDigest;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.SecureRandom;
+import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
 import java.util.Calendar;
 import java.util.Date;
@@ -141,7 +142,7 @@ public class SslHelper {
             // Setup keystore
             KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
             keyStore.load(null, null);
-            keyStore.setKeyEntry("key", privateKey, "".toCharArray(), new java.security.cert.Certificate[]{certificate});
+            keyStore.setKeyEntry("key", privateKey, "".toCharArray(), new Certificate[]{certificate});
             // Set certificate if device trusted
             if (remoteDeviceCertificate != null){
                 keyStore.setCertificateEntry(deviceId, remoteDeviceCertificate);
@@ -198,6 +199,11 @@ public class SslHelper {
             SSLContext tlsContext = getSslContext(context, deviceId, isDeviceTrusted);
             SSLEngine sslEngine = tlsContext.createSSLEngine();
 
+            // We do not support TLSv1.2 as of now, because only Android with version greater 20 that support it
+            sslEngine.setEnabledProtocols(new String[]{
+                    "TLSv1"
+            });
+
             if (sslMode == SslMode.Client){
                 sslEngine.setUseClientMode(true);
             }else{
@@ -209,9 +215,6 @@ public class SslHelper {
                 }
             }
 
-//            for (String cipher : sslEngine.getEnabledCipherSuites()) {
-//                Log.e("Enabled cipher", cipher);
-//            }
             return sslEngine;
         }catch (Exception e){
             e.printStackTrace();
@@ -220,7 +223,7 @@ public class SslHelper {
         return null;
     }
 
-    public static String getCertificateHash(X509Certificate certificate) {
+    public static String getCertificateHash(Certificate certificate) {
         try {
             byte[] hash = MessageDigest.getInstance("SHA-1").digest(certificate.getEncoded());
             Formatter formatter = new Formatter();
