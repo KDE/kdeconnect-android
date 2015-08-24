@@ -22,6 +22,7 @@ package org.kde.kdeconnect.Helpers.SecurityHelpers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Base64;
@@ -45,6 +46,7 @@ import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Formatter;
@@ -203,6 +205,19 @@ public class SslHelper {
             sslEngine.setEnabledProtocols(new String[]{
                     "TLSv1"
             });
+
+            // These cipher suites are most common of them that are accepted by kde and android during handshake
+            ArrayList<String> supportedCiphers = new ArrayList<>();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                supportedCiphers.add("TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256");
+                supportedCiphers.add("TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384");
+                supportedCiphers.add("TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA");
+            }
+            // Following ciphers are for and due to old devices
+            supportedCiphers.add("SSL_RSA_WITH_RC4_128_SHA");
+            supportedCiphers.add("SSL_RSA_WITH_RC4_128_MD5");
+            sslEngine.setEnabledCipherSuites(supportedCiphers.toArray(new String[supportedCiphers.size()]));
+
 
             if (sslMode == SslMode.Client){
                 sslEngine.setUseClientMode(true);
