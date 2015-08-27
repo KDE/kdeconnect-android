@@ -554,7 +554,7 @@ public class Device implements BaseLink.PackageReceiver {
                 unpair();
             }
 
-            for (Plugin plugin : unpairedPackageListeners) {
+            for (Plugin plugin : plugins.values()) {
                 try {
                     plugin.onUnpairedDevicePackageReceived(np);
                 } catch (Exception e) {
@@ -725,10 +725,6 @@ public class Device implements BaseLink.PackageReceiver {
             Log.e("KDE/removePlugin","Exception calling onDestroy for plugin "+pluginKey);
         }
 
-        if (unpairedPackageListeners.contains(plugin)) {
-            unpairedPackageListeners.remove(plugin);
-        }
-
         for (PluginsChangedListener listener : pluginsChangedListeners) {
             listener.onPluginsChanged(this);
         }
@@ -760,9 +756,11 @@ public class Device implements BaseLink.PackageReceiver {
 
         for(String pluginKey : availablePlugins) {
             boolean enabled = false;
-            if (isPaired() && isReachable()) {
+            boolean listenToUnpaired = PluginFactory.getPluginInfo(context, pluginKey).listenToUnpaired();
+            if ((isPaired() || listenToUnpaired) && isReachable()) {
                 enabled = isPluginEnabled(pluginKey);
             }
+
             if (enabled) {
                 addPlugin(pluginKey);
             } else {
@@ -793,13 +791,6 @@ public class Device implements BaseLink.PackageReceiver {
 
     public void removePluginsChangedListener(PluginsChangedListener listener) {
         pluginsChangedListeners.remove(listener);
-    }
-
-    private final ArrayList<Plugin> unpairedPackageListeners = new ArrayList<>();
-
-    public void registerUnpairedPackageListener(Plugin p) {
-        Log.e("KDE/registerUnpairedPackageListener", p.getPluginKey() + " plugin registered to receive package from unpaired device");
-        unpairedPackageListeners.add(p);
     }
 
 }

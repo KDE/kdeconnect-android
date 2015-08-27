@@ -38,18 +38,20 @@ import org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.lang.reflect.Method;
 
 public class PluginFactory {
 
     public static class PluginInfo {
 
         public PluginInfo(String displayName, String description, Drawable icon,
-                          boolean enabledByDefault, boolean hasSettings) {
+                          boolean enabledByDefault, boolean hasSettings, boolean listenToUnpaired) {
             this.displayName = displayName;
             this.description = description;
             this.icon = icon;
             this.enabledByDefault = enabledByDefault;
             this.hasSettings = hasSettings;
+            this.listenToUnpaired = listenToUnpaired;
         }
 
         public String getDisplayName() {
@@ -70,12 +72,16 @@ public class PluginFactory {
             return enabledByDefault;
         }
 
+        public boolean listenToUnpaired() {
+            return listenToUnpaired;
+        }
+
         private final String displayName;
         private final String description;
         private final Drawable icon;
         private final boolean enabledByDefault;
         private final boolean hasSettings;
-
+        private final boolean listenToUnpaired;
     }
 
     private static final Map<String, Class> availablePlugins = new TreeMap<>();
@@ -101,7 +107,7 @@ public class PluginFactory {
             Plugin p = ((Plugin)availablePlugins.get(pluginKey).newInstance());
             p.setContext(context, null);
             info = new PluginInfo(p.getDisplayName(), p.getDescription(), p.getIcon(),
-                    p.isEnabledByDefault(), p.hasSettings());
+                    p.isEnabledByDefault(), p.hasSettings(), p.listensToUnpairedDevices());
             availablePluginsInfo.put(pluginKey, info); //Cache it
             return info;
         } catch(Exception e) {

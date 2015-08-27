@@ -44,10 +44,18 @@ public abstract class Plugin {
     }
 
     /**
-     * To receive the network package from the unpaired device, Register your plugin
-     * using Device::registerUnpairedPackageListener and override this method.
+     * To receive the network package from the unpaired device, override
+     * listensToUnpairedDevices to return true and this method.
      */
     public boolean onUnpairedDevicePackageReceived(NetworkPackage np) {
+        return false;
+    }
+
+    /**
+     * Returns whether this plugin should be loaded or not, to listen to NetworkPackages
+     * from the unpaired devices. By default, returns false.
+     */
+    public boolean listensToUnpairedDevices() {
         return false;
     }
 
