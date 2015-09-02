@@ -20,6 +20,7 @@
 
 package org.kde.kdeconnect.Plugins.NotificationsPlugin;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Notification;
@@ -38,6 +39,7 @@ import org.kde.kdeconnect.UserInterface.DeviceActivity;
 import org.kde.kdeconnect.UserInterface.SettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
+@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class NotificationsPlugin extends Plugin implements NotificationReceiver.NotificationListener {
 /*
     private boolean sendIcons = false;
@@ -90,10 +92,10 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                         for (StatusBarNotification notification : notifications) {
                             sendNotification(notification, true);
                         }
-                    } catch(Exception e) {
-                        Log.e("NotificationsPlugin","Exception");
+                    } catch (Exception e) {
+                        Log.e("NotificationsPlugin", "Exception");
                         e.printStackTrace();
-                }
+                    }
                 }
             });
             return true;
@@ -121,7 +123,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public void onNotificationRemoved(StatusBarNotification statusBarNotification) {
-        String id = statusBarNotification.getKey();
+        String id = getNotificationKeyCompat(statusBarNotification);
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_NOTIFICATION);
         np.set("id", id);
         np.set("isCancel", true);
@@ -138,9 +140,9 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         Notification notification = statusBarNotification.getNotification();
         AppDatabase appDatabase = new AppDatabase(context);
 
-         if ((notification.flags & Notification.FLAG_FOREGROUND_SERVICE) != 0
-             || (notification.flags & Notification.FLAG_ONGOING_EVENT) != 0
-             || (notification.flags & Notification.FLAG_LOCAL_ONLY) != 0) {
+        if ((notification.flags & Notification.FLAG_FOREGROUND_SERVICE) != 0
+                || (notification.flags & Notification.FLAG_ONGOING_EVENT) != 0
+                || (notification.flags & Notification.FLAG_LOCAL_ONLY) != 0) {
             //This is not a notification we want!
             return;
         }
@@ -152,11 +154,14 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         }
         appDatabase.close();
 
-        String id = statusBarNotification.getKey();
+        String key = getNotificationKeyCompat(statusBarNotification);
         String packageName = statusBarNotification.getPackageName();
         String appName = AppsHelper.appNameLookup(context, packageName);
 
-        if ("com.facebook.orca".equals(packageName) && "10012".equals(statusBarNotification.getId()) && appName.equals("Messenger") && notification.tickerText == null) {
+        if ("com.facebook.orca".equals(packageName) &&
+                (statusBarNotification.getId() == 10012) &&
+                "Messenger".equals(appName) &&
+                notification.tickerText == null) {
             //HACK: Hide weird Facebook empty "Messenger" notification that is actually not shown in the phone
             return;
         }
@@ -192,7 +197,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             }
         }
 */
-        np.set("id", id);
+        np.set("id", key);
         np.set("appName", appName == null? packageName : appName);
         np.set("isClearable", statusBarNotification.isClearable());
         np.set("ticker", getTickerText(notification));
@@ -296,13 +301,13 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 @Override
                 public void onServiceStart(NotificationReceiver service) {
                     String dismissedId = np.getString("cancel");
-                    service.cancelNotification(dismissedId);
+                    cancelNotificationCompat(service, dismissedId);
                 }
             });
 
         } else {
 
-            Log.w("NotificationsPlugin","Nothing to do");
+            Log.w("NotificationsPlugin", "Nothing to do");
 
         }
 
@@ -315,33 +320,67 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
         if (Build.VERSION.SDK_INT < 18) {
             return new AlertDialog.Builder(deviceActivity)
-                .setTitle(R.string.pref_plugin_notifications)
-                .setMessage(R.string.plugin_not_available)
-                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+                    .setTitle(R.string.pref_plugin_notifications)
+                    .setMessage(R.string.plugin_not_available)
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
 
-                    }
-                })
-                .create();
+                        }
+                    })
+                    .create();
         } else {
             return new AlertDialog.Builder(deviceActivity)
-                .setTitle(R.string.pref_plugin_notifications)
-                .setMessage(R.string.no_permissions)
-                .setPositiveButton(R.string.open_settings, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
-                        deviceActivity.startActivityForResult(intent, DeviceActivity.RESULT_NEEDS_RELOAD);
-                    }
-                })
-                .setNegativeButton(R.string.cancel,new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //Do nothing
-                    }
-                })
-                .create();
+                    .setTitle(R.string.pref_plugin_notifications)
+                    .setMessage(R.string.no_permissions)
+                    .setPositiveButton(R.string.open_settings, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+                            deviceActivity.startActivityForResult(intent, DeviceActivity.RESULT_NEEDS_RELOAD);
+                        }
+                    })
+                    .setNegativeButton(R.string.cancel,new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            //Do nothing
+                        }
+                    })
+                    .create();
+        }
+    }
+
+    //For compat with API<21, because lollipop changed they way to cancel notifications
+    public static void cancelNotificationCompat(NotificationReceiver service, String compatKey) {
+        if (Build.VERSION.SDK_INT >= 21) {
+            service.cancelNotification(compatKey);
+        } else {
+            int first = compatKey.indexOf(':');
+            int last = compatKey.lastIndexOf(':');
+            String packageName = compatKey.substring(0, first);
+            String tag = compatKey.substring(first + 1, last);
+            if (tag.length() == 0) tag = null;
+            String idString = compatKey.substring(last + 1);
+            int id;
+            try {
+                id = Integer.parseInt(idString);
+            } catch (Exception e) {
+                id = 0;
+            }
+            service.cancelNotification(packageName, tag, id);
+        }
+    }
+
+    public static String getNotificationKeyCompat(StatusBarNotification statusBarNotification) {
+        if (Build.VERSION.SDK_INT >= 21) {
+            return statusBarNotification.getKey();
+        } else {
+            String packageName = statusBarNotification.getPackageName();
+            String tag = statusBarNotification.getTag();
+            int id = statusBarNotification.getId();
+            String safePackageName = (packageName == null) ? "" : packageName;
+            String safeTag = (tag == null) ? "" : tag;
+            return safePackageName + ":" + safeTag + ":" + id;
         }
     }
 
