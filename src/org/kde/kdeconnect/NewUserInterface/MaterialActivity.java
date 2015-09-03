@@ -1,6 +1,8 @@
 package org.kde.kdeconnect.NewUserInterface;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,10 +17,14 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.UserInterface.MainSettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
@@ -54,9 +60,35 @@ public class MaterialActivity extends AppCompatActivity {
 
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
-        String deviceName = MainSettingsActivity.initializeDeviceName(this);
-        TextView nameView = (TextView) mDrawerLayout.findViewById(R.id.device_name);
+        String deviceName = DeviceHelper.getDeviceName(this);
+        final TextView nameView = (TextView) mDrawerLayout.findViewById(R.id.device_name);
         nameView.setText(deviceName);
+
+        nameView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final EditText deviceNameEdit = new EditText(MaterialActivity.this);
+                String deviceName = DeviceHelper.getDeviceName(MaterialActivity.this);
+                deviceNameEdit.setText(deviceName);
+                new AlertDialog.Builder(MaterialActivity.this)
+                    .setView(deviceNameEdit)
+                        .setPositiveButton(R.string.device_rename_confirm, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String deviceName = deviceNameEdit.getText().toString();
+                                DeviceHelper.setDeviceName(MaterialActivity.this, deviceName);
+                                nameView.setText(deviceName);
+                            }
+                        })
+                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        })
+                        .setTitle(R.string.device_rename_title)
+                    .show();
+            }
+        });
 
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -170,6 +202,8 @@ public class MaterialActivity extends AppCompatActivity {
         updateComputerList();
     }
 
+    //TODO: Make it accept two parameters, a constant with the type of screen and the device id in
+    //case the screen is for a device, or even three parameters and the third one be the plugin id?
     public void onDeviceSelected(String deviceId) {
 
         mCurrentDevice = deviceId;

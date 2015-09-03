@@ -39,12 +39,10 @@ import org.kde.kdeconnect_tp.R;
 
 public class MainSettingsActivity extends AppCompatPreferenceActivity {
 
-    public static final String KEY_DEVICE_NAME_PREFERENCE = "device_name_preference";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initializeDeviceName(this);
+        DeviceHelper.getDeviceName(this); //To make sure the preference is initialized
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
             addPreferencesOldApi();
@@ -68,7 +66,7 @@ public class MainSettingsActivity extends AppCompatPreferenceActivity {
     @SuppressWarnings("deprecation")
     private void addPreferencesOldApi() {
         addPreferencesFromResource(R.xml.general_preferences);
-        initPreferences((EditTextPreference) findPreference(KEY_DEVICE_NAME_PREFERENCE));
+        initPreferences((EditTextPreference) findPreference(DeviceHelper.KEY_DEVICE_NAME_PREFERENCE));
     }
 
     private void initPreferences(final EditTextPreference deviceNamePref) {
@@ -107,24 +105,7 @@ public class MainSettingsActivity extends AppCompatPreferenceActivity {
             }
         });
 
-        deviceNamePref.setSummary(sharedPreferences.getString(KEY_DEVICE_NAME_PREFERENCE,""));
-    }
-
-    /**
-     * Until now it sets only the default deviceName (if not already set).
-     * It's safe to call this multiple time because doesn't override any previous value.
-     * @param context the application context
-     */
-    public static String initializeDeviceName(Context context){
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        // Could use prefrences.contains but would need to check for empty String anyway.
-        String deviceName = preferences.getString(KEY_DEVICE_NAME_PREFERENCE, "");
-        if (deviceName.isEmpty()){
-            deviceName = DeviceHelper.getDeviceName();
-            Log.i("MainSettingsActivity", "New device name: " + deviceName);
-            preferences.edit().putString(KEY_DEVICE_NAME_PREFERENCE, deviceName).apply();
-        }
-        return deviceName;
+        deviceNamePref.setSummary(sharedPreferences.getString(DeviceHelper.KEY_DEVICE_NAME_PREFERENCE,""));
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -140,7 +121,7 @@ public class MainSettingsActivity extends AppCompatPreferenceActivity {
             super.onActivityCreated(savedInstanceState);
             if (getActivity() != null) {
                 ((MainSettingsActivity)getActivity()).initPreferences(
-                        (EditTextPreference) findPreference(KEY_DEVICE_NAME_PREFERENCE));
+                        (EditTextPreference) findPreference(DeviceHelper.KEY_DEVICE_NAME_PREFERENCE));
             }
         }
     }

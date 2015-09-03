@@ -250,10 +250,7 @@ public class NetworkPackage {
         String deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
         try {
             np.mBody.put("deviceId", deviceId);
-            np.mBody.put("deviceName",
-                    PreferenceManager.getDefaultSharedPreferences(context).getString(
-                            MainSettingsActivity.KEY_DEVICE_NAME_PREFERENCE,
-                            DeviceHelper.getDeviceName()));
+            np.mBody.put("deviceName", DeviceHelper.getDeviceName(context));
             np.mBody.put("protocolVersion", NetworkPackage.ProtocolVersion);
             np.mBody.put("deviceType", DeviceHelper.isTablet()? "tablet" : "phone");
         } catch (Exception e) {

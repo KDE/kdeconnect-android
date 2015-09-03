@@ -202,7 +202,6 @@ public class BackgroundService extends Service {
         Log.i("KDE/BackgroundService","Service not started yet, initializing...");
 
         initializeRsaKeys();
-        MainSettingsActivity.initializeDeviceName(this);
         loadRememberedDevicesFromSettings();
         registerLinkProviders();
 
