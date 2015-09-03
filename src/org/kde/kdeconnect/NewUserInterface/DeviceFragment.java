@@ -61,8 +61,6 @@ public class DeviceFragment extends Fragment {
     static private String mDeviceId; //Static because if we get here by using the back button in the action bar, the extra deviceId will not be set.
     private Device device;
 
-    public static final int RESULT_NEEDS_RELOAD = Activity.RESULT_FIRST_USER;
-
     private TextView errorHeader;
 
     private MaterialActivity mActivity;
@@ -94,7 +92,7 @@ public class DeviceFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
-        Log.e("DeviceFragment","device: " +deviceId);
+        Log.e("DeviceFragment", "device: " + deviceId);
 
         BackgroundService.RunCommand(mActivity, new BackgroundService.InstanceCallback() {
             @Override
@@ -172,7 +170,12 @@ public class DeviceFragment extends Fragment {
                             if (!failed.isEmpty()) {
                                 if (errorHeader == null) {
                                     errorHeader = new TextView(mActivity);
-                                    errorHeader.setPadding(0, 48, 0, 0);
+                                    errorHeader.setPadding(
+                                            0,
+                                            ((int)(28 * getResources().getDisplayMetrics().density)),
+                                            0,
+                                            ((int)(8 * getResources().getDisplayMetrics().density))
+                                    );
                                     errorHeader.setOnClickListener(null);
                                     errorHeader.setOnLongClickListener(null);
                                     errorHeader.setText(getResources().getString(R.string.plugins_failed_to_load));
@@ -264,25 +267,6 @@ public class DeviceFragment extends Fragment {
             }
         });
 
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode)
-        {
-            case RESULT_NEEDS_RELOAD:
-                BackgroundService.RunCommand(mActivity, new BackgroundService.InstanceCallback() {
-                    @Override
-                    public void onServiceStart(BackgroundService service) {
-                        Device device = service.getDevice(mDeviceId);
-                        device.reloadPluginsFromSettings();
-                    }
-                });
-
-                break;
-            default:
-                super.onActivityResult(requestCode, resultCode, data);
-        }
     }
 
 }

@@ -1,8 +1,10 @@
 package org.kde.kdeconnect.NewUserInterface;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -24,6 +26,7 @@ import android.widget.TextView;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
+import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.Collection;
@@ -32,6 +35,8 @@ import java.util.HashMap;
 public class MaterialActivity extends AppCompatActivity {
 
     private static final String STATE_SELECTED_DEVICE = "selected_device";
+
+    public static final int RESULT_NEEDS_RELOAD = Activity.RESULT_FIRST_USER;
 
     private NavigationView mNavigationView;
     private DrawerLayout mDrawerLayout;
@@ -202,6 +207,7 @@ public class MaterialActivity extends AppCompatActivity {
 
     //TODO: Make it accept two parameters, a constant with the type of screen and the device id in
     //case the screen is for a device, or even three parameters and the third one be the plugin id?
+    //This way we can keep adding more options with null plugin id (eg: about)
     public void onDeviceSelected(String deviceId) {
 
         mCurrentDevice = deviceId;
@@ -240,4 +246,23 @@ public class MaterialActivity extends AppCompatActivity {
         onDeviceSelected(savedDevice);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.e("MaterialActivity", "Main Activity onActivityResult" + requestCode);
+        switch (requestCode)
+        {
+            case RESULT_NEEDS_RELOAD:
+                BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(BackgroundService service) {
+                        Device device = service.getDevice(mCurrentDevice);
+                        device.reloadPluginsFromSettings();
+                    }
+                });
+                break;
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
+        }
+
+    }
 }
