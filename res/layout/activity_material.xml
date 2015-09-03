@@ -16,7 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:titleTextAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
             android:background="?attr/colorPrimary" />
         <FrameLayout
             android:id="@+id/container"
