@@ -66,7 +66,9 @@ public class DeviceFragment extends Fragment {
 
     private TextView errorHeader;
 
-    private AppCompatActivity mActivity;
+    private MaterialActivity mActivity;
+
+    public DeviceFragment() { }
 
     public DeviceFragment(String deviceId) {
         Bundle args = new Bundle();
@@ -77,7 +79,7 @@ public class DeviceFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        mActivity = ((AppCompatActivity) getActivity());
+        mActivity = ((MaterialActivity) getActivity());
     }
 
     @Override
@@ -91,13 +93,24 @@ public class DeviceFragment extends Fragment {
             mDeviceId = deviceId;
         }
 
+        setHasOptionsMenu(true);
+
         Log.e("DeviceFragment","device: " +deviceId);
 
         BackgroundService.RunCommand(mActivity, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
                 device = service.getDevice(mDeviceId);
-                if (device == null) return;
+                if (device == null) {
+                    Log.e("DeviceFragment", "Trying to display a device fragment but the device is not present");
+                    mActivity.getSupportActionBar().setTitle(R.string.error_not_reachable);
+                    return;
+                }
+
+                if (!device.isPaired()) {
+                    Log.e("DeviceFragment", "This device is no longer paired!");
+                    mActivity.onDeviceSelected(null);
+                }
 
                 mActivity.getSupportActionBar().setTitle(device.getName());
 
@@ -119,7 +132,7 @@ public class DeviceFragment extends Fragment {
     private final Device.PluginsChangedListener pluginsChangedListener = new Device.PluginsChangedListener() {
         @Override
         public void onPluginsChanged(final Device device) {
-
+            Log.e("DeviceFramgnet", "Refreshing GUI");
             mActivity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -186,6 +199,8 @@ public class DeviceFragment extends Fragment {
                         this.run(); //Try again
                     }
 
+                    mActivity.invalidateOptionsMenu();
+
                 }
             });
 
@@ -207,6 +222,8 @@ public class DeviceFragment extends Fragment {
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
+
+        Log.e("DeviceFragment", "onPrepareOptionsMenu");
 
         super.onPrepareOptionsMenu(menu);
         menu.clear();
