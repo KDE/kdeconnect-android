@@ -1,6 +1,6 @@
 <resources>
-    <color name="primary">#3daee9</color>
-    <color name="primaryDark">#318bba</color>
+    <color name="primary">#F67400</color>
+    <color name="primaryDark">#BD5900</color>
     <color name="accent">#4ebffa</color>
 
     <!-- NoActionBar because we use a Toolbar widget as ActionBar -->

@@ -27,6 +27,9 @@
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_drawer"
+        app:itemBackground="@drawable/state_list_drawer_background"
+        app:itemTextColor="@color/state_list_drawer_text"
+        app:itemIconTint="@color/state_list_drawer_text"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
