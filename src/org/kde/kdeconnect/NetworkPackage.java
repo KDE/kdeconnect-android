@@ -31,7 +31,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
-import org.kde.kdeconnect.UserInterface.MainSettingsActivity;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

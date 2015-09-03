@@ -18,14 +18,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
-import org.kde.kdeconnect.UserInterface.MainSettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.Collection;

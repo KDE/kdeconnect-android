@@ -1,6 +1,5 @@
 package org.kde.kdeconnect.NewUserInterface;
 
-import android.content.Context;
 import android.preference.CheckBoxPreference;
 import android.view.View;
 
