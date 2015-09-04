@@ -269,4 +269,17 @@ public class DeviceFragment extends Fragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        BackgroundService.RunCommand(mActivity, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                if (mDeviceId != null) {
+                    Device device = service.getDevice(mDeviceId);
+                    device.reloadPluginsFromSettings();
+                }
+            }
+        });
+    }
 }
