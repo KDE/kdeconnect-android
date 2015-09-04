@@ -181,7 +181,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onServiceStart(BackgroundService service) {
                 service.onNetworkChange();
-                service.setDeviceListChangedCallback(new BackgroundService.DeviceListChangedCallback() {
+                service.addDeviceListChangedCallback("MainActivity", new BackgroundService.DeviceListChangedCallback() {
                     @Override
                     public void onDeviceListChanged() {
                         updateComputerList();
@@ -196,7 +196,7 @@ public class MainActivity extends ActionBarActivity {
         BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
-                service.setDeviceListChangedCallback(null);
+                service.removeDeviceListChangedCallback("MainActivity");
             }
         });
         super.onStop();

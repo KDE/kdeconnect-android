@@ -133,7 +133,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
         BackgroundService.RunCommand(mActivity, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
-                service.setDeviceListChangedCallback(new BackgroundService.DeviceListChangedCallback() {
+                service.addDeviceListChangedCallback("PairingFragment", new BackgroundService.DeviceListChangedCallback() {
                     @Override
                     public void onDeviceListChanged() {
                         updateComputerList();
@@ -150,7 +150,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
         BackgroundService.RunCommand(mActivity, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
-                service.setDeviceListChangedCallback(null);
+                service.removeDeviceListChangedCallback("PairingFragment");
             }
         });
     }

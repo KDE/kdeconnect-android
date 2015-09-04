@@ -34,39 +34,53 @@ import android.util.Log;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
+import org.kde.kdeconnect.Backends.LoopbackBackend.LoopbackLinkProvider;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class BackgroundService extends Service {
 
+    public interface DeviceListChangedCallback {
+        void onDeviceListChanged();
+    }
+
+    private final ConcurrentHashMap<String, DeviceListChangedCallback> deviceListChangedCallbacks = new ConcurrentHashMap<>();
+
     private final ArrayList<BaseLinkProvider> linkProviders = new ArrayList<>();
 
-    private final HashMap<String, Device> devices = new HashMap<>();
+    private final ConcurrentHashMap<String, Device> devices = new ConcurrentHashMap<>();
 
     private final Device.PairingCallback devicePairingCallback = new Device.PairingCallback() {
         @Override
         public void incomingRequest() {
-            if (deviceListChangedCallback != null) deviceListChangedCallback.onDeviceListChanged();
+            onDeviceListChanged();
         }
         @Override
         public void pairingSuccessful() {
-            if (deviceListChangedCallback != null) deviceListChangedCallback.onDeviceListChanged();
+            onDeviceListChanged();
         }
         @Override
         public void pairingFailed(String error) {
-            if (deviceListChangedCallback != null) deviceListChangedCallback.onDeviceListChanged();
+            onDeviceListChanged();
         }
         @Override
         public void unpaired() {
-            if (deviceListChangedCallback != null) deviceListChangedCallback.onDeviceListChanged();
+            onDeviceListChanged();
         }
     };
+
+    private void onDeviceListChanged() {
+        for(DeviceListChangedCallback callback : deviceListChangedCallbacks.values()) {
+            callback.onDeviceListChanged();
+        }
+    }
 
     private void loadRememberedDevicesFromSettings() {
         //Log.e("BackgroundService", "Loading remembered trusted devices");
@@ -120,7 +134,7 @@ public class BackgroundService extends Service {
                 device.addPairingCallback(devicePairingCallback);
             }
 
-            if (deviceListChangedCallback != null) deviceListChangedCallback.onDeviceListChanged();
+            onDeviceListChanged();
         }
 
         @Override
@@ -137,11 +151,11 @@ public class BackgroundService extends Service {
             } else {
                 Log.e("KDE/onConnectionLost","Removing connection to unknown device, this should not happen");
             }
-            if (deviceListChangedCallback != null) deviceListChangedCallback.onDeviceListChanged();
+            onDeviceListChanged();
         }
     };
 
-    public HashMap<String, Device> getDevices() {
+    public ConcurrentHashMap<String, Device> getDevices() {
         return devices;
     }
 
@@ -180,14 +194,12 @@ public class BackgroundService extends Service {
         }
     }
 
-    public interface DeviceListChangedCallback {
-        void onDeviceListChanged();
+    public void addDeviceListChangedCallback(String key, DeviceListChangedCallback callback) {
+        deviceListChangedCallbacks.put(key, callback);
     }
-    private DeviceListChangedCallback deviceListChangedCallback = null;
-    public void setDeviceListChangedCallback(DeviceListChangedCallback callback) {
-        this.deviceListChangedCallback = callback;
+    public void removeDeviceListChangedCallback(String key) {
+        deviceListChangedCallbacks.remove(key);
     }
-
 
     //This will called only once, even if we launch the service intent several times
     @Override

@@ -154,7 +154,7 @@ public class MaterialActivity extends AppCompatActivity {
                 Collection<Device> devices = service.getDevices().values();
                 for (Device device : devices) {
                     if (device.isReachable() && device.isPaired()) {
-                        MenuItem item = menu.add(0,id++,0,device.getName());
+                        MenuItem item = menu.add(0, id++, 0, device.getName());
                         item.setIcon(device.getIcon());
                         item.setCheckable(true);
                         item.setChecked(device.getDeviceId().equals(mCurrentDevice));
@@ -178,7 +178,7 @@ public class MaterialActivity extends AppCompatActivity {
             @Override
             public void onServiceStart(BackgroundService service) {
                 service.onNetworkChange();
-                service.setDeviceListChangedCallback(new BackgroundService.DeviceListChangedCallback() {
+                service.addDeviceListChangedCallback("MaterialActivity", new BackgroundService.DeviceListChangedCallback() {
                     @Override
                     public void onDeviceListChanged() {
                         updateComputerList();
@@ -193,7 +193,7 @@ public class MaterialActivity extends AppCompatActivity {
         BackgroundService.RunCommand(MaterialActivity.this, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
-                service.setDeviceListChangedCallback(null);
+                service.removeDeviceListChangedCallback("MaterialActivity");
             }
         });
         super.onStop();

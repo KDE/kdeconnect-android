@@ -412,7 +412,7 @@ public class ShareActivity extends ActionBarActivity {
             @Override
             public void onServiceStart(BackgroundService service) {
                 service.onNetworkChange();
-                service.setDeviceListChangedCallback(new BackgroundService.DeviceListChangedCallback() {
+                service.addDeviceListChangedCallback("ShareActivity", new BackgroundService.DeviceListChangedCallback() {
                     @Override
                     public void onDeviceListChanged() {
                         updateComputerList();
@@ -427,7 +427,7 @@ public class ShareActivity extends ActionBarActivity {
         BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
-                service.setDeviceListChangedCallback(null);
+                service.removeDeviceListChangedCallback("ShareActivity");
             }
         });
         super.onStop();
