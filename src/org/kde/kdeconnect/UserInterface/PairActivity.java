@@ -125,6 +125,7 @@ public class PairActivity extends ActionBarActivity {
                         device = service.getDevice(deviceId);
                         if (device == null) return;
                         device.unpair();
+                        finish();
                     }
                 });
             }

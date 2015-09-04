@@ -262,7 +262,7 @@ public class DeviceFragment extends Fragment {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 device.unpair();
-                //finish();
+                mActivity.onDeviceSelected(null);
                 return true;
             }
         });
