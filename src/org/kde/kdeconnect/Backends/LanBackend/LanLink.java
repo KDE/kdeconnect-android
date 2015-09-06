@@ -134,6 +134,10 @@ public class LanLink extends BaseLink {
             if (callback != null) {
                 callback.sendFailure(e);
             }
+        } finally  {
+            //Make sure we close the payload stream, if any
+            InputStream stream = np.getPayload();
+            try { stream.close(); } catch (Exception e) { }
         }
     }
 
