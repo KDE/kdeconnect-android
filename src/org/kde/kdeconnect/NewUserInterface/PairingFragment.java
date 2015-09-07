@@ -25,7 +25,11 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -34,9 +38,9 @@ import android.widget.TextView;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NewUserInterface.List.PairingDeviceItem;
+import org.kde.kdeconnect.UserInterface.CustomDevicesActivity;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.SectionItem;
-import org.kde.kdeconnect.UserInterface.PairActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
@@ -55,9 +59,14 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     private MaterialActivity mActivity;
 
     private MenuItem menuProgress;
+
+    boolean listRefreshCalledThisFrame = false;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Log.e("PairingFragmen", "OnCreateView");
 
         mActivity.getSupportActionBar().setTitle(R.string.pairing_title);
 
@@ -70,7 +79,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
         TextView text = new TextView(inflater.getContext());
         text.setText(getString(R.string.pairing_description));
         text.setPadding(0, 0, 0, (int) (12 * getResources().getDisplayMetrics().density));
-        ((ListView)rootView).addHeaderView(text);
+        ((ListView) rootView).addHeaderView(text);
 
         return rootView;
     }
@@ -82,47 +91,81 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     }
 
     void updateComputerList() {
-
         BackgroundService.RunCommand(mActivity, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(final BackgroundService service) {
-
-                Collection<Device> devices = service.getDevices().values();
-                final ArrayList<ListAdapter.Item> items = new ArrayList<>();
-
-                SectionItem section;
-                Resources res = getResources();
-
-                section = new SectionItem(res.getString(R.string.category_not_paired_devices));
-                section.isSectionEmpty = true;
-                items.add(section);
-                for (Device device : devices) {
-                    if (device.isReachable() && !device.isPaired()) {
-                        items.add(new PairingDeviceItem(device, PairingFragment.this));
-                        section.isSectionEmpty = false;
-                    }
-                }
-
-                section = new SectionItem(res.getString(R.string.category_connected_devices));
-                section.isSectionEmpty = true;
-                items.add(section);
-                for (Device device : devices) {
-                    if (device.isReachable() && device.isPaired()) {
-                        items.add(new PairingDeviceItem(device, PairingFragment.this));
-                        section.isSectionEmpty = false;
-                    }
-                }
-                if (section.isSectionEmpty) {
-                    items.remove(items.size() - 1); //Remove connected devices section if empty
-                }
-
                 mActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ListView list = (ListView) rootView.findViewById(R.id.listView1);
-                        list.setAdapter(new ListAdapter(mActivity, items));
+
+                        if (listRefreshCalledThisFrame) {
+                            return; // This makes sure we don't try to call list.getFirstVisiblePosition()
+                                    // twice per frame, because the second time the list hasn't been drawn
+                                    // yet and it would always return 0.
+                        }
+                        listRefreshCalledThisFrame = true;
+
+                        try {
+                            Collection<Device> devices = service.getDevices().values();
+                            final ArrayList<ListAdapter.Item> items = new ArrayList<>();
+
+                            SectionItem section;
+                            Resources res = getResources();
+
+                            section = new SectionItem(res.getString(R.string.category_not_paired_devices));
+                            section.isSectionEmpty = true;
+                            items.add(section);
+                            for (Device device : devices) {
+                                if (device.isReachable() && !device.isPaired()) {
+                                    items.add(new PairingDeviceItem(device, PairingFragment.this));
+                                    section.isSectionEmpty = false;
+                                }
+                            }
+/*
+                            section = new SectionItem(res.getString(R.string.category_connected_devices));
+                            section.isSectionEmpty = true;
+                            items.add(section);
+                            for (Device device : devices) {
+                                if (device.isReachable() && device.isPaired()) {
+                                    items.add(new PairingDeviceItem(device, PairingFragment.this));
+                                    section.isSectionEmpty = false;
+                                }
+                            }
+                            if (section.isSectionEmpty) {
+                                items.remove(items.size() - 1); //Remove connected devices section if empty
+                            }
+*/
+                            section = new SectionItem(res.getString(R.string.category_remembered_devices));
+                            section.isSectionEmpty = true;
+                            items.add(section);
+                            for (Device device : devices) {
+                                if (!device.isReachable() && device.isPaired()) {
+                                    items.add(new PairingDeviceItem(device, PairingFragment.this));
+                                    section.isSectionEmpty = false;
+                                }
+                            }
+                            if (section.isSectionEmpty) {
+                                items.remove(items.size() - 1); //Remove remembered devices section if empty
+                            }
+
+                            final ListView list = (ListView) rootView.findViewById(R.id.listView1);
+
+                            //Store current scroll
+                            int index = list.getFirstVisiblePosition();
+                            View v = list.getChildAt(0);
+                            int top = (v == null) ? 0 : (v.getTop() - list.getPaddingTop());
+
+                            list.setAdapter(new ListAdapter(mActivity, items));
+
+                            //Restore scroll
+                            list.setSelectionFromTop(index, top);
+
+                        } finally {
+                            listRefreshCalledThisFrame = false;
+                        }
                     }
                 });
+
             }
         });
     }
@@ -164,9 +207,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
 
     @Override
     public void pairingClicked(Device device) {
-        Intent intent = new Intent(mActivity, PairActivity.class);
-        intent.putExtra("deviceId", device.getDeviceId());
-        startActivityForResult(intent, RESULT_PAIRING_SUCCESFUL);
+        mActivity.onDeviceSelected(device.getDeviceId(), !device.isPaired() || !device.isReachable());
     }
 
     @Override
@@ -224,7 +265,6 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
         }
         return true;
     }
-
 
 
 }

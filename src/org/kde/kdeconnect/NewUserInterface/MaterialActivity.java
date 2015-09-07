@@ -26,7 +26,6 @@ import android.widget.TextView;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
-import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.Collection;
@@ -90,7 +89,10 @@ public class MaterialActivity extends AppCompatActivity {
         preferences = getSharedPreferences(STATE_SELECTED_DEVICE, Context.MODE_PRIVATE);
 
         String savedDevice;
-        if (savedInstanceState != null) {
+        if (getIntent().hasExtra("deviceId")) {
+            Log.i("MaterialActivity", "Loading selected device from parameter");
+            savedDevice = getIntent().getStringExtra("deviceId");
+        } else if (savedInstanceState != null) {
             Log.i("MaterialActivity", "Loading selected device from saved activity state");
             savedDevice = savedInstanceState.getString(STATE_SELECTED_DEVICE);
         } else {
@@ -121,6 +123,8 @@ public class MaterialActivity extends AppCompatActivity {
     }
 
     private void updateComputerList() {
+
+        Log.e("MaterialActivity", "UpdateComputerList");
 
         BackgroundService.RunCommand(MaterialActivity.this, new BackgroundService.InstanceCallback() {
             @Override
@@ -189,7 +193,7 @@ public class MaterialActivity extends AppCompatActivity {
     //TODO: Make it accept two parameters, a constant with the type of screen and the device id in
     //case the screen is for a device, or even three parameters and the third one be the plugin id?
     //This way we can keep adding more options with null plugin id (eg: about)
-    public void onDeviceSelected(String deviceId) {
+    public void onDeviceSelected(String deviceId, boolean stack) {
 
         mCurrentDevice = deviceId;
 
@@ -204,14 +208,17 @@ public class MaterialActivity extends AppCompatActivity {
         if (deviceId == null) {
             fragment = new PairingFragment();
         } else {
-            fragment = new DeviceFragment(deviceId);
+            fragment = new DeviceFragment(deviceId, stack);
         }
 
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.container, fragment)
                 .commit();
+    }
 
+    public void onDeviceSelected(String deviceId) {
+        onDeviceSelected(deviceId, false);
     }
 
     @Override

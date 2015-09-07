@@ -1,0 +1,89 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_vertical_margin"
+    tools:context=".DeviceFragment"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/pairing_buttons"
+        android:layout_gravity="center">
+
+        <ProgressBar
+            android:visibility="gone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pair_progress" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dip"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/device_not_paired"
+            android:id="@+id/pair_message"
+            android:layout_gravity="left|center_vertical"
+        />
+
+        <Button
+            android:id="@+id/pair_button"
+            android:background="@drawable/button_round"
+            android:textColor="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/request_pairing"
+        />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/pair_request"
+            android:layout_gravity="center">
+
+            <Button
+                android:background="@drawable/button_round"
+                android:textColor="@android:color/white"
+                android:layout_margin="4dip"
+                android:id="@+id/accept_button"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pairing_accept"
+                android:layout_weight="1"
+            />
+
+            <Button
+                android:background="@drawable/button_round"
+                android:textColor="@android:color/white"
+                android:layout_margin="4dip"
+                android:id="@+id/reject_button"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pairing_reject"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/unpair_message"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unreachable_description"
+        />
+
+    <ListView
+        android:id="@+id/buttons_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".DeviceActivity"
+        />
+
+</LinearLayout>

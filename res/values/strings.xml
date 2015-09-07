@@ -151,5 +151,7 @@
     <string name="device_rename_title">Rename device</string>
     <string name="device_rename_confirm">Rename</string>
     <string name="refresh">Refresh</string>
+    <string name="unreachable_description">This paired device is not reachable. Make sure it is connected to your same network.</string>
+    <string name="no_file_browser">There are no file browsers installed.</string>
 
 </resources>

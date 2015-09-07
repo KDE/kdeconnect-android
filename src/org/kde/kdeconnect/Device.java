@@ -37,8 +37,10 @@ import android.util.Base64;
 import android.util.Log;
 
 import org.kde.kdeconnect.Backends.BaseLink;
+import org.kde.kdeconnect.NewUserInterface.MaterialActivity;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
+import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.PairActivity;
 import org.kde.kdeconnect_tp.R;
 
@@ -475,7 +477,7 @@ public class Device implements BaseLink.PackageReceiver {
 
                     Log.i("KDE/Pairing","Pair request");
 
-                    Intent intent = new Intent(context, PairActivity.class);
+                    Intent intent = new Intent(context, MaterialActivity.class);
                     intent.putExtra("deviceId", deviceId);
                     PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
@@ -527,10 +529,12 @@ public class Device implements BaseLink.PackageReceiver {
                 } else if (pairStatus == PairStatus.Paired) {
                     SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
                     preferences.edit().remove(deviceId).apply();
-                    reloadPluginsFromSettings();
                 }
 
                 pairStatus = PairStatus.NotPaired;
+
+                reloadPluginsFromSettings();
+
                 for (PairingCallback cb : pairingCallback) cb.unpaired();
 
             }
@@ -695,10 +699,6 @@ public class Device implements BaseLink.PackageReceiver {
                     failedPlugins.put(pluginKey, plugin);
                 }
 
-                for (PluginsChangedListener listener : pluginsChangedListeners) {
-                    listener.onPluginsChanged(Device.this);
-                }
-
             }
         });
 
@@ -736,6 +736,11 @@ public class Device implements BaseLink.PackageReceiver {
         settings.edit().putBoolean(pluginKey,value).apply();
         if (value && isPaired() && isReachable()) addPlugin(pluginKey);
         else removePlugin(pluginKey);
+
+        for (PluginsChangedListener listener : pluginsChangedListeners) {
+            listener.onPluginsChanged(Device.this);
+        }
+
     }
 
     public boolean isPluginEnabled(String pluginKey) {
@@ -768,7 +773,9 @@ public class Device implements BaseLink.PackageReceiver {
             }
         }
 
-        //No need to call PluginsChangedListeners because addPlugin and removePlugin already do so
+        for (PluginsChangedListener listener : pluginsChangedListeners) {
+            listener.onPluginsChanged(Device.this);
+        }
     }
 
     public HashMap<String,Plugin> getLoadedPlugins() {
