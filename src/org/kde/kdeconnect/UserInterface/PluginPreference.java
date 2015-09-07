@@ -28,7 +28,8 @@ public class PluginPreference extends CheckBoxPreference {
         setSummary(info.getDescription());
         setChecked(device.isPluginEnabled(pluginKey));
 
-        if (info.hasSettings()) {
+        Plugin plugin = device.getPlugin(pluginKey, true);
+        if (info.hasSettings() && plugin != null) {
             this.listener = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
