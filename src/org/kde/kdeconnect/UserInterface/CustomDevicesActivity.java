@@ -21,16 +21,17 @@
 package org.kde.kdeconnect.UserInterface;
 
 import android.app.AlertDialog;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -40,11 +41,13 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 
-public class CustomDevicesActivity extends ListActivity {
+public class CustomDevicesActivity extends ActionBarActivity {
 
     private static final String LOG_ID = "CustomDevicesActivity";
     public static final String KEY_CUSTOM_DEVLIST_PREFERENCE  = "device_list_preference";
     private static final String IP_DELIM = ",";
+
+    private ListView list;
 
     private ArrayList<String> ipAddressList = new ArrayList<>();
 
@@ -53,14 +56,24 @@ public class CustomDevicesActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         initializeDeviceList(this);
         setContentView(R.layout.custom_ip_list);
-        setListAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ipAddressList));
 
+        list = (ListView)findViewById(android.R.id.list);
+        list.setOnItemClickListener(onClickListener);
+
+        list.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ipAddressList));
+
+        findViewById(android.R.id.button1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNewDevice();
+            }
+        });
 
         EditText ipEntryBox = (EditText)findViewById(R.id.ip_edittext);
         ipEntryBox.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEND) {
-                    addNewIp();
+                    addNewDevice();
                     return true;
                 }
                 return false;
@@ -68,36 +81,38 @@ public class CustomDevicesActivity extends ListActivity {
         });
     }
 
-    @Override
-    public void onListItemClick(ListView l, View v, final int position, final long id) {
-        Log.i(LOG_ID, "Item clicked pos: " + position + " id: " + id);
-        // remove touched item after confirmation
-        DialogInterface.OnClickListener confirmationListener = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                switch (which) {
-                    case DialogInterface.BUTTON_POSITIVE:
-                        ipAddressList.remove(position);
-                        Log.i(LOG_ID, "Removed item pos: "+position+" id: "+id);
-                        saveList();
-                        break;
-                    case DialogInterface.BUTTON_NEGATIVE:
-                        break;
+    private AdapterView.OnItemClickListener onClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, final int position, final long id) {
+            Log.i(LOG_ID, "Item clicked pos: " + position + " id: " + id);
+            // remove touched item after confirmation
+            DialogInterface.OnClickListener confirmationListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which) {
+                        case DialogInterface.BUTTON_POSITIVE:
+                            ipAddressList.remove(position);
+                            Log.i(LOG_ID, "Removed item pos: " + position + " id: " + id);
+                            saveList();
+                            break;
+                        case DialogInterface.BUTTON_NEGATIVE:
+                            break;
+                    }
                 }
-            }
-        };
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Delete "+ipAddressList.get(position)+" ?");
-        builder.setPositiveButton("Yes", confirmationListener);
-        builder.setNegativeButton("No", confirmationListener);
-        builder.show();
-        ((ArrayAdapter)getListAdapter()).notifyDataSetChanged();
-    }
+            };
+            AlertDialog.Builder builder = new AlertDialog.Builder(CustomDevicesActivity.this);
+            builder.setMessage("Delete " + ipAddressList.get(position) + " ?");
+            builder.setPositiveButton("Yes", confirmationListener);
+            builder.setNegativeButton("No", confirmationListener);
+            builder.show();
+            ((ArrayAdapter) list.getAdapter()).notifyDataSetChanged();
+        }
+    };
 
-    private void addNewIp() {
+    private void addNewDevice() {
         EditText ipEntryBox = (EditText)findViewById(R.id.ip_edittext);
         String enteredText = ipEntryBox.getText().toString().trim();
-        if (!enteredText.equals("")) {
+        if (!enteredText.isEmpty()) {
             // don't add empty string (after trimming)
             ipAddressList.add(enteredText);
         }
@@ -121,9 +136,9 @@ public class CustomDevicesActivity extends ListActivity {
         if (!ipAddressList.isEmpty()) {
             serialized = serializeIpList(ipAddressList);
         }
-        PreferenceManager.getDefaultSharedPreferences(this).edit().putString(
+        PreferenceManager.getDefaultSharedPreferences(CustomDevicesActivity.this).edit().putString(
                 KEY_CUSTOM_DEVLIST_PREFERENCE, serialized).commit();
-        ((ArrayAdapter)getListAdapter()).notifyDataSetChanged();
+        ((ArrayAdapter)list.getAdapter()).notifyDataSetChanged();
 
     }
 
@@ -150,8 +165,7 @@ public class CustomDevicesActivity extends ListActivity {
 
     private void initializeDeviceList(Context context){
         String deviceListPrefs = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                KEY_CUSTOM_DEVLIST_PREFERENCE,
-                "");
+                KEY_CUSTOM_DEVLIST_PREFERENCE, "");
         if(deviceListPrefs.isEmpty()){
             Log.i(LOG_ID, "Initialising empty custom device list");
             PreferenceManager.getDefaultSharedPreferences(context).edit().putString(

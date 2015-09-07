@@ -64,32 +64,13 @@ public class MaterialActivity extends AppCompatActivity {
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
         String deviceName = DeviceHelper.getDeviceName(this);
-        final TextView nameView = (TextView) mDrawerLayout.findViewById(R.id.device_name);
+        TextView nameView = (TextView) mDrawerLayout.findViewById(R.id.device_name);
         nameView.setText(deviceName);
 
         nameView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final EditText deviceNameEdit = new EditText(MaterialActivity.this);
-                String deviceName = DeviceHelper.getDeviceName(MaterialActivity.this);
-                deviceNameEdit.setText(deviceName);
-                new AlertDialog.Builder(MaterialActivity.this)
-                    .setView(deviceNameEdit)
-                        .setPositiveButton(R.string.device_rename_confirm, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                String deviceName = deviceNameEdit.getText().toString();
-                                DeviceHelper.setDeviceName(MaterialActivity.this, deviceName);
-                                nameView.setText(deviceName);
-                            }
-                        })
-                        .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                            }
-                        })
-                        .setTitle(R.string.device_rename_title)
-                    .show();
+                renameDevice();
             }
         });
 
@@ -263,6 +244,29 @@ public class MaterialActivity extends AppCompatActivity {
             default:
                 super.onActivityResult(requestCode, resultCode, data);
         }
+    }
 
+    void renameDevice() {
+        final TextView nameView = (TextView) mDrawerLayout.findViewById(R.id.device_name);
+        final EditText deviceNameEdit = new EditText(MaterialActivity.this);
+        String deviceName = DeviceHelper.getDeviceName(MaterialActivity.this);
+        deviceNameEdit.setText(deviceName);
+        new AlertDialog.Builder(MaterialActivity.this)
+                .setView(deviceNameEdit)
+                .setPositiveButton(R.string.device_rename_confirm, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String deviceName = deviceNameEdit.getText().toString();
+                        DeviceHelper.setDeviceName(MaterialActivity.this, deviceName);
+                        nameView.setText(deviceName);
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .setTitle(R.string.device_rename_title)
+                .show();
     }
 }

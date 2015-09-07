@@ -146,9 +146,10 @@
     <string name="send_files">Send files</string>
 
     <string name="pairing_title">KDE Connect Devices</string>
-    <string name="pairing_description">"Other devices running KDE Connect in your same network should appear here</string>
+    <string name="pairing_description">Other devices running KDE Connect in your same network should appear here.</string>
     <string name="device_paired">Device paired</string>
     <string name="device_rename_title">Rename device</string>
     <string name="device_rename_confirm">Rename</string>
+    <string name="refresh">Refresh</string>
 
 </resources>

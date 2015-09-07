@@ -2,11 +2,11 @@
     xmlns:kdeconnect="http://schemas.android.com/apk/res-auto/android">
 
     <item
-            android:id="@+id/menu_refresh"
-            android:icon="@drawable/ic_action_refresh"
-            android:orderInCategory="200"
-            kdeconnect:showAsAction="ifRoom"
-            android:title="@string/reconnect"
+        android:id="@+id/menu_refresh"
+        android:icon="@drawable/ic_action_refresh"
+        android:orderInCategory="200"
+        kdeconnect:showAsAction="never"
+        android:title="@string/refresh"
         />
 
     <item
@@ -18,16 +18,14 @@
         />
 
     <item
-        android:id="@+id/menu_settings"
-        android:icon="@drawable/ic_action_settings"
+        android:id="@+id/menu_rename"
         android:orderInCategory="300"
-        android:title="@string/settings"
+        android:title="@string/device_rename_title"
         kdeconnect:showAsAction="never"
         />
 
        <item
         android:id="@+id/menu_custom_device_list"
-        android:icon="@drawable/ic_action_settings"
         android:orderInCategory="900"
         android:title="@string/custom_device_list"
         kdeconnect:showAsAction="never"

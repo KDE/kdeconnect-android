@@ -51,18 +51,19 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
 
     private static final int RESULT_PAIRING_SUCCESFUL = Activity.RESULT_FIRST_USER;
 
-    /**
-     * The fragment argument representing the section number for this
-     * fragment.
-     */
     private View rootView;
     private MaterialActivity mActivity;
 
+    private MenuItem menuProgress;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         mActivity.getSupportActionBar().setTitle(R.string.pairing_title);
+
+
+
+        setHasOptionsMenu(true);
 
         rootView = inflater.inflate(R.layout.activity_main, container, false);
 
@@ -170,7 +171,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch(requestCode) {
+        switch (requestCode) {
             case RESULT_PAIRING_SUCCESFUL:
                 if (resultCode == 1) {
                     String deviceId = data.getStringExtra("deviceId");
@@ -180,5 +181,50 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
                 super.onActivityResult(requestCode, resultCode, data);
         }
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.new_pairing, menu);
+        menuProgress = menu.findItem(R.id.menu_progress);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_refresh:
+                updateComputerList();
+                BackgroundService.RunCommand(mActivity, new BackgroundService.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(BackgroundService service) {
+                        service.onNetworkChange();
+                    }
+                });
+                menuProgress.setVisible(true);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try { Thread.sleep(1500); } catch (InterruptedException e) { }
+                        mActivity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                item.setVisible(true);
+                            }
+                        });
+                    }
+                }).start();
+                break;
+            case R.id.menu_rename:
+                mActivity.renameDevice();
+                break;
+            case R.id.menu_custom_device_list:
+                startActivity(new Intent(mActivity, CustomDevicesActivity.class));
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
+
+
 
 }
