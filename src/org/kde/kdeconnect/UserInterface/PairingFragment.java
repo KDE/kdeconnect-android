@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-package org.kde.kdeconnect.NewUserInterface;
+package org.kde.kdeconnect.UserInterface;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -37,8 +37,7 @@ import android.widget.TextView;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.NewUserInterface.List.PairingDeviceItem;
-import org.kde.kdeconnect.UserInterface.CustomDevicesActivity;
+import org.kde.kdeconnect.UserInterface.List.PairingDeviceItem;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.SectionItem;
 import org.kde.kdeconnect_tp.R;
@@ -74,7 +73,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
 
         setHasOptionsMenu(true);
 
-        rootView = inflater.inflate(R.layout.activity_main, container, false);
+        rootView = inflater.inflate(R.layout.activity_list, container, false);
 
         TextView text = new TextView(inflater.getContext());
         text.setText(getString(R.string.pairing_description));
@@ -225,7 +224,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.new_pairing, menu);
+        inflater.inflate(R.menu.pairing, menu);
         menuProgress = menu.findItem(R.id.menu_progress);
     }
 
@@ -248,7 +247,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
                         mActivity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                item.setVisible(true);
+                                menuProgress.setVisible(true);
                             }
                         });
                     }

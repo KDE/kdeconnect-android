@@ -6,7 +6,7 @@
             android:icon="@drawable/ic_action_refresh"
             android:orderInCategory="200"
             kdeconnect:showAsAction="ifRoom"
-            android:title="@string/reconnect"
+            android:title="@string/refresh"
         />
 
     <item

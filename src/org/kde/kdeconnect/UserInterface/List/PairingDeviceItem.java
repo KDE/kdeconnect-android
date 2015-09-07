@@ -18,21 +18,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-package org.kde.kdeconnect.NewUserInterface.List;
+package org.kde.kdeconnect.UserInterface.List;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.UserInterface.DeviceActivity;
-import org.kde.kdeconnect.UserInterface.List.ListAdapter;
-import org.kde.kdeconnect.UserInterface.PairActivity;
 import org.kde.kdeconnect_tp.R;
 
 public class PairingDeviceItem implements ListAdapter.Item {

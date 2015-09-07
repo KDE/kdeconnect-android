@@ -26,7 +26,6 @@ import android.view.MenuItem;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.NewUserInterface.PluginPreference;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 
 import java.util.Set;

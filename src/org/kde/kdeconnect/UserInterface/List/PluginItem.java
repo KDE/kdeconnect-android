@@ -22,24 +22,36 @@ package org.kde.kdeconnect.UserInterface.List;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-public class TextItem implements ListAdapter.Item {
+import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect_tp.R;
 
-	private final String title;
+public class PluginItem implements ListAdapter.Item {
 
-	public TextItem(String title) {
-        this.title = title;
-    }
+	private final Plugin plugin;
+    private final View.OnClickListener clickListener;
+
+	public PluginItem(Plugin p, View.OnClickListener clickListener) {
+		this.plugin = p;
+        this.clickListener = clickListener;
+	}
+
 
     @Override
-    public View inflateView(LayoutInflater layoutInflater) {
+    public View inflateView(final LayoutInflater layoutInflater) {
+        View v = layoutInflater.inflate(R.layout.list_item_with_icon_entry, null);
 
-        TextView v = new TextView(layoutInflater.getContext());
-        v.setText(title);
-        v.setTextAppearance(layoutInflater.getContext(), android.support.v7.appcompat.R.style.TextAppearance_AppCompat_Medium /*android.R.style.TextAppearance_DeviceDefault_Medium*/);
+        TextView titleView = (TextView)v.findViewById(R.id.list_item_entry_title);
+        titleView.setText(plugin.getActionName());
+
+        ImageView imageView = (ImageView)v.findViewById(R.id.list_item_entry_icon);
+        imageView.setImageDrawable(plugin.getIcon());
+
+        v.setOnClickListener(clickListener);
+
         return v;
-
     }
 
 }

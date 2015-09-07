@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-package org.kde.kdeconnect.NewUserInterface;
+package org.kde.kdeconnect.UserInterface;
 
 import android.app.Activity;
 import android.app.NotificationManager;
@@ -39,12 +39,11 @@ import android.widget.TextView;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.NewUserInterface.List.PluginItem;
+import org.kde.kdeconnect.UserInterface.List.PluginItem;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.UserInterface.List.CustomItem;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.SmallEntryItem;
-import org.kde.kdeconnect.UserInterface.SettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
@@ -91,7 +90,7 @@ public class DeviceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        rootView = inflater.inflate(R.layout.material_device, container, false);
+        rootView = inflater.inflate(R.layout.activity_device, container, false);
 
         final String deviceId = getArguments().getString(ARG_DEVICE_ID);
         if (deviceId != null) {
