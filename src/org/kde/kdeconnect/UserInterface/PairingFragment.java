@@ -247,7 +247,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
                         mActivity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                menuProgress.setVisible(true);
+                                menuProgress.setVisible(false);
                             }
                         });
                     }
