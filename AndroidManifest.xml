@@ -109,6 +109,14 @@
                 android:value="org.kde.kdeconnect.UserInterface.DeviceActivity" />
         </activity>
         <activity
+            android:name="org.kde.kdeconnect.Plugins.SharePlugin.SendFileActivity"
+            android:label="KDE Connect"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.DeviceActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.kde.kdeconnect.UserInterface.DeviceActivity" />
+        </activity>
+        <activity
             android:name="org.kde.kdeconnect.UserInterface.PluginSettingsActivity"
             android:label="@string/device_menu_plugins"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.SettingsActivity" >
@@ -189,7 +197,6 @@
                 <data android:mimeType="*/*" />
             </intent-filter>
         </activity>
-
         <service
             android:name="org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationReceiver"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" >
