@@ -30,6 +30,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 
 import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NewUserInterface.MaterialActivity;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect_tp.R;
@@ -55,8 +56,8 @@ public class PingPlugin extends Plugin {
             //Log.e("PingPackageReceiver", "was a ping!");
 
             TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-            stackBuilder.addParentStack(MainActivity.class);
-            stackBuilder.addNextIntent(new Intent(context, MainActivity.class));
+            stackBuilder.addParentStack(MaterialActivity.class);
+            stackBuilder.addNextIntent(new Intent(context, MaterialActivity.class));
             PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
                 0,
                 PendingIntent.FLAG_UPDATE_CURRENT
