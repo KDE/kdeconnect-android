@@ -28,6 +28,7 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 import org.kde.kdeconnect.Helpers.ContactsHelper;
 import org.kde.kdeconnect.NetworkPackage;
@@ -98,8 +99,8 @@ public class TelephonyPlugin extends Plugin {
 
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_TELEPHONY);
         if (phoneNumber != null) {
-            phoneNumber = ContactsHelper.phoneNumberLookup(context,phoneNumber);
             np.set("phoneNumber", phoneNumber);
+            np.set("contactName", ContactsHelper.phoneNumberLookup(context, phoneNumber));
         }
 
         switch (state) {
@@ -144,6 +145,7 @@ public class TelephonyPlugin extends Plugin {
                     if (lastState == TelephonyManager.CALL_STATE_RINGING) {
                         np.set("event","missedCall");
                         np.set("phoneNumber", lastPackage.getString("phoneNumber",null));
+                        np.set("contactName", lastPackage.getString("contactName",null));
                         device.sendPackage(np);
                     }
 
@@ -172,8 +174,8 @@ public class TelephonyPlugin extends Plugin {
 
         String phoneNumber = message.getOriginatingAddress();
         if (phoneNumber != null) {
-            phoneNumber = ContactsHelper.phoneNumberLookup(context, phoneNumber);
-            np.set("phoneNumber",phoneNumber);
+            np.set("phoneNumber", phoneNumber);
+            np.set("contactName", ContactsHelper.phoneNumberLookup(context, phoneNumber));
         }
 
         device.sendPackage(np);
