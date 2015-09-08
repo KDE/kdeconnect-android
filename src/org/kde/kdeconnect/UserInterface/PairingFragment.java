@@ -120,7 +120,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
                                     section.isSectionEmpty = false;
                                 }
                             }
-/*
+
                             section = new SectionItem(res.getString(R.string.category_connected_devices));
                             section.isSectionEmpty = true;
                             items.add(section);
@@ -133,7 +133,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
                             if (section.isSectionEmpty) {
                                 items.remove(items.size() - 1); //Remove connected devices section if empty
                             }
-*/
+
                             section = new SectionItem(res.getString(R.string.category_remembered_devices));
                             section.isSectionEmpty = true;
                             items.add(section);
