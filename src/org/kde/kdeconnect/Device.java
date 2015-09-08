@@ -49,6 +49,8 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -62,6 +64,31 @@ public class Device implements BaseLink.PackageReceiver {
     public PublicKey publicKey;
     private int notificationId;
     private int protocolVersion;
+
+    private DeviceType deviceType;
+    private PairStatus pairStatus;
+    private final ArrayList<PairingCallback> pairingCallback = new ArrayList<>();
+    private Timer pairingTimer;
+
+    private final ArrayList<BaseLink> links = new ArrayList<>();
+
+    private ArrayList<String> incomingCapabilities;
+    private ArrayList<String> outgoingCapabilities;
+
+    private final HashMap<String, Plugin> plugins = new HashMap<>();
+    private final HashMap<String, Plugin> failedPlugins = new HashMap<>();
+
+    private ArrayList<String> unsupportedPlugins = new ArrayList<>();
+    private HashSet<String> supportedIncomingInterfaces = new HashSet<>();
+
+    HashMap<String, ArrayList<String>> pluginsByIncomingInterface;
+    HashMap<String, ArrayList<String>> pluginsByOutgoingInterface;
+
+    private final SharedPreferences settings;
+
+    public ArrayList<String> getUnsupportedPlugins() {
+        return unsupportedPlugins;
+    }
 
     public enum PairStatus {
         NotPaired,
@@ -95,17 +122,6 @@ public class Device implements BaseLink.PackageReceiver {
         void pairingFailed(String error);
         void unpaired();
     }
-
-    private DeviceType deviceType;
-    private PairStatus pairStatus;
-    private final ArrayList<PairingCallback> pairingCallback = new ArrayList<>();
-    private Timer pairingTimer;
-
-    private final ArrayList<BaseLink> links = new ArrayList<>();
-    private final HashMap<String, Plugin> plugins = new HashMap<>();
-    private final HashMap<String, Plugin> failedPlugins = new HashMap<>();
-
-    private final SharedPreferences settings;
 
     //Remembered trusted device, we need to wait for a incoming devicelink to communicate
     Device(Context context, String deviceId) {
@@ -177,7 +193,6 @@ public class Device implements BaseLink.PackageReceiver {
     public int compareProtocolVersion() {
         return protocolVersion - NetworkPackage.ProtocolVersion;
     }
-
 
 
 
@@ -411,6 +426,8 @@ public class Device implements BaseLink.PackageReceiver {
         link.addPackageReceiver(this);
 
         if (links.size() == 1) {
+            incomingCapabilities = identityPackage.getStringList("SupportedIncomingInterfaces");
+            outgoingCapabilities = identityPackage.getStringList("SupportedOutgoingInterfaces");
             reloadPluginsFromSettings();
         }
     }
@@ -420,7 +437,7 @@ public class Device implements BaseLink.PackageReceiver {
 
         link.removePackageReceiver(this);
         links.remove(link);
-        Log.i("KDE/Device","removeLink: "+link.getLinkProvider().getName() + " -> "+getName() + " active links: "+ links.size());
+        Log.i("KDE/Device", "removeLink: " + link.getLinkProvider().getName() + " -> " + getName() + " active links: " + links.size());
         if (links.isEmpty()) {
             reloadPluginsFromSettings();
         }
@@ -429,9 +446,9 @@ public class Device implements BaseLink.PackageReceiver {
     @Override
     public void onPackageReceived(NetworkPackage np) {
 
-        if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR)) {
+        if (NetworkPackage.PACKAGE_TYPE_PAIR.equals(np.getType())) {
 
-            Log.i("KDE/Device","Pair package");
+            Log.i("KDE/Device", "Pair package");
 
             boolean wantsPair = np.getBoolean("pair");
 
@@ -536,18 +553,26 @@ public class Device implements BaseLink.PackageReceiver {
                 for (PairingCallback cb : pairingCallback) cb.unpaired();
 
             }
+        } else if (NetworkPackage.PACKAGE_TYPE_CAPABILITIES.equals(np.getType())) {
+            ArrayList<String> newIncomingCapabilities = np.getStringList("SupportedIncomingInterfaces");
+            ArrayList<String> newOutgoingCapabilities = np.getStringList("SupportedOutgoingInterfaces");
+            if (!Objects.equals(newIncomingCapabilities, incomingCapabilities) ||
+                    !Objects.equals(newOutgoingCapabilities, outgoingCapabilities)) {
+                incomingCapabilities = newIncomingCapabilities;
+                outgoingCapabilities = newOutgoingCapabilities;
+                reloadPluginsFromSettings();
+            }
         } else if (isPaired()) {
-
-            for (Plugin plugin : plugins.values()) {
+            ArrayList<String> targetPlugins = pluginsByIncomingInterface.get(np.getType());
+            for (String pluginKey : targetPlugins) {
+                Plugin plugin = plugins.get(pluginKey);
                 try {
                     plugin.onPackageReceived(np);
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.e("KDE/Device", "Exception in "+plugin.getDisplayName()+"'s onPackageReceived()");
                 }
-
             }
-
         } else {
 
             Log.e("KDE/onPackageReceived","Device not paired, will pass package to unpairedPackageListeners");
@@ -627,7 +652,7 @@ public class Device implements BaseLink.PackageReceiver {
                 }
 
                 if (!callback.success) {
-                    Log.e("KDE/sendPackage", "No device link (of "+mLinks.size()+" available) could send the package. Package lost!");
+                    Log.e("KDE/sendPackage", "No device link (of "+mLinks.size()+" available) could send the package. Package "+np.getType()+" to " + name + " lost!");
                     backtrace.printStackTrace();
                 }
 
@@ -663,7 +688,7 @@ public class Device implements BaseLink.PackageReceiver {
     private synchronized void addPlugin(final String pluginKey) {
         Plugin existing = plugins.get(pluginKey);
         if (existing != null) {
-            Log.w("KDE/addPlugin","plugin already present:" + pluginKey);
+            //Log.w("KDE/addPlugin","plugin already present:" + pluginKey);
             return;
         }
 
@@ -723,22 +748,12 @@ public class Device implements BaseLink.PackageReceiver {
             Log.e("KDE/removePlugin","Exception calling onDestroy for plugin "+pluginKey);
         }
 
-        for (PluginsChangedListener listener : pluginsChangedListeners) {
-            listener.onPluginsChanged(this);
-        }
-
         return true;
     }
 
     public void setPluginEnabled(String pluginKey, boolean value) {
         settings.edit().putBoolean(pluginKey,value).apply();
-        if (value && isPaired() && isReachable()) addPlugin(pluginKey);
-        else removePlugin(pluginKey);
-
-        for (PluginsChangedListener listener : pluginsChangedListeners) {
-            listener.onPluginsChanged(Device.this);
-        }
-
+        reloadPluginsFromSettings();
     }
 
     public boolean isPluginEnabled(String pluginKey) {
@@ -757,23 +772,83 @@ public class Device implements BaseLink.PackageReceiver {
 
         Set<String> availablePlugins = PluginFactory.getAvailablePlugins();
 
-        for(String pluginKey : availablePlugins) {
-            boolean enabled = false;
-            boolean listenToUnpaired = PluginFactory.getPluginInfo(context, pluginKey).listenToUnpaired();
+        ArrayList<String> newUnsupportedPlugins = new ArrayList<>();
+        HashSet<String> newSupportedIncomingInterfaces = new HashSet<>();
+        HashMap<String, ArrayList<String>> newPluginsByIncomingInterface = new HashMap<>();
+        HashMap<String, ArrayList<String>> newPluginsByOutgoingInterface = new HashMap<>();
+
+        for (String pluginKey : availablePlugins) {
+
+            PluginFactory.PluginInfo pluginInfo = PluginFactory.getPluginInfo(context, pluginKey);
+            Set<String> incomingInterfaces = pluginInfo.getSupportedPackageTypes();
+            Set<String> outgoingInterfaces = pluginInfo.getOutgoingPackageTypes();
+
+            boolean pluginEnabled = false;
+            boolean listenToUnpaired = pluginInfo.listenToUnpaired();
             if ((isPaired() || listenToUnpaired) && isReachable()) {
-                enabled = isPluginEnabled(pluginKey);
+                pluginEnabled = isPluginEnabled(pluginKey);
             }
 
-            if (enabled) {
+            if (pluginEnabled) {
+                newSupportedIncomingInterfaces.addAll(incomingInterfaces);
+            }
+
+            if ((incomingCapabilities != null && !incomingCapabilities.isEmpty()) ||
+                    (incomingCapabilities != null && !outgoingCapabilities.isEmpty())) {
+                HashSet<String> supportedOut = new HashSet<>(outgoingInterfaces);
+                supportedOut.retainAll(incomingCapabilities); //Intersection
+                HashSet<String> supportedIn = new HashSet<>(incomingInterfaces);
+                supportedIn.retainAll(outgoingCapabilities);
+                if (supportedOut.isEmpty() && supportedIn.isEmpty()) {
+                    Log.w("ReloadPlugins", "not loading " + pluginKey + "because of unmatched capabilities");
+                    newUnsupportedPlugins.add(pluginKey);
+                    pluginEnabled = false;
+                }
+            }
+
+            if (pluginEnabled) {
                 addPlugin(pluginKey);
+
+                for (String packageType : incomingInterfaces) {
+                    ArrayList<String> plugins = newPluginsByIncomingInterface.get(packageType);
+                    if (plugins == null) plugins = new ArrayList<>();
+                    plugins.add(pluginKey);
+                    newPluginsByIncomingInterface.put(packageType, plugins);
+                }
+                for (String packageType : outgoingInterfaces) {
+                    ArrayList<String> plugins = newPluginsByOutgoingInterface.get(packageType);
+                    if (plugins == null) plugins = new ArrayList<>();
+                    plugins.add(pluginKey);
+                    newPluginsByOutgoingInterface.put(packageType, plugins);
+                }
             } else {
                 removePlugin(pluginKey);
             }
+
         }
+
+        boolean capabilitiesChanged = false;
+        if (!newSupportedIncomingInterfaces.equals(supportedIncomingInterfaces) ||
+                !newPluginsByOutgoingInterface.equals(pluginsByOutgoingInterface)) {
+            capabilitiesChanged = true;
+        }
+
+        pluginsByOutgoingInterface = newPluginsByOutgoingInterface;
+        pluginsByIncomingInterface = newPluginsByIncomingInterface;
+        supportedIncomingInterfaces = newSupportedIncomingInterfaces;
+        unsupportedPlugins = newUnsupportedPlugins;
 
         for (PluginsChangedListener listener : pluginsChangedListeners) {
             listener.onPluginsChanged(Device.this);
         }
+
+        if (capabilitiesChanged && isReachable() && isPaired()) {
+            NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_CAPABILITIES);
+            np.set("SupportedIncomingInterfaces", new ArrayList<>(newSupportedIncomingInterfaces));
+            np.set("SupportedOutgoingInterfaces", new ArrayList<>(newPluginsByOutgoingInterface.keySet()));
+            sendPackage(np);
+        }
+
     }
 
     public HashMap<String,Plugin> getLoadedPlugins() {
