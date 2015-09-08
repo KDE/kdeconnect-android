@@ -99,7 +99,7 @@ public class DeviceFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
-        Log.e("DeviceFragment", "device: " + deviceId);
+        //Log.e("DeviceFragment", "device: " + deviceId);
 
         BackgroundService.RunCommand(mActivity, new BackgroundService.InstanceCallback() {
             @Override
@@ -203,7 +203,7 @@ public class DeviceFragment extends Fragment {
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
 
-        Log.e("DeviceFragment", "onPrepareOptionsMenu");
+        //Log.e("DeviceFragment", "onPrepareOptionsMenu");
 
         super.onPrepareOptionsMenu(menu);
         menu.clear();
@@ -287,7 +287,7 @@ public class DeviceFragment extends Fragment {
     }
 
     void refreshUI() {
-        Log.e("DeviceFragment", "refreshUI");
+        //Log.e("DeviceFragment", "refreshUI");
 
         if (device == null || rootView == null) {
             return;
