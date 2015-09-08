@@ -59,6 +59,7 @@ public class NetworkPackage {
     public final static String PACKAGE_TYPE_MPRIS = "kdeconnect.mpris";
     public final static String PACKAGE_TYPE_MOUSEPAD = "kdeconnect.mousepad";
     public final static String PACKAGE_TYPE_SHARE = "kdeconnect.share";
+    public static final String PACKAGE_TYPE_CAPABILITIES = "kdeconnect.capabilities";
 
     private long mId;
     private String mType;

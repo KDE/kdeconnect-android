@@ -127,4 +127,14 @@ public class SftpPlugin extends Plugin {
         return false;
     }
 
+    @Override
+    public String[] getSupportedPackageTypes() {
+        return new String[]{NetworkPackage.PACKAGE_TYPE_SFTP};
+    }
+
+    @Override
+    public String[] getOutgoingPackageTypes() {
+        return new String[]{NetworkPackage.PACKAGE_TYPE_SFTP};
+    }
+
 }

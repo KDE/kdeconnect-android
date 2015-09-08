@@ -64,6 +64,16 @@ public class MousePadPlugin extends Plugin {
     }
 
     @Override
+    public String[] getSupportedPackageTypes() {
+        return new String[0];
+    }
+
+    @Override
+    public String[] getOutgoingPackageTypes() {
+        return new String[]{NetworkPackage.PACKAGE_TYPE_MOUSEPAD};
+    }
+
+    @Override
     public String getActionName() {
         return context.getString(R.string.open_mousepad);
     }

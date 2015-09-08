@@ -175,6 +175,16 @@ public abstract class Plugin {
     }
 
     /**
+     * Should return the list of NetworkPackage types that this plugin can handle
+     */
+    public abstract String[] getSupportedPackageTypes();
+
+    /**
+     * Should return the list of NetworkPackage types that this plugin can send
+     */
+    public abstract String[] getOutgoingPackageTypes();
+
+    /**
      * Creates a button that will be displayed in the user interface
      * It can open an activity or perform any other action that the
      * plugin would wants to expose to the user. Return null if no

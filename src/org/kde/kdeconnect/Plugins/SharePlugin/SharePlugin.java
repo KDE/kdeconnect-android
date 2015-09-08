@@ -492,4 +492,15 @@ public class SharePlugin extends Plugin {
 
     }
 
+    @Override
+    public String[] getSupportedPackageTypes() {
+        return new String[]{NetworkPackage.PACKAGE_TYPE_SHARE};
+    }
+
+    @Override
+    public String[] getOutgoingPackageTypes() {
+        return new String[]{NetworkPackage.PACKAGE_TYPE_SHARE};
+    }
+
+
 }

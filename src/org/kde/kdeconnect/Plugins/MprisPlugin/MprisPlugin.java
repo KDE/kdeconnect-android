@@ -170,6 +170,16 @@ public class MprisPlugin extends Plugin {
         return true;
     }
 
+    @Override
+    public String[] getSupportedPackageTypes() {
+        return new String[] {NetworkPackage.PACKAGE_TYPE_MPRIS};
+    }
+
+    @Override
+    public String[] getOutgoingPackageTypes() {
+        return new String[] {NetworkPackage.PACKAGE_TYPE_MPRIS};
+    }
+
     public void setPlayerStatusUpdatedHandler(String id, Handler h) {
         playerStatusUpdated.put(id, h);
 

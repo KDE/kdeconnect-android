@@ -72,4 +72,17 @@ public class ClipboardPlugin extends Plugin {
         return true;
     }
 
+    @Override
+    public String[] getSupportedPackageTypes() {
+        String[] packetTypes = {NetworkPackage.PACKAGE_TYPE_CLIPBOARD};
+        return packetTypes;
+    }
+
+    @Override
+    public String[] getOutgoingPackageTypes() {
+        String[] packetTypes = {NetworkPackage.PACKAGE_TYPE_CLIPBOARD};
+        return packetTypes;
+    }
+
+
 }

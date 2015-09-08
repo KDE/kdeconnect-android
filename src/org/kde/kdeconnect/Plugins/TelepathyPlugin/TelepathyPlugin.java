@@ -169,4 +169,14 @@ public class TelepathyPlugin extends Plugin {
         return true;
     }
 
+    @Override
+    public String[] getSupportedPackageTypes() {
+        return new String[]{NetworkPackage.PACKAGE_TYPE_TELEPHONY};
+    }
+
+    @Override
+    public String[] getOutgoingPackageTypes() {
+        return new String[]{NetworkPackage.PACKAGE_TYPE_TELEPHONY};
+    }
+
 }
