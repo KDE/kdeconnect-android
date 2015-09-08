@@ -74,9 +74,10 @@
         android:id="@+id/unpair_message"
         android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:text="@string/unreachable_description"
-        />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="center" />
 
     <ListView
         android:id="@+id/buttons_list"
