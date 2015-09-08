@@ -71,8 +71,11 @@ public abstract class BaseLink {
         }
     }
 
+    public void disconnect() {
+        linkProvider.connectionLost(this);
+    }
+
     //TO OVERRIDE, should be sync
     public abstract void sendPackage(NetworkPackage np,Device.SendPackageStatusCallback callback);
     public abstract void sendPackageEncrypted(NetworkPackage np,Device.SendPackageStatusCallback callback, PublicKey key);
-
 }

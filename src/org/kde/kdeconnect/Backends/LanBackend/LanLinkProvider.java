@@ -80,7 +80,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                     nioSessions.remove(id);
                     //Log.i("KDE/LanLinkProvider", "nioSessions.size(): " + nioSessions.size() + " (-)");
                     try {
-                        brokenLink.disconnect();
+                        brokenLink.closeSocket();
                     } catch (Exception e) {
                         e.printStackTrace();
                         Log.e("KDE/LanLinkProvider", "Exception. Already disconnected?");
@@ -244,7 +244,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         connectionAccepted(identityPackage, link);
         if (oldLink != null) {
             Log.i("KDE/LanLinkProvider","Removing old connection to same device");
-            oldLink.disconnect();
+            oldLink.closeSocket();
             connectionLost(oldLink);
         }
     }
