@@ -873,4 +873,9 @@ public class Device implements BaseLink.PackageReceiver {
         pluginsChangedListeners.remove(listener);
     }
 
+    public void disconnect() {
+        for(BaseLink link : links) {
+            link.disconnect();
+        }
+    }
 }

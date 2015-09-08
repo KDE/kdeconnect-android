@@ -43,7 +43,13 @@ public class LanLink extends BaseLink {
 
     private IoSession session = null;
 
+    @Override
     public void disconnect() {
+        closeSocket();
+        super.disconnect();
+    }
+
+    public void closeSocket() {
         if (session == null) {
             Log.e("KDE/LanLink", "Not yet connected");
             return;

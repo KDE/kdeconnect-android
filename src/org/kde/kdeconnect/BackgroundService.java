@@ -57,6 +57,25 @@ public class BackgroundService extends Service {
 
     private final ConcurrentHashMap<String, Device> devices = new ConcurrentHashMap<>();
 
+    private boolean discoveryEnabled = false;
+
+    public void setDiscoveryEnabled(boolean b) {
+        if (discoveryEnabled == b)
+            return;
+
+        discoveryEnabled = b;
+
+        if (b) {
+            onNetworkChange();
+        } else {
+            cleanDevices();
+        }
+    }
+
+    public boolean isDiscoveryEnabled() {
+        return discoveryEnabled;
+    }
+
     private final Device.PairingCallback devicePairingCallback = new Device.PairingCallback() {
         @Override
         public void incomingRequest() {
@@ -114,6 +133,12 @@ public class BackgroundService extends Service {
         return devices.get(id);
     }
 
+    private void cleanDevices() {
+        for(Device d : devices.values()) {
+            d.disconnect();
+        }
+    }
+
     private final BaseLinkProvider.ConnectionReceiver deviceListener = new BaseLinkProvider.ConnectionReceiver() {
         @Override
         public void onConnectionReceived(final NetworkPackage identityPackage, final BaseLink link) {
@@ -130,8 +155,10 @@ public class BackgroundService extends Service {
             } else {
                 Log.i("KDE/BackgroundService", "addLink,unknown device: " + deviceId);
                 device = new Device(BackgroundService.this, identityPackage, link);
-                devices.put(deviceId, device);
-                device.addPairingCallback(devicePairingCallback);
+                if (isDiscoveryEnabled() || device.isPaired()) {
+                    devices.put(deviceId, device);
+                    device.addPairingCallback(devicePairingCallback);
+                }
             }
 
             onDeviceListChanged();
@@ -157,20 +184,6 @@ public class BackgroundService extends Service {
 
     public ConcurrentHashMap<String, Device> getDevices() {
         return devices;
-    }
-
-    public void startDiscovery() {
-        Log.i("KDE/BackgroundService","StartDiscovery");
-        for (BaseLinkProvider a : linkProviders) {
-            a.onStart();
-        }
-    }
-
-    public void stopDiscovery() {
-        Log.i("KDE/BackgroundService","StopDiscovery");
-        for (BaseLinkProvider a : linkProviders) {
-            a.onStop();
-        }
     }
 
     public void onNetworkChange() {
@@ -210,7 +223,7 @@ public class BackgroundService extends Service {
         IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
         registerReceiver(new KdeConnectBroadcastReceiver(), filter);
 
-        Log.i("KDE/BackgroundService","Service not started yet, initializing...");
+        Log.i("KDE/BackgroundService", "Service not started yet, initializing...");
 
         initializeRsaKeys();
         loadRememberedDevicesFromSettings();
@@ -218,7 +231,11 @@ public class BackgroundService extends Service {
 
         //Link Providers need to be already registered
         addConnectionListener(deviceListener);
-        startDiscovery();
+
+        Log.i("KDE/BackgroundService", "StartDiscovery");
+        for (BaseLinkProvider a : linkProviders) {
+            a.onStart();
+        }
 
     }
 
@@ -280,7 +297,10 @@ public class BackgroundService extends Service {
     @Override
     public void onDestroy() {
         Log.i("KDE/BackgroundService", "Destroying");
-        stopDiscovery();
+        Log.i("KDE/BackgroundService", "StopDiscovery");
+        for (BaseLinkProvider a : linkProviders) {
+            a.onStop();
+        }
         super.onDestroy();
     }
 
