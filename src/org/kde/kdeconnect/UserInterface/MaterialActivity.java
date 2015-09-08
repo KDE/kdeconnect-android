@@ -124,7 +124,7 @@ public class MaterialActivity extends AppCompatActivity {
 
     private void updateComputerList() {
 
-        Log.e("MaterialActivity", "UpdateComputerList");
+        //Log.e("MaterialActivity", "UpdateComputerList");
 
         BackgroundService.RunCommand(MaterialActivity.this, new BackgroundService.InstanceCallback() {
             @Override
