@@ -51,7 +51,6 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -105,14 +104,14 @@ public class Device implements BaseLink.PackageReceiver {
 
         public static DeviceType FromString(String s) {
             if ("tablet".equals(s)) return Tablet;
-            if ("desktop".equals(s)) return Computer;
-            return Phone; //Default
+            if ("phone".equals(s)) return Phone;
+            return Computer; //Default
         }
         public String toString() {
             switch (this) {
                 case Tablet: return "tablet";
-                case Computer: return "desktop";
-                default: return "phone";
+                case Phone: return "phone";
+                default: return "desktop";
             }
         }
     }
