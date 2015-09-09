@@ -57,8 +57,8 @@ public class LanLink extends BaseLink {
         session.close(true);
     }
 
-    public LanLink(IoSession session, String deviceId, BaseLinkProvider linkProvider) {
-        super(deviceId, linkProvider);
+    public LanLink(IoSession session, String deviceId, BaseLinkProvider linkProvider, ConnectionStarted connectionSource) {
+        super(deviceId, linkProvider, connectionSource);
         this.session = session;
     }
 

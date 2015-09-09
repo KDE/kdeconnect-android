@@ -37,6 +37,7 @@ import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
 import org.apache.mina.transport.socket.nio.NioDatagramAcceptor;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 import org.apache.mina.transport.socket.nio.NioSocketConnector;
+import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
@@ -134,7 +135,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
                 //Log.i("KDE/LanLinkProvider", "Identity package received from " + np.getString("deviceName"));
 
-                LanLink link = new LanLink(session, np.getString("deviceId"), LanLinkProvider.this);
+                LanLink link = new LanLink(session, np.getString("deviceId"), LanLinkProvider.this, BaseLink.ConnectionStarted.Locally);
                 nioSessions.put(session.getId(),link);
                 //Log.e("KDE/LanLinkProvider","nioSessions.size(): " + nioSessions.size());
                 addLink(np, link);
@@ -195,7 +196,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                             final IoSession session = ioFuture.getSession();
                             Log.i("KDE/LanLinkProvider", "Connection successful: " + session.isConnected());
 
-                            final LanLink link = new LanLink(session, identityPackage.getString("deviceId"), LanLinkProvider.this);
+                            final LanLink link = new LanLink(session, identityPackage.getString("deviceId"), LanLinkProvider.this, BaseLink.ConnectionStarted.Remotely);
                             new Thread(new Runnable() {
                                 @Override
                                 public void run() {

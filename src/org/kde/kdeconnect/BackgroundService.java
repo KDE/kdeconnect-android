@@ -172,7 +172,7 @@ public class BackgroundService extends Service {
             Log.i("KDE/onConnectionLost", "removeLink, deviceId: " + link.getDeviceId());
             if (d != null) {
                 d.removeLink(link);
-                if (!d.isReachable() && !d.isPaired()) {
+                if (!d.isReachable() && !d.isPaired() && (link.getConnectionSource() == BaseLink.ConnectionStarted.Locally)) {
                     //Log.e("onConnectionLost","Removing connection device because it was not paired");
                     devices.remove(link.getDeviceId());
                     d.removePairingCallback(devicePairingCallback);
