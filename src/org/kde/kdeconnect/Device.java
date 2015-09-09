@@ -37,6 +37,7 @@ import android.util.Base64;
 import android.util.Log;
 
 import org.kde.kdeconnect.Backends.BaseLink;
+import org.kde.kdeconnect.Helpers.ObjectsHelper;
 import org.kde.kdeconnect.UserInterface.MaterialActivity;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
@@ -556,8 +557,8 @@ public class Device implements BaseLink.PackageReceiver {
         } else if (NetworkPackage.PACKAGE_TYPE_CAPABILITIES.equals(np.getType())) {
             ArrayList<String> newIncomingCapabilities = np.getStringList("SupportedIncomingInterfaces");
             ArrayList<String> newOutgoingCapabilities = np.getStringList("SupportedOutgoingInterfaces");
-            if (!Objects.equals(newIncomingCapabilities, incomingCapabilities) ||
-                    !Objects.equals(newOutgoingCapabilities, outgoingCapabilities)) {
+            if (!ObjectsHelper.equals(newIncomingCapabilities, incomingCapabilities) ||
+                    !ObjectsHelper.equals(newOutgoingCapabilities, outgoingCapabilities)) {
                 incomingCapabilities = newIncomingCapabilities;
                 outgoingCapabilities = newOutgoingCapabilities;
                 reloadPluginsFromSettings();

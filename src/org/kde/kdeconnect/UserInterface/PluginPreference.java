@@ -69,7 +69,7 @@ public class PluginPreference extends CheckBoxPreference {
             @Override
             public void onClick(View v) {
                 boolean newState = !device.isPluginEnabled(pluginKey);
-                setChecked(newState);
+                setChecked(newState); //It actually works on API<14
                 button.setEnabled(newState);
                 device.setPluginEnabled(pluginKey, newState);
             }
