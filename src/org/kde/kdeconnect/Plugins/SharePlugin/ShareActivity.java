@@ -205,6 +205,7 @@ public class ShareActivity extends ActionBarActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        BackgroundService.addGuiInUseCounter(this);
         BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
@@ -217,6 +218,7 @@ public class ShareActivity extends ActionBarActivity {
                 });
             }
         });
+        updateComputerList();
     }
 
     @Override
@@ -227,13 +229,8 @@ public class ShareActivity extends ActionBarActivity {
                 service.removeDeviceListChangedCallback("ShareActivity");
             }
         });
+        BackgroundService.removeGuiInUseCounter(this);
         super.onStop();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        updateComputerList();
     }
 
 }

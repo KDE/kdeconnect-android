@@ -28,6 +28,8 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.kde.kdeconnect.BackgroundService;
+
 /**
  * A {@link android.preference.PreferenceActivity} which implements and proxies the necessary calls
  * to be used with AppCompat.
@@ -105,11 +107,6 @@ public abstract class AppCompatPreferenceActivity extends PreferenceActivity {
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        getDelegate().onStop();
-    }
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         getDelegate().onDestroy();
@@ -126,4 +123,19 @@ public abstract class AppCompatPreferenceActivity extends PreferenceActivity {
         }
         return mDelegate;
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        BackgroundService.addGuiInUseCounter(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        BackgroundService.removeGuiInUseCounter(this);
+        getDelegate().onStop();
+    }
+
+
 }

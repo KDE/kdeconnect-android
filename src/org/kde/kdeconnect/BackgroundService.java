@@ -20,6 +20,7 @@
 
 package org.kde.kdeconnect;
 
+import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -40,6 +41,7 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
@@ -57,23 +59,40 @@ public class BackgroundService extends Service {
 
     private final ConcurrentHashMap<String, Device> devices = new ConcurrentHashMap<>();
 
-    private boolean discoveryEnabled = false;
+    private final HashSet<Object> discoveryModeAcquisitions = new HashSet<>();
 
-    public void setDiscoveryEnabled(boolean b) {
-        if (discoveryEnabled == b)
-            return;
-
-        discoveryEnabled = b;
-
-        if (b) {
+    public void acquireDiscoveryMode(Object key) {
+        boolean wasEmpty = discoveryModeAcquisitions.isEmpty();
+        discoveryModeAcquisitions.add(key);
+        if (wasEmpty) {
             onNetworkChange();
-        } else {
+        }
+    }
+
+    public void releaseDiscoveryMode(Object key) {
+        boolean removed = discoveryModeAcquisitions.remove(key);
+        if (removed && discoveryModeAcquisitions.isEmpty()) {
             cleanDevices();
         }
     }
 
-    public boolean isDiscoveryEnabled() {
-        return discoveryEnabled;
+    public static void addGuiInUseCounter(final Activity activity) {
+        BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                service.acquireDiscoveryMode(activity);
+            }
+        });
+    }
+
+    public static void removeGuiInUseCounter(final Activity activity) {
+        BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                //If no user interface is open, close the connections open to other devices
+                service.releaseDiscoveryMode(activity);
+            }
+        });
     }
 
     private final Device.PairingCallback devicePairingCallback = new Device.PairingCallback() {
@@ -157,7 +176,7 @@ public class BackgroundService extends Service {
             } else {
                 Log.i("KDE/BackgroundService", "addLink,unknown device: " + deviceId);
                 device = new Device(BackgroundService.this, identityPackage, link);
-                if (isDiscoveryEnabled() || device.isPaired()) {
+                if (device.isPaired() || !discoveryModeAcquisitions.isEmpty()) {
                     devices.put(deviceId, device);
                     device.addPairingCallback(devicePairingCallback);
                 }

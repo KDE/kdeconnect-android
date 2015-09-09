@@ -453,9 +453,15 @@ public class MprisActivity extends ActionBarActivity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        positionSeekUpdateHandler.removeCallbacks(positionSeekUpdateRunnable);
+    protected void onStart() {
+        super.onStart();
+        BackgroundService.addGuiInUseCounter(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        BackgroundService.removeGuiInUseCounter(this);
     }
 
 }
