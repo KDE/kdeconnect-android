@@ -30,7 +30,7 @@ import java.security.PublicKey;
 public class LoopbackLink extends BaseLink {
 
     public LoopbackLink(BaseLinkProvider linkProvider) {
-        super("loopback", linkProvider);
+        super("loopback", linkProvider, ConnectionStarted.Remotely);
     }
 
     @Override

@@ -127,7 +127,7 @@ public class ShareActivity extends ActionBarActivity {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                                Device device = devicesList.get(i-1); //NOTE: -1 because of the title!
+                                Device device = devicesList.get(i - 1); //NOTE: -1 because of the title!
 
                                 Bundle extras = intent.getExtras();
                                 if (extras != null) {
@@ -205,6 +205,7 @@ public class ShareActivity extends ActionBarActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        BackgroundService.addGuiInUseCounter(this);
         BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
@@ -217,6 +218,7 @@ public class ShareActivity extends ActionBarActivity {
                 });
             }
         });
+        updateComputerList();
     }
 
     @Override
@@ -227,13 +229,8 @@ public class ShareActivity extends ActionBarActivity {
                 service.removeDeviceListChangedCallback("ShareActivity");
             }
         });
+        BackgroundService.removeGuiInUseCounter(this);
         super.onStop();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        updateComputerList();
     }
 
 }

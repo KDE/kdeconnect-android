@@ -57,8 +57,8 @@ public class LanLink extends BaseLink {
         session.close(true);
     }
 
-    public LanLink(IoSession session, String deviceId, BaseLinkProvider linkProvider) {
-        super(deviceId, linkProvider);
+    public LanLink(IoSession session, String deviceId, BaseLinkProvider linkProvider, ConnectionStarted connectionSource) {
+        super(deviceId, linkProvider, connectionSource);
         this.session = session;
     }
 
@@ -92,7 +92,7 @@ public class LanLink extends BaseLink {
             WriteFuture future = session.write(np.serialize());
             future.awaitUninterruptibly();
             if (!future.isWritten()) {
-                Log.e("KDE/sendPackage", "!future.isWritten()");
+                //Log.e("KDE/sendPackage", "!future.isWritten()");
                 callback.sendFailure(future.getException());
                 return;
             }

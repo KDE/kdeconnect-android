@@ -37,6 +37,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
@@ -176,4 +177,17 @@ public class CustomDevicesActivity extends ActionBarActivity {
             ipAddressList = deserializeIpList(deviceListPrefs);
         }
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        BackgroundService.addGuiInUseCounter(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        BackgroundService.removeGuiInUseCounter(this);
+    }
+
 }

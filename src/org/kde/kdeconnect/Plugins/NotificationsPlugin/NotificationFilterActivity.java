@@ -30,6 +30,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.List;
@@ -155,6 +156,18 @@ public class NotificationFilterActivity extends ActionBarActivity {
             return false;
         }
         return true;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        BackgroundService.addGuiInUseCounter(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        BackgroundService.removeGuiInUseCounter(this);
     }
 
 }

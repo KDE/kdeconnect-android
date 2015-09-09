@@ -134,11 +134,11 @@ public class MprisActivity extends ActionBarActivity {
                                 //String prevPlayer = (String)spinner.getSelectedItem();
                                 spinner.setAdapter(adapter);
 
-                                if(playerList.isEmpty()){
+                                if (playerList.isEmpty()) {
                                     findViewById(R.id.no_players).setVisibility(View.VISIBLE);
                                     spinner.setVisibility(View.GONE);
                                     ((TextView) findViewById(R.id.now_playing_textview)).setText("");
-                                }else{
+                                } else {
                                     findViewById(R.id.no_players).setVisibility(View.GONE);
                                     spinner.setVisibility(View.VISIBLE);
                                 }
@@ -453,9 +453,15 @@ public class MprisActivity extends ActionBarActivity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        positionSeekUpdateHandler.removeCallbacks(positionSeekUpdateRunnable);
+    protected void onStart() {
+        super.onStart();
+        BackgroundService.addGuiInUseCounter(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        BackgroundService.removeGuiInUseCounter(this);
     }
 
 }

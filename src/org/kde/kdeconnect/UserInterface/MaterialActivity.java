@@ -159,54 +159,19 @@ public class MaterialActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        BackgroundService.RunCommand(MaterialActivity.this, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                service.onNetworkChange();
-                service.addDeviceListChangedCallback("MaterialActivity", new BackgroundService.DeviceListChangedCallback() {
-                    @Override
-                    public void onDeviceListChanged() {
-                        updateComputerList();
-                    }
-                });
-            }
-        });
+        BackgroundService.addGuiInUseCounter(this);
     }
 
     @Override
     protected void onStop() {
-        BackgroundService.RunCommand(MaterialActivity.this, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                service.removeDeviceListChangedCallback("MaterialActivity");
-            }
-        });
+        BackgroundService.removeGuiInUseCounter(this);
         super.onStop();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
-        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                service.setDiscoveryEnabled(true);
-            }
-        });
-
         updateComputerList();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                service.setDiscoveryEnabled(false);
-            }
-        });
     }
 
     //TODO: Make it accept two parameters, a constant with the type of screen and the device id in
@@ -255,7 +220,6 @@ public class MaterialActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.e("MaterialActivity", "Main Activity onActivityResult" + requestCode);
         switch (requestCode)
         {
             case RESULT_NEEDS_RELOAD:

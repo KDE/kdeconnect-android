@@ -20,6 +20,7 @@
 
 package org.kde.kdeconnect;
 
+import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -40,6 +41,7 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
@@ -57,23 +59,40 @@ public class BackgroundService extends Service {
 
     private final ConcurrentHashMap<String, Device> devices = new ConcurrentHashMap<>();
 
-    private boolean discoveryEnabled = false;
+    private final HashSet<Object> discoveryModeAcquisitions = new HashSet<>();
 
-    public void setDiscoveryEnabled(boolean b) {
-        if (discoveryEnabled == b)
-            return;
-
-        discoveryEnabled = b;
-
-        if (b) {
+    public void acquireDiscoveryMode(Object key) {
+        boolean wasEmpty = discoveryModeAcquisitions.isEmpty();
+        discoveryModeAcquisitions.add(key);
+        if (wasEmpty) {
             onNetworkChange();
-        } else {
+        }
+    }
+
+    public void releaseDiscoveryMode(Object key) {
+        boolean removed = discoveryModeAcquisitions.remove(key);
+        if (removed && discoveryModeAcquisitions.isEmpty()) {
             cleanDevices();
         }
     }
 
-    public boolean isDiscoveryEnabled() {
-        return discoveryEnabled;
+    public static void addGuiInUseCounter(final Activity activity) {
+        BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                service.acquireDiscoveryMode(activity);
+            }
+        });
+    }
+
+    public static void removeGuiInUseCounter(final Activity activity) {
+        BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                //If no user interface is open, close the connections open to other devices
+                service.releaseDiscoveryMode(activity);
+            }
+        });
     }
 
     private final Device.PairingCallback devicePairingCallback = new Device.PairingCallback() {
@@ -135,15 +154,15 @@ public class BackgroundService extends Service {
 
     private void cleanDevices() {
         for(Device d : devices.values()) {
-            d.disconnect();
+            if (!d.isPaired()) {
+                d.disconnect();
+            }
         }
     }
 
     private final BaseLinkProvider.ConnectionReceiver deviceListener = new BaseLinkProvider.ConnectionReceiver() {
         @Override
         public void onConnectionReceived(final NetworkPackage identityPackage, final BaseLink link) {
-
-            Log.i("KDE/BackgroundService", "Connection accepted!");
 
             String deviceId = identityPackage.getString("deviceId");
 
@@ -155,7 +174,7 @@ public class BackgroundService extends Service {
             } else {
                 Log.i("KDE/BackgroundService", "addLink,unknown device: " + deviceId);
                 device = new Device(BackgroundService.this, identityPackage, link);
-                if (isDiscoveryEnabled() || device.isPaired()) {
+                if (device.isPaired() || !discoveryModeAcquisitions.isEmpty()) {
                     devices.put(deviceId, device);
                     device.addPairingCallback(devicePairingCallback);
                 }
@@ -170,13 +189,13 @@ public class BackgroundService extends Service {
             Log.i("KDE/onConnectionLost", "removeLink, deviceId: " + link.getDeviceId());
             if (d != null) {
                 d.removeLink(link);
-                if (!d.isReachable() && !d.isPaired()) {
+                if (!d.isReachable() && !d.isPaired() && (link.getConnectionSource() == BaseLink.ConnectionStarted.Locally)) {
                     //Log.e("onConnectionLost","Removing connection device because it was not paired");
                     devices.remove(link.getDeviceId());
                     d.removePairingCallback(devicePairingCallback);
                 }
             } else {
-                Log.e("KDE/onConnectionLost","Removing connection to unknown device, this should not happen");
+                //Log.d("KDE/onConnectionLost","Removing connection to unknown device");
             }
             onDeviceListChanged();
         }
@@ -187,21 +206,18 @@ public class BackgroundService extends Service {
     }
 
     public void onNetworkChange() {
-        Log.i("KDE/BackgroundService","OnNetworkChange");
         for (BaseLinkProvider a : linkProviders) {
             a.onNetworkChange();
         }
     }
 
     public void addConnectionListener(BaseLinkProvider.ConnectionReceiver cr) {
-        Log.i("KDE/BackgroundService","Registering connection listener");
         for (BaseLinkProvider a : linkProviders) {
             a.addConnectionReceiver(cr);
         }
     }
 
     public void removeConnectionListener(BaseLinkProvider.ConnectionReceiver cr) {
-        Log.i("KDE/BackgroundService","Removing connection listener");
         for (BaseLinkProvider a : linkProviders) {
             a.removeConnectionReceiver(cr);
         }
@@ -232,7 +248,6 @@ public class BackgroundService extends Service {
         //Link Providers need to be already registered
         addConnectionListener(deviceListener);
 
-        Log.i("KDE/BackgroundService", "StartDiscovery");
         for (BaseLinkProvider a : linkProviders) {
             a.onStart();
         }
@@ -296,8 +311,6 @@ public class BackgroundService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.i("KDE/BackgroundService", "Destroying");
-        Log.i("KDE/BackgroundService", "StopDiscovery");
         for (BaseLinkProvider a : linkProviders) {
             a.onStop();
         }

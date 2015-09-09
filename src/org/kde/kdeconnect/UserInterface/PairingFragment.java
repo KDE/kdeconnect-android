@@ -65,7 +65,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Log.e("PairingFragmen", "OnCreateView");
+        //Log.e("PairingFragmen", "OnCreateView");
 
         mActivity.getSupportActionBar().setTitle(R.string.pairing_title);
 
@@ -158,7 +158,8 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
 
                             //Restore scroll
                             list.setSelectionFromTop(index, top);
-
+                        } catch (IllegalStateException e) {
+                            //Ignore: The activity was closed while we were trying to update it
                         } finally {
                             listRefreshCalledThisFrame = false;
                         }

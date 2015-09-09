@@ -22,6 +22,7 @@ package org.kde.kdeconnect.UserInterface;
 
 import android.os.Bundle;
 import android.preference.PreferenceScreen;
+import android.util.Log;
 import android.view.MenuItem;
 
 import org.kde.kdeconnect.BackgroundService;
@@ -68,4 +69,17 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             return super.onOptionsItemSelected(item);
         }
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        BackgroundService.addGuiInUseCounter(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        BackgroundService.removeGuiInUseCounter(this);
+    }
+
 }

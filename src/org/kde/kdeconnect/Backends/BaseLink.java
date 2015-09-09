@@ -30,14 +30,28 @@ import java.util.ArrayList;
 
 public abstract class BaseLink {
 
+    public enum ConnectionStarted {
+        Locally, Remotely;
+    };
+
+    public interface PackageReceiver {
+        void onPackageReceived(NetworkPackage np);
+    }
+
     private final BaseLinkProvider linkProvider;
     private final String deviceId;
     private final ArrayList<PackageReceiver> receivers = new ArrayList<>();
     protected PrivateKey privateKey;
 
-    protected BaseLink(String deviceId, BaseLinkProvider linkProvider) {
+    protected ConnectionStarted connectionSource; // If the other device sent me a broadcast,
+                                                  // I should not close the connection with it
+                                                  // because it's probably trying to find me and
+                                                  // potentially ask for pairing.
+
+    protected BaseLink(String deviceId, BaseLinkProvider linkProvider, ConnectionStarted connectionSource) {
         this.linkProvider = linkProvider;
         this.deviceId = deviceId;
+        this.connectionSource = connectionSource;
     }
 
     public String getDeviceId() {
@@ -52,9 +66,8 @@ public abstract class BaseLink {
         return linkProvider;
     }
 
-
-    public interface PackageReceiver {
-        void onPackageReceived(NetworkPackage np);
+    public ConnectionStarted getConnectionSource() {
+        return connectionSource;
     }
 
     public void addPackageReceiver(PackageReceiver pr) {
