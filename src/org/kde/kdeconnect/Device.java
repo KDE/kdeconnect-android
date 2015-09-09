@@ -105,13 +105,13 @@ public class Device implements BaseLink.PackageReceiver {
 
         public static DeviceType FromString(String s) {
             if ("tablet".equals(s)) return Tablet;
-            if ("computer".equals(s)) return Computer;
+            if ("desktop".equals(s)) return Computer;
             return Phone; //Default
         }
         public String toString() {
             switch (this) {
                 case Tablet: return "tablet";
-                case Computer: return "computer";
+                case Computer: return "desktop";
                 default: return "phone";
             }
         }
@@ -135,7 +135,7 @@ public class Device implements BaseLink.PackageReceiver {
         this.name = settings.getString("deviceName", context.getString(R.string.unknown_device));
         this.pairStatus = PairStatus.Paired;
         this.protocolVersion = NetworkPackage.ProtocolVersion; //We don't know it yet
-        this.deviceType = DeviceType.FromString(settings.getString("deviceType", "computer"));
+        this.deviceType = DeviceType.FromString(settings.getString("deviceType", "desktop"));
 
         try {
             byte[] publicKeyBytes = Base64.decode(settings.getString("publicKey", ""), 0);
@@ -156,10 +156,10 @@ public class Device implements BaseLink.PackageReceiver {
 
         this.context = context;
         this.deviceId = np.getString("deviceId");
-        this.name = np.getString("deviceName", context.getString(R.string.unknown_device));
+        this.name = context.getString(R.string.unknown_device); //We read it in addLink
         this.pairStatus = PairStatus.NotPaired;
-        this.protocolVersion = np.getInt("protocolVersion");
-        this.deviceType = DeviceType.FromString(np.getString("deviceType", "computer"));
+        this.protocolVersion = 0;
+        this.deviceType = DeviceType.Computer;
         this.publicKey = null;
 
         settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
@@ -397,7 +397,7 @@ public class Device implements BaseLink.PackageReceiver {
         }
 
         if (identityPackage.has("deviceType")) {
-            this.deviceType = DeviceType.FromString(identityPackage.getString("deviceType", "computer"));
+            this.deviceType = DeviceType.FromString(identityPackage.getString("deviceType", "desktop"));
         }
 
 
