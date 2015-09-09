@@ -2,10 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dip"
+    android:padding="16dip"
     tools:context=".MainActivity"
     android:id="@+id/listView1"
     android:addStatesFromChildren="true"
     android:orientation="vertical">
-
 </ListView>

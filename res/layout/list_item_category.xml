@@ -5,9 +5,20 @@
 	android:layout_height="wrap_content"
 	android:orientation="vertical">
 
-	<include
-		android:id="@+id/list_item_category_text"
-		layout="@android:layout/preference_category" />
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:drawableBottom="@drawable/text_section_header"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"
+        android:textColor="?android:textColorSecondary"
+        android:drawablePadding="4dp"
+        android:textSize="14sp"
+        android:textAllCaps="true"
+        android:paddingLeft="8dip"
+        android:paddingRight="8dip"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:id="@+id/list_item_category_text"
+        />
 
     <TextView
         android:layout_width="wrap_content"
