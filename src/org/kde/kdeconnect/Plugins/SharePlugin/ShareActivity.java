@@ -127,7 +127,7 @@ public class ShareActivity extends ActionBarActivity {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                                Device device = devicesList.get(i-1); //NOTE: -1 because of the title!
+                                Device device = devicesList.get(i - 1); //NOTE: -1 because of the title!
 
                                 Bundle extras = intent.getExtras();
                                 if (extras != null) {

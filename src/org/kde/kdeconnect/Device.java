@@ -628,7 +628,7 @@ public class Device implements BaseLink.PackageReceiver {
                 }
 
                 if (!callback.success) {
-                    Log.e("KDE/sendPackage", "No device link (of "+mLinks.size()+" available) could send the package. Package lost!");
+                    Log.e("KDE/sendPackage", "No device link (of "+mLinks.size()+" available) could send the package "+np.getType()+". Package lost!");
                     backtrace.printStackTrace();
                 }
 

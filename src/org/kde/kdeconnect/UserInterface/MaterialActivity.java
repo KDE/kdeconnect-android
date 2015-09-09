@@ -255,7 +255,6 @@ public class MaterialActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.e("MaterialActivity", "Main Activity onActivityResult" + requestCode);
         switch (requestCode)
         {
             case RESULT_NEEDS_RELOAD:
