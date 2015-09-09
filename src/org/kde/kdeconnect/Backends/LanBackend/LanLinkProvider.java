@@ -119,7 +119,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
             String theMessage = (String) message;
             if (theMessage.isEmpty()) {
-                Log.e("KDE/LanLinkProvider","Empty package received");
+                Log.w("KDE/LanLinkProvider","Empty package received");
                 return;
             }
 

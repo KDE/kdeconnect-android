@@ -551,7 +551,7 @@ public class Device implements BaseLink.PackageReceiver {
 
         } else {
 
-            Log.e("KDE/onPackageReceived","Device not paired, will pass package to unpairedPackageListeners");
+            //Log.e("KDE/onPackageReceived","Device not paired, will pass package to unpairedPackageListeners");
 
             if (pairStatus != PairStatus.Requested) {
                 unpair();

@@ -92,7 +92,7 @@ public class LanLink extends BaseLink {
             WriteFuture future = session.write(np.serialize());
             future.awaitUninterruptibly();
             if (!future.isWritten()) {
-                Log.e("KDE/sendPackage", "!future.isWritten()");
+                //Log.e("KDE/sendPackage", "!future.isWritten()");
                 callback.sendFailure(future.getException());
                 return;
             }

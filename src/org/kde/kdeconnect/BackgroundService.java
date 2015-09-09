@@ -178,7 +178,7 @@ public class BackgroundService extends Service {
                     d.removePairingCallback(devicePairingCallback);
                 }
             } else {
-                Log.e("KDE/onConnectionLost","Removing connection to unknown device, this should not happen");
+                //Log.d("KDE/onConnectionLost","Removing connection to unknown device");
             }
             onDeviceListChanged();
         }

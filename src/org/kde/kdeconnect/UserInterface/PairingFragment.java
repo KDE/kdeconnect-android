@@ -65,7 +65,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Log.e("PairingFragmen", "OnCreateView");
+        //Log.e("PairingFragmen", "OnCreateView");
 
         mActivity.getSupportActionBar().setTitle(R.string.pairing_title);
 
