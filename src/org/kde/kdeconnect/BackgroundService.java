@@ -164,8 +164,6 @@ public class BackgroundService extends Service {
         @Override
         public void onConnectionReceived(final NetworkPackage identityPackage, final BaseLink link) {
 
-            Log.i("KDE/BackgroundService", "Connection accepted!");
-
             String deviceId = identityPackage.getString("deviceId");
 
             Device device = devices.get(deviceId);
@@ -208,21 +206,18 @@ public class BackgroundService extends Service {
     }
 
     public void onNetworkChange() {
-        Log.i("KDE/BackgroundService","OnNetworkChange");
         for (BaseLinkProvider a : linkProviders) {
             a.onNetworkChange();
         }
     }
 
     public void addConnectionListener(BaseLinkProvider.ConnectionReceiver cr) {
-        Log.i("KDE/BackgroundService","Registering connection listener");
         for (BaseLinkProvider a : linkProviders) {
             a.addConnectionReceiver(cr);
         }
     }
 
     public void removeConnectionListener(BaseLinkProvider.ConnectionReceiver cr) {
-        Log.i("KDE/BackgroundService","Removing connection listener");
         for (BaseLinkProvider a : linkProviders) {
             a.removeConnectionReceiver(cr);
         }
@@ -253,7 +248,6 @@ public class BackgroundService extends Service {
         //Link Providers need to be already registered
         addConnectionListener(deviceListener);
 
-        Log.i("KDE/BackgroundService", "StartDiscovery");
         for (BaseLinkProvider a : linkProviders) {
             a.onStart();
         }
@@ -317,8 +311,6 @@ public class BackgroundService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.i("KDE/BackgroundService", "Destroying");
-        Log.i("KDE/BackgroundService", "StopDiscovery");
         for (BaseLinkProvider a : linkProviders) {
             a.onStop();
         }
