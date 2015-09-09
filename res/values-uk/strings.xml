@@ -108,6 +108,8 @@
   <string name="invalid_device_name">Некоректна назва пристрою</string>
   <string name="shareplugin_text_saved">Отримано текст, збережено до буфера обміну даними</string>
   <string name="custom_devices_settings">Список нетипових пристроїв</string>
+  <string name="pair_device_action">Пов’язати новий пристрій</string>
+  <string name="unpair_device_action">Розірвати прив’язку %s</string>
   <string name="custom_device_list">Додати пристрої за IP</string>
   <string name="share_notification_preference">Звукові сповіщення</string>
   <string name="share_notification_preference_summary">Вібрація і відтворення звуку у відповідь на отримання файла</string>
@@ -124,4 +126,13 @@
   <string name="no_players_connected">Не знайдено програвачів</string>
   <string name="custom_dev_list_help">Цим пунктом слід користуватися, лише якщо ваш пристрій не було визначено у автоматичному режимі. Введіть IP-адресу або назву вузла нижче і натисніть кнопку, щоб додати пункт до списку. Натисніть наявний пункт, щоб вилучити його зі списку.</string>
   <string name="mpris_player_on_device">%1$s на %2$s</string>
+  <string name="send_files">Надіслати файли</string>
+  <string name="pairing_title">Пристрої KDE Connect</string>
+  <string name="pairing_description">Тут має бути показано інші пристрої у вашій мережі, де запущено KDE Connect.</string>
+  <string name="device_paired">Пристрій пов’язано</string>
+  <string name="device_rename_title">Перейменувати пристрій</string>
+  <string name="device_rename_confirm">Перейменувати</string>
+  <string name="refresh">Оновити</string>
+  <string name="unreachable_description">Цей пов’язаний пристрій недоступний. Переконайтеся, що його з’єднано з вашою мережею.</string>
+  <string name="no_file_browser">Програм для навігації файловою системою не встановлено.</string>
 </resources>
