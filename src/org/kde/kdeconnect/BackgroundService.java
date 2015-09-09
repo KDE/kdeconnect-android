@@ -135,7 +135,9 @@ public class BackgroundService extends Service {
 
     private void cleanDevices() {
         for(Device d : devices.values()) {
-            d.disconnect();
+            if (!d.isPaired()) {
+                d.disconnect();
+            }
         }
     }
 
