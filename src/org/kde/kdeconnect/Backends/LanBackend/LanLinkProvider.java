@@ -40,6 +40,7 @@ import org.apache.mina.transport.socket.nio.NioSocketConnector;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.UserInterface.CustomDevicesActivity;
 
@@ -127,8 +128,7 @@ public class LanLinkProvider extends BaseLinkProvider {
             NetworkPackage np = NetworkPackage.unserialize(theMessage);
 
             if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
-
-                String myId = NetworkPackage.createIdentityPackage(context).getString("deviceId");
+                String myId = DeviceHelper.getDeviceId(context);
                 if (np.getString("deviceId").equals(myId)) {
                     return;
                 }
@@ -167,7 +167,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                     Log.e("KDE/LanLinkProvider", "Expecting an identity package (B)");
                     return;
                 } else {
-                    String myId = NetworkPackage.createIdentityPackage(context).getString("deviceId");
+                    String myId = DeviceHelper.getDeviceId(context);
                     if (identityPackage.getString("deviceId").equals(myId)) {
                         return;
                     }
