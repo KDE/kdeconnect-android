@@ -54,6 +54,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Device implements BaseLink.PackageReceiver {
 
@@ -67,10 +68,11 @@ public class Device implements BaseLink.PackageReceiver {
 
     private DeviceType deviceType;
     private PairStatus pairStatus;
-    private final ArrayList<PairingCallback> pairingCallback = new ArrayList<>();
+
+    private final CopyOnWriteArrayList<PairingCallback> pairingCallback = new CopyOnWriteArrayList<>();
     private Timer pairingTimer;
 
-    private final ArrayList<BaseLink> links = new ArrayList<>();
+    private final CopyOnWriteArrayList<BaseLink> links = new CopyOnWriteArrayList<>();
 
     private ArrayList<String> incomingCapabilities;
     private ArrayList<String> outgoingCapabilities;
@@ -88,6 +90,12 @@ public class Device implements BaseLink.PackageReceiver {
 
     public ArrayList<String> getUnsupportedPlugins() {
         return unsupportedPlugins;
+    }
+
+    private final CopyOnWriteArrayList<PluginsChangedListener> pluginsChangedListeners = new CopyOnWriteArrayList<>();
+
+    public interface PluginsChangedListener {
+        void onPluginsChanged(Device device);
     }
 
     public enum PairStatus {
@@ -640,8 +648,7 @@ public class Device implements BaseLink.PackageReceiver {
                 boolean useEncryption = (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR) && isPaired());
 
                 //Make a copy to avoid concurrent modification exception if the original list changes
-                ArrayList<BaseLink> mLinks = new ArrayList<>(links);
-                for (final BaseLink link : mLinks) {
+                for (final BaseLink link : links) {
                     if (link == null) continue; //Since we made a copy, maybe somebody destroyed the link in the meanwhile
                     if (useEncryption) {
                         link.sendPackageEncrypted(np, callback, publicKey);
@@ -652,7 +659,7 @@ public class Device implements BaseLink.PackageReceiver {
                 }
 
                 if (!callback.success) {
-                    Log.e("KDE/sendPackage", "No device link (of "+mLinks.size()+" available) could send the package. Package "+np.getType()+" to " + name + " lost!");
+                    Log.e("KDE/sendPackage", "No device link (of "+links.size()+" available) could send the package. Package "+np.getType()+" to " + name + " lost!");
                     backtrace.printStackTrace();
                 }
 
@@ -858,12 +865,6 @@ public class Device implements BaseLink.PackageReceiver {
     public HashMap<String,Plugin> getFailedPlugins() {
         return failedPlugins;
     }
-
-    public interface PluginsChangedListener {
-        void onPluginsChanged(Device device);
-    }
-
-    private final ArrayList<PluginsChangedListener> pluginsChangedListeners = new ArrayList<>();
 
     public void addPluginsChangedListener(PluginsChangedListener listener) {
         pluginsChangedListeners.add(listener);

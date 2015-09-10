@@ -159,19 +159,31 @@ public class MaterialActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        BackgroundService.addGuiInUseCounter(this);
+        BackgroundService.addGuiInUseCounter(this, true);
+        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                service.addDeviceListChangedCallback("MaterialActivity", new BackgroundService.DeviceListChangedCallback() {
+                    @Override
+                    public void onDeviceListChanged() {
+                        updateComputerList();
+                    }
+                });
+            }
+        });
+        updateComputerList();
     }
 
     @Override
     protected void onStop() {
         BackgroundService.removeGuiInUseCounter(this);
+        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                service.removeDeviceListChangedCallback("MaterialActivity");
+            }
+        });
         super.onStop();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        updateComputerList();
     }
 
     //TODO: Make it accept two parameters, a constant with the type of screen and the device id in

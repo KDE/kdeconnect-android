@@ -23,10 +23,11 @@ package org.kde.kdeconnect.Backends;
 import org.kde.kdeconnect.NetworkPackage;
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class BaseLinkProvider {
 
-    private final ArrayList<ConnectionReceiver> connectionReceivers = new ArrayList<>();
+    private final CopyOnWriteArrayList<ConnectionReceiver> connectionReceivers = new CopyOnWriteArrayList<>();
 
     public interface ConnectionReceiver {
         void onConnectionReceived(NetworkPackage identityPackage, BaseLink link);

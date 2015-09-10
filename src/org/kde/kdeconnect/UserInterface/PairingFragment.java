@@ -98,9 +98,10 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
                     public void run() {
 
                         if (listRefreshCalledThisFrame) {
-                            return; // This makes sure we don't try to call list.getFirstVisiblePosition()
-                                    // twice per frame, because the second time the list hasn't been drawn
-                                    // yet and it would always return 0.
+                            // This makes sure we don't try to call list.getFirstVisiblePosition()
+                            // twice per frame, because the second time the list hasn't been drawn
+                            // yet and it would always return 0.
+                            return;
                         }
                         listRefreshCalledThisFrame = true;
 
@@ -183,9 +184,9 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
                         updateComputerList();
                     }
                 });
-                service.onNetworkChange();
             }
         });
+        updateComputerList();
     }
 
     @Override
@@ -197,12 +198,6 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
                 service.removeDeviceListChangedCallback("PairingFragment");
             }
         });
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        updateComputerList();
     }
 
     @Override
