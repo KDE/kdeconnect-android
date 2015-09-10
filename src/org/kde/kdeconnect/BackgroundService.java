@@ -61,12 +61,13 @@ public class BackgroundService extends Service {
 
     private final HashSet<Object> discoveryModeAcquisitions = new HashSet<>();
 
-    public void acquireDiscoveryMode(Object key) {
+    public boolean acquireDiscoveryMode(Object key) {
         boolean wasEmpty = discoveryModeAcquisitions.isEmpty();
         discoveryModeAcquisitions.add(key);
         if (wasEmpty) {
             onNetworkChange();
         }
+        return wasEmpty;
     }
 
     public void releaseDiscoveryMode(Object key) {
@@ -76,11 +77,18 @@ public class BackgroundService extends Service {
         }
     }
 
-    public static void addGuiInUseCounter(final Activity activity) {
+    public static void addGuiInUseCounter(Activity activity) {
+        addGuiInUseCounter(activity, false);
+    }
+
+    public static void addGuiInUseCounter(final Activity activity, final boolean forceNetworkRefresh) {
         BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
-                service.acquireDiscoveryMode(activity);
+                boolean refreshed = service.acquireDiscoveryMode(activity);
+                if (!refreshed && forceNetworkRefresh) {
+                    service.onNetworkChange();
+                }
             }
         });
     }
