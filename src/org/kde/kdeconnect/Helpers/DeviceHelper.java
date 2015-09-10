@@ -26,6 +26,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.util.Log;
 
 import java.util.HashMap;
@@ -488,4 +489,7 @@ public class DeviceHelper {
         preferences.edit().putString(KEY_DEVICE_NAME_PREFERENCE, name).apply();
     }
 
+    public static String getDeviceId(Context context) {
+        return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+    }
 }

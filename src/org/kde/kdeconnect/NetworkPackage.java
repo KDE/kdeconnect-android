@@ -247,7 +247,7 @@ public class NetworkPackage {
 
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_IDENTITY);
 
-        String deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        String deviceId = DeviceHelper.getDeviceId(context);
         try {
             np.mBody.put("deviceId", deviceId);
             np.mBody.put("deviceName", DeviceHelper.getDeviceName(context));
