@@ -83,8 +83,8 @@ public class Device implements BaseLink.PackageReceiver {
     private ArrayList<String> unsupportedPlugins = new ArrayList<>();
     private HashSet<String> supportedIncomingInterfaces = new HashSet<>();
 
-    HashMap<String, ArrayList<String>> pluginsByIncomingInterface;
-    HashMap<String, ArrayList<String>> pluginsByOutgoingInterface;
+    private HashMap<String, ArrayList<String>> pluginsByIncomingInterface;
+    private HashMap<String, ArrayList<String>> pluginsByOutgoingInterface;
 
     private final SharedPreferences settings;
 
