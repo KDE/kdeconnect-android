@@ -135,4 +135,7 @@
   <string name="refresh">Atualizar</string>
   <string name="unreachable_description">Este dispositivo emparelhado não está acessível. Certifique-se de que está conectado à mesma rede que você.</string>
   <string name="no_file_browser">Não há gerenciadores de arquivos instalados.</string>
+  <string name="pref_plugin_telepathy">Enviar SMS</string>
+  <string name="pref_plugin_telepathy_desc">Enviar mensagens de texto do seu Desktop</string>
+  <string name="plugin_not_supported">Este plugin não é suportado pelo dispositivo</string>
 </resources>

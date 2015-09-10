@@ -135,4 +135,7 @@
   <string name="refresh">Verversen</string>
   <string name="unreachable_description">Dit gepaarde apparaat is niet bereikbaar. Ga na dat het is verbonden met uw zelfde netwerk.</string>
   <string name="no_file_browser">Er zijn geen bestandsbrowsers geïnstalleerd.</string>
+  <string name="pref_plugin_telepathy">SMS verzenden</string>
+  <string name="pref_plugin_telepathy_desc">Stuur tekstberichten van uw bureaublad</string>
+  <string name="plugin_not_supported">Deze plug-in wordt niet ondersteund door het apparaat</string>
 </resources>

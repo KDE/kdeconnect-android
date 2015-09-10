@@ -108,6 +108,8 @@
   <string name="invalid_device_name">Virheellinen laitenimi</string>
   <string name="shareplugin_text_saved">Vastaanotettiin tekstiä, tallennettiin leikepöydälle</string>
   <string name="custom_devices_settings">Omien laitteiden luettelo</string>
+  <string name="pair_device_action">Kytke uusi laite pariksi</string>
+  <string name="unpair_device_action">Poista laitepari %s</string>
   <string name="custom_device_list">Lisää laitteita IP:llä</string>
   <string name="share_notification_preference">Äänekkäät ilmoitukset</string>
   <string name="share_notification_preference_summary">Värise ja soita ääni tiedoston saapuessa</string>
@@ -124,4 +126,16 @@
   <string name="no_players_connected">Soittimia ei löytynyt</string>
   <string name="custom_dev_list_help">Käytä tätä vain, jos laitettasi ei tunnisteta automaattisesti. Kirjoita IP-osoite tai konenimi alle ja kosketa painiketta lisätäksesi sen luetteloon. Kosketa olemassa olevaa kohtaa poistaaksesi sen luettelosta.</string>
   <string name="mpris_player_on_device">%1$s laitteella %2$s</string>
+  <string name="send_files">Lähetä tiedostoja</string>
+  <string name="pairing_title">KDE Connect -laitteet</string>
+  <string name="pairing_description">Muiden samassa verkossa olevien KDE Connectia käyttävien laitteiden pitäisi ilmestyä tähän.</string>
+  <string name="device_paired">Laite kytketty pariksi</string>
+  <string name="device_rename_title">Laitteen nimen muuttaminen</string>
+  <string name="device_rename_confirm">Muuta nimi</string>
+  <string name="refresh">Päivitä</string>
+  <string name="unreachable_description">Tämä pariksi kytketty laite ei ole tavoitttavissa. Tarkista, että se on yhteydessä samaan verkkoon.</string>
+  <string name="no_file_browser">Tiedostoselaimia ei asennettu.</string>
+  <string name="pref_plugin_telepathy">Lähetä tekstiviesti</string>
+  <string name="pref_plugin_telepathy_desc">Lähetä tekstiviestejä työpöydältäsi</string>
+  <string name="plugin_not_supported">Laite ei tue tätä liitännäistä</string>
 </resources>

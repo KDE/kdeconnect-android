@@ -108,6 +108,8 @@
   <string name="invalid_device_name">Nombre de dispositivo no válido</string>
   <string name="shareplugin_text_saved">Texto recibido y guardado en el portapapeles</string>
   <string name="custom_devices_settings">Lista de dispositivos personalizada</string>
+  <string name="pair_device_action">Vincular un nuevo dispositivo</string>
+  <string name="unpair_device_action">Desvincular %s</string>
   <string name="custom_device_list">Añadir dispositivos por IP</string>
   <string name="share_notification_preference">Notificaciones ruidosas</string>
   <string name="share_notification_preference_summary">Vibrar y reproducir un sonido cuando se reciba un archivo</string>
@@ -124,4 +126,16 @@
   <string name="no_players_connected">Ningún reproductor encontrado</string>
   <string name="custom_dev_list_help">Use esta opción solo si su dispositivo no es detectado automáticamente. Introduzca la dirección IP o nombre debajo y pulse el botón para añadirlo a la lista. Pulse un ítem existente para eliminarlo de la lista.</string>
   <string name="mpris_player_on_device">%1$s en %2$s</string>
+  <string name="send_files">Enviar archivos</string>
+  <string name="pairing_title">Dispositivos de KDE Connect</string>
+  <string name="pairing_description">Otros dispositivos ejecutando KDE Connect en su misma red deberían aparecer aquí.</string>
+  <string name="device_paired">Dispositivo vinculado</string>
+  <string name="device_rename_title">Renombrar dispositivo</string>
+  <string name="device_rename_confirm">Renombrar</string>
+  <string name="refresh">Actualizar</string>
+  <string name="unreachable_description">Este dispositivo vinculado no está disponible. Asegúrese que está conectado a su misma red.</string>
+  <string name="no_file_browser">No hay navegadores de archivos instalados.</string>
+  <string name="pref_plugin_telepathy">Enviar SMS</string>
+  <string name="pref_plugin_telepathy_desc">Enviar mensajes de texto desde el escritorio</string>
+  <string name="plugin_not_supported">Este complemento no está permitido por el dispositivo</string>
 </resources>
