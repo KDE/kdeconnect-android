@@ -114,6 +114,13 @@
             -->
         </receiver>
 
+        <activity
+            android:name="org.kde.kdeconnect.Plugins.FindMyPhonePlugin.FindMyPhoneActivity"
+            android:label="@string/findmyphone_title"
+            android:theme="@style/Theme.AppCompat"
+            android:launchMode="singleInstance">
+        </activity>
+
         <!-- Plugin-related activities and services -->
 
         <activity

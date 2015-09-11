@@ -60,6 +60,7 @@ public class NetworkPackage {
     public final static String PACKAGE_TYPE_MOUSEPAD = "kdeconnect.mousepad";
     public final static String PACKAGE_TYPE_SHARE = "kdeconnect.share";
     public static final String PACKAGE_TYPE_CAPABILITIES = "kdeconnect.capabilities";
+    public final static String PACKAGE_TYPE_FINDMYPHONE = "kdeconnect.findmyphone" ;
 
     private long mId;
     private String mType;
