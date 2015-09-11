@@ -160,6 +160,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
                             //Restore scroll
                             list.setSelectionFromTop(index, top);
                         } catch (IllegalStateException e) {
+                            e.printStackTrace();
                             //Ignore: The activity was closed while we were trying to update it
                         } finally {
                             listRefreshCalledThisFrame = false;

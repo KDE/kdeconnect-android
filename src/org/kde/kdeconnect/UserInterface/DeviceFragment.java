@@ -353,6 +353,7 @@ public class DeviceFragment extends Fragment {
                 mActivity.invalidateOptionsMenu();
 
             } catch (IllegalStateException e) {
+                e.printStackTrace();
                 //Ignore: The activity was closed while we were trying to update it
             } catch (ConcurrentModificationException e) {
                 Log.e("DeviceActivity", "ConcurrentModificationException");
