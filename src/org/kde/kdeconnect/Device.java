@@ -434,8 +434,8 @@ public class Device implements BaseLink.PackageReceiver {
         link.addPackageReceiver(this);
 
         if (links.size() == 1) {
-            incomingCapabilities = identityPackage.getStringList("SupportedIncomingInterfaces");
-            outgoingCapabilities = identityPackage.getStringList("SupportedOutgoingInterfaces");
+            incomingCapabilities = identityPackage.getStringList("IncomingCapabilties");
+            outgoingCapabilities = identityPackage.getStringList("OutgoingCapabilities");
             reloadPluginsFromSettings();
         }
     }
@@ -562,8 +562,8 @@ public class Device implements BaseLink.PackageReceiver {
 
             }
         } else if (NetworkPackage.PACKAGE_TYPE_CAPABILITIES.equals(np.getType())) {
-            ArrayList<String> newIncomingCapabilities = np.getStringList("SupportedIncomingInterfaces");
-            ArrayList<String> newOutgoingCapabilities = np.getStringList("SupportedOutgoingInterfaces");
+            ArrayList<String> newIncomingCapabilities = np.getStringList("IncomingCapabilities");
+            ArrayList<String> newOutgoingCapabilities = np.getStringList("OutgoingCapabilities");
             if (!ObjectsHelper.equals(newIncomingCapabilities, incomingCapabilities) ||
                     !ObjectsHelper.equals(newOutgoingCapabilities, outgoingCapabilities)) {
                 incomingCapabilities = newIncomingCapabilities;
@@ -851,8 +851,8 @@ public class Device implements BaseLink.PackageReceiver {
 
         if (capabilitiesChanged && isReachable() && isPaired()) {
             NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_CAPABILITIES);
-            np.set("SupportedIncomingInterfaces", new ArrayList<>(newSupportedIncomingInterfaces));
-            np.set("SupportedOutgoingInterfaces", new ArrayList<>(newPluginsByOutgoingInterface.keySet()));
+            np.set("IncomingCapabilities", new ArrayList<>(newSupportedIncomingInterfaces));
+            np.set("OutgoingCapabilities", new ArrayList<>(newPluginsByOutgoingInterface.keySet()));
             sendPackage(np);
         }
 
