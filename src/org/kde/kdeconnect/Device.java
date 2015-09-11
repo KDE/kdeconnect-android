@@ -495,7 +495,7 @@ public class Device implements BaseLink.PackageReceiver {
                             .setContentText(res.getString(R.string.tap_to_answer))
                             .setContentIntent(pendingIntent)
                             .setTicker(res.getString(R.string.pair_requested))
-                            .setSmallIcon(android.R.drawable.ic_menu_help)
+                            .setSmallIcon(R.drawable.ic_notification)
                             .setAutoCancel(true)
                             .setDefaults(Notification.DEFAULT_ALL)
                             .build();

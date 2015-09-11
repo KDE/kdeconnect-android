@@ -77,7 +77,7 @@ public class PingPlugin extends Plugin {
                     .setContentText(message)
                     .setContentIntent(resultPendingIntent)
                     .setTicker(message)
-                    .setSmallIcon(android.R.drawable.ic_dialog_alert)
+                    .setSmallIcon(R.drawable.ic_notification)
                     .setAutoCancel(true)
                     .setDefaults(Notification.DEFAULT_ALL)
                     .build();
