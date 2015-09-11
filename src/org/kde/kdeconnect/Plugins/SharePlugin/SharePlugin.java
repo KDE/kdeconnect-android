@@ -47,7 +47,6 @@ import android.widget.Toast;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.FilesHelper;
 import org.kde.kdeconnect.NetworkPackage;
-import org.kde.kdeconnect.Plugins.MprisPlugin.MprisActivity;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
