@@ -25,6 +25,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -120,7 +121,7 @@ public class MprisActivity extends ActionBarActivity {
                     @Override
                     public void handleMessage(Message msg) {
                         final ArrayList<String> playerList = mpris.getPlayerList();
-                        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(MprisActivity.this,
+                        final ArrayAdapter<String> adapter = new ArrayAdapter<>(MprisActivity.this,
                                 android.R.layout.simple_spinner_item,
                                 playerList.toArray(new String[playerList.size()])
                         );
@@ -133,11 +134,11 @@ public class MprisActivity extends ActionBarActivity {
                                 //String prevPlayer = (String)spinner.getSelectedItem();
                                 spinner.setAdapter(adapter);
 
-                                if(playerList.isEmpty()){
+                                if (playerList.isEmpty()) {
                                     findViewById(R.id.no_players).setVisibility(View.VISIBLE);
                                     spinner.setVisibility(View.GONE);
                                     ((TextView) findViewById(R.id.now_playing_textview)).setText("");
-                                }else{
+                                } else {
                                     findViewById(R.id.no_players).setVisibility(View.GONE);
                                     spinner.setVisibility(View.VISIBLE);
                                 }
@@ -269,7 +270,7 @@ public class MprisActivity extends ActionBarActivity {
     }
 
     @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
+    public boolean onKeyUp(int keyCode, @NonNull KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_VOLUME_UP:
                 return true;
@@ -452,9 +453,15 @@ public class MprisActivity extends ActionBarActivity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        positionSeekUpdateHandler.removeCallbacks(positionSeekUpdateRunnable);
+    protected void onStart() {
+        super.onStart();
+        BackgroundService.addGuiInUseCounter(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        BackgroundService.removeGuiInUseCounter(this);
     }
 
 }

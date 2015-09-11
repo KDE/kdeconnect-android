@@ -30,6 +30,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.List;
@@ -67,8 +68,8 @@ public class NotificationFilterActivity extends ActionBarActivity {
         res.close();
         appDatabase.close();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_multiple_choice,android.R.id.text1, appName);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_multiple_choice, android.R.id.text1, appName);
         listView.setAdapter(adapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         for (i = 0 ; i < isFiltered.length; i++){
@@ -155,6 +156,18 @@ public class NotificationFilterActivity extends ActionBarActivity {
             return false;
         }
         return true;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        BackgroundService.addGuiInUseCounter(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        BackgroundService.removeGuiInUseCounter(this);
     }
 
 }

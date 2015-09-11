@@ -37,7 +37,7 @@ public class NotificationReceiver extends NotificationListenerService {
         void onNotificationRemoved(StatusBarNotification statusBarNotification);
     }
 
-    private final ArrayList<NotificationListener> listeners = new ArrayList<NotificationListener>();
+    private final ArrayList<NotificationListener> listeners = new ArrayList<>();
 
     public void addListener(NotificationListener listener) {
         listeners.add(listener);
@@ -71,7 +71,7 @@ public class NotificationReceiver extends NotificationListenerService {
         void onServiceStart(NotificationReceiver service);
     }
 
-    private final static ArrayList<InstanceCallback> callbacks = new ArrayList<InstanceCallback>();
+    private final static ArrayList<InstanceCallback> callbacks = new ArrayList<>();
 
     private final static Lock mutex = new ReentrantLock(true);
 

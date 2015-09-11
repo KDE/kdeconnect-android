@@ -31,7 +31,7 @@ import java.util.ArrayList;
 public class ListAdapter extends ArrayAdapter<ListAdapter.Item> {
 
     public interface Item {
-        public View inflateView(LayoutInflater layoutInflater);
+        View inflateView(LayoutInflater layoutInflater);
     }
 
 	private final ArrayList<Item> items;

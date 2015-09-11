@@ -24,6 +24,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import org.apache.mina.core.future.WriteFuture;
+import org.apache.mina.core.session.IoSession;
 import org.json.JSONObject;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
@@ -61,7 +63,12 @@ public class LanLink extends BaseLink {
     // Using time stamp, because if both devices emit their identity package at the same time, both the links tends to cancel each other
     private long startTime = 0;
 
+    @Override
     public void disconnect() {
+        closeSocket();
+    }
+
+    public void closeSocket() {
         if (channel == null) {
             Log.e("KDE/LanLink", "Not yet connected");
             return;
@@ -73,8 +80,8 @@ public class LanLink extends BaseLink {
         this.onSsl = value;
     }
 
-    public LanLink(Context context,Channel channel, String deviceId, BaseLinkProvider linkProvider) {
-        super(context, deviceId, linkProvider);
+    public LanLink(Context context,Channel channel, String deviceId, BaseLinkProvider linkProvider, ConnectionStarted connectionSource) {
+        super(context, deviceId, linkProvider, connectionSource);
         this.channel = channel;
         this.startTime = System.currentTimeMillis();
     }
@@ -188,6 +195,10 @@ public class LanLink extends BaseLink {
             if (callback != null) {
                 callback.sendFailure(e);
             }
+        } finally  {
+            //Make sure we close the payload stream, if any
+            InputStream stream = np.getPayload();
+            try { stream.close(); } catch (Exception e) { }
         }
     }
 

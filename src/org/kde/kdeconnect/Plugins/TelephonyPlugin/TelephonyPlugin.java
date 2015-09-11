@@ -28,6 +28,7 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 import org.kde.kdeconnect.Helpers.ContactsHelper;
 import org.kde.kdeconnect.NetworkPackage;
@@ -92,14 +93,14 @@ public class TelephonyPlugin extends Plugin {
         }
     };
 
-    public void callBroadcastReceived(int state, String phoneNumber) {
+    private void callBroadcastReceived(int state, String phoneNumber) {
 
         //Log.e("TelephonyPlugin", "callBroadcastReceived");
 
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_TELEPHONY);
         if (phoneNumber != null) {
-            phoneNumber = ContactsHelper.phoneNumberLookup(context,phoneNumber);
             np.set("phoneNumber", phoneNumber);
+            np.set("contactName", ContactsHelper.phoneNumberLookup(context, phoneNumber));
         }
 
         switch (state) {
@@ -144,6 +145,7 @@ public class TelephonyPlugin extends Plugin {
                     if (lastState == TelephonyManager.CALL_STATE_RINGING) {
                         np.set("event","missedCall");
                         np.set("phoneNumber", lastPackage.getString("phoneNumber",null));
+                        np.set("contactName", lastPackage.getString("contactName",null));
                         device.sendPackage(np);
                     }
 
@@ -157,7 +159,7 @@ public class TelephonyPlugin extends Plugin {
         lastState = state;
     }
 
-    public void smsBroadcastReceived(SmsMessage message) {
+    private void smsBroadcastReceived(SmsMessage message) {
 
         //Log.e("SmsBroadcastReceived", message.toString());
 
@@ -172,8 +174,8 @@ public class TelephonyPlugin extends Plugin {
 
         String phoneNumber = message.getOriginatingAddress();
         if (phoneNumber != null) {
-            phoneNumber = ContactsHelper.phoneNumberLookup(context, phoneNumber);
-            np.set("phoneNumber",phoneNumber);
+            np.set("phoneNumber", phoneNumber);
+            np.set("contactName", ContactsHelper.phoneNumberLookup(context, phoneNumber));
         }
 
         device.sendPackage(np);
@@ -209,6 +211,16 @@ public class TelephonyPlugin extends Plugin {
         }
         //Do nothing
         return true;
+    }
+
+    @Override
+    public String[] getSupportedPackageTypes() {
+        return new String[]{NetworkPackage.PACKAGE_TYPE_TELEPHONY};
+    }
+
+    @Override
+    public String[] getOutgoingPackageTypes() {
+        return new String[]{NetworkPackage.PACKAGE_TYPE_TELEPHONY};
     }
 
 }

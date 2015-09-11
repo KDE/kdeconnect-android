@@ -20,19 +20,25 @@
 
 package org.kde.kdeconnect.Helpers;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
+import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.util.Log;
 
 import java.util.HashMap;
 
 public class DeviceHelper {
 
+    public static final String KEY_DEVICE_NAME_PREFERENCE = "device_name_preference";
+
     //from https://github.com/meetup/android-device-names
     //Converted to java using:
     //cat android_models.properties | awk -F'=' '{sub(/ *$/, "", $1)} sub(/^ */, "", $2) { if ($2 != "") print "humanReadableNames.put(\""$1"\",\"" $2 "\");"}'
-    private final static HashMap<String,String> humanReadableNames = new HashMap<String,String>();
+    private final static HashMap<String,String> humanReadableNames = new HashMap<>();
     static {
         humanReadableNames.put("5860E","Coolpad Quattro 4G");
         humanReadableNames.put("831C","HTC One M8");
@@ -230,9 +236,9 @@ public class DeviceHelper {
         humanReadableNames.put("MOTWX435KT","Motorola Triumph");
         humanReadableNames.put("N3","Star NO.1 N3");
         humanReadableNames.put("N860","ZTE Warp N860");
-        humanReadableNames.put("NEXUS_4","Nexus 4");
-        humanReadableNames.put("NEXUS_5","Nexus 5");
-        humanReadableNames.put("NEXUS_6","Nexus 6");
+        humanReadableNames.put("NEXUS 4","Nexus 4");
+        humanReadableNames.put("NEXUS 5","Nexus 5");
+        humanReadableNames.put("NEXUS 6","Nexus 6");
         humanReadableNames.put("Nexus_10","Google Nexus 10");
         humanReadableNames.put("Nexus_4","Google Nexus 4");
         humanReadableNames.put("Nexus_7","Asus Nexus 7");
@@ -435,7 +441,7 @@ public class DeviceHelper {
 
     }
 
-    public static String getDeviceName() {
+    public static String getAndroidDeviceName() {
         String deviceName = null;
         try {
             String dictName = humanReadableNames.get(Build.MODEL.replace(' ', '_'));
@@ -465,4 +471,25 @@ public class DeviceHelper {
         return isLarge;
     }
 
+    //It returns getAndroidDeviceName() if no user-defined name has been set with setDeviceName().
+    public static String getDeviceName(Context context){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        // Could use prefrences.contains but would need to check for empty String anyway.
+        String deviceName = preferences.getString(KEY_DEVICE_NAME_PREFERENCE, "");
+        if (deviceName.isEmpty()){
+            deviceName = DeviceHelper.getAndroidDeviceName();
+            Log.i("MainSettingsActivity", "New device name: " + deviceName);
+            preferences.edit().putString(KEY_DEVICE_NAME_PREFERENCE, deviceName).apply();
+        }
+        return deviceName;
+    }
+
+    public static void setDeviceName(Context context, String name){
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        preferences.edit().putString(KEY_DEVICE_NAME_PREFERENCE, name).apply();
+    }
+
+    public static String getDeviceId(Context context) {
+        return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+    }
 }

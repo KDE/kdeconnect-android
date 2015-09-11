@@ -42,11 +42,6 @@ public class FilesHelper {
     /**
      * Converts any string into a string that is safe to use as a file name.
      * The result will only include ascii characters and numbers, and the "-","_", and "." characters.
-     *
-     * @param name
-     * @param dirSeparators
-     * @param maxFileLength
-     * @return
      */
     public static String toFileSystemSafeName(String name, boolean dirSeparators, int maxFileLength) {
         int size = name.length();

@@ -23,6 +23,7 @@ package org.kde.kdeconnect.Plugins.MousePadPlugin;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
@@ -42,7 +43,7 @@ public class MousePadPlugin extends Plugin {
 
     @Override
     public Drawable getIcon() {
-        return context.getResources().getDrawable(R.drawable.touchpad_plugin_action);
+        return ContextCompat.getDrawable(context, R.drawable.touchpad_plugin_action);
     }
 
     @Override
@@ -60,6 +61,16 @@ public class MousePadPlugin extends Plugin {
         Intent intent = new Intent(parentActivity, MousePadActivity.class);
         intent.putExtra("deviceId", device.getDeviceId());
         parentActivity.startActivity(intent);
+    }
+
+    @Override
+    public String[] getSupportedPackageTypes() {
+        return new String[0];
+    }
+
+    @Override
+    public String[] getOutgoingPackageTypes() {
+        return new String[]{NetworkPackage.PACKAGE_TYPE_MOUSEPAD};
     }
 
     @Override

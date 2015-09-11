@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:padding="16dp"
+    android:background="@drawable/drawer_header"
+    android:orientation="vertical"
+    android:gravity="bottom">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="KDE Connect"
+        android:textColor="#FFF"
+        android:textStyle="bold"
+        android:paddingBottom="4dp"
+        android:layout_above="@+id/device_name"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My device"
+        android:id="@+id/device_name"
+        android:layout_marginBottom="8dp"
+        android:textColor="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+
+    <!--
+    <ImageView
+        android:src="@drawable/ic_action_image_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:clickable="true"
+        android:background="@drawable/abc_list_selector_holo_dark"
+        android:layout_gravity="center_vertical"
+        android:contentDescription="@string/rename_device"
+        android:id="@+id/rename"
+    />
+    -->
+
+</RelativeLayout>

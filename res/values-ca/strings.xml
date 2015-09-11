@@ -108,6 +108,8 @@
   <string name="invalid_device_name">El nom del dispositiu no és vàlid</string>
   <string name="shareplugin_text_saved">S\'ha rebut text i s\'ha desat al porta-retalls</string>
   <string name="custom_devices_settings">Llista personalitzada de dispositius</string>
+  <string name="pair_device_action">Aparella amb un dispositiu nou</string>
+  <string name="unpair_device_action">Desparella %s</string>
   <string name="custom_device_list">Afegeix dispositius per la IP</string>
   <string name="share_notification_preference">Rebombori de les notificacions</string>
   <string name="share_notification_preference_summary">Vibra i reprodueix un so en rebre un fitxer</string>
@@ -124,4 +126,16 @@
   <string name="no_players_connected">No s\'ha trobat cap reproductor</string>
   <string name="custom_dev_list_help">Empreu aquesta opció només si el dispositiu no és detectat automàticament. Introduïu a sota l\'adreça IP o nom de la màquina i premeu el botó per afegir-lo a la llista. Seleccioneu un element existent per eliminar-lo de la llista.</string>
   <string name="mpris_player_on_device">%1$s sobre el %2$s</string>
+  <string name="send_files">Envia els fitxers</string>
+  <string name="pairing_title">Dispositius del KDE Connect</string>
+  <string name="pairing_description">Els altres dispositius que executin el KDE Connect a la mateixa xarxa han d\'aparèixer aquí.</string>
+  <string name="device_paired">Dispositiu aparellat</string>
+  <string name="device_rename_title">Reanomena el dispositiu</string>
+  <string name="device_rename_confirm">Reanomena</string>
+  <string name="refresh">Refresca</string>
+  <string name="unreachable_description">Aquest dispositiu aparellat no és accessible. Assegureu-vos que està connectat a la mateixa xarxa.</string>
+  <string name="no_file_browser">No hi ha instal·lat cap explorador de fitxers.</string>
+  <string name="pref_plugin_telepathy">Envia un SMS</string>
+  <string name="pref_plugin_telepathy_desc">Envia missatges de text des de l\'escriptori</string>
+  <string name="plugin_not_supported">Aquest connector no és admès pel dispositiu</string>
 </resources>

@@ -28,7 +28,6 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
-import org.kde.kdeconnect.UserInterface.MainSettingsActivity;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -51,6 +50,7 @@ public class NetworkPackage {
     public final static String PACKAGE_TYPE_MPRIS = "kdeconnect.mpris";
     public final static String PACKAGE_TYPE_MOUSEPAD = "kdeconnect.mousepad";
     public final static String PACKAGE_TYPE_SHARE = "kdeconnect.share";
+    public static final String PACKAGE_TYPE_CAPABILITIES = "kdeconnect.capabilities";
 
     private long mId;
     private String mType;
@@ -100,7 +100,8 @@ public class NetworkPackage {
 
     public ArrayList<String> getStringList(String key) {
         JSONArray jsonArray = mBody.optJSONArray(key);
-        ArrayList<String> list = new ArrayList<String>();
+        if (jsonArray == null) return null;
+        ArrayList<String> list = new ArrayList<>();
         int length = jsonArray.length();
         for (int i = 0; i < length; i++) {
             try {
@@ -188,13 +189,10 @@ public class NetworkPackage {
 
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_IDENTITY);
 
-        String deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        String deviceId = DeviceHelper.getDeviceId(context);
         try {
             np.mBody.put("deviceId", deviceId);
-            np.mBody.put("deviceName",
-                    PreferenceManager.getDefaultSharedPreferences(context).getString(
-                            MainSettingsActivity.KEY_DEVICE_NAME_PREFERENCE,
-                            DeviceHelper.getDeviceName()));
+            np.mBody.put("deviceName", DeviceHelper.getDeviceName(context));
             np.mBody.put("protocolVersion", NetworkPackage.ProtocolVersion);
             np.mBody.put("deviceType", DeviceHelper.isTablet()? "tablet" : "phone");
         } catch (Exception e) {

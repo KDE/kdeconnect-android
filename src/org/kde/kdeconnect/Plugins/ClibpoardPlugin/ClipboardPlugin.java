@@ -23,6 +23,7 @@ package org.kde.kdeconnect.Plugins.ClibpoardPlugin;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.widget.Button;
 
 import org.kde.kdeconnect.NetworkPackage;
@@ -39,16 +40,6 @@ public class ClipboardPlugin extends Plugin {
     @Override
     public String getDescription() {
         return context.getResources().getString(R.string.pref_plugin_clipboard_desc);
-    }
-
-    @Override
-    public Drawable getIcon() {
-        return context.getResources().getDrawable(R.drawable.icon);
-    }
-
-    @Override
-    public boolean hasSettings() {
-        return false;
     }
 
     @Override
@@ -72,7 +63,6 @@ public class ClipboardPlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
-
         if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_CLIPBOARD)) {
             return false;
         }
@@ -83,10 +73,16 @@ public class ClipboardPlugin extends Plugin {
     }
 
     @Override
-    public AlertDialog getErrorDialog(Activity deviceActivity) { return null; }
+    public String[] getSupportedPackageTypes() {
+        String[] packetTypes = {NetworkPackage.PACKAGE_TYPE_CLIPBOARD};
+        return packetTypes;
+    }
 
     @Override
-    public Button getInterfaceButton(Activity activity) {
-        return null;
+    public String[] getOutgoingPackageTypes() {
+        String[] packetTypes = {NetworkPackage.PACKAGE_TYPE_CLIPBOARD};
+        return packetTypes;
     }
+
+
 }

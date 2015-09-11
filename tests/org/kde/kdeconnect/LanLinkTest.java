@@ -24,6 +24,7 @@ import android.test.AndroidTestCase;
 import android.util.Log;
 
 import org.json.JSONObject;
+import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.LanBackend.LanLink;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.mockito.Mockito;
@@ -85,7 +86,7 @@ public class LanLinkTest extends AndroidTestCase {
         Mockito.when(channelFutureFailure.channel()).thenReturn(channel);
         Mockito.when(channelFutureFailure.sync()).thenReturn(channelFutureFailure);
 
-        lanLink = new LanLink(getContext(), channel, "testDevice", linkProvider);
+        lanLink = new LanLink(getContext(), channel, "testDevice", linkProvider,  BaseLink.ConnectionStarted.Remotely);
     }
 
     @Override

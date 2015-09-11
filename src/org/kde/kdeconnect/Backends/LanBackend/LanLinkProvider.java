@@ -27,9 +27,23 @@ import android.support.v4.util.LongSparseArray;
 import android.util.Base64;
 import android.util.Log;
 
+import org.apache.mina.core.future.ConnectFuture;
+import org.apache.mina.core.future.IoFuture;
+import org.apache.mina.core.future.IoFutureListener;
+import org.apache.mina.core.service.IoHandler;
+import org.apache.mina.core.service.IoHandlerAdapter;
+import org.apache.mina.core.session.IoSession;
+import org.apache.mina.filter.codec.ProtocolCodecFilter;
+import org.apache.mina.filter.codec.textline.LineDelimiter;
+import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
+import org.apache.mina.transport.socket.nio.NioDatagramAcceptor;
+import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
+import org.apache.mina.transport.socket.nio.NioSocketConnector;
+import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.UserInterface.CustomDevicesActivity;
@@ -81,6 +95,7 @@ public class LanLinkProvider extends BaseLinkProvider {
     private final static int port = 1714;
 
     private final Context context;
+
     private final HashMap<String, LanLink> visibleComputers = new HashMap<String, LanLink>();
     private final LongSparseArray<LanLink> nioLinks = new LongSparseArray<LanLink>();
     private final LongSparseArray<Channel> nioChannels = new LongSparseArray<Channel>();
@@ -117,7 +132,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                     nioLinks.remove(id);
                     //Log.i("KDE/LanLinkProvider", "nioLinks.size(): " + nioLinks.size() + " (-)");
                     try {
-                        brokenLink.disconnect();
+                        brokenLink.closeSocket();
                     } catch (Exception e) {
                         e.printStackTrace();
                         Log.e("KDE/LanLinkProvider", "Exception. Already disconnected?");
@@ -162,14 +177,14 @@ public class LanLinkProvider extends BaseLinkProvider {
 
             if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
 
-                NetworkPackage myIdentityPackage = NetworkPackage.createIdentityPackage(context);
-                if (np.getString("deviceId").equals(myIdentityPackage.getString("deviceId"))) {
+                String myId = DeviceHelper.getDeviceId(context);
+                if (np.getString("deviceId").equals(myId)) {
                     return;
                 }
 
                 Log.i("KDE/LanLinkProvider", "Identity package received from " + np.getString("deviceName"));
 
-                final LanLink link = new LanLink(context, ctx.channel(), np.getString("deviceId"), LanLinkProvider.this);
+                final LanLink link = new LanLink(context, ctx.channel(), np.getString("deviceId"), LanLinkProvider.this, BaseLink.ConnectionStarted.Locally);
                 nioLinks.put(ctx.channel().hashCode(), link);
                 nioChannels.put(ctx.channel().hashCode(), ctx.channel());
                 //Log.i("KDE/LanLinkProvider","nioLinks.size(): " + nioLinks.size());
@@ -241,7 +256,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                     Log.e("KDE/LanLinkProvider", "Expecting an identity package (B)");
                     return;
                 } else {
-                    String myId = NetworkPackage.createIdentityPackage(context).getString("deviceId");
+                    String myId = DeviceHelper.getDeviceId(context);
                     if (identityPackage.getString("deviceId").equals(myId)) {
                         return;
                     }
@@ -289,7 +304,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                                 channel.pipeline().addFirst(sslHandler);
                             }
 
-                            final LanLink link = new LanLink(context, channel, identityPackage.getString("deviceId"), LanLinkProvider.this);
+                            final LanLink link = new LanLink(context, channel, identityPackage.getString("deviceId"), LanLinkProvider.this, BaseLink.ConnectionStarted.Remotely);
                             NetworkPackage np2 = NetworkPackage.createIdentityPackage(context);
                             link.sendPackage(np2,new Device.SendPackageStatusCallback() {
                                 @Override
@@ -387,11 +402,11 @@ public class LanLinkProvider extends BaseLinkProvider {
         if (oldLink != null) {
             if (link.getStartTime() < oldLink.getStartTime()) {
                 // New link is not so new, it just took more time to be establish successfully and get here
-                link.disconnect();
+                link.closeSocket();
                 connectionLost(link);
             } else {
                 Log.i("KDE/LanLinkProvider", "Removing old connection to same device");
-                oldLink.disconnect();
+                oldLink.closeSocket();
                 connectionLost(oldLink);
             }
         }
@@ -462,7 +477,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
                 String deviceListPrefs = PreferenceManager.getDefaultSharedPreferences(context).getString(
                         KEY_CUSTOM_DEVLIST_PREFERENCE, "");
-                ArrayList<String> iplist = new ArrayList<String>();
+                ArrayList<String> iplist = new ArrayList<>();
                 if (!deviceListPrefs.isEmpty()) {
                     iplist = CustomDevicesActivity.deserializeIpList(deviceListPrefs);
                 }

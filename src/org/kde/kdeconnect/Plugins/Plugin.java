@@ -44,6 +44,22 @@ public abstract class Plugin {
     }
 
     /**
+     * To receive the network package from the unpaired device, override
+     * listensToUnpairedDevices to return true and this method.
+     */
+    public boolean onUnpairedDevicePackageReceived(NetworkPackage np) {
+        return false;
+    }
+
+    /**
+     * Returns whether this plugin should be loaded or not, to listen to NetworkPackages
+     * from the unpaired devices. By default, returns false.
+     */
+    public boolean listensToUnpairedDevices() {
+        return false;
+    }
+
+    /**
      * Return the internal plugin name, that will be used as a
      * unique key to distinguish it. Use the class name as key.
      */
@@ -157,6 +173,16 @@ public abstract class Plugin {
     public AlertDialog getErrorDialog(Activity deviceActivity) {
         return null;
     }
+
+    /**
+     * Should return the list of NetworkPackage types that this plugin can handle
+     */
+    public abstract String[] getSupportedPackageTypes();
+
+    /**
+     * Should return the list of NetworkPackage types that this plugin can send
+     */
+    public abstract String[] getOutgoingPackageTypes();
 
     /**
      * Creates a button that will be displayed in the user interface

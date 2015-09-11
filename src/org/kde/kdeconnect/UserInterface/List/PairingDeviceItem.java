@@ -20,34 +20,44 @@
 
 package org.kde.kdeconnect.UserInterface.List;
 
-
-import android.app.Activity;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.UserInterface.DeviceActivity;
-import org.kde.kdeconnect.UserInterface.PairActivity;
 import org.kde.kdeconnect_tp.R;
 
-public class DeviceItem implements ListAdapter.Item {
+public class PairingDeviceItem implements ListAdapter.Item {
 
-	private final Device device;
-    private final Activity activity;
+    public interface Callback {
+        void pairingClicked(Device d);
+    }
 
-	public DeviceItem(Activity activity, Device device) {
-		this.device = device;
-        this.activity = activity;
-	}
+    private final Callback callback;
+    private final Device device;
+    private TextView titleView;
+    private ImageView icon;
+
+    public PairingDeviceItem(Device device, Callback callback) {
+        this.device = device;
+        this.callback = callback;
+    }
+
+    public Device getDevice() {
+        return this.device;
+    }
 
     @Override
     public View inflateView(LayoutInflater layoutInflater) {
-        final View v = layoutInflater.inflate(R.layout.list_item_entry, null);
+        final View v = layoutInflater.inflate(R.layout.list_item_with_icon_entry, null);
 
-        TextView titleView = (TextView)v.findViewById(R.id.list_item_entry_title);
-        if (titleView != null) titleView.setText(device.getName());
+        icon = (ImageView)v.findViewById(R.id.list_item_entry_icon);
+        icon.setImageDrawable(device.getIcon());
+
+        titleView = (TextView)v.findViewById(R.id.list_item_entry_title);
+        titleView.setText(device.getName());
+
         if (device.compareProtocolVersion() != 0) {
             TextView summaryView = (TextView)v.findViewById(R.id.list_item_entry_summary);
             summaryView.setVisibility(View.VISIBLE);
@@ -62,15 +72,8 @@ public class DeviceItem implements ListAdapter.Item {
 
         v.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent;
-                if (device.isPaired()) {
-                    intent = new Intent(activity, DeviceActivity.class);
-                } else {
-                    intent = new Intent(activity, PairActivity.class);
-                }
-                intent.putExtra("deviceId", device.getDeviceId());
-                activity.startActivity(intent);
+            public void onClick(View v) {
+                callback.pairingClicked(device);
             }
         });
 

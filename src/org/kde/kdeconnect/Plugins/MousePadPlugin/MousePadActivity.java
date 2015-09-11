@@ -58,7 +58,7 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
 
     KeyListenerView keyListenerView;
 
-    static enum ClickType {
+    enum ClickType {
         RIGHT, MIDDLE, NONE;
         static ClickType fromString(String s) {
             switch(s) {
@@ -360,6 +360,18 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
     private void showKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.toggleSoftInputFromWindow(keyListenerView.getWindowToken(), 0, 0);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        BackgroundService.addGuiInUseCounter(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        BackgroundService.removeGuiInUseCounter(this);
     }
 
 }

@@ -110,4 +110,16 @@ public class BatteryPlugin extends Plugin {
         return true;
     }
 
+    @Override
+    public String[] getSupportedPackageTypes() {
+        String[] packetTypes = {NetworkPackage.PACKAGE_TYPE_BATTERY};
+        return packetTypes;
+    }
+
+    @Override
+    public String[] getOutgoingPackageTypes() {
+        String[] packetTypes = {NetworkPackage.PACKAGE_TYPE_BATTERY};
+        return packetTypes;
+    }
+
 }

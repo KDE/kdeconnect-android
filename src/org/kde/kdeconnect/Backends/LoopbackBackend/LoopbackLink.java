@@ -35,7 +35,7 @@ import java.util.ArrayList;
 public class LoopbackLink extends BaseLink {
 
     public LoopbackLink(Context context, BaseLinkProvider linkProvider) {
-        super(context, "loopback", linkProvider);
+        super(context, "loopback", linkProvider, ConnectionStarted.Remotely);
     }
 
     @Override

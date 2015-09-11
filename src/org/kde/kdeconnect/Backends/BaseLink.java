@@ -33,15 +33,30 @@ import java.util.ArrayList;
 public abstract class BaseLink {
 
     protected final Context context;
+
+    public enum ConnectionStarted {
+        Locally, Remotely;
+    };
+
+    public interface PackageReceiver {
+        void onPackageReceived(NetworkPackage np);
+    }
+
     private final BaseLinkProvider linkProvider;
     private final String deviceId;
-    private final ArrayList<PackageReceiver> receivers = new ArrayList<PackageReceiver>();
+    private final ArrayList<PackageReceiver> receivers = new ArrayList<>();
     protected PrivateKey privateKey;
 
-    protected BaseLink(Context context,String deviceId, BaseLinkProvider linkProvider) {
-        this.context = context;
+    protected ConnectionStarted connectionSource; // If the other device sent me a broadcast,
+                                                  // I should not close the connection with it
+                                                  // because it's probably trying to find me and
+                                                  // potentially ask for pairing.
+
+    protected BaseLink(Context context, String deviceId, BaseLinkProvider linkProvider, ConnectionStarted connectionSource) {
+        this.context = context;        
         this.linkProvider = linkProvider;
         this.deviceId = deviceId;
+        this.connectionSource = connectionSource;
     }
 
     /* To be implemented by each link for pairing handlers */
@@ -60,9 +75,8 @@ public abstract class BaseLink {
         return linkProvider;
     }
 
-
-    public interface PackageReceiver {
-        public void onPackageReceived(NetworkPackage np);
+    public ConnectionStarted getConnectionSource() {
+        return connectionSource;
     }
 
     public void addPackageReceiver(PackageReceiver pr) {
@@ -79,8 +93,11 @@ public abstract class BaseLink {
         }
     }
 
+    public void disconnect() {
+        linkProvider.connectionLost(this);
+    }
+
     //TO OVERRIDE, should be sync
     public abstract void sendPackage(NetworkPackage np,Device.SendPackageStatusCallback callback);
     public abstract void sendPackageEncrypted(NetworkPackage np,Device.SendPackageStatusCallback callback, PublicKey key);
-
 }

@@ -137,6 +137,7 @@ public class SslHelper {
             if (isDeviceTrusted){
                 SharedPreferences devicePreferences = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
                 byte[] certificateBytes = Base64.decode(devicePreferences.getString("certificate", ""), 0);
+                Log.e("CERTIICATEBTYES", ""+certificateBytes);
                 X509CertificateHolder certificateHolder = new X509CertificateHolder(certificateBytes);
                 remoteDeviceCertificate = new JcaX509CertificateConverter().setProvider(BC).getCertificate(certificateHolder);
             }

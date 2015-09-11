@@ -48,6 +48,7 @@ import java.net.SocketException;
 import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -70,7 +71,7 @@ class SimplePasswordAuthenticator implements PasswordAuthenticator {
 
 class SimplePublicKeyAuthenticator implements PublickeyAuthenticator {
 
-    private List<PublicKey> keys = new ArrayList<PublicKey>();
+    private final List<PublicKey> keys = new ArrayList<>();
 
     public void addKey(PublicKey key) {
         keys.add(key);
@@ -111,7 +112,7 @@ class SimpleSftpServer {
         sshd.setFileSystemFactory(new SecureFileSystemFactory());
         //sshd.setShellFactory(new ProcessShellFactory(new String[] { "/bin/sh", "-i", "-l" }));
         sshd.setCommandFactory(new ScpCommandFactory());
-        sshd.setSubsystemFactories(Arrays.<NamedFactory<Command>>asList(new SftpSubsystem.Factory()));
+        sshd.setSubsystemFactories(Collections.singletonList((NamedFactory<Command>)new SftpSubsystem.Factory()));
 
         sshd.setPasswordAuthenticator(passwordAuth);
         sshd.setPublickeyAuthenticator(keyAuth);
@@ -192,7 +193,6 @@ class SimpleSftpServer {
         private String currDir = "/";
         private String rootDir = "/";
         private String userName;
-        private boolean caseInsensitive = false;
         //
         public SecureFileSystemView(final String rootDir, final String userName) {
             super(userName);
@@ -213,18 +213,18 @@ class SimpleSftpServer {
         //
         protected SshFile getFile(final String dir, final String file) {
             // get actual file object
+            final boolean caseInsensitive = false;
             String physicalName = NativeSshFile.getPhysicalName("/", dir, file, caseInsensitive);
             File fileObj = new File(rootDir, physicalName); // chroot
 
             // strip the root directory and return
             String userFileName = physicalName.substring("/".length() - 1);
-            return new SecureSshFile(this, userFileName, fileObj, userName);
+            return new SecureSshFile(userFileName, fileObj, userName);
         }
     }
 
     class SecureSshFile extends NativeSshFile {
-        //
-        public SecureSshFile(final SecureFileSystemView view, final String fileName, final File file, final String userName) {
+        public SecureSshFile(final String fileName, final File file, final String userName) {
             super(fileName, file, userName);
         }
     }
