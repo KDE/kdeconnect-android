@@ -59,6 +59,8 @@ import java.util.ArrayList;
 
 public class SharePlugin extends Plugin {
 
+    final static boolean openUrlsDirectly = true;
+
     @Override
     public String getDisplayName() {
         return context.getResources().getString(R.string.pref_plugin_sharereceiver);
@@ -261,34 +263,35 @@ public class SharePlugin extends Plugin {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                //Do not launch url directly, show a notification instead
+                if (openUrlsDirectly) {
+                    context.startActivity(browserIntent);
+                } else {
+                    Resources res = context.getResources();
+                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+                    stackBuilder.addNextIntent(browserIntent);
+                    PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
+                            0,
+                            PendingIntent.FLAG_UPDATE_CURRENT
+                    );
 
-                Resources res = context.getResources();
-                TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-                stackBuilder.addNextIntent(browserIntent);
-                PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
-                        0,
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                );
+                    Notification noti = new NotificationCompat.Builder(context)
+                            .setContentTitle(res.getString(R.string.received_url_title, device.getName()))
+                            .setContentText(res.getString(R.string.received_url_text, url))
+                            .setContentIntent(resultPendingIntent)
+                            .setTicker(res.getString(R.string.received_url_title, device.getName()))
+                            .setSmallIcon(R.drawable.ic_notification)
+                            .setAutoCancel(true)
+                            .setDefaults(Notification.DEFAULT_ALL)
+                            .build();
 
-                Notification noti = new NotificationCompat.Builder(context)
-                        .setContentTitle(res.getString(R.string.received_url_title, device.getName()))
-                        .setContentText(res.getString(R.string.received_url_text, url))
-                        .setContentIntent(resultPendingIntent)
-                        .setTicker(res.getString(R.string.received_url_title, device.getName()))
-                        .setSmallIcon(android.R.drawable.ic_dialog_alert)
-                        .setAutoCancel(true)
-                        .setDefaults(Notification.DEFAULT_ALL)
-                        .build();
-
-                NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                try {
-                    notificationManager.notify((int)System.currentTimeMillis(), noti);
-                } catch(Exception e) {
-                    //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
-                    //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                    NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                    try {
+                        notificationManager.notify((int) System.currentTimeMillis(), noti);
+                    } catch (Exception e) {
+                        //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                        //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                    }
                 }
-
             } else {
                 Log.e("SharePlugin", "Error: Nothing attached!");
             }
