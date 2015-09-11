@@ -301,7 +301,7 @@ public class DeviceFragment extends Fragment {
             boolean reachable = device.isReachable();
 
             rootView.findViewById(R.id.pairing_buttons).setVisibility(paired ? View.GONE : View.VISIBLE);
-            rootView.findViewById(R.id.unpair_message).setVisibility((paired && !reachable)? View.VISIBLE : View.GONE);
+            rootView.findViewById(R.id.unpair_message).setVisibility((paired && !reachable) ? View.VISIBLE : View.GONE);
 
             try {
                 ArrayList<ListAdapter.Item> items = new ArrayList<>();
@@ -350,13 +350,15 @@ public class DeviceFragment extends Fragment {
                 ListAdapter adapter = new ListAdapter(mActivity, items);
                 buttonsList.setAdapter(adapter);
 
+                mActivity.invalidateOptionsMenu();
 
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+                //Ignore: The activity was closed while we were trying to update it
             } catch (ConcurrentModificationException e) {
                 Log.e("DeviceActivity", "ConcurrentModificationException");
                 this.run(); //Try again
             }
-
-            mActivity.invalidateOptionsMenu();
 
             }
         });
