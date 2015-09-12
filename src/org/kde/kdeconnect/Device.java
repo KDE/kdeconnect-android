@@ -784,6 +784,9 @@ public class Device implements BaseLink.PackageReceiver {
         HashMap<String, ArrayList<String>> newPluginsByIncomingInterface = new HashMap<>();
         HashMap<String, ArrayList<String>> newPluginsByOutgoingInterface = new HashMap<>();
 
+        final boolean supportsCapabilities = (incomingCapabilities != null && !incomingCapabilities.isEmpty()) ||
+                (incomingCapabilities != null && !outgoingCapabilities.isEmpty());
+
         for (String pluginKey : availablePlugins) {
 
             PluginFactory.PluginInfo pluginInfo = PluginFactory.getPluginInfo(context, pluginKey);
@@ -800,8 +803,7 @@ public class Device implements BaseLink.PackageReceiver {
                 newSupportedIncomingInterfaces.addAll(incomingInterfaces);
             }
 
-            if ((incomingCapabilities != null && !incomingCapabilities.isEmpty()) ||
-                    (incomingCapabilities != null && !outgoingCapabilities.isEmpty())) {
+            if (supportsCapabilities && (!incomingInterfaces.isEmpty() || !outgoingInterfaces.isEmpty())) {
                 HashSet<String> supportedOut = new HashSet<>(outgoingInterfaces);
                 supportedOut.retainAll(incomingCapabilities); //Intersection
                 HashSet<String> supportedIn = new HashSet<>(incomingInterfaces);
