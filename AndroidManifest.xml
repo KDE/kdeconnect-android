@@ -133,6 +133,15 @@
                 android:value="org.kde.kdeconnect.UserInterface.MaterialActivity" />
         </activity>
         <activity
+            android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandActivity"
+            android:label="@string/remote_control"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MaterialActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.kde.kdeconnect.UserInterface.MaterialActivity" />
+        </activity>
+        <activity
             android:name="org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/remote_control"
