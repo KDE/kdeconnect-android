@@ -294,78 +294,90 @@ public class DeviceFragment extends Fragment {
             return;
         }
 
+        //Once in-app, there is no point in keep displaying the notification if any
+        device.hidePairingNotification();
+
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
 
-            boolean paired = device.isPaired();
-            boolean reachable = device.isReachable();
+                Log.e("DEVICE",device.getName() + device.isPairRequestedByOtherEnd() + device.isPairRequested());
+                if (device.isPairRequestedByOtherEnd()) {
+                    ((TextView) rootView.findViewById(R.id.pair_message)).setText(R.string.pair_requested);
+                    rootView.findViewById(R.id.pair_progress).setVisibility(View.GONE);
+                    rootView.findViewById(R.id.pair_button).setVisibility(View.GONE);
+                    rootView.findViewById(R.id.pair_request).setVisibility(View.VISIBLE);
+                } else {
 
-            rootView.findViewById(R.id.pairing_buttons).setVisibility(paired ? View.GONE : View.VISIBLE);
-            rootView.findViewById(R.id.unpair_message).setVisibility((paired && !reachable) ? View.VISIBLE : View.GONE);
+                    boolean paired = device.isPaired();
+                    boolean reachable = device.isReachable();
 
-            try {
-                ArrayList<ListAdapter.Item> items = new ArrayList<>();
+                    rootView.findViewById(R.id.pairing_buttons).setVisibility(paired ? View.GONE : View.VISIBLE);
+                    rootView.findViewById(R.id.unpair_message).setVisibility((paired && !reachable) ? View.VISIBLE : View.GONE);
 
-                //Plugins button list
-                final Collection<Plugin> plugins = device.getLoadedPlugins().values();
-                for (final Plugin p : plugins) {
-                    if (!p.hasMainActivity()) continue;
-                    if (p.displayInContextMenu()) continue;
+                    try {
+                        ArrayList<ListAdapter.Item> items = new ArrayList<>();
 
-                    items.add(new PluginItem(p, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            p.startMainActivity(mActivity);
-                        }
-                    }));
-                }
+                        //Plugins button list
+                        final Collection<Plugin> plugins = device.getLoadedPlugins().values();
+                        for (final Plugin p : plugins) {
+                            if (!p.hasMainActivity()) continue;
+                            if (p.displayInContextMenu()) continue;
 
-                //Failed plugins List
-                final HashMap<String, Plugin> failed = device.getFailedPlugins();
-                if (!failed.isEmpty()) {
-                    if (errorHeader == null) {
-                        errorHeader = new TextView(mActivity);
-                        errorHeader.setPadding(
-                                0,
-                                ((int) (28 * getResources().getDisplayMetrics().density)),
-                                0,
-                                ((int) (8 * getResources().getDisplayMetrics().density))
-                        );
-                        errorHeader.setOnClickListener(null);
-                        errorHeader.setOnLongClickListener(null);
-                        errorHeader.setText(getResources().getString(R.string.plugins_failed_to_load));
-                    }
-                    items.add(new CustomItem(errorHeader));
-                    for (String s : failed.keySet()) {
-                        final Plugin p = failed.get(s);
-                        if (p == null) {
-                            items.add(new SmallEntryItem(s));
-                        } else {
-                            items.add(new SmallEntryItem(p.getDisplayName(), new View.OnClickListener() {
+                            items.add(new PluginItem(p, new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    p.getErrorDialog(mActivity).show();
+                                    p.startMainActivity(mActivity);
                                 }
                             }));
                         }
+
+                        //Failed plugins List
+                        final HashMap<String, Plugin> failed = device.getFailedPlugins();
+                        if (!failed.isEmpty()) {
+                            if (errorHeader == null) {
+                                errorHeader = new TextView(mActivity);
+                                errorHeader.setPadding(
+                                        0,
+                                        ((int) (28 * getResources().getDisplayMetrics().density)),
+                                        0,
+                                        ((int) (8 * getResources().getDisplayMetrics().density))
+                                );
+                                errorHeader.setOnClickListener(null);
+                                errorHeader.setOnLongClickListener(null);
+                                errorHeader.setText(getResources().getString(R.string.plugins_failed_to_load));
+                            }
+                            items.add(new CustomItem(errorHeader));
+                            for (String s : failed.keySet()) {
+                                final Plugin p = failed.get(s);
+                                if (p == null) {
+                                    items.add(new SmallEntryItem(s));
+                                } else {
+                                    items.add(new SmallEntryItem(p.getDisplayName(), new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            p.getErrorDialog(mActivity).show();
+                                        }
+                                    }));
+                                }
+                            }
+                        }
+
+                        ListView buttonsList = (ListView) rootView.findViewById(R.id.buttons_list);
+                        ListAdapter adapter = new ListAdapter(mActivity, items);
+                        buttonsList.setAdapter(adapter);
+
+                        mActivity.invalidateOptionsMenu();
+
+                    } catch (IllegalStateException e) {
+                        e.printStackTrace();
+                        //Ignore: The activity was closed while we were trying to update it
+                    } catch (ConcurrentModificationException e) {
+                        Log.e("DeviceActivity", "ConcurrentModificationException");
+                        this.run(); //Try again
                     }
+
                 }
-
-                ListView buttonsList = (ListView) rootView.findViewById(R.id.buttons_list);
-                ListAdapter adapter = new ListAdapter(mActivity, items);
-                buttonsList.setAdapter(adapter);
-
-                mActivity.invalidateOptionsMenu();
-
-            } catch (IllegalStateException e) {
-                e.printStackTrace();
-                //Ignore: The activity was closed while we were trying to update it
-            } catch (ConcurrentModificationException e) {
-                Log.e("DeviceActivity", "ConcurrentModificationException");
-                this.run(); //Try again
-            }
-
             }
         });
 
@@ -375,17 +387,7 @@ public class DeviceFragment extends Fragment {
 
         @Override
         public void incomingRequest() {
-            mActivity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    ((TextView) rootView.findViewById(R.id.pair_message)).setText(R.string.pair_requested);
-                    rootView.findViewById(R.id.pair_progress).setVisibility(View.GONE);
-                    rootView.findViewById(R.id.pair_button).setVisibility(View.GONE);
-                    rootView.findViewById(R.id.pair_request).setVisibility(View.VISIBLE);
-                }
-            });
-            NotificationManager notificationManager = (NotificationManager) mActivity.getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.cancel(device.getNotificationId());
+            refreshUI();
         }
 
         @Override
