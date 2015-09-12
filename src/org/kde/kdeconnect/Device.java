@@ -692,46 +692,40 @@ public class Device implements BaseLink.PackageReceiver {
         return plugin;
     }
 
-    private synchronized void addPlugin(final String pluginKey) {
+    private synchronized boolean addPlugin(final String pluginKey) {
         Plugin existing = plugins.get(pluginKey);
         if (existing != null) {
             //Log.w("KDE/addPlugin","plugin already present:" + pluginKey);
-            return;
+            return false;
         }
 
         final Plugin plugin = PluginFactory.instantiatePluginForDevice(context, pluginKey, this);
         if (plugin == null) {
             Log.e("KDE/addPlugin","could not instantiate plugin: "+pluginKey);
             failedPlugins.put(pluginKey, null);
-            return;
+            return false;
         }
 
-        new Handler(Looper.getMainLooper()).post(new Runnable() {
-            @Override
-            public void run() {
+        boolean success;
+        try {
+            success = plugin.onCreate();
+        } catch (Exception e) {
+            success = false;
+            e.printStackTrace();
+            Log.e("KDE/addPlugin", "Exception loading plugin " + pluginKey);
+        }
 
-                boolean success;
-                try {
-                    success = plugin.onCreate();
-                } catch (Exception e) {
-                    success = false;
-                    e.printStackTrace();
-                    Log.e("KDE/addPlugin", "Exception loading plugin " + pluginKey);
-                }
+        if (success) {
+            //Log.e("addPlugin","added " + pluginKey);
+            failedPlugins.remove(pluginKey);
+            plugins.put(pluginKey, plugin);
+        } else {
+            Log.e("KDE/addPlugin", "plugin failed to load " + pluginKey);
+            plugins.remove(pluginKey);
+            failedPlugins.put(pluginKey, plugin);
+        }
 
-                if (success) {
-                    //Log.e("addPlugin","added " + pluginKey);
-                    failedPlugins.remove(pluginKey);
-                    plugins.put(pluginKey, plugin);
-                } else {
-                    Log.e("KDE/addPlugin", "plugin failed to load " + pluginKey);
-                    plugins.remove(pluginKey);
-                    failedPlugins.put(pluginKey, plugin);
-                }
-
-            }
-        });
-
+        return success;
     }
 
     private synchronized boolean removePlugin(String pluginKey) {
@@ -816,19 +810,21 @@ public class Device implements BaseLink.PackageReceiver {
             }
 
             if (pluginEnabled) {
-                addPlugin(pluginKey);
+                boolean success = addPlugin(pluginKey);
 
-                for (String packageType : incomingInterfaces) {
-                    ArrayList<String> plugins = newPluginsByIncomingInterface.get(packageType);
-                    if (plugins == null) plugins = new ArrayList<>();
-                    plugins.add(pluginKey);
-                    newPluginsByIncomingInterface.put(packageType, plugins);
-                }
-                for (String packageType : outgoingInterfaces) {
-                    ArrayList<String> plugins = newPluginsByOutgoingInterface.get(packageType);
-                    if (plugins == null) plugins = new ArrayList<>();
-                    plugins.add(pluginKey);
-                    newPluginsByOutgoingInterface.put(packageType, plugins);
+                if (success) {
+                    for (String packageType : incomingInterfaces) {
+                        ArrayList<String> plugins = newPluginsByIncomingInterface.get(packageType);
+                        if (plugins == null) plugins = new ArrayList<>();
+                        plugins.add(pluginKey);
+                        newPluginsByIncomingInterface.put(packageType, plugins);
+                    }
+                    for (String packageType : outgoingInterfaces) {
+                        ArrayList<String> plugins = newPluginsByOutgoingInterface.get(packageType);
+                        if (plugins == null) plugins = new ArrayList<>();
+                        plugins.add(pluginKey);
+                        newPluginsByOutgoingInterface.put(packageType, plugins);
+                    }
                 }
             } else {
                 removePlugin(pluginKey);
