@@ -28,8 +28,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.os.Handler;
-import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
@@ -38,9 +36,9 @@ import android.util.Log;
 
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Helpers.ObjectsHelper;
-import org.kde.kdeconnect.UserInterface.MaterialActivity;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
+import org.kde.kdeconnect.UserInterface.MaterialActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.security.KeyFactory;
@@ -793,10 +791,6 @@ public class Device implements BaseLink.PackageReceiver {
                 pluginEnabled = isPluginEnabled(pluginKey);
             }
 
-            if (pluginEnabled) {
-                newSupportedIncomingInterfaces.addAll(incomingInterfaces);
-            }
-
             if (supportsCapabilities && (!incomingInterfaces.isEmpty() || !outgoingInterfaces.isEmpty())) {
                 HashSet<String> supportedOut = new HashSet<>(outgoingInterfaces);
                 supportedOut.retainAll(incomingCapabilities); //Intersection
@@ -813,18 +807,23 @@ public class Device implements BaseLink.PackageReceiver {
                 boolean success = addPlugin(pluginKey);
 
                 if (success) {
+
+                    newSupportedIncomingInterfaces.addAll(incomingInterfaces);
+
                     for (String packageType : incomingInterfaces) {
                         ArrayList<String> plugins = newPluginsByIncomingInterface.get(packageType);
                         if (plugins == null) plugins = new ArrayList<>();
                         plugins.add(pluginKey);
                         newPluginsByIncomingInterface.put(packageType, plugins);
                     }
+
                     for (String packageType : outgoingInterfaces) {
                         ArrayList<String> plugins = newPluginsByOutgoingInterface.get(packageType);
                         if (plugins == null) plugins = new ArrayList<>();
                         plugins.add(pluginKey);
                         newPluginsByOutgoingInterface.put(packageType, plugins);
                     }
+
                 }
             } else {
                 removePlugin(pluginKey);
