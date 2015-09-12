@@ -13,6 +13,8 @@
     <string name="pref_plugin_mousepad_desc">Use your phone as a mouse and keyboard</string>
     <string name="pref_plugin_mpris">Multimedia controls</string>
     <string name="pref_plugin_mpris_desc">Control audio/video from your phone</string>
+    <string name="pref_plugin_runcommand">Run Command</string>
+    <string name="pref_plugin_runcommand_desc">Runs a command on your system</string>
     <string name="pref_plugin_ping">Ping</string>
     <string name="pref_plugin_ping_desc">Send and receive pings</string>
     <string name="pref_plugin_notifications">Notification sync</string>
@@ -153,5 +155,10 @@
     <string name="refresh">Refresh</string>
     <string name="unreachable_description">This paired device is not reachable. Make sure it is connected to your same network.</string>
     <string name="no_file_browser">There are no file browsers installed.</string>
-
+    <string name="pref_plugin_telepathy">Send SMS</string>
+    <string name="pref_plugin_telepathy_desc">Send text messages from your desktop</string>
+    <string name="plugin_not_supported">This plugin is not supported by the device</string>
+    <string name="findmyphone_title">Find My Phone</string>
+    <string name="findmyphone_description">Rings this phone so you can find it.</string>
+    <string name="findmyphone_found">Found</string>
 </resources>
