@@ -845,9 +845,7 @@ public class Device implements BaseLink.PackageReceiver {
         supportedIncomingInterfaces = newSupportedIncomingInterfaces;
         unsupportedPlugins = newUnsupportedPlugins;
 
-        for (PluginsChangedListener listener : pluginsChangedListeners) {
-            listener.onPluginsChanged(Device.this);
-        }
+        onPluginsChanged();
 
         if (capabilitiesChanged && isReachable() && isPaired()) {
             NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_CAPABILITIES);
@@ -856,6 +854,12 @@ public class Device implements BaseLink.PackageReceiver {
             sendPackage(np);
         }
 
+    }
+
+    public void onPluginsChanged() {
+        for (PluginsChangedListener listener : pluginsChangedListeners) {
+            listener.onPluginsChanged(Device.this);
+        }
     }
 
     public HashMap<String,Plugin> getLoadedPlugins() {
