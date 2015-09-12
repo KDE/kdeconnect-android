@@ -77,7 +77,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
 
         TextView text = new TextView(inflater.getContext());
         text.setText(getString(R.string.pairing_description));
-        text.setPadding(0, 0, 0, (int) (12 * getResources().getDisplayMetrics().density));
+        text.setPadding(0, (int) (16 * getResources().getDisplayMetrics().density), 0, (int) (12 * getResources().getDisplayMetrics().density));
         ((ListView) rootView).addHeaderView(text);
 
         return rootView;
