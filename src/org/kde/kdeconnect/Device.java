@@ -80,6 +80,7 @@ public class Device implements BaseLink.PackageReceiver {
 
     private ArrayList<String> unsupportedPlugins = new ArrayList<>();
     private HashSet<String> supportedIncomingInterfaces = new HashSet<>();
+    private HashSet<String> supportedOutgoingInterfaces = new HashSet<>();
 
     private HashMap<String, ArrayList<String>> pluginsByIncomingInterface;
     private HashMap<String, ArrayList<String>> pluginsByOutgoingInterface;
@@ -773,6 +774,7 @@ public class Device implements BaseLink.PackageReceiver {
 
         ArrayList<String> newUnsupportedPlugins = new ArrayList<>();
         HashSet<String> newSupportedIncomingInterfaces = new HashSet<>();
+        HashSet<String> newSupportedOutgoingInterfaces = new HashSet<>();
         HashMap<String, ArrayList<String>> newPluginsByIncomingInterface = new HashMap<>();
         HashMap<String, ArrayList<String>> newPluginsByOutgoingInterface = new HashMap<>();
 
@@ -791,6 +793,8 @@ public class Device implements BaseLink.PackageReceiver {
                 pluginEnabled = isPluginEnabled(pluginKey);
             }
 
+            //TODO: Check for plugins that will fail to load before checking the capabilities
+
             if (supportsCapabilities && (!incomingInterfaces.isEmpty() || !outgoingInterfaces.isEmpty())) {
                 HashSet<String> supportedOut = new HashSet<>(outgoingInterfaces);
                 supportedOut.retainAll(incomingCapabilities); //Intersection
@@ -799,7 +803,12 @@ public class Device implements BaseLink.PackageReceiver {
                 if (supportedOut.isEmpty() && supportedIn.isEmpty()) {
                     Log.w("ReloadPlugins", "not loading " + pluginKey + "because of unmatched capabilities");
                     newUnsupportedPlugins.add(pluginKey);
-                    pluginEnabled = false;
+                    if (pluginEnabled) {
+                        //We still want to announce this capability, to prevent a deadlock
+                        newSupportedOutgoingInterfaces.addAll(outgoingInterfaces);
+                        newSupportedIncomingInterfaces.addAll(incomingInterfaces);
+                        pluginEnabled = false;
+                    }
                 }
             }
 
@@ -809,6 +818,7 @@ public class Device implements BaseLink.PackageReceiver {
                 if (success) {
 
                     newSupportedIncomingInterfaces.addAll(incomingInterfaces);
+                    newSupportedOutgoingInterfaces.addAll(outgoingInterfaces);
 
                     for (String packageType : incomingInterfaces) {
                         ArrayList<String> plugins = newPluginsByIncomingInterface.get(packageType);
@@ -833,13 +843,14 @@ public class Device implements BaseLink.PackageReceiver {
 
         boolean capabilitiesChanged = false;
         if (!newSupportedIncomingInterfaces.equals(supportedIncomingInterfaces) ||
-                !newPluginsByOutgoingInterface.equals(pluginsByOutgoingInterface)) {
+                !newSupportedOutgoingInterfaces.equals(supportedOutgoingInterfaces)) {
             capabilitiesChanged = true;
         }
 
         pluginsByOutgoingInterface = newPluginsByOutgoingInterface;
         pluginsByIncomingInterface = newPluginsByIncomingInterface;
         supportedIncomingInterfaces = newSupportedIncomingInterfaces;
+        supportedOutgoingInterfaces = newSupportedOutgoingInterfaces;
         unsupportedPlugins = newUnsupportedPlugins;
 
         onPluginsChanged();
@@ -847,7 +858,7 @@ public class Device implements BaseLink.PackageReceiver {
         if (capabilitiesChanged && isReachable() && isPaired()) {
             NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_CAPABILITIES);
             np.set("IncomingCapabilities", new ArrayList<>(newSupportedIncomingInterfaces));
-            np.set("OutgoingCapabilities", new ArrayList<>(newPluginsByOutgoingInterface.keySet()));
+            np.set("OutgoingCapabilities", new ArrayList<>(newSupportedOutgoingInterfaces));
             sendPackage(np);
         }
 
