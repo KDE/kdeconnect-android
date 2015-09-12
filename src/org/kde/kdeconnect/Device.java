@@ -578,7 +578,7 @@ public class Device implements BaseLink.PackageReceiver {
                     plugin.onPackageReceived(np);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Log.e("KDE/Device", "Exception in "+plugin.getDisplayName()+"'s onPackageReceived()");
+                    Log.e("KDE/Device", "Exception in "+pluginKey+"'s onPackageReceived()");
                 }
             }
         } else {
