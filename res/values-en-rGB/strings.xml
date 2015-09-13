@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="pref_plugin_telephony">Telephony notifier</string>
+  <string name="pref_plugin_telephony_desc">Send notifications for SMS and calls</string>
+  <string name="pref_plugin_battery">Battery report</string>
+  <string name="pref_plugin_battery_desc">Periodically report battery status</string>
+  <string name="pref_plugin_sftp">Filesystem expose</string>
+  <string name="pref_plugin_sftp_desc">Allows to browse the phone\'s filesystem remotely</string>
+  <string name="pref_plugin_clipboard">Clipboard sync</string>
+  <string name="pref_plugin_clipboard_desc">Share the clipboard content</string>
+  <string name="pref_plugin_mousepad">Remote input</string>
+  <string name="pref_plugin_mousepad_desc">Use your phone as a mouse and keyboard</string>
+  <string name="pref_plugin_mpris">Multimedia controls</string>
+  <string name="pref_plugin_mpris_desc">Control audio/video from your phone</string>
+  <string name="pref_plugin_ping">Ping</string>
+  <string name="pref_plugin_ping_desc">Send and receive pings</string>
+  <string name="pref_plugin_notifications">Notification sync</string>
+  <string name="pref_plugin_notifications_desc">Access your notifications from other devices</string>
+  <string name="pref_plugin_sharereceiver">Share and receive</string>
+  <string name="pref_plugin_sharereceiver_desc">Share files and URLs between devices</string>
+  <string name="plugin_not_available">This feature is not available in your Android version</string>
+  <string name="device_list_empty">No devices</string>
+  <string name="ok">OK</string>
+  <string name="cancel">Cancel</string>
+  <string name="open_settings">Open settings</string>
+  <string name="no_permissions">You need to grant permission to access notifications</string>
+  <string name="send_ping">Send ping</string>
+  <string name="open_mpris_controls">Multimedia control</string>
+  <string name="open_mousepad">Remote input</string>
+  <string name="mousepad_info">Move a finger on the screen to move the mouse cursor. Tap for a click, and use two/three fingers for right and middle buttons. Use a long press to drag\'n drop.</string>
+  <string name="mousepad_double_tap_settings_title">Set two finger tap action</string>
+  <string name="mousepad_triple_tap_settings_title">Set three finger tap action</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Right click</item>
+    <item>Middle click</item>
+    <item>Nothing</item>
+  </string-array>
+  <string name="mousepad_double_default">right</string>
+  <string name="mousepad_triple_default">middle</string>
+  <string name="category_connected_devices">Connected devices</string>
+  <string name="category_not_paired_devices">Available devices</string>
+  <string name="category_remembered_devices">Remembered devices</string>
+  <string name="plugins_failed_to_load">Plugins failed to load (tap for more info):</string>
+  <string name="device_menu_plugins">Plugin settings</string>
+  <string name="device_menu_unpair">Unpair</string>
+  <string name="device_not_reachable">Paired device not reachable</string>
+  <string name="unknown_device">Unknown device</string>
+  <string name="error_not_reachable">Device not reachable</string>
+  <string name="error_already_requested">Pairing already requested</string>
+  <string name="error_already_paired">Device already paired</string>
+  <string name="error_could_not_send_package">Could not send package</string>
+  <string name="error_timed_out">Timed out</string>
+  <string name="error_canceled_by_user">Cancelled by user</string>
+  <string name="error_canceled_by_other_peer">Cancelled by other peer</string>
+  <string name="error_invalid_key">Invalid key received</string>
+  <string name="pair_requested">Pair requested</string>
+  <string name="pairing_request_from">Pairing request from %1s</string>
+  <string name="received_url_title">Received link from %1s</string>
+  <string name="received_url_text">Tap to open \'%1s\'</string>
+  <string name="incoming_file_title">Incoming file from %1s</string>
+  <string name="incoming_file_text">%1s</string>
+  <string name="outgoing_file_title">Sending file to %1s</string>
+  <string name="outgoing_file_text">%1s</string>
+  <string name="received_file_title">Received file from %1s</string>
+  <string name="received_file_fail_title">Failed receiving file from %1s</string>
+  <string name="received_file_text">Tap to open \'%1s\'</string>
+  <string name="sent_file_title">Sent file to %1s</string>
+  <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Failed to send file %1s</string>
+  <string name="sent_file_failed_text">%1s</string>
+  <string name="tap_to_answer">Tap to answer</string>
+  <string name="reconnect">Reconnect</string>
+  <string name="right_click">Send Right Click</string>
+  <string name="middle_click">Send Middle Click</string>
+  <string name="show_keyboard">Show Keyboard</string>
+  <string name="device_not_paired">Device not paired</string>
+  <string name="request_pairing">Request pairing</string>
+  <string name="pairing_accept">Accept</string>
+  <string name="pairing_reject">Reject</string>
+  <string name="device">Device</string>
+  <string name="pair_device">Pair device</string>
+  <string name="remote_control">Remote control</string>
+  <string name="settings">KDE Connect Settings</string>
+  <string name="mpris_play">Play</string>
+  <string name="mpris_previous">Previous</string>
+  <string name="mpris_rew">Rewind</string>
+  <string name="mpris_ff">Fast-forward</string>
+  <string name="mpris_next">Next</string>
+  <string name="mpris_volume">Volume</string>
+  <string name="mpris_settings">Multimedia Settings</string>
+  <string name="mpris_time_settings_title">Forward/rewind buttons</string>
+  <string name="mpris_time_settings_summary">Adjust the time to fast forward/rewind when pressed.</string>
+  <string-array name="mpris_time_entries">
+    <item>10 seconds</item>
+    <item>20 seconds</item>
+    <item>30 seconds</item>
+    <item>1 minute</item>
+    <item>2 minutes</item>
+  </string-array>
+  <string name="share_to">Share To...</string>
+  <string name="protocol_version_older">This device uses an old protocol version</string>
+  <string name="protocol_version_newer">This device uses a newer protocol version</string>
+  <string name="general_settings">General Settings</string>
+  <string name="plugin_settings">Settings</string>
+  <string name="plugin_settings_with_name">%s settings</string>
+  <string name="device_name">Device name</string>
+  <string name="device_name_preference_summary">%s</string>
+  <string name="invalid_device_name">Invalid device name</string>
+  <string name="shareplugin_text_saved">Received text, saved to clipboard</string>
+  <string name="custom_devices_settings">Custom device list</string>
+  <string name="pair_device_action">Pair a new device</string>
+  <string name="unpair_device_action">Unpair %s</string>
+  <string name="custom_device_list">Add devices by IP</string>
+  <string name="share_notification_preference">Noisy notifications</string>
+  <string name="share_notification_preference_summary">Vibrate and play a sound when receiving a file</string>
+  <string name="title_activity_notification_filter">Notification filter</string>
+  <string name="filter_apps_info">Notifications will be synchronised for the selected apps.</string>
+  <string name="sftp_internal_storage">Internal storage</string>
+  <string name="sftp_all_files">All files</string>
+  <string name="sftp_sdcard_num">SD card %d</string>
+  <string name="sftp_sdcard">SD card</string>
+  <string name="sftp_readonly">(read only)</string>
+  <string name="sftp_camera">Camera pictures</string>
+  <string name="add_host">Add host/IP</string>
+  <string name="add_host_hint">Hostname or IP</string>
+  <string name="no_players_connected">No players found</string>
+  <string name="custom_dev_list_help">Use this option only if your device is not automatically detected. Enter IP address or hostname below and touch the button to add it to the list. Touch an existing item to remove it from the list.</string>
+  <string name="mpris_player_on_device">%1$s on %2$s</string>
+  <string name="send_files">Send files</string>
+  <string name="pairing_title">KDE Connect Devices</string>
+  <string name="pairing_description">Other devices running KDE Connect in your same network should appear here.</string>
+  <string name="device_paired">Device paired</string>
+  <string name="device_rename_title">Rename device</string>
+  <string name="device_rename_confirm">Rename</string>
+  <string name="refresh">Refresh</string>
+  <string name="unreachable_description">This paired device is not reachable. Make sure it is connected to your same network.</string>
+  <string name="no_file_browser">There are no file browsers installed.</string>
+  <string name="pref_plugin_telepathy">Send SMS</string>
+  <string name="pref_plugin_telepathy_desc">Send text messages from your desktop</string>
+  <string name="plugin_not_supported">This plugin is not supported by the device</string>
+  <string name="findmyphone_title">Find My Phone</string>
+  <string name="findmyphone_description">Rings this phone so you can find it.</string>
+  <string name="findmyphone_found">Found</string>
+</resources>
