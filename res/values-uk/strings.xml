@@ -12,6 +12,8 @@
   <string name="pref_plugin_mousepad_desc">Скористайтеся телефоном як замінником миші і клавіатури</string>
   <string name="pref_plugin_mpris">Керування відтворенням</string>
   <string name="pref_plugin_mpris_desc">Керування відтворенням звуку та відео з вашого телефону</string>
+  <string name="pref_plugin_runcommand">Виконати команду</string>
+  <string name="pref_plugin_runcommand_desc">Виконує команду у вашій системі</string>
   <string name="pref_plugin_ping">Підтримання зв’язку</string>
   <string name="pref_plugin_ping_desc">Надсилання і отримання сигналів підтримання зв’язку</string>
   <string name="pref_plugin_notifications">Синхронізація сповіщень</string>
@@ -138,4 +140,7 @@
   <string name="pref_plugin_telepathy">Надіслати SMS</string>
   <string name="pref_plugin_telepathy_desc">Надсилати текстові повідомлення з вашої робочої станції</string>
   <string name="plugin_not_supported">Підтримки цього додатка не передбачено на пристрої</string>
+  <string name="findmyphone_title">Знайти телефон</string>
+  <string name="findmyphone_description">Відтворити дзвінок, щоб телефон було простіше знайти.</string>
+  <string name="findmyphone_found">Знайдено</string>
 </resources>

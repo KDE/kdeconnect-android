@@ -12,6 +12,8 @@
   <string name="pref_plugin_mousepad_desc">Uw telefoon gebruiken als een muis en toetsenbord</string>
   <string name="pref_plugin_mpris">Bediening van multimedia</string>
   <string name="pref_plugin_mpris_desc">Bedien de audio/video vanaf uw telefoon</string>
+  <string name="pref_plugin_runcommand">Commando uitvoeren</string>
+  <string name="pref_plugin_runcommand_desc">Voert een commando uit op uw systeem</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Pings verzenden en ontvangen</string>
   <string name="pref_plugin_notifications">Synchronisatie van meldingen</string>
@@ -138,4 +140,7 @@
   <string name="pref_plugin_telepathy">SMS verzenden</string>
   <string name="pref_plugin_telepathy_desc">Stuur tekstberichten van uw bureaublad</string>
   <string name="plugin_not_supported">Deze plug-in wordt niet ondersteund door het apparaat</string>
+  <string name="findmyphone_title">Zoek mijn telefoon</string>
+  <string name="findmyphone_description">Laat deze telefoon bellen zodat u het kunt vinden.</string>
+  <string name="findmyphone_found">Gevonden</string>
 </resources>

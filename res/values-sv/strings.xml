@@ -12,6 +12,8 @@
   <string name="pref_plugin_mousepad_desc">Använd telefonen som mus och tangentbord</string>
   <string name="pref_plugin_mpris">Multimediakontroller</string>
   <string name="pref_plugin_mpris_desc">Styr ljud och video från telefonen</string>
+  <string name="pref_plugin_runcommand">Kör kommando</string>
+  <string name="pref_plugin_runcommand_desc">Kör ett kommando på systemet</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Skicka och ta emot ping</string>
   <string name="pref_plugin_notifications">Synkronisering av underrättelser</string>
@@ -138,4 +140,7 @@
   <string name="pref_plugin_telepathy">Skicka SMS</string>
   <string name="pref_plugin_telepathy_desc">Skicka textmeddelanden från skrivbordet</string>
   <string name="plugin_not_supported">Insticksprogrammet stöds inte av apparaten</string>
+  <string name="findmyphone_title">Hitta min telefon</string>
+  <string name="findmyphone_description">Ringer till telefonen så att du kan hitta den.</string>
+  <string name="findmyphone_found">Hittade den</string>
 </resources>

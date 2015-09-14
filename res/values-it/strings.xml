@@ -108,6 +108,8 @@
   <string name="invalid_device_name">Nome dispositivo non valido</string>
   <string name="shareplugin_text_saved">Testo ricevuto, salvato negli appunti</string>
   <string name="custom_devices_settings">Elenco dispositivi personalizzato</string>
+  <string name="pair_device_action">Associa un nuovo dispositivo</string>
+  <string name="unpair_device_action">Disassocia %s</string>
   <string name="custom_device_list">Aggiungi dispositivi per IP</string>
   <string name="share_notification_preference">Notifiche rumorose</string>
   <string name="share_notification_preference_summary">Vibra e riproduci un suono alla ricezione di un file</string>
@@ -124,4 +126,16 @@
   <string name="no_players_connected">Nessun lettore trovato</string>
   <string name="custom_dev_list_help">Usa questa opzione solo se il tuo dispositivo non è rilevato automaticamente. Digita l\'indirizzo IP o il nome host in basso e tocca il pulsante per aggiungerlo all\'elenco. Tocca un elemento esistente per rimuoverlo dall\'elenco.</string>
   <string name="mpris_player_on_device">%1$s su %2$s</string>
+  <string name="send_files">Invia file</string>
+  <string name="pairing_title">Dispositivi KDE Connect</string>
+  <string name="pairing_description">Altri dispositivi che eseguono KDE Connect nella tua stessa rete dovrebbero apparire qui.</string>
+  <string name="device_paired">Dispositivo associato</string>
+  <string name="device_rename_title">Rinomina dispositivo</string>
+  <string name="device_rename_confirm">Rinomina</string>
+  <string name="refresh">Aggiorna</string>
+  <string name="unreachable_description">Questo dispositivo associato non è raggiungibile. Assicurati che sia connesso alla tua stessa rete.</string>
+  <string name="no_file_browser">Non ci sono navigatori di file installati.</string>
+  <string name="pref_plugin_telepathy">Invia SMS</string>
+  <string name="pref_plugin_telepathy_desc">Invia messaggi di testo dal tuo desktop</string>
+  <string name="plugin_not_supported">Questa estensione non è supportata dal dispositivo</string>
 </resources>
