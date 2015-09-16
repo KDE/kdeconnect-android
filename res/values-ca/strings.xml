@@ -12,6 +12,8 @@
   <string name="pref_plugin_mousepad_desc">Usa el vostre telèfon com un ratolí i un teclat</string>
   <string name="pref_plugin_mpris">Controls multimèdia</string>
   <string name="pref_plugin_mpris_desc">Controla l\'àudio i el vídeo del vostre telèfon</string>
+  <string name="pref_plugin_runcommand">Executa una ordre</string>
+  <string name="pref_plugin_runcommand_desc">Executa una ordre al vostre sistema</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Envia i rep els pings</string>
   <string name="pref_plugin_notifications">Sincronitza les notificacions</string>
@@ -138,4 +140,7 @@
   <string name="pref_plugin_telepathy">Envia un SMS</string>
   <string name="pref_plugin_telepathy_desc">Envia missatges de text des de l\'escriptori</string>
   <string name="plugin_not_supported">Aquest connector no és admès pel dispositiu</string>
+  <string name="findmyphone_title">Troba el meu telèfon</string>
+  <string name="findmyphone_description">Fa sonar aquest telèfon perquè el pugueu trobar.</string>
+  <string name="findmyphone_found">L\'he trobat</string>
 </resources>
