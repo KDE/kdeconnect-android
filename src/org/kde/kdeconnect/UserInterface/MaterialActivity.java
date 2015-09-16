@@ -13,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -39,6 +40,7 @@ public class MaterialActivity extends AppCompatActivity {
 
     private NavigationView mNavigationView;
     private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mDrawerToggle;
 
     private String mCurrentDevice;
 
@@ -57,10 +59,19 @@ public class MaterialActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_drawer);
+
+        mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
+                mDrawerLayout, /* DrawerLayout object */
+                R.string.open, /* "open drawer" description */
+                R.string.close /* "close drawer" description */
+        );
+
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
+        mDrawerToggle.syncState();
 
         String deviceName = DeviceHelper.getDeviceName(this);
         TextView nameView = (TextView) mDrawerLayout.findViewById(R.id.device_name);
@@ -96,7 +107,7 @@ public class MaterialActivity extends AppCompatActivity {
             Log.i("MaterialActivity", "Loading selected device from saved activity state");
             savedDevice = savedInstanceState.getString(STATE_SELECTED_DEVICE);
         } else {
-            Log.i("MaterialActivity","Loading selected device from persistent storage");
+            Log.i("MaterialActivity", "Loading selected device from persistent storage");
             savedDevice = preferences.getString(STATE_SELECTED_DEVICE, null);
         }
         onDeviceSelected(savedDevice);
@@ -195,7 +206,7 @@ public class MaterialActivity extends AppCompatActivity {
 
         preferences.edit().putString(STATE_SELECTED_DEVICE, mCurrentDevice).apply();
 
-        for(HashMap.Entry<MenuItem, String> entry : mMapMenuToDeviceId.entrySet()) {
+        for (HashMap.Entry<MenuItem, String> entry : mMapMenuToDeviceId.entrySet()) {
             boolean selected = TextUtils.equals(entry.getValue(), deviceId); //null-safe
             entry.getKey().setChecked(selected);
         }
@@ -232,8 +243,7 @@ public class MaterialActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode)
-        {
+        switch (requestCode) {
             case RESULT_NEEDS_RELOAD:
                 BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
                     @Override
