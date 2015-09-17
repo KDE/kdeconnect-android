@@ -12,6 +12,8 @@
   <string name="pref_plugin_mousepad_desc">Käytä puhelintasi hiirenä ja näppäimistönä</string>
   <string name="pref_plugin_mpris">Multimedian ohjaus</string>
   <string name="pref_plugin_mpris_desc">Ohjaa ääntä ja videota puhelimestasi</string>
+  <string name="pref_plugin_runcommand">Suorita komento</string>
+  <string name="pref_plugin_runcommand_desc">Suorita komento järjestelmässäsi</string>
   <string name="pref_plugin_ping">Tiedustelupaketti</string>
   <string name="pref_plugin_ping_desc">Lähetä ja vastaanota tiedustelupaketteja</string>
   <string name="pref_plugin_notifications">Ilmoitusten synkronointi</string>
