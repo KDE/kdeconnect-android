@@ -143,4 +143,6 @@
   <string name="findmyphone_title">Знайти телефон</string>
   <string name="findmyphone_description">Відтворити дзвінок, щоб телефон було простіше знайти.</string>
   <string name="findmyphone_found">Знайдено</string>
+  <string name="open">Відкрити</string>
+  <string name="close">Закрити</string>
 </resources>

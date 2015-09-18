@@ -143,4 +143,6 @@
   <string name="findmyphone_title">Hitta min telefon</string>
   <string name="findmyphone_description">Ringer till telefonen så att du kan hitta den.</string>
   <string name="findmyphone_found">Hittade den</string>
+  <string name="open">Öppna</string>
+  <string name="close">Stäng</string>
 </resources>
