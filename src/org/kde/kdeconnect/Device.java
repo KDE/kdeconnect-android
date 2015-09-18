@@ -481,15 +481,11 @@ public class Device implements BaseLink.PackageReceiver {
 
                 if (pairStatus == PairStatus.Requested)  { //We started pairing
 
-                    Log.i("KDE/Pairing","Pair answer");
-
                     hidePairingNotification();
 
                     pairingDone();
 
                 } else {
-
-                    Log.i("KDE/Pairing","Pair request");
 
                     Intent intent = new Intent(context, MaterialActivity.class);
                     intent.putExtra("deviceId", deviceId);

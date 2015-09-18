@@ -300,7 +300,6 @@ public class DeviceFragment extends Fragment {
             @Override
             public void run() {
 
-                Log.e("DEVICE",device.getName() + device.isPairRequestedByOtherEnd() + device.isPairRequested());
                 if (device.isPairRequestedByOtherEnd()) {
                     ((TextView) rootView.findViewById(R.id.pair_message)).setText(R.string.pair_requested);
                     rootView.findViewById(R.id.pair_progress).setVisibility(View.GONE);
