@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.kde.kdeconnect_tp"
-    android:versionCode="905"
-    android:versionName="0.9">
+    android:versionCode="907"
+    android:versionName="0.9c">
 
     <uses-sdk android:minSdkVersion="9"
               android:targetSdkVersion="22" />

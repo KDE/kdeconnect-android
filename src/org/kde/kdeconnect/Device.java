@@ -52,6 +52,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Device implements BaseLink.PackageReceiver {
@@ -75,8 +76,8 @@ public class Device implements BaseLink.PackageReceiver {
     private ArrayList<String> incomingCapabilities;
     private ArrayList<String> outgoingCapabilities;
 
-    private final HashMap<String, Plugin> plugins = new HashMap<>();
-    private final HashMap<String, Plugin> failedPlugins = new HashMap<>();
+    private final ConcurrentHashMap<String, Plugin> plugins = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, Plugin> failedPlugins = new ConcurrentHashMap<>();
 
     private ArrayList<String> unsupportedPlugins = new ArrayList<>();
     private HashSet<String> supportedIncomingInterfaces = new HashSet<>();
@@ -495,15 +496,11 @@ public class Device implements BaseLink.PackageReceiver {
 
                 if (pairStatus == PairStatus.Requested)  { //We started pairing
 
-                    Log.i("KDE/Pairing","Pair answer");
-
                     hidePairingNotification();
 
                     pairingDone();
 
                 } else {
-
-                    Log.i("KDE/Pairing","Pair request");
 
                     Intent intent = new Intent(context, MaterialActivity.class);
                     intent.putExtra("deviceId", deviceId);
@@ -877,11 +874,11 @@ public class Device implements BaseLink.PackageReceiver {
         }
     }
 
-    public HashMap<String,Plugin> getLoadedPlugins() {
+    public ConcurrentHashMap<String,Plugin> getLoadedPlugins() {
         return plugins;
     }
 
-    public HashMap<String,Plugin> getFailedPlugins() {
+    public ConcurrentHashMap<String,Plugin> getFailedPlugins() {
         return failedPlugins;
     }
 
