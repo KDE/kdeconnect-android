@@ -143,4 +143,6 @@
   <string name="findmyphone_title">Zoek mijn telefoon</string>
   <string name="findmyphone_description">Laat deze telefoon bellen zodat u het kunt vinden.</string>
   <string name="findmyphone_found">Gevonden</string>
+  <string name="open">Openen</string>
+  <string name="close">Sluiten</string>
 </resources>
