@@ -143,4 +143,6 @@
   <string name="findmyphone_title">Löydä puhelimeni</string>
   <string name="findmyphone_description">Laittaa puhelimen soimaan, jotta voit löytää sen.</string>
   <string name="findmyphone_found">Löytyi</string>
+  <string name="open">Avaa</string>
+  <string name="close">Sulje</string>
 </resources>
