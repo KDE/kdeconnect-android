@@ -350,11 +350,14 @@ public class BackgroundService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         //This will be called for each intent launch, even if the service is already started and it is reused
         mutex.lock();
-        for (InstanceCallback c : callbacks) {
-            c.onServiceStart(this);
+        try {
+            for (InstanceCallback c : callbacks) {
+                c.onServiceStart(this);
+            }
+            callbacks.clear();
+        } finally {
+            mutex.unlock();
         }
-        callbacks.clear();
-        mutex.unlock();
         return Service.START_STICKY;
     }
 
@@ -368,8 +371,11 @@ public class BackgroundService extends Service {
             public void run() {
                 if (callback != null) {
                     mutex.lock();
-                    callbacks.add(callback);
-                    mutex.unlock();
+                    try {
+                        callbacks.add(callback);
+                    } finally {
+                        mutex.unlock();
+                    }
                 }
                 Intent serviceIntent = new Intent(c, BackgroundService.class);
                 c.startService(serviceIntent);
