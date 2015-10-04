@@ -54,7 +54,7 @@ public class ContactsHelper {
                 String name = cursor.getString(nameIndex);
                 //Log.e("PhoneNumberLookup", "success: " + name);
                 cursor.close();
-                return name + " (" + number + ")";
+                return name;
             }
         }
 
