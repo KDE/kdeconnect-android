@@ -50,6 +50,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
@@ -332,7 +333,7 @@ public class DeviceFragment extends Fragment {
                         }
 
                         //Failed plugins List
-                        final HashMap<String, Plugin> failed = device.getFailedPlugins();
+                        final ConcurrentHashMap<String, Plugin> failed = device.getFailedPlugins();
                         if (!failed.isEmpty()) {
                             if (errorHeader == null) {
                                 errorHeader = new TextView(mActivity);
