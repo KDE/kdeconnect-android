@@ -250,11 +250,17 @@ public class MaterialActivity extends AppCompatActivity {
         }
     }
 
-    void renameDevice() {
+    public void renameDevice() {
         final TextView nameView = (TextView) mDrawerLayout.findViewById(R.id.device_name);
         final EditText deviceNameEdit = new EditText(MaterialActivity.this);
         String deviceName = DeviceHelper.getDeviceName(MaterialActivity.this);
         deviceNameEdit.setText(deviceName);
+        deviceNameEdit.setPadding(
+                ((int) (18 * getResources().getDisplayMetrics().density)),
+                ((int) (16 * getResources().getDisplayMetrics().density)),
+                ((int) (18 * getResources().getDisplayMetrics().density)),
+                ((int) (12 * getResources().getDisplayMetrics().density))
+        );
         new AlertDialog.Builder(MaterialActivity.this)
                 .setView(deviceNameEdit)
                 .setPositiveButton(R.string.device_rename_confirm, new DialogInterface.OnClickListener() {
