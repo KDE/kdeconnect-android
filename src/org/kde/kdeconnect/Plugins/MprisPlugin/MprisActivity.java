@@ -91,7 +91,7 @@ public class MprisActivity extends ActionBarActivity {
                                 String song = mpris.getCurrentSong();
                                 ((TextView) findViewById(R.id.now_playing_textview)).setText(song);
 
-                                if (mpris.getLength() > -1 && mpris.getPosition() > -1 && !"Spotify".equals(mpris.getPlayer())) {
+                                if (mpris.getLength() > -1 && mpris.getPosition() > -1 && !"spotify".equals(mpris.getPlayer().toLowerCase())) {
                                     ((TextView) findViewById(R.id.time_textview)).setText(milisToProgress(mpris.getLength()));
 
                                     SeekBar positionSeek = (SeekBar)findViewById(R.id.positionSeek);
@@ -154,7 +154,7 @@ public class MprisActivity extends ActionBarActivity {
                                         mpris.setPlayer(player);
                                         //Spotify doesn't support changing the volume yet...
                                         //Also doesn't support seeking and telling actual position...
-                                        if (player.equals("Spotify")) {
+                                        if (player.toLowerCase().equals("spotify")) {
                                             findViewById(R.id.volume_layout).setVisibility(View.INVISIBLE);
                                             findViewById(R.id.rew_button).setVisibility(View.GONE);
                                             findViewById(R.id.ff_button).setVisibility(View.GONE);
