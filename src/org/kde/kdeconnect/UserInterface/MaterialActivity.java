@@ -66,12 +66,14 @@ public class MaterialActivity extends AppCompatActivity {
         TextView nameView = (TextView) mDrawerLayout.findViewById(R.id.device_name);
         nameView.setText(deviceName);
 
-        nameView.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener renameListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 renameDevice();
             }
-        });
+        };
+        mDrawerLayout.findViewById(R.id.kdeconnect_label).setOnClickListener(renameListener);
+        mDrawerLayout.findViewById(R.id.device_name).setOnClickListener(renameListener);
 
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
