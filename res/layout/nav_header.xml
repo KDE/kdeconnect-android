@@ -16,8 +16,10 @@
         android:layout_above="@+id/device_name"
         android:id="@+id/kdeconnect_label"
         android:paddingLeft="16dp"
+        android:paddingStart="16dp"
         android:paddingTop="8dp"
         android:paddingRight="48dp"
+        android:paddingEnd="48dp"
         />
 
     <TextView
@@ -33,6 +35,8 @@
         android:paddingBottom="16dp"
         android:paddingTop="4dp"
         android:paddingRight="48dp"
+        android:paddingEnd="48dp"
+        android:paddingStart="16dp"
         android:paddingLeft="16dp" />
 
     <!--
