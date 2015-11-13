@@ -345,17 +345,18 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
             }
         });
     }
-        private void sendSingleHold() {
-            BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-                @Override
-                public void onServiceStart(BackgroundService service) {
-                    Device device = service.getDevice(deviceId);
-                    MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
-                    if (mousePadPlugin == null) return;
-                    mousePadPlugin.sendSingleHold();
-                }
-            });
-        }
+
+    private void sendSingleHold() {
+        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                Device device = service.getDevice(deviceId);
+                MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
+                if (mousePadPlugin == null) return;
+                mousePadPlugin.sendSingleHold();
+            }
+        });
+    }
 
     private void showKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
