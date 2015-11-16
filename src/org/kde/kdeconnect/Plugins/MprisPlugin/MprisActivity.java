@@ -410,10 +410,13 @@ public class MprisActivity extends ActionBarActivity {
                     @Override
                     public void onServiceStart(BackgroundService service) {
                         Device device = service.getDevice(deviceId);
-                        MprisPlugin mpris = device.getPlugin(MprisPlugin.class);
-                        if (mpris != null) {
-                            positionSeek.setProgress((int) (mpris.getPosition()));
+                        if (device != null) {
+                            MprisPlugin mpris = device.getPlugin(MprisPlugin.class);
+                            if (mpris != null) {
+                                positionSeek.setProgress((int) (mpris.getPosition()));
+                            }
                         }
+                        positionSeekUpdateHandler.removeCallbacks(positionSeekUpdateRunnable);
                         positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 1000);
                     }
                 });
