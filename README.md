@@ -22,4 +22,4 @@ You can install this app from the [Play Store](https://play.google.com/store/app
 ## License
 [GNU GPL v2](https://www.gnu.org/licenses/gpl-2.0.html) and [GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.html)
 
-If you are reading this from Github, you should know that this is just a mirror of the [KDE Project repo](https://projects.kde.org/projects/playground/base/kdeconnect-android/repository/).
+If you are reading this from Github, you should know that this is just a mirror of the [KDE Project repo](https://projects.kde.org/projects/extragear/network/kdeconnect-android/repository/).

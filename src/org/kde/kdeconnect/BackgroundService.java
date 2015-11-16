@@ -20,6 +20,7 @@
 
 package org.kde.kdeconnect;
 
+import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -34,40 +35,98 @@ import android.util.Log;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
-import org.kde.kdeconnect.UserInterface.MainSettingsActivity;
+import org.kde.kdeconnect.Backends.LoopbackBackend.LoopbackLinkProvider;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class BackgroundService extends Service {
 
-    private final ArrayList<BaseLinkProvider> linkProviders = new ArrayList<BaseLinkProvider>();
+    public interface DeviceListChangedCallback {
+        void onDeviceListChanged();
+    }
 
-    private final HashMap<String, Device> devices = new HashMap<String, Device>();
+    private final ConcurrentHashMap<String, DeviceListChangedCallback> deviceListChangedCallbacks = new ConcurrentHashMap<>();
+
+    private final ArrayList<BaseLinkProvider> linkProviders = new ArrayList<>();
+
+    private final ConcurrentHashMap<String, Device> devices = new ConcurrentHashMap<>();
+
+    private final HashSet<Object> discoveryModeAcquisitions = new HashSet<>();
+
+    public boolean acquireDiscoveryMode(Object key) {
+        boolean wasEmpty = discoveryModeAcquisitions.isEmpty();
+        discoveryModeAcquisitions.add(key);
+        if (wasEmpty) {
+            onNetworkChange();
+        }
+        return wasEmpty;
+    }
+
+    public void releaseDiscoveryMode(Object key) {
+        boolean removed = discoveryModeAcquisitions.remove(key);
+        if (removed && discoveryModeAcquisitions.isEmpty()) {
+            cleanDevices();
+        }
+    }
+
+    public static void addGuiInUseCounter(Context activity) {
+        addGuiInUseCounter(activity, false);
+    }
+
+    public static void addGuiInUseCounter(final Context activity, final boolean forceNetworkRefresh) {
+        BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                boolean refreshed = service.acquireDiscoveryMode(activity);
+                if (!refreshed && forceNetworkRefresh) {
+                    service.onNetworkChange();
+                }
+            }
+        });
+    }
+
+    public static void removeGuiInUseCounter(final Context activity) {
+        BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                //If no user interface is open, close the connections open to other devices
+                service.releaseDiscoveryMode(activity);
+            }
+        });
+    }
 
     private final Device.PairingCallback devicePairingCallback = new Device.PairingCallback() {
         @Override
         public void incomingRequest() {
-            if (deviceListChangedCallback != null) deviceListChangedCallback.onDeviceListChanged();
+            onDeviceListChanged();
         }
         @Override
         public void pairingSuccessful() {
-            if (deviceListChangedCallback != null) deviceListChangedCallback.onDeviceListChanged();
+            onDeviceListChanged();
         }
         @Override
         public void pairingFailed(String error) {
-            if (deviceListChangedCallback != null) deviceListChangedCallback.onDeviceListChanged();
+            onDeviceListChanged();
         }
         @Override
         public void unpaired() {
-            if (deviceListChangedCallback != null) deviceListChangedCallback.onDeviceListChanged();
+            onDeviceListChanged();
         }
     };
+
+    private void onDeviceListChanged() {
+        for(DeviceListChangedCallback callback : deviceListChangedCallbacks.values()) {
+            callback.onDeviceListChanged();
+        }
+    }
 
     private void loadRememberedDevicesFromSettings() {
         //Log.e("BackgroundService", "Loading remembered trusted devices");
@@ -101,11 +160,17 @@ public class BackgroundService extends Service {
         return devices.get(id);
     }
 
+    private void cleanDevices() {
+        for(Device d : devices.values()) {
+            if (!d.isPaired() && !d.isPairRequested() && !d.isPairRequestedByOtherEnd() && d.getConnectionSource() == BaseLink.ConnectionStarted.Remotely) {
+                d.disconnect();
+            }
+        }
+    }
+
     private final BaseLinkProvider.ConnectionReceiver deviceListener = new BaseLinkProvider.ConnectionReceiver() {
         @Override
         public void onConnectionReceived(final NetworkPackage identityPackage, final BaseLink link) {
-
-            Log.i("KDE/BackgroundService", "Connection accepted!");
 
             String deviceId = identityPackage.getString("deviceId");
 
@@ -117,11 +182,18 @@ public class BackgroundService extends Service {
             } else {
                 Log.i("KDE/BackgroundService", "addLink,unknown device: " + deviceId);
                 device = new Device(BackgroundService.this, identityPackage, link);
-                devices.put(deviceId, device);
-                device.addPairingCallback(devicePairingCallback);
+                if (device.isPaired() || device.isPairRequested() || device.isPairRequestedByOtherEnd()
+                        || link.getConnectionSource() == BaseLink.ConnectionStarted.Locally
+                        ||!discoveryModeAcquisitions.isEmpty() )
+                {
+                    devices.put(deviceId, device);
+                    device.addPairingCallback(devicePairingCallback);
+                } else {
+                    device.disconnect();
+                }
             }
 
-            if (deviceListChangedCallback != null) deviceListChangedCallback.onDeviceListChanged();
+            onDeviceListChanged();
         }
 
         @Override
@@ -136,59 +208,40 @@ public class BackgroundService extends Service {
                     d.removePairingCallback(devicePairingCallback);
                 }
             } else {
-                Log.e("KDE/onConnectionLost","Removing connection to unknown device, this should not happen");
+                //Log.d("KDE/onConnectionLost","Removing connection to unknown device");
             }
-            if (deviceListChangedCallback != null) deviceListChangedCallback.onDeviceListChanged();
+            onDeviceListChanged();
         }
     };
 
-    public HashMap<String, Device> getDevices() {
+    public ConcurrentHashMap<String, Device> getDevices() {
         return devices;
     }
 
-    public void startDiscovery() {
-        Log.i("KDE/BackgroundService","StartDiscovery");
-        for (BaseLinkProvider a : linkProviders) {
-            a.onStart();
-        }
-    }
-
-    public void stopDiscovery() {
-        Log.i("KDE/BackgroundService","StopDiscovery");
-        for (BaseLinkProvider a : linkProviders) {
-            a.onStop();
-        }
-    }
-
     public void onNetworkChange() {
-        Log.i("KDE/BackgroundService","OnNetworkChange");
         for (BaseLinkProvider a : linkProviders) {
             a.onNetworkChange();
         }
     }
 
     public void addConnectionListener(BaseLinkProvider.ConnectionReceiver cr) {
-        Log.i("KDE/BackgroundService","Registering connection listener");
         for (BaseLinkProvider a : linkProviders) {
             a.addConnectionReceiver(cr);
         }
     }
 
     public void removeConnectionListener(BaseLinkProvider.ConnectionReceiver cr) {
-        Log.i("KDE/BackgroundService","Removing connection listener");
         for (BaseLinkProvider a : linkProviders) {
             a.removeConnectionReceiver(cr);
         }
     }
 
-    public interface DeviceListChangedCallback {
-        void onDeviceListChanged();
+    public void addDeviceListChangedCallback(String key, DeviceListChangedCallback callback) {
+        deviceListChangedCallbacks.put(key, callback);
     }
-    private DeviceListChangedCallback deviceListChangedCallback = null;
-    public void setDeviceListChangedCallback(DeviceListChangedCallback callback) {
-        this.deviceListChangedCallback = callback;
+    public void removeDeviceListChangedCallback(String key) {
+        deviceListChangedCallbacks.remove(key);
     }
-
 
     //This will called only once, even if we launch the service intent several times
     @Override
@@ -199,16 +252,18 @@ public class BackgroundService extends Service {
         IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
         registerReceiver(new KdeConnectBroadcastReceiver(), filter);
 
-        Log.i("KDE/BackgroundService","Service not started yet, initializing...");
+        Log.i("KDE/BackgroundService", "Service not started yet, initializing...");
 
         initializeRsaKeys();
-        MainSettingsActivity.initializeDeviceName(this);
         loadRememberedDevicesFromSettings();
         registerLinkProviders();
 
         //Link Providers need to be already registered
         addConnectionListener(deviceListener);
-        startDiscovery();
+
+        for (BaseLinkProvider a : linkProviders) {
+            a.onStart();
+        }
 
     }
 
@@ -269,8 +324,9 @@ public class BackgroundService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.i("KDE/BackgroundService", "Destroying");
-        stopDiscovery();
+        for (BaseLinkProvider a : linkProviders) {
+            a.onStop();
+        }
         super.onDestroy();
     }
 
@@ -286,7 +342,7 @@ public class BackgroundService extends Service {
         void onServiceStart(BackgroundService service);
     }
 
-    private final static ArrayList<InstanceCallback> callbacks = new ArrayList<InstanceCallback>();
+    private final static ArrayList<InstanceCallback> callbacks = new ArrayList<>();
 
     private final static Lock mutex = new ReentrantLock(true);
 
@@ -294,11 +350,14 @@ public class BackgroundService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         //This will be called for each intent launch, even if the service is already started and it is reused
         mutex.lock();
-        for (InstanceCallback c : callbacks) {
-            c.onServiceStart(this);
+        try {
+            for (InstanceCallback c : callbacks) {
+                c.onServiceStart(this);
+            }
+            callbacks.clear();
+        } finally {
+            mutex.unlock();
         }
-        callbacks.clear();
-        mutex.unlock();
         return Service.START_STICKY;
     }
 
@@ -312,8 +371,11 @@ public class BackgroundService extends Service {
             public void run() {
                 if (callback != null) {
                     mutex.lock();
-                    callbacks.add(callback);
-                    mutex.unlock();
+                    try {
+                        callbacks.add(callback);
+                    } finally {
+                        mutex.unlock();
+                    }
                 }
                 Intent serviceIntent = new Intent(c, BackgroundService.class);
                 c.startService(serviceIntent);

@@ -37,7 +37,7 @@ public class NotificationReceiver extends NotificationListenerService {
         void onNotificationRemoved(StatusBarNotification statusBarNotification);
     }
 
-    private final ArrayList<NotificationListener> listeners = new ArrayList<NotificationListener>();
+    private final ArrayList<NotificationListener> listeners = new ArrayList<>();
 
     public void addListener(NotificationListener listener) {
         listeners.add(listener);
@@ -71,7 +71,7 @@ public class NotificationReceiver extends NotificationListenerService {
         void onServiceStart(NotificationReceiver service);
     }
 
-    private final static ArrayList<InstanceCallback> callbacks = new ArrayList<InstanceCallback>();
+    private final static ArrayList<InstanceCallback> callbacks = new ArrayList<>();
 
     private final static Lock mutex = new ReentrantLock(true);
 
@@ -80,11 +80,14 @@ public class NotificationReceiver extends NotificationListenerService {
     public int onStartCommand(Intent intent, int flags, int startId) {
         //Log.e("NotificationReceiver", "onStartCommand");
         mutex.lock();
-        for (InstanceCallback c : callbacks) {
-            c.onServiceStart(this);
+        try {
+            for (InstanceCallback c : callbacks) {
+                c.onServiceStart(this);
+            }
+            callbacks.clear();
+        } finally {
+            mutex.unlock();
         }
-        callbacks.clear();
-        mutex.unlock();
         return Service.START_STICKY;
     }
 
@@ -96,8 +99,11 @@ public class NotificationReceiver extends NotificationListenerService {
     public static void RunCommand(Context c, final InstanceCallback callback) {
         if (callback != null) {
             mutex.lock();
-            callbacks.add(callback);
-            mutex.unlock();
+            try {
+                callbacks.add(callback);
+            } finally {
+                mutex.unlock();
+            }
         }
         Intent serviceIntent = new Intent(c, NotificationReceiver.class);
         c.startService(serviceIntent);

@@ -76,8 +76,8 @@ public class SftpPlugin extends Plugin {
                 File root = new File("/");
                 if (root.canExecute() && root.canRead()) {
                     List<StorageHelper.StorageInfo> storageList = StorageHelper.getStorageList();
-                    ArrayList<String> paths = new ArrayList<String>();
-                    ArrayList<String> pathNames = new ArrayList<String>();
+                    ArrayList<String> paths = new ArrayList<>();
+                    ArrayList<String> pathNames = new ArrayList<>();
 
                     for (StorageHelper.StorageInfo storage : storageList) {
                         paths.add(storage.path);
@@ -125,6 +125,16 @@ public class SftpPlugin extends Plugin {
             }
         }
         return false;
+    }
+
+    @Override
+    public String[] getSupportedPackageTypes() {
+        return new String[]{NetworkPackage.PACKAGE_TYPE_SFTP};
+    }
+
+    @Override
+    public String[] getOutgoingPackageTypes() {
+        return new String[]{NetworkPackage.PACKAGE_TYPE_SFTP};
     }
 
 }

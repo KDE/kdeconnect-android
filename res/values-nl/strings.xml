@@ -12,6 +12,8 @@
   <string name="pref_plugin_mousepad_desc">Uw telefoon gebruiken als een muis en toetsenbord</string>
   <string name="pref_plugin_mpris">Bediening van multimedia</string>
   <string name="pref_plugin_mpris_desc">Bedien de audio/video vanaf uw telefoon</string>
+  <string name="pref_plugin_runcommand">Commando uitvoeren</string>
+  <string name="pref_plugin_runcommand_desc">Voert een commando uit op uw systeem</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Pings verzenden en ontvangen</string>
   <string name="pref_plugin_notifications">Synchronisatie van meldingen</string>
@@ -108,6 +110,8 @@
   <string name="invalid_device_name">Ongeldige apparaatnaam</string>
   <string name="shareplugin_text_saved">Oontvangen tekst, opgeslagen op klembord</string>
   <string name="custom_devices_settings">Aangepaste lijst apparaten</string>
+  <string name="pair_device_action">Een paar maken met een nieuw apparaat</string>
+  <string name="unpair_device_action">Paar %s uit elkaar halen</string>
   <string name="custom_device_list">Voeg apparaten toe per IP-adres</string>
   <string name="share_notification_preference">Luidruchtige meldingen</string>
   <string name="share_notification_preference_summary">Vibreer en speel een geluidje bij ontvangen van een bestand</string>
@@ -124,4 +128,21 @@
   <string name="no_players_connected">Geen spelers gevonden</string>
   <string name="custom_dev_list_help">Deze optie alleen gebruiken als uw apparaat niet automatisch gedetecteerd wordt. Voer IP-adres of hostnaam hieronder in en klik op de knop om het aan de lijst toe te voegen. Klik op een bestaand item om het uit de lijst te verwijderen.</string>
   <string name="mpris_player_on_device">%1$s op %2$s</string>
+  <string name="send_files">Bestanden verzenden</string>
+  <string name="pairing_title">Apparaten van KDE Connect</string>
+  <string name="pairing_description">Andere apparaten met KDE Connect in uw zelfde netwerk zouden hier moeten verschijnen.</string>
+  <string name="device_paired">Gepaard apparaat</string>
+  <string name="device_rename_title">Apparaat hernoemen</string>
+  <string name="device_rename_confirm">Hernoemen</string>
+  <string name="refresh">Verversen</string>
+  <string name="unreachable_description">Dit gepaarde apparaat is niet bereikbaar. Ga na dat het is verbonden met uw zelfde netwerk.</string>
+  <string name="no_file_browser">Er zijn geen bestandsbrowsers geïnstalleerd.</string>
+  <string name="pref_plugin_telepathy">SMS verzenden</string>
+  <string name="pref_plugin_telepathy_desc">Stuur tekstberichten van uw bureaublad</string>
+  <string name="plugin_not_supported">Deze plug-in wordt niet ondersteund door het apparaat</string>
+  <string name="findmyphone_title">Zoek mijn telefoon</string>
+  <string name="findmyphone_description">Laat deze telefoon bellen zodat u het kunt vinden.</string>
+  <string name="findmyphone_found">Gevonden</string>
+  <string name="open">Openen</string>
+  <string name="close">Sluiten</string>
 </resources>

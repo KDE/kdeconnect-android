@@ -33,8 +33,6 @@ import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
 
-import java.util.HashMap;
-
 public class KeyListenerView extends View  {
 
     private String deviceId;
@@ -91,8 +89,10 @@ public class KeyListenerView extends View  {
 
     @Override
     public InputConnection onCreateInputConnection(EditorInfo outAttrs) {
-        outAttrs.imeOptions = EditorInfo.IME_FLAG_NO_FULLSCREEN;
-        return null;
+        if (android.os.Build.VERSION.SDK_INT >= 11) {
+            outAttrs.imeOptions = EditorInfo.IME_FLAG_NO_FULLSCREEN;
+        }
+        return new KeyInputConnection(this, true);
     }
 
     @Override
@@ -100,9 +100,26 @@ public class KeyListenerView extends View  {
         return true;
     }
 
+    public void sendChars(CharSequence chars) {
+        final NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MOUSEPAD);
+        np.set("key", chars.toString());
+        sendKeyPressPackage(np);
+    }
+
+    private void sendKeyPressPackage(final NetworkPackage np) {
+        BackgroundService.RunCommand(getContext(), new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                Device device = service.getDevice(deviceId);
+                MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
+                if (mousePadPlugin == null) return;
+                mousePadPlugin.sendKeyboardPacket(np);
+            }
+        });
+    }
+
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-
 
     /* NOTE: Some keyboards, and specifically the Android default keyboard when
      * entering non-ascii characters, will not trigger KeyEvent events as documented
@@ -120,6 +137,7 @@ public class KeyListenerView extends View  {
             np.set("alt", true);
             modifier = true;
         }
+
         if (Build.VERSION.SDK_INT >= 11) {
             if (event.isCtrlPressed()) {
                 np.set("ctrl", true);
@@ -127,62 +145,27 @@ public class KeyListenerView extends View  {
             }
         }
 
-        if (modifier) {
-
-            //Only send shift in combination with other modifiers or special keys. Otherwise let it modify the letter itself and get the final result in utf.
-            if (event.isShiftPressed()) {
-                np.set("shift", true);
-            }
-
-            int specialKey = SpecialKeysMap.get(keyCode, -1);
-            if (specialKey != -1) {
-                np.set("specialKey", specialKey);
-            } else if (event.getDisplayLabel() != 0) {
-                //Alt will change the utf symbol to non-ascii characters, we want the plain original letter
-                //Since getDisplayLabel will always have a value, we have to check for special keys before
-                char keyCharacter = event.getDisplayLabel();
-                np.set("key", new String(new char[]{keyCharacter}).toLowerCase());
-            } else {
-                return false;  //We don't know what to send, better send nothing. Probably this is the modifier key itself.
-            }
-
-        } else {
-
-            //If it's not a modifier+key combination, we want the fancy (potentially utf) version of the key pressed
-            char utfChar = (char) event.getUnicodeChar();
-
-            //Workaround to send enter and tab as special keys instead of characters
-            if (utfChar == 9 || utfChar == 10) utfChar = 0;
-
-            if (utfChar != 0) {
-                String utfString = new String(new char[]{utfChar});
-                np.set("key", utfString);
-            } else {
-                int specialKey = SpecialKeysMap.get(keyCode, -1);
-                if (specialKey != -1) {
-                    //Only send shift in combination with other modifiers or special keys. Otherwise let it modify the letter itself and get the final result in utf.
-                    if (event.isShiftPressed()) {
-                        np.set("shift", true);
-                    }
-                    //If it was not a displayable character, check if it was a special key
-                    np.set("specialKey", specialKey);
-                } else {
-                    return false; //We don't know what to send, better send nothing. Probably this is an unhandled special key.
-                }
-            }
+        if (event.isShiftPressed()) {
+            np.set("shift", true);
         }
 
-        BackgroundService.RunCommand(getContext(), new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                Device device = service.getDevice(deviceId);
-                MousePadPlugin mousePadPlugin = (MousePadPlugin) device.getPlugin(MousePadPlugin.class);
-                if (mousePadPlugin == null) return;
-                mousePadPlugin.sendKeyboardPacket(np);
-            }
-        });
+        int specialKey = SpecialKeysMap.get(keyCode, -1);
 
+        if (specialKey != -1) {
+            np.set("specialKey", specialKey);
+        } else if (event.getDisplayLabel() != 0 && modifier) {
+            //Alt will change the utf symbol to non-ascii characters, we want the plain original letter
+            //Since getDisplayLabel will always have a value, we have to check for special keys before
+            char keyCharacter = event.getDisplayLabel();
+            np.set("key", new String(new char[]{keyCharacter}).toLowerCase());
+        } else {
+            //A normal key, but still not handled by the KeyInputConnection (happens with numbers)
+            np.set("key", new String(new char[]{(char)event.getUnicodeChar()}));
+        }
+
+        sendKeyPressPackage(np);
         return true;
+
     }
 
 }

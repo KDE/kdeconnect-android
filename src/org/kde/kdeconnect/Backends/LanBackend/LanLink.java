@@ -38,15 +38,18 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.channels.NotYetConnectedException;
 import java.security.PublicKey;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeoutException;
 
 public class LanLink extends BaseLink {
 
     private IoSession session = null;
 
+    @Override
     public void disconnect() {
+        closeSocket();
+        super.disconnect();
+    }
+
+    public void closeSocket() {
         if (session == null) {
             Log.e("KDE/LanLink", "Not yet connected");
             return;
@@ -54,8 +57,8 @@ public class LanLink extends BaseLink {
         session.close(true);
     }
 
-    public LanLink(IoSession session, String deviceId, BaseLinkProvider linkProvider) {
-        super(deviceId, linkProvider);
+    public LanLink(IoSession session, String deviceId, BaseLinkProvider linkProvider, ConnectionStarted connectionSource) {
+        super(deviceId, linkProvider, connectionSource);
         this.session = session;
     }
 
@@ -89,7 +92,7 @@ public class LanLink extends BaseLink {
             WriteFuture future = session.write(np.serialize());
             future.awaitUninterruptibly();
             if (!future.isWritten()) {
-                Log.e("KDE/sendPackage", "!future.isWritten()");
+                //Log.e("KDE/sendPackage", "!future.isWritten()");
                 callback.sendFailure(future.getException());
                 return;
             }
@@ -137,6 +140,10 @@ public class LanLink extends BaseLink {
             if (callback != null) {
                 callback.sendFailure(e);
             }
+        } finally  {
+            //Make sure we close the payload stream, if any
+            InputStream stream = np.getPayload();
+            try { stream.close(); } catch (Exception e) { }
         }
     }
 

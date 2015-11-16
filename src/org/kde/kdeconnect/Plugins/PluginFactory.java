@@ -26,30 +26,45 @@ import android.util.Log;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Plugins.BatteryPlugin.BatteryPlugin;
+import org.kde.kdeconnect.Plugins.FindMyPhonePlugin.FindMyPhonePlugin;
 import org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadPlugin;
+import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandPlugin;
 import org.kde.kdeconnect.Plugins.SftpPlugin.SftpPlugin;
 import org.kde.kdeconnect.Plugins.ClibpoardPlugin.ClipboardPlugin;
 import org.kde.kdeconnect.Plugins.MprisPlugin.MprisPlugin;
 import org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationsPlugin;
 import org.kde.kdeconnect.Plugins.PingPlugin.PingPlugin;
 import org.kde.kdeconnect.Plugins.SharePlugin.SharePlugin;
+import org.kde.kdeconnect.Plugins.TelepathyPlugin.TelepathyPlugin;
 import org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.lang.reflect.Method;
 
 public class PluginFactory {
 
     public static class PluginInfo {
 
         public PluginInfo(String displayName, String description, Drawable icon,
-                          boolean enabledByDefault, boolean hasSettings) {
+                          boolean enabledByDefault, boolean hasSettings, boolean listenToUnpaired,
+                          String[] supportedPackageTypes, String[] outgoingPackageTypes) {
             this.displayName = displayName;
             this.description = description;
             this.icon = icon;
             this.enabledByDefault = enabledByDefault;
             this.hasSettings = hasSettings;
+            this.listenToUnpaired = listenToUnpaired;
+            HashSet<String> incoming = new HashSet<>();
+            if (supportedPackageTypes != null) Collections.addAll(incoming, supportedPackageTypes);
+            this.supportedPackageTypes = Collections.unmodifiableSet(incoming);
+            HashSet<String> outgoing = new HashSet<>();
+            if (outgoingPackageTypes != null) Collections.addAll(outgoing, outgoingPackageTypes);
+            this.outgoingPackageTypes = Collections.unmodifiableSet(outgoing);
         }
 
         public String getDisplayName() {
@@ -70,16 +85,31 @@ public class PluginFactory {
             return enabledByDefault;
         }
 
+        public boolean listenToUnpaired() {
+            return listenToUnpaired;
+        }
+
+        public Set<String> getOutgoingPackageTypes() {
+            return outgoingPackageTypes;
+        }
+
+        public Set<String> getSupportedPackageTypes() {
+            return supportedPackageTypes;
+        }
+
         private final String displayName;
         private final String description;
         private final Drawable icon;
         private final boolean enabledByDefault;
         private final boolean hasSettings;
+        private final boolean listenToUnpaired;
+        private final Set<String> supportedPackageTypes;
+        private final Set<String> outgoingPackageTypes;
 
     }
 
-    private static final Map<String, Class> availablePlugins = new TreeMap<String, Class>();
-    private static final Map<String, PluginInfo> availablePluginsInfo = new TreeMap<String, PluginInfo>();
+    private static final Map<String, Class> availablePlugins = new TreeMap<>();
+    private static final Map<String, PluginInfo> availablePluginsInfo = new TreeMap<>();
 
     static {
         //TODO: Use reflection to find all subclasses of Plugin, instead of adding them manually
@@ -92,16 +122,24 @@ public class PluginFactory {
         PluginFactory.registerPlugin(NotificationsPlugin.class);
         PluginFactory.registerPlugin(MousePadPlugin.class);
         PluginFactory.registerPlugin(SharePlugin.class);
+        PluginFactory.registerPlugin(TelepathyPlugin.class);
+        PluginFactory.registerPlugin(FindMyPhonePlugin.class);
+        PluginFactory.registerPlugin(RunCommandPlugin.class);
     }
 
     public static PluginInfo getPluginInfo(Context context, String pluginKey) {
+
         PluginInfo info = availablePluginsInfo.get(pluginKey); //Is it cached?
-        if (info != null) return info;
+        if (info != null) {
+            return info;
+        }
+
         try {
             Plugin p = ((Plugin)availablePlugins.get(pluginKey).newInstance());
             p.setContext(context, null);
             info = new PluginInfo(p.getDisplayName(), p.getDescription(), p.getIcon(),
-                    p.isEnabledByDefault(), p.hasSettings());
+                    p.isEnabledByDefault(), p.hasSettings(), p.listensToUnpairedDevices(),
+                    p.getSupportedPackageTypes(), p.getOutgoingPackageTypes());
             availablePluginsInfo.put(pluginKey, info); //Cache it
             return info;
         } catch(Exception e) {
@@ -109,6 +147,7 @@ public class PluginFactory {
             e.printStackTrace();
             return null;
         }
+
     }
 
     public static Set<String> getAvailablePlugins() {

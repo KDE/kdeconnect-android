@@ -10,11 +10,14 @@
   <string name="pref_plugin_clipboard_desc">共享剪贴板内容</string>
   <string name="pref_plugin_mousepad">远程输入</string>
   <string name="pref_plugin_mousepad_desc">将手机用作鼠标和键盘</string>
+  <string name="pref_plugin_mpris">多媒体控制</string>
   <string name="pref_plugin_mpris_desc">从手机控制音频或视频</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">发送和接受ping</string>
   <string name="pref_plugin_notifications">通知同步</string>
   <string name="pref_plugin_notifications_desc">从其他设备访问你的通知</string>
+  <string name="pref_plugin_sharereceiver">分享和接收</string>
+  <string name="pref_plugin_sharereceiver_desc">在设备间共享文件和 URL</string>
   <string name="plugin_not_available">该特性不适用于您的Android版本</string>
   <string name="device_list_empty">无设备</string>
   <string name="ok">确认</string>
@@ -22,6 +25,8 @@
   <string name="open_settings">开启设置</string>
   <string name="no_permissions">你需要授予权限以便访问通知</string>
   <string name="send_ping">发送ping</string>
+  <string name="open_mpris_controls">多媒体控制</string>
+  <string name="open_mousepad">远程输入</string>
   <string name="mousepad_info">在屏幕上移动手指来移动光标。轻击代表左键，双指或三指点击代表右键或中键。用长按来拖放。</string>
   <string name="mousepad_double_tap_settings_title">设置双指点击动作</string>
   <string name="mousepad_triple_tap_settings_title">设置三指点击动作</string>
@@ -103,6 +108,8 @@
   <string name="invalid_device_name">设备名无效</string>
   <string name="shareplugin_text_saved">已收到文本，存至剪贴板</string>
   <string name="custom_devices_settings">自定义设备列表</string>
+  <string name="pair_device_action">配对新设备</string>
+  <string name="unpair_device_action">取消配对 %s</string>
   <string name="custom_device_list">通过IP增加设备</string>
   <string name="share_notification_preference">出声通知</string>
   <string name="share_notification_preference_summary">当收到文件时震动并播放声音</string>
@@ -119,4 +126,19 @@
   <string name="no_players_connected">未找到播放器</string>
   <string name="custom_dev_list_help">仅当你的设备没有被自动检测出时再使用本选项。在下方输入IP地址或主机名，然后点击按钮以添加其到列表中。点击已有条目来从列表中删除它。</string>
   <string name="mpris_player_on_device">%2$s上的%1$s</string>
+  <string name="send_files">发送文件</string>
+  <string name="pairing_title">KDE Connect 设备</string>
+  <string name="pairing_description">其他在同一网络运行 KDE Connect 的设备会在此处显示。</string>
+  <string name="device_paired">已配对设备</string>
+  <string name="device_rename_title">重命名设备</string>
+  <string name="device_rename_confirm">重命名</string>
+  <string name="refresh">刷新</string>
+  <string name="unreachable_description">此配对设备不可达。请确认它已经连接到与您相同的网络。</string>
+  <string name="no_file_browser">未安装文件浏览器</string>
+  <string name="pref_plugin_telepathy">发送短消息</string>
+  <string name="pref_plugin_telepathy_desc">从桌面发送短消息</string>
+  <string name="plugin_not_supported">设备不支持此插件</string>
+  <string name="findmyphone_title">找到我的手机</string>
+  <string name="findmyphone_description">让手机响铃从而找到它</string>
+  <string name="findmyphone_found">找到</string>
 </resources>

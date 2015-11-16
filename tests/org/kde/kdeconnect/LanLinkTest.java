@@ -26,6 +26,7 @@ import android.util.Log;
 import org.apache.mina.core.future.WriteFuture;
 import org.apache.mina.core.session.IoSession;
 import org.json.JSONObject;
+import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.LanBackend.LanLink;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.mockito.Mockito;
@@ -80,7 +81,7 @@ public class LanLinkTest extends AndroidTestCase {
         Mockito.when(writeFutureFailure.isDone()).thenReturn(true);
         Mockito.when(writeFutureFailure.getException()).thenReturn(new RuntimeException());
 
-        lanLink = new LanLink(session, "testDevice", linkProvider);
+        lanLink = new LanLink(session, "testDevice", linkProvider, BaseLink.ConnectionStarted.Remotely);
     }
 
     @Override

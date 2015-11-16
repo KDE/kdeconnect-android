@@ -25,6 +25,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -90,7 +91,7 @@ public class MprisActivity extends ActionBarActivity {
                                 String song = mpris.getCurrentSong();
                                 ((TextView) findViewById(R.id.now_playing_textview)).setText(song);
 
-                                if (mpris.getLength() > -1 && mpris.getPosition() > -1 && !"Spotify".equals(mpris.getPlayer())) {
+                                if (mpris.getLength() > -1 && mpris.getPosition() > -1 && !"spotify".equals(mpris.getPlayer().toLowerCase())) {
                                     ((TextView) findViewById(R.id.time_textview)).setText(milisToProgress(mpris.getLength()));
 
                                     SeekBar positionSeek = (SeekBar)findViewById(R.id.positionSeek);
@@ -120,7 +121,7 @@ public class MprisActivity extends ActionBarActivity {
                     @Override
                     public void handleMessage(Message msg) {
                         final ArrayList<String> playerList = mpris.getPlayerList();
-                        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(MprisActivity.this,
+                        final ArrayAdapter<String> adapter = new ArrayAdapter<>(MprisActivity.this,
                                 android.R.layout.simple_spinner_item,
                                 playerList.toArray(new String[playerList.size()])
                         );
@@ -133,11 +134,11 @@ public class MprisActivity extends ActionBarActivity {
                                 //String prevPlayer = (String)spinner.getSelectedItem();
                                 spinner.setAdapter(adapter);
 
-                                if(playerList.isEmpty()){
+                                if (playerList.isEmpty()) {
                                     findViewById(R.id.no_players).setVisibility(View.VISIBLE);
                                     spinner.setVisibility(View.GONE);
                                     ((TextView) findViewById(R.id.now_playing_textview)).setText("");
-                                }else{
+                                } else {
                                     findViewById(R.id.no_players).setVisibility(View.GONE);
                                     spinner.setVisibility(View.VISIBLE);
                                 }
@@ -153,7 +154,7 @@ public class MprisActivity extends ActionBarActivity {
                                         mpris.setPlayer(player);
                                         //Spotify doesn't support changing the volume yet...
                                         //Also doesn't support seeking and telling actual position...
-                                        if (player.equals("Spotify")) {
+                                        if (player.toLowerCase().equals("spotify")) {
                                             findViewById(R.id.volume_layout).setVisibility(View.INVISIBLE);
                                             findViewById(R.id.rew_button).setVisibility(View.GONE);
                                             findViewById(R.id.ff_button).setVisibility(View.GONE);
@@ -269,7 +270,7 @@ public class MprisActivity extends ActionBarActivity {
     }
 
     @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
+    public boolean onKeyUp(int keyCode, @NonNull KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_VOLUME_UP:
                 return true;
@@ -452,9 +453,15 @@ public class MprisActivity extends ActionBarActivity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        positionSeekUpdateHandler.removeCallbacks(positionSeekUpdateRunnable);
+    protected void onStart() {
+        super.onStart();
+        BackgroundService.addGuiInUseCounter(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        BackgroundService.removeGuiInUseCounter(this);
     }
 
 }

@@ -29,9 +29,16 @@ import org.kde.kdeconnect_tp.R;
 public class EntryItem implements ListAdapter.Item {
 
 	private final String title;
+	private final String subtitle;
 
-	public EntryItem(String title) {
+    public EntryItem(String title) {
+        this.title = title;
+        this.subtitle = null;
+    }
+
+    public EntryItem(String title, String subtitle) {
 		this.title = title;
+        this.subtitle = subtitle;
 	}
 
     @Override
@@ -40,6 +47,14 @@ public class EntryItem implements ListAdapter.Item {
 
         TextView titleView = (TextView)v.findViewById(R.id.list_item_entry_title);
         if (titleView != null) titleView.setText(title);
+
+        if (subtitle != null) {
+            TextView subtitleView = (TextView) v.findViewById(R.id.list_item_entry_summary);
+            if (subtitleView != null) {
+                subtitleView.setVisibility(View.VISIBLE);
+                subtitleView.setText(subtitle);
+            }
+        }
 
         return v;
     }

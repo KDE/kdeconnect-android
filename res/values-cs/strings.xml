@@ -12,6 +12,8 @@
   <string name="pref_plugin_mousepad_desc">Používejte svůj telefon jako myš a klávesnici</string>
   <string name="pref_plugin_mpris">Ovládání multimédií</string>
   <string name="pref_plugin_mpris_desc">Ovládejte audio/video z vašeho telefonu</string>
+  <string name="pref_plugin_runcommand">Spustit příkaz</string>
+  <string name="pref_plugin_runcommand_desc">Spustí příkaz na vašem počítači</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Posílat a přijímat ping</string>
   <string name="pref_plugin_notifications">Synchronizace upozornění</string>
@@ -47,7 +49,7 @@
   <string name="unknown_device">Neznámé zařízení</string>
   <string name="error_not_reachable">Zařízení je nedostupné</string>
   <string name="error_already_requested">Párování již bylo vyžádáno</string>
-  <string name="error_already_paired">Zařízení je již spárované</string>
+  <string name="error_already_paired">Zařízení je již spárováno</string>
   <string name="error_could_not_send_package">Balíček nelze poslat</string>
   <string name="error_timed_out">Čas vypršel</string>
   <string name="error_canceled_by_user">Přerušeno uživatelem</string>
@@ -73,7 +75,7 @@
   <string name="right_click">Poslat kliknutí pravým tlačítkem</string>
   <string name="middle_click">Poslat kliknutí prostředním tlačítkem</string>
   <string name="show_keyboard">Zobrazit klávesnici</string>
-  <string name="device_not_paired">Zařízení není spárované</string>
+  <string name="device_not_paired">Zařízení není spárováno</string>
   <string name="request_pairing">Vyžádat párování</string>
   <string name="pairing_accept">Přijmout</string>
   <string name="pairing_reject">Odmítnout</string>
@@ -108,6 +110,8 @@
   <string name="invalid_device_name">Neplatný název zařízení</string>
   <string name="shareplugin_text_saved">Přijatý text byl uložen do schránky</string>
   <string name="custom_devices_settings">Seznam vlastních zařízení</string>
+  <string name="pair_device_action">Spárovat nové zařízení</string>
+  <string name="unpair_device_action">Zrušit párování %s</string>
   <string name="custom_device_list">Přidat zařízení podle IP</string>
   <string name="share_notification_preference">Hlasitá upozornění</string>
   <string name="share_notification_preference_summary">Vibrovat a přehrát melodii při přijímání souboru</string>
@@ -124,4 +128,21 @@
   <string name="no_players_connected">Přehrávač nenalezen</string>
   <string name="custom_dev_list_help">Použijte tuto možnost pouze pokud není vaše zařízení automaticky detekováno. Zadejte níže IP adresu a název hostitele a stiskněte tlačítko pro přidání do seznamu. Stiskněte existující položku pro odstranění ze seznamu.</string>
   <string name="mpris_player_on_device">%1$s na %2$s</string>
+  <string name="send_files">Odeslat soubory</string>
+  <string name="pairing_title">Zařízení KDE Connect</string>
+  <string name="pairing_description">Zde by se měla zobrazit další zařízení, na kterých běží KDE Connect ve stejné síti.</string>
+  <string name="device_paired">Zařízení je spárováno</string>
+  <string name="device_rename_title">Přejmenovat zařízení</string>
+  <string name="device_rename_confirm">Přejmenovat</string>
+  <string name="refresh">Obnovit</string>
+  <string name="unreachable_description">Toto spárované zařízení je nedosažitelné. Ujistěte se, že běží ve stejné síti.</string>
+  <string name="no_file_browser">Není nainstalován žádný prohlížeč souborů.</string>
+  <string name="pref_plugin_telepathy">Poslat SMS</string>
+  <string name="pref_plugin_telepathy_desc">Posílejte zprávy ze své pracovní plochy</string>
+  <string name="plugin_not_supported">Tento modul zařízení nepodporuje</string>
+  <string name="findmyphone_title">Najít můj telefon</string>
+  <string name="findmyphone_description">Prozvoní tento telefon, takže jej můžete najít.</string>
+  <string name="findmyphone_found">Nalezeno</string>
+  <string name="open">Otevřít</string>
+  <string name="close">Zavřít</string>
 </resources>

@@ -25,19 +25,26 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ClipboardManager;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.FilesHelper;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
@@ -47,8 +54,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 public class SharePlugin extends Plugin {
+
+    final static boolean openUrlsDirectly = true;
 
     @Override
     public String getDisplayName() {
@@ -57,12 +67,29 @@ public class SharePlugin extends Plugin {
 
     @Override
     public Drawable getIcon() {
-        return context.getResources().getDrawable(R.drawable.share_plugin_action);
+        return ContextCompat.getDrawable(context, R.drawable.share_plugin_action);
     }
 
     @Override
     public String getDescription() {
         return context.getResources().getString(R.string.pref_plugin_sharereceiver_desc);
+    }
+
+    @Override
+    public boolean hasMainActivity() {
+        return true;
+    }
+
+    @Override
+    public String getActionName() {
+        return context.getString(R.string.send_files);
+    }
+
+    @Override
+    public void startMainActivity(Activity parentActivity) {
+        Intent intent = new Intent(parentActivity, SendFileActivity.class);
+        intent.putExtra("deviceId", device.getDeviceId());
+        parentActivity.startActivity(intent);
     }
 
     @Override
@@ -235,34 +262,35 @@ public class SharePlugin extends Plugin {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                //Do not launch url directly, show a notification instead
+                if (openUrlsDirectly) {
+                    context.startActivity(browserIntent);
+                } else {
+                    Resources res = context.getResources();
+                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+                    stackBuilder.addNextIntent(browserIntent);
+                    PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
+                            0,
+                            PendingIntent.FLAG_UPDATE_CURRENT
+                    );
 
-                Resources res = context.getResources();
-                TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-                stackBuilder.addNextIntent(browserIntent);
-                PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
-                        0,
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                );
+                    Notification noti = new NotificationCompat.Builder(context)
+                            .setContentTitle(res.getString(R.string.received_url_title, device.getName()))
+                            .setContentText(res.getString(R.string.received_url_text, url))
+                            .setContentIntent(resultPendingIntent)
+                            .setTicker(res.getString(R.string.received_url_title, device.getName()))
+                            .setSmallIcon(R.drawable.ic_notification)
+                            .setAutoCancel(true)
+                            .setDefaults(Notification.DEFAULT_ALL)
+                            .build();
 
-                Notification noti = new NotificationCompat.Builder(context)
-                        .setContentTitle(res.getString(R.string.received_url_title, device.getName()))
-                        .setContentText(res.getString(R.string.received_url_text, url))
-                        .setContentIntent(resultPendingIntent)
-                        .setTicker(res.getString(R.string.received_url_title, device.getName()))
-                        .setSmallIcon(android.R.drawable.ic_dialog_alert)
-                        .setAutoCancel(true)
-                        .setDefaults(Notification.DEFAULT_ALL)
-                        .build();
-
-                NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                try {
-                    notificationManager.notify((int)System.currentTimeMillis(), noti);
-                } catch(Exception e) {
-                    //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
-                    //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                    NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                    try {
+                        notificationManager.notify((int) System.currentTimeMillis(), noti);
+                    } catch (Exception e) {
+                        //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                        //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                    }
                 }
-
             } else {
                 Log.e("SharePlugin", "Error: Nothing attached!");
             }
@@ -275,5 +303,206 @@ public class SharePlugin extends Plugin {
 
         return true;
     }
+
+
+    static void queuedSendUriList(final Context context, final Device device, final ArrayList<Uri> uriList) {
+        try {
+            Uri uri = uriList.remove(0);
+            ContentResolver cr = context.getContentResolver();
+            InputStream inputStream = cr.openInputStream(uri);
+
+            NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_SHARE);
+            long size = -1;
+
+            final NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+            final int notificationId = (int)System.currentTimeMillis();
+            final NotificationCompat.Builder builder ;
+            Resources res = context.getResources();
+            builder = new NotificationCompat.Builder(context)
+                    .setContentTitle(res.getString(R.string.outgoing_file_title, device.getName()))
+                    .setTicker(res.getString(R.string.outgoing_file_title, device.getName()))
+                    .setSmallIcon(android.R.drawable.stat_sys_upload)
+                    .setAutoCancel(true)
+                    .setOngoing(true)
+                    .setProgress(100,0,true);
+
+            try {
+                notificationManager.notify(notificationId,builder.build());
+            } catch(Exception e) {
+                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+            }
+
+            final Handler progressBarHandler = new Handler(Looper.getMainLooper());
+
+            if (uri.getScheme().equals("file")) {
+                // file:// is a non media uri, so we cannot query the ContentProvider
+
+                np.set("filename", uri.getLastPathSegment());
+
+                try {
+                    size = new File(uri.getPath()).length();
+                } catch(Exception e) {
+                    Log.e("SendFileActivity", "Could not obtain file size");
+                    e.printStackTrace();
+                }
+
+                np.setPayload(inputStream, size);
+
+            }else{
+                // Probably a content:// uri, so we query the Media content provider
+
+                Cursor cursor = null;
+                try {
+                    String[] proj = { MediaStore.MediaColumns.DATA, MediaStore.MediaColumns.SIZE, MediaStore.MediaColumns.DISPLAY_NAME };
+                    cursor = cr.query(uri, proj, null, null, null);
+                    int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+                    cursor.moveToFirst();
+                    String path = cursor.getString(column_index);
+                    np.set("filename", Uri.parse(path).getLastPathSegment());
+                    size = new File(path).length();
+                } catch(Exception unused) {
+
+                    Log.e("SendFileActivity", "Could not resolve media to a file, trying to get info as media");
+
+                    try {
+                        int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DISPLAY_NAME);
+                        cursor.moveToFirst();
+                        String name = cursor.getString(column_index);
+                        np.set("filename", name);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Log.e("SendFileActivity", "Could not obtain file name");
+                    }
+
+                    try {
+                        int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.SIZE);
+                        cursor.moveToFirst();
+                        //For some reason this size can differ from the actual file size!
+                        size = cursor.getInt(column_index);
+                    } catch(Exception e) {
+                        Log.e("SendFileActivity", "Could not obtain file size");
+                        e.printStackTrace();
+                    }
+                } finally {
+                    cursor.close();
+                }
+
+                np.setPayload(inputStream, size);
+
+            }
+
+            final String filename = np.getString("filename");
+
+            builder.setContentText(res.getString(R.string.outgoing_file_text,filename));
+            try {
+                notificationManager.notify(notificationId,builder.build());
+            } catch(Exception e) {
+                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+            }
+
+            device.sendPackage(np, new Device.SendPackageStatusCallback() {
+
+                int prevProgress = 0;
+
+                @Override
+                public void onProgressChanged(final int progress) {
+                    if (progress != prevProgress) {
+                        prevProgress = progress;
+                        progressBarHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                builder.setProgress(100, progress, false);
+                                try {
+                                    notificationManager.notify(notificationId,builder.build());
+                                } catch(Exception e) {
+                                    //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                                    //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                                }
+                            }
+                        });
+                    }
+                }
+
+                @Override
+                public void onSuccess() {
+                    progressBarHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Resources res = context.getResources();
+                            NotificationCompat.Builder anotherBuilder = new NotificationCompat.Builder(context)
+                                    .setContentTitle(res.getString(R.string.sent_file_title, device.getName()))
+                                    .setContentText(res.getString(R.string.sent_file_text, filename))
+                                    .setTicker(res.getString(R.string.sent_file_title, device.getName()))
+                                    .setSmallIcon(android.R.drawable.stat_sys_upload_done)
+                                    .setOngoing(false)
+                                    .setAutoCancel(true);
+
+                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+                            if (prefs.getBoolean("share_notification_preference", true)) {
+                                anotherBuilder.setDefaults(Notification.DEFAULT_ALL);
+                            }
+                            try {
+                                notificationManager.notify(notificationId,anotherBuilder.build());
+                            } catch(Exception e) {
+                                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                            }
+                        }
+                    });
+
+                    if (!uriList.isEmpty()) queuedSendUriList(context, device, uriList);
+                    else Log.i("SendFileActivity", "All files sent");
+                }
+
+                @Override
+                public void onFailure(Throwable e) {
+                    progressBarHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Resources res = context.getResources();
+                            NotificationCompat.Builder anotherBuilder = new NotificationCompat.Builder(context)
+                                    .setContentTitle(res.getString(R.string.sent_file_failed_title, device.getName()))
+                                    .setContentText(res.getString(R.string.sent_file_failed_text, filename))
+                                    .setTicker(res.getString(R.string.sent_file_title, device.getName()))
+                                    .setSmallIcon(android.R.drawable.stat_notify_error)
+                                    .setOngoing(false)
+                                    .setAutoCancel(true);
+
+                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+                            if (prefs.getBoolean("share_notification_preference", true)) {
+                                anotherBuilder.setDefaults(Notification.DEFAULT_ALL);
+                            }
+                            try {
+                                notificationManager.notify(notificationId,anotherBuilder.build());
+                            } catch(Exception e) {
+                                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+                                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                            }
+                        }
+                    });
+
+                    Log.e("SendFileActivity", "Failed to send file");
+                }
+            });
+
+        } catch (Exception e) {
+            Log.e("SendFileActivity", "Exception sending files");
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public String[] getSupportedPackageTypes() {
+        return new String[]{NetworkPackage.PACKAGE_TYPE_SHARE};
+    }
+
+    @Override
+    public String[] getOutgoingPackageTypes() {
+        return new String[]{NetworkPackage.PACKAGE_TYPE_SHARE};
+    }
+
 
 }
