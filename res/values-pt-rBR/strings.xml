@@ -12,6 +12,8 @@
   <string name="pref_plugin_mousepad_desc">Usar seu telefone como mouse ou teclado</string>
   <string name="pref_plugin_mpris">Controle multimídia</string>
   <string name="pref_plugin_mpris_desc">Controla áudio e vídeo a partir do seu telefone</string>
+  <string name="pref_plugin_runcommand">Executar comando</string>
+  <string name="pref_plugin_runcommand_desc">Executa um comando no seu sistema</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Envia e recebe pings</string>
   <string name="pref_plugin_notifications">Sincronização de notificações</string>
@@ -138,4 +140,9 @@
   <string name="pref_plugin_telepathy">Enviar SMS</string>
   <string name="pref_plugin_telepathy_desc">Enviar mensagens de texto do seu Desktop</string>
   <string name="plugin_not_supported">Este plugin não é suportado pelo dispositivo</string>
+  <string name="findmyphone_title">Encontrar meu telefone</string>
+  <string name="findmyphone_description">Faça este telefone tocar para encontrá-lo.</string>
+  <string name="findmyphone_found">Encontrado</string>
+  <string name="open">Abrir</string>
+  <string name="close">Fechar</string>
 </resources>

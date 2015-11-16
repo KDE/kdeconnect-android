@@ -1,65 +1,148 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="pref_plugin_telephony">Уведомления телефонии</string>
-  <string name="pref_plugin_telephony_desc">Отправлять уведомления о SMS и звонках</string>
+  <string name="pref_plugin_telephony">События телефонии</string>
+  <string name="pref_plugin_telephony_desc">Отправка уведомлений об SMS и звонках</string>
   <string name="pref_plugin_battery">Состояние батареи</string>
-  <string name="pref_plugin_battery_desc">Периодически сообщать о состоянии батареи</string>
+  <string name="pref_plugin_battery_desc">Периодическое информирование о состоянии батареи</string>
+  <string name="pref_plugin_sftp">Просмотр файловой системы</string>
+  <string name="pref_plugin_sftp_desc">Позволяет удалённо просматривать файловую систему телефона</string>
   <string name="pref_plugin_clipboard">Синхронизация буфера обмена</string>
-  <string name="pref_plugin_clipboard_desc">Сделать содержимое буфера обмена общим</string>
-  <string name="pref_plugin_mpris_desc">Управление аудио/видео с устройства</string>
+  <string name="pref_plugin_clipboard_desc">Использование общего буфера обмена</string>
+  <string name="pref_plugin_mousepad">Удалённый ввод</string>
+  <string name="pref_plugin_mousepad_desc">Использование телефона вместо мыши и клавиатуры</string>
+  <string name="pref_plugin_mpris">Управление воспроизведением</string>
+  <string name="pref_plugin_mpris_desc">Управление медиапроигрывателем с телефона</string>
+  <string name="pref_plugin_runcommand">Запуск команд</string>
+  <string name="pref_plugin_runcommand_desc">Выполнение команд на вашем компьютере</string>
   <string name="pref_plugin_ping">Пинг</string>
-  <string name="pref_plugin_ping_desc">Посылать и получать пинги</string>
+  <string name="pref_plugin_ping_desc">Отправка и получение тестовых сигналов</string>
   <string name="pref_plugin_notifications">Синхронизация уведомлений</string>
   <string name="pref_plugin_notifications_desc">Доступ к уведомлениям с других устройств</string>
-  <string name="plugin_not_available">Этот функционал недоступен в вашей версии Android</string>
+  <string name="pref_plugin_sharereceiver">Отправка и приём данных</string>
+  <string name="pref_plugin_sharereceiver_desc">Пересылка файлов и адресов URL между устройствами</string>
+  <string name="plugin_not_available">Эта функциональность недоступна в вашей версии Android</string>
   <string name="device_list_empty">Нет устройств</string>
-  <string name="ok">OK</string>
+  <string name="ok">ОК</string>
   <string name="cancel">Отмена</string>
-  <string name="open_settings">Открыть настройки</string>
-  <string name="no_permissions">Вы должны разрешить доступ к уведомлениям</string>
-  <string name="send_ping">Послать пинг</string>
+  <string name="open_settings">Настроить</string>
+  <string name="no_permissions">Нужно разрешить доступ к уведомлениям</string>
+  <string name="send_ping">Отправить тестовый сигнал</string>
+  <string name="open_mpris_controls">Управление воспроизведением</string>
+  <string name="open_mousepad">Удалённый ввод</string>
+  <string name="mousepad_info">Перемещайте палец по экрану для перемещения курсора мыши. Коснитесь для нажатия, используйте два/три пальца для правой и средней кнопок. Используйте долгое нажатие для перетаскивания.</string>
+  <string name="mousepad_double_tap_settings_title">Действие при нажатии двумя пальцами</string>
+  <string name="mousepad_triple_tap_settings_title">Действие при нажатии тремя пальцами</string>
   <string-array name="mousepad_tap_entries">
-    <item>Right click</item>
-    <item>Middle click</item>
-    <item>Nothing</item>
+    <item>Нажатие правой кнопки</item>
+    <item>Нажатие средней кнопки</item>
+    <item>Ничего не делать</item>
   </string-array>
+  <string name="mousepad_double_default">Нажатие правой кнопки</string>
+  <string name="mousepad_triple_default">Нажатие средней кнопки</string>
   <string name="category_connected_devices">Подключённые устройства</string>
-  <string name="category_remembered_devices">Запомненные устройства</string>
-  <string name="plugins_failed_to_load">Сбой загрузки следующих модулей (прикоснитесь чтобы получить подробности):</string>
-  <string name="device_menu_unpair">Разделить спаренные устройства</string>
+  <string name="category_not_paired_devices">Доступные устройства</string>
+  <string name="category_remembered_devices">Известные устройства</string>
+  <string name="plugins_failed_to_load">Не удалось загрузить следующие модули (нажмите для просмотра подробностей):</string>
+  <string name="device_menu_plugins">Настройка модулей</string>
+  <string name="device_menu_unpair">Снять сопряжение</string>
+  <string name="device_not_reachable">Сопряжённое устройство недоступно</string>
   <string name="unknown_device">Неизвестное устройство</string>
   <string name="error_not_reachable">Устройство недоступно</string>
-  <string name="error_already_requested">Запрос на спаривание уже был сделан</string>
-  <string name="error_already_paired">Устройство уже спарено</string>
-  <string name="error_could_not_send_package">Не удалось послать пакет</string>
+  <string name="error_already_requested">Запрос на сопряжение уже был сделан</string>
+  <string name="error_already_paired">Устройство уже сопряжено</string>
+  <string name="error_could_not_send_package">Не удалось отправить пакет.</string>
   <string name="error_timed_out">Истекло время ожидания</string>
   <string name="error_canceled_by_user">Отменено пользователем</string>
   <string name="error_canceled_by_other_peer">Отменено другим участником</string>
-  <string name="error_invalid_key">Недопустимый получатель ключа</string>
-  <string name="pair_requested">Запрошено спаривание</string>
-  <string name="pairing_request_from">Запрос на спаривание от %1s</string>
-  <string name="tap_to_answer">Коснитесь чтобы ответить</string>
-  <string name="reconnect">Переподключить</string>
-  <string name="device_not_paired">Устройство не спарено</string>
-  <string name="request_pairing">Запросить спаривание</string>
+  <string name="error_invalid_key">Получен недопустимый ключ</string>
+  <string name="pair_requested">Запрошено сопряжение</string>
+  <string name="pairing_request_from">Запрос на сопряжение от %1s</string>
+  <string name="received_url_title">Получена ссылка от %1s</string>
+  <string name="received_url_text">Нажмите, чтобы открыть «%1s»</string>
+  <string name="incoming_file_title">Входящий файл с %1s</string>
+  <string name="incoming_file_text">%1s</string>
+  <string name="outgoing_file_title">Отправка файла на %1s</string>
+  <string name="outgoing_file_text">%1s</string>
+  <string name="received_file_title">Получен файл с %1s</string>
+  <string name="received_file_fail_title">Не удалось получить файл с %1s</string>
+  <string name="received_file_text">Нажмите, чтобы открыть «%1s»</string>
+  <string name="sent_file_title">Файл отправлен на %1s</string>
+  <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Не удалось отправить файл %1s</string>
+  <string name="sent_file_failed_text">%1s</string>
+  <string name="tap_to_answer">Нажмите, чтобы ответить</string>
+  <string name="reconnect">Подключить заново</string>
+  <string name="right_click">Нажатие правой кнопки</string>
+  <string name="middle_click">Нажатие средней кнопки</string>
+  <string name="show_keyboard">Показать клавиатуру</string>
+  <string name="device_not_paired">Устройство не сопряжено</string>
+  <string name="request_pairing">Запросить сопряжение</string>
   <string name="pairing_accept">Принять</string>
   <string name="pairing_reject">Отклонить</string>
   <string name="device">Устройство</string>
-  <string name="pair_device">Спарить устройство</string>
+  <string name="pair_device">Сопрячь устройство</string>
   <string name="remote_control">Дистанционное управление</string>
-  <string name="settings">Настройки KDE Connect</string>
-  <string name="mpris_play">Воспроизвести</string>
-  <string name="mpris_previous">Предыдущий</string>
-  <string name="mpris_next">Следующее</string>
+  <string name="settings">Настройка KDE Connect</string>
+  <string name="mpris_play">Воспроизведение</string>
+  <string name="mpris_previous">Предыдущая</string>
+  <string name="mpris_rew">Назад</string>
+  <string name="mpris_ff">Вперёд</string>
+  <string name="mpris_next">Следующая</string>
   <string name="mpris_volume">Громкость</string>
+  <string name="mpris_settings">Настройка мультимедиа</string>
+  <string name="mpris_time_settings_title">Кнопки вперёд/назад</string>
+  <string name="mpris_time_settings_summary">Дальность перемотки вперёд/назад при нажатии.</string>
   <string-array name="mpris_time_entries">
-    <item>10 seconds</item>
-    <item>20 seconds</item>
-    <item>30 seconds</item>
-    <item>1 minute</item>
-    <item>2 minutes</item>
+    <item>10 секунд</item>
+    <item>20 секунд</item>
+    <item>30 секунд</item>
+    <item>1 минута</item>
+    <item>2 минуты</item>
   </string-array>
-  <string name="share_to">Сделать общим с...</string>
-  <string name="protocol_version_older">Это устройство использует старую версию протокола</string>
-  <string name="protocol_version_newer">Это устройство использует более свежую версию протокола</string>
+  <string name="share_to">Отправить на...</string>
+  <string name="protocol_version_older">Это устройство использует старую версию протокола.</string>
+  <string name="protocol_version_newer">Это устройство использует более новую версию протокола.</string>
+  <string name="general_settings">Общие параметры</string>
+  <string name="plugin_settings">Настройка</string>
+  <string name="plugin_settings_with_name">Настройка %s</string>
+  <string name="device_name">Имя устройства</string>
+  <string name="device_name_preference_summary">%s</string>
+  <string name="invalid_device_name">Недопустимое имя устройства</string>
+  <string name="shareplugin_text_saved">Получен текст, он сохранен в буфер обмена</string>
+  <string name="custom_devices_settings">Ручной список устройств</string>
+  <string name="pair_device_action">Сопрячь с новым устройством</string>
+  <string name="unpair_device_action">Снять сопряжение с %s</string>
+  <string name="custom_device_list">Добавить устройства по IP</string>
+  <string name="share_notification_preference">Звуковые уведомления</string>
+  <string name="share_notification_preference_summary">Использовать звуковой сигнал и вибрацию при получении файла.</string>
+  <string name="title_activity_notification_filter">Фильтр уведомлений</string>
+  <string name="filter_apps_info">Уведомления будут синхронизированы для выбранных приложений.</string>
+  <string name="sftp_internal_storage">Встроенная память</string>
+  <string name="sftp_all_files">Все файлы</string>
+  <string name="sftp_sdcard_num">SD-карта %d</string>
+  <string name="sftp_sdcard">SD-карта</string>
+  <string name="sftp_readonly">(только чтение)</string>
+  <string name="sftp_camera">Фотографии с камеры</string>
+  <string name="add_host">Добавить хост/IP-адрес</string>
+  <string name="add_host_hint">Имя хоста или IP-адрес</string>
+  <string name="no_players_connected">Медиапроигрывателей не найдено</string>
+  <string name="custom_dev_list_help">Используйте эту форму только если ваше устройство не определяется автоматически. Введите IP-адрес или имя хоста ниже и нажмите кнопку для добавления в список. Нажмите на существующий элемент для удаления из списка.</string>
+  <string name="mpris_player_on_device">%1$s на %2$s</string>
+  <string name="send_files">Отправить файлы</string>
+  <string name="pairing_title">Устройства с KDE Connect</string>
+  <string name="pairing_description">Здесь появятся другие устройства в этой же сети, на которых запущен KDE Connect.</string>
+  <string name="device_paired">Устройство сопряжено</string>
+  <string name="device_rename_title">Переименование устройства</string>
+  <string name="device_rename_confirm">Переименовать</string>
+  <string name="refresh">Обновить</string>
+  <string name="unreachable_description">Это сопряжённое устройство недоступно. Проверьте, что оно подключено к той же локальной сети.</string>
+  <string name="no_file_browser">Не удалось открыть диалог выбора файла.</string>
+  <string name="pref_plugin_telepathy">Отправка SMS</string>
+  <string name="pref_plugin_telepathy_desc">Отправка SMS-сообщений с вашего компьютера</string>
+  <string name="plugin_not_supported">Этот модуль не поддерживается устройством</string>
+  <string name="findmyphone_title">Поиск телефона</string>
+  <string name="findmyphone_description">Подача звукового сигнала на телефоне, чтобы вы могли его найти.</string>
+  <string name="findmyphone_found">Найден</string>
+  <string name="open">Открыть</string>
+  <string name="close">Закрыть</string>
 </resources>
