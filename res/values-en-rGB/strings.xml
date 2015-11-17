@@ -143,6 +143,4 @@
   <string name="findmyphone_title">Find My Phone</string>
   <string name="findmyphone_description">Rings this phone so you can find it.</string>
   <string name="findmyphone_found">Found</string>
-  <string name="open">Open</string>
-  <string name="close">Close</string>
 </resources>

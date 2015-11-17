@@ -143,6 +143,4 @@
   <string name="findmyphone_title">내 휴대폰 찾기</string>
   <string name="findmyphone_description">소리를 울려서 휴대폰을 찾는 데 도움을 줍니다.</string>
   <string name="findmyphone_found">찾았음</string>
-  <string name="open">열기</string>
-  <string name="close">닫기</string>
 </resources>

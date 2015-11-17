@@ -143,6 +143,4 @@
   <string name="findmyphone_title">Troba el meu telèfon</string>
   <string name="findmyphone_description">Fa sonar aquest telèfon perquè el pugueu trobar.</string>
   <string name="findmyphone_found">L\'he trobat</string>
-  <string name="open">Obre</string>
-  <string name="close">Tanca</string>
 </resources>

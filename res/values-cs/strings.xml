@@ -143,6 +143,4 @@
   <string name="findmyphone_title">Najít můj telefon</string>
   <string name="findmyphone_description">Prozvoní tento telefon, takže jej můžete najít.</string>
   <string name="findmyphone_found">Nalezeno</string>
-  <string name="open">Otevřít</string>
-  <string name="close">Zavřít</string>
 </resources>

@@ -143,6 +143,4 @@
   <string name="findmyphone_title">Trova il mio telefono</string>
   <string name="findmyphone_description">Fa squillare questo telefono per trovarlo.</string>
   <string name="findmyphone_found">Trovato</string>
-  <string name="open">Apri</string>
-  <string name="close">Chiudi</string>
 </resources>

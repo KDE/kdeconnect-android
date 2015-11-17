@@ -143,6 +143,4 @@
   <string name="findmyphone_title">Znajdź mój telefon</string>
   <string name="findmyphone_description">Dzwoni na ten telefon, tak abyś mógł go znaleźć.</string>
   <string name="findmyphone_found">Znaleziony</string>
-  <string name="open">Otwórz</string>
-  <string name="close">Zamknij</string>
 </resources>

@@ -126,6 +126,4 @@
   <string name="pref_plugin_telepathy">SMS senden</string>
   <string name="plugin_not_supported">Dieses Modul wird durch das Gerät nicht unterstützt</string>
   <string name="findmyphone_found">Gefunden</string>
-  <string name="open">Öffnen</string>
-  <string name="close">Schließen</string>
 </resources>
