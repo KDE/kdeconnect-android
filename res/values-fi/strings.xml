@@ -135,7 +135,7 @@
   <string name="device_rename_title">Laitteen nimen muuttaminen</string>
   <string name="device_rename_confirm">Muuta nimi</string>
   <string name="refresh">Päivitä</string>
-  <string name="unreachable_description">Tämä pariksi kytketty laite ei ole tavoitttavissa. Tarkista, että se on yhteydessä samaan verkkoon.</string>
+  <string name="unreachable_description">Tämä pariksi kytketty laite ei ole tavoitettavissa. Tarkista, että se on yhteydessä samaan verkkoon.</string>
   <string name="no_file_browser">Tiedostoselaimia ei asennettu.</string>
   <string name="pref_plugin_telepathy">Lähetä tekstiviesti</string>
   <string name="pref_plugin_telepathy_desc">Lähetä tekstiviestejä työpöydältäsi</string>
