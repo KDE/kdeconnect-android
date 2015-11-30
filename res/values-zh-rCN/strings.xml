@@ -12,6 +12,8 @@
   <string name="pref_plugin_mousepad_desc">将手机用作鼠标和键盘</string>
   <string name="pref_plugin_mpris">多媒体控制</string>
   <string name="pref_plugin_mpris_desc">从手机控制音频或视频</string>
+  <string name="pref_plugin_runcommand">执行命令</string>
+  <string name="pref_plugin_runcommand_desc">在您的系统上执行命令</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">发送和接受ping</string>
   <string name="pref_plugin_notifications">通知同步</string>
@@ -141,4 +143,6 @@
   <string name="findmyphone_title">找到我的手机</string>
   <string name="findmyphone_description">让手机响铃从而找到它</string>
   <string name="findmyphone_found">找到</string>
+  <string name="open">打开</string>
+  <string name="close">关闭</string>
 </resources>
