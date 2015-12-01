@@ -35,6 +35,8 @@
     <string name="mousepad_triple_tap_settings_title">Set three finger tap action</string>
     <string name="mousepad_double_tap_key" translatable="false">mousepad_double_tap_key</string>
     <string name="mousepad_triple_tap_key" translatable="false">mousepad_triple_tap_key</string>
+    <string name="mousepad_scroll_direction_title">Reverse Scrolling Direction</string>
+    <string name="mousepad_scroll_direction" translatable="false">mousepad_scroll_direction</string>
     <string-array name="mousepad_tap_entries">
         <item>Right click</item>
         <item>Middle click</item>
