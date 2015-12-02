@@ -29,8 +29,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:singleLine="true"
-        android:textColor="#CC2222"
         android:visibility="gone"
+        android:textColor="@android:color/darker_gray"
         android:text="" />
 
 

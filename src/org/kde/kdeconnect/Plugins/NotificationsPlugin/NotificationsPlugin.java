@@ -360,7 +360,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         return new String[]{NetworkPackage.PACKAGE_TYPE_NOTIFICATION};
     }
 
-    //For compat with API<21, because lollipop changed they way to cancel notifications
+    //For compat with API<21, because lollipop changed the way to cancel notifications
     public static void cancelNotificationCompat(NotificationReceiver service, String compatKey) {
         if (Build.VERSION.SDK_INT >= 21) {
             service.cancelNotification(compatKey);

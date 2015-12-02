@@ -159,10 +159,13 @@ public class KeyListenerView extends View  {
             char keyCharacter = event.getDisplayLabel();
             np.set("key", new String(new char[]{keyCharacter}).toLowerCase());
         } else {
-            return false;  //normal keys will be handled by KeyInputConnection
+            //A normal key, but still not handled by the KeyInputConnection (happens with numbers)
+            np.set("key", new String(new char[]{(char)event.getUnicodeChar()}));
         }
 
         sendKeyPressPackage(np);
         return true;
+
     }
+
 }

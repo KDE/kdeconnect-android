@@ -20,5 +20,9 @@
         android:entries="@array/mousepad_tap_entries"
         android:entryValues="@array/mousepad_tap_values"
         android:defaultValue="@string/mousepad_triple_default" />
-
+    <CheckBoxPreference
+        android:id="@+id/mousepad_scroll_preference"
+        android:key="@string/mousepad_scroll_direction"
+        android:title="@string/mousepad_scroll_direction_title"
+        android:defaultValue="false" />
 </PreferenceScreen>

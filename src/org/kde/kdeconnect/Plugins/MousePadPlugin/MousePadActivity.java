@@ -49,6 +49,7 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
     private float mPrevY;
     private float mCurrentX;
     private float mCurrentY;
+    private int scrollDirection = 1;
 
     boolean isScrolling = false;
     float accumulatedDistanceY = 0;
@@ -89,6 +90,11 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
         keyListenerView.setDeviceId(deviceId);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (prefs.getBoolean(getString(R.string.mousepad_scroll_direction),false)) {
+            scrollDirection = -1;
+        } else {
+            scrollDirection = 1;
+        }
         String doubleTapSetting = prefs.getString(getString(R.string.mousepad_double_tap_key),
                 getString(R.string.mousepad_double_default));
         String tripleTapSetting = prefs.getString(getString(R.string.mousepad_triple_tap_key),
@@ -229,7 +235,7 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
                     Device device = service.getDevice(deviceId);
                     MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
                     if (mousePadPlugin == null) return;
-                    mousePadPlugin.sendScroll(0, scrollToSendY);
+                    mousePadPlugin.sendScroll(0, scrollDirection * scrollToSendY);
                 }
             });
 
@@ -345,17 +351,18 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
             }
         });
     }
-        private void sendSingleHold() {
-            BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-                @Override
-                public void onServiceStart(BackgroundService service) {
-                    Device device = service.getDevice(deviceId);
-                    MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
-                    if (mousePadPlugin == null) return;
-                    mousePadPlugin.sendSingleHold();
-                }
-            });
-        }
+
+    private void sendSingleHold() {
+        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                Device device = service.getDevice(deviceId);
+                MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
+                if (mousePadPlugin == null) return;
+                mousePadPlugin.sendSingleHold();
+            }
+        });
+    }
 
     private void showKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);

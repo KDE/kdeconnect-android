@@ -25,6 +25,8 @@ import android.content.ClipData;
 import android.content.Context;
 import android.content.ClipboardManager;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
@@ -45,28 +47,33 @@ public class ClipboardListener {
             return;
         }
 
-        cm = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
-        listener = new ClipboardManager.OnPrimaryClipChangedListener() {
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
-            public void onPrimaryClipChanged() {
-                try {
+            public void run() {
+                cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+                listener = new ClipboardManager.OnPrimaryClipChangedListener() {
+                    @Override
+                    public void onPrimaryClipChanged() {
+                        try {
 
-                    ClipData.Item item = cm.getPrimaryClip().getItemAt(0);
-                    String content = item.coerceToText(context).toString();
+                            ClipData.Item item = cm.getPrimaryClip().getItemAt(0);
+                            String content = item.coerceToText(context).toString();
 
-                    if (!content.equals(currentContent)) {
-                        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_CLIPBOARD);
-                        np.set("content", content);
-                        device.sendPackage(np);
-                        currentContent = content;
+                            if (!content.equals(currentContent)) {
+                                NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_CLIPBOARD);
+                                np.set("content", content);
+                                device.sendPackage(np);
+                                currentContent = content;
+                            }
+
+                        } catch (Exception e) {
+                            //Probably clipboard was not text
+                        }
                     }
-
-                } catch(Exception e) {
-                    //Probably clipboard was not text
-                }
+                };
+                cm.addPrimaryClipChangedListener(listener);
             }
-        };
-        cm.addPrimaryClipChangedListener(listener);
+        });
     }
 
     public void stop() {

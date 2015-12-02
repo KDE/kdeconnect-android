@@ -74,22 +74,14 @@ public class LanPairingHandler extends BasePairingHandler {
 
         boolean wantsPair = np.getBoolean("pair");
 
-        Log.e("KDE/LPHPackageReceived", "Wants pair " + wantsPair + ", isPaired " + isPaired() );
-
         if (wantsPair == isPaired()) {
             if (mPairStatus == PairStatus.Requested) {
                 //Log.e("Device","Unpairing (pair rejected)");
                 mPairStatus = PairStatus.NotPaired;
-                if (mPairingTimer != null) mPairingTimer.cancel();
+                hidePairingNotification();
                 mCallback.pairingFailed(mDevice.getContext().getString(R.string.error_canceled_by_other_peer));
-                return;
-            } else if (mPairStatus == PairStatus.Paired) {
-                /**
-                 * If wants pair is true and is paired is true, this means other device is trying to pair again, might be because it unpaired this device somehow
-                 * and we don't know it, unpair it internally
-                 */
-                mCallback.unpaired();
             }
+            return;
         }
 
         if (wantsPair) {
@@ -100,20 +92,19 @@ public class LanPairingHandler extends BasePairingHandler {
                 byte[] publicKeyBytes = Base64.decode(publicKeyContent, 0);
                 mDevice.publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
             } catch (Exception e) {
+                e.printStackTrace();
+                Log.e("KDE/Device","Pairing exception: Received incorrect key");
                 mCallback.pairingFailed(mDevice.getContext().getString(R.string.error_invalid_key));
+                return;
             }
 
             if (mPairStatus == PairStatus.Requested)  { //We started pairing
 
-                Log.i("KDE/Pairing","Pair answer");
-
-                if (mPairingTimer != null) mPairingTimer.cancel();
+                hidePairingNotification();
 
                 pairingDone();
 
             } else {
-
-                Log.i("KDE/Pairing", "Pair request");
 
                 /**
                  * If device is already paired, accept pairing silently
@@ -127,9 +118,9 @@ public class LanPairingHandler extends BasePairingHandler {
                  * Pairing notifications are still managed by device as there is no other way to know about notificationId to cancel notification when PairActivity is started
                  * Even putting notificationId in intent does not work because PairActivity can be started from MainActivity too, so then notificationId cannot be set
                  */
+                hidePairingNotification();
                 mDevice.displayPairingNotification();
 
-                if (mPairingTimer != null) mPairingTimer.cancel();
                 mPairingTimer = new Timer();
 
                 mPairingTimer.schedule(new TimerTask() {
@@ -137,8 +128,7 @@ public class LanPairingHandler extends BasePairingHandler {
                     public void run() {
                         Log.e("KDE/Device","Unpairing (timeout B)");
                         mPairStatus = PairStatus.NotPaired;
-
-                        mDevice.cancelPairingNotification();
+                        hidePairingNotification();
                     }
                 }, 25*1000); //Time to show notification, waiting for user to accept (peer will timeout in 30 seconds)
                 mPairStatus = PairStatus.RequestedByPeer;
@@ -149,7 +139,7 @@ public class LanPairingHandler extends BasePairingHandler {
             Log.i("KDE/Pairing", "Unpair request");
 
             if (mPairStatus == PairStatus.Requested) {
-                if (mPairingTimer != null) mPairingTimer.cancel();
+                hidePairingNotification();
                 mCallback.pairingFailed(mDevice.getContext().getString(R.string.error_canceled_by_other_peer));
             } else if (mPairStatus == PairStatus.Paired) {
                 mCallback.unpaired();
@@ -167,7 +157,7 @@ public class LanPairingHandler extends BasePairingHandler {
         Device.SendPackageStatusCallback statusCallback = new Device.SendPackageStatusCallback() {
             @Override
             protected void onSuccess() {
-                if (mPairingTimer != null) mPairingTimer.cancel();
+                hidePairingNotification(); //Will stop the pairingTimer if it was running
                 mPairingTimer = new Timer();
                 mPairingTimer.schedule(new TimerTask() {
                     @Override
@@ -185,12 +175,20 @@ public class LanPairingHandler extends BasePairingHandler {
                 mCallback.pairingFailed(mDevice.getContext().getString(R.string.error_could_not_send_package));
             }
         };
+        //createPublicKeyPackage() ?
         mDevice.sendPackage(createPairPackage(), statusCallback);
+    }
+
+    public void hidePairingNotification() {
+        mDevice.hidePairingNotification();
+        if (pairingTimer != null) {
+            pairingTimer.cancel();
+        }
     }
 
     @Override
     public void acceptPairing() {
-        if (mPairingTimer != null) mPairingTimer.cancel();
+        hidePairingNotification();
         Device.SendPackageStatusCallback statusCallback = new Device.SendPackageStatusCallback() {
             @Override
             protected void onSuccess() {
@@ -207,7 +205,7 @@ public class LanPairingHandler extends BasePairingHandler {
 
     @Override
     public void rejectPairing() {
-        if (mPairingTimer != null) mPairingTimer.cancel();
+        hidePairingNotification();
         mPairStatus = PairStatus.NotPaired;
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
         np.set("pair", false);

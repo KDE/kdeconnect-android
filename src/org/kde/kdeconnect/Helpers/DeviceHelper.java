@@ -37,7 +37,7 @@ public class DeviceHelper {
 
     //from https://github.com/meetup/android-device-names
     //Converted to java using:
-    //cat android_models.properties | awk -F'=' '{sub(/ *$/, "", $1)} sub(/^ */, "", $2) { if ($2 != "") print "humanReadableNames.put(\""$1"\",\"" $2 "\");"}'
+    //cat android_models.properties | awk -F'=' '{sub(/ *$/, "", $1)} sub(/^ */, "", $2) { if ($2 != "") print "humanReadableNames.put(\""$1"\",\"" $2 "\");"}' | sed -e 's/\\ /_/g'
     private final static HashMap<String,String> humanReadableNames = new HashMap<>();
     static {
         humanReadableNames.put("5860E","Coolpad Quattro 4G");
@@ -55,6 +55,7 @@ public class DeviceHelper {
         humanReadableNames.put("ALCATEL_ONE_TOUCH_7041X","Alcatel One Touch Pop C7");
         humanReadableNames.put("ASUS_T00J","Asus ZenFone 5");
         humanReadableNames.put("ASUS_Transformer_Pad_TF300T","Asus Transformer Pad");
+        humanReadableNames.put("ASUS_Transformer_Pad_TF700T","Asus Transformer Pad");
         humanReadableNames.put("Aquaris_E4.5","bq Aquaris E4.5");
         humanReadableNames.put("C1905","Sony Xperia M");
         humanReadableNames.put("C2105","Sony Xperia L");
@@ -168,6 +169,7 @@ public class DeviceHelper {
         humanReadableNames.put("HTC_PH39100","HTC Vivid 4G");
         humanReadableNames.put("HTC_PN071","HTC One");
         humanReadableNames.put("HTC_Sensation_Z710e","HTC Sensation");
+        humanReadableNames.put("HTC_Sensation_4G","HTC Sensation");
         humanReadableNames.put("HTC_VLE_U","HTC One S");
         humanReadableNames.put("HUAWEI_G510-0251","Huawei Ascend G510");
         humanReadableNames.put("HUAWEI_P6-U06","Huawei Ascend P6");
@@ -236,9 +238,13 @@ public class DeviceHelper {
         humanReadableNames.put("MOTWX435KT","Motorola Triumph");
         humanReadableNames.put("N3","Star NO.1 N3");
         humanReadableNames.put("N860","ZTE Warp N860");
-        humanReadableNames.put("NEXUS 4","Nexus 4");
-        humanReadableNames.put("NEXUS 5","Nexus 5");
-        humanReadableNames.put("NEXUS 6","Nexus 6");
+        humanReadableNames.put("NEXUS_4","Nexus 4");
+        humanReadableNames.put("NEXUS_5","Nexus 5");
+        humanReadableNames.put("NEXUS_5X","Nexus 5X");
+        humanReadableNames.put("LG-D820","Nexus 5");
+        humanReadableNames.put("LG-D821","Nexus 5");
+        humanReadableNames.put("NEXUS_6","Nexus 6");
+        humanReadableNames.put("NEXUS_6P","Nexus 6P");
         humanReadableNames.put("Nexus_10","Google Nexus 10");
         humanReadableNames.put("Nexus_4","Google Nexus 4");
         humanReadableNames.put("Nexus_7","Asus Nexus 7");
@@ -400,8 +406,8 @@ public class DeviceHelper {
         humanReadableNames.put("ST21i","Sony Xperia Tipo");
         humanReadableNames.put("ST25i","Sony Xperia U");
         humanReadableNames.put("ST26i","Sony Xperia J");
-        humanReadableNames.put("Transformer_Prime_TF201","Asus Eee Pad Transformer Prime");
-        humanReadableNames.put("Transformer_TF101","Asus Eee Pad Transformer");
+        humanReadableNames.put("Transformer_Prime_TF201","Asus Transformer Prime");
+        humanReadableNames.put("Transformer_TF101","Asus Transformer");
         humanReadableNames.put("VM670","LG Optimus V");
         humanReadableNames.put("VS840_4G","LG Lucid 4G");
         humanReadableNames.put("VS870_4G","LG Lucid 2");

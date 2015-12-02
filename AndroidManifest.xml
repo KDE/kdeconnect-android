@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.kde.kdeconnect_tp"
-    android:versionCode="904"
-    android:versionName="0.9">
+    android:versionCode="909"
+    android:versionName="0.9e">
 
     <uses-sdk android:minSdkVersion="9"
               android:targetSdkVersion="22" />
@@ -114,6 +114,13 @@
             -->
         </receiver>
 
+        <activity
+            android:name="org.kde.kdeconnect.Plugins.FindMyPhonePlugin.FindMyPhoneActivity"
+            android:label="@string/findmyphone_title"
+            android:theme="@style/Theme.AppCompat"
+            android:launchMode="singleInstance">
+        </activity>
+
         <!-- Plugin-related activities and services -->
 
         <activity
@@ -126,11 +133,19 @@
                 android:value="org.kde.kdeconnect.UserInterface.MaterialActivity" />
         </activity>
         <activity
+            android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandActivity"
+            android:label="@string/remote_control"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MaterialActivity"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.kde.kdeconnect.UserInterface.MaterialActivity" />
+        </activity>
+        <activity
             android:name="org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/remote_control"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.MaterialActivity"
-            android:screenOrientation="fullSensor"
             android:windowSoftInputMode="stateHidden|adjustResize" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

@@ -74,11 +74,11 @@ public class BackgroundService extends Service {
         }
     }
 
-    public static void addGuiInUseCounter(Activity activity) {
+    public static void addGuiInUseCounter(Context activity) {
         addGuiInUseCounter(activity, false);
     }
 
-    public static void addGuiInUseCounter(final Activity activity, final boolean forceNetworkRefresh) {
+    public static void addGuiInUseCounter(final Context activity, final boolean forceNetworkRefresh) {
         BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
@@ -90,7 +90,7 @@ public class BackgroundService extends Service {
         });
     }
 
-    public static void removeGuiInUseCounter(final Activity activity) {
+    public static void removeGuiInUseCounter(final Context activity) {
         BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
@@ -163,7 +163,7 @@ public class BackgroundService extends Service {
 
     private void cleanDevices() {
         for(Device d : devices.values()) {
-            if (!d.isPaired()) {
+            if (!d.isPaired() && !d.isPairRequested() && !d.isPairRequestedByOtherEnd() && d.getConnectionSource() == BaseLink.ConnectionStarted.Remotely) {
                 d.disconnect();
             }
         }
@@ -183,9 +183,14 @@ public class BackgroundService extends Service {
             } else {
                 Log.i("KDE/BackgroundService", "addLink,unknown device: " + deviceId);
                 device = new Device(BackgroundService.this, identityPackage, link);
-                if (device.isPaired() || !discoveryModeAcquisitions.isEmpty()) {
+                if (device.isPaired() || device.isPairRequested() || device.isPairRequestedByOtherEnd()
+                        || link.getConnectionSource() == BaseLink.ConnectionStarted.Locally
+                        ||!discoveryModeAcquisitions.isEmpty() )
+                {
                     devices.put(deviceId, device);
                     device.addPairingCallback(devicePairingCallback);
+                } else {
+                    device.disconnect();
                 }
             }
 
@@ -198,7 +203,7 @@ public class BackgroundService extends Service {
             Log.i("KDE/onConnectionLost", "removeLink, deviceId: " + link.getDeviceId());
             if (d != null) {
                 d.removeLink(link);
-                if (!d.isReachable() && !d.isPaired() && (link.getConnectionSource() == BaseLink.ConnectionStarted.Locally)) {
+                if (!d.isReachable() && !d.isPaired()) {
                     //Log.e("onConnectionLost","Removing connection device because it was not paired");
                     devices.remove(link.getDeviceId());
                     d.removePairingCallback(devicePairingCallback);
@@ -295,11 +300,14 @@ public class BackgroundService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         //This will be called for each intent launch, even if the service is already started and it is reused
         mutex.lock();
-        for (InstanceCallback c : callbacks) {
-            c.onServiceStart(this);
+        try {
+            for (InstanceCallback c : callbacks) {
+                c.onServiceStart(this);
+            }
+            callbacks.clear();
+        } finally {
+            mutex.unlock();
         }
-        callbacks.clear();
-        mutex.unlock();
         return Service.START_STICKY;
     }
 
@@ -313,8 +321,11 @@ public class BackgroundService extends Service {
             public void run() {
                 if (callback != null) {
                     mutex.lock();
-                    callbacks.add(callback);
-                    mutex.unlock();
+                    try {
+                        callbacks.add(callback);
+                    } finally {
+                        mutex.unlock();
+                    }
                 }
                 Intent serviceIntent = new Intent(c, BackgroundService.class);
                 c.startService(serviceIntent);

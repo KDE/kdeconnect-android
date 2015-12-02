@@ -28,8 +28,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.os.Handler;
-import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
@@ -38,6 +36,7 @@ import android.util.Log;
 
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
+import org.kde.kdeconnect.Helpers.ObjectsHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.MaterialActivity;
@@ -57,6 +56,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Device implements BaseLink.PackageReceiver {
@@ -81,11 +83,12 @@ public class Device implements BaseLink.PackageReceiver {
     private ArrayList<String> incomingCapabilities;
     private ArrayList<String> outgoingCapabilities;
 
-    private final HashMap<String, Plugin> plugins = new HashMap<>();
-    private final HashMap<String, Plugin> failedPlugins = new HashMap<>();
+    private final ConcurrentHashMap<String, Plugin> plugins = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, Plugin> failedPlugins = new ConcurrentHashMap<>();
 
     private ArrayList<String> unsupportedPlugins = new ArrayList<>();
     private HashSet<String> supportedIncomingInterfaces = new HashSet<>();
+    private HashSet<String> supportedOutgoingInterfaces = new HashSet<>();
 
     private HashMap<String, ArrayList<String>> pluginsByIncomingInterface;
     private HashMap<String, ArrayList<String>> pluginsByOutgoingInterface;
@@ -237,11 +240,12 @@ public class Device implements BaseLink.PackageReceiver {
         return pairRequestedByPeer;
     }
 
+    public boolean isPairRequestedByOtherEnd() {
+        return pairStatus == PairStatus.RequestedByPeer;
+    }
+
     public void addPairingCallback(PairingCallback callback) {
         pairingCallback.add(callback);
-        if (isPairRequestedByPeer()) {
-            callback.incomingRequest();
-        }
     }
 
     public void removePairingCallback(PairingCallback callback) {
@@ -310,6 +314,8 @@ public class Device implements BaseLink.PackageReceiver {
 
         //Log.e("Device", "Storing as trusted, deviceId: "+deviceId);
 
+        hidePairingNotification();
+
         pairStatus = PairStatus.Paired;
 
         //Store as trusted device
@@ -367,6 +373,8 @@ public class Device implements BaseLink.PackageReceiver {
 
     public void displayPairingNotification() {
 
+        hidePairingNotification();
+
         notificationId = (int)System.currentTimeMillis();
 
         Intent intent = new Intent(getContext(), MaterialActivity.class);
@@ -389,6 +397,7 @@ public class Device implements BaseLink.PackageReceiver {
         final NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
         try {
+            BackgroundService.addGuiInUseCounter(context);
             notificationManager.notify(notificationId, noti);
         } catch(Exception e) {
             //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
@@ -396,11 +405,11 @@ public class Device implements BaseLink.PackageReceiver {
         }
     }
 
-    public void cancelPairingNotification() {
+    public void hidePairingNotification() {
         final NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancel(notificationId);
+        BackgroundService.removeGuiInUseCounter(context);
     }
-
 
     //
     // ComputerLink-related functions
@@ -549,7 +558,7 @@ public class Device implements BaseLink.PackageReceiver {
                     plugin.onPackageReceived(np);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Log.e("KDE/Device", "Exception in "+plugin.getDisplayName()+"'s onPackageReceived()");
+                    Log.e("KDE/Device", "Exception in "+pluginKey+"'s onPackageReceived()");
                 }
             }
         } else {
@@ -665,46 +674,40 @@ public class Device implements BaseLink.PackageReceiver {
         return plugin;
     }
 
-    private synchronized void addPlugin(final String pluginKey) {
+    private synchronized boolean addPlugin(final String pluginKey) {
         Plugin existing = plugins.get(pluginKey);
         if (existing != null) {
             //Log.w("KDE/addPlugin","plugin already present:" + pluginKey);
-            return;
+            return false;
         }
 
         final Plugin plugin = PluginFactory.instantiatePluginForDevice(context, pluginKey, this);
         if (plugin == null) {
             Log.e("KDE/addPlugin","could not instantiate plugin: "+pluginKey);
             failedPlugins.put(pluginKey, null);
-            return;
+            return false;
         }
 
-        new Handler(Looper.getMainLooper()).post(new Runnable() {
-            @Override
-            public void run() {
+        boolean success;
+        try {
+            success = plugin.onCreate();
+        } catch (Exception e) {
+            success = false;
+            e.printStackTrace();
+            Log.e("KDE/addPlugin", "Exception loading plugin " + pluginKey);
+        }
 
-                boolean success;
-                try {
-                    success = plugin.onCreate();
-                } catch (Exception e) {
-                    success = false;
-                    e.printStackTrace();
-                    Log.e("KDE/addPlugin", "Exception loading plugin " + pluginKey);
-                }
+        if (success) {
+            //Log.e("addPlugin","added " + pluginKey);
+            failedPlugins.remove(pluginKey);
+            plugins.put(pluginKey, plugin);
+        } else {
+            Log.e("KDE/addPlugin", "plugin failed to load " + pluginKey);
+            plugins.remove(pluginKey);
+            failedPlugins.put(pluginKey, plugin);
+        }
 
-                if (success) {
-                    //Log.e("addPlugin","added " + pluginKey);
-                    failedPlugins.remove(pluginKey);
-                    plugins.put(pluginKey, plugin);
-                } else {
-                    Log.e("KDE/addPlugin", "plugin failed to load " + pluginKey);
-                    plugins.remove(pluginKey);
-                    failedPlugins.put(pluginKey, plugin);
-                }
-
-            }
-        });
-
+        return success;
     }
 
     private synchronized boolean removePlugin(String pluginKey) {
@@ -754,8 +757,12 @@ public class Device implements BaseLink.PackageReceiver {
 
         ArrayList<String> newUnsupportedPlugins = new ArrayList<>();
         HashSet<String> newSupportedIncomingInterfaces = new HashSet<>();
+        HashSet<String> newSupportedOutgoingInterfaces = new HashSet<>();
         HashMap<String, ArrayList<String>> newPluginsByIncomingInterface = new HashMap<>();
         HashMap<String, ArrayList<String>> newPluginsByOutgoingInterface = new HashMap<>();
+
+        final boolean supportsCapabilities = (incomingCapabilities != null && !incomingCapabilities.isEmpty()) ||
+                (incomingCapabilities != null && !outgoingCapabilities.isEmpty());
 
         for (String pluginKey : availablePlugins) {
 
@@ -769,12 +776,9 @@ public class Device implements BaseLink.PackageReceiver {
                 pluginEnabled = isPluginEnabled(pluginKey);
             }
 
-            if (pluginEnabled) {
-                newSupportedIncomingInterfaces.addAll(incomingInterfaces);
-            }
+            //TODO: Check for plugins that will fail to load before checking the capabilities
 
-            if ((incomingCapabilities != null && !incomingCapabilities.isEmpty()) ||
-                    (incomingCapabilities != null && !outgoingCapabilities.isEmpty())) {
+            if (supportsCapabilities && (!incomingInterfaces.isEmpty() || !outgoingInterfaces.isEmpty())) {
                 HashSet<String> supportedOut = new HashSet<>(outgoingInterfaces);
                 supportedOut.retainAll(incomingCapabilities); //Intersection
                 HashSet<String> supportedIn = new HashSet<>(incomingInterfaces);
@@ -782,24 +786,37 @@ public class Device implements BaseLink.PackageReceiver {
                 if (supportedOut.isEmpty() && supportedIn.isEmpty()) {
                     Log.w("ReloadPlugins", "not loading " + pluginKey + "because of unmatched capabilities");
                     newUnsupportedPlugins.add(pluginKey);
-                    pluginEnabled = false;
+                    if (pluginEnabled) {
+                        //We still want to announce this capability, to prevent a deadlock
+                        newSupportedOutgoingInterfaces.addAll(outgoingInterfaces);
+                        newSupportedIncomingInterfaces.addAll(incomingInterfaces);
+                        pluginEnabled = false;
+                    }
                 }
             }
 
             if (pluginEnabled) {
-                addPlugin(pluginKey);
+                boolean success = addPlugin(pluginKey);
 
-                for (String packageType : incomingInterfaces) {
-                    ArrayList<String> plugins = newPluginsByIncomingInterface.get(packageType);
-                    if (plugins == null) plugins = new ArrayList<>();
-                    plugins.add(pluginKey);
-                    newPluginsByIncomingInterface.put(packageType, plugins);
-                }
-                for (String packageType : outgoingInterfaces) {
-                    ArrayList<String> plugins = newPluginsByOutgoingInterface.get(packageType);
-                    if (plugins == null) plugins = new ArrayList<>();
-                    plugins.add(pluginKey);
-                    newPluginsByOutgoingInterface.put(packageType, plugins);
+                if (success) {
+
+                    newSupportedIncomingInterfaces.addAll(incomingInterfaces);
+                    newSupportedOutgoingInterfaces.addAll(outgoingInterfaces);
+
+                    for (String packageType : incomingInterfaces) {
+                        ArrayList<String> plugins = newPluginsByIncomingInterface.get(packageType);
+                        if (plugins == null) plugins = new ArrayList<>();
+                        plugins.add(pluginKey);
+                        newPluginsByIncomingInterface.put(packageType, plugins);
+                    }
+
+                    for (String packageType : outgoingInterfaces) {
+                        ArrayList<String> plugins = newPluginsByOutgoingInterface.get(packageType);
+                        if (plugins == null) plugins = new ArrayList<>();
+                        plugins.add(pluginKey);
+                        newPluginsByOutgoingInterface.put(packageType, plugins);
+                    }
+
                 }
             } else {
                 removePlugin(pluginKey);
@@ -809,33 +826,38 @@ public class Device implements BaseLink.PackageReceiver {
 
         boolean capabilitiesChanged = false;
         if (!newSupportedIncomingInterfaces.equals(supportedIncomingInterfaces) ||
-                !newPluginsByOutgoingInterface.equals(pluginsByOutgoingInterface)) {
+                !newSupportedOutgoingInterfaces.equals(supportedOutgoingInterfaces)) {
             capabilitiesChanged = true;
         }
 
         pluginsByOutgoingInterface = newPluginsByOutgoingInterface;
         pluginsByIncomingInterface = newPluginsByIncomingInterface;
         supportedIncomingInterfaces = newSupportedIncomingInterfaces;
+        supportedOutgoingInterfaces = newSupportedOutgoingInterfaces;
         unsupportedPlugins = newUnsupportedPlugins;
 
-        for (PluginsChangedListener listener : pluginsChangedListeners) {
-            listener.onPluginsChanged(Device.this);
-        }
+        onPluginsChanged();
 
         if (capabilitiesChanged && isReachable() && isPaired()) {
             NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_CAPABILITIES);
             np.set("IncomingCapabilities", new ArrayList<>(newSupportedIncomingInterfaces));
-            np.set("OutgoingCapabilities", new ArrayList<>(newPluginsByOutgoingInterface.keySet()));
+            np.set("OutgoingCapabilities", new ArrayList<>(newSupportedOutgoingInterfaces));
             sendPackage(np);
         }
 
     }
 
-    public HashMap<String,Plugin> getLoadedPlugins() {
+    public void onPluginsChanged() {
+        for (PluginsChangedListener listener : pluginsChangedListeners) {
+            listener.onPluginsChanged(Device.this);
+        }
+    }
+
+    public ConcurrentHashMap<String,Plugin> getLoadedPlugins() {
         return plugins;
     }
 
-    public HashMap<String,Plugin> getFailedPlugins() {
+    public ConcurrentHashMap<String,Plugin> getFailedPlugins() {
         return failedPlugins;
     }
 
@@ -852,4 +874,14 @@ public class Device implements BaseLink.PackageReceiver {
             link.disconnect();
         }
     }
+
+    public BaseLink.ConnectionStarted getConnectionSource() {
+        for(BaseLink l : links) {
+            if (l.getConnectionSource() == BaseLink.ConnectionStarted.Locally) {
+                return BaseLink.ConnectionStarted.Locally;
+            }
+        }
+        return BaseLink.ConnectionStarted.Remotely;
+    }
+
 }
