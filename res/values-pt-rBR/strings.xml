@@ -32,6 +32,7 @@
   <string name="mousepad_info">Mova um dedo pelo tela para mover o ponteiro do mouse. Dê um toque para clicar e use dois/três dedos para os botões da direita e do meio. Use uma pressão longa para arrastar e soltar.</string>
   <string name="mousepad_double_tap_settings_title">Definir a ação do toque com dois dedos</string>
   <string name="mousepad_triple_tap_settings_title">Definir a ação do toque com três dedos</string>
+  <string name="mousepad_scroll_direction_title">Direção de rolagem inversa</string>
   <string-array name="mousepad_tap_entries">
     <item>Botão direito</item>
     <item>Botão do meio</item>

@@ -32,6 +32,7 @@
   <string name="mousepad_info">Mova un dedo na pantalla para mover o cursor. Toque para facer clic, e use dous ou tres dedos para os botóns secundario e central. Prema durante un tempo para arrastrar e soltar.</string>
   <string name="mousepad_double_tap_settings_title">Definir a acción de tocar con dous dedos</string>
   <string name="mousepad_triple_tap_settings_title">Definir a acción de tocar con tres dedos</string>
+  <string name="mousepad_scroll_direction_title">Inverter a dirección de desprazamento</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic dereito</item>
     <item>Clic central</item>

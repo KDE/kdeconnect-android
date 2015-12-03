@@ -32,6 +32,7 @@
   <string name="mousepad_info">Moveu un dit per la pantalla per a moure el cursor del ratolí. Toqueu per un clic, i empreu dos/tres dits pels botons dret i mig. Empreu un toc llarg per arrossegar i deixar anar.</string>
   <string name="mousepad_double_tap_settings_title">Estableix l\'acció de tocar amb dos dits</string>
   <string name="mousepad_triple_tap_settings_title">Estableix l\'acció de tocar amb tres dits</string>
+  <string name="mousepad_scroll_direction_title">Inverteix la direcció del desplaçament</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic dret</item>
     <item>Clic del mig</item>
