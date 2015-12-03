@@ -8,6 +8,7 @@
   <string name="pref_plugin_sftp_desc">Erlaubt das Browsen des Dateisystems auf dem entfernten Handy</string>
   <string name="pref_plugin_clipboard">Abgleich der Zwischenablage</string>
   <string name="pref_plugin_clipboard_desc">Inhalt der Zwischenablage freigeben</string>
+  <string name="pref_plugin_mousepad">Ferneingabe</string>
   <string name="pref_plugin_mousepad_desc">Verwendet Ihr Handy als Maus und Tastatur</string>
   <string name="pref_plugin_mpris">Multimedia-Bedienung</string>
   <string name="pref_plugin_mpris_desc">Audio und Video mit Ihrem Telefon steuern</string>
@@ -27,6 +28,7 @@
   <string name="no_permissions">Sie müssen die Erlaubnis zum Zugriff auf Benachrichtigungen erteilen</string>
   <string name="send_ping">Ping senden</string>
   <string name="open_mpris_controls">Multimedia-Bedienung</string>
+  <string name="open_mousepad">Ferneingabe</string>
   <string-array name="mousepad_tap_entries">
     <item>Rechtsklick</item>
     <item>Mittelklick</item>
