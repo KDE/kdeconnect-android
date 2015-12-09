@@ -32,6 +32,7 @@
   <string name="mousepad_info">Move a finger on the screen to move the mouse cursor. Tap for a click, and use two/three fingers for right and middle buttons. Use a long press to drag\'n drop.</string>
   <string name="mousepad_double_tap_settings_title">Set two finger tap action</string>
   <string name="mousepad_triple_tap_settings_title">Set three finger tap action</string>
+  <string name="mousepad_scroll_direction_title">Reverse Scrolling Direction</string>
   <string-array name="mousepad_tap_entries">
     <item>Right click</item>
     <item>Middle click</item>
