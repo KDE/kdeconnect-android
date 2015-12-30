@@ -1,15 +1,102 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="pref_plugin_telephony">Telefono žinutės ir skambučiai</string>
+  <string name="pref_plugin_telephony_desc">Siųsti pranešimus apie SMS ir skambučius</string>
+  <string name="pref_plugin_battery">Akumuliatoriaus ataskaita</string>
+  <string name="pref_plugin_sftp">Failų sistemos naršymas</string>
+  <string name="pref_plugin_clipboard">Iškarpinės sinchronizavimas</string>
+  <string name="pref_plugin_mousepad">Nuotolinis įvedimas</string>
+  <string name="pref_plugin_mpris">Įvairialypės terpės valdikliai</string>
+  <string name="pref_plugin_runcommand">Vykdyti komandą</string>
+  <string name="pref_plugin_ping">Ryšio patikrinimas</string>
+  <string name="pref_plugin_notifications">Pranešimų sinchronizavimas</string>
+  <string name="pref_plugin_sharereceiver">Dalintis ir gauti</string>
+  <string name="device_list_empty">Įrenginių nerasta</string>
+  <string name="ok">Gerai</string>
+  <string name="cancel">Atšaukti</string>
+  <string name="open_settings">Atverti nuostatas</string>
+  <string name="send_ping">Tikrinti ryšį</string>
+  <string name="open_mpris_controls">Garso ir vaizdo kūrinių grojimo valdymas</string>
+  <string name="open_mousepad">Nuotolinis įvedimas</string>
   <string-array name="mousepad_tap_entries">
     <item>Right click</item>
     <item>Middle click</item>
-    <item>Nothing</item>
+    <item>Nieko</item>
   </string-array>
+  <string name="category_connected_devices">Prijungti įrenginiai</string>
+  <string name="category_not_paired_devices">Pasiekiami įrenginiai</string>
+  <string name="category_remembered_devices">Įsimintieji įrenginiai</string>
+  <string name="device_menu_plugins">Papildinio nuostatos</string>
+  <string name="device_menu_unpair">Atrišti</string>
+  <string name="device_not_reachable">Nepavyksta pasiekti suporuoto įrenginio</string>
+  <string name="unknown_device">Nežinomas įrenginys</string>
+  <string name="error_not_reachable">Įrenginys nepasiekiamas</string>
+  <string name="error_already_requested">Jau paprašyta suporuoti</string>
+  <string name="error_already_paired">Įrenginys jau suporuotas</string>
+  <string name="error_could_not_send_package">Nepavyksta išsiųsti paketo</string>
+  <string name="error_timed_out">Skirtasis laikas baigėsi</string>
+  <string name="error_canceled_by_user">Naudotojas atšaukė užduotį</string>
+  <string name="error_canceled_by_other_peer">Porininkas atšaukė užduotį</string>
+  <string name="error_invalid_key">Gautas netinkamas raktas</string>
+  <string name="pair_requested">Paprašyta suporuoti</string>
+  <string name="tap_to_answer">Norėdami atsakyti, palieskite</string>
+  <string name="reconnect">Prisijungti iš naujo</string>
+  <string name="show_keyboard">Rodyti klaviatūrą</string>
+  <string name="device_not_paired">Įrenginys nesuporuotas</string>
+  <string name="request_pairing">Bandyti suporuoti</string>
+  <string name="pairing_accept">Priimti</string>
+  <string name="pairing_reject">Atmesti</string>
+  <string name="device">Įrenginys</string>
+  <string name="pair_device">Suporuoti įrenginį</string>
+  <string name="remote_control">Nuotolinis valdymas</string>
+  <string name="settings">„KDE Connect“ nuostatos</string>
+  <string name="mpris_play">Groti</string>
+  <string name="mpris_previous">Ankstesnis</string>
+  <string name="mpris_rew">Atsukti</string>
+  <string name="mpris_ff">Prasukti</string>
+  <string name="mpris_next">Tolesnis</string>
+  <string name="mpris_volume">Garsumas</string>
+  <string name="mpris_settings">Įvairialypės terpės nuostatos</string>
+  <string name="mpris_time_settings_title">Prasukimo ir atsukimo mygtukai</string>
   <string-array name="mpris_time_entries">
-    <item>10 seconds</item>
-    <item>20 seconds</item>
-    <item>30 seconds</item>
-    <item>1 minute</item>
-    <item>2 minutes</item>
+    <item>10 sekundžių</item>
+    <item>20 sekundžių</item>
+    <item>30 sekundžių</item>
+    <item>1 minutė</item>
+    <item>2 minutės</item>
   </string-array>
+  <string name="share_to">Dalintis...</string>
+  <string name="general_settings">Bendrosios nuostatos</string>
+  <string name="plugin_settings">Nuostatos</string>
+  <string name="plugin_settings_with_name">%s nuostatos</string>
+  <string name="device_name">Įrenginio pavadinimas</string>
+  <string name="device_name_preference_summary">%s</string>
+  <string name="invalid_device_name">Netinkamas įrenginio pavadinimas</string>
+  <string name="custom_devices_settings">Savitas įrenginių sąrašas</string>
+  <string name="pair_device_action">Suporuoti naują įrenginį</string>
+  <string name="unpair_device_action">Atrišti %s</string>
+  <string name="custom_device_list">Pridėti įrenginį pagal IP</string>
+  <string name="sftp_all_files">Visi failai</string>
+  <string name="sftp_sdcard_num">SD kortelė %d</string>
+  <string name="sftp_sdcard">SD kortelė</string>
+  <string name="sftp_readonly">(tik skaitymui)</string>
+  <string name="sftp_camera">Nuotraukos</string>
+  <string name="add_host">Pridėti kompiuterį / IP</string>
+  <string name="add_host_hint">Adresas arba IP</string>
+  <string name="mpris_player_on_device">%1$s - %2$s</string>
+  <string name="send_files">Siųsti failus</string>
+  <string name="pairing_title">„KDE Connect“ įrenginiai</string>
+  <string name="pairing_description">Čia turėtų pasirodyti to kiti paties tinklo įrenginiai, kuriuose veikia „KDE Connect“</string>
+  <string name="device_paired">Įrenginys suporuotas</string>
+  <string name="device_rename_title">Pervadinti įrenginį</string>
+  <string name="device_rename_confirm">Pervadinti</string>
+  <string name="refresh">Atnaujinti</string>
+  <string name="unreachable_description">Šis suporuotas įrenginys nepasiekiamas. Patikrinkite, ar jis prisijungęs prie to paties tinklo.</string>
+  <string name="pref_plugin_telepathy">Siųsti SMS</string>
+  <string name="plugin_not_supported">Telefonas nepalaiko šio papildinio</string>
+  <string name="findmyphone_title">Rasti telefoną</string>
+  <string name="findmyphone_description">Telefonas skambės, tad galėsite jį rasti.</string>
+  <string name="findmyphone_found">Radau</string>
+  <string name="open">Atverti</string>
+  <string name="close">Užverti</string>
 </resources>
