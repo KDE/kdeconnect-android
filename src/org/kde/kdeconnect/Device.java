@@ -699,7 +699,7 @@ public class Device implements BaseLink.PackageReceiver {
         Plugin existing = plugins.get(pluginKey);
         if (existing != null) {
             //Log.w("KDE/addPlugin","plugin already present:" + pluginKey);
-            return false;
+            return true;
         }
 
         final Plugin plugin = PluginFactory.instantiatePluginForDevice(context, pluginKey, this);
