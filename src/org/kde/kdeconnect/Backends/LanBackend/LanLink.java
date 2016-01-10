@@ -21,11 +21,8 @@
 package org.kde.kdeconnect.Backends.LanBackend;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
 
-import org.apache.mina.core.future.WriteFuture;
-import org.apache.mina.core.session.IoSession;
 import org.json.JSONObject;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
@@ -43,17 +40,13 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.channels.NotYetConnectedException;
-import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.util.ArrayList;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLServerSocketFactory;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelFutureListener;
-import io.netty.util.AttributeKey;
 
 public class LanLink extends BaseLink {
 

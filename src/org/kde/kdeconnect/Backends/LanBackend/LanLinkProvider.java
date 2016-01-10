@@ -27,18 +27,6 @@ import android.support.v4.util.LongSparseArray;
 import android.util.Base64;
 import android.util.Log;
 
-import org.apache.mina.core.future.ConnectFuture;
-import org.apache.mina.core.future.IoFuture;
-import org.apache.mina.core.future.IoFutureListener;
-import org.apache.mina.core.service.IoHandler;
-import org.apache.mina.core.service.IoHandlerAdapter;
-import org.apache.mina.core.session.IoSession;
-import org.apache.mina.filter.codec.ProtocolCodecFilter;
-import org.apache.mina.filter.codec.textline.LineDelimiter;
-import org.apache.mina.filter.codec.textline.TextLineCodecFactory;
-import org.apache.mina.transport.socket.nio.NioDatagramAcceptor;
-import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
-import org.apache.mina.transport.socket.nio.NioSocketConnector;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.BackgroundService;
