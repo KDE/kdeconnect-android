@@ -32,6 +32,7 @@
   <string name="mousepad_info">Posúvajte prst na obrazovke na posun kurzora. Ťuknutie vyvolá klik a použite dva/tri prsty pre pravé a stredné tlačidlo. Použite dlhé stlačenie pre drag and drop.</string>
   <string name="mousepad_double_tap_settings_title">Nastaviť akciu dvoch prstov</string>
   <string name="mousepad_triple_tap_settings_title">Nastaviť akciu troch prstov</string>
+  <string name="mousepad_scroll_direction_title">Obrátený smer rolovania</string>
   <string-array name="mousepad_tap_entries">
     <item>Kliknutie pravým tlačidlom</item>
     <item>Stredný klik</item>

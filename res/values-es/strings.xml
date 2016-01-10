@@ -32,6 +32,7 @@
   <string name="mousepad_info">Mueva un dedo sobre la pantalla para mover el cursor del ratón. Pulse para ejecutar un clic y use dos/tres dedos para emular los botones derecho y central. Use una pulsación larga para arrastrar y soltar.</string>
   <string name="mousepad_double_tap_settings_title">Establecer la acción al pulsar con dos dedos</string>
   <string name="mousepad_triple_tap_settings_title">Establecer la acción al pulsar con tres dedos</string>
+  <string name="mousepad_scroll_direction_title">Invertir dirección de desplazamiento</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic derecho</item>
     <item>Clic del botón central</item>

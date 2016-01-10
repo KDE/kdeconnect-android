@@ -32,6 +32,7 @@
   <string name="mousepad_info">Veeg met een vinger op het scherm om de muiscursor te verplaatsen. Tik om te klikken en gebruik twee/drie vingers voor rechter en middelste knop. Druk lang voor slepen en loslaten.</string>
   <string name="mousepad_double_tap_settings_title">Tikactie met twee vingers instellen</string>
   <string name="mousepad_triple_tap_settings_title">Tikactie met drie vingers instellen</string>
+  <string name="mousepad_scroll_direction_title">Schuifrichting omdraaien</string>
   <string-array name="mousepad_tap_entries">
     <item>Rechter muisklik</item>
     <item>Middelste muisklik</item>
