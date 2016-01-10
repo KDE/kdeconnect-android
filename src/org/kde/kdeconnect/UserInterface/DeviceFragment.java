@@ -329,7 +329,7 @@ public class DeviceFragment extends Fragment {
             @Override
             public void run() {
 
-                if (device.isPairRequestedByOtherEnd()) {
+                if (device.isPairRequestedByPeer()) {
                     ((TextView) rootView.findViewById(R.id.pair_message)).setText(R.string.pair_requested);
                     rootView.findViewById(R.id.pair_progress).setVisibility(View.GONE);
                     rootView.findViewById(R.id.pair_button).setVisibility(View.GONE);

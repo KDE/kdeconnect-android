@@ -181,8 +181,8 @@ public class LanPairingHandler extends BasePairingHandler {
 
     public void hidePairingNotification() {
         mDevice.hidePairingNotification();
-        if (pairingTimer != null) {
-            pairingTimer.cancel();
+        if (mPairingTimer != null) {
+            mPairingTimer .cancel();
         }
     }
 

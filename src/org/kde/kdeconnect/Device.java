@@ -240,10 +240,6 @@ public class Device implements BaseLink.PackageReceiver {
         return pairRequestedByPeer;
     }
 
-    public boolean isPairRequestedByOtherEnd() {
-        return pairStatus == PairStatus.RequestedByPeer;
-    }
-
     public void addPairingCallback(PairingCallback callback) {
         pairingCallback.add(callback);
     }
@@ -558,7 +554,7 @@ public class Device implements BaseLink.PackageReceiver {
                     plugin.onPackageReceived(np);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Log.e("KDE/Device", "Exception in "+pluginKey+"'s onPackageReceived()");
+                    Log.e("KDE/Device", "Exception in "+plugin.getPluginKey()+"'s onPackageReceived()");
                 }
             }
         } else {
