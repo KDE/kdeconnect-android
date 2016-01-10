@@ -118,7 +118,7 @@ public class PluginFactory {
         PluginFactory.registerPlugin(MprisPlugin.class);
         PluginFactory.registerPlugin(ClipboardPlugin.class);
         PluginFactory.registerPlugin(BatteryPlugin.class);
-        PluginFactory.registerPlugin(SftpPlugin.class);
+        //PluginFactory.registerPlugin(SftpPlugin.class);
         PluginFactory.registerPlugin(NotificationsPlugin.class);
         PluginFactory.registerPlugin(MousePadPlugin.class);
         PluginFactory.registerPlugin(SharePlugin.class);
