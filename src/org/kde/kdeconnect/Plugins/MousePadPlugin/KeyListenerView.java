@@ -121,10 +121,15 @@ public class KeyListenerView extends View  {
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
 
-    /* NOTE: Some keyboards, and specifically the Android default keyboard when
-     * entering non-ascii characters, will not trigger KeyEvent events as documented
-     * here: http://developer.android.com/reference/android/view/KeyEvent.html
-     */
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            //We don't want to swallow the back button press
+            return false;
+        }
+
+        // NOTE: Most keyboards, and specifically the Android default keyboard when
+        // entering non-ascii characters, will not trigger KeyEvent events as documented
+        // here: http://developer.android.com/reference/android/view/KeyEvent.html
+
         //Log.e("KeyDown", "------------");
         //Log.e("KeyDown", "keyChar:" + (int) event.getDisplayLabel());
         //Log.e("KeyDown", "utfChar:" + (char)event.getUnicodeChar());

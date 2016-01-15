@@ -160,7 +160,7 @@ public class MaterialActivity extends AppCompatActivity {
                     }
                 }
 
-                MenuItem item = menu.add(99, id++, 0, "Pair new device");
+                MenuItem item = menu.add(99, id++, 0, R.string.pair_new_device);
                 item.setIcon(R.drawable.ic_action_content_add_circle_outline);
                 item.setCheckable(true);
                 item.setChecked(mCurrentDevice == null);
