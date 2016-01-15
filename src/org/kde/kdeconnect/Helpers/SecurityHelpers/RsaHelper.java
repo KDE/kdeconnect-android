@@ -70,33 +70,6 @@ public class RsaHelper {
 
         }
 
-
-/*
-        // Encryption and decryption test
-        //================================
-
-        try {
-
-            NetworkPackage np = NetworkPackage.createIdentityPackage(this);
-
-            SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(this);
-
-            byte[] publicKeyBytes = Base64.decode(globalSettings.getString("publicKey",""), 0);
-            PublicKey publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
-
-            np.encrypt(publicKey);
-
-            byte[] privateKeyBytes = Base64.decode(globalSettings.getString("privateKey",""), 0);
-            PrivateKey privateKey = KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(privateKeyBytes));
-
-            NetworkPackage decrypted = np.decrypt(privateKey);
-            Log.e("ENCRYPTION AND DECRYPTION TEST", decrypted.serialize());
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("ENCRYPTION AND DECRYPTION TEST","Exception: "+e);
-        }
-*/
-
     }
 
     public static PublicKey getPublicKey (Context context) throws Exception{

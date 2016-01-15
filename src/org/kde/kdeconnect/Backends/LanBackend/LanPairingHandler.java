@@ -43,12 +43,7 @@ public class LanPairingHandler extends BasePairingHandler {
         super(device, callback);
 
         if (device.isPaired()) {
-            if (device.publicKey != null) {
-                mPairStatus = PairStatus.Paired;
-            } else {
-                /* Request pairing if device is paired but public key is not there */
-                requestPairing();
-            }
+            mPairStatus = PairStatus.Paired;
         } else {
             mPairStatus = PairStatus.NotPaired;
         }
@@ -94,8 +89,7 @@ public class LanPairingHandler extends BasePairingHandler {
             } catch (Exception e) {
                 e.printStackTrace();
                 Log.e("KDE/Device","Pairing exception: Received incorrect key");
-                mCallback.pairingFailed(mDevice.getContext().getString(R.string.error_invalid_key));
-                return;
+                //IGNORE
             }
 
             if (mPairStatus == PairStatus.Requested)  { //We started pairing

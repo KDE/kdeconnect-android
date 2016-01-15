@@ -105,7 +105,6 @@ class SimpleSftpServer {
 
     public void init(Context ctx, Device device) {
         passwordAuth.setUser(USER);
-        keyAuth.addKey(device.publicKey);
         sshd.setKeyPairProvider(new SimpleGeneratorHostKeyProvider(ctx.getFilesDir() + "/sftpd.ser"));
 
         //sshd.setFileSystemFactory(new NativeFileSystemFactory());
@@ -115,7 +114,9 @@ class SimpleSftpServer {
         sshd.setSubsystemFactories(Collections.singletonList((NamedFactory<Command>)new SftpSubsystem.Factory()));
 
         sshd.setPasswordAuthenticator(passwordAuth);
-        sshd.setPublickeyAuthenticator(keyAuth);
+        //FIXME: Do we need the public key?
+        //keyAuth.addKey(publicKey);
+        //sshd.setPublickeyAuthenticator(keyAuth);
     }
 
     public boolean start() {

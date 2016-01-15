@@ -103,9 +103,6 @@ public class LanLink extends BaseLink {
                 if (device == null) return;
                 if (!device.isPaired()) return;
                 // If the device is already paired due to other link, just send a pairing request to get required attributes for this link
-                if (device.publicKey == null) {
-                    device.requestPairing();
-                }
             }
         });
     }
