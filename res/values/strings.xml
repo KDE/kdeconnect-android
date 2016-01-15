@@ -54,6 +54,7 @@
     <string name="device_menu_plugins">Plugin settings</string>
     <string name="device_menu_unpair">Unpair</string>
     <string name="device_not_reachable">Paired device not reachable</string>
+    <string name="pair_new_device">Pair new device</string>
     <string name="unknown_device">Unknown device</string>
     <string name="error_not_reachable">Device not reachable</string>
     <string name="error_already_requested">Pairing already requested</string>
