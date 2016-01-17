@@ -47,6 +47,7 @@
   <string name="device_menu_plugins">Configurações do plugin</string>
   <string name="device_menu_unpair">Cancelar emparelhamento</string>
   <string name="device_not_reachable">O dispositivo pareado está inacessível</string>
+  <string name="pair_new_device">Emparelhar novo dispositivo</string>
   <string name="unknown_device">Dispositivo desconhecido</string>
   <string name="error_not_reachable">Dispositivo inacessível</string>
   <string name="error_already_requested">O emparelhamento já foi solicitado</string>

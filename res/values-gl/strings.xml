@@ -47,6 +47,7 @@
   <string name="device_menu_plugins">Configuración do engadido</string>
   <string name="device_menu_unpair">Desemparellarse</string>
   <string name="device_not_reachable">O dispositivo emparellado está fóra do alcance.</string>
+  <string name="pair_new_device">Emparellar cun novo dispositivo</string>
   <string name="unknown_device">Dispositivo descoñecido</string>
   <string name="error_not_reachable">Dispositivo fóra do alcance</string>
   <string name="error_already_requested">Xa solicitou emparellarse.</string>
