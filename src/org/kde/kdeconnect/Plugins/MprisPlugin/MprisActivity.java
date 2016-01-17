@@ -89,7 +89,11 @@ public class MprisActivity extends ActionBarActivity {
                             @Override
                             public void run() {
                                 String song = mpris.getCurrentSong();
-                                ((TextView) findViewById(R.id.now_playing_textview)).setText(song);
+
+                                TextView nowPlaying = (TextView) findViewById(R.id.now_playing_textview);
+                                if (!nowPlaying.getText().toString().equals(song)) {
+                                    nowPlaying.setText(song);
+                                }
 
                                 if (mpris.getLength() > -1 && mpris.getPosition() > -1 && !"spotify".equals(mpris.getPlayer().toLowerCase())) {
                                     ((TextView) findViewById(R.id.time_textview)).setText(milisToProgress(mpris.getLength()));
@@ -453,6 +457,7 @@ public class MprisActivity extends ActionBarActivity {
 
         });
 
+        findViewById(R.id.now_playing_textview).setSelected(true);
     }
 
     @Override
