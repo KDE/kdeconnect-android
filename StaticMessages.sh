@@ -16,6 +16,8 @@ function import_po_files # First parameter will be a path that will contain seve
 {
 	podir=$1
 	ANSI_COLORS_DISABLED=1 a2po import --ignore-fuzzy --android res/ --gettext $podir
+	#Android doesn't support languages with an @
+	rm -r res/values-*@*
 }
 
 
