@@ -46,6 +46,7 @@
   <string name="device_menu_plugins">Arranjament del connector</string>
   <string name="device_menu_unpair">Desparella</string>
   <string name="device_not_reachable">No s\'ha pogut accedir al dispositiu parell</string>
+  <string name="pair_new_device">Aparella amb un dispositiu nou</string>
   <string name="unknown_device">Dispositiu desconegut</string>
   <string name="error_not_reachable">No es pot accedir al dispositiu</string>
   <string name="error_already_requested">Ja s\'ha demanat aparellar</string>
