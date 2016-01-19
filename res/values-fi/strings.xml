@@ -47,6 +47,7 @@
   <string name="device_menu_plugins">Liitännäisten asetukset</string>
   <string name="device_menu_unpair">Poista laitepari</string>
   <string name="device_not_reachable">Laitepari tavoittamattomissa</string>
+  <string name="pair_new_device">Kytke uusi laite pariksi</string>
   <string name="unknown_device">Tuntematon laite</string>
   <string name="error_not_reachable">Laite tavoittamattomissa</string>
   <string name="error_already_requested">Pariksi kytkemistä on jo pyydetty</string>
