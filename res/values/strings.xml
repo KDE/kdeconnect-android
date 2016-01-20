@@ -33,8 +33,10 @@
     <string name="mousepad_info">Move a finger on the screen to move the mouse cursor. Tap for a click, and use two/three fingers for right and middle buttons. Use a long press to drag\'n drop.</string>
     <string name="mousepad_double_tap_settings_title">Set two finger tap action</string>
     <string name="mousepad_triple_tap_settings_title">Set three finger tap action</string>
+    <string name="mousepad_sensitivity_settings_title">Set touchpad sensitivity</string>
     <string name="mousepad_double_tap_key" translatable="false">mousepad_double_tap_key</string>
     <string name="mousepad_triple_tap_key" translatable="false">mousepad_triple_tap_key</string>
+    <string name="mousepad_sensitivity_key" translatable="false">mousepad_sensitivity_key</string>
     <string name="mousepad_scroll_direction_title">Reverse Scrolling Direction</string>
     <string name="mousepad_scroll_direction" translatable="false">mousepad_scroll_direction</string>
     <string-array name="mousepad_tap_entries">
@@ -44,10 +46,25 @@
     </string-array>
     <string name="mousepad_double_default">right</string>
     <string name="mousepad_triple_default">middle</string>
+    <string name="mousepad_sensitivity_default">default</string>
     <string-array name="mousepad_tap_values" translatable="false">
         <item>right</item>
         <item>middle</item>
         <item>none</item>
+    </string-array>
+    <string-array name="mousepad_sensitivity_entries">
+        <item>Slowest</item>
+        <item>Above Slowest</item>
+        <item>Default</item>
+        <item>Above Default</item>
+        <item>Fastest</item>
+    </string-array>
+    <string-array name="mousepad_sensitivity_values" translatable="false">
+        <item>slowest</item>
+        <item>aboveSlowest</item>
+        <item>default</item>
+        <item>aboveDefault</item>
+        <item>fastest</item>
     </string-array>
     <string name="category_connected_devices">Connected devices</string>
     <string name="category_not_paired_devices">Available devices</string>
