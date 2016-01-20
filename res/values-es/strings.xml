@@ -47,6 +47,7 @@
   <string name="device_menu_plugins">Preferencias del complemento</string>
   <string name="device_menu_unpair">Desvincular</string>
   <string name="device_not_reachable">No se encuentra el dispositivo aparejado</string>
+  <string name="pair_new_device">Vincular nuevo dispositivo</string>
   <string name="unknown_device">Dispositivo desconocido</string>
   <string name="error_not_reachable">No se encuentra el dispositivo</string>
   <string name="error_already_requested">Ya ha solicitado vincularse</string>
