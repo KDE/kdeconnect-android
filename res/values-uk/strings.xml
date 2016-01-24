@@ -32,6 +32,7 @@
   <string name="mousepad_info">Проведіть по екрану пальцем, щоб пересунути вказівник миші. Дотик одним пальцем означатиме клацання, дотиком двома або трьома пальцями можна імітувати праву і середню кнопки. Для перетягування зі скиданням скористайтеся тривалим натисканням.</string>
   <string name="mousepad_double_tap_settings_title">Встановлення дії для торкання двома пальцями</string>
   <string name="mousepad_triple_tap_settings_title">Встановлення дії для торкання трьома пальцями</string>
+  <string name="mousepad_sensitivity_settings_title">Встановити чутливість сенсорної панелі</string>
   <string name="mousepad_scroll_direction_title">Зворотний напрямок гортання</string>
   <string-array name="mousepad_tap_entries">
     <item>Клацання правою</item>
@@ -40,6 +41,14 @@
   </string-array>
   <string name="mousepad_double_default">права</string>
   <string name="mousepad_triple_default">середня</string>
+  <string name="mousepad_sensitivity_default">типва</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Найповільніший</item>
+    <item>Швидший за найповільніший</item>
+    <item>Типовий</item>
+    <item>Швидший за типовий</item>
+    <item>Найшвидший</item>
+  </string-array>
   <string name="category_connected_devices">З’єднані пристрої</string>
   <string name="category_not_paired_devices">Доступні пристрої</string>
   <string name="category_remembered_devices">Відомі пристрої</string>

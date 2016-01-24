@@ -36,6 +36,13 @@
   </string-array>
   <string name="mousepad_double_default">Rechts</string>
   <string name="mousepad_triple_default">Mitte</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
+  </string-array>
   <string name="category_connected_devices">Verbundene Geräte</string>
   <string name="category_not_paired_devices">Verfügbare Gerät</string>
   <string name="category_remembered_devices">Gemerkte Geräte</string>

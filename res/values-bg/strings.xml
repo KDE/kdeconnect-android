@@ -25,6 +25,13 @@
     <item>Middle click</item>
     <item>Nothing</item>
   </string-array>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
+  </string-array>
   <string name="category_connected_devices">Свързани устройства</string>
   <string name="category_remembered_devices">Запомнени устройства</string>
   <string name="plugins_failed_to_load">Неуспешно зареждане на приставки (докоснете за подробности)</string>

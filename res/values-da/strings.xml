@@ -39,6 +39,13 @@
   </string-array>
   <string name="mousepad_double_default">højre</string>
   <string name="mousepad_triple_default">midter</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
+  </string-array>
   <string name="category_connected_devices">Forbundne enheder</string>
   <string name="category_not_paired_devices">Tilgængelig enheder</string>
   <string name="category_remembered_devices">Huskede enheder</string>

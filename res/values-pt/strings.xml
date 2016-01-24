@@ -32,6 +32,7 @@
   <string name="mousepad_info">Mova um dedo pelo ecrã para mover o cursor do rato. Dê um toque para carregar no botão esquerdo e use dois/três dedos para os botões direito e do meio. Use uma pressão longa para arrastar e largar.</string>
   <string name="mousepad_double_tap_settings_title">Definir a acção do toque com dois dedos</string>
   <string name="mousepad_triple_tap_settings_title">Definir a acção do toque com três dedos</string>
+  <string name="mousepad_sensitivity_settings_title">Definir a sensibilidade do rato por toque</string>
   <string name="mousepad_scroll_direction_title">Direcção de Deslocamento Inversa</string>
   <string-array name="mousepad_tap_entries">
     <item>Botão direito</item>
@@ -40,6 +41,14 @@
   </string-array>
   <string name="mousepad_double_default">direita</string>
   <string name="mousepad_triple_default">meio</string>
+  <string name="mousepad_sensitivity_default">predefinição</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Mais Lento</item>
+    <item>Ainda Mais Lento</item>
+    <item>Predefinição</item>
+    <item>Acima da Predefinição</item>
+    <item>Mais Rápido</item>
+  </string-array>
   <string name="category_connected_devices">Dispositivos ligados</string>
   <string name="category_not_paired_devices">Dispositivos disponíveis</string>
   <string name="category_remembered_devices">Dispositivos recordados</string>

@@ -27,6 +27,13 @@
     <item/>
     <item>Nothing</item>
   </string-array>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
+  </string-array>
   <string name="category_connected_devices">الأجهزة المقترن بها</string>
   <string name="category_not_paired_devices">الأجهزة المتوفّرة</string>
   <string name="category_remembered_devices">الأجهزة المتذكَّرة</string>

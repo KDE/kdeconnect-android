@@ -39,6 +39,13 @@
   </string-array>
   <string name="mousepad_double_default">Нажатие правой кнопки</string>
   <string name="mousepad_triple_default">Нажатие средней кнопки</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
+  </string-array>
   <string name="category_connected_devices">Подключённые устройства</string>
   <string name="category_not_paired_devices">Доступные устройства</string>
   <string name="category_remembered_devices">Известные устройства</string>

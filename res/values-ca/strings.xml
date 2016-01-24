@@ -32,6 +32,7 @@
   <string name="mousepad_info">Moveu un dit per la pantalla per a moure el cursor del ratolí. Toqueu per un clic, i empreu dos/tres dits pels botons dret i mig. Empreu un toc llarg per arrossegar i deixar anar.</string>
   <string name="mousepad_double_tap_settings_title">Estableix l\'acció de tocar amb dos dits</string>
   <string name="mousepad_triple_tap_settings_title">Estableix l\'acció de tocar amb tres dits</string>
+  <string name="mousepad_sensitivity_settings_title">Estableix la sensibilitat del ratolí tàctil</string>
   <string name="mousepad_scroll_direction_title">Inverteix la direcció del desplaçament</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic dret</item>
@@ -40,6 +41,14 @@
   </string-array>
   <string name="mousepad_double_default">dret</string>
   <string name="mousepad_triple_default">mig</string>
+  <string name="mousepad_sensitivity_default">predeterminat</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>La més lenta</item>
+    <item>Lenta</item>
+    <item>Predeterminada</item>
+    <item>Ràpida</item>
+    <item>La més ràpida</item>
+  </string-array>
   <string name="category_connected_devices">Dispositius connectats</string>
   <string name="category_not_paired_devices">Dispositius disponibles</string>
   <string name="category_remembered_devices">Dispositius recordats</string>
