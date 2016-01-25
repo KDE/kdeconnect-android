@@ -32,6 +32,7 @@
   <string name="mousepad_info">Move a finger on the screen to move the mouse cursor. Tap for a click, and use two/three fingers for right and middle buttons. Use a long press to drag\'n drop.</string>
   <string name="mousepad_double_tap_settings_title">Set two finger tap action</string>
   <string name="mousepad_triple_tap_settings_title">Set three finger tap action</string>
+  <string name="mousepad_sensitivity_settings_title">Set touchpad sensitivity</string>
   <string name="mousepad_scroll_direction_title">Reverse Scrolling Direction</string>
   <string-array name="mousepad_tap_entries">
     <item>Right click</item>
@@ -40,6 +41,7 @@
   </string-array>
   <string name="mousepad_double_default">right</string>
   <string name="mousepad_triple_default">middle</string>
+  <string name="mousepad_sensitivity_default">default</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>Slowest</item>
     <item>Above Slowest</item>
@@ -54,6 +56,7 @@
   <string name="device_menu_plugins">Plugin settings</string>
   <string name="device_menu_unpair">Unpair</string>
   <string name="device_not_reachable">Paired device not reachable</string>
+  <string name="pair_new_device">Pair new device</string>
   <string name="unknown_device">Unknown device</string>
   <string name="error_not_reachable">Device not reachable</string>
   <string name="error_already_requested">Pairing already requested</string>
