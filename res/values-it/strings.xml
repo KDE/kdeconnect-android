@@ -54,6 +54,7 @@
   <string name="device_menu_plugins">Impostazioni estensioni</string>
   <string name="device_menu_unpair">Disassocia</string>
   <string name="device_not_reachable">Dispositivo associato non raggiungibile</string>
+  <string name="pair_new_device">Associa nuovo dispositivo</string>
   <string name="unknown_device">Dispositivo sconosciuto</string>
   <string name="error_not_reachable">Dispositivo fuori portata</string>
   <string name="error_already_requested">Richiesta già inviata</string>
