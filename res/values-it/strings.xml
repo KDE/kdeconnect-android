@@ -32,6 +32,7 @@
   <string name="mousepad_info">Muovi un dito sullo schermo per spostare il puntatore del mouse. Tocca per un clic e usa due/tre dita per i pulsanti destro e centrale. Utilizza una pressione lunga per trascinare e rilasciare.</string>
   <string name="mousepad_double_tap_settings_title">Imposta azione per il tocco a due dita</string>
   <string name="mousepad_triple_tap_settings_title">Imposta azione per il tocco a tre dita</string>
+  <string name="mousepad_sensitivity_settings_title">Imposta la sensibilità del touchpad</string>
   <string name="mousepad_scroll_direction_title">Inverti direzione di scorrimento</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic destro</item>
@@ -40,12 +41,13 @@
   </string-array>
   <string name="mousepad_double_default">destra</string>
   <string name="mousepad_triple_default">centro</string>
+  <string name="mousepad_sensitivity_default">predefinita</string>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
-    <item>Above Slowest</item>
-    <item>Default</item>
-    <item>Above Default</item>
-    <item>Fastest</item>
+    <item>Minima</item>
+    <item>Più veloce</item>
+    <item>Predefinita</item>
+    <item>Superiore a predefinita</item>
+    <item>Massima</item>
   </string-array>
   <string name="category_connected_devices">Dispositivi connessi</string>
   <string name="category_not_paired_devices">Dispositivi disponibili</string>
