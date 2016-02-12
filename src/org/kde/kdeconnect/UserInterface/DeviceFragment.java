@@ -259,8 +259,8 @@ public class DeviceFragment extends Fragment {
                     if (device.certificate == null) {
                         builder.setMessage(R.string.encryption_info_msg_no_ssl);
                     } else {
-                        builder.setMessage(context.getResources().getString(R.string.my_device_fingerprint) + " " + SslHelper.getCertificateHash(SslHelper.certificate) + "\n\n"
-                                + context.getResources().getString(R.string.remote_device_fingerprint) + " " + SslHelper.getCertificateHash(device.certificate));
+                        builder.setMessage(context.getResources().getString(R.string.my_device_fingerprint) + "\n " + SslHelper.getCertificateHash(SslHelper.certificate) + "\n\n"
+                                + context.getResources().getString(R.string.remote_device_fingerprint) + "\n " + SslHelper.getCertificateHash(device.certificate));
                     }
                     builder.create().show();
                     return true;
