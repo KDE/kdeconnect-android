@@ -29,4 +29,7 @@
 -dontwarn io.netty.**
 -dontwarn org.spongycastle.**
 
--keepattributes SourceFile,LineNumberTable
+-keepattributes SourceFile,LineNumberTable,Signature
+
+-keep class org.spongycastle.** {*;}
+-keep class org.bouncycastle.** {*;}
