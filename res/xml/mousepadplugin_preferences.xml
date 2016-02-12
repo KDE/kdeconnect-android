@@ -20,6 +20,16 @@
         android:entries="@array/mousepad_tap_entries"
         android:entryValues="@array/mousepad_tap_values"
         android:defaultValue="@string/mousepad_triple_default" />
+
+    <ListPreference
+        android:id="@+id/mousepad_sensitivity_preference"
+        android:key="@string/mousepad_sensitivity_key"
+        android:title="@string/mousepad_sensitivity_settings_title"
+        android:summary="%s"
+        android:entries="@array/mousepad_sensitivity_entries"
+        android:entryValues="@array/mousepad_sensitivity_values"
+        android:defaultValue="@string/mousepad_sensitivity_default" />
+
     <CheckBoxPreference
         android:id="@+id/mousepad_scroll_preference"
         android:key="@string/mousepad_scroll_direction"

@@ -32,6 +32,13 @@
   </string-array>
   <string name="mousepad_double_default">desno</string>
   <string name="mousepad_triple_default">Srednje</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
+  </string-array>
   <string name="category_connected_devices">Spojeni uređaji</string>
   <string name="category_not_paired_devices">Dostupni uređaji</string>
   <string name="category_remembered_devices">Zapamćeni uređaji</string>

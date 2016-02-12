@@ -36,6 +36,13 @@
   </string-array>
   <string name="mousepad_double_default">Rechts</string>
   <string name="mousepad_triple_default">Mitte</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
+  </string-array>
   <string name="category_connected_devices">Verbundene Geräte</string>
   <string name="category_not_paired_devices">Verfügbare Gerät</string>
   <string name="category_remembered_devices">Gemerkte Geräte</string>
@@ -43,6 +50,7 @@
   <string name="device_menu_plugins">Modul-Einstellungen</string>
   <string name="device_menu_unpair">Verbindung trennen</string>
   <string name="device_not_reachable">Das angegeben Gerät ist nicht erreichbar</string>
+  <string name="pair_new_device">Ein neues Gerät verbinden</string>
   <string name="unknown_device">Unbekanntes Gerät</string>
   <string name="error_not_reachable">Das Gerät ist nicht erreichbar</string>
   <string name="error_already_requested">Die Verbindung wurde bereits angefragt</string>

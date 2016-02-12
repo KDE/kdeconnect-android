@@ -32,6 +32,7 @@
   <string name="mousepad_info">Liikuta hiiren osoitinta liikuttamalla sormeasi näytöllä. Napsauta napauttamalla yhdellä sormella, käytä oikeaa painiketta kahdella sormella ja keskipainiketta kolmella. Vedä ja pudota painamalla pitkään.</string>
   <string name="mousepad_double_tap_settings_title">Aseta kahden sormen napautuksen toiminto</string>
   <string name="mousepad_triple_tap_settings_title">Aseta kolmen sormen napautuksen toiminto</string>
+  <string name="mousepad_sensitivity_settings_title">Aseta kosketuslevyn herkkyys</string>
   <string name="mousepad_scroll_direction_title">Käänteinen vierityssuunta</string>
   <string-array name="mousepad_tap_entries">
     <item>Oikea napsautus</item>
@@ -40,6 +41,14 @@
   </string-array>
   <string name="mousepad_double_default">Oikea painike</string>
   <string name="mousepad_triple_default">Keskipainike</string>
+  <string name="mousepad_sensitivity_default">oletus</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Hitain</item>
+    <item>Hitainta suurempi</item>
+    <item>Oletus</item>
+    <item>Oletusta suurempi</item>
+    <item>Nopein</item>
+  </string-array>
   <string name="category_connected_devices">Yhdistetyt laitteet</string>
   <string name="category_not_paired_devices">Saatavilla olevat laitteet</string>
   <string name="category_remembered_devices">Muistetut laitteet</string>
@@ -47,6 +56,7 @@
   <string name="device_menu_plugins">Liitännäisten asetukset</string>
   <string name="device_menu_unpair">Poista laitepari</string>
   <string name="device_not_reachable">Laitepari tavoittamattomissa</string>
+  <string name="pair_new_device">Kytke uusi laite pariksi</string>
   <string name="unknown_device">Tuntematon laite</string>
   <string name="error_not_reachable">Laite tavoittamattomissa</string>
   <string name="error_already_requested">Pariksi kytkemistä on jo pyydetty</string>
@@ -127,13 +137,13 @@
   <string name="add_host">Lisää kone/IP</string>
   <string name="add_host_hint">Konenimi tai IP-osoite</string>
   <string name="no_players_connected">Soittimia ei löytynyt</string>
-  <string name="custom_dev_list_help">Käytä tätä vain, jos laitettasi ei tunnisteta automaattisesti. Kirjoita IP-osoite tai konenimi alle ja kosketa painiketta lisätäksesi sen luetteloon. Kosketa olemassa olevaa kohtaa poistaaksesi sen luettelosta.</string>
+  <string name="custom_dev_list_help">Käytä tätä vain, jos laitettasi ei tunnisteta automaattisesti. Kirjoita IP-osoite tai konenimi alle ja lisää se luetteloon koskettamalla painiketta. Voit poistaa olemassa olevan kohdan luettelosta koskettamalla sitä.</string>
   <string name="mpris_player_on_device">%1$s laitteella %2$s</string>
   <string name="send_files">Lähetä tiedostoja</string>
   <string name="pairing_title">KDE Connect -laitteet</string>
   <string name="pairing_description">Muiden samassa verkossa olevien KDE Connectia käyttävien laitteiden pitäisi ilmestyä tähän.</string>
   <string name="device_paired">Laite kytketty pariksi</string>
-  <string name="device_rename_title">Laitteen nimen muuttaminen</string>
+  <string name="device_rename_title">Muuta laitteen nimeä</string>
   <string name="device_rename_confirm">Muuta nimi</string>
   <string name="refresh">Päivitä</string>
   <string name="unreachable_description">Tämä pariksi kytketty laite ei ole tavoitettavissa. Tarkista, että se on yhteydessä samaan verkkoon.</string>

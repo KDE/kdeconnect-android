@@ -40,7 +40,6 @@ import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect_tp.R;
 
 public class MousePadActivity extends ActionBarActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener, MousePadGestureDetector.OnGestureListener {
-
     String deviceId;
 
     private final static float MinDistanceToSendScroll = 2.5f;
@@ -49,6 +48,7 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
     private float mPrevY;
     private float mCurrentX;
     private float mCurrentY;
+    private float mCurrentSensitivity;
     private int scrollDirection = 1;
 
     boolean isScrolling = false;
@@ -99,9 +99,31 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
                 getString(R.string.mousepad_double_default));
         String tripleTapSetting = prefs.getString(getString(R.string.mousepad_triple_tap_key),
                 getString(R.string.mousepad_triple_default));
+        String sensitivitySetting = prefs.getString(getString(R.string.mousepad_sensitivity_key),
+                getString(R.string.mousepad_sensitivity_default));
 
         doubleTapAction = ClickType.fromString(doubleTapSetting);
         tripleTapAction = ClickType.fromString(tripleTapSetting);
+
+        switch (sensitivitySetting){
+            case "slowest":
+                mCurrentSensitivity = 0.2f;
+                break;
+            case "aboveSlowest":
+                mCurrentSensitivity = 0.5f;
+                break;
+            case "default":
+                mCurrentSensitivity = 1.0f;
+                break;
+            case "aboveDefault":
+                mCurrentSensitivity = 1.5f;
+                break;
+            case "fastest":
+                mCurrentSensitivity = 2.0f;
+                break;
+            default:
+                return;
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             final View decorView = getWindow().getDecorView();
@@ -190,7 +212,7 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
                         Device device = service.getDevice(deviceId);
                         MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
                         if (mousePadPlugin == null) return;
-                        mousePadPlugin.sendMouseDelta(mCurrentX - mPrevX, mCurrentY - mPrevY);
+                        mousePadPlugin.sendMouseDelta(mCurrentX - mPrevX, mCurrentY - mPrevY, mCurrentSensitivity);
                         mPrevX = mCurrentX;
                         mPrevY = mCurrentY;
                     }

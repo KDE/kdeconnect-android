@@ -7,9 +7,9 @@
     android:layout_height="match_parent"
     android:id="@+id/mpris_control_view"
     android:gravity="center"
-    android:paddingLeft="60dip"
+    android:paddingLeft="30dip"
     android:paddingTop="5dip"
-    android:paddingRight="60dip"
+    android:paddingRight="30dip"
     android:paddingBottom="5dip">
 
     <TextView

@@ -32,14 +32,23 @@
   <string name="mousepad_info">Przesuń palcem po ekranie, aby przesunąć wskaźnik myszy. Stuknij, aby wywołać naciśniecie lewym przyciskiem myszy i użyj dwóch/trzech palców, aby wywołać naciśniecie prawym i środkowym przyciskiem myszy. Przyciśnij na dłużej, aby przeciągnąć i upuścić.</string>
   <string name="mousepad_double_tap_settings_title">Ustaw działanie po dwukrotnym stuknięciu palcem</string>
   <string name="mousepad_triple_tap_settings_title">Ustaw działanie po trzykrotnym stuknięciu palcem</string>
+  <string name="mousepad_sensitivity_settings_title">Ustaw czułość gładzika</string>
   <string name="mousepad_scroll_direction_title">Odwróć stronę przewijania</string>
   <string-array name="mousepad_tap_entries">
-    <item>Naciśnięcie prawym</item>
-    <item>Naciśnięcie środkowym</item>
+    <item>Kliknięcie prawym</item>
+    <item>Kliknięcie środkowym</item>
     <item>Nic</item>
   </string-array>
   <string name="mousepad_double_default">prawo</string>
   <string name="mousepad_triple_default">środek</string>
+  <string name="mousepad_sensitivity_default">domyślne</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Najmniejsza</item>
+    <item>Ponad najmniejszą</item>
+    <item>Domyślna</item>
+    <item>Powyżej domyślnej</item>
+    <item>Największa</item>
+  </string-array>
   <string name="category_connected_devices">Podłączone urządzenia</string>
   <string name="category_not_paired_devices">Dostępne urządzenia</string>
   <string name="category_remembered_devices">Zapamiętane urządzenia</string>
@@ -47,6 +56,7 @@
   <string name="device_menu_plugins">Ustawienia wtyczki</string>
   <string name="device_menu_unpair">Odparuj</string>
   <string name="device_not_reachable">Sparowane urządzenie nieosiągalne</string>
+  <string name="pair_new_device">Sparuj nowe urządzenie</string>
   <string name="unknown_device">Nieznane urządzenie</string>
   <string name="error_not_reachable">Urządzenie nieosiągalne</string>
   <string name="error_already_requested">Już zażądano parowania</string>

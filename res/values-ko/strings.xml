@@ -39,6 +39,13 @@
   </string-array>
   <string name="mousepad_double_default">오른쪽</string>
   <string name="mousepad_triple_default">가운데</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
+  </string-array>
   <string name="category_connected_devices">연결된 장치</string>
   <string name="category_not_paired_devices">사용 가능한 장치</string>
   <string name="category_remembered_devices">기억하는 장치</string>

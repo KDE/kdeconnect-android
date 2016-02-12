@@ -40,6 +40,13 @@
   </string-array>
   <string name="mousepad_double_default">derecho</string>
   <string name="mousepad_triple_default">medio</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
+  </string-array>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos disponibles</string>
   <string name="category_remembered_devices">Dispositivos recordados</string>
@@ -47,6 +54,7 @@
   <string name="device_menu_plugins">Preferencias del complemento</string>
   <string name="device_menu_unpair">Desvincular</string>
   <string name="device_not_reachable">No se encuentra el dispositivo aparejado</string>
+  <string name="pair_new_device">Vincular nuevo dispositivo</string>
   <string name="unknown_device">Dispositivo desconocido</string>
   <string name="error_not_reachable">No se encuentra el dispositivo</string>
   <string name="error_already_requested">Ya ha solicitado vincularse</string>

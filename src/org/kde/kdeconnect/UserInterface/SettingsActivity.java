@@ -50,6 +50,15 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             @Override
             public void onServiceStart(BackgroundService service) {
                 final Device device = service.getDevice(deviceId);
+                if (device == null) {
+                    SettingsActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            SettingsActivity.this.finish();
+                        }
+                    });
+                    return;
+                }
                 Set<String> plugins = PluginFactory.getAvailablePlugins();
                 for (final String pluginKey : plugins) {
                     PluginPreference pref = new PluginPreference(SettingsActivity.this, pluginKey, device);

@@ -78,10 +78,12 @@ public class MousePadPlugin extends Plugin {
         return context.getString(R.string.open_mousepad);
     }
 
-    public void sendMouseDelta(float dx, float dy) {
+    public void sendMouseDelta(float dx, float dy, float sensitivity) {
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MOUSEPAD);
-        np.set("dx", dx);
-        np.set("dy", dy);
+
+        np.set("dx", dx*sensitivity);
+        np.set("dy", dy*sensitivity);
+
         device.sendPackage(np);
     }
 

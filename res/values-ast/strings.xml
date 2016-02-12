@@ -11,14 +11,14 @@
   <string name="pref_plugin_mousepad">Entrada remota</string>
   <string name="pref_plugin_mousepad_desc">Usa\'l to teléfonu como mur y tecláu</string>
   <string name="pref_plugin_mpris">Controles remotos multimedia</string>
-  <string name="pref_plugin_mpris_desc">Controla audiu/videu dende\'l to teléfonu</string>
+  <string name="pref_plugin_mpris_desc">Controla l\'audiu/videu dende\'l to teléfonu</string>
   <string name="pref_plugin_runcommand">Executar comandu</string>
   <string name="pref_plugin_runcommand_desc">Executa un comandu nel to sistema</string>
   <string name="pref_plugin_ping">Ping</string>
-  <string name="pref_plugin_ping_desc">Unvia y recibi pings</string>
+  <string name="pref_plugin_ping_desc">Unvia y recibe pings</string>
   <string name="pref_plugin_notifications">Sincronización d\'avisos</string>
   <string name="pref_plugin_notifications_desc">Accede a los tos avisos dende otros preseos</string>
-  <string name="pref_plugin_sharereceiver">Unvia y recibi pings</string>
+  <string name="pref_plugin_sharereceiver">Compartir y recibir</string>
   <string name="pref_plugin_sharereceiver_desc">Comparte ficheros y URLs ente preseos</string>
   <string name="plugin_not_available">Esta carauterística nun ta disponible na to versión d\'Android</string>
   <string name="device_list_empty">Ensin preseos</string>
@@ -32,6 +32,7 @@
   <string name="mousepad_info">Muevi un deu enriba la pantalla pa mover el mur. Calca pa un clic y usa dos/tres deos pa los botones de drecha y en mediu. Usa un primíu llargu p\'arrastrar y soltar.</string>
   <string name="mousepad_double_tap_settings_title">Afitar aición de calcu con dos deos</string>
   <string name="mousepad_triple_tap_settings_title">Afitar aición de calcu con tres deos</string>
+  <string name="mousepad_sensitivity_settings_title">Afitar sensibilidá del panel táutil</string>
   <string name="mousepad_scroll_direction_title">Direición inversa de desplazamientu</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic drechu</item>
@@ -40,6 +41,14 @@
   </string-array>
   <string name="mousepad_double_default">drecha</string>
   <string name="mousepad_triple_default">d\'en mediu</string>
+  <string name="mousepad_sensitivity_default">por defeutu</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>La más lenta</item>
+    <item>Above Slowest</item>
+    <item>Predeterminada</item>
+    <item>Above Default</item>
+    <item>La más rápida</item>
+  </string-array>
   <string name="category_connected_devices">Preseos coneutaos</string>
   <string name="category_not_paired_devices">Preseos disponibles</string>
   <string name="category_remembered_devices">Preseos recordaos</string>
@@ -47,6 +56,7 @@
   <string name="device_menu_plugins">Axustes de complementos</string>
   <string name="device_menu_unpair">Desempareyar</string>
   <string name="device_not_reachable">El preséu empareyáu nun ye agamable</string>
+  <string name="pair_new_device">Empareyar preséu nuevu</string>
   <string name="unknown_device">Preséu desconocíu</string>
   <string name="error_not_reachable">Nun ye algamable\'l preséu</string>
   <string name="error_already_requested">Empareyamientu yá solicitáu</string>
@@ -131,7 +141,7 @@
   <string name="mpris_player_on_device">%1$s en %2$s</string>
   <string name="send_files">Unviar ficheros</string>
   <string name="pairing_title">Preseos KDE Connect</string>
-  <string name="pairing_description">Deberíen apaecer equí otros preseos executando KDE Connect.</string>
+  <string name="pairing_description">Equí deberíen apaecer otros preseos executando KDE Connect.</string>
   <string name="device_paired">Preséu empareyáu</string>
   <string name="device_rename_title">Renomar preséu</string>
   <string name="device_rename_confirm">Renomar</string>
