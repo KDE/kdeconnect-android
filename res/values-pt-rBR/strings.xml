@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="pref_plugin_telephony">Notificação telefônica</string>
+  <string name="pref_plugin_telephony">Notificação de telefonia</string>
   <string name="pref_plugin_telephony_desc">Envia notificações de SMS e chamadas</string>
   <string name="pref_plugin_battery">Relatório da bateria</string>
-  <string name="pref_plugin_battery_desc">Informa o status da bateria periodicamente</string>
+  <string name="pref_plugin_battery_desc">Informação periódica do status da bateria</string>
   <string name="pref_plugin_sftp">Exposição do sistema de arquivos</string>
-  <string name="pref_plugin_sftp_desc">Permite navegar remotamente pelo sistema de arquivos telefone</string>
-  <string name="pref_plugin_clipboard">Sincronizar área de transferência</string>
+  <string name="pref_plugin_sftp_desc">Navegação remota pelo sistema de arquivos do telefone</string>
+  <string name="pref_plugin_clipboard">Sincronização da área de transferência</string>
   <string name="pref_plugin_clipboard_desc">Compartilha o conteúdo da área de transferência</string>
   <string name="pref_plugin_mousepad">Introdução de dados remota</string>
-  <string name="pref_plugin_mousepad_desc">Usar seu telefone como mouse ou teclado</string>
+  <string name="pref_plugin_mousepad_desc">Use seu telefone como mouse ou teclado</string>
   <string name="pref_plugin_mpris">Controle multimídia</string>
   <string name="pref_plugin_mpris_desc">Controla áudio e vídeo a partir do seu telefone</string>
   <string name="pref_plugin_runcommand">Executar comando</string>
@@ -19,7 +19,7 @@
   <string name="pref_plugin_notifications">Sincronização de notificações</string>
   <string name="pref_plugin_notifications_desc">Acesse suas notificações a partir de outros dispositivos</string>
   <string name="pref_plugin_sharereceiver">Compartilhar e receber</string>
-  <string name="pref_plugin_sharereceiver_desc">Compartilhar arquivos e URLs entre os dispositivos</string>
+  <string name="pref_plugin_sharereceiver_desc">Compartilha arquivos e URLs entre os dispositivos</string>
   <string name="plugin_not_available">Esta funcionalidade não está disponível na sua versão do Android</string>
   <string name="device_list_empty">Sem dispositivos</string>
   <string name="ok">OK</string>
@@ -29,7 +29,7 @@
   <string name="send_ping">Enviar ping</string>
   <string name="open_mpris_controls">Controle multimídia</string>
   <string name="open_mousepad">Introdução de dados remota</string>
-  <string name="mousepad_info">Mova um dedo pelo tela para mover o ponteiro do mouse. Dê um toque para clicar e use dois/três dedos para os botões da direita e do meio. Use uma pressão longa para arrastar e soltar.</string>
+  <string name="mousepad_info">Mova um dedo pela tela para mover o ponteiro do mouse. Dê um toque para clicar e use dois/três dedos para os botões da direita e do meio. Use uma pressão longa para arrastar e soltar.</string>
   <string name="mousepad_double_tap_settings_title">Definir a ação do toque com dois dedos</string>
   <string name="mousepad_triple_tap_settings_title">Definir a ação do toque com três dedos</string>
   <string name="mousepad_sensitivity_settings_title">Definir a sensibilidade do touchpad</string>
@@ -53,7 +53,7 @@
   <string name="category_not_paired_devices">Dispositivos disponíveis</string>
   <string name="category_remembered_devices">Dispositivos lembrados</string>
   <string name="plugins_failed_to_load">Plugins não carregados (toque para mais informações):</string>
-  <string name="device_menu_plugins">Configurações do plugin</string>
+  <string name="device_menu_plugins">Configuração dos plugins</string>
   <string name="device_menu_unpair">Cancelar emparelhamento</string>
   <string name="device_not_reachable">O dispositivo pareado está inacessível</string>
   <string name="pair_new_device">Emparelhar novo dispositivo</string>
@@ -66,8 +66,8 @@
   <string name="error_canceled_by_user">Cancelado pelo usuário</string>
   <string name="error_canceled_by_other_peer">Cancelado pelo outro dispositivo</string>
   <string name="error_invalid_key">Chave inválida recebida</string>
-  <string name="pair_requested">Emparelhamento solicitado</string>
-  <string name="pairing_request_from">Emparelhando solicitação de %1s</string>
+  <string name="pair_requested">Solicitação de emparelhamento</string>
+  <string name="pairing_request_from">Emparelhamento solicitado por %1s</string>
   <string name="received_url_title">Link recebido de %1s</string>
   <string name="received_url_text">Toque para abrir o \'%1s\'</string>
   <string name="incoming_file_title">Arquivo recebido de %1s</string>
@@ -122,12 +122,12 @@
   <string name="shareplugin_text_saved">Texto recebido e salvo na área de transferência</string>
   <string name="custom_devices_settings">Lista de dispositivos personalizada</string>
   <string name="pair_device_action">Emparelhar um novo dispositivo</string>
-  <string name="unpair_device_action">Desemparelhar o %s</string>
+  <string name="unpair_device_action">Desemparelhar %s</string>
   <string name="custom_device_list">Adicionar dispositivos pelo IP</string>
-  <string name="share_notification_preference">Notificações barulhentas</string>
-  <string name="share_notification_preference_summary">Vibrar e tocar um som ao receber um arquivo</string>
+  <string name="share_notification_preference">Notificações sonoras</string>
+  <string name="share_notification_preference_summary">Vibra e reproduz um som ao receber um arquivo</string>
   <string name="title_activity_notification_filter">Filtro de notificações</string>
-  <string name="filter_apps_info">As notificações serão sincronizadas para os aplicativos selecionados.</string>
+  <string name="filter_apps_info">As notificações dos aplicativos selecionados serão sincronizadas.</string>
   <string name="sftp_internal_storage">Armazenamento interno</string>
   <string name="sftp_all_files">Todos os arquivos</string>
   <string name="sftp_sdcard_num">Cartão SD %d</string>
@@ -141,7 +141,7 @@
   <string name="mpris_player_on_device">%1$s em %2$s</string>
   <string name="send_files">Enviar arquivos</string>
   <string name="pairing_title">Dispositivos do KDE Connect</string>
-  <string name="pairing_description">Os outros dispositivos executando o KDE Connect na mesma rede devem aparecer aqui.</string>
+  <string name="pairing_description">Outros dispositivos executando o KDE Connect na mesma rede devem aparecer aqui.</string>
   <string name="device_paired">Dispositivo emparelhado</string>
   <string name="device_rename_title">Renomear dispositivo</string>
   <string name="device_rename_confirm">Renomear</string>
