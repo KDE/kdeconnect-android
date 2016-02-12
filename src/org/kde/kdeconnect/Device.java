@@ -150,12 +150,14 @@ public class Device implements BaseLink.PackageReceiver {
         this.deviceType = DeviceType.FromString(settings.getString("deviceType", "desktop"));
 
         try {
-            byte[] publicKeyBytes = Base64.decode(settings.getString("publicKey", ""), 0);
-            publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
+            String publicKeyStr = settings.getString("publicKey", null);
+            if (publicKeyStr != null) {
+                byte[] publicKeyBytes = Base64.decode(publicKeyStr, 0);
+                publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            //Do not unpair, they may be paired in some other way
-            Log.e("KDE/Device","Exception");
+            Log.e("KDE/Device","Exception deserializing stored public key for device");
         }
 
         reloadPluginsFromSettings();
@@ -543,7 +545,8 @@ public class Device implements BaseLink.PackageReceiver {
                 try {
                     ph.packageReceived(np);
                 } catch (Exception e) {
-                    // There should be no exception here
+                    e.printStackTrace();
+                    Log.e("PairingPackageReceived","Exception");
                 }
             }
 
