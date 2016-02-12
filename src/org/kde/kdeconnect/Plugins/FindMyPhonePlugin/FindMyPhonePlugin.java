@@ -29,7 +29,6 @@ public class FindMyPhonePlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
-       Log.e("FindMyPhonePR", "onPackageReceived");
         if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_FINDMYPHONE)) {
             //Log.e("PingPackageReceiver", "was a find my phone!");
 
