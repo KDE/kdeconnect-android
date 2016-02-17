@@ -47,6 +47,7 @@ import java.security.SecureRandom;
 import java.security.cert.Certificate;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Formatter;
@@ -110,7 +111,7 @@ public class SslHelper {
 
             } catch(Exception e) {
                 e.printStackTrace();
-                Log.e("KDE/initialiseCertificate", "Exception");
+                Log.e("KDE/initialiseCert", "Exception");
                 return;
             }
 
@@ -137,7 +138,7 @@ public class SslHelper {
             if (isDeviceTrusted){
                 SharedPreferences devicePreferences = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
                 byte[] certificateBytes = Base64.decode(devicePreferences.getString("certificate", ""), 0);
-                Log.e("CERTIICATEBTYES", ""+certificateBytes);
+                Log.e("DeviceCertificate", "bytes:"+ Arrays.toString(certificateBytes));
                 X509CertificateHolder certificateHolder = new X509CertificateHolder(certificateBytes);
                 remoteDeviceCertificate = new JcaX509CertificateConverter().setProvider(BC).getCertificate(certificateHolder);
             }
@@ -177,7 +178,7 @@ public class SslHelper {
             }
             };
 
-            SSLContext tlsContext = SSLContext.getInstance("TLS");
+            SSLContext tlsContext = SSLContext.getInstance("TLSv1"); //Newer TLS versions are only supported on API 16+
             if (isDeviceTrusted) {
                 tlsContext.init(keyManagerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), new SecureRandom());
             }else {
@@ -202,10 +203,7 @@ public class SslHelper {
             SSLContext tlsContext = getSslContext(context, deviceId, isDeviceTrusted);
             SSLEngine sslEngine = tlsContext.createSSLEngine();
 
-            // We do not support TLSv1.2 as of now, because only Android with version greater 20 that support it
-            sslEngine.setEnabledProtocols(new String[]{
-                    "TLSv1"
-            });
+            sslEngine.setEnabledProtocols(new String[]{ "TLSv1" }); //Newer TLS versions are only supported on API 16+
 
             // These cipher suites are most common of them that are accepted by kde and android during handshake
             ArrayList<String> supportedCiphers = new ArrayList<>();
