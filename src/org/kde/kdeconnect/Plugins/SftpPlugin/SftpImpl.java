@@ -113,10 +113,12 @@ class SimpleSftpServer {
         sshd.setCommandFactory(new ScpCommandFactory());
         sshd.setSubsystemFactories(Collections.singletonList((NamedFactory<Command>)new SftpSubsystem.Factory()));
 
-        sshd.setPasswordAuthenticator(passwordAuth);
-        //FIXME: Do we need the public key?
-        //keyAuth.addKey(publicKey);
-        //sshd.setPublickeyAuthenticator(keyAuth);
+        if (device.publicKey != null) {
+            keyAuth.addKey(device.publicKey);
+            sshd.setPublickeyAuthenticator(keyAuth);
+        } else {
+            sshd.setPasswordAuthenticator(passwordAuth);
+        }
     }
 
     public boolean start() {
