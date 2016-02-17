@@ -39,6 +39,7 @@ import org.apache.sshd.server.keyprovider.SimpleGeneratorHostKeyProvider;
 import org.apache.sshd.server.session.ServerSession;
 import org.apache.sshd.server.sftp.SftpSubsystem;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Helpers.RandomHelper;
 
 import java.io.File;
 import java.net.Inet4Address;
@@ -123,7 +124,8 @@ class SimpleSftpServer {
 
     public boolean start() {
         if (!started) {
-            String password = Long.toHexString(Double.doubleToLongBits(Math.random()));
+
+            String password = RandomHelper.randomString(28);
             passwordAuth.setPassword(password);
 
             port = STARTPORT;
