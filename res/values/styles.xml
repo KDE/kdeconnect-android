@@ -4,7 +4,7 @@
     <color name="accent">#4ebffa</color>
 
     <!-- NoActionBar because we use a Toolbar widget as ActionBar -->
-    <style name="KdeConnectTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="KdeConnectThemeBase" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- The three colors used by system widgets, according to https://chris.banes.me/2014/10/17/appcompat-v21/ -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primaryDark</item>
@@ -13,9 +13,15 @@
         <item name="android:textColor">@android:color/black</item>
     </style>
 
-    <style name="KdeConnectTheme.NoActionBar" parent="KdeConnectTheme">
+    <style name="KdeConnectThemeBase.NoActionBar" parent="KdeConnectThemeBase">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="KdeConnectTheme" parent="KdeConnectThemeBase">
+    </style>
+
+    <style name="KdeConnectTheme.NoActionBar" parent="KdeConnectThemeBase.NoActionBar">
     </style>
 
 </resources>
