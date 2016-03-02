@@ -53,7 +53,6 @@ public class LanPairingHandler extends BasePairingHandler {
     public NetworkPackage createPairPackage() {
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
         np.set("pair", true);
-        np.set("link", mBaseLink.getName());
         SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(mDevice.getContext());
         String publicKey = "-----BEGIN PUBLIC KEY-----\n" + globalSettings.getString("publicKey", "").trim()+ "\n-----END PUBLIC KEY-----\n";
         np.set("publicKey", publicKey);
@@ -62,10 +61,6 @@ public class LanPairingHandler extends BasePairingHandler {
 
     @Override
     public void packageReceived(NetworkPackage np) throws Exception{
-
-        if (!np.getString("link", mBaseLink.getName()).equals(mBaseLink.getName())) {
-            return;
-        }
 
         boolean wantsPair = np.getBoolean("pair");
 
@@ -199,7 +194,6 @@ public class LanPairingHandler extends BasePairingHandler {
         mPairStatus = PairStatus.NotPaired;
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
         np.set("pair", false);
-        np.set("link", mBaseLink.getName());
         mDevice.sendPackage(np);
     }
 
@@ -239,7 +233,6 @@ public class LanPairingHandler extends BasePairingHandler {
         mPairStatus = PairStatus.NotPaired;
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
         np.set("pair", false);
-        np.set("link", mBaseLink.getName());
         mDevice.sendPackage(np);
     }
 }
