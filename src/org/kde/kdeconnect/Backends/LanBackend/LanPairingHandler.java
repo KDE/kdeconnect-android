@@ -87,8 +87,6 @@ public class LanPairingHandler extends BasePairingHandler {
                 byte[] publicKeyBytes = Base64.decode(publicKeyContent, 0);
                 mDevice.publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
             } catch (Exception e) {
-                e.printStackTrace();
-                Log.e("KDE/Device","Pairing exception: Received incorrect key");
                 //IGNORE
             }
 
