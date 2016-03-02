@@ -84,9 +84,8 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     private final Context context;
 
-    private final HashMap<String, LanLink> visibleComputers = new HashMap<String, LanLink>();
-    private final LongSparseArray<LanLink> nioLinks = new LongSparseArray<LanLink>();
-    private final LongSparseArray<Channel> nioChannels = new LongSparseArray<Channel>();
+    private final HashMap<String, LanLink> visibleComputers = new HashMap<String, LanLink>();  //Links by device id
+    private final LongSparseArray<LanLink> nioLinks = new LongSparseArray<LanLink>(); //Links by channel id
 
     private EventLoopGroup bossGroup, workerGroup, udpGroup, clientGroup;
     private TcpHandler tcpHandler = new TcpHandler();
@@ -110,14 +109,10 @@ public class LanLinkProvider extends BaseLinkProvider {
         public void channelInactive(ChannelHandlerContext ctx) throws Exception {
             // Called after a long time if remote device closes session unexpectedly, like wifi off
             try {
-                long id = ctx.channel().hashCode();
-                final LanLink brokenLink = nioLinks.get(id);
-                Channel channel = nioChannels.get(id);
-                if (channel != null) {
-                    nioChannels.remove(id);
-                }
+                Channel channel = ctx.channel();
+                final LanLink brokenLink = nioLinks.get(channel.hashCode());
                 if (brokenLink != null) {
-                    nioLinks.remove(id);
+                    nioLinks.remove(channel.hashCode());
                     //Log.i("KDE/LanLinkProvider", "nioLinks.size(): " + nioLinks.size() + " (-)");
                     try {
                         brokenLink.closeSocket();
@@ -174,7 +169,6 @@ public class LanLinkProvider extends BaseLinkProvider {
 
                 final LanLink link = new LanLink(context, ctx.channel(), np.getString("deviceId"), LanLinkProvider.this, BaseLink.ConnectionStarted.Locally);
                 nioLinks.put(ctx.channel().hashCode(), link);
-                nioChannels.put(ctx.channel().hashCode(), ctx.channel());
                 //Log.i("KDE/LanLinkProvider","nioLinks.size(): " + nioLinks.size());
 
                 // Add ssl handler if device uses new protocol
@@ -298,7 +292,6 @@ public class LanLinkProvider extends BaseLinkProvider {
                                 @Override
                                 protected void onSuccess() {
                                     nioLinks.put(channel.hashCode(), link);
-                                    nioChannels.put(channel.hashCode(), channel);
                                     Log.i("KDE/LanLinkProvider", "nioLinks.size(): " + nioLinks.size());
 
                                     // If ssl handler is in channel, add link after handshake is completed
