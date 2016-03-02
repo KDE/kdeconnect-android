@@ -874,13 +874,13 @@ public class Device implements BaseLink.PackageReceiver {
         }
     }
 
-    public BaseLink.ConnectionStarted getConnectionSource() {
+    public boolean deviceShouldBeKeptAlive() {
         for(BaseLink l : links) {
-            if (l.getConnectionSource() == BaseLink.ConnectionStarted.Locally) {
-                return BaseLink.ConnectionStarted.Locally;
+            if (l.linkShouldBeKeptAlive()) {
+                return true;
             }
         }
-        return BaseLink.ConnectionStarted.Remotely;
+        return false;
     }
 
 }

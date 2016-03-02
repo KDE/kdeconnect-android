@@ -163,7 +163,7 @@ public class BackgroundService extends Service {
 
     private void cleanDevices() {
         for(Device d : devices.values()) {
-            if (!d.isPaired() && !d.isPairRequested() && !d.isPairRequestedByPeer() && d.getConnectionSource() == BaseLink.ConnectionStarted.Remotely) {
+            if (!d.isPaired() && !d.isPairRequested() && !d.isPairRequestedByPeer() && !d.deviceShouldBeKeptAlive()) {
                 d.disconnect();
             }
         }
@@ -184,7 +184,7 @@ public class BackgroundService extends Service {
                 Log.i("KDE/BackgroundService", "addLink,unknown device: " + deviceId);
                 device = new Device(BackgroundService.this, identityPackage, link);
                 if (device.isPaired() || device.isPairRequested() || device.isPairRequestedByPeer()
-                        || link.getConnectionSource() == BaseLink.ConnectionStarted.Locally
+                        || link.linkShouldBeKeptAlive()
                         ||!discoveryModeAcquisitions.isEmpty() )
                 {
                     devices.put(deviceId, device);

@@ -34,10 +34,6 @@ public abstract class BaseLink {
 
     protected final Context context;
 
-    public enum ConnectionStarted {
-        Locally, Remotely;
-    };
-
     public interface PackageReceiver {
         void onPackageReceived(NetworkPackage np);
     }
@@ -47,16 +43,10 @@ public abstract class BaseLink {
     private final ArrayList<PackageReceiver> receivers = new ArrayList<>();
     protected PrivateKey privateKey;
 
-    protected ConnectionStarted connectionSource; // If the other device sent me a broadcast,
-                                                  // I should not close the connection with it
-                                                  // because it's probably trying to find me and
-                                                  // potentially ask for pairing.
-
-    protected BaseLink(Context context, String deviceId, BaseLinkProvider linkProvider, ConnectionStarted connectionSource) {
+    protected BaseLink(Context context, String deviceId, BaseLinkProvider linkProvider) {
         this.context = context;        
         this.linkProvider = linkProvider;
         this.deviceId = deviceId;
-        this.connectionSource = connectionSource;
     }
 
     /* To be implemented by each link for pairing handlers */
@@ -75,8 +65,9 @@ public abstract class BaseLink {
         return linkProvider;
     }
 
-    public ConnectionStarted getConnectionSource() {
-        return connectionSource;
+    //The daemon will periodically destroy unpaired links if this returns false
+    public boolean linkShouldBeKeptAlive() {
+        return false;
     }
 
     public void addPackageReceiver(PackageReceiver pr) {

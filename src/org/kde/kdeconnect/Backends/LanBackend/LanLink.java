@@ -21,6 +21,7 @@
 package org.kde.kdeconnect.Backends.LanBackend;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import org.json.JSONObject;
@@ -50,15 +51,30 @@ import io.netty.channel.ChannelFuture;
 
 public class LanLink extends BaseLink {
 
+    public enum ConnectionStarted {
+        Locally, Remotely;
+    };
+
+    protected ConnectionStarted connectionSource; // If the other device sent me a broadcast,
+                                                  // I should not close the connection with it
+                                                  // because it's probably trying to find me and
+                                                  // potentially ask for pairing.
+
     private Channel channel = null;
     private boolean onSsl = false;
 
-    // Using time stamp, because if both devices emit their identity package at the same time, both the links tends to cancel each other
-    private long startTime = 0;
 
     @Override
     public void disconnect() {
         closeSocket();
+    }
+
+    //Returns the old channel
+    public Channel reset(Channel channel, ConnectionStarted connectionSource, boolean onSsl) {
+        Channel oldChannel = this.channel;
+        this.channel = channel;
+        this.connectionSource = connectionSource;
+        return oldChannel;
     }
 
     public void closeSocket() {
@@ -69,19 +85,11 @@ public class LanLink extends BaseLink {
         channel.close();
     }
 
-    public void setOnSsl(boolean value) {
-        this.onSsl = value;
+    public LanLink(Context context, String deviceId, BaseLinkProvider linkProvider, Channel channel, ConnectionStarted connectionSource, boolean onSsl) {
+        super(context, deviceId, linkProvider);
+        reset(channel, connectionSource, onSsl);
     }
 
-    public LanLink(Context context,Channel channel, String deviceId, BaseLinkProvider linkProvider, ConnectionStarted connectionSource) {
-        super(context, deviceId, linkProvider, connectionSource);
-        this.channel = channel;
-        this.startTime = System.currentTimeMillis();
-    }
-
-    public long getStartTime() {
-        return startTime;
-    }
 
     @Override
     public String getName() {
@@ -306,4 +314,22 @@ public class LanLink extends BaseLink {
         return candidateServer;
     }
 
+    @Override
+    public boolean linkShouldBeKeptAlive() {
+
+        //We keep the remotely initiated connections, since the remotes require them if they want to request
+        //pairing to us, or connections that are already paired. TODO: Keep connections in the process of pairing
+
+        if (connectionSource == ConnectionStarted.Remotely) {
+            return true;
+        }
+
+        SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
+        if (preferences.contains(getDeviceId())) {
+            return true; //Already paired
+        }
+
+        return false;
+
+    }
 }
