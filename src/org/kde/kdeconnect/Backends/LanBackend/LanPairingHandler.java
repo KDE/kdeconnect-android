@@ -98,18 +98,16 @@ public class LanPairingHandler extends BasePairingHandler {
 
             } else {
 
-                /**
-                 * If device is already paired, accept pairing silently
-                 */
+                // If device is already paired, accept pairing silently
                 if (mDevice.isPaired()) {
                     acceptPairing();
                     return;
                 }
 
-                /**
-                 * Pairing notifications are still managed by device as there is no other way to know about notificationId to cancel notification when PairActivity is started
-                 * Even putting notificationId in intent does not work because PairActivity can be started from MainActivity too, so then notificationId cannot be set
-                 */
+                // Pairing notifications are still managed by device as there is no other way to
+                // know about notificationId to cancel notification when PairActivity is started
+                // Even putting notificationId in intent does not work because PairActivity can be
+                // started from MainActivity too, so then notificationId cannot be set
                 hidePairingNotification();
                 mDevice.displayPairingNotification();
 

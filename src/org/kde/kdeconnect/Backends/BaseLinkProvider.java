@@ -31,11 +31,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public abstract class BaseLinkProvider {
 
     private final CopyOnWriteArrayList<ConnectionReceiver> connectionReceivers = new CopyOnWriteArrayList<>();
-    protected BasePairingHandler pairingHandler;
-
-    public BasePairingHandler getPairingHandler() {
-        return pairingHandler;
-    }
 
     public interface ConnectionReceiver {
         void onConnectionReceived(NetworkPackage identityPackage, BaseLink link);
