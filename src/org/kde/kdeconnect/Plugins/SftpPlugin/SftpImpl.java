@@ -26,15 +26,16 @@ import android.util.Log;
 import org.apache.sshd.SshServer;
 import org.apache.sshd.common.NamedFactory;
 import org.apache.sshd.common.Session;
+import org.apache.sshd.common.file.FileSystemFactory;
+import org.apache.sshd.common.file.FileSystemView;
+import org.apache.sshd.common.file.SshFile;
+import org.apache.sshd.common.file.nativefs.NativeFileSystemView;
+import org.apache.sshd.common.file.nativefs.NativeSshFile;
+import org.apache.sshd.common.util.SecurityUtils;
 import org.apache.sshd.server.Command;
-import org.apache.sshd.server.FileSystemFactory;
-import org.apache.sshd.server.FileSystemView;
 import org.apache.sshd.server.PasswordAuthenticator;
 import org.apache.sshd.server.PublickeyAuthenticator;
-import org.apache.sshd.server.SshFile;
 import org.apache.sshd.server.command.ScpCommandFactory;
-import org.apache.sshd.server.filesystem.NativeFileSystemView;
-import org.apache.sshd.server.filesystem.NativeSshFile;
 import org.apache.sshd.server.keyprovider.SimpleGeneratorHostKeyProvider;
 import org.apache.sshd.server.session.ServerSession;
 import org.apache.sshd.server.sftp.SftpSubsystem;
@@ -108,9 +109,7 @@ class SimpleSftpServer {
         passwordAuth.setUser(USER);
         sshd.setKeyPairProvider(new SimpleGeneratorHostKeyProvider(ctx.getFilesDir() + "/sftpd.ser"));
 
-        //sshd.setFileSystemFactory(new NativeFileSystemFactory());
         sshd.setFileSystemFactory(new SecureFileSystemFactory());
-        //sshd.setShellFactory(new ProcessShellFactory(new String[] { "/bin/sh", "-i", "-l" }));
         sshd.setCommandFactory(new ScpCommandFactory());
         sshd.setSubsystemFactories(Collections.singletonList((NamedFactory<Command>)new SftpSubsystem.Factory()));
 
@@ -152,8 +151,8 @@ class SimpleSftpServer {
         try {
             started = false;
             sshd.stop();
-        } catch (InterruptedException e) {
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -181,55 +180,55 @@ class SimpleSftpServer {
 
 }
 
-    class SecureFileSystemFactory implements FileSystemFactory {
+class SecureFileSystemFactory implements FileSystemFactory {
 
-        public SecureFileSystemFactory() {}
+    public SecureFileSystemFactory() {}
 
-       @Override
-        public FileSystemView createFileSystemView(final Session username) {
-            final String base = "/";
-            return new SecureFileSystemView(base, username.getUsername());
-        }
+   @Override
+    public FileSystemView createFileSystemView(final Session username) {
+        final String base = "/";
+        return new SecureFileSystemView(base, username.getUsername());
+    }
+}
+
+class SecureFileSystemView extends NativeFileSystemView {
+    // the first and the last character will always be '/'
+    // It is always with respect to the root directory.
+    private String currDir = "/";
+    private String rootDir = "/";
+    private String userName;
+    //
+    public SecureFileSystemView(final String rootDir, final String userName) {
+        super(userName);
+        this.rootDir = NativeSshFile.normalizeSeparateChar(rootDir);
+        this.userName = userName;
+    }
+    //
+    @Override
+    public SshFile getFile(final String file) {
+        return getFile(currDir, file);
     }
 
-    class SecureFileSystemView extends NativeFileSystemView {
-        // the first and the last character will always be '/'
-        // It is always with respect to the root directory.
-        private String currDir = "/";
-        private String rootDir = "/";
-        private String userName;
-        //
-        public SecureFileSystemView(final String rootDir, final String userName) {
-            super(userName);
-            this.rootDir = NativeSshFile.normalizeSeparateChar(rootDir);
-            this.userName = userName;
-        }
-        //
-        @Override
-        public SshFile getFile(final String file) {
-            return getFile(currDir, file);
-        }
-
-        @Override
-        public SshFile getFile(final SshFile baseDir, final String file) {
-            return getFile(baseDir.getAbsolutePath(), file);
-        }
-
-        //
-        protected SshFile getFile(final String dir, final String file) {
-            // get actual file object
-            final boolean caseInsensitive = false;
-            String physicalName = NativeSshFile.getPhysicalName("/", dir, file, caseInsensitive);
-            File fileObj = new File(rootDir, physicalName); // chroot
-
-            // strip the root directory and return
-            String userFileName = physicalName.substring("/".length() - 1);
-            return new SecureSshFile(userFileName, fileObj, userName);
-        }
+    @Override
+    public SshFile getFile(final SshFile baseDir, final String file) {
+        return getFile(baseDir.getAbsolutePath(), file);
     }
 
-    class SecureSshFile extends NativeSshFile {
-        public SecureSshFile(final String fileName, final File file, final String userName) {
-            super(fileName, file, userName);
-        }
+    //
+    protected SshFile getFile(final String dir, final String file) {
+        // get actual file object
+        final boolean caseInsensitive = false;
+        String physicalName = NativeSshFile.getPhysicalName("/", dir, file, caseInsensitive);
+        File fileObj = new File(rootDir, physicalName); // chroot
+
+        // strip the root directory and return
+        String userFileName = physicalName.substring("/".length() - 1);
+        return new SecureSshFile(this, userFileName, fileObj, userName);
     }
+}
+
+class SecureSshFile extends NativeSshFile {
+    public SecureSshFile(NativeFileSystemView view, String fileName, File file, String userName) {
+        super(view, fileName, file, userName);
+    }
+}
