@@ -90,6 +90,7 @@ public class Device implements BaseLink.PackageReceiver {
     private HashSet<String> supportedIncomingInterfaces = new HashSet<>();
     private HashSet<String> supportedOutgoingInterfaces = new HashSet<>();
 
+    //FIXME: Why are these never used? Did some merge break the capabilities?
     private HashMap<String, ArrayList<String>> pluginsByIncomingInterface;
     private HashMap<String, ArrayList<String>> pluginsByOutgoingInterface;
 
