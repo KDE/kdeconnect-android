@@ -24,6 +24,7 @@ import android.content.Context;
 import android.util.Log;
 
 import org.apache.sshd.SshServer;
+import org.apache.sshd.common.KeyExchange;
 import org.apache.sshd.common.NamedFactory;
 import org.apache.sshd.common.Session;
 import org.apache.sshd.common.file.FileSystemFactory;
@@ -36,6 +37,8 @@ import org.apache.sshd.server.Command;
 import org.apache.sshd.server.PasswordAuthenticator;
 import org.apache.sshd.server.PublickeyAuthenticator;
 import org.apache.sshd.server.command.ScpCommandFactory;
+import org.apache.sshd.server.kex.DHG1;
+import org.apache.sshd.server.kex.DHG14;
 import org.apache.sshd.server.keyprovider.SimpleGeneratorHostKeyProvider;
 import org.apache.sshd.server.session.ServerSession;
 import org.apache.sshd.server.sftp.SftpSubsystem;
@@ -48,6 +51,7 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.security.PublicKey;
+import java.security.Security;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -102,10 +106,18 @@ class SimpleSftpServer {
 
     public final SimplePasswordAuthenticator passwordAuth = new SimplePasswordAuthenticator();
     public final SimplePublicKeyAuthenticator keyAuth = new SimplePublicKeyAuthenticator();
+
+    static {
+        Security.insertProviderAt( new org.spongycastle.jce.provider.BouncyCastleProvider(), 1);
+        SecurityUtils.setRegisterBouncyCastle(false);
+    }
     private final SshServer sshd = SshServer.setUpDefaultServer();
 
-
     public void init(Context ctx, Device device) {
+        sshd.setKeyExchangeFactories(Arrays.asList(
+                new DHG14.Factory(),
+                new DHG1.Factory()));
+
         passwordAuth.setUser(USER);
         sshd.setKeyPairProvider(new SimpleGeneratorHostKeyProvider(ctx.getFilesDir() + "/sftpd.ser"));
 
@@ -134,6 +146,7 @@ class SimpleSftpServer {
                     sshd.start();
                     started = true;
                 } catch(Exception e) {
+                    e.printStackTrace();
                     port++;
                     if (port >= ENDPORT) {
                         port = -1;
