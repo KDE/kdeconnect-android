@@ -39,12 +39,14 @@ import org.spongycastle.operator.ContentSigner;
 import org.spongycastle.operator.jcajce.JcaContentSignerBuilder;
 import org.kde.kdeconnect.Helpers.RandomHelper;
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.KeyStore;
 import java.security.MessageDigest;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -251,6 +253,11 @@ public class SslHelper {
             return null;
         }
 
+    }
+
+    public static Certificate parseCertificate(byte[] certificateBytes) throws IOException, CertificateException {
+        X509CertificateHolder certificateHolder = new X509CertificateHolder(certificateBytes);
+        return new JcaX509CertificateConverter().setProvider(BC).getCertificate(certificateHolder);
     }
 
 }

@@ -36,14 +36,11 @@ import android.util.Log;
 
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
-import org.kde.kdeconnect.Helpers.ObjectsHelper;
+import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.MaterialActivity;
 import org.kde.kdeconnect_tp.R;
-import org.spongycastle.cert.X509CertificateHolder;
-import org.spongycastle.cert.jcajce.JcaX509CertificateConverter;
-import org.spongycastle.jce.provider.BouncyCastleProvider;
 
 import java.security.KeyFactory;
 import java.security.PrivateKey;
@@ -56,8 +53,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -439,8 +434,7 @@ public class Device implements BaseLink.PackageReceiver {
 
             try {
                 byte[] certificateBytes = Base64.decode(certificateString, 0);
-                X509CertificateHolder certificateHolder = new X509CertificateHolder(certificateBytes);
-                certificate = new JcaX509CertificateConverter().setProvider(new BouncyCastleProvider()).getCertificate(certificateHolder);
+                certificate = SslHelper.parseCertificate(certificateBytes);
                 Log.i("KDE/Device", "Got certificate ");
             } catch (Exception e) {
                 e.printStackTrace();
