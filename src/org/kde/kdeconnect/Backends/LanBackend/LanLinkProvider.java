@@ -188,7 +188,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                                     addLink(np, channel, connectionStarted, true);
                                 } else {
                                     // Unpair if handshake failed
-                                    Log.e("KDE/LanLinkProvider", "Handshake failed with " + np.getString("deviceName"));
+                                    Log.e("KDE/LanLinkProvider", "Handshake as server failed with " + np.getString("deviceName"));
                                     future.cause().printStackTrace();
                                     if (future.cause() instanceof SSLHandshakeException) {
                                         BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
@@ -312,7 +312,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                                         } else {
                                             // Unpair if handshake failed
                                             // Any exception or handshake exception ?
-                                            Log.e("KDE/LanLinkProvider", "Handshake failed with " + identityPackage.getString("deviceName"));
+                                            Log.e("KDE/LanLinkProvider", "Handshake as client failed with " + identityPackage.getString("deviceName"));
                                             future.cause().printStackTrace();
                                             if (future.cause() instanceof SSLHandshakeException) {
                                                 BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
