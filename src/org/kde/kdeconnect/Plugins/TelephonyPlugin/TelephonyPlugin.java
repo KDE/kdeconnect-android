@@ -35,6 +35,7 @@ import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -97,10 +98,12 @@ public class TelephonyPlugin extends Plugin {
 
         //Log.e("TelephonyPlugin", "callBroadcastReceived");
 
+        Map<String, String> contactInfo = ContactsHelper.phoneNumberLookup(context, phoneNumber);
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_TELEPHONY);
         if (phoneNumber != null) {
             np.set("phoneNumber", phoneNumber);
-            np.set("contactName", ContactsHelper.phoneNumberLookup(context, phoneNumber));
+            np.set("contactName", contactInfo.get("name"));
+        }
         }
 
         switch (state) {
@@ -175,7 +178,7 @@ public class TelephonyPlugin extends Plugin {
         String phoneNumber = message.getOriginatingAddress();
         if (phoneNumber != null) {
             np.set("phoneNumber", phoneNumber);
-            np.set("contactName", ContactsHelper.phoneNumberLookup(context, phoneNumber));
+            np.set("contactName", ContactsHelper.phoneNumberLookup(context, phoneNumber).get("name"));
         }
 
         device.sendPackage(np);
