@@ -182,9 +182,17 @@ public class TelephonyPlugin extends Plugin {
         }
 
         String phoneNumber = message.getOriginatingAddress();
+        Map<String, String> contactInfo = ContactsHelper.phoneNumberLookup(context, phoneNumber);
         if (phoneNumber != null) {
             np.set("phoneNumber", phoneNumber);
-            np.set("contactName", ContactsHelper.phoneNumberLookup(context, phoneNumber).get("name"));
+        }
+
+        if (contactInfo.containsKey("name")) {
+            np.set("contactName", contactInfo.get("name"));
+        }
+
+        if (contactInfo.containsKey("photoID")) {
+            np.set("phoneThumbnail", ContactsHelper.photoId64Encoded(context, contactInfo.get("photoID")));
         }
 
         device.sendPackage(np);
