@@ -21,12 +21,17 @@
 package org.kde.kdeconnect.Helpers;
 
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.PhoneLookup;
+import android.util.Base64;
+import android.util.Base64OutputStream;
 import android.util.Log;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -74,6 +79,30 @@ public class ContactsHelper {
         }
 
         return contactInfo;
+    }
+
+    public static String photoId64Encoded(Context context, String photoId) {
+        AssetFileDescriptor fd = null;
+        Uri photoUri = Uri.parse(photoId);
+        Uri displayPhotoUri = Uri.withAppendedPath(photoUri, ContactsContract.Contacts.Photo.DISPLAY_PHOTO);
+
+        byte[] buffer = null;
+        Base64OutputStream out = null;
+        ByteArrayOutputStream encodedPhoto = null;
+        try {
+            encodedPhoto = new ByteArrayOutputStream();
+            out = new Base64OutputStream(encodedPhoto, Base64.DEFAULT);
+            InputStream fd2 = context.getContentResolver().openInputStream(photoUri);
+            buffer = new byte[1024];
+            int len;
+            while ((len = fd2.read(buffer)) != -1) {
+                out.write(buffer, 0, len);
+            }
+            return encodedPhoto.toString();
+        } catch (Exception ex) {
+            Log.e("ContactsHelper", ex.toString());
+            return new String();
+        }
     }
 }
 

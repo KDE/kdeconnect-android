@@ -102,8 +102,14 @@ public class TelephonyPlugin extends Plugin {
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_TELEPHONY);
         if (phoneNumber != null) {
             np.set("phoneNumber", phoneNumber);
+        }
+
+        if (contactInfo.containsKey("name")) {
             np.set("contactName", contactInfo.get("name"));
         }
+
+        if (contactInfo.containsKey("photoID")) {
+            np.set("phoneThumbnail", ContactsHelper.photoId64Encoded(context, contactInfo.get("photoID")));
         }
 
         switch (state) {
