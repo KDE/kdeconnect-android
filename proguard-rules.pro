@@ -30,7 +30,7 @@
 -dontwarn org.slf4j.**
 -dontwarn io.netty.**
 
--keepattributes SourceFile,LineNumberTable,Signature
+-keepattributes SourceFile,LineNumberTable,Signature,*Annotation*
 
 -keep class org.spongycastle.** {*;}
 -keep class org.bouncycastle.** {*;}
