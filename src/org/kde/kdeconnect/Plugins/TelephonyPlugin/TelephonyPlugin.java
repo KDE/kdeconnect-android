@@ -106,6 +106,8 @@ public class TelephonyPlugin extends Plugin {
 
         if (contactInfo.containsKey("name")) {
             np.set("contactName", contactInfo.get("name"));
+        } else {
+            np.set("contactName",  phoneNumber);
         }
 
         if (contactInfo.containsKey("photoID")) {
