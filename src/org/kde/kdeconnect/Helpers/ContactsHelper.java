@@ -82,7 +82,6 @@ public class ContactsHelper {
     }
 
     public static String photoId64Encoded(Context context, String photoId) {
-        AssetFileDescriptor fd = null;
         Uri photoUri = Uri.parse(photoId);
         Uri displayPhotoUri = Uri.withAppendedPath(photoUri, ContactsContract.Contacts.Photo.DISPLAY_PHOTO);
 
