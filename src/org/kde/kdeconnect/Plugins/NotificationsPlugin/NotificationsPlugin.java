@@ -173,6 +173,13 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             return;
         }
 
+        if ("com.android.systemui".equals(packageName) &&
+                "low_battery".equals(statusBarNotification.getTag()))
+        {
+            //HACK: Android low battery notification are posted again every few seconds. Ignore them, as we already have a battery indicator.
+            return;
+        }
+
         if (packageName.equals("com.google.android.googlequicksearchbox")) {
             //HACK: Hide Google Now notifications that keep constantly popping up (and without text because we don't know how to read them properly)
             return;
