@@ -28,6 +28,7 @@ import android.provider.Settings;
 import android.util.Base64;
 import android.util.Log;
 
+import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.spongycastle.asn1.x500.X500NameBuilder;
 import org.spongycastle.asn1.x500.style.BCStyle;
 import org.spongycastle.cert.X509CertificateHolder;
@@ -88,7 +89,7 @@ public class SslHelper {
             try {
 
                 X500NameBuilder nameBuilder = new X500NameBuilder(BCStyle.INSTANCE);
-                nameBuilder.addRDN(BCStyle.CN, Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID));
+                nameBuilder.addRDN(BCStyle.CN, DeviceHelper.getDeviceId(context));
                 nameBuilder.addRDN(BCStyle.OU, "KDE Connect");
                 nameBuilder.addRDN(BCStyle.O, "KDE");
                 Calendar calendar = Calendar.getInstance();

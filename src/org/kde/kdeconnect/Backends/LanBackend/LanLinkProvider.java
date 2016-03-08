@@ -403,6 +403,7 @@ public class LanLinkProvider extends BaseLinkProvider {
             });
             udpBootstrap.bind(new InetSocketAddress(port)).sync();
         }catch (Exception e){
+            Log.e("KDE/LanLinkProvider","Exception setting up UDP server");
             e.printStackTrace();
         }
 
@@ -414,6 +415,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         // and newer android versions. Although devices with android version less than ICS cannot connect to other devices who also have android version less
         // than ICS because server is disabled on both
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            Log.w("KDE/LanLinkProvider","Not starting a TCP server because it's not supported on Android < 14. Operating only as client.");
             return;
         }
 
@@ -429,6 +431,7 @@ public class LanLinkProvider extends BaseLinkProvider {
             tcpBootstrap.childHandler(new TcpInitializer());
             tcpBootstrap.bind(new InetSocketAddress(port)).sync();
         }catch (Exception e) {
+            Log.e("KDE/LanLinkProvider","Exception setting up TCP server");
             e.printStackTrace();
         }
 
