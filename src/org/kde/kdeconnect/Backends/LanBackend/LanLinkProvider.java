@@ -27,7 +27,6 @@ import android.support.v4.util.LongSparseArray;
 import android.util.Base64;
 import android.util.Log;
 
-import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
@@ -40,7 +39,6 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.security.cert.Certificate;
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Timer;
@@ -86,8 +84,8 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     private final Context context;
 
-    private final HashMap<String, LanLink> visibleComputers = new HashMap<String, LanLink>();  //Links by device id
-    private final LongSparseArray<LanLink> nioLinks = new LongSparseArray<LanLink>(); //Links by channel id
+    private final HashMap<String, LanLink> visibleComputers = new HashMap<>();  //Links by device id
+    private final LongSparseArray<LanLink> nioLinks = new LongSparseArray<>(); //Links by channel id
 
     private EventLoopGroup bossGroup, workerGroup, udpGroup, clientGroup;
     private TcpHandler tcpHandler = new TcpHandler();
@@ -492,7 +490,9 @@ public class LanLinkProvider extends BaseLinkProvider {
                     }
                 }
 
-                socket.close();
+                if (socket != null) {
+                    socket.close();
+                }
 
             }
         }).start();
