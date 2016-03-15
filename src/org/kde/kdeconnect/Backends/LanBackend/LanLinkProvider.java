@@ -233,13 +233,15 @@ public class LanLinkProvider extends BaseLinkProvider {
                 String theMessage = packet.content().toString(CharsetUtil.UTF_8);
 
                 final NetworkPackage identityPackage = NetworkPackage.unserialize(theMessage);
+                final String deviceId = identityPackage.getString("deviceId");
 
                 if (!identityPackage.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
                     Log.e("KDE/LanLinkProvider", "Expecting an identity package (B)");
                     return;
                 } else {
                     String myId = DeviceHelper.getDeviceId(context);
-                    if (identityPackage.getString("deviceId").equals(myId)) {
+                    if (deviceId.equals(myId)) {
+                        Log.i("KDE/LanLinkProvider", "Ignoring my own broadcast");
                         return;
                     }
                 }
@@ -257,31 +259,34 @@ public class LanLinkProvider extends BaseLinkProvider {
                         @Override
                         public void operationComplete(ChannelFuture future) throws Exception {
 
+                            final Channel channel = channelFuture.channel();
+
                             if (!future.isSuccess()) {
-                                Log.e("KDE/LanLinkProvider", "Cannot connect to " + identityPackage.getString("deviceId"));
-                                // Try reverse connection
-                                if (!reverseConnectionBlackList.contains(identityPackage.getString("deviceId"))) {
-                                    reverseConnectionBlackList.add(identityPackage.getString("deviceId"));
+                                Log.e("KDE/LanLinkProvider", "Cannot connect to " + deviceId);
+                                if (!reverseConnectionBlackList.contains(deviceId)) {
+                                    Log.w("KDE/LanLinkProvider","Blacklisting "+deviceId);
+                                    reverseConnectionBlackList.add(deviceId);
                                     reverseConnectionTimer = new Timer();
                                     reverseConnectionTimer.schedule(new TimerTask() {
                                         @Override
                                         public void run() {
-                                            reverseConnectionBlackList.add(identityPackage.getString("deviceId"));
+                                            reverseConnectionBlackList.remove(deviceId);
                                         }
                                     }, 5*1000);
+
+                                    // Try to cause a reverse connection
                                     onNetworkChange();
                                 }
                                 return;
                             }
 
-                            final Channel channel = channelFuture.channel();
 
                             Log.i("KDE/LanLinkProvider", "Connection successful: " + channel.isActive());
 
                             // Add ssl handler if device supports new protocol
                             if (identityPackage.getInt("protocolVersion") >= MIN_VERSION_WITH_SSL_SUPPORT) {
                                 // add ssl handler with start tls true
-                                SSLEngine sslEngine = SslHelper.getSslEngine(context, identityPackage.getString("deviceId"), SslHelper.SslMode.Server);
+                                SSLEngine sslEngine = SslHelper.getSslEngine(context, deviceId, SslHelper.SslMode.Server);
                                 SslHandler sslHandler = new SslHandler(sslEngine, true);
                                 channel.pipeline().addFirst(sslHandler);
                             }
@@ -308,6 +313,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                                                 identityPackage.set("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
                                                 addLink(identityPackage, channel, connectionStarted, true);
                                             } catch (Exception e){
+                                                Log.e("KDE/LanLinkProvider", "Exception in addLink");
                                                 e.printStackTrace();
                                             }
                                         } else {
@@ -319,7 +325,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                                                 BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
                                                     @Override
                                                     public void onServiceStart(BackgroundService service) {
-                                                        Device device = service.getDevice(identityPackage.getString("deviceId"));
+                                                        Device device = service.getDevice(deviceId);
                                                         if (device == null) return;
                                                         device.unpair();
                                                     }
@@ -330,6 +336,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                                     }
                                 });
                             } else {
+                                Log.w("KDE/LanLinkProvider", "Not using SSL");
                                 addLink(identityPackage, channel, connectionStarted, false);
                             }
 
