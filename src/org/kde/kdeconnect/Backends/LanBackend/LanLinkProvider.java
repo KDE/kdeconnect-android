@@ -82,6 +82,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     public static final String KEY_CUSTOM_DEVLIST_PREFERENCE  = "device_list_preference";
     private final static int port = 1714;
+    private static final int MIN_VERSION_WITH_SSL_SUPPORT = 6;
 
     private final Context context;
 
@@ -173,7 +174,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
                 // Add ssl handler if device uses new protocol
                 try {
-                    if (NetworkPackage.ProtocolVersion <= np.getInt("protocolVersion")) {
+                    if (np.getInt("protocolVersion") >= MIN_VERSION_WITH_SSL_SUPPORT) {
                         final SSLEngine sslEngine = SslHelper.getSslEngine(context, np.getString("deviceId"), SslHelper.SslMode.Client);
 
                         SslHandler sslHandler = new SslHandler(sslEngine);
@@ -278,7 +279,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                             Log.i("KDE/LanLinkProvider", "Connection successful: " + channel.isActive());
 
                             // Add ssl handler if device supports new protocol
-                            if (NetworkPackage.ProtocolVersion <= identityPackage.getInt("protocolVersion")) {
+                            if (identityPackage.getInt("protocolVersion") >= MIN_VERSION_WITH_SSL_SUPPORT) {
                                 // add ssl handler with start tls true
                                 SSLEngine sslEngine = SslHelper.getSslEngine(context, identityPackage.getString("deviceId"), SslHelper.SslMode.Server);
                                 SslHandler sslHandler = new SslHandler(sslEngine, true);
