@@ -44,6 +44,7 @@ import org.apache.sshd.server.session.ServerSession;
 import org.apache.sshd.server.sftp.SftpSubsystem;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.RandomHelper;
+import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 
 import java.io.File;
 import java.net.Inet4Address;
@@ -108,7 +109,7 @@ class SimpleSftpServer {
     public final SimplePublicKeyAuthenticator keyAuth = new SimplePublicKeyAuthenticator();
 
     static {
-        Security.insertProviderAt( new org.spongycastle.jce.provider.BouncyCastleProvider(), 1);
+        Security.insertProviderAt( SslHelper.BC, 1);
         SecurityUtils.setRegisterBouncyCastle(false);
     }
     private final SshServer sshd = SshServer.setUpDefaultServer();
