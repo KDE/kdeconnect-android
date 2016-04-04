@@ -114,6 +114,7 @@
   <string name="pair_device_action">Ein neues Gerät verbinden</string>
   <string name="unpair_device_action">Verbindung %s trennen</string>
   <string name="custom_device_list">Geräte nach IP hinzufügen</string>
+  <string name="share_notification_preference">Ausführliche Benachrichtigungen</string>
   <string name="share_notification_preference_summary">Beim Empfang einer Datei vibrieren und einen Sound abspielen</string>
   <string name="title_activity_notification_filter">Benachrichtigungs-Filter</string>
   <string name="filter_apps_info">Benachrichtigungen werden zwischen den ausgewählten Anwendungen abgeglichen.</string>
@@ -129,12 +130,17 @@
   <string name="mpris_player_on_device">%1$s auf %2$s</string>
   <string name="send_files">Dateien senden</string>
   <string name="pairing_title">KDE-Connect-Geräte</string>
+  <string name="pairing_description">Andere Geräte, auf denen KDE-Connect läuft im gleichen Netzwerk,sollte hier angezeigt werden.</string>
   <string name="device_paired">Gerät verbunden</string>
   <string name="device_rename_title">Geräte umbenennen</string>
   <string name="device_rename_confirm">Umbenennen</string>
   <string name="refresh">Aktualisieren</string>
+  <string name="no_file_browser">Es sind keine Dateiverwaltungsprogramme installiert.</string>
   <string name="pref_plugin_telepathy">SMS senden</string>
+  <string name="pref_plugin_telepathy_desc">Text-Nachrichten von Ihrer Arbeitsfläche senden</string>
   <string name="plugin_not_supported">Dieses Modul wird durch das Gerät nicht unterstützt</string>
+  <string name="findmyphone_title">Telefon suchen</string>
+  <string name="findmyphone_description">Ruft dieses Telefon an, um es zu suchen.</string>
   <string name="findmyphone_found">Gefunden</string>
   <string name="open">Öffnen</string>
   <string name="close">Schließen</string>
