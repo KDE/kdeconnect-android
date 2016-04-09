@@ -29,6 +29,7 @@
   <string name="send_ping">Ping senden</string>
   <string name="open_mpris_controls">Multimedia-Bedienung</string>
   <string name="open_mousepad">Ferneingabe</string>
+  <string name="mousepad_scroll_direction_title">Bildlaufrichtung umkehren</string>
   <string-array name="mousepad_tap_entries">
     <item>Rechtsklick</item>
     <item>Mittelklick</item>
@@ -36,12 +37,13 @@
   </string-array>
   <string name="mousepad_double_default">Rechts</string>
   <string name="mousepad_triple_default">Mitte</string>
+  <string name="mousepad_sensitivity_default">Standard</string>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
+    <item>Langsamste</item>
     <item>Above Slowest</item>
-    <item>Default</item>
+    <item>Standard</item>
     <item>Above Default</item>
-    <item>Fastest</item>
+    <item>Schnellste</item>
   </string-array>
   <string name="category_connected_devices">Verbundene Geräte</string>
   <string name="category_not_paired_devices">Verfügbare Gerät</string>
