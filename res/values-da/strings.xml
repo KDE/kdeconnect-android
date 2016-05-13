@@ -53,6 +53,7 @@
   <string name="device_menu_plugins">Plugin-indstillinger</string>
   <string name="device_menu_unpair">Fjern parring</string>
   <string name="device_not_reachable">Den parrede enhed kan ikke tilgås</string>
+  <string name="pair_new_device">Par med ny enhed</string>
   <string name="unknown_device">Ukendt enhed</string>
   <string name="error_not_reachable">Enheden kan ikke nås</string>
   <string name="error_already_requested">Allerede anmodet om parring</string>
