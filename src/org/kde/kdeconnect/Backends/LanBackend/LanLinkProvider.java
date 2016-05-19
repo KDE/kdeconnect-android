@@ -147,9 +147,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
         @Override
         public void channelRead0(ChannelHandlerContext ctx, String message) throws Exception {
-//            Log.e("LanLinkProvider","Incoming package, address: " + ctx.channel().remoteAddress());
-//            Log.e("LanLinkProvider","Received:"+message);
-
+            //Log.e("KDE/LanLinkProvider", "Received a TCP packet from " + ctx.channel().remoteAddress() + ":" + message);
 
             if (message.isEmpty()) {
                 Log.e("KDE/LanLinkProvider", "Empty package received");
@@ -162,10 +160,11 @@ public class LanLinkProvider extends BaseLinkProvider {
 
                 String myId = DeviceHelper.getDeviceId(context);
                 if (np.getString("deviceId").equals(myId)) {
+                    Log.e("KDE/LanLinkProvider", "Somehow I'm connected to myself, ignoring. This should not happen.");
                     return;
                 }
 
-                Log.i("KDE/LanLinkProvider", "Identity package received from " + np.getString("deviceName"));
+                Log.i("KDE/LanLinkProvider", "Identity package received from a stablished TCP connection from " + np.getString("deviceName"));
 
                 final Channel channel = ctx.channel();
                 final LanLink.ConnectionStarted connectionStarted = LanLink.ConnectionStarted.Locally;
@@ -244,7 +243,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                     }
                 }
 
-                Log.i("KDE/LanLinkProvider", "Identity package received, creating link");
+                //Log.i("KDE/LanLinkProvider", "Identity package received, creating link");
 
                 try{
                     Bootstrap b = new Bootstrap();
@@ -278,8 +277,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                                 return;
                             }
 
-
-                            Log.i("KDE/LanLinkProvider", "Connection successful: " + channel.isActive());
+                            //Log.e("KDE/LanLinkProvider", "Connection successful: " + channel.isActive());
 
                             // Add ssl handler if device supports new protocol
                             if (identityPackage.getInt("protocolVersion") >= MIN_VERSION_WITH_SSL_SUPPORT) {
@@ -301,7 +299,9 @@ public class LanLinkProvider extends BaseLinkProvider {
                             // If ssl handler is in channel, add link after handshake is completed
                             final SslHandler sslHandler = channel.pipeline().get(SslHandler.class);
                             if (sslHandler != null) {
+                                //Log.e("KDE/LanLinkProvider", "Initiating SSL handshake");
                                 sslHandler.handshakeFuture().addListener(new GenericFutureListener<Future<? super Channel>>() {
+
                                     @Override
                                     public void operationComplete(Future<? super Channel> future) throws Exception {
                                         if (future.isSuccess()) {
@@ -370,7 +370,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         Log.i("KDE/LanLinkProvider","addLink to "+deviceId);
         LanLink currentLink = visibleComputers.get(deviceId);
         if (currentLink != null) {
-            Log.e("KDE/LanLinkProvider", "Reusing same link for device " + deviceId);
+            Log.i("KDE/LanLinkProvider", "Reusing same link for device " + deviceId);
             Channel oldChannel = currentLink.reset(channel, connectionOrigin, useSsl);
             nioLinks.remove(oldChannel.hashCode());
             nioLinks.put(channel.hashCode(), currentLink);
@@ -446,7 +446,7 @@ public class LanLinkProvider extends BaseLinkProvider {
     @Override
     public void onStart() {
 
-        Log.e("KDE/LanLinkProvider", "onStart");
+        Log.i("KDE/LanLinkProvider", "onStart");
 
 
         new Thread(new Runnable() {
@@ -500,18 +500,14 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     @Override
     public void onNetworkChange() {
-        Log.e("KDE/LanLinkProvider", "onNetworkChange");
-
         //FilesHelper.LogOpenFileCount();
-
         onStart();
-
         //FilesHelper.LogOpenFileCount();
     }
 
     @Override
     public void onStop() {
-        Log.e("KDE/LanLinkProvider", "onStop");
+        //Log.i("KDE/LanLinkProvider", "onStop");
         try {
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();

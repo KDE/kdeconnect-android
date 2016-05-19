@@ -225,7 +225,7 @@ public class LanLink extends BaseLink {
                 np = RsaHelper.decrypt(np, privateKey);
             } catch(Exception e) {
                 e.printStackTrace();
-                Log.e("KDE/onPackageReceived","Exception reading the key needed to decrypt the package");
+                Log.e("KDE/onPackageReceived","Exception decrypting the package");
             }
 
         }
