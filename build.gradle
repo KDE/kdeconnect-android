@@ -66,7 +66,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.2.0'
     compile 'com.android.support:design:23.2.0'
 
-    compile 'org.apache.sshd:sshd-core:0.9.0' //1.+ requires java.nio.file, which doesn't exist in Android
+    compile 'org.apache.sshd:sshd-core:0.8.0'
     //compile 'org.bouncycastle:bcprov-jdk15on:1.54'
 
     compile 'com.madgag.spongycastle:pkix:1.54.0.0'
