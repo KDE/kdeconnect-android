@@ -26,6 +26,7 @@ import android.provider.Settings;
 import android.util.Log;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 
@@ -134,48 +135,34 @@ public class NetworkPackage {
 
     public boolean isEncrypted() { return mType.equals(PACKAGE_TYPE_ENCRYPTED); }
 
-    public String serialize() {
+    public String serialize() throws JSONException {
         JSONObject jo = new JSONObject();
-        try {
-            jo.put("id", mId);
-            jo.put("type", mType);
-            jo.put("body", mBody);
-            if (hasPayload()) {
-                jo.put("payloadSize", mPayloadSize);
-                jo.put("payloadTransferInfo", mPayloadTransferInfo);
-            }
-        } catch(Exception e) {
-            e.printStackTrace();
-            Log.e("NetworkPackage", "Serialization exception");
+        jo.put("id", mId);
+        jo.put("type", mType);
+        jo.put("body", mBody);
+        if (hasPayload()) {
+            jo.put("payloadSize", mPayloadSize);
+            jo.put("payloadTransferInfo", mPayloadTransferInfo);
         }
-
         //QJSon does not escape slashes, but Java JSONObject does. Converting to QJson format.
         String json = jo.toString().replace("\\/","/")+"\n";
-
         return json;
     }
 
-    static public NetworkPackage unserialize(String s) {
+    static public NetworkPackage unserialize(String s) throws JSONException {
 
         NetworkPackage np = new NetworkPackage();
-        try {
-            JSONObject jo = new JSONObject(s);
-            np.mId = jo.getLong("id");
-            np.mType = jo.getString("type");
-            np.mBody = jo.getJSONObject("body");
-            if (jo.has("payloadSize")) {
-                np.mPayloadTransferInfo = jo.getJSONObject("payloadTransferInfo");
-                np.mPayloadSize = jo.getLong("payloadSize");
-            } else {
-                np.mPayloadTransferInfo = new JSONObject();
-                np.mPayloadSize = 0;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("NetworkPackage", "Unserialization exception unserializing "+s);
-            return null;
+        JSONObject jo = new JSONObject(s);
+        np.mId = jo.getLong("id");
+        np.mType = jo.getString("type");
+        np.mBody = jo.getJSONObject("body");
+        if (jo.has("payloadSize")) {
+            np.mPayloadTransferInfo = jo.getJSONObject("payloadTransferInfo");
+            np.mPayloadSize = jo.getLong("payloadSize");
+        } else {
+            np.mPayloadTransferInfo = new JSONObject();
+            np.mPayloadSize = 0;
         }
-
         return np;
     }
 

@@ -23,6 +23,7 @@ package org.kde.kdeconnect.Helpers.SecurityHelpers;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.util.Base64;
 import android.util.Log;
 
@@ -107,7 +108,7 @@ public class RsaHelper {
 
     }
 
-    public static NetworkPackage encrypt(NetworkPackage np, PublicKey publicKey) throws GeneralSecurityException {
+    public static NetworkPackage encrypt(NetworkPackage np, PublicKey publicKey) throws GeneralSecurityException, JSONException {
 
         String serialized = np.serialize();
 
@@ -152,7 +153,7 @@ public class RsaHelper {
             decryptedJson += decryptedChunk;
         }
 
-        NetworkPackage decrypted = np.unserialize(decryptedJson);
+        NetworkPackage decrypted = NetworkPackage.unserialize(decryptedJson);
         decrypted.setPayload(np.getPayload(), np.getPayloadSize());
         return decrypted;
     }

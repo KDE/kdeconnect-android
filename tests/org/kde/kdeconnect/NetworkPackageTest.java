@@ -23,6 +23,7 @@ package org.kde.kdeconnect;
 import android.test.AndroidTestCase;
 import android.util.Log;
 
+import org.json.JSONException;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 
 import java.security.KeyPair;
@@ -44,7 +45,7 @@ public class NetworkPackageTest extends AndroidTestCase{
         // Called after each test
     }
 
-    public void testNetworkPackage(){
+    public void testNetworkPackage() throws JSONException {
         NetworkPackage np = new NetworkPackage("com.test");
 
         np.set("hello", "hola");
@@ -80,7 +81,7 @@ public class NetworkPackageTest extends AndroidTestCase{
 
     }
 
-    public void testEncryption(){
+    public void testEncryption() throws JSONException {
         NetworkPackage original = new NetworkPackage("com.test");
         original.set("hello", "hola");
 
