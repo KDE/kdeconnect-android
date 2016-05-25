@@ -74,10 +74,14 @@
         android:id="@+id/unpair_message"
         android:visibility="gone"
         android:layout_width="match_parent"
+        android:drawableStart="@drawable/ic_error_outline_black_48dp"
+        android:drawableLeft="@drawable/ic_error_outline_black_48dp"
+        android:drawablePadding="8dip"
         android:layout_height="match_parent"
+        android:gravity="center_vertical"
         android:text="@string/unreachable_description"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:gravity="center" />
+        />
 
     <ListView
         android:id="@+id/buttons_list"
