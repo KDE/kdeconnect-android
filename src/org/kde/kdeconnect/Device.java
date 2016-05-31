@@ -28,14 +28,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Base64;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
+import org.kde.kdeconnect.Helpers.ObjectsHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
@@ -52,6 +56,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -75,8 +80,8 @@ public class Device implements BaseLink.PackageReceiver {
 
     private final CopyOnWriteArrayList<BaseLink> links = new CopyOnWriteArrayList<>();
 
-    private ArrayList<String> incomingCapabilities;
-    private ArrayList<String> outgoingCapabilities;
+    private ArrayList<String> incomingCapabilities = new ArrayList<>();
+    private ArrayList<String> outgoingCapabilities = new ArrayList<>();
 
     private final ConcurrentHashMap<String, Plugin> plugins = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, Plugin> failedPlugins = new ConcurrentHashMap<>();
@@ -85,7 +90,6 @@ public class Device implements BaseLink.PackageReceiver {
     private HashSet<String> supportedIncomingInterfaces = new HashSet<>();
     private HashSet<String> supportedOutgoingInterfaces = new HashSet<>();
 
-    //FIXME: Why are these never used? Did some merge break the capabilities?
     private HashMap<String, ArrayList<String>> pluginsByIncomingInterface;
     private HashMap<String, ArrayList<String>> pluginsByOutgoingInterface;
 
@@ -500,8 +504,6 @@ public class Device implements BaseLink.PackageReceiver {
         link.addPackageReceiver(this);
 
         if (links.size() == 1) {
-            incomingCapabilities = identityPackage.getStringList("IncomingCapabilties");
-            outgoingCapabilities = identityPackage.getStringList("OutgoingCapabilities");
             reloadPluginsFromSettings();
         }
     }
@@ -544,15 +546,28 @@ public class Device implements BaseLink.PackageReceiver {
                     Log.e("PairingPackageReceived","Exception");
                 }
             }
+        } else if (NetworkPackage.PACKAGE_TYPE_CAPABILITIES.equals(np.getType())) {
+            ArrayList<String> newIncomingCapabilities = np.getStringList("IncomingCapabilities");
+            ArrayList<String> newOutgoingCapabilities = np.getStringList("OutgoingCapabilities");
+            if (!ObjectsHelper.equals(newIncomingCapabilities, incomingCapabilities) ||
+                !ObjectsHelper.equals(newOutgoingCapabilities, outgoingCapabilities)) {
+                incomingCapabilities = newIncomingCapabilities;
+                outgoingCapabilities = newOutgoingCapabilities;
+                reloadPluginsFromSettings();
+            }
 
         } else if (isPaired()) {
 
-            for (Plugin plugin : plugins.values()) {
-                try {
-                    plugin.onPackageReceived(np);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.e("KDE/Device", "Exception in "+plugin.getPluginKey()+"'s onPackageReceived()");
+            ArrayList<String> targetPlugins = pluginsByIncomingInterface.get(np.getType());
+            if (targetPlugins != null) {
+                for (String pluginKey : targetPlugins) {
+                    Plugin plugin = plugins.get(pluginKey);
+                    try {
+                        plugin.onPackageReceived(np);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Log.e("KDE/Device", "Exception in " + plugin.getPluginKey() + "'s onPackageReceived()");
+                    }
                 }
             }
         } else {
@@ -565,15 +580,18 @@ public class Device implements BaseLink.PackageReceiver {
 
             unpair();
 
-            for (Plugin plugin : plugins.values()) {
-                try {
-                    plugin.onUnpairedDevicePackageReceived(np);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.e("KDE/Device", "Exception in "+plugin.getDisplayName()+"'s onPackageReceived() in unPairedPackageListeners");
+            ArrayList<String> targetPlugins = pluginsByIncomingInterface.get(np.getType());
+            if (targetPlugins != null) {
+                for (String pluginKey : targetPlugins) {
+                    Plugin plugin = plugins.get(pluginKey);
+                    try {
+                        plugin.onUnpairedDevicePackageReceived(np);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Log.e("KDE/Device", "Exception in " + plugin.getDisplayName() + "'s onPackageReceived() in unPairedPackageListeners");
+                    }
                 }
             }
-
         }
 
     }
@@ -755,8 +773,7 @@ public class Device implements BaseLink.PackageReceiver {
         HashMap<String, ArrayList<String>> newPluginsByIncomingInterface = new HashMap<>();
         HashMap<String, ArrayList<String>> newPluginsByOutgoingInterface = new HashMap<>();
 
-        final boolean supportsCapabilities = (incomingCapabilities != null && !incomingCapabilities.isEmpty()) ||
-                (incomingCapabilities != null && !outgoingCapabilities.isEmpty());
+        final boolean supportsCapabilities = (protocolVersion >= 6);
 
         for (String pluginKey : availablePlugins) {
 
