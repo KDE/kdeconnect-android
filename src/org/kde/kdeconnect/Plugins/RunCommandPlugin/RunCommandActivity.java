@@ -64,7 +64,6 @@ public class RunCommandActivity extends ActionBarActivity {
                         ArrayList<ListAdapter.Item> commandItems = new ArrayList<>();
                         for (JSONObject obj : commands) {
                             try {
-                                Log.e("cacaca", obj.toString());
                                 commandItems.add(new EntryItem(obj.getString("name"), obj.getString("command")));
                             } catch (JSONException e) {
                                 e.printStackTrace();
