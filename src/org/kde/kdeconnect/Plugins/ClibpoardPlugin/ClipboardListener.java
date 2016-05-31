@@ -60,7 +60,7 @@ public class ClipboardListener {
                             String content = item.coerceToText(context).toString();
 
                             if (!content.equals(currentContent)) {
-                                NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_CLIPBOARD);
+                                NetworkPackage np = new NetworkPackage(ClipboardPlugin.PACKAGE_TYPE_CLIPBOARD);
                                 np.set("content", content);
                                 device.sendPackage(np);
                                 currentContent = content;

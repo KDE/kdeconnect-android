@@ -40,6 +40,9 @@ import java.util.TimerTask;
 
 public class TelephonyPlugin extends Plugin {
 
+    public final static String PACKAGE_TYPE_TELEPHONY = "kdeconnect.telephony";
+    public final static String PACKAGE_TYPE_TELEPHONY_REQUEST = "kdeconnect.telephony.request";
+
     private int lastState = TelephonyManager.CALL_STATE_IDLE;
     private NetworkPackage lastPackage = null;
     private boolean isMuted = false;
@@ -97,7 +100,7 @@ public class TelephonyPlugin extends Plugin {
 
         //Log.e("TelephonyPlugin", "callBroadcastReceived");
 
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_TELEPHONY);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_TELEPHONY);
         if (phoneNumber != null) {
             np.set("phoneNumber", phoneNumber);
             np.set("contactName", ContactsHelper.phoneNumberLookup(context, phoneNumber));
@@ -163,7 +166,7 @@ public class TelephonyPlugin extends Plugin {
 
         //Log.e("SmsBroadcastReceived", message.toString());
 
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_TELEPHONY);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_TELEPHONY);
 
         np.set("event","sms");
 
@@ -198,7 +201,7 @@ public class TelephonyPlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
-        if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_TELEPHONY)) {
+        if (!np.getType().equals(PACKAGE_TYPE_TELEPHONY_REQUEST)) {
             return false;
         }
         if (np.getString("action").equals("mute")) {
@@ -215,12 +218,12 @@ public class TelephonyPlugin extends Plugin {
 
     @Override
     public String[] getSupportedPackageTypes() {
-        return new String[]{NetworkPackage.PACKAGE_TYPE_TELEPHONY};
+        return new String[]{PACKAGE_TYPE_TELEPHONY_REQUEST};
     }
 
     @Override
     public String[] getOutgoingPackageTypes() {
-        return new String[]{NetworkPackage.PACKAGE_TYPE_TELEPHONY};
+        return new String[]{PACKAGE_TYPE_TELEPHONY};
     }
 
 }

@@ -17,6 +17,10 @@ import org.kde.kdeconnect_tp.R;
  * and David Edmundson 2015
  */
 public class FindMyPhonePlugin extends Plugin {
+
+    public final static String PACKAGE_TYPE_FINDMYPHONE = "kdeconnect.findmyphone";
+    public final static String PACKAGE_TYPE_FINDMYPHONE_REQUEST = "kdeconnect.findmyphone.request";
+
     @Override
     public String getDisplayName() {
         return context.getString(R.string.findmyphone_title);
@@ -29,7 +33,7 @@ public class FindMyPhonePlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
-        if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_FINDMYPHONE)) {
+        if (np.getType().equals(PACKAGE_TYPE_FINDMYPHONE_REQUEST)) {
             //Log.e("PingPackageReceiver", "was a find my phone!");
 
             Intent intent = new Intent(context,FindMyPhoneActivity.class);
@@ -43,7 +47,7 @@ public class FindMyPhonePlugin extends Plugin {
 
     @Override
     public String[] getSupportedPackageTypes() {
-        return new String[]{NetworkPackage.PACKAGE_TYPE_FINDMYPHONE};
+        return new String[]{PACKAGE_TYPE_FINDMYPHONE_REQUEST};
     }
 
     @Override

@@ -32,6 +32,8 @@ import org.kde.kdeconnect_tp.R;
 
 public class ClipboardPlugin extends Plugin {
 
+    public final static String PACKAGE_TYPE_CLIPBOARD = "kdeconnect.clipboard";
+
     @Override
     public String getDisplayName() {
         return context.getResources().getString(R.string.pref_plugin_clipboard);
@@ -63,7 +65,7 @@ public class ClipboardPlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
-        if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_CLIPBOARD)) {
+        if (!np.getType().equals(PACKAGE_TYPE_CLIPBOARD)) {
             return false;
         }
 
@@ -74,13 +76,13 @@ public class ClipboardPlugin extends Plugin {
 
     @Override
     public String[] getSupportedPackageTypes() {
-        String[] packetTypes = {NetworkPackage.PACKAGE_TYPE_CLIPBOARD};
+        String[] packetTypes = {PACKAGE_TYPE_CLIPBOARD};
         return packetTypes;
     }
 
     @Override
     public String[] getOutgoingPackageTypes() {
-        String[] packetTypes = {NetworkPackage.PACKAGE_TYPE_CLIPBOARD};
+        String[] packetTypes = {PACKAGE_TYPE_CLIPBOARD};
         return packetTypes;
     }
 

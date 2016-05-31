@@ -36,6 +36,9 @@ import static android.provider.ContactsContract.Contacts;
 
 public class TelepathyPlugin extends Plugin {
 
+
+    public final static String PACKAGE_TYPE_SMS_REQUEST = "kdeconnect.sms";
+
     @Override
     public String getDisplayName() {
         return context.getResources().getString(R.string.pref_plugin_telepathy);
@@ -58,7 +61,7 @@ public class TelepathyPlugin extends Plugin {
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
 
-        if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_TELEPHONY)) {
+        if (!np.getType().equals(PACKAGE_TYPE_SMS_REQUEST)) {
             return false;
         }
 
@@ -171,12 +174,12 @@ public class TelepathyPlugin extends Plugin {
 
     @Override
     public String[] getSupportedPackageTypes() {
-        return new String[]{NetworkPackage.PACKAGE_TYPE_TELEPHONY};
+        return new String[]{PACKAGE_TYPE_SMS_REQUEST};
     }
 
     @Override
     public String[] getOutgoingPackageTypes() {
-        return new String[]{NetworkPackage.PACKAGE_TYPE_TELEPHONY};
+        return new String[]{};
     }
 
 }

@@ -50,6 +50,10 @@ import java.io.InputStream;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class NotificationsPlugin extends Plugin implements NotificationReceiver.NotificationListener {
+
+    public final static String PACKAGE_TYPE_NOTIFICATION = "kdeconnect.notification";
+    public final static String PACKAGE_TYPE_NOTIFICATION_REQUEST = "kdeconnect.notification.request";
+
 /*
     private boolean sendIcons = false;
 */
@@ -109,7 +113,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         }
 
         // request all existing notifications
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_NOTIFICATION);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_NOTIFICATION_REQUEST);
         np.set("request", true);
         device.sendPackage(np);
         return true;
@@ -131,7 +135,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     @Override
     public void onNotificationRemoved(StatusBarNotification statusBarNotification) {
         String id = getNotificationKeyCompat(statusBarNotification);
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_NOTIFICATION);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_NOTIFICATION_REQUEST);
         np.set("id", id);
         np.set("isCancel", true);
         device.sendPackage(np);
@@ -185,7 +189,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             return;
         }
 
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_NOTIFICATION);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_NOTIFICATION);
 
         if (packageName.equals("org.kde.kdeconnect_tp"))
         {
@@ -268,7 +272,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public boolean onPackageReceived(final NetworkPackage np) {
-        if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_NOTIFICATION)) return false;
+        if (!np.getType().equals(PACKAGE_TYPE_NOTIFICATION_REQUEST) && !np.getType().equals(PACKAGE_TYPE_NOTIFICATION)) return false;
 /*
         if (np.getBoolean("sendIcons")) {
             sendIcons = true;
@@ -416,12 +420,12 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public String[] getSupportedPackageTypes() {
-        return new String[]{NetworkPackage.PACKAGE_TYPE_NOTIFICATION};
+        return new String[]{PACKAGE_TYPE_NOTIFICATION, PACKAGE_TYPE_NOTIFICATION_REQUEST};
     }
 
     @Override
     public String[] getOutgoingPackageTypes() {
-        return new String[]{NetworkPackage.PACKAGE_TYPE_NOTIFICATION};
+        return new String[]{PACKAGE_TYPE_NOTIFICATION, PACKAGE_TYPE_NOTIFICATION_REQUEST};
     }
 
     //For compat with API<21, because lollipop changed the way to cancel notifications

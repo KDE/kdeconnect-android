@@ -37,6 +37,9 @@ import java.util.HashMap;
 
 public class MprisPlugin extends Plugin {
 
+    public final static String PACKAGE_TYPE_MPRIS = "kdeconnect.mpris";
+    public final static String PACKAGE_TYPE_MPRIS_REQUEST = "kdeconnect.mpris.request";
+
     private String player = "";
     private boolean playing = false;
     private String currentSong = "";
@@ -82,7 +85,7 @@ public class MprisPlugin extends Plugin {
     }
 
     public void sendAction(String player, String action) {
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MPRIS_REQUEST);
         np.set("player", player);
         np.set("action", action);
         device.sendPackage(np);
@@ -92,14 +95,14 @@ public class MprisPlugin extends Plugin {
     }
 
     public void setVolume(int volume) {
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MPRIS_REQUEST);
         np.set("player", player);
         np.set("setVolume",volume);
         device.sendPackage(np);
     }
 
     public void setPosition(int position) {
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MPRIS_REQUEST);
         np.set("player", player);
         np.set("SetPosition", position);
         device.sendPackage(np);
@@ -108,7 +111,7 @@ public class MprisPlugin extends Plugin {
     }
 
     public void Seek(int offset) {
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MPRIS_REQUEST);
         np.set("player", player);
         np.set("Seek", offset);
         device.sendPackage(np);
@@ -116,7 +119,7 @@ public class MprisPlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
-        if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_MPRIS)) return false;
+        if (!np.getType().equals(PACKAGE_TYPE_MPRIS)) return false;
 
         if (np.has("nowPlaying") || np.has("volume") || np.has("isPlaying") || np.has("length") || np.has("pos")) {
             if (np.getString("player").equals(player)) {
@@ -172,12 +175,12 @@ public class MprisPlugin extends Plugin {
 
     @Override
     public String[] getSupportedPackageTypes() {
-        return new String[] {NetworkPackage.PACKAGE_TYPE_MPRIS};
+        return new String[] {PACKAGE_TYPE_MPRIS};
     }
 
     @Override
     public String[] getOutgoingPackageTypes() {
-        return new String[] {NetworkPackage.PACKAGE_TYPE_MPRIS};
+        return new String[] {PACKAGE_TYPE_MPRIS_REQUEST};
     }
 
     public void setPlayerStatusUpdatedHandler(String id, Handler h) {
@@ -251,13 +254,13 @@ public class MprisPlugin extends Plugin {
     }
 
     private void requestPlayerList() {
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MPRIS_REQUEST);
         np.set("requestPlayerList",true);
         device.sendPackage(np);
     }
 
     private void requestPlayerStatus() {
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MPRIS_REQUEST);
         np.set("player",player);
         np.set("requestNowPlaying",true);
         np.set("requestVolume",true);

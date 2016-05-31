@@ -38,22 +38,10 @@ public class NetworkPackage {
 
     public final static int ProtocolVersion = 6;
 
-    //TODO: Move these to their respective plugins
     public final static String PACKAGE_TYPE_IDENTITY = "kdeconnect.identity";
     public final static String PACKAGE_TYPE_PAIR = "kdeconnect.pair";
     public final static String PACKAGE_TYPE_ENCRYPTED = "kdeconnect.encrypted";
-    public final static String PACKAGE_TYPE_PING = "kdeconnect.ping";
-    public final static String PACKAGE_TYPE_TELEPHONY = "kdeconnect.telephony";
-    public final static String PACKAGE_TYPE_BATTERY = "kdeconnect.battery";
-    public final static String PACKAGE_TYPE_SFTP = "kdeconnect.sftp";
-    public final static String PACKAGE_TYPE_NOTIFICATION = "kdeconnect.notification";
-    public final static String PACKAGE_TYPE_CLIPBOARD = "kdeconnect.clipboard";
-    public final static String PACKAGE_TYPE_MPRIS = "kdeconnect.mpris";
-    public final static String PACKAGE_TYPE_MOUSEPAD = "kdeconnect.mousepad";
-    public final static String PACKAGE_TYPE_SHARE = "kdeconnect.share";
     public static final String PACKAGE_TYPE_CAPABILITIES = "kdeconnect.capabilities";
-    public final static String PACKAGE_TYPE_FINDMYPHONE = "kdeconnect.findmyphone" ;
-    public final static String PACKAGE_TYPE_RUNCOMMAND = "kdeconnect.runcommand";
 
     private long mId;
     private String mType;
