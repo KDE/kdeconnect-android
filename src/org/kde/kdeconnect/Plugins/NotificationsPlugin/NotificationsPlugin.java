@@ -361,7 +361,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                         .setContentText(np.getString("ticker"))
                         .setContentIntent(resultPendingIntent)
                         .setTicker(np.getString("ticker"))
-                        .setSmallIcon(android.R.drawable.ic_dialog_alert)
+                        .setSmallIcon(R.drawable.ic_notification)
                         .setLargeIcon(largeIcon)
                         .setAutoCancel(true)
                         .setLocalOnly(true)  // to avoid bouncing the notification back to other kdeconnect nodes
