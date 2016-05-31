@@ -832,7 +832,8 @@ public class Device implements BaseLink.PackageReceiver {
 
         onPluginsChanged();
 
-        if (capabilitiesChanged && isReachable() && isPaired()) {
+        //Only send capabilities to devices using protocol version 6 or later
+        if (capabilitiesChanged && isReachable() && isPaired() && protocolVersion >= 6) {
             NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_CAPABILITIES);
             np.set("IncomingCapabilities", new ArrayList<>(newSupportedIncomingInterfaces));
             np.set("OutgoingCapabilities", new ArrayList<>(newSupportedOutgoingInterfaces));
