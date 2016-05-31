@@ -621,7 +621,7 @@ public class Device implements BaseLink.PackageReceiver {
             @Override
             public void run() {
 
-                boolean useEncryption = (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR) && isPaired());
+                boolean useEncryption = (protocolVersion < 6 && (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR) && isPaired()));
 
                 //Make a copy to avoid concurrent modification exception if the original list changes
                 for (final BaseLink link : links) {
