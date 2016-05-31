@@ -28,6 +28,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.util.Log;
 
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.UserInterface.MaterialActivity;
@@ -53,6 +54,7 @@ public class PingPlugin extends Plugin {
     public boolean onPackageReceived(NetworkPackage np) {
 
         if (!np.getType().equals(PACKAGE_TYPE_PING)) {
+            Log.e("PingPlugin", "Ping plugin should not receive packets other than pings!");
             return false;
         }
 
