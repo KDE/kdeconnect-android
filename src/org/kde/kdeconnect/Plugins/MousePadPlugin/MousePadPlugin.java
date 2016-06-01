@@ -31,7 +31,7 @@ import org.kde.kdeconnect_tp.R;
 
 public class MousePadPlugin extends Plugin {
 
-    public final static String PACKAGE_TYPE_INPUT = "kdeconnect.input";
+    //public final static String PACKAGE_TYPE_INPUT = "kdeconnect.input";
     public final static String PACKAGE_TYPE_INPUT_REQUEST = "kdeconnect.input.request";
 
     @Override
