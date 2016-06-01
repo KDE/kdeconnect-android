@@ -26,11 +26,8 @@ public class FindMyPhoneActivity extends Activity {
                         WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
                         WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
-        Uri soundFile = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-        if (soundFile == null) {
-            soundFile = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
-        }
-        ringtone = RingtoneManager.getRingtone(getApplicationContext(), soundFile);
+        Uri ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+        ringtone = RingtoneManager.getRingtone(getApplicationContext(), ringtoneUri);
 
         if (android.os.Build.VERSION.SDK_INT >= 21) {
             AudioAttributes.Builder b = new AudioAttributes.Builder();
