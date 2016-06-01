@@ -21,15 +21,27 @@
 package org.kde.kdeconnect.Helpers;
 
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.provider.ContactsContract.PhoneLookup;
+import android.util.Base64;
+import android.util.Base64OutputStream;
+import android.util.Log;
+
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ContactsHelper {
 
-    public static String phoneNumberLookup(Context context, String number) {
+    public static Map<String, String> phoneNumberLookup(Context context, String number) {
 
         //Log.e("PhoneNumberLookup", number);
+
+        Map<String, String> contactInfo = new HashMap<String, String>();
 
         Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
         Cursor cursor = null;
@@ -37,30 +49,59 @@ public class ContactsHelper {
             cursor = context.getContentResolver().query(
                     uri,
                     new String[] {
-                            PhoneLookup.DISPLAY_NAME
+                            PhoneLookup.DISPLAY_NAME,
+                            ContactsContract.PhoneLookup.PHOTO_URI
                             /*, PhoneLookup.TYPE
                               , PhoneLookup.LABEL
                               , PhoneLookup.ID */
                     },
                     null, null, null);
         } catch (IllegalArgumentException e) {
-            return number;
+            return contactInfo;
         }
 
         // Take the first match only
         if (cursor != null && cursor.moveToFirst()) {
             int nameIndex = cursor.getColumnIndex(PhoneLookup.DISPLAY_NAME);
             if (nameIndex != -1) {
-                String name = cursor.getString(nameIndex);
-                //Log.e("PhoneNumberLookup", "success: " + name);
+                contactInfo.put("name", cursor.getString(nameIndex));
+            }
+
+            nameIndex = cursor.getColumnIndex(PhoneLookup.PHOTO_URI);
+            if (nameIndex != -1) {
+                contactInfo.put("photoID", cursor.getString(nameIndex));
+            }
+
+            if (!contactInfo.isEmpty()) {
                 cursor.close();
-                return name;
+                return contactInfo;
             }
         }
 
-        if (cursor != null) cursor.close();
+        return contactInfo;
+    }
 
-        return number;
+    public static String photoId64Encoded(Context context, String photoId) {
+        Uri photoUri = Uri.parse(photoId);
+        Uri displayPhotoUri = Uri.withAppendedPath(photoUri, ContactsContract.Contacts.Photo.DISPLAY_PHOTO);
 
+        byte[] buffer = null;
+        Base64OutputStream out = null;
+        ByteArrayOutputStream encodedPhoto = null;
+        try {
+            encodedPhoto = new ByteArrayOutputStream();
+            out = new Base64OutputStream(encodedPhoto, Base64.DEFAULT);
+            InputStream fd2 = context.getContentResolver().openInputStream(photoUri);
+            buffer = new byte[1024];
+            int len;
+            while ((len = fd2.read(buffer)) != -1) {
+                out.write(buffer, 0, len);
+            }
+            return encodedPhoto.toString();
+        } catch (Exception ex) {
+            Log.e("ContactsHelper", ex.toString());
+            return new String();
+        }
     }
 }
+

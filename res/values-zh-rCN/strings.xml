@@ -53,6 +53,7 @@
   <string name="device_menu_plugins">插件设置</string>
   <string name="device_menu_unpair">取消配对</string>
   <string name="device_not_reachable">配对设备不可及</string>
+  <string name="pair_new_device">配对新设备</string>
   <string name="unknown_device">未知设备</string>
   <string name="error_not_reachable">设备不可及</string>
   <string name="error_already_requested">已在请求配对</string>

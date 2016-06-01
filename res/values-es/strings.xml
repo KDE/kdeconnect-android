@@ -32,6 +32,7 @@
   <string name="mousepad_info">Mueva un dedo sobre la pantalla para mover el cursor del ratón. Pulse para ejecutar un clic y use dos/tres dedos para emular los botones derecho y central. Use una pulsación larga para arrastrar y soltar.</string>
   <string name="mousepad_double_tap_settings_title">Establecer la acción al pulsar con dos dedos</string>
   <string name="mousepad_triple_tap_settings_title">Establecer la acción al pulsar con tres dedos</string>
+  <string name="mousepad_sensitivity_settings_title">Establecer sensibilidad del panel táctil</string>
   <string name="mousepad_scroll_direction_title">Invertir dirección de desplazamiento</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic derecho</item>
@@ -40,12 +41,13 @@
   </string-array>
   <string name="mousepad_double_default">derecho</string>
   <string name="mousepad_triple_default">medio</string>
+  <string name="mousepad_sensitivity_default">por defecto</string>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
-    <item>Above Slowest</item>
-    <item>Default</item>
-    <item>Above Default</item>
-    <item>Fastest</item>
+    <item>Muy poco sensible</item>
+    <item>Poco sensible</item>
+    <item>Predeterminada</item>
+    <item>Sensible</item>
+    <item>Muy sensible</item>
   </string-array>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos disponibles</string>

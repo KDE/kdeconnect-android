@@ -32,6 +32,7 @@
   <string name="mousepad_info">Posúvajte prst na obrazovke na posun kurzora. Ťuknutie vyvolá klik a použite dva/tri prsty pre pravé a stredné tlačidlo. Použite dlhé stlačenie pre drag and drop.</string>
   <string name="mousepad_double_tap_settings_title">Nastaviť akciu dvoch prstov</string>
   <string name="mousepad_triple_tap_settings_title">Nastaviť akciu troch prstov</string>
+  <string name="mousepad_sensitivity_settings_title">Nastaviť citlivosť touchpadu</string>
   <string name="mousepad_scroll_direction_title">Obrátený smer rolovania</string>
   <string-array name="mousepad_tap_entries">
     <item>Kliknutie pravým tlačidlom</item>
@@ -40,12 +41,13 @@
   </string-array>
   <string name="mousepad_double_default">vpravo</string>
   <string name="mousepad_triple_default">stred</string>
+  <string name="mousepad_sensitivity_default">predvolené</string>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
-    <item>Above Slowest</item>
-    <item>Default</item>
-    <item>Above Default</item>
-    <item>Fastest</item>
+    <item>Najpomalšie</item>
+    <item>Nad najpomalším</item>
+    <item>Predvolené</item>
+    <item>Nad priemerným</item>
+    <item>Najrýchlejšie</item>
   </string-array>
   <string name="category_connected_devices">Pripojené zariadenia</string>
   <string name="category_not_paired_devices">Dostupné zariadenia</string>
@@ -54,6 +56,7 @@
   <string name="device_menu_plugins">Nastavenia pluginu</string>
   <string name="device_menu_unpair">Odpárovať</string>
   <string name="device_not_reachable">Spárované zariadenie nedostupné</string>
+  <string name="pair_new_device">Spárovať nové zariadenie</string>
   <string name="unknown_device">Neznáme zariadenie</string>
   <string name="error_not_reachable">Zariadenie nedostupné</string>
   <string name="error_already_requested">Spárovanie už vyžiadané</string>

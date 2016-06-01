@@ -35,6 +35,7 @@ import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -100,10 +101,21 @@ public class TelephonyPlugin extends Plugin {
 
         //Log.e("TelephonyPlugin", "callBroadcastReceived");
 
+        Map<String, String> contactInfo = ContactsHelper.phoneNumberLookup(context, phoneNumber);
         NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_TELEPHONY);
+
         if (phoneNumber != null) {
             np.set("phoneNumber", phoneNumber);
-            np.set("contactName", ContactsHelper.phoneNumberLookup(context, phoneNumber));
+        }
+
+        if (contactInfo.containsKey("name")) {
+            np.set("contactName", contactInfo.get("name"));
+        } else {
+            np.set("contactName",  phoneNumber);
+        }
+
+        if (contactInfo.containsKey("photoID")) {
+            np.set("phoneThumbnail", ContactsHelper.photoId64Encoded(context, contactInfo.get("photoID")));
         }
 
         switch (state) {
@@ -176,9 +188,17 @@ public class TelephonyPlugin extends Plugin {
         }
 
         String phoneNumber = message.getOriginatingAddress();
+        Map<String, String> contactInfo = ContactsHelper.phoneNumberLookup(context, phoneNumber);
         if (phoneNumber != null) {
             np.set("phoneNumber", phoneNumber);
-            np.set("contactName", ContactsHelper.phoneNumberLookup(context, phoneNumber));
+        }
+
+        if (contactInfo.containsKey("name")) {
+            np.set("contactName", contactInfo.get("name"));
+        }
+
+        if (contactInfo.containsKey("photoID")) {
+            np.set("phoneThumbnail", ContactsHelper.photoId64Encoded(context, contactInfo.get("photoID")));
         }
 
         device.sendPackage(np);
