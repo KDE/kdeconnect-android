@@ -31,8 +31,8 @@ import org.kde.kdeconnect_tp.R;
 
 public class MousePadPlugin extends Plugin {
 
-    //public final static String PACKAGE_TYPE_INPUT = "kdeconnect.input";
-    public final static String PACKAGE_TYPE_INPUT_REQUEST = "kdeconnect.input.request";
+    //public final static String PACKAGE_TYPE_MOUSEPAD = "kdeconnect.mousepad";
+    public final static String PACKAGE_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request";
 
     @Override
     public String getDisplayName() {
@@ -73,7 +73,7 @@ public class MousePadPlugin extends Plugin {
 
     @Override
     public String[] getOutgoingPackageTypes() {
-        return new String[]{PACKAGE_TYPE_INPUT_REQUEST};
+        return new String[]{PACKAGE_TYPE_MOUSEPAD_REQUEST};
     }
 
     @Override
@@ -82,7 +82,7 @@ public class MousePadPlugin extends Plugin {
     }
 
     public void sendMouseDelta(float dx, float dy, float sensitivity) {
-        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_INPUT_REQUEST);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MOUSEPAD_REQUEST);
 
         np.set("dx", dx*sensitivity);
         np.set("dy", dy*sensitivity);
@@ -91,37 +91,37 @@ public class MousePadPlugin extends Plugin {
     }
 
     public void sendSingleClick() {
-        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_INPUT_REQUEST);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MOUSEPAD_REQUEST);
         np.set("singleclick", true);
         device.sendPackage(np);
     }
 
     public void sendDoubleClick() {
-        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_INPUT_REQUEST);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MOUSEPAD_REQUEST);
         np.set("doubleclick", true);
         device.sendPackage(np);
     }
 
     public void sendMiddleClick() {
-        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_INPUT_REQUEST);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MOUSEPAD_REQUEST);
         np.set("middleclick", true);
         device.sendPackage(np);
     }
 
     public void sendRightClick() {
-        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_INPUT_REQUEST);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MOUSEPAD_REQUEST);
         np.set("rightclick", true);
         device.sendPackage(np);
     }
 
     public void sendSingleHold(){
-        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_INPUT_REQUEST);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MOUSEPAD_REQUEST);
         np.set("singlehold", true);
         device.sendPackage(np);
     }
 
     public void sendScroll(float dx, float dy) {
-        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_INPUT_REQUEST);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MOUSEPAD_REQUEST);
         np.set("scroll", true);
         np.set("dx", dx);
         np.set("dy", dy);

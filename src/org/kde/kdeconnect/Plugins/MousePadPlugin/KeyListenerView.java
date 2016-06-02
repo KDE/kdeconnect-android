@@ -101,7 +101,7 @@ public class KeyListenerView extends View  {
     }
 
     public void sendChars(CharSequence chars) {
-        final NetworkPackage np = new NetworkPackage(MousePadPlugin.PACKAGE_TYPE_INPUT_REQUEST);
+        final NetworkPackage np = new NetworkPackage(MousePadPlugin.PACKAGE_TYPE_MOUSEPAD_REQUEST);
         np.set("key", chars.toString());
         sendKeyPressPackage(np);
     }
@@ -135,7 +135,7 @@ public class KeyListenerView extends View  {
         //Log.e("KeyDown", "utfChar:" + (char)event.getUnicodeChar());
         //Log.e("KeyDown", "intUtfChar:" + event.getUnicodeChar());
 
-        final NetworkPackage np = new NetworkPackage(MousePadPlugin.PACKAGE_TYPE_INPUT_REQUEST);
+        final NetworkPackage np = new NetworkPackage(MousePadPlugin.PACKAGE_TYPE_MOUSEPAD_REQUEST);
 
         boolean modifier = false;
         if (event.isAltPressed()) {

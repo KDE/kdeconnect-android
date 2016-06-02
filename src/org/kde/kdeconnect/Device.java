@@ -918,12 +918,12 @@ public class Device implements BaseLink.PackageReceiver {
 
     public void hackToMakeRetrocompatiblePacketTypes(NetworkPackage np) {
         if (protocolVersion >= 6) return;
-        np.mType = np.getType().replace(".request","").replace(".input",".mousepad");
+        np.mType = np.getType().replace(".request","");
     }
 
     public String hackToMakeRetrocompatiblePacketTypes(String type) {
         if (protocolVersion >= 6) return type;
-        return type.replace(".request","").replace(".input",".mousepad");
+        return type.replace(".request","");
     }
 
 }
