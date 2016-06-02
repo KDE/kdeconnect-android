@@ -154,6 +154,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                 return;
             }
 
+            final Channel channel = ctx.channel();
             final NetworkPackage np = NetworkPackage.unserialize(message);
 
             if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
@@ -166,7 +167,6 @@ public class LanLinkProvider extends BaseLinkProvider {
 
                 Log.i("KDE/LanLinkProvider", "Identity package received from a stablished TCP connection from " + np.getString("deviceName"));
 
-                final Channel channel = ctx.channel();
                 final LanLink.ConnectionStarted connectionStarted = LanLink.ConnectionStarted.Locally;
 
                 // Add ssl handler if device uses new protocol
@@ -175,7 +175,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                         final SSLEngine sslEngine = SslHelper.getSslEngine(context, np.getString("deviceId"), SslHelper.SslMode.Client);
 
                         SslHandler sslHandler = new SslHandler(sslEngine);
-                        ctx.channel().pipeline().addFirst(sslHandler);
+                        channel.pipeline().addFirst(sslHandler);
                         sslHandler.handshakeFuture().addListener(new GenericFutureListener<Future<? super Channel>>() {
                             @Override
                             public void operationComplete(Future<? super Channel> future) throws Exception {
@@ -210,11 +210,11 @@ public class LanLinkProvider extends BaseLinkProvider {
                 }
 
             } else {
-                LanLink prevLink = nioLinks.get(ctx.channel().hashCode());
-                if (prevLink == null) {
-                    Log.e("KDE/LanLinkProvider","Expecting an identity package (A)");
+                LanLink link = nioLinks.get(channel.hashCode());
+                if (link== null) {
+                    Log.e("KDE/LanLinkProvider","Expecting an identity package instead of " + np.getType());
                 } else {
-                    prevLink.injectNetworkPackage(np);
+                    link.injectNetworkPackage(np);
                 }
             }
 
@@ -233,7 +233,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                 final String deviceId = identityPackage.getString("deviceId");
 
                 if (!identityPackage.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
-                    Log.e("KDE/LanLinkProvider", "Expecting an identity package (B)");
+                    Log.e("KDE/LanLinkProvider", "Expecting an UDP identity package");
                     return;
                 } else {
                     String myId = DeviceHelper.getDeviceId(context);
