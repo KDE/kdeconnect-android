@@ -54,6 +54,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -562,7 +563,7 @@ public class Device implements BaseLink.PackageReceiver {
         } else if (isPaired()) {
 
             //If capabilities are not supported, iterate all plugins
-            Collection<String> targetPlugins = (protocolVersion > 6)? pluginsByIncomingInterface.get(np.getType()) : plugins.keySet();
+            Collection<String> targetPlugins = pluginsByIncomingInterface.get(np.getType());
             if (targetPlugins != null && !targetPlugins.isEmpty()) {
                 for (String pluginKey : targetPlugins) {
                     Plugin plugin = plugins.get(pluginKey);
@@ -587,7 +588,7 @@ public class Device implements BaseLink.PackageReceiver {
             unpair();
 
             //If capabilities are not supported, iterate all plugins
-            Collection<String> targetPlugins = (protocolVersion > 6)? pluginsByIncomingInterface.get(np.getType()) : plugins.keySet();
+            Collection<String> targetPlugins = pluginsByIncomingInterface.get(np.getType());
             if (targetPlugins != null && !targetPlugins.isEmpty()) {
                 for (String pluginKey : targetPlugins) {
                     Plugin plugin = plugins.get(pluginKey);

@@ -33,16 +33,12 @@ public class FindMyPhonePlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
-        if (np.getType().equals(PACKAGE_TYPE_FINDMYPHONE_REQUEST)) {
-            //Log.e("PingPackageReceiver", "was a find my phone!");
 
-            Intent intent = new Intent(context,FindMyPhoneActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(intent);
-            return true;
+        Intent intent = new Intent(context,FindMyPhoneActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+        return true;
 
-        }
-        return false;
     }
 
     @Override

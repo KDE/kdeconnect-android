@@ -102,7 +102,6 @@ public class BatteryPlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
-        if (!np.getType().equals(PACKAGE_TYPE_BATTERY_REQUEST)) return false;
 
         if (np.getBoolean("request")) {
             if (lastInfo != null) {

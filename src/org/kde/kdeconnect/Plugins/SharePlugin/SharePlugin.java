@@ -103,10 +103,6 @@ public class SharePlugin extends Plugin {
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
 
-        if (!np.getType().equals(PACKAGE_TYPE_SHARE_REQUEST)) {
-            return false;
-        }
-
         try {
             if (np.hasPayload()) {
 

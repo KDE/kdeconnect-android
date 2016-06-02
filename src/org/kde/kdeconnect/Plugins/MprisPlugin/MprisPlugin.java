@@ -119,7 +119,6 @@ public class MprisPlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
-        if (!np.getType().equals(PACKAGE_TYPE_MPRIS)) return false;
 
         if (np.has("nowPlaying") || np.has("volume") || np.has("isPlaying") || np.has("length") || np.has("pos")) {
             if (np.getString("player").equals(player)) {

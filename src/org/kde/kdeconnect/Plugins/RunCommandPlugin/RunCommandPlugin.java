@@ -82,7 +82,6 @@ public class RunCommandPlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
-        if (!np.getType().equals(PACKAGE_TYPE_RUNCOMMAND)) return false;
 
         if (np.has("commandList")) {
             commandList.clear();

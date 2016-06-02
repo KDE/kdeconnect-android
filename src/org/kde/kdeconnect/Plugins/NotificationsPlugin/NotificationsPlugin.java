@@ -272,7 +272,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public boolean onPackageReceived(final NetworkPackage np) {
-        if (!np.getType().equals(PACKAGE_TYPE_NOTIFICATION_REQUEST) && !np.getType().equals(PACKAGE_TYPE_NOTIFICATION)) return false;
 /*
         if (np.getBoolean("sendIcons")) {
             sendIcons = true;

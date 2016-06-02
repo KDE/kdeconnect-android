@@ -61,7 +61,6 @@ public class SftpPlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
-        if (!np.getType().equals(PACKAGE_TYPE_SFTP_REQUEST)) return false;
 
         if (np.getBoolean("startBrowsing")) {
             if (server.start()) {

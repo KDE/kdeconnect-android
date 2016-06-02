@@ -230,9 +230,6 @@ public class TelephonyPlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
-        if (!np.getType().equals(PACKAGE_TYPE_TELEPHONY_REQUEST)) {
-            return false;
-        }
         if (np.getString("action").equals("mute")) {
             if (!isMuted) {
                 AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);

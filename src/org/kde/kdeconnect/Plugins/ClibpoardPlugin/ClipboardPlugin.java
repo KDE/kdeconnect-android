@@ -65,9 +65,6 @@ public class ClipboardPlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
-        if (!np.getType().equals(PACKAGE_TYPE_CLIPBOARD)) {
-            return false;
-        }
 
         String content = np.getString("content");
         listener.setText(content);
