@@ -111,7 +111,7 @@ public class LanPairingHandler extends BasePairingHandler {
                 mPairingTimer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        Log.e("KDE/Device","Unpairing (timeout B)");
+                        Log.w("KDE/Device","Unpairing (timeout B)");
                         mPairStatus = PairStatus.NotPaired;
                         hidePairingNotification();
                     }
@@ -148,7 +148,7 @@ public class LanPairingHandler extends BasePairingHandler {
                     @Override
                     public void run() {
                         mCallback.pairingFailed(mDevice.getContext().getString(R.string.error_timed_out));
-                        Log.e("KDE/Device","Unpairing (timeout A)");
+                        Log.w("KDE/Device","Unpairing (timeout A)");
                         mPairStatus = PairStatus.NotPaired;
                     }
                 }, 30*1000); //Time to wait for the other to accept
@@ -160,7 +160,6 @@ public class LanPairingHandler extends BasePairingHandler {
                 mCallback.pairingFailed(mDevice.getContext().getString(R.string.error_could_not_send_package));
             }
         };
-        //createPublicKeyPackage() ?
         mDevice.sendPackage(createPairPackage(), statusCallback);
     }
 
@@ -200,7 +199,7 @@ public class LanPairingHandler extends BasePairingHandler {
     @Override
     public void pairingDone() {
         // Store device information needed to create a Device object in a future
-        Log.e("KDE/PairingDone", "Pairing Done");
+        //Log.e("KDE/PairingDone", "Pairing Done");
         SharedPreferences.Editor editor = mDevice.getContext().getSharedPreferences(mDevice.getDeviceId(), Context.MODE_PRIVATE).edit();
 
         try {
@@ -214,12 +213,12 @@ public class LanPairingHandler extends BasePairingHandler {
             String encodedCertificate = Base64.encodeToString(mDevice.certificate.getEncoded(), 0);
             editor.putString("certificate", encodedCertificate);
         } catch (NullPointerException n) {
-            Log.e("KDE/PairingDone", "Certificate is null, remote device does not support ssl");
+            Log.w("KDE/PairingDone", "Certificate is null, remote device does not support ssl");
         } catch (CertificateEncodingException c) {
             Log.e("KDE/PairingDOne", "Error encoding certificate");
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("KDE/Pairng", "Some exception while encoding string");
+            Log.e("KDE/Pairng", "Exception");
         }
         editor.apply();
 

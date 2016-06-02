@@ -77,7 +77,6 @@ public class RunCommandActivity extends ActionBarActivity {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                                 try {
-                                    Log.e("fu", commands.get(i).getString("command"));
                                     plugin.runCommand(commands.get(i).getString("key"));
                                 } catch (JSONException e) {
                                     e.printStackTrace();
