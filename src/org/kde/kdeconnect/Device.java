@@ -560,7 +560,7 @@ public class Device implements BaseLink.PackageReceiver {
         } else if (isPaired()) {
 
             ArrayList<String> targetPlugins = pluginsByIncomingInterface.get(np.getType());
-            if (targetPlugins != null) {
+            if (targetPlugins != null && !targetPlugins.isEmpty()) {
                 for (String pluginKey : targetPlugins) {
                     Plugin plugin = plugins.get(pluginKey);
                     try {
@@ -570,6 +570,8 @@ public class Device implements BaseLink.PackageReceiver {
                         Log.e("KDE/Device", "Exception in " + plugin.getPluginKey() + "'s onPackageReceived()");
                     }
                 }
+            } else {
+                Log.e("Device", "Ignoring packet with type " + np.getType() + " because no plugin can handle it");
             }
         } else {
 
@@ -582,7 +584,7 @@ public class Device implements BaseLink.PackageReceiver {
             unpair();
 
             ArrayList<String> targetPlugins = pluginsByIncomingInterface.get(np.getType());
-            if (targetPlugins != null) {
+            if (targetPlugins != null && !targetPlugins.isEmpty()) {
                 for (String pluginKey : targetPlugins) {
                     Plugin plugin = plugins.get(pluginKey);
                     try {
@@ -592,6 +594,8 @@ public class Device implements BaseLink.PackageReceiver {
                         Log.e("KDE/Device", "Exception in " + plugin.getDisplayName() + "'s onPackageReceived() in unPairedPackageListeners");
                     }
                 }
+            } else {
+                Log.e("Device", "Ignoring packet with type " + np.getType() + " because no plugin can handle it");
             }
         }
 
