@@ -53,6 +53,7 @@ import java.security.cert.Certificate;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -795,7 +796,6 @@ public class Device implements BaseLink.PackageReceiver {
                 HashSet<String> supportedIn = new HashSet<>(incomingInterfaces);
                 supportedIn.retainAll(outgoingCapabilities);
                 if (supportedOut.isEmpty() && supportedIn.isEmpty()) {
-                    Log.w("ReloadPlugins", "not loading " + pluginKey + "because of unmatched capabilities");
                     newUnsupportedPlugins.add(pluginKey);
                     if (pluginEnabled) {
                         //We still want to announce this capability, to prevent a deadlock
@@ -846,6 +846,8 @@ public class Device implements BaseLink.PackageReceiver {
         supportedIncomingInterfaces = newSupportedIncomingInterfaces;
         supportedOutgoingInterfaces = newSupportedOutgoingInterfaces;
         unsupportedPlugins = newUnsupportedPlugins;
+
+        Log.i("ReloadPlugins", "not loading " + Arrays.toString(unsupportedPlugins.toArray()) + " because of unmatched capabilities");
 
         onPluginsChanged();
 
