@@ -831,6 +831,7 @@ public class Device implements BaseLink.PackageReceiver {
                     newSupportedOutgoingInterfaces.addAll(outgoingInterfaces);
 
                     for (String packageType : incomingInterfaces) {
+                        packageType = hackToMakeRetrocompatiblePacketTypes(packageType);
                         ArrayList<String> plugins = newPluginsByIncomingInterface.get(packageType);
                         if (plugins == null) plugins = new ArrayList<>();
                         plugins.add(pluginKey);
@@ -838,6 +839,7 @@ public class Device implements BaseLink.PackageReceiver {
                     }
 
                     for (String packageType : outgoingInterfaces) {
+                        packageType = hackToMakeRetrocompatiblePacketTypes(packageType);
                         ArrayList<String> plugins = newPluginsByOutgoingInterface.get(packageType);
                         if (plugins == null) plugins = new ArrayList<>();
                         plugins.add(pluginKey);
@@ -916,9 +918,12 @@ public class Device implements BaseLink.PackageReceiver {
 
     public void hackToMakeRetrocompatiblePacketTypes(NetworkPackage np) {
         if (protocolVersion >= 6) return;
-        String type = np.getType();
-        type.replace(".request","");
-        np.mType = type;
+        np.mType = np.getType().replace(".request","").replace(".input",".mousepad");
+    }
+
+    public String hackToMakeRetrocompatiblePacketTypes(String type) {
+        if (protocolVersion >= 6) return type;
+        return type.replace(".request","").replace(".input",".mousepad");
     }
 
 }
