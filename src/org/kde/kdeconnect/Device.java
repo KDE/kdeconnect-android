@@ -852,7 +852,7 @@ public class Device implements BaseLink.PackageReceiver {
 
         boolean capabilitiesChanged = false;
         if (!newSupportedIncomingInterfaces.equals(supportedIncomingInterfaces) ||
-                !newSupportedOutgoingInterfaces.equals(supportedOutgoingInterfaces)) {
+                !newSupportedOutgoingInterfaces.equals(pluginsByOutgoingInterface)) {
             capabilitiesChanged = true;
         }
 
