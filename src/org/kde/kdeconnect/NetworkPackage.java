@@ -44,7 +44,7 @@ public class NetworkPackage {
     public static final String PACKAGE_TYPE_CAPABILITIES = "kdeconnect.capabilities";
 
     private long mId;
-    private String mType;
+    String mType;
     private JSONObject mBody;
     private InputStream mPayload;
     private JSONObject mPayloadTransferInfo;
