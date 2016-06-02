@@ -181,6 +181,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                             public void operationComplete(Future<? super Channel> future) throws Exception {
                                 if (future.isSuccess()) {
                                     Log.i("KDE/LanLinkProvider","Handshake successful with " + np.getString("deviceName") + " secured with " + sslEngine.getSession().getCipherSuite());
+                                    //Log.e("KDE/LanLinkProvider", "Channel" + channel.hashCode());
                                     Certificate certificate = sslEngine.getSession().getPeerCertificates()[0];
                                     np.set("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
                                     addLink(np, channel, connectionStarted, true);
@@ -213,6 +214,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                 LanLink link = nioLinks.get(channel.hashCode());
                 if (link== null) {
                     Log.e("KDE/LanLinkProvider","Expecting an identity package instead of " + np.getType());
+                    //Log.e("KDE/LanLinkProvider", "Channel" + channel.hashCode());
                 } else {
                     link.injectNetworkPackage(np);
                 }
@@ -370,21 +372,25 @@ public class LanLinkProvider extends BaseLinkProvider {
         Log.i("KDE/LanLinkProvider","addLink to "+deviceId);
         LanLink currentLink = visibleComputers.get(deviceId);
         if (currentLink != null) {
+            //Update old link
             Log.i("KDE/LanLinkProvider", "Reusing same link for device " + deviceId);
-            Channel oldChannel = currentLink.reset(channel, connectionOrigin, useSsl);
-            nioLinks.remove(oldChannel.hashCode());
+            final Channel oldChannel = currentLink.reset(channel, connectionOrigin, useSsl);
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    nioLinks.remove(oldChannel.hashCode());
+                    //Log.e("KDE/LanLinkProvider", "Forgetting about channel " + channel.hashCode());
+                }
+            }, 500); //Stop accepting messages from the old channel after 500ms
             nioLinks.put(channel.hashCode(), currentLink);
-            return;
+            //Log.e("KDE/LanLinkProvider", "Replacing channel. old: "+ oldChannel.hashCode() + " - new: "+ channel.hashCode());
+        } else {
+            //Let's create the link
+            LanLink link = new LanLink(context, deviceId, this, channel, connectionOrigin, useSsl);
+            nioLinks.put(channel.hashCode(), link);
+            visibleComputers.put(deviceId, link);
+            connectionAccepted(identityPackage, link);
         }
-
-        //Let's create the link
-
-        LanLink link = new LanLink(context, deviceId, this, channel, connectionOrigin, useSsl);
-
-        nioLinks.put(channel.hashCode(), link);
-        visibleComputers.put(deviceId, link);
-
-        connectionAccepted(identityPackage, link);
     }
 
     public LanLinkProvider(Context context) {
