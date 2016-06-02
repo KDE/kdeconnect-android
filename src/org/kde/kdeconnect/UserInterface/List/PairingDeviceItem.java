@@ -65,6 +65,7 @@ public class PairingDeviceItem implements ListAdapter.Item {
                 summaryView.setText(R.string.protocol_version_newer);
                 summaryView.setVisibility(View.VISIBLE);
             } else {
+                //FIXME: Uncoment
                 summaryView.setVisibility(View.GONE);
                 /*
                 summaryView.setText(R.string.protocol_version_older);
