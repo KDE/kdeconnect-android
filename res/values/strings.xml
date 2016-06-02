@@ -14,7 +14,7 @@
     <string name="pref_plugin_mpris">Multimedia controls</string>
     <string name="pref_plugin_mpris_desc">Control audio/video from your phone</string>
     <string name="pref_plugin_runcommand">Run Command</string>
-    <string name="pref_plugin_runcommand_desc">Runs a command on your system</string>
+    <string name="pref_plugin_runcommand_desc">Trigger remote commands from your phone</string>
     <string name="pref_plugin_ping">Ping</string>
     <string name="pref_plugin_ping_desc">Send and receive pings</string>
     <string name="pref_plugin_notifications">Notification sync</string>
