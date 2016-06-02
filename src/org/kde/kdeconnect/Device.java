@@ -559,7 +559,8 @@ public class Device implements BaseLink.PackageReceiver {
 
         } else if (isPaired()) {
 
-            ArrayList<String> targetPlugins = pluginsByIncomingInterface.get(np.getType());
+            //If capabilities are not supported, iterate all plugins
+            Collection<String> targetPlugins = (protocolVersion > 6)? pluginsByIncomingInterface.get(np.getType()) : plugins.keySet();
             if (targetPlugins != null && !targetPlugins.isEmpty()) {
                 for (String pluginKey : targetPlugins) {
                     Plugin plugin = plugins.get(pluginKey);
@@ -583,7 +584,8 @@ public class Device implements BaseLink.PackageReceiver {
 
             unpair();
 
-            ArrayList<String> targetPlugins = pluginsByIncomingInterface.get(np.getType());
+            //If capabilities are not supported, iterate all plugins
+            Collection<String> targetPlugins = (protocolVersion > 6)? pluginsByIncomingInterface.get(np.getType()) : plugins.keySet();
             if (targetPlugins != null && !targetPlugins.isEmpty()) {
                 for (String pluginKey : targetPlugins) {
                     Plugin plugin = plugins.get(pluginKey);
