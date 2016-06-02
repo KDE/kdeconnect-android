@@ -37,7 +37,7 @@ import static android.provider.ContactsContract.Contacts;
 public class TelepathyPlugin extends Plugin {
 
 
-    public final static String PACKAGE_TYPE_SMS_REQUEST = "kdeconnect.sms";
+    public final static String PACKAGE_TYPE_SMS_REQUEST = "kdeconnect.sms.request";
 
     @Override
     public String getDisplayName() {
