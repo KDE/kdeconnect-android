@@ -25,6 +25,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.telephony.TelephonyManager;
@@ -122,7 +123,11 @@ public class TelephonyPlugin extends Plugin {
             case TelephonyManager.CALL_STATE_RINGING:
                 if (isMuted) {
                     AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-                    am.setStreamMute(AudioManager.STREAM_RING, false);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        am.setStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_UNMUTE, 0);
+                    } else {
+                        am.setStreamMute(AudioManager.STREAM_RING, false);
+                    }
                     isMuted = false;
                 }
                 np.set("event", "ringing");
@@ -149,7 +154,11 @@ public class TelephonyPlugin extends Plugin {
                             public void run() {
                                 if (isMuted) {
                                     AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-                                    am.setStreamMute(AudioManager.STREAM_RING, false);
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                        am.setStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_UNMUTE, 0);
+                                    } else {
+                                        am.setStreamMute(AudioManager.STREAM_RING, false);
+                                    }
                                     isMuted = false;
                                 }
                             }
@@ -227,7 +236,11 @@ public class TelephonyPlugin extends Plugin {
         if (np.getString("action").equals("mute")) {
             if (!isMuted) {
                 AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-                am.setStreamMute(AudioManager.STREAM_RING, true);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    am.setStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_MUTE, 0);
+                } else {
+                    am.setStreamMute(AudioManager.STREAM_RING, true);
+                }
                 isMuted = true;
             }
             //Log.e("TelephonyPlugin", "mute");
