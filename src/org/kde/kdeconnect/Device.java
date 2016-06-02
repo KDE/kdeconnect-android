@@ -642,6 +642,11 @@ public class Device implements BaseLink.PackageReceiver {
 
         hackToMakeRetrocompatiblePacketTypes(np);
 
+        if (!supportedOutgoingInterfaces.contains(np.getType())) {
+            Log.e("Device/sendPackage", "Plugin tried to send an unsupported package: " + np.getType());
+            Log.e("Device/sendPackage", "Supported package types: " + Arrays.toString(supportedOutgoingInterfaces.toArray()));
+        }
+
         //Log.e("sendPackage", "Sending package...");
         //Log.e("sendPackage", np.serialize());
 
