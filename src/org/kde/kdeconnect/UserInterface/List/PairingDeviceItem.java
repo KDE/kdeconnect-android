@@ -60,11 +60,16 @@ public class PairingDeviceItem implements ListAdapter.Item {
 
         if (device.compareProtocolVersion() != 0) {
             TextView summaryView = (TextView)v.findViewById(R.id.list_item_entry_summary);
-            summaryView.setVisibility(View.VISIBLE);
+
             if (device.compareProtocolVersion() > 0) {
                 summaryView.setText(R.string.protocol_version_newer);
+                summaryView.setVisibility(View.VISIBLE);
             } else {
+                summaryView.setVisibility(View.GONE);
+                /*
                 summaryView.setText(R.string.protocol_version_older);
+                summaryView.setVisibility(View.VISIBLE);
+                */
             }
         } else {
             v.findViewById(R.id.list_item_entry_summary).setVisibility(View.GONE);
