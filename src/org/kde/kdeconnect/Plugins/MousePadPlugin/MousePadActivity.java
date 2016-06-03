@@ -122,6 +122,7 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
                 mCurrentSensitivity = 2.0f;
                 break;
             default:
+                mCurrentSensitivity = 1.0f;
                 return;
         }
 
