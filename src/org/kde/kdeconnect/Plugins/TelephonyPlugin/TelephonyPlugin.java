@@ -116,7 +116,18 @@ public class TelephonyPlugin extends Plugin {
         }
 
         if (contactInfo.containsKey("photoID")) {
-            np.set("phoneThumbnail", ContactsHelper.photoId64Encoded(context, contactInfo.get("photoID")));
+            String photoUri = contactInfo.get("photoID");
+            if (photoUri != null) {
+                try {
+                    String base64photo = ContactsHelper.photoId64Encoded(context, photoUri);
+                    if (base64photo != null && !base64photo.isEmpty()) {
+                        np.set("phoneThumbnail", base64photo);
+                    }
+                } catch (Exception e) {
+                    Log.e("TelephonyPlugin", "Failed to get contact photo");
+                }
+            }
+
         }
 
         switch (state) {
