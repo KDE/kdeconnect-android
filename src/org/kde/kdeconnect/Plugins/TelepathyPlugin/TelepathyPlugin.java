@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
@@ -174,7 +175,7 @@ public class TelepathyPlugin extends Plugin {
 
     @Override
     public String[] getSupportedPackageTypes() {
-        return new String[]{PACKAGE_TYPE_SMS_REQUEST};
+        return new String[]{PACKAGE_TYPE_SMS_REQUEST, TelephonyPlugin.PACKAGE_TYPE_TELEPHONY_REQUEST};
     }
 
     @Override
