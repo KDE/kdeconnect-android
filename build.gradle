@@ -54,6 +54,8 @@ android {
     buildTypes {
         release { //keep on 'releae', set to 'all' when testing to make sure proguard is not deleting important stuff
             minifyEnabled true
+            useProguard true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),'proguard-rules.pro'
         }
     }
