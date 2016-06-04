@@ -84,6 +84,10 @@ public class MousePadPlugin extends Plugin {
     public void sendMouseDelta(float dx, float dy, float sensitivity) {
         NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MOUSEPAD_REQUEST);
 
+        if (sensitivity <= 0.0001f) {
+            sensitivity = 1.0f;
+        }
+
         np.set("dx", dx*sensitivity);
         np.set("dy", dy*sensitivity);
 
