@@ -13,7 +13,7 @@
   <string name="pref_plugin_mpris">Controls multimèdia</string>
   <string name="pref_plugin_mpris_desc">Controla l\'àudio i el vídeo del vostre telèfon</string>
   <string name="pref_plugin_runcommand">Executa una ordre</string>
-  <string name="pref_plugin_runcommand_desc">Executa una ordre al vostre sistema</string>
+  <string name="pref_plugin_runcommand_desc">Activa les ordres remotes des del vostre telèfon</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Envia i rep els pings</string>
   <string name="pref_plugin_notifications">Sincronitza les notificacions</string>
@@ -66,6 +66,10 @@
   <string name="error_canceled_by_user">Cancel·lat per l\'usuari</string>
   <string name="error_canceled_by_other_peer">Cancel·lat per l\'altre parell</string>
   <string name="error_invalid_key">S\'ha rebut una clau no vàlida</string>
+  <string name="encryption_info_title">Informació d\'encriptatge</string>
+  <string name="encryption_info_msg_no_ssl">L\'altre dispositiu no usa una versió recent del KDE Connect, s\'utilitzarà el mètode d\'encriptatge antic.</string>
+  <string name="my_device_fingerprint">L\'empremta digital SHA1 del vostre dispositiu certificat és:</string>
+  <string name="remote_device_fingerprint">L\'empremta digital SHA1 del dispositiu remot certificat és:</string>
   <string name="pair_requested">S\'ha demanat aparellar</string>
   <string name="pairing_request_from">S\'ha demanat aparellar des de %1s</string>
   <string name="received_url_title">S\'ha rebut un vincle des de %1s</string>
@@ -151,7 +155,7 @@
   <string name="pref_plugin_telepathy">Envia un SMS</string>
   <string name="pref_plugin_telepathy_desc">Envia missatges de text des de l\'escriptori</string>
   <string name="plugin_not_supported">Aquest connector no és admès pel dispositiu</string>
-  <string name="findmyphone_title">Troba el meu telèfon</string>
+  <string name="findmyphone_title">Cerca el meu telèfon</string>
   <string name="findmyphone_description">Fa sonar aquest telèfon perquè el pugueu trobar.</string>
   <string name="findmyphone_found">L\'he trobat</string>
   <string name="open">Obre</string>

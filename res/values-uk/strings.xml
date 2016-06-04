@@ -13,7 +13,7 @@
   <string name="pref_plugin_mpris">Керування відтворенням</string>
   <string name="pref_plugin_mpris_desc">Керування відтворенням звуку та відео з вашого телефону</string>
   <string name="pref_plugin_runcommand">Виконати команду</string>
-  <string name="pref_plugin_runcommand_desc">Виконує команду у вашій системі</string>
+  <string name="pref_plugin_runcommand_desc">Віддалені команди з вашого телефону</string>
   <string name="pref_plugin_ping">Підтримання зв’язку</string>
   <string name="pref_plugin_ping_desc">Надсилання і отримання сигналів підтримання зв’язку</string>
   <string name="pref_plugin_notifications">Синхронізація сповіщень</string>
@@ -66,6 +66,10 @@
   <string name="error_canceled_by_user">Скасовано користувачем</string>
   <string name="error_canceled_by_other_peer">Скасовано з іншого вузла пов’язування</string>
   <string name="error_invalid_key">Отримано некоректний ключ</string>
+  <string name="encryption_info_title">Дані щодо шифрування</string>
+  <string name="encryption_info_msg_no_ssl">На сторонньому пристрої не використовується нова версія KDE Connect, у якій використовується застарілий спосіб шифрування.</string>
+  <string name="my_device_fingerprint">Відбиток SHA1 сертифіката пристрою:</string>
+  <string name="remote_device_fingerprint">Відбиток SHA1 сертифіката віддаленого пристрою:</string>
   <string name="pair_requested">Запит щодо пов’язування</string>
   <string name="pairing_request_from">Запит щодо пов’язування від %1s</string>
   <string name="received_url_title">Отримано посилання від %1s</string>

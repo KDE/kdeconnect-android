@@ -13,7 +13,6 @@
   <string name="pref_plugin_mpris">Controles remotos multimedia</string>
   <string name="pref_plugin_mpris_desc">Controla l\'audiu/videu dende\'l to teléfonu</string>
   <string name="pref_plugin_runcommand">Executar comandu</string>
-  <string name="pref_plugin_runcommand_desc">Executa un comandu nel to sistema</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Unvia y recibe pings</string>
   <string name="pref_plugin_notifications">Sincronización d\'avisos</string>
@@ -151,7 +150,6 @@
   <string name="pref_plugin_telepathy">Unviar SMS</string>
   <string name="pref_plugin_telepathy_desc">Unvia mensaxes de testu dende\'l to escritoriu</string>
   <string name="plugin_not_supported">Esti complementu nun ta sofitáu pol preséu</string>
-  <string name="findmyphone_title">Alcuéntra\'l mio teléfonu</string>
   <string name="findmyphone_description">Fai sonar esti teléfonu pa que pueas alcontralu.</string>
   <string name="findmyphone_found">Alcontrar</string>
   <string name="open">Abrir</string>
