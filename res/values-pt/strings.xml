@@ -13,7 +13,7 @@
   <string name="pref_plugin_mpris">Comandos multimédia</string>
   <string name="pref_plugin_mpris_desc">Controlar o áudio/vídeo a partir do seu telefone</string>
   <string name="pref_plugin_runcommand">Executar um Comando</string>
-  <string name="pref_plugin_runcommand_desc">Despoletar comandos remotos a partir do seu telefone</string>
+  <string name="pref_plugin_runcommand_desc">Executa um comando no seu sistema</string>
   <string name="pref_plugin_ping">Contacto</string>
   <string name="pref_plugin_ping_desc">Enviar e receber pedidos de contacto (\'ping\')</string>
   <string name="pref_plugin_notifications">Sincronização da notificação</string>
@@ -66,10 +66,6 @@
   <string name="error_canceled_by_user">Cancelado pelo utilizador</string>
   <string name="error_canceled_by_other_peer">Cancelado pela outra máquina</string>
   <string name="error_invalid_key">Chave inválida recebida</string>
-  <string name="encryption_info_title">Dados de Encriptação</string>
-  <string name="encryption_info_msg_no_ssl">O outro dispositivo não usa uma versão recente do KDE Connect; será usado o método antigo de encriptação.</string>
-  <string name="my_device_fingerprint">A impressão digital SHA1 do certificado do seu dispositivo é :</string>
-  <string name="remote_device_fingerprint">A impressão digital SHA1 do certificado do dispositivo remoto é :</string>
   <string name="pair_requested">Emparelhamento pedido</string>
   <string name="pairing_request_from">Pedido de emparelhamento de %1s</string>
   <string name="received_url_title">Ligação recebida de %1s</string>
@@ -155,7 +151,7 @@
   <string name="pref_plugin_telepathy">Enviar um SMS</string>
   <string name="pref_plugin_telepathy_desc">Enviar mensagens de texto a partir do seu ambiente de trabalho</string>
   <string name="plugin_not_supported">Este \'plugin\' não é suportado pelo dispositivo</string>
-  <string name="findmyphone_title">Descobrir o meu telefone</string>
+  <string name="findmyphone_title">Descobrir o Meu Telefone</string>
   <string name="findmyphone_description">Toca este telefone para que o possa encontrar.</string>
   <string name="findmyphone_found">Encontrado</string>
   <string name="open">Abrir</string>
