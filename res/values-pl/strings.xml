@@ -13,7 +13,7 @@
   <string name="pref_plugin_mpris">Sterowanie multimediami</string>
   <string name="pref_plugin_mpris_desc">Steruj dźwiękiem/obrazem ze swojego telefonu</string>
   <string name="pref_plugin_runcommand">Wykonaj polecenie</string>
-  <string name="pref_plugin_runcommand_desc">Wykonuje polecenie na twoim systmie</string>
+  <string name="pref_plugin_runcommand_desc">Wyzwalaj zdalne polecenia z twojego telefonu</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Wysyłaj i otrzymuj pingi</string>
   <string name="pref_plugin_notifications">Powiadomienia synchronizacji</string>
@@ -66,6 +66,8 @@
   <string name="error_canceled_by_user">Anulowane przez użytkownika</string>
   <string name="error_canceled_by_other_peer">Anulowane przez innego partnera</string>
   <string name="error_invalid_key">Otrzymano nieprawidłowy klucz</string>
+  <string name="encryption_info_title">Zaszyfrowane informacje</string>
+  <string name="encryption_info_msg_no_ssl">Drugie urządzenie nie używa ostatniej wersji KDE Connect, użyto przestarzałego szyfrowania.</string>
   <string name="pair_requested">Zażądano parowania</string>
   <string name="pairing_request_from">Żądanie parowania z %1s</string>
   <string name="received_url_title">Odebrano odsyłacz od %1s</string>

@@ -13,7 +13,7 @@
   <string name="pref_plugin_mpris">Multimediakontroller</string>
   <string name="pref_plugin_mpris_desc">Styr ljud och video från telefonen</string>
   <string name="pref_plugin_runcommand">Kör kommando</string>
-  <string name="pref_plugin_runcommand_desc">Kör ett kommando på systemet</string>
+  <string name="pref_plugin_runcommand_desc">Utlös fjärrkommandon från din telefon</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Skicka och ta emot ping</string>
   <string name="pref_plugin_notifications">Synkronisering av underrättelser</string>
@@ -66,6 +66,10 @@
   <string name="error_canceled_by_user">Avbruten av användaren</string>
   <string name="error_canceled_by_other_peer">Avbruten av motparten</string>
   <string name="error_invalid_key">Ogiltig nyckel mottagen</string>
+  <string name="encryption_info_title">Krypteringsinformation</string>
+  <string name="encryption_info_msg_no_ssl">Den andra apparaten använder inte en aktuell version av KDE-anslut. Använder den föråldrade krypteringsmetoden.</string>
+  <string name="my_device_fingerprint">SHA1-fingeravtryck för din apparats certifikat är:</string>
+  <string name="remote_device_fingerprint">SHA1-fingeravtryck för den andra apparatens certifikat är:</string>
   <string name="pair_requested">Ihopparning begärd</string>
   <string name="pairing_request_from">Begäran om ihopparning från %1s</string>
   <string name="received_url_title">Tog emot länk från %1s</string>

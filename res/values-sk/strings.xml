@@ -13,7 +13,6 @@
   <string name="pref_plugin_mpris">Multimediálne ovládače</string>
   <string name="pref_plugin_mpris_desc">Ovládať audio/video z vášho telefónu</string>
   <string name="pref_plugin_runcommand">Spustiť príkaz</string>
-  <string name="pref_plugin_runcommand_desc">Spustí príkazy na vašom systéme</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Poslať a prijať pingy</string>
   <string name="pref_plugin_notifications">Synchronizácia pripomienok</string>
@@ -151,7 +150,6 @@
   <string name="pref_plugin_telepathy">Poslať SMS</string>
   <string name="pref_plugin_telepathy_desc">Posielať textové správy z vášho počítača</string>
   <string name="plugin_not_supported">Tento plugin nie je podporovaný zariadením</string>
-  <string name="findmyphone_title">Nájsť môj telefón</string>
   <string name="findmyphone_description">Prezvoní vaše zariadenie, aby ste ho našli.</string>
   <string name="findmyphone_found">Nájdené</string>
   <string name="open">Otvoriť</string>
