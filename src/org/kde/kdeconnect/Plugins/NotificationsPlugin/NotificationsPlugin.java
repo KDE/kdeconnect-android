@@ -433,6 +433,10 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             service.cancelNotification(compatKey);
         } else {
             int first = compatKey.indexOf(':');
+            if (first == -1) {
+                Log.e("cancelNotificationCompa","Not formated like a notification key: "+ compatKey);
+                return;
+            }
             int last = compatKey.lastIndexOf(':');
             String packageName = compatKey.substring(0, first);
             String tag = compatKey.substring(first + 1, last);
