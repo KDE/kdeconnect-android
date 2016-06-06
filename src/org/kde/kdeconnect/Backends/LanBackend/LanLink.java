@@ -74,6 +74,7 @@ public class LanLink extends BaseLink {
         Channel oldChannel = this.channel;
         this.channel = channel;
         this.connectionSource = connectionSource;
+        this.onSsl = onSsl;
         return oldChannel;
     }
 
