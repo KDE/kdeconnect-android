@@ -33,6 +33,8 @@ import org.kde.kdeconnect.Helpers.DeviceHelper;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class NetworkPackage {
 
@@ -41,7 +43,14 @@ public class NetworkPackage {
     public final static String PACKAGE_TYPE_IDENTITY = "kdeconnect.identity";
     public final static String PACKAGE_TYPE_PAIR = "kdeconnect.pair";
     public final static String PACKAGE_TYPE_ENCRYPTED = "kdeconnect.encrypted";
-    public static final String PACKAGE_TYPE_CAPABILITIES = "kdeconnect.capabilities";
+    public final static String PACKAGE_TYPE_CAPABILITIES = "kdeconnect.capabilities";
+
+    public static Set<String> protocolPackageTypes = new HashSet<String>() {{
+        add(PACKAGE_TYPE_IDENTITY);
+        add(PACKAGE_TYPE_PAIR);
+        add(PACKAGE_TYPE_ENCRYPTED);
+        add(PACKAGE_TYPE_CAPABILITIES);
+    }};
 
     private long mId;
     String mType;
