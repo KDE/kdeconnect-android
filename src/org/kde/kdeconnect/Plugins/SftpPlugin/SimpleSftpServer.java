@@ -59,43 +59,6 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 
-class SimplePasswordAuthenticator implements PasswordAuthenticator {
-
-    public void setUser(String user) {this.user = user;}
-    public String getUser() {return this.user;}
-
-    public void setPassword(String password) {this.password = password;}
-    public String getPassword() {return this.password;}
-
-    @Override
-    public boolean authenticate(String user, String password, ServerSession session) {
-        return user.equals(this.user) && password.equals(this.password);
-    }
-
-    private String user;
-    private String password;
-}
-
-class SimplePublicKeyAuthenticator implements PublickeyAuthenticator {
-
-    private final List<PublicKey> keys = new ArrayList<>();
-
-    public void addKey(PublicKey key) {
-        keys.add(key);
-    }
-
-    @Override
-    public boolean authenticate(String user, PublicKey key, ServerSession session) {
-        for (PublicKey k : keys) {
-            if (key.equals(k)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-}
-
 class SimpleSftpServer {
     private static final int STARTPORT = 1739;
     private static final int ENDPORT = 1764;
@@ -109,7 +72,7 @@ class SimpleSftpServer {
     public final SimplePublicKeyAuthenticator keyAuth = new SimplePublicKeyAuthenticator();
 
     static {
-        Security.insertProviderAt( SslHelper.BC, 1);
+        Security.insertProviderAt(SslHelper.BC, 1);
         SecurityUtils.setRegisterBouncyCastle(false);
     }
     private final SshServer sshd = SshServer.setUpDefaultServer();
@@ -192,20 +155,18 @@ class SimpleSftpServer {
         return ip6;
     }
 
-}
-
-    class SecureFileSystemFactory implements FileSystemFactory {
+    static class SecureFileSystemFactory implements FileSystemFactory {
 
         public SecureFileSystemFactory() {}
 
-       @Override
+        @Override
         public FileSystemView createFileSystemView(final Session username) {
             final String base = "/";
             return new SecureFileSystemView(base, username.getUsername());
         }
     }
 
-    class SecureFileSystemView extends NativeFileSystemView {
+    static class SecureFileSystemView extends NativeFileSystemView {
         // the first and the last character will always be '/'
         // It is always with respect to the root directory.
         private String currDir = "/";
@@ -241,8 +202,47 @@ class SimpleSftpServer {
         }
     }
 
-    class SecureSshFile extends NativeSshFile {
+    static class SecureSshFile extends NativeSshFile {
         public SecureSshFile(final String fileName, final File file, final String userName) {
             super(fileName, file, userName);
         }
     }
+
+    static class SimplePasswordAuthenticator implements PasswordAuthenticator {
+
+        public void setUser(String user) {this.user = user;}
+        public String getUser() {return this.user;}
+
+        public void setPassword(String password) {this.password = password;}
+        public String getPassword() {return this.password;}
+
+        @Override
+        public boolean authenticate(String user, String password, ServerSession session) {
+            return user.equals(this.user) && password.equals(this.password);
+        }
+
+        private String user;
+        private String password;
+    }
+
+    static class SimplePublicKeyAuthenticator implements PublickeyAuthenticator {
+
+        private final List<PublicKey> keys = new ArrayList<>();
+
+        public void addKey(PublicKey key) {
+            keys.add(key);
+        }
+
+        @Override
+        public boolean authenticate(String user, PublicKey key, ServerSession session) {
+            for (PublicKey k : keys) {
+                if (key.equals(k)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+    }
+
+}
