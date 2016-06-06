@@ -26,7 +26,6 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/device_not_paired"
             android:id="@+id/pair_message"
-            android:layout_gravity="left|center_vertical"
         />
 
         <Button

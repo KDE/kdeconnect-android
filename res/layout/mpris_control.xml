@@ -151,7 +151,6 @@
             android:layout_marginEnd="10dip"
             android:id="@+id/imageView"
             android:layout_weight="0"
-            android:layout_gravity="left|center_vertical"
             android:contentDescription="@string/mpris_volume"
             android:src="@drawable/ic_volume"
         />
