@@ -31,6 +31,7 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
+        android:supportsRtl="true"
         android:label="KDE Connect"
         android:theme="@style/KdeConnectTheme"
         >
