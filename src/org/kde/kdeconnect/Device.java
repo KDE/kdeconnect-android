@@ -865,7 +865,9 @@ public class Device implements BaseLink.PackageReceiver {
         supportedOutgoingInterfaces = newSupportedOutgoingInterfaces;
         unsupportedPlugins = newUnsupportedPlugins;
 
-        Log.i("ReloadPlugins", "not loading " + Arrays.toString(unsupportedPlugins.toArray()) + " because of unmatched capabilities");
+        if (!unsupportedPlugins.isEmpty()) {
+            Log.i("ReloadPlugins", "not loading " + Arrays.toString(unsupportedPlugins.toArray()) + " because of unmatched capabilities");
+        }
 
         onPluginsChanged();
 
