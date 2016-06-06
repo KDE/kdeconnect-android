@@ -202,11 +202,13 @@ public class LanPairingHandler extends BasePairingHandler {
         //Log.e("KDE/PairingDone", "Pairing Done");
         SharedPreferences.Editor editor = mDevice.getContext().getSharedPreferences(mDevice.getDeviceId(), Context.MODE_PRIVATE).edit();
 
-        try {
-            String encodedPublicKey = Base64.encodeToString(mDevice.publicKey.getEncoded(), 0);
-            editor.putString("publicKey", encodedPublicKey);
-        } catch (Exception e) {
-            Log.e("KDE/PairingDone", "Error encoding public key");
+        if (mDevice.publicKey != null) {
+            try {
+                String encodedPublicKey = Base64.encodeToString(mDevice.publicKey.getEncoded(), 0);
+                editor.putString("publicKey", encodedPublicKey);
+            } catch (Exception e) {
+                Log.e("KDE/PairingDone", "Error encoding public key");
+            }
         }
 
         try {
