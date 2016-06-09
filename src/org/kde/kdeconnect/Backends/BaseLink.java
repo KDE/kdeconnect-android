@@ -90,5 +90,6 @@ public abstract class BaseLink {
 
     //TO OVERRIDE, should be sync
     public abstract void sendPackage(NetworkPackage np,Device.SendPackageStatusCallback callback);
+    @Deprecated
     public abstract void sendPackageEncrypted(NetworkPackage np,Device.SendPackageStatusCallback callback, PublicKey key);
 }

@@ -212,11 +212,7 @@ public class LanLink extends BaseLink {
     //Blocking, do not call from main thread
     @Override
     public void sendPackageEncrypted(NetworkPackage np, Device.SendPackageStatusCallback callback, PublicKey key) {
-        if (onSsl) {
-            sendPackageInternal(np, callback, null); // No need to encrypt
-        }else {
-            sendPackageInternal(np, callback, key);
-        }
+        sendPackageInternal(np, callback, key);
     }
 
     public void injectNetworkPackage(NetworkPackage np) {
