@@ -437,10 +437,17 @@ public class LanLinkProvider extends BaseLinkProvider {
             ServerBootstrap tcpBootstrap = new ServerBootstrap();
             tcpBootstrap.group(bossGroup, workerGroup);
             tcpBootstrap.channel(NioServerSocketChannel.class);
+
             tcpBootstrap.option(ChannelOption.SO_BACKLOG, 100);
-            tcpBootstrap.handler(new LoggingHandler(LogLevel.INFO));
+            tcpBootstrap.childOption(ChannelOption.SO_BACKLOG, 100);
+
+            tcpBootstrap.option(ChannelOption.SO_KEEPALIVE, true);
+            tcpBootstrap.childOption(ChannelOption.SO_KEEPALIVE, true);
+
             tcpBootstrap.option(ChannelOption.SO_REUSEADDR, true);
+
             tcpBootstrap.childHandler(new TcpInitializer());
+
             tcpBootstrap.bind(new InetSocketAddress(port)).sync();
         }catch (Exception e) {
             Log.e("KDE/LanLinkProvider","Exception setting up TCP server");
