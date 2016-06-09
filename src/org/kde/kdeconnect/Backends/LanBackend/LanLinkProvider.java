@@ -248,12 +248,12 @@ public class LanLinkProvider extends BaseLinkProvider {
                 //Log.i("KDE/LanLinkProvider", "Identity package received, creating link");
 
                 try{
-                    Bootstrap b = new Bootstrap();
-                    b.group(clientGroup);
-                    b.channel(NioSocketChannel.class);
-                    b.handler(new TcpInitializer());
+                    Bootstrap bootstrap = new Bootstrap();
+                    bootstrap.group(clientGroup);
+                    bootstrap.channel(NioSocketChannel.class);
+                    bootstrap.handler(new TcpInitializer());
                     int tcpPort = identityPackage.getInt("tcpPort", port);
-                    final ChannelFuture channelFuture = b.connect(packet.sender().getAddress(), tcpPort);
+                    final ChannelFuture channelFuture = bootstrap.connect(packet.sender().getAddress(), tcpPort);
                     channelFuture.addListener(new ChannelFutureListener() {
                         @Override
                         public void operationComplete(ChannelFuture future) throws Exception {
