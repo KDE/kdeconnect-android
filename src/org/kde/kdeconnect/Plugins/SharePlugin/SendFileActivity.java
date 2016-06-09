@@ -21,45 +21,18 @@
 package org.kde.kdeconnect.Plugins.SharePlugin;
 
 import android.app.Activity;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.preference.PreferenceManager;
-import android.provider.MediaStore;
-import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.NetworkPackage;
-import org.kde.kdeconnect.UserInterface.List.EntryItem;
-import org.kde.kdeconnect.UserInterface.List.ListAdapter;
-import org.kde.kdeconnect.UserInterface.List.SectionItem;
 import org.kde.kdeconnect_tp.R;
 
-import java.io.File;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
 
 
 public class SendFileActivity extends ActionBarActivity {

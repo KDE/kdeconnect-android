@@ -26,11 +26,9 @@ import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.NetworkPackage;
 
 import java.security.PublicKey;
-import java.util.ArrayList;
 
 public class LoopbackLink extends BaseLink {
 

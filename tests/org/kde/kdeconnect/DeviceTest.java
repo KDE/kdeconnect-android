@@ -26,9 +26,6 @@ import android.test.AndroidTestCase;
 import android.util.Base64;
 import android.util.Log;
 
-import org.kde.kdeconnect.Backends.LanBackend.LanLink;
-import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
-import org.mockito.Mockito;
 import org.bouncycastle.asn1.x500.X500NameBuilder;
 import org.bouncycastle.asn1.x500.style.BCStyle;
 import org.bouncycastle.cert.X509v3CertificateBuilder;
@@ -37,6 +34,9 @@ import org.bouncycastle.cert.jcajce.JcaX509v3CertificateBuilder;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.operator.ContentSigner;
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
+import org.kde.kdeconnect.Backends.LanBackend.LanLink;
+import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
+import org.mockito.Mockito;
 
 import java.lang.reflect.Method;
 import java.math.BigInteger;

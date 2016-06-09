@@ -22,7 +22,6 @@ package org.kde.kdeconnect.UserInterface;
 
 import android.os.Bundle;
 import android.preference.PreferenceScreen;
-import android.util.Log;
 import android.view.MenuItem;
 
 import org.kde.kdeconnect.BackgroundService;

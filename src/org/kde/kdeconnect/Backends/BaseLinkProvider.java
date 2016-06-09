@@ -20,12 +20,8 @@
 
 package org.kde.kdeconnect.Backends;
 
-import android.util.Log;
-
-import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.NetworkPackage;
 
-import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class BaseLinkProvider {

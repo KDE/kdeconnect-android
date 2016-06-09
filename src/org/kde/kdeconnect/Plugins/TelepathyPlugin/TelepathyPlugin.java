@@ -20,20 +20,13 @@
 
 package org.kde.kdeconnect.Plugins.TelepathyPlugin;
 
-import android.database.Cursor;
 import android.telephony.SmsManager;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin;
 import org.kde.kdeconnect_tp.R;
-
-import java.util.ArrayList;
-
-import static android.provider.ContactsContract.CommonDataKinds;
-import static android.provider.ContactsContract.Contacts;
 
 public class TelepathyPlugin extends Plugin {
 

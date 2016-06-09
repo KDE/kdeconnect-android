@@ -21,8 +21,6 @@
 package org.kde.kdeconnect;
 
 import android.content.Context;
-import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.util.Log;
 
 import org.json.JSONArray;

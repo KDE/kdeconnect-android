@@ -20,7 +20,6 @@
 
 package org.kde.kdeconnect;
 
-import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;

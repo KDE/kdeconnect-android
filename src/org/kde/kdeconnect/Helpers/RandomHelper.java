@@ -1,8 +1,6 @@
 package org.kde.kdeconnect.Helpers;
 
 
-import android.util.Log;
-
 import java.security.SecureRandom;
 
 public class RandomHelper {

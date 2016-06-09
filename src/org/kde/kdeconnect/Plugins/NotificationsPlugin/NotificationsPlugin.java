@@ -41,8 +41,8 @@ import android.util.Log;
 
 import org.kde.kdeconnect.Helpers.AppsHelper;
 import org.kde.kdeconnect.NetworkPackage;
-import org.kde.kdeconnect.UserInterface.MaterialActivity;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.UserInterface.MaterialActivity;
 import org.kde.kdeconnect.UserInterface.SettingsActivity;
 import org.kde.kdeconnect_tp.R;
 

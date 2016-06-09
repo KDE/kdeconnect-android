@@ -23,7 +23,6 @@ package org.kde.kdeconnect.Helpers.SecurityHelpers;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.util.Base64;
 import android.util.Log;
 

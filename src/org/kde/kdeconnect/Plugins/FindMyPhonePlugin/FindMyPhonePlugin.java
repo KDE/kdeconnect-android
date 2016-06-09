@@ -1,11 +1,6 @@
 package org.kde.kdeconnect.Plugins.FindMyPhonePlugin;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
-import android.widget.Button;
 
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;

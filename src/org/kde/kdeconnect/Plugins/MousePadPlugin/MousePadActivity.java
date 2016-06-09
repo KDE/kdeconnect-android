@@ -28,12 +28,12 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.GestureDetector;
 import android.view.HapticFeedbackConstants;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;

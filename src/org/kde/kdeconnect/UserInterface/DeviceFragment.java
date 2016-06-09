@@ -22,7 +22,6 @@ package org.kde.kdeconnect.UserInterface;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -42,17 +41,16 @@ import android.widget.TextView;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
-import org.kde.kdeconnect.UserInterface.List.PluginItem;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.UserInterface.List.CustomItem;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
+import org.kde.kdeconnect.UserInterface.List.PluginItem;
 import org.kde.kdeconnect.UserInterface.List.SmallEntryItem;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 
