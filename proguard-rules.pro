@@ -33,6 +33,6 @@
 -keepattributes SourceFile,LineNumberTable,Signature,*Annotation*
 
 -keep class org.spongycastle.** {*;}
--keep class org.bouncycastle.** {*;}
+-keep class org.apache.mina.** {*;}
 
 -keep class org.kde.kdeconnect.** {*;}
