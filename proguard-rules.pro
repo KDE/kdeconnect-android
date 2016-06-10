@@ -24,7 +24,6 @@
 -keepnames class !android.support.v7.internal.view.menu.**,android.support.v7.** {*;}
 
 -dontwarn org.spongycastle.**
--dontwarn org.bouncycastle.**
 -dontwarn org.apache.sshd.**
 -dontwarn org.apache.mina.**
 -dontwarn org.slf4j.**
@@ -33,6 +32,8 @@
 -keepattributes SourceFile,LineNumberTable,Signature,*Annotation*
 
 -keep class org.spongycastle.** {*;}
+
+# SSHd requires mina, and mina uses reflection so some classes would get deleted
 -keep class org.apache.mina.** {*;}
 
 -keep class org.kde.kdeconnect.** {*;}
