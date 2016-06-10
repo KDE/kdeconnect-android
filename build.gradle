@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.0'
+        classpath 'com.android.tools.build:gradle:2.1.2'
     }
 }
 
@@ -55,7 +55,6 @@ android {
         release { //keep on 'releae', set to 'all' when testing to make sure proguard is not deleting important stuff
             minifyEnabled true
             useProguard true
-            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),'proguard-rules.pro'
         }
     }
