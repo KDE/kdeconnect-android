@@ -13,6 +13,7 @@
   <string name="pref_plugin_mpris">Multimedia-Bedienung</string>
   <string name="pref_plugin_mpris_desc">Audio und Video mit Ihrem Telefon steuern</string>
   <string name="pref_plugin_runcommand">Befehl ausführen</string>
+  <string name="pref_plugin_runcommand_desc">Von Ihrem Telefon Befehle auf anderen Geräten ausführen</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Senden und Empfangen von Pings</string>
   <string name="pref_plugin_notifications">Benachrichtigungs-Abgleich</string>
@@ -100,6 +101,7 @@
   <string name="mpris_next">Weiter</string>
   <string name="mpris_volume">Lautstärke</string>
   <string name="mpris_settings">Multimedia-Einstellungen</string>
+  <string name="mpris_time_settings_title">Knöpfe Vorwärts/Rückwärts</string>
   <string-array name="mpris_time_entries">
     <item>10 Sekunden</item>
     <item>20 Sekunden</item>
