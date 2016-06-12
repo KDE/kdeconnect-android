@@ -68,6 +68,8 @@
   <string name="error_invalid_key">Otrzymano nieprawidłowy klucz</string>
   <string name="encryption_info_title">Zaszyfrowane informacje</string>
   <string name="encryption_info_msg_no_ssl">Drugie urządzenie nie używa ostatniej wersji KDE Connect, użyto przestarzałego szyfrowania.</string>
+  <string name="my_device_fingerprint">Odcisk palca SHA1 certyfikatu twojego urządzenia to:</string>
+  <string name="remote_device_fingerprint">Odcisk palca SHA1 certyfikatu twojego zdalnego urządzenia to:</string>
   <string name="pair_requested">Zażądano parowania</string>
   <string name="pairing_request_from">Żądanie parowania z %1s</string>
   <string name="received_url_title">Odebrano odsyłacz od %1s</string>
