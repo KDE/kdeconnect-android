@@ -25,6 +25,7 @@ import android.util.Log;
 
 import org.json.JSONException;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
+import org.skyscreamer.jsonassert.JSONAssert;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -124,15 +125,13 @@ public class NetworkPackageTest extends AndroidTestCase{
         assertEquals(decrypted.getType(), copy.getType());
         assertEquals(decrypted.getJSONArray("body"), copy.getJSONArray("body"));
 
-        String json = "{\"body\":{\"nowPlaying\":\"A really long song name - A really long artist name\",\"player\":\"A really long player name\",\"the_meaning_of_life_the_universe_and_everything\":\"42\"},\"id\":\"A really long package id\",\"payloadSize\":0,\"payloadTransferInfo\":{},\"type\":\"kdeconnect.a_really_really_long_package_type\"}\n";
+        String json = "{\"body\":{\"nowPlaying\":\"A really long song name - A really long artist name\",\"player\":\"A really long player name\",\"the_meaning_of_life_the_universe_and_everything\":\"42\"},\"id\":945945945,\"type\":\"kdeconnect.a_really_really_long_package_type\"}\n";
         NetworkPackage longJsonNp = NetworkPackage.unserialize(json);
         try {
             NetworkPackage encrypted = RsaHelper.encrypt(longJsonNp, publicKey);
             decrypted = RsaHelper.decrypt(encrypted, privateKey);
-
             String decryptedJson = decrypted.serialize();
-            assertEquals(json, decryptedJson);
-
+            JSONAssert.assertEquals(json, decryptedJson, true);
         }catch (Exception e){
             e.printStackTrace();
         }

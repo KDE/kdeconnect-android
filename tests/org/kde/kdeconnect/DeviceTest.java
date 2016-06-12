@@ -26,17 +26,19 @@ import android.test.AndroidTestCase;
 import android.util.Base64;
 import android.util.Log;
 
-import org.bouncycastle.asn1.x500.X500NameBuilder;
-import org.bouncycastle.asn1.x500.style.BCStyle;
-import org.bouncycastle.cert.X509v3CertificateBuilder;
-import org.bouncycastle.cert.jcajce.JcaX509CertificateConverter;
-import org.bouncycastle.cert.jcajce.JcaX509v3CertificateBuilder;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.bouncycastle.operator.ContentSigner;
-import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
+import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Backends.LanBackend.LanLink;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
+import org.kde.kdeconnect.Backends.LanBackend.LanPairingHandler;
 import org.mockito.Mockito;
+import org.spongycastle.asn1.x500.X500NameBuilder;
+import org.spongycastle.asn1.x500.style.BCStyle;
+import org.spongycastle.cert.X509v3CertificateBuilder;
+import org.spongycastle.cert.jcajce.JcaX509CertificateConverter;
+import org.spongycastle.cert.jcajce.JcaX509v3CertificateBuilder;
+import org.spongycastle.jce.provider.BouncyCastleProvider;
+import org.spongycastle.operator.ContentSigner;
+import org.spongycastle.operator.jcajce.JcaContentSignerBuilder;
 
 import java.lang.reflect.Method;
 import java.math.BigInteger;
@@ -133,6 +135,7 @@ public class DeviceTest extends AndroidTestCase {
         Mockito.when(linkProvider.getName()).thenReturn("LanLinkProvider");
         LanLink link = Mockito.mock(LanLink.class);
         Mockito.when(link.getLinkProvider()).thenReturn(linkProvider);
+        Mockito.when(link.getPairingHandler(Mockito.any(Device.class), Mockito.any(BasePairingHandler.PairingHandlerCallback.class))).thenReturn(Mockito.mock(LanPairingHandler.class));
         Device device = new Device(getContext(), fakeNetworkPackage, link);
 
         KeyPair keyPair;
@@ -213,7 +216,7 @@ public class DeviceTest extends AndroidTestCase {
 
         } catch(Exception e) {
             e.printStackTrace();
-            Log.e("KDE/initialiseCertificate", "Exception");
+            Log.e("KDE/initialiseCert", "Exception");
         }
 
         NetworkPackage fakeNetworkPackage = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_IDENTITY);
@@ -226,6 +229,7 @@ public class DeviceTest extends AndroidTestCase {
         LanLinkProvider linkProvider = Mockito.mock(LanLinkProvider.class);
         Mockito.when(linkProvider.getName()).thenReturn("LanLinkProvider");
         LanLink link = Mockito.mock(LanLink.class);
+        Mockito.when(link.getPairingHandler(Mockito.any(Device.class), Mockito.any(BasePairingHandler.PairingHandlerCallback.class))).thenReturn(Mockito.mock(LanPairingHandler.class));
         Mockito.when(link.getLinkProvider()).thenReturn(linkProvider);
         Device device = new Device(getContext(), fakeNetworkPackage, link);
         device.publicKey = keyPair.getPublic();

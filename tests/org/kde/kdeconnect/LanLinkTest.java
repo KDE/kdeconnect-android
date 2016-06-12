@@ -23,8 +23,8 @@ package org.kde.kdeconnect;
 import android.test.AndroidTestCase;
 import android.util.Log;
 
+import org.json.JSONException;
 import org.json.JSONObject;
-import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.LanBackend.LanLink;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.mockito.Mockito;
@@ -86,7 +86,7 @@ public class LanLinkTest extends AndroidTestCase {
         Mockito.when(channelFutureFailure.channel()).thenReturn(channel);
         Mockito.when(channelFutureFailure.sync()).thenReturn(channelFutureFailure);
 
-        lanLink = new LanLink(getContext(), channel, "testDevice", linkProvider,  BaseLink.ConnectionStarted.Remotely);
+        lanLink = new LanLink(getContext(), "testDevice", linkProvider, channel, LanLink.ConnectionStarted.Remotely, false);
     }
 
     @Override
@@ -94,7 +94,7 @@ public class LanLinkTest extends AndroidTestCase {
         super.tearDown();
     }
 
-    public void testSendPackageSuccess(){
+    public void testSendPackageSuccess() throws JSONException {
 
         NetworkPackage testPackage = Mockito.mock(NetworkPackage.class);
         Mockito.when(testPackage.getType()).thenReturn("kdeconnect.test");
@@ -113,7 +113,7 @@ public class LanLinkTest extends AndroidTestCase {
         assertEquals(channelFutureSuccess.isSuccess(), true);
     }
 
-    public void testSendPackageFail(){
+    public void testSendPackageFail() throws JSONException {
 
         NetworkPackage testPackage = Mockito.mock(NetworkPackage.class);
         Mockito.when(testPackage.getType()).thenReturn("kdeconnect.test");

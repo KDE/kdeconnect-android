@@ -23,24 +23,22 @@ package org.kde.kdeconnect;
 import android.support.v4.util.LongSparseArray;
 import android.test.AndroidTestCase;
 
-import org.apache.mina.core.session.IoSession;
-import org.apache.mina.transport.socket.nio.NioDatagramAcceptor;
-import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 import org.kde.kdeconnect.Backends.LanBackend.LanLink;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.mockito.Mockito;
 
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 
+import io.netty.channel.Channel;
+
 public class LanLinkProviderTest extends AndroidTestCase {
 
-    private NioSocketAcceptor tcpAcceptor = null;
-    private NioDatagramAcceptor udpAcceptor = null;
     private LanLinkProvider linkProvider;
 
     @Override
@@ -50,61 +48,12 @@ public class LanLinkProviderTest extends AndroidTestCase {
         System.setProperty("dexmaker.dexcache", getContext().getCacheDir().getPath());
 
         linkProvider = new LanLinkProvider(getContext());
-
-        try {
-            Field field = LanLinkProvider.class.getDeclaredField("tcpAcceptor");
-            field.setAccessible(true);
-            tcpAcceptor = (NioSocketAcceptor)field.get(linkProvider);
-            assertNotNull(tcpAcceptor);
-        }catch (Exception e){
-            fail("Error getting tcpAcceptor from LanLinkProvider");
-        }
-
-        try{
-            Field field = LanLinkProvider.class.getDeclaredField("udpAcceptor");
-            field.setAccessible(true);
-            udpAcceptor = (NioDatagramAcceptor)field.get(linkProvider);
-            assertNotNull(udpAcceptor);
-        }catch (Exception e){
-            fail("Error getting udp acceptor from LanLinkProvider");
-        }
-
     }
 
     @Override
     protected void tearDown() throws Exception {
         super.tearDown();
 
-        tcpAcceptor.dispose();
-        udpAcceptor.dispose();
-    }
-
-    public void testTcpAcceptor(){
-
-        assertNotNull(tcpAcceptor.getHandler());
-        assertEquals(tcpAcceptor.getSessionConfig().isKeepAlive(), true);
-        assertEquals(tcpAcceptor.getSessionConfig().isReuseAddress(), true);
-        assertNotNull(tcpAcceptor.getFilterChain().get("codec"));
-
-    }
-
-    public void testUdpAcceptor(){
-
-        assertNull(udpAcceptor.getHandler());
-        assertEquals(udpAcceptor.getSessionConfig().isReuseAddress(), true);
-        assertNotNull(udpAcceptor.getFilterChain().get("codec"));
-    }
-
-    public void testOnStart() throws Exception{
-
-        IoSession session = Mockito.mock(IoSession.class);
-        Mockito.when(session.getId()).thenReturn(12345l);
-        Mockito.when(session.getRemoteAddress()).thenReturn(new InetSocketAddress(5000));
-
-        linkProvider.onStart();
-
-        assertNotNull(udpAcceptor.getHandler());
-        assertEquals(udpAcceptor.getLocalAddress().getPort(), 1714);
     }
 
     public void testUdpPackageReceived() throws Exception {
@@ -115,18 +64,12 @@ public class LanLinkProviderTest extends AndroidTestCase {
         Mockito.when(networkPackage.getType()).thenReturn("kdeconnect.identity");
         Mockito.when(networkPackage.getString("deviceId")).thenReturn("testDevice");
         Mockito.when(networkPackage.getString("deviceName")).thenReturn("Test Device");
-        Mockito.when(networkPackage.getInt("protocolVersion")).thenReturn(NetworkPackage.ProtocolVersion);
+        Mockito.when(networkPackage.getInt("protocolVersion")).thenReturn(5);
         Mockito.when(networkPackage.getString("deviceType")).thenReturn("phone");
         Mockito.when(networkPackage.getInt("tcpPort")).thenReturn(port);
 
         final String serialized = "{\"type\":\"kdeconnect.identity\",\"id\":12345,\"body\":{\"deviceName\":\"Test Device\",\"deviceType\":\"phone\",\"deviceId\":\"testDevice\",\"protocolVersion\":5,\"tcpPort\": "+ port +"}}";
         Mockito.when(networkPackage.serialize()).thenReturn(serialized);
-
-        // Mocking udp session
-        IoSession session = Mockito.mock(IoSession.class);
-        Mockito.when(session.getId()).thenReturn(12345l);
-        Mockito.when(session.getRemoteAddress()).thenReturn(new InetSocketAddress(port));
-
 
         // Making a server socket, so that original LanLinkProvider can connect to it when it receives our fake package
         final ServerSocket serverSocket = new ServerSocket();
@@ -160,7 +103,7 @@ public class LanLinkProviderTest extends AndroidTestCase {
                     }
 
                 }catch (Exception e){
-                    assertEquals("Exception in thread",1,5);
+                    fail("Exception in thread");
                 }
             }
         });
@@ -168,7 +111,11 @@ public class LanLinkProviderTest extends AndroidTestCase {
         try {
             thread.start();
             linkProvider.onStart();
-            udpAcceptor.getHandler().messageReceived(session, networkPackage.serialize());
+
+            Method method = LanLinkProvider.class.getDeclaredMethod("identityPackageReceived", NetworkPackage.class, Channel.class, LanLink.ConnectionStarted.class);
+            method.setAccessible(true);
+            method.invoke(linkProvider, networkPackage, Mockito.mock(Channel.class), LanLink.ConnectionStarted.Remotely);
+
         }catch (Exception e){
             throw e;
         }
@@ -192,34 +139,34 @@ public class LanLinkProviderTest extends AndroidTestCase {
 
     public void testTcpIdentityPackageReceived() throws Exception{
 
-        IoSession session = Mockito.mock(IoSession.class);
-        Mockito.when(session.getId()).thenReturn(12345l);
-
         NetworkPackage networkPackage = Mockito.mock(NetworkPackage.class);
         Mockito.when(networkPackage.getType()).thenReturn("kdeconnect.identity");
         Mockito.when(networkPackage.getString("deviceId")).thenReturn("testDevice");
         Mockito.when(networkPackage.getString("deviceName")).thenReturn("Test Device");
-        Mockito.when(networkPackage.getInt("protocolVersion")).thenReturn(NetworkPackage.ProtocolVersion);
+        Mockito.when(networkPackage.getInt("protocolVersion")).thenReturn(5);
         Mockito.when(networkPackage.getString("deviceType")).thenReturn("phone");
 
         String serialized = "{\"type\":\"kdeconnect.identity\",\"id\":12345,\"body\":{\"deviceName\":\"Test Device\",\"deviceType\":\"phone\",\"deviceId\":\"testDevice\",\"protocolVersion\":5}}";
         Mockito.when(networkPackage.serialize()).thenReturn(serialized);
 
+        Channel channel = Mockito.mock(Channel.class);
         try {
-            tcpAcceptor.getHandler().messageReceived(session, networkPackage.serialize());
+            Method method = LanLinkProvider.class.getDeclaredMethod("identityPackageReceived", NetworkPackage.class, Channel.class, LanLink.ConnectionStarted.class);
+            method.setAccessible(true);
+            method.invoke(linkProvider, networkPackage, channel, LanLink.ConnectionStarted.Locally);
         }catch (Exception e){
             throw e;
         }
 
-        LongSparseArray<LanLink> nioSessions;
+        LongSparseArray<LanLink> nioLinks;
         try {
-            Field field = LanLinkProvider.class.getDeclaredField("nioSessions");
+            Field field = LanLinkProvider.class.getDeclaredField("nioLinks");
             field.setAccessible(true);
-            nioSessions = (LongSparseArray<LanLink>)field.get(linkProvider);
+            nioLinks = (LongSparseArray<LanLink>)field.get(linkProvider);
         }catch (Exception e){
             throw e;
         }
-        assertNotNull(nioSessions.get(12345l));
+        assertNotNull(nioLinks.get(channel.hashCode()));
 
 
         HashMap<String, LanLink> visibleComputers;
@@ -232,14 +179,8 @@ public class LanLinkProviderTest extends AndroidTestCase {
         }
         assertNotNull(visibleComputers.get("testDevice"));
 
-
-        // Testing session closed
-        try {
-            tcpAcceptor.getHandler().sessionClosed(session);
-        }catch (Exception e){
-            throw e;
-        }
-        assertNull(nioSessions.get(12345l));
-        assertNull(visibleComputers.get("testDevice"));
+        // TODO: Testing session closed
+        //assertNull(nioSessions.get(12345l));
+        //assertNull(visibleComputers.get("testDevice"));
     }
 }
