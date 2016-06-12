@@ -152,74 +152,81 @@ public class LanLinkProvider extends BaseLinkProvider {
                 return;
             }
 
-            final Channel channel = ctx.channel();
-            final NetworkPackage np = NetworkPackage.unserialize(message);
+            NetworkPackage networkPackage = NetworkPackage.unserialize(message);
+            Channel channel =  ctx.channel();
 
-            if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
+            if (networkPackage.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
 
-                String myId = DeviceHelper.getDeviceId(context);
-                if (np.getString("deviceId").equals(myId)) {
-                    Log.e("KDE/LanLinkProvider", "Somehow I'm connected to myself, ignoring. This should not happen.");
-                    return;
-                }
-
-                Log.i("KDE/LanLinkProvider", "Identity package received from a stablished TCP connection from " + np.getString("deviceName"));
-
-                final LanLink.ConnectionStarted connectionStarted = LanLink.ConnectionStarted.Locally;
-
-                // Add ssl handler if device uses new protocol
-                try {
-                    if (np.getInt("protocolVersion") >= MIN_VERSION_WITH_SSL_SUPPORT) {
-                        final SSLEngine sslEngine = SslHelper.getSslEngine(context, np.getString("deviceId"), SslHelper.SslMode.Client);
-
-                        SslHandler sslHandler = new SslHandler(sslEngine);
-                        channel.pipeline().addFirst(sslHandler);
-                        sslHandler.handshakeFuture().addListener(new GenericFutureListener<Future<? super Channel>>() {
-                            @Override
-                            public void operationComplete(Future<? super Channel> future) throws Exception {
-                                if (future.isSuccess()) {
-                                    Log.i("KDE/LanLinkProvider","Handshake successful with " + np.getString("deviceName") + " secured with " + sslEngine.getSession().getCipherSuite());
-                                    //Log.e("KDE/LanLinkProvider", "Channel" + channel.hashCode());
-                                    Certificate certificate = sslEngine.getSession().getPeerCertificates()[0];
-                                    np.set("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
-                                    addLink(np, channel, connectionStarted, true);
-                                } else {
-                                    // Unpair if handshake failed
-                                    Log.e("KDE/LanLinkProvider", "Handshake as server failed with " + np.getString("deviceName"));
-                                    future.cause().printStackTrace();
-                                    if (future.cause() instanceof SSLHandshakeException) {
-                                        BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
-                                            @Override
-                                            public void onServiceStart(BackgroundService service) {
-                                                Device device = service.getDevice(np.getString("deviceId"));
-                                                if (device == null) return;
-                                                device.unpair();
-                                            }
-                                        });
-                                    }
-                                }
-
-                            }
-                        });
-                    } else {
-                        addLink(np, channel, connectionStarted, false);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                //Log.i("KDE/LanLinkProvider", "Identity package received from a stablished TCP connection from " + networkPackage.getString("deviceName"));
+                identityPackageReceived(networkPackage, channel, LanLink.ConnectionStarted.Locally);
 
             } else {
+
                 LanLink link = nioLinks.get(channel.hashCode());
                 if (link== null) {
-                    Log.e("KDE/LanLinkProvider","Expecting an identity package instead of " + np.getType());
-                    //Log.e("KDE/LanLinkProvider", "Channel" + channel.hashCode());
+                    Log.e("KDE/LanLinkProvider","Expecting an identity package instead of " + networkPackage.getType());
                 } else {
-                    link.injectNetworkPackage(np);
+                    link.injectNetworkPackage(networkPackage);
                 }
+
             }
 
         }
     }
+
+    private void identityPackageReceived(final NetworkPackage identityPackage, final Channel channel, final LanLink.ConnectionStarted connectionStarted) {
+
+        String myId = DeviceHelper.getDeviceId(context);
+        final String deviceId = identityPackage.getString("deviceId");
+        if (deviceId.equals(myId)) {
+            Log.e("KDE/LanLinkProvider", "Somehow I'm connected to myself, ignoring. This should not happen.");
+            return;
+        }
+
+        final SslHelper.SslMode sslMode = (connectionStarted == LanLink.ConnectionStarted.Locally? SslHelper.SslMode.Client : SslHelper.SslMode.Server);
+
+        // Add ssl handler if device uses new protocol
+        try {
+            if (identityPackage.getInt("protocolVersion") >= MIN_VERSION_WITH_SSL_SUPPORT) {
+                final SSLEngine sslEngine = SslHelper.getSslEngine(context, deviceId, sslMode);
+                SslHandler sslHandler = new SslHandler(sslEngine, sslMode == SslHelper.SslMode.Server);
+                channel.pipeline().addFirst(sslHandler);
+                sslHandler.handshakeFuture().addListener(new GenericFutureListener<Future<? super Channel>>() {
+                    @Override
+                    public void operationComplete(Future<? super Channel> future) throws Exception {
+                        String mode = (sslMode == SslHelper.SslMode.Server? "server" : "client");
+                        if (future.isSuccess()) {
+                            Log.i("KDE/LanLinkProvider","Handshake as " + mode + " successful with " + identityPackage.getString("deviceName") + " secured with " + sslEngine.getSession().getCipherSuite());
+                            Certificate certificate = sslEngine.getSession().getPeerCertificates()[0];
+                            identityPackage.set("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
+                            addLink(identityPackage, channel, connectionStarted, true);
+                        } else {
+                            // Unpair if handshake failed
+                            Log.e("KDE/LanLinkProvider", "Handshake as " + mode + " failed with " + identityPackage.getString("deviceName"));
+                            future.cause().printStackTrace();
+                            if (future.cause() instanceof SSLHandshakeException) {
+                                BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
+                                    @Override
+                                    public void onServiceStart(BackgroundService service) {
+                                        Device device = service.getDevice(deviceId);
+                                        if (device == null) return;
+                                        device.unpair();
+                                    }
+                                });
+                            }
+                        }
+
+                    }
+                });
+            } else {
+                addLink(identityPackage, channel, connectionStarted, false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     @ChannelHandler.Sharable
     private class UdpHandler extends SimpleChannelInboundHandler<DatagramPacket> {
@@ -279,15 +286,6 @@ public class LanLinkProvider extends BaseLinkProvider {
 
                             //Log.e("KDE/LanLinkProvider", "Connection successful: " + channel.isActive());
 
-                            // Add ssl handler if device supports new protocol
-                            if (identityPackage.getInt("protocolVersion") >= MIN_VERSION_WITH_SSL_SUPPORT) {
-                                // add ssl handler with start tls true
-                                SSLEngine sslEngine = SslHelper.getSslEngine(context, deviceId, SslHelper.SslMode.Server);
-                                SslHandler sslHandler = new SslHandler(sslEngine, true);
-                                channel.pipeline().addFirst(sslHandler);
-                            }
-
-                            final LanLink.ConnectionStarted connectionStarted = LanLink.ConnectionStarted.Remotely;
 
                             NetworkPackage np2 = NetworkPackage.createIdentityPackage(context);
                             ChannelFuture future2 = channel.writeAndFlush(np2.serialize()).sync();
@@ -296,47 +294,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                                 return;
                             }
 
-                            // If ssl handler is in channel, add link after handshake is completed
-                            final SslHandler sslHandler = channel.pipeline().get(SslHandler.class);
-                            if (sslHandler != null) {
-                                //Log.e("KDE/LanLinkProvider", "Initiating SSL handshake");
-                                sslHandler.handshakeFuture().addListener(new GenericFutureListener<Future<? super Channel>>() {
-
-                                    @Override
-                                    public void operationComplete(Future<? super Channel> future) throws Exception {
-                                        if (future.isSuccess()) {
-                                            try {
-                                                Log.i("KDE/LanLinkProvider", "Handshake successfully completed with " + identityPackage.getString("deviceName") + ", session secured with " + sslHandler.engine().getSession().getCipherSuite());
-                                                Certificate certificate = sslHandler.engine().getSession().getPeerCertificates()[0];
-                                                identityPackage.set("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
-                                                addLink(identityPackage, channel, connectionStarted, true);
-                                            } catch (Exception e){
-                                                Log.e("KDE/LanLinkProvider", "Exception in addLink");
-                                                e.printStackTrace();
-                                            }
-                                        } else {
-                                            // Unpair if handshake failed
-                                            // Any exception or handshake exception ?
-                                            Log.e("KDE/LanLinkProvider", "Handshake as client failed with " + identityPackage.getString("deviceName"));
-                                            future.cause().printStackTrace();
-                                            if (future.cause() instanceof SSLHandshakeException) {
-                                                BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
-                                                    @Override
-                                                    public void onServiceStart(BackgroundService service) {
-                                                        Device device = service.getDevice(deviceId);
-                                                        if (device == null) return;
-                                                        device.unpair();
-                                                    }
-                                                });
-                                            }
-                                        }
-
-                                    }
-                                });
-                            } else {
-                                Log.w("KDE/LanLinkProvider", "Not using SSL");
-                                addLink(identityPackage, channel, connectionStarted, false);
-                            }
+                            identityPackageReceived(identityPackage, channel, LanLink.ConnectionStarted.Remotely);
 
                         }
                     });
@@ -367,7 +325,6 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     private void addLink(NetworkPackage identityPackage, Channel channel, LanLink.ConnectionStarted connectionOrigin, boolean useSsl) {
         String deviceId = identityPackage.getString("deviceId");
-        Log.i("KDE/LanLinkProvider","addLink to "+deviceId);
         LanLink currentLink = visibleComputers.get(deviceId);
         if (currentLink != null) {
             //Update old link
