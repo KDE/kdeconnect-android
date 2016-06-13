@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="pref_plugin_telephony">Ειδοποιήσεις τηλεφωνίας</string>
+  <string name="pref_plugin_telephony_desc">Αποστολή ειδοποιήσεων για SMS και κλήσεις</string>
+  <string name="pref_plugin_battery">Αναφορά μπαταρίας</string>
+  <string name="pref_plugin_battery_desc">Περιοδική αναφορά κατάστασης μπαταρίας</string>
+  <string name="pref_plugin_sftp">Αποκάλυψη συστήματος αρχείων</string>
+  <string name="pref_plugin_sftp_desc">Επιτρέπει την απομακρυσμένη περιήγηση του συστήματος αρχείων του κινητού</string>
+  <string name="pref_plugin_clipboard">Συγχρονισμός προχείρου</string>
+  <string name="pref_plugin_clipboard_desc">Διαμοιρασμός περιεχομένου προχείρου</string>
+  <string name="pref_plugin_mousepad">Απομακρυσμένη είσοδος στοιχείων</string>
+  <string name="pref_plugin_mousepad_desc">Χρήση του κινητού ως ποντίκι και πληκτρολόγιο</string>
+  <string name="pref_plugin_mpris">Κονσόλα πολυμέσων</string>
+  <string name="pref_plugin_mpris_desc">Έλεγχος μουσικής/βίντεο από το κινητό</string>
+  <string name="pref_plugin_runcommand">Εκτέλεση εντολής</string>
+  <string name="pref_plugin_runcommand_desc">Εκτέλεση απομακρυσμένων εντολών από το κινητό</string>
+  <string name="pref_plugin_ping">Ping</string>
+  <string name="pref_plugin_ping_desc">Αποστολή και λήψη pings</string>
+  <string name="pref_plugin_notifications">Συγχρονισμός ειδοποιήσεων</string>
+  <string name="pref_plugin_notifications_desc">Πρόσβαση σε ειδοποιήσεις από άλλες συσκευές</string>
+  <string name="pref_plugin_sharereceiver">Διαμοιρασμός και λήψη</string>
+  <string name="pref_plugin_sharereceiver_desc">Διαμοιρασμός αρχείων και URL μεταξύ συσκευών</string>
+  <string name="plugin_not_available">Αυτή η λειτουργία δεν είναι διαθέσιμη στην τρέχουσα έκδοση του Android</string>
+  <string name="device_list_empty">Χωρίς συσκευές</string>
+  <string name="ok">Εντάξει</string>
+  <string name="cancel">Ακύρωση</string>
+  <string name="open_settings">Ρυθμίσεις ανοίγματος</string>
+  <string name="no_permissions">Απαιτείται παραχώρηση δικαιωμάτων για την πρόσβαση σε ειδοποιήσεις</string>
+  <string name="send_ping">Αποστολή ping</string>
+  <string name="open_mpris_controls">Έλεγχος πολυμέσων</string>
+  <string name="open_mousepad">Απομακρυσμένη είσοδος στοιχείων</string>
+  <string name="mousepad_info">Μετακινείστε το δάκτυλο στην οθόνη για να μετακινηθεί ο δρομέας του ποντικιού. Χτυπήστε για κλικ και χρησιμοποιήστε δύο/τρία δάκτυλα για δεξί και μεσαίο κλικ. Πιέστε με διάρκεια για μετακίνηση και απόθεση.</string>
+  <string name="mousepad_double_tap_settings_title">Ρύθμιση δύο δακτύλων για την ενέργεια χτυπήματος</string>
+  <string name="mousepad_triple_tap_settings_title">Ρύθμιση τριών δακτύλων για την ενέργεια χτυπήματος</string>
+  <string name="mousepad_sensitivity_settings_title">Ρύθμιση ευαισθησίας της οθόνης αφής</string>
+  <string name="mousepad_scroll_direction_title">Κατεύθυνση ανάστροφης κύλησης</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Δεξί κλικ</item>
+    <item>Μεσαίο κλικ</item>
+    <item>Τίποτα</item>
+  </string-array>
+  <string name="mousepad_double_default">δεξί</string>
+  <string name="mousepad_triple_default">μεσαίο</string>
+  <string name="mousepad_sensitivity_default">προκαθορισμένο</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Το πιο αργό</item>
+    <item>Πάνω από το πιο αργό</item>
+    <item>Προκαθορισμένο</item>
+    <item>Πάνω από το προκαθορισμένο</item>
+    <item>Το ταχύτερο</item>
+  </string-array>
+  <string name="category_connected_devices">Συνδεδεμένες συσκευές</string>
+  <string name="category_not_paired_devices">Διαθέσιμες συσκευές</string>
+  <string name="category_remembered_devices">Συσκευές στη μνήμη</string>
+  <string name="plugins_failed_to_load">Αποτυχία φόρτωσης προσθέτων (χτυπήστε για περισσότερες πληροφορίες):</string>
+  <string name="device_menu_plugins">Ρυθμίσεις προσθέτων</string>
+  <string name="device_menu_unpair">Διαχωρισμός</string>
+  <string name="device_not_reachable">Η συζευγμένη συσκευή δεν είναι προσβάσιμη</string>
+  <string name="pair_new_device">Σύζευξη νέας συσκευής</string>
+  <string name="unknown_device">Άγνωστη συσκευή</string>
+  <string name="error_not_reachable">Η συσκευή δεν είναι προσβάσιμη</string>
+  <string name="error_already_requested">Η σύζευξη ήδη ζητήθηκε</string>
+  <string name="error_already_paired">Η συσκευή ήδη συζεύχθηκε</string>
+  <string name="error_could_not_send_package">Αδυναμία αποστολής πακέτου</string>
+  <string name="error_timed_out">Τέλος χρονικού ορίου</string>
+  <string name="error_canceled_by_user">Ακυρώθηκε από τον χρήστη</string>
+  <string name="error_canceled_by_other_peer">Ακυρώθηκε από άλλον χρήστη</string>
+  <string name="error_invalid_key">Ελήφθη μη έγκυρο κλειδί</string>
+  <string name="encryption_info_title">Πληροφορίες κρυπτογράφησης</string>
+  <string name="encryption_info_msg_no_ssl">Η άλλη συσκευή δεν χρησιμοποιεί μια πρόσφατη έκδοση του KDE Connect, θα χρησιμοποιηθεί η παλαιά μέθοδος κρυπτογράφησης.</string>
+  <string name="my_device_fingerprint">Το ίχνος SHA1 του πιστοποιητικού της συσκευής σας είναι:</string>
+  <string name="remote_device_fingerprint">Το ίχνος SHA1 του πιστοποιητικού της απομακρυσμένης συσκευής είναι:</string>
+  <string name="pair_requested">Ζητήθηκε σύζευξη</string>
+  <string name="pairing_request_from">Αίτημα σύζευξης από %1s</string>
+  <string name="received_url_title">Ελήφθη σύνδεσμος από %1s</string>
+  <string name="received_url_text">Χτυπήστε για άνοιγμα \'%1s\'</string>
+  <string name="incoming_file_title">Εισερχόμενο αρχείο από %1s</string>
+  <string name="incoming_file_text">%1s</string>
+  <string name="outgoing_file_title">Αποστολή αρχείου σε %1s</string>
+  <string name="outgoing_file_text">%1s</string>
+  <string name="received_file_title">Ελήφθη αρχείο από %1s</string>
+  <string name="received_file_fail_title">Αποτυχία λήψης αρχείου από %1s</string>
+  <string name="received_file_text">Χτυπήστε για άνοιγμα \'%1s\'</string>
+  <string name="sent_file_title">Εστάλη αρχείο στο %1s</string>
+  <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Αποτυχία αποστολής αρχείου %1s</string>
+  <string name="sent_file_failed_text">%1s</string>
+  <string name="tap_to_answer">Χτυπήστε για να απαντήσετε</string>
+  <string name="reconnect">Επανασύνδεση</string>
+  <string name="right_click">Αποστολή δεξιού κλικ</string>
+  <string name="middle_click">Αποστολή μεσαίου κλικ</string>
+  <string name="show_keyboard">Εμφάνιση πληκτρολογίου</string>
+  <string name="device_not_paired">Η συσκευή δεν συζεύχθηκε</string>
+  <string name="request_pairing">Αίτημα σύζευξης</string>
+  <string name="pairing_accept">Αποδοχή</string>
+  <string name="pairing_reject">Απόρριψη</string>
+  <string name="device">Συσκευή</string>
+  <string name="pair_device">Σύζευξη συσκευής</string>
+  <string name="remote_control">Απομακρυσμένος έλεγχος</string>
+  <string name="settings">Ρυθμίσεις KDE Connect</string>
+  <string name="mpris_play">Αναπαραγωγή</string>
+  <string name="mpris_previous">Προηγούμενο</string>
+  <string name="mpris_rew">Ταχεία ώθηση όπισθεν</string>
+  <string name="mpris_ff">Ταχεία προώθηση</string>
+  <string name="mpris_next">Επόμενο</string>
+  <string name="mpris_volume">Τόμος</string>
+  <string name="mpris_settings">Ρυθμίσεις πολυμέσων</string>
+  <string name="mpris_time_settings_title">Κουμπιά ταχείας ώθησης</string>
+  <string name="mpris_time_settings_summary">Χρονική προσαρμογή ταχείας ώθησης ανάλογα με την πίεση.</string>
+  <string-array name="mpris_time_entries">
+    <item>10 seconds</item>
+    <item>20 seconds</item>
+    <item>30 seconds</item>
+    <item>1 λεπτό</item>
+    <item>2 λεπτά</item>
+  </string-array>
+  <string name="share_to">Διαμοιρασμός με...</string>
+  <string name="protocol_version_older">Η συσκευή αυτή χρησιμοποιεί παλαιά έκδοση πρωτοκόλλου</string>
+  <string name="protocol_version_newer">Η συσκευή αυτή χρησιμοποιεί νεότερη έκδοση πρωτοκόλλου</string>
+  <string name="general_settings">Γενικές ρυθμίσεις</string>
+  <string name="plugin_settings">Ρυθμίσεις</string>
+  <string name="plugin_settings_with_name">%s ρυθμίσεις</string>
+  <string name="device_name">Όνομα συσκευής</string>
+  <string name="device_name_preference_summary">%s</string>
+  <string name="invalid_device_name">Μη έγκυρο όνομα συσκευής</string>
+  <string name="shareplugin_text_saved">Ελήφθη κείμενο, αποθηκεύτηκε στο πρόχειρο</string>
+  <string name="custom_devices_settings">Προσαρμοσμένη λίστα συσκευών</string>
+  <string name="pair_device_action">Σύζευξη νέας συσκευής</string>
+  <string name="unpair_device_action">Διαχωρισμός %s</string>
+  <string name="custom_device_list">Προσθήκη συσκευών ανά IP</string>
+  <string name="share_notification_preference">Θορυβώδεις ειδοποιήσεις</string>
+  <string name="share_notification_preference_summary">Δόνηση και ηχητική ένδειξη με τη λήψη αρχείου</string>
+  <string name="title_activity_notification_filter">Φιλτράρισμα ειδοποιήσεων</string>
+  <string name="filter_apps_info">Οι ειδοποιήσεις θα συγχρονίζονται για επιλεγμένες εφαρμογές.</string>
+  <string name="sftp_internal_storage">Εσωτερικός αποθηκευτικός χώρος</string>
+  <string name="sftp_all_files">Όλα τα αρχεία</string>
+  <string name="sftp_sdcard_num">SD card %d</string>
+  <string name="sftp_sdcard">SD card</string>
+  <string name="sftp_readonly">(ανάγνωση μόνο)</string>
+  <string name="sftp_camera">Φωτογραφίες</string>
+  <string name="add_host">Προσθήκη υπολογιστή/IP</string>
+  <string name="add_host_hint">Όνομα υπολογιστή ή IP</string>
+  <string name="no_players_connected">Δεν βρέθηκαν συσκευές αναπαραγωγής</string>
+  <string name="custom_dev_list_help">Χρησιμοποιήστε την επιλογή αυτή μόνο αν η συσκευή σας δεν έχει εντοπιστεί αυτόματα. Δώστε την IP διεύθυνση ή το όνομα του υπολογιστή και αγγίξτε το κουμπί για να προστεθεί στη λίστα. Αγγίξτε ένα αντικείμενο της λίστας για να το αφαιρέσετε.</string>
+  <string name="mpris_player_on_device">%1$s σε %2$s</string>
+  <string name="send_files">Αποστολή αρχείων</string>
+  <string name="pairing_title">Συσκευές KDE Connect</string>
+  <string name="pairing_description">Άλλες συσκευές με KDE Connect στο ίδιο δίκτυο θα εμφανίζονται εδώ.</string>
+  <string name="device_paired">Η συσκευή συζεύχθηκε</string>
+  <string name="device_rename_title">Μετονομασία συσκευής</string>
+  <string name="device_rename_confirm">Μετονομασία</string>
+  <string name="refresh">Ανανέωση</string>
+  <string name="unreachable_description">Αυτή η συζευγμένη συσκευή δεν είναι προσβάσιμη. Βεβαιωθείτε ότι είναι συνδεδεμένη στο δίκτυό σας.</string>
+  <string name="no_file_browser">Δεν υπάρχουν εγκατεστημένοι περιηγητές αρχείων.</string>
+  <string name="pref_plugin_telepathy">Αποστολή SMS</string>
+  <string name="pref_plugin_telepathy_desc">Αποστολή μηνυμάτων κειμένου από τον υπολογιστή σας</string>
+  <string name="plugin_not_supported">Αυτό το πρόσθετο δεν υποστηρίζεται από τη συσκευή</string>
+  <string name="findmyphone_title">Αναζήτηση του κινητού μου</string>
+  <string name="findmyphone_description">Καλεί αυτό το κινητό ώστε να το εντοπίσετε.</string>
+  <string name="findmyphone_found">Βρέθηκε</string>
+  <string name="open">Άνοιγμα</string>
+  <string name="close">Κλείσιμο</string>
+</resources>
