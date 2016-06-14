@@ -482,8 +482,12 @@ public class LanLinkProvider extends BaseLinkProvider {
     public void onStop() {
         //Log.i("KDE/LanLinkProvider", "onStop");
         try {
-            workerGroup.shutdownGracefully();
-            bossGroup.shutdownGracefully();
+            if (workerGroup != null) {
+                workerGroup.shutdownGracefully();
+            }
+            if (bossGroup != null) {
+                bossGroup.shutdownGracefully();
+            }
             udpGroup.shutdownGracefully();
             clientGroup.shutdownGracefully();
         }catch (Exception e){
