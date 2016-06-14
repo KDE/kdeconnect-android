@@ -67,6 +67,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 import io.netty.handler.codec.Delimiters;
+import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.ssl.SslHandler;
@@ -93,6 +94,28 @@ public class LanLinkProvider extends BaseLinkProvider {
     private ArrayList<String> reverseConnectionBlackList = new ArrayList<>();
     private Timer reverseConnectionTimer;
 
+    private ChannelInitializer<SocketChannel> tcpInitializer = new ChannelInitializer<SocketChannel>() {
+        @Override
+        protected void initChannel(SocketChannel ch) throws Exception {
+            ChannelPipeline pipeline = ch.pipeline();
+            ch.config().setKeepAlive(true);
+            pipeline.addLast(new LineBasedFrameDecoder(512 * 1024));
+            pipeline.addLast(new StringDecoder());
+            pipeline.addLast(new StringEncoder());
+            pipeline.addLast(tcpHandler);
+        }
+    };
+
+    private ChannelInitializer<Channel> udpInitializer = new ChannelInitializer<Channel>() {
+        @Override
+        protected void initChannel(Channel ch) throws Exception {
+            ChannelPipeline pipeline = ch.pipeline();
+            pipeline.addLast(new LineBasedFrameDecoder(512 * 1024));
+            pipeline.addLast(new StringDecoder());
+            pipeline.addLast(new StringEncoder());
+            pipeline.addLast(udpHandler);
+        }
+    };
 
     @ChannelHandler.Sharable
     private class TcpHandler extends SimpleChannelInboundHandler<String>{
@@ -256,7 +279,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                     Bootstrap bootstrap = new Bootstrap();
                     bootstrap.group(clientGroup);
                     bootstrap.channel(NioSocketChannel.class);
-                    bootstrap.handler(new TcpInitializer());
+                    bootstrap.handler(tcpInitializer);
                     int tcpPort = identityPackage.getInt("tcpPort", port);
                     final ChannelFuture channelFuture = bootstrap.connect(packet.sender().getAddress(), tcpPort);
                     channelFuture.addListener(new ChannelFutureListener() {
@@ -310,19 +333,6 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     }
 
-    public class TcpInitializer extends ChannelInitializer<SocketChannel> {
-        @Override
-        protected void initChannel(SocketChannel ch) throws Exception {
-            ChannelPipeline pipeline = ch.pipeline();
-            ch.config().setAllowHalfClosure(false); // Not sure how it will work, but we certainly don't want half closure
-            ch.config().setKeepAlive(true);
-            pipeline.addLast(new DelimiterBasedFrameDecoder(512 * 1024, Delimiters.lineDelimiter()));
-            pipeline.addLast(new StringDecoder());
-            pipeline.addLast(new StringEncoder());
-            pipeline.addLast(tcpHandler);
-        }
-    }
-
     private void addLink(NetworkPackage identityPackage, Channel channel, LanLink.ConnectionStarted connectionOrigin, boolean useSsl) {
         String deviceId = identityPackage.getString("deviceId");
         LanLink currentLink = visibleComputers.get(deviceId);
@@ -348,31 +358,27 @@ public class LanLinkProvider extends BaseLinkProvider {
         }
     }
 
+    private void initUdpListener(int udpPort) {
+        Bootstrap udpBootstrap = new Bootstrap();
+        udpBootstrap.group(udpGroup);
+        udpBootstrap.channel(NioDatagramChannel.class);
+        udpBootstrap.option(ChannelOption.SO_BROADCAST, true);
+        udpBootstrap.handler(udpInitializer);
+        try {
+            udpBootstrap.bind(new InetSocketAddress(udpPort)).sync();
+        }catch (Exception e){
+            Log.e("KDE/LanLinkProvider","Exception setting up UDP server");
+            e.printStackTrace();
+        }
+
+    }
+
     public LanLinkProvider(Context context) {
 
         this.context = context;
 
         udpGroup = new NioEventLoopGroup();
-        try {
-            Bootstrap udpBootstrap = new Bootstrap();
-            udpBootstrap.group(udpGroup);
-            udpBootstrap.channel(NioDatagramChannel.class);
-            udpBootstrap.option(ChannelOption.SO_BROADCAST, true);
-            udpBootstrap.handler(new ChannelInitializer<Channel>() {
-                @Override
-                protected void initChannel(Channel ch) throws Exception {
-                    ChannelPipeline pipeline = ch.pipeline();
-                    pipeline.addLast(new DelimiterBasedFrameDecoder(512 * 1024, Delimiters.lineDelimiter()));
-                    pipeline.addLast(new StringDecoder());
-                    pipeline.addLast(new StringEncoder());
-                    pipeline.addLast(udpHandler);
-                }
-            });
-            udpBootstrap.bind(new InetSocketAddress(port)).sync();
-        }catch (Exception e){
-            Log.e("KDE/LanLinkProvider","Exception setting up UDP server");
-            e.printStackTrace();
-        }
+        initUdpListener(port);
 
         clientGroup = new NioEventLoopGroup();
 
@@ -401,7 +407,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
             tcpBootstrap.option(ChannelOption.SO_REUSEADDR, true);
 
-            tcpBootstrap.childHandler(new TcpInitializer());
+            tcpBootstrap.childHandler(tcpInitializer);
 
             tcpBootstrap.bind(new InetSocketAddress(port)).sync();
         }catch (Exception e) {
@@ -448,8 +454,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                     for (String ipstr : iplist) {
                         try {
                             InetAddress client = InetAddress.getByName(ipstr);
-                            java.net.DatagramPacket packet = new java.net.DatagramPacket(bytes, bytes.length, client, port);
-                            socket.send(packet);
+                            socket.send(new java.net.DatagramPacket(bytes, bytes.length, client, port));
                             //Log.i("KDE/LanLinkProvider","Udp identity package sent to address "+packet.getAddress());
                         } catch (Exception e) {
                             e.printStackTrace();
