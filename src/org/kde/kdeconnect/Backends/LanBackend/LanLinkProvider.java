@@ -65,8 +65,6 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioDatagramChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.DelimiterBasedFrameDecoder;
-import io.netty.handler.codec.Delimiters;
 import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
@@ -78,7 +76,8 @@ import io.netty.util.concurrent.GenericFutureListener;
 public class LanLinkProvider extends BaseLinkProvider {
 
     public static final String KEY_CUSTOM_DEVLIST_PREFERENCE  = "device_list_preference";
-    private final static int port = 1714;
+    private final static int oldPort = 1714;
+    private final static int port = 1716;
     private static final int MIN_VERSION_WITH_SSL_SUPPORT = 6;
 
     private final Context context;
@@ -378,6 +377,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         this.context = context;
 
         udpGroup = new NioEventLoopGroup();
+        initUdpListener(oldPort);
         initUdpListener(port);
 
         clientGroup = new NioEventLoopGroup();
@@ -455,6 +455,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                         try {
                             InetAddress client = InetAddress.getByName(ipstr);
                             socket.send(new java.net.DatagramPacket(bytes, bytes.length, client, port));
+                            socket.send(new java.net.DatagramPacket(bytes, bytes.length, client, oldPort));
                             //Log.i("KDE/LanLinkProvider","Udp identity package sent to address "+packet.getAddress());
                         } catch (Exception e) {
                             e.printStackTrace();
