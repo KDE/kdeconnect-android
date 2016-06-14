@@ -75,10 +75,12 @@ import io.netty.util.concurrent.GenericFutureListener;
 
 public class LanLinkProvider extends BaseLinkProvider {
 
+    public static final int MIN_VERSION_WITH_SSL_SUPPORT = 6;
+
     public static final String KEY_CUSTOM_DEVLIST_PREFERENCE  = "device_list_preference";
+
     private final static int oldPort = 1714;
     private final static int port = 1716;
-    private static final int MIN_VERSION_WITH_SSL_SUPPORT = 6;
 
     private final Context context;
 
@@ -89,7 +91,7 @@ public class LanLinkProvider extends BaseLinkProvider {
     private TcpHandler tcpHandler = new TcpHandler();
     private UdpHandler udpHandler = new UdpHandler();
 
-    // To prevent infinte loop if both device can only broadcast identity package but cannot connect via TCO
+    // To prevent infinte loop between Android < IceCream because both device can only broadcast identity package but cannot connect via TCP
     private ArrayList<String> reverseConnectionBlackList = new ArrayList<>();
     private Timer reverseConnectionTimer;
 

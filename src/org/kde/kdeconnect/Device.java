@@ -36,6 +36,7 @@ import android.util.Log;
 
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
+import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.kde.kdeconnect.Helpers.ObjectsHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
@@ -69,6 +70,8 @@ public class Device implements BaseLink.PackageReceiver {
     public Certificate certificate;
     private int notificationId;
     private int protocolVersion;
+
+    private static final int MIN_VERSION_WITH_CAPPABILITIES_SUPPORT = 6;
 
     private DeviceType deviceType;
     private PairStatus pairStatus;
@@ -639,7 +642,7 @@ public class Device implements BaseLink.PackageReceiver {
 
         hackToMakeRetrocompatiblePacketTypes(np);
 
-        if (protocolVersion >= 6 && !supportedOutgoingInterfaces.contains(np.getType()) && !NetworkPackage.protocolPackageTypes.contains(np.getType())) {
+        if (protocolVersion >= MIN_VERSION_WITH_CAPPABILITIES_SUPPORT && !supportedOutgoingInterfaces.contains(np.getType()) && !NetworkPackage.protocolPackageTypes.contains(np.getType())) {
             Log.e("Device/sendPackage", "Plugin tried to send an unsupported package: " + np.getType());
             Log.e("Device/sendPackage", "Supported package types: " + Arrays.toString(supportedOutgoingInterfaces.toArray()));
         }
@@ -652,7 +655,7 @@ public class Device implements BaseLink.PackageReceiver {
             @Override
             public void run() {
 
-                boolean useEncryption = (protocolVersion < 6 && (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR) && isPaired()));
+                boolean useEncryption = (protocolVersion < LanLinkProvider.MIN_VERSION_WITH_SSL_SUPPORT && (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR) && isPaired()));
 
                 //Make a copy to avoid concurrent modification exception if the original list changes
                 for (final BaseLink link : links) {
@@ -786,7 +789,7 @@ public class Device implements BaseLink.PackageReceiver {
         HashMap<String, ArrayList<String>> newPluginsByIncomingInterface = new HashMap<>();
         HashMap<String, ArrayList<String>> newPluginsByOutgoingInterface = new HashMap<>();
 
-        final boolean supportsCapabilities = (protocolVersion >= 6);
+        final boolean supportsCapabilities = (protocolVersion >= MIN_VERSION_WITH_CAPPABILITIES_SUPPORT);
 
         for (String pluginKey : availablePlugins) {
 
@@ -868,7 +871,7 @@ public class Device implements BaseLink.PackageReceiver {
         onPluginsChanged();
 
         //Only send capabilities to devices using protocol version 6 or later
-        if (capabilitiesChanged && isReachable() && isPaired() && protocolVersion >= 6) {
+        if (capabilitiesChanged && isReachable() && isPaired() && protocolVersion >= MIN_VERSION_WITH_CAPPABILITIES_SUPPORT) {
             NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_CAPABILITIES);
             np.set("IncomingCapabilities", new ArrayList<>(newSupportedIncomingInterfaces));
             np.set("OutgoingCapabilities", new ArrayList<>(newSupportedOutgoingInterfaces));
@@ -915,12 +918,12 @@ public class Device implements BaseLink.PackageReceiver {
     }
 
     public void hackToMakeRetrocompatiblePacketTypes(NetworkPackage np) {
-        if (protocolVersion >= 6) return;
+        if (protocolVersion >= MIN_VERSION_WITH_CAPPABILITIES_SUPPORT) return;
         np.mType = np.getType().replace(".request","");
     }
 
     public String hackToMakeRetrocompatiblePacketTypes(String type) {
-        if (protocolVersion >= 6) return type;
+        if (protocolVersion >= MIN_VERSION_WITH_CAPPABILITIES_SUPPORT) return type;
         return type.replace(".request","");
     }
 
