@@ -269,7 +269,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                 } else {
                     String myId = DeviceHelper.getDeviceId(context);
                     if (deviceId.equals(myId)) {
-                        Log.i("KDE/LanLinkProvider", "Ignoring my own broadcast");
+                        //Log.i("KDE/LanLinkProvider", "Ignoring my own broadcast");
                         return;
                     }
                 }
