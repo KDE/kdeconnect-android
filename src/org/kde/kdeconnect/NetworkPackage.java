@@ -36,7 +36,7 @@ import java.util.Set;
 
 public class NetworkPackage {
 
-    public final static int ProtocolVersion = 6;
+    public final static int ProtocolVersion = 7;
 
     public final static String PACKAGE_TYPE_IDENTITY = "kdeconnect.identity";
     public final static String PACKAGE_TYPE_PAIR = "kdeconnect.pair";

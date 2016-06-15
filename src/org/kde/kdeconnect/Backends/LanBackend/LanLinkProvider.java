@@ -76,6 +76,7 @@ import io.netty.util.concurrent.GenericFutureListener;
 public class LanLinkProvider extends BaseLinkProvider {
 
     public static final int MIN_VERSION_WITH_SSL_SUPPORT = 6;
+    public static final int MIN_VERSION_WITH_NEW_PORT_SUPPORT = 7;
 
     public static final String KEY_CUSTOM_DEVLIST_PREFERENCE  = "device_list_preference";
 
@@ -275,6 +276,10 @@ public class LanLinkProvider extends BaseLinkProvider {
                 }
 
                 //Log.i("KDE/LanLinkProvider", "Identity package received, creating link");
+                if (identityPackage.getInt("protocolVersion") >= MIN_VERSION_WITH_NEW_PORT_SUPPORT && identityPackage.getInt("tcpPort") < port) {
+                    Log.w("KDE/LanLinkProvider", "Ignoring a udp broadcast from an old port because it comes from a device which knows about the new port.");
+                    return;
+                }
 
                 try{
                     Bootstrap bootstrap = new Bootstrap();
