@@ -406,9 +406,6 @@ public class LanLinkProvider extends BaseLinkProvider {
             tcpBootstrap.group(bossGroup, workerGroup);
             tcpBootstrap.channel(NioServerSocketChannel.class);
 
-            tcpBootstrap.option(ChannelOption.SO_BACKLOG, 100);
-            tcpBootstrap.childOption(ChannelOption.SO_BACKLOG, 100);
-
             tcpBootstrap.option(ChannelOption.SO_KEEPALIVE, true);
             tcpBootstrap.childOption(ChannelOption.SO_KEEPALIVE, true);
 
