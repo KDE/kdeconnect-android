@@ -75,7 +75,7 @@ dependencies {
 
     compile 'com.madgag.spongycastle:pkix:1.54.0.0'
 
-    compile 'io.netty:netty-handler:4.1.0.Final'
+    compile 'io.netty:netty-handler:4.1.1.Final'
 
 
     // Testing
