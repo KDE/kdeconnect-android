@@ -49,7 +49,6 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Formatter;
@@ -140,7 +139,6 @@ public class SslHelper {
             if (isDeviceTrusted){
                 SharedPreferences devicePreferences = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
                 byte[] certificateBytes = Base64.decode(devicePreferences.getString("certificate", ""), 0);
-                Log.e("DeviceCertificate", "bytes:"+ Arrays.toString(certificateBytes));
                 X509CertificateHolder certificateHolder = new X509CertificateHolder(certificateBytes);
                 remoteDeviceCertificate = new JcaX509CertificateConverter().setProvider(BC).getCertificate(certificateHolder);
             }
