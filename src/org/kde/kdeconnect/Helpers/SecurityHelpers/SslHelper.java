@@ -41,6 +41,7 @@ import org.spongycastle.operator.jcajce.JcaContentSignerBuilder;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.nio.channels.ServerSocketChannel;
 import java.security.KeyStore;
 import java.security.MessageDigest;
 import java.security.PrivateKey;
@@ -56,6 +57,7 @@ import java.util.Formatter;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLEngine;
+import javax.net.ssl.SSLSocket;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
@@ -193,48 +195,34 @@ public class SslHelper {
 
     }
 
-    public static SSLEngine getSslEngine(final Context context, final String deviceId, SslMode sslMode) {
+    public static void configureSslSocket(SSLSocket socket, boolean isDeviceTrusted, boolean isClient) {
 
-        try{
+        socket.setEnabledProtocols(new String[]{ "TLSv1" }); //Newer TLS versions are only supported on API 16+
 
-            SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
-            final boolean isDeviceTrusted = preferences.getBoolean(deviceId, false);
-
-            SSLContext tlsContext = getSslContext(context, deviceId, isDeviceTrusted);
-            SSLEngine sslEngine = tlsContext.createSSLEngine();
-
-            sslEngine.setEnabledProtocols(new String[]{ "TLSv1" }); //Newer TLS versions are only supported on API 16+
-
-            // These cipher suites are most common of them that are accepted by kde and android during handshake
-            ArrayList<String> supportedCiphers = new ArrayList<>();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                supportedCiphers.add("TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256");
-                supportedCiphers.add("TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384");
-                supportedCiphers.add("TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA");
-            }
+        // These cipher suites are most common of them that are accepted by kde and android during handshake
+        ArrayList<String> supportedCiphers = new ArrayList<>();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            supportedCiphers.add("TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384");
+            supportedCiphers.add("TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256");
+            supportedCiphers.add("TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA");
+        } else {
             // Following ciphers are for and due to old devices
             supportedCiphers.add("SSL_RSA_WITH_RC4_128_SHA");
             supportedCiphers.add("SSL_RSA_WITH_RC4_128_MD5");
-            sslEngine.setEnabledCipherSuites(supportedCiphers.toArray(new String[supportedCiphers.size()]));
-
-
-            if (sslMode == SslMode.Client){
-                sslEngine.setUseClientMode(true);
-            }else{
-                sslEngine.setUseClientMode(false);
-                if (isDeviceTrusted) {
-                    sslEngine.setNeedClientAuth(true);
-                }else {
-                    sslEngine.setWantClientAuth(true);
-                }
-            }
-
-            return sslEngine;
-        }catch (Exception e){
-            e.printStackTrace();
-            Log.e("SslHelper", "Error creating ssl filter");
         }
-        return null;
+        socket.setEnabledCipherSuites(supportedCiphers.toArray(new String[supportedCiphers.size()]));
+
+        if (isClient){
+            socket.setUseClientMode(true);
+        }else{
+            socket.setUseClientMode(false);
+            if (isDeviceTrusted) {
+                socket.setNeedClientAuth(true);
+            } else {
+                socket.setWantClientAuth(true);
+            }
+        }
+
     }
 
     public static String getCertificateHash(Certificate certificate) {

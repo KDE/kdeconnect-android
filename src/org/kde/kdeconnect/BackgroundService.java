@@ -161,11 +161,16 @@ public class BackgroundService extends Service {
     }
 
     private void cleanDevices() {
-        for(Device d : devices.values()) {
-            if (!d.isPaired() && !d.isPairRequested() && !d.isPairRequestedByPeer() && !d.deviceShouldBeKeptAlive()) {
-                d.disconnect();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(Device d : devices.values()) {
+                    if (!d.isPaired() && !d.isPairRequested() && !d.isPairRequestedByPeer() && !d.deviceShouldBeKeptAlive()) {
+                        d.disconnect();
+                    }
+                }
             }
-        }
+        });
     }
 
     private final BaseLinkProvider.ConnectionReceiver deviceListener = new BaseLinkProvider.ConnectionReceiver() {

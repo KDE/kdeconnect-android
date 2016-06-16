@@ -38,8 +38,6 @@ import org.kde.kdeconnect_tp.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import io.netty.handler.codec.base64.Base64Decoder;
-
 public class MprisPlugin extends Plugin {
 
     public final static String PACKAGE_TYPE_MPRIS = "kdeconnect.mpris";
