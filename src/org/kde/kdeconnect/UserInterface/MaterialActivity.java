@@ -40,8 +40,6 @@ public class MaterialActivity extends AppCompatActivity {
 
     private NavigationView mNavigationView;
     private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mDrawerToggle;
-    private View mDrawerHeader;
 
     private String mCurrentDevice;
 
@@ -55,14 +53,14 @@ public class MaterialActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mNavigationView = (NavigationView) findViewById(R.id.navigation_drawer);
-        mDrawerHeader = mNavigationView.getHeaderView(0);
+        View mDrawerHeader = mNavigationView.getHeaderView(0);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
 
-        mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
                 mDrawerLayout, /* DrawerLayout object */
                 R.string.open, /* "open drawer" description */
                 R.string.close /* "close drawer" description */
