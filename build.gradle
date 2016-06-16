@@ -15,7 +15,7 @@ android {
     defaultConfig {
         minSdkVersion 9
         targetSdkVersion 22 //Bumping to 23 means we have to support the new permissions model
-        multiDexEnabled true
+        //multiDexEnabled true
         testInstrumentationRunner "com.android.test.runner.MultiDexTestRunner"
     }
     dexOptions {
@@ -53,6 +53,10 @@ android {
         checkReleaseBuilds false
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            useProguard false
+        }
         release { //keep on 'releae', set to 'all' when testing to make sure proguard is not deleting important stuff
             minifyEnabled true
             useProguard true
