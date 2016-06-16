@@ -27,7 +27,6 @@ import android.util.Log;
 import org.json.JSONObject;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
-import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
@@ -47,6 +46,7 @@ import java.security.PublicKey;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLServerSocketFactory;
+import javax.net.ssl.SSLSocket;
 
 public class LanLink extends BaseLink {
 
@@ -61,9 +61,6 @@ public class LanLink extends BaseLink {
 
     private Socket channel = null;
 
-    private boolean onSsl = false;
-
-    OutputStream writter;
     Cancellable readThread;
 
     public abstract class Cancellable implements Runnable {
@@ -91,75 +88,65 @@ public class LanLink extends BaseLink {
     }
 
     //Returns the old channel
-    public Socket reset(final Socket channel, ConnectionStarted connectionSource, boolean onSsl, final LanLinkProvider linkProvider) throws IOException {
+    public Socket reset(final Socket channel, ConnectionStarted connectionSource, final LanLinkProvider linkProvider) throws IOException {
 
         Socket oldChannel = this.channel;
-        try {
-            Log.e("reset", "1");
-            //writter = channel.getOutputStream();
-            Log.e("reset", "2");
-            this.channel = channel;
-            this.connectionSource = connectionSource;
-            this.onSsl = onSsl;
-            Log.e("reset", "BBBBB");
+        this.channel = channel;
+        this.connectionSource = connectionSource;
 
-            if (oldChannel != null) {
-                readThread.cancel();
-                oldChannel.close();
-            }
-
-            Log.e("LanLink", "Start listening");
-            //Start listening
-            readThread = new Cancellable() {
-                @Override
-                public void run() {
-                    try {
-                        BufferedReader reader = new BufferedReader(new InputStreamReader(channel.getInputStream(), LanLinkProvider.UTF8));
-                        while (!cancelled) {
-                            if (channel.isClosed()) {
-                                Log.e("BufferReader", "Channel closed");
-                                break;
-                            }
-                            String packet;
-                            try {
-                                packet = reader.readLine();
-                                Log.e("packet", "A" + packet);
-                            } catch (SocketTimeoutException e) {
-                                Log.w("BufferReader", "timeout");
-                                continue;
-                            }
-                            if (packet == null) {
-                                Log.w("BufferReader", "null package");
-                                break;
-                            }
-                            if (packet.isEmpty()) {
-                                Log.w("BufferReader", "empty package: " + packet);
-                                continue;
-                            }
-                            NetworkPackage np = NetworkPackage.unserialize(packet);
-                            injectNetworkPackage(np);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                    Log.e("LanLink", "Socket closed");
-                    linkProvider.socketClosed(channel);
-                }
-            };
-
-            new Thread(readThread).start();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("reset","except");
+        if (oldChannel != null) {
+            readThread.cancel();
+            oldChannel.close();
         }
+
+        Log.e("LanLink", "Start listening");
+        //Start listening
+        readThread = new Cancellable() {
+            @Override
+            public void run() {
+                try {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(channel.getInputStream(), LanLinkProvider.UTF8));
+                    while (!cancelled) {
+                        if (channel.isClosed()) {
+                            Log.e("BufferReader", "Channel closed");
+                            break;
+                        }
+                        String packet;
+                        try {
+                            packet = reader.readLine();
+                            Log.e("packet", "A" + packet);
+                        } catch (SocketTimeoutException e) {
+                            Log.w("BufferReader", "timeout");
+                            continue;
+                        }
+                        if (packet == null) {
+                            Log.w("BufferReader", "null package");
+                            break;
+                        }
+                        if (packet.isEmpty()) {
+                            Log.w("BufferReader", "empty package: " + packet);
+                            continue;
+                        }
+                        NetworkPackage np = NetworkPackage.unserialize(packet);
+                        injectNetworkPackage(np);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                Log.e("LanLink", "Socket closed");
+                linkProvider.socketClosed(channel);
+            }
+        };
+        new Thread(readThread).start();
+
+
         return oldChannel;
     }
 
-    public LanLink(Context context, String deviceId, LanLinkProvider linkProvider, Socket channel, ConnectionStarted connectionSource, boolean onSsl) throws IOException {
+    public LanLink(Context context, String deviceId, LanLinkProvider linkProvider, Socket channel, ConnectionStarted connectionSource) throws IOException {
         super(context, deviceId, linkProvider);
-        reset(channel, connectionSource, onSsl, linkProvider);
+        reset(channel, connectionSource, linkProvider);
     }
 
 
@@ -171,20 +158,6 @@ public class LanLink extends BaseLink {
     @Override
     public BasePairingHandler getPairingHandler(Device device, BasePairingHandler.PairingHandlerCallback callback) {
         return new LanPairingHandler(device, callback);
-    }
-
-    @Override
-    public void addPackageReceiver(PackageReceiver pr) {
-        super.addPackageReceiver(pr);
-        BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                Device device = service.getDevice(getDeviceId());
-                if (device == null) return;
-                if (!device.isPaired()) return;
-                // If the device is already paired due to other link, just send a pairing request to get required attributes for this link
-            }
-        });
     }
 
     //Blocking, do not call from main thread
@@ -200,7 +173,7 @@ public class LanLink extends BaseLink {
             //Prepare socket for the payload
             final ServerSocket server;
             if (np.hasPayload()) {
-                server = openTcpSocketOnFreePort(context, getDeviceId(), onSsl);
+                server = openTcpSocketOnFreePort(context, getDeviceId());
                 JSONObject payloadTransferInfo = new JSONObject();
                 payloadTransferInfo.put("port", server.getLocalPort());
                 np.setPayloadTransferInfo(payloadTransferInfo);
@@ -213,12 +186,13 @@ public class LanLink extends BaseLink {
                 np = RsaHelper.encrypt(np, key);
             }
 
-            Log.e("LanLink/sendPackage", np.getType());
+            //Log.e("LanLink/sendPackage", np.getType());
 
             //Send body of the network package
             try {
-                //writter.write(np.serialize().getBytes(LanLinkProvider.UTF8));
-                //writter.flush();
+                OutputStream writter = channel.getOutputStream();
+                writter.write(np.serialize().getBytes(LanLinkProvider.UTF8));
+                writter.flush();
             } catch (Exception e) {
                 callback.sendFailure(e);
                 e.printStackTrace();
@@ -308,7 +282,7 @@ public class LanLink extends BaseLink {
             Socket payloadSocket = null;
             try {
                 // Use ssl if existing link is on ssl
-                if (onSsl) {
+                if (channel instanceof SSLSocket) {
                     SSLContext sslContext = SslHelper.getSslContext(context, getDeviceId(), true);
                     payloadSocket = sslContext.getSocketFactory().createSocket();
                 } else {
@@ -330,8 +304,8 @@ public class LanLink extends BaseLink {
         packageReceived(np);
     }
 
-    static ServerSocket openTcpSocketOnFreePort(Context context, String deviceId, boolean useSsl) throws IOException {
-        if (useSsl) {
+    ServerSocket openTcpSocketOnFreePort(Context context, String deviceId) throws IOException {
+        if (channel instanceof SSLSocket) {
             return openSecureServerSocket(context, deviceId);
         } else {
             return openUnsecureSocketOnFreePort(1739);

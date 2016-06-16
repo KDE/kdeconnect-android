@@ -87,7 +87,6 @@ public class LanLinkProvider extends BaseLinkProvider {
     private ArrayList<InetAddress> reverseConnectionBlackList = new ArrayList<>();
 
     public void socketClosed(Socket socket) {
-        Log.e("socketClosed","socketClosed");
         try {
             final LanLink brokenLink = nioLinks.get(socket.hashCode());
             if (brokenLink != null) {
@@ -267,7 +266,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                             Certificate certificate = event.getPeerCertificates()[0];
                             identityPackage.set("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
                             Log.i("KDE/LanLinkProvider","Handshake as " + mode + " successful with " + identityPackage.getString("deviceName") + " secured with " + event.getCipherSuite());
-                            addLink(identityPackage, sslsocket, connectionStarted, true);
+                            addLink(identityPackage, sslsocket, connectionStarted);
                         } catch (Exception e) {
                             Log.e("KDE/LanLinkProvider","Handshake as " + mode + " failed with " + identityPackage.getString("deviceName"));
                             e.printStackTrace();
@@ -294,7 +293,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                     }
                 }).start();
             } else {
-                addLink(identityPackage, channel, connectionStarted, false);
+                addLink(identityPackage, channel, connectionStarted);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -302,7 +301,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     }
 
-    private void addLink(final NetworkPackage identityPackage, Socket channel, LanLink.ConnectionStarted connectionOrigin, boolean useSsl) throws IOException {
+    private void addLink(final NetworkPackage identityPackage, Socket channel, LanLink.ConnectionStarted connectionOrigin) throws IOException {
 
         try {
             Log.e("addLink", identityPackage.serialize());
@@ -315,7 +314,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         if (currentLink != null) {
             //Update old link
             Log.i("KDE/LanLinkProvider", "Reusing same link for device " + deviceId);
-            final Socket oldChannel = currentLink.reset(channel, connectionOrigin, useSsl, this);
+            final Socket oldChannel = currentLink.reset(channel, connectionOrigin, this);
             new Timer().schedule(new TimerTask() {
                 @Override
                 public void run() {
@@ -329,7 +328,7 @@ public class LanLinkProvider extends BaseLinkProvider {
 
             Log.e("addLink", "create link");
             //Let's create the link
-            LanLink link = new LanLink(context, deviceId, this, channel, connectionOrigin, useSsl);
+            LanLink link = new LanLink(context, deviceId, this, channel, connectionOrigin);
             nioLinks.put(channel.hashCode(), link);
             visibleComputers.put(deviceId, link);
             connectionAccepted(identityPackage, link);
@@ -389,14 +388,14 @@ public class LanLinkProvider extends BaseLinkProvider {
     private void setupTcpListener() {
 
         try {
-            final ServerSocket serverSocket = LanLink.openUnsecureSocketOnFreePort(port);
+            tcpServer = LanLink.openUnsecureSocketOnFreePort(port);
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     while (running) {
                         try {
                             Log.e("ServerSocket","Waiting...");
-                            Socket socket = serverSocket.accept();
+                            Socket socket = tcpServer.accept();
                             Log.e("ServerSocket","Got a socket!");
                             configureSocket(socket);
                             tcpPackageReceived(socket);
