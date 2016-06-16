@@ -264,51 +264,37 @@ public class LanLink extends BaseLink {
 
 
     static ServerSocket openUnsecureSocketOnFreePort() throws IOException {
-        boolean success = false;
         int tcpPort = 1739;
-        ServerSocket candidateServer = null;
-        while(!success) {
+        while(tcpPort < 1764) {
             try {
-                candidateServer = new ServerSocket();
+                ServerSocket candidateServer = new ServerSocket();
                 candidateServer.bind(new InetSocketAddress(tcpPort));
-                success = true;
                 Log.i("KDE/LanLink", "Using port "+tcpPort);
+                return candidateServer;
             } catch(IOException e) {
-                //Log.e("LanLink", "Exception openning serversocket: "+e);
                 tcpPort++;
-                if (tcpPort >= 1764) {
-                    Log.e("KDE/LanLink", "No more ports available");
-                    throw e;
-                }
             }
         }
-        return candidateServer;
+        Log.e("KDE/LanLink", "No more ports available");
+        throw new IOException("No more ports available");
     }
 
     static ServerSocket openSecureServerSocket(Context context, String deviceId) throws IOException{
-        boolean success = false;
-        int tcpPort = 1739;
-
         SSLContext tlsContext = SslHelper.getSslContext(context, deviceId, true);
         SSLServerSocketFactory sslServerSocketFactory = tlsContext.getServerSocketFactory();
-
-        ServerSocket candidateServer = null;
-        while(!success) {
+        int tcpPort = 1739;
+        while(tcpPort < 1764) {
             try {
-                candidateServer = sslServerSocketFactory.createServerSocket();
+                ServerSocket candidateServer = sslServerSocketFactory.createServerSocket();
                 candidateServer.bind(new InetSocketAddress(tcpPort));
-                success = true;
-                Log.i("LanLink", "Using port "+tcpPort);
+                Log.i("KDE/LanLink", "Using port "+tcpPort);
+                return candidateServer;
             } catch(IOException e) {
-                //Log.e("LanLink", "Exception opening serversocket: "+e);
                 tcpPort++;
-                if (tcpPort >= 1764) {
-                    Log.e("LanLink", "No more ports available");
-                    throw e;
-                }
             }
         }
-        return candidateServer;
+        Log.e("KDE/LanLink", "No more ports available");
+        throw new IOException("No more ports available");
     }
 
     @Override
