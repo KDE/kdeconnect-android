@@ -46,7 +46,6 @@ import java.nio.channels.NotYetConnectedException;
 import java.security.PublicKey;
 
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLServerSocketFactory;
 import javax.net.ssl.SSLSocket;
 
@@ -66,7 +65,7 @@ public class LanLink extends BaseLink {
     @Override
     public void disconnect() {
 
-        Log.e("Disconnect","socket:"+ socket.hashCode());
+        Log.i("LanLink/Disconnect","socket:"+ socket.hashCode());
 
         if (socket == null) {
             Log.w("KDE/LanLink", "Not yet connected");
@@ -101,35 +100,24 @@ public class LanLink extends BaseLink {
                 try {
                     BufferedReader reader = new BufferedReader(new InputStreamReader(newSocket.getInputStream(), StringsHelper.UTF8));
                     while (true) {
-                        if (socket.isClosed()) {
-                            Log.e("BufferReader", "Channel closed");
-                            break;
-                        }
                         String packet;
                         try {
                             packet = reader.readLine();
                         } catch (SocketTimeoutException e) {
-                            Log.w("BufferReader", "timeout");
                             continue;
                         }
                         if (packet == null) {
-                            Log.w("BufferReader", "null package");
-                            break;
+                            throw new IOException("Read null");
                         }
-                        if (packet.isEmpty()) {
-                            Log.w("BufferReader", "empty package: " + packet);
-                            continue;
-                        }
+                        if (packet.isEmpty()) continue;
                         NetworkPackage np = NetworkPackage.unserialize(packet);
                         injectNetworkPackage(np);
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    Log.e("LanLink", "Socket closed " + newSocket.hashCode() + " reason: " + e.getMessage());
+                    boolean thereIsaANewSocket = (newSocket != socket);
+                    linkProvider.socketClosed(newSocket, thereIsaANewSocket);
                 }
-
-                Log.e("LanLink", "Socket closed"+newSocket.hashCode());
-                boolean thereIsaANewSocket = (newSocket != socket);
-                linkProvider.socketClosed(newSocket, thereIsaANewSocket);
             }
         }).start();
 

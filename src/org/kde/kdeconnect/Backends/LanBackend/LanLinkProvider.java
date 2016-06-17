@@ -114,20 +114,16 @@ public class LanLinkProvider extends BaseLinkProvider {
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String message = reader.readLine();
             networkPackage = NetworkPackage.unserialize(message);
-            Log.e("TcpListener","Received TCP package: "+networkPackage.serialize());
+            //Log.i("TcpListener","Received TCP package: "+networkPackage.serialize());
         } catch (Exception e) {
             e.printStackTrace();
             return;
         }
 
         if (networkPackage.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
-
-            //TODO: Don't accept identity packet when already connected (move this if inside the check we do in the else)
             Log.i("KDE/LanLinkProvider", "Identity package received from a TCP connection from " + networkPackage.getString("deviceName"));
             identityPackageReceived(networkPackage, socket, LanLink.ConnectionStarted.Locally);
-
         } else {
-
             LanLink link = nioLinks.get(socket);
             if (link== null) {
                 Log.e("KDE/LanLinkProvider","Expecting an identity package instead of " + networkPackage.getType());
@@ -276,12 +272,6 @@ public class LanLinkProvider extends BaseLinkProvider {
 
     private void addLink(final NetworkPackage identityPackage, Socket socket, LanLink.ConnectionStarted connectionOrigin) throws IOException {
 
-        try {
-            Log.e("addLink", identityPackage.serialize());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
         String deviceId = identityPackage.getString("deviceId");
         LanLink currentLink = visibleComputers.get(deviceId);
         if (currentLink != null) {
@@ -298,7 +288,6 @@ public class LanLinkProvider extends BaseLinkProvider {
             nioLinks.put(socket, currentLink);
             //Log.e("KDE/LanLinkProvider", "Replacing socket. old: "+ oldSocket.hashCode() + " - new: "+ socket.hashCode());
         } else {
-            Log.e("addLink", "create link");
             //Let's create the link
             LanLink link = new LanLink(context, deviceId, this, socket, connectionOrigin);
             nioLinks.put(socket, link);
@@ -349,9 +338,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                 public void run() {
                     while (running) {
                         try {
-                            Log.e("ServerSocket","Waiting...");
                             Socket socket = tcpServer.accept();
-                            Log.e("ServerSocket","Got a socket!");
                             configureSocket(socket);
                             tcpPackageReceived(socket);
                         } catch (Exception e) {
@@ -401,8 +388,8 @@ public class LanLinkProvider extends BaseLinkProvider {
                         try {
                             InetAddress client = InetAddress.getByName(ipstr);
                             socket.send(new DatagramPacket(bytes, bytes.length, client, port));
-                            //socket.send(new DatagramPacket(bytes, bytes.length, client, oldPort));
-                            Log.i("KDE/LanLinkProvider","Udp identity package sent to address "+client);
+                            socket.send(new DatagramPacket(bytes, bytes.length, client, oldPort));
+                            //Log.i("KDE/LanLinkProvider","Udp identity package sent to address "+client);
                         } catch (Exception e) {
                             e.printStackTrace();
                             Log.e("KDE/LanLinkProvider", "Sending udp identity package failed. Invalid address? (" + ipstr + ")");
