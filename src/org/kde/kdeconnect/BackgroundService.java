@@ -63,11 +63,13 @@ public class BackgroundService extends Service {
         if (wasEmpty) {
             onNetworkChange();
         }
+        //Log.e("acquireDiscoveryMode",key.getClass().getName() +" ["+discoveryModeAcquisitions.size()+"]");
         return wasEmpty;
     }
 
     public void releaseDiscoveryMode(Object key) {
         boolean removed = discoveryModeAcquisitions.remove(key);
+        //Log.e("releaseDiscoveryMode",key.getClass().getName() +" ["+discoveryModeAcquisitions.size()+"]");
         if (removed && discoveryModeAcquisitions.isEmpty()) {
             cleanDevices();
         }
@@ -170,7 +172,7 @@ public class BackgroundService extends Service {
                     }
                 }
             }
-        });
+        }).start();
     }
 
     private final BaseLinkProvider.ConnectionReceiver deviceListener = new BaseLinkProvider.ConnectionReceiver() {
