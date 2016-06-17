@@ -219,7 +219,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                 SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
                 final boolean isDeviceTrusted = preferences.getBoolean(deviceId, false);
 
-                Log.i("KDE/LanLinkProvider","Starting SSL handshake with " + identityPackage.getString("deviceName"));
+                Log.i("KDE/LanLinkProvider","Starting SSL handshake with " + identityPackage.getString("deviceName") + " trusted:"+isDeviceTrusted);
 
                 SSLSocketFactory sslsocketFactory = SslHelper.getSslContext(context, deviceId, isDeviceTrusted).getSocketFactory();
                 final SSLSocket sslsocket = (SSLSocket)sslsocketFactory.createSocket(socket, socket.getInetAddress().getHostAddress(), socket.getPort(), true);
