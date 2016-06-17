@@ -332,14 +332,11 @@ public class LanLink extends BaseLink {
         //pairing to us, or connections that are already paired. TODO: Keep connections in the process of pairing
 
         if (connectionSource == ConnectionStarted.Remotely) {
+            //Log.e("LinkShouldBeKeptAlive", "because the other end started the connection");
             return true;
         }
 
-        SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
-        if (preferences.contains(getDeviceId())) {
-            return true; //Already paired
-        }
-
+        //Log.e("LinkShouldBeKeptAlive", "false");
         return false;
 
     }

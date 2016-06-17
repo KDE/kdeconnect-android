@@ -909,6 +909,13 @@ public class Device implements BaseLink.PackageReceiver {
     }
 
     public boolean deviceShouldBeKeptAlive() {
+
+        SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
+        if (preferences.contains(getDeviceId())) {
+            //Log.e("DeviceShouldBeKeptAlive", "because it's a paired device");
+            return true; //Already paired
+        }
+
         for(BaseLink l : links) {
             if (l.linkShouldBeKeptAlive()) {
                 return true;
