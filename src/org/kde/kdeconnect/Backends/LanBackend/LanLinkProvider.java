@@ -77,7 +77,7 @@ public class LanLinkProvider extends BaseLinkProvider {
     private DatagramSocket udpServer;
     private DatagramSocket udpServerOldPort;
 
-    private boolean running = false;
+    private boolean listening = false;
 
     // To prevent infinte loop between Android < IceCream because both device can only broadcast identity package but cannot connect via TCP
     private ArrayList<InetAddress> reverseConnectionBlackList = new ArrayList<>();
@@ -312,7 +312,7 @@ public class LanLinkProvider extends BaseLinkProvider {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (running) {
+                while (listening) {
                     final int bufferSize = 1024 * 512;
                     byte[] data = new byte[bufferSize];
                     DatagramPacket packet = new DatagramPacket(data, bufferSize);
@@ -337,7 +337,7 @@ public class LanLinkProvider extends BaseLinkProvider {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    while (running) {
+                    while (listening) {
                         try {
                             Socket socket = tcpServer.accept();
                             configureSocket(socket);
@@ -408,9 +408,9 @@ public class LanLinkProvider extends BaseLinkProvider {
     @Override
     public void onStart() {
         //Log.i("KDE/LanLinkProvider", "onStart");
-        if (!running) {
+        if (!listening) {
 
-            running = true;
+            listening = true;
 
             udpServer = setupUdpListener(port);
             udpServerOldPort = setupUdpListener(oldPort);
@@ -438,7 +438,7 @@ public class LanLinkProvider extends BaseLinkProvider {
     @Override
     public void onStop() {
         //Log.i("KDE/LanLinkProvider", "onStop");
-        running = false;
+        listening = false;
         try {
             tcpServer.close();
         } catch (Exception e){
