@@ -30,6 +30,7 @@ import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
+import org.kde.kdeconnect.Helpers.StringsHelper;
 import org.kde.kdeconnect.NetworkPackage;
 
 import java.io.BufferedReader;
@@ -45,6 +46,7 @@ import java.nio.channels.NotYetConnectedException;
 import java.security.PublicKey;
 
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLServerSocketFactory;
 import javax.net.ssl.SSLSocket;
 
@@ -59,62 +61,53 @@ public class LanLink extends BaseLink {
                                                   // because it's probably trying to find me and
                                                   // potentially ask for pairing.
 
-    private Socket channel = null;
-
-    Cancellable readThread;
-
-    public abstract class Cancellable implements Runnable {
-        protected volatile boolean cancelled;
-        public void cancel()
-        {
-            cancelled = true;
-        }
-    }
+    private Socket socket = null;
 
     @Override
     public void disconnect() {
-        if (readThread != null) {
-            readThread.cancel();
-        }
-        if (channel == null) {
-            Log.e("KDE/LanLink", "Not yet connected");
+
+        Log.e("Disconnect","socket:"+ socket.hashCode());
+
+        if (socket == null) {
+            Log.w("KDE/LanLink", "Not yet connected");
             return;
         }
+
         try {
-            channel.close();
+            socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
-    //Returns the old channel
-    public Socket reset(final Socket channel, ConnectionStarted connectionSource, final LanLinkProvider linkProvider) throws IOException {
+    //Returns the old socket
+    public Socket reset(final Socket newSocket, ConnectionStarted connectionSource, final LanLinkProvider linkProvider) throws IOException {
 
-        Socket oldChannel = this.channel;
-        this.channel = channel;
+        Socket oldSocket = socket;
+        socket = newSocket;
+
         this.connectionSource = connectionSource;
 
-        if (oldChannel != null) {
-            readThread.cancel();
-            oldChannel.close();
+        if (oldSocket != null) {
+            oldSocket.close(); //This should cancel the readThread
         }
 
         Log.e("LanLink", "Start listening");
         //Start listening
-        readThread = new Cancellable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(channel.getInputStream(), LanLinkProvider.UTF8));
-                    while (!cancelled) {
-                        if (channel.isClosed()) {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(newSocket.getInputStream(), StringsHelper.UTF8));
+                    while (true) {
+                        if (socket.isClosed()) {
                             Log.e("BufferReader", "Channel closed");
                             break;
                         }
                         String packet;
                         try {
                             packet = reader.readLine();
-                            Log.e("packet", "A" + packet);
                         } catch (SocketTimeoutException e) {
                             Log.w("BufferReader", "timeout");
                             continue;
@@ -134,19 +127,18 @@ public class LanLink extends BaseLink {
                     e.printStackTrace();
                 }
 
-                Log.e("LanLink", "Socket closed");
-                linkProvider.socketClosed(channel);
+                Log.e("LanLink", "Socket closed"+newSocket.hashCode());
+                boolean thereIsaANewSocket = (newSocket != socket);
+                linkProvider.socketClosed(newSocket, thereIsaANewSocket);
             }
-        };
-        new Thread(readThread).start();
+        }).start();
 
-
-        return oldChannel;
+        return oldSocket;
     }
 
-    public LanLink(Context context, String deviceId, LanLinkProvider linkProvider, Socket channel, ConnectionStarted connectionSource) throws IOException {
+    public LanLink(Context context, String deviceId, LanLinkProvider linkProvider, Socket socket, ConnectionStarted connectionSource) throws IOException {
         super(context, deviceId, linkProvider);
-        reset(channel, connectionSource, linkProvider);
+        reset(socket, connectionSource, linkProvider);
     }
 
 
@@ -162,7 +154,7 @@ public class LanLink extends BaseLink {
 
     //Blocking, do not call from main thread
     private void sendPackageInternal(NetworkPackage np, final Device.SendPackageStatusCallback callback, PublicKey key) {
-        if (channel == null) {
+        if (socket == null) {
             Log.e("KDE/sendPackage", "Not yet connected");
             callback.sendFailure(new NotYetConnectedException());
             return;
@@ -190,12 +182,13 @@ public class LanLink extends BaseLink {
 
             //Send body of the network package
             try {
-                OutputStream writter = channel.getOutputStream();
-                writter.write(np.serialize().getBytes(LanLinkProvider.UTF8));
+                OutputStream writter = socket.getOutputStream();
+                writter.write(np.serialize().getBytes(StringsHelper.UTF8));
                 writter.flush();
             } catch (Exception e) {
                 callback.sendFailure(e);
                 e.printStackTrace();
+                disconnect();
                 return;
             }
 
@@ -265,8 +258,6 @@ public class LanLink extends BaseLink {
 
     public void injectNetworkPackage(NetworkPackage np) {
 
-        Log.e("receivedNetworkPackage",np.getType());
-
         if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_ENCRYPTED)) {
             try {
                 np = RsaHelper.decrypt(np, privateKey);
@@ -274,7 +265,6 @@ public class LanLink extends BaseLink {
                 e.printStackTrace();
                 Log.e("KDE/onPackageReceived","Exception decrypting the package");
             }
-
         }
 
         if (np.hasPayloadTransferInfo()) {
@@ -282,7 +272,7 @@ public class LanLink extends BaseLink {
             Socket payloadSocket = null;
             try {
                 // Use ssl if existing link is on ssl
-                if (channel instanceof SSLSocket) {
+                if (socket instanceof SSLSocket) {
                     SSLContext sslContext = SslHelper.getSslContext(context, getDeviceId(), true);
                     payloadSocket = sslContext.getSocketFactory().createSocket();
                 } else {
@@ -290,7 +280,7 @@ public class LanLink extends BaseLink {
                 }
 
                 int tcpPort = np.getPayloadTransferInfo().getInt("port");
-                InetSocketAddress address = (InetSocketAddress)channel.getRemoteSocketAddress();
+                InetSocketAddress address = (InetSocketAddress) socket.getRemoteSocketAddress();
                 payloadSocket.connect(new InetSocketAddress(address.getAddress(), tcpPort));
                 np.setPayload(payloadSocket.getInputStream(), np.getPayloadSize());
             } catch (Exception e) {
@@ -305,7 +295,7 @@ public class LanLink extends BaseLink {
     }
 
     ServerSocket openTcpSocketOnFreePort(Context context, String deviceId) throws IOException {
-        if (channel instanceof SSLSocket) {
+        if (socket instanceof SSLSocket) {
             return openSecureServerSocket(context, deviceId);
         } else {
             return openUnsecureSocketOnFreePort(1739);
