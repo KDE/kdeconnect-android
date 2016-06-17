@@ -27,7 +27,6 @@ import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 
-import org.json.JSONException;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
@@ -130,7 +129,6 @@ public class LanLinkProvider extends BaseLinkProvider {
             } else {
                 link.injectNetworkPackage(networkPackage);
             }
-
         }
 
     }
@@ -300,14 +298,16 @@ public class LanLinkProvider extends BaseLinkProvider {
         this.context = context;
     }
 
-    private void setupUdpListener() {
+    private DatagramSocket setupUdpListener(int udpPort) {
+        final DatagramSocket server;
         try {
-            udpServer = new DatagramSocket(port);
-            udpServer.setReuseAddress(true);
-            udpServer.setBroadcast(true);
+            server = new DatagramSocket(udpPort);
+            server.setReuseAddress(true);
+            server.setBroadcast(true);
         } catch (SocketException e) {
             Log.e("LanLinkProvider", "Error creating udp server");
             e.printStackTrace();
+            return null;
         }
         new Thread(new Runnable() {
             @Override
@@ -317,7 +317,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                     byte[] data = new byte[bufferSize];
                     DatagramPacket packet = new DatagramPacket(data, bufferSize);
                     try {
-                        udpServer.receive(packet);
+                        server.receive(packet);
                         udpPacketReceived(packet);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -327,6 +327,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                 Log.w("UdpListener","Stopping UDP listener");
             }
         }).start();
+        return server;
     }
 
     private void setupTcpListener() {
@@ -411,7 +412,8 @@ public class LanLinkProvider extends BaseLinkProvider {
 
             running = true;
 
-            setupUdpListener();
+            udpServer = setupUdpListener(port);
+            udpServerOldPort = setupUdpListener(oldPort);
 
             // Due to certificate request from SSL server to client, the certificate request message from device with latest android version to device with
             // old android version causes a FATAL ALERT message stating that incorrect certificate request
@@ -444,6 +446,11 @@ public class LanLinkProvider extends BaseLinkProvider {
         }
         try {
             udpServer.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        try {
+            udpServerOldPort.close();
         } catch (Exception e){
             e.printStackTrace();
         }
