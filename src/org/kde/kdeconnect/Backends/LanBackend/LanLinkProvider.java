@@ -43,6 +43,7 @@ import java.io.OutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
@@ -56,22 +57,20 @@ import javax.net.SocketFactory;
 import javax.net.ssl.HandshakeCompletedEvent;
 import javax.net.ssl.HandshakeCompletedListener;
 import javax.net.ssl.SSLSocket;
-import javax.net.ssl.SSLSocketFactory;
 
-public class LanLinkProvider extends BaseLinkProvider {
+public class LanLinkProvider extends BaseLinkProvider implements LanLink.SocketClosedCallback {
 
     public static final int MIN_VERSION_WITH_SSL_SUPPORT = 6;
     public static final int MIN_VERSION_WITH_NEW_PORT_SUPPORT = 7;
 
-    public static final String KEY_CUSTOM_DEVLIST_PREFERENCE  = "device_list_preference";
-
-    private final static int oldPort = 1714;
-    private final static int port = 1716;
+    final static int MIN_PORT_LEGACY = 1714;
+    final static int MIN_PORT = 1716;
+    final static int MAX_PORT = 1764;
+    final static int PAYLOAD_TRANSFER_MIN_PORT = 1739;
 
     private final Context context;
 
     private final HashMap<String, LanLink> visibleComputers = new HashMap<>();  //Links by device id
-    private final HashMap<Socket, LanLink> nioLinks = new HashMap<>(); //Links by socket
 
     private ServerSocket tcpServer;
     private DatagramSocket udpServer;
@@ -82,26 +81,12 @@ public class LanLinkProvider extends BaseLinkProvider {
     // To prevent infinte loop between Android < IceCream because both device can only broadcast identity package but cannot connect via TCP
     private ArrayList<InetAddress> reverseConnectionBlackList = new ArrayList<>();
 
-    public void socketClosed(Socket socket, boolean linkHasAnotherSocket) {
-        final LanLink brokenLink = nioLinks.remove(socket);
-        if (brokenLink != null) {
-
-            if (!linkHasAnotherSocket) {
-                String deviceId = brokenLink.getDeviceId();
-                visibleComputers.remove(deviceId);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        //Wait a bit before emitting connectionLost, in case the same device re-appears
-                        try {
-                            Thread.sleep(200);
-                        } catch (InterruptedException e) {
-                        }
-                        connectionLost(brokenLink);
-
-                    }
-                }).start();
-            }
+    @Override // SocketClosedCallback
+    public void socketClosed(final LanLink brokenLink, boolean linkHasAnotherSocket) {
+        if (!linkHasAnotherSocket) {
+            String deviceId = brokenLink.getDeviceId();
+            visibleComputers.remove(deviceId);
+            connectionLost(brokenLink);
         }
     }
 
@@ -113,26 +98,22 @@ public class LanLinkProvider extends BaseLinkProvider {
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String message = reader.readLine();
             networkPackage = NetworkPackage.unserialize(message);
-            //Log.i("TcpListener","Received TCP package: "+networkPackage.serialize());
+            //Log.e("TcpListener","Received TCP package: "+networkPackage.serialize());
         } catch (Exception e) {
             e.printStackTrace();
             return;
         }
 
-        if (networkPackage.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
-            Log.i("KDE/LanLinkProvider", "Identity package received from a TCP connection from " + networkPackage.getString("deviceName"));
-            identityPackageReceived(networkPackage, socket, LanLink.ConnectionStarted.Locally);
-        } else {
-            LanLink link = nioLinks.get(socket);
-            if (link== null) {
-                Log.e("KDE/LanLinkProvider","Expecting an identity package instead of " + networkPackage.getType());
-            } else {
-                link.injectNetworkPackage(networkPackage);
-            }
+        if (!networkPackage.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
+            Log.e("KDE/LanLinkProvider", "Expecting an identity package instead of " + networkPackage.getType());
+            return;
         }
 
+        Log.i("KDE/LanLinkProvider", "Identity package received from a TCP connection from " + networkPackage.getString("deviceName"));
+        identityPackageReceived(networkPackage, socket, LanLink.ConnectionStarted.Locally);
     }
 
+    //I've received their broadcast and should connect to their TCP socket and send my identity.
     protected void udpPacketReceived(DatagramPacket packet) throws Exception {
 
         final InetAddress address = packet.getAddress();
@@ -153,21 +134,22 @@ public class LanLinkProvider extends BaseLinkProvider {
                 }
             }
 
-            if (identityPackage.getInt("protocolVersion") >= MIN_VERSION_WITH_NEW_PORT_SUPPORT && identityPackage.getInt("tcpPort") < port) {
-                Log.w("KDE/LanLinkProvider", "Ignoring a udp broadcast from an old port because it comes from a device which knows about the new port.");
+            if (identityPackage.getInt("protocolVersion") >= MIN_VERSION_WITH_NEW_PORT_SUPPORT && identityPackage.getInt("tcpPort") < MIN_PORT) {
+                Log.w("KDE/LanLinkProvider", "Ignoring a udp broadcast from legacy port because it comes from a device which knows about the new port.");
                 return;
             }
 
             Log.i("KDE/LanLinkProvider", "Broadcast identity package received from " + identityPackage.getString("deviceName"));
 
-            int tcpPort = identityPackage.getInt("tcpPort", port);
+            int tcpPort = identityPackage.getInt("tcpPort", MIN_PORT);
 
             SocketFactory socketFactory = SocketFactory.getDefault();
             Socket socket = socketFactory.createSocket(address, tcpPort);
             configureSocket(socket);
 
             OutputStream out = socket.getOutputStream();
-            out.write(NetworkPackage.createIdentityPackage(context).serialize().getBytes());
+            NetworkPackage myIdentity = NetworkPackage.createIdentityPackage(context);
+            out.write(myIdentity.serialize().getBytes());
             out.flush();
 
             identityPackageReceived(identityPackage, socket, LanLink.ConnectionStarted.Remotely);
@@ -188,7 +170,6 @@ public class LanLinkProvider extends BaseLinkProvider {
                 // Try to cause a reverse connection
                 onNetworkChange();
             }
-
         }
     }
 
@@ -217,14 +198,11 @@ public class LanLinkProvider extends BaseLinkProvider {
             if (identityPackage.getInt("protocolVersion") >= MIN_VERSION_WITH_SSL_SUPPORT) {
 
                 SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
-                final boolean isDeviceTrusted = preferences.getBoolean(deviceId, false);
+                boolean isDeviceTrusted = preferences.getBoolean(deviceId, false);
 
                 Log.i("KDE/LanLinkProvider","Starting SSL handshake with " + identityPackage.getString("deviceName") + " trusted:"+isDeviceTrusted);
 
-                SSLSocketFactory sslsocketFactory = SslHelper.getSslContext(context, deviceId, isDeviceTrusted).getSocketFactory();
-                final SSLSocket sslsocket = (SSLSocket)sslsocketFactory.createSocket(socket, socket.getInetAddress().getHostAddress(), socket.getPort(), true);
-                SslHelper.configureSslSocket(sslsocket, isDeviceTrusted, clientMode);
-                configureSocket(sslsocket);
+                final SSLSocket sslsocket = SslHelper.convertToSslSocket(context, socket, deviceId, isDeviceTrusted, clientMode);
                 sslsocket.addHandshakeCompletedListener(new HandshakeCompletedListener() {
                     @Override
                     public void handshakeCompleted(HandshakeCompletedEvent event) {
@@ -276,19 +254,10 @@ public class LanLinkProvider extends BaseLinkProvider {
             //Update old link
             Log.i("KDE/LanLinkProvider", "Reusing same link for device " + deviceId);
             final Socket oldSocket = currentLink.reset(socket, connectionOrigin, this);
-            new Timer().schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    nioLinks.remove(oldSocket);
-                    //Log.e("KDE/LanLinkProvider", "Forgetting about socket " + socket.hashCode());
-                }
-            }, 500); //Stop accepting messages from the old socket after 500ms
-            nioLinks.put(socket, currentLink);
             //Log.e("KDE/LanLinkProvider", "Replacing socket. old: "+ oldSocket.hashCode() + " - new: "+ socket.hashCode());
         } else {
             //Let's create the link
             LanLink link = new LanLink(context, deviceId, this, socket, connectionOrigin);
-            nioLinks.put(socket, link);
             visibleComputers.put(deviceId, link);
             connectionAccepted(identityPackage, link);
         }
@@ -333,7 +302,7 @@ public class LanLinkProvider extends BaseLinkProvider {
     private void setupTcpListener() {
 
         try {
-            tcpServer = LanLink.openUnsecureSocketOnFreePort(port);
+            tcpServer = openServerSocketOnFreePort(MIN_PORT);
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -356,13 +325,29 @@ public class LanLinkProvider extends BaseLinkProvider {
         }
     }
 
+    static ServerSocket openServerSocketOnFreePort(int minPort) throws IOException {
+        int tcpPort = minPort;
+        while(tcpPort < MAX_PORT) {
+            try {
+                ServerSocket candidateServer = new ServerSocket();
+                candidateServer.bind(new InetSocketAddress(tcpPort));
+                Log.i("KDE/LanLink", "Using port "+tcpPort);
+                return candidateServer;
+            } catch(IOException e) {
+                tcpPort++;
+            }
+        }
+        Log.e("KDE/LanLink", "No ports available");
+        throw new IOException("No ports available");
+    }
+
     void broadcastUdpPackage() {
 
         new Thread(new Runnable() {
             @Override
             public void run() {
 
-                String deviceListPrefs = PreferenceManager.getDefaultSharedPreferences(context).getString(KEY_CUSTOM_DEVLIST_PREFERENCE, "");
+                String deviceListPrefs = PreferenceManager.getDefaultSharedPreferences(context).getString(CustomDevicesActivity.KEY_CUSTOM_DEVLIST_PREFERENCE, "");
                 ArrayList<String> iplist = new ArrayList<>();
                 if (!deviceListPrefs.isEmpty()) {
                     iplist = CustomDevicesActivity.deserializeIpList(deviceListPrefs);
@@ -370,7 +355,7 @@ public class LanLinkProvider extends BaseLinkProvider {
                 iplist.add("255.255.255.255"); //Default: broadcast.
 
                 NetworkPackage identity = NetworkPackage.createIdentityPackage(context);
-                identity.set("tcpPort", port);
+                identity.set("tcpPort", MIN_PORT);
                 DatagramSocket socket = null;
                 byte[] bytes = null;
                 try {
@@ -388,8 +373,8 @@ public class LanLinkProvider extends BaseLinkProvider {
                     for (String ipstr : iplist) {
                         try {
                             InetAddress client = InetAddress.getByName(ipstr);
-                            socket.send(new DatagramPacket(bytes, bytes.length, client, port));
-                            socket.send(new DatagramPacket(bytes, bytes.length, client, oldPort));
+                            socket.send(new DatagramPacket(bytes, bytes.length, client, MIN_PORT));
+                            socket.send(new DatagramPacket(bytes, bytes.length, client, MIN_PORT_LEGACY));
                             //Log.i("KDE/LanLinkProvider","Udp identity package sent to address "+client);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -412,8 +397,8 @@ public class LanLinkProvider extends BaseLinkProvider {
 
             listening = true;
 
-            udpServer = setupUdpListener(port);
-            udpServerOldPort = setupUdpListener(oldPort);
+            udpServer = setupUdpListener(MIN_PORT);
+            udpServerOldPort = setupUdpListener(MIN_PORT_LEGACY);
 
             // Due to certificate request from SSL server to client, the certificate request message from device with latest android version to device with
             // old android version causes a FATAL ALERT message stating that incorrect certificate request

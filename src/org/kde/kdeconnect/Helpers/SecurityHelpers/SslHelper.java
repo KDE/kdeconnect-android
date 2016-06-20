@@ -41,6 +41,7 @@ import org.spongycastle.operator.jcajce.JcaContentSignerBuilder;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.net.Socket;
 import java.nio.channels.ServerSocketChannel;
 import java.security.KeyStore;
 import java.security.MessageDigest;
@@ -58,6 +59,7 @@ import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLEngine;
 import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
@@ -132,6 +134,7 @@ public class SslHelper {
     }
 
     public static SSLContext getSslContext(Context context, String deviceId, boolean isDeviceTrusted) {
+        //TODO: Cache
         try {
             // Get device private key
             PrivateKey privateKey = RsaHelper.getPrivateKey(context);
@@ -225,6 +228,13 @@ public class SslHelper {
 
     }
 
+    public static SSLSocket convertToSslSocket(Context context, Socket socket, String deviceId, boolean isDeviceTrusted, boolean clientMode) throws IOException {
+        SSLSocketFactory sslsocketFactory = SslHelper.getSslContext(context, deviceId, isDeviceTrusted).getSocketFactory();
+        SSLSocket sslsocket = (SSLSocket)sslsocketFactory.createSocket(socket, socket.getInetAddress().getHostAddress(), socket.getPort(), true);
+        SslHelper.configureSslSocket(sslsocket, isDeviceTrusted, clientMode);
+        return sslsocket;
+    }
+
     public static String getCertificateHash(Certificate certificate) {
         try {
             byte[] hash = MessageDigest.getInstance("SHA-1").digest(certificate.getEncoded());
@@ -238,7 +248,6 @@ public class SslHelper {
         } catch (Exception e) {
             return null;
         }
-
     }
 
     public static Certificate parseCertificate(byte[] certificateBytes) throws IOException, CertificateException {
