@@ -10,7 +10,7 @@ buildscript {
 apply plugin: 'com.android.application'
 
 android {
-    buildToolsVersion '23.0.2'
+    buildToolsVersion '23.0.3'
     compileSdkVersion 23
     defaultConfig {
         minSdkVersion 9
