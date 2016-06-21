@@ -58,7 +58,7 @@ import javax.net.ssl.HandshakeCompletedEvent;
 import javax.net.ssl.HandshakeCompletedListener;
 import javax.net.ssl.SSLSocket;
 
-public class LanLinkProvider extends BaseLinkProvider implements LanLink.SocketClosedCallback {
+public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDisconnectedCallback {
 
     public static final int MIN_VERSION_WITH_SSL_SUPPORT = 6;
     public static final int MIN_VERSION_WITH_NEW_PORT_SUPPORT = 7;
@@ -82,12 +82,10 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.SocketC
     private ArrayList<InetAddress> reverseConnectionBlackList = new ArrayList<>();
 
     @Override // SocketClosedCallback
-    public void socketClosed(final LanLink brokenLink, boolean linkHasAnotherSocket) {
-        if (!linkHasAnotherSocket) {
-            String deviceId = brokenLink.getDeviceId();
-            visibleComputers.remove(deviceId);
-            connectionLost(brokenLink);
-        }
+    public void linkDisconnected(LanLink brokenLink) {
+        String deviceId = brokenLink.getDeviceId();
+        visibleComputers.remove(deviceId);
+        connectionLost(brokenLink);
     }
 
     //They received my UDP broadcast and are connecting to me. The first thing they sned should be their identity.
@@ -253,9 +251,10 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.SocketC
         if (currentLink != null) {
             //Update old link
             Log.i("KDE/LanLinkProvider", "Reusing same link for device " + deviceId);
-            final Socket oldSocket = currentLink.reset(socket, connectionOrigin, this);
+            final Socket oldSocket = currentLink.reset(socket, connectionOrigin);
             //Log.e("KDE/LanLinkProvider", "Replacing socket. old: "+ oldSocket.hashCode() + " - new: "+ socket.hashCode());
         } else {
+            Log.i("KDE/LanLinkProvider", "Creating a new link for device " + deviceId);
             //Let's create the link
             LanLink link = new LanLink(context, deviceId, this, socket, connectionOrigin);
             visibleComputers.put(deviceId, link);

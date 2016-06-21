@@ -59,9 +59,11 @@ public class LanLink extends BaseLink {
 
     private Socket socket = null;
 
-    interface SocketClosedCallback {
-        void socketClosed(LanLink brokenLink, boolean linkHasAnotherSocket);
-    };
+    interface LinkDisconnectedCallback {
+        void linkDisconnected(LanLink brokenLink);
+    }
+
+    LinkDisconnectedCallback callback;
 
     @Override
     public void disconnect() {
@@ -82,7 +84,7 @@ public class LanLink extends BaseLink {
     }
 
     //Returns the old socket
-    public Socket reset(final Socket newSocket, ConnectionStarted connectionSource, final SocketClosedCallback callback) throws IOException {
+    public Socket reset(final Socket newSocket, ConnectionStarted connectionSource) throws IOException {
 
         Socket oldSocket = socket;
         socket = newSocket;
@@ -118,8 +120,11 @@ public class LanLink extends BaseLink {
                     }
                 } catch (Exception e) {
                     Log.i("LanLink", "Socket closed: " + newSocket.hashCode() + ". Reason: " + e.getMessage());
+                    try { Thread.sleep(300); } catch (InterruptedException ignored) {} // Wait a bit because we might receive a new socket meanwhile
                     boolean thereIsaANewSocket = (newSocket != socket);
-                    callback.socketClosed(LanLink.this, thereIsaANewSocket);
+                    if (!thereIsaANewSocket) {
+                        callback.linkDisconnected(LanLink.this);
+                    }
                 }
             }
         }).start();
@@ -129,7 +134,8 @@ public class LanLink extends BaseLink {
 
     public LanLink(Context context, String deviceId, LanLinkProvider linkProvider, Socket socket, ConnectionStarted connectionSource) throws IOException {
         super(context, deviceId, linkProvider);
-        reset(socket, connectionSource, linkProvider);
+        callback = linkProvider;
+        reset(socket, connectionSource);
     }
 
 
