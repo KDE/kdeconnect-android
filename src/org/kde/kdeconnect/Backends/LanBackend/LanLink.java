@@ -67,20 +67,12 @@ public class LanLink extends BaseLink {
 
     @Override
     public void disconnect() {
-
         Log.i("LanLink/Disconnect","socket:"+ socket.hashCode());
-
-        if (socket == null) {
-            Log.w("KDE/LanLink", "Not yet connected");
-            return;
-        }
-
         try {
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     //Returns the old socket
