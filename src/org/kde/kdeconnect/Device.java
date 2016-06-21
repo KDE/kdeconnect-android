@@ -574,7 +574,7 @@ public class Device implements BaseLink.PackageReceiver {
                     }
                 }
             } else {
-                Log.e("Device", "Ignoring packet with type " + np.getType() + " because no plugin can handle it");
+                Log.w("Device", "Ignoring packet with type " + np.getType() + " because no plugin can handle it");
             }
         } else {
 
@@ -644,7 +644,7 @@ public class Device implements BaseLink.PackageReceiver {
 
         if (protocolVersion >= MIN_VERSION_WITH_CAPPABILITIES_SUPPORT && !supportedOutgoingInterfaces.contains(np.getType()) && !NetworkPackage.protocolPackageTypes.contains(np.getType())) {
             Log.e("Device/sendPackage", "Plugin tried to send an unsupported package: " + np.getType());
-            Log.e("Device/sendPackage", "Supported package types: " + Arrays.toString(supportedOutgoingInterfaces.toArray()));
+            Log.w("Device/sendPackage", "Supported package types: " + Arrays.toString(supportedOutgoingInterfaces.toArray()));
         }
 
         //Log.e("sendPackage", "Sending package...");
