@@ -48,22 +48,22 @@ import javax.net.ssl.SSLSocket;
 
 public class LanLink extends BaseLink {
 
+    public interface LinkDisconnectedCallback {
+        void linkDisconnected(LanLink brokenLink);
+    }
+
     public enum ConnectionStarted {
         Locally, Remotely;
     };
 
-    protected ConnectionStarted connectionSource; // If the other device sent me a broadcast,
-                                                  // I should not close the connection with it
+    private ConnectionStarted connectionSource; // If the other device sent me a broadcast,
+                                                // I should not close the connection with it
                                                   // because it's probably trying to find me and
                                                   // potentially ask for pairing.
 
     private Socket socket = null;
 
-    interface LinkDisconnectedCallback {
-        void linkDisconnected(LanLink brokenLink);
-    }
-
-    LinkDisconnectedCallback callback;
+    private LinkDisconnectedCallback callback;
 
     @Override
     public void disconnect() {

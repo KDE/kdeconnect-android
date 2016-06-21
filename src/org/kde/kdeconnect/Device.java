@@ -77,7 +77,7 @@ public class Device implements BaseLink.PackageReceiver {
     private PairStatus pairStatus;
 
     private final CopyOnWriteArrayList<PairingCallback> pairingCallback = new CopyOnWriteArrayList<>();
-    private Map<String, BasePairingHandler> pairingHandlers = new HashMap<String, BasePairingHandler>();
+    private Map<String, BasePairingHandler> pairingHandlers = new HashMap<>();
 
     private final CopyOnWriteArrayList<BaseLink> links = new CopyOnWriteArrayList<>();
 

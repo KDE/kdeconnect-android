@@ -42,7 +42,6 @@ import org.spongycastle.operator.jcajce.JcaContentSignerBuilder;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.net.Socket;
-import java.nio.channels.ServerSocketChannel;
 import java.security.KeyStore;
 import java.security.MessageDigest;
 import java.security.PrivateKey;
@@ -57,7 +56,6 @@ import java.util.Formatter;
 
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLEngine;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
