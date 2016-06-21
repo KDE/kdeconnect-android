@@ -16,7 +16,7 @@ android {
         minSdkVersion 9
         targetSdkVersion 22 //Bumping to 23 means we have to support the new permissions model
         //multiDexEnabled true
-        testInstrumentationRunner "com.android.test.runner.MultiDexTestRunner"
+        //testInstrumentationRunner "com.android.test.runner.MultiDexTestRunner"
     }
     dexOptions {
         javaMaxHeapSize "2g"
@@ -77,14 +77,11 @@ dependencies {
 
     compile 'org.apache.sshd:sshd-core:0.8.0' //0.9 seems to fail on Android 6 and 1.+ requires java.nio.file, which doesn't exist in Android
 
-    compile 'com.madgag.spongycastle:pkix:1.54.0.0'
+    compile 'com.madgag.spongycastle:pkix:1.54.0.0' //For SSL certificate generation
 
     // Testing
-
     androidTestCompile 'org.mockito:mockito-core:1.10.19'
-    // Because mockito has some problems with dex environment
-    androidTestCompile 'com.google.dexmaker:dexmaker:1.1'
-    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.1'
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.1'// Because mockito has some problems with dex environment
     androidTestCompile 'org.skyscreamer:jsonassert:1.3.0'
 
 }
