@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pref_plugin_telephony">Pemberitahuan Telepon</string>
+    <string name="pref_plugin_telephony_desc">Kirim pemberitahuan telepon dan sms</string>
+    <string name="pref_plugin_battery">Laporan Baterai</string>
+    <string name="pref_plugin_battery_desc">Laporan perkiraan status baterai</string>
+    <string name="pref_plugin_sftp">Membuka file sistem</string>
+    <string name="pref_plugin_sftp_desc">Izinkan penelusuran file sistem telepon jarak jauh</string>
+    <string name="pref_plugin_clipboard">Sinkronisasi clipboard</string>
+    <string name="pref_plugin_clipboard_desc">Bagikan isi clipboard</string>
+    <string name="pref_plugin_mousepad">Input jarak jauh</string>
+    <string name="pref_plugin_mousepad_desc">Gunakan telepon sebagai mouse dan keyboard</string>
+    <string name="pref_plugin_mpris">Kontrol multimedia</string>
+    <string name="pref_plugin_mpris_desc">Kontrol audio/video dari telepon</string>
+    <string name="pref_plugin_runcommand">Jalankan perintah</string>
+    <string name="pref_plugin_runcommand_desc">Picu perintah jarak jauh dari telepon</string>
+    <string name="pref_plugin_ping">Ping</string>
+    <string name="pref_plugin_ping_desc">Kirim dan terimas pings</string>
+    <string name="pref_plugin_notifications">Sinkronisasi pemberitahuan</string>
+    <string name="pref_plugin_notifications_desc">Akses pemberitahuan dari perangkat lain</string>
+    <string name="pref_plugin_sharereceiver">Bagikan dan terima</string>
+    <string name="pref_plugin_sharereceiver_desc">Bagikan file dan url antar perangkat</string>
+    <string name="plugin_not_available">Fitur ini tidak tersedia untuk version android anda</string>
+    <string name="device_list_empty">Tidak ada perangkat</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Batal</string>
+    <string name="open_settings">Buka pengaturan</string>
+    <string name="no_permissions">Anda perlu memberikan izin untuk mengakses pemberitahuan</string>
+    <string name="send_ping">Kirim ping</string>
+    <string name="open_mpris_controls">Kontrol Multimedia</string>
+    <string name="open_mousepad">Input jarak jauh</string>
+    <string name="mousepad_info">Gerakkan jari ke layar untuk menggerakkan cursor mouse. Tekan untuk klik, dan gunakan dua/tiga jari untuk tombol kanan dan tengah.
+    Tahan untuk men-drag\'n menjatuhkan</string>
+    <string name="mousepad_double_tap_settings_title">Atur 2 jari untuk aksi ketuk</string>
+    <string name="mousepad_triple_tap_settings_title">Atur 3 jari untuk aksi ketuk</string>
+    <string name="mousepad_sensitivity_settings_title">Atur sensitivitas touchpad</string>
+    <string name="mousepad_double_tap_key" translatable="false">mousepad_double_tap_key</string>
+    <string name="mousepad_triple_tap_key" translatable="false">mousepad_triple_tap_key</string>
+    <string name="mousepad_sensitivity_key" translatable="false">mousepad_sensitivity_key</string>
+    <string name="mousepad_scroll_direction_title">Balikkan Arah Scroll</string>
+    <string name="mousepad_scroll_direction" translatable="false">mousepad_scroll_direction</string>
+    <string-array name="mousepad_tap_entries">
+        <item>Klik Kanan</item>
+        <item>Klik Tengah</item>
+        <item>Tidak Ada</item>
+    </string-array>
+    <string name="mousepad_double_default">kanan</string>
+    <string name="mousepad_triple_default">tengah</string>
+    <string name="mousepad_sensitivity_default">default</string>
+    <string-array name="mousepad_tap_values" translatable="false">
+        <item>kanan</item>
+        <item>tengah</item>
+        <item>none</item>
+    </string-array>
+    <string-array name="mousepad_sensitivity_entries">
+        <item>Slowest</item>
+        <item>Above Slowest</item>
+        <item>Default</item>
+        <item>Above Default</item>
+        <item>Fastest</item>
+    </string-array>
+    <string-array name="mousepad_sensitivity_values" translatable="false">
+        <item>slowest</item>
+        <item>aboveSlowest</item>
+        <item>default</item>
+        <item>aboveDefault</item>
+        <item>fastest</item>
+    </string-array>
+    <string name="category_connected_devices">Perangkat yang terhubung</string>
+    <string name="category_not_paired_devices">Perangkat yang tersedia</string>
+    <string name="category_remembered_devices">Ingat perangkat</string>
+    <string name="plugins_failed_to_load">Plugin gagal memuat (ketuk untuk info lebih lanjut):</string>
+    <string name="device_menu_plugins">Pengaturan Plugin</string>
+    <string name="device_menu_unpair">Unpair</string>
+    <string name="device_not_reachable">Perangkat yang terhubung tidak terjangkau</string>
+    <string name="pair_new_device">Hubungkan perangkat baru</string>
+    <string name="unknown_device">Perangkat tidak diketahui</string>
+    <string name="error_not_reachable">Perangkat tidak terjangkau</string>
+    <string name="error_already_requested">Permintaan pencocokan sudah dilakukan</string>
+    <string name="error_already_paired">Perangkat sudah dicocokkan</string>
+    <string name="error_could_not_send_package">Tidak bisa mengirim paket</string>
+    <string name="error_timed_out">Waktu habis</string>
+    <string name="error_canceled_by_user">Dibatalkan oleh user</string>
+    <string name="error_canceled_by_other_peer">Dibatalkan oleh peer lain</string>
+    <string name="error_invalid_key">Key tidak valid diterima</string>
+    <string name="encryption_info_title">Informasi Enkripsi</string>
+    <string name="encryption_info_msg_no_ssl">Perangkat lain tidak menggunakan versi KDE Connect terbaru, gunakan metode enkripsi lama</string>
+    <string name="my_device_fingerprint">Sertifikat sidik jari SHA1 perangkatmu adalah:</string>
+    <string name="remote_device_fingerprint">Sertifikat sidik jari SHA1 perangkat jarak jauh adalah:</string>
+    <string name="pair_requested">Pencocokan diminta</string>
+    <string name="pairing_request_from">Permintaan pencocokan dari %1s</string>
+    <string name="received_url_title">Menerima link dari %1s</string>
+    <string name="received_url_text">Ketuk \'%1s\'</string>
+    <string name="incoming_file_title">Kedatangan file dari %1s</string>
+    <string name="incoming_file_text">%1s</string>
+    <string name="outgoing_file_title">Kirim file ke %1s</string>
+    <string name="outgoing_file_text">%1s</string>
+    <string name="received_file_title">File diterima dari %1s</string>
+    <string name="received_file_fail_title">Gagal menerima file dari %1s</string>
+    <string name="received_file_text">Ketuk untuk membuka \'%1s\'</string>
+    <string name="sent_file_title">Kirim file ke %1s</string>
+    <string name="sent_file_text">%1s</string>
+    <string name="sent_file_failed_title">Gagal mengirim file %1s</string>
+    <string name="sent_file_failed_text">%1s</string>
+    <string name="tap_to_answer">Ketuk untuk menjawab</string>
+    <string name="reconnect">Reconnect</string>
+    <string name="right_click">Kirim klik kanan</string>
+    <string name="middle_click">Kirim klik tengah</string>
+    <string name="show_keyboard">Tampilkan Keyboard</string>
+    <string name="device_not_paired">Perangkat belum dicocokkan</string>
+    <string name="request_pairing">Meminta pencocokan</string>
+    <string name="pairing_accept">Diterima</string>
+    <string name="pairing_reject">Ditolak</string>
+    <string name="device">Perangkat</string>
+    <string name="pair_device">Cocokkan perangkat</string>
+    <string name="remote_control">Kendali jarak jauh</string>
+    <string name="settings">Pengaturan KDE Connect</string>
+    <string name="mpris_play">Main</string>
+    <string name="mpris_previous">Sebelumnya</string>
+    <string name="mpris_rew">Putar Ulang</string>
+    <string name="mpris_ff">Fast-forward</string>
+    <string name="mpris_next">Next</string>
+    <string name="mpris_volume">Volume</string>
+    <string name="mpris_settings">Pengaturan Multimedia</string>
+    <string name="mpris_time_settings_title">Tombol Forward/rewind</string>
+    <string name="mpris_time_settings_summary">Tambahkan waktu untuk mempercepat forward/rewind ketika di tekan.</string>
+    <string name="mpris_time_key" translatable="false">mpris_interval_time</string>
+    <string-array name="mpris_time_entries">
+        <item>10 detik</item>
+        <item>20 detik</item>
+        <item>30 detik</item>
+        <item>1 menit</item>
+        <item>2 menit</item>
+    </string-array>
+    <string name="mpris_time_default" translatable="false">10000000</string>
+    <string-array name="mpris_time_entries_values" translatable="false">
+        <item>10000000</item>
+        <item>20000000</item>
+        <item>30000000</item>
+        <item>60000000</item>
+        <item>120000000</item>
+    </string-array>
+    <string name="share_to">Bagikan ke…</string>
+    <string name="protocol_version_older">Perangkat ini menggunakan versi protokol yang lama</string>
+    <string name="protocol_version_newer">Perangkat ini menggunakan versi protokol terbaru</string>
+    <string name="general_settings">Pengaturan Umum</string>
+    <string name="plugin_settings">Aturan</string>
+    <string name="plugin_settings_with_name">%s pengaturan</string>
+    <string name="device_name">Nama Perangkat</string>
+    <string name="device_name_preference_summary">%s</string>
+    <string name="invalid_device_name">Nama perangkat tidak valid</string>
+    <string name="shareplugin_text_saved">Teks diterima, menyimpan ke clipboard</string>
+    <string name="custom_devices_settings">Daftar perangkat custom</string>
+    <string name="pair_device_action">Cocokkan sebuah perangkat baru</string>
+    <string name="unpair_device_action">Tidak cocok %s</string>
+    <string name="custom_device_list">Tambah perangkat dari IP</string>
+    <string name="share_notification_preference">Pemberitahuan yang ribut</string>
+    <string name="share_notification_preference_summary">Getar dan mainkan suara ketika menerima file</string>
+    <string name="title_activity_notification_filter">Saring pemberitahuan</string>
+    <string name="filter_apps_info">Pemberitahuan akan di sinkronisasi untuk aplikasi yang di pilih</string>
+    <string name="sftp_internal_storage">Penyimpanan internal</string>
+    <string name="sftp_all_files">Semua file</string>
+    <string name="sftp_sdcard_num">Kartu SD %d</string>
+    <string name="sftp_sdcard">Kartu SD</string>
+    <string name="sftp_readonly">(read only)</string>
+    <string name="sftp_camera">Gambar kamera</string>
+    <string name="add_host">Tambah host/IP</string>
+    <string name="add_host_hint">Hostname atau IP</string>
+    <string name="no_players_connected">Pemain tidak ditemukan</string>
+    <string name="custom_dev_list_help">Gunakan opsi ini hanya jika perangkatmu tidak terdeteksi otomasi. Masukkan alamat IP atau hostname dibawah dan sentuh tombol untuk menambahkannya ke daftar. Sentuh item yang ada untuk menghapusnya dari daftar.</string>
+    <string name="mpris_player_on_device">%1$s on %2$s</string>
+    <string name="send_files">Kirim file</string>
+    <string name="pairing_title">Perangkat KDE Connect</string>
+    <string name="pairing_description">Perangkat lain menjalankan KDE Connect dalam satu jaringanmu tidak boleh muncul di sini.</string>
+    <string name="device_paired">Perangkat dicocokkan</string>
+    <string name="device_rename_title">Ganti nama perangkat</string>
+    <string name="device_rename_confirm">Ganti nama</string>
+    <string name="refresh">Refresh</string>
+    <string name="unreachable_description">Perangkat terhubung ini diluar jangkauan. Pastikan sudah terhubung ke jaringan yang sama.</string>
+    <string name="no_file_browser">Tidak ada penjelajah file yang terpasang</string>
+    <string name="pref_plugin_telepathy">Kirim SMS</string>
+    <string name="pref_plugin_telepathy_desc">Kirim pesan teks ke desktop</string>
+    <string name="plugin_not_supported">Plugin ini tidak didukung oleh perangkat</string>
+    <string name="findmyphone_title">Temukan telepon saya</string>
+    <string name="findmyphone_description">Bunyikan telepon ini ketika sudah ketemu.</string>
+    <string name="findmyphone_found">Ditemukan</string>
+
+    <string name="open">Buka</string>
+    <string name="close">Tutup</string>
+</resources>
