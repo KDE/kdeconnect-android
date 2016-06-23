@@ -21,8 +21,9 @@
 package org.kde.kdeconnect.UserInterface;
 
 import android.app.Activity;
-import android.app.NotificationManager;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -39,17 +40,17 @@ import android.widget.TextView;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.UserInterface.List.PluginItem;
+import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.UserInterface.List.CustomItem;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
+import org.kde.kdeconnect.UserInterface.List.PluginItem;
 import org.kde.kdeconnect.UserInterface.List.SmallEntryItem;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 
@@ -240,6 +241,30 @@ public class DeviceFragment extends Fragment {
         });
 
         if (device.isPaired()) {
+
+            menu.add(R.string.encryption_info_title).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    Context context = mActivity;
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                    builder.setTitle(context.getResources().getString(R.string.encryption_info_title));
+                    builder.setPositiveButton(context.getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    if (device.certificate == null) {
+                        builder.setMessage(R.string.encryption_info_msg_no_ssl);
+                    } else {
+                        builder.setMessage(context.getResources().getString(R.string.my_device_fingerprint) + "\n" + SslHelper.getCertificateHash(SslHelper.certificate) + "\n\n"
+                                + context.getResources().getString(R.string.remote_device_fingerprint) + "\n" + SslHelper.getCertificateHash(device.certificate));
+                    }
+                    builder.create().show();
+                    return true;
+                }
+            });
+
             menu.add(R.string.device_menu_unpair).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem menuItem) {
@@ -302,7 +327,7 @@ public class DeviceFragment extends Fragment {
             @Override
             public void run() {
 
-                if (device.isPairRequestedByOtherEnd()) {
+                if (device.isPairRequestedByPeer()) {
                     ((TextView) rootView.findViewById(R.id.pair_message)).setText(R.string.pair_requested);
                     rootView.findViewById(R.id.pair_progress).setVisibility(View.GONE);
                     rootView.findViewById(R.id.pair_button).setVisibility(View.GONE);

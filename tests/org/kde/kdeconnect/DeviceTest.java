@@ -26,13 +26,26 @@ import android.test.AndroidTestCase;
 import android.util.Base64;
 import android.util.Log;
 
+import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Backends.LanBackend.LanLink;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
+import org.kde.kdeconnect.Backends.LanBackend.LanPairingHandler;
 import org.mockito.Mockito;
+import org.spongycastle.asn1.x500.X500NameBuilder;
+import org.spongycastle.asn1.x500.style.BCStyle;
+import org.spongycastle.cert.X509v3CertificateBuilder;
+import org.spongycastle.cert.jcajce.JcaX509CertificateConverter;
+import org.spongycastle.cert.jcajce.JcaX509v3CertificateBuilder;
+import org.spongycastle.jce.provider.BouncyCastleProvider;
+import org.spongycastle.operator.ContentSigner;
+import org.spongycastle.operator.jcajce.JcaContentSignerBuilder;
 
 import java.lang.reflect.Method;
+import java.math.BigInteger;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
+import java.security.cert.X509Certificate;
+import java.util.Date;
 
 public class DeviceTest extends AndroidTestCase {
 
@@ -122,6 +135,7 @@ public class DeviceTest extends AndroidTestCase {
         Mockito.when(linkProvider.getName()).thenReturn("LanLinkProvider");
         LanLink link = Mockito.mock(LanLink.class);
         Mockito.when(link.getLinkProvider()).thenReturn(linkProvider);
+        Mockito.when(link.getPairingHandler(Mockito.any(Device.class), Mockito.any(BasePairingHandler.PairingHandlerCallback.class))).thenReturn(Mockito.mock(LanPairingHandler.class));
         Device device = new Device(getContext(), fakeNetworkPackage, link);
 
         KeyPair keyPair;
@@ -140,6 +154,8 @@ public class DeviceTest extends AndroidTestCase {
         assertEquals(device.getDeviceId(), "unpairedTestDevice");
         assertEquals(device.getName(), "Unpaired Test Device");
         assertEquals(device.getDeviceType(), Device.DeviceType.Phone);
+        assertNotNull(device.publicKey);
+        assertNull(device.certificate);
 
         Method method;
         try {
@@ -158,12 +174,94 @@ public class DeviceTest extends AndroidTestCase {
         SharedPreferences settings = getContext().getSharedPreferences(device.getDeviceId(),Context.MODE_PRIVATE);
         assertEquals(settings.getString("deviceName", "Unknown device"), "Unpaired Test Device");
         assertEquals(settings.getString("deviceType", "tablet"), "phone");
-        assertEquals(settings.getString("publicKey", ""), Base64.encodeToString(keyPair.getPublic().getEncoded(), 0));
 
         // Cleanup for unpaired test device
         preferences.edit().remove(device.getDeviceId()).apply();
         settings.edit().clear().apply();
 
+    }
+
+    public void testPairingDoneWithCertificate() throws Exception{
+        KeyPair keyPair = null;
+        try {
+            KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
+            keyGen.initialize(2048);
+            keyPair = keyGen.genKeyPair();
+        } catch(Exception e) {
+            e.printStackTrace();
+            Log.e("KDE/initializeRsaKeys", "Exception");
+        }
+
+        X509Certificate certificate = null;
+        try {
+
+            BouncyCastleProvider BC = new BouncyCastleProvider();
+
+            X500NameBuilder nameBuilder = new X500NameBuilder(BCStyle.INSTANCE);
+            nameBuilder.addRDN(BCStyle.CN, "testDevice");
+            nameBuilder.addRDN(BCStyle.OU, "KDE Connect");
+            nameBuilder.addRDN(BCStyle.O, "KDE");
+            Date notBefore = new Date(System.currentTimeMillis());
+            Date notAfter = new Date(System.currentTimeMillis() + System.currentTimeMillis());
+            X509v3CertificateBuilder certificateBuilder = new JcaX509v3CertificateBuilder(
+                    nameBuilder.build(),
+                    BigInteger.ONE,
+                    notBefore,
+                    notAfter,
+                    nameBuilder.build(),
+                    keyPair.getPublic()
+            );
+            ContentSigner contentSigner = new JcaContentSignerBuilder("SHA256WithRSAEncryption").setProvider(BC).build(keyPair.getPrivate());
+            certificate = new JcaX509CertificateConverter().setProvider(BC).getCertificate(certificateBuilder.build(contentSigner));
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            Log.e("KDE/initialiseCert", "Exception");
+        }
+
+        NetworkPackage fakeNetworkPackage = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_IDENTITY);
+        fakeNetworkPackage.set("deviceId", "unpairedTestDevice");
+        fakeNetworkPackage.set("deviceName", "Unpaired Test Device");
+        fakeNetworkPackage.set("protocolVersion", NetworkPackage.ProtocolVersion);
+        fakeNetworkPackage.set("deviceType", Device.DeviceType.Phone.toString());
+        fakeNetworkPackage.set("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
+
+        LanLinkProvider linkProvider = Mockito.mock(LanLinkProvider.class);
+        Mockito.when(linkProvider.getName()).thenReturn("LanLinkProvider");
+        LanLink link = Mockito.mock(LanLink.class);
+        Mockito.when(link.getPairingHandler(Mockito.any(Device.class), Mockito.any(BasePairingHandler.PairingHandlerCallback.class))).thenReturn(Mockito.mock(LanPairingHandler.class));
+        Mockito.when(link.getLinkProvider()).thenReturn(linkProvider);
+        Device device = new Device(getContext(), fakeNetworkPackage, link);
+        device.publicKey = keyPair.getPublic();
+
+        assertNotNull(device);
+        assertEquals(device.getDeviceId(), "unpairedTestDevice");
+        assertEquals(device.getName(), "Unpaired Test Device");
+        assertEquals(device.getDeviceType(), Device.DeviceType.Phone);
+        assertNotNull(device.publicKey);
+        assertNotNull(device.certificate);
+
+        Method method;
+        try {
+            method = Device.class.getDeclaredMethod("pairingDone");
+            method.setAccessible(true);
+            method.invoke(device);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        assertEquals(device.isPaired(), true);
+
+        SharedPreferences preferences = getContext().getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
+        assertEquals(preferences.getBoolean(device.getDeviceId(), false), true);
+
+        SharedPreferences settings = getContext().getSharedPreferences(device.getDeviceId(),Context.MODE_PRIVATE);
+        assertEquals(settings.getString("deviceName", "Unknown device"), "Unpaired Test Device");
+        assertEquals(settings.getString("deviceType", "tablet"), "phone");
+
+        // Cleanup for unpaired test device
+        preferences.edit().remove(device.getDeviceId()).apply();
+        settings.edit().clear().apply();
     }
 
     public void testUnpair(){

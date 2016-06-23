@@ -35,7 +35,10 @@ import android.util.Base64;
 import android.util.Log;
 
 import org.kde.kdeconnect.Backends.BaseLink;
+import org.kde.kdeconnect.Backends.BasePairingHandler;
+import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.kde.kdeconnect.Helpers.ObjectsHelper;
+import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.MaterialActivity;
@@ -44,14 +47,16 @@ import org.kde.kdeconnect_tp.R;
 import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.cert.Certificate;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -62,19 +67,22 @@ public class Device implements BaseLink.PackageReceiver {
     private final String deviceId;
     private String name;
     public PublicKey publicKey;
+    public Certificate certificate;
     private int notificationId;
     private int protocolVersion;
+
+    private static final int MIN_VERSION_WITH_CAPPABILITIES_SUPPORT = 6;
 
     private DeviceType deviceType;
     private PairStatus pairStatus;
 
     private final CopyOnWriteArrayList<PairingCallback> pairingCallback = new CopyOnWriteArrayList<>();
-    private Timer pairingTimer;
+    private Map<String, BasePairingHandler> pairingHandlers = new HashMap<>();
 
     private final CopyOnWriteArrayList<BaseLink> links = new CopyOnWriteArrayList<>();
 
-    private ArrayList<String> incomingCapabilities;
-    private ArrayList<String> outgoingCapabilities;
+    private ArrayList<String> incomingCapabilities = new ArrayList<>();
+    private ArrayList<String> outgoingCapabilities = new ArrayList<>();
 
     private final ConcurrentHashMap<String, Plugin> plugins = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, Plugin> failedPlugins = new ConcurrentHashMap<>();
@@ -100,8 +108,6 @@ public class Device implements BaseLink.PackageReceiver {
 
     public enum PairStatus {
         NotPaired,
-        Requested,
-        RequestedByPeer,
         Paired
     }
 
@@ -145,12 +151,14 @@ public class Device implements BaseLink.PackageReceiver {
         this.deviceType = DeviceType.FromString(settings.getString("deviceType", "desktop"));
 
         try {
-            byte[] publicKeyBytes = Base64.decode(settings.getString("publicKey", ""), 0);
-            publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
+            String publicKeyStr = settings.getString("publicKey", null);
+            if (publicKeyStr != null) {
+                byte[] publicKeyBytes = Base64.decode(publicKeyStr, 0);
+                publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            unpair();
-            Log.e("KDE/Device","Exception");
+            Log.e("KDE/Device","Exception deserializing stored public key for device");
         }
 
         reloadPluginsFromSettings();
@@ -197,6 +205,10 @@ public class Device implements BaseLink.PackageReceiver {
         return deviceId;
     }
 
+    public Context getContext() {
+        return context;
+    }
+
     //Returns 0 if the version matches, < 0 if it is older or > 0 if it is newer
     public int compareProtocolVersion() {
         return protocolVersion - NetworkPackage.ProtocolVersion;
@@ -213,17 +225,28 @@ public class Device implements BaseLink.PackageReceiver {
         return pairStatus == PairStatus.Paired;
     }
 
+    /* Asks all pairing handlers that, is pair requested? */
     public boolean isPairRequested() {
-        return pairStatus == PairStatus.Requested;
+        boolean pairRequested = false;
+        for (BasePairingHandler ph: pairingHandlers.values()) {
+            pairRequested = pairRequested || ph.isPairRequested();
+        }
+        return pairRequested;
     }
 
-    public boolean isPairRequestedByOtherEnd() {
-        return pairStatus == PairStatus.RequestedByPeer;
+    /* Asks all pairing handlers that, is pair requested by peer? */
+    public boolean isPairRequestedByPeer() {
+        boolean pairRequestedByPeer = false;
+        for (BasePairingHandler ph : pairingHandlers.values()) {
+            pairRequestedByPeer = pairRequestedByPeer || ph.isPairRequestedByPeer();
+        }
+        return pairRequestedByPeer;
     }
 
     public void addPairingCallback(PairingCallback callback) {
         pairingCallback.add(callback);
     }
+
     public void removePairingCallback(PairingCallback callback) {
         pairingCallback.remove(callback);
     }
@@ -238,15 +261,6 @@ public class Device implements BaseLink.PackageReceiver {
                     cb.pairingFailed(res.getString(R.string.error_already_paired));
                 }
                 return;
-            case Requested:
-                for (PairingCallback cb : pairingCallback) {
-                    cb.pairingFailed(res.getString(R.string.error_already_requested));
-                }
-                return;
-            case RequestedByPeer:
-                Log.d("requestPairing", "Pairing already started by the other end, accepting their request.");
-                acceptPairing();
-                return;
             case NotPaired:
                 ;
         }
@@ -258,59 +272,35 @@ public class Device implements BaseLink.PackageReceiver {
             return;
         }
 
-        //Send our own public key
-        NetworkPackage np = NetworkPackage.createPublicKeyPackage(context);
-        sendPackage(np, new SendPackageStatusCallback() {
-            @Override
-            public void onSuccess() {
-                hidePairingNotification(); //Will stop the pairingTimer if it was running
-                pairingTimer = new Timer();
-                pairingTimer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        for (PairingCallback cb : pairingCallback) {
-                            cb.pairingFailed(context.getString(R.string.error_timed_out));
-                        }
-                        Log.e("KDE/Device", "Unpairing (timeout A)");
-                        pairStatus = PairStatus.NotPaired;
-                    }
-                }, 30 * 1000); //Time to wait for the other to accept
-                pairStatus = PairStatus.Requested;
-            }
-
-            @Override
-            public void onFailure(Throwable e) {
-                for (PairingCallback cb : pairingCallback) {
-                    cb.pairingFailed(context.getString(R.string.error_could_not_send_package));
-                }
-                Log.e("KDE/Device", "Unpairing (sendFailed A)");
-                pairStatus = PairStatus.NotPaired;
-            }
-
-        });
-
-    }
-
-    public void hidePairingNotification() {
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.cancel(notificationId);
-        if (pairingTimer != null) {
-            pairingTimer.cancel();
+        for (BasePairingHandler ph : pairingHandlers.values()) {
+            ph.requestPairing();
         }
-        BackgroundService.removeGuiInUseCounter(context);
+
     }
 
     public void unpair() {
 
-        //Log.e("Device","Unpairing (unpair)");
+        for (BasePairingHandler ph : pairingHandlers.values()) {
+            ph.unpair();
+        }
+        unpairInternal(); // Even if there are no pairing handlers, unpair
+    }
+
+    /**
+     * This method does not send an unpair package, instead it unpairs internally by deleting trusted device info. . Likely to be called after sending package from
+     * pairing handler
+     */
+    private void unpairInternal() {
+
+        //Log.e("Device","Unpairing (unpairInternal)");
         pairStatus = PairStatus.NotPaired;
 
         SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
         preferences.edit().remove(deviceId).apply();
 
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
-        np.set("pair", false);
-        sendPackage(np);
+        // FIXME : We delete all device info here, but the xml file still persists
+        SharedPreferences devicePreferences = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
+        devicePreferences.edit().clear().apply();
 
         for (PairingCallback cb : pairingCallback) cb.unpaired();
 
@@ -318,6 +308,7 @@ public class Device implements BaseLink.PackageReceiver {
 
     }
 
+    /* This method should be called after pairing is done from pairing handler. Calling this method again should not create any problem as most of the things will get over writter*/
     private void pairingDone() {
 
         //Log.e("Device", "Storing as trusted, deviceId: "+deviceId);
@@ -330,12 +321,9 @@ public class Device implements BaseLink.PackageReceiver {
         SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
         preferences.edit().putBoolean(deviceId,true).apply();
 
-        //Store device information needed to create a Device object in a future
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString("deviceName", getName());
+        SharedPreferences.Editor editor = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE).edit();
+        editor.putString("deviceName", name);
         editor.putString("deviceType", deviceType.toString());
-        String encodedPublicKey = Base64.encodeToString(publicKey.getEncoded(), 0);
-        editor.putString("publicKey", encodedPublicKey);
         editor.apply();
 
         reloadPluginsFromSettings();
@@ -346,39 +334,28 @@ public class Device implements BaseLink.PackageReceiver {
 
     }
 
+    /* This method is called after accepting pair request form GUI */
     public void acceptPairing() {
 
-        Log.i("KDE/Device","Accepted pair request started by the other device");
+        Log.i("KDE/Device", "Accepted pair request started by the other device");
 
-        //Send our own public key
-        NetworkPackage np = NetworkPackage.createPublicKeyPackage(context);
-        sendPackage(np, new SendPackageStatusCallback() {
-            @Override
-            protected void onSuccess() {
-                pairingDone();
-            }
-            @Override
-            protected void onFailure(Throwable e) {
-                Log.e("Device","Unpairing (sendFailed B)");
-                pairStatus = PairStatus.NotPaired;
-                for (PairingCallback cb : pairingCallback) {
-                    cb.pairingFailed(context.getString(R.string.error_not_reachable));
-                }
-            }
-        });
+        for (BasePairingHandler ph : pairingHandlers.values()) {
+            ph.acceptPairing();
+        }
 
     }
 
+    /* This method is called after rejecting pairing from GUI */
     public void rejectPairing() {
 
-        Log.i("KDE/Device","Rejected pair request started by the other device");
+        Log.i("KDE/Device", "Rejected pair request started by the other device");
 
         //Log.e("Device","Unpairing (rejectPairing)");
         pairStatus = PairStatus.NotPaired;
 
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
-        np.set("pair", false);
-        sendPackage(np);
+        for (BasePairingHandler ph : pairingHandlers.values()) {
+            ph.rejectPairing();
+        }
 
         for (PairingCallback cb : pairingCallback) {
             cb.pairingFailed(context.getString(R.string.error_canceled_by_user));
@@ -386,8 +363,52 @@ public class Device implements BaseLink.PackageReceiver {
 
     }
 
+    //
+    // Notification related methods used during pairing
+    //
+    public int getNotificationId() {
+        return notificationId;
+    }
 
+    public void displayPairingNotification() {
 
+        hidePairingNotification();
+
+        notificationId = (int)System.currentTimeMillis();
+
+        Intent intent = new Intent(getContext(), MaterialActivity.class);
+        intent.putExtra("deviceId", getDeviceId());
+        intent.putExtra("notificationId", notificationId);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, PendingIntent.FLAG_ONE_SHOT);
+
+        Resources res = getContext().getResources();
+
+        Notification noti = new NotificationCompat.Builder(getContext())
+                .setContentTitle(res.getString(R.string.pairing_request_from, getName()))
+                .setContentText(res.getString(R.string.tap_to_answer))
+                .setContentIntent(pendingIntent)
+                .setTicker(res.getString(R.string.pair_requested))
+                .setSmallIcon(R.drawable.ic_notification)
+                .setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .build();
+
+        final NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+
+        try {
+            BackgroundService.addGuiInUseCounter(context);
+            notificationManager.notify(notificationId, noti);
+        } catch(Exception e) {
+            //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+            //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+        }
+    }
+
+    public void hidePairingNotification() {
+        final NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancel(notificationId);
+        BackgroundService.removeGuiInUseCounter(context);
+    }
 
     //
     // ComputerLink-related functions
@@ -413,6 +434,20 @@ public class Device implements BaseLink.PackageReceiver {
             this.deviceType = DeviceType.FromString(identityPackage.getString("deviceType", "desktop"));
         }
 
+        if (identityPackage.has("certificate")) {
+            String certificateString = identityPackage.getString("certificate");
+
+            try {
+                byte[] certificateBytes = Base64.decode(certificateString, 0);
+                certificate = SslHelper.parseCertificate(certificateBytes);
+                Log.i("KDE/Device", "Got certificate ");
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e("KDE/Device", "Error getting certificate");
+
+            }
+        }
+
 
         links.add(link);
 
@@ -428,6 +463,36 @@ public class Device implements BaseLink.PackageReceiver {
 
         Log.i("KDE/Device","addLink "+link.getLinkProvider().getName()+" -> "+getName() + " active links: "+ links.size());
 
+        if (!pairingHandlers.containsKey(link.getName())) {
+            BasePairingHandler.PairingHandlerCallback callback = new BasePairingHandler.PairingHandlerCallback() {
+                @Override
+                public void incomingRequest() {
+                    for (PairingCallback cb : pairingCallback) {
+                        cb.incomingRequest();
+                    }
+                }
+
+                @Override
+                public void pairingDone() {
+                    Device.this.pairingDone();
+                }
+
+                @Override
+                public void pairingFailed(String error) {
+                    for (PairingCallback cb : pairingCallback) {
+                        cb.pairingFailed(error);
+                    }
+                }
+
+                @Override
+                public void unpaired() {
+                    unpairInternal();
+                }
+            };
+            pairingHandlers.put(link.getName(), link.getPairingHandler(this, callback));
+        }
+        pairingHandlers.get(link.getName()).setLink(link);
+
         /*
         Collections.sort(links, new Comparator<BaseLink>() {
             @Override
@@ -440,14 +505,24 @@ public class Device implements BaseLink.PackageReceiver {
         link.addPackageReceiver(this);
 
         if (links.size() == 1) {
-            incomingCapabilities = identityPackage.getStringList("IncomingCapabilties");
-            outgoingCapabilities = identityPackage.getStringList("OutgoingCapabilities");
             reloadPluginsFromSettings();
         }
     }
 
     public void removeLink(BaseLink link) {
         //FilesHelper.LogOpenFileCount();
+
+        /* Remove pairing handler corresponding to that link too if it was the only link*/
+        boolean linkPresent = false;
+        for (BaseLink bl : links) {
+            if (bl.getName().equals(link.getName())) {
+                linkPresent = true;
+                break;
+            }
+        }
+        if (!linkPresent) {
+            pairingHandlers.remove(link.getName());
+        }
 
         link.removePackageReceiver(this);
         links.remove(link);
@@ -460,147 +535,72 @@ public class Device implements BaseLink.PackageReceiver {
     @Override
     public void onPackageReceived(NetworkPackage np) {
 
+        hackToMakeRetrocompatiblePacketTypes(np);
+
         if (NetworkPackage.PACKAGE_TYPE_PAIR.equals(np.getType())) {
 
             Log.i("KDE/Device", "Pair package");
 
-            boolean wantsPair = np.getBoolean("pair");
-
-            if (wantsPair == isPaired()) {
-                if (pairStatus == PairStatus.Requested) {
-                    //Log.e("Device","Unpairing (pair rejected)");
-                    pairStatus = PairStatus.NotPaired;
-                    hidePairingNotification();
-                    for (PairingCallback cb : pairingCallback) {
-                        cb.pairingFailed(context.getString(R.string.error_canceled_by_other_peer));
-                    }
-                }
-                return;
-            }
-
-            if (wantsPair) {
-
-                //Retrieve their public key
+            for (BasePairingHandler ph: pairingHandlers.values()) {
                 try {
-                    String publicKeyContent = np.getString("publicKey").replace("-----BEGIN PUBLIC KEY-----\n","").replace("-----END PUBLIC KEY-----\n","");
-                    byte[] publicKeyBytes = Base64.decode(publicKeyContent, 0);
-                    publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
-                } catch(Exception e) {
+                    ph.packageReceived(np);
+                } catch (Exception e) {
                     e.printStackTrace();
-                    Log.e("KDE/Device","Pairing exception: Received incorrect key");
-                    for (PairingCallback cb : pairingCallback) {
-                        cb.pairingFailed(context.getString(R.string.error_invalid_key));
-                    }
-                    return;
+                    Log.e("PairingPackageReceived","Exception");
                 }
-
-                if (pairStatus == PairStatus.Requested)  { //We started pairing
-
-                    hidePairingNotification();
-
-                    pairingDone();
-
-                } else {
-
-                    Intent intent = new Intent(context, MaterialActivity.class);
-                    intent.putExtra("deviceId", deviceId);
-                    PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-
-                    Resources res = context.getResources();
-
-                    hidePairingNotification();
-
-                    Notification noti = new NotificationCompat.Builder(context)
-                            .setContentTitle(res.getString(R.string.pairing_request_from, getName()))
-                            .setContentText(res.getString(R.string.tap_to_answer))
-                            .setContentIntent(pendingIntent)
-                            .setTicker(res.getString(R.string.pair_requested))
-                            .setSmallIcon(R.drawable.ic_notification)
-                            .setAutoCancel(true)
-                            .setDefaults(Notification.DEFAULT_ALL)
-                            .build();
-
-
-                    final NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                    notificationId = (int)System.currentTimeMillis();
-                    try {
-                        BackgroundService.addGuiInUseCounter(context);
-                        notificationManager.notify(notificationId, noti);
-                    } catch(Exception e) {
-                        //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
-                        //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
-                    }
-
-                    pairingTimer = new Timer();
-                    pairingTimer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            Log.e("KDE/Device","Unpairing (timeout B)");
-                            hidePairingNotification();
-                            pairStatus = PairStatus.NotPaired;
-                        }
-                    }, 25*1000); //Time to show notification, waiting for user to accept (peer will timeout in 30 seconds)
-                    pairStatus = PairStatus.RequestedByPeer;
-                    for (PairingCallback cb : pairingCallback) cb.incomingRequest();
-
-                }
-            } else {
-                Log.i("KDE/Pairing","Unpair request");
-
-                if (pairStatus == PairStatus.Requested) {
-                    hidePairingNotification();
-                    for (PairingCallback cb : pairingCallback) {
-                        cb.pairingFailed(context.getString(R.string.error_canceled_by_other_peer));
-                    }
-                } else if (pairStatus == PairStatus.Paired) {
-                    SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
-                    preferences.edit().remove(deviceId).apply();
-                }
-
-                pairStatus = PairStatus.NotPaired;
-
-                reloadPluginsFromSettings();
-
-                for (PairingCallback cb : pairingCallback) cb.unpaired();
-
             }
         } else if (NetworkPackage.PACKAGE_TYPE_CAPABILITIES.equals(np.getType())) {
             ArrayList<String> newIncomingCapabilities = np.getStringList("IncomingCapabilities");
             ArrayList<String> newOutgoingCapabilities = np.getStringList("OutgoingCapabilities");
             if (!ObjectsHelper.equals(newIncomingCapabilities, incomingCapabilities) ||
-                    !ObjectsHelper.equals(newOutgoingCapabilities, outgoingCapabilities)) {
+                !ObjectsHelper.equals(newOutgoingCapabilities, outgoingCapabilities)) {
                 incomingCapabilities = newIncomingCapabilities;
                 outgoingCapabilities = newOutgoingCapabilities;
                 reloadPluginsFromSettings();
             }
+
         } else if (isPaired()) {
-            ArrayList<String> targetPlugins = pluginsByIncomingInterface.get(np.getType());
-            for (String pluginKey : targetPlugins) {
-                Plugin plugin = plugins.get(pluginKey);
-                try {
-                    plugin.onPackageReceived(np);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.e("KDE/Device", "Exception in "+pluginKey+"'s onPackageReceived()");
+
+            //If capabilities are not supported, iterate all plugins
+            Collection<String> targetPlugins = pluginsByIncomingInterface.get(np.getType());
+            if (targetPlugins != null && !targetPlugins.isEmpty()) {
+                for (String pluginKey : targetPlugins) {
+                    Plugin plugin = plugins.get(pluginKey);
+                    try {
+                        plugin.onPackageReceived(np);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Log.e("KDE/Device", "Exception in " + plugin.getPluginKey() + "'s onPackageReceived()");
+                    }
                 }
+            } else {
+                Log.w("Device", "Ignoring packet with type " + np.getType() + " because no plugin can handle it");
             }
         } else {
 
             //Log.e("KDE/onPackageReceived","Device not paired, will pass package to unpairedPackageListeners");
 
-            if (pairStatus != PairStatus.Requested) {
-                unpair();
-            }
+            // If it is pair package, it should be captured by "if" at start
+            // If not and device is paired, it should be captured by isPaired
+            // Else unpair, this handles the situation when one device unpairs, but other dont know like unpairing when wi-fi is off
 
-            for (Plugin plugin : plugins.values()) {
-                try {
-                    plugin.onUnpairedDevicePackageReceived(np);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.e("KDE/Device", "Exception in "+plugin.getDisplayName()+"'s onPackageReceived() in unPairedPackageListeners");
+            unpair();
+
+            //If capabilities are not supported, iterate all plugins
+            Collection<String> targetPlugins = pluginsByIncomingInterface.get(np.getType());
+            if (targetPlugins != null && !targetPlugins.isEmpty()) {
+                for (String pluginKey : targetPlugins) {
+                    Plugin plugin = plugins.get(pluginKey);
+                    try {
+                        plugin.onUnpairedDevicePackageReceived(np);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Log.e("KDE/Device", "Exception in " + plugin.getDisplayName() + "'s onPackageReceived() in unPairedPackageListeners");
+                    }
                 }
+            } else {
+                Log.e("Device", "Ignoring packet with type " + np.getType() + " because no plugin can handle it");
             }
-
         }
 
     }
@@ -640,6 +640,13 @@ public class Device implements BaseLink.PackageReceiver {
     //Async
     public void sendPackage(final NetworkPackage np, final SendPackageStatusCallback callback) {
 
+        hackToMakeRetrocompatiblePacketTypes(np);
+
+        if (protocolVersion >= MIN_VERSION_WITH_CAPPABILITIES_SUPPORT && !supportedOutgoingInterfaces.contains(np.getType()) && !NetworkPackage.protocolPackageTypes.contains(np.getType())) {
+            Log.e("Device/sendPackage", "Plugin tried to send an unsupported package: " + np.getType());
+            Log.w("Device/sendPackage", "Supported package types: " + Arrays.toString(supportedOutgoingInterfaces.toArray()));
+        }
+
         //Log.e("sendPackage", "Sending package...");
         //Log.e("sendPackage", np.serialize());
 
@@ -648,7 +655,7 @@ public class Device implements BaseLink.PackageReceiver {
             @Override
             public void run() {
 
-                boolean useEncryption = (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR) && isPaired());
+                boolean useEncryption = (protocolVersion < LanLinkProvider.MIN_VERSION_WITH_SSL_SUPPORT && (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_PAIR) && isPaired()));
 
                 //Make a copy to avoid concurrent modification exception if the original list changes
                 for (final BaseLink link : links) {
@@ -782,8 +789,7 @@ public class Device implements BaseLink.PackageReceiver {
         HashMap<String, ArrayList<String>> newPluginsByIncomingInterface = new HashMap<>();
         HashMap<String, ArrayList<String>> newPluginsByOutgoingInterface = new HashMap<>();
 
-        final boolean supportsCapabilities = (incomingCapabilities != null && !incomingCapabilities.isEmpty()) ||
-                (incomingCapabilities != null && !outgoingCapabilities.isEmpty());
+        final boolean supportsCapabilities = (protocolVersion >= MIN_VERSION_WITH_CAPPABILITIES_SUPPORT);
 
         for (String pluginKey : availablePlugins) {
 
@@ -805,7 +811,6 @@ public class Device implements BaseLink.PackageReceiver {
                 HashSet<String> supportedIn = new HashSet<>(incomingInterfaces);
                 supportedIn.retainAll(outgoingCapabilities);
                 if (supportedOut.isEmpty() && supportedIn.isEmpty()) {
-                    Log.w("ReloadPlugins", "not loading " + pluginKey + "because of unmatched capabilities");
                     newUnsupportedPlugins.add(pluginKey);
                     if (pluginEnabled) {
                         //We still want to announce this capability, to prevent a deadlock
@@ -825,6 +830,7 @@ public class Device implements BaseLink.PackageReceiver {
                     newSupportedOutgoingInterfaces.addAll(outgoingInterfaces);
 
                     for (String packageType : incomingInterfaces) {
+                        packageType = hackToMakeRetrocompatiblePacketTypes(packageType);
                         ArrayList<String> plugins = newPluginsByIncomingInterface.get(packageType);
                         if (plugins == null) plugins = new ArrayList<>();
                         plugins.add(pluginKey);
@@ -832,6 +838,7 @@ public class Device implements BaseLink.PackageReceiver {
                     }
 
                     for (String packageType : outgoingInterfaces) {
+                        packageType = hackToMakeRetrocompatiblePacketTypes(packageType);
                         ArrayList<String> plugins = newPluginsByOutgoingInterface.get(packageType);
                         if (plugins == null) plugins = new ArrayList<>();
                         plugins.add(pluginKey);
@@ -847,7 +854,7 @@ public class Device implements BaseLink.PackageReceiver {
 
         boolean capabilitiesChanged = false;
         if (!newSupportedIncomingInterfaces.equals(supportedIncomingInterfaces) ||
-                !newSupportedOutgoingInterfaces.equals(supportedOutgoingInterfaces)) {
+                !newSupportedOutgoingInterfaces.equals(pluginsByOutgoingInterface)) {
             capabilitiesChanged = true;
         }
 
@@ -857,9 +864,14 @@ public class Device implements BaseLink.PackageReceiver {
         supportedOutgoingInterfaces = newSupportedOutgoingInterfaces;
         unsupportedPlugins = newUnsupportedPlugins;
 
+        if (!unsupportedPlugins.isEmpty()) {
+            Log.i("ReloadPlugins", "not loading " + Arrays.toString(unsupportedPlugins.toArray()) + " because of unmatched capabilities");
+        }
+
         onPluginsChanged();
 
-        if (capabilitiesChanged && isReachable() && isPaired()) {
+        //Only send capabilities to devices using protocol version 6 or later
+        if (capabilitiesChanged && isReachable() && isPaired() && protocolVersion >= MIN_VERSION_WITH_CAPPABILITIES_SUPPORT) {
             NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_CAPABILITIES);
             np.set("IncomingCapabilities", new ArrayList<>(newSupportedIncomingInterfaces));
             np.set("OutgoingCapabilities", new ArrayList<>(newSupportedOutgoingInterfaces));
@@ -896,13 +908,30 @@ public class Device implements BaseLink.PackageReceiver {
         }
     }
 
-    public BaseLink.ConnectionStarted getConnectionSource() {
+    public boolean deviceShouldBeKeptAlive() {
+
+        SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
+        if (preferences.contains(getDeviceId())) {
+            //Log.e("DeviceShouldBeKeptAlive", "because it's a paired device");
+            return true; //Already paired
+        }
+
         for(BaseLink l : links) {
-            if (l.getConnectionSource() == BaseLink.ConnectionStarted.Locally) {
-                return BaseLink.ConnectionStarted.Locally;
+            if (l.linkShouldBeKeptAlive()) {
+                return true;
             }
         }
-        return BaseLink.ConnectionStarted.Remotely;
+        return false;
+    }
+
+    public void hackToMakeRetrocompatiblePacketTypes(NetworkPackage np) {
+        if (protocolVersion >= MIN_VERSION_WITH_CAPPABILITIES_SUPPORT) return;
+        np.mType = np.getType().replace(".request","");
+    }
+
+    public String hackToMakeRetrocompatiblePacketTypes(String type) {
+        if (protocolVersion >= MIN_VERSION_WITH_CAPPABILITIES_SUPPORT) return type;
+        return type.replace(".request","");
     }
 
 }

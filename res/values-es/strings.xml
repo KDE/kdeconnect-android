@@ -13,7 +13,7 @@
   <string name="pref_plugin_mpris">Controles multimedia</string>
   <string name="pref_plugin_mpris_desc">Controlar audio y vídeo desde el teléfono</string>
   <string name="pref_plugin_runcommand">Ejecutar orden</string>
-  <string name="pref_plugin_runcommand_desc">Ejecuta una orden en su sistema</string>
+  <string name="pref_plugin_runcommand_desc">Desencadenar órdenes remotas desde su teléfono</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Enviar y recibir pings</string>
   <string name="pref_plugin_notifications">Sincronizar notificaciones</string>
@@ -66,6 +66,10 @@
   <string name="error_canceled_by_user">Cancelado por el usuario</string>
   <string name="error_canceled_by_other_peer">Cancelado por la otra parte</string>
   <string name="error_invalid_key">Se ha recibido una clave no valida</string>
+  <string name="encryption_info_title">Información de cifrado</string>
+  <string name="encryption_info_msg_no_ssl">El otro dispositivo no dispone de una versión reciente de KDE Connect, se usará un método de cifrado antiguo.</string>
+  <string name="my_device_fingerprint">La huella digital SHA1 del certificado de su dispositivo es:</string>
+  <string name="remote_device_fingerprint">La huella digital SHA1 del certificado del dispositivo remoto es:</string>
   <string name="pair_requested">Vinculación solicitada</string>
   <string name="pairing_request_from">Solicitud de vinculación de %1s</string>
   <string name="received_url_title">Enlace recibido desde %1s</string>

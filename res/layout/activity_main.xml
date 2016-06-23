@@ -12,22 +12,27 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:orientation="vertical">
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:elevation="8dp"
             android:background="?attr/colorPrimary" />
+
         <FrameLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </FrameLayout>
+
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_drawer"
+        android:background="@drawable/state_list_drawer_background"
         app:itemBackground="@drawable/state_list_drawer_background"
         app:itemTextColor="@color/state_list_drawer_text"
         app:itemIconTint="@color/state_list_drawer_text"

@@ -13,7 +13,6 @@
   <string name="pref_plugin_mpris">Управление воспроизведением</string>
   <string name="pref_plugin_mpris_desc">Управление медиапроигрывателем с телефона</string>
   <string name="pref_plugin_runcommand">Запуск команд</string>
-  <string name="pref_plugin_runcommand_desc">Выполнение команд на вашем компьютере</string>
   <string name="pref_plugin_ping">Пинг</string>
   <string name="pref_plugin_ping_desc">Отправка и получение тестовых сигналов</string>
   <string name="pref_plugin_notifications">Синхронизация уведомлений</string>
@@ -147,7 +146,6 @@
   <string name="pref_plugin_telepathy">Отправка SMS</string>
   <string name="pref_plugin_telepathy_desc">Отправка SMS-сообщений с вашего компьютера</string>
   <string name="plugin_not_supported">Этот модуль не поддерживается устройством</string>
-  <string name="findmyphone_title">Поиск телефона</string>
   <string name="findmyphone_description">Подача звукового сигнала на телефоне, чтобы вы могли его найти.</string>
   <string name="findmyphone_found">Найден</string>
   <string name="open">Открыть</string>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.kde.kdeconnect_tp"
-    android:versionCode="910"
-    android:versionName="0.9g">
+    android:versionCode="1102"
+    android:versionName="1.1">
 
     <uses-sdk android:minSdkVersion="9"
               android:targetSdkVersion="22" />
@@ -23,7 +23,7 @@
     <uses-permission android:name="android.permission.BATTERY_STATS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" android:required="false" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" android:required="false" />
-    <uses-permission android:name="android.permission.SEND_SMS" android:required="false" />
+    <!-- <uses-permission android:name="android.permission.SEND_SMS" android:required="false" /> -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -31,6 +31,7 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
+        android:supportsRtl="true"
         android:label="KDE Connect"
         android:theme="@style/KdeConnectTheme"
         >
@@ -117,7 +118,6 @@
         <activity
             android:name="org.kde.kdeconnect.Plugins.FindMyPhonePlugin.FindMyPhoneActivity"
             android:label="@string/findmyphone_title"
-            android:theme="@style/Theme.AppCompat"
             android:launchMode="singleInstance">
         </activity>
 

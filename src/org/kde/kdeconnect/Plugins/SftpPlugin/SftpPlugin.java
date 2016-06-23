@@ -33,6 +33,9 @@ import java.util.List;
 
 public class SftpPlugin extends Plugin {
 
+    public final static String PACKAGE_TYPE_SFTP = "kdeconnect.sftp";
+    public final static String PACKAGE_TYPE_SFTP_REQUEST = "kdeconnect.sftp.request";
+
     private static final SimpleSftpServer server = new SimpleSftpServer();
 
     @Override
@@ -58,12 +61,11 @@ public class SftpPlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
-        if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_SFTP)) return false;
 
         if (np.getBoolean("startBrowsing")) {
             if (server.start()) {
 
-                NetworkPackage np2 = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_SFTP);
+                NetworkPackage np2 = new NetworkPackage(PACKAGE_TYPE_SFTP);
 
                 np2.set("ip", server.getLocalIpAddress());
                 np2.set("port", server.port);
@@ -129,12 +131,12 @@ public class SftpPlugin extends Plugin {
 
     @Override
     public String[] getSupportedPackageTypes() {
-        return new String[]{NetworkPackage.PACKAGE_TYPE_SFTP};
+        return new String[]{PACKAGE_TYPE_SFTP_REQUEST};
     }
 
     @Override
     public String[] getOutgoingPackageTypes() {
-        return new String[]{NetworkPackage.PACKAGE_TYPE_SFTP};
+        return new String[]{PACKAGE_TYPE_SFTP};
     }
 
 }

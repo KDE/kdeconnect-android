@@ -41,8 +41,8 @@ import android.util.Log;
 
 import org.kde.kdeconnect.Helpers.AppsHelper;
 import org.kde.kdeconnect.NetworkPackage;
-import org.kde.kdeconnect.UserInterface.MaterialActivity;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.UserInterface.MaterialActivity;
 import org.kde.kdeconnect.UserInterface.SettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
@@ -50,6 +50,10 @@ import java.io.InputStream;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class NotificationsPlugin extends Plugin implements NotificationReceiver.NotificationListener {
+
+    public final static String PACKAGE_TYPE_NOTIFICATION = "kdeconnect.notification";
+    public final static String PACKAGE_TYPE_NOTIFICATION_REQUEST = "kdeconnect.notification.request";
+
 /*
     private boolean sendIcons = false;
 */
@@ -109,7 +113,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         }
 
         // request all existing notifications
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_NOTIFICATION);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_NOTIFICATION_REQUEST);
         np.set("request", true);
         device.sendPackage(np);
         return true;
@@ -131,7 +135,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     @Override
     public void onNotificationRemoved(StatusBarNotification statusBarNotification) {
         String id = getNotificationKeyCompat(statusBarNotification);
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_NOTIFICATION);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_NOTIFICATION_REQUEST);
         np.set("id", id);
         np.set("isCancel", true);
         device.sendPackage(np);
@@ -173,12 +177,19 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             return;
         }
 
+        if ("com.android.systemui".equals(packageName) &&
+                "low_battery".equals(statusBarNotification.getTag()))
+        {
+            //HACK: Android low battery notification are posted again every few seconds. Ignore them, as we already have a battery indicator.
+            return;
+        }
+
         if (packageName.equals("com.google.android.googlequicksearchbox")) {
             //HACK: Hide Google Now notifications that keep constantly popping up (and without text because we don't know how to read them properly)
             return;
         }
 
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_NOTIFICATION);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_NOTIFICATION);
 
         if (packageName.equals("org.kde.kdeconnect_tp"))
         {
@@ -261,7 +272,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public boolean onPackageReceived(final NetworkPackage np) {
-        if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_NOTIFICATION)) return false;
 /*
         if (np.getBoolean("sendIcons")) {
             sendIcons = true;
@@ -350,7 +360,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                         .setContentText(np.getString("ticker"))
                         .setContentIntent(resultPendingIntent)
                         .setTicker(np.getString("ticker"))
-                        .setSmallIcon(android.R.drawable.ic_dialog_alert)
+                        .setSmallIcon(R.drawable.ic_notification)
                         .setLargeIcon(largeIcon)
                         .setAutoCancel(true)
                         .setLocalOnly(true)  // to avoid bouncing the notification back to other kdeconnect nodes
@@ -409,12 +419,12 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public String[] getSupportedPackageTypes() {
-        return new String[]{NetworkPackage.PACKAGE_TYPE_NOTIFICATION};
+        return new String[]{PACKAGE_TYPE_NOTIFICATION, PACKAGE_TYPE_NOTIFICATION_REQUEST};
     }
 
     @Override
     public String[] getOutgoingPackageTypes() {
-        return new String[]{NetworkPackage.PACKAGE_TYPE_NOTIFICATION};
+        return new String[]{PACKAGE_TYPE_NOTIFICATION, PACKAGE_TYPE_NOTIFICATION_REQUEST};
     }
 
     //For compat with API<21, because lollipop changed the way to cancel notifications
@@ -423,6 +433,10 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             service.cancelNotification(compatKey);
         } else {
             int first = compatKey.indexOf(':');
+            if (first == -1) {
+                Log.e("cancelNotificationCompa","Not formated like a notification key: "+ compatKey);
+                return;
+            }
             int last = compatKey.lastIndexOf(':');
             String packageName = compatKey.substring(0, first);
             String tag = compatKey.substring(first + 1, last);

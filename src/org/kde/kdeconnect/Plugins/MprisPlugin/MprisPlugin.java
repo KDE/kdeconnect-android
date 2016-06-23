@@ -22,10 +22,13 @@ package org.kde.kdeconnect.Plugins.MprisPlugin;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.content.ContextCompat;
+import android.util.Base64;
 import android.util.Log;
 
 import org.kde.kdeconnect.NetworkPackage;
@@ -37,9 +40,13 @@ import java.util.HashMap;
 
 public class MprisPlugin extends Plugin {
 
+    public final static String PACKAGE_TYPE_MPRIS = "kdeconnect.mpris";
+    public final static String PACKAGE_TYPE_MPRIS_REQUEST = "kdeconnect.mpris.request";
+
     private String player = "";
     private boolean playing = false;
     private String currentSong = "";
+    private Bitmap currentArt;
     private int volume = 50;
     private long length = -1;
     private long lastPosition;
@@ -82,7 +89,7 @@ public class MprisPlugin extends Plugin {
     }
 
     public void sendAction(String player, String action) {
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MPRIS_REQUEST);
         np.set("player", player);
         np.set("action", action);
         device.sendPackage(np);
@@ -92,14 +99,14 @@ public class MprisPlugin extends Plugin {
     }
 
     public void setVolume(int volume) {
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MPRIS_REQUEST);
         np.set("player", player);
         np.set("setVolume",volume);
         device.sendPackage(np);
     }
 
     public void setPosition(int position) {
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MPRIS_REQUEST);
         np.set("player", player);
         np.set("SetPosition", position);
         device.sendPackage(np);
@@ -108,7 +115,7 @@ public class MprisPlugin extends Plugin {
     }
 
     public void Seek(int offset) {
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MPRIS_REQUEST);
         np.set("player", player);
         np.set("Seek", offset);
         device.sendPackage(np);
@@ -116,9 +123,9 @@ public class MprisPlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
-        if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_MPRIS)) return false;
 
-        if (np.has("nowPlaying") || np.has("volume") || np.has("isPlaying") || np.has("length") || np.has("pos")) {
+        if (np.has("nowPlaying") || np.has("volume") || np.has("isPlaying") || np.has("length") ||
+                np.has("pos") || np.has("artImage")) {
             if (np.getString("player").equals(player)) {
                 currentSong = np.getString("nowPlaying", currentSong);
                 volume = np.getInt("volume", volume);
@@ -126,6 +133,11 @@ public class MprisPlugin extends Plugin {
                 if(np.has("pos")){
                     lastPosition = np.getLong("pos", lastPosition);
                     lastPositionTime = System.currentTimeMillis();
+                }
+                if (np.has("artImage")) {
+                    String base64Image = np.getString("artImage");
+                    byte[] decodedBytes = Base64.decode(base64Image, 0);
+                    currentArt = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
                 }
                 playing = np.getBoolean("isPlaying", playing);
                 for (String key : playerStatusUpdated.keySet()) {
@@ -172,12 +184,12 @@ public class MprisPlugin extends Plugin {
 
     @Override
     public String[] getSupportedPackageTypes() {
-        return new String[] {NetworkPackage.PACKAGE_TYPE_MPRIS};
+        return new String[] {PACKAGE_TYPE_MPRIS};
     }
 
     @Override
     public String[] getOutgoingPackageTypes() {
-        return new String[] {NetworkPackage.PACKAGE_TYPE_MPRIS};
+        return new String[] {PACKAGE_TYPE_MPRIS_REQUEST};
     }
 
     public void setPlayerStatusUpdatedHandler(String id, Handler h) {
@@ -206,6 +218,7 @@ public class MprisPlugin extends Plugin {
         if (player == null || player.equals(this.player)) return;
         this.player = player;
         currentSong = "";
+        currentArt = null;
         volume = 50;
         playing = false;
         for (String key : playerStatusUpdated.keySet()) {
@@ -227,6 +240,8 @@ public class MprisPlugin extends Plugin {
     public String getCurrentSong() {
         return currentSong;
     }
+
+    public Bitmap getCurrentArt() { return currentArt; }
 
     public String getPlayer() {
         return player;
@@ -251,13 +266,13 @@ public class MprisPlugin extends Plugin {
     }
 
     private void requestPlayerList() {
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MPRIS_REQUEST);
         np.set("requestPlayerList",true);
         device.sendPackage(np);
     }
 
     private void requestPlayerStatus() {
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_MPRIS);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MPRIS_REQUEST);
         np.set("player",player);
         np.set("requestNowPlaying",true);
         np.set("requestVolume",true);

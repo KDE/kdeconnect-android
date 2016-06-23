@@ -58,6 +58,9 @@ import java.util.ArrayList;
 
 public class SharePlugin extends Plugin {
 
+    //public final static String PACKAGE_TYPE_SHARE = "kdeconnect.share";
+    public final static String PACKAGE_TYPE_SHARE_REQUEST = "kdeconnect.share.request";
+
     final static boolean openUrlsDirectly = true;
 
     @Override
@@ -99,10 +102,6 @@ public class SharePlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
-
-        if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_SHARE)) {
-            return false;
-        }
 
         try {
             if (np.hasPayload()) {
@@ -311,7 +310,7 @@ public class SharePlugin extends Plugin {
             ContentResolver cr = context.getContentResolver();
             InputStream inputStream = cr.openInputStream(uri);
 
-            NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_SHARE);
+            NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_SHARE_REQUEST);
             long size = -1;
 
             final NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -496,12 +495,12 @@ public class SharePlugin extends Plugin {
 
     @Override
     public String[] getSupportedPackageTypes() {
-        return new String[]{NetworkPackage.PACKAGE_TYPE_SHARE};
+        return new String[]{PACKAGE_TYPE_SHARE_REQUEST};
     }
 
     @Override
     public String[] getOutgoingPackageTypes() {
-        return new String[]{NetworkPackage.PACKAGE_TYPE_SHARE};
+        return new String[]{PACKAGE_TYPE_SHARE_REQUEST};
     }
 
 

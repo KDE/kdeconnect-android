@@ -40,7 +40,6 @@ public class MaterialActivity extends AppCompatActivity {
 
     private NavigationView mNavigationView;
     private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mDrawerToggle;
 
     private String mCurrentDevice;
 
@@ -54,13 +53,14 @@ public class MaterialActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mNavigationView = (NavigationView) findViewById(R.id.navigation_drawer);
+        View mDrawerHeader = mNavigationView.getHeaderView(0);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
 
-        mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
                 mDrawerLayout, /* DrawerLayout object */
                 R.string.open, /* "open drawer" description */
                 R.string.close /* "close drawer" description */
@@ -74,7 +74,7 @@ public class MaterialActivity extends AppCompatActivity {
         mDrawerToggle.syncState();
 
         String deviceName = DeviceHelper.getDeviceName(this);
-        TextView nameView = (TextView) mDrawerLayout.findViewById(R.id.device_name);
+        TextView nameView = (TextView) mDrawerHeader.findViewById(R.id.device_name);
         nameView.setText(deviceName);
 
         View.OnClickListener renameListener = new View.OnClickListener() {
@@ -83,8 +83,8 @@ public class MaterialActivity extends AppCompatActivity {
                 renameDevice();
             }
         };
-        mDrawerLayout.findViewById(R.id.kdeconnect_label).setOnClickListener(renameListener);
-        mDrawerLayout.findViewById(R.id.device_name).setOnClickListener(renameListener);
+        mDrawerHeader.findViewById(R.id.kdeconnect_label).setOnClickListener(renameListener);
+        mDrawerHeader.findViewById(R.id.device_name).setOnClickListener(renameListener);
 
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -201,7 +201,7 @@ public class MaterialActivity extends AppCompatActivity {
 
     //TODO: Make it accept two parameters, a constant with the type of screen and the device id in
     //case the screen is for a device, or even three parameters and the third one be the plugin id?
-    //This way we can keep adding more options with null plugin id (eg: about)
+    //This way we can keep adding more options with null device id (eg: about, help...)
     public void onDeviceSelected(String deviceId, boolean stack) {
 
         mCurrentDevice = deviceId;
@@ -261,7 +261,7 @@ public class MaterialActivity extends AppCompatActivity {
     }
 
     public void renameDevice() {
-        final TextView nameView = (TextView) mDrawerLayout.findViewById(R.id.device_name);
+        final TextView nameView = (TextView) mNavigationView.findViewById(R.id.device_name);
         final EditText deviceNameEdit = new EditText(MaterialActivity.this);
         String deviceName = DeviceHelper.getDeviceName(MaterialActivity.this);
         deviceNameEdit.setText(deviceName);

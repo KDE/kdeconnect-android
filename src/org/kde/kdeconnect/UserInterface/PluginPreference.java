@@ -8,7 +8,6 @@ import android.widget.TextView;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
-import org.kde.kdeconnect.UserInterface.SettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
 public class PluginPreference extends CheckBoxPreference {

@@ -64,7 +64,6 @@ public class RunCommandActivity extends ActionBarActivity {
                         ArrayList<ListAdapter.Item> commandItems = new ArrayList<>();
                         for (JSONObject obj : commands) {
                             try {
-                                Log.e("cacaca", obj.toString());
                                 commandItems.add(new EntryItem(obj.getString("name"), obj.getString("command")));
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -78,7 +77,6 @@ public class RunCommandActivity extends ActionBarActivity {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                                 try {
-                                    Log.e("fu", commands.get(i).getString("command"));
                                     plugin.runCommand(commands.get(i).getString("key"));
                                 } catch (JSONException e) {
                                     e.printStackTrace();

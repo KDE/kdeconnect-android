@@ -13,7 +13,6 @@
   <string name="pref_plugin_mpris">Ovládání multimédií</string>
   <string name="pref_plugin_mpris_desc">Ovládejte audio/video z vašeho telefonu</string>
   <string name="pref_plugin_runcommand">Spustit příkaz</string>
-  <string name="pref_plugin_runcommand_desc">Spustí příkaz na vašem počítači</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Posílat a přijímat ping</string>
   <string name="pref_plugin_notifications">Synchronizace upozornění</string>
@@ -66,6 +65,7 @@
   <string name="error_canceled_by_user">Přerušeno uživatelem</string>
   <string name="error_canceled_by_other_peer">Přerušeno druhým uživatelem</string>
   <string name="error_invalid_key">Byl přijat neplatný klíč</string>
+  <string name="encryption_info_title">Informace o šifrování</string>
   <string name="pair_requested">Bylo vyžádáno párování</string>
   <string name="pairing_request_from">Požadavek o párování z %1s</string>
   <string name="received_url_title">Přijat odkaz od %1s</string>

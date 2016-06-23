@@ -170,7 +170,7 @@ public class ShareActivity extends ActionBarActivity {
                                         } catch (Exception e) {
                                             isUrl = false;
                                         }
-                                        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_SHARE);
+                                        NetworkPackage np = new NetworkPackage(SharePlugin.PACKAGE_TYPE_SHARE_REQUEST);
                                         if (isUrl) {
                                             np.set("url", text);
                                         } else {

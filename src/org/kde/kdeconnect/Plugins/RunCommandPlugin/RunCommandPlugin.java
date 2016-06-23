@@ -37,6 +37,9 @@ import java.util.Iterator;
 
 public class RunCommandPlugin extends Plugin {
 
+    public final static String PACKAGE_TYPE_RUNCOMMAND = "kdeconnect.runcommand";
+    public final static String PACKAGE_TYPE_RUNCOMMAND_REQUEST = "kdeconnect.runcommand.request";
+
     private ArrayList<JSONObject> commandList = new ArrayList<>();
     private ArrayList<CommandsChangedCallback> callbacks = new ArrayList<>();
 
@@ -79,7 +82,6 @@ public class RunCommandPlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
-        if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_RUNCOMMAND)) return false;
 
         if (np.has("commandList")) {
             commandList.clear();
@@ -109,22 +111,22 @@ public class RunCommandPlugin extends Plugin {
 
     @Override
     public String[] getSupportedPackageTypes() {
-        return new String[]{NetworkPackage.PACKAGE_TYPE_RUNCOMMAND};
+        return new String[]{PACKAGE_TYPE_RUNCOMMAND};
     }
 
     @Override
     public String[] getOutgoingPackageTypes() {
-        return new String[]{NetworkPackage.PACKAGE_TYPE_RUNCOMMAND};
+        return new String[]{PACKAGE_TYPE_RUNCOMMAND_REQUEST};
     }
 
     public void runCommand(String cmdKey) {
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_RUNCOMMAND);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_RUNCOMMAND_REQUEST);
         np.set("key", cmdKey);
         device.sendPackage(np);
     }
 
     private void requestCommandList() {
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_RUNCOMMAND);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_RUNCOMMAND_REQUEST);
         np.set("requestCommandList", true);
         device.sendPackage(np);
     }

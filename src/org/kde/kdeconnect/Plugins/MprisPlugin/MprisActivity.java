@@ -21,6 +21,7 @@
 package org.kde.kdeconnect.Plugins.MprisPlugin;
 
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -33,14 +34,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.kde.kdeconnect.Backends.BaseLink;
+import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect_tp.R;
 
@@ -93,6 +95,13 @@ public class MprisActivity extends ActionBarActivity {
                                 TextView nowPlaying = (TextView) findViewById(R.id.now_playing_textview);
                                 if (!nowPlaying.getText().toString().equals(song)) {
                                     nowPlaying.setText(song);
+
+                                    Bitmap currentArt = mpris.getCurrentArt();
+                                    ImageView artView = (ImageView) findViewById(R.id.artImageView);
+                                    if (currentArt != null) {
+                                        artView.setImageBitmap(currentArt);
+                                    }
+
                                 }
 
                                 if (mpris.getLength() > -1 && mpris.getPosition() > -1 && !"spotify".equals(mpris.getPlayer().toLowerCase())) {

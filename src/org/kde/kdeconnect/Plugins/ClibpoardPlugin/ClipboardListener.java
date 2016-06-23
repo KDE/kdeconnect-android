@@ -22,8 +22,8 @@ package org.kde.kdeconnect.Plugins.ClibpoardPlugin;
 
 import android.annotation.TargetApi;
 import android.content.ClipData;
-import android.content.Context;
 import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
@@ -60,7 +60,7 @@ public class ClipboardListener {
                             String content = item.coerceToText(context).toString();
 
                             if (!content.equals(currentContent)) {
-                                NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_CLIPBOARD);
+                                NetworkPackage np = new NetworkPackage(ClipboardPlugin.PACKAGE_TYPE_CLIPBOARD);
                                 np.set("content", content);
                                 device.sendPackage(np);
                                 currentContent = content;

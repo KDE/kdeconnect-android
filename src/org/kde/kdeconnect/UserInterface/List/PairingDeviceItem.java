@@ -36,8 +36,6 @@ public class PairingDeviceItem implements ListAdapter.Item {
 
     private final Callback callback;
     private final Device device;
-    private TextView titleView;
-    private ImageView icon;
 
     public PairingDeviceItem(Device device, Callback callback) {
         this.device = device;
@@ -52,19 +50,25 @@ public class PairingDeviceItem implements ListAdapter.Item {
     public View inflateView(LayoutInflater layoutInflater) {
         final View v = layoutInflater.inflate(R.layout.list_item_with_icon_entry, null);
 
-        icon = (ImageView)v.findViewById(R.id.list_item_entry_icon);
+        ImageView icon = (ImageView) v.findViewById(R.id.list_item_entry_icon);
         icon.setImageDrawable(device.getIcon());
 
-        titleView = (TextView)v.findViewById(R.id.list_item_entry_title);
+        TextView titleView = (TextView) v.findViewById(R.id.list_item_entry_title);
         titleView.setText(device.getName());
 
         if (device.compareProtocolVersion() != 0) {
             TextView summaryView = (TextView)v.findViewById(R.id.list_item_entry_summary);
-            summaryView.setVisibility(View.VISIBLE);
+
             if (device.compareProtocolVersion() > 0) {
                 summaryView.setText(R.string.protocol_version_newer);
+                summaryView.setVisibility(View.VISIBLE);
             } else {
+                //FIXME: Uncoment when we decide old versions are old enough to notify the user.
+                summaryView.setVisibility(View.GONE);
+                /*
                 summaryView.setText(R.string.protocol_version_older);
+                summaryView.setVisibility(View.VISIBLE);
+                */
             }
         } else {
             v.findViewById(R.id.list_item_entry_summary).setVisibility(View.GONE);

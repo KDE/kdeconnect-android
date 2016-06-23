@@ -16,15 +16,24 @@
 #   public *;
 #}
 
+-dontobfuscate
+
 # Allow obfuscation of android.support.v7.internal.view.menu.**
 # to avoid problem on Samsung 4.2.2 devices with appcompat v21
 # see https://code.google.com/p/android/issues/detail?id=78377
--keep class !android.support.v7.internal.view.menu.**,** {*;}
+-keepnames class !android.support.v7.internal.view.menu.**,android.support.v7.** {*;}
 
+-dontwarn org.spongycastle.**
 -dontwarn org.apache.sshd.**
 -dontwarn org.apache.mina.**
--dontwarn org.bouncycastle.**
 -dontwarn org.slf4j.**
+-dontwarn io.netty.**
 
--keepattributes SourceFile,LineNumberTable
+-keepattributes SourceFile,LineNumberTable,Signature,*Annotation*
 
+-keep class org.spongycastle.** {*;}
+
+# SSHd requires mina, and mina uses reflection so some classes would get deleted
+-keep class org.apache.mina.** {*;}
+
+-keep class org.kde.kdeconnect.** {*;}

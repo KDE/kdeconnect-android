@@ -20,6 +20,11 @@
         android:id="@+id/no_players"
         android:layout_gravity="center_horizontal" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/artImageView" />
+
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -151,7 +156,6 @@
             android:layout_marginEnd="10dip"
             android:id="@+id/imageView"
             android:layout_weight="0"
-            android:layout_gravity="left|center_vertical"
             android:contentDescription="@string/mpris_volume"
             android:src="@drawable/ic_volume"
         />

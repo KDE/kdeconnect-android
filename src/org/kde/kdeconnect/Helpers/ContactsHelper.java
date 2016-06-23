@@ -20,10 +20,11 @@
 
 package org.kde.kdeconnect.Helpers;
 
+import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.PhoneLookup;
 import android.util.Base64;
@@ -37,11 +38,13 @@ import java.util.Map;
 
 public class ContactsHelper {
 
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static Map<String, String> phoneNumberLookup(Context context, String number) {
 
         //Log.e("PhoneNumberLookup", number);
 
-        Map<String, String> contactInfo = new HashMap<String, String>();
+        Map<String, String> contactInfo = new HashMap<>();
 
         Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
         Cursor cursor = null;
@@ -82,25 +85,29 @@ public class ContactsHelper {
     }
 
     public static String photoId64Encoded(Context context, String photoId) {
+        if (photoId == null) {
+            return "";
+        }
         Uri photoUri = Uri.parse(photoId);
-        Uri displayPhotoUri = Uri.withAppendedPath(photoUri, ContactsContract.Contacts.Photo.DISPLAY_PHOTO);
 
-        byte[] buffer = null;
-        Base64OutputStream out = null;
-        ByteArrayOutputStream encodedPhoto = null;
+        InputStream input = null;
+        Base64OutputStream output= null;
         try {
-            encodedPhoto = new ByteArrayOutputStream();
-            out = new Base64OutputStream(encodedPhoto, Base64.DEFAULT);
-            InputStream fd2 = context.getContentResolver().openInputStream(photoUri);
-            buffer = new byte[1024];
+            ByteArrayOutputStream encodedPhoto = new ByteArrayOutputStream();
+            output = new Base64OutputStream(encodedPhoto, Base64.DEFAULT);
+            input = context.getContentResolver().openInputStream(photoUri);
+            byte[] buffer = new byte[1024];
             int len;
-            while ((len = fd2.read(buffer)) != -1) {
-                out.write(buffer, 0, len);
+            while ((len = input.read(buffer)) != -1) {
+                output.write(buffer, 0, len);
             }
             return encodedPhoto.toString();
         } catch (Exception ex) {
             Log.e("ContactsHelper", ex.toString());
-            return new String();
+            return "";
+        } finally {
+            try { input.close(); } catch(Exception ignored) { };
+            try { output.close(); } catch(Exception ignored) { };
         }
     }
 }

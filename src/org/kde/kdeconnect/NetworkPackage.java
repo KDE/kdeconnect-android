@@ -21,10 +21,6 @@
 package org.kde.kdeconnect;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.provider.Settings;
-import android.util.Base64;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -34,37 +30,28 @@ import org.kde.kdeconnect.Helpers.DeviceHelper;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.nio.charset.Charset;
-import java.security.GeneralSecurityException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
 import java.util.ArrayList;
-
-import javax.crypto.Cipher;
+import java.util.HashSet;
+import java.util.Set;
 
 public class NetworkPackage {
 
-    public final static int ProtocolVersion = 5;
+    public final static int ProtocolVersion = 7;
 
-    //TODO: Move these to their respective plugins
     public final static String PACKAGE_TYPE_IDENTITY = "kdeconnect.identity";
     public final static String PACKAGE_TYPE_PAIR = "kdeconnect.pair";
     public final static String PACKAGE_TYPE_ENCRYPTED = "kdeconnect.encrypted";
-    public final static String PACKAGE_TYPE_PING = "kdeconnect.ping";
-    public final static String PACKAGE_TYPE_TELEPHONY = "kdeconnect.telephony";
-    public final static String PACKAGE_TYPE_BATTERY = "kdeconnect.battery";
-    public final static String PACKAGE_TYPE_SFTP = "kdeconnect.sftp";
-    public final static String PACKAGE_TYPE_NOTIFICATION = "kdeconnect.notification";
-    public final static String PACKAGE_TYPE_CLIPBOARD = "kdeconnect.clipboard";
-    public final static String PACKAGE_TYPE_MPRIS = "kdeconnect.mpris";
-    public final static String PACKAGE_TYPE_MOUSEPAD = "kdeconnect.mousepad";
-    public final static String PACKAGE_TYPE_SHARE = "kdeconnect.share";
-    public static final String PACKAGE_TYPE_CAPABILITIES = "kdeconnect.capabilities";
-    public final static String PACKAGE_TYPE_FINDMYPHONE = "kdeconnect.findmyphone" ;
-    public final static String PACKAGE_TYPE_RUNCOMMAND = "kdeconnect.runcommand";
+    public final static String PACKAGE_TYPE_CAPABILITIES = "kdeconnect.capabilities";
+
+    public static Set<String> protocolPackageTypes = new HashSet<String>() {{
+        add(PACKAGE_TYPE_IDENTITY);
+        add(PACKAGE_TYPE_PAIR);
+        add(PACKAGE_TYPE_ENCRYPTED);
+        add(PACKAGE_TYPE_CAPABILITIES);
+    }};
 
     private long mId;
-    private String mType;
+    String mType;
     private JSONObject mBody;
     private InputStream mPayload;
     private JSONObject mPayloadTransferInfo;
@@ -143,107 +130,35 @@ public class NetworkPackage {
 
     public boolean isEncrypted() { return mType.equals(PACKAGE_TYPE_ENCRYPTED); }
 
-    public String serialize() {
+    public String serialize() throws JSONException {
         JSONObject jo = new JSONObject();
-        try {
-            jo.put("id", mId);
-            jo.put("type", mType);
-            jo.put("body", mBody);
-            if (hasPayload()) {
-                jo.put("payloadSize", mPayloadSize);
-                jo.put("payloadTransferInfo", mPayloadTransferInfo);
-            }
-        } catch(Exception e) {
-            e.printStackTrace();
-            Log.e("NetworkPackage", "Serialization exception");
+        jo.put("id", mId);
+        jo.put("type", mType);
+        jo.put("body", mBody);
+        if (hasPayload()) {
+            jo.put("payloadSize", mPayloadSize);
+            jo.put("payloadTransferInfo", mPayloadTransferInfo);
         }
-
         //QJSon does not escape slashes, but Java JSONObject does. Converting to QJson format.
         String json = jo.toString().replace("\\/","/")+"\n";
-
-        if (!isEncrypted()) {
-            //Log.e("NetworkPackage.serialize", json);
-        }
-
         return json;
     }
 
-    static public NetworkPackage unserialize(String s) {
+    static public NetworkPackage unserialize(String s) throws JSONException {
 
         NetworkPackage np = new NetworkPackage();
-        try {
-            JSONObject jo = new JSONObject(s);
-            np.mId = jo.getLong("id");
-            np.mType = jo.getString("type");
-            np.mBody = jo.getJSONObject("body");
-            if (jo.has("payloadSize")) {
-                np.mPayloadTransferInfo = jo.getJSONObject("payloadTransferInfo");
-                np.mPayloadSize = jo.getLong("payloadSize");
-            } else {
-                np.mPayloadTransferInfo = new JSONObject();
-                np.mPayloadSize = 0;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("NetworkPackage", "Unserialization exception unserializing "+s);
-            return null;
+        JSONObject jo = new JSONObject(s);
+        np.mId = jo.getLong("id");
+        np.mType = jo.getString("type");
+        np.mBody = jo.getJSONObject("body");
+        if (jo.has("payloadSize")) {
+            np.mPayloadTransferInfo = jo.getJSONObject("payloadTransferInfo");
+            np.mPayloadSize = jo.getLong("payloadSize");
+        } else {
+            np.mPayloadTransferInfo = new JSONObject();
+            np.mPayloadSize = 0;
         }
-
-        if (!np.isEncrypted()) {
-            //Log.e("NetworkPackage.unserialize", s);
-        }
-
         return np;
-    }
-
-    public NetworkPackage encrypt(PublicKey publicKey) throws GeneralSecurityException {
-
-        String serialized = serialize();
-
-        int chunkSize = 128;
-
-        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1PADDING");
-        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
-
-        JSONArray chunks = new JSONArray();
-        while (serialized.length() > 0) {
-            if (serialized.length() < chunkSize) {
-                chunkSize = serialized.length();
-            }
-            String chunk = serialized.substring(0, chunkSize);
-            serialized = serialized.substring(chunkSize);
-            byte[] chunkBytes = chunk.getBytes(Charset.defaultCharset());
-            byte[] encryptedChunk;
-            encryptedChunk = cipher.doFinal(chunkBytes);
-            chunks.put(Base64.encodeToString(encryptedChunk, Base64.NO_WRAP));
-        }
-
-        //Log.i("NetworkPackage", "Encrypted " + chunks.length()+" chunks");
-
-        NetworkPackage encrypted = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_ENCRYPTED);
-        encrypted.set("data", chunks);
-        encrypted.setPayload(mPayload, mPayloadSize);
-        return encrypted;
-
-    }
-
-    public NetworkPackage decrypt(PrivateKey privateKey)  throws GeneralSecurityException, JSONException {
-
-        JSONArray chunks = mBody.getJSONArray("data");
-
-        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1PADDING");
-        cipher.init(Cipher.DECRYPT_MODE, privateKey);
-
-        String decryptedJson = "";
-        for (int i = 0; i < chunks.length(); i++) {
-            byte[] encryptedChunk = Base64.decode(chunks.getString(i), Base64.NO_WRAP);
-            String decryptedChunk = new String(cipher.doFinal(encryptedChunk));
-            decryptedJson += decryptedChunk;
-        }
-
-        NetworkPackage decrypted = unserialize(decryptedJson);
-        decrypted.setPayload(mPayload, mPayloadSize);
-        return decrypted;
     }
 
     static public NetworkPackage createIdentityPackage(Context context) {
@@ -260,21 +175,6 @@ public class NetworkPackage {
             e.printStackTrace();
             Log.e("NetworkPacakge","Exception on createIdentityPackage");
         }
-
-        return np;
-
-    }
-
-
-    static public NetworkPackage createPublicKeyPackage(Context context) {
-
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
-
-        np.set("pair", true);
-
-        SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(context);
-        String publicKey = "-----BEGIN PUBLIC KEY-----\n" + globalSettings.getString("publicKey", "").trim()+ "\n-----END PUBLIC KEY-----\n";
-        np.set("publicKey", publicKey);
 
         return np;
 

@@ -3,18 +3,29 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.3.0'
+        classpath 'com.android.tools.build:gradle:2.1.2'
     }
 }
 
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion '22.0.1'
+    buildToolsVersion '23.0.3'
+    compileSdkVersion 23
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 22
+        targetSdkVersion 22 //Bumping to 23 means we have to support the new permissions model
+        //multiDexEnabled true
+        //testInstrumentationRunner "com.android.test.runner.MultiDexTestRunner"
+    }
+    dexOptions {
+        javaMaxHeapSize "2g"
+    }
+    compileOptions {
+        // Use Java 1.7, requires minSdk 8
+        //SSHD requires mina when running on JDK < 7
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
     }
 	sourceSets {
         main {
@@ -32,36 +43,45 @@ android {
         pickFirst "META-INF/DEPENDENCIES"
         pickFirst "META-INF/LICENSE"
         pickFirst "META-INF/NOTICE"
+        pickFirst "META-INF/BCKEY.SF"
+        pickFirst "META-INF/BCKEY.DSA"
+        pickFirst "META-INF/INDEX.LIST"
+        pickFirst "META-INF/io.netty.versions.properties"
     }
     lintOptions {
         abortOnError false
         checkReleaseBuilds false
     }
     buildTypes {
-        release {
+        debug {
+            minifyEnabled false
+            useProguard false
+        }
+        release { //keep on 'releae', set to 'all' when testing to make sure proguard is not deleting important stuff
             minifyEnabled true
+            useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),'proguard-rules.pro'
         }
     }
 }
 
 dependencies {
+
     repositories {
         mavenCentral()
     }
-    compile 'com.android.support:support-v4:22.2.1'
-    compile 'com.android.support:appcompat-v7:22.2.1'
-    compile 'com.android.support:design:22.2.1'
 
-    compile 'org.apache.mina:mina-core:2.0.9'
-    compile 'org.apache.sshd:sshd-core:0.8.0'
-    compile 'org.bouncycastle:bcprov-jdk16:1.46'
+    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
 
+    compile 'org.apache.sshd:sshd-core:0.8.0' //0.9 seems to fail on Android 6 and 1.+ requires java.nio.file, which doesn't exist in Android
+
+    compile 'com.madgag.spongycastle:pkix:1.54.0.0' //For SSL certificate generation
+
+    // Testing
     androidTestCompile 'org.mockito:mockito-core:1.10.19'
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.1'// Because mockito has some problems with dex environment
+    androidTestCompile 'org.skyscreamer:jsonassert:1.3.0'
 
-    // Because mockito has some problems with dex environment
-    androidTestCompile 'com.google.dexmaker:dexmaker:1.1'
-    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.1'
-
-    //compile fileTree(dir: 'libs', include: '*.jar')
 }

@@ -28,14 +28,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.util.Log;
 
 import org.kde.kdeconnect.NetworkPackage;
-import org.kde.kdeconnect.UserInterface.MaterialActivity;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.UserInterface.MaterialActivity;
 import org.kde.kdeconnect_tp.R;
 
 
 public class PingPlugin extends Plugin {
+
+    public final static String PACKAGE_TYPE_PING = "kdeconnect.ping";
 
     @Override
     public String getDisplayName() {
@@ -50,50 +53,51 @@ public class PingPlugin extends Plugin {
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
 
-        //Log.e("PingPackageReceiver", "onPackageReceived");
-        if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_PING)) {
-            //Log.e("PingPackageReceiver", "was a ping!");
-
-            TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-            stackBuilder.addParentStack(MaterialActivity.class);
-            stackBuilder.addNextIntent(new Intent(context, MaterialActivity.class));
-            PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
-                0,
-                PendingIntent.FLAG_UPDATE_CURRENT
-            );
-
-            int id;
-            String message;
-            if (np.has("message")) {
-                message = np.getString("message");
-                id = (int)System.currentTimeMillis();
-            } else {
-                message = "Ping!";
-                id = 42; //A unique id to create only one notification
-            }
-
-            Notification noti = new NotificationCompat.Builder(context)
-                    .setContentTitle(device.getName())
-                    .setContentText(message)
-                    .setContentIntent(resultPendingIntent)
-                    .setTicker(message)
-                    .setSmallIcon(R.drawable.ic_notification)
-                    .setAutoCancel(true)
-                    .setDefaults(Notification.DEFAULT_ALL)
-                    .build();
-
-            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            try {
-                notificationManager.notify(id, noti);
-            } catch(Exception e) {
-                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
-                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
-            }
-
-            return true;
-
+        if (!np.getType().equals(PACKAGE_TYPE_PING)) {
+            Log.e("PingPlugin", "Ping plugin should not receive packets other than pings!");
+            return false;
         }
-        return false;
+
+        //Log.e("PingPackageReceiver", "was a ping!");
+
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+        stackBuilder.addParentStack(MaterialActivity.class);
+        stackBuilder.addNextIntent(new Intent(context, MaterialActivity.class));
+        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
+            0,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        );
+
+        int id;
+        String message;
+        if (np.has("message")) {
+            message = np.getString("message");
+            id = (int)System.currentTimeMillis();
+        } else {
+            message = "Ping!";
+            id = 42; //A unique id to create only one notification
+        }
+
+        Notification noti = new NotificationCompat.Builder(context)
+                .setContentTitle(device.getName())
+                .setContentText(message)
+                .setContentIntent(resultPendingIntent)
+                .setTicker(message)
+                .setSmallIcon(R.drawable.ic_notification)
+                .setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .build();
+
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        try {
+            notificationManager.notify(id, noti);
+        } catch(Exception e) {
+            //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
+            //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+        }
+
+        return true;
+
     }
 
     @Override
@@ -104,7 +108,7 @@ public class PingPlugin extends Plugin {
     @Override
     public void startMainActivity(Activity activity) {
         if (device != null) {
-            device.sendPackage(new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PING));
+            device.sendPackage(new NetworkPackage(PACKAGE_TYPE_PING));
         }
     }
 
@@ -120,12 +124,12 @@ public class PingPlugin extends Plugin {
 
     @Override
     public String[] getSupportedPackageTypes() {
-        return new String[]{NetworkPackage.PACKAGE_TYPE_PING};
+        return new String[]{PACKAGE_TYPE_PING};
     }
 
     @Override
     public String[] getOutgoingPackageTypes() {
-        return new String[]{NetworkPackage.PACKAGE_TYPE_PING};
+        return new String[]{PACKAGE_TYPE_PING};
     }
 
 }

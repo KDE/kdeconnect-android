@@ -20,8 +20,11 @@
 
 package org.kde.kdeconnect.Backends.LoopbackBackend;
 
+import android.content.Context;
+
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
+import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
 
@@ -29,35 +32,33 @@ import java.security.PublicKey;
 
 public class LoopbackLink extends BaseLink {
 
-    public LoopbackLink(BaseLinkProvider linkProvider) {
-        super("loopback", linkProvider, ConnectionStarted.Remotely);
+    public LoopbackLink(Context context, BaseLinkProvider linkProvider) {
+        super(context, "loopback", linkProvider);
+    }
+
+    @Override
+    public String getName() {
+        return "LoopbackLink";
+    }
+
+    @Override
+    public BasePairingHandler getPairingHandler(Device device, BasePairingHandler.PairingHandlerCallback callback) {
+        return new LoopbackPairingHandler(device, callback);
     }
 
     @Override
     public void sendPackage(NetworkPackage in, Device.SendPackageStatusCallback callback) {
-        sendPackageEncrypted(in, callback, null);
+        packageReceived(in);
+        if (in.hasPayload()) {
+            callback.sendProgress(0);
+            in.setPayload(in.getPayload(), in.getPayloadSize());
+            callback.sendProgress(100);
+        }
+        callback.sendSuccess();
     }
 
     @Override
-    public void sendPackageEncrypted(NetworkPackage in, Device.SendPackageStatusCallback callback, PublicKey key) {
-        try {
-            if (key != null) {
-                in = in.encrypt(key);
-            }
-            String s = in.serialize();
-            NetworkPackage out= NetworkPackage.unserialize(s);
-            if (key != null) {
-                out = out.decrypt(privateKey);
-            }
-            packageReceived(out);
-            if (in.hasPayload()) {
-                callback.sendProgress(0);
-                out.setPayload(in.getPayload(), in.getPayloadSize());
-                callback.sendProgress(100);
-            }
-            callback.sendSuccess();
-        } catch(Exception e) {
-            callback.sendFailure(e);
-        }
+    public void sendPackageEncrypted(NetworkPackage np, Device.SendPackageStatusCallback callback, PublicKey key) {
+        sendPackage(np, callback);
     }
 }

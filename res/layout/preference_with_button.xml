@@ -18,14 +18,13 @@
      Preference is able to place a specific widget for its particular
      type in the "widget_frame" layout. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:res="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:gravity="center_vertical"
     android:paddingEnd="?android:attr/scrollbarSize"
     android:paddingRight="?android:attr/scrollbarSize"
-    android:background="?attr/selectableItemBackground" >
+    android:background="?attr/selectableItemBackground">
 
     <!-- Preference should place its actual preference widget here. -->
     <LinearLayout android:id="@+android:id/widget_frame"

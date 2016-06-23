@@ -13,7 +13,7 @@
   <string name="pref_plugin_mpris">Multimedia-Bedienung</string>
   <string name="pref_plugin_mpris_desc">Audio und Video mit Ihrem Telefon steuern</string>
   <string name="pref_plugin_runcommand">Befehl ausführen</string>
-  <string name="pref_plugin_runcommand_desc">Führt einen Befehl auf Ihrem System aus</string>
+  <string name="pref_plugin_runcommand_desc">Von Ihrem Telefon Befehle auf anderen Geräten ausführen</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Senden und Empfangen von Pings</string>
   <string name="pref_plugin_notifications">Benachrichtigungs-Abgleich</string>
@@ -29,6 +29,10 @@
   <string name="send_ping">Ping senden</string>
   <string name="open_mpris_controls">Multimedia-Bedienung</string>
   <string name="open_mousepad">Ferneingabe</string>
+  <string name="mousepad_double_tap_settings_title">Aktionsausführung bei Berührung mit zwei Fingern einstellen</string>
+  <string name="mousepad_triple_tap_settings_title">Aktionsausführung bei Berührung mit drei Fingern einstellen</string>
+  <string name="mousepad_sensitivity_settings_title">Empfindlichkeit des Touchpads einstellen</string>
+  <string name="mousepad_scroll_direction_title">Bildlaufrichtung umkehren</string>
   <string-array name="mousepad_tap_entries">
     <item>Rechtsklick</item>
     <item>Mittelklick</item>
@@ -36,12 +40,13 @@
   </string-array>
   <string name="mousepad_double_default">Rechts</string>
   <string name="mousepad_triple_default">Mitte</string>
+  <string name="mousepad_sensitivity_default">Standard</string>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
+    <item>Langsamste</item>
     <item>Above Slowest</item>
-    <item>Default</item>
+    <item>Standard</item>
     <item>Above Default</item>
-    <item>Fastest</item>
+    <item>Schnellste</item>
   </string-array>
   <string name="category_connected_devices">Verbundene Geräte</string>
   <string name="category_not_paired_devices">Verfügbare Gerät</string>
@@ -60,6 +65,9 @@
   <string name="error_canceled_by_user">Abbruch durch Benutzer</string>
   <string name="error_canceled_by_other_peer">Abbruch durch Gegenstelle</string>
   <string name="error_invalid_key">Ungültiger Schlüssel empfangen</string>
+  <string name="encryption_info_title">Verschlüsselungsinformationen</string>
+  <string name="my_device_fingerprint">Der SHA1-Fingerabdruck Ihres Gerätezertifikats lautet:</string>
+  <string name="remote_device_fingerprint">Der SHA1-Fingerabdruck des Gerätezertifikats der Gegenstelle lautet:</string>
   <string name="pair_requested">Verbindung angefordert</string>
   <string name="pairing_request_from">Verbindungsanfrage von %1s</string>
   <string name="received_url_title">Verknüpfung von %1s erhalten</string>
@@ -93,6 +101,7 @@
   <string name="mpris_next">Weiter</string>
   <string name="mpris_volume">Lautstärke</string>
   <string name="mpris_settings">Multimedia-Einstellungen</string>
+  <string name="mpris_time_settings_title">Knöpfe Vorwärts/Rückwärts</string>
   <string-array name="mpris_time_entries">
     <item>10 Sekunden</item>
     <item>20 Sekunden</item>
@@ -139,7 +148,7 @@
   <string name="pref_plugin_telepathy">SMS senden</string>
   <string name="pref_plugin_telepathy_desc">Text-Nachrichten von Ihrer Arbeitsfläche senden</string>
   <string name="plugin_not_supported">Dieses Modul wird durch das Gerät nicht unterstützt</string>
-  <string name="findmyphone_title">Telefon suchen</string>
+  <string name="findmyphone_title">Mein Telefon suchen</string>
   <string name="findmyphone_description">Ruft dieses Telefon an, um es zu suchen.</string>
   <string name="findmyphone_found">Gefunden</string>
   <string name="open">Öffnen</string>

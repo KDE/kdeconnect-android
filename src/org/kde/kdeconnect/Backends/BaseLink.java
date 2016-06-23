@@ -20,6 +20,8 @@
 
 package org.kde.kdeconnect.Backends;
 
+import android.content.Context;
+
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
 
@@ -30,9 +32,7 @@ import java.util.ArrayList;
 
 public abstract class BaseLink {
 
-    public enum ConnectionStarted {
-        Locally, Remotely;
-    };
+    protected final Context context;
 
     public interface PackageReceiver {
         void onPackageReceived(NetworkPackage np);
@@ -43,16 +43,15 @@ public abstract class BaseLink {
     private final ArrayList<PackageReceiver> receivers = new ArrayList<>();
     protected PrivateKey privateKey;
 
-    protected ConnectionStarted connectionSource; // If the other device sent me a broadcast,
-                                                  // I should not close the connection with it
-                                                  // because it's probably trying to find me and
-                                                  // potentially ask for pairing.
-
-    protected BaseLink(String deviceId, BaseLinkProvider linkProvider, ConnectionStarted connectionSource) {
+    protected BaseLink(Context context, String deviceId, BaseLinkProvider linkProvider) {
+        this.context = context;        
         this.linkProvider = linkProvider;
         this.deviceId = deviceId;
-        this.connectionSource = connectionSource;
     }
+
+    /* To be implemented by each link for pairing handlers */
+    public abstract String getName();
+    public abstract BasePairingHandler getPairingHandler(Device device, BasePairingHandler.PairingHandlerCallback callback);
 
     public String getDeviceId() {
         return deviceId;
@@ -66,8 +65,9 @@ public abstract class BaseLink {
         return linkProvider;
     }
 
-    public ConnectionStarted getConnectionSource() {
-        return connectionSource;
+    //The daemon will periodically destroy unpaired links if this returns false
+    public boolean linkShouldBeKeptAlive() {
+        return false;
     }
 
     public void addPackageReceiver(PackageReceiver pr) {
@@ -90,5 +90,6 @@ public abstract class BaseLink {
 
     //TO OVERRIDE, should be sync
     public abstract void sendPackage(NetworkPackage np,Device.SendPackageStatusCallback callback);
+    @Deprecated
     public abstract void sendPackageEncrypted(NetworkPackage np,Device.SendPackageStatusCallback callback, PublicKey key);
 }

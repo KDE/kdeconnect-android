@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="pref_plugin_telephony">התראות טלפוניות</string>
+  <string name="pref_plugin_telephony_desc">שלח התראה על הודעות ושיחות</string>
+  <string name="pref_plugin_battery">דיווח סוללה</string>
+  <string name="pref_plugin_battery_desc">מדווח על אחוז הסוללה למחשב</string>
+  <string name="pref_plugin_sftp">גישה לקבצים</string>
+  <string name="pref_plugin_sftp_desc">אפשר להתקן המרוחק לדפדף בקבצים שבפלאפון</string>
+  <string name="pref_plugin_clipboard">סנכנרון לוח העתקה</string>
+  <string name="pref_plugin_clipboard_desc">שתף בין המחשבים את מה שמועתק</string>
+  <string name="pref_plugin_mousepad">שליטה מרחוק</string>
+  <string name="pref_plugin_mousepad_desc">השתמש בפלאפון כדי לשלוט בעכבר ובמקדלת של ההתקן המרוחק</string>
+  <string name="pref_plugin_mpris">שליטה במדיה</string>
+  <string name="pref_plugin_mpris_desc">שלוט בניגון שמע או וידאו מהפלאפון</string>
+  <string name="pref_plugin_runcommand">הרץ פקודה</string>
+  <string name="pref_plugin_runcommand_desc">הרץ פקודה במחשב מהפלאפון</string>
+  <string name="pref_plugin_ping">פינג</string>
+  <string name="pref_plugin_ping_desc">שלח וקבל פינגים</string>
+  <string name="pref_plugin_notifications">סנכרון התראות</string>
+  <string name="pref_plugin_notifications_desc">הראה את ההתראות מהפלאפון בהתקן אחר</string>
+  <string name="pref_plugin_sharereceiver">שתף וקבל קבצים וכתובות</string>
+  <string name="pref_plugin_sharereceiver_desc">שתף וקבל קבצים וכתובת אינטרנט בין התקנים</string>
+  <string name="plugin_not_available">אפשרות זו אינה זמינה בגרסת האנדרואיד שלך</string>
+  <string name="device_list_empty">אין התקנים</string>
+  <string name="ok">בסדר</string>
+  <string name="cancel">בטל</string>
+  <string name="open_settings">פתח הגדרות</string>
+  <string name="no_permissions">אתה צריך לתת הרשאות לגישה להתראות</string>
+  <string name="send_ping">שלח פינג</string>
+  <string name="open_mpris_controls">שליטה על המדיה</string>
+  <string name="open_mousepad">שלוט על המחשב</string>
+  <string name="mousepad_info">הזז את האצבע על המסך כדי להזיז את סמן העכבר במחשב. לחץ כדי ללחוץ במחשב, השתמש בשנים או שלוש אצבעות כדי ללחוץ על המקש הימני או האמצעי. השתמש בליחצה ארוכה לגרירה ושחרור.</string>
+  <string name="mousepad_double_tap_settings_title">הגדר פעולה ללחיצת שתי אצבעות</string>
+  <string name="mousepad_triple_tap_settings_title">הגדר פעולה ללחיצת שלוש אצבעות</string>
+  <string name="mousepad_sensitivity_settings_title">הגדר רגישות משטח המגע</string>
+  <string name="mousepad_scroll_direction_title">הפוך את כיוון הגלילה</string>
+  <string-array name="mousepad_tap_entries">
+    <item>"לחיצה ימנית "</item>
+    <item>לחיצה אצמעית (גלגלת)</item>
+    <item>שום דבר</item>
+  </string-array>
+  <string name="mousepad_double_default">ימין</string>
+  <string name="mousepad_triple_default">אמצע</string>
+  <string name="mousepad_sensitivity_default">ברירת מחדל</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>הכי איטי</item>
+    <item>יותר מההכי איטי</item>
+    <item>ברירת החדל</item>
+    <item>יותר מהברירת מחדל</item>
+    <item>הכי מהיר</item>
+  </string-array>
+  <string name="category_connected_devices">התקנים מחוברים</string>
+  <string name="category_not_paired_devices">התקנים זמינים</string>
+  <string name="category_remembered_devices">התקנים זכורים</string>
+  <string name="plugins_failed_to_load">טעינת התוסף נכשלה (לחץ לעוד מידע):</string>
+  <string name="device_menu_plugins">הגדרות תוספים</string>
+  <string name="device_menu_unpair">בטל התאמה</string>
+  <string name="device_not_reachable">ההתקן המותאם לא זמין</string>
+  <string name="pair_new_device">התאם התקן חדש</string>
+  <string name="unknown_device">התקן לא ידוע</string>
+  <string name="error_not_reachable">ההתקן לא זמין</string>
+  <string name="error_already_requested">כבר בוקשה התאמה</string>
+  <string name="error_already_paired">ההתקן כבר מותאם</string>
+  <string name="error_could_not_send_package">לא יכול לשלוח חבילה</string>
+  <string name="error_timed_out">נגמר הזמן</string>
+  <string name="error_canceled_by_user">בוטל ע\"י המשתמש</string>
+  <string name="error_canceled_by_other_peer">בוטל ע\"י מישהו אחר</string>
+  <string name="error_invalid_key">התקבל מפתח לא חוקי</string>
+  <string name="encryption_info_title">פרטי הצפנה</string>
+  <string name="encryption_info_msg_no_ssl">ההתקן השני אינו משתמש בגרסה האחרונה של KDE Connect, משתמש בשיטת ההצפנה הישנה.</string>
+  <string name="my_device_fingerprint">טביעת האצבע SHA1 של ההתקן היא:</string>
+  <string name="remote_device_fingerprint">"טביעת האצבע SHA1 של ההתקן המרוחק היא: "</string>
+  <string name="pair_requested">בקשת התאמה</string>
+  <string name="pairing_request_from">בוקשה התאמה מ־%1s</string>
+  <string name="received_url_title">התקבל קישור מ־%1s</string>
+  <string name="received_url_text">לחץ כדי לפתוח את \'%1s\'</string>
+  <string name="incoming_file_title">התקבל קובץ ־%1s</string>
+  <string name="incoming_file_text">%1s</string>
+  <string name="outgoing_file_title">שולח קובץ ל־%1s</string>
+  <string name="outgoing_file_text">%1s</string>
+  <string name="received_file_title">התקבל קובץ מ־%1s</string>
+  <string name="received_file_fail_title">נכשל בקבלת קובץ מ־%1s</string>
+  <string name="received_file_text">לחץ כדי לפתוח את %1s</string>
+  <string name="sent_file_title">הקובץ נשלח ל־%1s</string>
+  <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">נכשל בשליחת הקובץ ל־%1s</string>
+  <string name="sent_file_failed_text">%1s</string>
+  <string name="tap_to_answer">לחץ כדי לענות</string>
+  <string name="reconnect">התחבר מחדש</string>
+  <string name="right_click">שלח לחיצה ימנית</string>
+  <string name="middle_click">שלח לחיצה אמצעית (גלגלת)</string>
+  <string name="show_keyboard">הראה מקלדת</string>
+  <string name="device_not_paired">ההתקן לא מותאם</string>
+  <string name="request_pairing">בקש התאמה</string>
+  <string name="pairing_accept">אשר</string>
+  <string name="pairing_reject">דחה</string>
+  <string name="device">התקן</string>
+  <string name="pair_device">התאם התקן</string>
+  <string name="remote_control">שלוט מרחוק</string>
+  <string name="settings">הגדרות KDE Connect</string>
+  <string name="mpris_play">נגן</string>
+  <string name="mpris_previous">הקודם</string>
+  <string name="mpris_rew">דילוג אחורה</string>
+  <string name="mpris_ff">דילוג קדימה</string>
+  <string name="mpris_next">הבא</string>
+  <string name="mpris_volume">עוצמה</string>
+  <string name="mpris_settings">הגדרות מדיה</string>
+  <string name="mpris_time_settings_title">כפתור דילוג קדימה או אחורה</string>
+  <string name="mpris_time_settings_summary">בחר כמה זמן ידולג שלוחצים על דילוג קדימה או אחורה</string>
+  <string-array name="mpris_time_entries">
+    <item>10 שניות</item>
+    <item>20 שניות</item>
+    <item>חצי דקה</item>
+    <item>דקה</item>
+    <item>שתי דקות</item>
+  </string-array>
+  <string name="share_to">שתף ל...</string>
+  <string name="protocol_version_older">ההתקן משתמש בגרסה ישנה יותר</string>
+  <string name="protocol_version_newer">ההתקן משתמש בגרסה חדשה יותר</string>
+  <string name="general_settings">הגדרות כלליות</string>
+  <string name="plugin_settings">הגדרות</string>
+  <string name="plugin_settings_with_name">הגדרות %s</string>
+  <string name="device_name">שם המכשיר</string>
+  <string name="device_name_preference_summary">%s</string>
+  <string name="invalid_device_name">שם המכשיר לא תקין</string>
+  <string name="shareplugin_text_saved">התקבל טקסט, נשמר ללוח העתקה</string>
+  <string name="custom_devices_settings">רשימת התקנים מותאמת אישית</string>
+  <string name="pair_device_action">התאם התקן חדש</string>
+  <string name="unpair_device_action">בטל את ההתאמה עם %s</string>
+  <string name="custom_device_list">הוסף התקן ע\"י כתובת IP</string>
+  <string name="share_notification_preference">התראות רועשות</string>
+  <string name="share_notification_preference_summary">רטוט ונגן צליל בעת קבלת קובץ</string>
+  <string name="title_activity_notification_filter">סנן התראות</string>
+  <string name="filter_apps_info">התראות יסונכרנו רק לאפליקציות נבחרות</string>
+  <string name="sftp_internal_storage">זיכרון פנימי</string>
+  <string name="sftp_all_files">כל הקבצים</string>
+  <string name="sftp_sdcard_num">כרטיס זיכרון %d</string>
+  <string name="sftp_sdcard">כרטיס זיכרון</string>
+  <string name="sftp_readonly">(לקריאה בלבד)</string>
+  <string name="sftp_camera">תמונות מצלמה</string>
+  <string name="add_host">הוסף כתובת שרת או IP</string>
+  <string name="add_host_hint">כתבות שרת או IP</string>
+  <string name="no_players_connected">לא נמצא נגן</string>
+  <string name="custom_dev_list_help">השתמש באפשרות זו רק אם המכשיר שלך לא מזוהה באופן אוטומטי. הקלד את כתובת הIP או את כינוי ההתקן למטה ולחץ על הכפתור כדי להוסיף לרשימה. לחץ על פריט קיים כדי להסיר אותו מהרשימה.</string>
+  <string name="mpris_player_on_device">%1$s ב־%2$s</string>
+  <string name="send_files">שלח קובץ</string>
+  <string name="pairing_title">מכשירי KDE Connect</string>
+  <string name="pairing_description">התקנים אחרים המריצים KDE Connect ברשת הנוכחית צריכים להופיע פה.</string>
+  <string name="device_paired">התקן מתואם</string>
+  <string name="device_rename_title">שנה שם התקן</string>
+  <string name="device_rename_confirm">שנה שם</string>
+  <string name="refresh">רענן</string>
+  <string name="unreachable_description">ההתקן המתואם לא זמין, וודא שהוא מחובר לאותה רשת אליה התקן זה מחובר.</string>
+  <string name="no_file_browser">לא נמצאו מנהלי קבצים מותקנים במכשיר זה.</string>
+  <string name="pref_plugin_telepathy">שלח SMS</string>
+  <string name="pref_plugin_telepathy_desc">שלח הודעות מהמחשב שלך</string>
+  <string name="plugin_not_supported">התוסף הזה לא נתמך ע\"י המכשיר שלך</string>
+  <string name="findmyphone_title">מצא את המכשיר שלי</string>
+  <string name="findmyphone_description">הפעל רעש במכשיר כדי שתוכל למצוא אותו.</string>
+  <string name="findmyphone_found">נמצא</string>
+  <string name="open">פתח</string>
+  <string name="close">סגור</string>
+</resources>

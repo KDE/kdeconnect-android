@@ -33,6 +33,9 @@ import org.kde.kdeconnect_tp.R;
 
 public class BatteryPlugin extends Plugin {
 
+    public final static String PACKAGE_TYPE_BATTERY = "kdeconnect.battery";
+    public final static String PACKAGE_TYPE_BATTERY_REQUEST = "kdeconnect.battery.request";
+
     // keep these fields in sync with kdeconnect-kded:BatteryPlugin.h:ThresholdBatteryEvent
     private static final int THRESHOLD_EVENT_NONE= 0;
     private static final int THRESHOLD_EVENT_BATTERY_LOW = 1;
@@ -72,7 +75,7 @@ public class BatteryPlugin extends Plugin {
 
             } else {
 
-                NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_BATTERY);
+                NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_BATTERY);
                 np.set("currentCharge", currentCharge);
                 np.set("isCharging", isCharging);
                 np.set("thresholdEvent", thresholdEvent);
@@ -99,7 +102,6 @@ public class BatteryPlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
-        if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_BATTERY)) return false;
 
         if (np.getBoolean("request")) {
             if (lastInfo != null) {
@@ -112,13 +114,13 @@ public class BatteryPlugin extends Plugin {
 
     @Override
     public String[] getSupportedPackageTypes() {
-        String[] packetTypes = {NetworkPackage.PACKAGE_TYPE_BATTERY};
+        String[] packetTypes = {PACKAGE_TYPE_BATTERY_REQUEST};
         return packetTypes;
     }
 
     @Override
     public String[] getOutgoingPackageTypes() {
-        String[] packetTypes = {NetworkPackage.PACKAGE_TYPE_BATTERY};
+        String[] packetTypes = {PACKAGE_TYPE_BATTERY};
         return packetTypes;
     }
 

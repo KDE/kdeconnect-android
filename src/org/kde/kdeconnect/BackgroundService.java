@@ -20,7 +20,6 @@
 
 package org.kde.kdeconnect;
 
-import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -29,18 +28,15 @@ import android.content.SharedPreferences;
 import android.os.Binder;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
-import android.util.Base64;
 import android.util.Log;
 
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
-import org.kde.kdeconnect.Backends.LoopbackBackend.LoopbackLinkProvider;
+import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
+import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -67,11 +63,13 @@ public class BackgroundService extends Service {
         if (wasEmpty) {
             onNetworkChange();
         }
+        //Log.e("acquireDiscoveryMode",key.getClass().getName() +" ["+discoveryModeAcquisitions.size()+"]");
         return wasEmpty;
     }
 
     public void releaseDiscoveryMode(Object key) {
         boolean removed = discoveryModeAcquisitions.remove(key);
+        //Log.e("releaseDiscoveryMode",key.getClass().getName() +" ["+discoveryModeAcquisitions.size()+"]");
         if (removed && discoveryModeAcquisitions.isEmpty()) {
             cleanDevices();
         }
@@ -156,16 +154,25 @@ public class BackgroundService extends Service {
 
     }
 
+    public ArrayList<BaseLinkProvider> getLinkProviders() {
+        return linkProviders;
+    }
+
     public Device getDevice(String id) {
         return devices.get(id);
     }
 
     private void cleanDevices() {
-        for(Device d : devices.values()) {
-            if (!d.isPaired() && !d.isPairRequested() && !d.isPairRequestedByOtherEnd() && d.getConnectionSource() == BaseLink.ConnectionStarted.Remotely) {
-                d.disconnect();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for(Device d : devices.values()) {
+                    if (!d.isPaired() && !d.isPairRequested() && !d.isPairRequestedByPeer() && !d.deviceShouldBeKeptAlive()) {
+                        d.disconnect();
+                    }
+                }
             }
-        }
+        }).start();
     }
 
     private final BaseLinkProvider.ConnectionReceiver deviceListener = new BaseLinkProvider.ConnectionReceiver() {
@@ -182,8 +189,8 @@ public class BackgroundService extends Service {
             } else {
                 Log.i("KDE/BackgroundService", "addLink,unknown device: " + deviceId);
                 device = new Device(BackgroundService.this, identityPackage, link);
-                if (device.isPaired() || device.isPairRequested() || device.isPairRequestedByOtherEnd()
-                        || link.getConnectionSource() == BaseLink.ConnectionStarted.Locally
+                if (device.isPaired() || device.isPairRequested() || device.isPairRequestedByPeer()
+                        || link.linkShouldBeKeptAlive()
                         ||!discoveryModeAcquisitions.isEmpty() )
                 {
                     devices.put(deviceId, device);
@@ -254,7 +261,7 @@ public class BackgroundService extends Service {
 
         Log.i("KDE/BackgroundService", "Service not started yet, initializing...");
 
-        initializeRsaKeys();
+        initializeSecurityParameters();
         loadRememberedDevicesFromSettings();
         registerLinkProviders();
 
@@ -264,62 +271,11 @@ public class BackgroundService extends Service {
         for (BaseLinkProvider a : linkProviders) {
             a.onStart();
         }
-
     }
 
-    private void initializeRsaKeys() {
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-
-        if (!settings.contains("publicKey") || !settings.contains("privateKey")) {
-
-            KeyPair keyPair;
-            try {
-                KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
-                keyGen.initialize(2048);
-                keyPair = keyGen.genKeyPair();
-            } catch(Exception e) {
-                e.printStackTrace();
-                Log.e("KDE/initializeRsaKeys","Exception");
-                return;
-            }
-
-            byte[] publicKey = keyPair.getPublic().getEncoded();
-            byte[] privateKey = keyPair.getPrivate().getEncoded();
-
-            SharedPreferences.Editor edit = settings.edit();
-            edit.putString("publicKey",Base64.encodeToString(publicKey, 0).trim()+"\n");
-            edit.putString("privateKey",Base64.encodeToString(privateKey, 0));
-            edit.apply();
-
-        }
-
-
-/*
-        // Encryption and decryption test
-        //================================
-
-        try {
-
-            NetworkPackage np = NetworkPackage.createIdentityPackage(this);
-
-            SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(this);
-
-            byte[] publicKeyBytes = Base64.decode(globalSettings.getString("publicKey",""), 0);
-            PublicKey publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
-
-            np.encrypt(publicKey);
-
-            byte[] privateKeyBytes = Base64.decode(globalSettings.getString("privateKey",""), 0);
-            PrivateKey privateKey = KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(privateKeyBytes));
-
-            NetworkPackage decrypted = np.decrypt(privateKey);
-            Log.e("ENCRYPTION AND DECRYPTION TEST", decrypted.serialize());
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("ENCRYPTION AND DECRYPTION TEST","Exception: "+e);
-        }
-*/
-
+    void initializeSecurityParameters() {
+        RsaHelper.initialiseRsaKeys(this);
+        SslHelper.initialiseCertificate(this);
     }
 
     @Override

@@ -23,10 +23,10 @@ package org.kde.kdeconnect.Plugins.SftpPlugin;
 import android.content.Context;
 import android.util.Log;
 
-import org.apache.http.conn.util.InetAddressUtils;
 import org.apache.sshd.SshServer;
 import org.apache.sshd.common.NamedFactory;
 import org.apache.sshd.common.Session;
+import org.apache.sshd.common.util.SecurityUtils;
 import org.apache.sshd.server.Command;
 import org.apache.sshd.server.FileSystemFactory;
 import org.apache.sshd.server.FileSystemView;
@@ -36,58 +36,27 @@ import org.apache.sshd.server.SshFile;
 import org.apache.sshd.server.command.ScpCommandFactory;
 import org.apache.sshd.server.filesystem.NativeFileSystemView;
 import org.apache.sshd.server.filesystem.NativeSshFile;
+import org.apache.sshd.server.kex.DHG1;
+import org.apache.sshd.server.kex.DHG14;
 import org.apache.sshd.server.keyprovider.SimpleGeneratorHostKeyProvider;
 import org.apache.sshd.server.session.ServerSession;
 import org.apache.sshd.server.sftp.SftpSubsystem;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Helpers.RandomHelper;
+import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 
 import java.io.File;
+import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.security.PublicKey;
+import java.security.Security;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
-
-class SimplePasswordAuthenticator implements PasswordAuthenticator {
-
-    public void setUser(String user) {this.user = user;}
-    public String getUser() {return this.user;}
-
-    public void setPassword(String password) {this.password = password;}
-    public String getPassword() {return this.password;}
-
-    @Override
-    public boolean authenticate(String user, String password, ServerSession session) {
-        return user.equals(this.user) && password.equals(this.password);
-    }
-
-    private String user;
-    private String password;
-}
-
-class SimplePublicKeyAuthenticator implements PublickeyAuthenticator {
-
-    private final List<PublicKey> keys = new ArrayList<>();
-
-    public void addKey(PublicKey key) {
-        keys.add(key);
-    }
-
-    @Override
-    public boolean authenticate(String user, PublicKey key, ServerSession session) {
-        for (PublicKey k : keys) {
-            if (key.equals(k)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-}
 
 class SimpleSftpServer {
     private static final int STARTPORT = 1739;
@@ -100,27 +69,36 @@ class SimpleSftpServer {
 
     public final SimplePasswordAuthenticator passwordAuth = new SimplePasswordAuthenticator();
     public final SimplePublicKeyAuthenticator keyAuth = new SimplePublicKeyAuthenticator();
+
+    static {
+        Security.insertProviderAt(SslHelper.BC, 1);
+        SecurityUtils.setRegisterBouncyCastle(false);
+    }
     private final SshServer sshd = SshServer.setUpDefaultServer();
 
-
     public void init(Context ctx, Device device) {
+        sshd.setKeyExchangeFactories(Arrays.asList(
+                new DHG14.Factory(),
+                new DHG1.Factory()));
+
         passwordAuth.setUser(USER);
-        keyAuth.addKey(device.publicKey);
         sshd.setKeyPairProvider(new SimpleGeneratorHostKeyProvider(ctx.getFilesDir() + "/sftpd.ser"));
 
-        //sshd.setFileSystemFactory(new NativeFileSystemFactory());
         sshd.setFileSystemFactory(new SecureFileSystemFactory());
-        //sshd.setShellFactory(new ProcessShellFactory(new String[] { "/bin/sh", "-i", "-l" }));
         sshd.setCommandFactory(new ScpCommandFactory());
         sshd.setSubsystemFactories(Collections.singletonList((NamedFactory<Command>)new SftpSubsystem.Factory()));
 
+        if (device.publicKey != null) {
+            keyAuth.addKey(device.publicKey);
+            sshd.setPublickeyAuthenticator(keyAuth);
+        }
         sshd.setPasswordAuthenticator(passwordAuth);
-        sshd.setPublickeyAuthenticator(keyAuth);
     }
 
     public boolean start() {
         if (!started) {
-            String password = Long.toHexString(Double.doubleToLongBits(Math.random()));
+
+            String password = RandomHelper.randomString(28);
             passwordAuth.setPassword(password);
 
             port = STARTPORT;
@@ -130,6 +108,7 @@ class SimpleSftpServer {
                     sshd.start();
                     started = true;
                 } catch(Exception e) {
+                    e.printStackTrace();
                     port++;
                     if (port >= ENDPORT) {
                         port = -1;
@@ -147,8 +126,8 @@ class SimpleSftpServer {
         try {
             started = false;
             sshd.stop();
-        } catch (InterruptedException e) {
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -161,7 +140,7 @@ class SimpleSftpServer {
                     InetAddress inetAddress = enumIpAddr.nextElement();
                     if (!inetAddress.isLoopbackAddress()) {
                         String address = inetAddress.getHostAddress();
-                        if (InetAddressUtils.isIPv4Address(address)) { //Prefer IPv4 over IPv6, because sshfs doesn't seem to like IPv6
+                        if(inetAddress instanceof Inet4Address) { //Prefer IPv4 over IPv6, because sshfs doesn't seem to like IPv6
                             return address;
                         } else {
                             ip6 = address;
@@ -174,20 +153,18 @@ class SimpleSftpServer {
         return ip6;
     }
 
-}
-
-    class SecureFileSystemFactory implements FileSystemFactory {
+    static class SecureFileSystemFactory implements FileSystemFactory {
 
         public SecureFileSystemFactory() {}
 
-       @Override
+        @Override
         public FileSystemView createFileSystemView(final Session username) {
             final String base = "/";
             return new SecureFileSystemView(base, username.getUsername());
         }
     }
 
-    class SecureFileSystemView extends NativeFileSystemView {
+    static class SecureFileSystemView extends NativeFileSystemView {
         // the first and the last character will always be '/'
         // It is always with respect to the root directory.
         private String currDir = "/";
@@ -223,8 +200,47 @@ class SimpleSftpServer {
         }
     }
 
-    class SecureSshFile extends NativeSshFile {
+    static class SecureSshFile extends NativeSshFile {
         public SecureSshFile(final String fileName, final File file, final String userName) {
             super(fileName, file, userName);
         }
     }
+
+    static class SimplePasswordAuthenticator implements PasswordAuthenticator {
+
+        public void setUser(String user) {this.user = user;}
+        public String getUser() {return this.user;}
+
+        public void setPassword(String password) {this.password = password;}
+        public String getPassword() {return this.password;}
+
+        @Override
+        public boolean authenticate(String user, String password, ServerSession session) {
+            return user.equals(this.user) && password.equals(this.password);
+        }
+
+        private String user;
+        private String password;
+    }
+
+    static class SimplePublicKeyAuthenticator implements PublickeyAuthenticator {
+
+        private final List<PublicKey> keys = new ArrayList<>();
+
+        public void addKey(PublicKey key) {
+            keys.add(key);
+        }
+
+        @Override
+        public boolean authenticate(String user, PublicKey key, ServerSession session) {
+            for (PublicKey k : keys) {
+                if (key.equals(k)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+    }
+
+}

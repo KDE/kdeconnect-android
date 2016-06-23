@@ -20,17 +20,13 @@
 
 package org.kde.kdeconnect.Plugins.ClibpoardPlugin;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
-import android.widget.Button;
-
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
 public class ClipboardPlugin extends Plugin {
+
+    public final static String PACKAGE_TYPE_CLIPBOARD = "kdeconnect.clipboard";
 
     @Override
     public String getDisplayName() {
@@ -63,9 +59,6 @@ public class ClipboardPlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
-        if (!np.getType().equals(NetworkPackage.PACKAGE_TYPE_CLIPBOARD)) {
-            return false;
-        }
 
         String content = np.getString("content");
         listener.setText(content);
@@ -74,13 +67,13 @@ public class ClipboardPlugin extends Plugin {
 
     @Override
     public String[] getSupportedPackageTypes() {
-        String[] packetTypes = {NetworkPackage.PACKAGE_TYPE_CLIPBOARD};
+        String[] packetTypes = {PACKAGE_TYPE_CLIPBOARD};
         return packetTypes;
     }
 
     @Override
     public String[] getOutgoingPackageTypes() {
-        String[] packetTypes = {NetworkPackage.PACKAGE_TYPE_CLIPBOARD};
+        String[] packetTypes = {PACKAGE_TYPE_CLIPBOARD};
         return packetTypes;
     }
 
