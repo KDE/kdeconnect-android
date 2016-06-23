@@ -17,6 +17,8 @@ android {
         targetSdkVersion 22 //Bumping to 23 means we have to support the new permissions model
         //multiDexEnabled true
         //testInstrumentationRunner "com.android.test.runner.MultiDexTestRunner"
+        versionCode 1102
+        versionName "1.1"
     }
     dexOptions {
         javaMaxHeapSize "2g"
@@ -65,15 +67,19 @@ android {
     }
 }
 
+ext{
+    supportLibraryVersion = "23.4.0"
+}
+
 dependencies {
 
     repositories {
         mavenCentral()
     }
 
-    compile 'com.android.support:support-v4:23.4.0'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
+    compile "com.android.support:support-v4:$supportLibraryVersion"
+    compile "com.android.support:appcompat-v7:$supportLibraryVersion"
+    compile "com.android.support:design:$supportLibraryVersion"
 
     compile 'org.apache.sshd:sshd-core:0.8.0' //0.9 seems to fail on Android 6 and 1.+ requires java.nio.file, which doesn't exist in Android
 
