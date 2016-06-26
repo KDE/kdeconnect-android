@@ -152,9 +152,8 @@ public class MprisPlugin extends Plugin {
             }
         }
 
-        if (np.has("playerList")) {
-
-            ArrayList<String> newPlayerList = np.getStringList("playerList");
+        ArrayList<String> newPlayerList = np.getStringList("playerList");
+        if (newPlayerList != null) {
             boolean equals = false;
             if (newPlayerList.size() == playerList.size()) {
                 equals = true;
