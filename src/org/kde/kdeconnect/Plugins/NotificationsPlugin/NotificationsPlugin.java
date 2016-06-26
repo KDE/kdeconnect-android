@@ -135,7 +135,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     @Override
     public void onNotificationRemoved(StatusBarNotification statusBarNotification) {
         String id = getNotificationKeyCompat(statusBarNotification);
-        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_NOTIFICATION_REQUEST);
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_NOTIFICATION);
         np.set("id", id);
         np.set("isCancel", true);
         device.sendPackage(np);
