@@ -32,6 +32,7 @@ import org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadPlugin;
 import org.kde.kdeconnect.Plugins.MprisPlugin.MprisPlugin;
 import org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationsPlugin;
 import org.kde.kdeconnect.Plugins.PingPlugin.PingPlugin;
+import org.kde.kdeconnect.Plugins.ReceiveNotificationsPlugin.ReceiveNotificationsPlugin;
 import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandPlugin;
 import org.kde.kdeconnect.Plugins.SftpPlugin.SftpPlugin;
 import org.kde.kdeconnect.Plugins.SharePlugin.SharePlugin;
@@ -117,6 +118,7 @@ public class PluginFactory {
         PluginFactory.registerPlugin(BatteryPlugin.class);
         PluginFactory.registerPlugin(SftpPlugin.class);
         PluginFactory.registerPlugin(NotificationsPlugin.class);
+        PluginFactory.registerPlugin(ReceiveNotificationsPlugin.class);
         PluginFactory.registerPlugin(MousePadPlugin.class);
         PluginFactory.registerPlugin(SharePlugin.class);
         //PluginFactory.registerPlugin(TelepathyPlugin.class);

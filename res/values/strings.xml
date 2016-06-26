@@ -19,6 +19,8 @@
     <string name="pref_plugin_ping_desc">Send and receive pings</string>
     <string name="pref_plugin_notifications">Notification sync</string>
     <string name="pref_plugin_notifications_desc">Access your notifications from other devices</string>
+    <string name="pref_plugin_receive_notifications">Receive notifications</string>
+    <string name="pref_plugin_receive_notifications_desc">Receive notifications from other devices</string>
     <string name="pref_plugin_sharereceiver">Share and receive</string>
     <string name="pref_plugin_sharereceiver_desc">Share files and URLs between devices</string>
     <string name="plugin_not_available">This feature is not available in your Android version</string>

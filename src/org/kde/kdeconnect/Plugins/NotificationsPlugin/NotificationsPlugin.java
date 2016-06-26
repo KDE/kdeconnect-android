@@ -24,19 +24,12 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
 import org.kde.kdeconnect.Helpers.AppsHelper;
@@ -45,8 +38,6 @@ import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.UserInterface.MaterialActivity;
 import org.kde.kdeconnect.UserInterface.SettingsActivity;
 import org.kde.kdeconnect_tp.R;
-
-import java.io.InputStream;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class NotificationsPlugin extends Plugin implements NotificationReceiver.NotificationListener {
@@ -111,11 +102,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 return false;
             }
         }
-
-        // request all existing notifications
-        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_NOTIFICATION_REQUEST);
-        np.set("request", true);
-        device.sendPackage(np);
         return true;
     }
 
@@ -324,58 +310,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                     }
                 });
 
-        } else {
-            if (!np.has("ticker") || !np.has("appName") || !np.has("id")) {
-                Log.e("NotificationsPlugin", "Received notification package lacks properties");
-            } else {
-                TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-                stackBuilder.addParentStack(MaterialActivity.class);
-                stackBuilder.addNextIntent(new Intent(context, MaterialActivity.class));
-                PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
-                        0,
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                );
-
-                Bitmap largeIcon = null;
-                if (np.hasPayload()) {
-                    int width = 64;   // default icon dimensions
-                    int height = 64;
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                        width = context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_width);
-                        height = context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_height);
-                    }
-                    final InputStream input = np.getPayload();
-                    largeIcon = BitmapFactory.decodeStream(np.getPayload());
-                    try { input.close(); } catch (Exception e) { }
-                    if (largeIcon != null) {
-                        //Log.i("NotificationsPlugin", "hasPayload: size=" + largeIcon.getWidth() + "/" + largeIcon.getHeight() + " opti=" + width + "/" + height);
-                        if (largeIcon.getWidth() > width || largeIcon.getHeight() > height) {
-                            // older API levels don't scale notification icons automatically, therefore:
-                            largeIcon = Bitmap.createScaledBitmap(largeIcon, width, height, false);
-                        }
-                    }
-                }
-                Notification noti = new NotificationCompat.Builder(context)
-                        .setContentTitle(np.getString("appName"))
-                        .setContentText(np.getString("ticker"))
-                        .setContentIntent(resultPendingIntent)
-                        .setTicker(np.getString("ticker"))
-                        .setSmallIcon(R.drawable.ic_notification)
-                        .setLargeIcon(largeIcon)
-                        .setAutoCancel(true)
-                        .setLocalOnly(true)  // to avoid bouncing the notification back to other kdeconnect nodes
-                        .setDefaults(Notification.DEFAULT_ALL)
-                        .build();
-
-                NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                try {
-                    // tag all incoming notifications
-                    notificationManager.notify("kdeconnectId:" + np.getString("id", "0"), np.getInt("id", 0), noti);
-                } catch (Exception e) {
-                    //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
-                    //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
-                }
-            }
         }
 
         return true;
@@ -419,12 +353,12 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public String[] getSupportedPackageTypes() {
-        return new String[]{PACKAGE_TYPE_NOTIFICATION, PACKAGE_TYPE_NOTIFICATION_REQUEST};
+        return new String[]{PACKAGE_TYPE_NOTIFICATION_REQUEST};
     }
 
     @Override
     public String[] getOutgoingPackageTypes() {
-        return new String[]{PACKAGE_TYPE_NOTIFICATION, PACKAGE_TYPE_NOTIFICATION_REQUEST};
+        return new String[]{PACKAGE_TYPE_NOTIFICATION};
     }
 
     //For compat with API<21, because lollipop changed the way to cancel notifications
