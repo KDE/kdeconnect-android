@@ -128,8 +128,6 @@ public class NetworkPackage {
     }
     public boolean has(String key) { return mBody.has(key); }
 
-    public boolean isEncrypted() { return mType.equals(PACKAGE_TYPE_ENCRYPTED); }
-
     public String serialize() throws JSONException {
         JSONObject jo = new JSONObject();
         jo.put("id", mId);
