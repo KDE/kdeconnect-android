@@ -32,9 +32,10 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
-        android:label="KDE Connect"
         android:supportsRtl="true"
-        android:theme="@style/KdeConnectTheme">
+        android:label="KDE Connect"
+        android:theme="@style/KdeConnectTheme"
+        >
 
         <service
             android:name="org.kde.kdeconnect.BackgroundService"
@@ -165,7 +166,6 @@
                 <data android:mimeType="*/*" />
             </intent-filter>
         </activity>
-
         <service
             android:name="org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationReceiver"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
