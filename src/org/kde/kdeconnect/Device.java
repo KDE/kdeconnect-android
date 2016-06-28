@@ -55,6 +55,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -81,8 +82,8 @@ public class Device implements BaseLink.PackageReceiver {
 
     private final CopyOnWriteArrayList<BaseLink> links = new CopyOnWriteArrayList<>();
 
-    private ArrayList<String> incomingCapabilities = new ArrayList<>();
-    private ArrayList<String> outgoingCapabilities = new ArrayList<>();
+    private List<String> incomingCapabilities = new ArrayList<>();
+    private List<String> outgoingCapabilities = new ArrayList<>();
 
     private final ConcurrentHashMap<String, Plugin> plugins = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, Plugin> failedPlugins = new ConcurrentHashMap<>();
@@ -550,8 +551,8 @@ public class Device implements BaseLink.PackageReceiver {
                 }
             }
         } else if (NetworkPackage.PACKAGE_TYPE_CAPABILITIES.equals(np.getType())) {
-            ArrayList<String> newIncomingCapabilities = np.getStringList("IncomingCapabilities");
-            ArrayList<String> newOutgoingCapabilities = np.getStringList("OutgoingCapabilities");
+            List<String> newIncomingCapabilities = np.getStringList("IncomingCapabilities");
+            List<String> newOutgoingCapabilities = np.getStringList("OutgoingCapabilities");
             if (!ObjectsHelper.equals(newIncomingCapabilities, incomingCapabilities) ||
                 !ObjectsHelper.equals(newOutgoingCapabilities, outgoingCapabilities)) {
                 incomingCapabilities = newIncomingCapabilities;

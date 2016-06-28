@@ -32,6 +32,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class NetworkPackage {
@@ -96,10 +97,10 @@ public class NetworkPackage {
     public JSONArray getJSONArray(String key) { return mBody.optJSONArray(key); }
     public void set(String key, JSONArray value) { try { mBody.put(key,value); } catch(Exception e) { } }
 
-    public ArrayList<String> getStringList(String key) {
+    public List<String> getStringList(String key) {
         JSONArray jsonArray = mBody.optJSONArray(key);
         if (jsonArray == null) return null;
-        ArrayList<String> list = new ArrayList<>();
+        List<String> list = new ArrayList<>();
         int length = jsonArray.length();
         for (int i = 0; i < length; i++) {
             try {
@@ -111,11 +112,11 @@ public class NetworkPackage {
         }
         return list;
     }
-    public ArrayList<String> getStringList(String key, ArrayList<String> defaultValue) {
+    public List<String> getStringList(String key, List<String> defaultValue) {
         if (mBody.has(key)) return getStringList(key);
         else return defaultValue;
     }
-    public void set(String key, ArrayList<String> value) {
+    public void set(String key, List<String> value) {
         try {
             JSONArray jsonArray = new JSONArray();
             for(String str : value) {

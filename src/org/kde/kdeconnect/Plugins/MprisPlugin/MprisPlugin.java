@@ -37,6 +37,7 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class MprisPlugin extends Plugin {
 
@@ -53,7 +54,7 @@ public class MprisPlugin extends Plugin {
     private long lastPositionTime;
     private HashMap<String,Handler> playerStatusUpdated = new HashMap<>();
 
-    private ArrayList<String> playerList = new ArrayList<>();
+    private List<String> playerList = new ArrayList<>();
     private HashMap<String,Handler> playerListUpdated = new HashMap<>();
 
     @Override
@@ -152,7 +153,7 @@ public class MprisPlugin extends Plugin {
             }
         }
 
-        ArrayList<String> newPlayerList = np.getStringList("playerList");
+        List<String> newPlayerList = np.getStringList("playerList");
         if (newPlayerList != null) {
             boolean equals = false;
             if (newPlayerList.size() == playerList.size()) {
@@ -232,7 +233,7 @@ public class MprisPlugin extends Plugin {
         requestPlayerStatus();
     }
 
-    public ArrayList<String> getPlayerList() {
+    public List<String> getPlayerList() {
         return playerList;
     }
 

@@ -47,6 +47,7 @@ import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MprisActivity extends ActionBarActivity {
 
@@ -133,7 +134,7 @@ public class MprisActivity extends ActionBarActivity {
                 mpris.setPlayerListUpdatedHandler("activity", new Handler() {
                     @Override
                     public void handleMessage(Message msg) {
-                        final ArrayList<String> playerList = mpris.getPlayerList();
+                        final List<String> playerList = mpris.getPlayerList();
                         final ArrayAdapter<String> adapter = new ArrayAdapter<>(MprisActivity.this,
                                 android.R.layout.simple_spinner_item,
                                 playerList.toArray(new String[playerList.size()])
