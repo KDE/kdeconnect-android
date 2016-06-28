@@ -18,6 +18,8 @@
   <string name="pref_plugin_ping_desc">Enviar e receber pedidos de contacto (\'ping\')</string>
   <string name="pref_plugin_notifications">Sincronização da notificação</string>
   <string name="pref_plugin_notifications_desc">Aceder às suas notificações a partir de outros dispositivos</string>
+  <string name="pref_plugin_receive_notifications">Receber as notificações</string>
+  <string name="pref_plugin_receive_notifications_desc">Receber as notificações de outros dispositivos</string>
   <string name="pref_plugin_sharereceiver">Partilhar e receber</string>
   <string name="pref_plugin_sharereceiver_desc">Partilhar ficheiros e URL\'s entre dispositivos</string>
   <string name="plugin_not_available">Esta funcionalidade não está disponível na sua versão do Android</string>

@@ -18,6 +18,8 @@
   <string name="pref_plugin_ping_desc">Skicka och ta emot ping</string>
   <string name="pref_plugin_notifications">Synkronisering av underrättelser</string>
   <string name="pref_plugin_notifications_desc">Kom åt underrättelser från andra apparater</string>
+  <string name="pref_plugin_receive_notifications">Ta emot underrättelser</string>
+  <string name="pref_plugin_receive_notifications_desc">Ta emot underrättelser från andra apparater</string>
   <string name="pref_plugin_sharereceiver">Dela och ta emot</string>
   <string name="pref_plugin_sharereceiver_desc">Dela filer och webbadresser mellan apparater</string>
   <string name="plugin_not_available">Funktionen är inte tillgänglig i Android-versionen</string>

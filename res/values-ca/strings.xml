@@ -18,6 +18,8 @@
   <string name="pref_plugin_ping_desc">Envia i rep els pings</string>
   <string name="pref_plugin_notifications">Sincronitza les notificacions</string>
   <string name="pref_plugin_notifications_desc">Accedeix a les vostres notificacions des d\'altres dispositius</string>
+  <string name="pref_plugin_receive_notifications">Recepció de les notificacions</string>
+  <string name="pref_plugin_receive_notifications_desc">Rep notificacions des d\'altres dispositius</string>
   <string name="pref_plugin_sharereceiver">Comparteix i rep</string>
   <string name="pref_plugin_sharereceiver_desc">Comparteix els fitxers i els URL entre els dispositius</string>
   <string name="plugin_not_available">Aquesta característica no està disponible en la vostra versió d\'Android</string>

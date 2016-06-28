@@ -18,6 +18,8 @@
   <string name="pref_plugin_ping_desc">Надсилання і отримання сигналів підтримання зв’язку</string>
   <string name="pref_plugin_notifications">Синхронізація сповіщень</string>
   <string name="pref_plugin_notifications_desc">Доступ до ваших сповіщень з інших пристроїв</string>
+  <string name="pref_plugin_receive_notifications">Отримати сповіщення</string>
+  <string name="pref_plugin_receive_notifications_desc">Отримати сповіщення з інших пристроїв</string>
   <string name="pref_plugin_sharereceiver">Надання і отримання</string>
   <string name="pref_plugin_sharereceiver_desc">Спільне використання файлів і адрес між пристроями</string>
   <string name="plugin_not_available">Ця можливість є недоступною для вашої версії для Android</string>
