@@ -2,6 +2,7 @@ package org.kde.kdeconnect.Plugins.FindMyPhonePlugin;
 
 import android.content.Intent;
 
+import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
@@ -18,7 +19,7 @@ public class FindMyPhonePlugin extends Plugin {
 
     @Override
     public String getDisplayName() {
-        return context.getString(R.string.findmyphone_title);
+        return DeviceHelper.isTablet() ? context.getString(R.string.findmyphone_title_tablet) : context.getString(R.string.findmyphone_title);
     }
 
     @Override

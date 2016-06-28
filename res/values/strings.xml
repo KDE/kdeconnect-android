@@ -6,21 +6,21 @@
     <string name="pref_plugin_battery">Battery report</string>
     <string name="pref_plugin_battery_desc">Periodically report battery status</string>
     <string name="pref_plugin_sftp">Filesystem expose</string>
-    <string name="pref_plugin_sftp_desc">Allows to browse the phone\'s filesystem remotely</string>
+    <string name="pref_plugin_sftp_desc">Allows to browse this device\'s filesystem remotely</string>
     <string name="pref_plugin_clipboard">Clipboard sync</string>
     <string name="pref_plugin_clipboard_desc">Share the clipboard content</string>
     <string name="pref_plugin_mousepad">Remote input</string>
-    <string name="pref_plugin_mousepad_desc">Use your phone as a mouse and keyboard</string>
+    <string name="pref_plugin_mousepad_desc">Use your phone or tablet as a touchpad and keyboard</string>
     <string name="pref_plugin_mpris">Multimedia controls</string>
-    <string name="pref_plugin_mpris_desc">Control audio/video from your phone</string>
+    <string name="pref_plugin_mpris_desc">Provides a remote control for your media player</string>
     <string name="pref_plugin_runcommand">Run Command</string>
-    <string name="pref_plugin_runcommand_desc">Trigger remote commands from your phone</string>
+    <string name="pref_plugin_runcommand_desc">Trigger remote commands from your phone or tablet</string>
     <string name="pref_plugin_ping">Ping</string>
     <string name="pref_plugin_ping_desc">Send and receive pings</string>
     <string name="pref_plugin_notifications">Notification sync</string>
     <string name="pref_plugin_notifications_desc">Access your notifications from other devices</string>
     <string name="pref_plugin_receive_notifications">Receive notifications</string>
-    <string name="pref_plugin_receive_notifications_desc">Receive notifications from other devices</string>
+    <string name="pref_plugin_receive_notifications_desc">Receive notifications from the other device and display them on Android</string>
     <string name="pref_plugin_sharereceiver">Share and receive</string>
     <string name="pref_plugin_sharereceiver_desc">Share files and URLs between devices</string>
     <string name="plugin_not_available">This feature is not available in your Android version</string>
@@ -185,7 +185,8 @@
     <string name="pref_plugin_telepathy_desc">Send text messages from your desktop</string>
     <string name="plugin_not_supported">This plugin is not supported by the device</string>
     <string name="findmyphone_title">Find my phone</string>
-    <string name="findmyphone_description">Rings this phone so you can find it.</string>
+    <string name="findmyphone_title_tablet">Find my tablet</string>
+    <string name="findmyphone_description">Rings this device so you can find it</string>
     <string name="findmyphone_found">Found</string>
 
     <string name="open">Open</string>
