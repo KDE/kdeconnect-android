@@ -5,13 +5,10 @@
   <string name="pref_plugin_battery">배터리 보고</string>
   <string name="pref_plugin_battery_desc">주기적으로 배터리 상태 보고</string>
   <string name="pref_plugin_sftp">파일 시스템 보기</string>
-  <string name="pref_plugin_sftp_desc">휴대폰의 파일 시스템 보기</string>
   <string name="pref_plugin_clipboard">클립보드 동기화</string>
   <string name="pref_plugin_clipboard_desc">클립보드 내용 동기화</string>
   <string name="pref_plugin_mousepad">원격 입력</string>
-  <string name="pref_plugin_mousepad_desc">내 장치를 마우스와 키보드로 사용하기</string>
   <string name="pref_plugin_mpris">멀티미디어 제어</string>
-  <string name="pref_plugin_mpris_desc">휴대폰에서 오디오/비디오 제어</string>
   <string name="pref_plugin_runcommand">명령 실행</string>
   <string name="pref_plugin_ping">핑</string>
   <string name="pref_plugin_ping_desc">핑 보내고 받기</string>
@@ -146,7 +143,6 @@
   <string name="pref_plugin_telepathy">SMS 보내기</string>
   <string name="pref_plugin_telepathy_desc">데스크톱에서 문자 메시지 보내기</string>
   <string name="plugin_not_supported">장치에서 이 플러그인을 지원하지 않습니다</string>
-  <string name="findmyphone_description">소리를 울려서 휴대폰을 찾는 데 도움을 줍니다.</string>
   <string name="findmyphone_found">찾았음</string>
   <string name="open">열기</string>
   <string name="close">닫기</string>

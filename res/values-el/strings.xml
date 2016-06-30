@@ -5,15 +5,11 @@
   <string name="pref_plugin_battery">Αναφορά μπαταρίας</string>
   <string name="pref_plugin_battery_desc">Περιοδική αναφορά κατάστασης μπαταρίας</string>
   <string name="pref_plugin_sftp">Αποκάλυψη συστήματος αρχείων</string>
-  <string name="pref_plugin_sftp_desc">Επιτρέπει την απομακρυσμένη περιήγηση του συστήματος αρχείων του κινητού</string>
   <string name="pref_plugin_clipboard">Συγχρονισμός προχείρου</string>
   <string name="pref_plugin_clipboard_desc">Διαμοιρασμός περιεχομένου προχείρου</string>
   <string name="pref_plugin_mousepad">Απομακρυσμένη είσοδος στοιχείων</string>
-  <string name="pref_plugin_mousepad_desc">Χρήση του κινητού ως ποντίκι και πληκτρολόγιο</string>
   <string name="pref_plugin_mpris">Κονσόλα πολυμέσων</string>
-  <string name="pref_plugin_mpris_desc">Έλεγχος μουσικής/βίντεο από το κινητό</string>
   <string name="pref_plugin_runcommand">Εκτέλεση εντολής</string>
-  <string name="pref_plugin_runcommand_desc">Εκτέλεση απομακρυσμένων εντολών από το κινητό</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Αποστολή και λήψη pings</string>
   <string name="pref_plugin_notifications">Συγχρονισμός ειδοποιήσεων</string>
@@ -156,7 +152,6 @@
   <string name="pref_plugin_telepathy_desc">Αποστολή μηνυμάτων κειμένου από τον υπολογιστή σας</string>
   <string name="plugin_not_supported">Αυτό το πρόσθετο δεν υποστηρίζεται από τη συσκευή</string>
   <string name="findmyphone_title">Αναζήτηση του κινητού μου</string>
-  <string name="findmyphone_description">Καλεί αυτό το κινητό ώστε να το εντοπίσετε.</string>
   <string name="findmyphone_found">Βρέθηκε</string>
   <string name="open">Άνοιγμα</string>
   <string name="close">Κλείσιμο</string>

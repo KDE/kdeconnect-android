@@ -5,15 +5,11 @@
   <string name="pref_plugin_battery">דיווח סוללה</string>
   <string name="pref_plugin_battery_desc">מדווח על אחוז הסוללה למחשב</string>
   <string name="pref_plugin_sftp">גישה לקבצים</string>
-  <string name="pref_plugin_sftp_desc">אפשר להתקן המרוחק לדפדף בקבצים שבפלאפון</string>
   <string name="pref_plugin_clipboard">סנכנרון לוח העתקה</string>
   <string name="pref_plugin_clipboard_desc">שתף בין המחשבים את מה שמועתק</string>
   <string name="pref_plugin_mousepad">שליטה מרחוק</string>
-  <string name="pref_plugin_mousepad_desc">השתמש בפלאפון כדי לשלוט בעכבר ובמקדלת של ההתקן המרוחק</string>
   <string name="pref_plugin_mpris">שליטה במדיה</string>
-  <string name="pref_plugin_mpris_desc">שלוט בניגון שמע או וידאו מהפלאפון</string>
   <string name="pref_plugin_runcommand">הרץ פקודה</string>
-  <string name="pref_plugin_runcommand_desc">הרץ פקודה במחשב מהפלאפון</string>
   <string name="pref_plugin_ping">פינג</string>
   <string name="pref_plugin_ping_desc">שלח וקבל פינגים</string>
   <string name="pref_plugin_notifications">סנכרון התראות</string>
@@ -156,7 +152,6 @@
   <string name="pref_plugin_telepathy_desc">שלח הודעות מהמחשב שלך</string>
   <string name="plugin_not_supported">התוסף הזה לא נתמך ע\"י המכשיר שלך</string>
   <string name="findmyphone_title">מצא את המכשיר שלי</string>
-  <string name="findmyphone_description">הפעל רעש במכשיר כדי שתוכל למצוא אותו.</string>
   <string name="findmyphone_found">נמצא</string>
   <string name="open">פתח</string>
   <string name="close">סגור</string>

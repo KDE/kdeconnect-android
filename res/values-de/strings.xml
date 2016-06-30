@@ -5,15 +5,11 @@
   <string name="pref_plugin_battery">Akkubericht</string>
   <string name="pref_plugin_battery_desc">Akkustatus periodisch berichten</string>
   <string name="pref_plugin_sftp">Dateisystem zeigen</string>
-  <string name="pref_plugin_sftp_desc">Erlaubt das Browsen des Dateisystems auf dem entfernten Handy</string>
   <string name="pref_plugin_clipboard">Abgleich der Zwischenablage</string>
   <string name="pref_plugin_clipboard_desc">Inhalt der Zwischenablage freigeben</string>
   <string name="pref_plugin_mousepad">Ferneingabe</string>
-  <string name="pref_plugin_mousepad_desc">Verwendet Ihr Handy als Maus und Tastatur</string>
   <string name="pref_plugin_mpris">Multimedia-Bedienung</string>
-  <string name="pref_plugin_mpris_desc">Audio und Video mit Ihrem Telefon steuern</string>
   <string name="pref_plugin_runcommand">Befehl ausführen</string>
-  <string name="pref_plugin_runcommand_desc">Von Ihrem Telefon Befehle auf anderen Geräten ausführen</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Senden und Empfangen von Pings</string>
   <string name="pref_plugin_notifications">Benachrichtigungs-Abgleich</string>
@@ -149,7 +145,6 @@
   <string name="pref_plugin_telepathy_desc">Text-Nachrichten von Ihrer Arbeitsfläche senden</string>
   <string name="plugin_not_supported">Dieses Modul wird durch das Gerät nicht unterstützt</string>
   <string name="findmyphone_title">Mein Telefon suchen</string>
-  <string name="findmyphone_description">Ruft dieses Telefon an, um es zu suchen.</string>
   <string name="findmyphone_found">Gefunden</string>
   <string name="open">Öffnen</string>
   <string name="close">Schließen</string>

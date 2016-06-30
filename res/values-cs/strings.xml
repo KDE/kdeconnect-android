@@ -5,13 +5,10 @@
   <string name="pref_plugin_battery">Hlášení baterie</string>
   <string name="pref_plugin_battery_desc">Periodicky hlásit stav baterky</string>
   <string name="pref_plugin_sftp">Přístup k souborovému systému</string>
-  <string name="pref_plugin_sftp_desc">Umožní vám vzdáleně prohlížet souborový systém telefonu</string>
   <string name="pref_plugin_clipboard">Synchronizace schránky</string>
   <string name="pref_plugin_clipboard_desc">Sdílet obsah schránky</string>
   <string name="pref_plugin_mousepad">Vzdálený vstup</string>
-  <string name="pref_plugin_mousepad_desc">Používejte svůj telefon jako myš a klávesnici</string>
   <string name="pref_plugin_mpris">Ovládání multimédií</string>
-  <string name="pref_plugin_mpris_desc">Ovládejte audio/video z vašeho telefonu</string>
   <string name="pref_plugin_runcommand">Spustit příkaz</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Posílat a přijímat ping</string>
@@ -152,7 +149,6 @@
   <string name="pref_plugin_telepathy_desc">Posílejte zprávy ze své pracovní plochy</string>
   <string name="plugin_not_supported">Tento modul zařízení nepodporuje</string>
   <string name="findmyphone_title">Najít můj telefon</string>
-  <string name="findmyphone_description">Prozvoní tento telefon, takže jej můžete najít.</string>
   <string name="findmyphone_found">Nalezeno</string>
   <string name="open">Otevřít</string>
   <string name="close">Zavřít</string>
