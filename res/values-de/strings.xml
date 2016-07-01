@@ -5,6 +5,7 @@
   <string name="pref_plugin_battery">Akkubericht</string>
   <string name="pref_plugin_battery_desc">Akkustatus periodisch berichten</string>
   <string name="pref_plugin_sftp">Dateisystem zeigen</string>
+  <string name="pref_plugin_sftp_desc">Erlaubt das Browsen des Dateisystems auf diesem Gerät aus der Ferne</string>
   <string name="pref_plugin_clipboard">Abgleich der Zwischenablage</string>
   <string name="pref_plugin_clipboard_desc">Inhalt der Zwischenablage freigeben</string>
   <string name="pref_plugin_mousepad">Ferneingabe</string>
