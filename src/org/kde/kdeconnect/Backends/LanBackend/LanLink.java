@@ -246,7 +246,6 @@ public class LanLink extends BaseLink {
     @Override
     public void sendPackage(NetworkPackage np,Device.SendPackageStatusCallback callback) {
         sendPackageInternal(np, callback, null);
-
     }
 
     //Blocking, do not call from main thread
@@ -270,13 +269,13 @@ public class LanLink extends BaseLink {
 
             Socket payloadSocket = new Socket();
             try {
+                int tcpPort = np.getPayloadTransferInfo().getInt("port");
+                InetSocketAddress deviceAddress = (InetSocketAddress) socket.getRemoteSocketAddress();
+                payloadSocket.connect(new InetSocketAddress(deviceAddress.getAddress(), tcpPort));
                 // Use ssl if existing link is on ssl
                 if (socket instanceof SSLSocket) {
                     payloadSocket = SslHelper.convertToSslSocket(context, payloadSocket, getDeviceId(), true, true);
                 }
-                int tcpPort = np.getPayloadTransferInfo().getInt("port");
-                InetSocketAddress address = (InetSocketAddress) socket.getRemoteSocketAddress();
-                payloadSocket.connect(new InetSocketAddress(address.getAddress(), tcpPort));
                 np.setPayload(payloadSocket.getInputStream(), np.getPayloadSize());
             } catch (Exception e) {
                 try { payloadSocket.close(); } catch(Exception ignored) { }
