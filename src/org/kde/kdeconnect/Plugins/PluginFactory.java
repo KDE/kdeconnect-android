@@ -107,7 +107,7 @@ public class PluginFactory {
     }
 
     private static final Map<String, Class> availablePlugins = new TreeMap<>();
-    private static final Map<String, PluginInfo> availablePluginsInfo = new TreeMap<>();
+    private static final Map<String, PluginInfo> pluginInfoCache = new TreeMap<>();
 
     static {
         //TODO: Use reflection to find all subclasses of Plugin, instead of adding them manually
@@ -128,7 +128,7 @@ public class PluginFactory {
 
     public static PluginInfo getPluginInfo(Context context, String pluginKey) {
 
-        PluginInfo info = availablePluginsInfo.get(pluginKey); //Is it cached?
+        PluginInfo info = pluginInfoCache.get(pluginKey); //Is it cached?
         if (info != null) {
             return info;
         }
@@ -139,7 +139,7 @@ public class PluginFactory {
             info = new PluginInfo(p.getDisplayName(), p.getDescription(), p.getIcon(),
                     p.isEnabledByDefault(), p.hasSettings(), p.listensToUnpairedDevices(),
                     p.getSupportedPackageTypes(), p.getOutgoingPackageTypes());
-            availablePluginsInfo.put(pluginKey, info); //Cache it
+            pluginInfoCache.put(pluginKey, info); //Cache it
             return info;
         } catch(Exception e) {
             Log.e("PluginFactory","getPluginInfo exception");
@@ -180,6 +180,41 @@ public class PluginFactory {
             Log.e("PluginFactory","addPlugin exception");
             e.printStackTrace();
         }
+    }
+
+
+    public static Set<String> getIncomingCapabilities(Context context) {
+        HashSet<String> capabilities = new HashSet<>();
+        for (String pluginId : availablePlugins.keySet()) {
+            PluginInfo plugin = getPluginInfo(context, pluginId);
+            capabilities.addAll(plugin.getSupportedPackageTypes());
+        }
+
+        return capabilities;
+    }
+
+    public static Set<String> getOutgoingCapabilities(Context context) {
+        HashSet<String> capabilities = new HashSet<>();
+        for (String pluginId : availablePlugins.keySet()) {
+            PluginInfo plugin = getPluginInfo(context, pluginId);
+            capabilities.addAll(plugin.getOutgoingPackageTypes());
+        }
+        return capabilities;
+    }
+
+    public static Set<String> pluginsForCapabilities(Context context, Set<String> incoming, Set<String> outgoing) {
+        HashSet<String> plugins = new HashSet<>();
+        for (String pluginId : availablePlugins.keySet()) {
+            PluginInfo plugin = getPluginInfo(context, pluginId);
+            //Check incoming against outgoing
+            if (Collections.disjoint(outgoing, plugin.getSupportedPackageTypes())
+                && Collections.disjoint(incoming, plugin.getOutgoingPackageTypes())) {
+                Log.i("PluginFactory", "Won't load " + pluginId + " because of unmatched capabilities");
+                continue; //No capabilities in common, do not load this plugin
+            }
+            plugins.add(pluginId);
+        }
+        return plugins;
     }
 
 }

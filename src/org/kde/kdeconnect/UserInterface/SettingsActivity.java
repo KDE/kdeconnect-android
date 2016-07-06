@@ -26,9 +26,8 @@ import android.view.MenuItem;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.Plugins.PluginFactory;
 
-import java.util.Set;
+import java.util.List;
 
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
@@ -58,7 +57,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     });
                     return;
                 }
-                Set<String> plugins = PluginFactory.getAvailablePlugins();
+                List<String> plugins = device.getSupportedPlugins();
                 for (final String pluginKey : plugins) {
                     PluginPreference pref = new PluginPreference(SettingsActivity.this, pluginKey, device);
                     preferenceScreen.addPreference(pref);

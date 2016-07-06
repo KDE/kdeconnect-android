@@ -121,9 +121,10 @@ public class DeviceFragment extends Fragment {
 
                 refreshUI();
 
-                if (!device.hasPluginsLoaded()) {
-                    device.reloadPluginsFromSettings();
-                }
+                //TODO: Is this needed?
+                //if (!device.hasPluginsLoaded() && device.isReachable()) {
+                //    device.reloadPluginsFromSettings();
+                //}
             }
         });
 
@@ -283,17 +284,21 @@ public class DeviceFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        //TODO: Is this needed?
+        /*
         BackgroundService.RunCommand(mActivity, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
                 if (mDeviceId != null) {
                     Device device = service.getDevice(mDeviceId);
-                    if (device != null) {
+                    if (device != null && device.isReachable()) {
                         device.reloadPluginsFromSettings();
                     }
                 }
             }
         });
+        */
 
         getView().setFocusableInTouchMode(true);
         getView().requestFocus();

@@ -46,7 +46,6 @@ import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect_tp.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MprisActivity extends ActionBarActivity {

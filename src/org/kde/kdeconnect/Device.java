@@ -37,7 +37,6 @@ import android.util.Log;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
-import org.kde.kdeconnect.Helpers.ObjectsHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
@@ -51,13 +50,12 @@ import java.security.cert.Certificate;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -72,8 +70,6 @@ public class Device implements BaseLink.PackageReceiver {
     private int notificationId;
     private int protocolVersion;
 
-    private static final int MIN_VERSION_WITH_CAPPABILITIES_SUPPORT = 6;
-
     private DeviceType deviceType;
     private PairStatus pairStatus;
 
@@ -82,24 +78,12 @@ public class Device implements BaseLink.PackageReceiver {
 
     private final CopyOnWriteArrayList<BaseLink> links = new CopyOnWriteArrayList<>();
 
-    private List<String> incomingCapabilities = new ArrayList<>();
-    private List<String> outgoingCapabilities = new ArrayList<>();
-
+    private List<String> m_supportedPlugins = new ArrayList<>();
     private final ConcurrentHashMap<String, Plugin> plugins = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, Plugin> failedPlugins = new ConcurrentHashMap<>();
-
-    private ArrayList<String> unsupportedPlugins = new ArrayList<>();
-    private HashSet<String> supportedIncomingInterfaces = new HashSet<>();
-    private HashSet<String> supportedOutgoingInterfaces = new HashSet<>();
-
-    private HashMap<String, ArrayList<String>> pluginsByIncomingInterface;
-    private HashMap<String, ArrayList<String>> pluginsByOutgoingInterface;
+    private Map<String, ArrayList<String>> pluginsByIncomingInterface;
 
     private final SharedPreferences settings;
-
-    public ArrayList<String> getUnsupportedPlugins() {
-        return unsupportedPlugins;
-    }
 
     private final CopyOnWriteArrayList<PluginsChangedListener> pluginsChangedListeners = new CopyOnWriteArrayList<>();
 
@@ -162,7 +146,8 @@ public class Device implements BaseLink.PackageReceiver {
             Log.e("KDE/Device","Exception deserializing stored public key for device");
         }
 
-        reloadPluginsFromSettings();
+        //Do not load plugins yet, the device is not present
+        //reloadPluginsFromSettings();
     }
 
     //Device known via an incoming connection sent to us via a devicelink, we know everything but we don't trust it yet
@@ -494,20 +479,18 @@ public class Device implements BaseLink.PackageReceiver {
         }
         pairingHandlers.get(link.getName()).setLink(link);
 
-        /*
-        Collections.sort(links, new Comparator<BaseLink>() {
-            @Override
-            public int compare(BaseLink o, BaseLink o2) {
-                return o2.getLinkProvider().getPriority() - o.getLinkProvider().getPriority();
-            }
-        });
-        */
+        Set<String> outgoingCapabilities = identityPackage.getStringSet("outgoingCapabilities", null);
+        Set<String> incomingCapabilities = identityPackage.getStringSet("incomingCapabilities", null);
+        if (incomingCapabilities != null && outgoingCapabilities != null) {
+            m_supportedPlugins = new Vector<>(PluginFactory.pluginsForCapabilities(context, incomingCapabilities, outgoingCapabilities));
+        } else {
+            m_supportedPlugins = new Vector<>(PluginFactory.getAvailablePlugins());
+        }
 
         link.addPackageReceiver(this);
 
-        if (links.size() == 1) {
-            reloadPluginsFromSettings();
-        }
+        reloadPluginsFromSettings();
+
     }
 
     public void removeLink(BaseLink link) {
@@ -536,8 +519,6 @@ public class Device implements BaseLink.PackageReceiver {
     @Override
     public void onPackageReceived(NetworkPackage np) {
 
-        hackToMakeRetrocompatiblePacketTypes(np);
-
         if (NetworkPackage.PACKAGE_TYPE_PAIR.equals(np.getType())) {
 
             Log.i("KDE/Device", "Pair package");
@@ -550,16 +531,6 @@ public class Device implements BaseLink.PackageReceiver {
                     Log.e("PairingPackageReceived","Exception");
                 }
             }
-        } else if (NetworkPackage.PACKAGE_TYPE_CAPABILITIES.equals(np.getType())) {
-            List<String> newIncomingCapabilities = np.getStringList("IncomingCapabilities");
-            List<String> newOutgoingCapabilities = np.getStringList("OutgoingCapabilities");
-            if (!ObjectsHelper.equals(newIncomingCapabilities, incomingCapabilities) ||
-                !ObjectsHelper.equals(newOutgoingCapabilities, outgoingCapabilities)) {
-                incomingCapabilities = newIncomingCapabilities;
-                outgoingCapabilities = newOutgoingCapabilities;
-                reloadPluginsFromSettings();
-            }
-
         } else if (isPaired()) {
 
             //If capabilities are not supported, iterate all plugins
@@ -642,12 +613,12 @@ public class Device implements BaseLink.PackageReceiver {
     //Async
     public void sendPackage(final NetworkPackage np, final SendPackageStatusCallback callback) {
 
-        hackToMakeRetrocompatiblePacketTypes(np);
-
-        if (protocolVersion >= MIN_VERSION_WITH_CAPPABILITIES_SUPPORT && !supportedOutgoingInterfaces.contains(np.getType()) && !NetworkPackage.protocolPackageTypes.contains(np.getType())) {
-            Log.e("Device/sendPackage", "Plugin tried to send an unsupported package: " + np.getType());
-            Log.w("Device/sendPackage", "Supported package types: " + Arrays.toString(supportedOutgoingInterfaces.toArray()));
+        /*
+        if (!m_outgoingCapabilities.contains(np.getType()) && !NetworkPackage.protocolPackageTypes.contains(np.getType())) {
+            Log.e("Device/sendPackage", "Plugin tried to send an undeclared package: " + np.getType());
+            Log.w("Device/sendPackage", "Declared outgoing package types: " + Arrays.toString(m_outgoingCapabilities.toArray()));
         }
+        */
 
         //Log.e("sendPackage", "Sending package...");
         //Log.e("sendPackage", np.serialize());
@@ -775,29 +746,15 @@ public class Device implements BaseLink.PackageReceiver {
         return enabled;
     }
 
-    public boolean hasPluginsLoaded() {
-        return !plugins.isEmpty() || !failedPlugins.isEmpty();
-    }
-
     public void reloadPluginsFromSettings() {
 
         failedPlugins.clear();
 
-        Set<String> availablePlugins = PluginFactory.getAvailablePlugins();
-
-        ArrayList<String> newUnsupportedPlugins = new ArrayList<>();
-        HashSet<String> newSupportedIncomingInterfaces = new HashSet<>();
-        HashSet<String> newSupportedOutgoingInterfaces = new HashSet<>();
         HashMap<String, ArrayList<String>> newPluginsByIncomingInterface = new HashMap<>();
-        HashMap<String, ArrayList<String>> newPluginsByOutgoingInterface = new HashMap<>();
 
-        final boolean supportsCapabilities = (protocolVersion >= MIN_VERSION_WITH_CAPPABILITIES_SUPPORT);
-
-        for (String pluginKey : availablePlugins) {
+        for (String pluginKey : m_supportedPlugins) {
 
             PluginFactory.PluginInfo pluginInfo = PluginFactory.getPluginInfo(context, pluginKey);
-            Set<String> incomingInterfaces = pluginInfo.getSupportedPackageTypes();
-            Set<String> outgoingInterfaces = pluginInfo.getOutgoingPackageTypes();
 
             boolean pluginEnabled = false;
             boolean listenToUnpaired = pluginInfo.listenToUnpaired();
@@ -805,48 +762,15 @@ public class Device implements BaseLink.PackageReceiver {
                 pluginEnabled = isPluginEnabled(pluginKey);
             }
 
-            //TODO: Check for plugins that will fail to load before checking the capabilities
-
-            if (supportsCapabilities && (!incomingInterfaces.isEmpty() || !outgoingInterfaces.isEmpty())) {
-                HashSet<String> supportedOut = new HashSet<>(outgoingInterfaces);
-                supportedOut.retainAll(incomingCapabilities); //Intersection
-                HashSet<String> supportedIn = new HashSet<>(incomingInterfaces);
-                supportedIn.retainAll(outgoingCapabilities);
-                if (supportedOut.isEmpty() && supportedIn.isEmpty()) {
-                    newUnsupportedPlugins.add(pluginKey);
-                    if (pluginEnabled) {
-                        //We still want to announce this capability, to prevent a deadlock
-                        newSupportedOutgoingInterfaces.addAll(outgoingInterfaces);
-                        newSupportedIncomingInterfaces.addAll(incomingInterfaces);
-                        pluginEnabled = false;
-                    }
-                }
-            }
-
             if (pluginEnabled) {
                 boolean success = addPlugin(pluginKey);
-
                 if (success) {
-
-                    newSupportedIncomingInterfaces.addAll(incomingInterfaces);
-                    newSupportedOutgoingInterfaces.addAll(outgoingInterfaces);
-
-                    for (String packageType : incomingInterfaces) {
-                        packageType = hackToMakeRetrocompatiblePacketTypes(packageType);
+                    for (String packageType : pluginInfo.getSupportedPackageTypes()) {
                         ArrayList<String> plugins = newPluginsByIncomingInterface.get(packageType);
                         if (plugins == null) plugins = new ArrayList<>();
                         plugins.add(pluginKey);
                         newPluginsByIncomingInterface.put(packageType, plugins);
                     }
-
-                    for (String packageType : outgoingInterfaces) {
-                        packageType = hackToMakeRetrocompatiblePacketTypes(packageType);
-                        ArrayList<String> plugins = newPluginsByOutgoingInterface.get(packageType);
-                        if (plugins == null) plugins = new ArrayList<>();
-                        plugins.add(pluginKey);
-                        newPluginsByOutgoingInterface.put(packageType, plugins);
-                    }
-
                 }
             } else {
                 removePlugin(pluginKey);
@@ -854,32 +778,9 @@ public class Device implements BaseLink.PackageReceiver {
 
         }
 
-        boolean capabilitiesChanged = false;
-        if (!newSupportedIncomingInterfaces.equals(supportedIncomingInterfaces) ||
-                !newSupportedOutgoingInterfaces.equals(pluginsByOutgoingInterface)) {
-            capabilitiesChanged = true;
-        }
-
-        pluginsByOutgoingInterface = newPluginsByOutgoingInterface;
         pluginsByIncomingInterface = newPluginsByIncomingInterface;
-        supportedIncomingInterfaces = newSupportedIncomingInterfaces;
-        supportedOutgoingInterfaces = newSupportedOutgoingInterfaces;
-        unsupportedPlugins = newUnsupportedPlugins;
-
-        if (!unsupportedPlugins.isEmpty()) {
-            Log.i("ReloadPlugins", "not loading " + Arrays.toString(unsupportedPlugins.toArray()) + " because of unmatched capabilities");
-        }
 
         onPluginsChanged();
-
-        //Only send capabilities to devices using protocol version 6 or later
-        if (capabilitiesChanged && isReachable() && isPaired() && protocolVersion >= MIN_VERSION_WITH_CAPPABILITIES_SUPPORT) {
-            NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_CAPABILITIES);
-            np.set("IncomingCapabilities", new ArrayList<>(newSupportedIncomingInterfaces));
-            np.set("OutgoingCapabilities", new ArrayList<>(newSupportedOutgoingInterfaces));
-            sendPackage(np);
-        }
-
     }
 
     public void onPluginsChanged() {
@@ -926,14 +827,8 @@ public class Device implements BaseLink.PackageReceiver {
         return false;
     }
 
-    public void hackToMakeRetrocompatiblePacketTypes(NetworkPackage np) {
-        if (protocolVersion >= MIN_VERSION_WITH_CAPPABILITIES_SUPPORT) return;
-        np.mType = np.getType().replace(".request","");
-    }
-
-    public String hackToMakeRetrocompatiblePacketTypes(String type) {
-        if (protocolVersion >= MIN_VERSION_WITH_CAPPABILITIES_SUPPORT) return type;
-        return type.replace(".request","");
+    public List<String> getSupportedPlugins() {
+        return m_supportedPlugins;
     }
 
 }

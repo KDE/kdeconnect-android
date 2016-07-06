@@ -27,6 +27,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -42,13 +43,11 @@ public class NetworkPackage {
     public final static String PACKAGE_TYPE_IDENTITY = "kdeconnect.identity";
     public final static String PACKAGE_TYPE_PAIR = "kdeconnect.pair";
     public final static String PACKAGE_TYPE_ENCRYPTED = "kdeconnect.encrypted";
-    public final static String PACKAGE_TYPE_CAPABILITIES = "kdeconnect.capabilities";
 
     public static Set<String> protocolPackageTypes = new HashSet<String>() {{
         add(PACKAGE_TYPE_IDENTITY);
         add(PACKAGE_TYPE_PAIR);
         add(PACKAGE_TYPE_ENCRYPTED);
-        add(PACKAGE_TYPE_CAPABILITIES);
     }};
 
     private long mId;
@@ -97,6 +96,33 @@ public class NetworkPackage {
     public JSONArray getJSONArray(String key) { return mBody.optJSONArray(key); }
     public void set(String key, JSONArray value) { try { mBody.put(key,value); } catch(Exception e) { } }
 
+    public Set<String> getStringSet(String key) {
+        JSONArray jsonArray = mBody.optJSONArray(key);
+        if (jsonArray == null) return null;
+        Set<String> list = new HashSet<>();
+        int length = jsonArray.length();
+        for (int i = 0; i < length; i++) {
+            try {
+                String str = jsonArray.getString(i);
+                list.add(str);
+            } catch(Exception e) { }
+        }
+        return list;
+    }
+    public Set<String> getStringSet(String key, Set<String> defaultValue) {
+        if (mBody.has(key)) return getStringSet(key);
+        else return defaultValue;
+    }
+    public void set(String key, Set<String> value) {
+        try {
+            JSONArray jsonArray = new JSONArray();
+            for(String str : value) {
+                jsonArray.put(str);
+            }
+            mBody.put(key,jsonArray);
+        } catch(Exception e) { }
+    }
+
     public List<String> getStringList(String key) {
         JSONArray jsonArray = mBody.optJSONArray(key);
         if (jsonArray == null) return null;
@@ -106,9 +132,7 @@ public class NetworkPackage {
             try {
                 String str = jsonArray.getString(i);
                 list.add(str);
-            } catch(Exception e) {
-
-            }
+            } catch(Exception e) { }
         }
         return list;
     }
@@ -123,9 +147,7 @@ public class NetworkPackage {
                 jsonArray.put(str);
             }
             mBody.put(key,jsonArray);
-        } catch(Exception e) {
-
-        }
+        } catch(Exception e) { }
     }
     public boolean has(String key) { return mBody.has(key); }
 
@@ -170,6 +192,8 @@ public class NetworkPackage {
             np.mBody.put("deviceName", DeviceHelper.getDeviceName(context));
             np.mBody.put("protocolVersion", NetworkPackage.ProtocolVersion);
             np.mBody.put("deviceType", DeviceHelper.isTablet()? "tablet" : "phone");
+            np.mBody.put("incomingCapabilities", new JSONArray(PluginFactory.getIncomingCapabilities(context)));
+            np.mBody.put("outgoingCapabilities", new JSONArray(PluginFactory.getOutgoingCapabilities(context)));
         } catch (Exception e) {
             e.printStackTrace();
             Log.e("NetworkPacakge","Exception on createIdentityPackage");
