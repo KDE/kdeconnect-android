@@ -49,8 +49,7 @@ public class LanPairingHandler extends BasePairingHandler {
         }
     }
 
-    @Override
-    public NetworkPackage createPairPackage() {
+    private NetworkPackage createPairPackage() {
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
         np.set("pair", true);
         SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(mDevice.getContext());
@@ -196,7 +195,6 @@ public class LanPairingHandler extends BasePairingHandler {
         mDevice.sendPackage(np);
     }
 
-    @Override
     public void pairingDone() {
         // Store device information needed to create a Device object in a future
         //Log.e("KDE/PairingDone", "Pairing Done");

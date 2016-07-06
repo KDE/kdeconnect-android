@@ -20,13 +20,45 @@
 
 package org.kde.kdeconnect.Backends.LoopbackBackend;
 
-import org.kde.kdeconnect.Backends.LanBackend.LanPairingHandler;
-import org.kde.kdeconnect.Device;
+import android.util.Log;
 
-public class LoopbackPairingHandler extends LanPairingHandler{
+import org.kde.kdeconnect.Backends.BasePairingHandler;
+import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.NetworkPackage;
+
+public class LoopbackPairingHandler extends BasePairingHandler {
 
     public LoopbackPairingHandler(Device device, PairingHandlerCallback callback) {
         super(device, callback);
     }
-    // Extending from LanPairingHandler, as it is similar to it
+
+    @Override
+    public void packageReceived(NetworkPackage np) throws Exception {
+
+    }
+
+    @Override
+    public void requestPairing() {
+        Log.i("LoopbackPairing", "requestPairing");
+        mCallback.pairingDone();
+    }
+
+    @Override
+    public void acceptPairing() {
+        Log.i("LoopbackPairing", "acceptPairing");
+        mCallback.pairingDone();
+    }
+
+    @Override
+    public void rejectPairing() {
+        Log.i("LoopbackPairing", "rejectPairing");
+        mCallback.unpaired();
+    }
+
+    @Override
+    public void unpair() {
+        Log.i("LoopbackPairing", "unpair");
+        mCallback.unpaired();
+    }
+
 }

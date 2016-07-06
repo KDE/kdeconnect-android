@@ -142,15 +142,9 @@ public class BackgroundService extends Service {
 
     private void registerLinkProviders() {
 
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+        //linkProviders.add(new LoopbackLinkProvider(this));
 
-        //if (settings.getBoolean("loopback_link", true)) {
-        //    linkProviders.add(new LoopbackLinkProvider(this));
-        //}
-
-        if (settings.getBoolean("lan_link", true)) {
-            linkProviders.add(new LanLinkProvider(this));
-        }
+        linkProviders.add(new LanLinkProvider(this));
 
     }
 

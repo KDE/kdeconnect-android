@@ -81,12 +81,10 @@ public abstract class BasePairingHandler {
     }
 
     /* To be implemented by respective pairing handler */
-    public abstract NetworkPackage createPairPackage();
     public abstract void packageReceived(NetworkPackage np) throws Exception;
     public abstract void requestPairing();
     public abstract void acceptPairing();
     public abstract void rejectPairing();
-    public abstract void pairingDone();
     public abstract void unpair();
 
 }
