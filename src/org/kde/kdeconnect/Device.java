@@ -477,7 +477,6 @@ public class Device implements BaseLink.PackageReceiver {
             };
             pairingHandlers.put(link.getName(), link.getPairingHandler(this, callback));
         }
-        pairingHandlers.get(link.getName()).setLink(link);
 
         Set<String> outgoingCapabilities = identityPackage.getStringSet("outgoingCapabilities", null);
         Set<String> incomingCapabilities = identityPackage.getStringSet("incomingCapabilities", null);
@@ -685,7 +684,8 @@ public class Device implements BaseLink.PackageReceiver {
         final Plugin plugin = PluginFactory.instantiatePluginForDevice(context, pluginKey, this);
         if (plugin == null) {
             Log.e("KDE/addPlugin","could not instantiate plugin: "+pluginKey);
-            failedPlugins.put(pluginKey, null);
+            //Can't put a null
+            //failedPlugins.put(pluginKey, null);
             return false;
         }
 

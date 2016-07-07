@@ -51,6 +51,7 @@ import org.kde.kdeconnect_tp.R;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 
@@ -378,15 +379,16 @@ public class DeviceFragment extends Fragment {
                                 errorHeader.setText(getResources().getString(R.string.plugins_failed_to_load));
                             }
                             items.add(new CustomItem(errorHeader));
-                            for (String s : failed.keySet()) {
-                                final Plugin p = failed.get(s);
-                                if (p == null) {
-                                    items.add(new SmallEntryItem(s));
+                            for (Map.Entry<String, Plugin> entry : failed.entrySet()) {
+                                String pluginKey = entry.getKey();
+                                final Plugin plugin = entry.getValue();
+                                if (plugin == null) {
+                                    items.add(new SmallEntryItem(pluginKey));
                                 } else {
-                                    items.add(new SmallEntryItem(p.getDisplayName(), new View.OnClickListener() {
+                                    items.add(new SmallEntryItem(plugin.getDisplayName(), new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            p.getErrorDialog(mActivity).show();
+                                            plugin.getErrorDialog(mActivity).show();
                                         }
                                     }));
                                 }

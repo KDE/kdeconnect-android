@@ -75,8 +75,9 @@ public class ContactsHelper {
                 contactInfo.put("photoID", cursor.getString(nameIndex));
             }
 
+            try { cursor.close(); } catch (Exception e) {}
+
             if (!contactInfo.isEmpty()) {
-                cursor.close();
                 return contactInfo;
             }
         }

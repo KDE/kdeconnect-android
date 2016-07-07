@@ -39,6 +39,8 @@ import java.util.TimerTask;
 
 public class LanPairingHandler extends BasePairingHandler {
 
+    private Timer mPairingTimer;
+
     public LanPairingHandler(Device device, final PairingHandlerCallback callback) {
         super(device, callback);
 

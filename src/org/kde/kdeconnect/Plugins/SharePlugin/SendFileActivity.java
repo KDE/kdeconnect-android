@@ -69,7 +69,9 @@ public class SendFileActivity extends ActionBarActivity {
                         public void onServiceStart(BackgroundService service) {
                             Device device = service.getDevice(mDeviceId);
                             if (device == null) {
+                                Log.e("SendFileActivity", "Device is null");
                                 finish();
+                                return;
                             }
                             ArrayList<Uri> uris = new ArrayList<>();
                             uris.add(uri);

@@ -213,6 +213,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
                     String deviceId = data.getStringExtra("deviceId");
                     mActivity.onDeviceSelected(deviceId);
                 }
+                break;
             default:
                 super.onActivityResult(requestCode, resultCode, data);
         }

@@ -54,18 +54,12 @@ public abstract class BasePairingHandler {
 
 
     protected Device mDevice;
-    protected BaseLink mBaseLink;
     protected PairStatus mPairStatus;
     protected PairingHandlerCallback mCallback;
-    protected Timer mPairingTimer;
 
     public BasePairingHandler(Device device, PairingHandlerCallback callback) {
         this.mDevice = device;
         this.mCallback = callback;
-    }
-
-    public void setLink(BaseLink baseLink) {
-        this.mBaseLink = baseLink;
     }
 
     public boolean isPaired() {
