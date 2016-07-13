@@ -305,11 +305,10 @@ public class SharePlugin extends Plugin {
 
 
     static void queuedSendUriList(final Context context, final Device device, final ArrayList<Uri> uriList) {
-        InputStream inputStream = null;
         try {
             Uri uri = uriList.remove(0);
             ContentResolver cr = context.getContentResolver();
-            inputStream = cr.openInputStream(uri);
+            InputStream inputStream = cr.openInputStream(uri);
 
             NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_SHARE_REQUEST);
             long size = -1;
@@ -347,8 +346,6 @@ public class SharePlugin extends Plugin {
                     e.printStackTrace();
                 }
 
-                np.setPayload(inputStream, size);
-
             }else{
                 // Probably a content:// uri, so we query the Media content provider
 
@@ -385,12 +382,12 @@ public class SharePlugin extends Plugin {
                         e.printStackTrace();
                     }
                 } finally {
-                    cursor.close();
+                    try { cursor.close(); } catch (Exception e) { }
                 }
 
-                np.setPayload(inputStream, size);
-
             }
+
+            np.setPayload(inputStream, size);
 
             final String filename = np.getString("filename");
 
@@ -490,8 +487,6 @@ public class SharePlugin extends Plugin {
         } catch (Exception e) {
             Log.e("SendFileActivity", "Exception sending files");
             e.printStackTrace();
-        } finally {
-            try { inputStream.close(); } catch(Exception e) { }
         }
 
     }
