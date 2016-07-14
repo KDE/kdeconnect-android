@@ -518,6 +518,8 @@ public class Device implements BaseLink.PackageReceiver {
     @Override
     public void onPackageReceived(NetworkPackage np) {
 
+        hackToMakeRetrocompatiblePacketTypes(np);
+
         if (NetworkPackage.PACKAGE_TYPE_PAIR.equals(np.getType())) {
 
             Log.i("KDE/Device", "Pair package");
@@ -611,6 +613,9 @@ public class Device implements BaseLink.PackageReceiver {
 
     //Async
     public void sendPackage(final NetworkPackage np, final SendPackageStatusCallback callback) {
+
+        hackToMakeRetrocompatiblePacketTypes(np);
+
 
         /*
         if (!m_outgoingCapabilities.contains(np.getType()) && !NetworkPackage.protocolPackageTypes.contains(np.getType())) {
@@ -830,5 +835,11 @@ public class Device implements BaseLink.PackageReceiver {
     public List<String> getSupportedPlugins() {
         return m_supportedPlugins;
     }
+
+    public void hackToMakeRetrocompatiblePacketTypes(NetworkPackage np) {
+        if (protocolVersion >= 6) return;
+        np.mType = np.getType().replace(".request","");
+    }
+
 
 }
