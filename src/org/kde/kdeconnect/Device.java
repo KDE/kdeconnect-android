@@ -771,6 +771,7 @@ public class Device implements BaseLink.PackageReceiver {
                 boolean success = addPlugin(pluginKey);
                 if (success) {
                     for (String packageType : pluginInfo.getSupportedPackageTypes()) {
+                        packageType = hackToMakeRetrocompatiblePacketTypes(packageType);
                         ArrayList<String> plugins = newPluginsByIncomingInterface.get(packageType);
                         if (plugins == null) plugins = new ArrayList<>();
                         plugins.add(pluginKey);
@@ -840,6 +841,9 @@ public class Device implements BaseLink.PackageReceiver {
         if (protocolVersion >= 6) return;
         np.mType = np.getType().replace(".request","");
     }
-
+    public String hackToMakeRetrocompatiblePacketTypes(String type) {
+        if (protocolVersion >= 6) return type;
+        return type.replace(".request", "");
+    }
 
 }
