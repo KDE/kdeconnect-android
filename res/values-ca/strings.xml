@@ -5,21 +5,19 @@
   <string name="pref_plugin_battery">Informe de la bateria</string>
   <string name="pref_plugin_battery_desc">Informa periòdicament sobre l\'estat de la bateria</string>
   <string name="pref_plugin_sftp">Exposa el sistema de fitxers</string>
-  <string name="pref_plugin_sftp_desc">Permet navegar de forma remota pel sistema de fitxers del dispositiu</string>
+  <string name="pref_plugin_sftp_desc">Permet navegar de forma remota pel sistema de fitxers del telèfon</string>
   <string name="pref_plugin_clipboard">Sincronitza el porta-retalls</string>
   <string name="pref_plugin_clipboard_desc">Comparteix el contingut del porta-retalls</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
-  <string name="pref_plugin_mousepad_desc">Usa el vostre telèfon o tauleta com un ratolí i un teclat</string>
+  <string name="pref_plugin_mousepad_desc">Usa el vostre telèfon com un ratolí i un teclat</string>
   <string name="pref_plugin_mpris">Controls multimèdia</string>
-  <string name="pref_plugin_mpris_desc">Proporciona un comandament a distància pel reproductor multimèdia</string>
+  <string name="pref_plugin_mpris_desc">Controla l\'àudio i el vídeo del vostre telèfon</string>
   <string name="pref_plugin_runcommand">Executa una ordre</string>
-  <string name="pref_plugin_runcommand_desc">Activa les ordres remotes des del telèfon o tauleta</string>
+  <string name="pref_plugin_runcommand_desc">Executa una ordre al vostre sistema</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Envia i rep els pings</string>
   <string name="pref_plugin_notifications">Sincronitza les notificacions</string>
   <string name="pref_plugin_notifications_desc">Accedeix a les vostres notificacions des d\'altres dispositius</string>
-  <string name="pref_plugin_receive_notifications">Recepció de les notificacions</string>
-  <string name="pref_plugin_receive_notifications_desc">Rep notificacions des d\'altres dispositius i mostrar-los a l\'Android</string>
   <string name="pref_plugin_sharereceiver">Comparteix i rep</string>
   <string name="pref_plugin_sharereceiver_desc">Comparteix els fitxers i els URL entre els dispositius</string>
   <string name="plugin_not_available">Aquesta característica no està disponible en la vostra versió d\'Android</string>
@@ -34,8 +32,6 @@
   <string name="mousepad_info">Moveu un dit per la pantalla per a moure el cursor del ratolí. Toqueu per un clic, i empreu dos/tres dits pels botons dret i mig. Empreu un toc llarg per arrossegar i deixar anar.</string>
   <string name="mousepad_double_tap_settings_title">Estableix l\'acció de tocar amb dos dits</string>
   <string name="mousepad_triple_tap_settings_title">Estableix l\'acció de tocar amb tres dits</string>
-  <string name="mousepad_sensitivity_settings_title">Estableix la sensibilitat del ratolí tàctil</string>
-  <string name="mousepad_scroll_direction_title">Inverteix la direcció del desplaçament</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic dret</item>
     <item>Clic del mig</item>
@@ -43,14 +39,6 @@
   </string-array>
   <string name="mousepad_double_default">dret</string>
   <string name="mousepad_triple_default">mig</string>
-  <string name="mousepad_sensitivity_default">Predeterminada</string>
-  <string-array name="mousepad_sensitivity_entries">
-    <item>La més lenta</item>
-    <item>Lenta</item>
-    <item>Predeterminada</item>
-    <item>Ràpida</item>
-    <item>La més ràpida</item>
-  </string-array>
   <string name="category_connected_devices">Dispositius connectats</string>
   <string name="category_not_paired_devices">Dispositius disponibles</string>
   <string name="category_remembered_devices">Dispositius recordats</string>
@@ -68,10 +56,6 @@
   <string name="error_canceled_by_user">Cancel·lat per l\'usuari</string>
   <string name="error_canceled_by_other_peer">Cancel·lat per l\'altre parell</string>
   <string name="error_invalid_key">S\'ha rebut una clau no vàlida</string>
-  <string name="encryption_info_title">Informació d\'encriptatge</string>
-  <string name="encryption_info_msg_no_ssl">L\'altre dispositiu no usa una versió recent del KDE Connect, s\'utilitzarà el mètode d\'encriptatge antic.</string>
-  <string name="my_device_fingerprint">L\'empremta digital SHA1 del certificat del vostre dispositiu és:</string>
-  <string name="remote_device_fingerprint">L\'empremta digital SHA1 del certificat del dispositiu remot és:</string>
   <string name="pair_requested">S\'ha demanat aparellar</string>
   <string name="pairing_request_from">S\'ha demanat aparellar des de %1s</string>
   <string name="received_url_title">S\'ha rebut un vincle des de %1s</string>
@@ -157,10 +141,7 @@
   <string name="pref_plugin_telepathy">Envia un SMS</string>
   <string name="pref_plugin_telepathy_desc">Envia missatges de text des de l\'escriptori</string>
   <string name="plugin_not_supported">Aquest connector no és admès pel dispositiu</string>
-  <string name="findmyphone_title">Cerca el meu telèfon</string>
-  <string name="findmyphone_title_tablet">Cerca la meva tauleta</string>
-  <string name="findmyphone_description">Fa sonar aquest dispositiu perquè el pugueu trobar.</string>
+  <string name="findmyphone_title">Troba el meu telèfon</string>
+  <string name="findmyphone_description">Fa sonar aquest telèfon perquè el pugueu trobar.</string>
   <string name="findmyphone_found">L\'he trobat</string>
-  <string name="open">Obre</string>
-  <string name="close">Tanca</string>
 </resources>

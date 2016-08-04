@@ -5,11 +5,15 @@
   <string name="pref_plugin_battery">Relatório da bateria</string>
   <string name="pref_plugin_battery_desc">Informação periódica do status da bateria</string>
   <string name="pref_plugin_sftp">Exposição do sistema de arquivos</string>
+  <string name="pref_plugin_sftp_desc">Navegação remota pelo sistema de arquivos do telefone</string>
   <string name="pref_plugin_clipboard">Sincronização da área de transferência</string>
   <string name="pref_plugin_clipboard_desc">Compartilha o conteúdo da área de transferência</string>
   <string name="pref_plugin_mousepad">Introdução de dados remota</string>
+  <string name="pref_plugin_mousepad_desc">Use seu telefone como mouse ou teclado</string>
   <string name="pref_plugin_mpris">Controle multimídia</string>
+  <string name="pref_plugin_mpris_desc">Controla áudio e vídeo a partir do seu telefone</string>
   <string name="pref_plugin_runcommand">Executar comando</string>
+  <string name="pref_plugin_runcommand_desc">Executa um comando no seu sistema</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Envia e recebe pings</string>
   <string name="pref_plugin_notifications">Sincronização de notificações</string>
@@ -28,8 +32,6 @@
   <string name="mousepad_info">Mova um dedo pela tela para mover o ponteiro do mouse. Dê um toque para clicar e use dois/três dedos para os botões da direita e do meio. Use uma pressão longa para arrastar e soltar.</string>
   <string name="mousepad_double_tap_settings_title">Definir a ação do toque com dois dedos</string>
   <string name="mousepad_triple_tap_settings_title">Definir a ação do toque com três dedos</string>
-  <string name="mousepad_sensitivity_settings_title">Definir a sensibilidade do touchpad</string>
-  <string name="mousepad_scroll_direction_title">Direção de rolagem inversa</string>
   <string-array name="mousepad_tap_entries">
     <item>Botão direito</item>
     <item>Botão do meio</item>
@@ -37,14 +39,6 @@
   </string-array>
   <string name="mousepad_double_default">direita</string>
   <string name="mousepad_triple_default">meio</string>
-  <string name="mousepad_sensitivity_default">padrão</string>
-  <string-array name="mousepad_sensitivity_entries">
-    <item>Mais lento</item>
-    <item>Ainda mais lento</item>
-    <item>Padrão</item>
-    <item>Acima do padrão</item>
-    <item>Mais rápido</item>
-  </string-array>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos disponíveis</string>
   <string name="category_remembered_devices">Dispositivos lembrados</string>
@@ -147,7 +141,7 @@
   <string name="pref_plugin_telepathy">Enviar SMS</string>
   <string name="pref_plugin_telepathy_desc">Enviar mensagens de texto do seu Desktop</string>
   <string name="plugin_not_supported">Este plugin não é suportado pelo dispositivo</string>
+  <string name="findmyphone_title">Encontrar meu telefone</string>
+  <string name="findmyphone_description">Faça este telefone tocar para encontrá-lo.</string>
   <string name="findmyphone_found">Encontrado</string>
-  <string name="open">Abrir</string>
-  <string name="close">Fechar</string>
 </resources>

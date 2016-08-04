@@ -5,11 +5,15 @@
   <string name="pref_plugin_battery">Akkuraportti</string>
   <string name="pref_plugin_battery_desc">Raportoi akun tila säännöllisesti</string>
   <string name="pref_plugin_sftp">Tiedostojärjestelmän paljastaminen</string>
+  <string name="pref_plugin_sftp_desc">Mahdollistaa puhelimen tiedostojärjestelmän etäselaamisen</string>
   <string name="pref_plugin_clipboard">Leikepöydän synkronointi</string>
   <string name="pref_plugin_clipboard_desc">Jaa leikepöydän sisältö</string>
   <string name="pref_plugin_mousepad">Kauko-ohjaus</string>
+  <string name="pref_plugin_mousepad_desc">Käytä puhelintasi hiirenä ja näppäimistönä</string>
   <string name="pref_plugin_mpris">Multimedian ohjaus</string>
+  <string name="pref_plugin_mpris_desc">Ohjaa ääntä ja videota puhelimestasi</string>
   <string name="pref_plugin_runcommand">Suorita komento</string>
+  <string name="pref_plugin_runcommand_desc">Suorita komento järjestelmässäsi</string>
   <string name="pref_plugin_ping">Tiedustelupaketti</string>
   <string name="pref_plugin_ping_desc">Lähetä ja vastaanota tiedustelupaketteja</string>
   <string name="pref_plugin_notifications">Ilmoitusten synkronointi</string>
@@ -28,8 +32,6 @@
   <string name="mousepad_info">Liikuta hiiren osoitinta liikuttamalla sormeasi näytöllä. Napsauta napauttamalla yhdellä sormella, käytä oikeaa painiketta kahdella sormella ja keskipainiketta kolmella. Vedä ja pudota painamalla pitkään.</string>
   <string name="mousepad_double_tap_settings_title">Aseta kahden sormen napautuksen toiminto</string>
   <string name="mousepad_triple_tap_settings_title">Aseta kolmen sormen napautuksen toiminto</string>
-  <string name="mousepad_sensitivity_settings_title">Aseta kosketuslevyn herkkyys</string>
-  <string name="mousepad_scroll_direction_title">Käänteinen vierityssuunta</string>
   <string-array name="mousepad_tap_entries">
     <item>Oikea napsautus</item>
     <item>Keskinapsautus</item>
@@ -37,14 +39,6 @@
   </string-array>
   <string name="mousepad_double_default">Oikea painike</string>
   <string name="mousepad_triple_default">Keskipainike</string>
-  <string name="mousepad_sensitivity_default">oletus</string>
-  <string-array name="mousepad_sensitivity_entries">
-    <item>Hitain</item>
-    <item>Hitainta suurempi</item>
-    <item>Oletus</item>
-    <item>Oletusta suurempi</item>
-    <item>Nopein</item>
-  </string-array>
   <string name="category_connected_devices">Yhdistetyt laitteet</string>
   <string name="category_not_paired_devices">Saatavilla olevat laitteet</string>
   <string name="category_remembered_devices">Muistetut laitteet</string>
@@ -147,7 +141,7 @@
   <string name="pref_plugin_telepathy">Lähetä tekstiviesti</string>
   <string name="pref_plugin_telepathy_desc">Lähetä tekstiviestejä työpöydältäsi</string>
   <string name="plugin_not_supported">Laite ei tue tätä liitännäistä</string>
+  <string name="findmyphone_title">Löydä puhelimeni</string>
+  <string name="findmyphone_description">Laittaa puhelimen soimaan, jotta voit löytää sen.</string>
   <string name="findmyphone_found">Löytyi</string>
-  <string name="open">Avaa</string>
-  <string name="close">Sulje</string>
 </resources>

@@ -5,21 +5,19 @@
   <string name="pref_plugin_battery">Livello batteria</string>
   <string name="pref_plugin_battery_desc">Comunica periodicamente lo stato della batteria</string>
   <string name="pref_plugin_sftp">Esposizione filesystem</string>
-  <string name="pref_plugin_sftp_desc">Consente di navigare da remoto il filesystem del dispositivo</string>
+  <string name="pref_plugin_sftp_desc">Consente di navigare da remoto il filesystem del telefono</string>
   <string name="pref_plugin_clipboard">Sincronizzazione appunti</string>
   <string name="pref_plugin_clipboard_desc">Condividi il contenuto degli appunti</string>
   <string name="pref_plugin_mousepad">Impulso remoto</string>
-  <string name="pref_plugin_mousepad_desc">Usa il tuo telefono o il tablet come touchpad e tastiera</string>
+  <string name="pref_plugin_mousepad_desc">Usa il tuo telefono come mouse e tastiera</string>
   <string name="pref_plugin_mpris">Controlli multimediali</string>
-  <string name="pref_plugin_mpris_desc">Fornisce un controllo remoto per il tuo lettore multimediale</string>
+  <string name="pref_plugin_mpris_desc">Controlla la riproduzione audio/video dal telefono</string>
   <string name="pref_plugin_runcommand">Esegui comando</string>
-  <string name="pref_plugin_runcommand_desc">Esegui comandi remoti dal tuo telefono o tablet</string>
+  <string name="pref_plugin_runcommand_desc">Esegue un comando sul tuo sistema</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Invia e ricevi ping</string>
   <string name="pref_plugin_notifications">Sincronizzazione notifiche</string>
   <string name="pref_plugin_notifications_desc">Consenti l\'accesso alle notifiche dagli altri dispositivi</string>
-  <string name="pref_plugin_receive_notifications">Ricevi notifiche</string>
-  <string name="pref_plugin_receive_notifications_desc">Ricevi notifiche da altri dispositivi e le visualizza su Android</string>
   <string name="pref_plugin_sharereceiver">Condividi e ricevi</string>
   <string name="pref_plugin_sharereceiver_desc">Condividi file e URL tra i dispositivi</string>
   <string name="plugin_not_available">Questa funzionalità non è disponibile sulla tua versione di Android</string>
@@ -34,8 +32,6 @@
   <string name="mousepad_info">Muovi un dito sullo schermo per spostare il puntatore del mouse. Tocca per un clic e usa due/tre dita per i pulsanti destro e centrale. Utilizza una pressione lunga per trascinare e rilasciare.</string>
   <string name="mousepad_double_tap_settings_title">Imposta azione per il tocco a due dita</string>
   <string name="mousepad_triple_tap_settings_title">Imposta azione per il tocco a tre dita</string>
-  <string name="mousepad_sensitivity_settings_title">Imposta la sensibilità del touchpad</string>
-  <string name="mousepad_scroll_direction_title">Inverti direzione di scorrimento</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic destro</item>
     <item>Clic centrale</item>
@@ -43,14 +39,6 @@
   </string-array>
   <string name="mousepad_double_default">destra</string>
   <string name="mousepad_triple_default">centro</string>
-  <string name="mousepad_sensitivity_default">predefinita</string>
-  <string-array name="mousepad_sensitivity_entries">
-    <item>Minima</item>
-    <item>Più veloce</item>
-    <item>Predefinita</item>
-    <item>Superiore a predefinita</item>
-    <item>Massima</item>
-  </string-array>
   <string name="category_connected_devices">Dispositivi connessi</string>
   <string name="category_not_paired_devices">Dispositivi disponibili</string>
   <string name="category_remembered_devices">Dispositivi memorizzati</string>
@@ -68,10 +56,6 @@
   <string name="error_canceled_by_user">Annullata dall\'utente</string>
   <string name="error_canceled_by_other_peer">Annullata dal dispositivo remoto</string>
   <string name="error_invalid_key">Ricevuta chiave non valida</string>
-  <string name="encryption_info_title">Informazioni di cifratura</string>
-  <string name="encryption_info_msg_no_ssl">L\'altro dispositivo non utilizza una versione recente di KDE Connect, utilizzando il metodo di cifratura precedente.</string>
-  <string name="my_device_fingerprint">L\'impronta digitale SHA1 del certificato di dispositivo è:</string>
-  <string name="remote_device_fingerprint">L\'impronta digitale SHA1 del certificato di dispositivo remoto è:</string>
   <string name="pair_requested">Richiesta di associazione</string>
   <string name="pairing_request_from">Richiesta associazione da %1s</string>
   <string name="received_url_title">Collegamento ricevuto da %1s</string>
@@ -158,9 +142,6 @@
   <string name="pref_plugin_telepathy_desc">Invia messaggi di testo dal tuo desktop</string>
   <string name="plugin_not_supported">Questa estensione non è supportata dal dispositivo</string>
   <string name="findmyphone_title">Trova il mio telefono</string>
-  <string name="findmyphone_title_tablet">Trova il mio tablet</string>
-  <string name="findmyphone_description">Fa squillare questo dispositivo per trovarlo</string>
+  <string name="findmyphone_description">Fa squillare questo telefono per trovarlo.</string>
   <string name="findmyphone_found">Trovato</string>
-  <string name="open">Apri</string>
-  <string name="close">Chiudi</string>
 </resources>
