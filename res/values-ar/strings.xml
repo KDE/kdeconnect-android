@@ -5,12 +5,9 @@
   <string name="pref_plugin_battery">تقرير البطّاريّة</string>
   <string name="pref_plugin_battery_desc">بلّغ عن حالة البطّاريّة دوريًّا</string>
   <string name="pref_plugin_sftp">اكشف نظام الملفّات</string>
-  <string name="pref_plugin_sftp_desc">تسمح بتصفّح نظام ملفّات الهاتف عن بعد</string>
   <string name="pref_plugin_clipboard">مزامنة الحافظة</string>
   <string name="pref_plugin_clipboard_desc">شارك محتوى الحافظة</string>
   <string name="pref_plugin_mousepad">الدَّخل البعيد</string>
-  <string name="pref_plugin_mousepad_desc">استخدم هاتفك كفأرة ولوحة مفاتيح</string>
-  <string name="pref_plugin_mpris_desc">تحكّم بالصّوت والصّورة من هاتفك</string>
   <string name="pref_plugin_ping">وخزة</string>
   <string name="pref_plugin_ping_desc">أرسل واستقبل وخزات</string>
   <string name="pref_plugin_notifications">مزامنة الإخطارات</string>
@@ -26,6 +23,13 @@
     <item/>
     <item/>
     <item>Nothing</item>
+  </string-array>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
   </string-array>
   <string name="category_connected_devices">الأجهزة المقترن بها</string>
   <string name="category_not_paired_devices">الأجهزة المتوفّرة</string>

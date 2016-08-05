@@ -5,10 +5,8 @@
   <string name="pref_plugin_battery">Akkumulátor jelentés</string>
   <string name="pref_plugin_battery_desc">Akkumulátorállapot időszakos jelentése</string>
   <string name="pref_plugin_sftp">Fájlrendszer kifejtés</string>
-  <string name="pref_plugin_sftp_desc">Lehetővé teszi a telefon fájlrendszerének távolról történő tallózását</string>
   <string name="pref_plugin_clipboard">Vágólap szinkronizáció</string>
   <string name="pref_plugin_clipboard_desc">A vágólap tartalmának megosztása</string>
-  <string name="pref_plugin_mpris_desc">Hang vagy videó vezérlése a telefonról</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Pingek küldése és fogadása</string>
   <string name="pref_plugin_notifications">Értesítés szinkronizáció</string>
@@ -24,6 +22,13 @@
     <item/>
     <item/>
     <item>Nothing</item>
+  </string-array>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
   </string-array>
   <string name="category_connected_devices">Csatlakoztatott eszközök</string>
   <string name="category_remembered_devices">Megjegyzett eszközök</string>

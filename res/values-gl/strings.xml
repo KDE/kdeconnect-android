@@ -5,15 +5,11 @@
   <string name="pref_plugin_battery">Informe da batería</string>
   <string name="pref_plugin_battery_desc">Envíe periodicamente un informe sobre o estado da batería.</string>
   <string name="pref_plugin_sftp">Revelador do sistema de ficheiros</string>
-  <string name="pref_plugin_sftp_desc">Permite examinar o sistema de ficheiros do teléfono remotamente.</string>
   <string name="pref_plugin_clipboard">Sincronización do portapapeis</string>
   <string name="pref_plugin_clipboard_desc">Comparta o contido do portapapeis.</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
-  <string name="pref_plugin_mousepad_desc">Use o teléfono como rato e teclado.</string>
   <string name="pref_plugin_mpris">Controis multimedia</string>
-  <string name="pref_plugin_mpris_desc">Controle o son e o vídeo desde o teléfono.</string>
   <string name="pref_plugin_runcommand">Executar unha orde</string>
-  <string name="pref_plugin_runcommand_desc">Executa unha orde no sistema.</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Envíe e reciba pings.</string>
   <string name="pref_plugin_notifications">Sincronización de notificacións</string>
@@ -39,6 +35,13 @@
   </string-array>
   <string name="mousepad_double_default">dereita</string>
   <string name="mousepad_triple_default">medio</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
+  </string-array>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos dispoñíbeis</string>
   <string name="category_remembered_devices">Dispositivos coñecidos</string>
@@ -141,7 +144,7 @@
   <string name="pref_plugin_telepathy">Enviar unha mensaxe de texto</string>
   <string name="pref_plugin_telepathy_desc">Enviar mensaxes de texto desde un computador de escritorio.</string>
   <string name="plugin_not_supported">O dispositivo non é compatíbel con este complemento.</string>
-  <string name="findmyphone_title">Atopar o móbil</string>
-  <string name="findmyphone_description">Reproduce un son de chamada no móbil para que poida atopalo.</string>
   <string name="findmyphone_found">Atopado</string>
+  <string name="open">Abrir</string>
+  <string name="close">Pechar</string>
 </resources>

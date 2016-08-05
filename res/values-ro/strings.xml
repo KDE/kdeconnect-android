@@ -5,10 +5,8 @@
   <string name="pref_plugin_battery">Raport acumulator</string>
   <string name="pref_plugin_battery_desc">Raportează periodic starea acumulatorului</string>
   <string name="pref_plugin_sftp">Expunere sistem de fișiere</string>
-  <string name="pref_plugin_sftp_desc">Vă permite să răsfoiți de la distanță sistemul de fișiere al dispozitivului</string>
   <string name="pref_plugin_clipboard">Sincronizare clipboard</string>
   <string name="pref_plugin_clipboard_desc">Partajează conținutul clipboardului</string>
-  <string name="pref_plugin_mpris_desc">Controlați audio/video de pe telefon</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Trimite și primește ping-uri</string>
   <string name="pref_plugin_notifications">Sincronizare notificări</string>
@@ -24,6 +22,13 @@
     <item>Right click</item>
     <item>Middle click</item>
     <item>Nothing</item>
+  </string-array>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
   </string-array>
   <string name="category_connected_devices">Dispozitive conectate</string>
   <string name="category_remembered_devices">Dispozitive memorizate</string>

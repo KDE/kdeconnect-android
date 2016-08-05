@@ -5,10 +5,8 @@
   <string name="pref_plugin_battery">Доклад за батерията</string>
   <string name="pref_plugin_battery_desc">Периодично съобщаване за състоянието на батерията</string>
   <string name="pref_plugin_sftp">Достъп до файловата система</string>
-  <string name="pref_plugin_sftp_desc">Позволява отдалечен достъп до файловата система на телефона</string>
   <string name="pref_plugin_clipboard">Синхронизиране на буфера</string>
   <string name="pref_plugin_clipboard_desc">Споделяне съдържанието на буфера</string>
-  <string name="pref_plugin_mpris_desc">Управление на звук/видео от телефона</string>
   <string name="pref_plugin_ping">Пинг</string>
   <string name="pref_plugin_ping_desc">Изпращане и получаване на пинг</string>
   <string name="pref_plugin_notifications">Синхронизиране на уведомленията</string>
@@ -24,6 +22,13 @@
     <item>Right click</item>
     <item>Middle click</item>
     <item>Nothing</item>
+  </string-array>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
   </string-array>
   <string name="category_connected_devices">Свързани устройства</string>
   <string name="category_remembered_devices">Запомнени устройства</string>

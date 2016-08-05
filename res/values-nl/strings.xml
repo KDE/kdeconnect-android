@@ -5,15 +5,11 @@
   <string name="pref_plugin_battery">Batterijrapportage</string>
   <string name="pref_plugin_battery_desc">Rapporteer periodiek de status van de batterij</string>
   <string name="pref_plugin_sftp">Bestandssysteem blootstellen</string>
-  <string name="pref_plugin_sftp_desc">Het bladeren in het bestandssysteem op afstand in de telefoon toestaan</string>
   <string name="pref_plugin_clipboard">Klembordsynchronisatie</string>
   <string name="pref_plugin_clipboard_desc">De inhoud van het klembord delen</string>
   <string name="pref_plugin_mousepad">Invoer op afstand</string>
-  <string name="pref_plugin_mousepad_desc">Uw telefoon gebruiken als een muis en toetsenbord</string>
   <string name="pref_plugin_mpris">Bediening van multimedia</string>
-  <string name="pref_plugin_mpris_desc">Bedien de audio/video vanaf uw telefoon</string>
   <string name="pref_plugin_runcommand">Commando uitvoeren</string>
-  <string name="pref_plugin_runcommand_desc">Voert een commando uit op uw systeem</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Pings verzenden en ontvangen</string>
   <string name="pref_plugin_notifications">Synchronisatie van meldingen</string>
@@ -39,6 +35,13 @@
   </string-array>
   <string name="mousepad_double_default">rechts</string>
   <string name="mousepad_triple_default">midden</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
+  </string-array>
   <string name="category_connected_devices">Verbonden apparaten</string>
   <string name="category_not_paired_devices">Beschikbare apparaten</string>
   <string name="category_remembered_devices">Onthouden apparaten</string>
@@ -141,7 +144,7 @@
   <string name="pref_plugin_telepathy">SMS verzenden</string>
   <string name="pref_plugin_telepathy_desc">Stuur tekstberichten van uw bureaublad</string>
   <string name="plugin_not_supported">Deze plug-in wordt niet ondersteund door het apparaat</string>
-  <string name="findmyphone_title">Zoek mijn telefoon</string>
-  <string name="findmyphone_description">Laat deze telefoon bellen zodat u het kunt vinden.</string>
   <string name="findmyphone_found">Gevonden</string>
+  <string name="open">Openen</string>
+  <string name="close">Sluiten</string>
 </resources>

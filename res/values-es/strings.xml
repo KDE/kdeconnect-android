@@ -5,15 +5,11 @@
   <string name="pref_plugin_battery">Informe de la batería</string>
   <string name="pref_plugin_battery_desc">Informar periódicamente del estado de la batería</string>
   <string name="pref_plugin_sftp">Mostrar el sistema de archivos</string>
-  <string name="pref_plugin_sftp_desc">Permite examinar de forma remota el sistema de archivos del teléfono</string>
   <string name="pref_plugin_clipboard">Sincronización del portapapeles</string>
   <string name="pref_plugin_clipboard_desc">Compartir el contenido del portapapeles</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
-  <string name="pref_plugin_mousepad_desc">Usar su teléfono como ratón y teclado</string>
   <string name="pref_plugin_mpris">Controles multimedia</string>
-  <string name="pref_plugin_mpris_desc">Controlar audio y vídeo desde el teléfono</string>
   <string name="pref_plugin_runcommand">Ejecutar orden</string>
-  <string name="pref_plugin_runcommand_desc">Ejecuta una orden en su sistema</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Enviar y recibir pings</string>
   <string name="pref_plugin_notifications">Sincronizar notificaciones</string>
@@ -39,6 +35,13 @@
   </string-array>
   <string name="mousepad_double_default">derecho</string>
   <string name="mousepad_triple_default">medio</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
+  </string-array>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos disponibles</string>
   <string name="category_remembered_devices">Dispositivos recordados</string>
@@ -141,7 +144,5 @@
   <string name="pref_plugin_telepathy">Enviar SMS</string>
   <string name="pref_plugin_telepathy_desc">Enviar mensajes de texto desde el escritorio</string>
   <string name="plugin_not_supported">Este complemento no está permitido por el dispositivo</string>
-  <string name="findmyphone_title">Encontrar mi teléfono</string>
-  <string name="findmyphone_description">Hace sonar este teléfono para que pueda encontrarlo.</string>
   <string name="findmyphone_found">Encontrado</string>
 </resources>

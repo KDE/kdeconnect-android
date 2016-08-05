@@ -5,13 +5,10 @@
   <string name="pref_plugin_battery">Rapport sur la batterie</string>
   <string name="pref_plugin_battery_desc">Rapport périodique sur l\'état de la batterie</string>
   <string name="pref_plugin_sftp">Exposer le système de fichiers</string>
-  <string name="pref_plugin_sftp_desc">Permettre de parcourir le système de fichiers du téléphone à distance</string>
   <string name="pref_plugin_clipboard">Synchronisation avec le presse-papiers</string>
   <string name="pref_plugin_clipboard_desc">Partage le contenu du presse-papiers</string>
   <string name="pref_plugin_mousepad">Contrôle distant</string>
-  <string name="pref_plugin_mousepad_desc">Utilisez votre téléphone comme une souris et un clavier</string>
   <string name="pref_plugin_mpris">Contrôles multimédia</string>
-  <string name="pref_plugin_mpris_desc">Contrôle l\'audio / la vidéo depuis votre téléphone</string>
   <string name="pref_plugin_ping">Commande « Ping »</string>
   <string name="pref_plugin_ping_desc">Envoie et reçoit des commandes « Ping »</string>
   <string name="pref_plugin_notifications">Synchronisation des notifications</string>
@@ -37,6 +34,13 @@
   </string-array>
   <string name="mousepad_double_default">Droite</string>
   <string name="mousepad_triple_default">Milieu</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
+  </string-array>
   <string name="category_connected_devices">Périphériques connectés</string>
   <string name="category_not_paired_devices">Périphériques disponibles</string>
   <string name="category_remembered_devices">Périphériques mémorisés</string>

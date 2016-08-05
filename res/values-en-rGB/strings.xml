@@ -5,15 +5,11 @@
   <string name="pref_plugin_battery">Battery report</string>
   <string name="pref_plugin_battery_desc">Periodically report battery status</string>
   <string name="pref_plugin_sftp">Filesystem expose</string>
-  <string name="pref_plugin_sftp_desc">Allows to browse the phone\'s filesystem remotely</string>
   <string name="pref_plugin_clipboard">Clipboard sync</string>
   <string name="pref_plugin_clipboard_desc">Share the clipboard content</string>
   <string name="pref_plugin_mousepad">Remote input</string>
-  <string name="pref_plugin_mousepad_desc">Use your phone as a mouse and keyboard</string>
   <string name="pref_plugin_mpris">Multimedia controls</string>
-  <string name="pref_plugin_mpris_desc">Control audio/video from your phone</string>
   <string name="pref_plugin_runcommand">Run Command</string>
-  <string name="pref_plugin_runcommand_desc">Runs a command on your system</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Send and receive pings</string>
   <string name="pref_plugin_notifications">Notification sync</string>
@@ -39,6 +35,13 @@
   </string-array>
   <string name="mousepad_double_default">right</string>
   <string name="mousepad_triple_default">middle</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
+  </string-array>
   <string name="category_connected_devices">Connected devices</string>
   <string name="category_not_paired_devices">Available devices</string>
   <string name="category_remembered_devices">Remembered devices</string>
@@ -141,7 +144,7 @@
   <string name="pref_plugin_telepathy">Send SMS</string>
   <string name="pref_plugin_telepathy_desc">Send text messages from your desktop</string>
   <string name="plugin_not_supported">This plugin is not supported by the device</string>
-  <string name="findmyphone_title">Find My Phone</string>
-  <string name="findmyphone_description">Rings this phone so you can find it.</string>
   <string name="findmyphone_found">Found</string>
+  <string name="open">Open</string>
+  <string name="close">Close</string>
 </resources>

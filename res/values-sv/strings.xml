@@ -5,19 +5,21 @@
   <string name="pref_plugin_battery">Batterirapport</string>
   <string name="pref_plugin_battery_desc">Rapportera periodiskt batteriets status</string>
   <string name="pref_plugin_sftp">Exponera filsystem</string>
-  <string name="pref_plugin_sftp_desc">Gör det möjligt att bläddra i telefonens filsystem från annan apparat</string>
+  <string name="pref_plugin_sftp_desc">Gör det möjligt att bläddra i apparatens filsystem från annan apparat</string>
   <string name="pref_plugin_clipboard">Synkronisera klippbord</string>
   <string name="pref_plugin_clipboard_desc">Dela klippbordets innehåll</string>
   <string name="pref_plugin_mousepad">Fjärrinmatning</string>
-  <string name="pref_plugin_mousepad_desc">Använd telefonen som mus och tangentbord</string>
+  <string name="pref_plugin_mousepad_desc">Använd telefonen eller surfplattan som mus och tangentbord</string>
   <string name="pref_plugin_mpris">Multimediakontroller</string>
-  <string name="pref_plugin_mpris_desc">Styr ljud och video från telefonen</string>
+  <string name="pref_plugin_mpris_desc">Tillhandahåller en fjärrkontroll för mediaspelaren</string>
   <string name="pref_plugin_runcommand">Kör kommando</string>
-  <string name="pref_plugin_runcommand_desc">Kör ett kommando på systemet</string>
+  <string name="pref_plugin_runcommand_desc">Utlös fjärrkommandon från din telefon eller surfplatta</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Skicka och ta emot ping</string>
   <string name="pref_plugin_notifications">Synkronisering av underrättelser</string>
   <string name="pref_plugin_notifications_desc">Kom åt underrättelser från andra apparater</string>
+  <string name="pref_plugin_receive_notifications">Ta emot underrättelser</string>
+  <string name="pref_plugin_receive_notifications_desc">Ta emot underrättelser från andra apparater och visa dem på Android</string>
   <string name="pref_plugin_sharereceiver">Dela och ta emot</string>
   <string name="pref_plugin_sharereceiver_desc">Dela filer och webbadresser mellan apparater</string>
   <string name="plugin_not_available">Funktionen är inte tillgänglig i Android-versionen</string>
@@ -32,6 +34,8 @@
   <string name="mousepad_info">Flytta fingret på skärmen för att röra muspekaren. Rör för att klicka, och använd två eller tre fingrar för höger- och mittenknapparna. Använd en längre beröring för drag och släpp.</string>
   <string name="mousepad_double_tap_settings_title">Ställ in åtgärd vid två fingerberöringar</string>
   <string name="mousepad_triple_tap_settings_title">Ställ in åtgärd vid tre fingerberöringar</string>
+  <string name="mousepad_sensitivity_settings_title">Ställ in tryckplattans känslighet</string>
+  <string name="mousepad_scroll_direction_title">Omvänd rullningsriktning</string>
   <string-array name="mousepad_tap_entries">
     <item>Högerklick</item>
     <item>Mittenklick</item>
@@ -39,6 +43,14 @@
   </string-array>
   <string name="mousepad_double_default">höger</string>
   <string name="mousepad_triple_default">mitten</string>
+  <string name="mousepad_sensitivity_default">normal</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Långsammaste</item>
+    <item>Ovanför långsammaste</item>
+    <item>Normal</item>
+    <item>Ovanför normal</item>
+    <item>Snabbaste</item>
+  </string-array>
   <string name="category_connected_devices">Anslutna apparater</string>
   <string name="category_not_paired_devices">Tillgängliga apparater</string>
   <string name="category_remembered_devices">Ihågkomna apparater</string>
@@ -56,6 +68,10 @@
   <string name="error_canceled_by_user">Avbruten av användaren</string>
   <string name="error_canceled_by_other_peer">Avbruten av motparten</string>
   <string name="error_invalid_key">Ogiltig nyckel mottagen</string>
+  <string name="encryption_info_title">Krypteringsinformation</string>
+  <string name="encryption_info_msg_no_ssl">Den andra apparaten använder inte en aktuell version av KDE-anslut. Använder den föråldrade krypteringsmetoden.</string>
+  <string name="my_device_fingerprint">SHA1-fingeravtryck för din apparats certifikat är:</string>
+  <string name="remote_device_fingerprint">SHA1-fingeravtryck för den andra apparatens certifikat är:</string>
   <string name="pair_requested">Ihopparning begärd</string>
   <string name="pairing_request_from">Begäran om ihopparning från %1s</string>
   <string name="received_url_title">Tog emot länk från %1s</string>
@@ -142,6 +158,9 @@
   <string name="pref_plugin_telepathy_desc">Skicka textmeddelanden från skrivbordet</string>
   <string name="plugin_not_supported">Insticksprogrammet stöds inte av apparaten</string>
   <string name="findmyphone_title">Hitta min telefon</string>
-  <string name="findmyphone_description">Ringer till telefonen så att du kan hitta den.</string>
+  <string name="findmyphone_title_tablet">Hitta min surfplatta</string>
+  <string name="findmyphone_description">Ringer till apparaten så att du kan hitta den</string>
   <string name="findmyphone_found">Hittade den</string>
+  <string name="open">Öppna</string>
+  <string name="close">Stäng</string>
 </resources>

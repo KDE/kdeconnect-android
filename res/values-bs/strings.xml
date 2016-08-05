@@ -5,12 +5,9 @@
   <string name="pref_plugin_battery">Baterijski izvještaj</string>
   <string name="pref_plugin_battery_desc">Periodično javi baterijski status</string>
   <string name="pref_plugin_sftp">Otkrivanje datotečnog sistema</string>
-  <string name="pref_plugin_sftp_desc">Dopušta daljinsko pretraživanje datotečnog sistema telefona</string>
   <string name="pref_plugin_clipboard">Sinhronizovanje sandučića</string>
   <string name="pref_plugin_clipboard_desc">Podijeli sadržaj sandučića</string>
   <string name="pref_plugin_mousepad">Daljinska kontrola ulaza</string>
-  <string name="pref_plugin_mousepad_desc">Koristi telofon kao miš i tastaturu</string>
-  <string name="pref_plugin_mpris_desc">Upravljajte zvukom/slikom sa vašeg telefona</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Šalji i primaj ping-ove</string>
   <string name="pref_plugin_notifications">Sinhronizovano obavještenje</string>
@@ -32,6 +29,13 @@
   </string-array>
   <string name="mousepad_double_default">desno</string>
   <string name="mousepad_triple_default">Srednje</string>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
+  </string-array>
   <string name="category_connected_devices">Spojeni uređaji</string>
   <string name="category_not_paired_devices">Dostupni uređaji</string>
   <string name="category_remembered_devices">Zapamćeni uređaji</string>

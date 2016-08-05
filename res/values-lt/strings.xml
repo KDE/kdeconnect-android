@@ -23,6 +23,13 @@
     <item>Middle click</item>
     <item>Nieko</item>
   </string-array>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
+  </string-array>
   <string name="category_connected_devices">Prijungti įrenginiai</string>
   <string name="category_not_paired_devices">Pasiekiami įrenginiai</string>
   <string name="category_remembered_devices">Įsimintieji įrenginiai</string>
@@ -97,7 +104,5 @@
   <string name="unreachable_description">Šis suporuotas įrenginys nepasiekiamas. Patikrinkite, ar jis prisijungęs prie to paties tinklo.</string>
   <string name="pref_plugin_telepathy">Siųsti SMS</string>
   <string name="plugin_not_supported">Telefonas nepalaiko šio papildinio</string>
-  <string name="findmyphone_title">Rasti telefoną</string>
-  <string name="findmyphone_description">Telefonas skambės, tad galėsite jį rasti.</string>
   <string name="findmyphone_found">Radau</string>
 </resources>
