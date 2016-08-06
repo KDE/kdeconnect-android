@@ -5,15 +5,21 @@
   <string name="pref_plugin_battery">Zgłaszanie baterii</string>
   <string name="pref_plugin_battery_desc">Okresowo zgłaszaj stan baterii</string>
   <string name="pref_plugin_sftp">Eksponowanie systemu plików</string>
+  <string name="pref_plugin_sftp_desc">Zezwala na zdalne przeglądanie systemu plików tego urządzenia</string>
   <string name="pref_plugin_clipboard">Synchronizacja schowka</string>
   <string name="pref_plugin_clipboard_desc">Udostępnij zawartość schowka</string>
   <string name="pref_plugin_mousepad">Zdalne sterowanie</string>
+  <string name="pref_plugin_mousepad_desc">Użyj swojego telefonu lub tabletu jako myszy i klawiatury</string>
   <string name="pref_plugin_mpris">Sterowanie multimediami</string>
+  <string name="pref_plugin_mpris_desc">Zapewnia zdalne sterowanie twoim odtwarzaczem multimedialnym</string>
   <string name="pref_plugin_runcommand">Wykonaj polecenie</string>
+  <string name="pref_plugin_runcommand_desc">Wyzwalaj zdalne polecenia z twojego telefonu lub tabletu</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Wysyłaj i otrzymuj pingi</string>
   <string name="pref_plugin_notifications">Powiadomienia synchronizacji</string>
   <string name="pref_plugin_notifications_desc">Uzyskaj dostęp do swoich powiadomień z innego urządzenia</string>
+  <string name="pref_plugin_receive_notifications">Otrzymuj powiadomienia</string>
+  <string name="pref_plugin_receive_notifications_desc">Otrzymuj powiadomienia z urządzeń i wyświetlaj je na Androidzie</string>
   <string name="pref_plugin_sharereceiver">Udostępniaj i otrzymuj</string>
   <string name="pref_plugin_sharereceiver_desc">Współdziel pliki i adresy URL pomiędzy urządzeniami</string>
   <string name="plugin_not_available">Funkcja ta nie jest dostępna w twojej wersji Androida</string>
@@ -28,6 +34,8 @@
   <string name="mousepad_info">Przesuń palcem po ekranie, aby przesunąć wskaźnik myszy. Stuknij, aby wywołać naciśniecie lewym przyciskiem myszy i użyj dwóch/trzech palców, aby wywołać naciśniecie prawym i środkowym przyciskiem myszy. Przyciśnij na dłużej, aby przeciągnąć i upuścić.</string>
   <string name="mousepad_double_tap_settings_title">Ustaw działanie po dwukrotnym stuknięciu palcem</string>
   <string name="mousepad_triple_tap_settings_title">Ustaw działanie po trzykrotnym stuknięciu palcem</string>
+  <string name="mousepad_sensitivity_settings_title">Ustaw czułość gładzika</string>
+  <string name="mousepad_scroll_direction_title">Odwróć stronę przewijania</string>
   <string-array name="mousepad_tap_entries">
     <item>Kliknięcie prawym</item>
     <item>Kliknięcie środkowym</item>
@@ -35,12 +43,13 @@
   </string-array>
   <string name="mousepad_double_default">prawo</string>
   <string name="mousepad_triple_default">środek</string>
+  <string name="mousepad_sensitivity_default">domyślne</string>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
-    <item>Above Slowest</item>
-    <item>Default</item>
-    <item>Above Default</item>
-    <item>Fastest</item>
+    <item>Najmniejsza</item>
+    <item>Ponad najmniejszą</item>
+    <item>Domyślna</item>
+    <item>Powyżej domyślnej</item>
+    <item>Największa</item>
   </string-array>
   <string name="category_connected_devices">Podłączone urządzenia</string>
   <string name="category_not_paired_devices">Dostępne urządzenia</string>
@@ -59,6 +68,10 @@
   <string name="error_canceled_by_user">Anulowane przez użytkownika</string>
   <string name="error_canceled_by_other_peer">Anulowane przez innego partnera</string>
   <string name="error_invalid_key">Otrzymano nieprawidłowy klucz</string>
+  <string name="encryption_info_title">Zaszyfrowane informacje</string>
+  <string name="encryption_info_msg_no_ssl">Drugie urządzenie nie używa ostatniej wersji KDE Connect, użyto przestarzałego szyfrowania.</string>
+  <string name="my_device_fingerprint">Odcisk palca SHA1 certyfikatu twojego urządzenia to:</string>
+  <string name="remote_device_fingerprint">Odcisk palca SHA1 certyfikatu twojego zdalnego urządzenia to:</string>
   <string name="pair_requested">Zażądano parowania</string>
   <string name="pairing_request_from">Żądanie parowania z %1s</string>
   <string name="received_url_title">Odebrano odsyłacz od %1s</string>
@@ -144,6 +157,9 @@
   <string name="pref_plugin_telepathy">Wyślij SMS-a</string>
   <string name="pref_plugin_telepathy_desc">Wyślij wiadomość tekstową z komputera</string>
   <string name="plugin_not_supported">Ta wtyczka nie jest obsługiwana przez to urządzenie</string>
+  <string name="findmyphone_title">Znajdź mój telefon</string>
+  <string name="findmyphone_title_tablet">Znajdź mój tablet</string>
+  <string name="findmyphone_description">Dzwoni na dane urządzenie, tak abyś mógł je znaleźć.</string>
   <string name="findmyphone_found">Znaleziony</string>
   <string name="open">Otwórz</string>
   <string name="close">Zamknij</string>
