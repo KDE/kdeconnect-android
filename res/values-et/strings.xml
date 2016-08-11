@@ -35,12 +35,13 @@
   </string-array>
   <string name="mousepad_double_default">parem</string>
   <string name="mousepad_triple_default">keskmine</string>
+  <string name="mousepad_sensitivity_default">vaikimisi</string>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
+    <item>Kõige aeglasem</item>
     <item>Above Slowest</item>
-    <item>Default</item>
+    <item>Vaikimisi</item>
     <item>Above Default</item>
-    <item>Fastest</item>
+    <item>Kõige kiirem</item>
   </string-array>
   <string name="category_connected_devices">Ühendatud seadmed</string>
   <string name="category_not_paired_devices">Saadaolevad seadmed</string>
@@ -59,6 +60,9 @@
   <string name="error_canceled_by_user">Kasutaja katkestas</string>
   <string name="error_canceled_by_other_peer">Teine pool katkestas</string>
   <string name="error_invalid_key">Saadi vigane võti</string>
+  <string name="encryption_info_title">Krüptimise teave</string>
+  <string name="my_device_fingerprint">Sinu seadme sertifikaadi SHA1 sõrmejälg on:</string>
+  <string name="remote_device_fingerprint">Kaugseadme sertifikaadi SHA1 sõrmejälg on:</string>
   <string name="pair_requested">Paardumise soov</string>
   <string name="pairing_request_from">Paardumissoov seadmest %1s</string>
   <string name="received_url_title">Lingi saamine seadmest %1s</string>
@@ -145,4 +149,6 @@
   <string name="pref_plugin_telepathy_desc">Tekstisõnumite saatmine oma töölaualt</string>
   <string name="plugin_not_supported">Seade ei toeta seda pluginat</string>
   <string name="findmyphone_found">Leitud</string>
+  <string name="open">Ava</string>
+  <string name="close">Sulge</string>
 </resources>
