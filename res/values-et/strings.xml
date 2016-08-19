@@ -3,17 +3,23 @@
   <string name="pref_plugin_telephony">Telefoni märguanded</string>
   <string name="pref_plugin_telephony_desc">SMS-ide ja kõnede märguannete saatmine</string>
   <string name="pref_plugin_battery">Aku aruanne</string>
-  <string name="pref_plugin_battery_desc">Perioodiline aku olekust teadaandmine</string>
+  <string name="pref_plugin_battery_desc">Perioodiline aku olekust teavitamine</string>
   <string name="pref_plugin_sftp">Failisüsteemi sirvimine</string>
+  <string name="pref_plugin_sftp_desc">Seadme failisüsteemi eemalt sirvimise võimaldamine</string>
   <string name="pref_plugin_clipboard">Lõikepuhvri sünkroonimine</string>
   <string name="pref_plugin_clipboard_desc">Lõikepuhvri sisu jagamine</string>
   <string name="pref_plugin_mousepad">Kaugsisestus</string>
+  <string name="pref_plugin_mousepad_desc">Telefoni või tahvli kasutamine puuteplaadi ja klaviatuurina</string>
   <string name="pref_plugin_mpris">Multimeedia juhtimine</string>
+  <string name="pref_plugin_mpris_desc">Meediamängija kaugjuhtimise võimaldamine</string>
   <string name="pref_plugin_runcommand">Käsu käivitamine</string>
+  <string name="pref_plugin_runcommand_desc">Telefonist või tahvlist kaugkäskude käivitamine</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Pingide saatmine ja vastuvõtmine</string>
   <string name="pref_plugin_notifications">Märguannete sünkroonimine</string>
   <string name="pref_plugin_notifications_desc">Märguannete nägemine teistes seadmetes</string>
+  <string name="pref_plugin_receive_notifications">Märguannete vastuvõtmine</string>
+  <string name="pref_plugin_receive_notifications_desc">Märguannete vastuvõtmine teisest seadmest ja nende näitamine Androidis</string>
   <string name="pref_plugin_sharereceiver">Jagamine ja vastuvõtmine</string>
   <string name="pref_plugin_sharereceiver_desc">Failide ja URL-ide jagamine seadmete vahel</string>
   <string name="plugin_not_available">See omadus ei ole sinu Androidi versioonis veel saadaval</string>
@@ -28,6 +34,8 @@
   <string name="mousepad_info">Hiirekursori liigutamiseks liiguta sõrme ekraanil. Koputa klõpsamiseks ja kasuta kaht või kolme sõrme parema ja keskmise nupu jaoks. Pika vajutusega saab lohistada.</string>
   <string name="mousepad_double_tap_settings_title">Kahe sõrmega koputamise toimingu määramine</string>
   <string name="mousepad_triple_tap_settings_title">Kolme sõrmega koputamise toimingu määramine</string>
+  <string name="mousepad_sensitivity_settings_title">Puutepadja tundlikkuse määramine</string>
+  <string name="mousepad_scroll_direction_title">Vastupidi kerimise suund</string>
   <string-array name="mousepad_tap_entries">
     <item>Paremklõps</item>
     <item>Keskklõps</item>
@@ -38,16 +46,16 @@
   <string name="mousepad_sensitivity_default">vaikimisi</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>Kõige aeglasem</item>
-    <item>Above Slowest</item>
+    <item>Kõige aeglasemast kiirem</item>
     <item>Vaikimisi</item>
-    <item>Above Default</item>
+    <item>Keskmisest kiirem</item>
     <item>Kõige kiirem</item>
   </string-array>
   <string name="category_connected_devices">Ühendatud seadmed</string>
   <string name="category_not_paired_devices">Saadaolevad seadmed</string>
   <string name="category_remembered_devices">Meeldejäetud seadmed</string>
   <string name="plugins_failed_to_load">Pluginate laadimine nurjus (koputa rohkema teabe saamiseks)</string>
-  <string name="device_menu_plugins">Pluginate seadistused</string>
+  <string name="device_menu_plugins">Plugina seadistused</string>
   <string name="device_menu_unpair">Eemalda paardumine</string>
   <string name="device_not_reachable">Paardunud seade pole saadaval</string>
   <string name="pair_new_device">Paarita uus seade</string>
@@ -61,10 +69,11 @@
   <string name="error_canceled_by_other_peer">Teine pool katkestas</string>
   <string name="error_invalid_key">Saadi vigane võti</string>
   <string name="encryption_info_title">Krüptimise teave</string>
+  <string name="encryption_info_msg_no_ssl">Teine seade ei kasuta KDE Connecti uusimat versiooni ja tarvitab krüptimisel pärandmeetodit.</string>
   <string name="my_device_fingerprint">Sinu seadme sertifikaadi SHA1 sõrmejälg on:</string>
   <string name="remote_device_fingerprint">Kaugseadme sertifikaadi SHA1 sõrmejälg on:</string>
   <string name="pair_requested">Paardumise soov</string>
-  <string name="pairing_request_from">Paardumissoov seadmest %1s</string>
+  <string name="pairing_request_from">Paardumise soov seadmest %1s</string>
   <string name="received_url_title">Lingi saamine seadmest %1s</string>
   <string name="received_url_text">Koputa \"%1s\" avamiseks</string>
   <string name="incoming_file_title">Saabuv fail seadmest %1s</string>
@@ -148,6 +157,9 @@
   <string name="pref_plugin_telepathy">Saada SMS</string>
   <string name="pref_plugin_telepathy_desc">Tekstisõnumite saatmine oma töölaualt</string>
   <string name="plugin_not_supported">Seade ei toeta seda pluginat</string>
+  <string name="findmyphone_title">Leia mu telefon</string>
+  <string name="findmyphone_title_tablet">Leia mu tahvel</string>
+  <string name="findmyphone_description">Seadmele helistamine, et see üles leida</string>
   <string name="findmyphone_found">Leitud</string>
   <string name="open">Ava</string>
   <string name="close">Sulge</string>
