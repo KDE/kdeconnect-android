@@ -249,6 +249,15 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
             }
         } catch (Exception e) {
             e.printStackTrace();
+            BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
+                @Override
+                public void onServiceStart(BackgroundService service) {
+                    Device device = service.getDevice(deviceId);
+                    Log.e("LanLinkProvider", "Unpairing "+(device != null));
+                    if (device == null) return;
+                    device.unpair();
+                }
+            });
         }
 
     }
