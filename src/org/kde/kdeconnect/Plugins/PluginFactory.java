@@ -36,6 +36,7 @@ import org.kde.kdeconnect.Plugins.ReceiveNotificationsPlugin.ReceiveNotification
 import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandPlugin;
 import org.kde.kdeconnect.Plugins.SftpPlugin.SftpPlugin;
 import org.kde.kdeconnect.Plugins.SharePlugin.SharePlugin;
+import org.kde.kdeconnect.Plugins.TelepathyPlugin.TelepathyPlugin;
 import org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin;
 
 import java.util.Collections;
@@ -110,7 +111,6 @@ public class PluginFactory {
     private static final Map<String, PluginInfo> pluginInfoCache = new TreeMap<>();
 
     static {
-        //TODO: Use reflection to find all subclasses of Plugin, instead of adding them manually
         PluginFactory.registerPlugin(TelephonyPlugin.class);
         PluginFactory.registerPlugin(PingPlugin.class);
         PluginFactory.registerPlugin(MprisPlugin.class);
@@ -121,7 +121,7 @@ public class PluginFactory {
         PluginFactory.registerPlugin(ReceiveNotificationsPlugin.class);
         PluginFactory.registerPlugin(MousePadPlugin.class);
         PluginFactory.registerPlugin(SharePlugin.class);
-        //PluginFactory.registerPlugin(TelepathyPlugin.class);
+        PluginFactory.registerPlugin(TelepathyPlugin.class);
         PluginFactory.registerPlugin(FindMyPhonePlugin.class);
         PluginFactory.registerPlugin(RunCommandPlugin.class);
     }
