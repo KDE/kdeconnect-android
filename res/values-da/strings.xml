@@ -34,8 +34,6 @@
   <string name="mousepad_info">Bevæg en finger på skærmen for at flytte musemarkøren. Tap for at klikke og brug to/tre-fingre for højre og midterste museknap. Brug et langt tryk til at trække og slippe.</string>
   <string name="mousepad_double_tap_settings_title">Angiv handling for tap med to fingre</string>
   <string name="mousepad_triple_tap_settings_title">Angiv handling for tap med tre fingre</string>
-  <string name="mousepad_sensitivity_settings_title">Angiv følsomhed for touchpad</string>
-  <string name="mousepad_scroll_direction_title">Omvendt rulleretning</string>
   <string-array name="mousepad_tap_entries">
     <item>Højreklik</item>
     <item>Midterklik</item>
@@ -43,13 +41,12 @@
   </string-array>
   <string name="mousepad_double_default">højre</string>
   <string name="mousepad_triple_default">midter</string>
-  <string name="mousepad_sensitivity_default">standard</string>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Mest langsom</item>
-    <item>Over mest langsom</item>
-    <item>Standard</item>
-    <item>Over standard</item>
-    <item>Hurtigst</item>
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
   </string-array>
   <string name="category_connected_devices">Forbundne enheder</string>
   <string name="category_not_paired_devices">Tilgængelig enheder</string>
@@ -68,10 +65,6 @@
   <string name="error_canceled_by_user">Annulleret af brugeren</string>
   <string name="error_canceled_by_other_peer">Annulleret af modpart</string>
   <string name="error_invalid_key">Ugyldige nøgle modtaget</string>
-  <string name="encryption_info_title">Krypteringsinfo</string>
-  <string name="encryption_info_msg_no_ssl">Den anden enhed bruger ikke en nylig version af KDE Connect, og bruger dermed den forældede krypteringsmetode.</string>
-  <string name="my_device_fingerprint">SHA1-fingeraftrykket for dit enhedscertifikat er:</string>
-  <string name="remote_device_fingerprint">SHA1-fingeraftrykket for det eksterne enhedscertifikat er:</string>
   <string name="pair_requested">Anmodet om parring</string>
   <string name="pairing_request_from">Parringsanmodning fra %1s</string>
   <string name="received_url_title">Modtog link fra %1s</string>
@@ -161,6 +154,4 @@
   <string name="findmyphone_title_tablet">Find min tablet</string>
   <string name="findmyphone_description">Ringer til denne enhed, så du kan finde den.</string>
   <string name="findmyphone_found">Fundet</string>
-  <string name="open">Åbn</string>
-  <string name="close">Luk</string>
 </resources>
