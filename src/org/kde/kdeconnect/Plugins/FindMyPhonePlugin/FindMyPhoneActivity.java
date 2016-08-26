@@ -1,6 +1,7 @@
 package org.kde.kdeconnect.Plugins.FindMyPhonePlugin;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.Ringtone;
@@ -15,6 +16,12 @@ import org.kde.kdeconnect_tp.R;
 
 public class FindMyPhoneActivity extends Activity {
     Ringtone ringtone;
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        finish(); //If this activity was already open and we received the ring packet again, just finish it
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
