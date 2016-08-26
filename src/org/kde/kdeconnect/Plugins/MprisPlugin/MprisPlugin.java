@@ -52,6 +52,11 @@ public class MprisPlugin extends Plugin {
     private long length = -1;
     private long lastPosition;
     private long lastPositionTime;
+    private boolean playAllowed = true;
+    private boolean pauseAllowed = true;
+    private boolean goNextAllowed = true;
+    private boolean goPreviousAllowed = true;
+    private boolean seekAllowed = true;
     private HashMap<String,Handler> playerStatusUpdated = new HashMap<>();
 
     private List<String> playerList = new ArrayList<>();
@@ -141,6 +146,11 @@ public class MprisPlugin extends Plugin {
                     currentArt = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
                 }
                 playing = np.getBoolean("isPlaying", playing);
+                playAllowed = np.getBoolean("canPlay", playAllowed);
+                pauseAllowed = np.getBoolean("canPause", pauseAllowed);
+                goNextAllowed = np.getBoolean("canGoNext", goNextAllowed);
+                goPreviousAllowed = np.getBoolean("canGoPrevious", goPreviousAllowed);
+                seekAllowed = np.getBoolean("canSeek", seekAllowed);
                 for (String key : playerStatusUpdated.keySet()) {
                     try {
                         playerStatusUpdated.get(key).dispatchMessage(new Message());
@@ -221,6 +231,11 @@ public class MprisPlugin extends Plugin {
         currentArt = null;
         volume = 50;
         playing = false;
+        playAllowed = true;
+        pauseAllowed = true;
+        goNextAllowed = true;
+        goPreviousAllowed = true;
+        seekAllowed = true;
         for (String key : playerStatusUpdated.keySet()) {
             try {
                 playerStatusUpdated.get(key).dispatchMessage(new Message());
@@ -255,6 +270,26 @@ public class MprisPlugin extends Plugin {
 
     public boolean isPlaying() {
         return playing;
+    }
+
+    public boolean isPlayAllowed() {
+        return playAllowed;
+    }
+
+    public boolean isPauseAllowed() {
+        return pauseAllowed;
+    }
+
+    public boolean isGoNextAllowed() {
+        return goNextAllowed;
+    }
+
+    public boolean isGoPreviousAllowed() {
+        return goPreviousAllowed;
+    }
+
+    public boolean isSeekAllowed() {
+        return seekAllowed;
     }
 
     public long getPosition(){
