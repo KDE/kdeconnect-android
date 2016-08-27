@@ -28,6 +28,8 @@
   <string name="mousepad_info">Mova um dedo pela tela para mover o ponteiro do mouse. Dê um toque para clicar e use dois/três dedos para os botões da direita e do meio. Use uma pressão longa para arrastar e soltar.</string>
   <string name="mousepad_double_tap_settings_title">Definir a ação do toque com dois dedos</string>
   <string name="mousepad_triple_tap_settings_title">Definir a ação do toque com três dedos</string>
+  <string name="mousepad_sensitivity_settings_title">Definir a sensibilidade do touchpad</string>
+  <string name="mousepad_scroll_direction_title">Direção de rolagem inversa</string>
   <string-array name="mousepad_tap_entries">
     <item>Botão direito</item>
     <item>Botão do meio</item>
@@ -35,12 +37,13 @@
   </string-array>
   <string name="mousepad_double_default">direita</string>
   <string name="mousepad_triple_default">meio</string>
+  <string name="mousepad_sensitivity_default">padrão</string>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
-    <item>Above Slowest</item>
-    <item>Default</item>
-    <item>Above Default</item>
-    <item>Fastest</item>
+    <item>Mais lento</item>
+    <item>Ainda mais lento</item>
+    <item>Padrão</item>
+    <item>Acima do padrão</item>
+    <item>Mais rápido</item>
   </string-array>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos disponíveis</string>
@@ -145,4 +148,6 @@
   <string name="pref_plugin_telepathy_desc">Enviar mensagens de texto do seu Desktop</string>
   <string name="plugin_not_supported">Este plugin não é suportado pelo dispositivo</string>
   <string name="findmyphone_found">Encontrado</string>
+  <string name="open">Abrir</string>
+  <string name="close">Fechar</string>
 </resources>
