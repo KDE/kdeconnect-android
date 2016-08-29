@@ -14,7 +14,6 @@
   <string name="pref_plugin_ping_desc">Poslať a prijať pingy</string>
   <string name="pref_plugin_notifications">Synchronizácia pripomienok</string>
   <string name="pref_plugin_notifications_desc">Prístup k vašim pripomienkam z iných zariadení</string>
-  <string name="pref_plugin_receive_notifications">Prijať upozornenia</string>
   <string name="pref_plugin_sharereceiver">Zdieľať a prijať</string>
   <string name="pref_plugin_sharereceiver_desc">Zdieľať súbory a medzi zariadeniami</string>
   <string name="plugin_not_available">Táto funkcia nie je dostupná vo vašej verzii Androidu</string>

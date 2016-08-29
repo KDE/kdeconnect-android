@@ -28,6 +28,8 @@
   <string name="mousepad_info">Liikuta hiiren osoitinta liikuttamalla sormeasi näytöllä. Napsauta napauttamalla yhdellä sormella, käytä oikeaa painiketta kahdella sormella ja keskipainiketta kolmella. Vedä ja pudota painamalla pitkään.</string>
   <string name="mousepad_double_tap_settings_title">Aseta kahden sormen napautuksen toiminto</string>
   <string name="mousepad_triple_tap_settings_title">Aseta kolmen sormen napautuksen toiminto</string>
+  <string name="mousepad_sensitivity_settings_title">Aseta kosketuslevyn herkkyys</string>
+  <string name="mousepad_scroll_direction_title">Käänteinen vierityssuunta</string>
   <string-array name="mousepad_tap_entries">
     <item>Oikea napsautus</item>
     <item>Keskinapsautus</item>
@@ -35,12 +37,13 @@
   </string-array>
   <string name="mousepad_double_default">Oikea painike</string>
   <string name="mousepad_triple_default">Keskipainike</string>
+  <string name="mousepad_sensitivity_default">oletus</string>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
-    <item>Above Slowest</item>
-    <item>Default</item>
-    <item>Above Default</item>
-    <item>Fastest</item>
+    <item>Hitain</item>
+    <item>Hitainta suurempi</item>
+    <item>Oletus</item>
+    <item>Oletusta suurempi</item>
+    <item>Nopein</item>
   </string-array>
   <string name="category_connected_devices">Yhdistetyt laitteet</string>
   <string name="category_not_paired_devices">Saatavilla olevat laitteet</string>
