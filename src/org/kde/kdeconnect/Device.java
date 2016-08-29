@@ -284,7 +284,6 @@ public class Device implements BaseLink.PackageReceiver {
         SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
         preferences.edit().remove(deviceId).apply();
 
-        // FIXME : We delete all device info here, but the xml file still persists
         SharedPreferences devicePreferences = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
         devicePreferences.edit().clear().apply();
 

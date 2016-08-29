@@ -131,6 +131,12 @@ public class SslHelper {
         }
     }
 
+    public static boolean isCertificateStored(Context context, String deviceId) {
+        SharedPreferences devicePreferences = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
+        String cert = devicePreferences.getString("certificate", "");
+        return !cert.isEmpty();
+    }
+
     public static SSLContext getSslContext(Context context, String deviceId, boolean isDeviceTrusted) {
         //TODO: Cache
         try {
