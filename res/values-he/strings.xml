@@ -18,7 +18,7 @@
   <string name="pref_plugin_sharereceiver_desc">שתף וקבל קבצים וכתובת אינטרנט בין התקנים</string>
   <string name="plugin_not_available">אפשרות זו אינה זמינה בגרסת האנדרואיד שלך</string>
   <string name="device_list_empty">אין התקנים</string>
-  <string name="ok">בסדר</string>
+  <string name="ok">אישור</string>
   <string name="cancel">בטל</string>
   <string name="open_settings">פתח הגדרות</string>
   <string name="no_permissions">אתה צריך לתת הרשאות לגישה להתראות</string>
