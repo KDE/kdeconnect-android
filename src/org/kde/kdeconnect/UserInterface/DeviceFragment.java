@@ -242,7 +242,7 @@ public class DeviceFragment extends Fragment {
             }
         });
 
-        if (device.isPaired()) {
+        if (device.isPaired() && device.isReachable()) {
 
             menu.add(R.string.encryption_info_title).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
@@ -266,6 +266,9 @@ public class DeviceFragment extends Fragment {
                     return true;
                 }
             });
+        }
+
+        if (device.isPaired()) {
 
             menu.add(R.string.device_menu_unpair).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
