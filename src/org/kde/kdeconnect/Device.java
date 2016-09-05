@@ -146,6 +146,9 @@ public class Device implements BaseLink.PackageReceiver {
             Log.e("KDE/Device","Exception deserializing stored public key for device");
         }
 
+        //Assume every plugin is supported until addLink is called and we can get the actual list
+        m_supportedPlugins = new Vector<>(PluginFactory.getAvailablePlugins());
+
         //Do not load plugins yet, the device is not present
         //reloadPluginsFromSettings();
     }
