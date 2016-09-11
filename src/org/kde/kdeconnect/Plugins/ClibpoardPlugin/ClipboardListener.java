@@ -28,12 +28,15 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 
-import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.NetworkPackage;
+import java.util.HashSet;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class ClipboardListener {
 
+    public interface ClipboardObserver {
+        void clipboardChanged(String content);
+    }
+    private HashSet<ClipboardObserver> observers = new HashSet<>();
 
     private final Context context;
     private String currentContent;
@@ -41,9 +44,26 @@ public class ClipboardListener {
     private ClipboardManager cm = null;
     private ClipboardManager.OnPrimaryClipChangedListener listener;
 
-    ClipboardListener(final Context ctx, final Device device) {
+    private static ClipboardListener _instance = null;
+    public static ClipboardListener instance(Context context) {
+        if (_instance == null) {
+            _instance = new ClipboardListener(context);
+        }
+        return _instance;
+    }
+
+    public void registerObserver(ClipboardObserver observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(ClipboardObserver observer) {
+        observers.remove(observer);
+    }
+
+    ClipboardListener(final Context ctx) {
         context = ctx;
-        if(android.os.Build.VERSION.SDK_INT < 11) {
+
+        if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
             return;
         }
 
@@ -59,11 +79,14 @@ public class ClipboardListener {
                             ClipData.Item item = cm.getPrimaryClip().getItemAt(0);
                             String content = item.coerceToText(context).toString();
 
-                            if (!content.equals(currentContent)) {
-                                NetworkPackage np = new NetworkPackage(ClipboardPlugin.PACKAGE_TYPE_CLIPBOARD);
-                                np.set("content", content);
-                                device.sendPackage(np);
-                                currentContent = content;
+                            if (content.equals(currentContent)) {
+                                return;
+                            }
+
+                            currentContent = content;
+
+                            for (ClipboardObserver observer : observers) {
+                                observer.clipboardChanged(content);
                             }
 
                         } catch (Exception e) {
@@ -76,18 +99,10 @@ public class ClipboardListener {
         });
     }
 
-    public void stop() {
-        if(android.os.Build.VERSION.SDK_INT < 11) {
-            return;
-        }
-
-        cm.removePrimaryClipChangedListener(listener);
-    }
-
     @SuppressWarnings("deprecation")
     public void setText(String text) {
         currentContent = text;
-        if(android.os.Build.VERSION.SDK_INT < 11) {
+        if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
             android.text.ClipboardManager clipboard = (android.text.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
             clipboard.setText(text);
         }

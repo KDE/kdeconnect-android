@@ -20,6 +20,8 @@
 
 package org.kde.kdeconnect.Plugins.ClibpoardPlugin;
 
+import android.os.Build;
+
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
@@ -41,28 +43,34 @@ public class ClipboardPlugin extends Plugin {
     @Override
     public boolean isEnabledByDefault() {
         //Disabled by default due to just one direction sync(incoming clipboard change) in early version of android.
-        return (android.os.Build.VERSION.SDK_INT >= 11);
+        return (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB);
     }
 
-    private ClipboardListener listener;
+    @Override
+    public boolean onPackageReceived(NetworkPackage np) {
+        String content = np.getString("content");
+        ClipboardListener.instance(context).setText(content);
+        return true;
+    }
+
+    private ClipboardListener.ClipboardObserver observer = new ClipboardListener.ClipboardObserver() {
+        @Override
+        public void clipboardChanged(String content) {
+            NetworkPackage np = new NetworkPackage(ClipboardPlugin.PACKAGE_TYPE_CLIPBOARD);
+            np.set("content", content);
+            device.sendPackage(np);
+        }
+    };
 
     @Override
     public boolean onCreate() {
-        listener = new ClipboardListener(context, device);
+        ClipboardListener.instance(context).registerObserver(observer);
         return true;
     }
 
     @Override
     public void onDestroy() {
-        listener.stop();
-    }
-
-    @Override
-    public boolean onPackageReceived(NetworkPackage np) {
-
-        String content = np.getString("content");
-        listener.setText(content);
-        return true;
+        ClipboardListener.instance(context).removeObserver(observer);
     }
 
     @Override
