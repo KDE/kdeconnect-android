@@ -255,6 +255,11 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                                     device.unpair();
                                 }
                             });
+
+                            String[] ciphers = sslsocket.getSupportedCipherSuites();
+                            for (String cipher : ciphers) {
+                                Log.e("SupportedCiphers","cipher: " + cipher);
+                            }
                         }
                     }
                 }).start();
