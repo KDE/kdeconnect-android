@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="pref_plugin_telephony">Notificador de telefonia</string>
+  <string name="pref_plugin_telephony">Notificador de la telefonia</string>
   <string name="pref_plugin_telephony_desc">Envia notificacions pels SMS i les trucades</string>
   <string name="pref_plugin_battery">Informe de la bateria</string>
   <string name="pref_plugin_battery_desc">Informa periòdicament sobre l\'estat de la bateria</string>
@@ -68,7 +68,7 @@
   <string name="error_canceled_by_user">Cancel·lat per l\'usuari</string>
   <string name="error_canceled_by_other_peer">Cancel·lat per l\'altre parell</string>
   <string name="error_invalid_key">S\'ha rebut una clau no vàlida</string>
-  <string name="encryption_info_title">Informació d\'encriptatge</string>
+  <string name="encryption_info_title">Informació de l\'encriptatge</string>
   <string name="encryption_info_msg_no_ssl">L\'altre dispositiu no usa una versió recent del KDE Connect, s\'utilitzarà el mètode d\'encriptatge antic.</string>
   <string name="my_device_fingerprint">L\'empremta digital SHA1 del certificat del vostre dispositiu és:</string>
   <string name="remote_device_fingerprint">L\'empremta digital SHA1 del certificat del dispositiu remot és:</string>
