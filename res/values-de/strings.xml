@@ -5,15 +5,19 @@
   <string name="pref_plugin_battery">Akkubericht</string>
   <string name="pref_plugin_battery_desc">Akkustatus periodisch berichten</string>
   <string name="pref_plugin_sftp">Dateisystem zeigen</string>
+  <string name="pref_plugin_sftp_desc">Erlaubt das Browsen des Dateisystems auf diesem Gerät aus der Ferne</string>
   <string name="pref_plugin_clipboard">Abgleich der Zwischenablage</string>
   <string name="pref_plugin_clipboard_desc">Inhalt der Zwischenablage freigeben</string>
   <string name="pref_plugin_mousepad">Ferneingabe</string>
+  <string name="pref_plugin_mousepad_desc">Verwendet Ihr Handy als Tablett, Touchpad und Tastatur</string>
   <string name="pref_plugin_mpris">Multimedia-Bedienung</string>
   <string name="pref_plugin_runcommand">Befehl ausführen</string>
+  <string name="pref_plugin_runcommand_desc">Von Ihrem Telefon oder Tablett Befehle auf anderen Geräten ausführen</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Senden und Empfangen von Pings</string>
   <string name="pref_plugin_notifications">Benachrichtigungs-Abgleich</string>
   <string name="pref_plugin_notifications_desc">Zugriff auf Ihre Benachrichtigungen von anderen Geräten</string>
+  <string name="pref_plugin_receive_notifications">Benachrichtigungen empfangen</string>
   <string name="pref_plugin_sharereceiver">Veröffentlichen und Empfangen</string>
   <string name="pref_plugin_sharereceiver_desc">Dateien und Adressen (URLs) zwischen Geräten teilen</string>
   <string name="plugin_not_available">Diese Funktion ist in Ihrer Android-Version nicht verfügbar</string>
@@ -27,6 +31,8 @@
   <string name="open_mousepad">Ferneingabe</string>
   <string name="mousepad_double_tap_settings_title">Aktionsausführung bei Berührung mit zwei Fingern einstellen</string>
   <string name="mousepad_triple_tap_settings_title">Aktionsausführung bei Berührung mit drei Fingern einstellen</string>
+  <string name="mousepad_sensitivity_settings_title">Empfindlichkeit des Touchpads einstellen</string>
+  <string name="mousepad_scroll_direction_title">Bildlaufrichtung umkehren</string>
   <string-array name="mousepad_tap_entries">
     <item>Rechtsklick</item>
     <item>Mittelklick</item>
@@ -34,12 +40,13 @@
   </string-array>
   <string name="mousepad_double_default">Rechts</string>
   <string name="mousepad_triple_default">Mitte</string>
+  <string name="mousepad_sensitivity_default">Standard</string>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
+    <item>Langsamste</item>
     <item>Above Slowest</item>
-    <item>Default</item>
+    <item>Standard</item>
     <item>Above Default</item>
-    <item>Fastest</item>
+    <item>Schnellste</item>
   </string-array>
   <string name="category_connected_devices">Verbundene Geräte</string>
   <string name="category_not_paired_devices">Verfügbare Gerät</string>
@@ -58,6 +65,9 @@
   <string name="error_canceled_by_user">Abbruch durch Benutzer</string>
   <string name="error_canceled_by_other_peer">Abbruch durch Gegenstelle</string>
   <string name="error_invalid_key">Ungültiger Schlüssel empfangen</string>
+  <string name="encryption_info_title">Verschlüsselungsinformationen</string>
+  <string name="my_device_fingerprint">Der SHA1-Fingerabdruck Ihres Gerätezertifikats lautet:</string>
+  <string name="remote_device_fingerprint">Der SHA1-Fingerabdruck des Gerätezertifikats der Gegenstelle lautet:</string>
   <string name="pair_requested">Verbindung angefordert</string>
   <string name="pairing_request_from">Verbindungsanfrage von %1s</string>
   <string name="received_url_title">Verknüpfung von %1s erhalten</string>
@@ -138,6 +148,9 @@
   <string name="pref_plugin_telepathy">SMS senden</string>
   <string name="pref_plugin_telepathy_desc">Text-Nachrichten von Ihrer Arbeitsfläche senden</string>
   <string name="plugin_not_supported">Dieses Modul wird durch das Gerät nicht unterstützt</string>
+  <string name="findmyphone_title">Mein Telefon suchen</string>
+  <string name="findmyphone_title_tablet">Mein Tablett suchen</string>
+  <string name="findmyphone_description">Ruft dieses Gerät an, um es zu suchen.</string>
   <string name="findmyphone_found">Gefunden</string>
   <string name="open">Öffnen</string>
   <string name="close">Schließen</string>
