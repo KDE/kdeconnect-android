@@ -256,10 +256,10 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                                 }
                             });
 
-                            String[] ciphers = sslsocket.getSupportedCipherSuites();
-                            for (String cipher : ciphers) {
-                                Log.e("SupportedCiphers","cipher: " + cipher);
-                            }
+                            //String[] ciphers = sslsocket.getSupportedCipherSuites();
+                            //for (String cipher : ciphers) {
+                            //    Log.i("SupportedCiphers","cipher: " + cipher);
+                            //}
                         }
                     }
                 }).start();
