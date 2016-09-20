@@ -26,26 +26,32 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.HashSet;
+
 public class AppDatabase {
 
-    public static final String KEY_ROW_ID = "id";
-    public static final String KEY_NAME = "app";
-    public static final String KEY_PACKAGE_NAME = "packageName";
-    public static final String KEY_IS_ENABLED = "isEnabled";
+    static final private HashSet<String> disabledByDefault = new HashSet<>();
+    static {
+        disabledByDefault.add("com.android.messaging"); //We already have sms notifications in the telephony plugin
+        disabledByDefault.add("com.google.android.googlequicksearchbox"); //Google Now notifications re-spawn every few minutes
+    }
 
-    private static final String DATABASE_NAME = "Applications";
-    private static final String DATABASE_TABLE = "Applications";
-    private static final int DATABASE_VERSION = 1;
+    static final String KEY_PACKAGE_NAME = "packageName";
+    static final String KEY_IS_ENABLED = "isEnabled";
 
-    private final Context ourContext;
-    private SQLiteDatabase ourDatabase;
-    private DbHelper ourHelper;
+    static final String DATABASE_NAME = "Applications";
+    static final String DATABASE_TABLE = "Applications";
+    static final int DATABASE_VERSION = 2;
+
+    final Context ourContext;
+    SQLiteDatabase ourDatabase;
+    DbHelper ourHelper;
 
     public AppDatabase(Context c) {
         ourContext = c;
     }
 
-    private static class DbHelper extends SQLiteOpenHelper{
+    private static class DbHelper extends SQLiteOpenHelper {
 
         public DbHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -53,73 +59,57 @@ public class AppDatabase {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL("CREATE TABLE " + DATABASE_TABLE + "(" + KEY_ROW_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + KEY_NAME + " TEXT NOT NULL, " + KEY_PACKAGE_NAME + " TEXT NOT NULL, " + KEY_IS_ENABLED + " TEXT NOT NULL); ");
+            db.execSQL("CREATE TABLE " + DATABASE_TABLE + "(" + KEY_PACKAGE_NAME + " TEXT PRIMARY KEY NOT NULL, " + KEY_IS_ENABLED + " TEXT NOT NULL); ");
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int i, int i2) {
             db.execSQL("DROP TABLE IF EXISTS "+ DATABASE_TABLE);
             onCreate(db);
-
         }
 
     }
 
-    public void open(){
+    public void open() {
         ourHelper = new DbHelper(ourContext);
         ourDatabase = ourHelper.getWritableDatabase();
     }
 
-
-    public void close(){
+    public void close() {
         ourHelper.close();
     }
 
-    public Cursor getAllApplications()
-    {
-        String[] columns = new String []{KEY_ROW_ID,KEY_NAME,KEY_PACKAGE_NAME,KEY_IS_ENABLED};
-        Cursor res = ourDatabase.query(DATABASE_TABLE,columns,null,null,null,null,KEY_NAME);
-        return res;
-    }
+    public void setEnabled(String packageName, boolean isEnabled) {
+        String[] columns = new String []{KEY_IS_ENABLED};
+        Cursor res = ourDatabase.query(DATABASE_TABLE, columns, KEY_PACKAGE_NAME + " =? ",new String[]{packageName},null,null,null);
 
-    public long create(String appName, String packageName, boolean isEnabled) {
         ContentValues cv = new ContentValues();
-        cv.put(KEY_NAME, appName);
-        cv.put(KEY_PACKAGE_NAME, packageName);
         cv.put(KEY_IS_ENABLED, isEnabled?"true":"false");
-        return ourDatabase.insert(DATABASE_TABLE, null, cv);
-    }
-
-    public long update(String packageName, boolean isEnabled) {
-        ContentValues cvUpdate = new ContentValues();
-        cvUpdate.put(KEY_IS_ENABLED, isEnabled?"true":"false");
-        return ourDatabase.update(DATABASE_TABLE,cvUpdate,KEY_PACKAGE_NAME + "=?",new String[]{packageName});
-    }
-
-    public boolean exists(String packageName) {
-        String[] columns = new String []{KEY_ROW_ID};
-        Cursor res =  ourDatabase.query(DATABASE_TABLE,columns,KEY_PACKAGE_NAME + " =? ",new String[]{packageName},null,null,null);
-        int count = res.getCount();
+        if (res.getCount() > 0) {
+            cv.put(KEY_PACKAGE_NAME, packageName);
+            ourDatabase.insert(DATABASE_TABLE, null, cv);
+        } else {
+            ourDatabase.update(DATABASE_TABLE, cv, KEY_PACKAGE_NAME + "=?",new String[]{packageName});
+        }
         res.close();
-        return (count != 0);
     }
 
-    public boolean isEnabled(String packageName){
+    public boolean isEnabled(String packageName) {
         String[] columns = new String []{KEY_IS_ENABLED};
         Cursor res =  ourDatabase.query(DATABASE_TABLE,columns,KEY_PACKAGE_NAME + " =? ",new String[]{packageName},null,null,null);
-        boolean result = true; //Apps are enabled by default
+        boolean result;
         if (res.getCount() > 0) {
             res.moveToFirst();
             result = (res.getString(res.getColumnIndex(KEY_IS_ENABLED))).equals("true");
+        } else {
+            result = getDefaultStatus(packageName);
         }
         res.close();
         return result;
     }
 
-    public void delete(String packageName){
-        ourDatabase.delete(DATABASE_TABLE,KEY_PACKAGE_NAME + " =? ",new String[]{packageName} );
+    private boolean getDefaultStatus(String packageName) {
+        return !disabledByDefault.contains(packageName);
     }
-
 
 }

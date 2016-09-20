@@ -15,10 +15,18 @@
         android:paddingBottom="5dp"
         android:id="@+id/tFilter"/>
 
+    <ProgressBar
+        android:layout_marginTop="64dip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/spinner" />
+
     <ListView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/lvFilterApps"
+        android:visibility="gone"
         />
 
 </LinearLayout>
