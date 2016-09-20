@@ -247,19 +247,11 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                         } catch (Exception e) {
                             Log.e("KDE/LanLinkProvider","Handshake failed with " + identityPackage.getString("deviceName"));
                             e.printStackTrace();
-                            BackgroundService.RunCommand(context, new BackgroundService.InstanceCallback() {
-                                @Override
-                                public void onServiceStart(BackgroundService service) {
-                                    Device device = service.getDevice(deviceId);
-                                    if (device == null) return;
-                                    device.unpair();
-                                }
-                            });
 
-                            String[] ciphers = sslsocket.getSupportedCipherSuites();
-                            for (String cipher : ciphers) {
-                                Log.e("SupportedCiphers","cipher: " + cipher);
-                            }
+                            //String[] ciphers = sslsocket.getSupportedCipherSuites();
+                            //for (String cipher : ciphers) {
+                            //    Log.i("SupportedCiphers","cipher: " + cipher);
+                            //}
                         }
                     }
                 }).start();

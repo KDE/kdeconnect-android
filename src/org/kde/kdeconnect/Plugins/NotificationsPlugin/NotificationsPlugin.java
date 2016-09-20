@@ -170,11 +170,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             return;
         }
 
-        if (packageName.equals("com.google.android.googlequicksearchbox")) {
-            //HACK: Hide Google Now notifications that keep constantly popping up (and without text because we don't know how to read them properly)
-            return;
-        }
-
         NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_NOTIFICATION);
 
         if (packageName.equals("org.kde.kdeconnect_tp"))
