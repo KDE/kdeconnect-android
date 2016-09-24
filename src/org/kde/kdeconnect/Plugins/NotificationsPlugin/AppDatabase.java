@@ -86,10 +86,10 @@ public class AppDatabase {
         ContentValues cv = new ContentValues();
         cv.put(KEY_IS_ENABLED, isEnabled?"true":"false");
         if (res.getCount() > 0) {
+            ourDatabase.update(DATABASE_TABLE, cv, KEY_PACKAGE_NAME + "=?",new String[]{packageName});
+        } else {
             cv.put(KEY_PACKAGE_NAME, packageName);
             ourDatabase.insert(DATABASE_TABLE, null, cv);
-        } else {
-            ourDatabase.update(DATABASE_TABLE, cv, KEY_PACKAGE_NAME + "=?",new String[]{packageName});
         }
         res.close();
     }
