@@ -38,6 +38,10 @@ public class MaterialActivity extends AppCompatActivity {
 
     public static final int RESULT_NEEDS_RELOAD = Activity.RESULT_FIRST_USER;
 
+    public static final String PAIR_REQUEST_STATUS = "pair_req_status";
+    public static final String PAIRING_ACCEPTED = "accepted";
+    public static final String PAIRING_REJECTED = "rejected";
+
     private NavigationView mNavigationView;
     private DrawerLayout mDrawerLayout;
 
@@ -102,9 +106,13 @@ public class MaterialActivity extends AppCompatActivity {
         preferences = getSharedPreferences(STATE_SELECTED_DEVICE, Context.MODE_PRIVATE);
 
         String savedDevice;
+        String pairStatus = "";
         if (getIntent().hasExtra("deviceId")) {
             Log.i("MaterialActivity", "Loading selected device from parameter");
             savedDevice = getIntent().getStringExtra("deviceId");
+            if(getIntent().hasExtra(PAIR_REQUEST_STATUS)){
+                pairStatus = getIntent().getStringExtra(PAIR_REQUEST_STATUS);
+            }
         } else if (savedInstanceState != null) {
             Log.i("MaterialActivity", "Loading selected device from saved activity state");
             savedDevice = savedInstanceState.getString(STATE_SELECTED_DEVICE);
@@ -112,7 +120,17 @@ public class MaterialActivity extends AppCompatActivity {
             Log.i("MaterialActivity", "Loading selected device from persistent storage");
             savedDevice = preferences.getString(STATE_SELECTED_DEVICE, null);
         }
+        //if pairStatus is not empty, then the decision has been made...
+        if(!pairStatus.equals("")){
+            Log.i("MaterialActivity", "pair status is "+pairStatus);
+            onNewDeviceSelected(savedDevice, pairStatus);
+        }else{
+            Log.i("MaterialActivity", "fsaj sdafdjks fsdj");
+        }
         onDeviceSelected(savedDevice);
+    }
+
+    private void onNewDeviceSelected(String deviceId, String pairStatus){
 
     }
 
