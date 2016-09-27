@@ -130,8 +130,28 @@ public class MaterialActivity extends AppCompatActivity {
         onDeviceSelected(savedDevice);
     }
 
+    //like onNewDeviceSelected but assumes that the new device is simply requesting to be paired
     private void onNewDeviceSelected(String deviceId, String pairStatus){
+        mCurrentDevice = deviceId;
 
+        preferences.edit().putString(STATE_SELECTED_DEVICE, mCurrentDevice).apply();
+
+        for (HashMap.Entry<MenuItem, String> entry : mMapMenuToDeviceId.entrySet()) {
+            boolean selected = TextUtils.equals(entry.getValue(), deviceId); //null-safe
+            entry.getKey().setChecked(selected);
+        }
+
+        DeviceFragment fragment = new DeviceFragment(deviceId, this);
+        switch (pairStatus){
+            case PAIRING_ACCEPTED:
+                DeviceFragment.acceptPairing(deviceId, this);
+                break;
+            case PAIRING_REJECTED:
+                DeviceFragment.rejectPairing(deviceId, this);
+                break;
+            default: //huh?
+                onDeviceSelected(deviceId);
+        }
     }
 
     @Override
