@@ -10,4 +10,12 @@
         android:summary="@string/share_notification_preference_summary"
         android:defaultValue="true" />
 
+    <CheckBoxPreference
+        android:id="@+id/share_destination_folder_preference"
+        android:key="share_destination_folder_preference"
+        android:defaultValue="false"
+        android:title="@string/share_destination_folder_preference"
+        android:summary="@string/share_destination_folder_preference_summary" />
+
+
 </PreferenceScreen>

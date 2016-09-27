@@ -83,6 +83,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.SettingsActivity" />
         </activity>
+        <activity
+            android:name="org.kde.kdeconnect.Plugins.SharePlugin.ShareSettingsActivity"
+            android:label="@string/device_menu_plugins"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.SettingsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.kde.kdeconnect.Plugins.SharePlugin.ShareSettingsActivity" />
+        </activity>
+
+
 
         <receiver android:name="org.kde.kdeconnect.KdeConnectBroadcastReceiver" >
             <intent-filter>

@@ -190,6 +190,9 @@
     <string name="findmyphone_title_tablet">Find my tablet</string>
     <string name="findmyphone_description">Rings this device so you can find it</string>
     <string name="findmyphone_found">Found</string>
+    <string name="share_destination_folder_preference">Select destination Folder</string>
+    <string name="share_destination_folder_preference_summary">Select destination folder at first use (on SD card...)</string>
+
 
     <string name="open">Open</string>
     <string name="close">Close</string>
