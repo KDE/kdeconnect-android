@@ -190,58 +190,6 @@ public class DeviceFragment extends Fragment {
         return rootView;
     }
 
-    public static void acceptPairing(final String devId, final MaterialActivity activity){
-        final DeviceFragment frag = new DeviceFragment(devId, activity);
-        BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
-            public void onServiceStart(BackgroundService service) {
-                Device dev = service.getDevice(devId);
-                activity.getSupportActionBar().setTitle(dev.getName());
-
-                dev.addPairingCallback(frag.pairingCallback);
-                dev.addPluginsChangedListener(frag.pluginsChangedListener);
-
-                frag.refreshUI();
-
-                frag.device = dev;
-            }
-        });
-
-        BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                frag.device.acceptPairing();
-            }
-        });
-    }
-
-    public static void rejectPairing(final String devId, final MaterialActivity activity){
-        final DeviceFragment frag = new DeviceFragment(devId, activity);
-        BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
-            public void onServiceStart(BackgroundService service) {
-                Device dev = service.getDevice(devId);
-                activity.getSupportActionBar().setTitle(dev.getName());
-
-                dev.addPairingCallback(frag.pairingCallback);
-                dev.addPluginsChangedListener(frag.pluginsChangedListener);
-
-                frag.refreshUI();
-
-                frag.device = dev;
-            }
-        });
-        BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                //Remove listener so buttons don't show for a while before changing the view
-                frag.device.removePluginsChangedListener(frag.pluginsChangedListener);
-                frag.device.removePairingCallback(frag.pairingCallback);
-                frag.device.rejectPairing();
-                activity.onDeviceSelected(null);
-            }
-        });
-    }
-
-
     private final Device.PluginsChangedListener pluginsChangedListener = new Device.PluginsChangedListener() {
         @Override
         public void onPluginsChanged(final Device device) {
@@ -518,4 +466,54 @@ public class DeviceFragment extends Fragment {
 
     };
 
+    public static void acceptPairing(final String devId, final MaterialActivity activity){
+        final DeviceFragment frag = new DeviceFragment(devId, activity);
+        BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
+            public void onServiceStart(BackgroundService service) {
+                Device dev = service.getDevice(devId);
+                activity.getSupportActionBar().setTitle(dev.getName());
+
+                dev.addPairingCallback(frag.pairingCallback);
+                dev.addPluginsChangedListener(frag.pluginsChangedListener);
+
+                frag.refreshUI();
+
+                frag.device = dev;
+            }
+        });
+
+        BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                frag.device.acceptPairing();
+            }
+        });
+    }
+
+    public static void rejectPairing(final String devId, final MaterialActivity activity){
+        final DeviceFragment frag = new DeviceFragment(devId, activity);
+        BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
+            public void onServiceStart(BackgroundService service) {
+                Device dev = service.getDevice(devId);
+                activity.getSupportActionBar().setTitle(dev.getName());
+
+                dev.addPairingCallback(frag.pairingCallback);
+                dev.addPluginsChangedListener(frag.pluginsChangedListener);
+
+                frag.refreshUI();
+
+                frag.device = dev;
+            }
+        });
+        BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                //Remove listener so buttons don't show for a while before changing the view
+                frag.device.removePluginsChangedListener(frag.pluginsChangedListener);
+                frag.device.removePairingCallback(frag.pairingCallback);
+                frag.device.rejectPairing();
+                activity.onDeviceSelected(null);
+            }
+        });
+    }
 }
