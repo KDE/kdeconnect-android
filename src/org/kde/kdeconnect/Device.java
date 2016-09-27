@@ -369,21 +369,21 @@ public class Device implements BaseLink.PackageReceiver {
         intent.putExtra("notificationId", notificationId);
         PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-        Intent acc = new Intent(getContext(), MaterialActivity.class);
-        Intent rej = new Intent(getContext(), MaterialActivity.class);
+        Intent acceptIntent = new Intent(getContext(), MaterialActivity.class);
+        Intent rejectIntent = new Intent(getContext(), MaterialActivity.class);
 
-        acc.putExtra("deviceId", getDeviceId());
-        acc.putExtra("notificationId", notificationId);
-        acc.setAction("action "+System.currentTimeMillis());
-        acc.putExtra(MaterialActivity.PAIR_REQUEST_STATUS, MaterialActivity.PAIRING_ACCEPTED);
+        acceptIntent.putExtra("deviceId", getDeviceId());
+        acceptIntent.putExtra("notificationId", notificationId);
+        acceptIntent.setAction("action "+System.currentTimeMillis());
+        acceptIntent.putExtra(MaterialActivity.PAIR_REQUEST_STATUS, MaterialActivity.PAIRING_ACCEPTED);
 
-        rej.putExtra("deviceId", getDeviceId());
-        rej.putExtra("notificationId", notificationId);
-        rej.setAction("action "+System.currentTimeMillis());
-        rej.putExtra(MaterialActivity.PAIR_REQUEST_STATUS, MaterialActivity.PAIRING_REJECTED);
+        rejectIntent.putExtra("deviceId", getDeviceId());
+        rejectIntent.putExtra("notificationId", notificationId);
+        rejectIntent.setAction("action "+System.currentTimeMillis());
+        rejectIntent.putExtra(MaterialActivity.PAIR_REQUEST_STATUS, MaterialActivity.PAIRING_REJECTED);
 
-        PendingIntent accIntent = PendingIntent.getActivity(getContext(), 2, acc, PendingIntent.FLAG_ONE_SHOT);
-        PendingIntent rejIntent = PendingIntent.getActivity(getContext(), 4, rej, PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent acceptedPendingIntent = PendingIntent.getActivity(getContext(), 2, acceptIntent, PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent rejectedPendingIntent = PendingIntent.getActivity(getContext(), 4, rejectIntent, PendingIntent.FLAG_ONE_SHOT);
 
         Resources res = getContext().getResources();
 
@@ -393,8 +393,8 @@ public class Device implements BaseLink.PackageReceiver {
                 .setContentIntent(pendingIntent)
                 .setTicker(res.getString(R.string.pair_requested))
                 .setSmallIcon(R.drawable.ic_notification)
-                .addAction(R.drawable.ic_accept_pairing, res.getString(R.string.pairing_accept), accIntent)
-                .addAction(R.drawable.ic_reject_pairing, res.getString(R.string.pairing_reject), rejIntent)
+                .addAction(R.drawable.ic_accept_pairing, res.getString(R.string.pairing_accept), acceptedPendingIntent)
+                .addAction(R.drawable.ic_reject_pairing, res.getString(R.string.pairing_reject), rejectedPendingIntent)
                 .setAutoCancel(true)
                 .setDefaults(Notification.DEFAULT_ALL)
                 .build();
