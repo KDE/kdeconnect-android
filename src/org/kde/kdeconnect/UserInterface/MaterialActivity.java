@@ -121,16 +121,15 @@ public class MaterialActivity extends AppCompatActivity {
             savedDevice = preferences.getString(STATE_SELECTED_DEVICE, null);
         }
         //if pairStatus is not empty, then the decision has been made...
-        if(!pairStatus.equals("")){
+        if (!pairStatus.equals("")) {
             Log.i("MaterialActivity", "pair status is "+pairStatus);
             onNewDeviceSelected(savedDevice, pairStatus);
-        }else{
-            Log.i("MaterialActivity", "fsaj sdafdjks fsdj");
         }
         onDeviceSelected(savedDevice);
     }
 
     //like onNewDeviceSelected but assumes that the new device is simply requesting to be paired
+    //and can't be null
     private void onNewDeviceSelected(String deviceId, String pairStatus){
         mCurrentDevice = deviceId;
 
@@ -141,16 +140,10 @@ public class MaterialActivity extends AppCompatActivity {
             entry.getKey().setChecked(selected);
         }
 
-        DeviceFragment fragment = new DeviceFragment(deviceId, this);
-        switch (pairStatus){
-            case PAIRING_ACCEPTED:
-                DeviceFragment.acceptPairing(deviceId, this);
-                break;
-            case PAIRING_REJECTED:
-                DeviceFragment.rejectPairing(deviceId, this);
-                break;
-            default: //huh?
-                onDeviceSelected(deviceId);
+        if (pairStatus.equals(PAIRING_ACCEPTED)) {
+            DeviceFragment.acceptPairing(deviceId, this);
+        } else {
+            DeviceFragment.rejectPairing(deviceId, this);
         }
     }
 
