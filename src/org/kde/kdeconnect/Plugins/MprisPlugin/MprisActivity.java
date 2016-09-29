@@ -176,6 +176,11 @@ public class MprisActivity extends ActionBarActivity {
 
                                         if (pos >= playerList.size()) return;
 
+                                        String player = playerList.get(pos);
+                                        if (player.equals(mpris.getPlayer())) {
+                                            return; //Player hasn't actually changed
+                                        }
+                                        mpris.setPlayer(player);
 
                                         //Clear values from previous player
                                         ((TextView) findViewById(R.id.now_playing_textview)).setText("");
