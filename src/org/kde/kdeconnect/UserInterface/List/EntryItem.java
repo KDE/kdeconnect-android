@@ -28,8 +28,8 @@ import org.kde.kdeconnect_tp.R;
 
 public class EntryItem implements ListAdapter.Item {
 
-	private final String title;
-	private final String subtitle;
+	protected final String title;
+	protected final String subtitle;
 
     public EntryItem(String title) {
         this.title = title;

@@ -32,11 +32,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.UserInterface.List.EntryItem;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class RunCommandActivity extends ActionBarActivity {
 
@@ -59,16 +60,24 @@ public class RunCommandActivity extends ActionBarActivity {
                     public void run() {
                         ListView view = (ListView) findViewById(R.id.listView1);
 
-                        final ArrayList<JSONObject> commands = plugin.getCommandList();
-
-                        ArrayList<ListAdapter.Item> commandItems = new ArrayList<>();
-                        for (JSONObject obj : commands) {
+                        final ArrayList<ListAdapter.Item> commandItems = new ArrayList<>();
+                        for (JSONObject obj : plugin.getCommandList()) {
                             try {
-                                commandItems.add(new EntryItem(obj.getString("name"), obj.getString("command")));
+                                commandItems.add(new CommandEntry(obj.getString("name"),
+                                        obj.getString("command"), obj.getString("key")));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
+
+                        Collections.sort(commandItems, new Comparator<ListAdapter.Item>() {
+                            @Override
+                            public int compare(ListAdapter.Item lhs, ListAdapter.Item rhs) {
+                                String lName = ((CommandEntry) lhs).getName();
+                                String rName = ((CommandEntry) rhs).getName();
+                                return lName.compareTo(rName);
+                            }
+                        });
 
                         ListAdapter adapter = new ListAdapter(RunCommandActivity.this, commandItems);
 
@@ -76,11 +85,8 @@ public class RunCommandActivity extends ActionBarActivity {
                         view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                try {
-                                    plugin.runCommand(commands.get(i).getString("key"));
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
+                                CommandEntry entry = (CommandEntry) commandItems.get(i);
+                                plugin.runCommand(entry.getKey());
                             }
                         });
                     }
