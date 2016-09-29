@@ -122,9 +122,17 @@ public class MprisActivity extends ActionBarActivity {
                                 boolean isPlaying = mpris.isPlaying();
                                 if (isPlaying) {
                                     ((ImageButton) findViewById(R.id.play_button)).setImageResource(android.R.drawable.ic_media_pause);
+                                    findViewById(R.id.play_button).setVisibility(mpris.isPauseAllowed() ? View.VISIBLE : View.GONE);
                                 } else {
                                     ((ImageButton) findViewById(R.id.play_button)).setImageResource(android.R.drawable.ic_media_play);
+                                    findViewById(R.id.play_button).setVisibility(mpris.isPlayAllowed() ? View.VISIBLE : View.GONE);
                                 }
+
+                                findViewById(R.id.next_button).setVisibility(mpris.isGoNextAllowed() ? View.VISIBLE : View.GONE);
+                                findViewById(R.id.prev_button).setVisibility(mpris.isGoPreviousAllowed() ? View.VISIBLE : View.GONE);
+                                findViewById(R.id.rew_button).setVisibility(mpris.isSeekAllowed() ? View.VISIBLE : View.GONE);
+                                findViewById(R.id.ff_button).setVisibility(mpris.isSeekAllowed() ? View.VISIBLE : View.GONE);
+                                findViewById(R.id.positionSeek).setVisibility(mpris.isSeekAllowed() ? View.VISIBLE : View.INVISIBLE);
                             }
                         });
                     }
@@ -175,9 +183,9 @@ public class MprisActivity extends ActionBarActivity {
                                             findViewById(R.id.progress_slider).setVisibility(View.GONE);
                                         } else {
                                             findViewById(R.id.volume_layout).setVisibility(View.VISIBLE);
-                                            findViewById(R.id.rew_button).setVisibility(View.VISIBLE);
-                                            findViewById(R.id.ff_button).setVisibility(View.VISIBLE);
-                                            findViewById(R.id.positionSeek).setVisibility(View.VISIBLE);
+                                            findViewById(R.id.rew_button).setVisibility(mpris.isSeekAllowed() ? View.VISIBLE : View.GONE);
+                                            findViewById(R.id.ff_button).setVisibility(mpris.isSeekAllowed() ? View.VISIBLE : View.GONE);
+                                            findViewById(R.id.positionSeek).setVisibility(mpris.isSeekAllowed() ? View.VISIBLE : View.INVISIBLE);
                                         }
                                     }
 

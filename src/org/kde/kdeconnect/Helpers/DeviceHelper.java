@@ -450,13 +450,17 @@ public class DeviceHelper {
     public static String getAndroidDeviceName() {
         String deviceName = null;
         try {
-            String dictName = humanReadableNames.get(Build.MODEL.replace(' ', '_'));
+            String internalName = Build.MODEL.replace(' ', '_');
+            String dictName = humanReadableNames.get(internalName);
             if (dictName != null) {
                 deviceName = dictName;
-            } else if (Build.BRAND.equalsIgnoreCase("samsung")) {
-                deviceName = "Samsung " + Build.MODEL;
             } else {
-                deviceName = Build.BRAND;
+                Log.w("getAndroidDeviceName", "Not found human readable name for device '" + internalName + "'");
+                if (Build.BRAND.equalsIgnoreCase("samsung")) {
+                    deviceName = "Samsung " + Build.MODEL;
+                } else {
+                    deviceName = Build.BRAND;
+                }
             }
         } catch (Exception e) {
             //Some phones might not define BRAND or MODEL, ignore exceptions
