@@ -122,7 +122,6 @@ public class CustomDevicesActivity extends ActionBarActivity {
             }
 
             builder.show();
-            ((ArrayAdapter) list.getAdapter()).notifyDataSetChanged();
         }
     };
 
