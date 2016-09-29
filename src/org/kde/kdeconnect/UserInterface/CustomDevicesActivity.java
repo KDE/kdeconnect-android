@@ -23,6 +23,7 @@ package org.kde.kdeconnect.UserInterface;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
@@ -82,10 +83,15 @@ public class CustomDevicesActivity extends ActionBarActivity {
         });
     }
 
+    boolean dialogAlreadyShown = false;
     private AdapterView.OnItemClickListener onClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, final int position, final long id) {
-            Log.i(LOG_ID, "Item clicked pos: " + position + " id: " + id);
+
+            if (dialogAlreadyShown) {
+                return;
+            }
+
             // remove touched item after confirmation
             DialogInterface.OnClickListener confirmationListener = new DialogInterface.OnClickListener() {
                 @Override
@@ -105,6 +111,17 @@ public class CustomDevicesActivity extends ActionBarActivity {
             builder.setMessage("Delete " + ipAddressList.get(position) + " ?");
             builder.setPositiveButton("Yes", confirmationListener);
             builder.setNegativeButton("No", confirmationListener);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) { //DismissListener
+                dialogAlreadyShown = true;
+                builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        dialogAlreadyShown = false;
+                    }
+                });
+            }
+
             builder.show();
             ((ArrayAdapter) list.getAdapter()).notifyDataSetChanged();
         }
