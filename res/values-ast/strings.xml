@@ -1,64 +1,45 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="pref_plugin_telephony">Avisador telefónicu</string>
+  <string name="pref_plugin_telephony">Notificador telefónicu</string>
   <string name="pref_plugin_telephony_desc">Unvia avisos pa SMS y llamaes</string>
   <string name="pref_plugin_battery">Informe de batería</string>
   <string name="pref_plugin_battery_desc">Infoma davezu del estáu de la batería</string>
-  <string name="pref_plugin_sftp">Esposición del sistema de ficheros</string>
-  <string name="pref_plugin_sftp_desc">Permite restolar remotamente el sistema de ficheros d\'esti preséu</string>
   <string name="pref_plugin_clipboard">Sincronización del cartafueyu</string>
   <string name="pref_plugin_clipboard_desc">Comparte\'l conteníu del cartafueyu</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
-  <string name="pref_plugin_mousepad_desc">Usa\'l to preséu como panel táutil y tecláu</string>
   <string name="pref_plugin_mpris">Controles remotos multimedia</string>
-  <string name="pref_plugin_mpris_desc">Forne control multimedia pal to reproductor</string>
-  <string name="pref_plugin_runcommand">Executar comandu</string>
-  <string name="pref_plugin_runcommand_desc">Aiciona comandos remotos dende\'l to preséu</string>
   <string name="pref_plugin_ping">Ping</string>
-  <string name="pref_plugin_ping_desc">Unvia y recibe pings</string>
+  <string name="pref_plugin_ping_desc">Unvia y recibi pings</string>
   <string name="pref_plugin_notifications">Sincronización d\'avisos</string>
   <string name="pref_plugin_notifications_desc">Accede a los tos avisos dende otros preseos</string>
-  <string name="pref_plugin_receive_notifications">Recibir avisos</string>
-  <string name="pref_plugin_receive_notifications_desc">Recibe avisos d\'otru preséu y amuésalos n\'Android</string>
-  <string name="pref_plugin_sharereceiver">Compartir y recibir</string>
+  <string name="pref_plugin_sharereceiver">Unvia y recibi pings</string>
   <string name="pref_plugin_sharereceiver_desc">Comparte ficheros y URLs ente preseos</string>
   <string name="plugin_not_available">Esta carauterística nun ta disponible na to versión d\'Android</string>
   <string name="device_list_empty">Ensin preseos</string>
   <string name="ok">Aceutar</string>
   <string name="cancel">Encaboxar</string>
   <string name="open_settings">Abrir axustes</string>
-  <string name="no_permissions">Precises dar laude p\'acceder a los avisos</string>
+  <string name="no_permissions">Necesites garantizar l\'accesu a los avisos</string>
   <string name="send_ping">Unviar ping</string>
   <string name="open_mpris_controls">Controles multimedia</string>
   <string name="open_mousepad">Entrada remota</string>
-  <string name="mousepad_info">Muevi un deu enriba la pantalla pa mover el mur. Calca pa un clic y usa dos/tres deos pa los botones de drecha y en mediu. Usa un primíu llargu p\'arrastrar y soltar.</string>
-  <string name="mousepad_double_tap_settings_title">Afitar aición de calcu con dos deos</string>
-  <string name="mousepad_triple_tap_settings_title">Afitar aición de calcu con tres deos</string>
-  <string name="mousepad_sensitivity_settings_title">Afitar sensibilidá del panel táutil</string>
-  <string name="mousepad_scroll_direction_title">Direición inversa de desplazamientu</string>
+  <string name="mousepad_info">Muevi un deu enriba la pantalla pa mover el mur. calca pa un clic y usa dos/tres deos pa los motones de drecha y mediu. Usa un primíu llargu pa arrastrar y soltar.</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic drechu</item>
     <item>Clic d\'en mediu</item>
     <item>Nada</item>
   </string-array>
-  <string name="mousepad_double_default">drecha</string>
-  <string name="mousepad_triple_default">d\'en mediu</string>
-  <string name="mousepad_sensitivity_default">por defeutu</string>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Perlenta</item>
-    <item>La más lenta</item>
-    <item>Predeterminada</item>
-    <item>Penriba lo predeterminao</item>
-    <item>La más rápida</item>
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
   </string-array>
   <string name="category_connected_devices">Preseos coneutaos</string>
   <string name="category_not_paired_devices">Preseos disponibles</string>
   <string name="category_remembered_devices">Preseos recordaos</string>
-  <string name="plugins_failed_to_load">Los complementos fallaron al cargase (calca pa más información):</string>
-  <string name="device_menu_plugins">Axustes de complementos</string>
-  <string name="device_menu_unpair">Desempareyar</string>
   <string name="device_not_reachable">El preséu empareyáu nun ye agamable</string>
-  <string name="pair_new_device">Empareyar preséu nuevu</string>
   <string name="unknown_device">Preséu desconocíu</string>
   <string name="error_not_reachable">Nun ye algamable\'l preséu</string>
   <string name="error_already_requested">Empareyamientu yá solicitáu</string>
@@ -68,10 +49,6 @@
   <string name="error_canceled_by_user">Encaboxáu pol usuariu</string>
   <string name="error_canceled_by_other_peer">Encaboxáu pola otra parte</string>
   <string name="error_invalid_key">Recibióse una clave non válida</string>
-  <string name="encryption_info_title">Información de cifráu</string>
-  <string name="encryption_info_msg_no_ssl">L\'otru preséu nun usa una versión recién de KDE Connect. Usando\'l métodu de cifráu heredáu.</string>
-  <string name="my_device_fingerprint">La buelga SHA1 del certificáu del to preséu ye:</string>
-  <string name="remote_device_fingerprint">La buelga SHA1 del certificáu del preséu remotu ye:</string>
   <string name="pair_requested">Solicitóse l\'empareyamientu</string>
   <string name="pairing_request_from">Solicitú d\'empareyamientu de %1s</string>
   <string name="received_url_title">Recibióse l\'enllaz de %1s</string>
@@ -89,8 +66,6 @@
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Calca pa responder</string>
   <string name="reconnect">Reconeutar</string>
-  <string name="right_click">Unviar clic drechu</string>
-  <string name="middle_click">Unviar clic d\'en mediu</string>
   <string name="show_keyboard">Amosar tecláu</string>
   <string name="device_not_paired">Preséu non empareyáu</string>
   <string name="request_pairing">Solicitar empareyamientu</string>
@@ -116,7 +91,6 @@
     <item>1 minutu</item>
     <item>2 minutos</item>
   </string-array>
-  <string name="share_to">Compartir en...</string>
   <string name="protocol_version_older">Esti preséu usa una versión vieya del protocolu</string>
   <string name="protocol_version_newer">Esti preséu usa una versión anovada del protocolu</string>
   <string name="general_settings">Axustes xenerales</string>
@@ -126,7 +100,7 @@
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nome de preséu non válidu</string>
   <string name="shareplugin_text_saved">Recibióse\'l testu y guardóse nel cartafueyu</string>
-  <string name="custom_devices_settings">Llistáu personalizáu de preseos</string>
+  <string name="custom_devices_settings">Llista de preseos personalizada</string>
   <string name="pair_device_action">Empareyar con un preséu nuevu</string>
   <string name="unpair_device_action">Desempareyar %s</string>
   <string name="custom_device_list">Amestar preseos pola IP</string>
@@ -143,11 +117,11 @@
   <string name="add_host">Amestar agospiu/IP</string>
   <string name="add_host_hint">Nome d\'agospiu o IP</string>
   <string name="no_players_connected">Nun s\'alcontraron reproductores</string>
-  <string name="custom_dev_list_help">Usa esta opción namái si\'l to preséu nun se deteuta automáticamente. Introduz la direición o\'l nome d\'agospiu y toca\'l botón p\'amestalu al llistáu. Toca un elementu esistente pa desanicialu de la llistáu.</string>
+  <string name="custom_dev_list_help">Usa esta opción namái si\'l to preséu nun se deteuta automáticamente. Introduz la direición o\'l nome d\'agospiu y toca\'l botón p\'amestalu a la llista. Toca un elementu esistente pa desanicialu de la llista.</string>
   <string name="mpris_player_on_device">%1$s en %2$s</string>
   <string name="send_files">Unviar ficheros</string>
   <string name="pairing_title">Preseos KDE Connect</string>
-  <string name="pairing_description">Equí deberíen apaecer otros preseos executando KDE Connect.</string>
+  <string name="pairing_description">Deberíen apaecer equí otros preseos executando KDE Connect.</string>
   <string name="device_paired">Preséu empareyáu</string>
   <string name="device_rename_title">Renomar preséu</string>
   <string name="device_rename_confirm">Renomar</string>
@@ -157,9 +131,6 @@
   <string name="pref_plugin_telepathy">Unviar SMS</string>
   <string name="pref_plugin_telepathy_desc">Unvia mensaxes de testu dende\'l to escritoriu</string>
   <string name="plugin_not_supported">Esti complementu nun ta sofitáu pol preséu</string>
-  <string name="findmyphone_title">Alcuentra\'l mio teléfonu</string>
-  <string name="findmyphone_title_tablet">Alcuentra la mio tableta</string>
-  <string name="findmyphone_description">Fai sonar esti preséu pa que pueas alcontralu.</string>
   <string name="findmyphone_found">Alcontrar</string>
   <string name="open">Abrir</string>
   <string name="close">Zarrar</string>
