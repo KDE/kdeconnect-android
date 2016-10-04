@@ -23,10 +23,10 @@ package org.kde.kdeconnect.UserInterface;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -82,10 +82,15 @@ public class CustomDevicesActivity extends ActionBarActivity {
         });
     }
 
+    boolean dialogAlreadyShown = false;
     private AdapterView.OnItemClickListener onClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, final int position, final long id) {
-            Log.i(LOG_ID, "Item clicked pos: " + position + " id: " + id);
+
+            if (dialogAlreadyShown) {
+                return;
+            }
+
             // remove touched item after confirmation
             DialogInterface.OnClickListener confirmationListener = new DialogInterface.OnClickListener() {
                 @Override
@@ -93,7 +98,6 @@ public class CustomDevicesActivity extends ActionBarActivity {
                     switch (which) {
                         case DialogInterface.BUTTON_POSITIVE:
                             ipAddressList.remove(position);
-                            Log.i(LOG_ID, "Removed item pos: " + position + " id: " + id);
                             saveList();
                             break;
                         case DialogInterface.BUTTON_NEGATIVE:
@@ -101,12 +105,23 @@ public class CustomDevicesActivity extends ActionBarActivity {
                     }
                 }
             };
+
             AlertDialog.Builder builder = new AlertDialog.Builder(CustomDevicesActivity.this);
             builder.setMessage("Delete " + ipAddressList.get(position) + " ?");
             builder.setPositiveButton("Yes", confirmationListener);
             builder.setNegativeButton("No", confirmationListener);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) { //DismissListener
+                dialogAlreadyShown = true;
+                builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        dialogAlreadyShown = false;
+                    }
+                });
+            }
+
             builder.show();
-            ((ArrayAdapter) list.getAdapter()).notifyDataSetChanged();
         }
     };
 
@@ -143,37 +158,32 @@ public class CustomDevicesActivity extends ActionBarActivity {
 
     }
 
-    public static String serializeIpList(ArrayList<String> iplist) {
+    public static String serializeIpList(ArrayList<String> ipList) {
         String serialized = "";
-        for (String ipaddr : iplist) {
-            serialized += IP_DELIM+ipaddr;
+        for (String ipAddress : ipList) {
+            serialized += IP_DELIM+ipAddress;
         }
         // remove first delimiter
         serialized = serialized.substring(IP_DELIM.length());
-        Log.d(LOG_ID, serialized);
         return serialized;
     }
 
     public static ArrayList<String> deserializeIpList(String serialized) {
-        ArrayList<String> iplist = new ArrayList<>();
-        Log.d(LOG_ID, serialized);
-        for (String ipaddr : serialized.split(IP_DELIM)) {
-            iplist.add(ipaddr);
-            Log.d(LOG_ID, ipaddr);
+        ArrayList<String> ipList = new ArrayList<>();
+        for (String ipAddress : serialized.split(IP_DELIM)) {
+            ipList.add(ipAddress);
         }
-        return iplist;
+        return ipList;
     }
 
     private void initializeDeviceList(Context context){
         String deviceListPrefs = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 KEY_CUSTOM_DEVLIST_PREFERENCE, "");
         if(deviceListPrefs.isEmpty()){
-            Log.i(LOG_ID, "Initialising empty custom device list");
             PreferenceManager.getDefaultSharedPreferences(context).edit().putString(
                     KEY_CUSTOM_DEVLIST_PREFERENCE,
                     deviceListPrefs).commit();
         } else {
-            Log.i(LOG_ID, "Populating device list");
             ipAddressList = deserializeIpList(deviceListPrefs);
         }
     }

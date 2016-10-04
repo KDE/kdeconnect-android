@@ -101,16 +101,16 @@ public class MprisActivity extends ActionBarActivity {
                                     if (currentArt != null) {
                                         artView.setImageBitmap(currentArt);
                                     }
-
                                 }
 
-                                if (mpris.getLength() > -1 && mpris.getPosition() > -1 && !"spotify".equals(mpris.getPlayer().toLowerCase())) {
-                                    ((TextView) findViewById(R.id.time_textview)).setText(milisToProgress(mpris.getLength()));
+                                //Hacks for Spotify because it reports incorrect info about what it supports
+                                boolean isSpotify = "spotify".equals(mpris.getPlayer().toLowerCase());
 
+                                if (mpris.getLength() > -1 && mpris.getPosition() > -1 && !isSpotify) {
+                                    ((TextView) findViewById(R.id.time_textview)).setText(milisToProgress(mpris.getLength()));
                                     SeekBar positionSeek = (SeekBar)findViewById(R.id.positionSeek);
                                     positionSeek.setMax((int)(mpris.getLength()));
                                     positionSeek.setProgress((int)(mpris.getPosition()));
-
                                     findViewById(R.id.progress_slider).setVisibility(View.VISIBLE);
                                 } else {
                                     findViewById(R.id.progress_slider).setVisibility(View.GONE);
@@ -128,11 +128,17 @@ public class MprisActivity extends ActionBarActivity {
                                     findViewById(R.id.play_button).setVisibility(mpris.isPlayAllowed() ? View.VISIBLE : View.GONE);
                                 }
 
+                                if (isSpotify) {
+                                    findViewById(R.id.volume_layout).setVisibility(View.INVISIBLE);
+                                    findViewById(R.id.rew_button).setVisibility(View.GONE);
+                                    findViewById(R.id.ff_button).setVisibility(View.GONE);
+                                } else {
+                                    findViewById(R.id.volume_layout).setVisibility(View.VISIBLE);
+                                    findViewById(R.id.rew_button).setVisibility(mpris.isSeekAllowed() ? View.VISIBLE : View.GONE);
+                                    findViewById(R.id.ff_button).setVisibility(mpris.isSeekAllowed() ? View.VISIBLE : View.GONE);
+                                }
                                 findViewById(R.id.next_button).setVisibility(mpris.isGoNextAllowed() ? View.VISIBLE : View.GONE);
                                 findViewById(R.id.prev_button).setVisibility(mpris.isGoPreviousAllowed() ? View.VISIBLE : View.GONE);
-                                findViewById(R.id.rew_button).setVisibility(mpris.isSeekAllowed() ? View.VISIBLE : View.GONE);
-                                findViewById(R.id.ff_button).setVisibility(mpris.isSeekAllowed() ? View.VISIBLE : View.GONE);
-                                findViewById(R.id.positionSeek).setVisibility(mpris.isSeekAllowed() ? View.VISIBLE : View.INVISIBLE);
                             }
                         });
                     }
@@ -170,23 +176,16 @@ public class MprisActivity extends ActionBarActivity {
 
                                         if (pos >= playerList.size()) return;
 
-                                        ((TextView) findViewById(R.id.now_playing_textview)).setText("");
                                         String player = playerList.get(pos);
-                                        mpris.setPlayer(player);
-                                        //Spotify doesn't support changing the volume yet...
-                                        //Also doesn't support seeking and telling actual position...
-                                        if (player.toLowerCase().equals("spotify")) {
-                                            findViewById(R.id.volume_layout).setVisibility(View.INVISIBLE);
-                                            findViewById(R.id.rew_button).setVisibility(View.GONE);
-                                            findViewById(R.id.ff_button).setVisibility(View.GONE);
-                                            findViewById(R.id.positionSeek).setVisibility(View.INVISIBLE);
-                                            findViewById(R.id.progress_slider).setVisibility(View.GONE);
-                                        } else {
-                                            findViewById(R.id.volume_layout).setVisibility(View.VISIBLE);
-                                            findViewById(R.id.rew_button).setVisibility(mpris.isSeekAllowed() ? View.VISIBLE : View.GONE);
-                                            findViewById(R.id.ff_button).setVisibility(mpris.isSeekAllowed() ? View.VISIBLE : View.GONE);
-                                            findViewById(R.id.positionSeek).setVisibility(mpris.isSeekAllowed() ? View.VISIBLE : View.INVISIBLE);
+                                        if (player.equals(mpris.getPlayer())) {
+                                            return; //Player hasn't actually changed
                                         }
+                                        mpris.setPlayer(player);
+
+                                        //Clear values from previous player
+                                        ((TextView) findViewById(R.id.now_playing_textview)).setText("");
+                                        ((TextView) findViewById(R.id.time_textview)).setText(milisToProgress(0));
+                                        ((SeekBar)findViewById(R.id.positionSeek)).setMax(0);
                                     }
 
                                     @Override
