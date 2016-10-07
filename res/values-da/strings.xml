@@ -49,7 +49,7 @@
     <item>Over mest langsom</item>
     <item>Standard</item>
     <item>Over standard</item>
-    <item>Hurtigste</item>
+    <item>Hurtigst</item>
   </string-array>
   <string name="category_connected_devices">Forbundne enheder</string>
   <string name="category_not_paired_devices">Tilgængelig enheder</string>
