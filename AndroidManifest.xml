@@ -118,6 +118,7 @@
         <activity
             android:name="org.kde.kdeconnect.Plugins.FindMyPhonePlugin.FindMyPhoneActivity"
             android:label="@string/findmyphone_title"
+            android:excludeFromRecents="true"
             android:launchMode="singleInstance">
         </activity>
 
