@@ -343,7 +343,7 @@ public class SharePlugin extends Plugin {
                     size = new File(path).length();
                 } catch(Exception unused) {
 
-                    Log.e("SendFileActivity", "Could not resolve media to a file, trying to get info as media");
+                    Log.w("SendFileActivity", "Could not resolve media to a file, trying to get info as media");
 
                     try {
                         int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DISPLAY_NAME);
