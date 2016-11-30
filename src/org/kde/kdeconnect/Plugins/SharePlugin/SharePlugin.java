@@ -462,7 +462,7 @@ public class SharePlugin extends Plugin {
                             NotificationCompat.Builder anotherBuilder = new NotificationCompat.Builder(context)
                                     .setContentTitle(res.getString(R.string.sent_file_failed_title, device.getName()))
                                     .setContentText(res.getString(R.string.sent_file_failed_text, filename))
-                                    .setTicker(res.getString(R.string.sent_file_title, device.getName()))
+                                    .setTicker(res.getString(R.string.sent_file_failed_title, device.getName()))
                                     .setSmallIcon(android.R.drawable.stat_notify_error)
                                     .setOngoing(false)
                                     .setAutoCancel(true);
