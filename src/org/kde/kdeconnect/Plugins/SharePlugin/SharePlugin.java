@@ -306,33 +306,16 @@ public class SharePlugin extends Plugin {
 
     static void queuedSendUriList(final Context context, final Device device, final ArrayList<Uri> uriList) {
         try {
-            Uri uri = uriList.remove(0);
+            Uri uri = uriList.remove(0); // Take file URIs one at a time
+
+
+            //Create the network package from the URI
+
             ContentResolver cr = context.getContentResolver();
             InputStream inputStream = cr.openInputStream(uri);
 
             NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_SHARE_REQUEST);
             long size = -1;
-
-            final NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-            final int notificationId = (int)System.currentTimeMillis();
-            final NotificationCompat.Builder builder ;
-            Resources res = context.getResources();
-            builder = new NotificationCompat.Builder(context)
-                    .setContentTitle(res.getString(R.string.outgoing_file_title, device.getName()))
-                    .setTicker(res.getString(R.string.outgoing_file_title, device.getName()))
-                    .setSmallIcon(android.R.drawable.stat_sys_upload)
-                    .setAutoCancel(true)
-                    .setOngoing(true)
-                    .setProgress(100,0,true);
-
-            try {
-                notificationManager.notify(notificationId,builder.build());
-            } catch(Exception e) {
-                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
-                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
-            }
-
-            final Handler progressBarHandler = new Handler(Looper.getMainLooper());
 
             if (uri.getScheme().equals("file")) {
                 // file:// is a non media uri, so we cannot query the ContentProvider
@@ -389,6 +372,19 @@ public class SharePlugin extends Plugin {
 
             np.setPayload(inputStream, size);
 
+
+            // Post a notification
+            final NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+            final int notificationId = (int)System.currentTimeMillis();
+            Resources res = context.getResources();
+            final NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+                    .setContentTitle(res.getString(R.string.outgoing_file_title, device.getName()))
+                    .setTicker(res.getString(R.string.outgoing_file_title, device.getName()))
+                    .setSmallIcon(android.R.drawable.stat_sys_upload)
+                    .setAutoCancel(true)
+                    .setOngoing(true)
+                    .setProgress(100,0,true);
+
             final String filename = np.getString("filename");
 
             builder.setContentText(res.getString(R.string.outgoing_file_text,filename));
@@ -399,6 +395,11 @@ public class SharePlugin extends Plugin {
                 //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
             }
 
+            // Create a handler on the main thread to be able to update the notification
+            final Handler progressBarHandler = new Handler(Looper.getMainLooper());
+
+
+            //Actually send the file
             device.sendPackage(np, new Device.SendPackageStatusCallback() {
 
                 int prevProgress = 0;
