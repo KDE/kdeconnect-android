@@ -150,7 +150,7 @@ public class SharePlugin extends Plugin {
                     @Override
                     public void run() {
                         OutputStream output = null;
-                        boolean successul = true;
+                        boolean successful = true;
                         try {
                             output = new FileOutputStream(destinationFullPath.getPath());
                             byte data[] = new byte[1024];
@@ -179,7 +179,7 @@ public class SharePlugin extends Plugin {
                             output.flush();
 
                         } catch (Exception e) {
-                            successul = false;
+                            successful = false;
                             Log.e("SharePlugin", "Receiver thread exception");
                             e.printStackTrace();
                         } finally {
@@ -208,14 +208,14 @@ public class SharePlugin extends Plugin {
 
                             Resources res = context.getResources();
 
-                            String message = successul? res.getString(R.string.received_file_title, device.getName()) : res.getString(R.string.received_file_fail_title, device.getName());
+                            String message = successful? res.getString(R.string.received_file_title, device.getName()) : res.getString(R.string.received_file_fail_title, device.getName());
                             NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                                     .setContentTitle(message)
                                     .setTicker(message)
                                     .setSmallIcon(android.R.drawable.stat_sys_download_done)
                                     .setAutoCancel(true);
 
-                            if (successul) {
+                            if (successful) {
                                 builder.setContentText(res.getString(R.string.received_file_text, filename))
                                        .setContentIntent(resultPendingIntent);
                             }
