@@ -30,6 +30,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
+import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.UserInterface.MaterialActivity;
@@ -89,12 +90,7 @@ public class PingPlugin extends Plugin {
                 .build();
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        try {
-            notificationManager.notify(id, noti);
-        } catch(Exception e) {
-            //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
-            //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
-        }
+        NotificationHelper.notifyCompat(notificationManager, id, noti);
 
         return true;
 

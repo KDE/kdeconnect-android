@@ -37,6 +37,7 @@ import android.util.Log;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
+import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
@@ -382,14 +383,9 @@ public class Device implements BaseLink.PackageReceiver {
                 .build();
 
         final NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationHelper.notifyCompat(notificationManager, notificationId, noti);
 
-        try {
-            BackgroundService.addGuiInUseCounter(context);
-            notificationManager.notify(notificationId, noti);
-        } catch(Exception e) {
-            //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
-            //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
-        }
+        BackgroundService.addGuiInUseCounter(context);
     }
 
     public void hidePairingNotification() {
