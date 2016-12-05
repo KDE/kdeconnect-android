@@ -142,11 +142,11 @@ public class LanLink extends BaseLink {
     }
 
     //Blocking, do not call from main thread
-    private void sendPackageInternal(NetworkPackage np, final Device.SendPackageStatusCallback callback, PublicKey key) {
+    private boolean sendPackageInternal(NetworkPackage np, final Device.SendPackageStatusCallback callback, PublicKey key) {
         if (socket == null) {
             Log.e("KDE/sendPackage", "Not yet connected");
-            callback.sendFailure(new NotYetConnectedException());
-            return;
+            callback.onFailure(new NotYetConnectedException());
+            return false;
         }
 
         try {
@@ -175,10 +175,8 @@ public class LanLink extends BaseLink {
                 writer.write(np.serialize().getBytes(StringsHelper.UTF8));
                 writer.flush();
             } catch (Exception e) {
-                callback.sendFailure(e);
-                e.printStackTrace();
-                disconnect();
-                return;
+                disconnect(); //main socket is broken, disconnect
+                throw e;
             }
 
             //Send payload
@@ -209,17 +207,12 @@ public class LanLink extends BaseLink {
                         progress += bytesRead;
                         outputStream.write(buffer, 0, bytesRead);
                         if (np.getPayloadSize() > 0) {
-                            callback.sendProgress((int)(progress / np.getPayloadSize()));
+                            callback.onProgressChanged((int)(progress / np.getPayloadSize()));
                         }
                     }
                     outputStream.flush();
                     outputStream.close();
                     Log.i("KDE/LanLink", "Finished sending payload ("+progress+" bytes written)");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.e("KDE/sendPackage", "Exception: "+e);
-                    callback.sendFailure(e);
-                    return;
                 } finally {
                     try { server.close(); } catch (Exception e) { }
                     try { payloadSocket.close(); } catch (Exception e) { }
@@ -228,12 +221,13 @@ public class LanLink extends BaseLink {
                 }
             }
 
-            callback.sendSuccess();
-
+            callback.onSuccess();
+            return true;
         } catch (Exception e) {
             if (callback != null) {
-                callback.sendFailure(e);
+                callback.onFailure(e);
             }
+            return false;
         } finally  {
             //Make sure we close the payload stream, if any
             InputStream stream = np.getPayload();
@@ -244,14 +238,14 @@ public class LanLink extends BaseLink {
 
     //Blocking, do not call from main thread
     @Override
-    public void sendPackage(NetworkPackage np,Device.SendPackageStatusCallback callback) {
-        sendPackageInternal(np, callback, null);
+    public boolean sendPackage(NetworkPackage np,Device.SendPackageStatusCallback callback) {
+        return sendPackageInternal(np, callback, null);
     }
 
     //Blocking, do not call from main thread
     @Override
-    public void sendPackageEncrypted(NetworkPackage np, Device.SendPackageStatusCallback callback, PublicKey key) {
-        sendPackageInternal(np, callback, key);
+    public boolean sendPackageEncrypted(NetworkPackage np, Device.SendPackageStatusCallback callback, PublicKey key) {
+        return sendPackageInternal(np, callback, key);
     }
 
     private void receivedNetworkPackage(NetworkPackage np) {
