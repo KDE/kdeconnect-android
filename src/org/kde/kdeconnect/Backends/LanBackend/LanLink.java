@@ -171,9 +171,9 @@ public class LanLink extends BaseLink {
 
             //Send body of the network package
             try {
-                OutputStream writter = socket.getOutputStream();
-                writter.write(np.serialize().getBytes(StringsHelper.UTF8));
-                writter.flush();
+                OutputStream writer = socket.getOutputStream();
+                writer.write(np.serialize().getBytes(StringsHelper.UTF8));
+                writer.flush();
             } catch (Exception e) {
                 callback.sendFailure(e);
                 e.printStackTrace();
