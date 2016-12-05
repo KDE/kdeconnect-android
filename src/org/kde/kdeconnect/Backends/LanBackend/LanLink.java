@@ -61,7 +61,7 @@ public class LanLink extends BaseLink {
                                                   // because it's probably trying to find me and
                                                   // potentially ask for pairing.
 
-    private Socket socket = null;
+    private volatile Socket socket = null;
 
     private LinkDisconnectedCallback callback;
 
