@@ -203,16 +203,16 @@ public class LanLink extends BaseLink {
                     int bytesRead;
                     long size = np.getPayloadSize();
                     long progress = 0;
-                    long prevPercent = -1;
+                    long timeSinceLastUpdate = -1;
                     while ((bytesRead = inputStream.read(buffer)) != -1) {
                         //Log.e("ok",""+bytesRead);
                         progress += bytesRead;
                         outputStream.write(buffer, 0, bytesRead);
                         if (size > 0) {
-                            long percent = ((100*progress) / size);
-                            if (percent != prevPercent) {
-                                prevPercent = percent;
-                                callback.onProgressChanged((int)percent);
+                            if (timeSinceLastUpdate + 500 < System.currentTimeMillis()) { //Report progress every half a second
+                                long percent = ((100 * progress) / size);
+                                callback.onProgressChanged((int) percent);
+                                timeSinceLastUpdate = System.currentTimeMillis();
                             }
                         }
                     }
