@@ -22,13 +22,10 @@ package org.kde.kdeconnect.Plugins.MprisPlugin;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.content.ContextCompat;
-import android.util.Base64;
 import android.util.Log;
 
 import org.kde.kdeconnect.NetworkPackage;
@@ -47,7 +44,6 @@ public class MprisPlugin extends Plugin {
     private String player = "";
     private boolean playing = false;
     private String currentSong = "";
-    private Bitmap currentArt;
     private int volume = 50;
     private long length = -1;
     private long lastPosition;
@@ -130,8 +126,7 @@ public class MprisPlugin extends Plugin {
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
 
-        if (np.has("nowPlaying") || np.has("volume") || np.has("isPlaying") || np.has("length") ||
-                np.has("pos") || np.has("artImage")) {
+        if (np.has("nowPlaying") || np.has("volume") || np.has("isPlaying") || np.has("length") || np.has("pos")) {
             if (np.getString("player").equals(player)) {
                 currentSong = np.getString("nowPlaying", currentSong);
                 volume = np.getInt("volume", volume);
@@ -139,11 +134,6 @@ public class MprisPlugin extends Plugin {
                 if(np.has("pos")){
                     lastPosition = np.getLong("pos", lastPosition);
                     lastPositionTime = System.currentTimeMillis();
-                }
-                if (np.has("artImage")) {
-                    String base64Image = np.getString("artImage");
-                    byte[] decodedBytes = Base64.decode(base64Image, 0);
-                    currentArt = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
                 }
                 playing = np.getBoolean("isPlaying", playing);
                 playAllowed = np.getBoolean("canPlay", playAllowed);
@@ -228,7 +218,6 @@ public class MprisPlugin extends Plugin {
         if (player == null || player.equals(this.player)) return;
         this.player = player;
         currentSong = "";
-        currentArt = null;
         volume = 50;
         playing = false;
         playAllowed = true;
@@ -255,8 +244,6 @@ public class MprisPlugin extends Plugin {
     public String getCurrentSong() {
         return currentSong;
     }
-
-    public Bitmap getCurrentArt() { return currentArt; }
 
     public String getPlayer() {
         return player;
