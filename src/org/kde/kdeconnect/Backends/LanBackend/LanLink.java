@@ -201,13 +201,19 @@ public class LanLink extends BaseLink {
                     Log.i("KDE/LanLink", "Beginning to send payload");
                     byte[] buffer = new byte[4096];
                     int bytesRead;
+                    long size = np.getPayloadSize();
                     long progress = 0;
+                    long prevPercent = -1;
                     while ((bytesRead = inputStream.read(buffer)) != -1) {
                         //Log.e("ok",""+bytesRead);
                         progress += bytesRead;
                         outputStream.write(buffer, 0, bytesRead);
-                        if (np.getPayloadSize() > 0) {
-                            callback.onProgressChanged( (int)((100*progress) / np.getPayloadSize()) );
+                        if (size > 0) {
+                            long percent = ((100*progress) / size);
+                            if (percent != prevPercent) {
+                                prevPercent = percent;
+                                callback.onProgressChanged((int)percent);
+                            }
                         }
                     }
                     outputStream.flush();
