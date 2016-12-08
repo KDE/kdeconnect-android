@@ -207,7 +207,7 @@ public class LanLink extends BaseLink {
                         progress += bytesRead;
                         outputStream.write(buffer, 0, bytesRead);
                         if (np.getPayloadSize() > 0) {
-                            callback.onProgressChanged((int)(progress / np.getPayloadSize()));
+                            callback.onProgressChanged( (int)((100*progress) / np.getPayloadSize()) );
                         }
                     }
                     outputStream.flush();
