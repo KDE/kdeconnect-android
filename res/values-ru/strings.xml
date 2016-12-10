@@ -71,7 +71,6 @@
   <string name="received_file_text">Нажмите, чтобы открыть «%1s»</string>
   <string name="sent_file_title">Файл отправлен на %1s</string>
   <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Не удалось отправить файл %1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Нажмите, чтобы ответить</string>
   <string name="reconnect">Подключить заново</string>

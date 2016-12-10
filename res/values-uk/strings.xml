@@ -79,13 +79,15 @@
   <string name="incoming_file_title">Вхідний файл з %1s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Надсилаємо файл до %1s</string>
+  <string name="outgoing_files_title">Надсилаємо файли на %1s</string>
   <string name="outgoing_file_text">%1s</string>
+  <string name="outgoing_files_text">Надіслано %1$d з %2$d файлів</string>
   <string name="received_file_title">Отримано файл з %1s</string>
   <string name="received_file_fail_title">Не вдалося отримати файл з %1s</string>
   <string name="received_file_text">Натисніть, щоб відкрити «%1s»</string>
   <string name="sent_file_title">Файл надіслано до %1s</string>
   <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Не вдалося надіслати файл %1s</string>
+  <string name="sent_file_failed_title">Не вдалося надіслати файл на %1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Натисніть, щоб відповісти</string>
   <string name="reconnect">З\'єднати знову</string>

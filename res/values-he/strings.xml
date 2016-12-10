@@ -79,7 +79,6 @@
   <string name="received_file_text">לחץ כדי לפתוח את %1s</string>
   <string name="sent_file_title">הקובץ נשלח ל־%1s</string>
   <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">נכשל בשליחת הקובץ ל־%1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">לחץ כדי לענות</string>
   <string name="reconnect">התחבר מחדש</string>

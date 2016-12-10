@@ -85,7 +85,6 @@
   <string name="received_file_text">點擊開啟 \'%1s\'</string>
   <string name="sent_file_title">將檔案傳送到 %1s</string>
   <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">傳送到 %1s 的檔案失敗</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">點擊即可應答</string>
   <string name="reconnect">重新連線</string>

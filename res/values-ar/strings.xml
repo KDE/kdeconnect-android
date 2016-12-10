@@ -82,7 +82,6 @@
   <string name="received_file_text">المس لفتح \'%1s\'</string>
   <string name="sent_file_title">أرسل ملفًّا إلى %1s</string>
   <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">فشل إرسال الملفّ %1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">المس للإجابة</string>
   <string name="reconnect">أعد الاتّصال</string>

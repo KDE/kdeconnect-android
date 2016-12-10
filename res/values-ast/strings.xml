@@ -85,7 +85,6 @@
   <string name="received_file_text">Tap to open \'%1s\'</string>
   <string name="sent_file_title">Unvióse\'l ficheru a %1s</string>
   <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Fallu al unviar el ficheru %1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Calca pa responder</string>
   <string name="reconnect">Reconeutar</string>

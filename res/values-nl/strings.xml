@@ -79,13 +79,15 @@
   <string name="incoming_file_title">Inkomend bestand van %1s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Bezig bestand te verzenden naar %1s</string>
+  <string name="outgoing_files_title">Bezig bestanden te verzenden naar %1s</string>
   <string name="outgoing_file_text">%1s</string>
+  <string name="outgoing_files_text">Verzonden %1$d uit %2$d bestanden</string>
   <string name="received_file_title">Bestand ontvangen van %1s</string>
   <string name="received_file_fail_title">Bestand ontvangen van %1s is mislukt</string>
   <string name="received_file_text">Tap om \'%1s\' te openen</string>
   <string name="sent_file_title">Bestand verzonden naar %1s</string>
   <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Verzenden van bestand %1s is mislukt</string>
+  <string name="sent_file_failed_title">Verzenden van bestand naar %1s is mislukt</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Tap om te antwoorden</string>
   <string name="reconnect">Opnieuw verbinden</string>

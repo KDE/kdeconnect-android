@@ -79,13 +79,15 @@
   <string name="incoming_file_title">Fitxer entrant des de %1s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">S\'està enviant el fitxer a %1s</string>
+  <string name="outgoing_files_title">S\'estan enviant fitxers a %1s</string>
   <string name="outgoing_file_text">%1s</string>
+  <string name="outgoing_files_text">S\'ha enviat %1$d de %2$d fitxers</string>
   <string name="received_file_title">Fitxer rebut des de %1s</string>
   <string name="received_file_fail_title">Ha fallat en rebre el fitxer des de %1s</string>
   <string name="received_file_text">Puntegeu per obrir «%1s»</string>
   <string name="sent_file_title">Envia el fitxer a %1s</string>
   <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Ha fallat en enviar el fitxer %1s</string>
+  <string name="sent_file_failed_title">Ha fallat en enviar el fitxer a %1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Puntegeu per a respondre</string>
   <string name="reconnect">Reconnecta</string>
