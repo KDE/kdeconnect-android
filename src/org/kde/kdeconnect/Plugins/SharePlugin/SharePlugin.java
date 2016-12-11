@@ -112,7 +112,9 @@ public class SharePlugin extends Plugin {
                 final long fileLength = np.getPayloadSize();
                 final String filename = np.getString("filename", Long.toString(System.currentTimeMillis()));
 
-                String name = filename.substring(0, filename.lastIndexOf("."));
+                int dot = filename.lastIndexOf(".");
+                String name = (dot < 0)? filename : filename.substring(0, dot);
+                String ext = (dot < 0)? "" : filename.substring(filename.lastIndexOf("."));
                 final String mimeType = FilesHelper.getMimeTypeFromFile(filename);
 
                 final DocumentFile destinationFolderDocument = ShareSettingsActivity.getDestinationDirectory(context);
