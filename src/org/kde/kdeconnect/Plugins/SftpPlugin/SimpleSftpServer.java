@@ -21,7 +21,6 @@
 package org.kde.kdeconnect.Plugins.SftpPlugin;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 
@@ -56,11 +55,9 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.security.PublicKey;
 import java.security.Security;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Enumeration;
-import java.util.List;
 
 class SimpleSftpServer {
     private static final int STARTPORT = 1739;
