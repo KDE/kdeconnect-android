@@ -44,6 +44,7 @@ import android.widget.Toast;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.FilesHelper;
+import org.kde.kdeconnect.Helpers.MediaStoreHelper;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
@@ -180,9 +181,7 @@ public class SharePlugin extends Plugin {
                             Log.i("SharePlugin", "Transfer finished");
 
                             //Make sure it is added to the Android Gallery
-                            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                            mediaScanIntent.setData(Uri.fromFile(destinationFullPath));
-                            context.sendBroadcast(mediaScanIntent);
+                            MediaStoreHelper.indexFile(context, Uri.fromFile(destinationFullPath));
 
                             //Update the notification and allow to open the file from it
                             Intent intent = new Intent(Intent.ACTION_VIEW);

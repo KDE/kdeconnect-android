@@ -44,6 +44,7 @@ import org.apache.sshd.server.keyprovider.SimpleGeneratorHostKeyProvider;
 import org.apache.sshd.server.session.ServerSession;
 import org.apache.sshd.server.sftp.SftpSubsystem;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Helpers.MediaStoreHelper;
 import org.kde.kdeconnect.Helpers.RandomHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 
@@ -198,12 +199,12 @@ class SimpleSftpServer {
     static class AndroidSshFile extends NativeSshFile {
 
         final private Context context;
-        final private Uri path;
+        final private File file;
 
         public AndroidSshFile(final File file, final String userName, Context context) {
             super(file.getAbsolutePath(), file, userName);
             this.context = context;
-            this.path = Uri.fromFile(file);
+            this.file = file;
         }
 
         @Override
@@ -211,10 +212,7 @@ class SimpleSftpServer {
             //Log.e("Sshd", "deleting file");
             boolean ret = super.delete();
             if (ret) {
-                Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                mediaScanIntent.setData(path);
-                context.sendBroadcast(mediaScanIntent);
-                context.getContentResolver().delete(path, null, null);
+                MediaStoreHelper.indexFile(context, Uri.fromFile(file));
             }
             return ret;
 
@@ -225,9 +223,7 @@ class SimpleSftpServer {
             //Log.e("Sshd", "creating file");
             boolean ret = super.create();
             if (ret) {
-                Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                mediaScanIntent.setData(path);
-                context.sendBroadcast(mediaScanIntent);
+                MediaStoreHelper.indexFile(context, Uri.fromFile(file));
             }
             return ret;
 
