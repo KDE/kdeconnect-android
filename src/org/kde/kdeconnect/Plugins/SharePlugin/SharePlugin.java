@@ -172,45 +172,38 @@ public class SharePlugin extends Plugin {
                         try {
                             Log.i("SharePlugin", "Transfer finished");
 
-                            //Make sure it is added to the Android Gallery
-                            MediaStoreHelper.indexFile(context, destinationUri);
-
                             //Update the notification and allow to open the file from it
-                            Intent intent = new Intent(Intent.ACTION_VIEW);
-                            intent.setDataAndType(destinationUri, mimeType);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-                            stackBuilder.addNextIntent(intent);
-                            PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
-                                    0,
-                                    PendingIntent.FLAG_UPDATE_CURRENT
-                            );
-
                             Resources res = context.getResources();
-
                             String message = successful? res.getString(R.string.received_file_title, device.getName()) : res.getString(R.string.received_file_fail_title, device.getName());
                             NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                                     .setContentTitle(message)
                                     .setTicker(message)
                                     .setSmallIcon(android.R.drawable.stat_sys_download_done)
                                     .setAutoCancel(true);
-
                             if (successful) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setDataAndType(destinationUri, mimeType);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+                                stackBuilder.addNextIntent(intent);
+                                PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
                                 builder.setContentText(res.getString(R.string.received_file_text, filename))
                                        .setContentIntent(resultPendingIntent);
                             }
-
                             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
                             if (prefs.getBoolean("share_notification_preference", true)) {
                                 builder.setDefaults(Notification.DEFAULT_ALL);
                             }
-
                             NotificationHelper.notifyCompat(notificationManager, notificationId, builder.build());
+
+                            if (successful) {
+                                //Make sure it is added to the Android Gallery
+                                MediaStoreHelper.indexFile(context, destinationUri);
+                            }
 
                         } catch (Exception e) {
                             Log.e("SharePlugin", "Receiver thread exception");
                             e.printStackTrace();
-
                         }
                     }
                 }).start();
