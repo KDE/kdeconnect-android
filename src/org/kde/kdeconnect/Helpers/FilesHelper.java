@@ -27,15 +27,33 @@ import java.io.File;
 
 public class FilesHelper {
 
-    public static String getFileExt(String fileName) {
-        //return MimeTypeMap.getFileExtensionFromUrl(fileName);
-        return fileName.substring((fileName.lastIndexOf(".") + 1), fileName.length());
+    public static String getFileExt(String filename) {
+        //return MimeTypeMap.getFileExtensionFromUrl(filename);
+        return filename.substring((filename.lastIndexOf(".") + 1));
     }
 
+    public static String getFileNameWithoutExt(String filename) {
+        int dot = filename.lastIndexOf(".");
+        return (dot < 0)? filename : filename.substring(0, dot);
+    }
     public static String getMimeTypeFromFile(String file) {
         String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(getFileExt(file));
         if (mime == null) mime = "*/*";
         return mime;
+    }
+
+    public static String findNonExistingNameForNewFile(String path, String filename) {
+        int dot = filename.lastIndexOf(".");
+        String name = (dot < 0)? filename : filename.substring(0, dot);
+        String ext = (dot < 0)? "" : filename.substring(filename.lastIndexOf("."));
+
+        int num = 1;
+        while (new File(path+"/"+filename).exists()) {
+            filename = name+" ("+num+")"+ext;
+            num++;
+        }
+
+        return filename;
     }
 
     //Following code from http://activemq.apache.org/maven/5.7.0/kahadb/apidocs/src-html/org/apache/kahadb/util/IOHelper.html

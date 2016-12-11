@@ -160,6 +160,10 @@
     <string name="custom_device_list">Add devices by IP</string>
     <string name="share_notification_preference">Noisy notifications</string>
     <string name="share_notification_preference_summary">Vibrate and play a sound when receiving a file</string>
+    <string name="share_destination_customize">Customize destination directory</string>
+    <string name="share_destination_customize_summary_disabled">Received files will appear in Downloads</string>
+    <string name="share_destination_customize_summary_enabled">Files will be stored in the directory below</string>
+    <string name="share_destination_folder_preference">Destination directory</string>
     <string name="title_activity_notification_filter">Notification filter</string>
     <string name="filter_apps_info">Notifications will be synchronized for the selected apps.</string>
     <string name="sftp_internal_storage">Internal storage</string>
@@ -190,8 +194,8 @@
     <string name="findmyphone_title_tablet">Find my tablet</string>
     <string name="findmyphone_description">Rings this device so you can find it</string>
     <string name="findmyphone_found">Found</string>
-    <string name="share_destination_folder_preference">Destination directory</string>
 
     <string name="open">Open</string>
     <string name="close">Close</string>
+
 </resources>

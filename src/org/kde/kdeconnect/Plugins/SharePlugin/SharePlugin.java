@@ -21,6 +21,7 @@
 package org.kde.kdeconnect.Plugins.SharePlugin;
 
 import android.app.Activity;
+import android.app.DownloadManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -110,19 +111,21 @@ public class SharePlugin extends Plugin {
 
                 final InputStream input = np.getPayload();
                 final long fileLength = np.getPayloadSize();
-                final String filename = np.getString("filename", Long.toString(System.currentTimeMillis()));
+                final String originalFilename = np.getString("filename", Long.toString(System.currentTimeMillis()));
 
-                int dot = filename.lastIndexOf(".");
-                String name = (dot < 0)? filename : filename.substring(0, dot);
-                String ext = (dot < 0)? "" : filename.substring(filename.lastIndexOf("."));
+                //We need to check for already existing files only when storing in the default path.
+                //User-defined paths use the new Storage Access Framework that already handles this.
+                final boolean customDestination = ShareSettingsActivity.isCustomDestinationEnabled(context);
+                final String defaultPath = ShareSettingsActivity.getDefaultDestinationDirectory().getAbsolutePath();
+                final String filename = customDestination? originalFilename : FilesHelper.findNonExistingNameForNewFile(defaultPath, originalFilename);
+
+                final String nameWithoutExtension = FilesHelper.getFileNameWithoutExt(filename);
                 final String mimeType = FilesHelper.getMimeTypeFromFile(filename);
 
                 final DocumentFile destinationFolderDocument = ShareSettingsActivity.getDestinationDirectory(context);
-                final DocumentFile destinationDocument = destinationFolderDocument.createFile(mimeType, name);
+                final DocumentFile destinationDocument = destinationFolderDocument.createFile(mimeType, nameWithoutExtension);
                 final OutputStream destinationOutput = context.getContentResolver().openOutputStream(destinationDocument.getUri());
                 final Uri destinationUri = destinationDocument.getUri();
-
-                final NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
                 final int notificationId = (int)System.currentTimeMillis();
                 Resources res = context.getResources();
@@ -135,6 +138,7 @@ public class SharePlugin extends Plugin {
                         .setOngoing(true)
                         .setProgress(100,0,true);
 
+                final NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
                 NotificationHelper.notifyCompat(notificationManager,notificationId, builder.build());
 
                 new Thread(new Runnable() {
@@ -172,7 +176,7 @@ public class SharePlugin extends Plugin {
                         }
 
                         try {
-                            Log.i("SharePlugin", "Transfer finished");
+                            Log.i("SharePlugin", "Transfer finished: "+destinationUri.getPath());
 
                             //Update the notification and allow to open the file from it
                             Resources res = context.getResources();
@@ -189,7 +193,7 @@ public class SharePlugin extends Plugin {
                                 TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
                                 stackBuilder.addNextIntent(intent);
                                 PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-                                builder.setContentText(res.getString(R.string.received_file_text, filename))
+                                builder.setContentText(res.getString(R.string.received_file_text, destinationDocument.getName()))
                                        .setContentIntent(resultPendingIntent);
                             }
                             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -199,8 +203,14 @@ public class SharePlugin extends Plugin {
                             NotificationHelper.notifyCompat(notificationManager, notificationId, builder.build());
 
                             if (successful) {
-                                //Make sure it is added to the Android Gallery
-                                MediaStoreHelper.indexFile(context, destinationUri);
+                                if (!customDestination) {
+                                    Log.i("SharePlugin","Adding to downloads");
+                                    DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+                                    manager.addCompletedDownload(destinationUri.getLastPathSegment(), device.getName(), true, mimeType, destinationUri.getPath(), fileLength, false);
+                                } else {
+                                    //Make sure it is added to the Android Gallery anyway
+                                    MediaStoreHelper.indexFile(context, destinationUri);
+                                }
                             }
 
                         } catch (Exception e) {
