@@ -33,7 +33,6 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v4.app.NotificationCompat;
@@ -53,7 +52,6 @@ import org.kde.kdeconnect.UserInterface.SettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -102,8 +100,6 @@ public class SharePlugin extends Plugin {
         return true;
     }
 
-    private static final int READ_REQUEST_CODE = 42;
-
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
 
@@ -116,53 +112,13 @@ public class SharePlugin extends Plugin {
                 final long fileLength = np.getPayloadSize();
                 final String filename = np.getString("filename", Long.toString(System.currentTimeMillis()));
 
-                final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+                String name = filename.substring(0, filename.lastIndexOf("."));
+                final String mimeType = FilesHelper.getMimeTypeFromFile(filename);
 
-                String deviceDir = FilesHelper.toFileSystemSafeName(device.getName());
-                File destinationFullPath;
-                DocumentFile destinationDocument;
-
-                final OutputStream destinationOutput;
-                final Uri destinationUri;
-                final String mimeType;
-
-                if (prefs.contains("share_destination_folder_uri")) {
-                    Uri folderUri = Uri.parse(prefs.getString("share_destination_folder_uri", null));
-                    final DocumentFile destinationFolderDocument = DocumentFile.fromTreeUri(context, folderUri);
-                    String name = filename.substring(0, filename.lastIndexOf("."));
-                    mimeType = FilesHelper.getMimeTypeFromFile(filename);
-                    if (destinationFolderDocument.findFile("kdeconnect") == null) {
-                        destinationFolderDocument.createDirectory("kdeconnect");
-                    }
-                    if (destinationFolderDocument.findFile("kdeconnect").findFile(deviceDir) == null) {
-                        destinationFolderDocument.findFile("kdeconnect").createDirectory(deviceDir);
-                    }
-                    destinationDocument = destinationFolderDocument.findFile("kdeconnect")
-                                                                   .findFile(deviceDir)
-                                                                   .createFile(mimeType, name);
-                    destinationOutput = context.getContentResolver().openOutputStream(destinationDocument.getUri());
-                    destinationUri = destinationDocument.getUri();
-                } else {
-                    //Get the external storage and append "/kdeconnect/DEVICE_NAME/"
-                    String destinationDir = Environment.getExternalStorageDirectory().getPath();
-                    destinationDir = new File(destinationDir, "kdeconnect").getPath();
-                    destinationDir = new File(destinationDir, deviceDir).getPath();
-
-                    //Create directories if needed
-                    new File(destinationDir).mkdirs();
-
-                    //Append filename to the destination path
-
-                    //Log.e("SharePlugin", "destinationFullPath:" + destinationFullPath);
-                    destinationFullPath = new File(destinationDir, filename);
-                    destinationOutput = new FileOutputStream(destinationFullPath.getPath());
-                    destinationUri = Uri.parse(destinationFullPath.toURI().toString());
-                    mimeType = FilesHelper.getMimeTypeFromFile(destinationFullPath.getPath());
-                }
-
-
-
-
+                final DocumentFile destinationFolderDocument = ShareSettingsActivity.getDestinationDirectory(context);
+                final DocumentFile destinationDocument = destinationFolderDocument.createFile(mimeType, name);
+                final OutputStream destinationOutput = context.getContentResolver().openOutputStream(destinationDocument.getUri());
+                final Uri destinationUri = destinationDocument.getUri();
 
                 final NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -244,7 +200,7 @@ public class SharePlugin extends Plugin {
                                        .setContentIntent(resultPendingIntent);
                             }
 
-
+                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
                             if (prefs.getBoolean("share_notification_preference", true)) {
                                 builder.setDefaults(Notification.DEFAULT_ALL);
                             }
@@ -324,7 +280,6 @@ public class SharePlugin extends Plugin {
         intent.putExtra("plugin_key", getPluginKey());
         parentActivity.startActivity(intent);
     }
-
 
     static void queuedSendUriList(Context context, final Device device, final ArrayList<Uri> uriList) {
 
