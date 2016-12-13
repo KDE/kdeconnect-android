@@ -134,6 +134,10 @@
   <string name="custom_device_list">Lägg till apparater enligt IP-adress</string>
   <string name="share_notification_preference">Ljudliga underrättelser</string>
   <string name="share_notification_preference_summary">Vibrera och spela ett ljud när en fil tas emot</string>
+  <string name="share_destination_customize">Anpassa målkatalog</string>
+  <string name="share_destination_customize_summary_disabled">Mottagna filer hamnar i Nerladdningar</string>
+  <string name="share_destination_customize_summary_enabled">Filer lagras i katalogen nedan</string>
+  <string name="share_destination_folder_preference">Målkatalog</string>
   <string name="title_activity_notification_filter">Underrättelsefilter</string>
   <string name="filter_apps_info">Underrättelser synkroniseras för markerade applikationer.</string>
   <string name="sftp_internal_storage">Intern lagring</string>

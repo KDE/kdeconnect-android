@@ -134,6 +134,10 @@
   <string name="custom_device_list">Додати пристрої за IP</string>
   <string name="share_notification_preference">Звукові сповіщення</string>
   <string name="share_notification_preference_summary">Вібрація і відтворення звуку у відповідь на отримання файла</string>
+  <string name="share_destination_customize">Налаштування каталогу призначення</string>
+  <string name="share_destination_customize_summary_disabled">Отримані файли зберігатимуться до каталогу «Завантаження»</string>
+  <string name="share_destination_customize_summary_enabled">Файли зберігатимуться у вказаному нижче каталозі</string>
+  <string name="share_destination_folder_preference">Каталог призначення</string>
   <string name="title_activity_notification_filter">Фільтр сповіщень</string>
   <string name="filter_apps_info">Сповіщення буде синхронізовано для позначених програм.</string>
   <string name="sftp_internal_storage">Вбудоване сховище даних</string>

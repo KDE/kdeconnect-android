@@ -134,6 +134,10 @@
   <string name="custom_device_list">Adicionar dispositivos pelo IP</string>
   <string name="share_notification_preference">Notificações com ruído</string>
   <string name="share_notification_preference_summary">Vibrar e tocar um som ao receber um ficheiro</string>
+  <string name="share_destination_customize">Personalizar a pasta de destino</string>
+  <string name="share_destination_customize_summary_disabled">Os ficheiros recebidos irão aparecer em \'Transferências\'</string>
+  <string name="share_destination_customize_summary_enabled">Os ficheiros serão guardados na pasta abaixo</string>
+  <string name="share_destination_folder_preference">Pasta de destino</string>
   <string name="title_activity_notification_filter">Filtro de notificações</string>
   <string name="filter_apps_info">As notificações serão sincronizadas para as aplicações seleccionadas.</string>
   <string name="sftp_internal_storage">Armazenamento interno</string>
