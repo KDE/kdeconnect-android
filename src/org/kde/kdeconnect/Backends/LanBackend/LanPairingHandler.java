@@ -142,7 +142,7 @@ public class LanPairingHandler extends BasePairingHandler {
 
         Device.SendPackageStatusCallback statusCallback = new Device.SendPackageStatusCallback() {
             @Override
-            protected void onSuccess() {
+            public void onSuccess() {
                 hidePairingNotification(); //Will stop the pairingTimer if it was running
                 mPairingTimer = new Timer();
                 mPairingTimer.schedule(new TimerTask() {
@@ -157,7 +157,12 @@ public class LanPairingHandler extends BasePairingHandler {
             }
 
             @Override
-            protected void onFailure(Throwable e) {
+            public void onFailure(Throwable e) {
+                if (e != null) {
+                    e.printStackTrace();
+                } else {
+                    Log.e("LanPairing/onFailure", "Unknown (null) exception");
+                }
                 mCallback.pairingFailed(mDevice.getContext().getString(R.string.error_could_not_send_package));
             }
         };
@@ -176,12 +181,17 @@ public class LanPairingHandler extends BasePairingHandler {
         hidePairingNotification();
         Device.SendPackageStatusCallback statusCallback = new Device.SendPackageStatusCallback() {
             @Override
-            protected void onSuccess() {
+            public void onSuccess() {
                 pairingDone();
             }
 
             @Override
-            protected void onFailure(Throwable e) {
+            public void onFailure(Throwable e) {
+                if (e != null) {
+                    e.printStackTrace();
+                } else {
+                    Log.e("LanPairing/onFailure", "Unknown (null) exception");
+                }
                 mCallback.pairingFailed(mDevice.getContext().getString(R.string.error_not_reachable));
             }
         };

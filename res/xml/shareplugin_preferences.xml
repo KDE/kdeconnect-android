@@ -4,6 +4,19 @@
     android:layout_height="match_parent">
 
     <CheckBoxPreference
+        android:id="@+id/share_destination_customize"
+        android:key="share_destination_custom"
+        android:title="@string/share_destination_customize"
+        android:summaryOff="@string/share_destination_customize_summary_disabled"
+        android:summaryOn="@string/share_destination_customize_summary_enabled"
+        android:defaultValue="false" />
+
+    <Preference
+        android:id="@+id/share_destination_folder_preference"
+        android:key="share_destination_folder_preference"
+        android:title="@string/share_destination_folder_preference" />
+
+    <CheckBoxPreference
         android:id="@+id/share_notification_preference"
         android:key="share_notification_preference"
         android:title="@string/share_notification_preference"

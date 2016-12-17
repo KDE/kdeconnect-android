@@ -68,9 +68,9 @@ public class SftpPlugin extends Plugin {
                 NetworkPackage np2 = new NetworkPackage(PACKAGE_TYPE_SFTP);
 
                 np2.set("ip", server.getLocalIpAddress());
-                np2.set("port", server.port);
-                np2.set("user", server.passwordAuth.getUser());
-                np2.set("password", server.passwordAuth.getPassword());
+                np2.set("port", server.getPort());
+                np2.set("user", SimpleSftpServer.USER);
+                np2.set("password", server.getPassword());
 
                 //Kept for compatibility, in case "multiPaths" is not possible or the other end does not support it
                 np2.set("path", Environment.getExternalStorageDirectory().getAbsolutePath());

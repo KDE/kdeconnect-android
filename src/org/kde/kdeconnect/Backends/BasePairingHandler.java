@@ -23,8 +23,6 @@ package org.kde.kdeconnect.Backends;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
 
-import java.util.Timer;
-
 /**
  * This class separates the pairing interface for each type of link.
  * Since different links can pair via different methods, like for LanLink certificate and public key should be shared,

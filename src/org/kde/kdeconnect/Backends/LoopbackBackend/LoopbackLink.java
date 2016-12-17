@@ -47,18 +47,19 @@ public class LoopbackLink extends BaseLink {
     }
 
     @Override
-    public void sendPackage(NetworkPackage in, Device.SendPackageStatusCallback callback) {
+    public boolean sendPackage(NetworkPackage in, Device.SendPackageStatusCallback callback) {
         packageReceived(in);
         if (in.hasPayload()) {
-            callback.sendProgress(0);
+            callback.onProgressChanged(0);
             in.setPayload(in.getPayload(), in.getPayloadSize());
-            callback.sendProgress(100);
+            callback.onProgressChanged(100);
         }
-        callback.sendSuccess();
+        callback.onSuccess();
+        return true;
     }
 
     @Override
-    public void sendPackageEncrypted(NetworkPackage np, Device.SendPackageStatusCallback callback, PublicKey key) {
-        sendPackage(np, callback);
+    public boolean sendPackageEncrypted(NetworkPackage np, Device.SendPackageStatusCallback callback, PublicKey key) {
+        return sendPackage(np, callback);
     }
 }

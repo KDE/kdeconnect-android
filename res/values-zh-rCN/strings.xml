@@ -72,7 +72,6 @@
   <string name="received_file_text">点击以打开“%1s”</string>
   <string name="sent_file_title">发送文件到%1s</string>
   <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">未能发送文件%1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">点击以应答</string>
   <string name="reconnect">重新连接</string>

@@ -21,6 +21,7 @@
 package org.kde.kdeconnect.Plugins.SftpPlugin;
 
 import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
 
 import org.apache.sshd.SshServer;
@@ -42,33 +43,33 @@ import org.apache.sshd.server.keyprovider.SimpleGeneratorHostKeyProvider;
 import org.apache.sshd.server.session.ServerSession;
 import org.apache.sshd.server.sftp.SftpSubsystem;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Helpers.MediaStoreHelper;
 import org.kde.kdeconnect.Helpers.RandomHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.security.PublicKey;
 import java.security.Security;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Enumeration;
-import java.util.List;
 
 class SimpleSftpServer {
     private static final int STARTPORT = 1739;
     private static final int ENDPORT = 1764;
 
-    private static final String USER = "kdeconnect";
+    static final String USER = "kdeconnect";
 
-    public static int port = -1;
-    private static boolean started = false;
+    private int port = -1;
+    private boolean started = false;
 
-    public final SimplePasswordAuthenticator passwordAuth = new SimplePasswordAuthenticator();
-    public final SimplePublicKeyAuthenticator keyAuth = new SimplePublicKeyAuthenticator();
+    private final SimplePasswordAuthenticator passwordAuth = new SimplePasswordAuthenticator();
+    private final SimplePublicKeyAuthenticator keyAuth = new SimplePublicKeyAuthenticator();
 
     static {
         Security.insertProviderAt(SslHelper.BC, 1);
@@ -76,20 +77,20 @@ class SimpleSftpServer {
     }
     private final SshServer sshd = SshServer.setUpDefaultServer();
 
-    public void init(Context ctx, Device device) {
+    public void init(Context context, Device device) {
+
         sshd.setKeyExchangeFactories(Arrays.asList(
                 new DHG14.Factory(),
                 new DHG1.Factory()));
 
-        passwordAuth.setUser(USER);
-        sshd.setKeyPairProvider(new SimpleGeneratorHostKeyProvider(ctx.getFilesDir() + "/sftpd.ser"));
+        sshd.setKeyPairProvider(new SimpleGeneratorHostKeyProvider(context.getFilesDir() + "/sftpd.ser"));
 
-        sshd.setFileSystemFactory(new SecureFileSystemFactory());
+        sshd.setFileSystemFactory(new AndroidFileSystemFactory(context));
         sshd.setCommandFactory(new ScpCommandFactory());
         sshd.setSubsystemFactories(Collections.singletonList((NamedFactory<Command>)new SftpSubsystem.Factory()));
 
         if (device.publicKey != null) {
-            keyAuth.addKey(device.publicKey);
+            keyAuth.deviceKey = device.publicKey;
             sshd.setPublickeyAuthenticator(keyAuth);
         }
         sshd.setPasswordAuthenticator(passwordAuth);
@@ -98,8 +99,7 @@ class SimpleSftpServer {
     public boolean start() {
         if (!started) {
 
-            String password = RandomHelper.randomString(28);
-            passwordAuth.setPassword(password);
+            passwordAuth.password = RandomHelper.randomString(28);
 
             port = STARTPORT;
             while(!started) {
@@ -131,6 +131,14 @@ class SimpleSftpServer {
         }
     }
 
+    public String getPassword() {
+        return passwordAuth.password;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
     public String getLocalIpAddress() {
         String ip6 = null;
         try {
@@ -153,92 +161,89 @@ class SimpleSftpServer {
         return ip6;
     }
 
-    static class SecureFileSystemFactory implements FileSystemFactory {
+    static class AndroidFileSystemFactory implements FileSystemFactory {
 
-        public SecureFileSystemFactory() {}
+        final private Context context;
+
+        public AndroidFileSystemFactory(Context context) {
+            this.context = context;
+        }
 
         @Override
         public FileSystemView createFileSystemView(final Session username) {
-            final String base = "/";
-            return new SecureFileSystemView(base, username.getUsername());
+            return new AndroidFileSystemView(username.getUsername(), context);
         }
     }
 
-    static class SecureFileSystemView extends NativeFileSystemView {
-        // the first and the last character will always be '/'
-        // It is always with respect to the root directory.
-        private String currDir = "/";
-        private String rootDir = "/";
-        private String userName;
-        //
-        public SecureFileSystemView(final String rootDir, final String userName) {
-            super(userName);
-            this.rootDir = NativeSshFile.normalizeSeparateChar(rootDir);
+    static class AndroidFileSystemView extends NativeFileSystemView {
+
+        final private String userName;
+        final private Context context;
+
+        public AndroidFileSystemView(final String userName, Context context) {
+            super(userName, true);
             this.userName = userName;
-        }
-        //
-        @Override
-        public SshFile getFile(final String file) {
-            return getFile(currDir, file);
+            this.context = context;
         }
 
         @Override
-        public SshFile getFile(final SshFile baseDir, final String file) {
-            return getFile(baseDir.getAbsolutePath(), file);
-        }
-
-        //
         protected SshFile getFile(final String dir, final String file) {
-            // get actual file object
-            final boolean caseInsensitive = false;
-            String physicalName = NativeSshFile.getPhysicalName("/", dir, file, caseInsensitive);
-            File fileObj = new File(rootDir, physicalName); // chroot
-
-            // strip the root directory and return
-            String userFileName = physicalName.substring("/".length() - 1);
-            return new SecureSshFile(userFileName, fileObj, userName);
+            File fileObj = new File(dir, file);
+            return new AndroidSshFile(fileObj, userName, context);
         }
     }
 
-    static class SecureSshFile extends NativeSshFile {
-        public SecureSshFile(final String fileName, final File file, final String userName) {
-            super(fileName, file, userName);
+    static class AndroidSshFile extends NativeSshFile {
+
+        final private Context context;
+        final private File file;
+
+        public AndroidSshFile(final File file, final String userName, Context context) {
+            super(file.getAbsolutePath(), file, userName);
+            this.context = context;
+            this.file = file;
+        }
+
+        @Override
+        public boolean delete() {
+            //Log.e("Sshd", "deleting file");
+            boolean ret = super.delete();
+            if (ret) {
+                MediaStoreHelper.indexFile(context, Uri.fromFile(file));
+            }
+            return ret;
+
+        }
+
+        @Override
+        public boolean create() throws IOException {
+            //Log.e("Sshd", "creating file");
+            boolean ret = super.create();
+            if (ret) {
+                MediaStoreHelper.indexFile(context, Uri.fromFile(file));
+            }
+            return ret;
+
         }
     }
 
     static class SimplePasswordAuthenticator implements PasswordAuthenticator {
 
-        public void setUser(String user) {this.user = user;}
-        public String getUser() {return this.user;}
-
-        public void setPassword(String password) {this.password = password;}
-        public String getPassword() {return this.password;}
+        public String password;
 
         @Override
         public boolean authenticate(String user, String password, ServerSession session) {
-            return user.equals(this.user) && password.equals(this.password);
+            return user.equals(SimpleSftpServer.USER) && password.equals(this.password);
         }
-
-        private String user;
-        private String password;
     }
 
     static class SimplePublicKeyAuthenticator implements PublickeyAuthenticator {
 
-        private final List<PublicKey> keys = new ArrayList<>();
-
-        public void addKey(PublicKey key) {
-            keys.add(key);
-        }
+        public PublicKey deviceKey;
 
         @Override
         public boolean authenticate(String user, PublicKey key, ServerSession session) {
-            for (PublicKey k : keys) {
-                if (key.equals(k)) {
-                    return true;
-                }
-            }
-            return false;
+            return deviceKey.equals(key);
         }
 
     }

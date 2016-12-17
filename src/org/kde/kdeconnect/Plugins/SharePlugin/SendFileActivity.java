@@ -63,7 +63,7 @@ public class SendFileActivity extends ActionBarActivity {
             case Activity.RESULT_FIRST_USER:
                 if (resultCode == RESULT_OK) {
                     final Uri uri = data.getData();
-                    Log.e("SendFileActivity", "File Uri: " + uri.toString());
+                    Log.i("SendFileActivity", "File Uri: " + uri.toString());
                     BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
                         @Override
                         public void onServiceStart(BackgroundService service) {

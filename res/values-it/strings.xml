@@ -79,13 +79,15 @@
   <string name="incoming_file_title">File in ingresso da %1s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Invio file a %1s</string>
+  <string name="outgoing_files_title">Invio file a %1s</string>
   <string name="outgoing_file_text">%1s</string>
+  <string name="outgoing_files_text">Inviati %1$d di %2$d file</string>
   <string name="received_file_title">File ricevuto da %1s</string>
   <string name="received_file_fail_title">Ricezione file da %1s non riuscita</string>
   <string name="received_file_text">Tocca per aprire «%1s»</string>
   <string name="sent_file_title">File inviato a %1s</string>
   <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Invio del file %1s non riuscito</string>
+  <string name="sent_file_failed_title">Invio del file a %1s non riuscito</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Tocca per rispondere</string>
   <string name="reconnect">Riconnetti</string>
@@ -132,6 +134,10 @@
   <string name="custom_device_list">Aggiungi dispositivi per IP</string>
   <string name="share_notification_preference">Notifiche rumorose</string>
   <string name="share_notification_preference_summary">Vibra e riproduci un suono alla ricezione di un file</string>
+  <string name="share_destination_customize">Personalizza la cartella di destinazione</string>
+  <string name="share_destination_customize_summary_disabled">I file ricevuti saranno visualizzati in Downloads</string>
+  <string name="share_destination_customize_summary_enabled">I file saranno memorizzati nella cartella seguente</string>
+  <string name="share_destination_folder_preference">Cartella di destinazione</string>
   <string name="title_activity_notification_filter">Filtro delle notifiche</string>
   <string name="filter_apps_info">Le notifiche saranno sincronizzate per le applicazioni selezionate.</string>
   <string name="sftp_internal_storage">Archiviazione interna</string>

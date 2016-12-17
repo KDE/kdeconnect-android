@@ -79,13 +79,15 @@
   <string name="incoming_file_title">Indkommende fil fra %1s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Sender fil til %1s</string>
+  <string name="outgoing_files_title">Sender filer til %1s</string>
   <string name="outgoing_file_text">%1s</string>
+  <string name="outgoing_files_text">Sendte %1$d ud af %2$d filer</string>
   <string name="received_file_title">Modtog fil fra %1s</string>
   <string name="received_file_fail_title">Kunne ikke modtage fil fra %1s</string>
   <string name="received_file_text">Tap for at åbne \"%1s\"</string>
   <string name="sent_file_title">Fil sendt til %1s</string>
   <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Kunne ikke sende filen %1s</string>
+  <string name="sent_file_failed_title">Kunne ikke sende filen til %1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Tap for at svare</string>
   <string name="reconnect">Forbind igen</string>
@@ -132,6 +134,10 @@
   <string name="custom_device_list">Tilføj enheder via IP</string>
   <string name="share_notification_preference">Støjende bekendtgørelser</string>
   <string name="share_notification_preference_summary">Vibrér og afspil en lyd når en fil modtages</string>
+  <string name="share_destination_customize">Tilpas destinationsmappe</string>
+  <string name="share_destination_customize_summary_disabled">Modtagne filer vil dukke op i Downloads</string>
+  <string name="share_destination_customize_summary_enabled">Filer vil blive gemt i mappen nedenfor</string>
+  <string name="share_destination_folder_preference">Destinationsmappe</string>
   <string name="title_activity_notification_filter">Bekendtgørelsesfilter</string>
   <string name="filter_apps_info">Bekendtgørelser vil blive synkroniseret for de valgte apps.</string>
   <string name="sftp_internal_storage">Intern lagring</string>

@@ -21,6 +21,7 @@
 package org.kde.kdeconnect.Plugins.SharePlugin;
 
 import android.app.Activity;
+import android.app.DownloadManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -33,25 +34,25 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Environment;
-import android.os.Handler;
-import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.provider.DocumentFile;
 import android.util.Log;
 import android.widget.Toast;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.FilesHelper;
+import org.kde.kdeconnect.Helpers.MediaStoreHelper;
+import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.UserInterface.SettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -110,23 +111,21 @@ public class SharePlugin extends Plugin {
 
                 final InputStream input = np.getPayload();
                 final long fileLength = np.getPayloadSize();
-                final String filename = np.getString("filename", Long.toString(System.currentTimeMillis()));
+                final String originalFilename = np.getString("filename", Long.toString(System.currentTimeMillis()));
 
-                String deviceDir = FilesHelper.toFileSystemSafeName(device.getName());
-                //Get the external storage and append "/kdeconnect/DEVICE_NAME/"
-                String destinationDir = Environment.getExternalStorageDirectory().getPath();
-                destinationDir = new File(destinationDir, "kdeconnect").getPath();
-                destinationDir = new File(destinationDir, deviceDir).getPath();
+                //We need to check for already existing files only when storing in the default path.
+                //User-defined paths use the new Storage Access Framework that already handles this.
+                final boolean customDestination = ShareSettingsActivity.isCustomDestinationEnabled(context);
+                final String defaultPath = ShareSettingsActivity.getDefaultDestinationDirectory().getAbsolutePath();
+                final String filename = customDestination? originalFilename : FilesHelper.findNonExistingNameForNewFile(defaultPath, originalFilename);
 
-                //Create directories if needed
-                new File(destinationDir).mkdirs();
+                final String nameWithoutExtension = FilesHelper.getFileNameWithoutExt(filename);
+                final String mimeType = FilesHelper.getMimeTypeFromFile(filename);
 
-                //Append filename to the destination path
-                final File destinationFullPath = new File(destinationDir, filename);
-
-                //Log.e("SharePlugin", "destinationFullPath:" + destinationFullPath);
-
-                final NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                final DocumentFile destinationFolderDocument = ShareSettingsActivity.getDestinationDirectory(context);
+                final DocumentFile destinationDocument = destinationFolderDocument.createFile(mimeType, nameWithoutExtension);
+                final OutputStream destinationOutput = context.getContentResolver().openOutputStream(destinationDocument.getUri());
+                final Uri destinationUri = destinationDocument.getUri();
 
                 final int notificationId = (int)System.currentTimeMillis();
                 Resources res = context.getResources();
@@ -139,103 +138,84 @@ public class SharePlugin extends Plugin {
                         .setOngoing(true)
                         .setProgress(100,0,true);
 
-                try {
-                    notificationManager.notify(notificationId,builder.build());
-                } catch(Exception e) {
-                    //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
-                    //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
-                }
+                final NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                NotificationHelper.notifyCompat(notificationManager,notificationId, builder.build());
 
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        OutputStream output = null;
-                        boolean successul = true;
+                        boolean successful = true;
                         try {
-                            output = new FileOutputStream(destinationFullPath.getPath());
                             byte data[] = new byte[1024];
                             long progress = 0, prevProgressPercentage = 0;
                             int count;
                             while ((count = input.read(data)) >= 0) {
                                 progress += count;
-                                output.write(data, 0, count);
+                                destinationOutput.write(data, 0, count);
                                 if (fileLength > 0) {
                                     if (progress >= fileLength) break;
                                     long progressPercentage = (progress * 100 / fileLength);
                                     if (progressPercentage != prevProgressPercentage) {
                                         prevProgressPercentage = progressPercentage;
                                         builder.setProgress(100, (int) progressPercentage, false);
-                                        try {
-                                            notificationManager.notify(notificationId,builder.build());
-                                        } catch(Exception e) {
-                                            //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
-                                            //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
-                                        }
+                                        NotificationHelper.notifyCompat(notificationManager, notificationId, builder.build());
                                     }
                                 }
                                 //else Log.e("SharePlugin", "Infinite loop? :D");
                             }
 
-                            output.flush();
+                            destinationOutput.flush();
 
                         } catch (Exception e) {
-                            successul = false;
+                            successful = false;
                             Log.e("SharePlugin", "Receiver thread exception");
                             e.printStackTrace();
                         } finally {
-                            try { output.close(); } catch (Exception e) {}
+                            try { destinationOutput.close(); } catch (Exception e) {}
                             try { input.close(); } catch (Exception e) {}
                         }
 
                         try {
-                            Log.i("SharePlugin", "Transfer finished");
-
-                            //Make sure it is added to the Android Gallery
-                            Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                            mediaScanIntent.setData(Uri.fromFile(destinationFullPath));
-                            context.sendBroadcast(mediaScanIntent);
+                            Log.i("SharePlugin", "Transfer finished: "+destinationUri.getPath());
 
                             //Update the notification and allow to open the file from it
-                            Intent intent = new Intent(Intent.ACTION_VIEW);
-                            intent.setDataAndType(Uri.fromFile(destinationFullPath), FilesHelper.getMimeTypeFromFile(destinationFullPath.getPath()));
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-                            stackBuilder.addNextIntent(intent);
-                            PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
-                                    0,
-                                    PendingIntent.FLAG_UPDATE_CURRENT
-                            );
-
                             Resources res = context.getResources();
-
-                            String message = successul? res.getString(R.string.received_file_title, device.getName()) : res.getString(R.string.received_file_fail_title, device.getName());
+                            String message = successful? res.getString(R.string.received_file_title, device.getName()) : res.getString(R.string.received_file_fail_title, device.getName());
                             NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                                     .setContentTitle(message)
                                     .setTicker(message)
                                     .setSmallIcon(android.R.drawable.stat_sys_download_done)
                                     .setAutoCancel(true);
-
-                            if (successul) {
-                                builder.setContentText(res.getString(R.string.received_file_text, filename))
+                            if (successful) {
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setDataAndType(destinationUri, mimeType);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+                                stackBuilder.addNextIntent(intent);
+                                PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+                                builder.setContentText(res.getString(R.string.received_file_text, destinationDocument.getName()))
                                        .setContentIntent(resultPendingIntent);
                             }
-
                             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
                             if (prefs.getBoolean("share_notification_preference", true)) {
                                 builder.setDefaults(Notification.DEFAULT_ALL);
                             }
+                            NotificationHelper.notifyCompat(notificationManager, notificationId, builder.build());
 
-                            try {
-                                notificationManager.notify(notificationId,builder.build());
-                            } catch(Exception e) {
-                                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
-                                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
+                            if (successful) {
+                                if (!customDestination) {
+                                    Log.i("SharePlugin","Adding to downloads");
+                                    DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+                                    manager.addCompletedDownload(destinationUri.getLastPathSegment(), device.getName(), true, mimeType, destinationUri.getPath(), fileLength, false);
+                                } else {
+                                    //Make sure it is added to the Android Gallery anyway
+                                    MediaStoreHelper.indexFile(context, destinationUri);
+                                }
                             }
 
                         } catch (Exception e) {
                             Log.e("SharePlugin", "Receiver thread exception");
                             e.printStackTrace();
-
                         }
                     }
                 }).start();
@@ -283,12 +263,7 @@ public class SharePlugin extends Plugin {
                             .build();
 
                     NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                    try {
-                        notificationManager.notify((int) System.currentTimeMillis(), noti);
-                    } catch (Exception e) {
-                        //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
-                        //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
-                    }
+                    NotificationHelper.notifyCompat(notificationManager, (int) System.currentTimeMillis(), noti);
                 }
             } else {
                 Log.e("SharePlugin", "Error: Nothing attached!");
@@ -303,36 +278,56 @@ public class SharePlugin extends Plugin {
         return true;
     }
 
+    @Override
+    public void startPreferencesActivity(SettingsActivity parentActivity) {
+        Intent intent = new Intent(parentActivity, ShareSettingsActivity.class);
+        intent.putExtra("plugin_display_name", getDisplayName());
+        intent.putExtra("plugin_key", getPluginKey());
+        parentActivity.startActivity(intent);
+    }
 
-    static void queuedSendUriList(final Context context, final Device device, final ArrayList<Uri> uriList) {
+    static void queuedSendUriList(Context context, final Device device, final ArrayList<Uri> uriList) {
+
+        //Read all the data early, as we only have permissions to do it while the activity is alive
+        final ArrayList<NetworkPackage> toSend = new ArrayList<>();
+        for (Uri uri : uriList) {
+            toSend.add(uriToNetworkPackage(context, uri));
+        }
+
+        //Callback that shows a progress notification
+        final NotificationUpdateCallback notificationUpdateCallback = new NotificationUpdateCallback(context, device, toSend);
+
+        //Do the sending in background
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //Actually send the files
+                try {
+                    for (NetworkPackage np : toSend) {
+                        boolean success = device.sendPackageBlocking(np, notificationUpdateCallback);
+                        if (!success) {
+                            Log.e("SharePlugin","Error sending files");
+                            return;
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+    }
+
+    //Create the network package from the URI
+    private static NetworkPackage uriToNetworkPackage(final Context context, final Uri uri) {
+
         try {
-            Uri uri = uriList.remove(0);
+
             ContentResolver cr = context.getContentResolver();
             InputStream inputStream = cr.openInputStream(uri);
 
             NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_SHARE_REQUEST);
             long size = -1;
-
-            final NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-            final int notificationId = (int)System.currentTimeMillis();
-            final NotificationCompat.Builder builder ;
-            Resources res = context.getResources();
-            builder = new NotificationCompat.Builder(context)
-                    .setContentTitle(res.getString(R.string.outgoing_file_title, device.getName()))
-                    .setTicker(res.getString(R.string.outgoing_file_title, device.getName()))
-                    .setSmallIcon(android.R.drawable.stat_sys_upload)
-                    .setAutoCancel(true)
-                    .setOngoing(true)
-                    .setProgress(100,0,true);
-
-            try {
-                notificationManager.notify(notificationId,builder.build());
-            } catch(Exception e) {
-                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
-                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
-            }
-
-            final Handler progressBarHandler = new Handler(Looper.getMainLooper());
 
             if (uri.getScheme().equals("file")) {
                 // file:// is a non media uri, so we cannot query the ContentProvider
@@ -360,7 +355,7 @@ public class SharePlugin extends Plugin {
                     size = new File(path).length();
                 } catch(Exception unused) {
 
-                    Log.e("SendFileActivity", "Could not resolve media to a file, trying to get info as media");
+                    Log.w("SendFileActivity", "Could not resolve media to a file, trying to get info as media");
 
                     try {
                         int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DISPLAY_NAME);
@@ -389,107 +384,14 @@ public class SharePlugin extends Plugin {
 
             np.setPayload(inputStream, size);
 
-            final String filename = np.getString("filename");
-
-            builder.setContentText(res.getString(R.string.outgoing_file_text,filename));
-            try {
-                notificationManager.notify(notificationId,builder.build());
-            } catch(Exception e) {
-                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
-                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
-            }
-
-            device.sendPackage(np, new Device.SendPackageStatusCallback() {
-
-                int prevProgress = 0;
-
-                @Override
-                public void onProgressChanged(final int progress) {
-                    if (progress != prevProgress) {
-                        prevProgress = progress;
-                        progressBarHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                builder.setProgress(100, progress, false);
-                                try {
-                                    notificationManager.notify(notificationId,builder.build());
-                                } catch(Exception e) {
-                                    //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
-                                    //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
-                                }
-                            }
-                        });
-                    }
-                }
-
-                @Override
-                public void onSuccess() {
-                    progressBarHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Resources res = context.getResources();
-                            NotificationCompat.Builder anotherBuilder = new NotificationCompat.Builder(context)
-                                    .setContentTitle(res.getString(R.string.sent_file_title, device.getName()))
-                                    .setContentText(res.getString(R.string.sent_file_text, filename))
-                                    .setTicker(res.getString(R.string.sent_file_title, device.getName()))
-                                    .setSmallIcon(android.R.drawable.stat_sys_upload_done)
-                                    .setOngoing(false)
-                                    .setAutoCancel(true);
-
-                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-                            if (prefs.getBoolean("share_notification_preference", true)) {
-                                anotherBuilder.setDefaults(Notification.DEFAULT_ALL);
-                            }
-                            try {
-                                notificationManager.notify(notificationId,anotherBuilder.build());
-                            } catch(Exception e) {
-                                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
-                                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
-                            }
-                        }
-                    });
-
-                    if (!uriList.isEmpty()) queuedSendUriList(context, device, uriList);
-                    else Log.i("SendFileActivity", "All files sent");
-                }
-
-                @Override
-                public void onFailure(Throwable e) {
-                    progressBarHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Resources res = context.getResources();
-                            NotificationCompat.Builder anotherBuilder = new NotificationCompat.Builder(context)
-                                    .setContentTitle(res.getString(R.string.sent_file_failed_title, device.getName()))
-                                    .setContentText(res.getString(R.string.sent_file_failed_text, filename))
-                                    .setTicker(res.getString(R.string.sent_file_title, device.getName()))
-                                    .setSmallIcon(android.R.drawable.stat_notify_error)
-                                    .setOngoing(false)
-                                    .setAutoCancel(true);
-
-                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-                            if (prefs.getBoolean("share_notification_preference", true)) {
-                                anotherBuilder.setDefaults(Notification.DEFAULT_ALL);
-                            }
-                            try {
-                                notificationManager.notify(notificationId,anotherBuilder.build());
-                            } catch(Exception e) {
-                                //4.1 will throw an exception about not having the VIBRATE permission, ignore it.
-                                //https://android.googlesource.com/platform/frameworks/base/+/android-4.2.1_r1.2%5E%5E!/
-                            }
-                        }
-                    });
-
-                    Log.e("SendFileActivity", "Failed to send file");
-                }
-            });
-
+            return np;
         } catch (Exception e) {
             Log.e("SendFileActivity", "Exception sending files");
             e.printStackTrace();
+            return null;
         }
-
     }
+
 
     @Override
     public String[] getSupportedPackageTypes() {

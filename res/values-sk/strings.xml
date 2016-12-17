@@ -85,7 +85,6 @@
   <string name="received_file_text">Ťuknite na otvorenie \'%1s\'</string>
   <string name="sent_file_title">Poslať súbor pre %1s</string>
   <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Zlyhalo poslanie súboru %1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Tapnite na odpoveď</string>
   <string name="reconnect">Znovu pripojiť</string>

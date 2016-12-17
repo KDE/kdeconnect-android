@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.kde.kdeconnect_tp"
-    android:versionCode="1440"
-    android:versionName="1.4.4">
+    android:versionCode="1500"
+    android:versionName="1.5">
 
     <uses-sdk android:minSdkVersion="9"
               android:targetSdkVersion="22" />
@@ -27,6 +27,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
 
     <application
         android:allowBackup="true"
@@ -83,6 +84,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.SettingsActivity" />
         </activity>
+        <activity
+            android:name="org.kde.kdeconnect.Plugins.SharePlugin.ShareSettingsActivity"
+            android:label="@string/device_menu_plugins"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.SettingsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.kde.kdeconnect.Plugins.SharePlugin.ShareSettingsActivity" />
+        </activity>
+
+
 
         <receiver android:name="org.kde.kdeconnect.KdeConnectBroadcastReceiver" >
             <intent-filter>
@@ -118,6 +129,7 @@
         <activity
             android:name="org.kde.kdeconnect.Plugins.FindMyPhonePlugin.FindMyPhoneActivity"
             android:label="@string/findmyphone_title"
+            android:excludeFromRecents="true"
             android:launchMode="singleInstance">
         </activity>
 

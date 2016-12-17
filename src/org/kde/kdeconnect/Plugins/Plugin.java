@@ -161,8 +161,9 @@ public abstract class Plugin {
     public void onDestroy() { }
 
     /**
-     * If onCreate returns false, should create a dialog explaining
-     * the problem (and how to fix it, if possible) to the user.
+     * Called when a plugin receives a package. By convention we return true
+     * when we have done something in response to the package or false
+     * otherwise, even though that value is unused as of now.
      */
     public boolean onPackageReceived(NetworkPackage np) { return false; }
 

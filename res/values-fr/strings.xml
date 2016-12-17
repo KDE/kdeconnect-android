@@ -70,7 +70,6 @@
   <string name="received_file_text">Appuyez pour ouvrir %1s</string>
   <string name="sent_file_title">Fichier envoyé à %1s</string>
   <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Impossible d\'envoyer le fichier %1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Cliquer pour répondre</string>
   <string name="reconnect">Reconnecter</string>
