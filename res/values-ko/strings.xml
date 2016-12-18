@@ -71,6 +71,7 @@
   <string name="received_file_text">\'%1s\'을(를) 열려면 누르십시오</string>
   <string name="sent_file_title">%1s(으)로 파일 보냄</string>
   <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">파일 %1s을(를) 보낼 수 없음</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">눌러서 응답하기</string>
   <string name="reconnect">다시 연결</string>

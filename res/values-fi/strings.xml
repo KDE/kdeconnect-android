@@ -85,6 +85,7 @@
   <string name="received_file_text">Avaa ”%1s” napauttamalla</string>
   <string name="sent_file_title">Tiedosto lähetetty laitteeseen %1s</string>
   <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Tiedoston lähetys epäonnistui: %1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Vastaa napauttamalla</string>
   <string name="reconnect">Yhdistä uudelleen</string>

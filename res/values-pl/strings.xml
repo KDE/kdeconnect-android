@@ -85,6 +85,7 @@
   <string name="received_file_text">Znacznik do otwarcia \'%1s\'</string>
   <string name="sent_file_title">Plik wysłano do %1s</string>
   <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Nieudane wysyłanie pliku %1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Stuknij, aby odpowiedzieć</string>
   <string name="reconnect">Połącz ponownie</string>

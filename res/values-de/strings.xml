@@ -79,6 +79,7 @@
   <string name="received_file_fail_title">Der Empfang der Datei %1s ist fehlgeschlagen</string>
   <string name="sent_file_title">Datei an %1s gesendet</string>
   <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Das Senden der Datei an %1s ist fehlgeschlagen</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Tippen zum Antworten</string>
   <string name="reconnect">Erneut verbinden</string>

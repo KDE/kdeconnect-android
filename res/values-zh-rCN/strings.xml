@@ -72,6 +72,7 @@
   <string name="received_file_text">点击以打开“%1s”</string>
   <string name="sent_file_title">发送文件到%1s</string>
   <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">未能发送文件%1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">点击以应答</string>
   <string name="reconnect">重新连接</string>
@@ -144,6 +145,4 @@
   <string name="pref_plugin_telepathy_desc">从桌面发送短消息</string>
   <string name="plugin_not_supported">设备不支持此插件</string>
   <string name="findmyphone_found">找到</string>
-  <string name="open">打开</string>
-  <string name="close">关闭</string>
 </resources>
