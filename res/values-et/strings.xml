@@ -85,7 +85,6 @@
   <string name="received_file_text">Koputa \"%1s\" avamiseks</string>
   <string name="sent_file_title">Fail saadeti seadmesse %1s</string>
   <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Faili %1s saatmine nurjus</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Koputa vastamiseks</string>
   <string name="reconnect">Ühenda uuesti</string>

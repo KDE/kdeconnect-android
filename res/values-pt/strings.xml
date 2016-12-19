@@ -85,7 +85,6 @@
   <string name="received_file_text">Toque para abrir o \'%1s\'</string>
   <string name="sent_file_title">O ficheiro foi enviado para %1s</string>
   <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Não foi possível enviar o ficheiro %1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Toque para responder</string>
   <string name="reconnect">Ligar de Novo</string>
