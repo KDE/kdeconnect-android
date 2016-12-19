@@ -21,8 +21,10 @@
 package org.kde.kdeconnect.Plugins.SharePlugin;
 
 import android.app.Activity;
+import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -47,6 +49,9 @@ public class SendFileActivity extends ActionBarActivity {
 
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");
+        if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)) {
+            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        }
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         try {
             startActivityForResult(
@@ -62,23 +67,39 @@ public class SendFileActivity extends ActionBarActivity {
         switch (requestCode) {
             case Activity.RESULT_FIRST_USER:
                 if (resultCode == RESULT_OK) {
-                    final Uri uri = data.getData();
-                    Log.i("SendFileActivity", "File Uri: " + uri.toString());
-                    BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-                        @Override
-                        public void onServiceStart(BackgroundService service) {
-                            Device device = service.getDevice(mDeviceId);
-                            if (device == null) {
-                                Log.e("SendFileActivity", "Device is null");
-                                finish();
-                                return;
-                            }
-                            ArrayList<Uri> uris = new ArrayList<>();
-                            uris.add(uri);
-                            SharePlugin.queuedSendUriList(getApplicationContext(), device, uris);
 
+                    final ArrayList<Uri> uris = new ArrayList<>();
+
+                    Uri uri = data.getData();
+                    if (uri != null) {
+                        uris.add(uri);
+                    }
+
+                    if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)) {
+                        ClipData clipdata = data.getClipData();
+                        if (clipdata != null) {
+                            for (int i = 0; i < clipdata.getItemCount(); i++) {
+                                uris.add(clipdata.getItemAt(i).getUri());
+                            }
                         }
-                    });
+                    }
+
+                    if (uris.isEmpty()) {
+                        Log.w("SendFileActivity", "No files to send?");
+                    } else {
+                        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
+                            @Override
+                            public void onServiceStart(BackgroundService service) {
+                                Device device = service.getDevice(mDeviceId);
+                                if (device == null) {
+                                    Log.e("SendFileActivity", "Device is null");
+                                    finish();
+                                    return;
+                                }
+                                SharePlugin.queuedSendUriList(getApplicationContext(), device, uris);
+                            }
+                        });
+                    }
                 }
                 finish();
                 break;
