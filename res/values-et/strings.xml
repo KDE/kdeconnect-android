@@ -79,12 +79,15 @@
   <string name="incoming_file_title">Saabuv fail seadmest %1s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Faili saatmine seadmesse %1s</string>
+  <string name="outgoing_files_title">Failide saatmine seadmesse %1s</string>
   <string name="outgoing_file_text">%1s</string>
+  <string name="outgoing_files_text">Saadetud %1$d / %2$d faili</string>
   <string name="received_file_title">Faili saamine seadmest %1s</string>
   <string name="received_file_fail_title">Faili saamine seadmest %1s nurjus</string>
   <string name="received_file_text">Koputa \"%1s\" avamiseks</string>
   <string name="sent_file_title">Fail saadeti seadmesse %1s</string>
   <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Faili saatmine seadmesse %1s nurjus</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Koputa vastamiseks</string>
   <string name="reconnect">Ühenda uuesti</string>
@@ -131,6 +134,10 @@
   <string name="custom_device_list">Lisa seadmeid IP järgi</string>
   <string name="share_notification_preference">Mürarikkad märguanded</string>
   <string name="share_notification_preference_summary">Vibreerimine ja heli esitamine faili saamisel</string>
+  <string name="share_destination_customize">Sihtkataloogi kohandamine</string>
+  <string name="share_destination_customize_summary_disabled">Saadud failid salvestatakse kataloogi Allalaaditud</string>
+  <string name="share_destination_customize_summary_enabled">Failid salvestatakse allmääratud kataloogi</string>
+  <string name="share_destination_folder_preference">Sihtkataloog</string>
   <string name="title_activity_notification_filter">Märguannete filter</string>
   <string name="filter_apps_info">Valitud rakenduste märguanded sünkroonitakse</string>
   <string name="sftp_internal_storage">Sisemine salvesti</string>
