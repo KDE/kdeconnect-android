@@ -8,6 +8,7 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -33,8 +34,23 @@ public class FindMyPhoneActivity extends Activity {
                         WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
                         WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
+        findViewById(R.id.bFindMyPhone).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         Uri ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
         ringtone = RingtoneManager.getRingtone(getApplicationContext(), ringtoneUri);
+        if (ringtone == null) {
+            ringtoneUri = RingtoneManager.getValidRingtoneUri(getApplicationContext());
+            if (ringtoneUri == null) {
+                Log.e("FindMyPhone", "Could not find a ringtone to play!");
+                return;
+            }
+            ringtone = RingtoneManager.getRingtone(getApplicationContext(), ringtoneUri);
+        }
 
         if (android.os.Build.VERSION.SDK_INT >= 21) {
             AudioAttributes.Builder b = new AudioAttributes.Builder();
@@ -46,12 +62,6 @@ public class FindMyPhoneActivity extends Activity {
 
         ringtone.play();
 
-        findViewById(R.id.bFindMyPhone).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
     }
 
     @Override
