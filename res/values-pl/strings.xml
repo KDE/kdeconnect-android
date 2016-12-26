@@ -79,12 +79,15 @@
   <string name="incoming_file_title">Plik przychodzący od %1s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Wysyłanie pliku do %1s</string>
+  <string name="outgoing_files_title">Wysyłanie pliku do %1s</string>
   <string name="outgoing_file_text">%1s</string>
+  <string name="outgoing_files_text">Wysłano %1$d z %2$d plików</string>
   <string name="received_file_title">Odebrano plik od %1s</string>
   <string name="received_file_fail_title">Nieudane odbieranie pliku z %1s</string>
   <string name="received_file_text">Znacznik do otwarcia \'%1s\'</string>
   <string name="sent_file_title">Plik wysłano do %1s</string>
   <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Nie udało się wyłanie pliku do %1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Stuknij, aby odpowiedzieć</string>
   <string name="reconnect">Połącz ponownie</string>
@@ -131,6 +134,10 @@
   <string name="custom_device_list">Dodaj urządzenia po numerze IP</string>
   <string name="share_notification_preference">Hałaśliwe powiadomienia</string>
   <string name="share_notification_preference_summary">Zadrżyj i odegraj dźwięk przy odebraniu pliku</string>
+  <string name="share_destination_customize">Własny katalog docelowy</string>
+  <string name="share_destination_customize_summary_disabled">Pobrane pliki ukażą się w Pobranych</string>
+  <string name="share_destination_customize_summary_enabled">Pliki zostaną zapisane w poniższym katalogu</string>
+  <string name="share_destination_folder_preference">Katalog docelowy</string>
   <string name="title_activity_notification_filter">Filtr powiadomień</string>
   <string name="filter_apps_info">Powiadomienia zostaną zsynchronizowane z wybranymi aplikacjami.</string>
   <string name="sftp_internal_storage">"Pamięć wewnętrzna "</string>
