@@ -5,15 +5,21 @@
   <string name="pref_plugin_battery">배터리 보고</string>
   <string name="pref_plugin_battery_desc">주기적으로 배터리 상태 보고</string>
   <string name="pref_plugin_sftp">파일 시스템 보기</string>
+  <string name="pref_plugin_sftp_desc">원격으로 이 장치의 파일 시스템 보기</string>
   <string name="pref_plugin_clipboard">클립보드 동기화</string>
   <string name="pref_plugin_clipboard_desc">클립보드 내용 동기화</string>
   <string name="pref_plugin_mousepad">원격 입력</string>
+  <string name="pref_plugin_mousepad_desc">내 휴대폰이나 태블릿을 터치패드와 키보드로 사용하기</string>
   <string name="pref_plugin_mpris">멀티미디어 제어</string>
+  <string name="pref_plugin_mpris_desc">내 미디어 재생기 원격 제어</string>
   <string name="pref_plugin_runcommand">명령 실행</string>
+  <string name="pref_plugin_runcommand_desc">내 휴대폰이나 태블릿에서 원격 명령 실행</string>
   <string name="pref_plugin_ping">핑</string>
   <string name="pref_plugin_ping_desc">핑 보내고 받기</string>
   <string name="pref_plugin_notifications">알림 동기화</string>
   <string name="pref_plugin_notifications_desc">다른 장치에서 알림 보기</string>
+  <string name="pref_plugin_receive_notifications">알림 받기</string>
+  <string name="pref_plugin_receive_notifications_desc">다른 장치의 알림을 받아서 안드로이드 알림에 표시</string>
   <string name="pref_plugin_sharereceiver">공유하고 받기</string>
   <string name="pref_plugin_sharereceiver_desc">장치끼리 파일과 URL 공유</string>
   <string name="plugin_not_available">현재 안드로이드 버전에서 사용할 수 없습니다</string>
@@ -28,6 +34,8 @@
   <string name="mousepad_info">화면에서 손가락을 움직이면 마우스 커서를 움직입니다. 화면을 누르면 왼쪽 단추를 누르고, 두 손가락과 세 손가락으로 누르면 오른쪽/가운데 단추를 누릅니다. 드래그 앤 드롭을 사용하려면 길게 누르십시오.</string>
   <string name="mousepad_double_tap_settings_title">두 손가락으로 눌렀을 때 동작 설정</string>
   <string name="mousepad_triple_tap_settings_title">세 손가락으로 눌렀을 때 동작 설정</string>
+  <string name="mousepad_sensitivity_settings_title">터치패드 감도 설정</string>
+  <string name="mousepad_scroll_direction_title">스크롤 방향 뒤집기</string>
   <string-array name="mousepad_tap_entries">
     <item>오른쪽 단추 누름</item>
     <item>가운데 단추 누름</item>
@@ -35,12 +43,13 @@
   </string-array>
   <string name="mousepad_double_default">오른쪽</string>
   <string name="mousepad_triple_default">가운데</string>
+  <string name="mousepad_sensitivity_default">기본값</string>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
-    <item>Above Slowest</item>
-    <item>Default</item>
-    <item>Above Default</item>
-    <item>Fastest</item>
+    <item>느리게</item>
+    <item>느리게 이상</item>
+    <item>기본값</item>
+    <item>기본값 이상</item>
+    <item>빠르게</item>
   </string-array>
   <string name="category_connected_devices">연결된 장치</string>
   <string name="category_not_paired_devices">사용 가능한 장치</string>
@@ -49,6 +58,7 @@
   <string name="device_menu_plugins">플러그인 설정</string>
   <string name="device_menu_unpair">연결 해제</string>
   <string name="device_not_reachable">연결된 장치에 도달할 수 없음</string>
+  <string name="pair_new_device">새 장치 연결</string>
   <string name="unknown_device">알 수 없는 장치</string>
   <string name="error_not_reachable">장치에 접근할 수 없음</string>
   <string name="error_already_requested">연결이 이미 요청됨</string>
@@ -58,6 +68,10 @@
   <string name="error_canceled_by_user">사용자가 취소함</string>
   <string name="error_canceled_by_other_peer">다른 쪽에서 취소함</string>
   <string name="error_invalid_key">잘못된 키 받음</string>
+  <string name="encryption_info_title">암호화 정보</string>
+  <string name="encryption_info_msg_no_ssl">다른 장치에서 KDE Connect의 최근 버전을 실행하고 있지 않아서 레거시 암호화를 사용합니다.</string>
+  <string name="my_device_fingerprint">내 장치 인증서의 SHA1 지문:</string>
+  <string name="remote_device_fingerprint">원격 장치 인증서의 SHA1 지문:</string>
   <string name="pair_requested">연결 요청됨</string>
   <string name="pairing_request_from">%1s에서 연결 요청</string>
   <string name="received_url_title">%1s에서 링크 받음</string>
@@ -65,12 +79,15 @@
   <string name="incoming_file_title">%1s에서 파일 보냄</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">%1s(으)로 파일 보내는 중</string>
+  <string name="outgoing_files_title">%1s(으)로 파일 보내는 중</string>
   <string name="outgoing_file_text">%1s</string>
+  <string name="outgoing_files_text">파일 %2$d개 중 %1$d개 보냄</string>
   <string name="received_file_title">%1s에서 파일 받음</string>
   <string name="received_file_fail_title">%1s에서 파일 받기 실패</string>
   <string name="received_file_text">\'%1s\'을(를) 열려면 누르십시오</string>
   <string name="sent_file_title">%1s(으)로 파일 보냄</string>
   <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">파일을 %1s(으)로 보낼 수 없음</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">눌러서 응답하기</string>
   <string name="reconnect">다시 연결</string>
@@ -117,6 +134,10 @@
   <string name="custom_device_list">IP로 장치 추가</string>
   <string name="share_notification_preference">시끄러운 알림</string>
   <string name="share_notification_preference_summary">파일을 받았을 때 진동과 소리로 알림</string>
+  <string name="share_destination_customize">대상 디렉터리 사용자 정의</string>
+  <string name="share_destination_customize_summary_disabled">받은 파일을 다운로드 디렉터리에 저장함</string>
+  <string name="share_destination_customize_summary_enabled">받은 파일을 아래 디렉터리에 저장함</string>
+  <string name="share_destination_folder_preference">대상 디렉터리</string>
   <string name="title_activity_notification_filter">알림 필터</string>
   <string name="filter_apps_info">선택한 앱의 알림을 동기화합니다.</string>
   <string name="sftp_internal_storage">내부 저장소</string>
@@ -142,6 +163,9 @@
   <string name="pref_plugin_telepathy">SMS 보내기</string>
   <string name="pref_plugin_telepathy_desc">데스크톱에서 문자 메시지 보내기</string>
   <string name="plugin_not_supported">장치에서 이 플러그인을 지원하지 않습니다</string>
+  <string name="findmyphone_title">내 휴대폰 찾기</string>
+  <string name="findmyphone_title_tablet">내 태블릿 찾기</string>
+  <string name="findmyphone_description">이 장치에서 소리를 울려서 찾는 데 도움을 줍니다</string>
   <string name="findmyphone_found">찾았음</string>
   <string name="open">열기</string>
   <string name="close">닫기</string>
