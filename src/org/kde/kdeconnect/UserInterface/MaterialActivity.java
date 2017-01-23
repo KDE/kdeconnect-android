@@ -102,7 +102,10 @@ public class MaterialActivity extends AppCompatActivity {
         preferences = getSharedPreferences(STATE_SELECTED_DEVICE, Context.MODE_PRIVATE);
 
         String savedDevice;
-        if (getIntent().hasExtra("deviceId")) {
+        if (getIntent().hasExtra("forceOverview")) {
+            Log.i("MaterialActivity", "Requested to start main overview");
+            savedDevice = null;
+        } else if (getIntent().hasExtra("deviceId")) {
             Log.i("MaterialActivity", "Loading selected device from parameter");
             savedDevice = getIntent().getStringExtra("deviceId");
         } else if (savedInstanceState != null) {

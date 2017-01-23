@@ -1,0 +1,3 @@
+Besides the official Android examples about implementing IMEs I learned a lot about using
+the Android APIs around InputConnection from the excellent "Remote Keyboard" app from onyxbits
+(http://www.onyxbits.de/remotekeyboard). Thanks!

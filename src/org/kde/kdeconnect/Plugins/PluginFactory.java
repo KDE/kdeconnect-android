@@ -33,6 +33,7 @@ import org.kde.kdeconnect.Plugins.MprisPlugin.MprisPlugin;
 import org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationsPlugin;
 import org.kde.kdeconnect.Plugins.PingPlugin.PingPlugin;
 import org.kde.kdeconnect.Plugins.ReceiveNotificationsPlugin.ReceiveNotificationsPlugin;
+import org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin.RemoteKeyboardPlugin;
 import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandPlugin;
 import org.kde.kdeconnect.Plugins.SftpPlugin.SftpPlugin;
 import org.kde.kdeconnect.Plugins.SharePlugin.SharePlugin;
@@ -124,6 +125,7 @@ public class PluginFactory {
         PluginFactory.registerPlugin(TelepathyPlugin.class);
         PluginFactory.registerPlugin(FindMyPhonePlugin.class);
         PluginFactory.registerPlugin(RunCommandPlugin.class);
+        PluginFactory.registerPlugin(RemoteKeyboardPlugin.class);
     }
 
     public static PluginInfo getPluginInfo(Context context, String pluginKey) {

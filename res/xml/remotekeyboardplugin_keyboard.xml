@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Keyboard
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:keyHeight="@dimen/key_height"
+    android:horizontalGap="0px"
+    android:verticalGap="0px" >
+
+    <Row android:rowEdgeFlags="bottom">
+		<Key android:keyIcon="@drawable/ic_keyboard_hide_white_36dp" android:codes="0" android:keyWidth="20%" />
+		<Key android:keyIcon="@drawable/ic_action_settings" android:codes="1" android:keyWidth="40%"/>
+		<Key android:keyIcon="@drawable/ic_action_keyboard" android:codes="2" android:keyWidth="40%"/>
+		<Key android:keyIcon="@drawable/ic_phonelink_white_36dp" android:codes="3" android:keyWidth="20%" />-->
+	</Row>
+</Keyboard>

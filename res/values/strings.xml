@@ -11,6 +11,8 @@
     <string name="pref_plugin_clipboard_desc">Share the clipboard content</string>
     <string name="pref_plugin_mousepad">Remote input</string>
     <string name="pref_plugin_mousepad_desc">Use your phone or tablet as a touchpad and keyboard</string>
+    <string name="pref_plugin_remotekeyboard">Receive remote keypresses</string>
+    <string name="pref_plugin_remotekeyboard_desc">Receive keypress events from remote devices</string>
     <string name="pref_plugin_mpris">Multimedia controls</string>
     <string name="pref_plugin_mpris_desc">Provides a remote control for your media player</string>
     <string name="pref_plugin_runcommand">Run Command</string>
@@ -31,6 +33,11 @@
     <string name="no_permissions">You need to grant permission to access notifications</string>
     <string name="send_ping">Send ping</string>
     <string name="open_mpris_controls">Multimedia control</string>
+    <string name="remotekeyboard_editing_only" translatable="false">remotekeyboard_editing_only</string>
+    <string name="remotekeyboard_editing_only_title" translatable="true">Handle remote keys only when editing</string>
+    <string name="remotekeyboard_not_connected" translatable="true">There is no active remote keyboard connection, establish one in kdeconnect</string>
+    <string name="remotekeyboard_connected" translatable="true">Remote keyboard connection is active</string>
+    <string name="remotekeyboard_multiple_connections" translatable="true">There is more than one remote keyboard connection, select the device to configure</string>
     <string name="open_mousepad">Remote input</string>
     <string name="mousepad_info">Move a finger on the screen to move the mouse cursor. Tap for a click, and use two/three fingers for right and middle buttons. Use a long press to drag\'n drop.</string>
     <string name="mousepad_double_tap_settings_title">Set two finger tap action</string>
