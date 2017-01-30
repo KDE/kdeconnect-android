@@ -10,6 +10,8 @@
   <string name="pref_plugin_clipboard_desc">Udostępnij zawartość schowka</string>
   <string name="pref_plugin_mousepad">Zdalne sterowanie</string>
   <string name="pref_plugin_mousepad_desc">Użyj swojego telefonu lub tabletu jako myszy i klawiatury</string>
+  <string name="pref_plugin_remotekeyboard">Odbieraj zdalne naciśnięcia klawiszy</string>
+  <string name="pref_plugin_remotekeyboard_desc">Odbieraj naciśnięcia klawiszy od urządzeń zdalnych</string>
   <string name="pref_plugin_mpris">Sterowanie multimediami</string>
   <string name="pref_plugin_mpris_desc">Zapewnia zdalne sterowanie twoim odtwarzaczem multimedialnym</string>
   <string name="pref_plugin_runcommand">Wykonaj polecenie</string>
@@ -30,6 +32,10 @@
   <string name="no_permissions">Musisz przydzielić uprawnienia, aby uzyskać dostęp do powiadomień</string>
   <string name="send_ping">Wyślij ping</string>
   <string name="open_mpris_controls">Sterowanie multimediami</string>
+  <string name="remotekeyboard_editing_only_title">Obsługuj zdalne naciśnięcia klawiszy tylko podczas edycji</string>
+  <string name="remotekeyboard_not_connected">Nie istnieje połączenie zdalnej klawiatury, nawiąż takie połączenie w kdeconnect</string>
+  <string name="remotekeyboard_connected">Połączenie zdalnej klawiatury jest nawiązane</string>
+  <string name="remotekeyboard_multiple_connections">Nawiązano więcej niż jedno połączenie zdalnej klawiatury, wybierz urządzenie do ustawienia</string>
   <string name="open_mousepad">Zdalne sterowanie</string>
   <string name="mousepad_info">Przesuń palcem po ekranie, aby przesunąć wskaźnik myszy. Stuknij, aby wywołać naciśniecie lewym przyciskiem myszy i użyj dwóch/trzech palców, aby wywołać naciśniecie prawym i środkowym przyciskiem myszy. Przyciśnij na dłużej, aby przeciągnąć i upuścić.</string>
   <string name="mousepad_double_tap_settings_title">Ustaw działanie po dwukrotnym stuknięciu palcem</string>
