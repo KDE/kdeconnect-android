@@ -1,6 +1,35 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="pref_plugin_telephony">Avisador telefónicu</string>
+  <string name="pref_plugin_telephony_desc">Unvia avisos pa SMS y llamaes</string>
+  <string name="pref_plugin_battery">Informe de batería</string>
+  <string name="pref_plugin_battery_desc">Informe periódicu del estáu de la batería</string>
+  <string name="pref_plugin_sftp_desc">Permite restolar remotamente a esti preséu</string>
+  <string name="pref_plugin_clipboard">Sincronización del cartafueyu</string>
+  <string name="pref_plugin_clipboard_desc">Comparte\'l conteníu del cartafueyu</string>
+  <string name="pref_plugin_mousepad">Entrada remota</string>
+  <string name="pref_plugin_mousepad_desc">Usa\'l to teléfonu o tableta como panel táutil y tecláu</string>
+  <string name="pref_plugin_remotekeyboard">Pulsaciones remotes</string>
+  <string name="pref_plugin_mpris">Controles multimedia</string>
+  <string name="pref_plugin_mpris_desc">Forne un control remotu pal to reproductor multimedia</string>
+  <string name="pref_plugin_runcommand">Execución de comandos</string>
+  <string name="pref_plugin_runcommand_desc">Aiciona comandos remotos del to teléfonu o tableta</string>
+  <string name="pref_plugin_ping">Ping</string>
+  <string name="pref_plugin_ping_desc">Unvia y recibe pings</string>
+  <string name="pref_plugin_notifications">Sincronización d\'avisos</string>
+  <string name="pref_plugin_notifications_desc">Accede a los tos avisos d\'otros preseos</string>
+  <string name="pref_plugin_receive_notifications">Recibir avisos</string>
+  <string name="pref_plugin_receive_notifications_desc">Recibe avisos d\'otros preseos y amuésalos n\'Android</string>
+  <string name="pref_plugin_sharereceiver">Compartir y recibir</string>
+  <string name="pref_plugin_sharereceiver_desc">Comparte ficheros y URLs ente preseos</string>
+  <string name="plugin_not_available">Esta carauterística nun ta disponible na to versión d\'Android</string>
+  <string name="device_list_empty">Ensin preseos</string>
+  <string name="ok">Aceutar</string>
   <string name="cancel">Encaboxar</string>
+  <string name="open_settings">Abrir axustes</string>
+  <string name="no_permissions">¡</string>
+  <string name="send_ping">Unviar ping</string>
+  <string name="open_mpris_controls">Control multimedia</string>
   <string-array name="mousepad_tap_entries">
     <item>Right click</item>
     <item>Middle click</item>
@@ -13,6 +42,7 @@
     <item>Above Default</item>
     <item>Fastest</item>
   </string-array>
+  <string name="error_timed_out">Escosó\'l tiempu</string>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>
     <item>20 seconds</item>
@@ -20,4 +50,8 @@
     <item>1 minute</item>
     <item>2 minutes</item>
   </string-array>
+  <string name="no_file_browser">Nun hai restoladores de ficheros instalaos</string>
+  <string name="pref_plugin_telepathy_desc">Unvia mensaxes de testu dende\'l to escritoriu</string>
+  <string name="plugin_not_supported">Esti complementu nun lu sofita\'l preséu</string>
+  <string name="findmyphone_description">Fai sonar el teléfonu pa qu\'asina pueas alcontralu</string>
 </resources>
