@@ -79,12 +79,15 @@
   <string name="incoming_file_title">Příchozí soubor od %1s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Odesílám soubor do %1s</string>
+  <string name="outgoing_files_title">Odesílám soubory do %1s</string>
   <string name="outgoing_file_text">%1s</string>
+  <string name="outgoing_files_text">Odesláno %1$d ze %2$d souborů</string>
   <string name="received_file_title">Přijat soubor od %1s</string>
   <string name="received_file_fail_title">Selhalo přijímání souboru od %1s</string>
   <string name="received_file_text">Ťukněte pro otevření \'%1s\'</string>
   <string name="sent_file_title">Soubor byl odeslán do %1s</string>
   <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Odesílání souborů na %1s selhalo</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Ťukněte pro odpovězení</string>
   <string name="reconnect">Znovu připojit</string>
@@ -131,6 +134,10 @@
   <string name="custom_device_list">Přidat zařízení podle IP</string>
   <string name="share_notification_preference">Hlasitá upozornění</string>
   <string name="share_notification_preference_summary">Vibrovat a přehrát melodii při přijímání souboru</string>
+  <string name="share_destination_customize">Přizpůsobte si cílový adresář</string>
+  <string name="share_destination_customize_summary_disabled">Přijaté soubory se objeví v Downloads</string>
+  <string name="share_destination_customize_summary_enabled">Soubory budou ukládány v adresáři níže</string>
+  <string name="share_destination_folder_preference">Cílový adresář</string>
   <string name="title_activity_notification_filter">Filtr upozornění</string>
   <string name="filter_apps_info">Upozorňování mezi vybranými aplikacemi bude synchronizováno.</string>
   <string name="sftp_internal_storage">Interní úložiště</string>
