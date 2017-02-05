@@ -35,7 +35,7 @@ public class ShareSettingsActivity extends PluginSettingsActivity {
         final CheckBoxPreference customDownloads = (CheckBoxPreference) findPreference("share_destination_custom");
         filePicker = findPreference("share_destination_folder_preference");
 
-        if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)) {
+        if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)) {
             customDownloads.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
