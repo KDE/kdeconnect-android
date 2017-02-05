@@ -441,6 +441,7 @@ public class DeviceFragment extends Fragment {
             mActivity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    if (rootView == null) return;
                     ((TextView) rootView.findViewById(R.id.pair_message)).setText(error);
                     rootView.findViewById(R.id.pair_progress).setVisibility(View.GONE);
                     rootView.findViewById(R.id.pair_button).setVisibility(View.VISIBLE);
@@ -455,6 +456,7 @@ public class DeviceFragment extends Fragment {
             mActivity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    if (rootView == null) return;
                     ((TextView) rootView.findViewById(R.id.pair_message)).setText(R.string.device_not_paired);
                     rootView.findViewById(R.id.pair_progress).setVisibility(View.GONE);
                     rootView.findViewById(R.id.pair_button).setVisibility(View.VISIBLE);
