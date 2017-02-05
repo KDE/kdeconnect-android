@@ -478,16 +478,11 @@ public class DeviceFragment extends Fragment {
                 dev.addPairingCallback(frag.pairingCallback);
                 dev.addPluginsChangedListener(frag.pluginsChangedListener);
 
+                frag.device = dev;
+                frag.device.acceptPairing();
+
                 frag.refreshUI();
 
-                frag.device = dev;
-            }
-        });
-
-        BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                frag.device.acceptPairing();
             }
         });
     }
@@ -502,19 +497,15 @@ public class DeviceFragment extends Fragment {
                 dev.addPairingCallback(frag.pairingCallback);
                 dev.addPluginsChangedListener(frag.pluginsChangedListener);
 
-                frag.refreshUI();
-
                 frag.device = dev;
-            }
-        });
-        BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
+
                 //Remove listener so buttons don't show for a while before changing the view
                 frag.device.removePluginsChangedListener(frag.pluginsChangedListener);
                 frag.device.removePairingCallback(frag.pairingCallback);
                 frag.device.rejectPairing();
                 activity.onDeviceSelected(null);
+
+                frag.refreshUI();
             }
         });
     }
