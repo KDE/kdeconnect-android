@@ -60,14 +60,15 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class DeviceFragment extends Fragment {
 
-    private static final String ARG_DEVICE_ID = "deviceId";
-    private View rootView;
-    static private String mDeviceId; //Static because if we get here by using the back button in the action bar, the extra deviceId will not be set.
-    private Device device;
+    static final String ARG_DEVICE_ID = "deviceId";
 
-    private TextView errorHeader;
+    View rootView;
+    static String mDeviceId; //Static because if we get here by using the back button in the action bar, the extra deviceId will not be set.
+    Device device;
 
-    private MaterialActivity mActivity;
+    TextView errorHeader;
+
+    MaterialActivity mActivity;
 
     public DeviceFragment() { }
 
@@ -190,7 +191,7 @@ public class DeviceFragment extends Fragment {
         return rootView;
     }
 
-    private final Device.PluginsChangedListener pluginsChangedListener = new Device.PluginsChangedListener() {
+    final Device.PluginsChangedListener pluginsChangedListener = new Device.PluginsChangedListener() {
         @Override
         public void onPluginsChanged(final Device device) {
             refreshUI();
@@ -424,7 +425,7 @@ public class DeviceFragment extends Fragment {
 
     }
 
-    private final Device.PairingCallback pairingCallback = new Device.PairingCallback() {
+    final Device.PairingCallback pairingCallback = new Device.PairingCallback() {
 
         @Override
         public void incomingRequest() {
