@@ -43,7 +43,7 @@
     <item>Lento</item>
     <item>Predeterminado</item>
     <item>Rápido</item>
-    <item>O mais rápido</item>
+    <item>O máis rápido</item>
   </string-array>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos dispoñíbeis</string>
