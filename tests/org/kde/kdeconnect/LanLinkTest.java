@@ -92,7 +92,7 @@ public class LanLinkTest extends AndroidTestCase {
 
         goodLanLink.sendPackage(testPackage, callback);
 
-        Mockito.verify(callback).sendSuccess();
+        Mockito.verify(callback).onSuccess();
     }
 
     public void testSendPackageFail() throws JSONException {
@@ -105,7 +105,7 @@ public class LanLinkTest extends AndroidTestCase {
 
         badLanLink.sendPackage(testPackage, callback);
 
-        Mockito.verify(callback).sendFailure(Mockito.any(RuntimeException.class));
+        Mockito.verify(callback).onFailure(Mockito.any(RuntimeException.class));
 
     }
 
@@ -250,7 +250,7 @@ public class LanLinkTest extends AndroidTestCase {
         }
         assertEquals(new String(data), new String(downloader.getOutputStream().toByteArray()));
 
-        Mockito.verify(callback).sendSuccess();
+        Mockito.verify(callback).onSuccess();
 
     }
 }
