@@ -10,11 +10,11 @@ buildscript {
 apply plugin: 'com.android.application'
 
 android {
-    buildToolsVersion '23.0.3'
-    compileSdkVersion 23
+    buildToolsVersion '25.0.2'
+    compileSdkVersion 25
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 22 //Bumping to 23 means we have to support the new permissions model
+        targetSdkVersion 22 //Bumping to >22 means we have to support the new permissions model
         //multiDexEnabled true
         //testInstrumentationRunner "com.android.test.runner.MultiDexTestRunner"
     }
@@ -71,9 +71,9 @@ dependencies {
         mavenCentral()
     }
 
-    compile 'com.android.support:support-v4:23.4.0'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
+    compile 'com.android.support:support-v4:25.1.1'
+    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'com.android.support:design:25.1.1'
 
     compile 'org.apache.sshd:sshd-core:0.8.0' //0.9 seems to fail on Android 6 and 1.+ requires java.nio.file, which doesn't exist in Android
 
