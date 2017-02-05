@@ -125,7 +125,8 @@ public class PluginFactory {
         PluginFactory.registerPlugin(TelepathyPlugin.class);
         PluginFactory.registerPlugin(FindMyPhonePlugin.class);
         PluginFactory.registerPlugin(RunCommandPlugin.class);
-        PluginFactory.registerPlugin(RemoteKeyboardPlugin.class);
+        //Commented here and in AndroidManifest until we release a desktop version with this feature, so we don't get bad "feature not working" reviews
+        //PluginFactory.registerPlugin(RemoteKeyboardPlugin.class);
     }
 
     public static PluginInfo getPluginInfo(Context context, String pluginKey) {
