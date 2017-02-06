@@ -85,15 +85,15 @@
   <string name="incoming_file_title">Inkomend bestand van %1s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Bezig bestand te verzenden naar %1s</string>
-  <string name="outgoing_files_title">Bestanden verzenden naar %1s</string>
+  <string name="outgoing_files_title">Bezig bestanden te verzenden naar %1s</string>
   <string name="outgoing_file_text">%1s</string>
-  <string name="outgoing_files_text">Verzonden %1$d van %2$d bestanden</string>
+  <string name="outgoing_files_text">Verzonden %1$d uit %2$d bestanden</string>
   <string name="received_file_title">Bestand ontvangen van %1s</string>
   <string name="received_file_fail_title">Bestand ontvangen van %1s is mislukt</string>
   <string name="received_file_text">Tap om \'%1s\' te openen</string>
   <string name="sent_file_title">Bestand verzonden naar %1s</string>
   <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Verzenden van bestanden naar %1s is mislukt</string>
+  <string name="sent_file_failed_title">Verzenden van bestand naar %1s is mislukt</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Tap om te antwoorden</string>
   <string name="reconnect">Opnieuw verbinden</string>
@@ -140,7 +140,7 @@
   <string name="custom_device_list">Voeg apparaten toe per IP-adres</string>
   <string name="share_notification_preference">Luidruchtige meldingen</string>
   <string name="share_notification_preference_summary">Vibreer en speel een geluidje bij ontvangen van een bestand</string>
-  <string name="share_destination_customize">Pas bestemmingsmap aan</string>
+  <string name="share_destination_customize">De bestemmingsmap aanpassen</string>
   <string name="share_destination_customize_summary_disabled">Ontvangen bestanden zullen in Downloads verschijnen</string>
   <string name="share_destination_customize_summary_enabled">Bestanden zullen opgeslagen worden in de onderstaande map</string>
   <string name="share_destination_folder_preference">Bestemmingsmap</string>

@@ -10,6 +10,8 @@
   <string name="pref_plugin_clipboard_desc">Compartir el contenido del portapapeles</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
   <string name="pref_plugin_mousepad_desc">Usar su teléfono o tableta como teclado y teclado táctil</string>
+  <string name="pref_plugin_remotekeyboard">Recibir pulsaciones de teclas remotas</string>
+  <string name="pref_plugin_remotekeyboard_desc">Recibir eventos de pulsación de teclas desde dispositivos remotos</string>
   <string name="pref_plugin_mpris">Controles multimedia</string>
   <string name="pref_plugin_mpris_desc">Proporciona un control remoto para su reproductor de medios</string>
   <string name="pref_plugin_runcommand">Ejecutar orden</string>
@@ -30,6 +32,10 @@
   <string name="no_permissions">Debe otorgar permiso para acceder a las notificaciones</string>
   <string name="send_ping">Enviar ping</string>
   <string name="open_mpris_controls">Control multimedia</string>
+  <string name="remotekeyboard_editing_only_title">Manejar teclas remotas solo al editar</string>
+  <string name="remotekeyboard_not_connected">No hay ninguna conexión remota de teclado activa, establezca una en kdeconnect</string>
+  <string name="remotekeyboard_connected">La conexión remota de teclado está activa</string>
+  <string name="remotekeyboard_multiple_connections">Hay más de una conexión remota de teclado, seleccione el dispositivo a configurar</string>
   <string name="open_mousepad">Entrada remota</string>
   <string name="mousepad_info">Mueva un dedo sobre la pantalla para mover el cursor del ratón. Pulse para ejecutar un clic y use dos/tres dedos para emular los botones derecho y central. Use una pulsación larga para arrastrar y soltar.</string>
   <string name="mousepad_double_tap_settings_title">Establecer la acción al pulsar con dos dedos</string>
