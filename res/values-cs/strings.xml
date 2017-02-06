@@ -10,8 +10,6 @@
   <string name="pref_plugin_clipboard_desc">Sdílet obsah schránky</string>
   <string name="pref_plugin_mousepad">Vzdálený vstup</string>
   <string name="pref_plugin_mousepad_desc">Používejte svůj telefon nebo tablet jako touchpad a klávesnici</string>
-  <string name="pref_plugin_remotekeyboard">Přijímat stisky kláves se vzdálených zařízení</string>
-  <string name="pref_plugin_remotekeyboard_desc">Přijímat události stisku kláves ze vzdálených zařízení</string>
   <string name="pref_plugin_mpris">Ovládání multimédií</string>
   <string name="pref_plugin_mpris_desc">Poskytuje dálkové ovládání přehrávačů médií</string>
   <string name="pref_plugin_runcommand">Spustit příkaz</string>
@@ -32,10 +30,6 @@
   <string name="no_permissions">Pro zpřístupnění upozornění potřebujete oprávnění</string>
   <string name="send_ping">Poslat ping</string>
   <string name="open_mpris_controls">Ovládání multimédií</string>
-  <string name="remotekeyboard_editing_only_title">Ovládat vzdálené klávesy při editaci</string>
-  <string name="remotekeyboard_not_connected">Není k dispozici žádné vzdálené připojení klávesnice. Nastavte nějaké pomocí kdeconnect</string>
-  <string name="remotekeyboard_connected">Vzdálené připojení klávesnice je aktivní</string>
-  <string name="remotekeyboard_multiple_connections">Je k dispozici více než jedno připojení klávesnice. Vyberte zařízení pro jeho nastavení.</string>
   <string name="open_mousepad">Vzdálený vstup</string>
   <string name="mousepad_info">Pohybujte prstem po obrazovce pro pohybování kurzorem myši. Ťukněte pro kliknutí a použijte dva/tři prsty jako pravé a prostřední tlačítko. Pro přetažení dlouze podržte.</string>
   <string name="mousepad_double_tap_settings_title">Nastavit činnost pro ťuknutí dvěma prsty</string>

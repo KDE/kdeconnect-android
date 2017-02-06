@@ -36,11 +36,11 @@
   <string name="mousepad_double_default">dereita</string>
   <string name="mousepad_triple_default">medio</string>
   <string-array name="mousepad_sensitivity_entries">
-    <item>O máis lento</item>
-    <item>Lento</item>
-    <item>Predeterminado</item>
-    <item>Rápido</item>
-    <item>O máis rápido</item>
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
   </string-array>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos dispoñíbeis</string>
@@ -136,7 +136,7 @@
   <string name="pairing_description">Outros dispositivos que estean a executar KDE Connect na mesma rede deberían aparecer aquí.</string>
   <string name="device_paired">Emparellouse co dispositivo</string>
   <string name="device_rename_title">Cambiar o nome do dispositivo</string>
-  <string name="device_rename_confirm">Cambiar o nome</string>
+  <string name="device_rename_confirm">Mudar o nome</string>
   <string name="refresh">Actualizar</string>
   <string name="unreachable_description">Este dispositivo emparellado está fóra do alcance. Asegúrese de que está conectado á mesma rede.</string>
   <string name="no_file_browser">Non hai navegadores de ficheiros instalados.</string>

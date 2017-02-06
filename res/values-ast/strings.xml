@@ -3,24 +3,16 @@
   <string name="pref_plugin_telephony">Notificador telefónicu</string>
   <string name="pref_plugin_telephony_desc">Unvia avisos pa SMS y llamaes</string>
   <string name="pref_plugin_battery">Informe de batería</string>
-  <string name="pref_plugin_battery_desc">Informe periódicu del estáu de la batería</string>
-  <string name="pref_plugin_sftp_desc">Permite restolar remotamente a esti preséu</string>
+  <string name="pref_plugin_battery_desc">Infoma davezu del estáu de la batería</string>
   <string name="pref_plugin_clipboard">Sincronización del cartafueyu</string>
   <string name="pref_plugin_clipboard_desc">Comparte\'l conteníu del cartafueyu</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
-  <string name="pref_plugin_mousepad_desc">Usa\'l to teléfonu o tableta como panel táutil y tecláu</string>
-  <string name="pref_plugin_remotekeyboard">Pulsaciones remotes</string>
-  <string name="pref_plugin_mpris">Controles multimedia</string>
-  <string name="pref_plugin_mpris_desc">Forne un control remotu pal to reproductor multimedia</string>
-  <string name="pref_plugin_runcommand">Execución de comandos</string>
-  <string name="pref_plugin_runcommand_desc">Aiciona comandos remotos del to teléfonu o tableta</string>
+  <string name="pref_plugin_mpris">Controles remotos multimedia</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Unvia y recibi pings</string>
   <string name="pref_plugin_notifications">Sincronización d\'avisos</string>
-  <string name="pref_plugin_notifications_desc">Accede a los tos avisos d\'otros preseos</string>
-  <string name="pref_plugin_receive_notifications">Recibir avisos</string>
-  <string name="pref_plugin_receive_notifications_desc">Recibe avisos d\'otros preseos y amuésalos n\'Android</string>
-  <string name="pref_plugin_sharereceiver">Compartir y recibir</string>
+  <string name="pref_plugin_notifications_desc">Accede a los tos avisos dende otros preseos</string>
+  <string name="pref_plugin_sharereceiver">Unvia y recibi pings</string>
   <string name="pref_plugin_sharereceiver_desc">Comparte ficheros y URLs ente preseos</string>
   <string name="plugin_not_available">Esta carauterística nun ta disponible na to versión d\'Android</string>
   <string name="device_list_empty">Ensin preseos</string>
@@ -33,9 +25,9 @@
   <string name="open_mousepad">Entrada remota</string>
   <string name="mousepad_info">Muevi un deu enriba la pantalla pa mover el mur. calca pa un clic y usa dos/tres deos pa los motones de drecha y mediu. Usa un primíu llargu pa arrastrar y soltar.</string>
   <string-array name="mousepad_tap_entries">
-    <item>Right click</item>
-    <item>Middle click</item>
-    <item>Nothing</item>
+    <item>Clic drechu</item>
+    <item>Clic d\'en mediu</item>
+    <item>Nada</item>
   </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Slowest</item>
@@ -53,7 +45,7 @@
   <string name="error_already_requested">Empareyamientu yá solicitáu</string>
   <string name="error_already_paired">El preséu yá ta empareyáu</string>
   <string name="error_could_not_send_package">Nun pudo unviase\'l paquete</string>
-  <string name="error_timed_out">Escosó\'l tiempu</string>
+  <string name="error_timed_out">Tiempu escosao</string>
   <string name="error_canceled_by_user">Encaboxáu pol usuariu</string>
   <string name="error_canceled_by_other_peer">Encaboxáu pola otra parte</string>
   <string name="error_invalid_key">Recibióse una clave non válida</string>
@@ -92,13 +84,12 @@
   <string name="mpris_time_settings_title">Botones d\'avanzar/rebobinar</string>
   <string name="mpris_time_settings_summary">Axusta\'l tiempu p\'avanzar/rebobinar al primise</string>
   <string-array name="mpris_time_entries">
-    <item>10 seconds</item>
-    <item>20 seconds</item>
-    <item>30 seconds</item>
-    <item>1 minute</item>
-    <item>2 minutes</item>
+    <item>10 segundos</item>
+    <item>20 segundos</item>
+    <item>30 segundos</item>
+    <item>1 minutu</item>
+    <item>2 minutos</item>
   </string-array>
-  <string name="findmyphone_description">Fai sonar el teléfonu pa qu\'asina pueas alcontralu</string>
   <string name="protocol_version_older">Esti preséu usa una versión vieya del protocolu</string>
   <string name="protocol_version_newer">Esti preséu usa una versión anovada del protocolu</string>
   <string name="general_settings">Axustes xenerales</string>
