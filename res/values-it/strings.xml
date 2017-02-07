@@ -10,6 +10,8 @@
   <string name="pref_plugin_clipboard_desc">Condividi il contenuto degli appunti</string>
   <string name="pref_plugin_mousepad">Impulso remoto</string>
   <string name="pref_plugin_mousepad_desc">Usa il tuo telefono o il tablet come touchpad e tastiera</string>
+  <string name="pref_plugin_remotekeyboard">Ricevi pressioni dei tasti da remoto</string>
+  <string name="pref_plugin_remotekeyboard_desc">Ricevi eventi di pressione dei tasti da dispositivi remoti</string>
   <string name="pref_plugin_mpris">Controlli multimediali</string>
   <string name="pref_plugin_mpris_desc">Fornisce un controllo remoto per il tuo lettore multimediale</string>
   <string name="pref_plugin_runcommand">Esegui comando</string>
@@ -30,6 +32,10 @@
   <string name="no_permissions">Devi concedere i permessi per l\'accesso alle notifiche</string>
   <string name="send_ping">Invia ping</string>
   <string name="open_mpris_controls">Controllo multimediale</string>
+  <string name="remotekeyboard_editing_only_title">Gestisci i tasti remoti solo durante la modifica</string>
+  <string name="remotekeyboard_not_connected">Non c\'è una connessione attiva della tastiera remota, stabiliscine una da kdeconnect</string>
+  <string name="remotekeyboard_connected">La connessione della tastiera remota è attiva</string>
+  <string name="remotekeyboard_multiple_connections">Ci sono più connessioni di tastiere remote, seleziona il dispositivo da configurare</string>
   <string name="open_mousepad">Impulso remoto</string>
   <string name="mousepad_info">Muovi un dito sullo schermo per spostare il puntatore del mouse. Tocca per un clic e usa due/tre dita per i pulsanti destro e centrale. Utilizza una pressione lunga per trascinare e rilasciare.</string>
   <string name="mousepad_double_tap_settings_title">Imposta azione per il tocco a due dita</string>
