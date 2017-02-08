@@ -35,11 +35,11 @@
   <string name="mousepad_double_default">Droite</string>
   <string name="mousepad_triple_default">Milieu</string>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
-    <item>Above Slowest</item>
-    <item>Default</item>
-    <item>Above Default</item>
-    <item>Fastest</item>
+    <item>Lent</item>
+    <item>Moins lent</item>
+    <item>Par defaut</item>
+    <item>Rapide</item>
+    <item>Très rapide</item>
   </string-array>
   <string name="category_connected_devices">Périphériques connectés</string>
   <string name="category_not_paired_devices">Périphériques disponibles</string>
