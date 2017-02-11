@@ -5,15 +5,23 @@
   <string name="pref_plugin_battery">电池报告</string>
   <string name="pref_plugin_battery_desc">定期报告电池状态</string>
   <string name="pref_plugin_sftp">开放文件系统</string>
+  <string name="pref_plugin_sftp_desc">允许远程浏览设备的文件系统</string>
   <string name="pref_plugin_clipboard">剪贴板同步</string>
   <string name="pref_plugin_clipboard_desc">共享剪贴板内容</string>
   <string name="pref_plugin_mousepad">远程输入</string>
+  <string name="pref_plugin_mousepad_desc">将您的手机用或平板电脑用作触摸板和键盘</string>
+  <string name="pref_plugin_remotekeyboard">接收远程按键</string>
+  <string name="pref_plugin_remotekeyboard_desc">从远程设备接收按键事件</string>
   <string name="pref_plugin_mpris">多媒体控制</string>
+  <string name="pref_plugin_mpris_desc">媒体播放器的遥控器</string>
   <string name="pref_plugin_runcommand">执行命令</string>
+  <string name="pref_plugin_runcommand_desc">触发您的手机或平板电脑的远程命令</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">发送和接受ping</string>
   <string name="pref_plugin_notifications">通知同步</string>
   <string name="pref_plugin_notifications_desc">从其他设备访问你的通知</string>
+  <string name="pref_plugin_receive_notifications">接收通知</string>
+  <string name="pref_plugin_receive_notifications_desc">从其他设备接收通知并显示在 Android 上</string>
   <string name="pref_plugin_sharereceiver">分享和接收</string>
   <string name="pref_plugin_sharereceiver_desc">在设备间共享文件和 URL</string>
   <string name="plugin_not_available">该特性不适用于您的Android版本</string>
@@ -24,10 +32,16 @@
   <string name="no_permissions">你需要授予权限以便访问通知</string>
   <string name="send_ping">发送ping</string>
   <string name="open_mpris_controls">多媒体控制</string>
+  <string name="remotekeyboard_editing_only_title">只有在编辑时才接受远程按键</string>
+  <string name="remotekeyboard_not_connected">没有活动的远程键盘链接，请在 KDE Connect 中连接</string>
+  <string name="remotekeyboard_connected">远程键盘连接已启用</string>
+  <string name="remotekeyboard_multiple_connections">发现多个远程键盘连接，请选择设备进行配置</string>
   <string name="open_mousepad">远程输入</string>
   <string name="mousepad_info">在屏幕上移动手指来移动光标。轻击代表左键，双指或三指点击代表右键或中键。用长按来拖放。</string>
   <string name="mousepad_double_tap_settings_title">设置双指点击动作</string>
   <string name="mousepad_triple_tap_settings_title">设置三指点击动作</string>
+  <string name="mousepad_sensitivity_settings_title">设置触摸板灵敏度</string>
+  <string name="mousepad_scroll_direction_title">滚动方向反向</string>
   <string-array name="mousepad_tap_entries">
     <item>右键点击</item>
     <item>中键点击</item>
@@ -35,12 +49,13 @@
   </string-array>
   <string name="mousepad_double_default">右</string>
   <string name="mousepad_triple_default">中</string>
+  <string name="mousepad_sensitivity_default">默认</string>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
-    <item>Above Slowest</item>
-    <item>Default</item>
-    <item>Above Default</item>
-    <item>Fastest</item>
+    <item>最慢</item>
+    <item>高于最慢</item>
+    <item>默认</item>
+    <item>高于默认</item>
+    <item>最快</item>
   </string-array>
   <string name="category_connected_devices">已连接设备</string>
   <string name="category_not_paired_devices">可用设备</string>
@@ -59,6 +74,10 @@
   <string name="error_canceled_by_user">已被用户取消</string>
   <string name="error_canceled_by_other_peer">已被另一方取消</string>
   <string name="error_invalid_key">收到无效密钥</string>
+  <string name="encryption_info_title">加密信息</string>
+  <string name="encryption_info_msg_no_ssl">另一设备没有使用最新的 KDE Connect，使用旧版加密方法。</string>
+  <string name="my_device_fingerprint">您的设备证书的 SHA1 指纹是：</string>
+  <string name="remote_device_fingerprint">远程设备证书的 SHA1 指纹是：</string>
   <string name="pair_requested">已请求配对</string>
   <string name="pairing_request_from">来自%1s的配对请求</string>
   <string name="received_url_title">已从%1s接收链接</string>
@@ -66,12 +85,15 @@
   <string name="incoming_file_title">来自%1s的文件</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">正在向%1s发送文件</string>
+  <string name="outgoing_files_title">正在向 %1s 发送文件</string>
   <string name="outgoing_file_text">%1s</string>
+  <string name="outgoing_files_text">已发送 %2$d 个文件中的 %1$d 个</string>
   <string name="received_file_title">已从%1s接收文件</string>
   <string name="received_file_fail_title">未能从%1s接收文件</string>
   <string name="received_file_text">点击以打开“%1s”</string>
   <string name="sent_file_title">发送文件到%1s</string>
   <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">向 %1s 发送文件失败</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">点击以应答</string>
   <string name="reconnect">重新连接</string>
@@ -118,6 +140,10 @@
   <string name="custom_device_list">通过IP增加设备</string>
   <string name="share_notification_preference">出声通知</string>
   <string name="share_notification_preference_summary">当收到文件时震动并播放声音</string>
+  <string name="share_destination_customize">配置目标目录</string>
+  <string name="share_destination_customize_summary_disabled">接收的文件会出现在“Downloads”中</string>
+  <string name="share_destination_customize_summary_enabled">文件将会被存储在以下目录中</string>
+  <string name="share_destination_folder_preference">目标目录</string>
   <string name="title_activity_notification_filter">通知过滤器</string>
   <string name="filter_apps_info">所选软件的通知将会被同步。</string>
   <string name="sftp_internal_storage">内部存储</string>
@@ -143,5 +169,7 @@
   <string name="pref_plugin_telepathy">发送短消息</string>
   <string name="pref_plugin_telepathy_desc">从桌面发送短消息</string>
   <string name="plugin_not_supported">设备不支持此插件</string>
+  <string name="findmyphone_title">找到我的手机</string>
+  <string name="findmyphone_description">让设备响铃从而找到它</string>
   <string name="findmyphone_found">找到</string>
 </resources>
