@@ -140,6 +140,7 @@
         <activity
             android:name="org.kde.kdeconnect.Plugins.FindMyPhonePlugin.FindMyPhoneActivity"
             android:label="@string/findmyphone_title"
+            android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance">
         </activity>
