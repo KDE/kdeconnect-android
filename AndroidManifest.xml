@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.kde.kdeconnect_tp"
-    android:versionCode="1500"
-    android:versionName="1.5">
+    android:versionCode="1600"
+    android:versionName="1.6">
 
     <uses-sdk android:minSdkVersion="9"
               android:targetSdkVersion="22" />
@@ -138,6 +138,7 @@
         <activity
             android:name="org.kde.kdeconnect.Plugins.FindMyPhonePlugin.FindMyPhoneActivity"
             android:label="@string/findmyphone_title"
+            android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance">
         </activity>

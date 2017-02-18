@@ -31,6 +31,7 @@ import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
+import org.kde.kdeconnect.Helpers.NetworkHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Helpers.StringsHelper;
 import org.kde.kdeconnect.NetworkPackage;
@@ -68,18 +69,18 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     final static int MAX_PORT = 1764;
     final static int PAYLOAD_TRANSFER_MIN_PORT = 1739;
 
-    private final Context context;
+    final Context context;
 
     private final HashMap<String, LanLink> visibleComputers = new HashMap<>();  //Links by device id
 
-    private ServerSocket tcpServer;
+    ServerSocket tcpServer;
     private DatagramSocket udpServer;
     private DatagramSocket udpServerOldPort;
 
-    private boolean listening = false;
+    boolean listening = false;
 
     // To prevent infinte loop between Android < IceCream because both device can only broadcast identity package but cannot connect via TCP
-    private ArrayList<InetAddress> reverseConnectionBlackList = new ArrayList<>();
+    ArrayList<InetAddress> reverseConnectionBlackList = new ArrayList<>();
 
     @Override // SocketClosedCallback
     public void linkDisconnected(LanLink brokenLink) {
@@ -89,7 +90,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     }
 
     //They received my UDP broadcast and are connecting to me. The first thing they sned should be their identity.
-    public void tcpPackageReceived(Socket socket) throws Exception {
+    void tcpPackageReceived(Socket socket) throws Exception {
 
         NetworkPackage networkPackage;
         try {
@@ -112,7 +113,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     }
 
     //I've received their broadcast and should connect to their TCP socket and send my identity.
-    protected void udpPacketReceived(DatagramPacket packet) throws Exception {
+    void udpPacketReceived(DatagramPacket packet) throws Exception {
 
         final InetAddress address = packet.getAddress();
 
@@ -171,7 +172,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
         }
     }
 
-    private void configureSocket(Socket socket) {
+    void configureSocket(Socket socket) {
         try {
             socket.setKeepAlive(true);
         } catch (SocketException e) {
@@ -360,7 +361,12 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
         throw new IOException("No ports available");
     }
 
-    void broadcastUdpPackage() {
+    private void broadcastUdpPackage() {
+
+        if (NetworkHelper.isOnMobileNetwork(context)) {
+            Log.w("LanLinkProvider", "On 3G network, not sending broadcast.");
+            return;
+        }
 
         new Thread(new Runnable() {
             @Override

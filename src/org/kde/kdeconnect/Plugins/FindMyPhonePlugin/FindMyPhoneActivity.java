@@ -21,7 +21,12 @@ public class FindMyPhoneActivity extends Activity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        finish(); //If this activity was already open and we received the ring packet again, just finish it
+
+        if(ringtone != null) {
+            // If this activity was already open and we received the ring packet again, just finish it
+            finish();
+        }
+        // otherwise the activity will become active again
     }
 
     @Override
@@ -40,6 +45,11 @@ public class FindMyPhoneActivity extends Activity {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
         Uri ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
         ringtone = RingtoneManager.getRingtone(getApplicationContext(), ringtoneUri);
@@ -61,12 +71,16 @@ public class FindMyPhoneActivity extends Activity {
         }
 
         ringtone.play();
-
     }
 
     @Override
-    public void finish() {
-        ringtone.stop();
-        super.finish();
+    protected void onStop() {
+        super.onStop();
+
+        if(ringtone != null) {
+            ringtone.stop();
+            ringtone = null;
+        }
     }
+
 }
