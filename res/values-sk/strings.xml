@@ -10,8 +10,6 @@
   <string name="pref_plugin_clipboard_desc">Zdieľať obsah schránky</string>
   <string name="pref_plugin_mousepad">Vzdialený vstup</string>
   <string name="pref_plugin_mousepad_desc">Použiť váš telefón alebo tablet ako touchpad a klávesnicu</string>
-  <string name="pref_plugin_remotekeyboard">Prijímať vzdialené stlačenia klávesov</string>
-  <string name="pref_plugin_remotekeyboard_desc">Prijímať udalosti stlačení klávesov od vzdialených zariadení</string>
   <string name="pref_plugin_mpris">Multimediálne ovládače</string>
   <string name="pref_plugin_mpris_desc">Poskytuje vzdialené ovládanie pre váš prehrávač médií</string>
   <string name="pref_plugin_runcommand">Spustiť príkaz</string>
@@ -32,10 +30,6 @@
   <string name="no_permissions">Musíte povoliť oprávnenia na prístup k pripomienkam</string>
   <string name="send_ping">Poslať ping</string>
   <string name="open_mpris_controls">Multimediálny ovládač</string>
-  <string name="remotekeyboard_editing_only_title">Spracúva vzdialené klávesy len pri editácii</string>
-  <string name="remotekeyboard_not_connected">Nie sú žiadne aktívne pripojenia vzdialenej klávesnice, vytvorte nejaké v Kdeconnect</string>
-  <string name="remotekeyboard_connected">Vzdialené pripojenie klávesnice je aktívne</string>
-  <string name="remotekeyboard_multiple_connections">Je viac ako jedno vzdialené pripojenie klávesnice, vyberte zariadenie na nastavenie</string>
   <string name="open_mousepad">Vzdialený vstup</string>
   <string name="mousepad_info">Posúvajte prst na obrazovke na posun kurzora. Ťuknutie vyvolá klik a použite dva/tri prsty pre pravé a stredné tlačidlo. Použite dlhé stlačenie pre drag and drop.</string>
   <string name="mousepad_double_tap_settings_title">Nastaviť akciu dvoch prstov</string>
