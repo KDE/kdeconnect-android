@@ -165,6 +165,7 @@
   <string name="device_rename_confirm">Mudar o Nome</string>
   <string name="refresh">Actualizar</string>
   <string name="unreachable_description">Este dispositivo emparelhado não está acessível. Certifique-se que está ligado à mesma rede que você.</string>
+  <string name="on_data_message">Parece que está com uma ligação de dados móveis. O KDE Connect só se liga em redes locais.</string>
   <string name="no_file_browser">Não existem gestores de ficheiros instalados.</string>
   <string name="pref_plugin_telepathy">Enviar um SMS</string>
   <string name="pref_plugin_telepathy_desc">Enviar mensagens de texto a partir do seu ambiente de trabalho</string>

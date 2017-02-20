@@ -10,6 +10,8 @@
   <string name="pref_plugin_clipboard_desc">Dela klippbordets innehåll</string>
   <string name="pref_plugin_mousepad">Fjärrinmatning</string>
   <string name="pref_plugin_mousepad_desc">Använd telefonen eller surfplattan som mus och tangentbord</string>
+  <string name="pref_plugin_remotekeyboard">Ta emot fjärrtangentnedtryckningar</string>
+  <string name="pref_plugin_remotekeyboard_desc">Ta emot tangentnedtryckningar från fjärrenheter</string>
   <string name="pref_plugin_mpris">Multimediakontroller</string>
   <string name="pref_plugin_mpris_desc">Tillhandahåller en fjärrkontroll för mediaspelaren</string>
   <string name="pref_plugin_runcommand">Kör kommando</string>
@@ -30,6 +32,10 @@
   <string name="no_permissions">Du måste ge rättighet att komma åt underrättelser</string>
   <string name="send_ping">Skicka ping</string>
   <string name="open_mpris_controls">Kontroll av multimedia</string>
+  <string name="remotekeyboard_editing_only_title">Hantera bara fjärrtangenter vid redigering</string>
+  <string name="remotekeyboard_not_connected">Det finns ingen aktiv fjärrtangentbordsanslutning, upprätta en i KDE-anslut</string>
+  <string name="remotekeyboard_connected">Fjärrtangentbordsanslutning är aktiv</string>
+  <string name="remotekeyboard_multiple_connections">Det finns mer än en fjärrtangentbordsanslutning, välj enhet att anpassa</string>
   <string name="open_mousepad">Fjärrinmatning</string>
   <string name="mousepad_info">Flytta fingret på skärmen för att röra muspekaren. Rör för att klicka, och använd två eller tre fingrar för höger- och mittenknapparna. Använd en längre beröring för drag och släpp.</string>
   <string name="mousepad_double_tap_settings_title">Ställ in åtgärd vid två fingerberöringar</string>
@@ -159,6 +165,7 @@
   <string name="device_rename_confirm">Byt namn</string>
   <string name="refresh">Uppdatera</string>
   <string name="unreachable_description">Den här ihopparade apparaten kan inte nås. Försäkra dig om att den är ansluten till samma nätverk.</string>
+  <string name="on_data_message">Det verkar som om du använder en mobil dataanslutning. KDE-anslut fungerar bara på lokala nätverk.</string>
   <string name="no_file_browser">Det finns inga filbläddrare installerade.</string>
   <string name="pref_plugin_telepathy">Skicka SMS</string>
   <string name="pref_plugin_telepathy_desc">Skicka textmeddelanden från skrivbordet</string>
