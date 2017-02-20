@@ -165,6 +165,7 @@
   <string name="device_rename_confirm">Reanomena</string>
   <string name="refresh">Refresca</string>
   <string name="unreachable_description">Aquest dispositiu aparellat no és accessible. Assegureu-vos que està connectat a la mateixa xarxa.</string>
+  <string name="on_data_message">Sembla que esteu amb una connexió de dades mòbils. El KDE Connect només funciona amb xarxes locals.</string>
   <string name="no_file_browser">No hi ha instal·lat cap explorador de fitxers.</string>
   <string name="pref_plugin_telepathy">Envia un SMS</string>
   <string name="pref_plugin_telepathy_desc">Envia missatges de text des de l\'escriptori</string>
