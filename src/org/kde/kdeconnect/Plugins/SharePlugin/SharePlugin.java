@@ -34,6 +34,7 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v4.app.NotificationCompat;
@@ -207,7 +208,7 @@ public class SharePlugin extends Plugin {
                             NotificationHelper.notifyCompat(notificationManager, notificationId, builder.build());
 
                             if (successful) {
-                                if (!customDestination) {
+                                if (!customDestination && Build.VERSION.SDK_INT >= 12) {
                                     Log.i("SharePlugin","Adding to downloads");
                                     DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
                                     manager.addCompletedDownload(destinationUri.getLastPathSegment(), device.getName(), true, mimeType, destinationUri.getPath(), fileLength, false);
@@ -228,7 +229,7 @@ public class SharePlugin extends Plugin {
                 Log.i("SharePlugin", "hasText");
 
                 String text = np.getString("text");
-                if(android.os.Build.VERSION.SDK_INT >= 11) {
+                if(Build.VERSION.SDK_INT >= 11) {
                     ClipboardManager cm = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
                     cm.setText(text);
                 } else {
