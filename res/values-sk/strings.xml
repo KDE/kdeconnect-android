@@ -152,6 +152,7 @@
   <string name="device_rename_confirm">Premenovať</string>
   <string name="refresh">Obnoviť</string>
   <string name="unreachable_description">Toto spárované zariadenie nie je dosiahnuteľné. Prosím, uistite sa, že je pripojené do rovnakej siete.</string>
+  <string name="on_data_message">Zdá sa, že ste na mobilom dátovom pripojení. KDE Connect funguje iba na lokálnej sieti.</string>
   <string name="no_file_browser">Nie sú nainštalované žiadne prehliadače.</string>
   <string name="pref_plugin_telepathy">Poslať SMS</string>
   <string name="pref_plugin_telepathy_desc">Posielať textové správy z vášho počítača</string>

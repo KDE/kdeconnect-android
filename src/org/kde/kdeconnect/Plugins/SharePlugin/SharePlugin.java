@@ -119,11 +119,15 @@ public class SharePlugin extends Plugin {
                 final String defaultPath = ShareSettingsActivity.getDefaultDestinationDirectory().getAbsolutePath();
                 final String filename = customDestination? originalFilename : FilesHelper.findNonExistingNameForNewFile(defaultPath, originalFilename);
 
-                final String nameWithoutExtension = FilesHelper.getFileNameWithoutExt(filename);
+                String displayName = FilesHelper.getFileNameWithoutExt(filename);
                 final String mimeType = FilesHelper.getMimeTypeFromFile(filename);
 
+                if ("*/*".equals(mimeType)) {
+                    displayName = filename;
+                }
+
                 final DocumentFile destinationFolderDocument = ShareSettingsActivity.getDestinationDirectory(context);
-                final DocumentFile destinationDocument = destinationFolderDocument.createFile(mimeType, nameWithoutExtension);
+                final DocumentFile destinationDocument = destinationFolderDocument.createFile(mimeType, displayName);
                 final OutputStream destinationOutput = context.getContentResolver().openOutputStream(destinationDocument.getUri());
                 final Uri destinationUri = destinationDocument.getUri();
 
