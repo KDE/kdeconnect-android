@@ -22,7 +22,7 @@
   <string name="pref_plugin_notifications_desc">Zpřístupněte si upozornění z jiných zařízení</string>
   <string name="pref_plugin_receive_notifications">Přijímat oznámení</string>
   <string name="pref_plugin_receive_notifications_desc">Přijímat oznámení z jiného zařízení a zobrazovat je v Androidu</string>
-  <string name="pref_plugin_sharereceiver">Sdílet s přijmnout</string>
+  <string name="pref_plugin_sharereceiver">Sdílet a přijmout</string>
   <string name="pref_plugin_sharereceiver_desc">Sdílet soubory a odkazy mezi zařízeními</string>
   <string name="plugin_not_available">Tato vlastnost není pro vaši verzi Androidu platná</string>
   <string name="device_list_empty">Žádná zařízení</string>
@@ -165,6 +165,7 @@
   <string name="device_rename_confirm">Přejmenovat</string>
   <string name="refresh">Obnovit</string>
   <string name="unreachable_description">Toto spárované zařízení je nedosažitelné. Ujistěte se, že běží ve stejné síti.</string>
+  <string name="on_data_message">Vypadá to, že jste na mobilním internetovém připojení. KDE Connect funguje pouze na lokální síti.</string>
   <string name="no_file_browser">Není nainstalován žádný prohlížeč souborů.</string>
   <string name="pref_plugin_telepathy">Poslat SMS</string>
   <string name="pref_plugin_telepathy_desc">Posílejte zprávy ze své pracovní plochy</string>

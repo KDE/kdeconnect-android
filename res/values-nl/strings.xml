@@ -67,7 +67,7 @@
   <string name="pair_new_device">Nieuw apparaat paren</string>
   <string name="unknown_device">Onbekend apparaat</string>
   <string name="error_not_reachable">Apparaat niet bereikbaar</string>
-  <string name="error_already_requested">Paar maken is al gevraagd</string>
+  <string name="error_already_requested">Paarvorming is al gevraagd</string>
   <string name="error_already_paired">Apparaat is al gepaard</string>
   <string name="error_could_not_send_package">Kon pakket niet verzenden</string>
   <string name="error_timed_out">Tijdslimiet overschreden</string>
@@ -78,7 +78,7 @@
   <string name="encryption_info_msg_no_ssl">Het andere apparaat gebruikt geen recente versie van KDE Connect, de verouderde versleutelingsmethode zal worden gebruikt.</string>
   <string name="my_device_fingerprint">De SHA1 vingerafdruk van het certificaat van uw apparaat is:</string>
   <string name="remote_device_fingerprint">De SHA1 vingerafdruk van het certificaat van het apparaat op afstand is:</string>
-  <string name="pair_requested">Paar gevraagd</string>
+  <string name="pair_requested">Paarvorming gevraagd</string>
   <string name="pairing_request_from">Verzoek om een paar te maken van %1s</string>
   <string name="received_url_title">Ontvangen koppeling van %1s</string>
   <string name="received_url_text">Tap om \'%1s\' te openen</string>
