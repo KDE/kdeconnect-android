@@ -67,7 +67,7 @@
   <string name="pair_new_device">Nieuw apparaat paren</string>
   <string name="unknown_device">Onbekend apparaat</string>
   <string name="error_not_reachable">Apparaat niet bereikbaar</string>
-  <string name="error_already_requested">Paar maken is al gevraagd</string>
+  <string name="error_already_requested">Paarvorming is al gevraagd</string>
   <string name="error_already_paired">Apparaat is al gepaard</string>
   <string name="error_could_not_send_package">Kon pakket niet verzenden</string>
   <string name="error_timed_out">Tijdslimiet overschreden</string>
