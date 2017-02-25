@@ -8,7 +8,7 @@ import android.net.NetworkInfo;
 public class NetworkHelper {
 
     public static boolean isOnMobileNetwork(Context context) {
-        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
+        if (context == null || android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
             return false; //No good way to know it
         }
         final ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
