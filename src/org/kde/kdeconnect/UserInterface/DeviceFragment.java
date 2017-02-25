@@ -40,6 +40,7 @@ import android.widget.TextView;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Helpers.NetworkHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.UserInterface.List.CustomItem;
@@ -333,9 +334,11 @@ public class DeviceFragment extends Fragment {
 
                     boolean paired = device.isPaired();
                     boolean reachable = device.isReachable();
+                    boolean onData = NetworkHelper.isOnMobileNetwork(getContext());
 
                     rootView.findViewById(R.id.pairing_buttons).setVisibility(paired ? View.GONE : View.VISIBLE);
-                    rootView.findViewById(R.id.unpair_message).setVisibility((paired && !reachable) ? View.VISIBLE : View.GONE);
+                    rootView.findViewById(R.id.not_reachable_message).setVisibility((paired && !reachable && !onData) ? View.VISIBLE : View.GONE);
+                    rootView.findViewById(R.id.on_data_message).setVisibility((paired && !reachable && onData) ? View.VISIBLE : View.GONE);
 
                     try {
                         ArrayList<ListAdapter.Item> items = new ArrayList<>();
