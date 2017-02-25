@@ -119,7 +119,7 @@ public class BackgroundService extends Service {
         }
     };
 
-    private void onDeviceListChanged() {
+    public void onDeviceListChanged() {
         for(DeviceListChangedCallback callback : deviceListChangedCallbacks.values()) {
             callback.onDeviceListChanged();
         }

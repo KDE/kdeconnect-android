@@ -31,6 +31,7 @@ import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
+import org.kde.kdeconnect.Helpers.NetworkHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Helpers.StringsHelper;
 import org.kde.kdeconnect.NetworkPackage;
@@ -361,6 +362,11 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     }
 
     private void broadcastUdpPackage() {
+
+        if (NetworkHelper.isOnMobileNetwork(context)) {
+            Log.w("LanLinkProvider", "On 3G network, not sending broadcast.");
+            return;
+        }
 
         new Thread(new Runnable() {
             @Override

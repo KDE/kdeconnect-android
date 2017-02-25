@@ -36,6 +36,7 @@ import android.widget.TextView;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Helpers.NetworkHelper;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.PairingDeviceItem;
 import org.kde.kdeconnect.UserInterface.List.SectionItem;
@@ -60,6 +61,8 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
 
     boolean listRefreshCalledThisFrame = false;
 
+    TextView headerText;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,10 +77,10 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
 
         rootView = inflater.inflate(R.layout.activity_list, container, false);
 
-        TextView text = new TextView(inflater.getContext());
-        text.setText(getString(R.string.pairing_description));
-        text.setPadding(0, (int) (16 * getResources().getDisplayMetrics().density), 0, (int) (12 * getResources().getDisplayMetrics().density));
-        ((ListView) rootView).addHeaderView(text);
+        headerText = new TextView(inflater.getContext());
+        headerText.setText(getString(R.string.pairing_description));
+        headerText.setPadding(0, (int) (16 * getResources().getDisplayMetrics().density), 0, (int) (12 * getResources().getDisplayMetrics().density));
+        ((ListView) rootView).addHeaderView(headerText);
 
         return rootView;
     }
@@ -103,6 +106,8 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
                             return;
                         }
                         listRefreshCalledThisFrame = true;
+
+                        headerText.setText(getString(NetworkHelper.isOnMobileNetwork(getContext()) ? R.string.on_data_message : R.string.pairing_description));
 
                         try {
                             Collection<Device> devices = service.getDevices().values();
