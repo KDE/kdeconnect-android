@@ -10,6 +10,8 @@
   <string name="pref_plugin_clipboard_desc">Del indholdet af udklipsholderen</string>
   <string name="pref_plugin_mousepad">Eksternt input</string>
   <string name="pref_plugin_mousepad_desc">Brug din telefon eller tablet som mus og tastatur</string>
+  <string name="pref_plugin_remotekeyboard">Modtag eksterne tastetryk</string>
+  <string name="pref_plugin_remotekeyboard_desc">Modtag tastetryk-hændelser fra eksterne enheder</string>
   <string name="pref_plugin_mpris">Multimediekontroller</string>
   <string name="pref_plugin_mpris_desc">Giver en fjernbetjening til din medieafspiller</string>
   <string name="pref_plugin_runcommand">Kør kommando</string>
@@ -30,6 +32,10 @@
   <string name="no_permissions">Du skal give tilladelse for at tilgå bekendtgørelser</string>
   <string name="send_ping">Send ping</string>
   <string name="open_mpris_controls">Multimediekontrol</string>
+  <string name="remotekeyboard_editing_only_title">Håndtér kun eksterne tastetryk under redigering</string>
+  <string name="remotekeyboard_not_connected">Der er ingen aktiv ekstern tastaturforbindelse. Opret en i kdeconnect</string>
+  <string name="remotekeyboard_connected">Ekstern tastaturforbindelse er aktiv</string>
+  <string name="remotekeyboard_multiple_connections">Der er mere end en ekstern tastaturforbindelse, vælg den enhed der skal konfigureres</string>
   <string name="open_mousepad">Eksternt input</string>
   <string name="mousepad_info">Bevæg en finger på skærmen for at flytte musemarkøren. Tap for at klikke og brug to/tre-fingre for højre og midterste museknap. Brug et langt tryk til at trække og slippe.</string>
   <string name="mousepad_double_tap_settings_title">Angiv handling for tap med to fingre</string>
@@ -152,6 +158,7 @@
   <string name="device_rename_confirm">Omdøb</string>
   <string name="refresh">Genopfrisk</string>
   <string name="unreachable_description">Denne parrede enhed kan ikke nås. Sørg for at den er forbundet til samme netværk som dig.</string>
+  <string name="on_data_message">Det lader til at du er på en mobil dataforbindelse. KDE Connect virker kun på lokale netværk.</string>
   <string name="no_file_browser">Der er ingen filhåndtering installeret.</string>
   <string name="pref_plugin_telepathy">Send SMS</string>
   <string name="pref_plugin_telepathy_desc">Send SMS-beskeder fra din desktop</string>
