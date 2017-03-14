@@ -9,8 +9,9 @@
   <string name="pref_plugin_clipboard">Abgleich der Zwischenablage</string>
   <string name="pref_plugin_clipboard_desc">Inhalt der Zwischenablage freigeben</string>
   <string name="pref_plugin_mousepad">Ferneingabe</string>
-  <string name="pref_plugin_mousepad_desc">Verwendet Ihr Handy als Tablett, Touchpad und Tastatur</string>
+  <string name="pref_plugin_mousepad_desc">Verwendet Ihr Handy als Tablet, Touchpad und Tastatur</string>
   <string name="pref_plugin_mpris">Multimedia-Bedienung</string>
+  <string name="pref_plugin_mpris_desc">Eine Fernbedienung für Ihre Medienwiedergabe</string>
   <string name="pref_plugin_runcommand">Befehl ausführen</string>
   <string name="pref_plugin_runcommand_desc">Von Ihrem Telefon oder Tablett Befehle auf anderen Geräten ausführen</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -18,6 +19,7 @@
   <string name="pref_plugin_notifications">Benachrichtigungs-Abgleich</string>
   <string name="pref_plugin_notifications_desc">Zugriff auf Ihre Benachrichtigungen von anderen Geräten</string>
   <string name="pref_plugin_receive_notifications">Benachrichtigungen empfangen</string>
+  <string name="pref_plugin_receive_notifications_desc">Empfangen und Anzeigen von Benachrichtigungen des anderen Geräts</string>
   <string name="pref_plugin_sharereceiver">Veröffentlichen und Empfangen</string>
   <string name="pref_plugin_sharereceiver_desc">Dateien und Adressen (URLs) zwischen Geräten teilen</string>
   <string name="plugin_not_available">Diese Funktion ist in Ihrer Android-Version nicht verfügbar</string>
@@ -29,6 +31,7 @@
   <string name="send_ping">Ping senden</string>
   <string name="open_mpris_controls">Multimedia-Bedienung</string>
   <string name="open_mousepad">Ferneingabe</string>
+  <string name="mousepad_info">Bewegen Sie einen Finger auf dem Bildschirm um den Maus-Zeiger zu verschieben. Tippen zum Klicken, mit zwei oder drei Fingern für rechten bzw. mittleren Mausknopf. Tippen und Halten für Ziehen und Ablegen.</string>
   <string name="mousepad_double_tap_settings_title">Aktionsausführung bei Berührung mit zwei Fingern einstellen</string>
   <string name="mousepad_triple_tap_settings_title">Aktionsausführung bei Berührung mit drei Fingern einstellen</string>
   <string name="mousepad_sensitivity_settings_title">Empfindlichkeit des Touchpads einstellen</string>
@@ -43,9 +46,9 @@
   <string name="mousepad_sensitivity_default">Standard</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>Langsamste</item>
-    <item>Above Slowest</item>
+    <item>Langsam</item>
     <item>Standard</item>
-    <item>Above Default</item>
+    <item>Schnell</item>
     <item>Schnellste</item>
   </string-array>
   <string name="category_connected_devices">Verbundene Geräte</string>
@@ -66,19 +69,25 @@
   <string name="error_canceled_by_other_peer">Abbruch durch Gegenstelle</string>
   <string name="error_invalid_key">Ungültiger Schlüssel empfangen</string>
   <string name="encryption_info_title">Verschlüsselungsinformationen</string>
+  <string name="encryption_info_msg_no_ssl">Das andere Gerät verwendet eine ältere Version von KDE-Connect, eine veraltete Verschlüsselungsmethode wird verwendet.</string>
   <string name="my_device_fingerprint">Der SHA1-Fingerabdruck Ihres Gerätezertifikats lautet:</string>
   <string name="remote_device_fingerprint">Der SHA1-Fingerabdruck des Gerätezertifikats der Gegenstelle lautet:</string>
   <string name="pair_requested">Verbindung angefordert</string>
   <string name="pairing_request_from">Verbindungsanfrage von %1s</string>
   <string name="received_url_title">Verknüpfung von %1s erhalten</string>
+  <string name="received_url_text">Tippen um „%1s“ zu öffnen</string>
   <string name="incoming_file_title">Eingehende Datei von %1s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Datei wird an %1s gesendet</string>
+  <string name="outgoing_files_title">Datei wird an %1s gesendet</string>
   <string name="outgoing_file_text">%1s</string>
+  <string name="outgoing_files_text">%1$d von %2$d Dateien gesendet</string>
   <string name="received_file_title">Datei von %1s erhalten</string>
   <string name="received_file_fail_title">Der Empfang der Datei %1s ist fehlgeschlagen</string>
+  <string name="received_file_text">Tippen um „%1s“ zu öffnen</string>
   <string name="sent_file_title">Datei an %1s gesendet</string>
   <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Das Senden der Datei an %1s ist fehlgeschlagen</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Tippen zum Antworten</string>
   <string name="reconnect">Erneut verbinden</string>
@@ -101,6 +110,7 @@
   <string name="mpris_volume">Lautstärke</string>
   <string name="mpris_settings">Multimedia-Einstellungen</string>
   <string name="mpris_time_settings_title">Knöpfe Vorwärts/Rückwärts</string>
+  <string name="mpris_time_settings_summary">Sprungweite für Vorlauf/Rücklauf anpassen.</string>
   <string-array name="mpris_time_entries">
     <item>10 Sekunden</item>
     <item>20 Sekunden</item>
@@ -121,9 +131,13 @@
   <string name="custom_devices_settings">Benutzerdefinierte Geräteliste</string>
   <string name="pair_device_action">Ein neues Gerät verbinden</string>
   <string name="unpair_device_action">Verbindung %s trennen</string>
-  <string name="custom_device_list">Geräte nach IP hinzufügen</string>
+  <string name="custom_device_list">Geräte nach IP-Adresse hinzufügen</string>
   <string name="share_notification_preference">Ausführliche Benachrichtigungen</string>
   <string name="share_notification_preference_summary">Beim Empfang einer Datei vibrieren und einen Sound abspielen</string>
+  <string name="share_destination_customize">Zielverzeichnis anpassen</string>
+  <string name="share_destination_customize_summary_disabled">Empfangene Dateien werden in Downloads gespeichert</string>
+  <string name="share_destination_customize_summary_enabled">Dateien werden im folgenden Verzeichnis gespeichert</string>
+  <string name="share_destination_folder_preference">Zielverzeichnis</string>
   <string name="title_activity_notification_filter">Benachrichtigungs-Filter</string>
   <string name="filter_apps_info">Benachrichtigungen werden zwischen den ausgewählten Anwendungen abgeglichen.</string>
   <string name="sftp_internal_storage">Interner Speicher</string>
@@ -132,17 +146,19 @@
   <string name="sftp_sdcard">SD-Karte</string>
   <string name="sftp_readonly">(Nur lesen)</string>
   <string name="sftp_camera">Kamerabilder</string>
-  <string name="add_host">Rechner/IP hinzufügen</string>
-  <string name="add_host_hint">Rechnername oder IP</string>
+  <string name="add_host">Rechner/IP-Adresse hinzufügen</string>
+  <string name="add_host_hint">Rechnername oder IP-Adresse</string>
   <string name="no_players_connected">Keine Medienspieler gefunden</string>
+  <string name="custom_dev_list_help">Benutzen Sie diese Funktion nur, wenn Ihr Gerät nicht automatisch erkannt wird. Geben hier Sie IP-Adresse oder Hostnamen ein und bestätigen Sie, um es zu der Liste hinzuzufügen. Tippen Sie ein bestehendes Gerät an, um es aus der Liste zu entfernen.</string>
   <string name="mpris_player_on_device">%1$s auf %2$s</string>
   <string name="send_files">Dateien senden</string>
   <string name="pairing_title">KDE-Connect-Geräte</string>
-  <string name="pairing_description">Andere Geräte, auf denen KDE-Connect läuft im gleichen Netzwerk,sollte hier angezeigt werden.</string>
+  <string name="pairing_description">Andere Geräte im selben Netzwerk, auf denen KDE-Connect läuft, sollten hier angezeigt werden.</string>
   <string name="device_paired">Gerät verbunden</string>
   <string name="device_rename_title">Geräte umbenennen</string>
   <string name="device_rename_confirm">Umbenennen</string>
   <string name="refresh">Aktualisieren</string>
+  <string name="unreachable_description">Das verbundene Gerät ist nicht erreichbar. Stellen Sie sicher daß es mit demselben Netzwerk verbunden ist.</string>
   <string name="no_file_browser">Es sind keine Dateiverwaltungsprogramme installiert.</string>
   <string name="pref_plugin_telepathy">SMS senden</string>
   <string name="pref_plugin_telepathy_desc">Text-Nachrichten von Ihrer Arbeitsfläche senden</string>
