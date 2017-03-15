@@ -131,7 +131,7 @@
   <string name="custom_devices_settings">Benutzerdefinierte Geräteliste</string>
   <string name="pair_device_action">Ein neues Gerät verbinden</string>
   <string name="unpair_device_action">Verbindung %s trennen</string>
-  <string name="custom_device_list">Geräte nach IP hinzufügen</string>
+  <string name="custom_device_list">Geräte nach IP-Adresse hinzufügen</string>
   <string name="share_notification_preference">Ausführliche Benachrichtigungen</string>
   <string name="share_notification_preference_summary">Beim Empfang einer Datei vibrieren und einen Sound abspielen</string>
   <string name="share_destination_customize">Zielverzeichnis anpassen</string>
@@ -146,8 +146,8 @@
   <string name="sftp_sdcard">SD-Karte</string>
   <string name="sftp_readonly">(Nur lesen)</string>
   <string name="sftp_camera">Kamerabilder</string>
-  <string name="add_host">Rechner/IP hinzufügen</string>
-  <string name="add_host_hint">Rechnername oder IP</string>
+  <string name="add_host">Rechner/IP-Adresse hinzufügen</string>
+  <string name="add_host_hint">Rechnername oder IP-Adresse</string>
   <string name="no_players_connected">Keine Medienspieler gefunden</string>
   <string name="custom_dev_list_help">Benutzen Sie diese Funktion nur, wenn Ihr Gerät nicht automatisch erkannt wird. Geben hier Sie IP-Adresse oder Hostnamen ein und bestätigen Sie, um es zu der Liste hinzuzufügen. Tippen Sie ein bestehendes Gerät an, um es aus der Liste zu entfernen.</string>
   <string name="mpris_player_on_device">%1$s auf %2$s</string>
