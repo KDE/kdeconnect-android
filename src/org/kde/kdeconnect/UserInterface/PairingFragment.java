@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -55,9 +56,9 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     private static final int RESULT_PAIRING_SUCCESFUL = Activity.RESULT_FIRST_USER;
 
     private View rootView;
+    private View listRootView;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     private MaterialActivity mActivity;
-
-    private MenuItem menuProgress;
 
     boolean listRefreshCalledThisFrame = false;
 
@@ -75,12 +76,21 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
 
         setHasOptionsMenu(true);
 
-        rootView = inflater.inflate(R.layout.activity_list, container, false);
-
+        rootView = inflater.inflate(R.layout.activity_refresh_list, container, false);
+        listRootView = rootView.findViewById(R.id.listView1);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.refresh_list_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        updateComputerListAction();
+                    }
+                }
+        );
         headerText = new TextView(inflater.getContext());
         headerText.setText(getString(R.string.pairing_description));
         headerText.setPadding(0, (int) (16 * getResources().getDisplayMetrics().density), 0, (int) (12 * getResources().getDisplayMetrics().density));
-        ((ListView) rootView).addHeaderView(headerText);
+        ((ListView) listRootView).addHeaderView(headerText);
 
         return rootView;
     }
@@ -91,7 +101,30 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
         mActivity = ((MaterialActivity) getActivity());
     }
 
-    void updateComputerList() {
+    private void updateComputerListAction() {
+        updateComputerList();
+        BackgroundService.RunCommand(mActivity, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                service.onNetworkChange();
+            }
+        });
+        mSwipeRefreshLayout.setRefreshing(true);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try { Thread.sleep(1500); } catch (InterruptedException ignored) { }
+                mActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+                });
+            }
+        }).start();
+    }
+
+    private void updateComputerList() {
         BackgroundService.RunCommand(mActivity, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(final BackgroundService service) {
@@ -227,33 +260,13 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.pairing, menu);
-        menuProgress = menu.findItem(R.id.menu_progress);
     }
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_refresh:
-                updateComputerList();
-                BackgroundService.RunCommand(mActivity, new BackgroundService.InstanceCallback() {
-                    @Override
-                    public void onServiceStart(BackgroundService service) {
-                        service.onNetworkChange();
-                    }
-                });
-                menuProgress.setVisible(true);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try { Thread.sleep(1500); } catch (InterruptedException e) { }
-                        mActivity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                menuProgress.setVisible(false);
-                            }
-                        });
-                    }
-                }).start();
+                updateComputerListAction();
                 break;
             case R.id.menu_rename:
                 mActivity.renameDevice();

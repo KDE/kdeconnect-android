@@ -10,14 +10,6 @@
         />
 
     <item
-            android:id="@+id/menu_progress"
-            android:orderInCategory="200"
-            android:visible="false"
-            kdeconnect:showAsAction="ifRoom"
-            kdeconnect:actionViewClass="android.widget.ProgressBar"
-        />
-
-    <item
         android:id="@+id/menu_rename"
         android:orderInCategory="300"
         android:title="@string/device_rename_title"
