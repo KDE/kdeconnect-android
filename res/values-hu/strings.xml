@@ -1,88 +1,178 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="pref_plugin_telephony">Telefon értesítő</string>
-  <string name="pref_plugin_telephony_desc">Értesítés küldése SMS-hez és hívásokhoz</string>
-  <string name="pref_plugin_battery">Akkumulátor jelentés</string>
-  <string name="pref_plugin_battery_desc">Akkumulátorállapot időszakos jelentése</string>
-  <string name="pref_plugin_sftp">Fájlrendszer kifejtés</string>
-  <string name="pref_plugin_clipboard">Vágólap szinkronizáció</string>
-  <string name="pref_plugin_clipboard_desc">A vágólap tartalmának megosztása</string>
-  <string name="pref_plugin_ping">Ping</string>
-  <string name="pref_plugin_ping_desc">Pingek küldése és fogadása</string>
-  <string name="pref_plugin_notifications">Értesítés szinkronizáció</string>
-  <string name="pref_plugin_notifications_desc">Hozzáférés az értesítésekhez más eszközökről</string>
-  <string name="plugin_not_available">Ez a funkció nem érhető el az ön Android verziójában</string>
-  <string name="device_list_empty">Nincsenek eszközök</string>
-  <string name="ok">OK</string>
-  <string name="cancel">Mégse</string>
-  <string name="open_settings">Beállítások megnyitása</string>
-  <string name="no_permissions">Jogot kell adnia az értesítésekhez való hozzáféréshez</string>
-  <string name="send_ping">Ping küldése</string>
-  <string-array name="mousepad_tap_entries">
-    <item/>
-    <item/>
-    <item>Nothing</item>
-  </string-array>
-  <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
-    <item>Above Slowest</item>
-    <item>Default</item>
-    <item>Above Default</item>
-    <item>Fastest</item>
-  </string-array>
-  <string name="category_connected_devices">Csatlakoztatott eszközök</string>
-  <string name="category_remembered_devices">Megjegyzett eszközök</string>
-  <string name="plugins_failed_to_load">A bővítményeket nem sikerült betölteni (érintse meg a további információkért):</string>
-  <string name="device_menu_unpair">Leválasztás</string>
-  <string name="device_not_reachable">A párosított eszköz nem érhető el</string>
-  <string name="unknown_device">Ismeretlen eszköz</string>
-  <string name="error_not_reachable">Az eszköz nem érhető el</string>
-  <string name="error_already_requested">A párosítás már kérve lett</string>
-  <string name="error_already_paired">Az eszköz már párosítva van</string>
-  <string name="error_could_not_send_package">Nem sikerült elküldeni a csomagot</string>
-  <string name="error_timed_out">Időtúllépés</string>
-  <string name="error_canceled_by_user">Megszakítva a felhasználó által</string>
-  <string name="error_canceled_by_other_peer">A másik partner megszakította</string>
-  <string name="error_invalid_key">Érvénytelen kulcs érkezett</string>
-  <string name="pair_requested">Párosítás kérve</string>
-  <string name="pairing_request_from">Párosítási kérés innen: %1s</string>
-  <string name="received_url_title">Hivatkozás érkezett innen: %1s</string>
-  <string name="received_url_text">Koppintson „%1s” megnyitásához</string>
-  <string name="incoming_file_title">Bejövő fájl innen: %1s</string>
-  <string name="incoming_file_text">%1s</string>
-  <string name="received_file_title">Fájl érkezett innen: %1s</string>
-  <string name="received_file_text">Koppintson „%1s” megnyitásához</string>
-  <string name="tap_to_answer">Érintse meg a válaszhoz</string>
-  <string name="reconnect">Újracsatlakozás</string>
-  <string name="right_click">Jobb kattintás küldése</string>
-  <string name="middle_click">Középső kattintás küldése</string>
-  <string name="device_not_paired">Az eszköz nincs párosítva</string>
-  <string name="request_pairing">Párosítás kérése</string>
-  <string name="pairing_accept">Elfogadás</string>
-  <string name="pairing_reject">Elutasítás</string>
-  <string name="device">Eszköz</string>
-  <string name="pair_device">Eszköz párosítása</string>
-  <string name="remote_control">Távirányító</string>
-  <string name="settings">KDE csatlakozás beállítások</string>
-  <string name="mpris_play">Lejátszás</string>
-  <string name="mpris_previous">Előző</string>
-  <string name="mpris_rew">Visszatekerés</string>
-  <string name="mpris_ff">Gyors előretekerés</string>
-  <string name="mpris_next">Következő</string>
-  <string name="mpris_volume">Hangerő</string>
-  <string-array name="mpris_time_entries">
-    <item>10 seconds</item>
-    <item>20 seconds</item>
-    <item>30 seconds</item>
-    <item>1 minute</item>
-    <item>2 minutes</item>
-  </string-array>
-  <string name="share_to">Megosztás…</string>
-  <string name="protocol_version_older">Ez az eszköz egy régi protokollverziót használ</string>
-  <string name="protocol_version_newer">Ez az eszköz egy újabb protokollverziót használ</string>
-  <string name="general_settings">Általános beállítások</string>
-  <string name="device_name">Eszköznév</string>
-  <string name="device_name_preference_summary">%s</string>
-  <string name="invalid_device_name">Érvénytelen eszköznév</string>
-  <string name="shareplugin_text_saved">Szöveg érkezett, elmentve a vágólapra</string>
+    
+    <string name="pref_plugin_telephony">Hívásértesítő</string>
+    <string name="pref_plugin_telephony_desc">Értesítés küldése SMS-ről és hívásokról</string>
+    <string name="pref_plugin_battery">Akkumulátorállapot</string>
+    <string name="pref_plugin_battery_desc">Akkumulátorállapot időszakos jelentése</string>
+    <string name="pref_plugin_sftp">Fájlrendszer böngészés</string>
+    <string name="pref_plugin_sftp_desc">Távolról elérhetővé teszi az eszköz fájlrendszerét</string>
+    <string name="pref_plugin_clipboard">Vágólap szinkronizáció</string>
+    <string name="pref_plugin_clipboard_desc">A vágólap tartalmának megosztása</string>
+    <string name="pref_plugin_mousepad">Távoli bevitel</string>
+    <string name="pref_plugin_mousepad_desc">A telefon vagy tablet használata egérként és billentyűzetként</string>
+    <string name="pref_plugin_remotekeyboard">Távoli gombnyomások fogadása</string>
+    <string name="pref_plugin_remotekeyboard_desc">Gombnyomás eseményeket fogad távoli eszközökről</string>
+    <string name="pref_plugin_mpris">Médialejátszó vezérlés</string>
+    <string name="pref_plugin_mpris_desc">A médialejátszót tudja távirányítani</string>
+    <string name="pref_plugin_runcommand">Parancs futtatása</string>
+    <string name="pref_plugin_runcommand_desc">Távolról indítható parancsok a telefonról vagy tabletről</string>
+    <string name="pref_plugin_ping">Ping</string>
+    <string name="pref_plugin_ping_desc">Pingek küldése és fogadása</string>
+    <string name="pref_plugin_notifications">Értesítés szinkronizáció</string>
+    <string name="pref_plugin_notifications_desc">Az értesítéseid elérése más eszközökről</string>
+    <string name="pref_plugin_receive_notifications">Értesítések fogadása</string>
+    <string name="pref_plugin_receive_notifications_desc">Értesítéseket fogad más eszközökről és megjeleníti őket Androidon</string>
+    <string name="pref_plugin_sharereceiver">Megosztás és fogadás</string>
+    <string name="pref_plugin_sharereceiver_desc">Fájlokat és URL-eket oszt meg az eszközök között</string>
+    <string name="plugin_not_available">Ez a funkció nem érhető el a te Android verziódon</string>
+    <string name="device_list_empty">Nincsenek eszközök</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Mégse</string>
+    <string name="open_settings">Beállítások megnyitása</string>
+    <string name="no_permissions">Jogot kell adnod az értesítésekhez való hozzáféréshez</string>
+    <string name="send_ping">Ping küldése</string>
+    <string name="open_mpris_controls">Médialejátszó vezérlés</string>
+    <string name="open_mousepad">Távoli bevitel</string>
+    <string name="mousepad_info">A kurzor mozgatásához mozgasd az ujjad a képernyőn. Kattintani érintéssel lehet; két, vagy három ujjal pedig a jobb és középső gombok nyomását szimulálod. „Fogd és vidd” műveletet hosszú nyomással indíthatsz.</string>
+    <string name="mousepad_double_tap_settings_title">Kétujjas érintés művelet beállítása</string>
+    <string name="mousepad_triple_tap_settings_title">Háromujjas érintés művelet beállítása</string>
+    <string name="mousepad_sensitivity_settings_title">Érintőtábla érzékenységének beállítása</string>
+    <string name="mousepad_scroll_direction_title">Görgetési irány megfordítása</string>
+    <string-array name="mousepad_tap_entries">
+        <item>Jobb kattintás</item>
+        <item>Középső kattintás</item>
+        <item>Semmi</item>
+    </string-array>
+    <string name="mousepad_double_default">jobb</string>
+    <string name="mousepad_triple_default">középső</string>
+    <string name="mousepad_sensitivity_default">alapértelmezett</string>
+    <string-array name="mousepad_sensitivity_entries">
+        <item>Nagyon lassú</item>
+        <item>Lassú</item>
+        <item>Alapértelmezett</item>
+        <item>Gyors</item>
+        <item>Nagyon gyors</item>
+    </string-array>
+    <string name="category_connected_devices">Csatlakoztatott eszközök</string>
+    <string name="category_not_paired_devices">Elérhető eszközök</string>
+    <string name="category_remembered_devices">Megjegyzett eszközök</string>
+    <string name="plugins_failed_to_load">A bővítményeket nem sikerült betölteni (érintsd meg a további információkért):</string>
+    <string name="device_menu_plugins">Bővítmény beállítások</string>
+    <string name="device_menu_unpair">Leválasztás</string>
+    <string name="device_not_reachable">A párosított eszköz nem érhető el</string>
+    <string name="pair_new_device">Új eszköz párosítása</string>
+    <string name="unknown_device">Ismeretlen eszköz</string>
+    <string name="error_not_reachable">Az eszköz nem érhető el</string>
+    <string name="error_already_requested">A párosítás már kérve lett</string>
+    <string name="error_already_paired">Az eszköz már párosítva van</string>
+    <string name="error_could_not_send_package">Nem sikerült elküldeni a csomagot</string>
+    <string name="error_timed_out">Időtúllépés</string>
+    <string name="error_canceled_by_user">Megszakítva a felhasználó által</string>
+    <string name="error_canceled_by_other_peer">A másik partner megszakította</string>
+    <string name="error_invalid_key">Érvénytelen kulcs érkezett</string>
+    <string name="encryption_info_title">Titkosítási információ</string>
+    <string name="encryption_info_msg_no_ssl">A másik eszköz a KDE Connect egy régebbi verzióját használja. Elavult titkosítási módszer használata.</string>
+    <string name="my_device_fingerprint">Az eszközöd tanúsítványának SHA1 ujjlenyomata:</string>
+    <string name="remote_device_fingerprint">A távoli eszköz tanúsítványának SHA1 ujjlenyomata:</string>
+    <string name="pair_requested">Párosítás kérve</string>
+    <string name="pairing_request_from">Párosítási kérés innen: %1s</string>
+    <string name="received_url_title">Hivatkozás érkezett innen: %1s</string>
+    <string name="received_url_text">Koppints „%1s” megnyitásához</string>
+    <string name="incoming_file_title">Bejövő fájl innen: %1s</string>
+    <string name="incoming_file_text">%1s</string>
+    <string name="outgoing_file_title">Fájl küldése ide: %1s</string>
+    <string name="outgoing_files_title">Fájlok küldése ide: %1s</string>
+    <string name="outgoing_file_text">%1s</string>
+    <string name="outgoing_files_text">%1s / %2s fájl elküldve</string>
+    <string name="received_file_title">Fájl érkezett innen: %1s</string>
+    <string name="received_file_fail_title">Nem sikerült fájlt fogadni innen: %1s</string>
+    <string name="received_file_text">Koppints „%1s” megnyitásához</string>
+    <string name="sent_file_title">Fájl elküldve ide: %1s</string>
+    <string name="sent_file_text">%1s</string>
+    <string name="sent_file_failed_title">Nem sikerült elküldeni a fájlt ide: %1s</string>
+    <string name="sent_file_failed_text">%1s</string>
+    <string name="tap_to_answer">Érintsd meg a válaszhoz</string>
+    <string name="reconnect">Újracsatlakozás</string>
+    <string name="right_click">Jobb kattintás küldése</string>
+    <string name="middle_click">Középső kattintás küldése</string>
+    <string name="show_keyboard">Billentyűzet megjelenítése</string>
+    <string name="device_not_paired">Az eszköz nincs párosítva</string>
+    <string name="request_pairing">Párosítás kérése</string>
+    <string name="pairing_accept">Elfogadás</string>
+    <string name="pairing_reject">Elutasítás</string>
+    <string name="device">Eszköz</string>
+    <string name="pair_device">Eszköz párosítása</string>
+    <string name="remote_control">Távirányító</string>
+    <string name="settings">KDE Connect beállítások</string>
+    <string name="mpris_play">Lejátszás</string>
+    <string name="mpris_previous">Előző</string>
+    <string name="mpris_rew">Visszatekerés</string>
+    <string name="mpris_ff">Gyors előretekerés</string>
+    <string name="mpris_next">Következő</string>
+    <string name="mpris_volume">Hangerő</string>
+    <string name="mpris_settings">Multimédia beállítások</string>
+    <string name="mpris_time_settings_title">Előre/vissza gombok</string>
+    <string name="mpris_time_settings_summary">Az előre- és visszatekerés idejét állítja</string>
+    <string-array name="mpris_time_entries">
+        <item>10 másodperc</item>
+        <item>20 másodperc</item>
+        <item>30 másodperc</item>
+        <item>1 perc</item>
+        <item>2 perc</item>
+    </string-array>
+    <string name="share_to">Megosztás…</string>
+    <string name="protocol_version_older">Ez az eszköz egy régi protokollverziót használ</string>
+    <string name="protocol_version_newer">Ez az eszköz egy újabb protokollverziót használ</string>
+    <string name="general_settings">Általános beállítások</string>
+    <string name="plugin_settings">Beállítások</string>
+    <string name="plugin_settings_with_name">%s beállításai</string>
+    <string name="device_name">Eszköznév</string>
+    <string name="device_name_preference_summary">%s</string>
+    <string name="invalid_device_name">Érvénytelen eszköznév</string>
+    <string name="shareplugin_text_saved">Szöveg érkezett, elmentve a vágólapra</string>
+    <string name="custom_devices_settings">Egyéni eszköz lista</string>
+    <string name="pair_device_action">Új eszköz párosítása</string>
+    <string name="unpair_device_action">%s leválasztása</string>
+    <string name="custom_device_list">Eszközök hozzáadása IP szerint</string>
+    <string name="share_notification_preference">Hangos értesítések</string>
+    <string name="share_notification_preference_summary">Fájl fogadásakor vibrál és hangot játszik le</string>
+    <string name="share_destination_customize">Célkönyvtár testreszabása</string>
+    <string name="share_destination_customize_summary_disabled">A fogadott fájlok a Letöltések közt fognak megjelenni</string>
+    <string name="share_destination_customize_summary_enabled">A fájlok az alábbi könyvtárban lesznek eltárolva</string>
+    <string name="share_destination_folder_preference">Célkönyvtár</string>
+    <string name="title_activity_notification_filter">Értesítés szűrő</string>
+    <string name="filter_apps_info">A kiválasztott alkalmazások értesítései lesznek szinkronizálva.</string>
+    <string name="sftp_internal_storage">Belső tárhely</string>
+    <string name="sftp_all_files">Összes fájl</string>
+    <string name="sftp_sdcard_num">SD-kártya %d</string>
+    <string name="sftp_sdcard">SD-kártya</string>
+    <string name="sftp_readonly">(csak olvasható)</string>
+    <string name="sftp_camera">Fényképek</string>
+    <string name="add_host">Gép/IP hozzáadása</string>
+    <string name="add_host_hint">Gép vagy IP-cím</string>
+    <string name="no_players_connected">Nem található lejátszó</string>
+    <string name="custom_dev_list_help">Csak akkor élj ezzel a lehetőséggel, ha nem ismerte fel automatikusan az eszközödet. Add meg az IP-címét, vagy a gép nevét és nyomj a gombra, hogy bekerüljön a listába. Nyomj egy meglévő elemre, ha el akarod távolítani a listából.</string>
+    <string name="mpris_player_on_device">%1$s ezen: %2$s</string>
+    <string name="send_files">Fájlok küldése</string>
+    
+    <string name="pairing_title">KDE Connect eszközök</string>
+    <string name="pairing_description">A hálózat többi KDE Connectet futtató eszköze itt kell megjelenjen.</string>
+    <string name="device_paired">Eszköz párosítva</string>
+    <string name="device_rename_title">Eszköz átnevezése</string>
+    <string name="device_rename_confirm">Átnevezés</string>
+    <string name="refresh">Frissítés</string>
+    <string name="unreachable_description">A párosított eszköz nem érhető el. Győződj meg róla, hogy ugyanahhoz a hálózathoz csatlakoznak.</string>
+    <string name="on_data_message">Úgy tűnik, mobilinternet kapcsolaton vagy. A KDE Connect csak helyi hálózatokon működik.</string>
+    <string name="no_file_browser">Nincs feltelepítve fájlböngésző.</string>
+    <string name="pref_plugin_telepathy">SMS küldés</string>
+    <string name="pref_plugin_telepathy_desc">SMS-ek küldése számítógépről</string>
+    <string name="plugin_not_supported">Ez a bővítmény nem támogatott ezen az eszközön</string>
+    <string name="findmyphone_title">Keresd meg a telefonom</string>
+    <string name="findmyphone_title_tablet">Keresd meg a tabletem</string>
+    <string name="findmyphone_description">Megcsörgeti a telefont, hogy megtaláld</string>
+    <string name="findmyphone_found">Megtalálva</string>
+    
+    <string name="open">Megnyitás</string>
+    <string name="close">Bezárás</string>
 </resources>
