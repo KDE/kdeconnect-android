@@ -84,7 +84,7 @@
     <string name="outgoing_file_title">Fájl küldése ide: %1s</string>
     <string name="outgoing_files_title">Fájlok küldése ide: %1s</string>
     <string name="outgoing_file_text">%1s</string>
-    <string name="outgoing_files_text">%1s / %2s fájl elküldve</string>
+    <string name="outgoing_files_text">%1$d / %2$d fájl elküldve</string>
     <string name="received_file_title">Fájl érkezett innen: %1s</string>
     <string name="received_file_fail_title">Nem sikerült fájlt fogadni innen: %1s</string>
     <string name="received_file_text">Koppints „%1s” megnyitásához</string>
