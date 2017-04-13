@@ -26,6 +26,7 @@ import android.app.AlertDialog;
 import android.app.Notification;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -39,15 +40,19 @@ import org.kde.kdeconnect.UserInterface.MaterialActivity;
 import org.kde.kdeconnect.UserInterface.SettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
+import java.io.ByteArrayOutputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class NotificationsPlugin extends Plugin implements NotificationReceiver.NotificationListener {
 
     public final static String PACKAGE_TYPE_NOTIFICATION = "kdeconnect.notification";
     public final static String PACKAGE_TYPE_NOTIFICATION_REQUEST = "kdeconnect.notification.request";
 
-/*
-    private boolean sendIcons = false;
-*/
+
+    private boolean sendIcons = true;
+
 
     @Override
     public String getDisplayName() {
@@ -155,6 +160,8 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         String packageName = statusBarNotification.getPackageName();
         String appName = AppsHelper.appNameLookup(context, packageName);
 
+
+
         if ("com.facebook.orca".equals(packageName) &&
                 (statusBarNotification.getId() == 10012) &&
                 "Messenger".equals(appName) &&
@@ -178,28 +185,35 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             np.set("silent", true);
             np.set("requestAnswer", true); //For compatibility with old desktop versions of KDE Connect that don't support "silent"
         }
-/*
+
         if (sendIcons) {
             try {
-                Drawable drawableAppIcon = AppsHelper.appIconLookup(context, packageName);
-                Bitmap appIcon = ImagesHelper.drawableToBitmap(drawableAppIcon);
-                ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-                if (appIcon.getWidth() > 128) {
-                    appIcon = Bitmap.createScaledBitmap(appIcon, 96, 96, true);
+                Bitmap appIcon = notification.largeIcon;
+
+                if (appIcon != null) {
+                    ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+                    if (appIcon.getWidth() > 128) {
+                        appIcon = Bitmap.createScaledBitmap(appIcon, 96, 96, true);
+                    }
+                    appIcon.compress(Bitmap.CompressFormat.PNG, 90, outStream);
+                    byte[] bitmapData = outStream.toByteArray();
+
+                    np.setPayload(bitmapData);
+
+                    np.set("payloadHash", getChecksum(bitmapData));
                 }
-                appIcon.compress(Bitmap.CompressFormat.PNG, 90, outStream);
-                byte[] bitmapData = outStream.toByteArray();
-                np.setPayload(bitmapData);
-            } catch (Exception e) {
+            } catch(Exception e){
                 e.printStackTrace();
                 Log.e("NotificationsPlugin", "Error retrieving icon");
             }
         }
-*/
+
         np.set("id", key);
         np.set("appName", appName == null? packageName : appName);
         np.set("isClearable", statusBarNotification.isClearable());
         np.set("ticker", getTickerText(notification));
+        np.set("title", getNotificationTitle(notification));
+        np.set("text", getNotificationText(notification));
         np.set("time", Long.toString(statusBarNotification.getPostTime()));
         if (requestAnswer) {
             np.set("requestAnswer", true);
@@ -207,6 +221,50 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         }
 
         device.sendPackage(np);
+    }
+
+    private String getNotificationTitle(Notification notification) {
+        final String TITLE_KEY = "android.title";
+        final String TEXT_KEY = "android.text";
+        String title = "";
+
+        if(notification != null) {
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                try {
+                    Bundle extras = notification.extras;
+                    title = extras.getCharSequence(TITLE_KEY).toString();
+                } catch(Exception e) {
+                    Log.w("NotificationPlugin","problem parsing notification extras for " + notification.tickerText);
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        //TODO Add compat for under Kitkat devices
+
+        return title;
+    }
+
+    private String getNotificationText(Notification notification) {
+        final String TEXT_KEY = "android.text";
+        String text = "";
+
+        if(notification != null) {
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                try {
+                    Bundle extras = notification.extras;
+                    Object extraTextExtra = extras.get(TEXT_KEY);
+                    if (extraTextExtra != null) text = extraTextExtra.toString();
+                } catch(Exception e) {
+                    Log.w("NotificationPlugin","problem parsing notification extras for " + notification.tickerText);
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        //TODO Add compat for under Kitkat devices
+
+        return text;
     }
 
 
@@ -230,7 +288,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                     if (extraTextExtra != null) extraText = extraTextExtra.toString();
 
                     if (extraTitle != null && extraText != null && !extraText.isEmpty()) {
-                        ticker = extraTitle + " ‐ " + extraText;
+                        ticker = extraTitle + ": " + extraText;
                     } else if (extraTitle != null) {
                         ticker = extraTitle;
                     } else if (extraText != null) {
@@ -398,4 +456,29 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         }
         return result;
     }
+
+    public String getChecksum(byte[] data){
+
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(data);
+            return bytesToHex(md.digest());
+        } catch (NoSuchAlgorithmException e) {
+           Log.e("KDEConenct", "Error while generating checksum", e);
+        }
+        return null;
+    }
+
+
+    public static String bytesToHex(byte[] bytes) {
+        char[] hexArray = "0123456789ABCDEF".toCharArray();
+        char[] hexChars = new char[bytes.length * 2];
+        for ( int j = 0; j < bytes.length; j++ ) {
+            int v = bytes[j] & 0xFF;
+            hexChars[j * 2] = hexArray[v >>> 4];
+            hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+        }
+        return new String(hexChars).toLowerCase();
+    }
+
 }
