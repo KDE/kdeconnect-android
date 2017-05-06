@@ -27,7 +27,7 @@ public class NetworkHelper {
                 mobile = info.isConnected();
                 continue;
             }
-            Log.e(info.getTypeName(),""+info.isAvailable());
+            //Log.e(info.getTypeName(),""+info.isAvailable());
             if (info.isAvailable()) return false; //We are connected to at least one non-mobile network
         }
         if (mobile) { //We suspect we are on a mobile net
