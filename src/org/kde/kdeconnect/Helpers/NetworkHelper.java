@@ -9,7 +9,10 @@ import android.util.Log;
 public class NetworkHelper {
 
     public static boolean isOnMobileNetwork(Context context) {
-        if (context == null || android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
+        if (context == null) {
+            return false;
+        }
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
             return false; //No good way to know it
         }
         boolean mobile = false;
