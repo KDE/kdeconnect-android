@@ -5,7 +5,7 @@
     android:versionName="1.6.2">
 
     <uses-sdk android:minSdkVersion="9"
-              android:targetSdkVersion="22" />
+        android:targetSdkVersion="22" />
 
     <supports-screens
         android:anyDensity="true"
@@ -52,13 +52,18 @@
         </service>
 
         <activity
-            android:name="org.kde.kdeconnect.UserInterface.MaterialActivity"
-            android:label="KDE Connect"
-            android:theme="@style/KdeConnectTheme.NoActionBar">
+            android:name="org.kde.kdeconnect.UserInterface.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name="org.kde.kdeconnect.UserInterface.MaterialActivity"
+            android:label="KDE Connect"
+            android:theme="@style/KdeConnectTheme.NoActionBar">
         </activity>
 
         <activity
