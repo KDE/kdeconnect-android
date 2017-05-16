@@ -23,6 +23,9 @@ public class NetworkHelper {
         Network[] networks = connMgr.getAllNetworks();
         for (Network network : networks) {
             NetworkInfo info = connMgr.getNetworkInfo(network);
+            if (info == null) {
+                continue;
+            }
             if (info.getType() == ConnectivityManager.TYPE_MOBILE) {
                 mobile = info.isConnected();
                 continue;
