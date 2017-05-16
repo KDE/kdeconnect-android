@@ -34,8 +34,10 @@ import android.util.Log;
 import org.kde.kdeconnect.Helpers.ContactsHelper;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect_tp.BuildConfig;
 import org.kde.kdeconnect_tp.R;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -72,10 +74,18 @@ public class TelephonyPlugin extends Plugin {
                 final Bundle bundle = intent.getExtras();
                 if (bundle == null) return;
                 final Object[] pdus = (Object[]) bundle.get("pdus");
+                ArrayList<SmsMessage> messages = new ArrayList<SmsMessage>();
+
                 for (Object pdu : pdus) {
-                    SmsMessage message = SmsMessage.createFromPdu((byte[])pdu);
-                    smsBroadcastReceived(message);
+                    // I hope, but am not sure, that the pdus array is in the order that the parts
+                    // of the SMS message should be
+                    // If it is not, I belive the pdu contains the information necessary to put it
+                    // in order, but in my testing the order seems to be correct, so I won't worry
+                    // about it now.
+                    messages.add(SmsMessage.createFromPdu((byte[])pdu));
                 }
+
+                smsBroadcastReceived(messages);
 
             } else if (TelephonyManager.ACTION_PHONE_STATE_CHANGED.equals(action)) {
 
@@ -194,7 +204,14 @@ public class TelephonyPlugin extends Plugin {
         lastState = state;
     }
 
-    private void smsBroadcastReceived(SmsMessage message) {
+    private void smsBroadcastReceived(ArrayList<SmsMessage> messages) {
+
+        if (BuildConfig.DEBUG) {
+            if (!(messages.size() > 0))
+            {
+                throw new AssertionError("This method requires at least one message");
+            }
+        }
 
         //Log.e("SmsBroadcastReceived", message.toString());
 
@@ -202,12 +219,18 @@ public class TelephonyPlugin extends Plugin {
 
         np.set("event","sms");
 
-        String messageBody = message.getMessageBody();
+        String messageBody = new String();
+
+        for (int index = 0; index < messages.size(); index ++)
+        {
+            messageBody += messages.get(index).getMessageBody();
+        }
+
         if (messageBody != null) {
             np.set("messageBody",messageBody);
         }
 
-        String phoneNumber = message.getOriginatingAddress();
+        String phoneNumber = messages.get(0).getOriginatingAddress();
         Map<String, String> contactInfo = ContactsHelper.phoneNumberLookup(context, phoneNumber);
         if (phoneNumber != null) {
             np.set("phoneNumber", phoneNumber);

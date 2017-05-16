@@ -23,6 +23,8 @@ package org.kde.kdeconnect.Plugins.TelepathyPlugin;
 import android.telephony.SmsManager;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin;
@@ -64,7 +66,13 @@ public class TelepathyPlugin extends Plugin {
             String sms = np.getString("messageBody");
             try {
                 SmsManager smsManager = SmsManager.getDefault();
-                smsManager.sendTextMessage(phoneNo, null, sms, null, null);
+
+                ArrayList<String> parts = smsManager.divideMessage(sms);
+
+                // If this message turns out to fit in a single SMS, sendMultpartTextMessage
+                // properly handles that case
+                smsManager.sendMultipartTextMessage(phoneNo, null, parts, null, null);
+
                 //TODO: Notify other end
             } catch (Exception e) {
                 //TODO: Notify other end
