@@ -20,6 +20,9 @@
 
 package org.kde.kdeconnect.Plugins.TelepathyPlugin;
 
+import android.content.ContentValues;
+import android.net.Uri;
+import android.provider.Telephony;
 import android.telephony.SmsManager;
 import android.util.Log;
 
@@ -72,6 +75,11 @@ public class TelepathyPlugin extends Plugin {
                 // If this message turns out to fit in a single SMS, sendMultpartTextMessage
                 // properly handles that case
                 smsManager.sendMultipartTextMessage(phoneNo, null, parts, null, null);
+
+                ContentValues values = new ContentValues();
+                values.put("address", phoneNo);
+                values.put("body", sms);
+                context.getContentResolver().insert(Uri.parse("content://sms/sent"), values);
 
                 //TODO: Notify other end
             } catch (Exception e) {
