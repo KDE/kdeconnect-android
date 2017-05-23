@@ -458,6 +458,10 @@ public class DeviceFragment extends Fragment {
         BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
             public void onServiceStart(BackgroundService service) {
                 Device dev = service.getDevice(devId);
+                if (dev == null) {
+                    Log.w("rejectPairing", "Device no longer exists: "+devId);
+                    return;
+                }
                 activity.getSupportActionBar().setTitle(dev.getName());
 
                 dev.addPairingCallback(frag.pairingCallback);
@@ -477,6 +481,10 @@ public class DeviceFragment extends Fragment {
         BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
             public void onServiceStart(BackgroundService service) {
                 Device dev = service.getDevice(devId);
+                if (dev == null) {
+                    Log.w("rejectPairing", "Device no longer exists: "+devId);
+                    return;
+                }
                 activity.getSupportActionBar().setTitle(dev.getName());
 
                 dev.addPairingCallback(frag.pairingCallback);
