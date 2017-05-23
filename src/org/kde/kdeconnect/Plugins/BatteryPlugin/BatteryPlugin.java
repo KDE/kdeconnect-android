@@ -40,7 +40,7 @@ public class BatteryPlugin extends Plugin {
     private static final int THRESHOLD_EVENT_NONE= 0;
     private static final int THRESHOLD_EVENT_BATTERY_LOW = 1;
 
-    private NetworkPackage lastInfo = null;
+    private NetworkPackage batteryInfo = new NetworkPackage(PACKAGE_TYPE_BATTERY);
 
     @Override
     public String getDisplayName() {
@@ -56,18 +56,18 @@ public class BatteryPlugin extends Plugin {
         @Override
         public void onReceive(Context context, Intent batteryIntent) {
 
-            Intent batteryChargeIntent = context.registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
-            int level = batteryChargeIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
-            int scale = batteryChargeIntent.getIntExtra(BatteryManager.EXTRA_SCALE, 1);
-            int currentCharge = level*100 / scale;
-            boolean isCharging = (0 != batteryChargeIntent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0));
+            int level = batteryIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+            int scale = batteryIntent.getIntExtra(BatteryManager.EXTRA_SCALE, 1);
+            int plugged = batteryIntent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1);
+
+            int currentCharge = (level == -1)? batteryInfo.getInt("currentCharge") : level*100 / scale;
+            boolean isCharging = (plugged == -1)? batteryInfo.getBoolean("isCharging") : (0 != plugged);
             boolean lowBattery = Intent.ACTION_BATTERY_LOW.equals(batteryIntent.getAction());
             int thresholdEvent = lowBattery? THRESHOLD_EVENT_BATTERY_LOW : THRESHOLD_EVENT_NONE;
 
-            if (lastInfo != null
-                && isCharging == lastInfo.getBoolean("isCharging")
-                && currentCharge == lastInfo.getInt("currentCharge")
-                && thresholdEvent == lastInfo.getInt("thresholdEvent")
+            if (isCharging == batteryInfo.getBoolean("isCharging")
+                && currentCharge == batteryInfo.getInt("currentCharge")
+                && thresholdEvent == batteryInfo.getInt("thresholdEvent")
             ) {
 
                 //Do not send again if nothing has changed
@@ -75,12 +75,10 @@ public class BatteryPlugin extends Plugin {
 
             } else {
 
-                NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_BATTERY);
-                np.set("currentCharge", currentCharge);
-                np.set("isCharging", isCharging);
-                np.set("thresholdEvent", thresholdEvent);
-                device.sendPackage(np);
-                lastInfo = np;
+                batteryInfo.set("currentCharge", currentCharge);
+                batteryInfo.set("isCharging", isCharging);
+                batteryInfo.set("thresholdEvent", thresholdEvent);
+                device.sendPackage(batteryInfo);
 
             }
 
@@ -89,8 +87,10 @@ public class BatteryPlugin extends Plugin {
 
     @Override
     public boolean onCreate() {
-        context.registerReceiver(receiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
-        context.registerReceiver(receiver, new IntentFilter(Intent.ACTION_BATTERY_LOW));
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
+        intentFilter.addAction(Intent.ACTION_BATTERY_LOW);
+        context.registerReceiver(receiver, intentFilter);
         return true;
     }
 
@@ -104,9 +104,7 @@ public class BatteryPlugin extends Plugin {
     public boolean onPackageReceived(NetworkPackage np) {
 
         if (np.getBoolean("request")) {
-            if (lastInfo != null) {
-                device.sendPackage(lastInfo);
-            }
+            device.sendPackage(batteryInfo);
         }
 
         return true;
