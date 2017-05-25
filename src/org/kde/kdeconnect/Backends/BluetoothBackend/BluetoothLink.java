@@ -116,7 +116,10 @@ public class BluetoothLink extends BaseLink {
         super(context, deviceId, linkProvider);
         this.socket = socket;
         this.linkProvider = linkProvider;
-        receivingThread.start();
+    }
+
+    public void startListening() {
+        this.receivingThread.start();
     }
 
     @Override
@@ -195,7 +198,8 @@ public class BluetoothLink extends BaseLink {
                     serverSocket.close();
 
                     int idealBufferLength = 4096;
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                            && transferSocket.getMaxReceivePacketSize() > 0) {
                         idealBufferLength = transferSocket.getMaxReceivePacketSize();
                     }
                     byte[] buffer = new byte[idealBufferLength];

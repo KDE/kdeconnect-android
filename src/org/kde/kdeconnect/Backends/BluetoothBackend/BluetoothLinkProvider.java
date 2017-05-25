@@ -63,11 +63,12 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
         Log.i("BluetoothLinkProvider","addLink to "+deviceId);
         BluetoothLink oldLink = visibleComputers.get(deviceId);
         if (oldLink == link) {
-            Log.e("KDEConnect", "BluetoothLinkProvider: oldLink == link. This should not happen!");
+            Log.e("BluetoothLinkProvider", "oldLink == link. This should not happen!");
             return;
         }
         visibleComputers.put(deviceId, link);
         connectionAccepted(identityPackage, link);
+        link.startListening();
         if (oldLink != null) {
             Log.i("BluetoothLinkProvider","Removing old connection to same device");
             oldLink.disconnect();

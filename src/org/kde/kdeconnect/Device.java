@@ -82,7 +82,7 @@ public class Device implements BaseLink.PackageReceiver {
     private List<String> m_supportedPlugins = new ArrayList<>();
     private final ConcurrentHashMap<String, Plugin> plugins = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, Plugin> failedPlugins = new ConcurrentHashMap<>();
-    private Map<String, ArrayList<String>> pluginsByIncomingInterface;
+    private Map<String, ArrayList<String>> pluginsByIncomingInterface = new HashMap<>();
 
     private final SharedPreferences settings;
 

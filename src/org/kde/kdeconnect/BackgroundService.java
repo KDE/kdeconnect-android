@@ -144,7 +144,9 @@ public class BackgroundService extends Service {
     private void registerLinkProviders() {
         linkProviders.add(new LanLinkProvider(this));
 //        linkProviders.add(new LoopbackLinkProvider(this));
-//        linkProviders.add(new BluetoothLinkProvider(this));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+//            linkProviders.add(new BluetoothLinkProvider(this));
+        }
     }
 
     public ArrayList<BaseLinkProvider> getLinkProviders() {
