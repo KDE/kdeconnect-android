@@ -189,7 +189,9 @@ public class SharePlugin extends Plugin {
                             builder.setContentTitle(message)
                                     .setTicker(message)
                                     .setSmallIcon(android.R.drawable.stat_sys_download_done)
-                                    .setAutoCancel(true);
+                                    .setAutoCancel(true)
+                                    .setProgress(100,100,false)
+                                    .setOngoing(false);
                             if (successful) {
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
                                 intent.setDataAndType(destinationUri, mimeType);
