@@ -74,6 +74,9 @@ class NotificationUpdateCallback extends Device.SendPackageStatusCallback {
     public void onFailure(Throwable e) {
         updateDone(false);
         NotificationHelper.notifyCompat(notificationManager, notificationId, builder.build());
+        if (e != null) {
+            e.printStackTrace();
+        }
     }
 
     private void updateText() {
