@@ -24,6 +24,8 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Notification;
+import android.app.PendingIntent;
+import android.app.RemoteInput;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -32,6 +34,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
+
 
 import org.kde.kdeconnect.Helpers.AppsHelper;
 import org.kde.kdeconnect.NetworkPackage;
@@ -43,15 +46,23 @@ import org.kde.kdeconnect_tp.R;
 import java.io.ByteArrayOutputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class NotificationsPlugin extends Plugin implements NotificationReceiver.NotificationListener {
 
     public final static String PACKAGE_TYPE_NOTIFICATION = "kdeconnect.notification";
     public final static String PACKAGE_TYPE_NOTIFICATION_REQUEST = "kdeconnect.notification.request";
+    public final static String PACKAGE_TYPE_NOTIFICATION_REPLY = "kdeconnect.notification.reply";
 
 
     private boolean sendIcons = true;
+    
+    private Map<String, RepliableNotification> pendingIntents;
 
 
     @Override
@@ -86,6 +97,8 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public boolean onCreate() {
+        pendingIntents = new HashMap<String, RepliableNotification>();
+    
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             if (hasPermission()) {
                 NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
@@ -207,6 +220,12 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 Log.e("NotificationsPlugin", "Error retrieving icon");
             }
         }
+        
+        RepliableNotification rn = extractRepliableNotification(statusBarNotification);
+        if(rn.pendingIntent != null) {
+            np.set("requestReplyId", rn.id);
+            pendingIntents.put(rn.id, rn);
+        }
 
         np.set("id", key);
         np.set("appName", appName == null? packageName : appName);
@@ -223,6 +242,52 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         device.sendPackage(np);
     }
 
+    void replyToNotification(String id, String message){
+        if(pendingIntents.isEmpty() || !pendingIntents.containsKey(id)){
+            Log.e("NotificationsPlugin", "No such notification");
+            return;
+        }
+
+        RepliableNotification repliableNotification = pendingIntents.get(id);
+        if(repliableNotification == null) {
+            Log.e("NotificationsPlugin", "No such notification");
+            return;
+        }
+        RemoteInput[] remoteInputs = new RemoteInput[repliableNotification.remoteInputs.size()];
+
+        Intent localIntent = new Intent();
+        localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Bundle localBundle = new Bundle();
+        int i = 0;
+        for(RemoteInput remoteIn : repliableNotification.remoteInputs){
+            getDetailsOfNotification(remoteIn);
+            remoteInputs[i] = remoteIn;
+            localBundle.putCharSequence(remoteInputs[i].getResultKey(), message);
+            i++;
+        }
+        RemoteInput.addResultsToIntent(remoteInputs, localIntent, localBundle);
+    
+        try {
+            repliableNotification.pendingIntent.send(context, 0, localIntent);
+        } catch (PendingIntent.CanceledException e) {
+            Log.e("NotificationPlugin", "replyToNotification error: " + e.getMessage());
+        }
+        pendingIntents.remove(id);
+    }
+
+    private void getDetailsOfNotification(RemoteInput remoteInput) {
+        //Some more details of RemoteInput... no idea what for but maybe it will be useful at some point
+        String resultKey = remoteInput.getResultKey();
+        String label = remoteInput.getLabel().toString();
+        Boolean canFreeForm = remoteInput.getAllowFreeFormInput();
+        if(remoteInput.getChoices() != null && remoteInput.getChoices().length > 0) {
+            String[] possibleChoices = new String[remoteInput.getChoices().length];
+            for(int i = 0; i < remoteInput.getChoices().length; i++){
+                possibleChoices[i] = remoteInput.getChoices()[i].toString();
+            }
+        }
+    }
+    
     private String getNotificationTitle(Notification notification) {
         final String TITLE_KEY = "android.title";
         final String TEXT_KEY = "android.text";
@@ -243,6 +308,37 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         //TODO Add compat for under Kitkat devices
 
         return title;
+    }
+    
+    private RepliableNotification extractRepliableNotification(StatusBarNotification statusBarNotification) {
+        RepliableNotification repliableNotification = new RepliableNotification();
+        
+        if(statusBarNotification != null) {
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                try {
+                    Boolean reply = false;
+                
+                    //works for WhatsApp, but not for Telegram
+                    for(Notification.Action act : statusBarNotification.getNotification().actions) {
+                        if(act != null && act.getRemoteInputs() != null) {
+                            repliableNotification.remoteInputs.addAll(Arrays.asList(act.getRemoteInputs()));
+                            repliableNotification.pendingIntent = act.actionIntent;
+                            reply = true;
+                            break;
+                        }
+                    }
+                    
+                    repliableNotification.packageName = statusBarNotification.getPackageName();
+                    
+                    repliableNotification.tag = statusBarNotification.getTag();//TODO find how to pass Tag with sending PendingIntent, might fix Hangout problem
+                } catch(Exception e) {
+                    Log.w("NotificationPlugin","problem extracting notification wear for " + statusBarNotification.getNotification().tickerText);
+                    e.printStackTrace();
+                }
+            }
+        }
+        
+        return repliableNotification;
     }
 
     private String getNotificationText(Notification notification) {
@@ -363,6 +459,10 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                     }
                 });
 
+        } else if (np.has("requestReplyId") && np.has("message")) {
+        
+            replyToNotification(np.getString("requestReplyId"), np.getString("message"));
+            
         }
 
         return true;
@@ -406,7 +506,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public String[] getSupportedPackageTypes() {
-        return new String[]{PACKAGE_TYPE_NOTIFICATION_REQUEST};
+        return new String[]{PACKAGE_TYPE_NOTIFICATION_REQUEST,PACKAGE_TYPE_NOTIFICATION_REPLY};
     }
 
     @Override
