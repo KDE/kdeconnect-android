@@ -186,8 +186,7 @@ public class SharePlugin extends Plugin {
                             //Update the notification and allow to open the file from it
                             Resources res = context.getResources();
                             String message = successful? res.getString(R.string.received_file_title, device.getName()) : res.getString(R.string.received_file_fail_title, device.getName());
-                            NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
-                                    .setContentTitle(message)
+                            builder.setContentTitle(message)
                                     .setTicker(message)
                                     .setSmallIcon(android.R.drawable.stat_sys_download_done)
                                     .setAutoCancel(true);
