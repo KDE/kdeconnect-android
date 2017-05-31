@@ -206,4 +206,8 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
 
+    <string name="no_permissions_storage">You need to grant permissions to access the storage</string>
+    <string name="plugins_need_permission">Some Plugins need permissions to work (tap for more info):</string>
+    <string name="permission_explanation">This plugin needs permissions to work</string>
+
 </resources>

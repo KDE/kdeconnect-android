@@ -20,23 +20,33 @@
 
 package org.kde.kdeconnect.Plugins;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.StringRes;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.UserInterface.MaterialActivity;
 import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
 import org.kde.kdeconnect.UserInterface.SettingsActivity;
+import org.kde.kdeconnect_tp.R;
 
 public abstract class Plugin {
 
     protected Device device;
     protected Context context;
+    protected int permissionExplanation = R.string.permission_explanation;
 
     public final void setContext(Context context, Device device) {
         this.device = device;
@@ -168,14 +178,6 @@ public abstract class Plugin {
     public boolean onPackageReceived(NetworkPackage np) { return false; }
 
     /**
-     * If onCreate returns false, should create a dialog explaining
-     * the problem (and how to fix it, if possible) to the user.
-     */
-    public AlertDialog getErrorDialog(Activity deviceActivity) {
-        return null;
-    }
-
-    /**
      * Should return the list of NetworkPackage types that this plugin can handle
      */
     public abstract String[] getSupportedPackageTypes();
@@ -203,6 +205,72 @@ public abstract class Plugin {
             }
         });
         return b;
+    }
+
+    public String[] getRequiredPermissions() {
+        return new String[0];
+    }
+
+    public String[] getOptionalPermissions() {
+        return new String[0];
+    }
+
+    //Permission from Manifest.permission.*
+    protected boolean isPermissionGranted(String permission) {
+        int result = ContextCompat.checkSelfPermission(context, permission);
+        return (result == PackageManager.PERMISSION_GRANTED);
+    }
+
+    protected boolean arePermissionsGranted(String[] permissions) {
+        for(String permission: permissions){
+            if(!isPermissionGranted(permission)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    protected AlertDialog requestPermissionDialog(Activity activity, String permissions, @StringRes int reason) {
+        return requestPermissionDialog(activity, new String[]{permissions}, reason);
+    }
+
+    protected AlertDialog requestPermissionDialog(final Activity activity, final String[] permissions, @StringRes int reason){
+        return new AlertDialog.Builder(activity)
+                .setTitle(getDisplayName())
+                .setMessage(reason)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        ActivityCompat.requestPermissions(activity, permissions, 0);
+                    }
+                })
+                .setNegativeButton(R.string.cancel,new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //Do nothing
+                    }
+                })
+                .create();
+    }
+
+    /**
+     * If onCreate returns false, should create a dialog explaining
+     * the problem (and how to fix it, if possible) to the user.
+     */
+
+    public AlertDialog getErrorDialog(Activity deviceActivity) {
+        return null;
+    }
+
+    public AlertDialog getPermissionExplanationDialog(Activity deviceActivity) {
+        return requestPermissionDialog(deviceActivity,getRequiredPermissions(), permissionExplanation);
+    }
+
+    public boolean checkRequiredPermissions(){
+        if (!arePermissionsGranted(getRequiredPermissions())) {
+            return false;
+        }
+        return true;
     }
 
 }

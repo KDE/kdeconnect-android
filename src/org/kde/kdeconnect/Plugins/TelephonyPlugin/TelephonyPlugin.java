@@ -20,13 +20,16 @@
 
 package org.kde.kdeconnect.Plugins.TelephonyPlugin;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.telephony.SmsMessage;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -102,32 +105,40 @@ public class TelephonyPlugin extends Plugin {
 
         //Log.e("TelephonyPlugin", "callBroadcastReceived");
 
-        Map<String, String> contactInfo = ContactsHelper.phoneNumberLookup(context, phoneNumber);
         NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_TELEPHONY);
 
-        if (phoneNumber != null) {
-            np.set("phoneNumber", phoneNumber);
-        }
+        int permissionCheck = ContextCompat.checkSelfPermission(context,
+                Manifest.permission.READ_CONTACTS);
 
-        if (contactInfo.containsKey("name")) {
-            np.set("contactName", contactInfo.get("name"));
+        if(permissionCheck==PackageManager.PERMISSION_GRANTED) {
+
+            Map<String, String> contactInfo = ContactsHelper.phoneNumberLookup(context, phoneNumber);
+
+            if (contactInfo.containsKey("name")) {
+                np.set("contactName", contactInfo.get("name"));
+            }
+
+            if (contactInfo.containsKey("photoID")) {
+                String photoUri = contactInfo.get("photoID");
+                if (photoUri != null) {
+                    try {
+                        String base64photo = ContactsHelper.photoId64Encoded(context, photoUri);
+                        if (base64photo != null && !base64photo.isEmpty()) {
+                            np.set("phoneThumbnail", base64photo);
+                        }
+                    } catch (Exception e) {
+                        Log.e("TelephonyPlugin", "Failed to get contact photo");
+                    }
+                }
+
+            }
+
         } else {
             np.set("contactName",  phoneNumber);
         }
 
-        if (contactInfo.containsKey("photoID")) {
-            String photoUri = contactInfo.get("photoID");
-            if (photoUri != null) {
-                try {
-                    String base64photo = ContactsHelper.photoId64Encoded(context, photoUri);
-                    if (base64photo != null && !base64photo.isEmpty()) {
-                        np.set("phoneThumbnail", base64photo);
-                    }
-                } catch (Exception e) {
-                    Log.e("TelephonyPlugin", "Failed to get contact photo");
-                }
-            }
-
+        if (phoneNumber != null) {
+            np.set("phoneNumber", phoneNumber);
         }
 
         switch (state) {
@@ -208,18 +219,26 @@ public class TelephonyPlugin extends Plugin {
         }
 
         String phoneNumber = message.getOriginatingAddress();
-        Map<String, String> contactInfo = ContactsHelper.phoneNumberLookup(context, phoneNumber);
+
+        int permissionCheck = ContextCompat.checkSelfPermission(context,
+                Manifest.permission.READ_CONTACTS);
+
+        if(permissionCheck==PackageManager.PERMISSION_GRANTED) {
+            Map<String, String> contactInfo = ContactsHelper.phoneNumberLookup(context, phoneNumber);
+
+            if (contactInfo.containsKey("name")) {
+                np.set("contactName", contactInfo.get("name"));
+            }
+
+            if (contactInfo.containsKey("photoID")) {
+                np.set("phoneThumbnail", ContactsHelper.photoId64Encoded(context, contactInfo.get("photoID")));
+            }
+        }
         if (phoneNumber != null) {
             np.set("phoneNumber", phoneNumber);
         }
 
-        if (contactInfo.containsKey("name")) {
-            np.set("contactName", contactInfo.get("name"));
-        }
 
-        if (contactInfo.containsKey("photoID")) {
-            np.set("phoneThumbnail", ContactsHelper.photoId64Encoded(context, contactInfo.get("photoID")));
-        }
 
         device.sendPackage(np);
     }
@@ -265,6 +284,11 @@ public class TelephonyPlugin extends Plugin {
     @Override
     public String[] getOutgoingPackageTypes() {
         return new String[]{PACKAGE_TYPE_TELEPHONY};
+    }
+
+    @Override
+    public String[] getRequiredPermissions() {
+        return new String[]{Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_CONTACTS, Manifest.permission.SEND_SMS};
     }
 
 }

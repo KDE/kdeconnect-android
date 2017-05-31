@@ -20,7 +20,9 @@
 
 package org.kde.kdeconnect.Plugins.SharePlugin;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -30,6 +32,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
@@ -110,6 +113,17 @@ public class SharePlugin extends Plugin {
 
                 Log.i("SharePlugin", "hasPayload");
 
+                int permissionCheck = ContextCompat.checkSelfPermission(context,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+                if(permissionCheck == PackageManager.PERMISSION_GRANTED) {
+
+                } else  if(permissionCheck == PackageManager.PERMISSION_DENIED){
+                    // TODO Request Permission for storage
+                    Log.i("SharePlugin", "no Permission for Storage");
+                    return false;
+                }
+
                 final InputStream input = np.getPayload();
                 final long fileLength = np.getPayloadSize();
                 final String originalFilename = np.getString("filename", Long.toString(System.currentTimeMillis()));
@@ -131,6 +145,8 @@ public class SharePlugin extends Plugin {
                 final DocumentFile destinationDocument = destinationFolderDocument.createFile(mimeType, displayName);
                 final OutputStream destinationOutput = context.getContentResolver().openOutputStream(destinationDocument.getUri());
                 final Uri destinationUri = destinationDocument.getUri();
+
+
 
                 final int notificationId = (int)System.currentTimeMillis();
                 Resources res = context.getResources();
@@ -192,20 +208,27 @@ public class SharePlugin extends Plugin {
                                     .setAutoCancel(true)
                                     .setProgress(100,100,false)
                                     .setOngoing(false);
-                            if (successful) {
-                                Intent intent = new Intent(Intent.ACTION_VIEW);
-                                intent.setDataAndType(destinationUri, mimeType);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-                                stackBuilder.addNextIntent(intent);
-                                PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-                                builder.setContentText(res.getString(R.string.received_file_text, destinationDocument.getName()))
-                                       .setContentIntent(resultPendingIntent);
+
+                            // Nougat requires share:// URIs instead of file:// URIs
+                            // TODO use FileProvider for >Nougat
+                            if(Build.VERSION.SDK_INT < 24) {
+                                if (successful) {
+                                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                                    intent.setDataAndType(destinationUri, mimeType);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+                                    stackBuilder.addNextIntent(intent);
+                                    PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+                                    builder.setContentText(res.getString(R.string.received_file_text, destinationDocument.getName()))
+                                            .setContentIntent(resultPendingIntent);
+                                }
                             }
+
                             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
                             if (prefs.getBoolean("share_notification_preference", true)) {
                                 builder.setDefaults(Notification.DEFAULT_ALL);
                             }
+
                             NotificationHelper.notifyCompat(notificationManager, notificationId, builder.build());
 
                             if (successful) {
@@ -409,5 +432,10 @@ public class SharePlugin extends Plugin {
         return new String[]{PACKAGE_TYPE_SHARE_REQUEST};
     }
 
+    @Override
+    public String[] getRequiredPermissions() {
+        String[] perms = {Manifest.permission.READ_EXTERNAL_STORAGE};
+        return perms;
+    }
 
 }

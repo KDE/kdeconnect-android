@@ -68,6 +68,7 @@ public class DeviceFragment extends Fragment {
     Device device;
 
     TextView errorHeader;
+    TextView noPermissionsHeader;
 
     MaterialActivity mActivity;
 
@@ -383,6 +384,38 @@ public class DeviceFragment extends Fragment {
                                         @Override
                                         public void onClick(View v) {
                                             plugin.getErrorDialog(mActivity).show();
+                                        }
+                                    }));
+                                }
+                            }
+                        }
+
+                        //Plugins without permissions List
+                        final ConcurrentHashMap<String, Plugin> permissionsNeeded = device.getPluginsWithoutPermissions();
+                        if (!permissionsNeeded.isEmpty()) {
+                            if (noPermissionsHeader == null) {
+                                noPermissionsHeader = new TextView(mActivity);
+                                noPermissionsHeader.setPadding(
+                                        0,
+                                        ((int) (28 * getResources().getDisplayMetrics().density)),
+                                        0,
+                                        ((int) (8 * getResources().getDisplayMetrics().density))
+                                );
+                                noPermissionsHeader.setOnClickListener(null);
+                                noPermissionsHeader.setOnLongClickListener(null);
+                                noPermissionsHeader.setText(getResources().getString(R.string.plugins_need_permission));
+                            }
+                            items.add(new CustomItem(noPermissionsHeader));
+                            for (Map.Entry<String, Plugin> entry : permissionsNeeded.entrySet()) {
+                                String pluginKey = entry.getKey();
+                                final Plugin plugin = entry.getValue();
+                                if (plugin == null) {
+                                    items.add(new SmallEntryItem(pluginKey));
+                                } else {
+                                    items.add(new SmallEntryItem(plugin.getDisplayName(), new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            plugin.getPermissionExplanationDialog(mActivity).show();
                                         }
                                     }));
                                 }

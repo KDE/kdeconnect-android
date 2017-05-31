@@ -20,6 +20,10 @@
 
 package org.kde.kdeconnect.Plugins.TelepathyPlugin;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.telephony.SmsManager;
 import android.util.Log;
 
@@ -44,11 +48,6 @@ public class TelepathyPlugin extends Plugin {
     }
 
     @Override
-    public boolean onCreate() {
-        return true;
-    }
-
-    @Override
     public void onDestroy() {
     }
 
@@ -63,8 +62,18 @@ public class TelepathyPlugin extends Plugin {
             String phoneNo = np.getString("phoneNumber");
             String sms = np.getString("messageBody");
             try {
-                SmsManager smsManager = SmsManager.getDefault();
-                smsManager.sendTextMessage(phoneNo, null, sms, null, null);
+
+                int permissionCheck = ContextCompat.checkSelfPermission(context,
+                        Manifest.permission.SEND_SMS);
+
+                if(permissionCheck == PackageManager.PERMISSION_GRANTED) {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage(phoneNo, null, sms, null, null);
+                    Log.d("TelepathyPlugin", "SMS sent");
+                } else  if(permissionCheck == PackageManager.PERMISSION_DENIED){
+                    // TODO Request Permission SEND_SMS
+                }
+
                 //TODO: Notify other end
             } catch (Exception e) {
                 //TODO: Notify other end
@@ -176,4 +185,8 @@ public class TelepathyPlugin extends Plugin {
         return new String[]{};
     }
 
+    @Override
+    public String[] getRequiredPermissions() {
+        return new String[]{Manifest.permission.SEND_SMS/*, Manifest.permission.READ_CONTACTS*/};
+    }
 }
