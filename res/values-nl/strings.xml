@@ -176,4 +176,7 @@
   <string name="findmyphone_found">Gevonden</string>
   <string name="open">Openen</string>
   <string name="close">Sluiten</string>
+  <string name="no_permissions_storage">U moet toestemming geven voor toegang tot de opslag</string>
+  <string name="plugins_need_permission">Sommige plug-ins hebben toestemming nodig om te werken (tik voor meer informatie):</string>
+  <string name="permission_explanation">Deze plug-in heeft toestemming nodig om te werken</string>
 </resources>

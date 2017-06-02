@@ -176,4 +176,7 @@
   <string name="findmyphone_found">L\'he trobat</string>
   <string name="open">Obre</string>
   <string name="close">Tanca</string>
+  <string name="no_permissions_storage">Us caldrà concedir permís per accedir a l\'emmagatzematge</string>
+  <string name="plugins_need_permission">Alguns connectors necessiten permisos per a funcionar (puntegeu per a més informació):</string>
+  <string name="permission_explanation">Aquest connector necessita permisos per a funcionar</string>
 </resources>

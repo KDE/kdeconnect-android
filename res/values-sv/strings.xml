@@ -176,4 +176,7 @@
   <string name="findmyphone_found">Hittade den</string>
   <string name="open">Öppna</string>
   <string name="close">Stäng</string>
+  <string name="no_permissions_storage">Du måste ge rättighet att komma åt lagringen</string>
+  <string name="plugins_need_permission">Vissa insticksprogram kräver rättigheter för att fungera (rör för mer information):</string>
+  <string name="permission_explanation">Insticksprogrammet behöver rättigheter för att fungera</string>
 </resources>
