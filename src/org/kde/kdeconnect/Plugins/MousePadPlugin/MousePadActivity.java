@@ -97,11 +97,11 @@ public class MousePadActivity extends ActionBarActivity implements GestureDetect
             scrollDirection = 1;
         }
         String doubleTapSetting = prefs.getString(getString(R.string.mousepad_double_tap_key),
-                getString(R.string.mousepad_double_default));
+                getString(R.string.mousepad_default_double));
         String tripleTapSetting = prefs.getString(getString(R.string.mousepad_triple_tap_key),
-                getString(R.string.mousepad_triple_default));
+                getString(R.string.mousepad_default_triple));
         String sensitivitySetting = prefs.getString(getString(R.string.mousepad_sensitivity_key),
-                getString(R.string.mousepad_sensitivity_default));
+                getString(R.string.mousepad_default_sensitivity));
 
         doubleTapAction = ClickType.fromString(doubleTapSetting);
         tripleTapAction = ClickType.fromString(tripleTapSetting);

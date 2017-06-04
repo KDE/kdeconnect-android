@@ -53,9 +53,9 @@
         <item>Middle click</item>
         <item>Nothing</item>
     </string-array>
-    <string name="mousepad_double_default">right</string>
-    <string name="mousepad_triple_default">middle</string>
-    <string name="mousepad_sensitivity_default">default</string>
+    <string name="mousepad_default_double" translatable="false">right</string>
+    <string name="mousepad_default_triple" translatable="false">middle</string>
+    <string name="mousepad_default_sensitivity" translatable="false">default</string>
     <string-array name="mousepad_tap_values" translatable="false">
         <item>right</item>
         <item>middle</item>

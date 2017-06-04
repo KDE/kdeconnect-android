@@ -5,30 +5,30 @@
 
     <ListPreference
         android:id="@+id/mousepad_double_tap_preference"
-        android:key="@string/mousepad_double_tap_key"
-        android:title="@string/mousepad_double_tap_settings_title"
-        android:summary="%s"
+        android:defaultValue="@string/mousepad_default_double"
         android:entries="@array/mousepad_tap_entries"
         android:entryValues="@array/mousepad_tap_values"
-        android:defaultValue="@string/mousepad_double_default" />
+        android:key="@string/mousepad_double_tap_key"
+        android:summary="%s"
+        android:title="@string/mousepad_double_tap_settings_title"/>
 
     <ListPreference
         android:id="@+id/mousepad_triple_tap_preference"
-        android:key="@string/mousepad_triple_tap_key"
-        android:title="@string/mousepad_triple_tap_settings_title"
-        android:summary="%s"
+        android:defaultValue="@string/mousepad_default_triple"
         android:entries="@array/mousepad_tap_entries"
         android:entryValues="@array/mousepad_tap_values"
-        android:defaultValue="@string/mousepad_triple_default" />
+        android:key="@string/mousepad_triple_tap_key"
+        android:summary="%s"
+        android:title="@string/mousepad_triple_tap_settings_title"/>
 
     <ListPreference
         android:id="@+id/mousepad_sensitivity_preference"
-        android:key="@string/mousepad_sensitivity_key"
-        android:title="@string/mousepad_sensitivity_settings_title"
-        android:summary="%s"
+        android:defaultValue="@string/mousepad_default_sensitivity"
         android:entries="@array/mousepad_sensitivity_entries"
         android:entryValues="@array/mousepad_sensitivity_values"
-        android:defaultValue="@string/mousepad_sensitivity_default" />
+        android:key="@string/mousepad_sensitivity_key"
+        android:summary="%s"
+        android:title="@string/mousepad_sensitivity_settings_title"/>
 
     <CheckBoxPreference
         android:id="@+id/mousepad_scroll_preference"
