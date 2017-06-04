@@ -1,18 +1,27 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="pref_plugin_telephony">Notifications du téléphonie</string>
+  <string name="pref_plugin_telephony">Notifications de téléphonie</string>
   <string name="pref_plugin_telephony_desc">Envoie des notifications pour les SMS et les appels</string>
   <string name="pref_plugin_battery">Rapport sur la batterie</string>
   <string name="pref_plugin_battery_desc">Rapport périodique sur l\'état de la batterie</string>
   <string name="pref_plugin_sftp">Exposer le système de fichiers</string>
+  <string name="pref_plugin_sftp_desc">Permettre de parcourir le système de fichiers du périphérique à distance</string>
   <string name="pref_plugin_clipboard">Synchronisation avec le presse-papiers</string>
   <string name="pref_plugin_clipboard_desc">Partage le contenu du presse-papiers</string>
   <string name="pref_plugin_mousepad">Contrôle distant</string>
+  <string name="pref_plugin_mousepad_desc">Utilisez votre téléphone ou tablette comme un pavé tactile et un clavier</string>
+  <string name="pref_plugin_remotekeyboard">Recevoir les appuis de touches distants</string>
+  <string name="pref_plugin_remotekeyboard_desc">Recevoir les appuis de touches des périphériques distants</string>
   <string name="pref_plugin_mpris">Contrôles multimédia</string>
+  <string name="pref_plugin_mpris_desc">Fournit une télécommande pour votre lecteur multimédia</string>
+  <string name="pref_plugin_runcommand">Exécuter une commande</string>
+  <string name="pref_plugin_runcommand_desc">Exécuter des commandes à distance sur votre téléphone ou tablette</string>
   <string name="pref_plugin_ping">Commande « Ping »</string>
   <string name="pref_plugin_ping_desc">Envoie et reçoit des commandes « Ping »</string>
   <string name="pref_plugin_notifications">Synchronisation des notifications</string>
   <string name="pref_plugin_notifications_desc">Accédez à vos notifications depuis d\'autres périphériques</string>
+  <string name="pref_plugin_receive_notifications">Recevoir les notifications</string>
+  <string name="pref_plugin_receive_notifications_desc">Recevoir les notifications du périphérique et les afficher dans Android</string>
   <string name="pref_plugin_sharereceiver">Partager et recevoir</string>
   <string name="pref_plugin_sharereceiver_desc">Partagez des URLs et des fichiers entre périphériques</string>
   <string name="plugin_not_available">Cette fonctionnalité n\'est pas disponible dans votre version de Android</string>
@@ -23,10 +32,16 @@
   <string name="no_permissions">Vous devez accorder la permission d\'accéder aux notifications</string>
   <string name="send_ping">Envoyer un « Ping »</string>
   <string name="open_mpris_controls">Contrôles multimédia</string>
+  <string name="remotekeyboard_editing_only_title">Gérer les appuis de touches à distance uniquement lors de l\'édition</string>
+  <string name="remotekeyboard_not_connected">Aucune connexion active d\'un clavier sans fil disponible, établissez-en une dans KDE Connect</string>
+  <string name="remotekeyboard_connected">La connexion au clavier sans fil est active</string>
+  <string name="remotekeyboard_multiple_connections">Plusieurs claviers sans fil sont disponibles, sélectionnez le périphérique à configurer</string>
   <string name="open_mousepad">Contrôle distant</string>
   <string name="mousepad_info">Déplacer le doigt sur l\'écran pour bouger le pointeur de la souris. Appuyez pour cliquer et utiliser deux/trois doigts pour les clic droit et centre. Appuyez longtemps pour faire un glisser déplacer.</string>
   <string name="mousepad_double_tap_settings_title">Action pour l\'appui à deux doigts</string>
   <string name="mousepad_triple_tap_settings_title">Action pour l\'appui à trois doigts</string>
+  <string name="mousepad_sensitivity_settings_title">Définir la sensibilité du pavé tactile</string>
+  <string name="mousepad_scroll_direction_title">Inverser la direction du défilement</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic droit</item>
     <item>Clic central</item>
@@ -34,54 +49,63 @@
   </string-array>
   <string name="mousepad_double_default">Droite</string>
   <string name="mousepad_triple_default">Milieu</string>
+  <string name="mousepad_sensitivity_default">par défaut</string>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
-    <item>Above Slowest</item>
-    <item>Default</item>
-    <item>Above Default</item>
-    <item>Fastest</item>
+    <item>Le plus lent</item>
+    <item>Assez lent</item>
+    <item>Par défaut</item>
+    <item>Assez rapide</item>
+    <item>Le plus rapide</item>
   </string-array>
   <string name="category_connected_devices">Périphériques connectés</string>
   <string name="category_not_paired_devices">Périphériques disponibles</string>
   <string name="category_remembered_devices">Périphériques mémorisés</string>
   <string name="plugins_failed_to_load">Le chargement des modules externes a échoué (cliquez pour plus d\'informations) :</string>
   <string name="device_menu_plugins">Paramètres du module externe</string>
-  <string name="device_menu_unpair">Désapparier</string>
+  <string name="device_menu_unpair">Dissocier</string>
   <string name="device_not_reachable">Périphérique inaccessible</string>
+  <string name="pair_new_device">Associer un nouveau périphérique</string>
   <string name="unknown_device">Périphérique inconnu</string>
   <string name="error_not_reachable">Périphérique inaccessible</string>
-  <string name="error_already_requested">L\'appariement a déjà été demandé</string>
-  <string name="error_already_paired">Périphérique déjà apparié</string>
+  <string name="error_already_requested">L\'association a déjà été demandée</string>
+  <string name="error_already_paired">Périphérique déjà associé</string>
   <string name="error_could_not_send_package">Il est impossible d\'envoyer un paquet</string>
   <string name="error_timed_out">Délai expiré</string>
   <string name="error_canceled_by_user">Annulé par l\'utilisateur</string>
   <string name="error_canceled_by_other_peer">Annulé par un autre homologue</string>
   <string name="error_invalid_key">Clé reçue non valable</string>
+  <string name="encryption_info_title">Informations de chiffrement</string>
+  <string name="encryption_info_msg_no_ssl">Ce périphérique n\'utilise pas une version récente de KDE Connect et utilise l\'ancienne méthode de chiffrement.</string>
+  <string name="my_device_fingerprint">L\'empreinte SHA1 du certificat de votre appareil est :</string>
+  <string name="remote_device_fingerprint">L\'empreinte SHA1 du certificat du périphérique distant est :</string>
   <string name="pair_requested">Paire demandée</string>
-  <string name="pairing_request_from">Demande d\'appariement provenant de %1s</string>
+  <string name="pairing_request_from">Demande d\'association provenant de %1s</string>
   <string name="received_url_title">Lien reçu de %1s</string>
   <string name="received_url_text">Appuyez pour ouvrir %1s</string>
   <string name="incoming_file_title">Réception d\'un fichier en cours depuis %1s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Envoi d\'un fichier à %1s</string>
+  <string name="outgoing_files_title">Envoi de fichiers à %1s</string>
   <string name="outgoing_file_text">%1s</string>
+  <string name="outgoing_files_text">Envoi de %1$d sur %2$d fichiers</string>
   <string name="received_file_title">Fichier reçu de %1s</string>
   <string name="received_file_fail_title">Impossible de recevoir le fichier depuis : %1s</string>
   <string name="received_file_text">Appuyez pour ouvrir %1s</string>
   <string name="sent_file_title">Fichier envoyé à %1s</string>
   <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Impossible d\'envoyer le fichier à %1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Cliquer pour répondre</string>
   <string name="reconnect">Reconnecter</string>
   <string name="right_click">Envoyer un clic droit</string>
   <string name="middle_click">Envoyer un clic central</string>
   <string name="show_keyboard">Afficher le clavier</string>
-  <string name="device_not_paired">Périphérique non apparié</string>
-  <string name="request_pairing">Demande d\'appariement</string>
+  <string name="device_not_paired">Périphérique non associé</string>
+  <string name="request_pairing">Demande d\'association</string>
   <string name="pairing_accept">Accepter</string>
   <string name="pairing_reject">Rejeter</string>
   <string name="device">Périphérique</string>
-  <string name="pair_device">Apparier un périphérique</string>
+  <string name="pair_device">Associer un périphérique</string>
   <string name="remote_control">Contrôle distant</string>
   <string name="settings">Paramètres de connexion de KDE</string>
   <string name="mpris_play">Lire</string>
@@ -111,9 +135,15 @@
   <string name="invalid_device_name">Nom de périphérique non valable</string>
   <string name="shareplugin_text_saved">Texte reçu et enregistré dans le presse-papiers</string>
   <string name="custom_devices_settings">Liste personnalisée de périphériques</string>
+  <string name="pair_device_action">Associer un nouveau périphérique</string>
+  <string name="unpair_device_action">Dissocier %s</string>
   <string name="custom_device_list">Ajouter des périphériques par IP</string>
   <string name="share_notification_preference">Notifications sonores</string>
   <string name="share_notification_preference_summary">Vibrer et jouer un son quand un fichier est reçu</string>
+  <string name="share_destination_customize">Personnaliser le dossier de destination</string>
+  <string name="share_destination_customize_summary_disabled">Les fichiers reçus apparaîtront dans le dossier de téléchargement</string>
+  <string name="share_destination_customize_summary_enabled">Les fichiers seront enregistrés dans le dossier ci-dessous</string>
+  <string name="share_destination_folder_preference">Dossier de destination</string>
   <string name="title_activity_notification_filter">Filtre des notifications</string>
   <string name="filter_apps_info">Les notifications seront synchronisées pour les applications sélectionnées.</string>
   <string name="sftp_internal_storage">Stockage interne</string>
@@ -123,8 +153,30 @@
   <string name="sftp_readonly">(lecture seule)</string>
   <string name="sftp_camera">Images de l\'appareil photo</string>
   <string name="add_host">Ajouter hôte/IP</string>
-  <string name="add_host_hint">Nom d\'hôte ou adresse IP </string>
+  <string name="add_host_hint">"Nom d\'hôte ou adresse IP "</string>
   <string name="no_players_connected">Aucun lecteur trouvé</string>
   <string name="custom_dev_list_help">N\'utilisez cette option que si votre périphérique n\'est pas détecté automatiquement. Saisissez l\'adresse IP ou le nom d\'hôte ci-dessous et appuyez sur le bouton pour l\'ajouter à la liste. Appuyez sur un élément existant pour le retirer de la liste.</string>
   <string name="mpris_player_on_device">%1$s sur %2$s</string>
+  <string name="send_files">Envoyer des fichiers</string>
+  <string name="pairing_title">Périphériques KDE Connect</string>
+  <string name="pairing_description">Les autres périphériques utilisant KDE Connect dans votre réseau apparaissent ici.</string>
+  <string name="device_paired">Périphérique associé</string>
+  <string name="device_rename_title">Renommer le périphérique</string>
+  <string name="device_rename_confirm">Renommer</string>
+  <string name="refresh">Mettre à jour</string>
+  <string name="unreachable_description">Ce périphérique associé n\'est pas joignable. Assurez-vous qu\'il est bien connecté au même réseau.</string>
+  <string name="on_data_message">Il semble que vous utilisiez une connexion de données mobile. KDE Connect fonctionne uniquement sur un réseau local.</string>
+  <string name="no_file_browser">Aucun navigateur de fichiers installé.</string>
+  <string name="pref_plugin_telepathy">Envoyer un SMS</string>
+  <string name="pref_plugin_telepathy_desc">Envoyer des SMS depuis votre bureau</string>
+  <string name="plugin_not_supported">Ce module externe n\'est pas géré par le périphérique</string>
+  <string name="findmyphone_title">Trouver mon téléphone</string>
+  <string name="findmyphone_title_tablet">Trouver ma tablette</string>
+  <string name="findmyphone_description">Fait sonner le périphérique pour vous aider à le retrouver</string>
+  <string name="findmyphone_found">Trouvé</string>
+  <string name="open">Ouvrir</string>
+  <string name="close">Fermer</string>
+  <string name="no_permissions_storage">Vous devez accorder la permission d\'accéder à l\'espace de stockage</string>
+  <string name="plugins_need_permission">Certains modules externes nécessitent des permissions pour fonctionner (tapez pour plus d\'informations) :</string>
+  <string name="permission_explanation">Ce module externe nécessite des permissions pour fonctionner</string>
 </resources>

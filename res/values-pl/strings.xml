@@ -176,4 +176,7 @@
   <string name="findmyphone_found">Znaleziony</string>
   <string name="open">Otwórz</string>
   <string name="close">Zamknij</string>
+  <string name="no_permissions_storage">Musisz nadać uprawnienia, aby uzyskać dostęp do pamięci masowej</string>
+  <string name="plugins_need_permission">Niektóre z wtyczek wymagają uprawnień do działania (stuknij po więcej informacji)</string>
+  <string name="permission_explanation">Ta wtyczka wymaga uprawnień do działania</string>
 </resources>
