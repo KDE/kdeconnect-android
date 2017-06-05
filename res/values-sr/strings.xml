@@ -87,6 +87,7 @@
   <string name="outgoing_file_title">Шаљем фајл на %1s</string>
   <string name="outgoing_files_title">Шаљем фајлове на %1s</string>
   <string name="outgoing_file_text">%1s</string>
+  <string name="outgoing_files_text">Послато %1$d од %2$d фајлова</string>
   <string name="received_file_title">Примљен фајл са %1s</string>
   <string name="received_file_fail_title">Неуспео пријем фајла са %1s</string>
   <string name="received_file_text">Тапните да отворите „%1s“</string>
