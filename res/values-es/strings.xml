@@ -176,4 +176,7 @@
   <string name="findmyphone_found">Encontrado</string>
   <string name="open">Abrir</string>
   <string name="close">Cerrar</string>
+  <string name="no_permissions_storage">Debe otorgar permisos para acceder al almacenamiento</string>
+  <string name="plugins_need_permission">Algunos complementos necesitan permisos para funcionar (pulse para más información):</string>
+  <string name="permission_explanation">Este complemento necesita permisos para funcionar</string>
 </resources>
