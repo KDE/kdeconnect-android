@@ -47,9 +47,6 @@
     <item>Clic central</item>
     <item>Rien</item>
   </string-array>
-  <string name="mousepad_double_default">Droite</string>
-  <string name="mousepad_triple_default">Milieu</string>
-  <string name="mousepad_sensitivity_default">par défaut</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>Le plus lent</item>
     <item>Assez lent</item>

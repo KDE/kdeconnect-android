@@ -47,9 +47,6 @@
     <item>לחיצה אצמעית (גלגלת)</item>
     <item>שום דבר</item>
   </string-array>
-  <string name="mousepad_double_default">ימין</string>
-  <string name="mousepad_triple_default">אמצע</string>
-  <string name="mousepad_sensitivity_default">ברירת מחדל</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>הכי איטי</item>
     <item>יותר מההכי איטי</item>

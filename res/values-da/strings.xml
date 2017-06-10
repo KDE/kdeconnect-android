@@ -47,9 +47,6 @@
     <item>Midterklik</item>
     <item>Intet</item>
   </string-array>
-  <string name="mousepad_double_default">højre</string>
-  <string name="mousepad_triple_default">midter</string>
-  <string name="mousepad_sensitivity_default">standard</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>Mest langsom</item>
     <item>Over mest langsom</item>

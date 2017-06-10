@@ -47,9 +47,6 @@
     <item>средњи клик</item>
     <item>ништа</item>
   </string-array>
-  <string name="mousepad_double_default">десни</string>
-  <string name="mousepad_triple_default">средњи</string>
-  <string name="mousepad_sensitivity_default">подразумевано</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>најспорије</item>
     <item>мало спорије</item>

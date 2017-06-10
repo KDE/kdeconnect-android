@@ -47,9 +47,6 @@
     <item>Middle click</item>
     <item>Nothing</item>
   </string-array>
-  <string name="mousepad_double_default">right</string>
-  <string name="mousepad_triple_default">middle</string>
-  <string name="mousepad_sensitivity_default">default</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>Slowest</item>
     <item>Above Slowest</item>

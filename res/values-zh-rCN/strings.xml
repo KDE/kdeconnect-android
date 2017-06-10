@@ -47,9 +47,6 @@
     <item>中键点击</item>
     <item>无</item>
   </string-array>
-  <string name="mousepad_double_default">右</string>
-  <string name="mousepad_triple_default">中</string>
-  <string name="mousepad_sensitivity_default">默认</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>最慢</item>
     <item>高于最慢</item>

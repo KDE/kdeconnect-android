@@ -41,9 +41,6 @@
     <item>가운데 단추 누름</item>
     <item>아무것도 안 함</item>
   </string-array>
-  <string name="mousepad_double_default">오른쪽</string>
-  <string name="mousepad_triple_default">가운데</string>
-  <string name="mousepad_sensitivity_default">기본값</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>느리게</item>
     <item>느리게 이상</item>

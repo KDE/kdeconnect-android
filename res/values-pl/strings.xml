@@ -47,9 +47,6 @@
     <item>Kliknięcie środkowym</item>
     <item>Nic</item>
   </string-array>
-  <string name="mousepad_double_default">prawo</string>
-  <string name="mousepad_triple_default">środek</string>
-  <string name="mousepad_sensitivity_default">domyślne</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>Najmniejsza</item>
     <item>Ponad najmniejszą</item>

@@ -47,9 +47,6 @@
     <item>Нажатие средней кнопки</item>
     <item>Ничего не делать</item>
   </string-array>
-  <string name="mousepad_double_default">Нажатие правой кнопки</string>
-  <string name="mousepad_triple_default">Нажатие средней кнопки</string>
-  <string name="mousepad_sensitivity_default">Обычная</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>Самая низкая</item>
     <item>Низкая</item>
