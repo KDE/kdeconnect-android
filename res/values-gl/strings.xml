@@ -46,7 +46,7 @@
   <string name="category_not_paired_devices">Dispositivos dispoñíbeis</string>
   <string name="category_remembered_devices">Dispositivos coñecidos</string>
   <string name="plugins_failed_to_load">Non foi posíbel cargar os seguintes complementos (toque para obter máis información):</string>
-  <string name="device_menu_plugins">Configuración do engadido</string>
+  <string name="device_menu_plugins">Configuración do complemento</string>
   <string name="device_menu_unpair">Desemparellarse</string>
   <string name="device_not_reachable">O dispositivo emparellado está fóra do alcance.</string>
   <string name="pair_new_device">Emparellar cun novo dispositivo</string>
