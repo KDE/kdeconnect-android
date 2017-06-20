@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="pref_plugin_telephony">Telefon bildiricisi</string>
+  <string name="pref_plugin_telephony_desc">SMS ve çağrılar için bildirimler yolla</string>
+  <string name="pref_plugin_battery">Batarya raporu</string>
+  <string name="pref_plugin_battery_desc">Batarya durumunu belirli aralıklarla raporla</string>
+  <string name="pref_plugin_sftp">Dosya sistemi gösterme</string>
+  <string name="pref_plugin_sftp_desc">Bu aıygıtın dosya sistemine uzaktan gözatılmasına izin verir</string>
+  <string name="pref_plugin_clipboard">Pano eşitleme</string>
+  <string name="pref_plugin_clipboard_desc">Pano içeriğini paylaş</string>
+  <string name="pref_plugin_mousepad">Uzak girdi</string>
+  <string name="pref_plugin_mousepad_desc">Telefonunuzu veya tabletinizi, dokunmatik veya klavye olarak kullanın</string>
+  <string name="pref_plugin_remotekeyboard">Uzak tuşa basmaları getir</string>
+  <string name="pref_plugin_remotekeyboard_desc">Tuş basma eylemlerini, uzak aygıtlardan getir</string>
+  <string name="pref_plugin_mpris">Çoklu ortam denetimleri</string>
+  <string name="pref_plugin_mpris_desc">Ortam oynatıcınız için uzak denetim sağlar</string>
+  <string name="pref_plugin_runcommand">Komut Çalıştır</string>
+  <string name="pref_plugin_runcommand_desc">Uzak komutları, telefon veya tabletinizden tetikler</string>
+  <string name="pref_plugin_ping">Ping</string>
+  <string name="pref_plugin_ping_desc">Ping gönder ve al</string>
+  <string name="pref_plugin_notifications">Bildirim eşitleme</string>
+  <string name="pref_plugin_notifications_desc">Bildirimlerinize, diğer aygıtlardan erişin</string>
+  <string name="pref_plugin_receive_notifications">Bildirimleri al</string>
+  <string name="pref_plugin_receive_notifications_desc">Bildirimleri diğer aygıtlardan al ve Android üzerinde göster</string>
+  <string name="pref_plugin_sharereceiver">Paylaş ve al</string>
+  <string name="pref_plugin_sharereceiver_desc">Dosyaları ve URL\'leri aygıtlar arasında paylaş</string>
+  <string name="plugin_not_available">Bu özellik, sahip olduğunuz Android sürümünde kullanılabilir değil</string>
+  <string name="device_list_empty">Aygıt yok</string>
+  <string name="ok">Tamam</string>
+  <string name="cancel">İptal</string>
+  <string name="open_settings">Ayarları aç</string>
+  <string name="no_permissions">Bildirimler erişebilmek için izine ihtiyacınız var</string>
+  <string name="send_ping">Ping gönder</string>
+  <string name="open_mpris_controls">Çoklu ortam denetimi</string>
+  <string name="remotekeyboard_editing_only_title">Uzak tuşları, sadece düzenleme yaparken işle</string>
+  <string name="remotekeyboard_not_connected">Etkin bir uzak klavye bağlantısı yok, kdeconnect ile bir bağlantı kurun</string>
+  <string name="remotekeyboard_connected">Uzak klavye bağlantısı etkin</string>
+  <string name="remotekeyboard_multiple_connections">Birden çok uzak klavye bağlantısı mevcut, yapılandırmak istediğiniz aygıtı seçin</string>
+  <string name="open_mousepad">Girdi sil</string>
+  <string name="mousepad_info">Fare imlecini hareket ettirmek için ekran üzerinde parmaklarınızı hareket ettirin. Tek tıklama için dokunun, sağ ve orta düğmeler için iki/üç parmak kullanın. Sürüklemek için uzun basın.</string>
+  <string name="mousepad_double_tap_settings_title">İki parmak dokunma eylemini ayarla</string>
+  <string name="mousepad_triple_tap_settings_title">Üç parmak dokunma eylemini ayarla</string>
+  <string name="mousepad_sensitivity_settings_title">Dokunmatik yüzey hassasiyetini ayarla</string>
+  <string name="mousepad_scroll_direction_title">Ters Kaydırma Yönü</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Sağ tık</item>
+    <item>Orta tık</item>
+    <item>Hiçbiri</item>
+  </string-array>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>En Yavaş</item>
+    <item>En Yavaşın Üstü</item>
+    <item>Varsayıla</item>
+    <item>Varsayılan Üstü</item>
+    <item>En Hızlı</item>
+  </string-array>
+  <string name="category_connected_devices">Bağlı aygıtlar</string>
+  <string name="category_not_paired_devices">Kullanılabilir aygıtlar</string>
+  <string name="category_remembered_devices">Hatırlanan aygıtlar</string>
+  <string name="plugins_failed_to_load">Eklentiler yüklenemedi (daha fazla bilgi için dokunun):</string>
+  <string name="device_menu_plugins">Eklenti ayarları</string>
+  <string name="device_menu_unpair">Ayır</string>
+  <string name="device_not_reachable">Eşleşmiş aygıt ulaşılabilir değil</string>
+  <string name="pair_new_device">Yeni bir aygıt eşleştir</string>
+  <string name="unknown_device">Bİlinmeyen aygıt</string>
+  <string name="error_not_reachable">Aygıt ulaşılabilir değil</string>
+  <string name="error_already_requested">Eşleşme zaten talep edilmiş</string>
+  <string name="error_already_paired">Aygıt zaten eşleşmiş</string>
+  <string name="error_could_not_send_package">Paket gönderilemedi</string>
+  <string name="error_timed_out">Zaman aşımı</string>
+  <string name="error_canceled_by_user">Kullanıcı tarafından iptal edildi</string>
+  <string name="error_canceled_by_other_peer">Diğer eş tarafından iptal edildi</string>
+  <string name="error_invalid_key">Geçersiz anahtar alındı</string>
+  <string name="encryption_info_title">Şifreleme Bilgisi</string>
+  <string name="encryption_info_msg_no_ssl">Diğer aygıt, KDE Connect\'in son sürümünü kullanmıyor, eski şifreleme yöntemini kullanıyor.</string>
+  <string name="my_device_fingerprint">Aygıt sertifikanızın SHA1 parmak izi:</string>
+  <string name="remote_device_fingerprint">Uzak aygıt sertifikanızın SHA1 parmak izi:</string>
+  <string name="pair_requested">Eşleşme talep edildi</string>
+  <string name="pairing_request_from">%1s için eşleşme talebi</string>
+  <string name="received_url_title">%1s üzerinden bağlantı alındı</string>
+  <string name="received_url_text">\'%1s\' açmak için dokunun</string>
+  <string name="incoming_file_title">%1s üzerinden gelen dosya</string>
+  <string name="incoming_file_text">%1s</string>
+  <string name="outgoing_file_title">Dosya şuraya gönderiliyor, %1s</string>
+  <string name="outgoing_files_title">Dosyalar şuraya gönderiliyor, %1s</string>
+  <string name="outgoing_file_text">%1s</string>
+  <string name="outgoing_files_text">%2$d dosyadan %1$d dosya gönderildi</string>
+  <string name="received_file_title">Şuradan dosya alındı, %1s</string>
+  <string name="received_file_fail_title">Şuradan dosya alma başarısız, %1s</string>
+  <string name="received_file_text">\'%1s\' açmak için dokunun</string>
+  <string name="sent_file_title">Dosyayı şuraya gönder, %1s</string>
+  <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Dosyayı şuraya gönderme başarısız, %1s</string>
+  <string name="sent_file_failed_text">%1s</string>
+  <string name="tap_to_answer">Cevap için dokunun</string>
+  <string name="reconnect">Yeniden Bağlan</string>
+  <string name="right_click">Sağ Tık Gönder</string>
+  <string name="middle_click">Orta Tık Gönder</string>
+  <string name="show_keyboard">Klavyeyi Göster</string>
+  <string name="device_not_paired">Aygıt eşleşmemiş</string>
+  <string name="request_pairing">Eşleşme isteği</string>
+  <string name="pairing_accept">Onayla</string>
+  <string name="pairing_reject">Reddet</string>
+  <string name="device">Aygıt</string>
+  <string name="pair_device">Aygıt eşleştir</string>
+  <string name="remote_control">Uzak denetim</string>
+  <string name="settings">KDE Connect Ayarları</string>
+  <string name="mpris_play">Oynat</string>
+  <string name="mpris_previous">Önceki</string>
+  <string name="mpris_rew">Geri Sar</string>
+  <string name="mpris_ff">Hızlı İleri Sar</string>
+  <string name="mpris_next">Sonraki</string>
+  <string name="mpris_volume">Ses</string>
+  <string name="mpris_settings">Çoklu Ortam Ayarları</string>
+  <string name="mpris_time_settings_title">İleri/geri düğmeleri</string>
+  <string name="mpris_time_settings_summary">Basıldığında kullanılacak ileri/geri zamanını ayarlayın.</string>
+  <string-array name="mpris_time_entries">
+    <item>10 saniye</item>
+    <item>20 saniye</item>
+    <item>30 saniye</item>
+    <item>1 dakika</item>
+    <item>2 dakika</item>
+  </string-array>
+  <string name="share_to">Paylaş...</string>
+  <string name="protocol_version_older">Bu aygıt, eski bir protokol sürümü kullanıyor</string>
+  <string name="protocol_version_newer">Bu aygıt, daha yeni bir protokol sürümü kullanıyor</string>
+  <string name="general_settings">Genel Ayarlar</string>
+  <string name="plugin_settings">Ayarlar</string>
+  <string name="plugin_settings_with_name">%s ayarları</string>
+  <string name="device_name">Aygıt adı</string>
+  <string name="device_name_preference_summary">%s</string>
+  <string name="invalid_device_name">Geçersiz aygıt adı</string>
+  <string name="shareplugin_text_saved">Gelen ileti, panoya kaydet</string>
+  <string name="custom_devices_settings">Özel aygıt listesi</string>
+  <string name="pair_device_action">Yeni bir aygıt eşleştir</string>
+  <string name="unpair_device_action">Ayır %s</string>
+  <string name="custom_device_list">IP\'ye göre aygıtları ekle</string>
+  <string name="share_notification_preference">Sesli bildirimler</string>
+  <string name="share_notification_preference_summary">Bir dosya alırken, ses çıkar ve titret</string>
+  <string name="share_destination_customize">Hedef dizini özelleştir</string>
+  <string name="share_destination_customize_summary_disabled">Gelen dosyalar İndirilenler\'de gözükecektir</string>
+  <string name="share_destination_customize_summary_enabled">Dosyalar aşağıdaki dizinden depolanacaktır</string>
+  <string name="share_destination_folder_preference">Hedef dizin</string>
+  <string name="title_activity_notification_filter">Bildirim süzgeci</string>
+  <string name="filter_apps_info">Bildirimler, seçili uygulamalar için eşitlenecektir.</string>
+  <string name="sftp_internal_storage">Harici depolama</string>
+  <string name="sftp_all_files">Tüm dosyalar</string>
+  <string name="sftp_sdcard_num">SD kart %d</string>
+  <string name="sftp_sdcard">SD kart</string>
+  <string name="sftp_readonly">(salt okunur)</string>
+  <string name="sftp_camera">Kamera resimleri</string>
+  <string name="add_host">Makine/IP ekle</string>
+  <string name="add_host_hint">Makine adı veya IP</string>
+  <string name="no_players_connected">Onatıcı bulunamadı</string>
+  <string name="custom_dev_list_help">Bu seçeneği, sadece aygıtınız otomatik bulunamadıysa kullanın. Aşağıya IP adresini veya makine adının girin ve listeye eklemek için düğmeye dokunun. Listeden bir ögeyi silmek için, mevcut ögeye tıklayın.</string>
+  <string name="mpris_player_on_device">%2$s üzerindeki %1$s</string>
+  <string name="send_files">Dosyaları gönder</string>
+  <string name="pairing_title">KDE Connect Aygıtları</string>
+  <string name="pairing_description">KDE Connect\'te çalışan, aynı ağdaki diğer aygıtlar burada gözükmelidir.</string>
+  <string name="device_paired">Aygıt eşleştirildi</string>
+  <string name="device_rename_title">Aygıtı yeniden adlandır</string>
+  <string name="device_rename_confirm">Yeniden adlandır</string>
+  <string name="refresh">Tazele</string>
+  <string name="unreachable_description">Eşleştirilmiş aygıt ulaşılabilir değil. Aynı ağa bağlı olduğundan emin olun.</string>
+  <string name="on_data_message">Mobil veri bağlantısında olduğunuz gözüküyor. KDE Connect sadece yerel ağlarda çalışır.</string>
+  <string name="no_file_browser">Yüklü bir dosya tarayıcısı yok.</string>
+  <string name="pref_plugin_telepathy">SMS Gönder</string>
+  <string name="pref_plugin_telepathy_desc">Masaüstünden metin iletisi gönder</string>
+  <string name="plugin_not_supported">Eklenti, aygıt tarafından desteklenmiyor</string>
+  <string name="findmyphone_title">Telefonumu bul</string>
+  <string name="findmyphone_title_tablet">Tabletimi bul</string>
+  <string name="findmyphone_description">Aygıtı bulmak için onu çaldır</string>
+  <string name="findmyphone_found">Bulundu</string>
+  <string name="open">Aç</string>
+  <string name="close">Kapat</string>
+  <string name="no_permissions_storage">Depolamaya erişim için izne ihtiyacınız var</string>
+  <string name="plugins_need_permission">Bazı Eklentiler çalışmak için izne ihtiyaç duyar (daha fazla bilgi için dokunun):</string>
+  <string name="permission_explanation">Bu eklenti, çalışmak için izne ihtiyaç duyuyor</string>
+</resources>
