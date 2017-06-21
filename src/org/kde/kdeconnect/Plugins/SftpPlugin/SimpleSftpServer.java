@@ -125,7 +125,7 @@ class SimpleSftpServer {
     public void stop() {
         try {
             started = false;
-            sshd.stop();
+            sshd.stop(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
