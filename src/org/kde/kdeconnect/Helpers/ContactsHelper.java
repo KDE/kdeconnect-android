@@ -59,7 +59,7 @@ public class ContactsHelper {
                               , PhoneLookup.ID */
                     },
                     null, null, null);
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             return contactInfo;
         }
 
