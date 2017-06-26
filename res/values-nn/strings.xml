@@ -41,9 +41,6 @@
     <item>Midtklikk</item>
     <item>Ingenting</item>
   </string-array>
-  <string name="mousepad_double_default">høgre</string>
-  <string name="mousepad_triple_default">midt</string>
-  <string name="mousepad_sensitivity_default">standard</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>Saktast</item>
     <item>Raskare enn saktast</item>
