@@ -173,4 +173,7 @@
   <string name="findmyphone_found">Trouvé</string>
   <string name="open">Ouvrir</string>
   <string name="close">Fermer</string>
+  <string name="no_permissions_storage">Vous devez accorder la permission d\'accéder à l\'espace de stockage</string>
+  <string name="plugins_need_permission">Certains modules externes nécessitent des permissions pour fonctionner (tapez pour plus d\'informations) :</string>
+  <string name="permission_explanation">Ce module externe nécessite des permissions pour fonctionner</string>
 </resources>
