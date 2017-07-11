@@ -52,6 +52,9 @@ public class TelephonyPlugin extends Plugin {
     private NetworkPackage lastPackage = null;
     private boolean isMuted = false;
 
+    private int telephonyPermissionExplanation = R.string.telephony_permission_explanation;
+    private int telephonyOptionalPermissionExplanation = R.string.telephony_optional_permission_explanation;
+
     @Override
     public String getDisplayName() {
         return context.getResources().getString(R.string.pref_plugin_telephony);
@@ -250,6 +253,8 @@ public class TelephonyPlugin extends Plugin {
         filter.setPriority(500);
         filter.addAction(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
         context.registerReceiver(receiver, filter);
+        permissionExplanation = telephonyPermissionExplanation;
+        optionalPermissionExplanation = telephonyOptionalPermissionExplanation;
         return true;
     }
 
@@ -288,7 +293,11 @@ public class TelephonyPlugin extends Plugin {
 
     @Override
     public String[] getRequiredPermissions() {
-        return new String[]{Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_CONTACTS, Manifest.permission.SEND_SMS};
+        return new String[]{Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_SMS};
     }
 
+    @Override
+    public String[] getOptionalPermissions() {
+        return new String[]{Manifest.permission.READ_CONTACTS};
+    }
 }

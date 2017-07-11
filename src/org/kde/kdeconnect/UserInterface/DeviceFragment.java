@@ -67,12 +67,12 @@ public class DeviceFragment extends Fragment {
     static String mDeviceId; //Static because if we get here by using the back button in the action bar, the extra deviceId will not be set.
     Device device;
 
-    TextView errorHeader;
-    TextView noPermissionsHeader;
-
     MaterialActivity mActivity;
 
-    public DeviceFragment() { }
+    ArrayList<ListAdapter.Item> pluginListItems;
+
+    public DeviceFragment() {
+    }
 
     public DeviceFragment(String deviceId) {
         Bundle args = new Bundle();
@@ -87,7 +87,7 @@ public class DeviceFragment extends Fragment {
         this.setArguments(args);
     }
 
-    public DeviceFragment(String deviceId, MaterialActivity activity){
+    public DeviceFragment(String deviceId, MaterialActivity activity) {
         this.mActivity = activity;
         Bundle args = new Bundle();
         args.putString(ARG_DEVICE_ID, deviceId);
@@ -135,7 +135,7 @@ public class DeviceFragment extends Fragment {
             }
         });
 
-        final Button pairButton = (Button)rootView.findViewById(R.id.pair_button);
+        final Button pairButton = (Button) rootView.findViewById(R.id.pair_button);
         pairButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -342,7 +342,7 @@ public class DeviceFragment extends Fragment {
                     rootView.findViewById(R.id.on_data_message).setVisibility((paired && !reachable && onData) ? View.VISIBLE : View.GONE);
 
                     try {
-                        ArrayList<ListAdapter.Item> items = new ArrayList<>();
+                        pluginListItems = new ArrayList<>();
 
                         //Plugins button list
                         final Collection<Plugin> plugins = device.getLoadedPlugins().values();
@@ -350,7 +350,7 @@ public class DeviceFragment extends Fragment {
                             if (!p.hasMainActivity()) continue;
                             if (p.displayInContextMenu()) continue;
 
-                            items.add(new PluginItem(p, new View.OnClickListener() {
+                            pluginListItems.add(new PluginItem(p, new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     p.startMainActivity(mActivity);
@@ -358,72 +358,27 @@ public class DeviceFragment extends Fragment {
                             }));
                         }
 
-                        //Failed plugins List
-                        final ConcurrentHashMap<String, Plugin> failed = device.getFailedPlugins();
-                        if (!failed.isEmpty()) {
-                            if (errorHeader == null) {
-                                errorHeader = new TextView(mActivity);
-                                errorHeader.setPadding(
-                                        0,
-                                        ((int) (28 * getResources().getDisplayMetrics().density)),
-                                        0,
-                                        ((int) (8 * getResources().getDisplayMetrics().density))
-                                );
-                                errorHeader.setOnClickListener(null);
-                                errorHeader.setOnLongClickListener(null);
-                                errorHeader.setText(getResources().getString(R.string.plugins_failed_to_load));
+                        createPluginsList(device.getFailedPlugins(), R.string.plugins_failed_to_load, new PluginClickListener() {
+                            @Override
+                            void action() {
+                                plugin.getErrorDialog(mActivity).show();
                             }
-                            items.add(new CustomItem(errorHeader));
-                            for (Map.Entry<String, Plugin> entry : failed.entrySet()) {
-                                String pluginKey = entry.getKey();
-                                final Plugin plugin = entry.getValue();
-                                if (plugin == null) {
-                                    items.add(new SmallEntryItem(pluginKey));
-                                } else {
-                                    items.add(new SmallEntryItem(plugin.getDisplayName(), new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            plugin.getErrorDialog(mActivity).show();
-                                        }
-                                    }));
-                                }
+                        });
+                        createPluginsList(device.getPluginsWithoutPermissions(), R.string.plugins_need_permission, new PluginClickListener() {
+                            @Override
+                            void action() {
+                                plugin.getPermissionExplanationDialog(mActivity).show();
                             }
-                        }
-
-                        //Plugins without permissions List
-                        final ConcurrentHashMap<String, Plugin> permissionsNeeded = device.getPluginsWithoutPermissions();
-                        if (!permissionsNeeded.isEmpty()) {
-                            if (noPermissionsHeader == null) {
-                                noPermissionsHeader = new TextView(mActivity);
-                                noPermissionsHeader.setPadding(
-                                        0,
-                                        ((int) (28 * getResources().getDisplayMetrics().density)),
-                                        0,
-                                        ((int) (8 * getResources().getDisplayMetrics().density))
-                                );
-                                noPermissionsHeader.setOnClickListener(null);
-                                noPermissionsHeader.setOnLongClickListener(null);
-                                noPermissionsHeader.setText(getResources().getString(R.string.plugins_need_permission));
+                        });
+                        createPluginsList(device.getPluginsWithoutOptionalPermissions(), R.string.plugins_need_optional_permission, new PluginClickListener() {
+                            @Override
+                            void action() {
+                                plugin.getOptionalPermissionExplanationDialog(mActivity).show();
                             }
-                            items.add(new CustomItem(noPermissionsHeader));
-                            for (Map.Entry<String, Plugin> entry : permissionsNeeded.entrySet()) {
-                                String pluginKey = entry.getKey();
-                                final Plugin plugin = entry.getValue();
-                                if (plugin == null) {
-                                    items.add(new SmallEntryItem(pluginKey));
-                                } else {
-                                    items.add(new SmallEntryItem(plugin.getDisplayName(), new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            plugin.getPermissionExplanationDialog(mActivity).show();
-                                        }
-                                    }));
-                                }
-                            }
-                        }
+                        });
 
                         ListView buttonsList = (ListView) rootView.findViewById(R.id.buttons_list);
-                        ListAdapter adapter = new ListAdapter(mActivity, items);
+                        ListAdapter adapter = new ListAdapter(mActivity, pluginListItems);
                         buttonsList.setAdapter(adapter);
 
                         mActivity.invalidateOptionsMenu();
@@ -486,7 +441,7 @@ public class DeviceFragment extends Fragment {
 
     };
 
-    public static void acceptPairing(final String devId, final MaterialActivity activity){
+    public static void acceptPairing(final String devId, final MaterialActivity activity) {
         final DeviceFragment frag = new DeviceFragment(devId, activity);
         BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
             public void onServiceStart(BackgroundService service) {
@@ -505,7 +460,7 @@ public class DeviceFragment extends Fragment {
         });
     }
 
-    public static void rejectPairing(final String devId, final MaterialActivity activity){
+    public static void rejectPairing(final String devId, final MaterialActivity activity) {
         final DeviceFragment frag = new DeviceFragment(devId, activity);
         BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
             public void onServiceStart(BackgroundService service) {
@@ -527,4 +482,58 @@ public class DeviceFragment extends Fragment {
             }
         });
     }
+
+    private void createPluginsList(ConcurrentHashMap<String, Plugin> plugins, int headerText, PluginClickListener onClickListener) {
+        if (!plugins.isEmpty()) {
+
+            TextView header = new TextView(mActivity);
+            header.setPadding(
+                    0,
+                    ((int) (28 * getResources().getDisplayMetrics().density)),
+                    0,
+                    ((int) (8 * getResources().getDisplayMetrics().density))
+            );
+            header.setOnClickListener(null);
+            header.setOnLongClickListener(null);
+            header.setText(headerText);
+
+            pluginListItems.add(new CustomItem(header));
+            for (Map.Entry<String, Plugin> entry : plugins.entrySet()) {
+                String pluginKey = entry.getKey();
+                final Plugin plugin = entry.getValue();
+                if (device.isPluginEnabled(pluginKey)) {
+                    if (plugin == null) {
+                        pluginListItems.add(new SmallEntryItem(pluginKey));
+                    } else {
+                        PluginClickListener listener = onClickListener.clone();
+                        listener.plugin = plugin;
+                        pluginListItems.add(new SmallEntryItem(plugin.getDisplayName(), listener));
+                    }
+                }
+            }
+        }
+    }
+
+    private abstract class PluginClickListener implements View.OnClickListener, Cloneable {
+
+        Plugin plugin;
+
+        @Override
+        public void onClick(View v) {
+            action();
+        }
+
+        @Override
+        public PluginClickListener clone(){
+            try {
+                return (PluginClickListener) super.clone();
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        abstract void action();
+    }
+
 }

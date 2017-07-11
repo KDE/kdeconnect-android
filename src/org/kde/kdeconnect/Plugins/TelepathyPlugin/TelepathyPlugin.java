@@ -37,6 +37,14 @@ public class TelepathyPlugin extends Plugin {
 
     public final static String PACKAGE_TYPE_SMS_REQUEST = "kdeconnect.sms.request";
 
+    private int telepathyPermissionExplanation = R.string.telepathy_permission_explanation;
+
+    @Override
+    public boolean onCreate() {
+        permissionExplanation = telepathyPermissionExplanation;
+        return true;
+    }
+
     @Override
     public String getDisplayName() {
         return context.getResources().getString(R.string.pref_plugin_telepathy);
@@ -62,17 +70,9 @@ public class TelepathyPlugin extends Plugin {
             String phoneNo = np.getString("phoneNumber");
             String sms = np.getString("messageBody");
             try {
-
-                int permissionCheck = ContextCompat.checkSelfPermission(context,
-                        Manifest.permission.SEND_SMS);
-
-                if(permissionCheck == PackageManager.PERMISSION_GRANTED) {
-                    SmsManager smsManager = SmsManager.getDefault();
-                    smsManager.sendTextMessage(phoneNo, null, sms, null, null);
-                    Log.d("TelepathyPlugin", "SMS sent");
-                } else  if(permissionCheck == PackageManager.PERMISSION_DENIED){
-                    // TODO Request Permission SEND_SMS
-                }
+                SmsManager smsManager = SmsManager.getDefault();
+                smsManager.sendTextMessage(phoneNo, null, sms, null, null);
+                Log.d("TelepathyPlugin", "SMS sent");
 
                 //TODO: Notify other end
             } catch (Exception e) {

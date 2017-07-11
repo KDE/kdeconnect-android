@@ -64,6 +64,14 @@ public class SharePlugin extends Plugin {
 
     final static boolean openUrlsDirectly = true;
 
+    private int sharePermissionExplanation = R.string.share_optional_permission_explanation;
+
+    @Override
+    public boolean onCreate() {
+        optionalPermissionExplanation = sharePermissionExplanation;
+        return true;
+    }
+
     @Override
     public String getDisplayName() {
         return context.getResources().getString(R.string.pref_plugin_sharereceiver);
@@ -108,7 +116,7 @@ public class SharePlugin extends Plugin {
             if (np.hasPayload()) {
 
                 Log.i("SharePlugin", "hasPayload");
-
+                
                 if (isPermissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                     receiveFile(np);
                 } else {
@@ -403,9 +411,7 @@ public class SharePlugin extends Plugin {
     }
 
     @Override
-    public String[] getRequiredPermissions() {
-        String[] perms = {Manifest.permission.READ_EXTERNAL_STORAGE};
-        return perms;
+    public String[] getOptionalPermissions() {
+        return new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
     }
-
 }

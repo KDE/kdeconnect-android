@@ -47,6 +47,7 @@ public abstract class Plugin {
     protected Device device;
     protected Context context;
     protected int permissionExplanation = R.string.permission_explanation;
+    protected int optionalPermissionExplanation = R.string.optional_permission_explanation;
 
     public final void setContext(Context context, Device device) {
         this.device = device;
@@ -266,11 +267,16 @@ public abstract class Plugin {
         return requestPermissionDialog(deviceActivity,getRequiredPermissions(), permissionExplanation);
     }
 
+    public AlertDialog getOptionalPermissionExplanationDialog(Activity deviceActivity) {
+        return requestPermissionDialog(deviceActivity,getOptionalPermissions(), optionalPermissionExplanation);
+    }
+
     public boolean checkRequiredPermissions(){
-        if (!arePermissionsGranted(getRequiredPermissions())) {
-            return false;
-        }
-        return true;
+        return arePermissionsGranted(getRequiredPermissions());
+    }
+
+    public boolean checkOptionalPermissions(){
+       return arePermissionsGranted(getOptionalPermissions());
     }
 
 }
