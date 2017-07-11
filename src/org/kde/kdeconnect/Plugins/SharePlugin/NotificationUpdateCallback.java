@@ -117,8 +117,7 @@ class NotificationUpdateCallback extends Device.SendPackageStatusCallback {
                 .setContentTitle(title)
                 .setContentText(text)
                 .setSmallIcon(icon)
-                .setProgress(progress, progress, false); //setting progress to 0 out of 0 remove the progress bar
-
+                .setProgress(0, 0, false); //setting progress to 0 out of 0 remove the progress bar
     }
 
 }

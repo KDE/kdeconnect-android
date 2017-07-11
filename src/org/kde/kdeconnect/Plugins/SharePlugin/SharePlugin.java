@@ -22,7 +22,6 @@ package org.kde.kdeconnect.Plugins.SharePlugin;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -31,14 +30,11 @@ import android.content.ClipboardManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
@@ -57,13 +53,13 @@ import org.kde.kdeconnect.UserInterface.SettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class SharePlugin extends Plugin {
 
-    //public final static String PACKAGE_TYPE_SHARE = "kdeconnect.share";
     public final static String PACKAGE_TYPE_SHARE_REQUEST = "kdeconnect.share.request";
 
     final static boolean openUrlsDirectly = true;
@@ -113,198 +109,169 @@ public class SharePlugin extends Plugin {
 
                 Log.i("SharePlugin", "hasPayload");
 
-                int permissionCheck = ContextCompat.checkSelfPermission(context,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
-                if(permissionCheck == PackageManager.PERMISSION_GRANTED) {
-
-                } else  if(permissionCheck == PackageManager.PERMISSION_DENIED){
-                    // TODO Request Permission for storage
+                if (isPermissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                    receiveFile(np);
+                } else {
                     Log.i("SharePlugin", "no Permission for Storage");
-                    return false;
                 }
-
-                final InputStream input = np.getPayload();
-                final long fileLength = np.getPayloadSize();
-                final String originalFilename = np.getString("filename", Long.toString(System.currentTimeMillis()));
-
-                //We need to check for already existing files only when storing in the default path.
-                //User-defined paths use the new Storage Access Framework that already handles this.
-                final boolean customDestination = ShareSettingsActivity.isCustomDestinationEnabled(context);
-                final String defaultPath = ShareSettingsActivity.getDefaultDestinationDirectory().getAbsolutePath();
-                final String filename = customDestination? originalFilename : FilesHelper.findNonExistingNameForNewFile(defaultPath, originalFilename);
-
-                String displayName = FilesHelper.getFileNameWithoutExt(filename);
-                final String mimeType = FilesHelper.getMimeTypeFromFile(filename);
-
-                if ("*/*".equals(mimeType)) {
-                    displayName = filename;
-                }
-
-                final DocumentFile destinationFolderDocument = ShareSettingsActivity.getDestinationDirectory(context);
-                final DocumentFile destinationDocument = destinationFolderDocument.createFile(mimeType, displayName);
-                final OutputStream destinationOutput = context.getContentResolver().openOutputStream(destinationDocument.getUri());
-                final Uri destinationUri = destinationDocument.getUri();
-
-
-
-                final int notificationId = (int)System.currentTimeMillis();
-                Resources res = context.getResources();
-                final NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
-                        .setContentTitle(res.getString(R.string.incoming_file_title, device.getName()))
-                        .setContentText(res.getString(R.string.incoming_file_text, filename))
-                        .setTicker(res.getString(R.string.incoming_file_title, device.getName()))
-                        .setSmallIcon(android.R.drawable.stat_sys_download)
-                        .setAutoCancel(true)
-                        .setOngoing(true)
-                        .setProgress(100,0,true);
-
-                final NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                NotificationHelper.notifyCompat(notificationManager,notificationId, builder.build());
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        boolean successful = true;
-                        try {
-                            byte data[] = new byte[1024];
-                            long progress = 0, prevProgressPercentage = 0;
-                            int count;
-                            while ((count = input.read(data)) >= 0) {
-                                progress += count;
-                                destinationOutput.write(data, 0, count);
-                                if (fileLength > 0) {
-                                    if (progress >= fileLength) break;
-                                    long progressPercentage = (progress * 10 / fileLength);
-                                    if (progressPercentage != prevProgressPercentage) {
-                                        prevProgressPercentage = progressPercentage;
-                                        builder.setProgress(100, (int) progressPercentage*10, false);
-                                        NotificationHelper.notifyCompat(notificationManager, notificationId, builder.build());
-                                    }
-                                }
-                                //else Log.e("SharePlugin", "Infinite loop? :D");
-                            }
-
-                            destinationOutput.flush();
-
-                        } catch (Exception e) {
-                            successful = false;
-                            Log.e("SharePlugin", "Receiver thread exception");
-                            e.printStackTrace();
-                        } finally {
-                            try { destinationOutput.close(); } catch (Exception e) {}
-                            try { input.close(); } catch (Exception e) {}
-                        }
-
-                        try {
-                            Log.i("SharePlugin", "Transfer finished: "+destinationUri.getPath());
-
-                            //Update the notification and allow to open the file from it
-                            Resources res = context.getResources();
-                            String message = successful? res.getString(R.string.received_file_title, device.getName()) : res.getString(R.string.received_file_fail_title, device.getName());
-                            builder.setContentTitle(message)
-                                    .setTicker(message)
-                                    .setSmallIcon(android.R.drawable.stat_sys_download_done)
-                                    .setAutoCancel(true)
-                                    .setProgress(100,100,false)
-                                    .setOngoing(false);
-
-                            // Nougat requires share:// URIs instead of file:// URIs
-                            // TODO use FileProvider for >Nougat
-                            if(Build.VERSION.SDK_INT < 24) {
-                                if (successful) {
-                                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                                    intent.setDataAndType(destinationUri, mimeType);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-                                    stackBuilder.addNextIntent(intent);
-                                    PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-                                    builder.setContentText(res.getString(R.string.received_file_text, destinationDocument.getName()))
-                                            .setContentIntent(resultPendingIntent);
-                                }
-                            }
-
-                            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-                            if (prefs.getBoolean("share_notification_preference", true)) {
-                                builder.setDefaults(Notification.DEFAULT_ALL);
-                            }
-
-                            NotificationHelper.notifyCompat(notificationManager, notificationId, builder.build());
-
-                            if (successful) {
-                                if (!customDestination && Build.VERSION.SDK_INT >= 12) {
-                                    Log.i("SharePlugin","Adding to downloads");
-                                    DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-                                    manager.addCompletedDownload(destinationUri.getLastPathSegment(), device.getName(), true, mimeType, destinationUri.getPath(), fileLength, false);
-                                } else {
-                                    //Make sure it is added to the Android Gallery anyway
-                                    MediaStoreHelper.indexFile(context, destinationUri);
-                                }
-                            }
-
-                        } catch (Exception e) {
-                            Log.e("SharePlugin", "Receiver thread exception");
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
 
             } else if (np.has("text")) {
                 Log.i("SharePlugin", "hasText");
-
-                String text = np.getString("text");
-                if(Build.VERSION.SDK_INT >= 11) {
-                    ClipboardManager cm = (ClipboardManager)context.getSystemService(Context.CLIPBOARD_SERVICE);
-                    cm.setText(text);
-                } else {
-                    android.text.ClipboardManager clipboard = (android.text.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-                    clipboard.setText(text);
-                }
-                Toast.makeText(context, R.string.shareplugin_text_saved, Toast.LENGTH_LONG).show();
+                receiveText(np);
             } else if (np.has("url")) {
-
-                String url = np.getString("url");
-
-                Log.i("SharePlugin", "hasUrl: "+url);
-
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                if (openUrlsDirectly) {
-                    context.startActivity(browserIntent);
-                } else {
-                    Resources res = context.getResources();
-                    TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-                    stackBuilder.addNextIntent(browserIntent);
-                    PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
-                            0,
-                            PendingIntent.FLAG_UPDATE_CURRENT
-                    );
-
-                    Notification noti = new NotificationCompat.Builder(context)
-                            .setContentTitle(res.getString(R.string.received_url_title, device.getName()))
-                            .setContentText(res.getString(R.string.received_url_text, url))
-                            .setContentIntent(resultPendingIntent)
-                            .setTicker(res.getString(R.string.received_url_title, device.getName()))
-                            .setSmallIcon(R.drawable.ic_notification)
-                            .setAutoCancel(true)
-                            .setDefaults(Notification.DEFAULT_ALL)
-                            .build();
-
-                    NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                    NotificationHelper.notifyCompat(notificationManager, (int) System.currentTimeMillis(), noti);
-                }
+                receiveUrl(np);
             } else {
                 Log.e("SharePlugin", "Error: Nothing attached!");
             }
 
-
-        } catch(Exception e) {
-            Log.e("SharePlugin","Exception");
+        } catch (Exception e) {
+            Log.e("SharePlugin", "Exception");
             e.printStackTrace();
         }
 
         return true;
+    }
+
+    private void receiveUrl(NetworkPackage np) {
+        String url = np.getString("url");
+
+        Log.i("SharePlugin", "hasUrl: " + url);
+
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        if (openUrlsDirectly) {
+            context.startActivity(browserIntent);
+        } else {
+            Resources res = context.getResources();
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+            stackBuilder.addNextIntent(browserIntent);
+            PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
+                    0,
+                    PendingIntent.FLAG_UPDATE_CURRENT
+            );
+
+            Notification noti = new NotificationCompat.Builder(context)
+                    .setContentTitle(res.getString(R.string.received_url_title, device.getName()))
+                    .setContentText(res.getString(R.string.received_url_text, url))
+                    .setContentIntent(resultPendingIntent)
+                    .setTicker(res.getString(R.string.received_url_title, device.getName()))
+                    .setSmallIcon(R.drawable.ic_notification)
+                    .setAutoCancel(true)
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .build();
+
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationHelper.notifyCompat(notificationManager, (int) System.currentTimeMillis(), noti);
+        }
+    }
+
+    private void receiveText(NetworkPackage np) {
+        String text = np.getString("text");
+        if (Build.VERSION.SDK_INT >= 11) {
+            ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+            cm.setText(text);
+        } else {
+            android.text.ClipboardManager clipboard = (android.text.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+            clipboard.setText(text);
+        }
+        Toast.makeText(context, R.string.shareplugin_text_saved, Toast.LENGTH_LONG).show();
+    }
+
+    private void receiveFile(NetworkPackage np) {
+
+        final InputStream input = np.getPayload();
+        final long fileLength = np.getPayloadSize();
+        final String originalFilename = np.getString("filename", Long.toString(System.currentTimeMillis()));
+
+        //We need to check for already existing files only when storing in the default path.
+        //User-defined paths use the new Storage Access Framework that already handles this.
+        final boolean customDestination = ShareSettingsActivity.isCustomDestinationEnabled(context);
+        final String defaultPath = ShareSettingsActivity.getDefaultDestinationDirectory().getAbsolutePath();
+        final String filename = customDestination ? originalFilename : FilesHelper.findNonExistingNameForNewFile(defaultPath, originalFilename);
+
+        String displayName = FilesHelper.getFileNameWithoutExt(filename);
+        final String mimeType = FilesHelper.getMimeTypeFromFile(filename);
+
+        if ("*/*".equals(mimeType)) {
+            displayName = filename;
+        }
+
+        final DocumentFile destinationFolderDocument = ShareSettingsActivity.getDestinationDirectory(context);
+        final DocumentFile destinationDocument = destinationFolderDocument.createFile(mimeType, displayName);
+        final OutputStream destinationOutput;
+        try {
+            destinationOutput = context.getContentResolver().openOutputStream(destinationDocument.getUri());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return;
+        }
+        final Uri destinationUri = destinationDocument.getUri();
+
+        Resources res = context.getResources();
+
+        final ShareNotification notification = new ShareNotification(device, filename);
+        notification.show();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                boolean successful = true;
+                try {
+                    byte data[] = new byte[1024];
+                    long progress = 0, prevProgressPercentage = 0;
+                    int count;
+                    while ((count = input.read(data)) >= 0) {
+                        progress += count;
+                        destinationOutput.write(data, 0, count);
+                        if (fileLength > 0) {
+                            if (progress >= fileLength) break;
+                            long progressPercentage = (progress * 100 / fileLength);
+                            if (progressPercentage != prevProgressPercentage) {
+                                prevProgressPercentage = progressPercentage;
+                                notification.setProgress((int) progressPercentage);
+                                notification.show();
+                            }
+                        }
+                        //else Log.e("SharePlugin", "Infinite loop? :D");
+                    }
+
+                    destinationOutput.flush();
+
+                    Log.i("SharePlugin", "Transfer finished: " + destinationUri.getPath());
+
+                    //Update the notification and allow to open the file from it
+                    notification.setFinished(true);
+                    notification.setURI(destinationUri, mimeType);
+                    notification.show();
+
+                    if (!customDestination && Build.VERSION.SDK_INT >= 12) {
+                        Log.i("SharePlugin", "Adding to downloads");
+                        DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+                        manager.addCompletedDownload(destinationUri.getLastPathSegment(), device.getName(), true, mimeType, destinationUri.getPath(), fileLength, false);
+                    } else {
+                        //Make sure it is added to the Android Gallery anyway
+                        MediaStoreHelper.indexFile(context, destinationUri);
+                    }
+
+                } catch (Exception e) {
+                    successful = false;
+                    Log.e("SharePlugin", "Receiver thread exception");
+                    e.printStackTrace();
+                    notification.setFinished(successful);
+                    notification.show();
+                } finally {
+                    try {
+                        destinationOutput.close();
+                    } catch (Exception e) {
+                    }
+                    try {
+                        input.close();
+                    } catch (Exception e) {
+                    }
+                }
+            }
+        }).start();
     }
 
     @Override
@@ -335,7 +302,7 @@ public class SharePlugin extends Plugin {
                     for (NetworkPackage np : toSend) {
                         boolean success = device.sendPackageBlocking(np, notificationUpdateCallback);
                         if (!success) {
-                            Log.e("SharePlugin","Error sending files");
+                            Log.e("SharePlugin", "Error sending files");
                             return;
                         }
                     }
@@ -365,24 +332,24 @@ public class SharePlugin extends Plugin {
 
                 try {
                     size = new File(uri.getPath()).length();
-                } catch(Exception e) {
+                } catch (Exception e) {
                     Log.e("SendFileActivity", "Could not obtain file size");
                     e.printStackTrace();
                 }
 
-            }else{
+            } else {
                 // Probably a content:// uri, so we query the Media content provider
 
                 Cursor cursor = null;
                 try {
-                    String[] proj = { MediaStore.MediaColumns.DATA, MediaStore.MediaColumns.SIZE, MediaStore.MediaColumns.DISPLAY_NAME };
+                    String[] proj = {MediaStore.MediaColumns.DATA, MediaStore.MediaColumns.SIZE, MediaStore.MediaColumns.DISPLAY_NAME};
                     cursor = cr.query(uri, proj, null, null, null);
                     int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
                     cursor.moveToFirst();
                     String path = cursor.getString(column_index);
                     np.set("filename", Uri.parse(path).getLastPathSegment());
                     size = new File(path).length();
-                } catch(Exception unused) {
+                } catch (Exception unused) {
 
                     Log.w("SendFileActivity", "Could not resolve media to a file, trying to get info as media");
 
@@ -401,12 +368,15 @@ public class SharePlugin extends Plugin {
                         cursor.moveToFirst();
                         //For some reason this size can differ from the actual file size!
                         size = cursor.getInt(column_index);
-                    } catch(Exception e) {
+                    } catch (Exception e) {
                         Log.e("SendFileActivity", "Could not obtain file size");
                         e.printStackTrace();
                     }
                 } finally {
-                    try { cursor.close(); } catch (Exception e) { }
+                    try {
+                        cursor.close();
+                    } catch (Exception e) {
+                    }
                 }
 
             }
