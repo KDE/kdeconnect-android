@@ -176,4 +176,11 @@
   <string name="no_permissions_storage">Us caldrà concedir permís per accedir a l\'emmagatzematge</string>
   <string name="plugins_need_permission">Alguns connectors necessiten permisos per a funcionar (puntegeu per a més informació):</string>
   <string name="permission_explanation">Aquest connector necessita permisos per a funcionar</string>
+  <string name="optional_permission_explanation">Us caldrà concedir permisos extra per accedir a totes les característiques</string>
+  <string name="plugins_need_optional_permission">Alguns connectors tenen característiques desactivades per la falta de permís (puntegeu per a més informació):</string>
+  <string name="sftp_permission_explanation">Per accedir als fitxers des del PC, l\'aplicació necessita permís per accedir a l\'emmagatzematge del telèfon</string>
+  <string name="share_optional_permission_explanation">Per a compartir fitxers entre el telèfon i l\'escriptori, haureu de donar accés a l\'emmagatzematge del telèfon</string>
+  <string name="telepathy_permission_explanation">Per a llegir i escriure SMS des de l\'escriptori, haureu de donar permís als SMS</string>
+  <string name="telephony_permission_explanation">Per a veure les trucades telefòniques i SMS des de l\'escriptori, haureu de donar permís a les trucades telefòniques i SMS</string>
+  <string name="telephony_optional_permission_explanation">Per a veure un nom de contacte en comptes d\'un número de telèfon, haureu de donar permís als contactes del telèfon</string>
 </resources>

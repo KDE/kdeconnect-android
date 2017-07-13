@@ -176,4 +176,11 @@
   <string name="no_permissions_storage">U moet toestemming geven voor toegang tot de opslag</string>
   <string name="plugins_need_permission">Sommige plug-ins hebben toestemming nodig om te werken (tik voor meer informatie):</string>
   <string name="permission_explanation">Deze plug-in heeft toestemming nodig om te werken</string>
+  <string name="optional_permission_explanation">U moet toestemming geven om alle functies in te schakelen</string>
+  <string name="plugins_need_optional_permission">Sommige plug-ins hebben functies uitgeschakeld vanwege ontbrekende toestemming (tik voor meer informatie):</string>
+  <string name="sftp_permission_explanation">"Om toegang tot uw bestanden te krijgen vanuit uw PC heeft de app toestemming nodig voor toegang tot de opslag van uw telefoon "</string>
+  <string name="share_optional_permission_explanation">Om bestanden tussen uw telefoon en uw bureaublad te delen moet u toegang geven tot de opslag van uw telefoon</string>
+  <string name="telepathy_permission_explanation">Om een SMS te lezen of te schrijven vanaf uw bureaublad moet u toestemming geven tot SMS</string>
+  <string name="telephony_permission_explanation">Om telefoonoproepen en SMS te zien vanaf het bureaublad moet u toestemming geven tot telefoonoproepen en SMS</string>
+  <string name="telephony_optional_permission_explanation">Om een naam van een contactpersoon te zien in plaats van een telefoonnummer moet u toegang geven tot de contacten in uw telefoon</string>
 </resources>
