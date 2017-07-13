@@ -72,6 +72,9 @@ public class TelepathyPlugin extends Plugin {
             String phoneNo = np.getString("phoneNumber");
             String sms = np.getString("messageBody");
             try {
+                int permissionCheck = ContextCompat.checkSelfPermission(context,
+                        Manifest.permission.SEND_SMS);
+
                 if(permissionCheck == PackageManager.PERMISSION_GRANTED) {
                     SmsManager smsManager = SmsManager.getDefault();
 
