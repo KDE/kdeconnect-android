@@ -146,7 +146,7 @@ public class PluginFactory {
         } catch(Exception e) {
             Log.e("PluginFactory","getPluginInfo exception");
             e.printStackTrace();
-            return null;
+            throw new RuntimeException(e);
         }
 
     }
