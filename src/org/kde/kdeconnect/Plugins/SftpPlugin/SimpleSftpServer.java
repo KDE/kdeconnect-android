@@ -125,7 +125,7 @@ class SimpleSftpServer {
     public void stop() {
         try {
             started = false;
-            sshd.stop();
+            sshd.stop(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -144,6 +144,17 @@ class SimpleSftpServer {
         try {
             for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
                 NetworkInterface intf = en.nextElement();
+
+                // Anything with rmnet is related to cellular connections or USB
+                // tethering mechanisms.  See:
+                //
+                // https://android.googlesource.com/kernel/msm/+/android-msm-flo-3.4-kitkat-mr1/Documentation/usb/gadget_rmnet.txt
+                //
+                // If we run across an interface that has this, we can safely
+                // ignore it.  In fact, it's much safer to do.  If we don't, we
+                // might get invalid IP adddresses out of it.
+                if(intf.getDisplayName().contains("rmnet")) continue;
+
                 for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
                     InetAddress inetAddress = enumIpAddr.nextElement();
                     if (!inetAddress.isLoopbackAddress()) {

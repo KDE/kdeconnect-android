@@ -27,6 +27,8 @@ import android.support.v4.content.ContextCompat;
 import android.telephony.SmsManager;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin;
@@ -70,10 +72,17 @@ public class TelepathyPlugin extends Plugin {
             String phoneNo = np.getString("phoneNumber");
             String sms = np.getString("messageBody");
             try {
-                SmsManager smsManager = SmsManager.getDefault();
-                smsManager.sendTextMessage(phoneNo, null, sms, null, null);
-                Log.d("TelepathyPlugin", "SMS sent");
+                if(permissionCheck == PackageManager.PERMISSION_GRANTED) {
+                    SmsManager smsManager = SmsManager.getDefault();
 
+                    ArrayList<String> parts = smsManager.divideMessage(sms);
+
+                    // If this message turns out to fit in a single SMS, sendMultpartTextMessage
+                    // properly handles that case
+                    smsManager.sendMultipartTextMessage(phoneNo, null, parts, null, null);
+                } else  if(permissionCheck == PackageManager.PERMISSION_DENIED){
+                    // TODO Request Permission SEND_SMS
+                }
                 //TODO: Notify other end
             } catch (Exception e) {
                 //TODO: Notify other end

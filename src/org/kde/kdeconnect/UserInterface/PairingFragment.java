@@ -132,6 +132,11 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
                     @Override
                     public void run() {
 
+                        if (!isAdded()) {
+                            //Fragment is not attached to an activity. We will crash if we try to do anything here.
+                            return;
+                        }
+
                         if (listRefreshCalledThisFrame) {
                             // This makes sure we don't try to call list.getFirstVisiblePosition()
                             // twice per frame, because the second time the list hasn't been drawn
