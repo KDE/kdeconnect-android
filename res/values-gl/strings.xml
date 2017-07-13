@@ -28,25 +28,25 @@
   <string name="mousepad_info">Mova un dedo na pantalla para mover o cursor. Toque para facer clic, e use dous ou tres dedos para os botóns secundario e central. Prema durante un tempo para arrastrar e soltar.</string>
   <string name="mousepad_double_tap_settings_title">Definir a acción de tocar con dous dedos</string>
   <string name="mousepad_triple_tap_settings_title">Definir a acción de tocar con tres dedos</string>
+  <string name="mousepad_sensitivity_settings_title">Definir a sensibilidade do punteiro táctil</string>
+  <string name="mousepad_scroll_direction_title">Inverter a dirección de desprazamento</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic dereito</item>
     <item>Clic central</item>
     <item>Nada</item>
   </string-array>
-  <string name="mousepad_double_default">dereita</string>
-  <string name="mousepad_triple_default">medio</string>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
-    <item>Above Slowest</item>
-    <item>Default</item>
-    <item>Above Default</item>
-    <item>Fastest</item>
+    <item>O máis lento</item>
+    <item>Lento</item>
+    <item>Predeterminado</item>
+    <item>Rápido</item>
+    <item>O máis rápido</item>
   </string-array>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos dispoñíbeis</string>
   <string name="category_remembered_devices">Dispositivos coñecidos</string>
   <string name="plugins_failed_to_load">Non foi posíbel cargar os seguintes complementos (toque para obter máis información):</string>
-  <string name="device_menu_plugins">Configuración do engadido</string>
+  <string name="device_menu_plugins">Configuración do complemento</string>
   <string name="device_menu_unpair">Desemparellarse</string>
   <string name="device_not_reachable">O dispositivo emparellado está fóra do alcance.</string>
   <string name="pair_new_device">Emparellar cun novo dispositivo</string>
@@ -136,7 +136,7 @@
   <string name="pairing_description">Outros dispositivos que estean a executar KDE Connect na mesma rede deberían aparecer aquí.</string>
   <string name="device_paired">Emparellouse co dispositivo</string>
   <string name="device_rename_title">Cambiar o nome do dispositivo</string>
-  <string name="device_rename_confirm">Mudar o nome</string>
+  <string name="device_rename_confirm">Cambiar o nome</string>
   <string name="refresh">Actualizar</string>
   <string name="unreachable_description">Este dispositivo emparellado está fóra do alcance. Asegúrese de que está conectado á mesma rede.</string>
   <string name="no_file_browser">Non hai navegadores de ficheiros instalados.</string>

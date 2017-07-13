@@ -5,13 +5,23 @@
   <string name="pref_plugin_battery">تقرير البطّاريّة</string>
   <string name="pref_plugin_battery_desc">بلّغ عن حالة البطّاريّة دوريًّا</string>
   <string name="pref_plugin_sftp">اكشف نظام الملفّات</string>
+  <string name="pref_plugin_sftp_desc">تسمح بتصفّح نظام ملفّات هذا الهاتف عن بعد</string>
   <string name="pref_plugin_clipboard">مزامنة الحافظة</string>
   <string name="pref_plugin_clipboard_desc">شارك محتوى الحافظة</string>
-  <string name="pref_plugin_mousepad">الدَّخل البعيد</string>
+  <string name="pref_plugin_mousepad">الدّخل البعيد</string>
+  <string name="pref_plugin_mousepad_desc">استخدم الهاتف أو اللوحيّ كفأرة ولوحة مفاتيح</string>
+  <string name="pref_plugin_mpris">تحكّمات الوسائط المتعدّدة</string>
+  <string name="pref_plugin_mpris_desc">توفّر تحكّمًا بعيدًا لمشغّل الوسائط</string>
+  <string name="pref_plugin_runcommand">شغّل أمرًا</string>
+  <string name="pref_plugin_runcommand_desc">تحفّز أوامر عن بعد من الهاتف أو اللوحيّ</string>
   <string name="pref_plugin_ping">وخزة</string>
   <string name="pref_plugin_ping_desc">أرسل واستقبل وخزات</string>
   <string name="pref_plugin_notifications">مزامنة الإخطارات</string>
   <string name="pref_plugin_notifications_desc">انفذ إلى إخطاراتك من أجهزة أخرى</string>
+  <string name="pref_plugin_receive_notifications">استقبل الإخطارات</string>
+  <string name="pref_plugin_receive_notifications_desc">استقبل الإخطارات من الجهاز الآخر واعرضها على أندرويد</string>
+  <string name="pref_plugin_sharereceiver">شارك واستقبل</string>
+  <string name="pref_plugin_sharereceiver_desc">شارك الملفّات والعناوين بين الجهازين</string>
   <string name="plugin_not_available">هذه الميزة غير متوفّرة في إصدار أندرويد لديك</string>
   <string name="device_list_empty">لا أجهزة</string>
   <string name="ok">حسنًا</string>
@@ -19,24 +29,33 @@
   <string name="open_settings">افتح الإعدادات</string>
   <string name="no_permissions">عليك إعطاء التّطبيق صلاحيّات للنّفاذ إلى الإخطارات</string>
   <string name="send_ping">أرسل وخزة</string>
+  <string name="open_mpris_controls">تحكّمات الوسائط المتعدّدة</string>
+  <string name="open_mousepad">الدّخل البعيد</string>
+  <string name="mousepad_info">حرّك اصبعًا على الشّاشة لتحريك مؤشّر الفأرة. المس للنّقر واستخدم إصبعين أو ثلاث للزّرّين الأيمن والأوسط. انقر مطوّلًا للسّحب والإفلات.</string>
+  <string name="mousepad_double_tap_settings_title">اضبط إجراء اللمس بإصبعين</string>
+  <string name="mousepad_triple_tap_settings_title">اضبط إجراء اللمس بثلاث أصابع</string>
+  <string name="mousepad_sensitivity_settings_title">اضبط حساسيّة لوحة اللمس</string>
+  <string name="mousepad_scroll_direction_title">اعكس اتّجاه التّمرير</string>
   <string-array name="mousepad_tap_entries">
-    <item/>
-    <item/>
-    <item>Nothing</item>
+    <item>النّقر باليمين</item>
+    <item>النّقر بالوسط</item>
+    <item>لا شيء</item>
   </string-array>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
-    <item>Above Slowest</item>
-    <item>Default</item>
-    <item>Above Default</item>
-    <item>Fastest</item>
+    <item>الأبطأ</item>
+    <item>الأقل بطئًا</item>
+    <item>الافتراضيّ</item>
+    <item>الأسرع قليلًا</item>
+    <item>الأسرع</item>
   </string-array>
   <string name="category_connected_devices">الأجهزة المقترن بها</string>
   <string name="category_not_paired_devices">الأجهزة المتوفّرة</string>
   <string name="category_remembered_devices">الأجهزة المتذكَّرة</string>
   <string name="plugins_failed_to_load">فشل تحميل الملحقات (المس لمعلومات اكثر):</string>
-  <string name="device_menu_unpair">أزل الاقتران</string>
+  <string name="device_menu_plugins">إعدادات الملحقة</string>
+  <string name="device_menu_unpair">ألغِ الاقتران</string>
   <string name="device_not_reachable">الجهاز المقترن غير قابل الوصول</string>
+  <string name="pair_new_device">اقرن جهازًا جديدًا</string>
   <string name="unknown_device">جهاز مجهول</string>
   <string name="error_not_reachable">الجهاز غير قابل الوصول</string>
   <string name="error_already_requested">طُلب الاقتران بالفعل</string>
@@ -46,14 +65,24 @@
   <string name="error_canceled_by_user">ألغاه المستخدم</string>
   <string name="error_canceled_by_other_peer">ألغاه ندّ آخر</string>
   <string name="error_invalid_key">استُقبل مفتاح غير صالح</string>
+  <string name="encryption_info_title">معلومات التّعمية</string>
+  <string name="encryption_info_msg_no_ssl">لا يستخدم الجهاز الآخر إصدارة حديثة من «كدي المتّصل»، ستُستخدم طريقة التّعمية القديمة.</string>
+  <string name="my_device_fingerprint">بصمة SHA1 لشهادة جهازك هي:</string>
+  <string name="remote_device_fingerprint">بصمة SHA1 لشهادة الجهاز البعيد هي:</string>
   <string name="pair_requested">طُلب الاقتران</string>
   <string name="pairing_request_from">طلب اقتران من %1s</string>
   <string name="received_url_title">استُلمت وصلة من %1s</string>
   <string name="received_url_text">المس لفتح \'%1s\'</string>
   <string name="incoming_file_title">ملفّ وارد من %1s</string>
   <string name="incoming_file_text">%1s</string>
-  <string name="received_file_title">استُلم ملفّ من %1s</string>
+  <string name="outgoing_file_title">يرسل ملفًّا إلى %1s</string>
+  <string name="outgoing_file_text">%1s</string>
+  <string name="received_file_title">استُقبل ملفّ من %1s</string>
+  <string name="received_file_fail_title">فشل استقبال الملفّ من %1s</string>
   <string name="received_file_text">المس لفتح \'%1s\'</string>
+  <string name="sent_file_title">أرسل ملفًّا إلى %1s</string>
+  <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">المس للإجابة</string>
   <string name="reconnect">أعد الاتّصال</string>
   <string name="right_click">أرسل نقرة باليمين</string>
@@ -74,6 +103,8 @@
   <string name="mpris_next">التّالي</string>
   <string name="mpris_volume">المستوى</string>
   <string name="mpris_settings">إعدادات الوسائط المتعدّدة</string>
+  <string name="mpris_time_settings_title">زرّا التّقدّم والإرجاع</string>
+  <string name="mpris_time_settings_summary">اضبط الوقت عند نقر زرّيّ التّقديم أو الإرجاع.</string>
   <string-array name="mpris_time_entries">
     <item>10 ثوان</item>
     <item>20 ثانية</item>
@@ -92,9 +123,13 @@
   <string name="invalid_device_name">اسم جهاز غير صالح</string>
   <string name="shareplugin_text_saved">استُقبل نصّ، حُفظ إلى الحافظة</string>
   <string name="custom_devices_settings">قائمة أجهزة مخصّصة</string>
+  <string name="pair_device_action">اقرن جهازًا جديدًا</string>
+  <string name="unpair_device_action">ألغِ اقتران %s</string>
   <string name="custom_device_list">أضف أجهزة بميفاق الإنترنت م​إ</string>
   <string name="share_notification_preference">إخطارات مزعجة</string>
   <string name="share_notification_preference_summary">اهتزّ وشغّل صوتًا عند استقبال ملفّ</string>
+  <string name="title_activity_notification_filter">مرشّح الإخطارات</string>
+  <string name="filter_apps_info">ستُزامن الإخطارات من التّطبيقات المحدّدة.</string>
   <string name="sftp_internal_storage">التّخزين الدّاخليّ</string>
   <string name="sftp_all_files">كلّ الملفّات</string>
   <string name="sftp_sdcard_num">بطاقة SD ‏%d</string>
@@ -102,7 +137,26 @@
   <string name="sftp_readonly">(للقراءة فقط)</string>
   <string name="sftp_camera">صور الكاميرا</string>
   <string name="add_host">أضف مضيفًا/م​إ</string>
+  <string name="add_host_hint">اسم المضيف أو عنوان IP</string>
   <string name="no_players_connected">لم يُعثر على مشغّلات</string>
   <string name="custom_dev_list_help">استخدم هذا الخيار فقط إن لم يُكتَشف جهازك آليًّا. أدخِل عنوان م​إ أو اسم المضيف أدناه والمس الزرّ لإضافته إلى القائمة. المس عنصرًا موجودًا لإزالته من القائمة.</string>
   <string name="mpris_player_on_device">%1$s على %2$s</string>
+  <string name="send_files">أرسل ملفّات</string>
+  <string name="pairing_title">أجهزة «كدي المتّصل»</string>
+  <string name="pairing_description">الأجهزة الأخرى التي تشغّل «كدي المتّصل» وعلى نفس الشّبكة ستظهر هنا.</string>
+  <string name="device_paired">اقتُرن الجهاز</string>
+  <string name="device_rename_title">أعد تسمية الجهاز</string>
+  <string name="device_rename_confirm">أعد التّسمية</string>
+  <string name="refresh">أنعش</string>
+  <string name="unreachable_description">الجهاز المقترن هذا لا يمكن الوصول إليه. تأكّد من اتّصاله بنفس الشّبكة.</string>
+  <string name="no_file_browser">لا متصفّحات ملفّات مثبّتة.</string>
+  <string name="pref_plugin_telepathy">أرسل SMS</string>
+  <string name="pref_plugin_telepathy_desc">أرسل رسائل نصّيّة من سطح المكتب</string>
+  <string name="plugin_not_supported">لا يدعم جهازك هذه الملحقة</string>
+  <string name="findmyphone_title">جِد جهازي</string>
+  <string name="findmyphone_title_tablet">جِد جهازي اللوحيّ</string>
+  <string name="findmyphone_description">يرّن هذا الجهاز لتجده</string>
+  <string name="findmyphone_found">وُجد</string>
+  <string name="open">افتح</string>
+  <string name="close">أغلق</string>
 </resources>

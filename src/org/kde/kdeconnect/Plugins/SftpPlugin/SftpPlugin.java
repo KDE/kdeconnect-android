@@ -20,8 +20,16 @@
 
 package org.kde.kdeconnect.Plugins.SftpPlugin;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.pm.PackageManager;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
+import org.json.JSONException;
 import org.kde.kdeconnect.Helpers.StorageHelper;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
@@ -37,6 +45,9 @@ public class SftpPlugin extends Plugin {
     public final static String PACKAGE_TYPE_SFTP_REQUEST = "kdeconnect.sftp.request";
 
     private static final SimpleSftpServer server = new SimpleSftpServer();
+
+
+
 
     @Override
     public String getDisplayName() {
@@ -94,6 +105,7 @@ public class SftpPlugin extends Plugin {
                     } else {
                         res.append(context.getString(R.string.sftp_all_files));
                     }
+
                     String pathName = res.toString();
                     if (storage.readonly) {
                         res.append(" ");
@@ -125,6 +137,12 @@ public class SftpPlugin extends Plugin {
             }
         }
         return false;
+    }
+
+    @Override
+    public String[] getRequiredPermissions() {
+        String[] perms = {Manifest.permission.READ_EXTERNAL_STORAGE};
+        return perms;
     }
 
     @Override

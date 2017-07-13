@@ -5,7 +5,7 @@
     android:versionName="1.6.5">
 
     <uses-sdk android:minSdkVersion="9"
-              android:targetSdkVersion="22" />
+              android:targetSdkVersion="25" />
 
     <supports-screens
         android:anyDensity="true"
@@ -18,6 +18,8 @@
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <!--<uses-permission android:name="android.permission.BLUETOOTH" />-->
+    <!--<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />-->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
     <uses-permission android:name="android.permission.BATTERY_STATS" />
@@ -42,8 +44,6 @@
             android:enabled="true" >
         </service>
 
-<!--Commented here and in PluginFactory until we release a desktop version with this feature, so we don't get bad "feature not working" reviews-->
-<!--
         <service android:name="org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin.RemoteKeyboardService"
             android:label="KDE Connect Remote Keyboard"
             android:permission="android.permission.BIND_INPUT_METHOD">
@@ -52,7 +52,7 @@
             </intent-filter>
             <meta-data android:name="android.view.im" android:resource="@xml/remotekeyboardplugin_method" />
         </service>
--->
+
         <activity
             android:name="org.kde.kdeconnect.UserInterface.MaterialActivity"
             android:label="KDE Connect"

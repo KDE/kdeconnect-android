@@ -53,9 +53,9 @@
         <item>Middle click</item>
         <item>Nothing</item>
     </string-array>
-    <string name="mousepad_double_default">right</string>
-    <string name="mousepad_triple_default">middle</string>
-    <string name="mousepad_sensitivity_default">default</string>
+    <string name="mousepad_default_double" translatable="false">right</string>
+    <string name="mousepad_default_triple" translatable="false">middle</string>
+    <string name="mousepad_default_sensitivity" translatable="false">default</string>
     <string-array name="mousepad_tap_values" translatable="false">
         <item>right</item>
         <item>middle</item>
@@ -205,5 +205,9 @@
 
     <string name="open">Open</string>
     <string name="close">Close</string>
+
+    <string name="no_permissions_storage">You need to grant permissions to access the storage</string>
+    <string name="plugins_need_permission">Some Plugins need permissions to work (tap for more info):</string>
+    <string name="permission_explanation">This plugin needs permissions to work</string>
 
 </resources>

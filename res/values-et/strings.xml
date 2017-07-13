@@ -41,9 +41,6 @@
     <item>Keskklõps</item>
     <item>Ei tee midagi</item>
   </string-array>
-  <string name="mousepad_double_default">parem</string>
-  <string name="mousepad_triple_default">keskmine</string>
-  <string name="mousepad_sensitivity_default">vaikimisi</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>Kõige aeglasem</item>
     <item>Kõige aeglasemast kiirem</item>

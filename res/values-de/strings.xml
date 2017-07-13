@@ -13,7 +13,7 @@
   <string name="pref_plugin_mpris">Multimedia-Bedienung</string>
   <string name="pref_plugin_mpris_desc">Eine Fernbedienung für Ihre Medienwiedergabe</string>
   <string name="pref_plugin_runcommand">Befehl ausführen</string>
-  <string name="pref_plugin_runcommand_desc">Von Ihrem Telefon oder Tablett Befehle auf anderen Geräten ausführen</string>
+  <string name="pref_plugin_runcommand_desc">Von Ihrem Telefon oder Tablet Befehle auf anderen Geräten ausführen</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Senden und Empfangen von Pings</string>
   <string name="pref_plugin_notifications">Benachrichtigungs-Abgleich</string>
@@ -41,9 +41,6 @@
     <item>Mittelklick</item>
     <item>Nichts</item>
   </string-array>
-  <string name="mousepad_double_default">Rechts</string>
-  <string name="mousepad_triple_default">Mitte</string>
-  <string name="mousepad_sensitivity_default">Standard</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>Langsamste</item>
     <item>Langsam</item>
@@ -95,7 +92,7 @@
   <string name="middle_click">Mittelklick senden</string>
   <string name="show_keyboard">Tastatur anzeigen</string>
   <string name="device_not_paired">Das Gerät ist nicht verbunden</string>
-  <string name="request_pairing">Verbindung angefordert</string>
+  <string name="request_pairing">Verbindung anfordern</string>
   <string name="pairing_accept">Annehmen</string>
   <string name="pairing_reject">Ablehnen</string>
   <string name="device">Gerät</string>
@@ -164,8 +161,8 @@
   <string name="pref_plugin_telepathy_desc">Text-Nachrichten von Ihrer Arbeitsfläche senden</string>
   <string name="plugin_not_supported">Dieses Modul wird durch das Gerät nicht unterstützt</string>
   <string name="findmyphone_title">Mein Telefon suchen</string>
-  <string name="findmyphone_title_tablet">Mein Tablett suchen</string>
-  <string name="findmyphone_description">Ruft dieses Gerät an, um es zu suchen.</string>
+  <string name="findmyphone_title_tablet">Mein Tablet suchen</string>
+  <string name="findmyphone_description">Ruft dieses Gerät an, damit sie es finden können</string>
   <string name="findmyphone_found">Gefunden</string>
   <string name="open">Öffnen</string>
   <string name="close">Schließen</string>

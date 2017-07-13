@@ -10,8 +10,6 @@
   <string name="pref_plugin_clipboard_desc">Zdieľať obsah schránky</string>
   <string name="pref_plugin_mousepad">Vzdialený vstup</string>
   <string name="pref_plugin_mousepad_desc">Použiť váš telefón alebo tablet ako touchpad a klávesnicu</string>
-  <string name="pref_plugin_remotekeyboard">Prijímať vzdialené stlačenia klávesov</string>
-  <string name="pref_plugin_remotekeyboard_desc">Prijímať udalosti stlačení klávesov od vzdialených zariadení</string>
   <string name="pref_plugin_mpris">Multimediálne ovládače</string>
   <string name="pref_plugin_mpris_desc">Poskytuje vzdialené ovládanie pre váš prehrávač médií</string>
   <string name="pref_plugin_runcommand">Spustiť príkaz</string>
@@ -32,10 +30,6 @@
   <string name="no_permissions">Musíte povoliť oprávnenia na prístup k pripomienkam</string>
   <string name="send_ping">Poslať ping</string>
   <string name="open_mpris_controls">Multimediálny ovládač</string>
-  <string name="remotekeyboard_editing_only_title">Spracúva vzdialené klávesy len pri editácii</string>
-  <string name="remotekeyboard_not_connected">Nie sú žiadne aktívne pripojenia vzdialenej klávesnice, vytvorte nejaké v Kdeconnect</string>
-  <string name="remotekeyboard_connected">Vzdialené pripojenie klávesnice je aktívne</string>
-  <string name="remotekeyboard_multiple_connections">Je viac ako jedno vzdialené pripojenie klávesnice, vyberte zariadenie na nastavenie</string>
   <string name="open_mousepad">Vzdialený vstup</string>
   <string name="mousepad_info">Posúvajte prst na obrazovke na posun kurzora. Ťuknutie vyvolá klik a použite dva/tri prsty pre pravé a stredné tlačidlo. Použite dlhé stlačenie pre drag and drop.</string>
   <string name="mousepad_double_tap_settings_title">Nastaviť akciu dvoch prstov</string>
@@ -47,9 +41,6 @@
     <item>Stredný klik</item>
     <item>Nič</item>
   </string-array>
-  <string name="mousepad_double_default">vpravo</string>
-  <string name="mousepad_triple_default">stred</string>
-  <string name="mousepad_sensitivity_default">predvolené</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>Najpomalšie</item>
     <item>Nad najpomalším</item>
@@ -85,15 +76,12 @@
   <string name="incoming_file_title">Prichádzajúci súbor od %s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Posielam súbor pre %1s</string>
-  <string name="outgoing_files_title">Posielam súbor pre %1s</string>
   <string name="outgoing_file_text">%1s</string>
-  <string name="outgoing_files_text">Poslať %1$d z %2$d súborov</string>
   <string name="received_file_title">Prijatý súbor od %1s</string>
   <string name="received_file_fail_title">Zlyhalo prijatie súboru od %1s</string>
   <string name="received_file_text">Ťuknite na otvorenie \'%1s\'</string>
   <string name="sent_file_title">Poslať súbor pre %1s</string>
   <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Zlyhalo poslanie súboru %1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Tapnite na odpoveď</string>
   <string name="reconnect">Znovu pripojiť</string>
@@ -140,10 +128,6 @@
   <string name="custom_device_list">Pridať zariadenia podľa IP</string>
   <string name="share_notification_preference">Hlučné pripomienky</string>
   <string name="share_notification_preference_summary">Vibrovať a prehrať zvuk pri prijatí súboru</string>
-  <string name="share_destination_customize">Prispôsobiť cieľový adresár</string>
-  <string name="share_destination_customize_summary_disabled">Prijaté súbory sa objavia v Preberaniach</string>
-  <string name="share_destination_customize_summary_enabled">Súbory sa uložia v adresári dolu</string>
-  <string name="share_destination_folder_preference">Cieľový adresár</string>
   <string name="title_activity_notification_filter">Filter upozornení</string>
   <string name="filter_apps_info">Upozornenia budú synchronizované pre vybrané aplikácie.</string>
   <string name="sftp_internal_storage">Interné úložisko</string>
@@ -165,7 +149,6 @@
   <string name="device_rename_confirm">Premenovať</string>
   <string name="refresh">Obnoviť</string>
   <string name="unreachable_description">Toto spárované zariadenie nie je dosiahnuteľné. Prosím, uistite sa, že je pripojené do rovnakej siete.</string>
-  <string name="on_data_message">Zdá sa, že ste na mobilom dátovom pripojení. KDE Connect funguje iba na lokálnej sieti.</string>
   <string name="no_file_browser">Nie sú nainštalované žiadne prehliadače.</string>
   <string name="pref_plugin_telepathy">Poslať SMS</string>
   <string name="pref_plugin_telepathy_desc">Posielať textové správy z vášho počítača</string>

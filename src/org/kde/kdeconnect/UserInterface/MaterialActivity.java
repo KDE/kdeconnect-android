@@ -1,14 +1,17 @@
 package org.kde.kdeconnect.UserInterface;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -291,6 +294,22 @@ public class MaterialActivity extends AppCompatActivity {
                 break;
             default:
                 super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        for (int result : grantResults) {
+            if (result == PackageManager.PERMISSION_GRANTED) {
+                //New permission granted, reload plugins
+                BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(BackgroundService service) {
+                        Device device = service.getDevice(mCurrentDevice);
+                        device.reloadPluginsFromSettings();
+                    }
+                });
+            }
         }
     }
 

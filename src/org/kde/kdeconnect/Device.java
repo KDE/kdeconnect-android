@@ -82,7 +82,8 @@ public class Device implements BaseLink.PackageReceiver {
     private List<String> m_supportedPlugins = new ArrayList<>();
     private final ConcurrentHashMap<String, Plugin> plugins = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, Plugin> failedPlugins = new ConcurrentHashMap<>();
-    private Map<String, ArrayList<String>> pluginsByIncomingInterface;
+    private final ConcurrentHashMap<String, Plugin> pluginsWithoutPermissions = new ConcurrentHashMap<>();
+    private Map<String, ArrayList<String>> pluginsByIncomingInterface = new HashMap<>();
 
     private final SharedPreferences settings;
 
@@ -722,6 +723,16 @@ public class Device implements BaseLink.PackageReceiver {
             failedPlugins.put(pluginKey, plugin);
         }
 
+        if(!plugin.checkRequiredPermissions()){
+            Log.e("KDE/addPlugin", "No permission " + pluginKey);
+            plugins.remove(pluginKey);
+            pluginsWithoutPermissions.put(pluginKey, plugin);
+            success = false;
+        } else {
+            Log.i("KDE/addPlugin", "Permission OK " + pluginKey);
+            pluginsWithoutPermissions.remove(pluginKey);
+        }
+
         return success;
     }
 
@@ -810,6 +821,10 @@ public class Device implements BaseLink.PackageReceiver {
 
     public ConcurrentHashMap<String,Plugin> getFailedPlugins() {
         return failedPlugins;
+    }
+
+    public ConcurrentHashMap<String, Plugin> getPluginsWithoutPermissions() {
+        return pluginsWithoutPermissions;
     }
 
     public void addPluginsChangedListener(PluginsChangedListener listener) {

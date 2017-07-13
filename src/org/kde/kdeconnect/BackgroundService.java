@@ -26,11 +26,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Binder;
+import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
+//import org.kde.kdeconnect.Backends.BluetoothBackend.BluetoothLinkProvider;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
@@ -140,11 +142,11 @@ public class BackgroundService extends Service {
     }
 
     private void registerLinkProviders() {
-
-        //linkProviders.add(new LoopbackLinkProvider(this));
-
         linkProviders.add(new LanLinkProvider(this));
-
+//        linkProviders.add(new LoopbackLinkProvider(this));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+//            linkProviders.add(new BluetoothLinkProvider(this));
+        }
     }
 
     public ArrayList<BaseLinkProvider> getLinkProviders() {

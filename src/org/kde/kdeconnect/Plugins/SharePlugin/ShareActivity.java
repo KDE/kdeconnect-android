@@ -23,8 +23,9 @@ package org.kde.kdeconnect.Plugins.SharePlugin;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,7 +33,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
@@ -46,15 +46,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 
-public class ShareActivity extends ActionBarActivity {
+public class ShareActivity extends AppCompatActivity {
 
-    private MenuItem menuProgress;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.refresh, menu);
-        menuProgress = menu.findItem(R.id.menu_progress);
         return true;
     }
 
@@ -62,33 +61,36 @@ public class ShareActivity extends ActionBarActivity {
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_refresh:
-                updateComputerList();
-                BackgroundService.RunCommand(ShareActivity.this, new BackgroundService.InstanceCallback() {
-                    @Override
-                    public void onServiceStart(BackgroundService service) {
-                        service.onNetworkChange();
-                    }
-                });
-                item.setVisible(false);
-                menuProgress.setVisible(true);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try { Thread.sleep(1500); } catch (InterruptedException e) { }
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                menuProgress.setVisible(false);
-                                item.setVisible(true);
-                            }
-                        });
-                    }
-                }).start();
+                updateComputerListAction();
                 break;
             default:
                 break;
         }
         return true;
+    }
+
+    private void updateComputerListAction() {
+        updateComputerList();
+        BackgroundService.RunCommand(ShareActivity.this, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                service.onNetworkChange();
+            }
+        });
+
+        mSwipeRefreshLayout.setRefreshing(true);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try { Thread.sleep(1500); } catch (InterruptedException ignored) { }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+                });
+            }
+        }).start();
     }
 
     private void updateComputerList() {
@@ -179,7 +181,6 @@ public class ShareActivity extends ActionBarActivity {
                                         device.sendPackage(np);
                                     }
                                 }
-
                                 finish();
                             }
                         });
@@ -193,13 +194,21 @@ public class ShareActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.activity_refresh_list);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_CUSTOM);
-
-
-        setContentView(R.layout.activity_list);
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_list_layout);
+        mSwipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        updateComputerListAction();
+                    }
+                }
+        );
+        if (actionBar != null) {
+            actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_CUSTOM);
+        }
     }
 
 

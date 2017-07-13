@@ -47,9 +47,6 @@
     <item>Kliknutí prostředním tlačítkem myši</item>
     <item>Nic</item>
   </string-array>
-  <string name="mousepad_double_default">pravé</string>
-  <string name="mousepad_triple_default">prostřední</string>
-  <string name="mousepad_sensitivity_default">výchozí</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>Nejpomalejší</item>
     <item>Méně pomalý</item>

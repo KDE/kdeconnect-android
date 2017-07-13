@@ -176,4 +176,7 @@
   <string name="findmyphone_found">Нађен</string>
   <string name="open">Отвори</string>
   <string name="close">Затвори</string>
+  <string name="no_permissions_storage">Морате дати дозволе за приступ унутрашњој меморији</string>
+  <string name="plugins_need_permission">Неки прикључци траже дозволе да би радили (тапните за више информација):</string>
+  <string name="permission_explanation">Овај прикључак тражи дозволе да би радио</string>
 </resources>

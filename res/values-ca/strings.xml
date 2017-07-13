@@ -10,8 +10,8 @@
   <string name="pref_plugin_clipboard_desc">Comparteix el contingut del porta-retalls</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
   <string name="pref_plugin_mousepad_desc">Usa el vostre telèfon o tauleta com un ratolí i un teclat</string>
-  <string name="pref_plugin_remotekeyboard">Rep les pulsacions de tecla remotes</string>
-  <string name="pref_plugin_remotekeyboard_desc">Rep els esdeveniments de pulsacions de tecla des de dispositius remots</string>
+  <string name="pref_plugin_remotekeyboard">S\'estan rebent pulsacions de tecla remotes</string>
+  <string name="pref_plugin_remotekeyboard_desc">S\'estan rebent esdeveniments de pulsacions de tecla des de dispositius remots</string>
   <string name="pref_plugin_mpris">Controls multimèdia</string>
   <string name="pref_plugin_mpris_desc">Proporciona un comandament a distància pel reproductor multimèdia</string>
   <string name="pref_plugin_runcommand">Executa una ordre</string>
@@ -33,7 +33,7 @@
   <string name="send_ping">Envia un ping</string>
   <string name="open_mpris_controls">Control multimèdia</string>
   <string name="remotekeyboard_editing_only_title">Fes servir les tecles remotes només en editar</string>
-  <string name="remotekeyboard_not_connected">No hi ha cap connexió activa amb el teclat remot, establiu-ne una al «kdeconnect»</string>
+  <string name="remotekeyboard_not_connected">No hi ha cap connexió activa amb el teclat remot, establiu-ne una al kde-connect</string>
   <string name="remotekeyboard_connected">La connexió amb el teclat remot està activa</string>
   <string name="remotekeyboard_multiple_connections">Hi ha més d\'una connexió amb un teclat remot, seleccioneu el dispositiu per configurar-lo</string>
   <string name="open_mousepad">Entrada remota</string>
@@ -47,9 +47,6 @@
     <item>Clic del mig</item>
     <item>No fer res</item>
   </string-array>
-  <string name="mousepad_double_default">dret</string>
-  <string name="mousepad_triple_default">mig</string>
-  <string name="mousepad_sensitivity_default">Predeterminada</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>La més lenta</item>
     <item>Lenta</item>
@@ -176,4 +173,7 @@
   <string name="findmyphone_found">L\'he trobat</string>
   <string name="open">Obre</string>
   <string name="close">Tanca</string>
+  <string name="no_permissions_storage">Us caldrà concedir permís per accedir a l\'emmagatzematge</string>
+  <string name="plugins_need_permission">Alguns connectors necessiten permisos per a funcionar (puntegeu per a més informació):</string>
+  <string name="permission_explanation">Aquest connector necessita permisos per a funcionar</string>
 </resources>

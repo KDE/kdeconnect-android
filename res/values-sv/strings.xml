@@ -8,10 +8,10 @@
   <string name="pref_plugin_sftp_desc">Gör det möjligt att bläddra i apparatens filsystem från annan apparat</string>
   <string name="pref_plugin_clipboard">Synkronisera klippbord</string>
   <string name="pref_plugin_clipboard_desc">Dela klippbordets innehåll</string>
-  <string name="pref_plugin_mousepad">Fjärrinmatning</string>
+  <string name="pref_plugin_mousepad">Extern inmatning</string>
   <string name="pref_plugin_mousepad_desc">Använd telefonen eller surfplattan som mus och tangentbord</string>
-  <string name="pref_plugin_remotekeyboard">Ta emot fjärrtangentnedtryckningar</string>
-  <string name="pref_plugin_remotekeyboard_desc">Ta emot tangentnedtryckningar från fjärrenheter</string>
+  <string name="pref_plugin_remotekeyboard">Ta emot externa tangentnedtryckningar</string>
+  <string name="pref_plugin_remotekeyboard_desc">Ta emot tangentnedtryckningar från externa enheter</string>
   <string name="pref_plugin_mpris">Multimediakontroller</string>
   <string name="pref_plugin_mpris_desc">Tillhandahåller en fjärrkontroll för mediaspelaren</string>
   <string name="pref_plugin_runcommand">Kör kommando</string>
@@ -32,11 +32,11 @@
   <string name="no_permissions">Du måste ge rättighet att komma åt underrättelser</string>
   <string name="send_ping">Skicka ping</string>
   <string name="open_mpris_controls">Kontroll av multimedia</string>
-  <string name="remotekeyboard_editing_only_title">Hantera bara fjärrtangenter vid redigering</string>
-  <string name="remotekeyboard_not_connected">Det finns ingen aktiv fjärrtangentbordsanslutning, upprätta en i KDE-anslut</string>
-  <string name="remotekeyboard_connected">Fjärrtangentbordsanslutning är aktiv</string>
-  <string name="remotekeyboard_multiple_connections">Det finns mer än en fjärrtangentbordsanslutning, välj enhet att anpassa</string>
-  <string name="open_mousepad">Fjärrinmatning</string>
+  <string name="remotekeyboard_editing_only_title">Hantera bara externa tangenter vid redigering</string>
+  <string name="remotekeyboard_not_connected">Det finns ingen aktiv anslutning till externt tangentbord, upprätta en i KDE-anslut</string>
+  <string name="remotekeyboard_connected">Anslutning till externt tangentbord är aktiv</string>
+  <string name="remotekeyboard_multiple_connections">Det finns mer än en anslutning till externt tangentbord, välj enhet att anpassa</string>
+  <string name="open_mousepad">Extern inmatning</string>
   <string name="mousepad_info">Flytta fingret på skärmen för att röra muspekaren. Rör för att klicka, och använd två eller tre fingrar för höger- och mittenknapparna. Använd en längre beröring för drag och släpp.</string>
   <string name="mousepad_double_tap_settings_title">Ställ in åtgärd vid två fingerberöringar</string>
   <string name="mousepad_triple_tap_settings_title">Ställ in åtgärd vid tre fingerberöringar</string>
@@ -47,9 +47,6 @@
     <item>Mittenklick</item>
     <item>Ingenting</item>
   </string-array>
-  <string name="mousepad_double_default">höger</string>
-  <string name="mousepad_triple_default">mitten</string>
-  <string name="mousepad_sensitivity_default">normal</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>Långsammaste</item>
     <item>Ovanför långsammaste</item>
@@ -176,4 +173,7 @@
   <string name="findmyphone_found">Hittade den</string>
   <string name="open">Öppna</string>
   <string name="close">Stäng</string>
+  <string name="no_permissions_storage">Du måste ge rättighet att komma åt lagringen</string>
+  <string name="plugins_need_permission">Vissa insticksprogram kräver rättigheter för att fungera (rör för mer information):</string>
+  <string name="permission_explanation">Insticksprogrammet behöver rättigheter för att fungera</string>
 </resources>

@@ -41,9 +41,6 @@
     <item>Μεσαίο κλικ</item>
     <item>Τίποτα</item>
   </string-array>
-  <string name="mousepad_double_default">δεξί</string>
-  <string name="mousepad_triple_default">μεσαίο</string>
-  <string name="mousepad_sensitivity_default">προκαθορισμένο</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>Το πιο αργό</item>
     <item>Πάνω από το πιο αργό</item>

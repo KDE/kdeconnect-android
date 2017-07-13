@@ -47,9 +47,6 @@
     <item>Middelste muisklik</item>
     <item>Niets</item>
   </string-array>
-  <string name="mousepad_double_default">rechts</string>
-  <string name="mousepad_triple_default">midden</string>
-  <string name="mousepad_sensitivity_default">standaard</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>Langzaamst</item>
     <item>Langzaam</item>
@@ -78,22 +75,22 @@
   <string name="encryption_info_msg_no_ssl">Het andere apparaat gebruikt geen recente versie van KDE Connect, de verouderde versleutelingsmethode zal worden gebruikt.</string>
   <string name="my_device_fingerprint">De SHA1 vingerafdruk van het certificaat van uw apparaat is:</string>
   <string name="remote_device_fingerprint">De SHA1 vingerafdruk van het certificaat van het apparaat op afstand is:</string>
-  <string name="pair_requested">Paar gevraagd</string>
+  <string name="pair_requested">Paarvorming gevraagd</string>
   <string name="pairing_request_from">Verzoek om een paar te maken van %1s</string>
   <string name="received_url_title">Ontvangen koppeling van %1s</string>
   <string name="received_url_text">Tap om \'%1s\' te openen</string>
   <string name="incoming_file_title">Inkomend bestand van %1s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Bezig bestand te verzenden naar %1s</string>
-  <string name="outgoing_files_title">Bestanden verzenden naar %1s</string>
+  <string name="outgoing_files_title">Bezig bestanden te verzenden naar %1s</string>
   <string name="outgoing_file_text">%1s</string>
-  <string name="outgoing_files_text">Verzonden %1$d van %2$d bestanden</string>
+  <string name="outgoing_files_text">Verzonden %1$d uit %2$d bestanden</string>
   <string name="received_file_title">Bestand ontvangen van %1s</string>
   <string name="received_file_fail_title">Bestand ontvangen van %1s is mislukt</string>
   <string name="received_file_text">Tap om \'%1s\' te openen</string>
   <string name="sent_file_title">Bestand verzonden naar %1s</string>
   <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Verzenden van bestanden naar %1s is mislukt</string>
+  <string name="sent_file_failed_title">Verzenden van bestand naar %1s is mislukt</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Tap om te antwoorden</string>
   <string name="reconnect">Opnieuw verbinden</string>
@@ -140,7 +137,7 @@
   <string name="custom_device_list">Voeg apparaten toe per IP-adres</string>
   <string name="share_notification_preference">Luidruchtige meldingen</string>
   <string name="share_notification_preference_summary">Vibreer en speel een geluidje bij ontvangen van een bestand</string>
-  <string name="share_destination_customize">Pas bestemmingsmap aan</string>
+  <string name="share_destination_customize">De bestemmingsmap aanpassen</string>
   <string name="share_destination_customize_summary_disabled">Ontvangen bestanden zullen in Downloads verschijnen</string>
   <string name="share_destination_customize_summary_enabled">Bestanden zullen opgeslagen worden in de onderstaande map</string>
   <string name="share_destination_folder_preference">Bestemmingsmap</string>
@@ -176,4 +173,7 @@
   <string name="findmyphone_found">Gevonden</string>
   <string name="open">Openen</string>
   <string name="close">Sluiten</string>
+  <string name="no_permissions_storage">U moet toestemming geven voor toegang tot de opslag</string>
+  <string name="plugins_need_permission">Sommige plug-ins hebben toestemming nodig om te werken (tik voor meer informatie):</string>
+  <string name="permission_explanation">Deze plug-in heeft toestemming nodig om te werken</string>
 </resources>

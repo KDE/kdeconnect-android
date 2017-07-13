@@ -47,9 +47,6 @@
     <item>中键点击</item>
     <item>无</item>
   </string-array>
-  <string name="mousepad_double_default">右</string>
-  <string name="mousepad_triple_default">中</string>
-  <string name="mousepad_sensitivity_default">默认</string>
   <string-array name="mousepad_sensitivity_entries">
     <item>最慢</item>
     <item>高于最慢</item>
@@ -170,6 +167,9 @@
   <string name="pref_plugin_telepathy_desc">从桌面发送短消息</string>
   <string name="plugin_not_supported">设备不支持此插件</string>
   <string name="findmyphone_title">找到我的手机</string>
+  <string name="findmyphone_title_tablet">找到我的平板电脑</string>
   <string name="findmyphone_description">让设备响铃从而找到它</string>
   <string name="findmyphone_found">找到</string>
+  <string name="open">打开</string>
+  <string name="close">关闭</string>
 </resources>
