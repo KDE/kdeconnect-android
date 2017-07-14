@@ -332,6 +332,12 @@ public class MaterialActivity extends AppCompatActivity {
                         String deviceName = deviceNameEdit.getText().toString();
                         DeviceHelper.setDeviceName(MaterialActivity.this, deviceName);
                         nameView.setText(deviceName);
+                        BackgroundService.RunCommand(MaterialActivity.this, new BackgroundService.InstanceCallback() {
+                            @Override
+                            public void onServiceStart(final BackgroundService service) {
+                                service.onNetworkChange();
+                            }
+                        });
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
