@@ -146,6 +146,9 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
                         listRefreshCalledThisFrame = true;
 
                         headerText.setText(getString(NetworkHelper.isOnMobileNetwork(getContext()) ? R.string.on_data_message : R.string.pairing_description));
+                        //Disable tap animation
+                        headerText.setOnClickListener(null);
+                        headerText.setOnLongClickListener(null);
 
                         try {
                             Collection<Device> devices = service.getDevices().values();
