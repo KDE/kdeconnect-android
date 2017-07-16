@@ -176,4 +176,11 @@
   <string name="no_permissions_storage">Musisz nadać uprawnienia, aby uzyskać dostęp do pamięci masowej</string>
   <string name="plugins_need_permission">Niektóre z wtyczek wymagają uprawnień do działania (stuknij po więcej informacji)</string>
   <string name="permission_explanation">Ta wtyczka wymaga uprawnień do działania</string>
+  <string name="optional_permission_explanation">Musisz przydzielić dodatkowe uprawnienia, aby włączyć wszystkie funkcje</string>
+  <string name="plugins_need_optional_permission">Niektóre z wtyczek mają ograniczone możliwości ze względu na ograniczone uprawnienia (stuknij po więcej informacji)</string>
+  <string name="sftp_permission_explanation">Aby uzyskać dostęp do plików z twojego PC aplikacja ta potrzebuje uprawnień do dostępu do pamięci twojego telefonu</string>
+  <string name="share_optional_permission_explanation">Aby udostępniać pliki z twojego telefonu na twoim komputerze musisz pozowolić na dostęp do pamięci telefonu</string>
+  <string name="telepathy_permission_explanation">Aby odczytywać i pisać SMSy z twojego komputera musisz nadać uprawnienia do SMSów</string>
+  <string name="telephony_permission_explanation">Aby widzieć rozmowy telefoniczne i SMSy z twojego komputera musisz nadać uprawnienia na rozmowy telefoniczne i SMSy</string>
+  <string name="telephony_optional_permission_explanation">Aby widzieć nazwę kontaktu zamiast numeru telefonu musisz pozwolić na dostęp do kontaktów telefonu</string>
 </resources>
