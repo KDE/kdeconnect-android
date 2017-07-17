@@ -323,18 +323,20 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                     Boolean reply = false;
                 
                     //works for WhatsApp, but not for Telegram
-                    for(Notification.Action act : statusBarNotification.getNotification().actions) {
-                        if(act != null && act.getRemoteInputs() != null) {
-                            repliableNotification.remoteInputs.addAll(Arrays.asList(act.getRemoteInputs()));
-                            repliableNotification.pendingIntent = act.actionIntent;
-                            reply = true;
-                            break;
+                    if(statusBarNotification.getNotification().actions!=null) {
+                        for (Notification.Action act : statusBarNotification.getNotification().actions) {
+                            if (act != null && act.getRemoteInputs() != null) {
+                                repliableNotification.remoteInputs.addAll(Arrays.asList(act.getRemoteInputs()));
+                                repliableNotification.pendingIntent = act.actionIntent;
+                                reply = true;
+                                break;
+                            }
                         }
+
+                        repliableNotification.packageName = statusBarNotification.getPackageName();
+
+                        repliableNotification.tag = statusBarNotification.getTag();//TODO find how to pass Tag with sending PendingIntent, might fix Hangout problem
                     }
-                    
-                    repliableNotification.packageName = statusBarNotification.getPackageName();
-                    
-                    repliableNotification.tag = statusBarNotification.getTag();//TODO find how to pass Tag with sending PendingIntent, might fix Hangout problem
                 } catch(Exception e) {
                     Log.w("NotificationPlugin","problem extracting notification wear for " + statusBarNotification.getNotification().tickerText);
                     e.printStackTrace();
