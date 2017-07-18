@@ -173,7 +173,14 @@
   <string name="findmyphone_found">Нађен</string>
   <string name="open">Отвори</string>
   <string name="close">Затвори</string>
-  <string name="no_permissions_storage">Морате дати дозволе за приступ унутрашњој меморији</string>
+  <string name="no_permissions_storage">Морате дати дозволе за приступ унутрашњој меморији.</string>
   <string name="plugins_need_permission">Неки прикључци траже дозволе да би радили (тапните за више информација):</string>
-  <string name="permission_explanation">Овај прикључак тражи дозволе да би радио</string>
+  <string name="permission_explanation">Овај прикључак тражи дозволе да би радио.</string>
+  <string name="optional_permission_explanation">Морате дати допунске дозволе за активирање свих функција.</string>
+  <string name="plugins_need_optional_permission">Неки прикључци имају деактивиране могућности због недостатка дозвола (тапните за више информација):</string>
+  <string name="sftp_permission_explanation">Програм захтева дозволе да би са рачунара приступио фајловима на телефону.</string>
+  <string name="share_optional_permission_explanation">За дељење фајлова између телефона и рачунара морате дати приступ складишту телефона.</string>
+  <string name="telepathy_permission_explanation">За читање и писање СМС‑ова на рачунару морате дати дозволу за СМС.</string>
+  <string name="telephony_permission_explanation">Да бисте са рачунара видели телефонске позиве и СМС‑ове морате дати дозволу за позиве и СМС‑ове.</string>
+  <string name="telephony_optional_permission_explanation">Да бисте видели име контакта уместо броја телефона морате дати приступ за контакте на телефону.</string>
 </resources>
