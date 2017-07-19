@@ -165,7 +165,7 @@
   <string name="on_data_message">Parece que se encuentra en una conexión de datos móviles. KDE Connect solo funciona en redes locales.</string>
   <string name="no_file_browser">No hay navegadores de archivos instalados.</string>
   <string name="pref_plugin_telepathy">Enviar SMS</string>
-  <string name="pref_plugin_telepathy_desc">Enviar mensajes de texto desde el escritorio</string>
+  <string name="pref_plugin_telepathy_desc">Enviar mensajes de texto desde su escritorio</string>
   <string name="plugin_not_supported">Este complemento no está permitido por el dispositivo</string>
   <string name="findmyphone_title">Encontrar mi teléfono</string>
   <string name="findmyphone_title_tablet">Encontrar mi tableta</string>
@@ -176,4 +176,11 @@
   <string name="no_permissions_storage">Debe otorgar permisos para acceder al almacenamiento</string>
   <string name="plugins_need_permission">Algunos complementos necesitan permisos para funcionar (pulse para más información):</string>
   <string name="permission_explanation">Este complemento necesita permisos para funcionar</string>
+  <string name="optional_permission_explanation">Debe otorgar permisos extra para activar todas las funciones</string>
+  <string name="plugins_need_optional_permission">Algunos complementos tienen funcionalidades desactivadas por falta de permisos (pulse para más información):</string>
+  <string name="sftp_permission_explanation">Para acceder a sus archivos desde su equipo, la aplicación necesita permisos para acceder al almacenamiento de su teléfono</string>
+  <string name="share_optional_permission_explanation">Para compartir archivos entre su teléfono y su escritorio, necesita dar acceso al almacenamiento de su teléfono</string>
+  <string name="telepathy_permission_explanation">Para leer y escribir SMS desde su escritorio, necesita dar permisos para SMS</string>
+  <string name="telephony_permission_explanation">Para ver las llamadas telefónicas y SMS desde su escritorio, necesita dar permisos para llamadas telefónicas y SMS</string>
+  <string name="telephony_optional_permission_explanation">Para ver el nombre de un contacto en lugar de un número telefónico, necesita dar acceso a los contactos de su teléfono</string>
 </resources>
