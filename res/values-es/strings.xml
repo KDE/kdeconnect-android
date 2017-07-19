@@ -168,7 +168,7 @@
   <string name="on_data_message">Parece que se encuentra en una conexión de datos móviles. KDE Connect solo funciona en redes locales.</string>
   <string name="no_file_browser">No hay navegadores de archivos instalados.</string>
   <string name="pref_plugin_telepathy">Enviar SMS</string>
-  <string name="pref_plugin_telepathy_desc">Enviar mensajes de texto desde el escritorio</string>
+  <string name="pref_plugin_telepathy_desc">Enviar mensajes de texto desde su escritorio</string>
   <string name="plugin_not_supported">Este complemento no está permitido por el dispositivo</string>
   <string name="findmyphone_title">Encontrar mi teléfono</string>
   <string name="findmyphone_title_tablet">Encontrar mi tableta</string>
