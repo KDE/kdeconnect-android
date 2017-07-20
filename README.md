@@ -13,11 +13,11 @@ All this without wires, over the already existing WiFi network, and using a secu
 
 ## About this app
 
-This is a native Android port of the KDE Connect Qt app. You will find a more complete readme about KDE Connect [here](https://github.com/albertvaka/kdeconnect-kde).
+This is a native Android port of the KDE Connect Qt app. You will find a more complete readme about KDE Connect [here](https://github.com/KDE/kdeconnect-kde).
 
 ## How to install this app
 
-You can install this app from the [Play Store](https://play.google.com/store/apps/details?id=org.kde.kdeconnect_tp) as well as [F-Droid](https://f-droid.org/repository/browse/?fdid=org.kde.kdeconnect_tp). Note you will also need to install the [desktop app](https://github.com/albertvaka/kdeconnect-kde) for it to work.
+You can install this app from the [Play Store](https://play.google.com/store/apps/details?id=org.kde.kdeconnect_tp) as well as [F-Droid](https://f-droid.org/repository/browse/?fdid=org.kde.kdeconnect_tp). Note you will also need to install the [desktop app](https://github.com/KDE/kdeconnect-kde) for it to work.
 
 ## License
 [GNU GPL v2](https://www.gnu.org/licenses/gpl-2.0.html) and [GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.html)
