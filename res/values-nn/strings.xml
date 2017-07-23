@@ -10,6 +10,8 @@
   <string name="pref_plugin_clipboard_desc">Del innhaldet på utklippstavla</string>
   <string name="pref_plugin_mousepad">Fjernstyring</string>
   <string name="pref_plugin_mousepad_desc">Bruk telefonen eller nettbrettet som styrepute og tastatur</string>
+  <string name="pref_plugin_remotekeyboard">Ta imot eksterne tastetrykk</string>
+  <string name="pref_plugin_remotekeyboard_desc">Ta imot tastetrykk frå eksterne einingar</string>
   <string name="pref_plugin_mpris">Mediekontrollar</string>
   <string name="pref_plugin_mpris_desc">Gjev fjernkontroll til mediespelarar</string>
   <string name="pref_plugin_runcommand">Køyr kommando</string>
@@ -30,6 +32,10 @@
   <string name="no_permissions">Du må gje tilgang til lesing av varslingar</string>
   <string name="send_ping">Send pingsignal</string>
   <string name="open_mpris_controls">Mediekontroll</string>
+  <string name="remotekeyboard_editing_only_title">Handter eksterne tastetrykk berre ved redigering</string>
+  <string name="remotekeyboard_not_connected">Det finst ikkje noko verksamt tastatursamband (må setjast opp i KDE Connect)</string>
+  <string name="remotekeyboard_connected">Eksternt tastatursamband er verksamt</string>
+  <string name="remotekeyboard_multiple_connections">Det finst meir enn eitt eksternt tastatursamband (vel eining å setja opp)</string>
   <string name="open_mousepad">Fjernstyring</string>
   <string name="mousepad_info">Dra ein finger over skjermen for å flytta peikaren på datamaskina. Trykk for å klikka, og bruk to eller tre fingrar for høvesvis høgre- og midtknappen. Trykk og hald for å dra og sleppa.</string>
   <string name="mousepad_double_tap_settings_title">Vel handling for tofingertrykk</string>
@@ -76,12 +82,15 @@
   <string name="incoming_file_title">Får fil frå %1s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Sender fil til %1s</string>
+  <string name="outgoing_files_title">Sender filer til %1s</string>
   <string name="outgoing_file_text">%1s</string>
+  <string name="outgoing_files_text">Sende %1$d av %2$d filer</string>
   <string name="received_file_title">Fekk fil frå %1s</string>
   <string name="received_file_fail_title">Klarte ikkje ta imot fil frå %1s</string>
   <string name="received_file_text">Trykk for å opna «%1s»</string>
   <string name="sent_file_title">Send fil til %1s</string>
   <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Klarte ikkje senda fil til %1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Trykk for å svara</string>
   <string name="reconnect">Kopla til på nytt</string>
@@ -128,6 +137,10 @@
   <string name="custom_device_list">Legg til eining basert på IP</string>
   <string name="share_notification_preference">Lydvarsling</string>
   <string name="share_notification_preference_summary">Vibrer og spel ein lyd ved mottak av fil</string>
+  <string name="share_destination_customize">Tilpassa målmappe</string>
+  <string name="share_destination_customize_summary_disabled">Mottekne filer vert lagra i nedlastingsmappa</string>
+  <string name="share_destination_customize_summary_enabled">Filer vert lagra i mappa nedanfor</string>
+  <string name="share_destination_folder_preference">Målmappe</string>
   <string name="title_activity_notification_filter">Varslingsfilter</string>
   <string name="filter_apps_info">Varslingar vert synkroniserte for dei valde appane.</string>
   <string name="sftp_internal_storage">Intern lagring</string>
@@ -149,6 +162,7 @@
   <string name="device_rename_confirm">Endra namn</string>
   <string name="refresh">Oppdater</string>
   <string name="unreachable_description">Får ikkje kontakt med den para eininga. Sjå til at ho er kopla til same nettverk.</string>
+  <string name="on_data_message">Det ser ut til at er kopla til eit mobilt samband. KDE Connect verkar berre på lokale nettverk.</string>
   <string name="no_file_browser">Ingen filhandsamarar er installerte.</string>
   <string name="pref_plugin_telepathy">Send SMS</string>
   <string name="pref_plugin_telepathy_desc">Send tekstmeldingar frå datamaskina</string>
@@ -159,4 +173,14 @@
   <string name="findmyphone_found">Fann</string>
   <string name="open">Opna</string>
   <string name="close">Lukk</string>
+  <string name="no_permissions_storage">Du må gje KDE Connect løyve til å få tilgang til lagringsområdet</string>
+  <string name="plugins_need_permission">Nokre av tillegga treng utvida løyva for å fungera (trykk på dei for meir informasjon):</string>
+  <string name="permission_explanation">Dette tillegget treng utvida løyve for å fungera</string>
+  <string name="optional_permission_explanation">Du må gje utvida løyve for at alle funksjonane skal fungera</string>
+  <string name="plugins_need_optional_permission">På grunn av manglande løyve har nokre av tillegga funksjonar slåtte av (trykk på dei for meir informasjon):</string>
+  <string name="sftp_permission_explanation">For å gje tilgang til filene frå datamaskina treng appen leseløyve til lagringsområdet på telefonen</string>
+  <string name="share_optional_permission_explanation">For å kunna dela filer mellom telefonen og datamaskina må du gje appen lese- og skriveløyve til lagringsområdet på telefonen</string>
+  <string name="telepathy_permission_explanation">For å kunna lesa og skriva tekstmeldingar frå datamaskina må du gje appen tilgang til SMS</string>
+  <string name="telephony_permission_explanation">For å kunna sjå telefonsamtalar og tekstmeldingar frå datamaskina må du gje appen tilgang til telefon- og SMS-funksjonar</string>
+  <string name="telephony_optional_permission_explanation">For å kunna sjå namn på kontaktar i staden for berre telefonnummeret må du gje appen tilgang til kontaktlista di</string>
 </resources>
