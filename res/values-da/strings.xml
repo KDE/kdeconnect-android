@@ -173,4 +173,14 @@
   <string name="findmyphone_found">Fundet</string>
   <string name="open">Åbn</string>
   <string name="close">Luk</string>
+  <string name="no_permissions_storage">Du skal give tilladelse for at tilgå datalagret</string>
+  <string name="plugins_need_permission">Nogle plugins kræver tilladelser for at virke (tap for mere info):</string>
+  <string name="permission_explanation">Dette plugin kræver tilladelser for at virke</string>
+  <string name="optional_permission_explanation">Du skal give ekstra tilladelser for at aktivere alle funktioner</string>
+  <string name="plugins_need_optional_permission">Nogle plugins har deaktiverede funktioner pga. manglende tilladelser (tap for mere info):</string>
+  <string name="sftp_permission_explanation">For at tilgå filerne fra din pc, skal app\'en have tilladelse til at til gå telefonens datalager</string>
+  <string name="share_optional_permission_explanation">For at dele filer mellem din telefon og din desktop skal du give adgang til telefonens datalager.</string>
+  <string name="telepathy_permission_explanation">For at læse og skrive sms\'er fra din desktop, skal du give tilladelse til sms</string>
+  <string name="telephony_permission_explanation">For at se telefonopkald og sms\'er fra desktoppen, skal du give tilladelse til telefonopkald og sms.</string>
+  <string name="telephony_optional_permission_explanation">For at se et kontaktnavn i stedet for et telefonnummer, skal du give adgang til telefonens kontakter</string>
 </resources>
