@@ -62,6 +62,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class DeviceFragment extends Fragment {
 
     static final String ARG_DEVICE_ID = "deviceId";
+    static final String ARG_FROM_DEVICE_LIST = "deviceId";
 
     View rootView;
     static String mDeviceId; //Static because if we get here by using the back button in the action bar, the extra deviceId will not be set.
@@ -74,16 +75,10 @@ public class DeviceFragment extends Fragment {
     public DeviceFragment() {
     }
 
-    public DeviceFragment(String deviceId) {
-        Bundle args = new Bundle();
-        args.putString(ARG_DEVICE_ID, deviceId);
-        this.setArguments(args);
-    }
-
     public DeviceFragment(String deviceId, boolean fromDeviceList) {
         Bundle args = new Bundle();
         args.putString(ARG_DEVICE_ID, deviceId);
-        args.putBoolean("fromDeviceList", fromDeviceList);
+        args.putBoolean(ARG_FROM_DEVICE_LIST, fromDeviceList);
         this.setArguments(args);
     }
 
@@ -300,7 +295,7 @@ public class DeviceFragment extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                    boolean fromDeviceList = getArguments().getBoolean("fromDeviceList", false);
+                    boolean fromDeviceList = getArguments().getBoolean(ARG_FROM_DEVICE_LIST, false);
                     // Handle back button so we go to the list of devices in case we came from there
                     if (fromDeviceList) {
                         mActivity.onDeviceSelected(null);
@@ -491,7 +486,7 @@ public class DeviceFragment extends Fragment {
         });
     }
 
-    private void createPluginsList(ConcurrentHashMap<String, Plugin> plugins, int headerText, PluginClickListener onClickListener) {
+    void createPluginsList(ConcurrentHashMap<String, Plugin> plugins, int headerText, PluginClickListener onClickListener) {
         if (!plugins.isEmpty()) {
 
             TextView header = new TextView(mActivity);

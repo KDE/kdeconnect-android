@@ -239,7 +239,7 @@ public class MaterialActivity extends AppCompatActivity {
     //TODO: Make it accept two parameters, a constant with the type of screen and the device id in
     //case the screen is for a device, or even three parameters and the third one be the plugin id?
     //This way we can keep adding more options with null device id (eg: about, help...)
-    public void onDeviceSelected(String deviceId, boolean stack) {
+    public void onDeviceSelected(String deviceId, boolean fromDeviceList) {
 
         mCurrentDevice = deviceId;
 
@@ -254,7 +254,7 @@ public class MaterialActivity extends AppCompatActivity {
         if (deviceId == null) {
             fragment = new PairingFragment();
         } else {
-            fragment = new DeviceFragment(deviceId, stack);
+            fragment = new DeviceFragment(deviceId, fromDeviceList);
         }
 
         getSupportFragmentManager()
