@@ -62,7 +62,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class DeviceFragment extends Fragment {
 
     static final String ARG_DEVICE_ID = "deviceId";
-    static final String ARG_FROM_DEVICE_LIST = "deviceId";
+    static final String ARG_FROM_DEVICE_LIST = "fromDeviceList";
 
     View rootView;
     static String mDeviceId; //Static because if we get here by using the back button in the action bar, the extra deviceId will not be set.
