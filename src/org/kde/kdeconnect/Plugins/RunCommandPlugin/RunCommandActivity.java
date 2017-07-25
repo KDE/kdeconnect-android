@@ -22,7 +22,7 @@
 package org.kde.kdeconnect.Plugins.RunCommandPlugin;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class RunCommandActivity extends ActionBarActivity {
+public class RunCommandActivity extends AppCompatActivity {
 
     private String deviceId;
 

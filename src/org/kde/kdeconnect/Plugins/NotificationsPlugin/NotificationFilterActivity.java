@@ -28,7 +28,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,7 +45,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-public class NotificationFilterActivity extends ActionBarActivity {
+public class NotificationFilterActivity extends AppCompatActivity {
 
     AppDatabase appDatabase;
 

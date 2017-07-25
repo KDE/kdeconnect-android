@@ -26,7 +26,7 @@ import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -42,7 +42,7 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 
-public class CustomDevicesActivity extends ActionBarActivity {
+public class CustomDevicesActivity extends AppCompatActivity {
 
     private static final String LOG_ID = "CustomDevicesActivity";
     public static final String KEY_CUSTOM_DEVLIST_PREFERENCE  = "device_list_preference";

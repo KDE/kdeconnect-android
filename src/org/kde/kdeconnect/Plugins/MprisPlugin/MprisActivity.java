@@ -26,7 +26,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -46,7 +46,7 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.List;
 
-public class MprisActivity extends ActionBarActivity {
+public class MprisActivity extends AppCompatActivity {
 
     private String deviceId;
     private final Handler positionSeekUpdateHandler = new Handler();
