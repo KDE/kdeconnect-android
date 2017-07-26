@@ -172,4 +172,6 @@
   <string name="findmyphone_title">找到我的手机</string>
   <string name="findmyphone_description">让设备响铃从而找到它</string>
   <string name="findmyphone_found">找到</string>
+  <string name="open">打开</string>
+  <string name="close">关闭</string>
 </resources>
