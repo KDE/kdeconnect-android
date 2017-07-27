@@ -172,4 +172,7 @@
   <string name="findmyphone_found">找到</string>
   <string name="open">打开</string>
   <string name="close">关闭</string>
+  <string name="no_permissions_storage">你需要授予权限以便访问存储</string>
+  <string name="plugins_need_permission">某些插件需要权限才能工作 (点击以获取更多信息)：</string>
+  <string name="permission_explanation">这个插件需要权限才能工作</string>
 </resources>
