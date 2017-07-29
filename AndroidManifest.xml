@@ -35,8 +35,8 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
-        android:supportsRtl="true"
         android:label="KDE Connect"
+        android:supportsRtl="true"
         android:theme="@style/KdeConnectTheme"
         >
 
@@ -140,9 +140,9 @@
 
         <activity
             android:name="org.kde.kdeconnect.Plugins.FindMyPhonePlugin.FindMyPhoneActivity"
-            android:label="@string/findmyphone_title"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
+            android:label="@string/findmyphone_title"
             android:launchMode="singleInstance">
         </activity>
 
@@ -194,6 +194,9 @@
 
                 <data android:mimeType="*/*" />
             </intent-filter>
+            <meta-data
+                android:name="android.service.chooser.chooser_target_service"
+                android:value="org.kde.kdeconnect.Plugins.SharePlugin.ShareChooserTargetService" />
         </activity>
         <service
             android:name="org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationReceiver"
@@ -202,6 +205,13 @@
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
         </service>
+        <service
+            android:name="org.kde.kdeconnect.Plugins.SharePlugin.ShareChooserTargetService"
+            android:permission="android.permission.BIND_CHOOSER_TARGET_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.chooser.ChooserTargetService" />
+            </intent-filter>
+            </service>
 
         <activity
             android:name="org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationFilterActivity"

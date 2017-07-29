@@ -35,6 +35,7 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
@@ -56,6 +57,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class SharePlugin extends Plugin {
@@ -399,6 +401,59 @@ public class SharePlugin extends Plugin {
         }
     }
 
+    public static void share(Intent intent, Device device){
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            if (extras.containsKey(Intent.EXTRA_STREAM)) {
+
+                try {
+
+                    ArrayList<Uri> uriList;
+                    if (!Intent.ACTION_SEND.equals(intent.getAction())) {
+                        uriList = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
+                    } else {
+                        Uri uri = extras.getParcelable(Intent.EXTRA_STREAM);
+                        uriList = new ArrayList<>();
+                        uriList.add(uri);
+                    }
+
+                    SharePlugin.queuedSendUriList(device.getContext(), device, uriList);
+
+                } catch (Exception e) {
+                    Log.e("ShareActivity", "Exception");
+                    e.printStackTrace();
+                }
+
+            } else if (extras.containsKey(Intent.EXTRA_TEXT)) {
+                String text = extras.getString(Intent.EXTRA_TEXT);
+                String subject = extras.getString(Intent.EXTRA_SUBJECT);
+
+                //Hack: Detect shared youtube videos, so we can open them in the browser instead of as text
+                if (subject != null && subject.endsWith("YouTube")) {
+                    int index = text.indexOf(": http://youtu.be/");
+                    if (index > 0) {
+                        text = text.substring(index + 2); //Skip ": "
+                    }
+                }
+
+                boolean isUrl;
+                try {
+                    new URL(text);
+                    isUrl = true;
+                } catch (Exception e) {
+                    isUrl = false;
+                }
+                NetworkPackage np = new NetworkPackage(SharePlugin.PACKAGE_TYPE_SHARE_REQUEST);
+                if (isUrl) {
+                    np.set("url", text);
+                } else {
+                    np.set("text", text);
+                }
+                device.sendPackage(np);
+            }
+        }
+
+    }
 
     @Override
     public String[] getSupportedPackageTypes() {

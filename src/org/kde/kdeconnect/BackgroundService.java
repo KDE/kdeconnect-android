@@ -46,6 +46,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class BackgroundService extends Service {
 
+    private static BackgroundService instance;
+
     public interface DeviceListChangedCallback {
         void onDeviceListChanged();
     }
@@ -57,6 +59,10 @@ public class BackgroundService extends Service {
     private final ConcurrentHashMap<String, Device> devices = new ConcurrentHashMap<>();
 
     private final HashSet<Object> discoveryModeAcquisitions = new HashSet<>();
+
+    public static BackgroundService getInstance(){
+        return instance;
+    }
 
     public boolean acquireDiscoveryMode(Object key) {
         boolean wasEmpty = discoveryModeAcquisitions.isEmpty();
@@ -249,6 +255,8 @@ public class BackgroundService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        instance = this;
 
         // Register screen on listener
         IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);

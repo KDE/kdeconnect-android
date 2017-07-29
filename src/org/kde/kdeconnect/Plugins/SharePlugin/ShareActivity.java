@@ -33,6 +33,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
@@ -130,57 +132,7 @@ public class ShareActivity extends AppCompatActivity {
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                                 Device device = devicesList.get(i - 1); //NOTE: -1 because of the title!
-
-                                Bundle extras = intent.getExtras();
-                                if (extras != null) {
-                                    if (extras.containsKey(Intent.EXTRA_STREAM)) {
-
-                                        try {
-
-                                            ArrayList<Uri> uriList;
-                                            if (!Intent.ACTION_SEND.equals(intent.getAction())) {
-                                                uriList = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
-                                            } else {
-                                                Uri uri = extras.getParcelable(Intent.EXTRA_STREAM);
-                                                uriList = new ArrayList<>();
-                                                uriList.add(uri);
-                                            }
-
-                                            SharePlugin.queuedSendUriList(getApplicationContext(), device, uriList);
-
-                                        } catch (Exception e) {
-                                            Log.e("ShareActivity", "Exception");
-                                            e.printStackTrace();
-                                        }
-
-                                    } else if (extras.containsKey(Intent.EXTRA_TEXT)) {
-                                        String text = extras.getString(Intent.EXTRA_TEXT);
-                                        String subject = extras.getString(Intent.EXTRA_SUBJECT);
-
-                                        //Hack: Detect shared youtube videos, so we can open them in the browser instead of as text
-                                        if (subject != null && subject.endsWith("YouTube")) {
-                                            int index = text.indexOf(": http://youtu.be/");
-                                            if (index > 0) {
-                                                text = text.substring(index + 2); //Skip ": "
-                                            }
-                                        }
-
-                                        boolean isUrl;
-                                        try {
-                                            new URL(text);
-                                            isUrl = true;
-                                        } catch (Exception e) {
-                                            isUrl = false;
-                                        }
-                                        NetworkPackage np = new NetworkPackage(SharePlugin.PACKAGE_TYPE_SHARE_REQUEST);
-                                        if (isUrl) {
-                                            np.set("url", text);
-                                        } else {
-                                            np.set("text", text);
-                                        }
-                                        device.sendPackage(np);
-                                    }
-                                }
+                                SharePlugin.share(intent, device);
                                 finish();
                             }
                         });
@@ -215,21 +167,43 @@ public class ShareActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        BackgroundService.addGuiInUseCounter(this);
-        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                service.onNetworkChange();
-                service.addDeviceListChangedCallback("ShareActivity", new BackgroundService.DeviceListChangedCallback() {
-                    @Override
-                    public void onDeviceListChanged() {
-                        updateComputerList();
+
+        final Intent intent = getIntent();
+        final String deviceId = intent.getStringExtra("deviceId");
+
+        if (deviceId!=null) {
+
+            BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback(){
+
+                @Override
+                public void onServiceStart(BackgroundService service) {
+                    Log.d("DirectShare", "sharing to "+service.getDevice(deviceId).getName());
+                    Device device = service.getDevice(deviceId);
+                    if (device.isReachable() && device.isPaired()) {
+                        SharePlugin.share(intent, device);
                     }
-                });
-            }
-        });
-        updateComputerList();
+                    finish();
+                }
+            });
+        } else {
+
+            BackgroundService.addGuiInUseCounter(this);
+            BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
+                @Override
+                public void onServiceStart(BackgroundService service) {
+                    service.onNetworkChange();
+                    service.addDeviceListChangedCallback("ShareActivity", new BackgroundService.DeviceListChangedCallback() {
+                        @Override
+                        public void onDeviceListChanged() {
+                            updateComputerList();
+                        }
+                    });
+                }
+            });
+            updateComputerList();
+        }
     }
+
 
     @Override
     protected void onStop() {
