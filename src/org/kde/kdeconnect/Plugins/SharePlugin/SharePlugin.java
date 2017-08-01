@@ -234,10 +234,10 @@ public class SharePlugin extends Plugin {
                         destinationOutput.write(data, 0, count);
                         if (fileLength > 0) {
                             if (progress >= fileLength) break;
-                            long progressPercentage = (progress * 10 / fileLength);
+                            long progressPercentage = (progress * 100 / fileLength);
                             if (progressPercentage != prevProgressPercentage) {
                                 prevProgressPercentage = progressPercentage;
-                                notification.setProgress((int) progressPercentage * 10);
+                                notification.setProgress((int) progressPercentage);
                                 notification.show();
                             }
                         }
