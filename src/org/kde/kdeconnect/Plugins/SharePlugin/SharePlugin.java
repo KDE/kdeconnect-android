@@ -218,8 +218,6 @@ public class SharePlugin extends Plugin {
         }
         final Uri destinationUri = destinationDocument.getUri();
 
-        Resources res = context.getResources();
-
         final ShareNotification notification = new ShareNotification(device, filename);
         notification.show();
 
