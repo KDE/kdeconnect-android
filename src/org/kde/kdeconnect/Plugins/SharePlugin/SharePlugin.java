@@ -227,7 +227,7 @@ public class SharePlugin extends Plugin {
                 boolean successful = true;
                 try {
                     byte data[] = new byte[1024];
-                    long progress = 0, prevProgressPercentage = 0;
+                    long progress = 0, prevProgressPercentage = -1;
                     int count;
                     while ((count = input.read(data)) >= 0) {
                         progress += count;
