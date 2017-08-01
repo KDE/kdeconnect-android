@@ -224,7 +224,6 @@ public class SharePlugin extends Plugin {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                boolean successful = true;
                 try {
                     byte data[] = new byte[4096];
                     long progress = 0, prevProgressPercentage = -1;
@@ -263,10 +262,9 @@ public class SharePlugin extends Plugin {
                     }
 
                 } catch (Exception e) {
-                    successful = false;
                     Log.e("SharePlugin", "Receiver thread exception");
                     e.printStackTrace();
-                    notification.setFinished(successful);
+                    notification.setFinished(false);
                     notification.show();
                 } finally {
                     try {
