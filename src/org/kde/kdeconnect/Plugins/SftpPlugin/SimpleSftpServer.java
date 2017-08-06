@@ -48,7 +48,10 @@ import org.kde.kdeconnect.Helpers.RandomHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.RandomAccessFile;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -213,6 +216,32 @@ class SimpleSftpServer {
             super(file.getAbsolutePath(), file, userName);
             this.context = context;
             this.file = file;
+        }
+
+        @Override
+        public OutputStream createOutputStream(long offset) throws IOException {
+            if (!isWritable()) {
+                throw new IOException("No write permission : " + file.getName());
+            }
+
+            final RandomAccessFile raf = new RandomAccessFile(file, "rw");
+            try {
+                if (offset < raf.length()) {
+                    throw new IOException("Your SSHFS is bugged"); //SSHFS 3.0 and 3.2 cause data corruption, abort the transfer if this happens
+                }
+                raf.setLength(offset);
+                raf.seek(offset);
+
+                return new FileOutputStream(raf.getFD()) {
+                    public void close() throws IOException {
+                        super.close();
+                        raf.close();
+                    }
+                };
+            } catch (IOException e) {
+                raf.close();
+                throw e;
+            }
         }
 
         @Override
