@@ -176,4 +176,11 @@
   <string name="no_permissions_storage">Depolamaya erişim için izne ihtiyacınız var</string>
   <string name="plugins_need_permission">Bazı Eklentiler çalışmak için izne ihtiyaç duyar (daha fazla bilgi için dokunun):</string>
   <string name="permission_explanation">Bu eklenti, çalışmak için izne ihtiyaç duyuyor</string>
+  <string name="optional_permission_explanation">Tüm işlevleri etkinleştirmek için daha fazla yetkiye ihtiyacınız var</string>
+  <string name="plugins_need_optional_permission">Bazı eklentilerin özellikleri, izin yetersizliğinden kapalı gelmektedir (daha fazla bilgi için dokunun):</string>
+  <string name="sftp_permission_explanation">Bilgisayarınızdaki dosyalara erişmek için, uygulama telefonunuzun depolama alanına erişim izni olmalıdır</string>
+  <string name="share_optional_permission_explanation">Telefon ve masaüstünüz arasında dosya paylaşılabilmesi için, telefonun depolama alanına erişim izni olmalıdır</string>
+  <string name="telepathy_permission_explanation">Masaüstünde SMS yazma ve okuma yapmak için SMS izni gereklidir</string>
+  <string name="telephony_permission_explanation">Masaüstünden telefon çağrılarını ve SMS görebilmek için izin gereklidir</string>
+  <string name="telephony_optional_permission_explanation">Telefon numarası yerine kişi ismi görebilmek için telefonun kişilerine erişim gereklidir</string>
 </resources>
