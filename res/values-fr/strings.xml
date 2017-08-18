@@ -61,7 +61,7 @@
   <string name="category_not_paired_devices">Périphériques disponibles</string>
   <string name="category_remembered_devices">Périphériques mémorisés</string>
   <string name="plugins_failed_to_load">Le chargement des modules externes a échoué (cliquez pour plus d\'informations) :</string>
-  <string name="device_menu_plugins">Paramètres du module externe</string>
+  <string name="device_menu_plugins">Paramètres des modules externes</string>
   <string name="device_menu_unpair">Dissocier</string>
   <string name="device_not_reachable">Périphérique inaccessible</string>
   <string name="pair_new_device">Associer un nouveau périphérique</string>
