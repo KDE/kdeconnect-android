@@ -238,6 +238,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     @Override
     public void onStop() {
         super.onStop();
+        mSwipeRefreshLayout.setEnabled(false);
         BackgroundService.RunCommand(mActivity, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
