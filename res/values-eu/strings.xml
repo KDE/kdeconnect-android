@@ -147,7 +147,7 @@
   <string name="sftp_all_files">Fitxategi guztiak</string>
   <string name="sftp_sdcard_num">%d SD txartela</string>
   <string name="sftp_sdcard">SD txartela</string>
-  <string name="sftp_readonly">(irakurri besterik ez)</string>
+  <string name="sftp_readonly">(irakurri soilik)</string>
   <string name="sftp_camera">Kamerako irudiak</string>
   <string name="add_host">Gehitu ostalaria/IP</string>
   <string name="add_host_hint">Ostalaria edo IP</string>
