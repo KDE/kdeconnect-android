@@ -142,7 +142,7 @@
   <string name="share_destination_customize_summary_enabled">Os ficheiros almacenaranse no directorio de abaixo.</string>
   <string name="share_destination_folder_preference">Directorio de destino</string>
   <string name="title_activity_notification_filter">Filtro de notificacións</string>
-  <string name="filter_apps_info">As notificacións sincronizaranse para os seguintes programas.</string>
+  <string name="filter_apps_info">As notificacións sincronizaranse para os seguintes aplicativos.</string>
   <string name="sftp_internal_storage">Almacenamento interno</string>
   <string name="sftp_all_files">Todos os ficheiros</string>
   <string name="sftp_sdcard_num">Tarxeta SD %d</string>
