@@ -49,7 +49,7 @@
     <item>Schnellste</item>
   </string-array>
   <string name="category_connected_devices">Verbundene Geräte</string>
-  <string name="category_not_paired_devices">Verfügbare Gerät</string>
+  <string name="category_not_paired_devices">Verfügbare Geräte</string>
   <string name="category_remembered_devices">Gemerkte Geräte</string>
   <string name="plugins_failed_to_load">Laden der Module fehlgeschlagen, tippen Sie für weitere Details:</string>
   <string name="device_menu_plugins">Modul-Einstellungen</string>
