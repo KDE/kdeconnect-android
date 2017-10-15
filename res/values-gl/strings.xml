@@ -152,7 +152,7 @@
   <string name="add_host">Engadir unha nome ou IP</string>
   <string name="add_host_hint">Nome ou IP do servidor.</string>
   <string name="no_players_connected">Non se atoparon reprodutores.</string>
-  <string name="custom_dev_list_help">Marque esta opción unicamente se o seu dispositivo non se detecta automaticamente. Insira o enderezo IP ou o nome de servidor do dispositivo e toque o botón para engadilo á lista. Toque un elemento existente para retiralo da lista.</string>
+  <string name="custom_dev_list_help">Marque esta opción só se o seu dispositivo non se detecta automaticamente. Insira o enderezo IP ou o nome de servidor do dispositivo e toque o botón para engadilo á lista. Toque un elemento existente para retiralo da lista.</string>
   <string name="mpris_player_on_device">%1$s en %2$s</string>
   <string name="send_files">Enviar ficheiros</string>
   <string name="pairing_title">Dispositivos con KDE Connect</string>
