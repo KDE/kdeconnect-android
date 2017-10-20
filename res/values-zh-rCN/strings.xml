@@ -172,7 +172,10 @@
   <string name="findmyphone_found">找到</string>
   <string name="open">打开</string>
   <string name="close">关闭</string>
-  <string name="no_permissions_storage">您需要授予权限以便访问存储</string>
+  <string name="no_permissions_storage">您需要授予权限以访问存储</string>
   <string name="plugins_need_permission">某些插件需要权限才能工作 (点击以获取更多信息)：</string>
   <string name="permission_explanation">这个插件需要权限才能工作</string>
+  <string name="optional_permission_explanation">您需要授予额外权限以启用全部功能</string>
+  <string name="plugins_need_optional_permission">因缺少权限，某些插件的一些功能已禁用（点击以查看更多信息）：</string>
+  <string name="telephony_optional_permission_explanation">要查看联系人姓名而非电话号码，您需要授予访问手机通讯录的权限</string>
 </resources>
