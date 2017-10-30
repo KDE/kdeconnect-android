@@ -10,6 +10,8 @@
   <string name="pref_plugin_clipboard_desc">Διαμοιρασμός περιεχομένου προχείρου</string>
   <string name="pref_plugin_mousepad">Απομακρυσμένη είσοδος στοιχείων</string>
   <string name="pref_plugin_mousepad_desc">Χρήση του τηλεφώνου ή της ταμπλέτας σας ως επιφάνεια αφής και πληκτρολόγιο</string>
+  <string name="pref_plugin_remotekeyboard">Λήψη απομακρυσμένων πληκτρολογήσεων</string>
+  <string name="pref_plugin_remotekeyboard_desc">Λήψη συμβάντων πληκτρολόγησης από απομακρυσμένες συσκευές</string>
   <string name="pref_plugin_mpris">Κονσόλα πολυμέσων</string>
   <string name="pref_plugin_mpris_desc">Παρέχει ένα τηλεχειριστήριο για την αναπαραγωγή πολυμέσων</string>
   <string name="pref_plugin_runcommand">Εκτέλεση εντολής</string>
@@ -30,6 +32,10 @@
   <string name="no_permissions">Απαιτείται παραχώρηση δικαιωμάτων για την πρόσβαση σε ειδοποιήσεις</string>
   <string name="send_ping">Αποστολή ping</string>
   <string name="open_mpris_controls">Έλεγχος πολυμέσων</string>
+  <string name="remotekeyboard_editing_only_title">Χειρισμός απομακρυσμένων πλήκτρων μόνο στην επεξεργασία</string>
+  <string name="remotekeyboard_not_connected">Δεν υπάρχει ενεργή σύνδεση με απομακρυσμένο πληκτρολόγιο, άνοιξε μία στο kdeconnect</string>
+  <string name="remotekeyboard_connected">Η σύνδεση με απομακρυσμένο πληκτρολόγιο είναι ενεργή</string>
+  <string name="remotekeyboard_multiple_connections">Υπάρχουν περισσότερες της μίας συνδέσεις με απομακρυσμένο πληκτρολόγιο, επιλέξτε ποια συσκευή θα διαμορφώσετε</string>
   <string name="open_mousepad">Απομακρυσμένη είσοδος στοιχείων</string>
   <string name="mousepad_info">Μετακινείστε το δάκτυλο στην οθόνη για να μετακινηθεί ο δρομέας του ποντικιού. Χτυπήστε για κλικ και χρησιμοποιήστε δύο/τρία δάκτυλα για δεξί και μεσαίο κλικ. Πιέστε με διάρκεια για μετακίνηση και απόθεση.</string>
   <string name="mousepad_double_tap_settings_title">Ρύθμιση δύο δακτύλων για την ενέργεια χτυπήματος</string>
@@ -76,12 +82,15 @@
   <string name="incoming_file_title">Εισερχόμενο αρχείο από %1s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Αποστολή αρχείου σε %1s</string>
+  <string name="outgoing_files_title">Αποστολή αρχείων σε %1s</string>
   <string name="outgoing_file_text">%1s</string>
+  <string name="outgoing_files_text">Εστάλησαν %1$d από %2$d αρχεία</string>
   <string name="received_file_title">Ελήφθη αρχείο από %1s</string>
   <string name="received_file_fail_title">Αποτυχία λήψης αρχείου από %1s</string>
   <string name="received_file_text">Χτυπήστε για άνοιγμα \'%1s\'</string>
-  <string name="sent_file_title">Εστάλη αρχείο στο %1s</string>
+  <string name="sent_file_title">Εστάλη αρχείο σε %1s</string>
   <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Αποτυχία αποστολής αρχείου σε %1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Χτυπήστε για να απαντήσετε</string>
   <string name="reconnect">Επανασύνδεση</string>
@@ -128,6 +137,10 @@
   <string name="custom_device_list">Προσθήκη συσκευών ανά IP</string>
   <string name="share_notification_preference">Θορυβώδεις ειδοποιήσεις</string>
   <string name="share_notification_preference_summary">Δόνηση και ηχητική ένδειξη με τη λήψη αρχείου</string>
+  <string name="share_destination_customize">Προσαρμογή καταλόγου προορισμού</string>
+  <string name="share_destination_customize_summary_disabled">Τα ληφθέντα αρχεία θα εμφανίζονται στις Λήψεις</string>
+  <string name="share_destination_customize_summary_enabled">Τα αρχεία θα αποθηκεύονται στον παρακάτω κατάλογο</string>
+  <string name="share_destination_folder_preference">Κατάλογος προορισμού</string>
   <string name="title_activity_notification_filter">Φιλτράρισμα ειδοποιήσεων</string>
   <string name="filter_apps_info">Οι ειδοποιήσεις θα συγχρονίζονται για επιλεγμένες εφαρμογές.</string>
   <string name="sftp_internal_storage">Εσωτερικός αποθηκευτικός χώρος</string>
@@ -149,6 +162,7 @@
   <string name="device_rename_confirm">Μετονομασία</string>
   <string name="refresh">Ανανέωση</string>
   <string name="unreachable_description">Αυτή η συζευγμένη συσκευή δεν είναι προσβάσιμη. Βεβαιωθείτε ότι είναι συνδεδεμένη στο δίκτυό σας.</string>
+  <string name="on_data_message">Φαίνεται ότι είστε σε σύνδεση δεδομένων από κινητό. Το KDE Connect λειτουργεί μόνο σε τοπικά δίκτυα.</string>
   <string name="no_file_browser">Δεν υπάρχουν εγκατεστημένοι περιηγητές αρχείων.</string>
   <string name="pref_plugin_telepathy">Αποστολή SMS</string>
   <string name="pref_plugin_telepathy_desc">Αποστολή μηνυμάτων κειμένου από τον υπολογιστή σας</string>
@@ -159,4 +173,14 @@
   <string name="findmyphone_found">Βρέθηκε</string>
   <string name="open">Άνοιγμα</string>
   <string name="close">Κλείσιμο</string>
+  <string name="no_permissions_storage">Απαιτείται παραχώρηση δικαιωμάτων για την πρόσβαση στον αποθηκευτικό χώρο</string>
+  <string name="plugins_need_permission">Κάποια πρόσθετα απαιτούν δικαιώματα για να λειτουργήσουν (χτυπήστε για περισσότερες πληροφορίες):</string>
+  <string name="permission_explanation">Αυτό το πρόσθετο χρειάζεται δικαιώματα για να λειτουργήσει</string>
+  <string name="optional_permission_explanation">Απαιτείται παραχώρηση επιπλέον δικαιωμάτων για την ενεργοποίηση όλων των λειτουργιών</string>
+  <string name="plugins_need_optional_permission">Κάποια πρόσθετα έχουν λειτουργίες ανενεργές εξαιτίας της απουσίας δικαιωμάτων (χτυπήστε για περισσότερες πληροφορίες):</string>
+  <string name="sftp_permission_explanation">Για την πρόσβαση στα αρχεία σας από τον υπολογιστή η εφαρμογή χρειάζεται δικαιώματα πρόσβασης στον αποθηκευτικό χώρο του κινητού σας</string>
+  <string name="share_optional_permission_explanation">Για το διαμοιρασμό αρχείων ανάμεσα στο τηλέφωνο και τον υπολογιστή σας χρειάζεται να παραχωρήσετε πρόσβαση στον αποθηκευτικό χώρο του τηλεφώνου σας</string>
+  <string name="telepathy_permission_explanation">Για να διαβάσετε και να γράψετε SMS από την επιφάνεια εργασίας, χρειάζεται να δώσετε δικαιώματα στο SMS</string>
+  <string name="telephony_permission_explanation">Για να δείτε τηλεφωνικές κλήσεις και SMS από την επιφάνεια εργασίας, χρειάζεται να παραχωρήσετε δικαιώματα σε τηλεφωνικές κλήσεις και SMS</string>
+  <string name="telephony_optional_permission_explanation">Για να δείτε το όνομα επαφής αντί για τον αριθμό κλήσης χρειάζεται να παραχωρήσετε πρόσβαση στις επαφές στο τηλέφωνο</string>
 </resources>
