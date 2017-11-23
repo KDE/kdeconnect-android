@@ -26,9 +26,15 @@ import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.RemoteInput;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -196,15 +202,30 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         }
 
         try {
-            Bitmap appIcon = notification.largeIcon;
+            Bitmap appIcon = null;
+            Context foreignContext = context.createPackageContext(statusBarNotification.getPackageName(), 0);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                appIcon = iconToBitmap(foreignContext, notification.getLargeIcon());
+            } else {
+                appIcon = notification.largeIcon;
+            }
+            //appIcon = drawableToBitmap(context.getResources().getDrawable(R.drawable.icon));
+            if (appIcon == null) {
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    appIcon = iconToBitmap(foreignContext, notification.getSmallIcon());
+                } else {
+                    PackageManager pm = context.getPackageManager();
+                    Resources foreignResources = pm.getResourcesForApplication(statusBarNotification.getPackageName());
+                    Drawable foreignIcon = foreignResources.getDrawable(notification.icon);
+                    appIcon = drawableToBitmap(foreignIcon);
+                }
+            }
 
             if (appIcon != null) {
                 ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-                if (appIcon.getWidth() > 128) {
-                    appIcon = Bitmap.createScaledBitmap(appIcon, 96, 96, true);
-                }
                 appIcon.compress(Bitmap.CompressFormat.PNG, 90, outStream);
                 byte[] bitmapData = outStream.toByteArray();
+
 
                 np.setPayload(bitmapData);
 
@@ -230,6 +251,31 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         np.set("time", Long.toString(statusBarNotification.getPostTime()));
 
         device.sendPackage(np);
+    }
+
+    private Bitmap drawableToBitmap(Drawable drawable) {
+        if (drawable == null) return null;
+
+        Bitmap res;
+        if (drawable.getIntrinsicWidth() > 128 || drawable.getIntrinsicHeight() > 128) {
+            res = Bitmap.createBitmap(96, 96, Bitmap.Config.ARGB_8888);
+        } else if (drawable.getIntrinsicWidth() <= 64 || drawable.getIntrinsicHeight() <= 64) {
+            res = Bitmap.createBitmap(96, 96, Bitmap.Config.ARGB_8888);
+        } else {
+            res = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        }
+
+        Canvas canvas = new Canvas(res);
+        drawable.setBounds(0, 0, res.getWidth(), res.getHeight());
+        drawable.draw(canvas);
+        return res;
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private Bitmap iconToBitmap(Context foreignContext, Icon icon) {
+        if (icon == null) return null;
+
+        return drawableToBitmap(icon.loadDrawable(foreignContext));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
