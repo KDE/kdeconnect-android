@@ -173,4 +173,14 @@
   <string name="findmyphone_found">Found</string>
   <string name="open">Open</string>
   <string name="close">Close</string>
+  <string name="no_permissions_storage">You need to grant permissions to access the storage</string>
+  <string name="plugins_need_permission">Some Plugins need permissions to work (tap for more info):</string>
+  <string name="permission_explanation">This plugin needs permissions to work</string>
+  <string name="optional_permission_explanation">You need to grant extra permissions to enable all functions</string>
+  <string name="plugins_need_optional_permission">Some plugins have features disabled because of lack of permission (tap for more info):</string>
+  <string name="sftp_permission_explanation">To access your files from your PC the app needs permission to access your phone\'s storage</string>
+  <string name="share_optional_permission_explanation">To share files between your phone and your desktop you need to give access to the phone\'s storage</string>
+  <string name="telepathy_permission_explanation">To read and write SMS from your desktop you need to give permission to SMS</string>
+  <string name="telephony_permission_explanation">To see phone calls and SMS from the desktop you need to give permission to phone calls and SMS</string>
+  <string name="telephony_optional_permission_explanation">To see a contact name instead of a phone number you need to give access to the phone\'s contacts</string>
 </resources>
