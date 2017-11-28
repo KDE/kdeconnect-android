@@ -155,7 +155,8 @@
   <string name="device_rename_title">Geräte umbenennen</string>
   <string name="device_rename_confirm">Umbenennen</string>
   <string name="refresh">Aktualisieren</string>
-  <string name="unreachable_description">Das verbundene Gerät ist nicht erreichbar. Stellen Sie sicher daß es mit demselben Netzwerk verbunden ist.</string>
+  <string name="unreachable_description">Das verbundene Gerät ist nicht erreichbar. Stellen Sie sicher, dass es mit demselben Netzwerk verbunden ist.</string>
+  <string name="on_data_message">Sie benutzen anscheinend eine mobile Datenverbindung. KDE-Connect funktioniert nur in lokalen Netzwerken.</string>
   <string name="no_file_browser">Es sind keine Dateiverwaltungsprogramme installiert.</string>
   <string name="pref_plugin_telepathy">SMS senden</string>
   <string name="pref_plugin_telepathy_desc">Text-Nachrichten von Ihrer Arbeitsfläche senden</string>
