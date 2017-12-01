@@ -46,7 +46,7 @@
         android:layout_height="75dip"
         app:maxWidth="300dip"
         android:id="@+id/play_button"
-        android:src="@android:drawable/ic_media_play"
+        android:src="@drawable/ic_play_black"
         android:contentDescription="@string/mpris_play"
         android:layout_gravity="center"
         android:layout_weight="0"
@@ -65,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:id="@+id/prev_button"
-            android:src="@android:drawable/ic_media_previous"
+            android:src="@drawable/ic_previous_black"
             android:contentDescription="@string/mpris_previous"
             android:layout_weight="0.25"
         />
@@ -74,7 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:id="@+id/rew_button"
-            android:src="@android:drawable/ic_media_rew"
+            android:src="@drawable/ic_rewind_black"
             android:contentDescription="@string/mpris_rew"
             android:layout_weight="0.25"
         />
@@ -83,7 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:id="@+id/ff_button"
-            android:src="@android:drawable/ic_media_ff"
+            android:src="@drawable/ic_fast_forward_black"
             android:contentDescription="@string/mpris_ff"
             android:layout_weight="0.25"
         />
@@ -92,7 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:id="@+id/next_button"
-            android:src="@android:drawable/ic_media_next"
+            android:src="@drawable/ic_next_black"
             android:contentDescription="@string/mpris_next"
             android:layout_weight="0.25"
         />
@@ -152,7 +152,7 @@
             android:id="@+id/imageView"
             android:layout_weight="0"
             android:contentDescription="@string/mpris_volume"
-            android:src="@drawable/ic_volume"
+            android:src="@drawable/ic_volume_black"
         />
 
 

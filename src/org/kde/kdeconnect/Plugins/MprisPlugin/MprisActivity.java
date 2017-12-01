@@ -211,10 +211,10 @@ public class MprisActivity extends ActionBarActivity {
 
         boolean isPlaying = playerStatus.isPlaying();
         if (isPlaying) {
-            ((ImageButton) findViewById(R.id.play_button)).setImageResource(android.R.drawable.ic_media_pause);
+            ((ImageButton) findViewById(R.id.play_button)).setImageResource(R.drawable.ic_pause_black);
             findViewById(R.id.play_button).setVisibility(playerStatus.isPauseAllowed() ? View.VISIBLE : View.GONE);
         } else {
-            ((ImageButton) findViewById(R.id.play_button)).setImageResource(android.R.drawable.ic_media_play);
+            ((ImageButton) findViewById(R.id.play_button)).setImageResource(R.drawable.ic_play_black);
             findViewById(R.id.play_button).setVisibility(playerStatus.isPlayAllowed() ? View.VISIBLE : View.GONE);
         }
 
