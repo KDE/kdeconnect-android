@@ -198,6 +198,10 @@ public class MprisPlugin extends Plugin {
     @Override
     public boolean onCreate() {
         requestPlayerList();
+
+        //Always request the player list so the data is up-to-date
+        requestPlayerList();
+
         return true;
     }
 
@@ -312,22 +316,20 @@ public class MprisPlugin extends Plugin {
         playerStatusUpdated.put(id, h);
 
         h.dispatchMessage(new Message());
+    }
 
-        //Get the status if this is the first handler we have
-        if (playerListUpdated.size() == 1 && !players.isEmpty()) {
-            requestPlayerStatus(getPlayerList().get(0));
-        }
+    public void removePlayerStatusUpdatedHandler(String id) {
+        playerStatusUpdated.remove(id);
     }
 
     public void setPlayerListUpdatedHandler(String id, Handler h) {
         playerListUpdated.put(id,h);
 
         h.dispatchMessage(new Message());
+    }
 
-        //Get the status if this is the first handler we have
-        if (playerListUpdated.size() == 1) {
-            requestPlayerList();
-        }
+    public void removePlayerListUpdatedHandler(String id) {
+        playerListUpdated.remove(id);
     }
 
     public List<String> getPlayerList() {
