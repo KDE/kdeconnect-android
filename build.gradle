@@ -1,7 +1,13 @@
-buildscript {
+allprojects {
     repositories {
         jcenter()
+        maven {
+            url "https://maven.google.com"
+        }
     }
+}
+
+buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
     }
@@ -71,9 +77,9 @@ dependencies {
         mavenCentral()
     }
 
-    compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:support-v4:25.4.0'
+    compile 'com.android.support:appcompat-v7:25.4.0'
+    compile 'com.android.support:design:25.4.0'
 
     compile 'org.apache.sshd:sshd-core:0.8.0' //0.9 seems to fail on Android 6 and 1.+ requires java.nio.file, which doesn't exist in Android
 
