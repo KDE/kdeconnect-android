@@ -139,7 +139,7 @@
   <string name="share_notification_preference_summary">Vibra i reprodueix un so en rebre un fitxer</string>
   <string name="share_destination_customize">Personalitza el directori de destinació</string>
   <string name="share_destination_customize_summary_disabled">Els fitxers rebuts apareixeran a Baixades</string>
-  <string name="share_destination_customize_summary_enabled">Els fitxers seran emmagatzemats al directori de a sota</string>
+  <string name="share_destination_customize_summary_enabled">Els fitxers seran emmagatzemats al directori de sota</string>
   <string name="share_destination_folder_preference">Directori de destinació</string>
   <string name="title_activity_notification_filter">Filtre per a les notificacions</string>
   <string name="filter_apps_info">Les notificacions se sincronitzaran per a les aplicacions seleccionades.</string>
@@ -176,7 +176,7 @@
   <string name="no_permissions_storage">Us caldrà concedir permís per accedir a l\'emmagatzematge</string>
   <string name="plugins_need_permission">Alguns connectors necessiten permisos per a funcionar (puntegeu per a més informació):</string>
   <string name="permission_explanation">Aquest connector necessita permisos per a funcionar</string>
-  <string name="optional_permission_explanation">Us caldrà concedir permisos extra per accedir a totes les característiques</string>
+  <string name="optional_permission_explanation">Us caldrà concedir permisos extres per accedir a totes les característiques</string>
   <string name="plugins_need_optional_permission">Alguns connectors tenen característiques desactivades per la falta de permís (puntegeu per a més informació):</string>
   <string name="sftp_permission_explanation">Per accedir als fitxers des del PC, l\'aplicació necessita permís per accedir a l\'emmagatzematge del telèfon</string>
   <string name="share_optional_permission_explanation">Per a compartir fitxers entre el telèfon i l\'escriptori, haureu de donar accés a l\'emmagatzematge del telèfon</string>
