@@ -12,4 +12,11 @@
         android:entryValues="@array/mpris_time_entries_values"
         android:defaultValue="@string/mpris_time_default" />
 
+    <CheckBoxPreference
+        android:id="@+id/mpris_notification_preference"
+        android:key="@string/mpris_notification_key"
+        android:title="@string/mpris_notification_settings_title"
+        android:summary="@string/mpris_notification_settings_summary"
+        android:defaultValue="true" />
+
 </PreferenceScreen>

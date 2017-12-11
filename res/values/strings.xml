@@ -127,6 +127,7 @@
     <string name="remote_control">Remote control</string>
     <string name="settings">KDE Connect Settings</string>
     <string name="mpris_play">Play</string>
+    <string name="mpris_pause">Pause</string>
     <string name="mpris_previous">Previous</string>
     <string name="mpris_rew">Rewind</string>
     <string name="mpris_ff">Fast-forward</string>
@@ -151,6 +152,9 @@
         <item>60000000</item>
         <item>120000000</item>
     </string-array>
+    <string name="mpris_notification_settings_title">Show media control notification</string>
+    <string name="mpris_notification_settings_summary">Allows controlling your media players without opening KDE Connect.</string>
+    <string name="mpris_notification_key" translatable="false">mpris_notification_enabled</string>
     <string name="share_to">Share To...</string>
     <string name="protocol_version_older">This device uses an old protocol version</string>
     <string name="protocol_version_newer">This device uses a newer protocol version</string>

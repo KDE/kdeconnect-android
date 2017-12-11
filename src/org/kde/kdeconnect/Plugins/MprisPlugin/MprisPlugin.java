@@ -229,6 +229,7 @@ public class MprisPlugin extends Plugin {
     @Override
     public boolean onCreate() {
         requestPlayerList();
+        MprisMediaSession.getInstance().onCreate(context.getApplicationContext(), this, device.getDeviceId());
 
         //Always request the player list so the data is up-to-date
         requestPlayerList();
@@ -243,6 +244,7 @@ public class MprisPlugin extends Plugin {
     public void onDestroy() {
         players.clear();
         AlbumArtCache.deregisterPlugin(this);
+        MprisMediaSession.getInstance().onDestroy(this, device.getDeviceId());
     }
 
     private void sendCommand(String player, String method, String value) {
@@ -389,6 +391,19 @@ public class MprisPlugin extends Plugin {
 
     public MprisPlayer getEmptyPlayer() {
         return new MprisPlayer();
+    }
+
+    /**
+     * Returns a playing mpris player, if any exist
+     * @return null if no players are playing, a playing player otherwise
+     */
+    public MprisPlayer getPlayingPlayer() {
+        for (MprisPlayer player : players.values()) {
+            if (player.isPlaying()) {
+                return player;
+            }
+        }
+        return null;
     }
 
     private void requestPlayerList() {
