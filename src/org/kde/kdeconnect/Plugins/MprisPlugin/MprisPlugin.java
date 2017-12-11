@@ -22,6 +22,7 @@ package org.kde.kdeconnect.Plugins.MprisPlugin;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
@@ -32,6 +33,8 @@ import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -46,6 +49,7 @@ public class MprisPlugin extends Plugin {
         private String title = "";
         private String artist = "";
         private String album = "";
+        private String albumArtUrl = "";
         private int volume = 50;
         private long length = -1;
         private long lastPosition = 0;
@@ -112,6 +116,18 @@ public class MprisPlugin extends Plugin {
 
         public boolean isSeekAllowed() {
             return seekAllowed && getLength() >= 0 && getPosition() >= 0 && !isSpotify();
+        }
+
+        public boolean hasAlbumArt() {
+            return !albumArtUrl.isEmpty();
+        }
+
+        /**
+         * Returns the album art (if available). Note that this can return null even if hasAlbumArt() returns true.
+         * @return The album art, or null if not available
+         */
+        public Bitmap getAlbumArt() {
+            return AlbumArtCache.getAlbumArt(albumArtUrl);
         }
 
         public boolean isSetVolumeAllowed() {
@@ -217,12 +233,16 @@ public class MprisPlugin extends Plugin {
         //Always request the player list so the data is up-to-date
         requestPlayerList();
 
+        AlbumArtCache.initializeDiskCache(context);
+        AlbumArtCache.registerPlugin(this);
+
         return true;
     }
 
     @Override
     public void onDestroy() {
         players.clear();
+        AlbumArtCache.deregisterPlugin(this);
     }
 
     private void sendCommand(String player, String method, String value) {
@@ -261,6 +281,12 @@ public class MprisPlugin extends Plugin {
                 playerStatus.goNextAllowed = np.getBoolean("canGoNext", playerStatus.goNextAllowed);
                 playerStatus.goPreviousAllowed = np.getBoolean("canGoPrevious", playerStatus.goPreviousAllowed);
                 playerStatus.seekAllowed = np.getBoolean("canSeek", playerStatus.seekAllowed);
+                String newAlbumArtUrlstring = np.getString("albumArtUrl", playerStatus.albumArtUrl);
+                try {
+                    //Turn the url into canonical form (and check its validity)
+                    URL newAlbumArtUrl = new URL(newAlbumArtUrlstring);
+                    playerStatus.albumArtUrl = newAlbumArtUrlstring.toString();
+                } catch (MalformedURLException ignored) {}
                 for (String key : playerStatusUpdated.keySet()) {
                     try {
                         playerStatusUpdated.get(key).dispatchMessage(new Message());
@@ -396,4 +422,24 @@ public class MprisPlugin extends Plugin {
         return context.getString(R.string.open_mpris_controls);
     }
 
+    public void fetchedAlbumArt(String url) {
+        boolean doEmitUpdate = false;
+        for (MprisPlayer player : players.values()) {
+            if (url.equals(player.albumArtUrl)) {
+                doEmitUpdate = true;
+            }
+        }
+
+        if (doEmitUpdate) {
+            for (String key : playerStatusUpdated.keySet()) {
+                try {
+                    playerStatusUpdated.get(key).dispatchMessage(new Message());
+                } catch(Exception e) {
+                    e.printStackTrace();
+                    Log.e("MprisControl","Exception");
+                    playerStatusUpdated.remove(key);
+                }
+            }
+        }
+    }
 }

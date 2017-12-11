@@ -21,11 +21,14 @@
 package org.kde.kdeconnect.Plugins.MprisPlugin;
 
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -33,6 +36,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -196,6 +200,15 @@ public class MprisActivity extends AppCompatActivity {
             nowPlaying.setText(song);
         }
 
+        Bitmap albumArt = playerStatus.getAlbumArt();
+        if (albumArt == null) {
+            Drawable placeholder_art = DrawableCompat.wrap(getResources().getDrawable(R.drawable.ic_album_art_placeholder));
+            DrawableCompat.setTint(placeholder_art, getResources().getColor(R.color.primary));
+            ((ImageView) findViewById(R.id.album_art)).setImageDrawable(placeholder_art);
+        } else {
+            ((ImageView) findViewById(R.id.album_art)).setImageBitmap(albumArt);
+        }
+
         if (playerStatus.isSeekAllowed()) {
             ((TextView) findViewById(R.id.time_textview)).setText(milisToProgress(playerStatus.getLength()));
             SeekBar positionSeek = (SeekBar)findViewById(R.id.positionSeek);
@@ -276,7 +289,7 @@ public class MprisActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mpris_control);
+        setContentView(R.layout.activity_mpris);
 
         final String targetPlayerName = getIntent().getStringExtra("player");
         getIntent().removeExtra("player");
