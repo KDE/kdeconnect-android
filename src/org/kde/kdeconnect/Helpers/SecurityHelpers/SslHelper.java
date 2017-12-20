@@ -220,6 +220,7 @@ public class SslHelper {
             // Following ciphers are for and due to old devices
             supportedCiphers.add("SSL_RSA_WITH_RC4_128_SHA");  // API 9+
             supportedCiphers.add("SSL_RSA_WITH_RC4_128_MD5");  // API 9+
+            supportedCiphers.add("TLS_DHE_RSA_WITH_AES_256_CBC_SHA"); // API 9+
         }
         socket.setEnabledCipherSuites(supportedCiphers.toArray(new String[supportedCiphers.size()]));
 
