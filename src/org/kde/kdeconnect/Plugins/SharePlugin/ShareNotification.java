@@ -31,10 +31,13 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.support.v4.content.FileProvider;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect_tp.R;
+
+import java.io.File;
 
 public class ShareNotification {
 
@@ -88,17 +91,33 @@ public class ShareNotification {
     }
 
     public void setURI(Uri destinationUri, String mimeType) {
-        // Nougat requires share:// URIs instead of file:// URIs
-        // TODO use FileProvider for >=Nougat
-        if (Build.VERSION.SDK_INT < 24) {
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(destinationUri, mimeType);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            TaskStackBuilder stackBuilder = TaskStackBuilder.create(device.getContext());
-            stackBuilder.addNextIntent(intent);
-            PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-            builder.setContentText(device.getContext().getResources().getString(R.string.received_file_text, filename))
-                    .setContentIntent(resultPendingIntent);
+        /*
+         * We only support file URIs (because sending a content uri to another app does not work for security reasons).
+         * In effect, that means only the default download folder currently works.
+         *
+         * TODO: implement our own content provider (instead of support-v4's FileProvider). It should:
+         *  - Proxy to real files (in case of the default download folder)
+         *  - Proxy to the underlying content uri (in case of a custom download folder)
+         */
+        if (!"file".equals(destinationUri.getScheme())) {
+            return;
         }
+
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        if (Build.VERSION.SDK_INT >= 24) {
+            //Nougat and later require "content://" uris instead of "file://" uris
+            File file = new File(destinationUri.getPath());
+            Uri contentUri = FileProvider.getUriForFile(device.getContext(), "org.kde.kdeconnect_tp.fileprovider", file);
+            intent.setDataAndType(contentUri, mimeType);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        } else {
+            intent.setDataAndType(destinationUri, mimeType);
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(device.getContext());
+        stackBuilder.addNextIntent(intent);
+        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentText(device.getContext().getResources().getString(R.string.received_file_text, filename))
+                .setContentIntent(resultPendingIntent);
     }
 }
