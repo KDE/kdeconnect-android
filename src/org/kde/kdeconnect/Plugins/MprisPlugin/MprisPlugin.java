@@ -43,6 +43,9 @@ public class MprisPlugin extends Plugin {
         private String player = "";
         private boolean playing = false;
         private String currentSong = "";
+        private String title = "";
+        private String artist = "";
+        private String album = "";
         private int volume = 50;
         private long length = -1;
         private long lastPosition = 0;
@@ -59,6 +62,18 @@ public class MprisPlugin extends Plugin {
 
         public String getCurrentSong() {
             return currentSong;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public String getArtist() {
+            return artist;
+        }
+
+        public String getAlbum() {
+            return album;
         }
 
         public String getPlayer() {
@@ -230,6 +245,10 @@ public class MprisPlugin extends Plugin {
             MprisPlayer playerStatus = players.get(np.getString("player"));
             if (playerStatus != null) {
                 playerStatus.currentSong = np.getString("nowPlaying", playerStatus.currentSong);
+                //Note: title, artist and album will not be available for all desktop clients
+                playerStatus.title = np.getString("title", playerStatus.title);
+                playerStatus.artist = np.getString("artist", playerStatus.artist);
+                playerStatus.album = np.getString("album", playerStatus.album);
                 playerStatus.volume = np.getInt("volume", playerStatus.volume);
                 playerStatus.length = np.getLong("length", playerStatus.length);
                 if(np.has("pos")){
