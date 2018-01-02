@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/activity_vertical_margin"
-    tools:context=".DeviceFragment"
+    tools:context="org.kde.kdeconnect.UserInterface.DeviceFragment"
     android:orientation="vertical">
 
     <LinearLayout

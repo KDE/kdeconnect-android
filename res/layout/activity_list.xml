@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="16dip"
     android:paddingRight="16dip"
-    tools:context=".MainActivity"
+    tools:context="org.kde.kdeconnect.UserInterface.MaterialActivity"
     android:id="@+id/listView1"
     android:addStatesFromChildren="true"
     android:orientation="vertical">
