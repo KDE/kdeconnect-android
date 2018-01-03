@@ -53,9 +53,9 @@ import java.util.Map;
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class NotificationsPlugin extends Plugin implements NotificationReceiver.NotificationListener {
 
-    public final static String PACKAGE_TYPE_NOTIFICATION = "kdeconnect.notification";
-    public final static String PACKAGE_TYPE_NOTIFICATION_REQUEST = "kdeconnect.notification.request";
-    public final static String PACKAGE_TYPE_NOTIFICATION_REPLY = "kdeconnect.notification.reply";
+    private final static String PACKAGE_TYPE_NOTIFICATION = "kdeconnect.notification";
+    private final static String PACKAGE_TYPE_NOTIFICATION_REQUEST = "kdeconnect.notification.request";
+    private final static String PACKAGE_TYPE_NOTIFICATION_REPLY = "kdeconnect.notification.reply";
 
     private Map<String, RepliableNotification> pendingIntents;
 
@@ -145,7 +145,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         sendNotification(statusBarNotification, false);
     }
 
-    public void sendNotification(StatusBarNotification statusBarNotification, boolean requestAnswer) {
+    private void sendNotification(StatusBarNotification statusBarNotification, boolean requestAnswer) {
 
         Notification notification = statusBarNotification.getNotification();
         AppDatabase appDatabase = new AppDatabase(context);
@@ -233,7 +233,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
-    void replyToNotification(String id, String message) {
+    private void replyToNotification(String id, String message) {
         if (pendingIntents.isEmpty() || !pendingIntents.containsKey(id)) {
             Log.e("NotificationsPlugin", "No such notification");
             return;
@@ -493,7 +493,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     }
 
     //For compat with API<21, because lollipop changed the way to cancel notifications
-    public static void cancelNotificationCompat(NotificationReceiver service, String compatKey) {
+    private static void cancelNotificationCompat(NotificationReceiver service, String compatKey) {
         if (Build.VERSION.SDK_INT >= 21) {
             service.cancelNotification(compatKey);
         } else {
@@ -517,7 +517,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         }
     }
 
-    public static String getNotificationKeyCompat(StatusBarNotification statusBarNotification) {
+    private static String getNotificationKeyCompat(StatusBarNotification statusBarNotification) {
         String result;
         // first check if it's one of our remoteIds
         String tag = statusBarNotification.getTag();
@@ -535,7 +535,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         return result;
     }
 
-    public String getChecksum(byte[] data) {
+    private String getChecksum(byte[] data) {
 
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -548,7 +548,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     }
 
 
-    public static String bytesToHex(byte[] bytes) {
+    private static String bytesToHex(byte[] bytes) {
         char[] hexArray = "0123456789ABCDEF".toCharArray();
         char[] hexChars = new char[bytes.length * 2];
         for (int j = 0; j < bytes.length; j++) {

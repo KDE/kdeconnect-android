@@ -28,7 +28,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.HashSet;
 
-public class AppDatabase {
+class AppDatabase {
 
     static final private HashSet<String> disabledByDefault = new HashSet<>();
 
@@ -37,24 +37,24 @@ public class AppDatabase {
         disabledByDefault.add("com.google.android.googlequicksearchbox"); //Google Now notifications re-spawn every few minutes
     }
 
-    static final String KEY_PACKAGE_NAME = "packageName";
-    static final String KEY_IS_ENABLED = "isEnabled";
+    private static final String KEY_PACKAGE_NAME = "packageName";
+    private static final String KEY_IS_ENABLED = "isEnabled";
 
-    static final String DATABASE_NAME = "Applications";
-    static final String DATABASE_TABLE = "Applications";
-    static final int DATABASE_VERSION = 2;
+    private static final String DATABASE_NAME = "Applications";
+    private static final String DATABASE_TABLE = "Applications";
+    private static final int DATABASE_VERSION = 2;
 
-    final Context ourContext;
-    SQLiteDatabase ourDatabase;
-    DbHelper ourHelper;
+    private final Context ourContext;
+    private SQLiteDatabase ourDatabase;
+    private DbHelper ourHelper;
 
-    public AppDatabase(Context c) {
+    AppDatabase(Context c) {
         ourContext = c;
     }
 
     private static class DbHelper extends SQLiteOpenHelper {
 
-        public DbHelper(Context context) {
+        DbHelper(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
 
@@ -80,7 +80,7 @@ public class AppDatabase {
         ourHelper.close();
     }
 
-    public void setEnabled(String packageName, boolean isEnabled) {
+    void setEnabled(String packageName, boolean isEnabled) {
         String[] columns = new String[]{KEY_IS_ENABLED};
         Cursor res = ourDatabase.query(DATABASE_TABLE, columns, KEY_PACKAGE_NAME + " =? ", new String[]{packageName}, null, null, null);
 
@@ -95,7 +95,7 @@ public class AppDatabase {
         res.close();
     }
 
-    public boolean isEnabled(String packageName) {
+    boolean isEnabled(String packageName) {
         String[] columns = new String[]{KEY_IS_ENABLED};
         Cursor res = ourDatabase.query(DATABASE_TABLE, columns, KEY_PACKAGE_NAME + " =? ", new String[]{packageName}, null, null, null);
         boolean result;

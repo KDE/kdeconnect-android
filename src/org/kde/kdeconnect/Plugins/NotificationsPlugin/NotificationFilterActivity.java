@@ -47,7 +47,7 @@ import java.util.List;
 
 public class NotificationFilterActivity extends AppCompatActivity {
 
-    AppDatabase appDatabase;
+    private AppDatabase appDatabase;
 
     static class AppListInfo {
         String pkg;
@@ -56,7 +56,7 @@ public class NotificationFilterActivity extends AppCompatActivity {
         boolean isEnabled;
     }
 
-    AppListInfo[] apps;
+    private AppListInfo[] apps;
 
     class AppListAdapter extends BaseAdapter {
 
@@ -134,7 +134,7 @@ public class NotificationFilterActivity extends AppCompatActivity {
 
     }
 
-    void displayAppList() {
+    private void displayAppList() {
 
         final ListView listView = (ListView) findViewById(R.id.lvFilterApps);
         AppListAdapter adapter = new AppListAdapter();
@@ -172,7 +172,7 @@ public class NotificationFilterActivity extends AppCompatActivity {
         BackgroundService.removeGuiInUseCounter(this);
     }
 
-    Drawable resizeIcon(Drawable icon, int maxSize) {
+    private Drawable resizeIcon(Drawable icon, int maxSize) {
         Resources res = getResources();
 
         //Convert to display pixels
