@@ -177,6 +177,9 @@
   <string name="permission_explanation">这个插件需要权限才能工作</string>
   <string name="optional_permission_explanation">您需要授予额外权限以启用全部功能</string>
   <string name="plugins_need_optional_permission">因缺少权限，某些插件的一些功能已禁用（点击以查看更多信息）：</string>
+  <string name="sftp_permission_explanation">此应用需要手机存储权限才能从您的 PC 访问手机内的文件</string>
+  <string name="share_optional_permission_explanation">您需要给予访问手机存储的权限才能在手机和桌面计算机之间分享文件</string>
   <string name="telepathy_permission_explanation">从计算机桌面读取、写入短消息需要向应用程序授予 SMS 权限</string>
+  <string name="telephony_permission_explanation">您必须给予访问手机通话和短信的权限才能从桌面计算机查看通话记录和短信</string>
   <string name="telephony_optional_permission_explanation">要查看联系人姓名而非电话号码，您需要授予访问手机通讯录的权限</string>
 </resources>
