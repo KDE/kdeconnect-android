@@ -28,6 +28,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.StringRes;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -277,6 +278,10 @@ public abstract class Plugin {
 
     public boolean checkOptionalPermissions(){
        return arePermissionsGranted(getOptionalPermissions());
+    }
+
+    public int getMinSdk() {
+        return Build.VERSION_CODES.BASE;
     }
 
 }

@@ -28,6 +28,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
@@ -693,6 +694,12 @@ public class Device implements BaseLink.PackageReceiver {
     private synchronized boolean addPlugin(final String pluginKey) {
         Plugin existing = plugins.get(pluginKey);
         if (existing != null) {
+
+            if (existing.getMinSdk() > Build.VERSION.SDK_INT) {
+                Log.i("KDE/addPlugin", "Min API level not fulfilled " + pluginKey);
+                return false;
+            }
+
             //Log.w("KDE/addPlugin","plugin already present:" + pluginKey);
             if (existing.checkOptionalPermissions()) {
                 Log.i("KDE/addPlugin", "Optional Permissions OK " + pluginKey);
@@ -709,6 +716,11 @@ public class Device implements BaseLink.PackageReceiver {
             Log.e("KDE/addPlugin","could not instantiate plugin: "+pluginKey);
             //Can't put a null
             //failedPlugins.put(pluginKey, null);
+            return false;
+        }
+
+        if (plugin.getMinSdk() > Build.VERSION.SDK_INT) {
+            Log.i("KDE/addPlugin", "Min API level not fulfilled" + pluginKey);
             return false;
         }
 
