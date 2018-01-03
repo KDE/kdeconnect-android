@@ -57,11 +57,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     public final static String PACKAGE_TYPE_NOTIFICATION_REQUEST = "kdeconnect.notification.request";
     public final static String PACKAGE_TYPE_NOTIFICATION_REPLY = "kdeconnect.notification.reply";
 
-
-    private boolean sendIcons = true;
-
     private Map<String, RepliableNotification> pendingIntents;
-
 
     @Override
     public String getDisplayName() {
@@ -95,7 +91,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public boolean onCreate() {
-        pendingIntents = new HashMap<String, RepliableNotification>();
+        pendingIntents = new HashMap<>();
 
         if (hasPermission()) {
             NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
@@ -195,26 +191,24 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             np.set("requestAnswer", true); //For compatibility with old desktop versions of KDE Connect that don't support "silent"
         }
 
-        if (sendIcons) {
-            try {
-                Bitmap appIcon = notification.largeIcon;
+        try {
+            Bitmap appIcon = notification.largeIcon;
 
-                if (appIcon != null) {
-                    ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-                    if (appIcon.getWidth() > 128) {
-                        appIcon = Bitmap.createScaledBitmap(appIcon, 96, 96, true);
-                    }
-                    appIcon.compress(Bitmap.CompressFormat.PNG, 90, outStream);
-                    byte[] bitmapData = outStream.toByteArray();
-
-                    np.setPayload(bitmapData);
-
-                    np.set("payloadHash", getChecksum(bitmapData));
+            if (appIcon != null) {
+                ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+                if (appIcon.getWidth() > 128) {
+                    appIcon = Bitmap.createScaledBitmap(appIcon, 96, 96, true);
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-                Log.e("NotificationsPlugin", "Error retrieving icon");
+                appIcon.compress(Bitmap.CompressFormat.PNG, 90, outStream);
+                byte[] bitmapData = outStream.toByteArray();
+
+                np.setPayload(bitmapData);
+
+                np.set("payloadHash", getChecksum(bitmapData));
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("NotificationsPlugin", "Error retrieving icon");
         }
 
         RepliableNotification rn = extractRepliableNotification(statusBarNotification);
@@ -407,11 +401,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public boolean onPackageReceived(final NetworkPackage np) {
-/*
-        if (np.getBoolean("sendIcons")) {
-            sendIcons = true;
-        }
-*/
+
         if (np.getBoolean("request")) {
 
             NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
