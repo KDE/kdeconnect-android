@@ -33,6 +33,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import org.kde.kdeconnect.Helpers.AppsHelper;
@@ -96,26 +97,24 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     public boolean onCreate() {
         pendingIntents = new HashMap<String, RepliableNotification>();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            if (hasPermission()) {
-                NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
-                    @Override
-                    public void onServiceStart(NotificationReceiver service) {
-                        try {
-                            service.addListener(NotificationsPlugin.this);
-                            StatusBarNotification[] notifications = service.getActiveNotifications();
-                            for (StatusBarNotification notification : notifications) {
-                                sendNotification(notification, true);
-                            }
-                        } catch (Exception e) {
-                            Log.e("NotificationsPlugin", "Exception");
-                            e.printStackTrace();
+        if (hasPermission()) {
+            NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
+                @Override
+                public void onServiceStart(NotificationReceiver service) {
+                    try {
+                        service.addListener(NotificationsPlugin.this);
+                        StatusBarNotification[] notifications = service.getActiveNotifications();
+                        for (StatusBarNotification notification : notifications) {
+                            sendNotification(notification, true);
                         }
+                    } catch (Exception e) {
+                        Log.e("NotificationsPlugin", "Exception");
+                        e.printStackTrace();
                     }
-                });
-            } else {
-                return false;
-            }
+                }
+            });
+        } else {
+            return false;
         }
         return true;
     }
@@ -123,13 +122,12 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     @Override
     public void onDestroy() {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
-            NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
-                @Override
-                public void onServiceStart(NotificationReceiver service) {
-                    service.removeListener(NotificationsPlugin.this);
-                }
-            });
+        NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
+            @Override
+            public void onServiceStart(NotificationReceiver service) {
+                service.removeListener(NotificationsPlugin.this);
+            }
+        });
     }
 
 
@@ -240,6 +238,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         device.sendPackage(np);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     void replyToNotification(String id, String message) {
         if (pendingIntents.isEmpty() || !pendingIntents.containsKey(id)) {
             Log.e("NotificationsPlugin", "No such notification");
@@ -273,6 +272,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         pendingIntents.remove(id);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     private void getDetailsOfNotification(RemoteInput remoteInput) {
         //Some more details of RemoteInput... no idea what for but maybe it will be useful at some point
         String resultKey = remoteInput.getResultKey();
@@ -414,54 +414,54 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 */
         if (np.getBoolean("request")) {
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
-                NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
-                    private void sendCurrentNotifications(NotificationReceiver service) {
-                        StatusBarNotification[] notifications = service.getActiveNotifications();
-                        for (StatusBarNotification notification : notifications) {
-                            sendNotification(notification, true);
-                        }
+            NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
+                private void sendCurrentNotifications(NotificationReceiver service) {
+                    StatusBarNotification[] notifications = service.getActiveNotifications();
+                    for (StatusBarNotification notification : notifications) {
+                        sendNotification(notification, true);
                     }
+                }
 
 
-                    @Override
-                    public void onServiceStart(final NotificationReceiver service) {
-                        try {
-                            //If service just started, this call will throw an exception because the answer is not ready yet
-                            sendCurrentNotifications(service);
-                        } catch (Exception e) {
-                            Log.e("onPackageReceived", "Error when answering 'request': Service failed to start. Retrying in 100ms...");
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        Thread.sleep(100);
-                                        Log.e("onPackageReceived", "Error when answering 'request': Service failed to start. Retrying...");
-                                        sendCurrentNotifications(service);
-                                    } catch (Exception e) {
-                                        Log.e("onPackageReceived", "Error when answering 'request': Service failed to start twice!");
-                                        e.printStackTrace();
-                                    }
+                @Override
+                public void onServiceStart(final NotificationReceiver service) {
+                    try {
+                        //If service just started, this call will throw an exception because the answer is not ready yet
+                        sendCurrentNotifications(service);
+                    } catch (Exception e) {
+                        Log.e("onPackageReceived", "Error when answering 'request': Service failed to start. Retrying in 100ms...");
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Thread.sleep(100);
+                                    Log.e("onPackageReceived", "Error when answering 'request': Service failed to start. Retrying...");
+                                    sendCurrentNotifications(service);
+                                } catch (Exception e) {
+                                    Log.e("onPackageReceived", "Error when answering 'request': Service failed to start twice!");
+                                    e.printStackTrace();
                                 }
-                            }).start();
-                        }
+                            }
+                        }).start();
                     }
-                });
+                }
+            });
 
         } else if (np.has("cancel")) {
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)
-                NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
-                    @Override
-                    public void onServiceStart(NotificationReceiver service) {
-                        String dismissedId = np.getString("cancel");
-                        cancelNotificationCompat(service, dismissedId);
-                    }
-                });
+            NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
+                @Override
+                public void onServiceStart(NotificationReceiver service) {
+                    String dismissedId = np.getString("cancel");
+                    cancelNotificationCompat(service, dismissedId);
+                }
+            });
 
         } else if (np.has("requestReplyId") && np.has("message")) {
 
-            replyToNotification(np.getString("requestReplyId"), np.getString("message"));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
+                replyToNotification(np.getString("requestReplyId"), np.getString("message"));
+            }
 
         }
 
@@ -472,36 +472,24 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     @Override
     public AlertDialog getErrorDialog(final Activity deviceActivity) {
 
-        if (Build.VERSION.SDK_INT < 18) {
-            return new AlertDialog.Builder(deviceActivity)
-                    .setTitle(R.string.pref_plugin_notifications)
-                    .setMessage(R.string.plugin_not_available)
-                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
+        return new AlertDialog.Builder(deviceActivity)
+                .setTitle(R.string.pref_plugin_notifications)
+                .setMessage(R.string.no_permissions)
+                .setPositiveButton(R.string.open_settings, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+                        deviceActivity.startActivityForResult(intent, MaterialActivity.RESULT_NEEDS_RELOAD);
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //Do nothing
+                    }
+                })
+                .create();
 
-                        }
-                    })
-                    .create();
-        } else {
-            return new AlertDialog.Builder(deviceActivity)
-                    .setTitle(R.string.pref_plugin_notifications)
-                    .setMessage(R.string.no_permissions)
-                    .setPositiveButton(R.string.open_settings, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
-                            deviceActivity.startActivityForResult(intent, MaterialActivity.RESULT_NEEDS_RELOAD);
-                        }
-                    })
-                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            //Do nothing
-                        }
-                    })
-                    .create();
-        }
     }
 
     @Override
@@ -564,7 +552,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             md.update(data);
             return bytesToHex(md.digest());
         } catch (NoSuchAlgorithmException e) {
-            Log.e("KDEConenct", "Error while generating checksum", e);
+            Log.e("KDEConnect", "Error while generating checksum", e);
         }
         return null;
     }
@@ -581,4 +569,8 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         return new String(hexChars).toLowerCase();
     }
 
+    @Override
+    public int getMinSdk() {
+        return Build.VERSION_CODES.JELLY_BEAN_MR2;
+    }
 }
