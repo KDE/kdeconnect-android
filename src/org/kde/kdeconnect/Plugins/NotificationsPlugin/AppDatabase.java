@@ -31,6 +31,7 @@ import java.util.HashSet;
 public class AppDatabase {
 
     static final private HashSet<String> disabledByDefault = new HashSet<>();
+
     static {
         disabledByDefault.add("com.android.messaging"); //We already have sms notifications in the telephony plugin
         disabledByDefault.add("com.google.android.googlequicksearchbox"); //Google Now notifications re-spawn every few minutes
@@ -64,7 +65,7 @@ public class AppDatabase {
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int i, int i2) {
-            db.execSQL("DROP TABLE IF EXISTS "+ DATABASE_TABLE);
+            db.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE);
             onCreate(db);
         }
 
@@ -80,13 +81,13 @@ public class AppDatabase {
     }
 
     public void setEnabled(String packageName, boolean isEnabled) {
-        String[] columns = new String []{KEY_IS_ENABLED};
-        Cursor res = ourDatabase.query(DATABASE_TABLE, columns, KEY_PACKAGE_NAME + " =? ",new String[]{packageName},null,null,null);
+        String[] columns = new String[]{KEY_IS_ENABLED};
+        Cursor res = ourDatabase.query(DATABASE_TABLE, columns, KEY_PACKAGE_NAME + " =? ", new String[]{packageName}, null, null, null);
 
         ContentValues cv = new ContentValues();
-        cv.put(KEY_IS_ENABLED, isEnabled?"true":"false");
+        cv.put(KEY_IS_ENABLED, isEnabled ? "true" : "false");
         if (res.getCount() > 0) {
-            ourDatabase.update(DATABASE_TABLE, cv, KEY_PACKAGE_NAME + "=?",new String[]{packageName});
+            ourDatabase.update(DATABASE_TABLE, cv, KEY_PACKAGE_NAME + "=?", new String[]{packageName});
         } else {
             cv.put(KEY_PACKAGE_NAME, packageName);
             ourDatabase.insert(DATABASE_TABLE, null, cv);
@@ -95,8 +96,8 @@ public class AppDatabase {
     }
 
     public boolean isEnabled(String packageName) {
-        String[] columns = new String []{KEY_IS_ENABLED};
-        Cursor res =  ourDatabase.query(DATABASE_TABLE,columns,KEY_PACKAGE_NAME + " =? ",new String[]{packageName},null,null,null);
+        String[] columns = new String[]{KEY_IS_ENABLED};
+        Cursor res = ourDatabase.query(DATABASE_TABLE, columns, KEY_PACKAGE_NAME + " =? ", new String[]{packageName}, null, null, null);
         boolean result;
         if (res.getCount() > 0) {
             res.moveToFirst();

@@ -80,10 +80,10 @@ public class NotificationFilterActivity extends AppCompatActivity {
                 LayoutInflater inflater = getLayoutInflater();
                 view = inflater.inflate(android.R.layout.simple_list_item_multiple_choice, null, true);
             }
-            CheckedTextView checkedTextView = (CheckedTextView)view;
+            CheckedTextView checkedTextView = (CheckedTextView) view;
             checkedTextView.setText(apps[position].name);
             checkedTextView.setCompoundDrawablesWithIntrinsicBounds(apps[position].icon, null, null, null);
-            checkedTextView.setCompoundDrawablePadding((int)(8*getResources().getDisplayMetrics().density));
+            checkedTextView.setCompoundDrawablePadding((int) (8 * getResources().getDisplayMetrics().density));
 
             return view;
         }
@@ -151,7 +151,7 @@ public class NotificationFilterActivity extends AppCompatActivity {
             }
         });
 
-        for (int i = 0 ; i < apps.length; i++) {
+        for (int i = 0; i < apps.length; i++) {
             listView.setItemChecked(i, apps[i].isEnabled);
         }
 
@@ -176,7 +176,7 @@ public class NotificationFilterActivity extends AppCompatActivity {
         Resources res = getResources();
 
         //Convert to display pixels
-        maxSize = (int)(maxSize*res.getDisplayMetrics().density);
+        maxSize = (int) (maxSize * res.getDisplayMetrics().density);
 
         Bitmap bitmap = Bitmap.createBitmap(maxSize, maxSize, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);

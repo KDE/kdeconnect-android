@@ -34,6 +34,7 @@ public class NotificationReceiver extends NotificationListenerService {
 
     public interface NotificationListener {
         void onNotificationPosted(StatusBarNotification statusBarNotification);
+
         void onNotificationRemoved(StatusBarNotification statusBarNotification);
     }
 
@@ -42,6 +43,7 @@ public class NotificationReceiver extends NotificationListenerService {
     public void addListener(NotificationListener listener) {
         listeners.add(listener);
     }
+
     public void removeListener(NotificationListener listener) {
         listeners.remove(listener);
     }
@@ -49,20 +51,17 @@ public class NotificationReceiver extends NotificationListenerService {
     @Override
     public void onNotificationPosted(StatusBarNotification statusBarNotification) {
         //Log.e("NotificationReceiver.onNotificationPosted","listeners: " + listeners.size());
-        for(NotificationListener listener : listeners) {
+        for (NotificationListener listener : listeners) {
             listener.onNotificationPosted(statusBarNotification);
         }
     }
 
     @Override
     public void onNotificationRemoved(StatusBarNotification statusBarNotification) {
-        for(NotificationListener listener : listeners) {
+        for (NotificationListener listener : listeners) {
             listener.onNotificationRemoved(statusBarNotification);
         }
     }
-
-
-
 
 
     //To use the service from the outer (name)space

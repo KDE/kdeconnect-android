@@ -35,7 +35,6 @@ import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
 
-
 import org.kde.kdeconnect.Helpers.AppsHelper;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
@@ -46,10 +45,8 @@ import org.kde.kdeconnect_tp.R;
 import java.io.ByteArrayOutputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
@@ -61,7 +58,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
 
     private boolean sendIcons = true;
-    
+
     private Map<String, RepliableNotification> pendingIntents;
 
 
@@ -98,7 +95,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     @Override
     public boolean onCreate() {
         pendingIntents = new HashMap<String, RepliableNotification>();
-    
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             if (hasPermission()) {
                 NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
@@ -167,7 +164,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         }
 
         appDatabase.open();
-        if (!appDatabase.isEnabled(statusBarNotification.getPackageName())){
+        if (!appDatabase.isEnabled(statusBarNotification.getPackageName())) {
             return;
             // we dont want notification from this app
         }
@@ -176,7 +173,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         String key = getNotificationKeyCompat(statusBarNotification);
         String packageName = statusBarNotification.getPackageName();
         String appName = AppsHelper.appNameLookup(context, packageName);
-
 
 
         if ("com.facebook.orca".equals(packageName) &&
@@ -188,16 +184,14 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         }
 
         if ("com.android.systemui".equals(packageName) &&
-                "low_battery".equals(statusBarNotification.getTag()))
-        {
+                "low_battery".equals(statusBarNotification.getTag())) {
             //HACK: Android low battery notification are posted again every few seconds. Ignore them, as we already have a battery indicator.
             return;
         }
 
         NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_NOTIFICATION);
 
-        if (packageName.equals("org.kde.kdeconnect_tp"))
-        {
+        if (packageName.equals("org.kde.kdeconnect_tp")) {
             //Make our own notifications silent :)
             np.set("silent", true);
             np.set("requestAnswer", true); //For compatibility with old desktop versions of KDE Connect that don't support "silent"
@@ -219,20 +213,20 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
                     np.set("payloadHash", getChecksum(bitmapData));
                 }
-            } catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 Log.e("NotificationsPlugin", "Error retrieving icon");
             }
         }
-        
+
         RepliableNotification rn = extractRepliableNotification(statusBarNotification);
-        if(rn.pendingIntent != null) {
+        if (rn.pendingIntent != null) {
             np.set("requestReplyId", rn.id);
             pendingIntents.put(rn.id, rn);
         }
 
         np.set("id", key);
-        np.set("appName", appName == null? packageName : appName);
+        np.set("appName", appName == null ? packageName : appName);
         np.set("isClearable", statusBarNotification.isClearable());
         np.set("ticker", getTickerText(notification));
         np.set("title", getNotificationTitle(notification));
@@ -246,14 +240,14 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         device.sendPackage(np);
     }
 
-    void replyToNotification(String id, String message){
-        if(pendingIntents.isEmpty() || !pendingIntents.containsKey(id)){
+    void replyToNotification(String id, String message) {
+        if (pendingIntents.isEmpty() || !pendingIntents.containsKey(id)) {
             Log.e("NotificationsPlugin", "No such notification");
             return;
         }
 
         RepliableNotification repliableNotification = pendingIntents.get(id);
-        if(repliableNotification == null) {
+        if (repliableNotification == null) {
             Log.e("NotificationsPlugin", "No such notification");
             return;
         }
@@ -263,14 +257,14 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Bundle localBundle = new Bundle();
         int i = 0;
-        for(RemoteInput remoteIn : repliableNotification.remoteInputs){
+        for (RemoteInput remoteIn : repliableNotification.remoteInputs) {
             getDetailsOfNotification(remoteIn);
             remoteInputs[i] = remoteIn;
             localBundle.putCharSequence(remoteInputs[i].getResultKey(), message);
             i++;
         }
         RemoteInput.addResultsToIntent(remoteInputs, localIntent, localBundle);
-    
+
         try {
             repliableNotification.pendingIntent.send(context, 0, localIntent);
         } catch (PendingIntent.CanceledException e) {
@@ -284,26 +278,26 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         String resultKey = remoteInput.getResultKey();
         String label = remoteInput.getLabel().toString();
         Boolean canFreeForm = remoteInput.getAllowFreeFormInput();
-        if(remoteInput.getChoices() != null && remoteInput.getChoices().length > 0) {
+        if (remoteInput.getChoices() != null && remoteInput.getChoices().length > 0) {
             String[] possibleChoices = new String[remoteInput.getChoices().length];
-            for(int i = 0; i < remoteInput.getChoices().length; i++){
+            for (int i = 0; i < remoteInput.getChoices().length; i++) {
                 possibleChoices[i] = remoteInput.getChoices()[i].toString();
             }
         }
     }
-    
+
     private String getNotificationTitle(Notification notification) {
         final String TITLE_KEY = "android.title";
         final String TEXT_KEY = "android.text";
         String title = "";
 
-        if(notification != null) {
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        if (notification != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 try {
                     Bundle extras = notification.extras;
                     title = extras.getCharSequence(TITLE_KEY).toString();
-                } catch(Exception e) {
-                    Log.w("NotificationPlugin","problem parsing notification extras for " + notification.tickerText);
+                } catch (Exception e) {
+                    Log.w("NotificationPlugin", "problem parsing notification extras for " + notification.tickerText);
                     e.printStackTrace();
                 }
             }
@@ -313,17 +307,17 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
         return title;
     }
-    
+
     private RepliableNotification extractRepliableNotification(StatusBarNotification statusBarNotification) {
         RepliableNotification repliableNotification = new RepliableNotification();
-        
-        if(statusBarNotification != null) {
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+        if (statusBarNotification != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 try {
                     Boolean reply = false;
-                
+
                     //works for WhatsApp, but not for Telegram
-                    if(statusBarNotification.getNotification().actions!=null) {
+                    if (statusBarNotification.getNotification().actions != null) {
                         for (Notification.Action act : statusBarNotification.getNotification().actions) {
                             if (act != null && act.getRemoteInputs() != null) {
                                 repliableNotification.remoteInputs.addAll(Arrays.asList(act.getRemoteInputs()));
@@ -337,13 +331,13 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
                         repliableNotification.tag = statusBarNotification.getTag();//TODO find how to pass Tag with sending PendingIntent, might fix Hangout problem
                     }
-                } catch(Exception e) {
-                    Log.w("NotificationPlugin","problem extracting notification wear for " + statusBarNotification.getNotification().tickerText);
+                } catch (Exception e) {
+                    Log.w("NotificationPlugin", "problem extracting notification wear for " + statusBarNotification.getNotification().tickerText);
                     e.printStackTrace();
                 }
             }
         }
-        
+
         return repliableNotification;
     }
 
@@ -351,14 +345,14 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         final String TEXT_KEY = "android.text";
         String text = "";
 
-        if(notification != null) {
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        if (notification != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 try {
                     Bundle extras = notification.extras;
                     Object extraTextExtra = extras.get(TEXT_KEY);
                     if (extraTextExtra != null) text = extraTextExtra.toString();
-                } catch(Exception e) {
-                    Log.w("NotificationPlugin","problem parsing notification extras for " + notification.tickerText);
+                } catch (Exception e) {
+                    Log.w("NotificationPlugin", "problem parsing notification extras for " + notification.tickerText);
                     e.printStackTrace();
                 }
             }
@@ -380,8 +374,8 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         final String TEXT_KEY = "android.text";
         String ticker = "";
 
-        if(notification != null) {
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        if (notification != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 try {
                     Bundle extras = notification.extras;
                     String extraTitle = extras.getCharSequence(TITLE_KEY).toString();
@@ -396,14 +390,14 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                     } else if (extraText != null) {
                         ticker = extraText;
                     }
-                } catch(Exception e) {
-                    Log.w("NotificationPlugin","problem parsing notification extras for " + notification.tickerText);
+                } catch (Exception e) {
+                    Log.w("NotificationPlugin", "problem parsing notification extras for " + notification.tickerText);
                     e.printStackTrace();
                 }
             }
 
             if (ticker.isEmpty()) {
-                ticker =  (notification.tickerText != null)? notification.tickerText.toString() : "";
+                ticker = (notification.tickerText != null) ? notification.tickerText.toString() : "";
             }
         }
 
@@ -435,17 +429,17 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                         try {
                             //If service just started, this call will throw an exception because the answer is not ready yet
                             sendCurrentNotifications(service);
-                        } catch(Exception e) {
-                            Log.e("onPackageReceived","Error when answering 'request': Service failed to start. Retrying in 100ms...");
+                        } catch (Exception e) {
+                            Log.e("onPackageReceived", "Error when answering 'request': Service failed to start. Retrying in 100ms...");
                             new Thread(new Runnable() {
                                 @Override
                                 public void run() {
                                     try {
                                         Thread.sleep(100);
-                                        Log.e("onPackageReceived","Error when answering 'request': Service failed to start. Retrying...");
+                                        Log.e("onPackageReceived", "Error when answering 'request': Service failed to start. Retrying...");
                                         sendCurrentNotifications(service);
                                     } catch (Exception e) {
-                                        Log.e("onPackageReceived","Error when answering 'request': Service failed to start twice!");
+                                        Log.e("onPackageReceived", "Error when answering 'request': Service failed to start twice!");
                                         e.printStackTrace();
                                     }
                                 }
@@ -466,9 +460,9 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 });
 
         } else if (np.has("requestReplyId") && np.has("message")) {
-        
+
             replyToNotification(np.getString("requestReplyId"), np.getString("message"));
-            
+
         }
 
         return true;
@@ -500,7 +494,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                             deviceActivity.startActivityForResult(intent, MaterialActivity.RESULT_NEEDS_RELOAD);
                         }
                     })
-                    .setNegativeButton(R.string.cancel,new DialogInterface.OnClickListener() {
+                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             //Do nothing
@@ -512,7 +506,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public String[] getSupportedPackageTypes() {
-        return new String[]{PACKAGE_TYPE_NOTIFICATION_REQUEST,PACKAGE_TYPE_NOTIFICATION_REPLY};
+        return new String[]{PACKAGE_TYPE_NOTIFICATION_REQUEST, PACKAGE_TYPE_NOTIFICATION_REPLY};
     }
 
     @Override
@@ -527,7 +521,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         } else {
             int first = compatKey.indexOf(':');
             if (first == -1) {
-                Log.e("cancelNotificationCompa","Not formated like a notification key: "+ compatKey);
+                Log.e("cancelNotificationCompa", "Not formated like a notification key: " + compatKey);
                 return;
             }
             int last = compatKey.lastIndexOf(':');
@@ -563,14 +557,14 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         return result;
     }
 
-    public String getChecksum(byte[] data){
+    public String getChecksum(byte[] data) {
 
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(data);
             return bytesToHex(md.digest());
         } catch (NoSuchAlgorithmException e) {
-           Log.e("KDEConenct", "Error while generating checksum", e);
+            Log.e("KDEConenct", "Error while generating checksum", e);
         }
         return null;
     }
@@ -579,7 +573,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     public static String bytesToHex(byte[] bytes) {
         char[] hexArray = "0123456789ABCDEF".toCharArray();
         char[] hexChars = new char[bytes.length * 2];
-        for ( int j = 0; j < bytes.length; j++ ) {
+        for (int j = 0; j < bytes.length; j++) {
             int v = bytes[j] & 0xFF;
             hexChars[j * 2] = hexArray[v >>> 4];
             hexChars[j * 2 + 1] = hexArray[v & 0x0F];

@@ -1,5 +1,5 @@
 package org.kde.kdeconnect.Plugins.NotificationsPlugin;
- 
+
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.os.Bundle;
