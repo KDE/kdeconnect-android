@@ -35,10 +35,14 @@ import java.util.concurrent.locks.ReentrantLock;
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class NotificationReceiver extends NotificationListenerService {
 
+    private boolean connected;
+
     public interface NotificationListener {
         void onNotificationPosted(StatusBarNotification statusBarNotification);
 
         void onNotificationRemoved(StatusBarNotification statusBarNotification);
+
+        void onListenerConnected(NotificationReceiver service);
     }
 
     private final ArrayList<NotificationListener> listeners = new ArrayList<>();
@@ -66,6 +70,24 @@ public class NotificationReceiver extends NotificationListenerService {
         }
     }
 
+    @Override
+    public void onListenerConnected() {
+        super.onListenerConnected();
+        for (NotificationListener listener : listeners) {
+            listener.onListenerConnected(this);
+        }
+        connected = true;
+    }
+
+    @Override
+    public void onListenerDisconnected() {
+        super.onListenerDisconnected();
+        connected = false;
+    }
+
+    public boolean isConnected() {
+        return connected;
+    }
 
     //To use the service from the outer (name)space
 

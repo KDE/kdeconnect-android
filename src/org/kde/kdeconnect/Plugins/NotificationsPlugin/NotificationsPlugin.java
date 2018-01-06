@@ -58,6 +58,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     private final static String PACKAGE_TYPE_NOTIFICATION_REPLY = "kdeconnect.notification.reply";
 
     private Map<String, RepliableNotification> pendingIntents;
+    private boolean serviceReady;
 
     @Override
     public String getDisplayName() {
@@ -91,27 +92,25 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public boolean onCreate() {
+
+        if (!hasPermission()) return false;
+
         pendingIntents = new HashMap<>();
 
-        if (hasPermission()) {
-            NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
-                @Override
-                public void onServiceStart(NotificationReceiver service) {
-                    try {
-                        service.addListener(NotificationsPlugin.this);
-                        StatusBarNotification[] notifications = service.getActiveNotifications();
-                        for (StatusBarNotification notification : notifications) {
-                            sendNotification(notification, true);
-                        }
-                    } catch (Exception e) {
-                        Log.e("NotificationsPlugin", "Exception");
-                        e.printStackTrace();
-                    }
+        NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
+            @Override
+            public void onServiceStart(NotificationReceiver service) {
+
+                service.addListener(NotificationsPlugin.this);
+
+                serviceReady = service.isConnected();
+
+                if (serviceReady) {
+                    sendCurrentNotifications(service);
                 }
-            });
-        } else {
-            return false;
-        }
+            }
+        });
+
         return true;
     }
 
@@ -126,6 +125,11 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         });
     }
 
+    @Override
+    public void onListenerConnected(NotificationReceiver service) {
+        serviceReady = true;
+        sendCurrentNotifications(service);
+    }
 
     @Override
     public void onNotificationRemoved(StatusBarNotification statusBarNotification) {
@@ -142,10 +146,10 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public void onNotificationPosted(StatusBarNotification statusBarNotification) {
-        sendNotification(statusBarNotification, false);
+        sendNotification(statusBarNotification);
     }
 
-    private void sendNotification(StatusBarNotification statusBarNotification, boolean requestAnswer) {
+    private void sendNotification(StatusBarNotification statusBarNotification) {
 
         Notification notification = statusBarNotification.getNotification();
         AppDatabase appDatabase = new AppDatabase(context);
@@ -224,10 +228,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         np.set("title", getNotificationTitle(notification));
         np.set("text", getNotificationText(notification));
         np.set("time", Long.toString(statusBarNotification.getPostTime()));
-        if (requestAnswer) {
-            np.set("requestAnswer", true);
-            np.set("silent", true);
-        }
 
         device.sendPackage(np);
     }
@@ -398,44 +398,26 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         return ticker;
     }
 
+    private void sendCurrentNotifications(NotificationReceiver service) {
+        StatusBarNotification[] notifications = service.getActiveNotifications();
+        for (StatusBarNotification notification : notifications) {
+            sendNotification(notification);
+        }
+    }
 
     @Override
     public boolean onPackageReceived(final NetworkPackage np) {
 
         if (np.getBoolean("request")) {
 
-            NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
-                private void sendCurrentNotifications(NotificationReceiver service) {
-                    StatusBarNotification[] notifications = service.getActiveNotifications();
-                    for (StatusBarNotification notification : notifications) {
-                        sendNotification(notification, true);
-                    }
-                }
-
-
-                @Override
-                public void onServiceStart(final NotificationReceiver service) {
-                    try {
-                        //If service just started, this call will throw an exception because the answer is not ready yet
+            if (serviceReady) {
+                NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
+                    @Override
+                    public void onServiceStart(NotificationReceiver service) {
                         sendCurrentNotifications(service);
-                    } catch (Exception e) {
-                        Log.e("onPackageReceived", "Error when answering 'request': Service failed to start. Retrying in 100ms...");
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    Thread.sleep(100);
-                                    Log.e("onPackageReceived", "Error when answering 'request': Service failed to start. Retrying...");
-                                    sendCurrentNotifications(service);
-                                } catch (Exception e) {
-                                    Log.e("onPackageReceived", "Error when answering 'request': Service failed to start twice!");
-                                    e.printStackTrace();
-                                }
-                            }
-                        }).start();
                     }
-                }
-            });
+                });
+            }
 
         } else if (np.has("cancel")) {
 
