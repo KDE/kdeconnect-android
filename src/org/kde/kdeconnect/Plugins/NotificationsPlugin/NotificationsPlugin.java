@@ -289,7 +289,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 try {
                     Bundle extras = notification.extras;
-                    title = extras.getCharSequence(TITLE_KEY).toString();
+                    title = extras.getString(TITLE_KEY);
                 } catch (Exception e) {
                     Log.w("NotificationPlugin", "problem parsing notification extras for " + notification.tickerText);
                     e.printStackTrace();
@@ -372,7 +372,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 try {
                     Bundle extras = notification.extras;
-                    String extraTitle = extras.getCharSequence(TITLE_KEY).toString();
+                    String extraTitle = extras.getString(TITLE_KEY);
                     String extraText = null;
                     Object extraTextExtra = extras.get(TEXT_KEY);
                     if (extraTextExtra != null) extraText = extraTextExtra.toString();
