@@ -93,6 +93,11 @@ public class ShareSettingsActivity extends PluginSettingsActivity {
                 }
             }
         }
+        try {
+            getDefaultDestinationDirectory().mkdirs();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
         return DocumentFile.fromFile(getDefaultDestinationDirectory());
     }
 
