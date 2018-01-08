@@ -66,7 +66,7 @@
   <string name="error_not_reachable">Dispositivo fóra do alcance</string>
   <string name="error_already_requested">Xa solicitou emparellarse.</string>
   <string name="error_already_paired">O dispositivo xa está emparellado.</string>
-  <string name="error_could_not_send_package">Non foi posíbel enviar o paquete.</string>
+  <string name="error_could_not_send_package">Non se puido enviar o paquete.</string>
   <string name="error_timed_out">Esgotouse o tempo límite</string>
   <string name="error_canceled_by_user">Cancelouno o usuario.</string>
   <string name="error_canceled_by_other_peer">Cancelouse remotamente</string>
