@@ -233,16 +233,11 @@ public class TelephonyPlugin extends Plugin {
 
         np.set("event","sms");
 
-        String messageBody = new String();
-
-        for (int index = 0; index < messages.size(); index ++)
-        {
-            messageBody += messages.get(index).getMessageBody();
+        StringBuilder messageBody = new StringBuilder();
+        for (int index = 0; index < messages.size(); index ++) {
+            messageBody.append(messages.get(index).getMessageBody());
         }
-
-        if (messageBody != null) {
-            np.set("messageBody",messageBody);
-        }
+        np.set("messageBody", messageBody.toString());
 
         String phoneNumber = messages.get(0).getOriginatingAddress();
 
