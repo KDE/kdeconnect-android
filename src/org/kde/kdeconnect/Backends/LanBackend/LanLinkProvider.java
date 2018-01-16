@@ -265,7 +265,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
 
     }
 
-    private void addLink(final NetworkPackage identityPackage, Socket socket, LanLink.ConnectionStarted connectionOrigin) throws IOException {
+    private synchronized void addLink(final NetworkPackage identityPackage, Socket socket, LanLink.ConnectionStarted connectionOrigin) throws IOException {
 
         String deviceId = identityPackage.getString("deviceId");
         LanLink currentLink = visibleComputers.get(deviceId);
