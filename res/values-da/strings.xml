@@ -37,7 +37,6 @@
   <string name="remotekeyboard_connected">Ekstern tastaturforbindelse er aktiv</string>
   <string name="remotekeyboard_multiple_connections">Der er mere end en ekstern tastaturforbindelse, vælg den enhed der skal konfigureres</string>
   <string name="open_mousepad">Eksternt input</string>
-  <string name="mousepad_info">Bevæg en finger på skærmen for at flytte musemarkøren. Tap for at klikke og brug to/tre-fingre for højre og midterste museknap. Brug et langt tryk til at trække og slippe.</string>
   <string name="mousepad_double_tap_settings_title">Angiv handling for tap med to fingre</string>
   <string name="mousepad_triple_tap_settings_title">Angiv handling for tap med tre fingre</string>
   <string name="mousepad_sensitivity_settings_title">Angiv følsomhed for touchpad</string>

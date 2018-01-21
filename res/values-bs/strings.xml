@@ -19,7 +19,6 @@
   <string name="open_settings">Otvori postavke</string>
   <string name="no_permissions">Morate odobriti dopuštenje da pristupite notifikacijama</string>
   <string name="send_ping">Pošalji ping</string>
-  <string name="mousepad_info">Pomjerite prst na ekranu da opmjerite kursor miša. Tapnite za klik i koristite dva ili tri prsta za srednje i desno dugme. Koristite dugi pritisak za prevlačenje.</string>
   <string name="mousepad_double_tap_settings_title">Postavite akciju tapa sa dva prsta</string>
   <string name="mousepad_triple_tap_settings_title">Postavite akciju tapa sa tri prsta</string>
   <string-array name="mousepad_tap_entries">

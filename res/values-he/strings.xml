@@ -37,7 +37,6 @@
   <string name="remotekeyboard_connected">חיבור המקדלת המרוחקת פעיל</string>
   <string name="remotekeyboard_multiple_connections">ישנם כמה מקלדות מרוחקות מחוברות, בחר את ההתקן להגדרה</string>
   <string name="open_mousepad">שליטה מרחוק</string>
-  <string name="mousepad_info">הזז את האצבע על המסך כדי להזיז את סמן העכבר במחשב. לחץ כדי ללחוץ במחשב, השתמש בשנים או שלוש אצבעות כדי ללחוץ על המקש הימני או האמצעי. השתמש בליחצה ארוכה לגרירה ושחרור.</string>
   <string name="mousepad_double_tap_settings_title">הגדר פעולה ללחיצת שתי אצבעות</string>
   <string name="mousepad_triple_tap_settings_title">הגדר פעולה ללחיצת שלוש אצבעות</string>
   <string name="mousepad_sensitivity_settings_title">הגדר רגישות משטח המגע</string>

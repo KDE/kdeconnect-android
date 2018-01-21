@@ -31,7 +31,6 @@
   <string name="send_ping">Ping senden</string>
   <string name="open_mpris_controls">Multimedia-Bedienung</string>
   <string name="open_mousepad">Ferneingabe</string>
-  <string name="mousepad_info">Bewegen Sie einen Finger auf dem Bildschirm um den Maus-Zeiger zu verschieben. Tippen zum Klicken, mit zwei oder drei Fingern für rechten bzw. mittleren Mausknopf. Tippen und Halten für Ziehen und Ablegen.</string>
   <string name="mousepad_double_tap_settings_title">Aktionsausführung bei Berührung mit zwei Fingern einstellen</string>
   <string name="mousepad_triple_tap_settings_title">Aktionsausführung bei Berührung mit drei Fingern einstellen</string>
   <string name="mousepad_sensitivity_settings_title">Empfindlichkeit des Touchpads einstellen</string>

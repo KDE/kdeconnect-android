@@ -31,7 +31,6 @@
   <string name="send_ping">Poslať ping</string>
   <string name="open_mpris_controls">Multimediálny ovládač</string>
   <string name="open_mousepad">Vzdialený vstup</string>
-  <string name="mousepad_info">Posúvajte prst na obrazovke na posun kurzora. Ťuknutie vyvolá klik a použite dva/tri prsty pre pravé a stredné tlačidlo. Použite dlhé stlačenie pre drag and drop.</string>
   <string name="mousepad_double_tap_settings_title">Nastaviť akciu dvoch prstov</string>
   <string name="mousepad_triple_tap_settings_title">Nastaviť akciu troch prstov</string>
   <string name="mousepad_sensitivity_settings_title">Nastaviť citlivosť touchpadu</string>

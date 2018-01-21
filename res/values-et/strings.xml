@@ -31,7 +31,6 @@
   <string name="send_ping">Saada ping</string>
   <string name="open_mpris_controls">Multimeedia juhtimine</string>
   <string name="open_mousepad">Kaugsisestus</string>
-  <string name="mousepad_info">Hiirekursori liigutamiseks liiguta sõrme ekraanil. Koputa klõpsamiseks ja kasuta kaht või kolme sõrme parema ja keskmise nupu jaoks. Pika vajutusega saab lohistada.</string>
   <string name="mousepad_double_tap_settings_title">Kahe sõrmega koputamise toimingu määramine</string>
   <string name="mousepad_triple_tap_settings_title">Kolme sõrmega koputamise toimingu määramine</string>
   <string name="mousepad_sensitivity_settings_title">Puutepadja tundlikkuse määramine</string>

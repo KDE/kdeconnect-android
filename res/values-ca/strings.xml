@@ -37,7 +37,7 @@
   <string name="remotekeyboard_connected">La connexió amb el teclat remot està activa</string>
   <string name="remotekeyboard_multiple_connections">Hi ha més d\'una connexió amb un teclat remot, seleccioneu el dispositiu per configurar-lo</string>
   <string name="open_mousepad">Entrada remota</string>
-  <string name="mousepad_info">Moveu un dit per la pantalla per a moure el cursor del ratolí. Toqueu per un clic, i empreu dos/tres dits pels botons dret i mig. Empreu un toc llarg per arrossegar i deixar anar.</string>
+  <string name="mousepad_info">Moveu un dit per la pantalla per a moure el cursor del ratolí. Toqueu per un clic, i empreu dos/tres dits pels botons dret i mig. Useu 2 dits per desplaçar. Empreu un toc llarg per arrossegar i deixar anar.</string>
   <string name="mousepad_double_tap_settings_title">Estableix l\'acció de tocar amb dos dits</string>
   <string name="mousepad_triple_tap_settings_title">Estableix l\'acció de tocar amb tres dits</string>
   <string name="mousepad_sensitivity_settings_title">Estableix la sensibilitat del ratolí tàctil</string>

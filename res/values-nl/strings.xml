@@ -37,7 +37,7 @@
   <string name="remotekeyboard_connected">Verbinding met toetsenbord op afstand is actief</string>
   <string name="remotekeyboard_multiple_connections">Er is meer dan een verbinding met een toetsenbord op afstand, selecteer het te configureren apparaat</string>
   <string name="open_mousepad">Invoer op afstand</string>
-  <string name="mousepad_info">Veeg met een vinger op het scherm om de muiscursor te verplaatsen. Tik om te klikken en gebruik twee/drie vingers voor rechter en middelste knop. Druk lang voor slepen en loslaten.</string>
+  <string name="mousepad_info">Veeg met een vinger op het scherm om de muiscursor te verplaatsen. Tik om te klikken en gebruik twee/drie vingers voor rechter en middelste knop. Twee vingers gebruiken voor schuiven. Druk lang voor slepen en loslaten.</string>
   <string name="mousepad_double_tap_settings_title">Tikactie met twee vingers instellen</string>
   <string name="mousepad_triple_tap_settings_title">Tikactie met drie vingers instellen</string>
   <string name="mousepad_sensitivity_settings_title">Gevoeligheid van touchpad instellen</string>

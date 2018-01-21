@@ -37,7 +37,6 @@
   <string name="remotekeyboard_connected">Połączenie zdalnej klawiatury jest nawiązane</string>
   <string name="remotekeyboard_multiple_connections">Nawiązano więcej niż jedno połączenie zdalnej klawiatury, wybierz urządzenie do ustawienia</string>
   <string name="open_mousepad">Zdalne sterowanie</string>
-  <string name="mousepad_info">Przesuń palcem po ekranie, aby przesunąć wskaźnik myszy. Stuknij, aby wywołać naciśniecie lewym przyciskiem myszy i użyj dwóch/trzech palców, aby wywołać naciśniecie prawym i środkowym przyciskiem myszy. Przyciśnij na dłużej, aby przeciągnąć i upuścić.</string>
   <string name="mousepad_double_tap_settings_title">Ustaw działanie po dwukrotnym stuknięciu palcem</string>
   <string name="mousepad_triple_tap_settings_title">Ustaw działanie po trzykrotnym stuknięciu palcem</string>
   <string name="mousepad_sensitivity_settings_title">Ustaw czułość gładzika</string>

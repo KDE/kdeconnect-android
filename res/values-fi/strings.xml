@@ -31,7 +31,6 @@
   <string name="send_ping">Lähetä tiedustelupaketti</string>
   <string name="open_mpris_controls">Multimedian ohjaus</string>
   <string name="open_mousepad">Kauko-ohjaus</string>
-  <string name="mousepad_info">Liikuta hiiren osoitinta liikuttamalla sormeasi näytöllä. Napsauta napauttamalla yhdellä sormella, käytä oikeaa painiketta kahdella sormella ja keskipainiketta kolmella. Vedä ja pudota painamalla pitkään.</string>
   <string name="mousepad_double_tap_settings_title">Aseta kahden sormen napautuksen toiminto</string>
   <string name="mousepad_triple_tap_settings_title">Aseta kolmen sormen napautuksen toiminto</string>
   <string name="mousepad_sensitivity_settings_title">Aseta kosketuslevyn herkkyys</string>

@@ -37,7 +37,6 @@
   <string name="remotekeyboard_connected">La connessione della tastiera remota è attiva</string>
   <string name="remotekeyboard_multiple_connections">Ci sono più connessioni di tastiere remote, seleziona il dispositivo da configurare</string>
   <string name="open_mousepad">Impulso remoto</string>
-  <string name="mousepad_info">Muovi un dito sullo schermo per spostare il puntatore del mouse. Tocca per un clic e usa due/tre dita per i pulsanti destro e centrale. Utilizza una pressione lunga per trascinare e rilasciare.</string>
   <string name="mousepad_double_tap_settings_title">Imposta azione per il tocco a due dita</string>
   <string name="mousepad_triple_tap_settings_title">Imposta azione per il tocco a tre dita</string>
   <string name="mousepad_sensitivity_settings_title">Imposta la sensibilità del touchpad</string>

@@ -37,7 +37,6 @@
   <string name="remotekeyboard_connected">Η σύνδεση με απομακρυσμένο πληκτρολόγιο είναι ενεργή</string>
   <string name="remotekeyboard_multiple_connections">Υπάρχουν περισσότερες της μίας συνδέσεις με απομακρυσμένο πληκτρολόγιο, επιλέξτε ποια συσκευή θα διαμορφώσετε</string>
   <string name="open_mousepad">Απομακρυσμένη είσοδος στοιχείων</string>
-  <string name="mousepad_info">Μετακινείστε το δάκτυλο στην οθόνη για να μετακινηθεί ο δρομέας του ποντικιού. Χτυπήστε για κλικ και χρησιμοποιήστε δύο/τρία δάκτυλα για δεξί και μεσαίο κλικ. Πιέστε με διάρκεια για μετακίνηση και απόθεση.</string>
   <string name="mousepad_double_tap_settings_title">Ρύθμιση δύο δακτύλων για την ενέργεια χτυπήματος</string>
   <string name="mousepad_triple_tap_settings_title">Ρύθμιση τριών δακτύλων για την ενέργεια χτυπήματος</string>
   <string name="mousepad_sensitivity_settings_title">Ρύθμιση ευαισθησίας της οθόνης αφής</string>

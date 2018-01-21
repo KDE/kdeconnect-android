@@ -37,7 +37,6 @@
   <string name="remotekeyboard_connected">Vzdálené připojení klávesnice je aktivní</string>
   <string name="remotekeyboard_multiple_connections">Je k dispozici více než jedno připojení klávesnice. Vyberte zařízení pro jeho nastavení.</string>
   <string name="open_mousepad">Vzdálený vstup</string>
-  <string name="mousepad_info">Pohybujte prstem po obrazovce pro pohybování kurzorem myši. Ťukněte pro kliknutí a použijte dva/tři prsty jako pravé a prostřední tlačítko. Pro přetažení dlouze podržte.</string>
   <string name="mousepad_double_tap_settings_title">Nastavit činnost pro ťuknutí dvěma prsty</string>
   <string name="mousepad_triple_tap_settings_title">Nastavit činnost pro ťuknutí třemi prsty</string>
   <string name="mousepad_sensitivity_settings_title">Nastavit citlivost touchpadu</string>

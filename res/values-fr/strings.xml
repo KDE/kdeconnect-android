@@ -37,7 +37,6 @@
   <string name="remotekeyboard_connected">La connexion au clavier sans fil est active</string>
   <string name="remotekeyboard_multiple_connections">Plusieurs connexions à des claviers sans fil sont disponibles, sélectionnez le périphérique à configurer</string>
   <string name="open_mousepad">Contrôle distant</string>
-  <string name="mousepad_info">Déplacer le doigt sur l\'écran pour bouger le pointeur de la souris. Appuyez pour cliquer et utiliser deux/trois doigts pour les clic droit et centre. Appuyez longtemps pour faire un glisser déplacer.</string>
   <string name="mousepad_double_tap_settings_title">Action pour l\'appui à deux doigts</string>
   <string name="mousepad_triple_tap_settings_title">Action pour l\'appui à trois doigts</string>
   <string name="mousepad_sensitivity_settings_title">Définir la sensibilité du pavé tactile</string>

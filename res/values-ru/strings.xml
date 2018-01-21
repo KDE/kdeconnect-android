@@ -37,7 +37,6 @@
   <string name="remotekeyboard_connected">Соединение с удалённой клавиатурой активно</string>
   <string name="remotekeyboard_multiple_connections">Подключено более одной удалённой клавиатуры, выберите устройство для настройки</string>
   <string name="open_mousepad">Удалённый ввод</string>
-  <string name="mousepad_info">Перемещайте палец по экрану для перемещения курсора мыши. Коснитесь для нажатия, используйте два/три пальца для правой и средней кнопок. Используйте долгое нажатие для перетаскивания.</string>
   <string name="mousepad_double_tap_settings_title">Действие при нажатии двумя пальцами</string>
   <string name="mousepad_triple_tap_settings_title">Действие при нажатии тремя пальцами</string>
   <string name="mousepad_sensitivity_settings_title">Чувствительность сенсорной панели</string>

@@ -37,7 +37,6 @@
   <string name="remotekeyboard_connected">Urruneko teklatuarekin konexioa aktibo dago</string>
   <string name="remotekeyboard_multiple_connections">Urruneko teklatuekin konexio bat baino gehiago dago, hautatu konfiguratu beharreko gailua</string>
   <string name="open_mousepad">Urruneko sarrera</string>
-  <string name="mousepad_info">Mugitu atzamarra pantailan saguaren erakuslea mugitzeko. Ukitu klik baterako, erabili bi/hiru atzamar eskuma eta erdiko botoientzat. Erabili presio luzea arrastatu eta jaregiteko.</string>
   <string name="mousepad_double_tap_settings_title">Ezarri bi atzamarren ekintza</string>
   <string name="mousepad_triple_tap_settings_title">Ezarri hiru atzamarren ekintza</string>
   <string name="mousepad_sensitivity_settings_title">Ezarri ukimen-saguaren sentikortasuna</string>
