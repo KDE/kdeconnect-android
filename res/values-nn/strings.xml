@@ -37,7 +37,6 @@
   <string name="remotekeyboard_connected">Eksternt tastatursamband er verksamt</string>
   <string name="remotekeyboard_multiple_connections">Det finst meir enn eitt eksternt tastatursamband (vel eining å setja opp)</string>
   <string name="open_mousepad">Fjernstyring</string>
-  <string name="mousepad_info">Dra ein finger over skjermen for å flytta peikaren på datamaskina. Trykk for å klikka, og bruk to eller tre fingrar for høvesvis høgre- og midtknappen. Trykk og hald for å dra og sleppa.</string>
   <string name="mousepad_double_tap_settings_title">Vel handling for tofingertrykk</string>
   <string name="mousepad_triple_tap_settings_title">Vel handling for trefingertrykk</string>
   <string name="mousepad_sensitivity_settings_title">Vel følsemd for styrepute</string>
