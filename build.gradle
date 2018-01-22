@@ -1,4 +1,4 @@
-allprojects {
+buildscript {
     repositories {
         jcenter()
         maven {
@@ -6,9 +6,6 @@ allprojects {
             name 'Google'
         }
     }
-}
-
-buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
     }
@@ -75,7 +72,11 @@ android {
 dependencies {
 
     repositories {
-        mavenCentral()
+        jcenter()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
     }
 
     compile 'com.android.support:support-v4:25.4.0'
