@@ -37,7 +37,6 @@
   <string name="remotekeyboard_connected">Веза даљинске тастатуре је активна</string>
   <string name="remotekeyboard_multiple_connections">Постоји више од једне везе даљинске тастатуре. Изаберите уређај да бисте подесили</string>
   <string name="open_mousepad">Даљински унос</string>
-  <string name="mousepad_info">Померајте прст по екрану да бисте померали показивач миша. Тапните за клик или користите два/три прста за десни или средњи клик. Задржите за превуци и пусти.</string>
   <string name="mousepad_double_tap_settings_title">Радња за додир са два прста</string>
   <string name="mousepad_triple_tap_settings_title">Радња за додир са три прста</string>
   <string name="mousepad_sensitivity_settings_title">Постави осетљивост додирника</string>

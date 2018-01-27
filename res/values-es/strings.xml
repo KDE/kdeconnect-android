@@ -37,6 +37,7 @@
   <string name="remotekeyboard_connected">La conexión remota de teclado está activa</string>
   <string name="remotekeyboard_multiple_connections">Hay más de una conexión remota de teclado, seleccione el dispositivo a configurar</string>
   <string name="open_mousepad">Entrada remota</string>
+  <string name="mousepad_info">Mueva un dedo sobre la pantalla para mover el cursor del ratón. Pulse para ejecutar un clic y use dos/tres dedos para emular los botones derecho y central. Use 2 dedos para desplazar las pantalla. Use una pulsación larga para arrastrar y soltar.</string>
   <string name="mousepad_double_tap_settings_title">Establecer la acción al pulsar con dos dedos</string>
   <string name="mousepad_triple_tap_settings_title">Establecer la acción al pulsar con tres dedos</string>
   <string name="mousepad_sensitivity_settings_title">Establecer sensibilidad del panel táctil</string>
