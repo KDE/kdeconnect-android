@@ -41,10 +41,9 @@
         android:layout_gravity="center"
     />
 
-    <org.kde.kdeconnect.UserInterface.MaxWidthImageButton
+    <ImageButton
         android:layout_width="fill_parent"
-        android:layout_height="75dip"
-        app:maxWidth="300dip"
+        android:layout_height="75dp"
         android:id="@+id/play_button"
         android:src="@drawable/ic_play_black"
         android:contentDescription="@string/mpris_play"
