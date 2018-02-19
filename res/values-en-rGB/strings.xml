@@ -37,6 +37,7 @@
   <string name="remotekeyboard_connected">Remote keyboard connection is active</string>
   <string name="remotekeyboard_multiple_connections">There is more than one remote keyboard connection, select the device to configure</string>
   <string name="open_mousepad">Remote input</string>
+  <string name="mousepad_info">Move a finger on the screen to move the mouse cursor. Tap for a click, and use two/three fingers for right and middle buttons. Use 2 fingers to scroll. Use a long press to drag\'n drop.</string>
   <string name="mousepad_double_tap_settings_title">Set two finger tap action</string>
   <string name="mousepad_triple_tap_settings_title">Set three finger tap action</string>
   <string name="mousepad_sensitivity_settings_title">Set touchpad sensitivity</string>
