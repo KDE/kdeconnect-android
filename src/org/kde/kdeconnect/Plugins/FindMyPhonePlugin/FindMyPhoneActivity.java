@@ -1,13 +1,34 @@
+/* Copyright 2018 Nicolas Fella <nicolas.fella@gmx.de>
+ * Copyright 2015 David Edmundson <david@davidedmundson.co.uk>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of
+ * the License or (at your option) version 3 or any later version
+ * accepted by the membership of KDE e.V. (or its successor approved
+ * by the membership of KDE e.V.), which shall act as a proxy
+ * defined in Section 14 of version 3 of the license.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
 package org.kde.kdeconnect.Plugins.FindMyPhonePlugin;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -61,13 +82,11 @@ public class FindMyPhoneActivity extends Activity {
             previousVolume = audioManager.getStreamVolume(AudioManager.STREAM_ALARM);
             audioManager.setStreamVolume(AudioManager.STREAM_ALARM, audioManager.getStreamMaxVolume(AudioManager.STREAM_ALARM), 0);
 
-            Uri alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
-            if (alert == null) {
-                alert = RingtoneManager.getValidRingtoneUri(getApplicationContext());
-            }
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            String ringtone = prefs.getString("select_ringtone", "");
 
             mediaPlayer = new MediaPlayer();
-            mediaPlayer.setDataSource(this, alert);
+            mediaPlayer.setDataSource(this, Uri.parse(ringtone));
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
             mediaPlayer.setLooping(true);
             mediaPlayer.prepare();

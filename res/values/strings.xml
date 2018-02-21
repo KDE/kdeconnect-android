@@ -216,5 +216,6 @@
     <string name="telepathy_permission_explanation">To read and write SMS from your desktop you need to give permission to SMS</string>
     <string name="telephony_permission_explanation">To see phone calls and SMS from the desktop you need to give permission to phone calls and SMS</string>
     <string name="telephony_optional_permission_explanation">To see a contact name instead of a phone number you need to give access to the phone\'s contacts</string>
+    <string name="select_ringtone">Select a ringtone</string>
 
 </resources>
