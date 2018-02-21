@@ -47,15 +47,60 @@ import java.util.TimerTask;
 
 public class TelephonyPlugin extends Plugin {
 
-    public final static String PACKAGE_TYPE_TELEPHONY = "kdeconnect.telephony";
+    private final static String PACKAGE_TYPE_TELEPHONY = "kdeconnect.telephony";
     public final static String PACKAGE_TYPE_TELEPHONY_REQUEST = "kdeconnect.telephony.request";
 
     private int lastState = TelephonyManager.CALL_STATE_IDLE;
     private NetworkPackage lastPackage = null;
     private boolean isMuted = false;
 
-    private int telephonyPermissionExplanation = R.string.telephony_permission_explanation;
-    private int telephonyOptionalPermissionExplanation = R.string.telephony_optional_permission_explanation;
+    private final BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            String action = intent.getAction();
+
+            //Log.e("TelephonyPlugin","Telephony event: " + action);
+
+            if ("android.provider.Telephony.SMS_RECEIVED".equals(action)) {
+
+                final Bundle bundle = intent.getExtras();
+                if (bundle == null) return;
+                final Object[] pdus = (Object[]) bundle.get("pdus");
+                ArrayList<SmsMessage> messages = new ArrayList<>();
+
+                for (Object pdu : pdus) {
+                    // I hope, but am not sure, that the pdus array is in the order that the parts
+                    // of the SMS message should be
+                    // If it is not, I believe the pdu contains the information necessary to put it
+                    // in order, but in my testing the order seems to be correct, so I won't worry
+                    // about it now.
+                    messages.add(SmsMessage.createFromPdu((byte[]) pdu));
+                }
+
+                smsBroadcastReceived(messages);
+
+            } else if (TelephonyManager.ACTION_PHONE_STATE_CHANGED.equals(action)) {
+
+                String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
+                int intState = TelephonyManager.CALL_STATE_IDLE;
+                if (state.equals(TelephonyManager.EXTRA_STATE_RINGING))
+                    intState = TelephonyManager.CALL_STATE_RINGING;
+                else if (state.equals(TelephonyManager.EXTRA_STATE_OFFHOOK))
+                    intState = TelephonyManager.CALL_STATE_OFFHOOK;
+
+                String number = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
+                if (number == null)
+                    number = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
+
+                final int finalIntState = intState;
+                final String finalNumber = number;
+
+                callBroadcastReceived(finalIntState, finalNumber);
+
+            }
+        }
+    };
 
     @Override
     public String getDisplayName() {
@@ -67,63 +112,14 @@ public class TelephonyPlugin extends Plugin {
         return context.getResources().getString(R.string.pref_plugin_telephony_desc);
     }
 
-    private final BroadcastReceiver receiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-            String action = intent.getAction();
-
-            //Log.e("TelephonyPlugin","Telephony event: " + action);
-
-            if("android.provider.Telephony.SMS_RECEIVED".equals(action)) {
-
-                final Bundle bundle = intent.getExtras();
-                if (bundle == null) return;
-                final Object[] pdus = (Object[]) bundle.get("pdus");
-                ArrayList<SmsMessage> messages = new ArrayList<SmsMessage>();
-
-                for (Object pdu : pdus) {
-                    // I hope, but am not sure, that the pdus array is in the order that the parts
-                    // of the SMS message should be
-                    // If it is not, I belive the pdu contains the information necessary to put it
-                    // in order, but in my testing the order seems to be correct, so I won't worry
-                    // about it now.
-                    messages.add(SmsMessage.createFromPdu((byte[])pdu));
-                }
-
-                smsBroadcastReceived(messages);
-
-            } else if (TelephonyManager.ACTION_PHONE_STATE_CHANGED.equals(action)) {
-
-                String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
-                int intState =  TelephonyManager.CALL_STATE_IDLE;
-                if (state.equals(TelephonyManager.EXTRA_STATE_RINGING))
-                    intState = TelephonyManager.CALL_STATE_RINGING;
-                else if (state.equals(TelephonyManager.EXTRA_STATE_OFFHOOK))
-                    intState = TelephonyManager.CALL_STATE_OFFHOOK;
-
-                String number = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
-                if (number == null) number = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
-
-                final int finalIntState = intState;
-                final String finalNumber = number;
-
-                callBroadcastReceived(finalIntState, finalNumber);
-
-            }
-        }
-    };
-
     private void callBroadcastReceived(int state, String phoneNumber) {
-
-        //Log.e("TelephonyPlugin", "callBroadcastReceived");
 
         NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_TELEPHONY);
 
         int permissionCheck = ContextCompat.checkSelfPermission(context,
                 Manifest.permission.READ_CONTACTS);
 
-        if(permissionCheck==PackageManager.PERMISSION_GRANTED) {
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
 
             Map<String, String> contactInfo = ContactsHelper.phoneNumberLookup(context, phoneNumber);
 
@@ -147,7 +143,7 @@ public class TelephonyPlugin extends Plugin {
             }
 
         } else {
-            np.set("contactName",  phoneNumber);
+            np.set("contactName", phoneNumber);
         }
 
         if (phoneNumber != null) {
@@ -179,7 +175,7 @@ public class TelephonyPlugin extends Plugin {
                 if (lastState != TelephonyManager.CALL_STATE_IDLE && lastPackage != null) {
 
                     //Resend a cancel of the last event (can either be "ringing" or "talking")
-                    lastPackage.set("isCancel","true");
+                    lastPackage.set("isCancel", "true");
                     device.sendPackage(lastPackage);
 
                     if (isMuted) {
@@ -202,9 +198,9 @@ public class TelephonyPlugin extends Plugin {
 
                     //Emit a missed call notification if needed
                     if (lastState == TelephonyManager.CALL_STATE_RINGING) {
-                        np.set("event","missedCall");
-                        np.set("phoneNumber", lastPackage.getString("phoneNumber",null));
-                        np.set("contactName", lastPackage.getString("contactName",null));
+                        np.set("event", "missedCall");
+                        np.set("phoneNumber", lastPackage.getString("phoneNumber", null));
+                        np.set("contactName", lastPackage.getString("contactName", null));
                         device.sendPackage(np);
                     }
 
@@ -221,20 +217,17 @@ public class TelephonyPlugin extends Plugin {
     private void smsBroadcastReceived(ArrayList<SmsMessage> messages) {
 
         if (BuildConfig.DEBUG) {
-            if (!(messages.size() > 0))
-            {
+            if (!(messages.size() > 0)) {
                 throw new AssertionError("This method requires at least one message");
             }
         }
 
-        //Log.e("SmsBroadcastReceived", message.toString());
-
         NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_TELEPHONY);
 
-        np.set("event","sms");
+        np.set("event", "sms");
 
         StringBuilder messageBody = new StringBuilder();
-        for (int index = 0; index < messages.size(); index ++) {
+        for (int index = 0; index < messages.size(); index++) {
             messageBody.append(messages.get(index).getMessageBody());
         }
         np.set("messageBody", messageBody.toString());
@@ -244,7 +237,7 @@ public class TelephonyPlugin extends Plugin {
         int permissionCheck = ContextCompat.checkSelfPermission(context,
                 Manifest.permission.READ_CONTACTS);
 
-        if(permissionCheck==PackageManager.PERMISSION_GRANTED) {
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
             Map<String, String> contactInfo = ContactsHelper.phoneNumberLookup(context, phoneNumber);
 
             if (contactInfo.containsKey("name")) {
@@ -260,19 +253,17 @@ public class TelephonyPlugin extends Plugin {
         }
 
 
-
         device.sendPackage(np);
     }
 
     @Override
     public boolean onCreate() {
-        //Log.e("TelephonyPlugin", "onCreate");
         IntentFilter filter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
         filter.setPriority(500);
         filter.addAction(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
         context.registerReceiver(receiver, filter);
-        permissionExplanation = telephonyPermissionExplanation;
-        optionalPermissionExplanation = telephonyOptionalPermissionExplanation;
+        permissionExplanation = R.string.telephony_permission_explanation;
+        optionalPermissionExplanation = R.string.telephony_optional_permission_explanation;
         return true;
     }
 
@@ -293,7 +284,6 @@ public class TelephonyPlugin extends Plugin {
                 }
                 isMuted = true;
             }
-            //Log.e("TelephonyPlugin", "mute");
         }
         //Do nothing
         return true;
