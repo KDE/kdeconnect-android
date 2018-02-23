@@ -183,4 +183,5 @@
   <string name="telepathy_permission_explanation">Щоб читати і писати SMS з вашого робочого комп’ютера, вам слід надати програмі доступ до SMS</string>
   <string name="telephony_permission_explanation">"Щоб переглядати дзвінки і SMS з робочого комп’ютера, вам слід надати програмі доступ до дзвінків і  SMS"</string>
   <string name="telephony_optional_permission_explanation">Щоб бачити ім’я контакту замість номеру телефону, вам слід надати програмі доступ до записів контактів на телефоні</string>
+  <string name="select_ringtone">Виберіть мелодію дзвінка</string>
 </resources>

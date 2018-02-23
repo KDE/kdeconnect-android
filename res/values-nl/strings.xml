@@ -183,4 +183,5 @@
   <string name="telepathy_permission_explanation">Om een SMS te lezen of te schrijven vanaf uw bureaublad moet u toestemming geven tot SMS</string>
   <string name="telephony_permission_explanation">Om telefoonoproepen en SMS te zien vanaf het bureaublad moet u toestemming geven tot telefoonoproepen en SMS</string>
   <string name="telephony_optional_permission_explanation">Om een naam van een contactpersoon te zien in plaats van een telefoonnummer moet u toegang geven tot de contacten in uw telefoon</string>
+  <string name="select_ringtone">Selecteer een ringtone</string>
 </resources>

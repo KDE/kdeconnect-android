@@ -183,4 +183,5 @@
   <string name="telepathy_permission_explanation">Per a llegir i escriure SMS des de l\'escriptori, haureu de donar permís als SMS</string>
   <string name="telephony_permission_explanation">Per a veure les trucades telefòniques i SMS des de l\'escriptori, haureu de donar permís a les trucades telefòniques i SMS</string>
   <string name="telephony_optional_permission_explanation">Per a veure un nom de contacte en comptes d\'un número de telèfon, haureu de donar permís als contactes del telèfon</string>
+  <string name="select_ringtone">Seleccioneu un to de la trucada</string>
 </resources>

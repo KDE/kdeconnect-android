@@ -183,4 +183,5 @@
   <string name="telepathy_permission_explanation">Para ler e escrever SMS\'s a partir do seu ambiente de trabalho, precisa de dar permissões para os SMS\'s</string>
   <string name="telephony_permission_explanation">Para ver as chamadas e os SMS\'s a partir do seu ambiente de trabalho, precisa de dar permissões para as chamadas telefónicas e SMS\'s</string>
   <string name="telephony_optional_permission_explanation">Para ver o nome de um contacto em vez do seu número de telefone, precisa de dar acesso aos contactos do telemóvel</string>
+  <string name="select_ringtone">Seleccione um toque de chamada</string>
 </resources>
