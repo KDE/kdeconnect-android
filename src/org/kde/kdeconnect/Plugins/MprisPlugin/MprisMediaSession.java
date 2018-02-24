@@ -25,6 +25,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -253,6 +254,11 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
                     metadata.putLong(MediaMetadataCompat.METADATA_KEY_DURATION, notificationPlayer.getLength());
                 }
 
+                Bitmap albumArt = notificationPlayer.getAlbumArt();
+                if (albumArt != null) {
+                    metadata.putBitmap(MediaMetadataCompat.METADATA_KEY_ALBUM_ART, albumArt);
+                }
+
                 mediaSession.setMetadata(metadata.build());
                 PlaybackStateCompat.Builder playbackState = new PlaybackStateCompat.Builder();
 
@@ -324,6 +330,10 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
                     notification.setContentText(notificationPlayer.getAlbum() + " (" + notificationPlayer.getPlayer() + ")");
                 } else {
                     notification.setContentText(notificationPlayer.getPlayer());
+                }
+
+                if (albumArt != null) {
+                    notification.setLargeIcon(albumArt);
                 }
 
                 if (!notificationPlayer.isPlaying()) {

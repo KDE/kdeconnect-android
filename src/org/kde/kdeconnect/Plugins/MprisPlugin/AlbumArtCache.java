@@ -163,11 +163,7 @@ public final class AlbumArtCache {
         try {
             DiskLruCache.Snapshot item = diskCache.get(urlToDiskCacheKey(albumUrl));
             if (item != null) {
-                BitmapFactory.Options decodeOptions = new BitmapFactory.Options();
-                decodeOptions.inScaled = false;
-                decodeOptions.inDensity = 1;
-                decodeOptions.inTargetDensity = 1;
-                Bitmap result = BitmapFactory.decodeStream(item.getInputStream(0), null, decodeOptions);
+                Bitmap result = BitmapFactory.decodeStream(item.getInputStream(0));
                 item.close();
                 MemoryCacheItem memItem = new MemoryCacheItem();
                 if (result != null) {
