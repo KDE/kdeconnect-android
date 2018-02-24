@@ -2,6 +2,7 @@
     <color name="primary">#F67400</color>
     <color name="primaryDark">#BD5900</color>
     <color name="accent">#4ebffa</color>
+    <color name="disabled_grey">#eee</color>
 
     <!-- NoActionBar because we use a Toolbar widget as ActionBar -->
     <style name="KdeConnectThemeBase" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -21,5 +22,9 @@
     <style name="KdeConnectTheme" parent="KdeConnectThemeBase"></style>
 
     <style name="KdeConnectTheme.NoActionBar" parent="KdeConnectThemeBase.NoActionBar"></style>
+
+    <style name="DisableableButton" parent="ThemeOverlay.AppCompat">
+        <item name="colorButtonNormal">@drawable/disableable_button</item>
+    </style>
 
 </resources>

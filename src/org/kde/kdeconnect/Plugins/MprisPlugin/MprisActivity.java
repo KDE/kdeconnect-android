@@ -237,10 +237,10 @@ public class MprisActivity extends AppCompatActivity {
         boolean isPlaying = playerStatus.isPlaying();
         if (isPlaying) {
             ((ImageButton) findViewById(R.id.play_button)).setImageResource(R.drawable.ic_pause_black);
-            findViewById(R.id.play_button).setVisibility(playerStatus.isPauseAllowed() ? View.VISIBLE : View.GONE);
+            findViewById(R.id.play_button).setEnabled(playerStatus.isPauseAllowed());
         } else {
             ((ImageButton) findViewById(R.id.play_button)).setImageResource(R.drawable.ic_play_black);
-            findViewById(R.id.play_button).setVisibility(playerStatus.isPlayAllowed() ? View.VISIBLE : View.GONE);
+            findViewById(R.id.play_button).setEnabled(playerStatus.isPlayAllowed());
         }
 
         findViewById(R.id.volume_layout).setVisibility(playerStatus.isSetVolumeAllowed() ? View.VISIBLE : View.INVISIBLE);

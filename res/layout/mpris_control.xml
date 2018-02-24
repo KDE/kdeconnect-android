@@ -46,6 +46,7 @@
         android:baselineAlignBottom="true"
         android:clickable="false"
         android:contentDescription="@string/mpris_play"
+        android:theme="@style/DisableableButton"
         android:src="@drawable/ic_play_black" />
 
     <LinearLayout
@@ -60,6 +61,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="0.25"
             android:contentDescription="@string/mpris_previous"
+            android:theme="@style/DisableableButton"
             android:src="@drawable/ic_previous_black" />
 
         <ImageButton
@@ -68,6 +70,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="0.25"
             android:contentDescription="@string/mpris_rew"
+            android:theme="@style/DisableableButton"
             android:src="@drawable/ic_rewind_black" />
 
         <ImageButton
@@ -76,6 +79,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="0.25"
             android:contentDescription="@string/mpris_ff"
+            android:theme="@style/DisableableButton"
             android:src="@drawable/ic_fast_forward_black" />
 
         <ImageButton
@@ -84,6 +88,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="0.25"
             android:contentDescription="@string/mpris_next"
+            android:theme="@style/DisableableButton"
             android:src="@drawable/ic_next_black" />
 
     </LinearLayout>
