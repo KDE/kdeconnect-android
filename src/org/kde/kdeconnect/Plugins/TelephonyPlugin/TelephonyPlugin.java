@@ -25,11 +25,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
+import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsMessage;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -49,6 +52,7 @@ public class TelephonyPlugin extends Plugin {
 
     private final static String PACKAGE_TYPE_TELEPHONY = "kdeconnect.telephony";
     public final static String PACKAGE_TYPE_TELEPHONY_REQUEST = "kdeconnect.telephony.request";
+    private static final String KEY_PREF_BLOCKED_NUMBERS = "telephony_blocked_numbers";
 
     private int lastState = TelephonyManager.CALL_STATE_IDLE;
     private NetworkPackage lastPackage = null;
@@ -113,6 +117,9 @@ public class TelephonyPlugin extends Plugin {
     }
 
     private void callBroadcastReceived(int state, String phoneNumber) {
+
+        if (isNumberBlocked(phoneNumber))
+            return;
 
         NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_TELEPHONY);
 
@@ -234,6 +241,9 @@ public class TelephonyPlugin extends Plugin {
 
         String phoneNumber = messages.get(0).getOriginatingAddress();
 
+        if (isNumberBlocked(phoneNumber))
+            return;
+
         int permissionCheck = ContextCompat.checkSelfPermission(context,
                 Manifest.permission.READ_CONTACTS);
 
@@ -289,6 +299,18 @@ public class TelephonyPlugin extends Plugin {
         return true;
     }
 
+    private boolean isNumberBlocked(String number) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        String[] blockedNumbers = sharedPref.getString(KEY_PREF_BLOCKED_NUMBERS, "").split("\n");
+
+        for (String s: blockedNumbers) {
+            if (PhoneNumberUtils.compare(number, s))
+                return true;
+        }
+
+        return false;
+    }
+
     @Override
     public String[] getSupportedPackageTypes() {
         return new String[]{PACKAGE_TYPE_TELEPHONY_REQUEST};
@@ -307,5 +329,10 @@ public class TelephonyPlugin extends Plugin {
     @Override
     public String[] getOptionalPermissions() {
         return new String[]{Manifest.permission.READ_CONTACTS};
+    }
+
+    @Override
+    public boolean hasSettings() {
+        return true;
     }
 }

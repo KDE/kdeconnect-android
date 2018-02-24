@@ -217,5 +217,7 @@
     <string name="telephony_permission_explanation">To see phone calls and SMS from the desktop you need to give permission to phone calls and SMS</string>
     <string name="telephony_optional_permission_explanation">To see a contact name instead of a phone number you need to give access to the phone\'s contacts</string>
     <string name="select_ringtone">Select a ringtone</string>
+    <string name="telephony_pref_blocked_title">Blocked numbers</string>
+    <string name="telephony_pref_blocked_dialog_desc">Don\'t show calls and SMS from these numbers. Please specify one number per line</string>
 
 </resources>
