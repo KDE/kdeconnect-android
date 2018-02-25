@@ -183,4 +183,5 @@
   <string name="telepathy_permission_explanation">Aby odczytywać i pisać SMSy z twojego komputera musisz nadać uprawnienia do SMSów</string>
   <string name="telephony_permission_explanation">Aby widzieć rozmowy telefoniczne i SMSy z twojego komputera musisz nadać uprawnienia na rozmowy telefoniczne i SMSy</string>
   <string name="telephony_optional_permission_explanation">Aby widzieć nazwę kontaktu zamiast numeru telefonu musisz pozwolić na dostęp do kontaktów telefonu</string>
+  <string name="select_ringtone">Wybierz dzwonek</string>
 </resources>
