@@ -145,6 +145,11 @@ public class MprisActivity extends AppCompatActivity {
                                     }
                                 });
 
+                                if (targetPlayer == null) {
+                                    //If no player is selected, try to select a playing player
+                                    targetPlayer = mpris.getPlayingPlayer();
+                                }
+                                //Try to select the specified player
                                 if (targetPlayer != null) {
                                     int targetIndex = adapter.getPosition(targetPlayer.getPlayer());
                                     if (targetIndex >= 0) {
@@ -152,6 +157,11 @@ public class MprisActivity extends AppCompatActivity {
                                     } else {
                                         targetPlayer = null;
                                     }
+                                }
+                                //If no player selected, select the first one (if any)
+                                if (targetPlayer == null && !playerList.isEmpty()) {
+                                    targetPlayer = mpris.getPlayerStatus(playerList.get(0));
+                                    spinner.setSelection(0);
                                 }
                                 updatePlayerStatus(mpris);
                             }
