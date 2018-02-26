@@ -242,7 +242,7 @@ public class DeviceFragment extends Fragment {
             }
         });
 
-        if (device.isPaired() && device.isReachable()) {
+        if (device.isReachable()) {
 
             menu.add(R.string.encryption_info_title).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
