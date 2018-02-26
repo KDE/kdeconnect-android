@@ -106,6 +106,7 @@
   <string name="remote_control">Comandament a distància</string>
   <string name="settings">Arranjament del KDE Connect</string>
   <string name="mpris_play">Reprodueix</string>
+  <string name="mpris_pause">Pausa</string>
   <string name="mpris_previous">Anterior</string>
   <string name="mpris_rew">Rebobina</string>
   <string name="mpris_ff">Avanç ràpid</string>
@@ -121,6 +122,8 @@
     <item>1 minut</item>
     <item>2 minuts</item>
   </string-array>
+  <string name="mpris_notification_settings_title">Mostra les notificacions dels reproductors</string>
+  <string name="mpris_notification_settings_summary">Permet controlar els reproductors multimèdia sense obrir el KDE Connect.</string>
   <string name="share_to">Comparteix amb...</string>
   <string name="protocol_version_older">Aquest dispositiu usa una versió antiga del protocol</string>
   <string name="protocol_version_newer">Aquest dispositiu usa una versió nova del protocol</string>
@@ -184,4 +187,6 @@
   <string name="telephony_permission_explanation">Per a veure les trucades telefòniques i SMS des de l\'escriptori, haureu de donar permís a les trucades telefòniques i SMS</string>
   <string name="telephony_optional_permission_explanation">Per a veure un nom de contacte en comptes d\'un número de telèfon, haureu de donar permís als contactes del telèfon</string>
   <string name="select_ringtone">Seleccioneu un to de la trucada</string>
+  <string name="telephony_pref_blocked_title">Nombres blocats</string>
+  <string name="telephony_pref_blocked_dialog_desc">No es mostren ni les trucades ni els SMS d\'aquests números. Especifiqueu un número per línia</string>
 </resources>

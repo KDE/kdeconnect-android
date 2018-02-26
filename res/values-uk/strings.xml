@@ -106,6 +106,7 @@
   <string name="remote_control">Дистанційне керування</string>
   <string name="settings">Параметри з’єднання з KDE</string>
   <string name="mpris_play">Пуск</string>
+  <string name="mpris_pause">Пауза</string>
   <string name="mpris_previous">Назад</string>
   <string name="mpris_rew">Повний назад</string>
   <string name="mpris_ff">Повний вперед</string>
@@ -121,6 +122,8 @@
     <item>1 хвилина</item>
     <item>2 хвилини</item>
   </string-array>
+  <string name="mpris_notification_settings_title">Показувати сповіщення щодо керування відтворенням</string>
+  <string name="mpris_notification_settings_summary">Уможливлює керування відтворенням мультимедійних даних без відкриття KDE Connect.</string>
   <string name="share_to">Спільно використовувати з…</string>
   <string name="protocol_version_older">На цьому пристрої використовується стара версія протоколу</string>
   <string name="protocol_version_newer">На цьому пристрої використовується новіша версія протоколу</string>
@@ -184,4 +187,6 @@
   <string name="telephony_permission_explanation">"Щоб переглядати дзвінки і SMS з робочого комп’ютера, вам слід надати програмі доступ до дзвінків і  SMS"</string>
   <string name="telephony_optional_permission_explanation">Щоб бачити ім’я контакту замість номеру телефону, вам слід надати програмі доступ до записів контактів на телефоні</string>
   <string name="select_ringtone">Виберіть мелодію дзвінка</string>
+  <string name="telephony_pref_blocked_title">Заблоковані номери</string>
+  <string name="telephony_pref_blocked_dialog_desc">Не показувати виклики та SMS з цих номерів. Будь ласка, вказуйте кожен із номерів у окремому рядку.</string>
 </resources>
