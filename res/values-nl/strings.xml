@@ -106,6 +106,7 @@
   <string name="remote_control">Afstandsbediening</string>
   <string name="settings">Instellingen van KDE Connect</string>
   <string name="mpris_play">Afspelen</string>
+  <string name="mpris_pause">Pauzeren</string>
   <string name="mpris_previous">Vorige</string>
   <string name="mpris_rew">Terugspoelen</string>
   <string name="mpris_ff">Snel vooruit</string>
@@ -121,6 +122,8 @@
     <item>1 minuut</item>
     <item>2 minuten</item>
   </string-array>
+  <string name="mpris_notification_settings_title">Mediabesturingsmelding tonen</string>
+  <string name="mpris_notification_settings_summary">Staat besturing van uw mediaspelers toe zonder KDE Connect te openen.</string>
   <string name="share_to">Delen met...</string>
   <string name="protocol_version_older">Dit apparaat gebruikt een oude protocolversie</string>
   <string name="protocol_version_newer">Dit apparaat gebruikt een nieuwere protocolversie</string>
@@ -184,4 +187,6 @@
   <string name="telephony_permission_explanation">Om telefoonoproepen en SMS te zien vanaf het bureaublad moet u toestemming geven tot telefoonoproepen en SMS</string>
   <string name="telephony_optional_permission_explanation">Om een naam van een contactpersoon te zien in plaats van een telefoonnummer moet u toegang geven tot de contacten in uw telefoon</string>
   <string name="select_ringtone">Selecteer een ringtone</string>
+  <string name="telephony_pref_blocked_title">Geblokkeerde nummers</string>
+  <string name="telephony_pref_blocked_dialog_desc">Geen oproepen en SMSen vanaf deze nummers tonen. Specificeer één nummer per regel</string>
 </resources>
