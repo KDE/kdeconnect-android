@@ -106,6 +106,7 @@
   <string name="remote_control">远程控制</string>
   <string name="settings">KDE Connect设置</string>
   <string name="mpris_play">播放</string>
+  <string name="mpris_pause">暂停</string>
   <string name="mpris_previous">前一个</string>
   <string name="mpris_rew">后退</string>
   <string name="mpris_ff">快进</string>
