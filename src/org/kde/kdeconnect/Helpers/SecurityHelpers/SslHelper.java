@@ -115,7 +115,6 @@ public class SslHelper {
             } catch(Exception e) {
                 e.printStackTrace();
                 Log.e("KDE/initialiseCert", "Exception");
-                return;
             }
 
         } else {

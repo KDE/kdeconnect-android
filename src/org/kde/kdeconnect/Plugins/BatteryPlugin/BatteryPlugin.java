@@ -71,7 +71,6 @@ public class BatteryPlugin extends Plugin {
             ) {
 
                 //Do not send again if nothing has changed
-                return;
 
             } else {
 
