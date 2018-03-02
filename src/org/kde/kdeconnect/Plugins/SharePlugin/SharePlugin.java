@@ -228,14 +228,18 @@ public class SharePlugin extends Plugin {
                     byte data[] = new byte[4096];
                     long progress = 0, prevProgressPercentage = -1;
                     int count;
+                    long lastUpdate = 0;
                     while ((count = input.read(data)) >= 0) {
                         progress += count;
                         destinationOutput.write(data, 0, count);
                         if (fileLength > 0) {
                             if (progress >= fileLength) break;
                             long progressPercentage = (progress * 100 / fileLength);
-                            if (progressPercentage != prevProgressPercentage) {
+                            if (progressPercentage != prevProgressPercentage &&
+                                    System.currentTimeMillis() - lastUpdate > 100) {
                                 prevProgressPercentage = progressPercentage;
+                                lastUpdate = System.currentTimeMillis();
+
                                 notification.setProgress((int) progressPercentage);
                                 notification.show();
                             }
