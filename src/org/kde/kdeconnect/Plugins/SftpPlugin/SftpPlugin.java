@@ -39,8 +39,6 @@ public class SftpPlugin extends Plugin {
 
     private static final SimpleSftpServer server = new SimpleSftpServer();
 
-    private int sftpPermissionExplanation = R.string.sftp_permission_explanation;
-
     @Override
     public String getDisplayName() {
         return context.getResources().getString(R.string.pref_plugin_sftp);
@@ -54,7 +52,7 @@ public class SftpPlugin extends Plugin {
     @Override
     public boolean onCreate() {
         server.init(context, device);
-        permissionExplanation = sftpPermissionExplanation;
+        permissionExplanation = R.string.sftp_permission_explanation;
         return true;
     }
 

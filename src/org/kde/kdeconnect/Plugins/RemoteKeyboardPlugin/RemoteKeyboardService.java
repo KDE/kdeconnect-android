@@ -62,9 +62,6 @@ public class RemoteKeyboardService
     public boolean visible = false;
 
     KeyboardView inputView = null;
-    private final int StatusKeyIdx = 3;
-    private final int connectedIcon = R.drawable.ic_phonelink_white_36dp;
-    private final int disconnectedIcon = R.drawable.ic_phonelink_off_white_36dp;
 
     Handler handler;
 
@@ -75,8 +72,11 @@ public class RemoteKeyboardService
         List<Keyboard.Key> keys = currentKeyboard.getKeys();
         boolean connected = RemoteKeyboardPlugin.isConnected();
 //        Log.d("RemoteKeyboardService", "Updating keyboard connection icon, connected=" + connected);
-        keys.get(StatusKeyIdx).icon = getResources().getDrawable(connected ? connectedIcon : disconnectedIcon);
-        inputView.invalidateKey(StatusKeyIdx);
+        int disconnectedIcon = R.drawable.ic_phonelink_off_white_36dp;
+        int connectedIcon = R.drawable.ic_phonelink_white_36dp;
+        int statusKeyIdx = 3;
+        keys.get(statusKeyIdx).icon = getResources().getDrawable(connected ? connectedIcon : disconnectedIcon);
+        inputView.invalidateKey(statusKeyIdx);
     }
 
     @Override

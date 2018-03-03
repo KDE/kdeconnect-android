@@ -53,8 +53,8 @@ public class LanLink extends BaseLink {
     }
 
     public enum ConnectionStarted {
-        Locally, Remotely;
-    };
+        Locally, Remotely
+    }
 
     private ConnectionStarted connectionSource; // If the other device sent me a broadcast,
                                                 // I should not close the connection with it

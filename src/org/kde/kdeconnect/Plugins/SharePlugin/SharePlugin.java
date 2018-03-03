@@ -66,11 +66,9 @@ public class SharePlugin extends Plugin {
 
     final static boolean openUrlsDirectly = true;
 
-    private int sharePermissionExplanation = R.string.share_optional_permission_explanation;
-
     @Override
     public boolean onCreate() {
-        optionalPermissionExplanation = sharePermissionExplanation;
+        optionalPermissionExplanation = R.string.share_optional_permission_explanation;
         return true;
     }
 
