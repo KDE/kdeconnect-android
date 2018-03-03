@@ -287,7 +287,7 @@ public class MprisPlugin extends Plugin {
                 try {
                     //Turn the url into canonical form (and check its validity)
                     URL newAlbumArtUrl = new URL(newAlbumArtUrlstring);
-                    playerStatus.albumArtUrl = newAlbumArtUrlstring.toString();
+                    playerStatus.albumArtUrl = newAlbumArtUrl.toString();
                 } catch (MalformedURLException ignored) {}
                 for (String key : playerStatusUpdated.keySet()) {
                     try {
