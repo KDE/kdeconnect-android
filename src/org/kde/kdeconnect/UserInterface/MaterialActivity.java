@@ -71,7 +71,7 @@ public class MaterialActivity extends AppCompatActivity {
                 R.string.close /* "close drawer" description */
         );
 
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         actionBar.setDisplayHomeAsUpEnabled(true);
 

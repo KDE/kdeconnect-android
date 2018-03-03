@@ -21,6 +21,7 @@
 package org.kde.kdeconnect.UserInterface;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -94,8 +95,8 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
         mActivity = ((MaterialActivity) getActivity());
     }
 
