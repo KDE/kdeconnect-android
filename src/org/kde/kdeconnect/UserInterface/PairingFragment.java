@@ -58,7 +58,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
 
     private View rootView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    private MaterialActivity mActivity;
+    private MainActivity mActivity;
 
     boolean listRefreshCalledThisFrame = false;
 
@@ -97,7 +97,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mActivity = ((MaterialActivity) getActivity());
+        mActivity = ((MainActivity) getActivity());
     }
 
     private void updateComputerListAction() {

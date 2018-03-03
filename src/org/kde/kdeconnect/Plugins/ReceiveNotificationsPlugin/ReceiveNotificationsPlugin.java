@@ -35,7 +35,7 @@ import android.util.Log;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
-import org.kde.kdeconnect.UserInterface.MaterialActivity;
+import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.InputStream;
@@ -76,8 +76,8 @@ public class ReceiveNotificationsPlugin extends Plugin {
             Log.e("NotificationsPlugin", "Received notification package lacks properties");
         } else {
             TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-            stackBuilder.addParentStack(MaterialActivity.class);
-            stackBuilder.addNextIntent(new Intent(context, MaterialActivity.class));
+            stackBuilder.addParentStack(MainActivity.class);
+            stackBuilder.addNextIntent(new Intent(context, MainActivity.class));
             PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
                     0,
                     PendingIntent.FLAG_UPDATE_CURRENT

@@ -45,7 +45,7 @@ import android.util.Log;
 import org.kde.kdeconnect.Helpers.AppsHelper;
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
-import org.kde.kdeconnect.UserInterface.MaterialActivity;
+import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.SettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
@@ -497,7 +497,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
-                        deviceActivity.startActivityForResult(intent, MaterialActivity.RESULT_NEEDS_RELOAD);
+                        deviceActivity.startActivityForResult(intent, MainActivity.RESULT_NEEDS_RELOAD);
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

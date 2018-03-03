@@ -68,7 +68,7 @@ public class DeviceFragment extends Fragment {
     static String mDeviceId; //Static because if we get here by using the back button in the action bar, the extra deviceId will not be set.
     Device device;
 
-    MaterialActivity mActivity;
+    MainActivity mActivity;
 
     ArrayList<ListAdapter.Item> pluginListItems;
 
@@ -82,7 +82,7 @@ public class DeviceFragment extends Fragment {
         this.setArguments(args);
     }
 
-    public DeviceFragment(String deviceId, MaterialActivity activity) {
+    public DeviceFragment(String deviceId, MainActivity activity) {
         this.mActivity = activity;
         Bundle args = new Bundle();
         args.putString(ARG_DEVICE_ID, deviceId);
@@ -92,7 +92,7 @@ public class DeviceFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        mActivity = ((MaterialActivity) getActivity());
+        mActivity = ((MainActivity) getActivity());
     }
 
     @Override
@@ -436,7 +436,7 @@ public class DeviceFragment extends Fragment {
 
     };
 
-    public static void acceptPairing(final String devId, final MaterialActivity activity) {
+    public static void acceptPairing(final String devId, final MainActivity activity) {
         final DeviceFragment frag = new DeviceFragment(devId, activity);
         BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
             public void onServiceStart(BackgroundService service) {
@@ -459,7 +459,7 @@ public class DeviceFragment extends Fragment {
         });
     }
 
-    public static void rejectPairing(final String devId, final MaterialActivity activity) {
+    public static void rejectPairing(final String devId, final MainActivity activity) {
         final DeviceFragment frag = new DeviceFragment(devId, activity);
         BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
             public void onServiceStart(BackgroundService service) {

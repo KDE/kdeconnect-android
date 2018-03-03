@@ -33,7 +33,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import org.kde.kdeconnect.UserInterface.MaterialActivity;
+import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
@@ -174,7 +174,7 @@ public class RemoteKeyboardService
                             startActivity(intent);
                         }
                     } else { // != 1 instance of plugin -> show main activity view
-                        Intent intent = new Intent(this, MaterialActivity.class);
+                        Intent intent = new Intent(this, MainActivity.class);
                         intent.putExtra("forceOverview", true);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="org.kde.kdeconnect.UserInterface.MaterialActivity">  <!-- fitSystemWindows to make the drawer slide below the Lollipop transparent status bar -->
+    tools:context="org.kde.kdeconnect.UserInterface.MainActivity">  <!-- fitSystemWindows to make the drawer slide below the Lollipop transparent status bar -->
 
     <LinearLayout
         android:layout_width="match_parent"

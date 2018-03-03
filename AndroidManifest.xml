@@ -63,7 +63,7 @@
         </service>
 
         <activity
-            android:name="org.kde.kdeconnect.UserInterface.MaterialActivity"
+            android:name="org.kde.kdeconnect.UserInterface.MainActivity"
             android:label="KDE Connect"
             android:theme="@style/KdeConnectTheme.NoActionBar">
             <intent-filter>
@@ -75,26 +75,26 @@
         <activity
             android:name="org.kde.kdeconnect.UserInterface.SettingsActivity"
             android:label="@string/device_menu_plugins"
-            android:parentActivityName="org.kde.kdeconnect.UserInterface.MaterialActivity">
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.kde.kdeconnect.UserInterface.MaterialActivity" />
+                android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
         </activity>
         <activity
             android:name="org.kde.kdeconnect.UserInterface.CustomDevicesActivity"
             android:label="@string/custom_devices_settings"
-            android:parentActivityName="org.kde.kdeconnect.UserInterface.MaterialActivity">
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.kde.kdeconnect.UserInterface.MaterialActivity" />
+                android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
         </activity>
         <activity
             android:name="org.kde.kdeconnect.Plugins.SharePlugin.SendFileActivity"
             android:label="KDE Connect"
-            android:parentActivityName="org.kde.kdeconnect.UserInterface.MaterialActivity">
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.kde.kdeconnect.UserInterface.MaterialActivity" />
+                android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
         </activity>
         <activity
             android:name="org.kde.kdeconnect.UserInterface.PluginSettingsActivity"
@@ -146,10 +146,10 @@
         <activity
             android:name="org.kde.kdeconnect.Plugins.MprisPlugin.MprisActivity"
             android:label="@string/remote_control"
-            android:parentActivityName="org.kde.kdeconnect.UserInterface.MaterialActivity">
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.kde.kdeconnect.UserInterface.MaterialActivity" />
+                android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
         </activity>
         <receiver android:name="org.kde.kdeconnect.Plugins.MprisPlugin.MprisMediaNotificationReceiver">
             <intent-filter>
@@ -160,20 +160,20 @@
         <activity
             android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandActivity"
             android:label="@string/remote_control"
-            android:parentActivityName="org.kde.kdeconnect.UserInterface.MaterialActivity">
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.kde.kdeconnect.UserInterface.MaterialActivity" />
+                android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
         </activity>
         <activity
             android:name="org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/remote_control"
-            android:parentActivityName="org.kde.kdeconnect.UserInterface.MaterialActivity"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity"
             android:windowSoftInputMode="stateHidden|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.kde.kdeconnect.UserInterface.MaterialActivity" />
+                android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
         </activity>
         <activity
             android:name="org.kde.kdeconnect.Plugins.SharePlugin.ShareActivity"

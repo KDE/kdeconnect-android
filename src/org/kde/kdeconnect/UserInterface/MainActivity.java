@@ -33,7 +33,7 @@ import org.kde.kdeconnect_tp.R;
 import java.util.Collection;
 import java.util.HashMap;
 
-public class MaterialActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     private static final String STATE_SELECTED_DEVICE = "selected_device";
 
@@ -109,24 +109,24 @@ public class MaterialActivity extends AppCompatActivity {
         String savedDevice;
         String pairStatus = "";
         if (getIntent().hasExtra("forceOverview")) {
-            Log.i("MaterialActivity", "Requested to start main overview");
+            Log.i("MainActivity", "Requested to start main overview");
             savedDevice = null;
         } else if (getIntent().hasExtra("deviceId")) {
-            Log.i("MaterialActivity", "Loading selected device from parameter");
+            Log.i("MainActivity", "Loading selected device from parameter");
             savedDevice = getIntent().getStringExtra("deviceId");
             if (getIntent().hasExtra(PAIR_REQUEST_STATUS)) {
                 pairStatus = getIntent().getStringExtra(PAIR_REQUEST_STATUS);
             }
         } else if (savedInstanceState != null) {
-            Log.i("MaterialActivity", "Loading selected device from saved activity state");
+            Log.i("MainActivity", "Loading selected device from saved activity state");
             savedDevice = savedInstanceState.getString(STATE_SELECTED_DEVICE);
         } else {
-            Log.i("MaterialActivity", "Loading selected device from persistent storage");
+            Log.i("MainActivity", "Loading selected device from persistent storage");
             savedDevice = preferences.getString(STATE_SELECTED_DEVICE, null);
         }
         //if pairStatus is not empty, then the decision has been made...
         if (!pairStatus.equals("")) {
-            Log.i("MaterialActivity", "pair status is " + pairStatus);
+            Log.i("MainActivity", "pair status is " + pairStatus);
             onNewDeviceSelected(savedDevice, pairStatus);
         }
         onDeviceSelected(savedDevice);
@@ -172,9 +172,9 @@ public class MaterialActivity extends AppCompatActivity {
 
     private void updateComputerList() {
 
-        //Log.e("MaterialActivity", "UpdateComputerList");
+        //Log.e("MainActivity", "UpdateComputerList");
 
-        BackgroundService.RunCommand(MaterialActivity.this, new BackgroundService.InstanceCallback() {
+        BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(final BackgroundService service) {
 
@@ -211,7 +211,7 @@ public class MaterialActivity extends AppCompatActivity {
         BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
-                service.addDeviceListChangedCallback("MaterialActivity", new BackgroundService.DeviceListChangedCallback() {
+                service.addDeviceListChangedCallback("MainActivity", new BackgroundService.DeviceListChangedCallback() {
                     @Override
                     public void onDeviceListChanged() {
                         updateComputerList();
@@ -228,7 +228,7 @@ public class MaterialActivity extends AppCompatActivity {
         BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
             @Override
             public void onServiceStart(BackgroundService service) {
-                service.removeDeviceListChangedCallback("MaterialActivity");
+                service.removeDeviceListChangedCallback("MainActivity");
             }
         });
         super.onStop();
@@ -313,8 +313,8 @@ public class MaterialActivity extends AppCompatActivity {
 
     public void renameDevice() {
         final TextView nameView = (TextView) mNavigationView.findViewById(R.id.device_name);
-        final EditText deviceNameEdit = new EditText(MaterialActivity.this);
-        String deviceName = DeviceHelper.getDeviceName(MaterialActivity.this);
+        final EditText deviceNameEdit = new EditText(MainActivity.this);
+        String deviceName = DeviceHelper.getDeviceName(MainActivity.this);
         deviceNameEdit.setText(deviceName);
         deviceNameEdit.setPadding(
                 ((int) (18 * getResources().getDisplayMetrics().density)),
@@ -322,15 +322,15 @@ public class MaterialActivity extends AppCompatActivity {
                 ((int) (18 * getResources().getDisplayMetrics().density)),
                 ((int) (12 * getResources().getDisplayMetrics().density))
         );
-        new AlertDialog.Builder(MaterialActivity.this)
+        new AlertDialog.Builder(MainActivity.this)
                 .setView(deviceNameEdit)
                 .setPositiveButton(R.string.device_rename_confirm, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String deviceName = deviceNameEdit.getText().toString();
-                        DeviceHelper.setDeviceName(MaterialActivity.this, deviceName);
+                        DeviceHelper.setDeviceName(MainActivity.this, deviceName);
                         nameView.setText(deviceName);
-                        BackgroundService.RunCommand(MaterialActivity.this, new BackgroundService.InstanceCallback() {
+                        BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
                             @Override
                             public void onServiceStart(final BackgroundService service) {
                                 service.onNetworkChange();
