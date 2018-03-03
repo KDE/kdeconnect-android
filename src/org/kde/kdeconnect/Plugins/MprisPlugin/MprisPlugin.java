@@ -263,7 +263,7 @@ public class MprisPlugin extends Plugin {
 
     @Override
     public boolean onPackageReceived(NetworkPackage np) {
-        if (np.has("nowPlaying") || np.has("volume") || np.has("isPlaying") || np.has("length") || np.has("pos")) {
+        if (np.has("player")) {
             MprisPlayer playerStatus = players.get(np.getString("player"));
             if (playerStatus != null) {
                 playerStatus.currentSong = np.getString("nowPlaying", playerStatus.currentSong);
