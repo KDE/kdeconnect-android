@@ -257,13 +257,11 @@ public class Device implements BaseLink.PackageReceiver {
 
         Resources res = context.getResources();
 
-        switch (pairStatus) {
-            case Paired:
-                for (PairingCallback cb : pairingCallback) {
-                    cb.pairingFailed(res.getString(R.string.error_already_paired));
-                }
-                return;
-            case NotPaired:
+        if (isPaired()) {
+            for (PairingCallback cb : pairingCallback) {
+                cb.pairingFailed(res.getString(R.string.error_already_paired));
+            }
+            return;
         }
 
         if (!isReachable()) {
