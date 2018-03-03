@@ -21,7 +21,6 @@
 package org.kde.kdeconnect.Plugins.SharePlugin;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
@@ -33,17 +32,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.UserInterface.List.EntryItem;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.SectionItem;
 import org.kde.kdeconnect_tp.R;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 

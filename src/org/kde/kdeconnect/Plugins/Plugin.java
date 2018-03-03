@@ -20,7 +20,6 @@
 
 package org.kde.kdeconnect.Plugins;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -32,13 +31,11 @@ import android.os.Build;
 import android.support.annotation.StringRes;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
-import org.kde.kdeconnect.UserInterface.MaterialActivity;
 import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
 import org.kde.kdeconnect.UserInterface.SettingsActivity;
 import org.kde.kdeconnect_tp.R;
