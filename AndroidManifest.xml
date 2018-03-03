@@ -11,7 +11,9 @@
         android:smallScreens="true"
         android:xlargeScreens="true" />
 
-    <uses-feature android:name="android.hardware.telephony" android:required="false" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -20,10 +22,18 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
     <uses-permission android:name="android.permission.BATTERY_STATS" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" android:required="false" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS" android:required="false" />
-    <uses-permission android:name="android.permission.SEND_SMS" android:required="false" />
-    <uses-permission android:name="android.permission.READ_SMS" android:required="false" />
+    <uses-permission
+        android:name="android.permission.READ_PHONE_STATE"
+        android:required="false" />
+    <uses-permission
+        android:name="android.permission.RECEIVE_SMS"
+        android:required="false" />
+    <uses-permission
+        android:name="android.permission.SEND_SMS"
+        android:required="false" />
+    <uses-permission
+        android:name="android.permission.READ_SMS"
+        android:required="false" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -34,21 +44,22 @@
         android:icon="@drawable/icon"
         android:label="KDE Connect"
         android:supportsRtl="true"
-        android:theme="@style/KdeConnectTheme"
-        >
+        android:theme="@style/KdeConnectTheme">
 
         <service
             android:name="org.kde.kdeconnect.BackgroundService"
-            android:enabled="true" >
-        </service>
+            android:enabled="true" />
 
-        <service android:name="org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin.RemoteKeyboardService"
+        <service
+            android:name="org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin.RemoteKeyboardService"
             android:label="KDE Connect Remote Keyboard"
             android:permission="android.permission.BIND_INPUT_METHOD">
             <intent-filter>
                 <action android:name="android.view.InputMethod" />
             </intent-filter>
-            <meta-data android:name="android.view.im" android:resource="@xml/remotekeyboardplugin_method" />
+            <meta-data
+                android:name="android.view.im"
+                android:resource="@xml/remotekeyboardplugin_method" />
         </service>
 
         <activity
@@ -64,7 +75,7 @@
         <activity
             android:name="org.kde.kdeconnect.UserInterface.SettingsActivity"
             android:label="@string/device_menu_plugins"
-            android:parentActivityName="org.kde.kdeconnect.UserInterface.MaterialActivity" >
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MaterialActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.MaterialActivity" />
@@ -72,7 +83,7 @@
         <activity
             android:name="org.kde.kdeconnect.UserInterface.CustomDevicesActivity"
             android:label="@string/custom_devices_settings"
-            android:parentActivityName="org.kde.kdeconnect.UserInterface.MaterialActivity" >
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MaterialActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.MaterialActivity" />
@@ -80,7 +91,7 @@
         <activity
             android:name="org.kde.kdeconnect.Plugins.SharePlugin.SendFileActivity"
             android:label="KDE Connect"
-            android:parentActivityName="org.kde.kdeconnect.UserInterface.MaterialActivity" >
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MaterialActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.MaterialActivity" />
@@ -88,7 +99,7 @@
         <activity
             android:name="org.kde.kdeconnect.UserInterface.PluginSettingsActivity"
             android:label="@string/device_menu_plugins"
-            android:parentActivityName="org.kde.kdeconnect.UserInterface.SettingsActivity" >
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.SettingsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.SettingsActivity" />
@@ -96,15 +107,14 @@
         <activity
             android:name="org.kde.kdeconnect.Plugins.SharePlugin.ShareSettingsActivity"
             android:label="@string/device_menu_plugins"
-            android:parentActivityName="org.kde.kdeconnect.UserInterface.SettingsActivity" >
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.SettingsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.Plugins.SharePlugin.ShareSettingsActivity" />
         </activity>
 
 
-
-        <receiver android:name="org.kde.kdeconnect.KdeConnectBroadcastReceiver" >
+        <receiver android:name="org.kde.kdeconnect.KdeConnectBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REPLACED" />
 
@@ -122,17 +132,6 @@
             <intent-filter>
                 <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
             </intent-filter>
-            <!--
-            <intent-filter>
-                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.PHONE_STATE" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.BATTERY_CHANGED" />
-            </intent-filter>
-            -->
         </receiver>
 
         <activity
@@ -140,22 +139,19 @@
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:label="@string/findmyphone_title"
-            android:launchMode="singleInstance">
-        </activity>
+            android:launchMode="singleInstance" />
 
         <!-- Plugin-related activities and services -->
 
         <activity
             android:name="org.kde.kdeconnect.Plugins.MprisPlugin.MprisActivity"
             android:label="@string/remote_control"
-            android:parentActivityName="org.kde.kdeconnect.UserInterface.MaterialActivity"
-            >
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MaterialActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.MaterialActivity" />
         </activity>
-        <receiver
-            android:name="org.kde.kdeconnect.Plugins.MprisPlugin.MprisMediaNotificationReceiver">
+        <receiver android:name="org.kde.kdeconnect.Plugins.MprisPlugin.MprisMediaNotificationReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
@@ -164,8 +160,7 @@
         <activity
             android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandActivity"
             android:label="@string/remote_control"
-            android:parentActivityName="org.kde.kdeconnect.UserInterface.MaterialActivity"
-            >
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MaterialActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.MaterialActivity" />
@@ -175,15 +170,14 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/remote_control"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.MaterialActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
+            android:windowSoftInputMode="stateHidden|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.MaterialActivity" />
         </activity>
         <activity
             android:name="org.kde.kdeconnect.Plugins.SharePlugin.ShareActivity"
-            android:label="KDE Connect"
-            >
+            android:label="KDE Connect">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
 
@@ -198,10 +192,12 @@
 
                 <data android:mimeType="*/*" />
             </intent-filter>
+
             <meta-data
                 android:name="android.service.chooser.chooser_target_service"
                 android:value="org.kde.kdeconnect.Plugins.SharePlugin.ShareChooserTargetService" />
         </activity>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="org.kde.kdeconnect_tp.fileprovider"
@@ -211,9 +207,10 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/fileprovider_paths" />
         </provider>
+
         <service
             android:name="org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationReceiver"
-            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" >
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />
             </intent-filter>
@@ -224,12 +221,12 @@
             <intent-filter>
                 <action android:name="android.service.chooser.ChooserTargetService" />
             </intent-filter>
-            </service>
+        </service>
 
         <activity
             android:name="org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationFilterActivity"
             android:label="@string/title_activity_notification_filter"
-            android:parentActivityName="org.kde.kdeconnect.UserInterface.PluginSettingsActivity" >
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.PluginSettingsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.PluginSettingsActivity" />
