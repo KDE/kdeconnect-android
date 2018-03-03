@@ -154,19 +154,4 @@
 
     </LinearLayout>
 
-    <!--
-        <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/pause_button"
-                android:src="@android:drawable/ic_media_pause"
-                android:layout_gravity="center"/>
-
-        <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/pause_button"
-                android:src="@android:drawable/ic_media_stop"
-                android:layout_gravity="center"/>
-    -->
 </LinearLayout>

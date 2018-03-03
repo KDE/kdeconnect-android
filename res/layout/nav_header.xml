@@ -33,20 +33,4 @@
         android:text="My device"
         android:textColor="#fff" />
 
-    <!--
-    <ImageView
-        android:src="@drawable/ic_action_image_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:clickable="true"
-        android:background="@drawable/abc_list_selector_holo_dark"
-        android:layout_gravity="center_vertical"
-        android:contentDescription="@string/rename_device"
-        android:id="@+id/rename"
-    />
-    -->
-
 </LinearLayout>
