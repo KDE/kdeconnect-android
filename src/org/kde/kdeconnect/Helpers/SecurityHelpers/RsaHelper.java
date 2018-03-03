@@ -54,7 +54,7 @@ public class RsaHelper {
                 KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
                 keyGen.initialize(2048);
                 keyPair = keyGen.genKeyPair();
-            } catch(Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 Log.e("KDE/initializeRsaKeys", "Exception");
                 return;
@@ -64,43 +64,41 @@ public class RsaHelper {
             byte[] privateKey = keyPair.getPrivate().getEncoded();
 
             SharedPreferences.Editor edit = settings.edit();
-            edit.putString("publicKey", Base64.encodeToString(publicKey, 0).trim()+"\n");
-            edit.putString("privateKey",Base64.encodeToString(privateKey, 0));
+            edit.putString("publicKey", Base64.encodeToString(publicKey, 0).trim() + "\n");
+            edit.putString("privateKey", Base64.encodeToString(privateKey, 0));
             edit.apply();
 
         }
 
     }
 
-    public static PublicKey getPublicKey (Context context) throws Exception{
+    public static PublicKey getPublicKey(Context context) throws Exception {
         try {
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
             byte[] publicKeyBytes = Base64.decode(settings.getString("publicKey", ""), 0);
-            PublicKey publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
-            return publicKey;
-        }catch (Exception e){
-            throw e;
-        }
-    }
-
-    public static PublicKey getPublicKey(Context context, String deviceId) throws Exception{
-        try {
-            SharedPreferences settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
-            byte[] publicKeyBytes = Base64.decode(settings.getString("publicKey", ""), 0);
-            PublicKey publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
-            return publicKey;
+            
+            return KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
         } catch (Exception e) {
             throw e;
         }
     }
 
-    public static PrivateKey getPrivateKey(Context context) throws Exception{
+    public static PublicKey getPublicKey(Context context, String deviceId) throws Exception {
+        try {
+            SharedPreferences settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
+            byte[] publicKeyBytes = Base64.decode(settings.getString("publicKey", ""), 0);
+            return KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public static PrivateKey getPrivateKey(Context context) throws Exception {
 
         try {
             SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(context);
             byte[] privateKeyBytes = Base64.decode(globalSettings.getString("privateKey", ""), 0);
-            PrivateKey privateKey = KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(privateKeyBytes));
-            return privateKey;
+            return KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(privateKeyBytes));
         } catch (Exception e) {
             throw e;
         }
@@ -138,7 +136,7 @@ public class RsaHelper {
 
     }
 
-    public static NetworkPackage decrypt(NetworkPackage np, PrivateKey privateKey)  throws GeneralSecurityException, JSONException {
+    public static NetworkPackage decrypt(NetworkPackage np, PrivateKey privateKey) throws GeneralSecurityException, JSONException {
 
         JSONArray chunks = np.getJSONArray("data");
 

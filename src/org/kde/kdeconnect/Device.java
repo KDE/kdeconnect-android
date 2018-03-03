@@ -795,8 +795,7 @@ public class Device implements BaseLink.PackageReceiver {
 
     public boolean isPluginEnabled(String pluginKey) {
         boolean enabledByDefault = PluginFactory.getPluginInfo(context, pluginKey).isEnabledByDefault();
-        boolean enabled = settings.getBoolean(pluginKey, enabledByDefault);
-        return enabled;
+        return settings.getBoolean(pluginKey, enabledByDefault);
     }
 
     public void reloadPluginsFromSettings() {

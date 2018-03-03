@@ -161,8 +161,7 @@ public class NetworkPackage {
             jo.put("payloadTransferInfo", mPayloadTransferInfo);
         }
         //QJSon does not escape slashes, but Java JSONObject does. Converting to QJson format.
-        String json = jo.toString().replace("\\/","/")+"\n";
-        return json;
+        return jo.toString().replace("\\/", "/") + "\n";
     }
 
     static public NetworkPackage unserialize(String s) throws JSONException {

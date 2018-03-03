@@ -477,8 +477,7 @@ public class DeviceHelper {
     public static boolean isTablet() {
         Configuration config = Resources.getSystem().getConfiguration();
         //This assumes that the values for the screen sizes are consecutive, so XXLARGE > XLARGE > LARGE
-        boolean isLarge = ((config.screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE);
-        return isLarge;
+        return ((config.screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE);
     }
 
     //It returns getAndroidDeviceName() if no user-defined name has been set with setDeviceName().

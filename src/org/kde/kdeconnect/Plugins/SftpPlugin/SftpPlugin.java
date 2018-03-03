@@ -133,8 +133,7 @@ public class SftpPlugin extends Plugin {
 
     @Override
     public String[] getRequiredPermissions() {
-        String[] perms = {Manifest.permission.READ_EXTERNAL_STORAGE};
-        return perms;
+        return new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
     }
 
     @Override

@@ -111,14 +111,12 @@ public class BatteryPlugin extends Plugin {
 
     @Override
     public String[] getSupportedPackageTypes() {
-        String[] packetTypes = {PACKAGE_TYPE_BATTERY_REQUEST};
-        return packetTypes;
+        return new String[]{PACKAGE_TYPE_BATTERY_REQUEST};
     }
 
     @Override
     public String[] getOutgoingPackageTypes() {
-        String[] packetTypes = {PACKAGE_TYPE_BATTERY};
-        return packetTypes;
+        return new String[]{PACKAGE_TYPE_BATTERY};
     }
 
 }
