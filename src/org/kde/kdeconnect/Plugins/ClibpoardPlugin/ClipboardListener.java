@@ -36,6 +36,7 @@ public class ClipboardListener {
     public interface ClipboardObserver {
         void clipboardChanged(String content);
     }
+
     private HashSet<ClipboardObserver> observers = new HashSet<>();
 
     private final Context context;
@@ -45,6 +46,7 @@ public class ClipboardListener {
     private ClipboardManager.OnPrimaryClipChangedListener listener;
 
     private static ClipboardListener _instance = null;
+
     public static ClipboardListener instance(Context context) {
         if (_instance == null) {
             _instance = new ClipboardListener(context);
@@ -63,7 +65,7 @@ public class ClipboardListener {
     ClipboardListener(final Context ctx) {
         context = ctx;
 
-        if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
             return;
         }
 
@@ -102,12 +104,10 @@ public class ClipboardListener {
     @SuppressWarnings("deprecation")
     public void setText(String text) {
         currentContent = text;
-        if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
             android.text.ClipboardManager clipboard = (android.text.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
             clipboard.setText(text);
-        }
-        else
-        {
+        } else {
             cm.setText(text);
         }
     }

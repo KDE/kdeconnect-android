@@ -36,7 +36,11 @@ import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.NetworkPackage;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.Reader;
 import java.nio.charset.Charset;
 import java.security.PublicKey;
 import java.util.UUID;
@@ -88,7 +92,7 @@ public class BluetoothLink extends BaseLink {
             if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_ENCRYPTED)) {
                 try {
                     np = RsaHelper.decrypt(np, privateKey);
-                } catch(Exception e) {
+                } catch (Exception e) {
                     Log.e("BluetoothLink/receiving", "Exception decrypting the package", e);
                 }
             }
@@ -102,7 +106,10 @@ public class BluetoothLink extends BaseLink {
                     np.setPayload(transferSocket.getInputStream(), np.getPayloadSize());
                 } catch (Exception e) {
                     if (transferSocket != null) {
-                        try { transferSocket.close(); } catch(IOException ignored) { }
+                        try {
+                            transferSocket.close();
+                        } catch (IOException ignored) {
+                        }
                     }
                     Log.e("BluetoothLink/receiving", "Unable to get payload", e);
                 }
@@ -147,9 +154,9 @@ public class BluetoothLink extends BaseLink {
     private void sendMessage(NetworkPackage np) throws JSONException, IOException {
         byte[] message = np.serialize().getBytes(Charset.forName("UTF-8"));
         OutputStream socket = this.socket.getOutputStream();
-        Log.i("BluetoothLink","Beginning to send message");
+        Log.i("BluetoothLink", "Beginning to send message");
         socket.write(message);
-        Log.i("BluetoothLink","Finished sending message");
+        Log.i("BluetoothLink", "Finished sending message");
     }
 
     @Override
@@ -219,7 +226,10 @@ public class BluetoothLink extends BaseLink {
                     callback.onFailure(e);
                     return false;
                 } finally {
-                    try { transferSocket.close(); } catch (IOException ignored) { }
+                    try {
+                        transferSocket.close();
+                    } catch (IOException ignored) {
+                    }
                 }
             }
 

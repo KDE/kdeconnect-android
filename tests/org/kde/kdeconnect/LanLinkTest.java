@@ -110,23 +110,23 @@ public class LanLinkTest extends AndroidTestCase {
     }
 
 
-    public void testSendPayload() throws Exception{
+    public void testSendPayload() throws Exception {
 
         class Downloader extends Thread {
 
             NetworkPackage np;
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
-            public void setNetworkPackage(NetworkPackage networkPackage){
+            public void setNetworkPackage(NetworkPackage networkPackage) {
                 this.np = networkPackage;
             }
 
-            public ByteArrayOutputStream getOutputStream(){
+            public ByteArrayOutputStream getOutputStream() {
                 return outputStream;
             }
 
             @Override
-            public void run(){
+            public void run() {
                 try {
 
                     Socket socket = null;
@@ -137,7 +137,11 @@ public class LanLinkTest extends AndroidTestCase {
                         socket.connect(new InetSocketAddress(address.getAddress(), tcpPort));
                         np.setPayload(socket.getInputStream(), np.getPayloadSize());
                     } catch (Exception e) {
-                        try { socket.close(); } catch(Exception ignored) { throw ignored; }
+                        try {
+                            socket.close();
+                        } catch (Exception ignored) {
+                            throw ignored;
+                        }
                         e.printStackTrace();
                         Log.e("KDE/LanLinkTest", "Exception connecting to remote socket");
                         throw e;
@@ -164,7 +168,7 @@ public class LanLinkTest extends AndroidTestCase {
                     outputStream.close();
                     input.close();
 
-                } catch(Exception e) {
+                } catch (Exception e) {
                     Log.e("Downloader Test", "Exception");
                     e.printStackTrace();
                 }
@@ -175,15 +179,15 @@ public class LanLinkTest extends AndroidTestCase {
         final Downloader downloader = new Downloader();
 
         // Using byte array for payload, try to use input stream as used in real device
-        String dataString = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."+
-                        " Cras vel erat et ante fringilla tristique. Sed consequat ligula at interdum "+
-                        "rhoncus. Integer semper enim felis, id sodales tellus aliquet eget."+
-                        " Sed fringilla ac metus eget dictum. Aliquam euismod non sem sit"+
-                        " amet dapibus. Interdum et malesuada fames ac ante ipsum primis "+
-                        "in faucibus. Nam et ligula placerat, varius justo eu, convallis "+
-                        "lorem. Nam consequat consequat tortor et gravida. Praesent "+
-                        "ultricies tortor eget ex elementum gravida. Suspendisse aliquet "+
-                        "erat a orci feugiat dignissim.";
+        String dataString = "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
+                " Cras vel erat et ante fringilla tristique. Sed consequat ligula at interdum " +
+                "rhoncus. Integer semper enim felis, id sodales tellus aliquet eget." +
+                " Sed fringilla ac metus eget dictum. Aliquam euismod non sem sit" +
+                " amet dapibus. Interdum et malesuada fames ac ante ipsum primis " +
+                "in faucibus. Nam et ligula placerat, varius justo eu, convallis " +
+                "lorem. Nam consequat consequat tortor et gravida. Praesent " +
+                "ultricies tortor eget ex elementum gravida. Suspendisse aliquet " +
+                "erat a orci feugiat dignissim.";
 
         // reallyLongString contains dataString 16 times
         String reallyLongString = dataString + dataString;
@@ -217,7 +221,7 @@ public class LanLinkTest extends AndroidTestCase {
         Mockito.doAnswer(new Answer() {
             @Override
             public Object answer(InvocationOnMock invocationOnMock) throws Throwable {
-                JSONObject object = (JSONObject)invocationOnMock.getArguments()[0];
+                JSONObject object = (JSONObject) invocationOnMock.getArguments()[0];
 
                 sharePackageJson.put("payloadTransferInfo", object);
                 return null;
@@ -228,8 +232,8 @@ public class LanLinkTest extends AndroidTestCase {
             @Override
             public Object answer(InvocationOnMock invocationOnMock) throws Throwable {
 
-                Log.e("LanLinkTest","Write to stream");
-                String stringNetworkPackage = new String((byte[])invocationOnMock.getArguments()[0]);
+                Log.e("LanLinkTest", "Write to stream");
+                String stringNetworkPackage = new String((byte[]) invocationOnMock.getArguments()[0]);
                 final NetworkPackage np = NetworkPackage.unserialize(stringNetworkPackage);
 
                 downloader.setNetworkPackage(np);
@@ -243,8 +247,8 @@ public class LanLinkTest extends AndroidTestCase {
 
         try {
             // Wait 1 secs for downloader to finish (if some error, it will continue and assert will fail)
-            downloader.join(1*1000);
-        }catch (Exception e){
+            downloader.join(1 * 1000);
+        } catch (Exception e) {
             e.printStackTrace();
             throw e;
         }

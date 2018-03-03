@@ -114,7 +114,7 @@ public class MaterialActivity extends AppCompatActivity {
         } else if (getIntent().hasExtra("deviceId")) {
             Log.i("MaterialActivity", "Loading selected device from parameter");
             savedDevice = getIntent().getStringExtra("deviceId");
-            if(getIntent().hasExtra(PAIR_REQUEST_STATUS)){
+            if (getIntent().hasExtra(PAIR_REQUEST_STATUS)) {
                 pairStatus = getIntent().getStringExtra(PAIR_REQUEST_STATUS);
             }
         } else if (savedInstanceState != null) {
@@ -126,7 +126,7 @@ public class MaterialActivity extends AppCompatActivity {
         }
         //if pairStatus is not empty, then the decision has been made...
         if (!pairStatus.equals("")) {
-            Log.i("MaterialActivity", "pair status is "+pairStatus);
+            Log.i("MaterialActivity", "pair status is " + pairStatus);
             onNewDeviceSelected(savedDevice, pairStatus);
         }
         onDeviceSelected(savedDevice);
@@ -134,7 +134,7 @@ public class MaterialActivity extends AppCompatActivity {
 
     //like onNewDeviceSelected but assumes that the new device is simply requesting to be paired
     //and can't be null
-    private void onNewDeviceSelected(String deviceId, String pairStatus){
+    private void onNewDeviceSelected(String deviceId, String pairStatus) {
         mCurrentDevice = deviceId;
 
         preferences.edit().putString(STATE_SELECTED_DEVICE, mCurrentDevice).apply();

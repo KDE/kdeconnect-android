@@ -39,7 +39,7 @@ class NotificationUpdateCallback extends Device.SendPackageStatusCallback {
         } else {
             title = res.getString(R.string.outgoing_file_title, device.getName());
         }
-        notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         builder = new NotificationCompat.Builder(context)
                 .setSmallIcon(android.R.drawable.stat_sys_upload)
                 .setAutoCancel(true)
@@ -47,7 +47,7 @@ class NotificationUpdateCallback extends Device.SendPackageStatusCallback {
                 .setContentTitle(title)
                 .setTicker(title);
 
-        notificationId = (int)System.currentTimeMillis();
+        notificationId = (int) System.currentTimeMillis();
 
         numFiles = toSend.size();
 

@@ -3,36 +3,35 @@
     android:layout_width="match_parent"
     android:layout_height="160dp"
     android:background="@drawable/drawer_header"
-    android:orientation="vertical"
-    android:gravity="bottom">
+    android:gravity="bottom"
+    android:orientation="vertical">
 
     <TextView
+        android:id="@+id/kdeconnect_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="KDE Connect"
-        android:textColor="#FFF"
-        android:textStyle="bold"
-        android:id="@+id/kdeconnect_label"
+        android:paddingEnd="48dp"
         android:paddingLeft="16dp"
+        android:paddingRight="48dp"
         android:paddingStart="16dp"
         android:paddingTop="8dp"
-        android:paddingRight="48dp"
-        android:paddingEnd="48dp"
-        />
+        android:text="KDE Connect"
+        android:textColor="#FFF"
+        android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/device_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="My device"
-        android:id="@+id/device_name"
         android:layout_marginBottom="0dp"
-        android:textColor="#fff"
         android:paddingBottom="16dp"
-        android:paddingTop="4dp"
-        android:paddingRight="48dp"
         android:paddingEnd="48dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="48dp"
         android:paddingStart="16dp"
-        android:paddingLeft="16dp" />
+        android:paddingTop="4dp"
+        android:text="My device"
+        android:textColor="#fff" />
 
     <!--
     <ImageView

@@ -18,10 +18,8 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="KdeConnectTheme" parent="KdeConnectThemeBase">
-    </style>
+    <style name="KdeConnectTheme" parent="KdeConnectThemeBase"></style>
 
-    <style name="KdeConnectTheme.NoActionBar" parent="KdeConnectThemeBase.NoActionBar">
-    </style>
+    <style name="KdeConnectTheme.NoActionBar" parent="KdeConnectThemeBase.NoActionBar"></style>
 
 </resources>

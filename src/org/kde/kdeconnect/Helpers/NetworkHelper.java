@@ -32,7 +32,8 @@ public class NetworkHelper {
                     continue;
                 }
                 //Log.e(info.getTypeName(),""+info.isAvailable());
-                if (info.isAvailable()) return false; //We are connected to at least one non-mobile network
+                if (info.isAvailable())
+                    return false; //We are connected to at least one non-mobile network
             }
             if (mobile) { //We suspect we are on a mobile net
                 try {
@@ -48,7 +49,7 @@ public class NetworkHelper {
                     e.printStackTrace();
                 }
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             Log.d("isOnMobileNetwork", "Something went wrong, but this is non-critical.");
         }

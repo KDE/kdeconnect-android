@@ -32,7 +32,7 @@ import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
-public class NetworkPackageTest extends AndroidTestCase{
+public class NetworkPackageTest extends AndroidTestCase {
 
     @Override
     protected void setUp() throws Exception {
@@ -67,14 +67,14 @@ public class NetworkPackageTest extends AndroidTestCase{
 
         String json = "{\"id\":123,\"type\":\"test\",\"body\":{\"testing\":true}}";
         np2 = NetworkPackage.unserialize(json);
-        assertEquals(np2.getId(),123);
+        assertEquals(np2.getId(), 123);
         assertEquals(np2.getBoolean("testing"), true);
         assertEquals(np2.getBoolean("not_testing"), false);
         assertEquals(np2.getBoolean("not_testing", true), true);
 
     }
 
-    public void testIdentity(){
+    public void testIdentity() {
 
         NetworkPackage np = NetworkPackage.createIdentityPackage(getContext());
 
@@ -95,7 +95,7 @@ public class NetworkPackageTest extends AndroidTestCase{
             KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
             keyGen.initialize(2048);
             keyPair = keyGen.genKeyPair();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             Log.e("KDE/initializeRsaKeys", "Exception");
             return;
@@ -110,13 +110,13 @@ public class NetworkPackageTest extends AndroidTestCase{
         // Encrypt and decrypt np
         assertEquals(original.getType(), "com.test");
         try {
-            NetworkPackage encrypted = RsaHelper.encrypt(original,publicKey);
+            NetworkPackage encrypted = RsaHelper.encrypt(original, publicKey);
             assertEquals(encrypted.getType(), NetworkPackage.PACKAGE_TYPE_ENCRYPTED);
 
             decrypted = RsaHelper.decrypt(encrypted, privateKey);
             assertEquals(decrypted.getType(), "com.test");
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -132,7 +132,7 @@ public class NetworkPackageTest extends AndroidTestCase{
             decrypted = RsaHelper.decrypt(encrypted, privateKey);
             String decryptedJson = decrypted.serialize();
             JSONAssert.assertEquals(json, decryptedJson, true);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

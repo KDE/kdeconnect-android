@@ -52,17 +52,21 @@ public class RemoteKeyboardPlugin extends Plugin {
      */
     private static ArrayList<RemoteKeyboardPlugin> instances = new ArrayList<RemoteKeyboardPlugin>();
     private static ReentrantLock instancesLock = new ReentrantLock(true);
+
     public static ArrayList<RemoteKeyboardPlugin> getInstances() {
         return instances;
     }
+
     public static ArrayList<RemoteKeyboardPlugin> acquireInstances() {
         instancesLock.lock();
         return getInstances();
     }
+
     public static ArrayList<RemoteKeyboardPlugin> releaseInstances() {
         instancesLock.unlock();
         return getInstances();
     }
+
     public static boolean isConnected() {
         return instances.size() > 0;
     }
@@ -210,7 +214,7 @@ public class RemoteKeyboardPlugin extends Plugin {
         return -1;
     }
 
-    private Pair<Integer,Integer> currentSelection(ExtractedText extractedText) {
+    private Pair<Integer, Integer> currentSelection(ExtractedText extractedText) {
         if (extractedText != null)
             return new Pair<>(extractedText.selectionStart, extractedText.selectionEnd);
         return new Pair<>(-1, -1);
@@ -235,12 +239,12 @@ public class RemoteKeyboardPlugin extends Plugin {
             int startPos = pos;
             int endPos = pos;
             if (shift) { // Shift -> select word (otherwise jump)
-                Pair<Integer,Integer> sel = currentSelection(extractedText);
+                Pair<Integer, Integer> sel = currentSelection(extractedText);
                 int cursor = currentCursorPos(extractedText);
 //                Log.d("RemoteKeyboardPlugin", "Selection (to right): " + sel.first + " / " + sel.second + " cursor: " + cursor);
                 startPos = cursor;
                 if (sel.first < cursor ||   // active selection from left to right -> grow
-                    sel.first > sel.second) // active selection from right to left -> shrink
+                        sel.first > sel.second) // active selection from right to left -> shrink
                     startPos = sel.first;
             }
             inputConn.setSelection(startPos, endPos);
@@ -255,12 +259,12 @@ public class RemoteKeyboardPlugin extends Plugin {
             int startPos = pos;
             int endPos = pos;
             if (shift) {
-                Pair<Integer,Integer> sel = currentSelection(extractedText);
+                Pair<Integer, Integer> sel = currentSelection(extractedText);
                 int cursor = currentCursorPos(extractedText);
 //                Log.d("RemoteKeyboardPlugin", "Selection (to left): " + sel.first + " / " + sel.second + " cursor: " + cursor);
                 startPos = cursor;
                 if (cursor < sel.first ||    // active selection from right to left -> grow
-                    sel.first < sel.second)  // active selection from right to left -> shrink
+                        sel.first < sel.second)  // active selection from right to left -> shrink
                     startPos = sel.first;
             }
             inputConn.setSelection(startPos, endPos);
@@ -284,9 +288,9 @@ public class RemoteKeyboardPlugin extends Plugin {
 //            Log.d("RemoteKeyboardPlugin", "Enter: " + editorInfo.imeOptions);
             if (editorInfo != null
                     && (((editorInfo.imeOptions & EditorInfo.IME_FLAG_NO_ENTER_ACTION) == 0)
-                        || ctrl)) {  // Ctrl+Return overrides IME_FLAG_NO_ENTER_ACTION (FIXME: make configurable?)
+                    || ctrl)) {  // Ctrl+Return overrides IME_FLAG_NO_ENTER_ACTION (FIXME: make configurable?)
                 // check for special DONE/GO/etc actions first:
-                int[] actions = { EditorInfo.IME_ACTION_GO, EditorInfo.IME_ACTION_NEXT,
+                int[] actions = {EditorInfo.IME_ACTION_GO, EditorInfo.IME_ACTION_NEXT,
                         EditorInfo.IME_ACTION_SEND, EditorInfo.IME_ACTION_SEARCH,
                         EditorInfo.IME_ACTION_DONE};  // note: DONE should be last or we might hide the ime instead of "go"
                 for (int i = 0; i < actions.length; i++) {

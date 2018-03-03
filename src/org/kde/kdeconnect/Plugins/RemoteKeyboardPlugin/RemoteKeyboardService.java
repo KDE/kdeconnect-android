@@ -119,7 +119,7 @@ public class RemoteKeyboardService
         visible = true;
         ArrayList<RemoteKeyboardPlugin> instances = RemoteKeyboardPlugin.acquireInstances();
         try {
-            for (RemoteKeyboardPlugin i: instances)
+            for (RemoteKeyboardPlugin i : instances)
                 i.notifyKeyboardState(true);
         } finally {
             RemoteKeyboardPlugin.releaseInstances();
@@ -133,7 +133,7 @@ public class RemoteKeyboardService
         visible = false;
         ArrayList<RemoteKeyboardPlugin> instances = RemoteKeyboardPlugin.acquireInstances();
         try {
-            for (RemoteKeyboardPlugin i: instances)
+            for (RemoteKeyboardPlugin i : instances)
                 i.notifyKeyboardState(false);
         } finally {
             RemoteKeyboardPlugin.releaseInstances();

@@ -62,11 +62,15 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
     enum ClickType {
         RIGHT, MIDDLE, NONE;
+
         static ClickType fromString(String s) {
-            switch(s) {
-                case "right": return RIGHT;
-                case "middle": return MIDDLE;
-                default: return NONE;
+            switch (s) {
+                case "right":
+                    return RIGHT;
+                case "middle":
+                    return MIDDLE;
+                default:
+                    return NONE;
             }
         }
     }
@@ -87,11 +91,11 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         mMousePadGestureDetector = new MousePadGestureDetector(this, this);
         mDetector.setOnDoubleTapListener(this);
 
-        keyListenerView = (KeyListenerView)findViewById(R.id.keyListener);
+        keyListenerView = (KeyListenerView) findViewById(R.id.keyListener);
         keyListenerView.setDeviceId(deviceId);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if (prefs.getBoolean(getString(R.string.mousepad_scroll_direction),false)) {
+        if (prefs.getBoolean(getString(R.string.mousepad_scroll_direction), false)) {
             scrollDirection = -1;
         } else {
             scrollDirection = 1;
@@ -106,7 +110,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         doubleTapAction = ClickType.fromString(doubleTapSetting);
         tripleTapAction = ClickType.fromString(tripleTapSetting);
 
-        switch (sensitivitySetting){
+        switch (sensitivitySetting) {
             case "slowest":
                 mCurrentSensitivity = 0.2f;
                 break;
@@ -185,7 +189,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         if (mMousePadGestureDetector.onTouchEvent(event)) {
             return true;
         }
-        if ( mDetector.onTouchEvent(event) ) {
+        if (mDetector.onTouchEvent(event)) {
             return true;
         }
 
@@ -240,8 +244,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     }
 
     @Override
-    public boolean onGenericMotionEvent(MotionEvent e)
-    {
+    public boolean onGenericMotionEvent(MotionEvent e) {
         if (android.os.Build.VERSION.SDK_INT >= 12) { // MotionEvent.getAxisValue is >= 12
             if (e.getAction() == MotionEvent.ACTION_SCROLL) {
                 final float distanceY = e.getAxisValue(MotionEvent.AXIS_VSCROLL);
@@ -268,8 +271,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         isScrolling = true;
 
         accumulatedDistanceY += distanceY;
-        if (accumulatedDistanceY > MinDistanceToSendScroll || accumulatedDistanceY < -MinDistanceToSendScroll)
-        {
+        if (accumulatedDistanceY > MinDistanceToSendScroll || accumulatedDistanceY < -MinDistanceToSendScroll) {
             sendScroll(scrollDirection * accumulatedDistanceY);
 
             accumulatedDistanceY = 0;
@@ -334,7 +336,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
     @Override
     public boolean onTripleFingerTap(MotionEvent ev) {
-        switch(tripleTapAction){
+        switch (tripleTapAction) {
             case RIGHT:
                 sendRightClick();
                 break;
@@ -348,7 +350,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
     @Override
     public boolean onDoubleFingerTap(MotionEvent ev) {
-        switch(doubleTapAction){
+        switch (doubleTapAction) {
             case RIGHT:
                 sendRightClick();
                 break;

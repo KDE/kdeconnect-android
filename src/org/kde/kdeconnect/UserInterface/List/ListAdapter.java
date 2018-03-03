@@ -34,19 +34,19 @@ public class ListAdapter extends ArrayAdapter<ListAdapter.Item> {
         View inflateView(LayoutInflater layoutInflater);
     }
 
-	private final ArrayList<Item> items;
-	private final LayoutInflater layoutInflater;
+    private final ArrayList<Item> items;
+    private final LayoutInflater layoutInflater;
 
-	public ListAdapter(Context context, ArrayList<Item> items) {
-		super(context, 0, items);
+    public ListAdapter(Context context, ArrayList<Item> items) {
+        super(context, 0, items);
         this.items = items;
-		layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	}
+        layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
 
 
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		final Item i = items.get(position);
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        final Item i = items.get(position);
         return i.inflateView(layoutInflater);
     }
 

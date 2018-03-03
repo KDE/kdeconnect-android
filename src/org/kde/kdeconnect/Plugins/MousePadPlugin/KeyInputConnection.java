@@ -10,7 +10,8 @@ public class KeyInputConnection extends BaseInputConnection {
         view = targetView;
     }
 
-    @Override public boolean commitText(CharSequence text, int newCursorPosition) {
+    @Override
+    public boolean commitText(CharSequence text, int newCursorPosition) {
         view.sendChars(text);
         return true;
     }

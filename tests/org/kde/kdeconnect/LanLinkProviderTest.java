@@ -50,7 +50,7 @@ public class LanLinkProviderTest extends AndroidTestCase {
 
     }
 
-    public void testIdentityPackageReceived() throws Exception{
+    public void testIdentityPackageReceived() throws Exception {
 
         NetworkPackage networkPackage = Mockito.mock(NetworkPackage.class);
         Mockito.when(networkPackage.getType()).thenReturn("kdeconnect.identity");
@@ -67,7 +67,7 @@ public class LanLinkProviderTest extends AndroidTestCase {
             Method method = LanLinkProvider.class.getDeclaredMethod("identityPackageReceived", NetworkPackage.class, Socket.class, LanLink.ConnectionStarted.class);
             method.setAccessible(true);
             method.invoke(linkProvider, networkPackage, channel, LanLink.ConnectionStarted.Locally);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw e;
         }
 
@@ -75,8 +75,8 @@ public class LanLinkProviderTest extends AndroidTestCase {
         try {
             Field field = LanLinkProvider.class.getDeclaredField("visibleComputers");
             field.setAccessible(true);
-            visibleComputers = (HashMap<String, LanLink>)field.get(linkProvider);
-        }catch (Exception e){
+            visibleComputers = (HashMap<String, LanLink>) field.get(linkProvider);
+        } catch (Exception e) {
             throw e;
         }
         assertNotNull(visibleComputers.get("testDevice"));

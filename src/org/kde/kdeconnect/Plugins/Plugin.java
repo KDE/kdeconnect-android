@@ -75,6 +75,7 @@ public abstract class Plugin {
     public String getPluginKey() {
         return getPluginKey(this.getClass());
     }
+
     public static String getPluginKey(Class<? extends Plugin> p) {
         return p.getSimpleName();
     }
@@ -146,7 +147,8 @@ public abstract class Plugin {
     /**
      * Implement here what your plugin should do when clicked
      */
-    public void startMainActivity(Activity parentActivity) { }
+    public void startMainActivity(Activity parentActivity) {
+    }
 
     /**
      * Return true if the entry for this app should appear in the context menu instead of the main view
@@ -167,14 +169,17 @@ public abstract class Plugin {
      * Finish any ongoing operations, remove listeners... so
      * this object could be garbage collected.
      */
-    public void onDestroy() { }
+    public void onDestroy() {
+    }
 
     /**
      * Called when a plugin receives a package. By convention we return true
      * when we have done something in response to the package or false
      * otherwise, even though that value is unused as of now.
      */
-    public boolean onPackageReceived(NetworkPackage np) { return false; }
+    public boolean onPackageReceived(NetworkPackage np) {
+        return false;
+    }
 
     /**
      * Should return the list of NetworkPackage types that this plugin can handle
@@ -221,8 +226,8 @@ public abstract class Plugin {
     }
 
     protected boolean arePermissionsGranted(String[] permissions) {
-        for(String permission: permissions){
-            if(!isPermissionGranted(permission)){
+        for (String permission : permissions) {
+            if (!isPermissionGranted(permission)) {
                 return false;
             }
         }
@@ -233,7 +238,7 @@ public abstract class Plugin {
         return requestPermissionDialog(activity, new String[]{permissions}, reason);
     }
 
-    protected AlertDialog requestPermissionDialog(final Activity activity, final String[] permissions, @StringRes int reason){
+    protected AlertDialog requestPermissionDialog(final Activity activity, final String[] permissions, @StringRes int reason) {
         return new AlertDialog.Builder(activity)
                 .setTitle(getDisplayName())
                 .setMessage(reason)
@@ -243,7 +248,7 @@ public abstract class Plugin {
                         ActivityCompat.requestPermissions(activity, permissions, 0);
                     }
                 })
-                .setNegativeButton(R.string.cancel,new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //Do nothing
@@ -262,19 +267,19 @@ public abstract class Plugin {
     }
 
     public AlertDialog getPermissionExplanationDialog(Activity deviceActivity) {
-        return requestPermissionDialog(deviceActivity,getRequiredPermissions(), permissionExplanation);
+        return requestPermissionDialog(deviceActivity, getRequiredPermissions(), permissionExplanation);
     }
 
     public AlertDialog getOptionalPermissionExplanationDialog(Activity deviceActivity) {
-        return requestPermissionDialog(deviceActivity,getOptionalPermissions(), optionalPermissionExplanation);
+        return requestPermissionDialog(deviceActivity, getOptionalPermissions(), optionalPermissionExplanation);
     }
 
-    public boolean checkRequiredPermissions(){
+    public boolean checkRequiredPermissions() {
         return arePermissionsGranted(getRequiredPermissions());
     }
 
-    public boolean checkOptionalPermissions(){
-       return arePermissionsGranted(getOptionalPermissions());
+    public boolean checkOptionalPermissions() {
+        return arePermissionsGranted(getOptionalPermissions());
     }
 
     public int getMinSdk() {

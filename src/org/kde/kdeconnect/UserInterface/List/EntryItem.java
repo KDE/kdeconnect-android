@@ -28,8 +28,8 @@ import org.kde.kdeconnect_tp.R;
 
 public class EntryItem implements ListAdapter.Item {
 
-	protected final String title;
-	protected final String subtitle;
+    protected final String title;
+    protected final String subtitle;
 
     public EntryItem(String title) {
         this.title = title;
@@ -37,15 +37,15 @@ public class EntryItem implements ListAdapter.Item {
     }
 
     public EntryItem(String title, String subtitle) {
-		this.title = title;
+        this.title = title;
         this.subtitle = subtitle;
-	}
+    }
 
     @Override
     public View inflateView(LayoutInflater layoutInflater) {
         View v = layoutInflater.inflate(R.layout.list_item_entry, null);
 
-        TextView titleView = (TextView)v.findViewById(R.id.list_item_entry_title);
+        TextView titleView = (TextView) v.findViewById(R.id.list_item_entry_title);
         if (titleView != null) titleView.setText(title);
 
         if (subtitle != null) {

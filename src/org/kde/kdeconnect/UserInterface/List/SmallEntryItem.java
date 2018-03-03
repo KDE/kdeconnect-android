@@ -29,13 +29,13 @@ import org.kde.kdeconnect_tp.R;
 
 public class SmallEntryItem implements ListAdapter.Item {
 
-	private final String title;
+    private final String title;
     private final View.OnClickListener clickListener;
 
-	public SmallEntryItem(String title) {
-		this.title = title;
+    public SmallEntryItem(String title) {
+        this.title = title;
         this.clickListener = null;
-	}
+    }
 
     public SmallEntryItem(String title, View.OnClickListener clickListener) {
         this.title = title;
@@ -46,7 +46,7 @@ public class SmallEntryItem implements ListAdapter.Item {
     public View inflateView(LayoutInflater layoutInflater) {
         View v = layoutInflater.inflate(android.R.layout.simple_list_item_1, null);
 
-        TextView titleView = (TextView)v.findViewById(android.R.id.text1);
+        TextView titleView = (TextView) v.findViewById(android.R.id.text1);
         if (titleView != null) {
             titleView.setText(title);
             if (clickListener != null) {

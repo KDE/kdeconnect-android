@@ -5,18 +5,18 @@
 
     <ListPreference
         android:id="@+id/mpris_time_preference"
-        android:key="@string/mpris_time_key"
-        android:title="@string/mpris_time_settings_title"
-        android:summary="@string/mpris_time_settings_summary"
+        android:defaultValue="@string/mpris_time_default"
         android:entries="@array/mpris_time_entries"
         android:entryValues="@array/mpris_time_entries_values"
-        android:defaultValue="@string/mpris_time_default" />
+        android:key="@string/mpris_time_key"
+        android:summary="@string/mpris_time_settings_summary"
+        android:title="@string/mpris_time_settings_title" />
 
     <CheckBoxPreference
         android:id="@+id/mpris_notification_preference"
+        android:defaultValue="true"
         android:key="@string/mpris_notification_key"
-        android:title="@string/mpris_notification_settings_title"
         android:summary="@string/mpris_notification_settings_summary"
-        android:defaultValue="true" />
+        android:title="@string/mpris_notification_settings_title" />
 
 </PreferenceScreen>

@@ -57,7 +57,7 @@ public class PairingDeviceItem implements ListAdapter.Item {
         titleView.setText(device.getName());
 
         if (device.compareProtocolVersion() != 0) {
-            TextView summaryView = (TextView)v.findViewById(R.id.list_item_entry_summary);
+            TextView summaryView = (TextView) v.findViewById(R.id.list_item_entry_summary);
 
             if (device.compareProtocolVersion() > 0) {
                 summaryView.setText(R.string.protocol_version_newer);

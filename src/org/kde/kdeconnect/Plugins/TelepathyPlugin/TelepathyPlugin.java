@@ -75,7 +75,7 @@ public class TelepathyPlugin extends Plugin {
                 int permissionCheck = ContextCompat.checkSelfPermission(context,
                         Manifest.permission.SEND_SMS);
 
-                if(permissionCheck == PackageManager.PERMISSION_GRANTED) {
+                if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
                     SmsManager smsManager = SmsManager.getDefault();
 
                     ArrayList<String> parts = smsManager.divideMessage(sms);
@@ -83,7 +83,7 @@ public class TelepathyPlugin extends Plugin {
                     // If this message turns out to fit in a single SMS, sendMultpartTextMessage
                     // properly handles that case
                     smsManager.sendMultipartTextMessage(phoneNo, null, parts, null, null);
-                } else  if(permissionCheck == PackageManager.PERMISSION_DENIED){
+                } else if (permissionCheck == PackageManager.PERMISSION_DENIED) {
                     // TODO Request Permission SEND_SMS
                 }
                 //TODO: Notify other end

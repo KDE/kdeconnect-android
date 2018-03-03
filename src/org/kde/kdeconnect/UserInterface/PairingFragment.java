@@ -73,7 +73,6 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
         mActivity.getSupportActionBar().setTitle(R.string.pairing_title);
 
 
-
         setHasOptionsMenu(true);
 
         rootView = inflater.inflate(R.layout.activity_refresh_list, container, false);
@@ -113,7 +112,10 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
         new Thread(new Runnable() {
             @Override
             public void run() {
-                try { Thread.sleep(1500); } catch (InterruptedException ignored) { }
+                try {
+                    Thread.sleep(1500);
+                } catch (InterruptedException ignored) {
+                }
                 mActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

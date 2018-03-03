@@ -80,7 +80,10 @@ public class ShareActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                try { Thread.sleep(1500); } catch (InterruptedException ignored) { }
+                try {
+                    Thread.sleep(1500);
+                } catch (InterruptedException ignored) {
+                }
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -167,13 +170,13 @@ public class ShareActivity extends AppCompatActivity {
         final Intent intent = getIntent();
         final String deviceId = intent.getStringExtra("deviceId");
 
-        if (deviceId!=null) {
+        if (deviceId != null) {
 
-            BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback(){
+            BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
 
                 @Override
                 public void onServiceStart(BackgroundService service) {
-                    Log.d("DirectShare", "sharing to "+service.getDevice(deviceId).getName());
+                    Log.d("DirectShare", "sharing to " + service.getDevice(deviceId).getName());
                     Device device = service.getDevice(deviceId);
                     if (device.isReachable() && device.isPaired()) {
                         SharePlugin.share(intent, device);

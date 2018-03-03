@@ -303,7 +303,7 @@ public class TelephonyPlugin extends Plugin {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         String[] blockedNumbers = sharedPref.getString(KEY_PREF_BLOCKED_NUMBERS, "").split("\n");
 
-        for (String s: blockedNumbers) {
+        for (String s : blockedNumbers) {
             if (PhoneNumberUtils.compare(number, s))
                 return true;
         }

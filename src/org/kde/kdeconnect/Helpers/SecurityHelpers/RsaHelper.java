@@ -76,8 +76,8 @@ public class RsaHelper {
         try {
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
             byte[] publicKeyBytes = Base64.decode(settings.getString("publicKey", ""), 0);
-            
             return KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
+
         } catch (Exception e) {
             throw e;
         }

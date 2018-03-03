@@ -79,22 +79,85 @@ public class NetworkPackage {
     }
 
     //Most commons getters and setters defined for convenience
-    public String getString(String key) { return mBody.optString(key,""); }
-    public String getString(String key, String defaultValue) { return mBody.optString(key,defaultValue); }
-    public void set(String key, String value) { if (value == null) return; try { mBody.put(key,value); } catch(Exception e) { } }
-    public int getInt(String key) { return mBody.optInt(key,-1); }
-    public int getInt(String key, int defaultValue) { return mBody.optInt(key,defaultValue); }
-    public long getLong(String key) { return mBody.optLong(key,-1); }
-    public long getLong(String key,long defaultValue) { return mBody.optLong(key,defaultValue); }
-    public void set(String key, int value) { try { mBody.put(key,value); } catch(Exception e) { } }
-    public boolean getBoolean(String key) { return mBody.optBoolean(key,false); }
-    public boolean getBoolean(String key, boolean defaultValue) { return mBody.optBoolean(key,defaultValue); }
-    public void set(String key, boolean value) { try { mBody.put(key,value); } catch(Exception e) { } }
-    public double getDouble(String key) { return mBody.optDouble(key,Double.NaN); }
-    public double getDouble(String key, double defaultValue) { return mBody.optDouble(key,defaultValue); }
-    public void set(String key, double value) { try { mBody.put(key,value); } catch(Exception e) { } }
-    public JSONArray getJSONArray(String key) { return mBody.optJSONArray(key); }
-    public void set(String key, JSONArray value) { try { mBody.put(key,value); } catch(Exception e) { } }
+    public String getString(String key) {
+        return mBody.optString(key, "");
+    }
+
+    public String getString(String key, String defaultValue) {
+        return mBody.optString(key, defaultValue);
+    }
+
+    public void set(String key, String value) {
+        if (value == null) return;
+        try {
+            mBody.put(key, value);
+        } catch (Exception e) {
+        }
+    }
+
+    public int getInt(String key) {
+        return mBody.optInt(key, -1);
+    }
+
+    public int getInt(String key, int defaultValue) {
+        return mBody.optInt(key, defaultValue);
+    }
+
+    public long getLong(String key) {
+        return mBody.optLong(key, -1);
+    }
+
+    public long getLong(String key, long defaultValue) {
+        return mBody.optLong(key, defaultValue);
+    }
+
+    public void set(String key, int value) {
+        try {
+            mBody.put(key, value);
+        } catch (Exception e) {
+        }
+    }
+
+    public boolean getBoolean(String key) {
+        return mBody.optBoolean(key, false);
+    }
+
+    public boolean getBoolean(String key, boolean defaultValue) {
+        return mBody.optBoolean(key, defaultValue);
+    }
+
+    public void set(String key, boolean value) {
+        try {
+            mBody.put(key, value);
+        } catch (Exception e) {
+        }
+    }
+
+    public double getDouble(String key) {
+        return mBody.optDouble(key, Double.NaN);
+    }
+
+    public double getDouble(String key, double defaultValue) {
+        return mBody.optDouble(key, defaultValue);
+    }
+
+    public void set(String key, double value) {
+        try {
+            mBody.put(key, value);
+        } catch (Exception e) {
+        }
+    }
+
+    public JSONArray getJSONArray(String key) {
+        return mBody.optJSONArray(key);
+    }
+
+    public void set(String key, JSONArray value) {
+        try {
+            mBody.put(key, value);
+        } catch (Exception e) {
+        }
+    }
 
     public Set<String> getStringSet(String key) {
         JSONArray jsonArray = mBody.optJSONArray(key);
@@ -105,22 +168,26 @@ public class NetworkPackage {
             try {
                 String str = jsonArray.getString(i);
                 list.add(str);
-            } catch(Exception e) { }
+            } catch (Exception e) {
+            }
         }
         return list;
     }
+
     public Set<String> getStringSet(String key, Set<String> defaultValue) {
         if (mBody.has(key)) return getStringSet(key);
         else return defaultValue;
     }
+
     public void set(String key, Set<String> value) {
         try {
             JSONArray jsonArray = new JSONArray();
-            for(String str : value) {
+            for (String str : value) {
                 jsonArray.put(str);
             }
-            mBody.put(key,jsonArray);
-        } catch(Exception e) { }
+            mBody.put(key, jsonArray);
+        } catch (Exception e) {
+        }
     }
 
     public List<String> getStringList(String key) {
@@ -132,24 +199,31 @@ public class NetworkPackage {
             try {
                 String str = jsonArray.getString(i);
                 list.add(str);
-            } catch(Exception e) { }
+            } catch (Exception e) {
+            }
         }
         return list;
     }
+
     public List<String> getStringList(String key, List<String> defaultValue) {
         if (mBody.has(key)) return getStringList(key);
         else return defaultValue;
     }
+
     public void set(String key, List<String> value) {
         try {
             JSONArray jsonArray = new JSONArray();
-            for(String str : value) {
+            for (String str : value) {
                 jsonArray.put(str);
             }
-            mBody.put(key,jsonArray);
-        } catch(Exception e) { }
+            mBody.put(key, jsonArray);
+        } catch (Exception e) {
+        }
     }
-    public boolean has(String key) { return mBody.has(key); }
+
+    public boolean has(String key) {
+        return mBody.has(key);
+    }
 
     public String serialize() throws JSONException {
         JSONObject jo = new JSONObject();
@@ -190,12 +264,12 @@ public class NetworkPackage {
             np.mBody.put("deviceId", deviceId);
             np.mBody.put("deviceName", DeviceHelper.getDeviceName(context));
             np.mBody.put("protocolVersion", NetworkPackage.ProtocolVersion);
-            np.mBody.put("deviceType", DeviceHelper.isTablet()? "tablet" : "phone");
+            np.mBody.put("deviceType", DeviceHelper.isTablet() ? "tablet" : "phone");
             np.mBody.put("incomingCapabilities", new JSONArray(PluginFactory.getIncomingCapabilities(context)));
             np.mBody.put("outgoingCapabilities", new JSONArray(PluginFactory.getOutgoingCapabilities(context)));
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("NetworkPacakge","Exception on createIdentityPackage");
+            Log.e("NetworkPacakge", "Exception on createIdentityPackage");
         }
 
         return np;

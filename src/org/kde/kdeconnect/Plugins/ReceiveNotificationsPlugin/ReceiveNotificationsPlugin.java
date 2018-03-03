@@ -93,7 +93,10 @@ public class ReceiveNotificationsPlugin extends Plugin {
                 }
                 final InputStream input = np.getPayload();
                 largeIcon = BitmapFactory.decodeStream(np.getPayload());
-                try { input.close(); } catch (Exception e) { }
+                try {
+                    input.close();
+                } catch (Exception e) {
+                }
                 if (largeIcon != null) {
                     //Log.i("NotificationsPlugin", "hasPayload: size=" + largeIcon.getWidth() + "/" + largeIcon.getHeight() + " opti=" + width + "/" + height);
                     if (largeIcon.getWidth() > width || largeIcon.getHeight() > height) {

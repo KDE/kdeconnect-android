@@ -5,7 +5,7 @@
 
     <CheckBoxPreference
         android:id="@+id/remotekeyboard_editing_only"
+        android:defaultValue="true"
         android:key="@string/remotekeyboard_editing_only"
-        android:title="@string/remotekeyboard_editing_only_title"
-        android:defaultValue="true" />
+        android:title="@string/remotekeyboard_editing_only_title" />
 </PreferenceScreen>

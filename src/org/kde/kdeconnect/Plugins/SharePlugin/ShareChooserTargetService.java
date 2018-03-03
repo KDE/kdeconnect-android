@@ -42,8 +42,8 @@ public class ShareChooserTargetService extends ChooserTargetService {
     public List<ChooserTarget> onGetChooserTargets(ComponentName targetActivityName, IntentFilter matchedFilter) {
         Log.d("DirectShare", "invoked");
         final List<ChooserTarget> targets = new ArrayList<>();
-        for(Device d: BackgroundService.getInstance().getDevices().values()){
-            if(d.isReachable() && d.isPaired()) {
+        for (Device d : BackgroundService.getInstance().getDevices().values()) {
+            if (d.isReachable() && d.isPaired()) {
                 Log.d("DirectShare", d.getName());
                 final String targetName = d.getName();
                 final Icon targetIcon = Icon.createWithResource(this, R.drawable.icon);

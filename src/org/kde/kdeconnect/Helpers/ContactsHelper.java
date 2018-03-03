@@ -51,7 +51,7 @@ public class ContactsHelper {
         try {
             cursor = context.getContentResolver().query(
                     uri,
-                    new String[] {
+                    new String[]{
                             PhoneLookup.DISPLAY_NAME,
                             ContactsContract.PhoneLookup.PHOTO_URI
                             /*, PhoneLookup.TYPE
@@ -75,7 +75,10 @@ public class ContactsHelper {
                 contactInfo.put("photoID", cursor.getString(nameIndex));
             }
 
-            try { cursor.close(); } catch (Exception e) {}
+            try {
+                cursor.close();
+            } catch (Exception e) {
+            }
 
             if (!contactInfo.isEmpty()) {
                 return contactInfo;
@@ -92,7 +95,7 @@ public class ContactsHelper {
         Uri photoUri = Uri.parse(photoId);
 
         InputStream input = null;
-        Base64OutputStream output= null;
+        Base64OutputStream output = null;
         try {
             ByteArrayOutputStream encodedPhoto = new ByteArrayOutputStream();
             output = new Base64OutputStream(encodedPhoto, Base64.DEFAULT);
@@ -107,8 +110,16 @@ public class ContactsHelper {
             Log.e("ContactsHelper", ex.toString());
             return "";
         } finally {
-            try { input.close(); } catch(Exception ignored) { };
-            try { output.close(); } catch(Exception ignored) { };
+            try {
+                input.close();
+            } catch (Exception ignored) {
+            }
+            ;
+            try {
+                output.close();
+            } catch (Exception ignored) {
+            }
+            ;
         }
     }
 }

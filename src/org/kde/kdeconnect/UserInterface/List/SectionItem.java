@@ -28,13 +28,13 @@ import org.kde.kdeconnect_tp.R;
 
 public class SectionItem implements ListAdapter.Item {
 
-	private final String title;
+    private final String title;
     public boolean isSectionEmpty;
 
-	public SectionItem(String title) {
-		this.title = title;
+    public SectionItem(String title) {
+        this.title = title;
         this.isSectionEmpty = false;
-	}
+    }
 
     @Override
     public View inflateView(LayoutInflater layoutInflater) {

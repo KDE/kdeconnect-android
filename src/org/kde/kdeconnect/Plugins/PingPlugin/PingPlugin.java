@@ -65,15 +65,15 @@ public class PingPlugin extends Plugin {
         stackBuilder.addParentStack(MaterialActivity.class);
         stackBuilder.addNextIntent(new Intent(context, MaterialActivity.class));
         PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
-            0,
-            PendingIntent.FLAG_UPDATE_CURRENT
+                0,
+                PendingIntent.FLAG_UPDATE_CURRENT
         );
 
         int id;
         String message;
         if (np.has("message")) {
             message = np.getString("message");
-            id = (int)System.currentTimeMillis();
+            id = (int) System.currentTimeMillis();
         } else {
             message = "Ping!";
             id = 42; //A unique id to create only one notification

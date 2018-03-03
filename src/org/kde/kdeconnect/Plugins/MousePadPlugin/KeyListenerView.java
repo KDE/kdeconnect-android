@@ -33,16 +33,18 @@ import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
 
-public class KeyListenerView extends View  {
+public class KeyListenerView extends View {
 
     private String deviceId;
 
     private static SparseIntArray SpecialKeysMap = new SparseIntArray();
+
     static {
         int i = 0;
         SpecialKeysMap.put(KeyEvent.KEYCODE_DEL, ++i);              // 1
         SpecialKeysMap.put(KeyEvent.KEYCODE_TAB, ++i);              // 2
-        SpecialKeysMap.put(KeyEvent.KEYCODE_ENTER, 12); ++i;        // 3 is not used, return is 12 instead
+        SpecialKeysMap.put(KeyEvent.KEYCODE_ENTER, 12);
+        ++i;        // 3 is not used, return is 12 instead
         SpecialKeysMap.put(KeyEvent.KEYCODE_DPAD_LEFT, ++i);        // 4
         SpecialKeysMap.put(KeyEvent.KEYCODE_DPAD_UP, ++i);          // 5
         SpecialKeysMap.put(KeyEvent.KEYCODE_DPAD_RIGHT, ++i);       // 6
@@ -165,7 +167,7 @@ public class KeyListenerView extends View  {
             np.set("key", new String(new char[]{keyCharacter}).toLowerCase());
         } else {
             //A normal key, but still not handled by the KeyInputConnection (happens with numbers)
-            np.set("key", new String(new char[]{(char)event.getUnicodeChar()}));
+            np.set("key", new String(new char[]{(char) event.getUnicodeChar()}));
         }
 
         sendKeyPressPackage(np);

@@ -45,7 +45,7 @@ import java.util.ArrayList;
 public class CustomDevicesActivity extends AppCompatActivity {
 
     private static final String LOG_ID = "CustomDevicesActivity";
-    public static final String KEY_CUSTOM_DEVLIST_PREFERENCE  = "device_list_preference";
+    public static final String KEY_CUSTOM_DEVLIST_PREFERENCE = "device_list_preference";
     private static final String IP_DELIM = ",";
 
     private ListView list;
@@ -58,7 +58,7 @@ public class CustomDevicesActivity extends AppCompatActivity {
         initializeDeviceList(this);
         setContentView(R.layout.custom_ip_list);
 
-        list = (ListView)findViewById(android.R.id.list);
+        list = (ListView) findViewById(android.R.id.list);
         list.setOnItemClickListener(onClickListener);
 
         list.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ipAddressList));
@@ -70,7 +70,7 @@ public class CustomDevicesActivity extends AppCompatActivity {
             }
         });
 
-        EditText ipEntryBox = (EditText)findViewById(R.id.ip_edittext);
+        EditText ipEntryBox = (EditText) findViewById(R.id.ip_edittext);
         ipEntryBox.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEND) {
@@ -126,7 +126,7 @@ public class CustomDevicesActivity extends AppCompatActivity {
     };
 
     private void addNewDevice() {
-        EditText ipEntryBox = (EditText)findViewById(R.id.ip_edittext);
+        EditText ipEntryBox = (EditText) findViewById(R.id.ip_edittext);
         String enteredText = ipEntryBox.getText().toString().trim();
         if (!enteredText.isEmpty()) {
             // don't add empty string (after trimming)
@@ -154,14 +154,14 @@ public class CustomDevicesActivity extends AppCompatActivity {
         }
         PreferenceManager.getDefaultSharedPreferences(CustomDevicesActivity.this).edit().putString(
                 KEY_CUSTOM_DEVLIST_PREFERENCE, serialized).commit();
-        ((ArrayAdapter)list.getAdapter()).notifyDataSetChanged();
+        ((ArrayAdapter) list.getAdapter()).notifyDataSetChanged();
 
     }
 
     public static String serializeIpList(ArrayList<String> ipList) {
         String serialized = "";
         for (String ipAddress : ipList) {
-            serialized += IP_DELIM+ipAddress;
+            serialized += IP_DELIM + ipAddress;
         }
         // remove first delimiter
         serialized = serialized.substring(IP_DELIM.length());
@@ -176,10 +176,10 @@ public class CustomDevicesActivity extends AppCompatActivity {
         return ipList;
     }
 
-    private void initializeDeviceList(Context context){
+    private void initializeDeviceList(Context context) {
         String deviceListPrefs = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 KEY_CUSTOM_DEVLIST_PREFERENCE, "");
-        if(deviceListPrefs.isEmpty()){
+        if (deviceListPrefs.isEmpty()) {
             PreferenceManager.getDefaultSharedPreferences(context).edit().putString(
                     KEY_CUSTOM_DEVLIST_PREFERENCE,
                     deviceListPrefs).commit();

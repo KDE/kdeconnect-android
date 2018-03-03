@@ -60,7 +60,7 @@ public class BackgroundService extends Service {
 
     private final HashSet<Object> discoveryModeAcquisitions = new HashSet<>();
 
-    public static BackgroundService getInstance(){
+    public static BackgroundService getInstance() {
         return instance;
     }
 
@@ -113,14 +113,17 @@ public class BackgroundService extends Service {
         public void incomingRequest() {
             onDeviceListChanged();
         }
+
         @Override
         public void pairingSuccessful() {
             onDeviceListChanged();
         }
+
         @Override
         public void pairingFailed(String error) {
             onDeviceListChanged();
         }
+
         @Override
         public void unpaired() {
             onDeviceListChanged();
@@ -128,7 +131,7 @@ public class BackgroundService extends Service {
     };
 
     public void onDeviceListChanged() {
-        for(DeviceListChangedCallback callback : deviceListChangedCallbacks.values()) {
+        for (DeviceListChangedCallback callback : deviceListChangedCallbacks.values()) {
             callback.onDeviceListChanged();
         }
     }
@@ -137,11 +140,11 @@ public class BackgroundService extends Service {
         //Log.e("BackgroundService", "Loading remembered trusted devices");
         SharedPreferences preferences = getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
         Set<String> trustedDevices = preferences.getAll().keySet();
-        for(String deviceId : trustedDevices) {
+        for (String deviceId : trustedDevices) {
             //Log.e("BackgroundService", "Loading device "+deviceId);
             if (preferences.getBoolean(deviceId, false)) {
                 Device device = new Device(this, deviceId);
-                devices.put(deviceId,device);
+                devices.put(deviceId, device);
                 device.addPairingCallback(devicePairingCallback);
             }
         }
@@ -167,7 +170,7 @@ public class BackgroundService extends Service {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                for(Device d : devices.values()) {
+                for (Device d : devices.values()) {
                     if (!d.isPaired() && !d.isPairRequested() && !d.isPairRequestedByPeer() && !d.deviceShouldBeKeptAlive()) {
                         d.disconnect();
                     }
@@ -192,8 +195,7 @@ public class BackgroundService extends Service {
                 device = new Device(BackgroundService.this, identityPackage, link);
                 if (device.isPaired() || device.isPairRequested() || device.isPairRequestedByPeer()
                         || link.linkShouldBeKeptAlive()
-                        ||!discoveryModeAcquisitions.isEmpty() )
-                {
+                        || !discoveryModeAcquisitions.isEmpty()) {
                     devices.put(deviceId, device);
                     device.addPairingCallback(devicePairingCallback);
                 } else {
@@ -247,6 +249,7 @@ public class BackgroundService extends Service {
     public void addDeviceListChangedCallback(String key, DeviceListChangedCallback callback) {
         deviceListChangedCallbacks.put(key, callback);
     }
+
     public void removeDeviceListChangedCallback(String key) {
         deviceListChangedCallbacks.remove(key);
     }
@@ -290,7 +293,7 @@ public class BackgroundService extends Service {
     }
 
     @Override
-    public IBinder onBind (Intent intent) {
+    public IBinder onBind(Intent intent) {
         return new Binder();
     }
 

@@ -78,6 +78,7 @@ class SimpleSftpServer {
         Security.insertProviderAt(SslHelper.BC, 1);
         SecurityUtils.setRegisterBouncyCastle(false);
     }
+
     private final SshServer sshd = SshServer.setUpDefaultServer();
 
     public void init(Context context, Device device) {
@@ -90,7 +91,7 @@ class SimpleSftpServer {
 
         sshd.setFileSystemFactory(new AndroidFileSystemFactory(context));
         sshd.setCommandFactory(new ScpCommandFactory());
-        sshd.setSubsystemFactories(Collections.singletonList((NamedFactory<Command>)new SftpSubsystem.Factory()));
+        sshd.setSubsystemFactories(Collections.singletonList((NamedFactory<Command>) new SftpSubsystem.Factory()));
 
         if (device.publicKey != null) {
             keyAuth.deviceKey = device.publicKey;
@@ -105,12 +106,12 @@ class SimpleSftpServer {
             passwordAuth.password = RandomHelper.randomString(28);
 
             port = STARTPORT;
-            while(!started) {
+            while (!started) {
                 try {
                     sshd.setPort(port);
                     sshd.start();
                     started = true;
-                } catch(Exception e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                     port++;
                     if (port >= ENDPORT) {
@@ -145,7 +146,7 @@ class SimpleSftpServer {
     public String getLocalIpAddress() {
         String ip6 = null;
         try {
-            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {
                 NetworkInterface intf = en.nextElement();
 
                 // Anything with rmnet is related to cellular connections or USB
@@ -156,13 +157,13 @@ class SimpleSftpServer {
                 // If we run across an interface that has this, we can safely
                 // ignore it.  In fact, it's much safer to do.  If we don't, we
                 // might get invalid IP adddresses out of it.
-                if(intf.getDisplayName().contains("rmnet")) continue;
+                if (intf.getDisplayName().contains("rmnet")) continue;
 
-                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements(); ) {
                     InetAddress inetAddress = enumIpAddr.nextElement();
                     if (!inetAddress.isLoopbackAddress()) {
                         String address = inetAddress.getHostAddress();
-                        if(inetAddress instanceof Inet4Address) { //Prefer IPv4 over IPv6, because sshfs doesn't seem to like IPv6
+                        if (inetAddress instanceof Inet4Address) { //Prefer IPv4 over IPv6, because sshfs doesn't seem to like IPv6
                             return address;
                         } else {
                             ip6 = address;

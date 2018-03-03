@@ -27,8 +27,7 @@ import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 
-public class KdeConnectBroadcastReceiver extends BroadcastReceiver
-{
+public class KdeConnectBroadcastReceiver extends BroadcastReceiver {
 
 
     public void onReceive(Context context, Intent intent) {
@@ -37,7 +36,7 @@ public class KdeConnectBroadcastReceiver extends BroadcastReceiver
 
         String action = intent.getAction();
 
-        switch(action) {
+        switch (action) {
             case Intent.ACTION_PACKAGE_REPLACED:
                 Log.i("KdeConnect", "UpdateReceiver");
                 if (!intent.getData().getSchemeSpecificPart().equals(context.getPackageName())) {
@@ -81,12 +80,11 @@ public class KdeConnectBroadcastReceiver extends BroadcastReceiver
                 });
                 break;
             default:
-                Log.i("BroadcastReceiver", "Ignoring broadcast event: "+intent.getAction());
+                Log.i("BroadcastReceiver", "Ignoring broadcast event: " + intent.getAction());
                 break;
         }
 
     }
-
 
 
 }

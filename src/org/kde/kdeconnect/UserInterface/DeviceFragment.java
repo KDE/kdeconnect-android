@@ -442,7 +442,7 @@ public class DeviceFragment extends Fragment {
             public void onServiceStart(BackgroundService service) {
                 Device dev = service.getDevice(devId);
                 if (dev == null) {
-                    Log.w("rejectPairing", "Device no longer exists: "+devId);
+                    Log.w("rejectPairing", "Device no longer exists: " + devId);
                     return;
                 }
                 activity.getSupportActionBar().setTitle(dev.getName());
@@ -465,7 +465,7 @@ public class DeviceFragment extends Fragment {
             public void onServiceStart(BackgroundService service) {
                 Device dev = service.getDevice(devId);
                 if (dev == null) {
-                    Log.w("rejectPairing", "Device no longer exists: "+devId);
+                    Log.w("rejectPairing", "Device no longer exists: " + devId);
                     return;
                 }
                 activity.getSupportActionBar().setTitle(dev.getName());
@@ -527,7 +527,7 @@ public class DeviceFragment extends Fragment {
         }
 
         @Override
-        public PluginClickListener clone(){
+        public PluginClickListener clone() {
             try {
                 return (PluginClickListener) super.clone();
             } catch (CloneNotSupportedException e) {

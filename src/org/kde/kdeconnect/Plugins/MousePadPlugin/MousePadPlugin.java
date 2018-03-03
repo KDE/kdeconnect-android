@@ -88,8 +88,8 @@ public class MousePadPlugin extends Plugin {
             sensitivity = 1.0f;
         }
 
-        np.set("dx", dx*sensitivity);
-        np.set("dy", dy*sensitivity);
+        np.set("dx", dx * sensitivity);
+        np.set("dy", dy * sensitivity);
 
         device.sendPackage(np);
     }
@@ -118,7 +118,7 @@ public class MousePadPlugin extends Plugin {
         device.sendPackage(np);
     }
 
-    public void sendSingleHold(){
+    public void sendSingleHold() {
         NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MOUSEPAD_REQUEST);
         np.set("singlehold", true);
         device.sendPackage(np);

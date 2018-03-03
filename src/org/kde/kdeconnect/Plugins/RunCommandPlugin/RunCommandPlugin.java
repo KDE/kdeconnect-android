@@ -53,7 +53,7 @@ public class RunCommandPlugin extends Plugin {
 
     interface CommandsChangedCallback {
         void update();
-    };
+    }
 
     public ArrayList<JSONObject> getCommandList() {
         return commandList;
@@ -88,7 +88,7 @@ public class RunCommandPlugin extends Plugin {
             try {
                 JSONObject obj = new JSONObject(np.getString("commandList"));
                 Iterator<String> keys = obj.keys();
-                while(keys.hasNext()){
+                while (keys.hasNext()) {
                     String s = keys.next();
                     JSONObject o = obj.getJSONObject(s);
                     o.put("key", s);

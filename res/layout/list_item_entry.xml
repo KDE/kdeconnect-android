@@ -1,37 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:baselineAligned="false"
     android:layout_height="wrap_content"
-    android:paddingLeft="12dip"
-    android:paddingStart="12dip"
-    android:minHeight="?android:attr/listPreferredItemHeight"
-    android:gravity="center_vertical"
-    android:paddingRight="?android:attr/scrollbarSize"
-    android:paddingEnd="?android:attr/scrollbarSize"
     android:background="@drawable/abc_list_selector_holo_dark"
-    android:orientation="vertical">
+    android:baselineAligned="false"
+    android:gravity="center_vertical"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:orientation="vertical"
+    android:paddingEnd="?android:attr/scrollbarSize"
+    android:paddingLeft="12dip"
+    android:paddingRight="?android:attr/scrollbarSize"
+    android:paddingStart="12dip">
     <!-- We should use android:background="@android:/listChoiceBackgroundIndicator"
          instead of abc_list_selector_holo_dark but that's only supported from API11 -->
 
-    <TextView android:id="@+id/list_item_entry_title"
+    <TextView
+        android:id="@+id/list_item_entry_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:ellipsize="marquee"
         android:fadingEdge="horizontal"
-        android:text="" />
+        android:singleLine="true"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <TextView android:id="@+id/list_item_entry_summary"
+    <TextView
+        android:id="@+id/list_item_entry_summary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
         android:singleLine="true"
-        android:visibility="gone"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="@android:color/darker_gray"
-        android:text="" />
-
+        android:visibility="gone" />
 
 </LinearLayout>

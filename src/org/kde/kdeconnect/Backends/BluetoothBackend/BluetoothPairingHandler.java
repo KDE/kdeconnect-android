@@ -21,6 +21,7 @@
 package org.kde.kdeconnect.Backends.BluetoothBackend;
 
 import android.util.Log;
+
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
@@ -32,6 +33,7 @@ import java.util.TimerTask;
 public class BluetoothPairingHandler extends BasePairingHandler {
 
     Timer mPairingTimer;
+
     public BluetoothPairingHandler(Device device, final PairingHandlerCallback callback) {
         super(device, callback);
 
@@ -42,7 +44,7 @@ public class BluetoothPairingHandler extends BasePairingHandler {
         }
     }
 
-//    @Override
+    //    @Override
     public NetworkPackage createPairPackage() {
         NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
         np.set("pair", true);
@@ -50,7 +52,7 @@ public class BluetoothPairingHandler extends BasePairingHandler {
     }
 
     @Override
-    public void packageReceived(NetworkPackage np) throws Exception{
+    public void packageReceived(NetworkPackage np) throws Exception {
 
         boolean wantsPair = np.getBoolean("pair");
 
@@ -66,7 +68,7 @@ public class BluetoothPairingHandler extends BasePairingHandler {
 
         if (wantsPair) {
 
-            if (mPairStatus == PairStatus.Requested)  { //We started pairing
+            if (mPairStatus == PairStatus.Requested) { //We started pairing
                 hidePairingNotification();
                 pairingDone();
             } else {
@@ -89,11 +91,11 @@ public class BluetoothPairingHandler extends BasePairingHandler {
                 mPairingTimer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        Log.w("KDE/Device","Unpairing (timeout B)");
+                        Log.w("KDE/Device", "Unpairing (timeout B)");
                         mPairStatus = PairStatus.NotPaired;
                         hidePairingNotification();
                     }
-                }, 25*1000); //Time to show notification, waiting for user to accept (peer will timeout in 30 seconds)
+                }, 25 * 1000); //Time to show notification, waiting for user to accept (peer will timeout in 30 seconds)
                 mPairStatus = PairStatus.RequestedByPeer;
                 mCallback.incomingRequest();
 
@@ -126,10 +128,10 @@ public class BluetoothPairingHandler extends BasePairingHandler {
                     @Override
                     public void run() {
                         mCallback.pairingFailed(mDevice.getContext().getString(R.string.error_timed_out));
-                        Log.w("KDE/Device","Unpairing (timeout A)");
+                        Log.w("KDE/Device", "Unpairing (timeout A)");
                         mPairStatus = PairStatus.NotPaired;
                     }
-                }, 30*1000); //Time to wait for the other to accept
+                }, 30 * 1000); //Time to wait for the other to accept
                 mPairStatus = PairStatus.Requested;
             }
 
@@ -144,7 +146,7 @@ public class BluetoothPairingHandler extends BasePairingHandler {
     public void hidePairingNotification() {
         mDevice.hidePairingNotification();
         if (mPairingTimer != null) {
-            mPairingTimer .cancel();
+            mPairingTimer.cancel();
         }
     }
 

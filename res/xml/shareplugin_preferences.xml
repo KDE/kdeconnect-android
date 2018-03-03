@@ -5,11 +5,11 @@
 
     <CheckBoxPreference
         android:id="@+id/share_destination_customize"
+        android:defaultValue="false"
         android:key="share_destination_custom"
-        android:title="@string/share_destination_customize"
         android:summaryOff="@string/share_destination_customize_summary_disabled"
         android:summaryOn="@string/share_destination_customize_summary_enabled"
-        android:defaultValue="false" />
+        android:title="@string/share_destination_customize" />
 
     <Preference
         android:id="@+id/share_destination_folder_preference"
@@ -18,9 +18,9 @@
 
     <CheckBoxPreference
         android:id="@+id/share_notification_preference"
+        android:defaultValue="true"
         android:key="share_notification_preference"
-        android:title="@string/share_notification_preference"
         android:summary="@string/share_notification_preference_summary"
-        android:defaultValue="true" />
+        android:title="@string/share_notification_preference" />
 
 </PreferenceScreen>

@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
-    android:paddingLeft="25dp"
-    android:paddingTop="25dp"
-    android:paddingRight="25dp"
-    android:paddingBottom="25dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingBottom="25dp"
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp"
+    android:paddingTop="25dp">
 
     <ImageView
         android:id="@+id/album_art"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:layout_marginRight="25dp"
+        android:layout_weight="1"
         android:scaleType="fitCenter" />
 
     <include
+        layout="@layout/mpris_control"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        layout="@layout/mpris_control" />
+        android:layout_weight="1" />
 
 </LinearLayout>

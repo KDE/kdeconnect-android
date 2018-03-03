@@ -40,7 +40,7 @@ public class AppsHelper {
         } catch (final PackageManager.NameNotFoundException e) {
 
             e.printStackTrace();
-            Log.e("AppsHelper","Could not resolve name "+packageName);
+            Log.e("AppsHelper", "Could not resolve name " + packageName);
 
             return null;
 
@@ -53,20 +53,19 @@ public class AppsHelper {
         try {
 
             PackageManager pm = context.getPackageManager();
-            ApplicationInfo ai = pm.getApplicationInfo( packageName, 0);
+            ApplicationInfo ai = pm.getApplicationInfo(packageName, 0);
             return pm.getApplicationIcon(ai);
 
         } catch (final PackageManager.NameNotFoundException e) {
 
             e.printStackTrace();
-            Log.e("AppsHelper","Could not find icon for "+packageName);
+            Log.e("AppsHelper", "Could not find icon for " + packageName);
 
             return null;
 
         }
 
     }
-
 
 
 }

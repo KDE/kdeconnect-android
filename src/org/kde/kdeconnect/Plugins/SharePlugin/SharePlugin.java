@@ -118,7 +118,7 @@ public class SharePlugin extends Plugin {
             if (np.hasPayload()) {
 
                 Log.i("SharePlugin", "hasPayload");
-                
+
                 if (isPermissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                     receiveFile(np);
                 } else {
@@ -401,7 +401,7 @@ public class SharePlugin extends Plugin {
         }
     }
 
-    public static void share(Intent intent, Device device){
+    public static void share(Intent intent, Device device) {
         Bundle extras = intent.getExtras();
         if (extras != null) {
             if (extras.containsKey(Intent.EXTRA_STREAM)) {

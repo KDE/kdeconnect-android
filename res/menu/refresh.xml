@@ -2,11 +2,10 @@
     xmlns:kdeconnect="http://schemas.android.com/apk/res-auto/android">
 
     <item
-            android:id="@+id/menu_refresh"
-            android:icon="@drawable/ic_action_refresh"
-            android:orderInCategory="200"
-            kdeconnect:showAsAction="never"
-            android:title="@string/refresh"
-        />
+        android:id="@+id/menu_refresh"
+        android:icon="@drawable/ic_action_refresh"
+        android:orderInCategory="200"
+        android:title="@string/refresh"
+        kdeconnect:showAsAction="never" />
 
 </menu>

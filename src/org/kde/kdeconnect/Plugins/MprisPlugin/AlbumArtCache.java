@@ -78,6 +78,7 @@ public final class AlbumArtCache {
 
     /**
      * Initializes the disk cache. Needs to be called at least once before trying to use the cache
+     *
      * @param context The context
      */
     public static void initializeDiskCache(Context context) {
@@ -99,6 +100,7 @@ public final class AlbumArtCache {
 
     /**
      * Registers a mpris plugin, such that it gets notified of fetched album art
+     *
      * @param mpris The mpris plugin
      */
     public static void registerPlugin(MprisPlugin mpris) {
@@ -107,6 +109,7 @@ public final class AlbumArtCache {
 
     /**
      * Deregister a mpris plugin
+     *
      * @param mpris The mpris plugin
      */
     public static void deregisterPlugin(MprisPlugin mpris) {
@@ -192,6 +195,7 @@ public final class AlbumArtCache {
 
     /**
      * Fetches an album art url and puts it in the cache
+     *
      * @param url The url
      */
     private static void fetchUrl(URL url) {
@@ -219,9 +223,9 @@ public final class AlbumArtCache {
         /**
          * Initialize an url fetch
          *
-         * @param url The url being fetched
+         * @param url          The url being fetched
          * @param payloadInput A payload input stream (if from the connected device). null if fetched from http(s)
-         * @param cacheItem The disk cache item to edit
+         * @param cacheItem    The disk cache item to edit
          * @throws IOException
          */
         FetchURLTask(URL url, InputStream payloadInput, DiskLruCache.Editor cacheItem) throws IOException {
@@ -233,6 +237,7 @@ public final class AlbumArtCache {
 
         /**
          * Opens the http(s) connection
+         *
          * @return True if succeeded
          * @throws IOException
          */
@@ -240,7 +245,7 @@ public final class AlbumArtCache {
             //Default android behaviour does not follow https -> http urls, so do this manually
             URL currentUrl = url;
             HttpURLConnection connection;
-            for (int i = 0; i<5; ++i) {
+            for (int i = 0; i < 5; ++i) {
                 connection = (HttpURLConnection) currentUrl.openConnection();
                 connection.setConnectTimeout(10000);
                 connection.setReadTimeout(10000);
@@ -324,7 +329,9 @@ public final class AlbumArtCache {
             --numFetching;
             initiateFetch();
         }
-    };
+    }
+
+    ;
 
     /**
      * Does the actual fetching and makes sure only not too many fetches are running at the same time
@@ -357,6 +364,7 @@ public final class AlbumArtCache {
     /**
      * The disk cache requires mostly alphanumeric characters, and at most 64 characters.
      * So hash the url to get a valid key
+     *
      * @param url The url
      * @return A valid disk cache key
      */
@@ -378,8 +386,9 @@ public final class AlbumArtCache {
 
     /**
      * Transfer an asked-for album art payload to the disk cache.
+     *
      * @param albumUrl The url of the album art (should be a file:// url)
-     * @param payload The payload input stream
+     * @param payload  The payload input stream
      */
     public static void payloadToDiskCache(String albumUrl, InputStream payload) {
         //We need the disk cache for this

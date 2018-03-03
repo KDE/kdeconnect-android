@@ -68,7 +68,7 @@ public class DeviceTest extends AndroidTestCase {
             KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
             keyGen.initialize(2048);
             keyPair = keyGen.genKeyPair();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             Log.e("KDE/initializeRsaKeys", "Exception");
             return;
@@ -84,7 +84,7 @@ public class DeviceTest extends AndroidTestCase {
         editor.apply();
 
         SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
-        preferences.edit().putBoolean(deviceId,true).apply();
+        preferences.edit().putBoolean(deviceId, true).apply();
     }
 
 
@@ -110,7 +110,7 @@ public class DeviceTest extends AndroidTestCase {
     }
 
     // Basic paired device testing
-    public void testDevice(){
+    public void testDevice() {
 
         Device device = new Device(getContext(), "testDevice");
 
@@ -123,7 +123,7 @@ public class DeviceTest extends AndroidTestCase {
 
     // Testing pairing done using reflection since it is private
     // Created an unpaired device inside this test
-    public void testPairingDone(){
+    public void testPairingDone() {
 
         NetworkPackage fakeNetworkPackage = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_IDENTITY);
         fakeNetworkPackage.set("deviceId", "unpairedTestDevice");
@@ -143,7 +143,7 @@ public class DeviceTest extends AndroidTestCase {
             KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
             keyGen.initialize(2048);
             keyPair = keyGen.genKeyPair();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             Log.e("KDE/initializeRsaKeys", "Exception");
             return;
@@ -162,7 +162,7 @@ public class DeviceTest extends AndroidTestCase {
             method = Device.class.getDeclaredMethod("pairingDone");
             method.setAccessible(true);
             method.invoke(device);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -171,7 +171,7 @@ public class DeviceTest extends AndroidTestCase {
         SharedPreferences preferences = getContext().getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
         assertEquals(preferences.getBoolean(device.getDeviceId(), false), true);
 
-        SharedPreferences settings = getContext().getSharedPreferences(device.getDeviceId(),Context.MODE_PRIVATE);
+        SharedPreferences settings = getContext().getSharedPreferences(device.getDeviceId(), Context.MODE_PRIVATE);
         assertEquals(settings.getString("deviceName", "Unknown device"), "Unpaired Test Device");
         assertEquals(settings.getString("deviceType", "tablet"), "phone");
 
@@ -181,13 +181,13 @@ public class DeviceTest extends AndroidTestCase {
 
     }
 
-    public void testPairingDoneWithCertificate() throws Exception{
+    public void testPairingDoneWithCertificate() throws Exception {
         KeyPair keyPair = null;
         try {
             KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
             keyGen.initialize(2048);
             keyPair = keyGen.genKeyPair();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             Log.e("KDE/initializeRsaKeys", "Exception");
         }
@@ -214,7 +214,7 @@ public class DeviceTest extends AndroidTestCase {
             ContentSigner contentSigner = new JcaContentSignerBuilder("SHA256WithRSAEncryption").setProvider(BC).build(keyPair.getPrivate());
             certificate = new JcaX509CertificateConverter().setProvider(BC).getCertificate(certificateBuilder.build(contentSigner));
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             Log.e("KDE/initialiseCert", "Exception");
         }
@@ -246,7 +246,7 @@ public class DeviceTest extends AndroidTestCase {
             method = Device.class.getDeclaredMethod("pairingDone");
             method.setAccessible(true);
             method.invoke(device);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -255,7 +255,7 @@ public class DeviceTest extends AndroidTestCase {
         SharedPreferences preferences = getContext().getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
         assertEquals(preferences.getBoolean(device.getDeviceId(), false), true);
 
-        SharedPreferences settings = getContext().getSharedPreferences(device.getDeviceId(),Context.MODE_PRIVATE);
+        SharedPreferences settings = getContext().getSharedPreferences(device.getDeviceId(), Context.MODE_PRIVATE);
         assertEquals(settings.getString("deviceName", "Unknown device"), "Unpaired Test Device");
         assertEquals(settings.getString("deviceType", "tablet"), "phone");
 
@@ -264,7 +264,7 @@ public class DeviceTest extends AndroidTestCase {
         settings.edit().clear().apply();
     }
 
-    public void testUnpair(){
+    public void testUnpair() {
 
         Device device = new Device(getContext(), "testDevice");
 

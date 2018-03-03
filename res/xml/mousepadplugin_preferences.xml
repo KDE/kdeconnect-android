@@ -10,7 +10,7 @@
         android:entryValues="@array/mousepad_tap_values"
         android:key="@string/mousepad_double_tap_key"
         android:summary="%s"
-        android:title="@string/mousepad_double_tap_settings_title"/>
+        android:title="@string/mousepad_double_tap_settings_title" />
 
     <ListPreference
         android:id="@+id/mousepad_triple_tap_preference"
@@ -19,7 +19,7 @@
         android:entryValues="@array/mousepad_tap_values"
         android:key="@string/mousepad_triple_tap_key"
         android:summary="%s"
-        android:title="@string/mousepad_triple_tap_settings_title"/>
+        android:title="@string/mousepad_triple_tap_settings_title" />
 
     <ListPreference
         android:id="@+id/mousepad_sensitivity_preference"
@@ -28,11 +28,11 @@
         android:entryValues="@array/mousepad_sensitivity_values"
         android:key="@string/mousepad_sensitivity_key"
         android:summary="%s"
-        android:title="@string/mousepad_sensitivity_settings_title"/>
+        android:title="@string/mousepad_sensitivity_settings_title" />
 
     <CheckBoxPreference
         android:id="@+id/mousepad_scroll_preference"
+        android:defaultValue="false"
         android:key="@string/mousepad_scroll_direction"
-        android:title="@string/mousepad_scroll_direction_title"
-        android:defaultValue="false" />
+        android:title="@string/mousepad_scroll_direction_title" />
 </PreferenceScreen>

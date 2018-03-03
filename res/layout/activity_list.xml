@@ -1,11 +1,10 @@
 <ListView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/listView1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:addStatesFromChildren="true"
+    android:orientation="vertical"
     android:paddingLeft="16dip"
     android:paddingRight="16dip"
-    tools:context="org.kde.kdeconnect.UserInterface.MaterialActivity"
-    android:id="@+id/listView1"
-    android:addStatesFromChildren="true"
-    android:orientation="vertical">
-</ListView>
+    tools:context="org.kde.kdeconnect.UserInterface.MaterialActivity"></ListView>

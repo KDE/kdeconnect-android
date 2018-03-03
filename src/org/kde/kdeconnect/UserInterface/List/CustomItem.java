@@ -25,11 +25,11 @@ import android.view.View;
 
 public class CustomItem implements ListAdapter.Item {
 
-	private final View view;
+    private final View view;
 
-	public CustomItem(View v) {
+    public CustomItem(View v) {
         this.view = v;
-	}
+    }
 
     @Override
     public View inflateView(LayoutInflater layoutInflater) {

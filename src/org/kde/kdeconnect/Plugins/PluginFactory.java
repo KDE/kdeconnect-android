@@ -79,7 +79,9 @@ public class PluginFactory {
             return icon;
         }
 
-        public boolean hasSettings() { return hasSettings; }
+        public boolean hasSettings() {
+            return hasSettings;
+        }
 
         public boolean isEnabledByDefault() {
             return enabledByDefault;
@@ -136,15 +138,15 @@ public class PluginFactory {
         }
 
         try {
-            Plugin p = ((Plugin)availablePlugins.get(pluginKey).newInstance());
+            Plugin p = ((Plugin) availablePlugins.get(pluginKey).newInstance());
             p.setContext(context, null);
             info = new PluginInfo(p.getDisplayName(), p.getDescription(), p.getIcon(),
                     p.isEnabledByDefault(), p.hasSettings(), p.listensToUnpairedDevices(),
                     p.getSupportedPackageTypes(), p.getOutgoingPackageTypes());
             pluginInfoCache.put(pluginKey, info); //Cache it
             return info;
-        } catch(Exception e) {
-            Log.e("PluginFactory","getPluginInfo exception");
+        } catch (Exception e) {
+            Log.e("PluginFactory", "getPluginInfo exception");
             e.printStackTrace();
             throw new RuntimeException(e);
         }
@@ -158,16 +160,16 @@ public class PluginFactory {
     public static Plugin instantiatePluginForDevice(Context context, String pluginKey, Device device) {
         Class c = availablePlugins.get(pluginKey);
         if (c == null) {
-            Log.e("PluginFactory", "Plugin not found: "+pluginKey);
+            Log.e("PluginFactory", "Plugin not found: " + pluginKey);
             return null;
         }
 
         try {
-            Plugin plugin = (Plugin)c.newInstance();
+            Plugin plugin = (Plugin) c.newInstance();
             plugin.setContext(context, device);
             return plugin;
-        } catch(Exception e) {
-            Log.e("PluginFactory", "Could not instantiate plugin: "+pluginKey);
+        } catch (Exception e) {
+            Log.e("PluginFactory", "Could not instantiate plugin: " + pluginKey);
             e.printStackTrace();
             return null;
         }
@@ -178,8 +180,8 @@ public class PluginFactory {
         try {
             String pluginKey = Plugin.getPluginKey(pluginClass);
             availablePlugins.put(pluginKey, pluginClass);
-        } catch(Exception e) {
-            Log.e("PluginFactory","addPlugin exception");
+        } catch (Exception e) {
+            Log.e("PluginFactory", "addPlugin exception");
             e.printStackTrace();
         }
     }
@@ -210,7 +212,7 @@ public class PluginFactory {
             PluginInfo plugin = getPluginInfo(context, pluginId);
             //Check incoming against outgoing
             if (Collections.disjoint(outgoing, plugin.getSupportedPackageTypes())
-                && Collections.disjoint(incoming, plugin.getOutgoingPackageTypes())) {
+                    && Collections.disjoint(incoming, plugin.getOutgoingPackageTypes())) {
                 Log.i("PluginFactory", "Won't load " + pluginId + " because of unmatched capabilities");
                 continue; //No capabilities in common, do not load this plugin
             }

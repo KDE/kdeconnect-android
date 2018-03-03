@@ -58,7 +58,7 @@ public class MprisActivity extends AppCompatActivity {
     private MprisPlugin.MprisPlayer targetPlayer = null;
 
     private static String milisToProgress(long milis) {
-        int length = (int)(milis / 1000); //From milis to seconds
+        int length = (int) (milis / 1000); //From milis to seconds
         StringBuilder text = new StringBuilder();
         int minutes = length / 60;
         if (minutes > 60) {
@@ -69,10 +69,12 @@ public class MprisActivity extends AppCompatActivity {
         }
         text.append(minutes).append(':');
         int seconds = (length % 60);
-        if(seconds < 10) text.append('0'); // needed to show length properly (eg 4:05 instead of 4:5)
+        if (seconds < 10)
+            text.append('0'); // needed to show length properly (eg 4:05 instead of 4:5)
         text.append(seconds);
         return text.toString();
     }
+
     protected void connectToPlugin(final String targetPlayerName) {
 
         BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
@@ -221,9 +223,9 @@ public class MprisActivity extends AppCompatActivity {
 
         if (playerStatus.isSeekAllowed()) {
             ((TextView) findViewById(R.id.time_textview)).setText(milisToProgress(playerStatus.getLength()));
-            SeekBar positionSeek = (SeekBar)findViewById(R.id.positionSeek);
-            positionSeek.setMax((int)(playerStatus.getLength()));
-            positionSeek.setProgress((int)(playerStatus.getPosition()));
+            SeekBar positionSeek = (SeekBar) findViewById(R.id.positionSeek);
+            positionSeek.setMax((int) (playerStatus.getLength()));
+            positionSeek.setProgress((int) (playerStatus.getPosition()));
             findViewById(R.id.progress_slider).setVisibility(View.VISIBLE);
         } else {
             findViewById(R.id.progress_slider).setVisibility(View.GONE);
@@ -251,7 +253,7 @@ public class MprisActivity extends AppCompatActivity {
     /**
      * Change current volume with provided step.
      *
-     * @param step  step size volume change
+     * @param step step size volume change
      */
     private void updateVolume(int step) {
         if (targetPlayer == null) {
@@ -259,11 +261,11 @@ public class MprisActivity extends AppCompatActivity {
         }
         final int currentVolume = targetPlayer.getVolume();
 
-        if(currentVolume < 100 || currentVolume > 0) {
+        if (currentVolume < 100 || currentVolume > 0) {
             int newVolume = currentVolume + step;
-            if(newVolume > 100) {
+            if (newVolume > 100) {
                 newVolume = 100;
-            } else if (newVolume <0 ) {
+            } else if (newVolume < 0) {
                 newVolume = 0;
             }
             targetPlayer.setVolume(newVolume);
@@ -383,7 +385,7 @@ public class MprisActivity extends AppCompatActivity {
             }
         });
 
-        ((SeekBar)findViewById(R.id.volume_seek)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        ((SeekBar) findViewById(R.id.volume_seek)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
             }
@@ -408,7 +410,7 @@ public class MprisActivity extends AppCompatActivity {
         positionSeekUpdateRunnable = new Runnable() {
             @Override
             public void run() {
-                final SeekBar positionSeek = (SeekBar)findViewById(R.id.positionSeek);
+                final SeekBar positionSeek = (SeekBar) findViewById(R.id.positionSeek);
                 BackgroundService.RunCommand(MprisActivity.this, new BackgroundService.InstanceCallback() {
                     @Override
                     public void onServiceStart(BackgroundService service) {
@@ -424,10 +426,10 @@ public class MprisActivity extends AppCompatActivity {
         };
         positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 200);
 
-        ((SeekBar)findViewById(R.id.positionSeek)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        ((SeekBar) findViewById(R.id.positionSeek)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean byUser) {
-                ((TextView)findViewById(R.id.progress_textview)).setText(milisToProgress(progress));
+                ((TextView) findViewById(R.id.progress_textview)).setText(milisToProgress(progress));
             }
 
             @Override

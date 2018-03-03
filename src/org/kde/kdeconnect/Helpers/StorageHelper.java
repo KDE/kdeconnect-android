@@ -81,11 +81,11 @@ public class StorageHelper {
         if (storage.exists() && storage.isDirectory()) {
             String mounts = null;
             try {
-                Scanner scanner = new Scanner( new File("/proc/mounts") );
+                Scanner scanner = new Scanner(new File("/proc/mounts"));
                 mounts = scanner.useDelimiter("\\A").next();
                 scanner.close();
                 //Log.e("Mounts",mounts);
-            } catch(Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -98,7 +98,7 @@ public class StorageHelper {
                     try {
                         //Log.e(dir.getAbsolutePath(), dir.getCanonicalPath());
                         path = dir.getCanonicalPath();
-                    } catch(Exception e){
+                    } catch (Exception e) {
                         path = path2;
                     }
                     if (!path.startsWith("/storage/emulated") || dirs.length == 1) {
@@ -120,7 +120,7 @@ public class StorageHelper {
             try {
                 buf_reader = new BufferedReader(new FileReader("/proc/mounts"));
                 String entry;
-                while((entry = buf_reader.readLine()) != null) {
+                while ((entry = buf_reader.readLine()) != null) {
                     //Log.e("getStorageList", entry);
                     if (entry.contains("vfat") || entry.contains("exfat") || entry.contains("ntfs") || entry.contains("/mnt")) {
                         if (entry.contains("/storage/sdcard")) entries.add(0, entry);

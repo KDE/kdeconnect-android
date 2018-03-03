@@ -64,7 +64,7 @@ import javax.net.ssl.X509TrustManager;
 
 public class SslHelper {
 
-    public enum SslMode{
+    public enum SslMode {
         Client,
         Server
     }
@@ -73,14 +73,14 @@ public class SslHelper {
 
     public static final BouncyCastleProvider BC = new BouncyCastleProvider();
 
-    public static void initialiseCertificate(Context context){
+    public static void initialiseCertificate(Context context) {
         PrivateKey privateKey;
         PublicKey publicKey;
 
         try {
             privateKey = RsaHelper.getPrivateKey(context);
             publicKey = RsaHelper.getPublicKey(context);
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.e("SslHelper", "Error getting keys, can't create certificate");
             return;
         }
@@ -112,7 +112,7 @@ public class SslHelper {
                 edit.putString("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
                 edit.apply();
 
-            } catch(Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 Log.e("KDE/initialiseCert", "Exception");
             }
@@ -144,7 +144,7 @@ public class SslHelper {
 
             // Get remote device certificate if trusted
             X509Certificate remoteDeviceCertificate = null;
-            if (isDeviceTrusted){
+            if (isDeviceTrusted) {
                 SharedPreferences devicePreferences = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
                 byte[] certificateBytes = Base64.decode(devicePreferences.getString("certificate", ""), 0);
                 X509CertificateHolder certificateHolder = new X509CertificateHolder(certificateBytes);
@@ -156,7 +156,7 @@ public class SslHelper {
             keyStore.load(null, null);
             keyStore.setKeyEntry("key", privateKey, "".toCharArray(), new Certificate[]{certificate});
             // Set certificate if device trusted
-            if (remoteDeviceCertificate != null){
+            if (remoteDeviceCertificate != null) {
                 keyStore.setCertificateEntry(deviceId, remoteDeviceCertificate);
             }
 
@@ -170,7 +170,7 @@ public class SslHelper {
             trustManagerFactory.init(keyStore);
 
             // Setup custom trust manager if device not trusted
-            TrustManager[] trustAllCerts = new TrustManager[] {new X509TrustManager() {
+            TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
                 public java.security.cert.X509Certificate[] getAcceptedIssuers() {
                     return new X509Certificate[0];
                 }
@@ -189,7 +189,7 @@ public class SslHelper {
             SSLContext tlsContext = SSLContext.getInstance("TLSv1"); //Newer TLS versions are only supported on API 16+
             if (isDeviceTrusted) {
                 tlsContext.init(keyManagerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), RandomHelper.secureRandom);
-            }else {
+            } else {
                 tlsContext.init(keyManagerFactory.getKeyManagers(), trustAllCerts, RandomHelper.secureRandom);
             }
             return tlsContext;
@@ -203,7 +203,7 @@ public class SslHelper {
 
     public static void configureSslSocket(SSLSocket socket, boolean isDeviceTrusted, boolean isClient) {
 
-        socket.setEnabledProtocols(new String[]{ "TLSv1" }); //Newer TLS versions are only supported on API 16+
+        socket.setEnabledProtocols(new String[]{"TLSv1"}); //Newer TLS versions are only supported on API 16+
 
         // These cipher suites are most common of them that are accepted by kde and android during handshake
         ArrayList<String> supportedCiphers = new ArrayList<>();
@@ -223,9 +223,9 @@ public class SslHelper {
         }
         socket.setEnabledCipherSuites(supportedCiphers.toArray(new String[supportedCiphers.size()]));
 
-        if (isClient){
+        if (isClient) {
             socket.setUseClientMode(true);
-        }else{
+        } else {
             socket.setUseClientMode(false);
             if (isDeviceTrusted) {
                 socket.setNeedClientAuth(true);
@@ -238,7 +238,7 @@ public class SslHelper {
 
     public static SSLSocket convertToSslSocket(Context context, Socket socket, String deviceId, boolean isDeviceTrusted, boolean clientMode) throws IOException {
         SSLSocketFactory sslsocketFactory = SslHelper.getSslContext(context, deviceId, isDeviceTrusted).getSocketFactory();
-        SSLSocket sslsocket = (SSLSocket)sslsocketFactory.createSocket(socket, socket.getInetAddress().getHostAddress(), socket.getPort(), true);
+        SSLSocket sslsocket = (SSLSocket) sslsocketFactory.createSocket(socket, socket.getInetAddress().getHostAddress(), socket.getPort(), true);
         SslHelper.configureSslSocket(sslsocket, isDeviceTrusted, clientMode);
         return sslsocket;
     }
@@ -248,7 +248,7 @@ public class SslHelper {
             byte[] hash = MessageDigest.getInstance("SHA-1").digest(certificate.getEncoded());
             Formatter formatter = new Formatter();
             int i;
-            for (i = 0; i < hash.length-1; i++) {
+            for (i = 0; i < hash.length - 1; i++) {
                 formatter.format("%02x:", hash[i]);
             }
             formatter.format("%02x", hash[i]);

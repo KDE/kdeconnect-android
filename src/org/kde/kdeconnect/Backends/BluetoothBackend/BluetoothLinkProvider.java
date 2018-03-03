@@ -23,8 +23,8 @@ package org.kde.kdeconnect.Backends.BluetoothBackend;
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
 import android.bluetooth.BluetoothServerSocket;
+import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -37,11 +37,14 @@ import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPackage;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 import java.util.Set;
+import java.util.UUID;
 
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class BluetoothLinkProvider extends BaseLinkProvider {
@@ -60,7 +63,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
 
     private void addLink(NetworkPackage identityPackage, BluetoothLink link) {
         String deviceId = identityPackage.getString("deviceId");
-        Log.i("BluetoothLinkProvider","addLink to "+deviceId);
+        Log.i("BluetoothLinkProvider", "addLink to " + deviceId);
         BluetoothLink oldLink = visibleComputers.get(deviceId);
         if (oldLink == link) {
             Log.e("BluetoothLinkProvider", "oldLink == link. This should not happen!");
@@ -70,7 +73,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
         connectionAccepted(identityPackage, link);
         link.startListening();
         if (oldLink != null) {
-            Log.i("BluetoothLinkProvider","Removing old connection to same device");
+            Log.i("BluetoothLinkProvider", "Removing old connection to same device");
             oldLink.disconnect();
         }
     }
@@ -80,7 +83,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
 
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (bluetoothAdapter == null) {
-            Log.e("BluetoothLinkProvider","No bluetooth adapter found.");
+            Log.e("BluetoothLinkProvider", "No bluetooth adapter found.");
         }
     }
 
@@ -92,7 +95,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
 
         if (!bluetoothAdapter.isEnabled()) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            Log.e("BluetoothLinkProvider","Bluetooth adapter not enabled.");
+            Log.e("BluetoothLinkProvider", "Bluetooth adapter not enabled.");
             // TODO: next line needs to be called from an existing activity, so move it?
             // startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
             // TODO: Check result of the previous command, whether the user allowed bluetooth or not.
@@ -194,7 +197,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
             Reader reader = new InputStreamReader(socket.getInputStream(), "UTF-8");
             int charsRead;
             char[] buf = new char[512];
-            while(sb.lastIndexOf("\n") == -1 && (charsRead = reader.read(buf)) != -1) {
+            while (sb.lastIndexOf("\n") == -1 && (charsRead = reader.read(buf)) != -1) {
                 sb.append(buf, 0, charsRead);
             }
 
@@ -263,7 +266,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
         }
 
         @Override
-        @TargetApi(value=Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
+        @TargetApi(value = Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (action.equals(BluetoothDevice.ACTION_UUID)) {
@@ -278,7 +281,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
                     return;
                 }
 
-                for (Parcelable uuid: activeUuids) {
+                for (Parcelable uuid : activeUuids) {
                     if (uuid.toString().equals(SERVICE_UUID.toString())) {
                         connectToDevice(device);
                         return;
@@ -327,8 +330,8 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
             try {
                 int character;
                 StringBuilder sb = new StringBuilder();
-                while(sb.lastIndexOf("\n") == -1 && (character = socket.getInputStream().read()) != -1) {
-                    sb.append((char)character);
+                while (sb.lastIndexOf("\n") == -1 && (character = socket.getInputStream().read()) != -1) {
+                    sb.append((char) character);
                 }
 
                 String message = sb.toString();
@@ -359,7 +362,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
                         identityPackage.getString("deviceId"), BluetoothLinkProvider.this);
 
                 NetworkPackage np2 = NetworkPackage.createIdentityPackage(context);
-                link.sendPackage(np2,new Device.SendPackageStatusCallback() {
+                link.sendPackage(np2, new Device.SendPackageStatusCallback() {
                     @Override
                     public void onSuccess() {
                         addLink(identityPackage, link);

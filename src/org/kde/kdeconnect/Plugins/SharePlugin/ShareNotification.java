@@ -72,7 +72,7 @@ public class ShareNotification {
 
     public void setProgress(int progress) {
         builder.setProgress(100, progress, false)
-        .setContentTitle(device.getContext().getResources().getString(R.string.incoming_file_title, device.getName())+" ("+progress+"%)");
+                .setContentTitle(device.getContext().getResources().getString(R.string.incoming_file_title, device.getName()) + " (" + progress + "%)");
     }
 
     public void setFinished(boolean success) {
