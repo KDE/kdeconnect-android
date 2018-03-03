@@ -264,7 +264,6 @@ public class Device implements BaseLink.PackageReceiver {
                 }
                 return;
             case NotPaired:
-                ;
         }
 
         if (!isReachable()) {

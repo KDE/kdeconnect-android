@@ -114,12 +114,10 @@ public class ContactsHelper {
                 input.close();
             } catch (Exception ignored) {
             }
-            ;
             try {
                 output.close();
             } catch (Exception ignored) {
             }
-            ;
         }
     }
 }

@@ -331,8 +331,6 @@ public final class AlbumArtCache {
         }
     }
 
-    ;
-
     /**
      * Does the actual fetching and makes sure only not too many fetches are running at the same time
      */
