@@ -27,6 +27,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -41,10 +42,10 @@ import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class CustomDevicesActivity extends AppCompatActivity {
 
-    private static final String LOG_ID = "CustomDevicesActivity";
     public static final String KEY_CUSTOM_DEVLIST_PREFERENCE = "device_list_preference";
     private static final String IP_DELIM = ",";
 
@@ -140,39 +141,23 @@ public class CustomDevicesActivity extends AppCompatActivity {
                 getSystemService(Context.INPUT_METHOD_SERVICE);
 
         View focus = getCurrentFocus();
-        if (focus != null) {
+        if (focus != null && inputManager != null) {
             inputManager.hideSoftInputFromWindow(focus.getWindowToken(),
                     InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
 
     private void saveList() {
-        // add entry to list and save to preferences (unless empty)
-        String serialized = "";
-        if (!ipAddressList.isEmpty()) {
-            serialized = serializeIpList(ipAddressList);
-        }
+        String serialized = TextUtils.join(IP_DELIM, ipAddressList);
         PreferenceManager.getDefaultSharedPreferences(CustomDevicesActivity.this).edit().putString(
-                KEY_CUSTOM_DEVLIST_PREFERENCE, serialized).commit();
+                KEY_CUSTOM_DEVLIST_PREFERENCE, serialized).apply();
         ((ArrayAdapter) list.getAdapter()).notifyDataSetChanged();
 
     }
 
-    public static String serializeIpList(ArrayList<String> ipList) {
-        String serialized = "";
-        for (String ipAddress : ipList) {
-            serialized += IP_DELIM + ipAddress;
-        }
-        // remove first delimiter
-        serialized = serialized.substring(IP_DELIM.length());
-        return serialized;
-    }
-
     public static ArrayList<String> deserializeIpList(String serialized) {
         ArrayList<String> ipList = new ArrayList<>();
-        for (String ipAddress : serialized.split(IP_DELIM)) {
-            ipList.add(ipAddress);
-        }
+        Collections.addAll(ipList, serialized.split(IP_DELIM));
         return ipList;
     }
 
@@ -182,7 +167,7 @@ public class CustomDevicesActivity extends AppCompatActivity {
         if (deviceListPrefs.isEmpty()) {
             PreferenceManager.getDefaultSharedPreferences(context).edit().putString(
                     KEY_CUSTOM_DEVLIST_PREFERENCE,
-                    deviceListPrefs).commit();
+                    deviceListPrefs).apply();
         } else {
             ipAddressList = deserializeIpList(deviceListPrefs);
         }
