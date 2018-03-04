@@ -5,6 +5,7 @@
     android:background="@drawable/abc_list_selector_holo_dark"
     android:baselineAligned="false"
     android:clickable="true"
+    android:focusable="true"
     android:gravity="center_vertical"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:orientation="horizontal"
@@ -18,6 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
+        android:contentDescription="@string/device_icon_description"
         android:src="@drawable/ic_device_laptop" />
 
     <LinearLayout
