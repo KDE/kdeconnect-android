@@ -17,7 +17,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:text="@string/findmyphone_found"
-        android:textSize="50dp" />
+        android:textSize="50sp" />
 
 
 </RelativeLayout>
