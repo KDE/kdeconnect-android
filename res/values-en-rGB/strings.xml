@@ -106,6 +106,7 @@
   <string name="remote_control">Remote control</string>
   <string name="settings">KDE Connect Settings</string>
   <string name="mpris_play">Play</string>
+  <string name="mpris_pause">Pause</string>
   <string name="mpris_previous">Previous</string>
   <string name="mpris_rew">Rewind</string>
   <string name="mpris_ff">Fast-forward</string>
@@ -121,6 +122,8 @@
     <item>1 minute</item>
     <item>2 minutes</item>
   </string-array>
+  <string name="mpris_notification_settings_title">Show media control notification</string>
+  <string name="mpris_notification_settings_summary">Allows controlling your media players without opening KDE Connect.</string>
   <string name="share_to">Share To...</string>
   <string name="protocol_version_older">This device uses an old protocol version</string>
   <string name="protocol_version_newer">This device uses a newer protocol version</string>
@@ -184,4 +187,6 @@
   <string name="telephony_permission_explanation">To see phone calls and SMS from the desktop you need to give permission to phone calls and SMS</string>
   <string name="telephony_optional_permission_explanation">To see a contact name instead of a phone number you need to give access to the phone\'s contacts</string>
   <string name="select_ringtone">Select a ringtone</string>
+  <string name="telephony_pref_blocked_title">Blocked numbers</string>
+  <string name="telephony_pref_blocked_dialog_desc">Don\'t show calls and SMS from these numbers. Please specify one number per line</string>
 </resources>
