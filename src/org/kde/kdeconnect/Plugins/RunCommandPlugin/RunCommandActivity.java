@@ -22,11 +22,13 @@
 package org.kde.kdeconnect.Plugins.RunCommandPlugin;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,6 +44,12 @@ import java.util.Comparator;
 public class RunCommandActivity extends AppCompatActivity {
 
     private String deviceId;
+    private final RunCommandPlugin.CommandsChangedCallback commandsChangedCallback = new RunCommandPlugin.CommandsChangedCallback() {
+        @Override
+        public void update() {
+            updateView();
+        }
+    };
 
     private void updateView() {
         BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
@@ -58,7 +66,7 @@ public class RunCommandActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ListView view = (ListView) findViewById(R.id.listView1);
+                        ListView view = (ListView) findViewById(R.id.runcommandslist);
 
                         final ArrayList<ListAdapter.Item> commandItems = new ArrayList<>();
                         for (JSONObject obj : plugin.getCommandList()) {
@@ -89,25 +97,38 @@ public class RunCommandActivity extends AppCompatActivity {
                                 plugin.runCommand(entry.getKey());
                             }
                         });
+
+
+                        TextView explanation = (TextView) findViewById(R.id.addcomand_explanation);
+                        String text = getString(R.string.addcommand_explanation);
+                        if (!plugin.canAddCommand()) {
+                            text += "\n" + getString(R.string.addcommand_explanation2);
+                        }
+                        explanation.setText(text);
+                        explanation.setVisibility(commandItems.isEmpty() ? View.VISIBLE : View.GONE);
                     }
                 });
             }
         });
     }
 
-    private final RunCommandPlugin.CommandsChangedCallback theCallback = new RunCommandPlugin.CommandsChangedCallback() {
-        @Override
-        public void update() {
-            updateView();
-        }
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.activity_runcommand);
 
         deviceId = getIntent().getStringExtra("deviceId");
+
+        boolean canAddCommands = BackgroundService.getInstance().getDevice(deviceId).getPlugin(RunCommandPlugin.class).canAddCommand();
+
+        FloatingActionButton addCommandButton = (FloatingActionButton) findViewById(R.id.add_command_button);
+        addCommandButton.setVisibility(canAddCommands ? View.VISIBLE : View.GONE);
+        addCommandButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AddCommandDialog().show(getSupportFragmentManager(), "addcommanddialog");
+            }
+        });
 
         updateView();
     }
@@ -126,7 +147,7 @@ public class RunCommandActivity extends AppCompatActivity {
                     Log.e("RunCommandActivity", "device has no runcommand plugin!");
                     return;
                 }
-                plugin.addCommandsUpdatedCallback(theCallback);
+                plugin.addCommandsUpdatedCallback(commandsChangedCallback);
             }
         });
     }
@@ -145,7 +166,20 @@ public class RunCommandActivity extends AppCompatActivity {
                     Log.e("RunCommandActivity", "device has no runcommand plugin!");
                     return;
                 }
-                plugin.removeCommandsUpdatedCallback(theCallback);
+                plugin.removeCommandsUpdatedCallback(commandsChangedCallback);
+            }
+        });
+    }
+
+    public void dialogResult(final String cmdName, final String cmdCmd) {
+        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
+            @Override
+            public void onServiceStart(BackgroundService service) {
+                Device device = service.getDevice(deviceId);
+                RunCommandPlugin plugin = device.getPlugin(RunCommandPlugin.class);
+                if(!cmdName.isEmpty() && !cmdCmd.isEmpty()) {
+                    plugin.addCommand(cmdName, cmdCmd);
+                }
             }
         });
     }

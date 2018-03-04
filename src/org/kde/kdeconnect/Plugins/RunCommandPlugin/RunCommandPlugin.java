@@ -39,9 +39,12 @@ public class RunCommandPlugin extends Plugin {
 
     public final static String PACKAGE_TYPE_RUNCOMMAND = "kdeconnect.runcommand";
     public final static String PACKAGE_TYPE_RUNCOMMAND_REQUEST = "kdeconnect.runcommand.request";
+    public final static String PACKAGE_TYPE_RUNCOMMAND_ADD = "kdeconnect.runcommand.add";
 
     private ArrayList<JSONObject> commandList = new ArrayList<>();
     private ArrayList<CommandsChangedCallback> callbacks = new ArrayList<>();
+
+    private boolean canAddCommand;
 
     public void addCommandsUpdatedCallback(CommandsChangedCallback newCallback) {
         callbacks.add(newCallback);
@@ -104,6 +107,8 @@ public class RunCommandPlugin extends Plugin {
 
             device.onPluginsChanged();
 
+            canAddCommand = np.getBoolean("canAddCommand", false);
+
             return true;
         }
         return false;
@@ -133,7 +138,7 @@ public class RunCommandPlugin extends Plugin {
 
     @Override
     public boolean hasMainActivity() {
-        return !commandList.isEmpty();
+        return true;
     }
 
     @Override
@@ -146,6 +151,19 @@ public class RunCommandPlugin extends Plugin {
     @Override
     public String getActionName() {
         return context.getString(R.string.pref_plugin_runcommand);
+    }
+
+    public void addCommand(String name, String command){
+
+        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_RUNCOMMAND_ADD);
+        np.set("name", name);
+        np.set("command", command);
+
+        device.sendPackage(np);
+    }
+
+    public boolean canAddCommand(){
+        return canAddCommand;
     }
 
 }
