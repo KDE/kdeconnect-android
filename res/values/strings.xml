@@ -104,8 +104,10 @@
     <string name="incoming_file_text">%1s</string>
     <string name="outgoing_file_title">Sending file to %1s</string>
     <string name="outgoing_files_title">Sending files to %1s</string>
-    <string name="outgoing_file_text">%1s</string>
-    <string name="outgoing_files_text">Sent %1$d out of %2$d files</string>
+    <plurals name="outgoing_files_text">
+        <item quantity="one">Sent %1$d file</item>
+        <item quantity="other">Sent %1$d out of %2$d files</item>
+    </plurals>
     <string name="received_file_title">Received file from %1s</string>
     <string name="received_file_fail_title">Failed receiving file from %1s</string>
     <string name="received_file_text">Tap to open \'%1s\'</string>
