@@ -7,4 +7,4 @@
     android:orientation="vertical"
     android:paddingLeft="16dip"
     android:paddingRight="16dip"
-    tools:context="org.kde.kdeconnect.UserInterface.MainActivity"></ListView>
+    tools:context="org.kde.kdeconnect.UserInterface.MainActivity" />

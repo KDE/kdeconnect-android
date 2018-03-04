@@ -6,5 +6,5 @@
     <RingtonePreference
         android:key="select_ringtone"
         android:showSilent="false"
-        android:title="@string/select_ringtone"></RingtonePreference>
+        android:title="@string/select_ringtone" />
 </PreferenceScreen>

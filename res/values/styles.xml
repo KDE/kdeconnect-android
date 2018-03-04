@@ -19,9 +19,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="KdeConnectTheme" parent="KdeConnectThemeBase"></style>
+    <style name="KdeConnectTheme" parent="KdeConnectThemeBase" />
 
-    <style name="KdeConnectTheme.NoActionBar" parent="KdeConnectThemeBase.NoActionBar"></style>
+    <style name="KdeConnectTheme.NoActionBar" parent="KdeConnectThemeBase.NoActionBar" />
 
     <style name="DisableableButton" parent="ThemeOverlay.AppCompat">
         <item name="colorButtonNormal">@drawable/disableable_button</item>

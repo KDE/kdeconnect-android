@@ -4,6 +4,6 @@
     <EditTextPreference
         android:dialogMessage="@string/telephony_pref_blocked_dialog_desc"
         android:key="telephony_blocked_numbers"
-        android:title="@string/telephony_pref_blocked_title"></EditTextPreference>
+        android:title="@string/telephony_pref_blocked_title" />
 
 </PreferenceScreen>
