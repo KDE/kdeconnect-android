@@ -21,29 +21,23 @@
 package org.kde.kdeconnect.Plugins.TelepathyPlugin;
 
 import android.Manifest;
-import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.telephony.SmsManager;
 import android.util.Log;
-
-import java.util.ArrayList;
 
 import org.kde.kdeconnect.NetworkPackage;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin;
 import org.kde.kdeconnect_tp.R;
 
+import java.util.ArrayList;
+
 public class TelepathyPlugin extends Plugin {
 
-
-    public final static String PACKAGE_TYPE_SMS_REQUEST = "kdeconnect.sms.request";
-
-    private int telepathyPermissionExplanation = R.string.telepathy_permission_explanation;
+    private final static String PACKAGE_TYPE_SMS_REQUEST = "kdeconnect.sms.request";
 
     @Override
     public boolean onCreate() {
-        permissionExplanation = telepathyPermissionExplanation;
+        permissionExplanation = R.string.telepathy_permission_explanation;
         return true;
     }
 
@@ -58,10 +52,6 @@ public class TelepathyPlugin extends Plugin {
     }
 
     @Override
-    public void onDestroy() {
-    }
-
-    @Override
     public boolean onPackageReceived(NetworkPackage np) {
 
         if (!np.getType().equals(PACKAGE_TYPE_SMS_REQUEST)) {
@@ -71,21 +61,15 @@ public class TelepathyPlugin extends Plugin {
         if (np.getBoolean("sendSms")) {
             String phoneNo = np.getString("phoneNumber");
             String sms = np.getString("messageBody");
+
             try {
-                int permissionCheck = ContextCompat.checkSelfPermission(context,
-                        Manifest.permission.SEND_SMS);
+                SmsManager smsManager = SmsManager.getDefault();
+                ArrayList<String> parts = smsManager.divideMessage(sms);
 
-                if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
-                    SmsManager smsManager = SmsManager.getDefault();
+                // If this message turns out to fit in a single SMS, sendMultipartTextMessage
+                // properly handles that case
+                smsManager.sendMultipartTextMessage(phoneNo, null, parts, null, null);
 
-                    ArrayList<String> parts = smsManager.divideMessage(sms);
-
-                    // If this message turns out to fit in a single SMS, sendMultipartTextMessage
-                    // properly handles that case
-                    smsManager.sendMultipartTextMessage(phoneNo, null, parts, null, null);
-                } else if (permissionCheck == PackageManager.PERMISSION_DENIED) {
-                    // TODO Request Permission SEND_SMS
-                }
                 //TODO: Notify other end
             } catch (Exception e) {
                 //TODO: Notify other end
