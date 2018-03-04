@@ -125,18 +125,18 @@ public class DeviceTest extends AndroidTestCase {
     // Created an unpaired device inside this test
     public void testPairingDone() {
 
-        NetworkPackage fakeNetworkPackage = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_IDENTITY);
-        fakeNetworkPackage.set("deviceId", "unpairedTestDevice");
-        fakeNetworkPackage.set("deviceName", "Unpaired Test Device");
-        fakeNetworkPackage.set("protocolVersion", NetworkPackage.ProtocolVersion);
-        fakeNetworkPackage.set("deviceType", Device.DeviceType.Phone.toString());
+        NetworkPacket fakeNetworkPacket = new NetworkPacket(NetworkPacket.PACKET_TYPE_IDENTITY);
+        fakeNetworkPacket.set("deviceId", "unpairedTestDevice");
+        fakeNetworkPacket.set("deviceName", "Unpaired Test Device");
+        fakeNetworkPacket.set("protocolVersion", NetworkPacket.ProtocolVersion);
+        fakeNetworkPacket.set("deviceType", Device.DeviceType.Phone.toString());
 
         LanLinkProvider linkProvider = Mockito.mock(LanLinkProvider.class);
         Mockito.when(linkProvider.getName()).thenReturn("LanLinkProvider");
         LanLink link = Mockito.mock(LanLink.class);
         Mockito.when(link.getLinkProvider()).thenReturn(linkProvider);
         Mockito.when(link.getPairingHandler(Mockito.any(Device.class), Mockito.any(BasePairingHandler.PairingHandlerCallback.class))).thenReturn(Mockito.mock(LanPairingHandler.class));
-        Device device = new Device(getContext(), fakeNetworkPackage, link);
+        Device device = new Device(getContext(), fakeNetworkPacket, link);
 
         KeyPair keyPair;
         try {
@@ -219,19 +219,19 @@ public class DeviceTest extends AndroidTestCase {
             Log.e("KDE/initialiseCert", "Exception");
         }
 
-        NetworkPackage fakeNetworkPackage = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_IDENTITY);
-        fakeNetworkPackage.set("deviceId", "unpairedTestDevice");
-        fakeNetworkPackage.set("deviceName", "Unpaired Test Device");
-        fakeNetworkPackage.set("protocolVersion", NetworkPackage.ProtocolVersion);
-        fakeNetworkPackage.set("deviceType", Device.DeviceType.Phone.toString());
-        fakeNetworkPackage.set("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
+        NetworkPacket fakeNetworkPacket = new NetworkPacket(NetworkPacket.PACKET_TYPE_IDENTITY);
+        fakeNetworkPacket.set("deviceId", "unpairedTestDevice");
+        fakeNetworkPacket.set("deviceName", "Unpaired Test Device");
+        fakeNetworkPacket.set("protocolVersion", NetworkPacket.ProtocolVersion);
+        fakeNetworkPacket.set("deviceType", Device.DeviceType.Phone.toString());
+        fakeNetworkPacket.set("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
 
         LanLinkProvider linkProvider = Mockito.mock(LanLinkProvider.class);
         Mockito.when(linkProvider.getName()).thenReturn("LanLinkProvider");
         LanLink link = Mockito.mock(LanLink.class);
         Mockito.when(link.getPairingHandler(Mockito.any(Device.class), Mockito.any(BasePairingHandler.PairingHandlerCallback.class))).thenReturn(Mockito.mock(LanPairingHandler.class));
         Mockito.when(link.getLinkProvider()).thenReturn(linkProvider);
-        Device device = new Device(getContext(), fakeNetworkPackage, link);
+        Device device = new Device(getContext(), fakeNetworkPacket, link);
         device.publicKey = keyPair.getPublic();
 
         assertNotNull(device);

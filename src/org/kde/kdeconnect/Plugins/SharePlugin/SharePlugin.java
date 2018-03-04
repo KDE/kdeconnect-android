@@ -48,7 +48,7 @@ import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.FilesHelper;
 import org.kde.kdeconnect.Helpers.MediaStoreHelper;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.UserInterface.SettingsActivity;
 import org.kde.kdeconnect_tp.R;
@@ -62,7 +62,7 @@ import java.util.ArrayList;
 
 public class SharePlugin extends Plugin {
 
-    public final static String PACKAGE_TYPE_SHARE_REQUEST = "kdeconnect.share.request";
+    public final static String PACKET_TYPE_SHARE_REQUEST = "kdeconnect.share.request";
 
     final static boolean openUrlsDirectly = true;
 
@@ -110,7 +110,7 @@ public class SharePlugin extends Plugin {
     }
 
     @Override
-    public boolean onPackageReceived(NetworkPackage np) {
+    public boolean onPacketReceived(NetworkPacket np) {
 
         try {
             if (np.hasPayload()) {
@@ -140,7 +140,7 @@ public class SharePlugin extends Plugin {
         return true;
     }
 
-    private void receiveUrl(NetworkPackage np) {
+    private void receiveUrl(NetworkPacket np) {
         String url = np.getString("url");
 
         Log.i("SharePlugin", "hasUrl: " + url);
@@ -174,7 +174,7 @@ public class SharePlugin extends Plugin {
         }
     }
 
-    private void receiveText(NetworkPackage np) {
+    private void receiveText(NetworkPacket np) {
         String text = np.getString("text");
         if (Build.VERSION.SDK_INT >= 11) {
             ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
@@ -186,7 +186,7 @@ public class SharePlugin extends Plugin {
         Toast.makeText(context, R.string.shareplugin_text_saved, Toast.LENGTH_LONG).show();
     }
 
-    private void receiveFile(NetworkPackage np) {
+    private void receiveFile(NetworkPacket np) {
 
         final InputStream input = np.getPayload();
         final long fileLength = np.getPayloadSize();
@@ -293,9 +293,9 @@ public class SharePlugin extends Plugin {
     static void queuedSendUriList(Context context, final Device device, final ArrayList<Uri> uriList) {
 
         //Read all the data early, as we only have permissions to do it while the activity is alive
-        final ArrayList<NetworkPackage> toSend = new ArrayList<>();
+        final ArrayList<NetworkPacket> toSend = new ArrayList<>();
         for (Uri uri : uriList) {
-            toSend.add(uriToNetworkPackage(context, uri));
+            toSend.add(uriToNetworkPacket(context, uri));
         }
 
         //Callback that shows a progress notification
@@ -307,8 +307,8 @@ public class SharePlugin extends Plugin {
             public void run() {
                 //Actually send the files
                 try {
-                    for (NetworkPackage np : toSend) {
-                        boolean success = device.sendPackageBlocking(np, notificationUpdateCallback);
+                    for (NetworkPacket np : toSend) {
+                        boolean success = device.sendPacketBlocking(np, notificationUpdateCallback);
                         if (!success) {
                             Log.e("SharePlugin", "Error sending files");
                             return;
@@ -323,14 +323,14 @@ public class SharePlugin extends Plugin {
     }
 
     //Create the network package from the URI
-    private static NetworkPackage uriToNetworkPackage(final Context context, final Uri uri) {
+    private static NetworkPacket uriToNetworkPacket(final Context context, final Uri uri) {
 
         try {
 
             ContentResolver cr = context.getContentResolver();
             InputStream inputStream = cr.openInputStream(uri);
 
-            NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_SHARE_REQUEST);
+            NetworkPacket np = new NetworkPacket(PACKET_TYPE_SHARE_REQUEST);
             long size = -1;
 
             if (uri.getScheme().equals("file")) {
@@ -441,26 +441,26 @@ public class SharePlugin extends Plugin {
                 } catch (Exception e) {
                     isUrl = false;
                 }
-                NetworkPackage np = new NetworkPackage(SharePlugin.PACKAGE_TYPE_SHARE_REQUEST);
+                NetworkPacket np = new NetworkPacket(SharePlugin.PACKET_TYPE_SHARE_REQUEST);
                 if (isUrl) {
                     np.set("url", text);
                 } else {
                     np.set("text", text);
                 }
-                device.sendPackage(np);
+                device.sendPacket(np);
             }
         }
 
     }
 
     @Override
-    public String[] getSupportedPackageTypes() {
-        return new String[]{PACKAGE_TYPE_SHARE_REQUEST};
+    public String[] getSupportedPacketTypes() {
+        return new String[]{PACKET_TYPE_SHARE_REQUEST};
     }
 
     @Override
-    public String[] getOutgoingPackageTypes() {
-        return new String[]{PACKAGE_TYPE_SHARE_REQUEST};
+    public String[] getOutgoingPacketTypes() {
+        return new String[]{PACKET_TYPE_SHARE_REQUEST};
     }
 
     @Override

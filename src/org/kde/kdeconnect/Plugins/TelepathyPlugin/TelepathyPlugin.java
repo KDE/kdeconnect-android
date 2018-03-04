@@ -24,16 +24,17 @@ import android.Manifest;
 import android.telephony.SmsManager;
 import android.util.Log;
 
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 
+
 public class TelepathyPlugin extends Plugin {
 
-    private final static String PACKAGE_TYPE_SMS_REQUEST = "kdeconnect.sms.request";
+    private final static String PACKET_TYPE_SMS_REQUEST = "kdeconnect.sms.request";
 
     @Override
     public boolean onCreate() {
@@ -52,9 +53,9 @@ public class TelepathyPlugin extends Plugin {
     }
 
     @Override
-    public boolean onPackageReceived(NetworkPackage np) {
+    public boolean onPacketReceived(NetworkPacket np) {
 
-        if (!np.getType().equals(PACKAGE_TYPE_SMS_REQUEST)) {
+        if (!np.getType().equals(PACKET_TYPE_SMS_REQUEST)) {
             return false;
         }
 
@@ -82,12 +83,12 @@ public class TelepathyPlugin extends Plugin {
     }
 
     @Override
-    public String[] getSupportedPackageTypes() {
-        return new String[]{PACKAGE_TYPE_SMS_REQUEST, TelephonyPlugin.PACKAGE_TYPE_TELEPHONY_REQUEST};
+    public String[] getSupportedPacketTypes() {
+        return new String[]{PACKET_TYPE_SMS_REQUEST, TelephonyPlugin.PACKET_TYPE_TELEPHONY_REQUEST};
     }
 
     @Override
-    public String[] getOutgoingPackageTypes() {
+    public String[] getOutgoingPacketTypes() {
         return new String[]{};
     }
 

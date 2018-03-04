@@ -50,23 +50,23 @@ public class LanLinkProviderTest extends AndroidTestCase {
 
     }
 
-    public void testIdentityPackageReceived() throws Exception {
+    public void testIdentityPacketReceived() throws Exception {
 
-        NetworkPackage networkPackage = Mockito.mock(NetworkPackage.class);
-        Mockito.when(networkPackage.getType()).thenReturn("kdeconnect.identity");
-        Mockito.when(networkPackage.getString("deviceId")).thenReturn("testDevice");
-        Mockito.when(networkPackage.getString("deviceName")).thenReturn("Test Device");
-        Mockito.when(networkPackage.getInt("protocolVersion")).thenReturn(5);
-        Mockito.when(networkPackage.getString("deviceType")).thenReturn("phone");
+        NetworkPacket networkPacket = Mockito.mock(NetworkPacket.class);
+        Mockito.when(networkPacket.getType()).thenReturn("kdeconnect.identity");
+        Mockito.when(networkPacket.getString("deviceId")).thenReturn("testDevice");
+        Mockito.when(networkPacket.getString("deviceName")).thenReturn("Test Device");
+        Mockito.when(networkPacket.getInt("protocolVersion")).thenReturn(5);
+        Mockito.when(networkPacket.getString("deviceType")).thenReturn("phone");
 
         String serialized = "{\"type\":\"kdeconnect.identity\",\"id\":12345,\"body\":{\"deviceName\":\"Test Device\",\"deviceType\":\"phone\",\"deviceId\":\"testDevice\",\"protocolVersion\":5}}";
-        Mockito.when(networkPackage.serialize()).thenReturn(serialized);
+        Mockito.when(networkPacket.serialize()).thenReturn(serialized);
 
         Socket channel = Mockito.mock(Socket.class);
         try {
-            Method method = LanLinkProvider.class.getDeclaredMethod("identityPackageReceived", NetworkPackage.class, Socket.class, LanLink.ConnectionStarted.class);
+            Method method = LanLinkProvider.class.getDeclaredMethod("identityPacketReceived", NetworkPacket.class, Socket.class, LanLink.ConnectionStarted.class);
             method.setAccessible(true);
-            method.invoke(linkProvider, networkPackage, channel, LanLink.ConnectionStarted.Locally);
+            method.invoke(linkProvider, networkPacket, channel, LanLink.ConnectionStarted.Locally);
         } catch (Exception e) {
             throw e;
         }

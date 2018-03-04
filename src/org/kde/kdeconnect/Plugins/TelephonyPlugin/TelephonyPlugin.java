@@ -38,7 +38,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import org.kde.kdeconnect.Helpers.ContactsHelper;
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.BuildConfig;
 import org.kde.kdeconnect_tp.R;
@@ -50,12 +50,12 @@ import java.util.TimerTask;
 
 public class TelephonyPlugin extends Plugin {
 
-    private final static String PACKAGE_TYPE_TELEPHONY = "kdeconnect.telephony";
-    public final static String PACKAGE_TYPE_TELEPHONY_REQUEST = "kdeconnect.telephony.request";
+    private final static String PACKET_TYPE_TELEPHONY = "kdeconnect.telephony";
+    public final static String PACKET_TYPE_TELEPHONY_REQUEST = "kdeconnect.telephony.request";
     private static final String KEY_PREF_BLOCKED_NUMBERS = "telephony_blocked_numbers";
 
     private int lastState = TelephonyManager.CALL_STATE_IDLE;
-    private NetworkPackage lastPackage = null;
+    private NetworkPacket lastPacket = null;
     private boolean isMuted = false;
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
@@ -121,7 +121,7 @@ public class TelephonyPlugin extends Plugin {
         if (isNumberBlocked(phoneNumber))
             return;
 
-        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_TELEPHONY);
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_TELEPHONY);
 
         int permissionCheck = ContextCompat.checkSelfPermission(context,
                 Manifest.permission.READ_CONTACTS);
@@ -169,21 +169,21 @@ public class TelephonyPlugin extends Plugin {
                     isMuted = false;
                 }
                 np.set("event", "ringing");
-                device.sendPackage(np);
+                device.sendPacket(np);
                 break;
 
             case TelephonyManager.CALL_STATE_OFFHOOK: //Ongoing call
                 np.set("event", "talking");
-                device.sendPackage(np);
+                device.sendPacket(np);
                 break;
 
             case TelephonyManager.CALL_STATE_IDLE:
 
-                if (lastState != TelephonyManager.CALL_STATE_IDLE && lastPackage != null) {
+                if (lastState != TelephonyManager.CALL_STATE_IDLE && lastPacket != null) {
 
                     //Resend a cancel of the last event (can either be "ringing" or "talking")
-                    lastPackage.set("isCancel", "true");
-                    device.sendPackage(lastPackage);
+                    lastPacket.set("isCancel", "true");
+                    device.sendPacket(lastPacket);
 
                     if (isMuted) {
                         Timer timer = new Timer();
@@ -206,9 +206,9 @@ public class TelephonyPlugin extends Plugin {
                     //Emit a missed call notification if needed
                     if (lastState == TelephonyManager.CALL_STATE_RINGING) {
                         np.set("event", "missedCall");
-                        np.set("phoneNumber", lastPackage.getString("phoneNumber", null));
-                        np.set("contactName", lastPackage.getString("contactName", null));
-                        device.sendPackage(np);
+                        np.set("phoneNumber", lastPacket.getString("phoneNumber", null));
+                        np.set("contactName", lastPacket.getString("contactName", null));
+                        device.sendPacket(np);
                     }
 
                 }
@@ -217,7 +217,7 @@ public class TelephonyPlugin extends Plugin {
 
         }
 
-        lastPackage = np;
+        lastPacket = np;
         lastState = state;
     }
 
@@ -229,7 +229,7 @@ public class TelephonyPlugin extends Plugin {
             }
         }
 
-        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_TELEPHONY);
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_TELEPHONY);
 
         np.set("event", "sms");
 
@@ -263,7 +263,7 @@ public class TelephonyPlugin extends Plugin {
         }
 
 
-        device.sendPackage(np);
+        device.sendPacket(np);
     }
 
     @Override
@@ -283,7 +283,7 @@ public class TelephonyPlugin extends Plugin {
     }
 
     @Override
-    public boolean onPackageReceived(NetworkPackage np) {
+    public boolean onPacketReceived(NetworkPacket np) {
         if (np.getString("action").equals("mute")) {
             if (!isMuted) {
                 AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
@@ -312,13 +312,13 @@ public class TelephonyPlugin extends Plugin {
     }
 
     @Override
-    public String[] getSupportedPackageTypes() {
-        return new String[]{PACKAGE_TYPE_TELEPHONY_REQUEST};
+    public String[] getSupportedPacketTypes() {
+        return new String[]{PACKET_TYPE_TELEPHONY_REQUEST};
     }
 
     @Override
-    public String[] getOutgoingPackageTypes() {
-        return new String[]{PACKAGE_TYPE_TELEPHONY};
+    public String[] getOutgoingPacketTypes() {
+        return new String[]{PACKET_TYPE_TELEPHONY};
     }
 
     @Override

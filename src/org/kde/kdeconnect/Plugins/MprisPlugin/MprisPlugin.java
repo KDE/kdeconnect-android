@@ -29,7 +29,7 @@ import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
@@ -201,8 +201,8 @@ public class MprisPlugin extends Plugin {
         }
     }
 
-    public final static String PACKAGE_TYPE_MPRIS = "kdeconnect.mpris";
-    public final static String PACKAGE_TYPE_MPRIS_REQUEST = "kdeconnect.mpris.request";
+    public final static String PACKET_TYPE_MPRIS = "kdeconnect.mpris";
+    public final static String PACKET_TYPE_MPRIS_REQUEST = "kdeconnect.mpris.request";
 
     private HashMap<String, MprisPlayer> players = new HashMap<>();
     private HashMap<String, Handler> playerStatusUpdated = new HashMap<>();
@@ -251,21 +251,21 @@ public class MprisPlugin extends Plugin {
     }
 
     private void sendCommand(String player, String method, String value) {
-        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MPRIS_REQUEST);
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_MPRIS_REQUEST);
         np.set("player", player);
         np.set(method, value);
-        device.sendPackage(np);
+        device.sendPacket(np);
     }
 
     private void sendCommand(String player, String method, int value) {
-        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MPRIS_REQUEST);
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_MPRIS_REQUEST);
         np.set("player", player);
         np.set(method, value);
-        device.sendPackage(np);
+        device.sendPacket(np);
     }
 
     @Override
-    public boolean onPackageReceived(NetworkPackage np) {
+    public boolean onPacketReceived(NetworkPacket np) {
         if (np.has("player")) {
             MprisPlayer playerStatus = players.get(np.getString("player"));
             if (playerStatus != null) {
@@ -355,13 +355,13 @@ public class MprisPlugin extends Plugin {
     }
 
     @Override
-    public String[] getSupportedPackageTypes() {
-        return new String[]{PACKAGE_TYPE_MPRIS};
+    public String[] getSupportedPacketTypes() {
+        return new String[]{PACKET_TYPE_MPRIS};
     }
 
     @Override
-    public String[] getOutgoingPackageTypes() {
-        return new String[]{PACKAGE_TYPE_MPRIS_REQUEST};
+    public String[] getOutgoingPacketTypes() {
+        return new String[]{PACKET_TYPE_MPRIS_REQUEST};
     }
 
     public void setPlayerStatusUpdatedHandler(String id, Handler h) {
@@ -413,17 +413,17 @@ public class MprisPlugin extends Plugin {
     }
 
     private void requestPlayerList() {
-        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MPRIS_REQUEST);
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_MPRIS_REQUEST);
         np.set("requestPlayerList", true);
-        device.sendPackage(np);
+        device.sendPacket(np);
     }
 
     private void requestPlayerStatus(String player) {
-        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MPRIS_REQUEST);
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_MPRIS_REQUEST);
         np.set("player", player);
         np.set("requestNowPlaying", true);
         np.set("requestVolume", true);
-        device.sendPackage(np);
+        device.sendPacket(np);
     }
 
     @Override

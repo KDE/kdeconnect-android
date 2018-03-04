@@ -24,7 +24,7 @@ import android.Manifest;
 import android.os.Environment;
 
 import org.kde.kdeconnect.Helpers.StorageHelper;
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
@@ -34,8 +34,8 @@ import java.util.List;
 
 public class SftpPlugin extends Plugin {
 
-    public final static String PACKAGE_TYPE_SFTP = "kdeconnect.sftp";
-    public final static String PACKAGE_TYPE_SFTP_REQUEST = "kdeconnect.sftp.request";
+    public final static String PACKET_TYPE_SFTP = "kdeconnect.sftp";
+    public final static String PACKET_TYPE_SFTP_REQUEST = "kdeconnect.sftp.request";
 
     private static final SimpleSftpServer server = new SimpleSftpServer();
 
@@ -62,12 +62,12 @@ public class SftpPlugin extends Plugin {
     }
 
     @Override
-    public boolean onPackageReceived(NetworkPackage np) {
+    public boolean onPacketReceived(NetworkPacket np) {
 
         if (np.getBoolean("startBrowsing")) {
             if (server.start()) {
 
-                NetworkPackage np2 = new NetworkPackage(PACKAGE_TYPE_SFTP);
+                NetworkPacket np2 = new NetworkPacket(PACKET_TYPE_SFTP);
 
                 np2.set("ip", server.getLocalIpAddress());
                 np2.set("port", server.getPort());
@@ -121,7 +121,7 @@ public class SftpPlugin extends Plugin {
 
                 }
 
-                device.sendPackage(np2);
+                device.sendPacket(np2);
 
                 return true;
             }
@@ -135,13 +135,13 @@ public class SftpPlugin extends Plugin {
     }
 
     @Override
-    public String[] getSupportedPackageTypes() {
-        return new String[]{PACKAGE_TYPE_SFTP_REQUEST};
+    public String[] getSupportedPacketTypes() {
+        return new String[]{PACKET_TYPE_SFTP_REQUEST};
     }
 
     @Override
-    public String[] getOutgoingPackageTypes() {
-        return new String[]{PACKAGE_TYPE_SFTP};
+    public String[] getOutgoingPacketTypes() {
+        return new String[]{PACKET_TYPE_SFTP};
     }
 
 }

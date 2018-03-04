@@ -181,18 +181,18 @@ public class BackgroundService extends Service {
 
     private final BaseLinkProvider.ConnectionReceiver deviceListener = new BaseLinkProvider.ConnectionReceiver() {
         @Override
-        public void onConnectionReceived(final NetworkPackage identityPackage, final BaseLink link) {
+        public void onConnectionReceived(final NetworkPacket identityPacket, final BaseLink link) {
 
-            String deviceId = identityPackage.getString("deviceId");
+            String deviceId = identityPacket.getString("deviceId");
 
             Device device = devices.get(deviceId);
 
             if (device != null) {
                 Log.i("KDE/BackgroundService", "addLink, known device: " + deviceId);
-                device.addLink(identityPackage, link);
+                device.addLink(identityPacket, link);
             } else {
                 Log.i("KDE/BackgroundService", "addLink,unknown device: " + deviceId);
-                device = new Device(BackgroundService.this, identityPackage, link);
+                device = new Device(BackgroundService.this, identityPacket, link);
                 if (device.isPaired() || device.isPairRequested() || device.isPairRequestedByPeer()
                         || link.linkShouldBeKeptAlive()
                         || !discoveryModeAcquisitions.isEmpty()) {

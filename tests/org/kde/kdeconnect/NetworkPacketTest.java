@@ -32,7 +32,7 @@ import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
-public class NetworkPackageTest extends AndroidTestCase {
+public class NetworkPacketTest extends AndroidTestCase {
 
     @Override
     protected void setUp() throws Exception {
@@ -46,8 +46,8 @@ public class NetworkPackageTest extends AndroidTestCase {
         // Called after each test
     }
 
-    public void testNetworkPackage() throws JSONException {
-        NetworkPackage np = new NetworkPackage("com.test");
+    public void testNetworkPacket() throws JSONException {
+        NetworkPacket np = new NetworkPacket("com.test");
 
         np.set("hello", "hola");
         assertEquals(np.getString("hello", "bye"), "hola");
@@ -59,14 +59,14 @@ public class NetworkPackageTest extends AndroidTestCase {
 
         np.set("foo", "bar");
         String serialized = np.serialize();
-        NetworkPackage np2 = NetworkPackage.unserialize(serialized);
+        NetworkPacket np2 = NetworkPacket.unserialize(serialized);
 
         assertEquals(np.getLong("id"), np2.getLong("id"));
         assertEquals(np.getString("type"), np2.getString("type"));
         assertEquals(np.getJSONArray("body"), np2.getJSONArray("body"));
 
         String json = "{\"id\":123,\"type\":\"test\",\"body\":{\"testing\":true}}";
-        np2 = NetworkPackage.unserialize(json);
+        np2 = NetworkPacket.unserialize(json);
         assertEquals(np2.getId(), 123);
         assertEquals(np2.getBoolean("testing"), true);
         assertEquals(np2.getBoolean("not_testing"), false);
@@ -76,19 +76,19 @@ public class NetworkPackageTest extends AndroidTestCase {
 
     public void testIdentity() {
 
-        NetworkPackage np = NetworkPackage.createIdentityPackage(getContext());
+        NetworkPacket np = NetworkPacket.createIdentityPacket(getContext());
 
-        assertEquals(np.getInt("protocolVersion"), NetworkPackage.ProtocolVersion);
+        assertEquals(np.getInt("protocolVersion"), NetworkPacket.ProtocolVersion);
 
     }
 
     public void testEncryption() throws JSONException {
-        NetworkPackage original = new NetworkPackage("com.test");
+        NetworkPacket original = new NetworkPacket("com.test");
         original.set("hello", "hola");
 
-        NetworkPackage copy = NetworkPackage.unserialize(original.serialize());
+        NetworkPacket copy = NetworkPacket.unserialize(original.serialize());
 
-        NetworkPackage decrypted = new NetworkPackage("");
+        NetworkPacket decrypted = new NetworkPacket("");
 
         KeyPair keyPair;
         try {
@@ -110,8 +110,8 @@ public class NetworkPackageTest extends AndroidTestCase {
         // Encrypt and decrypt np
         assertEquals(original.getType(), "com.test");
         try {
-            NetworkPackage encrypted = RsaHelper.encrypt(original, publicKey);
-            assertEquals(encrypted.getType(), NetworkPackage.PACKAGE_TYPE_ENCRYPTED);
+            NetworkPacket encrypted = RsaHelper.encrypt(original, publicKey);
+            assertEquals(encrypted.getType(), NetworkPacket.PACKET_TYPE_ENCRYPTED);
 
             decrypted = RsaHelper.decrypt(encrypted, privateKey);
             assertEquals(decrypted.getType(), "com.test");
@@ -126,9 +126,9 @@ public class NetworkPackageTest extends AndroidTestCase {
         assertEquals(decrypted.getJSONArray("body"), copy.getJSONArray("body"));
 
         String json = "{\"body\":{\"nowPlaying\":\"A really long song name - A really long artist name\",\"player\":\"A really long player name\",\"the_meaning_of_life_the_universe_and_everything\":\"42\"},\"id\":945945945,\"type\":\"kdeconnect.a_really_really_long_package_type\"}\n";
-        NetworkPackage longJsonNp = NetworkPackage.unserialize(json);
+        NetworkPacket longJsonNp = NetworkPacket.unserialize(json);
         try {
-            NetworkPackage encrypted = RsaHelper.encrypt(longJsonNp, publicKey);
+            NetworkPacket encrypted = RsaHelper.encrypt(longJsonNp, publicKey);
             decrypted = RsaHelper.decrypt(encrypted, privateKey);
             String decryptedJson = decrypted.serialize();
             JSONAssert.assertEquals(json, decryptedJson, true);

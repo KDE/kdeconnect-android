@@ -33,7 +33,7 @@ import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
 import org.kde.kdeconnect.Helpers.NotificationHelper;
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect_tp.R;
@@ -42,8 +42,8 @@ import java.io.InputStream;
 
 public class ReceiveNotificationsPlugin extends Plugin {
 
-    public final static String PACKAGE_TYPE_NOTIFICATION = "kdeconnect.notification";
-    public final static String PACKAGE_TYPE_NOTIFICATION_REQUEST = "kdeconnect.notification.request";
+    public final static String PACKET_TYPE_NOTIFICATION = "kdeconnect.notification";
+    public final static String PACKET_TYPE_NOTIFICATION_REQUEST = "kdeconnect.notification.request";
 
     @Override
     public String getDisplayName() {
@@ -63,14 +63,14 @@ public class ReceiveNotificationsPlugin extends Plugin {
     @Override
     public boolean onCreate() {
         // request all existing notifications
-        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_NOTIFICATION_REQUEST);
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_NOTIFICATION_REQUEST);
         np.set("request", true);
-        device.sendPackage(np);
+        device.sendPacket(np);
         return true;
     }
 
     @Override
-    public boolean onPackageReceived(final NetworkPackage np) {
+    public boolean onPacketReceived(final NetworkPacket np) {
 
         if (!np.has("ticker") || !np.has("appName") || !np.has("id")) {
             Log.e("NotificationsPlugin", "Received notification package lacks properties");
@@ -126,13 +126,13 @@ public class ReceiveNotificationsPlugin extends Plugin {
     }
 
     @Override
-    public String[] getSupportedPackageTypes() {
-        return new String[]{PACKAGE_TYPE_NOTIFICATION};
+    public String[] getSupportedPacketTypes() {
+        return new String[]{PACKET_TYPE_NOTIFICATION};
     }
 
     @Override
-    public String[] getOutgoingPackageTypes() {
-        return new String[]{PACKAGE_TYPE_NOTIFICATION_REQUEST};
+    public String[] getOutgoingPacketTypes() {
+        return new String[]{PACKET_TYPE_NOTIFICATION_REQUEST};
     }
 
 }

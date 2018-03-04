@@ -35,7 +35,7 @@ import android.view.View;
 import android.widget.Button;
 
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
 import org.kde.kdeconnect.UserInterface.SettingsActivity;
 import org.kde.kdeconnect_tp.R;
@@ -56,12 +56,12 @@ public abstract class Plugin {
      * To receive the network package from the unpaired device, override
      * listensToUnpairedDevices to return true and this method.
      */
-    public boolean onUnpairedDevicePackageReceived(NetworkPackage np) {
+    public boolean onUnpairedDevicePacketReceived(NetworkPacket np) {
         return false;
     }
 
     /**
-     * Returns whether this plugin should be loaded or not, to listen to NetworkPackages
+     * Returns whether this plugin should be loaded or not, to listen to NetworkPackets
      * from the unpaired devices. By default, returns false.
      */
     public boolean listensToUnpairedDevices() {
@@ -177,19 +177,19 @@ public abstract class Plugin {
      * when we have done something in response to the package or false
      * otherwise, even though that value is unused as of now.
      */
-    public boolean onPackageReceived(NetworkPackage np) {
+    public boolean onPacketReceived(NetworkPacket np) {
         return false;
     }
 
     /**
-     * Should return the list of NetworkPackage types that this plugin can handle
+     * Should return the list of NetworkPacket types that this plugin can handle
      */
-    public abstract String[] getSupportedPackageTypes();
+    public abstract String[] getSupportedPacketTypes();
 
     /**
-     * Should return the list of NetworkPackage types that this plugin can send
+     * Should return the list of NetworkPacket types that this plugin can send
      */
-    public abstract String[] getOutgoingPackageTypes();
+    public abstract String[] getOutgoingPacketTypes();
 
     /**
      * Creates a button that will be displayed in the user interface

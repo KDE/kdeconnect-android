@@ -30,7 +30,7 @@ import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Helpers.StringsHelper;
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -107,8 +107,8 @@ public class LanLink extends BaseLink {
                         if (packet.isEmpty()) {
                             continue;
                         }
-                        NetworkPackage np = NetworkPackage.unserialize(packet);
-                        receivedNetworkPackage(np);
+                        NetworkPacket np = NetworkPacket.unserialize(packet);
+                        receivedNetworkPacket(np);
                     }
                 } catch (Exception e) {
                     Log.i("LanLink", "Socket closed: " + newSocket.hashCode() + ". Reason: " + e.getMessage());
@@ -142,9 +142,9 @@ public class LanLink extends BaseLink {
     }
 
     //Blocking, do not call from main thread
-    private boolean sendPackageInternal(NetworkPackage np, final Device.SendPackageStatusCallback callback, PublicKey key) {
+    private boolean sendPacketInternal(NetworkPacket np, final Device.SendPacketStatusCallback callback, PublicKey key) {
         if (socket == null) {
-            Log.e("KDE/sendPackage", "Not yet connected");
+            Log.e("KDE/sendPacket", "Not yet connected");
             callback.onFailure(new NotYetConnectedException());
             return false;
         }
@@ -167,7 +167,7 @@ public class LanLink extends BaseLink {
                 np = RsaHelper.encrypt(np, key);
             }
 
-            //Log.e("LanLink/sendPackage", np.getType());
+            //Log.e("LanLink/sendPacket", np.getType());
 
             //Send body of the network package
             try {
@@ -244,24 +244,24 @@ public class LanLink extends BaseLink {
 
     //Blocking, do not call from main thread
     @Override
-    public boolean sendPackage(NetworkPackage np,Device.SendPackageStatusCallback callback) {
-        return sendPackageInternal(np, callback, null);
+    public boolean sendPacket(NetworkPacket np, Device.SendPacketStatusCallback callback) {
+        return sendPacketInternal(np, callback, null);
     }
 
     //Blocking, do not call from main thread
     @Override
-    public boolean sendPackageEncrypted(NetworkPackage np, Device.SendPackageStatusCallback callback, PublicKey key) {
-        return sendPackageInternal(np, callback, key);
+    public boolean sendPacketEncrypted(NetworkPacket np, Device.SendPacketStatusCallback callback, PublicKey key) {
+        return sendPacketInternal(np, callback, key);
     }
 
-    private void receivedNetworkPackage(NetworkPackage np) {
+    private void receivedNetworkPacket(NetworkPacket np) {
 
-        if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_ENCRYPTED)) {
+        if (np.getType().equals(NetworkPacket.PACKET_TYPE_ENCRYPTED)) {
             try {
                 np = RsaHelper.decrypt(np, privateKey);
             } catch(Exception e) {
                 e.printStackTrace();
-                Log.e("KDE/onPackageReceived","Exception decrypting the package");
+                Log.e("KDE/onPacketReceived","Exception decrypting the package");
             }
         }
 

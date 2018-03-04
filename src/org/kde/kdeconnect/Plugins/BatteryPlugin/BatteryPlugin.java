@@ -26,21 +26,21 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
 
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
 
 public class BatteryPlugin extends Plugin {
 
-    public final static String PACKAGE_TYPE_BATTERY = "kdeconnect.battery";
-    public final static String PACKAGE_TYPE_BATTERY_REQUEST = "kdeconnect.battery.request";
+    public final static String PACKET_TYPE_BATTERY = "kdeconnect.battery";
+    public final static String PACKET_TYPE_BATTERY_REQUEST = "kdeconnect.battery.request";
 
     // keep these fields in sync with kdeconnect-kded:BatteryPlugin.h:ThresholdBatteryEvent
     private static final int THRESHOLD_EVENT_NONE = 0;
     private static final int THRESHOLD_EVENT_BATTERY_LOW = 1;
 
-    private NetworkPackage batteryInfo = new NetworkPackage(PACKAGE_TYPE_BATTERY);
+    private NetworkPacket batteryInfo = new NetworkPacket(PACKET_TYPE_BATTERY);
 
     @Override
     public String getDisplayName() {
@@ -77,7 +77,7 @@ public class BatteryPlugin extends Plugin {
                 batteryInfo.set("currentCharge", currentCharge);
                 batteryInfo.set("isCharging", isCharging);
                 batteryInfo.set("thresholdEvent", thresholdEvent);
-                device.sendPackage(batteryInfo);
+                device.sendPacket(batteryInfo);
 
             }
 
@@ -100,23 +100,23 @@ public class BatteryPlugin extends Plugin {
     }
 
     @Override
-    public boolean onPackageReceived(NetworkPackage np) {
+    public boolean onPacketReceived(NetworkPacket np) {
 
         if (np.getBoolean("request")) {
-            device.sendPackage(batteryInfo);
+            device.sendPacket(batteryInfo);
         }
 
         return true;
     }
 
     @Override
-    public String[] getSupportedPackageTypes() {
-        return new String[]{PACKAGE_TYPE_BATTERY_REQUEST};
+    public String[] getSupportedPacketTypes() {
+        return new String[]{PACKET_TYPE_BATTERY_REQUEST};
     }
 
     @Override
-    public String[] getOutgoingPackageTypes() {
-        return new String[]{PACKAGE_TYPE_BATTERY};
+    public String[] getOutgoingPacketTypes() {
+        return new String[]{PACKET_TYPE_BATTERY};
     }
 
 }

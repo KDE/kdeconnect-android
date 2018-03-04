@@ -23,7 +23,7 @@ package org.kde.kdeconnect.Backends.LoopbackBackend;
 import android.content.Context;
 
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 
 public class LoopbackLinkProvider extends BaseLinkProvider {
 
@@ -44,7 +44,7 @@ public class LoopbackLinkProvider extends BaseLinkProvider {
 
     @Override
     public void onNetworkChange() {
-        NetworkPackage np = NetworkPackage.createIdentityPackage(context);
+        NetworkPacket np = NetworkPacket.createIdentityPacket(context);
         connectionAccepted(np, new LoopbackLink(context, this));
     }
 /*

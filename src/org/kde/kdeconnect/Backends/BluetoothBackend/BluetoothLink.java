@@ -34,7 +34,7 @@ import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -81,15 +81,15 @@ public class BluetoothLink extends BaseLink {
         }
 
         private void processMessage(String message) {
-            NetworkPackage np;
+            NetworkPacket np;
             try {
-                np = NetworkPackage.unserialize(message);
+                np = NetworkPacket.unserialize(message);
             } catch (JSONException e) {
                 Log.e("BluetoothLink/receiving", "Unable to parse message.", e);
                 return;
             }
 
-            if (np.getType().equals(NetworkPackage.PACKAGE_TYPE_ENCRYPTED)) {
+            if (np.getType().equals(NetworkPacket.PACKET_TYPE_ENCRYPTED)) {
                 try {
                     np = RsaHelper.decrypt(np, privateKey);
                 } catch (Exception e) {
@@ -151,7 +151,7 @@ public class BluetoothLink extends BaseLink {
         linkProvider.disconnectedLink(this, getDeviceId(), socket);
     }
 
-    private void sendMessage(NetworkPackage np) throws JSONException, IOException {
+    private void sendMessage(NetworkPacket np) throws JSONException, IOException {
         byte[] message = np.serialize().getBytes(Charset.forName("UTF-8"));
         OutputStream socket = this.socket.getOutputStream();
         Log.i("BluetoothLink", "Beginning to send message");
@@ -160,19 +160,19 @@ public class BluetoothLink extends BaseLink {
     }
 
     @Override
-    public boolean sendPackage(NetworkPackage np, Device.SendPackageStatusCallback callback) {
-        return sendPackageInternal(np, callback, null);
+    public boolean sendPacket(NetworkPacket np, Device.SendPacketStatusCallback callback) {
+        return sendPacketInternal(np, callback, null);
     }
 
     @Override
-    public boolean sendPackageEncrypted(NetworkPackage np, Device.SendPackageStatusCallback callback, PublicKey key) {
-        return sendPackageInternal(np, callback, key);
+    public boolean sendPacketEncrypted(NetworkPacket np, Device.SendPacketStatusCallback callback, PublicKey key) {
+        return sendPacketInternal(np, callback, key);
     }
 
-    private boolean sendPackageInternal(NetworkPackage np, final Device.SendPackageStatusCallback callback, PublicKey key) {
+    private boolean sendPacketInternal(NetworkPacket np, final Device.SendPacketStatusCallback callback, PublicKey key) {
 
         /*if (!isConnected()) {
-            Log.e("BluetoothLink", "sendPackageEncrypted failed: not connected");
+            Log.e("BluetoothLink", "sendPacketEncrypted failed: not connected");
             callback.sendFailure(new Exception("Not connected"));
             return;
         }*/

@@ -23,7 +23,7 @@ package org.kde.kdeconnect.Backends;
 import android.content.Context;
 
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -34,13 +34,13 @@ public abstract class BaseLink {
 
     protected final Context context;
 
-    public interface PackageReceiver {
-        void onPackageReceived(NetworkPackage np);
+    public interface PacketReceiver {
+        void onPacketReceived(NetworkPacket np);
     }
 
     private final BaseLinkProvider linkProvider;
     private final String deviceId;
-    private final ArrayList<PackageReceiver> receivers = new ArrayList<>();
+    private final ArrayList<PacketReceiver> receivers = new ArrayList<>();
     protected PrivateKey privateKey;
 
     protected BaseLink(Context context, String deviceId, BaseLinkProvider linkProvider) {
@@ -70,17 +70,17 @@ public abstract class BaseLink {
         return false;
     }
 
-    public void addPackageReceiver(PackageReceiver pr) {
+    public void addPacketReceiver(PacketReceiver pr) {
         receivers.add(pr);
     }
-    public void removePackageReceiver(PackageReceiver pr) {
+    public void removePacketReceiver(PacketReceiver pr) {
         receivers.remove(pr);
     }
 
     //Should be called from a background thread listening to packages
-    protected void packageReceived(NetworkPackage np) {
-        for(PackageReceiver pr : receivers) {
-            pr.onPackageReceived(np);
+    protected void packageReceived(NetworkPacket np) {
+        for(PacketReceiver pr : receivers) {
+            pr.onPacketReceived(np);
         }
     }
 
@@ -89,7 +89,7 @@ public abstract class BaseLink {
     }
 
     //TO OVERRIDE, should be sync
-    public abstract boolean sendPackage(NetworkPackage np,Device.SendPackageStatusCallback callback);
+    public abstract boolean sendPacket(NetworkPacket np, Device.SendPacketStatusCallback callback);
     @Deprecated
-    public abstract boolean sendPackageEncrypted(NetworkPackage np,Device.SendPackageStatusCallback callback, PublicKey key);
+    public abstract boolean sendPacketEncrypted(NetworkPacket np, Device.SendPacketStatusCallback callback, PublicKey key);
 }

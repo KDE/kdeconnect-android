@@ -31,7 +31,7 @@ import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
 import org.kde.kdeconnect.Helpers.NotificationHelper;
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect_tp.R;
@@ -39,7 +39,7 @@ import org.kde.kdeconnect_tp.R;
 
 public class PingPlugin extends Plugin {
 
-    public final static String PACKAGE_TYPE_PING = "kdeconnect.ping";
+    public final static String PACKET_TYPE_PING = "kdeconnect.ping";
 
     @Override
     public String getDisplayName() {
@@ -52,14 +52,14 @@ public class PingPlugin extends Plugin {
     }
 
     @Override
-    public boolean onPackageReceived(NetworkPackage np) {
+    public boolean onPacketReceived(NetworkPacket np) {
 
-        if (!np.getType().equals(PACKAGE_TYPE_PING)) {
+        if (!np.getType().equals(PACKET_TYPE_PING)) {
             Log.e("PingPlugin", "Ping plugin should not receive packets other than pings!");
             return false;
         }
 
-        //Log.e("PingPackageReceiver", "was a ping!");
+        //Log.e("PingPacketReceiver", "was a ping!");
 
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
         stackBuilder.addParentStack(MainActivity.class);
@@ -104,7 +104,7 @@ public class PingPlugin extends Plugin {
     @Override
     public void startMainActivity(Activity activity) {
         if (device != null) {
-            device.sendPackage(new NetworkPackage(PACKAGE_TYPE_PING));
+            device.sendPacket(new NetworkPacket(PACKET_TYPE_PING));
         }
     }
 
@@ -119,13 +119,13 @@ public class PingPlugin extends Plugin {
     }
 
     @Override
-    public String[] getSupportedPackageTypes() {
-        return new String[]{PACKAGE_TYPE_PING};
+    public String[] getSupportedPacketTypes() {
+        return new String[]{PACKET_TYPE_PING};
     }
 
     @Override
-    public String[] getOutgoingPackageTypes() {
-        return new String[]{PACKAGE_TYPE_PING};
+    public String[] getOutgoingPacketTypes() {
+        return new String[]{PACKET_TYPE_PING};
     }
 
 }

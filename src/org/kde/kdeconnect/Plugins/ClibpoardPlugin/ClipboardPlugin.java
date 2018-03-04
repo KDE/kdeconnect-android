@@ -22,13 +22,13 @@ package org.kde.kdeconnect.Plugins.ClibpoardPlugin;
 
 import android.os.Build;
 
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
 public class ClipboardPlugin extends Plugin {
 
-    public final static String PACKAGE_TYPE_CLIPBOARD = "kdeconnect.clipboard";
+    public final static String PACKET_TYPE_CLIPBOARD = "kdeconnect.clipboard";
 
     @Override
     public String getDisplayName() {
@@ -47,7 +47,7 @@ public class ClipboardPlugin extends Plugin {
     }
 
     @Override
-    public boolean onPackageReceived(NetworkPackage np) {
+    public boolean onPacketReceived(NetworkPacket np) {
         String content = np.getString("content");
         ClipboardListener.instance(context).setText(content);
         return true;
@@ -56,9 +56,9 @@ public class ClipboardPlugin extends Plugin {
     private ClipboardListener.ClipboardObserver observer = new ClipboardListener.ClipboardObserver() {
         @Override
         public void clipboardChanged(String content) {
-            NetworkPackage np = new NetworkPackage(ClipboardPlugin.PACKAGE_TYPE_CLIPBOARD);
+            NetworkPacket np = new NetworkPacket(ClipboardPlugin.PACKET_TYPE_CLIPBOARD);
             np.set("content", content);
-            device.sendPackage(np);
+            device.sendPacket(np);
         }
     };
 
@@ -74,13 +74,13 @@ public class ClipboardPlugin extends Plugin {
     }
 
     @Override
-    public String[] getSupportedPackageTypes() {
-        return new String[]{PACKAGE_TYPE_CLIPBOARD};
+    public String[] getSupportedPacketTypes() {
+        return new String[]{PACKET_TYPE_CLIPBOARD};
     }
 
     @Override
-    public String[] getOutgoingPackageTypes() {
-        return new String[]{PACKAGE_TYPE_CLIPBOARD};
+    public String[] getOutgoingPacketTypes() {
+        return new String[]{PACKET_TYPE_CLIPBOARD};
     }
 
 

@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 package org.kde.kdeconnect;
@@ -36,18 +36,18 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class NetworkPackage {
+public class NetworkPacket {
 
     public final static int ProtocolVersion = 7;
 
-    public final static String PACKAGE_TYPE_IDENTITY = "kdeconnect.identity";
-    public final static String PACKAGE_TYPE_PAIR = "kdeconnect.pair";
-    public final static String PACKAGE_TYPE_ENCRYPTED = "kdeconnect.encrypted";
+    public final static String PACKET_TYPE_IDENTITY = "kdeconnect.identity";
+    public final static String PACKET_TYPE_PAIR = "kdeconnect.pair";
+    public final static String PACKET_TYPE_ENCRYPTED = "kdeconnect.encrypted";
 
-    public static Set<String> protocolPackageTypes = new HashSet<String>() {{
-        add(PACKAGE_TYPE_IDENTITY);
-        add(PACKAGE_TYPE_PAIR);
-        add(PACKAGE_TYPE_ENCRYPTED);
+    public static Set<String> protocolPacketTypes = new HashSet<String>() {{
+        add(PACKET_TYPE_IDENTITY);
+        add(PACKET_TYPE_PAIR);
+        add(PACKET_TYPE_ENCRYPTED);
     }};
 
     private long mId;
@@ -57,11 +57,11 @@ public class NetworkPackage {
     private JSONObject mPayloadTransferInfo;
     private long mPayloadSize;
 
-    private NetworkPackage() {
+    private NetworkPacket() {
 
     }
 
-    public NetworkPackage(String type) {
+    public NetworkPacket(String type) {
         mId = System.currentTimeMillis();
         mType = type;
         mBody = new JSONObject();
@@ -238,9 +238,9 @@ public class NetworkPackage {
         return jo.toString().replace("\\/", "/") + "\n";
     }
 
-    static public NetworkPackage unserialize(String s) throws JSONException {
+    static public NetworkPacket unserialize(String s) throws JSONException {
 
-        NetworkPackage np = new NetworkPackage();
+        NetworkPacket np = new NetworkPacket();
         JSONObject jo = new JSONObject(s);
         np.mId = jo.getLong("id");
         np.mType = jo.getString("type");
@@ -255,21 +255,21 @@ public class NetworkPackage {
         return np;
     }
 
-    static public NetworkPackage createIdentityPackage(Context context) {
+    static public NetworkPacket createIdentityPacket(Context context) {
 
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_IDENTITY);
+        NetworkPacket np = new NetworkPacket(NetworkPacket.PACKET_TYPE_IDENTITY);
 
         String deviceId = DeviceHelper.getDeviceId(context);
         try {
             np.mBody.put("deviceId", deviceId);
             np.mBody.put("deviceName", DeviceHelper.getDeviceName(context));
-            np.mBody.put("protocolVersion", NetworkPackage.ProtocolVersion);
+            np.mBody.put("protocolVersion", NetworkPacket.ProtocolVersion);
             np.mBody.put("deviceType", DeviceHelper.isTablet() ? "tablet" : "phone");
             np.mBody.put("incomingCapabilities", new JSONArray(PluginFactory.getIncomingCapabilities(context)));
             np.mBody.put("outgoingCapabilities", new JSONArray(PluginFactory.getOutgoingCapabilities(context)));
         } catch (Exception e) {
             e.printStackTrace();
-            Log.e("NetworkPacakge", "Exception on createIdentityPackage");
+            Log.e("NetworkPacakge", "Exception on createIdentityPacket");
         }
 
         return np;

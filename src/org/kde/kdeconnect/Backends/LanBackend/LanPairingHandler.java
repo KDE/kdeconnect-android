@@ -28,7 +28,7 @@ import android.util.Log;
 
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect_tp.R;
 
 import java.security.KeyFactory;
@@ -51,8 +51,8 @@ public class LanPairingHandler extends BasePairingHandler {
         }
     }
 
-    private NetworkPackage createPairPackage() {
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
+    private NetworkPacket createPairPacket() {
+        NetworkPacket np = new NetworkPacket(NetworkPacket.PACKET_TYPE_PAIR);
         np.set("pair", true);
         SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(mDevice.getContext());
         String publicKey = "-----BEGIN PUBLIC KEY-----\n" + globalSettings.getString("publicKey", "").trim()+ "\n-----END PUBLIC KEY-----\n";
@@ -61,7 +61,7 @@ public class LanPairingHandler extends BasePairingHandler {
     }
 
     @Override
-    public void packageReceived(NetworkPackage np) throws Exception{
+    public void packageReceived(NetworkPacket np) throws Exception{
 
         boolean wantsPair = np.getBoolean("pair");
 
@@ -140,7 +140,7 @@ public class LanPairingHandler extends BasePairingHandler {
     @Override
     public void requestPairing() {
 
-        Device.SendPackageStatusCallback statusCallback = new Device.SendPackageStatusCallback() {
+        Device.SendPacketStatusCallback statusCallback = new Device.SendPacketStatusCallback() {
             @Override
             public void onSuccess() {
                 hidePairingNotification(); //Will stop the pairingTimer if it was running
@@ -166,7 +166,7 @@ public class LanPairingHandler extends BasePairingHandler {
                 mCallback.pairingFailed(mDevice.getContext().getString(R.string.error_could_not_send_package));
             }
         };
-        mDevice.sendPackage(createPairPackage(), statusCallback);
+        mDevice.sendPacket(createPairPacket(), statusCallback);
     }
 
     void hidePairingNotification() {
@@ -179,7 +179,7 @@ public class LanPairingHandler extends BasePairingHandler {
     @Override
     public void acceptPairing() {
         hidePairingNotification();
-        Device.SendPackageStatusCallback statusCallback = new Device.SendPackageStatusCallback() {
+        Device.SendPacketStatusCallback statusCallback = new Device.SendPacketStatusCallback() {
             @Override
             public void onSuccess() {
                 pairingDone();
@@ -195,16 +195,16 @@ public class LanPairingHandler extends BasePairingHandler {
                 mCallback.pairingFailed(mDevice.getContext().getString(R.string.error_not_reachable));
             }
         };
-        mDevice.sendPackage(createPairPackage(), statusCallback);
+        mDevice.sendPacket(createPairPacket(), statusCallback);
     }
 
     @Override
     public void rejectPairing() {
         hidePairingNotification();
         mPairStatus = PairStatus.NotPaired;
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
+        NetworkPacket np = new NetworkPacket(NetworkPacket.PACKET_TYPE_PAIR);
         np.set("pair", false);
-        mDevice.sendPackage(np);
+        mDevice.sendPacket(np);
     }
 
     void pairingDone() {
@@ -242,8 +242,8 @@ public class LanPairingHandler extends BasePairingHandler {
     @Override
     public void unpair() {
         mPairStatus = PairStatus.NotPaired;
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
+        NetworkPacket np = new NetworkPacket(NetworkPacket.PACKET_TYPE_PAIR);
         np.set("pair", false);
-        mDevice.sendPackage(np);
+        mDevice.sendPacket(np);
     }
 }

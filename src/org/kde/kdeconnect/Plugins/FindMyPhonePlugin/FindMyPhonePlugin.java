@@ -23,13 +23,13 @@ package org.kde.kdeconnect.Plugins.FindMyPhonePlugin;
 import android.content.Intent;
 
 import org.kde.kdeconnect.Helpers.DeviceHelper;
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
 public class FindMyPhonePlugin extends Plugin {
 
-    public final static String PACKAGE_TYPE_FINDMYPHONE_REQUEST = "kdeconnect.findmyphone.request";
+    public final static String PACKET_TYPE_FINDMYPHONE_REQUEST = "kdeconnect.findmyphone.request";
 
     @Override
     public String getDisplayName() {
@@ -42,7 +42,7 @@ public class FindMyPhonePlugin extends Plugin {
     }
 
     @Override
-    public boolean onPackageReceived(NetworkPackage np) {
+    public boolean onPacketReceived(NetworkPacket np) {
 
         Intent intent = new Intent(context, FindMyPhoneActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -52,12 +52,12 @@ public class FindMyPhonePlugin extends Plugin {
     }
 
     @Override
-    public String[] getSupportedPackageTypes() {
-        return new String[]{PACKAGE_TYPE_FINDMYPHONE_REQUEST};
+    public String[] getSupportedPacketTypes() {
+        return new String[]{PACKET_TYPE_FINDMYPHONE_REQUEST};
     }
 
     @Override
-    public String[] getOutgoingPackageTypes() {
+    public String[] getOutgoingPacketTypes() {
         return new String[0];
     }
 

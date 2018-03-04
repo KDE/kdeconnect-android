@@ -7,12 +7,12 @@ import android.support.v4.app.NotificationCompat;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 
-class NotificationUpdateCallback extends Device.SendPackageStatusCallback {
+class NotificationUpdateCallback extends Device.SendPacketStatusCallback {
 
     final Context context;
     final Resources res;
@@ -20,14 +20,14 @@ class NotificationUpdateCallback extends Device.SendPackageStatusCallback {
     final NotificationManager notificationManager;
     final NotificationCompat.Builder builder;
 
-    final ArrayList<NetworkPackage> toSend;
+    final ArrayList<NetworkPacket> toSend;
 
     final int notificationId;
 
     int sentFiles = 0;
     final int numFiles;
 
-    NotificationUpdateCallback(Context context, Device device, ArrayList<NetworkPackage> toSend) {
+    NotificationUpdateCallback(Context context, Device device, ArrayList<NetworkPacket> toSend) {
         this.context = context;
         this.toSend = toSend;
         this.device = device;

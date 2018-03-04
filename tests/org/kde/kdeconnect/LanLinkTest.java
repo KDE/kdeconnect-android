@@ -47,7 +47,7 @@ public class LanLinkTest extends AndroidTestCase {
     OutputStream badOutputStream;
     OutputStream goodOutputStream;
 
-    Device.SendPackageStatusCallback callback;
+    Device.SendPacketStatusCallback callback;
 
     @Override
     protected void setUp() throws Exception {
@@ -58,7 +58,7 @@ public class LanLinkTest extends AndroidTestCase {
         LanLinkProvider linkProvider = Mockito.mock(LanLinkProvider.class);
         Mockito.when(linkProvider.getName()).thenReturn("LanLinkProvider");
 
-        callback = Mockito.mock(Device.SendPackageStatusCallback.class);
+        callback = Mockito.mock(Device.SendPacketStatusCallback.class);
 
         goodOutputStream = Mockito.mock(OutputStream.class);
         badOutputStream = Mockito.mock(OutputStream.class);
@@ -82,28 +82,28 @@ public class LanLinkTest extends AndroidTestCase {
         super.tearDown();
     }
 
-    public void testSendPackageSuccess() throws JSONException {
+    public void testSendPacketSuccess() throws JSONException {
 
-        NetworkPackage testPackage = Mockito.mock(NetworkPackage.class);
-        Mockito.when(testPackage.getType()).thenReturn("kdeconnect.test");
-        Mockito.when(testPackage.getBoolean("isTesting")).thenReturn(true);
-        Mockito.when(testPackage.getString("testName")).thenReturn("testSendPackageSuccess");
-        Mockito.when(testPackage.serialize()).thenReturn("{\"id\":123,\"type\":\"kdeconnect.test\",\"body\":{\"isTesting\":true,\"testName\":\"testSendPackageSuccess\"}}");
+        NetworkPacket testPacket = Mockito.mock(NetworkPacket.class);
+        Mockito.when(testPacket.getType()).thenReturn("kdeconnect.test");
+        Mockito.when(testPacket.getBoolean("isTesting")).thenReturn(true);
+        Mockito.when(testPacket.getString("testName")).thenReturn("testSendPacketSuccess");
+        Mockito.when(testPacket.serialize()).thenReturn("{\"id\":123,\"type\":\"kdeconnect.test\",\"body\":{\"isTesting\":true,\"testName\":\"testSendPacketSuccess\"}}");
 
-        goodLanLink.sendPackage(testPackage, callback);
+        goodLanLink.sendPacket(testPacket, callback);
 
         Mockito.verify(callback).onSuccess();
     }
 
-    public void testSendPackageFail() throws JSONException {
+    public void testSendPacketFail() throws JSONException {
 
-        NetworkPackage testPackage = Mockito.mock(NetworkPackage.class);
-        Mockito.when(testPackage.getType()).thenReturn("kdeconnect.test");
-        Mockito.when(testPackage.getBoolean("isTesting")).thenReturn(true);
-        Mockito.when(testPackage.getString("testName")).thenReturn("testSendPackageFail");
-        Mockito.when(testPackage.serialize()).thenReturn("{\"id\":123,\"type\":\"kdeconnect.test\",\"body\":{\"isTesting\":true,\"testName\":\"testSendPackageFail\"}}");
+        NetworkPacket testPacket = Mockito.mock(NetworkPacket.class);
+        Mockito.when(testPacket.getType()).thenReturn("kdeconnect.test");
+        Mockito.when(testPacket.getBoolean("isTesting")).thenReturn(true);
+        Mockito.when(testPacket.getString("testName")).thenReturn("testSendPacketFail");
+        Mockito.when(testPacket.serialize()).thenReturn("{\"id\":123,\"type\":\"kdeconnect.test\",\"body\":{\"isTesting\":true,\"testName\":\"testSendPacketFail\"}}");
 
-        badLanLink.sendPackage(testPackage, callback);
+        badLanLink.sendPacket(testPacket, callback);
 
         Mockito.verify(callback).onFailure(Mockito.any(RuntimeException.class));
 
@@ -114,11 +114,11 @@ public class LanLinkTest extends AndroidTestCase {
 
         class Downloader extends Thread {
 
-            NetworkPackage np;
+            NetworkPacket np;
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
-            public void setNetworkPackage(NetworkPackage networkPackage) {
-                this.np = networkPackage;
+            public void setNetworkPacket(NetworkPacket networkPacket) {
+                this.np = networkPacket;
             }
 
             public ByteArrayOutputStream getOutputStream() {
@@ -197,53 +197,53 @@ public class LanLinkTest extends AndroidTestCase {
 
         final byte[] data = reallyLongString.getBytes();
 
-        final JSONObject sharePackageJson = new JSONObject("{\"id\":123,\"body\":{\"filename\":\"data.txt\"},\"payloadTransferInfo\":{},\"payloadSize\":8720,\"type\":\"kdeconnect.share\"}");
+        final JSONObject sharePacketJson = new JSONObject("{\"id\":123,\"body\":{\"filename\":\"data.txt\"},\"payloadTransferInfo\":{},\"payloadSize\":8720,\"type\":\"kdeconnect.share\"}");
 
         // Mocking share package
-        final NetworkPackage sharePackage = Mockito.mock(NetworkPackage.class);
-        Mockito.when(sharePackage.getType()).thenReturn("kdeconnect.share");
-        Mockito.when(sharePackage.hasPayload()).thenReturn(true);
-        Mockito.when(sharePackage.hasPayloadTransferInfo()).thenReturn(true);
+        final NetworkPacket sharePacket = Mockito.mock(NetworkPacket.class);
+        Mockito.when(sharePacket.getType()).thenReturn("kdeconnect.share");
+        Mockito.when(sharePacket.hasPayload()).thenReturn(true);
+        Mockito.when(sharePacket.hasPayloadTransferInfo()).thenReturn(true);
         Mockito.doAnswer(new Answer() {
             @Override
             public Object answer(InvocationOnMock invocationOnMock) throws Throwable {
-                return sharePackageJson.toString();
+                return sharePacketJson.toString();
             }
-        }).when(sharePackage).serialize();
-        Mockito.when(sharePackage.getPayload()).thenReturn(new ByteArrayInputStream(data));
-        Mockito.when(sharePackage.getPayloadSize()).thenReturn((long) data.length);
+        }).when(sharePacket).serialize();
+        Mockito.when(sharePacket.getPayload()).thenReturn(new ByteArrayInputStream(data));
+        Mockito.when(sharePacket.getPayloadSize()).thenReturn((long) data.length);
         Mockito.doAnswer(new Answer() {
             @Override
             public Object answer(InvocationOnMock invocationOnMock) throws Throwable {
-                return sharePackageJson.getJSONObject("payloadTransferInfo");
+                return sharePacketJson.getJSONObject("payloadTransferInfo");
             }
-        }).when(sharePackage).getPayloadTransferInfo();
+        }).when(sharePacket).getPayloadTransferInfo();
         Mockito.doAnswer(new Answer() {
             @Override
             public Object answer(InvocationOnMock invocationOnMock) throws Throwable {
                 JSONObject object = (JSONObject) invocationOnMock.getArguments()[0];
 
-                sharePackageJson.put("payloadTransferInfo", object);
+                sharePacketJson.put("payloadTransferInfo", object);
                 return null;
             }
-        }).when(sharePackage).setPayloadTransferInfo(Mockito.any(JSONObject.class));
+        }).when(sharePacket).setPayloadTransferInfo(Mockito.any(JSONObject.class));
 
         Mockito.doAnswer(new Answer() {
             @Override
             public Object answer(InvocationOnMock invocationOnMock) throws Throwable {
 
                 Log.e("LanLinkTest", "Write to stream");
-                String stringNetworkPackage = new String((byte[]) invocationOnMock.getArguments()[0]);
-                final NetworkPackage np = NetworkPackage.unserialize(stringNetworkPackage);
+                String stringNetworkPacket = new String((byte[]) invocationOnMock.getArguments()[0]);
+                final NetworkPacket np = NetworkPacket.unserialize(stringNetworkPacket);
 
-                downloader.setNetworkPackage(np);
+                downloader.setNetworkPacket(np);
                 downloader.start();
 
-                return stringNetworkPackage.length();
+                return stringNetworkPacket.length();
             }
         }).when(goodOutputStream).write(Mockito.any(byte[].class));
 
-        goodLanLink.sendPackage(sharePackage, callback);
+        goodLanLink.sendPacket(sharePacket, callback);
 
         try {
             // Wait 1 secs for downloader to finish (if some error, it will continue and assert will fail)

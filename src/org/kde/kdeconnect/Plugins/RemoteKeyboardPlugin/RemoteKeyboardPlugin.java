@@ -34,7 +34,7 @@ import android.view.inputmethod.ExtractedText;
 import android.view.inputmethod.ExtractedTextRequest;
 import android.view.inputmethod.InputConnection;
 
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
@@ -43,9 +43,9 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class RemoteKeyboardPlugin extends Plugin {
 
-    public final static String PACKAGE_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request";
-    public final static String PACKAGE_TYPE_MOUSEPAD_ECHO = "kdeconnect.mousepad.echo";
-    public final static String PACKAGE_TYPE_MOUSEPAD_KEYBOARDSTATE = "kdeconnect.mousepad.keyboardstate";
+    public final static String PACKET_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request";
+    public final static String PACKET_TYPE_MOUSEPAD_ECHO = "kdeconnect.mousepad.echo";
+    public final static String PACKET_TYPE_MOUSEPAD_KEYBOARDSTATE = "kdeconnect.mousepad.keyboardstate";
 
     /**
      * Track and expose plugin instances to allow for a 'connected'-indicator in the IME:
@@ -177,13 +177,13 @@ public class RemoteKeyboardPlugin extends Plugin {
     }
 
     @Override
-    public String[] getSupportedPackageTypes() {
-        return new String[]{PACKAGE_TYPE_MOUSEPAD_REQUEST};
+    public String[] getSupportedPacketTypes() {
+        return new String[]{PACKET_TYPE_MOUSEPAD_REQUEST};
     }
 
     @Override
-    public String[] getOutgoingPackageTypes() {
-        return new String[]{PACKAGE_TYPE_MOUSEPAD_ECHO, PACKAGE_TYPE_MOUSEPAD_KEYBOARDSTATE};
+    public String[] getOutgoingPacketTypes() {
+        return new String[]{PACKET_TYPE_MOUSEPAD_ECHO, PACKET_TYPE_MOUSEPAD_KEYBOARDSTATE};
     }
 
     private boolean isValidSpecialKey(int key) {
@@ -340,7 +340,7 @@ public class RemoteKeyboardPlugin extends Plugin {
         return true;
     }
 
-    private boolean handleEvent(NetworkPackage np) {
+    private boolean handleEvent(NetworkPacket np) {
         if (np.has("specialKey") && isValidSpecialKey(np.getInt("specialKey")))
             return handleSpecialKey(np.getInt("specialKey"), np.getBoolean("shift"),
                     np.getBoolean("ctrl"), np.getBoolean("alt"));
@@ -351,9 +351,9 @@ public class RemoteKeyboardPlugin extends Plugin {
     }
 
     @Override
-    public boolean onPackageReceived(NetworkPackage np) {
+    public boolean onPacketReceived(NetworkPacket np) {
 
-        if (!np.getType().equals(PACKAGE_TYPE_MOUSEPAD_REQUEST)
+        if (!np.getType().equals(PACKET_TYPE_MOUSEPAD_REQUEST)
                 || (!np.has("key") && !np.has("specialKey"))) {  // expect at least key OR specialKey
             Log.e("RemoteKeyboardPlugin", "Invalid package for remotekeyboard plugin!");
             return false;
@@ -376,7 +376,7 @@ public class RemoteKeyboardPlugin extends Plugin {
         }
 
         if (np.getBoolean("sendAck")) {
-            NetworkPackage reply = new NetworkPackage(PACKAGE_TYPE_MOUSEPAD_ECHO);
+            NetworkPacket reply = new NetworkPacket(PACKET_TYPE_MOUSEPAD_ECHO);
             reply.set("key", np.getString("key"));
             if (np.has("specialKey"))
                 reply.set("specialKey", np.getInt("specialKey"));
@@ -387,7 +387,7 @@ public class RemoteKeyboardPlugin extends Plugin {
             if (np.has("alt"))
                 reply.set("alt", np.getBoolean("alt"));
             reply.set("isAck", true);
-            device.sendPackage(reply);
+            device.sendPacket(reply);
         }
 
         return true;
@@ -395,8 +395,8 @@ public class RemoteKeyboardPlugin extends Plugin {
 
     public void notifyKeyboardState(boolean state) {
         Log.d("RemoteKeyboardPlugin", "Keyboardstate changed to " + state);
-        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_MOUSEPAD_KEYBOARDSTATE);
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_KEYBOARDSTATE);
         np.set("state", state);
-        device.sendPackage(np);
+        device.sendPacket(np);
     }
 }

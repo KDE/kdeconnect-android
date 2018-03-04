@@ -45,7 +45,7 @@ import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.List;
@@ -178,7 +178,7 @@ public class MprisActivity extends AppCompatActivity {
 
     private final BaseLinkProvider.ConnectionReceiver connectionReceiver = new BaseLinkProvider.ConnectionReceiver() {
         @Override
-        public void onConnectionReceived(NetworkPackage identityPackage, BaseLink link) {
+        public void onConnectionReceived(NetworkPacket identityPacket, BaseLink link) {
             connectToPlugin(null);
         }
 

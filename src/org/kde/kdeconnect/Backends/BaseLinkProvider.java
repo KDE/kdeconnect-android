@@ -20,7 +20,7 @@
 
 package org.kde.kdeconnect.Backends;
 
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -29,7 +29,7 @@ public abstract class BaseLinkProvider {
     private final CopyOnWriteArrayList<ConnectionReceiver> connectionReceivers = new CopyOnWriteArrayList<>();
 
     public interface ConnectionReceiver {
-        void onConnectionReceived(NetworkPackage identityPackage, BaseLink link);
+        void onConnectionReceived(NetworkPacket identityPacket, BaseLink link);
         void onConnectionLost(BaseLink link);
     }
 
@@ -42,10 +42,10 @@ public abstract class BaseLinkProvider {
     }
 
     //These two should be called when the provider links to a new computer
-    protected void connectionAccepted(NetworkPackage identityPackage, BaseLink link) {
+    protected void connectionAccepted(NetworkPacket identityPacket, BaseLink link) {
         //Log.i("KDE/LinkProvider", "connectionAccepted");
         for(ConnectionReceiver cr : connectionReceivers) {
-            cr.onConnectionReceived(identityPackage, link);
+            cr.onConnectionReceived(identityPacket, link);
         }
     }
     protected void connectionLost(BaseLink link) {

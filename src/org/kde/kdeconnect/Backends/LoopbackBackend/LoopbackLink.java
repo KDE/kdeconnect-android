@@ -26,7 +26,7 @@ import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 
 import java.security.PublicKey;
 
@@ -47,7 +47,7 @@ public class LoopbackLink extends BaseLink {
     }
 
     @Override
-    public boolean sendPackage(NetworkPackage in, Device.SendPackageStatusCallback callback) {
+    public boolean sendPacket(NetworkPacket in, Device.SendPacketStatusCallback callback) {
         packageReceived(in);
         if (in.hasPayload()) {
             callback.onProgressChanged(0);
@@ -59,7 +59,7 @@ public class LoopbackLink extends BaseLink {
     }
 
     @Override
-    public boolean sendPackageEncrypted(NetworkPackage np, Device.SendPackageStatusCallback callback, PublicKey key) {
-        return sendPackage(np, callback);
+    public boolean sendPacketEncrypted(NetworkPacket np, Device.SendPacketStatusCallback callback, PublicKey key) {
+        return sendPacket(np, callback);
     }
 }

@@ -24,7 +24,7 @@ import android.util.Log;
 
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 
 public class LoopbackPairingHandler extends BasePairingHandler {
 
@@ -33,7 +33,7 @@ public class LoopbackPairingHandler extends BasePairingHandler {
     }
 
     @Override
-    public void packageReceived(NetworkPackage np) throws Exception {
+    public void packageReceived(NetworkPacket np) throws Exception {
 
     }
 

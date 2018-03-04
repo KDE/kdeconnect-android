@@ -43,7 +43,7 @@ import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import org.kde.kdeconnect.Helpers.AppsHelper;
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.SettingsActivity;
@@ -59,9 +59,9 @@ import java.util.Map;
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class NotificationsPlugin extends Plugin implements NotificationReceiver.NotificationListener {
 
-    private final static String PACKAGE_TYPE_NOTIFICATION = "kdeconnect.notification";
-    private final static String PACKAGE_TYPE_NOTIFICATION_REQUEST = "kdeconnect.notification.request";
-    private final static String PACKAGE_TYPE_NOTIFICATION_REPLY = "kdeconnect.notification.reply";
+    private final static String PACKET_TYPE_NOTIFICATION = "kdeconnect.notification";
+    private final static String PACKET_TYPE_NOTIFICATION_REQUEST = "kdeconnect.notification.request";
+    private final static String PACKET_TYPE_NOTIFICATION_REPLY = "kdeconnect.notification.reply";
 
     private Map<String, RepliableNotification> pendingIntents;
     private boolean serviceReady;
@@ -144,10 +144,10 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             return;
         }
         String id = getNotificationKeyCompat(statusBarNotification);
-        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_NOTIFICATION);
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_NOTIFICATION);
         np.set("id", id);
         np.set("isCancel", true);
-        device.sendPackage(np);
+        device.sendPacket(np);
     }
 
     @Override
@@ -193,7 +193,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             return;
         }
 
-        NetworkPackage np = new NetworkPackage(PACKAGE_TYPE_NOTIFICATION);
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_NOTIFICATION);
 
         if (packageName.equals("org.kde.kdeconnect_tp")) {
             //Make our own notifications silent :)
@@ -250,7 +250,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         np.set("text", getNotificationText(notification));
         np.set("time", Long.toString(statusBarNotification.getPostTime()));
 
-        device.sendPackage(np);
+        device.sendPacket(np);
     }
 
     private Bitmap drawableToBitmap(Drawable drawable) {
@@ -452,7 +452,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     }
 
     @Override
-    public boolean onPackageReceived(final NetworkPackage np) {
+    public boolean onPacketReceived(final NetworkPacket np) {
 
         if (np.getBoolean("request")) {
 
@@ -511,13 +511,13 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     }
 
     @Override
-    public String[] getSupportedPackageTypes() {
-        return new String[]{PACKAGE_TYPE_NOTIFICATION_REQUEST, PACKAGE_TYPE_NOTIFICATION_REPLY};
+    public String[] getSupportedPacketTypes() {
+        return new String[]{PACKET_TYPE_NOTIFICATION_REQUEST, PACKET_TYPE_NOTIFICATION_REPLY};
     }
 
     @Override
-    public String[] getOutgoingPackageTypes() {
-        return new String[]{PACKAGE_TYPE_NOTIFICATION};
+    public String[] getOutgoingPacketTypes() {
+        return new String[]{PACKET_TYPE_NOTIFICATION};
     }
 
     //For compat with API<21, because lollipop changed the way to cancel notifications

@@ -21,7 +21,7 @@
 package org.kde.kdeconnect.Backends;
 
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 
 /**
  * This class separates the pairing interface for each type of link.
@@ -73,7 +73,7 @@ public abstract class BasePairingHandler {
     }
 
     /* To be implemented by respective pairing handler */
-    public abstract void packageReceived(NetworkPackage np) throws Exception;
+    public abstract void packageReceived(NetworkPacket np) throws Exception;
     public abstract void requestPairing();
     public abstract void acceptPairing();
     public abstract void rejectPairing();

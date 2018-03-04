@@ -35,7 +35,7 @@ import android.util.Log;
 
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -61,8 +61,8 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
     private ServerRunnable serverRunnable;
     private ClientRunnable clientRunnable;
 
-    private void addLink(NetworkPackage identityPackage, BluetoothLink link) {
-        String deviceId = identityPackage.getString("deviceId");
+    private void addLink(NetworkPacket identityPacket, BluetoothLink link) {
+        String deviceId = identityPacket.getString("deviceId");
         Log.i("BluetoothLinkProvider", "addLink to " + deviceId);
         BluetoothLink oldLink = visibleComputers.get(deviceId);
         if (oldLink == link) {
@@ -70,7 +70,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
             return;
         }
         visibleComputers.put(deviceId, link);
-        connectionAccepted(identityPackage, link);
+        connectionAccepted(identityPacket, link);
         link.startListening();
         if (oldLink != null) {
             Log.i("BluetoothLinkProvider", "Removing old connection to same device");
@@ -186,7 +186,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
 
             Log.i("BTLinkProvider/Server", "Received connection from " + socket.getRemoteDevice().getAddress());
 
-            NetworkPackage np = NetworkPackage.createIdentityPackage(context);
+            NetworkPacket np = NetworkPacket.createIdentityPacket(context);
             byte[] message = np.serialize().getBytes("UTF-8");
             outputStream.write(message);
 
@@ -202,9 +202,9 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
             }
 
             String response = sb.toString();
-            final NetworkPackage identityPackage = NetworkPackage.unserialize(response);
+            final NetworkPacket identityPacket = NetworkPacket.unserialize(response);
 
-            if (!identityPackage.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
+            if (!identityPacket.getType().equals(NetworkPacket.PACKET_TYPE_IDENTITY)) {
                 Log.e("BTLinkProvider/Server", "2 Expecting an identity package");
                 return;
             }
@@ -212,9 +212,9 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
             Log.i("BTLinkProvider/Server", "Received identity package");
 
             BluetoothLink link = new BluetoothLink(context, socket,
-                    identityPackage.getString("deviceId"), BluetoothLinkProvider.this);
+                    identityPacket.getString("deviceId"), BluetoothLinkProvider.this);
 
-            addLink(identityPackage, link);
+            addLink(identityPacket, link);
         }
     }
 
@@ -335,9 +335,9 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
                 }
 
                 String message = sb.toString();
-                final NetworkPackage identityPackage = NetworkPackage.unserialize(message);
+                final NetworkPacket identityPacket = NetworkPacket.unserialize(message);
 
-                if (!identityPackage.getType().equals(NetworkPackage.PACKAGE_TYPE_IDENTITY)) {
+                if (!identityPacket.getType().equals(NetworkPacket.PACKET_TYPE_IDENTITY)) {
                     Log.e("BTLinkProvider/Client", "1 Expecting an identity package");
                     socket.close();
                     return;
@@ -345,27 +345,27 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
 
                 Log.i("BTLinkProvider/Client", "Received identity package");
 
-                String myId = NetworkPackage.createIdentityPackage(context).getString("deviceId");
-                if (identityPackage.getString("deviceId").equals(myId)) {
+                String myId = NetworkPacket.createIdentityPacket(context).getString("deviceId");
+                if (identityPacket.getString("deviceId").equals(myId)) {
                     // Probably won't happen, but just to be safe
                     socket.close();
                     return;
                 }
 
-                if (visibleComputers.containsKey(identityPackage.getString("deviceId"))) {
+                if (visibleComputers.containsKey(identityPacket.getString("deviceId"))) {
                     return;
                 }
 
                 Log.i("BTLinkProvider/Client", "Identity package received, creating link");
 
                 final BluetoothLink link = new BluetoothLink(context, socket,
-                        identityPackage.getString("deviceId"), BluetoothLinkProvider.this);
+                        identityPacket.getString("deviceId"), BluetoothLinkProvider.this);
 
-                NetworkPackage np2 = NetworkPackage.createIdentityPackage(context);
-                link.sendPackage(np2, new Device.SendPackageStatusCallback() {
+                NetworkPacket np2 = NetworkPacket.createIdentityPacket(context);
+                link.sendPacket(np2, new Device.SendPacketStatusCallback() {
                     @Override
                     public void onSuccess() {
-                        addLink(identityPackage, link);
+                        addLink(identityPacket, link);
                     }
 
                     @Override

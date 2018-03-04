@@ -28,7 +28,7 @@ import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 
 import java.nio.charset.Charset;
 import java.security.GeneralSecurityException;
@@ -105,7 +105,7 @@ public class RsaHelper {
 
     }
 
-    public static NetworkPackage encrypt(NetworkPackage np, PublicKey publicKey) throws GeneralSecurityException, JSONException {
+    public static NetworkPacket encrypt(NetworkPacket np, PublicKey publicKey) throws GeneralSecurityException, JSONException {
 
         String serialized = np.serialize();
 
@@ -127,16 +127,16 @@ public class RsaHelper {
             chunks.put(Base64.encodeToString(encryptedChunk, Base64.NO_WRAP));
         }
 
-        //Log.i("NetworkPackage", "Encrypted " + chunks.length()+" chunks");
+        //Log.i("NetworkPacket", "Encrypted " + chunks.length()+" chunks");
 
-        NetworkPackage encrypted = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_ENCRYPTED);
+        NetworkPacket encrypted = new NetworkPacket(NetworkPacket.PACKET_TYPE_ENCRYPTED);
         encrypted.set("data", chunks);
         encrypted.setPayload(np.getPayload(), np.getPayloadSize());
         return encrypted;
 
     }
 
-    public static NetworkPackage decrypt(NetworkPackage np, PrivateKey privateKey) throws GeneralSecurityException, JSONException {
+    public static NetworkPacket decrypt(NetworkPacket np, PrivateKey privateKey) throws GeneralSecurityException, JSONException {
 
         JSONArray chunks = np.getJSONArray("data");
 
@@ -150,7 +150,7 @@ public class RsaHelper {
             decryptedJson += decryptedChunk;
         }
 
-        NetworkPackage decrypted = NetworkPackage.unserialize(decryptedJson);
+        NetworkPacket decrypted = NetworkPacket.unserialize(decryptedJson);
         decrypted.setPayload(np.getPayload(), np.getPayloadSize());
         return decrypted;
     }

@@ -24,7 +24,7 @@ import android.util.Log;
 
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.NetworkPackage;
+import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.Timer;
@@ -45,14 +45,14 @@ public class BluetoothPairingHandler extends BasePairingHandler {
     }
 
     //    @Override
-    public NetworkPackage createPairPackage() {
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
+    public NetworkPacket createPairPacket() {
+        NetworkPacket np = new NetworkPacket(NetworkPacket.PACKET_TYPE_PAIR);
         np.set("pair", true);
         return np;
     }
 
     @Override
-    public void packageReceived(NetworkPackage np) throws Exception {
+    public void packageReceived(NetworkPacket np) throws Exception {
 
         boolean wantsPair = np.getBoolean("pair");
 
@@ -119,7 +119,7 @@ public class BluetoothPairingHandler extends BasePairingHandler {
     @Override
     public void requestPairing() {
 
-        Device.SendPackageStatusCallback statusCallback = new Device.SendPackageStatusCallback() {
+        Device.SendPacketStatusCallback statusCallback = new Device.SendPacketStatusCallback() {
             @Override
             public void onSuccess() {
                 hidePairingNotification(); //Will stop the pairingTimer if it was running
@@ -140,7 +140,7 @@ public class BluetoothPairingHandler extends BasePairingHandler {
                 mCallback.pairingFailed(mDevice.getContext().getString(R.string.error_could_not_send_package));
             }
         };
-        mDevice.sendPackage(createPairPackage(), statusCallback);
+        mDevice.sendPacket(createPairPacket(), statusCallback);
     }
 
     public void hidePairingNotification() {
@@ -153,7 +153,7 @@ public class BluetoothPairingHandler extends BasePairingHandler {
     @Override
     public void acceptPairing() {
         hidePairingNotification();
-        Device.SendPackageStatusCallback statusCallback = new Device.SendPackageStatusCallback() {
+        Device.SendPacketStatusCallback statusCallback = new Device.SendPacketStatusCallback() {
             @Override
             public void onSuccess() {
                 pairingDone();
@@ -164,16 +164,16 @@ public class BluetoothPairingHandler extends BasePairingHandler {
                 mCallback.pairingFailed(mDevice.getContext().getString(R.string.error_not_reachable));
             }
         };
-        mDevice.sendPackage(createPairPackage(), statusCallback);
+        mDevice.sendPacket(createPairPacket(), statusCallback);
     }
 
     @Override
     public void rejectPairing() {
         hidePairingNotification();
         mPairStatus = PairStatus.NotPaired;
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
+        NetworkPacket np = new NetworkPacket(NetworkPacket.PACKET_TYPE_PAIR);
         np.set("pair", false);
-        mDevice.sendPackage(np);
+        mDevice.sendPacket(np);
     }
 
     //@Override
@@ -188,8 +188,8 @@ public class BluetoothPairingHandler extends BasePairingHandler {
     @Override
     public void unpair() {
         mPairStatus = PairStatus.NotPaired;
-        NetworkPackage np = new NetworkPackage(NetworkPackage.PACKAGE_TYPE_PAIR);
+        NetworkPacket np = new NetworkPacket(NetworkPacket.PACKET_TYPE_PAIR);
         np.set("pair", false);
-        mDevice.sendPackage(np);
+        mDevice.sendPacket(np);
     }
 }
