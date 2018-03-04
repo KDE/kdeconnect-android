@@ -67,6 +67,10 @@ public final class AlbumArtCache {
      */
     private static final ArrayList<URL> fetchUrlList = new ArrayList<>();
     /**
+     * A list of urls currently being fetched
+     */
+    private static final ArrayList<URL> isFetchingList = new ArrayList<>();
+    /**
      * A integer indicating how many fetches are in progress.
      */
     private static int numFetching = 0;
@@ -123,7 +127,7 @@ public final class AlbumArtCache {
      * @param albumUrl The album art url
      * @return A bitmap for the album art. Can be null if not (yet) found
      */
-    public static Bitmap getAlbumArt(String albumUrl) {
+    public static Bitmap getAlbumArt(String albumUrl, MprisPlugin plugin, String player) {
         //If the url is invalid, return "no album art"
         if (albumUrl == null || albumUrl.isEmpty()) {
             return null;
@@ -138,8 +142,8 @@ public final class AlbumArtCache {
             return null;
         }
 
-        //We currently only support http(s) urls
-        if (!url.getProtocol().equals("http") && !url.getProtocol().equals("https")) {
+        //We currently only support http(s) and file urls
+        if (!url.getProtocol().equals("http") && !url.getProtocol().equals("https") && !url.getProtocol().equals("file")) {
             return null;
         }
 
@@ -185,7 +189,20 @@ public final class AlbumArtCache {
 
         /* If not found, we have not tried fetching it (recently), or a fetch is in-progress.
            Either way, just add it to the fetch queue and starting fetching it if no fetch is running. */
-        fetchUrl(url);
+        if ("file".equals(url.getProtocol())) {
+            //Special-case file, since we need to fetch it from the remote
+            if (isFetchingList.contains(url)) return null;
+
+            if (!plugin.askTransferAlbumArt(albumUrl, player)) {
+                //It doesn't support transferring the art, so mark it as failed in the memory cache
+                MemoryCacheItem cacheItem = new MemoryCacheItem();
+                cacheItem.failedFetch = true;
+                cacheItem.albumArt = null;
+                memoryCache.put(url.toString(), cacheItem);
+            }
+        } else {
+            fetchUrl(url);
+        }
         return null;
     }
 
@@ -202,7 +219,7 @@ public final class AlbumArtCache {
         }
 
         //Only fetch an URL if we're not fetching it already
-        if (fetchUrlList.contains(url)) {
+        if (fetchUrlList.contains(url) || isFetchingList.contains(url)) {
             return;
         }
 
@@ -319,8 +336,8 @@ public final class AlbumArtCache {
                 memoryCache.put(url.toString(), cacheItem);
             }
 
-            //Remove the url from the to-fetch list
-            fetchUrlList.remove(url);
+            //Remove the url from the fetching list
+            isFetchingList.remove(url);
             //Fetch the next url (if any)
             --numFetching;
             initiateFetch();
@@ -334,10 +351,19 @@ public final class AlbumArtCache {
         if (numFetching >= 2) return;
         if (fetchUrlList.isEmpty()) return;
 
-        ++numFetching;
-
         //Fetch the last-requested url first, it will probably be needed first
         URL url = fetchUrlList.get(fetchUrlList.size() - 1);
+        //Remove the url from the to-fetch list
+        fetchUrlList.remove(url);
+
+        if ("file".equals(url.getProtocol())) {
+            throw new AssertionError("Not file urls should be possible here!");
+        }
+
+        //Download the album art ourselves
+        ++numFetching;
+        //Add the url to the currently-fetching list
+        isFetchingList.add(url);
         try {
             DiskLruCache.Editor cacheItem = diskCache.edit(urlToDiskCacheKey(url.toString()));
             if (cacheItem == null) {
@@ -388,6 +414,9 @@ public final class AlbumArtCache {
         //We need the disk cache for this
         if (diskCache == null) {
             Log.e("KDE/Mpris/AlbumArtCache", "The disk cache is not intialized!");
+            try {
+                payload.close();
+            } catch (IOException ignored) {}
             return;
         }
 
@@ -396,20 +425,46 @@ public final class AlbumArtCache {
             url = new URL(albumUrl);
         } catch (MalformedURLException e) {
             //Shouldn't happen (checked on receival of the url), but just to be sure
+            try {
+                payload.close();
+            } catch (IOException ignored) {}
             return;
         }
 
         if (!"file".equals(url.getProtocol())) {
             //Shouldn't happen (otherwise we wouldn't have asked for the payload), but just to be sure
+            try {
+                payload.close();
+            } catch (IOException ignored) {}
             return;
         }
 
         //Only fetch the URL if we're not fetching it already
-        if (fetchUrlList.contains(url)) {
+        if (isFetchingList.contains(url)) {
+            try {
+                payload.close();
+            } catch (IOException ignored) {}
             return;
         }
 
-        fetchUrlList.add(url);
+        //Check if we already have this art
+        try {
+            if (memoryCache.get(albumUrl) != null || diskCache.get(urlToDiskCacheKey(albumUrl)) != null) {
+                try {
+                    payload.close();
+                } catch (IOException ignored) {}
+                return;
+            }
+        } catch (IOException e) {
+            Log.e("KDE/Mpris/AlbumArtCache", "Disk cache problem!", e);
+            try {
+                payload.close();
+            } catch (IOException ignored) {}
+            return;
+        }
+
+        //Add it to the currently-fetching list
+        isFetchingList.add(url);
         ++numFetching;
 
         try {
@@ -418,6 +473,9 @@ public final class AlbumArtCache {
                 Log.e("KDE/Mpris/AlbumArtCache",
                         "Two disk cache edits happened at the same time, should be impossible!");
                 --numFetching;
+                try {
+                    payload.close();
+                } catch (IOException ignored) {}
                 return;
             }
 
