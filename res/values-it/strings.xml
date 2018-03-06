@@ -83,8 +83,6 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Invio file a %1s</string>
   <string name="outgoing_files_title">Invio file a %1s</string>
-  <string name="outgoing_file_text">%1s</string>
-  <string name="outgoing_files_text">Inviati %1$d di %2$d file</string>
   <string name="received_file_title">File ricevuto da %1s</string>
   <string name="received_file_fail_title">Ricezione file da %1s non riuscita</string>
   <string name="received_file_text">Tocca per aprire «%1s»</string>
@@ -106,6 +104,7 @@
   <string name="remote_control">Telecomando</string>
   <string name="settings">Impostazioni</string>
   <string name="mpris_play">Riproduci</string>
+  <string name="mpris_pause">Pausa</string>
   <string name="mpris_previous">Precedente</string>
   <string name="mpris_rew">Riavvolgi</string>
   <string name="mpris_ff">Avanti veloce</string>
@@ -121,6 +120,8 @@
     <item>1 minuto</item>
     <item>2 minuti</item>
   </string-array>
+  <string name="mpris_notification_settings_title">Mostra la notifica del controllo multimediale</string>
+  <string name="mpris_notification_settings_summary">Consente di controllare i lettori multimediali senza aprire KDE Connect.</string>
   <string name="share_to">Condividi…</string>
   <string name="protocol_version_older">Questo dispositivo usa una vecchia versione del protocollo di rete</string>
   <string name="protocol_version_newer">Questo dispositivo usa una nuova versione del protocollo di rete</string>
@@ -183,4 +184,7 @@
   <string name="telepathy_permission_explanation">Per leggere e scrivere SMS dal tuo desktop, devi concedere l\'autorizzazione per SMS</string>
   <string name="telephony_permission_explanation">Per vedere le chiamate telefoniche e gli SMS dal desktop devi dare l\'autorizzazione per telefonate e SMS</string>
   <string name="telephony_optional_permission_explanation">Per vedere il nome di un contatto invece del numero di telefono devi dare accesso alla rubrica del telefono</string>
+  <string name="select_ringtone">Seleziona una suoneria</string>
+  <string name="telephony_pref_blocked_title">Numeri bloccati</string>
+  <string name="telephony_pref_blocked_dialog_desc">Non mostrare le chiamate e gli SMS da questi numeri. Specifica un numero per riga</string>
 </resources>

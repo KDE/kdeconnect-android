@@ -56,7 +56,6 @@
   <string name="incoming_file_title">Dolazna datoteka od %1s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Slanje datoteke na %1s</string>
-  <string name="outgoing_file_text">%1s</string>
   <string name="received_file_title">Primljena datoteka od %1s</string>
   <string name="received_file_text">Kucni za otvaranje \'%1s\'</string>
   <string name="sent_file_title">Poslana datoteka na %1s</string>

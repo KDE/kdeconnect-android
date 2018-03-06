@@ -83,8 +83,6 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Enviando un ficheiro a %1s</string>
   <string name="outgoing_files_title">Enviando os ficheiros a %1s</string>
-  <string name="outgoing_file_text">%1s</string>
-  <string name="outgoing_files_text">Enviáronse %1$d de %2$d ficheiros.</string>
   <string name="received_file_title">Recibiuse un ficheiro de %1s</string>
   <string name="received_file_fail_title">A recepción do ficheiro de %1s fallou</string>
   <string name="received_file_text">Toque para abrir «%1s».</string>

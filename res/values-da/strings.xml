@@ -82,8 +82,6 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Sender fil til %1s</string>
   <string name="outgoing_files_title">Sender filer til %1s</string>
-  <string name="outgoing_file_text">%1s</string>
-  <string name="outgoing_files_text">Sendte %1$d ud af %2$d filer</string>
   <string name="received_file_title">Modtog fil fra %1s</string>
   <string name="received_file_fail_title">Kunne ikke modtage fil fra %1s</string>
   <string name="received_file_text">Tap for at åbne \"%1s\"</string>

@@ -75,7 +75,6 @@
   <string name="incoming_file_title">從 %1s 傳來的檔案</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">正在將檔案發送到 %1s</string>
-  <string name="outgoing_file_text">%1s</string>
   <string name="received_file_title">已從 %1s 接收檔案</string>
   <string name="received_file_fail_title">從 %1s 接收檔案失敗</string>
   <string name="received_file_text">點擊開啟 \'%1s\'</string>

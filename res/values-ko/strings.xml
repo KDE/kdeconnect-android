@@ -76,8 +76,6 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">%1s(으)로 파일 보내는 중</string>
   <string name="outgoing_files_title">%1s(으)로 파일 보내는 중</string>
-  <string name="outgoing_file_text">%1s</string>
-  <string name="outgoing_files_text">파일 %2$d개 중 %1$d개 보냄</string>
   <string name="received_file_title">%1s에서 파일 받음</string>
   <string name="received_file_fail_title">%1s에서 파일 받기 실패</string>
   <string name="received_file_text">\'%1s\'을(를) 열려면 누르십시오</string>

@@ -83,8 +83,6 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">正在向%1s发送文件</string>
   <string name="outgoing_files_title">正在向 %1s 发送文件</string>
-  <string name="outgoing_file_text">%1s</string>
-  <string name="outgoing_files_text">已发送 %2$d 个文件中的 %1$d 个</string>
   <string name="received_file_title">已从%1s接收文件</string>
   <string name="received_file_fail_title">未能从%1s接收文件</string>
   <string name="received_file_text">点击以打开“%1s”</string>

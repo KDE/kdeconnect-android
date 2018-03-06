@@ -82,8 +82,6 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Отправка файла на %1s</string>
   <string name="outgoing_files_title">Отправка файлов на %1s</string>
-  <string name="outgoing_file_text">%1s</string>
-  <string name="outgoing_files_text">Отправлено %1$d из %2$d файлов</string>
   <string name="received_file_title">Получен файл с %1s</string>
   <string name="received_file_fail_title">Не удалось получить файл с %1s</string>
   <string name="received_file_text">Нажмите, чтобы открыть «%1s»</string>

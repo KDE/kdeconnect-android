@@ -70,7 +70,6 @@
   <string name="incoming_file_title">Arquivo recebido de %1s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Enviando arquivo para %1s</string>
-  <string name="outgoing_file_text">%1s</string>
   <string name="received_file_title">Arquivo recebido de %1s</string>
   <string name="received_file_fail_title">Falha ao receber o arquivo de %1s</string>
   <string name="received_file_text">Toque para abrir o \'%1s\'</string>

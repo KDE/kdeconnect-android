@@ -75,7 +75,6 @@
   <string name="incoming_file_title">ملفّ وارد من %1s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">يرسل ملفًّا إلى %1s</string>
-  <string name="outgoing_file_text">%1s</string>
   <string name="received_file_title">استُقبل ملفّ من %1s</string>
   <string name="received_file_fail_title">فشل استقبال الملفّ من %1s</string>
   <string name="received_file_text">المس لفتح \'%1s\'</string>

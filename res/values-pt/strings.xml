@@ -83,8 +83,10 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">A enviar o ficheiro para o %1s</string>
   <string name="outgoing_files_title">A enviar os ficheiros para o %1s</string>
-  <string name="outgoing_file_text">%1s</string>
-  <string name="outgoing_files_text">Foram enviados %1$d de %2$d ficheiros</string>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Foi enviado %1$d ficheiro</item>
+    <item quantity="other">Foram enviados %1$d de %2$d ficheiros</item>
+  </plurals>
   <string name="received_file_title">Ficheiro recebido de %1s</string>
   <string name="received_file_fail_title">Falhou a recepção do ficheiro de %1s</string>
   <string name="received_file_text">Toque para abrir o \'%1s\'</string>
@@ -189,4 +191,13 @@
   <string name="select_ringtone">Seleccione um toque de chamada</string>
   <string name="telephony_pref_blocked_title">Números bloqueados</string>
   <string name="telephony_pref_blocked_dialog_desc">Não mostrar as chamadas e SMS\'s desses números. Por favor, indique um número por linha</string>
+  <string name="mpris_coverart_description">Capa do conteúdo actual</string>
+  <string name="device_icon_description">Ícone do dispositivo</string>
+  <string name="settings_icon_description">Ícone de configuração</string>
+  <string name="add_command">Adicionar um comando</string>
+  <string name="addcommand_name">Nome</string>
+  <string name="addcommand_command">Comando</string>
+  <string name="command_confirm_needed">Terá de confirmar o comando no ambiente de trabalho</string>
+  <string name="addcommand_explanation">Não existem comandos registados</string>
+  <string name="addcommand_explanation2">Poderá adicionar comandos novos na Configuração do Sistema KDE Connect</string>
 </resources>

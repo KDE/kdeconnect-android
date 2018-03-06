@@ -83,8 +83,10 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Bezig bestand te verzenden naar %1s</string>
   <string name="outgoing_files_title">Bezig bestanden te verzenden naar %1s</string>
-  <string name="outgoing_file_text">%1s</string>
-  <string name="outgoing_files_text">Verzonden %1$d uit %2$d bestanden</string>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Bestand %1$d verzenden</item>
+    <item quantity="other">%1$d bestanden uit %2$d verzenden</item>
+  </plurals>
   <string name="received_file_title">Bestand ontvangen van %1s</string>
   <string name="received_file_fail_title">Bestand ontvangen van %1s is mislukt</string>
   <string name="received_file_text">Tap om \'%1s\' te openen</string>
@@ -189,4 +191,13 @@
   <string name="select_ringtone">Selecteer een ringtone</string>
   <string name="telephony_pref_blocked_title">Geblokkeerde nummers</string>
   <string name="telephony_pref_blocked_dialog_desc">Geen oproepen en SMSen vanaf deze nummers tonen. Specificeer één nummer per regel</string>
+  <string name="mpris_coverart_description">Cover-illustratie van huidige media</string>
+  <string name="device_icon_description">Apparaatpictogram</string>
+  <string name="settings_icon_description">Pictogram voor instellingen</string>
+  <string name="add_command">Een commando toevoegen</string>
+  <string name="addcommand_name">Naam</string>
+  <string name="addcommand_command">Commando</string>
+  <string name="command_confirm_needed">U zult het commando moeten bevestigen op het bureaublad</string>
+  <string name="addcommand_explanation">Er zijn geen commando\'s geregistreerd</string>
+  <string name="addcommand_explanation2">U kunt nieuwe commando\'s in de instellingen voor het KDE connect-systeem toevoegen</string>
 </resources>

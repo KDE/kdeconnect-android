@@ -83,8 +83,6 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Wysyłanie pliku do %1s</string>
   <string name="outgoing_files_title">Wysyłanie pliku do %1s</string>
-  <string name="outgoing_file_text">%1s</string>
-  <string name="outgoing_files_text">Wysłano %1$d z %2$d plików</string>
   <string name="received_file_title">Odebrano plik od %1s</string>
   <string name="received_file_fail_title">Nieudane odbieranie pliku z %1s</string>
   <string name="received_file_text">Znacznik do otwarcia \'%1s\'</string>

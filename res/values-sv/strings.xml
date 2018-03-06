@@ -83,8 +83,6 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Skickar fil till %1s</string>
   <string name="outgoing_files_title">Skickar filer till %1s</string>
-  <string name="outgoing_file_text">%1s</string>
-  <string name="outgoing_files_text">Skickade %1$d av %2$d filer</string>
   <string name="received_file_title">Tog emot fil från %1s</string>
   <string name="received_file_fail_title">Misslyckades ta emot fil från %1s</string>
   <string name="received_file_text">Rör för att öppna \'%1s\'</string>

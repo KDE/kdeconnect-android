@@ -82,8 +82,6 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Αποστολή αρχείου σε %1s</string>
   <string name="outgoing_files_title">Αποστολή αρχείων σε %1s</string>
-  <string name="outgoing_file_text">%1s</string>
-  <string name="outgoing_files_text">Εστάλησαν %1$d από %2$d αρχεία</string>
   <string name="received_file_title">Ελήφθη αρχείο από %1s</string>
   <string name="received_file_fail_title">Αποτυχία λήψης αρχείου από %1s</string>
   <string name="received_file_text">Χτυπήστε για άνοιγμα \'%1s\'</string>

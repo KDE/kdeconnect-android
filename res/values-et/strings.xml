@@ -76,8 +76,6 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Faili saatmine seadmesse %1s</string>
   <string name="outgoing_files_title">Failide saatmine seadmesse %1s</string>
-  <string name="outgoing_file_text">%1s</string>
-  <string name="outgoing_files_text">Saadetud %1$d / %2$d faili</string>
   <string name="received_file_title">Faili saamine seadmest %1s</string>
   <string name="received_file_fail_title">Faili saamine seadmest %1s nurjus</string>
   <string name="received_file_text">Koputa \"%1s\" avamiseks</string>

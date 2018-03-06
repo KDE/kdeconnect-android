@@ -82,8 +82,6 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">שולח קובץ אל %1s</string>
   <string name="outgoing_files_title">שולח קובצים אל %1s</string>
-  <string name="outgoing_file_text">%1s</string>
-  <string name="outgoing_files_text">"שולח %1$d מתוך %2$d קבצים "</string>
   <string name="received_file_title">התקבל קובץ מאת %1s</string>
   <string name="received_file_fail_title">נכשל בקבלת קובץ מאת %1s</string>
   <string name="received_file_text">לחץ כדי לפתוח את \"%1s\"</string>

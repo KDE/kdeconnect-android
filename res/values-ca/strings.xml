@@ -83,8 +83,10 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">S\'està enviant el fitxer a %1s</string>
   <string name="outgoing_files_title">S\'estan enviant fitxers a %1s</string>
-  <string name="outgoing_file_text">%1s</string>
-  <string name="outgoing_files_text">S\'ha enviat %1$d de %2$d fitxers</string>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">S\'ha enviat %1$d fitxer</item>
+    <item quantity="other">S\'ha enviat %1$d de %2$d fitxers</item>
+  </plurals>
   <string name="received_file_title">Fitxer rebut des de %1s</string>
   <string name="received_file_fail_title">Ha fallat en rebre el fitxer des de %1s</string>
   <string name="received_file_text">Puntegeu per obrir «%1s»</string>
@@ -189,4 +191,13 @@
   <string name="select_ringtone">Seleccioneu un to de la trucada</string>
   <string name="telephony_pref_blocked_title">Nombres blocats</string>
   <string name="telephony_pref_blocked_dialog_desc">No es mostren ni les trucades ni els SMS d\'aquests números. Especifiqueu un número per línia</string>
+  <string name="mpris_coverart_description">Caràtula del suport actual</string>
+  <string name="device_icon_description">Icona del dispositiu</string>
+  <string name="settings_icon_description">Icona d\'arranjament</string>
+  <string name="add_command">Afegeix una ordre</string>
+  <string name="addcommand_name">Nom</string>
+  <string name="addcommand_command">Ordre</string>
+  <string name="command_confirm_needed">Cal confirmar l\'ordre a l\'escriptori</string>
+  <string name="addcommand_explanation">No hi ha cap ordre registrada</string>
+  <string name="addcommand_explanation2">Podeu afegir ordres noves a l\'Arranjament del sistema del KDE Connect</string>
 </resources>

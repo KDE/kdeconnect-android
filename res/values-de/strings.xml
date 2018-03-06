@@ -76,8 +76,10 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Datei wird an %1s gesendet</string>
   <string name="outgoing_files_title">Datei wird an %1s gesendet</string>
-  <string name="outgoing_file_text">%1s</string>
-  <string name="outgoing_files_text">%1$d von %2$d Dateien gesendet</string>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">%1$d Datei gesendet</item>
+    <item quantity="other">%1$d von %2$d Dateien gesendet</item>
+  </plurals>
   <string name="received_file_title">Datei von %1s erhalten</string>
   <string name="received_file_fail_title">Der Empfang der Datei %1s ist fehlgeschlagen</string>
   <string name="received_file_text">Tippen um „%1s“ zu öffnen</string>
@@ -99,6 +101,7 @@
   <string name="remote_control">Fernbedienung</string>
   <string name="settings">KDE-Connect-Einstellungen</string>
   <string name="mpris_play">Wiedergabe</string>
+  <string name="mpris_pause">Anhalten</string>
   <string name="mpris_previous">Zurück</string>
   <string name="mpris_rew">Schneller Rücklauf</string>
   <string name="mpris_ff">Vorlauf</string>
@@ -166,4 +169,12 @@
   <string name="findmyphone_found">Gefunden</string>
   <string name="open">Öffnen</string>
   <string name="close">Schließen</string>
+  <string name="select_ringtone">Einen Klingelton auswählen</string>
+  <string name="device_icon_description">Gerätesymbol</string>
+  <string name="settings_icon_description">Einstellungssymbol</string>
+  <string name="add_command">Einen Befehl hinzufügen</string>
+  <string name="addcommand_name">Name</string>
+  <string name="addcommand_command">Befehl</string>
+  <string name="addcommand_explanation">Es sind keine Befehle registriert.</string>
+  <string name="addcommand_explanation2">Sie können neue Befehle in den Systemeinstellungen für KDE-Connect hinzufügen.</string>
 </resources>

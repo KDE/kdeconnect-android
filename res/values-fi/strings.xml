@@ -75,7 +75,6 @@
   <string name="incoming_file_title">Saapuva tiedosto lähettäjältä %1s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Lähetetään tiedostoa laitteeseen %1s</string>
-  <string name="outgoing_file_text">%1s</string>
   <string name="received_file_title">Vastaanotettiin tiedosto lähettäjältä %1s</string>
   <string name="received_file_fail_title">Ei voitu vastaanottaa tiedostoa lähettäjältä %1s</string>
   <string name="received_file_text">Avaa ”%1s” napauttamalla</string>
