@@ -181,4 +181,6 @@
   <string name="telepathy_permission_explanation">从计算机桌面读取、写入短消息需要向应用程序授予 SMS 权限</string>
   <string name="telephony_permission_explanation">您必须给予访问手机通话和短信的权限才能从桌面计算机查看通话记录和短信</string>
   <string name="telephony_optional_permission_explanation">要查看联系人姓名而非电话号码，您需要授予访问手机通讯录的权限</string>
+  <string name="addcommand_name">名称</string>
+  <string name="addcommand_command">命令</string>
 </resources>
