@@ -83,6 +83,10 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Skickar fil till %1s</string>
   <string name="outgoing_files_title">Skickar filer till %1s</string>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Skickade %1$d fil</item>
+    <item quantity="other">Skickade %1$d av %2$d filer</item>
+  </plurals>
   <string name="received_file_title">Tog emot fil från %1s</string>
   <string name="received_file_fail_title">Misslyckades ta emot fil från %1s</string>
   <string name="received_file_text">Rör för att öppna \'%1s\'</string>
@@ -187,4 +191,13 @@
   <string name="select_ringtone">Välj en ringsignal</string>
   <string name="telephony_pref_blocked_title">Blockerade nummer</string>
   <string name="telephony_pref_blocked_dialog_desc">Visa inte samtal och SMS från dessa nummer. Ange ett nummer per rad.</string>
+  <string name="mpris_coverart_description">Omslag för aktuell media</string>
+  <string name="device_icon_description">Enhetsikon</string>
+  <string name="settings_icon_description">Inställningsikon</string>
+  <string name="add_command">Lägg till ett kommando</string>
+  <string name="addcommand_name">Namn</string>
+  <string name="addcommand_command">Kommando</string>
+  <string name="command_confirm_needed">Du måste bekräfta kommandot på skrivbordet</string>
+  <string name="addcommand_explanation">Det finns inga kommandon registrerade</string>
+  <string name="addcommand_explanation2">Du kan lägga till nya kommandon i KDE-ansluts systeminställningar</string>
 </resources>
