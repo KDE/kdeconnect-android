@@ -83,6 +83,12 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Wysyłanie pliku do %1s</string>
   <string name="outgoing_files_title">Wysyłanie pliku do %1s</string>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Wysłano %1$d plik</item>
+    <item quantity="few">Wysłano %1$d z %2$d plików</item>
+    <item quantity="many">Wysłano %1$d z %2$d plików</item>
+    <item quantity="other"/>
+  </plurals>
   <string name="received_file_title">Odebrano plik od %1s</string>
   <string name="received_file_fail_title">Nieudane odbieranie pliku z %1s</string>
   <string name="received_file_text">Znacznik do otwarcia \'%1s\'</string>
@@ -104,6 +110,7 @@
   <string name="remote_control">Zdalne sterowanie</string>
   <string name="settings">Ustawienia KDE Connect</string>
   <string name="mpris_play">Odtwórz</string>
+  <string name="mpris_pause">Wstrzymaj</string>
   <string name="mpris_previous">Poprzedni</string>
   <string name="mpris_rew">Przewiń</string>
   <string name="mpris_ff">Przewiń do przodu</string>
@@ -119,6 +126,8 @@
     <item>1 minuta</item>
     <item>2 minuty</item>
   </string-array>
+  <string name="mpris_notification_settings_title">Pokaż powiadomienia sterowania mediami</string>
+  <string name="mpris_notification_settings_summary">Umożliwia sterowanie odtwarzaczami bez otwierania KDE Connect.</string>
   <string name="share_to">Współdziel z...</string>
   <string name="protocol_version_older">Urządzenie to używa starej wersji protokołu</string>
   <string name="protocol_version_newer">Urządzenie to używa nowszej wersji protokołu</string>
@@ -161,7 +170,7 @@
   <string name="refresh">Odśwież</string>
   <string name="unreachable_description">To sparowane urządzenie jest nieosiągalne. Upewnij się, że jest podłączone do tej samej sieci.</string>
   <string name="on_data_message">Wygląda na to, że korzystasz z internetu mobilnego. KDE Connect działa tylko na lokalnych sieciach.</string>
-  <string name="no_file_browser">Nie wgrano żadanych przeglądarek plików.</string>
+  <string name="no_file_browser">Nie wgrano żadnych przeglądarek plików.</string>
   <string name="pref_plugin_telepathy">Wyślij SMS-a</string>
   <string name="pref_plugin_telepathy_desc">Wyślij wiadomość tekstową z komputera</string>
   <string name="plugin_not_supported">Ta wtyczka nie jest obsługiwana przez to urządzenie</string>
@@ -182,4 +191,15 @@
   <string name="telephony_permission_explanation">Aby widzieć rozmowy telefoniczne i SMSy z twojego komputera musisz nadać uprawnienia na rozmowy telefoniczne i SMSy</string>
   <string name="telephony_optional_permission_explanation">Aby widzieć nazwę kontaktu zamiast numeru telefonu musisz pozwolić na dostęp do kontaktów telefonu</string>
   <string name="select_ringtone">Wybierz dzwonek</string>
+  <string name="telephony_pref_blocked_title">Zablokowane numery</string>
+  <string name="telephony_pref_blocked_dialog_desc">Nie pokazuj rozmów, ani SMSów z tych numerów. Podawaj jeden numer na wiersz</string>
+  <string name="mpris_coverart_description">Okładka dla bieżących multimediów</string>
+  <string name="device_icon_description">Ikona urządzenia</string>
+  <string name="settings_icon_description">Ikona ustawień</string>
+  <string name="add_command">Dodaj polecenie</string>
+  <string name="addcommand_name">Nazwa</string>
+  <string name="addcommand_command">Polecenie</string>
+  <string name="command_confirm_needed">Będziesz musiał potwierdzić polecenie na pulpicie</string>
+  <string name="addcommand_explanation">Nie zarejestrowano żadnych poleceń</string>
+  <string name="addcommand_explanation2">Nowe polecenia można dodawać w ustawieniach systemowych KDE Connect</string>
 </resources>

@@ -83,6 +83,10 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Sending file to %1s</string>
   <string name="outgoing_files_title">Sending files to %1s</string>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Send files</item>
+    <item quantity="other">Sent %1$d out of %2$d files</item>
+  </plurals>
   <string name="received_file_title">Received file from %1s</string>
   <string name="received_file_fail_title">Failed receiving file from %1s</string>
   <string name="received_file_text">Tap to open \'%1s\'</string>
@@ -187,4 +191,13 @@
   <string name="select_ringtone">Select a ringtone</string>
   <string name="telephony_pref_blocked_title">Blocked numbers</string>
   <string name="telephony_pref_blocked_dialog_desc">Don\'t show calls and SMS from these numbers. Please specify one number per line</string>
+  <string name="mpris_coverart_description">Cover art of current media</string>
+  <string name="device_icon_description">Device icon</string>
+  <string name="settings_icon_description">Settings icon</string>
+  <string name="add_command">Add a command</string>
+  <string name="addcommand_name">Name</string>
+  <string name="addcommand_command">Command</string>
+  <string name="command_confirm_needed">You will need to confirm the command on the desktop</string>
+  <string name="addcommand_explanation">There are no commands registered</string>
+  <string name="addcommand_explanation2">You can add new commands in the KDE Connect System Settings</string>
 </resources>
