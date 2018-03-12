@@ -83,8 +83,6 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Sender fil til %1s</string>
   <string name="outgoing_files_title">Sender filer til %1s</string>
-  <string name="outgoing_file_text">%1s</string>
-  <string name="outgoing_files_text">Sende %1$d av %2$d filer</string>
   <string name="received_file_title">Fekk fil frå %1s</string>
   <string name="received_file_fail_title">Klarte ikkje ta imot fil frå %1s</string>
   <string name="received_file_text">Trykk for å opna «%1s»</string>
