@@ -44,12 +44,22 @@ class AppDatabase {
     private static final String DATABASE_TABLE = "Applications";
     private static final int DATABASE_VERSION = 2;
 
-    private final Context ourContext;
     private SQLiteDatabase ourDatabase;
     private DbHelper ourHelper;
 
-    AppDatabase(Context c) {
-        ourContext = c;
+    AppDatabase(Context context, boolean readonly) {
+        ourHelper = new DbHelper(context);
+        if (readonly) {
+            ourDatabase = ourHelper.getReadableDatabase();
+        } else {
+            ourDatabase = ourHelper.getWritableDatabase();
+        }
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        ourHelper.close();
+        super.finalize();
     }
 
     private static class DbHelper extends SQLiteOpenHelper {
@@ -69,15 +79,6 @@ class AppDatabase {
             onCreate(db);
         }
 
-    }
-
-    public void open() {
-        ourHelper = new DbHelper(ourContext);
-        ourDatabase = ourHelper.getWritableDatabase();
-    }
-
-    public void close() {
-        ourHelper.close();
     }
 
     void setEnabled(String packageName, boolean isEnabled) {

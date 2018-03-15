@@ -63,6 +63,8 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     private final static String PACKET_TYPE_NOTIFICATION_REQUEST = "kdeconnect.notification.request";
     private final static String PACKET_TYPE_NOTIFICATION_REPLY = "kdeconnect.notification.reply";
 
+    private AppDatabase appDatabase;
+
     private Map<String, RepliableNotification> pendingIntents;
     private boolean serviceReady;
 
@@ -102,6 +104,8 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         if (!hasPermission()) return false;
 
         pendingIntents = new HashMap<>();
+
+        appDatabase = new AppDatabase(context, true);
 
         NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
             @Override
@@ -158,7 +162,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     private void sendNotification(StatusBarNotification statusBarNotification) {
 
         Notification notification = statusBarNotification.getNotification();
-        AppDatabase appDatabase = new AppDatabase(context);
 
         if ((notification.flags & Notification.FLAG_FOREGROUND_SERVICE) != 0
                 || (notification.flags & Notification.FLAG_ONGOING_EVENT) != 0
@@ -167,12 +170,10 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             return;
         }
 
-        appDatabase.open();
         if (!appDatabase.isEnabled(statusBarNotification.getPackageName())) {
             return;
             // we dont want notification from this app
         }
-        appDatabase.close();
 
         String key = getNotificationKeyCompat(statusBarNotification);
         String packageName = statusBarNotification.getPackageName();

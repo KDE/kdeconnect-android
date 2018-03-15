@@ -94,7 +94,7 @@ public class NotificationFilterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_filter);
-        appDatabase = new AppDatabase(NotificationFilterActivity.this);
+        appDatabase = new AppDatabase(NotificationFilterActivity.this, false);
 
         new Thread(new Runnable() {
             @Override
@@ -105,7 +105,6 @@ public class NotificationFilterActivity extends AppCompatActivity {
                 int count = appList.size();
 
                 apps = new AppListInfo[count];
-                appDatabase.open();
                 for (int i = 0; i < count; i++) {
                     ApplicationInfo appInfo = appList.get(i);
                     apps[i] = new AppListInfo();
@@ -114,7 +113,6 @@ public class NotificationFilterActivity extends AppCompatActivity {
                     apps[i].icon = resizeIcon(appInfo.loadIcon(packageManager), 48);
                     apps[i].isEnabled = appDatabase.isEnabled(appInfo.packageName);
                 }
-                appDatabase.close();
 
                 Arrays.sort(apps, new Comparator<AppListInfo>() {
                     @Override
@@ -144,9 +142,7 @@ public class NotificationFilterActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 boolean checked = listView.isItemChecked(i);
-                appDatabase.open();
                 appDatabase.setEnabled(apps[i].pkg, checked);
-                appDatabase.close();
                 apps[i].isEnabled = checked;
             }
         });
