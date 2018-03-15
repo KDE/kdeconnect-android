@@ -40,6 +40,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import org.kde.kdeconnect.Helpers.AppsHelper;
@@ -165,7 +166,9 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
         if ((notification.flags & Notification.FLAG_FOREGROUND_SERVICE) != 0
                 || (notification.flags & Notification.FLAG_ONGOING_EVENT) != 0
-                || (notification.flags & Notification.FLAG_LOCAL_ONLY) != 0) {
+                || (notification.flags & Notification.FLAG_LOCAL_ONLY) != 0
+                || (notification.flags & NotificationCompat.FLAG_GROUP_SUMMARY) != 0) //The notification that groups other notifications
+        {
             //This is not a notification we want!
             return;
         }
