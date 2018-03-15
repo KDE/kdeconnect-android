@@ -83,6 +83,10 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Enviando archivo a %1s</string>
   <string name="outgoing_files_title">Enviando archivos a %1s</string>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Enviado %1$d archivo</item>
+    <item quantity="other">Enviados %1$d de %2$d archivos</item>
+  </plurals>
   <string name="received_file_title">Archivo recibido desde %1s</string>
   <string name="received_file_fail_title">Fallo recibiendo archivo desde %1s</string>
   <string name="received_file_text">Pulse para abrir «%1s»</string>
@@ -104,6 +108,7 @@
   <string name="remote_control">Control remoto</string>
   <string name="settings">Preferencias de KDE Connect</string>
   <string name="mpris_play">Reproducir</string>
+  <string name="mpris_pause">Pausar</string>
   <string name="mpris_previous">Anterior</string>
   <string name="mpris_rew">Rebobinar</string>
   <string name="mpris_ff">Avance rápido</string>
@@ -119,6 +124,8 @@
     <item>1 minuto</item>
     <item>2 minutos</item>
   </string-array>
+  <string name="mpris_notification_settings_title">Mostrar notificación del control de medios</string>
+  <string name="mpris_notification_settings_summary">Permite controlar sus reproductores de medios sin abrir KDE Connect.</string>
   <string name="share_to">Compartir con...</string>
   <string name="protocol_version_older">Este dispositivo usa una versión antigua del protocolo</string>
   <string name="protocol_version_newer">Este dispositivo usa una versión más reciente del protocolo</string>
@@ -181,4 +188,16 @@
   <string name="telepathy_permission_explanation">Para leer y escribir SMS desde su escritorio, necesita dar permisos para SMS</string>
   <string name="telephony_permission_explanation">Para ver las llamadas telefónicas y SMS desde su escritorio, necesita dar permisos para llamadas telefónicas y SMS</string>
   <string name="telephony_optional_permission_explanation">Para ver el nombre de un contacto en lugar de un número telefónico, necesita dar acceso a los contactos de su teléfono</string>
+  <string name="select_ringtone">Seleccionar tono</string>
+  <string name="telephony_pref_blocked_title">Números bloqueados</string>
+  <string name="telephony_pref_blocked_dialog_desc">No mostrar llamadas y SMS de estos números. Por favor, especifique solo un número por línea</string>
+  <string name="mpris_coverart_description">Carátula del medio actual</string>
+  <string name="device_icon_description">Icono del dispositivo</string>
+  <string name="settings_icon_description">Icono de preferencias</string>
+  <string name="add_command">Añadir una orden</string>
+  <string name="addcommand_name">Nombre</string>
+  <string name="addcommand_command">Orden</string>
+  <string name="command_confirm_needed">Necesitará confirmar la orden desde su escritorio</string>
+  <string name="addcommand_explanation">No hay ninguna orden registrada</string>
+  <string name="addcommand_explanation2">Puede añadir nuevas órdenes en las preferencias del sistema de KDE Connect</string>
 </resources>
