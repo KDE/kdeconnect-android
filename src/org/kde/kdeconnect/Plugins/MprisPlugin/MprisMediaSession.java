@@ -307,7 +307,8 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
                         .setContentIntent(piOpenActivity)
                         .setSmallIcon(R.drawable.ic_play_white)
                         .setShowWhen(false)
-                        .setColor(service.getResources().getColor(R.color.primary));
+                        .setColor(service.getResources().getColor(R.color.primary))
+                        .setVisibility(android.support.v4.app.NotificationCompat.VISIBILITY_PUBLIC);
 
                 if (!notificationPlayer.getTitle().isEmpty()) {
                     notification.setContentTitle(notificationPlayer.getTitle());
