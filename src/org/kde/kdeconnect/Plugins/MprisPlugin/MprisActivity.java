@@ -246,8 +246,17 @@ public class MprisActivity extends AppCompatActivity {
         findViewById(R.id.volume_layout).setVisibility(playerStatus.isSetVolumeAllowed() ? View.VISIBLE : View.INVISIBLE);
         findViewById(R.id.rew_button).setVisibility(playerStatus.isSeekAllowed() ? View.VISIBLE : View.GONE);
         findViewById(R.id.ff_button).setVisibility(playerStatus.isSeekAllowed() ? View.VISIBLE : View.GONE);
-        findViewById(R.id.next_button).setVisibility(playerStatus.isGoNextAllowed() ? View.VISIBLE : View.GONE);
-        findViewById(R.id.prev_button).setVisibility(playerStatus.isGoPreviousAllowed() ? View.VISIBLE : View.GONE);
+
+        //Show and hide previous/next buttons simultaneously
+        if (playerStatus.isGoPreviousAllowed() || playerStatus.isGoNextAllowed()) {
+            findViewById(R.id.prev_button).setVisibility(View.VISIBLE);
+            findViewById(R.id.prev_button).setEnabled(playerStatus.isGoPreviousAllowed());
+            findViewById(R.id.next_button).setVisibility(View.VISIBLE);
+            findViewById(R.id.next_button).setEnabled(playerStatus.isGoNextAllowed());
+        } else {
+            findViewById(R.id.prev_button).setVisibility(View.GONE);
+            findViewById(R.id.next_button).setVisibility(View.GONE);
+        }
     }
 
     /**
