@@ -20,6 +20,9 @@
 
 package org.kde.kdeconnect;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -28,6 +31,8 @@ import android.content.SharedPreferences;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.kde.kdeconnect.Backends.BaseLink;
@@ -36,6 +41,8 @@ import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
+import org.kde.kdeconnect.UserInterface.MaterialActivity;
+import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -45,6 +52,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class BackgroundService extends Service {
+    public static final int FOREGROUND_NOTIFICATION_ID = 1;
 
     private static BackgroundService instance;
 
@@ -128,6 +136,10 @@ public class BackgroundService extends Service {
         for (DeviceListChangedCallback callback : deviceListChangedCallbacks.values()) {
             callback.onDeviceListChanged();
         }
+
+        //Update the foreground notification with the currently connected device list
+        NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        nm.notify(FOREGROUND_NOTIFICATION_ID, createForegroundNotification());
     }
 
     private void loadRememberedDevicesFromSettings() {
@@ -270,6 +282,36 @@ public class BackgroundService extends Service {
         }
     }
 
+    private Notification createForegroundNotification() {
+        Intent intent = new Intent(this, MaterialActivity.class);
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationCompat.Builder notification = new NotificationCompat.Builder(this);
+        notification
+                .setSmallIcon(R.drawable.ic_notification)
+                .setColor(getResources().getColor(R.color.primary))
+                .setContentTitle(getString(R.string.kde_connect))
+                .setOngoing(true)
+                .setContentIntent(pi)
+                .setPriority(NotificationCompat.PRIORITY_MIN)
+                .setShowWhen(false)
+                .setAutoCancel(false);
+
+        ArrayList<String> connectedDevices = new ArrayList<>();
+        for (Device device : getDevices().values()) {
+            if (device.isReachable() && device.isPaired()) {
+                connectedDevices.add(device.getName());
+            }
+        }
+
+        if (connectedDevices.isEmpty()) {
+            notification.setContentText(getString(R.string.foreground_notification_no_devices));
+        } else {
+            notification.setContentText(getString(R.string.foreground_notification_devices, TextUtils.join(", ", connectedDevices)));
+        }
+
+        return notification.build();
+    }
+
     void initializeSecurityParameters() {
         RsaHelper.initialiseRsaKeys(this);
         SslHelper.initialiseCertificate(this);
@@ -277,6 +319,7 @@ public class BackgroundService extends Service {
 
     @Override
     public void onDestroy() {
+        stopForeground(true);
         for (BaseLinkProvider a : linkProviders) {
             a.onStop();
         }
@@ -311,6 +354,8 @@ public class BackgroundService extends Service {
         } finally {
             mutex.unlock();
         }
+
+        startForeground(FOREGROUND_NOTIFICATION_ID, createForegroundNotification());
         return Service.START_STICKY;
     }
 
