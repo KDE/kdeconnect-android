@@ -146,7 +146,8 @@
         <activity
             android:name="org.kde.kdeconnect.Plugins.MprisPlugin.MprisActivity"
             android:label="@string/remote_control"
-            android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity"
+            android:launchMode="singleTop">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
