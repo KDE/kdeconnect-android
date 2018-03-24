@@ -41,7 +41,7 @@ import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
-import org.kde.kdeconnect.UserInterface.MaterialActivity;
+import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
@@ -283,7 +283,7 @@ public class BackgroundService extends Service {
     }
 
     private Notification createForegroundNotification() {
-        Intent intent = new Intent(this, MaterialActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder notification = new NotificationCompat.Builder(this);
         notification
