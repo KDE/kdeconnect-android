@@ -231,7 +231,6 @@ public class MprisPlugin extends Plugin {
 
     @Override
     public boolean onCreate() {
-        requestPlayerList();
         MprisMediaSession.getInstance().onCreate(context.getApplicationContext(), this, device.getDeviceId());
 
         //Always request the player list so the data is up-to-date
