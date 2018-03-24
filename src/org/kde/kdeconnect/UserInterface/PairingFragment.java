@@ -159,16 +159,6 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
                             SectionItem section;
                             Resources res = getResources();
 
-                            section = new SectionItem(res.getString(R.string.category_not_paired_devices));
-                            section.isSectionEmpty = true;
-                            items.add(section);
-                            for (Device device : devices) {
-                                if (device.isReachable() && !device.isPaired()) {
-                                    items.add(new PairingDeviceItem(device, PairingFragment.this));
-                                    section.isSectionEmpty = false;
-                                }
-                            }
-
                             section = new SectionItem(res.getString(R.string.category_connected_devices));
                             section.isSectionEmpty = true;
                             items.add(section);
@@ -180,6 +170,16 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
                             }
                             if (section.isSectionEmpty) {
                                 items.remove(items.size() - 1); //Remove connected devices section if empty
+                            }
+
+                            section = new SectionItem(res.getString(R.string.category_not_paired_devices));
+                            section.isSectionEmpty = true;
+                            items.add(section);
+                            for (Device device : devices) {
+                                if (device.isReachable() && !device.isPaired()) {
+                                    items.add(new PairingDeviceItem(device, PairingFragment.this));
+                                    section.isSectionEmpty = false;
+                                }
                             }
 
                             section = new SectionItem(res.getString(R.string.category_remembered_devices));
