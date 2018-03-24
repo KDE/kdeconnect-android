@@ -79,7 +79,9 @@ public class PingPlugin extends Plugin {
             id = 42; //A unique id to create only one notification
         }
 
-        Notification noti = new NotificationCompat.Builder(context)
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        Notification noti = new NotificationCompat.Builder(context, NotificationHelper.getDefaultChannelId(notificationManager))
                 .setContentTitle(device.getName())
                 .setContentText(message)
                 .setContentIntent(resultPendingIntent)
@@ -89,7 +91,6 @@ public class PingPlugin extends Plugin {
                 .setDefaults(Notification.DEFAULT_ALL)
                 .build();
 
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationHelper.notifyCompat(notificationManager, id, noti);
 
         return true;

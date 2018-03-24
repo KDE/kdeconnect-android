@@ -159,7 +159,9 @@ public class SharePlugin extends Plugin {
                     PendingIntent.FLAG_UPDATE_CURRENT
             );
 
-            Notification noti = new NotificationCompat.Builder(context)
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+            Notification noti = new NotificationCompat.Builder(context, NotificationHelper.getDefaultChannelId(notificationManager))
                     .setContentTitle(res.getString(R.string.received_url_title, device.getName()))
                     .setContentText(res.getString(R.string.received_url_text, url))
                     .setContentIntent(resultPendingIntent)
@@ -169,7 +171,6 @@ public class SharePlugin extends Plugin {
                     .setDefaults(Notification.DEFAULT_ALL)
                     .build();
 
-            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             NotificationHelper.notifyCompat(notificationManager, (int) System.currentTimeMillis(), noti);
         }
     }

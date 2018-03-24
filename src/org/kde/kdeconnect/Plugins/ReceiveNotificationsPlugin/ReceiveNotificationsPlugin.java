@@ -105,7 +105,10 @@ public class ReceiveNotificationsPlugin extends Plugin {
                     }
                 }
             }
-            Notification noti = new NotificationCompat.Builder(context)
+
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+            Notification noti = new NotificationCompat.Builder(context, NotificationHelper.getDefaultChannelId(notificationManager))
                     .setContentTitle(np.getString("appName"))
                     .setContentText(np.getString("ticker"))
                     .setContentIntent(resultPendingIntent)
@@ -117,7 +120,6 @@ public class ReceiveNotificationsPlugin extends Plugin {
                     .setDefaults(Notification.DEFAULT_ALL)
                     .build();
 
-            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             NotificationHelper.notifyCompat(notificationManager, "kdeconnectId:" + np.getString("id", "0"), np.getInt("id", 0), noti);
 
         }

@@ -55,7 +55,7 @@ public class ShareNotification {
         this.filename = filename;
         notificationId = (int) System.currentTimeMillis();
         notificationManager = (NotificationManager) device.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
-        builder = new NotificationCompat.Builder(device.getContext())
+        builder = new NotificationCompat.Builder(device.getContext(), NotificationHelper.getDefaultChannelId(notificationManager))
                 .setContentTitle(device.getContext().getResources().getString(R.string.incoming_file_title, device.getName()))
                 .setContentText(device.getContext().getResources().getString(R.string.incoming_file_text, filename))
                 .setTicker(device.getContext().getResources().getString(R.string.incoming_file_title, device.getName()))
@@ -80,7 +80,7 @@ public class ShareNotification {
 
     public void setFinished(boolean success) {
         String message = success ? device.getContext().getResources().getString(R.string.received_file_title, device.getName()) : device.getContext().getResources().getString(R.string.received_file_fail_title, device.getName());
-        builder = new NotificationCompat.Builder(device.getContext());
+        builder = new NotificationCompat.Builder(device.getContext(), NotificationHelper.getDefaultChannelId(notificationManager));
         builder.setContentTitle(message)
                 .setTicker(message)
                 .setSmallIcon(android.R.drawable.stat_sys_download_done)

@@ -12,9 +12,9 @@ apply plugin: 'com.android.application'
 
 android {
     buildToolsVersion '27.0.3'
-    compileSdkVersion 25
+    compileSdkVersion 27
     defaultConfig {
-        minSdkVersion 9
+        minSdkVersion 16
         targetSdkVersion 25
         //multiDexEnabled true
         //testInstrumentationRunner "com.android.test.runner.MultiDexTestRunner"
@@ -71,9 +71,9 @@ dependencies {
         google()
     }
 
-    implementation 'com.android.support:support-v4:25.4.0'
-    implementation 'com.android.support:appcompat-v7:25.4.0'
-    implementation 'com.android.support:design:25.4.0'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
     implementation 'com.jakewharton:disklrucache:2.0.2' //For caching album art bitmaps
 
     implementation 'org.apache.sshd:sshd-core:0.8.0' //0.9 seems to fail on Android 6 and 1.+ requires java.nio.file, which doesn't exist in Android
