@@ -405,4 +405,9 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         updateMediaNotification();
     }
+
+    public void playerSelected(MprisPlugin.MprisPlayer player) {
+        notificationPlayer = player;
+        updateMediaNotification();
+    }
 }

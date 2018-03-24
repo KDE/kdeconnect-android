@@ -139,6 +139,10 @@ public class MprisActivity extends AppCompatActivity {
                                         }
                                         targetPlayer = mpris.getPlayerStatus(player);
                                         updatePlayerStatus(mpris);
+
+                                        if (targetPlayer.isPlaying()) {
+                                            MprisMediaSession.getInstance().playerSelected(targetPlayer);
+                                        }
                                     }
 
                                     @Override
