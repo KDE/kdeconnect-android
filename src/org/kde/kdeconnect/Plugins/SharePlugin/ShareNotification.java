@@ -119,20 +119,34 @@ public class ShareNotification {
         }
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType(mimeType);
         if (Build.VERSION.SDK_INT >= 24) {
             //Nougat and later require "content://" uris instead of "file://" uris
             File file = new File(destinationUri.getPath());
             Uri contentUri = FileProvider.getUriForFile(device.getContext(), "org.kde.kdeconnect_tp.fileprovider", file);
             intent.setDataAndType(contentUri, mimeType);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
         } else {
             intent.setDataAndType(destinationUri, mimeType);
+            shareIntent.putExtra(Intent.EXTRA_STREAM, destinationUri);
         }
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(device.getContext());
         stackBuilder.addNextIntent(intent);
         PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentText(device.getContext().getResources().getString(R.string.received_file_text, filename))
                 .setContentIntent(resultPendingIntent);
+
+        shareIntent = Intent.createChooser(shareIntent,
+                device.getContext().getString(R.string.share_received_file, destinationUri.getLastPathSegment()));
+        PendingIntent sharePendingIntent = PendingIntent.getActivity(device.getContext(), 0,
+                shareIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationCompat.Action.Builder shareAction = new NotificationCompat.Action.Builder(
+                R.drawable.ic_share_white, device.getContext().getString(R.string.share), sharePendingIntent);
+        builder.addAction(shareAction.build());
     }
 }
