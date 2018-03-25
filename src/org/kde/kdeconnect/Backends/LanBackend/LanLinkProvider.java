@@ -183,6 +183,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     void configureSocket(Socket socket) {
         try {
             socket.setKeepAlive(true);
+            socket.setSoTimeout(1000);
         } catch (SocketException e) {
             e.printStackTrace();
         }
