@@ -26,6 +26,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
@@ -38,6 +40,7 @@ import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 public class ShareNotification {
 
@@ -99,6 +102,18 @@ public class ShareNotification {
          *  - Proxy to real files (in case of the default download folder)
          *  - Proxy to the underlying content uri (in case of a custom download folder)
          */
+
+        //If it's an image, try to show it in the notification
+        if (mimeType.startsWith("image/")) {
+            try {
+                Bitmap image = BitmapFactory.decodeStream(device.getContext().getContentResolver().openInputStream(destinationUri));
+                if (image != null) {
+                    builder.setLargeIcon(image);
+                    builder.setStyle(new NotificationCompat.BigPictureStyle()
+                        .bigPicture(image));
+                }
+            } catch (FileNotFoundException ignored) {}
+        }
         if (!"file".equals(destinationUri.getScheme())) {
             return;
         }
