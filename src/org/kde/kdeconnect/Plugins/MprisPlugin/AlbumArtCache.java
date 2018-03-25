@@ -25,7 +25,9 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.v4.util.LruCache;
 import android.util.Log;
 
@@ -61,6 +63,10 @@ public final class AlbumArtCache {
      * An on-disk cache for album art bitmaps.
      */
     private static DiskLruCache diskCache;
+    /**
+     * Used to check if the connection is metered
+     */
+    private static ConnectivityManager connectivityManager;
 
     /**
      * A list of urls yet to be fetched.
@@ -100,6 +106,8 @@ public final class AlbumArtCache {
         } catch (IOException e) {
             Log.e("KDE/Mpris/AlbumArtCache", "Could not open the album art disk cache!", e);
         }
+
+        connectivityManager = (ConnectivityManager) context.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
     }
 
     /**
@@ -216,6 +224,12 @@ public final class AlbumArtCache {
         if (diskCache == null) {
             Log.e("KDE/Mpris/AlbumArtCache", "The disk cache is not intialized!");
             return;
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            //Only download art on unmetered networks (wifi etc.)
+            if (connectivityManager.isActiveNetworkMetered()) {
+                return;
+            }
         }
 
         //Only fetch an URL if we're not fetching it already
