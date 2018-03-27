@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 package org.kde.kdeconnect.Backends.LanBackend;
@@ -69,9 +69,6 @@ import javax.net.ssl.SSLSocket;
  */
 public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDisconnectedCallback {
 
-    public static final Object mutex = new Object();
-
-
     public static final int MIN_VERSION_WITH_SSL_SUPPORT = 6;
     public static final int MIN_VERSION_WITH_NEW_PORT_SUPPORT = 7;
 
@@ -106,10 +103,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
         NetworkPacket networkPacket;
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            String message;
-            synchronized (mutex) {
-                message = reader.readLine();
-            }
+            String message = reader.readLine();
             networkPacket = NetworkPacket.unserialize(message);
             //Log.e("TcpListener","Received TCP package: "+networkPacket.serialize());
         } catch (Exception e) {
@@ -157,11 +151,9 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
             int tcpPort = identityPacket.getInt("tcpPort", MIN_PORT);
 
             SocketFactory socketFactory = SocketFactory.getDefault();
-            Socket socket;
-            synchronized (mutex) {
-                socket = socketFactory.createSocket(address, tcpPort);
-                configureSocket(socket);
-            }
+            Socket socket = socketFactory.createSocket(address, tcpPort);
+            configureSocket(socket);
+
             OutputStream out = socket.getOutputStream();
             NetworkPacket myIdentity = NetworkPacket.createIdentityPacket(context);
             out.write(myIdentity.serialize().getBytes());
@@ -191,7 +183,6 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     void configureSocket(Socket socket) {
         try {
             socket.setKeepAlive(true);
-            socket.setSoTimeout(1000);
         } catch (SocketException e) {
             e.printStackTrace();
         }
@@ -273,9 +264,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                     @Override
                     public void run() {
                         try {
-                            synchronized (mutex) {
-                                sslsocket.startHandshake();
-                            }
+                            sslsocket.startHandshake();
                         } catch (Exception e) {
                             Log.e("KDE/LanLinkProvider", "Handshake failed with " + identityPacket.getString("deviceName"));
                             e.printStackTrace();
@@ -309,7 +298,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
      * @param connectionOrigin which side started this connection
      * @throws IOException if an exception is thrown by {@link LanLink#reset(Socket, LanLink.ConnectionStarted)}
      */
-    private void addLink(final NetworkPacket identityPacket, Socket socket, LanLink.ConnectionStarted connectionOrigin) throws IOException {
+    private synchronized void addLink(final NetworkPacket identityPacket, Socket socket, LanLink.ConnectionStarted connectionOrigin) throws IOException {
 
         String deviceId = identityPacket.getString("deviceId");
         LanLink currentLink = visibleComputers.get(deviceId);
@@ -372,11 +361,8 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                 public void run() {
                     while (listening) {
                         try {
-                            Socket socket;
-                            synchronized (mutex) {
-                                socket = tcpServer.accept();
-                                configureSocket(socket);
-                            }
+                            Socket socket = tcpServer.accept();
+                            configureSocket(socket);
                             tcpPacketReceived(socket);
                         } catch (Exception e) {
                             e.printStackTrace();
