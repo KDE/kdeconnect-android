@@ -146,6 +146,8 @@
   <string name="share_destination_customize_summary_disabled">Os ficheiros recebidos irão aparecer em \'Transferências\'</string>
   <string name="share_destination_customize_summary_enabled">Os ficheiros serão guardados na pasta abaixo</string>
   <string name="share_destination_folder_preference">Pasta de destino</string>
+  <string name="share">Partilhar</string>
+  <string name="share_received_file">Partilhar o \"%s\"</string>
   <string name="title_activity_notification_filter">Filtro de notificações</string>
   <string name="filter_apps_info">As notificações serão sincronizadas para as aplicações seleccionadas.</string>
   <string name="sftp_internal_storage">Armazenamento interno</string>

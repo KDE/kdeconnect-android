@@ -146,6 +146,8 @@
   <string name="share_destination_customize_summary_disabled">Els fitxers rebuts apareixeran a Baixades</string>
   <string name="share_destination_customize_summary_enabled">Els fitxers seran emmagatzemats al directori de sota</string>
   <string name="share_destination_folder_preference">Directori de destinació</string>
+  <string name="share">Comparteix</string>
+  <string name="share_received_file">Comparteix «%s»</string>
   <string name="title_activity_notification_filter">Filtre per a les notificacions</string>
   <string name="filter_apps_info">Les notificacions se sincronitzaran per a les aplicacions seleccionades.</string>
   <string name="sftp_internal_storage">Emmagatzematge intern</string>

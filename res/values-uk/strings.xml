@@ -148,6 +148,8 @@
   <string name="share_destination_customize_summary_disabled">Отримані файли зберігатимуться до каталогу «Завантаження»</string>
   <string name="share_destination_customize_summary_enabled">Файли зберігатимуться у вказаному нижче каталозі</string>
   <string name="share_destination_folder_preference">Каталог призначення</string>
+  <string name="share">Оприлюднити</string>
+  <string name="share_received_file">Оприлюднити «%s»</string>
   <string name="title_activity_notification_filter">Фільтр сповіщень</string>
   <string name="filter_apps_info">Сповіщення буде синхронізовано для позначених програм.</string>
   <string name="sftp_internal_storage">Вбудоване сховище даних</string>
