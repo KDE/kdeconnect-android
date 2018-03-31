@@ -146,6 +146,8 @@
   <string name="share_destination_customize_summary_disabled">Ontvangen bestanden zullen in Downloads verschijnen</string>
   <string name="share_destination_customize_summary_enabled">Bestanden zullen opgeslagen worden in de onderstaande map</string>
   <string name="share_destination_folder_preference">Bestemmingsmap</string>
+  <string name="share">Delen</string>
+  <string name="share_received_file">\"%s\" delen</string>
   <string name="title_activity_notification_filter">Filter voor meldingen</string>
   <string name="filter_apps_info">Meldingen zullen gesynchroniseerd worden voor de geselecteerde apps.</string>
   <string name="sftp_internal_storage">Interne opslag</string>

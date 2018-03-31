@@ -146,6 +146,8 @@
   <string name="share_destination_customize_summary_disabled">Received files will appear in Downloads</string>
   <string name="share_destination_customize_summary_enabled">Files will be stored in the directory below</string>
   <string name="share_destination_folder_preference">Destination directory</string>
+  <string name="share">Share</string>
+  <string name="share_received_file">Share \"%s\"</string>
   <string name="title_activity_notification_filter">Notification filter</string>
   <string name="filter_apps_info">Notifications will be synchronised for the selected apps.</string>
   <string name="sftp_internal_storage">Internal storage</string>
