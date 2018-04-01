@@ -51,7 +51,7 @@
     <item>O máis lento</item>
     <item>Lento</item>
     <item>Predeterminado</item>
-    <item>Rápido</item>
+    <item>Por riba do predeterminado</item>
     <item>O máis rápido</item>
   </string-array>
   <string name="category_connected_devices">Dispositivos conectados</string>
