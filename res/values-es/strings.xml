@@ -146,6 +146,8 @@
   <string name="share_destination_customize_summary_disabled">Los archivos recibidos aparecerán en Descargas</string>
   <string name="share_destination_customize_summary_enabled">Los archivos se almacenarán en el directorio indicado más abajo</string>
   <string name="share_destination_folder_preference">Directorio destino</string>
+  <string name="share">Compartir</string>
+  <string name="share_received_file">Compartir «%s»</string>
   <string name="title_activity_notification_filter">Filtro de notificaciones</string>
   <string name="filter_apps_info">Las notificaciones se sincronizarán en las aplicaciones seleccionadas.</string>
   <string name="sftp_internal_storage">Almacenamiento interno</string>
