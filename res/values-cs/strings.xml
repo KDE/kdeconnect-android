@@ -148,6 +148,8 @@
   <string name="share_destination_customize_summary_disabled">Přijaté soubory se objeví v Downloads</string>
   <string name="share_destination_customize_summary_enabled">Soubory budou ukládány v adresáři níže</string>
   <string name="share_destination_folder_preference">Cílový adresář</string>
+  <string name="share">Sdílet</string>
+  <string name="share_received_file">Sdílet \"%s\"</string>
   <string name="title_activity_notification_filter">Filtr upozornění</string>
   <string name="filter_apps_info">Upozorňování mezi vybranými aplikacemi bude synchronizováno.</string>
   <string name="sftp_internal_storage">Interní úložiště</string>
