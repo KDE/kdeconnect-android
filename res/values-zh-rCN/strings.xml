@@ -83,6 +83,9 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">正在向%1s发送文件</string>
   <string name="outgoing_files_title">正在向 %1s 发送文件</string>
+  <plurals name="outgoing_files_text">
+    <item quantity="other">已发送 %2$d 个文件中的 %1$d 个</item>
+  </plurals>
   <string name="received_file_title">已从%1s接收文件</string>
   <string name="received_file_fail_title">未能从%1s接收文件</string>
   <string name="received_file_text">点击以打开“%1s”</string>
@@ -140,6 +143,7 @@
   <string name="share_destination_customize_summary_disabled">接收的文件会出现在“Downloads”中</string>
   <string name="share_destination_customize_summary_enabled">文件将会被存储在以下目录中</string>
   <string name="share_destination_folder_preference">目标目录</string>
+  <string name="share">分享</string>
   <string name="title_activity_notification_filter">通知过滤器</string>
   <string name="filter_apps_info">所选软件的通知将会被同步。</string>
   <string name="sftp_internal_storage">内部存储</string>

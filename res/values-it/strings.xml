@@ -83,6 +83,10 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Invio file a %1s</string>
   <string name="outgoing_files_title">Invio file a %1s</string>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Inviato %1$d file</item>
+    <item quantity="other">Inviati %1$d di %2$d file</item>
+  </plurals>
   <string name="received_file_title">File ricevuto da %1s</string>
   <string name="received_file_fail_title">Ricezione file da %1s non riuscita</string>
   <string name="received_file_text">Tocca per aprire «%1s»</string>
@@ -142,6 +146,8 @@
   <string name="share_destination_customize_summary_disabled">I file ricevuti saranno visualizzati in Downloads</string>
   <string name="share_destination_customize_summary_enabled">I file saranno memorizzati nella cartella seguente</string>
   <string name="share_destination_folder_preference">Cartella di destinazione</string>
+  <string name="share">Condividi</string>
+  <string name="share_received_file">Condividi «%s»</string>
   <string name="title_activity_notification_filter">Filtro delle notifiche</string>
   <string name="filter_apps_info">Le notifiche saranno sincronizzate per le applicazioni selezionate.</string>
   <string name="sftp_internal_storage">Archiviazione interna</string>
@@ -187,4 +193,13 @@
   <string name="select_ringtone">Seleziona una suoneria</string>
   <string name="telephony_pref_blocked_title">Numeri bloccati</string>
   <string name="telephony_pref_blocked_dialog_desc">Non mostrare le chiamate e gli SMS da questi numeri. Specifica un numero per riga</string>
+  <string name="mpris_coverart_description">Copertina del media attuale</string>
+  <string name="device_icon_description">Icona dispositivo</string>
+  <string name="settings_icon_description">Icona impostazioni</string>
+  <string name="add_command">Aggiungi un comando</string>
+  <string name="addcommand_name">Nome</string>
+  <string name="addcommand_command">Comando</string>
+  <string name="command_confirm_needed">Dovrai confermare il comando sul desktop</string>
+  <string name="addcommand_explanation">Non ci sono comandi registrati</string>
+  <string name="addcommand_explanation2">Puoi aggiungere nuovi comandi nelle impostazioni di sistema di KDE Connect</string>
 </resources>
