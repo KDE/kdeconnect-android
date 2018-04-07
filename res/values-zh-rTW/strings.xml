@@ -10,6 +10,8 @@
   <string name="pref_plugin_clipboard_desc">分享剪貼板的內容</string>
   <string name="pref_plugin_mousepad">遠端輸入</string>
   <string name="pref_plugin_mousepad_desc">使用您的智慧型手機或者平板來模擬觸碰板與鍵盤</string>
+  <string name="pref_plugin_remotekeyboard">接收遠端按鍵輸入</string>
+  <string name="pref_plugin_remotekeyboard_desc">從遠端裝置接收按鍵輸入活動</string>
   <string name="pref_plugin_mpris">多媒體控制</string>
   <string name="pref_plugin_mpris_desc">成為您多媒體播放器的遙控器</string>
   <string name="pref_plugin_runcommand">執行指令</string>
@@ -30,7 +32,12 @@
   <string name="no_permissions">您需要授予存取通知的權限</string>
   <string name="send_ping">傳送Ping回應封包</string>
   <string name="open_mpris_controls">多媒體控制</string>
+  <string name="remotekeyboard_editing_only_title">當編輯時只處理遠端按鍵</string>
+  <string name="remotekeyboard_not_connected">這裡沒有建立在 kdeconnect 之上的使用中遠端鍵盤連線。</string>
+  <string name="remotekeyboard_connected">遠端鍵盤連線為啟用狀態</string>
+  <string name="remotekeyboard_multiple_connections">這裡有兩個以上的遠端鍵盤連結，選擇一個裝置以設定。</string>
   <string name="open_mousepad">遠端輸入</string>
+  <string name="mousepad_info">在您的智慧型手機的螢幕上移動手指頭，用來控制電腦螢幕的鼠標。點擊表示滑鼠的左鍵，使用兩隻/三隻手指頭點擊來表示滑鼠的右鍵/中鍵。使用兩隻手指頭捲動。長按則表示要拖拉。</string>
   <string name="mousepad_double_tap_settings_title">設定兩隻手指頭點擊的動作</string>
   <string name="mousepad_triple_tap_settings_title">設定三隻手指頭點擊的動作</string>
   <string name="mousepad_sensitivity_settings_title">設定觸碰板的靈敏度</string>
@@ -75,11 +82,16 @@
   <string name="incoming_file_title">從 %1s 傳來的檔案</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">正在將檔案發送到 %1s</string>
+  <string name="outgoing_files_title">正在將檔案發送到 %1s</string>
+  <plurals name="outgoing_files_text">
+    <item quantity="other">傳送 %1$d 個檔案，共 %2$d 個檔案。</item>
+  </plurals>
   <string name="received_file_title">已從 %1s 接收檔案</string>
   <string name="received_file_fail_title">從 %1s 接收檔案失敗</string>
   <string name="received_file_text">點擊開啟 \'%1s\'</string>
   <string name="sent_file_title">將檔案傳送到 %1s</string>
   <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">傳送到 %1s 的檔案失敗</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">點擊即可應答</string>
   <string name="reconnect">重新連線</string>
@@ -95,6 +107,7 @@
   <string name="remote_control">遠端控制</string>
   <string name="settings">KDE連線設定</string>
   <string name="mpris_play">播放</string>
+  <string name="mpris_pause">暫停</string>
   <string name="mpris_previous">往前</string>
   <string name="mpris_rew">往後</string>
   <string name="mpris_ff">快轉</string>
@@ -110,6 +123,8 @@
     <item>1分鐘</item>
     <item>2分鐘</item>
   </string-array>
+  <string name="mpris_notification_settings_title">顯示媒體控制項通知</string>
+  <string name="mpris_notification_settings_summary">允許控制您的媒體播放器而不需要開啟 KDE 連線。</string>
   <string name="share_to">分享給</string>
   <string name="protocol_version_older">這個裝置使用舊版本的通訊協定</string>
   <string name="protocol_version_newer">此設備使用較新的通訊協定</string>
@@ -126,6 +141,12 @@
   <string name="custom_device_list">以IP來新增設備</string>
   <string name="share_notification_preference">通知方式</string>
   <string name="share_notification_preference_summary">當接收檔案時發出振動以及播放聲音</string>
+  <string name="share_destination_customize">自訂目標路徑</string>
+  <string name="share_destination_customize_summary_disabled">接收到的檔案將會在 Downloads 上顯示。</string>
+  <string name="share_destination_customize_summary_enabled">檔案將會儲存在下方所示的資料夾</string>
+  <string name="share_destination_folder_preference">目標路徑</string>
+  <string name="share">分享</string>
+  <string name="share_received_file">分享「%s」</string>
   <string name="title_activity_notification_filter">通知過濾器</string>
   <string name="filter_apps_info">將會以您選擇的App應用程式啟用同步通知</string>
   <string name="sftp_internal_storage">內部儲存空間</string>
@@ -147,6 +168,7 @@
   <string name="device_rename_confirm">更改名稱</string>
   <string name="refresh">刷新</string>
   <string name="unreachable_description">此配對的裝置無法連接。 請確保它連接到與您相同的網域。</string>
+  <string name="on_data_message">看起來你現在正使用行動數據連線。KDE 連線只在區域網路上運作。</string>
   <string name="no_file_browser">沒有安裝此檔案的瀏覽程式</string>
   <string name="pref_plugin_telepathy">傳送簡訊</string>
   <string name="pref_plugin_telepathy_desc">傳送文字簡訊到您的電腦桌面</string>
@@ -157,4 +179,26 @@
   <string name="findmyphone_found">找到</string>
   <string name="open">開啟</string>
   <string name="close">關閉</string>
+  <string name="no_permissions_storage">您需要授予儲存權限</string>
+  <string name="plugins_need_permission">部份的附加元件需要權限才能運作（點擊以取得更多資訊）</string>
+  <string name="permission_explanation">這附加元件需要權限以運作</string>
+  <string name="optional_permission_explanation">你需要授予延伸的權限以啟用所有的功能</string>
+  <string name="plugins_need_optional_permission">部份的附加元件因為缺乏權限，而導致功能被停用。（點擊以了解更多資訊）：</string>
+  <string name="sftp_permission_explanation">為了要從您的個人電腦存取檔案，這個應用程式需要權限以存取您的手機儲存空間。</string>
+  <string name="share_optional_permission_explanation">為了要在您的手機與電腦之間分享檔案，你需要同意存取手機的儲存空間。</string>
+  <string name="telepathy_permission_explanation">為了要在您的個人電腦上讀取與撰寫簡訊，你需要提供簡訊的權限。</string>
+  <string name="telephony_permission_explanation">為了要在您的電腦上檢視手機通話與簡訊，你需要提供手機通話與簡訊的權限。</string>
+  <string name="telephony_optional_permission_explanation">為了要讓聯絡人名稱取代手機號碼，您需要提供手機通訊錄的權限。</string>
+  <string name="select_ringtone">選擇一個鈴聲</string>
+  <string name="telephony_pref_blocked_title">已封鎖號碼</string>
+  <string name="telephony_pref_blocked_dialog_desc">不顯示這些號碼的來電與簡訊。請在一行指定一個電話號碼。</string>
+  <string name="mpris_coverart_description">目前媒體的專輯圖像</string>
+  <string name="device_icon_description">裝置圖示</string>
+  <string name="settings_icon_description">設定圖示</string>
+  <string name="add_command">增加一行指令</string>
+  <string name="addcommand_name">名稱</string>
+  <string name="addcommand_command">指令</string>
+  <string name="command_confirm_needed">您將需要在桌面上確認指令</string>
+  <string name="addcommand_explanation">沒有指令被註冊</string>
+  <string name="addcommand_explanation2">您現在可以在 KDE 連線系統設定增加新的指令</string>
 </resources>
