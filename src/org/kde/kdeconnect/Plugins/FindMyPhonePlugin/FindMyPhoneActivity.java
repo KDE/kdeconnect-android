@@ -28,6 +28,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -82,10 +83,16 @@ public class FindMyPhoneActivity extends Activity {
             audioManager.setStreamVolume(AudioManager.STREAM_ALARM, audioManager.getStreamMaxVolume(AudioManager.STREAM_ALARM), 0);
 
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            String ringtone = prefs.getString("select_ringtone", "");
+            Uri ringtone;
+            String ringtoneString = prefs.getString("select_ringtone", "");
+            if (ringtoneString.isEmpty()) {
+                ringtone = Settings.System.DEFAULT_RINGTONE_URI;
+            } else {
+                ringtone = Uri.parse(ringtoneString);
+            }
 
             mediaPlayer = new MediaPlayer();
-            mediaPlayer.setDataSource(this, Uri.parse(ringtone));
+            mediaPlayer.setDataSource(this, ringtone);
             mediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
             mediaPlayer.setLooping(true);
             mediaPlayer.prepare();
