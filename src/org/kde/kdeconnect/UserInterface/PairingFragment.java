@@ -75,8 +75,8 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
 
         setHasOptionsMenu(true);
 
-        rootView = inflater.inflate(R.layout.activity_refresh_list, container, false);
-        View listRootView = rootView.findViewById(R.id.listView1);
+        rootView = inflater.inflate(R.layout.devices_list, container, false);
+        View listRootView = rootView.findViewById(R.id.devices_list);
         mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.refresh_list_layout);
         mSwipeRefreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
@@ -195,7 +195,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
                                 items.remove(items.size() - 1); //Remove remembered devices section if empty
                             }
 
-                            final ListView list = (ListView) rootView.findViewById(R.id.listView1);
+                            final ListView list = (ListView) rootView.findViewById(R.id.devices_list);
 
                             //Store current scroll
                             int index = list.getFirstVisiblePosition();

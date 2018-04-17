@@ -124,7 +124,7 @@ public class ShareActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ListView list = (ListView) findViewById(R.id.listView1);
+                        ListView list = (ListView) findViewById(R.id.devices_list);
                         list.setAdapter(new ListAdapter(ShareActivity.this, items));
                         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
@@ -145,7 +145,7 @@ public class ShareActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_refresh_list);
+        setContentView(R.layout.devices_list);
 
         ActionBar actionBar = getSupportActionBar();
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_list_layout);
