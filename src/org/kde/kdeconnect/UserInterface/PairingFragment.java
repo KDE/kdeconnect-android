@@ -156,42 +156,42 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
                             Collection<Device> devices = service.getDevices().values();
                             final ArrayList<ListAdapter.Item> items = new ArrayList<>();
 
-                            SectionItem section;
+                            SectionItem connectedSection;
                             Resources res = getResources();
 
-                            section = new SectionItem(res.getString(R.string.category_connected_devices));
-                            section.isSectionEmpty = true;
-                            items.add(section);
+                            connectedSection = new SectionItem(res.getString(R.string.category_connected_devices));
+                            items.add(connectedSection);
                             for (Device device : devices) {
                                 if (device.isReachable() && device.isPaired()) {
                                     items.add(new PairingDeviceItem(device, PairingFragment.this));
-                                    section.isSectionEmpty = false;
+                                    connectedSection.isEmpty = false;
                                 }
                             }
-                            if (section.isSectionEmpty) {
+                            if (connectedSection.isEmpty) {
                                 items.remove(items.size() - 1); //Remove connected devices section if empty
                             }
 
-                            section = new SectionItem(res.getString(R.string.category_not_paired_devices));
-                            section.isSectionEmpty = true;
-                            items.add(section);
+                            SectionItem availableSection = new SectionItem(res.getString(R.string.category_not_paired_devices));
+                            items.add(availableSection);
                             for (Device device : devices) {
                                 if (device.isReachable() && !device.isPaired()) {
                                     items.add(new PairingDeviceItem(device, PairingFragment.this));
-                                    section.isSectionEmpty = false;
+                                    availableSection.isEmpty = false;
                                 }
                             }
+                            if (availableSection.isEmpty && !connectedSection.isEmpty) {
+                                items.remove(items.size() - 1); //Remove remembered devices section if empty
+                            }
 
-                            section = new SectionItem(res.getString(R.string.category_remembered_devices));
-                            section.isSectionEmpty = true;
-                            items.add(section);
+                            SectionItem rememberedSection = new SectionItem(res.getString(R.string.category_remembered_devices));
+                            items.add(rememberedSection);
                             for (Device device : devices) {
                                 if (!device.isReachable() && device.isPaired()) {
                                     items.add(new PairingDeviceItem(device, PairingFragment.this));
-                                    section.isSectionEmpty = false;
+                                    rememberedSection.isEmpty = false;
                                 }
                             }
-                            if (section.isSectionEmpty) {
+                            if (rememberedSection.isEmpty) {
                                 items.remove(items.size() - 1); //Remove remembered devices section if empty
                             }
 
