@@ -159,6 +159,17 @@ public class NetworkPacket {
         }
     }
 
+    public JSONObject getJSONObject(String key) {
+        return mBody.optJSONObject(key);
+    }
+
+    public void set(String key, JSONObject value) {
+        try {
+            mBody.put(key, value);
+        } catch (JSONException e) {
+        }
+    }
+
     public Set<String> getStringSet(String key) {
         JSONArray jsonArray = mBody.optJSONArray(key);
         if (jsonArray == null) return null;
