@@ -181,4 +181,5 @@
   <string name="telepathy_permission_explanation">Para ler e escribir SMS desde o escritorio ten que dar permiso de SMS.</string>
   <string name="telephony_permission_explanation">Para ver as chamadas de teléfono e os SMS desde o escritorio ten que dar permiso a chamadas de teléfono e a SMS.</string>
   <string name="telephony_optional_permission_explanation">Para ver o nome dun contacto en vez dun número de teléfono ten que dar acceso aos contactos do teléfono.</string>
+  <string name="addcommand_command">Orde</string>
 </resources>
