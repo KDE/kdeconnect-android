@@ -16,7 +16,9 @@
 <!-- Layout for a Preference in a PreferenceActivity. The
      Preference is able to place a specific widget for its particular
      type in the "widget_frame" layout. -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
@@ -68,13 +70,14 @@
 
     </RelativeLayout>
 
-    <ImageButton
+    <android.support.v7.widget.AppCompatImageButton
         android:id="@+id/settingsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/abc_btn_borderless_material"
         android:contentDescription="@string/settings_icon_description"
         android:padding="8dip"
+        app:tint="?attr/colorControlNormal"
         android:src="@drawable/ic_action_settings_inverted" />
 
 </LinearLayout>

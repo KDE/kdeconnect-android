@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/abc_list_selector_holo_dark"
@@ -14,12 +16,13 @@
     android:paddingRight="?android:attr/scrollbarSize"
     android:paddingStart="12dip">
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/list_item_entry_icon"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:contentDescription="@string/device_icon_description"
+        app:tint="?attr/colorControlNormal"
         android:src="@drawable/ic_device_laptop" />
 
     <LinearLayout

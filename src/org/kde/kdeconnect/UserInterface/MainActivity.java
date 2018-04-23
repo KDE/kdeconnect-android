@@ -7,8 +7,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -16,12 +19,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -55,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // We need to set this theme before the call to 'setContentView' below
+        ThemeUtil.setUserPreferredTheme(this);
+
         setContentView(R.layout.activity_main);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mNavigationView = (NavigationView) findViewById(R.id.navigation_drawer);
@@ -90,6 +100,10 @@ public class MainActivity extends AppCompatActivity {
         };
         mDrawerHeader.findViewById(R.id.kdeconnect_label).setOnClickListener(renameListener);
         mDrawerHeader.findViewById(R.id.device_name).setOnClickListener(renameListener);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            addDarkModeSwitch((ViewGroup) mDrawerHeader);
+        }
 
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -130,6 +144,36 @@ public class MainActivity extends AppCompatActivity {
             onNewDeviceSelected(savedDevice, pairStatus);
         }
         onDeviceSelected(savedDevice);
+    }
+
+    /**
+     * Adds a {@link SwitchCompat} to the bottom of the navigation header for
+     * toggling dark mode on and off. Call from {@link #onCreate(Bundle)}.
+     * <p>
+     *     Only supports android ICS and higher because {@link SwitchCompat}
+     *     requires that.
+     * </p>
+     *
+     * @param drawerHeader the layout which should contain the switch
+     */
+    @RequiresApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    private void addDarkModeSwitch(ViewGroup drawerHeader) {
+        getLayoutInflater().inflate(R.layout.nav_dark_mode_switch, drawerHeader);
+
+        SwitchCompat darkThemeSwitch = (SwitchCompat) drawerHeader.findViewById(R.id.dark_theme);
+        darkThemeSwitch.setChecked(ThemeUtil.shouldUseDarkTheme(this));
+        darkThemeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
+            @Override
+            public void onCheckedChanged(CompoundButton darkThemeSwitch, boolean isChecked) {
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+                boolean isDarkAlready = prefs.getBoolean("darkTheme", false);
+                if (isDarkAlready != isChecked) {
+                    prefs.edit().putBoolean("darkTheme", isChecked).apply();
+                    MainActivity.this.recreate();
+                }
+            }
+        });
     }
 
     //like onNewDeviceSelected but assumes that the new device is simply requesting to be paired

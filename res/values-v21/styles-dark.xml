@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="KdeConnectTheme.Dark" parent="KdeConnectThemeBase.Dark">
+        <item name="android:colorEdgeEffect">@color/darkGrey</item>
+    </style>
+    <style name="KdeConnectTheme.Dark.NoActionBar" parent="KdeConnectThemeBase.Dark.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:colorEdgeEffect">@color/darkGrey</item>
+    </style>
+
+</resources>

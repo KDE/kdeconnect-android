@@ -39,6 +39,7 @@ import android.widget.ListView;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Helpers.StringsHelper;
+import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.Arrays;
@@ -93,6 +94,7 @@ public class NotificationFilterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeUtil.setUserPreferredTheme(this);
         setContentView(R.layout.activity_notification_filter);
         appDatabase = new AppDatabase(NotificationFilterActivity.this, false);
 

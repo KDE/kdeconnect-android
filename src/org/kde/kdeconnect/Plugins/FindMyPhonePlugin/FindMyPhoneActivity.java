@@ -34,6 +34,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 
 public class FindMyPhoneActivity extends Activity {
@@ -56,6 +57,7 @@ public class FindMyPhoneActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeUtil.setUserPreferredTheme(this);
         setContentView(R.layout.activity_find_my_phone);
 
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);

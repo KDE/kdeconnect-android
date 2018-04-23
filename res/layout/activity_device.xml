@@ -1,5 +1,7 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -67,29 +69,46 @@
         </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/not_reachable_message"
+    <LinearLayout
+        android:id="@+id/error_message_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:drawableLeft="@drawable/ic_error_outline_black_48dp"
-        android:drawablePadding="8dip"
-        android:drawableStart="@drawable/ic_error_outline_black_48dp"
-        android:gravity="center_vertical"
-        android:text="@string/unreachable_description"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:visibility="gone" />
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:visibility="gone" >
 
-    <TextView
-        android:id="@+id/on_data_message"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:drawableLeft="@drawable/ic_error_outline_black_48dp"
-        android:drawablePadding="8dip"
-        android:drawableStart="@drawable/ic_error_outline_black_48dp"
-        android:gravity="center_vertical"
-        android:text="@string/on_data_message"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:visibility="gone" />
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/error_message_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            android:paddingEnd="8dip"
+            android:paddingLeft="0dip"
+            android:paddingRight="8dip"
+            android:paddingStart="0dip"
+            android:src="@drawable/ic_error_outline_black_48dp"
+            app:tint="?attr/colorHighContrast"
+            tools:ignore="UnusedAttribute"/>
+
+        <TextView
+            android:id="@+id/not_reachable_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/unreachable_description"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/on_data_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@string/on_data_message"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:visibility="gone" />
+    </LinearLayout>
+
 
     <ListView
         android:id="@+id/buttons_list"

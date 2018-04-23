@@ -46,6 +46,7 @@ import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
+import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.List;
@@ -314,6 +315,7 @@ public class MprisActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeUtil.setUserPreferredTheme(this);
         setContentView(R.layout.activity_mpris);
 
         final String targetPlayerName = getIntent().getStringExtra("player");

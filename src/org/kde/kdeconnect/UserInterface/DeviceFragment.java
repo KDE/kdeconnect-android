@@ -334,6 +334,7 @@ public class DeviceFragment extends Fragment {
                     boolean onData = NetworkHelper.isOnMobileNetwork(getContext());
 
                     rootView.findViewById(R.id.pairing_buttons).setVisibility(paired ? View.GONE : View.VISIBLE);
+                    rootView.findViewById(R.id.error_message_container).setVisibility((paired && !reachable) ? View.VISIBLE : View.GONE);
                     rootView.findViewById(R.id.not_reachable_message).setVisibility((paired && !reachable && !onData) ? View.VISIBLE : View.GONE);
                     rootView.findViewById(R.id.on_data_message).setVisibility((paired && !reachable && onData) ? View.VISIBLE : View.GONE);
 

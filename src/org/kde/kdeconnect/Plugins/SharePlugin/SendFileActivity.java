@@ -32,6 +32,7 @@ import android.widget.Toast;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
@@ -44,6 +45,7 @@ public class SendFileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeUtil.setUserPreferredTheme(this);
 
         mDeviceId = getIntent().getStringExtra("deviceId");
 

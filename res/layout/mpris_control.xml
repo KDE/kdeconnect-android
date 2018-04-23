@@ -137,7 +137,7 @@
         android:layout_marginTop="8dip"
         android:orientation="horizontal">
 
-        <ImageView
+        <android.support.v7.widget.AppCompatImageView
             android:id="@+id/imageView"
             android:layout_width="30dip"
             android:layout_height="30dip"
@@ -146,6 +146,7 @@
             android:layout_weight="0"
             android:contentDescription="@string/mpris_volume"
             android:maxWidth="30dip"
+            app:tint="?attr/colorHighContrast"
             android:src="@drawable/ic_volume_black" />
 
 

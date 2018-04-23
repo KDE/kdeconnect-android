@@ -45,6 +45,8 @@ public abstract class AppCompatPreferenceActivity extends PreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         getDelegate().installViewFactory();
         getDelegate().onCreate(savedInstanceState);
+        // The superclass's onCreate() method calls setContentView, so this ThemeUtil call must be before that
+        ThemeUtil.setUserPreferredTheme(this);
         super.onCreate(savedInstanceState);
     }
 

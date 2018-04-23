@@ -57,6 +57,7 @@ public class CustomDevicesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initializeDeviceList(this);
+        ThemeUtil.setUserPreferredTheme(this);
         setContentView(R.layout.custom_ip_list);
 
         list = (ListView) findViewById(android.R.id.list);

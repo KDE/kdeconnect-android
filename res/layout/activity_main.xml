@@ -16,9 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
             android:elevation="8dp"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
         <FrameLayout
@@ -33,10 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@drawable/state_list_drawer_background"
         app:headerLayout="@layout/nav_header"
-        app:itemBackground="@drawable/state_list_drawer_background"
-        app:itemIconTint="@color/state_list_drawer_text"
-        app:itemTextColor="@color/state_list_drawer_text" />
+        style="?attr/mainNavigationViewStyle" />
 
 </android.support.v4.widget.DrawerLayout>
