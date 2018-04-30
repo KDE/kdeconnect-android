@@ -11,7 +11,7 @@
     android:paddingRight="48dp"
     android:paddingStart="16dp"
     android:paddingTop="4dp"
-    android:text="Dark theme"
+    android:text="@string/dark_theme"
     android:textColor="@android:color/white"
     app:switchPadding="12dp"
     tools:background="@drawable/drawer_header"
