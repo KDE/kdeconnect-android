@@ -270,6 +270,9 @@ public final class AlbumArtCache {
          */
         private boolean openHttp() throws IOException {
             //Default android behaviour does not follow https -> http urls, so do this manually
+            if (!url.getProtocol().equals("http") && !url.getProtocol().equals("https")) {
+                throw new AssertionError("Invalid url: not http(s) in background album art fetch");
+            }
             URL currentUrl = url;
             HttpURLConnection connection;
             for (int i = 0; i < 5; ++i) {
@@ -431,6 +434,9 @@ public final class AlbumArtCache {
             try {
                 payload.close();
             } catch (IOException ignored) {}
+            return;
+        }
+        if (payload == null) {
             return;
         }
 
