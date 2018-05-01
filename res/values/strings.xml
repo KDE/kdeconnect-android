@@ -238,4 +238,6 @@
     <string name="addcommand_explanation">There are no commands registered</string>
     <string name="addcommand_explanation2">You can add new commands in the KDE Connect System Settings</string>
 
+    <string name="dark_theme">Dark theme</string>
+
 </resources>
