@@ -202,4 +202,5 @@
   <string name="command_confirm_needed">U zult het commando moeten bevestigen op het bureaublad</string>
   <string name="addcommand_explanation">Er zijn geen commando\'s geregistreerd</string>
   <string name="addcommand_explanation2">U kunt nieuwe commando\'s in de instellingen voor het KDE connect-systeem toevoegen</string>
+  <string name="dark_theme">Donker themea</string>
 </resources>

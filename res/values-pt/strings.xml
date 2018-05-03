@@ -202,4 +202,5 @@
   <string name="command_confirm_needed">Terá de confirmar o comando no ambiente de trabalho</string>
   <string name="addcommand_explanation">Não existem comandos registados</string>
   <string name="addcommand_explanation2">Poderá adicionar comandos novos na Configuração do Sistema KDE Connect</string>
+  <string name="dark_theme">Tema escuro</string>
 </resources>

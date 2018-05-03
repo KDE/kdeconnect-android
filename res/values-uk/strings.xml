@@ -204,4 +204,5 @@
   <string name="command_confirm_needed">Вам доведеться підтвердити команду на комп\'ютері</string>
   <string name="addcommand_explanation">Жодних команд не зареєстровано</string>
   <string name="addcommand_explanation2">Ви можете додавати нові команди за допомогою Системних параметрів KDE Connect</string>
+  <string name="dark_theme">Темна тема</string>
 </resources>

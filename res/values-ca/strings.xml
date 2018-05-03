@@ -202,4 +202,5 @@
   <string name="command_confirm_needed">Cal confirmar l\'ordre a l\'escriptori</string>
   <string name="addcommand_explanation">No hi ha cap ordre registrada</string>
   <string name="addcommand_explanation2">Podeu afegir ordres noves a l\'Arranjament del sistema del KDE Connect</string>
+  <string name="dark_theme">Tema fosc</string>
 </resources>
