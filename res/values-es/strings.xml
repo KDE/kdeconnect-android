@@ -202,4 +202,5 @@
   <string name="command_confirm_needed">Necesitará confirmar la orden desde su escritorio</string>
   <string name="addcommand_explanation">No hay ninguna orden registrada</string>
   <string name="addcommand_explanation2">Puede añadir nuevas órdenes en las preferencias del sistema de KDE Connect</string>
+  <string name="dark_theme">Tema oscuro</string>
 </resources>
