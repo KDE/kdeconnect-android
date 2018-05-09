@@ -202,12 +202,7 @@ public abstract class Plugin {
         if (!hasMainActivity()) return null;
         Button b = new Button(activity);
         b.setText(getActionName());
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startMainActivity(activity);
-            }
-        });
+        b.setOnClickListener(view -> startMainActivity(activity));
         return b;
     }
 
@@ -242,17 +237,9 @@ public abstract class Plugin {
         return new AlertDialog.Builder(activity)
                 .setTitle(getDisplayName())
                 .setMessage(reason)
-                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        ActivityCompat.requestPermissions(activity, permissions, 0);
-                    }
-                })
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //Do nothing
-                    }
+                .setPositiveButton(R.string.ok, (dialogInterface, i) -> ActivityCompat.requestPermissions(activity, permissions, 0))
+                .setNegativeButton(R.string.cancel, (dialogInterface, i) -> {
+                    //Do nothing
                 })
                 .create();
     }

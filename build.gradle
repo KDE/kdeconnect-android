@@ -23,10 +23,8 @@ android {
         javaMaxHeapSize "2g"
     }
     compileOptions {
-        // Use Java 1.7, requires minSdk 8
-        //SSHD requires mina when running on JDK < 7
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 	sourceSets {
         main {

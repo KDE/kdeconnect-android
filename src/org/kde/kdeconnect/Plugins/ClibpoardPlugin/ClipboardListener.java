@@ -69,35 +69,29 @@ public class ClipboardListener {
             return;
         }
 
-        new Handler(Looper.getMainLooper()).post(new Runnable() {
-            @Override
-            public void run() {
-                cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-                listener = new ClipboardManager.OnPrimaryClipChangedListener() {
-                    @Override
-                    public void onPrimaryClipChanged() {
-                        try {
+        new Handler(Looper.getMainLooper()).post(() -> {
+            cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+            listener = () -> {
+                try {
 
-                            ClipData.Item item = cm.getPrimaryClip().getItemAt(0);
-                            String content = item.coerceToText(context).toString();
+                    ClipData.Item item = cm.getPrimaryClip().getItemAt(0);
+                    String content = item.coerceToText(context).toString();
 
-                            if (content.equals(currentContent)) {
-                                return;
-                            }
-
-                            currentContent = content;
-
-                            for (ClipboardObserver observer : observers) {
-                                observer.clipboardChanged(content);
-                            }
-
-                        } catch (Exception e) {
-                            //Probably clipboard was not text
-                        }
+                    if (content.equals(currentContent)) {
+                        return;
                     }
-                };
-                cm.addPrimaryClipChangedListener(listener);
-            }
+
+                    currentContent = content;
+
+                    for (ClipboardObserver observer : observers) {
+                        observer.clipboardChanged(content);
+                    }
+
+                } catch (Exception e) {
+                    //Probably clipboard was not text
+                }
+            };
+            cm.addPrimaryClipChangedListener(listener);
         });
     }
 

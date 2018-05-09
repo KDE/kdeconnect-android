@@ -219,64 +219,61 @@ public class SharePlugin extends Plugin {
         final ShareNotification notification = new ShareNotification(device, filename);
         notification.show();
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    byte data[] = new byte[4096];
-                    long progress = 0, prevProgressPercentage = -1;
-                    int count;
-                    long lastUpdate = 0;
-                    while ((count = input.read(data)) >= 0) {
-                        progress += count;
-                        destinationOutput.write(data, 0, count);
-                        if (fileLength > 0) {
-                            if (progress >= fileLength) break;
-                            long progressPercentage = (progress * 100 / fileLength);
-                            if (progressPercentage != prevProgressPercentage &&
-                                    System.currentTimeMillis() - lastUpdate > 100) {
-                                prevProgressPercentage = progressPercentage;
-                                lastUpdate = System.currentTimeMillis();
+        new Thread(() -> {
+            try {
+                byte data[] = new byte[4096];
+                long progress = 0, prevProgressPercentage = -1;
+                int count;
+                long lastUpdate = 0;
+                while ((count = input.read(data)) >= 0) {
+                    progress += count;
+                    destinationOutput.write(data, 0, count);
+                    if (fileLength > 0) {
+                        if (progress >= fileLength) break;
+                        long progressPercentage = (progress * 100 / fileLength);
+                        if (progressPercentage != prevProgressPercentage &&
+                                System.currentTimeMillis() - lastUpdate > 100) {
+                            prevProgressPercentage = progressPercentage;
+                            lastUpdate = System.currentTimeMillis();
 
-                                notification.setProgress((int) progressPercentage);
-                                notification.show();
-                            }
+                            notification.setProgress((int) progressPercentage);
+                            notification.show();
                         }
-                        //else Log.e("SharePlugin", "Infinite loop? :D");
                     }
+                    //else Log.e("SharePlugin", "Infinite loop? :D");
+                }
 
-                    destinationOutput.flush();
+                destinationOutput.flush();
 
-                    Log.i("SharePlugin", "Transfer finished: " + destinationUri.getPath());
+                Log.i("SharePlugin", "Transfer finished: " + destinationUri.getPath());
 
-                    //Update the notification and allow to open the file from it
-                    notification.setFinished(true);
-                    notification.setURI(destinationUri, mimeType);
-                    notification.show();
+                //Update the notification and allow to open the file from it
+                notification.setFinished(true);
+                notification.setURI(destinationUri, mimeType);
+                notification.show();
 
-                    if (!customDestination && Build.VERSION.SDK_INT >= 12) {
-                        Log.i("SharePlugin", "Adding to downloads");
-                        DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-                        manager.addCompletedDownload(destinationUri.getLastPathSegment(), device.getName(), true, mimeType, destinationUri.getPath(), fileLength, false);
-                    } else {
-                        //Make sure it is added to the Android Gallery anyway
-                        MediaStoreHelper.indexFile(context, destinationUri);
-                    }
+                if (!customDestination && Build.VERSION.SDK_INT >= 12) {
+                    Log.i("SharePlugin", "Adding to downloads");
+                    DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+                    manager.addCompletedDownload(destinationUri.getLastPathSegment(), device.getName(), true, mimeType, destinationUri.getPath(), fileLength, false);
+                } else {
+                    //Make sure it is added to the Android Gallery anyway
+                    MediaStoreHelper.indexFile(context, destinationUri);
+                }
 
+            } catch (Exception e) {
+                Log.e("SharePlugin", "Receiver thread exception");
+                e.printStackTrace();
+                notification.setFinished(false);
+                notification.show();
+            } finally {
+                try {
+                    destinationOutput.close();
                 } catch (Exception e) {
-                    Log.e("SharePlugin", "Receiver thread exception");
-                    e.printStackTrace();
-                    notification.setFinished(false);
-                    notification.show();
-                } finally {
-                    try {
-                        destinationOutput.close();
-                    } catch (Exception e) {
-                    }
-                    try {
-                        input.close();
-                    } catch (Exception e) {
-                    }
+                }
+                try {
+                    input.close();
+                } catch (Exception e) {
                 }
             }
         }).start();
@@ -302,21 +299,18 @@ public class SharePlugin extends Plugin {
         final NotificationUpdateCallback notificationUpdateCallback = new NotificationUpdateCallback(context, device, toSend);
 
         //Do the sending in background
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //Actually send the files
-                try {
-                    for (NetworkPacket np : toSend) {
-                        boolean success = device.sendPacketBlocking(np, notificationUpdateCallback);
-                        if (!success) {
-                            Log.e("SharePlugin", "Error sending files");
-                            return;
-                        }
+        new Thread(() -> {
+            //Actually send the files
+            try {
+                for (NetworkPacket np : toSend) {
+                    boolean success = device.sendPacketBlocking(np, notificationUpdateCallback);
+                    if (!success) {
+                        Log.e("SharePlugin", "Error sending files");
+                        return;
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }).start();
 

@@ -87,24 +87,18 @@ public class BackgroundService extends Service {
     }
 
     public static void addGuiInUseCounter(final Context activity, final boolean forceNetworkRefresh) {
-        BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                boolean refreshed = service.acquireDiscoveryMode(activity);
-                if (!refreshed && forceNetworkRefresh) {
-                    service.onNetworkChange();
-                }
+        BackgroundService.RunCommand(activity, service -> {
+            boolean refreshed = service.acquireDiscoveryMode(activity);
+            if (!refreshed && forceNetworkRefresh) {
+                service.onNetworkChange();
             }
         });
     }
 
     public static void removeGuiInUseCounter(final Context activity) {
-        BackgroundService.RunCommand(activity, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                //If no user interface is open, close the connections open to other devices
-                service.releaseDiscoveryMode(activity);
-            }
+        BackgroundService.RunCommand(activity, service -> {
+            //If no user interface is open, close the connections open to other devices
+            service.releaseDiscoveryMode(activity);
         });
     }
 
@@ -167,13 +161,10 @@ public class BackgroundService extends Service {
     }
 
     private void cleanDevices() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                for (Device d : devices.values()) {
-                    if (!d.isPaired() && !d.isPairRequested() && !d.isPairRequestedByPeer() && !d.deviceShouldBeKeptAlive()) {
-                        d.disconnect();
-                    }
+        new Thread(() -> {
+            for (Device d : devices.values()) {
+                if (!d.isPaired() && !d.isPairRequested() && !d.isPairRequestedByPeer() && !d.deviceShouldBeKeptAlive()) {
+                    d.disconnect();
                 }
             }
         }).start();
@@ -328,20 +319,17 @@ public class BackgroundService extends Service {
     }
 
     public static void RunCommand(final Context c, final InstanceCallback callback) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                if (callback != null) {
-                    mutex.lock();
-                    try {
-                        callbacks.add(callback);
-                    } finally {
-                        mutex.unlock();
-                    }
+        new Thread(() -> {
+            if (callback != null) {
+                mutex.lock();
+                try {
+                    callbacks.add(callback);
+                } finally {
+                    mutex.unlock();
                 }
-                Intent serviceIntent = new Intent(c, BackgroundService.class);
-                c.startService(serviceIntent);
             }
+            Intent serviceIntent = new Intent(c, BackgroundService.class);
+            c.startService(serviceIntent);
         }).start();
     }
 

@@ -67,12 +67,7 @@ public class FindMyPhoneActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
-        findViewById(R.id.bFindMyPhone).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        findViewById(R.id.bFindMyPhone).setOnClickListener(view -> finish());
     }
 
     @Override

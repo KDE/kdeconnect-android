@@ -638,12 +638,7 @@ public class Device implements BaseLink.PacketReceiver {
 
     //Async
     public void sendPacket(final NetworkPacket np, final SendPacketStatusCallback callback) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                sendPacketBlocking(np, callback);
-            }
-        }).start();
+        new Thread(() -> sendPacketBlocking(np, callback)).start();
     }
 
     public boolean sendPacketBlocking(final NetworkPacket np, final SendPacketStatusCallback callback) {

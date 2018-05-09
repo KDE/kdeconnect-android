@@ -15,8 +15,8 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
-*/
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 package org.kde.kdeconnect.UserInterface;
 
@@ -79,12 +79,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
         View listRootView = rootView.findViewById(R.id.devices_list);
         mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.refresh_list_layout);
         mSwipeRefreshLayout.setOnRefreshListener(
-                new SwipeRefreshLayout.OnRefreshListener() {
-                    @Override
-                    public void onRefresh() {
-                        updateComputerListAction();
-                    }
-                }
+                this::updateComputerListAction
         );
         headerText = new TextView(inflater.getContext());
         headerText.setText(getString(R.string.pairing_description));
@@ -102,138 +97,106 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
 
     private void updateComputerListAction() {
         updateComputerList();
-        BackgroundService.RunCommand(mActivity, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                service.onNetworkChange();
-            }
-        });
+        BackgroundService.RunCommand(mActivity, BackgroundService::onNetworkChange);
         mSwipeRefreshLayout.setRefreshing(true);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(1500);
-                } catch (InterruptedException ignored) {
-                }
-                mActivity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mSwipeRefreshLayout.setRefreshing(false);
-                    }
-                });
+        new Thread(() -> {
+            try {
+                Thread.sleep(1500);
+            } catch (InterruptedException ignored) {
             }
+            mActivity.runOnUiThread(() -> mSwipeRefreshLayout.setRefreshing(false));
         }).start();
     }
 
     private void updateComputerList() {
-        BackgroundService.RunCommand(mActivity, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(final BackgroundService service) {
-                mActivity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
+        BackgroundService.RunCommand(mActivity, service -> mActivity.runOnUiThread(() -> {
 
-                        if (!isAdded()) {
-                            //Fragment is not attached to an activity. We will crash if we try to do anything here.
-                            return;
-                        }
-
-                        if (listRefreshCalledThisFrame) {
-                            // This makes sure we don't try to call list.getFirstVisiblePosition()
-                            // twice per frame, because the second time the list hasn't been drawn
-                            // yet and it would always return 0.
-                            return;
-                        }
-                        listRefreshCalledThisFrame = true;
-
-                        headerText.setText(getString(NetworkHelper.isOnMobileNetwork(getContext()) ? R.string.on_data_message : R.string.pairing_description));
-                        //Disable tap animation
-                        headerText.setOnClickListener(null);
-                        headerText.setOnLongClickListener(null);
-
-                        try {
-                            Collection<Device> devices = service.getDevices().values();
-                            final ArrayList<ListAdapter.Item> items = new ArrayList<>();
-
-                            SectionItem connectedSection;
-                            Resources res = getResources();
-
-                            connectedSection = new SectionItem(res.getString(R.string.category_connected_devices));
-                            items.add(connectedSection);
-                            for (Device device : devices) {
-                                if (device.isReachable() && device.isPaired()) {
-                                    items.add(new PairingDeviceItem(device, PairingFragment.this));
-                                    connectedSection.isEmpty = false;
-                                }
-                            }
-                            if (connectedSection.isEmpty) {
-                                items.remove(items.size() - 1); //Remove connected devices section if empty
-                            }
-
-                            SectionItem availableSection = new SectionItem(res.getString(R.string.category_not_paired_devices));
-                            items.add(availableSection);
-                            for (Device device : devices) {
-                                if (device.isReachable() && !device.isPaired()) {
-                                    items.add(new PairingDeviceItem(device, PairingFragment.this));
-                                    availableSection.isEmpty = false;
-                                }
-                            }
-                            if (availableSection.isEmpty && !connectedSection.isEmpty) {
-                                items.remove(items.size() - 1); //Remove remembered devices section if empty
-                            }
-
-                            SectionItem rememberedSection = new SectionItem(res.getString(R.string.category_remembered_devices));
-                            items.add(rememberedSection);
-                            for (Device device : devices) {
-                                if (!device.isReachable() && device.isPaired()) {
-                                    items.add(new PairingDeviceItem(device, PairingFragment.this));
-                                    rememberedSection.isEmpty = false;
-                                }
-                            }
-                            if (rememberedSection.isEmpty) {
-                                items.remove(items.size() - 1); //Remove remembered devices section if empty
-                            }
-
-                            final ListView list = (ListView) rootView.findViewById(R.id.devices_list);
-
-                            //Store current scroll
-                            int index = list.getFirstVisiblePosition();
-                            View v = list.getChildAt(0);
-                            int top = (v == null) ? 0 : (v.getTop() - list.getPaddingTop());
-
-                            list.setAdapter(new ListAdapter(mActivity, items));
-
-                            //Restore scroll
-                            list.setSelectionFromTop(index, top);
-                        } catch (IllegalStateException e) {
-                            e.printStackTrace();
-                            //Ignore: The activity was closed while we were trying to update it
-                        } finally {
-                            listRefreshCalledThisFrame = false;
-                        }
-                    }
-                });
-
+            if (!isAdded()) {
+                //Fragment is not attached to an activity. We will crash if we try to do anything here.
+                return;
             }
-        });
-    }
 
+            if (listRefreshCalledThisFrame) {
+                // This makes sure we don't try to call list.getFirstVisiblePosition()
+                // twice per frame, because the second time the list hasn't been drawn
+                // yet and it would always return 0.
+                return;
+            }
+            listRefreshCalledThisFrame = true;
+
+            headerText.setText(getString(NetworkHelper.isOnMobileNetwork(getContext()) ? R.string.on_data_message : R.string.pairing_description));
+            //Disable tap animation
+            headerText.setOnClickListener(null);
+            headerText.setOnLongClickListener(null);
+
+            try {
+                Collection<Device> devices = service.getDevices().values();
+                final ArrayList<ListAdapter.Item> items = new ArrayList<>();
+
+                SectionItem connectedSection;
+                Resources res = getResources();
+
+                connectedSection = new SectionItem(res.getString(R.string.category_connected_devices));
+                items.add(connectedSection);
+                for (Device device : devices) {
+                    if (device.isReachable() && device.isPaired()) {
+                        items.add(new PairingDeviceItem(device, PairingFragment.this));
+                        connectedSection.isEmpty = false;
+                    }
+                }
+                if (connectedSection.isEmpty) {
+                    items.remove(items.size() - 1); //Remove connected devices section if empty
+                }
+
+                SectionItem availableSection = new SectionItem(res.getString(R.string.category_not_paired_devices));
+                items.add(availableSection);
+                for (Device device : devices) {
+                    if (device.isReachable() && !device.isPaired()) {
+                        items.add(new PairingDeviceItem(device, PairingFragment.this));
+                        availableSection.isEmpty = false;
+                    }
+                }
+                if (availableSection.isEmpty && !connectedSection.isEmpty) {
+                    items.remove(items.size() - 1); //Remove remembered devices section if empty
+                }
+
+                SectionItem rememberedSection = new SectionItem(res.getString(R.string.category_remembered_devices));
+                items.add(rememberedSection);
+                for (Device device : devices) {
+                    if (!device.isReachable() && device.isPaired()) {
+                        items.add(new PairingDeviceItem(device, PairingFragment.this));
+                        rememberedSection.isEmpty = false;
+                    }
+                }
+                if (rememberedSection.isEmpty) {
+                    items.remove(items.size() - 1); //Remove remembered devices section if empty
+                }
+
+                final ListView list = (ListView) rootView.findViewById(R.id.devices_list);
+
+                //Store current scroll
+                int index = list.getFirstVisiblePosition();
+                View v = list.getChildAt(0);
+                int top = (v == null) ? 0 : (v.getTop() - list.getPaddingTop());
+
+                list.setAdapter(new ListAdapter(mActivity, items));
+
+                //Restore scroll
+                list.setSelectionFromTop(index, top);
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+                //Ignore: The activity was closed while we were trying to update it
+            } finally {
+                listRefreshCalledThisFrame = false;
+            }
+
+    }));
+}
 
     @Override
     public void onStart() {
         super.onStart();
-        BackgroundService.RunCommand(mActivity, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                service.addDeviceListChangedCallback("PairingFragment", new BackgroundService.DeviceListChangedCallback() {
-                    @Override
-                    public void onDeviceListChanged() {
-                        updateComputerList();
-                    }
-                });
-            }
-        });
+        BackgroundService.RunCommand(mActivity, service -> service.addDeviceListChangedCallback("PairingFragment", this::updateComputerList));
         updateComputerList();
     }
 
@@ -241,12 +204,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     public void onStop() {
         super.onStop();
         mSwipeRefreshLayout.setEnabled(false);
-        BackgroundService.RunCommand(mActivity, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                service.removeDeviceListChangedCallback("PairingFragment");
-            }
-        });
+        BackgroundService.RunCommand(mActivity, service -> service.removeDeviceListChangedCallback("PairingFragment"));
     }
 
     @Override

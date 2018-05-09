@@ -204,43 +204,27 @@ public class LanLinkTest extends AndroidTestCase {
         Mockito.when(sharePacket.getType()).thenReturn("kdeconnect.share");
         Mockito.when(sharePacket.hasPayload()).thenReturn(true);
         Mockito.when(sharePacket.hasPayloadTransferInfo()).thenReturn(true);
-        Mockito.doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocationOnMock) throws Throwable {
-                return sharePacketJson.toString();
-            }
-        }).when(sharePacket).serialize();
+        Mockito.doAnswer(invocationOnMock -> sharePacketJson.toString()).when(sharePacket).serialize();
         Mockito.when(sharePacket.getPayload()).thenReturn(new ByteArrayInputStream(data));
         Mockito.when(sharePacket.getPayloadSize()).thenReturn((long) data.length);
-        Mockito.doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocationOnMock) throws Throwable {
-                return sharePacketJson.getJSONObject("payloadTransferInfo");
-            }
-        }).when(sharePacket).getPayloadTransferInfo();
-        Mockito.doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocationOnMock) throws Throwable {
-                JSONObject object = (JSONObject) invocationOnMock.getArguments()[0];
+        Mockito.doAnswer(invocationOnMock -> sharePacketJson.getJSONObject("payloadTransferInfo")).when(sharePacket).getPayloadTransferInfo();
+        Mockito.doAnswer(invocationOnMock -> {
+            JSONObject object = (JSONObject) invocationOnMock.getArguments()[0];
 
-                sharePacketJson.put("payloadTransferInfo", object);
-                return null;
-            }
+            sharePacketJson.put("payloadTransferInfo", object);
+            return null;
         }).when(sharePacket).setPayloadTransferInfo(Mockito.any(JSONObject.class));
 
-        Mockito.doAnswer(new Answer() {
-            @Override
-            public Object answer(InvocationOnMock invocationOnMock) throws Throwable {
+        Mockito.doAnswer(invocationOnMock -> {
 
-                Log.e("LanLinkTest", "Write to stream");
-                String stringNetworkPacket = new String((byte[]) invocationOnMock.getArguments()[0]);
-                final NetworkPacket np = NetworkPacket.unserialize(stringNetworkPacket);
+            Log.e("LanLinkTest", "Write to stream");
+            String stringNetworkPacket = new String((byte[]) invocationOnMock.getArguments()[0]);
+            final NetworkPacket np = NetworkPacket.unserialize(stringNetworkPacket);
 
-                downloader.setNetworkPacket(np);
-                downloader.start();
+            downloader.setNetworkPacket(np);
+            downloader.start();
 
-                return stringNetworkPacket.length();
-            }
+            return stringNetworkPacket.length();
         }).when(goodOutputStream).write(Mockito.any(byte[].class));
 
         goodLanLink.sendPacket(sharePacket, callback);

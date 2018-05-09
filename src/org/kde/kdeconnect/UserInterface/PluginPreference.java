@@ -29,15 +29,12 @@ public class PluginPreference extends CheckBoxPreference {
 
         Plugin plugin = device.getPlugin(pluginKey, true);
         if (info.hasSettings() && plugin != null) {
-            this.listener = new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Plugin plugin = device.getPlugin(pluginKey, true);
-                    if (plugin != null) {
-                        plugin.startPreferencesActivity(activity);
-                    } else { //Could happen if the device is not connected anymore
-                        activity.finish(); //End this activity so we go to the "device not reachable" screen
-                    }
+            this.listener = v -> {
+                Plugin plugin1 = device.getPlugin(pluginKey, true);
+                if (plugin1 != null) {
+                    plugin1.startPreferencesActivity(activity);
+                } else { //Could happen if the device is not connected anymore
+                    activity.finish(); //End this activity so we go to the "device not reachable" screen
                 }
             };
         } else {
@@ -58,14 +55,11 @@ public class PluginPreference extends CheckBoxPreference {
             button.setOnClickListener(listener);
         }
 
-        root.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean newState = !device.isPluginEnabled(pluginKey);
-                setChecked(newState); //It actually works on API<14
-                button.setEnabled(newState);
-                device.setPluginEnabled(pluginKey, newState);
-            }
+        root.setOnClickListener(v -> {
+            boolean newState = !device.isPluginEnabled(pluginKey);
+            setChecked(newState); //It actually works on API<14
+            button.setEnabled(newState);
+            device.setPluginEnabled(pluginKey, newState);
         });
     }
 

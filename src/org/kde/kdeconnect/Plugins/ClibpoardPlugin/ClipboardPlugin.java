@@ -53,13 +53,10 @@ public class ClipboardPlugin extends Plugin {
         return true;
     }
 
-    private ClipboardListener.ClipboardObserver observer = new ClipboardListener.ClipboardObserver() {
-        @Override
-        public void clipboardChanged(String content) {
-            NetworkPacket np = new NetworkPacket(ClipboardPlugin.PACKET_TYPE_CLIPBOARD);
-            np.set("content", content);
-            device.sendPacket(np);
-        }
+    private ClipboardListener.ClipboardObserver observer = content -> {
+        NetworkPacket np = new NetworkPacket(ClipboardPlugin.PACKET_TYPE_CLIPBOARD);
+        np.set("content", content);
+        device.sendPacket(np);
     };
 
     @Override

@@ -108,17 +108,14 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
         appDatabase = new AppDatabase(context, true);
 
-        NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
-            @Override
-            public void onServiceStart(NotificationReceiver service) {
+        NotificationReceiver.RunCommand(context, service -> {
 
-                service.addListener(NotificationsPlugin.this);
+            service.addListener(NotificationsPlugin.this);
 
-                serviceReady = service.isConnected();
+            serviceReady = service.isConnected();
 
-                if (serviceReady) {
-                    sendCurrentNotifications(service);
-                }
+            if (serviceReady) {
+                sendCurrentNotifications(service);
             }
         });
 
@@ -128,12 +125,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     @Override
     public void onDestroy() {
 
-        NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
-            @Override
-            public void onServiceStart(NotificationReceiver service) {
-                service.removeListener(NotificationsPlugin.this);
-            }
-        });
+        NotificationReceiver.RunCommand(context, service -> service.removeListener(NotificationsPlugin.this));
     }
 
     @Override
@@ -461,22 +453,14 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         if (np.getBoolean("request")) {
 
             if (serviceReady) {
-                NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
-                    @Override
-                    public void onServiceStart(NotificationReceiver service) {
-                        sendCurrentNotifications(service);
-                    }
-                });
+                NotificationReceiver.RunCommand(context, this::sendCurrentNotifications);
             }
 
         } else if (np.has("cancel")) {
 
-            NotificationReceiver.RunCommand(context, new NotificationReceiver.InstanceCallback() {
-                @Override
-                public void onServiceStart(NotificationReceiver service) {
-                    String dismissedId = np.getString("cancel");
-                    cancelNotificationCompat(service, dismissedId);
-                }
+            NotificationReceiver.RunCommand(context, service -> {
+                String dismissedId = np.getString("cancel");
+                cancelNotificationCompat(service, dismissedId);
             });
 
         } else if (np.has("requestReplyId") && np.has("message")) {
@@ -497,18 +481,12 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         return new AlertDialog.Builder(deviceActivity)
                 .setTitle(R.string.pref_plugin_notifications)
                 .setMessage(R.string.no_permissions)
-                .setPositiveButton(R.string.open_settings, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
-                        deviceActivity.startActivityForResult(intent, MainActivity.RESULT_NEEDS_RELOAD);
-                    }
+                .setPositiveButton(R.string.open_settings, (dialogInterface, i) -> {
+                    Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+                    deviceActivity.startActivityForResult(intent, MainActivity.RESULT_NEEDS_RELOAD);
                 })
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //Do nothing
-                    }
+                .setNegativeButton(R.string.cancel, (dialogInterface, i) -> {
+                    //Do nothing
                 })
                 .create();
 

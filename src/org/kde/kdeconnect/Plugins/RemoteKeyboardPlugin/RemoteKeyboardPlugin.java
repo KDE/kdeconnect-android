@@ -121,12 +121,7 @@ public class RemoteKeyboardPlugin extends Plugin {
             releaseInstances();
         }
         if (RemoteKeyboardService.instance != null)
-            RemoteKeyboardService.instance.handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    RemoteKeyboardService.instance.updateInputView();
-                }
-            });
+            RemoteKeyboardService.instance.handler.post(() -> RemoteKeyboardService.instance.updateInputView());
         return true;
     }
 
@@ -137,12 +132,7 @@ public class RemoteKeyboardPlugin extends Plugin {
             if (instances.contains(this)) {
                 instances.remove(this);
                 if (instances.size() < 1 && RemoteKeyboardService.instance != null)
-                    RemoteKeyboardService.instance.handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            RemoteKeyboardService.instance.updateInputView();
-                        }
-                    });
+                    RemoteKeyboardService.instance.handler.post(() -> RemoteKeyboardService.instance.updateInputView());
             }
         } finally {
             releaseInstances();

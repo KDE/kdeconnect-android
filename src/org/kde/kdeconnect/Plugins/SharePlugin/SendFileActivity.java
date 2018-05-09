@@ -89,17 +89,14 @@ public class SendFileActivity extends AppCompatActivity {
                     if (uris.isEmpty()) {
                         Log.w("SendFileActivity", "No files to send?");
                     } else {
-                        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-                            @Override
-                            public void onServiceStart(BackgroundService service) {
-                                Device device = service.getDevice(mDeviceId);
-                                if (device == null) {
-                                    Log.e("SendFileActivity", "Device is null");
-                                    finish();
-                                    return;
-                                }
-                                SharePlugin.queuedSendUriList(getApplicationContext(), device, uris);
+                        BackgroundService.RunCommand(this, service -> {
+                            Device device = service.getDevice(mDeviceId);
+                            if (device == null) {
+                                Log.e("SendFileActivity", "Device is null");
+                                finish();
+                                return;
                             }
+                            SharePlugin.queuedSendUriList(getApplicationContext(), device, uris);
                         });
                     }
                 }

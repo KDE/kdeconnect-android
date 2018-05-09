@@ -135,27 +135,24 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             final View decorView = getWindow().getDecorView();
-            decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
-                @Override
-                public void onSystemUiVisibilityChange(int visibility) {
-                    if ((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0) {
+            decorView.setOnSystemUiVisibilityChangeListener(visibility -> {
+                if ((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0) {
 
-                        int fullscreenType = 0;
+                    int fullscreenType = 0;
 
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-                            fullscreenType |= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-                        }
-
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                            fullscreenType |= View.SYSTEM_UI_FLAG_FULLSCREEN;
-                        }
-
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                            fullscreenType |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-                        }
-
-                        getWindow().getDecorView().setSystemUiVisibility(fullscreenType);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+                        fullscreenType |= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
                     }
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        fullscreenType |= View.SYSTEM_UI_FLAG_FULLSCREEN;
+                    }
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                        fullscreenType |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+                    }
+
+                    getWindow().getDecorView().setSystemUiVisibility(fullscreenType);
                 }
             });
         }
@@ -214,16 +211,13 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
             case MotionEvent.ACTION_MOVE:
                 mCurrentX = event.getX();
                 mCurrentY = event.getY();
-                BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-                    @Override
-                    public void onServiceStart(BackgroundService service) {
-                        Device device = service.getDevice(deviceId);
-                        MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
-                        if (mousePadPlugin == null) return;
-                        mousePadPlugin.sendMouseDelta(mCurrentX - mPrevX, mCurrentY - mPrevY, mCurrentSensitivity);
-                        mPrevX = mCurrentX;
-                        mPrevY = mCurrentY;
-                    }
+                BackgroundService.RunCommand(this, service -> {
+                    Device device = service.getDevice(deviceId);
+                    MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
+                    if (mousePadPlugin == null) return;
+                    mousePadPlugin.sendMouseDelta(mCurrentX - mPrevX, mCurrentY - mPrevY, mCurrentSensitivity);
+                    mPrevX = mCurrentX;
+                    mPrevY = mCurrentY;
                 });
                 break;
         }
@@ -287,14 +281,11 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
         getWindow().getDecorView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
 
-        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                Device device = service.getDevice(deviceId);
-                MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
-                if (mousePadPlugin == null) return;
-                mousePadPlugin.sendSingleHold();
-            }
+        BackgroundService.RunCommand(this, service -> {
+            Device device = service.getDevice(deviceId);
+            MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
+            if (mousePadPlugin == null) return;
+            mousePadPlugin.sendSingleHold();
         });
     }
 
@@ -305,28 +296,22 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
     @Override
     public boolean onSingleTapConfirmed(MotionEvent e) {
-        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                Device device = service.getDevice(deviceId);
-                MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
-                if (mousePadPlugin == null) return;
-                mousePadPlugin.sendSingleClick();
-            }
+        BackgroundService.RunCommand(this, service -> {
+            Device device = service.getDevice(deviceId);
+            MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
+            if (mousePadPlugin == null) return;
+            mousePadPlugin.sendSingleClick();
         });
         return true;
     }
 
     @Override
     public boolean onDoubleTap(MotionEvent e) {
-        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                Device device = service.getDevice(deviceId);
-                MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
-                if (mousePadPlugin == null) return;
-                mousePadPlugin.sendDoubleClick();
-            }
+        BackgroundService.RunCommand(this, service -> {
+            Device device = service.getDevice(deviceId);
+            MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
+            if (mousePadPlugin == null) return;
+            mousePadPlugin.sendDoubleClick();
         });
         return true;
     }
@@ -366,50 +351,38 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
 
     private void sendMiddleClick() {
-        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                Device device = service.getDevice(deviceId);
-                MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
-                if (mousePadPlugin == null) return;
-                mousePadPlugin.sendMiddleClick();
-            }
+        BackgroundService.RunCommand(this, service -> {
+            Device device = service.getDevice(deviceId);
+            MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
+            if (mousePadPlugin == null) return;
+            mousePadPlugin.sendMiddleClick();
         });
     }
 
     private void sendRightClick() {
-        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                Device device = service.getDevice(deviceId);
-                MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
-                if (mousePadPlugin == null) return;
-                mousePadPlugin.sendRightClick();
-            }
+        BackgroundService.RunCommand(this, service -> {
+            Device device = service.getDevice(deviceId);
+            MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
+            if (mousePadPlugin == null) return;
+            mousePadPlugin.sendRightClick();
         });
     }
 
     private void sendSingleHold() {
-        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                Device device = service.getDevice(deviceId);
-                MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
-                if (mousePadPlugin == null) return;
-                mousePadPlugin.sendSingleHold();
-            }
+        BackgroundService.RunCommand(this, service -> {
+            Device device = service.getDevice(deviceId);
+            MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
+            if (mousePadPlugin == null) return;
+            mousePadPlugin.sendSingleHold();
         });
     }
 
     private void sendScroll(final float y) {
-        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                Device device = service.getDevice(deviceId);
-                MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
-                if (mousePadPlugin == null) return;
-                mousePadPlugin.sendScroll(0, y);
-            }
+        BackgroundService.RunCommand(this, service -> {
+            Device device = service.getDevice(deviceId);
+            MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
+            if (mousePadPlugin == null) return;
+            mousePadPlugin.sendScroll(0, y);
         });
     }
 

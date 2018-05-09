@@ -44,24 +44,16 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             deviceId = getIntent().getStringExtra("deviceId");
         }
 
-        BackgroundService.RunCommand(getApplicationContext(), new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                final Device device = service.getDevice(deviceId);
-                if (device == null) {
-                    SettingsActivity.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            SettingsActivity.this.finish();
-                        }
-                    });
-                    return;
-                }
-                List<String> plugins = device.getSupportedPlugins();
-                for (final String pluginKey : plugins) {
-                    PluginPreference pref = new PluginPreference(SettingsActivity.this, pluginKey, device);
-                    preferenceScreen.addPreference(pref);
-                }
+        BackgroundService.RunCommand(getApplicationContext(), service -> {
+            final Device device = service.getDevice(deviceId);
+            if (device == null) {
+                SettingsActivity.this.runOnUiThread(SettingsActivity.this::finish);
+                return;
+            }
+            List<String> plugins = device.getSupportedPlugins();
+            for (final String pluginKey : plugins) {
+                PluginPreference pref = new PluginPreference(SettingsActivity.this, pluginKey, device);
+                preferenceScreen.addPreference(pref);
             }
         });
     }

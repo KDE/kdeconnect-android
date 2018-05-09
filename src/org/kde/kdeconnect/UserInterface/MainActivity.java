@@ -92,12 +92,7 @@ public class MainActivity extends AppCompatActivity {
         TextView nameView = (TextView) mDrawerHeader.findViewById(R.id.device_name);
         nameView.setText(deviceName);
 
-        View.OnClickListener renameListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                renameDevice();
-            }
-        };
+        View.OnClickListener renameListener = v -> renameDevice();
         mDrawerHeader.findViewById(R.id.kdeconnect_label).setOnClickListener(renameListener);
         mDrawerHeader.findViewById(R.id.device_name).setOnClickListener(renameListener);
 
@@ -105,17 +100,14 @@ public class MainActivity extends AppCompatActivity {
             addDarkModeSwitch((ViewGroup) mDrawerHeader);
         }
 
-        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
+        mNavigationView.setNavigationItemSelectedListener(menuItem -> {
 
-                String deviceId = mMapMenuToDeviceId.get(menuItem);
-                onDeviceSelected(deviceId);
+            String deviceId = mMapMenuToDeviceId.get(menuItem);
+            onDeviceSelected(deviceId);
 
-                mDrawerLayout.closeDrawer(mNavigationView);
+            mDrawerLayout.closeDrawer(mNavigationView);
 
-                return true;
-            }
+            return true;
         });
 
         preferences = getSharedPreferences(STATE_SELECTED_DEVICE, Context.MODE_PRIVATE);
@@ -150,8 +142,8 @@ public class MainActivity extends AppCompatActivity {
      * Adds a {@link SwitchCompat} to the bottom of the navigation header for
      * toggling dark mode on and off. Call from {@link #onCreate(Bundle)}.
      * <p>
-     *     Only supports android ICS and higher because {@link SwitchCompat}
-     *     requires that.
+     * Only supports android ICS and higher because {@link SwitchCompat}
+     * requires that.
      * </p>
      *
      * @param drawerHeader the layout which should contain the switch
@@ -218,33 +210,30 @@ public class MainActivity extends AppCompatActivity {
 
         //Log.e("MainActivity", "UpdateComputerList");
 
-        BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(final BackgroundService service) {
+        BackgroundService.RunCommand(MainActivity.this, service -> {
 
-                Menu menu = mNavigationView.getMenu();
+            Menu menu = mNavigationView.getMenu();
 
-                menu.clear();
-                mMapMenuToDeviceId.clear();
+            menu.clear();
+            mMapMenuToDeviceId.clear();
 
-                int id = 0;
-                Collection<Device> devices = service.getDevices().values();
-                for (Device device : devices) {
-                    if (device.isReachable() && device.isPaired()) {
-                        MenuItem item = menu.add(0, id++, 0, device.getName());
-                        item.setIcon(device.getIcon());
-                        item.setCheckable(true);
-                        item.setChecked(device.getDeviceId().equals(mCurrentDevice));
-                        mMapMenuToDeviceId.put(item, device.getDeviceId());
-                    }
+            int id = 0;
+            Collection<Device> devices = service.getDevices().values();
+            for (Device device : devices) {
+                if (device.isReachable() && device.isPaired()) {
+                    MenuItem item = menu.add(0, id++, 0, device.getName());
+                    item.setIcon(device.getIcon());
+                    item.setCheckable(true);
+                    item.setChecked(device.getDeviceId().equals(mCurrentDevice));
+                    mMapMenuToDeviceId.put(item, device.getDeviceId());
                 }
-
-                MenuItem item = menu.add(99, id++, 0, R.string.pair_new_device);
-                item.setIcon(R.drawable.ic_action_content_add_circle_outline);
-                item.setCheckable(true);
-                item.setChecked(mCurrentDevice == null);
-                mMapMenuToDeviceId.put(item, null);
             }
+
+            MenuItem item = menu.add(99, id++, 0, R.string.pair_new_device);
+            item.setIcon(R.drawable.ic_action_content_add_circle_outline);
+            item.setCheckable(true);
+            item.setChecked(mCurrentDevice == null);
+            mMapMenuToDeviceId.put(item, null);
         });
     }
 
@@ -252,29 +241,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         BackgroundService.addGuiInUseCounter(this, true);
-        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                service.addDeviceListChangedCallback("MainActivity", new BackgroundService.DeviceListChangedCallback() {
-                    @Override
-                    public void onDeviceListChanged() {
-                        updateComputerList();
-                    }
-                });
-            }
-        });
+        BackgroundService.RunCommand(this, service -> service.addDeviceListChangedCallback("MainActivity", this::updateComputerList));
         updateComputerList();
     }
 
     @Override
     protected void onStop() {
         BackgroundService.removeGuiInUseCounter(this);
-        BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-            @Override
-            public void onServiceStart(BackgroundService service) {
-                service.removeDeviceListChangedCallback("MainActivity");
-            }
-        });
+        BackgroundService.RunCommand(this, service -> service.removeDeviceListChangedCallback("MainActivity"));
         super.onStop();
     }
 
@@ -326,12 +300,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
             case RESULT_NEEDS_RELOAD:
-                BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-                    @Override
-                    public void onServiceStart(BackgroundService service) {
-                        Device device = service.getDevice(mCurrentDevice);
-                        device.reloadPluginsFromSettings();
-                    }
+                BackgroundService.RunCommand(this, service -> {
+                    Device device = service.getDevice(mCurrentDevice);
+                    device.reloadPluginsFromSettings();
                 });
                 break;
             default:
@@ -344,12 +315,9 @@ public class MainActivity extends AppCompatActivity {
         for (int result : grantResults) {
             if (result == PackageManager.PERMISSION_GRANTED) {
                 //New permission granted, reload plugins
-                BackgroundService.RunCommand(this, new BackgroundService.InstanceCallback() {
-                    @Override
-                    public void onServiceStart(BackgroundService service) {
-                        Device device = service.getDevice(mCurrentDevice);
-                        device.reloadPluginsFromSettings();
-                    }
+                BackgroundService.RunCommand(this, service -> {
+                    Device device = service.getDevice(mCurrentDevice);
+                    device.reloadPluginsFromSettings();
                 });
             }
         }
@@ -368,24 +336,13 @@ public class MainActivity extends AppCompatActivity {
         );
         new AlertDialog.Builder(MainActivity.this)
                 .setView(deviceNameEdit)
-                .setPositiveButton(R.string.device_rename_confirm, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String deviceName = deviceNameEdit.getText().toString();
-                        DeviceHelper.setDeviceName(MainActivity.this, deviceName);
-                        nameView.setText(deviceName);
-                        BackgroundService.RunCommand(MainActivity.this, new BackgroundService.InstanceCallback() {
-                            @Override
-                            public void onServiceStart(final BackgroundService service) {
-                                service.onNetworkChange();
-                            }
-                        });
-                    }
+                .setPositiveButton(R.string.device_rename_confirm, (dialog, which) -> {
+                    String deviceName1 = deviceNameEdit.getText().toString();
+                    DeviceHelper.setDeviceName(MainActivity.this, deviceName1);
+                    nameView.setText(deviceName1);
+                    BackgroundService.RunCommand(MainActivity.this, BackgroundService::onNetworkChange);
                 })
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
+                .setNegativeButton(R.string.cancel, (dialog, which) -> {
                 })
                 .setTitle(R.string.device_rename_title)
                 .show();

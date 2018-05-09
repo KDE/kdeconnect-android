@@ -98,38 +98,25 @@ public class NotificationFilterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notification_filter);
         appDatabase = new AppDatabase(NotificationFilterActivity.this, false);
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+        new Thread(() -> {
 
-                PackageManager packageManager = getPackageManager();
-                List<ApplicationInfo> appList = packageManager.getInstalledApplications(0);
-                int count = appList.size();
+            PackageManager packageManager = getPackageManager();
+            List<ApplicationInfo> appList = packageManager.getInstalledApplications(0);
+            int count = appList.size();
 
-                apps = new AppListInfo[count];
-                for (int i = 0; i < count; i++) {
-                    ApplicationInfo appInfo = appList.get(i);
-                    apps[i] = new AppListInfo();
-                    apps[i].pkg = appInfo.packageName;
-                    apps[i].name = appInfo.loadLabel(packageManager).toString();
-                    apps[i].icon = resizeIcon(appInfo.loadIcon(packageManager), 48);
-                    apps[i].isEnabled = appDatabase.isEnabled(appInfo.packageName);
-                }
-
-                Arrays.sort(apps, new Comparator<AppListInfo>() {
-                    @Override
-                    public int compare(AppListInfo lhs, AppListInfo rhs) {
-                        return StringsHelper.compare(lhs.name, rhs.name);
-                    }
-                });
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        displayAppList();
-                    }
-                });
+            apps = new AppListInfo[count];
+            for (int i = 0; i < count; i++) {
+                ApplicationInfo appInfo = appList.get(i);
+                apps[i] = new AppListInfo();
+                apps[i].pkg = appInfo.packageName;
+                apps[i].name = appInfo.loadLabel(packageManager).toString();
+                apps[i].icon = resizeIcon(appInfo.loadIcon(packageManager), 48);
+                apps[i].isEnabled = appDatabase.isEnabled(appInfo.packageName);
             }
+
+            Arrays.sort(apps, (lhs, rhs) -> StringsHelper.compare(lhs.name, rhs.name));
+
+            runOnUiThread(this::displayAppList);
         }).start();
 
     }
@@ -140,13 +127,10 @@ public class NotificationFilterActivity extends AppCompatActivity {
         AppListAdapter adapter = new AppListAdapter();
         listView.setAdapter(adapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                boolean checked = listView.isItemChecked(i);
-                appDatabase.setEnabled(apps[i].pkg, checked);
-                apps[i].isEnabled = checked;
-            }
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            boolean checked = listView.isItemChecked(i);
+            appDatabase.setEnabled(apps[i].pkg, checked);
+            apps[i].isEnabled = checked;
         });
 
         for (int i = 0; i < apps.length; i++) {

@@ -65,66 +65,48 @@ public class CustomDevicesActivity extends AppCompatActivity {
 
         list.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ipAddressList));
 
-        findViewById(android.R.id.button1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addNewDevice();
-            }
-        });
+        findViewById(android.R.id.button1).setOnClickListener(v -> addNewDevice());
 
         EditText ipEntryBox = (EditText) findViewById(R.id.ip_edittext);
-        ipEntryBox.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEND) {
-                    addNewDevice();
-                    return true;
-                }
-                return false;
+        ipEntryBox.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEND) {
+                addNewDevice();
+                return true;
             }
+            return false;
         });
     }
 
     boolean dialogAlreadyShown = false;
-    private AdapterView.OnItemClickListener onClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, final int position, final long id) {
+    private AdapterView.OnItemClickListener onClickListener = (parent, view, position, id) -> {
 
-            if (dialogAlreadyShown) {
-                return;
-            }
-
-            // remove touched item after confirmation
-            DialogInterface.OnClickListener confirmationListener = new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    switch (which) {
-                        case DialogInterface.BUTTON_POSITIVE:
-                            ipAddressList.remove(position);
-                            saveList();
-                            break;
-                        case DialogInterface.BUTTON_NEGATIVE:
-                            break;
-                    }
-                }
-            };
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(CustomDevicesActivity.this);
-            builder.setMessage("Delete " + ipAddressList.get(position) + " ?");
-            builder.setPositiveButton("Yes", confirmationListener);
-            builder.setNegativeButton("No", confirmationListener);
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) { //DismissListener
-                dialogAlreadyShown = true;
-                builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        dialogAlreadyShown = false;
-                    }
-                });
-            }
-
-            builder.show();
+        if (dialogAlreadyShown) {
+            return;
         }
+
+        // remove touched item after confirmation
+        DialogInterface.OnClickListener confirmationListener = (dialog, which) -> {
+            switch (which) {
+                case DialogInterface.BUTTON_POSITIVE:
+                    ipAddressList.remove(position);
+                    saveList();
+                    break;
+                case DialogInterface.BUTTON_NEGATIVE:
+                    break;
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(CustomDevicesActivity.this);
+        builder.setMessage("Delete " + ipAddressList.get(position) + " ?");
+        builder.setPositiveButton("Yes", confirmationListener);
+        builder.setNegativeButton("No", confirmationListener);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) { //DismissListener
+            dialogAlreadyShown = true;
+            builder.setOnDismissListener(dialog -> dialogAlreadyShown = false);
+        }
+
+        builder.show();
     };
 
     private void addNewDevice() {

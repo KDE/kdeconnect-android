@@ -35,21 +35,17 @@ public class AddCommandDialog extends DialogFragment {
 
         builder.setView(view);
 
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
+        builder.setPositiveButton(R.string.ok, (dialog, id) -> {
 
-                if (getActivity() instanceof RunCommandActivity) {
+            if (getActivity() instanceof RunCommandActivity) {
 
-                    String name = nameField.getText().toString();
-                    String command = commandField.getText().toString();
+                String name = nameField.getText().toString();
+                String command = commandField.getText().toString();
 
-                    ((RunCommandActivity) getActivity()).dialogResult(name, command);
-                }
+                ((RunCommandActivity) getActivity()).dialogResult(name, command);
             }
         });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-            }
+        builder.setNegativeButton(R.string.cancel, (dialog, id) -> {
         });
 
         return builder.create();
