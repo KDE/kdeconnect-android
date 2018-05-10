@@ -103,11 +103,13 @@ public class Device implements BaseLink.PacketReceiver {
     public enum DeviceType {
         Phone,
         Tablet,
-        Computer;
+        Computer,
+        Tv;
 
         public static DeviceType FromString(String s) {
             if ("tablet".equals(s)) return Tablet;
             if ("phone".equals(s)) return Phone;
+            if ("tv".equals(s)) return Tv;
             return Computer; //Default
         }
 
@@ -117,6 +119,8 @@ public class Device implements BaseLink.PacketReceiver {
                     return "tablet";
                 case Phone:
                     return "phone";
+                case Tv:
+                    return "tv";
                 default:
                     return "desktop";
             }
@@ -194,6 +198,9 @@ public class Device implements BaseLink.PacketReceiver {
                 break;
             case Tablet:
                 drawableId = R.drawable.ic_device_tablet;
+                break;
+            case Tv:
+                drawableId = R.drawable.ic_device_tv;
                 break;
             default:
                 drawableId = R.drawable.ic_device_laptop;

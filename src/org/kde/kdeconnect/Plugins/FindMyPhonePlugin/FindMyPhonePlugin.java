@@ -22,6 +22,7 @@ package org.kde.kdeconnect.Plugins.FindMyPhonePlugin;
 
 import android.content.Intent;
 
+import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
@@ -33,7 +34,16 @@ public class FindMyPhonePlugin extends Plugin {
 
     @Override
     public String getDisplayName() {
-        return DeviceHelper.isTablet() ? context.getString(R.string.findmyphone_title_tablet) : context.getString(R.string.findmyphone_title);
+        switch (DeviceHelper.getDeviceType(context)) {
+            case Tv:
+                return context.getString(R.string.findmyphone_title_tv);
+            case Tablet:
+                return context.getString(R.string.findmyphone_title_tablet);
+            case Phone:
+                return context.getString(R.string.findmyphone_title);
+            default:
+                return context.getString(R.string.findmyphone_title);
+        }
     }
 
     @Override

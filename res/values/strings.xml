@@ -209,6 +209,7 @@
     <string name="plugin_not_supported">This plugin is not supported by the device</string>
     <string name="findmyphone_title">Find my phone</string>
     <string name="findmyphone_title_tablet">Find my tablet</string>
+    <string name="findmyphone_title_tv">Find my TV</string>
     <string name="findmyphone_description">Rings this device so you can find it</string>
     <string name="findmyphone_found">Found</string>
 

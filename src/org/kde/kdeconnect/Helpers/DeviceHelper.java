@@ -29,6 +29,8 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 
+import org.kde.kdeconnect.Device;
+
 import java.util.HashMap;
 
 public class DeviceHelper {
@@ -504,10 +506,25 @@ public class DeviceHelper {
         }
     }
 
-    public static boolean isTablet() {
+    private static boolean isTablet() {
         Configuration config = Resources.getSystem().getConfiguration();
         //This assumes that the values for the screen sizes are consecutive, so XXLARGE > XLARGE > LARGE
         return ((config.screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE);
+    }
+
+    private static boolean isTv(Context context) {
+        int uiMode = context.getResources().getConfiguration().uiMode;
+        return (uiMode & Configuration.UI_MODE_TYPE_MASK) == Configuration.UI_MODE_TYPE_TELEVISION;
+    }
+
+    public static Device.DeviceType getDeviceType(Context context) {
+        if (isTv(context)) {
+            return Device.DeviceType.Tv;
+        } else if (isTablet()) {
+            return Device.DeviceType.Tablet;
+        } else {
+            return Device.DeviceType.Phone;
+        }
     }
 
     //It returns getAndroidDeviceName() if no user-defined name has been set with setDeviceName().
