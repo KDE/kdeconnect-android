@@ -16,13 +16,14 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
-*/
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 package org.kde.kdeconnect.Plugins.RunCommandPlugin;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -108,7 +109,26 @@ public class RunCommandActivity extends AppCompatActivity {
 
         FloatingActionButton addCommandButton = (FloatingActionButton) findViewById(R.id.add_command_button);
         addCommandButton.setVisibility(canAddCommands ? View.VISIBLE : View.GONE);
-        addCommandButton.setOnClickListener(view -> new AddCommandDialog().show(getSupportFragmentManager(), "addcommanddialog"));
+
+        addCommandButton.setOnClickListener(view -> BackgroundService.RunCommand(RunCommandActivity.this, service -> {
+
+            final Device device = service.getDevice(deviceId);
+            final RunCommandPlugin plugin = device.getPlugin(RunCommandPlugin.class);
+            if (plugin == null) {
+                Log.e("RunCommandActivity", "device has no runcommand plugin!");
+                return;
+            }
+
+            plugin.sendSetupPacket();
+
+            AlertDialog dialog = new AlertDialog.Builder(RunCommandActivity.this)
+                    .setTitle(R.string.add_command)
+                    .setMessage(R.string.add_command_description)
+                    .setPositiveButton(R.string.ok, null)
+                    .create();
+            dialog.show();
+
+        }));
 
         updateView();
     }
@@ -142,16 +162,6 @@ public class RunCommandActivity extends AppCompatActivity {
                 return;
             }
             plugin.removeCommandsUpdatedCallback(commandsChangedCallback);
-        });
-    }
-
-    public void dialogResult(final String cmdName, final String cmdCmd) {
-        BackgroundService.RunCommand(this, service -> {
-            Device device = service.getDevice(deviceId);
-            RunCommandPlugin plugin = device.getPlugin(RunCommandPlugin.class);
-            if(!cmdName.isEmpty() && !cmdCmd.isEmpty()) {
-                plugin.addCommand(cmdName, cmdCmd);
-            }
         });
     }
 }

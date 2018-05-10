@@ -39,7 +39,6 @@ public class RunCommandPlugin extends Plugin {
 
     public final static String PACKET_TYPE_RUNCOMMAND = "kdeconnect.runcommand";
     public final static String PACKET_TYPE_RUNCOMMAND_REQUEST = "kdeconnect.runcommand.request";
-    public final static String PACKET_TYPE_RUNCOMMAND_ADD = "kdeconnect.runcommand.add";
 
     private ArrayList<JSONObject> commandList = new ArrayList<>();
     private ArrayList<CommandsChangedCallback> callbacks = new ArrayList<>();
@@ -153,17 +152,14 @@ public class RunCommandPlugin extends Plugin {
         return context.getString(R.string.pref_plugin_runcommand);
     }
 
-    public void addCommand(String name, String command){
-
-        NetworkPacket np = new NetworkPacket(PACKET_TYPE_RUNCOMMAND_ADD);
-        np.set("name", name);
-        np.set("command", command);
-
-        device.sendPacket(np);
-    }
-
     public boolean canAddCommand(){
         return canAddCommand;
+    }
+
+    void sendSetupPacket() {
+        NetworkPacket np = new NetworkPacket(RunCommandPlugin.PACKET_TYPE_RUNCOMMAND_REQUEST);
+        np.set("setup", true);
+        device.sendPacket(np);
     }
 
 }
