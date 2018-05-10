@@ -13,3 +13,4 @@ gradlew.bat
 *.iml
 *.keystore
 .directory
+GPUCache/
