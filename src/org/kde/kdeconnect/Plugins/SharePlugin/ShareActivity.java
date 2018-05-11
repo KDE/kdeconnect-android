@@ -98,12 +98,14 @@ public class ShareActivity extends AppCompatActivity {
             final ArrayList<Device> devicesList = new ArrayList<>();
             final ArrayList<ListAdapter.Item> items = new ArrayList<>();
 
-            items.add(new SectionItem(getString(R.string.share_to)));
+            SectionItem section = new SectionItem(getString(R.string.share_to));
+            items.add(section);
 
             for (Device d : devices) {
                 if (d.isReachable() && d.isPaired()) {
                     devicesList.add(d);
                     items.add(new EntryItem(d.getName()));
+                    section.isEmpty = false;
                 }
             }
 
