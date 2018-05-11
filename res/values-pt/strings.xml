@@ -30,6 +30,7 @@
   <string name="cancel">Cancelar</string>
   <string name="open_settings">Abrir a configuração</string>
   <string name="no_permissions">Precisa de dar permissões de acesso às notificações</string>
+  <string name="no_permission_mprisreceiver">Para poder controlar os seus leitores multimédia, terá de dar acesso às notificações</string>
   <string name="send_ping">Enviar um pedido de contacto</string>
   <string name="open_mpris_controls">Comando multimédia</string>
   <string name="remotekeyboard_editing_only_title">Lidar com as teclas remotas apenas na edição</string>
@@ -202,5 +203,7 @@
   <string name="command_confirm_needed">Terá de confirmar o comando no ambiente de trabalho</string>
   <string name="addcommand_explanation">Não existem comandos registados</string>
   <string name="addcommand_explanation2">Poderá adicionar comandos novos na Configuração do Sistema KDE Connect</string>
+  <string name="pref_plugin_mprisreceiver">Controlo de Leitores Multimédia</string>
+  <string name="pref_plugin_mprisreceiver_desc">Controle os leitores multimédia dos seus telemóveis a partir de outro dispositivo</string>
   <string name="dark_theme">Tema escuro</string>
 </resources>

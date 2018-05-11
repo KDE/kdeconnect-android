@@ -30,6 +30,7 @@
   <string name="cancel">Скасувати</string>
   <string name="open_settings">Відкрити вікно параметрів</string>
   <string name="no_permissions">Вам слід надати доступ до сповіщень</string>
+  <string name="no_permission_mprisreceiver">Щоб мати змогу керувати вашими програвачами мультимедійних даних, вам слід надати доступ до сповіщень.</string>
   <string name="send_ping">Надіслати сигнал підтримання зв’язку</string>
   <string name="open_mpris_controls">Керування відтворенням</string>
   <string name="remotekeyboard_editing_only_title">Обробляти віддалені клавіші лише під час редагування</string>
@@ -204,5 +205,7 @@
   <string name="command_confirm_needed">Вам доведеться підтвердити команду на комп\'ютері</string>
   <string name="addcommand_explanation">Жодних команд не зареєстровано</string>
   <string name="addcommand_explanation2">Ви можете додавати нові команди за допомогою Системних параметрів KDE Connect</string>
+  <string name="pref_plugin_mprisreceiver">Керування відтворенням</string>
+  <string name="pref_plugin_mprisreceiver_desc">Керування вашими програвачами на телефоні з іншого пристрою</string>
   <string name="dark_theme">Темна тема</string>
 </resources>

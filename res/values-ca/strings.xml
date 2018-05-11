@@ -30,6 +30,7 @@
   <string name="cancel">Cancel·la</string>
   <string name="open_settings">Obre l\'arranjament</string>
   <string name="no_permissions">Us caldrà concedir permís per accedir a les notificacions</string>
+  <string name="no_permission_mprisreceiver">Per a poder controlar els reproductors multimèdia cal atorgar accés a les notificacions</string>
   <string name="send_ping">Envia un ping</string>
   <string name="open_mpris_controls">Control multimèdia</string>
   <string name="remotekeyboard_editing_only_title">Fes servir les tecles remotes només en editar</string>
@@ -202,5 +203,7 @@
   <string name="command_confirm_needed">Cal confirmar l\'ordre a l\'escriptori</string>
   <string name="addcommand_explanation">No hi ha cap ordre registrada</string>
   <string name="addcommand_explanation2">Podeu afegir ordres noves a l\'Arranjament del sistema del KDE Connect</string>
+  <string name="pref_plugin_mprisreceiver">Control del reproductor multimèdia</string>
+  <string name="pref_plugin_mprisreceiver_desc">Controla els reproductors multimèdia dels telèfons des d\'un altre dispositiu</string>
   <string name="dark_theme">Tema fosc</string>
 </resources>
