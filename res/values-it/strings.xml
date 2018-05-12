@@ -197,9 +197,6 @@
   <string name="device_icon_description">Icona dispositivo</string>
   <string name="settings_icon_description">Icona impostazioni</string>
   <string name="add_command">Aggiungi un comando</string>
-  <string name="addcommand_name">Nome</string>
-  <string name="addcommand_command">Comando</string>
-  <string name="command_confirm_needed">Dovrai confermare il comando sul desktop</string>
   <string name="addcommand_explanation">Non ci sono comandi registrati</string>
   <string name="addcommand_explanation2">Puoi aggiungere nuovi comandi nelle impostazioni di sistema di KDE Connect</string>
 </resources>

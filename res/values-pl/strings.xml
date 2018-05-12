@@ -197,9 +197,6 @@
   <string name="device_icon_description">Ikona urządzenia</string>
   <string name="settings_icon_description">Ikona ustawień</string>
   <string name="add_command">Dodaj polecenie</string>
-  <string name="addcommand_name">Nazwa</string>
-  <string name="addcommand_command">Polecenie</string>
-  <string name="command_confirm_needed">Będziesz musiał potwierdzić polecenie na pulpicie</string>
   <string name="addcommand_explanation">Nie zarejestrowano żadnych poleceń</string>
   <string name="addcommand_explanation2">Nowe polecenia można dodawać w ustawieniach systemowych KDE Connect</string>
 </resources>

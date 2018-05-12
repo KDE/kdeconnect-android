@@ -197,9 +197,6 @@
   <string name="device_icon_description">Enhetsikon</string>
   <string name="settings_icon_description">Inställningsikon</string>
   <string name="add_command">Lägg till ett kommando</string>
-  <string name="addcommand_name">Namn</string>
-  <string name="addcommand_command">Kommando</string>
-  <string name="command_confirm_needed">Du måste bekräfta kommandot på skrivbordet</string>
   <string name="addcommand_explanation">Det finns inga kommandon registrerade</string>
   <string name="addcommand_explanation2">Du kan lägga till nya kommandon i KDE-ansluts systeminställningar</string>
   <string name="dark_theme">Mörkt tema</string>

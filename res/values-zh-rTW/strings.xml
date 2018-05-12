@@ -196,9 +196,6 @@
   <string name="device_icon_description">裝置圖示</string>
   <string name="settings_icon_description">設定圖示</string>
   <string name="add_command">增加一行指令</string>
-  <string name="addcommand_name">名稱</string>
-  <string name="addcommand_command">指令</string>
-  <string name="command_confirm_needed">您將需要在桌面上確認指令</string>
   <string name="addcommand_explanation">沒有指令被註冊</string>
   <string name="addcommand_explanation2">您現在可以在 KDE 連線系統設定增加新的指令</string>
   <string name="dark_theme">暗色主題</string>

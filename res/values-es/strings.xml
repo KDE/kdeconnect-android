@@ -197,9 +197,6 @@
   <string name="device_icon_description">Icono del dispositivo</string>
   <string name="settings_icon_description">Icono de preferencias</string>
   <string name="add_command">Añadir una orden</string>
-  <string name="addcommand_name">Nombre</string>
-  <string name="addcommand_command">Orden</string>
-  <string name="command_confirm_needed">Necesitará confirmar la orden desde su escritorio</string>
   <string name="addcommand_explanation">No hay ninguna orden registrada</string>
   <string name="addcommand_explanation2">Puede añadir nuevas órdenes en las preferencias del sistema de KDE Connect</string>
   <string name="dark_theme">Tema oscuro</string>

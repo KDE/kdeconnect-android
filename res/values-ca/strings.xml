@@ -175,8 +175,9 @@
   <string name="pref_plugin_telepathy">Envia un SMS</string>
   <string name="pref_plugin_telepathy_desc">Envia missatges de text des de l\'escriptori</string>
   <string name="plugin_not_supported">Aquest connector no és admès pel dispositiu</string>
-  <string name="findmyphone_title">Cerca el meu telèfon</string>
-  <string name="findmyphone_title_tablet">Cerca la meva tauleta</string>
+  <string name="findmyphone_title">Troba el meu telèfon</string>
+  <string name="findmyphone_title_tablet">Troba la meva tauleta</string>
+  <string name="findmyphone_title_tv">Troba la meva TV</string>
   <string name="findmyphone_description">Fa sonar aquest dispositiu perquè el pugueu trobar.</string>
   <string name="findmyphone_found">L\'he trobat</string>
   <string name="open">Obre</string>
@@ -198,11 +199,9 @@
   <string name="device_icon_description">Icona del dispositiu</string>
   <string name="settings_icon_description">Icona d\'arranjament</string>
   <string name="add_command">Afegeix una ordre</string>
-  <string name="addcommand_name">Nom</string>
-  <string name="addcommand_command">Ordre</string>
-  <string name="command_confirm_needed">Cal confirmar l\'ordre a l\'escriptori</string>
   <string name="addcommand_explanation">No hi ha cap ordre registrada</string>
   <string name="addcommand_explanation2">Podeu afegir ordres noves a l\'Arranjament del sistema del KDE Connect</string>
+  <string name="add_command_description">Podeu afegir ordres per a l\'escriptori</string>
   <string name="pref_plugin_mprisreceiver">Control del reproductor multimèdia</string>
   <string name="pref_plugin_mprisreceiver_desc">Controla els reproductors multimèdia dels telèfons des d\'un altre dispositiu</string>
   <string name="dark_theme">Tema fosc</string>

@@ -177,6 +177,7 @@
   <string name="plugin_not_supported">Este \'plugin\' não é suportado pelo dispositivo</string>
   <string name="findmyphone_title">Descobrir o meu telefone</string>
   <string name="findmyphone_title_tablet">Descobrir o meu \'tablet\'</string>
+  <string name="findmyphone_title_tv">Descobrir a minha TV</string>
   <string name="findmyphone_description">Toca este dispositivo para que o possa encontrar</string>
   <string name="findmyphone_found">Encontrado</string>
   <string name="open">Abrir</string>
@@ -198,11 +199,9 @@
   <string name="device_icon_description">Ícone do dispositivo</string>
   <string name="settings_icon_description">Ícone de configuração</string>
   <string name="add_command">Adicionar um comando</string>
-  <string name="addcommand_name">Nome</string>
-  <string name="addcommand_command">Comando</string>
-  <string name="command_confirm_needed">Terá de confirmar o comando no ambiente de trabalho</string>
   <string name="addcommand_explanation">Não existem comandos registados</string>
   <string name="addcommand_explanation2">Poderá adicionar comandos novos na Configuração do Sistema KDE Connect</string>
+  <string name="add_command_description">Poderá adicionar comandos no ambiente de trabalho</string>
   <string name="pref_plugin_mprisreceiver">Controlo de Leitores Multimédia</string>
   <string name="pref_plugin_mprisreceiver_desc">Controle os leitores multimédia dos seus telemóveis a partir de outro dispositivo</string>
   <string name="dark_theme">Tema escuro</string>

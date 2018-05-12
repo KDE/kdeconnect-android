@@ -186,8 +186,6 @@
   <string name="device_icon_description">Gerätesymbol</string>
   <string name="settings_icon_description">Einstellungssymbol</string>
   <string name="add_command">Einen Befehl hinzufügen</string>
-  <string name="addcommand_name">Name</string>
-  <string name="addcommand_command">Befehl</string>
   <string name="addcommand_explanation">Es sind keine Befehle registriert.</string>
   <string name="addcommand_explanation2">Sie können neue Befehle in den Systemeinstellungen für KDE-Connect hinzufügen.</string>
 </resources>

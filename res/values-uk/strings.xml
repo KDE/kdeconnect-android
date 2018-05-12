@@ -179,6 +179,7 @@
   <string name="plugin_not_supported">Підтримки цього додатка не передбачено на пристрої</string>
   <string name="findmyphone_title">Знайти телефон</string>
   <string name="findmyphone_title_tablet">Знайти планшет</string>
+  <string name="findmyphone_title_tv">Знайти мій телевізор</string>
   <string name="findmyphone_description">Відтворити дзвінок, щоб цей пристрій було простіше знайти</string>
   <string name="findmyphone_found">Знайдено</string>
   <string name="open">Відкрити</string>
@@ -200,11 +201,9 @@
   <string name="device_icon_description">Піктограма пристрою</string>
   <string name="settings_icon_description">Піктограма параметрів</string>
   <string name="add_command">Додати команду</string>
-  <string name="addcommand_name">Назва</string>
-  <string name="addcommand_command">Команда</string>
-  <string name="command_confirm_needed">Вам доведеться підтвердити команду на комп\'ютері</string>
   <string name="addcommand_explanation">Жодних команд не зареєстровано</string>
   <string name="addcommand_explanation2">Ви можете додавати нові команди за допомогою Системних параметрів KDE Connect</string>
+  <string name="add_command_description">Ви можете додавати команди на комп\'ютері</string>
   <string name="pref_plugin_mprisreceiver">Керування відтворенням</string>
   <string name="pref_plugin_mprisreceiver_desc">Керування вашими програвачами на телефоні з іншого пристрою</string>
   <string name="dark_theme">Темна тема</string>
