@@ -30,6 +30,7 @@
   <string name="cancel">Annuleren</string>
   <string name="open_settings">Instellingen openen</string>
   <string name="no_permissions">U moet toestemming geven voor toegang tot meldingen</string>
+  <string name="no_permission_mprisreceiver">Om in staat te zijn uw mediaspelers te besturen moet u toegan geven tot de meldingen</string>
   <string name="send_ping">Ping verzenden</string>
   <string name="open_mpris_controls">Bediening van multimedia</string>
   <string name="remotekeyboard_editing_only_title">Behandel toetsen op afstand alleen bij bewerken</string>
@@ -176,6 +177,7 @@
   <string name="plugin_not_supported">Deze plug-in wordt niet ondersteund door het apparaat</string>
   <string name="findmyphone_title">Zoek mijn telefoon</string>
   <string name="findmyphone_title_tablet">Zoek mijn tablet</string>
+  <string name="findmyphone_title_tv">Zoek mijn tv</string>
   <string name="findmyphone_description">Laat dit apparaat bellen zodat u het kunt vinden</string>
   <string name="findmyphone_found">Gevonden</string>
   <string name="open">Openen</string>
@@ -199,5 +201,8 @@
   <string name="add_command">Een commando toevoegen</string>
   <string name="addcommand_explanation">Er zijn geen commando\'s geregistreerd</string>
   <string name="addcommand_explanation2">U kunt nieuwe commando\'s in de instellingen voor het KDE connect-systeem toevoegen</string>
+  <string name="add_command_description">U kunt commando\'s toevoegen op het bureaublad</string>
+  <string name="pref_plugin_mprisreceiver">Besturing van mediaspeler</string>
+  <string name="pref_plugin_mprisreceiver_desc">Uw mediaspelers op uw telefoon besturen vanaf een andere apparaat</string>
   <string name="dark_theme">Donker themea</string>
 </resources>

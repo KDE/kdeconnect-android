@@ -30,6 +30,7 @@
   <string name="cancel">Cancel</string>
   <string name="open_settings">Open settings</string>
   <string name="no_permissions">You need to grant permission to access notifications</string>
+  <string name="no_permission_mprisreceiver">To be able to control your media players you need to grant access to the notifications</string>
   <string name="send_ping">Send ping</string>
   <string name="open_mpris_controls">Multimedia control</string>
   <string name="remotekeyboard_editing_only_title">Handle remote keys only when editing</string>
@@ -176,6 +177,7 @@
   <string name="plugin_not_supported">This plugin is not supported by the device</string>
   <string name="findmyphone_title">Find my phone</string>
   <string name="findmyphone_title_tablet">Find my tablet</string>
+  <string name="findmyphone_title_tv">Find my TV</string>
   <string name="findmyphone_description">Rings this device so you can find it</string>
   <string name="findmyphone_found">Found</string>
   <string name="open">Open</string>
@@ -199,4 +201,8 @@
   <string name="add_command">Add a command</string>
   <string name="addcommand_explanation">There are no commands registered</string>
   <string name="addcommand_explanation2">You can add new commands in the KDE Connect System Settings</string>
+  <string name="add_command_description">You can add commands on the desktop</string>
+  <string name="pref_plugin_mprisreceiver">Media Player Control</string>
+  <string name="pref_plugin_mprisreceiver_desc">Control your phones media players from another device</string>
+  <string name="dark_theme">Dark theme</string>
 </resources>
