@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.kde.kdeconnect_tp"
-    android:versionCode="1830"
-    android:versionName="1.8.3">
+    android:versionCode="1840"
+    android:versionName="1.8.4">
 
     <supports-screens
         android:anyDensity="true"
