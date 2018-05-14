@@ -42,6 +42,7 @@ import org.spongycastle.operator.jcajce.JcaContentSignerBuilder;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.net.Socket;
+import java.net.SocketException;
 import java.security.KeyStore;
 import java.security.MessageDigest;
 import java.security.PrivateKey;
@@ -201,7 +202,7 @@ public class SslHelper {
 
     }
 
-    public static void configureSslSocket(SSLSocket socket, boolean isDeviceTrusted, boolean isClient) {
+    public static void configureSslSocket(SSLSocket socket, boolean isDeviceTrusted, boolean isClient) throws SocketException {
 
         socket.setEnabledProtocols(new String[]{"TLSv1"}); //Newer TLS versions are only supported on API 16+
 
@@ -222,6 +223,8 @@ public class SslHelper {
             supportedCiphers.add("TLS_DHE_RSA_WITH_AES_256_CBC_SHA"); // API 9+
         }
         socket.setEnabledCipherSuites(supportedCiphers.toArray(new String[supportedCiphers.size()]));
+
+        socket.setSoTimeout(1000);
 
         if (isClient) {
             socket.setUseClientMode(true);

@@ -253,7 +253,9 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                 //Handshake is blocking, so do it on another thread and free this thread to keep receiving new connection
                 new Thread(() -> {
                     try {
-                        sslsocket.startHandshake();
+                        synchronized (this) {
+                            sslsocket.startHandshake();
+                        }
                     } catch (Exception e) {
                         Log.e("KDE/LanLinkProvider", "Handshake failed with " + identityPacket.getString("deviceName"));
                         e.printStackTrace();
@@ -286,7 +288,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
      * @param connectionOrigin which side started this connection
      * @throws IOException if an exception is thrown by {@link LanLink#reset(Socket, LanLink.ConnectionStarted)}
      */
-    private synchronized void addLink(final NetworkPacket identityPacket, Socket socket, LanLink.ConnectionStarted connectionOrigin) throws IOException {
+    private void addLink(final NetworkPacket identityPacket, Socket socket, LanLink.ConnectionStarted connectionOrigin) throws IOException {
 
         String deviceId = identityPacket.getString("deviceId");
         LanLink currentLink = visibleComputers.get(deviceId);
