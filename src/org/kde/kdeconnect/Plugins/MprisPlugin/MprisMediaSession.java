@@ -34,6 +34,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
+import android.support.v4.media.app.NotificationCompat.MediaStyle;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
@@ -379,9 +380,8 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
                 notification.setOngoing(false);
             }
 
-            /*
             //Use the MediaStyle notification, so it feels like other media players. That also allows adding actions
-            NotificationCompat.MediaStyle mediaStyle = new NotificationCompat.MediaStyle();
+            MediaStyle mediaStyle = new MediaStyle();
             if (numActions == 1) {
                 mediaStyle.setShowActionsInCompactView(0);
             } else if (numActions == 2) {
@@ -391,7 +391,6 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
             }
             mediaStyle.setMediaSession(mediaSession.getSessionToken());
             notification.setStyle(mediaStyle);
-            */
 
             //Display the notification
             mediaSession.setActive(true);
