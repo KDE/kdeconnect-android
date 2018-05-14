@@ -30,6 +30,7 @@
   <string name="cancel">Cancelar</string>
   <string name="open_settings">Abrir a configuración</string>
   <string name="no_permissions">Debe conceder permisos para acceder ás notificacións.</string>
+  <string name="no_permission_mprisreceiver">Para poder controlar os seus reprodutores de son e vídeo ten que garantir acceso ás notificacións.</string>
   <string name="send_ping">Enviar un ping</string>
   <string name="open_mpris_controls">Control multimedia</string>
   <string name="remotekeyboard_editing_only_title">Xestionar teclas remotas só ao editar.</string>
@@ -176,6 +177,7 @@
   <string name="plugin_not_supported">O dispositivo non é compatíbel con este complemento.</string>
   <string name="findmyphone_title">Atopar o móbil</string>
   <string name="findmyphone_title_tablet">Atopar a tableta</string>
+  <string name="findmyphone_title_tv">Atopar o meu televisor</string>
   <string name="findmyphone_description">Reproduce un son de chamada no dispositivo para que poida atopalo.</string>
   <string name="findmyphone_found">Atopado</string>
   <string name="open">Abrir</string>
@@ -199,5 +201,8 @@
   <string name="add_command">Engadir unha orde</string>
   <string name="addcommand_explanation">Non hai ordes rexistradas.</string>
   <string name="addcommand_explanation2">Pode engadir novas ordes desde a configuración do sistema de KDE Connect.</string>
+  <string name="add_command_description">Pode engadir ordes no escritorio.</string>
+  <string name="pref_plugin_mprisreceiver">Control do reprodutor de multimedia</string>
+  <string name="pref_plugin_mprisreceiver_desc">Controlar os reprodutores do seu móbil desde outro dispositivo.</string>
   <string name="dark_theme">Tema escuro</string>
 </resources>

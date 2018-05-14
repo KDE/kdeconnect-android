@@ -30,6 +30,7 @@
   <string name="cancel">Annulla</string>
   <string name="open_settings">Apri impostazioni</string>
   <string name="no_permissions">Devi concedere i permessi per l\'accesso alle notifiche</string>
+  <string name="no_permission_mprisreceiver">Per poter controllare i tuoi lettori multimediali devi accordare l\'accesso alle notifiche</string>
   <string name="send_ping">Invia ping</string>
   <string name="open_mpris_controls">Controllo multimediale</string>
   <string name="remotekeyboard_editing_only_title">Gestisci i tasti remoti solo durante la modifica</string>
@@ -199,4 +200,7 @@
   <string name="add_command">Aggiungi un comando</string>
   <string name="addcommand_explanation">Non ci sono comandi registrati</string>
   <string name="addcommand_explanation2">Puoi aggiungere nuovi comandi nelle impostazioni di sistema di KDE Connect</string>
+  <string name="pref_plugin_mprisreceiver">Controllo lettore multimediale</string>
+  <string name="pref_plugin_mprisreceiver_desc">Controlla i lettori multimediali del tuo telefono da un altro dispositivo</string>
+  <string name="dark_theme">Tema scuro</string>
 </resources>
