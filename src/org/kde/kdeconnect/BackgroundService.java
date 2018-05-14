@@ -39,6 +39,7 @@ import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 //import org.kde.kdeconnect.Backends.BluetoothBackend.BluetoothLinkProvider;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
+import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.UserInterface.MainActivity;
@@ -271,6 +272,7 @@ public class BackgroundService extends Service {
         Log.i("KDE/BackgroundService", "Service not started yet, initializing...");
 
         initializeSecurityParameters();
+        NotificationHelper.initializeChannels((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE));
         loadRememberedDevicesFromSettings();
         registerLinkProviders();
 
@@ -283,16 +285,17 @@ public class BackgroundService extends Service {
     }
 
     private Notification createForegroundNotification() {
+
+        //Why is this needed: https://developer.android.com/guide/components/services#Foreground
+
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        NotificationCompat.Builder notification = new NotificationCompat.Builder(this);
+        NotificationCompat.Builder notification = new NotificationCompat.Builder(this, NotificationHelper.Channels.PERSISTENT);
         notification
                 .setSmallIcon(R.drawable.ic_notification)
-                .setColor(getResources().getColor(R.color.primary))
-                .setContentTitle(getString(R.string.kde_connect))
                 .setOngoing(true)
                 .setContentIntent(pi)
-                .setPriority(NotificationCompat.PRIORITY_MIN)
+                .setPriority(NotificationCompat.PRIORITY_MIN) //MIN so it's not shown in the status bar before Oreo, on Oreo it will be bumped to LOW
                 .setShowWhen(false)
                 .setAutoCancel(false);
 

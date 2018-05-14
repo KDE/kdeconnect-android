@@ -161,7 +161,7 @@ public class SharePlugin extends Plugin {
 
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-            Notification noti = new NotificationCompat.Builder(context, NotificationHelper.getDefaultChannelId(notificationManager))
+            Notification noti = new NotificationCompat.Builder(context, NotificationHelper.Channels.DEFAULT)
                     .setContentTitle(res.getString(R.string.received_url_title, device.getName()))
                     .setContentText(res.getString(R.string.received_url_text, url))
                     .setContentIntent(resultPendingIntent)

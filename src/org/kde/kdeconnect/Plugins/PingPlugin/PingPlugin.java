@@ -81,7 +81,7 @@ public class PingPlugin extends Plugin {
 
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        Notification noti = new NotificationCompat.Builder(context, NotificationHelper.getDefaultChannelId(notificationManager))
+        Notification noti = new NotificationCompat.Builder(context, NotificationHelper.Channels.DEFAULT)
                 .setContentTitle(device.getName())
                 .setContentText(message)
                 .setContentIntent(resultPendingIntent)

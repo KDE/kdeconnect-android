@@ -406,7 +406,7 @@ public class Device implements BaseLink.PacketReceiver {
 
         final NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
 
-        Notification noti = new NotificationCompat.Builder(getContext(), NotificationHelper.getDefaultChannelId(notificationManager))
+        Notification noti = new NotificationCompat.Builder(getContext(), NotificationHelper.Channels.DEFAULT)
                 .setContentTitle(res.getString(R.string.pairing_request_from, getName()))
                 .setContentText(res.getString(R.string.tap_to_answer))
                 .setContentIntent(pendingIntent)

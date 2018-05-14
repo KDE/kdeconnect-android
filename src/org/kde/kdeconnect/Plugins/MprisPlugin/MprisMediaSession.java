@@ -307,7 +307,7 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
 
             final NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-            NotificationCompat.Builder notification = new NotificationCompat.Builder(context, NotificationHelper.getDefaultChannelId(notificationManager));
+            NotificationCompat.Builder notification = new NotificationCompat.Builder(context, NotificationHelper.Channels.DEFAULT);
 
             notification
                     .setAutoCancel(false)

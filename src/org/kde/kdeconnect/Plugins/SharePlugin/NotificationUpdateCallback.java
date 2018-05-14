@@ -41,7 +41,7 @@ class NotificationUpdateCallback extends Device.SendPacketStatusCallback {
         }
 
         notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-        builder = new NotificationCompat.Builder(context, NotificationHelper.getDefaultChannelId(notificationManager))
+        builder = new NotificationCompat.Builder(context, NotificationHelper.Channels.DEFAULT)
                 .setSmallIcon(android.R.drawable.stat_sys_upload)
                 .setAutoCancel(true)
                 .setProgress(100, 0, false)

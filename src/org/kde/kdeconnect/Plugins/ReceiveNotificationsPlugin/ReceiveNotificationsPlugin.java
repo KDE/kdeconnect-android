@@ -108,7 +108,7 @@ public class ReceiveNotificationsPlugin extends Plugin {
 
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-            Notification noti = new NotificationCompat.Builder(context, NotificationHelper.getDefaultChannelId(notificationManager))
+            Notification noti = new NotificationCompat.Builder(context, NotificationHelper.Channels.DEFAULT)
                     .setContentTitle(np.getString("appName"))
                     .setContentText(np.getString("ticker"))
                     .setContentIntent(resultPendingIntent)

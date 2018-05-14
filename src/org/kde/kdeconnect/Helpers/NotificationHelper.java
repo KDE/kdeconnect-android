@@ -6,7 +6,10 @@ import android.app.NotificationManager;
 
 public class NotificationHelper {
 
-    private static NotificationChannel defaultChannel;
+    public static class Channels {
+        public final static String PERSISTENT = "persistent";
+        public final static String DEFAULT = "default";
+    }
 
     public static void notifyCompat(NotificationManager notificationManager, int notificationId, Notification notification) {
         try {
@@ -26,19 +29,25 @@ public class NotificationHelper {
         }
     }
 
-    public static String getDefaultChannelId(NotificationManager manager) {
+    public static void initializeChannels(NotificationManager manager) {
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            if (defaultChannel == null) {
-                String id = "default";
-                CharSequence name = "KDE Connect";
-                int importance = NotificationManager.IMPORTANCE_DEFAULT;
-                defaultChannel = new NotificationChannel(id, name, importance);
-                manager.createNotificationChannel(defaultChannel);
-            }
-            return defaultChannel.getId();
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O) {
+            return;
         }
-        return null;
+
+
+        {
+            NotificationChannel channel = new NotificationChannel(Channels.DEFAULT, "Other notifications", NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setDescription("Rest of KDE Connect notifications");
+            manager.createNotificationChannel(channel);
+        }
+
+        {
+            NotificationChannel channel = new NotificationChannel(Channels.PERSISTENT, "Persistent indicator", NotificationManager.IMPORTANCE_MIN);
+            channel.setDescription("Always present running indicator");
+            manager.createNotificationChannel(channel);
+        }
+
     }
 
 }
