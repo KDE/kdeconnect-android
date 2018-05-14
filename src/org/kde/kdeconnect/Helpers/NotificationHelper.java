@@ -12,6 +12,7 @@ public class NotificationHelper {
     public static class Channels {
         public final static String PERSISTENT = "persistent";
         public final static String DEFAULT = "default";
+        public final static String MEDIA_CONTROL = "media_control";
     }
 
     public static void notifyCompat(NotificationManager notificationManager, int notificationId, Notification notification) {
@@ -41,15 +42,21 @@ public class NotificationHelper {
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
         manager.createNotificationChannel(new NotificationChannel(
+                Channels.PERSISTENT,
+                context.getString(R.string.notification_channel_persistent),
+                NotificationManager.IMPORTANCE_DEFAULT)
+        );
+
+        manager.createNotificationChannel(new NotificationChannel(
                 Channels.DEFAULT,
                 context.getString(R.string.notification_channel_default),
                 NotificationManager.IMPORTANCE_DEFAULT)
         );
 
         manager.createNotificationChannel(new NotificationChannel(
-                Channels.PERSISTENT,
-                context.getString(R.string.notification_channel_persistent),
-                NotificationManager.IMPORTANCE_DEFAULT)
+                Channels.MEDIA_CONTROL,
+                context.getString(R.string.notification_channel_media_control),
+                NotificationManager.IMPORTANCE_LOW)
         );
 
     }
