@@ -3,6 +3,9 @@ package org.kde.kdeconnect.Helpers;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
+
+import org.kde.kdeconnect_tp.R;
 
 public class NotificationHelper {
 
@@ -29,24 +32,25 @@ public class NotificationHelper {
         }
     }
 
-    public static void initializeChannels(NotificationManager manager) {
+    public static void initializeChannels(Context context) {
 
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O) {
             return;
         }
 
+        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        {
-            NotificationChannel channel = new NotificationChannel(Channels.DEFAULT, "Other notifications", NotificationManager.IMPORTANCE_DEFAULT);
-            channel.setDescription("Rest of KDE Connect notifications");
-            manager.createNotificationChannel(channel);
-        }
+        manager.createNotificationChannel(new NotificationChannel(
+                Channels.DEFAULT,
+                context.getString(R.string.notification_channel_default),
+                NotificationManager.IMPORTANCE_DEFAULT)
+        );
 
-        {
-            NotificationChannel channel = new NotificationChannel(Channels.PERSISTENT, "Persistent indicator", NotificationManager.IMPORTANCE_MIN);
-            channel.setDescription("Always present running indicator");
-            manager.createNotificationChannel(channel);
-        }
+        manager.createNotificationChannel(new NotificationChannel(
+                Channels.PERSISTENT,
+                context.getString(R.string.notification_channel_persistent),
+                NotificationManager.IMPORTANCE_DEFAULT)
+        );
 
     }
 

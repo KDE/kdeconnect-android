@@ -244,5 +244,7 @@
     <string name="pref_plugin_mprisreceiver_desc">Control your phones media players from another device</string>
 
     <string name="dark_theme">Dark theme</string>
+    <string name="notification_channel_default">Other notifications</string>
+    <string name="notification_channel_persistent">Persistent indicator</string>
 
 </resources>

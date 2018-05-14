@@ -272,7 +272,7 @@ public class BackgroundService extends Service {
         Log.i("KDE/BackgroundService", "Service not started yet, initializing...");
 
         initializeSecurityParameters();
-        NotificationHelper.initializeChannels((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE));
+        NotificationHelper.initializeChannels(this);
         loadRememberedDevicesFromSettings();
         registerLinkProviders();
 
