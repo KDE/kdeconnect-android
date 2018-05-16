@@ -129,7 +129,7 @@ public class PluginFactory {
         PluginFactory.registerPlugin(FindMyPhonePlugin.class);
         PluginFactory.registerPlugin(RunCommandPlugin.class);
         PluginFactory.registerPlugin(RemoteKeyboardPlugin.class);
-        PluginFactory.registerPlugin(MprisReceiverPlugin.class);
+        //PluginFactory.registerPlugin(MprisReceiverPlugin.class);
     }
 
     public static PluginInfo getPluginInfo(Context context, String pluginKey) {
