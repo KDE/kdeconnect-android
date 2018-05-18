@@ -177,6 +177,7 @@
   <string name="plugin_not_supported">Questa estensione non è supportata dal dispositivo</string>
   <string name="findmyphone_title">Trova il mio telefono</string>
   <string name="findmyphone_title_tablet">Trova il mio tablet</string>
+  <string name="findmyphone_title_tv">Trova il mio televisore</string>
   <string name="findmyphone_description">Fa squillare questo dispositivo per trovarlo</string>
   <string name="findmyphone_found">Trovato</string>
   <string name="open">Apri</string>
@@ -200,6 +201,7 @@
   <string name="add_command">Aggiungi un comando</string>
   <string name="addcommand_explanation">Non ci sono comandi registrati</string>
   <string name="addcommand_explanation2">Puoi aggiungere nuovi comandi nelle impostazioni di sistema di KDE Connect</string>
+  <string name="add_command_description">Puoi aggiungere comandi sul desktop</string>
   <string name="pref_plugin_mprisreceiver">Controllo lettore multimediale</string>
   <string name="pref_plugin_mprisreceiver_desc">Controlla i lettori multimediali del tuo telefono da un altro dispositivo</string>
   <string name="dark_theme">Tema scuro</string>
