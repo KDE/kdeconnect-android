@@ -41,11 +41,12 @@ public class NotificationHelper {
 
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        manager.createNotificationChannel(new NotificationChannel(
+        NotificationChannel persistentChannel = new NotificationChannel(
                 Channels.PERSISTENT,
                 context.getString(R.string.notification_channel_persistent),
-                NotificationManager.IMPORTANCE_DEFAULT)
-        );
+                NotificationManager.IMPORTANCE_MIN);
+
+        manager.createNotificationChannel(persistentChannel);
 
         manager.createNotificationChannel(new NotificationChannel(
                 Channels.DEFAULT,
