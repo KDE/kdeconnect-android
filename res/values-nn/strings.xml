@@ -30,6 +30,7 @@
   <string name="cancel">Avbryt</string>
   <string name="open_settings">Opna innstillingar</string>
   <string name="no_permissions">Du må gje tilgang til lesing av varslingar</string>
+  <string name="no_permission_mprisreceiver">Du må gje tilgang til varslingar for å kunne kontrollera mediespelarar</string>
   <string name="send_ping">Send pingsignal</string>
   <string name="open_mpris_controls">Mediekontroll</string>
   <string name="remotekeyboard_editing_only_title">Handter eksterne tastetrykk berre ved redigering</string>
@@ -176,6 +177,7 @@
   <string name="plugin_not_supported">Dette tillegget er ikkje støtta av eininga</string>
   <string name="findmyphone_title">Finn telefonen min</string>
   <string name="findmyphone_title_tablet">Finn nettbrettet mitt</string>
+  <string name="findmyphone_title_tv">Finn TV-en min</string>
   <string name="findmyphone_description">Spel av lydsignal på eininga, slik at du lett kan finna ho</string>
   <string name="findmyphone_found">Fann</string>
   <string name="open">Opna</string>
@@ -199,5 +201,8 @@
   <string name="add_command">Legg til kommando</string>
   <string name="addcommand_explanation">Ingen kommandoar er registrerte</string>
   <string name="addcommand_explanation2">Du kan leggja til nye kommandoar i systeminnstillingane til KDE Connect</string>
+  <string name="add_command_description">Du kan leggja til kommandoar på skrivebordet</string>
+  <string name="pref_plugin_mprisreceiver">Mediespelarkontrollar</string>
+  <string name="pref_plugin_mprisreceiver_desc">Kontroller mediespelarar på telefonen din frå ei anna eining</string>
   <string name="dark_theme">Mørkt tema</string>
 </resources>
