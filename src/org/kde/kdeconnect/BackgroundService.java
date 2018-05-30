@@ -298,6 +298,7 @@ public class BackgroundService extends Service {
                 .setPriority(NotificationCompat.PRIORITY_MIN) //MIN so it's not shown in the status bar before Oreo, on Oreo it will be bumped to LOW
                 .setShowWhen(false)
                 .setAutoCancel(false);
+        notification.setGroup("BackgroundService");
 
         ArrayList<String> connectedDevices = new ArrayList<>();
         for (Device device : getDevices().values()) {
