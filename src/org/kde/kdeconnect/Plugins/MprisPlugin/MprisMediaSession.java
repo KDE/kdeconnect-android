@@ -391,6 +391,7 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
             }
             mediaStyle.setMediaSession(mediaSession.getSessionToken());
             notification.setStyle(mediaStyle);
+            notification.setGroup("MprisMediaSession");
 
             //Display the notification
             mediaSession.setActive(true);
