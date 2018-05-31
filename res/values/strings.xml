@@ -17,6 +17,8 @@
     <string name="pref_plugin_mpris_desc">Provides a remote control for your media player</string>
     <string name="pref_plugin_runcommand">Run Command</string>
     <string name="pref_plugin_runcommand_desc">Trigger remote commands from your phone or tablet</string>
+    <string name="pref_plugin_contacts">Contacts Synchronizer</string>
+    <string name="pref_plugin_contacts_desc">Allow synchronizing the device\'s contacts book</string>
     <string name="pref_plugin_ping">Ping</string>
     <string name="pref_plugin_ping_desc">Send and receive pings</string>
     <string name="pref_plugin_notifications">Notification sync</string>
@@ -226,6 +228,7 @@
     <string name="telepathy_permission_explanation">To read and write SMS from your desktop you need to give permission to SMS</string>
     <string name="telephony_permission_explanation">To see phone calls and SMS from the desktop you need to give permission to phone calls and SMS</string>
     <string name="telephony_optional_permission_explanation">To see a contact name instead of a phone number you need to give access to the phone\'s contacts</string>
+    <string name="contacts_permission_explanation">To share your contacts book with the desktop, you need to give contacts permission</string>
     <string name="select_ringtone">Select a ringtone</string>
     <string name="telephony_pref_blocked_title">Blocked numbers</string>
     <string name="telephony_pref_blocked_dialog_desc">Don\'t show calls and SMS from these numbers. Please specify one number per line</string>

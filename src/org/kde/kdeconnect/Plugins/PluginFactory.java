@@ -27,6 +27,7 @@ import android.util.Log;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Plugins.BatteryPlugin.BatteryPlugin;
 import org.kde.kdeconnect.Plugins.ClibpoardPlugin.ClipboardPlugin;
+import org.kde.kdeconnect.Plugins.ContactsPlugin.ContactsPlugin;
 import org.kde.kdeconnect.Plugins.FindMyPhonePlugin.FindMyPhonePlugin;
 import org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadPlugin;
 import org.kde.kdeconnect.Plugins.MprisPlugin.MprisPlugin;
@@ -128,6 +129,7 @@ public class PluginFactory {
         PluginFactory.registerPlugin(TelepathyPlugin.class);
         PluginFactory.registerPlugin(FindMyPhonePlugin.class);
         PluginFactory.registerPlugin(RunCommandPlugin.class);
+        PluginFactory.registerPlugin(ContactsPlugin.class);
         PluginFactory.registerPlugin(RemoteKeyboardPlugin.class);
         //PluginFactory.registerPlugin(MprisReceiverPlugin.class);
     }
