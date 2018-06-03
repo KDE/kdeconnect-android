@@ -4,6 +4,9 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.media.AudioAttributes;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
 
 import org.kde.kdeconnect_tp.R;
 
@@ -13,6 +16,7 @@ public class NotificationHelper {
         public final static String PERSISTENT = "persistent";
         public final static String DEFAULT = "default";
         public final static String MEDIA_CONTROL = "media_control";
+        public final static String FILETRANSFER = "filetransfer";
     }
 
     public static void notifyCompat(NotificationManager notificationManager, int notificationId, Notification notification) {
@@ -59,6 +63,15 @@ public class NotificationHelper {
                 context.getString(R.string.notification_channel_media_control),
                 NotificationManager.IMPORTANCE_LOW)
         );
+
+        NotificationChannel fileTransfer = new NotificationChannel(
+                Channels.FILETRANSFER,
+                context.getString(R.string.notification_channel_filetransfer),
+                NotificationManager.IMPORTANCE_LOW);
+
+        fileTransfer.enableVibration(false);
+
+        manager.createNotificationChannel(fileTransfer);
 
     }
 

@@ -247,5 +247,6 @@
     <string name="notification_channel_default">Other notifications</string>
     <string name="notification_channel_persistent">Persistent indicator</string>
     <string name="notification_channel_media_control">Media control</string>
+    <string name="notification_channel_filetransfer">File transfer</string>
 
 </resources>

@@ -31,7 +31,6 @@
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
 
     <application
-        android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="KDE Connect"
         android:supportsRtl="true"

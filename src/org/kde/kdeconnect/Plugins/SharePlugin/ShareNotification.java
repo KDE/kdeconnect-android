@@ -55,7 +55,7 @@ public class ShareNotification {
         this.filename = filename;
         notificationId = (int) System.currentTimeMillis();
         notificationManager = (NotificationManager) device.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
-        builder = new NotificationCompat.Builder(device.getContext(), NotificationHelper.Channels.DEFAULT)
+        builder = new NotificationCompat.Builder(device.getContext(), NotificationHelper.Channels.FILETRANSFER)
                 .setContentTitle(device.getContext().getResources().getString(R.string.incoming_file_title, device.getName()))
                 .setContentText(device.getContext().getResources().getString(R.string.incoming_file_text, filename))
                 .setTicker(device.getContext().getResources().getString(R.string.incoming_file_title, device.getName()))
