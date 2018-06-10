@@ -16,6 +16,8 @@
   <string name="pref_plugin_mpris_desc">Надає можливість віддаленого керування вашим мультимедійним програвачем</string>
   <string name="pref_plugin_runcommand">Виконати команду</string>
   <string name="pref_plugin_runcommand_desc">Віддалені команди з вашого телефону або планшета</string>
+  <string name="pref_plugin_contacts">Засіб синхронізації контактів</string>
+  <string name="pref_plugin_contacts_desc">Уможливлює синхронізацію записів контактів на пристрої</string>
   <string name="pref_plugin_ping">Підтримання зв’язку</string>
   <string name="pref_plugin_ping_desc">Надсилання і отримання сигналів підтримання зв’язку</string>
   <string name="pref_plugin_notifications">Синхронізація сповіщень</string>
@@ -194,6 +196,7 @@
   <string name="telepathy_permission_explanation">Щоб читати і писати SMS з вашого робочого комп’ютера, вам слід надати програмі доступ до SMS</string>
   <string name="telephony_permission_explanation">"Щоб переглядати дзвінки і SMS з робочого комп’ютера, вам слід надати програмі доступ до дзвінків і  SMS"</string>
   <string name="telephony_optional_permission_explanation">Щоб бачити ім’я контакту замість номеру телефону, вам слід надати програмі доступ до записів контактів на телефоні</string>
+  <string name="contacts_permission_explanation">Щоб мати змогу спільно використовувати ваші записи контактів на пристрої і на комп\'ютері, вам слід надати програмі доступ до контактів</string>
   <string name="select_ringtone">Виберіть мелодію дзвінка</string>
   <string name="telephony_pref_blocked_title">Заблоковані номери</string>
   <string name="telephony_pref_blocked_dialog_desc">Не показувати виклики та SMS з цих номерів. Будь ласка, вказуйте кожен із номерів у окремому рядку.</string>

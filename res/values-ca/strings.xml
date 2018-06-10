@@ -16,6 +16,8 @@
   <string name="pref_plugin_mpris_desc">Proporciona un comandament a distància pel reproductor multimèdia</string>
   <string name="pref_plugin_runcommand">Executa una ordre</string>
   <string name="pref_plugin_runcommand_desc">Activa les ordres remotes des del telèfon o tauleta</string>
+  <string name="pref_plugin_contacts">Sincronitzador dels contactes</string>
+  <string name="pref_plugin_contacts_desc">Permet sincronitzar la llibreta de contactes del dispositiu</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Envia i rep els pings</string>
   <string name="pref_plugin_notifications">Sincronitza les notificacions</string>
@@ -192,6 +194,7 @@
   <string name="telepathy_permission_explanation">Per a llegir i escriure SMS des de l\'escriptori, haureu de donar permís als SMS</string>
   <string name="telephony_permission_explanation">Per a veure les trucades telefòniques i SMS des de l\'escriptori, haureu de donar permís a les trucades telefòniques i SMS</string>
   <string name="telephony_optional_permission_explanation">Per a veure un nom de contacte en comptes d\'un número de telèfon, haureu de donar permís als contactes del telèfon</string>
+  <string name="contacts_permission_explanation">Per a compartir els vostres contactes amb l\'escriptori, caldrà que els hi doneu permís</string>
   <string name="select_ringtone">Seleccioneu un to de la trucada</string>
   <string name="telephony_pref_blocked_title">Nombres blocats</string>
   <string name="telephony_pref_blocked_dialog_desc">No es mostren ni les trucades ni els SMS d\'aquests números. Especifiqueu un número per línia</string>
