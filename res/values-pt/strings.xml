@@ -16,6 +16,8 @@
   <string name="pref_plugin_mpris_desc">Oferece um comando à distância para o seu leitor multimédia</string>
   <string name="pref_plugin_runcommand">Executar um Comando</string>
   <string name="pref_plugin_runcommand_desc">Despoletar comandos remotos a partir do seu telefone ou \'tablet\'</string>
+  <string name="pref_plugin_contacts">Sincronização de Contactos</string>
+  <string name="pref_plugin_contacts_desc">Permitir a sincronização do livro de contactos do dispositivo</string>
   <string name="pref_plugin_ping">Contacto</string>
   <string name="pref_plugin_ping_desc">Enviar e receber pedidos de contacto (\'ping\')</string>
   <string name="pref_plugin_notifications">Sincronização da notificação</string>
@@ -192,6 +194,7 @@
   <string name="telepathy_permission_explanation">Para ler e escrever SMS\'s a partir do seu ambiente de trabalho, precisa de dar permissões para os SMS\'s</string>
   <string name="telephony_permission_explanation">Para ver as chamadas e os SMS\'s a partir do seu ambiente de trabalho, precisa de dar permissões para as chamadas telefónicas e SMS\'s</string>
   <string name="telephony_optional_permission_explanation">Para ver o nome de um contacto em vez do seu número de telefone, precisa de dar acesso aos contactos do telemóvel</string>
+  <string name="contacts_permission_explanation">Para partilhar o seu livro de contactos com o ambiente de trabalho, precisa de dar permissões para os contactos</string>
   <string name="select_ringtone">Seleccione um toque de chamada</string>
   <string name="telephony_pref_blocked_title">Números bloqueados</string>
   <string name="telephony_pref_blocked_dialog_desc">Não mostrar as chamadas e SMS\'s desses números. Por favor, indique um número por linha</string>
