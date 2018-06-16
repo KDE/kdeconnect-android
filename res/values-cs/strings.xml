@@ -16,6 +16,8 @@
   <string name="pref_plugin_mpris_desc">Poskytuje dálkové ovládání přehrávačů médií</string>
   <string name="pref_plugin_runcommand">Spustit příkaz</string>
   <string name="pref_plugin_runcommand_desc">Spouštějte příkazy vzdáleně z vašeho telefonu</string>
+  <string name="pref_plugin_contacts">Synchronizace kontaktů</string>
+  <string name="pref_plugin_contacts_desc">Povolit synchronizaci kontaktů zařízení</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Posílat a přijímat ping</string>
   <string name="pref_plugin_notifications">Synchronizace upozornění</string>
@@ -194,6 +196,7 @@
   <string name="telepathy_permission_explanation">Pro čtení a psaní SMS z počítače musíte udělit oprávnění k SMS</string>
   <string name="telephony_permission_explanation">Pro zobrazení telefonátů a SMS v počítači musíte udělit oprávnění k telefonování a SMS</string>
   <string name="telephony_optional_permission_explanation">Pro zobrazení jména kontaktu u telefonního čísla je potřeba udělit oprávnění ke kontaktům v telefonu</string>
+  <string name="contacts_permission_explanation">Pro sdílení knihy kontaktů s pracovním prostředím, musíte udělit přístup ke kontaktům</string>
   <string name="select_ringtone">Vybrat vyzváněcí tón</string>
   <string name="telephony_pref_blocked_title">Blokovaná čísla</string>
   <string name="telephony_pref_blocked_dialog_desc">Nezobrazovat volnání a SMS z těchto čísel. Prosím, zadejte pouze jedno slovo na řádek.</string>
