@@ -16,6 +16,8 @@
   <string name="pref_plugin_mpris_desc">Tillhandahåller en fjärrkontroll för mediaspelaren</string>
   <string name="pref_plugin_runcommand">Kör kommando</string>
   <string name="pref_plugin_runcommand_desc">Utlös fjärrkommandon från din telefon eller surfplatta</string>
+  <string name="pref_plugin_contacts">Kontaktsynkronisering</string>
+  <string name="pref_plugin_contacts_desc">Tillåt synkronisering av apparatens kontaktlista</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Skicka och ta emot ping</string>
   <string name="pref_plugin_notifications">Synkronisering av underrättelser</string>
@@ -192,6 +194,7 @@
   <string name="telepathy_permission_explanation">För att läsa och skriva SMS från skrivbordet måste du ge rättigheter för SMS</string>
   <string name="telephony_permission_explanation">För att se telefonsamtal och SMS från skrivbordet måste du ge rättigheter för telefonsamtal och SMS</string>
   <string name="telephony_optional_permission_explanation">För att se ett kontaktnamn istället för ett telefonnummer måste du ge tillgång till telefonens kontakter</string>
+  <string name="contacts_permission_explanation">För att dela kontaktlistan med skrivbordet måste du ge rättigheter för kontakter</string>
   <string name="select_ringtone">Välj en ringsignal</string>
   <string name="telephony_pref_blocked_title">Blockerade nummer</string>
   <string name="telephony_pref_blocked_dialog_desc">Visa inte samtal och SMS från dessa nummer. Ange ett nummer per rad.</string>
