@@ -16,6 +16,8 @@
   <string name="pref_plugin_mpris_desc">Fornisce un controllo remoto per il tuo lettore multimediale</string>
   <string name="pref_plugin_runcommand">Esegui comando</string>
   <string name="pref_plugin_runcommand_desc">Esegui comandi remoti dal tuo telefono o tablet</string>
+  <string name="pref_plugin_contacts">Sincronizzazione contatti</string>
+  <string name="pref_plugin_contacts_desc">Consenti la sincronizzazione della rubrica del dispositivo</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Invia e ricevi ping</string>
   <string name="pref_plugin_notifications">Sincronizzazione notifiche</string>
@@ -192,6 +194,7 @@
   <string name="telepathy_permission_explanation">Per leggere e scrivere SMS dal tuo desktop, devi concedere l\'autorizzazione per SMS</string>
   <string name="telephony_permission_explanation">Per vedere le chiamate telefoniche e gli SMS dal desktop devi dare l\'autorizzazione per telefonate e SMS</string>
   <string name="telephony_optional_permission_explanation">Per vedere il nome di un contatto invece del numero di telefono devi dare accesso alla rubrica del telefono</string>
+  <string name="contacts_permission_explanation">Per condividere la tua rubrica con il desktop, devi concedere l\'autorizzazione per i contatti</string>
   <string name="select_ringtone">Seleziona una suoneria</string>
   <string name="telephony_pref_blocked_title">Numeri bloccati</string>
   <string name="telephony_pref_blocked_dialog_desc">Non mostrare le chiamate e gli SMS da questi numeri. Specifica un numero per riga</string>
