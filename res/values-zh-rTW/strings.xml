@@ -16,6 +16,8 @@
   <string name="pref_plugin_mpris_desc">成為您多媒體播放器的遙控器</string>
   <string name="pref_plugin_runcommand">執行指令</string>
   <string name="pref_plugin_runcommand_desc">從您的智慧型手機或者平板當中觸發遠端設備上的命令</string>
+  <string name="pref_plugin_contacts">同步聯絡人工具</string>
+  <string name="pref_plugin_contacts_desc">允許同步裝置的通訊錄</string>
   <string name="pref_plugin_ping">Ping回應封包</string>
   <string name="pref_plugin_ping_desc">傳送與接收Ping回應封包</string>
   <string name="pref_plugin_notifications">同步通知</string>
@@ -30,6 +32,7 @@
   <string name="cancel">取消</string>
   <string name="open_settings">開啟設定</string>
   <string name="no_permissions">您需要授予存取通知的權限</string>
+  <string name="no_permission_mprisreceiver">為了要能控制您的媒體播放器，您需要提供「通知」的權限</string>
   <string name="send_ping">傳送Ping回應封包</string>
   <string name="open_mpris_controls">多媒體控制</string>
   <string name="remotekeyboard_editing_only_title">當編輯時只處理遠端按鍵</string>
@@ -175,6 +178,7 @@
   <string name="plugin_not_supported">這個擴充插件並不支援您的手機</string>
   <string name="findmyphone_title">找尋我的手機</string>
   <string name="findmyphone_title_tablet">找尋我的平板</string>
+  <string name="findmyphone_title_tv">尋找我的電視</string>
   <string name="findmyphone_description">讓這個裝置發出聲響讓您能找到它</string>
   <string name="findmyphone_found">找到</string>
   <string name="open">開啟</string>
@@ -189,6 +193,7 @@
   <string name="telepathy_permission_explanation">為了要在您的個人電腦上讀取與撰寫簡訊，你需要提供簡訊的權限。</string>
   <string name="telephony_permission_explanation">為了要在您的電腦上檢視手機通話與簡訊，你需要提供手機通話與簡訊的權限。</string>
   <string name="telephony_optional_permission_explanation">為了要讓聯絡人名稱取代手機號碼，您需要提供手機通訊錄的權限。</string>
+  <string name="contacts_permission_explanation">為了要與電腦分享您的通訊錄，您必須提供「聯絡人」的權限</string>
   <string name="select_ringtone">選擇一個鈴聲</string>
   <string name="telephony_pref_blocked_title">已封鎖號碼</string>
   <string name="telephony_pref_blocked_dialog_desc">不顯示這些號碼的來電與簡訊。請在一行指定一個電話號碼。</string>
@@ -198,5 +203,8 @@
   <string name="add_command">增加一行指令</string>
   <string name="addcommand_explanation">沒有指令被註冊</string>
   <string name="addcommand_explanation2">您現在可以在 KDE 連線系統設定增加新的指令</string>
+  <string name="add_command_description">您可以在電腦上增加指令</string>
+  <string name="pref_plugin_mprisreceiver">控制媒體播放器</string>
+  <string name="pref_plugin_mprisreceiver_desc">從另外一個裝置操控您手機的媒體播放器</string>
   <string name="dark_theme">暗色主題</string>
 </resources>
