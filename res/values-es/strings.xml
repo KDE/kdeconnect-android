@@ -15,7 +15,9 @@
   <string name="pref_plugin_mpris">Controles multimedia</string>
   <string name="pref_plugin_mpris_desc">Proporciona un control remoto para su reproductor de medios</string>
   <string name="pref_plugin_runcommand">Ejecutar orden</string>
-  <string name="pref_plugin_runcommand_desc">Desencadenar órdenes remotas desde su teléfono o tableta</string>
+  <string name="pref_plugin_runcommand_desc">Ejecutar órdenes remotas desde su teléfono o tableta</string>
+  <string name="pref_plugin_contacts">Sincronizador de contactos</string>
+  <string name="pref_plugin_contacts_desc">Permitir sincronizar los contactos del dispositivo</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Enviar y recibir pings</string>
   <string name="pref_plugin_notifications">Sincronizar notificaciones</string>
@@ -29,7 +31,7 @@
   <string name="ok">Aceptar</string>
   <string name="cancel">Cancelar</string>
   <string name="open_settings">Abrir preferencias</string>
-  <string name="no_permissions">Debe otorgar permiso para acceder a las notificaciones</string>
+  <string name="no_permissions">Debe otorgar permisos para acceder a las notificaciones</string>
   <string name="no_permission_mprisreceiver">Para poder controlar sus reproductores de medios, necesita dar acceso a las notificaciones</string>
   <string name="send_ping">Enviar ping</string>
   <string name="open_mpris_controls">Control multimedia</string>
@@ -192,6 +194,7 @@
   <string name="telepathy_permission_explanation">Para leer y escribir SMS desde su escritorio, necesita dar permisos para SMS</string>
   <string name="telephony_permission_explanation">Para ver las llamadas telefónicas y SMS desde su escritorio, necesita dar permisos para llamadas telefónicas y SMS</string>
   <string name="telephony_optional_permission_explanation">Para ver el nombre de un contacto en lugar de un número telefónico, necesita dar acceso a los contactos de su teléfono</string>
+  <string name="contacts_permission_explanation">Para compartir sus contactos con el escritorio, necesita dar permisos de acceso a los mismos</string>
   <string name="select_ringtone">Seleccionar tono</string>
   <string name="telephony_pref_blocked_title">Números bloqueados</string>
   <string name="telephony_pref_blocked_dialog_desc">No mostrar llamadas y SMS de estos números. Por favor, especifique solo un número por línea</string>
