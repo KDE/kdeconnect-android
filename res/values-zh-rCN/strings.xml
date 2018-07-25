@@ -16,6 +16,8 @@
   <string name="pref_plugin_mpris_desc">媒体播放器的遥控器</string>
   <string name="pref_plugin_runcommand">执行命令</string>
   <string name="pref_plugin_runcommand_desc">触发您的手机或平板电脑的远程命令</string>
+  <string name="pref_plugin_contacts">联系人同步器</string>
+  <string name="pref_plugin_contacts_desc">允许同步设备的通讯录</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">发送和接受ping</string>
   <string name="pref_plugin_notifications">通知同步</string>
@@ -129,7 +131,7 @@
   <string name="share_to">分享到...</string>
   <string name="protocol_version_older">该设备使用旧版本的协议</string>
   <string name="protocol_version_newer">该设备使用较新版本的协议</string>
-  <string name="general_settings">通用设置</string>
+  <string name="general_settings">常规设置</string>
   <string name="plugin_settings">设置</string>
   <string name="plugin_settings_with_name">%s设置</string>
   <string name="device_name">设备名</string>
