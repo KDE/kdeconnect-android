@@ -245,5 +245,11 @@
 
     <string name="dark_theme">Dark theme</string>
     <string name="mpris_stop">Stop the current player</string>
+    <string name="copy_url_to_clipboard">Copy URL to clipboard</string>
+    <string name="clipboard_toast">Copied to clipboard</string>
+    <string name="runcommand_notreachable">Device is not reachable</string>
+    <string name="runcommand_notpaired">Device is not paired</string>
+    <string name="runcommand_nosuchdevice">There is no such device</string>
+    <string name="runcommand_noruncommandplugin">This device does not have the Run Command Plugin enabled</string>
 
 </resources>

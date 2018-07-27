@@ -21,15 +21,23 @@
 
 package org.kde.kdeconnect.Plugins.RunCommandPlugin;
 
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,12 +49,12 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 public class RunCommandActivity extends AppCompatActivity {
 
     private String deviceId;
     private final RunCommandPlugin.CommandsChangedCallback commandsChangedCallback = this::updateView;
+    private ArrayList<ListAdapter.Item> commandItems;
 
     private void updateView() {
         BackgroundService.RunCommand(this, service -> {
@@ -61,7 +69,11 @@ public class RunCommandActivity extends AppCompatActivity {
             runOnUiThread(() -> {
                 ListView view = (ListView) findViewById(R.id.runcommandslist);
 
-                final ArrayList<ListAdapter.Item> commandItems = new ArrayList<>();
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
+                    registerForContextMenu(view);
+                }
+
+                commandItems = new ArrayList<>();
                 for (JSONObject obj : plugin.getCommandList()) {
                     try {
                         commandItems.add(new CommandEntry(obj.getString("name"),
@@ -131,6 +143,28 @@ public class RunCommandActivity extends AppCompatActivity {
         }));
 
         updateView();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.runcommand_context, menu);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        if (item.getItemId() == R.id.copy_url_to_clipboard) {
+            CommandEntry entry = (CommandEntry) commandItems.get(info.position);
+            String url = "kdeconnect://runcommand/" + deviceId + "/" + entry.getKey();
+            ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            cm.setText(url);
+            Toast toast = Toast.makeText(this, R.string.clipboard_toast, Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        return false;
     }
 
     @Override

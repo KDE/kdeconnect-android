@@ -28,6 +28,7 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
 
@@ -157,7 +158,22 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
+
         </activity>
+
+        <activity android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandUrlActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"></action>
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="kdeconnect" android:host="runcommand"/>
+
+            </intent-filter>
+        </activity>
+
         <activity
             android:name="org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
