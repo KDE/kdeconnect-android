@@ -251,5 +251,8 @@
     <string name="runcommand_notpaired">Device is not paired</string>
     <string name="runcommand_nosuchdevice">There is no such device</string>
     <string name="runcommand_noruncommandplugin">This device does not have the Run Command Plugin enabled</string>
+    <string name="pref_plugin_findremotedevice">Find remote device</string>
+    <string name="pref_plugin_findremotedevice_desc">Ring your remote device</string>
+    <string name="ring">Ring</string>
 
 </resources>

@@ -29,6 +29,7 @@ import org.kde.kdeconnect.Plugins.BatteryPlugin.BatteryPlugin;
 import org.kde.kdeconnect.Plugins.ClibpoardPlugin.ClipboardPlugin;
 import org.kde.kdeconnect.Plugins.ContactsPlugin.ContactsPlugin;
 import org.kde.kdeconnect.Plugins.FindMyPhonePlugin.FindMyPhonePlugin;
+import org.kde.kdeconnect.Plugins.FindRemoteDevicePlugin.FindRemoteDevicePlugin;
 import org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadPlugin;
 import org.kde.kdeconnect.Plugins.MprisPlugin.MprisPlugin;
 import org.kde.kdeconnect.Plugins.MprisReceiverPlugin.MprisReceiverPlugin;
@@ -132,6 +133,7 @@ public class PluginFactory {
         PluginFactory.registerPlugin(ContactsPlugin.class);
         PluginFactory.registerPlugin(RemoteKeyboardPlugin.class);
         //PluginFactory.registerPlugin(MprisReceiverPlugin.class);
+        PluginFactory.registerPlugin(FindRemoteDevicePlugin.class);
     }
 
     public static PluginInfo getPluginInfo(Context context, String pluginKey) {
