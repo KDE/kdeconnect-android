@@ -35,6 +35,7 @@ import org.kde.kdeconnect.Plugins.MprisPlugin.MprisPlugin;
 import org.kde.kdeconnect.Plugins.MprisReceiverPlugin.MprisReceiverPlugin;
 import org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationsPlugin;
 import org.kde.kdeconnect.Plugins.PingPlugin.PingPlugin;
+import org.kde.kdeconnect.Plugins.PresenterPlugin.PresenterPlugin;
 import org.kde.kdeconnect.Plugins.ReceiveNotificationsPlugin.ReceiveNotificationsPlugin;
 import org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin.RemoteKeyboardPlugin;
 import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandPlugin;
@@ -127,6 +128,7 @@ public class PluginFactory {
         PluginFactory.registerPlugin(NotificationsPlugin.class);
         PluginFactory.registerPlugin(ReceiveNotificationsPlugin.class);
         PluginFactory.registerPlugin(MousePadPlugin.class);
+        PluginFactory.registerPlugin(PresenterPlugin.class);
         PluginFactory.registerPlugin(SharePlugin.class);
         PluginFactory.registerPlugin(TelepathyPlugin.class);
         PluginFactory.registerPlugin(FindMyPhonePlugin.class);

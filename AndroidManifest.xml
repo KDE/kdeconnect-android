@@ -199,14 +199,24 @@
 
         <activity
             android:name="org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/remote_control"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
+        </activity>
+
+        <activity
+            android:name="org.kde.kdeconnect.Plugins.PresenterPlugin.PresenterActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/pref_plugin_presenter"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity"
             android:windowSoftInputMode="stateHidden|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
         </activity>
+
         <activity
             android:name="org.kde.kdeconnect.Plugins.SharePlugin.ShareActivity"
             android:label="KDE Connect">

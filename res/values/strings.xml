@@ -11,6 +11,8 @@
     <string name="pref_plugin_clipboard_desc">Share the clipboard content</string>
     <string name="pref_plugin_mousepad">Remote input</string>
     <string name="pref_plugin_mousepad_desc">Use your phone or tablet as a touchpad and keyboard</string>
+    <string name="pref_plugin_presenter">Presentation remote</string>
+    <string name="pref_plugin_presenter_desc">Use your device to change slides in a presentation</string>
     <string name="pref_plugin_remotekeyboard">Receive remote keypresses</string>
     <string name="pref_plugin_remotekeyboard_desc">Receive keypress events from remote devices</string>
     <string name="pref_plugin_mpris">Multimedia controls</string>
@@ -236,6 +238,10 @@
     <string name="device_icon_description">Device icon</string>
     <string name="settings_icon_description">Settings icon</string>
 
+    <string name="presenter_fullscreen">Fullscreen</string>
+    <string name="presenter_exit">Exit presentation</string>
+    <string name="presenter_lock_tip">You can lock your device to use the volume keys as previous/next buttons</string>
+    
     <string name="add_command">Add a command</string>
     <string name="addcommand_explanation">There are no commands registered</string>
     <string name="addcommand_explanation2">You can add new commands in the KDE Connect System Settings</string>
