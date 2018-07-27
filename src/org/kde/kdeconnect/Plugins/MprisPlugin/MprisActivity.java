@@ -339,6 +339,11 @@ public class MprisActivity extends AppCompatActivity {
             targetPlayer.next();
         }));
 
+        findViewById(R.id.stop_button).setOnClickListener(view -> BackgroundService.RunCommand(MprisActivity.this, service -> {
+            if (targetPlayer == null) return;
+            targetPlayer.stop();
+        }));
+
         ((SeekBar) findViewById(R.id.volume_seek)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {

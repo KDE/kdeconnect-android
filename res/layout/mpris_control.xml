@@ -74,6 +74,16 @@
             android:src="@drawable/ic_rewind_black" />
 
         <ImageButton
+            android:id="@+id/stop_button"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.25"
+            android:contentDescription="@string/mpris_stop"
+            android:theme="@style/DisableableButton"
+            android:src="@drawable/ic_stop" />
+
+
+        <ImageButton
             android:id="@+id/ff_button"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
