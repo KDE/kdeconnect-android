@@ -40,6 +40,7 @@ import org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin.RemoteKeyboardPlugin;
 import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandPlugin;
 import org.kde.kdeconnect.Plugins.SftpPlugin.SftpPlugin;
 import org.kde.kdeconnect.Plugins.SharePlugin.SharePlugin;
+import org.kde.kdeconnect.Plugins.SystemvolumePlugin.SystemvolumePlugin;
 import org.kde.kdeconnect.Plugins.TelepathyPlugin.TelepathyPlugin;
 import org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin;
 
@@ -132,6 +133,7 @@ public class PluginFactory {
         PluginFactory.registerPlugin(RunCommandPlugin.class);
         PluginFactory.registerPlugin(ContactsPlugin.class);
         PluginFactory.registerPlugin(RemoteKeyboardPlugin.class);
+        PluginFactory.registerPlugin(SystemvolumePlugin.class);
         //PluginFactory.registerPlugin(MprisReceiverPlugin.class);
         PluginFactory.registerPlugin(FindRemoteDevicePlugin.class);
     }

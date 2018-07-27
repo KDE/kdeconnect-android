@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="25dp"
+    android:paddingBottom="15dp"
     android:paddingLeft="25dp"
     android:paddingRight="25dp"
     android:paddingTop="25dp">
@@ -21,5 +21,11 @@
         layout="@layout/mpris_control"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <fragment android:name="org.kde.kdeconnect.Plugins.SystemvolumePlugin.SystemvolumeFragment"
+        android:id="@+id/systemvolume_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"/>
 
 </LinearLayout>
