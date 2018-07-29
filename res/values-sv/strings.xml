@@ -11,7 +11,7 @@
   <string name="pref_plugin_mousepad">Extern inmatning</string>
   <string name="pref_plugin_mousepad_desc">Använd telefonen eller surfplattan som mus och tangentbord</string>
   <string name="pref_plugin_remotekeyboard">Ta emot externa tangentnedtryckningar</string>
-  <string name="pref_plugin_remotekeyboard_desc">Ta emot tangentnedtryckningar från externa enheter</string>
+  <string name="pref_plugin_remotekeyboard_desc">Ta emot tangentnedtryckningar från externa apparater</string>
   <string name="pref_plugin_mpris">Multimediakontroller</string>
   <string name="pref_plugin_mpris_desc">Tillhandahåller en fjärrkontroll för mediaspelaren</string>
   <string name="pref_plugin_runcommand">Kör kommando</string>
@@ -38,7 +38,7 @@
   <string name="remotekeyboard_editing_only_title">Hantera bara externa tangenter vid redigering</string>
   <string name="remotekeyboard_not_connected">Det finns ingen aktiv anslutning till externt tangentbord, upprätta en i KDE-anslut</string>
   <string name="remotekeyboard_connected">Anslutning till externt tangentbord är aktiv</string>
-  <string name="remotekeyboard_multiple_connections">Det finns mer än en anslutning till externt tangentbord, välj enhet att anpassa</string>
+  <string name="remotekeyboard_multiple_connections">Det finns mer än en anslutning till externt tangentbord, välj apparat att anpassa</string>
   <string name="open_mousepad">Extern inmatning</string>
   <string name="mousepad_info">Flytta fingret på skärmen för att röra muspekaren. Rör för att klicka, och använd två eller tre fingrar för höger- och mittenknapparna. Använd två fingrar för att panorera. Använd en längre beröring för drag och släpp.</string>
   <string name="mousepad_double_tap_settings_title">Ställ in åtgärd vid två fingerberöringar</string>
@@ -199,13 +199,26 @@
   <string name="telephony_pref_blocked_title">Blockerade nummer</string>
   <string name="telephony_pref_blocked_dialog_desc">Visa inte samtal och SMS från dessa nummer. Ange ett nummer per rad.</string>
   <string name="mpris_coverart_description">Omslag för aktuell media</string>
-  <string name="device_icon_description">Enhetsikon</string>
+  <string name="device_icon_description">Apparatikon</string>
   <string name="settings_icon_description">Inställningsikon</string>
   <string name="add_command">Lägg till ett kommando</string>
   <string name="addcommand_explanation">Det finns inga kommandon registrerade</string>
   <string name="addcommand_explanation2">Du kan lägga till nya kommandon i KDE-ansluts systeminställningar</string>
   <string name="add_command_description">Du kan lägga till kommandon på skrivbordet</string>
   <string name="pref_plugin_mprisreceiver">Styrning av mediaspelare</string>
-  <string name="pref_plugin_mprisreceiver_desc">Styr telefonens mediaspelare från en annan enhet</string>
+  <string name="pref_plugin_mprisreceiver_desc">Styr telefonens mediaspelare från en annan apparat</string>
   <string name="dark_theme">Mörkt tema</string>
+  <string name="mpris_stop">Stoppa aktuell spelare</string>
+  <string name="copy_url_to_clipboard">Kopiera webbadress till klippbordet</string>
+  <string name="clipboard_toast">Kopierad till klippbordet</string>
+  <string name="runcommand_notreachable">Apparaten kan inte nås</string>
+  <string name="runcommand_notpaired">Apparat inte ihopparad</string>
+  <string name="runcommand_nosuchdevice">Det finns ingen sådan apparat</string>
+  <string name="runcommand_noruncommandplugin">Apparaten har inte insticksprogrammet Kör kommando aktiverat</string>
+  <string name="pref_plugin_findremotedevice">Hitta extern apparat</string>
+  <string name="pref_plugin_findremotedevice_desc">Ring till extern apparat</string>
+  <string name="ring">Ring</string>
+  <string name="pref_plugin_systemvolume">Systemvolym</string>
+  <string name="pref_plugin_systemvolume_desc">Kontrollera systemvolymen för den externa apparaten</string>
+  <string name="mute">Tyst</string>
 </resources>

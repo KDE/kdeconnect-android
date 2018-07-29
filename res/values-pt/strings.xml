@@ -208,4 +208,17 @@
   <string name="pref_plugin_mprisreceiver">Controlo de Leitores Multimédia</string>
   <string name="pref_plugin_mprisreceiver_desc">Controle os leitores multimédia dos seus telemóveis a partir de outro dispositivo</string>
   <string name="dark_theme">Tema escuro</string>
+  <string name="mpris_stop">Parar o leitor actual</string>
+  <string name="copy_url_to_clipboard">Copiar o URL para a área de transferência</string>
+  <string name="clipboard_toast">Copiado para a área de transferência</string>
+  <string name="runcommand_notreachable">O dispositivo está inacessível</string>
+  <string name="runcommand_notpaired">O dispositivo não está emparelhado</string>
+  <string name="runcommand_nosuchdevice">Não existe esse dispositivo</string>
+  <string name="runcommand_noruncommandplugin">Este dispositivo não tem o \'Plugin\' de Execução de Comandos activo</string>
+  <string name="pref_plugin_findremotedevice">Procurar um dispositivo remoto</string>
+  <string name="pref_plugin_findremotedevice_desc">Fazer tocar o seu dispositivo remoto</string>
+  <string name="ring">Toque</string>
+  <string name="pref_plugin_systemvolume">Volume do sistema</string>
+  <string name="pref_plugin_systemvolume_desc">Controle o volume do sistema desde o dispositivo remoto</string>
+  <string name="mute">Silenciar</string>
 </resources>

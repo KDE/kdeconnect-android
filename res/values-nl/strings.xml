@@ -208,4 +208,17 @@
   <string name="pref_plugin_mprisreceiver">Besturing van mediaspeler</string>
   <string name="pref_plugin_mprisreceiver_desc">Uw mediaspelers op uw telefoon besturen vanaf een andere apparaat</string>
   <string name="dark_theme">Donker themea</string>
+  <string name="mpris_stop">Stop de huidige speler</string>
+  <string name="copy_url_to_clipboard">URL-adres kopiëren naar klembord</string>
+  <string name="clipboard_toast">Gekopieerd naar klembord</string>
+  <string name="runcommand_notreachable">Apparaat is niet bereikbaar</string>
+  <string name="runcommand_notpaired">Apparaat is niet gepaard</string>
+  <string name="runcommand_nosuchdevice">Dit apparaat bestaat niet</string>
+  <string name="runcommand_noruncommandplugin">Dit apparaat heeft de \"Run Command Plugin\" niet ingeschakeld</string>
+  <string name="pref_plugin_findremotedevice">Apparaat op afstand zoeken</string>
+  <string name="pref_plugin_findremotedevice_desc">Maak een oproep naar uw apparaat op afstand</string>
+  <string name="ring">Oproep doen</string>
+  <string name="pref_plugin_systemvolume">Systeemvolume</string>
+  <string name="pref_plugin_systemvolume_desc">Bestuur het systeemvolume vanaf uw apparaat op afstand</string>
+  <string name="mute">Dempen</string>
 </resources>

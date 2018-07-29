@@ -208,4 +208,17 @@
   <string name="pref_plugin_mprisreceiver">Control del reproductor multimèdia</string>
   <string name="pref_plugin_mprisreceiver_desc">Controla els reproductors multimèdia dels telèfons des d\'un altre dispositiu</string>
   <string name="dark_theme">Tema fosc</string>
+  <string name="mpris_stop">Atura el reproductor actual</string>
+  <string name="copy_url_to_clipboard">Copia l\'URL al porta-retalls</string>
+  <string name="clipboard_toast">Copiat al porta-retalls</string>
+  <string name="runcommand_notreachable">No es pot accedir al dispositiu</string>
+  <string name="runcommand_notpaired">El dispositiu no està aparellat</string>
+  <string name="runcommand_nosuchdevice">No existeix aquest dispositiu</string>
+  <string name="runcommand_noruncommandplugin">Aquest dispositiu no té el connector d\'executar ordres activat</string>
+  <string name="pref_plugin_findremotedevice">Cerca el dispositiu remot</string>
+  <string name="pref_plugin_findremotedevice_desc">Truca al dispositiu remot</string>
+  <string name="ring">Truca</string>
+  <string name="pref_plugin_systemvolume">Volum del sistema</string>
+  <string name="pref_plugin_systemvolume_desc">Controla el volum del sistema des del dispositiu remot</string>
+  <string name="mute">Silencia</string>
 </resources>
