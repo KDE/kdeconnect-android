@@ -11,7 +11,8 @@
     android:paddingEnd="?android:attr/scrollbarSize"
     android:paddingLeft="12dip"
     android:paddingRight="?android:attr/scrollbarSize"
-    android:paddingStart="12dip">
+    android:paddingStart="12dip"
+    android:id="@+id/list_item_entry">
     <!-- We should use android:background="@android:/listChoiceBackgroundIndicator"
          instead of abc_list_selector_holo_dark but that's only supported from API11 -->
 

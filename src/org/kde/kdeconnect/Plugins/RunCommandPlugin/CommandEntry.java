@@ -37,4 +37,8 @@ public class CommandEntry extends EntryItem {
     public String getName() {
         return title;
     }
+
+    public String getCommand() {
+        return subtitle;
+    }
 }

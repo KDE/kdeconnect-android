@@ -31,6 +31,7 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+    <uses-permission android:name="android.permission.BIND_REMOTEVIEWS" />
 
     <application
         android:allowBackup="true"
@@ -160,6 +161,28 @@
                 android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
 
         </activity>
+
+        <activity android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandWidgetDeviceSelector"
+            android:theme="@style/Theme.AppCompat.Light.Dialog"
+            android:launchMode="singleTask"
+            android:screenOrientation="user"
+            android:noHistory="true"
+            android:excludeFromRecents="true"
+            android:label="@string/pref_plugin_runcommand"/>
+        <service
+            android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandWidgetDataProviderService"
+            android:exported="false" android:permission="android.permission.BIND_REMOTEVIEWS"/>
+        <receiver android:label="@string/pref_plugin_runcommand" android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="RUN_COMMAND_ACTION" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/remotecommandplugin_widget" />
+        </receiver>
+
 
         <activity android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandUrlActivity">
             <intent-filter>

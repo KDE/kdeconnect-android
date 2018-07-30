@@ -33,6 +33,7 @@ import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
 public class RunCommandPlugin extends Plugin {
@@ -42,6 +43,7 @@ public class RunCommandPlugin extends Plugin {
 
     private ArrayList<JSONObject> commandList = new ArrayList<>();
     private ArrayList<CommandsChangedCallback> callbacks = new ArrayList<>();
+    private final ArrayList<CommandEntry> commandItems = new ArrayList<>();
 
     private boolean canAddCommand;
 
@@ -59,6 +61,10 @@ public class RunCommandPlugin extends Plugin {
 
     public ArrayList<JSONObject> getCommandList() {
         return commandList;
+    }
+
+    public ArrayList<CommandEntry> getCommandItems() {
+        return commandItems;
     }
 
     @Override
@@ -88,6 +94,7 @@ public class RunCommandPlugin extends Plugin {
         if (np.has("commandList")) {
             commandList.clear();
             try {
+                commandItems.clear();
                 JSONObject obj = new JSONObject(np.getString("commandList"));
                 Iterator<String> keys = obj.keys();
                 while (keys.hasNext()) {
@@ -95,7 +102,25 @@ public class RunCommandPlugin extends Plugin {
                     JSONObject o = obj.getJSONObject(s);
                     o.put("key", s);
                     commandList.add(o);
+
+                    try {
+                        commandItems.add(
+                                new CommandEntry(
+                                        o.getString("name"),
+                                        o.getString("command"),
+                                        o.getString("key")
+                                )
+                        );
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
+
+                Collections.sort(commandItems, (lhs, rhs) -> lhs.getName().compareTo(rhs.getName()) );
+
+                Intent updateWidget = new Intent(context, RunCommandWidget.class);
+                context.sendBroadcast(updateWidget);
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
