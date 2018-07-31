@@ -208,4 +208,17 @@
   <string name="pref_plugin_mprisreceiver">Control del reproductor de medios</string>
   <string name="pref_plugin_mprisreceiver_desc">Controle los reproductores de medios de sus teléfonos desde otro dispositivo</string>
   <string name="dark_theme">Tema oscuro</string>
+  <string name="mpris_stop">Parar el reproductor actual</string>
+  <string name="copy_url_to_clipboard">Copiar URL al portapapeles</string>
+  <string name="clipboard_toast">Copiado en el portapapeles</string>
+  <string name="runcommand_notreachable">El dispositivo no se encuentra accesible</string>
+  <string name="runcommand_notpaired">El dispositivo no está vinculado</string>
+  <string name="runcommand_nosuchdevice">No se encuentra ese dispositivo</string>
+  <string name="runcommand_noruncommandplugin">Este dispositivo no tiene el complemento para ejecutar órdenes activado</string>
+  <string name="pref_plugin_findremotedevice">Encontrar dispositivo remoto</string>
+  <string name="pref_plugin_findremotedevice_desc">Hacer sonar el dispositivo remoto</string>
+  <string name="ring">Hacer sonar</string>
+  <string name="pref_plugin_systemvolume">Volumen del sistema</string>
+  <string name="pref_plugin_systemvolume_desc">Controle el volumen del sistema del dispositivo remoto</string>
+  <string name="mute">Silenciar</string>
 </resources>
