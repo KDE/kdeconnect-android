@@ -208,4 +208,17 @@
   <string name="pref_plugin_mprisreceiver">Contrôle du lecteur multimédia</string>
   <string name="pref_plugin_mprisreceiver_desc">Contrôlez les lecteurs multimédia de vos téléphones depuis un autre appareil</string>
   <string name="dark_theme">Thème sombre</string>
+  <string name="mpris_stop">Arrêter le lecteur actuel</string>
+  <string name="copy_url_to_clipboard">Copier l\'URL dans le presse-papiers</string>
+  <string name="clipboard_toast">Copié dans le presse-papier</string>
+  <string name="runcommand_notreachable">Le périphérique est inaccessible</string>
+  <string name="runcommand_notpaired">Le périphérique n\'est pas associé</string>
+  <string name="runcommand_nosuchdevice">Ce périphérique n\'existe pas</string>
+  <string name="runcommand_noruncommandplugin">Le module externe Exécuter une commande n\'est pas activé sur ce périphérique</string>
+  <string name="pref_plugin_findremotedevice">Trouver un périphérique distant</string>
+  <string name="pref_plugin_findremotedevice_desc">Faire sonner votre périphérique distant</string>
+  <string name="ring">Faire sonner</string>
+  <string name="pref_plugin_systemvolume">Volume du système</string>
+  <string name="pref_plugin_systemvolume_desc">Contrôler le volume du système du périphérique distant</string>
+  <string name="mute">Muet</string>
 </resources>
