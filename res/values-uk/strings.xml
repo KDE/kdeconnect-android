@@ -10,6 +10,8 @@
   <string name="pref_plugin_clipboard_desc">Спільне використання буфера обміну даними</string>
   <string name="pref_plugin_mousepad">Дистанційне введення</string>
   <string name="pref_plugin_mousepad_desc">Скористайтеся телефоном або планшетом як замінником сенсорної панелі і клавіатури</string>
+  <string name="pref_plugin_presenter">Керування презентацією</string>
+  <string name="pref_plugin_presenter_desc">Скористайтеся вашим пристроєм для того, щоб змінювати слайди у презентації</string>
   <string name="pref_plugin_remotekeyboard">Отримувати віддалені натискання клавіш</string>
   <string name="pref_plugin_remotekeyboard_desc">Отримувати події натискання клавіш з віддаленого пристрою</string>
   <string name="pref_plugin_mpris">Керування відтворенням</string>
@@ -203,6 +205,9 @@
   <string name="mpris_coverart_description">Зображення обкладинки відтворюваних даних</string>
   <string name="device_icon_description">Піктограма пристрою</string>
   <string name="settings_icon_description">Піктограма параметрів</string>
+  <string name="presenter_fullscreen">На увесь екран</string>
+  <string name="presenter_exit">Вийти з презентації</string>
+  <string name="presenter_lock_tip">Ви можете заблокувати ваш пристрій так, щоб користуватися кнопками зміни гучності як кнопками «Назад»/«Далі»</string>
   <string name="add_command">Додати команду</string>
   <string name="addcommand_explanation">Жодних команд не зареєстровано</string>
   <string name="addcommand_explanation2">Ви можете додавати нові команди за допомогою Системних параметрів KDE Connect</string>
