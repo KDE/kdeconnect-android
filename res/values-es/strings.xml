@@ -10,6 +10,8 @@
   <string name="pref_plugin_clipboard_desc">Compartir el contenido del portapapeles</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
   <string name="pref_plugin_mousepad_desc">Usar su teléfono o tableta como teclado y teclado táctil</string>
+  <string name="pref_plugin_presenter">Presentación remota</string>
+  <string name="pref_plugin_presenter_desc">Use su dispositivo para cambiar las diapositivas de una presentación</string>
   <string name="pref_plugin_remotekeyboard">Recibir pulsaciones de teclas remotas</string>
   <string name="pref_plugin_remotekeyboard_desc">Recibir eventos de pulsación de teclas desde dispositivos remotos</string>
   <string name="pref_plugin_mpris">Controles multimedia</string>
@@ -201,6 +203,9 @@
   <string name="mpris_coverart_description">Carátula del medio actual</string>
   <string name="device_icon_description">Icono del dispositivo</string>
   <string name="settings_icon_description">Icono de preferencias</string>
+  <string name="presenter_fullscreen">Pantalla completa</string>
+  <string name="presenter_exit">Salir de la presentación</string>
+  <string name="presenter_lock_tip">Puede bloquear su dispositivo para usar las teclas de volumen como botones previa/siguiente</string>
   <string name="add_command">Añadir una orden</string>
   <string name="addcommand_explanation">No hay ninguna orden registrada</string>
   <string name="addcommand_explanation2">Puede añadir nuevas órdenes en las preferencias del sistema de KDE Connect</string>

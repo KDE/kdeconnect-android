@@ -10,6 +10,8 @@
   <string name="pref_plugin_clipboard_desc">Partage le contenu du presse-papiers</string>
   <string name="pref_plugin_mousepad">Contrôle distant</string>
   <string name="pref_plugin_mousepad_desc">Utilisez votre téléphone ou tablette comme un pavé tactile et un clavier</string>
+  <string name="pref_plugin_presenter">Télécommande de présentation</string>
+  <string name="pref_plugin_presenter_desc">Utilisez votre appareil pour changer les diapositives d\'une présentation</string>
   <string name="pref_plugin_remotekeyboard">Recevoir les appuis de touches distants</string>
   <string name="pref_plugin_remotekeyboard_desc">Recevoir les appuis de touches des périphériques distants</string>
   <string name="pref_plugin_mpris">Contrôles multimédia</string>
@@ -201,6 +203,9 @@
   <string name="mpris_coverart_description">Illustration du média actuel</string>
   <string name="device_icon_description">Icône du périphérique</string>
   <string name="settings_icon_description">Icône des paramètres</string>
+  <string name="presenter_fullscreen">Plein écran</string>
+  <string name="presenter_exit">Quitter la présentation</string>
+  <string name="presenter_lock_tip">Vous pouvez verrouiller votre appareil pour utiliser les touches de volume comme boutons suivant / précédent</string>
   <string name="add_command">Ajouter une commande</string>
   <string name="addcommand_explanation">Aucune commande enregistrée</string>
   <string name="addcommand_explanation2">Vous pouvez ajouter de nouvelles commandes dans la configuration système de KDE Connect</string>
