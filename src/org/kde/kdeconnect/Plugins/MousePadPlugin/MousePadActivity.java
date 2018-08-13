@@ -60,6 +60,9 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
     private GestureDetector mDetector;
     private MousePadGestureDetector mMousePadGestureDetector;
+    private PointerAccelerationProfile mPointerAccelerationProfile;
+
+    private PointerAccelerationProfile.MouseDelta mouseDelta; // to be reused on every touch move event
 
     KeyListenerView keyListenerView;
 
@@ -110,6 +113,11 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
                 getString(R.string.mousepad_default_triple));
         String sensitivitySetting = prefs.getString(getString(R.string.mousepad_sensitivity_key),
                 getString(R.string.mousepad_default_sensitivity));
+
+        String accelerationProfileName=prefs.getString(getString(R.string.mousepad_acceleration_profile_key),
+                getString(R.string.mousepad_default_acceleration_profile));
+
+        mPointerAccelerationProfile = PointerAccelerationProfileFactory.getProfileWithName(accelerationProfileName);
 
         doubleTapAction = ClickType.fromString(doubleTapSetting);
         tripleTapAction = ClickType.fromString(tripleTapSetting);
@@ -221,10 +229,16 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
                     Device device = service.getDevice(deviceId);
                     MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
                     if (mousePadPlugin == null) return;
-                    mousePadPlugin.sendMouseDelta(
-                            (mCurrentX - mPrevX) * displayDpiMultiplier,
-                            (mCurrentY - mPrevY) * displayDpiMultiplier,
-                            mCurrentSensitivity);
+
+                    float deltaX = (mCurrentX - mPrevX) * displayDpiMultiplier * mCurrentSensitivity;
+                    float deltaY = (mCurrentY - mPrevY) * displayDpiMultiplier * mCurrentSensitivity;
+
+                    // Run the mouse delta through the pointer acceleration profile
+                    mPointerAccelerationProfile.touchMoved(deltaX, deltaY, event.getEventTime());
+                    mouseDelta = mPointerAccelerationProfile.commitAcceleratedMouseDelta(mouseDelta);
+
+                    mousePadPlugin.sendMouseDelta(mouseDelta.x,mouseDelta.y);
+
                     mPrevX = mCurrentX;
                     mPrevY = mCurrentY;
                 });
