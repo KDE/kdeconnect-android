@@ -30,6 +30,14 @@
     <item>Above Default</item>
     <item>Fastest</item>
   </string-array>
+  <string-array name="mousepad_acceleration_profile_entries">
+    <item>No Acceleration</item>
+    <item>Weakest</item>
+    <item>Weaker</item>
+    <item>Medium</item>
+    <item>Stronger</item>
+    <item>Strongest</item>
+  </string-array>
   <string name="category_connected_devices">Свързани устройства</string>
   <string name="category_remembered_devices">Запомнени устройства</string>
   <string name="plugins_failed_to_load">Неуспешно зареждане на приставки (докоснете за подробности)</string>

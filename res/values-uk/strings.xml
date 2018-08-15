@@ -46,6 +46,7 @@
   <string name="mousepad_double_tap_settings_title">Встановлення дії для торкання двома пальцями</string>
   <string name="mousepad_triple_tap_settings_title">Встановлення дії для торкання трьома пальцями</string>
   <string name="mousepad_sensitivity_settings_title">Встановити чутливість сенсорної панелі</string>
+  <string name="mousepad_acceleration_profile_settings_title">Встановити прискорення вказівника</string>
   <string name="mousepad_scroll_direction_title">Зворотний напрямок гортання</string>
   <string-array name="mousepad_tap_entries">
     <item>Клацання правою</item>
@@ -58,6 +59,14 @@
     <item>Типовий</item>
     <item>Швидший за типовий</item>
     <item>Найшвидший</item>
+  </string-array>
+  <string-array name="mousepad_acceleration_profile_entries">
+    <item>Немає прискорення</item>
+    <item>Найслабше</item>
+    <item>Слабке</item>
+    <item>Середнє</item>
+    <item>Сильне</item>
+    <item>Найсильніше</item>
   </string-array>
   <string name="category_connected_devices">З’єднані пристрої</string>
   <string name="category_not_paired_devices">Доступні пристрої</string>

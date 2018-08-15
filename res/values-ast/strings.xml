@@ -42,6 +42,14 @@
     <item>Above Default</item>
     <item>Fastest</item>
   </string-array>
+  <string-array name="mousepad_acceleration_profile_entries">
+    <item>No Acceleration</item>
+    <item>Weakest</item>
+    <item>Weaker</item>
+    <item>Medium</item>
+    <item>Stronger</item>
+    <item>Strongest</item>
+  </string-array>
   <string name="error_timed_out">Escosó\'l tiempu</string>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>

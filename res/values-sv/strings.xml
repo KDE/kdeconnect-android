@@ -46,6 +46,7 @@
   <string name="mousepad_double_tap_settings_title">Ställ in åtgärd vid två fingerberöringar</string>
   <string name="mousepad_triple_tap_settings_title">Ställ in åtgärd vid tre fingerberöringar</string>
   <string name="mousepad_sensitivity_settings_title">Ställ in tryckplattans känslighet</string>
+  <string name="mousepad_acceleration_profile_settings_title">Ställ in pekaracceleration</string>
   <string name="mousepad_scroll_direction_title">Omvänd rullningsriktning</string>
   <string-array name="mousepad_tap_entries">
     <item>Högerklick</item>
@@ -58,6 +59,14 @@
     <item>Normal</item>
     <item>Ovanför normal</item>
     <item>Snabbaste</item>
+  </string-array>
+  <string-array name="mousepad_acceleration_profile_entries">
+    <item>Ingen acceleration</item>
+    <item>Minsta</item>
+    <item>Mindre</item>
+    <item>Medium</item>
+    <item>Större</item>
+    <item>Störst</item>
   </string-array>
   <string name="category_connected_devices">Anslutna apparater</string>
   <string name="category_not_paired_devices">Tillgängliga apparater</string>

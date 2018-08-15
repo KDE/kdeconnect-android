@@ -46,6 +46,7 @@
   <string name="mousepad_double_tap_settings_title">Definir a acção do toque com dois dedos</string>
   <string name="mousepad_triple_tap_settings_title">Definir a acção do toque com três dedos</string>
   <string name="mousepad_sensitivity_settings_title">Definir a sensibilidade do rato por toque</string>
+  <string name="mousepad_acceleration_profile_settings_title">Definir a aceleração do cursor</string>
   <string name="mousepad_scroll_direction_title">Direcção de Deslocamento Inversa</string>
   <string-array name="mousepad_tap_entries">
     <item>Botão direito</item>
@@ -58,6 +59,14 @@
     <item>Predefinição</item>
     <item>Acima da Predefinição</item>
     <item>Mais Rápido</item>
+  </string-array>
+  <string-array name="mousepad_acceleration_profile_entries">
+    <item>Sem Aceleração</item>
+    <item>Mais Fraca</item>
+    <item>Fraca</item>
+    <item>Média</item>
+    <item>Forte</item>
+    <item>Mais Forte</item>
   </string-array>
   <string name="category_connected_devices">Dispositivos ligados</string>
   <string name="category_not_paired_devices">Dispositivos disponíveis</string>

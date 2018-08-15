@@ -47,6 +47,14 @@
     <item>Schnell</item>
     <item>Schnellste</item>
   </string-array>
+  <string-array name="mousepad_acceleration_profile_entries">
+    <item>No Acceleration</item>
+    <item>Weakest</item>
+    <item>Weaker</item>
+    <item>Medium</item>
+    <item>Stronger</item>
+    <item>Strongest</item>
+  </string-array>
   <string name="category_connected_devices">Verbundene Geräte</string>
   <string name="category_not_paired_devices">Verfügbare Gerät</string>
   <string name="category_remembered_devices">Gemerkte Geräte</string>
