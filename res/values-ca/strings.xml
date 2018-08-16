@@ -46,6 +46,7 @@
   <string name="mousepad_double_tap_settings_title">Estableix l\'acció de tocar amb dos dits</string>
   <string name="mousepad_triple_tap_settings_title">Estableix l\'acció de tocar amb tres dits</string>
   <string name="mousepad_sensitivity_settings_title">Estableix la sensibilitat del ratolí tàctil</string>
+  <string name="mousepad_acceleration_profile_settings_title">Estableix l\'acceleració de l\'apuntador</string>
   <string name="mousepad_scroll_direction_title">Inverteix la direcció del desplaçament</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic dret</item>
@@ -60,12 +61,12 @@
     <item>La més ràpida</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>No Acceleration</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
-    <item>Medium</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>Sense acceleració</item>
+    <item>La més feble</item>
+    <item>Feble</item>
+    <item>Mitjana</item>
+    <item>Forta</item>
+    <item>La més forta</item>
   </string-array>
   <string name="category_connected_devices">Dispositius connectats</string>
   <string name="category_not_paired_devices">Dispositius disponibles</string>
