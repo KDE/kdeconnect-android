@@ -27,8 +27,10 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+    <uses-permission android:name="android.permission.BIND_REMOTEVIEWS" />
 
     <application
         android:icon="@drawable/icon"
@@ -155,17 +157,64 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
+
         </activity>
+
+        <activity android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandWidgetDeviceSelector"
+            android:theme="@style/Theme.AppCompat.Light.Dialog"
+            android:launchMode="singleTask"
+            android:screenOrientation="user"
+            android:noHistory="true"
+            android:excludeFromRecents="true"
+            android:label="@string/pref_plugin_runcommand"/>
+        <service
+            android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandWidgetDataProviderService"
+            android:exported="false" android:permission="android.permission.BIND_REMOTEVIEWS"/>
+        <receiver android:label="@string/pref_plugin_runcommand" android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="RUN_COMMAND_ACTION" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/remotecommandplugin_widget" />
+        </receiver>
+
+
+        <activity android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandUrlActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"></action>
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="kdeconnect" android:host="runcommand"/>
+
+            </intent-filter>
+        </activity>
+
         <activity
             android:name="org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/remote_control"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
+        </activity>
+
+        <activity
+            android:name="org.kde.kdeconnect.Plugins.PresenterPlugin.PresenterActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/pref_plugin_presenter"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity"
             android:windowSoftInputMode="stateHidden|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
         </activity>
+
         <activity
             android:name="org.kde.kdeconnect.Plugins.SharePlugin.ShareActivity"
             android:label="KDE Connect">

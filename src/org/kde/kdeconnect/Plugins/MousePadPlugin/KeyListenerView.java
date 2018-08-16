@@ -37,7 +37,7 @@ public class KeyListenerView extends View {
 
     private String deviceId;
 
-    private static SparseIntArray SpecialKeysMap = new SparseIntArray();
+    public static SparseIntArray SpecialKeysMap = new SparseIntArray();
 
     static {
         int i = 0;

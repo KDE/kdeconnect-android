@@ -188,4 +188,7 @@
   <string name="add_command">Einen Befehl hinzufügen</string>
   <string name="addcommand_explanation">Es sind keine Befehle registriert.</string>
   <string name="addcommand_explanation2">Sie können neue Befehle in den Systemeinstellungen für KDE-Connect hinzufügen.</string>
+  <string name="add_command_description">Sie können Befehle auf der Arbeitsfläche hinzufügen</string>
+  <string name="pref_plugin_mprisreceiver">Steuerung für Medienwiedergabe</string>
+  <string name="dark_theme">Dunkles Design</string>
 </resources>

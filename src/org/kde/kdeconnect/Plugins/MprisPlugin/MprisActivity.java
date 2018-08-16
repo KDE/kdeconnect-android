@@ -15,8 +15,8 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
-*/
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 package org.kde.kdeconnect.Plugins.MprisPlugin;
 
@@ -28,6 +28,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -45,6 +46,7 @@ import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Plugins.SystemvolumePlugin.SystemvolumeFragment;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
@@ -87,6 +89,8 @@ public class MprisActivity extends AppCompatActivity {
                 return;
             }
             targetPlayer = mpris.getPlayerStatus(targetPlayerName);
+
+            addSytemvolumeFragment();
 
             mpris.setPlayerStatusUpdatedHandler("activity", new Handler() {
                 @Override
@@ -170,6 +174,15 @@ public class MprisActivity extends AppCompatActivity {
 
     }
 
+    private void addSytemvolumeFragment() {
+
+        if (findViewById(R.id.systemvolume_fragment) == null)
+            return;
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        ((SystemvolumeFragment) fragmentManager.findFragmentById(R.id.systemvolume_fragment)).connectToPlugin(deviceId);
+    }
+
     private final BaseLinkProvider.ConnectionReceiver connectionReceiver = new BaseLinkProvider.ConnectionReceiver() {
         @Override
         public void onConnectionReceived(NetworkPacket identityPacket, BaseLink link) {
@@ -232,7 +245,7 @@ public class MprisActivity extends AppCompatActivity {
             findViewById(R.id.play_button).setEnabled(playerStatus.isPlayAllowed());
         }
 
-        findViewById(R.id.volume_layout).setVisibility(playerStatus.isSetVolumeAllowed() ? View.VISIBLE : View.INVISIBLE);
+        findViewById(R.id.volume_layout).setVisibility(playerStatus.isSetVolumeAllowed() ? View.VISIBLE : View.GONE);
         findViewById(R.id.rew_button).setVisibility(playerStatus.isSeekAllowed() ? View.VISIBLE : View.GONE);
         findViewById(R.id.ff_button).setVisibility(playerStatus.isSeekAllowed() ? View.VISIBLE : View.GONE);
 
@@ -337,6 +350,11 @@ public class MprisActivity extends AppCompatActivity {
         findViewById(R.id.next_button).setOnClickListener(view -> BackgroundService.RunCommand(MprisActivity.this, service -> {
             if (targetPlayer == null) return;
             targetPlayer.next();
+        }));
+
+        findViewById(R.id.stop_button).setOnClickListener(view -> BackgroundService.RunCommand(MprisActivity.this, service -> {
+            if (targetPlayer == null) return;
+            targetPlayer.stop();
         }));
 
         ((SeekBar) findViewById(R.id.volume_seek)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

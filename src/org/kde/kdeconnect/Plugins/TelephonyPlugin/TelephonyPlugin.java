@@ -28,6 +28,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
+import android.net.Network;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -37,22 +38,77 @@ import android.telephony.SmsMessage;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.kde.kdeconnect.Helpers.ContactsHelper;
+import org.kde.kdeconnect.Helpers.SMSHelper;
+import org.kde.kdeconnect.Helpers.SMSHelper.ThreadID;
+import org.kde.kdeconnect.Helpers.SMSHelper.Message;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.BuildConfig;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class TelephonyPlugin extends Plugin {
 
+    /**
+     * Packet used to indicate a batch of messages has been pushed from the remote device
+     *
+     * The body should contain the key "messages" mapping to an array of messages
+     *
+     * For example:
+     * { "messages" : [
+     *   { "event" : "sms",
+     *     "messageBody" : "Hello",
+     *     "phoneNumber" : "2021234567",
+     *      "messageDate" : "1518846484880",
+     *      "messageType" : "2",
+     *      "threadID" : "132"
+     *    },
+     *    { ... },
+     *     ...
+     *   ]
+     */
+    private final static String PACKET_TYPE_TELEPHONY_MESSAGE = "kdeconnect.telephony.message";
+
+    /**
+     * Packet used for simple telephony events
+     *
+     * It contains the key "event" which maps to a string indicating the type of event:
+     *  - "ringing" - A phone call is incoming
+     *  - "missedCall" - An incoming call was not answered
+     *  - "sms" - An incoming SMS message
+     *   - Note: As of this writing (15 May 2018) the SMS interface is being improved and this type of event
+     *     is no longer the preferred way of retrieving SMS. Use PACKET_TYPE_TELEPHONY_MESSAGE instead.
+     *
+     *  Depending on the event, other fields may be defined
+     */
     private final static String PACKET_TYPE_TELEPHONY = "kdeconnect.telephony";
     public final static String PACKET_TYPE_TELEPHONY_REQUEST = "kdeconnect.telephony.request";
     private static final String KEY_PREF_BLOCKED_NUMBERS = "telephony_blocked_numbers";
+
+    /**
+     * Packet sent to request all conversations
+     *
+     * The request packet shall contain no body
+     */
+    public final static String PACKET_TYPE_TELEPHONY_REQUEST_CONVERSATIONS = "kdeconnect.telephony.request_conversations";
+
+    /**
+     * Packet sent to request all the messages in a particular conversation
+     *
+     * The body should contain the key "threadID" mapping to the threadID (as a string) being requested
+     * For example:
+     * { "threadID": 203 }
+     */
+    public final static String PACKET_TYPE_TELEPHONY_REQUEST_CONVERSATION = "kdeconnect.telephony.request_conversation";
 
     private int lastState = TelephonyManager.CALL_STATE_IDLE;
     private NetworkPacket lastPacket = null;
@@ -284,6 +340,12 @@ public class TelephonyPlugin extends Plugin {
 
     @Override
     public boolean onPacketReceived(NetworkPacket np) {
+        if (np.getType().equals(PACKET_TYPE_TELEPHONY_REQUEST_CONVERSATIONS)) {
+            return this.handleRequestConversations(np);
+        }
+        else if (np.getType().equals(PACKET_TYPE_TELEPHONY_REQUEST_CONVERSATION)) {
+            return this.handleRequestConversation(np);
+        }
         if (np.getString("action").equals("mute")) {
             if (!isMuted) {
                 AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
@@ -311,14 +373,84 @@ public class TelephonyPlugin extends Plugin {
         return false;
     }
 
+    /**
+     * Respond to a request for all conversations
+     *
+     * Send one packet of type PACKET_TYPE_TELEPHONY_MESSAGE with the first message in all conversations
+     */
+    protected boolean handleRequestConversations(NetworkPacket packet) {
+        Map<ThreadID, Message> conversations = SMSHelper.getConversations(this.context);
+
+        NetworkPacket reply = new NetworkPacket(PACKET_TYPE_TELEPHONY_MESSAGE);
+
+        JSONArray messages = new JSONArray();
+
+        for (Message message : conversations.values()) {
+            try {
+                JSONObject json = message.toJSONObject();
+
+                json.put("event", "sms");
+
+                messages.put(json);
+            } catch (JSONException e)
+            {
+                Log.e("Conversations", "Error serializing message");
+            }
+        }
+
+        reply.set("messages", messages);
+        reply.set("event", "batch_messages"); // Not really necessary, since this is implied by PACKET_TYPE_TELEPHONY_MESSAGE, but good for readability
+
+        device.sendPacket(reply);
+
+        return true;
+    }
+
+    protected boolean handleRequestConversation(NetworkPacket packet) {
+        ThreadID threadID = new ThreadID(packet.getInt("threadID"));
+
+        List<Message> conversation = SMSHelper.getMessagesInThread(this.context, threadID);
+
+        NetworkPacket reply = new NetworkPacket(PACKET_TYPE_TELEPHONY_MESSAGE);
+
+        JSONArray messages = new JSONArray();
+
+        for (Message message : conversation) {
+            try {
+                JSONObject json = message.toJSONObject();
+
+                json.put("event", "sms");
+
+                messages.put(json);
+            } catch (JSONException e)
+            {
+                Log.e("Conversations", "Error serializing message");
+            }
+        }
+
+        reply.set("messages", messages);
+        reply.set("event", "batch_messages");
+
+        device.sendPacket(reply);
+
+        return true;
+    }
+
     @Override
     public String[] getSupportedPacketTypes() {
-        return new String[]{PACKET_TYPE_TELEPHONY_REQUEST};
+        return new String[]{
+                PACKET_TYPE_TELEPHONY_REQUEST,
+                PACKET_TYPE_TELEPHONY_REQUEST_CONVERSATIONS,
+                PACKET_TYPE_TELEPHONY_REQUEST_CONVERSATION,
+        };
     }
 
     @Override
     public String[] getOutgoingPacketTypes() {
-        return new String[]{PACKET_TYPE_TELEPHONY};
+        return new String[]{
+                PACKET_TYPE_TELEPHONY,
+                PACKET_TYPE_TELEPHONY_MESSAGE,
+        };
     }
 
     @Override

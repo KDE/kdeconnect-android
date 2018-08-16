@@ -10,14 +10,20 @@
   <string name="pref_plugin_clipboard_desc">Compartilha o conteúdo da área de transferência</string>
   <string name="pref_plugin_mousepad">Introdução de dados remota</string>
   <string name="pref_plugin_mousepad_desc">Use seu telefone ou tablet como mouse e teclado</string>
+  <string name="pref_plugin_remotekeyboard">Receber pressionamento de teclas remotamente</string>
+  <string name="pref_plugin_remotekeyboard_desc">Recebe os eventos de pressionamento de teclas dos dispositivos remotos</string>
   <string name="pref_plugin_mpris">Controle multimídia</string>
   <string name="pref_plugin_mpris_desc">Fornece um controle remoto de seu reprodutor de mídia</string>
   <string name="pref_plugin_runcommand">Executar comando</string>
+  <string name="pref_plugin_runcommand_desc">Aciona comandos remotos a partir do seu telefone ou tablet</string>
+  <string name="pref_plugin_contacts">Sincronização de contatos</string>
+  <string name="pref_plugin_contacts_desc">Permite a sincronização do livro de endereços do dispositivo</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Envia e recebe pings</string>
   <string name="pref_plugin_notifications">Sincronização de notificações</string>
   <string name="pref_plugin_notifications_desc">Acesse suas notificações a partir de outros dispositivos</string>
   <string name="pref_plugin_receive_notifications">Receber notificações</string>
+  <string name="pref_plugin_receive_notifications_desc">Recebe as notificações de outros dispositivos e as mostra no Android</string>
   <string name="pref_plugin_sharereceiver">Compartilhar e receber</string>
   <string name="pref_plugin_sharereceiver_desc">Compartilha arquivos e URLs entre os dispositivos</string>
   <string name="plugin_not_available">Esta funcionalidade não está disponível na sua versão do Android</string>
@@ -26,9 +32,15 @@
   <string name="cancel">Cancelar</string>
   <string name="open_settings">Abrir configurações</string>
   <string name="no_permissions">Você precisa conceder permissão para acessar as notificações</string>
+  <string name="no_permission_mprisreceiver">Para ser possível controlar os seus leitores multimídia é necessário conceder acesso às notificações</string>
   <string name="send_ping">Enviar ping</string>
   <string name="open_mpris_controls">Controle multimídia</string>
+  <string name="remotekeyboard_editing_only_title">Lidar com as teclas remotas apenas na edição</string>
+  <string name="remotekeyboard_not_connected">Não existe nenhuma conexão ativa a teclados remotos, crie uma no kdeconnect</string>
+  <string name="remotekeyboard_connected">A conexão ao teclado remoto está ativa</string>
+  <string name="remotekeyboard_multiple_connections">Existe mais que uma conexão a teclados remotos. Selecione o dispositivo a configurar</string>
   <string name="open_mousepad">Introdução de dados remota</string>
+  <string name="mousepad_info">Mova um dedo pela tela para mover o ponteiro do mouse. Dê um toque para clicar e use dois/três dedos para os botões da direita e do meio. Use dois dedos para rolar a tela. Use uma pressão longa para arrastar e soltar.</string>
   <string name="mousepad_double_tap_settings_title">Definir a ação do toque com dois dedos</string>
   <string name="mousepad_triple_tap_settings_title">Definir a ação do toque com três dedos</string>
   <string name="mousepad_sensitivity_settings_title">Definir a sensibilidade do touchpad</string>
@@ -63,6 +75,9 @@
   <string name="error_canceled_by_other_peer">Cancelado pelo outro dispositivo</string>
   <string name="error_invalid_key">Chave inválida recebida</string>
   <string name="encryption_info_title">Informação da criptografia</string>
+  <string name="encryption_info_msg_no_ssl">O outro dispositivo não usa uma versão recente do KDE Connect. Será utilizado o método antigo de criptografia.</string>
+  <string name="my_device_fingerprint">Impressão digital SHA1 do certificado do seu dispositivo:</string>
+  <string name="remote_device_fingerprint">Impressão digital SHA1 do certificado do dispositivo remoto:</string>
   <string name="pair_requested">Solicitação de emparelhamento</string>
   <string name="pairing_request_from">Emparelhamento solicitado por %1s</string>
   <string name="received_url_title">Link recebido de %1s</string>
@@ -70,11 +85,17 @@
   <string name="incoming_file_title">Arquivo recebido de %1s</string>
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Enviando arquivo para %1s</string>
+  <string name="outgoing_files_title">Enviando arquivos para %1s</string>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Enviado %1$d arquivo</item>
+    <item quantity="other">Enviados %1$d de %2$d arquivos</item>
+  </plurals>
   <string name="received_file_title">Arquivo recebido de %1s</string>
   <string name="received_file_fail_title">Falha ao receber o arquivo de %1s</string>
   <string name="received_file_text">Toque para abrir o \'%1s\'</string>
   <string name="sent_file_title">Enviar arquivo para %1s</string>
   <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Não foi possível enviar o arquivo para o %1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Toque para responder</string>
   <string name="reconnect">Reconectar</string>
@@ -90,6 +111,7 @@
   <string name="remote_control">Controle remoto</string>
   <string name="settings">Configurações do KDE Connect</string>
   <string name="mpris_play">Reproduzir</string>
+  <string name="mpris_pause">Pausar</string>
   <string name="mpris_previous">Anterior</string>
   <string name="mpris_rew">Retornar</string>
   <string name="mpris_ff">Avançar rapidamente</string>
@@ -105,6 +127,8 @@
     <item>1 minuto</item>
     <item>2 minutos</item>
   </string-array>
+  <string name="mpris_notification_settings_title">Mostrar a notificação do controle multimídia</string>
+  <string name="mpris_notification_settings_summary">Permite controlar os seus reprodutores de mídias sem abrir o KDE Connect.</string>
   <string name="share_to">Compartilhar com...</string>
   <string name="protocol_version_older">Este dispositivo usa uma versão antiga do protocolo</string>
   <string name="protocol_version_newer">Este dispositivo usa uma versão mais recente do protocolo</string>
@@ -121,6 +145,12 @@
   <string name="custom_device_list">Adicionar dispositivos pelo IP</string>
   <string name="share_notification_preference">Notificações sonoras</string>
   <string name="share_notification_preference_summary">Vibra e reproduz um som ao receber um arquivo</string>
+  <string name="share_destination_customize">Personalizar a pasta de destino</string>
+  <string name="share_destination_customize_summary_disabled">Os arquivos recebidos irão aparecer em Downloads</string>
+  <string name="share_destination_customize_summary_enabled">Os arquivos serão armazenados na pasta abaixo</string>
+  <string name="share_destination_folder_preference">Pasta de destino</string>
+  <string name="share">Compartilhar</string>
+  <string name="share_received_file">Compartilhar \"%s\"</string>
   <string name="title_activity_notification_filter">Filtro de notificações</string>
   <string name="filter_apps_info">As notificações dos aplicativos selecionados serão sincronizadas.</string>
   <string name="sftp_internal_storage">Armazenamento interno</string>
@@ -142,13 +172,40 @@
   <string name="device_rename_confirm">Renomear</string>
   <string name="refresh">Atualizar</string>
   <string name="unreachable_description">Este dispositivo emparelhado não está acessível. Certifique-se de que está conectado à mesma rede que você.</string>
+  <string name="on_data_message">Parece que você está conectado com dados móveis. O KDE Connect só funciona em redes locais.</string>
   <string name="no_file_browser">Não há gerenciadores de arquivos instalados.</string>
   <string name="pref_plugin_telepathy">Enviar SMS</string>
   <string name="pref_plugin_telepathy_desc">Enviar mensagens de texto do seu Desktop</string>
   <string name="plugin_not_supported">Este plugin não é suportado pelo dispositivo</string>
   <string name="findmyphone_title">Encontrar meu telefone</string>
   <string name="findmyphone_title_tablet">Encontrar meu tablet</string>
+  <string name="findmyphone_title_tv">Encontrar minha TV</string>
+  <string name="findmyphone_description">Faça este aparelho tocar para encontrá-lo</string>
   <string name="findmyphone_found">Encontrado</string>
   <string name="open">Abrir</string>
   <string name="close">Fechar</string>
+  <string name="no_permissions_storage">Você precisa conceder permissões para acessar o armazenamento</string>
+  <string name="plugins_need_permission">Alguns plugins precisam de permissões para funcionar (toque para mais informações):</string>
+  <string name="permission_explanation">Este plugin precisa de permissões para funcionar</string>
+  <string name="optional_permission_explanation">Você precisa conceder permissões extras para ativar todas as funções</string>
+  <string name="plugins_need_optional_permission">Alguns plugins possuem recursos desativados devido à falta de permissões (toque para obter mais informações):</string>
+  <string name="sftp_permission_explanation">Para acessar os seus arquivos a partir do PC, o aplicativo precisa de permissão para acessar o armazenamento do seu celular</string>
+  <string name="share_optional_permission_explanation">Para compartilhar arquivos entre o seu celular e o seu ambiente de trabalho é necessário permissão para acessar o armazenamento do seu celular</string>
+  <string name="telepathy_permission_explanation">Para ler e gravar SMS a partir do seu ambiente de trabalho é necessário conceder permissão para SMS</string>
+  <string name="telephony_permission_explanation">Para ver as chamadas e SMS do celular a partir do seu ambiente de trabalho é necessário conceder permissão para as chamadas telefônicas e SMS</string>
+  <string name="telephony_optional_permission_explanation">Para ver o nome de um contato em vez do seu número de telefone é necessário conceder acesso aos contatos do celular</string>
+  <string name="contacts_permission_explanation">Para compartilhar o seu livro de endereços com o ambiente de trabalho é necessário conceder permissão para os contatos</string>
+  <string name="select_ringtone">Selecionar um toque de chamada</string>
+  <string name="telephony_pref_blocked_title">Números bloqueados</string>
+  <string name="telephony_pref_blocked_dialog_desc">Não mostrar as chamadas e SMS desses números. Indique um número por linha</string>
+  <string name="mpris_coverart_description">Capa da mídia atual</string>
+  <string name="device_icon_description">Ícone do dispositivo</string>
+  <string name="settings_icon_description">Ícone de configurações</string>
+  <string name="add_command">Adicionar um comando</string>
+  <string name="addcommand_explanation">Não há comandos registrados</string>
+  <string name="addcommand_explanation2">Você pode adicionar novos comandos nas Configurações do Sistema KDE Connect</string>
+  <string name="add_command_description">Você pode adicionar comandos no ambiente de trabalho</string>
+  <string name="pref_plugin_mprisreceiver">Controle do reprodutor de mídia</string>
+  <string name="pref_plugin_mprisreceiver_desc">Controle os reprodutores de mídias dos seus celulares a partir de outro dispositivo</string>
+  <string name="dark_theme">Tema escuro</string>
 </resources>

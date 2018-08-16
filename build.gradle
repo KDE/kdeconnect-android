@@ -4,14 +4,13 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath 'com.android.tools.build:gradle:3.1.4'
     }
 }
 
 apply plugin: 'com.android.application'
 
 android {
-    buildToolsVersion '27.0.3'
     compileSdkVersion 27
     defaultConfig {
         minSdkVersion 14
@@ -78,7 +77,7 @@ dependencies {
 
     implementation 'org.apache.sshd:sshd-core:0.8.0' //0.9 seems to fail on Android 6 and 1.+ requires java.nio.file, which doesn't exist in Android
 
-    implementation 'com.madgag.spongycastle:pkix:1.54.0.0' //For SSL certificate generation
+    implementation 'com.madgag.spongycastle:bcpkix-jdk15on:1.58.0.0' //For SSL certificate generation
 
     // Testing
     androidTestImplementation 'org.mockito:mockito-core:1.10.19'

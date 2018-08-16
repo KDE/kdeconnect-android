@@ -81,15 +81,11 @@ public class MousePadPlugin extends Plugin {
         return context.getString(R.string.open_mousepad);
     }
 
-    public void sendMouseDelta(float dx, float dy, float sensitivity) {
+    public void sendMouseDelta(float dx, float dy) {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
 
-        if (sensitivity <= 0.0001f) {
-            sensitivity = 1.0f;
-        }
-
-        np.set("dx", dx * sensitivity);
-        np.set("dy", dy * sensitivity);
+        np.set("dx", dx);
+        np.set("dy", dy);
 
         device.sendPacket(np);
     }

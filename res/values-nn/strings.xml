@@ -16,6 +16,8 @@
   <string name="pref_plugin_mpris_desc">Gje fjernkontroll til mediespelarar</string>
   <string name="pref_plugin_runcommand">Køyr kommando</string>
   <string name="pref_plugin_runcommand_desc">Utløys fjernkommandoar frå telefonen eller nettbrettet</string>
+  <string name="pref_plugin_contacts">Kontaktsynkronisering</string>
+  <string name="pref_plugin_contacts_desc">Tillat synkronisering av adresseboka på eininga</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Send og ta imot pingsignal</string>
   <string name="pref_plugin_notifications">Varslingssynkronisering</string>
@@ -30,6 +32,7 @@
   <string name="cancel">Avbryt</string>
   <string name="open_settings">Opna innstillingar</string>
   <string name="no_permissions">Du må gje tilgang til lesing av varslingar</string>
+  <string name="no_permission_mprisreceiver">Du må gje tilgang til varslingar for å kunne kontrollera mediespelarar</string>
   <string name="send_ping">Send pingsignal</string>
   <string name="open_mpris_controls">Mediekontroll</string>
   <string name="remotekeyboard_editing_only_title">Handter eksterne tastetrykk berre ved redigering</string>
@@ -176,8 +179,9 @@
   <string name="plugin_not_supported">Dette tillegget er ikkje støtta av eininga</string>
   <string name="findmyphone_title">Finn telefonen min</string>
   <string name="findmyphone_title_tablet">Finn nettbrettet mitt</string>
+  <string name="findmyphone_title_tv">Finn TV-en min</string>
   <string name="findmyphone_description">Spel av lydsignal på eininga, slik at du lett kan finna ho</string>
-  <string name="findmyphone_found">Fann</string>
+  <string name="findmyphone_found">Funnen</string>
   <string name="open">Opna</string>
   <string name="close">Lukk</string>
   <string name="no_permissions_storage">Du må gje KDE Connect løyve til å få tilgang til lagringsområdet</string>
@@ -190,6 +194,7 @@
   <string name="telepathy_permission_explanation">For å kunna lesa og skriva tekstmeldingar frå datamaskina må du gje appen tilgang til SMS</string>
   <string name="telephony_permission_explanation">For å kunna sjå telefonsamtalar og tekstmeldingar frå datamaskina må du gje appen tilgang til telefon- og SMS-funksjonar</string>
   <string name="telephony_optional_permission_explanation">For å kunna sjå namn på kontaktar i staden for berre telefonnummeret må du gje appen tilgang til kontaktlista di</string>
+  <string name="contacts_permission_explanation">For å kunna dela adresseboka di med datamaskina må du gje appen lese- og skriveløyve til adresseboka</string>
   <string name="select_ringtone">Vel ringjetone</string>
   <string name="telephony_pref_blocked_title">Blokkerte nummer</string>
   <string name="telephony_pref_blocked_dialog_desc">Ikkje vis oppringingar og SMS-ar frå desse telefonnummera. Skriv inn eitt telefonnummer per linje.</string>
@@ -199,5 +204,8 @@
   <string name="add_command">Legg til kommando</string>
   <string name="addcommand_explanation">Ingen kommandoar er registrerte</string>
   <string name="addcommand_explanation2">Du kan leggja til nye kommandoar i systeminnstillingane til KDE Connect</string>
+  <string name="add_command_description">Du kan leggja til kommandoar på skrivebordet</string>
+  <string name="pref_plugin_mprisreceiver">Mediespelarkontrollar</string>
+  <string name="pref_plugin_mprisreceiver_desc">Kontroller mediespelarar på telefonen din frå ei anna eining</string>
   <string name="dark_theme">Mørkt tema</string>
 </resources>

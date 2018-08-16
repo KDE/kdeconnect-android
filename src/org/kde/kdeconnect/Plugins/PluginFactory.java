@@ -27,17 +27,21 @@ import android.util.Log;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Plugins.BatteryPlugin.BatteryPlugin;
 import org.kde.kdeconnect.Plugins.ClibpoardPlugin.ClipboardPlugin;
+import org.kde.kdeconnect.Plugins.ContactsPlugin.ContactsPlugin;
 import org.kde.kdeconnect.Plugins.FindMyPhonePlugin.FindMyPhonePlugin;
+import org.kde.kdeconnect.Plugins.FindRemoteDevicePlugin.FindRemoteDevicePlugin;
 import org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadPlugin;
 import org.kde.kdeconnect.Plugins.MprisPlugin.MprisPlugin;
 import org.kde.kdeconnect.Plugins.MprisReceiverPlugin.MprisReceiverPlugin;
 import org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationsPlugin;
 import org.kde.kdeconnect.Plugins.PingPlugin.PingPlugin;
+import org.kde.kdeconnect.Plugins.PresenterPlugin.PresenterPlugin;
 import org.kde.kdeconnect.Plugins.ReceiveNotificationsPlugin.ReceiveNotificationsPlugin;
 import org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin.RemoteKeyboardPlugin;
 import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandPlugin;
 import org.kde.kdeconnect.Plugins.SftpPlugin.SftpPlugin;
 import org.kde.kdeconnect.Plugins.SharePlugin.SharePlugin;
+import org.kde.kdeconnect.Plugins.SystemvolumePlugin.SystemvolumePlugin;
 import org.kde.kdeconnect.Plugins.TelepathyPlugin.TelepathyPlugin;
 import org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin;
 
@@ -124,12 +128,16 @@ public class PluginFactory {
         PluginFactory.registerPlugin(NotificationsPlugin.class);
         PluginFactory.registerPlugin(ReceiveNotificationsPlugin.class);
         PluginFactory.registerPlugin(MousePadPlugin.class);
+        PluginFactory.registerPlugin(PresenterPlugin.class);
         PluginFactory.registerPlugin(SharePlugin.class);
         PluginFactory.registerPlugin(TelepathyPlugin.class);
         PluginFactory.registerPlugin(FindMyPhonePlugin.class);
         PluginFactory.registerPlugin(RunCommandPlugin.class);
+        PluginFactory.registerPlugin(ContactsPlugin.class);
         PluginFactory.registerPlugin(RemoteKeyboardPlugin.class);
+        PluginFactory.registerPlugin(SystemvolumePlugin.class);
         //PluginFactory.registerPlugin(MprisReceiverPlugin.class);
+        PluginFactory.registerPlugin(FindRemoteDevicePlugin.class);
     }
 
     public static PluginInfo getPluginInfo(Context context, String pluginKey) {

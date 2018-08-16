@@ -16,6 +16,8 @@
   <string name="pref_plugin_mpris_desc">Poskytuje dálkové ovládání přehrávačů médií</string>
   <string name="pref_plugin_runcommand">Spustit příkaz</string>
   <string name="pref_plugin_runcommand_desc">Spouštějte příkazy vzdáleně z vašeho telefonu</string>
+  <string name="pref_plugin_contacts">Synchronizace kontaktů</string>
+  <string name="pref_plugin_contacts_desc">Povolit synchronizaci kontaktů zařízení</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Posílat a přijímat ping</string>
   <string name="pref_plugin_notifications">Synchronizace upozornění</string>
@@ -30,6 +32,7 @@
   <string name="cancel">Zrušit</string>
   <string name="open_settings">Otevřít nastavení</string>
   <string name="no_permissions">Pro zpřístupnění upozornění potřebujete oprávnění</string>
+  <string name="no_permission_mprisreceiver">Abyste byli schopni ovládat vaše přehrávače médií, musíte udělit přístup k oznámením</string>
   <string name="send_ping">Poslat ping</string>
   <string name="open_mpris_controls">Ovládání multimédií</string>
   <string name="remotekeyboard_editing_only_title">Ovládat vzdálené klávesy při editaci</string>
@@ -178,6 +181,7 @@
   <string name="plugin_not_supported">Tento modul zařízení nepodporuje</string>
   <string name="findmyphone_title">Najít můj telefon</string>
   <string name="findmyphone_title_tablet">Najít můj tablet</string>
+  <string name="findmyphone_title_tv">Najít mou TV</string>
   <string name="findmyphone_description">Prozvoní toto zařízení, takže jej můžete najít</string>
   <string name="findmyphone_found">Nalezeno</string>
   <string name="open">Otevřít</string>
@@ -192,6 +196,7 @@
   <string name="telepathy_permission_explanation">Pro čtení a psaní SMS z počítače musíte udělit oprávnění k SMS</string>
   <string name="telephony_permission_explanation">Pro zobrazení telefonátů a SMS v počítači musíte udělit oprávnění k telefonování a SMS</string>
   <string name="telephony_optional_permission_explanation">Pro zobrazení jména kontaktu u telefonního čísla je potřeba udělit oprávnění ke kontaktům v telefonu</string>
+  <string name="contacts_permission_explanation">Pro sdílení knihy kontaktů s pracovním prostředím, musíte udělit přístup ke kontaktům</string>
   <string name="select_ringtone">Vybrat vyzváněcí tón</string>
   <string name="telephony_pref_blocked_title">Blokovaná čísla</string>
   <string name="telephony_pref_blocked_dialog_desc">Nezobrazovat volnání a SMS z těchto čísel. Prosím, zadejte pouze jedno slovo na řádek.</string>
@@ -201,4 +206,8 @@
   <string name="add_command">Přidat příkaz</string>
   <string name="addcommand_explanation">Nejsou registrovány žádné příkazy</string>
   <string name="addcommand_explanation2">Nové příkazy můžete přidat v nastavení systému KDE Connect</string>
+  <string name="add_command_description">V pracovním prostředí můžete přidat příkazy</string>
+  <string name="pref_plugin_mprisreceiver">Ovládání přehrávače médií</string>
+  <string name="pref_plugin_mprisreceiver_desc">Ovládejte přehrávače médií na vašem telefonu z jiného zařízení</string>
+  <string name="dark_theme">Tmavý motiv</string>
 </resources>

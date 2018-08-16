@@ -30,6 +30,15 @@
         android:summary="%s"
         android:title="@string/mousepad_sensitivity_settings_title" />
 
+    <ListPreference
+        android:id="@+id/mousepad_acceleration_profile_preference"
+        android:defaultValue="@string/mousepad_default_acceleration_profile"
+        android:entries="@array/mousepad_acceleration_profile_entries"
+        android:entryValues="@array/mousepad_acceleration_profile_values"
+        android:key="@string/mousepad_acceleration_profile_key"
+        android:summary="%s"
+        android:title="@string/mousepad_acceleration_profile_settings_title" />
+
     <CheckBoxPreference
         android:id="@+id/mousepad_scroll_preference"
         android:defaultValue="false"

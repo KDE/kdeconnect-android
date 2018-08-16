@@ -10,12 +10,16 @@
   <string name="pref_plugin_clipboard_desc">Partage le contenu du presse-papiers</string>
   <string name="pref_plugin_mousepad">Contrôle distant</string>
   <string name="pref_plugin_mousepad_desc">Utilisez votre téléphone ou tablette comme un pavé tactile et un clavier</string>
+  <string name="pref_plugin_presenter">Télécommande de présentation</string>
+  <string name="pref_plugin_presenter_desc">Utilisez votre appareil pour changer les diapositives d\'une présentation</string>
   <string name="pref_plugin_remotekeyboard">Recevoir les appuis de touches distants</string>
   <string name="pref_plugin_remotekeyboard_desc">Recevoir les appuis de touches des périphériques distants</string>
   <string name="pref_plugin_mpris">Contrôles multimédia</string>
   <string name="pref_plugin_mpris_desc">Fournit une télécommande pour votre lecteur multimédia</string>
   <string name="pref_plugin_runcommand">Exécuter une commande</string>
   <string name="pref_plugin_runcommand_desc">Exécuter des commandes à distance sur votre téléphone ou tablette</string>
+  <string name="pref_plugin_contacts">Synchronisation de contacts</string>
+  <string name="pref_plugin_contacts_desc">Permet de synchroniser le carnet de contacts du périphérique</string>
   <string name="pref_plugin_ping">Commande « Ping »</string>
   <string name="pref_plugin_ping_desc">Envoie et reçoit des commandes « Ping »</string>
   <string name="pref_plugin_notifications">Synchronisation des notifications</string>
@@ -30,6 +34,7 @@
   <string name="cancel">Annuler</string>
   <string name="open_settings">Accéder aux paramètres</string>
   <string name="no_permissions">Vous devez accorder la permission d\'accéder aux notifications</string>
+  <string name="no_permission_mprisreceiver">Pour pouvoir contrôler vos lecteurs multimédia, veuillez permettre l\'accès aux notifications</string>
   <string name="send_ping">Envoyer un « Ping »</string>
   <string name="open_mpris_controls">Contrôles multimédia</string>
   <string name="remotekeyboard_editing_only_title">Gérer les appuis de touches à distance uniquement lors de l\'édition</string>
@@ -37,6 +42,7 @@
   <string name="remotekeyboard_connected">La connexion au clavier sans fil est active</string>
   <string name="remotekeyboard_multiple_connections">Plusieurs connexions à des claviers sans fil sont disponibles, sélectionnez le périphérique à configurer</string>
   <string name="open_mousepad">Contrôle distant</string>
+  <string name="mousepad_info">Faites glisser votre doigt sur l\'écran pour déplacer le pointeur de la souris. Appuyez pour cliquer et utilisez deux/trois doigts pour les clic droit et centre. Utilisez 2 doigts pour faire défiler. Appuyez longtemps pour faire un glisser-déposer.</string>
   <string name="mousepad_double_tap_settings_title">Action pour l\'appui à deux doigts</string>
   <string name="mousepad_triple_tap_settings_title">Action pour l\'appui à trois doigts</string>
   <string name="mousepad_sensitivity_settings_title">Définir la sensibilité du pavé tactile</string>
@@ -82,6 +88,10 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Envoi d\'un fichier à %1s</string>
   <string name="outgoing_files_title">Envoi de fichiers à %1s</string>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">%1$d fichier envoyé</item>
+    <item quantity="other">%1$d fichiers envoyés sur %2$d</item>
+  </plurals>
   <string name="received_file_title">Fichier reçu de %1s</string>
   <string name="received_file_fail_title">Impossible de recevoir le fichier depuis : %1s</string>
   <string name="received_file_text">Appuyez pour ouvrir %1s</string>
@@ -103,6 +113,7 @@
   <string name="remote_control">Contrôle distant</string>
   <string name="settings">Paramètres de connexion de KDE</string>
   <string name="mpris_play">Lire</string>
+  <string name="mpris_pause">Pause</string>
   <string name="mpris_previous">Précédent</string>
   <string name="mpris_rew">Retour rapide</string>
   <string name="mpris_ff">Avance rapide</string>
@@ -118,6 +129,8 @@
     <item>1 minute</item>
     <item>2 minutes</item>
   </string-array>
+  <string name="mpris_notification_settings_title">Afficher la notification de contrôle du lecteur multimédia</string>
+  <string name="mpris_notification_settings_summary">Vous permet de contrôler vos lecteurs multimédias sans ouvrir KDE Connect.</string>
   <string name="share_to">Partager vers...</string>
   <string name="protocol_version_older">Le périphérique utilise une version ancienne du protocole</string>
   <string name="protocol_version_newer">Le périphérique utilise une version plus récente du protocole</string>
@@ -138,6 +151,8 @@
   <string name="share_destination_customize_summary_disabled">Les fichiers reçus apparaîtront dans le dossier de téléchargement</string>
   <string name="share_destination_customize_summary_enabled">Les fichiers seront enregistrés dans le dossier ci-dessous</string>
   <string name="share_destination_folder_preference">Dossier de destination</string>
+  <string name="share">Partager</string>
+  <string name="share_received_file">Partager « %s »</string>
   <string name="title_activity_notification_filter">Filtre des notifications</string>
   <string name="filter_apps_info">Les notifications seront synchronisées pour les applications sélectionnées.</string>
   <string name="sftp_internal_storage">Stockage interne</string>
@@ -166,6 +181,7 @@
   <string name="plugin_not_supported">Ce module externe n\'est pas géré par le périphérique</string>
   <string name="findmyphone_title">Trouver mon téléphone</string>
   <string name="findmyphone_title_tablet">Trouver ma tablette</string>
+  <string name="findmyphone_title_tv">Trouver ma télévision</string>
   <string name="findmyphone_description">Fait sonner le périphérique pour vous aider à le retrouver</string>
   <string name="findmyphone_found">Trouvé</string>
   <string name="open">Ouvrir</string>
@@ -180,4 +196,34 @@
   <string name="telepathy_permission_explanation">Pour lire et écrire des SMS depuis votre ordinateur, veuillez permettre l\'accès aux SMS</string>
   <string name="telephony_permission_explanation">Pour voir les appels et les SMS depuis votre ordinateur, veuillez permettre l\'accès aux appels et aux SMS</string>
   <string name="telephony_optional_permission_explanation">Pour voir le nom du contact au lieu du numéro de téléphone, veuillez permettre l\'accès aux contacts du téléphone</string>
+  <string name="contacts_permission_explanation">Pour partager votre carnet de contacts avec votre ordinateur, veuillez permettre l\'accès aux contacts du téléphone</string>
+  <string name="select_ringtone">Sélectionnez une sonnerie</string>
+  <string name="telephony_pref_blocked_title">Numéros bloqués</string>
+  <string name="telephony_pref_blocked_dialog_desc">Ne pas afficher les appels et les SMS provenant de ces numéros. Veuillez renseigner un numéro par ligne</string>
+  <string name="mpris_coverart_description">Illustration du média actuel</string>
+  <string name="device_icon_description">Icône du périphérique</string>
+  <string name="settings_icon_description">Icône des paramètres</string>
+  <string name="presenter_fullscreen">Plein écran</string>
+  <string name="presenter_exit">Quitter la présentation</string>
+  <string name="presenter_lock_tip">Vous pouvez verrouiller votre appareil pour utiliser les touches de volume comme boutons suivant / précédent</string>
+  <string name="add_command">Ajouter une commande</string>
+  <string name="addcommand_explanation">Aucune commande enregistrée</string>
+  <string name="addcommand_explanation2">Vous pouvez ajouter de nouvelles commandes dans la configuration système de KDE Connect</string>
+  <string name="add_command_description">Vous pouvez ajouter des commandes sur votre ordinateur</string>
+  <string name="pref_plugin_mprisreceiver">Contrôle du lecteur multimédia</string>
+  <string name="pref_plugin_mprisreceiver_desc">Contrôlez les lecteurs multimédia de vos téléphones depuis un autre appareil</string>
+  <string name="dark_theme">Thème sombre</string>
+  <string name="mpris_stop">Arrêter le lecteur actuel</string>
+  <string name="copy_url_to_clipboard">Copier l\'URL dans le presse-papiers</string>
+  <string name="clipboard_toast">Copié dans le presse-papier</string>
+  <string name="runcommand_notreachable">Le périphérique est inaccessible</string>
+  <string name="runcommand_notpaired">Le périphérique n\'est pas associé</string>
+  <string name="runcommand_nosuchdevice">Ce périphérique n\'existe pas</string>
+  <string name="runcommand_noruncommandplugin">Le module externe Exécuter une commande n\'est pas activé sur ce périphérique</string>
+  <string name="pref_plugin_findremotedevice">Trouver un périphérique distant</string>
+  <string name="pref_plugin_findremotedevice_desc">Faire sonner votre périphérique distant</string>
+  <string name="ring">Faire sonner</string>
+  <string name="pref_plugin_systemvolume">Volume du système</string>
+  <string name="pref_plugin_systemvolume_desc">Contrôler le volume du système du périphérique distant</string>
+  <string name="mute">Muet</string>
 </resources>

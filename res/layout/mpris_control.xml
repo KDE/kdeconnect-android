@@ -46,8 +46,8 @@
         android:baselineAlignBottom="true"
         android:clickable="false"
         android:contentDescription="@string/mpris_play"
-        android:theme="@style/DisableableButton"
-        android:src="@drawable/ic_play_black" />
+        android:src="@drawable/ic_play_black"
+        android:theme="@style/DisableableButton" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,8 +61,8 @@
             android:layout_height="fill_parent"
             android:layout_weight="0.25"
             android:contentDescription="@string/mpris_previous"
-            android:theme="@style/DisableableButton"
-            android:src="@drawable/ic_previous_black" />
+            android:src="@drawable/ic_previous_black"
+            android:theme="@style/DisableableButton" />
 
         <ImageButton
             android:id="@+id/rew_button"
@@ -70,8 +70,18 @@
             android:layout_height="fill_parent"
             android:layout_weight="0.25"
             android:contentDescription="@string/mpris_rew"
-            android:theme="@style/DisableableButton"
-            android:src="@drawable/ic_rewind_black" />
+            android:src="@drawable/ic_rewind_black"
+            android:theme="@style/DisableableButton" />
+
+        <ImageButton
+            android:id="@+id/stop_button"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.25"
+            android:contentDescription="@string/mpris_stop"
+            android:src="@drawable/ic_stop"
+            android:theme="@style/DisableableButton" />
+
 
         <ImageButton
             android:id="@+id/ff_button"
@@ -79,8 +89,8 @@
             android:layout_height="fill_parent"
             android:layout_weight="0.25"
             android:contentDescription="@string/mpris_ff"
-            android:theme="@style/DisableableButton"
-            android:src="@drawable/ic_fast_forward_black" />
+            android:src="@drawable/ic_fast_forward_black"
+            android:theme="@style/DisableableButton" />
 
         <ImageButton
             android:id="@+id/next_button"
@@ -88,8 +98,8 @@
             android:layout_height="fill_parent"
             android:layout_weight="0.25"
             android:contentDescription="@string/mpris_next"
-            android:theme="@style/DisableableButton"
-            android:src="@drawable/ic_next_black" />
+            android:src="@drawable/ic_next_black"
+            android:theme="@style/DisableableButton" />
 
     </LinearLayout>
 
@@ -146,8 +156,8 @@
             android:layout_weight="0"
             android:contentDescription="@string/mpris_volume"
             android:maxWidth="30dip"
-            app:tint="?attr/colorHighContrast"
-            android:src="@drawable/ic_volume_black" />
+            android:src="@drawable/ic_volume_black"
+            app:tint="?attr/colorHighContrast" />
 
 
         <SeekBar
@@ -159,5 +169,4 @@
             android:max="100" />
 
     </LinearLayout>
-
 </LinearLayout>
