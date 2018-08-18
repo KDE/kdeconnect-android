@@ -10,10 +10,16 @@
   <string name="pref_plugin_clipboard_desc">클립보드 내용 동기화</string>
   <string name="pref_plugin_mousepad">원격 입력</string>
   <string name="pref_plugin_mousepad_desc">내 휴대폰이나 태블릿을 터치패드와 키보드로 사용하기</string>
+  <string name="pref_plugin_presenter">프레젠테이션 리모콘</string>
+  <string name="pref_plugin_presenter_desc">내 장치로 프레젠테이션 슬라이드 전환하기</string>
+  <string name="pref_plugin_remotekeyboard">원격 키 입력 받기</string>
+  <string name="pref_plugin_remotekeyboard_desc">원격 장치의 키 입력 이벤트 받기</string>
   <string name="pref_plugin_mpris">멀티미디어 제어</string>
   <string name="pref_plugin_mpris_desc">내 미디어 재생기 원격 제어</string>
   <string name="pref_plugin_runcommand">명령 실행</string>
   <string name="pref_plugin_runcommand_desc">내 휴대폰이나 태블릿에서 원격 명령 실행</string>
+  <string name="pref_plugin_contacts">연락처 동기화 도구</string>
+  <string name="pref_plugin_contacts_desc">장치의 주소록에 있는 연락처 동기화</string>
   <string name="pref_plugin_ping">핑</string>
   <string name="pref_plugin_ping_desc">핑 보내고 받기</string>
   <string name="pref_plugin_notifications">알림 동기화</string>
@@ -27,13 +33,20 @@
   <string name="ok">확인</string>
   <string name="cancel">취소</string>
   <string name="open_settings">설정 열기</string>
-  <string name="no_permissions">알림 접근 권한을 허가해야 합니다</string>
+  <string name="no_permissions">알림 접근 권한이 필요합니다</string>
+  <string name="no_permission_mprisreceiver">미디어 재생기를 제어하려면 알림 접근 권한이 필요합니다</string>
   <string name="send_ping">핑 보내기</string>
   <string name="open_mpris_controls">멀티미디어 제어</string>
+  <string name="remotekeyboard_editing_only_title">편집할 때에만 원격 키 처리하기</string>
+  <string name="remotekeyboard_not_connected">활성화된 원격 키보드 연결이 없습니다. KDE Connect에서 설정하십시오</string>
+  <string name="remotekeyboard_connected">원격 키보드 연결이 활성화됨</string>
+  <string name="remotekeyboard_multiple_connections">원격 키보드 연결이 여러 개 있습니다. 설정할 장치를 선택하십시오</string>
   <string name="open_mousepad">원격 입력</string>
+  <string name="mousepad_info">화면에서 손가락을 움직이면 마우스 커서를 움직입니다. 화면을 누르면 왼쪽 단추를 누르고, 두 손가락과 세 손가락으로 누르면 오른쪽/가운데 단추를 누릅니다. 두 손가락을 사용하여 스크롤할 수 있습니다. 드래그 앤 드롭을 사용하려면 길게 누르십시오.</string>
   <string name="mousepad_double_tap_settings_title">두 손가락으로 눌렀을 때 동작 설정</string>
   <string name="mousepad_triple_tap_settings_title">세 손가락으로 눌렀을 때 동작 설정</string>
   <string name="mousepad_sensitivity_settings_title">터치패드 감도 설정</string>
+  <string name="mousepad_acceleration_profile_settings_title">포인터 가속 설정</string>
   <string name="mousepad_scroll_direction_title">스크롤 방향 뒤집기</string>
   <string-array name="mousepad_tap_entries">
     <item>오른쪽 단추 누름</item>
@@ -48,17 +61,17 @@
     <item>빠르게</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>No Acceleration</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
-    <item>Medium</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>가속 없음</item>
+    <item>매우 약하게</item>
+    <item>약하게</item>
+    <item>중간</item>
+    <item>강하게</item>
+    <item>매우 강하게</item>
   </string-array>
   <string name="category_connected_devices">연결된 장치</string>
   <string name="category_not_paired_devices">사용 가능한 장치</string>
   <string name="category_remembered_devices">기억하는 장치</string>
-  <string name="plugins_failed_to_load">불러올 수 없는 플러그인(정보를 보려면 누르기)</string>
+  <string name="plugins_failed_to_load">불러올 수 없는 플러그인(정보를 보려면 누르기):</string>
   <string name="device_menu_plugins">플러그인 설정</string>
   <string name="device_menu_unpair">연결 해제</string>
   <string name="device_not_reachable">연결된 장치에 도달할 수 없음</string>
@@ -84,6 +97,9 @@
   <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">%1s(으)로 파일 보내는 중</string>
   <string name="outgoing_files_title">%1s(으)로 파일 보내는 중</string>
+  <plurals name="outgoing_files_text">
+    <item quantity="other">파일 %2$d개 중 %1$d개 보냄</item>
+  </plurals>
   <string name="received_file_title">%1s에서 파일 받음</string>
   <string name="received_file_fail_title">%1s에서 파일 받기 실패</string>
   <string name="received_file_text">\'%1s\'을(를) 열려면 누르십시오</string>
@@ -105,6 +121,7 @@
   <string name="remote_control">원격 제어</string>
   <string name="settings">KDE Connect 설정</string>
   <string name="mpris_play">재생</string>
+  <string name="mpris_pause">일시 정지</string>
   <string name="mpris_previous">이전</string>
   <string name="mpris_rew">되감기</string>
   <string name="mpris_ff">빨리 감기</string>
@@ -120,6 +137,8 @@
     <item>1분</item>
     <item>2분</item>
   </string-array>
+  <string name="mpris_notification_settings_title">미디어 제어 알림 보이기</string>
+  <string name="mpris_notification_settings_summary">KDE Connect를 열지 않고 미디어 재생기를 제어할 수 있습니다.</string>
   <string name="share_to">다음으로 공유...</string>
   <string name="protocol_version_older">이 장치의 프로토콜 버전이 오래되었습니다</string>
   <string name="protocol_version_newer">이 장치의 프로토콜 버전이 더 새롭습니다</string>
@@ -140,6 +159,8 @@
   <string name="share_destination_customize_summary_disabled">받은 파일을 다운로드 디렉터리에 저장함</string>
   <string name="share_destination_customize_summary_enabled">받은 파일을 아래 디렉터리에 저장함</string>
   <string name="share_destination_folder_preference">대상 디렉터리</string>
+  <string name="share">공유</string>
+  <string name="share_received_file">\"%s\" 공유</string>
   <string name="title_activity_notification_filter">알림 필터</string>
   <string name="filter_apps_info">선택한 앱의 알림을 동기화합니다.</string>
   <string name="sftp_internal_storage">내부 저장소</string>
@@ -161,14 +182,56 @@
   <string name="device_rename_confirm">이름 바꾸기</string>
   <string name="refresh">새로 고침</string>
   <string name="unreachable_description">이 연결된 장치에 접근할 수 없습니다. 같은 네트워크에 있는 지 확인하십시오.</string>
+  <string name="on_data_message">모바일 데이터 연결을 사용하고 있는 것 같습니다. KDE Connect는 로컬 네트워크에서만 작동합니다.</string>
   <string name="no_file_browser">설치된 파일 탐색기가 없습니다.</string>
   <string name="pref_plugin_telepathy">SMS 보내기</string>
   <string name="pref_plugin_telepathy_desc">데스크톱에서 문자 메시지 보내기</string>
   <string name="plugin_not_supported">장치에서 이 플러그인을 지원하지 않습니다</string>
   <string name="findmyphone_title">내 휴대폰 찾기</string>
   <string name="findmyphone_title_tablet">내 태블릿 찾기</string>
+  <string name="findmyphone_title_tv">내 TV 찾기</string>
   <string name="findmyphone_description">이 장치에서 소리를 울려서 찾는 데 도움을 줍니다</string>
   <string name="findmyphone_found">찾았음</string>
   <string name="open">열기</string>
   <string name="close">닫기</string>
+  <string name="no_permissions_storage">저장소 접근 권한이 필요합니다</string>
+  <string name="plugins_need_permission">권한이 필요한 플러그인(정보를 보려면 누르기):</string>
+  <string name="permission_explanation">이 플러그인을 사용하려면 권한이 필요합니다</string>
+  <string name="optional_permission_explanation">모든 기능을 사용하려면 추가 권한이 필요합니다</string>
+  <string name="plugins_need_optional_permission">일부 플러그인은 권한이 없어서 비활성화되었습니다(정보를 보려면 누르기):</string>
+  <string name="sftp_permission_explanation">PC에서 파일에 접근하려면 앱에서 휴대폰 저장소 접근 권한이 필요합니다</string>
+  <string name="share_optional_permission_explanation">휴대폰과 데스크톱간 파일을 공유하려면 휴대폰 저장소 접근 권한이 필요합니다</string>
+  <string name="telepathy_permission_explanation">데스크톱에서 문자 메시지를 읽고 보내려면 문자 메시지 접근 권한이 필요합니다</string>
+  <string name="telephony_permission_explanation">데스크톱에서 통화와 문자 메시지를 보려면 통화 및 문자 메시지 접근 권한이 필요합니다</string>
+  <string name="telephony_optional_permission_explanation">전화번호 대신 연락처에 등록된 이름을 보려면 주소록 접근 권한이 필요합니다</string>
+  <string name="contacts_permission_explanation">데스크톱과 주소록을 공유하려면 주소록 접근 권한이 필요합니다</string>
+  <string name="select_ringtone">벨소리 선택</string>
+  <string name="telephony_pref_blocked_title">차단된 번호</string>
+  <string name="telephony_pref_blocked_dialog_desc">다음 번호에서 걸려 온 통화나 보낸 문자를 표시하지 않습니다. 한 줄당 하나의 번호를 지정하십시오</string>
+  <string name="mpris_coverart_description">현재 미디어 커버 아트</string>
+  <string name="device_icon_description">장치 아이콘</string>
+  <string name="settings_icon_description">설정 아이콘</string>
+  <string name="presenter_fullscreen">전체 화면</string>
+  <string name="presenter_exit">프레젠테이션 끝내기</string>
+  <string name="presenter_lock_tip">장치 잠금 상태에서는 음량 키를 이전/다음 단추로 사용할 수 있습니다</string>
+  <string name="add_command">명령 추가</string>
+  <string name="addcommand_explanation">등록된 명령이 없습니다</string>
+  <string name="addcommand_explanation2">시스템 설정의 KDE Connect에서 새로운 명령을 추가할 수 있습니다</string>
+  <string name="add_command_description">데스크톱에서 명령을 추가할 수 있습니다</string>
+  <string name="pref_plugin_mprisreceiver">미디어 재생기 제어</string>
+  <string name="pref_plugin_mprisreceiver_desc">다른 장치에서 휴대폰 미디어 재생기 제어</string>
+  <string name="dark_theme">어두운 테마</string>
+  <string name="mpris_stop">현재 플레이어 정지</string>
+  <string name="copy_url_to_clipboard">클립보드로 URL 복사</string>
+  <string name="clipboard_toast">클립보드에 복사됨</string>
+  <string name="runcommand_notreachable">장치에 접근할 수 없음</string>
+  <string name="runcommand_notpaired">장치가 연결되지 않음</string>
+  <string name="runcommand_nosuchdevice">장치가 없음</string>
+  <string name="runcommand_noruncommandplugin">이 장치에서 명령 실행 플러그인이 활성화되어 있지 않음</string>
+  <string name="pref_plugin_findremotedevice">원격 장치 찾기</string>
+  <string name="pref_plugin_findremotedevice_desc">원격 장치 알림 울리기</string>
+  <string name="ring">울리기</string>
+  <string name="pref_plugin_systemvolume">시스템 음량</string>
+  <string name="pref_plugin_systemvolume_desc">원격 장치의 시스템 음량 제어</string>
+  <string name="mute">음소거</string>
 </resources>
