@@ -10,6 +10,8 @@
   <string name="pref_plugin_clipboard_desc">Sdílet obsah schránky</string>
   <string name="pref_plugin_mousepad">Vzdálený vstup</string>
   <string name="pref_plugin_mousepad_desc">Používejte svůj telefon nebo tablet jako touchpad a klávesnici</string>
+  <string name="pref_plugin_presenter">Promítací režim</string>
+  <string name="pref_plugin_presenter_desc">Použijte své zařízení pro přepínání snímků prezentace</string>
   <string name="pref_plugin_remotekeyboard">Přijímat stisky kláves se vzdálených zařízení</string>
   <string name="pref_plugin_remotekeyboard_desc">Přijímat události stisku kláves ze vzdálených zařízení</string>
   <string name="pref_plugin_mpris">Ovládání multimédií</string>
@@ -44,6 +46,7 @@
   <string name="mousepad_double_tap_settings_title">Nastavit činnost pro ťuknutí dvěma prsty</string>
   <string name="mousepad_triple_tap_settings_title">Nastavit činnost pro ťuknutí třemi prsty</string>
   <string name="mousepad_sensitivity_settings_title">Nastavit citlivost touchpadu</string>
+  <string name="mousepad_acceleration_profile_settings_title">Nastavit akceleraci ukazatele</string>
   <string name="mousepad_scroll_direction_title">Obrácený směr posunu</string>
   <string-array name="mousepad_tap_entries">
     <item>Kliknutí pravým tlačítkem myši</item>
@@ -58,12 +61,12 @@
     <item>Nejrychlejší</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>No Acceleration</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
-    <item>Medium</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>Bez akcelerace</item>
+    <item>Nejslabší</item>
+    <item>Slabší</item>
+    <item>Střední</item>
+    <item>Silná</item>
+    <item>Nejsilnější</item>
   </string-array>
   <string name="category_connected_devices">Připojená zařízení</string>
   <string name="category_not_paired_devices">Dostupná zařízení</string>
@@ -211,6 +214,9 @@
   <string name="mpris_coverart_description">Obal současného média</string>
   <string name="device_icon_description">Ikona zařízení</string>
   <string name="settings_icon_description">Ikona nastavení</string>
+  <string name="presenter_fullscreen">Celá obrazovka</string>
+  <string name="presenter_exit">Ukončit prezentaci</string>
+  <string name="presenter_lock_tip">Zařízení můžete uzamknout a používat klávesy hlasitosti jako tlačítka předchozí/další</string>
   <string name="add_command">Přidat příkaz</string>
   <string name="addcommand_explanation">Nejsou registrovány žádné příkazy</string>
   <string name="addcommand_explanation2">Nové příkazy můžete přidat v nastavení systému KDE Connect</string>
@@ -218,4 +224,17 @@
   <string name="pref_plugin_mprisreceiver">Ovládání přehrávače médií</string>
   <string name="pref_plugin_mprisreceiver_desc">Ovládejte přehrávače médií na vašem telefonu z jiného zařízení</string>
   <string name="dark_theme">Tmavý motiv</string>
+  <string name="mpris_stop">Zastavit současný přehrávač</string>
+  <string name="copy_url_to_clipboard">Kopírovat URL do schránky</string>
+  <string name="clipboard_toast">Zkopírováno do schránky</string>
+  <string name="runcommand_notreachable">Zařízení je nedostupné</string>
+  <string name="runcommand_notpaired">Zařízení není spárováno</string>
+  <string name="runcommand_nosuchdevice">Není zde žádné takové zařízení</string>
+  <string name="runcommand_noruncommandplugin">Toto zařízení nemá povolený modul pro spouštění příkazů</string>
+  <string name="pref_plugin_findremotedevice">Najít vzdálené zařízení</string>
+  <string name="pref_plugin_findremotedevice_desc">Prozvonit vzdálené zařízení</string>
+  <string name="ring">Prozvonit</string>
+  <string name="pref_plugin_systemvolume">Hlasitost systému</string>
+  <string name="pref_plugin_systemvolume_desc">Ovládejte hlasitost systému vzdáleného zařízení</string>
+  <string name="mute">Ztlumit</string>
 </resources>
