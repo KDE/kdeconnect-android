@@ -46,6 +46,7 @@
   <string name="mousepad_double_tap_settings_title">Action pour l\'appui à deux doigts</string>
   <string name="mousepad_triple_tap_settings_title">Action pour l\'appui à trois doigts</string>
   <string name="mousepad_sensitivity_settings_title">Définir la sensibilité du pavé tactile</string>
+  <string name="mousepad_acceleration_profile_settings_title">Définir l\'accélération du pointeur</string>
   <string name="mousepad_scroll_direction_title">Inverser la direction du défilement</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic droit</item>
@@ -60,12 +61,12 @@
     <item>Le plus rapide</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>No Acceleration</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
-    <item>Medium</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>Aucune accélération</item>
+    <item>Très faible</item>
+    <item>Relativement faible</item>
+    <item>Moyenne</item>
+    <item>Relativement forte</item>
+    <item>Très forte</item>
   </string-array>
   <string name="category_connected_devices">Périphériques connectés</string>
   <string name="category_not_paired_devices">Périphériques disponibles</string>
