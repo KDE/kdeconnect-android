@@ -46,6 +46,7 @@
   <string name="mousepad_double_tap_settings_title">Imposta azione per il tocco a due dita</string>
   <string name="mousepad_triple_tap_settings_title">Imposta azione per il tocco a tre dita</string>
   <string name="mousepad_sensitivity_settings_title">Imposta la sensibilità del touchpad</string>
+  <string name="mousepad_acceleration_profile_settings_title">Imposta accelerazione del puntatore</string>
   <string name="mousepad_scroll_direction_title">Inverti direzione di scorrimento</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic destro</item>
@@ -60,12 +61,12 @@
     <item>Massima</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>No Acceleration</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
-    <item>Medium</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>Nessuna accelerazione</item>
+    <item>La più debole</item>
+    <item>Più debole</item>
+    <item>Media</item>
+    <item>Più forte</item>
+    <item>La più forte</item>
   </string-array>
   <string name="category_connected_devices">Dispositivi connessi</string>
   <string name="category_not_paired_devices">Dispositivi disponibili</string>
