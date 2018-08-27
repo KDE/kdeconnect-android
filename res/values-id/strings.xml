@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="pref_plugin_telephony">Pemberitahu telepon</string>
-  <string name="pref_plugin_telephony_desc">Kirim pemberitahuan untuk SMS dan panggilan</string>
+  <string name="pref_plugin_telephony">Notifikasi telepon</string>
+  <string name="pref_plugin_telephony_desc">Kirim notifikasi untuk SMS dan panggilan</string>
   <string name="pref_plugin_battery">Laporan baterai</string>
   <string name="pref_plugin_battery_desc">Status baterai laporkan secara berkala</string>
   <string name="pref_plugin_sftp">Menyingkap sistem file</string>
@@ -13,17 +13,17 @@
   <string name="pref_plugin_remotekeyboard">Terima penekanan tuts jarak jauh</string>
   <string name="pref_plugin_remotekeyboard_desc">Terima perihal tekan-tuts dari perangkat jarak jauh</string>
   <string name="pref_plugin_mpris">Kendalikan multimedia</string>
-  <string name="pref_plugin_mpris_desc">Menyediakan sebuah kendali jarak jauh untuk pemain mediamu</string>
+  <string name="pref_plugin_mpris_desc">Menyediakan sebuah kendali jarak jauh untuk player mediamu</string>
   <string name="pref_plugin_runcommand">Jalankan Perintah</string>
   <string name="pref_plugin_runcommand_desc">Pemicu perintah jarak jauh dari telepon dan tablet-mu</string>
   <string name="pref_plugin_contacts">Penyinkron Kontak</string>
   <string name="pref_plugin_contacts_desc">Bolehkan menyinkronkan buku kontak pada perangkat</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Kirim dan terima ping</string>
-  <string name="pref_plugin_notifications">Sinkron pemberitahuan</string>
-  <string name="pref_plugin_notifications_desc">Akses pemberitahuanmu dari perangkat lain</string>
-  <string name="pref_plugin_receive_notifications">Terima pemberitahuan</string>
-  <string name="pref_plugin_receive_notifications_desc">Terima pemberitahuan dari perangkat lain dan menampilkannya pada Android</string>
+  <string name="pref_plugin_notifications">Sinkron notifikasi</string>
+  <string name="pref_plugin_notifications_desc">Akses notifikasimu dari perangkat lain</string>
+  <string name="pref_plugin_receive_notifications">Terima notifikasi</string>
+  <string name="pref_plugin_receive_notifications_desc">Terima notifikasi dari perangkat lain dan menampilkannya pada Android</string>
   <string name="pref_plugin_sharereceiver">Kirim dan terima</string>
   <string name="pref_plugin_sharereceiver_desc">Berbagi file-file dan URL-URL antara perangkat</string>
   <string name="plugin_not_available">Fitur ini tidak tersedia dalam versi Android-mu</string>
@@ -31,8 +31,8 @@
   <string name="ok">Oke</string>
   <string name="cancel">Batal</string>
   <string name="open_settings">Buka setelan</string>
-  <string name="no_permissions">Kamu perlu mengabulkan perizinan untuk mengakses pemberitahuan</string>
-  <string name="no_permission_mprisreceiver">Untuk dapat mengendalikan pemain mediamu kamu perlu mengabulkan akses ke pemberitahuan</string>
+  <string name="no_permissions">Kamu perlu mengabulkan perizinan untuk mengakses notifikasi</string>
+  <string name="no_permission_mprisreceiver">Untuk dapat mengendalikan player mediamu kamu perlu mengabulkan akses ke notifikasi</string>
   <string name="send_ping">Kirim ping</string>
   <string name="open_mpris_controls">Kendali multimedia</string>
   <string name="remotekeyboard_editing_only_title">Menangani tuts jarak jauh hanya ketika mengedit</string>
@@ -134,8 +134,8 @@
     <item>1 menit</item>
     <item>2 menit</item>
   </string-array>
-  <string name="mpris_notification_settings_title">Tampilkan pemberitahuan kendali media</string>
-  <string name="mpris_notification_settings_summary">Membolehkan mengendalikan pemain mediamu tanpa membuka KDE Connect.</string>
+  <string name="mpris_notification_settings_title">Tampilkan notifikasi kendali media</string>
+  <string name="mpris_notification_settings_summary">Membolehkan mengendalikan player mediamu tanpa membuka KDE Connect.</string>
   <string name="share_to">Bagikan Ke...</string>
   <string name="protocol_version_older">Perangkat ini menggunakan sebuah versi protokol lawas</string>
   <string name="protocol_version_newer">Perangkat ini menggunakan sebuah versi protokol baru</string>
@@ -150,7 +150,7 @@
   <string name="pair_device_action">Sandingkan sebuah perangkat baru</string>
   <string name="unpair_device_action">Leraikan %s</string>
   <string name="custom_device_list">Tambahkan perangkat dengan IP</string>
-  <string name="share_notification_preference">Pemberitahuan bising</string>
+  <string name="share_notification_preference">Notifikasi bising</string>
   <string name="share_notification_preference_summary">Getar dan mainkan suar ketika menerima sebuah file</string>
   <string name="share_destination_customize">Menyesuaikan tujuan direktori</string>
   <string name="share_destination_customize_summary_disabled">File yang diterima akan muncul di Unduhan</string>
@@ -158,8 +158,8 @@
   <string name="share_destination_folder_preference">Direktori tujuan</string>
   <string name="share">Bagikan</string>
   <string name="share_received_file">Bagikan \"%s\"</string>
-  <string name="title_activity_notification_filter">Filter pemberitahuan</string>
-  <string name="filter_apps_info">Pemberitahuan akan disinkronkan terhadap apl terpilih.</string>
+  <string name="title_activity_notification_filter">Filter notifikasi</string>
+  <string name="filter_apps_info">Notifikasi akan disinkronkan terhadap apl terpilih.</string>
   <string name="sftp_internal_storage">Penyimpanan internal</string>
   <string name="sftp_all_files">Semua file</string>
   <string name="sftp_sdcard_num">Kartu SD %d</string>
@@ -168,7 +168,7 @@
   <string name="sftp_camera">Gambar kamera</string>
   <string name="add_host">Tambahkan host/IP</string>
   <string name="add_host_hint">Hostname atau IP</string>
-  <string name="no_players_connected">Tiada pemain yang ditemukan</string>
+  <string name="no_players_connected">Tiada player yang ditemukan</string>
   <string name="custom_dev_list_help">Gunakan opsi ini hanya jika perangkatmu tidaklah secara otomatis terdeteksi. Masukkan alamat IP atau hostname di bawah ini dan sentuh tombol untuk menambahkannya ke daftar. Sentuh item yang ada untuk membuangnya dari daftar.</string>
   <string name="mpris_player_on_device">%1$s pada %2$s</string>
   <string name="send_files">Kirim file</string>
@@ -212,7 +212,7 @@
   <string name="addcommand_explanation">Tidak ada perintah yang diregister</string>
   <string name="addcommand_explanation2">"Kamu bisa menambahkan perintah baru dalam Setelan Sistem KDE Connect "</string>
   <string name="add_command_description">Kamu bisa menambahkan perintah pada desktop</string>
-  <string name="pref_plugin_mprisreceiver">Kendali Pemain Media</string>
-  <string name="pref_plugin_mprisreceiver_desc">Kendalikan pemain media teleponmu dari perangkat lainnya</string>
+  <string name="pref_plugin_mprisreceiver">Kendali Player Media</string>
+  <string name="pref_plugin_mprisreceiver_desc">Kendalikan player media teleponmu dari perangkat lainnya</string>
   <string name="dark_theme">Tema gelap</string>
 </resources>
