@@ -27,17 +27,17 @@ import android.util.Log;
 import org.apache.sshd.SshServer;
 import org.apache.sshd.common.NamedFactory;
 import org.apache.sshd.common.Session;
+import org.apache.sshd.common.file.FileSystemFactory;
+import org.apache.sshd.common.file.FileSystemView;
+import org.apache.sshd.common.file.SshFile;
+import org.apache.sshd.common.file.nativefs.NativeFileSystemView;
+import org.apache.sshd.common.file.nativefs.NativeSshFile;
 import org.apache.sshd.common.keyprovider.AbstractKeyPairProvider;
 import org.apache.sshd.common.util.SecurityUtils;
 import org.apache.sshd.server.Command;
-import org.apache.sshd.server.FileSystemFactory;
-import org.apache.sshd.server.FileSystemView;
 import org.apache.sshd.server.PasswordAuthenticator;
 import org.apache.sshd.server.PublickeyAuthenticator;
-import org.apache.sshd.server.SshFile;
 import org.apache.sshd.server.command.ScpCommandFactory;
-import org.apache.sshd.server.filesystem.NativeFileSystemView;
-import org.apache.sshd.server.filesystem.NativeSshFile;
 import org.apache.sshd.server.kex.DHG1;
 import org.apache.sshd.server.kex.DHG14;
 import org.apache.sshd.server.session.ServerSession;
@@ -84,32 +84,27 @@ class SimpleSftpServer {
 
     private final SshServer sshd = SshServer.setUpDefaultServer();
 
-    public void init(Context context, Device device) {
+    public void init(Context context, Device device) throws Exception {
 
         sshd.setKeyExchangeFactories(Arrays.asList(
                 new DHG14.Factory(),
                 new DHG1.Factory()));
 
         //Reuse this device keys for the ssh connection as well
-        KeyPair[] keyPairList = new KeyPair[1];
-        try {
-            PrivateKey privateKey = RsaHelper.getPrivateKey(context);
-            PublicKey publicKey = RsaHelper.getPublicKey(context);
-            keyPairList[0] = new KeyPair(publicKey, privateKey);
-        } catch (Exception e) {
-            Log.e("SimpleSftpServer", "Can't load device keys");
-            throw new RuntimeException("BLA");
-        }
+        final KeyPair keyPair;
+        PrivateKey privateKey = RsaHelper.getPrivateKey(context);
+        PublicKey publicKey = RsaHelper.getPublicKey(context);
+        keyPair = new KeyPair(publicKey, privateKey);
         sshd.setKeyPairProvider(new AbstractKeyPairProvider() {
             @Override
-            protected KeyPair[] loadKeys() {
-                return keyPairList;
+            public Iterable<KeyPair> loadKeys() {
+                return Collections.singletonList(keyPair);
             }
         });
 
         sshd.setFileSystemFactory(new AndroidFileSystemFactory(context));
         sshd.setCommandFactory(new ScpCommandFactory());
-        sshd.setSubsystemFactories(Collections.singletonList((NamedFactory<Command>) new SftpSubsystem.Factory()));
+        sshd.setSubsystemFactories(Collections.singletonList(new SftpSubsystem.Factory()));
 
         if (device.publicKey != null) {
             keyAuth.deviceKey = device.publicKey;
@@ -222,7 +217,7 @@ class SimpleSftpServer {
         @Override
         protected SshFile getFile(final String dir, final String file) {
             File fileObj = new File(dir, file);
-            return new AndroidSshFile(fileObj, userName, context);
+            return new AndroidSshFile(this, fileObj, userName, context);
         }
     }
 
@@ -231,8 +226,8 @@ class SimpleSftpServer {
         final private Context context;
         final private File file;
 
-        public AndroidSshFile(final File file, final String userName, Context context) {
-            super(file.getAbsolutePath(), file, userName);
+        public AndroidSshFile(final AndroidFileSystemView view, final File file, final String userName, Context context) {
+            super(view, file.getAbsolutePath(), file, userName);
             this.context = context;
             this.file = file;
         }
