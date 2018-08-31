@@ -72,37 +72,22 @@ public class RsaHelper {
 
     }
 
-    public static PublicKey getPublicKey(Context context) throws Exception {
-        try {
-            SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
-            byte[] publicKeyBytes = Base64.decode(settings.getString("publicKey", ""), 0);
-            return KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
-
-        } catch (Exception e) {
-            throw e;
-        }
+    public static PublicKey getPublicKey(Context context) throws GeneralSecurityException {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
+        byte[] publicKeyBytes = Base64.decode(settings.getString("publicKey", ""), 0);
+        return KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
     }
 
-    public static PublicKey getPublicKey(Context context, String deviceId) throws Exception {
-        try {
-            SharedPreferences settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
-            byte[] publicKeyBytes = Base64.decode(settings.getString("publicKey", ""), 0);
-            return KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
-        } catch (Exception e) {
-            throw e;
-        }
+    public static PublicKey getPublicKey(Context context, String deviceId) throws GeneralSecurityException {
+        SharedPreferences settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
+        byte[] publicKeyBytes = Base64.decode(settings.getString("publicKey", ""), 0);
+        return KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
     }
 
-    public static PrivateKey getPrivateKey(Context context) throws Exception {
-
-        try {
-            SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(context);
-            byte[] privateKeyBytes = Base64.decode(globalSettings.getString("privateKey", ""), 0);
-            return KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(privateKeyBytes));
-        } catch (Exception e) {
-            throw e;
-        }
-
+    public static PrivateKey getPrivateKey(Context context) throws GeneralSecurityException {
+        SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(context);
+        byte[] privateKeyBytes = Base64.decode(globalSettings.getString("privateKey", ""), 0);
+        return KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(privateKeyBytes));
     }
 
     public static NetworkPacket encrypt(NetworkPacket np, PublicKey publicKey) throws GeneralSecurityException, JSONException {
