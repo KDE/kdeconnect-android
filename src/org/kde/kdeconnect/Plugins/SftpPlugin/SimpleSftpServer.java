@@ -27,6 +27,7 @@ import android.util.Log;
 import org.apache.sshd.SshServer;
 import org.apache.sshd.common.NamedFactory;
 import org.apache.sshd.common.Session;
+import org.apache.sshd.common.keyprovider.AbstractKeyPairProvider;
 import org.apache.sshd.common.util.SecurityUtils;
 import org.apache.sshd.server.Command;
 import org.apache.sshd.server.FileSystemFactory;
@@ -39,12 +40,12 @@ import org.apache.sshd.server.filesystem.NativeFileSystemView;
 import org.apache.sshd.server.filesystem.NativeSshFile;
 import org.apache.sshd.server.kex.DHG1;
 import org.apache.sshd.server.kex.DHG14;
-import org.apache.sshd.server.keyprovider.SimpleGeneratorHostKeyProvider;
 import org.apache.sshd.server.session.ServerSession;
 import org.apache.sshd.server.sftp.SftpSubsystem;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.MediaStoreHelper;
 import org.kde.kdeconnect.Helpers.RandomHelper;
+import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 
 import java.io.File;
@@ -56,6 +57,8 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.security.KeyPair;
+import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.Security;
 import java.util.Arrays;
@@ -87,7 +90,22 @@ class SimpleSftpServer {
                 new DHG14.Factory(),
                 new DHG1.Factory()));
 
-        sshd.setKeyPairProvider(new SimpleGeneratorHostKeyProvider(context.getFilesDir() + "/sftpd.ser"));
+        //Reuse this device keys for the ssh connection as well
+        KeyPair[] keyPairList = new KeyPair[1];
+        try {
+            PrivateKey privateKey = RsaHelper.getPrivateKey(context);
+            PublicKey publicKey = RsaHelper.getPublicKey(context);
+            keyPairList[0] = new KeyPair(publicKey, privateKey);
+        } catch (Exception e) {
+            Log.e("SimpleSftpServer", "Can't load device keys");
+            throw new RuntimeException("BLA");
+        }
+        sshd.setKeyPairProvider(new AbstractKeyPairProvider() {
+            @Override
+            protected KeyPair[] loadKeys() {
+                return keyPairList;
+            }
+        });
 
         sshd.setFileSystemFactory(new AndroidFileSystemFactory(context));
         sshd.setCommandFactory(new ScpCommandFactory());
