@@ -10,6 +10,8 @@
   <string name="pref_plugin_clipboard_desc">Compartilha o conteúdo da área de transferência</string>
   <string name="pref_plugin_mousepad">Introdução de dados remota</string>
   <string name="pref_plugin_mousepad_desc">Use seu telefone ou tablet como mouse e teclado</string>
+  <string name="pref_plugin_presenter">Apresentação remota</string>
+  <string name="pref_plugin_presenter_desc">Use o seu dispositivo para mudar de slides em uma apresentação</string>
   <string name="pref_plugin_remotekeyboard">Receber pressionamento de teclas remotamente</string>
   <string name="pref_plugin_remotekeyboard_desc">Recebe os eventos de pressionamento de teclas dos dispositivos remotos</string>
   <string name="pref_plugin_mpris">Controle multimídia</string>
@@ -44,6 +46,7 @@
   <string name="mousepad_double_tap_settings_title">Definir a ação do toque com dois dedos</string>
   <string name="mousepad_triple_tap_settings_title">Definir a ação do toque com três dedos</string>
   <string name="mousepad_sensitivity_settings_title">Definir a sensibilidade do touchpad</string>
+  <string name="mousepad_acceleration_profile_settings_title">Definir a aceleração do ponteiro</string>
   <string name="mousepad_scroll_direction_title">Direção de rolagem inversa</string>
   <string-array name="mousepad_tap_entries">
     <item>Botão direito</item>
@@ -58,12 +61,12 @@
     <item>Mais rápido</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>No Acceleration</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
-    <item>Medium</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>Sem aceleração</item>
+    <item>Muito fraca</item>
+    <item>Fraca</item>
+    <item>Média</item>
+    <item>Forte</item>
+    <item>Muito forte</item>
   </string-array>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos disponíveis</string>
@@ -209,6 +212,9 @@
   <string name="mpris_coverart_description">Capa da mídia atual</string>
   <string name="device_icon_description">Ícone do dispositivo</string>
   <string name="settings_icon_description">Ícone de configurações</string>
+  <string name="presenter_fullscreen">Tela inteira</string>
+  <string name="presenter_exit">Sair da apresentação</string>
+  <string name="presenter_lock_tip">Você pode bloquear o seu dispositivo para usar as teclas de volume como botões anterior/próximo</string>
   <string name="add_command">Adicionar um comando</string>
   <string name="addcommand_explanation">Não há comandos registrados</string>
   <string name="addcommand_explanation2">Você pode adicionar novos comandos nas Configurações do Sistema KDE Connect</string>
@@ -216,4 +222,17 @@
   <string name="pref_plugin_mprisreceiver">Controle do reprodutor de mídia</string>
   <string name="pref_plugin_mprisreceiver_desc">Controle os reprodutores de mídias dos seus celulares a partir de outro dispositivo</string>
   <string name="dark_theme">Tema escuro</string>
+  <string name="mpris_stop">Parar o reprodutor atual</string>
+  <string name="copy_url_to_clipboard">Copiar URL para a área de transferência</string>
+  <string name="clipboard_toast">Copiado para a área de transferência</string>
+  <string name="runcommand_notreachable">Dispositivo não acessível</string>
+  <string name="runcommand_notpaired">Dispositivo não emparelhado</string>
+  <string name="runcommand_nosuchdevice">Este dispositivo não existe</string>
+  <string name="runcommand_noruncommandplugin">Este dispositivo não tem o plugin \'Executar comando\' ativo</string>
+  <string name="pref_plugin_findremotedevice">Procurar dispositivo remoto</string>
+  <string name="pref_plugin_findremotedevice_desc">Fazer tocar o seu dispositivo remoto</string>
+  <string name="ring">Toque</string>
+  <string name="pref_plugin_systemvolume">Volume do sistema</string>
+  <string name="pref_plugin_systemvolume_desc">Controle o volume do sistema a partir do dispositivo remoto</string>
+  <string name="mute">Sem áudio</string>
 </resources>
