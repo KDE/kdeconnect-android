@@ -68,12 +68,45 @@ public class TelephonyPlugin extends Plugin {
      *  - "missedCall" - An incoming call was not answered
      *  - "sms" - An incoming SMS message
      *   - Note: As of this writing (15 May 2018) the SMS interface is being improved and this type of event
-     *     is no longer the preferred way of retrieving SMS. Use PACKET_TYPE_TELEPHONY_MESSAGE instead.
+     *     is no longer the preferred way of handling SMS. Use the packets defined by the SMS plugin instead.
      *
      *  Depending on the event, other fields may be defined
      */
     public final static String PACKET_TYPE_TELEPHONY = "kdeconnect.telephony";
+
+    /**
+     * Old-style packet sent to request a simple telephony action
+     *
+     * The two possible events used the be to request a message be sent or request the device
+     * silence its ringer
+     *
+     * In case an SMS was being requested, the body was like so:
+     * { "sendSms": true,
+     *   "phoneNumber": "542904563213",
+     *   "messageBody": "Hi mom!"
+     * }
+     *
+     * In case a ringer muted was requested, the body looked like so:
+     * { "action": "mute" }
+     *
+     * As of 15 May 2018, the SMS interface is being improved. Use the packets defined by the
+     * SMS plugin instead for SMS events
+     *
+     * Ringer mute requests are best handled by PACKET_TYPE_TELEPHONY_REQUEST_MUTE
+     *
+     * This packet type is retained for backwards-compatibility with old desktop applications,
+     * but support should be dropped once those applications are no longer supported. New
+     * applications should not use this packet type.
+     */
+    @Deprecated
     public final static String PACKET_TYPE_TELEPHONY_REQUEST = "kdeconnect.telephony.request";
+
+    /**
+     * Packet sent to indicate the user has requested the device mute its ringer
+     *
+     * The body should be empty
+     */
+    public final static String PACKET_TYPE_TELEPHONY_REQUEST_MUTE = "kdeconnect.telephony.request_mute";
 
     private static final String KEY_PREF_BLOCKED_NUMBERS = "telephony_blocked_numbers";
     private int lastState = TelephonyManager.CALL_STATE_IDLE;
@@ -225,6 +258,18 @@ public class TelephonyPlugin extends Plugin {
         lastState = state;
     }
 
+    private void muteRinger() {
+        if (!isMuted) {
+            AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                am.setStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_MUTE, 0);
+            } else {
+                am.setStreamMute(AudioManager.STREAM_RING, true);
+            }
+            isMuted = true;
+        }
+    }
+
     @Override
     public boolean onCreate() {
         IntentFilter filter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
@@ -244,18 +289,16 @@ public class TelephonyPlugin extends Plugin {
     @Override
     public boolean onPacketReceived(NetworkPacket np) {
 
-        if (np.getString("action").equals("mute")) {
-            if (!isMuted) {
-                AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    am.setStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_MUTE, 0);
-                } else {
-                    am.setStreamMute(AudioManager.STREAM_RING, true);
+        switch (np.getType()) {
+            case PACKET_TYPE_TELEPHONY_REQUEST:
+                if (np.getString("action").equals("mute")) {
+                    muteRinger();
                 }
-                isMuted = true;
-            }
+                break;
+            case PACKET_TYPE_TELEPHONY_REQUEST_MUTE:
+                muteRinger();
+                break;
         }
-        //Do nothing
         return true;
     }
 
@@ -274,7 +317,8 @@ public class TelephonyPlugin extends Plugin {
     @Override
     public String[] getSupportedPacketTypes() {
         return new String[]{
-            PACKET_TYPE_TELEPHONY_REQUEST
+            PACKET_TYPE_TELEPHONY_REQUEST,
+            PACKET_TYPE_TELEPHONY_REQUEST_MUTE,
         };
     }
 

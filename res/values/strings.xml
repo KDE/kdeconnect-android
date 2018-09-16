@@ -2,7 +2,7 @@
 <resources>
 
     <string name="pref_plugin_telephony">Telephony notifier</string>
-    <string name="pref_plugin_telephony_desc">Send notifications for SMS and calls</string>
+    <string name="pref_plugin_telephony_desc">Send notifications for incoming calls</string>
     <string name="pref_plugin_battery">Battery report</string>
     <string name="pref_plugin_battery_desc">Periodically report battery status</string>
     <string name="pref_plugin_sftp">Filesystem expose</string>

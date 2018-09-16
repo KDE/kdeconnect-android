@@ -33,7 +33,6 @@ class AppDatabase {
     static final private HashSet<String> disabledByDefault = new HashSet<>();
 
     static {
-        disabledByDefault.add("com.android.messaging"); //We already have sms notifications in the telephony plugin
         disabledByDefault.add("com.google.android.googlequicksearchbox"); //Google Now notifications re-spawn every few minutes
     }
 

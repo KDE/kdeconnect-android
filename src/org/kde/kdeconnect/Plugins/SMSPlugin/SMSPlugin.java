@@ -54,8 +54,6 @@ import static org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin.PACKET_
 
 public class SMSPlugin extends Plugin {
 
-    private final static String PACKET_TYPE_SMS_REQUEST = "kdeconnect.sms.request";
-
     /**
      * Packet used to indicate a batch of messages has been pushed from the remote device
      *
@@ -74,14 +72,28 @@ public class SMSPlugin extends Plugin {
      *     ...
      *   ]
      */
-    private final static String PACKET_TYPE_TELEPHONY_MESSAGE = "kdeconnect.telephony.message";
+    private final static String PACKET_TYPE_SMS_MESSAGE = "kdeconnect.sms.messages";
 
     /**
-     * Packet sent to request all conversations
+     * Packet sent to request a message be sent
+     *
+     * This will almost certainly need to be replaced or augmented to support MMS,
+     * but be sure the Android side remains compatible with old desktop apps!
+     *
+     * The body should look like so:
+     * { "sendSms": true,
+     *   "phoneNumber": "542904563213",
+     *   "messageBody": "Hi mom!"
+     * }
+     */
+    private final static String PACKET_TYPE_SMS_REQUEST = "kdeconnect.sms.request";
+
+    /**
+     * Packet sent to request the most-recent message in each conversations on the device
      *
      * The request packet shall contain no body
      */
-    public final static String PACKET_TYPE_TELEPHONY_REQUEST_CONVERSATIONS = "kdeconnect.telephony.request_conversations";
+    private final static String PACKET_TYPE_SMS_REQUEST_CONVERSATIONS = "kdeconnect.sms.request_conversations";
 
     /**
      * Packet sent to request all the messages in a particular conversation
@@ -90,7 +102,7 @@ public class SMSPlugin extends Plugin {
      * For example:
      * { "threadID": 203 }
      */
-    public final static String PACKET_TYPE_TELEPHONY_REQUEST_CONVERSATION = "kdeconnect.telephony.request_conversation";
+    private final static String PACKET_TYPE_SMS_REQUEST_CONVERSATION = "kdeconnect.sms.request_conversation";
 
     private static final String KEY_PREF_BLOCKED_NUMBERS = "telephony_blocked_numbers";
 
@@ -193,30 +205,35 @@ public class SMSPlugin extends Plugin {
     @Override
     public boolean onPacketReceived(NetworkPacket np) {
 
-        if (np.getType().equals(PACKET_TYPE_TELEPHONY_REQUEST_CONVERSATIONS)) {
-            return this.handleRequestConversations(np);
-        } else if (np.getType().equals(PACKET_TYPE_TELEPHONY_REQUEST_CONVERSATION)) {
-            return this.handleRequestConversation(np);
-        }
+        switch (np.getType()) {
+            case PACKET_TYPE_SMS_REQUEST_CONVERSATIONS:
+                return this.handleRequestConversations(np);
+            case PACKET_TYPE_SMS_REQUEST_CONVERSATION:
+                return this.handleRequestConversation(np);
+            case PACKET_TYPE_SMS_REQUEST:
+                // Fall through to old-style handling
+                // This space may be filled in differently once MMS support is implemented
+            case TelephonyPlugin.PACKET_TYPE_TELEPHONY_REQUEST:
+                if (np.getBoolean("sendSms")) {
+                    String phoneNo = np.getString("phoneNumber");
+                    String sms = np.getString("messageBody");
 
-        if (np.getBoolean("sendSms")) {
-            String phoneNo = np.getString("phoneNumber");
-            String sms = np.getString("messageBody");
+                    try {
+                        SmsManager smsManager = SmsManager.getDefault();
+                        ArrayList<String> parts = smsManager.divideMessage(sms);
 
-            try {
-                SmsManager smsManager = SmsManager.getDefault();
-                ArrayList<String> parts = smsManager.divideMessage(sms);
+                        // If this message turns out to fit in a single SMS, sendMultipartTextMessage
+                        // properly handles that case
+                        smsManager.sendMultipartTextMessage(phoneNo, null, parts, null, null);
 
-                // If this message turns out to fit in a single SMS, sendMultipartTextMessage
-                // properly handles that case
-                smsManager.sendMultipartTextMessage(phoneNo, null, parts, null, null);
-
-                //TODO: Notify other end
-            } catch (Exception e) {
-                //TODO: Notify other end
-                Log.e("SMSPlugin", e.getMessage());
-                e.printStackTrace();
-            }
+                        //TODO: Notify other end
+                    } catch (Exception e) {
+                        //TODO: Notify other end
+                        Log.e("SMSPlugin", e.getMessage());
+                        e.printStackTrace();
+                    }
+                }
+                break;
         }
 
         return true;
@@ -225,12 +242,12 @@ public class SMSPlugin extends Plugin {
     /**
      * Respond to a request for all conversations
      * <p>
-     * Send one packet of type PACKET_TYPE_TELEPHONY_MESSAGE with the first message in all conversations
+     * Send one packet of type PACKET_TYPE_SMS_MESSAGE with the first message in all conversations
      */
-    protected boolean handleRequestConversations(NetworkPacket packet) {
+    private boolean handleRequestConversations(NetworkPacket packet) {
         Map<SMSHelper.ThreadID, SMSHelper.Message> conversations = SMSHelper.getConversations(this.context);
 
-        NetworkPacket reply = new NetworkPacket(PACKET_TYPE_TELEPHONY_MESSAGE);
+        NetworkPacket reply = new NetworkPacket(PACKET_TYPE_SMS_MESSAGE);
 
         JSONArray messages = new JSONArray();
 
@@ -247,19 +264,19 @@ public class SMSPlugin extends Plugin {
         }
 
         reply.set("messages", messages);
-        reply.set("event", "batch_messages"); // Not really necessary, since this is implied by PACKET_TYPE_TELEPHONY_MESSAGE, but good for readability
+        reply.set("event", "batch_messages"); // Not really necessary, since this is implied by PACKET_TYPE_SMS_MESSAGE, but good for readability
 
         device.sendPacket(reply);
 
         return true;
     }
 
-    protected boolean handleRequestConversation(NetworkPacket packet) {
+    private boolean handleRequestConversation(NetworkPacket packet) {
         SMSHelper.ThreadID threadID = new SMSHelper.ThreadID(packet.getInt("threadID"));
 
         List<SMSHelper.Message> conversation = SMSHelper.getMessagesInThread(this.context, threadID);
 
-        NetworkPacket reply = new NetworkPacket(PACKET_TYPE_TELEPHONY_MESSAGE);
+        NetworkPacket reply = new NetworkPacket(PACKET_TYPE_SMS_MESSAGE);
 
         JSONArray messages = new JSONArray();
 
@@ -301,14 +318,14 @@ public class SMSPlugin extends Plugin {
         return new String[]{
                 PACKET_TYPE_SMS_REQUEST,
                 TelephonyPlugin.PACKET_TYPE_TELEPHONY_REQUEST,
-                PACKET_TYPE_TELEPHONY_REQUEST_CONVERSATIONS,
-                PACKET_TYPE_TELEPHONY_REQUEST_CONVERSATION
+                PACKET_TYPE_SMS_REQUEST_CONVERSATIONS,
+                PACKET_TYPE_SMS_REQUEST_CONVERSATION
         };
     }
 
     @Override
     public String[] getOutgoingPacketTypes() {
-        return new String[]{PACKET_TYPE_TELEPHONY_MESSAGE};
+        return new String[]{PACKET_TYPE_SMS_MESSAGE};
     }
 
     @Override
