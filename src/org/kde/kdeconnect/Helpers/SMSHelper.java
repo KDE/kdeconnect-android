@@ -21,11 +21,14 @@
 package org.kde.kdeconnect.Helpers;
 
 import android.content.Context;
+import android.database.ContentObserver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Looper;
 import android.provider.Telephony;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,6 +37,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class SMSHelper {
 
@@ -87,12 +93,37 @@ public class SMSHelper {
      * @return List of all messages in the thread
      */
     public static List<Message> getMessagesInThread(Context context, ThreadID threadID) {
+        final String selection = ThreadID.lookupColumn + " == ?";
+        final String[] selectionArgs = new String[] { threadID.toString() };
+
+        return getMessagesWithFilter(context, selection, selectionArgs);
+    }
+
+    /**
+     * Get all messages which have a timestamp after the requested timestamp
+     *
+     * @param timestamp epoch in millis matching the timestamp to return
+     * @return null if no matching message is found, otherwise return a Message
+     */
+    public static List<Message> getMessagesSinceTimestamp(Context context, long timestamp) {
+        final String selection = Message.DATE + " > ?";
+        final String[] selectionArgs = new String[] {Long.toString(timestamp)};
+
+        List<Message> messages = getMessagesWithFilter(context, selection, selectionArgs);
+        return messages;
+    }
+
+    /**
+     * Get all messages matching the passed filter. See documentation for Android's ContentResolver
+     *
+     * @param selection Parameterizable filter to use with the ContentResolver query. May be null.
+     * @param selectionArgs Parameters for selection. May be null.
+     * @return List of messages matching the filter
+     */
+    private static List<Message> getMessagesWithFilter(Context context, String selection, String[] selectionArgs) {
         List<Message> toReturn = new ArrayList<>();
 
         Uri smsUri = getSMSUri();
-
-        final String selection = ThreadID.lookupColumn + " == ?";
-        final String[] selectionArgs = new String[] { threadID.toString() };
 
         Cursor smsCursor = context.getContentResolver().query(
                 smsUri,
@@ -102,10 +133,7 @@ public class SMSHelper {
                 null);
 
         if (smsCursor != null && smsCursor.moveToFirst()) {
-            int threadColumn = smsCursor.getColumnIndexOrThrow(ThreadID.lookupColumn);
             do {
-                int thread = smsCursor.getInt(threadColumn);
-
                 HashMap<String, String> messageInfo = new HashMap<>();
                 for (int columnIdx = 0; columnIdx < smsCursor.getColumnCount(); columnIdx++) {
                     String colName = smsCursor.getColumnName(columnIdx);
@@ -166,6 +194,19 @@ public class SMSHelper {
         }
 
         return toReturn;
+    }
+
+    /**
+     * Register a ContentObserver for the Messages database
+     *
+     * @param observer ContentObserver to alert on Message changes
+     */
+    public static void registerObserver(ContentObserver observer, Context context) {
+        context.getContentResolver().registerContentObserver(
+                SMSHelper.getSMSUri(),
+                true,
+                observer
+        );
     }
 
     /**
@@ -271,6 +312,66 @@ public class SMSHelper {
         @Override
         public String toString() {
             return this.m_body;
+        }
+    }
+
+    /**
+     * If anyone wants to subscribe to changes in the messages database, they will need a thread
+     * to handle callbacks on
+     * This singleton conveniently provides such a thread, accessed and used via its Looper object
+     */
+    public static class MessageLooper extends Thread {
+        private static MessageLooper singleton = null;
+        private static Looper looper = null;
+
+        private static Lock looperReadyLock = new ReentrantLock();
+        private static Condition looperReady = looperReadyLock.newCondition();
+
+        private MessageLooper() {
+            setName("MessageHelperLooper");
+        }
+
+        /**
+         * Get the Looper object associated with this thread
+         *
+         * If the Looper has not been prepared, it is prepared as part of this method call.
+         * Since this means a thread has to be spawned, this method might block until that thread is
+         * ready to serve requests
+         */
+        public static Looper getLooper() {
+            if (singleton == null) {
+                looperReadyLock.lock();
+                try {
+                    singleton = new MessageLooper();
+                    singleton.start();
+                    while (looper == null) {
+                        // Block until the looper is ready
+                        looperReady.await();
+                    }
+                } catch (InterruptedException e) {
+                    // I don't know when this would happen
+                    Log.e("SMSHelper", "Interrupted while waiting for Looper", e);
+                    return null;
+                } finally {
+                    looperReadyLock.unlock();
+                }
+            }
+
+            return looper;
+        }
+
+        public void run() {
+            looperReadyLock.lock();
+            try {
+                Looper.prepare();
+
+                looper = Looper.myLooper();
+                looperReady.signalAll();
+            } finally {
+                looperReadyLock.unlock();
+            }
+
+            Looper.loop();
         }
     }
 }

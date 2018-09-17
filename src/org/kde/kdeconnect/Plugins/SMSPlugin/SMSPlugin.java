@@ -27,7 +27,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.ContentObserver;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.telephony.PhoneNumberUtils;
@@ -47,8 +50,11 @@ import org.kde.kdeconnect_tp.BuildConfig;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import static org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin.PACKET_TYPE_TELEPHONY;
 
@@ -130,13 +136,89 @@ public class SMSPlugin extends Plugin {
                     messages.add(SmsMessage.createFromPdu((byte[]) pdu));
                 }
 
-                smsBroadcastReceived(messages);
-
+                smsBroadcastReceivedDeprecated(messages);
             }
         }
     };
 
-    private void smsBroadcastReceived(ArrayList<SmsMessage> messages) {
+    /**
+     * Keep track of the most-recently-seen message so that we can query for later ones as they arrive
+     */
+    private long mostRecentTimestamp = 0;
+    // Since the mostRecentTimestamp is accessed both from the plugin's thread and the ContentObserver
+    // thread, make sure that access is coherent
+    private Lock mostRecentTimestampLock = new ReentrantLock();
+
+    private class MessageContentObserver extends ContentObserver {
+        SMSPlugin mPlugin;
+
+        /**
+         * Create a ContentObserver to watch the Messages database. onChange is called for
+         * every subscribed change
+         *
+         * @param parent Plugin which owns this observer
+         * @param handler Handler object used to make the callback
+         */
+        public MessageContentObserver(SMSPlugin parent, Handler handler) {
+            super(handler);
+            mPlugin = parent;
+        }
+
+        @Override
+        /**
+         * The onChange method is called whenever the subscribed-to database changes
+         *
+         * In this case, this onChange expects to be called whenever *anything* in the Messages
+         * database changes and simply reports those updated messages to anyone who might be listening
+         */
+        public void onChange(boolean selfChange) {
+            if (mPlugin.mostRecentTimestamp == 0) {
+                // Since the timestamp has not been initialized, we know that nobody else
+                // has requested a message. That being the case, there is most likely
+                // nobody listening for message updates, so just drop them
+                return;
+            }
+            mostRecentTimestampLock.lock();
+            // Grab the mostRecentTimestamp into the local stack because reading the Messages
+            // database could potentially be a long operation
+            long mostRecentTimestamp = mPlugin.mostRecentTimestamp;
+            mostRecentTimestampLock.unlock();
+
+            List<SMSHelper.Message> messages = SMSHelper.getMessagesSinceTimestamp(mPlugin.context, mostRecentTimestamp);
+
+            if (messages.size() == 0) {
+                // Our onChange often gets called many times for a single message. Don't make unnecessary
+                // noise
+                return;
+            }
+
+            // Update the most recent counter
+            mostRecentTimestampLock.lock();
+            for (SMSHelper.Message message : messages) {
+                if (message.m_date > mostRecentTimestamp) {
+                    mPlugin.mostRecentTimestamp = message.m_date;
+                }
+            }
+            mostRecentTimestampLock.unlock();
+
+            // Send the alert about the update
+            device.sendPacket(constructBulkMessagePacket(messages));
+        }
+    }
+
+    @Deprecated
+    /**
+     * Deliver an old-style SMS packet in response to a new message arriving
+     *
+     * For backwards-compatibility with long-lived distro packages, this method needs to exist in
+     * order to support older desktop apps. However, note that it should no longer be used
+     *
+     * This comment is being written 30 August 2018. Distros will likely be running old versions for
+     * many years to come...
+     *
+     * @param messages Ordered list of parts of the message body which should be combined into a single message
+     */
+    private void smsBroadcastReceivedDeprecated(ArrayList<SmsMessage> messages) {
 
         if (BuildConfig.DEBUG) {
             if (!(messages.size() > 0)) {
@@ -189,6 +271,10 @@ public class SMSPlugin extends Plugin {
         filter.setPriority(500);
         context.registerReceiver(receiver, filter);
 
+        Looper helperLooper = SMSHelper.MessageLooper.getLooper();
+        ContentObserver messageObserver = new MessageContentObserver(this, new Handler(helperLooper));
+        SMSHelper.registerObserver(messageObserver, context);
+
         return true;
     }
 
@@ -240,6 +326,35 @@ public class SMSPlugin extends Plugin {
     }
 
     /**
+     * Construct a proper packet of PACKET_TYPE_SMS_MESSAGE from the passed messages
+     *
+     * @param messages Messages to include in the packet
+     * @return NetworkPacket of type PACKET_TYPE_SMS_MESSAGE
+     */
+    public static NetworkPacket constructBulkMessagePacket(Collection<SMSHelper.Message> messages) {
+        NetworkPacket reply = new NetworkPacket(PACKET_TYPE_SMS_MESSAGE);
+
+        JSONArray body = new JSONArray();
+
+        for (SMSHelper.Message message : messages) {
+            try {
+                JSONObject json = message.toJSONObject();
+
+                json.put("event", "sms");
+
+                body.put(json);
+            } catch (JSONException e) {
+                Log.e("Conversations", "Error serializing message");
+            }
+        }
+
+        reply.set("messages", body);
+        reply.set("event", "batch_messages");
+
+        return reply;
+    }
+
+    /**
      * Respond to a request for all conversations
      * <p>
      * Send one packet of type PACKET_TYPE_SMS_MESSAGE with the first message in all conversations
@@ -247,24 +362,17 @@ public class SMSPlugin extends Plugin {
     private boolean handleRequestConversations(NetworkPacket packet) {
         Map<SMSHelper.ThreadID, SMSHelper.Message> conversations = SMSHelper.getConversations(this.context);
 
-        NetworkPacket reply = new NetworkPacket(PACKET_TYPE_SMS_MESSAGE);
-
-        JSONArray messages = new JSONArray();
-
+        // Prepare the mostRecentTimestamp counter based on these messages, since they are the most
+        // recent in every conversation
+        mostRecentTimestampLock.lock();
         for (SMSHelper.Message message : conversations.values()) {
-            try {
-                JSONObject json = message.toJSONObject();
-
-                json.put("event", "sms");
-
-                messages.put(json);
-            } catch (JSONException e) {
-                Log.e("Conversations", "Error serializing message");
+            if (message.m_date > mostRecentTimestamp) {
+                mostRecentTimestamp = message.m_date;
             }
         }
+        mostRecentTimestampLock.unlock();
 
-        reply.set("messages", messages);
-        reply.set("event", "batch_messages"); // Not really necessary, since this is implied by PACKET_TYPE_SMS_MESSAGE, but good for readability
+        NetworkPacket reply = constructBulkMessagePacket(conversations.values());
 
         device.sendPacket(reply);
 
@@ -276,24 +384,7 @@ public class SMSPlugin extends Plugin {
 
         List<SMSHelper.Message> conversation = SMSHelper.getMessagesInThread(this.context, threadID);
 
-        NetworkPacket reply = new NetworkPacket(PACKET_TYPE_SMS_MESSAGE);
-
-        JSONArray messages = new JSONArray();
-
-        for (SMSHelper.Message message : conversation) {
-            try {
-                JSONObject json = message.toJSONObject();
-
-                json.put("event", "sms");
-
-                messages.put(json);
-            } catch (JSONException e) {
-                Log.e("Conversations", "Error serializing message");
-            }
-        }
-
-        reply.set("messages", messages);
-        reply.set("event", "batch_messages");
+        NetworkPacket reply = constructBulkMessagePacket(conversation);
 
         device.sendPacket(reply);
 
