@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">Telefon értesítő</string>
-  <string name="pref_plugin_telephony_desc">Értesítés küldése SMS-hez és hívásokhoz</string>
   <string name="pref_plugin_battery">Akkumulátor jelentés</string>
   <string name="pref_plugin_battery_desc">Akkumulátorállapot időszakos jelentése</string>
   <string name="pref_plugin_sftp">Fájlrendszer kifejtés</string>

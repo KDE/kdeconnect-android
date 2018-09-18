@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">Telefónny notifikátor</string>
-  <string name="pref_plugin_telephony_desc">Poslať pripomienky pre SMS a hovory</string>
   <string name="pref_plugin_battery">Oznam o batérii</string>
   <string name="pref_plugin_battery_desc">Periodicky oznamovať stav batérie</string>
   <string name="pref_plugin_sftp">Odhaliť súborový systém</string>

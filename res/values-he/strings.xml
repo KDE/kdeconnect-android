@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">התראות טלפוניות</string>
-  <string name="pref_plugin_telephony_desc">שלח התראה על הודעות ושיחות</string>
   <string name="pref_plugin_battery">דיווח סוללה</string>
   <string name="pref_plugin_battery_desc">מדווח על אחוז הסוללה למחשב</string>
   <string name="pref_plugin_sftp">גישה לקבצים</string>

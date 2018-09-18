@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">Telefono žinutės ir skambučiai</string>
-  <string name="pref_plugin_telephony_desc">Siųsti pranešimus apie SMS ir skambučius</string>
   <string name="pref_plugin_battery">Akumuliatoriaus ataskaita</string>
   <string name="pref_plugin_sftp">Failų sistemos naršymas</string>
   <string name="pref_plugin_clipboard">Iškarpinės sinchronizavimas</string>

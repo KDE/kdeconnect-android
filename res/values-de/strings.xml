@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">Telefon-Benachrichtigung</string>
-  <string name="pref_plugin_telephony_desc">Benachrichtigungen über SMS und Anrufe senden</string>
   <string name="pref_plugin_battery">Akkubericht</string>
   <string name="pref_plugin_battery_desc">Akkustatus periodisch berichten</string>
   <string name="pref_plugin_sftp">Dateisystem zeigen</string>

@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">電話通知器</string>
-  <string name="pref_plugin_telephony_desc">發送短訊與電話的通知</string>
   <string name="pref_plugin_battery">電池報告</string>
   <string name="pref_plugin_battery_desc">定期回報電池狀態</string>
   <string name="pref_plugin_sftp">顯示檔案系統</string>

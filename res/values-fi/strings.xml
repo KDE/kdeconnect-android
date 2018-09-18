@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">Puhelinilmoitukset</string>
-  <string name="pref_plugin_telephony_desc">Lähetä ilmoitukset tekstiviesteistä ja puheluista</string>
   <string name="pref_plugin_battery">Akkuraportti</string>
   <string name="pref_plugin_battery_desc">Raportoi akun tila säännöllisesti</string>
   <string name="pref_plugin_sftp">Tiedostojärjestelmän paljastaminen</string>

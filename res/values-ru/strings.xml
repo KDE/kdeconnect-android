@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">События телефонии</string>
-  <string name="pref_plugin_telephony_desc">Отправка уведомлений об SMS и звонках</string>
   <string name="pref_plugin_battery">Состояние батареи</string>
   <string name="pref_plugin_battery_desc">Периодическое информирование о состоянии батареи</string>
   <string name="pref_plugin_sftp">Просмотр файловой системы</string>

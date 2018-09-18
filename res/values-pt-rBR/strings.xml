@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">Notificação de telefonia</string>
-  <string name="pref_plugin_telephony_desc">Envia notificações de SMS e chamadas</string>
   <string name="pref_plugin_battery">Relatório da bateria</string>
   <string name="pref_plugin_battery_desc">Informação periódica do status da bateria</string>
   <string name="pref_plugin_sftp">Exposição do sistema de arquivos</string>

@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">Telefon bildiricisi</string>
-  <string name="pref_plugin_telephony_desc">SMS ve çağrılar için bildirimler yolla</string>
   <string name="pref_plugin_battery">Batarya raporu</string>
   <string name="pref_plugin_battery_desc">Batarya durumunu belirli aralıklarla raporla</string>
   <string name="pref_plugin_sftp">Dosya sistemi gösterme</string>

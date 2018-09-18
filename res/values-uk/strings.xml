@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">Телефонний сповіщувач</string>
-  <string name="pref_plugin_telephony_desc">Надсилання сповіщень щодо SMS та дзвінків</string>
+  <string name="pref_plugin_telephony_desc">Надсилати сповіщення щодо вхідних дзвінків</string>
   <string name="pref_plugin_battery">Звіт щодо заряду</string>
   <string name="pref_plugin_battery_desc">Періодична інформація щодо стану акумулятора</string>
   <string name="pref_plugin_sftp">Показ файлової системи</string>

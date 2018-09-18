@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">전화 알림이</string>
-  <string name="pref_plugin_telephony_desc">문자 메시지와 통화 알림 보내기</string>
   <string name="pref_plugin_battery">배터리 보고</string>
   <string name="pref_plugin_battery_desc">주기적으로 배터리 상태 보고</string>
   <string name="pref_plugin_sftp">파일 시스템 보기</string>

@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">Telefonski obavještavač</string>
-  <string name="pref_plugin_telephony_desc">Pošalji notifikacije za SMS i pozive</string>
   <string name="pref_plugin_battery">Baterijski izvještaj</string>
   <string name="pref_plugin_battery_desc">Periodično javi baterijski status</string>
   <string name="pref_plugin_sftp">Otkrivanje datotečnog sistema</string>

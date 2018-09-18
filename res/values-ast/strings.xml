@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">Avisador telefónicu</string>
-  <string name="pref_plugin_telephony_desc">Unvia avisos pa SMS y llamaes</string>
   <string name="pref_plugin_battery">Informe de batería</string>
   <string name="pref_plugin_battery_desc">Informe periódicu del estáu de la batería</string>
   <string name="pref_plugin_sftp_desc">Permite restolar remotamente a esti preséu</string>

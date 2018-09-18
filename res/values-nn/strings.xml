@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">Telefonvarsling</string>
-  <string name="pref_plugin_telephony_desc">Send varsling ved SMS og oppringing</string>
   <string name="pref_plugin_battery">Batterirapport</string>
   <string name="pref_plugin_battery_desc">Meld regelmessig frå om batteristatusen</string>
   <string name="pref_plugin_sftp">Vis filsystem</string>

@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">Telefonia jakinarazlea</string>
-  <string name="pref_plugin_telephony_desc">Bidali jakinarazpenak SMSak eta deiak jasotzean</string>
   <string name="pref_plugin_battery">Bateriaren txostena</string>
   <string name="pref_plugin_battery_desc">Bidali bateriaren egoera aldiro</string>
   <string name="pref_plugin_sftp">Fitxategi-sistemaren esposaketa</string>

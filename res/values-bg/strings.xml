@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">Известяване за обаждания</string>
-  <string name="pref_plugin_telephony_desc">Изпращане на уведомления за СМС и обаждания</string>
   <string name="pref_plugin_battery">Доклад за батерията</string>
   <string name="pref_plugin_battery_desc">Периодично съобщаване за състоянието на батерията</string>
   <string name="pref_plugin_sftp">Достъп до файловата система</string>

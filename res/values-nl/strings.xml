@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">Telefoniemelder</string>
-  <string name="pref_plugin_telephony_desc">Stuur meldingen voor SMS en oproepen</string>
+  <string name="pref_plugin_telephony_desc">Stuur meldingen voor inkomende oproepen</string>
   <string name="pref_plugin_battery">Batterijrapportage</string>
   <string name="pref_plugin_battery_desc">Rapporteer periodiek de status van de batterij</string>
   <string name="pref_plugin_sftp">Bestandssysteem blootstellen</string>

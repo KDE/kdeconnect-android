@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">Notifikasi telepon</string>
-  <string name="pref_plugin_telephony_desc">Kirim notifikasi untuk SMS dan panggilan</string>
   <string name="pref_plugin_battery">Laporan baterai</string>
   <string name="pref_plugin_battery_desc">Status baterai laporkan secara berkala</string>
   <string name="pref_plugin_sftp">Menyingkap sistem file</string>
