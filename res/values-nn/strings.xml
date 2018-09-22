@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">Telefonvarsling</string>
+  <string name="pref_plugin_telephony_desc">Send varsling ved oppringing</string>
   <string name="pref_plugin_battery">Batterirapport</string>
   <string name="pref_plugin_battery_desc">Meld regelmessig frå om batteristatusen</string>
   <string name="pref_plugin_sftp">Vis filsystem</string>
@@ -9,6 +10,8 @@
   <string name="pref_plugin_clipboard_desc">Del innhaldet på utklippstavla</string>
   <string name="pref_plugin_mousepad">Fjernstyring</string>
   <string name="pref_plugin_mousepad_desc">Bruk telefonen eller nettbrettet som styreplate og tastatur</string>
+  <string name="pref_plugin_presenter">Fjernkontroll av presentasjon</string>
+  <string name="pref_plugin_presenter_desc">Bruk eininga til å byta lysbilete i presentasjonar</string>
   <string name="pref_plugin_remotekeyboard">Ta imot eksterne tastetrykk</string>
   <string name="pref_plugin_remotekeyboard_desc">Ta imot tastetrykk frå eksterne einingar</string>
   <string name="pref_plugin_mpris">Mediekontrollar</string>
@@ -43,6 +46,7 @@
   <string name="mousepad_double_tap_settings_title">Vel handling for tofingertrykk</string>
   <string name="mousepad_triple_tap_settings_title">Vel handling for trefingertrykk</string>
   <string name="mousepad_sensitivity_settings_title">Vel følsemd for styreplate</string>
+  <string name="mousepad_acceleration_profile_settings_title">Vel peikarakselerasjon</string>
   <string name="mousepad_scroll_direction_title">Omvend rulleretning</string>
   <string-array name="mousepad_tap_entries">
     <item>Høgreklikk</item>
@@ -57,12 +61,12 @@
     <item>Raskast</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>No Acceleration</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
-    <item>Medium</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>Ingen akselerasjon</item>
+    <item>Svakast</item>
+    <item>Svakare</item>
+    <item>Middels</item>
+    <item>Sterkare</item>
+    <item>Sterkast</item>
   </string-array>
   <string name="category_connected_devices">Tilkopla einingar</string>
   <string name="category_not_paired_devices">Tilgjengelege einingar</string>
@@ -208,6 +212,9 @@
   <string name="mpris_coverart_description">Omslagsbilete til gjeldande mediefil</string>
   <string name="device_icon_description">Einingsikon</string>
   <string name="settings_icon_description">Innstillingsikon</string>
+  <string name="presenter_fullscreen">Fullskjerm</string>
+  <string name="presenter_exit">Avslutt presentasjon</string>
+  <string name="presenter_lock_tip">Du kan låsa eininga for å bruka lydstyrke-knappane som førre/neste-knappar</string>
   <string name="add_command">Legg til kommando</string>
   <string name="addcommand_explanation">Ingen kommandoar er registrerte</string>
   <string name="addcommand_explanation2">Du kan leggja til nye kommandoar i systeminnstillingane til KDE Connect</string>
@@ -215,4 +222,17 @@
   <string name="pref_plugin_mprisreceiver">Mediespelarkontrollar</string>
   <string name="pref_plugin_mprisreceiver_desc">Kontroller mediespelarar på telefonen din frå ei anna eining</string>
   <string name="dark_theme">Mørkt tema</string>
+  <string name="mpris_stop">Stopp gjeldande avspelar</string>
+  <string name="copy_url_to_clipboard">Kopier adresse til utklippstavla</string>
+  <string name="clipboard_toast">Kopiert til utklippstavla</string>
+  <string name="runcommand_notreachable">Får ikkje kontakt med eininga</string>
+  <string name="runcommand_notpaired">Eininga er ikkje para</string>
+  <string name="runcommand_nosuchdevice">Eininga finst ikkje</string>
+  <string name="runcommand_noruncommandplugin">Eininga har ikkje «Køyr kommando»-tillegget slått på</string>
+  <string name="pref_plugin_findremotedevice">Find ekstern eining</string>
+  <string name="pref_plugin_findremotedevice_desc">Ring til ekstern eining</string>
+  <string name="ring">Ring</string>
+  <string name="pref_plugin_systemvolume">Systemlydstyrke</string>
+  <string name="pref_plugin_systemvolume_desc">Juster systemlydstyrken til ekstern eining</string>
+  <string name="mute">Demp lyd</string>
 </resources>
