@@ -126,7 +126,6 @@
   <string name="mpris_volume">Äänenvoimakkuus</string>
   <string name="mpris_settings">Multimedia-asetukset</string>
   <string name="mpris_time_settings_title">Kelauspainikkeet</string>
-  <string name="mpris_time_settings_summary">Säädä painettaessa tapahtuvan kelauksen kestoa.</string>
   <string-array name="mpris_time_entries">
     <item>10 sekuntia</item>
     <item>20 sekuntia</item>
@@ -135,7 +134,6 @@
     <item>2 minuuttia</item>
   </string-array>
   <string name="mpris_notification_settings_title">Näytä mediasäädinilmoitukset</string>
-  <string name="mpris_notification_settings_summary">Sallii mediasoitintesi hallinnan avaamatta KDE Connectia.</string>
   <string name="share_to">Jaa…</string>
   <string name="protocol_version_older">Laite käyttää vanha yhteyskäytäntöversiota</string>
   <string name="protocol_version_newer">Laite käyttää uudempaa yhteyskäytäntöversiota</string>

@@ -125,7 +125,6 @@
   <string name="mpris_volume">音量</string>
   <string name="mpris_settings">多媒体设置</string>
   <string name="mpris_time_settings_title">快进/后退按钮</string>
-  <string name="mpris_time_settings_summary">调整快进或后退的时间 (当按下时)</string>
   <string-array name="mpris_time_entries">
     <item>10秒</item>
     <item>20秒</item>
@@ -134,7 +133,6 @@
     <item>2分钟</item>
   </string-array>
   <string name="mpris_notification_settings_title">显示媒体控制通知部件</string>
-  <string name="mpris_notification_settings_summary">允许在不用打开 KDE 连接的情况下控制媒体播放器。</string>
   <string name="share_to">分享到...</string>
   <string name="protocol_version_older">该设备使用旧版本的协议</string>
   <string name="protocol_version_newer">该设备使用较新版本的协议</string>

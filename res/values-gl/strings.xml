@@ -124,7 +124,6 @@
   <string name="mpris_volume">Volume</string>
   <string name="mpris_settings">Configuración de son e vídeo</string>
   <string name="mpris_time_settings_title">Botóns de avanzar e retroceder</string>
-  <string name="mpris_time_settings_summary">Axuste o tempo que avanzar ou retroceder ao premer.</string>
   <string-array name="mpris_time_entries">
     <item>10 segundos</item>
     <item>20 segundos</item>
@@ -133,7 +132,6 @@
     <item>2 minutos</item>
   </string-array>
   <string name="mpris_notification_settings_title">Mostrar a notificación de control de reprodución.</string>
-  <string name="mpris_notification_settings_summary">Permite controlar os reprodutores de son e vídeo sen abrir KDE Connect.</string>
   <string name="share_to">Compartir con…</string>
   <string name="protocol_version_older">Este dispositivo usa unha versión vella do protocolo.</string>
   <string name="protocol_version_newer">Este dispositivo usa unha versión máis nova do protocolo.</string>

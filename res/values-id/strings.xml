@@ -125,7 +125,6 @@
   <string name="mpris_volume">Volume</string>
   <string name="mpris_settings">Setelan Multimedia</string>
   <string name="mpris_time_settings_title">Tombol mundur-cepat/maju-cepat</string>
-  <string name="mpris_time_settings_summary">Setel waktu untuk mundur-cepat/maju-cepat ketika ditekan.</string>
   <string-array name="mpris_time_entries">
     <item>10 detik</item>
     <item>20 detik</item>
@@ -134,7 +133,6 @@
     <item>2 menit</item>
   </string-array>
   <string name="mpris_notification_settings_title">Tampilkan notifikasi kendali media</string>
-  <string name="mpris_notification_settings_summary">Membolehkan mengendalikan player mediamu tanpa membuka KDE Connect.</string>
   <string name="share_to">Bagikan Ke...</string>
   <string name="protocol_version_older">Perangkat ini menggunakan sebuah versi protokol lawas</string>
   <string name="protocol_version_newer">Perangkat ini menggunakan sebuah versi protokol baru</string>

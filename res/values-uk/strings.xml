@@ -132,7 +132,7 @@
   <string name="mpris_volume">Гучність</string>
   <string name="mpris_settings">Мультимедійні параметри</string>
   <string name="mpris_time_settings_title">Кнопки «Вперед/Назад»</string>
-  <string name="mpris_time_settings_summary">Скоригувати час швидкого гортання вперед або назад при натисканні.</string>
+  <string name="mpris_time_settings_summary">Скоригувати час швидкого гортання вперед або назад при натисканні</string>
   <string-array name="mpris_time_entries">
     <item>10 секунд</item>
     <item>20 секунд</item>
@@ -141,7 +141,7 @@
     <item>2 хвилини</item>
   </string-array>
   <string name="mpris_notification_settings_title">Показувати сповіщення щодо керування відтворенням</string>
-  <string name="mpris_notification_settings_summary">Уможливлює керування відтворенням мультимедійних даних без відкриття KDE Connect.</string>
+  <string name="mpris_notification_settings_summary">Уможливлює керування відтворенням мультимедійних даних без відкриття KDE Connect</string>
   <string name="share_to">Спільно використовувати з…</string>
   <string name="protocol_version_older">На цьому пристрої використовується стара версія протоколу</string>
   <string name="protocol_version_newer">На цьому пристрої використовується новіша версія протоколу</string>

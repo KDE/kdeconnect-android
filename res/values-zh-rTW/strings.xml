@@ -125,7 +125,6 @@
   <string name="mpris_volume">音量</string>
   <string name="mpris_settings">多媒體設定</string>
   <string name="mpris_time_settings_title">往前/往後按鍵</string>
-  <string name="mpris_time_settings_summary">調整按下時往前/往後的時間。</string>
   <string-array name="mpris_time_entries">
     <item>10秒鐘</item>
     <item>20秒鐘</item>
@@ -134,7 +133,6 @@
     <item>2分鐘</item>
   </string-array>
   <string name="mpris_notification_settings_title">顯示媒體控制項通知</string>
-  <string name="mpris_notification_settings_summary">允許控制您的媒體播放器而不需要開啟 KDE 連線。</string>
   <string name="share_to">分享給</string>
   <string name="protocol_version_older">這個裝置使用舊版本的通訊協定</string>
   <string name="protocol_version_newer">此設備使用較新的通訊協定</string>

@@ -130,7 +130,7 @@
   <string name="mpris_volume">Volum</string>
   <string name="mpris_settings">Arranjament multimèdia</string>
   <string name="mpris_time_settings_title">Botons per avançar o rebobinar</string>
-  <string name="mpris_time_settings_summary">Ajusta el temps per avançar o rebobinar quan es toca.</string>
+  <string name="mpris_time_settings_summary">Ajusta el temps per avançar o rebobinar quan es toca</string>
   <string-array name="mpris_time_entries">
     <item>10 segons</item>
     <item>20 segons</item>
@@ -139,7 +139,7 @@
     <item>2 minuts</item>
   </string-array>
   <string name="mpris_notification_settings_title">Mostra les notificacions dels reproductors</string>
-  <string name="mpris_notification_settings_summary">Permet controlar els reproductors multimèdia sense obrir el KDE Connect.</string>
+  <string name="mpris_notification_settings_summary">Permet controlar els reproductors multimèdia sense obrir el KDE Connect</string>
   <string name="share_to">Comparteix amb...</string>
   <string name="protocol_version_older">Aquest dispositiu usa una versió antiga del protocol</string>
   <string name="protocol_version_newer">Aquest dispositiu usa una versió nova del protocol</string>

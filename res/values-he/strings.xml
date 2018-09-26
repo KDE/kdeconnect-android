@@ -117,7 +117,6 @@
   <string name="mpris_volume">עוצמה</string>
   <string name="mpris_settings">הגדרות מדיה</string>
   <string name="mpris_time_settings_title">כפתור דילוג קדימה או אחורה</string>
-  <string name="mpris_time_settings_summary">בחר כמה זמן ידולג שלוחצים על דילוג קדימה או אחורה</string>
   <string-array name="mpris_time_entries">
     <item>10 שניות</item>
     <item>20 שניות</item>

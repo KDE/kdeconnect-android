@@ -130,7 +130,7 @@
   <string name="mpris_volume">Volume</string>
   <string name="mpris_settings">Instellingen voor multimedia</string>
   <string name="mpris_time_settings_title">Knoppen vooruit/terug</string>
-  <string name="mpris_time_settings_summary">Pas de tijd aan om snel voorwaarts/terug te gaan bij indrukken.</string>
+  <string name="mpris_time_settings_summary">Pas de tijd aan om snel voorwaarts/terug te gaan bij indrukken</string>
   <string-array name="mpris_time_entries">
     <item>10 seconden</item>
     <item>20 seconden</item>
@@ -139,7 +139,7 @@
     <item>2 minuten</item>
   </string-array>
   <string name="mpris_notification_settings_title">Mediabesturingsmelding tonen</string>
-  <string name="mpris_notification_settings_summary">Staat besturing van uw mediaspelers toe zonder KDE Connect te openen.</string>
+  <string name="mpris_notification_settings_summary">Staat besturing van uw mediaspelers toe zonder KDE Connect te openen</string>
   <string name="share_to">Delen met...</string>
   <string name="protocol_version_older">Dit apparaat gebruikt een oude protocolversie</string>
   <string name="protocol_version_newer">Dit apparaat gebruikt een nieuwere protocolversie</string>

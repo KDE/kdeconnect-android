@@ -132,7 +132,6 @@
   <string name="mpris_volume">Hlasitost</string>
   <string name="mpris_settings">Nastavení multimédií</string>
   <string name="mpris_time_settings_title">Tlačítka vpřed/přetočit</string>
-  <string name="mpris_time_settings_summary">Upravit čas pro rychlý posun/přetočení při stisku.</string>
   <string-array name="mpris_time_entries">
     <item>10 sekund</item>
     <item>20 sekund</item>
@@ -141,7 +140,6 @@
     <item>2 minuty</item>
   </string-array>
   <string name="mpris_notification_settings_title">Obrazit upozornění pro ovládání médií</string>
-  <string name="mpris_notification_settings_summary">Umožní ovládat přehrávače médií bez otevření KDE Connect.</string>
   <string name="share_to">Sdílet s...</string>
   <string name="protocol_version_older">Toto zařízení používá starou verzi protokolu</string>
   <string name="protocol_version_newer">Toto zařízení používá novější verzi protokolu</string>

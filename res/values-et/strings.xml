@@ -111,7 +111,6 @@
   <string name="mpris_volume">Helitugevus</string>
   <string name="mpris_settings">Multimeedia seadistused</string>
   <string name="mpris_time_settings_title">Edasi-tagasikerimise nupud</string>
-  <string name="mpris_time_settings_summary">Kiire edasi-tagasikerimise aeg vajutamisel</string>
   <string-array name="mpris_time_entries">
     <item>10 sekundit</item>
     <item>20 sekundit</item>

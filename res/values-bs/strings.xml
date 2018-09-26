@@ -89,7 +89,6 @@
   <string name="mpris_volume">Glasnoća</string>
   <string name="mpris_settings">Postavke multimedije</string>
   <string name="mpris_time_settings_title">Dugmad za naprijed/premotavanje</string>
-  <string name="mpris_time_settings_summary">Postavi vrijeme na ubrzano ili premotaj multimedijalnu datoteku.</string>
   <string-array name="mpris_time_entries">
     <item>10 sekundi</item>
     <item>20 sekundi</item>

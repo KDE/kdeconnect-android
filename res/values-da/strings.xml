@@ -117,7 +117,6 @@
   <string name="mpris_volume">Lydstyrke</string>
   <string name="mpris_settings">Multimedieindstillinger</string>
   <string name="mpris_time_settings_title">Spol frem/tilbage-knapper</string>
-  <string name="mpris_time_settings_summary">Justér tiden for når der trykkes på spol frem/tilbage.</string>
   <string-array name="mpris_time_entries">
     <item>10 sekunder</item>
     <item>20 sekunder</item>

@@ -109,7 +109,6 @@
   <string name="mpris_volume">المستوى</string>
   <string name="mpris_settings">إعدادات الوسائط المتعدّدة</string>
   <string name="mpris_time_settings_title">زرّا التّقدّم والإرجاع</string>
-  <string name="mpris_time_settings_summary">اضبط الوقت عند نقر زرّيّ التّقديم أو الإرجاع.</string>
   <string-array name="mpris_time_entries">
     <item>10 ثوان</item>
     <item>20 ثانية</item>

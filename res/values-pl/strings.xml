@@ -125,7 +125,6 @@
   <string name="mpris_volume">Głośność</string>
   <string name="mpris_settings">Ustawienia multimediów</string>
   <string name="mpris_time_settings_title">Przyciski naprzód/wstecz</string>
-  <string name="mpris_time_settings_summary">Dostosuj czas do przewijania wprzód lub wstecz po naciśnięciu.</string>
   <string-array name="mpris_time_entries">
     <item>10 sekund</item>
     <item>20 sekund</item>
@@ -134,7 +133,6 @@
     <item>2 minuty</item>
   </string-array>
   <string name="mpris_notification_settings_title">Pokaż powiadomienia sterowania mediami</string>
-  <string name="mpris_notification_settings_summary">Umożliwia sterowanie odtwarzaczami bez otwierania KDE Connect.</string>
   <string name="share_to">Współdziel z...</string>
   <string name="protocol_version_older">Urządzenie to używa starej wersji protokołu</string>
   <string name="protocol_version_newer">Urządzenie to używa nowszej wersji protokołu</string>

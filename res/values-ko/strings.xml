@@ -128,7 +128,6 @@
   <string name="mpris_volume">음량</string>
   <string name="mpris_settings">멀티미디어 설정</string>
   <string name="mpris_time_settings_title">되감기/빨리감기 단추</string>
-  <string name="mpris_time_settings_summary">눌렀을 때 되감거나 빨리 감을 시간을 조정합니다.</string>
   <string-array name="mpris_time_entries">
     <item>10초</item>
     <item>20초</item>
@@ -137,7 +136,6 @@
     <item>2분</item>
   </string-array>
   <string name="mpris_notification_settings_title">미디어 제어 알림 보이기</string>
-  <string name="mpris_notification_settings_summary">KDE Connect를 열지 않고 미디어 재생기를 제어할 수 있습니다.</string>
   <string name="share_to">다음으로 공유...</string>
   <string name="protocol_version_older">이 장치의 프로토콜 버전이 오래되었습니다</string>
   <string name="protocol_version_newer">이 장치의 프로토콜 버전이 더 새롭습니다</string>

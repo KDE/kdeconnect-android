@@ -117,7 +117,6 @@
   <string name="mpris_volume">Τόμος</string>
   <string name="mpris_settings">Ρυθμίσεις πολυμέσων</string>
   <string name="mpris_time_settings_title">Κουμπιά ταχείας ώθησης</string>
-  <string name="mpris_time_settings_summary">Χρονική προσαρμογή ταχείας ώθησης ανάλογα με την πίεση.</string>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>
     <item>20 seconds</item>

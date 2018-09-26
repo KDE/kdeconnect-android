@@ -117,7 +117,6 @@
   <string name="mpris_volume">Громкость</string>
   <string name="mpris_settings">Настройка мультимедиа</string>
   <string name="mpris_time_settings_title">Кнопки вперёд/назад</string>
-  <string name="mpris_time_settings_summary">Дальность перемотки вперёд/назад при нажатии.</string>
   <string-array name="mpris_time_entries">
     <item>10 секунд</item>
     <item>20 секунд</item>

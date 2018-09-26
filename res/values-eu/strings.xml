@@ -117,7 +117,6 @@
   <string name="mpris_volume">Bolumena</string>
   <string name="mpris_settings">Multimedia ezarpenak</string>
   <string name="mpris_time_settings_title">Atzera eraman / Aurrera eraman botoiak</string>
-  <string name="mpris_time_settings_summary">Doitu zenbat denbora eraman behar den aurrera / atzera sakatzean</string>
   <string-array name="mpris_time_entries">
     <item>10 segundo</item>
     <item>20 segundo</item>

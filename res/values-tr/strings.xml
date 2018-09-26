@@ -117,7 +117,6 @@
   <string name="mpris_volume">Ses</string>
   <string name="mpris_settings">Çoklu Ortam Ayarları</string>
   <string name="mpris_time_settings_title">İleri/geri düğmeleri</string>
-  <string name="mpris_time_settings_summary">Basıldığında kullanılacak ileri/geri zamanını ayarlayın.</string>
   <string-array name="mpris_time_entries">
     <item>10 saniye</item>
     <item>20 saniye</item>
