@@ -130,7 +130,6 @@
   <string name="mpris_volume">Lydstyrke</string>
   <string name="mpris_settings">Medieinnstillingar</string>
   <string name="mpris_time_settings_title">Spoleknappar</string>
-  <string name="mpris_time_settings_summary">Juster tida for spoling ved trykking</string>
   <string-array name="mpris_time_entries">
     <item>10 sekund</item>
     <item>20 sekund</item>
@@ -139,7 +138,6 @@
     <item>2 minutt</item>
   </string-array>
   <string name="mpris_notification_settings_title">Vis varsling med avspelingskontrollar</string>
-  <string name="mpris_notification_settings_summary">Tillat å kontrollera mediespelarar utan å opna KDE Connect.</string>
   <string name="share_to">Del til …</string>
   <string name="protocol_version_older">Denne eininga brukar ein gammal protokollversjon</string>
   <string name="protocol_version_newer">Denne eininga brukar ein nyare protokollversjon</string>
