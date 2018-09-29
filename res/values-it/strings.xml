@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">Notifiche telefoniche</string>
+  <string name="pref_plugin_telephony_desc">Invia notifiche per le chiamate in ingresso</string>
   <string name="pref_plugin_battery">Livello batteria</string>
   <string name="pref_plugin_battery_desc">Comunica periodicamente lo stato della batteria</string>
   <string name="pref_plugin_sftp">Esposizione filesystem</string>
@@ -129,6 +130,7 @@
   <string name="mpris_volume">Volume</string>
   <string name="mpris_settings">Impostazioni multimediali</string>
   <string name="mpris_time_settings_title">Pulsanti di avanzamento/riavvolgimento</string>
+  <string name="mpris_time_settings_summary">Regola l\'ora per avanzare rapidamente o riavvolgere in caso di pressione</string>
   <string-array name="mpris_time_entries">
     <item>10 secondi</item>
     <item>20 secondi</item>
@@ -137,6 +139,7 @@
     <item>2 minuti</item>
   </string-array>
   <string name="mpris_notification_settings_title">Mostra la notifica del controllo multimediale</string>
+  <string name="mpris_notification_settings_summary">Consenti di controllare i lettori multimediali senza aprire KDE Connect</string>
   <string name="share_to">Condividi…</string>
   <string name="protocol_version_older">Questo dispositivo usa una vecchia versione del protocollo di rete</string>
   <string name="protocol_version_newer">Questo dispositivo usa una nuova versione del protocollo di rete</string>

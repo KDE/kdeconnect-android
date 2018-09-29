@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">Обавештења телефона</string>
-  <string name="pref_plugin_telephony_desc">Шаље обавештења за СМС и позиве</string>
   <string name="pref_plugin_battery">Извештај о батерији</string>
   <string name="pref_plugin_battery_desc">Периодично извештава о стању батерије</string>
   <string name="pref_plugin_sftp">Приступ фајл систему</string>
@@ -118,7 +117,6 @@
   <string name="mpris_volume">Јачина</string>
   <string name="mpris_settings">Поставке мултимедије</string>
   <string name="mpris_time_settings_title">Напред/назад дугмад</string>
-  <string name="mpris_time_settings_summary">Подесите време прескакања за напред/назад дугмад.</string>
   <string-array name="mpris_time_entries">
     <item>10 секунди</item>
     <item>20 секунди</item>
