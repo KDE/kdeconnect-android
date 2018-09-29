@@ -128,14 +128,14 @@ public class RsaHelper {
         Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1PADDING");
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
 
-        String decryptedJson = "";
+        StringBuilder decryptedJson = new StringBuilder();
         for (int i = 0; i < chunks.length(); i++) {
             byte[] encryptedChunk = Base64.decode(chunks.getString(i), Base64.NO_WRAP);
             String decryptedChunk = new String(cipher.doFinal(encryptedChunk));
-            decryptedJson += decryptedChunk;
+            decryptedJson.append(decryptedChunk);
         }
 
-        NetworkPacket decrypted = NetworkPacket.unserialize(decryptedJson);
+        NetworkPacket decrypted = NetworkPacket.unserialize(decryptedJson.toString());
         decrypted.setPayload(np.getPayload(), np.getPayloadSize());
         return decrypted;
     }
