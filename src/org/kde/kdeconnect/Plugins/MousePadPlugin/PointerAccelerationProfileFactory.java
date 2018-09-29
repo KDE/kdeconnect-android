@@ -55,9 +55,7 @@ public class PointerAccelerationProfileFactory {
 
         /* add an event to the touchEventHistory array, shifting everything else in the array. */
         private void addHistory(float deltaX, float deltaY, long eventTime) {
-            for (int i = touchEventHistory.length - 1; i > 0; i--) {
-                touchEventHistory[i] = touchEventHistory[i - 1];
-            }
+            System.arraycopy(touchEventHistory, 0, touchEventHistory, 1, touchEventHistory.length - 1);
             touchEventHistory[0] = new TouchDeltaEvent(deltaX, deltaY, eventTime);
         }
 
