@@ -62,48 +62,48 @@ public class SMSPlugin extends Plugin {
 
     /**
      * Packet used to indicate a batch of messages has been pushed from the remote device
-     *
+     * <p>
      * The body should contain the key "messages" mapping to an array of messages
-     *
+     * <p>
      * For example:
      * { "messages" : [
-     *   { "event" : "sms",
-     *     "messageBody" : "Hello",
-     *     "phoneNumber" : "2021234567",
-     *      "messageDate" : "1518846484880",
-     *      "messageType" : "2",
-     *      "threadID" : "132"
-     *    },
-     *    { ... },
-     *     ...
-     *   ]
+     * { "event" : "sms",
+     * "messageBody" : "Hello",
+     * "phoneNumber" : "2021234567",
+     * "messageDate" : "1518846484880",
+     * "messageType" : "2",
+     * "threadID" : "132"
+     * },
+     * { ... },
+     * ...
+     * ]
      */
     private final static String PACKET_TYPE_SMS_MESSAGE = "kdeconnect.sms.messages";
 
     /**
      * Packet sent to request a message be sent
-     *
+     * <p>
      * This will almost certainly need to be replaced or augmented to support MMS,
      * but be sure the Android side remains compatible with old desktop apps!
-     *
+     * <p>
      * The body should look like so:
      * { "sendSms": true,
-     *   "phoneNumber": "542904563213",
-     *   "messageBody": "Hi mom!"
+     * "phoneNumber": "542904563213",
+     * "messageBody": "Hi mom!"
      * }
      */
     private final static String PACKET_TYPE_SMS_REQUEST = "kdeconnect.sms.request";
 
     /**
      * Packet sent to request the most-recent message in each conversations on the device
-     *
+     * <p>
      * The request packet shall contain no body
      */
     private final static String PACKET_TYPE_SMS_REQUEST_CONVERSATIONS = "kdeconnect.sms.request_conversations";
 
     /**
      * Packet sent to request all the messages in a particular conversation
-     *
+     * <p>
      * The body should contain the key "threadID" mapping to the threadID (as a string) being requested
      * For example:
      * { "threadID": 203 }
@@ -156,7 +156,7 @@ public class SMSPlugin extends Plugin {
          * Create a ContentObserver to watch the Messages database. onChange is called for
          * every subscribed change
          *
-         * @param parent Plugin which owns this observer
+         * @param parent  Plugin which owns this observer
          * @param handler Handler object used to make the callback
          */
         public MessageContentObserver(SMSPlugin parent, Handler handler) {

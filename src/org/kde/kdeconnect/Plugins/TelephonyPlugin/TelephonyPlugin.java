@@ -15,8 +15,8 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
-*/
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 package org.kde.kdeconnect.Plugins.TelephonyPlugin;
 
@@ -28,30 +28,18 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
-import android.net.Network;
 import android.os.Build;
-import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.telephony.PhoneNumberUtils;
-import android.telephony.SmsMessage;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.kde.kdeconnect.Helpers.ContactsHelper;
-import org.kde.kdeconnect.Helpers.SMSHelper;
-import org.kde.kdeconnect.Helpers.SMSHelper.ThreadID;
-import org.kde.kdeconnect.Helpers.SMSHelper.Message;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
-import org.kde.kdeconnect_tp.BuildConfig;
 import org.kde.kdeconnect_tp.R;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -59,41 +47,40 @@ import java.util.TimerTask;
 public class TelephonyPlugin extends Plugin {
 
 
-
     /**
      * Packet used for simple telephony events
-     *
+     * <p>
      * It contains the key "event" which maps to a string indicating the type of event:
-     *  - "ringing" - A phone call is incoming
-     *  - "missedCall" - An incoming call was not answered
-     *  - "sms" - An incoming SMS message
-     *   - Note: As of this writing (15 May 2018) the SMS interface is being improved and this type of event
-     *     is no longer the preferred way of handling SMS. Use the packets defined by the SMS plugin instead.
-     *
-     *  Depending on the event, other fields may be defined
+     * - "ringing" - A phone call is incoming
+     * - "missedCall" - An incoming call was not answered
+     * - "sms" - An incoming SMS message
+     * - Note: As of this writing (15 May 2018) the SMS interface is being improved and this type of event
+     * is no longer the preferred way of handling SMS. Use the packets defined by the SMS plugin instead.
+     * <p>
+     * Depending on the event, other fields may be defined
      */
     public final static String PACKET_TYPE_TELEPHONY = "kdeconnect.telephony";
 
     /**
      * Old-style packet sent to request a simple telephony action
-     *
+     * <p>
      * The two possible events used the be to request a message be sent or request the device
      * silence its ringer
-     *
+     * <p>
      * In case an SMS was being requested, the body was like so:
      * { "sendSms": true,
-     *   "phoneNumber": "542904563213",
-     *   "messageBody": "Hi mom!"
+     * "phoneNumber": "542904563213",
+     * "messageBody": "Hi mom!"
      * }
-     *
+     * <p>
      * In case a ringer muted was requested, the body looked like so:
      * { "action": "mute" }
-     *
+     * <p>
      * As of 15 May 2018, the SMS interface is being improved. Use the packets defined by the
      * SMS plugin instead for SMS events
-     *
+     * <p>
      * Ringer mute requests are best handled by PACKET_TYPE_TELEPHONY_REQUEST_MUTE
-     *
+     * <p>
      * This packet type is retained for backwards-compatibility with old desktop applications,
      * but support should be dropped once those applications are no longer supported. New
      * applications should not use this packet type.
@@ -103,7 +90,7 @@ public class TelephonyPlugin extends Plugin {
 
     /**
      * Packet sent to indicate the user has requested the device mute its ringer
-     *
+     * <p>
      * The body should be empty
      */
     public final static String PACKET_TYPE_TELEPHONY_REQUEST_MUTE = "kdeconnect.telephony.request_mute";
@@ -317,8 +304,8 @@ public class TelephonyPlugin extends Plugin {
     @Override
     public String[] getSupportedPacketTypes() {
         return new String[]{
-            PACKET_TYPE_TELEPHONY_REQUEST,
-            PACKET_TYPE_TELEPHONY_REQUEST_MUTE,
+                PACKET_TYPE_TELEPHONY_REQUEST,
+                PACKET_TYPE_TELEPHONY_REQUEST_MUTE,
         };
     }
 
