@@ -15,8 +15,8 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
-*/
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 package org.kde.kdeconnect.Plugins.BatteryPlugin;
 
@@ -65,14 +65,10 @@ public class BatteryPlugin extends Plugin {
             boolean lowBattery = Intent.ACTION_BATTERY_LOW.equals(batteryIntent.getAction());
             int thresholdEvent = lowBattery ? THRESHOLD_EVENT_BATTERY_LOW : THRESHOLD_EVENT_NONE;
 
-            if (isCharging == batteryInfo.getBoolean("isCharging")
-                    && currentCharge == batteryInfo.getInt("currentCharge")
-                    && thresholdEvent == batteryInfo.getInt("thresholdEvent")
+            if (isCharging != batteryInfo.getBoolean("isCharging")
+                    || currentCharge != batteryInfo.getInt("currentCharge")
+                    || thresholdEvent != batteryInfo.getInt("thresholdEvent")
                     ) {
-
-                //Do not send again if nothing has changed
-
-            } else {
 
                 batteryInfo.set("currentCharge", currentCharge);
                 batteryInfo.set("isCharging", isCharging);
@@ -80,7 +76,6 @@ public class BatteryPlugin extends Plugin {
                 device.sendPacket(batteryInfo);
 
             }
-
         }
     };
 
