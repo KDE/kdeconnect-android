@@ -51,7 +51,7 @@ public class SendFileActivity extends AppCompatActivity {
 
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");
-        if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         }
         intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -77,7 +77,7 @@ public class SendFileActivity extends AppCompatActivity {
                         uris.add(uri);
                     }
 
-                    if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2)) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
                         ClipData clipdata = data.getClipData();
                         if (clipdata != null) {
                             for (int i = 0; i < clipdata.getItemCount(); i++) {
