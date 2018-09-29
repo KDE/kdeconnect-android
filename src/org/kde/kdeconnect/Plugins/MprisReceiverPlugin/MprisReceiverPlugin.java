@@ -213,18 +213,12 @@ public class MprisReceiverPlugin extends Plugin implements MediaSessionManager.O
         return new AlertDialog.Builder(deviceActivity)
                 .setTitle(R.string.pref_plugin_mpris)
                 .setMessage(R.string.no_permission_mprisreceiver)
-                .setPositiveButton(R.string.open_settings, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
-                        deviceActivity.startActivityForResult(intent, MainActivity.RESULT_NEEDS_RELOAD);
-                    }
+                .setPositiveButton(R.string.open_settings, (dialogInterface, i) -> {
+                    Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+                    deviceActivity.startActivityForResult(intent, MainActivity.RESULT_NEEDS_RELOAD);
                 })
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //Do nothing
-                    }
+                .setNegativeButton(R.string.cancel, (dialogInterface, i) -> {
+                    //Do nothing
                 })
                 .create();
     }

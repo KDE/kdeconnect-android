@@ -154,16 +154,12 @@ public class MainActivity extends AppCompatActivity {
 
         SwitchCompat darkThemeSwitch = (SwitchCompat) drawerHeader.findViewById(R.id.dark_theme);
         darkThemeSwitch.setChecked(ThemeUtil.shouldUseDarkTheme(this));
-        darkThemeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @RequiresApi(Build.VERSION_CODES.HONEYCOMB)
-            @Override
-            public void onCheckedChanged(CompoundButton darkThemeSwitch, boolean isChecked) {
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-                boolean isDarkAlready = prefs.getBoolean("darkTheme", false);
-                if (isDarkAlready != isChecked) {
-                    prefs.edit().putBoolean("darkTheme", isChecked).apply();
-                    MainActivity.this.recreate();
-                }
+        darkThemeSwitch.setOnCheckedChangeListener((darkThemeSwitch1, isChecked) -> {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+            boolean isDarkAlready = prefs.getBoolean("darkTheme", false);
+            if (isDarkAlready != isChecked) {
+                prefs.edit().putBoolean("darkTheme", isChecked).apply();
+                MainActivity.this.recreate();
             }
         });
     }

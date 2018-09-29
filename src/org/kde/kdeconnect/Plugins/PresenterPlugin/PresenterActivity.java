@@ -64,13 +64,9 @@ public class PresenterActivity extends AppCompatActivity {
 
             runOnUiThread(() -> {
 
-                findViewById(R.id.next_button).setOnClickListener(v -> {
-                    plugin.sendNext();
-                });
+                findViewById(R.id.next_button).setOnClickListener(v -> plugin.sendNext());
 
-                findViewById(R.id.previous_button).setOnClickListener(v -> {
-                    plugin.sendPrevious();
-                });
+                findViewById(R.id.previous_button).setOnClickListener(v -> plugin.sendPrevious());
 
 
             });
