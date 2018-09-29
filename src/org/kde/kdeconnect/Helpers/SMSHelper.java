@@ -231,11 +231,7 @@ public class SMSHelper {
 
         @Override
         public boolean equals(Object other) {
-            if (other.getClass().isAssignableFrom(ThreadID.class)) {
-                return ((ThreadID) other).threadID.equals(this.threadID);
-            }
-
-            return false;
+            return other.getClass().isAssignableFrom(ThreadID.class) && ((ThreadID) other).threadID.equals(this.threadID);
         }
     }
 

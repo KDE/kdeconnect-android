@@ -21,10 +21,7 @@ public class RunCommandWidgetDataProvider implements RemoteViewsService.RemoteVi
     }
 
     private boolean checkPlugin() {
-        if (RunCommandWidget.getCurrentDevice() == null || !RunCommandWidget.getCurrentDevice().isReachable())
-            return false;
-
-        return RunCommandWidget.getCurrentDevice().getPlugin(RunCommandPlugin.class) != null;
+        return RunCommandWidget.getCurrentDevice() != null && RunCommandWidget.getCurrentDevice().isReachable() && RunCommandWidget.getCurrentDevice().getPlugin(RunCommandPlugin.class) != null;
     }
 
     @Override
