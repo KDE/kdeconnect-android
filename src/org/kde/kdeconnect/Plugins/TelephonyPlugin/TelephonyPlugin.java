@@ -183,15 +183,7 @@ public class TelephonyPlugin extends Plugin {
 
         switch (state) {
             case TelephonyManager.CALL_STATE_RINGING:
-                if (isMuted) {
-                    AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        am.setStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_UNMUTE, 0);
-                    } else {
-                        am.setStreamMute(AudioManager.STREAM_RING, false);
-                    }
-                    isMuted = false;
-                }
+                unmuteRinger();
                 np.set("event", "ringing");
                 device.sendPacket(np);
                 break;
@@ -214,15 +206,7 @@ public class TelephonyPlugin extends Plugin {
                         timer.schedule(new TimerTask() {
                             @Override
                             public void run() {
-                                if (isMuted) {
-                                    AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                        am.setStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_UNMUTE, 0);
-                                    } else {
-                                        am.setStreamMute(AudioManager.STREAM_RING, false);
-                                    }
-                                    isMuted = false;
-                                }
+                                unmuteRinger();
                             }
                         }, 500);
                     }
@@ -243,6 +227,18 @@ public class TelephonyPlugin extends Plugin {
 
         lastPacket = np;
         lastState = state;
+    }
+
+    private void unmuteRinger() {
+        if (isMuted) {
+            AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                am.setStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_UNMUTE, 0);
+            } else {
+                am.setStreamMute(AudioManager.STREAM_RING, false);
+            }
+            isMuted = false;
+        }
     }
 
     private void muteRinger() {
