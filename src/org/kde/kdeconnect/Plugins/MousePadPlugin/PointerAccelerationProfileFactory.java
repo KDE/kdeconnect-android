@@ -70,14 +70,14 @@ public class PointerAccelerationProfileFactory {
             // Breaks if a touchEventHistory entry is too "stale".
             float distanceMoved = 0.0f;
             long deltaT = 0;
-            for (int i = 0; i < touchEventHistory.length; i++) {
-                if (touchEventHistory[i] == null) break;
-                if (eventTime - touchEventHistory[i].time > freshThreshold) break;
+            for (TouchDeltaEvent aTouchEventHistory : touchEventHistory) {
+                if (aTouchEventHistory == null) break;
+                if (eventTime - aTouchEventHistory.time > freshThreshold) break;
 
                 distanceMoved += (float) Math.sqrt(
-                                touchEventHistory[i].x * touchEventHistory[i].x
-                                + touchEventHistory[i].y * touchEventHistory[i].y);
-                deltaT = eventTime - touchEventHistory[i].time;
+                        aTouchEventHistory.x * aTouchEventHistory.x
+                                + aTouchEventHistory.y * aTouchEventHistory.y);
+                deltaT = eventTime - aTouchEventHistory.time;
             }
 
 

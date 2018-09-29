@@ -283,10 +283,10 @@ public class RemoteKeyboardPlugin extends Plugin {
                 int[] actions = {EditorInfo.IME_ACTION_GO, EditorInfo.IME_ACTION_NEXT,
                         EditorInfo.IME_ACTION_SEND, EditorInfo.IME_ACTION_SEARCH,
                         EditorInfo.IME_ACTION_DONE};  // note: DONE should be last or we might hide the ime instead of "go"
-                for (int i = 0; i < actions.length; i++) {
-                    if ((editorInfo.imeOptions & actions[i]) == actions[i]) {
+                for (int action : actions) {
+                    if ((editorInfo.imeOptions & action) == action) {
 //                        Log.d("RemoteKeyboardPlugin", "Enter-action: " + actions[i]);
-                        inputConn.performEditorAction(actions[i]);
+                        inputConn.performEditorAction(action);
                         return true;
                     }
                 }
