@@ -50,7 +50,7 @@ public class RemoteKeyboardPlugin extends Plugin {
     /**
      * Track and expose plugin instances to allow for a 'connected'-indicator in the IME:
      */
-    private static ArrayList<RemoteKeyboardPlugin> instances = new ArrayList<RemoteKeyboardPlugin>();
+    private static ArrayList<RemoteKeyboardPlugin> instances = new ArrayList<>();
     private static ReentrantLock instancesLock = new ReentrantLock(true);
 
     public static ArrayList<RemoteKeyboardPlugin> getInstances() {
