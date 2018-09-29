@@ -93,7 +93,7 @@ public class TelephonyPlugin extends Plugin {
      * <p>
      * The body should be empty
      */
-    public final static String PACKET_TYPE_TELEPHONY_REQUEST_MUTE = "kdeconnect.telephony.request_mute";
+    private final static String PACKET_TYPE_TELEPHONY_REQUEST_MUTE = "kdeconnect.telephony.request_mute";
 
     private static final String KEY_PREF_BLOCKED_NUMBERS = "telephony_blocked_numbers";
     private int lastState = TelephonyManager.CALL_STATE_IDLE;
