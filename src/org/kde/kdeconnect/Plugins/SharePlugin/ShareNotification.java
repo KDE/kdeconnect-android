@@ -18,7 +18,7 @@ package org.kde.kdeconnect.Plugins.SharePlugin;
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -110,9 +110,10 @@ public class ShareNotification {
                 if (image != null) {
                     builder.setLargeIcon(image);
                     builder.setStyle(new NotificationCompat.BigPictureStyle()
-                        .bigPicture(image));
+                            .bigPicture(image));
                 }
-            } catch (FileNotFoundException ignored) {}
+            } catch (FileNotFoundException ignored) {
+            }
         }
         if (!"file".equals(destinationUri.getScheme())) {
             return;

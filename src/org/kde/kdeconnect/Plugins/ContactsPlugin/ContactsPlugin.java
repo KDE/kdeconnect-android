@@ -19,7 +19,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 package org.kde.kdeconnect.Plugins.ContactsPlugin;
 
@@ -48,14 +48,14 @@ public class ContactsPlugin extends Plugin {
     /**
      * Used to request the device send the unique ID of every contact
      */
-    public static final String PACKET_TYPE_CONTACTS_REQUEST_ALL_UIDS_TIMESTAMPS = "kdeconnect.contacts.request_all_uids_timestamps";
+    private static final String PACKET_TYPE_CONTACTS_REQUEST_ALL_UIDS_TIMESTAMPS = "kdeconnect.contacts.request_all_uids_timestamps";
 
     /**
      * Used to request the names for the contacts corresponding to a list of UIDs
      * <p>
      * It shall contain the key "uids", which will have a list of uIDs (long int, as string)
      */
-    public static final String PACKET_TYPE_CONTACTS_REQUEST_VCARDS_BY_UIDS = "kdeconnect.contacts.request_vcards_by_uid";
+    private static final String PACKET_TYPE_CONTACTS_REQUEST_VCARDS_BY_UIDS = "kdeconnect.contacts.request_vcards_by_uid";
 
     /**
      * Response indicating the packet contains a list of contact uIDs
@@ -63,7 +63,7 @@ public class ContactsPlugin extends Plugin {
      * It shall contain the key "uids", which will mark a list of uIDs (long int, as string)
      * The returned IDs can be used in future requests for more information about the contact
      */
-    public static final String PACKET_TYPE_CONTACTS_RESPONSE_UIDS_TIMESTAMPS = "kdeconnect.contacts.response_uids_timestamps";
+    private static final String PACKET_TYPE_CONTACTS_RESPONSE_UIDS_TIMESTAMPS = "kdeconnect.contacts.response_uids_timestamps";
 
     /**
      * Response indicating the packet contains a list of contact names
@@ -73,11 +73,11 @@ public class ContactsPlugin extends Plugin {
      * <p>
      * For example:
      * ( 'uids' : ['1', '3', '15'],
-     *     '1'  : 'John Smith',
-     *     '3'  : 'Abe Lincoln',
-     *     '15' : 'Mom' )
+     * '1'  : 'John Smith',
+     * '3'  : 'Abe Lincoln',
+     * '15' : 'Mom' )
      */
-    public static final String PACKET_TYPE_CONTACTS_RESPONSE_VCARDS = "kdeconnect.contacts.response_vcards";
+    private static final String PACKET_TYPE_CONTACTS_RESPONSE_VCARDS = "kdeconnect.contacts.response_vcards";
 
     @Override
     public String getDisplayName() {
