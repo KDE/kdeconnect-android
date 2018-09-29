@@ -91,7 +91,7 @@ class SimpleSftpServer {
 
         sshd.setFileSystemFactory(new AndroidFileSystemFactory(context));
         sshd.setCommandFactory(new ScpCommandFactory());
-        sshd.setSubsystemFactories(Collections.singletonList((NamedFactory<Command>) new SftpSubsystem.Factory()));
+        sshd.setSubsystemFactories(Collections.singletonList(new SftpSubsystem.Factory()));
 
         if (device.publicKey != null) {
             keyAuth.deviceKey = device.publicKey;

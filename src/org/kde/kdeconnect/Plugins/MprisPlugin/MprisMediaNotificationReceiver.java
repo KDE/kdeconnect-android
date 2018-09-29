@@ -49,7 +49,7 @@ public class MprisMediaNotificationReceiver extends BroadcastReceiver {
             //Route these buttons to the media session, which will handle them
             MediaSessionCompat mediaSession = MprisMediaSession.getMediaSession();
             if (mediaSession == null) return;
-            mediaSession.getController().dispatchMediaButtonEvent((KeyEvent) intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT));
+            mediaSession.getController().dispatchMediaButtonEvent(intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT));
         } else {
             //Second case: buttons on the notification, which we created ourselves
 
