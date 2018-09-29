@@ -44,12 +44,6 @@ public class LanLinkProviderTest extends AndroidTestCase {
         linkProvider = new LanLinkProvider(getContext());
     }
 
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-
-    }
-
     public void testIdentityPacketReceived() throws Exception {
 
         NetworkPacket networkPacket = Mockito.mock(NetworkPacket.class);

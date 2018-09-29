@@ -97,11 +97,6 @@ public class RemoteKeyboardService
     }
 
     @Override
-    public void onInitializeInterface() {
-        super.onInitializeInterface();
-    }
-
-    @Override
     public View onCreateInputView() {
 //        Log.d("RemoteKeyboardService", "onCreateInputView connected=" + RemoteKeyboardPlugin.isConnected());
         inputView = new KeyboardView(this, null);

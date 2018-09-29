@@ -34,18 +34,6 @@ import java.security.PublicKey;
 
 public class NetworkPacketTest extends AndroidTestCase {
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-        // Called before each test
-    }
-
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-        // Called after each test
-    }
-
     public void testNetworkPacket() throws JSONException {
         NetworkPacket np = new NetworkPacket("com.test");
 

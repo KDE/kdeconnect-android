@@ -75,11 +75,6 @@ public class LanLinkTest extends AndroidTestCase {
         badLanLink = new LanLink(getContext(), "testDevice", linkProvider, socketBadMock, LanLink.ConnectionStarted.Remotely);
     }
 
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
-
     public void testSendPacketSuccess() throws JSONException {
 
         NetworkPacket testPacket = Mockito.mock(NetworkPacket.class);
