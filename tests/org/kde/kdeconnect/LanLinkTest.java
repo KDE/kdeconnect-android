@@ -130,11 +130,7 @@ public class LanLinkTest extends AndroidTestCase {
                         socket.connect(new InetSocketAddress(address.getAddress(), tcpPort));
                         np.setPayload(socket.getInputStream(), np.getPayloadSize());
                     } catch (Exception e) {
-                        try {
-                            socket.close();
-                        } catch (Exception ignored) {
-                            throw ignored;
-                        }
+                        socket.close();
                         e.printStackTrace();
                         Log.e("KDE/LanLinkTest", "Exception connecting to remote socket");
                         throw e;
