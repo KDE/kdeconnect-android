@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 package org.kde.kdeconnect.Helpers;
@@ -109,8 +109,7 @@ public class SMSHelper {
         final String selection = Message.DATE + " > ?";
         final String[] selectionArgs = new String[] {Long.toString(timestamp)};
 
-        List<Message> messages = getMessagesWithFilter(context, selection, selectionArgs);
-        return messages;
+        return getMessagesWithFilter(context, selection, selectionArgs);
     }
 
     /**
