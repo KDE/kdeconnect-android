@@ -32,7 +32,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
@@ -43,7 +42,6 @@ import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
 public class NotificationFilterActivity extends AppCompatActivity {

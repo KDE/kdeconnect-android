@@ -56,8 +56,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.net.SocketFactory;
-import javax.net.ssl.HandshakeCompletedEvent;
-import javax.net.ssl.HandshakeCompletedListener;
 import javax.net.ssl.SSLSocket;
 
 /**

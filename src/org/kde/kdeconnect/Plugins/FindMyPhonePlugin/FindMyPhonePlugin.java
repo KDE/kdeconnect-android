@@ -22,7 +22,6 @@ package org.kde.kdeconnect.Plugins.FindMyPhonePlugin;
 
 import android.content.Intent;
 
-import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
