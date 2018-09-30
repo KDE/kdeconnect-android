@@ -124,8 +124,9 @@ public class TelephonyPlugin extends Plugin {
                 final int finalIntState = intState;
                 final String finalNumber = number;
 
-                callBroadcastReceived(finalIntState, finalNumber);
-
+                if (finalIntState != lastState) {
+                    callBroadcastReceived(finalIntState, finalNumber);
+                }
             }
         }
     };
@@ -194,8 +195,7 @@ public class TelephonyPlugin extends Plugin {
                 break;
 
             case TelephonyManager.CALL_STATE_IDLE:
-
-                if (lastState != TelephonyManager.CALL_STATE_IDLE && lastPacket != null) {
+                if (lastPacket != null) {
 
                     //Resend a cancel of the last event (can either be "ringing" or "talking")
                     lastPacket.set("isCancel", "true");
@@ -218,11 +218,8 @@ public class TelephonyPlugin extends Plugin {
                         np.set("contactName", lastPacket.getString("contactName", null));
                         device.sendPacket(np);
                     }
-
                 }
-
                 break;
-
         }
 
         lastPacket = np;
