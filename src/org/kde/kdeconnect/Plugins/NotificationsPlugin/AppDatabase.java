@@ -15,8 +15,8 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
-*/
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 package org.kde.kdeconnect.Plugins.NotificationsPlugin;
 
@@ -93,6 +93,10 @@ class AppDatabase {
             ourDatabase.insert(DATABASE_TABLE, null, cv);
         }
         res.close();
+    }
+
+    void setAllEnabled(boolean enabled) {
+        ourDatabase.execSQL("UPDATE " + DATABASE_TABLE + " SET " + KEY_IS_ENABLED + "='" + enabled + "'");
     }
 
     boolean isEnabled(String packageName) {

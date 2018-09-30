@@ -283,5 +283,6 @@
     <string name="pref_plugin_systemvolume">System volume</string>
     <string name="pref_plugin_systemvolume_desc">Control the system volume of the remote device</string>
     <string name="mute">Mute</string>
+    <string name="all">All</string>
 
 </resources>
