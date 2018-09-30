@@ -15,8 +15,8 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
-*/
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 package org.kde.kdeconnect.UserInterface;
 
@@ -277,7 +277,7 @@ public class DeviceFragment extends Fragment {
 
                     boolean paired = device.isPaired();
                     boolean reachable = device.isReachable();
-                    boolean onData = NetworkHelper.isOnMobileNetwork(getContext());
+                    boolean onData = NetworkHelper.isOnMobileNetwork(DeviceFragment.this.getContext());
 
                     rootView.findViewById(R.id.pairing_buttons).setVisibility(paired ? View.GONE : View.VISIBLE);
                     rootView.findViewById(R.id.error_message_container).setVisibility((paired && !reachable) ? View.VISIBLE : View.GONE);
@@ -296,24 +296,9 @@ public class DeviceFragment extends Fragment {
                             pluginListItems.add(new PluginItem(p, v -> p.startMainActivity(mActivity)));
                         }
 
-                        createPluginsList(device.getFailedPlugins(), R.string.plugins_failed_to_load, new PluginClickListener() {
-                            @Override
-                            void action() {
-                                plugin.getErrorDialog(mActivity).show();
-                            }
-                        });
-                        createPluginsList(device.getPluginsWithoutPermissions(), R.string.plugins_need_permission, new PluginClickListener() {
-                            @Override
-                            void action() {
-                                plugin.getPermissionExplanationDialog(mActivity).show();
-                            }
-                        });
-                        createPluginsList(device.getPluginsWithoutOptionalPermissions(), R.string.plugins_need_optional_permission, new PluginClickListener() {
-                            @Override
-                            void action() {
-                                plugin.getOptionalPermissionExplanationDialog(mActivity).show();
-                            }
-                        });
+                        DeviceFragment.this.createPluginsList(device.getFailedPlugins(), R.string.plugins_failed_to_load, (plugin) -> plugin.getErrorDialog(mActivity).show());
+                        DeviceFragment.this.createPluginsList(device.getPluginsWithoutPermissions(), R.string.plugins_need_permission, (plugin) -> plugin.getPermissionExplanationDialog(mActivity).show());
+                        DeviceFragment.this.createPluginsList(device.getPluginsWithoutOptionalPermissions(), R.string.plugins_need_optional_permission, (plugin) -> plugin.getOptionalPermissionExplanationDialog(mActivity).show());
 
                         ListView buttonsList = (ListView) rootView.findViewById(R.id.buttons_list);
                         ListAdapter adapter = new ListAdapter(mActivity, pluginListItems);
@@ -419,7 +404,7 @@ public class DeviceFragment extends Fragment {
         });
     }
 
-    void createPluginsList(ConcurrentHashMap<String, Plugin> plugins, int headerText, PluginClickListener onClickListener) {
+    void createPluginsList(ConcurrentHashMap<String, Plugin> plugins, int headerText, FailedPluginListItem.Action action) {
         if (!plugins.isEmpty()) {
 
             TextView header = new TextView(mActivity);
@@ -441,35 +426,10 @@ public class DeviceFragment extends Fragment {
                     if (plugin == null) {
                         pluginListItems.add(new SmallEntryItem(pluginKey));
                     } else {
-                        PluginClickListener listener = onClickListener.clone();
-                        listener.plugin = plugin;
-                        pluginListItems.add(new SmallEntryItem(plugin.getDisplayName(), listener));
+                        pluginListItems.add(new FailedPluginListItem(plugin, action));
                     }
                 }
             }
         }
     }
-
-    private abstract class PluginClickListener implements View.OnClickListener, Cloneable {
-
-        Plugin plugin;
-
-        @Override
-        public void onClick(View v) {
-            action();
-        }
-
-        @Override
-        public PluginClickListener clone() {
-            try {
-                return (PluginClickListener) super.clone();
-            } catch (CloneNotSupportedException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        abstract void action();
-    }
-
 }
