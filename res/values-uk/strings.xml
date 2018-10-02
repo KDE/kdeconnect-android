@@ -237,4 +237,5 @@
   <string name="pref_plugin_systemvolume">Системний том</string>
   <string name="pref_plugin_systemvolume_desc">Керування системним томом на віддаленому пристрої</string>
   <string name="mute">Вимкнути звук</string>
+  <string name="all">Усі</string>
 </resources>

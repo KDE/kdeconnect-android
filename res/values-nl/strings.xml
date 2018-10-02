@@ -235,4 +235,5 @@
   <string name="pref_plugin_systemvolume">Systeemvolume</string>
   <string name="pref_plugin_systemvolume_desc">Bestuur het systeemvolume vanaf uw apparaat op afstand</string>
   <string name="mute">Dempen</string>
+  <string name="all">Alles</string>
 </resources>
