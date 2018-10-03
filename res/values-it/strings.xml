@@ -235,4 +235,5 @@
   <string name="pref_plugin_systemvolume">Volume di sistema</string>
   <string name="pref_plugin_systemvolume_desc">Controlla il volume di sistema dal dispositivo remoto</string>
   <string name="mute">Silenzia</string>
+  <string name="all">Tutto</string>
 </resources>
