@@ -35,9 +35,9 @@
   <string name="send_ping">Kirim ping</string>
   <string name="open_mpris_controls">Kendali multimedia</string>
   <string name="remotekeyboard_editing_only_title">Menangani tuts jarak jauh hanya ketika mengedit</string>
-  <string name="remotekeyboard_not_connected">Tidak adanya keaktifan sambungan keyboard jarak jauh, yang dibuat dalam kdeconnect</string>
-  <string name="remotekeyboard_connected">Sambungan keyboard jarak jauh telah aktif</string>
-  <string name="remotekeyboard_multiple_connections">Ada lebih dari satu sambungan keyboard jarak jauh, pilihlah perangkat untuk mengkonfigurasi</string>
+  <string name="remotekeyboard_not_connected">Tidak adanya keaktifan koneksi keyboard jarak jauh, yang dibuat dalam kdeconnect</string>
+  <string name="remotekeyboard_connected">Koneksi keyboard jarak jauh telah aktif</string>
+  <string name="remotekeyboard_multiple_connections">Ada lebih dari satu koneksi keyboard jarak jauh, pilihlah perangkat untuk mengkonfigurasi</string>
   <string name="open_mousepad">Input jarak jauh</string>
   <string name="mousepad_info">Pindah jari pada layar untuk memindah kursor mouse. Ketuk untuk klik, dan gunakan dua/tiga jari untuk tombol kanan dan tengah. Gunakan 2 jari untuk menggulir. Gunakan tekan lama untuk seret dan taruh.</string>
   <string name="mousepad_double_tap_settings_title">Setel aksi ketuk dua jari</string>
@@ -176,7 +176,7 @@
   <string name="device_rename_confirm">Ubah Nama</string>
   <string name="refresh">Segarkan</string>
   <string name="unreachable_description">Perangkat yang disandingkan ini tidak dapat dicapai. Pastikan ia tersambung ke jaringanmu yang sama.</string>
-  <string name="on_data_message">Nampaknya kamu berada pada sambungan data seluler. KDE Connect hanya bekerja pada jaringan lokal.</string>
+  <string name="on_data_message">Nampaknya kamu berada pada koneksi data seluler. KDE Connect hanya bekerja pada jaringan lokal.</string>
   <string name="no_file_browser">Tidak adanya file penelusur yang terpasang.</string>
   <string name="pref_plugin_telepathy">Kirim SMS</string>
   <string name="pref_plugin_telepathy_desc">Kirim teks perpesanan dari desktopmu</string>
