@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">电话通知</string>
+  <string name="pref_plugin_telephony_desc">发送来电通知</string>
   <string name="pref_plugin_battery">电池报告</string>
   <string name="pref_plugin_battery_desc">定期报告电池状态</string>
   <string name="pref_plugin_sftp">开放文件系统</string>
@@ -9,6 +10,8 @@
   <string name="pref_plugin_clipboard_desc">共享剪贴板内容</string>
   <string name="pref_plugin_mousepad">远程输入</string>
   <string name="pref_plugin_mousepad_desc">将您的手机用或平板电脑用作触摸板和键盘</string>
+  <string name="pref_plugin_presenter">演示遥控器</string>
+  <string name="pref_plugin_presenter_desc">使用移动设备切换幻灯片</string>
   <string name="pref_plugin_remotekeyboard">接收远程按键</string>
   <string name="pref_plugin_remotekeyboard_desc">从远程设备接收按键事件</string>
   <string name="pref_plugin_mpris">多媒体控制</string>
@@ -43,6 +46,7 @@
   <string name="mousepad_double_tap_settings_title">设置双指点击动作</string>
   <string name="mousepad_triple_tap_settings_title">设置三指点击动作</string>
   <string name="mousepad_sensitivity_settings_title">设置触摸板灵敏度</string>
+  <string name="mousepad_acceleration_profile_settings_title">设置指针加速</string>
   <string name="mousepad_scroll_direction_title">滚动方向反向</string>
   <string-array name="mousepad_tap_entries">
     <item>右键点击</item>
@@ -57,12 +61,12 @@
     <item>最快</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>No Acceleration</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
-    <item>Medium</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>无加速</item>
+    <item>最弱</item>
+    <item>更弱</item>
+    <item>中等</item>
+    <item>更强</item>
+    <item>最强</item>
   </string-array>
   <string name="category_connected_devices">已连接设备</string>
   <string name="category_not_paired_devices">可用设备</string>
@@ -125,6 +129,7 @@
   <string name="mpris_volume">音量</string>
   <string name="mpris_settings">多媒体设置</string>
   <string name="mpris_time_settings_title">快进/后退按钮</string>
+  <string name="mpris_time_settings_summary">当按下时调整快进或后退的时间</string>
   <string-array name="mpris_time_entries">
     <item>10秒</item>
     <item>20秒</item>
@@ -133,6 +138,7 @@
     <item>2分钟</item>
   </string-array>
   <string name="mpris_notification_settings_title">显示媒体控制通知部件</string>
+  <string name="mpris_notification_settings_summary">允许在不用打开 KDE 连接的情况下控制媒体播放器</string>
   <string name="share_to">分享到...</string>
   <string name="protocol_version_older">该设备使用旧版本的协议</string>
   <string name="protocol_version_newer">该设备使用较新版本的协议</string>
@@ -198,15 +204,34 @@
   <string name="telepathy_permission_explanation">从计算机桌面读取、写入短消息需要向应用程序授予 SMS 权限</string>
   <string name="telephony_permission_explanation">您必须给予访问手机通话和短信的权限才能从桌面计算机查看通话记录和短信</string>
   <string name="telephony_optional_permission_explanation">要查看联系人姓名而非电话号码，您需要授予访问手机通讯录的权限</string>
+  <string name="contacts_permission_explanation">要与桌面共享通讯薄，您需要给予联系人权限</string>
   <string name="select_ringtone">选择铃声</string>
   <string name="telephony_pref_blocked_title">已屏蔽的号码</string>
   <string name="telephony_pref_blocked_dialog_desc">不要显示来自这些号码的电话和短信。一行一个号码</string>
   <string name="mpris_coverart_description">当前媒体的封面艺术</string>
   <string name="device_icon_description">设备图标</string>
   <string name="settings_icon_description">设置图标</string>
+  <string name="presenter_fullscreen">全屏</string>
+  <string name="presenter_exit">退出演示</string>
+  <string name="presenter_lock_tip">您可以锁定设备，用音量键作为上一页/下一页按钮</string>
   <string name="add_command">添加命令</string>
   <string name="addcommand_explanation">没有已注册的命令</string>
+  <string name="addcommand_explanation2">您可以在 KDE Connect 系统设置中添加新命令</string>
+  <string name="add_command_description">您可以在桌面添加新命令</string>
   <string name="pref_plugin_mprisreceiver">控制媒体播放器</string>
   <string name="pref_plugin_mprisreceiver_desc">从其他设备控制您手机的媒体播放器</string>
   <string name="dark_theme">暗色主题</string>
+  <string name="mpris_stop">停止但前播放器</string>
+  <string name="copy_url_to_clipboard">复制 URL 到剪贴板</string>
+  <string name="clipboard_toast">已复制到剪贴板</string>
+  <string name="runcommand_notreachable">设备不可达</string>
+  <string name="runcommand_notpaired">设备未配对</string>
+  <string name="runcommand_nosuchdevice">没有此设备</string>
+  <string name="runcommand_noruncommandplugin">此设备没有启用“运行命令插件”</string>
+  <string name="pref_plugin_findremotedevice">查找远程设备</string>
+  <string name="pref_plugin_findremotedevice_desc">让远程设备响铃</string>
+  <string name="ring">响铃</string>
+  <string name="pref_plugin_systemvolume">系统音量</string>
+  <string name="pref_plugin_systemvolume_desc">在远程设备上控制系统音量</string>
+  <string name="mute">静音</string>
 </resources>
