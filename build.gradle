@@ -4,17 +4,17 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath 'com.android.tools.build:gradle:3.2.1'
     }
 }
 
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 27
+        targetSdkVersion 28
         //multiDexEnabled true
         //testInstrumentationRunner "com.android.test.runner.MultiDexTestRunner"
     }
@@ -25,7 +25,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-	sourceSets {
+    sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
             java.srcDirs = ['src']
@@ -58,7 +58,7 @@ android {
         release { //keep on 'release', set to 'all' when testing to make sure proguard is not deleting important stuff
             minifyEnabled true
             useProguard true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'),'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
@@ -70,9 +70,9 @@ dependencies {
         google()
     }
 
-    implementation 'com.android.support:support-v4:27.1.1'
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:support-media-compat:28.0.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
     implementation 'com.jakewharton:disklrucache:2.0.2' //For caching album art bitmaps
 
     implementation 'org.apache.sshd:sshd-core:0.8.0' //0.9 seems to fail on Android 6 and 1.+ requires java.nio.file, which doesn't exist in Android
