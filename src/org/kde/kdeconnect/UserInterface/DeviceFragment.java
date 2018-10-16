@@ -23,7 +23,6 @@ package org.kde.kdeconnect.UserInterface;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -31,7 +30,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -184,6 +182,7 @@ public class DeviceFragment extends Fragment {
             return;
         }
 
+
         //Plugins button list
         final Collection<Plugin> plugins = device.getLoadedPlugins().values();
         for (final Plugin p : plugins) {
@@ -197,7 +196,7 @@ public class DeviceFragment extends Fragment {
         }
 
         menu.add(R.string.device_menu_plugins).setOnMenuItemClickListener(menuItem -> {
-            Intent intent = new Intent(mActivity, SettingsActivity.class);
+            Intent intent = new Intent(mActivity, DeviceSettingsActivity.class);
             intent.putExtra("deviceId", mDeviceId);
             startActivity(intent);
             return true;
