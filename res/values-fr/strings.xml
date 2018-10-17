@@ -130,6 +130,7 @@
   <string name="mpris_volume">Volume</string>
   <string name="mpris_settings">Configuration multimédia</string>
   <string name="mpris_time_settings_title">Boutons avance / retour rapide.</string>
+  <string name="mpris_time_settings_summary">Ajustez le temps pour l\'avance ou retour rapide.</string>
   <string-array name="mpris_time_entries">
     <item>10 secondes</item>
     <item>20 secondes</item>
@@ -138,6 +139,7 @@
     <item>2 minutes</item>
   </string-array>
   <string name="mpris_notification_settings_title">Afficher la notification de contrôle du lecteur multimédia</string>
+  <string name="mpris_notification_settings_summary">Vous permet de contrôler vos lecteurs multimédias sans ouvrir KDE Connect.</string>
   <string name="share_to">Partager vers...</string>
   <string name="protocol_version_older">Le périphérique utilise une version ancienne du protocole</string>
   <string name="protocol_version_newer">Le périphérique utilise une version plus récente du protocole</string>
@@ -233,4 +235,5 @@
   <string name="pref_plugin_systemvolume">Volume du système</string>
   <string name="pref_plugin_systemvolume_desc">Contrôler le volume du système du périphérique distant</string>
   <string name="mute">Muet</string>
+  <string name="all">Tous</string>
 </resources>
