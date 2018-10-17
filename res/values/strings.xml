@@ -154,7 +154,7 @@
     <string name="device">Device</string>
     <string name="pair_device">Pair device</string>
     <string name="remote_control">Remote control</string>
-    <string name="settings">KDE Connect Settings</string>
+    <string name="settings">Settings</string>
     <string name="mpris_play">Play</string>
     <string name="mpris_pause">Pause</string>
     <string name="mpris_previous">Previous</string>
@@ -263,7 +263,7 @@
     <string name="presenter_fullscreen">Fullscreen</string>
     <string name="presenter_exit">Exit presentation</string>
     <string name="presenter_lock_tip">You can lock your device to use the volume keys as previous/next buttons</string>
-    
+
     <string name="add_command">Add a command</string>
     <string name="addcommand_explanation">There are no commands registered</string>
     <string name="addcommand_explanation2">You can add new commands in the KDE Connect System Settings</string>
@@ -292,5 +292,10 @@
     <string name="pref_plugin_systemvolume">System volume</string>
     <string name="pref_plugin_systemvolume_desc">Control the system volume of the remote device</string>
     <string name="mute">Mute</string>
+    <string name="devices">Devices</string>
+
+    <string name="settings_dark_mode">Dark mode</string>
+    <string name="settings_more_settings_title">More settings</string>
+    <string name="settings_more_settings_text">Per-device settings can be found under \'Plugin settings\' from within a device.</string>
 
 </resources>
