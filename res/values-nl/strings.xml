@@ -181,7 +181,7 @@
   <string name="device_paired">Gepaard apparaat</string>
   <string name="device_rename_title">Apparaat hernoemen</string>
   <string name="device_rename_confirm">Hernoemen</string>
-  <string name="refresh">Verversen</string>
+  <string name="refresh">Vernieuwen</string>
   <string name="unreachable_description">Dit gepaarde apparaat is niet bereikbaar. Ga na dat het is verbonden met uw zelfde netwerk.</string>
   <string name="on_data_message">Het lijkt of op een mobiele gegevensverbinding zit. KDE Connect werkt alleen op locale netwerken.</string>
   <string name="no_file_browser">Er zijn geen bestandsbrowsers geïnstalleerd.</string>
