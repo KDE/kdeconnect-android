@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="pref_plugin_telephony">Notificador de telefonía</string>
+  <string name="pref_plugin_telephony_desc">Envíe notificacións de chamadas entrantes.</string>
   <string name="pref_plugin_battery">Informe da batería</string>
   <string name="pref_plugin_battery_desc">Envíe periodicamente un informe sobre o estado da batería.</string>
   <string name="pref_plugin_sftp">Revelador do sistema de ficheiros</string>
@@ -9,12 +10,16 @@
   <string name="pref_plugin_clipboard_desc">Comparta o contido do portapapeis.</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
   <string name="pref_plugin_mousepad_desc">Use o teléfono ou tableta como área táctil e teclado.</string>
+  <string name="pref_plugin_presenter">Mando de presentación</string>
+  <string name="pref_plugin_presenter_desc">Use o dispositivo para cambiar de dispositiva nunha presentación</string>
   <string name="pref_plugin_remotekeyboard">Recibir teclas premidas remotamente.</string>
   <string name="pref_plugin_remotekeyboard_desc">Recibir eventos de teclas premidas de dispositivos remotos.</string>
   <string name="pref_plugin_mpris">Controis multimedia</string>
   <string name="pref_plugin_mpris_desc">Fornece un mando a distancia para o reprodutor.</string>
   <string name="pref_plugin_runcommand">Executar unha orde</string>
   <string name="pref_plugin_runcommand_desc">Provocar ordes remotas desde o teléfono ou tableta.</string>
+  <string name="pref_plugin_contacts">Sincronizador de contactos</string>
+  <string name="pref_plugin_contacts_desc">Permitir sincronizar o caderno de enderezos do dispositivo</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Envíe e reciba pings.</string>
   <string name="pref_plugin_notifications">Sincronización de notificacións</string>
@@ -41,6 +46,7 @@
   <string name="mousepad_double_tap_settings_title">Definir a acción de tocar con dous dedos</string>
   <string name="mousepad_triple_tap_settings_title">Definir a acción de tocar con tres dedos</string>
   <string name="mousepad_sensitivity_settings_title">Definir a sensibilidade do punteiro táctil</string>
+  <string name="mousepad_acceleration_profile_settings_title">Definir a aceleración do punteiro</string>
   <string name="mousepad_scroll_direction_title">Inverter a dirección de desprazamento</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic dereito</item>
@@ -55,12 +61,12 @@
     <item>O máis rápido</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>No Acceleration</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
-    <item>Medium</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>Ningunha</item>
+    <item>A máis débil</item>
+    <item>Máis débil</item>
+    <item>Media</item>
+    <item>Máis forte</item>
+    <item>A máis forte</item>
   </string-array>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos dispoñíbeis</string>
@@ -124,6 +130,7 @@
   <string name="mpris_volume">Volume</string>
   <string name="mpris_settings">Configuración de son e vídeo</string>
   <string name="mpris_time_settings_title">Botóns de avanzar e retroceder</string>
+  <string name="mpris_time_settings_summary">Axuste o tempo que avanzar ou retroceder ao premer</string>
   <string-array name="mpris_time_entries">
     <item>10 segundos</item>
     <item>20 segundos</item>
@@ -132,6 +139,7 @@
     <item>2 minutos</item>
   </string-array>
   <string name="mpris_notification_settings_title">Mostrar a notificación de control de reprodución.</string>
+  <string name="mpris_notification_settings_summary">Permitir controlar os reprodutores sen abrir KDE Connect</string>
   <string name="share_to">Compartir con…</string>
   <string name="protocol_version_older">Este dispositivo usa unha versión vella do protocolo.</string>
   <string name="protocol_version_newer">Este dispositivo usa unha versión máis nova do protocolo.</string>
@@ -197,12 +205,16 @@
   <string name="telepathy_permission_explanation">Para ler e escribir SMS desde o escritorio ten que dar permiso de SMS.</string>
   <string name="telephony_permission_explanation">Para ver as chamadas de teléfono e os SMS desde o escritorio ten que dar permiso a chamadas de teléfono e a SMS.</string>
   <string name="telephony_optional_permission_explanation">Para ver o nome dun contacto en vez dun número de teléfono ten que dar acceso aos contactos do teléfono.</string>
+  <string name="contacts_permission_explanation">Para compartir o caderno de enderezos co escritorio ten que dar permiso de contactos</string>
   <string name="select_ringtone">Seleccione un son de chamada</string>
   <string name="telephony_pref_blocked_title">Números bloqueados</string>
   <string name="telephony_pref_blocked_dialog_desc">Non mostrar chamadas nin SMS destes números. Indique un número por liña.</string>
   <string name="mpris_coverart_description">Portada da obra actual.</string>
   <string name="device_icon_description">Icona do dispositivo.</string>
   <string name="settings_icon_description">Icona da configuración.</string>
+  <string name="presenter_fullscreen">Pantalla completa</string>
+  <string name="presenter_exit">Saír da presentación</string>
+  <string name="presenter_lock_tip">Pode bloquear o dispositivo para usar as teclas de volume como botóns de anterior e seguinte</string>
   <string name="add_command">Engadir unha orde</string>
   <string name="addcommand_explanation">Non hai ordes rexistradas.</string>
   <string name="addcommand_explanation2">Pode engadir novas ordes desde a configuración do sistema de KDE Connect.</string>
@@ -210,4 +222,18 @@
   <string name="pref_plugin_mprisreceiver">Control do reprodutor de multimedia</string>
   <string name="pref_plugin_mprisreceiver_desc">Controlar os reprodutores do seu móbil desde outro dispositivo.</string>
   <string name="dark_theme">Tema escuro</string>
+  <string name="mpris_stop">Deter o reprodutor actual</string>
+  <string name="copy_url_to_clipboard">Copiar o URL no portapapeis</string>
+  <string name="clipboard_toast">Copiouse no portapapeis</string>
+  <string name="runcommand_notreachable">O dispositivo está fóra de alcance</string>
+  <string name="runcommand_notpaired">O dispositivo non está emparellado</string>
+  <string name="runcommand_nosuchdevice">Non hai tal dispositivo</string>
+  <string name="runcommand_noruncommandplugin">O dispositivo non ten o complemento de «Executar unha orde» activado</string>
+  <string name="pref_plugin_findremotedevice">Atopar un dispositivo remoto</string>
+  <string name="pref_plugin_findremotedevice_desc">Facer soar o dispositivo remoto</string>
+  <string name="ring">Facer soar</string>
+  <string name="pref_plugin_systemvolume">Volume do sistema</string>
+  <string name="pref_plugin_systemvolume_desc">Controlar o volume do sistema do dispositivo remoto</string>
+  <string name="mute">Silenciar</string>
+  <string name="all">Todo</string>
 </resources>
