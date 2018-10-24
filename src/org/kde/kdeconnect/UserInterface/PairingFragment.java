@@ -75,7 +75,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
 
         setHasOptionsMenu(true);
 
-        rootView = inflater.inflate(R.layout.fragment_pair, container, false);
+        rootView = inflater.inflate(R.layout.devices_list, container, false);
         View listRootView = rootView.findViewById(R.id.devices_list);
         mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.refresh_list_layout);
         mSwipeRefreshLayout.setOnRefreshListener(

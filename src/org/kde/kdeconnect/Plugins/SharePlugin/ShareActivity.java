@@ -126,7 +126,7 @@ public class ShareActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ThemeUtil.setUserPreferredTheme(this);
-        setContentView(R.layout.fragment_pair);
+        setContentView(R.layout.devices_list);
 
         ActionBar actionBar = getSupportActionBar();
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_list_layout);
