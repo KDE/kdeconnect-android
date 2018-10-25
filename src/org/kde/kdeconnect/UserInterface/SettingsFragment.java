@@ -29,6 +29,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements MainAc
     }
 
     TwoStatePreference createTwoStatePreferenceCompat(Context context) {
+        //The switch didn't work on Android 6, not sure about 7
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             return new SwitchPreference(context);
         } else {
@@ -54,7 +55,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements MainAc
             return true;
         });
         String deviceName = DeviceHelper.getDeviceName(context);
-        renameDevice.setTitle(R.string.device_rename_title);
+        renameDevice.setTitle(R.string.settings_rename);
         renameDevice.setSummary(deviceName);
         screen.addPreference(renameDevice);
 
