@@ -2,7 +2,6 @@ package org.kde.kdeconnect.UserInterface;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -10,7 +9,6 @@ import android.support.v14.preference.SwitchPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceScreen;
-import android.util.Log;
 
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect_tp.R;
@@ -89,13 +87,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements MainAc
 
 
     }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        Log.e("AAAAAAAAAA","CHANGEEEED");
-    }
-
 
     @Override
     public void onNameChanged(String newName) {
