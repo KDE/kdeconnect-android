@@ -182,6 +182,7 @@ public class DeviceFragment extends Fragment {
             return;
         }
 
+
         //Plugins button list
         final Collection<Plugin> plugins = device.getLoadedPlugins().values();
         for (final Plugin p : plugins) {
@@ -195,7 +196,7 @@ public class DeviceFragment extends Fragment {
         }
 
         menu.add(R.string.device_menu_plugins).setOnMenuItemClickListener(menuItem -> {
-            Intent intent = new Intent(mActivity, SettingsActivity.class);
+            Intent intent = new Intent(mActivity, DeviceSettingsActivity.class);
             intent.putExtra("deviceId", mDeviceId);
             startActivity(intent);
             return true;

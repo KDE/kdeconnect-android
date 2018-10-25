@@ -51,9 +51,14 @@ public class SftpPlugin extends Plugin {
 
     @Override
     public boolean onCreate() {
-        server.init(context, device);
         permissionExplanation = R.string.sftp_permission_explanation;
-        return true;
+        try {
+            server.init(context, device);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override

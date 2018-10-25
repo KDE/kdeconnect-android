@@ -37,3 +37,8 @@
 -keep class org.apache.mina.** {*;}
 
 -keep class org.kde.kdeconnect.** {*;}
+
+-dontwarn org.mockito.**
+-dontwarn sun.reflect.**
+-dontwarn android.test.**
+-dontwarn java.lang.management.**

@@ -30,13 +30,15 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
-import android.support.v7.app.NotificationCompat;
+import android.support.v4.media.app.NotificationCompat.MediaStyle;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.HashSet;
@@ -304,8 +306,10 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
             iOpenActivity.putExtra("player", notificationPlayer.getPlayer());
             PendingIntent piOpenActivity = PendingIntent.getActivity(service, 0, iOpenActivity, PendingIntent.FLAG_UPDATE_CURRENT);
 
-            //Create the notification
-            final NotificationCompat.Builder notification = new NotificationCompat.Builder(service);
+            final NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+            NotificationCompat.Builder notification = new NotificationCompat.Builder(context, NotificationHelper.Channels.MEDIA_CONTROL);
+
             notification
                     .setAutoCancel(false)
                     .setContentIntent(piOpenActivity)
@@ -377,7 +381,7 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
             }
 
             //Use the MediaStyle notification, so it feels like other media players. That also allows adding actions
-            NotificationCompat.MediaStyle mediaStyle = new NotificationCompat.MediaStyle();
+            MediaStyle mediaStyle = new MediaStyle();
             if (numActions == 1) {
                 mediaStyle.setShowActionsInCompactView(0);
             } else if (numActions == 2) {
@@ -387,6 +391,7 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
             }
             mediaStyle.setMediaSession(mediaSession.getSessionToken());
             notification.setStyle(mediaStyle);
+            notification.setGroup("MprisMediaSession");
 
             //Display the notification
             mediaSession.setActive(true);

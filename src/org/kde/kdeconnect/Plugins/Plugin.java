@@ -34,8 +34,8 @@ import android.widget.Button;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
+import org.kde.kdeconnect.UserInterface.DeviceSettingsActivity;
 import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
-import org.kde.kdeconnect.UserInterface.SettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
 public abstract class Plugin {
@@ -126,9 +126,9 @@ public abstract class Plugin {
      * If hasSettings returns true, this will be called when the user
      * wants to access this plugin preferences and should launch some
      * kind of interface. The default implementation will launch a
-     * SettingsActivity with content from "yourplugin"_preferences.xml.
+     * PluginSettingsActivity with content from "yourplugin"_preferences.xml.
      */
-    public void startPreferencesActivity(SettingsActivity parentActivity) {
+    public void startPreferencesActivity(DeviceSettingsActivity parentActivity) {
         Intent intent = new Intent(parentActivity, PluginSettingsActivity.class);
         intent.putExtra("plugin_display_name", getDisplayName());
         intent.putExtra("plugin_key", getPluginKey());

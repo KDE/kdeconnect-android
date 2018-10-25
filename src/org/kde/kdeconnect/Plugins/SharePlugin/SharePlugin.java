@@ -50,7 +50,7 @@ import org.kde.kdeconnect.Helpers.MediaStoreHelper;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
-import org.kde.kdeconnect.UserInterface.SettingsActivity;
+import org.kde.kdeconnect.UserInterface.DeviceSettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.File;
@@ -159,7 +159,9 @@ public class SharePlugin extends Plugin {
                     PendingIntent.FLAG_UPDATE_CURRENT
             );
 
-            Notification noti = new NotificationCompat.Builder(context)
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+            Notification noti = new NotificationCompat.Builder(context, NotificationHelper.Channels.DEFAULT)
                     .setContentTitle(res.getString(R.string.received_url_title, device.getName()))
                     .setContentText(res.getString(R.string.received_url_text, url))
                     .setContentIntent(resultPendingIntent)
@@ -169,7 +171,6 @@ public class SharePlugin extends Plugin {
                     .setDefaults(Notification.DEFAULT_ALL)
                     .build();
 
-            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             NotificationHelper.notifyCompat(notificationManager, (int) System.currentTimeMillis(), noti);
         }
     }
@@ -280,7 +281,7 @@ public class SharePlugin extends Plugin {
     }
 
     @Override
-    public void startPreferencesActivity(SettingsActivity parentActivity) {
+    public void startPreferencesActivity(DeviceSettingsActivity parentActivity) {
         Intent intent = new Intent(parentActivity, ShareSettingsActivity.class);
         intent.putExtra("plugin_display_name", getDisplayName());
         intent.putExtra("plugin_key", getPluginKey());

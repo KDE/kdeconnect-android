@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.kde.kdeconnect_tp"
-    android:versionCode="1841"
-    android:versionName="1.8.4">
+    android:versionCode="1902"
+    android:versionName="1.9 Beta">
 
     <supports-screens
         android:anyDensity="true"
@@ -17,11 +17,10 @@
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <!--<uses-permission android:name="android.permission.BLUETOOTH" />-->
-    <!--<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />-->
+    <!-- <uses-permission android:name="android.permission.BLUETOOTH" /> -->
+    <!-- <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
-    <uses-permission android:name="android.permission.BATTERY_STATS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
@@ -31,19 +30,16 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
-    <uses-permission android:name="android.permission.BIND_REMOTEVIEWS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-        android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="KDE Connect"
         android:supportsRtl="true"
         android:theme="@style/KdeConnectTheme">
-
         <service
             android:name="org.kde.kdeconnect.BackgroundService"
             android:enabled="true" />
-
         <service
             android:name="org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin.RemoteKeyboardService"
             android:label="KDE Connect Remote Keyboard"
@@ -51,6 +47,7 @@
             <intent-filter>
                 <action android:name="android.view.InputMethod" />
             </intent-filter>
+
             <meta-data
                 android:name="android.view.im"
                 android:resource="@xml/remotekeyboardplugin_method" />
@@ -62,12 +59,12 @@
             android:theme="@style/KdeConnectTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="org.kde.kdeconnect.UserInterface.SettingsActivity"
+            android:name="org.kde.kdeconnect.UserInterface.DeviceSettingsActivity"
             android:label="@string/device_menu_plugins"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
             <meta-data
@@ -93,20 +90,19 @@
         <activity
             android:name="org.kde.kdeconnect.UserInterface.PluginSettingsActivity"
             android:label="@string/device_menu_plugins"
-            android:parentActivityName="org.kde.kdeconnect.UserInterface.SettingsActivity">
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.DeviceSettingsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.kde.kdeconnect.UserInterface.SettingsActivity" />
+                android:value="org.kde.kdeconnect.UserInterface.DeviceSettingsActivity" />
         </activity>
         <activity
             android:name="org.kde.kdeconnect.Plugins.SharePlugin.ShareSettingsActivity"
             android:label="@string/device_menu_plugins"
-            android:parentActivityName="org.kde.kdeconnect.UserInterface.SettingsActivity">
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.DeviceSettingsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.Plugins.SharePlugin.ShareSettingsActivity" />
         </activity>
-
 
         <receiver android:name="org.kde.kdeconnect.KdeConnectBroadcastReceiver">
             <intent-filter>
@@ -140,12 +136,13 @@
         <activity
             android:name="org.kde.kdeconnect.Plugins.MprisPlugin.MprisActivity"
             android:label="@string/remote_control"
-            android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
         </activity>
+
         <receiver android:name="org.kde.kdeconnect.Plugins.MprisPlugin.MprisMediaNotificationReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
@@ -159,44 +156,49 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
-
         </activity>
-
-        <activity android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandWidgetDeviceSelector"
-            android:theme="@style/Theme.AppCompat.Light.Dialog"
-            android:launchMode="singleTask"
-            android:screenOrientation="user"
-            android:noHistory="true"
+        <activity
+            android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandWidgetDeviceSelector"
             android:excludeFromRecents="true"
-            android:label="@string/pref_plugin_runcommand"/>
+            android:label="@string/pref_plugin_runcommand"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:screenOrientation="user"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+
         <service
             android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandWidgetDataProviderService"
-            android:exported="false" android:permission="android.permission.BIND_REMOTEVIEWS"/>
-        <receiver android:label="@string/pref_plugin_runcommand" android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandWidget">
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <receiver
+            android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandWidget"
+            android:label="@string/pref_plugin_runcommand">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-
             <intent-filter>
                 <action android:name="RUN_COMMAND_ACTION" />
             </intent-filter>
-            <meta-data android:name="android.appwidget.provider" android:resource="@xml/remotecommandplugin_widget" />
-        </receiver>
 
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/remotecommandplugin_widget" />
+        </receiver>
 
         <activity android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandUrlActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.nfc.action.NDEF_DISCOVERED"></action>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="kdeconnect" android:host="runcommand"/>
-
+                <data
+                    android:host="runcommand"
+                    android:scheme="kdeconnect" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadActivity"
             android:label="@string/remote_control"
@@ -205,7 +207,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
         </activity>
-
         <activity
             android:name="org.kde.kdeconnect.Plugins.PresenterPlugin.PresenterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -216,7 +217,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
         </activity>
-
         <activity
             android:name="org.kde.kdeconnect.Plugins.SharePlugin.ShareActivity"
             android:label="KDE Connect">
@@ -273,7 +273,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.PluginSettingsActivity" />
         </activity>
-
 
     </application>
 

@@ -14,7 +14,7 @@ public class PluginPreference extends CheckBoxPreference {
     final String pluginKey;
     final View.OnClickListener listener;
 
-    public PluginPreference(final SettingsActivity activity, final String pluginKey, final Device device) {
+    public PluginPreference(final DeviceSettingsActivity activity, final String pluginKey, final Device device) {
         super(activity);
 
         setLayoutResource(R.layout.preference_with_button);
