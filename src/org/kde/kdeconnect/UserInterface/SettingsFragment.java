@@ -29,8 +29,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements MainAc
     }
 
     TwoStatePreference createTwoStatePreferenceCompat(Context context) {
-        //The switch didn't work on Android 6, not sure about 7
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        //SwitchPreference doesn't work on Android 6
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
             return new SwitchPreference(context);
         } else {
             return new CheckBoxPreference(context);
