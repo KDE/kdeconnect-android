@@ -88,7 +88,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements MainAc
         notificationSwitch.setPersistent(false);
         notificationSwitch.setChecked(NotificationHelper.isPersistentNotificationEnabled(context));
         notificationSwitch.setTitle(R.string.setting_persistent_notification);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             notificationSwitch.setSummary(R.string.setting_persistent_notification_pie_description);
             notificationSwitch.setEnabled(false);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
