@@ -6,11 +6,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v14.preference.SwitchPreference;
+import android.support.v7.preference.CheckBoxPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceScreen;
+import android.support.v7.preference.TwoStatePreference;
 
+import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
+import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect_tp.R;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements MainActivity.NameChangeCallback {
@@ -24,6 +28,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements MainAc
         super.onDestroy();
     }
 
+    TwoStatePreference createTwoStatePreferenceCompat(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return new SwitchPreference(context);
+        } else {
+            return new CheckBoxPreference(context);
+        }
+    }
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
 
@@ -53,7 +64,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements MainAc
 
         // Dark mode
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            final SwitchPreference darkThemeSwitch = new SwitchPreference(context);
+            final TwoStatePreference darkThemeSwitch = createTwoStatePreferenceCompat(context);
             darkThemeSwitch.setPersistent(false);
             darkThemeSwitch.setChecked(ThemeUtil.shouldUseDarkTheme(context));
             darkThemeSwitch.setTitle(R.string.settings_dark_mode);
@@ -71,9 +82,25 @@ public class SettingsFragment extends PreferenceFragmentCompat implements MainAc
             screen.addPreference(darkThemeSwitch);
         }
 
+        // Persistent notification toggle
+        final TwoStatePreference notificationSwitch = createTwoStatePreferenceCompat(context);
+        notificationSwitch.setPersistent(false);
+        notificationSwitch.setChecked(NotificationHelper.isPersistentNotificationEnabled(context));
+        notificationSwitch.setTitle(R.string.setting_persistent_notification);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            notificationSwitch.setSummary(R.string.setting_persistent_notification_oreo_description);
+            notificationSwitch.setEnabled(false);
+        }
+        notificationSwitch.setOnPreferenceChangeListener((preference, newValue) -> {
+            final boolean isChecked = (Boolean)newValue;
+            NotificationHelper.setPersistentNotificationEnabled(context, isChecked);
+            BackgroundService.RunCommand(context, service -> {
+                service.changePersistentNotificationVisibility(isChecked);
+            });
 
-        //TODO: Persistent notification toggle for pre-oreo?
-
+            return true;
+        });
+        screen.addPreference(notificationSwitch);
 
         // More settings text
         Preference moreSettingsText = new Preference(context);
@@ -92,4 +119,5 @@ public class SettingsFragment extends PreferenceFragmentCompat implements MainAc
     public void onNameChanged(String newName) {
         renameDevice.setSummary(newName);
     }
+
 }

@@ -138,9 +138,12 @@ public class BackgroundService extends Service {
             callback.onDeviceListChanged();
         }
 
-        //Update the foreground notification with the currently connected device list
-        NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        nm.notify(FOREGROUND_NOTIFICATION_ID, createForegroundNotification());
+
+        if (NotificationHelper.isPersistentNotificationEnabled(this)) {
+            //Update the foreground notification with the currently connected device list
+            NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            nm.notify(FOREGROUND_NOTIFICATION_ID, createForegroundNotification());
+        }
     }
 
     private void loadRememberedDevicesFromSettings() {
@@ -284,6 +287,17 @@ public class BackgroundService extends Service {
         }
     }
 
+
+    public void changePersistentNotificationVisibility(boolean visible) {
+        NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (visible) {
+            nm.notify(FOREGROUND_NOTIFICATION_ID, createForegroundNotification());
+        } else {
+            stopForeground(true);
+            Start(this);
+        }
+    }
+
     private Notification createForegroundNotification() {
 
         //Why is this needed: https://developer.android.com/guide/components/services#Foreground
@@ -364,7 +378,9 @@ public class BackgroundService extends Service {
             mutex.unlock();
         }
 
-        startForeground(FOREGROUND_NOTIFICATION_ID, createForegroundNotification());
+        if (NotificationHelper.isPersistentNotificationEnabled(this)) {
+            startForeground(FOREGROUND_NOTIFICATION_ID, createForegroundNotification());
+        }
         return Service.START_STICKY;
     }
 
