@@ -393,7 +393,8 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
             iplist.add("255.255.255.255"); //Default: broadcast.
 
             NetworkPacket identity = NetworkPacket.createIdentityPacket(context);
-            identity.set("tcpPort", MIN_PORT);
+            int port = (tcpServer == null || !tcpServer.isBound()) ? MIN_PORT : tcpServer.getLocalPort();
+            identity.set("tcpPort", port);
             DatagramSocket socket = null;
             byte[] bytes = null;
             try {
