@@ -287,20 +287,22 @@ public class DeviceFragment extends Fragment {
                     try {
                         pluginListItems = new ArrayList<>();
 
-                        //Plugins button list
-                        final Collection<Plugin> plugins = device.getLoadedPlugins().values();
-                        for (final Plugin p : plugins) {
-                            if (!p.hasMainActivity()) continue;
-                            if (p.displayInContextMenu()) continue;
+                        if (paired && reachable) {
+                            //Plugins button list
+                            final Collection<Plugin> plugins = device.getLoadedPlugins().values();
+                            for (final Plugin p : plugins) {
+                                if (!p.hasMainActivity()) continue;
+                                if (p.displayInContextMenu()) continue;
 
-                            pluginListItems.add(new PluginItem(p, v -> p.startMainActivity(mActivity)));
+                                pluginListItems.add(new PluginItem(p, v -> p.startMainActivity(mActivity)));
+                            }
+
+                            DeviceFragment.this.createPluginsList(device.getFailedPlugins(), R.string.plugins_failed_to_load, (plugin) -> plugin.getErrorDialog(mActivity).show());
+                            DeviceFragment.this.createPluginsList(device.getPluginsWithoutPermissions(), R.string.plugins_need_permission, (plugin) -> plugin.getPermissionExplanationDialog(mActivity).show());
+                            DeviceFragment.this.createPluginsList(device.getPluginsWithoutOptionalPermissions(), R.string.plugins_need_optional_permission, (plugin) -> plugin.getOptionalPermissionExplanationDialog(mActivity).show());
                         }
 
-                        DeviceFragment.this.createPluginsList(device.getFailedPlugins(), R.string.plugins_failed_to_load, (plugin) -> plugin.getErrorDialog(mActivity).show());
-                        DeviceFragment.this.createPluginsList(device.getPluginsWithoutPermissions(), R.string.plugins_need_permission, (plugin) -> plugin.getPermissionExplanationDialog(mActivity).show());
-                        DeviceFragment.this.createPluginsList(device.getPluginsWithoutOptionalPermissions(), R.string.plugins_need_optional_permission, (plugin) -> plugin.getOptionalPermissionExplanationDialog(mActivity).show());
-
-                        ListView buttonsList = (ListView) rootView.findViewById(R.id.buttons_list);
+                        ListView buttonsList = rootView.findViewById(R.id.buttons_list);
                         ListAdapter adapter = new ListAdapter(mActivity, pluginListItems);
                         buttonsList.setAdapter(adapter);
 
