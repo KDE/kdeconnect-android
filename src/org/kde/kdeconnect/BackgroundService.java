@@ -307,6 +307,11 @@ public class BackgroundService extends Service {
             }
         }
 
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            //Pre-oreo, the notification will have an empty title line without this
+            notification.setContentTitle("KDE Connect");
+        }
+
         if (connectedDevices.isEmpty()) {
             notification.setContentText(getString(R.string.foreground_notification_no_devices));
         } else {
