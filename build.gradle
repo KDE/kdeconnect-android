@@ -44,7 +44,6 @@ android {
         pickFirst "META-INF/BCKEY.SF"
         pickFirst "META-INF/BCKEY.DSA"
         pickFirst "META-INF/INDEX.LIST"
-        pickFirst "META-INF/io.netty.versions.properties"
     }
     lintOptions {
         abortOnError false
@@ -76,7 +75,7 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.jakewharton:disklrucache:2.0.2' //For caching album art bitmaps
 
-    implementation 'org.apache.sshd:sshd-core:0.8.0' //0.9 seems to fail on Android 6 and 1.+ requires java.nio.file, which doesn't exist in Android
+    implementation 'org.apache.sshd:sshd-core:0.14.0' //Newer version requires java.nio.file, which isn't available until Android 8+
 
     implementation 'com.madgag.spongycastle:bcpkix-jdk15on:1.58.0.0' //For SSL certificate generation
 
