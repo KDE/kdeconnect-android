@@ -237,9 +237,6 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
             case R.id.menu_refresh:
                 updateComputerListAction();
                 break;
-            case R.id.menu_rename:
-                mActivity.openRenameDeviceDialog();
-                break;
             case R.id.menu_custom_device_list:
                 startActivity(new Intent(mActivity, CustomDevicesActivity.class));
                 break;
