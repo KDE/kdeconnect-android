@@ -15,7 +15,8 @@
             android:paddingBottom="6dip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon"/>
+            android:src="@drawable/icon"
+            android:contentDescription="@string/device_icon_description"/>
 
         <TextView
             android:id="@+id/runcommandWidgetTitle"
