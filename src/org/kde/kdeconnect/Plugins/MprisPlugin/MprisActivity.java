@@ -105,7 +105,7 @@ public class MprisActivity extends AppCompatActivity {
                     final List<String> playerList = mpris.getPlayerList();
                     final ArrayAdapter<String> adapter = new ArrayAdapter<>(MprisActivity.this,
                             android.R.layout.simple_spinner_item,
-                            playerList.toArray(new String[playerList.size()])
+                            playerList.toArray(new String[0])
                     );
 
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
