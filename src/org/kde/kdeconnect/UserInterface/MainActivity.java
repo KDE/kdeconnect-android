@@ -381,7 +381,7 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
-    public void updateDeviceNameFromMenu(String newDeviceName) {
+    private void updateDeviceNameFromMenu(String newDeviceName) {
         final TextView nameView = mNavigationView.findViewById(R.id.device_name);
         nameView.setText(newDeviceName);
     }

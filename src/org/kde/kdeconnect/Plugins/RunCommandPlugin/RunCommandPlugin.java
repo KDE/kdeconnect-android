@@ -38,8 +38,8 @@ import java.util.Iterator;
 
 public class RunCommandPlugin extends Plugin {
 
-    public final static String PACKET_TYPE_RUNCOMMAND = "kdeconnect.runcommand";
-    public final static String PACKET_TYPE_RUNCOMMAND_REQUEST = "kdeconnect.runcommand.request";
+    private final static String PACKET_TYPE_RUNCOMMAND = "kdeconnect.runcommand";
+    private final static String PACKET_TYPE_RUNCOMMAND_REQUEST = "kdeconnect.runcommand.request";
 
     private ArrayList<JSONObject> commandList = new ArrayList<>();
     private ArrayList<CommandsChangedCallback> callbacks = new ArrayList<>();

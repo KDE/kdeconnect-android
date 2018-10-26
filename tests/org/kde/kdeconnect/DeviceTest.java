@@ -47,7 +47,7 @@ import java.security.KeyPairGenerator;
 import java.security.cert.X509Certificate;
 import java.util.Date;
 
-public class DeviceTest extends AndroidTestCase {
+class DeviceTest extends AndroidTestCase {
 
     // Creating a paired device before each test case
     @Override

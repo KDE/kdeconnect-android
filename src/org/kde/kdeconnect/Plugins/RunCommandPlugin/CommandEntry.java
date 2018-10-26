@@ -22,7 +22,7 @@ package org.kde.kdeconnect.Plugins.RunCommandPlugin;
 
 import org.kde.kdeconnect.UserInterface.List.EntryItem;
 
-public class CommandEntry extends EntryItem {
+class CommandEntry extends EntryItem {
     private final String key;
 
     public CommandEntry(String name, String cmd, String key) {

@@ -39,7 +39,7 @@ import org.kde.kdeconnect_tp.R;
 
 public class PingPlugin extends Plugin {
 
-    public final static String PACKET_TYPE_PING = "kdeconnect.ping";
+    private final static String PACKET_TYPE_PING = "kdeconnect.ping";
 
     @Override
     public String getDisplayName() {

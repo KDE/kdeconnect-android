@@ -35,7 +35,7 @@ import static org.kde.kdeconnect.Plugins.MousePadPlugin.KeyListenerView.SpecialK
 
 public class PresenterPlugin extends Plugin {
 
-    public final static String PACKET_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request";
+    private final static String PACKET_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request";
 
     @Override
     public String getDisplayName() {

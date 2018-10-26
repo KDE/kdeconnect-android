@@ -37,15 +37,15 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-public class LanLinkTest extends AndroidTestCase {
+class LanLinkTest extends AndroidTestCase {
 
-    LanLink badLanLink;
-    LanLink goodLanLink;
+    private LanLink badLanLink;
+    private LanLink goodLanLink;
 
-    OutputStream badOutputStream;
-    OutputStream goodOutputStream;
+    private OutputStream badOutputStream;
+    private OutputStream goodOutputStream;
 
-    Device.SendPacketStatusCallback callback;
+    private Device.SendPacketStatusCallback callback;
 
     @Override
     protected void setUp() throws Exception {
@@ -110,11 +110,11 @@ public class LanLinkTest extends AndroidTestCase {
             NetworkPacket np;
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
-            public void setNetworkPacket(NetworkPacket networkPacket) {
+            void setNetworkPacket(NetworkPacket networkPacket) {
                 this.np = networkPacket;
             }
 
-            public ByteArrayOutputStream getOutputStream() {
+            ByteArrayOutputStream getOutputStream() {
                 return outputStream;
             }
 

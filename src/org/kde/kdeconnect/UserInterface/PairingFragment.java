@@ -60,9 +60,9 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private MainActivity mActivity;
 
-    boolean listRefreshCalledThisFrame = false;
+    private boolean listRefreshCalledThisFrame = false;
 
-    TextView headerText;
+    private TextView headerText;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

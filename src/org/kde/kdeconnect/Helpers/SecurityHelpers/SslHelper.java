@@ -137,7 +137,7 @@ public class SslHelper {
         return !cert.isEmpty();
     }
 
-    public static SSLContext getSslContext(Context context, String deviceId, boolean isDeviceTrusted) {
+    private static SSLContext getSslContext(Context context, String deviceId, boolean isDeviceTrusted) {
         //TODO: Cache
         try {
             // Get device private key
@@ -202,7 +202,7 @@ public class SslHelper {
 
     }
 
-    public static void configureSslSocket(SSLSocket socket, boolean isDeviceTrusted, boolean isClient) throws SocketException {
+    private static void configureSslSocket(SSLSocket socket, boolean isDeviceTrusted, boolean isClient) throws SocketException {
 
         socket.setEnabledProtocols(new String[]{"TLSv1"}); //Newer TLS versions are only supported on API 16+
 

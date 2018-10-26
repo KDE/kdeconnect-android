@@ -40,7 +40,7 @@ import java.util.ArrayList;
 
 public class SendFileActivity extends AppCompatActivity {
 
-    String mDeviceId;
+    private String mDeviceId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -35,7 +35,7 @@ import java.util.HashMap;
 
 public class DeviceHelper {
 
-    public static final String KEY_DEVICE_NAME_PREFERENCE = "device_name_preference";
+    private static final String KEY_DEVICE_NAME_PREFERENCE = "device_name_preference";
 
     //from https://github.com/meetup/android-device-names
     //Converted to java using:
@@ -479,7 +479,7 @@ public class DeviceHelper {
 
     }
 
-    public static String getAndroidDeviceName() {
+    private static String getAndroidDeviceName() {
         String deviceName = null;
         try {
             String internalName = Build.MODEL.replace(' ', '_');

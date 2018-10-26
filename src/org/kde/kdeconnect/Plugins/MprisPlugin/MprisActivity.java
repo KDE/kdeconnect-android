@@ -78,7 +78,7 @@ public class MprisActivity extends AppCompatActivity {
         return text.toString();
     }
 
-    protected void connectToPlugin(final String targetPlayerName) {
+    private void connectToPlugin(final String targetPlayerName) {
 
         BackgroundService.RunCommand(this, service -> {
 

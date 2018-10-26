@@ -19,7 +19,7 @@ import org.kde.kdeconnect_tp.R;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements MainActivity.NameChangeCallback {
 
-    MainActivity mainActivity;
+    private MainActivity mainActivity;
     private Preference renameDevice;
 
     @Override
@@ -28,7 +28,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements MainAc
         super.onDestroy();
     }
 
-    TwoStatePreference createTwoStatePreferenceCompat(Context context) {
+    private TwoStatePreference createTwoStatePreferenceCompat(Context context) {
         //SwitchPreference doesn't work on Android 6
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
             return new SwitchPreference(context);

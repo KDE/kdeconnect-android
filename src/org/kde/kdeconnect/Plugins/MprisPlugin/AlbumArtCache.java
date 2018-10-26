@@ -48,7 +48,7 @@ import java.util.ArrayList;
 /**
  * Handles the cache for album art
  */
-public final class AlbumArtCache {
+final class AlbumArtCache {
     private static final class MemoryCacheItem {
         boolean failedFetch;
         Bitmap albumArt;
@@ -91,7 +91,7 @@ public final class AlbumArtCache {
      *
      * @param context The context
      */
-    public static void initializeDiskCache(Context context) {
+    static void initializeDiskCache(Context context) {
         if (diskCache != null) return;
 
         File cacheDir = new File(context.getCacheDir(), "album_art");
@@ -115,7 +115,7 @@ public final class AlbumArtCache {
      *
      * @param mpris The mpris plugin
      */
-    public static void registerPlugin(MprisPlugin mpris) {
+    static void registerPlugin(MprisPlugin mpris) {
         registeredPlugins.add(mpris);
     }
 
@@ -124,7 +124,7 @@ public final class AlbumArtCache {
      *
      * @param mpris The mpris plugin
      */
-    public static void deregisterPlugin(MprisPlugin mpris) {
+    static void deregisterPlugin(MprisPlugin mpris) {
         registeredPlugins.remove(mpris);
     }
 
@@ -135,7 +135,7 @@ public final class AlbumArtCache {
      * @param albumUrl The album art url
      * @return A bitmap for the album art. Can be null if not (yet) found
      */
-    public static Bitmap getAlbumArt(String albumUrl, MprisPlugin plugin, String player) {
+    static Bitmap getAlbumArt(String albumUrl, MprisPlugin plugin, String player) {
         //If the url is invalid, return "no album art"
         if (albumUrl == null || albumUrl.isEmpty()) {
             return null;
@@ -425,7 +425,7 @@ public final class AlbumArtCache {
      * @param albumUrl The url of the album art (should be a file:// url)
      * @param payload  The payload input stream
      */
-    public static void payloadToDiskCache(String albumUrl, InputStream payload) {
+    static void payloadToDiskCache(String albumUrl, InputStream payload) {
         //We need the disk cache for this
         if (diskCache == null) {
             Log.e("KDE/Mpris/AlbumArtCache", "The disk cache is not intialized!");

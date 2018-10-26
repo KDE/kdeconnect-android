@@ -55,12 +55,12 @@ public abstract class BasePairingHandler {
     protected PairStatus mPairStatus;
     protected PairingHandlerCallback mCallback;
 
-    public BasePairingHandler(Device device, PairingHandlerCallback callback) {
+    protected BasePairingHandler(Device device, PairingHandlerCallback callback) {
         this.mDevice = device;
         this.mCallback = callback;
     }
 
-    public boolean isPaired() {
+    protected boolean isPaired() {
         return mPairStatus == PairStatus.Paired;
     }
 

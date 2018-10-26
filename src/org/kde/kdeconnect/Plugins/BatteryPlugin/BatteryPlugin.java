@@ -33,8 +33,8 @@ import org.kde.kdeconnect_tp.R;
 
 public class BatteryPlugin extends Plugin {
 
-    public final static String PACKET_TYPE_BATTERY = "kdeconnect.battery";
-    public final static String PACKET_TYPE_BATTERY_REQUEST = "kdeconnect.battery.request";
+    private final static String PACKET_TYPE_BATTERY = "kdeconnect.battery";
+    private final static String PACKET_TYPE_BATTERY_REQUEST = "kdeconnect.battery.request";
 
     // keep these fields in sync with kdeconnect-kded:BatteryPlugin.h:ThresholdBatteryEvent
     private static final int THRESHOLD_EVENT_NONE = 0;

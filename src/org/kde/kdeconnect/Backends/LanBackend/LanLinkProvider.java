@@ -67,25 +67,25 @@ import javax.net.ssl.SSLSocket;
 public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDisconnectedCallback {
 
     public static final int MIN_VERSION_WITH_SSL_SUPPORT = 6;
-    public static final int MIN_VERSION_WITH_NEW_PORT_SUPPORT = 7;
+    private static final int MIN_VERSION_WITH_NEW_PORT_SUPPORT = 7;
 
-    final static int MIN_PORT_LEGACY = 1714;
-    final static int MIN_PORT = 1716;
-    final static int MAX_PORT = 1764;
+    private final static int MIN_PORT_LEGACY = 1714;
+    private final static int MIN_PORT = 1716;
+    private final static int MAX_PORT = 1764;
     final static int PAYLOAD_TRANSFER_MIN_PORT = 1739;
 
-    final Context context;
+    private final Context context;
 
     private final HashMap<String, LanLink> visibleComputers = new HashMap<>();  //Links by device id
 
-    ServerSocket tcpServer;
+    private ServerSocket tcpServer;
     private DatagramSocket udpServer;
     private DatagramSocket udpServerOldPort;
 
-    boolean listening = false;
+    private boolean listening = false;
 
     // To prevent infinte loop between Android < IceCream because both device can only broadcast identity package but cannot connect via TCP
-    ArrayList<InetAddress> reverseConnectionBlackList = new ArrayList<>();
+    private ArrayList<InetAddress> reverseConnectionBlackList = new ArrayList<>();
 
     @Override // SocketClosedCallback
     public void linkDisconnected(LanLink brokenLink) {
@@ -95,7 +95,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     }
 
     //They received my UDP broadcast and are connecting to me. The first thing they sned should be their identity.
-    void tcpPacketReceived(Socket socket) throws Exception {
+    private void tcpPacketReceived(Socket socket) throws Exception {
 
         NetworkPacket networkPacket;
         try {
@@ -118,7 +118,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     }
 
     //I've received their broadcast and should connect to their TCP socket and send my identity.
-    void udpPacketReceived(DatagramPacket packet) throws Exception {
+    private void udpPacketReceived(DatagramPacket packet) throws Exception {
 
         final InetAddress address = packet.getAddress();
 
@@ -177,7 +177,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
         }
     }
 
-    void configureSocket(Socket socket) {
+    private void configureSocket(Socket socket) {
         try {
             socket.setKeepAlive(true);
         } catch (SocketException e) {

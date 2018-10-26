@@ -26,7 +26,7 @@ import org.kde.kdeconnect_tp.R;
 
 public class ClipboardPlugin extends Plugin {
 
-    public final static String PACKET_TYPE_CLIPBOARD = "kdeconnect.clipboard";
+    private final static String PACKET_TYPE_CLIPBOARD = "kdeconnect.clipboard";
 
     @Override
     public String getDisplayName() {

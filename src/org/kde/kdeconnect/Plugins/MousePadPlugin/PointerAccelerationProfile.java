@@ -7,11 +7,11 @@ public abstract class PointerAccelerationProfile {
     static class MouseDelta {
         public float x, y;
 
-        public MouseDelta() {
+        MouseDelta() {
             this(0,0);
         }
 
-        public MouseDelta(float x, float y) {
+        MouseDelta(float x, float y) {
             this.x = x;
             this.y = y;
         }

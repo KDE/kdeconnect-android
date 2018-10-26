@@ -59,16 +59,16 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class DeviceFragment extends Fragment {
 
-    static final String ARG_DEVICE_ID = "deviceId";
-    static final String ARG_FROM_DEVICE_LIST = "fromDeviceList";
+    private static final String ARG_DEVICE_ID = "deviceId";
+    private static final String ARG_FROM_DEVICE_LIST = "fromDeviceList";
 
-    View rootView;
-    static String mDeviceId; //Static because if we get here by using the back button in the action bar, the extra deviceId will not be set.
-    Device device;
+    private View rootView;
+    private static String mDeviceId; //Static because if we get here by using the back button in the action bar, the extra deviceId will not be set.
+    private Device device;
 
-    MainActivity mActivity;
+    private MainActivity mActivity;
 
-    ArrayList<ListAdapter.Item> pluginListItems;
+    private ArrayList<ListAdapter.Item> pluginListItems;
 
     public DeviceFragment() {
     }
@@ -80,7 +80,7 @@ public class DeviceFragment extends Fragment {
         this.setArguments(args);
     }
 
-    public DeviceFragment(String deviceId, MainActivity activity) {
+    private DeviceFragment(String deviceId, MainActivity activity) {
         this.mActivity = activity;
         Bundle args = new Bundle();
         args.putString(ARG_DEVICE_ID, deviceId);
@@ -157,7 +157,7 @@ public class DeviceFragment extends Fragment {
         return rootView;
     }
 
-    final Device.PluginsChangedListener pluginsChangedListener = device -> refreshUI();
+    private final Device.PluginsChangedListener pluginsChangedListener = device -> refreshUI();
 
     @Override
     public void onDestroyView() {
@@ -254,7 +254,7 @@ public class DeviceFragment extends Fragment {
         });
     }
 
-    void refreshUI() {
+    private void refreshUI() {
         //Log.e("DeviceFragment", "refreshUI");
 
         if (device == null || rootView == null) {
@@ -323,7 +323,7 @@ public class DeviceFragment extends Fragment {
 
     }
 
-    final Device.PairingCallback pairingCallback = new Device.PairingCallback() {
+    private final Device.PairingCallback pairingCallback = new Device.PairingCallback() {
 
         @Override
         public void incomingRequest() {
@@ -407,7 +407,7 @@ public class DeviceFragment extends Fragment {
         });
     }
 
-    void createPluginsList(ConcurrentHashMap<String, Plugin> plugins, int headerText, FailedPluginListItem.Action action) {
+    private void createPluginsList(ConcurrentHashMap<String, Plugin> plugins, int headerText, FailedPluginListItem.Action action) {
         if (!plugins.isEmpty()) {
 
             TextView header = new TextView(mActivity);

@@ -39,7 +39,7 @@ import java.util.TimerTask;
 
 public class LanPairingHandler extends BasePairingHandler {
 
-    Timer mPairingTimer;
+    private Timer mPairingTimer;
 
     public LanPairingHandler(Device device, final PairingHandlerCallback callback) {
         super(device, callback);
@@ -169,7 +169,7 @@ public class LanPairingHandler extends BasePairingHandler {
         mDevice.sendPacket(createPairPacket(), statusCallback);
     }
 
-    void hidePairingNotification() {
+    private void hidePairingNotification() {
         mDevice.hidePairingNotification();
         if (mPairingTimer != null) {
             mPairingTimer .cancel();
@@ -207,7 +207,7 @@ public class LanPairingHandler extends BasePairingHandler {
         mDevice.sendPacket(np);
     }
 
-    void pairingDone() {
+    private void pairingDone() {
         // Store device information needed to create a Device object in a future
         //Log.e("KDE/PairingDone", "Pairing Done");
         SharedPreferences.Editor editor = mDevice.getContext().getSharedPreferences(mDevice.getDeviceId(), Context.MODE_PRIVATE).edit();

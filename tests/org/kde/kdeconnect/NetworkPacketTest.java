@@ -32,7 +32,7 @@ import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 
-public class NetworkPacketTest extends AndroidTestCase {
+class NetworkPacketTest extends AndroidTestCase {
 
     public void testNetworkPacket() throws JSONException {
         NetworkPacket np = new NetworkPacket("com.test");

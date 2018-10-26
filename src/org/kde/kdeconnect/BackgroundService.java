@@ -53,7 +53,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class BackgroundService extends Service {
-    public static final int FOREGROUND_NOTIFICATION_ID = 1;
+    private static final int FOREGROUND_NOTIFICATION_ID = 1;
 
     private static BackgroundService instance;
 
@@ -73,7 +73,7 @@ public class BackgroundService extends Service {
         return instance;
     }
 
-    public boolean acquireDiscoveryMode(Object key) {
+    private boolean acquireDiscoveryMode(Object key) {
         boolean wasEmpty = discoveryModeAcquisitions.isEmpty();
         discoveryModeAcquisitions.add(key);
         if (wasEmpty) {
@@ -83,7 +83,7 @@ public class BackgroundService extends Service {
         return wasEmpty;
     }
 
-    public void releaseDiscoveryMode(Object key) {
+    private void releaseDiscoveryMode(Object key) {
         boolean removed = discoveryModeAcquisitions.remove(key);
         //Log.e("releaseDiscoveryMode",key.getClass().getName() +" ["+discoveryModeAcquisitions.size()+"]");
         if (removed && discoveryModeAcquisitions.isEmpty()) {
@@ -335,7 +335,7 @@ public class BackgroundService extends Service {
         return notification.build();
     }
 
-    void initializeSecurityParameters() {
+    private void initializeSecurityParameters() {
         RsaHelper.initialiseRsaKeys(this);
         SslHelper.initialiseCertificate(this);
     }
@@ -384,7 +384,7 @@ public class BackgroundService extends Service {
         return Service.START_STICKY;
     }
 
-    public static void Start(Context c) {
+    private static void Start(Context c) {
         RunCommand(c, null);
     }
 

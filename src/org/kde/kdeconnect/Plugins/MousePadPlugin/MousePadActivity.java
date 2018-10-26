@@ -41,7 +41,7 @@ import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 
 public class MousePadActivity extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener, MousePadGestureDetector.OnGestureListener {
-    String deviceId;
+    private String deviceId;
 
     private final static float MinDistanceToSendScroll = 2.5f; // touch gesture scroll
     private final static float MinDistanceToSendGenericScroll = 0.1f; // real mouse scroll wheel event
@@ -55,8 +55,8 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     private float displayDpiMultiplier;
     private int scrollDirection = 1;
 
-    boolean isScrolling = false;
-    float accumulatedDistanceY = 0;
+    private boolean isScrolling = false;
+    private float accumulatedDistanceY = 0;
 
     private GestureDetector mDetector;
     private MousePadGestureDetector mMousePadGestureDetector;
@@ -64,7 +64,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
     private PointerAccelerationProfile.MouseDelta mouseDelta; // to be reused on every touch move event
 
-    KeyListenerView keyListenerView;
+    private KeyListenerView keyListenerView;
 
     enum ClickType {
         RIGHT, MIDDLE, NONE;

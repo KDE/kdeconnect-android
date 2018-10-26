@@ -23,7 +23,7 @@ public class RunCommandWidget extends AppWidgetProvider {
     public static final String RUN_COMMAND_ACTION = "RUN_COMMAND_ACTION";
     public static final String TARGET_COMMAND = "TARGET_COMMAND";
     public static final String TARGET_DEVICE = "TARGET_DEVICE";
-    public static final String SET_CURRENT_DEVICE = "SET_CURRENT_DEVICE";
+    private static final String SET_CURRENT_DEVICE = "SET_CURRENT_DEVICE";
 
     private static String currentDeviceId;
 

@@ -34,8 +34,8 @@ import java.util.List;
 
 public class SftpPlugin extends Plugin {
 
-    public final static String PACKET_TYPE_SFTP = "kdeconnect.sftp";
-    public final static String PACKET_TYPE_SFTP_REQUEST = "kdeconnect.sftp.request";
+    private final static String PACKET_TYPE_SFTP = "kdeconnect.sftp";
+    private final static String PACKET_TYPE_SFTP_REQUEST = "kdeconnect.sftp.request";
 
     private static final SimpleSftpServer server = new SimpleSftpServer();
 

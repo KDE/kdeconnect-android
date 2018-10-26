@@ -32,7 +32,7 @@ import java.util.TimerTask;
 
 public class BluetoothPairingHandler extends BasePairingHandler {
 
-    Timer mPairingTimer;
+    private Timer mPairingTimer;
 
     public BluetoothPairingHandler(Device device, final PairingHandlerCallback callback) {
         super(device, callback);
@@ -45,7 +45,7 @@ public class BluetoothPairingHandler extends BasePairingHandler {
     }
 
     //    @Override
-    public NetworkPacket createPairPacket() {
+    private NetworkPacket createPairPacket() {
         NetworkPacket np = new NetworkPacket(NetworkPacket.PACKET_TYPE_PAIR);
         np.set("pair", true);
         return np;
@@ -143,7 +143,7 @@ public class BluetoothPairingHandler extends BasePairingHandler {
         mDevice.sendPacket(createPairPacket(), statusCallback);
     }
 
-    public void hidePairingNotification() {
+    private void hidePairingNotification() {
         mDevice.hidePairingNotification();
         if (mPairingTimer != null) {
             mPairingTimer.cancel();
@@ -177,7 +177,7 @@ public class BluetoothPairingHandler extends BasePairingHandler {
     }
 
     //@Override
-    public void pairingDone() {
+    private void pairingDone() {
         // Store device information needed to create a Device object in a future
         //Log.e("KDE/PairingDone", "Pairing Done");
         mPairStatus = PairStatus.Paired;

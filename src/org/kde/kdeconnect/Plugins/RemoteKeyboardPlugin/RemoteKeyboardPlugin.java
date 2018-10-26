@@ -42,9 +42,9 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class RemoteKeyboardPlugin extends Plugin {
 
-    public final static String PACKET_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request";
-    public final static String PACKET_TYPE_MOUSEPAD_ECHO = "kdeconnect.mousepad.echo";
-    public final static String PACKET_TYPE_MOUSEPAD_KEYBOARDSTATE = "kdeconnect.mousepad.keyboardstate";
+    private final static String PACKET_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request";
+    private final static String PACKET_TYPE_MOUSEPAD_ECHO = "kdeconnect.mousepad.echo";
+    private final static String PACKET_TYPE_MOUSEPAD_KEYBOARDSTATE = "kdeconnect.mousepad.keyboardstate";
 
     /**
      * Track and expose plugin instances to allow for a 'connected'-indicator in the IME:
@@ -52,7 +52,7 @@ public class RemoteKeyboardPlugin extends Plugin {
     private static ArrayList<RemoteKeyboardPlugin> instances = new ArrayList<>();
     private static ReentrantLock instancesLock = new ReentrantLock(true);
 
-    public static ArrayList<RemoteKeyboardPlugin> getInstances() {
+    private static ArrayList<RemoteKeyboardPlugin> getInstances() {
         return instances;
     }
 

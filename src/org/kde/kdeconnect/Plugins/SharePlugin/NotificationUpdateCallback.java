@@ -14,18 +14,18 @@ import java.util.ArrayList;
 
 class NotificationUpdateCallback extends Device.SendPacketStatusCallback {
 
-    final Context context;
-    final Resources res;
-    final Device device;
-    final NotificationManager notificationManager;
-    final NotificationCompat.Builder builder;
+    private final Context context;
+    private final Resources res;
+    private final Device device;
+    private final NotificationManager notificationManager;
+    private final NotificationCompat.Builder builder;
 
-    final ArrayList<NetworkPacket> toSend;
+    private final ArrayList<NetworkPacket> toSend;
 
-    final int notificationId;
+    private final int notificationId;
 
-    int sentFiles = 0;
-    final int numFiles;
+    private int sentFiles = 0;
+    private final int numFiles;
 
     NotificationUpdateCallback(Context context, Device device, ArrayList<NetworkPacket> toSend) {
         this.context = context;

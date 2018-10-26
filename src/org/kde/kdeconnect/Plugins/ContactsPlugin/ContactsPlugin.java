@@ -140,7 +140,7 @@ public class ContactsPlugin extends Plugin {
      * @param uID   uID to which the vcard corresponds
      * @return The same VCard as was passed in, but now with KDE Connect-specific fields
      */
-    protected VCardBuilder addVCardMetadata(VCardBuilder vcard, uID uID) {
+    private VCardBuilder addVCardMetadata(VCardBuilder vcard, uID uID) {
         // Append the device ID line
         // Unclear if the deviceID forms a valid name per the vcard spec. Worry about that later..
         vcard.appendLine("X-KDECONNECT-ID-DEV-" + device.getDeviceId(),
@@ -172,7 +172,7 @@ public class ContactsPlugin extends Plugin {
      * @return true if successfully handled, false otherwise
      */
     @SuppressWarnings("SameReturnValue")
-    protected boolean handleRequestAllUIDsTimestamps(@SuppressWarnings("unused") NetworkPacket np) {
+    private boolean handleRequestAllUIDsTimestamps(@SuppressWarnings("unused") NetworkPacket np) {
         NetworkPacket reply = new NetworkPacket(PACKET_TYPE_CONTACTS_RESPONSE_UIDS_TIMESTAMPS);
 
         List<uID> uIDs = ContactsHelper.getAllContactContactIDs(context);
@@ -201,7 +201,7 @@ public class ContactsPlugin extends Plugin {
         return true;
     }
 
-    protected boolean handleRequestVCardsByUIDs(NetworkPacket np) {
+    private boolean handleRequestVCardsByUIDs(NetworkPacket np) {
         if (!np.has("uids")) {
             Log.e("ContactsPlugin", "handleRequestNamesByUIDs received a malformed packet with no uids key");
             return false;

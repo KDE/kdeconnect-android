@@ -64,7 +64,7 @@ public class RunCommandUrlActivity extends AppCompatActivity {
         }
     }
 
-    void error(int message) {
+    private void error(int message) {
         TextView view = new TextView(this);
         view.setText(message);
         view.setGravity(Gravity.CENTER);

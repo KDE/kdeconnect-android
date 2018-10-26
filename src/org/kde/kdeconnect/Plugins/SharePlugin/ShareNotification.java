@@ -42,7 +42,7 @@ import org.kde.kdeconnect_tp.R;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class ShareNotification {
+class ShareNotification {
 
     private final String filename;
     private NotificationManager notificationManager;

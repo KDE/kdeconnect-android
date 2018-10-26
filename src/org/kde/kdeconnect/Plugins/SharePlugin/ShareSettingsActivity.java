@@ -54,7 +54,7 @@ public class ShareSettingsActivity extends PluginSettingsActivity {
         updateFilePickerStatus(customized);
     }
 
-    void updateFilePickerStatus(boolean enabled) {
+    private void updateFilePickerStatus(boolean enabled) {
         filePicker.setEnabled(enabled);
         String path = PreferenceManager.getDefaultSharedPreferences(this).getString(PREFERENCE_DESTINATION, null);
         if (enabled && path != null) {

@@ -12,7 +12,7 @@ import org.kde.kdeconnect_tp.R;
 
 
 @RequiresApi( api = Build.VERSION_CODES.ICE_CREAM_SANDWICH )
-public class RunCommandWidgetDataProvider implements RemoteViewsService.RemoteViewsFactory {
+class RunCommandWidgetDataProvider implements RemoteViewsService.RemoteViewsFactory {
 
     private final Context mContext;
 

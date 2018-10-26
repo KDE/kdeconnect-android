@@ -75,7 +75,7 @@ public class CustomDevicesActivity extends AppCompatActivity {
         });
     }
 
-    boolean dialogAlreadyShown = false;
+    private boolean dialogAlreadyShown = false;
     private AdapterView.OnItemClickListener onClickListener = (parent, view, position, id) -> {
 
         if (dialogAlreadyShown) {

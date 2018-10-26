@@ -52,8 +52,8 @@ import java.util.HashSet;
  * older Android version. And in the future for lock screen album covers)
  */
 public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceChangeListener {
-    public final static int MPRIS_MEDIA_NOTIFICATION_ID = 0x91b70463; // echo MprisNotification | md5sum | head -c 8
-    public final static String MPRIS_MEDIA_SESSION_TAG = "org.kde.kdeconnect_tp.media_session";
+    private final static int MPRIS_MEDIA_NOTIFICATION_ID = 0x91b70463; // echo MprisNotification | md5sum | head -c 8
+    private final static String MPRIS_MEDIA_SESSION_TAG = "org.kde.kdeconnect_tp.media_session";
 
     private static MprisMediaSession instance = new MprisMediaSession();
 

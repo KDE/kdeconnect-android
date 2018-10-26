@@ -44,7 +44,7 @@ public class PointerAccelerationProfileFactory {
         private static class TouchDeltaEvent {
             float x, y;
             long time;
-            public TouchDeltaEvent(float x, float y, long t) {
+            TouchDeltaEvent(float x, float y, long t) {
                 this.x = x;
                 this.y = y;
                 this.time = t;
@@ -126,7 +126,7 @@ public class PointerAccelerationProfileFactory {
     private static class PolynomialProfile extends SpeedBasedAccelerationProfile {
         float exponent;
 
-        public PolynomialProfile(float exponent) {
+        PolynomialProfile(float exponent) {
             this.exponent = exponent;
         }
 

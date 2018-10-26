@@ -257,7 +257,7 @@ public class ContactsHelper {
      * @return Mapping of uIDs to the corresponding VCard
      */
     @SuppressWarnings("UnnecessaryContinue")
-    protected static Map<uID, VCardBuilder> getVCardsSlow(Context context, Collection<uID> IDs) {
+    private static Map<uID, VCardBuilder> getVCardsSlow(Context context, Collection<uID> IDs) {
         Map<uID, VCardBuilder> toReturn = new HashMap<>();
 
         for (uID ID : IDs) {
@@ -414,8 +414,8 @@ public class ContactsHelper {
      * usage of .appendLine(String, String) to add stuff to the vcard
      */
     public static class VCardBuilder {
-        protected static final String VCARD_END = "END:VCARD"; // Written to terminate the vcard
-        protected static final String VCARD_DATA_SEPARATOR = ":";
+        static final String VCARD_END = "END:VCARD"; // Written to terminate the vcard
+        static final String VCARD_DATA_SEPARATOR = ":";
 
         final StringBuilder vcardBody;
 
@@ -424,7 +424,7 @@ public class ContactsHelper {
          *
          * @param vcard vcard to build upon
          */
-        public VCardBuilder(String vcard) {
+        VCardBuilder(String vcard) {
             // Remove the end tag. We will add it back on in .toString()
             vcard = vcard.substring(0, vcard.indexOf(VCARD_END));
 

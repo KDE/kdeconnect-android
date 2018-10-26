@@ -62,7 +62,7 @@ public class ClipboardListener {
         observers.remove(observer);
     }
 
-    ClipboardListener(final Context ctx) {
+    private ClipboardListener(final Context ctx) {
         context = ctx;
 
         new Handler(Looper.getMainLooper()).post(() -> {

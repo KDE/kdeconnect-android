@@ -42,7 +42,7 @@ public class PresenterActivity extends AppCompatActivity {
 
     private MediaSessionCompat mMediaSession;
 
-    PresenterPlugin plugin;
+    private PresenterPlugin plugin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

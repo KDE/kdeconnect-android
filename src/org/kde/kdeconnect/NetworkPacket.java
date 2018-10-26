@@ -170,7 +170,7 @@ public class NetworkPacket {
         }
     }
 
-    public Set<String> getStringSet(String key) {
+    private Set<String> getStringSet(String key) {
         JSONArray jsonArray = mBody.optJSONArray(key);
         if (jsonArray == null) return null;
         Set<String> list = new HashSet<>();

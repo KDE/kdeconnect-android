@@ -31,7 +31,7 @@ import java.lang.reflect.Method;
 import java.net.Socket;
 import java.util.HashMap;
 
-public class LanLinkProviderTest extends AndroidTestCase {
+class LanLinkProviderTest extends AndroidTestCase {
 
     private LanLinkProvider linkProvider;
 

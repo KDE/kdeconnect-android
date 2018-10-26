@@ -204,11 +204,11 @@ public abstract class Plugin {
         return b;
     }
 
-    public String[] getRequiredPermissions() {
+    protected String[] getRequiredPermissions() {
         return new String[0];
     }
 
-    public String[] getOptionalPermissions() {
+    protected String[] getOptionalPermissions() {
         return new String[0];
     }
 
@@ -218,7 +218,7 @@ public abstract class Plugin {
         return (result == PackageManager.PERMISSION_GRANTED);
     }
 
-    protected boolean arePermissionsGranted(String[] permissions) {
+    private boolean arePermissionsGranted(String[] permissions) {
         for (String permission : permissions) {
             if (!isPermissionGranted(permission)) {
                 return false;
@@ -231,7 +231,7 @@ public abstract class Plugin {
         return requestPermissionDialog(activity, new String[]{permissions}, reason);
     }
 
-    protected AlertDialog requestPermissionDialog(final Activity activity, final String[] permissions, @StringRes int reason) {
+    private AlertDialog requestPermissionDialog(final Activity activity, final String[] permissions, @StringRes int reason) {
         return new AlertDialog.Builder(activity)
                 .setTitle(getDisplayName())
                 .setMessage(reason)

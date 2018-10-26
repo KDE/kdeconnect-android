@@ -305,7 +305,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
 
         private final BluetoothDevice device;
 
-        public ClientConnect(BluetoothDevice device) {
+        ClientConnect(BluetoothDevice device) {
             this.device = device;
         }
 

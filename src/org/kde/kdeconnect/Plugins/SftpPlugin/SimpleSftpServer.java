@@ -191,7 +191,7 @@ class SimpleSftpServer {
 
         final private Context context;
 
-        public AndroidFileSystemFactory(Context context) {
+        AndroidFileSystemFactory(Context context) {
             this.context = context;
         }
 
@@ -206,7 +206,7 @@ class SimpleSftpServer {
         final private String userName;
         final private Context context;
 
-        public AndroidFileSystemView(final String userName, Context context) {
+        AndroidFileSystemView(final String userName, Context context) {
             super(userName, true);
             this.userName = userName;
             this.context = context;
@@ -224,7 +224,7 @@ class SimpleSftpServer {
         final private Context context;
         final private File file;
 
-        public AndroidSshFile(final AndroidFileSystemView view, final File file, final String userName, Context context) {
+        AndroidSshFile(final AndroidFileSystemView view, final File file, final String userName, Context context) {
             super(view, file.getAbsolutePath(), file, userName);
             this.context = context;
             this.file = file;
@@ -281,7 +281,7 @@ class SimpleSftpServer {
 
     static class SimplePasswordAuthenticator implements PasswordAuthenticator {
 
-        public String password;
+        String password;
 
         @Override
         public boolean authenticate(String user, String password, ServerSession session) {
@@ -291,7 +291,7 @@ class SimpleSftpServer {
 
     static class SimplePublicKeyAuthenticator implements PublickeyAuthenticator {
 
-        public PublicKey deviceKey;
+        PublicKey deviceKey;
 
         @Override
         public boolean authenticate(String user, PublicKey key, ServerSession session) {

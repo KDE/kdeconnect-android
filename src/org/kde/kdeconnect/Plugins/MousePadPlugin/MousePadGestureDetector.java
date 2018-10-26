@@ -25,7 +25,7 @@ import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 
 
-public class MousePadGestureDetector {
+class MousePadGestureDetector {
 
     private static final int TAP_TIMEOUT = ViewConfiguration.getTapTimeout() + 100;
     private OnGestureListener mGestureListener;

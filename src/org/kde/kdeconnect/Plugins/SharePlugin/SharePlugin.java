@@ -61,9 +61,9 @@ import java.util.ArrayList;
 
 public class SharePlugin extends Plugin {
 
-    public final static String PACKET_TYPE_SHARE_REQUEST = "kdeconnect.share.request";
+    private final static String PACKET_TYPE_SHARE_REQUEST = "kdeconnect.share.request";
 
-    final static boolean openUrlsDirectly = true;
+    private final static boolean openUrlsDirectly = true;
 
     @Override
     public boolean onCreate() {

@@ -37,7 +37,7 @@ public class SmallEntryItem implements ListAdapter.Item {
         this.clickListener = null;
     }
 
-    public SmallEntryItem(String title, View.OnClickListener clickListener) {
+    protected SmallEntryItem(String title, View.OnClickListener clickListener) {
         this.title = title;
         this.clickListener = clickListener;
     }

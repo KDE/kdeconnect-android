@@ -54,9 +54,9 @@ public class PluginFactory {
 
     public static class PluginInfo {
 
-        public PluginInfo(String displayName, String description, Drawable icon,
-                          boolean enabledByDefault, boolean hasSettings, boolean listenToUnpaired,
-                          String[] supportedPacketTypes, String[] outgoingPacketTypes) {
+        PluginInfo(String displayName, String description, Drawable icon,
+                   boolean enabledByDefault, boolean hasSettings, boolean listenToUnpaired,
+                   String[] supportedPacketTypes, String[] outgoingPacketTypes) {
             this.displayName = displayName;
             this.description = description;
             this.icon = icon;
@@ -95,7 +95,7 @@ public class PluginFactory {
             return listenToUnpaired;
         }
 
-        public Set<String> getOutgoingPacketTypes() {
+        Set<String> getOutgoingPacketTypes() {
             return outgoingPacketTypes;
         }
 
@@ -185,7 +185,7 @@ public class PluginFactory {
 
     }
 
-    public static void registerPlugin(Class<? extends Plugin> pluginClass) {
+    private static void registerPlugin(Class<? extends Plugin> pluginClass) {
         try {
             String pluginKey = Plugin.getPluginKey(pluginClass);
             availablePlugins.put(pluginKey, pluginClass);

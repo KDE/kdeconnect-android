@@ -49,7 +49,7 @@ public class SMSHelper {
      * If we want to support API < 19, it seems to be possible to read via this query
      * This is highly undocumented and very likely varies between vendors but appears to work
      */
-    protected static Uri getSMSURIBad() {
+    private static Uri getSMSURIBad() {
         return Uri.parse("content://sms/");
     }
 
@@ -59,12 +59,12 @@ public class SMSHelper {
      * Use the new API way which should work on any phone API >= 19
      */
     @RequiresApi(Build.VERSION_CODES.KITKAT)
-    protected static Uri getSMSURIGood() {
+    private static Uri getSMSURIGood() {
         // TODO: Why not use Telephony.MmsSms.CONTENT_URI?
         return Telephony.Sms.CONTENT_URI;
     }
 
-    protected static Uri getSMSUri() {
+    private static Uri getSMSUri() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             return getSMSURIGood();
         } else {
@@ -75,7 +75,7 @@ public class SMSHelper {
     /**
      * Get the base address for all message conversations
      */
-    protected static Uri getConversationUri() {
+    private static Uri getConversationUri() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             return Telephony.MmsSms.CONTENT_CONVERSATIONS_URI;
         } else {
@@ -239,30 +239,30 @@ public class SMSHelper {
      */
     public static class Message {
 
-        public final String m_address;
-        public final String m_body;
+        final String m_address;
+        final String m_body;
         public final long m_date;
-        public final int m_type;
-        public final int m_read;
-        public final int m_threadID;
-        public final int m_uID;
+        final int m_type;
+        final int m_read;
+        final int m_threadID;
+        final int m_uID;
 
         /**
          * Named constants which are used to construct a Message
          * See: https://developer.android.com/reference/android/provider/Telephony.TextBasedSmsColumns.html for full documentation
          */
-        public static final String ADDRESS = Telephony.Sms.ADDRESS;   // Contact information (phone number or otherwise) of the remote
-        public static final String BODY = Telephony.Sms.BODY;         // Body of the message
-        public static final String DATE = Telephony.Sms.DATE;         // Date (Unix epoch millis) associated with the message
-        public static final String TYPE = Telephony.Sms.TYPE;         // Compare with Telephony.TextBasedSmsColumns.MESSAGE_TYPE_*
-        public static final String READ = Telephony.Sms.READ;         // Whether we have received a read report for this message (int)
-        public static final String THREAD_ID = ThreadID.lookupColumn; // Magic number which binds (message) threads
-        public static final String U_ID = Telephony.Sms._ID;           // Something which uniquely identifies this message
+        static final String ADDRESS = Telephony.Sms.ADDRESS;   // Contact information (phone number or otherwise) of the remote
+        static final String BODY = Telephony.Sms.BODY;         // Body of the message
+        static final String DATE = Telephony.Sms.DATE;         // Date (Unix epoch millis) associated with the message
+        static final String TYPE = Telephony.Sms.TYPE;         // Compare with Telephony.TextBasedSmsColumns.MESSAGE_TYPE_*
+        static final String READ = Telephony.Sms.READ;         // Whether we have received a read report for this message (int)
+        static final String THREAD_ID = ThreadID.lookupColumn; // Magic number which binds (message) threads
+        static final String U_ID = Telephony.Sms._ID;           // Something which uniquely identifies this message
 
         /**
          * Define the columns which are to be extracted from the Android SMS database
          */
-        public static final String[] smsColumns = new String[]{
+        static final String[] smsColumns = new String[]{
                 Message.ADDRESS,
                 Message.BODY,
                 Message.DATE,
@@ -272,7 +272,7 @@ public class SMSHelper {
                 Message.U_ID,
         };
 
-        public Message(final HashMap<String, String> messageInfo) {
+        Message(final HashMap<String, String> messageInfo) {
             m_address = messageInfo.get(Message.ADDRESS);
             m_body = messageInfo.get(Message.BODY);
             m_date = Long.parseLong(messageInfo.get(Message.DATE));

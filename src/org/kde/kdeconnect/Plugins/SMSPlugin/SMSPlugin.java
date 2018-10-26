@@ -159,7 +159,7 @@ public class SMSPlugin extends Plugin {
          * @param parent  Plugin which owns this observer
          * @param handler Handler object used to make the callback
          */
-        public MessageContentObserver(SMSPlugin parent, Handler handler) {
+        MessageContentObserver(SMSPlugin parent, Handler handler) {
             super(handler);
             mPlugin = parent;
         }
@@ -331,7 +331,7 @@ public class SMSPlugin extends Plugin {
      * @param messages Messages to include in the packet
      * @return NetworkPacket of type PACKET_TYPE_SMS_MESSAGE
      */
-    public static NetworkPacket constructBulkMessagePacket(Collection<SMSHelper.Message> messages) {
+    private static NetworkPacket constructBulkMessagePacket(Collection<SMSHelper.Message> messages) {
         NetworkPacket reply = new NetworkPacket(PACKET_TYPE_SMS_MESSAGE);
 
         JSONArray body = new JSONArray();

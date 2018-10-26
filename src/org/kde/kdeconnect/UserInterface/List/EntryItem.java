@@ -36,7 +36,7 @@ public class EntryItem implements ListAdapter.Item {
         this.subtitle = null;
     }
 
-    public EntryItem(String title, String subtitle) {
+    protected EntryItem(String title, String subtitle) {
         this.title = title;
         this.subtitle = subtitle;
     }

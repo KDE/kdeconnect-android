@@ -106,7 +106,7 @@ public class Device implements BaseLink.PacketReceiver {
         Computer,
         Tv;
 
-        public static DeviceType FromString(String s) {
+        static DeviceType FromString(String s) {
             if ("tablet".equals(s)) return Tablet;
             if ("phone".equals(s)) return Phone;
             if ("tv".equals(s)) return Tv;
@@ -694,7 +694,7 @@ public class Device implements BaseLink.PacketReceiver {
         return (T) getPlugin(Plugin.getPluginKey(pluginClass), includeFailed);
     }
 
-    public Plugin getPlugin(String pluginKey) {
+    private Plugin getPlugin(String pluginKey) {
         return getPlugin(pluginKey, false);
     }
 
@@ -907,12 +907,12 @@ public class Device implements BaseLink.PacketReceiver {
         return m_supportedPlugins;
     }
 
-    public void hackToMakeRetrocompatiblePacketTypes(NetworkPacket np) {
+    private void hackToMakeRetrocompatiblePacketTypes(NetworkPacket np) {
         if (protocolVersion >= 6) return;
         np.mType = np.getType().replace(".request", "");
     }
 
-    public String hackToMakeRetrocompatiblePacketTypes(String type) {
+    private String hackToMakeRetrocompatiblePacketTypes(String type) {
         if (protocolVersion >= 6) return type;
         return type.replace(".request", "");
     }

@@ -8,11 +8,11 @@ import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
-public class PluginPreference extends CheckBoxPreference {
+class PluginPreference extends CheckBoxPreference {
 
-    final Device device;
-    final String pluginKey;
-    final View.OnClickListener listener;
+    private final Device device;
+    private final String pluginKey;
+    private final View.OnClickListener listener;
 
     public PluginPreference(final DeviceSettingsActivity activity, final String pluginKey, final Device device) {
         super(activity);

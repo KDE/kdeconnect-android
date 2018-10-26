@@ -41,8 +41,8 @@ import java.io.InputStream;
 
 public class ReceiveNotificationsPlugin extends Plugin {
 
-    public final static String PACKET_TYPE_NOTIFICATION = "kdeconnect.notification";
-    public final static String PACKET_TYPE_NOTIFICATION_REQUEST = "kdeconnect.notification.request";
+    private final static String PACKET_TYPE_NOTIFICATION = "kdeconnect.notification";
+    private final static String PACKET_TYPE_NOTIFICATION_REQUEST = "kdeconnect.notification.request";
 
     @Override
     public String getDisplayName() {
