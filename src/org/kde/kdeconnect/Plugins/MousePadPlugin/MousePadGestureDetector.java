@@ -20,7 +20,6 @@
 
 package org.kde.kdeconnect.Plugins.MousePadPlugin;
 
-import android.content.Context;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 
