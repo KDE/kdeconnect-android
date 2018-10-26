@@ -184,7 +184,7 @@
     <string name="mpris_notification_settings_title">Show media control notification</string>
     <string name="mpris_notification_settings_summary">Allow controlling your media players without opening KDE Connect</string>
     <string name="mpris_notification_key" translatable="false">mpris_notification_enabled</string>
-    <string name="share_to">Share To...</string>
+    <string name="share_to">Share To…</string>
     <string name="protocol_version_older">This device uses an old protocol version</string>
     <string name="protocol_version_newer">This device uses a newer protocol version</string>
     <string name="general_settings">General Settings</string>
