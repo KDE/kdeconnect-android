@@ -56,7 +56,7 @@ public class NetworkPacketTest extends AndroidTestCase {
         String json = "{\"id\":123,\"type\":\"test\",\"body\":{\"testing\":true}}";
         np2 = NetworkPacket.unserialize(json);
         assertEquals(np2.getId(), 123);
-        assertEquals(np2.getBoolean("testing"), true);
+        assertTrue(np2.getBoolean("testing"));
         assertEquals(np2.getBoolean("not_testing"), false);
         assertEquals(np2.getBoolean("not_testing", true), true);
 
