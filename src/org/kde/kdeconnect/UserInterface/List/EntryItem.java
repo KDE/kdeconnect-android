@@ -45,11 +45,11 @@ public class EntryItem implements ListAdapter.Item {
     public View inflateView(LayoutInflater layoutInflater) {
         View v = layoutInflater.inflate(R.layout.list_item_entry, null);
 
-        TextView titleView = (TextView) v.findViewById(R.id.list_item_entry_title);
+        TextView titleView = v.findViewById(R.id.list_item_entry_title);
         if (titleView != null) titleView.setText(title);
 
         if (subtitle != null) {
-            TextView subtitleView = (TextView) v.findViewById(R.id.list_item_entry_summary);
+            TextView subtitleView = v.findViewById(R.id.list_item_entry_summary);
             if (subtitleView != null) {
                 subtitleView.setVisibility(View.VISIBLE);
                 subtitleView.setText(subtitle);

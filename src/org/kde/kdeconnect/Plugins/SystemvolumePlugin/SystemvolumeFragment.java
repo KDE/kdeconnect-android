@@ -121,12 +121,12 @@ public class SystemvolumeFragment extends ListFragment implements Sink.UpdateLis
 
             ((TextView) view.findViewById(R.id.systemvolume_label)).setText(getItem(position).getDescription());
 
-            final SeekBar seekBar = (SeekBar) view.findViewById(R.id.systemvolume_seek);
+            final SeekBar seekBar = view.findViewById(R.id.systemvolume_seek);
             seekBar.setMax(getItem(position).getMaxVolume());
             seekBar.setProgress(getItem(position).getVolume());
             seekBar.setOnSeekBarChangeListener(listener);
 
-            ImageButton button = (ImageButton) view.findViewById(R.id.systemvolume_mute);
+            ImageButton button = view.findViewById(R.id.systemvolume_mute);
             int iconRes = getItem(position).isMute() ? R.drawable.ic_volume_mute_black : R.drawable.ic_volume_black;
             button.setImageResource(iconRes);
             button.setOnClickListener(listener);

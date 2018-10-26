@@ -67,7 +67,7 @@ public class RunCommandActivity extends AppCompatActivity {
             }
 
             runOnUiThread(() -> {
-                ListView view = (ListView) findViewById(R.id.runcommandslist);
+                ListView view = findViewById(R.id.runcommandslist);
 
                 registerForContextMenu(view);
 
@@ -96,7 +96,7 @@ public class RunCommandActivity extends AppCompatActivity {
                 });
 
 
-                TextView explanation = (TextView) findViewById(R.id.addcomand_explanation);
+                TextView explanation = findViewById(R.id.addcomand_explanation);
                 String text = getString(R.string.addcommand_explanation);
                 if (!plugin.canAddCommand()) {
                     text += "\n" + getString(R.string.addcommand_explanation2);
@@ -117,7 +117,7 @@ public class RunCommandActivity extends AppCompatActivity {
 
         boolean canAddCommands = BackgroundService.getInstance().getDevice(deviceId).getPlugin(RunCommandPlugin.class).canAddCommand();
 
-        FloatingActionButton addCommandButton = (FloatingActionButton) findViewById(R.id.add_command_button);
+        FloatingActionButton addCommandButton = findViewById(R.id.add_command_button);
         addCommandButton.setVisibility(canAddCommands ? View.VISIBLE : View.GONE);
 
         addCommandButton.setOnClickListener(view -> BackgroundService.RunCommand(RunCommandActivity.this, service -> {

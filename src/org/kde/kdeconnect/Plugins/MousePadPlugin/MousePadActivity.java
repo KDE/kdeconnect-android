@@ -98,7 +98,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         mMousePadGestureDetector = new MousePadGestureDetector(this, this);
         mDetector.setOnDoubleTapListener(this);
 
-        keyListenerView = (KeyListenerView) findViewById(R.id.keyListener);
+        keyListenerView = findViewById(R.id.keyListener);
         keyListenerView.setDeviceId(deviceId);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);

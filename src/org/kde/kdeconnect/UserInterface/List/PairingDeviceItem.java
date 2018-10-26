@@ -50,14 +50,14 @@ public class PairingDeviceItem implements ListAdapter.Item {
     public View inflateView(LayoutInflater layoutInflater) {
         final View v = layoutInflater.inflate(R.layout.list_item_with_icon_entry, null);
 
-        ImageView icon = (ImageView) v.findViewById(R.id.list_item_entry_icon);
+        ImageView icon = v.findViewById(R.id.list_item_entry_icon);
         icon.setImageDrawable(device.getIcon());
 
-        TextView titleView = (TextView) v.findViewById(R.id.list_item_entry_title);
+        TextView titleView = v.findViewById(R.id.list_item_entry_title);
         titleView.setText(device.getName());
 
         if (device.compareProtocolVersion() != 0) {
-            TextView summaryView = (TextView) v.findViewById(R.id.list_item_entry_summary);
+            TextView summaryView = v.findViewById(R.id.list_item_entry_summary);
 
             if (device.compareProtocolVersion() > 0) {
                 summaryView.setText(R.string.protocol_version_newer);

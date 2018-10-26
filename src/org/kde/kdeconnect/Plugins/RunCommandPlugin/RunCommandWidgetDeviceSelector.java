@@ -26,7 +26,7 @@ public class RunCommandWidgetDeviceSelector extends AppCompatActivity {
         setContentView(R.layout.widget_remotecommandplugin_dialog);
 
         BackgroundService.RunCommand(this, service -> runOnUiThread(() -> {
-            ListView view = (ListView) findViewById(R.id.runcommandsdevicelist);
+            ListView view = findViewById(R.id.runcommandsdevicelist);
 
             final ArrayList<ListAdapter.Item> deviceItems = new ArrayList<>();
 

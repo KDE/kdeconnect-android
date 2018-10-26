@@ -110,7 +110,7 @@ public class MprisActivity extends AppCompatActivity {
 
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     runOnUiThread(() -> {
-                        Spinner spinner = (Spinner) findViewById(R.id.player_spinner);
+                        Spinner spinner = findViewById(R.id.player_spinner);
                         //String prevPlayer = (String)spinner.getSelectedItem();
                         spinner.setAdapter(adapter);
 
@@ -209,7 +209,7 @@ public class MprisActivity extends AppCompatActivity {
         }
         String song = playerStatus.getCurrentSong();
 
-        TextView nowPlaying = (TextView) findViewById(R.id.now_playing_textview);
+        TextView nowPlaying = findViewById(R.id.now_playing_textview);
         if (!nowPlaying.getText().toString().equals(song)) {
             nowPlaying.setText(song);
         }
@@ -225,7 +225,7 @@ public class MprisActivity extends AppCompatActivity {
 
         if (playerStatus.isSeekAllowed()) {
             ((TextView) findViewById(R.id.time_textview)).setText(milisToProgress(playerStatus.getLength()));
-            SeekBar positionSeek = (SeekBar) findViewById(R.id.positionSeek);
+            SeekBar positionSeek = findViewById(R.id.positionSeek);
             positionSeek.setMax((int) (playerStatus.getLength()));
             positionSeek.setProgress((int) (playerStatus.getPosition()));
             findViewById(R.id.progress_slider).setVisibility(View.VISIBLE);
@@ -377,7 +377,7 @@ public class MprisActivity extends AppCompatActivity {
         });
 
         positionSeekUpdateRunnable = () -> {
-            final SeekBar positionSeek = (SeekBar) findViewById(R.id.positionSeek);
+            final SeekBar positionSeek = findViewById(R.id.positionSeek);
             BackgroundService.RunCommand(MprisActivity.this, service -> {
                 if (targetPlayer != null) {
                     positionSeek.setProgress((int) (targetPlayer.getPosition()));

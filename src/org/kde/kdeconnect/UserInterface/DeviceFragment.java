@@ -125,7 +125,7 @@ public class DeviceFragment extends Fragment {
 
         });
 
-        final Button pairButton = (Button) rootView.findViewById(R.id.pair_button);
+        final Button pairButton = rootView.findViewById(R.id.pair_button);
         pairButton.setOnClickListener(view -> {
             pairButton.setVisibility(View.GONE);
             ((TextView) rootView.findViewById(R.id.pair_message)).setText("");

@@ -43,10 +43,10 @@ public class PluginItem implements ListAdapter.Item {
     public View inflateView(final LayoutInflater layoutInflater) {
         View v = layoutInflater.inflate(R.layout.list_item_with_icon_entry, null);
 
-        TextView titleView = (TextView) v.findViewById(R.id.list_item_entry_title);
+        TextView titleView = v.findViewById(R.id.list_item_entry_title);
         titleView.setText(plugin.getActionName());
 
-        ImageView imageView = (ImageView) v.findViewById(R.id.list_item_entry_icon);
+        ImageView imageView = v.findViewById(R.id.list_item_entry_icon);
         imageView.setImageDrawable(plugin.getIcon());
 
         v.setOnClickListener(clickListener);

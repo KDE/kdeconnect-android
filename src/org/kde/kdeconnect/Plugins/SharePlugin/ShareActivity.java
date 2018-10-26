@@ -108,7 +108,7 @@ public class ShareActivity extends AppCompatActivity {
             }
 
             runOnUiThread(() -> {
-                ListView list = (ListView) findViewById(R.id.devices_list);
+                ListView list = findViewById(R.id.devices_list);
                 list.setAdapter(new ListAdapter(ShareActivity.this, items));
                 list.setOnItemClickListener((adapterView, view, i, l) -> {
 
@@ -129,7 +129,7 @@ public class ShareActivity extends AppCompatActivity {
         setContentView(R.layout.devices_list);
 
         ActionBar actionBar = getSupportActionBar();
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_list_layout);
+        mSwipeRefreshLayout = findViewById(R.id.refresh_list_layout);
         mSwipeRefreshLayout.setOnRefreshListener(
                 this::updateComputerListAction
         );

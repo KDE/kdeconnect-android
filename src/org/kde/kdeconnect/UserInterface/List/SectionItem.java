@@ -45,7 +45,7 @@ public class SectionItem implements ListAdapter.Item {
         v.setOnClickListener(null);
         v.setOnLongClickListener(null);
 
-        TextView sectionView = (TextView) v.findViewById(R.id.list_item_category_text);
+        TextView sectionView = v.findViewById(R.id.list_item_category_text);
         sectionView.setText(title);
 
         if (isEmpty) {

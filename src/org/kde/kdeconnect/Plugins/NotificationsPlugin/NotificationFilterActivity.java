@@ -128,7 +128,7 @@ public class NotificationFilterActivity extends AppCompatActivity {
 
     private void displayAppList() {
 
-        listView = (ListView) findViewById(R.id.lvFilterApps);
+        listView = findViewById(R.id.lvFilterApps);
         AppListAdapter adapter = new AppListAdapter();
         listView.setAdapter(adapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);

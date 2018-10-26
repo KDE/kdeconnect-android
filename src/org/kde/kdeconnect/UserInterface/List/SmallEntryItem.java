@@ -46,7 +46,7 @@ public class SmallEntryItem implements ListAdapter.Item {
     public View inflateView(LayoutInflater layoutInflater) {
         View v = layoutInflater.inflate(android.R.layout.simple_list_item_1, null);
 
-        TextView titleView = (TextView) v.findViewById(android.R.id.text1);
+        TextView titleView = v.findViewById(android.R.id.text1);
         if (titleView != null) {
             titleView.setText(title);
             if (clickListener != null) {

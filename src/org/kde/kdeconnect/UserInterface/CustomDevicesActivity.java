@@ -58,14 +58,14 @@ public class CustomDevicesActivity extends AppCompatActivity {
         ThemeUtil.setUserPreferredTheme(this);
         setContentView(R.layout.custom_ip_list);
 
-        list = (ListView) findViewById(android.R.id.list);
+        list = findViewById(android.R.id.list);
         list.setOnItemClickListener(onClickListener);
 
         list.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ipAddressList));
 
         findViewById(android.R.id.button1).setOnClickListener(v -> addNewDevice());
 
-        EditText ipEntryBox = (EditText) findViewById(R.id.ip_edittext);
+        EditText ipEntryBox = findViewById(R.id.ip_edittext);
         ipEntryBox.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEND) {
                 addNewDevice();
@@ -108,7 +108,7 @@ public class CustomDevicesActivity extends AppCompatActivity {
     };
 
     private void addNewDevice() {
-        EditText ipEntryBox = (EditText) findViewById(R.id.ip_edittext);
+        EditText ipEntryBox = findViewById(R.id.ip_edittext);
         String enteredText = ipEntryBox.getText().toString().trim();
         if (!enteredText.isEmpty()) {
             // don't add empty string (after trimming)
