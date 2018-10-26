@@ -220,7 +220,7 @@ public class LanLinkTest extends AndroidTestCase {
 
         try {
             // Wait 1 secs for downloader to finish (if some error, it will continue and assert will fail)
-            downloader.join(1 * 1000);
+            downloader.join(1000);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
