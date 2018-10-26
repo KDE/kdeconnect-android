@@ -41,14 +41,14 @@ class MousePadGestureDetector {
         boolean onDoubleFingerTap(MotionEvent ev);
     }
 
-    public MousePadGestureDetector(Context ctx, OnGestureListener gestureListener) {
+    MousePadGestureDetector(Context ctx, OnGestureListener gestureListener) {
         if (gestureListener == null) {
             throw new IllegalArgumentException("gestureListener cannot be null");
         }
         mGestureListener = gestureListener;
     }
 
-    public boolean onTouchEvent(MotionEvent event) {
+    boolean onTouchEvent(MotionEvent event) {
         int action = event.getAction();
         switch (action & MotionEvent.ACTION_MASK) {
             case MotionEvent.ACTION_DOWN:
