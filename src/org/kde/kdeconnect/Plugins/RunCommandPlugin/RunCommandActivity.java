@@ -69,9 +69,7 @@ public class RunCommandActivity extends AppCompatActivity {
             runOnUiThread(() -> {
                 ListView view = (ListView) findViewById(R.id.runcommandslist);
 
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
-                    registerForContextMenu(view);
-                }
+                registerForContextMenu(view);
 
                 commandItems = new ArrayList<>();
                 for (JSONObject obj : plugin.getCommandList()) {

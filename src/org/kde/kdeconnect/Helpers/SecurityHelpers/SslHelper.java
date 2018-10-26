@@ -212,15 +212,10 @@ public class SslHelper {
             supportedCiphers.add("TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384");  // API 20+
             supportedCiphers.add("TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256");  // API 20+
             supportedCiphers.add("TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA");       // API 11+
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+        } else {
             supportedCiphers.add("TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA");  // API 11+
             supportedCiphers.add("SSL_RSA_WITH_RC4_128_SHA");            // API 9+
             supportedCiphers.add("SSL_RSA_WITH_RC4_128_MD5");            // API 9+
-        } else {
-            // Following ciphers are for and due to old devices
-            supportedCiphers.add("SSL_RSA_WITH_RC4_128_SHA");  // API 9+
-            supportedCiphers.add("SSL_RSA_WITH_RC4_128_MD5");  // API 9+
-            supportedCiphers.add("TLS_DHE_RSA_WITH_AES_256_CBC_SHA"); // API 9+
         }
         socket.setEnabledCipherSuites(supportedCiphers.toArray(new String[supportedCiphers.size()]));
 

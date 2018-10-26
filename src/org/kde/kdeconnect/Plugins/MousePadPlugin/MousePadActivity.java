@@ -147,29 +147,27 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
                 return;
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            final View decorView = getWindow().getDecorView();
-            decorView.setOnSystemUiVisibilityChangeListener(visibility -> {
-                if ((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0) {
+        final View decorView = getWindow().getDecorView();
+        decorView.setOnSystemUiVisibilityChangeListener(visibility -> {
+            if ((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0) {
 
-                    int fullscreenType = 0;
+                int fullscreenType = 0;
 
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-                        fullscreenType |= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-                    }
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                        fullscreenType |= View.SYSTEM_UI_FLAG_FULLSCREEN;
-                    }
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                        fullscreenType |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-                    }
-
-                    getWindow().getDecorView().setSystemUiVisibility(fullscreenType);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+                    fullscreenType |= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
                 }
-            });
-        }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    fullscreenType |= View.SYSTEM_UI_FLAG_FULLSCREEN;
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    fullscreenType |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+                }
+
+                getWindow().getDecorView().setSystemUiVisibility(fullscreenType);
+            }
+        });
 
     }
 
@@ -264,16 +262,14 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
     @Override
     public boolean onGenericMotionEvent(MotionEvent e) {
-        if (android.os.Build.VERSION.SDK_INT >= 12) { // MotionEvent.getAxisValue is >= 12
-            if (e.getAction() == MotionEvent.ACTION_SCROLL) {
-                final float distanceY = e.getAxisValue(MotionEvent.AXIS_VSCROLL);
+        if (e.getAction() == MotionEvent.ACTION_SCROLL) {
+            final float distanceY = e.getAxisValue(MotionEvent.AXIS_VSCROLL);
 
-                accumulatedDistanceY += distanceY;
+            accumulatedDistanceY += distanceY;
 
-                if (accumulatedDistanceY > MinDistanceToSendGenericScroll || accumulatedDistanceY < -MinDistanceToSendGenericScroll) {
-                    sendScroll(accumulatedDistanceY);
-                    accumulatedDistanceY = 0;
-                }
+            if (accumulatedDistanceY > MinDistanceToSendGenericScroll || accumulatedDistanceY < -MinDistanceToSendGenericScroll) {
+                sendScroll(accumulatedDistanceY);
+                accumulatedDistanceY = 0;
             }
         }
 

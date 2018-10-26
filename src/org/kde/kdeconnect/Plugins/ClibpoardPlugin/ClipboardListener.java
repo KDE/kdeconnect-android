@@ -65,10 +65,6 @@ public class ClipboardListener {
     ClipboardListener(final Context ctx) {
         context = ctx;
 
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-            return;
-        }
-
         new Handler(Looper.getMainLooper()).post(() -> {
             cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
             listener = () -> {
@@ -98,12 +94,7 @@ public class ClipboardListener {
     @SuppressWarnings("deprecation")
     public void setText(String text) {
         currentContent = text;
-        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-            android.text.ClipboardManager clipboard = (android.text.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-            clipboard.setText(text);
-        } else {
-            cm.setText(text);
-        }
+        cm.setText(text);
     }
 
 }

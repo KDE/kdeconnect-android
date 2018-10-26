@@ -84,31 +84,29 @@ public class RemoteKeyboardPlugin extends Plugin {
         specialKeyMap.put(++i, KeyEvent.KEYCODE_DPAD_DOWN);        // 7
         specialKeyMap.put(++i, KeyEvent.KEYCODE_PAGE_UP);          // 8
         specialKeyMap.put(++i, KeyEvent.KEYCODE_PAGE_DOWN);        // 9
-        if (Build.VERSION.SDK_INT >= 11) {
-            specialKeyMap.put(++i, KeyEvent.KEYCODE_MOVE_HOME);    // 10
-            specialKeyMap.put(++i, KeyEvent.KEYCODE_MOVE_END);     // 11
-            specialKeyMap.put(++i, KeyEvent.KEYCODE_ENTER); // 12
-            specialKeyMap.put(++i, KeyEvent.KEYCODE_FORWARD_DEL);  // 13
-            specialKeyMap.put(++i, KeyEvent.KEYCODE_ESCAPE);       // 14
-            specialKeyMap.put(++i, KeyEvent.KEYCODE_SYSRQ);        // 15
-            specialKeyMap.put(++i, KeyEvent.KEYCODE_SCROLL_LOCK);  // 16
-            ++i;           // 17
-            ++i;           // 18
-            ++i;           // 19
-            ++i;           // 20
-            specialKeyMap.put(++i, KeyEvent.KEYCODE_F1);           // 21
-            specialKeyMap.put(++i, KeyEvent.KEYCODE_F2);           // 22
-            specialKeyMap.put(++i, KeyEvent.KEYCODE_F3);           // 23
-            specialKeyMap.put(++i, KeyEvent.KEYCODE_F4);           // 24
-            specialKeyMap.put(++i, KeyEvent.KEYCODE_F5);           // 25
-            specialKeyMap.put(++i, KeyEvent.KEYCODE_F6);           // 26
-            specialKeyMap.put(++i, KeyEvent.KEYCODE_F7);           // 27
-            specialKeyMap.put(++i, KeyEvent.KEYCODE_F8);           // 28
-            specialKeyMap.put(++i, KeyEvent.KEYCODE_F9);           // 29
-            specialKeyMap.put(++i, KeyEvent.KEYCODE_F10);          // 30
-            specialKeyMap.put(++i, KeyEvent.KEYCODE_F11);          // 31
-            specialKeyMap.put(++i, KeyEvent.KEYCODE_F12);          // 21
-        }
+        specialKeyMap.put(++i, KeyEvent.KEYCODE_MOVE_HOME);    // 10
+        specialKeyMap.put(++i, KeyEvent.KEYCODE_MOVE_END);     // 11
+        specialKeyMap.put(++i, KeyEvent.KEYCODE_ENTER); // 12
+        specialKeyMap.put(++i, KeyEvent.KEYCODE_FORWARD_DEL);  // 13
+        specialKeyMap.put(++i, KeyEvent.KEYCODE_ESCAPE);       // 14
+        specialKeyMap.put(++i, KeyEvent.KEYCODE_SYSRQ);        // 15
+        specialKeyMap.put(++i, KeyEvent.KEYCODE_SCROLL_LOCK);  // 16
+        ++i;           // 17
+        ++i;           // 18
+        ++i;           // 19
+        ++i;           // 20
+        specialKeyMap.put(++i, KeyEvent.KEYCODE_F1);           // 21
+        specialKeyMap.put(++i, KeyEvent.KEYCODE_F2);           // 22
+        specialKeyMap.put(++i, KeyEvent.KEYCODE_F3);           // 23
+        specialKeyMap.put(++i, KeyEvent.KEYCODE_F4);           // 24
+        specialKeyMap.put(++i, KeyEvent.KEYCODE_F5);           // 25
+        specialKeyMap.put(++i, KeyEvent.KEYCODE_F6);           // 26
+        specialKeyMap.put(++i, KeyEvent.KEYCODE_F7);           // 27
+        specialKeyMap.put(++i, KeyEvent.KEYCODE_F8);           // 28
+        specialKeyMap.put(++i, KeyEvent.KEYCODE_F9);           // 29
+        specialKeyMap.put(++i, KeyEvent.KEYCODE_F10);          // 30
+        specialKeyMap.put(++i, KeyEvent.KEYCODE_F11);          // 31
+        specialKeyMap.put(++i, KeyEvent.KEYCODE_F12);          // 21
     }
 
     @Override

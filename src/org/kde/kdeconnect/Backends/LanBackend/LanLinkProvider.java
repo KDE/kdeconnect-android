@@ -444,11 +444,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
             // Server is disabled on these devices and using a reverse connection strategy. This works well for connection of these devices with kde
             // and newer android versions. Although devices with android version less than ICS cannot connect to other devices who also have android version less
             // than ICS because server is disabled on both
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-                Log.w("KDE/LanLinkProvider", "Not starting a TCP server because it's not supported on Android < 14. Operating only as client.");
-            } else {
-                setupTcpListener();
-            }
+            setupTcpListener();
 
             broadcastUdpPacket();
         }

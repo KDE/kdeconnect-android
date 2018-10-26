@@ -41,12 +41,6 @@ public class ClipboardPlugin extends Plugin {
     }
 
     @Override
-    public boolean isEnabledByDefault() {
-        //Disabled by default due to just one direction sync(incoming clipboard change) in early version of android.
-        return (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB);
-    }
-
-    @Override
     public boolean onPacketReceived(NetworkPacket np) {
         String content = np.getString("content");
         ClipboardListener.instance(context).setText(content);

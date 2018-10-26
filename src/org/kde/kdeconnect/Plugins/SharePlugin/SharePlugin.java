@@ -177,13 +177,8 @@ public class SharePlugin extends Plugin {
 
     private void receiveText(NetworkPacket np) {
         String text = np.getString("text");
-        if (Build.VERSION.SDK_INT >= 11) {
-            ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-            cm.setText(text);
-        } else {
-            android.text.ClipboardManager clipboard = (android.text.ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-            clipboard.setText(text);
-        }
+        ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        cm.setText(text);
         Toast.makeText(context, R.string.shareplugin_text_saved, Toast.LENGTH_LONG).show();
     }
 
@@ -253,7 +248,7 @@ public class SharePlugin extends Plugin {
                 notification.setURI(destinationUri, mimeType);
                 notification.show();
 
-                if (!customDestination && Build.VERSION.SDK_INT >= 12) {
+                if (!customDestination) {
                     Log.i("SharePlugin", "Adding to downloads");
                     DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
                     manager.addCompletedDownload(destinationUri.getLastPathSegment(), device.getName(), true, mimeType, destinationUri.getPath(), fileLength, false);
