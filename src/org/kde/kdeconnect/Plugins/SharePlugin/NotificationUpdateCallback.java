@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 class NotificationUpdateCallback extends Device.SendPacketStatusCallback {
 
-    private final Context context;
     private final Resources res;
     private final Device device;
     private final NotificationManager notificationManager;
@@ -28,7 +27,6 @@ class NotificationUpdateCallback extends Device.SendPacketStatusCallback {
     private final int numFiles;
 
     NotificationUpdateCallback(Context context, Device device, ArrayList<NetworkPacket> toSend) {
-        this.context = context;
         this.toSend = toSend;
         this.device = device;
         this.res = context.getResources();
