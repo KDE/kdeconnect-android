@@ -38,7 +38,7 @@ class Sink {
     private boolean mute;
     private int maxVolume;
 
-    private List<UpdateListener> listeners;
+    private final List<UpdateListener> listeners;
 
     Sink(JSONObject obj) throws JSONException {
         listeners = new ArrayList<>();

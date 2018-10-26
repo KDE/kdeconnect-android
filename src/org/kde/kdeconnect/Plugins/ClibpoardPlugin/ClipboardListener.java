@@ -37,7 +37,7 @@ public class ClipboardListener {
         void clipboardChanged(String content);
     }
 
-    private HashSet<ClipboardObserver> observers = new HashSet<>();
+    private final HashSet<ClipboardObserver> observers = new HashSet<>();
 
     private final Context context;
     private String currentContent;

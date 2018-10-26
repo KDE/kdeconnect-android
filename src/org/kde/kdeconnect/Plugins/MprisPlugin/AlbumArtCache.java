@@ -84,7 +84,7 @@ final class AlbumArtCache {
     /**
      * A list of plugins to notify on fetched album art
      */
-    private static ArrayList<MprisPlugin> registeredPlugins = new ArrayList<>();
+    private static final ArrayList<MprisPlugin> registeredPlugins = new ArrayList<>();
 
     /**
      * Initializes the disk cache. Needs to be called at least once before trying to use the cache
@@ -242,9 +242,9 @@ final class AlbumArtCache {
     }
 
     private static final class FetchURLTask extends AsyncTask<Void, Void, Boolean> {
-        private URL url;
+        private final URL url;
         private InputStream input;
-        private DiskLruCache.Editor cacheItem;
+        private final DiskLruCache.Editor cacheItem;
         private OutputStream output;
 
         /**

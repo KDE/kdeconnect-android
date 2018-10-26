@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 class RepliableNotification {
-    String id = UUID.randomUUID().toString();
+    final String id = UUID.randomUUID().toString();
     PendingIntent pendingIntent;
-    ArrayList<android.app.RemoteInput> remoteInputs = new ArrayList<>();
+    final ArrayList<android.app.RemoteInput> remoteInputs = new ArrayList<>();
     String packageName;
     String tag;
 }

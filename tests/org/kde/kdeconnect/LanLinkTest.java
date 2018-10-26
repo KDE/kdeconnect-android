@@ -108,7 +108,7 @@ class LanLinkTest extends AndroidTestCase {
         class Downloader extends Thread {
 
             NetworkPacket np;
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
             void setNetworkPacket(NetworkPacket networkPacket) {
                 this.np = networkPacket;

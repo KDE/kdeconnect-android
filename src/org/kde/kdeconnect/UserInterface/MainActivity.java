@@ -349,7 +349,7 @@ public class MainActivity extends AppCompatActivity {
         void onNameChanged(String newName);
     }
 
-    private Set<NameChangeCallback> nameChangeSubscribers = new HashSet<>();
+    private final Set<NameChangeCallback> nameChangeSubscribers = new HashSet<>();
 
     public void addNameChangeCallback(NameChangeCallback cb) {
         nameChangeSubscribers.add(cb);

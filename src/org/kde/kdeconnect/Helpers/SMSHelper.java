@@ -212,7 +212,7 @@ public class SMSHelper {
      * Represent an ID used to uniquely identify a message thread
      */
     public static class ThreadID {
-        Integer threadID;
+        final Integer threadID;
         static final String lookupColumn = Telephony.Sms.THREAD_ID;
 
         public ThreadID(Integer threadID) {
@@ -319,8 +319,8 @@ public class SMSHelper {
         private static MessageLooper singleton = null;
         private static Looper looper = null;
 
-        private static Lock looperReadyLock = new ReentrantLock();
-        private static Condition looperReady = looperReadyLock.newCondition();
+        private static final Lock looperReadyLock = new ReentrantLock();
+        private static final Condition looperReady = looperReadyLock.newCondition();
 
         private MessageLooper() {
             setName("MessageHelperLooper");

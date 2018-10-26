@@ -85,7 +85,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     private boolean listening = false;
 
     // To prevent infinte loop between Android < IceCream because both device can only broadcast identity package but cannot connect via TCP
-    private ArrayList<InetAddress> reverseConnectionBlackList = new ArrayList<>();
+    private final ArrayList<InetAddress> reverseConnectionBlackList = new ArrayList<>();
 
     @Override // SocketClosedCallback
     public void linkDisconnected(LanLink brokenLink) {

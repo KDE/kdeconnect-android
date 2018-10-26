@@ -41,8 +41,8 @@ public class SystemvolumePlugin extends Plugin {
         void sinksChanged();
     }
 
-    private HashMap<String, Sink> sinks;
-    private ArrayList<SinkListener> listeners;
+    private final HashMap<String, Sink> sinks;
+    private final ArrayList<SinkListener> listeners;
 
     public SystemvolumePlugin() {
         sinks = new HashMap<>();

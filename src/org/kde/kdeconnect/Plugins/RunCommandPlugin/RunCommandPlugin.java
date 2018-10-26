@@ -41,8 +41,8 @@ public class RunCommandPlugin extends Plugin {
     private final static String PACKET_TYPE_RUNCOMMAND = "kdeconnect.runcommand";
     private final static String PACKET_TYPE_RUNCOMMAND_REQUEST = "kdeconnect.runcommand.request";
 
-    private ArrayList<JSONObject> commandList = new ArrayList<>();
-    private ArrayList<CommandsChangedCallback> callbacks = new ArrayList<>();
+    private final ArrayList<JSONObject> commandList = new ArrayList<>();
+    private final ArrayList<CommandsChangedCallback> callbacks = new ArrayList<>();
     private final ArrayList<CommandEntry> commandItems = new ArrayList<>();
 
     private boolean canAddCommand;

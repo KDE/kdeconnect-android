@@ -76,7 +76,7 @@ public class Device implements BaseLink.PacketReceiver {
     private PairStatus pairStatus;
 
     private final CopyOnWriteArrayList<PairingCallback> pairingCallback = new CopyOnWriteArrayList<>();
-    private Map<String, BasePairingHandler> pairingHandlers = new HashMap<>();
+    private final Map<String, BasePairingHandler> pairingHandlers = new HashMap<>();
 
     private final CopyOnWriteArrayList<BaseLink> links = new CopyOnWriteArrayList<>();
 
@@ -621,7 +621,7 @@ public class Device implements BaseLink.PacketReceiver {
         }
     }
 
-    private SendPacketStatusCallback defaultCallback = new SendPacketStatusCallback() {
+    private final SendPacketStatusCallback defaultCallback = new SendPacketStatusCallback() {
         @Override
         public void onSuccess() {
         }

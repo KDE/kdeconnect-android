@@ -51,9 +51,9 @@ public abstract class BasePairingHandler {
     }
 
 
-    protected Device mDevice;
+    protected final Device mDevice;
     protected PairStatus mPairStatus;
-    protected PairingHandlerCallback mCallback;
+    protected final PairingHandlerCallback mCallback;
 
     protected BasePairingHandler(Device device, PairingHandlerCallback callback) {
         this.mDevice = device;

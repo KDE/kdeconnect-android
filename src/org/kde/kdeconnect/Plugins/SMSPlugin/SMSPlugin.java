@@ -147,10 +147,10 @@ public class SMSPlugin extends Plugin {
     private long mostRecentTimestamp = 0;
     // Since the mostRecentTimestamp is accessed both from the plugin's thread and the ContentObserver
     // thread, make sure that access is coherent
-    private Lock mostRecentTimestampLock = new ReentrantLock();
+    private final Lock mostRecentTimestampLock = new ReentrantLock();
 
     private class MessageContentObserver extends ContentObserver {
-        SMSPlugin mPlugin;
+        final SMSPlugin mPlugin;
 
         /**
          * Create a ContentObserver to watch the Messages database. onChange is called for

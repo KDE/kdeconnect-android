@@ -63,7 +63,7 @@ public class LanLink extends BaseLink {
 
     private volatile Socket socket = null;
 
-    private LinkDisconnectedCallback callback;
+    private final LinkDisconnectedCallback callback;
 
     @Override
     public void disconnect() {

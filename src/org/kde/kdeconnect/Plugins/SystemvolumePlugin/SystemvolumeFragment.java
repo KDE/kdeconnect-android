@@ -138,7 +138,7 @@ public class SystemvolumeFragment extends ListFragment implements Sink.UpdateLis
 
     private class UIListener implements SeekBar.OnSeekBarChangeListener, ImageButton.OnClickListener {
 
-        private Sink sink;
+        private final Sink sink;
 
         private UIListener(Sink sink) {
             this.sink = sink;

@@ -52,7 +52,7 @@ public class BluetoothLink extends BaseLink {
 
     private boolean continueAccepting = true;
 
-    private Thread receivingThread = new Thread(new Runnable() {
+    private final Thread receivingThread = new Thread(new Runnable() {
         @Override
         public void run() {
             StringBuilder sb = new StringBuilder();

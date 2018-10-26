@@ -45,7 +45,7 @@ public class ClipboardPlugin extends Plugin {
         return true;
     }
 
-    private ClipboardListener.ClipboardObserver observer = content -> {
+    private final ClipboardListener.ClipboardObserver observer = content -> {
         NetworkPacket np = new NetworkPacket(ClipboardPlugin.PACKET_TYPE_CLIPBOARD);
         np.set("content", content);
         device.sendPacket(np);

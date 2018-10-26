@@ -40,7 +40,7 @@ public class BatteryPlugin extends Plugin {
     private static final int THRESHOLD_EVENT_NONE = 0;
     private static final int THRESHOLD_EVENT_BATTERY_LOW = 1;
 
-    private NetworkPacket batteryInfo = new NetworkPacket(PACKET_TYPE_BATTERY);
+    private final NetworkPacket batteryInfo = new NetworkPacket(PACKET_TYPE_BATTERY);
 
     @Override
     public String getDisplayName() {

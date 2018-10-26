@@ -4,7 +4,7 @@ package org.kde.kdeconnect.Helpers;
 import java.security.SecureRandom;
 
 public class RandomHelper {
-    public static SecureRandom secureRandom = new SecureRandom();
+    public static final SecureRandom secureRandom = new SecureRandom();
 
     private static final char[] symbols = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ" +
             "abcdefghijklmnopqrstuvwxyz" +

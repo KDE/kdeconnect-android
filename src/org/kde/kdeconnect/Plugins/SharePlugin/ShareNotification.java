@@ -45,10 +45,10 @@ import java.io.FileNotFoundException;
 class ShareNotification {
 
     private final String filename;
-    private NotificationManager notificationManager;
-    private int notificationId;
+    private final NotificationManager notificationManager;
+    private final int notificationId;
     private NotificationCompat.Builder builder;
-    private Device device;
+    private final Device device;
 
     public ShareNotification(Device device, String filename) {
         this.device = device;

@@ -55,7 +55,7 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
     private final static int MPRIS_MEDIA_NOTIFICATION_ID = 0x91b70463; // echo MprisNotification | md5sum | head -c 8
     private final static String MPRIS_MEDIA_SESSION_TAG = "org.kde.kdeconnect_tp.media_session";
 
-    private static MprisMediaSession instance = new MprisMediaSession();
+    private static final MprisMediaSession instance = new MprisMediaSession();
 
     public static MprisMediaSession getInstance() {
         return instance;
@@ -69,20 +69,20 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
     private String notificationDevice = null;
     private MprisPlugin.MprisPlayer notificationPlayer = null;
     //Holds the device ids for which we can display a notification
-    private HashSet<String> mprisDevices = new HashSet<>();
+    private final HashSet<String> mprisDevices = new HashSet<>();
 
     private Context context;
     private MediaSessionCompat mediaSession;
 
     //Callback for mpris plugin updates
-    private Handler mediaNotificationHandler = new Handler(Looper.getMainLooper()) {
+    private final Handler mediaNotificationHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
             updateMediaNotification();
         }
     };
     //Callback for control via the media session API
-    private MediaSessionCompat.Callback mediaSessionCallback = new MediaSessionCompat.Callback() {
+    private final MediaSessionCompat.Callback mediaSessionCallback = new MediaSessionCompat.Callback() {
         @Override
         public void onPlay() {
             notificationPlayer.play();

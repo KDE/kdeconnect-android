@@ -29,9 +29,9 @@ import android.support.annotation.RequiresApi;
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 class MprisReceiverPlayer {
 
-    private MediaController controller;
+    private final MediaController controller;
 
-    private String name;
+    private final String name;
 
     private boolean isPlaying;
 
