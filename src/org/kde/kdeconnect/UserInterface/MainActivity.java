@@ -124,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
                     setContentFragment(new SettingsFragment());
                     break;
                 default:
-                    assert(mCurrentMenuEntry >= MENU_ENTRY_DEVICE_FIRST_ID);
                     String deviceId = mMapMenuToDeviceId.get(menuItem);
                     onDeviceSelected(deviceId);
                     break;
