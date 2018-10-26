@@ -164,13 +164,13 @@ public class SMSPlugin extends Plugin {
             mPlugin = parent;
         }
 
-        @Override
         /**
          * The onChange method is called whenever the subscribed-to database changes
          *
          * In this case, this onChange expects to be called whenever *anything* in the Messages
          * database changes and simply reports those updated messages to anyone who might be listening
          */
+        @Override
         public void onChange(boolean selfChange) {
             if (mPlugin.mostRecentTimestamp == 0) {
                 // Since the timestamp has not been initialized, we know that nobody else
@@ -206,7 +206,6 @@ public class SMSPlugin extends Plugin {
         }
     }
 
-    @Deprecated
     /**
      * Deliver an old-style SMS packet in response to a new message arriving
      *
@@ -218,6 +217,7 @@ public class SMSPlugin extends Plugin {
      *
      * @param messages Ordered list of parts of the message body which should be combined into a single message
      */
+    @Deprecated
     private void smsBroadcastReceivedDeprecated(ArrayList<SmsMessage> messages) {
 
         if (BuildConfig.DEBUG) {

@@ -51,10 +51,10 @@ import java.util.Set;
 public class ContactsHelper {
 
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     /**
      * Lookup the name and photoID of a contact given a phone number
      */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static Map<String, String> phoneNumberLookup(Context context, String number) {
 
         //Log.e("PhoneNumberLookup", number);

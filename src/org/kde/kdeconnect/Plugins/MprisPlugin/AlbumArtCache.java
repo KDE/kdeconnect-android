@@ -253,7 +253,6 @@ public final class AlbumArtCache {
          * @param url          The url being fetched
          * @param payloadInput A payload input stream (if from the connected device). null if fetched from http(s)
          * @param cacheItem    The disk cache item to edit
-         * @throws IOException
          */
         FetchURLTask(URL url, InputStream payloadInput, DiskLruCache.Editor cacheItem) throws IOException {
             this.url = url;
@@ -266,7 +265,6 @@ public final class AlbumArtCache {
          * Opens the http(s) connection
          *
          * @return True if succeeded
-         * @throws IOException
          */
         private boolean openHttp() throws IOException {
             //Default android behaviour does not follow https -> http urls, so do this manually
