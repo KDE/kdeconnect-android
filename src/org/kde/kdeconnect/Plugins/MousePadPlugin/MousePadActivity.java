@@ -95,7 +95,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         getWindow().getDecorView().setHapticFeedbackEnabled(true);
 
         mDetector = new GestureDetector(this, this);
-        mMousePadGestureDetector = new MousePadGestureDetector(this, this);
+        mMousePadGestureDetector = new MousePadGestureDetector(this);
         mDetector.setOnDoubleTapListener(this);
 
         keyListenerView = findViewById(R.id.keyListener);

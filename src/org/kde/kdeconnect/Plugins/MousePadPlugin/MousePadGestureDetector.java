@@ -41,7 +41,7 @@ class MousePadGestureDetector {
         boolean onDoubleFingerTap(MotionEvent ev);
     }
 
-    MousePadGestureDetector(Context ctx, OnGestureListener gestureListener) {
+    MousePadGestureDetector(OnGestureListener gestureListener) {
         if (gestureListener == null) {
             throw new IllegalArgumentException("gestureListener cannot be null");
         }
