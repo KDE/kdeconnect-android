@@ -25,7 +25,6 @@ import android.net.Uri;
 import android.util.Log;
 
 import org.apache.sshd.SshServer;
-import org.apache.sshd.common.NamedFactory;
 import org.apache.sshd.common.Session;
 import org.apache.sshd.common.file.FileSystemFactory;
 import org.apache.sshd.common.file.FileSystemView;
@@ -34,7 +33,6 @@ import org.apache.sshd.common.file.nativefs.NativeFileSystemView;
 import org.apache.sshd.common.file.nativefs.NativeSshFile;
 import org.apache.sshd.common.keyprovider.AbstractKeyPairProvider;
 import org.apache.sshd.common.util.SecurityUtils;
-import org.apache.sshd.server.Command;
 import org.apache.sshd.server.PasswordAuthenticator;
 import org.apache.sshd.server.PublickeyAuthenticator;
 import org.apache.sshd.server.command.ScpCommandFactory;

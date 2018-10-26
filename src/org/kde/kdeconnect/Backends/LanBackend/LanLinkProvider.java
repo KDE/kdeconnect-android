@@ -22,7 +22,6 @@ package org.kde.kdeconnect.Backends.LanBackend;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;

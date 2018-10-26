@@ -21,7 +21,6 @@
 package org.kde.kdeconnect.Plugins.MousePadPlugin;
 
 import android.content.Context;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.util.SparseIntArray;
 import android.view.KeyEvent;

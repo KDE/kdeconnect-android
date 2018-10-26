@@ -20,8 +20,6 @@
 
 package org.kde.kdeconnect.Plugins.ClibpoardPlugin;
 
-import android.os.Build;
-
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
