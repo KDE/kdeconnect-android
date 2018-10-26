@@ -98,9 +98,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements MainAc
         notificationSwitch.setOnPreferenceChangeListener((preference, newValue) -> {
             final boolean isChecked = (Boolean)newValue;
             NotificationHelper.setPersistentNotificationEnabled(context, isChecked);
-            BackgroundService.RunCommand(context, service -> {
-                service.changePersistentNotificationVisibility(isChecked);
-            });
+            BackgroundService.RunCommand(context, service -> service.changePersistentNotificationVisibility(isChecked));
 
             return true;
         });
