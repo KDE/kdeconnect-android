@@ -95,10 +95,6 @@ public class MainActivity extends AppCompatActivity {
         TextView nameView = mDrawerHeader.findViewById(R.id.device_name);
         nameView.setText(deviceName);
 
-        View.OnClickListener renameListener = v -> openRenameDeviceDialog();
-        mDrawerHeader.findViewById(R.id.kdeconnect_label).setOnClickListener(renameListener);
-        mDrawerHeader.findViewById(R.id.device_name).setOnClickListener(renameListener);
-
         preferences = getSharedPreferences("stored_menu_selection", Context.MODE_PRIVATE);
 
         mNavigationView.setNavigationItemSelectedListener(menuItem -> {
