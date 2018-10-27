@@ -115,7 +115,6 @@
   <string name="device">裝置</string>
   <string name="pair_device">配對裝置</string>
   <string name="remote_control">遠端控制</string>
-  <string name="settings">KDE連線設定</string>
   <string name="mpris_play">播放</string>
   <string name="mpris_pause">暫停</string>
   <string name="mpris_previous">往前</string>

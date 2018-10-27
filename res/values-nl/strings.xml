@@ -1,5 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_no_devices">Niet verbonden met enig apparaat</string>
+  <string name="foreground_notification_devices">Verbonden met: %s</string>
   <string name="pref_plugin_telephony">Telefoniemelder</string>
   <string name="pref_plugin_telephony_desc">Stuur meldingen voor inkomende oproepen</string>
   <string name="pref_plugin_battery">Batterijrapportage</string>
@@ -120,7 +123,7 @@
   <string name="device">Apparaat</string>
   <string name="pair_device">Apparaat voor paar</string>
   <string name="remote_control">Afstandsbediening</string>
-  <string name="settings">Instellingen van KDE Connect</string>
+  <string name="settings">Instellingen</string>
   <string name="mpris_play">Afspelen</string>
   <string name="mpris_pause">Pauzeren</string>
   <string name="mpris_previous">Vorige</string>
@@ -222,6 +225,10 @@
   <string name="pref_plugin_mprisreceiver">Besturing van mediaspeler</string>
   <string name="pref_plugin_mprisreceiver_desc">Uw mediaspelers op uw telefoon besturen vanaf een andere apparaat</string>
   <string name="dark_theme">Donker themea</string>
+  <string name="notification_channel_default">Overige meldingen</string>
+  <string name="notification_channel_persistent">Blijvende indicator</string>
+  <string name="notification_channel_media_control">Besturing van media</string>
+  <string name="notification_channel_filetransfer">Bestandsoverdracht</string>
   <string name="mpris_stop">Stop de huidige speler</string>
   <string name="copy_url_to_clipboard">URL-adres kopiëren naar klembord</string>
   <string name="clipboard_toast">Gekopieerd naar klembord</string>
@@ -236,4 +243,12 @@
   <string name="pref_plugin_systemvolume_desc">Bestuur het systeemvolume vanaf uw apparaat op afstand</string>
   <string name="mute">Dempen</string>
   <string name="all">Alles</string>
+  <string name="devices">Apparaten</string>
+  <string name="settings_rename">Apparaatnaam</string>
+  <string name="settings_dark_mode">Donker themea</string>
+  <string name="settings_more_settings_title">Meer instellingen</string>
+  <string name="settings_more_settings_text">Instellingen per apparaat kunnen gevonden worden onder \'Plug-in-instellingen\' vanuit een apparaat.</string>
+  <string name="setting_persistent_notification">Blijvende melding tonen</string>
+  <string name="setting_persistent_notification_oreo_description">Vereist door Android sinds Android 8.0</string>
+  <string name="setting_persistent_notification_pie_description">Sinds Android 9.0 kunnen deze meldingen alleen geminimaliseerd worden door er lang op te tikken</string>
 </resources>

@@ -116,7 +116,6 @@
   <string name="device">Laite</string>
   <string name="pair_device">Kytke laite pariksi</string>
   <string name="remote_control">Kauko-ohjain</string>
-  <string name="settings">KDE Connectin asetukset</string>
   <string name="mpris_play">Toista</string>
   <string name="mpris_pause">Tauko</string>
   <string name="mpris_previous">Edellinen</string>

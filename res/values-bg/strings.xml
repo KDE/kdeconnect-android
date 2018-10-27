@@ -61,7 +61,6 @@
   <string name="device">Устройство</string>
   <string name="pair_device">Сдвояване с устройството</string>
   <string name="remote_control">Отдалечен контрол</string>
-  <string name="settings">Настройки на KDE Connect</string>
   <string name="mpris_play">Възпроизвеждане</string>
   <string name="mpris_previous">Предишен</string>
   <string name="mpris_rew">Превъртане назад</string>

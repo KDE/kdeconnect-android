@@ -70,7 +70,6 @@
   <string name="device">Eszköz</string>
   <string name="pair_device">Eszköz párosítása</string>
   <string name="remote_control">Távirányító</string>
-  <string name="settings">KDE csatlakozás beállítások</string>
   <string name="mpris_play">Lejátszás</string>
   <string name="mpris_previous">Előző</string>
   <string name="mpris_rew">Visszatekerés</string>

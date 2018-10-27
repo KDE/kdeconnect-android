@@ -120,7 +120,6 @@
   <string name="device">Dispositivo</string>
   <string name="pair_device">Associa dispositivo</string>
   <string name="remote_control">Telecomando</string>
-  <string name="settings">Impostazioni</string>
   <string name="mpris_play">Riproduci</string>
   <string name="mpris_pause">Pausa</string>
   <string name="mpris_previous">Precedente</string>

@@ -106,7 +106,6 @@
   <string name="device">Gerät</string>
   <string name="pair_device">Gerät verbinden</string>
   <string name="remote_control">Fernbedienung</string>
-  <string name="settings">KDE-Connect-Einstellungen</string>
   <string name="mpris_play">Wiedergabe</string>
   <string name="mpris_pause">Anhalten</string>
   <string name="mpris_previous">Zurück</string>

@@ -119,7 +119,6 @@
   <string name="device">设备</string>
   <string name="pair_device">进行配对</string>
   <string name="remote_control">远程控制</string>
-  <string name="settings">KDE Connect设置</string>
   <string name="mpris_play">播放</string>
   <string name="mpris_pause">Pause</string>
   <string name="mpris_previous">前一个</string>

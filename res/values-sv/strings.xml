@@ -1,5 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE-anslut</string>
+  <string name="foreground_notification_no_devices">Inte ansluten till någon apparat</string>
+  <string name="foreground_notification_devices">Ansluten till: %s</string>
   <string name="pref_plugin_telephony">Telefonunderrättelser</string>
   <string name="pref_plugin_telephony_desc">Skicka underrättelser för inkommande samtal</string>
   <string name="pref_plugin_battery">Batterirapport</string>
@@ -120,7 +123,7 @@
   <string name="device">Apparat</string>
   <string name="pair_device">Para ihop apparat</string>
   <string name="remote_control">Fjärrkontroll</string>
-  <string name="settings">KDE anslutningsinställningar</string>
+  <string name="settings">Inställningar</string>
   <string name="mpris_play">Spela</string>
   <string name="mpris_pause">Paus</string>
   <string name="mpris_previous">Föregående</string>
@@ -222,6 +225,10 @@
   <string name="pref_plugin_mprisreceiver">Styrning av mediaspelare</string>
   <string name="pref_plugin_mprisreceiver_desc">Styr telefonens mediaspelare från en annan apparat</string>
   <string name="dark_theme">Mörkt tema</string>
+  <string name="notification_channel_default">Andra underrättelser</string>
+  <string name="notification_channel_persistent">Permanent indikering</string>
+  <string name="notification_channel_media_control">Kontroll av media</string>
+  <string name="notification_channel_filetransfer">Filöverföring</string>
   <string name="mpris_stop">Stoppa aktuell spelare</string>
   <string name="copy_url_to_clipboard">Kopiera webbadress till klippbordet</string>
   <string name="clipboard_toast">Kopierad till klippbordet</string>
@@ -236,4 +243,12 @@
   <string name="pref_plugin_systemvolume_desc">Kontrollera systemvolymen för den externa apparaten</string>
   <string name="mute">Tyst</string>
   <string name="all">Alla</string>
+  <string name="devices">Apparater</string>
+  <string name="settings_rename">Apparatnamn</string>
+  <string name="settings_dark_mode">Mörkt tema</string>
+  <string name="settings_more_settings_title">Fler inställningar</string>
+  <string name="settings_more_settings_text">Inställningar per apparat hittas i \'Insticksprograminställningar\' på apparaten.</string>
+  <string name="setting_persistent_notification">Visa permanent underrättelse</string>
+  <string name="setting_persistent_notification_oreo_description">Krävs av Android sedan Android 8.0</string>
+  <string name="setting_persistent_notification_pie_description">Sedan Android 9.0, kan underrättelsen bara minimeras genom att röra vid den länge</string>
 </resources>

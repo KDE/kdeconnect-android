@@ -120,7 +120,6 @@
   <string name="device">Dispositivo</string>
   <string name="pair_device">Vincular dispositivo</string>
   <string name="remote_control">Control remoto</string>
-  <string name="settings">Preferencias de KDE Connect</string>
   <string name="mpris_play">Reproducir</string>
   <string name="mpris_pause">Pausar</string>
   <string name="mpris_previous">Anterior</string>

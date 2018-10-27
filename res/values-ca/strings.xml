@@ -1,5 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_no_devices">No està connectat a cap dispositiu</string>
+  <string name="foreground_notification_devices">Connectat a: %s</string>
   <string name="pref_plugin_telephony">Notificador de la telefonia</string>
   <string name="pref_plugin_telephony_desc">Envia notificacions per a les trucades entrants</string>
   <string name="pref_plugin_battery">Informe de la bateria</string>
@@ -120,7 +123,7 @@
   <string name="device">Dispositiu</string>
   <string name="pair_device">Dispositiu parell</string>
   <string name="remote_control">Comandament a distància</string>
-  <string name="settings">Arranjament del KDE Connect</string>
+  <string name="settings">Arranjament</string>
   <string name="mpris_play">Reprodueix</string>
   <string name="mpris_pause">Pausa</string>
   <string name="mpris_previous">Anterior</string>
@@ -222,6 +225,10 @@
   <string name="pref_plugin_mprisreceiver">Control del reproductor multimèdia</string>
   <string name="pref_plugin_mprisreceiver_desc">Controla els reproductors multimèdia dels telèfons des d\'un altre dispositiu</string>
   <string name="dark_theme">Tema fosc</string>
+  <string name="notification_channel_default">Altres notificacions</string>
+  <string name="notification_channel_persistent">Indicador de persistent</string>
+  <string name="notification_channel_media_control">Control multimèdia</string>
+  <string name="notification_channel_filetransfer">Transferència de fitxers</string>
   <string name="mpris_stop">Atura el reproductor actual</string>
   <string name="copy_url_to_clipboard">Copia l\'URL al porta-retalls</string>
   <string name="clipboard_toast">Copiat al porta-retalls</string>
@@ -236,4 +243,12 @@
   <string name="pref_plugin_systemvolume_desc">Controla el volum del sistema des del dispositiu remot</string>
   <string name="mute">Silencia</string>
   <string name="all">Tot</string>
+  <string name="devices">Dispositius</string>
+  <string name="settings_rename">Nom del dispositiu</string>
+  <string name="settings_dark_mode">Tema fosc</string>
+  <string name="settings_more_settings_title">Més ajustaments</string>
+  <string name="settings_more_settings_text">Els ajustaments per dispositiu es poden trobar a «Arranjament del connector» des d\'un dispositiu.</string>
+  <string name="setting_persistent_notification">Mostra les notificacions persistents</string>
+  <string name="setting_persistent_notification_oreo_description">Requerit per Android des de la versió 8.0</string>
+  <string name="setting_persistent_notification_pie_description">Des de l\'Android 9.0, aquesta notificació només es pot minimitzar fent-hi un toc llarg</string>
 </resources>

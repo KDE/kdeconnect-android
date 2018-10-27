@@ -1,5 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_no_devices">Не з\'єднано із жодним пристроєм</string>
+  <string name="foreground_notification_devices">З\'єднано з %s</string>
   <string name="pref_plugin_telephony">Телефонний сповіщувач</string>
   <string name="pref_plugin_telephony_desc">Надсилати сповіщення щодо вхідних дзвінків</string>
   <string name="pref_plugin_battery">Звіт щодо заряду</string>
@@ -122,7 +125,7 @@
   <string name="device">Пристрій</string>
   <string name="pair_device">Пов’язати пристрій</string>
   <string name="remote_control">Дистанційне керування</string>
-  <string name="settings">Параметри з’єднання з KDE</string>
+  <string name="settings">Параметри</string>
   <string name="mpris_play">Пуск</string>
   <string name="mpris_pause">Пауза</string>
   <string name="mpris_previous">Назад</string>
@@ -224,6 +227,10 @@
   <string name="pref_plugin_mprisreceiver">Керування відтворенням</string>
   <string name="pref_plugin_mprisreceiver_desc">Керування вашими програвачами на телефоні з іншого пристрою</string>
   <string name="dark_theme">Темна тема</string>
+  <string name="notification_channel_default">Інші сповіщення</string>
+  <string name="notification_channel_persistent">Постійний індикатор</string>
+  <string name="notification_channel_media_control">Керування відтворенням</string>
+  <string name="notification_channel_filetransfer">Передавання файлів</string>
   <string name="mpris_stop">Зупинити відтворення у поточному програвачі</string>
   <string name="copy_url_to_clipboard">Скопіювати адресу до буфера</string>
   <string name="clipboard_toast">Скопійовано до буфера</string>
@@ -238,4 +245,12 @@
   <string name="pref_plugin_systemvolume_desc">Керування системним томом на віддаленому пристрої</string>
   <string name="mute">Вимкнути звук</string>
   <string name="all">Усі</string>
+  <string name="devices">Пристрої</string>
+  <string name="settings_rename">Назва пристрою</string>
+  <string name="settings_dark_mode">Темна тема</string>
+  <string name="settings_more_settings_title">Додаткові параметри</string>
+  <string name="settings_more_settings_text">Окремі параметри пристроїв наведено на сторінці «Параметри додатків» сторінки пристрою.</string>
+  <string name="setting_persistent_notification">Показувати постійне сповіщення</string>
+  <string name="setting_persistent_notification_oreo_description">Є обов\'язковим для Android з версії Android 8.0</string>
+  <string name="setting_persistent_notification_pie_description">Починаючи з версії 9.0, це сповіщення можна мінімізувати лише довгим його натисканням</string>
 </resources>

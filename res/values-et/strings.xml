@@ -102,7 +102,6 @@
   <string name="device">Seade</string>
   <string name="pair_device">Paarita seade</string>
   <string name="remote_control">Kaugjuhtimine</string>
-  <string name="settings">KDE Connecti seadistused</string>
   <string name="mpris_play">Esita</string>
   <string name="mpris_previous">Eelmine</string>
   <string name="mpris_rew">Keri tagasi</string>
