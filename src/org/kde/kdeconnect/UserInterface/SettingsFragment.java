@@ -5,11 +5,10 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v14.preference.SwitchPreference;
-import android.support.v7.preference.CheckBoxPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceScreen;
+import android.support.v7.preference.SwitchPreferenceCompat;
 import android.support.v7.preference.TwoStatePreference;
 
 import org.kde.kdeconnect.BackgroundService;
@@ -28,19 +27,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements MainAc
         super.onDestroy();
     }
 
-    private TwoStatePreference createTwoStatePreferenceCompat(Context context) {
-        //SwitchPreference doesn't work on Android 6
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-            return new SwitchPreference(context);
-        } else {
-            return new CheckBoxPreference(context);
-        }
-    }
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
 
         mainActivity = (MainActivity)getActivity();
-        Context context = mainActivity;
+        Context context = getPreferenceManager().getContext();
 
         PreferenceScreen screen = getPreferenceManager().createPreferenceScreen(context);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -65,7 +56,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements MainAc
 
         // Dark mode
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            final TwoStatePreference darkThemeSwitch = createTwoStatePreferenceCompat(context);
+            final TwoStatePreference darkThemeSwitch = new SwitchPreferenceCompat(context);
             darkThemeSwitch.setPersistent(false);
             darkThemeSwitch.setChecked(ThemeUtil.shouldUseDarkTheme(context));
             darkThemeSwitch.setTitle(R.string.settings_dark_mode);
@@ -84,7 +75,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements MainAc
         }
 
         // Persistent notification toggle
-        final TwoStatePreference notificationSwitch = createTwoStatePreferenceCompat(context);
+        final TwoStatePreference notificationSwitch = new SwitchPreferenceCompat(context);
         notificationSwitch.setPersistent(false);
         notificationSwitch.setChecked(NotificationHelper.isPersistentNotificationEnabled(context));
         notificationSwitch.setTitle(R.string.setting_persistent_notification);
