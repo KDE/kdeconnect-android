@@ -1,6 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_no_devices">Not connected to any device</string>
+  <string name="foreground_notification_devices">Connected to: %s</string>
   <string name="pref_plugin_telephony">Telephony notifier</string>
+  <string name="pref_plugin_telephony_desc">Send notifications for incoming calls</string>
   <string name="pref_plugin_battery">Battery report</string>
   <string name="pref_plugin_battery_desc">Periodically report battery status</string>
   <string name="pref_plugin_sftp">Filesystem expose</string>
@@ -119,6 +123,7 @@
   <string name="device">Device</string>
   <string name="pair_device">Pair device</string>
   <string name="remote_control">Remote control</string>
+  <string name="settings">Settings</string>
   <string name="mpris_play">Play</string>
   <string name="mpris_pause">Pause</string>
   <string name="mpris_previous">Previous</string>
@@ -128,6 +133,7 @@
   <string name="mpris_volume">Volume</string>
   <string name="mpris_settings">Multimedia Settings</string>
   <string name="mpris_time_settings_title">Forward/rewind buttons</string>
+  <string name="mpris_time_settings_summary">Adjust the time to fast forward/rewind when pressed</string>
   <string-array name="mpris_time_entries">
     <item>10 seconds</item>
     <item>20 seconds</item>
@@ -136,7 +142,8 @@
     <item>2 minutes</item>
   </string-array>
   <string name="mpris_notification_settings_title">Show media control notification</string>
-  <string name="share_to">Share To...</string>
+  <string name="mpris_notification_settings_summary">Allow controlling your media players without opening KDE Connect</string>
+  <string name="share_to">Share To…</string>
   <string name="protocol_version_older">This device uses an old protocol version</string>
   <string name="protocol_version_newer">This device uses a newer protocol version</string>
   <string name="general_settings">General Settings</string>
@@ -218,6 +225,10 @@
   <string name="pref_plugin_mprisreceiver">Media Player Control</string>
   <string name="pref_plugin_mprisreceiver_desc">Control your phones media players from another device</string>
   <string name="dark_theme">Dark theme</string>
+  <string name="notification_channel_default">Other notifications</string>
+  <string name="notification_channel_persistent">Persistent indicator</string>
+  <string name="notification_channel_media_control">Media control</string>
+  <string name="notification_channel_filetransfer">File transfer</string>
   <string name="mpris_stop">Stop the current player</string>
   <string name="copy_url_to_clipboard">Copy URL to clipboard</string>
   <string name="clipboard_toast">Copied to clipboard</string>
@@ -231,4 +242,13 @@
   <string name="pref_plugin_systemvolume">System volume</string>
   <string name="pref_plugin_systemvolume_desc">Control the system volume of the remote device</string>
   <string name="mute">Mute</string>
+  <string name="all">All</string>
+  <string name="devices">Devices</string>
+  <string name="settings_rename">Device name</string>
+  <string name="settings_dark_mode">Dark theme</string>
+  <string name="settings_more_settings_title">More settings</string>
+  <string name="settings_more_settings_text">Per-device settings can be found under \'Plugin settings\' from within a device.</string>
+  <string name="setting_persistent_notification">Show persistent notification</string>
+  <string name="setting_persistent_notification_oreo_description">Required by Android since Android 8.0</string>
+  <string name="setting_persistent_notification_pie_description">Since Android 9.0, this notification can only be minimised by long tapping on it</string>
 </resources>

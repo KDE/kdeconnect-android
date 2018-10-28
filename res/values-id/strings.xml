@@ -132,7 +132,6 @@
     <item>2 menit</item>
   </string-array>
   <string name="mpris_notification_settings_title">Tampilkan notifikasi kendali media</string>
-  <string name="share_to">Bagikan Ke...</string>
   <string name="protocol_version_older">Perangkat ini menggunakan sebuah versi protokol lawas</string>
   <string name="protocol_version_newer">Perangkat ini menggunakan sebuah versi protokol baru</string>
   <string name="general_settings">Setelan Umum</string>

@@ -123,7 +123,6 @@
     <item>minutu 1</item>
     <item>2 minutu</item>
   </string-array>
-  <string name="share_to">Partekatu honi...</string>
   <string name="protocol_version_older">Gailu honek protokoloaren bertsio zahar bat erabiltzen du</string>
   <string name="protocol_version_newer">Gailu honek protokoloaren bertsio berriago bat erabiltzen du</string>
   <string name="general_settings">Ezarpen orokorrak</string>

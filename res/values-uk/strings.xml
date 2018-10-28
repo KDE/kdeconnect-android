@@ -145,7 +145,7 @@
   </string-array>
   <string name="mpris_notification_settings_title">Показувати сповіщення щодо керування відтворенням</string>
   <string name="mpris_notification_settings_summary">Уможливлює керування відтворенням мультимедійних даних без відкриття KDE Connect</string>
-  <string name="share_to">Спільно використовувати з…</string>
+  <string name="share_to">Використовувати спільно з…</string>
   <string name="protocol_version_older">На цьому пристрої використовується стара версія протоколу</string>
   <string name="protocol_version_newer">На цьому пристрої використовується новіша версія протоколу</string>
   <string name="general_settings">Загальні параметри</string>

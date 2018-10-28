@@ -139,7 +139,6 @@
   </string-array>
   <string name="mpris_notification_settings_title">Afficher la notification de contrôle du lecteur multimédia</string>
   <string name="mpris_notification_settings_summary">Vous permet de contrôler vos lecteurs multimédias sans ouvrir KDE Connect.</string>
-  <string name="share_to">Partager vers...</string>
   <string name="protocol_version_older">Le périphérique utilise une version ancienne du protocole</string>
   <string name="protocol_version_newer">Le périphérique utilise une version plus récente du protocole</string>
   <string name="general_settings">Paramètres généraux</string>

@@ -138,7 +138,6 @@
   </string-array>
   <string name="mpris_notification_settings_title">显示媒体控制通知部件</string>
   <string name="mpris_notification_settings_summary">允许在不用打开 KDE 连接的情况下控制媒体播放器</string>
-  <string name="share_to">分享到...</string>
   <string name="protocol_version_older">该设备使用旧版本的协议</string>
   <string name="protocol_version_newer">该设备使用较新版本的协议</string>
   <string name="general_settings">常规设置</string>

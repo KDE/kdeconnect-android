@@ -95,7 +95,6 @@
     <item>1 minuta</item>
     <item>2 minute</item>
   </string-array>
-  <string name="share_to">Podijeli na...</string>
   <string name="protocol_version_older">Ovaj uređaj koristi staru verziju protokola</string>
   <string name="protocol_version_newer">Ovaj uređaj koristi noviju verziju protokola</string>
   <string name="general_settings">Opšte postavke</string>

@@ -1,5 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_no_devices">Non conectado a ningún dispositivo</string>
+  <string name="foreground_notification_devices">Conectado a: %s</string>
   <string name="pref_plugin_telephony">Notificador de telefonía</string>
   <string name="pref_plugin_telephony_desc">Envíe notificacións de chamadas entrantes.</string>
   <string name="pref_plugin_battery">Informe da batería</string>
@@ -120,6 +123,7 @@
   <string name="device">Dispositivo</string>
   <string name="pair_device">Emparellar o dispositivo</string>
   <string name="remote_control">Control remoto</string>
+  <string name="settings">Configuración</string>
   <string name="mpris_play">Reproducir</string>
   <string name="mpris_pause">Deter</string>
   <string name="mpris_previous">Anterior</string>
@@ -221,6 +225,10 @@
   <string name="pref_plugin_mprisreceiver">Control do reprodutor de multimedia</string>
   <string name="pref_plugin_mprisreceiver_desc">Controlar os reprodutores do seu móbil desde outro dispositivo.</string>
   <string name="dark_theme">Tema escuro</string>
+  <string name="notification_channel_default">Outras notificacións</string>
+  <string name="notification_channel_persistent">Indicador persistente</string>
+  <string name="notification_channel_media_control">Control de reprodución</string>
+  <string name="notification_channel_filetransfer">Transferencia de ficheiros</string>
   <string name="mpris_stop">Deter o reprodutor actual</string>
   <string name="copy_url_to_clipboard">Copiar o URL no portapapeis</string>
   <string name="clipboard_toast">Copiouse no portapapeis</string>
@@ -235,4 +243,12 @@
   <string name="pref_plugin_systemvolume_desc">Controlar o volume do sistema do dispositivo remoto</string>
   <string name="mute">Silenciar</string>
   <string name="all">Todo</string>
+  <string name="devices">Dispositivos</string>
+  <string name="settings_rename">Nome do dispositivo</string>
+  <string name="settings_dark_mode">Tema escuro</string>
+  <string name="settings_more_settings_title">Máis opcións</string>
+  <string name="settings_more_settings_text">Pode atopar as opcións específicas dun dispositivo baixo «Configuración do complemento» desde un dispositivo.</string>
+  <string name="setting_persistent_notification">Mostrar unha notificación persistente</string>
+  <string name="setting_persistent_notification_oreo_description">Requirido por Android desde Android 8.0</string>
+  <string name="setting_persistent_notification_pie_description">Desde Android 9.0, esta notificación só pode minimizarse tocándoa un anaco</string>
 </resources>

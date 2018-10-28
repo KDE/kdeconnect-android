@@ -123,7 +123,6 @@
     <item>1 dakika</item>
     <item>2 dakika</item>
   </string-array>
-  <string name="share_to">Paylaş...</string>
   <string name="protocol_version_older">Bu aygıt, eski bir protokol sürümü kullanıyor</string>
   <string name="protocol_version_newer">Bu aygıt, daha yeni bir protokol sürümü kullanıyor</string>
   <string name="general_settings">Genel Ayarlar</string>

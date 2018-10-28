@@ -133,7 +133,6 @@
     <item>2 minuuttia</item>
   </string-array>
   <string name="mpris_notification_settings_title">Näytä mediasäädinilmoitukset</string>
-  <string name="share_to">Jaa…</string>
   <string name="protocol_version_older">Laite käyttää vanha yhteyskäytäntöversiota</string>
   <string name="protocol_version_newer">Laite käyttää uudempaa yhteyskäytäntöversiota</string>
   <string name="general_settings">Yleisasetukset</string>

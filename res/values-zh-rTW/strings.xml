@@ -132,7 +132,6 @@
     <item>2分鐘</item>
   </string-array>
   <string name="mpris_notification_settings_title">顯示媒體控制項通知</string>
-  <string name="share_to">分享給</string>
   <string name="protocol_version_older">這個裝置使用舊版本的通訊協定</string>
   <string name="protocol_version_newer">此設備使用較新的通訊協定</string>
   <string name="general_settings">通用設定</string>

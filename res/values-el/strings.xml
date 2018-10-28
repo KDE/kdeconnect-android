@@ -123,7 +123,6 @@
     <item>1 λεπτό</item>
     <item>2 λεπτά</item>
   </string-array>
-  <string name="share_to">Διαμοιρασμός με...</string>
   <string name="protocol_version_older">Η συσκευή αυτή χρησιμοποιεί παλαιά έκδοση πρωτοκόλλου</string>
   <string name="protocol_version_newer">Η συσκευή αυτή χρησιμοποιεί νεότερη έκδοση πρωτοκόλλου</string>
   <string name="general_settings">Γενικές ρυθμίσεις</string>

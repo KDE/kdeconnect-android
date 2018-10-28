@@ -74,7 +74,6 @@
     <item>1 minute</item>
     <item>2 minutes</item>
   </string-array>
-  <string name="share_to">Споделяне...</string>
   <string name="protocol_version_older">Това устройство използва стара версия на протокола</string>
   <string name="protocol_version_newer">Това устройство използва по-нова версия на протокола</string>
   <string name="general_settings">Общи настройки</string>

@@ -123,7 +123,6 @@
     <item>1 минута</item>
     <item>2 минуты</item>
   </string-array>
-  <string name="share_to">Отправить на...</string>
   <string name="protocol_version_older">Это устройство использует старую версию протокола</string>
   <string name="protocol_version_newer">Это устройство использует более новую версию протокола</string>
   <string name="general_settings">Общие параметры</string>

@@ -83,7 +83,6 @@
     <item>1 minute</item>
     <item>2 minutes</item>
   </string-array>
-  <string name="share_to">Megosztás…</string>
   <string name="protocol_version_older">Ez az eszköz egy régi protokollverziót használ</string>
   <string name="protocol_version_newer">Ez az eszköz egy újabb protokollverziót használ</string>
   <string name="general_settings">Általános beállítások</string>

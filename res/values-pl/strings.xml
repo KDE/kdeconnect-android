@@ -132,7 +132,6 @@
     <item>2 minuty</item>
   </string-array>
   <string name="mpris_notification_settings_title">Pokaż powiadomienia sterowania mediami</string>
-  <string name="share_to">Współdziel z...</string>
   <string name="protocol_version_older">Urządzenie to używa starej wersji protokołu</string>
   <string name="protocol_version_newer">Urządzenie to używa nowszej wersji protokołu</string>
   <string name="general_settings">Ustawienia ogólne</string>

@@ -135,7 +135,6 @@
     <item>2분</item>
   </string-array>
   <string name="mpris_notification_settings_title">미디어 제어 알림 보이기</string>
-  <string name="share_to">다음으로 공유...</string>
   <string name="protocol_version_older">이 장치의 프로토콜 버전이 오래되었습니다</string>
   <string name="protocol_version_newer">이 장치의 프로토콜 버전이 더 새롭습니다</string>
   <string name="general_settings">일반 설정</string>

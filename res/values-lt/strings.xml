@@ -78,7 +78,6 @@
     <item>1 minutė</item>
     <item>2 minutės</item>
   </string-array>
-  <string name="share_to">Dalintis...</string>
   <string name="general_settings">Bendrosios nuostatos</string>
   <string name="plugin_settings">Nuostatos</string>
   <string name="plugin_settings_with_name">%s nuostatos</string>

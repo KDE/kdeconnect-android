@@ -137,7 +137,6 @@
     <item>2 minutt</item>
   </string-array>
   <string name="mpris_notification_settings_title">Vis varsling med avspelingskontrollar</string>
-  <string name="share_to">Del til …</string>
   <string name="protocol_version_older">Denne eininga brukar ein gammal protokollversjon</string>
   <string name="protocol_version_newer">Denne eininga brukar ein nyare protokollversjon</string>
   <string name="general_settings">Generelle innstillingar</string>

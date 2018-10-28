@@ -74,7 +74,6 @@
     <item>1 minute</item>
     <item>2 minutes</item>
   </string-array>
-  <string name="share_to">Partajează cu...</string>
   <string name="protocol_version_older">Acest dispozitiv folosește o versiune veche a protocolului</string>
   <string name="protocol_version_newer">Acest dispozitiv folosește o versiune mai nouă a protocolului</string>
   <string name="general_settings">Configurări generale</string>

@@ -139,7 +139,6 @@
     <item>2 minuty</item>
   </string-array>
   <string name="mpris_notification_settings_title">Obrazit upozornění pro ovládání médií</string>
-  <string name="share_to">Sdílet s...</string>
   <string name="protocol_version_older">Toto zařízení používá starou verzi protokolu</string>
   <string name="protocol_version_newer">Toto zařízení používá novější verzi protokolu</string>
   <string name="general_settings">Obecná nastavení</string>

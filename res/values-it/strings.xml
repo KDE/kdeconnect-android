@@ -139,7 +139,6 @@
   </string-array>
   <string name="mpris_notification_settings_title">Mostra la notifica del controllo multimediale</string>
   <string name="mpris_notification_settings_summary">Consenti di controllare i lettori multimediali senza aprire KDE Connect</string>
-  <string name="share_to">Condividi…</string>
   <string name="protocol_version_older">Questo dispositivo usa una vecchia versione del protocollo di rete</string>
   <string name="protocol_version_newer">Questo dispositivo usa una nuova versione del protocollo di rete</string>
   <string name="general_settings">Impostazioni generali</string>

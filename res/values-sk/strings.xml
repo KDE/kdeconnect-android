@@ -115,7 +115,6 @@
     <item>1 minúta</item>
     <item>2 minúty</item>
   </string-array>
-  <string name="share_to">Zdieľať pre...</string>
   <string name="protocol_version_older">Toto zariadenie používa starú verziu protokolu</string>
   <string name="protocol_version_newer">Toto zariadenie používa novšiu verziu protokolu</string>
   <string name="general_settings">Všeobecné nastavenia</string>

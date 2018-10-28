@@ -115,7 +115,6 @@
     <item>دقيقة واحدة</item>
     <item>دقيقتان</item>
   </string-array>
-  <string name="share_to">شارك مع...</string>
   <string name="protocol_version_older">يستخدم هذا الجهاز إصدار ميفاق أقدم</string>
   <string name="protocol_version_newer">يستخدم هذا الجهاز إصدار ميفاق أحدث</string>
   <string name="general_settings">إعدادات عامّة</string>
