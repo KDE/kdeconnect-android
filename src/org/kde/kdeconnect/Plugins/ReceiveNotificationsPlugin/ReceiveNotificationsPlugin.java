@@ -28,7 +28,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 
 import org.kde.kdeconnect.Helpers.NotificationHelper;
@@ -74,11 +73,10 @@ public class ReceiveNotificationsPlugin extends Plugin {
         if (!np.has("ticker") || !np.has("appName") || !np.has("id")) {
             Log.e("NotificationsPlugin", "Received notification package lacks properties");
         } else {
-            TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-            stackBuilder.addParentStack(MainActivity.class);
-            stackBuilder.addNextIntent(new Intent(context, MainActivity.class));
-            PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
+            PendingIntent resultPendingIntent = PendingIntent.getActivity(
+                    context,
                     0,
+                    new Intent(context, MainActivity.class),
                     PendingIntent.FLAG_UPDATE_CURRENT
             );
 

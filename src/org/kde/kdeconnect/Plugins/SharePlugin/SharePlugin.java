@@ -37,7 +37,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.provider.DocumentFile;
 import android.util.Log;
@@ -151,10 +150,11 @@ public class SharePlugin extends Plugin {
             context.startActivity(browserIntent);
         } else {
             Resources res = context.getResources();
-            TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-            stackBuilder.addNextIntent(browserIntent);
-            PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
+
+            PendingIntent resultPendingIntent = PendingIntent.getActivity(
+                    context,
                     0,
+                    browserIntent,
                     PendingIntent.FLAG_UPDATE_CURRENT
             );
 
