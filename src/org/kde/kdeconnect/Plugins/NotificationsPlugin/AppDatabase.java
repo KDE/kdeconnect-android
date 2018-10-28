@@ -83,16 +83,18 @@ class AppDatabase {
     void setEnabled(String packageName, boolean isEnabled) {
         String[] columns = new String[]{KEY_IS_ENABLED};
         Cursor res = ourDatabase.query(DATABASE_TABLE, columns, KEY_PACKAGE_NAME + " =? ", new String[]{packageName}, null, null, null);
-
-        ContentValues cv = new ContentValues();
-        cv.put(KEY_IS_ENABLED, isEnabled ? "true" : "false");
-        if (res.getCount() > 0) {
-            ourDatabase.update(DATABASE_TABLE, cv, KEY_PACKAGE_NAME + "=?", new String[]{packageName});
-        } else {
-            cv.put(KEY_PACKAGE_NAME, packageName);
-            ourDatabase.insert(DATABASE_TABLE, null, cv);
+        try {
+            ContentValues cv = new ContentValues();
+            cv.put(KEY_IS_ENABLED, isEnabled ? "true" : "false");
+            if (res.getCount() > 0) {
+                ourDatabase.update(DATABASE_TABLE, cv, KEY_PACKAGE_NAME + "=?", new String[]{packageName});
+            } else {
+                cv.put(KEY_PACKAGE_NAME, packageName);
+                ourDatabase.insert(DATABASE_TABLE, null, cv);
+            }
+        } finally {
+            res.close();
         }
-        res.close();
     }
 
     void setAllEnabled(boolean enabled) {
@@ -102,15 +104,18 @@ class AppDatabase {
     boolean isEnabled(String packageName) {
         String[] columns = new String[]{KEY_IS_ENABLED};
         Cursor res = ourDatabase.query(DATABASE_TABLE, columns, KEY_PACKAGE_NAME + " =? ", new String[]{packageName}, null, null, null);
-        boolean result;
-        if (res.getCount() > 0) {
-            res.moveToFirst();
-            result = (res.getString(res.getColumnIndex(KEY_IS_ENABLED))).equals("true");
-        } else {
-            result = getDefaultStatus(packageName);
+        try {
+            boolean result;
+            if (res.getCount() > 0) {
+                res.moveToFirst();
+                result = (res.getString(res.getColumnIndex(KEY_IS_ENABLED))).equals("true");
+            } else {
+                result = getDefaultStatus(packageName);
+            }
+            return result;
+        } finally {
+            res.close();
         }
-        res.close();
-        return result;
     }
 
     private boolean getDefaultStatus(String packageName) {
