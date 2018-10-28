@@ -399,7 +399,11 @@ public class BackgroundService extends Service {
                 }
             }
             Intent serviceIntent = new Intent(c, BackgroundService.class);
-            c.startService(serviceIntent);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                c.startForegroundService(serviceIntent);
+            } else {
+                c.startService(serviceIntent);
+            }
         }).start();
     }
 
