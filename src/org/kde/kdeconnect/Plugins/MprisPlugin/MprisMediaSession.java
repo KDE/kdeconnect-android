@@ -306,8 +306,6 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
             iOpenActivity.putExtra("player", notificationPlayer.getPlayer());
             PendingIntent piOpenActivity = PendingIntent.getActivity(service, 0, iOpenActivity, PendingIntent.FLAG_UPDATE_CURRENT);
 
-            final NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
             NotificationCompat.Builder notification = new NotificationCompat.Builder(context, NotificationHelper.Channels.MEDIA_CONTROL);
 
             notification
