@@ -40,6 +40,7 @@ import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
+import android.text.SpannableString;
 import android.util.Log;
 
 import org.kde.kdeconnect.Helpers.AppsHelper;
@@ -330,7 +331,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 try {
                     Bundle extras = notification.extras;
-                    title = extras.getString(TITLE_KEY);
+                    title = extractStringFromExtra(extras, TITLE_KEY);
                 } catch (Exception e) {
                     Log.w("NotificationPlugin", "problem parsing notification extras for " + notification.tickerText);
                     e.printStackTrace();
@@ -399,6 +400,20 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     }
 
 
+    private static String extractStringFromExtra(Bundle extras, String key) {
+        Object extra = extras.get(key);
+        if (extra == null) {
+            return null;
+        } else if (extra instanceof String) {
+            return (String) extra;
+        } else if (extra instanceof SpannableString) {
+            return extra.toString();
+        } else {
+            Log.e("NotificationsPlugin", "Don't know how to extract text from extra of type: " + extra.getClass().getCanonicalName());
+            return null;
+        }
+    }
+
     /**
      * Returns the ticker text of the notification.
      * If device android version is KitKat or newer, the title and text of the notification is used
@@ -413,10 +428,8 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 try {
                     Bundle extras = notification.extras;
-                    String extraTitle = extras.getString(TITLE_KEY);
-                    String extraText = null;
-                    Object extraTextExtra = extras.get(TEXT_KEY);
-                    if (extraTextExtra != null) extraText = extraTextExtra.toString();
+                    String extraTitle = extractStringFromExtra(extras, TITLE_KEY);
+                    String extraText = extractStringFromExtra(extras, TEXT_KEY);
 
                     if (extraTitle != null && extraText != null && !extraText.isEmpty()) {
                         ticker = extraTitle + ": " + extraText;
