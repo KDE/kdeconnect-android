@@ -49,6 +49,7 @@ public class NetworkHelper {
                     e.printStackTrace();
                 }
             }
+            return mobile;
         } catch (Exception e) {
             e.printStackTrace();
             Log.d("isOnMobileNetwork", "Something went wrong, but this is non-critical.");
