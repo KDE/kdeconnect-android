@@ -361,52 +361,6 @@ public class DeviceFragment extends Fragment {
 
     };
 
-    public static void acceptPairing(final String devId, final MainActivity activity) {
-        final DeviceFragment frag = new DeviceFragment(devId, activity);
-        BackgroundService.RunCommand(activity, service -> {
-            Device dev = service.getDevice(devId);
-            if (dev == null) {
-                Log.w("rejectPairing", "Device no longer exists: " + devId);
-                return;
-            }
-            activity.getSupportActionBar().setTitle(dev.getName());
-
-            dev.addPairingCallback(frag.pairingCallback);
-            dev.addPluginsChangedListener(frag.pluginsChangedListener);
-
-            frag.device = dev;
-            frag.device.acceptPairing();
-
-            frag.refreshUI();
-
-        });
-    }
-
-    public static void rejectPairing(final String devId, final MainActivity activity) {
-        final DeviceFragment frag = new DeviceFragment(devId, activity);
-        BackgroundService.RunCommand(activity, service -> {
-            Device dev = service.getDevice(devId);
-            if (dev == null) {
-                Log.w("rejectPairing", "Device no longer exists: " + devId);
-                return;
-            }
-            activity.getSupportActionBar().setTitle(dev.getName());
-
-            dev.addPairingCallback(frag.pairingCallback);
-            dev.addPluginsChangedListener(frag.pluginsChangedListener);
-
-            frag.device = dev;
-
-            //Remove listener so buttons don't show for a while before changing the view
-            frag.device.removePluginsChangedListener(frag.pluginsChangedListener);
-            frag.device.removePairingCallback(frag.pairingCallback);
-            frag.device.rejectPairing();
-            activity.onDeviceSelected(null);
-
-            frag.refreshUI();
-        });
-    }
-
     private void createPluginsList(ConcurrentHashMap<String, Plugin> plugins, int headerText, FailedPluginListItem.Action action) {
         if (!plugins.isEmpty()) {
 

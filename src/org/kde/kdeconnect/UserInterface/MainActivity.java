@@ -136,7 +136,10 @@ public class MainActivity extends AppCompatActivity {
             String pairStatus = getIntent().getStringExtra(PAIR_REQUEST_STATUS);
             if (pairStatus != null) {
                 Log.i("MainActivity", "pair status is " + pairStatus);
-                onPairResultFromNotification(savedDevice, pairStatus);
+                savedDevice = onPairResultFromNotification(savedDevice, pairStatus);
+                if (savedDevice == null) {
+                    savedMenuEntry = MENU_ENTRY_ADD_DEVICE;
+                }
             }
         } else if (savedInstanceState != null) {
             Log.i("MainActivity", "Loading selected device from saved activity state");
@@ -164,22 +167,27 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-    private void onPairResultFromNotification(String deviceId, String pairStatus) {
-
+    private String onPairResultFromNotification(String deviceId, String pairStatus) {
         assert(deviceId != null);
 
-        mCurrentDevice = deviceId;
+        BackgroundService.RunCommand(this, service -> {
+            Device device = service.getDevice(deviceId);
+            if (device == null) {
+                Log.w("rejectPairing", "Device no longer exists: " + deviceId);
+                return;
+            }
 
-        preferences.edit().putString(STATE_SELECTED_DEVICE, null).apply();
-
-        mCurrentMenuEntry = deviceIdToMenuEntryId(mCurrentDevice);
-        mNavigationView.setCheckedItem(mCurrentMenuEntry);
+            if (pairStatus.equals(PAIRING_ACCEPTED)) {
+                device.acceptPairing();
+            } else {
+                device.rejectPairing();
+            }
+        });
 
         if (pairStatus.equals(PAIRING_ACCEPTED)) {
-            DeviceFragment.acceptPairing(mCurrentDevice, this);
+            return deviceId;
         } else {
-            DeviceFragment.rejectPairing(mCurrentDevice, this);
+            return null;
         }
     }
 
