@@ -25,7 +25,6 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -113,7 +112,7 @@ public class ShareActivity extends AppCompatActivity {
                 list.setOnItemClickListener((adapterView, view, i, l) -> {
 
                     Device device = devicesList.get(i - 1); //NOTE: -1 because of the title!
-                    SharePlugin.share(intent, device);
+                    BackgroundService.runWithPlugin(this, device.getDeviceId(), SharePlugin.class, plugin -> plugin.share(intent));
                     finish();
                 });
             });
@@ -148,12 +147,8 @@ public class ShareActivity extends AppCompatActivity {
 
         if (deviceId != null) {
 
-            BackgroundService.RunCommand(this, service -> {
-                Log.d("DirectShare", "sharing to " + service.getDevice(deviceId).getName());
-                Device device = service.getDevice(deviceId);
-                if (device.isReachable() && device.isPaired()) {
-                    SharePlugin.share(intent, device);
-                }
+            BackgroundService.runWithPlugin(this, deviceId, SharePlugin.class, plugin -> {
+                plugin.share(intent);
                 finish();
             });
         } else {

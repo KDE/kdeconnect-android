@@ -282,7 +282,7 @@ public class SharePlugin extends Plugin {
         parentActivity.startActivity(intent);
     }
 
-    static void queuedSendUriList(Context context, final Device device, final ArrayList<Uri> uriList) {
+    void queuedSendUriList(final ArrayList<Uri> uriList) {
 
         //Read all the data early, as we only have permissions to do it while the activity is alive
         final ArrayList<NetworkPacket> toSend = new ArrayList<>();
@@ -388,7 +388,7 @@ public class SharePlugin extends Plugin {
         }
     }
 
-    public static void share(Intent intent, Device device) {
+    public void share(Intent intent) {
         Bundle extras = intent.getExtras();
         if (extras != null) {
             if (extras.containsKey(Intent.EXTRA_STREAM)) {
@@ -404,7 +404,7 @@ public class SharePlugin extends Plugin {
                         uriList.add(uri);
                     }
 
-                    SharePlugin.queuedSendUriList(device.getContext(), device, uriList);
+                    queuedSendUriList(uriList);
 
                 } catch (Exception e) {
                     Log.e("ShareActivity", "Exception");
