@@ -64,25 +64,11 @@ public class SystemvolumeFragment extends ListFragment implements Sink.UpdateLis
     }
 
     public void connectToPlugin(final String deviceId) {
-
-        BackgroundService.RunCommand(activity, service -> {
-            Device device = service.getDevice(deviceId);
-
-            if (device == null)
-                return;
-
-            plugin = device.getPlugin(SystemvolumePlugin.class);
-
-            if (plugin == null) {
-                Log.e("SystemvolumeFragment", "device has no systemvolume plugin!");
-                return;
-            }
-
+        BackgroundService.runWithPlugin(activity, deviceId, SystemvolumePlugin.class, plugin -> {
+            this.plugin = plugin;
             plugin.addSinkListener(SystemvolumeFragment.this);
             plugin.requestSinkList();
-            Log.d("Systemvolume", "requestSinklist");
         });
-
     }
 
     @Override

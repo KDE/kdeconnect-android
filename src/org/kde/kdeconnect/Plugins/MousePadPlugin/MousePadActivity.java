@@ -15,8 +15,8 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
-*/
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 package org.kde.kdeconnect.Plugins.MousePadPlugin;
 
@@ -36,7 +36,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import org.kde.kdeconnect.BackgroundService;
-import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 
@@ -114,7 +113,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         String sensitivitySetting = prefs.getString(getString(R.string.mousepad_sensitivity_key),
                 getString(R.string.mousepad_default_sensitivity));
 
-        String accelerationProfileName=prefs.getString(getString(R.string.mousepad_acceleration_profile_key),
+        String accelerationProfileName = prefs.getString(getString(R.string.mousepad_acceleration_profile_key),
                 getString(R.string.mousepad_default_acceleration_profile));
 
         mPointerAccelerationProfile = PointerAccelerationProfileFactory.getProfileWithName(accelerationProfileName);
@@ -223,11 +222,8 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
             case MotionEvent.ACTION_MOVE:
                 mCurrentX = event.getX();
                 mCurrentY = event.getY();
-                BackgroundService.RunCommand(this, service -> {
-                    Device device = service.getDevice(deviceId);
-                    MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
-                    if (mousePadPlugin == null) return;
 
+                BackgroundService.runWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> {
                     float deltaX = (mCurrentX - mPrevX) * displayDpiMultiplier * mCurrentSensitivity;
                     float deltaY = (mCurrentY - mPrevY) * displayDpiMultiplier * mCurrentSensitivity;
 
@@ -235,7 +231,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
                     mPointerAccelerationProfile.touchMoved(deltaX, deltaY, event.getEventTime());
                     mouseDelta = mPointerAccelerationProfile.commitAcceleratedMouseDelta(mouseDelta);
 
-                    mousePadPlugin.sendMouseDelta(mouseDelta.x,mouseDelta.y);
+                    plugin.sendMouseDelta(mouseDelta.x, mouseDelta.y);
 
                     mPrevX = mCurrentX;
                     mPrevY = mCurrentY;
@@ -297,15 +293,8 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
     @Override
     public void onLongPress(MotionEvent e) {
-
         getWindow().getDecorView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-
-        BackgroundService.RunCommand(this, service -> {
-            Device device = service.getDevice(deviceId);
-            MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
-            if (mousePadPlugin == null) return;
-            mousePadPlugin.sendSingleHold();
-        });
+        BackgroundService.runWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendSingleHold);
     }
 
     @Override
@@ -315,23 +304,13 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
     @Override
     public boolean onSingleTapConfirmed(MotionEvent e) {
-        BackgroundService.RunCommand(this, service -> {
-            Device device = service.getDevice(deviceId);
-            MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
-            if (mousePadPlugin == null) return;
-            mousePadPlugin.sendSingleClick();
-        });
+        BackgroundService.runWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendSingleClick);
         return true;
     }
 
     @Override
     public boolean onDoubleTap(MotionEvent e) {
-        BackgroundService.RunCommand(this, service -> {
-            Device device = service.getDevice(deviceId);
-            MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
-            if (mousePadPlugin == null) return;
-            mousePadPlugin.sendDoubleClick();
-        });
+        BackgroundService.runWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendDoubleClick);
         return true;
     }
 
@@ -370,39 +349,15 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
 
     private void sendMiddleClick() {
-        BackgroundService.RunCommand(this, service -> {
-            Device device = service.getDevice(deviceId);
-            MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
-            if (mousePadPlugin == null) return;
-            mousePadPlugin.sendMiddleClick();
-        });
+        BackgroundService.runWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendMiddleClick);
     }
 
     private void sendRightClick() {
-        BackgroundService.RunCommand(this, service -> {
-            Device device = service.getDevice(deviceId);
-            MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
-            if (mousePadPlugin == null) return;
-            mousePadPlugin.sendRightClick();
-        });
-    }
-
-    private void sendSingleHold() {
-        BackgroundService.RunCommand(this, service -> {
-            Device device = service.getDevice(deviceId);
-            MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
-            if (mousePadPlugin == null) return;
-            mousePadPlugin.sendSingleHold();
-        });
+        BackgroundService.runWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendRightClick);
     }
 
     private void sendScroll(final float y) {
-        BackgroundService.RunCommand(this, service -> {
-            Device device = service.getDevice(deviceId);
-            MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
-            if (mousePadPlugin == null) return;
-            mousePadPlugin.sendScroll(0, y);
-        });
+        BackgroundService.runWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> plugin.sendScroll(0, y));
     }
 
     private void showKeyboard() {

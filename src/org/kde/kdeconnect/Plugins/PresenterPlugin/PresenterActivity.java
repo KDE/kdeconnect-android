@@ -53,25 +53,11 @@ public class PresenterActivity extends AppCompatActivity {
 
         final String deviceId = getIntent().getStringExtra("deviceId");
 
-        BackgroundService.RunCommand(this, service -> {
-            Device device = service.getDevice(deviceId);
-
-            plugin = device.getPlugin(PresenterPlugin.class);
-            if (plugin == null) {
-                Log.e("PresenterActivity", "device has no presenter plugin!");
-                return;
-            }
-
-            runOnUiThread(() -> {
-
-                findViewById(R.id.next_button).setOnClickListener(v -> plugin.sendNext());
-
-                findViewById(R.id.previous_button).setOnClickListener(v -> plugin.sendPrevious());
-
-
-            });
-        });
-
+        BackgroundService.runWithPlugin(this, deviceId, PresenterPlugin.class, plugin -> runOnUiThread(() -> {
+            this.plugin = plugin;
+            findViewById(R.id.next_button).setOnClickListener(v -> plugin.sendNext());
+            findViewById(R.id.previous_button).setOnClickListener(v -> plugin.sendPrevious());
+        }));
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

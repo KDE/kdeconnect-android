@@ -42,6 +42,7 @@ import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
+import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect_tp.R;
 
@@ -59,6 +60,10 @@ public class BackgroundService extends Service {
 
     public interface DeviceListChangedCallback {
         void onDeviceListChanged();
+    }
+
+    public interface PluginCallback<T extends Plugin>  {
+        void run(T plugin);
     }
 
     private final ConcurrentHashMap<String, DeviceListChangedCallback> deviceListChangedCallbacks = new ConcurrentHashMap<>();
@@ -405,6 +410,25 @@ public class BackgroundService extends Service {
                 c.startService(serviceIntent);
             }
         }).start();
+    }
+
+    public static <T extends Plugin> void runWithPlugin(final Context c, final String deviceId, final Class<T> pluginClass, final PluginCallback<T> cb) {
+        RunCommand(c, service -> {
+            Device device = service.getDevice(deviceId);
+
+            if (device == null) {
+                Log.e("BackgroundService", "Device " + deviceId + " not found");
+                return;
+            }
+
+            final T plugin = device.getPlugin(pluginClass);
+
+            if (plugin == null) {
+                Log.e("BackgroundService", "Device " + device.getName() + " does not have plugin " + pluginClass.getName());
+                return;
+            }
+            cb.run(plugin);
+        });
     }
 
 }
