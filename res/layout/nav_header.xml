@@ -15,7 +15,7 @@
         android:paddingRight="48dp"
         android:paddingStart="16dp"
         android:paddingTop="8dp"
-        android:text="KDE Connect"
+        android:text="@string/kde_connect"
         android:textColor="#FFF"
         android:textStyle="bold" />
 
