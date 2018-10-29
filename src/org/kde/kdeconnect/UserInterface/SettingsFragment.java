@@ -55,24 +55,22 @@ public class SettingsFragment extends PreferenceFragmentCompat implements MainAc
 
 
         // Dark mode
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            final TwoStatePreference darkThemeSwitch = new SwitchPreferenceCompat(context);
-            darkThemeSwitch.setPersistent(false);
-            darkThemeSwitch.setChecked(ThemeUtil.shouldUseDarkTheme(context));
-            darkThemeSwitch.setTitle(R.string.settings_dark_mode);
-            darkThemeSwitch.setOnPreferenceChangeListener((preference, newValue) -> {
-                    boolean isChecked = (Boolean)newValue;
-                    boolean isDarkAlready = prefs.getBoolean("darkTheme", false);
-                    if (isDarkAlready != isChecked) {
-                        prefs.edit().putBoolean("darkTheme", isChecked).apply();
-                        if (mainActivity != null) {
-                            mainActivity.recreate();
-                        }
+        final TwoStatePreference darkThemeSwitch = new SwitchPreferenceCompat(context);
+        darkThemeSwitch.setPersistent(false);
+        darkThemeSwitch.setChecked(ThemeUtil.shouldUseDarkTheme(context));
+        darkThemeSwitch.setTitle(R.string.settings_dark_mode);
+        darkThemeSwitch.setOnPreferenceChangeListener((preference, newValue) -> {
+                boolean isChecked = (Boolean)newValue;
+                boolean isDarkAlready = prefs.getBoolean("darkTheme", false);
+                if (isDarkAlready != isChecked) {
+                    prefs.edit().putBoolean("darkTheme", isChecked).apply();
+                    if (mainActivity != null) {
+                        mainActivity.recreate();
                     }
-                    return true;
-            });
-            screen.addPreference(darkThemeSwitch);
-        }
+                }
+                return true;
+        });
+        screen.addPreference(darkThemeSwitch);
 
         // Persistent notification toggle
         final TwoStatePreference notificationSwitch = new SwitchPreferenceCompat(context);

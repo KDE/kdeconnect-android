@@ -16,7 +16,6 @@ import org.kde.kdeconnect_tp.R;
 import java.util.ArrayList;
 import java.util.Collections;
 
-@RequiresApi( api = Build.VERSION_CODES.ICE_CREAM_SANDWICH )
 public class RunCommandWidgetDeviceSelector extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle bundle) {

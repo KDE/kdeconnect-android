@@ -152,9 +152,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
                 int fullscreenType = 0;
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-                    fullscreenType |= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-                }
+                fullscreenType |= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     fullscreenType |= View.SYSTEM_UI_FLAG_FULLSCREEN;

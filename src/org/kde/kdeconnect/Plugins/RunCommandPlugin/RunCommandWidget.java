@@ -17,7 +17,6 @@ import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect_tp.R;
 
-@RequiresApi( api = Build.VERSION_CODES.ICE_CREAM_SANDWICH )
 public class RunCommandWidget extends AppWidgetProvider {
 
     public static final String RUN_COMMAND_ACTION = "RUN_COMMAND_ACTION";

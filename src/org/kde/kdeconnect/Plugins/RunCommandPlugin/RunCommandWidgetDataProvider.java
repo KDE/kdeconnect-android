@@ -11,7 +11,6 @@ import android.widget.RemoteViewsService;
 import org.kde.kdeconnect_tp.R;
 
 
-@RequiresApi( api = Build.VERSION_CODES.ICE_CREAM_SANDWICH )
 class RunCommandWidgetDataProvider implements RemoteViewsService.RemoteViewsFactory {
 
     private final Context mContext;

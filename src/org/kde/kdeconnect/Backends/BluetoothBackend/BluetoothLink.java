@@ -45,7 +45,6 @@ import java.nio.charset.Charset;
 import java.security.PublicKey;
 import java.util.UUID;
 
-@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class BluetoothLink extends BaseLink {
     private final BluetoothSocket socket;
     private final BluetoothLinkProvider linkProvider;
