@@ -148,6 +148,7 @@ public class NotificationFilterActivity extends AppCompatActivity {
             }
         });
 
+        listView.setItemChecked(0, appDatabase.getAllEnabled()); //"Select all" button
         for (int i = 0; i < apps.length; i++) {
             listView.setItemChecked(i + 1, apps[i].isEnabled);
         }
