@@ -40,6 +40,8 @@ import org.kde.kdeconnect_tp.R;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 class ShareNotification {
 
@@ -104,14 +106,14 @@ class ShareNotification {
 
         //If it's an image, try to show it in the notification
         if (mimeType.startsWith("image/")) {
-            try {
-                Bitmap image = BitmapFactory.decodeStream(device.getContext().getContentResolver().openInputStream(destinationUri));
+            try (InputStream inputStream = device.getContext().getContentResolver().openInputStream(destinationUri)) {
+                Bitmap image = BitmapFactory.decodeStream(inputStream);
                 if (image != null) {
                     builder.setLargeIcon(image);
                     builder.setStyle(new NotificationCompat.BigPictureStyle()
                             .bigPicture(image));
                 }
-            } catch (FileNotFoundException ignored) {
+            } catch (IOException ignored) {
             }
         }
         if (!"file".equals(destinationUri.getScheme())) {

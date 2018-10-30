@@ -82,8 +82,7 @@ class AppDatabase {
 
     void setEnabled(String packageName, boolean isEnabled) {
         String[] columns = new String[]{KEY_IS_ENABLED};
-        Cursor res = ourDatabase.query(DATABASE_TABLE, columns, KEY_PACKAGE_NAME + " =? ", new String[]{packageName}, null, null, null);
-        try {
+        try (Cursor res = ourDatabase.query(DATABASE_TABLE, columns, KEY_PACKAGE_NAME + " =? ", new String[]{packageName}, null, null, null)) {
             ContentValues cv = new ContentValues();
             cv.put(KEY_IS_ENABLED, isEnabled ? "true" : "false");
             if (res.getCount() > 0) {
@@ -92,8 +91,6 @@ class AppDatabase {
                 cv.put(KEY_PACKAGE_NAME, packageName);
                 ourDatabase.insert(DATABASE_TABLE, null, cv);
             }
-        } finally {
-            res.close();
         }
     }
 
@@ -103,8 +100,7 @@ class AppDatabase {
 
     boolean isEnabled(String packageName) {
         String[] columns = new String[]{KEY_IS_ENABLED};
-        Cursor res = ourDatabase.query(DATABASE_TABLE, columns, KEY_PACKAGE_NAME + " =? ", new String[]{packageName}, null, null, null);
-        try {
+        try (Cursor res = ourDatabase.query(DATABASE_TABLE, columns, KEY_PACKAGE_NAME + " =? ", new String[]{packageName}, null, null, null)) {
             boolean result;
             if (res.getCount() > 0) {
                 res.moveToFirst();
@@ -113,8 +109,6 @@ class AppDatabase {
                 result = getDefaultStatus(packageName);
             }
             return result;
-        } finally {
-            res.close();
         }
     }
 

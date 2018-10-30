@@ -57,49 +57,31 @@ public class ContactsHelper {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static Map<String, String> phoneNumberLookup(Context context, String number) {
 
-        //Log.e("PhoneNumberLookup", number);
-
         Map<String, String> contactInfo = new HashMap<>();
 
         Uri uri = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
-        Cursor cursor;
-        try {
-            cursor = context.getContentResolver().query(
-                    uri,
-                    new String[]{
-                            PhoneLookup.DISPLAY_NAME,
-                            ContactsContract.PhoneLookup.PHOTO_URI
-                            /*, PhoneLookup.TYPE
-                              , PhoneLookup.LABEL
-                              , PhoneLookup.ID */
-                    },
-                    null, null, null);
-        } catch (Exception e) {
-            return contactInfo;
+        String[] columns = new String[]{
+                PhoneLookup.DISPLAY_NAME,
+                PhoneLookup.PHOTO_URI
+                /*, PhoneLookup.TYPE
+                  , PhoneLookup.LABEL
+                  , PhoneLookup.ID */
+        };
+        try (Cursor cursor = context.getContentResolver().query(uri, columns,null, null, null)) {
+            // Take the first match only
+            if (cursor != null && cursor.moveToFirst()) {
+                int nameIndex = cursor.getColumnIndex(PhoneLookup.DISPLAY_NAME);
+                if (nameIndex != -1) {
+                    contactInfo.put("name", cursor.getString(nameIndex));
+                }
+
+                nameIndex = cursor.getColumnIndex(PhoneLookup.PHOTO_URI);
+                if (nameIndex != -1) {
+                    contactInfo.put("photoID", cursor.getString(nameIndex));
+                }
+            }
+        } catch (Exception ignored) {
         }
-
-        // Take the first match only
-        if (cursor != null && cursor.moveToFirst()) {
-            int nameIndex = cursor.getColumnIndex(PhoneLookup.DISPLAY_NAME);
-            if (nameIndex != -1) {
-                contactInfo.put("name", cursor.getString(nameIndex));
-            }
-
-            nameIndex = cursor.getColumnIndex(PhoneLookup.PHOTO_URI);
-            if (nameIndex != -1) {
-                contactInfo.put("photoID", cursor.getString(nameIndex));
-            }
-
-            try {
-                cursor.close();
-            } catch (Exception ignored) {
-            }
-
-            if (!contactInfo.isEmpty()) {
-                return contactInfo;
-            }
-        }
-
         return contactInfo;
     }
 
@@ -157,34 +139,28 @@ public class ContactsHelper {
         ArrayList<uID> toReturn = new ArrayList<>();
 
         // Define the columns we want to read from the Contacts database
-        final String[] projection = new String[]{
+        final String[] columns = new String[]{
                 ContactsContract.Contacts.LOOKUP_KEY
         };
 
         Uri contactsUri = ContactsContract.Contacts.CONTENT_URI;
-        Cursor contactsCursor = context.getContentResolver().query(
-                contactsUri,
-                projection,
-                null, null, null);
-        if (contactsCursor != null && contactsCursor.moveToFirst()) {
-            do {
-                uID contactID;
+        try (Cursor contactsCursor = context.getContentResolver().query(contactsUri, columns, null, null, null)) {
+            if (contactsCursor != null && contactsCursor.moveToFirst()) {
+                do {
+                    uID contactID;
 
-                int idIndex = contactsCursor.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY);
-                if (idIndex != -1) {
-                    contactID = new uID(contactsCursor.getString(idIndex));
-                } else {
-                    // Something went wrong with this contact
-                    // If you are experiencing this, please open a bug report indicating how you got here
-                    Log.e("ContactsHelper", "Got a contact which does not have a LOOKUP_KEY");
-                    continue;
-                }
+                    int idIndex = contactsCursor.getColumnIndex(ContactsContract.Contacts.LOOKUP_KEY);
+                    if (idIndex != -1) {
+                        contactID = new uID(contactsCursor.getString(idIndex));
+                    } else {
+                        // Something went wrong with this contact
+                        // If you are experiencing this, please open a bug report indicating how you got here
+                        Log.e("ContactsHelper", "Got a contact which does not have a LOOKUP_KEY");
+                        continue;
+                    }
 
-                toReturn.add(contactID);
-            } while (contactsCursor.moveToNext());
-            try {
-                contactsCursor.close();
-            } catch (Exception ignored) {
+                    toReturn.add(contactID);
+                } while (contactsCursor.moveToNext());
             }
         }
 
@@ -221,14 +197,11 @@ public class ContactsHelper {
                 ContactsContract.Contacts.CONTENT_MULTI_VCARD_URI,
                 Uri.encode(keys.toString()));
 
-        InputStream input;
+        ;
         StringBuilder vcardJumble = new StringBuilder();
-        try {
-            input = context.getContentResolver().openInputStream(vcardURI);
-
+        try (InputStream input = context.getContentResolver().openInputStream(vcardURI)) {
             BufferedReader bufferedInput = new BufferedReader(new InputStreamReader(input));
             String line;
-
             while ((line = bufferedInput.readLine()) != null) {
                 vcardJumble.append(line).append('\n');
             }
@@ -263,9 +236,8 @@ public class ContactsHelper {
         for (uID ID : IDs) {
             String lookupKey = ID.toString();
             Uri vcardURI = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_VCARD_URI, lookupKey);
-            InputStream input;
-            try {
-                input = context.getContentResolver().openInputStream(vcardURI);
+
+            try (InputStream input = context.getContentResolver().openInputStream(vcardURI)) {
 
                 if (input == null)
                 {
@@ -281,13 +253,10 @@ public class ContactsHelper {
                 }
 
                 toReturn.put(ID, new VCardBuilder(vcard.toString()));
-                input.close();
             } catch (IOException e) {
                 // If you are experiencing this, please open a bug report indicating how you got here
                 e.printStackTrace();
-                continue;
-            } catch (NullPointerException e)
-            {
+            } catch (NullPointerException e) {
                 // If you are experiencing this, please open a bug report indicating how you got here
                 e.printStackTrace();
             }
@@ -345,63 +314,59 @@ public class ContactsHelper {
             contactsArgs.add(ID.toString());
         }
 
-        Cursor contactsCursor = context.getContentResolver().query(
+        try (Cursor contactsCursor = context.getContentResolver().query(
                 contactsUri,
                 lookupProjection.toArray(new String[0]),
                 contactsSelection.toString(),
-                contactsArgs.toArray(new String[0]), null
-        );
+                contactsArgs.toArray(new String[0]),
+                null
+        )) {
+            if (contactsCursor != null && contactsCursor.moveToFirst()) {
+                do {
+                    Map<String, Object> requestedData = new HashMap<>();
 
-        if (contactsCursor != null && contactsCursor.moveToFirst()) {
-            do {
-                Map<String, Object> requestedData = new HashMap<>();
+                    int lookupKeyIdx = contactsCursor.getColumnIndexOrThrow(uID.COLUMN);
+                    String lookupKey = contactsCursor.getString(lookupKeyIdx);
 
-                int lookupKeyIdx = contactsCursor.getColumnIndexOrThrow(uID.COLUMN);
-                String lookupKey = contactsCursor.getString(lookupKeyIdx);
-
-                // For each column, collect the data from that column
-                for (String column : contactsProjection) {
-                    int index = contactsCursor.getColumnIndex(column);
-                    // Since we might be getting various kinds of data, Object is the best we can do
-                    Object data;
-                    int type;
-                    if (index == -1) {
-                        // This contact didn't have the requested column? Something is very wrong.
-                        // If you are experiencing this, please open a bug report indicating how you got here
-                        Log.e("ContactsHelper", "Got a contact which does not have a requested column");
-                        continue;
-                    }
-
-                    type = contactsCursor.getType(index);
-                    switch (type) {
-                        case Cursor.FIELD_TYPE_INTEGER:
-                            data = contactsCursor.getInt(index);
-                            break;
-                        case Cursor.FIELD_TYPE_FLOAT:
-                            data = contactsCursor.getFloat(index);
-                            break;
-                        case Cursor.FIELD_TYPE_STRING:
-                            data = contactsCursor.getString(index);
-                            break;
-                        case Cursor.FIELD_TYPE_BLOB:
-                            data = contactsCursor.getBlob(index);
-                            break;
-                        default:
-                            Log.e("ContactsHelper", "Got an undefined type of column " + column);
+                    // For each column, collect the data from that column
+                    for (String column : contactsProjection) {
+                        int index = contactsCursor.getColumnIndex(column);
+                        // Since we might be getting various kinds of data, Object is the best we can do
+                        Object data;
+                        int type;
+                        if (index == -1) {
+                            // This contact didn't have the requested column? Something is very wrong.
+                            // If you are experiencing this, please open a bug report indicating how you got here
+                            Log.e("ContactsHelper", "Got a contact which does not have a requested column");
                             continue;
+                        }
+
+                        type = contactsCursor.getType(index);
+                        switch (type) {
+                            case Cursor.FIELD_TYPE_INTEGER:
+                                data = contactsCursor.getInt(index);
+                                break;
+                            case Cursor.FIELD_TYPE_FLOAT:
+                                data = contactsCursor.getFloat(index);
+                                break;
+                            case Cursor.FIELD_TYPE_STRING:
+                                data = contactsCursor.getString(index);
+                                break;
+                            case Cursor.FIELD_TYPE_BLOB:
+                                data = contactsCursor.getBlob(index);
+                                break;
+                            default:
+                                Log.e("ContactsHelper", "Got an undefined type of column " + column);
+                                continue;
+                        }
+
+                        requestedData.put(column, data);
                     }
 
-                    requestedData.put(column, data);
-                }
-
-                toReturn.put(new uID(lookupKey), requestedData);
-            } while (contactsCursor.moveToNext());
-            try {
-                contactsCursor.close();
-            } catch (Exception ignored) {
+                    toReturn.put(new uID(lookupKey), requestedData);
+                } while (contactsCursor.moveToNext());
             }
         }
-
         return toReturn;
     }
 

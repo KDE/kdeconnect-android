@@ -124,29 +124,26 @@ public class SMSHelper {
 
         Uri smsUri = getSMSUri();
 
-        Cursor smsCursor = context.getContentResolver().query(
+        try (Cursor smsCursor = context.getContentResolver().query(
                 smsUri,
                 Message.smsColumns,
                 selection,
                 selectionArgs,
-                null);
-
-        if (smsCursor != null && smsCursor.moveToFirst()) {
-            do {
-                HashMap<String, String> messageInfo = new HashMap<>();
-                for (int columnIdx = 0; columnIdx < smsCursor.getColumnCount(); columnIdx++) {
-                    String colName = smsCursor.getColumnName(columnIdx);
-                    String body = smsCursor.getString(columnIdx);
-                    messageInfo.put(colName, body);
-                }
-                toReturn.add(new Message(messageInfo));
-            } while (smsCursor.moveToNext());
-        } else {
-            // No SMSes available?
-        }
-
-        if (smsCursor != null) {
-            smsCursor.close();
+                null)
+        ) {
+            if (smsCursor != null && smsCursor.moveToFirst()) {
+                do {
+                    HashMap<String, String> messageInfo = new HashMap<>();
+                    for (int columnIdx = 0; columnIdx < smsCursor.getColumnCount(); columnIdx++) {
+                        String colName = smsCursor.getColumnName(columnIdx);
+                        String body = smsCursor.getString(columnIdx);
+                        messageInfo.put(colName, body);
+                    }
+                    toReturn.add(new Message(messageInfo));
+                } while (smsCursor.moveToNext());
+            } else {
+                // No SMSes available?
+            }
         }
 
         return toReturn;
@@ -164,32 +161,29 @@ public class SMSHelper {
 
         Uri conversationUri = getConversationUri();
 
-        Cursor conversationsCursor = context.getContentResolver().query(
+        try (Cursor conversationsCursor = context.getContentResolver().query(
                 conversationUri,
                 Message.smsColumns,
                 null,
                 null,
-                null);
+                null)
+        ) {
+            if (conversationsCursor != null && conversationsCursor.moveToFirst()) {
+                int threadColumn = conversationsCursor.getColumnIndexOrThrow(ThreadID.lookupColumn);
+                do {
+                    int thread = conversationsCursor.getInt(threadColumn);
 
-        if (conversationsCursor != null && conversationsCursor.moveToFirst()) {
-            int threadColumn = conversationsCursor.getColumnIndexOrThrow(ThreadID.lookupColumn);
-            do {
-                int thread = conversationsCursor.getInt(threadColumn);
-
-                HashMap<String, String> messageInfo = new HashMap<>();
-                for (int columnIdx = 0; columnIdx < conversationsCursor.getColumnCount(); columnIdx++) {
-                    String colName = conversationsCursor.getColumnName(columnIdx);
-                    String body = conversationsCursor.getString(columnIdx);
-                    messageInfo.put(colName, body);
-                }
-                toReturn.put(new ThreadID(thread), new Message(messageInfo));
-            } while (conversationsCursor.moveToNext());
-        } else {
-            // No conversations available?
-        }
-
-        if (conversationsCursor != null) {
-            conversationsCursor.close();
+                    HashMap<String, String> messageInfo = new HashMap<>();
+                    for (int columnIdx = 0; columnIdx < conversationsCursor.getColumnCount(); columnIdx++) {
+                        String colName = conversationsCursor.getColumnName(columnIdx);
+                        String body = conversationsCursor.getString(columnIdx);
+                        messageInfo.put(colName, body);
+                    }
+                    toReturn.put(new ThreadID(thread), new Message(messageInfo));
+                } while (conversationsCursor.moveToNext());
+            } else {
+                // No conversations available?
+            }
         }
 
         return toReturn;

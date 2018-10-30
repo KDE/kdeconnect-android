@@ -80,11 +80,8 @@ public class StorageHelper {
         File storage = new File("/storage/");
         if (storage.exists() && storage.isDirectory()) {
             String mounts = null;
-            try {
-                Scanner scanner = new Scanner(new File("/proc/mounts"));
+            try (Scanner scanner = new Scanner(new File("/proc/mounts"))) {
                 mounts = scanner.useDelimiter("\\A").next();
-                scanner.close();
-                //Log.e("Mounts",mounts);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -116,9 +113,7 @@ public class StorageHelper {
             //Legacy code for Android < 4.0 that still didn't have /storage
 
             ArrayList<String> entries = new ArrayList<>();
-            BufferedReader buf_reader = null;
-            try {
-                buf_reader = new BufferedReader(new FileReader("/proc/mounts"));
+            try (BufferedReader buf_reader = new BufferedReader(new FileReader("/proc/mounts"))){
                 String entry;
                 while ((entry = buf_reader.readLine()) != null) {
                     //Log.e("getStorageList", entry);
@@ -129,13 +124,6 @@ public class StorageHelper {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-            } finally {
-                if (buf_reader != null) {
-                    try {
-                        buf_reader.close();
-                    } catch (IOException ex) {
-                    }
-                }
             }
 
             for (String line : entries) {
