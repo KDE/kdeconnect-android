@@ -54,7 +54,7 @@ android {
             minifyEnabled false
             useProguard false
         }
-        release { //keep on 'release', set to 'all' when testing to make sure proguard is not deleting important stuff
+        release { //keep on 'release' for faster builds, set to 'all' when testing to make sure proguard is not deleting important stuff
             minifyEnabled true
             useProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

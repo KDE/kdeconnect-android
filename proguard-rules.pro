@@ -35,6 +35,7 @@
 
 # SSHd requires mina, and mina uses reflection so some classes would get deleted
 -keep class org.apache.mina.** {*;}
+-keep class org.apache.sshd.** {*;}
 
 -keep class org.kde.kdeconnect.** {*;}
 
