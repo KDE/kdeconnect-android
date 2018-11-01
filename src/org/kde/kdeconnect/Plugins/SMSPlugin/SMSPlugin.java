@@ -67,15 +67,15 @@ public class SMSPlugin extends Plugin {
      * <p>
      * For example:
      * { "messages" : [
-     * { "event" : "sms",
-     * "messageBody" : "Hello",
-     * "phoneNumber" : "2021234567",
-     * "messageDate" : "1518846484880",
-     * "messageType" : "2",
-     * "threadID" : "132"
-     * },
-     * { ... },
-     * ...
+     *   { "event" : "sms",
+     *     "messageBody" : "Hello",
+     *     "phoneNumber" : "2021234567",
+     *     "messageDate" : "1518846484880",
+     *     "messageType" : "2",
+     *     "threadID" : "132"
+     *   },
+     *   { ... },
+     *   ...
      * ]
      */
     private final static String PACKET_TYPE_SMS_MESSAGE = "kdeconnect.sms.messages";

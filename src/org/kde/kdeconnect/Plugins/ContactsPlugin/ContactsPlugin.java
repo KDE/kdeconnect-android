@@ -72,10 +72,11 @@ public class ContactsPlugin extends Plugin {
      * then, for each UID, there shall be a field with the key of that UID and the value of the name of the contact
      * <p>
      * For example:
-     * ( 'uids' : ['1', '3', '15'],
-     * '1'  : 'John Smith',
-     * '3'  : 'Abe Lincoln',
-     * '15' : 'Mom' )
+     * { 'uids' : ['1', '3', '15'],
+     *   '1'  : 'John Smith',
+     *   '3'  : 'Abe Lincoln',
+     *   '15' : 'Mom'
+     * }
      */
     private static final String PACKET_TYPE_CONTACTS_RESPONSE_VCARDS = "kdeconnect.contacts.response_vcards";
 
