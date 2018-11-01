@@ -1,6 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE 連線</string>
+  <string name="foreground_notification_no_devices">沒有連線到任何裝置</string>
+  <string name="foreground_notification_devices">已連線到：%s</string>
   <string name="pref_plugin_telephony">電話通知器</string>
+  <string name="pref_plugin_telephony_desc">傳送未接來電的通知</string>
   <string name="pref_plugin_battery">電池報告</string>
   <string name="pref_plugin_battery_desc">定期回報電池狀態</string>
   <string name="pref_plugin_sftp">顯示檔案系統</string>
@@ -9,6 +13,8 @@
   <string name="pref_plugin_clipboard_desc">分享剪貼板的內容</string>
   <string name="pref_plugin_mousepad">遠端輸入</string>
   <string name="pref_plugin_mousepad_desc">使用您的智慧型手機或者平板來模擬觸碰板與鍵盤</string>
+  <string name="pref_plugin_presenter">遠端簡報</string>
+  <string name="pref_plugin_presenter_desc">使用您的裝置來切換簡報中的投影片</string>
   <string name="pref_plugin_remotekeyboard">接收遠端按鍵輸入</string>
   <string name="pref_plugin_remotekeyboard_desc">從遠端裝置接收按鍵輸入活動</string>
   <string name="pref_plugin_mpris">多媒體控制</string>
@@ -43,6 +49,7 @@
   <string name="mousepad_double_tap_settings_title">設定兩隻手指頭點擊的動作</string>
   <string name="mousepad_triple_tap_settings_title">設定三隻手指頭點擊的動作</string>
   <string name="mousepad_sensitivity_settings_title">設定觸碰板的靈敏度</string>
+  <string name="mousepad_acceleration_profile_settings_title">設定指針加速度</string>
   <string name="mousepad_scroll_direction_title">滾動方向相反</string>
   <string-array name="mousepad_tap_entries">
     <item>右鍵點擊</item>
@@ -57,12 +64,12 @@
     <item>最快</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>No Acceleration</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
-    <item>Medium</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>沒有加速度</item>
+    <item>最脆弱</item>
+    <item>脆弱</item>
+    <item>中等</item>
+    <item>安全</item>
+    <item>最安全</item>
   </string-array>
   <string name="category_connected_devices">已連接的設備</string>
   <string name="category_not_paired_devices">可連接的設備</string>
@@ -115,6 +122,7 @@
   <string name="device">裝置</string>
   <string name="pair_device">配對裝置</string>
   <string name="remote_control">遠端控制</string>
+  <string name="settings">設定</string>
   <string name="mpris_play">播放</string>
   <string name="mpris_pause">暫停</string>
   <string name="mpris_previous">往前</string>
@@ -124,6 +132,7 @@
   <string name="mpris_volume">音量</string>
   <string name="mpris_settings">多媒體設定</string>
   <string name="mpris_time_settings_title">往前/往後按鍵</string>
+  <string name="mpris_time_settings_summary">調整按下時往前 / 往後的時間</string>
   <string-array name="mpris_time_entries">
     <item>10秒鐘</item>
     <item>20秒鐘</item>
@@ -132,6 +141,8 @@
     <item>2分鐘</item>
   </string-array>
   <string name="mpris_notification_settings_title">顯示媒體控制項通知</string>
+  <string name="mpris_notification_settings_summary">允許控制您的媒體播放器而不需要開啟 KDE 連線</string>
+  <string name="share_to">分享給…</string>
   <string name="protocol_version_older">這個裝置使用舊版本的通訊協定</string>
   <string name="protocol_version_newer">此設備使用較新的通訊協定</string>
   <string name="general_settings">通用設定</string>
@@ -203,6 +214,9 @@
   <string name="mpris_coverart_description">目前媒體的專輯圖像</string>
   <string name="device_icon_description">裝置圖示</string>
   <string name="settings_icon_description">設定圖示</string>
+  <string name="presenter_fullscreen">全螢幕</string>
+  <string name="presenter_exit">離開簡報模式</string>
+  <string name="presenter_lock_tip">您能鎖定裝置以將音量鍵當作前進 / 後退按鈕使用</string>
   <string name="add_command">增加一行指令</string>
   <string name="addcommand_explanation">沒有指令被註冊</string>
   <string name="addcommand_explanation2">您現在可以在 KDE 連線系統設定增加新的指令</string>
@@ -210,4 +224,30 @@
   <string name="pref_plugin_mprisreceiver">控制媒體播放器</string>
   <string name="pref_plugin_mprisreceiver_desc">從另外一個裝置操控您手機的媒體播放器</string>
   <string name="dark_theme">暗色主題</string>
+  <string name="notification_channel_default">其他通知</string>
+  <string name="notification_channel_persistent">一致指標</string>
+  <string name="notification_channel_media_control">多媒體控制</string>
+  <string name="notification_channel_filetransfer">檔案傳輸</string>
+  <string name="mpris_stop">停止目前播放器</string>
+  <string name="copy_url_to_clipboard">複製 URL 至剪貼簿</string>
+  <string name="clipboard_toast">已複製到剪貼簿</string>
+  <string name="runcommand_notreachable">無法聯絡裝置</string>
+  <string name="runcommand_notpaired">裝置未配對</string>
+  <string name="runcommand_nosuchdevice">此處沒有裝置</string>
+  <string name="runcommand_noruncommandplugin">裝置未啟用「執行指令外掛程式」</string>
+  <string name="pref_plugin_findremotedevice">尋找遠端裝置</string>
+  <string name="pref_plugin_findremotedevice_desc">使遠端裝置響鈴</string>
+  <string name="ring">響鈴</string>
+  <string name="pref_plugin_systemvolume">系統音量</string>
+  <string name="pref_plugin_systemvolume_desc">控制遠端裝置的系統音量</string>
+  <string name="mute">靜音</string>
+  <string name="all">全部</string>
+  <string name="devices">裝置</string>
+  <string name="settings_rename">裝置名稱</string>
+  <string name="settings_dark_mode">暗色主題</string>
+  <string name="settings_more_settings_title">更多設定</string>
+  <string name="settings_more_settings_text">各裝置設定可在裝置內的「外掛程式設定」底下找到。</string>
+  <string name="setting_persistent_notification">顯示一致設定</string>
+  <string name="setting_persistent_notification_oreo_description">需要 Android 8.0 以上的版本</string>
+  <string name="setting_persistent_notification_pie_description">從 Android 9.0 開始，只能長按通知才能最小化通知</string>
 </resources>
