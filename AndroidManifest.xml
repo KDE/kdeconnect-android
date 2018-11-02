@@ -274,6 +274,21 @@
                 android:value="org.kde.kdeconnect.UserInterface.PluginSettingsActivity" />
         </activity>
 
+        <receiver android:name=".remotecommandplugin_button">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/remotecommandplugin_button_info" />
+        </receiver>
+
+        <activity android:name=".remotecommandplugin_buttonConfigureActivity">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
