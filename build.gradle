@@ -75,7 +75,8 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.jakewharton:disklrucache:2.0.2' //For caching album art bitmaps
 
-    implementation 'org.apache.sshd:sshd-core:0.14.0' //Newer version requires java.nio.file, which isn't available until Android 8+
+    implementation 'org.apache.sshd:sshd-core:0.14.0'
+    implementation 'org.apache.mina:mina-core:2.0.19' //For some reason, makes sshd-core:0.14.0 work without NIO, which isn't available until Android 8+
 
     implementation 'com.madgag.spongycastle:bcpkix-jdk15on:1.58.0.0' //For SSL certificate generation
 
