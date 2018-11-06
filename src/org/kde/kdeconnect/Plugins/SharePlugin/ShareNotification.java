@@ -39,7 +39,6 @@ import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -150,7 +149,7 @@ class ShareNotification {
 
         shareIntent = Intent.createChooser(shareIntent,
                 device.getContext().getString(R.string.share_received_file, destinationUri.getLastPathSegment()));
-        PendingIntent sharePendingIntent = PendingIntent.getActivity(device.getContext(), 0,
+        PendingIntent sharePendingIntent = PendingIntent.getActivity(device.getContext(), (int) System.currentTimeMillis(),
                 shareIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Action.Builder shareAction = new NotificationCompat.Action.Builder(
                 R.drawable.ic_share_white, device.getContext().getString(R.string.share), sharePendingIntent);
