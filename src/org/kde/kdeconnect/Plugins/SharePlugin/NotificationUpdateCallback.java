@@ -42,6 +42,7 @@ class NotificationUpdateCallback extends Device.SendPacketStatusCallback {
         builder = new NotificationCompat.Builder(context, NotificationHelper.Channels.FILETRANSFER)
                 .setSmallIcon(android.R.drawable.stat_sys_upload)
                 .setAutoCancel(true)
+                .setOngoing(true)
                 .setProgress(100, 0, false)
                 .setContentTitle(title)
                 .setTicker(title);
