@@ -1,5 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_no_devices">Ikkje tilkopla til ei eining</string>
+  <string name="foreground_notification_devices">Kopla til: %s</string>
   <string name="pref_plugin_telephony">Telefonvarsling</string>
   <string name="pref_plugin_telephony_desc">Send varsling ved oppringing</string>
   <string name="pref_plugin_battery">Batterirapport</string>
@@ -120,6 +123,7 @@
   <string name="device">Eining</string>
   <string name="pair_device">Par ny eining</string>
   <string name="remote_control">Fjernstyring</string>
+  <string name="settings">Innstillingar</string>
   <string name="mpris_play">Spel</string>
   <string name="mpris_pause">Pause</string>
   <string name="mpris_previous">Førre</string>
@@ -129,6 +133,7 @@
   <string name="mpris_volume">Lydstyrke</string>
   <string name="mpris_settings">Medieinnstillingar</string>
   <string name="mpris_time_settings_title">Spoleknappar</string>
+  <string name="mpris_time_settings_summary">Juster tida for spoling ved trykking</string>
   <string-array name="mpris_time_entries">
     <item>10 sekund</item>
     <item>20 sekund</item>
@@ -137,6 +142,8 @@
     <item>2 minutt</item>
   </string-array>
   <string name="mpris_notification_settings_title">Vis varsling med avspelingskontrollar</string>
+  <string name="mpris_notification_settings_summary">Tillat å kontrollera mediespelarar utan å opna KDE Connect</string>
+  <string name="share_to">Del til …</string>
   <string name="protocol_version_older">Denne eininga brukar ein gammal protokollversjon</string>
   <string name="protocol_version_newer">Denne eininga brukar ein nyare protokollversjon</string>
   <string name="general_settings">Generelle innstillingar</string>
@@ -218,6 +225,10 @@
   <string name="pref_plugin_mprisreceiver">Mediespelarkontrollar</string>
   <string name="pref_plugin_mprisreceiver_desc">Kontroller mediespelarar på telefonen din frå ei anna eining</string>
   <string name="dark_theme">Mørkt tema</string>
+  <string name="notification_channel_default">Andre varslingar</string>
+  <string name="notification_channel_persistent">Evigvarande varslingar</string>
+  <string name="notification_channel_media_control">Mediestyring</string>
+  <string name="notification_channel_filetransfer">Filoverføring</string>
   <string name="mpris_stop">Stopp gjeldande avspelar</string>
   <string name="copy_url_to_clipboard">Kopier adresse til utklippstavla</string>
   <string name="clipboard_toast">Kopiert til utklippstavla</string>
@@ -231,4 +242,13 @@
   <string name="pref_plugin_systemvolume">Systemlydstyrke</string>
   <string name="pref_plugin_systemvolume_desc">Juster systemlydstyrken til ekstern eining</string>
   <string name="mute">Demp lyd</string>
+  <string name="all">Alle</string>
+  <string name="devices">Einingar</string>
+  <string name="settings_rename">Einingsnamn</string>
+  <string name="settings_dark_mode">Mørkt tema</string>
+  <string name="settings_more_settings_title">Fleire innstillingar</string>
+  <string name="settings_more_settings_text">Innstillingar for einskildeiningar finn du under «Programtillegg-oppsett» på kvar eining.</string>
+  <string name="setting_persistent_notification">Vis evigvarande varsling</string>
+  <string name="setting_persistent_notification_oreo_description">Påkravd av Android frå og med versjon 8.0</string>
+  <string name="setting_persistent_notification_pie_description">Frå og med Android 9.0 kan du berre fjerna denne varslinga ved å trykkja lenge på ho</string>
 </resources>
