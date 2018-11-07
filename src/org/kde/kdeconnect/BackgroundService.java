@@ -28,6 +28,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
@@ -37,7 +38,6 @@ import android.util.Log;
 
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
-//import org.kde.kdeconnect.Backends.BluetoothBackend.BluetoothLinkProvider;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
@@ -52,6 +52,8 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+
+//import org.kde.kdeconnect.Backends.BluetoothBackend.BluetoothLinkProvider;
 
 public class BackgroundService extends Service {
     private static final int FOREGROUND_NOTIFICATION_ID = 1;
@@ -273,6 +275,10 @@ public class BackgroundService extends Service {
 
         // Register screen on listener
         IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
+        // See: https://developer.android.com/reference/android/net/ConnectivityManager.html#CONNECTIVITY_ACTION
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        }
         registerReceiver(new KdeConnectBroadcastReceiver(), filter);
 
         Log.i("KDE/BackgroundService", "Service not started yet, initializing...");
