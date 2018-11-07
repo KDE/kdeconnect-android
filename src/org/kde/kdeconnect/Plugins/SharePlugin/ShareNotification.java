@@ -43,12 +43,15 @@ import java.io.IOException;
 import java.io.InputStream;
 
 class ShareNotification {
-
     private final String filename;
     private final NotificationManager notificationManager;
     private final int notificationId;
     private NotificationCompat.Builder builder;
     private final Device device;
+
+    //https://documentation.onesignal.com/docs/android-customizations#section-big-picture
+    private static final int bigImageWidth = 1440;
+    private static final int bigImageHeight = 720;
 
     public ShareNotification(Device device, String filename) {
         this.device = device;
@@ -105,8 +108,18 @@ class ShareNotification {
 
         //If it's an image, try to show it in the notification
         if (mimeType.startsWith("image/")) {
-            try (InputStream inputStream = device.getContext().getContentResolver().openInputStream(destinationUri)) {
-                Bitmap image = BitmapFactory.decodeStream(inputStream);
+            //https://developer.android.com/topic/performance/graphics/load-bitmap
+            final BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+
+            try (InputStream decodeBoundsInputStream = device.getContext().getContentResolver().openInputStream(destinationUri);
+                 InputStream decodeInputStream = device.getContext().getContentResolver().openInputStream(destinationUri)) {
+                BitmapFactory.decodeStream(decodeBoundsInputStream, null, options);
+
+                options.inJustDecodeBounds = false;
+                options.inSampleSize = calculateInSampleSize(options, bigImageWidth, bigImageHeight);
+
+                Bitmap image = BitmapFactory.decodeStream(decodeInputStream, null, options);
                 if (image != null) {
                     builder.setLargeIcon(image);
                     builder.setStyle(new NotificationCompat.BigPictureStyle()
@@ -115,6 +128,7 @@ class ShareNotification {
             } catch (IOException ignored) {
             }
         }
+
         if (!"file".equals(destinationUri.getScheme())) {
             return;
         }
@@ -154,5 +168,21 @@ class ShareNotification {
         NotificationCompat.Action.Builder shareAction = new NotificationCompat.Action.Builder(
                 R.drawable.ic_share_white, device.getContext().getString(R.string.share), sharePendingIntent);
         builder.addAction(shareAction.build());
+    }
+
+    private int calculateInSampleSize(BitmapFactory.Options options, int targetWidth, int targetHeight) {
+        int inSampleSize = 1;
+
+        if (options.outHeight > targetHeight || options.outWidth > targetWidth) {
+            final int halfHeight = options.outHeight / 2;
+            final int halfWidth = options.outWidth / 2;
+
+            while ((halfHeight / inSampleSize) >= targetHeight
+                    && (halfWidth / inSampleSize) >= targetWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
     }
 }
