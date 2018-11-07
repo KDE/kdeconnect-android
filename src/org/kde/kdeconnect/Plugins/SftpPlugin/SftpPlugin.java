@@ -21,6 +21,7 @@
 package org.kde.kdeconnect.Plugins.SftpPlugin;
 
 import android.Manifest;
+import android.os.Build;
 import android.os.Environment;
 
 import org.kde.kdeconnect.Helpers.StorageHelper;
@@ -136,7 +137,11 @@ public class SftpPlugin extends Plugin {
 
     @Override
     public String[] getRequiredPermissions() {
-        return new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            return new String[]{Manifest.permission.READ_EXTERNAL_STORAGE};
+        } else {
+            return new String[0];
+        }
     }
 
     @Override
