@@ -146,6 +146,11 @@ public class KeyListenerView extends View {
             np.set("shift", true);
         }
 
+        if (event.isMetaPressed()) {
+            np.set("super", true);
+            modifier = true;
+        }
+
         int specialKey = SpecialKeysMap.get(keyCode, -1);
 
         if (specialKey != -1) {
