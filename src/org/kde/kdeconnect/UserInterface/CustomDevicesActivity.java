@@ -95,9 +95,9 @@ public class CustomDevicesActivity extends AppCompatActivity {
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(CustomDevicesActivity.this);
-        builder.setMessage("Delete " + ipAddressList.get(position) + " ?");
-        builder.setPositiveButton("Yes", confirmationListener);
-        builder.setNegativeButton("No", confirmationListener);
+        builder.setMessage(getString(R.string.delete_custom_device, ipAddressList.get(position)));
+        builder.setPositiveButton(R.string.ok, confirmationListener);
+        builder.setNegativeButton(R.string.cancel, confirmationListener);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) { //DismissListener
             dialogAlreadyShown = true;

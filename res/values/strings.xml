@@ -198,6 +198,7 @@
     <string name="pair_device_action">Pair a new device</string>
     <string name="unpair_device_action">Unpair %s</string>
     <string name="custom_device_list">Add devices by IP</string>
+    <string name="delete_custom_device">Delete %s?</string>
     <string name="share_notification_preference">Noisy notifications</string>
     <string name="share_notification_preference_summary">Vibrate and play a sound when receiving a file</string>
     <string name="share_destination_customize">Customize destination directory</string>
