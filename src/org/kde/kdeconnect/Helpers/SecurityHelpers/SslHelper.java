@@ -215,7 +215,7 @@ public class SslHelper {
         supportedCiphers.add("TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA");       // API 11+
         socket.setEnabledCipherSuites(supportedCiphers.toArray(new String[0]));
 
-        socket.setSoTimeout(1000);
+        socket.setSoTimeout(10000);
 
         if (isClient) {
             socket.setUseClientMode(true);
