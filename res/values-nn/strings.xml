@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
-  <string name="foreground_notification_no_devices">Ikkje tilkopla til ei eining</string>
+  <string name="foreground_notification_no_devices">Ikkje tilkopla ei eining</string>
   <string name="foreground_notification_devices">Kopla til: %s</string>
   <string name="pref_plugin_telephony">Telefonvarsling</string>
   <string name="pref_plugin_telephony_desc">Send varsling ved oppringing</string>
@@ -176,11 +176,11 @@
   <string name="add_host">Legg til vert/IP</string>
   <string name="add_host_hint">Vertsnamn/IP-adresse</string>
   <string name="no_players_connected">Fann ingen spelarar</string>
-  <string name="custom_dev_list_help">Bruk berre dette valet viss eininga ikkje vert kjend att automatisk. Skriv inn IP-adressa eller vertsnamnet nedanfor, og trykk på knappen for å leggja eininga til oversikta. Trykk på element i oversikta for å fjerna dei.</string>
+  <string name="custom_dev_list_help">Bruk berre dette valet viss eininga ikkje vert kjend att automatisk. Skriv inn IP-adressa eller vertsnamnet nedanfor, og trykk på knappen for å leggja til eininga. Trykk på oppføringar i lista for å fjerna dei.</string>
   <string name="mpris_player_on_device">%1$s på %2$s</string>
   <string name="send_files">Send filer</string>
   <string name="pairing_title">KDE Connect-einingar</string>
-  <string name="pairing_description">Andre einingar i nettverket som køyrer KDE Connect vil dukka opp her.</string>
+  <string name="pairing_description">Andre einingar i nettverket som køyrer KDE Connect, vil dukka opp her.</string>
   <string name="device_paired">Eininga er para</string>
   <string name="device_rename_title">Endra namn på eining</string>
   <string name="device_rename_confirm">Endra namn</string>
