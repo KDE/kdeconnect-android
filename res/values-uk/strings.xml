@@ -159,6 +159,7 @@
   <string name="pair_device_action">Пов’язати новий пристрій</string>
   <string name="unpair_device_action">Розірвати прив’язку %s</string>
   <string name="custom_device_list">Додати пристрої за IP</string>
+  <string name="delete_custom_device">Вилучити %s?</string>
   <string name="share_notification_preference">Звукові сповіщення</string>
   <string name="share_notification_preference_summary">Вібрація і відтворення звуку у відповідь на отримання файла</string>
   <string name="share_destination_customize">Налаштування каталогу призначення</string>

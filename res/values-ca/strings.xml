@@ -157,6 +157,7 @@
   <string name="pair_device_action">Aparella amb un dispositiu nou</string>
   <string name="unpair_device_action">Desparella %s</string>
   <string name="custom_device_list">Afegeix dispositius per la IP</string>
+  <string name="delete_custom_device">Suprimeixo %s?</string>
   <string name="share_notification_preference">Rebombori de les notificacions</string>
   <string name="share_notification_preference_summary">Vibra i reprodueix un so en rebre un fitxer</string>
   <string name="share_destination_customize">Personalitza el directori de destinació</string>

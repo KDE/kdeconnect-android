@@ -157,6 +157,7 @@
   <string name="pair_device_action">Een paar maken met een nieuw apparaat</string>
   <string name="unpair_device_action">Paar %s uit elkaar halen</string>
   <string name="custom_device_list">Voeg apparaten toe per IP-adres</string>
+  <string name="delete_custom_device">%s verwijderen?</string>
   <string name="share_notification_preference">Luidruchtige meldingen</string>
   <string name="share_notification_preference_summary">Vibreer en speel een geluidje bij ontvangen van een bestand</string>
   <string name="share_destination_customize">De bestemmingsmap aanpassen</string>

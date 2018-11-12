@@ -157,6 +157,7 @@
   <string name="pair_device_action">Para ihop med ny apparat</string>
   <string name="unpair_device_action">Ta bort ihopparning %s</string>
   <string name="custom_device_list">Lägg till apparater enligt IP-adress</string>
+  <string name="delete_custom_device">Ta bort %s?</string>
   <string name="share_notification_preference">Ljudliga underrättelser</string>
   <string name="share_notification_preference_summary">Vibrera och spela ett ljud när en fil tas emot</string>
   <string name="share_destination_customize">Anpassa målkatalog</string>
