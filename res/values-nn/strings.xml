@@ -157,6 +157,7 @@
   <string name="pair_device_action">Par ny eining</string>
   <string name="unpair_device_action">Løys paring for %s</string>
   <string name="custom_device_list">Legg til eining basert på IP</string>
+  <string name="delete_custom_device">Vil du sletta %s?</string>
   <string name="share_notification_preference">Lydvarsling</string>
   <string name="share_notification_preference_summary">Vibrer og spel ein lyd ved mottak av fil</string>
   <string name="share_destination_customize">Sjølvvald målmappe</string>

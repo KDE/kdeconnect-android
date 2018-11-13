@@ -1,5 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_no_devices">没有连接到任何设备</string>
+  <string name="foreground_notification_devices">已连接到：%s</string>
   <string name="pref_plugin_telephony">电话通知</string>
   <string name="pref_plugin_telephony_desc">发送来电通知</string>
   <string name="pref_plugin_battery">电池报告</string>
@@ -119,6 +122,7 @@
   <string name="device">设备</string>
   <string name="pair_device">进行配对</string>
   <string name="remote_control">远程控制</string>
+  <string name="settings">设置</string>
   <string name="mpris_play">播放</string>
   <string name="mpris_pause">Pause</string>
   <string name="mpris_previous">前一个</string>
@@ -138,6 +142,7 @@
   </string-array>
   <string name="mpris_notification_settings_title">显示媒体控制通知部件</string>
   <string name="mpris_notification_settings_summary">允许在不用打开 KDE 连接的情况下控制媒体播放器</string>
+  <string name="share_to">分享到...</string>
   <string name="protocol_version_older">该设备使用旧版本的协议</string>
   <string name="protocol_version_newer">该设备使用较新版本的协议</string>
   <string name="general_settings">常规设置</string>
@@ -219,6 +224,10 @@
   <string name="pref_plugin_mprisreceiver">控制媒体播放器</string>
   <string name="pref_plugin_mprisreceiver_desc">从其他设备控制您手机的媒体播放器</string>
   <string name="dark_theme">暗色主题</string>
+  <string name="notification_channel_default">其他通知</string>
+  <string name="notification_channel_persistent">持久性通知</string>
+  <string name="notification_channel_media_control">媒体控制</string>
+  <string name="notification_channel_filetransfer">文件传送</string>
   <string name="mpris_stop">停止但前播放器</string>
   <string name="copy_url_to_clipboard">复制 URL 到剪贴板</string>
   <string name="clipboard_toast">已复制到剪贴板</string>
@@ -232,4 +241,13 @@
   <string name="pref_plugin_systemvolume">系统音量</string>
   <string name="pref_plugin_systemvolume_desc">在远程设备上控制系统音量</string>
   <string name="mute">静音</string>
+  <string name="all">全部</string>
+  <string name="devices">设备</string>
+  <string name="settings_rename">设备名</string>
+  <string name="settings_dark_mode">暗色主题</string>
+  <string name="settings_more_settings_title">更多设置</string>
+  <string name="settings_more_settings_text">每个设备的独立设置可以在设备页内的“插件设置”下找到。</string>
+  <string name="setting_persistent_notification">启用常驻通知栏</string>
+  <string name="setting_persistent_notification_oreo_description">Android 8.0 以及以上必须启用</string>
+  <string name="setting_persistent_notification_pie_description">Android 9.0 之后只能通过长按通知项最小化持久性通知</string>
 </resources>
