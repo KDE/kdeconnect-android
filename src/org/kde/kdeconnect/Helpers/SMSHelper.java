@@ -254,6 +254,14 @@ public class SMSHelper {
         static final String U_ID = Telephony.Sms._ID;           // Something which uniquely identifies this message
 
         /**
+         * Event flags
+         * A message should have a bitwise-or of event flags before delivering the packet
+         * Any events not supported by the receiving device should be ignored
+         */
+        public static final int TEXT_MESSAGE = 0x1; // This message has a "body" field which contains
+                                                    // pure, human-readable text
+
+        /**
          * Define the columns which are to be extracted from the Android SMS database
          */
         static final String[] smsColumns = new String[]{
