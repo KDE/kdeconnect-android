@@ -1,5 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_no_devices">Žádná připojená zařízení</string>
+  <string name="foreground_notification_devices">Připojen k: %s</string>
   <string name="pref_plugin_telephony">Upozornění telefonie</string>
   <string name="pref_plugin_telephony_desc">Posílat upozornění na příchozí hovory</string>
   <string name="pref_plugin_battery">Hlášení baterie</string>
@@ -122,6 +125,7 @@
   <string name="device">Zařízení</string>
   <string name="pair_device">Spárovat zařízení</string>
   <string name="remote_control">Vzdálené ovládání</string>
+  <string name="settings">Nastavení</string>
   <string name="mpris_play">Přehrát</string>
   <string name="mpris_pause">Pozastavit</string>
   <string name="mpris_previous">Předchozí</string>
@@ -131,6 +135,7 @@
   <string name="mpris_volume">Hlasitost</string>
   <string name="mpris_settings">Nastavení multimédií</string>
   <string name="mpris_time_settings_title">Tlačítka vpřed/přetočit</string>
+  <string name="mpris_time_settings_summary">Upravit čas pro rychlý posun/přetočení při stisku</string>
   <string-array name="mpris_time_entries">
     <item>10 sekund</item>
     <item>20 sekund</item>
@@ -139,6 +144,8 @@
     <item>2 minuty</item>
   </string-array>
   <string name="mpris_notification_settings_title">Obrazit upozornění pro ovládání médií</string>
+  <string name="mpris_notification_settings_summary">Umožnit ovládání přehrávače médií bez otevření KDE Connect</string>
+  <string name="share_to">Sdílet s...</string>
   <string name="protocol_version_older">Toto zařízení používá starou verzi protokolu</string>
   <string name="protocol_version_newer">Toto zařízení používá novější verzi protokolu</string>
   <string name="general_settings">Obecná nastavení</string>
@@ -152,6 +159,7 @@
   <string name="pair_device_action">Spárovat nové zařízení</string>
   <string name="unpair_device_action">Zrušit párování %s</string>
   <string name="custom_device_list">Přidat zařízení podle IP</string>
+  <string name="delete_custom_device">Smazat %s?</string>
   <string name="share_notification_preference">Hlasitá upozornění</string>
   <string name="share_notification_preference_summary">Vibrovat a přehrát melodii při přijímání souboru</string>
   <string name="share_destination_customize">Přizpůsobte si cílový adresář</string>
@@ -220,6 +228,10 @@
   <string name="pref_plugin_mprisreceiver">Ovládání přehrávače médií</string>
   <string name="pref_plugin_mprisreceiver_desc">Ovládejte přehrávače médií na vašem telefonu z jiného zařízení</string>
   <string name="dark_theme">Tmavý motiv</string>
+  <string name="notification_channel_default">Ostatní oznámení</string>
+  <string name="notification_channel_persistent">Stálý ukazatel</string>
+  <string name="notification_channel_media_control">Ovládání médií</string>
+  <string name="notification_channel_filetransfer">Přenos souboru</string>
   <string name="mpris_stop">Zastavit současný přehrávač</string>
   <string name="copy_url_to_clipboard">Kopírovat URL do schránky</string>
   <string name="clipboard_toast">Zkopírováno do schránky</string>
@@ -233,4 +245,13 @@
   <string name="pref_plugin_systemvolume">Hlasitost systému</string>
   <string name="pref_plugin_systemvolume_desc">Ovládejte hlasitost systému vzdáleného zařízení</string>
   <string name="mute">Ztlumit</string>
+  <string name="all">Vše</string>
+  <string name="devices">Zařízení</string>
+  <string name="settings_rename">Název zařízení</string>
+  <string name="settings_dark_mode">Tmavý motiv</string>
+  <string name="settings_more_settings_title">Více nastavení</string>
+  <string name="settings_more_settings_text">Nastavení \"pro každé zařízení\" lze najít v \'Nastavení modulu\' v zařízení.</string>
+  <string name="setting_persistent_notification">Ukázat stálé upozornění</string>
+  <string name="setting_persistent_notification_oreo_description">Vyžadováno Androidem od verze 8.0</string>
+  <string name="setting_persistent_notification_pie_description">Od Androidu 9.0 lze toto upozornění minimalizovat pouze jeho dlouhým podržením</string>
 </resources>
