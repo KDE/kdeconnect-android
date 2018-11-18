@@ -157,6 +157,7 @@
   <string name="pair_device_action">Emparellar cun novo dispositivo</string>
   <string name="unpair_device_action">Desemparellarse de %s</string>
   <string name="custom_device_list">Engadir dispositivos por IP</string>
+  <string name="delete_custom_device">Eliminar %s?</string>
   <string name="share_notification_preference">Notificacións sonoras</string>
   <string name="share_notification_preference_summary">Vibrar e reproducir un son ao recibir un ficheiro.</string>
   <string name="share_destination_customize">Personalizar o directorio de destino</string>
