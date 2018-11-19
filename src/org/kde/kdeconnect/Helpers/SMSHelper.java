@@ -27,6 +27,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Looper;
 import android.provider.Telephony;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 
@@ -113,39 +114,66 @@ public class SMSHelper {
     }
 
     /**
-     * Get all messages matching the passed filter. See documentation for Android's ContentResolver
+     * Gets Messages for caller functions, such as: getMessagesWithFilter() and getConversations()
      *
+     * @param Uri Uri indicating the messages database to read
+     * @param context android.content.Context running the request.
      * @param selection Parameterizable filter to use with the ContentResolver query. May be null.
      * @param selectionArgs Parameters for selection. May be null.
-     * @return List of messages matching the filter
+     * @return Returns HashMap<ThreadID, List<Message>>, which is transformed in caller functions into other classes.
      */
-    private static List<Message> getMessagesWithFilter(Context context, String selection, String[] selectionArgs) {
-        List<Message> toReturn = new ArrayList<>();
-
-        Uri smsUri = getSMSUri();
-
-        try (Cursor smsCursor = context.getContentResolver().query(
-                smsUri,
+    private static HashMap<ThreadID, List<Message>> getMessages(Uri Uri,
+                                                          Context context,
+                                                          String selection,
+                                                          String[] selectionArgs) {
+        HashMap<ThreadID, List<Message>> toReturn = new HashMap<>();
+            try (Cursor myCursor = context.getContentResolver().query(
+                Uri,
                 Message.smsColumns,
                 selection,
                 selectionArgs,
                 null)
         ) {
-            if (smsCursor != null && smsCursor.moveToFirst()) {
+            if (myCursor != null && myCursor.moveToFirst()) {
+                int threadColumn = myCursor.getColumnIndexOrThrow(ThreadID.lookupColumn);
                 do {
                     HashMap<String, String> messageInfo = new HashMap<>();
-                    for (int columnIdx = 0; columnIdx < smsCursor.getColumnCount(); columnIdx++) {
-                        String colName = smsCursor.getColumnName(columnIdx);
-                        String body = smsCursor.getString(columnIdx);
+                    for (int columnIdx = 0; columnIdx < myCursor.getColumnCount(); columnIdx++) {
+                        String colName = myCursor.getColumnName(columnIdx);
+                        String body = myCursor.getString(columnIdx);
                         messageInfo.put(colName, body);
                     }
-                    toReturn.add(new Message(messageInfo));
-                } while (smsCursor.moveToNext());
+
+                    Message message = new Message(messageInfo);
+                    ThreadID threadID = new ThreadID(message.m_threadID);
+
+                    if (!toReturn.containsKey(threadID)) {
+                        toReturn.put(threadID, new ArrayList<Message>());
+                    }
+                    toReturn.get(threadID).add(message);
+                } while (myCursor.moveToNext());
             } else {
-                // No SMSes available?
+                // No conversations or SMSes available?
             }
         }
+        return toReturn;
+    }
+    
+    /**
+     * Get all messages matching the passed filter. See documentation for Android's ContentResolver
+     *
+     * @param context android.content.Context running the request
+     * @param selection Parameterizable filter to use with the ContentResolver query. May be null.
+     * @param selectionArgs Parameters for selection. May be null.
+     * @return List of messages matching the filter
+     */
+    private static List<Message> getMessagesWithFilter(Context context, String selection, String[] selectionArgs) {
+        HashMap<ThreadID, List<Message>> result = getMessages(SMSHelper.getSMSUri(), context, selection, selectionArgs);
+        List<Message> toReturn = new ArrayList<>();
 
+        for(Map.Entry<ThreadID, List<Message>> entry : result.entrySet()) {
+            toReturn.addAll(entry.getValue());
+        }
         return toReturn;
     }
 
@@ -157,35 +185,15 @@ public class SMSHelper {
      * @return Mapping of thread_id to the first message in each thread
      */
     public static Map<ThreadID, Message> getConversations(Context context) {
+        HashMap<ThreadID, List<Message>> result = getMessages(SMSHelper.getConversationUri(), context, null, null);
         HashMap<ThreadID, Message> toReturn = new HashMap<>();
 
-        Uri conversationUri = getConversationUri();
+        for(Map.Entry<ThreadID, List<Message>> entry : result.entrySet()) {
+            ThreadID returnThreadID = entry.getKey();
+            List<Message> messages = entry.getValue();
 
-        try (Cursor conversationsCursor = context.getContentResolver().query(
-                conversationUri,
-                Message.smsColumns,
-                null,
-                null,
-                null)
-        ) {
-            if (conversationsCursor != null && conversationsCursor.moveToFirst()) {
-                int threadColumn = conversationsCursor.getColumnIndexOrThrow(ThreadID.lookupColumn);
-                do {
-                    int thread = conversationsCursor.getInt(threadColumn);
-
-                    HashMap<String, String> messageInfo = new HashMap<>();
-                    for (int columnIdx = 0; columnIdx < conversationsCursor.getColumnCount(); columnIdx++) {
-                        String colName = conversationsCursor.getColumnName(columnIdx);
-                        String body = conversationsCursor.getString(columnIdx);
-                        messageInfo.put(colName, body);
-                    }
-                    toReturn.put(new ThreadID(thread), new Message(messageInfo));
-                } while (conversationsCursor.moveToNext());
-            } else {
-                // No conversations available?
-            }
+            toReturn.put(returnThreadID, messages.get(0));
         }
-
         return toReturn;
     }
 
@@ -372,4 +380,3 @@ public class SMSHelper {
         }
     }
 }
-
