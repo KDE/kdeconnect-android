@@ -72,6 +72,10 @@ class ShareNotification {
         NotificationHelper.notifyCompat(notificationManager, notificationId, builder.build());
     }
 
+    public void cancel() {
+        notificationManager.cancel(notificationId);
+    }
+
     public int getId() {
         return notificationId;
     }

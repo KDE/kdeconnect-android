@@ -34,10 +34,12 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v4.provider.DocumentFile;
 import android.util.Log;
 import android.widget.Toast;
@@ -187,12 +189,19 @@ public class SharePlugin extends Plugin {
         final long fileLength = np.getPayloadSize();
         final String originalFilename = np.getString("filename", Long.toString(System.currentTimeMillis()));
 
+        String filename = originalFilename;
+        final DocumentFile destinationFolderDocument;
+
         //We need to check for already existing files only when storing in the default path.
         //User-defined paths use the new Storage Access Framework that already handles this.
-        final boolean customDestination = ShareSettingsActivity.isCustomDestinationEnabled(context);
-        final String defaultPath = ShareSettingsActivity.getDefaultDestinationDirectory().getAbsolutePath();
-        final String filename = customDestination ? originalFilename : FilesHelper.findNonExistingNameForNewFile(defaultPath, originalFilename);
-
+        //If the file should be opened immediately store it in the standard location to avoid the FileProvider trouble (See ShareNotification::setURI)
+        if (np.getBoolean("open") || !ShareSettingsActivity.isCustomDestinationEnabled(context)) {
+            final String defaultPath = ShareSettingsActivity.getDefaultDestinationDirectory().getAbsolutePath();
+            filename = FilesHelper.findNonExistingNameForNewFile(defaultPath, originalFilename);
+            destinationFolderDocument = DocumentFile.fromFile(new File(defaultPath));
+        } else {
+            destinationFolderDocument = ShareSettingsActivity.getDestinationDirectory(context);
+        }
         String displayName = FilesHelper.getFileNameWithoutExt(filename);
         final String mimeType = FilesHelper.getMimeTypeFromFile(filename);
 
@@ -200,7 +209,6 @@ public class SharePlugin extends Plugin {
             displayName = filename;
         }
 
-        final DocumentFile destinationFolderDocument = ShareSettingsActivity.getDestinationDirectory(context);
         final DocumentFile destinationDocument = destinationFolderDocument.createFile(mimeType, displayName);
         final OutputStream destinationOutput;
         try {
@@ -242,20 +250,38 @@ public class SharePlugin extends Plugin {
 
                 Log.i("SharePlugin", "Transfer finished: " + destinationUri.getPath());
 
-                //Update the notification and allow to open the file from it
-                notification.setFinished(true);
-                notification.setURI(destinationUri, mimeType);
-                notification.show();
+                if (np.getBoolean("open")) {
 
-                if (!customDestination) {
-                    Log.i("SharePlugin", "Adding to downloads");
-                    DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-                    manager.addCompletedDownload(destinationUri.getLastPathSegment(), device.getName(), true, mimeType, destinationUri.getPath(), fileLength, false);
+                    notification.cancel();
+
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    if (Build.VERSION.SDK_INT >= 24) {
+                        //Nougat and later require "content://" uris instead of "file://" uris
+                        File file = new File(destinationUri.getPath());
+                        Uri contentUri = FileProvider.getUriForFile(device.getContext(), "org.kde.kdeconnect_tp.fileprovider", file);
+                        intent.setDataAndType(contentUri, mimeType);
+                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    } else {
+                        intent.setDataAndType(destinationUri, mimeType);
+                    }
+
+                    context.startActivity(intent);
                 } else {
-                    //Make sure it is added to the Android Gallery anyway
-                    MediaStoreHelper.indexFile(context, destinationUri);
-                }
 
+                    //Update the notification and allow to open the file from it
+                    notification.setFinished(true);
+                    notification.setURI(destinationUri, mimeType);
+                    notification.show();
+
+                    if (!ShareSettingsActivity.isCustomDestinationEnabled(context)) {
+                        Log.i("SharePlugin", "Adding to downloads");
+                        DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+                        manager.addCompletedDownload(destinationUri.getLastPathSegment(), device.getName(), true, mimeType, destinationUri.getPath(), fileLength, false);
+                    } else {
+                        //Make sure it is added to the Android Gallery anyway
+                        MediaStoreHelper.indexFile(context, destinationUri);
+                    }
+                }
             } catch (Exception e) {
                 Log.e("SharePlugin", "Receiver thread exception");
                 e.printStackTrace();
