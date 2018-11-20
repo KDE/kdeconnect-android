@@ -212,6 +212,7 @@
   <string name="notification_channel_default">Andere Benachrichtigungen</string>
   <string name="notification_channel_filetransfer">Dateiübertragung</string>
   <string name="copy_url_to_clipboard">Adresse in die Zwischenablage kopieren</string>
+  <string name="clipboard_toast">In die Zwischenablage kopiert</string>
   <string name="runcommand_notreachable">Das Gerät ist nicht erreichbar</string>
   <string name="runcommand_notpaired">Das Gerät ist nicht verbunden</string>
   <string name="runcommand_nosuchdevice">Ein solches Gerät existiert nicht</string>
