@@ -55,7 +55,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class NotificationsPlugin extends Plugin implements NotificationReceiver.NotificationListener {
@@ -66,6 +68,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     private AppDatabase appDatabase;
 
+    private Set<String> currentNotifications;
     private Map<String, RepliableNotification> pendingIntents;
     private boolean serviceReady;
 
@@ -105,6 +108,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         if (!hasPermission()) return false;
 
         pendingIntents = new HashMap<>();
+        currentNotifications = new HashSet<>();
 
         appDatabase = new AppDatabase(context, true);
 
@@ -145,6 +149,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         np.set("id", id);
         np.set("isCancel", true);
         device.sendPacket(np);
+        currentNotifications.remove(id);
     }
 
     @Override
@@ -197,39 +202,46 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             np.set("requestAnswer", true); //For compatibility with old desktop versions of KDE Connect that don't support "silent"
         }
 
-        try {
-            Bitmap appIcon = null;
-            Context foreignContext = context.createPackageContext(statusBarNotification.getPackageName(), 0);
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                appIcon = iconToBitmap(foreignContext, notification.getLargeIcon());
-            } else {
-                appIcon = notification.largeIcon;
-            }
-            //appIcon = drawableToBitmap(context.getResources().getDrawable(R.drawable.icon));
-            if (appIcon == null) {
+        boolean isUpdate = currentNotifications.contains(key);
+        if (!isUpdate) {
+            //If it's an update, the other end should have the icon already: no need to extract it and create the payload again
+            try {
+                Bitmap appIcon = null;
+                Context foreignContext = context.createPackageContext(statusBarNotification.getPackageName(), 0);
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                    appIcon = iconToBitmap(foreignContext, notification.getSmallIcon());
+                    appIcon = iconToBitmap(foreignContext, notification.getLargeIcon());
                 } else {
-                    PackageManager pm = context.getPackageManager();
-                    Resources foreignResources = pm.getResourcesForApplication(statusBarNotification.getPackageName());
-                    Drawable foreignIcon = foreignResources.getDrawable(notification.icon);
-                    appIcon = drawableToBitmap(foreignIcon);
+                    appIcon = notification.largeIcon;
                 }
+                //appIcon = drawableToBitmap(context.getResources().getDrawable(R.drawable.icon));
+                if (appIcon == null) {
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                        appIcon = iconToBitmap(foreignContext, notification.getSmallIcon());
+                    } else {
+                        PackageManager pm = context.getPackageManager();
+                        Resources foreignResources = pm.getResourcesForApplication(statusBarNotification.getPackageName());
+                        Drawable foreignIcon = foreignResources.getDrawable(notification.icon);
+                        appIcon = drawableToBitmap(foreignIcon);
+                    }
+                }
+
+                if (appIcon != null) {
+                    ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+                    appIcon.compress(Bitmap.CompressFormat.PNG, 90, outStream);
+                    byte[] bitmapData = outStream.toByteArray();
+
+                    Log.e("PAYLOAD", "PAYLOAD: " + getChecksum(bitmapData));
+
+                    np.setPayload(bitmapData);
+
+                    np.set("payloadHash", getChecksum(bitmapData));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                Log.e("NotificationsPlugin", "Error retrieving icon");
             }
-
-            if (appIcon != null) {
-                ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-                appIcon.compress(Bitmap.CompressFormat.PNG, 90, outStream);
-                byte[] bitmapData = outStream.toByteArray();
-
-
-                np.setPayload(bitmapData);
-
-                np.set("payloadHash", getChecksum(bitmapData));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("NotificationsPlugin", "Error retrieving icon");
+        } else {
+            currentNotifications.add(key);
         }
 
         RepliableNotification rn = extractRepliableNotification(statusBarNotification);
@@ -247,6 +259,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         np.set("time", Long.toString(statusBarNotification.getPostTime()));
 
         device.sendPacket(np);
+
     }
 
     private Bitmap drawableToBitmap(Drawable drawable) {
@@ -339,8 +352,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             }
         }
 
-        //TODO Add compat for under Kitkat devices
-
         return title;
     }
 
@@ -350,21 +361,16 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         if (statusBarNotification != null) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 try {
-                    Boolean reply = false;
-
-                    //works for WhatsApp, but not for Telegram
                     if (statusBarNotification.getNotification().actions != null) {
                         for (Notification.Action act : statusBarNotification.getNotification().actions) {
                             if (act != null && act.getRemoteInputs() != null) {
+                                // Is a reply
                                 repliableNotification.remoteInputs.addAll(Arrays.asList(act.getRemoteInputs()));
                                 repliableNotification.pendingIntent = act.actionIntent;
-                                reply = true;
                                 break;
                             }
                         }
-
                         repliableNotification.packageName = statusBarNotification.getPackageName();
-
                         repliableNotification.tag = statusBarNotification.getTag();//TODO find how to pass Tag with sending PendingIntent, might fix Hangout problem
                     }
                 } catch (Exception e) {
@@ -393,8 +399,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 }
             }
         }
-
-        //TODO Add compat for under Kitkat devices
 
         return text;
     }
@@ -469,12 +473,11 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             }
 
         } else if (np.has("cancel")) {
-
+            final String dismissedId = np.getString("cancel");
+            currentNotifications.remove(dismissedId);
             NotificationReceiver.RunCommand(context, service -> {
-                String dismissedId = np.getString("cancel");
                 cancelNotificationCompat(service, dismissedId);
             });
-
         } else if (np.has("requestReplyId") && np.has("message")) {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
@@ -521,7 +524,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         } else {
             int first = compatKey.indexOf(':');
             if (first == -1) {
-                Log.e("cancelNotificationCompa", "Not formated like a notification key: " + compatKey);
+                Log.e("cancelNotificationCompa", "Not formatted like a notification key: " + compatKey);
                 return;
             }
             int last = compatKey.lastIndexOf(':');
