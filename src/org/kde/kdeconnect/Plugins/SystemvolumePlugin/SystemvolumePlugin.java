@@ -86,7 +86,8 @@ public class SystemvolumePlugin extends Plugin {
             if (sinks.containsKey(name)) {
                 if (np.has("volume")) {
                     sinks.get(name).setVolume(np.getInt("volume"));
-                } else if (np.has("muted")) {
+                }
+                if (np.has("muted")) {
                     sinks.get(name).setMute(np.getBoolean("muted"));
                 }
             }
