@@ -1,5 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_no_devices">Non connesso ad alcun dispositivo</string>
+  <string name="foreground_notification_devices">Connesso a: %s</string>
   <string name="pref_plugin_telephony">Notifiche telefoniche</string>
   <string name="pref_plugin_telephony_desc">Invia notifiche per le chiamate in ingresso</string>
   <string name="pref_plugin_battery">Livello batteria</string>
@@ -120,6 +123,7 @@
   <string name="device">Dispositivo</string>
   <string name="pair_device">Associa dispositivo</string>
   <string name="remote_control">Telecomando</string>
+  <string name="settings">Impostazioni</string>
   <string name="mpris_play">Riproduci</string>
   <string name="mpris_pause">Pausa</string>
   <string name="mpris_previous">Precedente</string>
@@ -139,6 +143,7 @@
   </string-array>
   <string name="mpris_notification_settings_title">Mostra la notifica del controllo multimediale</string>
   <string name="mpris_notification_settings_summary">Consenti di controllare i lettori multimediali senza aprire KDE Connect</string>
+  <string name="share_to">Condividi con…</string>
   <string name="protocol_version_older">Questo dispositivo usa una vecchia versione del protocollo di rete</string>
   <string name="protocol_version_newer">Questo dispositivo usa una nuova versione del protocollo di rete</string>
   <string name="general_settings">Impostazioni generali</string>
@@ -152,6 +157,7 @@
   <string name="pair_device_action">Associa un nuovo dispositivo</string>
   <string name="unpair_device_action">Disassocia %s</string>
   <string name="custom_device_list">Aggiungi dispositivi per IP</string>
+  <string name="delete_custom_device">Vuoi eliminare %s?</string>
   <string name="share_notification_preference">Notifiche rumorose</string>
   <string name="share_notification_preference_summary">Vibra e riproduci un suono alla ricezione di un file</string>
   <string name="share_destination_customize">Personalizza la cartella di destinazione</string>
@@ -220,6 +226,10 @@
   <string name="pref_plugin_mprisreceiver">Controllo lettore multimediale</string>
   <string name="pref_plugin_mprisreceiver_desc">Controlla i lettori multimediali del tuo telefono da un altro dispositivo</string>
   <string name="dark_theme">Tema scuro</string>
+  <string name="notification_channel_default">Altre notifiche</string>
+  <string name="notification_channel_persistent">Indicatore persistente</string>
+  <string name="notification_channel_media_control">Controllo multimediale</string>
+  <string name="notification_channel_filetransfer">Trasferimento file</string>
   <string name="mpris_stop">Ferma il lettore attuale</string>
   <string name="copy_url_to_clipboard">Copia l\'URL negli appunti</string>
   <string name="clipboard_toast">Copiato negli appunti</string>
@@ -234,4 +244,12 @@
   <string name="pref_plugin_systemvolume_desc">Controlla il volume di sistema dal dispositivo remoto</string>
   <string name="mute">Silenzia</string>
   <string name="all">Tutto</string>
+  <string name="devices">Dispositivi</string>
+  <string name="settings_rename">Nome dispositivo</string>
+  <string name="settings_dark_mode">Tema scuro</string>
+  <string name="settings_more_settings_title">Altre impostazioni</string>
+  <string name="settings_more_settings_text">Le impostazioni per dispositivo sono disponibili sotto «Impostazione estensioni» dall\'interno del dispositivo.</string>
+  <string name="setting_persistent_notification">Mostra notifica persistente</string>
+  <string name="setting_persistent_notification_oreo_description">Richiesto da Android a partire da Android 8.0</string>
+  <string name="setting_persistent_notification_pie_description">Da Android 9.0, questa notifica potrà essere minimizzata solo con un tocco lungo</string>
 </resources>
