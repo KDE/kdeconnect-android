@@ -16,7 +16,8 @@
   <string name="pref_plugin_mpris">Multimedia-Bedienung</string>
   <string name="pref_plugin_mpris_desc">Eine Fernbedienung für Ihre Medienwiedergabe</string>
   <string name="pref_plugin_runcommand">Befehl ausführen</string>
-  <string name="pref_plugin_runcommand_desc">Von Ihrem Telefon oder Tablet Befehle auf anderen Geräten ausführen</string>
+  <string name="pref_plugin_runcommand_desc">Von Ihrem Telefon oder Tablett Befehle auf anderen Geräten ausführen</string>
+  <string name="pref_plugin_contacts">Kontakte-Abgleich</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Senden und Empfangen von Pings</string>
   <string name="pref_plugin_notifications">Benachrichtigungs-Abgleich</string>
