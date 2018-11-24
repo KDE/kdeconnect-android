@@ -108,7 +108,6 @@
   <string name="device">Уређај</string>
   <string name="pair_device">Упари уређај</string>
   <string name="remote_control">Даљинско управљање</string>
-  <string name="settings">Поставке за КДЕ‑конекцију</string>
   <string name="mpris_play">Пусти</string>
   <string name="mpris_previous">Претходно</string>
   <string name="mpris_rew">Премотај</string>
@@ -124,7 +123,6 @@
     <item>1 минут</item>
     <item>2 минута</item>
   </string-array>
-  <string name="share_to">Дели...</string>
   <string name="protocol_version_older">Овај уређај користи стару верзију протокола</string>
   <string name="protocol_version_newer">Овај уређај користи новију верзију протокола</string>
   <string name="general_settings">Опште поставке</string>
