@@ -127,16 +127,28 @@
     <string name="pairing_request_from">Pairing request from %1s</string>
     <string name="received_url_title">Received link from %1s</string>
     <string name="received_url_text">Tap to open \'%1s\'</string>
-    <string name="incoming_file_title">Incoming file from %1s</string>
-    <string name="incoming_file_text">%1s</string>
+    <plurals name="incoming_file_title">Receiving file from %1s>
+        <item quantity="one">Receiving %1$d file from %2$s</item>
+        <item quantity="other">Receiving %1$d files from %2$s</item>
+    </plurals>
+    <plurals name="incoming_files_text">
+        <item quantity="one">File: %1s</item>
+        <item quantity="other">(File %2$d of %3$d) : %1$s</item>
+    </plurals>
     <string name="outgoing_file_title">Sending file to %1s</string>
     <string name="outgoing_files_title">Sending files to %1s</string>
     <plurals name="outgoing_files_text">
         <item quantity="one">Sent %1$d file</item>
         <item quantity="other">Sent %1$d out of %2$d files</item>
     </plurals>
-    <string name="received_file_title">Received file from %1s</string>
-    <string name="received_file_fail_title">Failed receiving file from %1s</string>
+    <plurals name="received_files_title">
+        <item quantity="one">Received file from %2$s</item>
+        <item quantity="other">Received %1$d files from %2$s</item>
+    </plurals>
+    <plurals name="received_files_fail_title">
+        <item quantity="one">Failed receiving file from %3$s</item>
+        <item quantity="other">Failed receiving %1$d of %2$d files from %3$s</item>
+    </plurals>
     <string name="received_file_text">Tap to open \'%1s\'</string>
     <string name="sent_file_title">Sent file to %1s</string>
     <string name="sent_file_text">%1s</string>

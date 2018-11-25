@@ -36,7 +36,10 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.MediaStore;
+import android.support.annotation.WorkerThread;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
@@ -44,7 +47,6 @@ import android.support.v4.provider.DocumentFile;
 import android.util.Log;
 import android.widget.Toast;
 
-import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.FilesHelper;
 import org.kde.kdeconnect.Helpers.MediaStoreHelper;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
@@ -53,18 +55,30 @@ import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.UserInterface.DeviceSettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class SharePlugin extends Plugin {
+public class SharePlugin extends Plugin implements ReceiveFileRunnable.CallBack {
 
     private final static String PACKET_TYPE_SHARE_REQUEST = "kdeconnect.share.request";
 
     private final static boolean openUrlsDirectly = true;
+    private ShareNotification shareNotification;
+    private FinishReceivingRunnable finishReceivingRunnable;
+    private ExecutorService executorService;
+    private ShareInfo currentShareInfo;
+    private Handler handler;
+
+    public SharePlugin() {
+        executorService = Executors.newSingleThreadExecutor();
+        handler = new Handler(Looper.getMainLooper());
+    }
 
     @Override
     public boolean onCreate() {
@@ -110,13 +124,10 @@ public class SharePlugin extends Plugin {
     }
 
     @Override
+    @WorkerThread
     public boolean onPacketReceived(NetworkPacket np) {
-
         try {
             if (np.hasPayload()) {
-
-                Log.i("SharePlugin", "hasPayload");
-
                 if (isPermissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                     receiveFile(np);
                 } else {
@@ -183,13 +194,33 @@ public class SharePlugin extends Plugin {
         Toast.makeText(context, R.string.shareplugin_text_saved, Toast.LENGTH_LONG).show();
     }
 
+    @WorkerThread
     private void receiveFile(NetworkPacket np) {
+        if (finishReceivingRunnable != null) {
+            Log.i("SharePlugin", "receiveFile: canceling finishReceivingRunnable");
+            handler.removeCallbacks(finishReceivingRunnable);
+            finishReceivingRunnable = null;
+        }
 
-        final InputStream input = np.getPayload();
-        final long fileLength = np.getPayloadSize();
-        final String originalFilename = np.getString("filename", Long.toString(System.currentTimeMillis()));
+        ShareInfo info = new ShareInfo();
+        info.currentFileNumber = currentShareInfo == null ? 1 : currentShareInfo.currentFileNumber + 1;
+        info.inputStream = np.getPayload();
+        info.fileSize = np.getPayloadSize();
+        info.fileName = np.getString("filename", Long.toString(System.currentTimeMillis()));
+        info.shouldOpen = np.getBoolean("open");
+        info.setNumberOfFiles(np.getInt("numberOfFiles", 1));
+        info.setTotalTransferSize(np.getLong("totalPayloadSize", 1));
 
-        String filename = originalFilename;
+        if (currentShareInfo == null) {
+            currentShareInfo = info;
+        } else {
+            synchronized (currentShareInfo) {
+                currentShareInfo.setNumberOfFiles(info.numberOfFiles());
+                currentShareInfo.setTotalTransferSize(info.totalTransferSize());
+            }
+        }
+
+        String filename = info.fileName;
         final DocumentFile destinationFolderDocument;
 
         //We need to check for already existing files only when storing in the default path.
@@ -197,107 +228,38 @@ public class SharePlugin extends Plugin {
         //If the file should be opened immediately store it in the standard location to avoid the FileProvider trouble (See ShareNotification::setURI)
         if (np.getBoolean("open") || !ShareSettingsActivity.isCustomDestinationEnabled(context)) {
             final String defaultPath = ShareSettingsActivity.getDefaultDestinationDirectory().getAbsolutePath();
-            filename = FilesHelper.findNonExistingNameForNewFile(defaultPath, originalFilename);
+            filename = FilesHelper.findNonExistingNameForNewFile(defaultPath, filename);
             destinationFolderDocument = DocumentFile.fromFile(new File(defaultPath));
         } else {
             destinationFolderDocument = ShareSettingsActivity.getDestinationDirectory(context);
         }
         String displayName = FilesHelper.getFileNameWithoutExt(filename);
-        final String mimeType = FilesHelper.getMimeTypeFromFile(filename);
+        String mimeType = FilesHelper.getMimeTypeFromFile(filename);
 
         if ("*/*".equals(mimeType)) {
             displayName = filename;
         }
 
-        final DocumentFile destinationDocument = destinationFolderDocument.createFile(mimeType, displayName);
-        final OutputStream destinationOutput;
+        info.fileDocument = destinationFolderDocument.createFile(mimeType, displayName);
+        assert info.fileDocument != null;
+        info.fileDocument.getType();
         try {
-            destinationOutput = context.getContentResolver().openOutputStream(destinationDocument.getUri());
+            info.outputStream = new BufferedOutputStream(context.getContentResolver().openOutputStream(info.fileDocument.getUri()));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return;
         }
-        final Uri destinationUri = destinationDocument.getUri();
 
-        final ShareNotification notification = new ShareNotification(device, filename);
-        notification.show();
+        if (shareNotification == null) {
+            shareNotification = new ShareNotification(device);
+        }
 
-        new Thread(() -> {
-            try {
-                byte data[] = new byte[4096];
-                long progress = 0, prevProgressPercentage = -1;
-                int count;
-                long lastUpdate = 0;
-                while ((count = input.read(data)) >= 0) {
-                    progress += count;
-                    destinationOutput.write(data, 0, count);
-                    if (fileLength > 0) {
-                        if (progress >= fileLength) break;
-                        long progressPercentage = (progress * 100 / fileLength);
-                        if (progressPercentage != prevProgressPercentage &&
-                                System.currentTimeMillis() - lastUpdate > 100) {
-                            prevProgressPercentage = progressPercentage;
-                            lastUpdate = System.currentTimeMillis();
+        shareNotification.setTitle(context.getResources().getQuantityString(R.plurals.incoming_file_title, info.numberOfFiles(), info.numberOfFiles(), device.getName()));
+        //shareNotification.setProgress(0, context.getResources().getQuantityString(R.plurals.incoming_files_text, numFiles, filename, currentFileNum, numFiles));
+        shareNotification.show();
 
-                            notification.setProgress((int) progressPercentage);
-                            notification.show();
-                        }
-                    }
-                    //else Log.e("SharePlugin", "Infinite loop? :D");
-                }
-
-                destinationOutput.flush();
-
-                Log.i("SharePlugin", "Transfer finished: " + destinationUri.getPath());
-
-                if (np.getBoolean("open")) {
-
-                    notification.cancel();
-
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    if (Build.VERSION.SDK_INT >= 24) {
-                        //Nougat and later require "content://" uris instead of "file://" uris
-                        File file = new File(destinationUri.getPath());
-                        Uri contentUri = FileProvider.getUriForFile(device.getContext(), "org.kde.kdeconnect_tp.fileprovider", file);
-                        intent.setDataAndType(contentUri, mimeType);
-                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                    } else {
-                        intent.setDataAndType(destinationUri, mimeType);
-                    }
-
-                    context.startActivity(intent);
-                } else {
-
-                    //Update the notification and allow to open the file from it
-                    notification.setFinished(true);
-                    notification.setURI(destinationUri, mimeType);
-                    notification.show();
-
-                    if (!ShareSettingsActivity.isCustomDestinationEnabled(context)) {
-                        Log.i("SharePlugin", "Adding to downloads");
-                        DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-                        manager.addCompletedDownload(destinationUri.getLastPathSegment(), device.getName(), true, mimeType, destinationUri.getPath(), fileLength, false);
-                    } else {
-                        //Make sure it is added to the Android Gallery anyway
-                        MediaStoreHelper.indexFile(context, destinationUri);
-                    }
-                }
-            } catch (Exception e) {
-                Log.e("SharePlugin", "Receiver thread exception");
-                e.printStackTrace();
-                notification.setFinished(false);
-                notification.show();
-            } finally {
-                try {
-                    destinationOutput.close();
-                } catch (Exception e) {
-                }
-                try {
-                    input.close();
-                } catch (Exception e) {
-                }
-            }
-        }).start();
+        ReceiveFileRunnable runnable = new ReceiveFileRunnable(info, this);
+        executorService.execute(runnable);
     }
 
     @Override
@@ -481,5 +443,89 @@ public class SharePlugin extends Plugin {
     @Override
     public String[] getOptionalPermissions() {
         return new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    }
+
+    @Override
+    public void onProgress(ShareInfo info, int progress) {
+        if (progress == 0 && currentShareInfo != info) {
+            currentShareInfo = info;
+        }
+
+        shareNotification.setProgress(progress, context.getResources().getQuantityString(R.plurals.incoming_files_text, info.numberOfFiles(), info.fileName, info.currentFileNumber, info.numberOfFiles()));
+        shareNotification.show();
+    }
+
+    @Override
+    public void onSuccess(ShareInfo info) {
+        Log.i("SharePlugin", "onSuccess() - Transfer finished for file: " + info.fileDocument.getUri().getPath());
+
+        if (info.shouldOpen) {
+            shareNotification.cancel();
+
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            if (Build.VERSION.SDK_INT >= 24) {
+                //Nougat and later require "content://" uris instead of "file://" uris
+                File file = new File(info.fileDocument.getUri().getPath());
+                Uri contentUri = FileProvider.getUriForFile(device.getContext(), "org.kde.kdeconnect_tp.fileprovider", file);
+                intent.setDataAndType(contentUri, info.fileDocument.getType());
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            } else {
+                intent.setDataAndType(info.fileDocument.getUri(), info.fileDocument.getType());
+            }
+
+            context.startActivity(intent);
+        } else {
+            if (!ShareSettingsActivity.isCustomDestinationEnabled(context)) {
+                Log.i("SharePlugin", "Adding to downloads");
+                DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+                manager.addCompletedDownload(info.fileDocument.getUri().getLastPathSegment(), device.getName(), true, info.fileDocument.getType(), info.fileDocument.getUri().getPath(), info.fileSize, false);
+            } else {
+                //Make sure it is added to the Android Gallery anyway
+                MediaStoreHelper.indexFile(context, info.fileDocument.getUri());
+            }
+
+            if (info.numberOfFiles() == 1 || info.currentFileNumber == info.numberOfFiles()) {
+                finishReceivingRunnable = new FinishReceivingRunnable(info);
+                Log.i("SharePlugin", "onSuccess() - scheduling finishReceivingRunnable");
+                handler.postDelayed(finishReceivingRunnable, 1000);
+            }
+        }
+    }
+
+    @Override
+    public void onError(ShareInfo info, Throwable error) {
+        Log.e("SharePlugin", "onError: " + error.getMessage());
+
+        info.fileDocument.delete();
+
+        int failedFiles = info.numberOfFiles() - (info.currentFileNumber - 1);
+        shareNotification.setFinished(context.getResources().getQuantityString(R.plurals.received_files_fail_title, failedFiles, failedFiles, info.numberOfFiles(), device.getName()));
+        shareNotification.show();
+        shareNotification = null;
+    }
+
+    private class FinishReceivingRunnable implements Runnable {
+        private final ShareInfo info;
+
+        private FinishReceivingRunnable(ShareInfo info) {
+            this.info = info;
+        }
+
+        @Override
+        public void run() {
+            if (shareNotification != null) {
+                //Update the notification and allow to open the file from it
+                shareNotification.setFinished(context.getResources().getQuantityString(R.plurals.received_files_title, info.numberOfFiles(), info.numberOfFiles(), device.getName()));
+
+                if (info.numberOfFiles() == 1) {
+                    shareNotification.setURI(info.fileDocument.getUri(), info.fileDocument.getType(), info.fileName);
+                }
+
+                shareNotification.show();
+                Log.i("SharePlugin", "FinishReceivingRunnable: Setting shareNotification to null");
+                shareNotification = null;
+                finishReceivingRunnable = null;
+            }
+        }
     }
 }

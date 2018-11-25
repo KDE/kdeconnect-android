@@ -42,8 +42,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
+//TODO: Starting API 24 notification title and text are both displayed on 1 line above the progress bar. Because title can be long, the text is often not displayed
 class ShareNotification {
-    private final String filename;
     private final NotificationManager notificationManager;
     private final int notificationId;
     private NotificationCompat.Builder builder;
@@ -53,15 +53,12 @@ class ShareNotification {
     private static final int bigImageWidth = 1440;
     private static final int bigImageHeight = 720;
 
-    public ShareNotification(Device device, String filename) {
+    public ShareNotification(Device device) {
         this.device = device;
-        this.filename = filename;
+
         notificationId = (int) System.currentTimeMillis();
         notificationManager = (NotificationManager) device.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
         builder = new NotificationCompat.Builder(device.getContext(), NotificationHelper.Channels.FILETRANSFER)
-                .setContentTitle(device.getContext().getResources().getString(R.string.incoming_file_title, device.getName()))
-                .setContentText(device.getContext().getResources().getString(R.string.incoming_file_text, filename))
-                .setTicker(device.getContext().getResources().getString(R.string.incoming_file_title, device.getName()))
                 .setSmallIcon(android.R.drawable.stat_sys_download)
                 .setAutoCancel(true)
                 .setOngoing(true)
@@ -80,13 +77,17 @@ class ShareNotification {
         return notificationId;
     }
 
-    public void setProgress(int progress) {
-        builder.setProgress(100, progress, false)
-                .setContentTitle(device.getContext().getResources().getString(R.string.incoming_file_title, device.getName()) + " (" + progress + "%)");
+    public void setTitle(String title) {
+        builder.setContentTitle(title);
+        builder.setTicker(title);
     }
 
-    public void setFinished(boolean success) {
-        String message = success ? device.getContext().getResources().getString(R.string.received_file_title, device.getName()) : device.getContext().getResources().getString(R.string.received_file_fail_title, device.getName());
+    public void setProgress(int progress, String progressMessage) {
+        builder.setProgress( 100, progress, false);
+        builder.setContentText(progressMessage);
+    }
+
+    public void setFinished(String message) {
         builder = new NotificationCompat.Builder(device.getContext(), NotificationHelper.Channels.DEFAULT);
         builder.setContentTitle(message)
                 .setTicker(message)
@@ -100,7 +101,7 @@ class ShareNotification {
         }
     }
 
-    public void setURI(Uri destinationUri, String mimeType) {
+    public void setURI(Uri destinationUri, String mimeType, String filename) {
         /*
          * We only support file URIs (because sending a content uri to another app does not work for security reasons).
          * In effect, that means only the default download folder currently works.
