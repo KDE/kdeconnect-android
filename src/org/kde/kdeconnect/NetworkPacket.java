@@ -309,7 +309,7 @@ public class NetworkPacket {
     }
 
     public boolean hasPayload() {
-        return (mPayload != null);
+        return (mPayloadSize != 0);
     }
 
     public boolean hasPayloadTransferInfo() {

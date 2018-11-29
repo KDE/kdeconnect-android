@@ -150,7 +150,7 @@ public class LanLink extends BaseLink {
 
             //Prepare socket for the payload
             final ServerSocket server;
-            if (np.hasPayload() && np.getPayloadSize() != 0) {
+            if (np.hasPayload()) {
                 server = LanLinkProvider.openServerSocketOnFreePort(LanLinkProvider.PAYLOAD_TRANSFER_MIN_PORT);
                 JSONObject payloadTransferInfo = new JSONObject();
                 payloadTransferInfo.put("port", server.getLocalPort());
@@ -263,7 +263,6 @@ public class LanLink extends BaseLink {
         }
 
         if (np.hasPayloadTransferInfo()) {
-
             Socket payloadSocket = new Socket();
             try {
                 int tcpPort = np.getPayloadTransferInfo().getInt("port");
