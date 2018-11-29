@@ -98,7 +98,7 @@
   <string name="received_url_text">Tap om \'%1s\' te openen</string>
   <string name="incoming_file_title">Inkomend bestand van %1s</string>
   <string name="incoming_file_text">%1s</string>
-  <string name="outgoing_file_title">Bezig bestand te verzenden naar %1s</string>
+  <string name="outgoing_file_title">Bestand wordt verzonden naar %1s</string>
   <string name="outgoing_files_title">Bezig bestanden te verzenden naar %1s</string>
   <plurals name="outgoing_files_text">
     <item quantity="one">Bestand %1$d verzenden</item>
