@@ -502,6 +502,7 @@ public class SharePlugin extends Plugin implements ReceiveFileRunnable.CallBack 
         shareNotification.setFinished(context.getResources().getQuantityString(R.plurals.received_files_fail_title, failedFiles, failedFiles, info.numberOfFiles(), device.getName()));
         shareNotification.show();
         shareNotification = null;
+        currentShareInfo = null;
     }
 
     private class FinishReceivingRunnable implements Runnable {
@@ -513,6 +514,8 @@ public class SharePlugin extends Plugin implements ReceiveFileRunnable.CallBack 
 
         @Override
         public void run() {
+            Log.i("SharePlugin", "FinishReceivingRunnable: Finishing up");
+
             if (shareNotification != null) {
                 //Update the notification and allow to open the file from it
                 shareNotification.setFinished(context.getResources().getQuantityString(R.plurals.received_files_title, info.numberOfFiles(), info.numberOfFiles(), device.getName()));
@@ -522,10 +525,11 @@ public class SharePlugin extends Plugin implements ReceiveFileRunnable.CallBack 
                 }
 
                 shareNotification.show();
-                Log.i("SharePlugin", "FinishReceivingRunnable: Setting shareNotification to null");
                 shareNotification = null;
-                finishReceivingRunnable = null;
             }
+
+            finishReceivingRunnable = null;
+            currentShareInfo = null;
         }
     }
 }
