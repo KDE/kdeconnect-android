@@ -127,7 +127,7 @@ public class SharePlugin extends Plugin implements ReceiveFileRunnable.CallBack 
     @WorkerThread
     public boolean onPacketReceived(NetworkPacket np) {
         try {
-            if (np.hasPayload()) {
+            if (np.has("filename")) {
                 if (isPermissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                     receiveFile(np);
                 } else {
@@ -242,24 +242,33 @@ public class SharePlugin extends Plugin implements ReceiveFileRunnable.CallBack 
 
         info.fileDocument = destinationFolderDocument.createFile(mimeType, displayName);
         assert info.fileDocument != null;
-        info.fileDocument.getType();
-        try {
-            info.outputStream = new BufferedOutputStream(context.getContentResolver().openOutputStream(info.fileDocument.getUri()));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return;
-        }
 
         if (shareNotification == null) {
             shareNotification = new ShareNotification(device);
         }
 
+        if (info.fileDocument == null) {
+            onError(info, new RuntimeException(context.getString(R.string.cannot_create_file, filename)));
+            return;
+        }
+
         shareNotification.setTitle(context.getResources().getQuantityString(R.plurals.incoming_file_title, info.numberOfFiles(), info.numberOfFiles(), device.getName()));
-        //shareNotification.setProgress(0, context.getResources().getQuantityString(R.plurals.incoming_files_text, numFiles, filename, currentFileNum, numFiles));
         shareNotification.show();
 
-        ReceiveFileRunnable runnable = new ReceiveFileRunnable(info, this);
-        executorService.execute(runnable);
+        if (np.hasPayload()) {
+            try {
+                info.outputStream = new BufferedOutputStream(context.getContentResolver().openOutputStream(info.fileDocument.getUri()));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return;
+            }
+
+            ReceiveFileRunnable runnable = new ReceiveFileRunnable(info, this);
+            executorService.execute(runnable);
+        } else {
+            onProgress(info, 100);
+            onSuccess(info);
+        }
     }
 
     @Override
@@ -498,6 +507,7 @@ public class SharePlugin extends Plugin implements ReceiveFileRunnable.CallBack 
 
         info.fileDocument.delete();
 
+        //TODO: Show error in notification
         int failedFiles = info.numberOfFiles() - (info.currentFileNumber - 1);
         shareNotification.setFinished(context.getResources().getQuantityString(R.plurals.received_files_fail_title, failedFiles, failedFiles, info.numberOfFiles(), device.getName()));
         shareNotification.show();
