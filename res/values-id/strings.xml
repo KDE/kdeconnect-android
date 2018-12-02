@@ -89,15 +89,11 @@
   <string name="pairing_request_from">Minta penyandingan dari %1s</string>
   <string name="received_url_title">Tautan diterima dari %1s</string>
   <string name="received_url_text">Ketuk untuk membuka \'%1s\'</string>
-  <string name="incoming_file_title">File masuk dari %1s</string>
-  <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Mengirim file ke %1s</string>
   <string name="outgoing_files_title">Mengirim file ke %1s</string>
   <plurals name="outgoing_files_text">
     <item quantity="other">Kirim %1$d dari dalam file %2$d</item>
   </plurals>
-  <string name="received_file_title">Diterima file dari %1s</string>
-  <string name="received_file_fail_title">Penerimaan file gagal dari %1s</string>
   <string name="received_file_text">Ketuk untuk membuka \'%1s\'</string>
   <string name="sent_file_title">Kirim file ke %1s</string>
   <string name="sent_file_text">%1s</string>

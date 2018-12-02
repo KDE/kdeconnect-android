@@ -79,11 +79,7 @@
   <string name="pairing_request_from">طلب اقتران من %1s</string>
   <string name="received_url_title">استُلمت وصلة من %1s</string>
   <string name="received_url_text">المس لفتح \'%1s\'</string>
-  <string name="incoming_file_title">ملفّ وارد من %1s</string>
-  <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">يرسل ملفًّا إلى %1s</string>
-  <string name="received_file_title">استُقبل ملفّ من %1s</string>
-  <string name="received_file_fail_title">فشل استقبال الملفّ من %1s</string>
   <string name="received_file_text">المس لفتح \'%1s\'</string>
   <string name="sent_file_title">أرسل ملفًّا إلى %1s</string>
   <string name="sent_file_text">%1s</string>

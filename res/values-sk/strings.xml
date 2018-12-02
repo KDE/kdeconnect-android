@@ -79,11 +79,7 @@
   <string name="pairing_request_from">Požiadavka na spárovanie od %1s</string>
   <string name="received_url_title">Prijatý odkaz od %1s</string>
   <string name="received_url_text">Ťuknite na otvorenie \'%1s\'</string>
-  <string name="incoming_file_title">Prichádzajúci súbor od %s</string>
-  <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Posielam súbor pre %1s</string>
-  <string name="received_file_title">Prijatý súbor od %1s</string>
-  <string name="received_file_fail_title">Zlyhalo prijatie súboru od %1s</string>
   <string name="received_file_text">Ťuknite na otvorenie \'%1s\'</string>
   <string name="sent_file_title">Poslať súbor pre %1s</string>
   <string name="sent_file_text">%1s</string>

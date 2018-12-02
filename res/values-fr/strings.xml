@@ -93,16 +93,12 @@
   <string name="pairing_request_from">Demande d\'association provenant de %1s</string>
   <string name="received_url_title">Lien reçu de %1s</string>
   <string name="received_url_text">Appuyez pour ouvrir %1s</string>
-  <string name="incoming_file_title">Réception d\'un fichier en cours depuis %1s</string>
-  <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Envoi d\'un fichier à %1s</string>
   <string name="outgoing_files_title">Envoi de fichiers à %1s</string>
   <plurals name="outgoing_files_text">
     <item quantity="one">%1$d fichier envoyé</item>
     <item quantity="other">%1$d fichiers envoyés sur %2$d</item>
   </plurals>
-  <string name="received_file_title">Fichier reçu de %1s</string>
-  <string name="received_file_fail_title">Impossible de recevoir le fichier depuis : %1s</string>
   <string name="received_file_text">Appuyez pour ouvrir %1s</string>
   <string name="sent_file_title">Fichier envoyé à %1s</string>
   <string name="sent_file_text">%1s</string>

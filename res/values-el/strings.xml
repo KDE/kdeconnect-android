@@ -85,12 +85,8 @@
   <string name="pairing_request_from">Αίτημα σύζευξης από %1s</string>
   <string name="received_url_title">Ελήφθη σύνδεσμος από %1s</string>
   <string name="received_url_text">Χτυπήστε για άνοιγμα \'%1s\'</string>
-  <string name="incoming_file_title">Εισερχόμενο αρχείο από %1s</string>
-  <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Αποστολή αρχείου σε %1s</string>
   <string name="outgoing_files_title">Αποστολή αρχείων σε %1s</string>
-  <string name="received_file_title">Ελήφθη αρχείο από %1s</string>
-  <string name="received_file_fail_title">Αποτυχία λήψης αρχείου από %1s</string>
   <string name="received_file_text">Χτυπήστε για άνοιγμα \'%1s\'</string>
   <string name="sent_file_title">Εστάλη αρχείο σε %1s</string>
   <string name="sent_file_text">%1s</string>

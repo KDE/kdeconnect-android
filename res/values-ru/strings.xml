@@ -85,12 +85,8 @@
   <string name="pairing_request_from">Запрос на сопряжение от %1s</string>
   <string name="received_url_title">Получена ссылка от %1s</string>
   <string name="received_url_text">Нажмите, чтобы открыть «%1s»</string>
-  <string name="incoming_file_title">Входящий файл с %1s</string>
-  <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Отправка файла на %1s</string>
   <string name="outgoing_files_title">Отправка файлов на %1s</string>
-  <string name="received_file_title">Получен файл с %1s</string>
-  <string name="received_file_fail_title">Не удалось получить файл с %1s</string>
   <string name="received_file_text">Нажмите, чтобы открыть «%1s»</string>
   <string name="sent_file_title">Файл отправлен на %1s</string>
   <string name="sent_file_text">%1s</string>

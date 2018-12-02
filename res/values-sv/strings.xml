@@ -96,16 +96,12 @@
   <string name="pairing_request_from">Begäran om ihopparning från %1s</string>
   <string name="received_url_title">Tog emot länk från %1s</string>
   <string name="received_url_text">Rör för att öppna \'%1s\'</string>
-  <string name="incoming_file_title">Inkommande fil från %1s</string>
-  <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Skickar fil till %1s</string>
   <string name="outgoing_files_title">Skickar filer till %1s</string>
   <plurals name="outgoing_files_text">
     <item quantity="one">Skickade %1$d fil</item>
     <item quantity="other">Skickade %1$d av %2$d filer</item>
   </plurals>
-  <string name="received_file_title">Tog emot fil från %1s</string>
-  <string name="received_file_fail_title">Misslyckades ta emot fil från %1s</string>
   <string name="received_file_text">Rör för att öppna \'%1s\'</string>
   <string name="sent_file_title">Skickade fil till %1s</string>
   <string name="sent_file_text">%1s</string>

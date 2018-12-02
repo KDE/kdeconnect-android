@@ -96,8 +96,18 @@
   <string name="pairing_request_from">Запит щодо пов’язування від %1s</string>
   <string name="received_url_title">Отримано посилання від %1s</string>
   <string name="received_url_text">Натисніть, щоб відкрити «%1s»</string>
-  <string name="incoming_file_title">Вхідний файл з %1s</string>
-  <string name="incoming_file_text">%1s</string>
+  <plurals name="incoming_file_title">
+    <item quantity="one">Отримуємо %1$d файл з %2$s</item>
+    <item quantity="few">Отримуємо %1$d файли з %2$s</item>
+    <item quantity="many">Отримуємо %1$d файлів з %2$s</item>
+    <item quantity="other">Отримуємо %1$d файл з %2$s</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="one">(Файл %2$d з %3$d): %1$s</item>
+    <item quantity="few">(Файл %2$d з %3$d): %1$s</item>
+    <item quantity="many">(Файл %2$d з %3$d): %1$s</item>
+    <item quantity="other">Файл: %1$s</item>
+  </plurals>
   <string name="outgoing_file_title">Надсилаємо файл до %1s</string>
   <string name="outgoing_files_title">Надсилаємо файли на %1s</string>
   <plurals name="outgoing_files_text">
@@ -106,8 +116,18 @@
     <item quantity="many">Надіслано %1$d з %2$d файлів</item>
     <item quantity="other">Надіслано %1$d файл</item>
   </plurals>
-  <string name="received_file_title">Отримано файл з %1s</string>
-  <string name="received_file_fail_title">Не вдалося отримати файл з %1s</string>
+  <plurals name="received_files_title">
+    <item quantity="one">Отримано %1$d файл з %2$s</item>
+    <item quantity="few">Отримано %1$d файли з %2$s</item>
+    <item quantity="many">Отримано %1$d файлів з %2$s</item>
+    <item quantity="other">Отримано %1$d файл з %2$s</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Не вдалося отримати %1$d з %2$d файла з %3$s</item>
+    <item quantity="few">Не вдалося отримати %1$d з %2$d файлів з %3$s</item>
+    <item quantity="many">Не вдалося отримати %1$d з %2$d файлів з %3$s</item>
+    <item quantity="other">Не вдалося отримати %1$d з %2$d файла з %3$s</item>
+  </plurals>
   <string name="received_file_text">Натисніть, щоб відкрити «%1s»</string>
   <string name="sent_file_title">Файл надіслано до %1s</string>
   <string name="sent_file_text">%1s</string>

@@ -96,8 +96,6 @@
   <string name="pairing_request_from">Żądanie parowania z %1s</string>
   <string name="received_url_title">Odebrano odsyłacz od %1s</string>
   <string name="received_url_text">Znacznik do otwarcia \'%1s\'</string>
-  <string name="incoming_file_title">Plik przychodzący od %1s</string>
-  <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Wysyłanie pliku do %1s</string>
   <string name="outgoing_files_title">Wysyłanie pliku do %1s</string>
   <plurals name="outgoing_files_text">
@@ -106,8 +104,6 @@
     <item quantity="many">Wysłano %1$d z %2$d plików</item>
     <item quantity="other"/>
   </plurals>
-  <string name="received_file_title">Odebrano plik od %1s</string>
-  <string name="received_file_fail_title">Nieudane odbieranie pliku z %1s</string>
   <string name="received_file_text">Znacznik do otwarcia \'%1s\'</string>
   <string name="sent_file_title">Plik wysłano do %1s</string>
   <string name="sent_file_text">%1s</string>

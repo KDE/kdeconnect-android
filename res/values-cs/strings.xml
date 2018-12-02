@@ -96,8 +96,6 @@
   <string name="pairing_request_from">Požadavek o párování z %1s</string>
   <string name="received_url_title">Přijat odkaz od %1s</string>
   <string name="received_url_text">Ťukněte pro otevření \'%1s\'</string>
-  <string name="incoming_file_title">Příchozí soubor od %1s</string>
-  <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Odesílám soubor do %1s</string>
   <string name="outgoing_files_title">Odesílám soubory do %1s</string>
   <plurals name="outgoing_files_text">
@@ -106,8 +104,6 @@
     <item quantity="many">Odesláno %1$d ze %2$d souborů</item>
     <item quantity="other"/>
   </plurals>
-  <string name="received_file_title">Přijat soubor od %1s</string>
-  <string name="received_file_fail_title">Selhalo přijímání souboru od %1s</string>
   <string name="received_file_text">Ťukněte pro otevření \'%1s\'</string>
   <string name="sent_file_title">Soubor byl odeslán do %1s</string>
   <string name="sent_file_text">%1s</string>

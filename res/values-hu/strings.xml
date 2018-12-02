@@ -55,9 +55,6 @@
   <string name="pairing_request_from">Párosítási kérés innen: %1s</string>
   <string name="received_url_title">Hivatkozás érkezett innen: %1s</string>
   <string name="received_url_text">Koppintson „%1s” megnyitásához</string>
-  <string name="incoming_file_title">Bejövő fájl innen: %1s</string>
-  <string name="incoming_file_text">%1s</string>
-  <string name="received_file_title">Fájl érkezett innen: %1s</string>
   <string name="received_file_text">Koppintson „%1s” megnyitásához</string>
   <string name="tap_to_answer">Érintse meg a válaszhoz</string>
   <string name="reconnect">Újracsatlakozás</string>

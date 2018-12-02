@@ -79,12 +79,8 @@
   <string name="pairing_request_from">Paardumise soov seadmest %1s</string>
   <string name="received_url_title">Lingi saamine seadmest %1s</string>
   <string name="received_url_text">Koputa \"%1s\" avamiseks</string>
-  <string name="incoming_file_title">Saabuv fail seadmest %1s</string>
-  <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Faili saatmine seadmesse %1s</string>
   <string name="outgoing_files_title">Failide saatmine seadmesse %1s</string>
-  <string name="received_file_title">Faili saamine seadmest %1s</string>
-  <string name="received_file_fail_title">Faili saamine seadmest %1s nurjus</string>
   <string name="received_file_text">Koputa \"%1s\" avamiseks</string>
   <string name="sent_file_title">Fail saadeti seadmesse %1s</string>
   <string name="sent_file_text">%1s</string>

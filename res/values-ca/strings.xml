@@ -96,16 +96,28 @@
   <string name="pairing_request_from">S\'ha demanat aparellar des de %1s</string>
   <string name="received_url_title">S\'ha rebut un vincle des de %1s</string>
   <string name="received_url_text">Puntegeu per obrir «%1s»</string>
-  <string name="incoming_file_title">Fitxer entrant des de %1s</string>
-  <string name="incoming_file_text">%1s</string>
+  <plurals name="incoming_file_title">
+    <item quantity="one">S\'està rebent %1$d fitxer des de %2$s</item>
+    <item quantity="other">S\'estan rebent %1$d fitxers des de %2$s</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="one">Fitxer: %1s</item>
+    <item quantity="other">(Fitxer %2$d de %3$d): %1$s</item>
+  </plurals>
   <string name="outgoing_file_title">S\'està enviant el fitxer a %1s</string>
   <string name="outgoing_files_title">S\'estan enviant fitxers a %1s</string>
   <plurals name="outgoing_files_text">
     <item quantity="one">S\'ha enviat %1$d fitxer</item>
     <item quantity="other">S\'ha enviat %1$d de %2$d fitxers</item>
   </plurals>
-  <string name="received_file_title">Fitxer rebut des de %1s</string>
-  <string name="received_file_fail_title">Ha fallat en rebre el fitxer des de %1s</string>
+  <plurals name="received_files_title">
+    <item quantity="one">S\'ha rebut %1$d fitxer des de %2$s</item>
+    <item quantity="other">S\'han rebut %1$d fitxers des de %2$s</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Ha fallat en rebre %1$d de %2$d fitxer des de %3$s</item>
+    <item quantity="other">Ha fallat en rebre %1$d de %2$d fitxers des de %3$s</item>
+  </plurals>
   <string name="received_file_text">Puntegeu per obrir «%1s»</string>
   <string name="sent_file_title">Fitxer enviat a %1s</string>
   <string name="sent_file_text">%1s</string>

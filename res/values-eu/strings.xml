@@ -85,12 +85,8 @@
   <string name="pairing_request_from">Parekatzeko eskaria %1s-tik</string>
   <string name="received_url_title">Esteka jaso da %1s-tik</string>
   <string name="received_url_text">Sakatu \'%1s\' irekitzeko</string>
-  <string name="incoming_file_title">Fitxategia jasotzen %1s-tik</string>
-  <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Fitxategia bidaltzen %1s-ra</string>
   <string name="outgoing_files_title">Fitxategiak bidaltzen %1s-ra</string>
-  <string name="received_file_title">Fitxategia jaso da %1s-tik</string>
-  <string name="received_file_fail_title">Huts egin du fitxategia jasotzea %1s-tik</string>
   <string name="received_file_text">Sakatu \'%1s\' irekitzeko</string>
   <string name="sent_file_title">Fitxategia bidalita %1s-ra</string>
   <string name="sent_file_text">%1s</string>

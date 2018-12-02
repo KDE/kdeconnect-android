@@ -96,16 +96,12 @@
   <string name="pairing_request_from">Paringsførespurnad frå %1s</string>
   <string name="received_url_title">Fekk lenkje frå %1s</string>
   <string name="received_url_text">Trykk for å opna «%1s»</string>
-  <string name="incoming_file_title">Får fil frå %1s</string>
-  <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Sender fil til %1s</string>
   <string name="outgoing_files_title">Sender filer til %1s</string>
   <plurals name="outgoing_files_text">
     <item quantity="one">Sende %1$d fil</item>
     <item quantity="other">Sende %1$d av %2$d filer</item>
   </plurals>
-  <string name="received_file_title">Fekk fil frå %1s</string>
-  <string name="received_file_fail_title">Klarte ikkje ta imot fil frå %1s</string>
   <string name="received_file_text">Trykk for å opna «%1s»</string>
   <string name="sent_file_title">Send fil til %1s</string>
   <string name="sent_file_text">%1s</string>
