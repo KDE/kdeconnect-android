@@ -106,8 +106,10 @@ class SimpleSftpServer {
 
         if (device.publicKey != null) {
             keyAuth.deviceKey = device.publicKey;
-            sshd.setPublickeyAuthenticator(keyAuth);
+        } else {
+            keyAuth.deviceKey = device.certificate.getPublicKey();
         }
+        sshd.setPublickeyAuthenticator(keyAuth);
         sshd.setPasswordAuthenticator(passwordAuth);
     }
 
