@@ -193,7 +193,7 @@ public class LanLink extends BaseLink {
                     }
 
                     outputStream = payloadSocket.getOutputStream();
-                    inputStream = np.getPayload();
+                    inputStream = np.getPayload().getInputStream();
 
                     Log.i("KDE/LanLink", "Beginning to send payload");
                     byte[] buffer = new byte[4096];
@@ -214,12 +214,11 @@ public class LanLink extends BaseLink {
                         }
                     }
                     outputStream.flush();
-                    outputStream.close();
                     Log.i("KDE/LanLink", "Finished sending payload ("+progress+" bytes written)");
                 } finally {
                     try { server.close(); } catch (Exception e) { }
                     try { payloadSocket.close(); } catch (Exception e) { }
-                    try { inputStream.close(); } catch (Exception e) { }
+                    np.getPayload().close();
                     try { outputStream.close(); } catch (Exception e) { }
                 }
             }
@@ -233,8 +232,9 @@ public class LanLink extends BaseLink {
             return false;
         } finally  {
             //Make sure we close the payload stream, if any
-            InputStream stream = np.getPayload();
-            try { stream.close(); } catch (Exception e) { }
+            if (np.hasPayload()) {
+                np.getPayload().close();
+            }
         }
     }
 
@@ -272,7 +272,7 @@ public class LanLink extends BaseLink {
                 if (socket instanceof SSLSocket) {
                     payloadSocket = SslHelper.convertToSslSocket(context, payloadSocket, getDeviceId(), true, true);
                 }
-                np.setPayload(payloadSocket.getInputStream(), np.getPayloadSize());
+                np.setPayload(new NetworkPacket.Payload(payloadSocket, np.getPayloadSize()));
             } catch (Exception e) {
                 try { payloadSocket.close(); } catch(Exception ignored) { }
                 e.printStackTrace();

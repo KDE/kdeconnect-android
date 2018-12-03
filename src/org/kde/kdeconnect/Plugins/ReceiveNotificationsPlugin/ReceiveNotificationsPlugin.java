@@ -86,12 +86,10 @@ public class ReceiveNotificationsPlugin extends Plugin {
                 int height = 64;
                 width = context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_width);
                 height = context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_height);
-                final InputStream input = np.getPayload();
-                largeIcon = BitmapFactory.decodeStream(np.getPayload());
-                try {
-                    input.close();
-                } catch (Exception e) {
-                }
+                final InputStream input = np.getPayload().getInputStream();
+                largeIcon = BitmapFactory.decodeStream(input);
+                np.getPayload().close();
+
                 if (largeIcon != null) {
                     //Log.i("NotificationsPlugin", "hasPayload: size=" + largeIcon.getWidth() + "/" + largeIcon.getHeight() + " opti=" + width + "/" + height);
                     if (largeIcon.getWidth() > width || largeIcon.getHeight() > height) {
@@ -131,5 +129,4 @@ public class ReceiveNotificationsPlugin extends Plugin {
     public String[] getOutgoingPacketTypes() {
         return new String[]{PACKET_TYPE_NOTIFICATION_REQUEST};
     }
-
 }

@@ -116,7 +116,7 @@ public class RsaHelper {
 
         NetworkPacket encrypted = new NetworkPacket(NetworkPacket.PACKET_TYPE_ENCRYPTED);
         encrypted.set("data", chunks);
-        encrypted.setPayload(np.getPayload(), np.getPayloadSize());
+        encrypted.setPayload(np.getPayload());
         return encrypted;
 
     }
@@ -136,7 +136,7 @@ public class RsaHelper {
         }
 
         NetworkPacket decrypted = NetworkPacket.unserialize(decryptedJson.toString());
-        decrypted.setPayload(np.getPayload(), np.getPayloadSize());
+        decrypted.setPayload(np.getPayload());
         return decrypted;
     }
 

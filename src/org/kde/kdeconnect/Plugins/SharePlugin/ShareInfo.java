@@ -22,7 +22,8 @@ package org.kde.kdeconnect.Plugins.SharePlugin;
 
 import android.support.v4.provider.DocumentFile;
 
-import java.io.InputStream;
+import org.kde.kdeconnect.NetworkPacket;
+
 import java.io.OutputStream;
 
 class ShareInfo {
@@ -30,7 +31,7 @@ class ShareInfo {
     long fileSize;
     int currentFileNumber;
     DocumentFile fileDocument;
-    InputStream inputStream;
+    NetworkPacket.Payload payload;
     OutputStream outputStream;
     boolean shouldOpen;
 

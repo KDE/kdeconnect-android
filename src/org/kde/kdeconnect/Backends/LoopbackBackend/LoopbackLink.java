@@ -51,7 +51,7 @@ public class LoopbackLink extends BaseLink {
         packageReceived(in);
         if (in.hasPayload()) {
             callback.onProgressChanged(0);
-            in.setPayload(in.getPayload(), in.getPayloadSize());
+            in.setPayload(in.getPayload());
             callback.onProgressChanged(100);
         }
         callback.onSuccess();

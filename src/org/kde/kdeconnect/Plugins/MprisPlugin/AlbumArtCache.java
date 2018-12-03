@@ -33,6 +33,8 @@ import android.util.Log;
 
 import com.jakewharton.disklrucache.DiskLruCache;
 
+import org.kde.kdeconnect.NetworkPacket;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -243,7 +245,7 @@ final class AlbumArtCache {
 
     private static final class FetchURLTask extends AsyncTask<Void, Void, Boolean> {
         private final URL url;
-        private InputStream input;
+        private NetworkPacket.Payload payload;
         private final DiskLruCache.Editor cacheItem;
         private OutputStream output;
 
@@ -251,12 +253,12 @@ final class AlbumArtCache {
          * Initialize an url fetch
          *
          * @param url          The url being fetched
-         * @param payloadInput A payload input stream (if from the connected device). null if fetched from http(s)
+         * @param payload      A NetworkPacket Payload (if from the connected device). null if fetched from http(s)
          * @param cacheItem    The disk cache item to edit
          */
-        FetchURLTask(URL url, InputStream payloadInput, DiskLruCache.Editor cacheItem) throws IOException {
+        FetchURLTask(URL url, NetworkPacket.Payload payload, DiskLruCache.Editor cacheItem) throws IOException {
             this.url = url;
-            this.input = payloadInput;
+            this.payload = payload;
             this.cacheItem = cacheItem;
             output = cacheItem.newOutputStream(0);
         }
@@ -266,7 +268,7 @@ final class AlbumArtCache {
          *
          * @return True if succeeded
          */
-        private boolean openHttp() throws IOException {
+        private InputStream openHttp() throws IOException {
             //Default android behaviour does not follow https -> http urls, so do this manually
             if (!url.getProtocol().equals("http") && !url.getProtocol().equals("https")) {
                 throw new AssertionError("Invalid url: not http(s) in background album art fetch");
@@ -287,28 +289,25 @@ final class AlbumArtCache {
                         currentUrl = new URL(currentUrl, location);  // Deal with relative URLs
                         //Again, only support http(s)
                         if (!currentUrl.getProtocol().equals("http") && !currentUrl.getProtocol().equals("https")) {
-                            return false;
+                            return null;
                         }
                         connection.disconnect();
                         continue;
                 }
 
                 //Found a non-redirecting connection, so do something with it
-                input = connection.getInputStream();
-                return true;
+                return connection.getInputStream();
             }
 
-            return false;
+            return null;
         }
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            try {
-                //See if we need to open a http(s) connection here, or if we use a payload input stream
+            //See if we need to open a http(s) connection here, or if we use a payload input stream
+            try (InputStream input = payload == null ? openHttp() : payload.getInputStream()) {
                 if (input == null) {
-                    if (!openHttp()) {
-                        return false;
-                    }
+                    return false;
                 }
 
                 byte[] buffer = new byte[4096];
@@ -321,6 +320,10 @@ final class AlbumArtCache {
                 return true;
             } catch (IOException e) {
                 return false;
+            } finally {
+                if (payload != null) {
+                    payload.close();
+                }
             }
         }
 
@@ -425,16 +428,15 @@ final class AlbumArtCache {
      * @param albumUrl The url of the album art (should be a file:// url)
      * @param payload  The payload input stream
      */
-    static void payloadToDiskCache(String albumUrl, InputStream payload) {
+    static void payloadToDiskCache(String albumUrl, NetworkPacket.Payload payload) {
         //We need the disk cache for this
-        if (diskCache == null) {
-            Log.e("KDE/Mpris/AlbumArtCache", "The disk cache is not intialized!");
-            try {
-                payload.close();
-            } catch (IOException ignored) {}
+        if (payload == null) {
             return;
         }
-        if (payload == null) {
+
+        if (diskCache == null) {
+            Log.e("KDE/Mpris/AlbumArtCache", "The disk cache is not intialized!");
+            payload.close();
             return;
         }
 
@@ -443,41 +445,31 @@ final class AlbumArtCache {
             url = new URL(albumUrl);
         } catch (MalformedURLException e) {
             //Shouldn't happen (checked on receival of the url), but just to be sure
-            try {
-                payload.close();
-            } catch (IOException ignored) {}
+            payload.close();
             return;
         }
 
         if (!"file".equals(url.getProtocol())) {
             //Shouldn't happen (otherwise we wouldn't have asked for the payload), but just to be sure
-            try {
-                payload.close();
-            } catch (IOException ignored) {}
+            payload.close();
             return;
         }
 
         //Only fetch the URL if we're not fetching it already
         if (isFetchingList.contains(url)) {
-            try {
-                payload.close();
-            } catch (IOException ignored) {}
+            payload.close();
             return;
         }
 
         //Check if we already have this art
         try {
             if (memoryCache.get(albumUrl) != null || diskCache.get(urlToDiskCacheKey(albumUrl)) != null) {
-                try {
-                    payload.close();
-                } catch (IOException ignored) {}
+                payload.close();
                 return;
             }
         } catch (IOException e) {
             Log.e("KDE/Mpris/AlbumArtCache", "Disk cache problem!", e);
-            try {
-                payload.close();
-            } catch (IOException ignored) {}
+            payload.close();
             return;
         }
 
@@ -491,9 +483,7 @@ final class AlbumArtCache {
                 Log.e("KDE/Mpris/AlbumArtCache",
                         "Two disk cache edits happened at the same time, should be impossible!");
                 --numFetching;
-                try {
-                    payload.close();
-                } catch (IOException ignored) {}
+                payload.close();
                 return;
             }
 

@@ -30,7 +30,9 @@ import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -53,9 +55,8 @@ public class NetworkPacket {
     private long mId;
     String mType;
     private JSONObject mBody;
-    private InputStream mPayload;
+    private Payload mPayload;
     private JSONObject mPayloadTransferInfo;
-    private long mPayloadSize;
 
     private NetworkPacket() {
 
@@ -66,7 +67,6 @@ public class NetworkPacket {
         mType = type;
         mBody = new JSONObject();
         mPayload = null;
-        mPayloadSize = 0;
         mPayloadTransferInfo = new JSONObject();
     }
 
@@ -242,7 +242,7 @@ public class NetworkPacket {
         jo.put("type", mType);
         jo.put("body", mBody);
         if (hasPayload()) {
-            jo.put("payloadSize", mPayloadSize);
+            jo.put("payloadSize", mPayload.payloadSize);
             jo.put("payloadTransferInfo", mPayloadTransferInfo);
         }
         //QJSon does not escape slashes, but Java JSONObject does. Converting to QJson format.
@@ -258,10 +258,10 @@ public class NetworkPacket {
         np.mBody = jo.getJSONObject("body");
         if (jo.has("payloadSize")) {
             np.mPayloadTransferInfo = jo.getJSONObject("payloadTransferInfo");
-            np.mPayloadSize = jo.getLong("payloadSize");
+            np.mPayload = new Payload(jo.getLong("payloadSize"));
         } else {
             np.mPayloadTransferInfo = new JSONObject();
-            np.mPayloadSize = 0;
+            np.mPayload = new Payload(0);
         }
         return np;
     }
@@ -287,29 +287,18 @@ public class NetworkPacket {
 
     }
 
-    public void setPayload(byte[] data) {
-        setPayload(new ByteArrayInputStream(data), data.length);
-    }
+    public void setPayload(Payload payload) { mPayload = payload; }
 
-    public void setPayload(InputStream stream, long size) {
-        mPayload = stream;
-        mPayloadSize = size;
-    }
-
-    /*public void setPayload(InputStream stream) {
-        setPayload(stream, -1);
-    }*/
-
-    public InputStream getPayload() {
+    public Payload getPayload() {
         return mPayload;
     }
 
     public long getPayloadSize() {
-        return mPayloadSize;
+        return mPayload == null ? 0 : mPayload.payloadSize;
     }
 
     public boolean hasPayload() {
-        return (mPayloadSize != 0);
+        return (mPayload != null && mPayload.payloadSize != 0);
     }
 
     public boolean hasPayloadTransferInfo() {
@@ -322,5 +311,55 @@ public class NetworkPacket {
 
     public void setPayloadTransferInfo(JSONObject payloadTransferInfo) {
         mPayloadTransferInfo = payloadTransferInfo;
+    }
+
+    public static class Payload {
+        private InputStream inputStream;
+        private Socket inputSocket;
+        private long payloadSize;
+
+        public Payload(long payloadSize) {
+            this((InputStream)null, payloadSize);
+        }
+
+        public Payload(byte[] data) {
+            this(new ByteArrayInputStream(data), data.length);
+        }
+
+        /**
+         * <b>NOTE: Do not use this to set an SSLSockets InputStream as the payload, use Payload(Socket, long) instead because of this <a href="https://issuetracker.google.com/issues/37018094">bug</a></b>
+         */
+        public Payload(InputStream inputStream, long payloadSize) {
+            this.inputSocket = null;
+            this.inputStream = inputStream;
+            this.payloadSize = payloadSize;
+        }
+
+        public Payload(Socket inputSocket, long payloadSize) throws IOException {
+            this.inputSocket = inputSocket;
+            this.inputStream = inputSocket.getInputStream();
+            this.payloadSize = payloadSize;
+        }
+
+        /**
+         * <b>NOTE: Do not close the InputStream directly call Payload.close() instead, this is because of this <a href="https://issuetracker.google.com/issues/37018094">bug</a></b>
+         */
+        public InputStream getInputStream() { return inputStream; }
+        long getPayloadSize() { return payloadSize; }
+
+        public void close() {
+            //TODO: If socket only close socket if that also closes the streams that is
+            try {
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+            } catch(IOException ignored) {}
+
+            try {
+                if (inputSocket != null) {
+                    inputSocket.close();
+                }
+            } catch (IOException ignored) {}
+        }
     }
 }

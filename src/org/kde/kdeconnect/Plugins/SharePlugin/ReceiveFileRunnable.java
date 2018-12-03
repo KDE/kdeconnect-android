@@ -24,6 +24,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 public class ReceiveFileRunnable implements Runnable {
     interface CallBack {
@@ -51,7 +52,9 @@ public class ReceiveFileRunnable implements Runnable {
 
             callBack.onProgress(info, 0);
 
-            while ((count = info.inputStream.read(data)) >= 0) {
+            InputStream inputStream = info.payload.getInputStream();
+
+            while ((count = inputStream.read(data)) >= 0) {
                 received += count;
 
                 if (received > info.fileSize) {
@@ -79,14 +82,11 @@ public class ReceiveFileRunnable implements Runnable {
         } catch (IOException e) {
             handler.post(() -> callBack.onError(info, e));
         } finally {
-            try {
-                info.inputStream.close();
-            } catch (IOException e) {
-            }
+            info.payload.close();
+
             try {
                 info.outputStream.close();
-            } catch (IOException e) {
-            }
+            } catch (IOException ignored) {}
         }
     }
 }

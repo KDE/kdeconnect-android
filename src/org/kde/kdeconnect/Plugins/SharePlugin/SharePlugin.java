@@ -204,7 +204,7 @@ public class SharePlugin extends Plugin implements ReceiveFileRunnable.CallBack 
 
         ShareInfo info = new ShareInfo();
         info.currentFileNumber = currentShareInfo == null ? 1 : currentShareInfo.currentFileNumber + 1;
-        info.inputStream = np.getPayload();
+        info.payload = np.getPayload();
         info.fileSize = np.getPayloadSize();
         info.fileName = np.getString("filename", Long.toString(System.currentTimeMillis()));
         info.shouldOpen = np.getBoolean("open");
@@ -379,7 +379,7 @@ public class SharePlugin extends Plugin implements ReceiveFileRunnable.CallBack 
 
             }
 
-            np.setPayload(inputStream, size);
+            np.setPayload(new NetworkPacket.Payload(inputStream, size));
 
             return np;
         } catch (Exception e) {

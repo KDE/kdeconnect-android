@@ -232,7 +232,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
                     Log.e("PAYLOAD", "PAYLOAD: " + getChecksum(bitmapData));
 
-                    np.setPayload(bitmapData);
+                    np.setPayload(new NetworkPacket.Payload(bitmapData));
 
                     np.set("payloadHash", getChecksum(bitmapData));
                 }

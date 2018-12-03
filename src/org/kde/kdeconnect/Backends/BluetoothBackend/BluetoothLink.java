@@ -20,7 +20,6 @@
 
 package org.kde.kdeconnect.Backends.BluetoothBackend;
 
-import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
@@ -102,7 +101,7 @@ public class BluetoothLink extends BaseLink {
                     UUID transferUuid = UUID.fromString(np.getPayloadTransferInfo().getString("uuid"));
                     transferSocket = socket.getRemoteDevice().createRfcommSocketToServiceRecord(transferUuid);
                     transferSocket.connect();
-                    np.setPayload(transferSocket.getInputStream(), np.getPayloadSize());
+                    np.setPayload(new NetworkPacket.Payload(transferSocket.getInputStream(), np.getPayloadSize()));
                 } catch (Exception e) {
                     if (transferSocket != null) {
                         try {
@@ -211,7 +210,7 @@ public class BluetoothLink extends BaseLink {
                     byte[] buffer = new byte[idealBufferLength];
                     int bytesRead;
                     long progress = 0;
-                    InputStream stream = np.getPayload();
+                    InputStream stream = np.getPayload().getInputStream();
                     while ((bytesRead = stream.read(buffer)) != -1) {
                         progress += bytesRead;
                         transferSocket.getOutputStream().write(buffer, 0, bytesRead);
