@@ -298,9 +298,24 @@ public class DeviceFragment extends Fragment {
                                 pluginListItems.add(new PluginItem(p, v -> p.startMainActivity(mActivity)));
                             }
 
-                            DeviceFragment.this.createPluginsList(device.getFailedPlugins(), R.string.plugins_failed_to_load, (plugin) -> plugin.getErrorDialog(mActivity).show());
-                            DeviceFragment.this.createPluginsList(device.getPluginsWithoutPermissions(), R.string.plugins_need_permission, (plugin) -> plugin.getPermissionExplanationDialog(mActivity).show());
-                            DeviceFragment.this.createPluginsList(device.getPluginsWithoutOptionalPermissions(), R.string.plugins_need_optional_permission, (plugin) -> plugin.getOptionalPermissionExplanationDialog(mActivity).show());
+                            DeviceFragment.this.createPluginsList(device.getFailedPlugins(), R.string.plugins_failed_to_load, (plugin) -> {
+                                AlertDialog dialog = plugin.getErrorDialog(mActivity);
+                                if (dialog != null) {
+                                    dialog.show();
+                                }
+                            });
+                            DeviceFragment.this.createPluginsList(device.getPluginsWithoutPermissions(), R.string.plugins_need_permission, (plugin) -> {
+                                AlertDialog dialog = plugin.getPermissionExplanationDialog(mActivity);
+                                if (dialog != null) {
+                                    dialog.show();
+                                }
+                            });
+                            DeviceFragment.this.createPluginsList(device.getPluginsWithoutOptionalPermissions(), R.string.plugins_need_optional_permission, (plugin) -> {
+                                AlertDialog dialog = plugin.getOptionalPermissionExplanationDialog(mActivity);
+                                if (dialog != null) {
+                                    dialog.show();
+                                }
+                            });
                         }
 
                         ListView buttonsList = rootView.findViewById(R.id.buttons_list);
