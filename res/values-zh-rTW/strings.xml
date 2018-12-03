@@ -96,10 +96,22 @@
   <string name="pairing_request_from">從 %1s 來的配對請求</string>
   <string name="received_url_title">已從 %1s 連線接收</string>
   <string name="received_url_text">點擊開啟 \'%1s\'</string>
+  <plurals name="incoming_file_title">
+    <item quantity="other">正在從 %2$s 接收 %1$d 個檔案</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="other">（檔案 %2$d/%3$d）：%1$s</item>
+  </plurals>
   <string name="outgoing_file_title">正在將檔案發送到 %1s</string>
   <string name="outgoing_files_title">正在將檔案發送到 %1s</string>
   <plurals name="outgoing_files_text">
     <item quantity="other">傳送 %1$d 個檔案，共 %2$d 個檔案。</item>
+  </plurals>
+  <plurals name="received_files_title">
+    <item quantity="other">已從 %2$s 接收 %1$d 個檔案</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="other">無法從 %3$s 接收到 %2$d 之 %1$d 個檔案</item>
   </plurals>
   <string name="received_file_text">點擊開啟 \'%1s\'</string>
   <string name="sent_file_title">將檔案傳送到 %1s</string>
@@ -152,6 +164,7 @@
   <string name="pair_device_action">配對新設備</string>
   <string name="unpair_device_action">未配對 %s</string>
   <string name="custom_device_list">以IP來新增設備</string>
+  <string name="delete_custom_device">刪除 %s？</string>
   <string name="share_notification_preference">通知方式</string>
   <string name="share_notification_preference_summary">當接收檔案時發出振動以及播放聲音</string>
   <string name="share_destination_customize">自訂目標路徑</string>
