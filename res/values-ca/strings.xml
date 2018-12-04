@@ -119,6 +119,7 @@
     <item quantity="other">Ha fallat en rebre %1$d de %2$d fitxers des de %3$s</item>
   </plurals>
   <string name="received_file_text">Puntegeu per obrir «%1s»</string>
+  <string name="cannot_create_file">No s\'ha pogut crear el fitxer %s</string>
   <string name="sent_file_title">Fitxer enviat a %1s</string>
   <string name="sent_file_text">%1s</string>
   <string name="sent_file_failed_title">Ha fallat en enviar el fitxer a %1s</string>

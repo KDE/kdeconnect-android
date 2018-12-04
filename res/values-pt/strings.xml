@@ -119,6 +119,7 @@
     <item quantity="other">Falhou a recepção de %1$d de %2$d ficheiros de %3$s</item>
   </plurals>
   <string name="received_file_text">Toque para abrir o \'%1s\'</string>
+  <string name="cannot_create_file">Não é possível criar o ficheiro %s</string>
   <string name="sent_file_title">O ficheiro foi enviado para %1s</string>
   <string name="sent_file_text">%1s</string>
   <string name="sent_file_failed_title">Não foi possível enviar o ficheiro para o %1s</string>

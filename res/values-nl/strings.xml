@@ -119,6 +119,7 @@
     <item quantity="other">Ontvangen van %1$d van %2$d bestanden vanaf %3$s is mislukt</item>
   </plurals>
   <string name="received_file_text">Tap om \'%1s\' te openen</string>
+  <string name="cannot_create_file">Kan bestand %s niet aanmaken</string>
   <string name="sent_file_title">Bestand verzonden naar %1s</string>
   <string name="sent_file_text">%1s</string>
   <string name="sent_file_failed_title">Verzenden van bestand naar %1s is mislukt</string>
