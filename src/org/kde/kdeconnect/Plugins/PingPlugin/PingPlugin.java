@@ -87,6 +87,7 @@ public class PingPlugin extends Plugin {
                 .setSmallIcon(R.drawable.ic_notification)
                 .setAutoCancel(true)
                 .setDefaults(Notification.DEFAULT_ALL)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(message))
                 .build();
 
         NotificationHelper.notifyCompat(notificationManager, id, noti);
