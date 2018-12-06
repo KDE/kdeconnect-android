@@ -284,7 +284,11 @@ public class SharePlugin extends Plugin implements ReceiveFileRunnable.CallBack 
         //Read all the data early, as we only have permissions to do it while the activity is alive
         final ArrayList<NetworkPacket> toSend = new ArrayList<>();
         for (Uri uri : uriList) {
-            toSend.add(uriToNetworkPacket(context, uri));
+            NetworkPacket np = uriToNetworkPacket(context, uri);
+
+            if (np != null) {
+                toSend.add(np);
+            }
         }
 
         //Callback that shows a progress notification
