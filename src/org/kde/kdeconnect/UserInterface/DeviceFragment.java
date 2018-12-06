@@ -80,13 +80,6 @@ public class DeviceFragment extends Fragment {
         this.setArguments(args);
     }
 
-    private DeviceFragment(String deviceId, MainActivity activity) {
-        this.mActivity = activity;
-        Bundle args = new Bundle();
-        args.putString(ARG_DEVICE_ID, deviceId);
-        this.setArguments(args);
-    }
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
