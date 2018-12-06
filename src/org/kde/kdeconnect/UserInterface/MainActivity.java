@@ -295,7 +295,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 mNavigationView.setCheckedItem(mCurrentMenuEntry);
             }
-            setContentFragment(new DeviceFragment(deviceId, fromDeviceList));
+            setContentFragment(DeviceFragment.newInstance(deviceId, fromDeviceList));
         } else {
             mCurrentMenuEntry = MENU_ENTRY_ADD_DEVICE;
             mNavigationView.setCheckedItem(mCurrentMenuEntry);

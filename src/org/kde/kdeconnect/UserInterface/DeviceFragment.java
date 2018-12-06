@@ -73,11 +73,15 @@ public class DeviceFragment extends Fragment {
     public DeviceFragment() {
     }
 
-    public DeviceFragment(String deviceId, boolean fromDeviceList) {
+    public static DeviceFragment newInstance(String deviceId, boolean fromDeviceList) {
+        DeviceFragment frag = new DeviceFragment();
+
         Bundle args = new Bundle();
         args.putString(ARG_DEVICE_ID, deviceId);
         args.putBoolean(ARG_FROM_DEVICE_LIST, fromDeviceList);
-        this.setArguments(args);
+        frag.setArguments(args);
+
+        return frag;
     }
 
     @Override
