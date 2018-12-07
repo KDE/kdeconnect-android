@@ -191,7 +191,7 @@ public class SharePlugin extends Plugin implements ReceiveFileRunnable.CallBack 
         String text = np.getString("text");
         ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         cm.setText(text);
-        Toast.makeText(context, R.string.shareplugin_text_saved, Toast.LENGTH_LONG).show();
+        handler.post(() -> Toast.makeText(context, R.string.shareplugin_text_saved, Toast.LENGTH_LONG).show());
     }
 
     @WorkerThread
