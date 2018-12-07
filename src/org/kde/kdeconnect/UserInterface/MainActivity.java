@@ -127,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Decide which menu entry should be selected at start
-
         String savedDevice;
         int savedMenuEntry;
         if (getIntent().hasExtra("forceOverview")) {
@@ -157,14 +156,19 @@ public class MainActivity extends AppCompatActivity {
             savedMenuEntry = (savedDevice != null)? MENU_ENTRY_DEVICE_UNKNOWN : MENU_ENTRY_ADD_DEVICE;
         }
 
+        mCurrentMenuEntry = savedMenuEntry;
+        mCurrentDevice = savedDevice;
+        mNavigationView.setCheckedItem(savedMenuEntry);
+
+        //FragmentManager will restore whatever fragment was there
+        if (savedInstanceState != null) {
+            return;
+        }
 
         // Activate the chosen fragment and select the entry in the menu
-
         if (savedMenuEntry >= MENU_ENTRY_DEVICE_FIRST_ID && savedDevice != null) {
             onDeviceSelected(savedDevice);
         } else {
-            mCurrentMenuEntry = savedMenuEntry;
-            mNavigationView.setCheckedItem(savedMenuEntry);
             if (mCurrentMenuEntry == MENU_ENTRY_SETTINGS) {
                 setContentFragment(new SettingsFragment());
             } else {
@@ -226,7 +230,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateDeviceList() {
-
         BackgroundService.RunCommand(MainActivity.this, service -> {
 
             Menu menu = mNavigationView.getMenu();
