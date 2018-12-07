@@ -34,6 +34,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final int MENU_ENTRY_ADD_DEVICE = 1; //0 means no-selection
@@ -50,8 +53,10 @@ public class MainActivity extends AppCompatActivity {
     public static final String PAIRING_ACCEPTED = "accepted";
     public static final String PAIRING_REJECTED = "rejected";
 
-    private NavigationView mNavigationView;
-    private DrawerLayout mDrawerLayout;
+    @BindView(R.id.navigation_drawer) NavigationView mNavigationView;
+    @BindView(R.id.drawer_layout) DrawerLayout mDrawerLayout;
+    @BindView(R.id.toolbar) Toolbar mToolbar;
+    TextView mNavViewDeviceName;
 
     private String mCurrentDevice;
     private int mCurrentMenuEntry;
@@ -69,12 +74,13 @@ public class MainActivity extends AppCompatActivity {
         ThemeUtil.setUserPreferredTheme(this);
 
         setContentView(R.layout.activity_main);
-        mDrawerLayout = findViewById(R.id.drawer_layout);
-        mNavigationView = findViewById(R.id.navigation_drawer);
-        View mDrawerHeader = mNavigationView.getHeaderView(0);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        ButterKnife.bind(this);
+
+        View mDrawerHeader = mNavigationView.getHeaderView(0);
+        mNavViewDeviceName = mDrawerHeader.findViewById(R.id.device_name);
+
+        setSupportActionBar(mToolbar);
 
         ActionBar actionBar = getSupportActionBar();
 
@@ -386,7 +392,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateDeviceNameFromMenu(String newDeviceName) {
-        final TextView nameView = mNavigationView.findViewById(R.id.device_name);
-        nameView.setText(newDeviceName);
+        mNavViewDeviceName.setText(newDeviceName);
     }
 }
