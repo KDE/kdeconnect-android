@@ -42,6 +42,7 @@ import org.kde.kdeconnect.Helpers.NetworkHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.UserInterface.List.CustomItem;
+import org.kde.kdeconnect.UserInterface.List.FailedPluginListItem;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.PluginItem;
 import org.kde.kdeconnect.UserInterface.List.SmallEntryItem;
@@ -378,9 +379,9 @@ public class DeviceFragment extends Fragment {
 
             TextView header = new TextView(mActivity);
             header.setPadding(
-                    0,
+                    ((int) (16 * getResources().getDisplayMetrics().density)),
                     ((int) (28 * getResources().getDisplayMetrics().density)),
-                    0,
+                    ((int) (16 * getResources().getDisplayMetrics().density)),
                     ((int) (8 * getResources().getDisplayMetrics().density))
             );
             header.setOnClickListener(null);

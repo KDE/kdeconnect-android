@@ -17,18 +17,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.kde.kdeconnect.UserInterface;
+package org.kde.kdeconnect.UserInterface.List;
 
 import org.kde.kdeconnect.Plugins.Plugin;
-import org.kde.kdeconnect.UserInterface.List.SmallEntryItem;
 
-class FailedPluginListItem extends SmallEntryItem {
+public class FailedPluginListItem extends SmallEntryItem {
 
-    interface Action {
+    public interface Action {
         void action(Plugin plugin);
     }
 
-    FailedPluginListItem(Plugin plugin, Action action) {
+    public FailedPluginListItem(Plugin plugin, Action action) {
         super(plugin.getDisplayName(),  (view) -> action.action(plugin));
     }
 }

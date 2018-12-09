@@ -45,6 +45,12 @@ public class SmallEntryItem implements ListAdapter.Item {
     @Override
     public View inflateView(LayoutInflater layoutInflater) {
         View v = layoutInflater.inflate(android.R.layout.simple_list_item_1, null);
+        v.setPadding(
+                ((int) (28 * layoutInflater.getContext().getResources().getDisplayMetrics().density)),
+                0,
+                ((int) (28 * layoutInflater.getContext().getResources().getDisplayMetrics().density)),
+                0
+        );
 
         TextView titleView = v.findViewById(android.R.id.text1);
         if (titleView != null) {
