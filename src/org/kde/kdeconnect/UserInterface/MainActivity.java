@@ -68,10 +68,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // We need to set this theme before the call to 'setContentView' below
+        // We need to set the theme before the call to 'super.onCreate' below
         ThemeUtil.setUserPreferredTheme(this);
+        super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
 
