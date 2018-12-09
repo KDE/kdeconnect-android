@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences preferences;
 
     private final HashMap<MenuItem, String> mMapMenuToDeviceId = new HashMap<>();
-    private String pairRequestStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,14 +90,16 @@ public class MainActivity extends AppCompatActivity {
 
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         mDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerToggle.syncState();
 
         String deviceName = DeviceHelper.getDeviceName(this);
-        TextView nameView = mDrawerHeader.findViewById(R.id.device_name);
-        nameView.setText(deviceName);
+        mNavViewDeviceName.setText(deviceName);
 
         preferences = getSharedPreferences("stored_menu_selection", Context.MODE_PRIVATE);
 
