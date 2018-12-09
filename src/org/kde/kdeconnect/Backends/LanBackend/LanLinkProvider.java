@@ -361,7 +361,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
 
     static ServerSocket openServerSocketOnFreePort(int minPort) throws IOException {
         int tcpPort = minPort;
-        while (tcpPort < MAX_PORT) {
+        while (tcpPort <= MAX_PORT) {
             try {
                 ServerSocket candidateServer = new ServerSocket();
                 candidateServer.bind(new InetSocketAddress(tcpPort));
