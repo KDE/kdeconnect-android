@@ -96,13 +96,30 @@
   <string name="pairing_request_from">Begäran om ihopparning från %1s</string>
   <string name="received_url_title">Tog emot länk från %1s</string>
   <string name="received_url_text">Rör för att öppna \'%1s\'</string>
+  <plurals name="incoming_file_title">
+    <item quantity="one">Tog emot %1$d fil från %2$s</item>
+    <item quantity="other">Tog emot %1$d filer från %2$s</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="one">Fil: %1s</item>
+    <item quantity="other">(Fil %2$d av %3$d) : %1$s</item>
+  </plurals>
   <string name="outgoing_file_title">Skickar fil till %1s</string>
   <string name="outgoing_files_title">Skickar filer till %1s</string>
   <plurals name="outgoing_files_text">
     <item quantity="one">Skickade %1$d fil</item>
     <item quantity="other">Skickade %1$d av %2$d filer</item>
   </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one">Tog emot fil från %2$s</item>
+    <item quantity="other">Tog emot %1$d filer från %2$s</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Misslyckades ta emot fil från %3$s</item>
+    <item quantity="other">Misslyckades ta emot %1$d av %2$d filer från %3$s</item>
+  </plurals>
   <string name="received_file_text">Rör för att öppna \'%1s\'</string>
+  <string name="cannot_create_file">Kan inte skapa filen %s</string>
   <string name="sent_file_title">Skickade fil till %1s</string>
   <string name="sent_file_text">%1s</string>
   <string name="sent_file_failed_title">Misslyckades skicka fil till %1s</string>
