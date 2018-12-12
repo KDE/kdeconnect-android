@@ -214,10 +214,10 @@ public class SMSHelper {
      * Represent an ID used to uniquely identify a message thread
      */
     public static class ThreadID {
-        final Integer threadID;
+        final Long threadID;
         static final String lookupColumn = Telephony.Sms.THREAD_ID;
 
-        public ThreadID(Integer threadID) {
+        public ThreadID(Long threadID) {
             this.threadID = threadID;
         }
 
@@ -246,7 +246,7 @@ public class SMSHelper {
         public final long m_date;
         final int m_type;
         final int m_read;
-        final int m_threadID;
+        final long m_threadID; // ThreadID is *int* for SMS messages but *long* for MMS
         final int m_uID;
 
         /**
@@ -296,7 +296,7 @@ public class SMSHelper {
                 m_type = Integer.parseInt(messageInfo.get(Message.TYPE));
             }
             m_read = Integer.parseInt(messageInfo.get(Message.READ));
-            m_threadID = Integer.parseInt(messageInfo.get(Message.THREAD_ID));
+            m_threadID = Long.parseLong(messageInfo.get(Message.THREAD_ID));
             m_uID = Integer.parseInt(messageInfo.get(Message.U_ID));
         }
 

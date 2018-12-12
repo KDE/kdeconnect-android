@@ -384,7 +384,7 @@ public class SMSPlugin extends Plugin {
     }
 
     private boolean handleRequestConversation(NetworkPacket packet) {
-        SMSHelper.ThreadID threadID = new SMSHelper.ThreadID(packet.getInt("threadID"));
+        SMSHelper.ThreadID threadID = new SMSHelper.ThreadID(packet.getLong("threadID"));
 
         List<SMSHelper.Message> conversation = SMSHelper.getMessagesInThread(this.context, threadID);
 
