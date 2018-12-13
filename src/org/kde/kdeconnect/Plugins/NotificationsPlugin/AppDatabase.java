@@ -40,13 +40,21 @@ class AppDatabase {
     private static final String SETTINGS_NAME = "app_database";
     private static final String SETTINGS_KEY_ALL_ENABLED = "all_enabled";
 
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
     private static final String DATABASE_NAME = "Applications";
     private static final String TABLE_ENABLED = "Applications";
     private static final String TABLE_PRIVACY = "PrivacyOpts";
     private static final String KEY_PACKAGE_NAME = "packageName";
     private static final String KEY_IS_ENABLED = "isEnabled";
     private static final String KEY_PRIVACY_OPTIONS = "privacyOptions";
+
+
+    private static final String DATABASE_CREATE_ENABLED = "CREATE TABLE "
+            + TABLE_ENABLED + "(" + KEY_PACKAGE_NAME + " TEXT PRIMARY KEY NOT NULL, "
+            + KEY_IS_ENABLED + " INTEGER NOT NULL ); ";
+    private static final String DATABASE_CREATE_PRIVACY_OPTS = "CREATE TABLE "
+            + TABLE_PRIVACY + "(" + KEY_PACKAGE_NAME + " TEXT PRIMARY KEY NOT NULL, "
+            + KEY_PRIVACY_OPTIONS + " INTEGER NOT NULL); ";
 
 
     private SQLiteDatabase ourDatabase;
@@ -77,18 +85,15 @@ class AppDatabase {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL("CREATE TABLE " + TABLE_ENABLED +
-                    "(" + KEY_PACKAGE_NAME + " TEXT PRIMARY KEY NOT NULL, " +
-                    KEY_IS_ENABLED + " INTEGER NOT NULL ); ");
-            db.execSQL("CREATE TABLE " + TABLE_PRIVACY +
-                    "(" + KEY_PACKAGE_NAME + " TEXT PRIMARY KEY NOT NULL, " +
-                    KEY_PRIVACY_OPTIONS + " INTEGER NOT NULL); ");
+            db.execSQL(DATABASE_CREATE_ENABLED);
+            db.execSQL(DATABASE_CREATE_PRIVACY_OPTS);
         }
 
         @Override
-        public void onUpgrade(SQLiteDatabase db, int i, int i2) {
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_ENABLED);
-            onCreate(db);
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            if (oldVersion < 5) {
+                db.execSQL(DATABASE_CREATE_PRIVACY_OPTS);
+            }
         }
 
     }
