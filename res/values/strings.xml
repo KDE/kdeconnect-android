@@ -318,4 +318,11 @@
     <string name="setting_persistent_notification_oreo_description">Required by Android since Android 8.0</string>
     <string name="setting_persistent_notification_pie_description">Since Android 9.0, this notification can only be minimized by long tapping on it</string>
 
+    <string name="extra_options">Extra options</string>
+    <string name="privacy_options">Privacy options</string>
+    <string name="set_privacy_options">Set your privacy options</string>
+    <string name="new_notification">New notification</string>
+    <string name="block_contents">Block contents of notifications</string>
+    <string name="block_images">Block images in notifications</string>
+
 </resources>

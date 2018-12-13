@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 package org.kde.kdeconnect.Plugins.NotificationsPlugin;
@@ -225,7 +225,8 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                     }
                 }
 
-                if (appIcon != null) {
+                if (appIcon != null && !appDatabase.getPrivacy(packageName, AppDatabase.PrivacyOptions.BLOCK_IMAGES)) {
+
                     ByteArrayOutputStream outStream = new ByteArrayOutputStream();
                     appIcon.compress(Bitmap.CompressFormat.PNG, 90, outStream);
                     byte[] bitmapData = outStream.toByteArray();
@@ -244,22 +245,22 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             currentNotifications.add(key);
         }
 
-        RepliableNotification rn = extractRepliableNotification(statusBarNotification);
-        if (rn.pendingIntent != null) {
-            np.set("requestReplyId", rn.id);
-            pendingIntents.put(rn.id, rn);
+        np.set("id", key);
+        np.set("isClearable", statusBarNotification.isClearable());
+        np.set("appName", appName == null ? packageName : appName);
+        np.set("time", Long.toString(statusBarNotification.getPostTime()));
+        if (!appDatabase.getPrivacy(packageName, AppDatabase.PrivacyOptions.BLOCK_CONTENTS)) {
+            RepliableNotification rn = extractRepliableNotification(statusBarNotification);
+            if (rn.pendingIntent != null) {
+                np.set("requestReplyId", rn.id);
+                pendingIntents.put(rn.id, rn);
+            }
+            np.set("ticker", getTickerText(notification));
+            np.set("title", getNotificationTitle(notification));
+            np.set("text", getNotificationText(notification));
         }
 
-        np.set("id", key);
-        np.set("appName", appName == null ? packageName : appName);
-        np.set("isClearable", statusBarNotification.isClearable());
-        np.set("ticker", getTickerText(notification));
-        np.set("title", getNotificationTitle(notification));
-        np.set("text", getNotificationText(notification));
-        np.set("time", Long.toString(statusBarNotification.getPostTime()));
-
         device.sendPacket(np);
-
     }
 
     private Bitmap drawableToBitmap(Drawable drawable) {
