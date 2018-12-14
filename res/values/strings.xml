@@ -166,7 +166,6 @@
     <string name="pairing_reject">Reject</string>
     <string name="device">Device</string>
     <string name="pair_device">Pair device</string>
-    <string name="remote_control">Remote control</string>
     <string name="settings">Settings</string>
     <string name="mpris_play">Play</string>
     <string name="mpris_pause">Pause</string>
