@@ -275,4 +275,10 @@
   <string name="setting_persistent_notification">Показувати постійне сповіщення</string>
   <string name="setting_persistent_notification_oreo_description">Є обов\'язковим для Android з версії Android 8.0</string>
   <string name="setting_persistent_notification_pie_description">Починаючи з версії 9.0, це сповіщення можна мінімізувати лише довгим його натисканням</string>
+  <string name="extra_options">Додаткові параметри</string>
+  <string name="privacy_options">Параметри конфіденційності</string>
+  <string name="set_privacy_options">Вкажіть ваші параметри конфіденційності</string>
+  <string name="new_notification">Нове сповіщення</string>
+  <string name="block_contents">Блокувати вміст сповіщень</string>
+  <string name="block_images">Блокувати зображення у сповіщеннях</string>
 </resources>

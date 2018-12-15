@@ -265,4 +265,10 @@
   <string name="setting_persistent_notification">Mostrar unha notificación persistente</string>
   <string name="setting_persistent_notification_oreo_description">Requirido por Android desde Android 8.0</string>
   <string name="setting_persistent_notification_pie_description">Desde Android 9.0, esta notificación só pode minimizarse tocándoa un anaco</string>
+  <string name="extra_options">Opcións adicionais</string>
+  <string name="privacy_options">Opcións de intimidade</string>
+  <string name="set_privacy_options">Definir as súas opcións de protección da intimidade</string>
+  <string name="new_notification">Nova notificación</string>
+  <string name="block_contents">Bloquear o contido das notificacións</string>
+  <string name="block_images">Bloquear as imaxes nas notificacións</string>
 </resources>

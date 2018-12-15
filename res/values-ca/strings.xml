@@ -265,4 +265,10 @@
   <string name="setting_persistent_notification">Mostra les notificacions persistents</string>
   <string name="setting_persistent_notification_oreo_description">Requerit per Android des de la versió 8.0</string>
   <string name="setting_persistent_notification_pie_description">Des de l\'Android 9.0, aquesta notificació només es pot minimitzar fent-hi un toc llarg</string>
+  <string name="extra_options">Opcions extres</string>
+  <string name="privacy_options">Opcions de privadesa</string>
+  <string name="set_privacy_options">Establiu les opcions de privadesa</string>
+  <string name="new_notification">Notificació nova</string>
+  <string name="block_contents">Bloca el contingut de les notificacions</string>
+  <string name="block_images">Bloca les imatges a les notificacions</string>
 </resources>
