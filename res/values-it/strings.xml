@@ -96,13 +96,30 @@
   <string name="pairing_request_from">Richiesta associazione da %1s</string>
   <string name="received_url_title">Collegamento ricevuto da %1s</string>
   <string name="received_url_text">Tocca per aprire «%1s»</string>
+  <plurals name="incoming_file_title">
+    <item quantity="one">Ricezione di %1$d file da %2$s</item>
+    <item quantity="other">Ricezione di %1$d file da %2$s</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="one">File: %1s</item>
+    <item quantity="other">(File %2$d di %3$d) : %1$s</item>
+  </plurals>
   <string name="outgoing_file_title">Invio file a %1s</string>
   <string name="outgoing_files_title">Invio file a %1s</string>
   <plurals name="outgoing_files_text">
     <item quantity="one">Inviato %1$d file</item>
     <item quantity="other">Inviati %1$d di %2$d file</item>
   </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one"/>
+    <item quantity="other">Ricevuti %1$d file da %2$s</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one"/>
+    <item quantity="other">Ricezione di %1$d di %2$d file non riuscita da %3$s</item>
+  </plurals>
   <string name="received_file_text">Tocca per aprire «%1s»</string>
+  <string name="cannot_create_file">Impossibile creare il file %s</string>
   <string name="sent_file_title">File inviato a %1s</string>
   <string name="sent_file_text">%1s</string>
   <string name="sent_file_failed_title">Invio del file a %1s non riuscito</string>
@@ -118,7 +135,6 @@
   <string name="pairing_reject">Rifiuta</string>
   <string name="device">Dispositivo</string>
   <string name="pair_device">Associa dispositivo</string>
-  <string name="remote_control">Telecomando</string>
   <string name="settings">Impostazioni</string>
   <string name="mpris_play">Riproduci</string>
   <string name="mpris_pause">Pausa</string>

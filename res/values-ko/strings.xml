@@ -113,7 +113,6 @@
   <string name="pairing_reject">거부</string>
   <string name="device">장치</string>
   <string name="pair_device">장치 연결</string>
-  <string name="remote_control">원격 제어</string>
   <string name="mpris_play">재생</string>
   <string name="mpris_pause">일시 정지</string>
   <string name="mpris_previous">이전</string>

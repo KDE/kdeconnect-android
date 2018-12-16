@@ -115,7 +115,6 @@
   <string name="pairing_reject">Rejeitar</string>
   <string name="device">Dispositivo</string>
   <string name="pair_device">Emparelhar dispositivo</string>
-  <string name="remote_control">Controle remoto</string>
   <string name="mpris_play">Reproduzir</string>
   <string name="mpris_pause">Pausar</string>
   <string name="mpris_previous">Anterior</string>

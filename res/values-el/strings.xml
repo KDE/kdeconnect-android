@@ -103,7 +103,6 @@
   <string name="pairing_reject">Απόρριψη</string>
   <string name="device">Συσκευή</string>
   <string name="pair_device">Σύζευξη συσκευής</string>
-  <string name="remote_control">Απομακρυσμένος έλεγχος</string>
   <string name="mpris_play">Αναπαραγωγή</string>
   <string name="mpris_previous">Προηγούμενο</string>
   <string name="mpris_rew">Ταχεία ώθηση όπισθεν</string>

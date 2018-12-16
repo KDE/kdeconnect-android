@@ -145,7 +145,6 @@
   <string name="pairing_reject">Відмовити</string>
   <string name="device">Пристрій</string>
   <string name="pair_device">Пов’язати пристрій</string>
-  <string name="remote_control">Дистанційне керування</string>
   <string name="settings">Параметри</string>
   <string name="mpris_play">Пуск</string>
   <string name="mpris_pause">Пауза</string>

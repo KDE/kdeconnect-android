@@ -130,7 +130,6 @@
   <string name="pairing_reject">回絕</string>
   <string name="device">裝置</string>
   <string name="pair_device">配對裝置</string>
-  <string name="remote_control">遠端控制</string>
   <string name="settings">設定</string>
   <string name="mpris_play">播放</string>
   <string name="mpris_pause">暫停</string>
@@ -260,4 +259,10 @@
   <string name="setting_persistent_notification">顯示一致設定</string>
   <string name="setting_persistent_notification_oreo_description">需要 Android 8.0 以上的版本</string>
   <string name="setting_persistent_notification_pie_description">從 Android 9.0 開始，只能長按通知才能最小化通知</string>
+  <string name="extra_options">延伸選項</string>
+  <string name="privacy_options">隱私權選項</string>
+  <string name="set_privacy_options">設定隱私權選項</string>
+  <string name="new_notification">新通知</string>
+  <string name="block_contents">擋住通知內容</string>
+  <string name="block_images">擋住通知中的圖片</string>
 </resources>

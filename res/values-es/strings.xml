@@ -118,7 +118,6 @@
   <string name="pairing_reject">Rechazar</string>
   <string name="device">Dispositivo</string>
   <string name="pair_device">Vincular dispositivo</string>
-  <string name="remote_control">Control remoto</string>
   <string name="settings">Preferencias</string>
   <string name="mpris_play">Reproducir</string>
   <string name="mpris_pause">Pausar</string>

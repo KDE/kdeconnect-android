@@ -103,7 +103,6 @@
   <string name="pairing_reject">Afvis</string>
   <string name="device">Enhed</string>
   <string name="pair_device">Par med enhed</string>
-  <string name="remote_control">Fjernbetjening</string>
   <string name="mpris_play">Afspil</string>
   <string name="mpris_previous">Forrige</string>
   <string name="mpris_rew">Spol tilbage</string>
