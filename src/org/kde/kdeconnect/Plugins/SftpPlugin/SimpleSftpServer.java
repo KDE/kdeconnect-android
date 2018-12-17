@@ -28,7 +28,6 @@ import org.apache.sshd.SshServer;
 import org.apache.sshd.common.Session;
 import org.apache.sshd.common.file.FileSystemFactory;
 import org.apache.sshd.common.file.FileSystemView;
-import org.apache.sshd.common.file.SshFile;
 import org.apache.sshd.common.file.nativefs.NativeFileSystemView;
 import org.apache.sshd.common.file.nativefs.NativeSshFile;
 import org.apache.sshd.common.keyprovider.AbstractKeyPairProvider;
@@ -214,10 +213,11 @@ class SimpleSftpServer {
             this.context = context;
         }
 
+        // NativeFileSystemView.getFile(), NativeSshFile.getParentFile() and NativeSshFile.listSshFiles() call
+        // createNativeSshFile to create new NativeSshFiles so override that instead of getFile() to always create a AndroidSshFile
         @Override
-        protected SshFile getFile(final String dir, final String file) {
-            File fileObj = new File(dir, file);
-            return new AndroidSshFile(this, fileObj, userName, context);
+        public AndroidSshFile createNativeSshFile(String name, File file, String username) {
+            return new AndroidSshFile(this, name, file, username, context);
         }
     }
 
@@ -226,8 +226,8 @@ class SimpleSftpServer {
         final private Context context;
         final private File file;
 
-        AndroidSshFile(final AndroidFileSystemView view, final File file, final String userName, Context context) {
-            super(view, file.getAbsolutePath(), file, userName);
+        AndroidSshFile(final AndroidFileSystemView view, String name, final File file, final String userName, Context context) {
+            super(view, name, file, userName);
             this.context = context;
             this.file = file;
         }
@@ -278,6 +278,29 @@ class SimpleSftpServer {
             }
             return ret;
 
+        }
+
+        // Based on https://github.com/wolpi/prim-ftpd/blob/master/primitiveFTPd/src/org/primftpd/filesystem/FsFile.java
+        @Override
+        public boolean doesExist() {
+            boolean exists = file.exists();
+
+            if (!exists) {
+                // file.exists() returns false when we don't have read permission
+                // try to figure out if it really does not exist
+                File parentFile = file.getParentFile();
+                File[] children = parentFile.listFiles();
+                if (children != null) {
+                    for (File child : children) {
+                        if (file.equals(child)) {
+                            exists = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return exists;
         }
     }
 
