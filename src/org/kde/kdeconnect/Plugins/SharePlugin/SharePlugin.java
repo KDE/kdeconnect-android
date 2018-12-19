@@ -513,7 +513,7 @@ public class SharePlugin extends Plugin implements ReceiveFileRunnable.CallBack 
 
         //TODO: Show error in notification
         int failedFiles = info.numberOfFiles() - (info.currentFileNumber - 1);
-        shareNotification.setFinished(context.getResources().getQuantityString(R.plurals.received_files_fail_title, failedFiles, failedFiles, info.numberOfFiles(), device.getName()));
+        shareNotification.setFinished(context.getResources().getQuantityString(R.plurals.received_files_fail_title, failedFiles, device.getName(), failedFiles, info.numberOfFiles()));
         shareNotification.show();
         shareNotification = null;
         currentShareInfo = null;
@@ -532,7 +532,7 @@ public class SharePlugin extends Plugin implements ReceiveFileRunnable.CallBack 
 
             if (shareNotification != null) {
                 //Update the notification and allow to open the file from it
-                shareNotification.setFinished(context.getResources().getQuantityString(R.plurals.received_files_title, info.numberOfFiles(), info.numberOfFiles(), device.getName()));
+                shareNotification.setFinished(context.getResources().getQuantityString(R.plurals.received_files_title, info.numberOfFiles(), device.getName(), info.numberOfFiles()));
 
                 if (info.numberOfFiles() == 1) {
                     shareNotification.setURI(info.fileDocument.getUri(), info.fileDocument.getType(), info.fileName);

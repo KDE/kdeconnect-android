@@ -142,12 +142,12 @@
         <item quantity="other">Sent %1$d out of %2$d files</item>
     </plurals>
     <plurals name="received_files_title">
-        <item quantity="one">Received file from %2$s</item>
-        <item quantity="other">Received %1$d files from %2$s</item>
+        <item quantity="one">Received file from %1$s</item>
+        <item quantity="other">Received %2$d files from %1$s</item>
     </plurals>
     <plurals name="received_files_fail_title">
-        <item quantity="one">Failed receiving file from %3$s</item>
-        <item quantity="other">Failed receiving %1$d of %2$d files from %3$s</item>
+        <item quantity="one">Failed receiving file from %1$s</item>
+        <item quantity="other">Failed receiving %2$d of %3$d files from %1$s</item>
     </plurals>
     <string name="received_file_text">Tap to open \'%1s\'</string>
     <string name="cannot_create_file">Cannot create file %s</string>
