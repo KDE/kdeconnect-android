@@ -110,14 +110,6 @@
     <item quantity="one">Inviato %1$d file</item>
     <item quantity="other">Inviati %1$d di %2$d file</item>
   </plurals>
-  <plurals name="received_files_title">
-    <item quantity="one"/>
-    <item quantity="other">Ricevuti %1$d file da %2$s</item>
-  </plurals>
-  <plurals name="received_files_fail_title">
-    <item quantity="one"/>
-    <item quantity="other">Ricezione di %1$d di %2$d file non riuscita da %3$s</item>
-  </plurals>
   <string name="received_file_text">Tocca per aprire «%1s»</string>
   <string name="cannot_create_file">Impossibile creare il file %s</string>
   <string name="sent_file_title">File inviato a %1s</string>

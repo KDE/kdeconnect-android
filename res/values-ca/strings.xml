@@ -111,12 +111,12 @@
     <item quantity="other">S\'ha enviat %1$d de %2$d fitxers</item>
   </plurals>
   <plurals name="received_files_title">
-    <item quantity="one">S\'ha rebut %1$d fitxer des de %2$s</item>
-    <item quantity="other">S\'han rebut %1$d fitxers des de %2$s</item>
+    <item quantity="one">S\'ha rebut un fitxer des de %1$s</item>
+    <item quantity="other">S\'han rebut %2$d fitxers des de %1$s</item>
   </plurals>
   <plurals name="received_files_fail_title">
-    <item quantity="one">Ha fallat en rebre %1$d de %2$d fitxer des de %3$s</item>
-    <item quantity="other">Ha fallat en rebre %1$d de %2$d fitxers des de %3$s</item>
+    <item quantity="one">Ha fallat en rebre un fitxer des de %1$s</item>
+    <item quantity="other">Ha fallat en rebre %2$d de %3$d fitxers des de %1$s</item>
   </plurals>
   <string name="received_file_text">Puntegeu per obrir «%1s»</string>
   <string name="cannot_create_file">No s\'ha pogut crear el fitxer %s</string>

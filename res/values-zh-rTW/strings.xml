@@ -107,12 +107,6 @@
   <plurals name="outgoing_files_text">
     <item quantity="other">傳送 %1$d 個檔案，共 %2$d 個檔案。</item>
   </plurals>
-  <plurals name="received_files_title">
-    <item quantity="other">已從 %2$s 接收 %1$d 個檔案</item>
-  </plurals>
-  <plurals name="received_files_fail_title">
-    <item quantity="other">無法從 %3$s 接收到 %2$d 之 %1$d 個檔案</item>
-  </plurals>
   <string name="received_file_text">點擊開啟 \'%1s\'</string>
   <string name="cannot_create_file">無法建立 %s 檔案</string>
   <string name="sent_file_title">將檔案傳送到 %1s</string>

@@ -111,12 +111,12 @@
     <item quantity="other">Enviáronse %1$d de %2$d ficheiros.</item>
   </plurals>
   <plurals name="received_files_title">
-    <item quantity="one">Recibiuse %1$d ficheiro de %2$s</item>
-    <item quantity="other">Recibíronse %1$d ficheiros de %2$s</item>
+    <item quantity="one">Recibiuse un ficheiro de %1$s</item>
+    <item quantity="other">Recibíronse %2$d ficheiros de %1$s</item>
   </plurals>
   <plurals name="received_files_fail_title">
-    <item quantity="one">A recepción de %1$d de %2$d ficheiro de %3$s fallou</item>
-    <item quantity="other">A recepción de %1$d de %2$d ficheiros de %3$s fallou</item>
+    <item quantity="one">A recepción do ficheiro de %1$s fallou</item>
+    <item quantity="other">A recepción de %2$d de %3$d ficheiros de %1$s fallou</item>
   </plurals>
   <string name="received_file_text">Toque para abrir «%1s».</string>
   <string name="cannot_create_file">Non se pode crear o ficheiro %s</string>

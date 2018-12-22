@@ -117,16 +117,16 @@
     <item quantity="other">Надіслано %1$d файл</item>
   </plurals>
   <plurals name="received_files_title">
-    <item quantity="one">Отримано %1$d файл з %2$s</item>
-    <item quantity="few">Отримано %1$d файли з %2$s</item>
-    <item quantity="many">Отримано %1$d файлів з %2$s</item>
-    <item quantity="other">Отримано %1$d файл з %2$s</item>
+    <item quantity="one">Отримано %2$d файл з %1$s</item>
+    <item quantity="few">Отримано %2$d файли з %1$s</item>
+    <item quantity="many">Отримано %2$d файлів з %1$s</item>
+    <item quantity="other">Отримано один файл з %1$s</item>
   </plurals>
   <plurals name="received_files_fail_title">
-    <item quantity="one">Не вдалося отримати %1$d з %2$d файла з %3$s</item>
-    <item quantity="few">Не вдалося отримати %1$d з %2$d файлів з %3$s</item>
-    <item quantity="many">Не вдалося отримати %1$d з %2$d файлів з %3$s</item>
-    <item quantity="other">Не вдалося отримати %1$d з %2$d файла з %3$s</item>
+    <item quantity="one">Не вдалося отримати %2$d з %3$d файла з %1$s</item>
+    <item quantity="few">Не вдалося отримати %2$d з %3$d файлів з %1$s</item>
+    <item quantity="many">Не вдалося отримати %2$d з %3$d файлів з %1$s</item>
+    <item quantity="other">Не вдалося отримати файл з %1$s</item>
   </plurals>
   <string name="received_file_text">Натисніть, щоб відкрити «%1s»</string>
   <string name="cannot_create_file">Не вдалося створити файл %s</string>

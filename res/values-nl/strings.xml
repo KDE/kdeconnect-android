@@ -111,12 +111,12 @@
     <item quantity="other">%1$d bestanden uit %2$d verzenden</item>
   </plurals>
   <plurals name="received_files_title">
-    <item quantity="one">Ontvangen %1$d bestand van %2$s</item>
-    <item quantity="other">Ontvangen %1$d bestanden vanaf %2$s</item>
+    <item quantity="one">Ontvangen van bestand vanaf %1$s</item>
+    <item quantity="other">Ontvangen %2$d bestanden vanaf %1$s</item>
   </plurals>
   <plurals name="received_files_fail_title">
-    <item quantity="one">Ontvangen van %1$d van %2$d bestand vanaf %3$s is mislukt</item>
-    <item quantity="other">Ontvangen van %1$d van %2$d bestanden vanaf %3$s is mislukt</item>
+    <item quantity="one">Ontvangen van bestand vanaf %1$s is mislukt</item>
+    <item quantity="other">Ontvangen van %2$d van %3$d bestanden vanaf %1$s is mislukt</item>
   </plurals>
   <string name="received_file_text">Tap om \'%1s\' te openen</string>
   <string name="cannot_create_file">Kan bestand %s niet aanmaken</string>

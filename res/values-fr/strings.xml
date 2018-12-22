@@ -1,5 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_no_devices">Aucun périphérique connecté</string>
+  <string name="foreground_notification_devices">Connecté à : %s</string>
   <string name="pref_plugin_telephony">Notifications de téléphonie</string>
   <string name="pref_plugin_telephony_desc">Envoie des notifications pour les appels entrants</string>
   <string name="pref_plugin_battery">Rapport sur la batterie</string>
@@ -93,13 +96,30 @@
   <string name="pairing_request_from">Demande d\'association provenant de %1s</string>
   <string name="received_url_title">Lien reçu de %1s</string>
   <string name="received_url_text">Appuyez pour ouvrir %1s</string>
+  <plurals name="incoming_file_title">
+    <item quantity="one">%1$d fichier reçu de %2$s</item>
+    <item quantity="other">%1$d fichiers reçus de %2$s</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="one">Fichier : %1s</item>
+    <item quantity="other">(Fichier %2$d sur %3$d) : %1$s</item>
+  </plurals>
   <string name="outgoing_file_title">Envoi d\'un fichier à %1s</string>
   <string name="outgoing_files_title">Envoi de fichiers à %1s</string>
   <plurals name="outgoing_files_text">
     <item quantity="one">%1$d fichier envoyé</item>
     <item quantity="other">%1$d fichiers envoyés sur %2$d</item>
   </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one">Fichier reçu de %1$s</item>
+    <item quantity="other">%2$d fichiers reçus de %1$s</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Impossible de recevoir le fichier depuis %1$s</item>
+    <item quantity="other">Impossible de recevoir %2$d fichiers sur %3$d depuis %1$s</item>
+  </plurals>
   <string name="received_file_text">Appuyez pour ouvrir %1s</string>
+  <string name="cannot_create_file">Impossible de créer le fichier %s</string>
   <string name="sent_file_title">Fichier envoyé à %1s</string>
   <string name="sent_file_text">%1s</string>
   <string name="sent_file_failed_title">Impossible d\'envoyer le fichier à %1s</string>
@@ -115,6 +135,7 @@
   <string name="pairing_reject">Rejeter</string>
   <string name="device">Périphérique</string>
   <string name="pair_device">Associer un périphérique</string>
+  <string name="settings">Configuration</string>
   <string name="mpris_play">Lire</string>
   <string name="mpris_pause">Pause</string>
   <string name="mpris_previous">Précédent</string>
@@ -134,6 +155,7 @@
   </string-array>
   <string name="mpris_notification_settings_title">Afficher la notification de contrôle du lecteur multimédia</string>
   <string name="mpris_notification_settings_summary">Vous permet de contrôler vos lecteurs multimédias sans ouvrir KDE Connect.</string>
+  <string name="share_to">Partager vers…</string>
   <string name="protocol_version_older">Le périphérique utilise une version ancienne du protocole</string>
   <string name="protocol_version_newer">Le périphérique utilise une version plus récente du protocole</string>
   <string name="general_settings">Paramètres généraux</string>
@@ -147,6 +169,7 @@
   <string name="pair_device_action">Associer un nouveau périphérique</string>
   <string name="unpair_device_action">Dissocier %s</string>
   <string name="custom_device_list">Ajouter des périphériques par IP</string>
+  <string name="delete_custom_device">Supprimer %s ?</string>
   <string name="share_notification_preference">Notifications sonores</string>
   <string name="share_notification_preference_summary">Vibrer et jouer un son quand un fichier est reçu</string>
   <string name="share_destination_customize">Personnaliser le dossier de destination</string>
@@ -215,6 +238,10 @@
   <string name="pref_plugin_mprisreceiver">Contrôle du lecteur multimédia</string>
   <string name="pref_plugin_mprisreceiver_desc">Contrôlez les lecteurs multimédia de vos téléphones depuis un autre appareil</string>
   <string name="dark_theme">Thème sombre</string>
+  <string name="notification_channel_default">Autres notifications</string>
+  <string name="notification_channel_persistent">Indicateur persistant</string>
+  <string name="notification_channel_media_control">Contrôle multimédia</string>
+  <string name="notification_channel_filetransfer">Transfert de fichiers</string>
   <string name="mpris_stop">Arrêter le lecteur actuel</string>
   <string name="copy_url_to_clipboard">Copier l\'URL dans le presse-papiers</string>
   <string name="clipboard_toast">Copié dans le presse-papier</string>
@@ -229,4 +256,18 @@
   <string name="pref_plugin_systemvolume_desc">Contrôler le volume du système du périphérique distant</string>
   <string name="mute">Muet</string>
   <string name="all">Tous</string>
+  <string name="devices">Périphériques</string>
+  <string name="settings_rename">Nom du périphérique</string>
+  <string name="settings_dark_mode">Thème sombre</string>
+  <string name="settings_more_settings_title">Plus de paramètres</string>
+  <string name="settings_more_settings_text">Les paramètres par appareil sont disponibles dans la rubrique « Paramètres des modules externes » sur l\'appareil.</string>
+  <string name="setting_persistent_notification">Afficher une notification persistante</string>
+  <string name="setting_persistent_notification_oreo_description">Requis par Android depuis Android 8.0</string>
+  <string name="setting_persistent_notification_pie_description">Depuis Android 9.0, cette notification ne peut être minimisée qu\'en effectuant un clic long dessus</string>
+  <string name="extra_options">Options supplémentaires</string>
+  <string name="privacy_options">Options de confidentialité</string>
+  <string name="set_privacy_options">Configurez vos options de confidentialité</string>
+  <string name="new_notification">Nouvelle notification</string>
+  <string name="block_contents">Bloquer les contenus des notifications</string>
+  <string name="block_images">Bloquer les images des notifications</string>
 </resources>
