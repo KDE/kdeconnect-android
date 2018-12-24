@@ -123,7 +123,7 @@ public class NotificationFilterActivity extends AppCompatActivity {
                 apps[i].isEnabled = appDatabase.isEnabled(appInfo.packageName);
             }
 
-            Arrays.sort(apps, (lhs, rhs) -> StringsHelper.compare(lhs.name, rhs.name));
+            Arrays.sort(apps, (lhs, rhs) -> lhs.name.compareToIgnoreCase(rhs.name));
 
             runOnUiThread(this::displayAppList);
         }).start();
