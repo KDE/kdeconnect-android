@@ -75,6 +75,10 @@ public class ReceiveNotificationsPlugin extends Plugin {
             return true;
         }
 
+        if (np.getBoolean("silent", false)) {
+            return true;
+        }
+
         PendingIntent resultPendingIntent = PendingIntent.getActivity(
                 context,
                 0,
