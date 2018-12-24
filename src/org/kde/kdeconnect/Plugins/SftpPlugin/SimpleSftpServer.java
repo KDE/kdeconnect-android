@@ -204,12 +204,10 @@ class SimpleSftpServer {
 
     static class AndroidFileSystemView extends NativeFileSystemView {
 
-        final private String userName;
         final private Context context;
 
         AndroidFileSystemView(final String userName, Context context) {
             super(userName, true);
-            this.userName = userName;
             this.context = context;
         }
 
