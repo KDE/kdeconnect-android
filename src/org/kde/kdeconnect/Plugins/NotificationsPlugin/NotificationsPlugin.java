@@ -476,9 +476,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         } else if (np.has("cancel")) {
             final String dismissedId = np.getString("cancel");
             currentNotifications.remove(dismissedId);
-            NotificationReceiver.RunCommand(context, service -> {
-                cancelNotificationCompat(service, dismissedId);
-            });
+            NotificationReceiver.RunCommand(context, service -> cancelNotificationCompat(service, dismissedId));
         } else if (np.has("requestReplyId") && np.has("message")) {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
