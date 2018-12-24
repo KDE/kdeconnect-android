@@ -206,7 +206,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         if (!isUpdate) {
             //If it's an update, the other end should have the icon already: no need to extract it and create the payload again
             try {
-                Bitmap appIcon = null;
+                Bitmap appIcon;
                 Context foreignContext = context.createPackageContext(statusBarNotification.getPackageName(), 0);
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
                     appIcon = iconToBitmap(foreignContext, notification.getLargeIcon());
