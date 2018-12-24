@@ -81,7 +81,7 @@ class SimpleSftpServer {
 
     private final SshServer sshd = SshServer.setUpDefaultServer();
 
-    public void init(Context context, Device device) throws Exception {
+    void init(Context context, Device device) throws Exception {
 
         sshd.setKeyExchangeFactories(Arrays.asList(
                 new DHG14.Factory(),
@@ -147,15 +147,15 @@ class SimpleSftpServer {
         }
     }
 
-    public String getPassword() {
+    String getPassword() {
         return passwordAuth.password;
     }
 
-    public int getPort() {
+    int getPort() {
         return port;
     }
 
-    public String getLocalIpAddress() {
+    String getLocalIpAddress() {
         String ip6 = null;
         try {
             for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements(); ) {
