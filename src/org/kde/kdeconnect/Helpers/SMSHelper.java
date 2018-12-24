@@ -147,7 +147,7 @@ public class SMSHelper {
                     ThreadID threadID = new ThreadID(message.m_threadID);
 
                     if (!toReturn.containsKey(threadID)) {
-                        toReturn.put(threadID, new ArrayList<Message>());
+                        toReturn.put(threadID, new ArrayList<>());
                     }
                     toReturn.get(threadID).add(message);
                 } while (myCursor.moveToNext());
