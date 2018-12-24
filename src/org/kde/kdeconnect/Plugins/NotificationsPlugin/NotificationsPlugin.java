@@ -213,7 +213,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 } else {
                     appIcon = notification.largeIcon;
                 }
-                //appIcon = drawableToBitmap(context.getResources().getDrawable(R.drawable.icon));
+
                 if (appIcon == null) {
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
                         appIcon = iconToBitmap(foreignContext, notification.getSmallIcon());
