@@ -84,10 +84,8 @@ public class ReceiveNotificationsPlugin extends Plugin {
 
         Bitmap largeIcon = null;
         if (np.hasPayload()) {
-            int width = 64;   // default icon dimensions
-            int height = 64;
-            width = context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_width);
-            height = context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_height);
+            int width = context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_width);
+            int height = context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_height);
             final InputStream input = np.getPayload().getInputStream();
             largeIcon = BitmapFactory.decodeStream(input);
             np.getPayload().close();
