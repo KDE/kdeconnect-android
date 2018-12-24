@@ -115,6 +115,7 @@ public class ReceiveNotificationsPlugin extends Plugin {
                 .setAutoCancel(true)
                 .setLocalOnly(true)  // to avoid bouncing the notification back to other kdeconnect nodes
                 .setDefaults(Notification.DEFAULT_ALL)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(np.getString("ticker")))
                 .build();
 
         NotificationHelper.notifyCompat(notificationManager, "kdeconnectId:" + np.getString("id", "0"), np.getInt("id", 0), noti);
