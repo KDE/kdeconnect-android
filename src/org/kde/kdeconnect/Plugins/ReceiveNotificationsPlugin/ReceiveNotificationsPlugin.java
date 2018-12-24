@@ -15,8 +15,8 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
-*/
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 package org.kde.kdeconnect.Plugins.ReceiveNotificationsPlugin;
 
@@ -72,50 +72,50 @@ public class ReceiveNotificationsPlugin extends Plugin {
 
         if (!np.has("ticker") || !np.has("appName") || !np.has("id")) {
             Log.e("NotificationsPlugin", "Received notification package lacks properties");
-        } else {
-            PendingIntent resultPendingIntent = PendingIntent.getActivity(
-                    context,
-                    0,
-                    new Intent(context, MainActivity.class),
-                    PendingIntent.FLAG_UPDATE_CURRENT
-            );
+            return true;
+        }
 
-            Bitmap largeIcon = null;
-            if (np.hasPayload()) {
-                int width = 64;   // default icon dimensions
-                int height = 64;
-                width = context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_width);
-                height = context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_height);
-                final InputStream input = np.getPayload().getInputStream();
-                largeIcon = BitmapFactory.decodeStream(input);
-                np.getPayload().close();
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(
+                context,
+                0,
+                new Intent(context, MainActivity.class),
+                PendingIntent.FLAG_UPDATE_CURRENT
+        );
 
-                if (largeIcon != null) {
-                    //Log.i("NotificationsPlugin", "hasPayload: size=" + largeIcon.getWidth() + "/" + largeIcon.getHeight() + " opti=" + width + "/" + height);
-                    if (largeIcon.getWidth() > width || largeIcon.getHeight() > height) {
-                        // older API levels don't scale notification icons automatically, therefore:
-                        largeIcon = Bitmap.createScaledBitmap(largeIcon, width, height, false);
-                    }
+        Bitmap largeIcon = null;
+        if (np.hasPayload()) {
+            int width = 64;   // default icon dimensions
+            int height = 64;
+            width = context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_width);
+            height = context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_height);
+            final InputStream input = np.getPayload().getInputStream();
+            largeIcon = BitmapFactory.decodeStream(input);
+            np.getPayload().close();
+
+            if (largeIcon != null) {
+                //Log.i("NotificationsPlugin", "hasPayload: size=" + largeIcon.getWidth() + "/" + largeIcon.getHeight() + " opti=" + width + "/" + height);
+                if (largeIcon.getWidth() > width || largeIcon.getHeight() > height) {
+                    // older API levels don't scale notification icons automatically, therefore:
+                    largeIcon = Bitmap.createScaledBitmap(largeIcon, width, height, false);
                 }
             }
-
-            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
-            Notification noti = new NotificationCompat.Builder(context, NotificationHelper.Channels.DEFAULT)
-                    .setContentTitle(np.getString("appName"))
-                    .setContentText(np.getString("ticker"))
-                    .setContentIntent(resultPendingIntent)
-                    .setTicker(np.getString("ticker"))
-                    .setSmallIcon(R.drawable.ic_notification)
-                    .setLargeIcon(largeIcon)
-                    .setAutoCancel(true)
-                    .setLocalOnly(true)  // to avoid bouncing the notification back to other kdeconnect nodes
-                    .setDefaults(Notification.DEFAULT_ALL)
-                    .build();
-
-            NotificationHelper.notifyCompat(notificationManager, "kdeconnectId:" + np.getString("id", "0"), np.getInt("id", 0), noti);
-
         }
+
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        Notification noti = new NotificationCompat.Builder(context, NotificationHelper.Channels.DEFAULT)
+                .setContentTitle(np.getString("appName"))
+                .setContentText(np.getString("ticker"))
+                .setContentIntent(resultPendingIntent)
+                .setTicker(np.getString("ticker"))
+                .setSmallIcon(R.drawable.ic_notification)
+                .setLargeIcon(largeIcon)
+                .setAutoCancel(true)
+                .setLocalOnly(true)  // to avoid bouncing the notification back to other kdeconnect nodes
+                .setDefaults(Notification.DEFAULT_ALL)
+                .build();
+
+        NotificationHelper.notifyCompat(notificationManager, "kdeconnectId:" + np.getString("id", "0"), np.getInt("id", 0), noti);
 
         return true;
     }
