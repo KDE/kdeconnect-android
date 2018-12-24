@@ -194,13 +194,12 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             return;
         }
 
-        NetworkPacket np = new NetworkPacket(PACKET_TYPE_NOTIFICATION);
-
-        if (packageName.equals("org.kde.kdeconnect_tp")) {
-            //Make our own notifications silent :)
-            np.set("silent", true);
-            np.set("requestAnswer", true); //For compatibility with old desktop versions of KDE Connect that don't support "silent"
+        if ("org.kde.kdeconnect_tp".equals(packageName)) {
+            // Don't send our own notifications
+            return;
         }
+
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_NOTIFICATION);
 
         boolean isUpdate = currentNotifications.contains(key);
         if (!isUpdate) {
