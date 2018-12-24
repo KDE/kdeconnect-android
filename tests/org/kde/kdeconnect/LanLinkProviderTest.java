@@ -20,8 +20,6 @@
 
 package org.kde.kdeconnect;
 
-import android.test.AndroidTestCase;
-
 import org.kde.kdeconnect.Backends.LanBackend.LanLink;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.mockito.Mockito;

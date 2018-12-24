@@ -20,7 +20,6 @@
 
 package org.kde.kdeconnect;
 
-import android.test.AndroidTestCase;
 import android.util.Log;
 
 import org.json.JSONException;

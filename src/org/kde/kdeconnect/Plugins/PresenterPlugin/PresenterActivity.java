@@ -28,13 +28,11 @@ import android.support.v4.media.VolumeProviderCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import org.kde.kdeconnect.BackgroundService;
-import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 

@@ -22,7 +22,6 @@ package org.kde.kdeconnect;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.test.AndroidTestCase;
 import android.util.Base64;
 import android.util.Log;
 

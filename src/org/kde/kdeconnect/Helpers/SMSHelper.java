@@ -27,7 +27,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Looper;
 import android.provider.Telephony;
-import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 

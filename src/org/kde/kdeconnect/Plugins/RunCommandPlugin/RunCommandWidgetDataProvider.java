@@ -2,8 +2,6 @@ package org.kde.kdeconnect.Plugins.RunCommandPlugin;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;

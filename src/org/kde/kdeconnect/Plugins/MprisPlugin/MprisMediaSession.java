@@ -40,7 +40,6 @@ import android.support.v4.media.app.NotificationCompat.MediaStyle;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
-import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.HashSet;
