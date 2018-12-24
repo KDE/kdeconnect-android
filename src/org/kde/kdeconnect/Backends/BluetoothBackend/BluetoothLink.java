@@ -198,8 +198,7 @@ public class BluetoothLink extends BaseLink {
             sendMessage(np);
 
             if (serverSocket != null) {
-                BluetoothSocket transferSocket = serverSocket.accept();
-                try {
+                try (BluetoothSocket transferSocket = serverSocket.accept()) {
                     serverSocket.close();
 
                     int idealBufferLength = 4096;
@@ -223,11 +222,6 @@ public class BluetoothLink extends BaseLink {
                 } catch (Exception e) {
                     callback.onFailure(e);
                     return false;
-                } finally {
-                    try {
-                        transferSocket.close();
-                    } catch (IOException ignored) {
-                    }
                 }
             }
 

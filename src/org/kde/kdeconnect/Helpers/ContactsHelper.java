@@ -91,12 +91,8 @@ public class ContactsHelper {
         }
         Uri photoUri = Uri.parse(photoId);
 
-        InputStream input = null;
-        Base64OutputStream output = null;
-        try {
-            ByteArrayOutputStream encodedPhoto = new ByteArrayOutputStream();
-            output = new Base64OutputStream(encodedPhoto, Base64.DEFAULT);
-            input = context.getContentResolver().openInputStream(photoUri);
+        ByteArrayOutputStream encodedPhoto = new ByteArrayOutputStream();
+        try (InputStream input = context.getContentResolver().openInputStream(photoUri); Base64OutputStream output = new Base64OutputStream(encodedPhoto, Base64.DEFAULT)) {
             byte[] buffer = new byte[1024];
             int len;
             //noinspection ConstantConditions
@@ -107,19 +103,6 @@ public class ContactsHelper {
         } catch (Exception ex) {
             Log.e("ContactsHelper", ex.toString());
             return "";
-        } finally {
-            try {
-                //noinspection ConstantConditions
-                input.close();
-            } catch (Exception ignored) {
-            }
-
-            try {
-                //noinspection ConstantConditions
-                output.close();
-            } catch (Exception ignored) {
-            }
-
         }
     }
 
