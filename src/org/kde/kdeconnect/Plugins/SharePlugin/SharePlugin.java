@@ -373,7 +373,7 @@ public class SharePlugin extends Plugin implements ReceiveFileRunnable.CallBack 
                 } finally {
                     try {
                         cursor.close();
-                    } catch (Exception e) {
+                    } catch (Exception ignored) {
                     }
                 }
 
