@@ -183,7 +183,7 @@ class SimpleSftpServer {
                     }
                 }
             }
-        } catch (SocketException ex) {
+        } catch (SocketException ignored) {
         }
         return ip6;
     }
