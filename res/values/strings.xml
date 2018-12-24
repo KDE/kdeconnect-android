@@ -323,5 +323,6 @@
     <string name="new_notification">New notification</string>
     <string name="block_contents">Block contents of notifications</string>
     <string name="block_images">Block images in notifications</string>
+    <string name="notification_channel_receivenotification">Notifications from other devices</string>
 
 </resources>

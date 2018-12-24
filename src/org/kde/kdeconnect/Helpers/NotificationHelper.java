@@ -17,6 +17,7 @@ public class NotificationHelper {
         public final static String DEFAULT = "default";
         public final static String MEDIA_CONTROL = "media_control";
         public final static String FILETRANSFER = "filetransfer";
+        public final static String RECEIVENOTIFICATION = "receive";
     }
 
     public static void notifyCompat(NotificationManager notificationManager, int notificationId, Notification notification) {
@@ -72,6 +73,12 @@ public class NotificationHelper {
         fileTransfer.enableVibration(false);
 
         manager.createNotificationChannel(fileTransfer);
+
+        manager.createNotificationChannel(new NotificationChannel(
+                Channels.RECEIVENOTIFICATION,
+                context.getString(R.string.notification_channel_receivenotification),
+                NotificationManager.IMPORTANCE_DEFAULT)
+        );
 
     }
 
