@@ -85,12 +85,8 @@
   <string name="pairing_request_from">Захтев за упаривање са %1s</string>
   <string name="received_url_title">Примљена веза са %1s</string>
   <string name="received_url_text">Тапните да отворите „%1s“</string>
-  <string name="incoming_file_title">Долазни фајл са %1s</string>
-  <string name="incoming_file_text">%1s</string>
   <string name="outgoing_file_title">Шаљем фајл на %1s</string>
   <string name="outgoing_files_title">Шаљем фајлове на %1s</string>
-  <string name="received_file_title">Примљен фајл са %1s</string>
-  <string name="received_file_fail_title">Неуспео пријем фајла са %1s</string>
   <string name="received_file_text">Тапните да отворите „%1s“</string>
   <string name="sent_file_title">Послат фајл на %1s</string>
   <string name="sent_file_text">%1s</string>
@@ -107,7 +103,6 @@
   <string name="pairing_reject">Одбаци</string>
   <string name="device">Уређај</string>
   <string name="pair_device">Упари уређај</string>
-  <string name="remote_control">Даљинско управљање</string>
   <string name="mpris_play">Пусти</string>
   <string name="mpris_previous">Претходно</string>
   <string name="mpris_rew">Премотај</string>

@@ -110,6 +110,14 @@
     <item quantity="one">Inviato %1$d file</item>
     <item quantity="other">Inviati %1$d di %2$d file</item>
   </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one">File ricevuto da %1$s</item>
+    <item quantity="other">Ricevuti %2$d file da %1$s</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Ricezione file da di %1$s non riuscita</item>
+    <item quantity="other">Ricezione di %2$d di %3$d file da %1$s non riuscita</item>
+  </plurals>
   <string name="received_file_text">Tocca per aprire «%1s»</string>
   <string name="cannot_create_file">Impossibile creare il file %s</string>
   <string name="sent_file_title">File inviato a %1s</string>
@@ -256,4 +264,10 @@
   <string name="setting_persistent_notification">Mostra notifica persistente</string>
   <string name="setting_persistent_notification_oreo_description">Richiesto da Android a partire da Android 8.0</string>
   <string name="setting_persistent_notification_pie_description">Da Android 9.0, questa notifica potrà essere minimizzata solo con un tocco lungo</string>
+  <string name="extra_options">Opzioni aggiuntive</string>
+  <string name="privacy_options">Opzioni di riservatezza</string>
+  <string name="set_privacy_options">Imposta le tue opzioni di riservatezza</string>
+  <string name="new_notification">Nuova notifica</string>
+  <string name="block_contents">Blocca i contenuti delle notifiche</string>
+  <string name="block_images">Blocca le immagini nelle notifiche</string>
 </resources>
