@@ -270,4 +270,5 @@
   <string name="new_notification">Nieuwe melding</string>
   <string name="block_contents">Inhoud van meldingen blokkeren</string>
   <string name="block_images">Afbeeldingen in meldingen blokkeren</string>
+  <string name="notification_channel_receivenotification">Meldingen van andere apparaten</string>
 </resources>

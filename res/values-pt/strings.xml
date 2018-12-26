@@ -111,12 +111,12 @@
     <item quantity="other">Foram enviados %1$d de %2$d ficheiros</item>
   </plurals>
   <plurals name="received_files_title">
-    <item quantity="one">Ficheiro recebido de %2$s</item>
-    <item quantity="other">Foram recebidos %1$d ficheiros de %2$s</item>
+    <item quantity="one">Ficheiro recebido de %1$s</item>
+    <item quantity="other">Foram recebidos %2$d ficheiros de %1$s</item>
   </plurals>
   <plurals name="received_files_fail_title">
-    <item quantity="one">Falhou a recepção do ficheiro de %3$s</item>
-    <item quantity="other">Falhou a recepção de %1$d de %2$d ficheiros de %3$s</item>
+    <item quantity="one">Falhou a recepção do ficheiro de %1$s</item>
+    <item quantity="other">Falhou a recepção de %2$d de %3$d ficheiros de %1$s</item>
   </plurals>
   <string name="received_file_text">Toque para abrir o \'%1s\'</string>
   <string name="cannot_create_file">Não é possível criar o ficheiro %s</string>
@@ -270,4 +270,5 @@
   <string name="new_notification">Nova notificação</string>
   <string name="block_contents">Bloquear o conteúdo das notificações</string>
   <string name="block_images">Bloquear as imagens das notificações</string>
+  <string name="notification_channel_receivenotification">Notificações dos outros dispositivos</string>
 </resources>

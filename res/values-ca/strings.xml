@@ -270,4 +270,5 @@
   <string name="new_notification">Notificació nova</string>
   <string name="block_contents">Bloca el contingut de les notificacions</string>
   <string name="block_images">Bloca les imatges a les notificacions</string>
+  <string name="notification_channel_receivenotification">Notificacions des d\'altres dispositius</string>
 </resources>
