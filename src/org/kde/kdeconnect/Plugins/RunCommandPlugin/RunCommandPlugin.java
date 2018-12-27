@@ -24,7 +24,6 @@ package org.kde.kdeconnect.Plugins.RunCommandPlugin;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,6 +34,8 @@ import org.kde.kdeconnect_tp.R;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+
+import androidx.core.content.ContextCompat;
 
 public class RunCommandPlugin extends Plugin {
 

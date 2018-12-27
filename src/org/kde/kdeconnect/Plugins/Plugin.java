@@ -27,9 +27,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.StringRes;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.widget.Button;
 
 import org.kde.kdeconnect.Device;
@@ -37,6 +34,10 @@ import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.UserInterface.DeviceSettingsActivity;
 import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
 import org.kde.kdeconnect_tp.R;
+
+import androidx.annotation.StringRes;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 public abstract class Plugin {
 

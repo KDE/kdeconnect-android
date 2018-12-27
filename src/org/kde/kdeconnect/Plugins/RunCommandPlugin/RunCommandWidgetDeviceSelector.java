@@ -2,7 +2,6 @@ package org.kde.kdeconnect.Plugins.RunCommandPlugin;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.widget.ListView;
 
@@ -13,6 +12,8 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class RunCommandWidgetDeviceSelector extends AppCompatActivity {
     @Override

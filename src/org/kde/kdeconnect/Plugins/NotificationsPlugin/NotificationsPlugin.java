@@ -38,8 +38,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.NotificationCompat;
 import android.text.SpannableString;
 import android.util.Log;
 
@@ -58,6 +56,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class NotificationsPlugin extends Plugin implements NotificationReceiver.NotificationListener {

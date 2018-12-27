@@ -31,8 +31,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.FileProvider;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
@@ -41,6 +39,9 @@ import org.kde.kdeconnect_tp.R;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.FileProvider;
 
 //TODO: Starting API 24 notification title and text are both displayed on 1 line above the progress bar. Because title can be long, the text is often not displayed
 class ShareNotification {

@@ -22,9 +22,6 @@ package org.kde.kdeconnect.Plugins.SharePlugin;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -40,6 +37,10 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 
 public class ShareActivity extends AppCompatActivity {

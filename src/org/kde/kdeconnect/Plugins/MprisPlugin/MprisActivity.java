@@ -27,10 +27,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.graphics.drawable.DrawableCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -46,12 +42,17 @@ import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.Plugins.SystemvolumePlugin.SystemvolumeFragment;
 import org.kde.kdeconnect.NetworkPacket;
+import org.kde.kdeconnect.Plugins.SystemvolumePlugin.SystemvolumeFragment;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.fragment.app.FragmentManager;
 
 public class MprisActivity extends AppCompatActivity {
 

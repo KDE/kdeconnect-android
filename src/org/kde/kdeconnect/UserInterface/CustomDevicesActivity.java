@@ -26,7 +26,6 @@ import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -41,6 +40,8 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class CustomDevicesActivity extends AppCompatActivity {
 

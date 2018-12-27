@@ -28,7 +28,6 @@ import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.support.v4.util.LruCache;
 import android.util.Log;
 
 import com.jakewharton.disklrucache.DiskLruCache;
@@ -46,6 +45,8 @@ import java.net.URLDecoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+
+import androidx.collection.LruCache;
 
 /**
  * Handles the cache for album art

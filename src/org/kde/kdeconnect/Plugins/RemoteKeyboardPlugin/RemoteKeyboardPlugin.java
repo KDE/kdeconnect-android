@@ -23,8 +23,6 @@ package org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.util.Pair;
 import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.KeyEvent;
@@ -39,6 +37,9 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.concurrent.locks.ReentrantLock;
+
+import androidx.core.content.ContextCompat;
+import androidx.core.util.Pair;
 
 public class RemoteKeyboardPlugin extends Plugin {
 

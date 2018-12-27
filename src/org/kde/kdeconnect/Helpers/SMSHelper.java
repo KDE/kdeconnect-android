@@ -27,7 +27,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Looper;
 import android.provider.Telephony;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -40,6 +39,8 @@ import java.util.Map;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+
+import androidx.annotation.RequiresApi;
 
 public class SMSHelper {
 

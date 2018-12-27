@@ -26,7 +26,6 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import org.kde.kdeconnect.NetworkPacket;
@@ -40,6 +39,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+
+import androidx.core.content.ContextCompat;
 
 public class MprisPlugin extends Plugin {
     public class MprisPlayer {

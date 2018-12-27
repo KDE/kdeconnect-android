@@ -30,7 +30,6 @@ import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.support.v4.content.ContextCompat;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -43,6 +42,8 @@ import org.kde.kdeconnect_tp.R;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import androidx.core.content.ContextCompat;
 
 public class TelephonyPlugin extends Plugin {
 

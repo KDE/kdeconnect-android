@@ -24,10 +24,8 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
-import android.support.v4.media.VolumeProviderCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -35,6 +33,9 @@ import android.view.MenuItem;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.media.VolumeProviderCompat;
 
 public class PresenterActivity extends AppCompatActivity {
 

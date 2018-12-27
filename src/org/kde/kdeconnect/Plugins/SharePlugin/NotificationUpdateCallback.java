@@ -3,7 +3,6 @@ package org.kde.kdeconnect.Plugins.SharePlugin;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.v4.app.NotificationCompat;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
@@ -11,6 +10,8 @@ import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
+
+import androidx.core.app.NotificationCompat;
 
 class NotificationUpdateCallback extends Device.SendPacketStatusCallback {
 

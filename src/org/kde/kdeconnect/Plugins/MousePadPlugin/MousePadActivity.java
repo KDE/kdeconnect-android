@@ -25,7 +25,6 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.HapticFeedbackConstants;
 import android.view.Menu;
@@ -38,6 +37,8 @@ import android.view.inputmethod.InputMethodManager;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MousePadActivity extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener, MousePadGestureDetector.OnGestureListener {
     private String deviceId;

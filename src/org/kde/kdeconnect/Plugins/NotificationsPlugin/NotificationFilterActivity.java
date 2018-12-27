@@ -30,7 +30,6 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,12 +40,13 @@ import android.widget.CheckedTextView;
 import android.widget.ListView;
 
 import org.kde.kdeconnect.BackgroundService;
-import org.kde.kdeconnect.Helpers.StringsHelper;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.Arrays;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class NotificationFilterActivity extends AppCompatActivity {
 

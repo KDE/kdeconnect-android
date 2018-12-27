@@ -20,12 +20,13 @@
 
 package org.kde.kdeconnect.UserInterface.List;
 
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import org.kde.kdeconnect_tp.R;
+
+import androidx.core.content.ContextCompat;
 
 public class SmallEntryItem implements ListAdapter.Item {
 

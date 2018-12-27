@@ -24,12 +24,13 @@ package org.kde.kdeconnect.Plugins.PresenterPlugin;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.view.KeyEvent;
 
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
+
+import androidx.core.content.ContextCompat;
 
 import static org.kde.kdeconnect.Plugins.MousePadPlugin.KeyListenerView.SpecialKeysMap;
 

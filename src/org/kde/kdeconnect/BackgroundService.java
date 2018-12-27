@@ -32,7 +32,6 @@ import android.net.ConnectivityManager;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
-import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -52,6 +51,8 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+
+import androidx.core.app.NotificationCompat;
 
 //import org.kde.kdeconnect.Backends.BluetoothBackend.BluetoothLinkProvider;
 

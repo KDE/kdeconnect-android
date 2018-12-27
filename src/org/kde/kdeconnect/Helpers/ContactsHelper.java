@@ -28,8 +28,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.PhoneLookup;
-import android.support.annotation.RequiresApi;
-import android.support.v4.util.LongSparseArray;
 import android.util.Base64;
 import android.util.Base64OutputStream;
 import android.util.Log;
@@ -47,6 +45,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import androidx.annotation.RequiresApi;
+import androidx.collection.LongSparseArray;
 
 public class ContactsHelper {
 

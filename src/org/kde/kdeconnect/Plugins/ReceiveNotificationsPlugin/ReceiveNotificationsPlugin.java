@@ -27,7 +27,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import org.kde.kdeconnect.Helpers.NotificationHelper;
@@ -37,6 +36,8 @@ import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.InputStream;
+
+import androidx.core.app.NotificationCompat;
 
 public class ReceiveNotificationsPlugin extends Plugin {
 

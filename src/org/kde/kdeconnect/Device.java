@@ -30,8 +30,6 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.ContextCompat;
 import android.util.Base64;
 import android.util.Log;
 
@@ -60,6 +58,9 @@ import java.util.Set;
 import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 public class Device implements BaseLink.PacketReceiver {
 

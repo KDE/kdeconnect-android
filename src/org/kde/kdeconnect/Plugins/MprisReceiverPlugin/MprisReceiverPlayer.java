@@ -24,7 +24,8 @@ import android.media.MediaMetadata;
 import android.media.session.MediaController;
 import android.media.session.PlaybackState;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
+
+import androidx.annotation.RequiresApi;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 class MprisReceiverPlayer {

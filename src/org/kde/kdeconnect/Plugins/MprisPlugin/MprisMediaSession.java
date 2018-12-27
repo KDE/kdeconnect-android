@@ -30,12 +30,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
-import android.support.v4.media.app.NotificationCompat.MediaStyle;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
@@ -43,6 +40,10 @@ import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.HashSet;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.TaskStackBuilder;
+import androidx.media.app.NotificationCompat.MediaStyle;
 
 /**
  * Controls the mpris media control notification
@@ -319,7 +320,7 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
                     .setSmallIcon(R.drawable.ic_play_white)
                     .setShowWhen(false)
                     .setColor(service.getResources().getColor(R.color.primary))
-                    .setVisibility(android.support.v4.app.NotificationCompat.VISIBILITY_PUBLIC);
+                    .setVisibility(androidx.core.app.NotificationCompat.VISIBILITY_PUBLIC);
 
             if (!notificationPlayer.getTitle().isEmpty()) {
                 notification.setContentTitle(notificationPlayer.getTitle());

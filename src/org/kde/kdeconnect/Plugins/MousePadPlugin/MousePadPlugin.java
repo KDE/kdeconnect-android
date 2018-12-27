@@ -23,11 +23,12 @@ package org.kde.kdeconnect.Plugins.MousePadPlugin;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
+
+import androidx.core.content.ContextCompat;
 
 public class MousePadPlugin extends Plugin {
 

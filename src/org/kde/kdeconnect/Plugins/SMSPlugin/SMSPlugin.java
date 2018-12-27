@@ -32,7 +32,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
-import android.support.v4.content.ContextCompat;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
@@ -55,6 +54,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+
+import androidx.core.content.ContextCompat;
 
 import static org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin.PACKET_TYPE_TELEPHONY;
 

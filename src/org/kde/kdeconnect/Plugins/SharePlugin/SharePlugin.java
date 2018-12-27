@@ -39,11 +39,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
-import android.support.annotation.WorkerThread;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
-import android.support.v4.provider.DocumentFile;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -63,6 +58,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import androidx.annotation.WorkerThread;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+import androidx.documentfile.provider.DocumentFile;
 
 public class SharePlugin extends Plugin implements ReceiveFileRunnable.CallBack {
 

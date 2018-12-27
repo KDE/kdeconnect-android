@@ -31,8 +31,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import org.kde.kdeconnect.Helpers.AppsHelper;
@@ -44,6 +42,9 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.HashMap;
 import java.util.List;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class MprisReceiverPlugin extends Plugin implements MediaSessionManager.OnActiveSessionsChangedListener {

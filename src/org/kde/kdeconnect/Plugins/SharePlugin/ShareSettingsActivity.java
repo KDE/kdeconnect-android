@@ -12,12 +12,13 @@ import android.os.Environment;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
-import android.support.v4.provider.DocumentFile;
 import android.util.Log;
 
 import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
 
 import java.io.File;
+
+import androidx.documentfile.provider.DocumentFile;
 
 public class ShareSettingsActivity extends PluginSettingsActivity {
 
