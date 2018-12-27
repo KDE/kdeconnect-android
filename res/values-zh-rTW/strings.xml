@@ -265,4 +265,5 @@
   <string name="new_notification">新通知</string>
   <string name="block_contents">擋住通知內容</string>
   <string name="block_images">擋住通知中的圖片</string>
+  <string name="notification_channel_receivenotification">其他裝置上的通知</string>
 </resources>
