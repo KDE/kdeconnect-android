@@ -298,6 +298,7 @@ public class MprisPlugin extends Plugin {
                     URL newAlbumArtUrl = new URL(newAlbumArtUrlstring);
                     playerStatus.albumArtUrl = newAlbumArtUrl.toString();
                 } catch (MalformedURLException ignored) {
+                    playerStatus.albumArtUrl = "";
                 }
 
                 for (String key : playerStatusUpdated.keySet()) {
