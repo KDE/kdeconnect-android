@@ -96,12 +96,25 @@
   <string name="pairing_request_from">来自%1s的配对请求</string>
   <string name="received_url_title">已从%1s接收链接</string>
   <string name="received_url_text">点击以打开“%1s”</string>
+  <plurals name="incoming_file_title">
+    <item quantity="other">正在从 %2$s 接收 %1$d 个文件</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="other">(%3$d 个文件中的第 %2$d 个)：%1$s</item>
+  </plurals>
   <string name="outgoing_file_title">正在向%1s发送文件</string>
   <string name="outgoing_files_title">正在向 %1s 发送文件</string>
   <plurals name="outgoing_files_text">
     <item quantity="other">已发送 %2$d 个文件中的 %1$d 个</item>
   </plurals>
+  <plurals name="received_files_title">
+    <item quantity="other">已从 %1$s 接收了 %2$d 个文件</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="other">从 %1$s 接收的 %3$d 个文件中的 %2$d 个失败</item>
+  </plurals>
   <string name="received_file_text">点击以打开“%1s”</string>
+  <string name="cannot_create_file">无法创建文件 %s</string>
   <string name="sent_file_title">发送文件到%1s</string>
   <string name="sent_file_text">%1s</string>
   <string name="sent_file_failed_title">向 %1s 发送文件失败</string>
@@ -151,6 +164,7 @@
   <string name="pair_device_action">配对新设备</string>
   <string name="unpair_device_action">取消配对 %s</string>
   <string name="custom_device_list">通过IP增加设备</string>
+  <string name="delete_custom_device">删除 %s 吗？</string>
   <string name="share_notification_preference">出声通知</string>
   <string name="share_notification_preference_summary">当收到文件时震动并播放声音</string>
   <string name="share_destination_customize">配置目标目录</string>
@@ -245,4 +259,11 @@
   <string name="setting_persistent_notification">启用常驻通知栏</string>
   <string name="setting_persistent_notification_oreo_description">Android 8.0 以及以上必须启用</string>
   <string name="setting_persistent_notification_pie_description">Android 9.0 之后只能通过长按通知项最小化持久性通知</string>
+  <string name="extra_options">附加选项</string>
+  <string name="privacy_options">隐私选项</string>
+  <string name="set_privacy_options">设置您的隐私选项</string>
+  <string name="new_notification">新通知</string>
+  <string name="block_contents">阻止通知内容</string>
+  <string name="block_images">阻止通知图像</string>
+  <string name="notification_channel_receivenotification">来自其他设备的通知</string>
 </resources>
