@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RingtonePreference
-        android:key="select_ringtone"
-        android:showSilent="false"
+    <Preference
+        android:key="@string/findmyphone_preference_key_ringtone"
         android:title="@string/select_ringtone" />
 </PreferenceScreen>

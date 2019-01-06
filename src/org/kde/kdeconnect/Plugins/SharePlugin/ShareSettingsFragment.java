@@ -1,3 +1,23 @@
+/*
+ * Copyright 2016 Richard Wagler <riwag@posteo.de>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of
+ * the License or (at your option) version 3 or any later version
+ * accepted by the membership of KDE e.V. (or its successor approved
+ * by the membership of KDE e.V.), which shall act as a proxy
+ * defined in Section 14 of version 3 of the license.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package org.kde.kdeconnect.Plugins.SharePlugin;
 
 import android.annotation.TargetApi;
@@ -9,18 +29,20 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.preference.CheckBoxPreference;
-import android.preference.Preference;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
-import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
+import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 
 import java.io.File;
 
+import androidx.annotation.NonNull;
 import androidx.documentfile.provider.DocumentFile;
+import androidx.preference.CheckBoxPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceManager;
+import androidx.preference.PreferenceScreen;
 
-public class ShareSettingsActivity extends PluginSettingsActivity {
+public class ShareSettingsFragment extends PluginSettingsFragment {
 
     private final static String PREFERENCE_CUSTOMIZE_DESTINATION = "share_destination_custom";
     private final static String PREFERENCE_DESTINATION = "share_destination_folder_uri";
@@ -29,12 +51,20 @@ public class ShareSettingsActivity extends PluginSettingsActivity {
 
     private Preference filePicker;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public static ShareSettingsFragment newInstance(@NonNull String pluginKey) {
+        ShareSettingsFragment fragment = new ShareSettingsFragment();
+        fragment.setArguments(pluginKey);
 
-        final CheckBoxPreference customDownloads = (CheckBoxPreference) findPreference("share_destination_custom");
-        filePicker = findPreference("share_destination_folder_preference");
+        return fragment;
+    }
+
+    @Override
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        super.onCreatePreferences(savedInstanceState, rootKey);
+
+        PreferenceScreen preferenceScreen = getPreferenceScreen();
+        final CheckBoxPreference customDownloads = (CheckBoxPreference) preferenceScreen.findPreference("share_destination_custom");
+        filePicker = preferenceScreen.findPreference("share_destination_folder_preference");
 
         if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)) {
             customDownloads.setOnPreferenceChangeListener((preference, newValue) -> {
@@ -51,13 +81,19 @@ public class ShareSettingsActivity extends PluginSettingsActivity {
             filePicker.setEnabled(false);
         }
 
-        boolean customized = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(PREFERENCE_CUSTOMIZE_DESTINATION, false);
+        boolean customized = PreferenceManager
+                .getDefaultSharedPreferences(requireContext())
+                .getBoolean(PREFERENCE_CUSTOMIZE_DESTINATION, false);
+
         updateFilePickerStatus(customized);
     }
 
     private void updateFilePickerStatus(boolean enabled) {
         filePicker.setEnabled(enabled);
-        String path = PreferenceManager.getDefaultSharedPreferences(this).getString(PREFERENCE_DESTINATION, null);
+        String path = PreferenceManager
+                .getDefaultSharedPreferences(requireContext())
+                .getString(PREFERENCE_DESTINATION, null);
+
         if (enabled && path != null) {
             filePicker.setSummary(Uri.parse(path).getPath());
         } else {
@@ -99,22 +135,20 @@ public class ShareSettingsActivity extends PluginSettingsActivity {
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
-
         if (requestCode == RESULT_PICKER
                 && resultCode == Activity.RESULT_OK
                 && resultData != null) {
 
             Uri uri = resultData.getData();
 
-            getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION |
+            requireContext().getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION |
                     Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
 
             Preference filePicker = findPreference("share_destination_folder_preference");
             filePicker.setSummary(uri.getPath());
 
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
             prefs.edit().putString(PREFERENCE_DESTINATION, uri.toString()).apply();
         }
     }
-
 }

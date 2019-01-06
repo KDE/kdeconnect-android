@@ -48,6 +48,7 @@ import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+//TODO: Turn this into a PluginSettingsFragment
 public class NotificationFilterActivity extends AppCompatActivity {
 
     private AppDatabase appDatabase;

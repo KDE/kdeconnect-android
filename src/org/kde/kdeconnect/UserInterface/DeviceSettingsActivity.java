@@ -21,52 +21,79 @@
 package org.kde.kdeconnect.UserInterface;
 
 import android.os.Bundle;
-import android.preference.PreferenceScreen;
 import android.view.MenuItem;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect_tp.R;
 
-import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
-public class DeviceSettingsActivity extends AppCompatPreferenceActivity {
+public class DeviceSettingsActivity
+        extends AppCompatActivity
+        implements PluginPreference.PluginPreferenceCallback {
 
+    public static final String EXTRA_DEVICE_ID = "deviceId";
+    public static final String EXTRA_PLUGIN_KEY = "pluginKey";
+
+    //TODO: Save/restore state
     static private String deviceId; //Static because if we get here by using the back button in the action bar, the extra deviceId will not be set.
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        ThemeUtil.setUserPreferredTheme(this);
         super.onCreate(savedInstanceState);
 
-        final PreferenceScreen preferenceScreen = getPreferenceManager().createPreferenceScreen(this);
-        setPreferenceScreen(preferenceScreen);
+        setContentView(R.layout.activity_device_settings);
 
-        if (getIntent().hasExtra("deviceId")) {
-            deviceId = getIntent().getStringExtra("deviceId");
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         }
 
-        BackgroundService.RunCommand(getApplicationContext(), service -> {
-            final Device device = service.getDevice(deviceId);
-            if (device == null) {
-                DeviceSettingsActivity.this.runOnUiThread(DeviceSettingsActivity.this::finish);
-                return;
+        String pluginKey = null;
+
+        if (getIntent().hasExtra(EXTRA_DEVICE_ID)) {
+            deviceId = getIntent().getStringExtra(EXTRA_DEVICE_ID);
+
+            if (getIntent().hasExtra(EXTRA_PLUGIN_KEY)) {
+                pluginKey = getIntent().getStringExtra(EXTRA_PLUGIN_KEY);
             }
-            List<String> plugins = device.getSupportedPlugins();
-            for (final String pluginKey : plugins) {
-                PluginPreference pref = new PluginPreference(DeviceSettingsActivity.this, pluginKey, device);
-                preferenceScreen.addPreference(pref);
+        } else if (deviceId == null) {
+            throw new RuntimeException("You must start DeviceSettingActivity using an intent that has a " + EXTRA_DEVICE_ID + " extra");
+        }
+
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragmentPlaceHolder);
+        if (fragment == null) {
+            if (pluginKey == null) {
+                fragment = DeviceSettingsFragment.newInstance(deviceId);
+            } else {
+                Device device = BackgroundService.getInstance().getDevice(deviceId);
+                Plugin plugin = device.getPlugin(pluginKey, true);
+                fragment = plugin.getSettingsFragment();
             }
-        });
+
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.fragmentPlaceHolder, fragment)
+                    .commit();
+        }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //ActionBar's back button
         if (item.getItemId() == android.R.id.home) {
-            finish();
-            return true;
-        } else {
-            return super.onOptionsItemSelected(item);
+            FragmentManager fm = getSupportFragmentManager();
+
+            if (fm.getBackStackEntryCount() > 0) {
+                fm.popBackStack();
+                return true;
+            }
         }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -81,4 +108,27 @@ public class DeviceSettingsActivity extends AppCompatPreferenceActivity {
         BackgroundService.removeGuiInUseCounter(this);
     }
 
+    @Override
+    public void onStartPluginSettingsFragment(Plugin plugin) {
+        setTitle(getString(R.string.plugin_settings_with_name, plugin.getDisplayName()));
+
+        PluginSettingsFragment fragment = plugin.getSettingsFragment();
+
+        //TODO: Remove when NotificationFilterActivity has been turned into a PluginSettingsFragment
+        if (fragment == null) {
+            return;
+        }
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentPlaceHolder, fragment)
+                .addToBackStack(null)
+                .commit();
+
+    }
+
+    @Override
+    public void onFinish() {
+        finish();
+    }
 }

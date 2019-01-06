@@ -80,7 +80,7 @@ public class FindMyPhoneActivity extends Activity {
 
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
             Uri ringtone;
-            String ringtoneString = prefs.getString("select_ringtone", "");
+            String ringtoneString = prefs.getString(getString(R.string.findmyphone_preference_key_ringtone), "");
             if (ringtoneString.isEmpty()) {
                 ringtone = Settings.System.DEFAULT_RINGTONE_URI;
             } else {

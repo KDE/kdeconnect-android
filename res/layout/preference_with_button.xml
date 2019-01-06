@@ -34,17 +34,20 @@
         android:id="@android:id/widget_frame"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:orientation="vertical" />
+        android:gravity="left|center_vertical|start"
+        android:minWidth="56dp"
+        android:orientation="vertical">
+
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="6dip"
         android:layout_marginEnd="4dip"
-        android:layout_marginLeft="12dip"
+        android:layout_marginLeft="4dip"
         android:layout_marginRight="4dip"
-        android:layout_marginStart="12dip"
+        android:layout_marginStart="4dip"
         android:layout_marginTop="6dip"
         android:layout_weight="1">
 

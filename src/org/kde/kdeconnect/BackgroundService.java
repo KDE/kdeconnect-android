@@ -435,5 +435,4 @@ public class BackgroundService extends Service {
             cb.run(plugin);
         });
     }
-
 }

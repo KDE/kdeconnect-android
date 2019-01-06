@@ -25,6 +25,7 @@ import android.content.Intent;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 
 public class FindMyPhonePlugin extends Plugin {
@@ -75,4 +76,8 @@ public class FindMyPhonePlugin extends Plugin {
         return true;
     }
 
+    @Override
+    public PluginSettingsFragment getSettingsFragment() {
+        return FindMyPhoneSettingsFragment.newInstance(getPluginKey());
+    }
 }

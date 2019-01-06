@@ -44,8 +44,8 @@ import android.util.Log;
 import org.kde.kdeconnect.Helpers.AppsHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
-import org.kde.kdeconnect.UserInterface.DeviceSettingsActivity;
 import org.kde.kdeconnect.UserInterface.MainActivity;
+import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.ByteArrayOutputStream;
@@ -89,13 +89,14 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     }
 
     @Override
-    public void startPreferencesActivity(final DeviceSettingsActivity parentActivity) {
+    public PluginSettingsFragment getSettingsFragment() {
         if (hasPermission()) {
-            Intent intent = new Intent(parentActivity, NotificationFilterActivity.class);
-            parentActivity.startActivity(intent);
-        } else {
-            getErrorDialog(parentActivity).show();
+            Context context = device.getContext();
+            Intent intent = new Intent(context, NotificationFilterActivity.class);
+            context.startActivity(intent);
         }
+
+        return null;
     }
 
     private boolean hasPermission() {
@@ -488,10 +489,8 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         return true;
     }
 
-
     @Override
     public AlertDialog getErrorDialog(final Activity deviceActivity) {
-
         return new AlertDialog.Builder(deviceActivity)
                 .setTitle(R.string.pref_plugin_notifications)
                 .setMessage(R.string.no_permissions)
@@ -503,7 +502,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                     //Do nothing
                 })
                 .create();
-
     }
 
     @Override

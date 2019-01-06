@@ -47,7 +47,7 @@ import org.kde.kdeconnect.Helpers.MediaStoreHelper;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
-import org.kde.kdeconnect.UserInterface.DeviceSettingsActivity;
+import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.BufferedOutputStream;
@@ -227,12 +227,12 @@ public class SharePlugin extends Plugin implements ReceiveFileRunnable.CallBack 
         //We need to check for already existing files only when storing in the default path.
         //User-defined paths use the new Storage Access Framework that already handles this.
         //If the file should be opened immediately store it in the standard location to avoid the FileProvider trouble (See ShareNotification::setURI)
-        if (np.getBoolean("open") || !ShareSettingsActivity.isCustomDestinationEnabled(context)) {
-            final String defaultPath = ShareSettingsActivity.getDefaultDestinationDirectory().getAbsolutePath();
+        if (np.getBoolean("open") || !ShareSettingsFragment.isCustomDestinationEnabled(context)) {
+            final String defaultPath = ShareSettingsFragment.getDefaultDestinationDirectory().getAbsolutePath();
             filename = FilesHelper.findNonExistingNameForNewFile(defaultPath, filename);
             destinationFolderDocument = DocumentFile.fromFile(new File(defaultPath));
         } else {
-            destinationFolderDocument = ShareSettingsActivity.getDestinationDirectory(context);
+            destinationFolderDocument = ShareSettingsFragment.getDestinationDirectory(context);
         }
         String displayName = FilesHelper.getFileNameWithoutExt(filename);
         String mimeType = FilesHelper.getMimeTypeFromFile(filename);
@@ -273,11 +273,8 @@ public class SharePlugin extends Plugin implements ReceiveFileRunnable.CallBack 
     }
 
     @Override
-    public void startPreferencesActivity(DeviceSettingsActivity parentActivity) {
-        Intent intent = new Intent(parentActivity, ShareSettingsActivity.class);
-        intent.putExtra("plugin_display_name", getDisplayName());
-        intent.putExtra("plugin_key", getPluginKey());
-        parentActivity.startActivity(intent);
+    public PluginSettingsFragment getSettingsFragment() {
+        return ShareSettingsFragment.newInstance(getPluginKey());
     }
 
     void queuedSendUriList(final ArrayList<Uri> uriList) {
@@ -489,7 +486,7 @@ public class SharePlugin extends Plugin implements ReceiveFileRunnable.CallBack 
 
             context.startActivity(intent);
         } else {
-            if (!ShareSettingsActivity.isCustomDestinationEnabled(context)) {
+            if (!ShareSettingsFragment.isCustomDestinationEnabled(context)) {
                 Log.i("SharePlugin", "Adding to downloads");
                 DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
                 manager.addCompletedDownload(info.fileDocument.getUri().getLastPathSegment(), device.getName(), true, info.fileDocument.getType(), info.fileDocument.getUri().getPath(), info.fileSize, false);

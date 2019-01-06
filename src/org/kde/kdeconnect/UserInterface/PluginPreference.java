@@ -1,6 +1,6 @@
 package org.kde.kdeconnect.UserInterface;
 
-import android.preference.CheckBoxPreference;
+import android.content.Context;
 import android.view.View;
 
 import org.kde.kdeconnect.Device;
@@ -8,23 +8,28 @@ import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
-class PluginPreference extends CheckBoxPreference {
+import androidx.annotation.NonNull;
+import androidx.preference.CheckBoxPreference;
+import androidx.preference.PreferenceViewHolder;
 
+class PluginPreference extends CheckBoxPreference {
     private final Device device;
     private final String pluginKey;
     private final View.OnClickListener listener;
 
-    public PluginPreference(final DeviceSettingsActivity activity, final String pluginKey, final Device device) {
-        super(activity);
+    public PluginPreference(@NonNull final Context context, @NonNull final String pluginKey,
+                            @NonNull final Device device, @NonNull PluginPreferenceCallback callback) {
+        super(context);
 
-        setLayoutResource(R.layout.preference_with_button);
+        setLayoutResource(R.layout.preference_with_button/*R.layout.preference_with_button_androidx*/);
 
         this.device = device;
         this.pluginKey = pluginKey;
 
-        PluginFactory.PluginInfo info = PluginFactory.getPluginInfo(activity, pluginKey);
+        PluginFactory.PluginInfo info = PluginFactory.getPluginInfo(context, pluginKey);
         setTitle(info.getDisplayName());
         setSummary(info.getDescription());
+setIcon(android.R.color.transparent);
         setChecked(device.isPluginEnabled(pluginKey));
 
         Plugin plugin = device.getPlugin(pluginKey, true);
@@ -32,30 +37,31 @@ class PluginPreference extends CheckBoxPreference {
             this.listener = v -> {
                 Plugin plugin1 = device.getPlugin(pluginKey, true);
                 if (plugin1 != null) {
-                    plugin1.startPreferencesActivity(activity);
+                    callback.onStartPluginSettingsFragment(plugin1);
                 } else { //Could happen if the device is not connected anymore
-                    activity.finish(); //End this activity so we go to the "device not reachable" screen
+                    callback.onFinish();
                 }
             };
         } else {
             this.listener = null;
         }
-
     }
 
     @Override
-    protected void onBindView(View root) {
-        super.onBindView(root);
-        final View button = root.findViewById(R.id.settingsButton);
+    public void onBindViewHolder(PreferenceViewHolder holder) {
+        super.onBindViewHolder(holder);
+
+        final View button = holder.findViewById(R.id.settingsButton);
 
         if (listener == null) {
             button.setVisibility(View.GONE);
         } else {
             button.setEnabled(isChecked());
+            button.setVisibility(View.VISIBLE);
             button.setOnClickListener(listener);
         }
 
-        root.setOnClickListener(v -> {
+        holder.itemView.setOnClickListener(v -> {
             boolean newState = !device.isPluginEnabled(pluginKey);
             setChecked(newState); //It actually works on API<14
             button.setEnabled(newState);
@@ -63,4 +69,8 @@ class PluginPreference extends CheckBoxPreference {
         });
     }
 
+    interface PluginPreferenceCallback {
+        void onStartPluginSettingsFragment(Plugin plugin);
+        void onFinish();
+    }
 }

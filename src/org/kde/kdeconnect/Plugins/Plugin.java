@@ -23,7 +23,6 @@ package org.kde.kdeconnect.Plugins;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -31,8 +30,7 @@ import android.widget.Button;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
-import org.kde.kdeconnect.UserInterface.DeviceSettingsActivity;
-import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
+import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 
 import androidx.annotation.StringRes;
@@ -40,7 +38,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 public abstract class Plugin {
-
     protected Device device;
     protected Context context;
     protected int permissionExplanation = R.string.permission_explanation;
@@ -125,15 +122,13 @@ public abstract class Plugin {
 
     /**
      * If hasSettings returns true, this will be called when the user
-     * wants to access this plugin preferences and should launch some
-     * kind of interface. The default implementation will launch a
-     * PluginSettingsActivity with content from "yourplugin"_preferences.xml.
+     * wants to access this plugin's preferences. The default implementation
+     * will return a PluginSettingsFragment with content from "yourplugin"_preferences.xml
+     *
+     * @return The PluginSettingsFragment used to display this plugins settings
      */
-    public void startPreferencesActivity(DeviceSettingsActivity parentActivity) {
-        Intent intent = new Intent(parentActivity, PluginSettingsActivity.class);
-        intent.putExtra("plugin_display_name", getDisplayName());
-        intent.putExtra("plugin_key", getPluginKey());
-        parentActivity.startActivity(intent);
+    public PluginSettingsFragment getSettingsFragment() {
+        return PluginSettingsFragment.newInstance(getPluginKey());
     }
 
     /**

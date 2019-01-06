@@ -387,4 +387,8 @@ public class RemoteKeyboardPlugin extends Plugin {
         np.set("state", state);
         device.sendPacket(np);
     }
+
+    String getDeviceId() {
+        return device.getDeviceId();
+    }
 }

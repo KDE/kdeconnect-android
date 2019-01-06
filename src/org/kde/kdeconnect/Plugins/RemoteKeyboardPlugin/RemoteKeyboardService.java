@@ -33,8 +33,8 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import org.kde.kdeconnect.UserInterface.DeviceSettingsActivity;
 import org.kde.kdeconnect.UserInterface.MainActivity;
-import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
@@ -162,10 +162,10 @@ public class RemoteKeyboardService
                     if (instances.size() == 1) {  // single instance of RemoteKeyboardPlugin -> access its settings
                         RemoteKeyboardPlugin plugin = instances.get(0);
                         if (plugin != null) {
-                            Intent intent = new Intent(this, PluginSettingsActivity.class);
+                            Intent intent = new Intent(this, DeviceSettingsActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            intent.putExtra("plugin_display_name", plugin.getDisplayName());
-                            intent.putExtra("plugin_key", plugin.getPluginKey());
+                            intent.putExtra(DeviceSettingsActivity.EXTRA_DEVICE_ID, plugin.getDeviceId());
+                            intent.putExtra(DeviceSettingsActivity.EXTRA_PLUGIN_KEY, plugin.getPluginKey());
                             startActivity(intent);
                         }
                     } else { // != 1 instance of plugin -> show main activity view
