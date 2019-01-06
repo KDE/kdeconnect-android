@@ -22,7 +22,6 @@ package org.kde.kdeconnect.Plugins.SharePlugin;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.DownloadManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -34,7 +33,6 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -42,17 +40,13 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
 
-import org.kde.kdeconnect.Helpers.FilesHelper;
-import org.kde.kdeconnect.Helpers.MediaStoreHelper;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
@@ -62,23 +56,23 @@ import java.util.concurrent.Executors;
 import androidx.annotation.WorkerThread;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
-import androidx.documentfile.provider.DocumentFile;
 
-public class SharePlugin extends Plugin implements ReceiveFileRunnable.CallBack {
-
+public class SharePlugin extends Plugin {
     private final static String PACKET_TYPE_SHARE_REQUEST = "kdeconnect.share.request";
 
+    final static String KEY_NUMBER_OF_FILES = "numberOfFiles";
+    final static String KEY_TOTAL_PAYLOAD_SIZE = "totalPayloadSize";
+
     private final static boolean openUrlsDirectly = true;
-    private ShareNotification shareNotification;
-    private FinishReceivingRunnable finishReceivingRunnable;
     private ExecutorService executorService;
-    private ShareInfo currentShareInfo;
-    private Handler handler;
+    private final Handler handler;
+    CompositeReceiveFileRunnable receiveFileRunnable;
+    private final Callback receiveFileRunnableCallback;
 
     public SharePlugin() {
-        executorService = Executors.newSingleThreadExecutor();
+        executorService = Executors.newFixedThreadPool(5);
         handler = new Handler(Looper.getMainLooper());
+        receiveFileRunnableCallback = new Callback();
     }
 
     @Override
@@ -197,78 +191,29 @@ public class SharePlugin extends Plugin implements ReceiveFileRunnable.CallBack 
 
     @WorkerThread
     private void receiveFile(NetworkPacket np) {
-        if (finishReceivingRunnable != null) {
-            Log.i("SharePlugin", "receiveFile: canceling finishReceivingRunnable");
-            handler.removeCallbacks(finishReceivingRunnable);
-            finishReceivingRunnable = null;
-        }
+        CompositeReceiveFileRunnable runnable;
 
-        ShareInfo info = new ShareInfo();
-        info.currentFileNumber = currentShareInfo == null ? 1 : currentShareInfo.currentFileNumber + 1;
-        info.payload = np.getPayload();
-        info.fileSize = np.getPayloadSize();
-        info.fileName = np.getString("filename", Long.toString(System.currentTimeMillis()));
-        info.shouldOpen = np.getBoolean("open");
-        info.setNumberOfFiles(np.getInt("numberOfFiles", 1));
-        info.setTotalTransferSize(np.getLong("totalPayloadSize", 1));
+        boolean hasNumberOfFiles = np.has(KEY_NUMBER_OF_FILES);
+        boolean hasOpen = np.has("open");
 
-        if (currentShareInfo == null) {
-            currentShareInfo = info;
+        if (hasNumberOfFiles && !hasOpen && receiveFileRunnable != null) {
+            runnable = receiveFileRunnable;
         } else {
-            synchronized (currentShareInfo) {
-                currentShareInfo.setNumberOfFiles(info.numberOfFiles());
-                currentShareInfo.setTotalTransferSize(info.totalTransferSize());
+            runnable = new CompositeReceiveFileRunnable(device, receiveFileRunnableCallback);
+        }
+
+        if (!hasNumberOfFiles) {
+            np.set(KEY_NUMBER_OF_FILES, 1);
+            np.set(KEY_TOTAL_PAYLOAD_SIZE, np.getPayloadSize());
+        }
+
+        runnable.addNetworkPacket(np);
+
+        if (runnable != receiveFileRunnable) {
+            if (hasNumberOfFiles && !hasOpen) {
+                receiveFileRunnable = runnable;
             }
-        }
-
-        String filename = info.fileName;
-        final DocumentFile destinationFolderDocument;
-
-        //We need to check for already existing files only when storing in the default path.
-        //User-defined paths use the new Storage Access Framework that already handles this.
-        //If the file should be opened immediately store it in the standard location to avoid the FileProvider trouble (See ShareNotification::setURI)
-        if (np.getBoolean("open") || !ShareSettingsFragment.isCustomDestinationEnabled(context)) {
-            final String defaultPath = ShareSettingsFragment.getDefaultDestinationDirectory().getAbsolutePath();
-            filename = FilesHelper.findNonExistingNameForNewFile(defaultPath, filename);
-            destinationFolderDocument = DocumentFile.fromFile(new File(defaultPath));
-        } else {
-            destinationFolderDocument = ShareSettingsFragment.getDestinationDirectory(context);
-        }
-        String displayName = FilesHelper.getFileNameWithoutExt(filename);
-        String mimeType = FilesHelper.getMimeTypeFromFile(filename);
-
-        if ("*/*".equals(mimeType)) {
-            displayName = filename;
-        }
-
-        info.fileDocument = destinationFolderDocument.createFile(mimeType, displayName);
-        assert info.fileDocument != null;
-
-        if (shareNotification == null) {
-            shareNotification = new ShareNotification(device);
-        }
-
-        if (info.fileDocument == null) {
-            onError(info, new RuntimeException(context.getString(R.string.cannot_create_file, filename)));
-            return;
-        }
-
-        shareNotification.setTitle(context.getResources().getQuantityString(R.plurals.incoming_file_title, info.numberOfFiles(), info.numberOfFiles(), device.getName()));
-        shareNotification.show();
-
-        if (np.hasPayload()) {
-            try {
-                info.outputStream = new BufferedOutputStream(context.getContentResolver().openOutputStream(info.fileDocument.getUri()));
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                return;
-            }
-
-            ReceiveFileRunnable runnable = new ReceiveFileRunnable(info, this);
             executorService.execute(runnable);
-        } else {
-            onProgress(info, 100);
-            onSuccess(info);
         }
     }
 
@@ -456,92 +401,20 @@ public class SharePlugin extends Plugin implements ReceiveFileRunnable.CallBack 
         return new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
     }
 
-    @Override
-    public void onProgress(ShareInfo info, int progress) {
-        if (progress == 0 && currentShareInfo != info) {
-            currentShareInfo = info;
-        }
-
-        shareNotification.setProgress(progress, context.getResources().getQuantityString(R.plurals.incoming_files_text, info.numberOfFiles(), info.fileName, info.currentFileNumber, info.numberOfFiles()));
-        shareNotification.show();
-    }
-
-    @Override
-    public void onSuccess(ShareInfo info) {
-        Log.i("SharePlugin", "onSuccess() - Transfer finished for file: " + info.fileDocument.getUri().getPath());
-
-        if (info.shouldOpen) {
-            shareNotification.cancel();
-
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            if (Build.VERSION.SDK_INT >= 24) {
-                //Nougat and later require "content://" uris instead of "file://" uris
-                File file = new File(info.fileDocument.getUri().getPath());
-                Uri contentUri = FileProvider.getUriForFile(device.getContext(), "org.kde.kdeconnect_tp.fileprovider", file);
-                intent.setDataAndType(contentUri, info.fileDocument.getType());
-                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            } else {
-                intent.setDataAndType(info.fileDocument.getUri(), info.fileDocument.getType());
+    private class Callback implements CompositeReceiveFileRunnable.CallBack {
+        @Override
+        public void onSuccess(CompositeReceiveFileRunnable runnable) {
+            if (runnable == receiveFileRunnable) {
+                receiveFileRunnable = null;
             }
-
-            context.startActivity(intent);
-        } else {
-            if (!ShareSettingsFragment.isCustomDestinationEnabled(context)) {
-                Log.i("SharePlugin", "Adding to downloads");
-                DownloadManager manager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-                manager.addCompletedDownload(info.fileDocument.getUri().getLastPathSegment(), device.getName(), true, info.fileDocument.getType(), info.fileDocument.getUri().getPath(), info.fileSize, false);
-            } else {
-                //Make sure it is added to the Android Gallery anyway
-                MediaStoreHelper.indexFile(context, info.fileDocument.getUri());
-            }
-
-            if (info.numberOfFiles() == 1 || info.currentFileNumber == info.numberOfFiles()) {
-                finishReceivingRunnable = new FinishReceivingRunnable(info);
-                Log.i("SharePlugin", "onSuccess() - scheduling finishReceivingRunnable");
-                handler.postDelayed(finishReceivingRunnable, 1000);
-            }
-        }
-    }
-
-    @Override
-    public void onError(ShareInfo info, Throwable error) {
-        Log.e("SharePlugin", "onError: " + error.getMessage());
-
-        info.fileDocument.delete();
-
-        //TODO: Show error in notification
-        int failedFiles = info.numberOfFiles() - (info.currentFileNumber - 1);
-        shareNotification.setFinished(context.getResources().getQuantityString(R.plurals.received_files_fail_title, failedFiles, device.getName(), failedFiles, info.numberOfFiles()));
-        shareNotification.show();
-        shareNotification = null;
-        currentShareInfo = null;
-    }
-
-    private class FinishReceivingRunnable implements Runnable {
-        private final ShareInfo info;
-
-        private FinishReceivingRunnable(ShareInfo info) {
-            this.info = info;
         }
 
         @Override
-        public void run() {
-            Log.i("SharePlugin", "FinishReceivingRunnable: Finishing up");
-
-            if (shareNotification != null) {
-                //Update the notification and allow to open the file from it
-                shareNotification.setFinished(context.getResources().getQuantityString(R.plurals.received_files_title, info.numberOfFiles(), device.getName(), info.numberOfFiles()));
-
-                if (info.numberOfFiles() == 1) {
-                    shareNotification.setURI(info.fileDocument.getUri(), info.fileDocument.getType(), info.fileName);
-                }
-
-                shareNotification.show();
-                shareNotification = null;
+        public void onError(CompositeReceiveFileRunnable runnable, Throwable error) {
+            Log.e("SharePlugin", "onError() - " + error.getMessage());
+            if (runnable == receiveFileRunnable) {
+                receiveFileRunnable = null;
             }
-
-            finishReceivingRunnable = null;
-            currentShareInfo = null;
         }
     }
 }
