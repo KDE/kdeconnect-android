@@ -54,6 +54,7 @@ import java.util.ConcurrentModificationException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,7 +71,7 @@ public class DeviceFragment extends Fragment {
     private static final String ARG_FROM_DEVICE_LIST = "fromDeviceList";
 
     private View rootView;
-    private static String mDeviceId; //Static because if we get here by using the back button in the action bar, the extra deviceId will not be set.
+    private String mDeviceId;
     private Device device;
 
     private MainActivity mActivity;
@@ -112,16 +113,22 @@ public class DeviceFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (getArguments() == null || !getArguments().containsKey(ARG_DEVICE_ID)) {
+            throw new RuntimeException("You must instantiate a new DeviceFragment using DeviceFragment.newInstance()");
+        }
+
+        mDeviceId = getArguments().getString(ARG_DEVICE_ID);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.activity_device, container, false);
         unbinder = ButterKnife.bind(this, rootView);
-
-        final String deviceId = getArguments().getString(ARG_DEVICE_ID);
-        if (deviceId != null) {
-            mDeviceId = deviceId;
-        }
 
         setHasOptionsMenu(true);
 
@@ -146,6 +153,8 @@ public class DeviceFragment extends Fragment {
 
         return rootView;
     }
+
+    String getDeviceId() { return mDeviceId; }
 
     private final Device.PluginsChangedListener pluginsChangedListener = device -> refreshUI();
 

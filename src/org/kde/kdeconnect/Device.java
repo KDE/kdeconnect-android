@@ -383,21 +383,19 @@ public class Device implements BaseLink.PacketReceiver {
         notificationId = (int) System.currentTimeMillis();
 
         Intent intent = new Intent(getContext(), MainActivity.class);
-        intent.putExtra("deviceId", getDeviceId());
-        intent.putExtra("notificationId", notificationId);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        intent.putExtra(MainActivity.EXTRA_DEVICE_ID, getDeviceId());
+        intent.putExtra(MainActivity.PAIR_REQUEST_STATUS, MainActivity.PAIRING_PENDING);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 1, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
         Intent acceptIntent = new Intent(getContext(), MainActivity.class);
         Intent rejectIntent = new Intent(getContext(), MainActivity.class);
 
-        acceptIntent.putExtra("deviceId", getDeviceId());
-        acceptIntent.putExtra("notificationId", notificationId);
-        acceptIntent.setAction("action " + System.currentTimeMillis());
+        acceptIntent.putExtra(MainActivity.EXTRA_DEVICE_ID, getDeviceId());
+        //acceptIntent.putExtra("notificationId", notificationId);
         acceptIntent.putExtra(MainActivity.PAIR_REQUEST_STATUS, MainActivity.PAIRING_ACCEPTED);
 
-        rejectIntent.putExtra("deviceId", getDeviceId());
-        rejectIntent.putExtra("notificationId", notificationId);
-        rejectIntent.setAction("action " + System.currentTimeMillis());
+        rejectIntent.putExtra(MainActivity.EXTRA_DEVICE_ID, getDeviceId());
+        //rejectIntent.putExtra("notificationId", notificationId);
         rejectIntent.putExtra(MainActivity.PAIR_REQUEST_STATUS, MainActivity.PAIRING_REJECTED);
 
         PendingIntent acceptedPendingIntent = PendingIntent.getActivity(getContext(), 2, acceptIntent, PendingIntent.FLAG_ONE_SHOT);

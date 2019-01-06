@@ -53,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
     public static final String PAIR_REQUEST_STATUS = "pair_req_status";
     public static final String PAIRING_ACCEPTED = "accepted";
     public static final String PAIRING_REJECTED = "rejected";
+    public static final String PAIRING_PENDING = "pending";
+
+    public static final String EXTRA_DEVICE_ID = "deviceId";
 
     @BindView(R.id.navigation_drawer) NavigationView mNavigationView;
     @BindView(R.id.drawer_layout) DrawerLayout mDrawerLayout;
@@ -134,9 +137,9 @@ public class MainActivity extends AppCompatActivity {
             Log.i("MainActivity", "Requested to start main overview");
             savedDevice = null;
             savedMenuEntry = MENU_ENTRY_ADD_DEVICE;
-        } else if (getIntent().hasExtra("deviceId")) {
+        } else if (getIntent().hasExtra(EXTRA_DEVICE_ID)) {
             Log.i("MainActivity", "Loading selected device from parameter");
-            savedDevice = getIntent().getStringExtra("deviceId");
+            savedDevice = getIntent().getStringExtra(EXTRA_DEVICE_ID);
             savedMenuEntry = MENU_ENTRY_DEVICE_UNKNOWN;
             // If pairStatus is not empty, then the user has accepted/reject the pairing from the notification
             String pairStatus = getIntent().getStringExtra(PAIR_REQUEST_STATUS);
@@ -163,7 +166,10 @@ public class MainActivity extends AppCompatActivity {
 
         //FragmentManager will restore whatever fragment was there
         if (savedInstanceState != null) {
-            return;
+            Fragment frag = getSupportFragmentManager().findFragmentById(R.id.container);
+            if (!(frag instanceof DeviceFragment) || ((DeviceFragment)frag).getDeviceId().equals(savedDevice)) {
+                return;
+            }
         }
 
         // Activate the chosen fragment and select the entry in the menu
@@ -181,21 +187,23 @@ public class MainActivity extends AppCompatActivity {
     private String onPairResultFromNotification(String deviceId, String pairStatus) {
         assert(deviceId != null);
 
-        BackgroundService.RunCommand(this, service -> {
-            Device device = service.getDevice(deviceId);
-            if (device == null) {
-                Log.w("rejectPairing", "Device no longer exists: " + deviceId);
-                return;
-            }
+        if (!pairStatus.equals(PAIRING_PENDING)) {
+            BackgroundService.RunCommand(this, service -> {
+                Device device = service.getDevice(deviceId);
+                if (device == null) {
+                    Log.w("rejectPairing", "Device no longer exists: " + deviceId);
+                    return;
+                }
 
-            if (pairStatus.equals(PAIRING_ACCEPTED)) {
-                device.acceptPairing();
-            } else {
-                device.rejectPairing();
-            }
-        });
+                if (pairStatus.equals(PAIRING_ACCEPTED)) {
+                    device.acceptPairing();
+                } else if (pairStatus.equals(PAIRING_REJECTED)) {
+                    device.rejectPairing();
+                }
+            });
+        }
 
-        if (pairStatus.equals(PAIRING_ACCEPTED)) {
+        if (pairStatus.equals(PAIRING_ACCEPTED) || pairStatus.equals(PAIRING_PENDING)) {
             return deviceId;
         } else {
             return null;
