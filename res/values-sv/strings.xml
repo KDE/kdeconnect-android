@@ -110,6 +110,14 @@
     <item quantity="one">Skickade %1$d fil</item>
     <item quantity="other">Skickade %1$d av %2$d filer</item>
   </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one">Tog emot fil från %1$s</item>
+    <item quantity="other">Tog emot %2$d filer från %1$s</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Misslyckades ta emot fil från %1$s</item>
+    <item quantity="other">Misslyckades ta emot %2$d av %3$d filer från %1$s</item>
+  </plurals>
   <string name="received_file_text">Rör för att öppna \'%1s\'</string>
   <string name="cannot_create_file">Kan inte skapa filen %s</string>
   <string name="sent_file_title">Skickade fil till %1s</string>
