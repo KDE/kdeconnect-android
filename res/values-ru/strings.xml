@@ -1,6 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_no_devices">Не подключено ни к одному устройству</string>
+  <string name="foreground_notification_devices">Подключено к: %s</string>
   <string name="pref_plugin_telephony">События телефонии</string>
+  <string name="pref_plugin_telephony_desc">Отправка уведомлений о звонках</string>
   <string name="pref_plugin_battery">Состояние батареи</string>
   <string name="pref_plugin_battery_desc">Периодическое информирование о состоянии батареи</string>
   <string name="pref_plugin_sftp">Просмотр файловой системы</string>
@@ -9,12 +13,15 @@
   <string name="pref_plugin_clipboard_desc">Использование общего буфера обмена</string>
   <string name="pref_plugin_mousepad">Удалённый ввод</string>
   <string name="pref_plugin_mousepad_desc">Использование телефона или планшета в качестве сенсорной панели и клавиатуры</string>
+  <string name="pref_plugin_presenter">Управление презентацией</string>
+  <string name="pref_plugin_presenter_desc">Использование телефона для смены слайдов презентации</string>
   <string name="pref_plugin_remotekeyboard">Получение удалённых нажатий клавиш</string>
   <string name="pref_plugin_remotekeyboard_desc">Получение нажатий клавиш с удалённых устройств</string>
   <string name="pref_plugin_mpris">Управление воспроизведением</string>
   <string name="pref_plugin_mpris_desc">Обеспечивает дистанционное управление медиапроигрывателем</string>
   <string name="pref_plugin_runcommand">Запуск команд</string>
   <string name="pref_plugin_runcommand_desc">Удалённый запуск команд с телефона или планшета</string>
+  <string name="pref_plugin_contacts">Синхронизация контактов</string>
   <string name="pref_plugin_ping">Пинг</string>
   <string name="pref_plugin_ping_desc">Отправка и получение тестовых сигналов</string>
   <string name="pref_plugin_notifications">Синхронизация уведомлений</string>
@@ -87,6 +94,18 @@
   <string name="received_url_text">Нажмите, чтобы открыть «%1s»</string>
   <string name="outgoing_file_title">Отправка файла на %1s</string>
   <string name="outgoing_files_title">Отправка файлов на %1s</string>
+  <plurals name="received_files_title">
+    <item quantity="one">Получен %2$d файл с %1$s</item>
+    <item quantity="few">Получены %2$d файла с %1$s</item>
+    <item quantity="many">Получены %2$d файлов с %1$s</item>
+    <item quantity="other">Получен файл с %1$s</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Не удалось получить %2$d из %3$d файла с %1$s</item>
+    <item quantity="few">Не удалось получить %2$d из %3$d файлов с %1$s</item>
+    <item quantity="many">Не удалось получить %2$d из %3$d файлов с %1$s</item>
+    <item quantity="other">Не удалось получить файл с %1$s</item>
+  </plurals>
   <string name="received_file_text">Нажмите, чтобы открыть «%1s»</string>
   <string name="sent_file_title">Файл отправлен на %1s</string>
   <string name="sent_file_text">%1s</string>
@@ -103,6 +122,7 @@
   <string name="pairing_reject">Отклонить</string>
   <string name="device">Устройство</string>
   <string name="pair_device">Сопрячь устройство</string>
+  <string name="settings">Настройка</string>
   <string name="mpris_play">Воспроизведение</string>
   <string name="mpris_previous">Предыдущая</string>
   <string name="mpris_rew">Назад</string>
@@ -179,4 +199,12 @@
   <string name="telepathy_permission_explanation">Чтобы читать и писать SMS с компьютера, вам необходимо дать разрешение на доступ к SMS</string>
   <string name="telephony_permission_explanation">Чтобы видеть телефонные звонки и SMS на компьютере, необходимо дать разрешение на телефонные звонки и SMS</string>
   <string name="telephony_optional_permission_explanation">Чтобы видеть имя контакта вместо номера телефона, необходимо предоставить доступ к контактам</string>
+  <string name="dark_theme">Тёмное оформление</string>
+  <string name="devices">Устройства</string>
+  <string name="settings_rename">Имя устройства</string>
+  <string name="settings_dark_mode">Тёмное оформление</string>
+  <string name="settings_more_settings_title">Дополнительные параметры</string>
+  <string name="setting_persistent_notification">Показывать постоянное уведомление</string>
+  <string name="setting_persistent_notification_oreo_description">Требуется в Android начиная с Android 8.0</string>
+  <string name="notification_channel_receivenotification">Уведомления с других устройств</string>
 </resources>
