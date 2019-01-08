@@ -5,7 +5,7 @@
     <color name="disabled_grey">#eee</color>
 
     <!-- NoActionBar because we use a Toolbar widget as ActionBar -->
-    <style name="KdeConnectThemeBase" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="KdeConnectThemeBase" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- The three colors used by system widgets, according to https://chris.banes.me/2014/10/17/appcompat-v21/ -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primaryDark</item>
@@ -16,6 +16,7 @@
         <item name="colorHighContrast">@android:color/black</item>
         <item name="android:textColorPrimary">@android:color/black</item>
         <item name="android:textColor">@android:color/black</item>
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
     </style>
 
     <style name="KdeConnectThemeBase.NoActionBar" parent="KdeConnectThemeBase">
@@ -40,5 +41,4 @@
     <style name="DisableableButton" parent="ThemeOverlay.AppCompat">
         <item name="colorButtonNormal">@drawable/disableable_button</item>
     </style>
-
 </resources>
