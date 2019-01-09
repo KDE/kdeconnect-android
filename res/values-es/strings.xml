@@ -96,6 +96,14 @@
   <string name="pairing_request_from">Solicitud de vinculación de %1s</string>
   <string name="received_url_title">Enlace recibido desde %1s</string>
   <string name="received_url_text">Pulse para abrir «%1s»</string>
+  <plurals name="incoming_file_title">
+    <item quantity="one">Recibiendo %1$d archivo desde %2$s</item>
+    <item quantity="other">Recibiendo %1$d archivos desde %2$s</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="one">Archivo: %1s</item>
+    <item quantity="other">(Archivo %2$d de %3$d) : %1$s</item>
+  </plurals>
   <string name="outgoing_file_title">Enviando archivo a %1s</string>
   <string name="outgoing_files_title">Enviando archivos a %1s</string>
   <plurals name="outgoing_files_text">
@@ -103,6 +111,7 @@
     <item quantity="other">Enviados %1$d de %2$d archivos</item>
   </plurals>
   <string name="received_file_text">Pulse para abrir «%1s»</string>
+  <string name="cannot_create_file">No se pudo crear el archivo %s</string>
   <string name="sent_file_title">Archivo enviado a %1s</string>
   <string name="sent_file_text">%1s</string>
   <string name="sent_file_failed_title">Fallo al enviar el archivo a %1s</string>
@@ -247,4 +256,10 @@
   <string name="setting_persistent_notification">Mostrar notificación persistente</string>
   <string name="setting_persistent_notification_oreo_description">Requerido por Android desde Android 8.0</string>
   <string name="setting_persistent_notification_pie_description">A partir de Android 9.0, esta notificación solo se puede minimizar mediante una pulsación larga en ella.</string>
+  <string name="extra_options">Opciones adicionales</string>
+  <string name="privacy_options">Opciones de privacidad</string>
+  <string name="set_privacy_options">Establezca sus opciones de privacidad</string>
+  <string name="new_notification">Nueva notificación</string>
+  <string name="block_contents">Bloquear el contenido de las notificaciones</string>
+  <string name="block_images">Bloquear las imágenes en las notificaciones</string>
 </resources>
