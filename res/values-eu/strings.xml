@@ -96,6 +96,10 @@
   <string name="pairing_request_from">Parekatzeko eskaria %1s-tik</string>
   <string name="received_url_title">Esteka jaso da %1s-tik</string>
   <string name="received_url_text">Tak egin \'%1s\' irekitzeko</string>
+  <plurals name="incoming_file_title">
+    <item quantity="one">%2$s(e)tik fitxategi %1$d jasotzen</item>
+    <item quantity="other">%2$s(e)tik %1$d fitxategi jasotzen</item>
+  </plurals>
   <plurals name="incoming_files_text">
     <item quantity="one">Fitxategia: %1s</item>
     <item quantity="other">(%3$d(e)tik %2$d fitxategia) : %1$s</item>
@@ -106,7 +110,16 @@
     <item quantity="one">Bidali %1$d fitxategia</item>
     <item quantity="other">Bidali %2$d fitxategitik %1$d</item>
   </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one">Fitxategi bat jaso da %1$s-tik</item>
+    <item quantity="other">%2$d fitxategi jaso dira %1$s-tik</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Huts egin du fitxategi bat %1$s-tik jasotzeak</item>
+    <item quantity="other">Huts egin du %2$d/%3$d fitxategi %1$s-tik jasotzeak</item>
+  </plurals>
   <string name="received_file_text">Tak egin \'%1s\' irekitzeko</string>
+  <string name="cannot_create_file">Ezin da sortu %s fitxategia</string>
   <string name="sent_file_title">Fitxategia bidalita %1s-ra</string>
   <string name="sent_file_text">%1s</string>
   <string name="sent_file_failed_title">Huts egin du fitxategia %1s(e)ra bidaltzea</string>
@@ -251,4 +264,11 @@
   <string name="setting_persistent_notification">Erakutsi jakinarazpen iraunkorra</string>
   <string name="setting_persistent_notification_oreo_description">Androidek derrigortua Android 8.0tik aurrera</string>
   <string name="setting_persistent_notification_pie_description">Android 9.0tik aurrera, jakinarazpen hau minimizatu daiteke soilik bere gainean tak luze bat eginez.</string>
+  <string name="extra_options">Aukera gehigarriak</string>
+  <string name="privacy_options">Pribatutasun aukerak</string>
+  <string name="set_privacy_options">Ezarri zure pribatutasun aukerak</string>
+  <string name="new_notification">Jakinarazpen berria</string>
+  <string name="block_contents">Oztopatu jakinarazpenen edukiak</string>
+  <string name="block_images">Oztopatu jakinarazpenen irudiak</string>
+  <string name="notification_channel_receivenotification">Beste gailu batzuen jakinarazpenak</string>
 </resources>
