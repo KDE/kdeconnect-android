@@ -26,7 +26,7 @@
   <string name="pref_plugin_sharereceiver">Kirim dan terima</string>
   <string name="pref_plugin_sharereceiver_desc">Berbagi file-file dan URL-URL antara perangkat</string>
   <string name="plugin_not_available">Fitur ini tidak tersedia dalam versi Android-mu</string>
-  <string name="device_list_empty">Tiada perangkat</string>
+  <string name="device_list_empty">Tidak ada perangkat</string>
   <string name="ok">Oke</string>
   <string name="cancel">Batal</string>
   <string name="open_settings">Buka setelan</string>
@@ -47,7 +47,7 @@
   <string-array name="mousepad_tap_entries">
     <item>Klik kanan</item>
     <item>Klik tengah</item>
-    <item>Tiada apa-apa</item>
+    <item>Tidak ada apa-apa</item>
   </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Pelan</item>
@@ -158,7 +158,7 @@
   <string name="sftp_camera">Gambar kamera</string>
   <string name="add_host">Tambahkan host/IP</string>
   <string name="add_host_hint">Hostname atau IP</string>
-  <string name="no_players_connected">Tiada player yang ditemukan</string>
+  <string name="no_players_connected">Tidak ada player yang ditemukan</string>
   <string name="custom_dev_list_help">Gunakan opsi ini hanya jika perangkatmu tidaklah secara otomatis terdeteksi. Masukkan alamat IP atau hostname di bawah ini dan sentuh tombol untuk menambahkannya ke daftar. Sentuh item yang ada untuk membuangnya dari daftar.</string>
   <string name="mpris_player_on_device">%1$s pada %2$s</string>
   <string name="send_files">Kirim file</string>
