@@ -1,6 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="pref_plugin_telephony">Notifikasi telepon</string>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_no_devices">Belum terkonek ke perangkat apa pun</string>
+  <string name="foreground_notification_devices">Terkonek ke: %s</string>
+  <string name="pref_plugin_telephony">Penotifikasi telepon</string>
+  <string name="pref_plugin_telephony_desc">Kirim notifikasi untuk panggilan yang masuk</string>
   <string name="pref_plugin_battery">Laporan baterai</string>
   <string name="pref_plugin_battery_desc">Status baterai laporkan secara berkala</string>
   <string name="pref_plugin_sftp">Menyingkap sistem file</string>
@@ -9,6 +13,8 @@
   <string name="pref_plugin_clipboard_desc">Berbagi isi clipboard</string>
   <string name="pref_plugin_mousepad">Input jarak jauh</string>
   <string name="pref_plugin_mousepad_desc">Gunakan telepon atau tabletmu sebagai touchpad dan keyboard</string>
+  <string name="pref_plugin_presenter">Remot presentasi</string>
+  <string name="pref_plugin_presenter_desc">Gunakan perangkatmu untuk mengubah slide dalam sebuah presentasi</string>
   <string name="pref_plugin_remotekeyboard">Terima penekanan tuts jarak jauh</string>
   <string name="pref_plugin_remotekeyboard_desc">Terima peristiwa tekan-tuts dari perangkat jarak jauh</string>
   <string name="pref_plugin_mpris">Kendalikan multimedia</string>
@@ -57,12 +63,12 @@
     <item>Cepat</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>No Acceleration</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
-    <item>Medium</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>Tidak ada Akselerasi</item>
+    <item>Sangat Lemah</item>
+    <item>Lemah</item>
+    <item>Menengah</item>
+    <item>Kuat</item>
+    <item>Sangat Kuat</item>
   </string-array>
   <string name="category_connected_devices">Perangkat tersambung</string>
   <string name="category_not_paired_devices">Perangkat tersedia</string>
@@ -89,12 +95,25 @@
   <string name="pairing_request_from">Minta penyandingan dari %1s</string>
   <string name="received_url_title">Tautan diterima dari %1s</string>
   <string name="received_url_text">Ketuk untuk membuka \'%1s\'</string>
+  <plurals name="incoming_file_title">
+    <item quantity="other">Menerima %1$d file dari %2$s</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="other">(File %2$d dari %3$d) : %1$s</item>
+  </plurals>
   <string name="outgoing_file_title">Mengirim file ke %1s</string>
   <string name="outgoing_files_title">Mengirim file ke %1s</string>
   <plurals name="outgoing_files_text">
     <item quantity="other">Kirim %1$d dari dalam file %2$d</item>
   </plurals>
+  <plurals name="received_files_title">
+    <item quantity="other">Diterima %2$d file dari %1$s</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="other">Gagal menerima %2$d dari %3$d file dari %1$s</item>
+  </plurals>
   <string name="received_file_text">Ketuk untuk membuka \'%1s\'</string>
+  <string name="cannot_create_file">Gak bisa menciptakan file %s</string>
   <string name="sent_file_title">Kirim file ke %1s</string>
   <string name="sent_file_text">%1s</string>
   <string name="sent_file_failed_title">Gagal mengirim file ke %1s</string>
@@ -110,6 +129,7 @@
   <string name="pairing_reject">Apkir</string>
   <string name="device">Perangkat</string>
   <string name="pair_device">Sandingkan perangkat</string>
+  <string name="settings">Setelan</string>
   <string name="mpris_play">Mainkan</string>
   <string name="mpris_pause">Jeda</string>
   <string name="mpris_previous">Sebelumnya</string>
@@ -119,6 +139,7 @@
   <string name="mpris_volume">Volume</string>
   <string name="mpris_settings">Setelan Multimedia</string>
   <string name="mpris_time_settings_title">Tombol mundur-cepat/maju-cepat</string>
+  <string name="mpris_time_settings_summary">Setel waktu untuk mempercepat mundur/maju ketika ditekan</string>
   <string-array name="mpris_time_entries">
     <item>10 detik</item>
     <item>20 detik</item>
@@ -127,6 +148,8 @@
     <item>2 menit</item>
   </string-array>
   <string name="mpris_notification_settings_title">Tampilkan notifikasi kendali media</string>
+  <string name="mpris_notification_settings_summary">Memungkinkan pengendalian player media-mu tanpa membuka KDE Connect</string>
+  <string name="share_to">Berbagi Ke...</string>
   <string name="protocol_version_older">Perangkat ini menggunakan sebuah versi protokol lawas</string>
   <string name="protocol_version_newer">Perangkat ini menggunakan sebuah versi protokol baru</string>
   <string name="general_settings">Setelan Umum</string>
