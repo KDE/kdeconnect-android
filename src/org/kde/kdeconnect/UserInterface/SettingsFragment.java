@@ -1,6 +1,7 @@
 package org.kde.kdeconnect.UserInterface;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -73,26 +74,40 @@ public class SettingsFragment extends PreferenceFragmentCompat implements MainAc
         });
         screen.addPreference(darkThemeSwitch);
 
-        // Persistent notification toggle
-        final TwoStatePreference notificationSwitch = new SwitchPreferenceCompat(context);
-        notificationSwitch.setPersistent(false);
-        notificationSwitch.setChecked(NotificationHelper.isPersistentNotificationEnabled(context));
-        notificationSwitch.setTitle(R.string.setting_persistent_notification);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            notificationSwitch.setSummary(R.string.setting_persistent_notification_pie_description);
-            notificationSwitch.setEnabled(false);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            notificationSwitch.setSummary(R.string.setting_persistent_notification_oreo_description);
-            notificationSwitch.setEnabled(false);
-        }
-        notificationSwitch.setOnPreferenceChangeListener((preference, newValue) -> {
-            final boolean isChecked = (Boolean)newValue;
-            NotificationHelper.setPersistentNotificationEnabled(context, isChecked);
-            BackgroundService.RunCommand(context, service -> service.changePersistentNotificationVisibility(isChecked));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
-            return true;
-        });
-        screen.addPreference(notificationSwitch);
+            Preference persistentNotif = new Preference(context);
+            persistentNotif.setTitle(R.string.setting_persistent_notification_oreo);
+            persistentNotif.setSummary(R.string.setting_persistent_notification_description);
+
+            persistentNotif.setOnPreferenceClickListener(preference -> {
+                Intent intent = new Intent();
+                intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
+                intent.putExtra("android.provider.extra.APP_PACKAGE", context.getPackageName());
+                context.startActivity(intent);
+                return true;
+            });
+            screen.addPreference(persistentNotif);
+        } else {
+            // Persistent notification toggle for Android Versions below Oreo
+            final TwoStatePreference notificationSwitch = new SwitchPreferenceCompat(context);
+            notificationSwitch.setPersistent(false);
+            notificationSwitch.setChecked(NotificationHelper.isPersistentNotificationEnabled(context));
+            notificationSwitch.setTitle(R.string.setting_persistent_notification);
+            notificationSwitch.setOnPreferenceChangeListener((preference, newValue) -> {
+
+                final boolean isChecked = (Boolean) newValue;
+
+                NotificationHelper.setPersistentNotificationEnabled(context, isChecked);
+                BackgroundService.RunCommand(context,
+                        service -> service.changePersistentNotificationVisibility(isChecked));
+
+                NotificationHelper.setPersistentNotificationEnabled(context, isChecked);
+
+                return true;
+            });
+            screen.addPreference(notificationSwitch);
+        }
 
         // More settings text
         Preference moreSettingsText = new Preference(context);
