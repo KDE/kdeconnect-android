@@ -1,7 +1,6 @@
 package org.kde.kdeconnect.UserInterface;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -30,6 +29,7 @@ import java.util.Set;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -381,13 +381,13 @@ public class MainActivity extends AppCompatActivity {
         nameChangeSubscribers.remove(cb);
     }
 
-    public void openRenameDeviceDialog() {
+    public void openRenameDeviceDialog(Context context) {
         final EditText deviceNameEdit = new EditText(this);
         String deviceName = DeviceHelper.getDeviceName(this);
         deviceNameEdit.setText(deviceName);
         float dpi = this.getResources().getDisplayMetrics().density;
         deviceNameEdit.setPadding( ((int) (18 * dpi)), ((int) (16 * dpi)), ((int) (18 * dpi)), ((int) (12 * dpi)) );
-        new AlertDialog.Builder(this)
+        new AlertDialog.Builder(context)
                 .setView(deviceNameEdit)
                 .setPositiveButton(R.string.device_rename_confirm, (dialog, which) -> {
                     String newDeviceName = deviceNameEdit.getText().toString();

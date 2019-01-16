@@ -20,7 +20,6 @@
 
 package org.kde.kdeconnect.Plugins.NotificationsPlugin;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -46,6 +45,7 @@ import org.kde.kdeconnect_tp.R;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 //TODO: Turn this into a PluginSettingsFragment

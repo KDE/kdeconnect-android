@@ -20,7 +20,6 @@
 
 package org.kde.kdeconnect.UserInterface;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
@@ -41,6 +40,7 @@ import org.kde.kdeconnect_tp.R;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class CustomDevicesActivity extends AppCompatActivity {

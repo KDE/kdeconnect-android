@@ -40,11 +40,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements MainAc
 
         // Rename device
         mainActivity.addNameChangeCallback(this);
+        //TODO: Use an EditTextPreference
         renameDevice = new Preference(context);
         renameDevice.setPersistent(false);
         renameDevice.setSelectable(true);
         renameDevice.setOnPreferenceClickListener(preference -> {
-            mainActivity.openRenameDeviceDialog();
+            mainActivity.openRenameDeviceDialog(context);
             return true;
         });
         String deviceName = DeviceHelper.getDeviceName(context);

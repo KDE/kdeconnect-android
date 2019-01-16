@@ -22,7 +22,6 @@ package org.kde.kdeconnect.Plugins.NotificationsPlugin;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.RemoteInput;
@@ -58,6 +57,7 @@ import java.util.Map;
 import java.util.Set;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.NotificationCompat;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)

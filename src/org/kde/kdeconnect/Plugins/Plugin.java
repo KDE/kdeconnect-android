@@ -21,7 +21,6 @@
 package org.kde.kdeconnect.Plugins;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
@@ -34,6 +33,7 @@ import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 
 import androidx.annotation.StringRes;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 

@@ -21,7 +21,6 @@
 package org.kde.kdeconnect.Plugins.MprisReceiverPlugin;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -45,6 +44,7 @@ import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class MprisReceiverPlugin extends Plugin implements MediaSessionManager.OnActiveSessionsChangedListener {
