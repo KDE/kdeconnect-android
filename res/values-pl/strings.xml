@@ -246,6 +246,4 @@
   <string name="settings_more_settings_title">Więcej ustawień</string>
   <string name="settings_more_settings_text">Wstępne ustawienia urządzenia można znaleźć w \'Ustawieniach wtyczki\' z poziomu urządzenia.</string>
   <string name="setting_persistent_notification">Pokaż nieznikające powiadomienie</string>
-  <string name="setting_persistent_notification_oreo_description">Wymagane przez Androida od Androida 8.0</string>
-  <string name="setting_persistent_notification_pie_description">Od Androida 9.0 to powiadomienie można zminimalizować tylko poprzez długie stuknięcie na nim</string>
 </resources>

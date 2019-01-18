@@ -262,8 +262,8 @@
   <string name="settings_more_settings_title">Més ajustaments</string>
   <string name="settings_more_settings_text">Els ajustaments per dispositiu es poden trobar a «Arranjament del connector» des d\'un dispositiu.</string>
   <string name="setting_persistent_notification">Mostra les notificacions persistents</string>
-  <string name="setting_persistent_notification_oreo_description">Requerit per Android des de la versió 8.0</string>
-  <string name="setting_persistent_notification_pie_description">Des de l\'Android 9.0, aquesta notificació només es pot minimitzar fent-hi un toc llarg</string>
+  <string name="setting_persistent_notification_oreo">Notificacions persistents</string>
+  <string name="setting_persistent_notification_description">Tocar per a des/activar els ajustaments de les notificacions</string>
   <string name="extra_options">Opcions extres</string>
   <string name="privacy_options">Opcions de privadesa</string>
   <string name="set_privacy_options">Establiu les opcions de privadesa</string>

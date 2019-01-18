@@ -262,8 +262,8 @@
   <string name="settings_more_settings_title">Fler inställningar</string>
   <string name="settings_more_settings_text">Inställningar per apparat hittas i \'Insticksprograminställningar\' på apparaten.</string>
   <string name="setting_persistent_notification">Visa permanent underrättelse</string>
-  <string name="setting_persistent_notification_oreo_description">Krävs av Android sedan Android 8.0</string>
-  <string name="setting_persistent_notification_pie_description">Sedan Android 9.0, kan underrättelsen bara minimeras genom att röra vid den länge</string>
+  <string name="setting_persistent_notification_oreo">Permanent underrättelse</string>
+  <string name="setting_persistent_notification_description">Tryck för att aktivera eller inaktivera i underrättelseinställningarna</string>
   <string name="extra_options">Extra alternativ</string>
   <string name="privacy_options">Integritetsalternativ</string>
   <string name="set_privacy_options">Ställ in integritetsalternativ</string>

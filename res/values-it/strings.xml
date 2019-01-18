@@ -262,8 +262,6 @@
   <string name="settings_more_settings_title">Altre impostazioni</string>
   <string name="settings_more_settings_text">Le impostazioni per dispositivo sono disponibili sotto «Impostazione estensioni» dall\'interno del dispositivo.</string>
   <string name="setting_persistent_notification">Mostra notifica persistente</string>
-  <string name="setting_persistent_notification_oreo_description">Richiesto da Android a partire da Android 8.0</string>
-  <string name="setting_persistent_notification_pie_description">Da Android 9.0, questa notifica potrà essere minimizzata solo con un tocco lungo</string>
   <string name="extra_options">Opzioni aggiuntive</string>
   <string name="privacy_options">Opzioni di riservatezza</string>
   <string name="set_privacy_options">Imposta le tue opzioni di riservatezza</string>

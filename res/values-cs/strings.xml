@@ -247,6 +247,4 @@
   <string name="settings_more_settings_title">Více nastavení</string>
   <string name="settings_more_settings_text">Nastavení \"pro každé zařízení\" lze najít v \'Nastavení modulu\' v zařízení.</string>
   <string name="setting_persistent_notification">Ukázat stálé upozornění</string>
-  <string name="setting_persistent_notification_oreo_description">Vyžadováno Androidem od verze 8.0</string>
-  <string name="setting_persistent_notification_pie_description">Od Androidu 9.0 lze toto upozornění minimalizovat pouze jeho dlouhým podržením</string>
 </resources>

@@ -254,8 +254,6 @@
   <string name="settings_more_settings_title">Mais opções</string>
   <string name="settings_more_settings_text">As configurações por dispositivo podem ser encontradas nas \'Configurações do plugin\' dentro de um determinado dispositivo.</string>
   <string name="setting_persistent_notification">Mostrar a notificação persistente</string>
-  <string name="setting_persistent_notification_oreo_description">Obrigatório desde o Android 8.0</string>
-  <string name="setting_persistent_notification_pie_description">A partir do Android 9.0, esta notificação só pode ser minimizada com um toque longo sobre ela</string>
   <string name="extra_options">Opções extras</string>
   <string name="privacy_options">Opções de privacidade</string>
   <string name="set_privacy_options">Defina as suas opções de privacidade</string>

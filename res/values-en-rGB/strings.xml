@@ -244,6 +244,4 @@
   <string name="settings_more_settings_title">More settings</string>
   <string name="settings_more_settings_text">Per-device settings can be found under \'Plugin settings\' from within a device.</string>
   <string name="setting_persistent_notification">Show persistent notification</string>
-  <string name="setting_persistent_notification_oreo_description">Required by Android since Android 8.0</string>
-  <string name="setting_persistent_notification_pie_description">Since Android 9.0, this notification can only be minimised by long tapping on it</string>
 </resources>

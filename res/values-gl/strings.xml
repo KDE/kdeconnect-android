@@ -262,8 +262,6 @@
   <string name="settings_more_settings_title">Máis opcións</string>
   <string name="settings_more_settings_text">Pode atopar as opcións específicas dun dispositivo baixo «Configuración do complemento» desde un dispositivo.</string>
   <string name="setting_persistent_notification">Mostrar unha notificación persistente</string>
-  <string name="setting_persistent_notification_oreo_description">Requirido por Android desde Android 8.0</string>
-  <string name="setting_persistent_notification_pie_description">Desde Android 9.0, esta notificación só pode minimizarse tocándoa un anaco</string>
   <string name="extra_options">Opcións adicionais</string>
   <string name="privacy_options">Opcións de intimidade</string>
   <string name="set_privacy_options">Definir as súas opcións de protección da intimidade</string>

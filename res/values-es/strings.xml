@@ -254,8 +254,6 @@
   <string name="settings_more_settings_title">Más preferencias</string>
   <string name="settings_more_settings_text">Las preferencias por dispositivo se pueden encontrar bajo «Preferencias del complemento» dentro de cada dispositivo.</string>
   <string name="setting_persistent_notification">Mostrar notificación persistente</string>
-  <string name="setting_persistent_notification_oreo_description">Requerido por Android desde Android 8.0</string>
-  <string name="setting_persistent_notification_pie_description">A partir de Android 9.0, esta notificación solo se puede minimizar mediante una pulsación larga en ella.</string>
   <string name="extra_options">Opciones adicionales</string>
   <string name="privacy_options">Opciones de privacidad</string>
   <string name="set_privacy_options">Establezca sus opciones de privacidad</string>

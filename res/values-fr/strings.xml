@@ -262,8 +262,6 @@
   <string name="settings_more_settings_title">Plus de paramètres</string>
   <string name="settings_more_settings_text">Les paramètres par appareil sont disponibles dans la rubrique « Paramètres des modules externes » sur l\'appareil.</string>
   <string name="setting_persistent_notification">Afficher une notification persistante</string>
-  <string name="setting_persistent_notification_oreo_description">Requis par Android depuis Android 8.0</string>
-  <string name="setting_persistent_notification_pie_description">Depuis Android 9.0, cette notification ne peut être minimisée qu\'en effectuant un clic long dessus</string>
   <string name="extra_options">Options supplémentaires</string>
   <string name="privacy_options">Options de confidentialité</string>
   <string name="set_privacy_options">Configurez vos options de confidentialité</string>
