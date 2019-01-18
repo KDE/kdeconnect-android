@@ -204,8 +204,6 @@ public class SslHelper {
 
     private static void configureSslSocket(SSLSocket socket, boolean isDeviceTrusted, boolean isClient) throws SocketException {
 
-        socket.setEnabledProtocols(new String[]{"TLSv1"}); //Newer TLS versions are only supported on API 16+
-
         // These cipher suites are most common of them that are accepted by kde and android during handshake
         ArrayList<String> supportedCiphers = new ArrayList<>();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
