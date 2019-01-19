@@ -245,6 +245,4 @@
   <string name="settings_more_settings_title">Fleire innstillingar</string>
   <string name="settings_more_settings_text">Innstillingar for einskildeiningar finn du under «Programtillegg-oppsett» på kvar eining.</string>
   <string name="setting_persistent_notification">Vis evigvarande varsling</string>
-  <string name="setting_persistent_notification_oreo_description">Påkravd av Android frå og med versjon 8.0</string>
-  <string name="setting_persistent_notification_pie_description">Frå og med Android 9.0 kan du berre fjerna denne varslinga ved å trykkja lenge på ho</string>
 </resources>

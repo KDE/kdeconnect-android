@@ -262,6 +262,8 @@
   <string name="settings_more_settings_title">Meer instellingen</string>
   <string name="settings_more_settings_text">Instellingen per apparaat kunnen gevonden worden onder \'Plug-in-instellingen\' vanuit een apparaat.</string>
   <string name="setting_persistent_notification">Blijvende melding tonen</string>
+  <string name="setting_persistent_notification_oreo">Blijvende melding</string>
+  <string name="setting_persistent_notification_description">Tik om instellingen van meldingen in/uit te schakelen</string>
   <string name="extra_options">Extra opties</string>
   <string name="privacy_options">Privacyopties</string>
   <string name="set_privacy_options">Stel uw privacyopties in</string>
