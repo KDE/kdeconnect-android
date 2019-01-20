@@ -223,7 +223,7 @@
   <string name="settings_icon_description">Ikon setelan</string>
   <string name="add_command">Tambahkan sebuah perintah</string>
   <string name="addcommand_explanation">Tidak ada perintah yang diregister</string>
-  <string name="addcommand_explanation2">"Kamu bisa menambahkan perintah baru dalam Setelan Sistem KDE Connect "</string>
+  <string name="addcommand_explanation2">"Kamu bisa menambahkan perintah baru dalam System Settings KDE Connect "</string>
   <string name="add_command_description">Kamu bisa menambahkan perintah pada desktop</string>
   <string name="pref_plugin_mprisreceiver">Kendali Player Media</string>
   <string name="pref_plugin_mprisreceiver_desc">Kendalikan player media teleponmu dari perangkat lainnya</string>

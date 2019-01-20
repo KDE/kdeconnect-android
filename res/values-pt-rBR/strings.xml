@@ -110,6 +110,14 @@
     <item quantity="one">Enviado %1$d arquivo</item>
     <item quantity="other">Enviados %1$d de %2$d arquivos</item>
   </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one">Arquivo recebido de %1$s</item>
+    <item quantity="other">Recebidos %2$d arquivos de %1$s</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Falha na recepção do arquivo de %1$s</item>
+    <item quantity="other">Falha na recepção de %2$d de %3$d arquivos de %1$s</item>
+  </plurals>
   <string name="received_file_text">Toque para abrir o \'%1s\'</string>
   <string name="cannot_create_file">Não foi possível criar o arquivo %s</string>
   <string name="sent_file_title">Enviar arquivo para %1s</string>
@@ -254,6 +262,8 @@
   <string name="settings_more_settings_title">Mais opções</string>
   <string name="settings_more_settings_text">As configurações por dispositivo podem ser encontradas nas \'Configurações do plugin\' dentro de um determinado dispositivo.</string>
   <string name="setting_persistent_notification">Mostrar a notificação persistente</string>
+  <string name="setting_persistent_notification_oreo">Notificação persistente</string>
+  <string name="setting_persistent_notification_description">Toque para ativar/desativar na configuração das Notificações</string>
   <string name="extra_options">Opções extras</string>
   <string name="privacy_options">Opções de privacidade</string>
   <string name="set_privacy_options">Defina as suas opções de privacidade</string>
