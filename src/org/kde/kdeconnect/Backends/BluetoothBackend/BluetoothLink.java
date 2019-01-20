@@ -21,6 +21,7 @@
 package org.kde.kdeconnect.Backends.BluetoothBackend;
 
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
@@ -43,7 +44,10 @@ import java.nio.charset.Charset;
 import java.util.UUID;
 
 public class BluetoothLink extends BaseLink {
-    private final BluetoothSocket socket;
+    private final ConnectionMultiplexer connection;
+    private final InputStream input;
+    private final OutputStream output;
+    private final BluetoothDevice remoteAddress;
     private final BluetoothLinkProvider linkProvider;
 
     private boolean continueAccepting = true;
@@ -53,7 +57,7 @@ public class BluetoothLink extends BaseLink {
         public void run() {
             StringBuilder sb = new StringBuilder();
             try {
-                Reader reader = new InputStreamReader(socket.getInputStream(), "UTF-8");
+                Reader reader = new InputStreamReader(input, "UTF-8");
                 char[] buf = new char[512];
                 while (continueAccepting) {
                     while (sb.indexOf("\n") == -1 && continueAccepting) {
@@ -61,7 +65,12 @@ public class BluetoothLink extends BaseLink {
                         if ((charsRead = reader.read(buf)) > 0) {
                             sb.append(buf, 0, charsRead);
                         }
+                        if (charsRead < 0) {
+                            disconnect();
+                            return;
+                        }
                     }
+                    if (!continueAccepting) break;
 
                     int endIndex = sb.indexOf("\n");
                     if (endIndex != -1) {
@@ -71,7 +80,7 @@ public class BluetoothLink extends BaseLink {
                     }
                 }
             } catch (IOException e) {
-                Log.e("BluetoothLink/receiving", "Connection to " + socket.getRemoteDevice().getAddress() + " likely broken.", e);
+                Log.e("BluetoothLink/receiving", "Connection to " + remoteAddress.getAddress() + " likely broken.", e);
                 disconnect();
             }
         }
@@ -86,19 +95,11 @@ public class BluetoothLink extends BaseLink {
             }
 
             if (np.hasPayloadTransferInfo()) {
-                BluetoothSocket transferSocket = null;
                 try {
                     UUID transferUuid = UUID.fromString(np.getPayloadTransferInfo().getString("uuid"));
-                    transferSocket = socket.getRemoteDevice().createRfcommSocketToServiceRecord(transferUuid);
-                    transferSocket.connect();
-                    np.setPayload(new NetworkPacket.Payload(transferSocket.getInputStream(), np.getPayloadSize()));
+                    InputStream payloadInputStream = connection.getChannelInputStream(transferUuid);
+                    np.setPayload(new NetworkPacket.Payload(payloadInputStream, np.getPayloadSize()));
                 } catch (Exception e) {
-                    if (transferSocket != null) {
-                        try {
-                            transferSocket.close();
-                        } catch (IOException ignored) {
-                        }
-                    }
                     Log.e("BluetoothLink/receiving", "Unable to get payload", e);
                 }
             }
@@ -107,9 +108,12 @@ public class BluetoothLink extends BaseLink {
         }
     });
 
-    public BluetoothLink(Context context, BluetoothSocket socket, String deviceId, BluetoothLinkProvider linkProvider) {
+    public BluetoothLink(Context context, ConnectionMultiplexer connection, InputStream input, OutputStream output, BluetoothDevice remoteAddress, String deviceId, BluetoothLinkProvider linkProvider) {
         super(context, deviceId, linkProvider);
-        this.socket = socket;
+        this.connection = connection;
+        this.input = input;
+        this.output = output;
+        this.remoteAddress = remoteAddress;
         this.linkProvider = linkProvider;
     }
 
@@ -128,22 +132,21 @@ public class BluetoothLink extends BaseLink {
     }
 
     public void disconnect() {
-        if (socket == null) {
+        if (connection == null) {
             return;
         }
         continueAccepting = false;
         try {
-            socket.close();
+            connection.close();
         } catch (IOException ignored) {
         }
-        linkProvider.disconnectedLink(this, getDeviceId(), socket);
+        linkProvider.disconnectedLink(this, getDeviceId(), remoteAddress);
     }
 
     private void sendMessage(NetworkPacket np) throws JSONException, IOException {
         byte[] message = np.serialize().getBytes(Charset.forName("UTF-8"));
-        OutputStream socket = this.socket.getOutputStream();
         Log.i("BluetoothLink", "Beginning to send message");
-        socket.write(message);
+        output.write(message);
         Log.i("BluetoothLink", "Finished sending message");
     }
 
@@ -157,11 +160,9 @@ public class BluetoothLink extends BaseLink {
         }*/
 
         try {
-            BluetoothServerSocket serverSocket = null;
+            UUID transferUuid = null;
             if (np.hasPayload()) {
-                UUID transferUuid = UUID.randomUUID();
-                serverSocket = BluetoothAdapter.getDefaultAdapter()
-                        .listenUsingRfcommWithServiceRecord("KDE Connect Transfer", transferUuid);
+                transferUuid = connection.newChannel();
                 JSONObject payloadTransferInfo = new JSONObject();
                 payloadTransferInfo.put("uuid", transferUuid.toString());
                 np.setPayloadTransferInfo(payloadTransferInfo);
@@ -169,28 +170,22 @@ public class BluetoothLink extends BaseLink {
 
             sendMessage(np);
 
-            if (serverSocket != null) {
-                try (BluetoothSocket transferSocket = serverSocket.accept()) {
-                    serverSocket.close();
+            if (transferUuid != null) {
+                try (OutputStream payloadStream = connection.getChannelOutputStream(transferUuid)) {
+                    int BUFFER_LENGTH = 1024;
+                    byte[] buffer = new byte[BUFFER_LENGTH];
 
-                    int idealBufferLength = 4096;
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                            && transferSocket.getMaxReceivePacketSize() > 0) {
-                        idealBufferLength = transferSocket.getMaxReceivePacketSize();
-                    }
-                    byte[] buffer = new byte[idealBufferLength];
                     int bytesRead;
                     long progress = 0;
                     InputStream stream = np.getPayload().getInputStream();
                     while ((bytesRead = stream.read(buffer)) != -1) {
                         progress += bytesRead;
-                        transferSocket.getOutputStream().write(buffer, 0, bytesRead);
+                        payloadStream.write(buffer, 0, bytesRead);
                         if (np.getPayloadSize() > 0) {
                             callback.onProgressChanged((int) (100 * progress / np.getPayloadSize()));
                         }
                     }
-                    transferSocket.getOutputStream().flush();
-                    stream.close();
+                    payloadStream.flush();
                 } catch (Exception e) {
                     callback.onFailure(e);
                     return false;
