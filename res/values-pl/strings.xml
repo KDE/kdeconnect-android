@@ -34,7 +34,7 @@
   <string name="plugin_not_available">Funkcja ta nie jest dostępna w twojej wersji Androida</string>
   <string name="device_list_empty">Brak urządzeń</string>
   <string name="ok">OK</string>
-  <string name="cancel">Anuluj</string>
+  <string name="cancel">Zaniechaj</string>
   <string name="open_settings">Otwórz ustawienia</string>
   <string name="no_permissions">Musisz przydzielić uprawnienia, aby uzyskać dostęp do powiadomień</string>
   <string name="no_permission_mprisreceiver">Aby móc sterować odtwarzaczami multimedialnymi musisz udzielić dostępu powiadomieniom</string>

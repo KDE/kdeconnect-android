@@ -257,6 +257,8 @@
   <string name="settings_more_settings_title">更多設定</string>
   <string name="settings_more_settings_text">各裝置設定可在裝置內的「外掛程式設定」底下找到。</string>
   <string name="setting_persistent_notification">顯示一致設定</string>
+  <string name="setting_persistent_notification_oreo">一致化通知</string>
+  <string name="setting_persistent_notification_description">點觸以在「通知設定」啟用或停用</string>
   <string name="extra_options">延伸選項</string>
   <string name="privacy_options">隱私權選項</string>
   <string name="set_privacy_options">設定隱私權選項</string>
