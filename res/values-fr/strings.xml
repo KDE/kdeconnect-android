@@ -154,7 +154,7 @@
     <item>2 minutes</item>
   </string-array>
   <string name="mpris_notification_settings_title">Afficher la notification de contrôle du lecteur multimédia</string>
-  <string name="mpris_notification_settings_summary">Vous permet de contrôler vos lecteurs multimédias sans ouvrir KDE Connect.</string>
+  <string name="mpris_notification_settings_summary">Vous permet de contrôler vos lecteurs multimédia sans ouvrir KDE Connect.</string>
   <string name="share_to">Partager vers…</string>
   <string name="protocol_version_older">Le périphérique utilise une version ancienne du protocole</string>
   <string name="protocol_version_newer">Le périphérique utilise une version plus récente du protocole</string>
@@ -262,10 +262,13 @@
   <string name="settings_more_settings_title">Plus de paramètres</string>
   <string name="settings_more_settings_text">Les paramètres par appareil sont disponibles dans la rubrique « Paramètres des modules externes » sur l\'appareil.</string>
   <string name="setting_persistent_notification">Afficher une notification persistante</string>
+  <string name="setting_persistent_notification_oreo">Notification persistante</string>
+  <string name="setting_persistent_notification_description">Appuyez pour activer/désactiver dans la configuration des notifications</string>
   <string name="extra_options">Options supplémentaires</string>
   <string name="privacy_options">Options de confidentialité</string>
   <string name="set_privacy_options">Configurez vos options de confidentialité</string>
   <string name="new_notification">Nouvelle notification</string>
   <string name="block_contents">Bloquer les contenus des notifications</string>
   <string name="block_images">Bloquer les images des notifications</string>
+  <string name="notification_channel_receivenotification">Notifications provenant d\'autres périphériques</string>
 </resources>
