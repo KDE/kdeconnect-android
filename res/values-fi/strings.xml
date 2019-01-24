@@ -1,6 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_no_devices">Ei laiteyhteyksiä</string>
+  <string name="foreground_notification_devices">Yhdistetty laitteeseen: %s</string>
   <string name="pref_plugin_telephony">Puhelinilmoitukset</string>
+  <string name="pref_plugin_telephony_desc">Lähetä ilmoitukset saapuvista puheluista</string>
   <string name="pref_plugin_battery">Akkuraportti</string>
   <string name="pref_plugin_battery_desc">Raportoi akun tila säännöllisesti</string>
   <string name="pref_plugin_sftp">Tiedostojärjestelmän paljastaminen</string>
@@ -9,6 +13,8 @@
   <string name="pref_plugin_clipboard_desc">Jaa leikepöydän sisältö</string>
   <string name="pref_plugin_mousepad">Kauko-ohjaus</string>
   <string name="pref_plugin_mousepad_desc">Käytä puhelinta tai tablettia hiirenä ja näppäimistönä</string>
+  <string name="pref_plugin_presenter">Esityskaukosäädin</string>
+  <string name="pref_plugin_presenter_desc">Käytä laitettasi esitysdiojen vaihtamiseen</string>
   <string name="pref_plugin_remotekeyboard">Vastaanota etänäppäinpainallukset</string>
   <string name="pref_plugin_remotekeyboard_desc">Vastaanottaa etälaitteiden näppäinpainallustapahtumat</string>
   <string name="pref_plugin_mpris">Multimedian ohjaus</string>
@@ -43,6 +49,7 @@
   <string name="mousepad_double_tap_settings_title">Aseta kahden sormen napautuksen toiminto</string>
   <string name="mousepad_triple_tap_settings_title">Aseta kolmen sormen napautuksen toiminto</string>
   <string name="mousepad_sensitivity_settings_title">Aseta kosketuslevyn herkkyys</string>
+  <string name="mousepad_acceleration_profile_settings_title">Aseta osoittimen kiihdytys</string>
   <string name="mousepad_scroll_direction_title">Käänteinen vierityssuunta</string>
   <string-array name="mousepad_tap_entries">
     <item>Oikea napsautus</item>
@@ -57,12 +64,12 @@
     <item>Nopein</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>No Acceleration</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
-    <item>Medium</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>Ei kiihdytystä</item>
+    <item>Heikoin</item>
+    <item>Heikompi</item>
+    <item>Keskinkertainen</item>
+    <item>Vahvempi</item>
+    <item>Vahvin</item>
   </string-array>
   <string name="category_connected_devices">Yhdistetyt laitteet</string>
   <string name="category_not_paired_devices">Saatavilla olevat laitteet</string>
@@ -89,13 +96,30 @@
   <string name="pairing_request_from">Paripyyntö laitteesta %1s</string>
   <string name="received_url_title">Vastaanotettiin linkki lähettäjältä %1s</string>
   <string name="received_url_text">Avaa ”%1s” napauttamalla</string>
+  <plurals name="incoming_file_title">
+    <item quantity="one">Vastaanotetaan %1$d tiedosto lähettäjältä %2$s</item>
+    <item quantity="other">Vastaanotetaan %1$d tiedostoa lähettäjältä %2$s</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="one">Tiedosto: %1s</item>
+    <item quantity="other">(Tiedosto %2$d / %3$d) : %1$s</item>
+  </plurals>
   <string name="outgoing_file_title">Lähetetään tiedostoa laitteeseen %1s</string>
   <string name="outgoing_files_title">Lähetetään tiedostoa laitteeseen %1s</string>
   <plurals name="outgoing_files_text">
     <item quantity="one">Lähetetty %1$d tiedosto</item>
     <item quantity="other">Lähetetty %1$d/%2$d tiedostoa</item>
   </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one">Vastaanotettiin tiedosto lähettäjältä %1$s</item>
+    <item quantity="other">Vastaanotettiin %2$d tiedostoa lähettäjältä %1$s</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Ei voitu vastaanottaa tiedostoa lähettäjältä %1$s</item>
+    <item quantity="other">Ei voitu vastaanottaa %2$d/%3$d tiedostoa lähettäjältä %1$s</item>
+  </plurals>
   <string name="received_file_text">Avaa ”%1s” napauttamalla</string>
+  <string name="cannot_create_file">Ei voida luoda tiedostoa %s</string>
   <string name="sent_file_title">Tiedosto lähetetty laitteeseen %1s</string>
   <string name="sent_file_text">%1s</string>
   <string name="sent_file_failed_title">Tiedoston lähetys laitteelle %1s epäonnistui</string>
@@ -111,6 +135,7 @@
   <string name="pairing_reject">Hylkää</string>
   <string name="device">Laite</string>
   <string name="pair_device">Kytke laite pariksi</string>
+  <string name="settings">Asetukset</string>
   <string name="mpris_play">Toista</string>
   <string name="mpris_pause">Tauko</string>
   <string name="mpris_previous">Edellinen</string>
@@ -120,6 +145,7 @@
   <string name="mpris_volume">Äänenvoimakkuus</string>
   <string name="mpris_settings">Multimedia-asetukset</string>
   <string name="mpris_time_settings_title">Kelauspainikkeet</string>
+  <string name="mpris_time_settings_summary">Säädä painettaessa tapahtuvan kelauksen kestoa</string>
   <string-array name="mpris_time_entries">
     <item>10 sekuntia</item>
     <item>20 sekuntia</item>
@@ -128,6 +154,8 @@
     <item>2 minuuttia</item>
   </string-array>
   <string name="mpris_notification_settings_title">Näytä mediasäädinilmoitukset</string>
+  <string name="mpris_notification_settings_summary">Sallii mediasoitintesi hallinnan KDE Connectia avaamatta</string>
+  <string name="share_to">Jaa…</string>
   <string name="protocol_version_older">Laite käyttää vanha yhteyskäytäntöversiota</string>
   <string name="protocol_version_newer">Laite käyttää uudempaa yhteyskäytäntöversiota</string>
   <string name="general_settings">Yleisasetukset</string>
@@ -141,6 +169,7 @@
   <string name="pair_device_action">Kytke uusi laite pariksi</string>
   <string name="unpair_device_action">Poista laitepari %s</string>
   <string name="custom_device_list">Lisää laitteita IP:llä</string>
+  <string name="delete_custom_device">Poistetaanko %s?</string>
   <string name="share_notification_preference">Äänekkäät ilmoitukset</string>
   <string name="share_notification_preference_summary">Värise ja soita ääni tiedoston saapuessa</string>
   <string name="share_destination_customize">Vaihda kohdekansio</string>
@@ -199,6 +228,9 @@
   <string name="mpris_coverart_description">Nykyisen median kansikuva</string>
   <string name="device_icon_description">Laitekuvake</string>
   <string name="settings_icon_description">Asetuskuvake</string>
+  <string name="presenter_fullscreen">Koko näyttö</string>
+  <string name="presenter_exit">Poistu esitystilasta</string>
+  <string name="presenter_lock_tip">Voit lukita laitteesi ja käyttää äänenvoimakkuuspainikkeita edellinen/seuraava-painikkeina</string>
   <string name="add_command">Lisää komento</string>
   <string name="addcommand_explanation">Komentoja ei ole rekisteröity</string>
   <string name="addcommand_explanation2">Voit lisätä uusia komentoja KDE Connectin järjestelmäasetuksissa</string>
@@ -206,4 +238,35 @@
   <string name="pref_plugin_mprisreceiver">Mediasoittimen hallinta</string>
   <string name="pref_plugin_mprisreceiver_desc">Hallitse puhelimesi mediasoittimia toiselta laitteelta</string>
   <string name="dark_theme">Tumma teema</string>
+  <string name="notification_channel_default">Muut ilmoitukset</string>
+  <string name="notification_channel_persistent">Pysyvä ilmaisin</string>
+  <string name="notification_channel_media_control">Mediaohjaimet</string>
+  <string name="notification_channel_filetransfer">Tiedostonsiirto</string>
+  <string name="mpris_stop">Pysäytä nykyinen soitin</string>
+  <string name="copy_url_to_clipboard">Kopioi verkko-osoite leikepöydälle</string>
+  <string name="clipboard_toast">Kopioitu leikepöydälle</string>
+  <string name="runcommand_notreachable">Laite tavoittamattomissa</string>
+  <string name="runcommand_notpaired">Laitetta ei ole kytketty pariksi</string>
+  <string name="runcommand_nosuchdevice">Tätä laitetta ei ole</string>
+  <string name="runcommand_noruncommandplugin">Laitteen Suorita komento -liitännäinen ei ole käytössä</string>
+  <string name="pref_plugin_findremotedevice">Etsi etälaite</string>
+  <string name="pref_plugin_findremotedevice_desc">Soita etälaitteeseen</string>
+  <string name="ring">Soita</string>
+  <string name="pref_plugin_systemvolume">Järjestelmän äänenvoimakkuus</string>
+  <string name="pref_plugin_systemvolume_desc">Säädä etälaitteen järjestelmän äänenvoimakkuutta</string>
+  <string name="mute">Vaimenna</string>
+  <string name="all">Kaikki</string>
+  <string name="devices">Laitteet</string>
+  <string name="settings_rename">Laitenimi</string>
+  <string name="settings_dark_mode">Tumma teema</string>
+  <string name="settings_more_settings_title">Lisää asetuksia</string>
+  <string name="settings_more_settings_text">Laitekohtaiset asetukset löytyvät laitteen ”Liitännäisasetuksista”.</string>
+  <string name="setting_persistent_notification">Näytä pysyvä ilmoitus</string>
+  <string name="extra_options">Lisäasetukset</string>
+  <string name="privacy_options">Yksityisyysasetukset</string>
+  <string name="set_privacy_options">Aseta yksityisyysasetukset</string>
+  <string name="new_notification">Uusi ilmoitus</string>
+  <string name="block_contents">Estä ilmoitusten sisältö</string>
+  <string name="block_images">Estä ilmoitusten kuvat</string>
+  <string name="notification_channel_receivenotification">Muiden laitteiden ilmoitukset</string>
 </resources>
