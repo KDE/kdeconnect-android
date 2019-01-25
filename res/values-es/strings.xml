@@ -110,6 +110,14 @@
     <item quantity="one">Enviado %1$d archivo</item>
     <item quantity="other">Enviados %1$d de %2$d archivos</item>
   </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one">Recibido archivo desde %1$s</item>
+    <item quantity="other">Recibidos %2$d archivos desde %1$s</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Fallo recibiendo archivo desde %1$s</item>
+    <item quantity="other">Fallo recibiendo %2$d de %3$d archivos desde %1$s</item>
+  </plurals>
   <string name="received_file_text">Pulse para abrir «%1s»</string>
   <string name="cannot_create_file">No se pudo crear el archivo %s</string>
   <string name="sent_file_title">Archivo enviado a %1s</string>
@@ -254,10 +262,13 @@
   <string name="settings_more_settings_title">Más preferencias</string>
   <string name="settings_more_settings_text">Las preferencias por dispositivo se pueden encontrar bajo «Preferencias del complemento» dentro de cada dispositivo.</string>
   <string name="setting_persistent_notification">Mostrar notificación persistente</string>
+  <string name="setting_persistent_notification_oreo">Notificación persistente</string>
+  <string name="setting_persistent_notification_description">Pulse para activar/desactivar en las preferencias de notificaciones</string>
   <string name="extra_options">Opciones adicionales</string>
   <string name="privacy_options">Opciones de privacidad</string>
   <string name="set_privacy_options">Establezca sus opciones de privacidad</string>
   <string name="new_notification">Nueva notificación</string>
   <string name="block_contents">Bloquear el contenido de las notificaciones</string>
   <string name="block_images">Bloquear las imágenes en las notificaciones</string>
+  <string name="notification_channel_receivenotification">Notificaciones desde otros dispositivos</string>
 </resources>

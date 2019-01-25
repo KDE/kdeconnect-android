@@ -96,6 +96,18 @@
   <string name="pairing_request_from">Żądanie parowania z %1s</string>
   <string name="received_url_title">Odebrano odsyłacz od %1s</string>
   <string name="received_url_text">Znacznik do otwarcia \'%1s\'</string>
+  <plurals name="incoming_file_title">
+    <item quantity="one">Odebrano %1$d plik z %2$s</item>
+    <item quantity="few">Odebrano %1$d pliki z %2$s</item>
+    <item quantity="many">Odebrano %1$d plików z %2$s</item>
+    <item quantity="other"/>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="one">Plik: %1s</item>
+    <item quantity="few">(Plik %2$d z %3$d) : %1$s</item>
+    <item quantity="many">(Plik %2$d z %3$d) : %1$s</item>
+    <item quantity="other"/>
+  </plurals>
   <string name="outgoing_file_title">Wysyłanie pliku do %1s</string>
   <string name="outgoing_files_title">Wysyłanie pliku do %1s</string>
   <plurals name="outgoing_files_text">
@@ -104,10 +116,23 @@
     <item quantity="many">Wysłano %1$d z %2$d plików</item>
     <item quantity="other"/>
   </plurals>
-  <string name="received_file_text">Znacznik do otwarcia \'%1s\'</string>
+  <plurals name="received_files_title">
+    <item quantity="one">Odebrano plik od %1$s</item>
+    <item quantity="few">Odebrano %2$d pliki od %1$s</item>
+    <item quantity="many">Odebrano %2$d plików od %1$s</item>
+    <item quantity="other"/>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Nie udało się odebrać pliku od %1$s</item>
+    <item quantity="few">Nie udało się odebrać %2$d z %3$d plików od %1$s</item>
+    <item quantity="many">Nie udało się odebrać %2$d z %3$d plików od %1$s</item>
+    <item quantity="other"/>
+  </plurals>
+  <string name="received_file_text">Stuknij, aby otworzyć \'%1s\'</string>
+  <string name="cannot_create_file">Nie można utworzyć pliku %s</string>
   <string name="sent_file_title">Plik wysłano do %1s</string>
   <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Nie udało się wyłanie pliku do %1s</string>
+  <string name="sent_file_failed_title">Nie udało się wysyłanie pliku do %1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Stuknij, aby odpowiedzieć</string>
   <string name="reconnect">Połącz ponownie</string>
@@ -154,6 +179,7 @@
   <string name="pair_device_action">Sparuj nowe urządzenie</string>
   <string name="unpair_device_action">Rozparuj %s</string>
   <string name="custom_device_list">Dodaj urządzenia po numerze IP</string>
+  <string name="delete_custom_device">Usunąć %s?</string>
   <string name="share_notification_preference">Hałaśliwe powiadomienia</string>
   <string name="share_notification_preference_summary">Zadrżyj i odegraj dźwięk przy odebraniu pliku</string>
   <string name="share_destination_customize">Własny katalog docelowy</string>
@@ -246,4 +272,13 @@
   <string name="settings_more_settings_title">Więcej ustawień</string>
   <string name="settings_more_settings_text">Wstępne ustawienia urządzenia można znaleźć w \'Ustawieniach wtyczki\' z poziomu urządzenia.</string>
   <string name="setting_persistent_notification">Pokaż nieznikające powiadomienie</string>
+  <string name="setting_persistent_notification_oreo">Nieznikające powiadomienie</string>
+  <string name="setting_persistent_notification_description">Stuknij, aby włączyć/wyłączyć ustawienia powiadomienia</string>
+  <string name="extra_options">Opcje dodatkowe</string>
+  <string name="privacy_options">Opcje prywatności</string>
+  <string name="set_privacy_options">Ustaw swoje opcje prywatności</string>
+  <string name="new_notification">Nowe powiadomienie</string>
+  <string name="block_contents">Blokuj treści w powiadomieniach</string>
+  <string name="block_images">Blokuj obrazy w powiadomieniach</string>
+  <string name="notification_channel_receivenotification">Powiadomienie z innych urządzeń</string>
 </resources>
