@@ -43,7 +43,6 @@ import java.io.InputStream;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.FileProvider;
 
-//TODO: Starting API 24 notification title and text are both displayed on 1 line above the progress bar. Because title can be long, the text is often not displayed
 class ShareNotification {
     private final NotificationManager notificationManager;
     private final int notificationId;
@@ -86,6 +85,7 @@ class ShareNotification {
     public void setProgress(int progress, String progressMessage) {
         builder.setProgress( 100, progress, false);
         builder.setContentText(progressMessage);
+        builder.setStyle(new NotificationCompat.BigTextStyle().bigText(progressMessage));
     }
 
     public void setFinished(String message) {
