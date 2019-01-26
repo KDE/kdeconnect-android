@@ -68,6 +68,7 @@ public class CompositeReceiveFileRunnable implements Runnable {
     private final List<NetworkPacket> networkPacketList;
     private int totalNumFiles;
     private long totalPayloadSize;
+    private boolean isRunning;
 
     CompositeReceiveFileRunnable(Device device, CallBack callBack) {
         this.device = device;
@@ -85,16 +86,28 @@ public class CompositeReceiveFileRunnable implements Runnable {
         handler = new Handler(Looper.getMainLooper());
     }
 
+    boolean isRunning() { return isRunning; }
+
+    void updateTotals(int numberOfFiles, long totalPayloadSize) {
+        synchronized (lock) {
+            this.totalNumFiles = numberOfFiles;
+            this.totalPayloadSize = totalPayloadSize;
+
+            shareNotification.setTitle(device.getContext().getResources()
+                    .getQuantityString(R.plurals.incoming_file_title, totalNumFiles, totalNumFiles, device.getName()));
+        }
+    }
+
     void addNetworkPacket(NetworkPacket networkPacket) {
-        if (!networkPacketList.contains(networkPacket)) {
-            synchronized (lock) {
+        synchronized (lock) {
+            if (!networkPacketList.contains(networkPacket)) {
                 networkPacketList.add(networkPacket);
 
                 totalNumFiles = networkPacket.getInt(SharePlugin.KEY_NUMBER_OF_FILES, 1);
                 totalPayloadSize = networkPacket.getLong(SharePlugin.KEY_TOTAL_PAYLOAD_SIZE);
 
                 shareNotification.setTitle(device.getContext().getResources()
-                        .getQuantityString(R.plurals.incoming_file_title, totalNumFiles, totalNumFiles, device.getName()));
+                    .getQuantityString(R.plurals.incoming_file_title, totalNumFiles, totalNumFiles, device.getName()));
             }
         }
     }
@@ -110,6 +123,8 @@ public class CompositeReceiveFileRunnable implements Runnable {
 
         try {
             DocumentFile fileDocument = null;
+
+            isRunning = true;
 
             while (!done) {
                 synchronized (lock) {
@@ -150,7 +165,7 @@ public class CompositeReceiveFileRunnable implements Runnable {
 
                 if (listIsEmpty) {
                     try {
-                        Thread.sleep(250);
+                        Thread.sleep(1000);
                     } catch (InterruptedException ignored) {}
 
                     synchronized (lock) {
@@ -164,6 +179,8 @@ public class CompositeReceiveFileRunnable implements Runnable {
                     done = networkPacketList.isEmpty();
                 }
             }
+
+            isRunning = false;
 
             int numFiles;
             synchronized (lock) {
@@ -185,6 +202,8 @@ public class CompositeReceiveFileRunnable implements Runnable {
             }
             handler.post(() -> callBack.onSuccess(this));
         } catch (Exception e) {
+            isRunning = false;
+
             int failedFiles;
             synchronized (lock) {
                 failedFiles = (totalNumFiles - currentFileNum + 1);
