@@ -96,6 +96,18 @@
   <string name="pairing_request_from">Požadavek o párování z %1s</string>
   <string name="received_url_title">Přijat odkaz od %1s</string>
   <string name="received_url_text">Ťukněte pro otevření \'%1s\'</string>
+  <plurals name="incoming_file_title">
+    <item quantity="one">Přijímám %1$d soubor z %2$s</item>
+    <item quantity="few">Přijímám %1$d soubory z %2$s</item>
+    <item quantity="many">Přijímám %1$d souborů z %2$s</item>
+    <item quantity="other"/>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="one">Soubor: %1s</item>
+    <item quantity="few">(Soubor %2$d of %3$d) : %1$s</item>
+    <item quantity="many">(Soubor %2$d of %3$d) : %1$s</item>
+    <item quantity="other"/>
+  </plurals>
   <string name="outgoing_file_title">Odesílám soubor do %1s</string>
   <string name="outgoing_files_title">Odesílám soubory do %1s</string>
   <plurals name="outgoing_files_text">
@@ -105,6 +117,7 @@
     <item quantity="other"/>
   </plurals>
   <string name="received_file_text">Ťukněte pro otevření \'%1s\'</string>
+  <string name="cannot_create_file">Nelze vytvořit soubor %s</string>
   <string name="sent_file_title">Soubor byl odeslán do %1s</string>
   <string name="sent_file_text">%1s</string>
   <string name="sent_file_failed_title">Odesílání souborů na %1s selhalo</string>
