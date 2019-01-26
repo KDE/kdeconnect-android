@@ -59,6 +59,7 @@ import androidx.core.content.ContextCompat;
 
 public class SharePlugin extends Plugin {
     private final static String PACKET_TYPE_SHARE_REQUEST = "kdeconnect.share.request";
+    final static String PACKET_TYPE_SHARE_REQUEST_UPDATE = "kdeconnect.share.request.update";
 
     final static String KEY_NUMBER_OF_FILES = "numberOfFiles";
     final static String KEY_TOTAL_PAYLOAD_SIZE = "totalPayloadSize";
@@ -122,6 +123,16 @@ public class SharePlugin extends Plugin {
     @WorkerThread
     public boolean onPacketReceived(NetworkPacket np) {
         try {
+            if (np.getType().equals(PACKET_TYPE_SHARE_REQUEST_UPDATE)) {
+                if (receiveFileRunnable != null && receiveFileRunnable.isRunning()) {
+                    receiveFileRunnable.updateTotals(np.getInt(KEY_NUMBER_OF_FILES), np.getLong(KEY_TOTAL_PAYLOAD_SIZE));
+                } else {
+                    Log.d("SharePlugin", "Received update packet but CompositeUploadJob is null or not running");
+                }
+
+                return true;
+            }
+
             if (np.has("filename")) {
                 if (isPermissionGranted(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                     receiveFile(np);
@@ -388,7 +399,7 @@ public class SharePlugin extends Plugin {
 
     @Override
     public String[] getSupportedPacketTypes() {
-        return new String[]{PACKET_TYPE_SHARE_REQUEST};
+        return new String[]{PACKET_TYPE_SHARE_REQUEST, PACKET_TYPE_SHARE_REQUEST_UPDATE};
     }
 
     @Override
