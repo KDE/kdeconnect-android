@@ -275,6 +275,10 @@ public class ContactsHelper {
     public static Map<uID, Map<String, Object>> getColumnsFromContactsForIDs(Context context, Collection<uID> IDs, String[] contactsProjection) {
         HashMap<uID, Map<String, Object>> toReturn = new HashMap<>();
 
+        if (IDs.isEmpty()) {
+            return toReturn;
+        }
+
         Uri contactsUri = ContactsContract.Contacts.CONTENT_URI;
 
         // Regardless of whether it was requested, we need to look up the uID column
