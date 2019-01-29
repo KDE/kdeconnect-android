@@ -359,8 +359,10 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         BackgroundService.runWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> plugin.sendScroll(0, y));
     }
 
+    //TODO: Does not work on KitKat with or without requestFocus()
     private void showKeyboard() {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        keyListenerView.requestFocus();
         imm.toggleSoftInputFromWindow(keyListenerView.getWindowToken(), 0, 0);
     }
 
