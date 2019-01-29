@@ -6,28 +6,26 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect_tp.R;
 
+import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.SwitchPreferenceCompat;
 import androidx.preference.TwoStatePreference;
 
-public class SettingsFragment extends PreferenceFragmentCompat implements MainActivity.NameChangeCallback {
+public class SettingsFragment extends PreferenceFragmentCompat {
 
     private MainActivity mainActivity;
-    private Preference renameDevice;
-
-    @Override
-    public void onDestroy() {
-        mainActivity.removeNameChangeCallback(this);
-        super.onDestroy();
-    }
+    private EditTextPreference renameDevice;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -39,18 +37,30 @@ public class SettingsFragment extends PreferenceFragmentCompat implements MainAc
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
         // Rename device
-        mainActivity.addNameChangeCallback(this);
-        //TODO: Use an EditTextPreference
-        renameDevice = new Preference(context);
-        renameDevice.setPersistent(false);
+        renameDevice = new EditTextPreference(context);
+        renameDevice.setKey(DeviceHelper.KEY_DEVICE_NAME_PREFERENCE);
         renameDevice.setSelectable(true);
-        renameDevice.setOnPreferenceClickListener(preference -> {
-            mainActivity.openRenameDeviceDialog(context);
-            return true;
-        });
         String deviceName = DeviceHelper.getDeviceName(context);
         renameDevice.setTitle(R.string.settings_rename);
         renameDevice.setSummary(deviceName);
+        renameDevice.setDialogTitle(R.string.device_rename_title);
+        renameDevice.setText(deviceName);
+        renameDevice.setPositiveButtonText(R.string.device_rename_confirm);
+        renameDevice.setNegativeButtonText(R.string.cancel);
+        renameDevice.setOnPreferenceChangeListener((preference, newValue) -> {
+            String name = (String) newValue;
+
+            if (TextUtils.isEmpty(name)) {
+                if (getView() != null) {
+                    Snackbar.make(getView(), R.string.invalid_device_name, Snackbar.LENGTH_LONG).show();
+                }
+                return false;
+            }
+
+            renameDevice.setSummary((String)newValue);
+            return true;
+        });
+
         screen.addPreference(renameDevice);
 
 
@@ -122,10 +132,4 @@ public class SettingsFragment extends PreferenceFragmentCompat implements MainAc
 
 
     }
-
-    @Override
-    public void onNameChanged(String newName) {
-        renameDevice.setSummary(newName);
-    }
-
 }

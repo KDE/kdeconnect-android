@@ -6,13 +6,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
@@ -24,12 +24,9 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -38,7 +35,7 @@ import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final int MENU_ENTRY_ADD_DEVICE = 1; //0 means no-selection
     private static final int MENU_ENTRY_SETTINGS = 2;
@@ -106,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
         mNavViewDeviceName.setText(deviceName);
 
         preferences = getSharedPreferences("stored_menu_selection", Context.MODE_PRIVATE);
+        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
 
         mNavigationView.setNavigationItemSelectedListener(menuItem -> {
             mCurrentMenuEntry = menuItem.getItemId();
@@ -182,6 +180,13 @@ public class MainActivity extends AppCompatActivity {
                 setContentFragment(new PairingFragment());
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(this);
     }
 
     private String onPairResultFromNotification(String deviceId, String pairStatus) {
@@ -366,44 +371,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-    interface NameChangeCallback {
-        void onNameChanged(String newName);
-    }
-
-    private final Set<NameChangeCallback> nameChangeSubscribers = new HashSet<>();
-
-    public void addNameChangeCallback(NameChangeCallback cb) {
-        nameChangeSubscribers.add(cb);
-    }
-
-    public void removeNameChangeCallback(NameChangeCallback cb) {
-        nameChangeSubscribers.remove(cb);
-    }
-
-    public void openRenameDeviceDialog(Context context) {
-        final EditText deviceNameEdit = new EditText(this);
-        String deviceName = DeviceHelper.getDeviceName(this);
-        deviceNameEdit.setText(deviceName);
-        float dpi = this.getResources().getDisplayMetrics().density;
-        deviceNameEdit.setPadding( ((int) (18 * dpi)), ((int) (16 * dpi)), ((int) (18 * dpi)), ((int) (12 * dpi)) );
-        new AlertDialog.Builder(context)
-                .setView(deviceNameEdit)
-                .setPositiveButton(R.string.device_rename_confirm, (dialog, which) -> {
-                    String newDeviceName = deviceNameEdit.getText().toString();
-                    DeviceHelper.setDeviceName(this, newDeviceName);
-                    this.updateDeviceNameFromMenu(newDeviceName);
-                    BackgroundService.RunCommand(this, BackgroundService::onNetworkChange);
-                    for (NameChangeCallback callback : nameChangeSubscribers) {
-                        callback.onNameChanged(newDeviceName);
-                    }
-                })
-                .setNegativeButton(R.string.cancel, (dialog, which) -> { })
-                .setTitle(R.string.device_rename_title)
-                .show();
-    }
-
-    private void updateDeviceNameFromMenu(String newDeviceName) {
-        mNavViewDeviceName.setText(newDeviceName);
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        switch (key) {
+            case DeviceHelper.KEY_DEVICE_NAME_PREFERENCE:
+                mNavViewDeviceName.setText(DeviceHelper.getDeviceName(this));
+                BackgroundService.RunCommand(this, BackgroundService::onNetworkChange);
+                break;
+            default:
+                break;
+        }
     }
 }

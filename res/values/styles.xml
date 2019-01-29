@@ -14,6 +14,7 @@
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="mainNavigationViewStyle">@style/MainNavigationView</item>
         <item name="colorHighContrast">@android:color/black</item>
+        <!-- TODO: The 2 items below change to much (eg snackbar text is now black, should be white) -->
         <item name="android:textColorPrimary">@android:color/black</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>

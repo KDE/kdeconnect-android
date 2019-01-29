@@ -35,7 +35,7 @@ import java.util.HashMap;
 
 public class DeviceHelper {
 
-    private static final String KEY_DEVICE_NAME_PREFERENCE = "device_name_preference";
+    public static final String KEY_DEVICE_NAME_PREFERENCE = "device_name_preference";
 
     //from https://github.com/meetup/android-device-names
     //Converted to java using:
