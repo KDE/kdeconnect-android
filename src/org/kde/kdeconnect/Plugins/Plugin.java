@@ -29,12 +29,13 @@ import android.widget.Button;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
+import org.kde.kdeconnect.UserInterface.AlertDialogFragment;
+import org.kde.kdeconnect.UserInterface.PermissionsAlertDialogFragment;
 import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 public abstract class Plugin {
@@ -223,18 +224,14 @@ public abstract class Plugin {
         return true;
     }
 
-    protected AlertDialog requestPermissionDialog(Activity activity, String permissions, @StringRes int reason) {
-        return requestPermissionDialog(activity, new String[]{permissions}, reason);
-    }
-
-    private AlertDialog requestPermissionDialog(final Activity activity, final String[] permissions, @StringRes int reason) {
-        return new AlertDialog.Builder(activity)
+    private PermissionsAlertDialogFragment requestPermissionDialog(final String[] permissions, @StringRes int reason, int requestCode) {
+        return new PermissionsAlertDialogFragment.Builder()
                 .setTitle(getDisplayName())
                 .setMessage(reason)
-                .setPositiveButton(R.string.ok, (dialogInterface, i) -> ActivityCompat.requestPermissions(activity, permissions, 0))
-                .setNegativeButton(R.string.cancel, (dialogInterface, i) -> {
-                    //Do nothing
-                })
+                .setPositiveButton(R.string.ok)
+                .setNegativeButton(R.string.cancel)
+                .setPermissions(permissions)
+                .setRequestCode(requestCode)
                 .create();
     }
 
@@ -247,12 +244,12 @@ public abstract class Plugin {
         return null;
     }
 
-    public AlertDialog getPermissionExplanationDialog(Activity deviceActivity) {
-        return requestPermissionDialog(deviceActivity, getRequiredPermissions(), permissionExplanation);
+    public AlertDialogFragment getPermissionExplanationDialog(int requestCode) {
+        return requestPermissionDialog(getRequiredPermissions(), permissionExplanation, requestCode);
     }
 
-    public AlertDialog getOptionalPermissionExplanationDialog(Activity deviceActivity) {
-        return requestPermissionDialog(deviceActivity, getOptionalPermissions(), optionalPermissionExplanation);
+    public AlertDialogFragment getOptionalPermissionExplanationDialog(int requestCode) {
+        return requestPermissionDialog(getOptionalPermissions(), optionalPermissionExplanation, requestCode);
     }
 
     public boolean checkRequiredPermissions() {

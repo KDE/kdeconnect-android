@@ -338,15 +338,17 @@ public class DeviceFragment extends Fragment {
                                 }
                             });
                             DeviceFragment.this.createPluginsList(device.getPluginsWithoutPermissions(), R.string.plugins_need_permission, (plugin) -> {
-                                AlertDialog dialog = plugin.getPermissionExplanationDialog(mActivity);
+                                AlertDialogFragment dialog = plugin.getPermissionExplanationDialog(0);
+
                                 if (dialog != null) {
-                                    dialog.show();
+                                    dialog.show(getChildFragmentManager(), null);
                                 }
                             });
                             DeviceFragment.this.createPluginsList(device.getPluginsWithoutOptionalPermissions(), R.string.plugins_need_optional_permission, (plugin) -> {
-                                AlertDialog dialog = plugin.getOptionalPermissionExplanationDialog(mActivity);
+                                AlertDialogFragment dialog = plugin.getOptionalPermissionExplanationDialog(0);
+
                                 if (dialog != null) {
-                                    dialog.show();
+                                    dialog.show(getChildFragmentManager(), null);
                                 }
                             });
                         }
