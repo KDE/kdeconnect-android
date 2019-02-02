@@ -20,10 +20,8 @@
 
 package org.kde.kdeconnect.Plugins.MprisReceiverPlugin;
 
-import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
 import android.media.session.MediaController;
 import android.media.session.MediaSessionManager;
 import android.os.Build;
@@ -36,7 +34,9 @@ import org.kde.kdeconnect.Helpers.AppsHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationReceiver;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.UserInterface.AlertDialogFragment;
 import org.kde.kdeconnect.UserInterface.MainActivity;
+import org.kde.kdeconnect.UserInterface.StartActivityAlertDialogFragment;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.HashMap;
@@ -44,7 +44,6 @@ import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class MprisReceiverPlugin extends Plugin implements MediaSessionManager.OnActiveSessionsChangedListener {
@@ -208,18 +207,15 @@ public class MprisReceiverPlugin extends Plugin implements MediaSessionManager.O
     }
 
     @Override
-    public AlertDialog getErrorDialog(final Activity deviceActivity) {
-
-        return new AlertDialog.Builder(deviceActivity)
+    public AlertDialogFragment getErrorDialog() {
+        return new StartActivityAlertDialogFragment.Builder()
                 .setTitle(R.string.pref_plugin_mpris)
                 .setMessage(R.string.no_permission_mprisreceiver)
-                .setPositiveButton(R.string.open_settings, (dialogInterface, i) -> {
-                    Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
-                    deviceActivity.startActivityForResult(intent, MainActivity.RESULT_NEEDS_RELOAD);
-                })
-                .setNegativeButton(R.string.cancel, (dialogInterface, i) -> {
-                    //Do nothing
-                })
+                .setPositiveButton(R.string.open_settings)
+                .setNegativeButton(R.string.cancel)
+                .setIntentAction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")
+                .setStartForResult(true)
+                .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
                 .create();
     }
 

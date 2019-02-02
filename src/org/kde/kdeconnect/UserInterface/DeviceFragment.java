@@ -332,9 +332,9 @@ public class DeviceFragment extends Fragment {
                             }
 
                             DeviceFragment.this.createPluginsList(device.getFailedPlugins(), R.string.plugins_failed_to_load, (plugin) -> {
-                                AlertDialog dialog = plugin.getErrorDialog(mActivity);
+                                AlertDialogFragment dialog = plugin.getErrorDialog();
                                 if (dialog != null) {
-                                    dialog.show();
+                                    dialog.show(getChildFragmentManager(), null);
                                 }
                             });
                             DeviceFragment.this.createPluginsList(device.getPluginsWithoutPermissions(), R.string.plugins_need_permission, (plugin) -> {

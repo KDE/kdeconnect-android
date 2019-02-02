@@ -35,7 +35,6 @@ import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 
 import androidx.annotation.StringRes;
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 
 public abstract class Plugin {
@@ -240,7 +239,7 @@ public abstract class Plugin {
      * the problem (and how to fix it, if possible) to the user.
      */
 
-    public AlertDialog getErrorDialog(Activity deviceActivity) {
+    public AlertDialogFragment getErrorDialog() {
         return null;
     }
 

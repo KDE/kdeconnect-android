@@ -21,7 +21,6 @@
 package org.kde.kdeconnect.Plugins.NotificationsPlugin;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.RemoteInput;
@@ -43,8 +42,10 @@ import android.util.Log;
 import org.kde.kdeconnect.Helpers.AppsHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.UserInterface.AlertDialogFragment;
 import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
+import org.kde.kdeconnect.UserInterface.StartActivityAlertDialogFragment;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.ByteArrayOutputStream;
@@ -57,7 +58,6 @@ import java.util.Map;
 import java.util.Set;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.NotificationCompat;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
@@ -490,17 +490,15 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     }
 
     @Override
-    public AlertDialog getErrorDialog(final Activity deviceActivity) {
-        return new AlertDialog.Builder(deviceActivity)
+    public AlertDialogFragment getErrorDialog() {
+        return new StartActivityAlertDialogFragment.Builder()
                 .setTitle(R.string.pref_plugin_notifications)
                 .setMessage(R.string.no_permissions)
-                .setPositiveButton(R.string.open_settings, (dialogInterface, i) -> {
-                    Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
-                    deviceActivity.startActivityForResult(intent, MainActivity.RESULT_NEEDS_RELOAD);
-                })
-                .setNegativeButton(R.string.cancel, (dialogInterface, i) -> {
-                    //Do nothing
-                })
+                .setPositiveButton(R.string.open_settings)
+                .setNegativeButton(R.string.cancel)
+                .setIntentAction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")
+                .setStartForResult(true)
+                .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
                 .create();
     }
 
