@@ -12,6 +12,8 @@
     <string name="pref_plugin_sftp_desc">Allows to browse this device\'s filesystem remotely</string>
     <string name="pref_plugin_clipboard">Clipboard sync</string>
     <string name="pref_plugin_clipboard_desc">Share the clipboard content</string>
+    <string name="pref_plugin_textinput">Text pad</string>
+    <string name="pref_plugin_textinput_desc">Input text on the PC using your mobile keyboard (e.g. for handwriting)</string>
     <string name="pref_plugin_mousepad">Remote input</string>
     <string name="pref_plugin_mousepad_desc">Use your phone or tablet as a touchpad and keyboard</string>
     <string name="pref_plugin_presenter">Presentation remote</string>
@@ -47,6 +49,7 @@
     <string name="remotekeyboard_connected" translatable="true">Remote keyboard connection is active</string>
     <string name="remotekeyboard_multiple_connections" translatable="true">There is more than one remote keyboard connection, select the device to configure</string>
     <string name="open_mousepad">Remote input</string>
+    <string name="open_textinput">Text input</string>
     <string name="mousepad_info">Move a finger on the screen to move the mouse cursor. Tap for a click, and use two/three fingers for right and middle buttons. Use 2 fingers to scroll. Use a long press to drag\'n drop.</string>
     <string name="mousepad_double_tap_settings_title">Set two finger tap action</string>
     <string name="mousepad_triple_tap_settings_title">Set three finger tap action</string>
@@ -160,6 +163,7 @@
     <string name="right_click">Send Right Click</string>
     <string name="middle_click">Send Middle Click</string>
     <string name="show_keyboard">Show Keyboard</string>
+    <string name="submit">Submit</string>
     <string name="device_not_paired">Device not paired</string>
     <string name="request_pairing">Request pairing</string>
     <string name="pairing_accept">Accept</string>
@@ -326,4 +330,5 @@
     <string name="notification_channel_receivenotification">Notifications from other devices</string>
 
     <string name="findmyphone_preference_key_ringtone" translatable="false">findmyphone_ringtone</string>
+    <string name="textinput_info">Enter text to send...</string>
 </resources>

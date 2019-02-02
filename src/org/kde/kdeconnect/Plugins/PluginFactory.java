@@ -43,6 +43,7 @@ import org.kde.kdeconnect.Plugins.SharePlugin.SharePlugin;
 import org.kde.kdeconnect.Plugins.SystemvolumePlugin.SystemvolumePlugin;
 import org.kde.kdeconnect.Plugins.SMSPlugin.SMSPlugin;
 import org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin;
+import org.kde.kdeconnect.Plugins.TextInputPlugin.TextInputPlugin;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -126,6 +127,7 @@ public class PluginFactory {
         PluginFactory.registerPlugin(SftpPlugin.class);
         PluginFactory.registerPlugin(NotificationsPlugin.class);
         PluginFactory.registerPlugin(ReceiveNotificationsPlugin.class);
+        PluginFactory.registerPlugin(TextInputPlugin.class);
         PluginFactory.registerPlugin(MousePadPlugin.class);
         PluginFactory.registerPlugin(PresenterPlugin.class);
         PluginFactory.registerPlugin(SharePlugin.class);

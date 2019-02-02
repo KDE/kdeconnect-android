@@ -191,6 +191,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
         </activity>
+
+        <activity android:name="org.kde.kdeconnect.Plugins.TextInputPlugin.TextInputActivity"
+            android:label="@string/pref_plugin_textinput"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
+        </activity>
+
         <activity
             android:name="org.kde.kdeconnect.Plugins.PresenterPlugin.PresenterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
