@@ -262,6 +262,8 @@
   <string name="settings_more_settings_title">Altre impostazioni</string>
   <string name="settings_more_settings_text">Le impostazioni per dispositivo sono disponibili sotto «Impostazione estensioni» dall\'interno del dispositivo.</string>
   <string name="setting_persistent_notification">Mostra notifica persistente</string>
+  <string name="setting_persistent_notification_oreo">Notifica persistente</string>
+  <string name="setting_persistent_notification_description">Tocca per abilitare/disabilitare nelle impostazioni delle notifiche</string>
   <string name="extra_options">Opzioni aggiuntive</string>
   <string name="privacy_options">Opzioni di riservatezza</string>
   <string name="set_privacy_options">Imposta le tue opzioni di riservatezza</string>

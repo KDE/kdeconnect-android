@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
-  <string name="foreground_notification_no_devices">Belum terkonek ke perangkat apa pun</string>
-  <string name="foreground_notification_devices">Terkonek ke: %s</string>
+  <string name="foreground_notification_no_devices">Belum terkoneksi ke perangkat apa pun</string>
+  <string name="foreground_notification_devices">Terkoneksi ke: %s</string>
   <string name="pref_plugin_telephony">Penotifikasi telepon</string>
   <string name="pref_plugin_telephony_desc">Kirim notifikasi untuk panggilan yang masuk</string>
   <string name="pref_plugin_battery">Laporan baterai</string>
@@ -70,7 +70,7 @@
     <item>Kuat</item>
     <item>Sangat Kuat</item>
   </string-array>
-  <string name="category_connected_devices">Perangkat tersambung</string>
+  <string name="category_connected_devices">Perangkat terkoneksi</string>
   <string name="category_not_paired_devices">Perangkat tersedia</string>
   <string name="category_remembered_devices">Perangkat teringat</string>
   <string name="plugins_failed_to_load">Plugin gagal memuat (ketuk untuk info selebihnya):</string>
@@ -191,7 +191,7 @@
   <string name="device_rename_title">Ubah nama perangkat</string>
   <string name="device_rename_confirm">Ubah Nama</string>
   <string name="refresh">Segarkan</string>
-  <string name="unreachable_description">Perangkat yang disandingkan ini tidak dapat dicapai. Pastikan ia tersambung ke jaringanmu yang sama.</string>
+  <string name="unreachable_description">Perangkat yang disandingkan ini tidak dapat dicapai. Pastikan ia terkoneksi ke jaringanmu yang sama.</string>
   <string name="on_data_message">Nampaknya kamu berada pada koneksi data seluler. KDE Connect hanya bekerja pada jaringan lokal.</string>
   <string name="no_file_browser">Tidak adanya penelusur file yang terinstal.</string>
   <string name="pref_plugin_telepathy">Kirim SMS</string>

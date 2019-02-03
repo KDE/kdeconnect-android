@@ -1,6 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_no_devices">Nepripojené k žiadnemu zariadeniu</string>
+  <string name="foreground_notification_devices">Pripojené k: %s</string>
   <string name="pref_plugin_telephony">Telefónny notifikátor</string>
+  <string name="pref_plugin_telephony_desc">Poslať oznámenia pre prichádzajúce hovory</string>
   <string name="pref_plugin_battery">Oznam o batérii</string>
   <string name="pref_plugin_battery_desc">Periodicky oznamovať stav batérie</string>
   <string name="pref_plugin_sftp">Odhaliť súborový systém</string>
@@ -9,10 +13,16 @@
   <string name="pref_plugin_clipboard_desc">Zdieľať obsah schránky</string>
   <string name="pref_plugin_mousepad">Vzdialený vstup</string>
   <string name="pref_plugin_mousepad_desc">Použiť váš telefón alebo tablet ako touchpad a klávesnicu</string>
+  <string name="pref_plugin_presenter">Diaľkové ovládanie prezentácie</string>
+  <string name="pref_plugin_presenter_desc">Používajte vaše zariadenie na posúvanie stránok prezentácie</string>
+  <string name="pref_plugin_remotekeyboard">Prijímať vzdialené stlačenia klávesov</string>
+  <string name="pref_plugin_remotekeyboard_desc">Prjímať udalosti stlačenia kláves z diaľkových zariadení</string>
   <string name="pref_plugin_mpris">Multimediálne ovládače</string>
   <string name="pref_plugin_mpris_desc">Poskytuje vzdialené ovládanie pre váš prehrávač médií</string>
   <string name="pref_plugin_runcommand">Spustiť príkaz</string>
   <string name="pref_plugin_runcommand_desc">Vyvolať vzdialené príkazy z vášho mobilu alebo tabletu</string>
+  <string name="pref_plugin_contacts">Synchronizér kontaktov</string>
+  <string name="pref_plugin_contacts_desc">Povoliť synchronizáciu kontaktov zo zariadenia</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Poslať a prijať pingy</string>
   <string name="pref_plugin_notifications">Synchronizácia pripomienok</string>
@@ -27,12 +37,19 @@
   <string name="cancel">Zrušiť</string>
   <string name="open_settings">Otvoriť nastavenia</string>
   <string name="no_permissions">Musíte povoliť oprávnenia na prístup k pripomienkam</string>
+  <string name="no_permission_mprisreceiver">Aby ste mohli ovládať prehrávače médií musíte udeliť oprávnenie pristupovať k oznámeniam.</string>
   <string name="send_ping">Poslať ping</string>
   <string name="open_mpris_controls">Multimediálny ovládač</string>
+  <string name="remotekeyboard_editing_only_title">Spracovať vzdialené klávesy iba počas upravovania</string>
+  <string name="remotekeyboard_not_connected">Nie je dostupné žiadne aktívne pripojenie ku klávesnici, nastavte ho v kdeconnect</string>
+  <string name="remotekeyboard_connected">Pripojenie ku vzdialenej klávesnici je aktívne</string>
+  <string name="remotekeyboard_multiple_connections">Je dostupných viac vzdialených klávesníc, vyberte jednu na nastavenie</string>
   <string name="open_mousepad">Vzdialený vstup</string>
+  <string name="mousepad_info">Posúvajte prst na obrazovke na posun kurzora. Ťuknutie vyvolá klik a použite dva/tri prsty pre pravé a stredné tlačidlo. Použite dva prsty na posúvanie. Použite dlhé stlačenie pre drag and drop.</string>
   <string name="mousepad_double_tap_settings_title">Nastaviť akciu dvoch prstov</string>
   <string name="mousepad_triple_tap_settings_title">Nastaviť akciu troch prstov</string>
   <string name="mousepad_sensitivity_settings_title">Nastaviť citlivosť touchpadu</string>
+  <string name="mousepad_acceleration_profile_settings_title">Nastaviť zrýchlenie ukazovateľa</string>
   <string name="mousepad_scroll_direction_title">Obrátený smer rolovania</string>
   <string-array name="mousepad_tap_entries">
     <item>Kliknutie pravým tlačidlom</item>
@@ -47,12 +64,12 @@
     <item>Najrýchlejšie</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>No Acceleration</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
-    <item>Medium</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>Žiadne zrýchlenie</item>
+    <item>Najslabšie</item>
+    <item>Slabé</item>
+    <item>Stredné</item>
+    <item>Silnejšie</item>
+    <item>Najsilnejšie</item>
   </string-array>
   <string name="category_connected_devices">Pripojené zariadenia</string>
   <string name="category_not_paired_devices">Dostupné zariadenia</string>
@@ -79,10 +96,43 @@
   <string name="pairing_request_from">Požiadavka na spárovanie od %1s</string>
   <string name="received_url_title">Prijatý odkaz od %1s</string>
   <string name="received_url_text">Ťuknite na otvorenie \'%1s\'</string>
+  <plurals name="incoming_file_title">
+    <item quantity="one">Prijímam %1$d súbor z %2$s</item>
+    <item quantity="few">Prijímam %1$d súbory z %2$s</item>
+    <item quantity="many">Prijímam %1$d súborov z %2$s</item>
+    <item quantity="other"/>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="one">Súbor: %1s</item>
+    <item quantity="few">(Súbor %2$d z %3$d) : %1$s</item>
+    <item quantity="many">(Súbor %2$d z %3$d) : %1$s</item>
+    <item quantity="other"/>
+  </plurals>
   <string name="outgoing_file_title">Posielam súbor pre %1s</string>
+  <string name="outgoing_files_title">Posielam súbor do %1s</string>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Odoslaný %1$d súbor</item>
+    <item quantity="few">Odoslané súbory %1$d z %2$d</item>
+    <item quantity="many">Odoslaných súborov %1$d z %2$d</item>
+    <item quantity="other"/>
+  </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one">Prijatý súbor od %1$s</item>
+    <item quantity="few">Prijaté %2$d súbory od %1$s</item>
+    <item quantity="many">Prijatých %2$d súborov od %1$s</item>
+    <item quantity="other"/>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Zlyhalo prijatie súboru od %1$s</item>
+    <item quantity="few">Zlyhalo prijatie %2$d z %3$d súborov od %1$s</item>
+    <item quantity="many">Zlyhalo prijatie %2$d z %3$d súborov od %1$s</item>
+    <item quantity="other"/>
+  </plurals>
   <string name="received_file_text">Ťuknite na otvorenie \'%1s\'</string>
+  <string name="cannot_create_file">Nomožno vytvoriť súbor %s</string>
   <string name="sent_file_title">Poslať súbor pre %1s</string>
   <string name="sent_file_text">%1s</string>
+  <string name="sent_file_failed_title">Zlyhalo poslanie súboru do %1s</string>
   <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Tapnite na odpoveď</string>
   <string name="reconnect">Znovu pripojiť</string>
@@ -95,7 +145,9 @@
   <string name="pairing_reject">Odmietnuť</string>
   <string name="device">Zariadenie</string>
   <string name="pair_device">Spárovať zariadenie</string>
+  <string name="settings">Nastavenia</string>
   <string name="mpris_play">Prehrať</string>
+  <string name="mpris_pause">Pozastaviť</string>
   <string name="mpris_previous">Predošlé</string>
   <string name="mpris_rew">Pretočiť dozadu</string>
   <string name="mpris_ff">Pretočiť dopredu</string>
@@ -103,6 +155,7 @@
   <string name="mpris_volume">Hlasitosť</string>
   <string name="mpris_settings">Multimediálne nastavenia</string>
   <string name="mpris_time_settings_title">Tlačidlá dopredu/pretočiť</string>
+  <string name="mpris_time_settings_summary">Prispôsobiť čas na pretáčanie dopredu alebo dozadu pri stlačení</string>
   <string-array name="mpris_time_entries">
     <item>10 sekúnd</item>
     <item>20 sekúnd</item>
@@ -110,6 +163,9 @@
     <item>1 minúta</item>
     <item>2 minúty</item>
   </string-array>
+  <string name="mpris_notification_settings_title">Zobraziť oznámenie ovládania médií</string>
+  <string name="mpris_notification_settings_summary">Povoliť ovládanie vaších prehrávačov médií bez otvárania KDE Connect</string>
+  <string name="share_to">Zdieľať do...</string>
   <string name="protocol_version_older">Toto zariadenie používa starú verziu protokolu</string>
   <string name="protocol_version_newer">Toto zariadenie používa novšiu verziu protokolu</string>
   <string name="general_settings">Všeobecné nastavenia</string>
@@ -123,8 +179,15 @@
   <string name="pair_device_action">Spárovať nové zariadenie</string>
   <string name="unpair_device_action">Odpárovať %s</string>
   <string name="custom_device_list">Pridať zariadenia podľa IP</string>
+  <string name="delete_custom_device">Vymazať %s?</string>
   <string name="share_notification_preference">Hlučné pripomienky</string>
   <string name="share_notification_preference_summary">Vibrovať a prehrať zvuk pri prijatí súboru</string>
+  <string name="share_destination_customize">Prispôsobiť cieľový priečinok</string>
+  <string name="share_destination_customize_summary_disabled">Prijaté súbory sa objavia v priečinku Stiahnuté</string>
+  <string name="share_destination_customize_summary_enabled">Súbory budú uložené v priečinku nižšie</string>
+  <string name="share_destination_folder_preference">Cieľový priečinok</string>
+  <string name="share">Zdieľať</string>
+  <string name="share_received_file">Zdiaľať \"%s\"</string>
   <string name="title_activity_notification_filter">Filter upozornení</string>
   <string name="filter_apps_info">Upozornenia budú synchronizované pre vybrané aplikácie.</string>
   <string name="sftp_internal_storage">Interné úložisko</string>
@@ -146,14 +209,76 @@
   <string name="device_rename_confirm">Premenovať</string>
   <string name="refresh">Obnoviť</string>
   <string name="unreachable_description">Toto spárované zariadenie nie je dosiahnuteľné. Prosím, uistite sa, že je pripojené do rovnakej siete.</string>
+  <string name="on_data_message">Vyzerá to tak že ste na mobilnom dátovom pripojení. KDE Connect funguje iba na lokálnych sieťach.</string>
   <string name="no_file_browser">Nie sú nainštalované žiadne prehliadače.</string>
   <string name="pref_plugin_telepathy">Poslať SMS</string>
   <string name="pref_plugin_telepathy_desc">Posielať textové správy z vášho počítača</string>
   <string name="plugin_not_supported">Tento plugin nie je podporovaný zariadením</string>
   <string name="findmyphone_title">Nájsť môj telefón</string>
   <string name="findmyphone_title_tablet">Nájsť môj tablet</string>
+  <string name="findmyphone_title_tv">Nájsť môj TV</string>
   <string name="findmyphone_description">Prezvoní vaše zariadenie, aby ste ho našli</string>
   <string name="findmyphone_found">Nájdené</string>
   <string name="open">Otvoriť</string>
   <string name="close">Zavrieť</string>
+  <string name="no_permissions_storage">Musíte povoliť oprávnenia na prístup k úložisku</string>
+  <string name="plugins_need_permission">Niektoré Pluginy potrebujú oprávnenia aby fungovali (ťuknite pre viac info):</string>
+  <string name="permission_explanation">Tento plugin potrebuje oprávnenia aby fungoval</string>
+  <string name="optional_permission_explanation">Musíte povoliť oprávnenia na povolenie všetkých funkcií</string>
+  <string name="plugins_need_optional_permission">Niektoré pluginy majú zakázané funkcie pre nedostatok opránení (ťuknite pre viac info):</string>
+  <string name="sftp_permission_explanation">Na prístup k vaším súborom z PC, aplikácia potrebuje oprávnenie na prístup k vašemu úložisku</string>
+  <string name="share_optional_permission_explanation">Na zdieľanie súborov medzi vašim telefónom a počítačom potrebujete dať prístup k úložisku telefónu</string>
+  <string name="telepathy_permission_explanation">Na čítanie a písanie SMS z vašeho počítača, potrebujete dať oprávnienie na SMS</string>
+  <string name="telephony_permission_explanation">Aby ste videli telefónne hovory a SMS z počítača, potrebujete dať oprávnenie na hovory a SMS</string>
+  <string name="telephony_optional_permission_explanation">Aby ste videli meno kontaktu namiesto čísla, potrebujete dať oprávnenie na telefónne kontakty</string>
+  <string name="contacts_permission_explanation">Na zdieľanie kontaktov s počítačom, potrebujete dať oprávnenie na kontakty</string>
+  <string name="select_ringtone">Nastaviť tón zvonenia</string>
+  <string name="telephony_pref_blocked_title">Blokované čísla</string>
+  <string name="telephony_pref_blocked_dialog_desc">Nezobrazovať hovory a SMS z týchto čísel. Prosím upresnite jedno číslo na riadok</string>
+  <string name="mpris_coverart_description">Obal aktuáneho média</string>
+  <string name="device_icon_description">Ikona zariadenia</string>
+  <string name="settings_icon_description">Ikona Nastavení</string>
+  <string name="presenter_fullscreen">Celá obrazovka</string>
+  <string name="presenter_exit">Ukončiť prezentáciu</string>
+  <string name="presenter_lock_tip">Môžete nastaviť vaše zariadenie aby používalo tlačidlá hlasitosti ako tlačidlá predchádzajúce/ďalšie</string>
+  <string name="add_command">Pridať príkaz</string>
+  <string name="addcommand_explanation">Nie sú registrované žiadne príkazy</string>
+  <string name="addcommand_explanation2">Môžete pridať nové príkazy v KDE Connect systémových nastaveniach</string>
+  <string name="add_command_description">Môžete pridať príkazy na počítači</string>
+  <string name="pref_plugin_mprisreceiver">Multimediálny ovládač</string>
+  <string name="pref_plugin_mprisreceiver_desc">Ovládajte mediálne prehrávače vášho telefónu z iného zariadenia</string>
+  <string name="dark_theme">Tmavá téma</string>
+  <string name="notification_channel_default">Ostatné upozornenia</string>
+  <string name="notification_channel_persistent">Trvalý indikátor</string>
+  <string name="notification_channel_media_control">Multimediálny ovládač</string>
+  <string name="notification_channel_filetransfer">Prenos súborov</string>
+  <string name="mpris_stop">Zastaviť aktuálny prehrávač</string>
+  <string name="copy_url_to_clipboard">Kopírovať adresu do schránky</string>
+  <string name="clipboard_toast">Uložené do schránky</string>
+  <string name="runcommand_notreachable">Zariadenie nedostupné</string>
+  <string name="runcommand_notpaired">Zariadenie nespárované</string>
+  <string name="runcommand_nosuchdevice">Zadané zariadenie neexistuje</string>
+  <string name="runcommand_noruncommandplugin">Toto zariadenie nemá povolený plugin na Spustenie príkazu</string>
+  <string name="pref_plugin_findremotedevice">Nájsť vzdialené zariadenie</string>
+  <string name="pref_plugin_findremotedevice_desc">Zazvoniť na vzdialenom zariadení</string>
+  <string name="ring">Zazvoniť</string>
+  <string name="pref_plugin_systemvolume">Systémová hlasitosť</string>
+  <string name="pref_plugin_systemvolume_desc">Ovládať systémovú hlasitosť vzdialeného zariadenia</string>
+  <string name="mute">Stlmiť</string>
+  <string name="all">Všetko</string>
+  <string name="devices">Zariadenia</string>
+  <string name="settings_rename">Názov zariadenia</string>
+  <string name="settings_dark_mode">Tmavá téma</string>
+  <string name="settings_more_settings_title">Viac nastavení</string>
+  <string name="settings_more_settings_text">Nstavenia pre konkrétne zariadenia sú dostupné v \"Nastaveniach pluginu\" na zariadení.</string>
+  <string name="setting_persistent_notification">Zobrazovať trvalé oznámenie</string>
+  <string name="setting_persistent_notification_oreo">Trvalé oznámenie</string>
+  <string name="setting_persistent_notification_description">Ťuknite na zapnutie/vypnutie v Nastaveniach oznámení</string>
+  <string name="extra_options">Ďalšie možnosti</string>
+  <string name="privacy_options">Možnosti súkromia</string>
+  <string name="set_privacy_options">Nastavte vaše súkromie</string>
+  <string name="new_notification">Nové oznámenie</string>
+  <string name="block_contents">Blokovať obsah oznámení</string>
+  <string name="block_images">Blokovať obrázky v oznámeniach</string>
+  <string name="notification_channel_receivenotification">Oznámenia iných zariadení</string>
 </resources>
