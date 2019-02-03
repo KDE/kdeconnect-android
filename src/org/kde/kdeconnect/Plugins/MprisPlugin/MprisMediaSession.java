@@ -248,6 +248,7 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
             }
             if (!notificationPlayer.getArtist().isEmpty()) {
                 metadata.putString(MediaMetadataCompat.METADATA_KEY_AUTHOR, notificationPlayer.getArtist());
+                metadata.putString(MediaMetadataCompat.METADATA_KEY_ARTIST, notificationPlayer.getArtist());
             }
             if (!notificationPlayer.getAlbum().isEmpty()) {
                 metadata.putString(MediaMetadataCompat.METADATA_KEY_ALBUM, notificationPlayer.getAlbum());
