@@ -25,7 +25,7 @@
   <string name="pref_plugin_sharereceiver_desc">Del filer og URL\'er mellem enheder</string>
   <string name="plugin_not_available">Denne funktion er ikke tilgængelig i din Android-version</string>
   <string name="device_list_empty">Ingen enheder</string>
-  <string name="ok">O.k.</string>
+  <string name="ok">OK</string>
   <string name="cancel">Annullér</string>
   <string name="open_settings">Åbn indstillinger</string>
   <string name="no_permissions">Du skal give tilladelse for at tilgå bekendtgørelser</string>
