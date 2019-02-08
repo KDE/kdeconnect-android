@@ -48,7 +48,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class PluginFactory {
 
@@ -114,8 +114,8 @@ public class PluginFactory {
 
     }
 
-    private static final Map<String, Class> availablePlugins = new TreeMap<>();
-    private static final Map<String, PluginInfo> pluginInfoCache = new TreeMap<>();
+    private static final Map<String, Class> availablePlugins = new ConcurrentHashMap<>();
+    private static final Map<String, PluginInfo> pluginInfoCache = new ConcurrentHashMap<>();
 
     static {
         PluginFactory.registerPlugin(TelephonyPlugin.class);
