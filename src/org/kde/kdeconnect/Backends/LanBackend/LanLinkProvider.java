@@ -305,16 +305,15 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
         this.context = context;
     }
 
-    private DatagramSocket setupUdpListener(int udpPort) {
-        final DatagramSocket server;
+    private void setupUdpListener() {
         try {
-            server = new DatagramSocket(udpPort);
-            server.setReuseAddress(true);
-            server.setBroadcast(true);
+            udpServer = new DatagramSocket(MIN_PORT);
+            udpServer.setReuseAddress(true);
+            udpServer.setBroadcast(true);
         } catch (SocketException e) {
             Log.e("LanLinkProvider", "Error creating udp server");
             e.printStackTrace();
-            return null;
+            return;
         }
         new Thread(() -> {
             while (listening) {
@@ -322,7 +321,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                 byte[] data = new byte[bufferSize];
                 DatagramPacket packet = new DatagramPacket(data, bufferSize);
                 try {
-                    server.receive(packet);
+                    udpServer.receive(packet);
                     udpPacketReceived(packet);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -331,30 +330,30 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
             }
             Log.w("UdpListener", "Stopping UDP listener");
         }).start();
-        return server;
     }
 
     private void setupTcpListener() {
-
         try {
             tcpServer = openServerSocketOnFreePort(MIN_PORT);
-            new Thread(() -> {
-                while (listening) {
-                    try {
-                        Socket socket = tcpServer.accept();
-                        configureSocket(socket);
-                        tcpPacketReceived(socket);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        Log.e("LanLinkProvider", "TcpReceive exception");
-                    }
-                }
-                Log.w("TcpListener", "Stopping TCP listener");
-            }).start();
-
         } catch (Exception e) {
+            Log.e("LanLinkProvider", "Error creating tcp server");
             e.printStackTrace();
+            return;
         }
+        new Thread(() -> {
+            while (listening) {
+                try {
+                    Socket socket = tcpServer.accept();
+                    configureSocket(socket);
+                    tcpPacketReceived(socket);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.e("LanLinkProvider", "TcpReceive exception");
+                }
+            }
+            Log.w("TcpListener", "Stopping TCP listener");
+        }).start();
+
     }
 
     static ServerSocket openServerSocketOnFreePort(int minPort) throws IOException {
@@ -367,10 +366,13 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                 return candidateServer;
             } catch (IOException e) {
                 tcpPort++;
+                if (tcpPort == MAX_PORT) {
+                    Log.e("KDE/LanLink", "No ports available");
+                    throw e; //Propagate exception
+                }
             }
         }
-        Log.e("KDE/LanLink", "No ports available");
-        throw new IOException("No ports available");
+        throw new RuntimeException("This should not be reachable");
     }
 
     private void broadcastUdpPacket() {
@@ -432,7 +434,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
 
             listening = true;
 
-            udpServer = setupUdpListener(MIN_PORT);
+            setupUdpListener();
             setupTcpListener();
 
             broadcastUdpPacket();
