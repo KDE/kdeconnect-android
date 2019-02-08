@@ -433,12 +433,6 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
             listening = true;
 
             udpServer = setupUdpListener(MIN_PORT);
-
-            // Due to certificate request from SSL server to client, the certificate request message from device with latest android version to device with
-            // old android version causes a FATAL ALERT message stating that incorrect certificate request
-            // Server is disabled on these devices and using a reverse connection strategy. This works well for connection of these devices with kde
-            // and newer android versions. Although devices with android version less than ICS cannot connect to other devices who also have android version less
-            // than ICS because server is disabled on both
             setupTcpListener();
 
             broadcastUdpPacket();
