@@ -96,13 +96,30 @@
   <string name="pairing_request_from">Paringsførespurnad frå %1s</string>
   <string name="received_url_title">Fekk lenkje frå %1s</string>
   <string name="received_url_text">Trykk for å opna «%1s»</string>
+  <plurals name="incoming_file_title">
+    <item quantity="one">Fekk %1$d fil frå %2$s</item>
+    <item quantity="other">Fekk %1$d filer frå %2$s</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="one">Fil: %1s</item>
+    <item quantity="other">(Fil %2$d av %3$d): %1$s</item>
+  </plurals>
   <string name="outgoing_file_title">Sender fil til %1s</string>
   <string name="outgoing_files_title">Sender filer til %1s</string>
   <plurals name="outgoing_files_text">
     <item quantity="one">Sende %1$d fil</item>
     <item quantity="other">Sende %1$d av %2$d filer</item>
   </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one">Fekk fil frå %1$s</item>
+    <item quantity="other">Fekk %2$d filer frå %1$s</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Klarte ikkje ta imot fil frå %1$s</item>
+    <item quantity="other">Klarte ikkje ta imot %2$d av %3$d filer frå %1$s</item>
+  </plurals>
   <string name="received_file_text">Trykk for å opna «%1s»</string>
+  <string name="cannot_create_file">Klarte ikkje oppretta fila %s</string>
   <string name="sent_file_title">Send fil til %1s</string>
   <string name="sent_file_text">%1s</string>
   <string name="sent_file_failed_title">Klarte ikkje senda fil til %1s</string>
@@ -245,4 +262,13 @@
   <string name="settings_more_settings_title">Fleire innstillingar</string>
   <string name="settings_more_settings_text">Innstillingar for einskildeiningar finn du under «Programtillegg-oppsett» på kvar eining.</string>
   <string name="setting_persistent_notification">Vis evigvarande varsling</string>
+  <string name="setting_persistent_notification_oreo">Evigvarande varsling</string>
+  <string name="setting_persistent_notification_description">Trykk for å slå på/av i varslingsinnstillingane</string>
+  <string name="extra_options">Tilleggsval</string>
+  <string name="privacy_options">Personverninstillingar</string>
+  <string name="set_privacy_options">Vel personverninnstillingar</string>
+  <string name="new_notification">Ny varsling</string>
+  <string name="block_contents">Blokker varslingsinnhald</string>
+  <string name="block_images">Blokker bilete i varslingar</string>
+  <string name="notification_channel_receivenotification">Varslingar frå andre einingar</string>
 </resources>
