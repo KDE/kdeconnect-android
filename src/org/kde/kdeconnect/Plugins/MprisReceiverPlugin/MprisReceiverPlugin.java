@@ -46,6 +46,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+//@PluginFactory.LoadablePlugin
 public class MprisReceiverPlugin extends Plugin implements MediaSessionManager.OnActiveSessionsChangedListener {
 
     private final static String PACKET_TYPE_MPRIS = "kdeconnect.mpris";

@@ -25,13 +25,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
-
+@PluginFactory.LoadablePlugin
 public class SystemvolumePlugin extends Plugin {
 
     private final static String PACKET_TYPE_SYSTEMVOLUME = "kdeconnect.systemvolume";

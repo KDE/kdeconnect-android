@@ -43,6 +43,7 @@ import android.widget.Toast;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 
@@ -57,6 +58,7 @@ import androidx.annotation.WorkerThread;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
+@PluginFactory.LoadablePlugin
 public class SharePlugin extends Plugin {
     private final static String PACKET_TYPE_SHARE_REQUEST = "kdeconnect.share.request";
     final static String PACKET_TYPE_SHARE_REQUEST_UPDATE = "kdeconnect.share.request.update";

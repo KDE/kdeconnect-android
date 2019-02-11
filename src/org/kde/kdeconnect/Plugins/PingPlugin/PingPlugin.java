@@ -31,12 +31,13 @@ import android.util.Log;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect_tp.R;
 
 import androidx.core.app.NotificationCompat;
 
-
+@PluginFactory.LoadablePlugin
 public class PingPlugin extends Plugin {
 
     private final static String PACKET_TYPE_PING = "kdeconnect.ping";

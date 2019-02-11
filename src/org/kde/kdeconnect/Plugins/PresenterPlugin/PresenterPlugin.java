@@ -28,12 +28,14 @@ import android.view.KeyEvent;
 
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
 import androidx.core.content.ContextCompat;
 
 import static org.kde.kdeconnect.Plugins.MousePadPlugin.KeyListenerView.SpecialKeysMap;
 
+@PluginFactory.LoadablePlugin
 public class PresenterPlugin extends Plugin {
 
     private final static String PACKET_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request";

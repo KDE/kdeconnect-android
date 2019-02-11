@@ -30,6 +30,7 @@ import android.util.Log;
 
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
 import java.net.MalformedURLException;
@@ -42,6 +43,7 @@ import java.util.List;
 
 import androidx.core.content.ContextCompat;
 
+@PluginFactory.LoadablePlugin
 public class MprisPlugin extends Plugin {
     public class MprisPlayer {
         private String player = "";

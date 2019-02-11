@@ -29,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ import java.util.Iterator;
 
 import androidx.core.content.ContextCompat;
 
+@PluginFactory.LoadablePlugin
 public class RunCommandPlugin extends Plugin {
 
     private final static String PACKET_TYPE_RUNCOMMAND = "kdeconnect.runcommand";

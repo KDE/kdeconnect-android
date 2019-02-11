@@ -34,6 +34,7 @@ import org.kde.kdeconnect.Helpers.ContactsHelper.VCardBuilder;
 import org.kde.kdeconnect.Helpers.ContactsHelper.uID;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ import java.util.Map;
 import java.util.Set;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+@PluginFactory.LoadablePlugin
 public class ContactsPlugin extends Plugin {
 
     /**

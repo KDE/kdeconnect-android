@@ -513,7 +513,7 @@ public class Device implements BaseLink.PacketReceiver {
         Set<String> outgoingCapabilities = identityPacket.getStringSet("outgoingCapabilities", null);
         Set<String> incomingCapabilities = identityPacket.getStringSet("incomingCapabilities", null);
         if (incomingCapabilities != null && outgoingCapabilities != null) {
-            m_supportedPlugins = new Vector<>(PluginFactory.pluginsForCapabilities(context, incomingCapabilities, outgoingCapabilities));
+            m_supportedPlugins = new Vector<>(PluginFactory.pluginsForCapabilities(incomingCapabilities, outgoingCapabilities));
         } else {
             m_supportedPlugins = new Vector<>(PluginFactory.getAvailablePlugins());
         }
@@ -808,7 +808,7 @@ public class Device implements BaseLink.PacketReceiver {
     }
 
     public boolean isPluginEnabled(String pluginKey) {
-        boolean enabledByDefault = PluginFactory.getPluginInfo(context, pluginKey).isEnabledByDefault();
+        boolean enabledByDefault = PluginFactory.getPluginInfo(pluginKey).isEnabledByDefault();
         return settings.getBoolean(pluginKey, enabledByDefault);
     }
 
@@ -820,7 +820,7 @@ public class Device implements BaseLink.PacketReceiver {
 
         for (String pluginKey : m_supportedPlugins) {
 
-            PluginFactory.PluginInfo pluginInfo = PluginFactory.getPluginInfo(context, pluginKey);
+            PluginFactory.PluginInfo pluginInfo = PluginFactory.getPluginInfo(pluginKey);
 
             boolean pluginEnabled = false;
             boolean listenToUnpaired = pluginInfo.listenToUnpaired();

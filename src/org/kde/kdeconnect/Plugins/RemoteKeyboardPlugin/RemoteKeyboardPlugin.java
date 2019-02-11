@@ -33,6 +33,7 @@ import android.view.inputmethod.InputConnection;
 
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Pair;
 
+@PluginFactory.LoadablePlugin
 public class RemoteKeyboardPlugin extends Plugin {
 
     private final static String PACKET_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request";

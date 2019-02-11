@@ -26,7 +26,7 @@ class PluginPreference extends CheckBoxPreference {
         this.device = device;
         this.pluginKey = pluginKey;
 
-        PluginFactory.PluginInfo info = PluginFactory.getPluginInfo(context, pluginKey);
+        PluginFactory.PluginInfo info = PluginFactory.getPluginInfo(pluginKey);
         setTitle(info.getDisplayName());
         setSummary(info.getDescription());
 setIcon(android.R.color.transparent);

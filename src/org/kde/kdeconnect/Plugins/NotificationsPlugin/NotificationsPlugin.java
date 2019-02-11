@@ -42,6 +42,7 @@ import android.util.Log;
 import org.kde.kdeconnect.Helpers.AppsHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.AlertDialogFragment;
 import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
@@ -61,6 +62,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+@PluginFactory.LoadablePlugin
 public class NotificationsPlugin extends Plugin implements NotificationReceiver.NotificationListener {
 
     private final static String PACKET_TYPE_NOTIFICATION = "kdeconnect.notification";

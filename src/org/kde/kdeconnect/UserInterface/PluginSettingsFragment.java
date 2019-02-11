@@ -75,7 +75,7 @@ public class PluginSettingsFragment extends PreferenceFragmentCompat {
     public void onResume() {
         super.onResume();
 
-        PluginFactory.PluginInfo info = PluginFactory.getPluginInfo(requireContext(), pluginKey);
+        PluginFactory.PluginInfo info = PluginFactory.getPluginInfo(pluginKey);
         requireActivity().setTitle(getString(R.string.plugin_settings_with_name, info.getDisplayName()));
     }
 }

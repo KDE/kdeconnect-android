@@ -43,3 +43,4 @@
 -dontwarn sun.reflect.**
 -dontwarn android.test.**
 -dontwarn java.lang.management.**
+-dontwarn javax.**

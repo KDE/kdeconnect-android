@@ -25,9 +25,11 @@ import android.content.Intent;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 
+@PluginFactory.LoadablePlugin
 public class FindMyPhonePlugin extends Plugin {
 
     public final static String PACKET_TYPE_FINDMYPHONE_REQUEST = "kdeconnect.findmyphone.request";

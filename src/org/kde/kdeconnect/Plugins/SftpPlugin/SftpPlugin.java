@@ -27,12 +27,14 @@ import android.os.Environment;
 import org.kde.kdeconnect.Helpers.StorageHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+@PluginFactory.LoadablePlugin
 public class SftpPlugin extends Plugin {
 
     private final static String PACKET_TYPE_SFTP = "kdeconnect.sftp";

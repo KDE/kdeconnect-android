@@ -28,9 +28,10 @@ import android.os.BatteryManager;
 
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
-
+@PluginFactory.LoadablePlugin
 public class BatteryPlugin extends Plugin {
 
     private final static String PACKET_TYPE_BATTERY = "kdeconnect.battery";

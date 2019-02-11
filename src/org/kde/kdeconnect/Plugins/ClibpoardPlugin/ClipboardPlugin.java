@@ -22,8 +22,10 @@ package org.kde.kdeconnect.Plugins.ClibpoardPlugin;
 
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
+@PluginFactory.LoadablePlugin
 public class ClipboardPlugin extends Plugin {
 
     private final static String PACKET_TYPE_CLIPBOARD = "kdeconnect.clipboard";

@@ -25,9 +25,10 @@ import android.app.Activity;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.FindMyPhonePlugin.FindMyPhonePlugin;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
-
+@PluginFactory.LoadablePlugin
 public class FindRemoteDevicePlugin extends Plugin {
 
     @Override

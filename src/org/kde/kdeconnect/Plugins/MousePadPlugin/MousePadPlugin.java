@@ -26,10 +26,12 @@ import android.graphics.drawable.Drawable;
 
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
 import androidx.core.content.ContextCompat;
 
+@PluginFactory.LoadablePlugin
 public class MousePadPlugin extends Plugin {
 
     //public final static String PACKET_TYPE_MOUSEPAD = "kdeconnect.mousepad";

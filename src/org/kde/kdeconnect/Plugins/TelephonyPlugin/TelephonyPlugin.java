@@ -37,6 +37,7 @@ import android.util.Log;
 import org.kde.kdeconnect.Helpers.ContactsHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.Map;
@@ -45,6 +46,7 @@ import java.util.TimerTask;
 
 import androidx.core.content.ContextCompat;
 
+@PluginFactory.LoadablePlugin
 public class TelephonyPlugin extends Plugin {
 
 

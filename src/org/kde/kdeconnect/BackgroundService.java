@@ -42,6 +42,7 @@ import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect_tp.R;
 
@@ -284,6 +285,7 @@ public class BackgroundService extends Service {
 
         Log.i("KDE/BackgroundService", "Service not started yet, initializing...");
 
+        PluginFactory.initPluginInfo(getBaseContext());
         initializeSecurityParameters();
         NotificationHelper.initializeChannels(this);
         loadRememberedDevicesFromSettings();
