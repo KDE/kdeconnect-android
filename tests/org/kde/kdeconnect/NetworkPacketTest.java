@@ -20,19 +20,40 @@
 
 package org.kde.kdeconnect;
 
+import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONException;
-import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
-import org.skyscreamer.jsonassert.JSONAssert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.kde.kdeconnect.Helpers.DeviceHelper;
+import org.mockito.Mockito;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.PrivateKey;
-import java.security.PublicKey;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyString;
 
-class NetworkPacketTest extends AndroidTestCase {
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({DeviceHelper.class, Log.class})
+public class NetworkPacketTest {
 
+    @Before
+    public void setUp() {
+        PowerMockito.mockStatic(DeviceHelper.class);
+        PowerMockito.when(DeviceHelper.getDeviceId(any())).thenReturn("123");
+        PowerMockito.when(DeviceHelper.getDeviceType(any())).thenReturn(Device.DeviceType.Phone);
+
+        PowerMockito.mockStatic(Log.class);
+    }
+
+    @Test
     public void testNetworkPacket() throws JSONException {
         NetworkPacket np = new NetworkPacket("com.test");
 
@@ -61,67 +82,17 @@ class NetworkPacketTest extends AndroidTestCase {
 
     }
 
+    @Test
     public void testIdentity() {
 
-        NetworkPacket np = NetworkPacket.createIdentityPacket(getContext());
+        Context context = Mockito.mock(Context.class);
+        MockSharedPreference settings = new MockSharedPreference();
+        Mockito.when(context.getSharedPreferences(anyString(), anyInt())).thenReturn(settings);
+
+        NetworkPacket np = NetworkPacket.createIdentityPacket(context);
 
         assertEquals(np.getInt("protocolVersion"), NetworkPacket.ProtocolVersion);
 
-    }
-
-    public void testEncryption() throws JSONException {
-        NetworkPacket original = new NetworkPacket("com.test");
-        original.set("hello", "hola");
-
-        NetworkPacket copy = NetworkPacket.unserialize(original.serialize());
-
-        NetworkPacket decrypted = new NetworkPacket("");
-
-        KeyPair keyPair;
-        try {
-            KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
-            keyGen.initialize(2048);
-            keyPair = keyGen.genKeyPair();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("KDE/initializeRsaKeys", "Exception");
-            return;
-        }
-
-        PrivateKey privateKey = keyPair.getPrivate();
-        assertNotNull(privateKey);
-
-        PublicKey publicKey = keyPair.getPublic();
-        assertNotNull(publicKey);
-
-        // Encrypt and decrypt np
-        assertEquals(original.getType(), "com.test");
-        try {
-            NetworkPacket encrypted = RsaHelper.encrypt(original, publicKey);
-            assertEquals(encrypted.getType(), NetworkPacket.PACKET_TYPE_ENCRYPTED);
-
-            decrypted = RsaHelper.decrypt(encrypted, privateKey);
-            assertEquals(decrypted.getType(), "com.test");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        // np should be equal to np2
-        assertEquals(decrypted.getLong("id"), copy.getLong("id"));
-        assertEquals(decrypted.getType(), copy.getType());
-        assertEquals(decrypted.getJSONArray("body"), copy.getJSONArray("body"));
-
-        String json = "{\"body\":{\"nowPlaying\":\"A really long song name - A really long artist name\",\"player\":\"A really long player name\",\"the_meaning_of_life_the_universe_and_everything\":\"42\"},\"id\":945945945,\"type\":\"kdeconnect.a_really_really_long_package_type\"}\n";
-        NetworkPacket longJsonNp = NetworkPacket.unserialize(json);
-        try {
-            NetworkPacket encrypted = RsaHelper.encrypt(longJsonNp, publicKey);
-            decrypted = RsaHelper.decrypt(encrypted, privateKey);
-            String decryptedJson = decrypted.serialize();
-            JSONAssert.assertEquals(json, decryptedJson, true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 }

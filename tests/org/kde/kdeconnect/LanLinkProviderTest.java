@@ -20,29 +20,43 @@
 
 package org.kde.kdeconnect;
 
+import android.util.Log;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.kde.kdeconnect.Backends.LanBackend.LanLink;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
+import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.mockito.Mockito;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.Socket;
 import java.util.HashMap;
 
-class LanLinkProviderTest extends AndroidTestCase {
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 
-    private LanLinkProvider linkProvider;
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({DeviceHelper.class, Log.class})
+public class LanLinkProviderTest {
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
+    @Before
+    public void setUp() {
+        PowerMockito.mockStatic(DeviceHelper.class);
+        PowerMockito.when(DeviceHelper.getDeviceId(any())).thenReturn("123");
 
-        System.setProperty("dexmaker.dexcache", getContext().getCacheDir().getPath());
-
-        linkProvider = new LanLinkProvider(getContext());
+        PowerMockito.mockStatic(Log.class);
     }
 
+    @Test
     public void testIdentityPacketReceived() throws Exception {
+
+        LanLinkProvider linkProvider = new LanLinkProvider(null);
 
         NetworkPacket networkPacket = Mockito.mock(NetworkPacket.class);
         Mockito.when(networkPacket.getType()).thenReturn("kdeconnect.identity");
