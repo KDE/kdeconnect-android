@@ -239,10 +239,6 @@ public abstract class Plugin {
      * the problem (and how to fix it, if possible) to the user.
      */
 
-    public AlertDialogFragment getErrorDialog() {
-        return null;
-    }
-
     public AlertDialogFragment getPermissionExplanationDialog(int requestCode) {
         return requestPermissionDialog(getRequiredPermissions(), permissionExplanation, requestCode);
     }

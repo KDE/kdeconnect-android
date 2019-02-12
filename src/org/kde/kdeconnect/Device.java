@@ -83,7 +83,6 @@ public class Device implements BaseLink.PacketReceiver {
 
     private List<String> m_supportedPlugins = new ArrayList<>();
     private final ConcurrentHashMap<String, Plugin> plugins = new ConcurrentHashMap<>();
-    private final ConcurrentHashMap<String, Plugin> failedPlugins = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, Plugin> pluginsWithoutPermissions = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, Plugin> pluginsWithoutOptionalPermissions = new ConcurrentHashMap<>();
     private Map<String, ArrayList<String>> pluginsByIncomingInterface = new HashMap<>();
@@ -686,23 +685,12 @@ public class Device implements BaseLink.PacketReceiver {
     //
 
     public <T extends Plugin> T getPlugin(Class<T> pluginClass) {
-        return (T) getPlugin(Plugin.getPluginKey(pluginClass));
+        Plugin plugin = getPlugin(Plugin.getPluginKey(pluginClass));
+        return (T) plugin;
     }
 
-    public <T extends Plugin> T getPlugin(Class<T> pluginClass, boolean includeFailed) {
-        return (T) getPlugin(Plugin.getPluginKey(pluginClass), includeFailed);
-    }
-
-    private Plugin getPlugin(String pluginKey) {
-        return getPlugin(pluginKey, false);
-    }
-
-    public Plugin getPlugin(String pluginKey, boolean includeFailed) {
-        Plugin plugin = plugins.get(pluginKey);
-        if (includeFailed && plugin == null) {
-            plugin = failedPlugins.get(pluginKey);
-        }
-        return plugin;
+    public Plugin getPlugin(String pluginKey) {
+        return plugins.get(pluginKey);
     }
 
     private synchronized boolean addPlugin(final String pluginKey) {
@@ -728,8 +716,6 @@ public class Device implements BaseLink.PacketReceiver {
         final Plugin plugin = PluginFactory.instantiatePluginForDevice(context, pluginKey, this);
         if (plugin == null) {
             Log.e("KDE/addPlugin", "could not instantiate plugin: " + pluginKey);
-            //Can't put a null
-            //failedPlugins.put(pluginKey, null);
             return false;
         }
 
@@ -744,18 +730,12 @@ public class Device implements BaseLink.PacketReceiver {
         } catch (Exception e) {
             success = false;
             e.printStackTrace();
-            Log.e("KDE/addPlugin", "Exception loading plugin " + pluginKey);
+        }
+        if (!success) {
+            Log.e("KDE/addPlugin", "plugin failed to load " + pluginKey);
         }
 
-        if (success) {
-            //Log.e("addPlugin","added " + pluginKey);
-            failedPlugins.remove(pluginKey);
-            plugins.put(pluginKey, plugin);
-        } else {
-            Log.e("KDE/addPlugin", "plugin failed to load " + pluginKey);
-            plugins.remove(pluginKey);
-            failedPlugins.put(pluginKey, plugin);
-        }
+        plugins.put(pluginKey, plugin);
 
         if (!plugin.checkRequiredPermissions()) {
             Log.e("KDE/addPlugin", "No permission " + pluginKey);
@@ -781,14 +761,9 @@ public class Device implements BaseLink.PacketReceiver {
     private synchronized boolean removePlugin(String pluginKey) {
 
         Plugin plugin = plugins.remove(pluginKey);
-        Plugin failedPlugin = failedPlugins.remove(pluginKey);
 
         if (plugin == null) {
-            if (failedPlugin == null) {
-                //Not found
-                return false;
-            }
-            plugin = failedPlugin;
+            return false;
         }
 
         try {
@@ -813,8 +788,6 @@ public class Device implements BaseLink.PacketReceiver {
     }
 
     public void reloadPluginsFromSettings() {
-
-        failedPlugins.clear();
 
         HashMap<String, ArrayList<String>> newPluginsByIncomingInterface = new HashMap<>();
 
@@ -858,10 +831,6 @@ public class Device implements BaseLink.PacketReceiver {
 
     public ConcurrentHashMap<String, Plugin> getLoadedPlugins() {
         return plugins;
-    }
-
-    public ConcurrentHashMap<String, Plugin> getFailedPlugins() {
-        return failedPlugins;
     }
 
     public ConcurrentHashMap<String, Plugin> getPluginsWithoutPermissions() {

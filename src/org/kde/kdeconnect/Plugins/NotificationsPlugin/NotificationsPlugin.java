@@ -101,6 +101,12 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         return null;
     }
 
+    @Override
+    public boolean checkRequiredPermissions() {
+        //Notifications use a different kind of permission, because it was added before the current runtime permissions model
+        return hasPermission();
+    }
+
     private boolean hasPermission() {
         String notificationListenerList = Settings.Secure.getString(context.getContentResolver(), "enabled_notification_listeners");
         return (notificationListenerList != null && notificationListenerList.contains(context.getPackageName()));
@@ -492,7 +498,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     }
 
     @Override
-    public AlertDialogFragment getErrorDialog() {
+    public AlertDialogFragment getPermissionExplanationDialog(int requestCode) {
         return new StartActivityAlertDialogFragment.Builder()
                 .setTitle(R.string.pref_plugin_notifications)
                 .setMessage(R.string.no_permissions)
@@ -500,7 +506,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 .setNegativeButton(R.string.cancel)
                 .setIntentAction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")
                 .setStartForResult(true)
-                .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
+                .setRequestCode(requestCode)
                 .create();
     }
 

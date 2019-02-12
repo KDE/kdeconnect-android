@@ -54,6 +54,7 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.security.GeneralSecurityException;
 import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -81,7 +82,7 @@ class SimpleSftpServer {
 
     private final SshServer sshd = SshServer.setUpDefaultServer();
 
-    void init(Context context, Device device) throws Exception {
+    void init(Context context, Device device) throws GeneralSecurityException {
 
         sshd.setKeyExchangeFactories(Arrays.asList(
                 new DHG14.Factory(),

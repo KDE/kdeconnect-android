@@ -330,22 +330,14 @@ public class DeviceFragment extends Fragment {
 
                                 pluginListItems.add(new PluginItem(p, v -> p.startMainActivity(mActivity)));
                             }
-
-                            DeviceFragment.this.createPluginsList(device.getFailedPlugins(), R.string.plugins_failed_to_load, (plugin) -> {
-                                AlertDialogFragment dialog = plugin.getErrorDialog();
-                                if (dialog != null) {
-                                    dialog.show(getChildFragmentManager(), null);
-                                }
-                            });
                             DeviceFragment.this.createPluginsList(device.getPluginsWithoutPermissions(), R.string.plugins_need_permission, (plugin) -> {
-                                AlertDialogFragment dialog = plugin.getPermissionExplanationDialog(0);
-
+                                AlertDialogFragment dialog = plugin.getPermissionExplanationDialog(MainActivity.RESULT_NEEDS_RELOAD);
                                 if (dialog != null) {
                                     dialog.show(getChildFragmentManager(), null);
                                 }
                             });
                             DeviceFragment.this.createPluginsList(device.getPluginsWithoutOptionalPermissions(), R.string.plugins_need_optional_permission, (plugin) -> {
-                                AlertDialogFragment dialog = plugin.getOptionalPermissionExplanationDialog(0);
+                                AlertDialogFragment dialog = plugin.getOptionalPermissionExplanationDialog(MainActivity.RESULT_NEEDS_RELOAD);
 
                                 if (dialog != null) {
                                     dialog.show(getChildFragmentManager(), null);

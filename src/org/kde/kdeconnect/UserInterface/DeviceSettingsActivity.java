@@ -71,7 +71,7 @@ public class DeviceSettingsActivity
                 fragment = DeviceSettingsFragment.newInstance(deviceId);
             } else {
                 Device device = BackgroundService.getInstance().getDevice(deviceId);
-                Plugin plugin = device.getPlugin(pluginKey, true);
+                Plugin plugin = device.getPlugin(pluginKey);
                 fragment = plugin.getSettingsFragment();
             }
 

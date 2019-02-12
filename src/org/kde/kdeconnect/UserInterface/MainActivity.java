@@ -360,14 +360,19 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        boolean grantedPermission = false;
         for (int result : grantResults) {
             if (result == PackageManager.PERMISSION_GRANTED) {
-                //New permission granted, reload plugins
-                BackgroundService.RunCommand(this, service -> {
-                    Device device = service.getDevice(mCurrentDevice);
-                    device.reloadPluginsFromSettings();
-                });
+                grantedPermission = true;
+                break;
             }
+        }
+        if (grantedPermission) {
+            //New permission granted, reload plugins
+            BackgroundService.RunCommand(this, service -> {
+                Device device = service.getDevice(mCurrentDevice);
+                device.reloadPluginsFromSettings();
+            });
         }
     }
 

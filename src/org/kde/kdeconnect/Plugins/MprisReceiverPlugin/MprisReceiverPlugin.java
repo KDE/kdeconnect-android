@@ -208,7 +208,13 @@ public class MprisReceiverPlugin extends Plugin implements MediaSessionManager.O
     }
 
     @Override
-    public AlertDialogFragment getErrorDialog() {
+    public boolean checkRequiredPermissions() {
+        //Notifications use a different kind of permission, because it was added before the current runtime permissions model
+        return hasPermission();
+    }
+
+    @Override
+    public AlertDialogFragment getPermissionExplanationDialog(int requestCode) {
         return new StartActivityAlertDialogFragment.Builder()
                 .setTitle(R.string.pref_plugin_mpris)
                 .setMessage(R.string.no_permission_mprisreceiver)
@@ -216,7 +222,7 @@ public class MprisReceiverPlugin extends Plugin implements MediaSessionManager.O
                 .setNegativeButton(R.string.cancel)
                 .setIntentAction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")
                 .setStartForResult(true)
-                .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
+                .setRequestCode(requestCode)
                 .create();
     }
 

@@ -32,10 +32,10 @@ class PluginPreference extends CheckBoxPreference {
 setIcon(android.R.color.transparent);
         setChecked(device.isPluginEnabled(pluginKey));
 
-        Plugin plugin = device.getPlugin(pluginKey, true);
+        Plugin plugin = device.getPlugin(pluginKey);
         if (info.hasSettings() && plugin != null) {
             this.listener = v -> {
-                Plugin plugin1 = device.getPlugin(pluginKey, true);
+                Plugin plugin1 = device.getPlugin(pluginKey);
                 if (plugin1 != null) {
                     callback.onStartPluginSettingsFragment(plugin1);
                 } else { //Could happen if the device is not connected anymore
