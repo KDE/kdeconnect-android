@@ -116,6 +116,18 @@
     <item quantity="many">Odesláno %1$d ze %2$d souborů</item>
     <item quantity="other"/>
   </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one">Přijat soubor z %1$s</item>
+    <item quantity="few">Přijaty %2$d soubory z %1$s</item>
+    <item quantity="many">Přijato %2$d souborů z %1$s</item>
+    <item quantity="other"/>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Selhalo přijímání souboru z %1$s</item>
+    <item quantity="few">Selhalo přijímání %2$d ze %3$d souborů z %1$s</item>
+    <item quantity="many">Selhalo přijímání %2$d ze %3$d souborů z %1$s</item>
+    <item quantity="other"/>
+  </plurals>
   <string name="received_file_text">Ťukněte pro otevření \'%1s\'</string>
   <string name="cannot_create_file">Nelze vytvořit soubor %s</string>
   <string name="sent_file_title">Soubor byl odeslán do %1s</string>
@@ -260,4 +272,13 @@
   <string name="settings_more_settings_title">Více nastavení</string>
   <string name="settings_more_settings_text">Nastavení \"pro každé zařízení\" lze najít v \'Nastavení modulu\' v zařízení.</string>
   <string name="setting_persistent_notification">Ukázat stálé upozornění</string>
+  <string name="setting_persistent_notification_oreo">Perzistentní upozornění</string>
+  <string name="setting_persistent_notification_description">Ťuknutím povolíte/zakážete v nastavení upozornění</string>
+  <string name="extra_options">Další možnosti</string>
+  <string name="privacy_options">Možnosti soukromí</string>
+  <string name="set_privacy_options">Nastavte své možnosti soukromí</string>
+  <string name="new_notification">Nové oznámení</string>
+  <string name="block_contents">Blokovat obsah oznámení</string>
+  <string name="block_images">Blokovat obrázky z upozornění</string>
+  <string name="notification_channel_receivenotification">Oznamování z ostatních zařízení</string>
 </resources>
