@@ -13,7 +13,6 @@
   <string name="pref_plugin_clipboard_desc">Berbagi isi clipboard</string>
   <string name="pref_plugin_mousepad">Input jarak jauh</string>
   <string name="pref_plugin_mousepad_desc">Gunakan telepon atau tabletmu sebagai touchpad dan keyboard</string>
-  <string name="pref_plugin_presenter">Remot presentasi</string>
   <string name="pref_plugin_presenter_desc">Gunakan perangkatmu untuk mengubah slide dalam sebuah presentasi</string>
   <string name="pref_plugin_remotekeyboard">Terima penekanan tuts jarak jauh</string>
   <string name="pref_plugin_remotekeyboard_desc">Terima peristiwa tekan-tuts dari perangkat jarak jauh</string>
@@ -73,7 +72,6 @@
   <string name="category_connected_devices">Perangkat terkoneksi</string>
   <string name="category_not_paired_devices">Perangkat tersedia</string>
   <string name="category_remembered_devices">Perangkat teringat</string>
-  <string name="plugins_failed_to_load">Plugin gagal memuat (ketuk untuk info selebihnya):</string>
   <string name="device_menu_plugins">Setelan plugin</string>
   <string name="device_menu_unpair">Leraikan</string>
   <string name="device_not_reachable">Menyandingkan perangkat tidak dapat dicapai</string>

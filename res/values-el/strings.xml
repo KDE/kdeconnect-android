@@ -63,7 +63,6 @@
   <string name="category_connected_devices">Συνδεδεμένες συσκευές</string>
   <string name="category_not_paired_devices">Διαθέσιμες συσκευές</string>
   <string name="category_remembered_devices">Συσκευές στη μνήμη</string>
-  <string name="plugins_failed_to_load">Αποτυχία φόρτωσης προσθέτων (χτυπήστε για περισσότερες πληροφορίες):</string>
   <string name="device_menu_plugins">Ρυθμίσεις προσθέτων</string>
   <string name="device_menu_unpair">Διαχωρισμός</string>
   <string name="device_not_reachable">Η συζευγμένη συσκευή δεν είναι προσβάσιμη</string>

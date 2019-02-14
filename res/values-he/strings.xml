@@ -63,7 +63,6 @@
   <string name="category_connected_devices">התקנים מחוברים</string>
   <string name="category_not_paired_devices">התקנים זמינים</string>
   <string name="category_remembered_devices">התקנים זכורים</string>
-  <string name="plugins_failed_to_load">טעינת התוסף נכשלה (לחץ לעוד מידע):</string>
   <string name="device_menu_plugins">הגדרות תוספים</string>
   <string name="device_menu_unpair">בטל התאמה</string>
   <string name="device_not_reachable">ההתקן המותאם לא זמין</string>

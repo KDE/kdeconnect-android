@@ -13,7 +13,6 @@
   <string name="pref_plugin_clipboard_desc">Compartilha o conteúdo da área de transferência</string>
   <string name="pref_plugin_mousepad">Introdução de dados remota</string>
   <string name="pref_plugin_mousepad_desc">Use seu telefone ou tablet como mouse e teclado</string>
-  <string name="pref_plugin_presenter">Apresentação remota</string>
   <string name="pref_plugin_presenter_desc">Use o seu dispositivo para mudar de slides em uma apresentação</string>
   <string name="pref_plugin_remotekeyboard">Receber pressionamento de teclas remotamente</string>
   <string name="pref_plugin_remotekeyboard_desc">Recebe os eventos de pressionamento de teclas dos dispositivos remotos</string>
@@ -74,7 +73,6 @@
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos disponíveis</string>
   <string name="category_remembered_devices">Dispositivos lembrados</string>
-  <string name="plugins_failed_to_load">Plugins não carregados (toque para mais informações):</string>
   <string name="device_menu_plugins">Configuração dos plugins</string>
   <string name="device_menu_unpair">Cancelar emparelhamento</string>
   <string name="device_not_reachable">O dispositivo pareado está inacessível</string>
@@ -230,7 +228,6 @@
   <string name="settings_icon_description">Ícone de configurações</string>
   <string name="presenter_fullscreen">Tela inteira</string>
   <string name="presenter_exit">Sair da apresentação</string>
-  <string name="presenter_lock_tip">Você pode bloquear o seu dispositivo para usar as teclas de volume como botões anterior/próximo</string>
   <string name="add_command">Adicionar um comando</string>
   <string name="addcommand_explanation">Não há comandos registrados</string>
   <string name="addcommand_explanation2">Você pode adicionar novos comandos nas Configurações do Sistema KDE Connect</string>

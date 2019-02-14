@@ -13,7 +13,7 @@
   <string name="pref_plugin_clipboard_desc">Comparteix el contingut del porta-retalls</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
   <string name="pref_plugin_mousepad_desc">Usa el vostre telèfon o tauleta com un ratolí i un teclat</string>
-  <string name="pref_plugin_presenter">Presentació remota</string>
+  <string name="pref_plugin_presenter">Presentació de diapositives remota</string>
   <string name="pref_plugin_presenter_desc">Useu el dispositiu per canviar les dispositives d\'una presentació</string>
   <string name="pref_plugin_remotekeyboard">S\'estan rebent pulsacions de tecla remotes</string>
   <string name="pref_plugin_remotekeyboard_desc">S\'estan rebent esdeveniments de pulsacions de tecla des de dispositius remots</string>
@@ -74,7 +74,6 @@
   <string name="category_connected_devices">Dispositius connectats</string>
   <string name="category_not_paired_devices">Dispositius disponibles</string>
   <string name="category_remembered_devices">Dispositius recordats</string>
-  <string name="plugins_failed_to_load">Els connectors han fallat en carregar-los (puntegeu per a més informació):</string>
   <string name="device_menu_plugins">Arranjament del connector</string>
   <string name="device_menu_unpair">Desparella</string>
   <string name="device_not_reachable">No s\'ha pogut accedir al dispositiu parell</string>
@@ -230,7 +229,7 @@
   <string name="settings_icon_description">Icona d\'arranjament</string>
   <string name="presenter_fullscreen">Pantalla completa</string>
   <string name="presenter_exit">Surt de la presentació</string>
-  <string name="presenter_lock_tip">Podeu bloquejar el dispositiu per usar les tecles de volum com a botons d\'anterior/següent</string>
+  <string name="presenter_lock_tip">Podeu bloquejar el dispositiu i emprar les tecles de volum per anar a la diapositiva anterior/següent</string>
   <string name="add_command">Afegeix una ordre</string>
   <string name="addcommand_explanation">No hi ha cap ordre registrada</string>
   <string name="addcommand_explanation2">Podeu afegir ordres noves a l\'Arranjament del sistema del KDE Connect</string>

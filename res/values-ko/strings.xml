@@ -9,7 +9,6 @@
   <string name="pref_plugin_clipboard_desc">클립보드 내용 동기화</string>
   <string name="pref_plugin_mousepad">원격 입력</string>
   <string name="pref_plugin_mousepad_desc">내 휴대폰이나 태블릿을 터치패드와 키보드로 사용하기</string>
-  <string name="pref_plugin_presenter">프레젠테이션 리모콘</string>
   <string name="pref_plugin_presenter_desc">내 장치로 프레젠테이션 슬라이드 전환하기</string>
   <string name="pref_plugin_remotekeyboard">원격 키 입력 받기</string>
   <string name="pref_plugin_remotekeyboard_desc">원격 장치의 키 입력 이벤트 받기</string>
@@ -70,7 +69,6 @@
   <string name="category_connected_devices">연결된 장치</string>
   <string name="category_not_paired_devices">사용 가능한 장치</string>
   <string name="category_remembered_devices">기억하는 장치</string>
-  <string name="plugins_failed_to_load">불러올 수 없는 플러그인(정보를 보려면 누르기):</string>
   <string name="device_menu_plugins">플러그인 설정</string>
   <string name="device_menu_unpair">연결 해제</string>
   <string name="device_not_reachable">연결된 장치에 도달할 수 없음</string>
@@ -203,7 +201,6 @@
   <string name="settings_icon_description">설정 아이콘</string>
   <string name="presenter_fullscreen">전체 화면</string>
   <string name="presenter_exit">프레젠테이션 끝내기</string>
-  <string name="presenter_lock_tip">장치 잠금 상태에서는 음량 키를 이전/다음 단추로 사용할 수 있습니다</string>
   <string name="add_command">명령 추가</string>
   <string name="addcommand_explanation">등록된 명령이 없습니다</string>
   <string name="addcommand_explanation2">시스템 설정의 KDE Connect에서 새로운 명령을 추가할 수 있습니다</string>

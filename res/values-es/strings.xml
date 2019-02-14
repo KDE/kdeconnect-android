@@ -13,7 +13,6 @@
   <string name="pref_plugin_clipboard_desc">Compartir el contenido del portapapeles</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
   <string name="pref_plugin_mousepad_desc">Usar su teléfono o tableta como teclado y teclado táctil</string>
-  <string name="pref_plugin_presenter">Presentación remota</string>
   <string name="pref_plugin_presenter_desc">Use su dispositivo para cambiar las diapositivas de una presentación</string>
   <string name="pref_plugin_remotekeyboard">Recibir pulsaciones de teclas remotas</string>
   <string name="pref_plugin_remotekeyboard_desc">Recibir eventos de pulsación de teclas desde dispositivos remotos</string>
@@ -74,7 +73,6 @@
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos disponibles</string>
   <string name="category_remembered_devices">Dispositivos recordados</string>
-  <string name="plugins_failed_to_load">Complementos cuya carga ha fallado (pulse para más información):</string>
   <string name="device_menu_plugins">Preferencias del complemento</string>
   <string name="device_menu_unpair">Desvincular</string>
   <string name="device_not_reachable">No se encuentra el dispositivo aparejado</string>
@@ -230,7 +228,6 @@
   <string name="settings_icon_description">Icono de preferencias</string>
   <string name="presenter_fullscreen">Pantalla completa</string>
   <string name="presenter_exit">Salir de la presentación</string>
-  <string name="presenter_lock_tip">Puede bloquear su dispositivo para usar las teclas de volumen como botones previa/siguiente</string>
   <string name="add_command">Añadir una orden</string>
   <string name="addcommand_explanation">No hay ninguna orden registrada</string>
   <string name="addcommand_explanation2">Puede añadir nuevas órdenes en las preferencias del sistema de KDE Connect</string>

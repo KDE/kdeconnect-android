@@ -13,7 +13,6 @@
   <string name="pref_plugin_clipboard_desc">Использование общего буфера обмена</string>
   <string name="pref_plugin_mousepad">Удалённый ввод</string>
   <string name="pref_plugin_mousepad_desc">Использование телефона или планшета в качестве сенсорной панели и клавиатуры</string>
-  <string name="pref_plugin_presenter">Управление презентацией</string>
   <string name="pref_plugin_presenter_desc">Использование телефона для смены слайдов презентации</string>
   <string name="pref_plugin_remotekeyboard">Получение удалённых нажатий клавиш</string>
   <string name="pref_plugin_remotekeyboard_desc">Получение нажатий клавиш с удалённых устройств</string>
@@ -70,7 +69,6 @@
   <string name="category_connected_devices">Подключённые устройства</string>
   <string name="category_not_paired_devices">Доступные устройства</string>
   <string name="category_remembered_devices">Известные устройства</string>
-  <string name="plugins_failed_to_load">Не удалось загрузить следующие модули (нажмите для просмотра подробностей):</string>
   <string name="device_menu_plugins">Настройка модулей</string>
   <string name="device_menu_unpair">Снять сопряжение</string>
   <string name="device_not_reachable">Сопряжённое устройство недоступно</string>

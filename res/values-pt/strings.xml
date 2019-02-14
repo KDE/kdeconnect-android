@@ -13,7 +13,7 @@
   <string name="pref_plugin_clipboard_desc">Partilhar o conteúdo da área de transferência</string>
   <string name="pref_plugin_mousepad">Introdução remota de dados</string>
   <string name="pref_plugin_mousepad_desc">Usar o seu telefone ou \'tablet\' como um rato ou teclado</string>
-  <string name="pref_plugin_presenter">Comando de apresentações</string>
+  <string name="pref_plugin_presenter">Apresentação remota</string>
   <string name="pref_plugin_presenter_desc">Use o seu dispositivo para mudar de \'slides\' numa apresentação</string>
   <string name="pref_plugin_remotekeyboard">Receber as teclas remotamente</string>
   <string name="pref_plugin_remotekeyboard_desc">Receber eventos de teclas dos dispositivos remotos</string>
@@ -74,7 +74,6 @@
   <string name="category_connected_devices">Dispositivos ligados</string>
   <string name="category_not_paired_devices">Dispositivos disponíveis</string>
   <string name="category_remembered_devices">Dispositivos recordados</string>
-  <string name="plugins_failed_to_load">Não foi possível carregar os \'plugin\' (toque para mais informações):</string>
   <string name="device_menu_plugins">Configuração do \'plugin\'</string>
   <string name="device_menu_unpair">Desemparelhar</string>
   <string name="device_not_reachable">O dispositivo emparelhado está inacessível</string>
@@ -230,7 +229,7 @@
   <string name="settings_icon_description">Ícone de configuração</string>
   <string name="presenter_fullscreen">Ecrã Completo</string>
   <string name="presenter_exit">Sair da apresentação</string>
-  <string name="presenter_lock_tip">Poderá bloquear o seu dispositivo para usar as teclas de volume como botões anterior/seguinte</string>
+  <string name="presenter_lock_tip">Poderá bloquear o seu dispositivo para usar as teclas de volume como botões para o \'slide\' anterior/seguinte</string>
   <string name="add_command">Adicionar um comando</string>
   <string name="addcommand_explanation">Não existem comandos registados</string>
   <string name="addcommand_explanation2">Poderá adicionar comandos novos na Configuração do Sistema KDE Connect</string>

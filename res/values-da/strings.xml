@@ -63,7 +63,6 @@
   <string name="category_connected_devices">Forbundne enheder</string>
   <string name="category_not_paired_devices">Tilgængelig enheder</string>
   <string name="category_remembered_devices">Huskede enheder</string>
-  <string name="plugins_failed_to_load">Plugins kunne ikke indlæses (tap for mere info):</string>
   <string name="device_menu_plugins">Plugin-indstillinger</string>
   <string name="device_menu_unpair">Fjern parring</string>
   <string name="device_not_reachable">Den parrede enhed kan ikke tilgås</string>

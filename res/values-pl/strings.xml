@@ -13,7 +13,6 @@
   <string name="pref_plugin_clipboard_desc">Udostępnia zawartość schowka</string>
   <string name="pref_plugin_mousepad">Zdalne sterowanie</string>
   <string name="pref_plugin_mousepad_desc">Umożliwia wykorzystanie telefonu lub tabletu jako myszy i klawiatury</string>
-  <string name="pref_plugin_presenter">Zdalna prezentacja</string>
   <string name="pref_plugin_presenter_desc">Umożliwia zmianę slajdów w prezentacji telefonem</string>
   <string name="pref_plugin_remotekeyboard">Odbiera zdalne naciśnięcia klawiszy</string>
   <string name="pref_plugin_remotekeyboard_desc">Odbiera naciśnięcia klawiszy od urządzeń zdalnych</string>
@@ -74,7 +73,6 @@
   <string name="category_connected_devices">Podłączone urządzenia</string>
   <string name="category_not_paired_devices">Dostępne urządzenia</string>
   <string name="category_remembered_devices">Zapamiętane urządzenia</string>
-  <string name="plugins_failed_to_load">Nieudane wczytywanie wtyczki (stuknij po więcej informacji):</string>
   <string name="device_menu_plugins">Ustawienia wtyczki</string>
   <string name="device_menu_unpair">Odparuj</string>
   <string name="device_not_reachable">Sparowane urządzenie nieosiągalne</string>
@@ -240,7 +238,6 @@
   <string name="settings_icon_description">Ikona ustawień</string>
   <string name="presenter_fullscreen">Pełny ekran</string>
   <string name="presenter_exit">Zakończ prezentację</string>
-  <string name="presenter_lock_tip">Możesz ustawić przyciski głośności na swoim urządzeniu jako przyciski dalej/wstecz</string>
   <string name="add_command">Dodaj polecenie</string>
   <string name="addcommand_explanation">Nie zarejestrowano żadnych poleceń</string>
   <string name="addcommand_explanation2">Nowe polecenia można dodawać w ustawieniach systemowych KDE Connect</string>

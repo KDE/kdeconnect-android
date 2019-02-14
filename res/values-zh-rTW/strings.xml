@@ -13,7 +13,6 @@
   <string name="pref_plugin_clipboard_desc">分享剪貼板的內容</string>
   <string name="pref_plugin_mousepad">遠端輸入</string>
   <string name="pref_plugin_mousepad_desc">使用您的智慧型手機或者平板來模擬觸碰板與鍵盤</string>
-  <string name="pref_plugin_presenter">遠端簡報</string>
   <string name="pref_plugin_presenter_desc">使用您的裝置來切換簡報中的投影片</string>
   <string name="pref_plugin_remotekeyboard">接收遠端按鍵輸入</string>
   <string name="pref_plugin_remotekeyboard_desc">從遠端裝置接收按鍵輸入活動</string>
@@ -74,7 +73,6 @@
   <string name="category_connected_devices">已連接的設備</string>
   <string name="category_not_paired_devices">可連接的設備</string>
   <string name="category_remembered_devices">已記住的設備</string>
-  <string name="plugins_failed_to_load">擴展插件讀取錯誤（點擊查看更多資訊）</string>
   <string name="device_menu_plugins">擴展插件設定</string>
   <string name="device_menu_unpair">取消配對</string>
   <string name="device_not_reachable">配對的設備無法連接</string>
@@ -225,7 +223,6 @@
   <string name="settings_icon_description">設定圖示</string>
   <string name="presenter_fullscreen">全螢幕</string>
   <string name="presenter_exit">離開簡報模式</string>
-  <string name="presenter_lock_tip">您能鎖定裝置以將音量鍵當作前進 / 後退按鈕使用</string>
   <string name="add_command">增加一行指令</string>
   <string name="addcommand_explanation">沒有指令被註冊</string>
   <string name="addcommand_explanation2">您現在可以在 KDE 連線系統設定增加新的指令</string>

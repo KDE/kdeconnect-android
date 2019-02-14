@@ -13,7 +13,6 @@
   <string name="pref_plugin_clipboard_desc">Partekatu arbelaren edukia</string>
   <string name="pref_plugin_mousepad">Urruneko sarrera</string>
   <string name="pref_plugin_mousepad_desc">Erabili zure telefonoa edo tableta ukimen-sagu eta teklatu gisa</string>
-  <string name="pref_plugin_presenter">Aurkezpenetarako urruneko agintea</string>
   <string name="pref_plugin_presenter_desc">Erabili zure gailua aurkezpen bateko diapositibak aldatzeko</string>
   <string name="pref_plugin_remotekeyboard">Jaso urruneko tekla-sakatzeak</string>
   <string name="pref_plugin_remotekeyboard_desc">Jaso tekla-sakatze gertaerak urruneko gailuetatik</string>
@@ -74,7 +73,6 @@
   <string name="category_connected_devices">Konektatutako gailuak</string>
   <string name="category_not_paired_devices">Gailu eskuragarriak</string>
   <string name="category_remembered_devices">Gogoratutako gailuak</string>
-  <string name="plugins_failed_to_load">Pluginak kargatzea huts egin du (tak egin informazio gehiagorako):</string>
   <string name="device_menu_plugins">Pluginen ezarpenak</string>
   <string name="device_menu_unpair">Desparekatu</string>
   <string name="device_not_reachable">Parekatu gailua ez dago eskuragarri</string>
@@ -230,7 +228,6 @@
   <string name="settings_icon_description">Ezarpenen ikonoa</string>
   <string name="presenter_fullscreen">Pantaila-betea</string>
   <string name="presenter_exit">Irten aurkezpenetik</string>
-  <string name="presenter_lock_tip">Zure gailua giltzatu dezakezu bolumen teklak aurreko/hurrengo botoien gisan erabiltzeko</string>
   <string name="add_command">Gehitu komando bat</string>
   <string name="addcommand_explanation">Ez dago komandorik erregistraturik</string>
   <string name="addcommand_explanation2">Komando berriak gehitu ditzakezu KDE Connect sistemaren ezarpenetan</string>

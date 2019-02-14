@@ -43,7 +43,6 @@
   <string name="category_connected_devices">Spojeni uređaji</string>
   <string name="category_not_paired_devices">Dostupni uređaji</string>
   <string name="category_remembered_devices">Zapamćeni uređaji</string>
-  <string name="plugins_failed_to_load">Dodaci se nisu uspjeli učitati (kucnite za više informacija):</string>
   <string name="device_menu_plugins">Postavke dodatka</string>
   <string name="device_menu_unpair">Razdvoji</string>
   <string name="device_not_reachable">Upareni uređaj nije dostupan</string>

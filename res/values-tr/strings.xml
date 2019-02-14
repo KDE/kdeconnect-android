@@ -63,7 +63,6 @@
   <string name="category_connected_devices">Bağlı aygıtlar</string>
   <string name="category_not_paired_devices">Kullanılabilir aygıtlar</string>
   <string name="category_remembered_devices">Hatırlanan aygıtlar</string>
-  <string name="plugins_failed_to_load">Eklentiler yüklenemedi (daha fazla bilgi için dokunun):</string>
   <string name="device_menu_plugins">Eklenti ayarları</string>
   <string name="device_menu_unpair">Ayır</string>
   <string name="device_not_reachable">Eşleşmiş aygıt ulaşılabilir değil</string>

@@ -13,7 +13,6 @@
   <string name="pref_plugin_clipboard_desc">Jaa leikepöydän sisältö</string>
   <string name="pref_plugin_mousepad">Kauko-ohjaus</string>
   <string name="pref_plugin_mousepad_desc">Käytä puhelinta tai tablettia hiirenä ja näppäimistönä</string>
-  <string name="pref_plugin_presenter">Esityskaukosäädin</string>
   <string name="pref_plugin_presenter_desc">Käytä laitettasi esitysdiojen vaihtamiseen</string>
   <string name="pref_plugin_remotekeyboard">Vastaanota etänäppäinpainallukset</string>
   <string name="pref_plugin_remotekeyboard_desc">Vastaanottaa etälaitteiden näppäinpainallustapahtumat</string>
@@ -74,7 +73,6 @@
   <string name="category_connected_devices">Yhdistetyt laitteet</string>
   <string name="category_not_paired_devices">Saatavilla olevat laitteet</string>
   <string name="category_remembered_devices">Muistetut laitteet</string>
-  <string name="plugins_failed_to_load">Seuraavien liitännäisten lataus epäonnistui (lisätietoa painamalla):</string>
   <string name="device_menu_plugins">Liitännäisten asetukset</string>
   <string name="device_menu_unpair">Poista laitepari</string>
   <string name="device_not_reachable">Laitepari tavoittamattomissa</string>
@@ -230,7 +228,6 @@
   <string name="settings_icon_description">Asetuskuvake</string>
   <string name="presenter_fullscreen">Koko näyttö</string>
   <string name="presenter_exit">Poistu esitystilasta</string>
-  <string name="presenter_lock_tip">Voit lukita laitteesi ja käyttää äänenvoimakkuuspainikkeita edellinen/seuraava-painikkeina</string>
   <string name="add_command">Lisää komento</string>
   <string name="addcommand_explanation">Komentoja ei ole rekisteröity</string>
   <string name="addcommand_explanation2">Voit lisätä uusia komentoja KDE Connectin järjestelmäasetuksissa</string>

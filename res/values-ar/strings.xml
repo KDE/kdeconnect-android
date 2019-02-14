@@ -57,7 +57,6 @@
   <string name="category_connected_devices">الأجهزة المقترن بها</string>
   <string name="category_not_paired_devices">الأجهزة المتوفّرة</string>
   <string name="category_remembered_devices">الأجهزة المتذكَّرة</string>
-  <string name="plugins_failed_to_load">فشل تحميل الملحقات (المس لمعلومات اكثر):</string>
   <string name="device_menu_plugins">إعدادات الملحقة</string>
   <string name="device_menu_unpair">ألغِ الاقتران</string>
   <string name="device_not_reachable">الجهاز المقترن غير قابل الوصول</string>

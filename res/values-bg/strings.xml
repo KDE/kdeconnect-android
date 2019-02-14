@@ -39,7 +39,6 @@
   </string-array>
   <string name="category_connected_devices">Свързани устройства</string>
   <string name="category_remembered_devices">Запомнени устройства</string>
-  <string name="plugins_failed_to_load">Неуспешно зареждане на приставки (докоснете за подробности)</string>
   <string name="device_menu_unpair">Разкачване</string>
   <string name="unknown_device">Неизвестно устройство</string>
   <string name="error_not_reachable">Устройството е недостъпно</string>

@@ -13,7 +13,7 @@
   <string name="pref_plugin_clipboard_desc">De inhoud van het klembord delen</string>
   <string name="pref_plugin_mousepad">Invoer op afstand</string>
   <string name="pref_plugin_mousepad_desc">Uw telefoon of tablet gebruiken als een touchpad en toetsenbord</string>
-  <string name="pref_plugin_presenter">Presentatie op afstand</string>
+  <string name="pref_plugin_presenter">Diavoorstelling op afstand</string>
   <string name="pref_plugin_presenter_desc">Uw apparaat gebruiken om dia\'s te wisselen in een presentatie</string>
   <string name="pref_plugin_remotekeyboard">Toetsaanslagen van afstand ontvangen</string>
   <string name="pref_plugin_remotekeyboard_desc">Toetsaanslaggebeurtenissen ontvangen van externe apparaten</string>
@@ -74,7 +74,6 @@
   <string name="category_connected_devices">Verbonden apparaten</string>
   <string name="category_not_paired_devices">Beschikbare apparaten</string>
   <string name="category_remembered_devices">Onthouden apparaten</string>
-  <string name="plugins_failed_to_load">Laden van plug-ins is mislukt (tap voor meer informatie):</string>
   <string name="device_menu_plugins">Plugin-instellingen</string>
   <string name="device_menu_unpair">Paar uit elkaar halen</string>
   <string name="device_not_reachable">Gepaard apparaat niet bereikbaar</string>
@@ -230,7 +229,7 @@
   <string name="settings_icon_description">Pictogram voor instellingen</string>
   <string name="presenter_fullscreen">Volledig scherm</string>
   <string name="presenter_exit">Presentatie beëindigen</string>
-  <string name="presenter_lock_tip">U kunt uw apparaat vergrendelen om de volumetoetsen te gebruiken als knoppen voort vorige/volgende</string>
+  <string name="presenter_lock_tip">U kunt uw apparaat vergrendelen en de volumetoetsen gebruiken om naar de vorige/volgende dia te gaan</string>
   <string name="add_command">Een commando toevoegen</string>
   <string name="addcommand_explanation">Er zijn geen commando\'s geregistreerd</string>
   <string name="addcommand_explanation2">U kunt nieuwe commando\'s in de instellingen voor het KDE connect-systeem toevoegen</string>

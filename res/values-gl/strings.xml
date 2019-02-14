@@ -13,7 +13,7 @@
   <string name="pref_plugin_clipboard_desc">Comparta o contido do portapapeis.</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
   <string name="pref_plugin_mousepad_desc">Use o teléfono ou tableta como área táctil e teclado.</string>
-  <string name="pref_plugin_presenter">Mando de presentación</string>
+  <string name="pref_plugin_presenter">Mando da presentación</string>
   <string name="pref_plugin_presenter_desc">Use o dispositivo para cambiar de dispositiva nunha presentación</string>
   <string name="pref_plugin_remotekeyboard">Recibir teclas premidas remotamente.</string>
   <string name="pref_plugin_remotekeyboard_desc">Recibir eventos de teclas premidas de dispositivos remotos.</string>
@@ -74,7 +74,6 @@
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos dispoñíbeis</string>
   <string name="category_remembered_devices">Dispositivos coñecidos</string>
-  <string name="plugins_failed_to_load">Non se puideron cargar os seguintes complementos (toque para obter máis información):</string>
   <string name="device_menu_plugins">Configuración do complemento</string>
   <string name="device_menu_unpair">Desemparellarse</string>
   <string name="device_not_reachable">O dispositivo emparellado está fóra do alcance.</string>
@@ -230,7 +229,7 @@
   <string name="settings_icon_description">Icona da configuración.</string>
   <string name="presenter_fullscreen">Pantalla completa</string>
   <string name="presenter_exit">Saír da presentación</string>
-  <string name="presenter_lock_tip">Pode bloquear o dispositivo para usar as teclas de volume como botóns de anterior e seguinte</string>
+  <string name="presenter_lock_tip">Pode bloquear o dispositivo e usar as teclas de volume para ir aos fotogramas anterior e seguinte</string>
   <string name="add_command">Engadir unha orde</string>
   <string name="addcommand_explanation">Non hai ordes rexistradas.</string>
   <string name="addcommand_explanation2">Pode engadir novas ordes desde a configuración do sistema de KDE Connect.</string>

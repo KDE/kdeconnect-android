@@ -57,7 +57,6 @@
   <string name="category_connected_devices">Ühendatud seadmed</string>
   <string name="category_not_paired_devices">Saadaolevad seadmed</string>
   <string name="category_remembered_devices">Meeldejäetud seadmed</string>
-  <string name="plugins_failed_to_load">Pluginate laadimine nurjus (koputa rohkema teabe saamiseks)</string>
   <string name="device_menu_plugins">Plugina seadistused</string>
   <string name="device_menu_unpair">Eemalda paardumine</string>
   <string name="device_not_reachable">Paardunud seade pole saadaval</string>
