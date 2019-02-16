@@ -383,12 +383,8 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
         }
 
         new Thread(() -> {
-
-            String deviceListPrefs = PreferenceManager.getDefaultSharedPreferences(context).getString(CustomDevicesActivity.KEY_CUSTOM_DEVLIST_PREFERENCE, "");
-            ArrayList<String> iplist = new ArrayList<>();
-            if (!deviceListPrefs.isEmpty()) {
-                iplist = CustomDevicesActivity.deserializeIpList(deviceListPrefs);
-            }
+            ArrayList<String> iplist = CustomDevicesActivity
+                    .getCustomDeviceList(PreferenceManager.getDefaultSharedPreferences(context));
             iplist.add("255.255.255.255"); //Default: broadcast.
 
             NetworkPacket identity = NetworkPacket.createIdentityPacket(context);

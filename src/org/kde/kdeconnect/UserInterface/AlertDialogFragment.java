@@ -25,6 +25,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -37,12 +38,14 @@ public class AlertDialogFragment extends DialogFragment implements DialogInterfa
     private static final String KEY_MESSAGE_RES_ID = "MessageResId";
     private static final String KEY_POSITIVE_BUTTON_TEXT_RES_ID = "PositiveButtonResId";
     private static final String KEY_NEGATIVE_BUTTON_TEXT_RES_ID = "NegativeButtonResId";
+    private static final String KEY_CUSTOM_VIEW_RES_ID = "CustomViewResId";
 
     @StringRes private int titleResId;
     @Nullable private String title;
     @StringRes private int messageResId;
     @StringRes private int positiveButtonResId;
     @StringRes private int negativeButtonResId;
+    @LayoutRes private int customViewResId;
 
     @Nullable private Callback callback;
 
@@ -64,6 +67,7 @@ public class AlertDialogFragment extends DialogFragment implements DialogInterfa
         messageResId = args.getInt(KEY_MESSAGE_RES_ID);
         positiveButtonResId = args.getInt(KEY_POSITIVE_BUTTON_TEXT_RES_ID);
         negativeButtonResId = args.getInt(KEY_NEGATIVE_BUTTON_TEXT_RES_ID);
+        customViewResId = args.getInt(KEY_CUSTOM_VIEW_RES_ID);
     }
 
     @NonNull
@@ -72,12 +76,18 @@ public class AlertDialogFragment extends DialogFragment implements DialogInterfa
         @SuppressLint("ResourceType")
         String titleString = titleResId > 0 ? getString(titleResId) : title;
 
-        return new AlertDialog.Builder(requireContext())
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext())
                 .setTitle(titleString)
-                .setMessage(messageResId)
                 .setPositiveButton(positiveButtonResId, this)
-                .setNegativeButton(negativeButtonResId, this)
-                .create();
+                .setNegativeButton(negativeButtonResId, this);
+
+        if (customViewResId != 0) {
+            builder.setView(customViewResId);
+        } else {
+            builder.setMessage(messageResId);
+        }
+
+        return builder.create();
     }
 
     public void setCallback(@Nullable Callback callback) {
@@ -154,6 +164,11 @@ public class AlertDialogFragment extends DialogFragment implements DialogInterfa
             return getThis();
         }
 
+        public B setView(@LayoutRes int customViewResId) {
+            args.putInt(KEY_CUSTOM_VIEW_RES_ID, customViewResId);
+            return getThis();
+        }
+
         protected abstract F createFragment();
 
         public F create() {
@@ -176,6 +191,7 @@ public class AlertDialogFragment extends DialogFragment implements DialogInterfa
         }
     }
 
+    //TODO: Generify so the actual AlertDialogFragment subclass can be passed as an argument
     public static abstract class Callback {
         public void onPositiveButtonClicked() {}
         public void onNegativeButtonClicked() {}

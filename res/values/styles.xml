@@ -2,7 +2,7 @@
     <color name="primary">#F67400</color>
     <color name="primaryDark">#BD5900</color>
     <color name="accent">#4ebffa</color>
-    <color name="disabled_grey">#eee</color>
+    <color name="disabled_grey">#EEEEEE</color>
 
     <!-- NoActionBar because we use a Toolbar widget as ActionBar -->
     <style name="KdeConnectThemeBase" parent="Theme.MaterialComponents.Light.DarkActionBar">

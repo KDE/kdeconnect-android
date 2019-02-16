@@ -15,6 +15,7 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 28
+        vectorDrawables.useSupportLibrary = true
     }
     dexOptions {
         javaMaxHeapSize "2g"
@@ -70,6 +71,7 @@ dependencies {
     implementation 'androidx.media:media:1.0.1'
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.preference:preference:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.jakewharton:disklrucache:2.0.2' //For caching album art bitmaps
 
