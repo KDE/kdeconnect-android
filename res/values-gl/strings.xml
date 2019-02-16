@@ -22,7 +22,7 @@
   <string name="pref_plugin_runcommand">Executar unha orde</string>
   <string name="pref_plugin_runcommand_desc">Provocar ordes remotas desde o teléfono ou tableta.</string>
   <string name="pref_plugin_contacts">Sincronizador de contactos</string>
-  <string name="pref_plugin_contacts_desc">Permitir sincronizar o caderno de enderezos do dispositivo</string>
+  <string name="pref_plugin_contacts_desc">Permitir sincronizar o caderno de contactos do dispositivo</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Envíe e reciba pings.</string>
   <string name="pref_plugin_notifications">Sincronización de notificacións</string>
@@ -220,7 +220,7 @@
   <string name="telepathy_permission_explanation">Para ler e escribir SMS desde o escritorio ten que dar permiso de SMS.</string>
   <string name="telephony_permission_explanation">Para ver as chamadas de teléfono e os SMS desde o escritorio ten que dar permiso a chamadas de teléfono e a SMS.</string>
   <string name="telephony_optional_permission_explanation">Para ver o nome dun contacto en vez dun número de teléfono ten que dar acceso aos contactos do teléfono.</string>
-  <string name="contacts_permission_explanation">Para compartir o caderno de enderezos co escritorio ten que dar permiso de contactos</string>
+  <string name="contacts_permission_explanation">Para compartir o caderno de contactos co escritorio ten que dar permiso de contactos</string>
   <string name="select_ringtone">Seleccione un son de chamada</string>
   <string name="telephony_pref_blocked_title">Números bloqueados</string>
   <string name="telephony_pref_blocked_dialog_desc">Non mostrar chamadas nin SMS destes números. Indique un número por liña.</string>
