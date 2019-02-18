@@ -144,10 +144,7 @@
   <string name="sftp_sdcard">כרטיס זיכרון</string>
   <string name="sftp_readonly">(לקריאה בלבד)</string>
   <string name="sftp_camera">תמונות מצלמה</string>
-  <string name="add_host">הוסף כתובת או IP</string>
-  <string name="add_host_hint">כתובת או IP</string>
   <string name="no_players_connected">לא נמצא נגן</string>
-  <string name="custom_dev_list_help">השתמש באפשרות זו רק אם המכשיר שלך לא מזוהה באופן אוטומטי. הקלד את כתובת הIP או את כינוי ההתקן למטה ולחץ על הכפתור כדי להוסיף לרשימה. לחץ על פריט קיים כדי להסיר אותו מהרשימה.</string>
   <string name="mpris_player_on_device">‏%1$s אצל %2$s</string>
   <string name="send_files">שלח קובץ</string>
   <string name="pairing_title">מכשירי KDE Connect</string>

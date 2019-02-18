@@ -144,10 +144,7 @@
   <string name="sftp_sdcard">SD card</string>
   <string name="sftp_readonly">(ανάγνωση μόνο)</string>
   <string name="sftp_camera">Φωτογραφίες</string>
-  <string name="add_host">Προσθήκη υπολογιστή/IP</string>
-  <string name="add_host_hint">Όνομα υπολογιστή ή IP</string>
   <string name="no_players_connected">Δεν βρέθηκαν συσκευές αναπαραγωγής</string>
-  <string name="custom_dev_list_help">Χρησιμοποιήστε την επιλογή αυτή μόνο αν η συσκευή σας δεν έχει εντοπιστεί αυτόματα. Δώστε την IP διεύθυνση ή το όνομα του υπολογιστή και αγγίξτε το κουμπί για να προστεθεί στη λίστα. Αγγίξτε ένα αντικείμενο της λίστας για να το αφαιρέσετε.</string>
   <string name="mpris_player_on_device">%1$s σε %2$s</string>
   <string name="send_files">Αποστολή αρχείων</string>
   <string name="pairing_title">Συσκευές KDE Connect</string>

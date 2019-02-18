@@ -179,10 +179,7 @@
   <string name="sftp_sdcard">SD卡</string>
   <string name="sftp_readonly">(只读)</string>
   <string name="sftp_camera">相机照片</string>
-  <string name="add_host">增加主机/IP</string>
-  <string name="add_host_hint">主机名或IP</string>
   <string name="no_players_connected">未找到播放器</string>
-  <string name="custom_dev_list_help">仅当您的设备没有被自动检测出时再使用本选项。在下方输入IP地址或主机名，然后点击按钮以添加其到列表中。点击已有条目来从列表中删除它。</string>
   <string name="mpris_player_on_device">%2$s上的%1$s</string>
   <string name="send_files">发送文件</string>
   <string name="pairing_title">KDE Connect 设备</string>

@@ -169,6 +169,10 @@
   <string name="unpair_device_action">Ta bort ihopparning %s</string>
   <string name="custom_device_list">Lägg till apparater enligt IP-adress</string>
   <string name="delete_custom_device">Ta bort %s?</string>
+  <string name="custom_device_deleted">Egen apparat borttagen</string>
+  <string name="custom_device_list_help">Om apparaten inte detekteras automatiskt kan dess IP-adress eller värddatornamn läggas till genom att klicka på den lösa åtgärdsknappen.</string>
+  <string name="custom_device_fab_hint">Lägg till en apparat</string>
+  <string name="undo">Ångra</string>
   <string name="share_notification_preference">Ljudliga underrättelser</string>
   <string name="share_notification_preference_summary">Vibrera och spela ett ljud när en fil tas emot</string>
   <string name="share_destination_customize">Anpassa målkatalog</string>
@@ -185,10 +189,9 @@
   <string name="sftp_sdcard">SD-kort</string>
   <string name="sftp_readonly">(skrivskyddat)</string>
   <string name="sftp_camera">Kamerabilder</string>
-  <string name="add_host">Lägg till värddator/IP-adress</string>
-  <string name="add_host_hint">Värddatornamn eller IP-adress</string>
+  <string name="add_device_dialog_title">Lägg till apparat</string>
+  <string name="add_device_hint">Värddatornamn eller IP-adress</string>
   <string name="no_players_connected">Inga spelare hittades</string>
-  <string name="custom_dev_list_help">Använd bara alternativet om apparaten inte detekteras automatiskt. Skriv in IP-adress eller värddatornamn nedan och rör vid knappen för att lägga till den i listan. Rör vid ett befintligt objekt för att ta bort det från listan.</string>
   <string name="mpris_player_on_device">%1$s på %2$s</string>
   <string name="send_files">Skicka filer</string>
   <string name="pairing_title">KDE-anslut apparater</string>

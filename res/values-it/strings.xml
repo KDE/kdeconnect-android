@@ -184,10 +184,7 @@
   <string name="sftp_sdcard">Scheda SD</string>
   <string name="sftp_readonly">(sola lettura)</string>
   <string name="sftp_camera">Immagini fotocamera</string>
-  <string name="add_host">Aggiungi host/IP</string>
-  <string name="add_host_hint">Nome host o IP</string>
   <string name="no_players_connected">Nessun lettore trovato</string>
-  <string name="custom_dev_list_help">Usa questa opzione solo se il tuo dispositivo non è rilevato automaticamente. Digita l\'indirizzo IP o il nome host in basso e tocca il pulsante per aggiungerlo all\'elenco. Tocca un elemento esistente per rimuoverlo dall\'elenco.</string>
   <string name="mpris_player_on_device">%1$s su %2$s</string>
   <string name="send_files">Invia file</string>
   <string name="pairing_title">Dispositivi KDE Connect</string>

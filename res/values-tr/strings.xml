@@ -144,10 +144,7 @@
   <string name="sftp_sdcard">SD kart</string>
   <string name="sftp_readonly">(salt okunur)</string>
   <string name="sftp_camera">Kamera resimleri</string>
-  <string name="add_host">Makine/IP ekle</string>
-  <string name="add_host_hint">Makine adı veya IP</string>
   <string name="no_players_connected">Onatıcı bulunamadı</string>
-  <string name="custom_dev_list_help">Bu seçeneği, sadece aygıtınız otomatik bulunamadıysa kullanın. Aşağıya IP adresini veya makine adının girin ve listeye eklemek için düğmeye dokunun. Listeden bir ögeyi silmek için, mevcut ögeye tıklayın.</string>
   <string name="mpris_player_on_device">%2$s üzerindeki %1$s</string>
   <string name="send_files">Dosyaları gönder</string>
   <string name="pairing_title">KDE Connect Aygıtları</string>

@@ -157,10 +157,7 @@
   <string name="sftp_sdcard">SD 카드</string>
   <string name="sftp_readonly">(읽기 전용)</string>
   <string name="sftp_camera">카메라 사진</string>
-  <string name="add_host">호스트/IP 주소 추가</string>
-  <string name="add_host_hint">호스트 이름이나 IP</string>
   <string name="no_players_connected">재생기를 찾을 수 없음</string>
-  <string name="custom_dev_list_help">장치를 자동으로 인식할 수 없을 때 이 옵션을 사용하십시오. IP 주소나 호스트 이름을 입력하고 단추를 누르면 목록에 추가합니다. 목록에 있는 항목을 누르면 삭제합니다.</string>
   <string name="mpris_player_on_device">%2$s의 %1$s</string>
   <string name="send_files">파일 보내기</string>
   <string name="pairing_title">KDE Connect 장치</string>

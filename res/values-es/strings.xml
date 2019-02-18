@@ -13,6 +13,7 @@
   <string name="pref_plugin_clipboard_desc">Compartir el contenido del portapapeles</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
   <string name="pref_plugin_mousepad_desc">Usar su teléfono o tableta como teclado y teclado táctil</string>
+  <string name="pref_plugin_presenter">Presentación de diapositivas remota</string>
   <string name="pref_plugin_presenter_desc">Use su dispositivo para cambiar las diapositivas de una presentación</string>
   <string name="pref_plugin_remotekeyboard">Recibir pulsaciones de teclas remotas</string>
   <string name="pref_plugin_remotekeyboard_desc">Recibir eventos de pulsación de teclas desde dispositivos remotos</string>
@@ -184,10 +185,7 @@
   <string name="sftp_sdcard">Tarjeta SD</string>
   <string name="sftp_readonly">(solo lectura)</string>
   <string name="sftp_camera">Imágenes de la cámara</string>
-  <string name="add_host">Añadir servidor/IP</string>
-  <string name="add_host_hint">Nombre o dirección IP</string>
   <string name="no_players_connected">Ningún reproductor encontrado</string>
-  <string name="custom_dev_list_help">Use esta opción solo si su dispositivo no es detectado automáticamente. Introduzca la dirección IP o nombre debajo y pulse el botón para añadirlo a la lista. Pulse un ítem existente para eliminarlo de la lista.</string>
   <string name="mpris_player_on_device">%1$s en %2$s</string>
   <string name="send_files">Enviar archivos</string>
   <string name="pairing_title">Dispositivos de KDE Connect</string>
@@ -228,6 +226,7 @@
   <string name="settings_icon_description">Icono de preferencias</string>
   <string name="presenter_fullscreen">Pantalla completa</string>
   <string name="presenter_exit">Salir de la presentación</string>
+  <string name="presenter_lock_tip">Puede bloquear su dispositivo y usar las teclas de volumen para ir a la diapositiva previa/siguiente</string>
   <string name="add_command">Añadir una orden</string>
   <string name="addcommand_explanation">No hay ninguna orden registrada</string>
   <string name="addcommand_explanation2">Puede añadir nuevas órdenes en las preferencias del sistema de KDE Connect</string>

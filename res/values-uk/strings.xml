@@ -179,6 +179,10 @@
   <string name="unpair_device_action">Розірвати прив’язку %s</string>
   <string name="custom_device_list">Додати пристрої за IP</string>
   <string name="delete_custom_device">Вилучити %s?</string>
+  <string name="custom_device_deleted">Нетиповий пристрій вилучено</string>
+  <string name="custom_device_list_help">Якщо ваш пристрій не було виявлено автоматично, ви можете додати його IP-адресу або назву вузла, натиснувши рухому кнопку дій.</string>
+  <string name="custom_device_fab_hint">Додати пристрій</string>
+  <string name="undo">Скасувати</string>
   <string name="share_notification_preference">Звукові сповіщення</string>
   <string name="share_notification_preference_summary">Вібрація і відтворення звуку у відповідь на отримання файла</string>
   <string name="share_destination_customize">Налаштування каталогу призначення</string>
@@ -195,10 +199,9 @@
   <string name="sftp_sdcard">Картка SD</string>
   <string name="sftp_readonly">(лише читання)</string>
   <string name="sftp_camera">Знімки фотоапарата</string>
-  <string name="add_host">Додати вузол/IP</string>
-  <string name="add_host_hint">Назва або IP вузла</string>
+  <string name="add_device_dialog_title">Додавання пристрою</string>
+  <string name="add_device_hint">Назва або IP-адреса вузла</string>
   <string name="no_players_connected">Не знайдено програвачів</string>
-  <string name="custom_dev_list_help">Цим пунктом слід користуватися, лише якщо ваш пристрій не було визначено у автоматичному режимі. Введіть IP-адресу або назву вузла нижче і натисніть кнопку, щоб додати пункт до списку. Натисніть наявний пункт, щоб вилучити його зі списку.</string>
   <string name="mpris_player_on_device">%1$s на %2$s</string>
   <string name="send_files">Надіслати файли</string>
   <string name="pairing_title">Пристрої KDE Connect</string>

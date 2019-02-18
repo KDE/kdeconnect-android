@@ -169,6 +169,10 @@
   <string name="unpair_device_action">Paar %s uit elkaar halen</string>
   <string name="custom_device_list">Voeg apparaten toe per IP-adres</string>
   <string name="delete_custom_device">%s verwijderen?</string>
+  <string name="custom_device_deleted">Aangepaste apparaat verwijderd</string>
+  <string name="custom_device_list_help">Als uw apparaat niet automatisch wordt gedetecteerd kunt u zijn IP-adres of hostnaam toevoegen door te klikken op de knop Zwevende actie</string>
+  <string name="custom_device_fab_hint">Een apparaat toevoegen</string>
+  <string name="undo">Ongedaan maken</string>
   <string name="share_notification_preference">Luidruchtige meldingen</string>
   <string name="share_notification_preference_summary">Vibreer en speel een geluidje bij ontvangen van een bestand</string>
   <string name="share_destination_customize">De bestemmingsmap aanpassen</string>
@@ -185,10 +189,9 @@
   <string name="sftp_sdcard">SD-kaartje</string>
   <string name="sftp_readonly">(alleen-lezen)</string>
   <string name="sftp_camera">Afbeeldingen van camera</string>
-  <string name="add_host">Host/IP-adres toevoegen</string>
-  <string name="add_host_hint">Hostnaam of IP-adres</string>
+  <string name="add_device_dialog_title">Apparaat toevoegen</string>
+  <string name="add_device_hint">Hostnaam of IP-adres</string>
   <string name="no_players_connected">Geen spelers gevonden</string>
-  <string name="custom_dev_list_help">Deze optie alleen gebruiken als uw apparaat niet automatisch gedetecteerd wordt. Voer IP-adres of hostnaam hieronder in en klik op de knop om het aan de lijst toe te voegen. Klik op een bestaand item om het uit de lijst te verwijderen.</string>
   <string name="mpris_player_on_device">%1$s op %2$s</string>
   <string name="send_files">Bestanden verzenden</string>
   <string name="pairing_title">Apparaten van KDE Connect</string>

@@ -132,10 +132,7 @@
   <string name="sftp_sdcard">بطاقة SD</string>
   <string name="sftp_readonly">(للقراءة فقط)</string>
   <string name="sftp_camera">صور الكاميرا</string>
-  <string name="add_host">أضف مضيفًا/م​إ</string>
-  <string name="add_host_hint">اسم المضيف أو عنوان IP</string>
   <string name="no_players_connected">لم يُعثر على مشغّلات</string>
-  <string name="custom_dev_list_help">استخدم هذا الخيار فقط إن لم يُكتَشف جهازك آليًّا. أدخِل عنوان م​إ أو اسم المضيف أدناه والمس الزرّ لإضافته إلى القائمة. المس عنصرًا موجودًا لإزالته من القائمة.</string>
   <string name="mpris_player_on_device">%1$s على %2$s</string>
   <string name="send_files">أرسل ملفّات</string>
   <string name="pairing_title">أجهزة «كدي المتّصل»</string>

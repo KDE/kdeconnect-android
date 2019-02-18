@@ -163,10 +163,7 @@
   <string name="sftp_sdcard">SD-карта</string>
   <string name="sftp_readonly">(только чтение)</string>
   <string name="sftp_camera">Фотографии с камеры</string>
-  <string name="add_host">Добавить хост/IP-адрес</string>
-  <string name="add_host_hint">Имя хоста или IP-адрес</string>
   <string name="no_players_connected">Медиапроигрывателей не найдено</string>
-  <string name="custom_dev_list_help">Используйте эту форму только если ваше устройство не определяется автоматически. Введите IP-адрес или имя хоста ниже и нажмите кнопку для добавления в список. Нажмите на существующий элемент для удаления из списка.</string>
   <string name="mpris_player_on_device">%1$s на %2$s</string>
   <string name="send_files">Отправить файлы</string>
   <string name="pairing_title">Устройства с KDE Connect</string>

@@ -184,10 +184,7 @@
   <string name="sftp_sdcard">Carte SD</string>
   <string name="sftp_readonly">(lecture seule)</string>
   <string name="sftp_camera">Images de l\'appareil photo</string>
-  <string name="add_host">Ajouter hôte/IP</string>
-  <string name="add_host_hint">"Nom d\'hôte ou adresse IP "</string>
   <string name="no_players_connected">Aucun lecteur trouvé</string>
-  <string name="custom_dev_list_help">N\'utilisez cette option que si votre périphérique n\'est pas détecté automatiquement. Saisissez l\'adresse IP ou le nom d\'hôte ci-dessous et appuyez sur le bouton pour l\'ajouter à la liste. Appuyez sur un élément existant pour le retirer de la liste.</string>
   <string name="mpris_player_on_device">%1$s sur %2$s</string>
   <string name="send_files">Envoyer des fichiers</string>
   <string name="pairing_title">Périphériques KDE Connect</string>

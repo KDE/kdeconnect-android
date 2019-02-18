@@ -164,6 +164,10 @@
   <string name="unpair_device_action">未配對 %s</string>
   <string name="custom_device_list">以IP來新增設備</string>
   <string name="delete_custom_device">刪除 %s？</string>
+  <string name="custom_device_deleted">已刪除自訂裝置</string>
+  <string name="custom_device_list_help">若未自動偵測到您的裝置，您可透過點選「浮動動作按鈕」來新增該裝置的IP 位址或主機名稱</string>
+  <string name="custom_device_fab_hint">新增裝置</string>
+  <string name="undo">復原</string>
   <string name="share_notification_preference">通知方式</string>
   <string name="share_notification_preference_summary">當接收檔案時發出振動以及播放聲音</string>
   <string name="share_destination_customize">自訂目標路徑</string>
@@ -180,10 +184,9 @@
   <string name="sftp_sdcard">SD卡</string>
   <string name="sftp_readonly">（唯讀）</string>
   <string name="sftp_camera">相機圖片</string>
-  <string name="add_host">增加 host/IP</string>
-  <string name="add_host_hint">Hostname或者IP</string>
+  <string name="add_device_dialog_title">新增裝置</string>
+  <string name="add_device_hint">主機名稱 或 IP 位址</string>
   <string name="no_players_connected">沒有發現播放器</string>
-  <string name="custom_dev_list_help">能夠在您的裝置沒有自動偵測到裝置時使用這個選項。輸入IP位址或者是Hostname在下面，並且按下按鈕來增加進入列表當中。觸碰以從列表中刪除現有項目。</string>
   <string name="mpris_player_on_device">%1$s on %2$s</string>
   <string name="send_files">傳送檔案</string>
   <string name="pairing_title">KDE連線裝置</string>

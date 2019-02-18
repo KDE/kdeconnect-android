@@ -184,10 +184,7 @@
   <string name="sftp_sdcard">SD txartela</string>
   <string name="sftp_readonly">(irakurri soilik)</string>
   <string name="sftp_camera">Kamerako irudiak</string>
-  <string name="add_host">Gehitu ostalaria/IP</string>
-  <string name="add_host_hint">Ostalaria edo IP</string>
   <string name="no_players_connected">Ez da jokalaririk aurkitu</string>
-  <string name="custom_dev_list_help">Erabili aukera hau zure gailua automatikoki antzematen ez denean. Sartu IP helbidea edo ostalaria azpian eta ukitu botoia zerrendara gehitzeko. Ukitu badagoen elementu bat zerrendatik ezabatzeko.</string>
   <string name="mpris_player_on_device">%1$s - %2$s</string>
   <string name="send_files">Bidali fitxategiak</string>
   <string name="pairing_title">KDE Connect gailuak</string>

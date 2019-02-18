@@ -169,6 +169,10 @@
   <string name="unpair_device_action">Desparella %s</string>
   <string name="custom_device_list">Afegeix dispositius per la IP</string>
   <string name="delete_custom_device">Suprimeixo %s?</string>
+  <string name="custom_device_deleted">S\'ha suprimit un dispositiu personalitzat</string>
+  <string name="custom_device_list_help">"Si el dispositiu no es detecta automàticament, podeu afegir la seva adreça IP o el  nom de la màquina fent clic al botó flotant d\'acció"</string>
+  <string name="custom_device_fab_hint">Afegeix un dispositiu</string>
+  <string name="undo">Desfés</string>
   <string name="share_notification_preference">Rebombori de les notificacions</string>
   <string name="share_notification_preference_summary">Vibra i reprodueix un so en rebre un fitxer</string>
   <string name="share_destination_customize">Personalitza el directori de destinació</string>
@@ -185,10 +189,9 @@
   <string name="sftp_sdcard">Targeta SD</string>
   <string name="sftp_readonly">(només de lectura)</string>
   <string name="sftp_camera">Imatges de la càmera</string>
-  <string name="add_host">Afegeix una màquina/IP</string>
-  <string name="add_host_hint">Nom de la màquina o IP</string>
+  <string name="add_device_dialog_title">Afegeix un dispositiu</string>
+  <string name="add_device_hint">Nom de la màquina o adreça IP</string>
   <string name="no_players_connected">No s\'ha trobat cap reproductor</string>
-  <string name="custom_dev_list_help">Empreu aquesta opció només si el dispositiu no és detectat automàticament. Introduïu a sota l\'adreça IP o nom de la màquina i premeu el botó per afegir-lo a la llista. Seleccioneu un element existent per eliminar-lo de la llista.</string>
   <string name="mpris_player_on_device">%1$s sobre el %2$s</string>
   <string name="send_files">Envia els fitxers</string>
   <string name="pairing_title">Dispositius del KDE Connect</string>

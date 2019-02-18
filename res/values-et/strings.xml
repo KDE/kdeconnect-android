@@ -138,10 +138,7 @@
   <string name="sftp_sdcard">SD-kaart</string>
   <string name="sftp_readonly">(kirjutuskaitstud)</string>
   <string name="sftp_camera">Kaamera pildid</string>
-  <string name="add_host">Lisa masin/IP</string>
-  <string name="add_host_hint">Masinanimi või IP</string>
   <string name="no_players_connected">Ühtegi mängijat ei leitud</string>
-  <string name="custom_dev_list_help">Seda tuleks kasutada ainult siis, kui sinu seadet ei tuvastatud automaatselt. Sisesta allpool IP-aadress või masinanimi ja puuduta nuppu selle lisamiseks loendisse. Puuduta olemasolevat kirjet selle eemaldamiseks loendist.</string>
   <string name="mpris_player_on_device">%1$s seadmes %2$s</string>
   <string name="send_files">Saada faile</string>
   <string name="pairing_title">KDE Connecti seadmed</string>

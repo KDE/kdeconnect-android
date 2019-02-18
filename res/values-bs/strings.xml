@@ -111,9 +111,6 @@
   <string name="sftp_sdcard">SD kartica</string>
   <string name="sftp_readonly">(samo za čitanje)</string>
   <string name="sftp_camera">Slike sa kamere</string>
-  <string name="add_host">Dodaj host/IP</string>
-  <string name="add_host_hint">IP ili ime računara</string>
   <string name="no_players_connected">Nema nađenih igrača</string>
-  <string name="custom_dev_list_help">Koristite ovu opciju samo ako vaš uređaj nije automatski otkriven. Unesite IP adresu ili ime hosta i dodirnite dugme da dodate na listu. Dodirnite postojeće dume da uklonite s liste.</string>
   <string name="mpris_player_on_device">%1$s na %2$s</string>
 </resources>

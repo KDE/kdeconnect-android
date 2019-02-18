@@ -169,6 +169,10 @@
   <string name="unpair_device_action">Desemparellarse de %s</string>
   <string name="custom_device_list">Engadir dispositivos por IP</string>
   <string name="delete_custom_device">Eliminar %s?</string>
+  <string name="custom_device_deleted">Eliminouse o dispositivo personalizado</string>
+  <string name="custom_device_list_help">Se o seu dispositivo non se detecta automaticamente pode engadir o seu enderezo IP ou nome de máquina premendo o botón flotante de acción</string>
+  <string name="custom_device_fab_hint">Engadir un dispositivo</string>
+  <string name="undo">Desfacer</string>
   <string name="share_notification_preference">Notificacións sonoras</string>
   <string name="share_notification_preference_summary">Vibrar e reproducir un son ao recibir un ficheiro.</string>
   <string name="share_destination_customize">Personalizar o directorio de destino</string>
@@ -185,10 +189,9 @@
   <string name="sftp_sdcard">Tarxeta SD</string>
   <string name="sftp_readonly">(só lectura)</string>
   <string name="sftp_camera">Imaxes da cámara</string>
-  <string name="add_host">Engadir unha nome ou IP</string>
-  <string name="add_host_hint">Nome ou IP do servidor.</string>
+  <string name="add_device_dialog_title">Engadir o dispositivo</string>
+  <string name="add_device_hint">Nome de máquina ou enderezo IP</string>
   <string name="no_players_connected">Non se atoparon reprodutores.</string>
-  <string name="custom_dev_list_help">Marque esta opción só se o seu dispositivo non se detecta automaticamente. Insira o enderezo IP ou o nome de servidor do dispositivo e toque o botón para engadilo á lista. Toque un elemento existente para retiralo da lista.</string>
   <string name="mpris_player_on_device">%1$s en %2$s</string>
   <string name="send_files">Enviar ficheiros</string>
   <string name="pairing_title">Dispositivos con KDE Connect</string>

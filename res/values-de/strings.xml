@@ -155,10 +155,7 @@
   <string name="sftp_sdcard">SD-Karte</string>
   <string name="sftp_readonly">(Nur lesen)</string>
   <string name="sftp_camera">Kamerabilder</string>
-  <string name="add_host">Rechner/IP-Adresse hinzufügen</string>
-  <string name="add_host_hint">Rechnername oder IP-Adresse</string>
   <string name="no_players_connected">Keine Medienspieler gefunden</string>
-  <string name="custom_dev_list_help">Benutzen Sie diese Funktion nur, wenn Ihr Gerät nicht automatisch erkannt wird. Geben hier Sie IP-Adresse oder Hostnamen ein und bestätigen Sie, um es zu der Liste hinzuzufügen. Tippen Sie ein bestehendes Gerät an, um es aus der Liste zu entfernen.</string>
   <string name="mpris_player_on_device">%1$s auf %2$s</string>
   <string name="send_files">Dateien senden</string>
   <string name="pairing_title">KDE-Connect-Geräte</string>

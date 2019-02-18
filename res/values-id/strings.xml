@@ -177,10 +177,7 @@
   <string name="sftp_sdcard">Kartu SD</string>
   <string name="sftp_readonly">(hanya baca)</string>
   <string name="sftp_camera">Gambar kamera</string>
-  <string name="add_host">Tambahkan host/IP</string>
-  <string name="add_host_hint">Hostname atau IP</string>
   <string name="no_players_connected">Tidak ada player yang ditemukan</string>
-  <string name="custom_dev_list_help">Gunakan opsi ini hanya jika perangkatmu tidaklah secara otomatis terdeteksi. Masukkan alamat IP atau hostname di bawah ini dan sentuh tombol untuk menambahkannya ke daftar. Sentuh item yang ada untuk membuangnya dari daftar.</string>
   <string name="mpris_player_on_device">%1$s pada %2$s</string>
   <string name="send_files">Kirim file</string>
   <string name="pairing_title">Perangkat KDE Connect</string>
