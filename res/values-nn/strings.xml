@@ -184,10 +184,7 @@
   <string name="sftp_sdcard">SD-kort</string>
   <string name="sftp_readonly">(skriveverna)</string>
   <string name="sftp_camera">Kamerabilete</string>
-  <string name="add_host">Legg til vert/IP</string>
-  <string name="add_host_hint">Vertsnamn/IP-adresse</string>
   <string name="no_players_connected">Fann ingen spelarar</string>
-  <string name="custom_dev_list_help">Bruk berre dette valet viss eininga ikkje vert kjend att automatisk. Skriv inn IP-adressa eller vertsnamnet nedanfor, og trykk på knappen for å leggja til eininga. Trykk på oppføringar i lista for å fjerna dei.</string>
   <string name="mpris_player_on_device">%1$s på %2$s</string>
   <string name="send_files">Send filer</string>
   <string name="pairing_title">KDE Connect-einingar</string>

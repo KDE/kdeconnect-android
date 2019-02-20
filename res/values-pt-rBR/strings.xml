@@ -169,6 +169,10 @@
   <string name="unpair_device_action">Desemparelhar %s</string>
   <string name="custom_device_list">Adicionar dispositivos pelo IP</string>
   <string name="delete_custom_device">Excluir %s?</string>
+  <string name="custom_device_deleted">Dispositivo personalizado excluído</string>
+  <string name="custom_device_list_help">Se seu dispositivo não for detectado automaticamente você pode adicionar o endereço de IP ou nome de máquina dele clicando no botão de ação flutuante</string>
+  <string name="custom_device_fab_hint">Adicionar um dispositivo</string>
+  <string name="undo">Desfazer</string>
   <string name="share_notification_preference">Notificações sonoras</string>
   <string name="share_notification_preference_summary">Vibra e reproduz um som ao receber um arquivo</string>
   <string name="share_destination_customize">Personalizar a pasta de destino</string>
@@ -185,6 +189,8 @@
   <string name="sftp_sdcard">Cartão SD</string>
   <string name="sftp_readonly">(somente leitura)</string>
   <string name="sftp_camera">Imagens da câmera</string>
+  <string name="add_device_dialog_title">Adicionar dispositivo</string>
+  <string name="add_device_hint">Nome da máquina ou endereço IP</string>
   <string name="no_players_connected">Nenhum reprodutor encontrado</string>
   <string name="mpris_player_on_device">%1$s em %2$s</string>
   <string name="send_files">Enviar arquivos</string>
