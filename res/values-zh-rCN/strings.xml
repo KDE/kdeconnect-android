@@ -220,6 +220,7 @@
   <string name="settings_icon_description">设置图标</string>
   <string name="presenter_fullscreen">全屏</string>
   <string name="presenter_exit">退出演示</string>
+  <string name="presenter_lock_tip">您可以锁定设备，用音量键作为上一页/下一页按钮</string>
   <string name="add_command">添加命令</string>
   <string name="addcommand_explanation">没有已注册的命令</string>
   <string name="addcommand_explanation2">您可以在 KDE Connect 系统设置中添加新命令</string>
