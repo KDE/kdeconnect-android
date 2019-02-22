@@ -20,6 +20,7 @@
 
 package org.kde.kdeconnect.Plugins.FindMyPhonePlugin;
 
+import android.app.Activity;
 import android.content.Intent;
 
 import org.kde.kdeconnect.Helpers.DeviceHelper;
@@ -79,7 +80,7 @@ public class FindMyPhonePlugin extends Plugin {
     }
 
     @Override
-    public PluginSettingsFragment getSettingsFragment() {
+    public PluginSettingsFragment getSettingsFragment(Activity activity) {
         return FindMyPhoneSettingsFragment.newInstance(getPluginKey());
     }
 }

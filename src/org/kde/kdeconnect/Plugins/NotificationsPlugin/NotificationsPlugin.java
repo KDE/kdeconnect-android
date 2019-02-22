@@ -21,6 +21,7 @@
 package org.kde.kdeconnect.Plugins.NotificationsPlugin;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.RemoteInput;
@@ -44,7 +45,6 @@ import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.AlertDialogFragment;
-import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect.UserInterface.StartActivityAlertDialogFragment;
 import org.kde.kdeconnect_tp.R;
@@ -91,13 +91,11 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     }
 
     @Override
-    public PluginSettingsFragment getSettingsFragment() {
+    public PluginSettingsFragment getSettingsFragment(Activity activity) {
         if (hasPermission()) {
-            Context context = device.getContext();
-            Intent intent = new Intent(context, NotificationFilterActivity.class);
-            context.startActivity(intent);
+            Intent intent = new Intent(activity, NotificationFilterActivity.class);
+            activity.startActivity(intent);
         }
-
         return null;
     }
 

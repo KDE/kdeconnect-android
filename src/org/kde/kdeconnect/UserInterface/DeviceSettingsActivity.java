@@ -72,7 +72,7 @@ public class DeviceSettingsActivity
             } else {
                 Device device = BackgroundService.getInstance().getDevice(deviceId);
                 Plugin plugin = device.getPlugin(pluginKey);
-                fragment = plugin.getSettingsFragment();
+                fragment = plugin.getSettingsFragment(this);
             }
 
             getSupportFragmentManager()
@@ -112,7 +112,7 @@ public class DeviceSettingsActivity
     public void onStartPluginSettingsFragment(Plugin plugin) {
         setTitle(getString(R.string.plugin_settings_with_name, plugin.getDisplayName()));
 
-        PluginSettingsFragment fragment = plugin.getSettingsFragment();
+        PluginSettingsFragment fragment = plugin.getSettingsFragment(this);
 
         //TODO: Remove when NotificationFilterActivity has been turned into a PluginSettingsFragment
         if (fragment == null) {

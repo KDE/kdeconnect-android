@@ -127,7 +127,7 @@ public abstract class Plugin {
      *
      * @return The PluginSettingsFragment used to display this plugins settings
      */
-    public PluginSettingsFragment getSettingsFragment() {
+    public PluginSettingsFragment getSettingsFragment(Activity activity) {
         return PluginSettingsFragment.newInstance(getPluginKey());
     }
 

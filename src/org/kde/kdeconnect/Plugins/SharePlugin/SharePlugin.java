@@ -231,7 +231,7 @@ public class SharePlugin extends Plugin {
     }
 
     @Override
-    public PluginSettingsFragment getSettingsFragment() {
+    public PluginSettingsFragment getSettingsFragment(Activity activity) {
         return ShareSettingsFragment.newInstance(getPluginKey());
     }
 
