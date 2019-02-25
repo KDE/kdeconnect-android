@@ -97,18 +97,18 @@
     <item quantity="other">Menerima %1$d file dari %2$s</item>
   </plurals>
   <plurals name="incoming_files_text">
-    <item quantity="other">(File %2$d dari %3$d) : %1$s</item>
+    <item quantity="other">File: %1s</item>
   </plurals>
   <string name="outgoing_file_title">Mengirim file ke %1s</string>
   <string name="outgoing_files_title">Mengirim file ke %1s</string>
   <plurals name="outgoing_files_text">
-    <item quantity="other">Kirim %1$d dari dalam file %2$d</item>
+    <item quantity="other">Kirimkan file %1$d</item>
   </plurals>
   <plurals name="received_files_title">
-    <item quantity="other">Diterima %2$d file dari %1$s</item>
+    <item quantity="other">File yang diterima dari %1$s</item>
   </plurals>
   <plurals name="received_files_fail_title">
-    <item quantity="other">Gagal menerima %2$d dari %3$d file dari %1$s</item>
+    <item quantity="other">Gagal menerima file dari %1$s</item>
   </plurals>
   <string name="received_file_text">Ketuk untuk membuka \'%1s\'</string>
   <string name="cannot_create_file">Gak bisa menciptakan file %s</string>
