@@ -13,6 +13,7 @@
   <string name="pref_plugin_clipboard_desc">Condividi il contenuto degli appunti</string>
   <string name="pref_plugin_mousepad">Impulso remoto</string>
   <string name="pref_plugin_mousepad_desc">Usa il tuo telefono o il tablet come touchpad e tastiera</string>
+  <string name="pref_plugin_presenter">Telecomando della presentazione</string>
   <string name="pref_plugin_presenter_desc">Utilizza il tuo dispositivo per cambiare le diapositive in una presentazione</string>
   <string name="pref_plugin_remotekeyboard">Ricevi pressioni dei tasti da remoto</string>
   <string name="pref_plugin_remotekeyboard_desc">Ricevi eventi di pressione dei tasti da dispositivi remoti</string>
@@ -163,11 +164,15 @@
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nome dispositivo non valido</string>
   <string name="shareplugin_text_saved">Testo ricevuto, salvato negli appunti</string>
-  <string name="custom_devices_settings">Elenco dispositivi personalizzato</string>
+  <string name="custom_devices_settings">Elenco dispositivi personalizzati</string>
   <string name="pair_device_action">Associa un nuovo dispositivo</string>
   <string name="unpair_device_action">Disassocia %s</string>
   <string name="custom_device_list">Aggiungi dispositivi per IP</string>
   <string name="delete_custom_device">Vuoi eliminare %s?</string>
+  <string name="custom_device_deleted">Dispositivo personalizzato eliminato</string>
+  <string name="custom_device_list_help">Se il tuo dispositivo non è rilevato automaticamente, puoi aggiungere il suo indirizzo IP o il nome host facendo clic sul pulsante Azione</string>
+  <string name="custom_device_fab_hint">Aggiungi un dispositivo</string>
+  <string name="undo">Annulla</string>
   <string name="share_notification_preference">Notifiche rumorose</string>
   <string name="share_notification_preference_summary">Vibra e riproduci un suono alla ricezione di un file</string>
   <string name="share_destination_customize">Personalizza la cartella di destinazione</string>
@@ -184,6 +189,8 @@
   <string name="sftp_sdcard">Scheda SD</string>
   <string name="sftp_readonly">(sola lettura)</string>
   <string name="sftp_camera">Immagini fotocamera</string>
+  <string name="add_device_dialog_title">Aggiungi dispositivo</string>
+  <string name="add_device_hint">Nome host o indirizzo IP</string>
   <string name="no_players_connected">Nessun lettore trovato</string>
   <string name="mpris_player_on_device">%1$s su %2$s</string>
   <string name="send_files">Invia file</string>
@@ -225,6 +232,7 @@
   <string name="settings_icon_description">Icona impostazioni</string>
   <string name="presenter_fullscreen">Schermo intero</string>
   <string name="presenter_exit">Esci dalla presentazione</string>
+  <string name="presenter_lock_tip">Puoi bloccare il tuo dispositivo e utilizzare i tasti del volume per scorrere le diapositive</string>
   <string name="add_command">Aggiungi un comando</string>
   <string name="addcommand_explanation">Non ci sono comandi registrati</string>
   <string name="addcommand_explanation2">Puoi aggiungere nuovi comandi nelle impostazioni di sistema di KDE Connect</string>
