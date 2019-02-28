@@ -80,7 +80,7 @@ public class FilesHelper {
         }
         String result = rc.toString();
         if (result.length() > maxFileLength) {
-            result = result.substring(result.length() - maxFileLength, result.length());
+            result = result.substring(result.length() - maxFileLength);
         }
         return result;
     }
