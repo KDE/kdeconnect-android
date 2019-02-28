@@ -180,7 +180,7 @@ public class LanLink extends BaseLink {
             if (server != null) {
                 Socket payloadSocket = null;
                 OutputStream outputStream = null;
-                InputStream inputStream = null;
+                InputStream inputStream;
                 try {
                     //Wait a maximum of 10 seconds for the other end to establish a connection with our socket, close it afterwards
                     server.setSoTimeout(10*1000);
