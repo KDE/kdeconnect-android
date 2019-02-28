@@ -35,7 +35,6 @@ import org.kde.kdeconnect.Backends.LanBackend.LanLink;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.kde.kdeconnect.Backends.LanBackend.LanPairingHandler;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
-import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
