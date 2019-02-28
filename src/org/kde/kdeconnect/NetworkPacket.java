@@ -318,7 +318,7 @@ public class NetworkPacket {
         private Socket inputSocket;
         private long payloadSize;
 
-        public Payload(long payloadSize) {
+        Payload(long payloadSize) {
             this((InputStream)null, payloadSize);
         }
 

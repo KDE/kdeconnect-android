@@ -22,7 +22,7 @@ import androidx.preference.PreferenceScreen;
 import androidx.preference.SwitchPreferenceCompat;
 import androidx.preference.TwoStatePreference;
 
-public class SettingsFragment extends PreferenceFragmentCompat {
+class SettingsFragment extends PreferenceFragmentCompat {
 
     private MainActivity mainActivity;
     private EditTextPreference renameDevice;

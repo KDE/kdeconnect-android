@@ -46,7 +46,7 @@ import java.util.List;
 import androidx.core.content.FileProvider;
 import androidx.documentfile.provider.DocumentFile;
 
-public class CompositeReceiveFileRunnable implements Runnable {
+class CompositeReceiveFileRunnable implements Runnable {
     interface CallBack {
         void onSuccess(CompositeReceiveFileRunnable runnable);
         void onError(CompositeReceiveFileRunnable runnable, Throwable error);

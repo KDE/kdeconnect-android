@@ -194,8 +194,8 @@ public class AlertDialogFragment extends DialogFragment implements DialogInterfa
     //TODO: Generify so the actual AlertDialogFragment subclass can be passed as an argument
     public static abstract class Callback {
         public void onPositiveButtonClicked() {}
-        public void onNegativeButtonClicked() {}
+        void onNegativeButtonClicked() {}
         public void onDismiss() {}
-        public void onCancel() {}
+        void onCancel() {}
     }
 }

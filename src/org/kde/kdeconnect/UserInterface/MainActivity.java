@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     @BindView(R.id.navigation_drawer) NavigationView mNavigationView;
     @BindView(R.id.drawer_layout) DrawerLayout mDrawerLayout;
     @BindView(R.id.toolbar) Toolbar mToolbar;
-    TextView mNavViewDeviceName;
+    private TextView mNavViewDeviceName;
 
     private String mCurrentDevice;
     private int mCurrentMenuEntry;

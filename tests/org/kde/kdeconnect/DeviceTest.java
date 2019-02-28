@@ -58,7 +58,7 @@ import static org.mockito.Matchers.eq;
 @PrepareForTest({Base64.class, Log.class, PreferenceManager.class})
 public class DeviceTest {
 
-    Context context;
+    private Context context;
 
     // Creating a paired device before each test case
     @Before

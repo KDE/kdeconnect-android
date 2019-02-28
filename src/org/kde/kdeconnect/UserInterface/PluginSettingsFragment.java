@@ -31,7 +31,7 @@ import androidx.annotation.NonNull;
 import androidx.preference.PreferenceFragmentCompat;
 
 public class PluginSettingsFragment extends PreferenceFragmentCompat {
-    public static final String ARG_PLUGIN_KEY = "plugin_key";
+    private static final String ARG_PLUGIN_KEY = "plugin_key";
 
     private String pluginKey;
 

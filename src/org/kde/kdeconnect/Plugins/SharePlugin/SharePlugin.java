@@ -61,7 +61,7 @@ import androidx.core.content.ContextCompat;
 @PluginFactory.LoadablePlugin
 public class SharePlugin extends Plugin {
     private final static String PACKET_TYPE_SHARE_REQUEST = "kdeconnect.share.request";
-    final static String PACKET_TYPE_SHARE_REQUEST_UPDATE = "kdeconnect.share.request.update";
+    private final static String PACKET_TYPE_SHARE_REQUEST_UPDATE = "kdeconnect.share.request.update";
 
     final static String KEY_NUMBER_OF_FILES = "numberOfFiles";
     final static String KEY_TOTAL_PAYLOAD_SIZE = "totalPayloadSize";
@@ -69,7 +69,7 @@ public class SharePlugin extends Plugin {
     private final static boolean openUrlsDirectly = true;
     private ExecutorService executorService;
     private final Handler handler;
-    CompositeReceiveFileRunnable receiveFileRunnable;
+    private CompositeReceiveFileRunnable receiveFileRunnable;
     private final Callback receiveFileRunnableCallback;
 
     public SharePlugin() {

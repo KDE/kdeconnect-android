@@ -91,7 +91,7 @@ public class CustomDevicesAdapter extends RecyclerView.Adapter<CustomDevicesAdap
         @BindView(R.id.swipeableView) FrameLayout swipeableView;
         @BindView(R.id.deviceNameOrIP) TextView deviceNameOrIP;
 
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             ButterKnife.bind(this, itemView);

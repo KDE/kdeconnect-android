@@ -16,7 +16,7 @@ import androidx.annotation.Nullable;
  *
  * From https://gist.github.com/amardeshbd/354173d00b988574ee5019c4ba0c8a0b
  */
-public class MockSharedPreference implements SharedPreferences {
+class MockSharedPreference implements SharedPreferences {
 
     private final HashMap<String, Object> preferenceMap;
     private final MockSharedPreferenceEditor preferenceEditor;
@@ -89,11 +89,11 @@ public class MockSharedPreference implements SharedPreferences {
 
     }
 
-    public static class MockSharedPreferenceEditor implements Editor {
+    static class MockSharedPreferenceEditor implements Editor {
 
         private final HashMap<String, Object> preferenceMap;
 
-        public MockSharedPreferenceEditor(final HashMap<String, Object> preferenceMap) {
+        MockSharedPreferenceEditor(final HashMap<String, Object> preferenceMap) {
             this.preferenceMap = preferenceMap;
         }
 
