@@ -94,7 +94,7 @@ public class DeviceSettingsFragment extends PreferenceFragmentCompat {
             final Device device = service.getDevice(deviceId);
             if (device == null) {
                 final FragmentActivity activity = requireActivity();
-                activity.runOnUiThread(() -> activity.finish());
+                activity.runOnUiThread(activity::finish);
                 return;
             }
             List<String> plugins = device.getSupportedPlugins();
