@@ -114,6 +114,16 @@ public class DeviceTest {
         Mockito.when(context.getSystemService(eq(Context.NOTIFICATION_SERVICE))).thenReturn(Mockito.mock(NotificationManager.class));
     }
 
+    @Test
+    public void testDeviceType() {
+        assertEquals(Device.DeviceType.Phone, Device.DeviceType.FromString(Device.DeviceType.Phone.toString()));
+        assertEquals(Device.DeviceType.Tablet, Device.DeviceType.FromString(Device.DeviceType.Tablet.toString()));
+        assertEquals(Device.DeviceType.Computer, Device.DeviceType.FromString(Device.DeviceType.Computer.toString()));
+        assertEquals(Device.DeviceType.Tv, Device.DeviceType.FromString(Device.DeviceType.Tv.toString()));
+        assertEquals(Device.DeviceType.Computer, Device.DeviceType.FromString(""));
+        assertEquals(Device.DeviceType.Computer, Device.DeviceType.FromString(null));
+    }
+
     // Basic paired device testing
     @Test
     public void testDevice() {
