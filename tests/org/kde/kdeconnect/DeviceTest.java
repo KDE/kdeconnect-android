@@ -63,7 +63,6 @@ public class DeviceTest {
     // Creating a paired device before each test case
     @Before
     public void setUp() {
-
         // Save new test device in settings
 
         String deviceId = "testDevice";
@@ -113,26 +112,23 @@ public class DeviceTest {
         RsaHelper.initialiseRsaKeys(context);
 
         Mockito.when(context.getSystemService(eq(Context.NOTIFICATION_SERVICE))).thenReturn(Mockito.mock(NotificationManager.class));
-}
+    }
 
     // Basic paired device testing
     @Test
     public void testDevice() {
-
         Device device = new Device(context, "testDevice");
 
         assertEquals(device.getDeviceId(), "testDevice");
         assertEquals(device.getDeviceType(), Device.DeviceType.Phone);
         assertEquals(device.getName(), "Test Device");
         assertTrue(device.isPaired());
-
     }
 
     // Testing pairing done using reflection since it is private
     // Created an unpaired device inside this test
     @Test
     public void testPairingDone() {
-
         NetworkPacket fakeNetworkPacket = new NetworkPacket(NetworkPacket.PACKET_TYPE_IDENTITY);
         fakeNetworkPacket.set("deviceId", "unpairedTestDevice");
         fakeNetworkPacket.set("deviceName", "Unpaired Test Device");
@@ -186,7 +182,6 @@ public class DeviceTest {
         // Cleanup for unpaired test device
         preferences.edit().remove(device.getDeviceId()).apply();
         settings.edit().clear().apply();
-
     }
 
     @Test
@@ -264,7 +259,6 @@ public class DeviceTest {
 
     @Test
     public void testUnpair() {
-
         Device device = new Device(context, "testDevice");
 
         device.unpair();
@@ -273,8 +267,5 @@ public class DeviceTest {
 
         SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
         assertFalse(preferences.getBoolean(device.getDeviceId(), false));
-
     }
-
-
 }
