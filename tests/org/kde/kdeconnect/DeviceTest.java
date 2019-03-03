@@ -273,7 +273,9 @@ public class DeviceTest {
 
     @Test
     public void testUnpair() {
+        Device.PairingCallback pairingCallback = Mockito.mock(Device.PairingCallback.class);
         Device device = new Device(context, "testDevice");
+        device.addPairingCallback(pairingCallback);
 
         device.unpair();
 
@@ -281,5 +283,7 @@ public class DeviceTest {
 
         SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
         assertFalse(preferences.getBoolean(device.getDeviceId(), false));
+
+        Mockito.verify(pairingCallback, Mockito.times(1)).unpaired();
     }
 }
