@@ -35,6 +35,7 @@ import org.kde.kdeconnect.Backends.LanBackend.LanLink;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.kde.kdeconnect.Backends.LanBackend.LanPairingHandler;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -135,7 +136,7 @@ public class DeviceTest {
         assertTrue(device.isPaired());
     }
 
-    // Testing pairing done using reflection since it is private
+    // Testing pairing done
     // Created an unpaired device inside this test
     @Test
     public void testPairingDone() {
@@ -167,6 +168,9 @@ public class DeviceTest {
         }
         device.publicKey = keyPair.getPublic();
 
+        ArgumentCaptor<BasePairingHandler.PairingHandlerCallback> pairingHandlerCallback = ArgumentCaptor.forClass(BasePairingHandler.PairingHandlerCallback.class);
+        Mockito.verify(link, Mockito.times(1)).getPairingHandler(eq(device), pairingHandlerCallback.capture());
+
         assertNotNull(device);
         assertEquals(device.getDeviceId(), "unpairedTestDevice");
         assertEquals(device.getName(), "Unpaired Test Device");
@@ -174,14 +178,7 @@ public class DeviceTest {
         assertNotNull(device.publicKey);
         assertNull(device.certificate);
 
-        Method method;
-        try {
-            method = Device.class.getDeclaredMethod("pairingDone");
-            method.setAccessible(true);
-            method.invoke(device);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        pairingHandlerCallback.getValue().pairingDone();
 
         assertTrue(device.isPaired());
         Mockito.verify(pairingCallback, Mockito.times(1)).pairingSuccessful();
