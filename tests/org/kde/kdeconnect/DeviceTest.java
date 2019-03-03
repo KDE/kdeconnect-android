@@ -152,6 +152,9 @@ public class DeviceTest {
         Mockito.when(link.getPairingHandler(any(Device.class), any(BasePairingHandler.PairingHandlerCallback.class))).thenReturn(Mockito.mock(LanPairingHandler.class));
         Device device = new Device(context, fakeNetworkPacket, link);
 
+        Device.PairingCallback pairingCallback = Mockito.mock(Device.PairingCallback.class);
+        device.addPairingCallback(pairingCallback);
+
         KeyPair keyPair;
         try {
             KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
@@ -181,6 +184,7 @@ public class DeviceTest {
         }
 
         assertTrue(device.isPaired());
+        Mockito.verify(pairingCallback, Mockito.times(1)).pairingSuccessful();
 
         SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
         assertTrue(preferences.getBoolean(device.getDeviceId(), false));
