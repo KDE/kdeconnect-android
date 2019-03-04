@@ -310,15 +310,16 @@ class CompositeReceiveFileRunnable implements Runnable {
     }
 
     private void openFile(DocumentFile fileDocument) {
+        String mimeType = FilesHelper.getMimeTypeFromFile(fileDocument.getName());
         Intent intent = new Intent(Intent.ACTION_VIEW);
         if (Build.VERSION.SDK_INT >= 24) {
             //Nougat and later require "content://" uris instead of "file://" uris
             File file = new File(fileDocument.getUri().getPath());
             Uri contentUri = FileProvider.getUriForFile(device.getContext(), "org.kde.kdeconnect_tp.fileprovider", file);
-            intent.setDataAndType(contentUri, fileDocument.getType());
+            intent.setDataAndType(contentUri, mimeType);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         } else {
-            intent.setDataAndType(fileDocument.getUri(), fileDocument.getType());
+            intent.setDataAndType(fileDocument.getUri(), mimeType);
         }
 
         device.getContext().startActivity(intent);
