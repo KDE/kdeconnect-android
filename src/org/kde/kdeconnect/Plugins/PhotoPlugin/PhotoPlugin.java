@@ -27,11 +27,12 @@ import android.net.Uri;
 import org.kde.kdeconnect.Helpers.FilesHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
 import androidx.core.content.ContextCompat;
 
-
+@PluginFactory.LoadablePlugin
 public class PhotoPlugin extends Plugin {
 
     private final static String PACKET_TYPE_PHOTO = "kdeconnect.photo";
