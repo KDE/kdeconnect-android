@@ -257,6 +257,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.DeviceSettingsActivity" />
         </activity>
+        <activity android:name="org.kde.kdeconnect.Plugins.PhotoPlugin.PhotoActivity" />
 
     </application>
 

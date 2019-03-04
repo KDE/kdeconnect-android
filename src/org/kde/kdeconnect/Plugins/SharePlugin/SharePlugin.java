@@ -40,6 +40,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.kde.kdeconnect.Helpers.FilesHelper;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
@@ -240,7 +241,7 @@ public class SharePlugin extends Plugin {
         //Read all the data early, as we only have permissions to do it while the activity is alive
         final ArrayList<NetworkPacket> toSend = new ArrayList<>();
         for (Uri uri : uriList) {
-            NetworkPacket np = uriToNetworkPacket(context, uri);
+            NetworkPacket np = FilesHelper.uriToNetworkPacket(context, uri, PACKET_TYPE_SHARE_REQUEST);
 
             if (np != null) {
                 toSend.add(np);
@@ -266,83 +267,6 @@ public class SharePlugin extends Plugin {
             }
         }).start();
 
-    }
-
-    //Create the network package from the URI
-    private static NetworkPacket uriToNetworkPacket(final Context context, final Uri uri) {
-
-        try {
-
-            ContentResolver cr = context.getContentResolver();
-            InputStream inputStream = cr.openInputStream(uri);
-
-            NetworkPacket np = new NetworkPacket(PACKET_TYPE_SHARE_REQUEST);
-            long size = -1;
-
-            if (uri.getScheme().equals("file")) {
-                // file:// is a non media uri, so we cannot query the ContentProvider
-
-                np.set("filename", uri.getLastPathSegment());
-
-                try {
-                    size = new File(uri.getPath()).length();
-                } catch (Exception e) {
-                    Log.e("SendFileActivity", "Could not obtain file size");
-                    e.printStackTrace();
-                }
-
-            } else {
-                // Probably a content:// uri, so we query the Media content provider
-
-                Cursor cursor = null;
-                try {
-                    String[] proj = {MediaStore.MediaColumns.DATA, MediaStore.MediaColumns.SIZE, MediaStore.MediaColumns.DISPLAY_NAME};
-                    cursor = cr.query(uri, proj, null, null, null);
-                    int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
-                    cursor.moveToFirst();
-                    String path = cursor.getString(column_index);
-                    np.set("filename", Uri.parse(path).getLastPathSegment());
-                    size = new File(path).length();
-                } catch (Exception unused) {
-
-                    Log.w("SendFileActivity", "Could not resolve media to a file, trying to get info as media");
-
-                    try {
-                        int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DISPLAY_NAME);
-                        cursor.moveToFirst();
-                        String name = cursor.getString(column_index);
-                        np.set("filename", name);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        Log.e("SendFileActivity", "Could not obtain file name");
-                    }
-
-                    try {
-                        int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.SIZE);
-                        cursor.moveToFirst();
-                        //For some reason this size can differ from the actual file size!
-                        size = cursor.getInt(column_index);
-                    } catch (Exception e) {
-                        Log.e("SendFileActivity", "Could not obtain file size");
-                        e.printStackTrace();
-                    }
-                } finally {
-                    try {
-                        cursor.close();
-                    } catch (Exception ignored) {
-                    }
-                }
-
-            }
-
-            np.setPayload(new NetworkPacket.Payload(inputStream, size));
-
-            return np;
-        } catch (Exception e) {
-            Log.e("SendFileActivity", "Exception sending files");
-            e.printStackTrace();
-            return null;
-        }
     }
 
     public void share(Intent intent) {

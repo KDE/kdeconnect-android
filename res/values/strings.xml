@@ -326,6 +326,8 @@
     <string name="block_contents">Block contents of notifications</string>
     <string name="block_images">Block images in notifications</string>
     <string name="notification_channel_receivenotification">Notifications from other devices</string>
+    <string name="take_picture">Take picture</string>
+    <string name="plugin_photo_desc">Take a picture and send it to another device</string>
 
     <string name="findmyphone_preference_key_ringtone" translatable="false">findmyphone_ringtone</string>
 </resources>

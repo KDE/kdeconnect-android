@@ -27,7 +27,6 @@ import android.util.Log;
 import org.atteo.classindex.ClassIndex;
 import org.atteo.classindex.IndexAnnotated;
 import org.kde.kdeconnect.Device;
-
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
