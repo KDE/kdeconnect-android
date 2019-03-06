@@ -273,4 +273,6 @@
   <string name="block_contents">Inhoud van meldingen blokkeren</string>
   <string name="block_images">Afbeeldingen in meldingen blokkeren</string>
   <string name="notification_channel_receivenotification">Meldingen van andere apparaten</string>
+  <string name="take_picture">Foto nemen</string>
+  <string name="plugin_photo_desc">Neem een foto en stuur het naar een ander apparaat</string>
 </resources>
