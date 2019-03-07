@@ -273,4 +273,6 @@
   <string name="block_contents">Bloquear o contido das notificacións</string>
   <string name="block_images">Bloquear as imaxes nas notificacións</string>
   <string name="notification_channel_receivenotification">Notificacións desde outros dispositivos</string>
+  <string name="take_picture">Sacar unha foto</string>
+  <string name="plugin_photo_desc">Sacar unha foto e enviala a outro dispositivo</string>
 </resources>

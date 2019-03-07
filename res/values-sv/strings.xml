@@ -273,4 +273,6 @@
   <string name="block_contents">Blockera underrättelsernas innehåll</string>
   <string name="block_images">Blockera bilder i underrättelser</string>
   <string name="notification_channel_receivenotification">Underrättelser från andra apparater</string>
+  <string name="take_picture">Ta bild</string>
+  <string name="plugin_photo_desc">Ta en bild och skicka den till en annan apparat</string>
 </resources>
