@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.PreferenceViewHolder;
 
-class PluginPreference extends CheckBoxPreference {
+public class PluginPreference extends CheckBoxPreference {
     private final Device device;
     private final String pluginKey;
     private final View.OnClickListener listener;

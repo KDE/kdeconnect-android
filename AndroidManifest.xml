@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.kde.kdeconnect_tp"
-    android:versionCode="11100"
+    android:versionCode="11102"
     android:versionName="1.11">
 
     <supports-screens
