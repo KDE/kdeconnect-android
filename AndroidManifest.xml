@@ -224,6 +224,12 @@
                 android:value="org.kde.kdeconnect.Plugins.SharePlugin.ShareChooserTargetService" />
         </activity>
 
+        <receiver android:name="org.kde.kdeconnect.Plugins.SharePlugin.ShareBroadcastReceiver">
+            <intent-filter>
+                <action android:name="org.kde.kdeconnect.Plugins.SharePlugin.CancelShare" />
+            </intent-filter>
+        </receiver>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="org.kde.kdeconnect_tp.fileprovider"

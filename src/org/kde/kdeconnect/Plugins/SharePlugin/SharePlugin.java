@@ -43,19 +43,24 @@ import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
+import org.kde.kdeconnect.async.BackgroundJob;
+import org.kde.kdeconnect.async.BackgroundJobHandler;
 import org.kde.kdeconnect_tp.R;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
 @PluginFactory.LoadablePlugin
 public class SharePlugin extends Plugin {
+    final static String ACTION_CANCEL_SHARE = "org.kde.kdeconnect.Plugins.SharePlugin.CancelShare";
+    final static String CANCEL_SHARE_DEVICE_ID_EXTRA = "deviceId";
+    final static String CANCEL_SHARE_BACKGROUND_JOB_ID_EXTRA = "backgroundJobId";
+
     private final static String PACKET_TYPE_SHARE_REQUEST = "kdeconnect.share.request";
     private final static String PACKET_TYPE_SHARE_REQUEST_UPDATE = "kdeconnect.share.request.update";
 
@@ -63,15 +68,16 @@ public class SharePlugin extends Plugin {
     final static String KEY_TOTAL_PAYLOAD_SIZE = "totalPayloadSize";
 
     private final static boolean openUrlsDirectly = true;
-    private ExecutorService executorService;
+    private BackgroundJobHandler backgroundJobHandler;
     private final Handler handler;
-    private CompositeReceiveFileRunnable receiveFileRunnable;
-    private final Callback receiveFileRunnableCallback;
+
+    private CompositeReceiveFileJob receiveFileJob;
+    private final Callback receiveFileJobCallback;
 
     public SharePlugin() {
-        executorService = Executors.newFixedThreadPool(5);
+        backgroundJobHandler = BackgroundJobHandler.newFixedThreadPoolBackgroundJobHander(5);
         handler = new Handler(Looper.getMainLooper());
-        receiveFileRunnableCallback = new Callback();
+        receiveFileJobCallback = new Callback();
     }
 
     @Override
@@ -122,8 +128,8 @@ public class SharePlugin extends Plugin {
     public boolean onPacketReceived(NetworkPacket np) {
         try {
             if (np.getType().equals(PACKET_TYPE_SHARE_REQUEST_UPDATE)) {
-                if (receiveFileRunnable != null && receiveFileRunnable.isRunning()) {
-                    receiveFileRunnable.updateTotals(np.getInt(KEY_NUMBER_OF_FILES), np.getLong(KEY_TOTAL_PAYLOAD_SIZE));
+                if (receiveFileJob != null && receiveFileJob.isRunning()) {
+                    receiveFileJob.updateTotals(np.getInt(KEY_NUMBER_OF_FILES), np.getLong(KEY_TOTAL_PAYLOAD_SIZE));
                 } else {
                     Log.d("SharePlugin", "Received update packet but CompositeUploadJob is null or not running");
                 }
@@ -200,15 +206,15 @@ public class SharePlugin extends Plugin {
 
     @WorkerThread
     private void receiveFile(NetworkPacket np) {
-        CompositeReceiveFileRunnable runnable;
+        CompositeReceiveFileJob job;
 
         boolean hasNumberOfFiles = np.has(KEY_NUMBER_OF_FILES);
         boolean hasOpen = np.has("open");
 
-        if (hasNumberOfFiles && !hasOpen && receiveFileRunnable != null) {
-            runnable = receiveFileRunnable;
+        if (hasNumberOfFiles && !hasOpen && receiveFileJob != null) {
+            job = receiveFileJob;
         } else {
-            runnable = new CompositeReceiveFileRunnable(device, receiveFileRunnableCallback);
+            job = new CompositeReceiveFileJob(device, receiveFileJobCallback);
         }
 
         if (!hasNumberOfFiles) {
@@ -216,13 +222,13 @@ public class SharePlugin extends Plugin {
             np.set(KEY_TOTAL_PAYLOAD_SIZE, np.getPayloadSize());
         }
 
-        runnable.addNetworkPacket(np);
+        job.addNetworkPacket(np);
 
-        if (runnable != receiveFileRunnable) {
+        if (job != receiveFileJob) {
             if (hasNumberOfFiles && !hasOpen) {
-                receiveFileRunnable = runnable;
+                receiveFileJob = job;
             }
-            executorService.execute(runnable);
+            backgroundJobHandler.runJob(job);
         }
     }
 
@@ -232,7 +238,6 @@ public class SharePlugin extends Plugin {
     }
 
     void queuedSendUriList(final ArrayList<Uri> uriList) {
-
         //Read all the data early, as we only have permissions to do it while the activity is alive
         final ArrayList<NetworkPacket> toSend = new ArrayList<>();
         for (Uri uri : uriList) {
@@ -281,7 +286,6 @@ public class SharePlugin extends Plugin {
                     }
 
                     queuedSendUriList(uriList);
-
                 } catch (Exception e) {
                     Log.e("ShareActivity", "Exception");
                     e.printStackTrace();
@@ -315,7 +319,6 @@ public class SharePlugin extends Plugin {
                 device.sendPacket(np);
             }
         }
-
     }
 
     @Override
@@ -333,19 +336,32 @@ public class SharePlugin extends Plugin {
         return new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
     }
 
-    private class Callback implements CompositeReceiveFileRunnable.CallBack {
+    private class Callback implements CompositeReceiveFileJob.Callback<Void> {
         @Override
-        public void onSuccess(CompositeReceiveFileRunnable runnable) {
-            if (runnable == receiveFileRunnable) {
-                receiveFileRunnable = null;
+        public void onResult(@NonNull BackgroundJob job, Void result) {
+            if (job == receiveFileJob) {
+                receiveFileJob = null;
             }
         }
 
         @Override
-        public void onError(CompositeReceiveFileRunnable runnable, Throwable error) {
-            Log.e("SharePlugin", "onError() - " + error.getMessage());
-            if (runnable == receiveFileRunnable) {
-                receiveFileRunnable = null;
+        public void onError(@NonNull BackgroundJob job, @NonNull Throwable error) {
+            if (job == receiveFileJob) {
+                receiveFileJob = null;
+            }
+        }
+    }
+
+    void cancelJob(long jobId) {
+        if (backgroundJobHandler.isRunning(jobId)) {
+            BackgroundJob job = backgroundJobHandler.getJob(jobId);
+
+            if (job != null) {
+                job.cancel();
+
+                if (job == receiveFileJob) {
+                    receiveFileJob = null;
+                }
             }
         }
     }

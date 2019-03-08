@@ -48,6 +48,7 @@ class ShareNotification {
     private final int notificationId;
     private NotificationCompat.Builder builder;
     private final Device device;
+    private long currentJobId;
 
     //https://documentation.onesignal.com/docs/android-customizations#section-big-picture
     private static final int bigImageWidth = 1440;
@@ -73,7 +74,23 @@ class ShareNotification {
         notificationManager.cancel(notificationId);
     }
 
-    public int getId() {
+    public void addCancelAction(long jobId) {
+        builder.mActions.clear();
+
+        currentJobId = jobId;
+        Intent cancelIntent = new Intent(device.getContext(), ShareBroadcastReceiver.class);
+        cancelIntent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
+        cancelIntent.setAction(SharePlugin.ACTION_CANCEL_SHARE);
+        cancelIntent.putExtra(SharePlugin.CANCEL_SHARE_BACKGROUND_JOB_ID_EXTRA, jobId);
+        cancelIntent.putExtra(SharePlugin.CANCEL_SHARE_DEVICE_ID_EXTRA, device.getDeviceId());
+        PendingIntent cancelPendingIntent = PendingIntent.getBroadcast(device.getContext(), 0, cancelIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        builder.addAction(R.drawable.ic_reject_pairing, device.getContext().getString(R.string.cancel), cancelPendingIntent);
+    }
+
+    public long getCurrentJobId() { return currentJobId; }
+
+    public int getNotificationId() {
         return notificationId;
     }
 

@@ -147,7 +147,6 @@ public class ShareActivity extends AppCompatActivity {
         final String deviceId = intent.getStringExtra("deviceId");
 
         if (deviceId != null) {
-
             BackgroundService.runWithPlugin(this, deviceId, SharePlugin.class, plugin -> {
                 plugin.share(intent);
                 finish();

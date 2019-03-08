@@ -25,14 +25,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.FilesHelper;
 import org.kde.kdeconnect.Helpers.MediaStoreHelper;
 import org.kde.kdeconnect.NetworkPacket;
+import org.kde.kdeconnect.async.BackgroundJob;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.BufferedOutputStream;
@@ -46,13 +45,7 @@ import java.util.List;
 import androidx.core.content.FileProvider;
 import androidx.documentfile.provider.DocumentFile;
 
-class CompositeReceiveFileRunnable implements Runnable {
-    interface CallBack {
-        void onSuccess(CompositeReceiveFileRunnable runnable);
-        void onError(CompositeReceiveFileRunnable runnable, Throwable error);
-    }
-
-    private final Device device;
+public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
     private final ShareNotification shareNotification;
     private NetworkPacket currentNetworkPacket;
     private String currentFileName;
@@ -61,29 +54,29 @@ class CompositeReceiveFileRunnable implements Runnable {
     private long lastProgressTimeMillis;
     private long prevProgressPercentage;
 
-    private final CallBack callBack;
-    private final Handler handler;
-
     private final Object lock;                              //Use to protect concurrent access to the variables below
     private final List<NetworkPacket> networkPacketList;
     private int totalNumFiles;
     private long totalPayloadSize;
     private boolean isRunning;
 
-    CompositeReceiveFileRunnable(Device device, CallBack callBack) {
-        this.device = device;
-        this.callBack = callBack;
+    CompositeReceiveFileJob(Device device, BackgroundJob.Callback<Void> callBack) {
+        super(device, callBack);
 
         lock = new Object();
         networkPacketList = new ArrayList<>();
         shareNotification = new ShareNotification(device);
+        shareNotification.addCancelAction(getId());
         currentFileNum = 0;
         totalNumFiles = 0;
         totalPayloadSize = 0;
         totalReceived = 0;
         lastProgressTimeMillis = 0;
         prevProgressPercentage = 0;
-        handler = new Handler(Looper.getMainLooper());
+    }
+
+    private Device getDevice() {
+        return requestInfo;
     }
 
     boolean isRunning() { return isRunning; }
@@ -93,8 +86,8 @@ class CompositeReceiveFileRunnable implements Runnable {
             this.totalNumFiles = numberOfFiles;
             this.totalPayloadSize = totalPayloadSize;
 
-            shareNotification.setTitle(device.getContext().getResources()
-                    .getQuantityString(R.plurals.incoming_file_title, totalNumFiles, totalNumFiles, device.getName()));
+            shareNotification.setTitle(getDevice().getContext().getResources()
+                    .getQuantityString(R.plurals.incoming_file_title, totalNumFiles, totalNumFiles, getDevice().getName()));
         }
     }
 
@@ -106,8 +99,8 @@ class CompositeReceiveFileRunnable implements Runnable {
                 totalNumFiles = networkPacket.getInt(SharePlugin.KEY_NUMBER_OF_FILES, 1);
                 totalPayloadSize = networkPacket.getLong(SharePlugin.KEY_TOTAL_PAYLOAD_SIZE);
 
-                shareNotification.setTitle(device.getContext().getResources()
-                    .getQuantityString(R.plurals.incoming_file_title, totalNumFiles, totalNumFiles, device.getName()));
+                shareNotification.setTitle(getDevice().getContext().getResources()
+                        .getQuantityString(R.plurals.incoming_file_title, totalNumFiles, totalNumFiles, getDevice().getName()));
             }
         }
     }
@@ -126,7 +119,7 @@ class CompositeReceiveFileRunnable implements Runnable {
 
             isRunning = true;
 
-            while (!done) {
+            while (!done && !canceled) {
                 synchronized (lock) {
                     currentNetworkPacket = networkPacketList.get(0);
                 }
@@ -138,7 +131,7 @@ class CompositeReceiveFileRunnable implements Runnable {
                 fileDocument = getDocumentFileFor(currentFileName, currentNetworkPacket.getBoolean("open"));
 
                 if (currentNetworkPacket.hasPayload()) {
-                    outputStream = new BufferedOutputStream(device.getContext().getContentResolver().openOutputStream(fileDocument.getUri()));
+                    outputStream = new BufferedOutputStream(getDevice().getContext().getContentResolver().openOutputStream(fileDocument.getUri()));
                     InputStream inputStream = currentNetworkPacket.getPayload().getInputStream();
 
                     long received = receiveFile(inputStream, outputStream);
@@ -147,7 +140,10 @@ class CompositeReceiveFileRunnable implements Runnable {
 
                     if ( received != currentNetworkPacket.getPayloadSize()) {
                         fileDocument.delete();
-                        throw new RuntimeException("Failed to receive: " + currentFileName + " received:" + received + " bytes, expected: " + currentNetworkPacket.getPayloadSize() + " bytes");
+
+                        if (!canceled) {
+                            throw new RuntimeException("Failed to receive: " + currentFileName + " received:" + received + " bytes, expected: " + currentNetworkPacket.getPayloadSize() + " bytes");
+                        }
                     } else {
                         publishFile(fileDocument, received);
                     }
@@ -163,7 +159,7 @@ class CompositeReceiveFileRunnable implements Runnable {
                     listIsEmpty = networkPacketList.isEmpty();
                 }
 
-                if (listIsEmpty) {
+                if (listIsEmpty && !canceled) {
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException ignored) {}
@@ -182,6 +178,11 @@ class CompositeReceiveFileRunnable implements Runnable {
 
             isRunning = false;
 
+            if (canceled) {
+                shareNotification.cancel();
+                return;
+            }
+
             int numFiles;
             synchronized (lock) {
                 numFiles = totalNumFiles;
@@ -192,7 +193,7 @@ class CompositeReceiveFileRunnable implements Runnable {
                 openFile(fileDocument);
             } else {
                 //Update the notification and allow to open the file from it
-                shareNotification.setFinished(device.getContext().getResources().getQuantityString(R.plurals.received_files_title, numFiles, device.getName(), numFiles));
+                shareNotification.setFinished(getDevice().getContext().getResources().getQuantityString(R.plurals.received_files_title, numFiles, getDevice().getName(), numFiles));
 
                 if (totalNumFiles == 1 && fileDocument != null) {
                     shareNotification.setURI(fileDocument.getUri(), fileDocument.getType(), fileDocument.getName());
@@ -200,7 +201,7 @@ class CompositeReceiveFileRunnable implements Runnable {
 
                 shareNotification.show();
             }
-            handler.post(() -> callBack.onSuccess(this));
+            reportResult(null);
         } catch (Exception e) {
             isRunning = false;
 
@@ -208,9 +209,10 @@ class CompositeReceiveFileRunnable implements Runnable {
             synchronized (lock) {
                 failedFiles = (totalNumFiles - currentFileNum + 1);
             }
-            shareNotification.setFinished(device.getContext().getResources().getQuantityString(R.plurals.received_files_fail_title, failedFiles, device.getName(), failedFiles, totalNumFiles));
+
+            shareNotification.setFinished(getDevice().getContext().getResources().getQuantityString(R.plurals.received_files_fail_title, failedFiles, getDevice().getName(), failedFiles, totalNumFiles));
             shareNotification.show();
-            handler.post(() -> callBack.onError(this, e));
+            reportError(e);
         } finally {
             closeAllInputStreams();
             networkPacketList.clear();
@@ -230,12 +232,12 @@ class CompositeReceiveFileRunnable implements Runnable {
         //We need to check for already existing files only when storing in the default path.
         //User-defined paths use the new Storage Access Framework that already handles this.
         //If the file should be opened immediately store it in the standard location to avoid the FileProvider trouble (See ShareNotification::setURI)
-        if (open || !ShareSettingsFragment.isCustomDestinationEnabled(device.getContext())) {
+        if (open || !ShareSettingsFragment.isCustomDestinationEnabled(getDevice().getContext())) {
             final String defaultPath = ShareSettingsFragment.getDefaultDestinationDirectory().getAbsolutePath();
             filenameToUse = FilesHelper.findNonExistingNameForNewFile(defaultPath, filenameToUse);
             destinationFolderDocument = DocumentFile.fromFile(new File(defaultPath));
         } else {
-            destinationFolderDocument = ShareSettingsFragment.getDestinationDirectory(device.getContext());
+            destinationFolderDocument = ShareSettingsFragment.getDestinationDirectory(getDevice().getContext());
         }
         String displayName = FilesHelper.getFileNameWithoutExt(filenameToUse);
         String mimeType = FilesHelper.getMimeTypeFromFile(filenameToUse);
@@ -247,7 +249,7 @@ class CompositeReceiveFileRunnable implements Runnable {
         DocumentFile fileDocument = destinationFolderDocument.createFile(mimeType, displayName);
 
         if (fileDocument == null) {
-            throw new RuntimeException(device.getContext().getString(R.string.cannot_create_file, filenameToUse));
+            throw new RuntimeException(getDevice().getContext().getString(R.string.cannot_create_file, filenameToUse));
         }
 
         return fileDocument;
@@ -258,7 +260,7 @@ class CompositeReceiveFileRunnable implements Runnable {
         int count;
         long received = 0;
 
-        while ((count = input.read(data)) >= 0) {
+        while ((count = input.read(data)) >= 0 && !canceled) {
             received += count;
             totalReceived += count;
 
@@ -291,21 +293,21 @@ class CompositeReceiveFileRunnable implements Runnable {
 
     private void setProgress(int progress) {
         synchronized (lock) {
-            shareNotification.setProgress(progress, device.getContext().getResources()
+            shareNotification.setProgress(progress, getDevice().getContext().getResources()
                     .getQuantityString(R.plurals.incoming_files_text, totalNumFiles, currentFileName, currentFileNum, totalNumFiles));
         }
         shareNotification.show();
     }
 
     private void publishFile(DocumentFile fileDocument, long size) {
-        if (!ShareSettingsFragment.isCustomDestinationEnabled(device.getContext())) {
+        if (!ShareSettingsFragment.isCustomDestinationEnabled(getDevice().getContext())) {
             Log.i("SharePlugin", "Adding to downloads");
-            DownloadManager manager = (DownloadManager) device.getContext().getSystemService(Context.DOWNLOAD_SERVICE);
-            manager.addCompletedDownload(fileDocument.getUri().getLastPathSegment(), device.getName(), true, fileDocument.getType(), fileDocument.getUri().getPath(), size, false);
+            DownloadManager manager = (DownloadManager) getDevice().getContext().getSystemService(Context.DOWNLOAD_SERVICE);
+            manager.addCompletedDownload(fileDocument.getUri().getLastPathSegment(), getDevice().getName(), true, fileDocument.getType(), fileDocument.getUri().getPath(), size, false);
         } else {
             //Make sure it is added to the Android Gallery anyway
             Log.i("SharePlugin", "Adding to gallery");
-            MediaStoreHelper.indexFile(device.getContext(), fileDocument.getUri());
+            MediaStoreHelper.indexFile(getDevice().getContext(), fileDocument.getUri());
         }
     }
 
@@ -315,13 +317,13 @@ class CompositeReceiveFileRunnable implements Runnable {
         if (Build.VERSION.SDK_INT >= 24) {
             //Nougat and later require "content://" uris instead of "file://" uris
             File file = new File(fileDocument.getUri().getPath());
-            Uri contentUri = FileProvider.getUriForFile(device.getContext(), "org.kde.kdeconnect_tp.fileprovider", file);
+            Uri contentUri = FileProvider.getUriForFile(getDevice().getContext(), "org.kde.kdeconnect_tp.fileprovider", file);
             intent.setDataAndType(contentUri, mimeType);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         } else {
             intent.setDataAndType(fileDocument.getUri(), mimeType);
         }
 
-        device.getContext().startActivity(intent);
+        getDevice().getContext().startActivity(intent);
     }
 }
