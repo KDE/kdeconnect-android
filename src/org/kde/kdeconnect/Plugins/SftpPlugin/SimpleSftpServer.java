@@ -21,15 +21,9 @@
 package org.kde.kdeconnect.Plugins.SftpPlugin;
 
 import android.content.Context;
-import android.net.Uri;
 import android.util.Log;
 
 import org.apache.sshd.SshServer;
-import org.apache.sshd.common.Session;
-import org.apache.sshd.common.file.FileSystemFactory;
-import org.apache.sshd.common.file.FileSystemView;
-import org.apache.sshd.common.file.nativefs.NativeFileSystemView;
-import org.apache.sshd.common.file.nativefs.NativeSshFile;
 import org.apache.sshd.common.keyprovider.AbstractKeyPairProvider;
 import org.apache.sshd.common.util.SecurityUtils;
 import org.apache.sshd.server.PasswordAuthenticator;
@@ -40,16 +34,10 @@ import org.apache.sshd.server.kex.DHG14;
 import org.apache.sshd.server.session.ServerSession;
 import org.apache.sshd.server.sftp.SftpSubsystem;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.Helpers.MediaStoreHelper;
 import org.kde.kdeconnect.Helpers.RandomHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.RandomAccessFile;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -62,6 +50,7 @@ import java.security.Security;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.List;
 
 class SimpleSftpServer {
     private static final int STARTPORT = 1739;
@@ -81,6 +70,7 @@ class SimpleSftpServer {
     }
 
     private final SshServer sshd = SshServer.setUpDefaultServer();
+    private AndroidFileSystemFactory fileSystemFactory;
 
     void init(Context context, Device device) throws GeneralSecurityException {
 
@@ -100,7 +90,8 @@ class SimpleSftpServer {
             }
         });
 
-        sshd.setFileSystemFactory(new AndroidFileSystemFactory(context));
+        fileSystemFactory = new AndroidFileSystemFactory(context);
+        sshd.setFileSystemFactory(fileSystemFactory);
         sshd.setCommandFactory(new ScpCommandFactory());
         sshd.setSubsystemFactories(Collections.singletonList(new SftpSubsystem.Factory()));
 
@@ -113,9 +104,9 @@ class SimpleSftpServer {
         sshd.setPasswordAuthenticator(passwordAuth);
     }
 
-    public boolean start() {
+    public boolean start(List<SftpPlugin.StorageInfo> storageInfoList) {
         if (!started) {
-
+            fileSystemFactory.initRoots(storageInfoList);
             passwordAuth.password = RandomHelper.randomString(28);
 
             port = STARTPORT;
@@ -146,6 +137,10 @@ class SimpleSftpServer {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean isStarted() {
+        return started;
     }
 
     String getPassword() {
@@ -187,120 +182,6 @@ class SimpleSftpServer {
         } catch (SocketException ignored) {
         }
         return ip6;
-    }
-
-    static class AndroidFileSystemFactory implements FileSystemFactory {
-
-        final private Context context;
-
-        AndroidFileSystemFactory(Context context) {
-            this.context = context;
-        }
-
-        @Override
-        public FileSystemView createFileSystemView(final Session username) {
-            return new AndroidFileSystemView(username.getUsername(), context);
-        }
-    }
-
-    static class AndroidFileSystemView extends NativeFileSystemView {
-
-        final private Context context;
-
-        AndroidFileSystemView(final String userName, Context context) {
-            super(userName, true);
-            this.context = context;
-        }
-
-        // NativeFileSystemView.getFile(), NativeSshFile.getParentFile() and NativeSshFile.listSshFiles() call
-        // createNativeSshFile to create new NativeSshFiles so override that instead of getFile() to always create a AndroidSshFile
-        @Override
-        public AndroidSshFile createNativeSshFile(String name, File file, String username) {
-            return new AndroidSshFile(this, name, file, username, context);
-        }
-    }
-
-    static class AndroidSshFile extends NativeSshFile {
-
-        final private Context context;
-        final private File file;
-
-        AndroidSshFile(final AndroidFileSystemView view, String name, final File file, final String userName, Context context) {
-            super(view, name, file, userName);
-            this.context = context;
-            this.file = file;
-        }
-
-        @Override
-        public OutputStream createOutputStream(long offset) throws IOException {
-            if (!isWritable()) {
-                throw new IOException("No write permission : " + file.getName());
-            }
-
-            final RandomAccessFile raf = new RandomAccessFile(file, "rw");
-            try {
-                if (offset < raf.length()) {
-                    throw new IOException("Your SSHFS is bugged"); //SSHFS 3.0 and 3.2 cause data corruption, abort the transfer if this happens
-                }
-                raf.setLength(offset);
-                raf.seek(offset);
-
-                return new FileOutputStream(raf.getFD()) {
-                    public void close() throws IOException {
-                        super.close();
-                        raf.close();
-                    }
-                };
-            } catch (IOException e) {
-                raf.close();
-                throw e;
-            }
-        }
-
-        @Override
-        public boolean delete() {
-            //Log.e("Sshd", "deleting file");
-            boolean ret = super.delete();
-            if (ret) {
-                MediaStoreHelper.indexFile(context, Uri.fromFile(file));
-            }
-            return ret;
-
-        }
-
-        @Override
-        public boolean create() throws IOException {
-            //Log.e("Sshd", "creating file");
-            boolean ret = super.create();
-            if (ret) {
-                MediaStoreHelper.indexFile(context, Uri.fromFile(file));
-            }
-            return ret;
-
-        }
-
-        // Based on https://github.com/wolpi/prim-ftpd/blob/master/primitiveFTPd/src/org/primftpd/filesystem/FsFile.java
-        @Override
-        public boolean doesExist() {
-            boolean exists = file.exists();
-
-            if (!exists) {
-                // file.exists() returns false when we don't have read permission
-                // try to figure out if it really does not exist
-                File parentFile = file.getParentFile();
-                File[] children = parentFile.listFiles();
-                if (children != null) {
-                    for (File child : children) {
-                        if (file.equals(child)) {
-                            exists = true;
-                            break;
-                        }
-                    }
-                }
-            }
-
-            return exists;
-        }
     }
 
     static class SimplePasswordAuthenticator implements PasswordAuthenticator {

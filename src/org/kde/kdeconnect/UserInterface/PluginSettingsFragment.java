@@ -78,4 +78,8 @@ public class PluginSettingsFragment extends PreferenceFragmentCompat {
         PluginFactory.PluginInfo info = PluginFactory.getPluginInfo(pluginKey);
         requireActivity().setTitle(getString(R.string.plugin_settings_with_name, info.getDisplayName()));
     }
+
+    public String getDeviceId() {
+        return ((DeviceSettingsActivity)requireActivity()).getDeviceId();
+    }
 }

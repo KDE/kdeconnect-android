@@ -225,13 +225,37 @@
     <string name="title_activity_notification_filter">Notification filter</string>
     <string name="filter_apps_info">Notifications will be synchronized for the selected apps.</string>
     <string name="sftp_internal_storage">Internal storage</string>
-    <string name="sftp_all_files">All files</string>
     <string name="sftp_sdcard_num">SD card %d</string>
     <string name="sftp_sdcard">SD card</string>
     <string name="sftp_readonly">(read only)</string>
     <string name="sftp_camera">Camera pictures</string>
     <string name="add_device_dialog_title">Add device</string>
     <string name="add_device_hint">Hostname or IP address</string>
+    <string name="sftp_preference_detected_sdcards">Detected SD cards</string>
+    <string name="sftp_preference_edit_sdcard_title">Edit SD card</string>
+    <string name="sftp_preference_configured_storage_locations">Configured storage locations</string>
+    <string name="sftp_preference_add_storage_location_title">Add storage location</string>
+    <string name="sftp_preference_edit_storage_location">Edit storage location</string>
+    <string name="sftp_preference_add_camera_shortcut">Add camera folder shortcut</string>
+    <string name="sftp_preference_add_camera_shortcut_summary_on">Add a shortcut to the camera folder</string>
+    <string name="sftp_preference_add_camera_shortcut_summary_off">Do not add a shortcut to the camera folder</string>
+    <string name="sftp_preference_key_preference_category" translatable="false">key_sftp_preference_category</string>
+    <string name="sftp_preference_key_add_storage" translatable="false">key_sftp_add_storage</string>
+    <string name="sftp_preference_key_add_camera_shortcut" translatable="false">key_sftp_add_camera_shotcut</string>
+    <string name="sftp_preference_key_storage_info" translatable="false">key_sftp_storage_info%d"</string>
+    <string name="sftp_preference_key_storage_info_list" translatable="false">key_sftp_storage_info_list</string>
+    <string name="sftp_storage_preference_storage_location">Storage location</string>
+    <string name="sftp_storage_preference_storage_location_already_configured">This location has already been configured</string>
+    <string name="sftp_storage_preference_click_to_select">click to select</string>
+    <string name="sftp_storage_preference_display_name">Display name</string>
+    <string name="sftp_storage_preference_display_name_already_used">This display name is already used</string>
+    <string name="sftp_storage_preference_display_name_cannot_be_empty">Display name cannot be empty</string>
+    <string name="sftp_action_mode_menu_delete">Delete</string>
+    <string name="sftp_no_sdcard_detected">No SD card detected</string>
+    <string name="sftp_no_storage_locations_configured">No storage locations configured</string>
+    <string name="sftp_saf_permission_explanation">To access files remotely you have to configure storage locations</string>
+    <string name="add_host">Add host/IP</string>
+    <string name="add_host_hint">Hostname or IP</string>
     <string name="no_players_connected">No players found</string>
     <string name="mpris_player_on_device">%1$s on %2$s</string>
     <string name="send_files">Send files</string>
@@ -262,7 +286,6 @@
     <string name="permission_explanation">This plugin needs permissions to work</string>
     <string name="optional_permission_explanation">You need to grant extra permissions to enable all functions</string>
     <string name="plugins_need_optional_permission">Some plugins have features disabled because of lack of permission (tap for more info):</string>
-    <string name="sftp_permission_explanation">To access your files from your PC the app needs permission to access your phone\'s storage</string>
     <string name="share_optional_permission_explanation">To share files between your phone and your desktop you need to give access to the phone\'s storage</string>
     <string name="telepathy_permission_explanation">To read and write SMS from your desktop you need to give permission to SMS</string>
     <string name="telephony_permission_explanation">To see phone calls and SMS from the desktop you need to give permission to phone calls and SMS</string>

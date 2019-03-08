@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="?attr/dialogPreferredPadding"
+    android:paddingRight="?attr/dialogPreferredPadding"
+    android:paddingTop="10dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/storageLocation"
+            style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cursorVisible="false"
+            android:hint="@string/sftp_storage_preference_storage_location"
+            android:lines="1"
+            android:longClickable="false"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"
+            android:inputType="text"
+            android:text="@string/sftp_storage_preference_click_to_select"
+            android:textColor="@android:color/darker_gray"
+            android:editable="false"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/storageDisplayNameInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/storageDisplayName"
+            style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/sftp_storage_preference_display_name"
+            android:lines="1"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>

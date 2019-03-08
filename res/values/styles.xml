@@ -18,6 +18,7 @@
         <item name="android:textColorPrimary">@android:color/black</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+        <item name="actionModeStyle">@style/ActionModeStyle</item>
     </style>
 
     <style name="KdeConnectThemeBase.NoActionBar" parent="KdeConnectThemeBase">
@@ -41,5 +42,9 @@
 
     <style name="DisableableButton" parent="ThemeOverlay.AppCompat">
         <item name="colorButtonNormal">@drawable/disableable_button</item>
+    </style>
+
+    <style name="ActionModeStyle" parent="Widget.AppCompat.ActionMode">
+        <item name="background">@color/primaryDark</item>
     </style>
 </resources>

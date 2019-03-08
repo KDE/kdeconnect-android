@@ -20,7 +20,12 @@
 
 package org.kde.kdeconnect.Helpers;
 
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
+import android.provider.DocumentsContract;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -31,6 +36,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+
+import androidx.annotation.NonNull;
 
 //Code from http://stackoverflow.com/questions/9340332/how-can-i-get-the-list-of-mounted-external-storage-of-android-device/19982338#19982338
 //modified to work on Lollipop and other devices
@@ -43,7 +50,7 @@ public class StorageHelper {
         public final boolean removable;
         public final int number;
 
-        StorageInfo(String path, boolean readonly, boolean removable, int number) {
+        public StorageInfo(String path, boolean readonly, boolean removable, int number) {
             this.path = path;
             this.readonly = readonly;
             this.removable = removable;
@@ -77,7 +84,7 @@ public class StorageHelper {
         }
 
         File storage = new File("/storage/");
-        if (storage.exists() && storage.isDirectory()) {
+        if (storage.exists() && storage.isDirectory() && storage.canRead()) {
             String mounts = null;
             try (Scanner scanner = new Scanner(new File("/proc/mounts"))) {
                 mounts = scanner.useDelimiter("\\A").next();
@@ -100,7 +107,7 @@ public class StorageHelper {
                     if (!path.startsWith("/storage/emulated") || dirs.length == 1) {
                         if (!paths.contains(path) && !paths.contains(path2)) {
                             if (mounts == null || mounts.contains(path) || mounts.contains(path2)) {
-                                list.add(0, new StorageInfo(path, false, true, cur_removable_number++));
+                                list.add(0, new StorageInfo(path, dir.canWrite(), true, cur_removable_number++));
                                 paths.add(path);
                             }
                         }
@@ -153,4 +160,37 @@ public class StorageHelper {
         return list;
     }
 
+    /* treeUri                                                                       documentId
+     * ==================================================================================================
+     * content://com.android.providers.downloads.documents/tree/downloads         => downloads
+     * content://com.android.externalstorage.documents/tree/1715-1D1F:            => 1715-1D1F:
+     * content://com.android.externalstorage.documents/tree/1715-1D1F:My%20Photos => 1715-1D1F:My Photos
+     * content://com.android.externalstorage.documents/tree/primary:              => primary:
+     * content://com.android.externalstorage.documents/tree/primary:DCIM          => primary:DCIM
+     * content://com.android.externalstorage.documents/tree/primary:Download/bla  => primary:Download/bla
+     */
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public static String getDisplayName(@NonNull Context context, @NonNull Uri treeUri) {
+        List<String> pathSegments = treeUri.getPathSegments();
+
+        if (!pathSegments.get(0).equals("tree")) {
+            throw new IllegalArgumentException("treeUri is not valid");
+        }
+
+        String documentId = DocumentsContract.getTreeDocumentId(treeUri);
+
+        int colonIdx = pathSegments.get(1).indexOf(':');
+
+        if (colonIdx >= 0) {
+            String tree = pathSegments.get(1).substring(0, colonIdx + 1);
+
+            if (!documentId.equals(tree)) {
+                return documentId.substring(tree.length());
+            } else {
+                return documentId.substring(0, colonIdx);
+            }
+        }
+
+        return documentId;
+    }
 }

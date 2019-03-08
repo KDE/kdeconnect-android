@@ -100,6 +100,7 @@ public class DeviceSettingsFragment extends PreferenceFragmentCompat {
             List<String> plugins = device.getSupportedPlugins();
 
             for (final String pluginKey : plugins) {
+                //TODO: Use PreferenceManagers context
                 PluginPreference pref = new PluginPreference(requireContext(), pluginKey, device, callback);
                 preferenceScreen.addPreference(pref);
             }
