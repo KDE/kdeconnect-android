@@ -283,6 +283,6 @@
   <string name="block_contents">Блокувати вміст сповіщень</string>
   <string name="block_images">Блокувати зображення у сповіщеннях</string>
   <string name="notification_channel_receivenotification">Сповіщення з інших пристроїв</string>
-  <string name="take_picture">Створити знімок</string>
-  <string name="plugin_photo_desc">Зробити знімок і надіслати його на інший пристрій</string>
+  <string name="take_picture">Запустити камеру</string>
+  <string name="plugin_photo_desc">Запустити додаток камери для спрощення знімання та передавання фотографій</string>
 </resources>

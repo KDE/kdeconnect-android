@@ -273,6 +273,6 @@
   <string name="block_contents">Bloca el contingut de les notificacions</string>
   <string name="block_images">Bloca les imatges a les notificacions</string>
   <string name="notification_channel_receivenotification">Notificacions des d\'altres dispositius</string>
-  <string name="take_picture">Pren una fotografia</string>
-  <string name="plugin_photo_desc">Pren una fotografia i l\'envia a un altre dispositiu</string>
+  <string name="take_picture">Llança la càmera</string>
+  <string name="plugin_photo_desc">Llança l\'aplicació de la càmera per facilitar la presa i la transferència de fotografies</string>
 </resources>
