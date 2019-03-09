@@ -34,6 +34,7 @@ import org.kde.kdeconnect.Helpers.AppsHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationReceiver;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.AlertDialogFragment;
 import org.kde.kdeconnect.UserInterface.StartActivityAlertDialogFragment;
 import org.kde.kdeconnect_tp.R;
@@ -45,7 +46,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-//@PluginFactory.LoadablePlugin
+@PluginFactory.LoadablePlugin
 public class MprisReceiverPlugin extends Plugin implements MediaSessionManager.OnActiveSessionsChangedListener {
 
     private final static String PACKET_TYPE_MPRIS = "kdeconnect.mpris";
@@ -159,6 +160,9 @@ public class MprisReceiverPlugin extends Plugin implements MediaSessionManager.O
     }
 
     private void createPlayer(MediaController controller) {
+        // Skip the media session we created ourselves as KDE Connect
+        if (controller.getPackageName().equals(context.getPackageName())) return;
+
         MprisReceiverPlayer player = new MprisReceiverPlayer(controller, AppsHelper.appNameLookup(context, controller.getPackageName()));
         controller.registerCallback(new MprisReceiverCallback(this, player), new Handler(Looper.getMainLooper()));
         players.put(player.getName(), player);
