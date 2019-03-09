@@ -46,22 +46,11 @@ class MprisReceiverCallback extends MediaController.Callback {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onPlaybackStateChanged(@NonNull PlaybackState state) {
-        switch (state.getState()) {
-            case PlaybackState.STATE_PLAYING:
-                player.setPlaying(true);
-                plugin.sendPlaying(player);
-                break;
-            case PlaybackState.STATE_PAUSED:
-                player.setPaused(true);
-                plugin.sendPlaying(player);
-                break;
-        }
+        plugin.sendMetadata(player);
     }
 
     @Override
     public void onMetadataChanged(@Nullable MediaMetadata metadata) {
-        if (metadata == null)
-            return;
         plugin.sendMetadata(player);
     }
 

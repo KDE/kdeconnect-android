@@ -34,36 +34,59 @@ class MprisReceiverPlayer {
 
     private final String name;
 
-    private boolean isPlaying;
-
     MprisReceiverPlayer(MediaController controller, String name) {
-
         this.controller = controller;
         this.name = name;
-
-        if (controller.getPlaybackState() != null) {
-            isPlaying = controller.getPlaybackState().getState() == PlaybackState.STATE_PLAYING;
-        }
     }
 
     boolean isPlaying() {
-        return isPlaying;
+        PlaybackState state = controller.getPlaybackState();
+        if (state == null) return false;
+
+        return state.getState() == PlaybackState.STATE_PLAYING;
     }
 
-    void setPlaying(boolean playing) {
-        isPlaying = playing;
+    boolean canPlay() {
+        PlaybackState state = controller.getPlaybackState();
+        if (state == null) return false;
+
+        if (state.getState() == PlaybackState.STATE_PLAYING) return true;
+
+        return (state.getActions() & (PlaybackState.ACTION_PLAY | PlaybackState.ACTION_PLAY_PAUSE)) != 0;
     }
 
-    boolean isPaused() {
-        return !isPlaying;
+    boolean canPause() {
+        PlaybackState state = controller.getPlaybackState();
+        if (state == null) return false;
+
+        if (state.getState() == PlaybackState.STATE_PAUSED) return true;
+
+        return (state.getActions() & (PlaybackState.ACTION_PAUSE | PlaybackState.ACTION_PLAY_PAUSE)) != 0;
     }
 
-    void setPaused(boolean paused) {
-        isPlaying = !paused;
+    boolean canGoPrevious() {
+        PlaybackState state = controller.getPlaybackState();
+        if (state == null) return false;
+
+        return (state.getActions() & PlaybackState.ACTION_SKIP_TO_PREVIOUS) != 0;
+    }
+
+    boolean canGoNext() {
+        PlaybackState state = controller.getPlaybackState();
+        if (state == null) return false;
+
+        return (state.getActions() & PlaybackState.ACTION_SKIP_TO_NEXT) != 0;
+    }
+
+    boolean canSeek() {
+        PlaybackState state = controller.getPlaybackState();
+        if (state == null) return false;
+
+        return (state.getActions() & PlaybackState.ACTION_SEEK_TO) != 0;
     }
 
     void playPause() {
-        if (isPlaying) {
+        if (isPlaying()) {
             controller.getTransportControls().pause();
         } else {
             controller.getTransportControls().play();
@@ -75,24 +98,31 @@ class MprisReceiverPlayer {
     }
 
     String getAlbum() {
-        if (controller.getMetadata() == null)
-            return "";
-        String album = controller.getMetadata().getString(MediaMetadata.METADATA_KEY_ALBUM);
+        MediaMetadata metadata = controller.getMetadata();
+        if (metadata == null) return "";
+
+        String album = metadata.getString(MediaMetadata.METADATA_KEY_ALBUM);
         return album != null ? album : "";
     }
 
     String getArtist() {
-        if (controller.getMetadata() == null)
-            return "";
+        MediaMetadata metadata = controller.getMetadata();
+        if (metadata == null) return "";
 
-        String artist = controller.getMetadata().getString(MediaMetadata.METADATA_KEY_ALBUM_ARTIST);
+        String artist = metadata.getString(MediaMetadata.METADATA_KEY_ARTIST);
+        if (artist == null || artist.isEmpty()) artist = metadata.getString(MediaMetadata.METADATA_KEY_ALBUM_ARTIST);
+        if (artist == null || artist.isEmpty()) artist = metadata.getString(MediaMetadata.METADATA_KEY_AUTHOR);
+        if (artist == null || artist.isEmpty()) artist = metadata.getString(MediaMetadata.METADATA_KEY_WRITER);
+
         return artist != null ? artist : "";
     }
 
     String getTitle() {
-        if (controller.getMetadata() == null)
-            return "";
-        String title = controller.getMetadata().getString(MediaMetadata.METADATA_KEY_TITLE);
+        MediaMetadata metadata = controller.getMetadata();
+        if (metadata == null) return "";
+
+        String title = metadata.getString(MediaMetadata.METADATA_KEY_TITLE);
+        if (title == null || title.isEmpty()) title = metadata.getString(MediaMetadata.METADATA_KEY_DISPLAY_TITLE);
         return title != null ? title : "";
     }
 
@@ -102,6 +132,18 @@ class MprisReceiverPlayer {
 
     void next() {
         controller.getTransportControls().skipToNext();
+    }
+
+    void play() {
+        controller.getTransportControls().play();
+    }
+
+    void pause() {
+        controller.getTransportControls().pause();
+    }
+
+    void stop() {
+        controller.getTransportControls().stop();
     }
 
     int getVolume() {
@@ -114,5 +156,16 @@ class MprisReceiverPlayer {
         if (controller.getPlaybackState() == null)
             return 0;
         return controller.getPlaybackState().getPosition();
+    }
+
+    void setPosition(long position) {
+        controller.getTransportControls().seekTo(position);
+    }
+
+    long getLength() {
+        MediaMetadata metadata = controller.getMetadata();
+        if (metadata == null) return 0;
+
+        return metadata.getLong(MediaMetadata.METADATA_KEY_DURATION);
     }
 }

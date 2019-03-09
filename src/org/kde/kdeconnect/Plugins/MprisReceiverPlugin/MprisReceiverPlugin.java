@@ -117,10 +117,21 @@ public class MprisReceiverPlugin extends Plugin implements MediaSessionManager.O
             return true;
         }
 
+        if (np.has("SetPosition")) {
+            long position = np.getLong("SetPosition", 0);
+            player.setPosition(position);
+        }
+
         if (np.has("action")) {
             String action = np.getString("action");
 
             switch (action) {
+                case "Play":
+                    player.play();
+                    break;
+                case "Pause":
+                    player.pause();
+                    break;
                 case "PlayPause":
                     player.playPause();
                     break;
@@ -129,6 +140,10 @@ public class MprisReceiverPlugin extends Plugin implements MediaSessionManager.O
                     break;
                 case "Previous":
                     player.previous();
+                    break;
+                case "Stop":
+                    player.stop();
+                    break;
             }
         }
 
@@ -174,20 +189,12 @@ public class MprisReceiverPlugin extends Plugin implements MediaSessionManager.O
         device.sendPacket(np);
     }
 
-    void sendPlaying(MprisReceiverPlayer player) {
-
-        NetworkPacket np = new NetworkPacket(MprisReceiverPlugin.PACKET_TYPE_MPRIS);
-        np.set("player", player.getName());
-        np.set("isPlaying", player.isPlaying());
-        device.sendPacket(np);
-    }
-
     @Override
     public int getMinSdk() {
         return Build.VERSION_CODES.LOLLIPOP_MR1;
     }
 
-    public void sendMetadata(MprisReceiverPlayer player) {
+    void sendMetadata(MprisReceiverPlayer player) {
         NetworkPacket np = new NetworkPacket(MprisReceiverPlugin.PACKET_TYPE_MPRIS);
         np.set("player", player.getName());
         if (player.getArtist().isEmpty()) {
@@ -200,12 +207,12 @@ public class MprisReceiverPlugin extends Plugin implements MediaSessionManager.O
         np.set("album", player.getAlbum());
         np.set("isPlaying", player.isPlaying());
         np.set("pos", player.getPosition());
-        device.sendPacket(np);
-    }
-
-    public void sendVolume(MprisReceiverPlayer player) {
-        NetworkPacket np = new NetworkPacket(MprisReceiverPlugin.PACKET_TYPE_MPRIS);
-        np.set("player", player.getName());
+        np.set("length", player.getLength());
+        np.set("canPlay", player.canPlay());
+        np.set("canPause", player.canPause());
+        np.set("canGoPrevious", player.canGoPrevious());
+        np.set("canGoNext", player.canGoNext());
+        np.set("canSeek", player.canSeek());
         np.set("volume", player.getVolume());
         device.sendPacket(np);
     }
