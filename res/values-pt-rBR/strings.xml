@@ -184,13 +184,13 @@
   <string name="title_activity_notification_filter">Filtro de notificações</string>
   <string name="filter_apps_info">As notificações dos aplicativos selecionados serão sincronizadas.</string>
   <string name="sftp_internal_storage">Armazenamento interno</string>
-  <string name="sftp_all_files">Todos os arquivos</string>
   <string name="sftp_sdcard_num">Cartão SD %d</string>
   <string name="sftp_sdcard">Cartão SD</string>
   <string name="sftp_readonly">(somente leitura)</string>
   <string name="sftp_camera">Imagens da câmera</string>
   <string name="add_device_dialog_title">Adicionar dispositivo</string>
   <string name="add_device_hint">Nome da máquina ou endereço IP</string>
+  <string name="add_host">Adicionar máquina/IP</string>
   <string name="no_players_connected">Nenhum reprodutor encontrado</string>
   <string name="mpris_player_on_device">%1$s em %2$s</string>
   <string name="send_files">Enviar arquivos</string>
@@ -218,7 +218,6 @@
   <string name="permission_explanation">Este plugin precisa de permissões para funcionar</string>
   <string name="optional_permission_explanation">Você precisa conceder permissões extras para ativar todas as funções</string>
   <string name="plugins_need_optional_permission">Alguns plugins possuem recursos desativados devido à falta de permissões (toque para obter mais informações):</string>
-  <string name="sftp_permission_explanation">Para acessar os seus arquivos a partir do PC, o aplicativo precisa de permissão para acessar o armazenamento do seu celular</string>
   <string name="share_optional_permission_explanation">Para compartilhar arquivos entre o seu celular e o seu ambiente de trabalho é necessário permissão para acessar o armazenamento do seu celular</string>
   <string name="telepathy_permission_explanation">Para ler e gravar SMS a partir do seu ambiente de trabalho é necessário conceder permissão para SMS</string>
   <string name="telephony_permission_explanation">Para ver as chamadas e SMS do celular a partir do seu ambiente de trabalho é necessário conceder permissão para as chamadas telefônicas e SMS</string>

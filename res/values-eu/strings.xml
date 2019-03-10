@@ -179,11 +179,11 @@
   <string name="title_activity_notification_filter">Jakinarazpenen iragazkia</string>
   <string name="filter_apps_info">Aukeratutako aplikazioen jakinarazpenak sinkronizatuko dira</string>
   <string name="sftp_internal_storage">Barne biltegiratzea</string>
-  <string name="sftp_all_files">Fitxategi guztiak</string>
   <string name="sftp_sdcard_num">%d SD txartela</string>
   <string name="sftp_sdcard">SD txartela</string>
   <string name="sftp_readonly">(irakurri soilik)</string>
   <string name="sftp_camera">Kamerako irudiak</string>
+  <string name="add_host">Gehitu ostalaria/IP</string>
   <string name="no_players_connected">Ez da jokalaririk aurkitu</string>
   <string name="mpris_player_on_device">%1$s - %2$s</string>
   <string name="send_files">Bidali fitxategiak</string>
@@ -211,7 +211,6 @@
   <string name="permission_explanation">Plugin honek baimena behar du funtzionatzeko</string>
   <string name="optional_permission_explanation">Baimen gehiago eman behar dituzu funtzio guztiak gaitzeko</string>
   <string name="plugins_need_optional_permission">Plugin batzuek desgaitutako eginbideak dituzte baimenak faltan dituztelako (tak egin informazio gehiagorako):</string>
-  <string name="sftp_permission_explanation">Zure fitxategiak PCtik atzitzeko aplikazioak zure telefonoaren biltegiratzea atzitzeko baimena behar du</string>
   <string name="share_optional_permission_explanation">Zure telefonoa eta mahaigainaren artean fitxategiak partekatzeko telefonoaren biltegiratzea atzitzeko baimena eman behar duzu</string>
   <string name="telepathy_permission_explanation">SMSak zure mahaigainetik bidali ahal izateko, SMSak erabiltzeko baimena eman behar duzu</string>
   <string name="telephony_permission_explanation">Telefono deiak eta SMSak zure mahaigainetik ikusteko, telefono deiak eta SMSak erabiltzeko baimena eman behar duzu</string>

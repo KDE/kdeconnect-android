@@ -179,11 +179,11 @@
   <string name="title_activity_notification_filter">Filtre des notifications</string>
   <string name="filter_apps_info">Les notifications seront synchronisées pour les applications sélectionnées.</string>
   <string name="sftp_internal_storage">Stockage interne</string>
-  <string name="sftp_all_files">Tous les fichiers</string>
   <string name="sftp_sdcard_num">Carte SD %d</string>
   <string name="sftp_sdcard">Carte SD</string>
   <string name="sftp_readonly">(lecture seule)</string>
   <string name="sftp_camera">Images de l\'appareil photo</string>
+  <string name="add_host">Ajouter hôte/IP</string>
   <string name="no_players_connected">Aucun lecteur trouvé</string>
   <string name="mpris_player_on_device">%1$s sur %2$s</string>
   <string name="send_files">Envoyer des fichiers</string>
@@ -211,7 +211,6 @@
   <string name="permission_explanation">Ce module externe nécessite des permissions pour fonctionner</string>
   <string name="optional_permission_explanation">Vous devez accorder des permissions supplémentaires pour activer toutes les fonctionnalités</string>
   <string name="plugins_need_optional_permission">Certaines fonctionnalités de modules externes sont désactivées faute de permissions suffisantes (tapez pour plus d\'informations) :</string>
-  <string name="sftp_permission_explanation">Pour accéder aux fichiers de votre ordinateur, l\'application requiert la permission d\'accéder à la mémoire de stockage de votre téléphone</string>
   <string name="share_optional_permission_explanation">Pour partager des fichiers entre votre téléphone et votre ordinateur, veuillez permettre l\'accès à la mémoire de stockage du téléphone</string>
   <string name="telepathy_permission_explanation">Pour lire et écrire des SMS depuis votre ordinateur, veuillez permettre l\'accès aux SMS</string>
   <string name="telephony_permission_explanation">Pour voir les appels et les SMS depuis votre ordinateur, veuillez permettre l\'accès aux appels et aux SMS</string>

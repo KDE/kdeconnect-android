@@ -133,11 +133,11 @@
   <string name="title_activity_notification_filter">Märguannete filter</string>
   <string name="filter_apps_info">Valitud rakenduste märguanded sünkroonitakse</string>
   <string name="sftp_internal_storage">Sisemine salvesti</string>
-  <string name="sftp_all_files">Kõik failid</string>
   <string name="sftp_sdcard_num">SD-kaart %d</string>
   <string name="sftp_sdcard">SD-kaart</string>
   <string name="sftp_readonly">(kirjutuskaitstud)</string>
   <string name="sftp_camera">Kaamera pildid</string>
+  <string name="add_host">Lisa masin/IP</string>
   <string name="no_players_connected">Ühtegi mängijat ei leitud</string>
   <string name="mpris_player_on_device">%1$s seadmes %2$s</string>
   <string name="send_files">Saada faile</string>

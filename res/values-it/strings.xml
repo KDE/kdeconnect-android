@@ -184,13 +184,13 @@
   <string name="title_activity_notification_filter">Filtro delle notifiche</string>
   <string name="filter_apps_info">Le notifiche saranno sincronizzate per le applicazioni selezionate.</string>
   <string name="sftp_internal_storage">Archiviazione interna</string>
-  <string name="sftp_all_files">Tutti i file</string>
   <string name="sftp_sdcard_num">Scheda SD %d</string>
   <string name="sftp_sdcard">Scheda SD</string>
   <string name="sftp_readonly">(sola lettura)</string>
   <string name="sftp_camera">Immagini fotocamera</string>
   <string name="add_device_dialog_title">Aggiungi dispositivo</string>
   <string name="add_device_hint">Nome host o indirizzo IP</string>
+  <string name="add_host">Aggiungi host/IP</string>
   <string name="no_players_connected">Nessun lettore trovato</string>
   <string name="mpris_player_on_device">%1$s su %2$s</string>
   <string name="send_files">Invia file</string>
@@ -218,7 +218,6 @@
   <string name="permission_explanation">Questa estensione ha bisogno di permessi per funzionare</string>
   <string name="optional_permission_explanation">Devi concedere permessi aggiuntivi per abilitare tutte le funzioni</string>
   <string name="plugins_need_optional_permission">Alcune estensioni hanno funzioni disabilitate per una mancanza di permessi (tocca per maggiori informazioni):</string>
-  <string name="sftp_permission_explanation">Per accedere ai tuoi file dal tuo PC, l\'applicazione ha bisogno dell\'autorizzazione di accesso alla memoria del telefono</string>
   <string name="share_optional_permission_explanation">Per condividere i file tra il telefono e il tuo desktop devi dare accesso alla memoria del telefono</string>
   <string name="telepathy_permission_explanation">Per leggere e scrivere SMS dal tuo desktop, devi concedere l\'autorizzazione per SMS</string>
   <string name="telephony_permission_explanation">Per vedere le chiamate telefoniche e gli SMS dal desktop devi dare l\'autorizzazione per telefonate e SMS</string>

@@ -179,11 +179,11 @@
   <string name="title_activity_notification_filter">Varslingsfilter</string>
   <string name="filter_apps_info">Varslingar vert synkroniserte for dei valde appane.</string>
   <string name="sftp_internal_storage">Intern lagring</string>
-  <string name="sftp_all_files">Alle filer</string>
   <string name="sftp_sdcard_num">SD-kort %d</string>
   <string name="sftp_sdcard">SD-kort</string>
   <string name="sftp_readonly">(skriveverna)</string>
   <string name="sftp_camera">Kamerabilete</string>
+  <string name="add_host">Legg til vert/IP</string>
   <string name="no_players_connected">Fann ingen spelarar</string>
   <string name="mpris_player_on_device">%1$s på %2$s</string>
   <string name="send_files">Send filer</string>
@@ -211,7 +211,6 @@
   <string name="permission_explanation">Dette tillegget treng utvida løyve for å fungera</string>
   <string name="optional_permission_explanation">Du må gje utvida løyve for at alle funksjonane skal fungera</string>
   <string name="plugins_need_optional_permission">På grunn av manglande løyve har nokre av tillegga funksjonar slåtte av (trykk på dei for meir informasjon):</string>
-  <string name="sftp_permission_explanation">For å gje tilgang til filene frå datamaskina treng appen leseløyve til lagringsområdet på telefonen</string>
   <string name="share_optional_permission_explanation">For å kunna dela filer mellom telefonen og datamaskina må du gje appen lese- og skriveløyve til lagringsområdet på telefonen</string>
   <string name="telepathy_permission_explanation">For å kunna lesa og skriva tekstmeldingar frå datamaskina må du gje appen tilgang til SMS</string>
   <string name="telephony_permission_explanation">For å kunna sjå telefonsamtalar og tekstmeldingar frå datamaskina må du gje appen tilgang til telefon- og SMS-funksjonar</string>

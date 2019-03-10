@@ -184,7 +184,6 @@
   <string name="title_activity_notification_filter">Filtro de notificaciones</string>
   <string name="filter_apps_info">Las notificaciones se sincronizarán en las aplicaciones seleccionadas.</string>
   <string name="sftp_internal_storage">Almacenamiento interno</string>
-  <string name="sftp_all_files">Todos los archivos</string>
   <string name="sftp_sdcard_num">Tarjeta SD %d</string>
   <string name="sftp_sdcard">Tarjeta SD</string>
   <string name="sftp_readonly">(solo lectura)</string>
@@ -218,7 +217,6 @@
   <string name="permission_explanation">Este complemento necesita permisos para funcionar</string>
   <string name="optional_permission_explanation">Debe otorgar permisos extra para activar todas las funciones</string>
   <string name="plugins_need_optional_permission">Algunos complementos tienen funcionalidades desactivadas por falta de permisos (pulse para más información):</string>
-  <string name="sftp_permission_explanation">Para acceder a sus archivos desde su equipo, la aplicación necesita permisos para acceder al almacenamiento de su teléfono</string>
   <string name="share_optional_permission_explanation">Para compartir archivos entre su teléfono y su escritorio, necesita dar acceso al almacenamiento de su teléfono</string>
   <string name="telepathy_permission_explanation">Para leer y escribir SMS desde su escritorio, necesita dar permisos para SMS</string>
   <string name="telephony_permission_explanation">Para ver las llamadas telefónicas y SMS desde su escritorio, necesita dar permisos para llamadas telefónicas y SMS</string>

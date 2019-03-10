@@ -139,11 +139,11 @@
   <string name="title_activity_notification_filter">סנן התראות</string>
   <string name="filter_apps_info">התראות יסונכרנו רק לאפליקציות נבחרות</string>
   <string name="sftp_internal_storage">זיכרון פנימי</string>
-  <string name="sftp_all_files">כל הקבצים</string>
   <string name="sftp_sdcard_num">כרטיס זיכרון %d</string>
   <string name="sftp_sdcard">כרטיס זיכרון</string>
   <string name="sftp_readonly">(לקריאה בלבד)</string>
   <string name="sftp_camera">תמונות מצלמה</string>
+  <string name="add_host">הוסף כתובת או IP</string>
   <string name="no_players_connected">לא נמצא נגן</string>
   <string name="mpris_player_on_device">‏%1$s אצל %2$s</string>
   <string name="send_files">שלח קובץ</string>

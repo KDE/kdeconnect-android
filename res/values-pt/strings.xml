@@ -184,7 +184,6 @@
   <string name="title_activity_notification_filter">Filtro de notificações</string>
   <string name="filter_apps_info">As notificações serão sincronizadas para as aplicações seleccionadas.</string>
   <string name="sftp_internal_storage">Armazenamento interno</string>
-  <string name="sftp_all_files">Todos os ficheiros</string>
   <string name="sftp_sdcard_num">Cartão SD %d</string>
   <string name="sftp_sdcard">Cartão SD</string>
   <string name="sftp_readonly">(apenas para leitura)</string>
@@ -218,7 +217,6 @@
   <string name="permission_explanation">Este \'plugin\' precisa de permissões para funcionar</string>
   <string name="optional_permission_explanation">Precisa de dar permissões extra para activar todas as funcionalidades</string>
   <string name="plugins_need_optional_permission">Alguns \'plugins\' têm funcionalidades desactivadas devido à falta de permissões (toque para obter mais informações):</string>
-  <string name="sftp_permission_explanation">Para aceder aos seus ficheiros a partir do seu PC, a aplicação precisa de permissão para aceder ao armazenamento do seu telemóvel</string>
   <string name="share_optional_permission_explanation">Para partilhar ficheiros entre o seu telemóvel e o seu ambiente de trabalho, precisa de permissão para aceder ao armazenamento do seu telemóvel</string>
   <string name="telepathy_permission_explanation">Para ler e escrever SMS\'s a partir do seu ambiente de trabalho, precisa de dar permissões para os SMS\'s</string>
   <string name="telephony_permission_explanation">Para ver as chamadas e os SMS\'s a partir do seu ambiente de trabalho, precisa de dar permissões para as chamadas telefónicas e SMS\'s</string>

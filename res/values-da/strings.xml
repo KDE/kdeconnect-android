@@ -139,11 +139,11 @@
   <string name="title_activity_notification_filter">Bekendtgørelsesfilter</string>
   <string name="filter_apps_info">Bekendtgørelser vil blive synkroniseret for de valgte apps.</string>
   <string name="sftp_internal_storage">Intern lagring</string>
-  <string name="sftp_all_files">Alle filer</string>
   <string name="sftp_sdcard_num">SD-kort %d</string>
   <string name="sftp_sdcard">SD-kort</string>
   <string name="sftp_readonly">(skrivebeskyttet)</string>
   <string name="sftp_camera">Kamerabilleder</string>
+  <string name="add_host">Tilføj vært/IP</string>
   <string name="no_players_connected">Ingen afspillere fundet</string>
   <string name="mpris_player_on_device">%1$s på %2$s</string>
   <string name="send_files">Send filer</string>
@@ -170,7 +170,6 @@
   <string name="permission_explanation">Dette plugin kræver tilladelser for at virke</string>
   <string name="optional_permission_explanation">Du skal give ekstra tilladelser for at aktivere alle funktioner</string>
   <string name="plugins_need_optional_permission">Nogle plugins har deaktiverede funktioner pga. manglende tilladelser (tap for mere info):</string>
-  <string name="sftp_permission_explanation">For at tilgå filerne fra din pc, skal app\'en have tilladelse til at til gå telefonens datalager</string>
   <string name="share_optional_permission_explanation">For at dele filer mellem din telefon og din desktop skal du give adgang til telefonens datalager.</string>
   <string name="telepathy_permission_explanation">For at læse og skrive sms\'er fra din desktop, skal du give tilladelse til sms</string>
   <string name="telephony_permission_explanation">For at se telefonopkald og sms\'er fra desktoppen, skal du give tilladelse til telefonopkald og sms.</string>

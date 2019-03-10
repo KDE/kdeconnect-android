@@ -158,11 +158,11 @@
   <string name="title_activity_notification_filter">Фильтр уведомлений</string>
   <string name="filter_apps_info">Уведомления будут синхронизированы для выбранных приложений.</string>
   <string name="sftp_internal_storage">Встроенная память</string>
-  <string name="sftp_all_files">Все файлы</string>
   <string name="sftp_sdcard_num">SD-карта %d</string>
   <string name="sftp_sdcard">SD-карта</string>
   <string name="sftp_readonly">(только чтение)</string>
   <string name="sftp_camera">Фотографии с камеры</string>
+  <string name="add_host">Добавить хост/IP-адрес</string>
   <string name="no_players_connected">Медиапроигрывателей не найдено</string>
   <string name="mpris_player_on_device">%1$s на %2$s</string>
   <string name="send_files">Отправить файлы</string>
@@ -189,7 +189,6 @@
   <string name="permission_explanation">Этому модулю нужны разрешения для работы</string>
   <string name="optional_permission_explanation">Необходимо предоставить дополнительные разрешения для включения всех функций</string>
   <string name="plugins_need_optional_permission">Некоторые функции модулей отключены из-за отсутствия необходимых разрешений (нажмите для просмотра подробностей):</string>
-  <string name="sftp_permission_explanation">Для доступа к файлам с вашего компьютера приложению необходимо разрешение на доступ к встроенной памяти телефона</string>
   <string name="share_optional_permission_explanation">Чтобы обмениваться файлами между телефоном и компьютером, необходимо предоставить доступ к встроенной памяти телефона</string>
   <string name="telepathy_permission_explanation">Чтобы читать и писать SMS с компьютера, вам необходимо дать разрешение на доступ к SMS</string>
   <string name="telephony_permission_explanation">Чтобы видеть телефонные звонки и SMS на компьютере, необходимо дать разрешение на телефонные звонки и SMS</string>

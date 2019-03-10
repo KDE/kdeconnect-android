@@ -106,11 +106,11 @@
   <string name="title_activity_notification_filter">Filter napomena</string>
   <string name="filter_apps_info">Notifikacije će biti sinhronizovane s izabranim aplikacijama.</string>
   <string name="sftp_internal_storage">Unutrašnji smještaj</string>
-  <string name="sftp_all_files">Sve fajlove</string>
   <string name="sftp_sdcard_num">SD kartica %d</string>
   <string name="sftp_sdcard">SD kartica</string>
   <string name="sftp_readonly">(samo za čitanje)</string>
   <string name="sftp_camera">Slike sa kamere</string>
+  <string name="add_host">Dodaj host/IP</string>
   <string name="no_players_connected">Nema nađenih igrača</string>
   <string name="mpris_player_on_device">%1$s na %2$s</string>
 </resources>

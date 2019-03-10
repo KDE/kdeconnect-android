@@ -189,11 +189,11 @@
   <string name="title_activity_notification_filter">Filter upozornení</string>
   <string name="filter_apps_info">Upozornenia budú synchronizované pre vybrané aplikácie.</string>
   <string name="sftp_internal_storage">Interné úložisko</string>
-  <string name="sftp_all_files">Všetky súbory</string>
   <string name="sftp_sdcard_num">SD karta %d</string>
   <string name="sftp_sdcard">SD karta</string>
   <string name="sftp_readonly">(iba na čítanie)</string>
   <string name="sftp_camera">Obrázky fotoaparátu</string>
+  <string name="add_host">Pridať hostiteľa/IP</string>
   <string name="no_players_connected">Nenašli sa žiadne prehrávače</string>
   <string name="mpris_player_on_device">%1$s na %2$s</string>
   <string name="send_files">Odoslať súbory</string>
@@ -221,7 +221,6 @@
   <string name="permission_explanation">Tento plugin potrebuje oprávnenia aby fungoval</string>
   <string name="optional_permission_explanation">Musíte povoliť oprávnenia na povolenie všetkých funkcií</string>
   <string name="plugins_need_optional_permission">Niektoré pluginy majú zakázané funkcie pre nedostatok opránení (ťuknite pre viac info):</string>
-  <string name="sftp_permission_explanation">Na prístup k vaším súborom z PC, aplikácia potrebuje oprávnenie na prístup k vašemu úložisku</string>
   <string name="share_optional_permission_explanation">Na zdieľanie súborov medzi vašim telefónom a počítačom potrebujete dať prístup k úložisku telefónu</string>
   <string name="telepathy_permission_explanation">Na čítanie a písanie SMS z vašeho počítača, potrebujete dať oprávnienie na SMS</string>
   <string name="telephony_permission_explanation">Aby ste videli telefónne hovory a SMS z počítača, potrebujete dať oprávnenie na hovory a SMS</string>

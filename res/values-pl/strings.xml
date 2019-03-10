@@ -189,11 +189,11 @@
   <string name="title_activity_notification_filter">Filtr powiadomień</string>
   <string name="filter_apps_info">Powiadomienia zostaną zsynchronizowane z wybranymi aplikacjami.</string>
   <string name="sftp_internal_storage">"Pamięć wewnętrzna "</string>
-  <string name="sftp_all_files">Wszystkie pliki</string>
   <string name="sftp_sdcard_num">Karta SD %d</string>
   <string name="sftp_sdcard">Karta SD</string>
   <string name="sftp_readonly">(tylko do odczytu)</string>
   <string name="sftp_camera">Zdjęcia z aparatu</string>
+  <string name="add_host">Dodaj gospodarza/IP</string>
   <string name="no_players_connected">Nie znaleziono żadnego odtwarzacza</string>
   <string name="mpris_player_on_device">%1$s na %2$s</string>
   <string name="send_files">Wyślij pliki</string>
@@ -221,7 +221,6 @@
   <string name="permission_explanation">Ta wtyczka wymaga uprawnień do działania</string>
   <string name="optional_permission_explanation">Musisz przydzielić dodatkowe uprawnienia, aby włączyć wszystkie funkcje</string>
   <string name="plugins_need_optional_permission">Niektóre z wtyczek mają ograniczone możliwości ze względu na ograniczone uprawnienia (stuknij po więcej informacji)</string>
-  <string name="sftp_permission_explanation">Aby uzyskać dostęp do plików z twojego PC aplikacja ta potrzebuje uprawnień do dostępu do pamięci twojego telefonu</string>
   <string name="share_optional_permission_explanation">Aby udostępniać pliki z twojego telefonu na twoim komputerze musisz pozowolić na dostęp do pamięci telefonu</string>
   <string name="telepathy_permission_explanation">Aby odczytywać i pisać SMSy z twojego komputera musisz nadać uprawnienia do SMSów</string>
   <string name="telephony_permission_explanation">Aby widzieć rozmowy telefoniczne i SMSy z twojego komputera musisz nadać uprawnienia na rozmowy telefoniczne i SMSy</string>

@@ -152,11 +152,11 @@
   <string name="title_activity_notification_filter">알림 필터</string>
   <string name="filter_apps_info">선택한 앱의 알림을 동기화합니다.</string>
   <string name="sftp_internal_storage">내부 저장소</string>
-  <string name="sftp_all_files">모든 파일</string>
   <string name="sftp_sdcard_num">SD 카드 %d</string>
   <string name="sftp_sdcard">SD 카드</string>
   <string name="sftp_readonly">(읽기 전용)</string>
   <string name="sftp_camera">카메라 사진</string>
+  <string name="add_host">호스트/IP 주소 추가</string>
   <string name="no_players_connected">재생기를 찾을 수 없음</string>
   <string name="mpris_player_on_device">%2$s의 %1$s</string>
   <string name="send_files">파일 보내기</string>
@@ -184,7 +184,6 @@
   <string name="permission_explanation">이 플러그인을 사용하려면 권한이 필요합니다</string>
   <string name="optional_permission_explanation">모든 기능을 사용하려면 추가 권한이 필요합니다</string>
   <string name="plugins_need_optional_permission">일부 플러그인은 권한이 없어서 비활성화되었습니다(정보를 보려면 누르기):</string>
-  <string name="sftp_permission_explanation">PC에서 파일에 접근하려면 앱에서 휴대폰 저장소 접근 권한이 필요합니다</string>
   <string name="share_optional_permission_explanation">휴대폰과 데스크톱간 파일을 공유하려면 휴대폰 저장소 접근 권한이 필요합니다</string>
   <string name="telepathy_permission_explanation">데스크톱에서 문자 메시지를 읽고 보내려면 문자 메시지 접근 권한이 필요합니다</string>
   <string name="telephony_permission_explanation">데스크톱에서 통화와 문자 메시지를 보려면 통화 및 문자 메시지 접근 권한이 필요합니다</string>

@@ -161,11 +161,11 @@
   <string name="title_activity_notification_filter">Notification filter</string>
   <string name="filter_apps_info">Notifications will be synchronised for the selected apps.</string>
   <string name="sftp_internal_storage">Internal storage</string>
-  <string name="sftp_all_files">All files</string>
   <string name="sftp_sdcard_num">SD card %d</string>
   <string name="sftp_sdcard">SD card</string>
   <string name="sftp_readonly">(read only)</string>
   <string name="sftp_camera">Camera pictures</string>
+  <string name="add_host">Add host/IP</string>
   <string name="no_players_connected">No players found</string>
   <string name="mpris_player_on_device">%1$s on %2$s</string>
   <string name="send_files">Send files</string>
@@ -193,7 +193,6 @@
   <string name="permission_explanation">This plugin needs permissions to work</string>
   <string name="optional_permission_explanation">You need to grant extra permissions to enable all functions</string>
   <string name="plugins_need_optional_permission">Some plugins have features disabled because of lack of permission (tap for more info):</string>
-  <string name="sftp_permission_explanation">To access your files from your PC the app needs permission to access your phone\'s storage</string>
   <string name="share_optional_permission_explanation">To share files between your phone and your desktop you need to give access to the phone\'s storage</string>
   <string name="telepathy_permission_explanation">To read and write SMS from your desktop you need to give permission to SMS</string>
   <string name="telephony_permission_explanation">To see phone calls and SMS from the desktop you need to give permission to phone calls and SMS</string>

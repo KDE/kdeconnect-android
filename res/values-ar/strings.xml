@@ -127,11 +127,11 @@
   <string name="title_activity_notification_filter">مرشّح الإخطارات</string>
   <string name="filter_apps_info">ستُزامن الإخطارات من التّطبيقات المحدّدة.</string>
   <string name="sftp_internal_storage">التّخزين الدّاخليّ</string>
-  <string name="sftp_all_files">كلّ الملفّات</string>
   <string name="sftp_sdcard_num">بطاقة SD ‏%d</string>
   <string name="sftp_sdcard">بطاقة SD</string>
   <string name="sftp_readonly">(للقراءة فقط)</string>
   <string name="sftp_camera">صور الكاميرا</string>
+  <string name="add_host">أضف مضيفًا/م​إ</string>
   <string name="no_players_connected">لم يُعثر على مشغّلات</string>
   <string name="mpris_player_on_device">%1$s على %2$s</string>
   <string name="send_files">أرسل ملفّات</string>

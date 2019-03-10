@@ -87,11 +87,11 @@
   <string name="pair_device_action">Suporuoti naują įrenginį</string>
   <string name="unpair_device_action">Atrišti %s</string>
   <string name="custom_device_list">Pridėti įrenginį pagal IP</string>
-  <string name="sftp_all_files">Visi failai</string>
   <string name="sftp_sdcard_num">SD kortelė %d</string>
   <string name="sftp_sdcard">SD kortelė</string>
   <string name="sftp_readonly">(tik skaitymui)</string>
   <string name="sftp_camera">Nuotraukos</string>
+  <string name="add_host">Pridėti kompiuterį / IP</string>
   <string name="mpris_player_on_device">%1$s - %2$s</string>
   <string name="send_files">Siųsti failus</string>
   <string name="pairing_title">„KDE Connect“ įrenginiai</string>

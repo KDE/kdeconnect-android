@@ -139,11 +139,11 @@
   <string name="title_activity_notification_filter">Φιλτράρισμα ειδοποιήσεων</string>
   <string name="filter_apps_info">Οι ειδοποιήσεις θα συγχρονίζονται για επιλεγμένες εφαρμογές.</string>
   <string name="sftp_internal_storage">Εσωτερικός αποθηκευτικός χώρος</string>
-  <string name="sftp_all_files">Όλα τα αρχεία</string>
   <string name="sftp_sdcard_num">SD card %d</string>
   <string name="sftp_sdcard">SD card</string>
   <string name="sftp_readonly">(ανάγνωση μόνο)</string>
   <string name="sftp_camera">Φωτογραφίες</string>
+  <string name="add_host">Προσθήκη υπολογιστή/IP</string>
   <string name="no_players_connected">Δεν βρέθηκαν συσκευές αναπαραγωγής</string>
   <string name="mpris_player_on_device">%1$s σε %2$s</string>
   <string name="send_files">Αποστολή αρχείων</string>
@@ -170,7 +170,6 @@
   <string name="permission_explanation">Αυτό το πρόσθετο χρειάζεται δικαιώματα για να λειτουργήσει</string>
   <string name="optional_permission_explanation">Απαιτείται παραχώρηση επιπλέον δικαιωμάτων για την ενεργοποίηση όλων των λειτουργιών</string>
   <string name="plugins_need_optional_permission">Κάποια πρόσθετα έχουν λειτουργίες ανενεργές εξαιτίας της απουσίας δικαιωμάτων (χτυπήστε για περισσότερες πληροφορίες):</string>
-  <string name="sftp_permission_explanation">Για την πρόσβαση στα αρχεία σας από τον υπολογιστή η εφαρμογή χρειάζεται δικαιώματα πρόσβασης στον αποθηκευτικό χώρο του κινητού σας</string>
   <string name="share_optional_permission_explanation">Για το διαμοιρασμό αρχείων ανάμεσα στο τηλέφωνο και τον υπολογιστή σας χρειάζεται να παραχωρήσετε πρόσβαση στον αποθηκευτικό χώρο του τηλεφώνου σας</string>
   <string name="telepathy_permission_explanation">Για να διαβάσετε και να γράψετε SMS από την επιφάνεια εργασίας, χρειάζεται να δώσετε δικαιώματα στο SMS</string>
   <string name="telephony_permission_explanation">Για να δείτε τηλεφωνικές κλήσεις και SMS από την επιφάνεια εργασίας, χρειάζεται να παραχωρήσετε δικαιώματα σε τηλεφωνικές κλήσεις και SMS</string>
