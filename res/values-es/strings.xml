@@ -190,6 +190,26 @@
   <string name="sftp_camera">Imágenes de la cámara</string>
   <string name="add_device_dialog_title">Añadir dispositivo</string>
   <string name="add_device_hint">Nombre o dirección IP</string>
+  <string name="sftp_preference_detected_sdcards">Tarjetas SD detectadas</string>
+  <string name="sftp_preference_edit_sdcard_title">Editar tarjeta SD</string>
+  <string name="sftp_preference_configured_storage_locations">Localizaciones de almacenamiento configuradas</string>
+  <string name="sftp_preference_add_storage_location_title">Añadir localización de almacenamiento</string>
+  <string name="sftp_preference_edit_storage_location">Editar localización de almacenamiento</string>
+  <string name="sftp_preference_add_camera_shortcut">Añadir acceso rápido a la carpeta de la cámara</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_on">Añadir un acceso rápido a la carpeta de la cámara</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_off">No añadir un acceso rápido a la carpeta de la cámara</string>
+  <string name="sftp_storage_preference_storage_location">Localización de almacenamiento</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">Esta localización ya ha sido configurada</string>
+  <string name="sftp_storage_preference_click_to_select">pulsar para seleccionar</string>
+  <string name="sftp_storage_preference_display_name">Mostrar nombre</string>
+  <string name="sftp_storage_preference_display_name_already_used">Este nombre de dispositivo ya está en uso</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">El nombre de dispositivo no puede estar vacío</string>
+  <string name="sftp_action_mode_menu_delete">Borrar</string>
+  <string name="sftp_no_sdcard_detected">No se ha detectado ninguna tarjeta SD</string>
+  <string name="sftp_no_storage_locations_configured">No hay configurada ninguna localización de almacenamiento</string>
+  <string name="sftp_saf_permission_explanation">Para acceder a los archivos remotamente debe configurar las localizaciones de almacenamiento</string>
+  <string name="add_host">Añadir servidor/IP</string>
+  <string name="add_host_hint">Nombre o IP</string>
   <string name="no_players_connected">Ningún reproductor encontrado</string>
   <string name="mpris_player_on_device">%1$s en %2$s</string>
   <string name="send_files">Enviar archivos</string>
@@ -271,4 +291,6 @@
   <string name="block_contents">Bloquear el contenido de las notificaciones</string>
   <string name="block_images">Bloquear las imágenes en las notificaciones</string>
   <string name="notification_channel_receivenotification">Notificaciones desde otros dispositivos</string>
+  <string name="take_picture">Lanzar cámara</string>
+  <string name="plugin_photo_desc">Lanzar la aplicación de la cámara para facilitar tomar y transferir imágenes</string>
 </resources>
