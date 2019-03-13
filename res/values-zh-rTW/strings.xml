@@ -185,7 +185,26 @@
   <string name="sftp_camera">相機圖片</string>
   <string name="add_device_dialog_title">新增裝置</string>
   <string name="add_device_hint">主機名稱 或 IP 位址</string>
+  <string name="sftp_preference_detected_sdcards">已偵測到 SD 卡</string>
+  <string name="sftp_preference_edit_sdcard_title">編輯 SD 卡</string>
+  <string name="sftp_preference_configured_storage_locations">已設定儲存空間位置</string>
+  <string name="sftp_preference_add_storage_location_title">新增儲存空間位置</string>
+  <string name="sftp_preference_edit_storage_location">編輯儲存空間位置</string>
+  <string name="sftp_preference_add_camera_shortcut">新增相機資料夾的捷徑</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_on">新增連結到相機資料夾的捷徑</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_off">請勿新增連結到相機資料夾的捷徑</string>
+  <string name="sftp_storage_preference_storage_location">儲存空間位置</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">此位置已被設定</string>
+  <string name="sftp_storage_preference_click_to_select">按一下選擇</string>
+  <string name="sftp_storage_preference_display_name">顯示名稱</string>
+  <string name="sftp_storage_preference_display_name_already_used">此顯示名稱已被使用</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">顯示名稱不得空白</string>
+  <string name="sftp_action_mode_menu_delete">刪除</string>
+  <string name="sftp_no_sdcard_detected">未偵測到 SD 卡</string>
+  <string name="sftp_no_storage_locations_configured">未設定儲存空間位置</string>
+  <string name="sftp_saf_permission_explanation">若要遠端存取檔案，您需先設定儲存空間位置</string>
   <string name="add_host">增加 host/IP</string>
+  <string name="add_host_hint">主機名稱或 IP</string>
   <string name="no_players_connected">沒有發現播放器</string>
   <string name="mpris_player_on_device">%1$s on %2$s</string>
   <string name="send_files">傳送檔案</string>
@@ -267,4 +286,6 @@
   <string name="block_contents">擋住通知內容</string>
   <string name="block_images">擋住通知中的圖片</string>
   <string name="notification_channel_receivenotification">其他裝置上的通知</string>
+  <string name="take_picture">啟動相機</string>
+  <string name="plugin_photo_desc">開啟相機應用程式以輕鬆拍攝並傳輸相片</string>
 </resources>
