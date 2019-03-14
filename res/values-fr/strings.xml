@@ -184,6 +184,7 @@
   <string name="sftp_readonly">(lecture seule)</string>
   <string name="sftp_camera">Images de l\'appareil photo</string>
   <string name="add_host">Ajouter hôte/IP</string>
+  <string name="add_host_hint">"Nom d\'hôte ou adresse IP "</string>
   <string name="no_players_connected">Aucun lecteur trouvé</string>
   <string name="mpris_player_on_device">%1$s sur %2$s</string>
   <string name="send_files">Envoyer des fichiers</string>
