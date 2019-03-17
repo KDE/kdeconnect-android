@@ -23,6 +23,7 @@ package org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.KeyEvent;
@@ -34,6 +35,8 @@ import android.view.inputmethod.InputConnection;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
+import org.kde.kdeconnect.UserInterface.AlertDialogFragment;
+import org.kde.kdeconnect.UserInterface.StartActivityAlertDialogFragment;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
@@ -392,5 +395,23 @@ public class RemoteKeyboardPlugin extends Plugin {
 
     String getDeviceId() {
         return device.getDeviceId();
+    }
+
+    @Override
+    public boolean checkRequiredPermissions() {
+        return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ENABLED_INPUT_METHODS).contains("org.kde.kdeconnect_tp");
+    }
+
+    @Override
+    public AlertDialogFragment getPermissionExplanationDialog(int requestCode) {
+        return new StartActivityAlertDialogFragment.Builder()
+                .setTitle(R.string.pref_plugin_remotekeyboard)
+                .setMessage(R.string.no_permissions_remotekeyboard)
+                .setPositiveButton(R.string.open_settings)
+                .setNegativeButton(R.string.cancel)
+                .setIntentAction(Settings.ACTION_INPUT_METHOD_SETTINGS)
+                .setStartForResult(true)
+                .setRequestCode(requestCode)
+                .create();
     }
 }

@@ -39,6 +39,7 @@
     <string name="open_settings">Open settings</string>
     <string name="no_permissions">You need to grant permission to access notifications</string>
     <string name="no_permission_mprisreceiver">To be able to control your media players you need to grant access to the notifications</string>
+    <string name="no_permissions_remotekeyboard">To receive keypresses you need to activate the KDE Connect Remote Keyboard</string>
     <string name="send_ping">Send ping</string>
     <string name="open_mpris_controls">Multimedia control</string>
     <string name="remotekeyboard_editing_only" translatable="false">remotekeyboard_editing_only</string>
