@@ -67,7 +67,6 @@ public class SharePlugin extends Plugin {
     final static String KEY_NUMBER_OF_FILES = "numberOfFiles";
     final static String KEY_TOTAL_PAYLOAD_SIZE = "totalPayloadSize";
 
-    private final static boolean openUrlsDirectly = true;
     private BackgroundJobHandler backgroundJobHandler;
     private final Handler handler;
 
@@ -169,32 +168,7 @@ public class SharePlugin extends Plugin {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        if (openUrlsDirectly) {
-            context.startActivity(browserIntent);
-        } else {
-            Resources res = context.getResources();
-
-            PendingIntent resultPendingIntent = PendingIntent.getActivity(
-                    context,
-                    0,
-                    browserIntent,
-                    PendingIntent.FLAG_UPDATE_CURRENT
-            );
-
-            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
-            Notification noti = new NotificationCompat.Builder(context, NotificationHelper.Channels.DEFAULT)
-                    .setContentTitle(res.getString(R.string.received_url_title, device.getName()))
-                    .setContentText(res.getString(R.string.received_url_text, url))
-                    .setContentIntent(resultPendingIntent)
-                    .setTicker(res.getString(R.string.received_url_title, device.getName()))
-                    .setSmallIcon(R.drawable.ic_notification)
-                    .setAutoCancel(true)
-                    .setDefaults(Notification.DEFAULT_ALL)
-                    .build();
-
-            NotificationHelper.notifyCompat(notificationManager, (int) System.currentTimeMillis(), noti);
-        }
+        context.startActivity(browserIntent);
     }
 
     private void receiveText(NetworkPacket np) {
