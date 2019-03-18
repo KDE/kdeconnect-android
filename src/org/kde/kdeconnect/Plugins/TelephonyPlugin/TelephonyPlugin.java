@@ -314,7 +314,11 @@ public class TelephonyPlugin extends Plugin {
 
     @Override
     public String[] getRequiredPermissions() {
-        return new String[]{Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_SMS};
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return new String[]{Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_SMS, Manifest.permission.READ_CALL_LOG};
+        } else {
+            return new String[0];
+        }
     }
 
     @Override
