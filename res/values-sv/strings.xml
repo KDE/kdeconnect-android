@@ -38,6 +38,7 @@
   <string name="open_settings">Öppna inställningarna</string>
   <string name="no_permissions">Du måste ge rättighet att komma åt underrättelser</string>
   <string name="no_permission_mprisreceiver">För att kunna styra mediaspelare måste du ge tillgång till underrättelser</string>
+  <string name="no_permissions_remotekeyboard">KDE-ansluts fjärrtangentbord måste aktiveras för att ta emot tangentnedtryckningar</string>
   <string name="send_ping">Skicka ping</string>
   <string name="open_mpris_controls">Kontroll av multimedia</string>
   <string name="remotekeyboard_editing_only_title">Hantera bara externa tangenter vid redigering</string>

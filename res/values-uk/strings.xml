@@ -38,6 +38,7 @@
   <string name="open_settings">Відкрити вікно параметрів</string>
   <string name="no_permissions">Вам слід надати доступ до сповіщень</string>
   <string name="no_permission_mprisreceiver">Щоб мати змогу керувати вашими програвачами мультимедійних даних, вам слід надати доступ до сповіщень.</string>
+  <string name="no_permissions_remotekeyboard">Щоб отримувати повідомлення щодо натискання клавіш, вам слід активувати віддалену клавіатуру KDE Connect</string>
   <string name="send_ping">Надіслати сигнал підтримання зв’язку</string>
   <string name="open_mpris_controls">Керування відтворенням</string>
   <string name="remotekeyboard_editing_only_title">Обробляти віддалені клавіші лише під час редагування</string>

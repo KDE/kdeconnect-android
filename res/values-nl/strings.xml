@@ -38,6 +38,7 @@
   <string name="open_settings">Instellingen openen</string>
   <string name="no_permissions">U moet toestemming geven voor toegang tot meldingen</string>
   <string name="no_permission_mprisreceiver">Om in staat te zijn uw mediaspelers te besturen moet u toegan geven tot de meldingen</string>
+  <string name="no_permissions_remotekeyboard">Om indrukken van toetsen te ontvangen moet u het KDE Connect Remote Keyboard activeren</string>
   <string name="send_ping">Ping verzenden</string>
   <string name="open_mpris_controls">Bediening van multimedia</string>
   <string name="remotekeyboard_editing_only_title">Behandel toetsen op afstand alleen bij bewerken</string>

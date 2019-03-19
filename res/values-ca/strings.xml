@@ -38,6 +38,7 @@
   <string name="open_settings">Obre l\'arranjament</string>
   <string name="no_permissions">Us caldrà concedir permís per accedir a les notificacions</string>
   <string name="no_permission_mprisreceiver">Per a poder controlar els reproductors multimèdia cal atorgar accés a les notificacions</string>
+  <string name="no_permissions_remotekeyboard">Per a rebre les pulsacions de tecles, haureu d\'activar el teclat remot del KDE Connect</string>
   <string name="send_ping">Envia un ping</string>
   <string name="open_mpris_controls">Control multimèdia</string>
   <string name="remotekeyboard_editing_only_title">Fes servir les tecles remotes només en editar</string>
