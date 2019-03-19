@@ -27,6 +27,27 @@ import android.util.Log;
 import org.atteo.classindex.ClassIndex;
 import org.atteo.classindex.IndexAnnotated;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Plugins.BatteryPlugin.BatteryPlugin;
+import org.kde.kdeconnect.Plugins.ClibpoardPlugin.ClipboardPlugin;
+import org.kde.kdeconnect.Plugins.ContactsPlugin.ContactsPlugin;
+import org.kde.kdeconnect.Plugins.FindMyPhonePlugin.FindMyPhonePlugin;
+import org.kde.kdeconnect.Plugins.FindRemoteDevicePlugin.FindRemoteDevicePlugin;
+import org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadPlugin;
+import org.kde.kdeconnect.Plugins.MprisPlugin.MprisPlugin;
+import org.kde.kdeconnect.Plugins.MprisReceiverPlugin.MprisReceiverPlugin;
+import org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationsPlugin;
+import org.kde.kdeconnect.Plugins.PhotoPlugin.PhotoPlugin;
+import org.kde.kdeconnect.Plugins.PingPlugin.PingPlugin;
+import org.kde.kdeconnect.Plugins.PresenterPlugin.PresenterPlugin;
+import org.kde.kdeconnect.Plugins.ReceiveNotificationsPlugin.ReceiveNotificationsPlugin;
+import org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin.RemoteKeyboardPlugin;
+import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandPlugin;
+import org.kde.kdeconnect.Plugins.SMSPlugin.SMSPlugin;
+import org.kde.kdeconnect.Plugins.SftpPlugin.SftpPlugin;
+import org.kde.kdeconnect.Plugins.SharePlugin.SharePlugin;
+import org.kde.kdeconnect.Plugins.SystemvolumePlugin.SystemvolumePlugin;
+import org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
@@ -109,13 +130,36 @@ public class PluginFactory {
 
     private static final Map<String, PluginInfo> pluginInfo = new ConcurrentHashMap<>();
 
+    static Class pluginClasses[] = {
+            BatteryPlugin.class,
+            ClipboardPlugin.class,
+            ContactsPlugin.class,
+            FindMyPhonePlugin.class,
+            FindRemoteDevicePlugin.class,
+            MousePadPlugin.class,
+            MprisPlugin.class,
+            MprisReceiverPlugin.class,
+            NotificationsPlugin.class,
+            PhotoPlugin.class,
+            PingPlugin.class,
+            PresenterPlugin.class,
+            ReceiveNotificationsPlugin.class,
+            RemoteKeyboardPlugin.class,
+            RunCommandPlugin.class,
+            SftpPlugin.class,
+            SharePlugin.class,
+            //SMSPlugin.class,
+            SystemvolumePlugin.class,
+            TelephonyPlugin.class,
+    };
+
     public static PluginInfo getPluginInfo(String pluginKey) {
         return pluginInfo.get(pluginKey);
     }
 
     public static void initPluginInfo(Context context) {
         try {
-            for (Class<?> pluginClass : ClassIndex.getAnnotated(LoadablePlugin.class)) {
+            for (Class<?> pluginClass : pluginClasses) {
                 Plugin p = ((Plugin) pluginClass.newInstance());
                 p.setContext(context, null);
                 PluginInfo info = new PluginInfo(p.getDisplayName(), p.getDescription(), p.getIcon(),
