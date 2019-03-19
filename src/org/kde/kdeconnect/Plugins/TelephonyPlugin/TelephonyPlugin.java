@@ -51,14 +51,11 @@ public class TelephonyPlugin extends Plugin {
 
 
     /**
-     * Packet used for simple telephony events
+     * Packet used for simple call events
      * <p>
      * It contains the key "event" which maps to a string indicating the type of event:
      * - "ringing" - A phone call is incoming
      * - "missedCall" - An incoming call was not answered
-     * - "sms" - An incoming SMS message
-     * - Note: As of this writing (15 May 2018) the SMS interface is being improved and this type of event
-     * is no longer the preferred way of handling SMS. Use the packets defined by the SMS plugin instead.
      * <p>
      * Depending on the event, other fields may be defined
      */
@@ -70,17 +67,8 @@ public class TelephonyPlugin extends Plugin {
      * The two possible events used the be to request a message be sent or request the device
      * silence its ringer
      * <p>
-     * In case an SMS was being requested, the body was like so:
-     * { "sendSms": true,
-     * "phoneNumber": "542904563213",
-     * "messageBody": "Hi mom!"
-     * }
-     * <p>
      * In case a ringer muted was requested, the body looked like so:
      * { "action": "mute" }
-     * <p>
-     * As of 15 May 2018, the SMS interface is being improved. Use the packets defined by the
-     * SMS plugin instead for SMS events
      * <p>
      * Ringer mute requests are best handled by PACKET_TYPE_TELEPHONY_REQUEST_MUTE
      * <p>
@@ -255,9 +243,8 @@ public class TelephonyPlugin extends Plugin {
 
     @Override
     public boolean onCreate() {
-        IntentFilter filter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+        IntentFilter filter = new IntentFilter(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
         filter.setPriority(500);
-        filter.addAction(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
         context.registerReceiver(receiver, filter);
         permissionExplanation = R.string.telephony_permission_explanation;
         optionalPermissionExplanation = R.string.telephony_optional_permission_explanation;
@@ -315,7 +302,11 @@ public class TelephonyPlugin extends Plugin {
     @Override
     public String[] getRequiredPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return new String[]{Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_SMS, Manifest.permission.READ_CALL_LOG};
+            return new String[]{
+                    Manifest.permission.READ_PHONE_STATE,
+                    //FIXME: Disabled because of https://support.google.com/googleplay/android-developer/answer/9047303
+                    //Manifest.permission.READ_CALL_LOG
+            };
         } else {
             return new String[0];
         }

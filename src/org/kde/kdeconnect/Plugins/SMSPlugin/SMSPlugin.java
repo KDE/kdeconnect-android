@@ -44,7 +44,6 @@ import org.kde.kdeconnect.Helpers.ContactsHelper;
 import org.kde.kdeconnect.Helpers.SMSHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
-import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin;
 import org.kde.kdeconnect_tp.BuildConfig;
 import org.kde.kdeconnect_tp.R;
@@ -60,7 +59,8 @@ import androidx.core.content.ContextCompat;
 
 import static org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin.PACKET_TYPE_TELEPHONY;
 
-@PluginFactory.LoadablePlugin
+//FIXME: Disabled because of https://support.google.com/googleplay/android-developer/answer/9047303
+///@PluginFactory.LoadablePlugin
 public class SMSPlugin extends Plugin {
 
     /**
