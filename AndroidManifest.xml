@@ -28,13 +28,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <!--
-    FIXME: Disabled because of https://support.google.com/googleplay/android-developer/answer/9047303
     <uses-permission android:name="android.permission.READ_CALL_LOG"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
-    -->
 
     <application
         android:icon="@drawable/icon"
