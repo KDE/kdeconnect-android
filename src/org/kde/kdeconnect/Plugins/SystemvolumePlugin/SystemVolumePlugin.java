@@ -33,7 +33,7 @@ import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 
 @PluginFactory.LoadablePlugin
-public class SystemvolumePlugin extends Plugin {
+public class SystemVolumePlugin extends Plugin {
 
     private final static String PACKET_TYPE_SYSTEMVOLUME = "kdeconnect.systemvolume";
     private final static String PACKET_TYPE_SYSTEMVOLUME_REQUEST = "kdeconnect.systemvolume.request";
@@ -45,7 +45,7 @@ public class SystemvolumePlugin extends Plugin {
     private final ConcurrentHashMap<String, Sink> sinks;
     private final ArrayList<SinkListener> listeners;
 
-    public SystemvolumePlugin() {
+    public SystemVolumePlugin() {
         sinks = new ConcurrentHashMap<>();
         listeners = new ArrayList<>();
     }

@@ -58,7 +58,7 @@ public class RunCommandActivity extends AppCompatActivity {
 
     private void updateView() {
 
-        BackgroundService.runWithPlugin(this, deviceId, RunCommandPlugin.class, plugin -> {
+        BackgroundService.RunWithPlugin(this, deviceId, RunCommandPlugin.class, plugin -> {
             runOnUiThread(() -> {
                 ListView view = findViewById(R.id.runcommandslist);
 
@@ -119,7 +119,7 @@ public class RunCommandActivity extends AppCompatActivity {
 
         addCommandButton.setOnClickListener(v -> {
 
-            BackgroundService.runWithPlugin(RunCommandActivity.this, deviceId, RunCommandPlugin.class, plugin -> {
+            BackgroundService.RunWithPlugin(RunCommandActivity.this, deviceId, RunCommandPlugin.class, plugin -> {
                 plugin.sendSetupPacket();
                 AlertDialog dialog = new AlertDialog.Builder(RunCommandActivity.this)
                         .setTitle(R.string.add_command)
@@ -160,7 +160,7 @@ public class RunCommandActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        BackgroundService.runWithPlugin(this, deviceId, RunCommandPlugin.class, plugin -> {
+        BackgroundService.RunWithPlugin(this, deviceId, RunCommandPlugin.class, plugin -> {
             plugin.addCommandsUpdatedCallback(commandsChangedCallback);
         });
     }
@@ -169,7 +169,7 @@ public class RunCommandActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        BackgroundService.runWithPlugin(this, deviceId, RunCommandPlugin.class, plugin -> {
+        BackgroundService.RunWithPlugin(this, deviceId, RunCommandPlugin.class, plugin -> {
             plugin.removeCommandsUpdatedCallback(commandsChangedCallback);
         });
     }

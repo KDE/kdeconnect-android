@@ -52,7 +52,7 @@ public class PresenterActivity extends AppCompatActivity {
 
         final String deviceId = getIntent().getStringExtra("deviceId");
 
-        BackgroundService.runWithPlugin(this, deviceId, PresenterPlugin.class, plugin -> runOnUiThread(() -> {
+        BackgroundService.RunWithPlugin(this, deviceId, PresenterPlugin.class, plugin -> runOnUiThread(() -> {
             this.plugin = plugin;
             findViewById(R.id.next_button).setOnClickListener(v -> plugin.sendNext());
             findViewById(R.id.previous_button).setOnClickListener(v -> plugin.sendPrevious());

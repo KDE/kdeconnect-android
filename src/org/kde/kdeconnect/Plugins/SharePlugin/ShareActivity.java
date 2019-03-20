@@ -113,7 +113,7 @@ public class ShareActivity extends AppCompatActivity {
                 list.setOnItemClickListener((adapterView, view, i, l) -> {
 
                     Device device = devicesList.get(i - 1); //NOTE: -1 because of the title!
-                    BackgroundService.runWithPlugin(this, device.getDeviceId(), SharePlugin.class, plugin -> plugin.share(intent));
+                    BackgroundService.RunWithPlugin(this, device.getDeviceId(), SharePlugin.class, plugin -> plugin.share(intent));
                     finish();
                 });
             });
@@ -147,7 +147,7 @@ public class ShareActivity extends AppCompatActivity {
         final String deviceId = intent.getStringExtra("deviceId");
 
         if (deviceId != null) {
-            BackgroundService.runWithPlugin(this, deviceId, SharePlugin.class, plugin -> {
+            BackgroundService.RunWithPlugin(this, deviceId, SharePlugin.class, plugin -> {
                 plugin.share(intent);
                 finish();
             });

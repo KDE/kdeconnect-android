@@ -37,9 +37,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.ListFragment;
 
-public class SystemvolumeFragment extends ListFragment implements Sink.UpdateListener, SystemvolumePlugin.SinkListener {
+public class SystemvolumeFragment extends ListFragment implements Sink.UpdateListener, SystemVolumePlugin.SinkListener {
 
-    private SystemvolumePlugin plugin;
+    private SystemVolumePlugin plugin;
     private Activity activity;
     private SinkAdapter adapter;
     private Context context;
@@ -63,7 +63,7 @@ public class SystemvolumeFragment extends ListFragment implements Sink.UpdateLis
     }
 
     public void connectToPlugin(final String deviceId) {
-        BackgroundService.runWithPlugin(activity, deviceId, SystemvolumePlugin.class, plugin -> {
+        BackgroundService.RunWithPlugin(activity, deviceId, SystemVolumePlugin.class, plugin -> {
             this.plugin = plugin;
             plugin.addSinkListener(SystemvolumeFragment.this);
             plugin.requestSinkList();
