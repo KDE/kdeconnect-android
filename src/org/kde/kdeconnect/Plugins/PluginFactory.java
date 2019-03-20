@@ -24,7 +24,6 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
-import org.atteo.classindex.ClassIndex;
 import org.atteo.classindex.IndexAnnotated;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Plugins.BatteryPlugin.BatteryPlugin;
@@ -34,7 +33,6 @@ import org.kde.kdeconnect.Plugins.FindMyPhonePlugin.FindMyPhonePlugin;
 import org.kde.kdeconnect.Plugins.FindRemoteDevicePlugin.FindRemoteDevicePlugin;
 import org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadPlugin;
 import org.kde.kdeconnect.Plugins.MprisPlugin.MprisPlugin;
-import org.kde.kdeconnect.Plugins.MprisReceiverPlugin.MprisReceiverPlugin;
 import org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationsPlugin;
 import org.kde.kdeconnect.Plugins.PhotoPlugin.PhotoPlugin;
 import org.kde.kdeconnect.Plugins.PingPlugin.PingPlugin;
@@ -42,7 +40,6 @@ import org.kde.kdeconnect.Plugins.PresenterPlugin.PresenterPlugin;
 import org.kde.kdeconnect.Plugins.ReceiveNotificationsPlugin.ReceiveNotificationsPlugin;
 import org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin.RemoteKeyboardPlugin;
 import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandPlugin;
-import org.kde.kdeconnect.Plugins.SMSPlugin.SMSPlugin;
 import org.kde.kdeconnect.Plugins.SftpPlugin.SftpPlugin;
 import org.kde.kdeconnect.Plugins.SharePlugin.SharePlugin;
 import org.kde.kdeconnect.Plugins.SystemvolumePlugin.SystemvolumePlugin;
@@ -138,7 +135,7 @@ public class PluginFactory {
             FindRemoteDevicePlugin.class,
             MousePadPlugin.class,
             MprisPlugin.class,
-            MprisReceiverPlugin.class,
+            //MprisReceiverPlugin.class, //Breaks in Android 4
             NotificationsPlugin.class,
             PhotoPlugin.class,
             PingPlugin.class,
