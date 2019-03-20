@@ -222,7 +222,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
                 mCurrentX = event.getX();
                 mCurrentY = event.getY();
 
-                BackgroundService.runWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> {
+                BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> {
                     float deltaX = (mCurrentX - mPrevX) * displayDpiMultiplier * mCurrentSensitivity;
                     float deltaY = (mCurrentY - mPrevY) * displayDpiMultiplier * mCurrentSensitivity;
 
@@ -293,7 +293,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     @Override
     public void onLongPress(MotionEvent e) {
         getWindow().getDecorView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-        BackgroundService.runWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendSingleHold);
+        BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendSingleHold);
     }
 
     @Override
@@ -303,13 +303,13 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
     @Override
     public boolean onSingleTapConfirmed(MotionEvent e) {
-        BackgroundService.runWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendSingleClick);
+        BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendSingleClick);
         return true;
     }
 
     @Override
     public boolean onDoubleTap(MotionEvent e) {
-        BackgroundService.runWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendDoubleClick);
+        BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendDoubleClick);
         return true;
     }
 
@@ -348,15 +348,15 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
 
     private void sendMiddleClick() {
-        BackgroundService.runWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendMiddleClick);
+        BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendMiddleClick);
     }
 
     private void sendRightClick() {
-        BackgroundService.runWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendRightClick);
+        BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendRightClick);
     }
 
     private void sendScroll(final float y) {
-        BackgroundService.runWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> plugin.sendScroll(0, y));
+        BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> plugin.sendScroll(0, y));
     }
 
     //TODO: Does not work on KitKat with or without requestFocus()

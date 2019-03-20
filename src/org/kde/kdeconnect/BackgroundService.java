@@ -419,7 +419,7 @@ public class BackgroundService extends Service {
         }).start();
     }
 
-    public static <T extends Plugin> void runWithPlugin(final Context c, final String deviceId, final Class<T> pluginClass, final PluginCallback<T> cb) {
+    public static <T extends Plugin> void RunWithPlugin(final Context c, final String deviceId, final Class<T> pluginClass, final PluginCallback<T> cb) {
         RunCommand(c, service -> {
             Device device = service.getDevice(deviceId);
 

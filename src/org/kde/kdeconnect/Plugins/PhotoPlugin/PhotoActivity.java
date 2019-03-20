@@ -25,7 +25,7 @@ public class PhotoActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        BackgroundService.runWithPlugin(this, getIntent().getStringExtra("deviceId"), PhotoPlugin.class, plugin -> {
+        BackgroundService.RunWithPlugin(this, getIntent().getStringExtra("deviceId"), PhotoPlugin.class, plugin -> {
             this.plugin = plugin;
         });
 

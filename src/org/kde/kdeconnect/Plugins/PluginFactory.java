@@ -42,7 +42,7 @@ import org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin.RemoteKeyboardPlugin;
 import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandPlugin;
 import org.kde.kdeconnect.Plugins.SftpPlugin.SftpPlugin;
 import org.kde.kdeconnect.Plugins.SharePlugin.SharePlugin;
-import org.kde.kdeconnect.Plugins.SystemvolumePlugin.SystemvolumePlugin;
+import org.kde.kdeconnect.Plugins.SystemvolumePlugin.SystemVolumePlugin;
 import org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin;
 
 import java.util.Collections;
@@ -146,7 +146,7 @@ public class PluginFactory {
             SftpPlugin.class,
             SharePlugin.class,
             //SMSPlugin.class,
-            SystemvolumePlugin.class,
+            SystemVolumePlugin.class,
             TelephonyPlugin.class,
     };
 
