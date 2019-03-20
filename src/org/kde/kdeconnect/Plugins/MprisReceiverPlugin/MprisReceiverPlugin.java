@@ -79,6 +79,15 @@ public class MprisReceiverPlugin extends Plugin implements MediaSessionManager.O
         return true;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        MediaSessionManager manager = (MediaSessionManager) context.getSystemService(Context.MEDIA_SESSION_SERVICE);
+        if (manager != null) {
+            manager.removeOnActiveSessionsChangedListener(MprisReceiverPlugin.this);
+        }
+    }
+
     private void createPlayers(List<MediaController> sessions) {
         for (MediaController controller : sessions) {
             createPlayer(controller);
