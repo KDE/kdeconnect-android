@@ -111,7 +111,11 @@ public class RunCommandActivity extends AppCompatActivity {
         boolean canAddCommands = BackgroundService.getInstance().getDevice(deviceId).getPlugin(RunCommandPlugin.class).canAddCommand();
 
         FloatingActionButton addCommandButton = findViewById(R.id.add_command_button);
-        addCommandButton.setVisibility(canAddCommands ? View.VISIBLE : View.GONE);
+        if (canAddCommands) {
+            addCommandButton.show();
+        } else {
+            addCommandButton.hide();
+        }
 
         addCommandButton.setOnClickListener(v -> {
 
