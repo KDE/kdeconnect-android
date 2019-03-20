@@ -38,6 +38,7 @@
   <string name="open_settings">開啟設定</string>
   <string name="no_permissions">您需要授予存取通知的權限</string>
   <string name="no_permission_mprisreceiver">為了要能控制您的媒體播放器，您需要提供「通知」的權限</string>
+  <string name="no_permissions_remotekeyboard">若要接收鍵盤按鍵事件，您需要啟用 KDE 連線遠端鍵盤功能</string>
   <string name="send_ping">傳送Ping回應封包</string>
   <string name="open_mpris_controls">多媒體控制</string>
   <string name="remotekeyboard_editing_only_title">當編輯時只處理遠端按鍵</string>
