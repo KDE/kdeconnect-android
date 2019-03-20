@@ -25,7 +25,6 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -40,7 +39,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.kde.kdeconnect.BackgroundService;
-import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
@@ -59,15 +57,8 @@ public class RunCommandActivity extends AppCompatActivity {
     private ArrayList<ListAdapter.Item> commandItems;
 
     private void updateView() {
-        BackgroundService.RunCommand(this, service -> {
 
-            final Device device = service.getDevice(deviceId);
-            final RunCommandPlugin plugin = device.getPlugin(RunCommandPlugin.class);
-            if (plugin == null) {
-                Log.e("RunCommandActivity", "device has no runcommand plugin!");
-                return;
-            }
-
+        BackgroundService.runWithPlugin(this, deviceId, RunCommandPlugin.class, plugin -> {
             runOnUiThread(() -> {
                 ListView view = findViewById(R.id.runcommandslist);
 
@@ -122,25 +113,19 @@ public class RunCommandActivity extends AppCompatActivity {
         FloatingActionButton addCommandButton = findViewById(R.id.add_command_button);
         addCommandButton.setVisibility(canAddCommands ? View.VISIBLE : View.GONE);
 
-        addCommandButton.setOnClickListener(view -> BackgroundService.RunCommand(RunCommandActivity.this, service -> {
+        addCommandButton.setOnClickListener(v -> {
 
-            final Device device = service.getDevice(deviceId);
-            final RunCommandPlugin plugin = device.getPlugin(RunCommandPlugin.class);
-            if (plugin == null) {
-                Log.e("RunCommandActivity", "device has no runcommand plugin!");
-                return;
-            }
+            BackgroundService.runWithPlugin(RunCommandActivity.this, deviceId, RunCommandPlugin.class, plugin -> {
+                plugin.sendSetupPacket();
+                AlertDialog dialog = new AlertDialog.Builder(RunCommandActivity.this)
+                        .setTitle(R.string.add_command)
+                        .setMessage(R.string.add_command_description)
+                        .setPositiveButton(R.string.ok, null)
+                        .create();
+                dialog.show();
+            });
 
-            plugin.sendSetupPacket();
-
-            AlertDialog dialog = new AlertDialog.Builder(RunCommandActivity.this)
-                    .setTitle(R.string.add_command)
-                    .setMessage(R.string.add_command_description)
-                    .setPositiveButton(R.string.ok, null)
-                    .create();
-            dialog.show();
-
-        }));
+        });
 
         updateView();
     }
@@ -171,14 +156,7 @@ public class RunCommandActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        BackgroundService.RunCommand(this, service -> {
-
-            final Device device = service.getDevice(deviceId);
-            final RunCommandPlugin plugin = device.getPlugin(RunCommandPlugin.class);
-            if (plugin == null) {
-                Log.e("RunCommandActivity", "device has no runcommand plugin!");
-                return;
-            }
+        BackgroundService.runWithPlugin(this, deviceId, RunCommandPlugin.class, plugin -> {
             plugin.addCommandsUpdatedCallback(commandsChangedCallback);
         });
     }
@@ -187,14 +165,7 @@ public class RunCommandActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        BackgroundService.RunCommand(this, service -> {
-
-            final Device device = service.getDevice(deviceId);
-            final RunCommandPlugin plugin = device.getPlugin(RunCommandPlugin.class);
-            if (plugin == null) {
-                Log.e("RunCommandActivity", "device has no runcommand plugin!");
-                return;
-            }
+        BackgroundService.runWithPlugin(this, deviceId, RunCommandPlugin.class, plugin -> {
             plugin.removeCommandsUpdatedCallback(commandsChangedCallback);
         });
     }
