@@ -1,5 +1,6 @@
 /*
  * Copyright 2014 Albert Vaca Cintora <albertvaka@gmail.com>
+ * Copyright 2019 Simon Redman <simon@ergotech.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -32,6 +33,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.provider.Telephony;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
@@ -127,7 +129,7 @@ public class SMSPlugin extends Plugin {
 
             //Log.e("TelephonyPlugin","Telephony event: " + action);
 
-            if ("android.provider.Telephony.SMS_RECEIVED".equals(action)) {
+            if (Telephony.Sms.Intents.SMS_RECEIVED_ACTION.equals(action)) {
 
                 final Bundle bundle = intent.getExtras();
                 if (bundle == null) return;
@@ -274,7 +276,7 @@ public class SMSPlugin extends Plugin {
     public boolean onCreate() {
         permissionExplanation = R.string.telepathy_permission_explanation;
 
-        IntentFilter filter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+        IntentFilter filter = new IntentFilter(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
         filter.setPriority(500);
         context.registerReceiver(receiver, filter);
 
