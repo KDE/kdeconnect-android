@@ -30,7 +30,7 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 @PluginFactory.LoadablePlugin
 public class SystemvolumePlugin extends Plugin {
@@ -42,11 +42,11 @@ public class SystemvolumePlugin extends Plugin {
         void sinksChanged();
     }
 
-    private final HashMap<String, Sink> sinks;
+    private final ConcurrentHashMap<String, Sink> sinks;
     private final ArrayList<SinkListener> listeners;
 
     public SystemvolumePlugin() {
-        sinks = new HashMap<>();
+        sinks = new ConcurrentHashMap<>();
         listeners = new ArrayList<>();
     }
 
