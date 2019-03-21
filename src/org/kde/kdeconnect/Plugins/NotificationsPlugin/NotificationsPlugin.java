@@ -466,8 +466,10 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     private void sendCurrentNotifications(NotificationReceiver service) {
         StatusBarNotification[] notifications = service.getActiveNotifications();
-        for (StatusBarNotification notification : notifications) {
-            sendNotification(notification);
+        if (notifications != null) { //Can happen only on API 23 and lower
+            for (StatusBarNotification notification : notifications) {
+                sendNotification(notification);
+            }
         }
     }
 
