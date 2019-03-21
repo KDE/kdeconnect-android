@@ -88,7 +88,7 @@ class RootFile implements SshFile {
     }
 
     public String readSymbolicLink() {
-        return null;
+        return "";
     }
 
     public void createSymbolicLink(SshFile destination) {
