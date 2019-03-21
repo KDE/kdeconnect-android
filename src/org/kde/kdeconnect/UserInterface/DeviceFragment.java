@@ -199,6 +199,7 @@ public class DeviceFragment extends Fragment {
         });
 
         unbinder.unbind();
+        rootView = null;
 
         super.onDestroyView();
     }
