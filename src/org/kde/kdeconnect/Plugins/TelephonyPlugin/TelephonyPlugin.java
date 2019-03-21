@@ -304,8 +304,7 @@ public class TelephonyPlugin extends Plugin {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return new String[]{
                     Manifest.permission.READ_PHONE_STATE,
-                    //FIXME: Disabled because of https://support.google.com/googleplay/android-developer/answer/9047303
-                    //Manifest.permission.READ_CALL_LOG
+                    Manifest.permission.READ_CALL_LOG
             };
         } else {
             return new String[0];
