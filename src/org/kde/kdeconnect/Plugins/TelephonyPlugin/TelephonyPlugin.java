@@ -108,15 +108,15 @@ public class TelephonyPlugin extends Plugin {
                 else if (state.equals(TelephonyManager.EXTRA_STATE_OFFHOOK))
                     intState = TelephonyManager.CALL_STATE_OFFHOOK;
 
-                String number = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
-                if (number == null)
-                    number = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
+                // We will get a second broadcast with the phone number https://developer.android.com/reference/android/telephony/TelephonyManager#ACTION_PHONE_STATE_CHANGED
+                if (!intent.hasExtra(TelephonyManager.EXTRA_INCOMING_NUMBER))
+                    return;
+                String number = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
 
                 final int finalIntState = intState;
-                final String finalNumber = number;
 
                 if (finalIntState != lastState) {
-                    callBroadcastReceived(finalIntState, finalNumber);
+                    callBroadcastReceived(finalIntState, number);
                 }
             }
         }
