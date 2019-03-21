@@ -36,12 +36,9 @@ android {
         }
     }
     packagingOptions {
-        pickFirst "META-INF/DEPENDENCIES"
-        pickFirst "META-INF/LICENSE"
-        pickFirst "META-INF/NOTICE"
-        pickFirst "META-INF/BCKEY.SF"
-        pickFirst "META-INF/BCKEY.DSA"
-        pickFirst "META-INF/INDEX.LIST"
+        merge "META-INF/DEPENDENCIES"
+        merge "META-INF/LICENSE"
+        merge "META-INF/NOTICE"
     }
     lintOptions {
         abortOnError false
