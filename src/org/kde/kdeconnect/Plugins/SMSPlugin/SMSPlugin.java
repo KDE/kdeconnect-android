@@ -430,6 +430,9 @@ public class SMSPlugin extends Plugin {
 
     @Override
     public String[] getRequiredPermissions() {
-        return new String[]{Manifest.permission.SEND_SMS};
+        return new String[]{
+                Manifest.permission.SEND_SMS,
+                Manifest.permission.READ_SMS,
+        };
     }
 }
