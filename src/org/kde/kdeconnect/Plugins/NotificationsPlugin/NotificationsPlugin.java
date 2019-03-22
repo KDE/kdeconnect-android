@@ -16,7 +16,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 package org.kde.kdeconnect.Plugins.NotificationsPlugin;
 
@@ -40,6 +40,7 @@ import android.service.notification.StatusBarNotification;
 import android.text.SpannableString;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.kde.kdeconnect.Helpers.AppsHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
@@ -55,6 +56,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -68,11 +71,15 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     private final static String PACKET_TYPE_NOTIFICATION = "kdeconnect.notification";
     private final static String PACKET_TYPE_NOTIFICATION_REQUEST = "kdeconnect.notification.request";
     private final static String PACKET_TYPE_NOTIFICATION_REPLY = "kdeconnect.notification.reply";
+    private final static String PACKET_TYPE_NOTIFICATION_ACTION = "kdeconnect.notification.action";
+
+    private final static String TAG = "NotificationsPlugin";
 
     private AppDatabase appDatabase;
 
     private Set<String> currentNotifications;
     private Map<String, RepliableNotification> pendingIntents;
+    private Map<String, List<Notification.Action>> actions;
     private boolean serviceReady;
 
     @Override
@@ -117,6 +124,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
         pendingIntents = new HashMap<>();
         currentNotifications = new HashSet<>();
+        actions = new HashMap<>();
 
         appDatabase = new AppDatabase(context, true);
 
@@ -153,6 +161,9 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             return;
         }
         String id = getNotificationKeyCompat(statusBarNotification);
+
+        actions.remove(id);
+
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_NOTIFICATION);
         np.set("id", id);
         np.set("isCancel", true);
@@ -250,6 +261,20 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             }
         } else {
             currentNotifications.add(key);
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            if (notification.actions != null && notification.actions.length > 0) {
+                actions.put(key, new LinkedList<>());
+                JSONArray jsonArray = new JSONArray();
+                for (Notification.Action action : notification.actions) {
+                    if (null == action.title)
+                        break;
+                    jsonArray.put(action.title.toString());
+                    actions.get(key).add(action);
+                }
+                np.set("actions", jsonArray);
+            }
         }
 
         np.set("id", key);
@@ -476,7 +501,27 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     @Override
     public boolean onPacketReceived(final NetworkPacket np) {
 
-        if (np.getBoolean("request")) {
+        if (np.getType().equals(PACKET_TYPE_NOTIFICATION_ACTION) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+
+            String key = np.getString("key");
+            String title = np.getString("action");
+            PendingIntent intent = null;
+
+            for (Notification.Action a : actions.get(key)) {
+                if (a.title.equals(title)) {
+                    intent = a.actionIntent;
+                }
+            }
+
+            if (intent != null) {
+                try {
+                    intent.send();
+                } catch (PendingIntent.CanceledException e) {
+                    Log.e(TAG, "Triggering action failed", e);
+                }
+            }
+
+        } else if (np.getBoolean("request")) {
 
             if (serviceReady) {
                 NotificationReceiver.RunCommand(context, this::sendCurrentNotifications);
@@ -512,7 +557,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public String[] getSupportedPacketTypes() {
-        return new String[]{PACKET_TYPE_NOTIFICATION_REQUEST, PACKET_TYPE_NOTIFICATION_REPLY};
+        return new String[]{PACKET_TYPE_NOTIFICATION_REQUEST, PACKET_TYPE_NOTIFICATION_REPLY, PACKET_TYPE_NOTIFICATION_ACTION};
     }
 
     @Override
