@@ -106,7 +106,21 @@ public class AndroidSafFileSystemView implements FileSystemView {
                     String parentDocumentId = treeDocumentId + (parentSuffix.equals("/") ? "" : parentSuffix.substring(1));
 
                     Uri parentUri = DocumentsContract.buildDocumentUriUsingTree(treeUri, parentDocumentId);
-                    Uri documentUri = DocumentsContract.buildDocumentUriUsingTree(treeUri, treeDocumentId + nameWithoutRoot.substring(1));
+
+                    /*
+                        When sharing a root document tree like "Internal Storage" documentUri looks like:
+                            content://com.android.externalstorage.documents/tree/primary:/document/primary:
+                        For a file or folder beneath that the uri looks like:
+                            content://com.android.externalstorage.documents/tree/primary:/document/primary:Folder/file.txt
+
+                        Sharing a non root document tree the documentUri looks like:
+                            content://com.android.externalstorage.documents/tree/primary:/document/primary:Download
+                        For a file or folder beneath that the uri looks like:
+                            content://com.android.externalstorage.documents/tree/primary:/document/primary:Download/Folder/file.txt
+                     */
+                    String documentId = treeDocumentId + (treeDocumentId.endsWith(":") ? nameWithoutRoot.substring(1) : nameWithoutRoot);
+
+                    Uri documentUri = DocumentsContract.buildDocumentUriUsingTree(treeUri, documentId);
 
                     return createAndroidSafSshFile(parentUri, documentUri, filename);
                 }
