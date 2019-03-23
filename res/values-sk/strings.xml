@@ -193,7 +193,10 @@
   <string name="sftp_sdcard">SD karta</string>
   <string name="sftp_readonly">(iba na čítanie)</string>
   <string name="sftp_camera">Obrázky fotoaparátu</string>
+  <string name="add_device_dialog_title">Pridať zariadenie</string>
+  <string name="sftp_storage_preference_display_name">Zobraziť meno</string>
   <string name="add_host">Pridať hostiteľa/IP</string>
+  <string name="add_host_hint">Názov hostiteľa alebo IP</string>
   <string name="no_players_connected">Nenašli sa žiadne prehrávače</string>
   <string name="mpris_player_on_device">%1$s na %2$s</string>
   <string name="send_files">Odoslať súbory</string>

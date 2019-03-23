@@ -13,6 +13,7 @@
   <string name="pref_plugin_clipboard_desc">Del innhaldet på utklippstavla</string>
   <string name="pref_plugin_mousepad">Fjernstyring</string>
   <string name="pref_plugin_mousepad_desc">Bruk telefonen eller nettbrettet som styreplate og tastatur</string>
+  <string name="pref_plugin_presenter">Fjernstyring av lysbiletvising</string>
   <string name="pref_plugin_presenter_desc">Bruk eininga til å byta lysbilete i presentasjonar</string>
   <string name="pref_plugin_remotekeyboard">Ta imot eksterne tastetrykk</string>
   <string name="pref_plugin_remotekeyboard_desc">Ta imot tastetrykk frå eksterne einingar</string>
@@ -26,8 +27,8 @@
   <string name="pref_plugin_ping_desc">Send og ta imot pingsignal</string>
   <string name="pref_plugin_notifications">Varslingssynkronisering</string>
   <string name="pref_plugin_notifications_desc">Få tilgang til varslingar frå andre einingar</string>
-  <string name="pref_plugin_receive_notifications">Få varslingar</string>
-  <string name="pref_plugin_receive_notifications_desc">Få varslingar frå den andre eininga og vis dei i Android</string>
+  <string name="pref_plugin_receive_notifications">Ta imot varslingar</string>
+  <string name="pref_plugin_receive_notifications_desc">Ta imot varslingar frå den andre eininga og vis dei i Android</string>
   <string name="pref_plugin_sharereceiver">Del og ta imot</string>
   <string name="pref_plugin_sharereceiver_desc">Del filer og nettadresser mellom einingar</string>
   <string name="plugin_not_available">Denne funksjonen er ikkje tilgjengeleg i din Android-versjon</string>
@@ -37,6 +38,7 @@
   <string name="open_settings">Opna innstillingar</string>
   <string name="no_permissions">Du må gje tilgang til lesing av varslingar</string>
   <string name="no_permission_mprisreceiver">Du må gje tilgang til varslingar for å kunne kontrollera mediespelarar</string>
+  <string name="no_permissions_remotekeyboard">For å ta imot tastetrykk må du slå på fjerntastaturet i KDE Connect</string>
   <string name="send_ping">Send pingsignal</string>
   <string name="open_mpris_controls">Mediekontroll</string>
   <string name="remotekeyboard_editing_only_title">Handter eksterne tastetrykk berre ved redigering</string>
@@ -143,7 +145,7 @@
   <string name="mpris_volume">Lydstyrke</string>
   <string name="mpris_settings">Medieinnstillingar</string>
   <string name="mpris_time_settings_title">Spoleknappar</string>
-  <string name="mpris_time_settings_summary">Juster tida for spoling ved trykking</string>
+  <string name="mpris_time_settings_summary">Juster kor langt spoleknappane skal spola</string>
   <string-array name="mpris_time_entries">
     <item>10 sekund</item>
     <item>20 sekund</item>
@@ -151,7 +153,7 @@
     <item>1 minutt</item>
     <item>2 minutt</item>
   </string-array>
-  <string name="mpris_notification_settings_title">Vis varsling med avspelingskontrollar</string>
+  <string name="mpris_notification_settings_title">Vis varsling om avspelingskontrollar</string>
   <string name="mpris_notification_settings_summary">Tillat å kontrollera mediespelarar utan å opna KDE Connect</string>
   <string name="share_to">Del til …</string>
   <string name="protocol_version_older">Denne eininga brukar ein gammal protokollversjon</string>
@@ -168,8 +170,12 @@
   <string name="unpair_device_action">Løys paring for %s</string>
   <string name="custom_device_list">Legg til eining basert på IP</string>
   <string name="delete_custom_device">Vil du sletta %s?</string>
+  <string name="custom_device_deleted">Tilpassa eining er sletta</string>
+  <string name="custom_device_list_help">Viss eininga ikkje vert funnen automatisk, kan du leggja til IP-adressa eller vertsnamnet til eininga ved å trykka på handlingsknappen</string>
+  <string name="custom_device_fab_hint">Legg til eining</string>
+  <string name="undo">Angra</string>
   <string name="share_notification_preference">Lydvarsling</string>
-  <string name="share_notification_preference_summary">Vibrer og spel ein lyd ved mottak av fil</string>
+  <string name="share_notification_preference_summary">Vibrer og spel ein lyd ved mottak av filer</string>
   <string name="share_destination_customize">Sjølvvald målmappe</string>
   <string name="share_destination_customize_summary_disabled">Mottekne filer vert lagra i nedlastingsmappa</string>
   <string name="share_destination_customize_summary_enabled">Mottekne filer vert lagra i mappa nedanfor</string>
@@ -183,7 +189,28 @@
   <string name="sftp_sdcard">SD-kort</string>
   <string name="sftp_readonly">(skriveverna)</string>
   <string name="sftp_camera">Kamerabilete</string>
+  <string name="add_device_dialog_title">Legg til eining</string>
+  <string name="add_device_hint">Vertsnamn/IP-adresse</string>
+  <string name="sftp_preference_detected_sdcards">Oppdaga SD-kort</string>
+  <string name="sftp_preference_edit_sdcard_title">Rediger SD-kort</string>
+  <string name="sftp_preference_configured_storage_locations">Oppsette lagringsområde</string>
+  <string name="sftp_preference_add_storage_location_title">Legg til lagringsområde</string>
+  <string name="sftp_preference_edit_storage_location">Rediger lagringsområde</string>
+  <string name="sftp_preference_add_camera_shortcut">Legg til snarveg til kameramappe</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_on">Legg til ein snarveg til kameramappa</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_off">Ikkje legg til ein snarveg til kameramappa</string>
+  <string name="sftp_storage_preference_storage_location">Lagringsområde</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">Dette lagringsområdet er alt sett opp</string>
+  <string name="sftp_storage_preference_click_to_select">trykk for å velja</string>
+  <string name="sftp_storage_preference_display_name">Visingsnamn</string>
+  <string name="sftp_storage_preference_display_name_already_used">Dette visingsnamnet er alt i bruk</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">Visiningsnamnet kan ikkje vera tomt</string>
+  <string name="sftp_action_mode_menu_delete">Slett</string>
+  <string name="sftp_no_sdcard_detected">Fann ikkje noko SD-kort</string>
+  <string name="sftp_no_storage_locations_configured">Ingen lagringsområde er sette opp</string>
+  <string name="sftp_saf_permission_explanation">For å få tilgang til over nettet må du setja opp lagringsområde</string>
   <string name="add_host">Legg til vert/IP</string>
+  <string name="add_host_hint">Vertsnamn/IP-adresse</string>
   <string name="no_players_connected">Fann ingen spelarar</string>
   <string name="mpris_player_on_device">%1$s på %2$s</string>
   <string name="send_files">Send filer</string>
@@ -210,7 +237,7 @@
   <string name="plugins_need_permission">Nokre av tillegga treng utvida løyva for å fungera (trykk på dei for meir informasjon):</string>
   <string name="permission_explanation">Dette tillegget treng utvida løyve for å fungera</string>
   <string name="optional_permission_explanation">Du må gje utvida løyve for at alle funksjonane skal fungera</string>
-  <string name="plugins_need_optional_permission">På grunn av manglande løyve har nokre av tillegga funksjonar slåtte av (trykk på dei for meir informasjon):</string>
+  <string name="plugins_need_optional_permission">På grunn av manglande løyve vil desse funksjonane ikkje verka (trykk på dei for meir informasjon):</string>
   <string name="share_optional_permission_explanation">For å kunna dela filer mellom telefonen og datamaskina må du gje appen lese- og skriveløyve til lagringsområdet på telefonen</string>
   <string name="telepathy_permission_explanation">For å kunna lesa og skriva tekstmeldingar frå datamaskina må du gje appen tilgang til SMS</string>
   <string name="telephony_permission_explanation">For å kunna sjå telefonsamtalar og tekstmeldingar frå datamaskina må du gje appen tilgang til telefon- og SMS-funksjonar</string>
@@ -224,6 +251,7 @@
   <string name="settings_icon_description">Innstillingsikon</string>
   <string name="presenter_fullscreen">Fullskjerm</string>
   <string name="presenter_exit">Avslutt presentasjon</string>
+  <string name="presenter_lock_tip">Du kan låsa eininga og bruka lydstyrke-knappane som førre/neste-knappar</string>
   <string name="add_command">Legg til kommando</string>
   <string name="addcommand_explanation">Ingen kommandoar er registrerte</string>
   <string name="addcommand_explanation2">Du kan leggja til nye kommandoar i systeminnstillingane til KDE Connect</string>
@@ -264,4 +292,6 @@
   <string name="block_contents">Blokker varslingsinnhald</string>
   <string name="block_images">Blokker bilete i varslingar</string>
   <string name="notification_channel_receivenotification">Varslingar frå andre einingar</string>
+  <string name="take_picture">Opna kamera</string>
+  <string name="plugin_photo_desc">Opna kamera-appen for å gjera det lettare å ta og overføra bilete</string>
 </resources>

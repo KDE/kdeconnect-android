@@ -61,7 +61,7 @@
     <item>Strongest</item>
   </string-array>
   <string name="category_connected_devices">Verbundene Geräte</string>
-  <string name="category_not_paired_devices">Verfügbare Gerät</string>
+  <string name="category_not_paired_devices">Verfügbare Geräte</string>
   <string name="category_remembered_devices">Gemerkte Geräte</string>
   <string name="device_menu_plugins">Modul-Einstellungen</string>
   <string name="device_menu_unpair">Verbindung trennen</string>
