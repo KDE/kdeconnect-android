@@ -21,6 +21,7 @@
 package org.kde.kdeconnect.Plugins.SharePlugin;
 
 import android.app.DownloadManager;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -202,6 +203,10 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
                 shareNotification.show();
             }
             reportResult(null);
+
+        } catch (ActivityNotFoundException e) {
+            shareNotification.setFinished(getDevice().getContext().getString(R.string.no_app_for_opening));
+            shareNotification.show();
         } catch (Exception e) {
             isRunning = false;
 

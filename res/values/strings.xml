@@ -354,4 +354,5 @@
     <string name="plugin_photo_desc">Launch the camera app to ease taking and transferring pictures</string>
 
     <string name="findmyphone_preference_key_ringtone" translatable="false">findmyphone_ringtone</string>
+    <string name="no_app_for_opening">No suitable app found to open this file</string>
 </resources>
