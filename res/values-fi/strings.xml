@@ -213,7 +213,6 @@
   <string name="plugins_need_optional_permission">Jotkin liitännäisten ominaisuudet eivät ole käytössä puuttuvien käyttöoikeuksien takia (lisätietoa napsauttamalla):</string>
   <string name="share_optional_permission_explanation">Jakaaksesi tiedostoja puhelimen ja työpöydän välillä sinun on annettava käyttöoikeudet puhelimen tallennustilaan</string>
   <string name="telepathy_permission_explanation">Lukeaksesi ja lähettääksesi tekstiviestejä työpöydältä sinun on annettava käyttöoikeudet tekstiviesteihin</string>
-  <string name="telephony_permission_explanation">Nähdäksesi soitot ja tekstiviestit työpöydältä sinun on annettava käyttöoikeudet puheluihin ja tekstiviesteihin</string>
   <string name="telephony_optional_permission_explanation">Puhelimen yhteystietoihin on annettava käyttöoikeudet, jotta voit nähdä yhteystiedoissa nimet puhelinnumerojen sijaan</string>
   <string name="contacts_permission_explanation">Käyttääksesi yhteystietoja työpöydältä sinun on annettava yhteystietojen käyttöoikeudet</string>
   <string name="select_ringtone">Valitse soittoääni</string>

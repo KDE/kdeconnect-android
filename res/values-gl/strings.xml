@@ -240,7 +240,7 @@
   <string name="plugins_need_optional_permission">Algúns complementos teñen funcionalidades desactivadas por mor dunha falta de permisos (toque para máis información):</string>
   <string name="share_optional_permission_explanation">Para compartir ficheiros entre o teléfono e o escritorio ten que dar acceso ao almacenamento do teléfono.</string>
   <string name="telepathy_permission_explanation">Para ler e escribir SMS desde o escritorio ten que dar permiso de SMS.</string>
-  <string name="telephony_permission_explanation">Para ver as chamadas de teléfono e os SMS desde o escritorio ten que dar permiso a chamadas de teléfono e a SMS.</string>
+  <string name="telephony_permission_explanation">Para ver as chamadas de teléfono desde o escritorio ten que dar permiso para acceder a chamadas de teléfono.</string>
   <string name="telephony_optional_permission_explanation">Para ver o nome dun contacto en vez dun número de teléfono ten que dar acceso aos contactos do teléfono.</string>
   <string name="contacts_permission_explanation">Para compartir o caderno de contactos co escritorio ten que dar permiso de contactos</string>
   <string name="select_ringtone">Seleccione un son de chamada</string>

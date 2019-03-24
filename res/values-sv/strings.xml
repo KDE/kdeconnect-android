@@ -240,7 +240,7 @@
   <string name="plugins_need_optional_permission">Vissa insticksprogram har inaktiverade funktioner på grund av att rättigheter saknas (rör för mer information):</string>
   <string name="share_optional_permission_explanation">För att dela filer mellan telefonen och skrivbordet behöver du ge tillgång till telefonens lagringsutrymme</string>
   <string name="telepathy_permission_explanation">För att läsa och skriva SMS från skrivbordet måste du ge rättigheter för SMS</string>
-  <string name="telephony_permission_explanation">För att se telefonsamtal och SMS från skrivbordet måste du ge rättigheter för telefonsamtal och SMS</string>
+  <string name="telephony_permission_explanation">För att se telefonsamtal från skrivbordet måste du ge rättigheter för telefonsamtal</string>
   <string name="telephony_optional_permission_explanation">För att se ett kontaktnamn istället för ett telefonnummer måste du ge tillgång till telefonens kontakter</string>
   <string name="contacts_permission_explanation">För att dela kontaktlistan med skrivbordet måste du ge rättigheter för kontakter</string>
   <string name="select_ringtone">Välj en ringsignal</string>

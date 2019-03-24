@@ -226,7 +226,6 @@
   <string name="plugins_need_optional_permission">Niektoré pluginy majú zakázané funkcie pre nedostatok opránení (ťuknite pre viac info):</string>
   <string name="share_optional_permission_explanation">Na zdieľanie súborov medzi vašim telefónom a počítačom potrebujete dať prístup k úložisku telefónu</string>
   <string name="telepathy_permission_explanation">Na čítanie a písanie SMS z vašeho počítača, potrebujete dať oprávnienie na SMS</string>
-  <string name="telephony_permission_explanation">Aby ste videli telefónne hovory a SMS z počítača, potrebujete dať oprávnenie na hovory a SMS</string>
   <string name="telephony_optional_permission_explanation">Aby ste videli meno kontaktu namiesto čísla, potrebujete dať oprávnenie na telefónne kontakty</string>
   <string name="contacts_permission_explanation">Na zdieľanie kontaktov s počítačom, potrebujete dať oprávnenie na kontakty</string>
   <string name="select_ringtone">Nastaviť tón zvonenia</string>

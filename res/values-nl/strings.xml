@@ -240,7 +240,7 @@
   <string name="plugins_need_optional_permission">Sommige plug-ins hebben functies uitgeschakeld vanwege ontbrekende toestemming (tik voor meer informatie):</string>
   <string name="share_optional_permission_explanation">Om bestanden tussen uw telefoon en uw bureaublad te delen moet u toegang geven tot de opslag van uw telefoon</string>
   <string name="telepathy_permission_explanation">Om een SMS te lezen of te schrijven vanaf uw bureaublad moet u toestemming geven tot SMS</string>
-  <string name="telephony_permission_explanation">Om telefoonoproepen en SMS te zien vanaf het bureaublad moet u toestemming geven tot telefoonoproepen en SMS</string>
+  <string name="telephony_permission_explanation">Om telefoonoproepen te zien vanaf het bureaublad moet u toestemming geven tot telefoonoproepen</string>
   <string name="telephony_optional_permission_explanation">Om een naam van een contactpersoon te zien in plaats van een telefoonnummer moet u toegang geven tot de contacten in uw telefoon</string>
   <string name="contacts_permission_explanation">Om uw contactpersoennboek te delen met het bureaublad moet u contacten rechten geven</string>
   <string name="select_ringtone">Selecteer een ringtone</string>

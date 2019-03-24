@@ -213,7 +213,6 @@
   <string name="plugins_need_optional_permission">Plugin batzuek desgaitutako eginbideak dituzte baimenak faltan dituztelako (tak egin informazio gehiagorako):</string>
   <string name="share_optional_permission_explanation">Zure telefonoa eta mahaigainaren artean fitxategiak partekatzeko telefonoaren biltegiratzea atzitzeko baimena eman behar duzu</string>
   <string name="telepathy_permission_explanation">SMSak zure mahaigainetik bidali ahal izateko, SMSak erabiltzeko baimena eman behar duzu</string>
-  <string name="telephony_permission_explanation">Telefono deiak eta SMSak zure mahaigainetik ikusteko, telefono deiak eta SMSak erabiltzeko baimena eman behar duzu</string>
   <string name="telephony_optional_permission_explanation">Telefono zenbakiaren ordez kontaktuaren izena ikusteko telefonoko kontaktuak atzitzeko baimena eman behar duzu</string>
   <string name="contacts_permission_explanation">Zure kontaktuen liburuak mahaigainarekin partekatzeko, kontaktuetara baimena eman behar duzu</string>
   <string name="select_ringtone">Hautatu dei-tonu bat</string>

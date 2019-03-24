@@ -184,7 +184,6 @@
   <string name="plugins_need_optional_permission">Einige Module haben eingeschränkte Funktionen wegen fehlender Berechtigungen, tippen Sie für weitere Informationen:</string>
   <string name="share_optional_permission_explanation">m Dateien zwischen Rechner und Telefon auszutauschen, muss der Zugriff auf den Telefonspeicher gewährt werden</string>
   <string name="telepathy_permission_explanation">Um SMS vom Rechner aus zu lesen und zu versenden, muss der Zugriff auf die SMS-Funktion gewährt werden</string>
-  <string name="telephony_permission_explanation">Um Telefonate und SMS auf dem Rechner zu sehen, müssen Berechtigungen für Anrufe und SMS erteilt werden</string>
   <string name="telephony_optional_permission_explanation">Um einen Namen anstelle einer Telefonnummer zu sehen, muss der Zugriff auf das Adressbuch gewährt werden</string>
   <string name="select_ringtone">Einen Klingelton auswählen</string>
   <string name="telephony_pref_blocked_title">Unterdrückte Nummern</string>

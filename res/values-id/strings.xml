@@ -206,7 +206,6 @@
   <string name="plugins_need_optional_permission">Beberapa plugin yang memiliki fitur dinonfungsikan karena kurangnya perizinan (ketuk untuk info selebihnya):</string>
   <string name="share_optional_permission_explanation">Untuk membagikan file antara teleponmu dan desktopmu kamu harus memberikan akses ke penyimpanan teleponmu</string>
   <string name="telepathy_permission_explanation">Untuk membaca dan menulis SMS dari desktopmu kamu harus memberikan perizinan untuk SMS</string>
-  <string name="telephony_permission_explanation">Untuk melihat paggian telepon dan SMS dari desktopmu kamu harus memberikan perizinan untuk panggilan telepon dan SMS</string>
   <string name="telephony_optional_permission_explanation">Untuk melihat nama kontak alih-alih nomor telepon, kamu harus memberikan akses ke kontak telepon</string>
   <string name="contacts_permission_explanation">Untuk membagikan buku kontak dengan desktopmu, kamu harus memberikan perizinan kontak</string>
   <string name="select_ringtone">Pilih sebuah ringtone</string>

@@ -224,7 +224,6 @@
   <string name="plugins_need_optional_permission">Některé moduly mají vypnuté vlastnosti, kvůli nedostatečným oprávněním (ťukněte pro více informací):</string>
   <string name="share_optional_permission_explanation">Pro sdílení souborů mezi telefonem a počítačem potřebujete udělit oprávnění k úložišti telefonu</string>
   <string name="telepathy_permission_explanation">Pro čtení a psaní SMS z počítače musíte udělit oprávnění k SMS</string>
-  <string name="telephony_permission_explanation">Pro zobrazení telefonátů a SMS v počítači musíte udělit oprávnění k telefonování a SMS</string>
   <string name="telephony_optional_permission_explanation">Pro zobrazení jména kontaktu u telefonního čísla je potřeba udělit oprávnění ke kontaktům v telefonu</string>
   <string name="contacts_permission_explanation">Pro sdílení knihy kontaktů s pracovním prostředím, musíte udělit přístup ke kontaktům</string>
   <string name="select_ringtone">Vybrat vyzváněcí tón</string>

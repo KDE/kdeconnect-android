@@ -239,7 +239,6 @@
   <string name="plugins_need_optional_permission">Alguns plugins possuem recursos desativados devido à falta de permissões (toque para obter mais informações):</string>
   <string name="share_optional_permission_explanation">Para compartilhar arquivos entre o seu celular e o seu ambiente de trabalho é necessário permissão para acessar o armazenamento do seu celular</string>
   <string name="telepathy_permission_explanation">Para ler e gravar SMS a partir do seu ambiente de trabalho é necessário conceder permissão para SMS</string>
-  <string name="telephony_permission_explanation">Para ver as chamadas e SMS do celular a partir do seu ambiente de trabalho é necessário conceder permissão para as chamadas telefônicas e SMS</string>
   <string name="telephony_optional_permission_explanation">Para ver o nome de um contato em vez do seu número de telefone é necessário conceder acesso aos contatos do celular</string>
   <string name="contacts_permission_explanation">Para compartilhar o seu livro de endereços com o ambiente de trabalho é necessário conceder permissão para os contatos</string>
   <string name="select_ringtone">Selecionar um toque de chamada</string>

@@ -186,7 +186,6 @@
   <string name="plugins_need_optional_permission">일부 플러그인은 권한이 없어서 비활성화되었습니다(정보를 보려면 누르기):</string>
   <string name="share_optional_permission_explanation">휴대폰과 데스크톱간 파일을 공유하려면 휴대폰 저장소 접근 권한이 필요합니다</string>
   <string name="telepathy_permission_explanation">데스크톱에서 문자 메시지를 읽고 보내려면 문자 메시지 접근 권한이 필요합니다</string>
-  <string name="telephony_permission_explanation">데스크톱에서 통화와 문자 메시지를 보려면 통화 및 문자 메시지 접근 권한이 필요합니다</string>
   <string name="telephony_optional_permission_explanation">전화번호 대신 연락처에 등록된 이름을 보려면 주소록 접근 권한이 필요합니다</string>
   <string name="contacts_permission_explanation">데스크톱과 주소록을 공유하려면 주소록 접근 권한이 필요합니다</string>
   <string name="select_ringtone">벨소리 선택</string>

@@ -191,7 +191,6 @@
   <string name="plugins_need_optional_permission">Некоторые функции модулей отключены из-за отсутствия необходимых разрешений (нажмите для просмотра подробностей):</string>
   <string name="share_optional_permission_explanation">Чтобы обмениваться файлами между телефоном и компьютером, необходимо предоставить доступ к встроенной памяти телефона</string>
   <string name="telepathy_permission_explanation">Чтобы читать и писать SMS с компьютера, вам необходимо дать разрешение на доступ к SMS</string>
-  <string name="telephony_permission_explanation">Чтобы видеть телефонные звонки и SMS на компьютере, необходимо дать разрешение на телефонные звонки и SMS</string>
   <string name="telephony_optional_permission_explanation">Чтобы видеть имя контакта вместо номера телефона, необходимо предоставить доступ к контактам</string>
   <string name="dark_theme">Тёмное оформление</string>
   <string name="devices">Устройства</string>
