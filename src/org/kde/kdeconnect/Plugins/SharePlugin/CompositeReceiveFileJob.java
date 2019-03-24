@@ -205,6 +205,8 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
         } catch (Exception e) {
             isRunning = false;
 
+            Log.e("Shareplugin", "Error receiving file", e);
+
             int failedFiles;
             synchronized (lock) {
                 failedFiles = (totalNumFiles - currentFileNum + 1);
@@ -319,7 +321,7 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
             File file = new File(fileDocument.getUri().getPath());
             Uri contentUri = FileProvider.getUriForFile(getDevice().getContext(), "org.kde.kdeconnect_tp.fileprovider", file);
             intent.setDataAndType(contentUri, mimeType);
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NEW_TASK);
         } else {
             intent.setDataAndType(fileDocument.getUri(), mimeType);
         }
