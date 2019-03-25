@@ -13,6 +13,7 @@
   <string name="pref_plugin_clipboard_desc">Share the clipboard content</string>
   <string name="pref_plugin_mousepad">Remote input</string>
   <string name="pref_plugin_mousepad_desc">Use your phone or tablet as a touchpad and keyboard</string>
+  <string name="pref_plugin_presenter">Slideshow remote</string>
   <string name="pref_plugin_presenter_desc">Use your device to change slides in a presentation</string>
   <string name="pref_plugin_remotekeyboard">Receive remote keypresses</string>
   <string name="pref_plugin_remotekeyboard_desc">Receive keypress events from remote devices</string>
@@ -37,6 +38,7 @@
   <string name="open_settings">Open settings</string>
   <string name="no_permissions">You need to grant permission to access notifications</string>
   <string name="no_permission_mprisreceiver">To be able to control your media players you need to grant access to the notifications</string>
+  <string name="no_permissions_remotekeyboard">To receive keypresses you need to activate the KDE Connect Remote Keyboard</string>
   <string name="send_ping">Send ping</string>
   <string name="open_mpris_controls">Multimedia control</string>
   <string name="remotekeyboard_editing_only_title">Handle remote keys only when editing</string>
@@ -94,13 +96,30 @@
   <string name="pairing_request_from">Pairing request from %1s</string>
   <string name="received_url_title">Received link from %1s</string>
   <string name="received_url_text">Tap to open \'%1s\'</string>
+  <plurals name="incoming_file_title">
+    <item quantity="one">Receiving %1$d file from %2$s</item>
+    <item quantity="other">Receiving %1$d files from %2$s</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="one">File: %1s</item>
+    <item quantity="other">(File %2$d of %3$d) : %1$s</item>
+  </plurals>
   <string name="outgoing_file_title">Sending file to %1s</string>
   <string name="outgoing_files_title">Sending files to %1s</string>
   <plurals name="outgoing_files_text">
     <item quantity="one">Send files</item>
     <item quantity="other">Sent %1$d out of %2$d files</item>
   </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one">Received file from %1$s</item>
+    <item quantity="other">Received %2$d files from %1$s</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Failed receiving file from %1$s</item>
+    <item quantity="other">Failed receiving %2$d of %3$d files from %1$s</item>
+  </plurals>
   <string name="received_file_text">Tap to open \'%1s\'</string>
+  <string name="cannot_create_file">Cannot create file %s</string>
   <string name="sent_file_title">Sent file to %1s</string>
   <string name="sent_file_text">%1s</string>
   <string name="sent_file_failed_title">Failed to send file to %1s</string>
@@ -150,6 +169,11 @@
   <string name="pair_device_action">Pair a new device</string>
   <string name="unpair_device_action">Unpair %s</string>
   <string name="custom_device_list">Add devices by IP</string>
+  <string name="delete_custom_device">Delete %s?</string>
+  <string name="custom_device_deleted">Custom device deleted</string>
+  <string name="custom_device_list_help">If your device is not automatically detected you can add its IP address or hostname by clicking on the Floating Action Button</string>
+  <string name="custom_device_fab_hint">Add a device</string>
+  <string name="undo">Undo</string>
   <string name="share_notification_preference">Noisy notifications</string>
   <string name="share_notification_preference_summary">Vibrate and play a sound when receiving a file</string>
   <string name="share_destination_customize">Customise destination directory</string>
@@ -165,7 +189,28 @@
   <string name="sftp_sdcard">SD card</string>
   <string name="sftp_readonly">(read only)</string>
   <string name="sftp_camera">Camera pictures</string>
+  <string name="add_device_dialog_title">Add device</string>
+  <string name="add_device_hint">Hostname or IP address</string>
+  <string name="sftp_preference_detected_sdcards">Detected SD cards</string>
+  <string name="sftp_preference_edit_sdcard_title">Edit SD card</string>
+  <string name="sftp_preference_configured_storage_locations">Configured storage locations</string>
+  <string name="sftp_preference_add_storage_location_title">Add storage location</string>
+  <string name="sftp_preference_edit_storage_location">Edit storage location</string>
+  <string name="sftp_preference_add_camera_shortcut">Add camera folder shortcut</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_on">Add a shortcut to the camera folder</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_off">Do not add a shortcut to the camera folder</string>
+  <string name="sftp_storage_preference_storage_location">Storage location</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">This location has already been configured</string>
+  <string name="sftp_storage_preference_click_to_select">click to select</string>
+  <string name="sftp_storage_preference_display_name">Display name</string>
+  <string name="sftp_storage_preference_display_name_already_used">This display name is already used</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">Display name cannot be empty</string>
+  <string name="sftp_action_mode_menu_delete">Delete</string>
+  <string name="sftp_no_sdcard_detected">No SD card detected</string>
+  <string name="sftp_no_storage_locations_configured">No storage locations configured</string>
+  <string name="sftp_saf_permission_explanation">To access files remotely you have to configure storage locations</string>
   <string name="add_host">Add host/IP</string>
+  <string name="add_host_hint">Hostname or IP</string>
   <string name="no_players_connected">No players found</string>
   <string name="mpris_player_on_device">%1$s on %2$s</string>
   <string name="send_files">Send files</string>
@@ -195,6 +240,7 @@
   <string name="plugins_need_optional_permission">Some plugins have features disabled because of lack of permission (tap for more info):</string>
   <string name="share_optional_permission_explanation">To share files between your phone and your desktop you need to give access to the phone\'s storage</string>
   <string name="telepathy_permission_explanation">To read and write SMS from your desktop you need to give permission to SMS</string>
+  <string name="telephony_permission_explanation">To see phone calls from the desktop you need to give permission to access phone calls</string>
   <string name="telephony_optional_permission_explanation">To see a contact name instead of a phone number you need to give access to the phone\'s contacts</string>
   <string name="contacts_permission_explanation">To share your contacts book with the desktop, you need to give contacts permission</string>
   <string name="select_ringtone">Select a ringtone</string>
@@ -205,6 +251,7 @@
   <string name="settings_icon_description">Settings icon</string>
   <string name="presenter_fullscreen">Full-screen</string>
   <string name="presenter_exit">Exit presentation</string>
+  <string name="presenter_lock_tip">You can lock your device and use the volume keys to go to the previous/next slide</string>
   <string name="add_command">Add a command</string>
   <string name="addcommand_explanation">There are no commands registered</string>
   <string name="addcommand_explanation2">You can add new commands in the KDE Connect System Settings</string>
@@ -236,4 +283,15 @@
   <string name="settings_more_settings_title">More settings</string>
   <string name="settings_more_settings_text">Per-device settings can be found under \'Plugin settings\' from within a device.</string>
   <string name="setting_persistent_notification">Show persistent notification</string>
+  <string name="setting_persistent_notification_oreo">Persistent notification</string>
+  <string name="setting_persistent_notification_description">Tap to enable/disable in Notification settings</string>
+  <string name="extra_options">Extra options</string>
+  <string name="privacy_options">Privacy options</string>
+  <string name="set_privacy_options">Set your privacy options</string>
+  <string name="new_notification">New notification</string>
+  <string name="block_contents">Block contents of notifications</string>
+  <string name="block_images">Block images in notifications</string>
+  <string name="notification_channel_receivenotification">Notifications from other devices</string>
+  <string name="take_picture">Launch camera</string>
+  <string name="plugin_photo_desc">Launch the camera app to ease taking and transferring pictures</string>
 </resources>
