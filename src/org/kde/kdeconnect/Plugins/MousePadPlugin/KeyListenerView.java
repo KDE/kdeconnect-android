@@ -104,12 +104,7 @@ public class KeyListenerView extends View {
     }
 
     private void sendKeyPressPacket(final NetworkPacket np) {
-        BackgroundService.RunCommand(getContext(), service -> {
-            Device device = service.getDevice(deviceId);
-            MousePadPlugin mousePadPlugin = device.getPlugin(MousePadPlugin.class);
-            if (mousePadPlugin == null) return;
-            mousePadPlugin.sendKeyboardPacket(np);
-        });
+        BackgroundService.RunWithPlugin(getContext(), deviceId, MousePadPlugin.class, plugin -> plugin.sendKeyboardPacket(np));
     }
 
     @Override
