@@ -49,9 +49,6 @@ public class ShareBroadcastReceiver extends BroadcastReceiver {
         long jobId = intent.getLongExtra(SharePlugin.CANCEL_SHARE_BACKGROUND_JOB_ID_EXTRA, -1);
         String deviceId = intent.getStringExtra(SharePlugin.CANCEL_SHARE_DEVICE_ID_EXTRA);
 
-        BackgroundService.RunCommand(context, service -> {
-            SharePlugin plugin = service.getDevice(deviceId).getPlugin(SharePlugin.class);
-            plugin.cancelJob(jobId);
-        });
+        BackgroundService.RunWithPlugin(context, deviceId, SharePlugin.class, plugin -> plugin.cancelJob(jobId));
     }
 }

@@ -81,14 +81,7 @@ public class MprisActivity extends AppCompatActivity {
 
     private void connectToPlugin(final String targetPlayerName) {
 
-        BackgroundService.RunCommand(this, service -> {
-
-            final Device device = service.getDevice(deviceId);
-            final MprisPlugin mpris = device.getPlugin(MprisPlugin.class);
-            if (mpris == null) {
-                Log.e("MprisActivity", "device has no mpris plugin!");
-                return;
-            }
+        BackgroundService.RunWithPlugin(this, deviceId, MprisPlugin.class, mpris -> {
             targetPlayer = mpris.getPlayerStatus(targetPlayerName);
 
             addSytemvolumeFragment();
@@ -172,7 +165,6 @@ public class MprisActivity extends AppCompatActivity {
             });
 
         });
-
     }
 
     private void addSytemvolumeFragment() {
