@@ -240,6 +240,7 @@
   <string name="plugins_need_optional_permission">På grunn av manglande løyve vil desse funksjonane ikkje verka (trykk på dei for meir informasjon):</string>
   <string name="share_optional_permission_explanation">For å kunna dela filer mellom telefonen og datamaskina må du gje appen lese- og skriveløyve til lagringsområdet på telefonen</string>
   <string name="telepathy_permission_explanation">For å kunna lesa og skriva tekstmeldingar frå datamaskina må du gje appen tilgang til SMS</string>
+  <string name="telephony_permission_explanation">For å kunna sjå telefonsamtalar frå datamaskina må du gje appen løyve til å sjå telefonsamtalar</string>
   <string name="telephony_optional_permission_explanation">For å kunna sjå namn på kontaktar i staden for berre telefonnummeret må du gje appen tilgang til kontaktlista di</string>
   <string name="contacts_permission_explanation">For å kunna dela adresseboka di med datamaskina må du gje appen lese- og skriveløyve til adresseboka</string>
   <string name="select_ringtone">Vel ringjetone</string>
@@ -293,4 +294,5 @@
   <string name="notification_channel_receivenotification">Varslingar frå andre einingar</string>
   <string name="take_picture">Opna kamera</string>
   <string name="plugin_photo_desc">Opna kamera-appen for å gjera det lettare å ta og overføra bilete</string>
+  <string name="no_app_for_opening">Fann ikkje nokon app som kan opna denne fila</string>
 </resources>
