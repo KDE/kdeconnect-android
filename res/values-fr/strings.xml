@@ -38,10 +38,11 @@
   <string name="open_settings">Accéder aux paramètres</string>
   <string name="no_permissions">Vous devez accorder la permission d\'accéder aux notifications</string>
   <string name="no_permission_mprisreceiver">Pour pouvoir contrôler vos lecteurs multimédia, veuillez permettre l\'accès aux notifications</string>
+  <string name="no_permissions_remotekeyboard">Vous devez activer le Clavier à distance KDE Connect pour recevoir les appuis sur les touches</string>
   <string name="send_ping">Envoyer un « Ping »</string>
   <string name="open_mpris_controls">Contrôles multimédia</string>
   <string name="remotekeyboard_editing_only_title">Gérer les appuis de touches à distance uniquement lors de l\'édition</string>
-  <string name="remotekeyboard_not_connected">Aucune connexion active d\'un clavier sans fil disponible, établissez-en une dans KDE Connect</string>
+  <string name="remotekeyboard_not_connected">Aucune connexion active d\'un clavier à distance disponible, établissez-en une dans KDE Connect</string>
   <string name="remotekeyboard_connected">La connexion au clavier sans fil est active</string>
   <string name="remotekeyboard_multiple_connections">Plusieurs connexions à des claviers sans fil sont disponibles, sélectionnez le périphérique à configurer</string>
   <string name="open_mousepad">Contrôle distant</string>
@@ -239,6 +240,7 @@
   <string name="plugins_need_optional_permission">Certaines fonctionnalités de modules externes sont désactivées faute de permissions suffisantes (tapez pour plus d\'informations) :</string>
   <string name="share_optional_permission_explanation">Pour partager des fichiers entre votre téléphone et votre ordinateur, veuillez permettre l\'accès à la mémoire de stockage du téléphone</string>
   <string name="telepathy_permission_explanation">Pour lire et écrire des SMS depuis votre ordinateur, veuillez permettre l\'accès aux SMS</string>
+  <string name="telephony_permission_explanation">Vous devez autoriser l\'accès aux appels téléphoniques pour voir les appels depuis votre ordinateur</string>
   <string name="telephony_optional_permission_explanation">Pour voir le nom du contact au lieu du numéro de téléphone, veuillez permettre l\'accès aux contacts du téléphone</string>
   <string name="contacts_permission_explanation">Pour partager votre carnet de contacts avec votre ordinateur, veuillez permettre l\'accès aux contacts du téléphone</string>
   <string name="select_ringtone">Sélectionnez une sonnerie</string>
