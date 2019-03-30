@@ -265,7 +265,7 @@ public class MprisActivity extends AppCompatActivity {
         }
         final int currentVolume = targetPlayer.getVolume();
 
-        if (currentVolume < 100 || currentVolume > 0) {
+        if (currentVolume <= 100 && currentVolume >= 0) {
             int newVolume = currentVolume + step;
             if (newVolume > 100) {
                 newVolume = 100;
