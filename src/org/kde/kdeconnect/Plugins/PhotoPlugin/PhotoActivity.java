@@ -25,9 +25,7 @@ public class PhotoActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        BackgroundService.RunWithPlugin(this, getIntent().getStringExtra("deviceId"), PhotoPlugin.class, plugin -> {
-            this.plugin = plugin;
-        });
+        BackgroundService.RunWithPlugin(this, getIntent().getStringExtra("deviceId"), PhotoPlugin.class, plugin -> this.plugin = plugin);
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {

@@ -58,46 +58,44 @@ public class RunCommandActivity extends AppCompatActivity {
 
     private void updateView() {
 
-        BackgroundService.RunWithPlugin(this, deviceId, RunCommandPlugin.class, plugin -> {
-            runOnUiThread(() -> {
-                ListView view = findViewById(R.id.runcommandslist);
+        BackgroundService.RunWithPlugin(this, deviceId, RunCommandPlugin.class, plugin -> runOnUiThread(() -> {
+            ListView view = findViewById(R.id.runcommandslist);
 
-                registerForContextMenu(view);
+            registerForContextMenu(view);
 
-                commandItems = new ArrayList<>();
-                for (JSONObject obj : plugin.getCommandList()) {
-                    try {
-                        commandItems.add(new CommandEntry(obj.getString("name"),
-                                obj.getString("command"), obj.getString("key")));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+            commandItems = new ArrayList<>();
+            for (JSONObject obj : plugin.getCommandList()) {
+                try {
+                    commandItems.add(new CommandEntry(obj.getString("name"),
+                            obj.getString("command"), obj.getString("key")));
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+            }
 
-                Collections.sort(commandItems, (lhs, rhs) -> {
-                    String lName = ((CommandEntry) lhs).getName();
-                    String rName = ((CommandEntry) rhs).getName();
-                    return lName.compareTo(rName);
-                });
-
-                ListAdapter adapter = new ListAdapter(RunCommandActivity.this, commandItems);
-
-                view.setAdapter(adapter);
-                view.setOnItemClickListener((adapterView, view1, i, l) -> {
-                    CommandEntry entry = (CommandEntry) commandItems.get(i);
-                    plugin.runCommand(entry.getKey());
-                });
-
-
-                TextView explanation = findViewById(R.id.addcomand_explanation);
-                String text = getString(R.string.addcommand_explanation);
-                if (!plugin.canAddCommand()) {
-                    text += "\n" + getString(R.string.addcommand_explanation2);
-                }
-                explanation.setText(text);
-                explanation.setVisibility(commandItems.isEmpty() ? View.VISIBLE : View.GONE);
+            Collections.sort(commandItems, (lhs, rhs) -> {
+                String lName = ((CommandEntry) lhs).getName();
+                String rName = ((CommandEntry) rhs).getName();
+                return lName.compareTo(rName);
             });
-        });
+
+            ListAdapter adapter = new ListAdapter(RunCommandActivity.this, commandItems);
+
+            view.setAdapter(adapter);
+            view.setOnItemClickListener((adapterView, view1, i, l) -> {
+                CommandEntry entry = (CommandEntry) commandItems.get(i);
+                plugin.runCommand(entry.getKey());
+            });
+
+
+            TextView explanation = findViewById(R.id.addcomand_explanation);
+            String text = getString(R.string.addcommand_explanation);
+            if (!plugin.canAddCommand()) {
+                text += "\n" + getString(R.string.addcommand_explanation2);
+            }
+            explanation.setText(text);
+            explanation.setVisibility(commandItems.isEmpty() ? View.VISIBLE : View.GONE);
+        }));
     }
 
     @Override
@@ -117,19 +115,15 @@ public class RunCommandActivity extends AppCompatActivity {
             addCommandButton.hide();
         }
 
-        addCommandButton.setOnClickListener(v -> {
-
-            BackgroundService.RunWithPlugin(RunCommandActivity.this, deviceId, RunCommandPlugin.class, plugin -> {
-                plugin.sendSetupPacket();
-                AlertDialog dialog = new AlertDialog.Builder(RunCommandActivity.this)
-                        .setTitle(R.string.add_command)
-                        .setMessage(R.string.add_command_description)
-                        .setPositiveButton(R.string.ok, null)
-                        .create();
-                dialog.show();
-            });
-
-        });
+        addCommandButton.setOnClickListener(v -> BackgroundService.RunWithPlugin(RunCommandActivity.this, deviceId, RunCommandPlugin.class, plugin -> {
+            plugin.sendSetupPacket();
+            AlertDialog dialog = new AlertDialog.Builder(RunCommandActivity.this)
+                    .setTitle(R.string.add_command)
+                    .setMessage(R.string.add_command_description)
+                    .setPositiveButton(R.string.ok, null)
+                    .create();
+            dialog.show();
+        }));
 
         updateView();
     }
@@ -160,17 +154,13 @@ public class RunCommandActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        BackgroundService.RunWithPlugin(this, deviceId, RunCommandPlugin.class, plugin -> {
-            plugin.addCommandsUpdatedCallback(commandsChangedCallback);
-        });
+        BackgroundService.RunWithPlugin(this, deviceId, RunCommandPlugin.class, plugin -> plugin.addCommandsUpdatedCallback(commandsChangedCallback));
     }
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        BackgroundService.RunWithPlugin(this, deviceId, RunCommandPlugin.class, plugin -> {
-            plugin.removeCommandsUpdatedCallback(commandsChangedCallback);
-        });
+        BackgroundService.RunWithPlugin(this, deviceId, RunCommandPlugin.class, plugin -> plugin.removeCommandsUpdatedCallback(commandsChangedCallback));
     }
 }
