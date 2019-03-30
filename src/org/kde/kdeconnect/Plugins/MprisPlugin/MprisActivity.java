@@ -350,6 +350,17 @@ public class MprisActivity extends AppCompatActivity {
         }
     }
 
+    private interface ClickListener {
+        void onClick(MprisPlugin.MprisPlayer player);
+    }
+
+    private void onClick(View v, ClickListener l) {
+        v.setOnClickListener(view -> BackgroundService.RunCommand(MprisActivity.this, service -> {
+            if (targetPlayer == null) return;
+            l.onClick(targetPlayer);
+        }));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -369,35 +380,17 @@ public class MprisActivity extends AppCompatActivity {
         BackgroundService.RunCommand(MprisActivity.this, service -> service.addConnectionListener(connectionReceiver));
         connectToPlugin(targetPlayerName);
 
-        playButton.setOnClickListener(view -> BackgroundService.RunCommand(MprisActivity.this, service -> {
-            if (targetPlayer == null) return;
-            targetPlayer.playPause();
-        }));
+        onClick(playButton, MprisPlugin.MprisPlayer::playPause);
 
-        prevButton.setOnClickListener(view -> BackgroundService.RunCommand(MprisActivity.this, service -> {
-            if (targetPlayer == null) return;
-            targetPlayer.previous();
-        }));
+        onClick(prevButton, MprisPlugin.MprisPlayer::previous);
 
-        rewButton.setOnClickListener(view -> BackgroundService.RunCommand(MprisActivity.this, service -> {
-            if (targetPlayer == null) return;
-            targetPlayer.seek(interval_time * -1);
-        }));
+        onClick(rewButton, p -> targetPlayer.seek(interval_time * -1));
 
-        ffButton.setOnClickListener(view -> BackgroundService.RunCommand(MprisActivity.this, service -> {
-            if (targetPlayer == null) return;
-            targetPlayer.seek(interval_time);
-        }));
+        onClick(ffButton, p -> p.seek(interval_time));
 
-        nextButton.setOnClickListener(view -> BackgroundService.RunCommand(MprisActivity.this, service -> {
-            if (targetPlayer == null) return;
-            targetPlayer.next();
-        }));
+        onClick(nextButton, MprisPlugin.MprisPlayer::next);
 
-        stopButton.setOnClickListener(view -> BackgroundService.RunCommand(MprisActivity.this, service -> {
-            if (targetPlayer == null) return;
-            targetPlayer.stop();
-        }));
+        onClick(stopButton, MprisPlugin.MprisPlayer::stop);
 
         volumeSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
