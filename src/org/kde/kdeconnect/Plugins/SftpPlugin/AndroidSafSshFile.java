@@ -231,8 +231,8 @@ public class AndroidSafSshFile implements SshFile {
                         parentUri = destParentUri;
                         documentInfo.uri = newUri;
                     }
-                } catch (Exception ignored) {
-                    Log.e(TAG,"DocumentsContract.moveDocument() threw an exception: " + ignored.getMessage());
+                } catch (Exception e) {
+                    Log.e(TAG,"DocumentsContract.moveDocument() threw an exception", e);
                 }
             } else {
                 try {
