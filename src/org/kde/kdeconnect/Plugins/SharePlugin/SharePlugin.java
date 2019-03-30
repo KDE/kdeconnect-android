@@ -22,13 +22,9 @@ package org.kde.kdeconnect.Plugins.SharePlugin;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -38,7 +34,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import org.kde.kdeconnect.Helpers.FilesHelper;
-import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
@@ -52,7 +47,6 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
-import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
 @PluginFactory.LoadablePlugin

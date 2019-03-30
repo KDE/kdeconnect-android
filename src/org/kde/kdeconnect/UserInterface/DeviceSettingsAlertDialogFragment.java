@@ -23,7 +23,6 @@ package org.kde.kdeconnect.UserInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class DeviceSettingsAlertDialogFragment extends AlertDialogFragment {

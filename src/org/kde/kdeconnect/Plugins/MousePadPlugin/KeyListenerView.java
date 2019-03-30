@@ -29,7 +29,6 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 
 import org.kde.kdeconnect.BackgroundService;
-import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
 
 public class KeyListenerView extends View {
