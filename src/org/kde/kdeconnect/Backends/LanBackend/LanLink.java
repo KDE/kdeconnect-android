@@ -216,10 +216,10 @@ public class LanLink extends BaseLink {
                     outputStream.flush();
                     Log.i("KDE/LanLink", "Finished sending payload ("+progress+" bytes written)");
                 } finally {
-                    try { server.close(); } catch (Exception e) { }
-                    try { payloadSocket.close(); } catch (Exception e) { }
+                    try { server.close(); } catch (Exception ignored) { }
+                    try { payloadSocket.close(); } catch (Exception ignored) { }
                     np.getPayload().close();
-                    try { outputStream.close(); } catch (Exception e) { }
+                    try { outputStream.close(); } catch (Exception ignored) { }
                 }
             }
 

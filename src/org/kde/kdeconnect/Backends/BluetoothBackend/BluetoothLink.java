@@ -144,7 +144,7 @@ public class BluetoothLink extends BaseLink {
         continueAccepting = false;
         try {
             socket.close();
-        } catch (IOException e) {
+        } catch (IOException ignored) {
         }
         linkProvider.disconnectedLink(this, getDeviceId(), socket);
     }
