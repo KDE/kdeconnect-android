@@ -38,6 +38,7 @@
   <string name="open_settings">Apri impostazioni</string>
   <string name="no_permissions">Devi concedere i permessi per l\'accesso alle notifiche</string>
   <string name="no_permission_mprisreceiver">Per poter controllare i tuoi lettori multimediali devi accordare l\'accesso alle notifiche</string>
+  <string name="no_permissions_remotekeyboard">Per ricevere pressioni di tasti, devi attivare la tastiera remota di KDE Connect</string>
   <string name="send_ping">Invia ping</string>
   <string name="open_mpris_controls">Controllo multimediale</string>
   <string name="remotekeyboard_editing_only_title">Gestisci i tasti remoti solo durante la modifica</string>
@@ -190,7 +191,26 @@
   <string name="sftp_camera">Immagini fotocamera</string>
   <string name="add_device_dialog_title">Aggiungi dispositivo</string>
   <string name="add_device_hint">Nome host o indirizzo IP</string>
+  <string name="sftp_preference_detected_sdcards">Schede SD rilevate</string>
+  <string name="sftp_preference_edit_sdcard_title">Modifica scheda SD</string>
+  <string name="sftp_preference_configured_storage_locations">Posizioni di archiviazione configurate</string>
+  <string name="sftp_preference_add_storage_location_title">Aggiungi posizione di archiviazione</string>
+  <string name="sftp_preference_edit_storage_location">Modifica posizione di archiviazione</string>
+  <string name="sftp_preference_add_camera_shortcut">Aggiungi scorciatoia alla cartella della fotocamera</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_on">Aggiungi una scorciatoia alla cartella della fotocamera</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_off">Non aggiungere una scorciatoia alla cartella della fotocamera</string>
+  <string name="sftp_storage_preference_storage_location">Posizione di archiviazione</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">Questa posizione è già stata configurata</string>
+  <string name="sftp_storage_preference_click_to_select">clic per selezionare</string>
+  <string name="sftp_storage_preference_display_name">Nome visualizzato</string>
+  <string name="sftp_storage_preference_display_name_already_used">Il nome visualizzato è già in uso</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">Il nome visualizzato non può essere vuoto</string>
+  <string name="sftp_action_mode_menu_delete">Elimina</string>
+  <string name="sftp_no_sdcard_detected">Nessuna scheda SD rilevata</string>
+  <string name="sftp_no_storage_locations_configured">Nessuna posizione di archiviazione configurata</string>
+  <string name="sftp_saf_permission_explanation">Per accedere da remoto ai file, devi configurare posizioni di archiviazione</string>
   <string name="add_host">Aggiungi host/IP</string>
+  <string name="add_host_hint">Nome host o IP</string>
   <string name="no_players_connected">Nessun lettore trovato</string>
   <string name="mpris_player_on_device">%1$s su %2$s</string>
   <string name="send_files">Invia file</string>
@@ -220,6 +240,7 @@
   <string name="plugins_need_optional_permission">Alcune estensioni hanno funzioni disabilitate per una mancanza di permessi (tocca per maggiori informazioni):</string>
   <string name="share_optional_permission_explanation">Per condividere i file tra il telefono e il tuo desktop devi dare accesso alla memoria del telefono</string>
   <string name="telepathy_permission_explanation">Per leggere e scrivere SMS dal tuo desktop, devi concedere l\'autorizzazione per SMS</string>
+  <string name="telephony_permission_explanation">Per vedere le chiamate telefoniche dal desktop devi dare l\'autorizzazione per accedere alle telefonate</string>
   <string name="telephony_optional_permission_explanation">Per vedere il nome di un contatto invece del numero di telefono devi dare accesso alla rubrica del telefono</string>
   <string name="contacts_permission_explanation">Per condividere la tua rubrica con il desktop, devi concedere l\'autorizzazione per i contatti</string>
   <string name="select_ringtone">Seleziona una suoneria</string>
@@ -271,4 +292,7 @@
   <string name="block_contents">Blocca i contenuti delle notifiche</string>
   <string name="block_images">Blocca le immagini nelle notifiche</string>
   <string name="notification_channel_receivenotification">Notifiche da altri dispositivi</string>
+  <string name="take_picture">Avvia fotocamera</string>
+  <string name="plugin_photo_desc">Avvia l\'applicazione della fotocamera per scattare e trasferire foto con facilità</string>
+  <string name="no_app_for_opening">Nessuna applicazione appropriata trovata per aprire questo file</string>
 </resources>

@@ -294,4 +294,5 @@
   <string name="notification_channel_receivenotification">Underrättelser från andra apparater</string>
   <string name="take_picture">Starta kamera</string>
   <string name="plugin_photo_desc">Starta kameraprogrammet för att förenkla att ta och överföra bilder</string>
+  <string name="no_app_for_opening">Inget lämpligt program hittades för att öppna filen</string>
 </resources>

@@ -25,7 +25,7 @@
   <string name="pref_plugin_contacts_desc">Tillat synkronisering av adresseboka på eininga</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Send og ta imot pingsignal</string>
-  <string name="pref_plugin_notifications">Varslingssynkronisering</string>
+  <string name="pref_plugin_notifications">Synkroniser varslingar</string>
   <string name="pref_plugin_notifications_desc">Få tilgang til varslingar frå andre einingar</string>
   <string name="pref_plugin_receive_notifications">Ta imot varslingar</string>
   <string name="pref_plugin_receive_notifications_desc">Ta imot varslingar frå den andre eininga og vis dei i Android</string>
@@ -74,7 +74,7 @@
   </string-array>
   <string name="category_connected_devices">Tilkopla einingar</string>
   <string name="category_not_paired_devices">Tilgjengelege einingar</string>
-  <string name="category_remembered_devices">Hugs einingar</string>
+  <string name="category_remembered_devices">Hugsa einingar</string>
   <string name="device_menu_plugins">Programtillegg-oppsett</string>
   <string name="device_menu_unpair">Løys paring</string>
   <string name="device_not_reachable">Får ikkje kontakt med para eining</string>
@@ -153,7 +153,7 @@
     <item>1 minutt</item>
     <item>2 minutt</item>
   </string-array>
-  <string name="mpris_notification_settings_title">Vis varsling om avspelingskontrollar</string>
+  <string name="mpris_notification_settings_title">Vis varsling med avspelingskontrollar</string>
   <string name="mpris_notification_settings_summary">Tillat å kontrollera mediespelarar utan å opna KDE Connect</string>
   <string name="share_to">Del til …</string>
   <string name="protocol_version_older">Denne eininga brukar ein gammal protokollversjon</string>
@@ -245,7 +245,7 @@
   <string name="contacts_permission_explanation">For å kunna dela adresseboka di med datamaskina må du gje appen lese- og skriveløyve til adresseboka</string>
   <string name="select_ringtone">Vel ringjetone</string>
   <string name="telephony_pref_blocked_title">Blokkerte nummer</string>
-  <string name="telephony_pref_blocked_dialog_desc">Ikkje vis oppringingar og SMS-ar frå desse telefonnummera. Skriv inn eitt telefonnummer per linje.</string>
+  <string name="telephony_pref_blocked_dialog_desc">Ikkje vis oppringingar eller SMS-ar frå desse telefonnummera. Skriv inn eitt telefonnummer per linje.</string>
   <string name="mpris_coverart_description">Omslagsbilete til gjeldande mediefil</string>
   <string name="device_icon_description">Einingsikon</string>
   <string name="settings_icon_description">Innstillingsikon</string>
