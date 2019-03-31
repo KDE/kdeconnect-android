@@ -196,7 +196,7 @@ public class AndroidSafSshFile implements SshFile {
     }
 
     @Override
-    public void truncate() throws IOException {
+    public void truncate() {
         if (documentInfo.length > 0) {
             delete();
             create();
@@ -326,7 +326,7 @@ public class AndroidSafSshFile implements SshFile {
     }
 
     @Override
-    public Object getAttribute(Attribute attribute, boolean followLinks) throws IOException {
+    public Object getAttribute(Attribute attribute, boolean followLinks) {
         Object ret;
 
         switch (attribute) {
@@ -402,7 +402,7 @@ public class AndroidSafSshFile implements SshFile {
     }
 
     @Override
-    public void setAttribute(Attribute attribute, Object value) throws IOException {
+    public void setAttribute(Attribute attribute, Object value) {
         Log.d(TAG, "setAttribute()");
     }
 
