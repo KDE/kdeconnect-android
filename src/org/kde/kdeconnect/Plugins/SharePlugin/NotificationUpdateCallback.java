@@ -3,6 +3,7 @@ package org.kde.kdeconnect.Plugins.SharePlugin;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.Log;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
@@ -75,9 +76,7 @@ class NotificationUpdateCallback extends Device.SendPacketStatusCallback {
     public void onFailure(Throwable e) {
         updateDone(false);
         NotificationHelper.notifyCompat(notificationManager, notificationId, builder.build());
-        if (e != null) {
-            e.printStackTrace();
-        }
+        Log.e("KDEConnect", "Exception", e);
     }
 
     private void updateText() {

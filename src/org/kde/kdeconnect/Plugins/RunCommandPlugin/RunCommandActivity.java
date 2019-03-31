@@ -25,6 +25,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -69,7 +70,7 @@ public class RunCommandActivity extends AppCompatActivity {
                     commandItems.add(new CommandEntry(obj.getString("name"),
                             obj.getString("command"), obj.getString("key")));
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    Log.e("RunCommand", "Error parsing JSON", e);
                 }
             }
 

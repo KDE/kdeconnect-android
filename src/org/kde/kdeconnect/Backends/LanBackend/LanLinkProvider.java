@@ -102,7 +102,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
             networkPacket = NetworkPacket.unserialize(message);
             //Log.e("TcpListener","Received TCP package: "+networkPacket.serialize());
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e("KDE/LanLinkProvider", "Exception while receiving TCP packet", e);
             return;
         }
 
@@ -157,8 +157,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
             identityPacketReceived(identityPacket, socket, LanLink.ConnectionStarted.Remotely);
 
         } catch (Exception e) {
-            Log.e("KDE/LanLinkProvider", "Cannot connect to " + address);
-            e.printStackTrace();
+            Log.e("KDE/LanLinkProvider", "Cannot connect to " + address, e);
             if (!reverseConnectionBlackList.contains(address)) {
                 Log.w("KDE/LanLinkProvider", "Blacklisting " + address);
                 reverseConnectionBlackList.add(address);
@@ -179,7 +178,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
         try {
             socket.setKeepAlive(true);
         } catch (SocketException e) {
-            e.printStackTrace();
+            Log.e("LanLink", "Exception", e);
         }
     }
 
@@ -236,8 +235,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                         Log.i("KDE/LanLinkProvider", "Handshake as " + mode + " successful with " + identityPacket.getString("deviceName") + " secured with " + event.getCipherSuite());
                         addLink(identityPacket, sslsocket, connectionStarted);
                     } catch (Exception e) {
-                        Log.e("KDE/LanLinkProvider", "Handshake as " + mode + " failed with " + identityPacket.getString("deviceName"));
-                        e.printStackTrace();
+                        Log.e("KDE/LanLinkProvider", "Handshake as " + mode + " failed with " + identityPacket.getString("deviceName"), e);
                         BackgroundService.RunCommand(context, service -> {
                             Device device = service.getDevice(deviceId);
                             if (device == null) return;
@@ -252,8 +250,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                             sslsocket.startHandshake();
                         }
                     } catch (Exception e) {
-                        Log.e("KDE/LanLinkProvider", "Handshake failed with " + identityPacket.getString("deviceName"));
-                        e.printStackTrace();
+                        Log.e("KDE/LanLinkProvider", "Handshake failed with " + identityPacket.getString("deviceName"), e);
 
                         //String[] ciphers = sslsocket.getSupportedCipherSuites();
                         //for (String cipher : ciphers) {
@@ -265,7 +262,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                 addLink(identityPacket, socket, connectionStarted);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e("LanLink", "Exception", e);
         }
 
     }
@@ -311,8 +308,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
             udpServer.setReuseAddress(true);
             udpServer.setBroadcast(true);
         } catch (SocketException e) {
-            Log.e("LanLinkProvider", "Error creating udp server");
-            e.printStackTrace();
+            Log.e("LanLinkProvider", "Error creating udp server", e);
             return;
         }
         new Thread(() -> {
@@ -324,8 +320,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                     udpServer.receive(packet);
                     udpPacketReceived(packet);
                 } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.e("LanLinkProvider", "UdpReceive exception");
+                    Log.e("LanLinkProvider", "UdpReceive exception", e);
                 }
             }
             Log.w("UdpListener", "Stopping UDP listener");
@@ -336,8 +331,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
         try {
             tcpServer = openServerSocketOnFreePort(MIN_PORT);
         } catch (Exception e) {
-            Log.e("LanLinkProvider", "Error creating tcp server");
-            e.printStackTrace();
+            Log.e("LanLinkProvider", "Error creating tcp server", e);
             return;
         }
         new Thread(() -> {
@@ -347,8 +341,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                     configureSocket(socket);
                     tcpPacketReceived(socket);
                 } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.e("LanLinkProvider", "TcpReceive exception");
+                    Log.e("LanLinkProvider", "TcpReceive exception", e);
                 }
             }
             Log.w("TcpListener", "Stopping TCP listener");
@@ -398,8 +391,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                 socket.setBroadcast(true);
                 bytes = identity.serialize().getBytes(StringsHelper.UTF8);
             } catch (Exception e) {
-                e.printStackTrace();
-                Log.e("KDE/LanLinkProvider", "Failed to create DatagramSocket");
+                Log.e("KDE/LanLinkProvider", "Failed to create DatagramSocket", e);
             }
 
             if (bytes != null) {
@@ -410,8 +402,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                         socket.send(new DatagramPacket(bytes, bytes.length, client, MIN_PORT));
                         //Log.i("KDE/LanLinkProvider","Udp identity package sent to address "+client);
                     } catch (Exception e) {
-                        e.printStackTrace();
-                        Log.e("KDE/LanLinkProvider", "Sending udp identity package failed. Invalid address? (" + ipstr + ")");
+                        Log.e("KDE/LanLinkProvider", "Sending udp identity package failed. Invalid address? (" + ipstr + ")", e);
                     }
                 }
             }
@@ -449,12 +440,12 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
         try {
             tcpServer.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e("LanLink", "Exception", e);
         }
         try {
             udpServer.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e("LanLink", "Exception", e);
         }
     }
 

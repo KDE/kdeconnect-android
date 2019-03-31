@@ -191,7 +191,7 @@ public class ContactsHelper {
             }
         } catch (IOException e) {
             // If you are experiencing this, please open a bug report indicating how you got here
-            e.printStackTrace();
+            Log.e("Contacts", "Exception while fetching vcards", e);
         }
 
         // At this point we are screwed:
@@ -239,10 +239,10 @@ public class ContactsHelper {
                 toReturn.put(ID, new VCardBuilder(vcard.toString()));
             } catch (IOException e) {
                 // If you are experiencing this, please open a bug report indicating how you got here
-                e.printStackTrace();
+                Log.e("Contacts", "Exception while fetching vcards", e);
             } catch (NullPointerException e) {
                 // If you are experiencing this, please open a bug report indicating how you got here
-                e.printStackTrace();
+                Log.e("Contacts", "Exception while fetching vcards", e);
             }
         }
 

@@ -20,6 +20,8 @@
 
 package org.kde.kdeconnect.Plugins.SystemvolumePlugin;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -75,7 +77,7 @@ public class SystemVolumePlugin extends Plugin {
                     sinks.put(sink.getName(), sink);
                 }
             } catch (JSONException e) {
-                e.printStackTrace();
+                Log.e("KDEConnect", "Exception", e);
             }
 
             for (SinkListener l : listeners) {

@@ -307,8 +307,7 @@ public class MprisPlugin extends Plugin {
                     try {
                         playerStatusUpdated.get(key).dispatchMessage(new Message());
                     } catch (Exception e) {
-                        e.printStackTrace();
-                        Log.e("MprisControl", "Exception");
+                        Log.e("MprisControl", "Exception", e);
                         playerStatusUpdated.remove(key);
                     }
                 }
@@ -355,8 +354,7 @@ public class MprisPlugin extends Plugin {
                     try {
                         playerListUpdated.get(key).dispatchMessage(new Message());
                     } catch (Exception e) {
-                        e.printStackTrace();
-                        Log.e("MprisControl", "Exception");
+                        Log.e("MprisControl", "Exception", e);
                         playerListUpdated.remove(key);
                     }
                 }
@@ -468,8 +466,7 @@ public class MprisPlugin extends Plugin {
                 try {
                     playerStatusUpdated.get(key).dispatchMessage(new Message());
                 } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.e("MprisControl", "Exception");
+                    Log.e("MprisControl", "Exception", e);
                     playerStatusUpdated.remove(key);
                 }
             }

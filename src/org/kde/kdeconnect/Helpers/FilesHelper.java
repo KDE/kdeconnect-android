@@ -129,8 +129,7 @@ public class FilesHelper {
                 try {
                     size = new File(uri.getPath()).length();
                 } catch (Exception e) {
-                    Log.e("SendFileActivity", "Could not obtain file size");
-                    e.printStackTrace();
+                    Log.e("SendFileActivity", "Could not obtain file size", e);
                 }
 
             } else {
@@ -155,8 +154,7 @@ public class FilesHelper {
                         String name = cursor.getString(column_index);
                         np.set("filename", name);
                     } catch (Exception e) {
-                        e.printStackTrace();
-                        Log.e("SendFileActivity", "Could not obtain file name");
+                        Log.e("SendFileActivity", "Could not obtain file name", e);
                     }
 
                     try {
@@ -165,8 +163,7 @@ public class FilesHelper {
                         //For some reason this size can differ from the actual file size!
                         size = cursor.getInt(column_index);
                     } catch (Exception e) {
-                        Log.e("SendFileActivity", "Could not obtain file size");
-                        e.printStackTrace();
+                        Log.e("SendFileActivity", "Could not obtain file size", e);
                     }
                 } finally {
                     try {
@@ -182,7 +179,6 @@ public class FilesHelper {
             return np;
         } catch (Exception e) {
             Log.e("SendFileActivity", "Exception creating network packet", e);
-            e.printStackTrace();
             return null;
         }
     }

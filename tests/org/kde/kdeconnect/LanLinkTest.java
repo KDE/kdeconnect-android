@@ -142,8 +142,7 @@ public class LanLinkTest {
                         np.setPayload(new NetworkPacket.Payload(socket.getInputStream(), np.getPayloadSize()));
                     } catch (Exception e) {
                         socket.close();
-                        e.printStackTrace();
-                        Log.e("KDE/LanLinkTest", "Exception connecting to remote socket");
+                        Log.e("KDE/LanLinkTest", "Exception connecting to remote socket", e);
                         throw e;
                     }
 
@@ -169,8 +168,7 @@ public class LanLinkTest {
                     input.close();
 
                 } catch (Exception e) {
-                    Log.e("Downloader Test", "Exception");
-                    e.printStackTrace();
+                    Log.e("Downloader Test", "Exception", e);
                 }
             }
         }
@@ -233,7 +231,7 @@ public class LanLinkTest {
             // Wait 1 secs for downloader to finish (if some error, it will continue and assert will fail)
             downloader.join(1000);
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e("Test", "Exception", e);
             throw e;
         }
         assertEquals(new String(data), new String(downloader.getOutputStream().toByteArray()));

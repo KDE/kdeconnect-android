@@ -149,7 +149,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
                 try {
                     serverSocket.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Log.e("KDEConnect", "Exception", e);
                 }
             }
         }
@@ -160,7 +160,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
                 serverSocket = bluetoothAdapter
                         .listenUsingRfcommWithServiceRecord("KDE Connect", SERVICE_UUID);
             } catch (IOException e) {
-                e.printStackTrace();
+                Log.e("KDEConnect", "Exception", e);
                 return;
             }
 

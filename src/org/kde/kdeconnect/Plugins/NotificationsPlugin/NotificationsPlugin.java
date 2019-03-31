@@ -256,8 +256,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                     np.set("payloadHash", getChecksum(bitmapData));
                 }
             } catch (Exception e) {
-                e.printStackTrace();
-                Log.e("NotificationsPlugin", "Error retrieving icon");
+                Log.e("NotificationsPlugin", "Error retrieving icon", e);
             }
         } else {
             currentNotifications.add(key);
@@ -379,8 +378,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                     Bundle extras = notification.extras;
                     title = extractStringFromExtra(extras, TITLE_KEY);
                 } catch (Exception e) {
-                    Log.w("NotificationPlugin", "problem parsing notification extras for " + notification.tickerText);
-                    e.printStackTrace();
+                    Log.e("NotificationPlugin", "problem parsing notification extras for " + notification.tickerText, e);
                 }
             }
         }
@@ -407,8 +405,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                         repliableNotification.tag = statusBarNotification.getTag();//TODO find how to pass Tag with sending PendingIntent, might fix Hangout problem
                     }
                 } catch (Exception e) {
-                    Log.w("NotificationPlugin", "problem extracting notification wear for " + statusBarNotification.getNotification().tickerText);
-                    e.printStackTrace();
+                    Log.e("NotificationPlugin", "problem extracting notification wear for " + statusBarNotification.getNotification().tickerText, e);
                 }
             }
         }
@@ -427,8 +424,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                     Object extraTextExtra = extras.get(TEXT_KEY);
                     if (extraTextExtra != null) text = extraTextExtra.toString();
                 } catch (Exception e) {
-                    Log.w("NotificationPlugin", "problem parsing notification extras for " + notification.tickerText);
-                    e.printStackTrace();
+                    Log.e("NotificationPlugin", "problem parsing notification extras for " + notification.tickerText, e);
                 }
             }
         }
@@ -476,8 +472,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                         ticker = extraText;
                     }
                 } catch (Exception e) {
-                    Log.w("NotificationPlugin", "problem parsing notification extras for " + notification.tickerText);
-                    e.printStackTrace();
+                    Log.e("NotificationPlugin", "problem parsing notification extras for " + notification.tickerText, e);
                 }
             }
 

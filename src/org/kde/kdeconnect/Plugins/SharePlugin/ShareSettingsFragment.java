@@ -127,7 +127,7 @@ public class ShareSettingsFragment extends PluginSettingsFragment {
         try {
             getDefaultDestinationDirectory().mkdirs();
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e("KDEConnect", "Exception", e);
         }
         return DocumentFile.fromFile(getDefaultDestinationDirectory());
     }

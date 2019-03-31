@@ -496,8 +496,7 @@ public class DeviceHelper {
             }
         } catch (Exception e) {
             //Some phones might not define BRAND or MODEL, ignore exceptions
-            Log.e("Exception", e.getMessage());
-            e.printStackTrace();
+            Log.e("Exception", e.getMessage(), e);
         }
         if (deviceName == null || deviceName.isEmpty()) {
             return "Android"; //Could not find a name

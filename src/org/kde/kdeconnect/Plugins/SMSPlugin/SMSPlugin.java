@@ -324,8 +324,7 @@ public class SMSPlugin extends Plugin {
                         //TODO: Notify other end
                     } catch (Exception e) {
                         //TODO: Notify other end
-                        Log.e("SMSPlugin", e.getMessage());
-                        e.printStackTrace();
+                        Log.e("SMSPlugin", "Exception", e);
                     }
                 }
                 break;

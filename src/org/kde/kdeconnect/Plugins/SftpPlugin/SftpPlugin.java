@@ -25,6 +25,7 @@ import android.content.ContentResolver;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -80,7 +81,7 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
 
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e("SFTP", "Exception in server.init()", e);
             return false;
         }
     }

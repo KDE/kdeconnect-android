@@ -24,6 +24,7 @@ package org.kde.kdeconnect.Plugins.RunCommandPlugin;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -115,7 +116,7 @@ public class RunCommandPlugin extends Plugin {
                                 )
                         );
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        Log.e("RunCommand", "Error parsing JSON", e);
                     }
                 }
 
@@ -125,7 +126,7 @@ public class RunCommandPlugin extends Plugin {
                 context.sendBroadcast(updateWidget);
 
             } catch (JSONException e) {
-                e.printStackTrace();
+                Log.e("RunCommand", "Error parsing JSON", e);
             }
 
             for (CommandsChangedCallback aCallback : callbacks) {

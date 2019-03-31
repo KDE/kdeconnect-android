@@ -30,6 +30,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -276,7 +277,7 @@ public class SftpSettingsFragment
                 storageInfoList.add(SftpPlugin.StorageInfo.fromJSON(jsonArray.getJSONObject(i)));
             }
         } catch (JSONException e) {
-            e.printStackTrace();
+            Log.e("SFTPSettings", "Couldn't load storage info", e);
         }
 
         if (Build.VERSION.SDK_INT <= 19) {

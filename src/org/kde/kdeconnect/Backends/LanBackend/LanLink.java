@@ -71,7 +71,7 @@ public class LanLink extends BaseLink {
         try {
             socket.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e("LanLink", "Error", e);
         }
     }
 
@@ -257,8 +257,7 @@ public class LanLink extends BaseLink {
             try {
                 np = RsaHelper.decrypt(np, privateKey);
             } catch(Exception e) {
-                e.printStackTrace();
-                Log.e("KDE/onPacketReceived","Exception decrypting the package");
+                Log.e("KDE/onPacketReceived","Exception decrypting the package", e);
             }
         }
 
@@ -275,8 +274,7 @@ public class LanLink extends BaseLink {
                 np.setPayload(new NetworkPacket.Payload(payloadSocket, np.getPayloadSize()));
             } catch (Exception e) {
                 try { payloadSocket.close(); } catch(Exception ignored) { }
-                e.printStackTrace();
-                Log.e("KDE/LanLink", "Exception connecting to payload remote socket");
+                Log.e("KDE/LanLink", "Exception connecting to payload remote socket", e);
             }
 
         }

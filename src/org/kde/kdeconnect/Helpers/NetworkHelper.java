@@ -45,14 +45,12 @@ public class NetworkHelper {
                         return false; //I have neighbours, so this doesn't look like a mobile network
                     }
                 } catch (Exception e) {
-                    Log.e("NetworkHelper", "Exception reading procnetarp");
-                    e.printStackTrace();
+                    Log.e("NetworkHelper", "Exception reading procnetarp", e);
                 }
             }
             return mobile;
         } catch (Exception e) {
-            e.printStackTrace();
-            Log.d("isOnMobileNetwork", "Something went wrong, but this is non-critical.");
+            Log.e("isOnMobileNetwork", "Something went wrong, but this is non-critical.", e);
         }
         return false;
     }

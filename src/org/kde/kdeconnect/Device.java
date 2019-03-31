@@ -157,8 +157,7 @@ public class Device implements BaseLink.PacketReceiver {
                 publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("KDE/Device", "Exception deserializing stored public key for device");
+            Log.e("KDE/Device", "Exception deserializing stored public key for device", e);
         }
 
         //Assume every plugin is supported until addLink is called and we can get the actual list
@@ -459,8 +458,7 @@ public class Device implements BaseLink.PacketReceiver {
                 certificate = SslHelper.parseCertificate(certificateBytes);
                 Log.i("KDE/Device", "Got certificate ");
             } catch (Exception e) {
-                e.printStackTrace();
-                Log.e("KDE/Device", "Error getting certificate");
+                Log.e("KDE/Device", "Error getting certificate", e);
 
             }
         }
@@ -474,8 +472,7 @@ public class Device implements BaseLink.PacketReceiver {
             PrivateKey privateKey = KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(privateKeyBytes));
             link.setPrivateKey(privateKey);
         } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("KDE/Device", "Exception reading our own private key"); //Should not happen
+            Log.e("KDE/Device", "Exception reading our own private key", e); //Should not happen
         }
 
         Log.i("KDE/Device", "addLink " + link.getLinkProvider().getName() + " -> " + getName() + " active links: " + links.size());
@@ -559,8 +556,7 @@ public class Device implements BaseLink.PacketReceiver {
                 try {
                     ph.packageReceived(np);
                 } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.e("PairingPacketReceived", "Exception");
+                    Log.e("PairingPacketReceived", "Exception", e);
                 }
             }
         } else if (isPaired()) {
@@ -578,8 +574,7 @@ public class Device implements BaseLink.PacketReceiver {
                     try {
                         plugin.onPacketReceived(np);
                     } catch (Exception e) {
-                        e.printStackTrace();
-                        Log.e("KDE/Device", "Exception in " + plugin.getPluginKey() + "'s onPacketReceived()");
+                        Log.e("KDE/Device", "Exception in " + plugin.getPluginKey() + "'s onPacketReceived()", e);
                         //try { Log.e("KDE/Device", "NetworkPacket:" + np.serialize()); } catch (Exception _) { }
                     }
                 }
@@ -604,8 +599,7 @@ public class Device implements BaseLink.PacketReceiver {
                     try {
                         plugin.onUnpairedDevicePacketReceived(np);
                     } catch (Exception e) {
-                        e.printStackTrace();
-                        Log.e("KDE/Device", "Exception in " + plugin.getDisplayName() + "'s onPacketReceived() in unPairedPacketListeners");
+                        Log.e("KDE/Device", "Exception in " + plugin.getDisplayName() + "'s onPacketReceived() in unPairedPacketListeners", e);
                     }
                 }
             } else {
@@ -631,11 +625,7 @@ public class Device implements BaseLink.PacketReceiver {
 
         @Override
         public void onFailure(Throwable e) {
-            if (e != null) {
-                e.printStackTrace();
-            } else {
-                Log.e("KDE/sendPacket", "Unknown (null) exception");
-            }
+            Log.e("KDE/sendPacket", "Exception", e);
         }
     };
 
@@ -734,10 +724,7 @@ public class Device implements BaseLink.PacketReceiver {
             success = plugin.onCreate();
         } catch (Exception e) {
             success = false;
-            e.printStackTrace();
-        }
-        if (!success) {
-            Log.e("KDE/addPlugin", "plugin failed to load " + pluginKey);
+            Log.e("KDE/addPlugin", "plugin failed to load " + pluginKey, e);
         }
 
         plugins.put(pluginKey, plugin);
@@ -775,8 +762,7 @@ public class Device implements BaseLink.PacketReceiver {
             plugin.onDestroy();
             //Log.e("removePlugin","removed " + pluginKey);
         } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("KDE/removePlugin", "Exception calling onDestroy for plugin " + pluginKey);
+            Log.e("KDE/removePlugin", "Exception calling onDestroy for plugin " + pluginKey, e);
         }
 
         return true;

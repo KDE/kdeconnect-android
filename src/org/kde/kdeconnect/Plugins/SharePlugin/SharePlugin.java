@@ -147,8 +147,7 @@ public class SharePlugin extends Plugin {
             }
 
         } catch (Exception e) {
-            Log.e("SharePlugin", "Exception");
-            e.printStackTrace();
+            Log.e("SharePlugin", "Exception", e);
         }
 
         return true;
@@ -231,7 +230,7 @@ public class SharePlugin extends Plugin {
                     }
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e("SharePlugin", "Error sending files", e);
             }
         }).start();
 
@@ -255,8 +254,7 @@ public class SharePlugin extends Plugin {
 
                     queuedSendUriList(uriList);
                 } catch (Exception e) {
-                    Log.e("ShareActivity", "Exception");
-                    e.printStackTrace();
+                    Log.e("ShareActivity", "Exception", e);
                 }
 
             } else if (extras.containsKey(Intent.EXTRA_TEXT)) {

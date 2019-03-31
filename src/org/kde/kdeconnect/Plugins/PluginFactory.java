@@ -141,8 +141,7 @@ public class PluginFactory {
             plugin.setContext(context, device);
             return plugin;
         } catch (Exception e) {
-            Log.e("PluginFactory", "Could not instantiate plugin: " + pluginKey);
-            e.printStackTrace();
+            Log.e("PluginFactory", "Could not instantiate plugin: " + pluginKey, e);
             return null;
         }
     }

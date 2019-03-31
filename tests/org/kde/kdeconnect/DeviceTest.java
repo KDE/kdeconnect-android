@@ -75,8 +75,7 @@ public class DeviceTest {
             keyGen.initialize(2048);
             keyPair = keyGen.genKeyPair();
         } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("KDE/initializeRsaKeys", "Exception");
+            Log.e("KDE/initializeRsaKeys", "Exception", e);
             return;
         }
 
@@ -162,8 +161,8 @@ public class DeviceTest {
             keyGen.initialize(2048);
             keyPair = keyGen.genKeyPair();
         } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("KDE/initializeRsaKeys", "Exception");
+            Log.e("KDE/initializeRsaKeys", "Exception", e);
+            Log.e("KDE/initializeRsaKeys", "Exception", e);
             return;
         }
         device.publicKey = keyPair.getPublic();
@@ -203,8 +202,7 @@ public class DeviceTest {
             keyGen.initialize(2048);
             keyPair = keyGen.genKeyPair();
         } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("KDE/initializeRsaKeys", "Exception");
+            Log.e("KDE/initializeRsaKeys", "Exception", e);
         }
 
         NetworkPacket fakeNetworkPacket = new NetworkPacket(NetworkPacket.PACKET_TYPE_IDENTITY);
@@ -251,7 +249,7 @@ public class DeviceTest {
             method.setAccessible(true);
             method.invoke(device);
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e("KDEConnect", "Exception", e);
         }
 
         assertTrue(device.isPaired());

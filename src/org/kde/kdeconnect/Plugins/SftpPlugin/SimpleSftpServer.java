@@ -116,7 +116,6 @@ class SimpleSftpServer {
                     sshd.start();
                     started = true;
                 } catch (Exception e) {
-                    e.printStackTrace();
                     port++;
                     if (port >= ENDPORT) {
                         port = -1;
@@ -135,7 +134,7 @@ class SimpleSftpServer {
             started = false;
             sshd.stop(true);
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e("SFTP", "Exception while stopping the server", e);
         }
     }
 

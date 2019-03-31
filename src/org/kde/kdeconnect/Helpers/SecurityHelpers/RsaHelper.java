@@ -55,8 +55,7 @@ public class RsaHelper {
                 keyGen.initialize(2048);
                 keyPair = keyGen.genKeyPair();
             } catch (Exception e) {
-                e.printStackTrace();
-                Log.e("KDE/initializeRsaKeys", "Exception");
+                Log.e("KDE/initializeRsaKeys", "Exception", e);
                 return;
             }
 

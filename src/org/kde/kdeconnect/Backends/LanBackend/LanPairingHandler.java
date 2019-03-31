@@ -158,11 +158,7 @@ public class LanPairingHandler extends BasePairingHandler {
 
             @Override
             public void onFailure(Throwable e) {
-                if (e != null) {
-                    e.printStackTrace();
-                } else {
-                    Log.e("LanPairing/onFailure", "Unknown (null) exception");
-                }
+                Log.e("LanPairing/onFailure", "Exception", e);
                 mCallback.pairingFailed(mDevice.getContext().getString(R.string.error_could_not_send_package));
             }
         };
@@ -187,11 +183,7 @@ public class LanPairingHandler extends BasePairingHandler {
 
             @Override
             public void onFailure(Throwable e) {
-                if (e != null) {
-                    e.printStackTrace();
-                } else {
-                    Log.e("LanPairing/onFailure", "Unknown (null) exception");
-                }
+                Log.e("LanPairing/onFailure", "Exception", e);
                 mCallback.pairingFailed(mDevice.getContext().getString(R.string.error_not_reachable));
             }
         };
@@ -217,7 +209,7 @@ public class LanPairingHandler extends BasePairingHandler {
                 String encodedPublicKey = Base64.encodeToString(mDevice.publicKey.getEncoded(), 0);
                 editor.putString("publicKey", encodedPublicKey);
             } catch (Exception e) {
-                Log.e("KDE/PairingDone", "Error encoding public key");
+                Log.e("KDE/PairingDone", "Error encoding public key", e);
             }
         }
 
@@ -225,12 +217,11 @@ public class LanPairingHandler extends BasePairingHandler {
             String encodedCertificate = Base64.encodeToString(mDevice.certificate.getEncoded(), 0);
             editor.putString("certificate", encodedCertificate);
         } catch (NullPointerException n) {
-            Log.w("KDE/PairingDone", "Certificate is null, remote device does not support ssl");
+            Log.w("KDE/PairingDone", "Certificate is null, remote device does not support ssl", n);
         } catch (CertificateEncodingException c) {
-            Log.e("KDE/PairingDOne", "Error encoding certificate");
+            Log.e("KDE/PairingDOne", "Error encoding certificate", c);
         } catch (Exception e) {
-            e.printStackTrace();
-            Log.e("KDE/Pairng", "Exception");
+            Log.e("KDE/Pairng", "Exception", e);
         }
         editor.apply();
 
