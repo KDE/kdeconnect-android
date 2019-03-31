@@ -418,15 +418,13 @@ public class MprisActivity extends AppCompatActivity {
 
         });
 
-        positionSeekUpdateRunnable = () -> {
-            BackgroundService.RunCommand(MprisActivity.this, service -> {
-                if (targetPlayer != null) {
-                    positionBar.setProgress((int) (targetPlayer.getPosition()));
-                }
-                positionSeekUpdateHandler.removeCallbacks(positionSeekUpdateRunnable);
-                positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 1000);
-            });
-        };
+        positionSeekUpdateRunnable = () -> BackgroundService.RunCommand(MprisActivity.this, service -> {
+            if (targetPlayer != null) {
+                positionBar.setProgress((int) (targetPlayer.getPosition()));
+            }
+            positionSeekUpdateHandler.removeCallbacks(positionSeekUpdateRunnable);
+            positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 1000);
+        });
         positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 200);
 
         positionBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
