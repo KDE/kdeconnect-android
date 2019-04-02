@@ -134,44 +134,23 @@ public class FilesHelper {
 
             } else {
                 // Probably a content:// uri, so we query the Media content provider
+                String[] proj = {
+                        MediaStore.MediaColumns.SIZE,
+                        MediaStore.MediaColumns.DISPLAY_NAME,
+                };
 
-                Cursor cursor = null;
-                try {
-                    String[] proj = {MediaStore.MediaColumns.DATA, MediaStore.MediaColumns.SIZE, MediaStore.MediaColumns.DISPLAY_NAME};
-                    cursor = cr.query(uri, proj, null, null, null);
-                    int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+                try (Cursor cursor = cr.query(uri, proj, null, null, null)) {
+                    int nameColumnIndex = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DISPLAY_NAME);
+                    int sizeColumnIndex = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.SIZE);
                     cursor.moveToFirst();
-                    String path = cursor.getString(column_index);
-                    np.set("filename", Uri.parse(path).getLastPathSegment());
-                    size = new File(path).length();
-                } catch (Exception unused) {
 
-                    Log.w("SendFileActivity", "Could not resolve media to a file, trying to get info as media");
+                    String filename = cursor.getString(nameColumnIndex);
+                    size = cursor.getInt(sizeColumnIndex);
 
-                    try {
-                        int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DISPLAY_NAME);
-                        cursor.moveToFirst();
-                        String name = cursor.getString(column_index);
-                        np.set("filename", name);
-                    } catch (Exception e) {
-                        Log.e("SendFileActivity", "Could not obtain file name", e);
-                    }
-
-                    try {
-                        int column_index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.SIZE);
-                        cursor.moveToFirst();
-                        //For some reason this size can differ from the actual file size!
-                        size = cursor.getInt(column_index);
-                    } catch (Exception e) {
-                        Log.e("SendFileActivity", "Could not obtain file size", e);
-                    }
-                } finally {
-                    try {
-                        cursor.close();
-                    } catch (Exception ignored) {
-                    }
+                    np.set("filename", filename);
+                } catch (Exception e) {
+                    Log.e("SendFileActivity", "Problem getting file information", e);
                 }
-
             }
 
             np.setPayload(new NetworkPacket.Payload(inputStream, size));
