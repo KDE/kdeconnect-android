@@ -145,7 +145,14 @@ public class FilesHelper {
                     cursor.moveToFirst();
 
                     String filename = cursor.getString(nameColumnIndex);
-                    size = cursor.getInt(sizeColumnIndex);
+
+                    // It is recommended to check this value before getting the int value, because
+                    // there are situations were we don't know the size (for instance, if the file is
+                    // not local to the device)
+                    boolean sizeExists = cursor.getString(sizeColumnIndex) != null;
+                    if (sizeExists) {
+                        size = cursor.getInt(sizeColumnIndex);
+                    }
 
                     np.set("filename", filename);
                 } catch (Exception e) {
