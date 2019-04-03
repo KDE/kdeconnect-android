@@ -56,6 +56,9 @@ public class TelephonyPlugin extends Plugin {
      * It contains the key "event" which maps to a string indicating the type of event:
      * - "ringing" - A phone call is incoming
      * - "missedCall" - An incoming call was not answered
+     * - "sms" - An incoming SMS message
+     * - Note: As of this writing (15 May 2018) the SMS interface is being improved and this type of event
+     *   is no longer the preferred way of handling SMS. Use the packets defined by the SMS plugin instead.
      * <p>
      * Depending on the event, other fields may be defined
      */
@@ -64,8 +67,15 @@ public class TelephonyPlugin extends Plugin {
     /**
      * Old-style packet sent to request a simple telephony action
      * <p>
-     * The two possible events used the be to request a message be sent or request the device
-     * silence its ringer
+     * The events handled were:
+     * - to request the device to mute its ringer
+     * - to request an SMS to be sent.
+     * <p>
+     * In case an SMS was being requested, the body was like so:
+     * { "sendSms": true,
+     * "phoneNumber": "542904563213",
+     * "messageBody": "Hi mom!"
+     * }
      * <p>
      * In case a ringer muted was requested, the body looked like so:
      * { "action": "mute" }
@@ -304,7 +314,7 @@ public class TelephonyPlugin extends Plugin {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return new String[]{
                     Manifest.permission.READ_PHONE_STATE,
-                    Manifest.permission.READ_CALL_LOG
+                    Manifest.permission.READ_CALL_LOG,
             };
         } else {
             return new String[0];
@@ -313,7 +323,9 @@ public class TelephonyPlugin extends Plugin {
 
     @Override
     public String[] getOptionalPermissions() {
-        return new String[]{Manifest.permission.READ_CONTACTS};
+        return new String[]{
+                Manifest.permission.READ_CONTACTS,
+        };
     }
 
     @Override
