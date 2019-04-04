@@ -146,11 +146,10 @@ public class FilesHelper {
 
                     String filename = cursor.getString(nameColumnIndex);
 
-                    // It is recommended to check this value before getting the int value, because
-                    // there are situations were we don't know the size (for instance, if the file is
+                    // It is recommended to check for the value to be null because there are
+                    // situations were we don't know the size (for instance, if the file is
                     // not local to the device)
-                    boolean sizeExists = cursor.getString(sizeColumnIndex) != null;
-                    if (sizeExists) {
+                    if (!cursor.isNull(sizeColumnIndex)) {
                         size = cursor.getInt(sizeColumnIndex);
                     }
 
