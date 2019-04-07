@@ -31,7 +31,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -350,14 +349,14 @@ public class MprisActivity extends AppCompatActivity {
         }
     }
 
-    private interface ClickListener {
-        void onClick(MprisPlugin.MprisPlayer player);
+    private interface MprisPlayerCallback {
+        void performAction(MprisPlugin.MprisPlayer player);
     }
 
-    private void onClick(View v, ClickListener l) {
+    private void performActionOnClick(View v, MprisPlayerCallback l) {
         v.setOnClickListener(view -> BackgroundService.RunCommand(MprisActivity.this, service -> {
             if (targetPlayer == null) return;
-            l.onClick(targetPlayer);
+            l.performAction(targetPlayer);
         }));
     }
 
@@ -380,17 +379,17 @@ public class MprisActivity extends AppCompatActivity {
         BackgroundService.RunCommand(MprisActivity.this, service -> service.addConnectionListener(connectionReceiver));
         connectToPlugin(targetPlayerName);
 
-        onClick(playButton, MprisPlugin.MprisPlayer::playPause);
+        performActionOnClick(playButton, MprisPlugin.MprisPlayer::playPause);
 
-        onClick(prevButton, MprisPlugin.MprisPlayer::previous);
+        performActionOnClick(prevButton, MprisPlugin.MprisPlayer::previous);
 
-        onClick(rewButton, p -> targetPlayer.seek(interval_time * -1));
+        performActionOnClick(rewButton, p -> targetPlayer.seek(interval_time * -1));
 
-        onClick(ffButton, p -> p.seek(interval_time));
+        performActionOnClick(ffButton, p -> p.seek(interval_time));
 
-        onClick(nextButton, MprisPlugin.MprisPlayer::next);
+        performActionOnClick(nextButton, MprisPlugin.MprisPlayer::next);
 
-        onClick(stopButton, MprisPlugin.MprisPlayer::stop);
+        performActionOnClick(stopButton, MprisPlugin.MprisPlayer::stop);
 
         volumeSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
