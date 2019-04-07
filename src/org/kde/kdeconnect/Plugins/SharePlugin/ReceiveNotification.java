@@ -43,7 +43,7 @@ import java.io.InputStream;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.FileProvider;
 
-class ShareNotification {
+class ReceiveNotification {
     private final NotificationManager notificationManager;
     private final int notificationId;
     private NotificationCompat.Builder builder;
@@ -54,7 +54,7 @@ class ShareNotification {
     private static final int bigImageWidth = 1440;
     private static final int bigImageHeight = 720;
 
-    public ShareNotification(Device device) {
+    public ReceiveNotification(Device device) {
         this.device = device;
 
         notificationId = (int) System.currentTimeMillis();

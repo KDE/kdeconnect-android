@@ -57,6 +57,7 @@ public class NetworkPacket {
     private JSONObject mBody;
     private Payload mPayload;
     private JSONObject mPayloadTransferInfo;
+    private volatile boolean canceled;
 
     private NetworkPacket() {
 
@@ -69,6 +70,9 @@ public class NetworkPacket {
         mPayload = null;
         mPayloadTransferInfo = new JSONObject();
     }
+
+    public boolean isCanceled() { return canceled; }
+    public void cancel() { canceled = true; }
 
     public String getType() {
         return mType;
@@ -317,7 +321,7 @@ public class NetworkPacket {
         private Socket inputSocket;
         private long payloadSize;
 
-        Payload(long payloadSize) {
+        public Payload(long payloadSize) {
             this((InputStream)null, payloadSize);
         }
 

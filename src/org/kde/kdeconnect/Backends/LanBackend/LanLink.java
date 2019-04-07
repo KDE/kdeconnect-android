@@ -201,7 +201,7 @@ public class LanLink extends BaseLink {
                     long size = np.getPayloadSize();
                     long progress = 0;
                     long timeSinceLastUpdate = -1;
-                    while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    while (!np.isCanceled() && (bytesRead = inputStream.read(buffer)) != -1) {
                         //Log.e("ok",""+bytesRead);
                         progress += bytesRead;
                         outputStream.write(buffer, 0, bytesRead);
@@ -223,7 +223,9 @@ public class LanLink extends BaseLink {
                 }
             }
 
-            callback.onSuccess();
+            if (!np.isCanceled()) {
+                callback.onSuccess();
+            }
             return true;
         } catch (Exception e) {
             if (callback != null) {

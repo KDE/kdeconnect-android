@@ -56,7 +56,7 @@ public class SharePlugin extends Plugin {
     final static String CANCEL_SHARE_BACKGROUND_JOB_ID_EXTRA = "backgroundJobId";
 
     private final static String PACKET_TYPE_SHARE_REQUEST = "kdeconnect.share.request";
-    private final static String PACKET_TYPE_SHARE_REQUEST_UPDATE = "kdeconnect.share.request.update";
+    final static String PACKET_TYPE_SHARE_REQUEST_UPDATE = "kdeconnect.share.request.update";
 
     final static String KEY_NUMBER_OF_FILES = "numberOfFiles";
     final static String KEY_TOTAL_PAYLOAD_SIZE = "totalPayloadSize";
@@ -65,6 +65,7 @@ public class SharePlugin extends Plugin {
     private final Handler handler;
 
     private CompositeReceiveFileJob receiveFileJob;
+    private CompositeUploadFileJob uploadFileJob;
     private final Callback receiveFileJobCallback;
 
     public SharePlugin() {
@@ -147,7 +148,8 @@ public class SharePlugin extends Plugin {
             }
 
         } catch (Exception e) {
-            Log.e("SharePlugin", "Exception", e);
+            Log.e("SharePlugin", "Exception");
+            e.printStackTrace();
         }
 
         return true;
@@ -204,36 +206,28 @@ public class SharePlugin extends Plugin {
         return ShareSettingsFragment.newInstance(getPluginKey());
     }
 
-    void queuedSendUriList(final ArrayList<Uri> uriList) {
+    void sendUriList(final ArrayList<Uri> uriList) {
+        CompositeUploadFileJob job = null;
+
+        if (uploadFileJob == null) {
+            job = new CompositeUploadFileJob(device, this.receiveFileJobCallback);
+        } else {
+            job = uploadFileJob;
+        }
+
         //Read all the data early, as we only have permissions to do it while the activity is alive
-        final ArrayList<NetworkPacket> toSend = new ArrayList<>();
         for (Uri uri : uriList) {
             NetworkPacket np = FilesHelper.uriToNetworkPacket(context, uri, PACKET_TYPE_SHARE_REQUEST);
 
             if (np != null) {
-                toSend.add(np);
+                job.addNetworkPacket(np);
             }
         }
 
-        //Callback that shows a progress notification
-        final NotificationUpdateCallback notificationUpdateCallback = new NotificationUpdateCallback(context, device, toSend);
-
-        //Do the sending in background
-        new Thread(() -> {
-            //Actually send the files
-            try {
-                for (NetworkPacket np : toSend) {
-                    boolean success = device.sendPacketBlocking(np, notificationUpdateCallback);
-                    if (!success) {
-                        Log.e("SharePlugin", "Error sending files");
-                        return;
-                    }
-                }
-            } catch (Exception e) {
-                Log.e("SharePlugin", "Error sending files", e);
-            }
-        }).start();
-
+        if (job != uploadFileJob) {
+            uploadFileJob = job;
+            backgroundJobHandler.runJob(uploadFileJob);
+        }
     }
 
     public void share(Intent intent) {
@@ -252,9 +246,10 @@ public class SharePlugin extends Plugin {
                         uriList.add(uri);
                     }
 
-                    queuedSendUriList(uriList);
+                    sendUriList(uriList);
                 } catch (Exception e) {
-                    Log.e("ShareActivity", "Exception", e);
+                    Log.e("ShareActivity", "Exception");
+                    e.printStackTrace();
                 }
 
             } else if (extras.containsKey(Intent.EXTRA_TEXT)) {
@@ -302,11 +297,13 @@ public class SharePlugin extends Plugin {
         return new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
     }
 
-    private class Callback implements CompositeReceiveFileJob.Callback<Void> {
+    private class Callback implements BackgroundJob.Callback<Void> {
         @Override
         public void onResult(@NonNull BackgroundJob job, Void result) {
             if (job == receiveFileJob) {
                 receiveFileJob = null;
+            } else if (job == uploadFileJob) {
+                uploadFileJob = null;
             }
         }
 
@@ -314,6 +311,8 @@ public class SharePlugin extends Plugin {
         public void onError(@NonNull BackgroundJob job, @NonNull Throwable error) {
             if (job == receiveFileJob) {
                 receiveFileJob = null;
+            } else if (job == uploadFileJob) {
+                uploadFileJob = null;
             }
         }
     }
@@ -327,6 +326,8 @@ public class SharePlugin extends Plugin {
 
                 if (job == receiveFileJob) {
                     receiveFileJob = null;
+                } else if (job == uploadFileJob) {
+                    uploadFileJob = null;
                 }
             }
         }
