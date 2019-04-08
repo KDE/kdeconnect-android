@@ -38,6 +38,7 @@
   <string name="open_settings">Abrir preferencias</string>
   <string name="no_permissions">Debe otorgar permisos para acceder a las notificaciones</string>
   <string name="no_permission_mprisreceiver">Para poder controlar sus reproductores de medios, necesita dar acceso a las notificaciones</string>
+  <string name="no_permissions_remotekeyboard">Para recibir pulsaciones de teclado debe activar el teclado remoto de KDE Connect</string>
   <string name="send_ping">Enviar ping</string>
   <string name="open_mpris_controls">Control multimedia</string>
   <string name="remotekeyboard_editing_only_title">Manejar teclas remotas solo al editar</string>
@@ -239,6 +240,7 @@
   <string name="plugins_need_optional_permission">Algunos complementos tienen funcionalidades desactivadas por falta de permisos (pulse para más información):</string>
   <string name="share_optional_permission_explanation">Para compartir archivos entre su teléfono y su escritorio, necesita dar acceso al almacenamiento de su teléfono</string>
   <string name="telepathy_permission_explanation">Para leer y escribir SMS desde su escritorio, necesita dar permisos para SMS</string>
+  <string name="telephony_permission_explanation">Para ver las llamadas telefónicas desde su escritorio, necesita dar permisos para acceder a las llamadas telefónicas</string>
   <string name="telephony_optional_permission_explanation">Para ver el nombre de un contacto en lugar de un número telefónico, necesita dar acceso a los contactos de su teléfono</string>
   <string name="contacts_permission_explanation">Para compartir sus contactos con el escritorio, necesita dar permisos de acceso a los mismos</string>
   <string name="select_ringtone">Seleccionar tono</string>
@@ -292,4 +294,5 @@
   <string name="notification_channel_receivenotification">Notificaciones desde otros dispositivos</string>
   <string name="take_picture">Lanzar cámara</string>
   <string name="plugin_photo_desc">Lanzar la aplicación de la cámara para facilitar tomar y transferir imágenes</string>
+  <string name="no_app_for_opening">No se encontró ninguna aplicación adecuada para abrir este archivo</string>
 </resources>
