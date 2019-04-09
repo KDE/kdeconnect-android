@@ -102,12 +102,6 @@
     <item quantity="one">Fitxategia: %1s</item>
     <item quantity="other">(%3$d(e)tik %2$d fitxategia) : %1$s</item>
   </plurals>
-  <string name="outgoing_file_title">Fitxategia bidaltzen %1s-ra</string>
-  <string name="outgoing_files_title">Fitxategiak bidaltzen %1s-ra</string>
-  <plurals name="outgoing_files_text">
-    <item quantity="one">Bidali %1$d fitxategia</item>
-    <item quantity="other">Bidali %2$d fitxategitik %1$d</item>
-  </plurals>
   <plurals name="received_files_title">
     <item quantity="one">Fitxategi bat jaso da %1$s-tik</item>
     <item quantity="other">%2$d fitxategi jaso dira %1$s-tik</item>
@@ -118,10 +112,6 @@
   </plurals>
   <string name="received_file_text">Tak egin \'%1s\' irekitzeko</string>
   <string name="cannot_create_file">Ezin da sortu %s fitxategia</string>
-  <string name="sent_file_title">Fitxategia bidalita %1s-ra</string>
-  <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Huts egin du fitxategia %1s(e)ra bidaltzea</string>
-  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Tak egin erantzuteko</string>
   <string name="reconnect">Birkonektatu</string>
   <string name="right_click">Bidali eskumako klik</string>

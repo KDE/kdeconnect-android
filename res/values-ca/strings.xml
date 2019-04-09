@@ -104,11 +104,13 @@
     <item quantity="one">Fitxer: %1s</item>
     <item quantity="other">(Fitxer %2$d de %3$d): %1$s</item>
   </plurals>
-  <string name="outgoing_file_title">S\'està enviant el fitxer a %1s</string>
-  <string name="outgoing_files_title">S\'estan enviant fitxers a %1s</string>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">S\'està enviant el fitxer %1$d a %2$s</item>
+    <item quantity="other">S\'estan enviant els fitxers %1$d a %2$s</item>
+  </plurals>
   <plurals name="outgoing_files_text">
-    <item quantity="one">S\'ha enviat %1$d fitxer</item>
-    <item quantity="other">S\'ha enviat %1$d de %2$d fitxers</item>
+    <item quantity="one">Fitxer: %1$s</item>
+    <item quantity="other">(Fitxer %2$d de %3$d): %1$s</item>
   </plurals>
   <plurals name="received_files_title">
     <item quantity="one">S\'ha rebut un fitxer des de %1$s</item>
@@ -118,12 +120,16 @@
     <item quantity="one">Ha fallat en rebre un fitxer des de %1$s</item>
     <item quantity="other">Ha fallat en rebre %2$d de %3$d fitxers des de %1$s</item>
   </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">Fitxer enviat a %1$s</item>
+    <item quantity="other">%2$d fitxers enviats a %1$s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Ha fallat en enviar el fitxer a %1$s</item>
+    <item quantity="other">Ha fallat en enviar %2$d de %3$d fitxers a %1$s</item>
+  </plurals>
   <string name="received_file_text">Puntegeu per obrir «%1s»</string>
   <string name="cannot_create_file">No s\'ha pogut crear el fitxer %s</string>
-  <string name="sent_file_title">Fitxer enviat a %1s</string>
-  <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Ha fallat en enviar el fitxer a %1s</string>
-  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Puntegeu per a respondre</string>
   <string name="reconnect">Reconnecta</string>
   <string name="right_click">Envia un clic del botó dret</string>
@@ -240,7 +246,7 @@
   <string name="plugins_need_optional_permission">Alguns connectors tenen característiques desactivades per la falta de permís (puntegeu per a més informació):</string>
   <string name="share_optional_permission_explanation">Per a compartir fitxers entre el telèfon i l\'escriptori, haureu de donar accés a l\'emmagatzematge del telèfon</string>
   <string name="telepathy_permission_explanation">Per a llegir i escriure SMS des de l\'escriptori, haureu de donar permís als SMS</string>
-  <string name="telephony_permission_explanation">Per a veure les trucades telefòniques des de l\'escriptori, haureu de donar permís d\'accés a les trucades telefòniques</string>
+  <string name="telephony_permission_explanation">Per a veure les trucades telefòniques des de l\'escriptori, haureu de donar permís d\'accés al registre de trucades telefòniques i a l\'estat del telèfon</string>
   <string name="telephony_optional_permission_explanation">Per a veure un nom de contacte en comptes d\'un número de telèfon, haureu de donar permís als contactes del telèfon</string>
   <string name="contacts_permission_explanation">Per a compartir els vostres contactes amb l\'escriptori, caldrà que els hi doneu permís</string>
   <string name="select_ringtone">Seleccioneu un to de la trucada</string>

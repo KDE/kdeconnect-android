@@ -84,13 +84,7 @@
   <string name="pairing_request_from">Parringsanmodning fra %1s</string>
   <string name="received_url_title">Modtog link fra %1s</string>
   <string name="received_url_text">Tap for at åbne \"%1s\"</string>
-  <string name="outgoing_file_title">Sender fil til %1s</string>
-  <string name="outgoing_files_title">Sender filer til %1s</string>
   <string name="received_file_text">Tap for at åbne \"%1s\"</string>
-  <string name="sent_file_title">Fil sendt til %1s</string>
-  <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Kunne ikke sende filen til %1s</string>
-  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Tap for at svare</string>
   <string name="reconnect">Forbind igen</string>
   <string name="right_click">Send højreklik</string>

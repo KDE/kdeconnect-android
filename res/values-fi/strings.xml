@@ -102,12 +102,6 @@
     <item quantity="one">Tiedosto: %1s</item>
     <item quantity="other">(Tiedosto %2$d / %3$d) : %1$s</item>
   </plurals>
-  <string name="outgoing_file_title">Lähetetään tiedostoa laitteeseen %1s</string>
-  <string name="outgoing_files_title">Lähetetään tiedostoa laitteeseen %1s</string>
-  <plurals name="outgoing_files_text">
-    <item quantity="one">Lähetetty %1$d tiedosto</item>
-    <item quantity="other">Lähetetty %1$d/%2$d tiedostoa</item>
-  </plurals>
   <plurals name="received_files_title">
     <item quantity="one">Vastaanotettiin tiedosto lähettäjältä %1$s</item>
     <item quantity="other">Vastaanotettiin %2$d tiedostoa lähettäjältä %1$s</item>
@@ -118,10 +112,6 @@
   </plurals>
   <string name="received_file_text">Avaa ”%1s” napauttamalla</string>
   <string name="cannot_create_file">Ei voida luoda tiedostoa %s</string>
-  <string name="sent_file_title">Tiedosto lähetetty laitteeseen %1s</string>
-  <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Tiedoston lähetys laitteelle %1s epäonnistui</string>
-  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Vastaa napauttamalla</string>
   <string name="reconnect">Yhdistä uudelleen</string>
   <string name="right_click">Lähetä oikean painikkeen napsautus</string>

@@ -99,11 +99,6 @@
   <plurals name="incoming_files_text">
     <item quantity="other">File: %1s</item>
   </plurals>
-  <string name="outgoing_file_title">Mengirim file ke %1s</string>
-  <string name="outgoing_files_title">Mengirim file ke %1s</string>
-  <plurals name="outgoing_files_text">
-    <item quantity="other">Kirimkan file %1$d</item>
-  </plurals>
   <plurals name="received_files_title">
     <item quantity="other">File yang diterima dari %1$s</item>
   </plurals>
@@ -112,10 +107,6 @@
   </plurals>
   <string name="received_file_text">Ketuk untuk membuka \'%1s\'</string>
   <string name="cannot_create_file">Gak bisa menciptakan file %s</string>
-  <string name="sent_file_title">Kirim file ke %1s</string>
-  <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Gagal mengirim file ke %1s</string>
-  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Ketuk untuk menjawab</string>
   <string name="reconnect">Sambung-ulang</string>
   <string name="right_click">Kirim Klik Kanan</string>

@@ -104,12 +104,6 @@
     <item quantity="one">File: %1s</item>
     <item quantity="other">(File %2$d of %3$d) : %1$s</item>
   </plurals>
-  <string name="outgoing_file_title">Sending file to %1s</string>
-  <string name="outgoing_files_title">Sending files to %1s</string>
-  <plurals name="outgoing_files_text">
-    <item quantity="one">Send files</item>
-    <item quantity="other">Sent %1$d out of %2$d files</item>
-  </plurals>
   <plurals name="received_files_title">
     <item quantity="one">Received file from %1$s</item>
     <item quantity="other">Received %2$d files from %1$s</item>
@@ -120,10 +114,6 @@
   </plurals>
   <string name="received_file_text">Tap to open \'%1s\'</string>
   <string name="cannot_create_file">Cannot create file %s</string>
-  <string name="sent_file_title">Sent file to %1s</string>
-  <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Failed to send file to %1s</string>
-  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Tap to answer</string>
   <string name="reconnect">Reconnect</string>
   <string name="right_click">Send Right Click</string>
@@ -240,7 +230,6 @@
   <string name="plugins_need_optional_permission">Some plugins have features disabled because of lack of permission (tap for more info):</string>
   <string name="share_optional_permission_explanation">To share files between your phone and your desktop you need to give access to the phone\'s storage</string>
   <string name="telepathy_permission_explanation">To read and write SMS from your desktop you need to give permission to SMS</string>
-  <string name="telephony_permission_explanation">To see phone calls from the desktop you need to give permission to access phone calls</string>
   <string name="telephony_optional_permission_explanation">To see a contact name instead of a phone number you need to give access to the phone\'s contacts</string>
   <string name="contacts_permission_explanation">To share your contacts book with the desktop, you need to give contacts permission</string>
   <string name="select_ringtone">Select a ringtone</string>

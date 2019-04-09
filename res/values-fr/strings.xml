@@ -104,12 +104,6 @@
     <item quantity="one">Fichier : %1s</item>
     <item quantity="other">(Fichier %2$d sur %3$d) : %1$s</item>
   </plurals>
-  <string name="outgoing_file_title">Envoi d\'un fichier à %1s</string>
-  <string name="outgoing_files_title">Envoi de fichiers à %1s</string>
-  <plurals name="outgoing_files_text">
-    <item quantity="one">%1$d fichier envoyé</item>
-    <item quantity="other">%1$d fichiers envoyés sur %2$d</item>
-  </plurals>
   <plurals name="received_files_title">
     <item quantity="one">Fichier reçu de %1$s</item>
     <item quantity="other">%2$d fichiers reçus de %1$s</item>
@@ -120,10 +114,6 @@
   </plurals>
   <string name="received_file_text">Appuyez pour ouvrir %1s</string>
   <string name="cannot_create_file">Impossible de créer le fichier %s</string>
-  <string name="sent_file_title">Fichier envoyé à %1s</string>
-  <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Impossible d\'envoyer le fichier à %1s</string>
-  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Cliquer pour répondre</string>
   <string name="reconnect">Reconnecter</string>
   <string name="right_click">Envoyer un clic droit</string>
@@ -240,7 +230,6 @@
   <string name="plugins_need_optional_permission">Certaines fonctionnalités de modules externes sont désactivées faute de permissions suffisantes (tapez pour plus d\'informations) :</string>
   <string name="share_optional_permission_explanation">Pour partager des fichiers entre votre téléphone et votre ordinateur, veuillez permettre l\'accès à la mémoire de stockage du téléphone</string>
   <string name="telepathy_permission_explanation">Pour lire et écrire des SMS depuis votre ordinateur, veuillez permettre l\'accès aux SMS</string>
-  <string name="telephony_permission_explanation">Vous devez autoriser l\'accès aux appels téléphoniques pour voir les appels depuis votre ordinateur</string>
   <string name="telephony_optional_permission_explanation">Pour voir le nom du contact au lieu du numéro de téléphone, veuillez permettre l\'accès aux contacts du téléphone</string>
   <string name="contacts_permission_explanation">Pour partager votre carnet de contacts avec votre ordinateur, veuillez permettre l\'accès aux contacts du téléphone</string>
   <string name="select_ringtone">Sélectionnez une sonnerie</string>

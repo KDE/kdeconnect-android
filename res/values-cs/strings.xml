@@ -106,14 +106,6 @@
     <item quantity="many">(Soubor %2$d of %3$d) : %1$s</item>
     <item quantity="other"/>
   </plurals>
-  <string name="outgoing_file_title">Odesílám soubor do %1s</string>
-  <string name="outgoing_files_title">Odesílám soubory do %1s</string>
-  <plurals name="outgoing_files_text">
-    <item quantity="one">Odeslán %1$d soubor</item>
-    <item quantity="few">Odeslány %1$d ze %2$d souborů</item>
-    <item quantity="many">Odesláno %1$d ze %2$d souborů</item>
-    <item quantity="other"/>
-  </plurals>
   <plurals name="received_files_title">
     <item quantity="one">Přijat soubor z %1$s</item>
     <item quantity="few">Přijaty %2$d soubory z %1$s</item>
@@ -128,10 +120,6 @@
   </plurals>
   <string name="received_file_text">Ťukněte pro otevření \'%1s\'</string>
   <string name="cannot_create_file">Nelze vytvořit soubor %s</string>
-  <string name="sent_file_title">Soubor byl odeslán do %1s</string>
-  <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Odesílání souborů na %1s selhalo</string>
-  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Ťukněte pro odpovězení</string>
   <string name="reconnect">Znovu připojit</string>
   <string name="right_click">Poslat kliknutí pravým tlačítkem</string>

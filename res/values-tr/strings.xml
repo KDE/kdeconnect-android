@@ -84,13 +84,7 @@
   <string name="pairing_request_from">%1s için eşleşme talebi</string>
   <string name="received_url_title">%1s üzerinden bağlantı alındı</string>
   <string name="received_url_text">\'%1s\' açmak için dokunun</string>
-  <string name="outgoing_file_title">Dosya şuraya gönderiliyor, %1s</string>
-  <string name="outgoing_files_title">Dosyalar şuraya gönderiliyor, %1s</string>
   <string name="received_file_text">\'%1s\' açmak için dokunun</string>
-  <string name="sent_file_title">Dosyayı şuraya gönder, %1s</string>
-  <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Dosyayı şuraya gönderme başarısız, %1s</string>
-  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Cevap için dokunun</string>
   <string name="reconnect">Yeniden Bağlan</string>
   <string name="right_click">Sağ Tık Gönder</string>

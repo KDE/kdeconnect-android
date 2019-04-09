@@ -104,12 +104,6 @@
     <item quantity="one">File: %1s</item>
     <item quantity="other">(File %2$d di %3$d) : %1$s</item>
   </plurals>
-  <string name="outgoing_file_title">Invio file a %1s</string>
-  <string name="outgoing_files_title">Invio file a %1s</string>
-  <plurals name="outgoing_files_text">
-    <item quantity="one">Inviato %1$d file</item>
-    <item quantity="other">Inviati %1$d di %2$d file</item>
-  </plurals>
   <plurals name="received_files_title">
     <item quantity="one">File ricevuto da %1$s</item>
     <item quantity="other">Ricevuti %2$d file da %1$s</item>
@@ -120,10 +114,6 @@
   </plurals>
   <string name="received_file_text">Tocca per aprire «%1s»</string>
   <string name="cannot_create_file">Impossibile creare il file %s</string>
-  <string name="sent_file_title">File inviato a %1s</string>
-  <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Invio del file a %1s non riuscito</string>
-  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Tocca per rispondere</string>
   <string name="reconnect">Riconnetti</string>
   <string name="right_click">Invia clic tasto destro</string>
@@ -240,7 +230,6 @@
   <string name="plugins_need_optional_permission">Alcune estensioni hanno funzioni disabilitate per una mancanza di permessi (tocca per maggiori informazioni):</string>
   <string name="share_optional_permission_explanation">Per condividere i file tra il telefono e il tuo desktop devi dare accesso alla memoria del telefono</string>
   <string name="telepathy_permission_explanation">Per leggere e scrivere SMS dal tuo desktop, devi concedere l\'autorizzazione per SMS</string>
-  <string name="telephony_permission_explanation">Per vedere le chiamate telefoniche dal desktop devi dare l\'autorizzazione per accedere alle telefonate</string>
   <string name="telephony_optional_permission_explanation">Per vedere il nome di un contatto invece del numero di telefono devi dare accesso alla rubrica del telefono</string>
   <string name="contacts_permission_explanation">Per condividere la tua rubrica con il desktop, devi concedere l\'autorizzazione per i contatti</string>
   <string name="select_ringtone">Seleziona una suoneria</string>

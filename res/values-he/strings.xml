@@ -84,13 +84,7 @@
   <string name="pairing_request_from">בוקשה התאמה מ־%1s</string>
   <string name="received_url_title">התקבל קישור מ־%1s</string>
   <string name="received_url_text">לחץ כדי לפתוח את \"%1s\"</string>
-  <string name="outgoing_file_title">שולח קובץ אל %1s</string>
-  <string name="outgoing_files_title">שולח קובצים אל %1s</string>
   <string name="received_file_text">לחץ כדי לפתוח את \"%1s\"</string>
-  <string name="sent_file_title">הקובץ נשלח אל %1s</string>
-  <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">נכשל בשליחת הקובץ אל %1s</string>
-  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">לחץ כדי לענות</string>
   <string name="reconnect">התחבר מחדש</string>
   <string name="right_click">שלח לחיצה ימנית</string>

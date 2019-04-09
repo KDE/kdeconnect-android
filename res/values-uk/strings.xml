@@ -108,13 +108,17 @@
     <item quantity="many">(Файл %2$d з %3$d): %1$s</item>
     <item quantity="other">Файл: %1$s</item>
   </plurals>
-  <string name="outgoing_file_title">Надсилаємо файл до %1s</string>
-  <string name="outgoing_files_title">Надсилаємо файли на %1s</string>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">Надсилаємо %1$d файл до %2$s</item>
+    <item quantity="few">Надсилаємо %1$d файли до %2$s</item>
+    <item quantity="many">Надсилаємо %1$d файлів до %2$s</item>
+    <item quantity="other">Надсилаємо %1$d файл до %2$s</item>
+  </plurals>
   <plurals name="outgoing_files_text">
-    <item quantity="one">Надіслано %1$d з %2$d файла</item>
-    <item quantity="few">Надіслано %1$d з %2$d файлів</item>
-    <item quantity="many">Надіслано %1$d з %2$d файлів</item>
-    <item quantity="other">Надіслано %1$d файл</item>
+    <item quantity="one">(Файл %2$d з %3$d) : %1$s</item>
+    <item quantity="few">(Файл %2$d з %3$d) : %1$s</item>
+    <item quantity="many">(Файл %2$d з %3$d) : %1$s</item>
+    <item quantity="other">Файл: %1$s</item>
   </plurals>
   <plurals name="received_files_title">
     <item quantity="one">Отримано %2$d файл з %1$s</item>
@@ -128,12 +132,20 @@
     <item quantity="many">Не вдалося отримати %2$d з %3$d файлів з %1$s</item>
     <item quantity="other">Не вдалося отримати файл з %1$s</item>
   </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">До %1$s надіслано %2$d файл</item>
+    <item quantity="few">До %1$s надіслано %2$d файли</item>
+    <item quantity="many">До %1$s надіслано %2$d файлів</item>
+    <item quantity="other">Файл надіслано до %1s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Не вдалося надіслати %2$d з %3$d файлів до %1$s</item>
+    <item quantity="few">Не вдалося надіслати %2$d з %3$d файлів до %1$s</item>
+    <item quantity="many">Не вдалося надіслати %2$d з %3$d файлів до %1$s</item>
+    <item quantity="other">Не вдалося надіслати файл до %1$s</item>
+  </plurals>
   <string name="received_file_text">Натисніть, щоб відкрити «%1s»</string>
   <string name="cannot_create_file">Не вдалося створити файл %s</string>
-  <string name="sent_file_title">Файл надіслано до %1s</string>
-  <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Не вдалося надіслати файл на %1s</string>
-  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Натисніть, щоб відповісти</string>
   <string name="reconnect">З\'єднати знову</string>
   <string name="right_click">Надіслати клацання правою кнопкою</string>
@@ -250,7 +262,7 @@
   <string name="plugins_need_optional_permission">Можливості деяких додатків вимкнено, оскільки програмі не вистачає прав доступу (натисніть, щоб дізнатися більше):</string>
   <string name="share_optional_permission_explanation">Щоб спільного використовувати файли на вашому телефоні і робочому комп’ютері, вам слід надати програмі доступ до сховища даних вашого телефону</string>
   <string name="telepathy_permission_explanation">Щоб читати і писати SMS з вашого робочого комп’ютера, вам слід надати програмі доступ до SMS</string>
-  <string name="telephony_permission_explanation">Щоб переглядати дзвінки з робочого комп’ютера, вам слід надати програмі доступ до дзвінків</string>
+  <string name="telephony_permission_explanation">Щоб переглядати дзвінки з робочого комп’ютера, вам слід надати програмі доступ до журналу дзвінків та стану телефону</string>
   <string name="telephony_optional_permission_explanation">Щоб бачити ім’я контакту замість номеру телефону, вам слід надати програмі доступ до записів контактів на телефоні</string>
   <string name="contacts_permission_explanation">Щоб мати змогу спільно використовувати ваші записи контактів на пристрої і на комп\'ютері, вам слід надати програмі доступ до контактів</string>
   <string name="select_ringtone">Виберіть мелодію дзвінка</string>

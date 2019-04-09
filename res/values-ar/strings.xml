@@ -78,11 +78,7 @@
   <string name="pairing_request_from">طلب اقتران من %1s</string>
   <string name="received_url_title">استُلمت وصلة من %1s</string>
   <string name="received_url_text">المس لفتح \'%1s\'</string>
-  <string name="outgoing_file_title">يرسل ملفًّا إلى %1s</string>
   <string name="received_file_text">المس لفتح \'%1s\'</string>
-  <string name="sent_file_title">أرسل ملفًّا إلى %1s</string>
-  <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">المس للإجابة</string>
   <string name="reconnect">أعد الاتّصال</string>
   <string name="right_click">أرسل نقرة باليمين</string>

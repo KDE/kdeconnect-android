@@ -106,14 +106,6 @@
     <item quantity="many">(Plik %2$d z %3$d) : %1$s</item>
     <item quantity="other"/>
   </plurals>
-  <string name="outgoing_file_title">Wysyłanie pliku do %1s</string>
-  <string name="outgoing_files_title">Wysyłanie pliku do %1s</string>
-  <plurals name="outgoing_files_text">
-    <item quantity="one">Wysłano %1$d plik</item>
-    <item quantity="few">Wysłano %1$d z %2$d plików</item>
-    <item quantity="many">Wysłano %1$d z %2$d plików</item>
-    <item quantity="other"/>
-  </plurals>
   <plurals name="received_files_title">
     <item quantity="one">Odebrano plik od %1$s</item>
     <item quantity="few">Odebrano %2$d pliki od %1$s</item>
@@ -128,10 +120,6 @@
   </plurals>
   <string name="received_file_text">Stuknij, aby otworzyć \'%1s\'</string>
   <string name="cannot_create_file">Nie można utworzyć pliku %s</string>
-  <string name="sent_file_title">Plik wysłano do %1s</string>
-  <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Nie udało się wysyłanie pliku do %1s</string>
-  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Stuknij, aby odpowiedzieć</string>
   <string name="reconnect">Połącz ponownie</string>
   <string name="right_click">Wyślij naciskając prawym</string>

@@ -90,8 +90,6 @@
   <string name="pairing_request_from">Запрос на сопряжение от %1s</string>
   <string name="received_url_title">Получена ссылка от %1s</string>
   <string name="received_url_text">Нажмите, чтобы открыть «%1s»</string>
-  <string name="outgoing_file_title">Отправка файла на %1s</string>
-  <string name="outgoing_files_title">Отправка файлов на %1s</string>
   <plurals name="received_files_title">
     <item quantity="one">Получен %2$d файл с %1$s</item>
     <item quantity="few">Получены %2$d файла с %1$s</item>
@@ -105,10 +103,6 @@
     <item quantity="other">Не удалось получить файл с %1$s</item>
   </plurals>
   <string name="received_file_text">Нажмите, чтобы открыть «%1s»</string>
-  <string name="sent_file_title">Файл отправлен на %1s</string>
-  <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Не удалось отправить файл на %1s</string>
-  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Нажмите, чтобы ответить</string>
   <string name="reconnect">Подключить заново</string>
   <string name="right_click">Нажатие правой кнопки</string>

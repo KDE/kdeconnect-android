@@ -104,11 +104,13 @@
     <item quantity="one">Ficheiro: %1$s</item>
     <item quantity="other">(Ficheiro %2$d de %3$d) : %1$s</item>
   </plurals>
-  <string name="outgoing_file_title">A enviar o ficheiro para o %1s</string>
-  <string name="outgoing_files_title">A enviar os ficheiros para o %1s</string>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">A enviar %1$d ficheiro para o %2$s</item>
+    <item quantity="other">A enviar %1$d ficheiros para o %2$s</item>
+  </plurals>
   <plurals name="outgoing_files_text">
-    <item quantity="one">Foi enviado %1$d ficheiro</item>
-    <item quantity="other">Foram enviados %1$d de %2$d ficheiros</item>
+    <item quantity="one">Ficheiro: %1$s</item>
+    <item quantity="other">(Ficheiro %2$d e %3$d) : %1$s</item>
   </plurals>
   <plurals name="received_files_title">
     <item quantity="one">Ficheiro recebido de %1$s</item>
@@ -118,12 +120,16 @@
     <item quantity="one">Falhou a recepção do ficheiro de %1$s</item>
     <item quantity="other">Falhou a recepção de %2$d de %3$d ficheiros de %1$s</item>
   </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">Foi enviado um ficheiro para %1$s</item>
+    <item quantity="other">Foram enviados %2$d ficheiros para %1$s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Não foi possível enviar o ficheiro para o %1$s</item>
+    <item quantity="other">Não foi possível enviar %2$d de %3$d ficheiros para o %1$s</item>
+  </plurals>
   <string name="received_file_text">Toque para abrir o \'%1s\'</string>
   <string name="cannot_create_file">Não é possível criar o ficheiro %s</string>
-  <string name="sent_file_title">O ficheiro foi enviado para %1s</string>
-  <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Não foi possível enviar o ficheiro para o %1s</string>
-  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Toque para responder</string>
   <string name="reconnect">Ligar de Novo</string>
   <string name="right_click">Enviar um Botão Direito</string>
@@ -240,7 +246,7 @@
   <string name="plugins_need_optional_permission">Alguns \'plugins\' têm funcionalidades desactivadas devido à falta de permissões (toque para obter mais informações):</string>
   <string name="share_optional_permission_explanation">Para partilhar ficheiros entre o seu telemóvel e o seu ambiente de trabalho, precisa de permissão para aceder ao armazenamento do seu telemóvel</string>
   <string name="telepathy_permission_explanation">Para ler e escrever SMS\'s a partir do seu ambiente de trabalho, precisa de dar permissões para os SMS\'s</string>
-  <string name="telephony_permission_explanation">Para ver as chamadas telefónicas a partir do seu ambiente de trabalho, precisa de dar permissões para as chamadas telefónicas</string>
+  <string name="telephony_permission_explanation">Para ver as chamadas telefónicas a partir do seu ambiente de trabalho, precisa de dar permissões para o registo de chamadas telefónicas e do estado do telemóvel</string>
   <string name="telephony_optional_permission_explanation">Para ver o nome de um contacto em vez do seu número de telefone, precisa de dar acesso aos contactos do telemóvel</string>
   <string name="contacts_permission_explanation">Para partilhar o seu livro de contactos com o ambiente de trabalho, precisa de dar permissões para os contactos</string>
   <string name="select_ringtone">Seleccione um toque de chamada</string>

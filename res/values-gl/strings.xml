@@ -104,12 +104,6 @@
     <item quantity="one">Ficheiro: %1s</item>
     <item quantity="other">(Ficheiro %2$d de %3$d) : %1$s</item>
   </plurals>
-  <string name="outgoing_file_title">Enviando un ficheiro a %1s</string>
-  <string name="outgoing_files_title">Enviando os ficheiros a %1s</string>
-  <plurals name="outgoing_files_text">
-    <item quantity="one">Enviouse %1$d ficheiro.</item>
-    <item quantity="other">Enviáronse %1$d de %2$d ficheiros.</item>
-  </plurals>
   <plurals name="received_files_title">
     <item quantity="one">Recibiuse un ficheiro de %1$s</item>
     <item quantity="other">Recibíronse %2$d ficheiros de %1$s</item>
@@ -120,10 +114,6 @@
   </plurals>
   <string name="received_file_text">Toque para abrir «%1s».</string>
   <string name="cannot_create_file">Non se pode crear o ficheiro %s</string>
-  <string name="sent_file_title">Enviouse o ficheiro a %1s</string>
-  <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Non se puido enviar o ficheiro a %1s</string>
-  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Toque para contestar</string>
   <string name="reconnect">Conectar de novo</string>
   <string name="right_click">Enviar un clic secundario</string>
@@ -240,7 +230,6 @@
   <string name="plugins_need_optional_permission">Algúns complementos teñen funcionalidades desactivadas por mor dunha falta de permisos (toque para máis información):</string>
   <string name="share_optional_permission_explanation">Para compartir ficheiros entre o teléfono e o escritorio ten que dar acceso ao almacenamento do teléfono.</string>
   <string name="telepathy_permission_explanation">Para ler e escribir SMS desde o escritorio ten que dar permiso de SMS.</string>
-  <string name="telephony_permission_explanation">Para ver as chamadas de teléfono desde o escritorio ten que dar permiso para acceder a chamadas de teléfono.</string>
   <string name="telephony_optional_permission_explanation">Para ver o nome dun contacto en vez dun número de teléfono ten que dar acceso aos contactos do teléfono.</string>
   <string name="contacts_permission_explanation">Para compartir o caderno de contactos co escritorio ten que dar permiso de contactos</string>
   <string name="select_ringtone">Seleccione un son de chamada</string>

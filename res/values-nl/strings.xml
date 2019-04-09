@@ -104,11 +104,13 @@
     <item quantity="one">Bestand: %1s</item>
     <item quantity="other">(Bestand %2$d van %3$d) : %1$s</item>
   </plurals>
-  <string name="outgoing_file_title">Bestand wordt verzonden naar %1s</string>
-  <string name="outgoing_files_title">Bezig bestanden te verzenden naar %1s</string>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">%1$d bestand wordt naar %2$s verzonden</item>
+    <item quantity="other">%1$d bestanden worden naar %2$s verzonden</item>
+  </plurals>
   <plurals name="outgoing_files_text">
-    <item quantity="one">Bestand %1$d verzenden</item>
-    <item quantity="other">%1$d bestanden uit %2$d verzenden</item>
+    <item quantity="one">Bestand: %1$s</item>
+    <item quantity="other">(Bestand %2$d van %3$d) : %1$s</item>
   </plurals>
   <plurals name="received_files_title">
     <item quantity="one">Ontvangen van bestand vanaf %1$s</item>
@@ -118,12 +120,16 @@
     <item quantity="one">Ontvangen van bestand vanaf %1$s is mislukt</item>
     <item quantity="other">Ontvangen van %2$d van %3$d bestanden vanaf %1$s is mislukt</item>
   </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">Bestand verzonden naar %1$s</item>
+    <item quantity="other">%2$d bestanden verzonden naar %1$s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Verzenden van bestand naar %1$s is mislukt</item>
+    <item quantity="other">Verzenden van %2$d van %3$d bestanden naar %1$s is mislukt</item>
+  </plurals>
   <string name="received_file_text">Tap om \'%1s\' te openen</string>
   <string name="cannot_create_file">Kan bestand %s niet aanmaken</string>
-  <string name="sent_file_title">Bestand verzonden naar %1s</string>
-  <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Verzenden van bestand naar %1s is mislukt</string>
-  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Tap om te antwoorden</string>
   <string name="reconnect">Opnieuw verbinden</string>
   <string name="right_click">Verstuur een rechter muisklik</string>
@@ -240,7 +246,7 @@
   <string name="plugins_need_optional_permission">Sommige plug-ins hebben functies uitgeschakeld vanwege ontbrekende toestemming (tik voor meer informatie):</string>
   <string name="share_optional_permission_explanation">Om bestanden tussen uw telefoon en uw bureaublad te delen moet u toegang geven tot de opslag van uw telefoon</string>
   <string name="telepathy_permission_explanation">Om een SMS te lezen of te schrijven vanaf uw bureaublad moet u toestemming geven tot SMS</string>
-  <string name="telephony_permission_explanation">Om telefoonoproepen te zien vanaf het bureaublad moet u toestemming geven tot telefoonoproepen</string>
+  <string name="telephony_permission_explanation">Om telefoonoproepen te zien op het bureaublad moet u toestemming geven tot telefoonoproeplogs en telefoonstatus</string>
   <string name="telephony_optional_permission_explanation">Om een naam van een contactpersoon te zien in plaats van een telefoonnummer moet u toegang geven tot de contacten in uw telefoon</string>
   <string name="contacts_permission_explanation">Om uw contactpersoennboek te delen met het bureaublad moet u contacten rechten geven</string>
   <string name="select_ringtone">Selecteer een ringtone</string>
