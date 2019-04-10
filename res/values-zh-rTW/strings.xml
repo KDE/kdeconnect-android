@@ -102,11 +102,23 @@
   <plurals name="incoming_files_text">
     <item quantity="other">（檔案 %2$d/%3$d）：%1$s</item>
   </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="other">正在將 %1$d 個檔案傳送至 %2$s</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="other">（第 %2$d（共 %3$d）個檔案）：%1$s</item>
+  </plurals>
   <plurals name="received_files_title">
     <item quantity="other">已從 %1$s 接收 %2$d 個檔案</item>
   </plurals>
   <plurals name="received_files_fail_title">
     <item quantity="other">無法從 %1$s 接收到 %2$d/%3$d 個檔案</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="other">已將 %2$d 傳送至 %1$s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="other">無法將第 %2$d (共 %3$d) 個檔案傳送至 %1$s</item>
   </plurals>
   <string name="received_file_text">點擊開啟 \'%1s\'</string>
   <string name="cannot_create_file">無法建立 %s 檔案</string>
@@ -226,6 +238,7 @@
   <string name="plugins_need_optional_permission">部份的附加元件因為缺乏權限，而導致功能被停用。（點擊以了解更多資訊）：</string>
   <string name="share_optional_permission_explanation">為了要在您的手機與電腦之間分享檔案，你需要同意存取手機的儲存空間。</string>
   <string name="telepathy_permission_explanation">為了要在您的個人電腦上讀取與撰寫簡訊，你需要提供簡訊的權限。</string>
+  <string name="telephony_permission_explanation">為了要在桌面上檢視手機通話，您需要提供手機通話記錄及手機狀態的權限。</string>
   <string name="telephony_optional_permission_explanation">為了要讓聯絡人名稱取代手機號碼，您需要提供手機通訊錄的權限。</string>
   <string name="contacts_permission_explanation">為了要與電腦分享您的通訊錄，您必須提供「聯絡人」的權限</string>
   <string name="select_ringtone">選擇一個鈴聲</string>
