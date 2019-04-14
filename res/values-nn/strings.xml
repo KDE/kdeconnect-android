@@ -104,6 +104,14 @@
     <item quantity="one">Fil: %1s</item>
     <item quantity="other">(Fil %2$d av %3$d): %1$s</item>
   </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">Sender %1$d fil til %2$s</item>
+    <item quantity="other">Sender %1$d filer til %2$s</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Fil: %1$s</item>
+    <item quantity="other">(Fil %2$d av %3$d): %1$s</item>
+  </plurals>
   <plurals name="received_files_title">
     <item quantity="one">Fekk fil frå %1$s</item>
     <item quantity="other">Fekk %2$d filer frå %1$s</item>
@@ -111,6 +119,14 @@
   <plurals name="received_files_fail_title">
     <item quantity="one">Klarte ikkje ta imot fil frå %1$s</item>
     <item quantity="other">Klarte ikkje ta imot %2$d av %3$d filer frå %1$s</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">Sende fil til %1$s</item>
+    <item quantity="other">Sende %2$d filer til %1$s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Klarte ikkje senda fil til %1$s</item>
+    <item quantity="other">Klarte ikkje senda %2$d av %3$d filer til %1$s</item>
   </plurals>
   <string name="received_file_text">Trykk for å opna «%1s»</string>
   <string name="cannot_create_file">Klarte ikkje oppretta fila %s</string>
@@ -230,6 +246,7 @@
   <string name="plugins_need_optional_permission">På grunn av manglande løyve vil desse funksjonane ikkje verka (trykk på dei for meir informasjon):</string>
   <string name="share_optional_permission_explanation">For å kunna dela filer mellom telefonen og datamaskina må du gje appen lese- og skriveløyve til lagringsområdet på telefonen</string>
   <string name="telepathy_permission_explanation">For å kunna lesa og skriva tekstmeldingar frå datamaskina må du gje appen tilgang til SMS</string>
+  <string name="telephony_permission_explanation">For å kunna sjå telefonsamtalar på datamaskina må du gje appen tilgang til samtaleloggar og telefonstatus</string>
   <string name="telephony_optional_permission_explanation">For å kunna sjå namn på kontaktar i staden for berre telefonnummeret må du gje appen tilgang til kontaktlista di</string>
   <string name="contacts_permission_explanation">For å kunna dela adresseboka di med datamaskina må du gje appen lese- og skriveløyve til adresseboka</string>
   <string name="select_ringtone">Vel ringjetone</string>

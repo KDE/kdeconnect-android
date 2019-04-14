@@ -104,6 +104,14 @@
     <item quantity="one">File: %1s</item>
     <item quantity="other">(File %2$d of %3$d) : %1$s</item>
   </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">Sending %1$d file to %2$s</item>
+    <item quantity="other">Sending %1$d files to %2$s</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">File: %1$s</item>
+    <item quantity="other">(File %2$d of %3$d) : %1$s</item>
+  </plurals>
   <plurals name="received_files_title">
     <item quantity="one">Received file from %1$s</item>
     <item quantity="other">Received %2$d files from %1$s</item>
@@ -111,6 +119,14 @@
   <plurals name="received_files_fail_title">
     <item quantity="one">Failed receiving file from %1$s</item>
     <item quantity="other">Failed receiving %2$d of %3$d files from %1$s</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">Sent file to %1$s</item>
+    <item quantity="other">Sent %2$d files to %1$s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Failed sending file to %1$s</item>
+    <item quantity="other">Failed sending %2$d of %3$d files to %1$s</item>
   </plurals>
   <string name="received_file_text">Tap to open \'%1s\'</string>
   <string name="cannot_create_file">Cannot create file %s</string>
@@ -230,6 +246,7 @@
   <string name="plugins_need_optional_permission">Some plugins have features disabled because of lack of permission (tap for more info):</string>
   <string name="share_optional_permission_explanation">To share files between your phone and your desktop you need to give access to the phone\'s storage</string>
   <string name="telepathy_permission_explanation">To read and write SMS from your desktop you need to give permission to SMS</string>
+  <string name="telephony_permission_explanation">To see phone calls on the desktop you need to give permission to phone call logs and phone state</string>
   <string name="telephony_optional_permission_explanation">To see a contact name instead of a phone number you need to give access to the phone\'s contacts</string>
   <string name="contacts_permission_explanation">To share your contacts book with the desktop, you need to give contacts permission</string>
   <string name="select_ringtone">Select a ringtone</string>

@@ -97,11 +97,19 @@
   <string name="received_url_title">Tog emot länk från %1s</string>
   <string name="received_url_text">Rör för att öppna \'%1s\'</string>
   <plurals name="incoming_file_title">
-    <item quantity="one">Tog emot %1$d fil från %2$s</item>
-    <item quantity="other">Tog emot %1$d filer från %2$s</item>
+    <item quantity="one">Tar emot %1$d fil från %2$s</item>
+    <item quantity="other">Tar emot %1$d filer från %2$s</item>
   </plurals>
   <plurals name="incoming_files_text">
     <item quantity="one">Fil: %1s</item>
+    <item quantity="other">(Fil %2$d av %3$d) : %1$s</item>
+  </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">Skickar %1$d fil till %2$s</item>
+    <item quantity="other">Skickar %1$d filer till %2$s</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Fil: %1$s</item>
     <item quantity="other">(Fil %2$d av %3$d) : %1$s</item>
   </plurals>
   <plurals name="received_files_title">
@@ -111,6 +119,14 @@
   <plurals name="received_files_fail_title">
     <item quantity="one">Misslyckades ta emot fil från %1$s</item>
     <item quantity="other">Misslyckades ta emot %2$d av %3$d filer från %1$s</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">Skickade fil till %1$s</item>
+    <item quantity="other">Skickade %2$d filer till %1$s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Misslyckades skicka fil till %1$s</item>
+    <item quantity="other">Misslyckades skicka %2$d av %3$d filer till %1$s</item>
   </plurals>
   <string name="received_file_text">Rör för att öppna \'%1s\'</string>
   <string name="cannot_create_file">Kan inte skapa filen %s</string>
@@ -230,6 +246,7 @@
   <string name="plugins_need_optional_permission">Vissa insticksprogram har inaktiverade funktioner på grund av att rättigheter saknas (rör för mer information):</string>
   <string name="share_optional_permission_explanation">För att dela filer mellan telefonen och skrivbordet behöver du ge tillgång till telefonens lagringsutrymme</string>
   <string name="telepathy_permission_explanation">För att läsa och skriva SMS från skrivbordet måste du ge rättigheter för SMS</string>
+  <string name="telephony_permission_explanation">För att se telefonsamtal på skrivbordet måste du ge rättigheter för telefonsamtalsloggar och telefontillstånd</string>
   <string name="telephony_optional_permission_explanation">För att se ett kontaktnamn istället för ett telefonnummer måste du ge tillgång till telefonens kontakter</string>
   <string name="contacts_permission_explanation">För att dela kontaktlistan med skrivbordet måste du ge rättigheter för kontakter</string>
   <string name="select_ringtone">Välj en ringsignal</string>
