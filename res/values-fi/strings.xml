@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
-  <string name="foreground_notification_no_devices">Ei laiteyhteyksiä</string>
+  <string name="foreground_notification_no_devices">Ei laiteyhteyttä</string>
   <string name="foreground_notification_devices">Yhdistetty laitteeseen: %s</string>
   <string name="pref_plugin_telephony">Puhelinilmoitukset</string>
   <string name="pref_plugin_telephony_desc">Lähetä ilmoitukset saapuvista puheluista</string>
@@ -13,6 +13,7 @@
   <string name="pref_plugin_clipboard_desc">Jaa leikepöydän sisältö</string>
   <string name="pref_plugin_mousepad">Kauko-ohjaus</string>
   <string name="pref_plugin_mousepad_desc">Käytä puhelinta tai tablettia hiirenä ja näppäimistönä</string>
+  <string name="pref_plugin_presenter">Etädiaesitys</string>
   <string name="pref_plugin_presenter_desc">Käytä laitettasi esitysdiojen vaihtamiseen</string>
   <string name="pref_plugin_remotekeyboard">Vastaanota etänäppäinpainallukset</string>
   <string name="pref_plugin_remotekeyboard_desc">Vastaanottaa etälaitteiden näppäinpainallustapahtumat</string>
@@ -37,6 +38,7 @@
   <string name="open_settings">Avaa asetukset</string>
   <string name="no_permissions">Ilmoitusten näkemiseksi sinun on annettava käyttöoikeus ilmoituksiin</string>
   <string name="no_permission_mprisreceiver">Hallitaksesi mediasoittimiasi sinun on annettava käyttöoikeudet ilmoituksiin</string>
+  <string name="no_permissions_remotekeyboard">Näppäinpainallusten vastaanottamiseksi KDE Connectin etänäppäimistö on aktivoitava</string>
   <string name="send_ping">Lähetä tiedustelupaketti</string>
   <string name="open_mpris_controls">Multimedian ohjaus</string>
   <string name="remotekeyboard_editing_only_title">Käsittele etänäppäimet vain muokattaessa</string>
@@ -102,6 +104,14 @@
     <item quantity="one">Tiedosto: %1s</item>
     <item quantity="other">(Tiedosto %2$d / %3$d) : %1$s</item>
   </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">Lähetetään %1$d tiedosto laitteeseen %2$s</item>
+    <item quantity="other">Lähetetään %1$d tiedostoa laitteeseen %2$s</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Tiedosto: %1$s</item>
+    <item quantity="other">(Tiedosto %2$d/%3$d) : %1$s</item>
+  </plurals>
   <plurals name="received_files_title">
     <item quantity="one">Vastaanotettiin tiedosto lähettäjältä %1$s</item>
     <item quantity="other">Vastaanotettiin %2$d tiedostoa lähettäjältä %1$s</item>
@@ -109,6 +119,14 @@
   <plurals name="received_files_fail_title">
     <item quantity="one">Ei voitu vastaanottaa tiedostoa lähettäjältä %1$s</item>
     <item quantity="other">Ei voitu vastaanottaa %2$d/%3$d tiedostoa lähettäjältä %1$s</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">Tiedosto lähetetty laitteeseen %1$s</item>
+    <item quantity="other">%2$d tiedostoa lähetetty laitteeseen %1$s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Tiedoston lähetys laitteelle %1$s epäonnistui</item>
+    <item quantity="other">%2$d/%3$d tiedoston lähetys laitteelle %1$s epäonnistui</item>
   </plurals>
   <string name="received_file_text">Avaa ”%1s” napauttamalla</string>
   <string name="cannot_create_file">Ei voida luoda tiedostoa %s</string>
@@ -158,6 +176,10 @@
   <string name="unpair_device_action">Poista laitepari %s</string>
   <string name="custom_device_list">Lisää laitteita IP:llä</string>
   <string name="delete_custom_device">Poistetaanko %s?</string>
+  <string name="custom_device_deleted">Poistettiin mukautettu laite</string>
+  <string name="custom_device_list_help">Ellei laitetta tunnisteta automaattisesti, sen IP-osoitteen tai konenimen voi lisätä napsauttamalla kelluvaa toimintopainiketta</string>
+  <string name="custom_device_fab_hint">Lisää laite</string>
+  <string name="undo">Kumoa</string>
   <string name="share_notification_preference">Äänekkäät ilmoitukset</string>
   <string name="share_notification_preference_summary">Värise ja soita ääni tiedoston saapuessa</string>
   <string name="share_destination_customize">Vaihda kohdekansio</string>
@@ -173,7 +195,28 @@
   <string name="sftp_sdcard">SD-kortti</string>
   <string name="sftp_readonly">(vain luku)</string>
   <string name="sftp_camera">Kamerakuvat</string>
+  <string name="add_device_dialog_title">Lisää laite</string>
+  <string name="add_device_hint">Konenimi tai IP-osoite</string>
+  <string name="sftp_preference_detected_sdcards">Havaitut SD-kortit</string>
+  <string name="sftp_preference_edit_sdcard_title">Muokkaa SD-korttia</string>
+  <string name="sftp_preference_configured_storage_locations">Asetetut tallennustilat</string>
+  <string name="sftp_preference_add_storage_location_title">Lisää tallennustila</string>
+  <string name="sftp_preference_edit_storage_location">Muokkaa tallennustilaa</string>
+  <string name="sftp_preference_add_camera_shortcut">Lisää oikopolku kamerakansioon</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_on">Lisää oikopolku kamerakansioon</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_off">Älä lisää oikopolkua kamerakansioon</string>
+  <string name="sftp_storage_preference_storage_location">Tallennustila</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">Tämä sijainti on jo asetettu</string>
+  <string name="sftp_storage_preference_click_to_select">valitse napsauttamalla</string>
+  <string name="sftp_storage_preference_display_name">Näyttönimi</string>
+  <string name="sftp_storage_preference_display_name_already_used">Tämä näyttönimi on jo käytössä</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">Näyttönimi ei voi olla tyhjä</string>
+  <string name="sftp_action_mode_menu_delete">Poista</string>
+  <string name="sftp_no_sdcard_detected">SD-kortteja ei havaittu</string>
+  <string name="sftp_no_storage_locations_configured">Tallennustiloja ei ole asetettu</string>
+  <string name="sftp_saf_permission_explanation">Tallennustilat on asetettava etätiedostojen käyttämiseksi</string>
   <string name="add_host">Lisää kone/IP</string>
+  <string name="add_host_hint">Konenimi tai IP</string>
   <string name="no_players_connected">Soittimia ei löytynyt</string>
   <string name="mpris_player_on_device">%1$s laitteella %2$s</string>
   <string name="send_files">Lähetä tiedostoja</string>
@@ -203,6 +246,7 @@
   <string name="plugins_need_optional_permission">Jotkin liitännäisten ominaisuudet eivät ole käytössä puuttuvien käyttöoikeuksien takia (lisätietoa napsauttamalla):</string>
   <string name="share_optional_permission_explanation">Jakaaksesi tiedostoja puhelimen ja työpöydän välillä sinun on annettava käyttöoikeudet puhelimen tallennustilaan</string>
   <string name="telepathy_permission_explanation">Lukeaksesi ja lähettääksesi tekstiviestejä työpöydältä sinun on annettava käyttöoikeudet tekstiviesteihin</string>
+  <string name="telephony_permission_explanation">Puhelujen näyttäminen työpöydällä vaatii käyttöoikeuden puhelulokiin ja puhelimen tilaan</string>
   <string name="telephony_optional_permission_explanation">Puhelimen yhteystietoihin on annettava käyttöoikeudet, jotta voit nähdä yhteystiedoissa nimet puhelinnumerojen sijaan</string>
   <string name="contacts_permission_explanation">Käyttääksesi yhteystietoja työpöydältä sinun on annettava yhteystietojen käyttöoikeudet</string>
   <string name="select_ringtone">Valitse soittoääni</string>
@@ -213,6 +257,7 @@
   <string name="settings_icon_description">Asetuskuvake</string>
   <string name="presenter_fullscreen">Koko näyttö</string>
   <string name="presenter_exit">Poistu esitystilasta</string>
+  <string name="presenter_lock_tip">Laitteen voi lukita ja käyttää äänenvoimakkuuspainikkeita edellinen/seuraava dia -painikkeina</string>
   <string name="add_command">Lisää komento</string>
   <string name="addcommand_explanation">Komentoja ei ole rekisteröity</string>
   <string name="addcommand_explanation2">Voit lisätä uusia komentoja KDE Connectin järjestelmäasetuksissa</string>
@@ -244,6 +289,7 @@
   <string name="settings_more_settings_title">Lisää asetuksia</string>
   <string name="settings_more_settings_text">Laitekohtaiset asetukset löytyvät laitteen ”Liitännäisasetuksista”.</string>
   <string name="setting_persistent_notification">Näytä pysyvä ilmoitus</string>
+  <string name="setting_persistent_notification_oreo">Pysyvä ilmoitus</string>
   <string name="extra_options">Lisäasetukset</string>
   <string name="privacy_options">Yksityisyysasetukset</string>
   <string name="set_privacy_options">Aseta yksityisyysasetukset</string>
@@ -251,4 +297,7 @@
   <string name="block_contents">Estä ilmoitusten sisältö</string>
   <string name="block_images">Estä ilmoitusten kuvat</string>
   <string name="notification_channel_receivenotification">Muiden laitteiden ilmoitukset</string>
+  <string name="take_picture">Käynnistä kamera</string>
+  <string name="plugin_photo_desc">Helpota kuvien ottamista ja siirtämistä käynnistämällä kamerasovellus</string>
+  <string name="no_app_for_opening">Tämän tiedoston avaamiseen sopivaa sovellusta ei löytynyt</string>
 </resources>

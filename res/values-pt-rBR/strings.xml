@@ -104,6 +104,14 @@
     <item quantity="one">Arquivo: %1s</item>
     <item quantity="other">(Arquivo %2$d de %3$d) : %1$s</item>
   </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">Enviando %1$d arquivo para %2$s</item>
+    <item quantity="other">Enviando %1$d arquivos para %2$s</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Arquivo: %1$s</item>
+    <item quantity="other">(Arquivo %2$d de %3$d) : %1$s</item>
+  </plurals>
   <plurals name="received_files_title">
     <item quantity="one">Arquivo recebido de %1$s</item>
     <item quantity="other">Recebidos %2$d arquivos de %1$s</item>
@@ -111,6 +119,14 @@
   <plurals name="received_files_fail_title">
     <item quantity="one">Falha na recepção do arquivo de %1$s</item>
     <item quantity="other">Falha na recepção de %2$d de %3$d arquivos de %1$s</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">Enviar arquivo para %1$s</item>
+    <item quantity="other">Enviar %2$d arquivos para %1$s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Não foi possível enviar o arquivo para %1$s</item>
+    <item quantity="other">Não foi possível enviar %2$d de %3$d arquivos para o %1$s</item>
   </plurals>
   <string name="received_file_text">Toque para abrir o \'%1s\'</string>
   <string name="cannot_create_file">Não foi possível criar o arquivo %s</string>
@@ -230,6 +246,7 @@
   <string name="plugins_need_optional_permission">Alguns plugins possuem recursos desativados devido à falta de permissões (toque para obter mais informações):</string>
   <string name="share_optional_permission_explanation">Para compartilhar arquivos entre o seu celular e o seu ambiente de trabalho é necessário permissão para acessar o armazenamento do seu celular</string>
   <string name="telepathy_permission_explanation">Para ler e gravar SMS a partir do seu ambiente de trabalho é necessário conceder permissão para SMS</string>
+  <string name="telephony_permission_explanation">Para ver as chamadas telefônicas no seu ambiente de trabalho é preciso dar permissões para registro de chamadas telefônicas e do estado do telefone</string>
   <string name="telephony_optional_permission_explanation">Para ver o nome de um contato em vez do seu número de telefone é necessário conceder acesso aos contatos do celular</string>
   <string name="contacts_permission_explanation">Para compartilhar o seu livro de endereços com o ambiente de trabalho é necessário conceder permissão para os contatos</string>
   <string name="select_ringtone">Selecionar um toque de chamada</string>

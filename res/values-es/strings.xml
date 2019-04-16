@@ -104,6 +104,14 @@
     <item quantity="one">Archivo: %1s</item>
     <item quantity="other">(Archivo %2$d de %3$d) : %1$s</item>
   </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">Enviando %1$d archivo a %2$s</item>
+    <item quantity="other">Enviando %1$d archivos a %2$s</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Archivo: %1$s</item>
+    <item quantity="other">(Archivo %2$d de %3$d) : %1$s</item>
+  </plurals>
   <plurals name="received_files_title">
     <item quantity="one">Recibido archivo desde %1$s</item>
     <item quantity="other">Recibidos %2$d archivos desde %1$s</item>
@@ -111,6 +119,14 @@
   <plurals name="received_files_fail_title">
     <item quantity="one">Fallo recibiendo archivo desde %1$s</item>
     <item quantity="other">Fallo recibiendo %2$d de %3$d archivos desde %1$s</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">Archivo enviado a %1$s</item>
+    <item quantity="other">Enviados %2$d archivos a %1$s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Fallo al enviar el archivo a %1$s</item>
+    <item quantity="other">Fallo al enviar %2$d de %3$d archivos a %1$s</item>
   </plurals>
   <string name="received_file_text">Pulse para abrir «%1s»</string>
   <string name="cannot_create_file">No se pudo crear el archivo %s</string>
@@ -230,6 +246,7 @@
   <string name="plugins_need_optional_permission">Algunos complementos tienen funcionalidades desactivadas por falta de permisos (pulse para más información):</string>
   <string name="share_optional_permission_explanation">Para compartir archivos entre su teléfono y su escritorio, necesita dar acceso al almacenamiento de su teléfono</string>
   <string name="telepathy_permission_explanation">Para leer y escribir SMS desde su escritorio, necesita dar permisos para SMS</string>
+  <string name="telephony_permission_explanation">Para ver las llamadas telefónicas en el escritorio, necesita dar permisos al registro de llamadas telefónicas y al estado del teléfono</string>
   <string name="telephony_optional_permission_explanation">Para ver el nombre de un contacto en lugar de un número telefónico, necesita dar acceso a los contactos de su teléfono</string>
   <string name="contacts_permission_explanation">Para compartir sus contactos con el escritorio, necesita dar permisos de acceso a los mismos</string>
   <string name="select_ringtone">Seleccionar tono</string>
