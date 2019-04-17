@@ -267,8 +267,14 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 actions.put(key, new LinkedList<>());
                 JSONArray jsonArray = new JSONArray();
                 for (Notification.Action action : notification.actions) {
-                    if (null == action.title || (action.getRemoteInputs() != null && action.getRemoteInputs().length > 0))
+
+                    if (null == action.title)
                         continue;
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH)
+                        if (action.getRemoteInputs() != null && action.getRemoteInputs().length > 0)
+                            continue;
+
                     jsonArray.put(action.title.toString());
                     actions.get(key).add(action);
                 }
