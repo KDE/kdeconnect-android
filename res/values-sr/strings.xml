@@ -63,7 +63,6 @@
   <string name="category_connected_devices">Повезани уређаји</string>
   <string name="category_not_paired_devices">Доступни уређаји</string>
   <string name="category_remembered_devices">Упамћени уређаји</string>
-  <string name="plugins_failed_to_load">Неуспело учитавање прикључка (тапните за више информација):</string>
   <string name="device_menu_plugins">Поставке прикључака</string>
   <string name="device_menu_unpair">Распари</string>
   <string name="device_not_reachable">Упарени уређај није доступан</string>
@@ -85,13 +84,7 @@
   <string name="pairing_request_from">Захтев за упаривање са %1s</string>
   <string name="received_url_title">Примљена веза са %1s</string>
   <string name="received_url_text">Тапните да отворите „%1s“</string>
-  <string name="outgoing_file_title">Шаљем фајл на %1s</string>
-  <string name="outgoing_files_title">Шаљем фајлове на %1s</string>
   <string name="received_file_text">Тапните да отворите „%1s“</string>
-  <string name="sent_file_title">Послат фајл на %1s</string>
-  <string name="sent_file_text">%1s</string>
-  <string name="sent_file_failed_title">Неуспело слање фајла на %1s</string>
-  <string name="sent_file_failed_text">%1s</string>
   <string name="tap_to_answer">Тапните да одговорите</string>
   <string name="reconnect">Поново повежи</string>
   <string name="right_click">Пошаљи десни клик</string>
@@ -140,7 +133,6 @@
   <string name="title_activity_notification_filter">Филтер обавештења</string>
   <string name="filter_apps_info">Обавештења ће се синхронизовати за изабране апликације.</string>
   <string name="sftp_internal_storage">Унутрашња меморија</string>
-  <string name="sftp_all_files">сви фајлови</string>
   <string name="sftp_sdcard_num">СД картица %d</string>
   <string name="sftp_sdcard">СД картица</string>
   <string name="sftp_readonly">(само за читање)</string>
@@ -148,7 +140,6 @@
   <string name="add_host">Додај домаћина/ИП</string>
   <string name="add_host_hint">Име домаћина или ИП</string>
   <string name="no_players_connected">Нисам нашао плејере</string>
-  <string name="custom_dev_list_help">Користите ову опцију само ако се ваши уређаји не приказују аутоматски. Унесите ИП адресу или име домаћина и додирните дугме да га додате на листу. Додирните постојећу ставку да бисте је уклонили.</string>
   <string name="mpris_player_on_device">%1$s на %2$s</string>
   <string name="send_files">Пошаљи фајлове</string>
   <string name="pairing_title">Уређаји КДЕ‑конекције</string>
@@ -174,9 +165,7 @@
   <string name="permission_explanation">Овај прикључак тражи дозволе да би радио.</string>
   <string name="optional_permission_explanation">Морате дати допунске дозволе за активирање свих функција.</string>
   <string name="plugins_need_optional_permission">Неки прикључци имају деактивиране могућности због недостатка дозвола (тапните за више информација):</string>
-  <string name="sftp_permission_explanation">Програм захтева дозволе да би са рачунара приступио фајловима на телефону.</string>
   <string name="share_optional_permission_explanation">За дељење фајлова између телефона и рачунара морате дати приступ складишту телефона.</string>
   <string name="telepathy_permission_explanation">За читање и писање СМС‑ова на рачунару морате дати дозволу за СМС.</string>
-  <string name="telephony_permission_explanation">Да бисте са рачунара видели телефонске позиве и СМС‑ове морате дати дозволу за позиве и СМС‑ове.</string>
   <string name="telephony_optional_permission_explanation">Да бисте видели име контакта уместо броја телефона морате дати приступ за контакте на телефону.</string>
 </resources>
