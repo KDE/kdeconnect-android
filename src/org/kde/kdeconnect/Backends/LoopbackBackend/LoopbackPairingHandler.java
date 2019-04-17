@@ -33,7 +33,7 @@ public class LoopbackPairingHandler extends BasePairingHandler {
     }
 
     @Override
-    public void packageReceived(NetworkPacket np) throws Exception {
+    public void packageReceived(NetworkPacket np) {
 
     }
 

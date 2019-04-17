@@ -65,11 +65,6 @@ import javax.net.ssl.X509TrustManager;
 
 public class SslHelper {
 
-    public enum SslMode {
-        Client,
-        Server
-    }
-
     public static X509Certificate certificate; //my device's certificate
 
     public static final BouncyCastleProvider BC = new BouncyCastleProvider();

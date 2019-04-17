@@ -43,6 +43,8 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
+import javax.net.ssl.SSLSocket;
+
 import static org.junit.Assert.assertEquals;
 
 @RunWith(PowerMockRunner.class)
@@ -71,11 +73,11 @@ public class LanLinkTest {
         Mockito.doThrow(new IOException("AAA")).when(badOutputStream).write(Mockito.any(byte[].class));
 
 
-        Socket socketMock = Mockito.mock(Socket.class);
+        SSLSocket socketMock = Mockito.mock(SSLSocket.class);
         Mockito.when(socketMock.getRemoteSocketAddress()).thenReturn(new InetSocketAddress(5000));
         Mockito.when(socketMock.getOutputStream()).thenReturn(goodOutputStream);
 
-        Socket socketBadMock = Mockito.mock(Socket.class);
+        SSLSocket socketBadMock = Mockito.mock(SSLSocket.class);
         Mockito.when(socketBadMock.getRemoteSocketAddress()).thenReturn(new InetSocketAddress(5000));
         Mockito.when(socketBadMock.getOutputStream()).thenReturn(badOutputStream);
 

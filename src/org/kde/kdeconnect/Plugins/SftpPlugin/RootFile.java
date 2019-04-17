@@ -53,7 +53,7 @@ class RootFile implements SshFile {
         return "/";
     }
 
-    public Map<Attribute, Object> getAttributes(boolean followLinks) throws IOException {
+    public Map<Attribute, Object> getAttributes(boolean followLinks) {
         Map<Attribute, Object> attrs = new HashMap<>();
 
         attrs.put(Attribute.Size, 0);

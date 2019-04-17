@@ -310,7 +310,7 @@ public class AndroidSafSshFile implements SshFile {
     }
 
     @Override
-    public Map<Attribute, Object> getAttributes(boolean followLinks) throws IOException {
+    public Map<Attribute, Object> getAttributes(boolean followLinks) {
         Map<SshFile.Attribute, Object> attributes = new HashMap<>();
         for (SshFile.Attribute attr : SshFile.Attribute.values()) {
             switch (attr) {

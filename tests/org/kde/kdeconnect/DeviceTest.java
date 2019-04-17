@@ -195,7 +195,7 @@ public class DeviceTest {
     }
 
     @Test
-    public void testPairingDoneWithCertificate() throws Exception {
+    public void testPairingDoneWithCertificate() {
         KeyPair keyPair = null;
         try {
             KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");

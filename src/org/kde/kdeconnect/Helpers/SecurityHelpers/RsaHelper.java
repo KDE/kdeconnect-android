@@ -26,11 +26,6 @@ import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.kde.kdeconnect.NetworkPacket;
-
-import java.nio.charset.Charset;
 import java.security.GeneralSecurityException;
 import java.security.KeyFactory;
 import java.security.KeyPair;
@@ -39,8 +34,6 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-
-import javax.crypto.Cipher;
 
 public class RsaHelper {
 
@@ -77,67 +70,12 @@ public class RsaHelper {
         return KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
     }
 
-    public static PublicKey getPublicKey(Context context, String deviceId) throws GeneralSecurityException {
-        SharedPreferences settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
-        byte[] publicKeyBytes = Base64.decode(settings.getString("publicKey", ""), 0);
-        return KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
-    }
-
     public static PrivateKey getPrivateKey(Context context) throws GeneralSecurityException {
         SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(context);
         byte[] privateKeyBytes = Base64.decode(globalSettings.getString("privateKey", ""), 0);
         return KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(privateKeyBytes));
     }
 
-    public static NetworkPacket encrypt(NetworkPacket np, PublicKey publicKey) throws GeneralSecurityException, JSONException {
-
-        String serialized = np.serialize();
-
-        int chunkSize = 128;
-
-        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1PADDING");
-        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
-
-        JSONArray chunks = new JSONArray();
-        while (serialized.length() > 0) {
-            if (serialized.length() < chunkSize) {
-                chunkSize = serialized.length();
-            }
-            String chunk = serialized.substring(0, chunkSize);
-            serialized = serialized.substring(chunkSize);
-            byte[] chunkBytes = chunk.getBytes(Charset.defaultCharset());
-            byte[] encryptedChunk;
-            encryptedChunk = cipher.doFinal(chunkBytes);
-            chunks.put(Base64.encodeToString(encryptedChunk, Base64.NO_WRAP));
-        }
-
-        //Log.i("NetworkPacket", "Encrypted " + chunks.length()+" chunks");
-
-        NetworkPacket encrypted = new NetworkPacket(NetworkPacket.PACKET_TYPE_ENCRYPTED);
-        encrypted.set("data", chunks);
-        encrypted.setPayload(np.getPayload());
-        return encrypted;
-
-    }
-
-    public static NetworkPacket decrypt(NetworkPacket np, PrivateKey privateKey) throws GeneralSecurityException, JSONException {
-
-        JSONArray chunks = np.getJSONArray("data");
-
-        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1PADDING");
-        cipher.init(Cipher.DECRYPT_MODE, privateKey);
-
-        StringBuilder decryptedJson = new StringBuilder();
-        for (int i = 0; i < chunks.length(); i++) {
-            byte[] encryptedChunk = Base64.decode(chunks.getString(i), Base64.NO_WRAP);
-            String decryptedChunk = new String(cipher.doFinal(encryptedChunk));
-            decryptedJson.append(decryptedChunk);
-        }
-
-        NetworkPacket decrypted = NetworkPacket.unserialize(decryptedJson.toString());
-        decrypted.setPayload(np.getPayload());
-        return decrypted;
-    }
 
 
 }

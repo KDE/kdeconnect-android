@@ -25,7 +25,6 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.widget.Button;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
@@ -184,21 +183,6 @@ public abstract class Plugin {
      * Should return the list of NetworkPacket types that this plugin can send
      */
     public abstract String[] getOutgoingPacketTypes();
-
-    /**
-     * Creates a button that will be displayed in the user interface
-     * It can open an activity or perform any other action that the
-     * plugin would wants to expose to the user. Return null if no
-     * button should be displayed.
-     */
-    @Deprecated
-    public Button getInterfaceButton(final Activity activity) {
-        if (!hasMainActivity()) return null;
-        Button b = new Button(activity);
-        b.setText(getActionName());
-        b.setOnClickListener(view -> startMainActivity(activity));
-        return b;
-    }
 
     protected String[] getRequiredPermissions() {
         return new String[0];

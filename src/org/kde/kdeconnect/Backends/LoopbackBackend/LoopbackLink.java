@@ -28,8 +28,6 @@ import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
 
-import java.security.PublicKey;
-
 public class LoopbackLink extends BaseLink {
 
     public LoopbackLink(Context context, BaseLinkProvider linkProvider) {
@@ -58,8 +56,4 @@ public class LoopbackLink extends BaseLink {
         return true;
     }
 
-    @Override
-    public boolean sendPacketEncrypted(NetworkPacket np, Device.SendPacketStatusCallback callback, PublicKey key) {
-        return sendPacket(np, callback);
-    }
 }

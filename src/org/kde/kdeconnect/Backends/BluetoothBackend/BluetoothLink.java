@@ -32,7 +32,6 @@ import org.json.JSONObject;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.NetworkPacket;
 
 import java.io.IOException;
@@ -41,7 +40,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Reader;
 import java.nio.charset.Charset;
-import java.security.PublicKey;
 import java.util.UUID;
 
 public class BluetoothLink extends BaseLink {
@@ -85,14 +83,6 @@ public class BluetoothLink extends BaseLink {
             } catch (JSONException e) {
                 Log.e("BluetoothLink/receiving", "Unable to parse message.", e);
                 return;
-            }
-
-            if (np.getType().equals(NetworkPacket.PACKET_TYPE_ENCRYPTED)) {
-                try {
-                    np = RsaHelper.decrypt(np, privateKey);
-                } catch (Exception e) {
-                    Log.e("BluetoothLink/receiving", "Exception decrypting the package", e);
-                }
             }
 
             if (np.hasPayloadTransferInfo()) {
@@ -158,16 +148,7 @@ public class BluetoothLink extends BaseLink {
     }
 
     @Override
-    public boolean sendPacket(NetworkPacket np, Device.SendPacketStatusCallback callback) {
-        return sendPacketInternal(np, callback, null);
-    }
-
-    @Override
-    public boolean sendPacketEncrypted(NetworkPacket np, Device.SendPacketStatusCallback callback, PublicKey key) {
-        return sendPacketInternal(np, callback, key);
-    }
-
-    private boolean sendPacketInternal(NetworkPacket np, final Device.SendPacketStatusCallback callback, PublicKey key) {
+    public boolean sendPacket(NetworkPacket np, final Device.SendPacketStatusCallback callback) {
 
         /*if (!isConnected()) {
             Log.e("BluetoothLink", "sendPacketEncrypted failed: not connected");
@@ -184,15 +165,6 @@ public class BluetoothLink extends BaseLink {
                 JSONObject payloadTransferInfo = new JSONObject();
                 payloadTransferInfo.put("uuid", transferUuid.toString());
                 np.setPayloadTransferInfo(payloadTransferInfo);
-            }
-
-            if (key != null) {
-                try {
-                    np = RsaHelper.encrypt(np, key);
-                } catch (Exception e) {
-                    callback.onFailure(e);
-                    return false;
-                }
             }
 
             sendMessage(np);

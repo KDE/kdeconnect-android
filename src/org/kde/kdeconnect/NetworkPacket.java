@@ -44,12 +44,10 @@ public class NetworkPacket {
 
     public final static String PACKET_TYPE_IDENTITY = "kdeconnect.identity";
     public final static String PACKET_TYPE_PAIR = "kdeconnect.pair";
-    public final static String PACKET_TYPE_ENCRYPTED = "kdeconnect.encrypted";
 
     public static Set<String> protocolPacketTypes = new HashSet<String>() {{
         add(PACKET_TYPE_IDENTITY);
         add(PACKET_TYPE_PAIR);
-        add(PACKET_TYPE_ENCRYPTED);
     }};
 
     private long mId;

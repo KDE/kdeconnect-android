@@ -66,9 +66,6 @@ import javax.net.ssl.SSLSocket;
  */
 public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDisconnectedCallback {
 
-    public static final int MIN_VERSION_WITH_SSL_SUPPORT = 6;
-    private static final int MIN_VERSION_WITH_NEW_PORT_SUPPORT = 7;
-
     private final static int MIN_PORT = 1716;
     private final static int MAX_PORT = 1764;
     final static int PAYLOAD_TRANSFER_MIN_PORT = 1739;
@@ -93,7 +90,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     }
 
     //They received my UDP broadcast and are connecting to me. The first thing they sned should be their identity.
-    private void tcpPacketReceived(Socket socket) throws Exception {
+    private void tcpPacketReceived(Socket socket) {
 
         NetworkPacket networkPacket;
         try {
@@ -116,7 +113,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     }
 
     //I've received their broadcast and should connect to their TCP socket and send my identity.
-    private void udpPacketReceived(DatagramPacket packet) throws Exception {
+    private void udpPacketReceived(DatagramPacket packet) {
 
         final InetAddress address = packet.getAddress();
 
@@ -134,11 +131,6 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                     //Ignore my own broadcast
                     return;
                 }
-            }
-
-            if (identityPacket.getInt("protocolVersion") >= MIN_VERSION_WITH_NEW_PORT_SUPPORT && identityPacket.getInt("tcpPort") < MIN_PORT) {
-                Log.w("KDE/LanLinkProvider", "Ignoring a udp broadcast from legacy port because it comes from a device which knows about the new port.");
-                return;
             }
 
             Log.i("KDE/LanLinkProvider", "Broadcast identity package received from " + identityPacket.getString("deviceName"));
@@ -206,61 +198,56 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
         // If I'm the TCP server I will be the SSL client and viceversa.
         final boolean clientMode = (connectionStarted == LanLink.ConnectionStarted.Locally);
 
-        // Add ssl handler if device uses new protocol
+        // Do the SSL handshake
         try {
-            if (identityPacket.getInt("protocolVersion") >= MIN_VERSION_WITH_SSL_SUPPORT) {
+            SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
+            boolean isDeviceTrusted = preferences.getBoolean(deviceId, false);
 
-                SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
-                boolean isDeviceTrusted = preferences.getBoolean(deviceId, false);
+            if (isDeviceTrusted && !SslHelper.isCertificateStored(context, deviceId)) {
+                //Device paired with and old version, we can't use it as we lack the certificate
+                BackgroundService.RunCommand(context, service -> {
+                    Device device = service.getDevice(deviceId);
+                    if (device == null) return;
+                    device.unpair();
+                    //Retry as unpaired
+                    identityPacketReceived(identityPacket, socket, connectionStarted);
+                });
+            }
 
-                if (isDeviceTrusted && !SslHelper.isCertificateStored(context, deviceId)) {
-                    //Device paired with and old version, we can't use it as we lack the certificate
+            Log.i("KDE/LanLinkProvider", "Starting SSL handshake with " + identityPacket.getString("deviceName") + " trusted:" + isDeviceTrusted);
+
+            final SSLSocket sslsocket = SslHelper.convertToSslSocket(context, socket, deviceId, isDeviceTrusted, clientMode);
+            sslsocket.addHandshakeCompletedListener(event -> {
+                String mode = clientMode ? "client" : "server";
+                try {
+                    Certificate certificate = event.getPeerCertificates()[0];
+                    identityPacket.set("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
+                    Log.i("KDE/LanLinkProvider", "Handshake as " + mode + " successful with " + identityPacket.getString("deviceName") + " secured with " + event.getCipherSuite());
+                    addLink(identityPacket, sslsocket, connectionStarted);
+                } catch (Exception e) {
+                    Log.e("KDE/LanLinkProvider", "Handshake as " + mode + " failed with " + identityPacket.getString("deviceName"), e);
                     BackgroundService.RunCommand(context, service -> {
                         Device device = service.getDevice(deviceId);
                         if (device == null) return;
                         device.unpair();
-                        //Retry as unpaired
-                        identityPacketReceived(identityPacket, socket, connectionStarted);
                     });
                 }
-
-                Log.i("KDE/LanLinkProvider", "Starting SSL handshake with " + identityPacket.getString("deviceName") + " trusted:" + isDeviceTrusted);
-
-                final SSLSocket sslsocket = SslHelper.convertToSslSocket(context, socket, deviceId, isDeviceTrusted, clientMode);
-                sslsocket.addHandshakeCompletedListener(event -> {
-                    String mode = clientMode ? "client" : "server";
-                    try {
-                        Certificate certificate = event.getPeerCertificates()[0];
-                        identityPacket.set("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
-                        Log.i("KDE/LanLinkProvider", "Handshake as " + mode + " successful with " + identityPacket.getString("deviceName") + " secured with " + event.getCipherSuite());
-                        addLink(identityPacket, sslsocket, connectionStarted);
-                    } catch (Exception e) {
-                        Log.e("KDE/LanLinkProvider", "Handshake as " + mode + " failed with " + identityPacket.getString("deviceName"), e);
-                        BackgroundService.RunCommand(context, service -> {
-                            Device device = service.getDevice(deviceId);
-                            if (device == null) return;
-                            device.unpair();
-                        });
+            });
+            //Handshake is blocking, so do it on another thread and free this thread to keep receiving new connection
+            new Thread(() -> {
+                try {
+                    synchronized (this) {
+                        sslsocket.startHandshake();
                     }
-                });
-                //Handshake is blocking, so do it on another thread and free this thread to keep receiving new connection
-                new Thread(() -> {
-                    try {
-                        synchronized (this) {
-                            sslsocket.startHandshake();
-                        }
-                    } catch (Exception e) {
-                        Log.e("KDE/LanLinkProvider", "Handshake failed with " + identityPacket.getString("deviceName"), e);
+                } catch (Exception e) {
+                    Log.e("KDE/LanLinkProvider", "Handshake failed with " + identityPacket.getString("deviceName"), e);
 
-                        //String[] ciphers = sslsocket.getSupportedCipherSuites();
-                        //for (String cipher : ciphers) {
-                        //    Log.i("SupportedCiphers","cipher: " + cipher);
-                        //}
-                    }
-                }).start();
-            } else {
-                addLink(identityPacket, socket, connectionStarted);
-            }
+                    //String[] ciphers = sslsocket.getSupportedCipherSuites();
+                    //for (String cipher : ciphers) {
+                    //    Log.i("SupportedCiphers","cipher: " + cipher);
+                    //}
+                }
+            }).start();
         } catch (Exception e) {
             Log.e("LanLink", "Exception", e);
         }
@@ -280,7 +267,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
      * @param connectionOrigin which side started this connection
      * @throws IOException if an exception is thrown by {@link LanLink#reset(Socket, LanLink.ConnectionStarted)}
      */
-    private void addLink(final NetworkPacket identityPacket, Socket socket, LanLink.ConnectionStarted connectionOrigin) throws IOException {
+    private void addLink(final NetworkPacket identityPacket, SSLSocket socket, LanLink.ConnectionStarted connectionOrigin) throws IOException {
 
         String deviceId = identityPacket.getString("deviceId");
         LanLink currentLink = visibleComputers.get(deviceId);

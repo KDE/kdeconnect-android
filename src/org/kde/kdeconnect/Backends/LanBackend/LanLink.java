@@ -27,7 +27,6 @@ import org.json.JSONObject;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Helpers.StringsHelper;
 import org.kde.kdeconnect.NetworkPacket;
@@ -42,7 +41,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.nio.channels.NotYetConnectedException;
-import java.security.PublicKey;
 
 import javax.net.ssl.SSLSocket;
 
@@ -61,7 +59,7 @@ public class LanLink extends BaseLink {
                                                   // because it's probably trying to find me and
                                                   // potentially ask for pairing.
 
-    private volatile Socket socket = null;
+    private volatile SSLSocket socket = null;
 
     private final LinkDisconnectedCallback callback;
 
@@ -76,9 +74,9 @@ public class LanLink extends BaseLink {
     }
 
     //Returns the old socket
-    public Socket reset(final Socket newSocket, ConnectionStarted connectionSource) throws IOException {
+    public SSLSocket reset(final SSLSocket newSocket, ConnectionStarted connectionSource) throws IOException {
 
-        Socket oldSocket = socket;
+        SSLSocket oldSocket = socket;
         socket = newSocket;
 
         this.connectionSource = connectionSource;
@@ -121,7 +119,7 @@ public class LanLink extends BaseLink {
         return oldSocket;
     }
 
-    public LanLink(Context context, String deviceId, LanLinkProvider linkProvider, Socket socket, ConnectionStarted connectionSource) throws IOException {
+    public LanLink(Context context, String deviceId, LanLinkProvider linkProvider, SSLSocket socket, ConnectionStarted connectionSource) throws IOException {
         super(context, deviceId, linkProvider);
         callback = linkProvider;
         reset(socket, connectionSource);
@@ -139,7 +137,8 @@ public class LanLink extends BaseLink {
     }
 
     //Blocking, do not call from main thread
-    private boolean sendPacketInternal(NetworkPacket np, final Device.SendPacketStatusCallback callback, PublicKey key) {
+    @Override
+    public boolean sendPacket(NetworkPacket np, final Device.SendPacketStatusCallback callback) {
         if (socket == null) {
             Log.e("KDE/sendPacket", "Not yet connected");
             callback.onFailure(new NotYetConnectedException());
@@ -157,11 +156,6 @@ public class LanLink extends BaseLink {
                 np.setPayloadTransferInfo(payloadTransferInfo);
             } else {
                 server = null;
-            }
-
-            //Encrypt if key provided
-            if (key != null) {
-                np = RsaHelper.encrypt(np, key);
             }
 
             //Log.e("LanLink/sendPacket", np.getType());
@@ -188,9 +182,7 @@ public class LanLink extends BaseLink {
                     payloadSocket = server.accept();
 
                     //Convert to SSL if needed
-                    if (socket instanceof SSLSocket) {
-                        payloadSocket = SslHelper.convertToSslSocket(context, payloadSocket, getDeviceId(), true, false);
-                    }
+                    payloadSocket = SslHelper.convertToSslSocket(context, payloadSocket, getDeviceId(), true, false);
 
                     outputStream = payloadSocket.getOutputStream();
                     inputStream = np.getPayload().getInputStream();
@@ -240,28 +232,7 @@ public class LanLink extends BaseLink {
         }
     }
 
-
-    //Blocking, do not call from main thread
-    @Override
-    public boolean sendPacket(NetworkPacket np, Device.SendPacketStatusCallback callback) {
-        return sendPacketInternal(np, callback, null);
-    }
-
-    //Blocking, do not call from main thread
-    @Override
-    public boolean sendPacketEncrypted(NetworkPacket np, Device.SendPacketStatusCallback callback, PublicKey key) {
-        return sendPacketInternal(np, callback, key);
-    }
-
     private void receivedNetworkPacket(NetworkPacket np) {
-
-        if (np.getType().equals(NetworkPacket.PACKET_TYPE_ENCRYPTED)) {
-            try {
-                np = RsaHelper.decrypt(np, privateKey);
-            } catch(Exception e) {
-                Log.e("KDE/onPacketReceived","Exception decrypting the package", e);
-            }
-        }
 
         if (np.hasPayloadTransferInfo()) {
             Socket payloadSocket = new Socket();
@@ -269,10 +240,7 @@ public class LanLink extends BaseLink {
                 int tcpPort = np.getPayloadTransferInfo().getInt("port");
                 InetSocketAddress deviceAddress = (InetSocketAddress) socket.getRemoteSocketAddress();
                 payloadSocket.connect(new InetSocketAddress(deviceAddress.getAddress(), tcpPort));
-                // Use ssl if existing link is on ssl
-                if (socket instanceof SSLSocket) {
-                    payloadSocket = SslHelper.convertToSslSocket(context, payloadSocket, getDeviceId(), true, true);
-                }
+                payloadSocket = SslHelper.convertToSslSocket(context, payloadSocket, getDeviceId(), true, true);
                 np.setPayload(new NetworkPacket.Payload(payloadSocket, np.getPayloadSize()));
             } catch (Exception e) {
                 try { payloadSocket.close(); } catch(Exception ignored) { }

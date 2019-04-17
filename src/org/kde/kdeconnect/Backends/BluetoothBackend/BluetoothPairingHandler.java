@@ -52,7 +52,7 @@ public class BluetoothPairingHandler extends BasePairingHandler {
     }
 
     @Override
-    public void packageReceived(NetworkPacket np) throws Exception {
+    public void packageReceived(NetworkPacket np) {
 
         boolean wantsPair = np.getBoolean("pair");
 
