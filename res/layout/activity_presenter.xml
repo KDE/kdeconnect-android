@@ -10,7 +10,6 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.25"
         android:id="@+id/top_space"/>
 
     <LinearLayout
@@ -47,7 +46,6 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.25"
         android:layout_alignParentBottom="true"
         android:text="@string/presenter_lock_tip" />
 
