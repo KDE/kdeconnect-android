@@ -264,7 +264,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
      * @param identityPacket   representation of remote device
      * @param socket           a new Socket, which should be used to receive packets from the remote device
      * @param connectionOrigin which side started this connection
-     * @throws IOException if an exception is thrown by {@link LanLink#reset(Socket, LanLink.ConnectionStarted)}
+     * @throws IOException if an exception is thrown by {@link LanLink#reset(SSLSocket, LanLink.ConnectionStarted)}
      */
     private void addLink(final NetworkPacket identityPacket, SSLSocket socket, LanLink.ConnectionStarted connectionOrigin) throws IOException {
 
