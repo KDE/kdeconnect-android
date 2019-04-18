@@ -264,7 +264,7 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
     }
 
     private long receiveFile(InputStream input, OutputStream output) throws IOException {
-        byte data[] = new byte[4096];
+        byte[] data = new byte[4096];
         int count;
         long received = 0;
 

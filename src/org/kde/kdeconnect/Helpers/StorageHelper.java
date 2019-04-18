@@ -93,7 +93,7 @@ public class StorageHelper {
                 Log.e("StorageHelper", "Exception while getting storageList", e);
             }
 
-            File dirs[] = storage.listFiles();
+            File[] dirs = storage.listFiles();
             for (File dir : dirs) {
                 //Log.e("getStorageList", "path: "+dir.getAbsolutePath());
                 if (dir.isDirectory() && dir.canRead() && dir.canExecute()) {

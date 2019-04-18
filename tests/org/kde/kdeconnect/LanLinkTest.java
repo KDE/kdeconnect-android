@@ -150,7 +150,7 @@ public class LanLinkTest {
                     final InputStream input = np.getPayload().getInputStream();
                     final long fileLength = np.getPayloadSize();
 
-                    byte data[] = new byte[1024];
+                    byte[] data = new byte[1024];
                     long progress = 0, prevProgressPercentage = 0;
                     int count;
                     while ((count = input.read(data)) >= 0) {
