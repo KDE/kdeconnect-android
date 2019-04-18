@@ -54,7 +54,6 @@ public class LanLinkTest {
     private LanLink badLanLink;
     private LanLink goodLanLink;
 
-    private OutputStream badOutputStream;
     private OutputStream goodOutputStream;
 
     private Device.SendPacketStatusCallback callback;
@@ -69,7 +68,7 @@ public class LanLinkTest {
         callback = Mockito.mock(Device.SendPacketStatusCallback.class);
 
         goodOutputStream = Mockito.mock(OutputStream.class);
-        badOutputStream = Mockito.mock(OutputStream.class);
+        OutputStream badOutputStream = Mockito.mock(OutputStream.class);
         Mockito.doThrow(new IOException("AAA")).when(badOutputStream).write(Mockito.any(byte[].class));
 
 

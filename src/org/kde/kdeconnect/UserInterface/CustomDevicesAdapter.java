@@ -43,7 +43,6 @@ import butterknife.ButterKnife;
 
 public class CustomDevicesAdapter extends RecyclerView.Adapter<CustomDevicesAdapter.ViewHolder> {
     private ArrayList<String> customDevices;
-    private RecyclerView recyclerView;
     private final Callback callback;
 
     CustomDevicesAdapter(@NonNull Callback callback) {
@@ -62,7 +61,6 @@ public class CustomDevicesAdapter extends RecyclerView.Adapter<CustomDevicesAdap
     public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
 
-        this.recyclerView = recyclerView;
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
                 new ItemTouchHelperCallback(adapterPos -> callback.onCustomDeviceDismissed(customDevices.get(adapterPos))));
         itemTouchHelper.attachToRecyclerView(recyclerView);

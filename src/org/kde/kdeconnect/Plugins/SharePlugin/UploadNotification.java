@@ -39,7 +39,6 @@ class UploadNotification {
     private NotificationCompat.Builder builder;
     private final int notificationId;
     private final Device device;
-    private long currentJobId;
 
     UploadNotification(Device device) {
         this.device = device;
@@ -56,7 +55,6 @@ class UploadNotification {
     void addCancelAction(long jobId) {
         builder.mActions.clear();
 
-        currentJobId = jobId;
         Intent cancelIntent = new Intent(device.getContext(), ShareBroadcastReceiver.class);
         cancelIntent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
         cancelIntent.setAction(SharePlugin.ACTION_CANCEL_SHARE);
