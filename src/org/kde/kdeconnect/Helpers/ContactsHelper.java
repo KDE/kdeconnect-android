@@ -46,6 +46,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.collection.LongSparseArray;
 
@@ -394,6 +395,7 @@ public class ContactsHelper {
                     .append("\n");
         }
 
+        @NonNull
         public String toString() {
             return vcardBody.toString() + VCARD_END;
         }
@@ -415,9 +417,14 @@ public class ContactsHelper {
         static final String COLUMN = ContactsContract.Contacts.LOOKUP_KEY;
 
         public uID(String lookupKey) {
+
+            if (lookupKey == null)
+                throw new IllegalArgumentException("lookUpKey should not be null");
+
             contactLookupKey = lookupKey;
         }
 
+        @NonNull
         public String toString() {
             return this.contactLookupKey;
         }
