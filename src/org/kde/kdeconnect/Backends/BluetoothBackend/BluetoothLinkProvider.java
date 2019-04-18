@@ -35,6 +35,7 @@ import android.util.Log;
 
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Helpers.StringsHelper;
 import org.kde.kdeconnect.NetworkPacket;
 
 import java.io.IOException;
@@ -187,34 +188,36 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
             Log.i("BTLinkProvider/Server", "Received connection from " + socket.getRemoteDevice().getAddress());
 
             NetworkPacket np = NetworkPacket.createIdentityPacket(context);
-            byte[] message = np.serialize().getBytes("UTF-8");
+            byte[] message = np.serialize().getBytes(StringsHelper.UTF8);
             outputStream.write(message);
 
             Log.i("BTLinkProvider/Server", "Sent identity package");
 
             // Listen for the response
             StringBuilder sb = new StringBuilder();
-            Reader reader = new InputStreamReader(socket.getInputStream(), "UTF-8");
-            int charsRead;
-            char[] buf = new char[512];
-            while (sb.lastIndexOf("\n") == -1 && (charsRead = reader.read(buf)) != -1) {
-                sb.append(buf, 0, charsRead);
+            try (Reader reader = new InputStreamReader(socket.getInputStream(), StringsHelper.UTF8)) {
+                int charsRead;
+                char[] buf = new char[512];
+                while (sb.lastIndexOf("\n") == -1 && (charsRead = reader.read(buf)) != -1) {
+                    sb.append(buf, 0, charsRead);
+                }
+
+                String response = sb.toString();
+                final NetworkPacket identityPacket = NetworkPacket.unserialize(response);
+
+                if (!identityPacket.getType().equals(NetworkPacket.PACKET_TYPE_IDENTITY)) {
+                    Log.e("BTLinkProvider/Server", "2 Expecting an identity package");
+                    return;
+                }
+
+                Log.i("BTLinkProvider/Server", "Received identity package");
+
+                BluetoothLink link = new BluetoothLink(context, socket,
+                        identityPacket.getString("deviceId"), BluetoothLinkProvider.this);
+
+                addLink(identityPacket, link);
             }
 
-            String response = sb.toString();
-            final NetworkPacket identityPacket = NetworkPacket.unserialize(response);
-
-            if (!identityPacket.getType().equals(NetworkPacket.PACKET_TYPE_IDENTITY)) {
-                Log.e("BTLinkProvider/Server", "2 Expecting an identity package");
-                return;
-            }
-
-            Log.i("BTLinkProvider/Server", "Received identity package");
-
-            BluetoothLink link = new BluetoothLink(context, socket,
-                    identityPacket.getString("deviceId"), BluetoothLinkProvider.this);
-
-            addLink(identityPacket, link);
         }
     }
 

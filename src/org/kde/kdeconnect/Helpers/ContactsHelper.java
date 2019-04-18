@@ -183,8 +183,7 @@ public class ContactsHelper {
 
         ;
         StringBuilder vcardJumble = new StringBuilder();
-        try (InputStream input = context.getContentResolver().openInputStream(vcardURI)) {
-            BufferedReader bufferedInput = new BufferedReader(new InputStreamReader(input));
+        try (BufferedReader bufferedInput = new BufferedReader(new InputStreamReader(context.getContentResolver().openInputStream(vcardURI)))) {
             String line;
             while ((line = bufferedInput.readLine()) != null) {
                 vcardJumble.append(line).append('\n');
@@ -228,15 +227,16 @@ public class ContactsHelper {
                     throw new NullPointerException("ContentResolver did not give us a stream for the VCard for uID " + ID);
                 }
 
-                BufferedReader bufferedInput = new BufferedReader(new InputStreamReader(input));
+                try (BufferedReader bufferedInput = new BufferedReader(new InputStreamReader(input))) {
+                    StringBuilder vCard = new StringBuilder();
+                    String line;
+                    while ((line = bufferedInput.readLine()) != null) {
+                        vCard.append(line).append('\n');
+                    }
 
-                StringBuilder vcard = new StringBuilder();
-                String line;
-                while ((line = bufferedInput.readLine()) != null) {
-                    vcard.append(line).append('\n');
+                    toReturn.put(ID, new VCardBuilder(vCard.toString()));
                 }
 
-                toReturn.put(ID, new VCardBuilder(vcard.toString()));
             } catch (IOException e) {
                 // If you are experiencing this, please open a bug report indicating how you got here
                 Log.e("Contacts", "Exception while fetching vcards", e);

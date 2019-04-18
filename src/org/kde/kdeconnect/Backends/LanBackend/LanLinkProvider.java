@@ -93,8 +93,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     private void tcpPacketReceived(Socket socket) {
 
         NetworkPacket networkPacket;
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
             String message = reader.readLine();
             networkPacket = NetworkPacket.unserialize(message);
             //Log.e("TcpListener","Received TCP package: "+networkPacket.serialize());
