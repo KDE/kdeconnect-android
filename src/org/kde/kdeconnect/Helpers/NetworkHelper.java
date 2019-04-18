@@ -36,9 +36,8 @@ public class NetworkHelper {
                     return false; //We are connected to at least one non-mobile network
             }
             if (mobile) { //We suspect we are on a mobile net
-                try {
+                try (LineNumberReader is = new LineNumberReader(new FileReader("/proc/net/arp"))) {
                     //Check the number of network neighbours, on data it should be 0
-                    LineNumberReader is = new LineNumberReader(new FileReader("/proc/net/arp"));
                     is.skip(Long.MAX_VALUE);
                     //Log.e("NetworkHelper", "procnetarp has " + is.getLineNumber() + " lines");
                     if (is.getLineNumber() > 1) { //The first line are the headers
