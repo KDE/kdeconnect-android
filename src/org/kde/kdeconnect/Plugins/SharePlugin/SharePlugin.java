@@ -207,7 +207,7 @@ public class SharePlugin extends Plugin {
     }
 
     void sendUriList(final ArrayList<Uri> uriList) {
-        CompositeUploadFileJob job = null;
+        CompositeUploadFileJob job;
 
         if (uploadFileJob == null) {
             job = new CompositeUploadFileJob(device, this.receiveFileJobCallback);
