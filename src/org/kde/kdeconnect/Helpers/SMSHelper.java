@@ -146,7 +146,7 @@ public class SMSHelper {
                     }
 
                     Message message = new Message(messageInfo);
-                    ThreadID threadID = new ThreadID(message.m_threadID);
+                    ThreadID threadID = new ThreadID(message.threadID);
 
                     if (!toReturn.containsKey(threadID)) {
                         toReturn.put(threadID, new ArrayList<>());
@@ -224,12 +224,12 @@ public class SMSHelper {
 
         @NonNull
         public String toString() {
-            return this.threadID.toString();
+            return threadID.toString();
         }
 
         @Override
         public int hashCode() {
-            return this.threadID.hashCode();
+            return threadID.hashCode();
         }
 
         @Override
@@ -243,13 +243,13 @@ public class SMSHelper {
      */
     public static class Message {
 
-        final String m_address;
-        final String m_body;
-        public final long m_date;
-        final int m_type;
-        final int m_read;
-        final long m_threadID; // ThreadID is *int* for SMS messages but *long* for MMS
-        final int m_uID;
+        final String address;
+        final String body;
+        public final long date;
+        final int type;
+        final int read;
+        final long threadID; // ThreadID is *int* for SMS messages but *long* for MMS
+        final int uID;
 
         /**
          * Named constants which are used to construct a Message
@@ -285,40 +285,40 @@ public class SMSHelper {
         };
 
         Message(final HashMap<String, String> messageInfo) {
-            m_address = messageInfo.get(Message.ADDRESS);
-            m_body = messageInfo.get(Message.BODY);
-            m_date = Long.parseLong(messageInfo.get(Message.DATE));
+            address = messageInfo.get(Message.ADDRESS);
+            body = messageInfo.get(Message.BODY);
+            date = Long.parseLong(messageInfo.get(Message.DATE));
             if (messageInfo.get(Message.TYPE) == null)
             {
                 // To be honest, I have no idea why this happens. The docs say the TYPE field is mandatory.
                 // Just stick some junk in here and hope we can figure it out later.
                 // Quick investigation suggests that these are multi-target MMSes
-                m_type = -1;
+                type = -1;
             } else {
-                m_type = Integer.parseInt(messageInfo.get(Message.TYPE));
+                type = Integer.parseInt(messageInfo.get(Message.TYPE));
             }
-            m_read = Integer.parseInt(messageInfo.get(Message.READ));
-            m_threadID = Long.parseLong(messageInfo.get(Message.THREAD_ID));
-            m_uID = Integer.parseInt(messageInfo.get(Message.U_ID));
+            read = Integer.parseInt(messageInfo.get(Message.READ));
+            threadID = Long.parseLong(messageInfo.get(Message.THREAD_ID));
+            uID = Integer.parseInt(messageInfo.get(Message.U_ID));
         }
 
         public JSONObject toJSONObject() throws JSONException {
             JSONObject json = new JSONObject();
 
-            json.put(Message.ADDRESS, m_address);
-            json.put(Message.BODY, m_body);
-            json.put(Message.DATE, m_date);
-            json.put(Message.TYPE, m_type);
-            json.put(Message.READ, m_read);
-            json.put(Message.THREAD_ID, m_threadID);
-            json.put(Message.U_ID, m_uID);
+            json.put(Message.ADDRESS, address);
+            json.put(Message.BODY, body);
+            json.put(Message.DATE, date);
+            json.put(Message.TYPE, type);
+            json.put(Message.READ, read);
+            json.put(Message.THREAD_ID, threadID);
+            json.put(Message.U_ID, uID);
 
             return json;
         }
 
         @Override
         public String toString() {
-            return this.m_body;
+            return body;
         }
     }
 

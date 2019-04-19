@@ -77,7 +77,7 @@ public class Device implements BaseLink.PacketReceiver {
 
     private final CopyOnWriteArrayList<BaseLink> links = new CopyOnWriteArrayList<>();
 
-    private List<String> m_supportedPlugins = new ArrayList<>();
+    private List<String> supportedPlugins = new ArrayList<>();
     private final ConcurrentHashMap<String, Plugin> plugins = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, Plugin> pluginsWithoutPermissions = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, Plugin> pluginsWithoutOptionalPermissions = new ConcurrentHashMap<>();
@@ -147,7 +147,7 @@ public class Device implements BaseLink.PacketReceiver {
         this.deviceType = DeviceType.FromString(settings.getString("deviceType", "desktop"));
 
         //Assume every plugin is supported until addLink is called and we can get the actual list
-        m_supportedPlugins = new Vector<>(PluginFactory.getAvailablePlugins());
+        supportedPlugins = new Vector<>(PluginFactory.getAvailablePlugins());
 
         //Do not load plugins yet, the device is not present
         //reloadPluginsFromSettings();
@@ -494,9 +494,9 @@ public class Device implements BaseLink.PacketReceiver {
         Set<String> outgoingCapabilities = identityPacket.getStringSet("outgoingCapabilities", null);
         Set<String> incomingCapabilities = identityPacket.getStringSet("incomingCapabilities", null);
         if (incomingCapabilities != null && outgoingCapabilities != null) {
-            m_supportedPlugins = new Vector<>(PluginFactory.pluginsForCapabilities(incomingCapabilities, outgoingCapabilities));
+            supportedPlugins = new Vector<>(PluginFactory.pluginsForCapabilities(incomingCapabilities, outgoingCapabilities));
         } else {
-            m_supportedPlugins = new Vector<>(PluginFactory.getAvailablePlugins());
+            supportedPlugins = new Vector<>(PluginFactory.getAvailablePlugins());
         }
 
         link.addPacketReceiver(this);
@@ -757,7 +757,7 @@ public class Device implements BaseLink.PacketReceiver {
 
         HashMap<String, ArrayList<String>> newPluginsByIncomingInterface = new HashMap<>();
 
-        for (String pluginKey : m_supportedPlugins) {
+        for (String pluginKey : supportedPlugins) {
 
             PluginFactory.PluginInfo pluginInfo = PluginFactory.getPluginInfo(pluginKey);
 
@@ -837,7 +837,7 @@ public class Device implements BaseLink.PacketReceiver {
     }
 
     public List<String> getSupportedPlugins() {
-        return m_supportedPlugins;
+        return supportedPlugins;
     }
 
 }

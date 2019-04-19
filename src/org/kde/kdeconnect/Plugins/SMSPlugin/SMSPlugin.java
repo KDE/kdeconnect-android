@@ -204,8 +204,8 @@ public class SMSPlugin extends Plugin {
             // Update the most recent counter
             mostRecentTimestampLock.lock();
             for (SMSHelper.Message message : messages) {
-                if (message.m_date > mostRecentTimestamp) {
-                    mPlugin.mostRecentTimestamp = message.m_date;
+                if (message.date > mostRecentTimestamp) {
+                    mPlugin.mostRecentTimestamp = message.date;
                 }
             }
             mostRecentTimestampLock.unlock();
@@ -374,8 +374,8 @@ public class SMSPlugin extends Plugin {
         // recent in every conversation
         mostRecentTimestampLock.lock();
         for (SMSHelper.Message message : conversations.values()) {
-            if (message.m_date > mostRecentTimestamp) {
-                mostRecentTimestamp = message.m_date;
+            if (message.date > mostRecentTimestamp) {
+                mostRecentTimestamp = message.date;
             }
         }
         mostRecentTimestampLock.unlock();
