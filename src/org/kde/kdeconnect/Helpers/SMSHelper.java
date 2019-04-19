@@ -40,6 +40,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 public class SMSHelper {
@@ -221,6 +222,7 @@ public class SMSHelper {
             this.threadID = threadID;
         }
 
+        @NonNull
         public String toString() {
             return this.threadID.toString();
         }

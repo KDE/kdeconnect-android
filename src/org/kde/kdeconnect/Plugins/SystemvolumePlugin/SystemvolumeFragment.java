@@ -46,7 +46,7 @@ public class SystemvolumeFragment extends ListFragment implements Sink.UpdateLis
     private boolean tracking;
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getListView().setDivider(null);
         setListAdapter(new SinkAdapter(getContext(), new Sink[0]));
