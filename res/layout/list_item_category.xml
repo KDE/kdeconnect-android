@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    <TextView
         android:id="@+id/list_item_category_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
