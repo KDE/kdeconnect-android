@@ -29,6 +29,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.ContentObserver;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -58,6 +59,7 @@ import java.util.Map;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
 import static org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin.PACKET_TYPE_TELEPHONY;
@@ -179,6 +181,7 @@ public class SMSPlugin extends Plugin {
          * In this case, this onChange expects to be called whenever *anything* in the Messages
          * database changes and simply reports those updated messages to anyone who might be listening
          */
+        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         @Override
         public void onChange(boolean selfChange) {
             if (mPlugin.mostRecentTimestamp == 0) {
@@ -272,6 +275,7 @@ public class SMSPlugin extends Plugin {
         device.sendPacket(np);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean onCreate() {
         permissionExplanation = R.string.telepathy_permission_explanation;
@@ -297,6 +301,7 @@ public class SMSPlugin extends Plugin {
         return context.getResources().getString(R.string.pref_plugin_telepathy_desc);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean onPacketReceived(NetworkPacket np) {
 
@@ -339,6 +344,7 @@ public class SMSPlugin extends Plugin {
      * @param messages Messages to include in the packet
      * @return NetworkPacket of type PACKET_TYPE_SMS_MESSAGE
      */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private static NetworkPacket constructBulkMessagePacket(Collection<SMSHelper.Message> messages) {
         NetworkPacket reply = new NetworkPacket(PACKET_TYPE_SMS_MESSAGE);
 
@@ -367,6 +373,7 @@ public class SMSPlugin extends Plugin {
      * <p>
      * Send one packet of type PACKET_TYPE_SMS_MESSAGE with the first message in all conversations
      */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private boolean handleRequestConversations(NetworkPacket packet) {
         Map<SMSHelper.ThreadID, SMSHelper.Message> conversations = SMSHelper.getConversations(this.context);
 
@@ -387,6 +394,7 @@ public class SMSPlugin extends Plugin {
         return true;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private boolean handleRequestConversation(NetworkPacket packet) {
         SMSHelper.ThreadID threadID = new SMSHelper.ThreadID(packet.getLong("threadID"));
 
@@ -433,5 +441,10 @@ public class SMSPlugin extends Plugin {
                 Manifest.permission.SEND_SMS,
                 Manifest.permission.READ_SMS,
         };
+    }
+
+    @Override
+    public int getMinSdk() {
+        return Build.VERSION_CODES.KITKAT;
     }
 }

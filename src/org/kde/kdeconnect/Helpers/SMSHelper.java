@@ -94,6 +94,7 @@ public class SMSHelper {
      * @param threadID Thread to look up
      * @return List of all messages in the thread
      */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static List<Message> getMessagesInThread(Context context, ThreadID threadID) {
         final String selection = ThreadID.lookupColumn + " == ?";
         final String[] selectionArgs = new String[] { threadID.toString() };
@@ -107,6 +108,7 @@ public class SMSHelper {
      * @param timestamp epoch in millis matching the timestamp to return
      * @return null if no matching message is found, otherwise return a Message
      */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static List<Message> getMessagesSinceTimestamp(Context context, long timestamp) {
         final String selection = Message.DATE + " > ?";
         final String[] selectionArgs = new String[] {Long.toString(timestamp)};
@@ -123,10 +125,11 @@ public class SMSHelper {
      * @param selectionArgs Parameters for selection. May be null.
      * @return Returns HashMap<ThreadID, List<Message>>, which is transformed in caller functions into other classes.
      */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private static HashMap<ThreadID, List<Message>> getMessages(Uri Uri,
-                                                          Context context,
-                                                          String selection,
-                                                          String[] selectionArgs) {
+                                                                Context context,
+                                                                String selection,
+                                                                String[] selectionArgs) {
         HashMap<ThreadID, List<Message>> toReturn = new HashMap<>();
             try (Cursor myCursor = context.getContentResolver().query(
                 Uri,
@@ -168,6 +171,7 @@ public class SMSHelper {
      * @param selectionArgs Parameters for selection. May be null.
      * @return List of messages matching the filter
      */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private static List<Message> getMessagesWithFilter(Context context, String selection, String[] selectionArgs) {
         HashMap<ThreadID, List<Message>> result = getMessages(SMSHelper.getSMSUri(), context, selection, selectionArgs);
         List<Message> toReturn = new ArrayList<>();
@@ -185,6 +189,7 @@ public class SMSHelper {
      * @param context android.content.Context running the request
      * @return Mapping of thread_id to the first message in each thread
      */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static Map<ThreadID, Message> getConversations(Context context) {
         HashMap<ThreadID, List<Message>> result = getMessages(SMSHelper.getConversationUri(), context, null, null);
         HashMap<ThreadID, Message> toReturn = new HashMap<>();
@@ -214,6 +219,7 @@ public class SMSHelper {
     /**
      * Represent an ID used to uniquely identify a message thread
      */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static class ThreadID {
         final Long threadID;
         static final String lookupColumn = Telephony.Sms.THREAD_ID;
@@ -241,6 +247,7 @@ public class SMSHelper {
     /**
      * Represent a message and all of its interesting data columns
      */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public static class Message {
 
         final String address;
