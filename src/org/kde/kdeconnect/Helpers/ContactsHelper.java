@@ -214,7 +214,6 @@ public class ContactsHelper {
      * @param IDs        collection of uIDs to look up
      * @return Mapping of uIDs to the corresponding VCard
      */
-    @SuppressWarnings("UnnecessaryContinue")
     private static Map<uID, VCardBuilder> getVCardsSlow(Context context, Collection<uID> IDs) {
         Map<uID, VCardBuilder> toReturn = new HashMap<>();
 
