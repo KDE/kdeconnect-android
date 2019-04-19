@@ -32,7 +32,6 @@ import org.json.JSONObject;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.Helpers.StringsHelper;
 import org.kde.kdeconnect.NetworkPacket;
 
 import java.io.IOException;
@@ -53,7 +52,8 @@ public class BluetoothLink extends BaseLink {
         @Override
         public void run() {
             StringBuilder sb = new StringBuilder();
-            try (Reader reader = new InputStreamReader(socket.getInputStream(), StringsHelper.UTF8)) {
+            try {
+                Reader reader = new InputStreamReader(socket.getInputStream(), "UTF-8");
                 char[] buf = new char[512];
                 while (continueAccepting) {
                     while (sb.indexOf("\n") == -1 && continueAccepting) {

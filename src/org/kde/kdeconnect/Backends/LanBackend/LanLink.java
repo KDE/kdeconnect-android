@@ -88,7 +88,8 @@ public class LanLink extends BaseLink {
         //Log.e("LanLink", "Start listening");
         //Create a thread to take care of incoming data for the new socket
         new Thread(() -> {
-            try (BufferedReader reader = new BufferedReader(new InputStreamReader(newSocket.getInputStream(), StringsHelper.UTF8))) {
+            try {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(newSocket.getInputStream(), StringsHelper.UTF8));
                 while (true) {
                     String packet;
                     try {
@@ -219,7 +220,9 @@ public class LanLink extends BaseLink {
             }
             return true;
         } catch (Exception e) {
-            callback.onFailure(e);
+            if (callback != null) {
+                callback.onFailure(e);
+            }
             return false;
         } finally  {
             //Make sure we close the payload stream, if any
