@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:keep="@xml/sftpplugin_preferences">
     <PreferenceCategory
         android:key="@string/sftp_preference_key_preference_category"
         android:title="@string/sftp_preference_detected_sdcards"
