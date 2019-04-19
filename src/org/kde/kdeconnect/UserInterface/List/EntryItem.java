@@ -24,6 +24,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import org.kde.kdeconnect_tp.R;
 
 public class EntryItem implements ListAdapter.Item {
@@ -41,6 +43,7 @@ public class EntryItem implements ListAdapter.Item {
         this.subtitle = subtitle;
     }
 
+    @NonNull
     @Override
     public View inflateView(LayoutInflater layoutInflater) {
         View v = layoutInflater.inflate(R.layout.list_item_entry, null);

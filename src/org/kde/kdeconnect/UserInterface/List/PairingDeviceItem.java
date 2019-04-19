@@ -25,6 +25,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect_tp.R;
 
@@ -46,6 +48,7 @@ public class PairingDeviceItem implements ListAdapter.Item {
         return this.device;
     }
 
+    @NonNull
     @Override
     public View inflateView(LayoutInflater layoutInflater) {
         final View v = layoutInflater.inflate(R.layout.list_item_with_icon_entry, null);

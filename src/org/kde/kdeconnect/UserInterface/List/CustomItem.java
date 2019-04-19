@@ -23,14 +23,21 @@ package org.kde.kdeconnect.UserInterface.List;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
 public class CustomItem implements ListAdapter.Item {
 
     private final View view;
 
     public CustomItem(View v) {
+
+        if (v == null)
+            throw new IllegalArgumentException("View must not be null");
+
         this.view = v;
     }
 
+    @NonNull
     @Override
     public View inflateView(LayoutInflater layoutInflater) {
         return view;

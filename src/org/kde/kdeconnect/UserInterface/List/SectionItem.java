@@ -24,6 +24,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import org.kde.kdeconnect_tp.R;
 
 public class SectionItem implements ListAdapter.Item {
@@ -36,6 +38,7 @@ public class SectionItem implements ListAdapter.Item {
         this.isEmpty = true;
     }
 
+    @NonNull
     @Override
     public View inflateView(LayoutInflater layoutInflater) {
 

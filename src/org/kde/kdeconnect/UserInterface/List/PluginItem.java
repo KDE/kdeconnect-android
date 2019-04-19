@@ -25,6 +25,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
@@ -39,6 +41,7 @@ public class PluginItem implements ListAdapter.Item {
     }
 
 
+    @NonNull
     @Override
     public View inflateView(final LayoutInflater layoutInflater) {
         View v = layoutInflater.inflate(R.layout.list_item_with_icon_entry, null);

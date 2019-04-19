@@ -33,6 +33,7 @@ import java.util.ArrayList;
 public class ListAdapter extends ArrayAdapter<ListAdapter.Item> {
 
     public interface Item {
+        @NonNull
         View inflateView(LayoutInflater layoutInflater);
     }
 
@@ -45,11 +46,10 @@ public class ListAdapter extends ArrayAdapter<ListAdapter.Item> {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-
+    @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         final Item i = items.get(position);
         return i.inflateView(layoutInflater);
     }
-
 }

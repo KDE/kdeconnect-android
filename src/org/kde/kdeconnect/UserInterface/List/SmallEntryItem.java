@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 import org.kde.kdeconnect_tp.R;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 public class SmallEntryItem implements ListAdapter.Item {
@@ -43,6 +44,7 @@ public class SmallEntryItem implements ListAdapter.Item {
         this.clickListener = clickListener;
     }
 
+    @NonNull
     @Override
     public View inflateView(LayoutInflater layoutInflater) {
         View v = layoutInflater.inflate(android.R.layout.simple_list_item_1, null);
