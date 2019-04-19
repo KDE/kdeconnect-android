@@ -45,7 +45,7 @@ class MprisReceiverCallback extends MediaController.Callback {
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public void onPlaybackStateChanged(@NonNull PlaybackState state) {
+    public void onPlaybackStateChanged(PlaybackState state) {
         plugin.sendMetadata(player);
     }
 

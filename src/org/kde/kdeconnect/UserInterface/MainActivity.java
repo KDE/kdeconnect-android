@@ -25,6 +25,7 @@ import org.kde.kdeconnect_tp.R;
 import java.util.Collection;
 import java.util.HashMap;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -359,7 +360,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         boolean grantedPermission = false;
         for (int result : grantResults) {
             if (result == PackageManager.PERMISSION_GRANTED) {

@@ -45,6 +45,7 @@ import org.kde.kdeconnect_tp.R;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -66,7 +67,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     private TextView headerText;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         //Log.e("PairingFragmen", "OnCreateView");

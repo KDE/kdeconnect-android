@@ -26,6 +26,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 
 public class ListAdapter extends ArrayAdapter<ListAdapter.Item> {
@@ -45,7 +47,7 @@ public class ListAdapter extends ArrayAdapter<ListAdapter.Item> {
 
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         final Item i = items.get(position);
         return i.inflateView(layoutInflater);
     }
