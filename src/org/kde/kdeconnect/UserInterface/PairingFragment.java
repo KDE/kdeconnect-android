@@ -98,7 +98,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     }
 
     private void updateComputerListAction() {
-        updateComputerList();
+        updateDeviceList();
         BackgroundService.RunCommand(mActivity, BackgroundService::onNetworkChange);
         mSwipeRefreshLayout.setRefreshing(true);
         new Thread(() -> {
@@ -110,7 +110,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
         }).start();
     }
 
-    private void updateComputerList() {
+    private void updateDeviceList() {
         BackgroundService.RunCommand(mActivity, service -> mActivity.runOnUiThread(() -> {
 
             if (!isAdded()) {
@@ -197,8 +197,8 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     @Override
     public void onStart() {
         super.onStart();
-        BackgroundService.RunCommand(mActivity, service -> service.addDeviceListChangedCallback("PairingFragment", this::updateComputerList));
-        updateComputerList();
+        BackgroundService.RunCommand(mActivity, service -> service.addDeviceListChangedCallback("PairingFragment", this::updateDeviceList));
+        updateDeviceList();
     }
 
     @Override
