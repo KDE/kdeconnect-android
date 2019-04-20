@@ -379,13 +379,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        switch (key) {
-            case DeviceHelper.KEY_DEVICE_NAME_PREFERENCE:
-                mNavViewDeviceName.setText(DeviceHelper.getDeviceName(this));
-                BackgroundService.RunCommand(this, BackgroundService::onNetworkChange);
-                break;
-            default:
-                break;
+        if (DeviceHelper.KEY_DEVICE_NAME_PREFERENCE.equals(key)) {
+            mNavViewDeviceName.setText(DeviceHelper.getDeviceName(this));
+            BackgroundService.RunCommand(this, BackgroundService::onNetworkChange);
         }
     }
 }
