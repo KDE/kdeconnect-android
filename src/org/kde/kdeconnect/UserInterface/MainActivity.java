@@ -347,15 +347,13 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case RESULT_NEEDS_RELOAD:
-                BackgroundService.RunCommand(this, service -> {
-                    Device device = service.getDevice(mCurrentDevice);
-                    device.reloadPluginsFromSettings();
-                });
-                break;
-            default:
-                super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_NEEDS_RELOAD) {
+            BackgroundService.RunCommand(this, service -> {
+                Device device = service.getDevice(mCurrentDevice);
+                device.reloadPluginsFromSettings();
+            });
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
