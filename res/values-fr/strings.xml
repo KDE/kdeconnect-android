@@ -283,4 +283,5 @@
   <string name="notification_channel_receivenotification">Notifications provenant d\'autres périphériques</string>
   <string name="take_picture">Lancer l\'appareil photo</string>
   <string name="plugin_photo_desc">Lancer l\'application appareil photo pour prendre et transférer des photos</string>
+  <string name="no_app_for_opening">Aucune application adaptée trouvée pour ouvrir ce fichier.</string>
 </resources>
