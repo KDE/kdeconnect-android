@@ -99,14 +99,6 @@ public class AndroidSafFileSystemView implements FileSystemView {
 
                     return createAndroidSafSshFile(documentUri, documentUri, filename);
                 } else {
-                    //ChildDocument, strip the leading / from nameWithoutRoot and append that to the treeDocumentId
-                    String treeDocumentId = DocumentsContract.getTreeDocumentId(treeUri);
-                    File nameWithoutRootFile = new File(nameWithoutRoot);
-                    String parentSuffix = nameWithoutRootFile.getParent();
-                    String parentDocumentId = treeDocumentId + (parentSuffix.equals("/") ? "" : parentSuffix.substring(1));
-
-                    Uri parentUri = DocumentsContract.buildDocumentUriUsingTree(treeUri, parentDocumentId);
-
                     /*
                         When sharing a root document tree like "Internal Storage" documentUri looks like:
                             content://com.android.externalstorage.documents/tree/primary:/document/primary:
@@ -114,12 +106,18 @@ public class AndroidSafFileSystemView implements FileSystemView {
                             content://com.android.externalstorage.documents/tree/primary:/document/primary:Folder/file.txt
 
                         Sharing a non root document tree the documentUri looks like:
-                            content://com.android.externalstorage.documents/tree/primary:/document/primary:Download
+                            content://com.android.externalstorage.documents/tree/primary:Download/document/primary:Download
                         For a file or folder beneath that the uri looks like:
-                            content://com.android.externalstorage.documents/tree/primary:/document/primary:Download/Folder/file.txt
+                            content://com.android.externalstorage.documents/tree/primary:Download/document/primary:Download/Folder/file.txt
                      */
-                    String documentId = treeDocumentId + (treeDocumentId.endsWith(":") ? nameWithoutRoot.substring(1) : nameWithoutRoot);
+                    String treeDocumentId = DocumentsContract.getTreeDocumentId(treeUri);
+                    File nameWithoutRootFile = new File(nameWithoutRoot);
+                    String parentSuffix = nameWithoutRootFile.getParent();
+                    String parentDocumentId = treeDocumentId + (parentSuffix.equals("/") ? "" : parentSuffix);
 
+                    Uri parentUri = DocumentsContract.buildDocumentUriUsingTree(treeUri, parentDocumentId);
+
+                    String documentId = treeDocumentId + (treeDocumentId.endsWith(":") ? nameWithoutRoot.substring(1) : nameWithoutRoot);
                     Uri documentUri = DocumentsContract.buildDocumentUriUsingTree(treeUri, documentId);
 
                     return createAndroidSafSshFile(parentUri, documentUri, filename);
