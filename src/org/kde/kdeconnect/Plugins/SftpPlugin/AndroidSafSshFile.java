@@ -32,6 +32,8 @@ import android.provider.DocumentsContract;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import org.apache.sshd.common.file.SshFile;
 import org.kde.kdeconnect.Helpers.FilesHelper;
 
@@ -48,8 +50,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import androidx.annotation.Nullable;
 
 @TargetApi(21)
 public class AndroidSafSshFile implements SshFile {
@@ -398,13 +398,10 @@ public class AndroidSafSshFile implements SshFile {
     @Override
     public void setAttributes(Map<Attribute, Object> attributes) {
         //TODO: Using Java 7 NIO it should be possible to implement setting a number of attributes but does SaF allow that?
-        Log.d(TAG, "setAttributes()");
     }
 
     @Override
-    public void setAttribute(Attribute attribute, Object value) {
-        Log.d(TAG, "setAttribute()");
-    }
+    public void setAttribute(Attribute attribute, Object value) {}
 
     @Override
     public String readSymbolicLink() throws IOException {
