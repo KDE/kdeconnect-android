@@ -87,7 +87,7 @@ public class MprisPlugin extends Plugin {
             return player;
         }
 
-        private boolean isSpotify() {
+        boolean isSpotify() {
             return getPlayer().toLowerCase().equals("spotify");
         }
 
