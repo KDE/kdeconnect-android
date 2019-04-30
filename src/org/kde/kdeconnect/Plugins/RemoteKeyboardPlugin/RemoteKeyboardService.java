@@ -29,6 +29,7 @@ import android.inputmethodservice.KeyboardView.OnKeyboardActionListener;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -119,6 +120,8 @@ public class RemoteKeyboardService
         } finally {
             RemoteKeyboardPlugin.releaseInstances();
         }
+
+        getWindow().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     @Override
@@ -133,6 +136,8 @@ public class RemoteKeyboardService
         } finally {
             RemoteKeyboardPlugin.releaseInstances();
         }
+
+        getWindow().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     @Override
