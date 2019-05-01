@@ -189,6 +189,10 @@ public class AndroidSafSshFile implements SshFile {
 
             if (uri != null) {
                 documentInfo = new DocumentInfo(fileSystemView.context, uri);
+                if (!name.equals(documentInfo.displayName)) {
+                    delete();
+                    return false;
+                }
             }
         } catch (FileNotFoundException ignored) {}
 
