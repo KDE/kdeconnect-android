@@ -104,6 +104,14 @@
     <item quantity="one">File: %1s</item>
     <item quantity="other">(File %2$d di %3$d) : %1$s</item>
   </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">Invio di %1$d file a %2$s</item>
+    <item quantity="other">Invio di %1$d file a %2$s</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">File: %1$s</item>
+    <item quantity="other">(File %2$d di %3$d) : %1$s</item>
+  </plurals>
   <plurals name="received_files_title">
     <item quantity="one">File ricevuto da %1$s</item>
     <item quantity="other">Ricevuti %2$d file da %1$s</item>
@@ -111,6 +119,14 @@
   <plurals name="received_files_fail_title">
     <item quantity="one">Ricezione file da di %1$s non riuscita</item>
     <item quantity="other">Ricezione di %2$d di %3$d file da %1$s non riuscita</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">File inviato a %1$s</item>
+    <item quantity="other">Inviati %2$d file a %1$s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Invio del file a %1$s non riuscito</item>
+    <item quantity="other">Invio di %2$d di %3$d file a %1$s non riuscito</item>
   </plurals>
   <string name="received_file_text">Tocca per aprire «%1s»</string>
   <string name="cannot_create_file">Impossibile creare il file %s</string>
@@ -230,6 +246,7 @@
   <string name="plugins_need_optional_permission">Alcune estensioni hanno funzioni disabilitate per una mancanza di permessi (tocca per maggiori informazioni):</string>
   <string name="share_optional_permission_explanation">Per condividere i file tra il telefono e il tuo desktop devi dare accesso alla memoria del telefono</string>
   <string name="telepathy_permission_explanation">Per leggere e scrivere SMS dal tuo desktop, devi concedere l\'autorizzazione per SMS</string>
+  <string name="telephony_permission_explanation">Per vedere le chiamate telefoniche dal desktop devi dare l\'autorizzazione per accedere al registro delle chiamate e allo stato del telefono</string>
   <string name="telephony_optional_permission_explanation">Per vedere il nome di un contatto invece del numero di telefono devi dare accesso alla rubrica del telefono</string>
   <string name="contacts_permission_explanation">Per condividere la tua rubrica con il desktop, devi concedere l\'autorizzazione per i contatti</string>
   <string name="select_ringtone">Seleziona una suoneria</string>
