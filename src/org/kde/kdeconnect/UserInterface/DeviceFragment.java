@@ -48,13 +48,11 @@ import org.kde.kdeconnect.UserInterface.List.CustomItem;
 import org.kde.kdeconnect.UserInterface.List.FailedPluginListItem;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.PluginItem;
-import org.kde.kdeconnect.UserInterface.List.SmallEntryItem;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import butterknife.BindView;
@@ -404,31 +402,27 @@ public class DeviceFragment extends Fragment {
     };
 
     private void createPluginsList(ConcurrentHashMap<String, Plugin> plugins, int headerText, FailedPluginListItem.Action action) {
-        if (!plugins.isEmpty()) {
+        if (plugins.isEmpty())
+            return;
 
-            TextView header = new TextView(mActivity);
-            header.setPadding(
-                    ((int) (16 * getResources().getDisplayMetrics().density)),
-                    ((int) (28 * getResources().getDisplayMetrics().density)),
-                    ((int) (16 * getResources().getDisplayMetrics().density)),
-                    ((int) (8 * getResources().getDisplayMetrics().density))
-            );
-            header.setOnClickListener(null);
-            header.setOnLongClickListener(null);
-            header.setText(headerText);
+        TextView header = new TextView(mActivity);
+        header.setPadding(
+                ((int) (16 * getResources().getDisplayMetrics().density)),
+                ((int) (28 * getResources().getDisplayMetrics().density)),
+                ((int) (16 * getResources().getDisplayMetrics().density)),
+                ((int) (8 * getResources().getDisplayMetrics().density))
+        );
+        header.setOnClickListener(null);
+        header.setOnLongClickListener(null);
+        header.setText(headerText);
 
-            pluginListItems.add(new CustomItem(header));
-            for (Map.Entry<String, Plugin> entry : plugins.entrySet()) {
-                String pluginKey = entry.getKey();
-                final Plugin plugin = entry.getValue();
-                if (device.isPluginEnabled(pluginKey)) {
-                    if (plugin == null) {
-                        pluginListItems.add(new SmallEntryItem(pluginKey));
-                    } else {
-                        pluginListItems.add(new FailedPluginListItem(plugin, action));
-                    }
-                }
+        pluginListItems.add(new CustomItem(header));
+
+        for (Plugin plugin : plugins.values()) {
+            if (!device.isPluginEnabled(plugin.getPluginKey())) {
+                continue;
             }
+            pluginListItems.add(new FailedPluginListItem(plugin, action));
         }
     }
 }
