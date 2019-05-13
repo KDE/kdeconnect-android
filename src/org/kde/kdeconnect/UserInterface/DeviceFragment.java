@@ -44,15 +44,17 @@ import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.NetworkHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
-import org.kde.kdeconnect.UserInterface.List.CustomItem;
+import org.kde.kdeconnect.UserInterface.List.PluginListHeaderItem;
 import org.kde.kdeconnect.UserInterface.List.FailedPluginListItem;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.PluginItem;
+import org.kde.kdeconnect.UserInterface.List.SmallEntryItem;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import butterknife.BindView;
@@ -405,19 +407,7 @@ public class DeviceFragment extends Fragment {
         if (plugins.isEmpty())
             return;
 
-        TextView header = new TextView(mActivity);
-        header.setPadding(
-                ((int) (16 * getResources().getDisplayMetrics().density)),
-                ((int) (28 * getResources().getDisplayMetrics().density)),
-                ((int) (16 * getResources().getDisplayMetrics().density)),
-                ((int) (8 * getResources().getDisplayMetrics().density))
-        );
-        header.setOnClickListener(null);
-        header.setOnLongClickListener(null);
-        header.setText(headerText);
-
-        pluginListItems.add(new CustomItem(header));
-
+        pluginListItems.add(new PluginListHeaderItem(headerText));
         for (Plugin plugin : plugins.values()) {
             if (!device.isPluginEnabled(plugin.getPluginKey())) {
                 continue;

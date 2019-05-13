@@ -15,32 +15,35 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
-*/
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 package org.kde.kdeconnect.UserInterface.List;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-public class CustomItem implements ListAdapter.Item {
+import org.kde.kdeconnect_tp.R;
 
-    private final View view;
+public class PluginListHeaderItem implements ListAdapter.Item {
 
-    public CustomItem(View v) {
+    private final int text;
 
-        if (v == null)
-            throw new IllegalArgumentException("View must not be null");
-
-        this.view = v;
+    public PluginListHeaderItem(int text) {
+        this.text = text;
     }
 
     @NonNull
     @Override
     public View inflateView(LayoutInflater layoutInflater) {
-        return view;
+        TextView v = (TextView) layoutInflater.inflate(R.layout.list_item_plugin_header, null);
+        v.setText(text);
+        v.setOnClickListener(null);
+        v.setOnLongClickListener(null);
+        return v;
     }
 
 }
