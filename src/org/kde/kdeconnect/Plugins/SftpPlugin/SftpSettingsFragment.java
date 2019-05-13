@@ -42,7 +42,7 @@ import org.json.JSONObject;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.StorageHelper;
-import org.kde.kdeconnect.UserInterface.DeviceSettingsActivity;
+import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
 import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 
@@ -185,7 +185,7 @@ public class SftpSettingsFragment
     private void restoreActionMode() {
         try {
             if (savedActionModeState.getBoolean(KEY_ACTION_MODE_ENABLED)) {
-                actionMode = ((DeviceSettingsActivity)requireActivity()).startSupportActionMode(this);
+                actionMode = ((PluginSettingsActivity)requireActivity()).startSupportActionMode(this);
 
                 if (actionMode != null) {
                     JSONArray jsonArray = savedActionModeState.getJSONArray(KEY_ACTION_MODE_SELECTED_ITEMS);
@@ -438,7 +438,7 @@ public class SftpSettingsFragment
     @Override
     public void onLongClick(StoragePreference storagePreference) {
         if (actionMode == null) {
-            actionMode = ((DeviceSettingsActivity)requireActivity()).startSupportActionMode(this);
+            actionMode = ((PluginSettingsActivity)requireActivity()).startSupportActionMode(this);
 
             if (actionMode != null) {
                 for (int i = 0, count = preferenceCategory.getPreferenceCount(); i < count; i++) {

@@ -229,7 +229,7 @@ public class DeviceFragment extends Fragment {
         }
 
         menu.add(R.string.device_menu_plugins).setOnMenuItemClickListener(menuItem -> {
-            Intent intent = new Intent(mActivity, DeviceSettingsActivity.class);
+            Intent intent = new Intent(mActivity, PluginSettingsActivity.class);
             intent.putExtra("deviceId", mDeviceId);
             startActivity(intent);
             return true;

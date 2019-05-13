@@ -65,7 +65,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="org.kde.kdeconnect.UserInterface.DeviceSettingsActivity"
+            android:name="org.kde.kdeconnect.UserInterface.PluginSettingsActivity"
             android:label="@string/device_menu_plugins"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
             <meta-data
@@ -259,10 +259,10 @@
         <activity
             android:name="org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationFilterActivity"
             android:label="@string/title_activity_notification_filter"
-            android:parentActivityName="org.kde.kdeconnect.UserInterface.DeviceSettingsActivity">
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.PluginSettingsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.kde.kdeconnect.UserInterface.DeviceSettingsActivity" />
+                android:value="org.kde.kdeconnect.UserInterface.PluginSettingsActivity" />
         </activity>
         <activity android:name="org.kde.kdeconnect.Plugins.PhotoPlugin.PhotoActivity" />
 

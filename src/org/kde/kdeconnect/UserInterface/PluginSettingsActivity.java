@@ -32,7 +32,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-public class DeviceSettingsActivity
+public class PluginSettingsActivity
         extends AppCompatActivity
         implements PluginPreference.PluginPreferenceCallback {
 
@@ -47,7 +47,7 @@ public class DeviceSettingsActivity
         ThemeUtil.setUserPreferredTheme(this);
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_device_settings);
+        setContentView(R.layout.activity_plugin_settings);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
@@ -68,7 +68,7 @@ public class DeviceSettingsActivity
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragmentPlaceHolder);
         if (fragment == null) {
             if (pluginKey == null) {
-                fragment = DeviceSettingsFragment.newInstance(deviceId);
+                fragment = PluginSettingsListFragment.newInstance(deviceId);
             } else {
                 Device device = BackgroundService.getInstance().getDevice(deviceId);
                 Plugin plugin = device.getPlugin(pluginKey);

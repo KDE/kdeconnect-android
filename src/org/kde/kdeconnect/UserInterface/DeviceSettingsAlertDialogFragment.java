@@ -53,10 +53,10 @@ public class DeviceSettingsAlertDialogFragment extends AlertDialogFragment {
         setCallback(new Callback() {
             @Override
             public void onPositiveButtonClicked() {
-                Intent intent = new Intent(requireActivity(), DeviceSettingsActivity.class);
+                Intent intent = new Intent(requireActivity(), PluginSettingsActivity.class);
 
-                intent.putExtra(DeviceSettingsActivity.EXTRA_DEVICE_ID, deviceId);
-                intent.putExtra(DeviceSettingsActivity.EXTRA_PLUGIN_KEY, pluginKey);
+                intent.putExtra(PluginSettingsActivity.EXTRA_DEVICE_ID, deviceId);
+                intent.putExtra(PluginSettingsActivity.EXTRA_PLUGIN_KEY, pluginKey);
                 requireActivity().startActivity(intent);
             }
         });

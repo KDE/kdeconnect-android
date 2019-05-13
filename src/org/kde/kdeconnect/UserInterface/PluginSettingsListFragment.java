@@ -35,7 +35,7 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class DeviceSettingsFragment extends PreferenceFragmentCompat {
+public class PluginSettingsListFragment extends PreferenceFragmentCompat {
     private static final String ARG_DEVICE_ID = "deviceId";
     private static final String KEY_RECYCLERVIEW_LAYOUTMANAGER_STATE = "RecyclerViewLayoutmanagerState";
 
@@ -50,8 +50,8 @@ public class DeviceSettingsFragment extends PreferenceFragmentCompat {
      */
     private boolean stateSaved;
 
-    public static DeviceSettingsFragment newInstance(@NonNull String deviceId) {
-        DeviceSettingsFragment fragment = new DeviceSettingsFragment();
+    public static PluginSettingsListFragment newInstance(@NonNull String deviceId) {
+        PluginSettingsListFragment fragment = new PluginSettingsListFragment();
 
         Bundle args = new Bundle();
         args.putString(ARG_DEVICE_ID, deviceId);

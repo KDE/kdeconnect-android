@@ -80,6 +80,6 @@ public class PluginSettingsFragment extends PreferenceFragmentCompat {
     }
 
     public String getDeviceId() {
-        return ((DeviceSettingsActivity)requireActivity()).getDeviceId();
+        return ((PluginSettingsActivity)requireActivity()).getDeviceId();
     }
 }
