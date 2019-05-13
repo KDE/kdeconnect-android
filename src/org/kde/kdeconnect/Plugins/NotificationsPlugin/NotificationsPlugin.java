@@ -344,7 +344,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         Bundle localBundle = new Bundle();
         int i = 0;
         for (RemoteInput remoteIn : repliableNotification.remoteInputs) {
-            getDetailsOfNotification(remoteIn);
             remoteInputs[i] = remoteIn;
             localBundle.putCharSequence(remoteInputs[i].getResultKey(), message);
             i++;
@@ -357,20 +356,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             Log.e("NotificationPlugin", "replyToNotification error: " + e.getMessage());
         }
         pendingIntents.remove(id);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
-    private void getDetailsOfNotification(RemoteInput remoteInput) {
-        //Some more details of RemoteInput... no idea what for but maybe it will be useful at some point
-        String resultKey = remoteInput.getResultKey();
-        String label = remoteInput.getLabel().toString();
-        Boolean canFreeForm = remoteInput.getAllowFreeFormInput();
-        if (remoteInput.getChoices() != null && remoteInput.getChoices().length > 0) {
-            String[] possibleChoices = new String[remoteInput.getChoices().length];
-            for (int i = 0; i < remoteInput.getChoices().length; i++) {
-                possibleChoices[i] = remoteInput.getChoices()[i].toString();
-            }
-        }
     }
 
     private String getNotificationTitle(Notification notification) {
