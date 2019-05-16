@@ -1,6 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_no_devices">Hiçbir aygıta bağlı değil</string>
+  <string name="foreground_notification_devices">Bağlı: %s</string>
   <string name="pref_plugin_telephony">Telefon bildiricisi</string>
+  <string name="pref_plugin_telephony_desc">Gelen aramalar için bildirim gönder</string>
   <string name="pref_plugin_battery">Batarya raporu</string>
   <string name="pref_plugin_battery_desc">Batarya durumunu belirli aralıklarla raporla</string>
   <string name="pref_plugin_sftp">Dosya sistemi gösterme</string>
@@ -9,12 +13,16 @@
   <string name="pref_plugin_clipboard_desc">Pano içeriğini paylaş</string>
   <string name="pref_plugin_mousepad">Uzak girdi</string>
   <string name="pref_plugin_mousepad_desc">Telefonunuzu veya tabletinizi, dokunmatik veya klavye olarak kullanın</string>
+  <string name="pref_plugin_presenter">Uzaktan slayt gösterisi</string>
+  <string name="pref_plugin_presenter_desc">Sunumdaki slaytları değiştirmek için aygıtınızı kullanın</string>
   <string name="pref_plugin_remotekeyboard">Uzak tuşa basmaları getir</string>
   <string name="pref_plugin_remotekeyboard_desc">Tuş basma eylemlerini, uzak aygıtlardan getir</string>
   <string name="pref_plugin_mpris">Çoklu ortam denetimleri</string>
   <string name="pref_plugin_mpris_desc">Ortam oynatıcınız için uzak denetim sağlar</string>
   <string name="pref_plugin_runcommand">Komut Çalıştır</string>
   <string name="pref_plugin_runcommand_desc">Uzak komutları, telefon veya tabletinizden tetikler</string>
+  <string name="pref_plugin_contacts">Rehber Eşitleyici</string>
+  <string name="pref_plugin_contacts_desc">Aygıtın rehberini eşitle</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Ping gönder ve al</string>
   <string name="pref_plugin_notifications">Bildirim eşitleme</string>
@@ -29,6 +37,8 @@
   <string name="cancel">İptal</string>
   <string name="open_settings">Ayarları aç</string>
   <string name="no_permissions">Bildirimler erişebilmek için izine ihtiyacınız var</string>
+  <string name="no_permission_mprisreceiver">Medya oynatıcılarınızı kontrol edebilmek için bildirimlere erişim izni vermeniz gerekir</string>
+  <string name="no_permissions_remotekeyboard">Tuşlara basmak için KDE Connect Uzak Klavye\'yi etkinleştirmeniz gerekir</string>
   <string name="send_ping">Ping gönder</string>
   <string name="open_mpris_controls">Çoklu ortam denetimi</string>
   <string name="remotekeyboard_editing_only_title">Uzak tuşları, sadece düzenleme yaparken işle</string>
@@ -36,9 +46,11 @@
   <string name="remotekeyboard_connected">Uzak klavye bağlantısı etkin</string>
   <string name="remotekeyboard_multiple_connections">Birden çok uzak klavye bağlantısı mevcut, yapılandırmak istediğiniz aygıtı seçin</string>
   <string name="open_mousepad">Girdi sil</string>
+  <string name="mousepad_info">İmleç kontrolü için parmağınızı ekranda hareket ettirin. Bir tıklama için hafifçe vurun, sağ ve orta düğmeler için iki/üç parmağınızı kullanın. Kaydırmak için 2 parmağınızı kullanın. Bırakıp sürüklemek için uzun basın.</string>
   <string name="mousepad_double_tap_settings_title">İki parmak dokunma eylemini ayarla</string>
   <string name="mousepad_triple_tap_settings_title">Üç parmak dokunma eylemini ayarla</string>
   <string name="mousepad_sensitivity_settings_title">Dokunmatik yüzey hassasiyetini ayarla</string>
+  <string name="mousepad_acceleration_profile_settings_title">İşaretçi ivmesini ayarla</string>
   <string name="mousepad_scroll_direction_title">Ters Kaydırma Yönü</string>
   <string-array name="mousepad_tap_entries">
     <item>Sağ tık</item>
@@ -53,12 +65,12 @@
     <item>En Hızlı</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>No Acceleration</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
-    <item>Medium</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>Hızlandırıcı Yok</item>
+    <item>Zayıf</item>
+    <item>Güçsüz</item>
+    <item>Orta</item>
+    <item>Güçlü</item>
+    <item>Kuvvetli</item>
   </string-array>
   <string name="category_connected_devices">Bağlı aygıtlar</string>
   <string name="category_not_paired_devices">Kullanılabilir aygıtlar</string>
@@ -84,7 +96,40 @@
   <string name="pairing_request_from">%1s için eşleşme talebi</string>
   <string name="received_url_title">%1s üzerinden bağlantı alındı</string>
   <string name="received_url_text">\'%1s\' açmak için dokunun</string>
+  <plurals name="incoming_file_title">
+    <item quantity="one">%2$s içinden %1$d dosya alınıyor</item>
+    <item quantity="other">%2$s içinden %1$d dosyalar alınıyor</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="one">Dosya: %1s</item>
+    <item quantity="other">(Dosya %2$d %3$d) : %1$s</item>
+  </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">%1$d dosya %2$s gönderiliyor</item>
+    <item quantity="other">%1$d dosyalar %2$s gönderiliyor</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Dosya: %1$s</item>
+    <item quantity="other">(Dosya %2$d %3$d) : %1$s</item>
+  </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one">%1$s ögesinden alınan dosya</item>
+    <item quantity="other">%1$s içinden %2$d dosya alındı</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">%1$s dosya alınamadı</item>
+    <item quantity="other">%1$s içindeki %2$d / %3$d dosya alınamadı</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">Dosyayı şuraya gönder %1$s</item>
+    <item quantity="other">Gönder %2$d şuraya %1$s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Dosya gönderilemedi %1$s</item>
+    <item quantity="other">Dosya gönderilemedi %2$d %3$d şuraya %1$s</item>
+  </plurals>
   <string name="received_file_text">\'%1s\' açmak için dokunun</string>
+  <string name="cannot_create_file">Dosya oluşturulamıyor %s</string>
   <string name="tap_to_answer">Cevap için dokunun</string>
   <string name="reconnect">Yeniden Bağlan</string>
   <string name="right_click">Sağ Tık Gönder</string>
@@ -96,7 +141,9 @@
   <string name="pairing_reject">Reddet</string>
   <string name="device">Aygıt</string>
   <string name="pair_device">Aygıt eşleştir</string>
+  <string name="settings">Ayarlar</string>
   <string name="mpris_play">Oynat</string>
+  <string name="mpris_pause">Duraklat</string>
   <string name="mpris_previous">Önceki</string>
   <string name="mpris_rew">Geri Sar</string>
   <string name="mpris_ff">Hızlı İleri Sar</string>
@@ -104,6 +151,7 @@
   <string name="mpris_volume">Ses</string>
   <string name="mpris_settings">Çoklu Ortam Ayarları</string>
   <string name="mpris_time_settings_title">İleri/geri düğmeleri</string>
+  <string name="mpris_time_settings_summary">Basıldığında hızlı ileri/geri sarma süresini ayarlayın</string>
   <string-array name="mpris_time_entries">
     <item>10 saniye</item>
     <item>20 saniye</item>
@@ -111,6 +159,9 @@
     <item>1 dakika</item>
     <item>2 dakika</item>
   </string-array>
+  <string name="mpris_notification_settings_title">Medya kontrol bildirimini göster</string>
+  <string name="mpris_notification_settings_summary">KDE Connect\'i açmadan medya oynatıcılarınızı kontrol etmenize izin verin</string>
+  <string name="share_to">Paylaş…</string>
   <string name="protocol_version_older">Bu aygıt, eski bir protokol sürümü kullanıyor</string>
   <string name="protocol_version_newer">Bu aygıt, daha yeni bir protokol sürümü kullanıyor</string>
   <string name="general_settings">Genel Ayarlar</string>
@@ -124,12 +175,19 @@
   <string name="pair_device_action">Yeni bir aygıt eşleştir</string>
   <string name="unpair_device_action">Ayır %s</string>
   <string name="custom_device_list">IP\'ye göre aygıtları ekle</string>
+  <string name="delete_custom_device">Sil %s?</string>
+  <string name="custom_device_deleted">Özel aygıt silindi</string>
+  <string name="custom_device_list_help">Cihazınız otomatik olarak algılanmazsa, İşlem Düğmesine tıklayarak IP adresini veya ana bilgisayar adını ekleyebilirsiniz</string>
+  <string name="custom_device_fab_hint">Aygıt ekle</string>
+  <string name="undo">Geri al</string>
   <string name="share_notification_preference">Sesli bildirimler</string>
   <string name="share_notification_preference_summary">Bir dosya alırken, ses çıkar ve titret</string>
   <string name="share_destination_customize">Hedef dizini özelleştir</string>
   <string name="share_destination_customize_summary_disabled">Gelen dosyalar İndirilenler\'de gözükecektir</string>
   <string name="share_destination_customize_summary_enabled">Dosyalar aşağıdaki dizinden depolanacaktır</string>
   <string name="share_destination_folder_preference">Hedef dizin</string>
+  <string name="share">Paylaş</string>
+  <string name="share_received_file">Paylaş \"%s\"</string>
   <string name="title_activity_notification_filter">Bildirim süzgeci</string>
   <string name="filter_apps_info">Bildirimler, seçili uygulamalar için eşitlenecektir.</string>
   <string name="sftp_internal_storage">Harici depolama</string>
@@ -137,7 +195,28 @@
   <string name="sftp_sdcard">SD kart</string>
   <string name="sftp_readonly">(salt okunur)</string>
   <string name="sftp_camera">Kamera resimleri</string>
+  <string name="add_device_dialog_title">Aygıt ekle</string>
+  <string name="add_device_hint">Makine adı veya IP adresi</string>
+  <string name="sftp_preference_detected_sdcards">Algılanan SD kartlar</string>
+  <string name="sftp_preference_edit_sdcard_title">SD Kartı Düzenle</string>
+  <string name="sftp_preference_configured_storage_locations">Yapılandırılmış depolama yerleri</string>
+  <string name="sftp_preference_add_storage_location_title">Depolama yeri ekle</string>
+  <string name="sftp_preference_edit_storage_location">Depolama yerini düzenle</string>
+  <string name="sftp_preference_add_camera_shortcut">Kamera klasörü kısayolu ekle</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_on">Kamera klasörüne kısayol ekle</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_off">Kamera klasörüne kısayol eklemeyin</string>
+  <string name="sftp_storage_preference_storage_location">Depolama yeri</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">Bu konum zaten yapılandırılmış</string>
+  <string name="sftp_storage_preference_click_to_select">seçmek için tıkla</string>
+  <string name="sftp_storage_preference_display_name">Ekran adı</string>
+  <string name="sftp_storage_preference_display_name_already_used">Bu görünen ad zaten kullanılıyor</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">Görünen ad boş olamaz</string>
+  <string name="sftp_action_mode_menu_delete">Sil</string>
+  <string name="sftp_no_sdcard_detected">SD kart algılanmadı</string>
+  <string name="sftp_no_storage_locations_configured">Yapılandırılmış depolama yeri yok</string>
+  <string name="sftp_saf_permission_explanation">Dosyalara uzaktan erişmek için depolama konumlarını yapılandırmanız gerekir</string>
   <string name="add_host">Makine/IP ekle</string>
+  <string name="add_host_hint">Makine adı yada IP</string>
   <string name="no_players_connected">Onatıcı bulunamadı</string>
   <string name="mpris_player_on_device">%2$s üzerindeki %1$s</string>
   <string name="send_files">Dosyaları gönder</string>
@@ -155,6 +234,7 @@
   <string name="plugin_not_supported">Eklenti, aygıt tarafından desteklenmiyor</string>
   <string name="findmyphone_title">Telefonumu bul</string>
   <string name="findmyphone_title_tablet">Tabletimi bul</string>
+  <string name="findmyphone_title_tv">TV\'mi bul</string>
   <string name="findmyphone_description">Aygıtı bulmak için onu çaldır</string>
   <string name="findmyphone_found">Bulundu</string>
   <string name="open">Aç</string>
@@ -166,5 +246,59 @@
   <string name="plugins_need_optional_permission">Bazı eklentilerin özellikleri, izin yetersizliğinden kapalı gelmektedir (daha fazla bilgi için dokunun):</string>
   <string name="share_optional_permission_explanation">Telefon ve masaüstünüz arasında dosya paylaşılabilmesi için, telefonun depolama alanına erişim izni olmalıdır</string>
   <string name="telepathy_permission_explanation">Masaüstünde SMS yazma ve okuma yapmak için SMS izni gereklidir</string>
+  <string name="telephony_permission_explanation">Masaüstünde telefon görüşmelerini görmek için telefon görüşmesi kayıtlarına ve telefon durumuna izin vermeniz gerekir</string>
   <string name="telephony_optional_permission_explanation">Telefon numarası yerine kişi ismi görebilmek için telefonun kişilerine erişim gereklidir</string>
+  <string name="contacts_permission_explanation">Rehberinizi masaüstüyle paylaşmak için rehbere izin vermeniz gerekir</string>
+  <string name="select_ringtone">Bir zil sesi seç</string>
+  <string name="telephony_pref_blocked_title">Engellenen numaralar</string>
+  <string name="telephony_pref_blocked_dialog_desc">Bu numaralardan gelen aramaları ve SMS\'leri gösterme. Lütfen her satıra bir numara belirtin</string>
+  <string name="mpris_coverart_description">Güncel medyanın kapak resmi</string>
+  <string name="device_icon_description">Aygıt simgesi</string>
+  <string name="settings_icon_description">Ayarlar simgesi</string>
+  <string name="presenter_fullscreen">Tam ekran</string>
+  <string name="presenter_exit">Sunumdan çık</string>
+  <string name="presenter_lock_tip">Bir önceki/bir sonraki slayta geçmek için aygıtınızı kilitleyebilir ve ses seviyesi tuşlarını kullanabilirsiniz</string>
+  <string name="add_command">Komut ekle</string>
+  <string name="addcommand_explanation">Kayıtlı komut yok</string>
+  <string name="addcommand_explanation2">KDE Connect Sistem Ayarlarında yeni komutlar ekleyebilirsiniz</string>
+  <string name="add_command_description">Masaüstüne komut ekleyebilirsiniz</string>
+  <string name="pref_plugin_mprisreceiver">Medya Oynatıcı Kontrolü</string>
+  <string name="pref_plugin_mprisreceiver_desc">Telefonunuzun medya oynatıcılarını başka bir cihazdan kontrol edin</string>
+  <string name="dark_theme">Karanlık tema</string>
+  <string name="notification_channel_default">Diğer bildirimler</string>
+  <string name="notification_channel_persistent">Kalıcı gösterge</string>
+  <string name="notification_channel_media_control">Medya kontrolü</string>
+  <string name="notification_channel_filetransfer">Dosya aktarımı</string>
+  <string name="mpris_stop">Geçerli oynatıcıyı durdur</string>
+  <string name="copy_url_to_clipboard">URL\'yi panoya kopyala</string>
+  <string name="clipboard_toast">Panoya kopyalandı</string>
+  <string name="runcommand_notreachable">Aygıt erişilebilir değil</string>
+  <string name="runcommand_notpaired">Aygıt eşleştirilmedi</string>
+  <string name="runcommand_nosuchdevice">Böyle bir aygıt yok</string>
+  <string name="runcommand_noruncommandplugin">Bu cihazda Komut Çalıştır Eklentisi etkin değil</string>
+  <string name="pref_plugin_findremotedevice">Uzak aygıtı bul</string>
+  <string name="pref_plugin_findremotedevice_desc">Uzak aygıtı çaldır</string>
+  <string name="ring">Zil sesi</string>
+  <string name="pref_plugin_systemvolume">Sistem sesi</string>
+  <string name="pref_plugin_systemvolume_desc">Uzak cihazın sistem sesini kontrol et</string>
+  <string name="mute">Sessiz</string>
+  <string name="all">Tümü</string>
+  <string name="devices">Aygıtlar</string>
+  <string name="settings_rename">Aygıt adı</string>
+  <string name="settings_dark_mode">Karanlık tema</string>
+  <string name="settings_more_settings_title">Daha fazla ayar</string>
+  <string name="settings_more_settings_text">Aygıt başına ayarlar, bir aygıt içinden \'Eklenti ayarları\' altında bulunabilir.</string>
+  <string name="setting_persistent_notification">Kalıcı bildirim göster</string>
+  <string name="setting_persistent_notification_oreo">Kalıcı bildirim</string>
+  <string name="setting_persistent_notification_description">Bildirim ayarlarında etkinleştirmek/devre dışı bırakmak için dokun</string>
+  <string name="extra_options">Ek seçenekler</string>
+  <string name="privacy_options">Gizlilik seçenekleri</string>
+  <string name="set_privacy_options">Gizlilik seçeneklerinizi ayarlayın</string>
+  <string name="new_notification">Yeni bildirim</string>
+  <string name="block_contents">Bildirimlerin içeriğini engelle</string>
+  <string name="block_images">Bildirimlerde görüntüleri engelle</string>
+  <string name="notification_channel_receivenotification">Diğer aygıtlardan gelen bildirimler</string>
+  <string name="take_picture">Kamerayı başlat</string>
+  <string name="plugin_photo_desc">Fotoğraf çekmeyi ve aktarmayı kolaylaştırmak için kamera uygulamasını başlatın</string>
+  <string name="no_app_for_opening">Bu dosyayı açmak için uygun bir uygulama bulunamadı</string>
 </resources>
