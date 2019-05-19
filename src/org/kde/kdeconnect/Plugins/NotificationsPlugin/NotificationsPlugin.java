@@ -293,8 +293,11 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 pendingIntents.put(rn.id, rn);
             }
             np.set("ticker", getTickerText(notification));
-            np.set("title", getNotificationTitle(notification));
-            np.set("text", getNotificationText(notification));
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                np.set("title", notification.extras.getString(Notification.EXTRA_TITLE));
+                np.set("text", notification.extras.getString(Notification.EXTRA_TEXT));
+            }
         }
 
         device.sendPacket(np);
@@ -358,25 +361,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         pendingIntents.remove(id);
     }
 
-    private String getNotificationTitle(Notification notification) {
-        final String TITLE_KEY = "android.title";
-        final String TEXT_KEY = "android.text";
-        String title = "";
-
-        if (notification != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                try {
-                    Bundle extras = notification.extras;
-                    title = extractStringFromExtra(extras, TITLE_KEY);
-                } catch (Exception e) {
-                    Log.e("NotificationPlugin", "problem parsing notification extras for " + notification.tickerText, e);
-                }
-            }
-        }
-
-        return title;
-    }
-
     private RepliableNotification extractRepliableNotification(StatusBarNotification statusBarNotification) {
         RepliableNotification repliableNotification = new RepliableNotification();
 
@@ -403,26 +387,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
         return repliableNotification;
     }
-
-    private String getNotificationText(Notification notification) {
-        final String TEXT_KEY = "android.text";
-        String text = "";
-
-        if (notification != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                try {
-                    Bundle extras = notification.extras;
-                    Object extraTextExtra = extras.get(TEXT_KEY);
-                    if (extraTextExtra != null) text = extraTextExtra.toString();
-                } catch (Exception e) {
-                    Log.e("NotificationPlugin", "problem parsing notification extras for " + notification.tickerText, e);
-                }
-            }
-        }
-
-        return text;
-    }
-
 
     private static String extractStringFromExtra(Bundle extras, String key) {
         Object extra = extras.get(key);
