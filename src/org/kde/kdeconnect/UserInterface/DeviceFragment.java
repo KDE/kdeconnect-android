@@ -71,6 +71,8 @@ public class DeviceFragment extends Fragment {
     private static final String ARG_DEVICE_ID = "deviceId";
     private static final String ARG_FROM_DEVICE_LIST = "fromDeviceList";
 
+    private static final String TAG = "KDE/DeviceFragment";
+
     private View rootView;
     private String mDeviceId;
     private Device device;
@@ -133,12 +135,10 @@ public class DeviceFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
-        //Log.e("DeviceFragment", "device: " + deviceId);
-
         BackgroundService.RunCommand(mActivity, service -> {
             device = service.getDevice(mDeviceId);
             if (device == null) {
-                Log.e("DeviceFragment", "Trying to display a device fragment but the device is not present");
+                Log.e(TAG, "Trying to display a device fragment but the device is not present");
                 mActivity.onDeviceSelected(null);
                 return;
             }
@@ -207,8 +207,6 @@ public class DeviceFragment extends Fragment {
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-
-        //Log.e("DeviceFragment", "onPrepareOptionsMenu");
 
         super.onPrepareOptionsMenu(menu);
         menu.clear();
@@ -290,7 +288,6 @@ public class DeviceFragment extends Fragment {
     }
 
     private void refreshUI() {
-        //Log.e("DeviceFragment", "refreshUI");
 
         if (device == null || rootView == null) {
             return;
@@ -355,7 +352,7 @@ public class DeviceFragment extends Fragment {
                     } catch (IllegalStateException e) {
                         //Ignore: The activity was closed while we were trying to update it
                     } catch (ConcurrentModificationException e) {
-                        Log.e("DeviceActivity", "ConcurrentModificationException");
+                        Log.e(TAG, "ConcurrentModificationException");
                         this.run(); //Try again
                     }
 
