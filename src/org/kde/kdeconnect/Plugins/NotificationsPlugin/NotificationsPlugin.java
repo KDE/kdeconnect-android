@@ -73,7 +73,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     private final static String PACKET_TYPE_NOTIFICATION_REPLY = "kdeconnect.notification.reply";
     private final static String PACKET_TYPE_NOTIFICATION_ACTION = "kdeconnect.notification.action";
 
-    private final static String TAG = "NotificationsPlugin";
+    private final static String TAG = "KDE/NotificationsPlugin";
 
     private AppDatabase appDatabase;
 
@@ -157,7 +157,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     @Override
     public void onNotificationRemoved(StatusBarNotification statusBarNotification) {
         if (statusBarNotification == null) {
-            Log.w("onNotificationRemoved", "notification is null");
+            Log.w(TAG, "onNotificationRemoved: notification is null");
             return;
         }
         String id = getNotificationKeyCompat(statusBarNotification);
@@ -249,14 +249,12 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                     appIcon.compress(Bitmap.CompressFormat.PNG, 90, outStream);
                     byte[] bitmapData = outStream.toByteArray();
 
-                    Log.e("PAYLOAD", "PAYLOAD: " + getChecksum(bitmapData));
-
                     np.setPayload(new NetworkPacket.Payload(bitmapData));
 
                     np.set("payloadHash", getChecksum(bitmapData));
                 }
             } catch (Exception e) {
-                Log.e("NotificationsPlugin", "Error retrieving icon", e);
+                Log.e(TAG, "Error retrieving icon", e);
             }
         } else {
             currentNotifications.add(key);
@@ -331,13 +329,13 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     private void replyToNotification(String id, String message) {
         if (pendingIntents.isEmpty() || !pendingIntents.containsKey(id)) {
-            Log.e("NotificationsPlugin", "No such notification");
+            Log.e(TAG, "No such notification");
             return;
         }
 
         RepliableNotification repliableNotification = pendingIntents.get(id);
         if (repliableNotification == null) {
-            Log.e("NotificationsPlugin", "No such notification");
+            Log.e(TAG, "No such notification");
             return;
         }
         RemoteInput[] remoteInputs = new RemoteInput[repliableNotification.remoteInputs.size()];
@@ -356,7 +354,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         try {
             repliableNotification.pendingIntent.send(context, 0, localIntent);
         } catch (PendingIntent.CanceledException e) {
-            Log.e("NotificationPlugin", "replyToNotification error: " + e.getMessage());
+            Log.e(TAG, "replyToNotification error: " + e.getMessage());
         }
         pendingIntents.remove(id);
     }
@@ -380,7 +378,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                         repliableNotification.tag = statusBarNotification.getTag();//TODO find how to pass Tag with sending PendingIntent, might fix Hangout problem
                     }
                 } catch (Exception e) {
-                    Log.e("NotificationPlugin", "problem extracting notification wear for " + statusBarNotification.getNotification().tickerText, e);
+                    Log.e(TAG, "problem extracting notification wear for " + statusBarNotification.getNotification().tickerText, e);
                 }
             }
         }
@@ -397,7 +395,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         } else if (extra instanceof SpannableString) {
             return extra.toString();
         } else {
-            Log.e("NotificationsPlugin", "Don't know how to extract text from extra of type: " + extra.getClass().getCanonicalName());
+            Log.e(TAG, "Don't know how to extract text from extra of type: " + extra.getClass().getCanonicalName());
             return null;
         }
     }
@@ -427,7 +425,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                         ticker = extraText;
                     }
                 } catch (Exception e) {
-                    Log.e("NotificationPlugin", "problem parsing notification extras for " + notification.tickerText, e);
+                    Log.e(TAG, "problem parsing notification extras for " + notification.tickerText, e);
                 }
             }
 
@@ -522,7 +520,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         } else {
             int first = compatKey.indexOf(':');
             if (first == -1) {
-                Log.e("cancelNotificationCompa", "Not formatted like a notification key: " + compatKey);
+                Log.e(TAG, "Not formatted like a notification key: " + compatKey);
                 return;
             }
             int last = compatKey.lastIndexOf(':');
@@ -565,7 +563,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             md.update(data);
             return bytesToHex(md.digest());
         } catch (NoSuchAlgorithmException e) {
-            Log.e("KDEConnect", "Error while generating checksum", e);
+            Log.e(TAG, "Error while generating checksum", e);
         }
         return null;
     }
