@@ -191,7 +191,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
         if (!appDatabase.isEnabled(statusBarNotification.getPackageName())) {
             return;
-            // we dont want notification from this app
+            // we don't want notification from this app
         }
 
         String key = getNotificationKeyCompat(statusBarNotification);
