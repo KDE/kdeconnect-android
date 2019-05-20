@@ -1,6 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_no_devices">연결된 장치 없음</string>
+  <string name="foreground_notification_devices">연결됨: %s</string>
   <string name="pref_plugin_telephony">전화 알림이</string>
+  <string name="pref_plugin_telephony_desc">수신 통화 알림 보내기</string>
   <string name="pref_plugin_battery">배터리 보고</string>
   <string name="pref_plugin_battery_desc">주기적으로 배터리 상태 보고</string>
   <string name="pref_plugin_sftp">파일 시스템 보기</string>
@@ -9,6 +13,7 @@
   <string name="pref_plugin_clipboard_desc">클립보드 내용 동기화</string>
   <string name="pref_plugin_mousepad">원격 입력</string>
   <string name="pref_plugin_mousepad_desc">내 휴대폰이나 태블릿을 터치패드와 키보드로 사용하기</string>
+  <string name="pref_plugin_presenter">슬라이드 쇼 리모콘</string>
   <string name="pref_plugin_presenter_desc">내 장치로 프레젠테이션 슬라이드 전환하기</string>
   <string name="pref_plugin_remotekeyboard">원격 키 입력 받기</string>
   <string name="pref_plugin_remotekeyboard_desc">원격 장치의 키 입력 이벤트 받기</string>
@@ -33,6 +38,7 @@
   <string name="open_settings">설정 열기</string>
   <string name="no_permissions">알림 접근 권한이 필요합니다</string>
   <string name="no_permission_mprisreceiver">미디어 재생기를 제어하려면 알림 접근 권한이 필요합니다</string>
+  <string name="no_permissions_remotekeyboard">키 입력을 받으려면 KDE Connect 원격 키보드를 활성화해야 합니다</string>
   <string name="send_ping">핑 보내기</string>
   <string name="open_mpris_controls">멀티미디어 제어</string>
   <string name="remotekeyboard_editing_only_title">편집할 때에만 원격 키 처리하기</string>
@@ -90,7 +96,32 @@
   <string name="pairing_request_from">%1s에서 연결 요청</string>
   <string name="received_url_title">%1s에서 링크 받음</string>
   <string name="received_url_text">\'%1s\'을(를) 열려면 누르십시오</string>
+  <plurals name="incoming_file_title">
+    <item quantity="other">%2$s에서 보낸 파일 %1$d개 받음</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="other">(파일 %3$d개 중 %2$d개): %1$s</item>
+  </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="other">%2$s(으)로 파일 %1$d개 보내는 중</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="other">(파일 %3$d개 중 %2$d개): %1$s</item>
+  </plurals>
+  <plurals name="received_files_title">
+    <item quantity="other">%1$s에서 파일 %2$d개 받음</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="other">%1$s에서 보낸 파일 %3$d개 중 %2$d개를 받을 수 없음</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="other">%1$s(으)로 파일 %2$d개 보냄</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="other">%1$s(으)로 파일 %3$d개 중 %2$d개를 보낼 수 없음</item>
+  </plurals>
   <string name="received_file_text">\'%1s\'을(를) 열려면 누르십시오</string>
+  <string name="cannot_create_file">파일 %s을(를) 만들 수 없음</string>
   <string name="tap_to_answer">눌러서 응답하기</string>
   <string name="reconnect">다시 연결</string>
   <string name="right_click">오른쪽 단추 누름 신호 보내기</string>
@@ -102,6 +133,7 @@
   <string name="pairing_reject">거부</string>
   <string name="device">장치</string>
   <string name="pair_device">장치 연결</string>
+  <string name="settings">설정</string>
   <string name="mpris_play">재생</string>
   <string name="mpris_pause">일시 정지</string>
   <string name="mpris_previous">이전</string>
@@ -111,6 +143,7 @@
   <string name="mpris_volume">음량</string>
   <string name="mpris_settings">멀티미디어 설정</string>
   <string name="mpris_time_settings_title">되감기/빨리감기 단추</string>
+  <string name="mpris_time_settings_summary">눌렀을 때 되감거나 빨리 감을 시간 조정</string>
   <string-array name="mpris_time_entries">
     <item>10초</item>
     <item>20초</item>
@@ -119,6 +152,8 @@
     <item>2분</item>
   </string-array>
   <string name="mpris_notification_settings_title">미디어 제어 알림 보이기</string>
+  <string name="mpris_notification_settings_summary">KDE Connect를 열지 않고 미디어 재생기 제어</string>
+  <string name="share_to">다음으로 공유…</string>
   <string name="protocol_version_older">이 장치의 프로토콜 버전이 오래되었습니다</string>
   <string name="protocol_version_newer">이 장치의 프로토콜 버전이 더 새롭습니다</string>
   <string name="general_settings">일반 설정</string>
@@ -132,6 +167,11 @@
   <string name="pair_device_action">새 장치 연결</string>
   <string name="unpair_device_action">%s 연결 해제</string>
   <string name="custom_device_list">IP로 장치 추가</string>
+  <string name="delete_custom_device">%s을(를) 삭제하시겠습니까?</string>
+  <string name="custom_device_deleted">사용자 정의 장치 삭제됨</string>
+  <string name="custom_device_list_help">장치가 자동으로 감지되지 않았다면 떠 다니는 동작 단추를 눌러서 IP 주소나 호스트 이름으로 장치를 수동으로 추가할 수 있습니다</string>
+  <string name="custom_device_fab_hint">장치 추가</string>
+  <string name="undo">실행 취소</string>
   <string name="share_notification_preference">시끄러운 알림</string>
   <string name="share_notification_preference_summary">파일을 받았을 때 진동과 소리로 알림</string>
   <string name="share_destination_customize">대상 디렉터리 사용자 정의</string>
@@ -147,7 +187,28 @@
   <string name="sftp_sdcard">SD 카드</string>
   <string name="sftp_readonly">(읽기 전용)</string>
   <string name="sftp_camera">카메라 사진</string>
+  <string name="add_device_dialog_title">장치 추가</string>
+  <string name="add_device_hint">호스트 이름이나 IP 주소</string>
+  <string name="sftp_preference_detected_sdcards">감지된 SD 카드</string>
+  <string name="sftp_preference_edit_sdcard_title">SD 카드 편집</string>
+  <string name="sftp_preference_configured_storage_locations">설정된 저장소 위치</string>
+  <string name="sftp_preference_add_storage_location_title">저장소 위치 추가</string>
+  <string name="sftp_preference_edit_storage_location">저장소 위치 편집</string>
+  <string name="sftp_preference_add_camera_shortcut">카메라 폴더 바로 가기 추가</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_on">카메라 폴더 바로 가기 추가</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_off">카메라 폴더 바로 가기 추가하지 않음</string>
+  <string name="sftp_storage_preference_storage_location">저장소 위치</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">이 위치는 이미 설정됨</string>
+  <string name="sftp_storage_preference_click_to_select">눌러서 선택</string>
+  <string name="sftp_storage_preference_display_name">표시 이름</string>
+  <string name="sftp_storage_preference_display_name_already_used">이 표시 이름이 이미 사용 중임</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">표시 이름을 비워둘 수 없음</string>
+  <string name="sftp_action_mode_menu_delete">삭제</string>
+  <string name="sftp_no_sdcard_detected">SD 카드가 감지되지 않았음</string>
+  <string name="sftp_no_storage_locations_configured">저장소 위치가 설정되지 않았음</string>
+  <string name="sftp_saf_permission_explanation">원격으로 파일에 접근하려면 저장소 위치를 설정해야 함</string>
   <string name="add_host">호스트/IP 주소 추가</string>
+  <string name="add_host_hint">호스트 이름이나 IP</string>
   <string name="no_players_connected">재생기를 찾을 수 없음</string>
   <string name="mpris_player_on_device">%2$s의 %1$s</string>
   <string name="send_files">파일 보내기</string>
@@ -177,6 +238,7 @@
   <string name="plugins_need_optional_permission">일부 플러그인은 권한이 없어서 비활성화되었습니다(정보를 보려면 누르기):</string>
   <string name="share_optional_permission_explanation">휴대폰과 데스크톱간 파일을 공유하려면 휴대폰 저장소 접근 권한이 필요합니다</string>
   <string name="telepathy_permission_explanation">데스크톱에서 문자 메시지를 읽고 보내려면 문자 메시지 접근 권한이 필요합니다</string>
+  <string name="telephony_permission_explanation">데스크톱에서 통화와 문자 메시지를 보려면 통화 기록 및 휴대폰 상태 접근 권한이 필요합니다</string>
   <string name="telephony_optional_permission_explanation">전화번호 대신 연락처에 등록된 이름을 보려면 주소록 접근 권한이 필요합니다</string>
   <string name="contacts_permission_explanation">데스크톱과 주소록을 공유하려면 주소록 접근 권한이 필요합니다</string>
   <string name="select_ringtone">벨소리 선택</string>
@@ -187,6 +249,7 @@
   <string name="settings_icon_description">설정 아이콘</string>
   <string name="presenter_fullscreen">전체 화면</string>
   <string name="presenter_exit">프레젠테이션 끝내기</string>
+  <string name="presenter_lock_tip">장치 잠금 상태에서는 음량 키를 이전/다음 슬라이드 단추로 사용할 수 있습니다</string>
   <string name="add_command">명령 추가</string>
   <string name="addcommand_explanation">등록된 명령이 없습니다</string>
   <string name="addcommand_explanation2">시스템 설정의 KDE Connect에서 새로운 명령을 추가할 수 있습니다</string>
@@ -194,7 +257,11 @@
   <string name="pref_plugin_mprisreceiver">미디어 재생기 제어</string>
   <string name="pref_plugin_mprisreceiver_desc">다른 장치에서 휴대폰 미디어 재생기 제어</string>
   <string name="dark_theme">어두운 테마</string>
-  <string name="mpris_stop">현재 플레이어 정지</string>
+  <string name="notification_channel_default">기타 알림</string>
+  <string name="notification_channel_persistent">항상 표시된 표시기</string>
+  <string name="notification_channel_media_control">미디어 제어</string>
+  <string name="notification_channel_filetransfer">파일 전송</string>
+  <string name="mpris_stop">현재 재생기 정지</string>
   <string name="copy_url_to_clipboard">클립보드로 URL 복사</string>
   <string name="clipboard_toast">클립보드에 복사됨</string>
   <string name="runcommand_notreachable">장치에 접근할 수 없음</string>
@@ -207,4 +274,23 @@
   <string name="pref_plugin_systemvolume">시스템 음량</string>
   <string name="pref_plugin_systemvolume_desc">원격 장치의 시스템 음량 제어</string>
   <string name="mute">음소거</string>
+  <string name="all">모두</string>
+  <string name="devices">장치</string>
+  <string name="settings_rename">장치 이름</string>
+  <string name="settings_dark_mode">어두운 테마</string>
+  <string name="settings_more_settings_title">더 많은 설정</string>
+  <string name="settings_more_settings_text">장치별 설정은 각각 장치의 \'플러그인 설정\'에서 확인할 수 있습니다.</string>
+  <string name="setting_persistent_notification">항상 표시되는 알림 보이기</string>
+  <string name="setting_persistent_notification_oreo">항상 표시되는 알림</string>
+  <string name="setting_persistent_notification_description">알림 설정에서 활성화/비활성화하려면 누르십시오</string>
+  <string name="extra_options">추가 설정</string>
+  <string name="privacy_options">프라이버시 설정</string>
+  <string name="set_privacy_options">프라이버시 설정 변경</string>
+  <string name="new_notification">새 알림</string>
+  <string name="block_contents">알림 내용 숨기기</string>
+  <string name="block_images">알림 이미지 숨기기</string>
+  <string name="notification_channel_receivenotification">다른 장치의 알림</string>
+  <string name="take_picture">카메라 실행</string>
+  <string name="plugin_photo_desc">카메라 앱을 실행하여 쉽게 사진을 찍고 전송</string>
+  <string name="no_app_for_opening">이 파일을 열 수 있는 앱을 찾을 수 없음</string>
 </resources>
