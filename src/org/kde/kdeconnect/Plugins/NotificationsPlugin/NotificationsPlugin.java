@@ -35,10 +35,15 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
 import android.text.SpannableString;
 import android.util.Log;
+import android.util.Pair;
+
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
 
 import org.json.JSONArray;
 import org.kde.kdeconnect.Helpers.AppsHelper;
@@ -60,9 +65,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import androidx.annotation.RequiresApi;
-import androidx.core.app.NotificationCompat;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 @PluginFactory.LoadablePlugin
@@ -292,13 +294,64 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             }
             np.set("ticker", getTickerText(notification));
 
+            Pair<String, String> conversation = extractConversation(notification, np);
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                np.set("title", notification.extras.getString(Notification.EXTRA_TITLE));
-                np.set("text", notification.extras.getString(Notification.EXTRA_TEXT));
+
+                if (conversation.first != null) {
+                    np.set("title", conversation.first);
+                } else {
+                    np.set("title", notification.extras.getString(Notification.EXTRA_TITLE));
+                }
+
+                if (conversation.second != null) {
+                    np.set("text", conversation.second);
+                } else {
+                    np.set("text", notification.extras.getString(Notification.EXTRA_TEXT));
+                }
             }
         }
 
         device.sendPacket(np);
+    }
+
+    private Pair<String, String> extractConversation(Notification notification, NetworkPacket np) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
+            return new Pair<>(null, null);
+
+        if (!notification.extras.containsKey(Notification.EXTRA_MESSAGES))
+            return new Pair<>(null, null);
+
+        Parcelable[] ms = notification.extras.getParcelableArray(Notification.EXTRA_MESSAGES);
+
+        if (ms == null)
+            return new Pair<>(null, null);
+
+        String title = notification.extras.getString(Notification.EXTRA_CONVERSATION_TITLE);
+
+        boolean isGroupConversation = false;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            if (notification.extras.containsKey(Notification.EXTRA_IS_GROUP_CONVERSATION)) {
+                isGroupConversation = notification.extras.getBoolean(Notification.EXTRA_IS_GROUP_CONVERSATION);
+            }
+        }
+
+        StringBuilder messagesBuilder = new StringBuilder();
+
+        for (Parcelable p : ms) {
+            Bundle m = (Bundle) p;
+
+            if (isGroupConversation) {
+                messagesBuilder.append(m.get("sender"));
+                messagesBuilder.append(": ");
+            }
+
+            messagesBuilder.append(m.getString("text"));
+            messagesBuilder.append("\n");
+        }
+
+        return new Pair<>(title, messagesBuilder.toString());
     }
 
     private Bitmap drawableToBitmap(Drawable drawable) {
