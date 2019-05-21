@@ -236,25 +236,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             }
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            if (notification.actions != null && notification.actions.length > 0) {
-                actions.put(key, new LinkedList<>());
-                JSONArray jsonArray = new JSONArray();
-                for (Notification.Action action : notification.actions) {
-
-                    if (null == action.title)
-                        continue;
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH)
-                        if (action.getRemoteInputs() != null && action.getRemoteInputs().length > 0)
-                            continue;
-
-                    jsonArray.put(action.title.toString());
-                    actions.get(key).add(action);
-                }
-                np.set("actions", jsonArray);
-            }
-        }
+        np.set("actions", extractActions(notification, key));
 
         np.set("id", key);
         np.set("isClearable", statusBarNotification.isClearable());
@@ -329,6 +311,37 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         }
 
         return null;
+    }
+
+    @Nullable
+    private JSONArray extractActions(Notification notification, String key) {
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+            return null;
+        }
+
+        if (notification.actions == null || notification.actions.length == 0) {
+            return null;
+        }
+
+        actions.put(key, new LinkedList<>());
+        JSONArray jsonArray = new JSONArray();
+
+        for (Notification.Action action : notification.actions) {
+
+            if (null == action.title)
+                continue;
+
+            // Check whether it is a reply action. We have special treatment for them
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH)
+                if (action.getRemoteInputs() != null && action.getRemoteInputs().length > 0)
+                    continue;
+
+            jsonArray.put(action.title.toString());
+            actions.get(key).add(action);
+        }
+
+        return jsonArray;
     }
 
     private Pair<String, String> extractConversation(Notification notification) {
