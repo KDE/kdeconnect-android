@@ -228,14 +228,14 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             try {
                 Bitmap appIcon;
                 Context foreignContext = context.createPackageContext(statusBarNotification.getPackageName(), 0);
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     appIcon = iconToBitmap(foreignContext, notification.getLargeIcon());
                 } else {
                     appIcon = notification.largeIcon;
                 }
 
                 if (appIcon == null) {
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         appIcon = iconToBitmap(foreignContext, notification.getSmallIcon());
                     } else {
                         PackageManager pm = context.getPackageManager();
