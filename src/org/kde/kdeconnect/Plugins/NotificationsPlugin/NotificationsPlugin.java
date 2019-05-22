@@ -294,7 +294,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             }
             np.set("ticker", getTickerText(notification));
 
-            Pair<String, String> conversation = extractConversation(notification, np);
+            Pair<String, String> conversation = extractConversation(notification);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 
@@ -315,7 +315,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         device.sendPacket(np);
     }
 
-    private Pair<String, String> extractConversation(Notification notification, NetworkPacket np) {
+    private Pair<String, String> extractConversation(Notification notification) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)
             return new Pair<>(null, null);
 
