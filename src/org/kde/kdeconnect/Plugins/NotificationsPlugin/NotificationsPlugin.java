@@ -304,15 +304,25 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                     np.set("title", notification.extras.getString(Notification.EXTRA_TITLE));
                 }
 
-                if (conversation.second != null) {
-                    np.set("text", conversation.second);
-                } else {
-                    np.set("text", notification.extras.getString(Notification.EXTRA_TEXT));
-                }
+                np.set("text", extractText(notification, conversation));
             }
         }
 
         device.sendPacket(np);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private String extractText(Notification notification, Pair<String, String> conversation) {
+
+        if (conversation.second != null) {
+            return conversation.second;
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && notification.extras.containsKey(Notification.EXTRA_BIG_TEXT)) {
+            return extractStringFromExtra(notification.extras, Notification.EXTRA_BIG_TEXT);
+        }
+
+        return notification.extras.getString(Notification.EXTRA_TEXT);
     }
 
     private Pair<String, String> extractConversation(Notification notification) {
