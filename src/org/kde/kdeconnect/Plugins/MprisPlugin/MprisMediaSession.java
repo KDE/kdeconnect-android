@@ -383,7 +383,7 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
                 iCloseNotification.setAction(MprisMediaNotificationReceiver.ACTION_CLOSE_NOTIFICATION);
                 iCloseNotification.putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDevice);
                 iCloseNotification.putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, notificationPlayer.getPlayer());
-                PendingIntent piCloseNotification = PendingIntent.getActivity(service, 0, iCloseNotification, PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent piCloseNotification = PendingIntent.getBroadcast(service, 0, iCloseNotification, PendingIntent.FLAG_UPDATE_CURRENT);
                 notification.setDeleteIntent(piCloseNotification);
             }
 
@@ -448,6 +448,9 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
         //Clear the current player and media session
         notificationPlayer = null;
         if (mediaSession != null) {
+            mediaSession.setPlaybackState(new PlaybackStateCompat.Builder().build());
+            mediaSession.setMetadata(new MediaMetadataCompat.Builder().build());
+            mediaSession.setActive(false);
             mediaSession.release();
             mediaSession = null;
         }
