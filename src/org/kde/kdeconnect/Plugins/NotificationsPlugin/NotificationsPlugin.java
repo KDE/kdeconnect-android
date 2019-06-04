@@ -242,9 +242,10 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         np.set("isClearable", statusBarNotification.isClearable());
         np.set("appName", appName == null ? packageName : appName);
         np.set("time", Long.toString(statusBarNotification.getPostTime()));
+
         if (!appDatabase.getPrivacy(packageName, AppDatabase.PrivacyOptions.BLOCK_CONTENTS)) {
             RepliableNotification rn = extractRepliableNotification(statusBarNotification);
-            if (rn.pendingIntent != null) {
+            if (rn != null) {
                 np.set("requestReplyId", rn.id);
                 pendingIntents.put(rn.id, rn);
             }
@@ -441,31 +442,31 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         pendingIntents.remove(id);
     }
 
+    @Nullable
     private RepliableNotification extractRepliableNotification(StatusBarNotification statusBarNotification) {
-        RepliableNotification repliableNotification = new RepliableNotification();
 
-        if (statusBarNotification != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                try {
-                    if (statusBarNotification.getNotification().actions != null) {
-                        for (Notification.Action act : statusBarNotification.getNotification().actions) {
-                            if (act != null && act.getRemoteInputs() != null) {
-                                // Is a reply
-                                repliableNotification.remoteInputs.addAll(Arrays.asList(act.getRemoteInputs()));
-                                repliableNotification.pendingIntent = act.actionIntent;
-                                break;
-                            }
-                        }
-                        repliableNotification.packageName = statusBarNotification.getPackageName();
-                        repliableNotification.tag = statusBarNotification.getTag();//TODO find how to pass Tag with sending PendingIntent, might fix Hangout problem
-                    }
-                } catch (Exception e) {
-                    Log.e(TAG, "problem extracting notification wear for " + statusBarNotification.getNotification().tickerText, e);
-                }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            return null;
+        }
+
+        if (statusBarNotification.getNotification().actions == null) {
+            return null;
+        }
+
+        for (Notification.Action act : statusBarNotification.getNotification().actions) {
+            if (act != null && act.getRemoteInputs() != null) {
+                // Is a reply
+                RepliableNotification repliableNotification = new RepliableNotification();
+                repliableNotification.remoteInputs.addAll(Arrays.asList(act.getRemoteInputs()));
+                repliableNotification.pendingIntent = act.actionIntent;
+                repliableNotification.packageName = statusBarNotification.getPackageName();
+                repliableNotification.tag = statusBarNotification.getTag(); //TODO find how to pass Tag with sending PendingIntent, might fix Hangout problem
+
+                return repliableNotification;
             }
         }
 
-        return repliableNotification;
+        return null;
     }
 
     private static String extractStringFromExtra(Bundle extras, String key) {
