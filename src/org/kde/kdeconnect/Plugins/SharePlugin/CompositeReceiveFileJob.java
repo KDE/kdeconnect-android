@@ -66,8 +66,7 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
 
         lock = new Object();
         networkPacketList = new ArrayList<>();
-        receiveNotification = new ReceiveNotification(device);
-        receiveNotification.addCancelAction(getId());
+        receiveNotification = new ReceiveNotification(device, getId());
         currentFileNum = 0;
         totalNumFiles = 0;
         totalPayloadSize = 0;

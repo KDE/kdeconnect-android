@@ -48,15 +48,16 @@ class ReceiveNotification {
     private final int notificationId;
     private NotificationCompat.Builder builder;
     private final Device device;
-    private long currentJobId;
+    private long jobId;
 
     //https://documentation.onesignal.com/docs/android-customizations#section-big-picture
     private static final int bigImageWidth = 1440;
     private static final int bigImageHeight = 720;
 
-    public ReceiveNotification(Device device) {
+    public ReceiveNotification(Device device, long jobId) {
         this.device = device;
 
+        this.jobId = jobId;
         notificationId = (int) System.currentTimeMillis();
         notificationManager = (NotificationManager) device.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
         builder = new NotificationCompat.Builder(device.getContext(), NotificationHelper.Channels.FILETRANSFER)
@@ -64,6 +65,7 @@ class ReceiveNotification {
                 .setAutoCancel(true)
                 .setOngoing(true)
                 .setProgress(100, 0, true);
+        addCancelAction();
     }
 
     public void show() {
@@ -74,10 +76,8 @@ class ReceiveNotification {
         notificationManager.cancel(notificationId);
     }
 
-    public void addCancelAction(long jobId) {
-        builder.mActions.clear();
+    public void addCancelAction() {
 
-        currentJobId = jobId;
         Intent cancelIntent = new Intent(device.getContext(), ShareBroadcastReceiver.class);
         cancelIntent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
         cancelIntent.setAction(SharePlugin.ACTION_CANCEL_SHARE);
@@ -86,12 +86,6 @@ class ReceiveNotification {
         PendingIntent cancelPendingIntent = PendingIntent.getBroadcast(device.getContext(), 0, cancelIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         builder.addAction(R.drawable.ic_reject_pairing, device.getContext().getString(R.string.cancel), cancelPendingIntent);
-    }
-
-    public long getCurrentJobId() { return currentJobId; }
-
-    public int getNotificationId() {
-        return notificationId;
     }
 
     public void setTitle(String title) {
