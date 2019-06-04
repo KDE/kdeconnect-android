@@ -42,6 +42,7 @@ import android.text.SpannableString;
 import android.util.Log;
 import android.util.Pair;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
@@ -223,43 +224,16 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_NOTIFICATION);
 
         boolean isUpdate = currentNotifications.contains(key);
+        //If it's an update, the other end should have the icon already: no need to extract it and create the payload again
         if (!isUpdate) {
-            //If it's an update, the other end should have the icon already: no need to extract it and create the payload again
-            try {
-                Bitmap appIcon;
-                Context foreignContext = context.createPackageContext(statusBarNotification.getPackageName(), 0);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    appIcon = iconToBitmap(foreignContext, notification.getLargeIcon());
-                } else {
-                    appIcon = notification.largeIcon;
-                }
 
-                if (appIcon == null) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        appIcon = iconToBitmap(foreignContext, notification.getSmallIcon());
-                    } else {
-                        PackageManager pm = context.getPackageManager();
-                        Resources foreignResources = pm.getResourcesForApplication(statusBarNotification.getPackageName());
-                        Drawable foreignIcon = foreignResources.getDrawable(notification.icon);
-                        appIcon = drawableToBitmap(foreignIcon);
-                    }
-                }
-
-                if (appIcon != null && !appDatabase.getPrivacy(packageName, AppDatabase.PrivacyOptions.BLOCK_IMAGES)) {
-
-                    ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-                    appIcon.compress(Bitmap.CompressFormat.PNG, 90, outStream);
-                    byte[] bitmapData = outStream.toByteArray();
-
-                    np.setPayload(new NetworkPacket.Payload(bitmapData));
-
-                    np.set("payloadHash", getChecksum(bitmapData));
-                }
-            } catch (Exception e) {
-                Log.e(TAG, "Error retrieving icon", e);
-            }
-        } else {
             currentNotifications.add(key);
+
+            Bitmap appIcon = extractIcon(statusBarNotification, notification);
+
+            if (appIcon != null && !appDatabase.getPrivacy(packageName, AppDatabase.PrivacyOptions.BLOCK_IMAGES)) {
+                attachIcon(np, appIcon);
+            }
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -323,6 +297,38 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         }
 
         return notification.extras.getString(Notification.EXTRA_TEXT);
+    }
+
+    private void attachIcon(NetworkPacket np, Bitmap appIcon) {
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+        appIcon.compress(Bitmap.CompressFormat.PNG, 90, outStream);
+        byte[] bitmapData = outStream.toByteArray();
+
+        np.setPayload(new NetworkPacket.Payload(bitmapData));
+        np.set("payloadHash", getChecksum(bitmapData));
+    }
+
+    @Nullable
+    private Bitmap extractIcon(StatusBarNotification statusBarNotification, Notification notification) {
+        try {
+            Context foreignContext = context.createPackageContext(statusBarNotification.getPackageName(), 0);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && notification.getLargeIcon() != null) {
+                return iconToBitmap(foreignContext, notification.getLargeIcon());
+            } else if (notification.largeIcon != null) {
+                return notification.largeIcon;
+            }
+
+            PackageManager pm = context.getPackageManager();
+            Resources foreignResources = pm.getResourcesForApplication(statusBarNotification.getPackageName());
+            Drawable foreignIcon = foreignResources.getDrawable(notification.icon);
+            return drawableToBitmap(foreignIcon);
+
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "Package not found", e);
+        }
+
+        return null;
     }
 
     private Pair<String, String> extractConversation(Notification notification) {
