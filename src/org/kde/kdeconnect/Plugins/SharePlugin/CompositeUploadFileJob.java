@@ -65,8 +65,7 @@ public class CompositeUploadFileJob extends BackgroundJob<Device, Void> {
         totalPayloadSize = 0;
         totalSend = 0;
         prevProgressPercentage = 0;
-        uploadNotification = new UploadNotification(getDevice());
-        uploadNotification.addCancelAction(getId());
+        uploadNotification = new UploadNotification(getDevice(), getId());
 
         sendPacketStatusCallback = new SendPacketStatusCallback();
     }

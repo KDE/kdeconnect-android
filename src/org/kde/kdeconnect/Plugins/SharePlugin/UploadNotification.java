@@ -39,9 +39,11 @@ class UploadNotification {
     private NotificationCompat.Builder builder;
     private final int notificationId;
     private final Device device;
+    private long jobId;
 
-    UploadNotification(Device device) {
+    UploadNotification(Device device, long jobId) {
         this.device = device;
+        this.jobId = jobId;
 
         notificationId = (int) System.currentTimeMillis();
         notificationManager = (NotificationManager) device.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
@@ -50,11 +52,10 @@ class UploadNotification {
                 .setAutoCancel(true)
                 .setOngoing(true)
                 .setProgress(100, 0, true);
+        addCancelAction();
     }
 
-    void addCancelAction(long jobId) {
-        builder.mActions.clear();
-
+    void addCancelAction() {
         Intent cancelIntent = new Intent(device.getContext(), ShareBroadcastReceiver.class);
         cancelIntent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
         cancelIntent.setAction(SharePlugin.ACTION_CANCEL_SHARE);
