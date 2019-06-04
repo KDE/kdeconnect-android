@@ -489,32 +489,28 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
      * instead the ticker text.
      */
     private String getTickerText(Notification notification) {
-        final String TITLE_KEY = "android.title";
-        final String TEXT_KEY = "android.text";
         String ticker = "";
 
-        if (notification != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                try {
-                    Bundle extras = notification.extras;
-                    String extraTitle = extractStringFromExtra(extras, TITLE_KEY);
-                    String extraText = extractStringFromExtra(extras, TEXT_KEY);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            try {
+                Bundle extras = notification.extras;
+                String extraTitle = extractStringFromExtra(extras, Notification.EXTRA_TITLE);
+                String extraText = extractStringFromExtra(extras, Notification.EXTRA_TEXT);
 
-                    if (extraTitle != null && extraText != null && !extraText.isEmpty()) {
-                        ticker = extraTitle + ": " + extraText;
-                    } else if (extraTitle != null) {
-                        ticker = extraTitle;
-                    } else if (extraText != null) {
-                        ticker = extraText;
-                    }
-                } catch (Exception e) {
-                    Log.e(TAG, "problem parsing notification extras for " + notification.tickerText, e);
+                if (extraTitle != null && extraText != null && !extraText.isEmpty()) {
+                    ticker = extraTitle + ": " + extraText;
+                } else if (extraTitle != null) {
+                    ticker = extraTitle;
+                } else if (extraText != null) {
+                    ticker = extraText;
                 }
+            } catch (Exception e) {
+                Log.e(TAG, "problem parsing notification extras for " + notification.tickerText, e);
             }
+        }
 
-            if (ticker.isEmpty()) {
-                ticker = (notification.tickerText != null) ? notification.tickerText.toString() : "";
-            }
+        if (ticker.isEmpty()) {
+            ticker = (notification.tickerText != null) ? notification.tickerText.toString() : "";
         }
 
         return ticker;
