@@ -2,19 +2,27 @@
 <resources>
   <string name="foreground_notification_no_devices">デバイスに接続されていません</string>
   <string name="foreground_notification_devices">接続済み: %s</string>
+  <string name="pref_plugin_telephony">電話通知</string>
   <string name="pref_plugin_telephony_desc">着信通知を送信</string>
   <string name="pref_plugin_battery">バッテリーレポート</string>
+  <string name="pref_plugin_battery_desc">定期的にバッテリー状態を報告します</string>
+  <string name="pref_plugin_sftp">ファイルシステムの参照</string>
+  <string name="pref_plugin_sftp_desc">リモートからこのデバイスのファイルシステムへの閲覧を可能にします</string>
   <string name="pref_plugin_clipboard">クリップボードの同期</string>
   <string name="pref_plugin_clipboard_desc">クリップボードの内容を共有</string>
   <string name="pref_plugin_mousepad">リモート入力</string>
   <string name="pref_plugin_mousepad_desc">あなたのスマートフォンやタブレットをタッチパッドやキーボードとして利用します</string>
   <string name="pref_plugin_presenter">リモートスライドショー</string>
   <string name="pref_plugin_presenter_desc">あなたのデバイスを使ってプレゼンテーションのスライドを変更</string>
+  <string name="pref_plugin_remotekeyboard">リモートからキー入力を受信</string>
   <string name="pref_plugin_mpris">マルチメディアの操作</string>
+  <string name="pref_plugin_mpris_desc">あなたのメディアプレーヤーへのリモート操作を提供します</string>
   <string name="pref_plugin_runcommand">コマンドを実行</string>
   <string name="pref_plugin_runcommand_desc">スマートフォンやタブレットからリモートコマンドを実行</string>
   <string name="pref_plugin_contacts_desc">デバイスの連絡先の同期を許可</string>
   <string name="pref_plugin_ping_desc">Ping を送受信</string>
+  <string name="pref_plugin_notifications">通知の同期</string>
+  <string name="pref_plugin_notifications_desc">他のデバイスから通知にアクセス</string>
   <string name="pref_plugin_receive_notifications">通知の受信</string>
   <string name="pref_plugin_receive_notifications_desc">他のデバイスから通知を受信し、Android に表示します</string>
   <string name="pref_plugin_sharereceiver">共有と受信</string>
@@ -30,6 +38,11 @@
   <string name="remotekeyboard_connected">リモートキーボード接続はアクティブです</string>
   <string name="open_mousepad">リモート入力</string>
   <string name="mousepad_info">スクリーン上で指を動かしてマウスカーソルを移動します。タップはクリックとなり、2/3本指で右クリック、中クリックとなります。2本指を使ってスクロールが可能です。長押しすることでドラッグ&amp;ドロップできます。</string>
+  <string name="mousepad_double_tap_settings_title">2本指タップのアクションを設定</string>
+  <string name="mousepad_triple_tap_settings_title">3本指タップのアクションを設定</string>
+  <string name="mousepad_sensitivity_settings_title">タッチパッドの感度を設定</string>
+  <string name="mousepad_acceleration_profile_settings_title">ポインタの速度を設定</string>
+  <string name="mousepad_scroll_direction_title">スクロールの方向を反転</string>
   <string-array name="mousepad_tap_entries">
     <item>右クリック</item>
     <item>中クリック</item>
@@ -43,12 +56,12 @@
     <item>Fastest</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>No Acceleration</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
-    <item>Medium</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>加速なし</item>
+    <item>最弱</item>
+    <item>弱</item>
+    <item>中</item>
+    <item>強</item>
+    <item>最強</item>
   </string-array>
   <string name="category_connected_devices">接続済みのデバイス</string>
   <string name="category_not_paired_devices">利用可能なデバイス</string>
@@ -111,6 +124,8 @@
   <string name="mpris_next">次へ</string>
   <string name="mpris_volume">音量</string>
   <string name="mpris_settings">マルチメディアの設定</string>
+  <string name="mpris_time_settings_title">早送り/巻き戻しボタン</string>
+  <string name="mpris_time_settings_summary">押した時に早送り/巻き戻しする時間を調整</string>
   <string-array name="mpris_time_entries">
     <item>10 秒</item>
     <item>20 秒</item>
@@ -118,11 +133,14 @@
     <item>1 分</item>
     <item>2 分</item>
   </string-array>
+  <string name="mpris_notification_settings_title">メディア操作の通知を表示</string>
+  <string name="mpris_notification_settings_summary">KDE Connect を開かずにメディアプレーヤーをコントロール可能にします</string>
   <string name="share_to">共有先...</string>
   <string name="protocol_version_older">このデバイスは古いプロトコルバージョンを使用しています</string>
   <string name="protocol_version_newer">このデバイスはより新しいプロトコルバージョンを使用しています</string>
   <string name="general_settings">全般設定</string>
   <string name="plugin_settings">設定</string>
+  <string name="plugin_settings_with_name">%s 設定</string>
   <string name="device_name">デバイス名</string>
   <string name="invalid_device_name">不正なデバイス名</string>
   <string name="pair_device_action">新しいデバイスをペアリング</string>
@@ -131,6 +149,8 @@
   <string name="delete_custom_device">%s を削除しますか？</string>
   <string name="custom_device_fab_hint">デバイスを追加</string>
   <string name="undo">元に戻す</string>
+  <string name="share_notification_preference">うるさい通知</string>
+  <string name="share_notification_preference_summary">ファイル受信時にバイブレートし、音声を再生します</string>
   <string name="share_destination_customize">行き先ディレクトリをカスタマイズ</string>
   <string name="share_destination_customize_summary_disabled">受信したファイルは Downloads に保存されます</string>
   <string name="share_destination_customize_summary_enabled">ファイルは以下のディレクトリに保存されます</string>
