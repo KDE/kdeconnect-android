@@ -55,12 +55,12 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
 import static org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin.PACKET_TYPE_TELEPHONY;
@@ -197,9 +197,9 @@ public class SMSPlugin extends Plugin {
             long mostRecentTimestamp = mPlugin.mostRecentTimestamp;
             mostRecentTimestampLock.unlock();
 
-            List<SMSHelper.Message> messages = SMSHelper.getMessagesSinceTimestamp(mPlugin.context, mostRecentTimestamp);
+            SMSHelper.Message message = SMSHelper.getNewestMessage(mPlugin.context);
 
-            if (messages.size() == 0) {
+            if (message.date <= mostRecentTimestamp) {
                 // Our onChange often gets called many times for a single message. Don't make unnecessary
                 // noise
                 return;
@@ -207,15 +207,11 @@ public class SMSPlugin extends Plugin {
 
             // Update the most recent counter
             mostRecentTimestampLock.lock();
-            for (SMSHelper.Message message : messages) {
-                if (message.date > mostRecentTimestamp) {
-                    mPlugin.mostRecentTimestamp = message.date;
-                }
-            }
+            mPlugin.mostRecentTimestamp = message.date;
             mostRecentTimestampLock.unlock();
 
             // Send the alert about the update
-            device.sendPacket(constructBulkMessagePacket(messages));
+            device.sendPacket(constructBulkMessagePacket(Collections.singleton(message)));
         }
     }
 
@@ -351,8 +347,6 @@ public class SMSPlugin extends Plugin {
         for (SMSHelper.Message message : messages) {
             try {
                 JSONObject json = message.toJSONObject();
-
-                json.put("event", SMSHelper.Message.TEXT_MESSAGE);
 
                 body.put(json);
             } catch (JSONException e) {
