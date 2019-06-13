@@ -421,6 +421,8 @@ public class Device implements BaseLink.PacketReceiver {
 
     public void addLink(NetworkPacket identityPacket, BaseLink link) {
         //FilesHelper.LogOpenFileCount();
+        links.add(link);
+        link.addPacketReceiver(this);
 
         this.protocolVersion = identityPacket.getInt("protocolVersion");
 
@@ -447,9 +449,6 @@ public class Device implements BaseLink.PacketReceiver {
 
             }
         }
-
-
-        links.add(link);
 
         try {
             SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(context);
@@ -499,7 +498,6 @@ public class Device implements BaseLink.PacketReceiver {
             supportedPlugins = new Vector<>(PluginFactory.getAvailablePlugins());
         }
 
-        link.addPacketReceiver(this);
 
         reloadPluginsFromSettings();
 
