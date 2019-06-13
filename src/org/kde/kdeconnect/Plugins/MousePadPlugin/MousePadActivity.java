@@ -173,6 +173,13 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_mousepad, menu);
+
+        BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> {
+            if (!plugin.isKeyboardEnabled()) {
+                menu.removeItem(R.id.menu_show_keyboard);
+            }
+        });
+
         return true;
     }
 
