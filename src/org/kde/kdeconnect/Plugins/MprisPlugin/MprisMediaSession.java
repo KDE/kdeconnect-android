@@ -191,46 +191,44 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
     }
 
     private Pair<Device, MprisPlugin.MprisPlayer> findPlayer(BackgroundService service) {
-        //First try the previously displayed player (if still playing)
+        //First try the previously displayed player (if still playing) or the previous displayed device (otherwise)
         if (notificationDevice != null && mprisDevices.contains(notificationDevice)) {
             Device device = service.getDevice(notificationDevice);
 
-            if (device != null && device.isPluginEnabled("MprisPlugin")) {
-                if (shouldShowPlayer(notificationPlayer) && notificationPlayer.isPlaying()) {
-                    return new Pair<>(device, notificationPlayer);
-                }
-
-                // Try a different player for the same device
-                MprisPlugin.MprisPlayer player = getPlayerFromDevice(device);
-                if (player != null) {
-                    return new Pair<>(device, player);
-                }
+            MprisPlugin.MprisPlayer player;
+            if (notificationPlayer.isPlaying()) {
+                player = getPlayerFromDevice(device, notificationPlayer);
+            } else {
+                player = getPlayerFromDevice(device, null);
+            }
+            if (player != null) {
+                return new Pair<>(device, player);
             }
         }
 
         // Try a different player from another device
         for (Device otherDevice : service.getDevices().values()) {
-            MprisPlugin.MprisPlayer player = getPlayerFromDevice(otherDevice);
+            MprisPlugin.MprisPlayer player = getPlayerFromDevice(otherDevice, null);
             if (player != null) {
                 return new Pair<>(otherDevice, player);
             }
         }
 
         //So no player is playing. Try the previously displayed player again
+        //  This will succeed if it's paused:
+        //  that allows pausing and subsequently resuming via the notification
         if (notificationDevice != null && mprisDevices.contains(notificationDevice)) {
             Device device = service.getDevice(notificationDevice);
 
-            if (device != null && device.isPluginEnabled("MprisPlugin")) {
-                if (shouldShowPlayer(notificationPlayer)) {
-                    return new Pair<>(device, notificationPlayer);
-                }
+            MprisPlugin.MprisPlayer player = getPlayerFromDevice(device, notificationPlayer);
+            if (player != null) {
+                return new Pair<>(device, player);
             }
         }
         return new Pair<>(null, null);
     }
 
-    private MprisPlugin.MprisPlayer getPlayerFromDevice(Device device) {
-
+    private MprisPlugin.MprisPlayer getPlayerFromDevice(Device device, MprisPlugin.MprisPlayer preferredPlayer) {
         if (!mprisDevices.contains(device.getDeviceId()))
             return null;
 
@@ -240,6 +238,12 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
             return null;
         }
 
+        //First try the preferred player, if supplied
+        if (plugin.hasPlayer(preferredPlayer) && shouldShowPlayer(preferredPlayer)) {
+            return preferredPlayer;
+        }
+
+        //Otherwise, accept any playing player
         MprisPlugin.MprisPlayer player = plugin.getPlayingPlayer();
         if (shouldShowPlayer(player)) {
             return player;

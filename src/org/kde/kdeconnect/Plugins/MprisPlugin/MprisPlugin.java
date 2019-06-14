@@ -422,6 +422,10 @@ public class MprisPlugin extends Plugin {
         return null;
     }
 
+    boolean hasPlayer(MprisPlayer player) {
+        return players.containsValue(player);
+    }
+
     private void requestPlayerList() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MPRIS_REQUEST);
         np.set("requestPlayerList", true);
