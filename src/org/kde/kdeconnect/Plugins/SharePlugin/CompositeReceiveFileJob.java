@@ -189,7 +189,7 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
                 numFiles = totalNumFiles;
             }
 
-            if (numFiles == 1 && currentNetworkPacket.has("open")) {
+            if (numFiles == 1 && currentNetworkPacket.getBoolean("open", false)) {
                 receiveNotification.cancel();
                 openFile(fileDocument);
             } else {
