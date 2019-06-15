@@ -196,7 +196,7 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
             Device device = service.getDevice(notificationDevice);
 
             MprisPlugin.MprisPlayer player;
-            if (notificationPlayer.isPlaying()) {
+            if (notificationPlayer != null && notificationPlayer.isPlaying()) {
                 player = getPlayerFromDevice(device, notificationPlayer);
             } else {
                 player = getPlayerFromDevice(device, null);
