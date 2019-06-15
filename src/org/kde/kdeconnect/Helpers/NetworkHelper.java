@@ -1,17 +1,14 @@
 package org.kde.kdeconnect.Helpers;
 
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.Network;
-import android.net.NetworkInfo;
-import android.util.Log;
-
-import java.io.FileReader;
-import java.io.LineNumberReader;
 
 public class NetworkHelper {
 
     public static boolean isOnMobileNetwork(Context context) {
+
+        return false;
+
+        /*
         if (context == null) {
             return false;
         }
@@ -52,6 +49,8 @@ public class NetworkHelper {
             Log.e("isOnMobileNetwork", "Something went wrong, but this is non-critical.", e);
         }
         return false;
+
+        */
     }
 
 }
