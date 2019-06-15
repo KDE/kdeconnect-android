@@ -304,10 +304,10 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
             PackageManager pm = context.getPackageManager();
             Resources foreignResources = pm.getResourcesForApplication(statusBarNotification.getPackageName());
-            Drawable foreignIcon = foreignResources.getDrawable(notification.icon);
+            Drawable foreignIcon = foreignResources.getDrawable(notification.icon); //Might throw Resources.NotFoundException
             return drawableToBitmap(foreignIcon);
 
-        } catch (PackageManager.NameNotFoundException e) {
+        } catch (PackageManager.NameNotFoundException | Resources.NotFoundException e) {
             Log.e(TAG, "Package not found", e);
         }
 
