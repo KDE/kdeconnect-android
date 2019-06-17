@@ -318,7 +318,11 @@ public class SMSHelper {
             @NonNull Map<String, String> messageInfo,
             @NonNull int eventFlag
     ) {
-        int oldEvent = Integer.parseInt(messageInfo.getOrDefault(Message.EVENT, "0"));
+        int oldEvent = 0; //Default value
+        String oldEventString = messageInfo.get(Message.EVENT);
+        if (oldEventString != null) {
+            oldEvent = Integer.parseInt(oldEventString);
+        }
         messageInfo.put(Message.EVENT, Integer.toString(oldEvent | eventFlag));
     }
 
