@@ -15,9 +15,12 @@
   <string name="pref_plugin_runcommand_desc">Aiciona comandos remotos dende\'l preséu</string>
   <string name="pref_plugin_contacts">Sincronizador de contautos</string>
   <string name="pref_plugin_notifications_desc">Accede a los avisos n\'otros preseos</string>
+  <string name="device_list_empty">Nun hai preseos</string>
+  <string name="ok">Aceutar</string>
   <string name="cancel">Encaboxar</string>
   <string name="open_mpris_controls">Control multimedia</string>
   <string name="open_mousepad">Entrada remota</string>
+  <string name="mousepad_scroll_direction_title">Direición de desplazamientu inversa</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic drechu</item>
     <item>Clic d\'en mediu</item>
@@ -41,6 +44,7 @@
   <string name="category_connected_devices">Preseos coneutaos</string>
   <string name="category_not_paired_devices">Preseos disponibles</string>
   <string name="category_remembered_devices">Preseos recordaos</string>
+  <string name="device_menu_plugins">Axustes de plugins</string>
   <string name="device_menu_unpair">Desempareyar</string>
   <string name="pair_new_device">Empareya un preséu nuevu</string>
   <plurals name="incoming_file_title">
@@ -74,6 +78,7 @@
   <string name="device_not_paired">Nun s\'empareyó\'l preséu</string>
   <string name="request_pairing">Solicitar l\'empareyamientu</string>
   <string name="device">Preséu</string>
+  <string name="settings">Axustes</string>
   <string name="mpris_volume">Volume</string>
   <string-array name="mpris_time_entries">
     <item>10 segundos</item>
@@ -97,7 +102,7 @@
   <string name="filter_apps_info">Van sincronizase los avisos de les aplicaciones esbillaes.</string>
   <string name="sftp_sdcard">Tarxeta SD</string>
   <string name="add_device_dialog_title">Amiestu d\'un preséu</string>
-  <string name="add_device_hint">Nome d\'agopiu o direición IP</string>
+  <string name="add_device_hint">Nome d\'agospiu o direición IP</string>
   <string name="no_players_connected">Nun s\'alcontraron reproductores</string>
   <string name="send_files">Unviar ficheros</string>
   <string name="pairing_description">Equí deberíen apaecer los demás preseos que tean na mesma rede y executando KDE Connect.</string>
@@ -106,6 +111,7 @@
   <string name="refresh">Refrescar</string>
   <string name="pref_plugin_telepathy_desc">Unvia SMS dende l\'ordenador</string>
   <string name="findmyphone_description">Fai qu\'esti preséu suene pa que pueas alcontralu</string>
+  <string name="findmyphone_found">Alcontrélu</string>
   <string name="telephony_pref_blocked_title">Númberos bloquiaos</string>
   <string name="presenter_fullscreen">Pantalla completa</string>
   <string name="presenter_exit">Colar de la presentación</string>
@@ -114,9 +120,12 @@
   <string name="dark_theme">Estilu escuru</string>
   <string name="notification_channel_persistent">Indicador permanente</string>
   <string name="clipboard_toast">Copióse al cartafueyu</string>
+  <string name="pref_plugin_findremotedevice_desc">Fai que\'l preséu remotu suene</string>
+  <string name="ring">Facer sonar</string>
   <string name="pref_plugin_systemvolume">Volume del sistema</string>
   <string name="pref_plugin_systemvolume_desc">Controla\'l volume del sistema del preséu remotu</string>
   <string name="devices">Preseos</string>
+  <string name="settings_rename">Nome del preséu</string>
   <string name="settings_dark_mode">Estilu escuru</string>
   <string name="settings_more_settings_title">Más axustes</string>
   <string name="setting_persistent_notification_oreo">Avisu permanente</string>
