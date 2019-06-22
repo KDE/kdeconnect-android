@@ -106,6 +106,13 @@ public class SMSHelper {
     private static Uri getConversationUri() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             return Telephony.MmsSms.CONTENT_CONVERSATIONS_URI;
+        } else if ("Samsung".equals(Build.MANUFACTURER)){
+            // For some presumably asinine reason, Samsung devices do not support the regular SmsMms column.
+            // However, according to https://stackoverflow.com/a/13640868/3723163, we can work around it this way.
+            // By my understanding, "simple=true" means we can't support multi-target messages.
+            // Go complain to Samsung about their crappy OS changes!
+            Log.i("SMSHelper", "Samsung compatibility mode enabled. This may cause some features to not work properly.");
+            return Uri.parse("content://mms-sms/conversations?simple=true");
         } else {
             // As with getSMSUriBad, this is potentially unsafe depending on whether a specific
             // manufacturer decided to do their own thing
