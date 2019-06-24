@@ -10,7 +10,7 @@
   <string name="pref_plugin_sftp">Menyingkap sistem file</string>
   <string name="pref_plugin_sftp_desc">Membolehkan menelusuri sistem file perangkat ini secara jarak jauh</string>
   <string name="pref_plugin_clipboard">Sinkron clipboard</string>
-  <string name="pref_plugin_clipboard_desc">Berbagi konten clipboard</string>
+  <string name="pref_plugin_clipboard_desc">Berbagi konten papan-klip</string>
   <string name="pref_plugin_mousepad">Input jarak jauh</string>
   <string name="pref_plugin_mousepad_desc">Gunakan telepon atau tabletmu sebagai touchpad dan keyboard</string>
   <string name="pref_plugin_presenter_desc">Gunakan perangkatmu untuk mengubah slide dalam sebuah presentasi</string>
@@ -147,7 +147,7 @@
   <string name="device_name">Nama perangkat</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nama perangkat tak absah</string>
-  <string name="shareplugin_text_saved">Teks diterima, tersimpan ke clipboard</string>
+  <string name="shareplugin_text_saved">Teks diterima, tersimpan ke papan-klip</string>
   <string name="custom_devices_settings">Kustom daftar perangkat</string>
   <string name="pair_device_action">Sandingkan sebuah perangkat baru</string>
   <string name="unpair_device_action">Leraikan %s</string>
