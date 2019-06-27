@@ -127,18 +127,5 @@ public abstract class AppCompatPreferenceActivity extends PreferenceActivity {
         return mDelegate;
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        BackgroundService.addGuiInUseCounter(this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        BackgroundService.removeGuiInUseCounter(this);
-        getDelegate().onStop();
-    }
-
 
 }

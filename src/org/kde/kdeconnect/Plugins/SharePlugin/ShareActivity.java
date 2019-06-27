@@ -153,7 +153,6 @@ public class ShareActivity extends AppCompatActivity {
             });
         } else {
 
-            BackgroundService.addGuiInUseCounter(this);
             BackgroundService.RunCommand(this, service -> {
                 service.onNetworkChange();
                 service.addDeviceListChangedCallback("ShareActivity", this::updateComputerList);
@@ -166,7 +165,6 @@ public class ShareActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         BackgroundService.RunCommand(this, service -> service.removeDeviceListChangedCallback("ShareActivity"));
-        BackgroundService.removeGuiInUseCounter(this);
         super.onStop();
     }
 

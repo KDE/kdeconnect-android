@@ -401,14 +401,11 @@ public class Device implements BaseLink.PacketReceiver {
                 .build();
 
         NotificationHelper.notifyCompat(notificationManager, notificationId, noti);
-
-        BackgroundService.addGuiInUseCounter(context);
     }
 
     public void hidePairingNotification() {
         final NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancel(notificationId);
-        BackgroundService.removeGuiInUseCounter(context);
     }
 
     //

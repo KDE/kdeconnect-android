@@ -445,16 +445,4 @@ public class MprisActivity extends AppCompatActivity {
         nowPlayingText.setSelected(true);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        BackgroundService.addGuiInUseCounter(this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        BackgroundService.removeGuiInUseCounter(this);
-    }
-
 }

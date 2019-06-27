@@ -218,18 +218,6 @@ public class NotificationFilterActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        BackgroundService.addGuiInUseCounter(this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        BackgroundService.removeGuiInUseCounter(this);
-    }
-
     private Drawable resizeIcon(Drawable icon, int maxSize) {
         Resources res = getResources();
 

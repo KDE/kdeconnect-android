@@ -373,17 +373,5 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         imm.toggleSoftInputFromWindow(keyListenerView.getWindowToken(), 0, 0);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        BackgroundService.addGuiInUseCounter(this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        BackgroundService.removeGuiInUseCounter(this);
-    }
-
 }
 

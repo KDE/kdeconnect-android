@@ -82,7 +82,6 @@ public class PresenterActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        BackgroundService.addGuiInUseCounter(this);
         if (mMediaSession != null) {
             mMediaSession.setActive(true);
             return;
@@ -93,7 +92,6 @@ public class PresenterActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        BackgroundService.removeGuiInUseCounter(this);
 
         if (mMediaSession != null) {
             PowerManager pm = (PowerManager) this.getSystemService(Context.POWER_SERVICE);

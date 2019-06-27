@@ -100,24 +100,9 @@ public class BackgroundService extends Service {
         }
     }
 
-    public static void addGuiInUseCounter(Context activity) {
-        addGuiInUseCounter(activity, false);
-    }
-
-    public static void addGuiInUseCounter(final Context activity, final boolean forceNetworkRefresh) {
-        BackgroundService.RunCommand(activity, service -> {
-            boolean refreshed = service.acquireDiscoveryMode(activity);
-            if (!refreshed && forceNetworkRefresh) {
-                service.onNetworkChange();
-            }
-        });
-    }
-
-    public static void removeGuiInUseCounter(final Context activity) {
-        BackgroundService.RunCommand(activity, service -> {
-            //If no user interface is open, close the connections open to other devices
-            service.releaseDiscoveryMode(activity);
-        });
+    private boolean isInDiscoveryMode() {
+        //return !discoveryModeAcquisitions.isEmpty();
+        return true; // Keep it always on for now
     }
 
     private final Device.PairingCallback devicePairingCallback = new Device.PairingCallback() {
@@ -209,7 +194,7 @@ public class BackgroundService extends Service {
                 device = new Device(BackgroundService.this, identityPacket, link);
                 if (device.isPaired() || device.isPairRequested() || device.isPairRequestedByPeer()
                         || link.linkShouldBeKeptAlive()
-                        || !discoveryModeAcquisitions.isEmpty()) {
+                        || isInDiscoveryMode()) {
                     devices.put(deviceId, device);
                     device.addPairingCallback(devicePairingCallback);
                 } else {

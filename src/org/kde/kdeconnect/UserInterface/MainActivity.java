@@ -284,14 +284,12 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     @Override
     protected void onStart() {
         super.onStart();
-        BackgroundService.addGuiInUseCounter(this, true);
         BackgroundService.RunCommand(this, service -> service.addDeviceListChangedCallback("MainActivity", this::updateDeviceList));
         updateDeviceList();
     }
 
     @Override
     protected void onStop() {
-        BackgroundService.removeGuiInUseCounter(this);
         BackgroundService.RunCommand(this, service -> service.removeDeviceListChangedCallback("MainActivity"));
         super.onStop();
     }
