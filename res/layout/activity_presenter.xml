@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mpris_control_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:gravity="center"
+    android:padding="12dp"
     android:orientation="vertical">
 
-    <Space
+    <TextView
+        style="@android:style/TextAppearance.Medium"
+        android:id="@+id/textView"
+        android:layout_weight="0"
+        android:layout_marginBottom="6dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/top_space"/>
+        android:text="@string/presenter_lock_tip" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="6dp"
         android:orientation="horizontal"
-        android:layout_below="@id/top_space"
-        android:layout_above="@id/textView">
+        android:layout_weight="1">
 
         <ImageButton
             android:id="@+id/previous_button"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="0.25"
             android:contentDescription="@string/mpris_rew"
+            android:layout_weight="0.25"
+            android:layout_marginRight="3dp"
+            android:layout_marginEnd="3dp"
             android:src="@drawable/ic_previous_black"
             android:theme="@style/DisableableButton" />
 
@@ -33,6 +39,8 @@
             android:id="@+id/next_button"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
+            android:layout_marginLeft="3dp"
+            android:layout_marginStart="3dp"
             android:layout_weight="0.25"
             android:contentDescription="@string/mpris_ff"
             android:src="@drawable/ic_next_black"
@@ -40,13 +48,16 @@
 
     </LinearLayout>
 
-    <TextView
-        style="@android:style/TextAppearance.Medium"
-        android:padding="12dip"
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="@string/presenter_lock_tip" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/pointer_button"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="6dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.30"
+        android:visibility="gone"
+        android:text="@string/presenter_pointer"
+        android:theme="@style/DisableableButton" />
+
+
+</LinearLayout>
