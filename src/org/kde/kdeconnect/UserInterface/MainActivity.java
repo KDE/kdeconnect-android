@@ -100,11 +100,13 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         mDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerToggle.syncState();
 
+        preferences = getSharedPreferences("stored_menu_selection", Context.MODE_PRIVATE);
+
+        // Note: The preference changed listener should be registered before getting the name, because getting
+        // it can trigger a background fetch from the internet that will eventually update the preference
+        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
         String deviceName = DeviceHelper.getDeviceName(this);
         mNavViewDeviceName.setText(deviceName);
-
-        preferences = getSharedPreferences("stored_menu_selection", Context.MODE_PRIVATE);
-        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
 
         mNavigationView.setNavigationItemSelectedListener(menuItem -> {
             mCurrentMenuEntry = menuItem.getItemId();
@@ -379,7 +381,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (DeviceHelper.KEY_DEVICE_NAME_PREFERENCE.equals(key)) {
             mNavViewDeviceName.setText(DeviceHelper.getDeviceName(this));
-            BackgroundService.RunCommand(this, BackgroundService::onNetworkChange);
+            BackgroundService.RunCommand(this, BackgroundService::onNetworkChange); //Re-send our identity packet
         }
     }
 }
