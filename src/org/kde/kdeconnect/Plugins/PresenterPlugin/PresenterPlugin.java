@@ -41,11 +41,11 @@ import static org.kde.kdeconnect.Plugins.MousePadPlugin.KeyListenerView.SpecialK
 public class PresenterPlugin extends Plugin {
 
     private final static String PACKET_TYPE_PRESENTER = "kdeconnect.presenter";
-    private final static String PACKET_TYPE_PRESENTER_CONFIG = "kdeconnect.presenter.config";
     private final static String PACKET_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request";
 
-    private boolean pointerEnabled = false;
-    private Handler pointerEnabledCallback = null;
+    public boolean isPointerSupported() {
+        return true; //TODO: Check capabilities
+    }
 
     @Override
     public String getDisplayName() {
@@ -80,21 +80,7 @@ public class PresenterPlugin extends Plugin {
     }
 
     @Override
-    public boolean onPacketReceived(NetworkPacket np) {
-        if (np.getBoolean("presenter_enabled", false)) {
-            pointerEnabled = true;
-            if (pointerEnabledCallback != null) {
-                pointerEnabledCallback.dispatchMessage(new Message());
-            }
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public String[] getSupportedPacketTypes() {
-        return new String[]{PACKET_TYPE_PRESENTER_CONFIG};
-    }
+    public String[] getSupportedPacketTypes() {  return new String[0]; }
 
     @Override
     public String[] getOutgoingPacketTypes() {
@@ -104,13 +90,6 @@ public class PresenterPlugin extends Plugin {
     @Override
     public String getActionName() {
         return context.getString(R.string.pref_plugin_presenter);
-    }
-
-    public void setPointerEnabledCallback(Handler handler) {
-        this.pointerEnabledCallback = handler;
-        if (pointerEnabled) {
-            handler.dispatchMessage(new Message());
-        }
     }
 
     public void sendNext() {

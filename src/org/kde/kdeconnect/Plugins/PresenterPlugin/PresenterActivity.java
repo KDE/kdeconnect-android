@@ -59,17 +59,14 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
     private float xPos, yPos;
     private float xOffset, yOffset;
 
-    // TODO: Decide if move to desktop
-    static final float xMax = 800, yMax = 600;
-    static final float sensitivity = 0.05f;
-    static final float amplitude = 1.f;
+    static final float SENSITIVITY = 0.05f; //TODO: Make configurable?
 
     public void gyroscopeEvent(SensorEvent event) {
         xPos += -event.values[2];
         yPos += -event.values[0];
 
-        float percentX = clamp((xPos - xOffset) * sensitivity, -amplitude, amplitude)/amplitude;
-        float percentY = clamp((yPos - yOffset) * sensitivity, -amplitude, amplitude)/amplitude;
+        float percentX = clamp((xPos - xOffset) * SENSITIVITY, -1.f, 1.f);
+        float percentY = clamp((yPos - yOffset) * SENSITIVITY, -1.f, 1.f);
 
         plugin.sendPointer(percentX, percentY);
     }
@@ -118,12 +115,9 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
             this.plugin = plugin;
             findViewById(R.id.next_button).setOnClickListener(v -> plugin.sendNext());
             findViewById(R.id.previous_button).setOnClickListener(v -> plugin.sendPrevious());
-            plugin.setPointerEnabledCallback(new Handler() {
-                @Override
-                public void handleMessage(Message msg) {
-                    enablePointer();
-                }
-            });
+            if (plugin.isPointerSupported()) {
+                enablePointer();
+            }
         }));
     }
     @Override
