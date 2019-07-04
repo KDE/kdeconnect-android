@@ -163,18 +163,15 @@ public class SMSPlugin extends Plugin {
     private final Lock mostRecentTimestampLock = new ReentrantLock();
 
     private class MessageContentObserver extends ContentObserver {
-        final SMSPlugin mPlugin;
 
         /**
          * Create a ContentObserver to watch the Messages database. onChange is called for
          * every subscribed change
          *
-         * @param parent  Plugin which owns this observer
          * @param handler Handler object used to make the callback
          */
-        MessageContentObserver(SMSPlugin parent, Handler handler) {
+        MessageContentObserver(Handler handler) {
             super(handler);
-            mPlugin = parent;
         }
 
         /**
@@ -185,29 +182,26 @@ public class SMSPlugin extends Plugin {
          */
         @Override
         public void onChange(boolean selfChange) {
-            if (mPlugin.mostRecentTimestamp == 0) {
+            if (mostRecentTimestamp == 0) {
                 // Since the timestamp has not been initialized, we know that nobody else
                 // has requested a message. That being the case, there is most likely
                 // nobody listening for message updates, so just drop them
                 return;
             }
+
+            // Lock so no one uses the mostRecentTimestamp between the moment we read it and the
+            // moment we update it. This is because reading the Messages DB can take long.
             mostRecentTimestampLock.lock();
-            // Grab the mostRecentTimestamp into the local stack because reading the Messages
-            // database could potentially be a long operation
-            long mostRecentTimestamp = mPlugin.mostRecentTimestamp;
-            mostRecentTimestampLock.unlock();
+            SMSHelper.Message message = SMSHelper.getNewestMessage(context);
 
-            SMSHelper.Message message = SMSHelper.getNewestMessage(mPlugin.context);
-
-            if (message.date <= mostRecentTimestamp) {
-                // Our onChange often gets called many times for a single message. Don't make unnecessary
-                // noise
+            if (message == null || message.date <= mostRecentTimestamp) {
+                // onChange can trigger many times for a single message. Don't make unnecessary noise
+                mostRecentTimestampLock.unlock();
                 return;
             }
 
             // Update the most recent counter
-            mostRecentTimestampLock.lock();
-            mPlugin.mostRecentTimestamp = message.date;
+            mostRecentTimestamp = message.date;
             mostRecentTimestampLock.unlock();
 
             // Send the alert about the update
@@ -281,7 +275,7 @@ public class SMSPlugin extends Plugin {
         context.registerReceiver(receiver, filter);
 
         Looper helperLooper = SMSHelper.MessageLooper.getLooper();
-        ContentObserver messageObserver = new MessageContentObserver(this, new Handler(helperLooper));
+        ContentObserver messageObserver = new MessageContentObserver(new Handler(helperLooper));
         SMSHelper.registerObserver(messageObserver, context);
 
         return true;
