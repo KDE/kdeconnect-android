@@ -45,7 +45,7 @@
             android:enabled="true" />
         <service
             android:name="org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin.RemoteKeyboardService"
-            android:label="KDE Connect Remote Keyboard"
+            android:label="@string/remote_keyboard_service"
             android:permission="android.permission.BIND_INPUT_METHOD">
             <intent-filter>
                 <action android:name="android.view.InputMethod" />
