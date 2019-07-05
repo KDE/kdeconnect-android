@@ -39,9 +39,11 @@ import android.os.Parcelable;
 import android.provider.Settings;
 import android.service.notification.StatusBarNotification;
 import android.text.SpannableString;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
@@ -65,6 +67,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
@@ -253,33 +256,38 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
             Pair<String, String> conversation = extractConversation(notification);
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-
-                if (conversation.first != null) {
-                    np.set("title", conversation.first);
-                } else {
-                    np.set("title", notification.extras.getString(Notification.EXTRA_TITLE));
-                }
-
-                np.set("text", extractText(notification, conversation));
+            if (conversation.first != null) {
+                np.set("title", conversation.first);
+            } else {
+                np.set("title", extractStringFromExtra(getExtras(notification), NotificationCompat.EXTRA_TITLE));
             }
+
+            np.set("text", extractText(notification, conversation));
         }
 
         device.sendPacket(np);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private String extractText(Notification notification, Pair<String, String> conversation) {
 
         if (conversation.second != null) {
             return conversation.second;
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && notification.extras.containsKey(Notification.EXTRA_BIG_TEXT)) {
-            return extractStringFromExtra(notification.extras, Notification.EXTRA_BIG_TEXT);
+        Bundle extras = getExtras(notification);
+
+        if (extras.containsKey(NotificationCompat.EXTRA_BIG_TEXT)) {
+            return extractStringFromExtra(extras, NotificationCompat.EXTRA_BIG_TEXT);
         }
 
-        return notification.extras.getString(Notification.EXTRA_TEXT);
+        return extractStringFromExtra(extras, NotificationCompat.EXTRA_TEXT);
+    }
+
+    @NonNull
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    private static Bundle getExtras(Notification notification) {
+        // NotificationCompat.getExtras() is expected to return non-null values for JELLY_BEAN+
+        return Objects.requireNonNull(NotificationCompat.getExtras(notification));
     }
 
     private void attachIcon(NetworkPacket np, Bitmap appIcon) {
@@ -359,13 +367,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
         String title = notification.extras.getString(Notification.EXTRA_CONVERSATION_TITLE);
 
-        boolean isGroupConversation = false;
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            if (notification.extras.containsKey(Notification.EXTRA_IS_GROUP_CONVERSATION)) {
-                isGroupConversation = notification.extras.getBoolean(Notification.EXTRA_IS_GROUP_CONVERSATION);
-            }
-        }
+        boolean isGroupConversation = notification.extras.getBoolean(NotificationCompat.EXTRA_IS_GROUP_CONVERSATION);
 
         StringBuilder messagesBuilder = new StringBuilder();
 
@@ -377,7 +379,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 messagesBuilder.append(": ");
             }
 
-            messagesBuilder.append(m.getString("text"));
+            messagesBuilder.append(extractStringFromExtra(m, "text"));
             messagesBuilder.append("\n");
         }
 
@@ -491,22 +493,20 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     private String getTickerText(Notification notification) {
         String ticker = "";
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            try {
-                Bundle extras = notification.extras;
-                String extraTitle = extractStringFromExtra(extras, Notification.EXTRA_TITLE);
-                String extraText = extractStringFromExtra(extras, Notification.EXTRA_TEXT);
+        try {
+            Bundle extras = getExtras(notification);
+            String extraTitle = extractStringFromExtra(extras, NotificationCompat.EXTRA_TITLE);
+            String extraText = extractStringFromExtra(extras, NotificationCompat.EXTRA_TEXT);
 
-                if (extraTitle != null && extraText != null && !extraText.isEmpty()) {
-                    ticker = extraTitle + ": " + extraText;
-                } else if (extraTitle != null) {
-                    ticker = extraTitle;
-                } else if (extraText != null) {
-                    ticker = extraText;
-                }
-            } catch (Exception e) {
-                Log.e(TAG, "problem parsing notification extras for " + notification.tickerText, e);
+            if (extraTitle != null && !TextUtils.isEmpty(extraText)) {
+                ticker = extraTitle + ": " + extraText;
+            } else if (extraTitle != null) {
+                ticker = extraTitle;
+            } else if (extraText != null) {
+                ticker = extraText;
             }
+        } catch (Exception e) {
+            Log.e(TAG, "problem parsing notification extras for " + notification.tickerText, e);
         }
 
         if (ticker.isEmpty()) {
@@ -594,7 +594,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     //For compat with API<21, because lollipop changed the way to cancel notifications
     private static void cancelNotificationCompat(NotificationReceiver service, String compatKey) {
-        if (Build.VERSION.SDK_INT >= 21) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             service.cancelNotification(compatKey);
         } else {
             int first = compatKey.indexOf(':');
@@ -623,7 +623,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         String tag = statusBarNotification.getTag();
         if (tag != null && tag.startsWith("kdeconnectId:"))
             result = Integer.toString(statusBarNotification.getId());
-        else if (Build.VERSION.SDK_INT >= 21) {
+        else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             result = statusBarNotification.getKey();
         } else {
             String packageName = statusBarNotification.getPackageName();
