@@ -182,16 +182,18 @@ public class SMSPlugin extends Plugin {
          */
         @Override
         public void onChange(boolean selfChange) {
+            // Lock so no one uses the mostRecentTimestamp between the moment we read it and the
+            // moment we update it. This is because reading the Messages DB can take long.
+            mostRecentTimestampLock.lock();
+
             if (mostRecentTimestamp == 0) {
                 // Since the timestamp has not been initialized, we know that nobody else
                 // has requested a message. That being the case, there is most likely
                 // nobody listening for message updates, so just drop them
+                mostRecentTimestampLock.unlock();
                 return;
             }
 
-            // Lock so no one uses the mostRecentTimestamp between the moment we read it and the
-            // moment we update it. This is because reading the Messages DB can take long.
-            mostRecentTimestampLock.lock();
             SMSHelper.Message message = SMSHelper.getNewestMessage(context);
 
             if (message == null || message.date <= mostRecentTimestamp) {
