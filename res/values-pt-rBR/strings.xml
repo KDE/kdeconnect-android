@@ -8,14 +8,14 @@
   <string name="pref_plugin_battery">Relatório da bateria</string>
   <string name="pref_plugin_battery_desc">Informação periódica do status da bateria</string>
   <string name="pref_plugin_sftp">Exposição do sistema de arquivos</string>
-  <string name="pref_plugin_sftp_desc">Permite navegar no sistema de arquivos deste telefone remotamente</string>
-  <string name="pref_plugin_clipboard">Sincronização da área de transferência</string>
+  <string name="pref_plugin_sftp_desc">Permite navegar remotamente pelo sistema de arquivos deste telefone</string>
+  <string name="pref_plugin_clipboard">Sincronizar área de transferência</string>
   <string name="pref_plugin_clipboard_desc">Compartilha o conteúdo da área de transferência</string>
   <string name="pref_plugin_mousepad">Introdução de dados remota</string>
   <string name="pref_plugin_mousepad_desc">Use seu telefone ou tablet como mouse e teclado</string>
   <string name="pref_plugin_presenter">Apresentação de slides remota</string>
-  <string name="pref_plugin_presenter_desc">Use o seu dispositivo para mudar de slides em uma apresentação</string>
-  <string name="pref_plugin_remotekeyboard">Receber pressionamento de teclas remotamente</string>
+  <string name="pref_plugin_presenter_desc">Use o seu dispositivo para mudar os slides de uma apresentação</string>
+  <string name="pref_plugin_remotekeyboard">Receber pressionamento de teclas remoto</string>
   <string name="pref_plugin_remotekeyboard_desc">Recebe os eventos de pressionamento de teclas dos dispositivos remotos</string>
   <string name="pref_plugin_mpris">Controle multimídia</string>
   <string name="pref_plugin_mpris_desc">Fornece um controle remoto de seu reprodutor de mídia</string>
@@ -25,7 +25,7 @@
   <string name="pref_plugin_contacts_desc">Permite a sincronização do livro de endereços do dispositivo</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Envia e recebe pings</string>
-  <string name="pref_plugin_notifications">Sincronização de notificações</string>
+  <string name="pref_plugin_notifications">Sincronizar notificações</string>
   <string name="pref_plugin_notifications_desc">Acesse suas notificações a partir de outros dispositivos</string>
   <string name="pref_plugin_receive_notifications">Receber notificações</string>
   <string name="pref_plugin_receive_notifications_desc">Recebe as notificações de outros dispositivos e as mostra no Android</string>
@@ -47,19 +47,19 @@
   <string name="remotekeyboard_multiple_connections">Existe mais que uma conexão a teclados remotos. Selecione o dispositivo a configurar</string>
   <string name="open_mousepad">Introdução de dados remota</string>
   <string name="mousepad_info">Mova um dedo pela tela para mover o ponteiro do mouse. Dê um toque para clicar e use dois/três dedos para os botões da direita e do meio. Use dois dedos para rolar a tela. Use uma pressão longa para arrastar e soltar.</string>
-  <string name="mousepad_double_tap_settings_title">Definir a ação do toque com dois dedos</string>
-  <string name="mousepad_triple_tap_settings_title">Definir a ação do toque com três dedos</string>
-  <string name="mousepad_sensitivity_settings_title">Definir a sensibilidade do touchpad</string>
-  <string name="mousepad_acceleration_profile_settings_title">Definir a aceleração do ponteiro</string>
+  <string name="mousepad_double_tap_settings_title">Definir ação do toque com dois dedos</string>
+  <string name="mousepad_triple_tap_settings_title">Definir ação do toque com três dedos</string>
+  <string name="mousepad_sensitivity_settings_title">Definir sensibilidade do touchpad</string>
+  <string name="mousepad_acceleration_profile_settings_title">Definir aceleração do ponteiro</string>
   <string name="mousepad_scroll_direction_title">Direção de rolagem inversa</string>
   <string-array name="mousepad_tap_entries">
     <item>Botão direito</item>
     <item>Botão do meio</item>
-    <item>Nada</item>
+    <item>Nenhuma</item>
   </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Mais lento</item>
-    <item>Ainda mais lento</item>
+    <item>Acima do mais lento</item>
     <item>Padrão</item>
     <item>Acima do padrão</item>
     <item>Mais rápido</item>
@@ -166,7 +166,7 @@
   <string name="protocol_version_newer">Este dispositivo usa uma versão mais recente do protocolo</string>
   <string name="general_settings">Configurações gerais</string>
   <string name="plugin_settings">Configurações</string>
-  <string name="plugin_settings_with_name">Configurações do %s</string>
+  <string name="plugin_settings_with_name">Configurações de %s</string>
   <string name="device_name">Nome do dispositivo</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nome do dispositivo inválido</string>
@@ -177,7 +177,7 @@
   <string name="custom_device_list">Adicionar dispositivos pelo IP</string>
   <string name="delete_custom_device">Excluir %s?</string>
   <string name="custom_device_deleted">Dispositivo personalizado excluído</string>
-  <string name="custom_device_list_help">Se seu dispositivo não for detectado automaticamente você pode adicionar o endereço de IP ou nome de máquina dele clicando no botão de ação flutuante</string>
+  <string name="custom_device_list_help">Se o seu dispositivo não for detectado automaticamente você pode adicionar o endereço IP ou nome de máquina dele clicando no botão de ação flutuante</string>
   <string name="custom_device_fab_hint">Adicionar um dispositivo</string>
   <string name="undo">Desfazer</string>
   <string name="share_notification_preference">Notificações sonoras</string>
@@ -196,25 +196,25 @@
   <string name="sftp_readonly">(somente leitura)</string>
   <string name="sftp_camera">Imagens da câmera</string>
   <string name="add_device_dialog_title">Adicionar dispositivo</string>
-  <string name="add_device_hint">Nome da máquina ou endereço IP</string>
+  <string name="add_device_hint">Nome de máquina ou endereço IP</string>
   <string name="sftp_preference_detected_sdcards">Cartões SD detectados</string>
   <string name="sftp_preference_edit_sdcard_title">Editar cartão SD</string>
-  <string name="sftp_preference_configured_storage_locations">Localizações de armazenamento configuradas</string>
-  <string name="sftp_preference_add_storage_location_title">Adicionar localização de armazenamento</string>
-  <string name="sftp_preference_edit_storage_location">Editar localização de armazenamento</string>
+  <string name="sftp_preference_configured_storage_locations">Locais de armazenamento configurados</string>
+  <string name="sftp_preference_add_storage_location_title">Adicionar local de armazenamento</string>
+  <string name="sftp_preference_edit_storage_location">Editar local de armazenamento</string>
   <string name="sftp_preference_add_camera_shortcut">Adicionar atalho para pasta da câmera</string>
   <string name="sftp_preference_add_camera_shortcut_summary_on">Adiciona um atalho para a pasta da câmera</string>
   <string name="sftp_preference_add_camera_shortcut_summary_off">Não adiciona um atalho para a pasta da câmera</string>
-  <string name="sftp_storage_preference_storage_location">Localização do armazenamento</string>
-  <string name="sftp_storage_preference_storage_location_already_configured">Esta localização já foi configurada</string>
+  <string name="sftp_storage_preference_storage_location">Local de armazenamento</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">Este local já foi configurado</string>
   <string name="sftp_storage_preference_click_to_select">clique para selecionar</string>
   <string name="sftp_storage_preference_display_name">Nome de exibição</string>
   <string name="sftp_storage_preference_display_name_already_used">Este nome de exibição já está em uso</string>
   <string name="sftp_storage_preference_display_name_cannot_be_empty">O nome de exibição não pode esta vazio</string>
   <string name="sftp_action_mode_menu_delete">Excluir</string>
   <string name="sftp_no_sdcard_detected">Nenhum cartão SD detectado</string>
-  <string name="sftp_no_storage_locations_configured">Nenhuma localização de armazenamento configurada</string>
-  <string name="sftp_saf_permission_explanation">Para acessar arquivos remotamente você precisa configurar localizações de armazenamento</string>
+  <string name="sftp_no_storage_locations_configured">Nenhum local de armazenamento configurado</string>
+  <string name="sftp_saf_permission_explanation">Para acessar arquivos remotamente você precisa configurar locais de armazenamento</string>
   <string name="add_host">Adicionar máquina/IP</string>
   <string name="add_host_hint">Nome da máquina ou IP</string>
   <string name="no_players_connected">Nenhum reprodutor encontrado</string>
@@ -230,7 +230,7 @@
   <string name="on_data_message">Parece que você está conectado com dados móveis. O KDE Connect só funciona em redes locais.</string>
   <string name="no_file_browser">Não há gerenciadores de arquivos instalados.</string>
   <string name="pref_plugin_telepathy">Enviar SMS</string>
-  <string name="pref_plugin_telepathy_desc">Enviar mensagens de texto do seu Desktop</string>
+  <string name="pref_plugin_telepathy_desc">Envia mensagens de texto do seu Desktop</string>
   <string name="plugin_not_supported">Este plugin não é suportado pelo dispositivo</string>
   <string name="findmyphone_title">Encontrar meu telefone</string>
   <string name="findmyphone_title_tablet">Encontrar meu tablet</string>
