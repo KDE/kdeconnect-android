@@ -301,4 +301,5 @@
   <string name="take_picture">Llança la càmera</string>
   <string name="plugin_photo_desc">Llança l\'aplicació de la càmera per facilitar la presa i la transferència de fotografies</string>
   <string name="no_app_for_opening">No s\'ha trobat cap aplicació adequada per obrir aquest fitxer</string>
+  <string name="remote_keyboard_service">Teclat remot del KDE Connect</string>
 </resources>

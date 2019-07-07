@@ -301,4 +301,5 @@
   <string name="take_picture">Start camera</string>
   <string name="plugin_photo_desc">Start de camera-app om nemen en overdragen van afbeeldingen te vergemakkelijken</string>
   <string name="no_app_for_opening">Geen geschikte toepassing gevonden om dit bestand te openen</string>
+  <string name="remote_keyboard_service">KDE Connect Toetsenbord op afstand</string>
 </resources>

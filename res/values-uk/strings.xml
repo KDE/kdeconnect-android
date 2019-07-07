@@ -317,4 +317,5 @@
   <string name="take_picture">Запустити камеру</string>
   <string name="plugin_photo_desc">Запустити додаток камери для спрощення знімання та передавання фотографій</string>
   <string name="no_app_for_opening">Не знайдено відповідної програми для відкриття цього файла</string>
+  <string name="remote_keyboard_service">Віддалена клавіатура KDE Connect</string>
 </resources>
