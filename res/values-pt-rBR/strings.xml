@@ -88,10 +88,10 @@
   <string name="error_canceled_by_user">Cancelado pelo usuário</string>
   <string name="error_canceled_by_other_peer">Cancelado pelo outro dispositivo</string>
   <string name="error_invalid_key">Chave inválida recebida</string>
-  <string name="encryption_info_title">Informação da criptografia</string>
+  <string name="encryption_info_title">Informação de criptografia</string>
   <string name="encryption_info_msg_no_ssl">O outro dispositivo não usa uma versão recente do KDE Connect. Será utilizado o método antigo de criptografia.</string>
-  <string name="my_device_fingerprint">Impressão digital SHA1 do certificado do seu dispositivo:</string>
-  <string name="remote_device_fingerprint">Impressão digital SHA1 do certificado do dispositivo remoto:</string>
+  <string name="my_device_fingerprint">Código SHA1 do certificado do seu dispositivo:</string>
+  <string name="remote_device_fingerprint">Código SHA1 do certificado do dispositivo remoto:</string>
   <string name="pair_requested">Solicitação de emparelhamento</string>
   <string name="pairing_request_from">Emparelhamento solicitado por %1s</string>
   <string name="received_url_title">Link recebido de %1s</string>
@@ -251,7 +251,7 @@
   <string name="contacts_permission_explanation">Para compartilhar o seu livro de endereços com o ambiente de trabalho é necessário conceder permissão para os contatos</string>
   <string name="select_ringtone">Selecionar um toque de chamada</string>
   <string name="telephony_pref_blocked_title">Números bloqueados</string>
-  <string name="telephony_pref_blocked_dialog_desc">Não mostrar as chamadas e SMS desses números. Indique um número por linha</string>
+  <string name="telephony_pref_blocked_dialog_desc">Não mostrar as chamadas e SMS destes números. Indique um número por linha.</string>
   <string name="mpris_coverart_description">Capa da mídia atual</string>
   <string name="device_icon_description">Ícone do dispositivo</string>
   <string name="settings_icon_description">Ícone de configurações</string>
@@ -282,7 +282,7 @@
   <string name="pref_plugin_systemvolume">Volume do sistema</string>
   <string name="pref_plugin_systemvolume_desc">Controle o volume do sistema a partir do dispositivo remoto</string>
   <string name="mute">Sem áudio</string>
-  <string name="all">Tudo</string>
+  <string name="all">Todos</string>
   <string name="devices">Dispositivos</string>
   <string name="settings_rename">Nome do dispositivo</string>
   <string name="settings_dark_mode">Tema escuro</string>
@@ -301,4 +301,5 @@
   <string name="take_picture">Iniciar câmera</string>
   <string name="plugin_photo_desc">Iniciar o aplicativo da câmera para facilitar a captura e transferência de fotos</string>
   <string name="no_app_for_opening">Não foi encontrado nenhum aplicativo adequado para abrir este arquivo</string>
+  <string name="remote_keyboard_service">Teclado Remoto do KDE Connect</string>
 </resources>

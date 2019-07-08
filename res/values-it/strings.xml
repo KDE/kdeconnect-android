@@ -301,4 +301,5 @@
   <string name="take_picture">Avvia fotocamera</string>
   <string name="plugin_photo_desc">Avvia l\'applicazione della fotocamera per scattare e trasferire foto con facilità</string>
   <string name="no_app_for_opening">Nessuna applicazione appropriata trovata per aprire questo file</string>
+  <string name="remote_keyboard_service">Tastiera remota di KDE Connect</string>
 </resources>

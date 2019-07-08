@@ -245,8 +245,8 @@
   <string name="unreachable_description">To sparowane urządzenie jest nieosiągalne. Upewnij się, że jest podłączone do tej samej sieci.</string>
   <string name="on_data_message">Wygląda na to, że korzystasz z internetu mobilnego. KDE Connect działa tylko na lokalnych sieciach.</string>
   <string name="no_file_browser">Nie wgrano żadnych przeglądarek plików.</string>
-  <string name="pref_plugin_telepathy">Wyślij SMS-a</string>
-  <string name="pref_plugin_telepathy_desc">Wyślij wiadomość tekstową z komputera</string>
+  <string name="pref_plugin_telepathy">Wysyłanie SMSów</string>
+  <string name="pref_plugin_telepathy_desc">Wysyła wiadomość tekstową z komputera</string>
   <string name="plugin_not_supported">Ta wtyczka nie jest obsługiwana przez to urządzenie</string>
   <string name="findmyphone_title">Znajdź mój telefon</string>
   <string name="findmyphone_title_tablet">Znajdź mój tablet</string>
@@ -317,4 +317,5 @@
   <string name="take_picture">Uruchom aparat</string>
   <string name="plugin_photo_desc">Uruchom aplikację aparatu, aby ułatwić robienie i przesyłanie zdjęć</string>
   <string name="no_app_for_opening">Nie znaleziono aplikacji do otwarcia tego pliku</string>
+  <string name="remote_keyboard_service">Zdalna klawiatura KDE Connect</string>
 </resources>

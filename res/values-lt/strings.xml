@@ -75,7 +75,7 @@
   <string name="category_connected_devices">Prijungti įrenginiai</string>
   <string name="category_not_paired_devices">Prieinami įrenginiai</string>
   <string name="category_remembered_devices">Įsiminti įrenginiai</string>
-  <string name="device_menu_plugins">Priedo nustatymai</string>
+  <string name="device_menu_plugins">Priedo nuostatos</string>
   <string name="device_menu_unpair">Panaikinti suporavimą</string>
   <string name="device_not_reachable">Suporuotas įrenginys nepasiekiamas</string>
   <string name="pair_new_device">Suporuoti naują įrenginį</string>
@@ -165,7 +165,7 @@
   <string name="mpris_ff">Persukti pirmyn</string>
   <string name="mpris_next">Kitas</string>
   <string name="mpris_volume">Garsumas</string>
-  <string name="mpris_settings">Įvairialypės terpės nustatymai</string>
+  <string name="mpris_settings">Įvairialypės terpės nuostatos</string>
   <string name="mpris_time_settings_title">Persukimo pirmyn/atgal mygtukai</string>
   <string name="mpris_time_settings_summary">Reguliuoti persukimo pirmyn/atgal laiką, spustelėjus</string>
   <string-array name="mpris_time_entries">
@@ -180,9 +180,9 @@
   <string name="share_to">Bendrinti su…</string>
   <string name="protocol_version_older">Šis įrenginys naudoja seną protokolo versiją</string>
   <string name="protocol_version_newer">Šis įrenginys naudoja naujesnę protokolo versiją</string>
-  <string name="general_settings">Bendri nustatymai</string>
-  <string name="plugin_settings">Nustatymai</string>
-  <string name="plugin_settings_with_name">%s nustatymai</string>
+  <string name="general_settings">Bendrosios nuostatos</string>
+  <string name="plugin_settings">Nuostatos</string>
+  <string name="plugin_settings_with_name">%s nuostatos</string>
   <string name="device_name">Įrenginio pavadinimas</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Netinkamas įrenginio pavadinimas</string>
@@ -317,4 +317,5 @@
   <string name="take_picture">Paleisti kamerą</string>
   <string name="plugin_photo_desc">Paleisti kameros programėlę, kad būtų palengvintas nuotraukų darymas ir persiuntimas</string>
   <string name="no_app_for_opening">Šio failo atvėrimui nerasta jokios tinkamos programėlės</string>
+  <string name="remote_keyboard_service">KDE Connect nuotolinė klaviatūra</string>
 </resources>
