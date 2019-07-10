@@ -293,4 +293,5 @@
   <string name="take_picture">啟動相機</string>
   <string name="plugin_photo_desc">開啟相機應用程式以輕鬆拍攝並傳輸相片</string>
   <string name="no_app_for_opening">找不到適合用來開啟此檔案的應用程式</string>
+  <string name="remote_keyboard_service">KDE 連線遠端鍵盤</string>
 </resources>
