@@ -13,6 +13,7 @@
   <string name="pref_plugin_clipboard_desc">Zdieľať obsah schránky</string>
   <string name="pref_plugin_mousepad">Vzdialený vstup</string>
   <string name="pref_plugin_mousepad_desc">Použiť váš telefón alebo tablet ako touchpad a klávesnicu</string>
+  <string name="pref_plugin_presenter">Diaľkový ovládač prezentácie</string>
   <string name="pref_plugin_presenter_desc">Používajte vaše zariadenie na posúvanie stránok prezentácie</string>
   <string name="pref_plugin_remotekeyboard">Prijímať vzdialené stlačenia klávesov</string>
   <string name="pref_plugin_remotekeyboard_desc">Prjímať udalosti stlačenia kláves z diaľkových zariadení</string>
@@ -37,6 +38,7 @@
   <string name="open_settings">Otvoriť nastavenia</string>
   <string name="no_permissions">Musíte povoliť oprávnenia na prístup k pripomienkam</string>
   <string name="no_permission_mprisreceiver">Aby ste mohli ovládať prehrávače médií musíte udeliť oprávnenie pristupovať k oznámeniam.</string>
+  <string name="no_permissions_remotekeyboard">Ak chcete prijímať stlačenia klávesov, musíte aktivovať KDE Connect Vzdialená Klávesnica</string>
   <string name="send_ping">Poslať ping</string>
   <string name="open_mpris_controls">Multimediálny ovládač</string>
   <string name="remotekeyboard_editing_only_title">Spracovať vzdialené klávesy iba počas upravovania</string>
@@ -106,6 +108,12 @@
     <item quantity="many">(Súbor %2$d z %3$d) : %1$s</item>
     <item quantity="other"/>
   </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">Posielam %1$d súbor do %2$s</item>
+    <item quantity="few">Posielam %1$d súbory do %2$s</item>
+    <item quantity="many">Posielam %1$d súborov do %2$s</item>
+    <item quantity="other"/>
+  </plurals>
   <plurals name="received_files_title">
     <item quantity="one">Prijatý súbor od %1$s</item>
     <item quantity="few">Prijaté %2$d súbory od %1$s</item>
@@ -166,6 +174,9 @@
   <string name="unpair_device_action">Odpárovať %s</string>
   <string name="custom_device_list">Pridať zariadenia podľa IP</string>
   <string name="delete_custom_device">Vymazať %s?</string>
+  <string name="custom_device_list_help">Ak vaše zariadenie nie je automaticky zistené, môžete pridať jeho IP adresu alebo názov hostiteľa kliknutím na plávajúce tlačidlo</string>
+  <string name="custom_device_fab_hint">Pridať zariadenie</string>
+  <string name="undo">Vrátiť</string>
   <string name="share_notification_preference">Hlučné pripomienky</string>
   <string name="share_notification_preference_summary">Vibrovať a prehrať zvuk pri prijatí súboru</string>
   <string name="share_destination_customize">Prispôsobiť cieľový priečinok</string>
@@ -182,7 +193,25 @@
   <string name="sftp_readonly">(iba na čítanie)</string>
   <string name="sftp_camera">Obrázky fotoaparátu</string>
   <string name="add_device_dialog_title">Pridať zariadenie</string>
+  <string name="add_device_hint">Hostiteľ alebo IP adresa</string>
+  <string name="sftp_preference_detected_sdcards">Rozpoznané SD karty</string>
+  <string name="sftp_preference_edit_sdcard_title">Upraviť SD kartu</string>
+  <string name="sftp_preference_configured_storage_locations">Nastavené umiestnenia úložiska</string>
+  <string name="sftp_preference_add_storage_location_title">Pridať umiestnenie úložiska</string>
+  <string name="sftp_preference_edit_storage_location">Upraviť umiestnenie úložiska</string>
+  <string name="sftp_preference_add_camera_shortcut">Pridať skratku na priečinok s fotkami</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_on">Pridať skratku na priečinok s fotkami</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_off">Nepridávať skratku na priečinok s fotkami</string>
+  <string name="sftp_storage_preference_storage_location">umiestnenie úložiska</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">toto umiestnenie už bolo nastavené</string>
+  <string name="sftp_storage_preference_click_to_select">kliknite na výber</string>
   <string name="sftp_storage_preference_display_name">Zobraziť meno</string>
+  <string name="sftp_storage_preference_display_name_already_used">Tento zobrazovaný názov už je použitý</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">Zobrazovaný názov nemôže byť prázdny</string>
+  <string name="sftp_action_mode_menu_delete">Vymazať</string>
+  <string name="sftp_no_sdcard_detected">Nebola rozpoznaná žiadna SD karta</string>
+  <string name="sftp_no_storage_locations_configured">Žiadne umiestnenia úložiska nastavené</string>
+  <string name="sftp_saf_permission_explanation">Na vzdialený prístup k súborom musíte nastaviť umiestnenia úložiska</string>
   <string name="add_host">Pridať hostiteľa/IP</string>
   <string name="add_host_hint">Názov hostiteľa alebo IP</string>
   <string name="no_players_connected">Nenašli sa žiadne prehrávače</string>
@@ -214,6 +243,7 @@
   <string name="plugins_need_optional_permission">Niektoré pluginy majú zakázané funkcie pre nedostatok opránení (ťuknite pre viac info):</string>
   <string name="share_optional_permission_explanation">Na zdieľanie súborov medzi vašim telefónom a počítačom potrebujete dať prístup k úložisku telefónu</string>
   <string name="telepathy_permission_explanation">Na čítanie a písanie SMS z vašeho počítača, potrebujete dať oprávnienie na SMS</string>
+  <string name="telephony_permission_explanation">Aby ste videli telefónne hovory z počítača, potrebujete dať oprávnenie na zoznamy hovorov a stav telefónu</string>
   <string name="telephony_optional_permission_explanation">Aby ste videli meno kontaktu namiesto čísla, potrebujete dať oprávnenie na telefónne kontakty</string>
   <string name="contacts_permission_explanation">Na zdieľanie kontaktov s počítačom, potrebujete dať oprávnenie na kontakty</string>
   <string name="select_ringtone">Nastaviť tón zvonenia</string>
@@ -224,6 +254,7 @@
   <string name="settings_icon_description">Ikona Nastavení</string>
   <string name="presenter_fullscreen">Celá obrazovka</string>
   <string name="presenter_exit">Ukončiť prezentáciu</string>
+  <string name="presenter_lock_tip">Môžete zamknúť vaše zariadenie a používať tlačidlá hlasitosti na prechod medzi snímkami</string>
   <string name="add_command">Pridať príkaz</string>
   <string name="addcommand_explanation">Nie sú registrované žiadne príkazy</string>
   <string name="addcommand_explanation2">Môžete pridať nové príkazy v KDE Connect systémových nastaveniach</string>
@@ -264,4 +295,8 @@
   <string name="block_contents">Blokovať obsah oznámení</string>
   <string name="block_images">Blokovať obrázky v oznámeniach</string>
   <string name="notification_channel_receivenotification">Oznámenia iných zariadení</string>
+  <string name="take_picture">Spustiť fotoaparát</string>
+  <string name="plugin_photo_desc">Spustiť aplikáciu fotoaparátu na uľahčenie snímania a prenosu obrázkov</string>
+  <string name="no_app_for_opening">Nenašla sa vhodná aplikácia na otvorenie tohto súboru</string>
+  <string name="remote_keyboard_service">KDE Connect Vzdialená Klávesnica</string>
 </resources>
