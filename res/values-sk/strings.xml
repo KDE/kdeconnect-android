@@ -114,6 +114,12 @@
     <item quantity="many">Posielam %1$d súborov do %2$s</item>
     <item quantity="other"/>
   </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Súbor: %1$s</item>
+    <item quantity="few">(Súbor %2$d z %3$d) : %1$s</item>
+    <item quantity="many">(Súbor %2$d z %3$d) : %1$s</item>
+    <item quantity="other"/>
+  </plurals>
   <plurals name="received_files_title">
     <item quantity="one">Prijatý súbor od %1$s</item>
     <item quantity="few">Prijaté %2$d súbory od %1$s</item>
@@ -124,6 +130,18 @@
     <item quantity="one">Zlyhalo prijatie súboru od %1$s</item>
     <item quantity="few">Zlyhalo prijatie %2$d z %3$d súborov od %1$s</item>
     <item quantity="many">Zlyhalo prijatie %2$d z %3$d súborov od %1$s</item>
+    <item quantity="other"/>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">Poslať súbor do %1$s</item>
+    <item quantity="few">Poslať %2$d súbory do %1$s</item>
+    <item quantity="many">Poslať %2$d súborov do %1$s</item>
+    <item quantity="other"/>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Zlyhalo odoslanie súboru do %1$s</item>
+    <item quantity="few">Zlyhalo odoslanie %2$d z %3$d súborov do %1$s</item>
+    <item quantity="many">Zlyhalo odoslanie %2$d z %3$d súborov do %1$s</item>
     <item quantity="other"/>
   </plurals>
   <string name="received_file_text">Ťuknite na otvorenie \'%1s\'</string>
@@ -174,6 +192,7 @@
   <string name="unpair_device_action">Odpárovať %s</string>
   <string name="custom_device_list">Pridať zariadenia podľa IP</string>
   <string name="delete_custom_device">Vymazať %s?</string>
+  <string name="custom_device_deleted">Odstránené vlastné zariadenie</string>
   <string name="custom_device_list_help">Ak vaše zariadenie nie je automaticky zistené, môžete pridať jeho IP adresu alebo názov hostiteľa kliknutím na plávajúce tlačidlo</string>
   <string name="custom_device_fab_hint">Pridať zariadenie</string>
   <string name="undo">Vrátiť</string>
