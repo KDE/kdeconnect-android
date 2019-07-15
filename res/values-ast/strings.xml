@@ -47,6 +47,8 @@
   <string name="device_menu_plugins">Axustes de plugins</string>
   <string name="device_menu_unpair">Desempareyar</string>
   <string name="pair_new_device">Empareya un preséu nuevu</string>
+  <string name="received_url_title">Recibióse un enllaz de %1s</string>
+  <string name="received_url_text">Toca p\'abrir «%1s»</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Recibiendo %1$d ficheru de %2$s</item>
     <item quantity="other">Recibiendo %1$d ficheros de %2$s</item>
@@ -63,6 +65,10 @@
     <item quantity="one">Ficheru: %1$s</item>
     <item quantity="other">(Ficheru %2$d de %3$d): %1$s</item>
   </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one">Recibióse 1 ficheru de %1$s</item>
+    <item quantity="other">Recibiéronse %2$d ficheros de %1$s</item>
+  </plurals>
   <plurals name="received_files_fail_title">
     <item quantity="one">Fallu al recibir el ficheru de %1$s</item>
     <item quantity="other">Fallu al recibir %2$d de los %3$d ficheros de %1$s</item>
@@ -71,6 +77,7 @@
     <item quantity="one">Fallu al unviar el ficheru de %1$s</item>
     <item quantity="other">Fallu al unviar %2$d de los %3$d ficheros de %1$s</item>
   </plurals>
+  <string name="received_file_text">Toca p\'abrir «%1s»</string>
   <string name="cannot_create_file">Nun pue crease\'l ficheru %s</string>
   <string name="right_click">Unviar un clic drechu</string>
   <string name="middle_click">Unviar un clic d\'en mediu</string>
@@ -91,6 +98,7 @@
   <string name="protocol_version_newer">Esti preséu una una versión nueva del protocolu</string>
   <string name="general_settings">Axustes xenerales</string>
   <string name="plugin_settings">Axustes</string>
+  <string name="plugin_settings_with_name">Axustes: %s</string>
   <string name="device_name_preference_summary">%s</string>
   <string name="custom_devices_settings">Llista de preseos personalizaos</string>
   <string name="custom_device_list">Amestar preseos pola IP</string>
@@ -105,10 +113,11 @@
   <string name="add_device_hint">Nome d\'agospiu o direición IP</string>
   <string name="no_players_connected">Nun s\'alcontraron reproductores</string>
   <string name="send_files">Unviar ficheros</string>
-  <string name="pairing_description">Equí deberíen apaecer los demás preseos que tean na mesma rede y executando KDE Connect.</string>
+  <string name="pairing_description">Equí deberíen apaecer los demás preseos que tean executando KDE Connect na mesma rede.</string>
   <string name="device_rename_title">Renomáu del preséu</string>
   <string name="device_rename_confirm">Renomar</string>
   <string name="refresh">Refrescar</string>
+  <string name="pref_plugin_telepathy">Unviu de SMS</string>
   <string name="pref_plugin_telepathy_desc">Unvia SMS dende l\'ordenador</string>
   <string name="findmyphone_description">Fai qu\'esti preséu suene pa que pueas alcontralu</string>
   <string name="findmyphone_found">Alcontrélu</string>

@@ -301,4 +301,5 @@
   <string name="take_picture">Lanzar cámara</string>
   <string name="plugin_photo_desc">Lanzar la aplicación de la cámara para facilitar tomar y transferir imágenes</string>
   <string name="no_app_for_opening">No se encontró ninguna aplicación adecuada para abrir este archivo</string>
+  <string name="remote_keyboard_service">Teclado remoto de KDE Connect</string>
 </resources>
