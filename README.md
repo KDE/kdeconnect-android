@@ -21,7 +21,13 @@ You can install this app from the [Play Store](https://play.google.com/store/app
 
 ## Contributing
 
-To contribute patches, use [KDE Connect's Phabricator](https://phabricator.kde.org/project/profile/159/). There you can also find a task list with stuff to do, and links to other relevant resources. It is a good idea to also subscribe to the [KDE Connect mailing list](https://mail.kde.org/mailman/listinfo/kdeconnect).
+A lot of useful information, including how to get started working on KDE Connect and how to connect with the current developers, is on our [KDE Community Wiki page](https://community.kde.org/KDEConnect)
+
+To contribute patches, use [KDE Connect's Gitlab](https://invent.kde.org/kde/kdeconnect-android/).
+On Gitlab (as well as on our [old Phabricator](https://phabricator.kde.org/tag/kde_connect/)) you can find a task list with stuff to do and links to other relevant resources.
+It is a good idea to also subscribe to the [KDE Connect mailing list](https://mail.kde.org/mailman/listinfo/kdeconnect).
+
+Please know that all translations for all KDE apps are handled by the [localization team](https://l10n.kde.org/). If you would like to submit a translation, that should be done by working with the proper team for that language.
 
 ## License
 [GNU GPL v2](https://www.gnu.org/licenses/gpl-2.0.html) and [GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.html)
