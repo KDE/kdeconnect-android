@@ -38,6 +38,7 @@
   <string name="open_settings">开启设置</string>
   <string name="no_permissions">您需要授予权限以便访问通知</string>
   <string name="no_permission_mprisreceiver">为了能够控制您的媒体播放器，您需要授予访问通知消息的权限</string>
+  <string name="no_permissions_remotekeyboard">要接收按键，您需要激活 KDE Connect 远程键盘</string>
   <string name="send_ping">发送ping</string>
   <string name="open_mpris_controls">多媒体控制</string>
   <string name="remotekeyboard_editing_only_title">只有在编辑时才接受远程按键</string>
@@ -101,11 +102,23 @@
   <plurals name="incoming_files_text">
     <item quantity="other">(%3$d 个文件中的第 %2$d 个)：%1$s</item>
   </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="other">正在发送 %1$d 个文件给 %2$s</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="other">(%3$d 个文件中的 %2$d 个)：%1$s</item>
+  </plurals>
   <plurals name="received_files_title">
     <item quantity="other">已从 %1$s 接收了 %2$d 个文件</item>
   </plurals>
   <plurals name="received_files_fail_title">
     <item quantity="other">从 %1$s 接收的 %3$d 个文件中的 %2$d 个失败</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="other">已发送 %2$d 给文件给 %1$s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="other">发送给 %1$s 的 %3$d 个文件中的 %2$d 个失败</item>
   </plurals>
   <string name="received_file_text">点击以打开“%1s”</string>
   <string name="cannot_create_file">无法创建文件 %s</string>
@@ -155,6 +168,10 @@
   <string name="unpair_device_action">取消配对 %s</string>
   <string name="custom_device_list">通过IP增加设备</string>
   <string name="delete_custom_device">删除 %s 吗？</string>
+  <string name="custom_device_deleted">自定义设备已删除</string>
+  <string name="custom_device_list_help">如果您的设备未被自动检测到，您点击浮动动作按钮可以添加它的 IP 地址或主机名。</string>
+  <string name="custom_device_fab_hint">添加设备</string>
+  <string name="undo">撤销</string>
   <string name="share_notification_preference">出声通知</string>
   <string name="share_notification_preference_summary">当收到文件时震动并播放声音</string>
   <string name="share_destination_customize">配置目标目录</string>
@@ -170,6 +187,28 @@
   <string name="sftp_sdcard">SD卡</string>
   <string name="sftp_readonly">(只读)</string>
   <string name="sftp_camera">相机照片</string>
+  <string name="add_device_dialog_title">添加设备</string>
+  <string name="add_device_hint">主机名或 IP 地址</string>
+  <string name="sftp_preference_detected_sdcards">检测到 SD 卡</string>
+  <string name="sftp_preference_edit_sdcard_title">编辑 SD 卡</string>
+  <string name="sftp_preference_configured_storage_locations">已配置存储位置</string>
+  <string name="sftp_preference_add_storage_location_title">添加存储位置</string>
+  <string name="sftp_preference_edit_storage_location">编辑存储位置</string>
+  <string name="sftp_preference_add_camera_shortcut">添加相机文件夹快捷方式</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_on">添加到相机文件夹的快捷方式</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_off">不要添加到相机文件夹的快捷方式</string>
+  <string name="sftp_storage_preference_storage_location">存储位置</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">位置已被配置</string>
+  <string name="sftp_storage_preference_click_to_select">点击选择</string>
+  <string name="sftp_storage_preference_display_name">显示名</string>
+  <string name="sftp_storage_preference_display_name_already_used">此显示名已被使用</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">显示名不能为空</string>
+  <string name="sftp_action_mode_menu_delete">删除</string>
+  <string name="sftp_no_sdcard_detected">没有检测到 SD 卡</string>
+  <string name="sftp_no_storage_locations_configured">未配置存储位置</string>
+  <string name="sftp_saf_permission_explanation">要远程访问文件，您需要配置存储位置</string>
+  <string name="add_host">添加主机/IP</string>
+  <string name="add_host_hint">主机名或IP</string>
   <string name="no_players_connected">未找到播放器</string>
   <string name="mpris_player_on_device">%2$s上的%1$s</string>
   <string name="send_files">发送文件</string>
@@ -199,6 +238,7 @@
   <string name="plugins_need_optional_permission">因缺少权限，某些插件的一些功能已禁用（点击以查看更多信息）：</string>
   <string name="share_optional_permission_explanation">您需要给予访问手机存储的权限才能在手机和桌面计算机之间分享文件</string>
   <string name="telepathy_permission_explanation">从计算机桌面读取、写入短消息需要向应用程序授予 SMS 权限</string>
+  <string name="telephony_permission_explanation">要桌面上查看手机通话记录，您需要授予访问通话记录和手机状态的权限</string>
   <string name="telephony_optional_permission_explanation">要查看联系人姓名而非电话号码，您需要授予访问手机通讯录的权限</string>
   <string name="contacts_permission_explanation">要与桌面共享通讯薄，您需要给予联系人权限</string>
   <string name="select_ringtone">选择铃声</string>
@@ -241,6 +281,8 @@
   <string name="settings_more_settings_title">更多设置</string>
   <string name="settings_more_settings_text">每个设备的独立设置可以在设备页内的“插件设置”下找到。</string>
   <string name="setting_persistent_notification">启用常驻通知栏</string>
+  <string name="setting_persistent_notification_oreo">持久通知</string>
+  <string name="setting_persistent_notification_description">点击在通知设置中启用/禁用</string>
   <string name="extra_options">附加选项</string>
   <string name="privacy_options">隐私选项</string>
   <string name="set_privacy_options">设置您的隐私选项</string>
@@ -248,4 +290,7 @@
   <string name="block_contents">阻止通知内容</string>
   <string name="block_images">阻止通知图像</string>
   <string name="notification_channel_receivenotification">来自其他设备的通知</string>
+  <string name="take_picture">启动相机</string>
+  <string name="plugin_photo_desc">启动相机应用程序以方便拍摄和转移图片</string>
+  <string name="no_app_for_opening">没有找到合适的应用程序打开此文件</string>
 </resources>

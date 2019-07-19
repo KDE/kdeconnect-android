@@ -293,4 +293,5 @@
   <string name="take_picture">카메라 실행</string>
   <string name="plugin_photo_desc">카메라 앱을 실행하여 쉽게 사진을 찍고 전송</string>
   <string name="no_app_for_opening">이 파일을 열 수 있는 앱을 찾을 수 없음</string>
+  <string name="remote_keyboard_service">KDE Connect 원격 키보드</string>
 </resources>
