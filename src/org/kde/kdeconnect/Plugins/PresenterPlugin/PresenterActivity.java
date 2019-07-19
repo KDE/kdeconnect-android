@@ -57,18 +57,17 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
 
     private SensorManager sensorManager;
     private float xPos, yPos;
-    private float xOffset, yOffset;
 
     static final float SENSITIVITY = 0.05f; //TODO: Make configurable?
 
     public void gyroscopeEvent(SensorEvent event) {
-        xPos += -event.values[2];
-        yPos += -event.values[0];
+        xPos += -event.values[2] * SENSITIVITY;
+        yPos += -event.values[0] * SENSITIVITY;
 
-        float percentX = clamp((xPos - xOffset) * SENSITIVITY, -1.f, 1.f);
-        float percentY = clamp((yPos - yOffset) * SENSITIVITY, -1.f, 1.f);
+        xPos = clamp(xPos, -1.f, 1.f);
+        yPos = clamp(yPos, -1.f, 1.f);
 
-        plugin.sendPointer(percentX, percentY);
+        plugin.sendPointer(xPos, yPos);
     }
 
     public void onSensorChanged(SensorEvent event) {
@@ -90,8 +89,8 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
         findViewById(R.id.pointer_button).setVisibility(View.VISIBLE);
         findViewById(R.id.pointer_button).setOnTouchListener((v, event) -> {
             if(event.getAction() == MotionEvent.ACTION_DOWN){
-                yOffset = yPos;
-                xOffset = xPos;
+                yPos = 0;
+                xPos = 0;
                 sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE), SensorManager.SENSOR_DELAY_GAME);
                 v.performClick(); // The linter complains if this is not called
             }
