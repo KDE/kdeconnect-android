@@ -134,6 +134,13 @@ public class MprisReceiverPlugin extends Plugin {
             player.setPosition(position);
         }
 
+        if (np.has("setVolume")) {
+            int volume = np.getInt("setVolume", 100);
+            player.setVolume(volume);
+            //Setting volume doesn't seem to always trigger the callback
+            sendMetadata(player);
+        }
+
         if (np.has("action")) {
             String action = np.getString("action");
 

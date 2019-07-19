@@ -30,7 +30,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 
-@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
 class MprisReceiverCallback extends MediaController.Callback {
 
     private static final String TAG = "MprisReceiver";
@@ -43,7 +43,6 @@ class MprisReceiverCallback extends MediaController.Callback {
         this.plugin = plugin;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onPlaybackStateChanged(PlaybackState state) {
         plugin.sendMetadata(player);
@@ -54,4 +53,9 @@ class MprisReceiverCallback extends MediaController.Callback {
         plugin.sendMetadata(player);
     }
 
+    @Override
+    public void onAudioInfoChanged(MediaController.PlaybackInfo info) {
+        //Note: not called by all media players
+        plugin.sendMetadata(player);
+    }
 }
