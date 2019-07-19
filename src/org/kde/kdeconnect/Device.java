@@ -49,6 +49,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -86,6 +87,11 @@ public class Device implements BaseLink.PacketReceiver {
     private final SharedPreferences settings;
 
     private final CopyOnWriteArrayList<PluginsChangedListener> pluginsChangedListeners = new CopyOnWriteArrayList<>();
+    private Set<String> incomingCapabilities = new HashSet<>();
+
+    public boolean supportsPacketType(String type) {
+        return incomingCapabilities.contains(type);
+    }
 
     public interface PluginsChangedListener {
         void onPluginsChanged(Device device);
@@ -489,12 +495,14 @@ public class Device implements BaseLink.PacketReceiver {
 
         Set<String> outgoingCapabilities = identityPacket.getStringSet("outgoingCapabilities", null);
         Set<String> incomingCapabilities = identityPacket.getStringSet("incomingCapabilities", null);
+
+
         if (incomingCapabilities != null && outgoingCapabilities != null) {
             supportedPlugins = new Vector<>(PluginFactory.pluginsForCapabilities(incomingCapabilities, outgoingCapabilities));
         } else {
             supportedPlugins = new Vector<>(PluginFactory.getAvailablePlugins());
         }
-
+        this.incomingCapabilities = incomingCapabilities;
 
         reloadPluginsFromSettings();
 
