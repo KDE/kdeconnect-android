@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Simon Redman <simon@ergotech.com>
+ * Copyright 2019 Simon Redman <simon@ergotech.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -30,8 +30,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Looper;
 import android.provider.Telephony;
+import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -41,6 +43,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -205,11 +208,18 @@ public class SMSHelper {
     ) {
         List<Message> toReturn = new ArrayList<>();
 
+        // Get all the active phone numbers so we can filter the user out of the list of targets
+        // of any MMSes
+        List<String> userPhoneNumbers = TelephonyHelper.getAllPhoneNumbers(context);
+
         Set<String> allColumns = new HashSet<>();
         allColumns.addAll(Arrays.asList(Message.smsColumns));
         allColumns.addAll(Arrays.asList(Message.mmsColumns));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            allColumns.addAll(Arrays.asList(Message.multiSIMColumns));
+        }
 
-        if (uri != getConversationUri()) {
+        if (!uri.equals(getConversationUri())) {
             // See https://issuetracker.google.com/issues/134592631
             allColumns.add(getTransportTypeDiscriminatorColumn());
         }
@@ -260,19 +270,32 @@ public class SMSHelper {
                         messageInfo.put(colName, body);
                     }
 
+                    Message message;
                     if (transportType == TransportType.SMS) {
-                        parseSMS(context, messageInfo);
+                        message = parseSMS(context, messageInfo);
                     } else if (transportType == TransportType.MMS) {
-                        parseMMS(context, messageInfo);
+                        message = parseMMS(context, messageInfo, userPhoneNumbers);
+                    } else {
+                        // As we can see, all possible transportTypes are covered, but the compiler
+                        // requires this line anyway
+                        throw new UnsupportedOperationException("Unknown TransportType encountered");
                     }
-
-                    Message message = new Message(messageInfo);
 
                     toReturn.add(message);
                 } while ((numberToGet == null || toReturn.size() != numberToGet) && myCursor.moveToNext());
             }
         } catch (SQLiteException e) {
-            throw new MessageAccessException(fetchColumns, uri, e);
+            String[] unfilteredColumns = {};
+            try (Cursor unfilteredColumnsCursor = context.getContentResolver().query(uri, null, null, null, null)) {
+                if (unfilteredColumnsCursor != null) {
+                    unfilteredColumns = unfilteredColumnsCursor.getColumnNames();
+                }
+            }
+            if (unfilteredColumns.length == 0) {
+                throw new MessageAccessException(uri, e);
+            } else {
+                throw new MessageAccessException(unfilteredColumns, uri, e);
+            }
         }
         return toReturn;
     }
@@ -325,37 +348,63 @@ public class SMSHelper {
         return toReturn;
     }
 
-    private static void addEventFlag(
-            @NonNull Map<String, String> messageInfo,
-            @NonNull int eventFlag
+    private static int addEventFlag(
+            int oldEvent,
+            int eventFlag
     ) {
-        int oldEvent = 0; //Default value
-        String oldEventString = messageInfo.get(Message.EVENT);
-        if (oldEventString != null) {
-            oldEvent = Integer.parseInt(oldEventString);
-        }
-        messageInfo.put(Message.EVENT, Integer.toString(oldEvent | eventFlag));
+        return oldEvent | eventFlag;
     }
 
     /**
-     * Do any parsing of an SMS message which still needs to be done
+     * Parse all parts of an SMS into a Message
      */
-    private static void parseSMS(
+    private static @NonNull Message parseSMS(
             @NonNull Context context,
             @NonNull Map<String, String> messageInfo
     ) {
-        addEventFlag(messageInfo, Message.EVENT_TEXT_MESSAGE);
+        int event = Message.EVENT_UNKNOWN;
+        event = addEventFlag(event, Message.EVENT_TEXT_MESSAGE);
+
+        @NonNull List<Address> address = Collections.singletonList(new Address(messageInfo.get(Telephony.Sms.ADDRESS)));
+        @NonNull String body = messageInfo.get(Message.BODY);
+        long date = Long.parseLong(messageInfo.get(Message.DATE));
+        int type = Integer.parseInt(messageInfo.get(Message.TYPE));
+        int read = Integer.parseInt(messageInfo.get(Message.READ));
+        @NonNull ThreadID threadID = new ThreadID(Long.parseLong(messageInfo.get(Message.THREAD_ID)));
+        long uID = Long.parseLong(messageInfo.get(Message.U_ID));
+        int subscriptionID = Integer.parseInt(messageInfo.get(Message.SUBSCRIPTION_ID));
+
+        return new Message(
+                address,
+                body,
+                date,
+                type,
+                read,
+                threadID,
+                uID,
+                event,
+                subscriptionID
+        );
     }
 
     /**
-     * Parse all parts of the MMS message into the messageInfo format
+     * Parse all parts of the MMS message into a message
      * Original implementation from https://stackoverflow.com/a/6446831/3723163
      */
-    private static void parseMMS(
+    private static @NonNull Message parseMMS(
             @NonNull Context context,
-            @NonNull Map<String, String> messageInfo
+            @NonNull Map<String, String> messageInfo,
+            @NonNull List<String> userPhoneNumbers
     ) {
-        addEventFlag(messageInfo, Message.EVENT_UNKNOWN);
+        int event = Message.EVENT_UNKNOWN;
+
+        @NonNull String body = "";
+        long date;
+        int type;
+        int read = Integer.parseInt(messageInfo.get(Message.READ));
+        @NonNull ThreadID threadID = new ThreadID(Long.parseLong(messageInfo.get(Message.THREAD_ID)));
+        long uID = Long.parseLong(messageInfo.get(Message.U_ID));
+        int subscriptionID = Integer.parseInt(messageInfo.get(Message.SUBSCRIPTION_ID));
 
         String[] columns = {
                 Telephony.Mms.Part._ID,          // The content ID of this part
@@ -389,15 +438,13 @@ public class SMSHelper {
                     String contentType = cursor.getString(contentTypeColumn);
                     String data = cursor.getString(dataColumn);
                     if ("text/plain".equals(contentType)) {
-                        String body;
                         if (data != null) {
                             // data != null means the data is on disk. Go get it.
                             body = getMmsText(context, partID);
                         } else {
                             body = cursor.getString(textColumn);
                         }
-                        messageInfo.put(Message.BODY, body);
-                        addEventFlag(messageInfo, Message.EVENT_TEXT_MESSAGE);
+                        event = addEventFlag(event, Message.EVENT_TEXT_MESSAGE);
                     } //TODO: Parse more content types (photos and other attachments) here
 
                 } while (cursor.moveToNext());
@@ -407,57 +454,59 @@ public class SMSHelper {
         // Determine whether the message was in- our out- bound
         long messageBox = Long.parseLong(messageInfo.get(Telephony.Mms.MESSAGE_BOX));
         if (messageBox == Telephony.Mms.MESSAGE_BOX_INBOX) {
-            messageInfo.put(Message.TYPE, Integer.toString(Telephony.Sms.MESSAGE_TYPE_INBOX));
+            type = Telephony.Sms.MESSAGE_TYPE_INBOX;
         } else if (messageBox == Telephony.Mms.MESSAGE_BOX_SENT) {
-            messageInfo.put(Message.TYPE, Integer.toString(Telephony.Sms.MESSAGE_TYPE_SENT));
+            type = Telephony.Sms.MESSAGE_TYPE_SENT;
         } else {
             // As an undocumented feature, it looks like the values of Mms.MESSAGE_BOX_*
             // are the same as Sms.MESSAGE_TYPE_* of the same type. So by default let's just use
             // the value we've got.
             // This includes things like drafts, which are a far-distant plan to support
-            messageInfo.put(Message.TYPE, messageInfo.get(Telephony.Mms.MESSAGE_BOX));
+            type = Integer.parseInt(messageInfo.get(Telephony.Mms.MESSAGE_BOX));
         }
 
         // Get address(es) of the message
-        List<String> addresses = getMmsAddresses(context, Long.parseLong(mmsID));
+        List<Address> addresses = getMmsAddresses(context, Long.parseLong(mmsID), userPhoneNumbers);
         // It looks like addresses[0] is always the sender of the message and
         // following addresses are recipient(s)
         // This usually means the addresses list is at least 2 long, but there are cases (special
         // telco service messages) where it is not (only 1 long in that case, just the "sender")
 
-        // The address field which will get written to the message.
-        // Remember that this is always the address of the other side of the conversation
-        String address = "";
-
         if (addresses.size() > 2) {
-            // TODO: Collect addresses for multi-target MMS
+            // TODO: Handle addresses for multi-target MMS
             // Probably we will need to figure out the user's address at this point and strip it out of the list
-            addEventFlag(messageInfo, Message.EVENT_MULTI_TARGET);
-        } else {
-            if (messageBox == Telephony.Mms.MESSAGE_BOX_INBOX) {
-                address = addresses.get(0);
-            } else if (messageBox == Telephony.Mms.MESSAGE_BOX_SENT) {
-                address = addresses.get(1);
-            } else {
-                Log.w("SMSHelper", "Unknown message type " + messageBox + " while parsing addresses.");
-                // Not much smart to do here. Just leave as default.
-            }
+            event = addEventFlag(event, Message.EVENT_MULTI_TARGET);
         }
-        messageInfo.put(Message.ADDRESS, address);
 
         // Canonicalize the date field
         // SMS uses epoch milliseconds, MMS uses epoch seconds. Standardize on milliseconds.
         long rawDate = Long.parseLong(messageInfo.get(Message.DATE));
-        messageInfo.put(Message.DATE, Long.toString(rawDate * 1000));
+        date = rawDate * 1000;
+
+        return new Message(
+                addresses,
+                body,
+                date,
+                type,
+                read,
+                threadID,
+                uID,
+                event,
+                subscriptionID
+        );
     }
 
     /**
      * Get the address(es) of an MMS message
      * Original implementation from https://stackoverflow.com/a/6446831/3723163
+     *
+     * @param messageID ID of this message in the MMS database for looking up the remaining info
+     * @param userPhoneNumbers List of phone numbers which should be removed from the list of addresses
      */
-    private static @NonNull List<String> getMmsAddresses(
+    private static @NonNull List<Address> getMmsAddresses(
             @NonNull Context context,
-            @NonNull Long messageID
+            @NonNull Long messageID,
+            @NonNull List<String> userPhoneNumbers
     ) {
         Uri uri = ContentUris.appendId(getMMSUri().buildUpon(), messageID).appendPath("addr").build();
 
@@ -470,7 +519,7 @@ public class SMSHelper {
         String selection = Telephony.Mms.Addr.MSG_ID + " = ?";
         String[] selectionArgs = {messageID.toString()};
 
-        List<String> addresses = new ArrayList<>();
+        List<Address> addresses = new ArrayList<>();
 
         try (Cursor addrCursor = context.getContentResolver().query(
                 uri,
@@ -484,11 +533,32 @@ public class SMSHelper {
 
                 do {
                     String address = addrCursor.getString(addressIndex);
-                    addresses.add(address);
+                    addresses.add(new Address(address));
                 } while (addrCursor.moveToNext());
             }
         }
-        return addresses;
+
+        // Prune the user's phone numbers from the list of addresses
+        List<Address> prunedAddresses = new ArrayList<>(addresses);
+        prunedAddresses.removeAll(userPhoneNumbers);
+
+        if (prunedAddresses.size() == 0) {
+            // If it turns out that we have pruned away everything, prune away nothing
+            // (The user is allowed to talk to themself)
+
+            // Remove duplicate entries, since the user knows if a conversation says "Me" on it,
+            // it is the conversation with themself. (We don't need to say "Me, Me")
+            // This leaves the multi-sim case alone, so the returned address list might say
+            // "Me1, Me2"
+
+            prunedAddresses = new ArrayList<>(addresses.size()); // The old one was empty too, but just to be clear...
+            for (Address address : addresses) {
+                if (!prunedAddresses.contains(address)) {
+                    prunedAddresses.add(address);
+                }
+            }
+        }
+        return prunedAddresses;
     }
 
     /**
@@ -560,6 +630,46 @@ public class SMSHelper {
         }
     }
 
+    public static class Address {
+        final String address;
+
+        /**
+         * Address object field names
+         */
+        public static final String ADDRESS = "address";
+
+        public Address(String address) {
+            this.address = address;
+        }
+
+        public JSONObject toJson() throws JSONException {
+            JSONObject json = new JSONObject();
+
+            json.put(Address.ADDRESS, this.address);
+
+            return json;
+        }
+
+        @Override
+        public String toString() {
+            return address;
+        }
+
+        @Override
+        public boolean equals(Object other){
+            if (other == null) {
+                return false;
+            }
+            if (other.getClass().isAssignableFrom(Address.class)) {
+                return PhoneNumberUtils.compare(this.address, ((Address)other).address);
+            }
+            if (other.getClass().isAssignableFrom(String.class)) {
+                return PhoneNumberUtils.compare(this.address, (String)other);
+            }
+            return false;
+        }
+    }
+
     /**
      * Indicate that some error has occurred while reading a message.
      * More useful for logging than catching and handling
@@ -588,21 +698,21 @@ public class SMSHelper {
      */
     public static class Message {
 
-        final String address;
-        final String body;
+        public final List<Address> addresses;
+        public final String body;
         public final long date;
-        final int type;
-        final int read;
-        final ThreadID threadID; // ThreadID is *int* for SMS messages but *long* for MMS
-        final long uID;
-        final int event;
-        final int subscriptionID;
+        public final int type;
+        public final int read;
+        public final ThreadID threadID;
+        public final long uID;
+        public final int event;
+        public final int subscriptionID;
 
         /**
          * Named constants which are used to construct a Message
          * See: https://developer.android.com/reference/android/provider/Telephony.TextBasedSmsColumns.html for full documentation
          */
-        static final String ADDRESS = Telephony.Sms.ADDRESS;   // Contact information (phone number or otherwise) of the remote
+        static final String ADDRESSES = "addresses";   // Contact information (phone number or otherwise) of the remote
         static final String BODY = Telephony.Sms.BODY;         // Body of the message
         static final String DATE = Telephony.Sms.DATE;         // Date (Unix epoch millis) associated with the message
         static final String TYPE = Telephony.Sms.TYPE;         // Compare with Telephony.TextBasedSmsColumns.MESSAGE_TYPE_*
@@ -626,54 +736,77 @@ public class SMSHelper {
          * Define the columns which are to be extracted from the Android SMS database
          */
         static final String[] smsColumns = new String[]{
-                Message.ADDRESS,
-                Message.BODY,
-                Message.DATE,
-                Message.TYPE,
-                Message.READ,
-                Message.THREAD_ID,
+                Telephony.Sms.ADDRESS,
+                Telephony.Sms.BODY,
+                Telephony.Sms.DATE,
+                Telephony.Sms.TYPE,
+                Telephony.Sms.READ,
+                Telephony.Sms.THREAD_ID,
                 Message.U_ID,
-                Message.SUBSCRIPTION_ID,
         };
 
         static final String[] mmsColumns = new String[]{
                 Message.U_ID,
-                Message.THREAD_ID,
-                Message.DATE,
-                Message.READ,
+                Telephony.Mms.THREAD_ID,
+                Telephony.Mms.DATE,
+                Telephony.Mms.READ,
                 Telephony.Mms.TEXT_ONLY,
                 Telephony.Mms.MESSAGE_BOX, // Compare with Telephony.BaseMmsColumns.MESSAGE_BOX_*
         };
 
-        Message(final HashMap<String, String> messageInfo) {
-            address = messageInfo.get(Message.ADDRESS);
-            body = messageInfo.get(Message.BODY);
-            date = Long.parseLong(messageInfo.get(Message.DATE));
-            if (messageInfo.get(Message.TYPE) == null)
+        /**
+         * These columns are for determining what SIM card the message belongs to, and therefore
+         * are only defined on Android versions with multi-sim capabilities
+         */
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+        static final String[] multiSIMColumns = new String[]{
+                Telephony.Sms.SUBSCRIPTION_ID,
+        };
+
+        Message(
+                @NonNull List<Address> addresses,
+                @NonNull String body,
+                long date,
+                @NonNull Integer type,
+                int read,
+                @NonNull ThreadID threadID,
+                long uID,
+                int event,
+                int subscriptionID
+        ) {
+            this.addresses = addresses;
+            this.body = body;
+            this.date = date;
+            if (type == null)
             {
                 // To be honest, I have no idea why this happens. The docs say the TYPE field is mandatory.
                 Log.w("SMSHelper", "Encountered undefined message type");
-                type = -1;
+                this.type = -1;
                 // Proceed anyway, maybe this is not an important problem.
             } else {
-                type = Integer.parseInt(messageInfo.get(Message.TYPE));
+                this.type = type;
             }
-            read = Integer.parseInt(messageInfo.get(Message.READ));
-            threadID = new ThreadID(Long.parseLong(messageInfo.get(Message.THREAD_ID)));
-            uID = Integer.parseInt(messageInfo.get(Message.U_ID));
-            subscriptionID = Integer.parseInt(messageInfo.get(Message.SUBSCRIPTION_ID));
-            event = Integer.parseInt(messageInfo.get(Message.EVENT));
+            this.read = read;
+            this.threadID = threadID;
+            this.uID = uID;
+            this.subscriptionID = subscriptionID;
+            this.event = event;
         }
 
         public JSONObject toJSONObject() throws JSONException {
             JSONObject json = new JSONObject();
 
-            json.put(Message.ADDRESS, address);
+            JSONArray jsonAddresses = new JSONArray();
+            for (Address address : this.addresses) {
+                jsonAddresses.put(address.toJson());
+            }
+
+            json.put(Message.ADDRESSES, jsonAddresses);
             json.put(Message.BODY, body);
             json.put(Message.DATE, date);
             json.put(Message.TYPE, type);
             json.put(Message.READ, read);
-            json.put(Message.THREAD_ID, threadID);
+            json.put(Message.THREAD_ID, threadID.threadID);
             json.put(Message.U_ID, uID);
             json.put(Message.SUBSCRIPTION_ID, subscriptionID);
             json.put(Message.EVENT, event);
