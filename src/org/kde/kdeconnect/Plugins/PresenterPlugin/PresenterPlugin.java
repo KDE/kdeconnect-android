@@ -44,7 +44,7 @@ public class PresenterPlugin extends Plugin {
     private final static String PACKET_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request";
 
     public boolean isPointerSupported() {
-        return true; //TODO: Check capabilities
+        return device.supportsPacketType(PACKET_TYPE_PRESENTER);
     }
 
     @Override
