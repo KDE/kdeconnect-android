@@ -22,10 +22,11 @@
 
 package org.kde.kdeconnect.Backends.MulticastBackend;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.nsd.NsdManager;
+import android.net.nsd.NsdManager.RegistrationListener;
+import android.net.nsd.NsdManager.ResolveListener;
 import android.net.nsd.NsdServiceInfo;
 import android.os.Build;
 import android.util.Base64;
@@ -67,8 +68,11 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
 
     static final String LOG_TAG = "MulticastLink";
 
+    static final String SERVICE_TYPE = "_kdeconnect._tcp";
+
     private NsdManager mNsdManager;
-    private NsdManager.RegistrationListener mRegistrationListener;
+    private RegistrationListener mRegistrationListener;
+    private ResolveListener mResolveListener;
     private boolean mServiceRegistered = false;
 
     private final static int MIN_PORT = 1716;
@@ -93,7 +97,7 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
         connectionLost(brokenLink);
     }
 
-    //They received my UDP broadcast and are connecting to me. The first thing they sned should be their identity.
+    //They received my UDP broadcast and are connecting to me. The first thing they send should be their identity.
     private void tcpPacketReceived(Socket socket) {
 
         NetworkPacket networkPacket;
@@ -114,60 +118,6 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
 
         Log.i(LOG_TAG, "Identity package received from a TCP connection from " + networkPacket.getString("deviceName"));
         identityPacketReceived(networkPacket, socket, MulticastLink.ConnectionStarted.Locally);
-    }
-
-    //I've received their broadcast and should connect to their TCP socket and send my identity.
-    private void udpPacketReceived(DatagramPacket packet) {
-
-        final InetAddress address = packet.getAddress();
-
-        try {
-
-            String message = new String(packet.getData(), StringsHelper.UTF8);
-            final NetworkPacket identityPacket = NetworkPacket.unserialize(message);
-            final String deviceId = identityPacket.getString("deviceId");
-            if (!identityPacket.getType().equals(NetworkPacket.PACKET_TYPE_IDENTITY)) {
-                Log.e(LOG_TAG, "Expecting an UDP identity package");
-                return;
-            } else {
-                String myId = DeviceHelper.getDeviceId(context);
-                if (deviceId.equals(myId)) {
-                    //Ignore my own broadcast
-                    return;
-                }
-            }
-
-            Log.i(LOG_TAG, "Broadcast identity package received from " + identityPacket.getString("deviceName"));
-
-            int tcpPort = identityPacket.getInt("tcpPort", MIN_PORT);
-
-            SocketFactory socketFactory = SocketFactory.getDefault();
-            Socket socket = socketFactory.createSocket(address, tcpPort);
-            configureSocket(socket);
-
-            OutputStream out = socket.getOutputStream();
-            NetworkPacket myIdentity = NetworkPacket.createIdentityPacket(context);
-            out.write(myIdentity.serialize().getBytes());
-            out.flush();
-
-            identityPacketReceived(identityPacket, socket, MulticastLink.ConnectionStarted.Remotely);
-
-        } catch (Exception e) {
-            Log.e(LOG_TAG, "Cannot connect to " + address, e);
-            if (!reverseConnectionBlackList.contains(address)) {
-                Log.w(LOG_TAG, "Blacklisting " + address);
-                reverseConnectionBlackList.add(address);
-                new Timer().schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        reverseConnectionBlackList.remove(address);
-                    }
-                }, 5 * 1000);
-
-                // Try to cause a reverse connection
-                onNetworkChange();
-            }
-        }
     }
 
     private void configureSocket(Socket socket) {
@@ -334,7 +284,7 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
         throw new RuntimeException("This should not be reachable");
     }
 
-    @TargetApi(16)
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void initializeRegistrationListener() {
         mRegistrationListener = new NsdManager.RegistrationListener() {
 
@@ -343,7 +293,7 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
                 // Save the service name. Android may have changed it in order to
                 // resolve a conflict, so update the name you initially requested
                 // with the name Android actually used.
-                Log.w(LOG_TAG, "Registered " + NsdServiceInfo.getServiceName());
+                Log.i(LOG_TAG, "Registered " + NsdServiceInfo.getServiceName());
             }
 
             @Override
@@ -368,13 +318,13 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    public void initializeNsdManager() {
+    public void initializeNsdManager(RegistrationListener registrationListener) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             return;
         }
         mNsdManager = (NsdManager) context.getSystemService(Context.NSD_SERVICE);
         try {
-            mNsdManager.unregisterService(mRegistrationListener);
+            mNsdManager.unregisterService(registrationListener);
         } catch (java.lang.IllegalArgumentException e) {
             // not yet registered, but it's fine.
         }
@@ -398,15 +348,75 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
         // some kind of encoding that is too large for the TXT record
 
         serviceInfo.setServiceName("KDE Connect on " + myIdentity.getString("deviceName"));
-        serviceInfo.setServiceType("_kdeconnect._tcp");
+        serviceInfo.setServiceType(SERVICE_TYPE);
         serviceInfo.setHost(addr);
         serviceInfo.setPort(port);
 
         //Log.d("KDE/Lan", "service: " + serviceInfo.toString());
 
+        mNsdManager.registerService(serviceInfo, NsdManager.PROTOCOL_DNS_SD, registrationListener);
+    }
 
-        mNsdManager.registerService(
-                serviceInfo, NsdManager.PROTOCOL_DNS_SD, mRegistrationListener);
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public ResolveListener initializeResolveListener() {
+        return new ResolveListener() {
+
+            @Override
+            public void onResolveFailed(NsdServiceInfo serviceInfo, int i) {
+                Log.e(LOG_TAG, "Could not resolve service: " + serviceInfo);
+            }
+
+            @Override
+            public void onServiceResolved(NsdServiceInfo serviceInfo) {
+                Log.i(LOG_TAG, "Successfully resolved " + serviceInfo);
+            }
+        };
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public void initializeDiscoveryListener() {
+        // Instantiate a new DiscoveryListener
+        NsdManager.DiscoveryListener discoveryListener = new NsdManager.DiscoveryListener() {
+
+            // Called as soon as service discovery begins.
+            @Override
+            public void onDiscoveryStarted(String regType) {
+                Log.d(LOG_TAG, "Service discovery started");
+            }
+
+            @Override
+            public void onServiceFound(NsdServiceInfo service) {
+                // A service was found! Do something with it.
+                Log.d(LOG_TAG, "Service discovery success" + service);
+                mNsdManager.resolveService(service, mResolveListener);
+            }
+
+            @Override
+            public void onServiceLost(NsdServiceInfo service) {
+                // When the network service is no longer available.
+                // Internal bookkeeping code goes here.
+                Log.e(LOG_TAG, "service lost: " + service);
+            }
+
+            @Override
+            public void onDiscoveryStopped(String serviceType) {
+                Log.i(LOG_TAG, "Discovery stopped: " + serviceType);
+            }
+
+            @Override
+            public void onStartDiscoveryFailed(String serviceType, int errorCode) {
+                Log.e(LOG_TAG, "Discovery failed: Error code:" + errorCode);
+                mNsdManager.stopServiceDiscovery(this);
+            }
+
+            @Override
+            public void onStopDiscoveryFailed(String serviceType, int errorCode) {
+                Log.e(LOG_TAG, "Discovery failed: Error code:" + errorCode);
+                mNsdManager.stopServiceDiscovery(this);
+            }
+        };
+
+        mNsdManager.discoverServices(SERVICE_TYPE, NsdManager.PROTOCOL_DNS_SD, discoveryListener);
     }
 
     @Override
@@ -424,8 +434,11 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
             setupTcpListener();
 
             initializeRegistrationListener();
+            mResolveListener = initializeResolveListener();
 
-            initializeNsdManager();
+            initializeNsdManager(mRegistrationListener);
+
+            initializeDiscoveryListener();
         }
     }
 
@@ -435,12 +448,14 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
             // This backend does not work on older Android versions
             return;
         }
+        if (mNsdManager != null) {
+            mNsdManager.unregisterService(mRegistrationListener);
+        }
 
         if (NetworkHelper.isOnMobileNetwork(context)) {
             Log.i("LanLinkProvider", "On 3G network, disabling mDNS advertisements.");
-            mNsdManager.unregisterService(mRegistrationListener);
         } else {
-            this.initializeNsdManager();
+            this.initializeRegistrationListener();
         }
     }
 
@@ -452,11 +467,7 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
         }
 
         listening = false;
-        try {
-            mNsdManager.unregisterService(mRegistrationListener);
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        mNsdManager.unregisterService(mRegistrationListener);
     }
 
     @Override
