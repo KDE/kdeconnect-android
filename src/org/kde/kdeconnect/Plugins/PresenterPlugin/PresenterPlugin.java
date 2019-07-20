@@ -116,10 +116,16 @@ public class PresenterPlugin extends Plugin {
         device.sendPacket(np);
     }
 
-    public void sendPointer(float percentX, float percentY) {
-        NetworkPacket np = new NetworkPacket(PACKET_TYPE_PRESENTER);
-        np.set("px", percentX);
-        np.set("py", percentY);
+    public void sendPointer(float xDelta, float yDelta) {
+        NetworkPacket np = device.getAndRemoveUnsentPacket(NetworkPacket.PACKET_REPLACEID_PRESENTERPOINTER);
+        if (np == null) {
+            np = new NetworkPacket(PACKET_TYPE_PRESENTER);
+        } else {
+            xDelta += np.getInt("px");
+            yDelta += np.getInt("px");
+        }
+        np.set("px", xDelta);
+        np.set("py", yDelta);
         device.sendPacket(np, NetworkPacket.PACKET_REPLACEID_PRESENTERPOINTER);
     }
 

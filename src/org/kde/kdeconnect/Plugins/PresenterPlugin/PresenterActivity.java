@@ -56,16 +56,12 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
     private PresenterPlugin plugin;
 
     private SensorManager sensorManager;
-    private float xPos, yPos;
 
     static final float SENSITIVITY = 0.05f; //TODO: Make configurable?
 
     public void gyroscopeEvent(SensorEvent event) {
-        xPos += -event.values[2] * SENSITIVITY;
-        yPos += -event.values[0] * SENSITIVITY;
-
-        xPos = clamp(xPos, -1.f, 1.f);
-        yPos = clamp(yPos, -1.f, 1.f);
+        float xPos = -event.values[2] * SENSITIVITY;
+        float yPos = -event.values[0] * SENSITIVITY;
 
         plugin.sendPointer(xPos, yPos);
     }
