@@ -62,7 +62,7 @@ public class DeviceHelper {
     //It returns getAndroidDeviceName() if no user-defined name has been set with setDeviceName().
     public static String getDeviceName(Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        // Could use prefrences.contains but would need to check for empty String anyway.
+        // Could use preferences.contains but would need to check for empty String anyway.
         String deviceName = preferences.getString(KEY_DEVICE_NAME_PREFERENCE, "");
         if (deviceName.isEmpty()) {
             if (!fetchingName) {
@@ -77,10 +77,16 @@ public class DeviceHelper {
     private static void backgroundFetchDeviceName(final Context context) {
         DeviceName.with(context).request((info, error) -> {
             fetchingName = false;
-            String deviceName = info.getName();
-            Log.i("DeviceHelper","Got device name: "+deviceName);
-            // Update the shared preference. Places that display the name should be listening to this change and update it
-            setDeviceName(context, deviceName);
+            if (error != null) {
+                Log.e("DeviceHelper", "Error fetching device name");
+                error.printStackTrace();
+            }
+            if (info != null) {
+                String deviceName = info.getName();
+                Log.i("DeviceHelper", "Got device name: " + deviceName);
+                // Update the shared preference. Places that display the name should be listening to this change and update it
+                setDeviceName(context, deviceName);
+            }
         });
     }
 
