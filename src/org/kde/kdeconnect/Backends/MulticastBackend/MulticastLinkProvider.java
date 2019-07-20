@@ -1,5 +1,6 @@
 /*
  * Copyright 2014 Albert Vaca Cintora <albertvaka@gmail.com>
+ * Copyright 2018 Teemu Rytilahti
  * Copyright 2019 Simon Redman <simon@ergotech.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -21,11 +22,16 @@
 
 package org.kde.kdeconnect.Backends.MulticastBackend;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import android.net.nsd.NsdManager;
+import android.net.nsd.NsdServiceInfo;
+import android.os.Build;
 import android.util.Base64;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
@@ -34,16 +40,11 @@ import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.NetworkHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
-import org.kde.kdeconnect.Helpers.StringsHelper;
 import org.kde.kdeconnect.NetworkPacket;
-import org.kde.kdeconnect.UserInterface.CustomDevicesActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -52,10 +53,7 @@ import java.net.SocketException;
 import java.security.cert.Certificate;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import javax.net.SocketFactory;
 import javax.net.ssl.SSLSocket;
 
 /**
@@ -69,6 +67,10 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
 
     static final String LOG_TAG = "MulticastLink";
 
+    private NsdManager mNsdManager;
+    private NsdManager.RegistrationListener mRegistrationListener;
+    private boolean mServiceRegistered = false;
+
     private final static int MIN_PORT = 1716;
     private final static int MAX_PORT = 1764;
     final static int PAYLOAD_TRANSFER_MIN_PORT = 1739;
@@ -78,7 +80,6 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
     private final HashMap<String, MulticastLink> visibleComputers = new HashMap<>();  //Links by device id
 
     private ServerSocket tcpServer;
-    private DatagramSocket udpServer;
 
     private boolean listening = false;
 
@@ -292,31 +293,6 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
         this.context = context;
     }
 
-    private void setupUdpListener() {
-        try {
-            udpServer = new DatagramSocket(MIN_PORT);
-            udpServer.setReuseAddress(true);
-            udpServer.setBroadcast(true);
-        } catch (SocketException e) {
-            Log.e(LOG_TAG, "Error creating udp server", e);
-            return;
-        }
-        new Thread(() -> {
-            while (listening) {
-                final int bufferSize = 1024 * 512;
-                byte[] data = new byte[bufferSize];
-                DatagramPacket packet = new DatagramPacket(data, bufferSize);
-                try {
-                    udpServer.receive(packet);
-                    udpPacketReceived(packet);
-                } catch (Exception e) {
-                    Log.e(LOG_TAG, "UdpReceive exception", e);
-                }
-            }
-            Log.w("UdpListener", "Stopping UDP listener");
-        }).start();
-    }
-
     private void setupTcpListener() {
         try {
             tcpServer = openServerSocketOnFreePort(MIN_PORT);
@@ -358,84 +334,128 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
         throw new RuntimeException("This should not be reachable");
     }
 
-    private void broadcastUdpPacket() {
+    @TargetApi(16)
+    public void initializeRegistrationListener() {
+        mRegistrationListener = new NsdManager.RegistrationListener() {
 
-        if (NetworkHelper.isOnMobileNetwork(context)) {
-            Log.w(LOG_TAG, "On 3G network, not sending broadcast.");
+            @Override
+            public void onServiceRegistered(NsdServiceInfo NsdServiceInfo) {
+                // Save the service name. Android may have changed it in order to
+                // resolve a conflict, so update the name you initially requested
+                // with the name Android actually used.
+                Log.w("KDE/LanLinkProvider", "mDNS: Registered " + NsdServiceInfo.getServiceName());
+            }
+
+            @Override
+            public void onRegistrationFailed(NsdServiceInfo serviceInfo, int errorCode) {
+                // Registration failed! Put debugging code here to determine why.
+                Log.w("KDE/LanLinkProvider", "mDNS: Registration failed");
+            }
+
+            @Override
+            public void onServiceUnregistered(NsdServiceInfo arg0) {
+                // Service has been unregistered. This only happens when you call
+                // NsdManager.unregisterService() and pass in this listener.
+                Log.w("KDE/LanLinkProvider", "mDNS: Service unregistered: " + arg0);
+            }
+
+            @Override
+            public void onUnregistrationFailed(NsdServiceInfo serviceInfo, int errorCode) {
+                // Unregistration failed. Put debugging code here to determine why.
+                Log.w("KDE/LanLinkProvider", "mDNS: Unregister of " + serviceInfo + " failed with: " + errorCode);
+            }
+        };
+    }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    public void initializeNsdManager() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             return;
         }
+        mNsdManager = (NsdManager) context.getSystemService(Context.NSD_SERVICE);
+        try {
+            mNsdManager.unregisterService(mRegistrationListener);
+        } catch (java.lang.IllegalArgumentException e) {
+            // not yet registered, but it's fine.
+        }
+        NsdServiceInfo serviceInfo = new NsdServiceInfo();
 
-        new Thread(() -> {
-            ArrayList<String> iplist = CustomDevicesActivity
-                    .getCustomDeviceList(PreferenceManager.getDefaultSharedPreferences(context));
-            iplist.add("255.255.255.255"); //Default: broadcast.
+        // The name is subject to change based on conflicts
+        // with other services advertised on the same network.
+        NetworkPacket myIdentity = NetworkPacket.createIdentityPacket(context);
+        String did = myIdentity.getString("deviceID");
+        String name = myIdentity.getString("deviceName");
+        InetAddress addr = this.tcpServer.getInetAddress();
+        int port = this.tcpServer.getLocalPort();
 
-            NetworkPacket identity = NetworkPacket.createIdentityPacket(context);
-            int port = (tcpServer == null || !tcpServer.isBound()) ? MIN_PORT : tcpServer.getLocalPort();
-            identity.set("tcpPort", port);
-            DatagramSocket socket = null;
-            byte[] bytes = null;
-            try {
-                socket = new DatagramSocket();
-                socket.setReuseAddress(true);
-                socket.setBroadcast(true);
-                bytes = identity.serialize().getBytes(StringsHelper.UTF8);
-            } catch (Exception e) {
-                Log.e(LOG_TAG, "Failed to create DatagramSocket", e);
-            }
+        // These cause the requirement for api level 21.
+        serviceInfo.setAttribute("name", myIdentity.getString("deviceName"));
+        serviceInfo.setAttribute("id", myIdentity.getString("deviceId"));
+        serviceInfo.setAttribute("type", myIdentity.getString("deviceType"));
+        serviceInfo.setAttribute("version", myIdentity.getString("protocolVersion"));
 
-            if (bytes != null) {
-                //Log.e(LOG_TAG,"Sending packet to "+iplist.size()+" ips");
-                for (String ipstr : iplist) {
-                    try {
-                        InetAddress client = InetAddress.getByName(ipstr);
-                        socket.send(new DatagramPacket(bytes, bytes.length, client, MIN_PORT));
-                        //Log.i(LOG_TAG,"Udp identity package sent to address "+client);
-                    } catch (Exception e) {
-                        Log.e(LOG_TAG, "Sending udp identity package failed. Invalid address? (" + ipstr + ")", e);
-                    }
-                }
-            }
+        // It might be nice to add the capabilities in the mDNS advertisement too, but without
+        // some kind of encoding that is too large for the TXT record
 
-            if (socket != null) {
-                socket.close();
-            }
+        serviceInfo.setServiceName("KDE Connect on " + myIdentity.getString("deviceName"));
+        serviceInfo.setServiceType("_kdeconnect._tcp");
+        serviceInfo.setHost(addr);
+        serviceInfo.setPort(port);
 
-        }).start();
+        //Log.d("KDE/Lan", "service: " + serviceInfo.toString());
+
+
+        mNsdManager.registerService(
+                serviceInfo, NsdManager.PROTOCOL_DNS_SD, mRegistrationListener);
     }
 
     @Override
     public void onStart() {
-        //Log.i(LOG_TAG, "onStart");
-        if (!listening) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            Log.i(LOG_TAG, "MulticastBackend not supported on devices older thab Lollipop");
+            return;
+        }
 
+        if (!listening) {
             listening = true;
 
-            setupUdpListener();
+            // Need to set up TCP before setting up mDNS because we need to know the TCP listening
+            // address and port
             setupTcpListener();
 
-            broadcastUdpPacket();
+            initializeRegistrationListener();
+
+            initializeNsdManager();
         }
     }
 
     @Override
     public void onNetworkChange() {
-        broadcastUdpPacket();
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            // This backend does not work on older Android versions
+            return;
+        }
+
+        if (NetworkHelper.isOnMobileNetwork(context)) {
+            Log.i("LanLinkProvider", "On 3G network, disabling mDNS advertisements.");
+            mNsdManager.unregisterService(mRegistrationListener);
+        } else {
+            this.initializeNsdManager();
+        }
     }
 
     @Override
     public void onStop() {
-        //Log.i(LOG_TAG, "onStop");
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            // This backend does not work on older Android versions
+            return;
+        }
+
         listening = false;
         try {
-            tcpServer.close();
-        } catch (Exception e) {
-            Log.e(LOG_TAG, "Exception", e);
-        }
-        try {
-            udpServer.close();
-        } catch (Exception e) {
-            Log.e(LOG_TAG, "Exception", e);
+            mNsdManager.unregisterService(mRegistrationListener);
+        } catch(Exception e) {
+            e.printStackTrace();
         }
     }
 

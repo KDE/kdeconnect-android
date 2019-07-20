@@ -42,6 +42,7 @@ import androidx.core.content.ContextCompat;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
+import org.kde.kdeconnect.Backends.MulticastBackend.MulticastLinkProvider;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
@@ -163,6 +164,7 @@ public class BackgroundService extends Service {
 
     private void registerLinkProviders() {
         linkProviders.add(new LanLinkProvider(this));
+        linkProviders.add(new MulticastLinkProvider(this));
 //        linkProviders.add(new LoopbackLinkProvider(this));
 //        linkProviders.add(new BluetoothLinkProvider(this));
     }
