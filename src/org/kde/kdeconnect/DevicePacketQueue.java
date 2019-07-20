@@ -54,7 +54,6 @@ class DevicePacketQueue {
                             //Replace contents with new contents
                             item.packet = packet;
                             item.callback = callback;
-                            iter.remove();
                             //There can only be one in the queue, so we're done now
                             return;
                         }
