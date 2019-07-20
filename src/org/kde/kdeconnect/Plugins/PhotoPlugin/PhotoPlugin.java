@@ -88,4 +88,10 @@ public class PhotoPlugin extends Plugin {
     public Drawable getIcon() {
         return ContextCompat.getDrawable(context, R.drawable.ic_camera);
     }
+
+    void sendCancel() {
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_PHOTO);
+        np.set("cancel", true);
+        device.sendPacket(np);
+    }
 }

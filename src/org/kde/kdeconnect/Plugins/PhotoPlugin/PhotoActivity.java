@@ -64,6 +64,8 @@ public class PhotoActivity extends AppCompatActivity {
 
         if (resultCode == -1) {
             plugin.sendPhoto(photoURI);
+        } else {
+            plugin.sendCancel();
         }
         finish();
     }
