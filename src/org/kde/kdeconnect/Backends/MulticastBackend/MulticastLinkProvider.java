@@ -401,6 +401,7 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
             @Override
             public void onDiscoveryStopped(String serviceType) {
                 Log.i(LOG_TAG, "Discovery stopped: " + serviceType);
+                listening = false;
             }
 
             @Override
@@ -448,8 +449,9 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
             // This backend does not work on older Android versions
             return;
         }
-        if (mNsdManager != null) {
+        if (listening) {
             mNsdManager.unregisterService(mRegistrationListener);
+            listening = false;
         }
 
         if (NetworkHelper.isOnMobileNetwork(context)) {
