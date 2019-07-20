@@ -34,6 +34,7 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
+import org.json.JSONException;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.BackgroundService;
@@ -46,6 +47,7 @@ import org.kde.kdeconnect.NetworkPacket;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -55,6 +57,7 @@ import java.security.cert.Certificate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.net.SocketFactory;
 import javax.net.ssl.SSLSocket;
 
 /**
@@ -369,6 +372,26 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
             @Override
             public void onServiceResolved(NsdServiceInfo serviceInfo) {
                 Log.i(LOG_TAG, "Successfully resolved " + serviceInfo);
+
+                InetAddress hostname = serviceInfo.getHost();
+                int remotePort = serviceInfo.getPort();
+
+                SocketFactory socketFactory = SocketFactory.getDefault();
+                Socket socket;
+                try {
+                    socket = socketFactory.createSocket(hostname, remotePort);
+
+                    OutputStream out = socket.getOutputStream();
+                    NetworkPacket myIdentity = NetworkPacket.createIdentityPacket(context);
+                    out.write(myIdentity.serialize().getBytes());
+                    out.flush();
+                } catch (IOException e) {
+                    Log.e(LOG_TAG, "Unable to make the socket connection", e);
+                    return;
+                } catch (JSONException e) {
+                    Log.e(LOG_TAG, "Unable to deserialize myIdentity", e);
+                    return;
+                }
             }
         };
     }
