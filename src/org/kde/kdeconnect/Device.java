@@ -77,6 +77,7 @@ public class Device implements BaseLink.PacketReceiver {
     private final Map<String, BasePairingHandler> pairingHandlers = new HashMap<>();
 
     private final CopyOnWriteArrayList<BaseLink> links = new CopyOnWriteArrayList<>();
+    private DevicePacketQueue packetQueue;
 
     private List<String> supportedPlugins = new ArrayList<>();
     private final ConcurrentHashMap<String, Plugin> plugins = new ConcurrentHashMap<>();
@@ -423,6 +424,9 @@ public class Device implements BaseLink.PacketReceiver {
     }
 
     public void addLink(NetworkPacket identityPacket, BaseLink link) {
+        if (links.isEmpty()) {
+            packetQueue = new DevicePacketQueue(this);
+        }
         //FilesHelper.LogOpenFileCount();
         links.add(link);
         link.addPacketReceiver(this);
@@ -528,6 +532,8 @@ public class Device implements BaseLink.PacketReceiver {
         Log.i("KDE/Device", "removeLink: " + link.getLinkProvider().getName() + " -> " + getName() + " active links: " + links.size());
         if (links.isEmpty()) {
             reloadPluginsFromSettings();
+            packetQueue.disconnected();
+            packetQueue = null;
         }
     }
 
@@ -616,16 +622,47 @@ public class Device implements BaseLink.PacketReceiver {
     };
 
     public void sendPacket(NetworkPacket np) {
-        sendPacket(np, defaultCallback);
+        sendPacket(np, -1, defaultCallback);
+    }
+
+    public void sendPacket(NetworkPacket np, int replaceID) {
+        sendPacket(np, replaceID, defaultCallback);
     }
 
     public boolean sendPacketBlocking(NetworkPacket np) {
         return sendPacketBlocking(np, defaultCallback);
     }
 
-    //Async
     public void sendPacket(final NetworkPacket np, final SendPacketStatusCallback callback) {
-        new Thread(() -> sendPacketBlocking(np, callback)).start();
+        sendPacket(np, -1, callback);
+    }
+
+    /**
+     * Send a packet to the device asynchronously
+     * @param np The packet
+     * @param replaceID If positive, replaces all unsent packages with the same replaceID
+     * @param callback A callback for success/failure
+     */
+    public void sendPacket(final NetworkPacket np, int replaceID, final SendPacketStatusCallback callback) {
+        if (packetQueue == null) {
+            callback.onFailure(new Exception("Device disconnected!"));
+        } else {
+            packetQueue.addPacket(np, replaceID, callback);
+        }
+    }
+
+    /**
+     * Check if we still have an unsent packet in the queue with the given ID.
+     * If so, remove it from the queue and return it
+     * @param replaceID The replace ID (must be positive)
+     * @return The found packet, or null
+     */
+    public NetworkPacket getAndRemoveUnsentPacket(int replaceID) {
+        if (packetQueue == null) {
+            return null;
+        } else {
+            return packetQueue.getAndRemoveUnsentPacket(replaceID);
+        }
     }
 
     public boolean sendPacketBlocking(final NetworkPacket np, final SendPacketStatusCallback callback) {

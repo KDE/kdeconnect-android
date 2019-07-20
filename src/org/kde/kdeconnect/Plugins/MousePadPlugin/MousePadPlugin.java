@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 
+import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
@@ -96,12 +97,18 @@ public class MousePadPlugin extends Plugin {
     }
 
     public void sendMouseDelta(float dx, float dy) {
-        NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
+        NetworkPacket np = device.getAndRemoveUnsentPacket(NetworkPacket.PACKET_REPLACEID_MOUSEMOVE);
+        if (np == null) {
+            np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
+        } else {
+            dx += np.getInt("dx");
+            dy += np.getInt("dx");
+        }
 
         np.set("dx", dx);
         np.set("dy", dy);
 
-        device.sendPacket(np);
+        device.sendPacket(np, NetworkPacket.PACKET_REPLACEID_MOUSEMOVE);
     }
 
     public void sendSingleClick() {
