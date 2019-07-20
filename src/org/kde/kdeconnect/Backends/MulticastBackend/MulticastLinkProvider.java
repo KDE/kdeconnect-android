@@ -24,6 +24,7 @@ package org.kde.kdeconnect.Backends.MulticastBackend;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Network;
 import android.net.nsd.NsdManager;
 import android.net.nsd.NsdManager.RegistrationListener;
 import android.net.nsd.NsdManager.ResolveListener;
@@ -101,24 +102,16 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
     // They received my mDNS broadcast and are connecting to me. The first thing they send should be their identity.
     private void tcpPacketReceived(Socket socket) {
 
-        NetworkPacket networkPacket;
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            String message = reader.readLine();
-            networkPacket = NetworkPacket.unserialize(message);
-            //Log.e("TcpListener","Received TCP package: "+networkPacket.serialize());
-        } catch (Exception e) {
-            Log.e(LOG_TAG, "Exception while receiving TCP packet", e);
+        writeIdentity(socket);
+        NetworkPacket otherIdentity = readIdentity(socket);
+
+        if (!otherIdentity.getType().equals(NetworkPacket.PACKET_TYPE_IDENTITY)) {
+            Log.e(LOG_TAG, "Expecting an identity package instead of " + otherIdentity.getType());
             return;
         }
 
-        if (!networkPacket.getType().equals(NetworkPacket.PACKET_TYPE_IDENTITY)) {
-            Log.e(LOG_TAG, "Expecting an identity package instead of " + networkPacket.getType());
-            return;
-        }
-
-        Log.i(LOG_TAG, "Identity package received from a TCP connection from " + networkPacket.getString("deviceName"));
-        identityPacketReceived(networkPacket, socket, MulticastLink.ConnectionStarted.Locally);
+        Log.i(LOG_TAG, "Identity package received from a TCP connection from " + otherIdentity.getString("deviceName"));
+        identityPacketReceived(otherIdentity, socket, MulticastLink.ConnectionStarted.Locally);
     }
 
     private void configureSocket(Socket socket) {
@@ -131,7 +124,7 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
 
     /**
      * Called when a new 'identity' packet is received. Those are passed here by
-     * {@link #tcpPacketReceived(Socket)} and {@link #udpPacketReceived(DatagramPacket)}.
+     * {@link #tcpPacketReceived(Socket)}
      * <p>
      * If the remote device should be connected, this calls {@link #addLink}.
      * Otherwise, if there was an Exception, we unpair from that device.
@@ -242,6 +235,33 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
 
     public MulticastLinkProvider(Context context) {
         this.context = context;
+    }
+
+    private void writeIdentity(Socket socket) {
+        try {
+            OutputStream out = socket.getOutputStream();
+            NetworkPacket myIdentity = NetworkPacket.createIdentityPacket(context);
+            out.write(myIdentity.serialize().getBytes());
+            out.flush();
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "Unable to get stream from socket", e);
+            return;
+        } catch (JSONException e) {
+            Log.e(LOG_TAG, "Unable to deserialize JSON", e);
+            return;
+        }
+    }
+
+    private NetworkPacket readIdentity(Socket socket) {
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            String message = reader.readLine();
+            return NetworkPacket.unserialize(message);
+            //Log.e("TcpListener","Received TCP package: "+networkPacket.serialize());
+        } catch (Exception e) {
+            Log.e(LOG_TAG, "Exception while receiving TCP packet", e);
+            return null;
+        }
     }
 
     private void setupTcpListener() {
@@ -378,16 +398,18 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
                 Socket socket;
                 try {
                     socket = socketFactory.createSocket(hostname, remotePort);
-
-                    OutputStream out = socket.getOutputStream();
-                    NetworkPacket myIdentity = NetworkPacket.createIdentityPacket(context);
-                    out.write(myIdentity.serialize().getBytes());
-                    out.flush();
                 } catch (IOException e) {
-                    Log.e(LOG_TAG, "Unable to make the socket connection", e);
+                    Log.e(LOG_TAG, "Unable to open socket to mDNS remote: " + serviceInfo, e);
                     return;
+                }
+
+                writeIdentity(socket);
+                NetworkPacket otherIdentity = readIdentity(socket);
+
+                try {
+                    Log.i(LOG_TAG, "Got identity: " + otherIdentity.serialize());
                 } catch (JSONException e) {
-                    Log.e(LOG_TAG, "Unable to deserialize myIdentity", e);
+                    Log.e(LOG_TAG, "Got identity, but unable to serialize!", e);
                     return;
                 }
             }
@@ -476,8 +498,9 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
             return;
         }
 
-        listening = false;
         mNsdManager.unregisterService(mRegistrationListener);
+        tcpServer.close();
+        listening = false;
     }
 
     @Override
