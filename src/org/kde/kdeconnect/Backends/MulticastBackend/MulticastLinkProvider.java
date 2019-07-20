@@ -343,26 +343,26 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
                 // Save the service name. Android may have changed it in order to
                 // resolve a conflict, so update the name you initially requested
                 // with the name Android actually used.
-                Log.w("KDE/LanLinkProvider", "mDNS: Registered " + NsdServiceInfo.getServiceName());
+                Log.w(LOG_TAG, "Registered " + NsdServiceInfo.getServiceName());
             }
 
             @Override
             public void onRegistrationFailed(NsdServiceInfo serviceInfo, int errorCode) {
                 // Registration failed! Put debugging code here to determine why.
-                Log.w("KDE/LanLinkProvider", "mDNS: Registration failed");
+                Log.e(LOG_TAG, "Registration failed");
             }
 
             @Override
             public void onServiceUnregistered(NsdServiceInfo arg0) {
                 // Service has been unregistered. This only happens when you call
                 // NsdManager.unregisterService() and pass in this listener.
-                Log.w("KDE/LanLinkProvider", "mDNS: Service unregistered: " + arg0);
+                Log.w(LOG_TAG, "Service unregistered: " + arg0);
             }
 
             @Override
             public void onUnregistrationFailed(NsdServiceInfo serviceInfo, int errorCode) {
                 // Unregistration failed. Put debugging code here to determine why.
-                Log.w("KDE/LanLinkProvider", "mDNS: Unregister of " + serviceInfo + " failed with: " + errorCode);
+                Log.e(LOG_TAG, "Unregister of " + serviceInfo + " failed with: " + errorCode);
             }
         };
     }
