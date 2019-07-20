@@ -18,7 +18,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
 package org.kde.kdeconnect.Backends.MulticastBackend;
 
@@ -40,7 +40,6 @@ import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
-import org.kde.kdeconnect.Helpers.NetworkHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.NetworkPacket;
 
@@ -75,7 +74,6 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
 
     private NsdManager mNsdManager;
     private RegistrationListener mRegistrationListener;
-    private ResolveListener mResolveListener;
     private boolean mServiceRegistered = false;
 
     private final static int MIN_PORT = 1716;
@@ -100,7 +98,7 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
         connectionLost(brokenLink);
     }
 
-    //They received my UDP broadcast and are connecting to me. The first thing they send should be their identity.
+    // They received my mDNS broadcast and are connecting to me. The first thing they send should be their identity.
     private void tcpPacketReceived(Socket socket) {
 
         NetworkPacket networkPacket;
@@ -361,7 +359,7 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    public ResolveListener initializeResolveListener() {
+    public ResolveListener createResolveListener() {
         return new ResolveListener() {
 
             @Override
@@ -411,7 +409,7 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
             public void onServiceFound(NsdServiceInfo service) {
                 // A service was found! Do something with it.
                 Log.d(LOG_TAG, "Service discovery success" + service);
-                mNsdManager.resolveService(service, mResolveListener);
+                mNsdManager.resolveService(service, createResolveListener());
             }
 
             @Override
@@ -458,7 +456,6 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
             setupTcpListener();
 
             initializeRegistrationListener();
-            mResolveListener = initializeResolveListener();
 
             initializeNsdManager(mRegistrationListener);
 
@@ -468,20 +465,8 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
 
     @Override
     public void onNetworkChange() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            // This backend does not work on older Android versions
-            return;
-        }
-        if (listening) {
-            mNsdManager.unregisterService(mRegistrationListener);
-            listening = false;
-        }
-
-        if (NetworkHelper.isOnMobileNetwork(context)) {
-            Log.i("LanLinkProvider", "On 3G network, disabling mDNS advertisements.");
-        } else {
-            this.initializeRegistrationListener();
-        }
+        onStop();
+        onStart();
     }
 
     @Override
