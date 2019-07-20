@@ -120,7 +120,7 @@ public class PresenterPlugin extends Plugin {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_PRESENTER);
         np.set("px", percentX);
         np.set("py", percentY);
-        device.sendPacket(np);
+        device.sendPacket(np, NetworkPacket.PACKET_REPLACEID_PRESENTERPOINTER);
     }
 
 }

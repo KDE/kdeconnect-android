@@ -46,6 +46,7 @@ public class NetworkPacket {
     public final static String PACKET_TYPE_PAIR = "kdeconnect.pair";
 
     public final static int PACKET_REPLACEID_MOUSEMOVE = 0;
+    public final static int PACKET_REPLACEID_PRESENTERPOINTER = 1;
 
     public static Set<String> protocolPacketTypes = new HashSet<String>() {{
         add(PACKET_TYPE_IDENTITY);
