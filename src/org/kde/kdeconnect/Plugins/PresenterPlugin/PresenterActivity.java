@@ -57,7 +57,7 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
 
     private SensorManager sensorManager;
 
-    static final float SENSITIVITY = 0.05f; //TODO: Make configurable?
+    static final float SENSITIVITY = 0.03f; //TODO: Make configurable?
 
     public void gyroscopeEvent(SensorEvent event) {
         float xPos = -event.values[2] * SENSITIVITY;
