@@ -31,8 +31,25 @@ import org.kde.kdeconnect_tp.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.GuardedBy;
 import androidx.annotation.NonNull;
 
+/**
+ * A type of {@link BackgroundJob} that uploads Files from a list of {@link NetworkPacket}s.
+ *
+ * <p>
+ * Each packet should have a 'filename' property and a payload. If the payload is missing,
+ * we'll just send an empty file. You can add new packets anytime before this job completes
+ * via {@link #addNetworkPacket(NetworkPacket)}.
+ * </p>
+ * <p>
+ *     The I/O-part of this file sending is handled by
+ *     {@link Device#sendPacketBlocking(NetworkPacket, Device.SendPacketStatusCallback)}.
+ * </p>
+ *
+ * @see CompositeReceiveFileJob
+ * @see SendPacketStatusCallback
+ */
 public class CompositeUploadFileJob extends BackgroundJob<Device, Void> {
     private boolean isRunning;
     private Handler handler;
@@ -44,10 +61,13 @@ public class CompositeUploadFileJob extends BackgroundJob<Device, Void> {
     private UploadNotification uploadNotification;
 
     private final Object lock;                              //Use to protect concurrent access to the variables below
+    @GuardedBy("lock")
     private final List<NetworkPacket> networkPacketList;
     private NetworkPacket currentNetworkPacket;
     private final Device.SendPacketStatusCallback sendPacketStatusCallback;
+    @GuardedBy("lock")
     private int totalNumFiles;
+    @GuardedBy("lock")
     private long totalPayloadSize;
 
     CompositeUploadFileJob(@NonNull Device device, @NonNull Callback<Void> callback) {
@@ -169,6 +189,9 @@ public class CompositeUploadFileJob extends BackgroundJob<Device, Void> {
         }
     }
 
+    /**
+     * Use this to send metadata ahead of all the other {@link #networkPacketList packets}.
+     */
     private void sendUpdatePacket() {
         NetworkPacket np = new NetworkPacket(SharePlugin.PACKET_TYPE_SHARE_REQUEST_UPDATE);
 
