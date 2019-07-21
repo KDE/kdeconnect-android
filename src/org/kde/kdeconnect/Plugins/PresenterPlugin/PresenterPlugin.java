@@ -121,11 +121,11 @@ public class PresenterPlugin extends Plugin {
         if (np == null) {
             np = new NetworkPacket(PACKET_TYPE_PRESENTER);
         } else {
-            xDelta += np.getInt("px");
-            yDelta += np.getInt("px");
+            xDelta += np.getInt("dx");
+            yDelta += np.getInt("dy");
         }
-        np.set("px", xDelta);
-        np.set("py", yDelta);
+        np.set("dx", xDelta);
+        np.set("dy", yDelta);
         device.sendPacket(np, NetworkPacket.PACKET_REPLACEID_PRESENTERPOINTER);
     }
 
