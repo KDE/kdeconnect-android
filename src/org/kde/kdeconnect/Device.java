@@ -57,6 +57,8 @@ import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import androidx.annotation.AnyThread;
+import androidx.annotation.WorkerThread;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
@@ -621,18 +623,22 @@ public class Device implements BaseLink.PacketReceiver {
         }
     };
 
+    @AnyThread
     public void sendPacket(NetworkPacket np) {
         sendPacket(np, -1, defaultCallback);
     }
 
+    @AnyThread
     public void sendPacket(NetworkPacket np, int replaceID) {
         sendPacket(np, replaceID, defaultCallback);
     }
 
+    @WorkerThread
     public boolean sendPacketBlocking(NetworkPacket np) {
         return sendPacketBlocking(np, defaultCallback);
     }
 
+    @AnyThread
     public void sendPacket(final NetworkPacket np, final SendPacketStatusCallback callback) {
         sendPacket(np, -1, callback);
     }
@@ -643,6 +649,7 @@ public class Device implements BaseLink.PacketReceiver {
      * @param replaceID If positive, replaces all unsent packages with the same replaceID
      * @param callback A callback for success/failure
      */
+    @AnyThread
     public void sendPacket(final NetworkPacket np, int replaceID, final SendPacketStatusCallback callback) {
         if (packetQueue == null) {
             callback.onFailure(new Exception("Device disconnected!"));
@@ -665,6 +672,7 @@ public class Device implements BaseLink.PacketReceiver {
         }
     }
 
+    @WorkerThread
     public boolean sendPacketBlocking(final NetworkPacket np, final SendPacketStatusCallback callback) {
 
         /*
