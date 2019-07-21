@@ -672,6 +672,14 @@ public class Device implements BaseLink.PacketReceiver {
         }
     }
 
+    /**
+     * Send {@code np} over one of this device's connected {@link #links}.
+     *
+     * @param np       the packet to send
+     * @param callback a callback that can receive realtime updates
+     * @return true if the packet was sent ok, false otherwise
+     * @see BaseLink#sendPacket(NetworkPacket, SendPacketStatusCallback)
+     */
     @WorkerThread
     public boolean sendPacketBlocking(final NetworkPacket np, final SendPacketStatusCallback callback) {
 
