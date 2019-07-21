@@ -85,13 +85,12 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
         findViewById(R.id.pointer_button).setVisibility(View.VISIBLE);
         findViewById(R.id.pointer_button).setOnTouchListener((v, event) -> {
             if(event.getAction() == MotionEvent.ACTION_DOWN){
-                yPos = 0;
-                xPos = 0;
                 sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE), SensorManager.SENSOR_DELAY_GAME);
                 v.performClick(); // The linter complains if this is not called
             }
             else if (event.getAction() == MotionEvent.ACTION_UP) {
                 sensorManager.unregisterListener(this);
+                plugin.stopPointer();
             }
             return true;
         });
