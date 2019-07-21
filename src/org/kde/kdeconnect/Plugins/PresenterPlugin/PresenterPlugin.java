@@ -24,6 +24,7 @@ package org.kde.kdeconnect.Plugins.PresenterPlugin;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Network;
 import android.os.Handler;
 import android.os.Message;
 import android.view.KeyEvent;
@@ -116,11 +117,23 @@ public class PresenterPlugin extends Plugin {
         device.sendPacket(np);
     }
 
-    public void sendPointer(float percentX, float percentY) {
-        NetworkPacket np = new NetworkPacket(PACKET_TYPE_PRESENTER);
-        np.set("px", percentX);
-        np.set("py", percentY);
+    public void sendPointer(float xDelta, float yDelta) {
+        NetworkPacket np = device.getAndRemoveUnsentPacket(NetworkPacket.PACKET_REPLACEID_PRESENTERPOINTER);
+        if (np == null) {
+            np = new NetworkPacket(PACKET_TYPE_PRESENTER);
+        } else {
+            xDelta += np.getInt("dx");
+            yDelta += np.getInt("dy");
+        }
+        np.set("dx", xDelta);
+        np.set("dy", yDelta);
         device.sendPacket(np, NetworkPacket.PACKET_REPLACEID_PRESENTERPOINTER);
     }
 
+    public void stopPointer() {
+        device.getAndRemoveUnsentPacket(NetworkPacket.PACKET_REPLACEID_PRESENTERPOINTER);
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_PRESENTER);
+        np.set("stop", true);
+        device.sendPacket(np);
+    }
 }

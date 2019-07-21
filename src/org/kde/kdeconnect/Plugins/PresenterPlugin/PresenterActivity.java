@@ -56,16 +56,12 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
     private PresenterPlugin plugin;
 
     private SensorManager sensorManager;
-    private float xPos, yPos;
 
-    static final float SENSITIVITY = 0.05f; //TODO: Make configurable?
+    static final float SENSITIVITY = 0.03f; //TODO: Make configurable?
 
     public void gyroscopeEvent(SensorEvent event) {
-        xPos += -event.values[2] * SENSITIVITY;
-        yPos += -event.values[0] * SENSITIVITY;
-
-        xPos = clamp(xPos, -1.f, 1.f);
-        yPos = clamp(yPos, -1.f, 1.f);
+        float xPos = -event.values[2] * SENSITIVITY;
+        float yPos = -event.values[0] * SENSITIVITY;
 
         plugin.sendPointer(xPos, yPos);
     }
@@ -89,13 +85,12 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
         findViewById(R.id.pointer_button).setVisibility(View.VISIBLE);
         findViewById(R.id.pointer_button).setOnTouchListener((v, event) -> {
             if(event.getAction() == MotionEvent.ACTION_DOWN){
-                yPos = 0;
-                xPos = 0;
                 sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE), SensorManager.SENSOR_DELAY_GAME);
                 v.performClick(); // The linter complains if this is not called
             }
             else if (event.getAction() == MotionEvent.ACTION_UP) {
                 sensorManager.unregisterListener(this);
+                plugin.stopPointer();
             }
             return true;
         });
