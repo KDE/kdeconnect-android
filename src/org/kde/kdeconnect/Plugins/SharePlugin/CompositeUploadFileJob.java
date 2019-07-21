@@ -35,12 +35,15 @@ import androidx.annotation.GuardedBy;
 import androidx.annotation.NonNull;
 
 /**
- * A type of {@link BackgroundJob} that uploads Files from a list of {@link NetworkPacket}s.
+ * A type of {@link BackgroundJob} that sends Files to another device.
  *
  * <p>
- * Each packet should have a 'filename' property and a payload. If the payload is missing,
- * we'll just send an empty file. You can add new packets anytime before this job completes
- * via {@link #addNetworkPacket(NetworkPacket)}.
+ *     We represent the individual upload requests as {@link NetworkPacket}s.
+ * </p>
+ * <p>
+ *     Each packet should have a 'filename' property and a payload. If the payload is
+ *     missing, we'll just send an empty file. You can add new packets anytime via
+ *     {@link #addNetworkPacket(NetworkPacket)}.
  * </p>
  * <p>
  *     The I/O-part of this file sending is handled by

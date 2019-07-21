@@ -48,12 +48,15 @@ import androidx.core.content.FileProvider;
 import androidx.documentfile.provider.DocumentFile;
 
 /**
- * A type of {@link BackgroundJob} that reads Files from a list of {@link NetworkPacket}s.
+ * A type of {@link BackgroundJob} that reads Files from another device.
  *
  * <p>
- * Each packet should have a 'filename' property and a payload. If the payload is missing,
- * we'll just create an empty file. You can add new packets anytime before this job completes
- * via {@link #addNetworkPacket(NetworkPacket)}.
+ *     We receive the requests as {@link NetworkPacket}s.
+ * </p>
+ * <p>
+ *     Each packet should have a 'filename' property and a payload. If the payload is missing,
+ *     we'll just create an empty file. You can add new packets anytime via
+ *     {@link #addNetworkPacket(NetworkPacket)}.
  * </p>
  * <p>
  *     The I/O-part of this file reading is handled by {@link #receiveFile(InputStream, OutputStream)}.
