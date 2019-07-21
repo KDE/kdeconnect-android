@@ -23,7 +23,6 @@
   <string name="pref_plugin_receive_notifications_desc">Modtag bekendtgørelser fra den anden enhed og vis dem på Android</string>
   <string name="pref_plugin_sharereceiver">Del og modtag</string>
   <string name="pref_plugin_sharereceiver_desc">Del filer og URL\'er mellem enheder</string>
-  <string name="plugin_not_available">Denne funktion er ikke tilgængelig i din Android-version</string>
   <string name="device_list_empty">Ingen enheder</string>
   <string name="ok">OK</string>
   <string name="cancel">Annullér</string>
@@ -65,28 +64,22 @@
   <string name="category_remembered_devices">Huskede enheder</string>
   <string name="device_menu_plugins">Plugin-indstillinger</string>
   <string name="device_menu_unpair">Fjern parring</string>
-  <string name="device_not_reachable">Den parrede enhed kan ikke tilgås</string>
   <string name="pair_new_device">Par med ny enhed</string>
   <string name="unknown_device">Ukendt enhed</string>
   <string name="error_not_reachable">Enheden kan ikke nås</string>
-  <string name="error_already_requested">Allerede anmodet om parring</string>
   <string name="error_already_paired">Enhed allerede parret</string>
   <string name="error_could_not_send_package">Kunne ikke sende pakke</string>
   <string name="error_timed_out">Tidsudløb</string>
   <string name="error_canceled_by_user">Annulleret af brugeren</string>
   <string name="error_canceled_by_other_peer">Annulleret af modpart</string>
-  <string name="error_invalid_key">Ugyldige nøgle modtaget</string>
   <string name="encryption_info_title">Krypteringsinfo</string>
   <string name="encryption_info_msg_no_ssl">Den anden enhed bruger ikke en nylig version af KDE Connect, og bruger dermed den forældede krypteringsmetode.</string>
   <string name="my_device_fingerprint">SHA1-fingeraftrykket for dit enhedscertifikat er:</string>
   <string name="remote_device_fingerprint">SHA1-fingeraftrykket for det eksterne enhedscertifikat er:</string>
   <string name="pair_requested">Anmodet om parring</string>
   <string name="pairing_request_from">Parringsanmodning fra %1s</string>
-  <string name="received_url_title">Modtog link fra %1s</string>
-  <string name="received_url_text">Tap for at åbne \"%1s\"</string>
   <string name="received_file_text">Tap for at åbne \"%1s\"</string>
   <string name="tap_to_answer">Tap for at svare</string>
-  <string name="reconnect">Forbind igen</string>
   <string name="right_click">Send højreklik</string>
   <string name="middle_click">Send midterklik</string>
   <string name="show_keyboard">Vis tastatur</string>
@@ -94,15 +87,12 @@
   <string name="request_pairing">Anmod om parring</string>
   <string name="pairing_accept">Acceptér</string>
   <string name="pairing_reject">Afvis</string>
-  <string name="device">Enhed</string>
-  <string name="pair_device">Par med enhed</string>
   <string name="mpris_play">Afspil</string>
   <string name="mpris_previous">Forrige</string>
   <string name="mpris_rew">Spol tilbage</string>
   <string name="mpris_ff">Spol frem</string>
   <string name="mpris_next">Næste</string>
   <string name="mpris_volume">Lydstyrke</string>
-  <string name="mpris_settings">Multimedieindstillinger</string>
   <string name="mpris_time_settings_title">Spol frem/tilbage-knapper</string>
   <string-array name="mpris_time_entries">
     <item>10 sekunder</item>
@@ -111,18 +101,11 @@
     <item>1 minut</item>
     <item>2 minutter</item>
   </string-array>
-  <string name="protocol_version_older">Denne enhed bruger en gammel protokolversion</string>
   <string name="protocol_version_newer">Denne enhed bruger en nyere protokolversion</string>
-  <string name="general_settings">Generelle indstillinger</string>
-  <string name="plugin_settings">Indstillinger</string>
   <string name="plugin_settings_with_name">Indstilling af %s</string>
-  <string name="device_name">Enhedsnavn</string>
-  <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Ugyldigt enhedsnavn</string>
   <string name="shareplugin_text_saved">Modtog tekst, gemt til udklipsholder</string>
   <string name="custom_devices_settings">Brugertilpasset liste over enheder</string>
-  <string name="pair_device_action">Par med en ny enhed</string>
-  <string name="unpair_device_action">Fjern parring med %s</string>
   <string name="custom_device_list">Tilføj enheder via IP</string>
   <string name="share_notification_preference">Støjende bekendtgørelser</string>
   <string name="share_notification_preference_summary">Vibrér og afspil en lyd når en fil modtages</string>
@@ -132,18 +115,14 @@
   <string name="share_destination_folder_preference">Destinationsmappe</string>
   <string name="title_activity_notification_filter">Bekendtgørelsesfilter</string>
   <string name="filter_apps_info">Bekendtgørelser vil blive synkroniseret for de valgte apps.</string>
-  <string name="sftp_internal_storage">Intern lagring</string>
   <string name="sftp_sdcard_num">SD-kort %d</string>
   <string name="sftp_sdcard">SD-kort</string>
   <string name="sftp_readonly">(skrivebeskyttet)</string>
   <string name="sftp_camera">Kamerabilleder</string>
-  <string name="add_host">Tilføj vært/IP</string>
   <string name="no_players_connected">Ingen afspillere fundet</string>
-  <string name="mpris_player_on_device">%1$s på %2$s</string>
   <string name="send_files">Send filer</string>
   <string name="pairing_title">KDE Connect-enheder</string>
   <string name="pairing_description">Andre enheder som kører KDE Connect i samme netværk som dig, bør dukke op her.</string>
-  <string name="device_paired">Enhed parret</string>
   <string name="device_rename_title">Omdøb enhed</string>
   <string name="device_rename_confirm">Omdøb</string>
   <string name="refresh">Genopfrisk</string>
@@ -152,14 +131,12 @@
   <string name="no_file_browser">Der er ingen filhåndtering installeret.</string>
   <string name="pref_plugin_telepathy">Send SMS</string>
   <string name="pref_plugin_telepathy_desc">Send SMS-beskeder fra din desktop</string>
-  <string name="plugin_not_supported">Dette plugin er ikke understøttet af enheden</string>
   <string name="findmyphone_title">Find min telefon</string>
   <string name="findmyphone_title_tablet">Find min tablet</string>
   <string name="findmyphone_description">Ringer til denne enhed, så du kan finde den.</string>
   <string name="findmyphone_found">Fundet</string>
   <string name="open">Åbn</string>
   <string name="close">Luk</string>
-  <string name="no_permissions_storage">Du skal give tilladelse for at tilgå datalagret</string>
   <string name="plugins_need_permission">Nogle plugins kræver tilladelser for at virke (tap for mere info):</string>
   <string name="permission_explanation">Dette plugin kræver tilladelser for at virke</string>
   <string name="optional_permission_explanation">Du skal give ekstra tilladelser for at aktivere alle funktioner</string>

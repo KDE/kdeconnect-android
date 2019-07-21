@@ -31,7 +31,6 @@
   <string name="pref_plugin_receive_notifications_desc">在Android上顯示從其他裝置收到的通知</string>
   <string name="pref_plugin_sharereceiver">分享與接收</string>
   <string name="pref_plugin_sharereceiver_desc">在兩個設備當中互相分享URL網址與檔案</string>
-  <string name="plugin_not_available">這個功能無法在您的Android版本上執行。</string>
   <string name="device_list_empty">沒有裝置</string>
   <string name="ok">OK</string>
   <string name="cancel">取消</string>
@@ -77,25 +76,20 @@
   <string name="category_remembered_devices">已記住的設備</string>
   <string name="device_menu_plugins">擴展插件設定</string>
   <string name="device_menu_unpair">取消配對</string>
-  <string name="device_not_reachable">配對的設備無法連接</string>
   <string name="pair_new_device">配對新設備</string>
   <string name="unknown_device">不明的設備</string>
   <string name="error_not_reachable">設備無法連接</string>
-  <string name="error_already_requested">已請求配對</string>
   <string name="error_already_paired">裝置已經配對</string>
   <string name="error_could_not_send_package">無法傳送封包</string>
   <string name="error_timed_out">逾時</string>
   <string name="error_canceled_by_user">使用者中斷</string>
   <string name="error_canceled_by_other_peer">被其他同等功能應用中斷</string>
-  <string name="error_invalid_key">接收的密鑰無效</string>
   <string name="encryption_info_title">加密資訊</string>
   <string name="encryption_info_msg_no_ssl">其他的設備沒有使用新版本的KDE連線，使用傳統的加密模式。</string>
   <string name="my_device_fingerprint">您設備上的SHA1指紋辨識認證是：</string>
   <string name="remote_device_fingerprint">您遠端設備上的SHA1指紋辨識認證是：</string>
   <string name="pair_requested">已請求配對</string>
   <string name="pairing_request_from">從 %1s 來的配對請求</string>
-  <string name="received_url_title">已從 %1s 連線接收</string>
-  <string name="received_url_text">點擊開啟 \'%1s\'</string>
   <plurals name="incoming_file_title">
     <item quantity="other">正在從 %2$s 接收 %1$d 個檔案</item>
   </plurals>
@@ -123,7 +117,6 @@
   <string name="received_file_text">點擊開啟 \'%1s\'</string>
   <string name="cannot_create_file">無法建立 %s 檔案</string>
   <string name="tap_to_answer">點擊即可應答</string>
-  <string name="reconnect">重新連線</string>
   <string name="right_click">傳送右鍵點擊</string>
   <string name="middle_click">傳送中鍵點擊</string>
   <string name="show_keyboard">顯示鍵盤</string>
@@ -131,8 +124,6 @@
   <string name="request_pairing">請求配對</string>
   <string name="pairing_accept">同意</string>
   <string name="pairing_reject">回絕</string>
-  <string name="device">裝置</string>
-  <string name="pair_device">配對裝置</string>
   <string name="settings">設定</string>
   <string name="mpris_play">播放</string>
   <string name="mpris_pause">暫停</string>
@@ -141,7 +132,6 @@
   <string name="mpris_ff">快轉</string>
   <string name="mpris_next">下一首</string>
   <string name="mpris_volume">音量</string>
-  <string name="mpris_settings">多媒體設定</string>
   <string name="mpris_time_settings_title">往前/往後按鍵</string>
   <string name="mpris_time_settings_summary">調整按下時往前 / 往後的時間</string>
   <string-array name="mpris_time_entries">
@@ -154,20 +144,12 @@
   <string name="mpris_notification_settings_title">顯示媒體控制項通知</string>
   <string name="mpris_notification_settings_summary">允許控制您的媒體播放器而不需要開啟 KDE 連線</string>
   <string name="share_to">分享給…</string>
-  <string name="protocol_version_older">這個裝置使用舊版本的通訊協定</string>
   <string name="protocol_version_newer">此設備使用較新的通訊協定</string>
-  <string name="general_settings">通用設定</string>
-  <string name="plugin_settings">設定</string>
   <string name="plugin_settings_with_name">%s 設定</string>
-  <string name="device_name">設備名稱</string>
-  <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">無效的設備名稱</string>
   <string name="shareplugin_text_saved">已接收文字，並且儲存到剪貼簿</string>
   <string name="custom_devices_settings">自定義設備列表</string>
-  <string name="pair_device_action">配對新設備</string>
-  <string name="unpair_device_action">未配對 %s</string>
   <string name="custom_device_list">以IP來新增設備</string>
-  <string name="delete_custom_device">刪除 %s？</string>
   <string name="custom_device_deleted">已刪除自訂裝置</string>
   <string name="custom_device_list_help">若未自動偵測到您的裝置，您可透過點選「浮動動作按鈕」來新增該裝置的IP 位址或主機名稱</string>
   <string name="custom_device_fab_hint">新增裝置</string>
@@ -182,7 +164,6 @@
   <string name="share_received_file">分享「%s」</string>
   <string name="title_activity_notification_filter">通知過濾器</string>
   <string name="filter_apps_info">將會以您選擇的App應用程式啟用同步通知</string>
-  <string name="sftp_internal_storage">內部儲存空間</string>
   <string name="sftp_sdcard_num">SD卡 %d</string>
   <string name="sftp_sdcard">SD卡</string>
   <string name="sftp_readonly">（唯讀）</string>
@@ -207,14 +188,10 @@
   <string name="sftp_no_sdcard_detected">未偵測到 SD 卡</string>
   <string name="sftp_no_storage_locations_configured">未設定儲存空間位置</string>
   <string name="sftp_saf_permission_explanation">若要遠端存取檔案，您需先設定儲存空間位置</string>
-  <string name="add_host">增加 host/IP</string>
-  <string name="add_host_hint">主機名稱或 IP</string>
   <string name="no_players_connected">沒有發現播放器</string>
-  <string name="mpris_player_on_device">%1$s on %2$s</string>
   <string name="send_files">傳送檔案</string>
   <string name="pairing_title">KDE連線裝置</string>
   <string name="pairing_description">在您相同網域當中，有其他有執行KDE連線的裝置會出現在這裡。</string>
-  <string name="device_paired">裝置已配對</string>
   <string name="device_rename_title">更改裝置名稱</string>
   <string name="device_rename_confirm">更改名稱</string>
   <string name="refresh">刷新</string>
@@ -223,7 +200,6 @@
   <string name="no_file_browser">沒有安裝此檔案的瀏覽程式</string>
   <string name="pref_plugin_telepathy">傳送簡訊</string>
   <string name="pref_plugin_telepathy_desc">傳送文字簡訊到您的電腦桌面</string>
-  <string name="plugin_not_supported">這個擴充插件並不支援您的手機</string>
   <string name="findmyphone_title">找尋我的手機</string>
   <string name="findmyphone_title_tablet">找尋我的平板</string>
   <string name="findmyphone_title_tv">尋找我的電視</string>
@@ -231,7 +207,6 @@
   <string name="findmyphone_found">找到</string>
   <string name="open">開啟</string>
   <string name="close">關閉</string>
-  <string name="no_permissions_storage">您需要授予儲存權限</string>
   <string name="plugins_need_permission">部份的附加元件需要權限才能運作（點擊以取得更多資訊）</string>
   <string name="permission_explanation">這附加元件需要權限以運作</string>
   <string name="optional_permission_explanation">你需要授予延伸的權限以啟用所有的功能</string>
@@ -256,7 +231,6 @@
   <string name="add_command_description">您可以在電腦上增加指令</string>
   <string name="pref_plugin_mprisreceiver">控制媒體播放器</string>
   <string name="pref_plugin_mprisreceiver_desc">從另外一個裝置操控您手機的媒體播放器</string>
-  <string name="dark_theme">暗色主題</string>
   <string name="notification_channel_default">其他通知</string>
   <string name="notification_channel_persistent">一致指標</string>
   <string name="notification_channel_media_control">多媒體控制</string>
@@ -286,7 +260,6 @@
   <string name="extra_options">延伸選項</string>
   <string name="privacy_options">隱私權選項</string>
   <string name="set_privacy_options">設定隱私權選項</string>
-  <string name="new_notification">新通知</string>
   <string name="block_contents">擋住通知內容</string>
   <string name="block_images">擋住通知中的圖片</string>
   <string name="notification_channel_receivenotification">其他裝置上的通知</string>

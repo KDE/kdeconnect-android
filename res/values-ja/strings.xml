@@ -27,7 +27,6 @@
   <string name="pref_plugin_receive_notifications_desc">他のデバイスから通知を受信し、Android に表示します</string>
   <string name="pref_plugin_sharereceiver">共有と受信</string>
   <string name="pref_plugin_sharereceiver_desc">デバイス間でファイルと URL を共有</string>
-  <string name="plugin_not_available">この機能はあなたの Android バージョンでは利用できません</string>
   <string name="device_list_empty">デバイスなし</string>
   <string name="cancel">キャンセル</string>
   <string name="open_settings">設定を開く</string>
@@ -67,22 +66,17 @@
   <string name="category_not_paired_devices">利用可能なデバイス</string>
   <string name="device_menu_plugins">プラグイン設定</string>
   <string name="device_menu_unpair">ペアリング解除</string>
-  <string name="device_not_reachable">ペアリング済みのデバイスに到達できません</string>
   <string name="pair_new_device">新しいデバイスをペアリング</string>
   <string name="unknown_device">不明なデバイス</string>
   <string name="error_not_reachable">デバイスは到達不可です</string>
-  <string name="error_already_requested">ペアリングは既に要求済みです</string>
   <string name="error_already_paired">デバイスは既にペアリング済みです</string>
   <string name="error_timed_out">タイムアウト</string>
   <string name="error_canceled_by_user">ユーザにキャンセルされました</string>
   <string name="error_canceled_by_other_peer">他のピアにキャンセルされました</string>
-  <string name="error_invalid_key">不正なキーを受信しました</string>
   <string name="encryption_info_title">暗号化情報</string>
   <string name="encryption_info_msg_no_ssl">他のデバイスは最近のバージョンの KDE Connect を利用していません。古い暗号化方式を使用しています</string>
   <string name="pair_requested">ペアリング要求済み</string>
   <string name="pairing_request_from">%1s からペアリングを要求されました</string>
-  <string name="received_url_title">%1s からリンクを受信</string>
-  <string name="received_url_text">タップして \'%1s\' を開く</string>
   <plurals name="incoming_file_title">
     <item quantity="other">%1$d ファイルを %2$s から受信しています</item>
   </plurals>
@@ -106,7 +100,6 @@
   </plurals>
   <string name="received_file_text">タップして \'%1s\' を開く</string>
   <string name="tap_to_answer">タップして応答</string>
-  <string name="reconnect">再接続</string>
   <string name="right_click">右クリックを送信</string>
   <string name="middle_click">中クリックを送信</string>
   <string name="show_keyboard">キーボードを表示</string>
@@ -114,8 +107,6 @@
   <string name="request_pairing">ペアリングを要求</string>
   <string name="pairing_accept">許可</string>
   <string name="pairing_reject">拒否</string>
-  <string name="device">デバイス</string>
-  <string name="pair_device">デバイスをペアリング</string>
   <string name="settings">設定</string>
   <string name="mpris_play">再生</string>
   <string name="mpris_pause">一時停止</string>
@@ -123,7 +114,6 @@
   <string name="mpris_rew">巻き戻し</string>
   <string name="mpris_next">次へ</string>
   <string name="mpris_volume">音量</string>
-  <string name="mpris_settings">マルチメディアの設定</string>
   <string name="mpris_time_settings_title">早送り/巻き戻しボタン</string>
   <string name="mpris_time_settings_summary">押した時に早送り/巻き戻しする時間を調整</string>
   <string-array name="mpris_time_entries">
@@ -136,17 +126,10 @@
   <string name="mpris_notification_settings_title">メディア操作の通知を表示</string>
   <string name="mpris_notification_settings_summary">KDE Connect を開かずにメディアプレーヤーをコントロール可能にします</string>
   <string name="share_to">共有先...</string>
-  <string name="protocol_version_older">このデバイスは古いプロトコルバージョンを使用しています</string>
   <string name="protocol_version_newer">このデバイスはより新しいプロトコルバージョンを使用しています</string>
-  <string name="general_settings">全般設定</string>
-  <string name="plugin_settings">設定</string>
   <string name="plugin_settings_with_name">%s 設定</string>
-  <string name="device_name">デバイス名</string>
   <string name="invalid_device_name">不正なデバイス名</string>
-  <string name="pair_device_action">新しいデバイスをペアリング</string>
-  <string name="unpair_device_action">%s をペアリング解除</string>
   <string name="custom_device_list">IP アドレスでデバイスを追加</string>
-  <string name="delete_custom_device">%s を削除しますか？</string>
   <string name="custom_device_fab_hint">デバイスを追加</string>
   <string name="undo">元に戻す</string>
   <string name="share_notification_preference">うるさい通知</string>
@@ -159,7 +142,6 @@
   <string name="share_received_file">\"%s\" を共有</string>
   <string name="title_activity_notification_filter">通知フィルタ</string>
   <string name="filter_apps_info">選択されたアプリケーションの通知が同期されます。</string>
-  <string name="sftp_internal_storage">内部ストレージ</string>
   <string name="sftp_sdcard_num">SD カード %d</string>
   <string name="sftp_sdcard">SD カード</string>
   <string name="sftp_readonly">(読み取り専用)</string>
@@ -179,12 +161,10 @@
   <string name="sftp_no_sdcard_detected">SD カードが検出されません</string>
   <string name="sftp_no_storage_locations_configured">ストレージの場所が設定されていません</string>
   <string name="sftp_saf_permission_explanation">リモートからファイルにアクセスするには、ストレージの場所を設定する必要があります</string>
-  <string name="add_host_hint">ホスト名かIPアドレス</string>
   <string name="no_players_connected">プレーヤーが見つかりませんでした</string>
   <string name="send_files">ファイルを送信</string>
   <string name="pairing_title">KDE Connect デバイス</string>
   <string name="pairing_description">同じネットワーク内で KDE Connect を実行しているデバイスがここに表示されます</string>
-  <string name="device_paired">デバイス ペアリング済み</string>
   <string name="device_rename_title">デバイス名を変更</string>
   <string name="device_rename_confirm">名前変更</string>
   <string name="refresh">更新</string>
@@ -193,7 +173,6 @@
   <string name="no_file_browser">ファイルブラウザがインストールされていません</string>
   <string name="pref_plugin_telepathy">SMS を送信</string>
   <string name="pref_plugin_telepathy_desc">デスクトップからテキストメッセージを送信</string>
-  <string name="plugin_not_supported">このプラグインはデバイスにサポートされていません</string>
   <string name="findmyphone_title">スマートフォンを捜索</string>
   <string name="findmyphone_title_tablet">タブレットを捜索</string>
   <string name="findmyphone_title_tv">TV を捜索</string>
@@ -201,7 +180,6 @@
   <string name="findmyphone_found">発見</string>
   <string name="open">開く</string>
   <string name="close">閉じる</string>
-  <string name="no_permissions_storage">ストレージにアクセスするには権限を許可する必要があります</string>
   <string name="plugins_need_permission">いくつかのプラグインが機能するには権限が必要です (タップして詳細情報を表示):</string>
   <string name="permission_explanation">このプラグインが機能するには権限が必要です</string>
   <string name="optional_permission_explanation">すべての機能を有効にするには、追加の権限を許可する必要があります</string>
@@ -225,7 +203,6 @@
   <string name="add_command_description">デスクトップから新しいコマンドを追加できます</string>
   <string name="pref_plugin_mprisreceiver">メディアプレーヤーの操作</string>
   <string name="pref_plugin_mprisreceiver_desc">他のデバイスからスマートフォンのメディアプレーヤーを操作</string>
-  <string name="dark_theme">ダーク テーマ</string>
   <string name="notification_channel_default">他の通知</string>
   <string name="notification_channel_persistent">永続的なインジケータ</string>
   <string name="notification_channel_media_control">メディアの操作</string>
@@ -253,7 +230,6 @@
   <string name="extra_options">追加オプション</string>
   <string name="privacy_options">プライバシーオプション</string>
   <string name="set_privacy_options">プライバシーオプションを設定</string>
-  <string name="new_notification">新しい通知</string>
   <string name="notification_channel_receivenotification">他のデバイスからの通知</string>
   <string name="take_picture">カメラを起動</string>
 </resources>

@@ -23,7 +23,6 @@
   <string name="pref_plugin_receive_notifications_desc">קבל התראות מהתקן אחר והצג אותם במכשיר שלך</string>
   <string name="pref_plugin_sharereceiver">שתף וקבל קבצים וכתובות</string>
   <string name="pref_plugin_sharereceiver_desc">שתף וקבל קבצים וכתובת אינטרנט בין התקנים</string>
-  <string name="plugin_not_available">אפשרות זו אינה זמינה בגרסת האנדרואיד שלך</string>
   <string name="device_list_empty">אין התקנים</string>
   <string name="ok">אישור</string>
   <string name="cancel">בטל</string>
@@ -65,28 +64,22 @@
   <string name="category_remembered_devices">התקנים זכורים</string>
   <string name="device_menu_plugins">הגדרות תוספים</string>
   <string name="device_menu_unpair">בטל התאמה</string>
-  <string name="device_not_reachable">ההתקן המותאם לא זמין</string>
   <string name="pair_new_device">התאם התקן חדש</string>
   <string name="unknown_device">התקן לא ידוע</string>
   <string name="error_not_reachable">ההתקן לא זמין</string>
-  <string name="error_already_requested">כבר בוקשה התאמה</string>
   <string name="error_already_paired">ההתקן כבר מותאם</string>
   <string name="error_could_not_send_package">לא יכול לשלוח חבילה</string>
   <string name="error_timed_out">נגמר הזמן</string>
   <string name="error_canceled_by_user">בוטל על ידי המשתמש</string>
   <string name="error_canceled_by_other_peer">בוטל על ידי מישהו אחר</string>
-  <string name="error_invalid_key">התקבל מפתח לא תקין</string>
   <string name="encryption_info_title">פרטי הצפנה</string>
   <string name="encryption_info_msg_no_ssl">ההתקן השני אינו משתמש בגרסה האחרונה של KDE Connect, משתמש בשיטת ההצפנה הישנה.</string>
   <string name="my_device_fingerprint">טביעת האצבע SHA1 של ההתקן היא:</string>
   <string name="remote_device_fingerprint">"טביעת האצבע SHA1 של ההתקן המרוחק היא: "</string>
   <string name="pair_requested">בקשת התאמה</string>
   <string name="pairing_request_from">בוקשה התאמה מ־%1s</string>
-  <string name="received_url_title">התקבל קישור מ־%1s</string>
-  <string name="received_url_text">לחץ כדי לפתוח את \"%1s\"</string>
   <string name="received_file_text">לחץ כדי לפתוח את \"%1s\"</string>
   <string name="tap_to_answer">לחץ כדי לענות</string>
-  <string name="reconnect">התחבר מחדש</string>
   <string name="right_click">שלח לחיצה ימנית</string>
   <string name="middle_click">שלח לחיצה אמצעית (גלגלת)</string>
   <string name="show_keyboard">הראה מקלדת</string>
@@ -94,15 +87,12 @@
   <string name="request_pairing">בקש התאמה</string>
   <string name="pairing_accept">אשר</string>
   <string name="pairing_reject">דחה</string>
-  <string name="device">התקן</string>
-  <string name="pair_device">התאם התקן</string>
   <string name="mpris_play">נגן</string>
   <string name="mpris_previous">הקודם</string>
   <string name="mpris_rew">דילוג אחורה</string>
   <string name="mpris_ff">דילוג קדימה</string>
   <string name="mpris_next">הבא</string>
   <string name="mpris_volume">עוצמה</string>
-  <string name="mpris_settings">הגדרות מדיה</string>
   <string name="mpris_time_settings_title">כפתור דילוג קדימה או אחורה</string>
   <string-array name="mpris_time_entries">
     <item>10 שניות</item>
@@ -111,18 +101,11 @@
     <item>דקה</item>
     <item>שתי דקות</item>
   </string-array>
-  <string name="protocol_version_older">ההתקן משתמש בגרסה ישנה יותר</string>
   <string name="protocol_version_newer">ההתקן משתמש בגרסה חדשה יותר</string>
-  <string name="general_settings">הגדרות כלליות</string>
-  <string name="plugin_settings">הגדרות</string>
   <string name="plugin_settings_with_name">הגדרות %s</string>
-  <string name="device_name">שם ההתקן</string>
-  <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">שם ההתקן לא תקין</string>
   <string name="shareplugin_text_saved">התקבל טקסט, נשמר ללוח העתקה</string>
   <string name="custom_devices_settings">רשימת התקנים מותאמת אישית</string>
-  <string name="pair_device_action">התאם התקן חדש</string>
-  <string name="unpair_device_action">בטל את ההתאמה עם %s</string>
   <string name="custom_device_list">הוסף התקן על ידי כתובת IP</string>
   <string name="share_notification_preference">התראות רועשות</string>
   <string name="share_notification_preference_summary">רטוט ונגן צליל בעת קבלת קובץ</string>
@@ -132,18 +115,14 @@
   <string name="share_destination_folder_preference">תיקית יעד</string>
   <string name="title_activity_notification_filter">סנן התראות</string>
   <string name="filter_apps_info">התראות יסונכרנו רק לאפליקציות נבחרות</string>
-  <string name="sftp_internal_storage">זיכרון פנימי</string>
   <string name="sftp_sdcard_num">כרטיס זיכרון %d</string>
   <string name="sftp_sdcard">כרטיס זיכרון</string>
   <string name="sftp_readonly">(לקריאה בלבד)</string>
   <string name="sftp_camera">תמונות מצלמה</string>
-  <string name="add_host">הוסף כתובת או IP</string>
   <string name="no_players_connected">לא נמצא נגן</string>
-  <string name="mpris_player_on_device">‏%1$s אצל %2$s</string>
   <string name="send_files">שלח קובץ</string>
   <string name="pairing_title">מכשירי KDE Connect</string>
   <string name="pairing_description">התקנים אחרים המריצים KDE Connect ברשת הנוכחית צריכים להופיע פה.</string>
-  <string name="device_paired">התקן מתואם</string>
   <string name="device_rename_title">שנה שם התקן</string>
   <string name="device_rename_confirm">שנה שם</string>
   <string name="refresh">רענן</string>
@@ -152,7 +131,6 @@
   <string name="no_file_browser">לא נמצאו מנהלי קבצים מותקנים במכשיר זה.</string>
   <string name="pref_plugin_telepathy">שליחת הודעת SMS</string>
   <string name="pref_plugin_telepathy_desc">שלח הודעות מהמחשב שלך</string>
-  <string name="plugin_not_supported">תוסף הזה לא נתמך על ידי המכשיר שלך</string>
   <string name="findmyphone_title">מצא את הפלאפון שלי</string>
   <string name="findmyphone_title_tablet">מצא את הטבלט שלי</string>
   <string name="findmyphone_description">מפעיל רעש במכשיר כדי שתוכל למצוא אותו.</string>

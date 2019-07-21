@@ -30,7 +30,6 @@
   <string name="pref_plugin_receive_notifications_desc">Terima notifikasi dari perangkat lain dan menampilkannya pada Android</string>
   <string name="pref_plugin_sharereceiver">Kirim dan terima</string>
   <string name="pref_plugin_sharereceiver_desc">Berbagi file-file dan URL-URL antara perangkat</string>
-  <string name="plugin_not_available">Fitur ini tidak tersedia dalam versi Android-mu</string>
   <string name="device_list_empty">Tidak ada perangkat</string>
   <string name="ok">Oke</string>
   <string name="cancel">Batal</string>
@@ -74,25 +73,20 @@
   <string name="category_remembered_devices">Perangkat teringat</string>
   <string name="device_menu_plugins">Setelan plugin</string>
   <string name="device_menu_unpair">Leraikan</string>
-  <string name="device_not_reachable">Menyandingkan perangkat tidak dapat dicapai</string>
   <string name="pair_new_device">Sandingkan perangkat baru</string>
   <string name="unknown_device">Perangkat tak diketahui</string>
   <string name="error_not_reachable">Perangkat tidak dapat dicapai</string>
-  <string name="error_already_requested">Penyandingan sudah diminta</string>
   <string name="error_already_paired">Perangkat sudah disandingkan</string>
   <string name="error_could_not_send_package">Tidak dapat mengirim paket</string>
   <string name="error_timed_out">Waktu habis</string>
   <string name="error_canceled_by_user">Dibatalkan oleh pengguna</string>
   <string name="error_canceled_by_other_peer">Dibatalkan oleh kawan lain</string>
-  <string name="error_invalid_key">Diterima kunci yang tak absah</string>
   <string name="encryption_info_title">Info Enkripsi</string>
   <string name="encryption_info_msg_no_ssl">Perangkat lain tidaklah menggunakan KDE Connect yang berversi saat ini, menggunakan metode enkripsi kuno.</string>
   <string name="my_device_fingerprint">Sidik jari SHA1 pada sertifikat perangkatmu adalah:</string>
   <string name="remote_device_fingerprint">Sidik jari SHA1 pada sertifikat perangkat jarak jauh adalah:</string>
   <string name="pair_requested">Meminta sanding</string>
   <string name="pairing_request_from">Minta penyandingan dari %1s</string>
-  <string name="received_url_title">Tautan diterima dari %1s</string>
-  <string name="received_url_text">Ketuk untuk membuka \'%1s\'</string>
   <plurals name="incoming_file_title">
     <item quantity="other">Menerima %1$d file dari %2$s</item>
   </plurals>
@@ -108,7 +102,6 @@
   <string name="received_file_text">Ketuk untuk membuka \'%1s\'</string>
   <string name="cannot_create_file">Gak bisa menciptakan file %s</string>
   <string name="tap_to_answer">Ketuk untuk menjawab</string>
-  <string name="reconnect">Sambung-ulang</string>
   <string name="right_click">Kirim Klik Kanan</string>
   <string name="middle_click">Kirim Klik Tengah</string>
   <string name="show_keyboard">Tampilkan Keyboard</string>
@@ -116,8 +109,6 @@
   <string name="request_pairing">Minta penyandingan</string>
   <string name="pairing_accept">Setujui</string>
   <string name="pairing_reject">Apkir</string>
-  <string name="device">Perangkat</string>
-  <string name="pair_device">Sandingkan perangkat</string>
   <string name="settings">Setelan</string>
   <string name="mpris_play">Mainkan</string>
   <string name="mpris_pause">Jeda</string>
@@ -126,7 +117,6 @@
   <string name="mpris_ff">Maju-capat</string>
   <string name="mpris_next">Selanjutnya</string>
   <string name="mpris_volume">Volume</string>
-  <string name="mpris_settings">Setelan Multimedia</string>
   <string name="mpris_time_settings_title">Tombol mundur-cepat/maju-cepat</string>
   <string name="mpris_time_settings_summary">Setel waktu untuk mempercepat mundur/maju ketika ditekan</string>
   <string-array name="mpris_time_entries">
@@ -139,18 +129,11 @@
   <string name="mpris_notification_settings_title">Tampilkan notifikasi kendali media</string>
   <string name="mpris_notification_settings_summary">Memungkinkan pengendalian player media-mu tanpa membuka KDE Connect</string>
   <string name="share_to">Berbagi Ke...</string>
-  <string name="protocol_version_older">Perangkat ini menggunakan sebuah versi protokol lawas</string>
   <string name="protocol_version_newer">Perangkat ini menggunakan sebuah versi protokol baru</string>
-  <string name="general_settings">Setelan Umum</string>
-  <string name="plugin_settings">Setelan</string>
   <string name="plugin_settings_with_name">Setelan %s</string>
-  <string name="device_name">Nama perangkat</string>
-  <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Nama perangkat tak absah</string>
   <string name="shareplugin_text_saved">Teks diterima, tersimpan ke papan-klip</string>
   <string name="custom_devices_settings">Kustom daftar perangkat</string>
-  <string name="pair_device_action">Sandingkan sebuah perangkat baru</string>
-  <string name="unpair_device_action">Leraikan %s</string>
   <string name="custom_device_list">Tambahkan perangkat dengan IP</string>
   <string name="share_notification_preference">Notifikasi bising</string>
   <string name="share_notification_preference_summary">Getar dan mainkan suar ketika menerima sebuah file</string>
@@ -162,18 +145,14 @@
   <string name="share_received_file">Bagikan \"%s\"</string>
   <string name="title_activity_notification_filter">Filter notifikasi</string>
   <string name="filter_apps_info">Notifikasi akan disinkronkan terhadap apl terpilih.</string>
-  <string name="sftp_internal_storage">Penyimpanan internal</string>
   <string name="sftp_sdcard_num">Kartu SD %d</string>
   <string name="sftp_sdcard">Kartu SD</string>
   <string name="sftp_readonly">(hanya baca)</string>
   <string name="sftp_camera">Gambar kamera</string>
-  <string name="add_host">Tambahkan host/IP</string>
   <string name="no_players_connected">Tidak ada player yang ditemukan</string>
-  <string name="mpris_player_on_device">%1$s pada %2$s</string>
   <string name="send_files">Kirim file</string>
   <string name="pairing_title">Perangkat KDE Connect</string>
   <string name="pairing_description">Perangkat lain menjalankan KDE Connect dalam jaringanmu yang sama yang seharusnya muncul di sini.</string>
-  <string name="device_paired">Perangkat disandingkan</string>
   <string name="device_rename_title">Ubah nama perangkat</string>
   <string name="device_rename_confirm">Ubah Nama</string>
   <string name="refresh">Segarkan</string>
@@ -182,7 +161,6 @@
   <string name="no_file_browser">Tidak adanya penelusur file yang terinstal.</string>
   <string name="pref_plugin_telepathy">Kirim SMS</string>
   <string name="pref_plugin_telepathy_desc">Kirim teks perpesanan dari desktopmu</string>
-  <string name="plugin_not_supported">Plugin ini tidaklah didukung oleh perangkat</string>
   <string name="findmyphone_title">Temukan teleponku</string>
   <string name="findmyphone_title_tablet">Temukan tabletku</string>
   <string name="findmyphone_title_tv">Temukan TV-ku</string>
@@ -190,7 +168,6 @@
   <string name="findmyphone_found">Ketemu</string>
   <string name="open">Buka</string>
   <string name="close">Tutup</string>
-  <string name="no_permissions_storage">Kamu perlu mengabulkan perizinan untuk mengakses penyimpanan</string>
   <string name="plugins_need_permission">Beberapa plugin perlu perizinan untuk kerja (ketuk untuk info selebihnya):</string>
   <string name="permission_explanation">Plugin ini perlu perizinan untuk kerja</string>
   <string name="optional_permission_explanation">Kamu perlu mengabulkan perizinan extra untuk memfungsikan semua fungsian</string>
@@ -211,5 +188,4 @@
   <string name="add_command_description">Kamu bisa menambahkan perintah pada desktop</string>
   <string name="pref_plugin_mprisreceiver">Kendali Player Media</string>
   <string name="pref_plugin_mprisreceiver_desc">Kendalikan player media teleponmu dari perangkat lainnya</string>
-  <string name="dark_theme">Tema gelap</string>
 </resources>

@@ -26,7 +26,6 @@
   <string name="pref_plugin_receive_notifications_desc">Empfangen und Anzeigen von Benachrichtigungen des anderen Geräts</string>
   <string name="pref_plugin_sharereceiver">Veröffentlichen und Empfangen</string>
   <string name="pref_plugin_sharereceiver_desc">Dateien und Adressen (URLs) zwischen Geräten teilen</string>
-  <string name="plugin_not_available">Diese Funktion ist in Ihrer Android-Version nicht verfügbar</string>
   <string name="device_list_empty">Keine Geräte</string>
   <string name="ok">OK</string>
   <string name="cancel">Abbrechen</string>
@@ -65,28 +64,22 @@
   <string name="category_remembered_devices">Gemerkte Geräte</string>
   <string name="device_menu_plugins">Modul-Einstellungen</string>
   <string name="device_menu_unpair">Verbindung trennen</string>
-  <string name="device_not_reachable">Das angegeben Gerät ist nicht erreichbar</string>
   <string name="pair_new_device">Ein neues Gerät verbinden</string>
   <string name="unknown_device">Unbekanntes Gerät</string>
   <string name="error_not_reachable">Das Gerät ist nicht erreichbar</string>
-  <string name="error_already_requested">Die Verbindung wurde bereits angefragt</string>
   <string name="error_already_paired">Das Gerät ist bereits verbunden</string>
   <string name="error_could_not_send_package">Das Paket kann nicht gesendet werden</string>
   <string name="error_timed_out">Zeitüberschreitung</string>
   <string name="error_canceled_by_user">Abbruch durch Benutzer</string>
   <string name="error_canceled_by_other_peer">Abbruch durch Gegenstelle</string>
-  <string name="error_invalid_key">Ungültiger Schlüssel empfangen</string>
   <string name="encryption_info_title">Verschlüsselungsinformationen</string>
   <string name="encryption_info_msg_no_ssl">Das andere Gerät verwendet eine ältere Version von KDE-Connect, eine veraltete Verschlüsselungsmethode wird verwendet.</string>
   <string name="my_device_fingerprint">Der SHA1-Fingerabdruck Ihres Gerätezertifikats lautet:</string>
   <string name="remote_device_fingerprint">Der SHA1-Fingerabdruck des Gerätezertifikats der Gegenstelle lautet:</string>
   <string name="pair_requested">Verbindung angefordert</string>
   <string name="pairing_request_from">Verbindungsanfrage von %1s</string>
-  <string name="received_url_title">Verknüpfung von %1s erhalten</string>
-  <string name="received_url_text">Tippen um „%1s“ zu öffnen</string>
   <string name="received_file_text">Tippen um „%1s“ zu öffnen</string>
   <string name="tap_to_answer">Tippen zum Antworten</string>
-  <string name="reconnect">Erneut verbinden</string>
   <string name="right_click">Rechtsklick senden</string>
   <string name="middle_click">Mittelklick senden</string>
   <string name="show_keyboard">Tastatur anzeigen</string>
@@ -94,8 +87,6 @@
   <string name="request_pairing">Verbindung anfordern</string>
   <string name="pairing_accept">Annehmen</string>
   <string name="pairing_reject">Ablehnen</string>
-  <string name="device">Gerät</string>
-  <string name="pair_device">Gerät verbinden</string>
   <string name="settings">Einstellungen</string>
   <string name="mpris_play">Wiedergabe</string>
   <string name="mpris_pause">Anhalten</string>
@@ -104,7 +95,6 @@
   <string name="mpris_ff">Vorlauf</string>
   <string name="mpris_next">Weiter</string>
   <string name="mpris_volume">Lautstärke</string>
-  <string name="mpris_settings">Multimedia-Einstellungen</string>
   <string name="mpris_time_settings_title">Knöpfe Vorwärts/Rückwärts</string>
   <string name="mpris_time_settings_summary">Sprungweite für Vorlauf/Rücklauf anpassen</string>
   <string-array name="mpris_time_entries">
@@ -115,20 +105,12 @@
     <item>2 Minuten</item>
   </string-array>
   <string name="share_to">Freigeben für ...</string>
-  <string name="protocol_version_older">Dieses Gerät verwendet ein alte Protokollversion</string>
   <string name="protocol_version_newer">Dieses Gerät verwendet ein neuere Protokollversion</string>
-  <string name="general_settings">Allgemeine Einstellungen</string>
-  <string name="plugin_settings">Einstellungen</string>
   <string name="plugin_settings_with_name">%s-Einstellungen</string>
-  <string name="device_name">Gerätename</string>
-  <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Ungültiger Gerätename</string>
   <string name="shareplugin_text_saved">Text empfangen und in der Zwischenablage gespeichert</string>
   <string name="custom_devices_settings">Benutzerdefinierte Geräteliste</string>
-  <string name="pair_device_action">Ein neues Gerät verbinden</string>
-  <string name="unpair_device_action">Verbindung %s trennen</string>
   <string name="custom_device_list">Geräte nach IP-Adresse hinzufügen</string>
-  <string name="delete_custom_device">%s löschen?</string>
   <string name="share_notification_preference">Ausführliche Benachrichtigungen</string>
   <string name="share_notification_preference_summary">Beim Empfang einer Datei vibrieren und einen Sound abspielen</string>
   <string name="share_destination_customize">Zielverzeichnis anpassen</string>
@@ -139,18 +121,14 @@
   <string name="share_received_file">%s freigeben</string>
   <string name="title_activity_notification_filter">Benachrichtigungs-Filter</string>
   <string name="filter_apps_info">Benachrichtigungen werden zwischen den ausgewählten Anwendungen abgeglichen.</string>
-  <string name="sftp_internal_storage">Interner Speicher</string>
   <string name="sftp_sdcard_num">SD-Karte %d</string>
   <string name="sftp_sdcard">SD-Karte</string>
   <string name="sftp_readonly">(Nur lesen)</string>
   <string name="sftp_camera">Kamerabilder</string>
-  <string name="add_host">Rechner/IP-Adresse hinzufügen</string>
   <string name="no_players_connected">Keine Medienspieler gefunden</string>
-  <string name="mpris_player_on_device">%1$s auf %2$s</string>
   <string name="send_files">Dateien senden</string>
   <string name="pairing_title">KDE-Connect-Geräte</string>
   <string name="pairing_description">Andere Geräte im selben Netzwerk, auf denen KDE-Connect läuft, sollten hier angezeigt werden.</string>
-  <string name="device_paired">Gerät verbunden</string>
   <string name="device_rename_title">Geräte umbenennen</string>
   <string name="device_rename_confirm">Umbenennen</string>
   <string name="refresh">Aktualisieren</string>
@@ -159,7 +137,6 @@
   <string name="no_file_browser">Es sind keine Dateiverwaltungsprogramme installiert.</string>
   <string name="pref_plugin_telepathy">SMS senden</string>
   <string name="pref_plugin_telepathy_desc">Text-Nachrichten von Ihrer Arbeitsfläche senden</string>
-  <string name="plugin_not_supported">Dieses Modul wird durch das Gerät nicht unterstützt</string>
   <string name="findmyphone_title">Mein Telefon suchen</string>
   <string name="findmyphone_title_tablet">Mein Tablet suchen</string>
   <string name="findmyphone_title_tv">Mein TV suchen</string>
@@ -167,7 +144,6 @@
   <string name="findmyphone_found">Gefunden</string>
   <string name="open">Öffnen</string>
   <string name="close">Schließen</string>
-  <string name="no_permissions_storage">Sie müssen die Berechtigung zum Zugriff auf Speicher erteilen</string>
   <string name="plugins_need_permission">Einige Module benötigen zusätzliche Berechtigungen, tippen Sie für weitere Details:</string>
   <string name="permission_explanation">Dieses Modul benötigt zusätzliche Berechtigungen</string>
   <string name="optional_permission_explanation">Es müssen weitere Berechtigungen erteilt werden, um alle Funktionen nutzen zu können</string>
@@ -188,7 +164,6 @@
   <string name="addcommand_explanation2">Sie können neue Befehle in den Systemeinstellungen für KDE-Connect hinzufügen.</string>
   <string name="add_command_description">Sie können Befehle auf der Arbeitsfläche hinzufügen</string>
   <string name="pref_plugin_mprisreceiver">Steuerung für Medienwiedergabe</string>
-  <string name="dark_theme">Dunkles Design</string>
   <string name="notification_channel_default">Andere Benachrichtigungen</string>
   <string name="notification_channel_filetransfer">Dateiübertragung</string>
   <string name="copy_url_to_clipboard">Adresse in die Zwischenablage kopieren</string>

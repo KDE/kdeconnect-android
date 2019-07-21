@@ -31,7 +31,6 @@
   <string name="pref_plugin_receive_notifications_desc">Отримання сповіщень з іншого пристрою і показ їх у Android</string>
   <string name="pref_plugin_sharereceiver">Надання і отримання</string>
   <string name="pref_plugin_sharereceiver_desc">Спільне використання файлів і адрес між пристроями</string>
-  <string name="plugin_not_available">Ця можливість є недоступною для вашої версії для Android</string>
   <string name="device_list_empty">Немає пристроїв</string>
   <string name="ok">Гаразд</string>
   <string name="cancel">Скасувати</string>
@@ -77,25 +76,20 @@
   <string name="category_remembered_devices">Відомі пристрої</string>
   <string name="device_menu_plugins">Параметри додатків</string>
   <string name="device_menu_unpair">Скасувати пов’язування</string>
-  <string name="device_not_reachable">Немає доступу до пов’язаного пристрою</string>
   <string name="pair_new_device">Пов’язати новий пристрій</string>
   <string name="unknown_device">Невідомий пристрій</string>
   <string name="error_not_reachable">Немає доступу до пристрою</string>
-  <string name="error_already_requested">Запит щодо пов’язування вже надіслано</string>
   <string name="error_already_paired">Пристрій вже пов’язано</string>
   <string name="error_could_not_send_package">Не вдалося надіслати пакунок</string>
   <string name="error_timed_out">Час очікування вичерпано</string>
   <string name="error_canceled_by_user">Скасовано користувачем</string>
   <string name="error_canceled_by_other_peer">Скасовано з іншого вузла пов’язування</string>
-  <string name="error_invalid_key">Отримано некоректний ключ</string>
   <string name="encryption_info_title">Дані щодо шифрування</string>
   <string name="encryption_info_msg_no_ssl">На сторонньому пристрої не використовується нова версія KDE Connect, у якій використовується застарілий спосіб шифрування.</string>
   <string name="my_device_fingerprint">Відбиток SHA1 сертифіката пристрою:</string>
   <string name="remote_device_fingerprint">Відбиток SHA1 сертифіката віддаленого пристрою:</string>
   <string name="pair_requested">Запит щодо пов’язування</string>
   <string name="pairing_request_from">Запит щодо пов’язування від %1s</string>
-  <string name="received_url_title">Отримано посилання від %1s</string>
-  <string name="received_url_text">Натисніть, щоб відкрити «%1s»</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Отримуємо %1$d файл з %2$s</item>
     <item quantity="few">Отримуємо %1$d файли з %2$s</item>
@@ -147,7 +141,6 @@
   <string name="received_file_text">Натисніть, щоб відкрити «%1s»</string>
   <string name="cannot_create_file">Не вдалося створити файл %s</string>
   <string name="tap_to_answer">Натисніть, щоб відповісти</string>
-  <string name="reconnect">З\'єднати знову</string>
   <string name="right_click">Надіслати клацання правою кнопкою</string>
   <string name="middle_click">Надіслати клацання лівою кнопкою</string>
   <string name="show_keyboard">Показати клавіатуру</string>
@@ -155,8 +148,6 @@
   <string name="request_pairing">Надіслати запит щодо пов’язування</string>
   <string name="pairing_accept">Прийняти</string>
   <string name="pairing_reject">Відмовити</string>
-  <string name="device">Пристрій</string>
-  <string name="pair_device">Пов’язати пристрій</string>
   <string name="settings">Параметри</string>
   <string name="mpris_play">Пуск</string>
   <string name="mpris_pause">Пауза</string>
@@ -165,7 +156,6 @@
   <string name="mpris_ff">Повний вперед</string>
   <string name="mpris_next">Далі</string>
   <string name="mpris_volume">Гучність</string>
-  <string name="mpris_settings">Мультимедійні параметри</string>
   <string name="mpris_time_settings_title">Кнопки «Вперед/Назад»</string>
   <string name="mpris_time_settings_summary">Скоригувати час швидкого гортання вперед або назад при натисканні</string>
   <string-array name="mpris_time_entries">
@@ -178,20 +168,12 @@
   <string name="mpris_notification_settings_title">Показувати сповіщення щодо керування відтворенням</string>
   <string name="mpris_notification_settings_summary">Уможливлює керування відтворенням мультимедійних даних без відкриття KDE Connect</string>
   <string name="share_to">Використовувати спільно з…</string>
-  <string name="protocol_version_older">На цьому пристрої використовується стара версія протоколу</string>
   <string name="protocol_version_newer">На цьому пристрої використовується новіша версія протоколу</string>
-  <string name="general_settings">Загальні параметри</string>
-  <string name="plugin_settings">Параметри</string>
   <string name="plugin_settings_with_name">Параметри %s</string>
-  <string name="device_name">Назва пристрою</string>
-  <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Некоректна назва пристрою</string>
   <string name="shareplugin_text_saved">Отримано текст, збережено до буфера обміну даними</string>
   <string name="custom_devices_settings">Список нетипових пристроїв</string>
-  <string name="pair_device_action">Пов’язати новий пристрій</string>
-  <string name="unpair_device_action">Розірвати прив’язку %s</string>
   <string name="custom_device_list">Додати пристрої за IP</string>
-  <string name="delete_custom_device">Вилучити %s?</string>
   <string name="custom_device_deleted">Нетиповий пристрій вилучено</string>
   <string name="custom_device_list_help">Якщо ваш пристрій не було виявлено автоматично, ви можете додати його IP-адресу або назву вузла, натиснувши рухому кнопку дій.</string>
   <string name="custom_device_fab_hint">Додати пристрій</string>
@@ -206,7 +188,6 @@
   <string name="share_received_file">Оприлюднити «%s»</string>
   <string name="title_activity_notification_filter">Фільтр сповіщень</string>
   <string name="filter_apps_info">Сповіщення буде синхронізовано для позначених програм.</string>
-  <string name="sftp_internal_storage">Вбудоване сховище даних</string>
   <string name="sftp_sdcard_num">Картка SD %d</string>
   <string name="sftp_sdcard">Картка SD</string>
   <string name="sftp_readonly">(лише читання)</string>
@@ -231,14 +212,10 @@
   <string name="sftp_no_sdcard_detected">Не виявлено карток SD</string>
   <string name="sftp_no_storage_locations_configured">Не налаштовано розташувань сховищ</string>
   <string name="sftp_saf_permission_explanation">Щоб отримувати віддалений доступ до файлів, вам слід налаштувати розташування сховищ</string>
-  <string name="add_host">Додати вузол/IP</string>
-  <string name="add_host_hint">Назва або IP-адреса вузла</string>
   <string name="no_players_connected">Не знайдено програвачів</string>
-  <string name="mpris_player_on_device">%1$s на %2$s</string>
   <string name="send_files">Надіслати файли</string>
   <string name="pairing_title">Пристрої KDE Connect</string>
   <string name="pairing_description">Тут має бути показано інші пристрої у вашій мережі, де запущено KDE Connect.</string>
-  <string name="device_paired">Пристрій пов’язано</string>
   <string name="device_rename_title">Перейменувати пристрій</string>
   <string name="device_rename_confirm">Перейменувати</string>
   <string name="refresh">Оновити</string>
@@ -247,7 +224,6 @@
   <string name="no_file_browser">Програм для навігації файловою системою не встановлено.</string>
   <string name="pref_plugin_telepathy">Надіслати SMS</string>
   <string name="pref_plugin_telepathy_desc">Надсилати текстові повідомлення з вашої робочої станції</string>
-  <string name="plugin_not_supported">Підтримки цього додатка не передбачено на пристрої</string>
   <string name="findmyphone_title">Знайти телефон</string>
   <string name="findmyphone_title_tablet">Знайти планшет</string>
   <string name="findmyphone_title_tv">Знайти мій телевізор</string>
@@ -255,7 +231,6 @@
   <string name="findmyphone_found">Знайдено</string>
   <string name="open">Відкрити</string>
   <string name="close">Закрити</string>
-  <string name="no_permissions_storage">Для доступу до сховища даних вам слід надати програмі права доступу</string>
   <string name="plugins_need_permission">Для роботи деяких додатків потрібні додаткові права доступу (натисніть, щоб дізнатися більше):</string>
   <string name="permission_explanation">Для роботи цього додатка потрібні додаткові права доступу</string>
   <string name="optional_permission_explanation">Щоб уможливити використання усіх функцій, вам слід надати програмі додаткові права доступу</string>
@@ -280,7 +255,6 @@
   <string name="add_command_description">Ви можете додавати команди на комп\'ютері</string>
   <string name="pref_plugin_mprisreceiver">Керування відтворенням</string>
   <string name="pref_plugin_mprisreceiver_desc">Керування вашими програвачами на телефоні з іншого пристрою</string>
-  <string name="dark_theme">Темна тема</string>
   <string name="notification_channel_default">Інші сповіщення</string>
   <string name="notification_channel_persistent">Постійний індикатор</string>
   <string name="notification_channel_media_control">Керування відтворенням</string>
@@ -310,7 +284,6 @@
   <string name="extra_options">Додаткові параметри</string>
   <string name="privacy_options">Параметри конфіденційності</string>
   <string name="set_privacy_options">Вкажіть ваші параметри конфіденційності</string>
-  <string name="new_notification">Нове сповіщення</string>
   <string name="block_contents">Блокувати вміст сповіщень</string>
   <string name="block_images">Блокувати зображення у сповіщеннях</string>
   <string name="notification_channel_receivenotification">Сповіщення з інших пристроїв</string>
@@ -318,4 +291,5 @@
   <string name="plugin_photo_desc">Запустити додаток камери для спрощення знімання та передавання фотографій</string>
   <string name="no_app_for_opening">Не знайдено відповідної програми для відкриття цього файла</string>
   <string name="remote_keyboard_service">Віддалена клавіатура KDE Connect</string>
+  <string name="presenter_pointer">Указка</string>
 </resources>

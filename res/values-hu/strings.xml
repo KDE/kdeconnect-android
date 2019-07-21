@@ -10,7 +10,6 @@
   <string name="pref_plugin_ping_desc">Pingek küldése és fogadása</string>
   <string name="pref_plugin_notifications">Értesítés szinkronizáció</string>
   <string name="pref_plugin_notifications_desc">Hozzáférés az értesítésekhez más eszközökről</string>
-  <string name="plugin_not_available">Ez a funkció nem érhető el az ön Android verziójában</string>
   <string name="device_list_empty">Nincsenek eszközök</string>
   <string name="ok">OK</string>
   <string name="cancel">Mégse</string>
@@ -40,31 +39,23 @@
   <string name="category_connected_devices">Csatlakoztatott eszközök</string>
   <string name="category_remembered_devices">Megjegyzett eszközök</string>
   <string name="device_menu_unpair">Leválasztás</string>
-  <string name="device_not_reachable">A párosított eszköz nem érhető el</string>
   <string name="unknown_device">Ismeretlen eszköz</string>
   <string name="error_not_reachable">Az eszköz nem érhető el</string>
-  <string name="error_already_requested">A párosítás már kérve lett</string>
   <string name="error_already_paired">Az eszköz már párosítva van</string>
   <string name="error_could_not_send_package">Nem sikerült elküldeni a csomagot</string>
   <string name="error_timed_out">Időtúllépés</string>
   <string name="error_canceled_by_user">Megszakítva a felhasználó által</string>
   <string name="error_canceled_by_other_peer">A másik partner megszakította</string>
-  <string name="error_invalid_key">Érvénytelen kulcs érkezett</string>
   <string name="pair_requested">Párosítás kérve</string>
   <string name="pairing_request_from">Párosítási kérés innen: %1s</string>
-  <string name="received_url_title">Hivatkozás érkezett innen: %1s</string>
-  <string name="received_url_text">Koppintson „%1s” megnyitásához</string>
   <string name="received_file_text">Koppintson „%1s” megnyitásához</string>
   <string name="tap_to_answer">Érintse meg a válaszhoz</string>
-  <string name="reconnect">Újracsatlakozás</string>
   <string name="right_click">Jobb kattintás küldése</string>
   <string name="middle_click">Középső kattintás küldése</string>
   <string name="device_not_paired">Az eszköz nincs párosítva</string>
   <string name="request_pairing">Párosítás kérése</string>
   <string name="pairing_accept">Elfogadás</string>
   <string name="pairing_reject">Elutasítás</string>
-  <string name="device">Eszköz</string>
-  <string name="pair_device">Eszköz párosítása</string>
   <string name="mpris_play">Lejátszás</string>
   <string name="mpris_previous">Előző</string>
   <string name="mpris_rew">Visszatekerés</string>
@@ -78,11 +69,7 @@
     <item>1 minute</item>
     <item>2 minutes</item>
   </string-array>
-  <string name="protocol_version_older">Ez az eszköz egy régi protokollverziót használ</string>
   <string name="protocol_version_newer">Ez az eszköz egy újabb protokollverziót használ</string>
-  <string name="general_settings">Általános beállítások</string>
-  <string name="device_name">Eszköznév</string>
-  <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Érvénytelen eszköznév</string>
   <string name="shareplugin_text_saved">Szöveg érkezett, elmentve a vágólapra</string>
 </resources>

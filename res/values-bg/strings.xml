@@ -10,7 +10,6 @@
   <string name="pref_plugin_ping_desc">Изпращане и получаване на пинг</string>
   <string name="pref_plugin_notifications">Синхронизиране на уведомленията</string>
   <string name="pref_plugin_notifications_desc">Достъп до уведомленията от други устройства</string>
-  <string name="plugin_not_available">Тази функция не е налична във вашата версия на Андроид</string>
   <string name="device_list_empty">Няма устройства</string>
   <string name="ok">Добре</string>
   <string name="cancel">Отказ</string>
@@ -42,23 +41,18 @@
   <string name="device_menu_unpair">Разкачване</string>
   <string name="unknown_device">Неизвестно устройство</string>
   <string name="error_not_reachable">Устройството е недостъпно</string>
-  <string name="error_already_requested">Вече е заявено сдвояване</string>
   <string name="error_already_paired">Устройството вече е сдвоено</string>
   <string name="error_could_not_send_package">Пакетът не може да бъде изпратен</string>
   <string name="error_timed_out">Просрочка</string>
   <string name="error_canceled_by_user">Отхвърлена от потребителя</string>
   <string name="error_canceled_by_other_peer">Отказана от другата страна</string>
-  <string name="error_invalid_key">Получен е неправилен ключ</string>
   <string name="pair_requested">Заявено е сдвояване</string>
   <string name="pairing_request_from">Заявено е сдвояване от %1s</string>
   <string name="tap_to_answer">Докоснете за да отговорите</string>
-  <string name="reconnect">Ново свързване</string>
   <string name="device_not_paired">Устройството не е сдвоено</string>
   <string name="request_pairing">Заявка за сдвояване</string>
   <string name="pairing_accept">Приемане</string>
   <string name="pairing_reject">Отхвърляне</string>
-  <string name="device">Устройство</string>
-  <string name="pair_device">Сдвояване с устройството</string>
   <string name="mpris_play">Възпроизвеждане</string>
   <string name="mpris_previous">Предишен</string>
   <string name="mpris_rew">Превъртане назад</string>
@@ -72,10 +66,6 @@
     <item>1 minute</item>
     <item>2 minutes</item>
   </string-array>
-  <string name="protocol_version_older">Това устройство използва стара версия на протокола</string>
   <string name="protocol_version_newer">Това устройство използва по-нова версия на протокола</string>
-  <string name="general_settings">Общи настройки</string>
-  <string name="device_name">Име на устройството</string>
-  <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Невалидно име на устройство</string>
 </resources>

@@ -47,8 +47,6 @@
   <string name="device_menu_plugins">Axustes de plugins</string>
   <string name="device_menu_unpair">Desempareyar</string>
   <string name="pair_new_device">Empareya un preséu nuevu</string>
-  <string name="received_url_title">Recibióse un enllaz de %1s</string>
-  <string name="received_url_text">Toca p\'abrir «%1s»</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Recibiendo %1$d ficheru de %2$s</item>
     <item quantity="other">Recibiendo %1$d ficheros de %2$s</item>
@@ -84,7 +82,6 @@
   <string name="show_keyboard">Amosar el tecláu</string>
   <string name="device_not_paired">Nun s\'empareyó\'l preséu</string>
   <string name="request_pairing">Solicitar l\'empareyamientu</string>
-  <string name="device">Preséu</string>
   <string name="settings">Axustes</string>
   <string name="mpris_volume">Volume</string>
   <string-array name="mpris_time_entries">
@@ -94,12 +91,8 @@
     <item>1 minutu</item>
     <item>2 minutos</item>
   </string-array>
-  <string name="protocol_version_older">Esti preséu una una versión vieya del protocolu</string>
   <string name="protocol_version_newer">Esti preséu una una versión nueva del protocolu</string>
-  <string name="general_settings">Axustes xenerales</string>
-  <string name="plugin_settings">Axustes</string>
   <string name="plugin_settings_with_name">Axustes: %s</string>
-  <string name="device_name_preference_summary">%s</string>
   <string name="custom_devices_settings">Llista de preseos personalizaos</string>
   <string name="custom_device_list">Amestar preseos pola IP</string>
   <string name="share_notification_preference">Avisos sonoros</string>
@@ -126,7 +119,6 @@
   <string name="presenter_exit">Colar de la presentación</string>
   <string name="addcommand_explanation">Nun hai comandos rexistraos.</string>
   <string name="add_command_description">Pues amestar más comandos nel escritoriu</string>
-  <string name="dark_theme">Estilu escuru</string>
   <string name="notification_channel_persistent">Indicador permanente</string>
   <string name="clipboard_toast">Copióse al cartafueyu</string>
   <string name="pref_plugin_findremotedevice_desc">Fai que\'l preséu remotu suene</string>
@@ -139,7 +131,6 @@
   <string name="settings_more_settings_title">Más axustes</string>
   <string name="setting_persistent_notification_oreo">Avisu permanente</string>
   <string name="extra_options">Opciones adicionales</string>
-  <string name="new_notification">Avisu nuevu</string>
   <string name="notification_channel_receivenotification">Avisos d\'otros preseos</string>
   <string name="plugin_photo_desc">Llanza l\'aplicación de la cámarra p\'acenciellar la fechura y tresferencia de semeyes</string>
 </resources>

@@ -11,7 +11,6 @@
   <string name="pref_plugin_ping_desc">Šalji i primaj ping-ove</string>
   <string name="pref_plugin_notifications">Sinhronizovano obavještenje</string>
   <string name="pref_plugin_notifications_desc">Pristupite vašim notifikacijama sa drugog uređaja</string>
-  <string name="plugin_not_available">Ovo svojstvo nije dostupno i vašoj Android verziji</string>
   <string name="device_list_empty">Nema uređaja</string>
   <string name="ok">OK</string>
   <string name="cancel">Prekini</string>
@@ -45,23 +44,17 @@
   <string name="category_remembered_devices">Zapamćeni uređaji</string>
   <string name="device_menu_plugins">Postavke dodatka</string>
   <string name="device_menu_unpair">Razdvoji</string>
-  <string name="device_not_reachable">Upareni uređaj nije dostupan</string>
   <string name="unknown_device">Nepoznat uređaj</string>
   <string name="error_not_reachable">Uređaj nije dostupan</string>
-  <string name="error_already_requested">Uparivanje već zatraženo</string>
   <string name="error_already_paired">Uređaj već uparen</string>
   <string name="error_could_not_send_package">Nije moguće poslati paket</string>
   <string name="error_timed_out">Isteklo</string>
   <string name="error_canceled_by_user">Prekinuo korisnik</string>
   <string name="error_canceled_by_other_peer">Prekinuo drugi korisnik</string>
-  <string name="error_invalid_key">Primljen pogrešan ključ</string>
   <string name="pair_requested">Uparivanje zatraženo</string>
   <string name="pairing_request_from">Uparivanje zatraženo od %1s</string>
-  <string name="received_url_title">Primljena veza od %1s</string>
-  <string name="received_url_text">Kucni za otvaranje \'%1s\'</string>
   <string name="received_file_text">Kucni za otvaranje \'%1s\'</string>
   <string name="tap_to_answer">Kucni za odgovor</string>
-  <string name="reconnect">Ponovo uspostavi vezu</string>
   <string name="right_click">Pošalji Desni Klik</string>
   <string name="middle_click">Pošalji Srednji Klik</string>
   <string name="show_keyboard">Pokaži Tastaturu</string>
@@ -69,15 +62,12 @@
   <string name="request_pairing">Zatraži uparivanje</string>
   <string name="pairing_accept">Prihvati</string>
   <string name="pairing_reject">Odbij</string>
-  <string name="device">Uređaj</string>
-  <string name="pair_device">Upari uređaj</string>
   <string name="mpris_play">Reprodukuj</string>
   <string name="mpris_previous">Prethodni</string>
   <string name="mpris_rew">Premotaj</string>
   <string name="mpris_ff">Ubrzano</string>
   <string name="mpris_next">Sljedeći</string>
   <string name="mpris_volume">Glasnoća</string>
-  <string name="mpris_settings">Postavke multimedije</string>
   <string name="mpris_time_settings_title">Dugmad za naprijed/premotavanje</string>
   <string-array name="mpris_time_entries">
     <item>10 sekundi</item>
@@ -86,13 +76,8 @@
     <item>1 minuta</item>
     <item>2 minute</item>
   </string-array>
-  <string name="protocol_version_older">Ovaj uređaj koristi staru verziju protokola</string>
   <string name="protocol_version_newer">Ovaj uređaj koristi noviju verziju protokola</string>
-  <string name="general_settings">Opšte postavke</string>
-  <string name="plugin_settings">Postavke</string>
   <string name="plugin_settings_with_name">%s Postavke</string>
-  <string name="device_name">Naziv uređaja</string>
-  <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Pogrešnan naziv uređaja</string>
   <string name="shareplugin_text_saved">Primljeni tekst, spašen u ormarić</string>
   <string name="custom_devices_settings">Lista vlastitih uređaja</string>
@@ -101,12 +86,9 @@
   <string name="share_notification_preference_summary">Vibriraj i reprodukuj zvuk kad se prima datoteka</string>
   <string name="title_activity_notification_filter">Filter napomena</string>
   <string name="filter_apps_info">Notifikacije će biti sinhronizovane s izabranim aplikacijama.</string>
-  <string name="sftp_internal_storage">Unutrašnji smještaj</string>
   <string name="sftp_sdcard_num">SD kartica %d</string>
   <string name="sftp_sdcard">SD kartica</string>
   <string name="sftp_readonly">(samo za čitanje)</string>
   <string name="sftp_camera">Slike sa kamere</string>
-  <string name="add_host">Dodaj host/IP</string>
   <string name="no_players_connected">Nema nađenih igrača</string>
-  <string name="mpris_player_on_device">%1$s na %2$s</string>
 </resources>
