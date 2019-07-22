@@ -99,15 +99,6 @@
             android:text="@string/unreachable_description"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/on_data_message"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="@string/on_data_message"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:visibility="gone"/>
     </LinearLayout>
 
 

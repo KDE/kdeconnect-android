@@ -41,20 +41,17 @@ import androidx.fragment.app.Fragment;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.Helpers.NetworkHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.UserInterface.List.PluginListHeaderItem;
 import org.kde.kdeconnect.UserInterface.List.FailedPluginListItem;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.PluginItem;
-import org.kde.kdeconnect.UserInterface.List.SmallEntryItem;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import butterknife.BindView;
@@ -90,7 +87,6 @@ public class DeviceFragment extends Fragment {
     @BindView(R.id.pair_request_buttons) View pairRequestButtons;
     @BindView(R.id.error_message_container) View errorMessageContainer;
     @BindView(R.id.not_reachable_message) TextView notReachableMessage;
-    @BindView(R.id.on_data_message) TextView onDataMessage;
     @BindView(R.id.buttons_list) ListView buttonsList;
 
     private Unbinder unbinder;
@@ -310,12 +306,10 @@ public class DeviceFragment extends Fragment {
 
                     boolean paired = device.isPaired();
                     boolean reachable = device.isReachable();
-                    boolean onData = NetworkHelper.isOnMobileNetwork(DeviceFragment.this.getContext());
 
                     pairingButtons.setVisibility(paired ? View.GONE : View.VISIBLE);
                     errorMessageContainer.setVisibility((paired && !reachable) ? View.VISIBLE : View.GONE);
-                    notReachableMessage.setVisibility((paired && !reachable && !onData) ? View.VISIBLE : View.GONE);
-                    onDataMessage.setVisibility((paired && !reachable && onData) ? View.VISIBLE : View.GONE);
+                    notReachableMessage.setVisibility((paired && !reachable) ? View.VISIBLE : View.GONE);
 
                     try {
                         pluginListItems = new ArrayList<>();

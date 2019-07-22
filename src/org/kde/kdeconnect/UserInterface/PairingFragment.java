@@ -24,7 +24,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.net.ConnectivityManager;
+import android.net.LinkProperties;
+import android.net.Network;
+import android.net.NetworkInfo;
+import android.net.NetworkRequest;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -36,7 +43,6 @@ import android.widget.TextView;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.Helpers.NetworkHelper;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.PairingDeviceItem;
 import org.kde.kdeconnect.UserInterface.List.SectionItem;
@@ -65,6 +71,8 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     private boolean listRefreshCalledThisFrame = false;
 
     private TextView headerText;
+    private TextView noWifiHeader;
+    private Object networkChangeListener;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -83,12 +91,47 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
         mSwipeRefreshLayout.setOnRefreshListener(
                 this::updateComputerListAction
         );
-        headerText = new TextView(inflater.getContext());
-        headerText.setText(getString(R.string.pairing_description));
-        headerText.setPadding(0, (int) (16 * getResources().getDisplayMetrics().density), 0, (int) (12 * getResources().getDisplayMetrics().density));
+        headerText = (TextView) inflater.inflate(R.layout.pairing_explanation_text, null);
+        headerText.setOnClickListener(null);
+        headerText.setOnLongClickListener(null);
+        noWifiHeader = (TextView) inflater.inflate(R.layout.pairing_explanation_text_no_wifi, null);
+        noWifiHeader.setOnClickListener(view -> {
+            startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+        });
         ((ListView) listRootView).addHeaderView(headerText);
 
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            networkChangeListener = new ConnectivityManager.NetworkCallback() {
+                @Override
+                public void onAvailable(Network network) {
+                    updateDeviceList();
+                }
+
+                @Override
+                public void onLost(Network network) {
+                    updateDeviceList();
+                }
+
+                @Override
+                public void onLinkPropertiesChanged(Network network, LinkProperties linkProperties) {
+                    updateDeviceList();
+                }
+            };
+            ConnectivityManager connManager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            connManager.registerNetworkCallback(new NetworkRequest.Builder().build(), (ConnectivityManager.NetworkCallback) networkChangeListener);
+        }
+
         return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ConnectivityManager connManager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            connManager.unregisterNetworkCallback((ConnectivityManager.NetworkCallback) networkChangeListener);
+        }
+
+        super.onDestroyView();
     }
 
     @Override
@@ -126,13 +169,27 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
             }
             listRefreshCalledThisFrame = true;
 
-            headerText.setText(getString(NetworkHelper.isOnMobileNetwork(getContext()) ? R.string.on_data_message : R.string.pairing_description));
-            //Disable tap animation
-            headerText.setOnClickListener(null);
-            headerText.setOnLongClickListener(null);
+            Collection<Device> devices = service.getDevices().values();
+            boolean someDevicesReachable = false;
+            for (Device device : devices) {
+                if (device.isReachable()) {
+                    someDevicesReachable = true;
+                }
+            }
+
+            ((ListView) rootView.findViewById(R.id.devices_list)).removeHeaderView(headerText);
+            ((ListView) rootView.findViewById(R.id.devices_list)).removeHeaderView(noWifiHeader);
+
+            ConnectivityManager connManager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo wifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            //Check if we're on Wi-Fi. If we still see a device, don't do anything special
+            if (someDevicesReachable || wifi.isConnected()) {
+                ((ListView) rootView.findViewById(R.id.devices_list)).addHeaderView(headerText);
+            } else {
+                ((ListView) rootView.findViewById(R.id.devices_list)).addHeaderView(noWifiHeader);
+            }
 
             try {
-                Collection<Device> devices = service.getDevices().values();
                 final ArrayList<ListAdapter.Item> items = new ArrayList<>();
 
                 SectionItem connectedSection;
