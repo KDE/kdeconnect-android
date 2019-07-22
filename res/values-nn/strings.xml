@@ -275,4 +275,5 @@
   <string name="plugin_photo_desc">Opna kamera-appen for å gjera det lettare å ta og overføra bilete</string>
   <string name="no_app_for_opening">Fann ikkje nokon app som kan opna denne fila</string>
   <string name="remote_keyboard_service">KDE Connect fjerntastatur</string>
+  <string name="presenter_pointer">Peikar</string>
 </resources>

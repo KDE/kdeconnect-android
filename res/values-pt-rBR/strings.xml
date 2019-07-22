@@ -275,4 +275,5 @@
   <string name="plugin_photo_desc">Iniciar o aplicativo da câmera para facilitar a captura e transferência de fotos</string>
   <string name="no_app_for_opening">Não foi encontrado nenhum aplicativo adequado para abrir este arquivo</string>
   <string name="remote_keyboard_service">Teclado Remoto do KDE Connect</string>
+  <string name="presenter_pointer">Ponteiro</string>
 </resources>
