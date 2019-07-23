@@ -41,6 +41,7 @@ public class ClipboardListener {
 
     private final Context context;
     private String currentContent;
+    private long updateTimestamp;
 
     private ClipboardManager cm = null;
     private ClipboardManager.OnPrimaryClipChangedListener listener;
@@ -76,7 +77,7 @@ public class ClipboardListener {
                     if (content.equals(currentContent)) {
                         return;
                     }
-
+                    updateTimestamp = System.currentTimeMillis();
                     currentContent = content;
 
                     for (ClipboardObserver observer : observers) {
@@ -91,8 +92,17 @@ public class ClipboardListener {
         });
     }
 
+    public String getCurrentContent() {
+        return currentContent;
+    }
+
+    public long getUpdateTimestamp() {
+        return updateTimestamp;
+    }
+
     @SuppressWarnings("deprecation")
     public void setText(String text) {
+        updateTimestamp = System.currentTimeMillis();
         currentContent = text;
         cm.setText(text);
     }
