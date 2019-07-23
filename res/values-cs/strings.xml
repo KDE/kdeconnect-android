@@ -13,6 +13,7 @@
   <string name="pref_plugin_clipboard_desc">Sdílet obsah schránky</string>
   <string name="pref_plugin_mousepad">Vzdálený vstup</string>
   <string name="pref_plugin_mousepad_desc">Používejte svůj telefon nebo tablet jako touchpad a klávesnici</string>
+  <string name="pref_plugin_presenter">Ovladač promítání</string>
   <string name="pref_plugin_presenter_desc">Použijte své zařízení pro přepínání snímků prezentace</string>
   <string name="pref_plugin_remotekeyboard">Přijímat stisky kláves se vzdálených zařízení</string>
   <string name="pref_plugin_remotekeyboard_desc">Přijímat události stisku kláves ze vzdálených zařízení</string>
@@ -36,6 +37,7 @@
   <string name="open_settings">Otevřít nastavení</string>
   <string name="no_permissions">Pro zpřístupnění upozornění potřebujete oprávnění</string>
   <string name="no_permission_mprisreceiver">Abyste byli schopni ovládat vaše přehrávače médií, musíte udělit přístup k oznámením</string>
+  <string name="no_permissions_remotekeyboard">Pro zachytávání stisků kláves je potřeba aktivovat vzdálenou klávesnici KDE Connect</string>
   <string name="send_ping">Poslat ping</string>
   <string name="open_mpris_controls">Ovládání multimédií</string>
   <string name="remotekeyboard_editing_only_title">Ovládat vzdálené klávesy při editaci</string>
@@ -100,6 +102,18 @@
     <item quantity="many">(Soubor %2$d of %3$d) : %1$s</item>
     <item quantity="other"/>
   </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">Odesílám %1$d soubor do %2$s</item>
+    <item quantity="few">Odesílám %1$d soubory do %2$s</item>
+    <item quantity="many">Odesílám %1$d souborů do %2$s</item>
+    <item quantity="other"/>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Soubor: %1$s</item>
+    <item quantity="few">(Soubor %2$d z %3$d) : %1$s</item>
+    <item quantity="many">(Soubor %2$d z %3$d) : %1$s</item>
+    <item quantity="other"/>
+  </plurals>
   <plurals name="received_files_title">
     <item quantity="one">Přijat soubor z %1$s</item>
     <item quantity="few">Přijaty %2$d soubory z %1$s</item>
@@ -110,6 +124,18 @@
     <item quantity="one">Selhalo přijímání souboru z %1$s</item>
     <item quantity="few">Selhalo přijímání %2$d ze %3$d souborů z %1$s</item>
     <item quantity="many">Selhalo přijímání %2$d ze %3$d souborů z %1$s</item>
+    <item quantity="other"/>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">Soubor byl odeslán do %1$s</item>
+    <item quantity="few">" %2$d soubory byly odeslány do %1$s"</item>
+    <item quantity="many">" %2$d souborů bylo odesláno do %1$s"</item>
+    <item quantity="other"/>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Odesílání souboru na %1$s selhalo</item>
+    <item quantity="few">Odesílání %2$d souborů z %3$d na %1$s selhalo</item>
+    <item quantity="many">Odesílání %2$d souborů z %3$d na %1$s selhalo</item>
     <item quantity="other"/>
   </plurals>
   <string name="received_file_text">Ťukněte pro otevření \'%1s\'</string>
@@ -148,6 +174,10 @@
   <string name="shareplugin_text_saved">Přijatý text byl uložen do schránky</string>
   <string name="custom_devices_settings">Seznam vlastních zařízení</string>
   <string name="custom_device_list">Přidat zařízení podle IP</string>
+  <string name="custom_device_deleted">Vlastní zařízení bylo smazáno</string>
+  <string name="custom_device_list_help">Pokud vaše zařízení není automaticky detekováno, můžete přidat jeho adresu IP nebo hostname kliknutím na tlačítko pro plovoucí činnosti</string>
+  <string name="custom_device_fab_hint">Přidat zařízení</string>
+  <string name="undo">Zpět</string>
   <string name="share_notification_preference">Hlasitá upozornění</string>
   <string name="share_notification_preference_summary">Vibrovat a přehrát melodii při přijímání souboru</string>
   <string name="share_destination_customize">Přizpůsobte si cílový adresář</string>
@@ -162,6 +192,26 @@
   <string name="sftp_sdcard">SD karta</string>
   <string name="sftp_readonly">(pouze ke čtení)</string>
   <string name="sftp_camera">Obrázky z fotoaparátu</string>
+  <string name="add_device_dialog_title">Přidat zařízení</string>
+  <string name="add_device_hint">Název hostitele nebo IP adresa</string>
+  <string name="sftp_preference_detected_sdcards">Nalezené karty SD</string>
+  <string name="sftp_preference_edit_sdcard_title">Upravit kartu SD</string>
+  <string name="sftp_preference_configured_storage_locations">Nastavená umístění úložiště</string>
+  <string name="sftp_preference_add_storage_location_title">Přidejte umístění úložiště</string>
+  <string name="sftp_preference_edit_storage_location">Upravit umístění úložiště</string>
+  <string name="sftp_preference_add_camera_shortcut">Přidat zkratku na složku fotoaparátu</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_on">Přidat zkratku na složku fotoaparátu</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_off">Nepřidávat zkratku na složku fotoaparátu</string>
+  <string name="sftp_storage_preference_storage_location">Umístění úložiště</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">´Operace již byla zrušena</string>
+  <string name="sftp_storage_preference_click_to_select">klikněte pro výběr</string>
+  <string name="sftp_storage_preference_display_name">Název obrazovky</string>
+  <string name="sftp_storage_preference_display_name_already_used">Tento název obrazovky je již použit</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">Název obrazovky nesmí být prázdný</string>
+  <string name="sftp_action_mode_menu_delete">Smazat</string>
+  <string name="sftp_no_sdcard_detected">Nebyla zjištěna žádná karta SD</string>
+  <string name="sftp_no_storage_locations_configured">Nebyla nastavena umístění úložiště.</string>
+  <string name="sftp_saf_permission_explanation">Pro vzdálený přístup k souborům musíte nastavit umístění úložišť</string>
   <string name="no_players_connected">Přehrávač nenalezen</string>
   <string name="send_files">Odeslat soubory</string>
   <string name="pairing_title">Zařízení KDE Connect</string>
@@ -187,6 +237,7 @@
   <string name="plugins_need_optional_permission">Některé moduly mají vypnuté vlastnosti, kvůli nedostatečným oprávněním (ťukněte pro více informací):</string>
   <string name="share_optional_permission_explanation">Pro sdílení souborů mezi telefonem a počítačem potřebujete udělit oprávnění k úložišti telefonu</string>
   <string name="telepathy_permission_explanation">Pro čtení a psaní SMS z počítače musíte udělit oprávnění k SMS</string>
+  <string name="telephony_permission_explanation">Pro zobrazení telefonátů v počítači musíte udělit oprávnění k záznamům telefonování a stavu telefonu</string>
   <string name="telephony_optional_permission_explanation">Pro zobrazení jména kontaktu u telefonního čísla je potřeba udělit oprávnění ke kontaktům v telefonu</string>
   <string name="contacts_permission_explanation">Pro sdílení knihy kontaktů s pracovním prostředím, musíte udělit přístup ke kontaktům</string>
   <string name="select_ringtone">Vybrat vyzváněcí tón</string>
@@ -197,6 +248,7 @@
   <string name="settings_icon_description">Ikona nastavení</string>
   <string name="presenter_fullscreen">Celá obrazovka</string>
   <string name="presenter_exit">Ukončit prezentaci</string>
+  <string name="presenter_lock_tip">Můžete zamknout zařízení a použít klávesy pro ovládání hlasitosti pro posun na předchozí/další snímek</string>
   <string name="add_command">Přidat příkaz</string>
   <string name="addcommand_explanation">Nejsou registrovány žádné příkazy</string>
   <string name="addcommand_explanation2">Nové příkazy můžete přidat v nastavení systému KDE Connect</string>
@@ -235,4 +287,8 @@
   <string name="block_contents">Blokovat obsah oznámení</string>
   <string name="block_images">Blokovat obrázky z upozornění</string>
   <string name="notification_channel_receivenotification">Oznamování z ostatních zařízení</string>
+  <string name="take_picture">Spustit fotoaparát</string>
+  <string name="plugin_photo_desc">Spusťte aplikaci fotoaparátu pro snadné zachytávání s přenos obrázků</string>
+  <string name="no_app_for_opening">Pro otevření tohoto souboru nebyla nalezena vhodná aplikace</string>
+  <string name="remote_keyboard_service">Vzdálená klávesnice pro KDE Connect</string>
 </resources>
