@@ -204,7 +204,6 @@
   <string name="device_rename_confirm">Renomear</string>
   <string name="refresh">Actualizar</string>
   <string name="unreachable_description">Este dispositivo emparellado está fóra do alcance. Asegúrese de que está conectado á mesma rede.</string>
-  <string name="on_data_message">Parece que está usando unha conexión de datos de móbil. KDE Connect só funciona en redes locais.</string>
   <string name="no_file_browser">Non hai navegadores de ficheiros instalados.</string>
   <string name="pref_plugin_telepathy">Enviar unha mensaxe de texto</string>
   <string name="pref_plugin_telepathy_desc">Enviar mensaxes de texto desde o seu escritorio</string>

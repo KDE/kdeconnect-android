@@ -196,7 +196,6 @@
   <string name="device_rename_confirm">更改名稱</string>
   <string name="refresh">刷新</string>
   <string name="unreachable_description">此配對的裝置無法連接。 請確保它連接到與您相同的網域。</string>
-  <string name="on_data_message">看起來你現在正使用行動數據連線。KDE 連線只在區域網路上運作。</string>
   <string name="no_file_browser">沒有安裝此檔案的瀏覽程式</string>
   <string name="pref_plugin_telepathy">傳送簡訊</string>
   <string name="pref_plugin_telepathy_desc">傳送文字簡訊到您的電腦桌面</string>

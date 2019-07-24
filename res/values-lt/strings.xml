@@ -220,7 +220,6 @@
   <string name="device_rename_confirm">Pervadinti</string>
   <string name="refresh">Įkelti iš naujo</string>
   <string name="unreachable_description">Šis suporuotas įrenginys nepasiekiamas. Įsitikinkite, kad jis yra prijungtas prie to paties tinklo.</string>
-  <string name="on_data_message">Atrodo, kad naudojate mobiliųjų duomenų ryšį. KDE Connect veikia tik vietiniuose tinkluose.</string>
   <string name="no_file_browser">Nėra įdiegta jokių failų tvarkytuvių.</string>
   <string name="pref_plugin_telepathy">Siųsti SMS žinutę</string>
   <string name="pref_plugin_telepathy_desc">Siųsti tekstines žinutes iš savo darbalaukio</string>

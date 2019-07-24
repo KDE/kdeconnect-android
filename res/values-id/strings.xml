@@ -157,7 +157,6 @@
   <string name="device_rename_confirm">Ubah Nama</string>
   <string name="refresh">Segarkan</string>
   <string name="unreachable_description">Perangkat yang disandingkan ini tidak dapat dicapai. Pastikan ia terkoneksi ke jaringanmu yang sama.</string>
-  <string name="on_data_message">Nampaknya kamu berada pada koneksi data seluler. KDE Connect hanya bekerja pada jaringan lokal.</string>
   <string name="no_file_browser">Tidak adanya penelusur file yang terinstal.</string>
   <string name="pref_plugin_telepathy">Kirim SMS</string>
   <string name="pref_plugin_telepathy_desc">Kirim teks perpesanan dari desktopmu</string>

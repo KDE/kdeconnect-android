@@ -195,8 +195,8 @@
   <string name="device_rename_title">장치 이름 바꾸기</string>
   <string name="device_rename_confirm">이름 바꾸기</string>
   <string name="refresh">새로 고침</string>
-  <string name="unreachable_description">이 연결된 장치에 접근할 수 없습니다. 같은 네트워크에 있는 지 확인하십시오.</string>
-  <string name="on_data_message">모바일 데이터 연결을 사용하고 있는 것 같습니다. KDE Connect는 로컬 네트워크에서만 작동합니다.</string>
+  <string name="unreachable_description">이 연결된 장치에 접근할 수 없습니다. 같은 네트워크에 있는지 확인하십시오.</string>
+  <string name="no_wifi">Wi-Fi 네트워크에 연결된 것 같지 않습니다. 다른 장치를 볼 수 없습니다. 여기를 누르면 Wi-Fi를 활성화합니다.</string>
   <string name="no_file_browser">설치된 파일 탐색기가 없습니다.</string>
   <string name="pref_plugin_telepathy">SMS 보내기</string>
   <string name="pref_plugin_telepathy_desc">데스크톱에서 문자 메시지 보내기</string>
@@ -267,4 +267,5 @@
   <string name="plugin_photo_desc">카메라 앱을 실행하여 쉽게 사진을 찍고 전송</string>
   <string name="no_app_for_opening">이 파일을 열 수 있는 앱을 찾을 수 없음</string>
   <string name="remote_keyboard_service">KDE Connect 원격 키보드</string>
+  <string name="presenter_pointer">포인터</string>
 </resources>

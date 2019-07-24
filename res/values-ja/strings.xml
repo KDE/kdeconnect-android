@@ -169,7 +169,6 @@
   <string name="device_rename_confirm">名前変更</string>
   <string name="refresh">更新</string>
   <string name="unreachable_description">このペアリング済みデバイスは到達不可です。同一のネットワーク内に 接続されていることを確認してください</string>
-  <string name="on_data_message">モバイルデータ接続を使用しているようです。KDE Connect はローカルネットワークでしか機能しません</string>
   <string name="no_file_browser">ファイルブラウザがインストールされていません</string>
   <string name="pref_plugin_telepathy">SMS を送信</string>
   <string name="pref_plugin_telepathy_desc">デスクトップからテキストメッセージを送信</string>

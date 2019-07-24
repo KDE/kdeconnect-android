@@ -188,7 +188,6 @@
   <string name="device_rename_confirm">Renommer</string>
   <string name="refresh">Mettre à jour</string>
   <string name="unreachable_description">Ce périphérique associé n\'est pas accessible. Assurez-vous qu\'il est bien connecté au même réseau.</string>
-  <string name="on_data_message">Il semble que vous utilisiez une connexion de données mobile. KDE Connect fonctionne uniquement sur un réseau local.</string>
   <string name="no_file_browser">Aucun navigateur de fichiers installé.</string>
   <string name="pref_plugin_telepathy">Envoyer un SMS</string>
   <string name="pref_plugin_telepathy_desc">Envoyer des SMS depuis votre bureau</string>

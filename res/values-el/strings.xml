@@ -127,7 +127,6 @@
   <string name="device_rename_confirm">Μετονομασία</string>
   <string name="refresh">Ανανέωση</string>
   <string name="unreachable_description">Αυτή η συζευγμένη συσκευή δεν είναι προσβάσιμη. Βεβαιωθείτε ότι είναι συνδεδεμένη στο δίκτυό σας.</string>
-  <string name="on_data_message">Φαίνεται ότι είστε σε σύνδεση δεδομένων από κινητό. Το KDE Connect λειτουργεί μόνο σε τοπικά δίκτυα.</string>
   <string name="no_file_browser">Δεν υπάρχουν εγκατεστημένοι περιηγητές αρχείων.</string>
   <string name="pref_plugin_telepathy">Αποστολή SMS</string>
   <string name="pref_plugin_telepathy_desc">Αποστολή μηνυμάτων κειμένου από τον υπολογιστή σας</string>

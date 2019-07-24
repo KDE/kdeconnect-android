@@ -204,7 +204,6 @@
   <string name="device_rename_confirm">Byt namn</string>
   <string name="refresh">Uppdatera</string>
   <string name="unreachable_description">Den här ihopparade apparaten kan inte nås. Försäkra dig om att den är ansluten till samma nätverk.</string>
-  <string name="on_data_message">Det verkar som om du använder en mobil dataanslutning. KDE-anslut fungerar bara på lokala nätverk.</string>
   <string name="no_file_browser">Det finns inga filbläddrare installerade.</string>
   <string name="pref_plugin_telepathy">Skicka SMS</string>
   <string name="pref_plugin_telepathy_desc">Skicka textmeddelanden från skrivbordet</string>

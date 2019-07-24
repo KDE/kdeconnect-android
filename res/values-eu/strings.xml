@@ -162,7 +162,6 @@
   <string name="device_rename_confirm">Aldatu izena</string>
   <string name="refresh">Freskatu</string>
   <string name="unreachable_description">Parekatutako gailu hau ez dago eskuragarri. Egiaztatu sare berera konektatuta dagoela.</string>
-  <string name="on_data_message">Badirudi datu mugikorrak erabiliz konektatu zarela. KDE Connect sare lokalen bitartez besterik ez dabil.</string>
   <string name="no_file_browser">Ez dago fitxategi arakatzailerik instalatuta.</string>
   <string name="pref_plugin_telepathy">Bidali SMSa</string>
   <string name="pref_plugin_telepathy_desc">Bidali testu-mezuak zure mahaigainetik</string>

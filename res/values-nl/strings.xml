@@ -204,7 +204,7 @@
   <string name="device_rename_confirm">Hernoemen</string>
   <string name="refresh">Vernieuwen</string>
   <string name="unreachable_description">Dit gepaarde apparaat is niet bereikbaar. Ga na dat het is verbonden met uw zelfde netwerk.</string>
-  <string name="on_data_message">Het lijkt of op een mobiele gegevensverbinding zit. KDE Connect werkt alleen op locale netwerken.</string>
+  <string name="no_wifi">U bent niet verbonden met een Wi-Fi-netwerk, u zou dus niet in staat kunnen zijn om apparaten te zien. Klik hier om Wi-Fi in te schakelen.</string>
   <string name="no_file_browser">Er zijn geen bestandsbrowsers geïnstalleerd.</string>
   <string name="pref_plugin_telepathy">SMS verzenden</string>
   <string name="pref_plugin_telepathy_desc">Stuur tekstberichten van uw bureaublad</string>

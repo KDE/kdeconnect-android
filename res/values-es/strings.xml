@@ -204,7 +204,6 @@
   <string name="device_rename_confirm">Renombrar</string>
   <string name="refresh">Actualizar</string>
   <string name="unreachable_description">Este dispositivo vinculado no está disponible. Asegúrese que está conectado a su misma red.</string>
-  <string name="on_data_message">Parece que se encuentra en una conexión de datos móviles. KDE Connect solo funciona en redes locales.</string>
   <string name="no_file_browser">No hay navegadores de archivos instalados.</string>
   <string name="pref_plugin_telepathy">Enviar SMS</string>
   <string name="pref_plugin_telepathy_desc">Enviar mensajes de texto desde su escritorio</string>

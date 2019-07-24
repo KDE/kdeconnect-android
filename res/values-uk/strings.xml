@@ -220,7 +220,7 @@
   <string name="device_rename_confirm">Перейменувати</string>
   <string name="refresh">Оновити</string>
   <string name="unreachable_description">Цей пов’язаний пристрій недоступний. Переконайтеся, що його з’єднано з вашою мережею.</string>
-  <string name="on_data_message">Здається, мережа працює у режимі мобільного з’єднання. KDE Connect може працювати лише у локальних мережах.</string>
+  <string name="no_wifi">Ваш комп\'ютер не з\'єднано із мережею Wi-Fi, отже перегляд пристроїв у мережі неможливий. Натисніть тут, щоб увімкнути Wi-Fi.</string>
   <string name="no_file_browser">Програм для навігації файловою системою не встановлено.</string>
   <string name="pref_plugin_telepathy">Надіслати SMS</string>
   <string name="pref_plugin_telepathy_desc">Надсилати текстові повідомлення з вашої робочої станції</string>

@@ -220,7 +220,6 @@
   <string name="device_rename_confirm">Переименовать</string>
   <string name="refresh">Обновить</string>
   <string name="unreachable_description">Это сопряжённое устройство недоступно. Проверьте, что оно подключено к той же локальной сети.</string>
-  <string name="on_data_message">Похоже, вы подключены к мобильной сети. KDE Connect работает только в локальных сетях.</string>
   <string name="no_file_browser">Не удалось открыть диалог выбора файла.</string>
   <string name="pref_plugin_telepathy">Отправка SMS</string>
   <string name="pref_plugin_telepathy_desc">Отправка SMS-сообщений с вашего компьютера</string>

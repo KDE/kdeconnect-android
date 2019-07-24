@@ -220,7 +220,6 @@
   <string name="device_rename_confirm">Přejmenovat</string>
   <string name="refresh">Obnovit</string>
   <string name="unreachable_description">Toto spárované zařízení je nedosažitelné. Ujistěte se, že běží ve stejné síti.</string>
-  <string name="on_data_message">Vypadá to, že jste na mobilním internetovém připojení. KDE Connect funguje pouze na lokální síti.</string>
   <string name="no_file_browser">Není nainstalován žádný prohlížeč souborů.</string>
   <string name="pref_plugin_telepathy">Poslat SMS</string>
   <string name="pref_plugin_telepathy_desc">Posílejte zprávy ze své pracovní plochy</string>
@@ -291,4 +290,5 @@
   <string name="plugin_photo_desc">Spusťte aplikaci fotoaparátu pro snadné zachytávání s přenos obrázků</string>
   <string name="no_app_for_opening">Pro otevření tohoto souboru nebyla nalezena vhodná aplikace</string>
   <string name="remote_keyboard_service">Vzdálená klávesnice pro KDE Connect</string>
+  <string name="presenter_pointer">Ukazatel</string>
 </resources>

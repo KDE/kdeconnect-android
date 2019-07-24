@@ -220,7 +220,6 @@
   <string name="device_rename_confirm">Zmień nazwę</string>
   <string name="refresh">Odśwież</string>
   <string name="unreachable_description">To sparowane urządzenie jest nieosiągalne. Upewnij się, że jest podłączone do tej samej sieci.</string>
-  <string name="on_data_message">Wygląda na to, że korzystasz z internetu mobilnego. KDE Connect działa tylko na lokalnych sieciach.</string>
   <string name="no_file_browser">Nie wgrano żadnych przeglądarek plików.</string>
   <string name="pref_plugin_telepathy">Wysyłanie SMSów</string>
   <string name="pref_plugin_telepathy_desc">Wysyła wiadomość tekstową z komputera</string>
