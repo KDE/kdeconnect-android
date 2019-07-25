@@ -204,6 +204,7 @@
   <string name="device_rename_confirm">Endra namn</string>
   <string name="refresh">Oppdater</string>
   <string name="unreachable_description">Får ikkje kontakt med den para eininga. Sjå til at ho er kopla til same nettverk.</string>
+  <string name="no_wifi">Du er ikkje kopla til eit Wi-Fi-nettverk, så du vil ikkje kunna sjå nokon einingar. Trykk her for å slå på Wi-Fi.</string>
   <string name="no_file_browser">Ingen filhandsamarar er installerte.</string>
   <string name="pref_plugin_telepathy">Send SMS</string>
   <string name="pref_plugin_telepathy_desc">Send tekstmeldingar frå datamaskina</string>
