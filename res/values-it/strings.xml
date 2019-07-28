@@ -204,6 +204,7 @@
   <string name="device_rename_confirm">Rinomina</string>
   <string name="refresh">Aggiorna</string>
   <string name="unreachable_description">Questo dispositivo associato non è raggiungibile. Assicurati che sia connesso alla tua stessa rete.</string>
+  <string name="no_wifi">Non sei connesso a una rete Wi-Fi, per cui non sarai in grado di vedere alcun dispositivo. Fai clic qui per abilitare il Wi-Fi.</string>
   <string name="no_file_browser">Non ci sono navigatori di file installati.</string>
   <string name="pref_plugin_telepathy">Invia SMS</string>
   <string name="pref_plugin_telepathy_desc">Invia messaggi di testo dal tuo desktop</string>
