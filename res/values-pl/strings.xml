@@ -220,6 +220,7 @@
   <string name="device_rename_confirm">Zmień nazwę</string>
   <string name="refresh">Odśwież</string>
   <string name="unreachable_description">To sparowane urządzenie jest nieosiągalne. Upewnij się, że jest podłączone do tej samej sieci.</string>
+  <string name="no_wifi">Brak połączenia z siecią Wi-Fi, więc może nie być widać urządzeń. Naciśnij tutaj, aby włączyć Wi-Fi.</string>
   <string name="no_file_browser">Nie wgrano żadnych przeglądarek plików.</string>
   <string name="pref_plugin_telepathy">Wysyłanie SMSów</string>
   <string name="pref_plugin_telepathy_desc">Wysyła wiadomość tekstową z komputera</string>
@@ -290,4 +291,5 @@
   <string name="plugin_photo_desc">Uruchom aplikację aparatu, aby ułatwić robienie i przesyłanie zdjęć</string>
   <string name="no_app_for_opening">Nie znaleziono aplikacji do otwarcia tego pliku</string>
   <string name="remote_keyboard_service">Zdalna klawiatura KDE Connect</string>
+  <string name="presenter_pointer">Wskaźnik</string>
 </resources>

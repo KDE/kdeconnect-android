@@ -204,6 +204,7 @@
   <string name="device_rename_confirm">Renombrar</string>
   <string name="refresh">Actualizar</string>
   <string name="unreachable_description">Este dispositivo vinculado no está disponible. Asegúrese que está conectado a su misma red.</string>
+  <string name="no_wifi">No está conectado a una red Wi-Fi, por lo que puede que no vea ningún dispositivo. Pulse aquí para activar el Wi-Fi.</string>
   <string name="no_file_browser">No hay navegadores de archivos instalados.</string>
   <string name="pref_plugin_telepathy">Enviar SMS</string>
   <string name="pref_plugin_telepathy_desc">Enviar mensajes de texto desde su escritorio</string>
@@ -274,4 +275,5 @@
   <string name="plugin_photo_desc">Lanzar la aplicación de la cámara para facilitar tomar y transferir imágenes</string>
   <string name="no_app_for_opening">No se encontró ninguna aplicación adecuada para abrir este archivo</string>
   <string name="remote_keyboard_service">Teclado remoto de KDE Connect</string>
+  <string name="presenter_pointer">Puntero</string>
 </resources>
