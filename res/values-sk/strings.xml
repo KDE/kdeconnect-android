@@ -220,6 +220,7 @@
   <string name="device_rename_confirm">Premenovať</string>
   <string name="refresh">Obnoviť</string>
   <string name="unreachable_description">Toto spárované zariadenie nie je dosiahnuteľné. Prosím, uistite sa, že je pripojené do rovnakej siete.</string>
+  <string name="no_wifi">Nie ste pripojení k sieti Wi-Fi, takže pravdepodobne nebudete môcť vidieť žiadne zariadenia. Kliknutím sem povolíte pripojenie Wi-Fi.</string>
   <string name="no_file_browser">Nie sú nainštalované žiadne prehliadače.</string>
   <string name="pref_plugin_telepathy">Poslať SMS</string>
   <string name="pref_plugin_telepathy_desc">Posielať textové správy z vášho počítača</string>
@@ -290,4 +291,5 @@
   <string name="plugin_photo_desc">Spustiť aplikáciu fotoaparátu na uľahčenie snímania a prenosu obrázkov</string>
   <string name="no_app_for_opening">Nenašla sa vhodná aplikácia na otvorenie tohto súboru</string>
   <string name="remote_keyboard_service">KDE Connect Vzdialená Klávesnica</string>
+  <string name="presenter_pointer">Ukazovateľ</string>
 </resources>

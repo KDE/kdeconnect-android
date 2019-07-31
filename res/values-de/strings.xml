@@ -1,38 +1,48 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE-Connect</string>
-  <string name="foreground_notification_no_devices">Keine Verbindung zu einem Gerät</string>
+  <string name="foreground_notification_no_devices">Keine bestehenden Verbindungen</string>
   <string name="foreground_notification_devices">Verbunden mit %s</string>
-  <string name="pref_plugin_telephony">Telefon-Benachrichtigung</string>
-  <string name="pref_plugin_telephony_desc">Benachrichtigungen über eingehende Anrufe senden</string>
+  <string name="pref_plugin_telephony">Telefon-Integration</string>
+  <string name="pref_plugin_telephony_desc">Verbundene Geräte bei eingehenden Anrufen benachrichtigen</string>
   <string name="pref_plugin_battery">Akkubericht</string>
-  <string name="pref_plugin_battery_desc">Akkustatus periodisch berichten</string>
-  <string name="pref_plugin_sftp">Dateisystem zeigen</string>
-  <string name="pref_plugin_sftp_desc">Erlaubt das Browsen des Dateisystems auf diesem Gerät aus der Ferne</string>
+  <string name="pref_plugin_battery_desc">Den Akkustand periodisch berichten</string>
+  <string name="pref_plugin_sftp">Dateisystem-Freigabe</string>
+  <string name="pref_plugin_sftp_desc">Das Durchsuchen des Dateisystems auf verbundenen Geräten erlauben</string>
   <string name="pref_plugin_clipboard">Abgleich der Zwischenablage</string>
-  <string name="pref_plugin_clipboard_desc">Inhalt der Zwischenablage freigeben</string>
+  <string name="pref_plugin_clipboard_desc">Den Inhalt der Zwischenablage mit verbundenen Geräten teilen</string>
   <string name="pref_plugin_mousepad">Ferneingabe</string>
-  <string name="pref_plugin_mousepad_desc">Verwendet Ihr Handy als Tablet, Touchpad und Tastatur</string>
-  <string name="pref_plugin_mpris">Multimedia-Bedienung</string>
-  <string name="pref_plugin_mpris_desc">Eine Fernbedienung für Ihre Medienwiedergabe</string>
+  <string name="pref_plugin_mousepad_desc">Das Gerät als Touchpad und/oder Tastatur verwenden</string>
+  <string name="pref_plugin_presenter">Fernbedienung für Präsentationen</string>
+  <string name="pref_plugin_presenter_desc">Das Gerät zum Wechseln der Folien einer Präsentation verwenden</string>
+  <string name="pref_plugin_remotekeyboard">Empfänger für Tastatureingaben</string>
+  <string name="pref_plugin_remotekeyboard_desc">Tastatureingaben entfernter Geräte empfangen</string>
+  <string name="pref_plugin_mpris">Medienkontrolle</string>
+  <string name="pref_plugin_mpris_desc">Die Medienwiedergabe verbundener Geräte steuern</string>
   <string name="pref_plugin_runcommand">Befehl ausführen</string>
-  <string name="pref_plugin_runcommand_desc">Von Ihrem Telefon oder Tablett Befehle auf anderen Geräten ausführen</string>
+  <string name="pref_plugin_runcommand_desc">Konsolen-Befehle auf verbundenen Geräten ausführen</string>
   <string name="pref_plugin_contacts">Kontakte-Abgleich</string>
+  <string name="pref_plugin_contacts_desc">Die lokal gespeicherten Kontakte mit verbundenen Geräten teilen</string>
   <string name="pref_plugin_ping">Ping</string>
-  <string name="pref_plugin_ping_desc">Senden und Empfangen von Pings</string>
+  <string name="pref_plugin_ping_desc">Pings senden und empfangen</string>
   <string name="pref_plugin_notifications">Benachrichtigungs-Abgleich</string>
-  <string name="pref_plugin_notifications_desc">Zugriff auf Ihre Benachrichtigungen von anderen Geräten</string>
+  <string name="pref_plugin_notifications_desc">Benachrichtigungen an verbundene Geräte weiterleiten und dort anzeigen</string>
   <string name="pref_plugin_receive_notifications">Benachrichtigungen empfangen</string>
-  <string name="pref_plugin_receive_notifications_desc">Empfangen und Anzeigen von Benachrichtigungen des anderen Geräts</string>
+  <string name="pref_plugin_receive_notifications_desc">Benachrichtigungen verbundener Geräte empfangen und anzeigen</string>
   <string name="pref_plugin_sharereceiver">Veröffentlichen und Empfangen</string>
-  <string name="pref_plugin_sharereceiver_desc">Dateien und Adressen (URLs) zwischen Geräten teilen</string>
+  <string name="pref_plugin_sharereceiver_desc">Dateien und Adressen (URLs) mit verbundenen Geräten teilen</string>
   <string name="device_list_empty">Keine Geräte</string>
   <string name="ok">OK</string>
   <string name="cancel">Abbrechen</string>
   <string name="open_settings">Einstellungen öffnen</string>
-  <string name="no_permissions">Sie müssen die Erlaubnis zum Zugriff auf Benachrichtigungen erteilen</string>
+  <string name="no_permissions">Sie müssen die Erlaubnis zum Zugriff auf die Benachrichtigungen erteilen</string>
+  <string name="no_permissions_remotekeyboard">Um Tastatureingaben empfangen zu können, muss die KDE-Connect-Tastatur aktiviert werden</string>
   <string name="send_ping">Ping senden</string>
-  <string name="open_mpris_controls">Multimedia-Bedienung</string>
+  <string name="open_mpris_controls">Medienkontrolle</string>
+  <string name="remotekeyboard_editing_only_title">Tastatureingaben nur empfangen wenn ein Textfeld ausgewählt ist</string>
+  <string name="remotekeyboard_not_connected">Es besteht keine Verbindung zu einer entfernten Tastatur. Bitte richten Sie diese zunächst auf ihrem verbundenen Gerät ein</string>
+  <string name="remotekeyboard_connected">Verbindung zu entfernter Tastatur ist aktiv</string>
+  <string name="remotekeyboard_multiple_connections">Es besteht mehr als eine Verbindungen zu einer entfernten Tastatur. Um Ihre Konfiguration anzupassen, wählen Sie bitte ein Gerät aus</string>
   <string name="open_mousepad">Ferneingabe</string>
   <string name="mousepad_double_tap_settings_title">Aktionsausführung bei Berührung mit zwei Fingern einstellen</string>
   <string name="mousepad_triple_tap_settings_title">Aktionsausführung bei Berührung mit drei Fingern einstellen</string>
@@ -53,11 +63,11 @@
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
     <item>Keine Beschleunigung</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
-    <item>Mittel</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>Schwächste</item>
+    <item>Schwach</item>
+    <item>Normal</item>
+    <item>Stark</item>
+    <item>Stärkste</item>
   </string-array>
   <string name="category_connected_devices">Verbundene Geräte</string>
   <string name="category_not_paired_devices">Verfügbare Geräte</string>
@@ -68,18 +78,27 @@
   <string name="unknown_device">Unbekanntes Gerät</string>
   <string name="error_not_reachable">Das Gerät ist nicht erreichbar</string>
   <string name="error_already_paired">Das Gerät ist bereits verbunden</string>
-  <string name="error_could_not_send_package">Das Paket kann nicht gesendet werden</string>
+  <string name="error_could_not_send_package">Das Paket konnte nicht gesendet werden</string>
   <string name="error_timed_out">Zeitüberschreitung</string>
   <string name="error_canceled_by_user">Abbruch durch Benutzer</string>
   <string name="error_canceled_by_other_peer">Abbruch durch Gegenstelle</string>
   <string name="encryption_info_title">Verschlüsselungsinformationen</string>
-  <string name="encryption_info_msg_no_ssl">Das andere Gerät verwendet eine ältere Version von KDE-Connect, eine veraltete Verschlüsselungsmethode wird verwendet.</string>
+  <string name="encryption_info_msg_no_ssl">Das andere Gerät verwendet eine ältere Version von KDE-Connect. Daher muss eine veraltete Verschlüsselungsmethode verwendet werden</string>
   <string name="my_device_fingerprint">Der SHA1-Fingerabdruck Ihres Gerätezertifikats lautet:</string>
   <string name="remote_device_fingerprint">Der SHA1-Fingerabdruck des Gerätezertifikats der Gegenstelle lautet:</string>
   <string name="pair_requested">Verbindung angefordert</string>
   <string name="pairing_request_from">Verbindungsanfrage von %1s</string>
+  <plurals name="incoming_files_text">
+    <item quantity="one">Datei: %1s</item>
+    <item quantity="other">(Datei %2$d von %3$d) : %1$s</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Datei: %1$s</item>
+    <item quantity="other">(Datei %2$d von %3$d) : %1$s</item>
+  </plurals>
   <string name="received_file_text">Tippen um „%1s“ zu öffnen</string>
-  <string name="tap_to_answer">Tippen zum Antworten</string>
+  <string name="cannot_create_file">Die Datei %s kann nicht erstellt werden</string>
+  <string name="tap_to_answer">Zum Antworten tippen</string>
   <string name="right_click">Rechtsklick senden</string>
   <string name="middle_click">Mittelklick senden</string>
   <string name="show_keyboard">Tastatur anzeigen</string>
@@ -104,42 +123,61 @@
     <item>1 Minute</item>
     <item>2 Minuten</item>
   </string-array>
+  <string name="mpris_notification_settings_title">Benachrichtigung zur Medienkontrolle anzeigen</string>
+  <string name="mpris_notification_settings_summary">Die Steuerung der Medienwiedergabe auch dann erlauben wenn KDE-Connect nicht geöffnet ist</string>
   <string name="share_to">Freigeben für ...</string>
-  <string name="protocol_version_newer">Dieses Gerät verwendet ein neuere Protokollversion</string>
+  <string name="protocol_version_newer">Dieses Gerät verwendet eine neuere Protokollversion</string>
   <string name="plugin_settings_with_name">%s-Einstellungen</string>
   <string name="invalid_device_name">Ungültiger Gerätename</string>
-  <string name="shareplugin_text_saved">Text empfangen und in der Zwischenablage gespeichert</string>
+  <string name="shareplugin_text_saved">Text empfangen und in die Zwischenablage kopiert</string>
   <string name="custom_devices_settings">Benutzerdefinierte Geräteliste</string>
   <string name="custom_device_list">Geräte nach IP-Adresse hinzufügen</string>
+  <string name="custom_device_list_help">Falls Ihr Gerät nicht automatisch erkannt wird, können Sie es über die IP-Adresse oder den Gerätenamen hinzufügen. Klicken Sie dafür auf den schwebenden Aktionsknopf</string>
+  <string name="undo">Rückgängig machen</string>
   <string name="share_notification_preference">Ausführliche Benachrichtigungen</string>
   <string name="share_notification_preference_summary">Beim Empfang einer Datei vibrieren und einen Sound abspielen</string>
   <string name="share_destination_customize">Zielverzeichnis anpassen</string>
-  <string name="share_destination_customize_summary_disabled">Empfangene Dateien werden in Downloads gespeichert</string>
+  <string name="share_destination_customize_summary_disabled">Empfangene Dateien werden im Ordner Downloads gespeichert</string>
   <string name="share_destination_customize_summary_enabled">Dateien werden im folgenden Verzeichnis gespeichert</string>
   <string name="share_destination_folder_preference">Zielverzeichnis</string>
   <string name="share">Freigeben</string>
   <string name="share_received_file">%s freigeben</string>
   <string name="title_activity_notification_filter">Benachrichtigungs-Filter</string>
-  <string name="filter_apps_info">Benachrichtigungen werden zwischen den ausgewählten Anwendungen abgeglichen.</string>
+  <string name="filter_apps_info">Benachrichtigungen werden zwischen den ausgewählten Anwendungen abgeglichen</string>
   <string name="sftp_sdcard_num">SD-Karte %d</string>
   <string name="sftp_sdcard">SD-Karte</string>
   <string name="sftp_readonly">(Nur lesen)</string>
   <string name="sftp_camera">Kamerabilder</string>
+  <string name="sftp_preference_detected_sdcards">SD-Karte erkannt</string>
+  <string name="sftp_preference_configured_storage_locations">Vorhandene Speicherort</string>
+  <string name="sftp_preference_add_storage_location_title">Speicherort hinzufügen</string>
+  <string name="sftp_preference_edit_storage_location">Speicherort bearbeiten</string>
+  <string name="sftp_preference_add_camera_shortcut">Verknüpfung zum Kamera-Ordner erstellen</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_on">Verknüpfung zum Kamera-Ordner erstellen</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_off">Keine Verknüpfung zum Kamera-Ordner erstellen</string>
+  <string name="sftp_storage_preference_storage_location">Speicherort</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">Dieser Ort wurde bereits konfiguriert</string>
+  <string name="sftp_storage_preference_click_to_select">Zum Auswählen klicken</string>
+  <string name="sftp_storage_preference_display_name_already_used">Dieser Anzeigename wird bereits verwendet</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">Der Anzeigename darf nicht leer sein</string>
+  <string name="sftp_no_storage_locations_configured">Keine Speicherorte ausgewählt</string>
+  <string name="sftp_saf_permission_explanation">Um von außerhalb auf Ihre Dateien zugreifen zu können, muss mindestens ein Speicherort vorhanden sein</string>
   <string name="no_players_connected">Keine Medienspieler gefunden</string>
   <string name="send_files">Dateien senden</string>
   <string name="pairing_title">KDE-Connect-Geräte</string>
-  <string name="pairing_description">Andere Geräte im selben Netzwerk, auf denen KDE-Connect läuft, sollten hier angezeigt werden.</string>
+  <string name="pairing_description">Andere Geräte im selben Netzwerk, auf denen KDE-Connect läuft, sollten hier angezeigt werden</string>
   <string name="device_rename_title">Geräte umbenennen</string>
   <string name="device_rename_confirm">Umbenennen</string>
   <string name="refresh">Aktualisieren</string>
-  <string name="unreachable_description">Das verbundene Gerät ist nicht erreichbar. Stellen Sie sicher, dass es mit demselben Netzwerk verbunden ist.</string>
-  <string name="no_file_browser">Es sind keine Dateiverwaltungsprogramme installiert.</string>
+  <string name="unreachable_description">Das verbundene Gerät ist nicht erreichbar. Stellen Sie sicher, dass es mit demselben Netzwerk verbunden ist</string>
+  <string name="no_wifi">Sie sind nicht mit einem WLAN-Netzwerk verbunden, weshalb womöglich keine anderen Geräte angezeigt werden können. Klicken Sie hier um Ihr WLAN zu aktivieren</string>
+  <string name="no_file_browser">Es sind keine Dateiverwaltungsprogramme installiert</string>
   <string name="pref_plugin_telepathy">SMS senden</string>
-  <string name="pref_plugin_telepathy_desc">Text-Nachrichten von Ihrer Arbeitsfläche senden</string>
+  <string name="pref_plugin_telepathy_desc">SMS von Ihrer Arbeitsfläche senden</string>
   <string name="findmyphone_title">Mein Telefon suchen</string>
   <string name="findmyphone_title_tablet">Mein Tablet suchen</string>
-  <string name="findmyphone_title_tv">Mein TV suchen</string>
-  <string name="findmyphone_description">Ruft dieses Gerät an, damit sie es finden können</string>
+  <string name="findmyphone_title_tv">Meinen Fernseher suchen</string>
+  <string name="findmyphone_description">Ruft dieses Gerät an, damit Sie es finden können</string>
   <string name="findmyphone_found">Gefunden</string>
   <string name="open">Öffnen</string>
   <string name="close">Schließen</string>
@@ -147,33 +185,50 @@
   <string name="permission_explanation">Dieses Modul benötigt zusätzliche Berechtigungen</string>
   <string name="optional_permission_explanation">Es müssen weitere Berechtigungen erteilt werden, um alle Funktionen nutzen zu können</string>
   <string name="plugins_need_optional_permission">Einige Module haben eingeschränkte Funktionen wegen fehlender Berechtigungen, tippen Sie für weitere Informationen:</string>
-  <string name="share_optional_permission_explanation">m Dateien zwischen Rechner und Telefon auszutauschen, muss der Zugriff auf den Telefonspeicher gewährt werden</string>
+  <string name="share_optional_permission_explanation">Um Dateien zwischen Rechner und Telefon auszutauschen, muss der Zugriff auf den Telefonspeicher gewährt werden</string>
   <string name="telepathy_permission_explanation">Um SMS vom Rechner aus zu lesen und zu versenden, muss der Zugriff auf die SMS-Funktion gewährt werden</string>
-  <string name="telephony_optional_permission_explanation">Um einen Namen anstelle einer Telefonnummer zu sehen, muss der Zugriff auf das Adressbuch gewährt werden</string>
+  <string name="telephony_optional_permission_explanation">Um einen Namen anstelle der Telefonnummer anzuzeigen, muss der Zugriff auf das Adressbuch gewährt werden</string>
   <string name="select_ringtone">Einen Klingelton auswählen</string>
   <string name="telephony_pref_blocked_title">Unterdrückte Nummern</string>
-  <string name="telephony_pref_blocked_dialog_desc">keine Anrufe und SMS von diesen Telefonnummern anzeigen. Geben Sie eine Nummer pro Zeile ein</string>
+  <string name="telephony_pref_blocked_dialog_desc">Keine Anrufe und SMS von diesen Telefonnummern anzeigen (Bitte geben Sie eine Nummer pro Zeile ein)</string>
   <string name="mpris_coverart_description">Cover des aktuellen Mediums</string>
   <string name="device_icon_description">Gerätesymbol</string>
   <string name="settings_icon_description">Einstellungssymbol</string>
   <string name="presenter_fullscreen">Vollbild</string>
   <string name="presenter_exit">Präsentation beenden</string>
+  <string name="presenter_lock_tip">Sie können Ihr Gerät sperren und mit Hilfe der Lauter-/Leiser-Taste zur vorherigen/nächsten Folie wechseln</string>
   <string name="add_command">Einen Befehl hinzufügen</string>
-  <string name="addcommand_explanation">Es sind keine Befehle registriert.</string>
-  <string name="addcommand_explanation2">Sie können neue Befehle in den Systemeinstellungen für KDE-Connect hinzufügen.</string>
-  <string name="add_command_description">Sie können Befehle auf der Arbeitsfläche hinzufügen</string>
-  <string name="pref_plugin_mprisreceiver">Steuerung für Medienwiedergabe</string>
+  <string name="addcommand_explanation">Es sind keine Befehle vorhanden</string>
+  <string name="addcommand_explanation2">Sie können neue Befehle in den Systemeinstellungen für KDE-Connect hinzufügen</string>
+  <string name="add_command_description">Sie können neue Befehle auf der Arbeitsfläche hinzufügen</string>
+  <string name="pref_plugin_mprisreceiver">Steuerung der Medienwiedergabe</string>
+  <string name="pref_plugin_mprisreceiver_desc">Ein verbundenes Gerät zum Steuern der lokalen Medienwiedergabe verwenden</string>
   <string name="notification_channel_default">Andere Benachrichtigungen</string>
+  <string name="notification_channel_persistent">Dauerhafte Benachrichtigung</string>
   <string name="notification_channel_filetransfer">Dateiübertragung</string>
+  <string name="mpris_stop">Die aktuelle Medienwiedergabe beenden</string>
   <string name="copy_url_to_clipboard">Adresse in die Zwischenablage kopieren</string>
   <string name="clipboard_toast">In die Zwischenablage kopiert</string>
   <string name="runcommand_notreachable">Das Gerät ist nicht erreichbar</string>
   <string name="runcommand_notpaired">Das Gerät ist nicht verbunden</string>
   <string name="runcommand_nosuchdevice">Ein solches Gerät existiert nicht</string>
+  <string name="runcommand_noruncommandplugin">Dieses Gerät hat das Modul zum Ausführen von Befehlen nicht aktiviert</string>
+  <string name="ring">Klingeln</string>
+  <string name="pref_plugin_systemvolume">Systemlaustärke ändern</string>
+  <string name="pref_plugin_systemvolume_desc">Die Systemlautstärke verbundener Geräte ändern</string>
   <string name="mute">Stummschalten</string>
   <string name="all">Alle</string>
   <string name="devices">Geräte</string>
   <string name="settings_rename">Gerätename</string>
   <string name="settings_dark_mode">Dunkles Design</string>
   <string name="settings_more_settings_title">Weitere Einstellungen</string>
+  <string name="settings_more_settings_text">Zusätzliche Einstellungen für die verbundenen Geräte können über den Menüpunkt „Modul-Einstellungen“ abgerufen werden</string>
+  <string name="setting_persistent_notification_description">Klicken um die Benachrichtigungseinstellungen zu aktivieren/deaktivieren</string>
+  <string name="extra_options">Weitere Einstellungen</string>
+  <string name="privacy_options">Einstellungen zur Privatsphäre</string>
+  <string name="set_privacy_options">Einstellungen zur Privatsphäre ändern</string>
+  <string name="take_picture">Kamera starten</string>
+  <string name="plugin_photo_desc">Die Kamera starten um das Erstellen und Übertragen von Bildern zu vereinfachen</string>
+  <string name="no_app_for_opening">Es wurde keine passende App zum Öffnen dieser Datei gefunden</string>
+  <string name="presenter_pointer">Laserpointer</string>
 </resources>

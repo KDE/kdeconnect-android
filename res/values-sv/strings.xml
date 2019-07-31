@@ -204,6 +204,7 @@
   <string name="device_rename_confirm">Byt namn</string>
   <string name="refresh">Uppdatera</string>
   <string name="unreachable_description">Den här ihopparade apparaten kan inte nås. Försäkra dig om att den är ansluten till samma nätverk.</string>
+  <string name="no_wifi">Du är inte ansluten till ett WIFI-nätverk, så du kanske inte kan se alla apparater. Klicka här för att aktivera WIFI.</string>
   <string name="no_file_browser">Det finns inga filbläddrare installerade.</string>
   <string name="pref_plugin_telepathy">Skicka SMS</string>
   <string name="pref_plugin_telepathy_desc">Skicka textmeddelanden från skrivbordet</string>
@@ -274,4 +275,5 @@
   <string name="plugin_photo_desc">Starta kameraprogrammet för att förenkla att ta och överföra bilder</string>
   <string name="no_app_for_opening">Inget lämpligt program hittades för att öppna filen</string>
   <string name="remote_keyboard_service">KDE-anslut fjärrtangentbord</string>
+  <string name="presenter_pointer">Pekare</string>
 </resources>
