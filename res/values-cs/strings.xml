@@ -220,6 +220,7 @@
   <string name="device_rename_confirm">Přejmenovat</string>
   <string name="refresh">Obnovit</string>
   <string name="unreachable_description">Toto spárované zařízení je nedosažitelné. Ujistěte se, že běží ve stejné síti.</string>
+  <string name="no_wifi">Nejste připojeni k síti WiFi, takže nemůžete vidět žádná zařízení. Pro zapnutí WiFi klikněte zde.</string>
   <string name="no_file_browser">Není nainstalován žádný prohlížeč souborů.</string>
   <string name="pref_plugin_telepathy">Poslat SMS</string>
   <string name="pref_plugin_telepathy_desc">Posílejte zprávy ze své pracovní plochy</string>
