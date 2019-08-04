@@ -204,6 +204,7 @@
   <string name="device_rename_confirm">Renomear</string>
   <string name="refresh">Actualizar</string>
   <string name="unreachable_description">Este dispositivo emparellado está fóra do alcance. Asegúrese de que está conectado á mesma rede.</string>
+  <string name="no_wifi">Non ten conexión a unha rede Wi-Fi así que pode que non vexa ningún dispositivo. Prema aquí para activar a Wi-Fi.</string>
   <string name="no_file_browser">Non hai navegadores de ficheiros instalados.</string>
   <string name="pref_plugin_telepathy">Enviar unha mensaxe de texto</string>
   <string name="pref_plugin_telepathy_desc">Enviar mensaxes de texto desde o seu escritorio</string>
@@ -274,4 +275,5 @@
   <string name="plugin_photo_desc">Iniciar o aplicativo da cámara para facilitar sacar e transferir imaxes</string>
   <string name="no_app_for_opening">Non se atopou ningún aplicativo axeitado para abrir este ficheiro</string>
   <string name="remote_keyboard_service">Teclado remoto de KDE Connect</string>
+  <string name="presenter_pointer">Punteiro</string>
 </resources>
