@@ -88,13 +88,37 @@
   <string name="remote_device_fingerprint">Der SHA1-Fingerabdruck des Gerätezertifikats der Gegenstelle lautet:</string>
   <string name="pair_requested">Verbindung angefordert</string>
   <string name="pairing_request_from">Verbindungsanfrage von %1s</string>
+  <plurals name="incoming_file_title">
+    <item quantity="one">%1$d Datei von %2$s wird empfangen</item>
+    <item quantity="other">%1$d Dateien von %2$s werden empfangen</item>
+  </plurals>
   <plurals name="incoming_files_text">
     <item quantity="one">Datei: %1s</item>
     <item quantity="other">(Datei %2$d von %3$d) : %1$s</item>
   </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">%1$d Datei wird an %2$s gesendet</item>
+    <item quantity="other">%1$d Dateien werden an %2$s gesendet</item>
+  </plurals>
   <plurals name="outgoing_files_text">
     <item quantity="one">Datei: %1$s</item>
     <item quantity="other">(Datei %2$d von %3$d) : %1$s</item>
+  </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one">Datei von %1$s empfangen</item>
+    <item quantity="other">%2$d Dateien von %1$s empfangen</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Die Datei von %1$s wurde nicht empfangen</item>
+    <item quantity="other">%2$d der %3$d Dateien von %1$s wurden nicht empfangen</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">Datei wurde an %1$s gesendet</item>
+    <item quantity="other">%2$d Dateien wurden an %1$s gesendet</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Die Datei konnte nicht an %1$s gesendet werden</item>
+    <item quantity="other">%2$d der %3$d Dateien konnten nicht an %1$s gesendet werden</item>
   </plurals>
   <string name="received_file_text">Tippen um „%1s“ zu öffnen</string>
   <string name="cannot_create_file">Die Datei %s kann nicht erstellt werden</string>
@@ -132,7 +156,9 @@
   <string name="shareplugin_text_saved">Text empfangen und in die Zwischenablage kopiert</string>
   <string name="custom_devices_settings">Benutzerdefinierte Geräteliste</string>
   <string name="custom_device_list">Geräte nach IP-Adresse hinzufügen</string>
+  <string name="custom_device_deleted">Benutzerdefinierte Geräte gelöscht</string>
   <string name="custom_device_list_help">Falls Ihr Gerät nicht automatisch erkannt wird, können Sie es über die IP-Adresse oder den Gerätenamen hinzufügen. Klicken Sie dafür auf den schwebenden Aktionsknopf</string>
+  <string name="custom_device_fab_hint">Ein Gerät hinzufügen</string>
   <string name="undo">Rückgängig machen</string>
   <string name="share_notification_preference">Ausführliche Benachrichtigungen</string>
   <string name="share_notification_preference_summary">Beim Empfang einer Datei vibrieren und einen Sound abspielen</string>
@@ -148,7 +174,10 @@
   <string name="sftp_sdcard">SD-Karte</string>
   <string name="sftp_readonly">(Nur lesen)</string>
   <string name="sftp_camera">Kamerabilder</string>
+  <string name="add_device_dialog_title">Gerät hinzufügen</string>
+  <string name="add_device_hint">Rechnername oder IP-Adresse</string>
   <string name="sftp_preference_detected_sdcards">SD-Karte erkannt</string>
+  <string name="sftp_preference_edit_sdcard_title">SD-Karte bearbeiten</string>
   <string name="sftp_preference_configured_storage_locations">Vorhandene Speicherort</string>
   <string name="sftp_preference_add_storage_location_title">Speicherort hinzufügen</string>
   <string name="sftp_preference_edit_storage_location">Speicherort bearbeiten</string>
@@ -158,8 +187,11 @@
   <string name="sftp_storage_preference_storage_location">Speicherort</string>
   <string name="sftp_storage_preference_storage_location_already_configured">Dieser Ort wurde bereits konfiguriert</string>
   <string name="sftp_storage_preference_click_to_select">Zum Auswählen klicken</string>
+  <string name="sftp_storage_preference_display_name">Anzeigename</string>
   <string name="sftp_storage_preference_display_name_already_used">Dieser Anzeigename wird bereits verwendet</string>
   <string name="sftp_storage_preference_display_name_cannot_be_empty">Der Anzeigename darf nicht leer sein</string>
+  <string name="sftp_action_mode_menu_delete">Löschen</string>
+  <string name="sftp_no_sdcard_detected">Keine SD-Karte erkannt</string>
   <string name="sftp_no_storage_locations_configured">Keine Speicherorte ausgewählt</string>
   <string name="sftp_saf_permission_explanation">Um von außerhalb auf Ihre Dateien zugreifen zu können, muss mindestens ein Speicherort vorhanden sein</string>
   <string name="no_players_connected">Keine Medienspieler gefunden</string>
@@ -205,6 +237,7 @@
   <string name="pref_plugin_mprisreceiver_desc">Ein verbundenes Gerät zum Steuern der lokalen Medienwiedergabe verwenden</string>
   <string name="notification_channel_default">Andere Benachrichtigungen</string>
   <string name="notification_channel_persistent">Dauerhafte Benachrichtigung</string>
+  <string name="notification_channel_media_control">Medienkontrolle</string>
   <string name="notification_channel_filetransfer">Dateiübertragung</string>
   <string name="mpris_stop">Die aktuelle Medienwiedergabe beenden</string>
   <string name="copy_url_to_clipboard">Adresse in die Zwischenablage kopieren</string>
@@ -213,6 +246,8 @@
   <string name="runcommand_notpaired">Das Gerät ist nicht verbunden</string>
   <string name="runcommand_nosuchdevice">Ein solches Gerät existiert nicht</string>
   <string name="runcommand_noruncommandplugin">Dieses Gerät hat das Modul zum Ausführen von Befehlen nicht aktiviert</string>
+  <string name="pref_plugin_findremotedevice">Entferntes Gerät finden</string>
+  <string name="pref_plugin_findremotedevice_desc">Entferntes Gerät anklingeln</string>
   <string name="ring">Klingeln</string>
   <string name="pref_plugin_systemvolume">Systemlaustärke ändern</string>
   <string name="pref_plugin_systemvolume_desc">Die Systemlautstärke verbundener Geräte ändern</string>
@@ -223,10 +258,15 @@
   <string name="settings_dark_mode">Dunkles Design</string>
   <string name="settings_more_settings_title">Weitere Einstellungen</string>
   <string name="settings_more_settings_text">Zusätzliche Einstellungen für die verbundenen Geräte können über den Menüpunkt „Modul-Einstellungen“ abgerufen werden</string>
+  <string name="setting_persistent_notification">Dauerhafte Benachrichtigung anzeigen</string>
+  <string name="setting_persistent_notification_oreo">Dauerhafte Benachrichtigung</string>
   <string name="setting_persistent_notification_description">Klicken um die Benachrichtigungseinstellungen zu aktivieren/deaktivieren</string>
   <string name="extra_options">Weitere Einstellungen</string>
   <string name="privacy_options">Einstellungen zur Privatsphäre</string>
   <string name="set_privacy_options">Einstellungen zur Privatsphäre ändern</string>
+  <string name="block_contents">Inhalt von Benachrichtigungen blockieren</string>
+  <string name="block_images">Bilder in Benachrichtigungen blockieren</string>
+  <string name="notification_channel_receivenotification">Benachrichtigungen verbundener Geräte</string>
   <string name="take_picture">Kamera starten</string>
   <string name="plugin_photo_desc">Die Kamera starten um das Erstellen und Übertragen von Bildern zu vereinfachen</string>
   <string name="no_app_for_opening">Es wurde keine passende App zum Öffnen dieser Datei gefunden</string>

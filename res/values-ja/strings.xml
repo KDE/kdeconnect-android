@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE Connect</string>
   <string name="foreground_notification_no_devices">デバイスに接続されていません</string>
   <string name="foreground_notification_devices">接続済み: %s</string>
   <string name="pref_plugin_telephony">電話通知</string>
@@ -15,11 +16,14 @@
   <string name="pref_plugin_presenter">リモートスライドショー</string>
   <string name="pref_plugin_presenter_desc">あなたのデバイスを使ってプレゼンテーションのスライドを変更</string>
   <string name="pref_plugin_remotekeyboard">リモートからキー入力を受信</string>
+  <string name="pref_plugin_remotekeyboard_desc">リモートデバイスからキーイベントを受信</string>
   <string name="pref_plugin_mpris">マルチメディアの操作</string>
   <string name="pref_plugin_mpris_desc">あなたのメディアプレーヤーへのリモート操作を提供します</string>
   <string name="pref_plugin_runcommand">コマンドを実行</string>
   <string name="pref_plugin_runcommand_desc">スマートフォンやタブレットからリモートコマンドを実行</string>
+  <string name="pref_plugin_contacts">連絡先の同期</string>
   <string name="pref_plugin_contacts_desc">デバイスの連絡先の同期を許可</string>
+  <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Ping を送受信</string>
   <string name="pref_plugin_notifications">通知の同期</string>
   <string name="pref_plugin_notifications_desc">他のデバイスから通知にアクセス</string>
@@ -28,13 +32,18 @@
   <string name="pref_plugin_sharereceiver">共有と受信</string>
   <string name="pref_plugin_sharereceiver_desc">デバイス間でファイルと URL を共有</string>
   <string name="device_list_empty">デバイスなし</string>
+  <string name="ok">OK</string>
   <string name="cancel">キャンセル</string>
   <string name="open_settings">設定を開く</string>
   <string name="no_permissions">通知にアクセスするには権限を許可する必要があります</string>
+  <string name="no_permission_mprisreceiver">メディアプレーヤーを操作するためには、通知へのアクセスを許可する必要があります</string>
   <string name="no_permissions_remotekeyboard">キー入力を受信するには KDE Connect リモートキーボードをアクティブ化する必要があります</string>
   <string name="send_ping">Ping を送信</string>
   <string name="open_mpris_controls">マルチメディアの操作</string>
+  <string name="remotekeyboard_editing_only_title">編集中にのみリモートキーを取り扱う</string>
+  <string name="remotekeyboard_not_connected">有効なリモートキーボード接続がありません。KDE Connect で確立してください</string>
   <string name="remotekeyboard_connected">リモートキーボード接続はアクティブです</string>
+  <string name="remotekeyboard_multiple_connections">一つ以上のリモートキーボード接続があります。設定するデバイスを選択してください</string>
   <string name="open_mousepad">リモート入力</string>
   <string name="mousepad_info">スクリーン上で指を動かしてマウスカーソルを移動します。タップはクリックとなり、2/3本指で右クリック、中クリックとなります。2本指を使ってスクロールが可能です。長押しすることでドラッグ&amp;ドロップできます。</string>
   <string name="mousepad_double_tap_settings_title">2本指タップのアクションを設定</string>
@@ -48,11 +57,11 @@
     <item>なし</item>
   </string-array>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
-    <item>Above Slowest</item>
+    <item>最も遅く</item>
+    <item>遅め</item>
     <item>デフォルト</item>
-    <item>Above Default</item>
-    <item>Fastest</item>
+    <item>デフォルト以上</item>
+    <item>高速</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
     <item>加速なし</item>
@@ -64,17 +73,21 @@
   </string-array>
   <string name="category_connected_devices">接続済みのデバイス</string>
   <string name="category_not_paired_devices">利用可能なデバイス</string>
+  <string name="category_remembered_devices">ペアリング済みのデバイス</string>
   <string name="device_menu_plugins">プラグイン設定</string>
   <string name="device_menu_unpair">ペアリング解除</string>
   <string name="pair_new_device">新しいデバイスをペアリング</string>
   <string name="unknown_device">不明なデバイス</string>
-  <string name="error_not_reachable">デバイスは到達不可です</string>
+  <string name="error_not_reachable">デバイスに到達できません</string>
   <string name="error_already_paired">デバイスは既にペアリング済みです</string>
+  <string name="error_could_not_send_package">パッケージを送信できませんでした</string>
   <string name="error_timed_out">タイムアウト</string>
   <string name="error_canceled_by_user">ユーザにキャンセルされました</string>
   <string name="error_canceled_by_other_peer">他のピアにキャンセルされました</string>
   <string name="encryption_info_title">暗号化情報</string>
   <string name="encryption_info_msg_no_ssl">他のデバイスは最近のバージョンの KDE Connect を利用していません。古い暗号化方式を使用しています</string>
+  <string name="my_device_fingerprint">このデバイスの証明書の SHA1 フィンガープリント:</string>
+  <string name="remote_device_fingerprint">リモートデバイスの証明書の SHA1 フィンガープリント:</string>
   <string name="pair_requested">ペアリング要求済み</string>
   <string name="pairing_request_from">%1s からペアリングを要求されました</string>
   <plurals name="incoming_file_title">
@@ -98,7 +111,11 @@
   <plurals name="sent_files_title">
     <item quantity="other">%1$s にファイルを送信済み</item>
   </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="other">%1$s へのファイル送信に失敗</item>
+  </plurals>
   <string name="received_file_text">タップして \'%1s\' を開く</string>
+  <string name="cannot_create_file">ファイル %s を作成できません</string>
   <string name="tap_to_answer">タップして応答</string>
   <string name="right_click">右クリックを送信</string>
   <string name="middle_click">中クリックを送信</string>
@@ -112,6 +129,7 @@
   <string name="mpris_pause">一時停止</string>
   <string name="mpris_previous">前へ</string>
   <string name="mpris_rew">巻き戻し</string>
+  <string name="mpris_ff">早送り</string>
   <string name="mpris_next">次へ</string>
   <string name="mpris_volume">音量</string>
   <string name="mpris_time_settings_title">早送り/巻き戻しボタン</string>
@@ -129,7 +147,11 @@
   <string name="protocol_version_newer">このデバイスはより新しいプロトコルバージョンを使用しています</string>
   <string name="plugin_settings_with_name">%s 設定</string>
   <string name="invalid_device_name">不正なデバイス名</string>
+  <string name="shareplugin_text_saved">テキストを受信し、クリップボードに保存しました</string>
+  <string name="custom_devices_settings">カスタムデバイスリスト</string>
   <string name="custom_device_list">IP アドレスでデバイスを追加</string>
+  <string name="custom_device_deleted">カスタムデバイスが削除されました</string>
+  <string name="custom_device_list_help">もしデバイスが自動的に検出されない場合、フローティングアクションボタンを押して手動で IP アドレスやホストネームを追加できます</string>
   <string name="custom_device_fab_hint">デバイスを追加</string>
   <string name="undo">元に戻す</string>
   <string name="share_notification_preference">うるさい通知</string>
@@ -145,12 +167,17 @@
   <string name="sftp_sdcard_num">SD カード %d</string>
   <string name="sftp_sdcard">SD カード</string>
   <string name="sftp_readonly">(読み取り専用)</string>
+  <string name="sftp_camera">カメラ画像</string>
   <string name="add_device_dialog_title">デバイスを追加</string>
   <string name="add_device_hint">ホスト名/IPアドレス</string>
   <string name="sftp_preference_detected_sdcards">検出された SD カード</string>
+  <string name="sftp_preference_edit_sdcard_title">SD カードを編集</string>
   <string name="sftp_preference_configured_storage_locations">設定されたストレージの場所</string>
   <string name="sftp_preference_add_storage_location_title">ストレージの場所を追加</string>
   <string name="sftp_preference_edit_storage_location">ストレージの場所を編集</string>
+  <string name="sftp_preference_add_camera_shortcut">カメラフォルダのショートカットを追加</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_on">カメラフォルダへのショートカットを追加</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_off">カメラフォルダのショートカットを追加しない</string>
   <string name="sftp_storage_preference_storage_location">ストレージの場所</string>
   <string name="sftp_storage_preference_storage_location_already_configured">この場所は既に設定されています</string>
   <string name="sftp_storage_preference_click_to_select">クリックして選択</string>
@@ -168,7 +195,8 @@
   <string name="device_rename_title">デバイス名を変更</string>
   <string name="device_rename_confirm">名前変更</string>
   <string name="refresh">更新</string>
-  <string name="unreachable_description">このペアリング済みデバイスは到達不可です。同一のネットワーク内に 接続されていることを確認してください</string>
+  <string name="unreachable_description">このペアリング済みデバイスに到達できません。同一のネットワーク内に 接続されていることを確認してください</string>
+  <string name="no_wifi">Wi-Fi ネットワークに接続していないため、デバイスが一つも表示されない可能性があります。ここをクリックして Wi-Fi を有効化</string>
   <string name="no_file_browser">ファイルブラウザがインストールされていません</string>
   <string name="pref_plugin_telepathy">SMS を送信</string>
   <string name="pref_plugin_telepathy_desc">デスクトップからテキストメッセージを送信</string>
@@ -185,6 +213,7 @@
   <string name="plugins_need_optional_permission">権限が不足しているため、いくつかのプラグインの機能は無効化されています (タップして詳細情報を表示):</string>
   <string name="share_optional_permission_explanation">スマートフォンとデスクトップ間でファイルを共有するには、端末のストレージへのアクセスを許可する必要があります</string>
   <string name="telepathy_permission_explanation">デスクトップから SMS を送受信するには SMS の権限を付与する必要があります</string>
+  <string name="telephony_permission_explanation">デスクトップで通話を表示するために、電話の状態と通話履歴の権限を許可する必要があります</string>
   <string name="telephony_optional_permission_explanation">電話番号ではなく連絡先名を見るには、端末の連絡先へのアクセスを許可する必要があります</string>
   <string name="contacts_permission_explanation">連絡先をデスクトップと共有するために、連絡先の権限が必要です</string>
   <string name="select_ringtone">着信音を選択</string>
@@ -209,11 +238,13 @@
   <string name="mpris_stop">現在のプレーヤーを停止</string>
   <string name="copy_url_to_clipboard">URL をクリップボードにコピー</string>
   <string name="clipboard_toast">クリップボードにコピーしました</string>
-  <string name="runcommand_notreachable">デバイスは到達不可です</string>
+  <string name="runcommand_notreachable">デバイスに到達できません</string>
   <string name="runcommand_notpaired">デバイスはペアリングされていません</string>
+  <string name="runcommand_nosuchdevice">そのようなデバイスはありません</string>
   <string name="runcommand_noruncommandplugin">このデバイスは \'コマンドを実行\' プラグインを有効にしていません</string>
   <string name="pref_plugin_findremotedevice">リモートデバイスを捜索</string>
   <string name="pref_plugin_findremotedevice_desc">リモートデバイスを捜索</string>
+  <string name="ring">鳴らす</string>
   <string name="pref_plugin_systemvolume">システム音量</string>
   <string name="pref_plugin_systemvolume_desc">リモートデバイスのシステム音量を操作</string>
   <string name="mute">ミュート</string>
@@ -229,6 +260,12 @@
   <string name="extra_options">追加オプション</string>
   <string name="privacy_options">プライバシーオプション</string>
   <string name="set_privacy_options">プライバシーオプションを設定</string>
+  <string name="block_contents">通知の内容をブロック</string>
+  <string name="block_images">通知の画像をブロック</string>
   <string name="notification_channel_receivenotification">他のデバイスからの通知</string>
   <string name="take_picture">カメラを起動</string>
+  <string name="plugin_photo_desc">素早く写真を撮り、転送するためにカメラを起動</string>
+  <string name="no_app_for_opening">このファイルを開くのに適切なアプリが見つかりません</string>
+  <string name="remote_keyboard_service">KDE Connect リモートキーボード</string>
+  <string name="presenter_pointer">ポインタ</string>
 </resources>
