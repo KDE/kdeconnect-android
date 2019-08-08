@@ -36,6 +36,7 @@
   <string name="cancel">Abbrechen</string>
   <string name="open_settings">Einstellungen öffnen</string>
   <string name="no_permissions">Sie müssen die Erlaubnis zum Zugriff auf die Benachrichtigungen erteilen</string>
+  <string name="no_permission_mprisreceiver">Um die Medienwiedergabe zu steuern, muss der Zugriff auf die Benachrichtigungen gewährt werden</string>
   <string name="no_permissions_remotekeyboard">Um Tastatureingaben empfangen zu können, muss die KDE-Connect-Tastatur aktiviert werden</string>
   <string name="send_ping">Ping senden</string>
   <string name="open_mpris_controls">Medienkontrolle</string>
@@ -44,6 +45,7 @@
   <string name="remotekeyboard_connected">Verbindung zu entfernter Tastatur ist aktiv</string>
   <string name="remotekeyboard_multiple_connections">Es besteht mehr als eine Verbindungen zu einer entfernten Tastatur. Um Ihre Konfiguration anzupassen, wählen Sie bitte ein Gerät aus</string>
   <string name="open_mousepad">Ferneingabe</string>
+  <string name="mousepad_info">Bewegen Sie Ihren Finger über den Bildschirm um den Mauszeiger zu bewegen. Tippen Sie auf den Bildschirm, um einen Klick zu simulieren und benutzen Sie entsprechend zwei/drei Finger für einen Rechts-/Mittelklick. Verwenden Sie zwei Finger, um zu Scrollen und einen langen Druck um Objekte zu verschieben</string>
   <string name="mousepad_double_tap_settings_title">Aktionsausführung bei Berührung mit zwei Fingern einstellen</string>
   <string name="mousepad_triple_tap_settings_title">Aktionsausführung bei Berührung mit drei Fingern einstellen</string>
   <string name="mousepad_sensitivity_settings_title">Empfindlichkeit des Touchpads einstellen</string>
@@ -219,7 +221,9 @@
   <string name="plugins_need_optional_permission">Einige Module haben eingeschränkte Funktionen wegen fehlender Berechtigungen, tippen Sie für weitere Informationen:</string>
   <string name="share_optional_permission_explanation">Um Dateien zwischen Rechner und Telefon auszutauschen, muss der Zugriff auf den Telefonspeicher gewährt werden</string>
   <string name="telepathy_permission_explanation">Um SMS vom Rechner aus zu lesen und zu versenden, muss der Zugriff auf die SMS-Funktion gewährt werden</string>
+  <string name="telephony_permission_explanation">Um eingehende Anrufe auf der Arbeitsfläche anzuzeigen, muss der Zugriff auf die Anrufliste und den Telefonstatus gewährt werden</string>
   <string name="telephony_optional_permission_explanation">Um einen Namen anstelle der Telefonnummer anzuzeigen, muss der Zugriff auf das Adressbuch gewährt werden</string>
+  <string name="contacts_permission_explanation">Um Ihre Kontakte mit der Arbeitsfläche zu teilen, muss der Zugriff auf die Kontakte gewährt werden</string>
   <string name="select_ringtone">Einen Klingelton auswählen</string>
   <string name="telephony_pref_blocked_title">Unterdrückte Nummern</string>
   <string name="telephony_pref_blocked_dialog_desc">Keine Anrufe und SMS von diesen Telefonnummern anzeigen (Bitte geben Sie eine Nummer pro Zeile ein)</string>
