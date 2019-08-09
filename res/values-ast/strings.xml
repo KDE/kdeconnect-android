@@ -14,7 +14,12 @@
   <string name="pref_plugin_runcommand">Execución de comandos</string>
   <string name="pref_plugin_runcommand_desc">Aiciona comandos remotos dende\'l preséu</string>
   <string name="pref_plugin_contacts">Sincronizador de contautos</string>
+  <string name="pref_plugin_ping_desc">Unviu y receición de pings</string>
   <string name="pref_plugin_notifications_desc">Accede a los avisos n\'otros preseos</string>
+  <string name="pref_plugin_receive_notifications">Receición d\'avisos</string>
+  <string name="pref_plugin_receive_notifications_desc">Recibi los avisos d\'otros preseos y amúesalos n\'Android</string>
+  <string name="pref_plugin_sharereceiver">Compartición y receición</string>
+  <string name="pref_plugin_sharereceiver_desc">Comparti ficheros y URLs ente preseos</string>
   <string name="device_list_empty">Nun hai preseos</string>
   <string name="ok">Aceutar</string>
   <string name="cancel">Encaboxar</string>
@@ -95,6 +100,7 @@
   <string name="plugin_settings_with_name">Axustes: %s</string>
   <string name="custom_devices_settings">Llista de preseos personalizaos</string>
   <string name="custom_device_list">Amestar preseos pola IP</string>
+  <string name="custom_device_list_help">Si\'l preséu nun se deteuta automáticamente, pues amestar la so direición IP o nome d\'agospiu calcando nel botón flotante d\'aición</string>
   <string name="share_notification_preference">Avisos sonoros</string>
   <string name="share_notification_preference_summary">Vibra y reproduz un soníu al recibir un ficheru</string>
   <string name="share_destination_customize_summary_disabled">Los ficheros recibíos van apaecer en Descargues</string>
@@ -118,7 +124,7 @@
   <string name="presenter_fullscreen">Pantalla completa</string>
   <string name="presenter_exit">Colar de la presentación</string>
   <string name="addcommand_explanation">Nun hai comandos rexistraos.</string>
-  <string name="add_command_description">Pues amestar más comandos nel escritoriu</string>
+  <string name="add_command_description">Pues amestar más comandos nel ordenador</string>
   <string name="notification_channel_persistent">Indicador permanente</string>
   <string name="clipboard_toast">Copióse al cartafueyu</string>
   <string name="pref_plugin_findremotedevice_desc">Fai que\'l preséu remotu suene</string>
