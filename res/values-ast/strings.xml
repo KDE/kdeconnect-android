@@ -1,6 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_no_devices">Nun se coneutó con dengún preséu</string>
+  <string name="foreground_notification_devices">Coneutóse con %s</string>
   <string name="pref_plugin_telephony">Avisador telefónicu</string>
   <string name="pref_plugin_telephony_desc">Unvia avisos de les llamaes entrantes</string>
   <string name="pref_plugin_battery">Informe de la batería</string>
@@ -10,21 +12,31 @@
   <string name="pref_plugin_clipboard_desc">Comparte\'l conteníu del cartafueyu</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
   <string name="pref_plugin_mousepad_desc">Usa\'l preséu como panel táutil y tecláu</string>
+  <string name="pref_plugin_remotekeyboard">Receición de calcos de tecles remotos</string>
   <string name="pref_plugin_mpris">Controles multimedia</string>
   <string name="pref_plugin_runcommand">Execución de comandos</string>
   <string name="pref_plugin_runcommand_desc">Aiciona comandos remotos dende\'l preséu</string>
   <string name="pref_plugin_contacts">Sincronizador de contautos</string>
   <string name="pref_plugin_ping_desc">Unviu y receición de pings</string>
+  <string name="pref_plugin_notifications">Sincronización d\'avisos</string>
   <string name="pref_plugin_notifications_desc">Accede a los avisos n\'otros preseos</string>
   <string name="pref_plugin_receive_notifications">Receición d\'avisos</string>
-  <string name="pref_plugin_receive_notifications_desc">Recibi los avisos d\'otros preseos y amúesalos n\'Android</string>
+  <string name="pref_plugin_receive_notifications_desc">Recibe los avisos d\'otros preseos y amúesalos n\'Android</string>
   <string name="pref_plugin_sharereceiver">Compartición y receición</string>
   <string name="pref_plugin_sharereceiver_desc">Comparti ficheros y URLs ente preseos</string>
   <string name="device_list_empty">Nun hai preseos</string>
   <string name="ok">Aceutar</string>
   <string name="cancel">Encaboxar</string>
+  <string name="no_permission_mprisreceiver">Pa ser a controlar reproductores multimedia precises conceder l\'accesu a los avisos</string>
+  <string name="no_permissions_remotekeyboard">Pa recibir calcos de tecles precises activar el tecláu remotu de KDE Connect</string>
+  <string name="send_ping">Unviar un ping</string>
   <string name="open_mpris_controls">Control multimedia</string>
+  <string name="remotekeyboard_editing_only_title">Remanar les tecles remotes namái al editar</string>
   <string name="open_mousepad">Entrada remota</string>
+  <string name="mousepad_info">Movi un deu pela pantalla pa mover el mur. Con un toque faes un clic esquierdu y teniendo primío faes l\'aición d\'arrastrar y soltar, col toque de dos deos simules un clic drechu y col toque de tres simules un clic col botón d\'en mediu del mur. Esliza dos deos pela pantalla pa desplazate.</string>
+  <string name="mousepad_double_tap_settings_title">Aición al tocar con dos deos</string>
+  <string name="mousepad_triple_tap_settings_title">Aición al tocar con tres deos</string>
+  <string name="mousepad_sensitivity_settings_title">Sensibilidá del panel táutil</string>
   <string name="mousepad_scroll_direction_title">Direición de desplazamientu inversa</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic drechu</item>
@@ -34,7 +46,7 @@
   <string-array name="mousepad_sensitivity_entries">
     <item>Perlenta</item>
     <item>Lenta</item>
-    <item>Default</item>
+    <item>Por defeutu</item>
     <item>Rápida</item>
     <item>Perrápida</item>
   </string-array>
@@ -51,7 +63,13 @@
   <string name="category_remembered_devices">Preseos recordaos</string>
   <string name="device_menu_plugins">Axustes de plugins</string>
   <string name="device_menu_unpair">Desempareyar</string>
-  <string name="pair_new_device">Empareya un preséu nuevu</string>
+  <string name="pair_new_device">Empareyar un preséu nuevu</string>
+  <string name="error_could_not_send_package">Nun pudo unviase\'l paquete</string>
+  <string name="encryption_info_title">Información del cifráu</string>
+  <string name="encryption_info_msg_no_ssl">L\'otru preséu nun executa una versión recién de KDE Connect y usa\'l métodu heredáu de cifráu.</string>
+  <string name="my_device_fingerprint">La buelga SHA1 d\'esti preséu ye:</string>
+  <string name="remote_device_fingerprint">La buelga SHA1 del preséu remotu ye:</string>
+  <string name="pairing_request_from">Solicitú d\'empareyamientu de %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Recibiendo %1$d ficheru de %2$s</item>
     <item quantity="other">Recibiendo %1$d ficheros de %2$s</item>
@@ -76,6 +94,10 @@
     <item quantity="one">Fallu al recibir el ficheru de %1$s</item>
     <item quantity="other">Fallu al recibir %2$d de los %3$d ficheros de %1$s</item>
   </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">Unvióse\'l ficheru a %1$s</item>
+    <item quantity="other">Unviáronse %2$d ficheros a %1$s</item>
+  </plurals>
   <plurals name="send_files_fail_title">
     <item quantity="one">Fallu al unviar el ficheru de %1$s</item>
     <item quantity="other">Fallu al unviar %2$d de los %3$d ficheros de %1$s</item>
@@ -87,8 +109,11 @@
   <string name="show_keyboard">Amosar el tecláu</string>
   <string name="device_not_paired">Nun s\'empareyó\'l preséu</string>
   <string name="request_pairing">Solicitar l\'empareyamientu</string>
+  <string name="pairing_accept">Aceutar</string>
+  <string name="pairing_reject">Refugar</string>
   <string name="settings">Axustes</string>
   <string name="mpris_volume">Volume</string>
+  <string name="mpris_time_settings_title">Botones d\'avanzar/rebobinar</string>
   <string-array name="mpris_time_entries">
     <item>10 segundos</item>
     <item>20 segundos</item>
@@ -96,47 +121,85 @@
     <item>1 minutu</item>
     <item>2 minutos</item>
   </string-array>
-  <string name="protocol_version_newer">Esti preséu una una versión nueva del protocolu</string>
+  <string name="mpris_notification_settings_summary">Permite\'l control de reproductores multimedia ensin abrir KDE Connet</string>
+  <string name="share_to">Compartir con...</string>
+  <string name="protocol_version_newer">Esti preséu una versión nueva del protocolu</string>
   <string name="plugin_settings_with_name">Axustes: %s</string>
-  <string name="custom_devices_settings">Llista de preseos personalizaos</string>
+  <string name="custom_devices_settings">Llista de preseos personalizada</string>
   <string name="custom_device_list">Amestar preseos pola IP</string>
+  <string name="custom_device_deleted">Desanicióse\'l preséu personalizáu</string>
   <string name="custom_device_list_help">Si\'l preséu nun se deteuta automáticamente, pues amestar la so direición IP o nome d\'agospiu calcando nel botón flotante d\'aición</string>
+  <string name="undo">Desfacer</string>
   <string name="share_notification_preference">Avisos sonoros</string>
   <string name="share_notification_preference_summary">Vibra y reproduz un soníu al recibir un ficheru</string>
+  <string name="share_destination_customize">Personalizar el direutoriu de destín</string>
   <string name="share_destination_customize_summary_disabled">Los ficheros recibíos van apaecer en Descargues</string>
+  <string name="share_destination_customize_summary_enabled">Los ficheros van atroxase nel direutoriu d\'embaxo</string>
   <string name="share_destination_folder_preference">Direutoriu de destín</string>
   <string name="title_activity_notification_filter">Peñera d\'avisos</string>
   <string name="filter_apps_info">Van sincronizase los avisos de les aplicaciones esbillaes.</string>
   <string name="sftp_sdcard">Tarxeta SD</string>
   <string name="add_device_dialog_title">Amiestu d\'un preséu</string>
   <string name="add_device_hint">Nome d\'agospiu o direición IP</string>
+  <string name="sftp_preference_configured_storage_locations">Allugamientos d\'almacenamientu configuraos</string>
+  <string name="sftp_preference_add_storage_location_title">Allugamientu d\'almacenamientu adicional</string>
+  <string name="sftp_preference_edit_storage_location">Edición del allugamientu d\'almacenamientu</string>
+  <string name="sftp_storage_preference_storage_location">Allugamientu d\'almacenamientu</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">Esti allugamientu yá se configuró</string>
+  <string name="sftp_storage_preference_click_to_select">calca pa esbillar</string>
+  <string name="sftp_storage_preference_display_name">Nome</string>
+  <string name="sftp_storage_preference_display_name_already_used">Esti nome yá ta usándose</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">El nome nun pue tar baleru</string>
+  <string name="sftp_no_storage_locations_configured">Nun se configuraron allugamientos d\'almacenamientu</string>
+  <string name="sftp_saf_permission_explanation">P\'acceder remotamente a los ficheros tienes de configurar allugamientos d\'almacenamientu</string>
   <string name="no_players_connected">Nun s\'alcontraron reproductores</string>
   <string name="send_files">Unviar ficheros</string>
+  <string name="pairing_title">Preseos con KDE Connect</string>
   <string name="pairing_description">Equí deberíen apaecer los demás preseos que tean executando KDE Connect na mesma rede.</string>
   <string name="device_rename_title">Renomáu del preséu</string>
   <string name="device_rename_confirm">Renomar</string>
   <string name="refresh">Refrescar</string>
+  <string name="no_wifi">Nun tas coneutáu a una rede Wi-Fi polo que nun vas ser a ver dengún preséu. Calca equí p\'activar el Wi-Fi.</string>
   <string name="pref_plugin_telepathy">Unviu de SMS</string>
   <string name="pref_plugin_telepathy_desc">Unvia SMS dende l\'ordenador</string>
   <string name="findmyphone_description">Fai qu\'esti preséu suene pa que pueas alcontralu</string>
   <string name="findmyphone_found">Alcontrélu</string>
+  <string name="plugins_need_permission">Dalgunos plugins precisen permisos pa funcionar (tócalos pa más información):</string>
+  <string name="permission_explanation">Esti plugin precisa permisos pa funcionar</string>
+  <string name="optional_permission_explanation">Precises conceder permisos adicionales p\'activar toles funciones</string>
+  <string name="plugins_need_optional_permission">Dalgunos plugins tienen carauterísiques desactivaes pola falta de permisos (tócalos pa más información):</string>
+  <string name="telepathy_permission_explanation">Pa lleer y escribir SMS dende l\'ordenador precises dar permisu a los SMS</string>
+  <string name="select_ringtone">Timbre</string>
   <string name="telephony_pref_blocked_title">Númberos bloquiaos</string>
   <string name="presenter_fullscreen">Pantalla completa</string>
   <string name="presenter_exit">Colar de la presentación</string>
   <string name="addcommand_explanation">Nun hai comandos rexistraos.</string>
+  <string name="addcommand_explanation2">Pues amestar más nos axustes de KDE Connect del ordenador</string>
   <string name="add_command_description">Pues amestar más comandos nel ordenador</string>
+  <string name="notification_channel_default">Otros avisos</string>
   <string name="notification_channel_persistent">Indicador permanente</string>
+  <string name="notification_channel_media_control">Mandu multimedia</string>
+  <string name="notification_channel_filetransfer">Tresferencia de ficheros</string>
   <string name="clipboard_toast">Copióse al cartafueyu</string>
+  <string name="runcommand_noruncommandplugin">Esti preséu nun tien activáu\'l plugin Execución de comandos</string>
   <string name="pref_plugin_findremotedevice_desc">Fai que\'l preséu remotu suene</string>
   <string name="ring">Facer sonar</string>
   <string name="pref_plugin_systemvolume">Volume del sistema</string>
   <string name="pref_plugin_systemvolume_desc">Controla\'l volume del sistema del preséu remotu</string>
+  <string name="all">Too</string>
   <string name="devices">Preseos</string>
   <string name="settings_rename">Nome del preséu</string>
   <string name="settings_dark_mode">Estilu escuru</string>
   <string name="settings_more_settings_title">Más axustes</string>
+  <string name="setting_persistent_notification">Amosar un avisu permanente</string>
   <string name="setting_persistent_notification_oreo">Avisu permanente</string>
   <string name="extra_options">Opciones adicionales</string>
+  <string name="privacy_options">Opciones de la privacidá</string>
+  <string name="set_privacy_options">Afita les opciones de la privacidá</string>
+  <string name="block_contents">Bloquiar el conteníu de los avisos</string>
+  <string name="block_images">Bloquiar les imáxenes de los avisos</string>
   <string name="notification_channel_receivenotification">Avisos d\'otros preseos</string>
   <string name="plugin_photo_desc">Llanza l\'aplicación de la cámarra p\'acenciellar la fechura y tresferencia de semeyes</string>
+  <string name="no_app_for_opening">Nun alcontró denguna aplicación afayadiza p\'abrir esti ficheru.</string>
+  <string name="remote_keyboard_service">Tecláu remotu de KDE Connect</string>
 </resources>
