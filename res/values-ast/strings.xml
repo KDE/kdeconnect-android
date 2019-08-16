@@ -17,6 +17,7 @@
   <string name="pref_plugin_runcommand">Execución de comandos</string>
   <string name="pref_plugin_runcommand_desc">Aiciona comandos remotos dende\'l preséu</string>
   <string name="pref_plugin_contacts">Sincronizador de contautos</string>
+  <string name="pref_plugin_contacts_desc">Permite la sincronización de la llista telefónica del teléfonu</string>
   <string name="pref_plugin_ping_desc">Unviu y receición de pings</string>
   <string name="pref_plugin_notifications">Sincronización d\'avisos</string>
   <string name="pref_plugin_notifications_desc">Accede a los avisos n\'otros preseos</string>
@@ -30,7 +31,7 @@
   <string name="no_permission_mprisreceiver">Pa ser a controlar reproductores multimedia precises conceder l\'accesu a los avisos</string>
   <string name="no_permissions_remotekeyboard">Pa recibir calcos de tecles precises activar el tecláu remotu de KDE Connect</string>
   <string name="send_ping">Unviar un ping</string>
-  <string name="open_mpris_controls">Control multimedia</string>
+  <string name="open_mpris_controls">Mandu multimedia</string>
   <string name="remotekeyboard_editing_only_title">Remanar les tecles remotes namái al editar</string>
   <string name="open_mousepad">Entrada remota</string>
   <string name="mousepad_info">Movi un deu pela pantalla pa mover el mur. Con un toque faes un clic esquierdu y teniendo primío faes l\'aición d\'arrastrar y soltar, col toque de dos deos simules un clic drechu y col toque de tres simules un clic col botón d\'en mediu del mur. Esliza dos deos pela pantalla pa desplazate.</string>
@@ -65,10 +66,12 @@
   <string name="device_menu_unpair">Desempareyar</string>
   <string name="pair_new_device">Empareyar un preséu nuevu</string>
   <string name="error_could_not_send_package">Nun pudo unviase\'l paquete</string>
+  <string name="error_timed_out">Escosó\'l tiempu d\'espera</string>
   <string name="encryption_info_title">Información del cifráu</string>
   <string name="encryption_info_msg_no_ssl">L\'otru preséu nun executa una versión recién de KDE Connect y usa\'l métodu heredáu de cifráu.</string>
   <string name="my_device_fingerprint">La buelga SHA1 d\'esti preséu ye:</string>
   <string name="remote_device_fingerprint">La buelga SHA1 del preséu remotu ye:</string>
+  <string name="pair_requested">Solicitóse l\'empareyamientu</string>
   <string name="pairing_request_from">Solicitú d\'empareyamientu de %1s</string>
   <plurals name="incoming_file_title">
     <item quantity="one">Recibiendo %1$d ficheru de %2$s</item>
@@ -121,7 +124,7 @@
     <item>1 minutu</item>
     <item>2 minutos</item>
   </string-array>
-  <string name="mpris_notification_settings_summary">Permite\'l control de reproductores multimedia ensin abrir KDE Connet</string>
+  <string name="mpris_notification_settings_summary">Permite\'l control de reproductores multimedia ensin abrir KDE Connect</string>
   <string name="share_to">Compartir con...</string>
   <string name="protocol_version_newer">Esti preséu una versión nueva del protocolu</string>
   <string name="plugin_settings_with_name">Axustes: %s</string>
@@ -160,6 +163,7 @@
   <string name="device_rename_confirm">Renomar</string>
   <string name="refresh">Refrescar</string>
   <string name="no_wifi">Nun tas coneutáu a una rede Wi-Fi polo que nun vas ser a ver dengún preséu. Calca equí p\'activar el Wi-Fi.</string>
+  <string name="no_file_browser">Nun hai dengún restolador de ficheros instaláu.</string>
   <string name="pref_plugin_telepathy">Unviu de SMS</string>
   <string name="pref_plugin_telepathy_desc">Unvia SMS dende l\'ordenador</string>
   <string name="findmyphone_description">Fai qu\'esti preséu suene pa que pueas alcontralu</string>
@@ -168,7 +172,6 @@
   <string name="permission_explanation">Esti plugin precisa permisos pa funcionar</string>
   <string name="optional_permission_explanation">Precises conceder permisos adicionales p\'activar toles funciones</string>
   <string name="plugins_need_optional_permission">Dalgunos plugins tienen carauterísiques desactivaes pola falta de permisos (tócalos pa más información):</string>
-  <string name="telepathy_permission_explanation">Pa lleer y escribir SMS dende l\'ordenador precises dar permisu a los SMS</string>
   <string name="select_ringtone">Timbre</string>
   <string name="telephony_pref_blocked_title">Númberos bloquiaos</string>
   <string name="presenter_fullscreen">Pantalla completa</string>
