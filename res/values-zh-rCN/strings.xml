@@ -196,6 +196,7 @@
   <string name="device_rename_confirm">重命名</string>
   <string name="refresh">刷新</string>
   <string name="unreachable_description">此配对设备不可达。请确认它已经连接到与您相同的网络。</string>
+  <string name="no_wifi">您未连接到 Wi-Fi 网络，所以您可能无法看到任何设备。点击此处启用 Wi-Fi。</string>
   <string name="no_file_browser">未安装文件浏览器</string>
   <string name="pref_plugin_telepathy">发送短消息</string>
   <string name="pref_plugin_telepathy_desc">从桌面发送短消息</string>
@@ -265,4 +266,6 @@
   <string name="take_picture">启动相机</string>
   <string name="plugin_photo_desc">启动相机应用程序以方便拍摄和转移图片</string>
   <string name="no_app_for_opening">没有找到合适的应用程序打开此文件</string>
+  <string name="remote_keyboard_service">KDE Connect 远程键盘</string>
+  <string name="presenter_pointer">指针</string>
 </resources>
