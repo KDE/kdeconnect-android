@@ -472,7 +472,7 @@ public class SMSHelper {
         // This usually means the addresses list is at least 2 long, but there are cases (special
         // telco service messages) where it is not (only 1 long in that case, just the "sender")
 
-        if (addresses.size() > 2) {
+        if (addresses.size() >= 2) {
             // TODO: Handle addresses for multi-target MMS
             // Probably we will need to figure out the user's address at this point and strip it out of the list
             event = addEventFlag(event, Message.EVENT_MULTI_TARGET);
