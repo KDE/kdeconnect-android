@@ -22,6 +22,8 @@ package org.kde.kdeconnect.Plugins.MprisPlugin;
 
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -52,6 +54,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.FragmentManager;
+import androidx.palette.graphics.Palette;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -262,6 +266,33 @@ public class MprisActivity extends AppCompatActivity {
             albumArtView.setImageDrawable(placeholder_art);
         } else {
             albumArtView.setImageBitmap(albumArt);
+
+            // doesn't match android's generated colors for the notification though :(
+            // to do that, we would have to do something similar to
+            // https://android.googlesource.com/platform/frameworks/base.git/+/master/packages/SystemUI/src/com/android/systemui/statusbar/notification/MediaNotificationProcessor.java
+
+            Palette.Builder paletteBuilder = Palette.from(albumArt);
+            Palette palette = paletteBuilder.generate();
+
+            int primaryArtColor = palette.getDarkVibrantColor(getResources().getColor(R.color.primary));
+            int secondaryArtColor = palette.getLightVibrantColor(Color.BLACK);
+
+            playButton.getBackground().mutate().setColorFilter(primaryArtColor, PorterDuff.Mode.SRC);
+            stopButton.getBackground().mutate().setColorFilter(primaryArtColor, PorterDuff.Mode.SRC);
+            prevButton.getBackground().mutate().setColorFilter(primaryArtColor, PorterDuff.Mode.SRC);
+            nextButton.getBackground().mutate().setColorFilter(primaryArtColor, PorterDuff.Mode.SRC);
+            rewButton.getBackground().mutate().setColorFilter(primaryArtColor, PorterDuff.Mode.SRC);
+            ffButton.getBackground().mutate().setColorFilter(primaryArtColor, PorterDuff.Mode.SRC);
+
+
+            playButton.setColorFilter(secondaryArtColor, PorterDuff.Mode.SRC_IN);
+            stopButton.setColorFilter(secondaryArtColor, PorterDuff.Mode.SRC_IN);
+            prevButton.setColorFilter(secondaryArtColor, PorterDuff.Mode.SRC_IN);
+            nextButton.setColorFilter(secondaryArtColor, PorterDuff.Mode.SRC_IN);
+            rewButton.setColorFilter(secondaryArtColor, PorterDuff.Mode.SRC_IN);
+            ffButton.setColorFilter(secondaryArtColor, PorterDuff.Mode.SRC_IN);
+
+
         }
 
         if (playerStatus.isSeekAllowed()) {
