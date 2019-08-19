@@ -274,8 +274,27 @@ public class MprisActivity extends AppCompatActivity {
             Palette.Builder paletteBuilder = Palette.from(albumArt);
             Palette palette = paletteBuilder.generate();
 
-            int primaryArtColor = palette.getDarkVibrantColor(getResources().getColor(R.color.primary));
-            int secondaryArtColor = palette.getLightVibrantColor(Color.BLACK);
+
+            Palette.Swatch primarySwatch = palette.getDominantSwatch();
+            Palette.Swatch secondaryColor = palette.getLightVibrantSwatch();
+
+            int primaryArtColor = palette.getDominantColor(getResources().getColor(R.color.primary));
+            int secondaryArtColor = palette.getVibrantColor(Color.BLACK);
+
+            // prevent too-similar colors
+            if (primarySwatch != null && secondaryColor != null) {
+                float[] primaryHSL = primarySwatch.getHsl();
+                float[] secondaryHSL = secondaryColor.getHsl();
+                if (Math.abs(primaryHSL[0] - secondaryHSL[0]) < 30) { // this value may need adjusting
+                    if (primaryHSL[2] > 255 / 2) {
+                        secondaryArtColor = Color.WHITE;
+                    } else {
+                        secondaryArtColor = Color.BLACK;
+
+                    }
+                }
+
+            }
 
             playButton.getBackground().mutate().setColorFilter(primaryArtColor, PorterDuff.Mode.SRC);
             stopButton.getBackground().mutate().setColorFilter(primaryArtColor, PorterDuff.Mode.SRC);
