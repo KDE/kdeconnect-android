@@ -113,7 +113,7 @@ public class SMSHelper {
         // However, according to https://stackoverflow.com/a/13640868/3723163, we can work around it this way.
         // By my understanding, "simple=true" means we can't support multi-target messages.
         // Go complain to Samsung about their annoying OS changes!
-        if ("Samsung".equals(Build.MANUFACTURER)){
+        if ("Samsung".equalsIgnoreCase(Build.MANUFACTURER)) {
             Log.i("SMSHelper", "Samsung compatibility mode enabled. This may cause some features to not work properly.");
             return Uri.parse("content://mms-sms/conversations?simple=true");
         }
