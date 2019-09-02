@@ -195,7 +195,7 @@
   <string name="sftp_action_mode_menu_delete">Slett</string>
   <string name="sftp_no_sdcard_detected">Fann ikkje noko SD-kort</string>
   <string name="sftp_no_storage_locations_configured">Ingen lagringsområde er sette opp</string>
-  <string name="sftp_saf_permission_explanation">For å få tilgang til over nettet må du setja opp lagringsområde</string>
+  <string name="sftp_saf_permission_explanation">For å få tilgang til filer over nettet må du setja opp lagringsområde.</string>
   <string name="no_players_connected">Fann ingen spelarar</string>
   <string name="send_files">Send filer</string>
   <string name="pairing_title">KDE Connect-einingar</string>
