@@ -44,10 +44,19 @@ android {
         abortOnError false
         checkReleaseBuilds false
     }
+    signingConfigs {
+        debug {
+            storeFile file("debug.keystore")
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+    }
     buildTypes {
         debug {
             minifyEnabled false
             useProguard false
+            signingConfig signingConfigs.debug
         }
         release { //keep on 'release' for faster builds, set to 'all' when testing to make sure proguard is not deleting important stuff
             minifyEnabled true

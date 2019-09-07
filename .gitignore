@@ -10,5 +10,6 @@ classes/
 gradle
 *.iml
 *.keystore
+!debug.keystore
 .directory
 GPUCache/
