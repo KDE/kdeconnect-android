@@ -32,6 +32,10 @@ import android.util.Base64;
 import android.util.Base64OutputStream;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.collection.LongSparseArray;
+
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -45,10 +49,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.collection.LongSparseArray;
 
 public class ContactsHelper {
 
@@ -144,7 +144,9 @@ public class ContactsHelper {
                         continue;
                     }
 
-                    toReturn.add(contactID);
+                    if (!toReturn.contains(contactID)) {
+                        toReturn.add(contactID);
+                    }
                 } while (contactsCursor.moveToNext());
             }
         }
