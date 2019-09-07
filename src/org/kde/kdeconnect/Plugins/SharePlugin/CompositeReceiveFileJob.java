@@ -43,9 +43,27 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.GuardedBy;
 import androidx.core.content.FileProvider;
 import androidx.documentfile.provider.DocumentFile;
 
+/**
+ * A type of {@link BackgroundJob} that reads Files from another device.
+ *
+ * <p>
+ *     We receive the requests as {@link NetworkPacket}s.
+ * </p>
+ * <p>
+ *     Each packet should have a 'filename' property and a payload. If the payload is missing,
+ *     we'll just create an empty file. You can add new packets anytime via
+ *     {@link #addNetworkPacket(NetworkPacket)}.
+ * </p>
+ * <p>
+ *     The I/O-part of this file reading is handled by {@link #receiveFile(InputStream, OutputStream)}.
+ * </p>
+ *
+ * @see CompositeUploadFileJob
+ */
 public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
     private final ReceiveNotification receiveNotification;
     private NetworkPacket currentNetworkPacket;
@@ -56,8 +74,11 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
     private long prevProgressPercentage;
 
     private final Object lock;                              //Use to protect concurrent access to the variables below
+    @GuardedBy("lock")
     private final List<NetworkPacket> networkPacketList;
+    @GuardedBy("lock")
     private int totalNumFiles;
+    @GuardedBy("lock")
     private long totalPayloadSize;
     private boolean isRunning;
 

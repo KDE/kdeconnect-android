@@ -44,6 +44,8 @@ import java.nio.channels.NotYetConnectedException;
 
 import javax.net.ssl.SSLSocket;
 
+import androidx.annotation.WorkerThread;
+
 public class LanLink extends BaseLink {
 
     public interface LinkDisconnectedCallback {
@@ -137,6 +139,7 @@ public class LanLink extends BaseLink {
     }
 
     //Blocking, do not call from main thread
+    @WorkerThread
     @Override
     public boolean sendPacket(NetworkPacket np, final Device.SendPacketStatusCallback callback) {
         if (socket == null) {

@@ -43,6 +43,8 @@ import java.io.Reader;
 import java.nio.charset.Charset;
 import java.util.UUID;
 
+import androidx.annotation.WorkerThread;
+
 public class BluetoothLink extends BaseLink {
     private final ConnectionMultiplexer connection;
     private final InputStream input;
@@ -150,6 +152,7 @@ public class BluetoothLink extends BaseLink {
         Log.i("BluetoothLink", "Finished sending message");
     }
 
+    @WorkerThread
     @Override
     public boolean sendPacket(NetworkPacket np, final Device.SendPacketStatusCallback callback) {
 

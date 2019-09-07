@@ -49,6 +49,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
 
+/**
+ * A Plugin for sharing and receiving files and uris.
+ * <p>
+ *     All of the associated I/O work is scheduled on background
+ *     threads by {@link BackgroundJobHandler}.
+ * </p>
+ */
 @PluginFactory.LoadablePlugin
 public class SharePlugin extends Plugin {
     final static String ACTION_CANCEL_SHARE = "org.kde.kdeconnect.Plugins.SharePlugin.CancelShare";

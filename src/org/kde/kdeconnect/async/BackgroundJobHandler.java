@@ -37,6 +37,13 @@ import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.Nullable;
 
+/**
+ * Scheduler for {@link BackgroundJob} objects.
+ * <p>
+ *     We use an internal {@link ThreadPoolExecutor} to catch Exceptions and
+ *     pass them along to {@link #handleUncaughtException(Future, Throwable)}.
+ * </p>
+ */
 public class BackgroundJobHandler {
     private static final String TAG = BackgroundJobHandler.class.getSimpleName();
 

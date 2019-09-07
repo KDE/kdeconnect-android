@@ -28,6 +28,8 @@ import org.kde.kdeconnect.NetworkPacket;
 import java.security.PrivateKey;
 import java.util.ArrayList;
 
+import androidx.annotation.WorkerThread;
+
 
 public abstract class BaseLink {
 
@@ -88,5 +90,6 @@ public abstract class BaseLink {
     }
 
     //TO OVERRIDE, should be sync
+    @WorkerThread
     public abstract boolean sendPacket(NetworkPacket np, Device.SendPacketStatusCallback callback);
 }
