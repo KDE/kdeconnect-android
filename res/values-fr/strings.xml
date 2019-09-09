@@ -98,6 +98,14 @@
     <item quantity="one">Fichier : %1s</item>
     <item quantity="other">(Fichier %2$d sur %3$d) : %1$s</item>
   </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">Envoi de %1$d fichier à %2$s</item>
+    <item quantity="other">Envoi de %1$d fichiers à %2$s</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Fichier : %1$s</item>
+    <item quantity="other">(Fichier %2$d sur %3$d) : %1$s</item>
+  </plurals>
   <plurals name="received_files_title">
     <item quantity="one">Fichier reçu de %1$s</item>
     <item quantity="other">%2$d fichiers reçus de %1$s</item>
@@ -105,6 +113,14 @@
   <plurals name="received_files_fail_title">
     <item quantity="one">Impossible de recevoir le fichier depuis %1$s</item>
     <item quantity="other">Impossible de recevoir %2$d fichiers sur %3$d depuis %1$s</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">Fichier envoyé à %1$s</item>
+    <item quantity="other">%2$d fichiers envoyés à %1$s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Impossible d\'envoyer le fichier à %1$s</item>
+    <item quantity="other">Impossible d\'envoyer %2$d fichiers sur %3$d %1$s</item>
   </plurals>
   <string name="received_file_text">Appuyez pour ouvrir %1s</string>
   <string name="cannot_create_file">Impossible de créer le fichier %s</string>
@@ -188,6 +204,7 @@
   <string name="device_rename_confirm">Renommer</string>
   <string name="refresh">Mettre à jour</string>
   <string name="unreachable_description">Ce périphérique associé n\'est pas accessible. Assurez-vous qu\'il est bien connecté au même réseau.</string>
+  <string name="no_wifi">Vous n\'êtes connecté à aucun réseau Wi-Fi, il est possible que vous ne puissiez afficher aucun appareil. Cliquez ici pour activer le Wi-Fi.</string>
   <string name="no_file_browser">Aucun navigateur de fichiers installé.</string>
   <string name="pref_plugin_telepathy">Envoyer un SMS</string>
   <string name="pref_plugin_telepathy_desc">Envoyer des SMS depuis votre bureau</string>
@@ -204,6 +221,7 @@
   <string name="plugins_need_optional_permission">Certaines fonctionnalités de modules externes sont désactivées faute de permissions suffisantes (tapez pour plus d\'informations) :</string>
   <string name="share_optional_permission_explanation">Pour partager des fichiers entre votre téléphone et votre ordinateur, veuillez permettre l\'accès à la mémoire de stockage du téléphone</string>
   <string name="telepathy_permission_explanation">Pour lire et écrire des SMS depuis votre ordinateur, veuillez permettre l\'accès aux SMS</string>
+  <string name="telephony_permission_explanation">Pour voir les appels depuis votre ordinateur, veuillez permettre l\'accès au journal des appels et à l\'état du téléphone</string>
   <string name="telephony_optional_permission_explanation">Pour voir le nom du contact au lieu du numéro de téléphone, veuillez permettre l\'accès aux contacts du téléphone</string>
   <string name="contacts_permission_explanation">Pour partager votre carnet de contacts avec votre ordinateur, veuillez permettre l\'accès aux contacts du téléphone</string>
   <string name="select_ringtone">Sélectionnez une sonnerie</string>
@@ -256,4 +274,6 @@
   <string name="take_picture">Lancer l\'appareil photo</string>
   <string name="plugin_photo_desc">Lancer l\'application appareil photo pour prendre et transférer des photos</string>
   <string name="no_app_for_opening">Aucune application adaptée trouvée pour ouvrir ce fichier.</string>
+  <string name="remote_keyboard_service">Clavier à distance KDE Connect</string>
+  <string name="presenter_pointer">Pointeur</string>
 </resources>
