@@ -120,7 +120,7 @@
   </plurals>
   <plurals name="send_files_fail_title">
     <item quantity="one">Impossible d\'envoyer le fichier à %1$s</item>
-    <item quantity="other">Impossible d\'envoyer %2$d fichiers sur %3$d %1$s</item>
+    <item quantity="other">Impossible d\'envoyer %2$d fichiers sur %3$d à %1$s</item>
   </plurals>
   <string name="received_file_text">Appuyez pour ouvrir %1s</string>
   <string name="cannot_create_file">Impossible de créer le fichier %s</string>
