@@ -7,6 +7,7 @@
   <string name="pref_plugin_telephony_desc">Unvia avisos de les llamaes entrantes</string>
   <string name="pref_plugin_battery">Informe de la batería</string>
   <string name="pref_plugin_battery_desc">Informa davezu del estáu de la batería</string>
+  <string name="pref_plugin_sftp">Sistema de ficheros en remoto</string>
   <string name="pref_plugin_sftp_desc">Permite restolar remotamente\'l sistema de ficheros d\'esti preséu</string>
   <string name="pref_plugin_clipboard">Sincronización del cartafueyu</string>
   <string name="pref_plugin_clipboard_desc">Comparte\'l conteníu del cartafueyu</string>
@@ -24,7 +25,7 @@
   <string name="pref_plugin_receive_notifications">Receición d\'avisos</string>
   <string name="pref_plugin_receive_notifications_desc">Recibe los avisos d\'otros preseos y amúesalos n\'Android</string>
   <string name="pref_plugin_sharereceiver">Compartición y receición</string>
-  <string name="pref_plugin_sharereceiver_desc">Comparti ficheros y URLs ente preseos</string>
+  <string name="pref_plugin_sharereceiver_desc">Comparte ficheros y URLs ente preseos</string>
   <string name="device_list_empty">Nun hai preseos</string>
   <string name="ok">Aceutar</string>
   <string name="cancel">Encaboxar</string>
@@ -102,8 +103,8 @@
     <item quantity="other">Unviáronse %2$d ficheros a %1$s</item>
   </plurals>
   <plurals name="send_files_fail_title">
-    <item quantity="one">Fallu al unviar el ficheru de %1$s</item>
-    <item quantity="other">Fallu al unviar %2$d de los %3$d ficheros de %1$s</item>
+    <item quantity="one">Fallu al unviar el ficheru a %1$s</item>
+    <item quantity="other">Fallu al unviar %2$d de los %3$d ficheros a %1$s</item>
   </plurals>
   <string name="received_file_text">Toca p\'abrir «%1s»</string>
   <string name="cannot_create_file">Nun pue crease\'l ficheru %s</string>
@@ -117,6 +118,7 @@
   <string name="settings">Axustes</string>
   <string name="mpris_volume">Volume</string>
   <string name="mpris_time_settings_title">Botones d\'avanzar/rebobinar</string>
+  <string name="mpris_time_settings_summary">Axusta\'l tiempu d\'avance/rebobináu al primir</string>
   <string-array name="mpris_time_entries">
     <item>10 segundos</item>
     <item>20 segundos</item>
@@ -127,7 +129,7 @@
   <string name="mpris_notification_settings_summary">Permite\'l control de reproductores multimedia ensin abrir KDE Connect</string>
   <string name="share_to">Compartir con...</string>
   <string name="protocol_version_newer">Esti preséu una versión nueva del protocolu</string>
-  <string name="plugin_settings_with_name">Axustes: %s</string>
+  <string name="plugin_settings_with_name">%s</string>
   <string name="custom_devices_settings">Llista de preseos personalizada</string>
   <string name="custom_device_list">Amestar preseos pola IP</string>
   <string name="custom_device_deleted">Desanicióse\'l preséu personalizáu</string>
@@ -196,6 +198,7 @@
   <string name="settings_more_settings_title">Más axustes</string>
   <string name="setting_persistent_notification">Amosar un avisu permanente</string>
   <string name="setting_persistent_notification_oreo">Avisu permanente</string>
+  <string name="setting_persistent_notification_description">Toca pa des/activalu n\'Avisos</string>
   <string name="extra_options">Opciones adicionales</string>
   <string name="privacy_options">Opciones de la privacidá</string>
   <string name="set_privacy_options">Afita les opciones de la privacidá</string>
