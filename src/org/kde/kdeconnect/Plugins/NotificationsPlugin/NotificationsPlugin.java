@@ -139,10 +139,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             service.addListener(NotificationsPlugin.this);
 
             serviceReady = service.isConnected();
-
-            if (serviceReady) {
-                sendCurrentNotifications(service);
-            }
         });
 
         return true;
@@ -157,7 +153,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     @Override
     public void onListenerConnected(NotificationReceiver service) {
         serviceReady = true;
-        sendCurrentNotifications(service);
     }
 
     @Override
