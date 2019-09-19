@@ -403,6 +403,9 @@ public class SftpSettingsFragment
     }
 
     private void handleChangedStorageInfoList() {
+
+        actionMode.finish(); // In case we are in selection mode, finish it
+
         saveStorageInfoList();
 
         preferenceCategory.removeAll();
@@ -485,7 +488,6 @@ public class SftpSettingsFragment
                     }
                 }
 
-                actionMode.finish();            //This must be called before handleChangedStorageInfoList()
                 handleChangedStorageInfoList();
                 return true;
             default:
