@@ -186,5 +186,4 @@
   <string name="addcommand_explanation2">"Kamu bisa menambahkan perintah baru dalam System Settings KDE Connect "</string>
   <string name="add_command_description">Kamu bisa menambahkan perintah pada desktop</string>
   <string name="pref_plugin_mprisreceiver">Kendali Pemutar Media</string>
-  <string name="pref_plugin_mprisreceiver_desc">Kendalikan pemutar media teleponmu dari perangkat lainnya</string>
 </resources>

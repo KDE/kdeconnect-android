@@ -237,7 +237,6 @@
   <string name="addcommand_explanation2">KDE Connect Sistem Ayarlarında yeni komutlar ekleyebilirsiniz</string>
   <string name="add_command_description">Masaüstüne komut ekleyebilirsiniz</string>
   <string name="pref_plugin_mprisreceiver">Medya Oynatıcı Kontrolü</string>
-  <string name="pref_plugin_mprisreceiver_desc">Telefonunuzun medya oynatıcılarını başka bir cihazdan kontrol edin</string>
   <string name="notification_channel_default">Diğer bildirimler</string>
   <string name="notification_channel_persistent">Kalıcı gösterge</string>
   <string name="notification_channel_media_control">Medya kontrolü</string>

@@ -254,7 +254,6 @@
   <string name="addcommand_explanation2">Môžete pridať nové príkazy v KDE Connect systémových nastaveniach</string>
   <string name="add_command_description">Môžete pridať príkazy na počítači</string>
   <string name="pref_plugin_mprisreceiver">Multimediálny ovládač</string>
-  <string name="pref_plugin_mprisreceiver_desc">Ovládajte mediálne prehrávače vášho telefónu z iného zariadenia</string>
   <string name="notification_channel_default">Ostatné upozornenia</string>
   <string name="notification_channel_persistent">Trvalý indikátor</string>
   <string name="notification_channel_media_control">Multimediálny ovládač</string>

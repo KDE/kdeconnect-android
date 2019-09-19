@@ -253,7 +253,6 @@
   <string name="addcommand_explanation2">Galite pridėti naujas komandas KDE Connect sistemos nustatymuose</string>
   <string name="add_command_description">Galite pridėti komandas darbalaukyje</string>
   <string name="pref_plugin_mprisreceiver">Medijos leistuvės valdymas</string>
-  <string name="pref_plugin_mprisreceiver_desc">Valdyti savo telefonų medijos leistuves iš kito įrenginio</string>
   <string name="notification_channel_default">Kiti pranešimai</string>
   <string name="notification_channel_persistent">Pastovus indikatorius</string>
   <string name="notification_channel_media_control">Įvairialypės terpės valdymas</string>

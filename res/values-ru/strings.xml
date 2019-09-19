@@ -253,7 +253,6 @@
   <string name="addcommand_explanation2">Вы можете добавить новые команды в «Параметрах системы» в разделе «KDE Connect».</string>
   <string name="add_command_description">Команды возможно добавлять с ПК</string>
   <string name="pref_plugin_mprisreceiver">Управление мультимедиа</string>
-  <string name="pref_plugin_mprisreceiver_desc">Управление воспроизведением на телефоне с другого устройства</string>
   <string name="notification_channel_default">Прочие уведомления</string>
   <string name="notification_channel_persistent">Постоянный индикатор</string>
   <string name="notification_channel_media_control">Управление воспроизведением</string>

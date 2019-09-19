@@ -238,7 +238,7 @@
   <string name="addcommand_explanation2">Podeu afegir ordres noves a l\'Arranjament del sistema del KDE Connect</string>
   <string name="add_command_description">Podeu afegir ordres per a l\'escriptori</string>
   <string name="pref_plugin_mprisreceiver">Control del reproductor multimèdia</string>
-  <string name="pref_plugin_mprisreceiver_desc">Controla els reproductors multimèdia dels telèfons des d\'un altre dispositiu</string>
+  <string name="pref_plugin_mprisreceiver_desc">Controla els reproductors multimèdia del telèfon des d\'un altre dispositiu</string>
   <string name="notification_channel_default">Altres notificacions</string>
   <string name="notification_channel_persistent">Indicador de persistent</string>
   <string name="notification_channel_media_control">Control multimèdia</string>

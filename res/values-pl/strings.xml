@@ -254,7 +254,6 @@
   <string name="addcommand_explanation2">Nowe polecenie można dodać w ustawieniach systemowych KDE Connect</string>
   <string name="add_command_description">Możesz dodawać polecenia na pulpicie</string>
   <string name="pref_plugin_mprisreceiver">Sterowanie odtwarzaczem mediów</string>
-  <string name="pref_plugin_mprisreceiver_desc">Sterowanie odtwarzaczami multimedialnymi z innego urządzenia</string>
   <string name="notification_channel_default">Inne powiadomienia</string>
   <string name="notification_channel_persistent">Nieznikający wskaźnik</string>
   <string name="notification_channel_media_control">Sterowanie multimediami</string>

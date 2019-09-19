@@ -193,7 +193,6 @@
   <string name="addcommand_explanation2">Komando berriak gehitu ditzakezu KDE Connect sistemaren ezarpenetan</string>
   <string name="add_command_description">Komandoak gehitu ditzakezu mahaigainean</string>
   <string name="pref_plugin_mprisreceiver">Euskarri-jotzailearen kontrola</string>
-  <string name="pref_plugin_mprisreceiver_desc">Kontrolatu zure telefonoen euskarri-jotzailea beste gailu batetik</string>
   <string name="notification_channel_default">Beste jakinarazpen batzuk</string>
   <string name="notification_channel_persistent">Adierazle iraunkorra</string>
   <string name="notification_channel_media_control">Euskarrien kontrola</string>

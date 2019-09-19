@@ -238,7 +238,6 @@
   <string name="addcommand_explanation2">Pode engadir novas ordes desde a configuración do sistema de KDE Connect.</string>
   <string name="add_command_description">Pode engadir ordes no escritorio.</string>
   <string name="pref_plugin_mprisreceiver">Control do reprodutor de multimedia</string>
-  <string name="pref_plugin_mprisreceiver_desc">Controlar os reprodutores do seu móbil desde outro dispositivo.</string>
   <string name="notification_channel_default">Outras notificacións</string>
   <string name="notification_channel_persistent">Indicador persistente</string>
   <string name="notification_channel_media_control">Control de reprodución</string>
