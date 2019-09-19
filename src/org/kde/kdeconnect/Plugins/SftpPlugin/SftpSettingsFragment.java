@@ -197,7 +197,7 @@ public class SftpSettingsFragment
 
                     for (int i = 0, count = preferenceCategory.getPreferenceCount(); i < count; i++) {
                         StoragePreference preference = (StoragePreference) preferenceCategory.getPreference(i);
-                        preference.setSelectable(true);
+                        preference.setInSelectionMode(true);
                         preference.checkbox.setChecked(selectedItems.get(i, false));
                     }
                 }
@@ -443,7 +443,7 @@ public class SftpSettingsFragment
             if (actionMode != null) {
                 for (int i = 0, count = preferenceCategory.getPreferenceCount(); i < count; i++) {
                     StoragePreference preference = (StoragePreference) preferenceCategory.getPreference(i);
-                    preference.setSelectable(true);
+                    preference.setInSelectionMode(true);
                     if (storagePreference.equals(preference)) {
                         preference.checkbox.setChecked(true);
                     }
@@ -499,7 +499,7 @@ public class SftpSettingsFragment
 
         for (int i = 0, count = preferenceCategory.getPreferenceCount(); i < count; i++) {
             StoragePreference preference = (StoragePreference) preferenceCategory.getPreference(i);
-            preference.setSelectable(false);
+            preference.setInSelectionMode(false);
             preference.checkbox.setChecked(false);
         }
     }

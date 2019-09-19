@@ -43,6 +43,14 @@ public class StoragePreference extends DialogPreference {
     private OnLongClickListener onLongClickListener;
 
     @BindView(R.id.checkbox) CheckBox checkbox;
+    public boolean inSelectionMode;
+
+    public void setInSelectionMode(boolean inSelectionMode) {
+        if (this.inSelectionMode != inSelectionMode) {
+            this.inSelectionMode = inSelectionMode;
+            notifyChanged();
+        }
+    }
 
     public StoragePreference(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -50,7 +58,7 @@ public class StoragePreference extends DialogPreference {
         setDialogLayoutResource(R.layout.fragment_storage_preference_dialog);
         setWidgetLayoutResource(R.layout.preference_checkbox);
         setPersistent(false);
-        setSelectable(false);
+        inSelectionMode = false;
     }
 
     public StoragePreference(Context context) {
@@ -109,7 +117,7 @@ public class StoragePreference extends DialogPreference {
 
         ButterKnife.bind(this, holder.itemView);
 
-        checkbox.setVisibility(isSelectable() ? View.VISIBLE : View.INVISIBLE);
+        checkbox.setVisibility(inSelectionMode ? View.VISIBLE : View.INVISIBLE);
 
         holder.itemView.setOnLongClickListener(v -> {
             if (onLongClickListener != null) {
@@ -122,7 +130,7 @@ public class StoragePreference extends DialogPreference {
 
     @Override
     protected void onClick() {
-        if (isSelectable()) {
+        if (inSelectionMode) {
             checkbox.setChecked(!checkbox.isChecked());
         } else {
             super.onClick();
