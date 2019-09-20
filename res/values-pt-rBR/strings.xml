@@ -238,6 +238,7 @@
   <string name="addcommand_explanation2">Você pode adicionar novos comandos nas Configurações do Sistema KDE Connect</string>
   <string name="add_command_description">Você pode adicionar comandos no ambiente de trabalho</string>
   <string name="pref_plugin_mprisreceiver">Controle do reprodutor de mídia</string>
+  <string name="pref_plugin_mprisreceiver_desc">Controle os reprodutores de mídias do seu celular a partir de outro dispositivo</string>
   <string name="notification_channel_default">Outras notificações</string>
   <string name="notification_channel_persistent">Indicador persistente</string>
   <string name="notification_channel_media_control">Controle multimídia</string>
