@@ -238,6 +238,7 @@
   <string name="addcommand_explanation2">You can add new commands in the KDE Connect System Settings</string>
   <string name="add_command_description">You can add commands on the desktop</string>
   <string name="pref_plugin_mprisreceiver">Media Player Control</string>
+  <string name="pref_plugin_mprisreceiver_desc">Control your phone\'s media players from another device</string>
   <string name="notification_channel_default">Other notifications</string>
   <string name="notification_channel_persistent">Persistent indicator</string>
   <string name="notification_channel_media_control">Media control</string>
