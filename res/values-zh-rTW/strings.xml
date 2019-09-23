@@ -230,6 +230,7 @@
   <string name="addcommand_explanation2">您現在可以在 KDE 連線系統設定增加新的指令</string>
   <string name="add_command_description">您可以在電腦上增加指令</string>
   <string name="pref_plugin_mprisreceiver">控制媒體播放器</string>
+  <string name="pref_plugin_mprisreceiver_desc">從另外一個裝置操控您手機的媒體播放器</string>
   <string name="notification_channel_default">其他通知</string>
   <string name="notification_channel_persistent">一致化指示器</string>
   <string name="notification_channel_media_control">多媒體控制</string>
