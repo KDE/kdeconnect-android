@@ -404,7 +404,9 @@ public class SftpSettingsFragment
 
     private void handleChangedStorageInfoList() {
 
-        actionMode.finish(); // In case we are in selection mode, finish it
+        if (actionMode != null) {
+            actionMode.finish(); // In case we are in selection mode, finish it
+        }
 
         saveStorageInfoList();
 
