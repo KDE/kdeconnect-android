@@ -238,6 +238,7 @@
   <string name="addcommand_explanation2">Du kan leggja til nye kommandoar i systeminnstillingane til KDE Connect</string>
   <string name="add_command_description">Du kan leggja til kommandoar på skrivebordet</string>
   <string name="pref_plugin_mprisreceiver">Mediespelarkontrollar</string>
+  <string name="pref_plugin_mprisreceiver_desc">Kontroller mediespelarar på telefonen din frå ei anna eining</string>
   <string name="notification_channel_default">Andre varslingar</string>
   <string name="notification_channel_persistent">Evigvarande varslingar</string>
   <string name="notification_channel_media_control">Mediestyring</string>
