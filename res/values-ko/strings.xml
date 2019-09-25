@@ -230,6 +230,7 @@
   <string name="addcommand_explanation2">시스템 설정의 KDE Connect에서 새로운 명령을 추가할 수 있습니다</string>
   <string name="add_command_description">데스크톱에서 명령을 추가할 수 있습니다</string>
   <string name="pref_plugin_mprisreceiver">미디어 재생기 제어</string>
+  <string name="pref_plugin_mprisreceiver_desc">다른 장치에서 휴대폰의 미디어 재생기 제어</string>
   <string name="notification_channel_default">기타 알림</string>
   <string name="notification_channel_persistent">항상 표시된 표시기</string>
   <string name="notification_channel_media_control">미디어 제어</string>
