@@ -220,6 +220,7 @@
   <string name="device_rename_confirm">Pervadinti</string>
   <string name="refresh">Įkelti iš naujo</string>
   <string name="unreachable_description">Šis suporuotas įrenginys nepasiekiamas. Įsitikinkite, kad jis yra prijungtas prie to paties tinklo.</string>
+  <string name="no_wifi">Nesate prisijungę prie belaidžio (Wi-Fi) tinklo, taigi, galite nematyti jokių įrenginių. Spustelėkite čia, norėdami įjungti belaidį (Wi-Fi).</string>
   <string name="no_file_browser">Nėra įdiegta jokių failų tvarkytuvių.</string>
   <string name="pref_plugin_telepathy">Siųsti SMS žinutę</string>
   <string name="pref_plugin_telepathy_desc">Siųsti tekstines žinutes iš savo darbalaukio</string>
@@ -253,6 +254,7 @@
   <string name="addcommand_explanation2">Galite pridėti naujas komandas KDE Connect sistemos nustatymuose</string>
   <string name="add_command_description">Galite pridėti komandas darbalaukyje</string>
   <string name="pref_plugin_mprisreceiver">Medijos leistuvės valdymas</string>
+  <string name="pref_plugin_mprisreceiver_desc">Valdyti savo telefono medijos leistuves iš kito įrenginio</string>
   <string name="notification_channel_default">Kiti pranešimai</string>
   <string name="notification_channel_persistent">Pastovus indikatorius</string>
   <string name="notification_channel_media_control">Įvairialypės terpės valdymas</string>
