@@ -108,6 +108,7 @@
   </plurals>
   <string name="received_file_text">Toca p\'abrir «%1s»</string>
   <string name="cannot_create_file">Nun pue crease\'l ficheru %s</string>
+  <string name="tap_to_answer">Toca pa responder</string>
   <string name="right_click">Unviar un clic drechu</string>
   <string name="middle_click">Unviar un clic d\'en mediu</string>
   <string name="show_keyboard">Amosar el tecláu</string>
@@ -136,7 +137,7 @@
   <string name="custom_device_list_help">Si\'l preséu nun se deteuta automáticamente, pues amestar la so direición IP o nome d\'agospiu calcando nel botón flotante d\'aición</string>
   <string name="undo">Desfacer</string>
   <string name="share_notification_preference">Avisos sonoros</string>
-  <string name="share_notification_preference_summary">Vibra y reproduz un soníu al recibir un ficheru</string>
+  <string name="share_notification_preference_summary">Fai que\'l teléfonu vibre y reproduza un soníu al recibir un ficheru</string>
   <string name="share_destination_customize">Personalizar el direutoriu de destín</string>
   <string name="share_destination_customize_summary_disabled">Los ficheros recibíos van apaecer en Descargues</string>
   <string name="share_destination_customize_summary_enabled">Los ficheros van atroxase nel direutoriu d\'embaxo</string>
@@ -155,6 +156,7 @@
   <string name="sftp_storage_preference_display_name">Nome</string>
   <string name="sftp_storage_preference_display_name_already_used">Esti nome yá ta usándose</string>
   <string name="sftp_storage_preference_display_name_cannot_be_empty">El nome nun pue tar baleru</string>
+  <string name="sftp_action_mode_menu_delete">Desaniciar</string>
   <string name="sftp_no_storage_locations_configured">Nun se configuraron allugamientos d\'almacenamientu</string>
   <string name="sftp_saf_permission_explanation">P\'acceder remotamente a los ficheros tienes de configurar allugamientos d\'almacenamientu</string>
   <string name="no_players_connected">Nun s\'alcontraron reproductores</string>
@@ -164,6 +166,7 @@
   <string name="device_rename_title">Renomáu del preséu</string>
   <string name="device_rename_confirm">Renomar</string>
   <string name="refresh">Refrescar</string>
+  <string name="unreachable_description">Esti preséu empareyáu nun ye algamable. Asegúrate de que ta coneutáu a la mesma rede que tu.</string>
   <string name="no_wifi">Nun tas coneutáu a una rede Wi-Fi polo que nun vas ser a ver dengún preséu. Calca equí p\'activar el Wi-Fi.</string>
   <string name="no_file_browser">Nun hai dengún restolador de ficheros instaláu.</string>
   <string name="pref_plugin_telepathy">Unviu de SMS</string>
@@ -181,10 +184,13 @@
   <string name="addcommand_explanation">Nun hai comandos rexistraos.</string>
   <string name="addcommand_explanation2">Pues amestar más nos axustes de KDE Connect del ordenador</string>
   <string name="add_command_description">Pues amestar más comandos nel ordenador</string>
+  <string name="pref_plugin_mprisreceiver">Mandu pa reproductores multimedia</string>
+  <string name="pref_plugin_mprisreceiver_desc">Controla los reproductores multimedia d\'esti preséu dende otru</string>
   <string name="notification_channel_default">Otros avisos</string>
   <string name="notification_channel_persistent">Indicador permanente</string>
   <string name="notification_channel_media_control">Mandu multimedia</string>
   <string name="notification_channel_filetransfer">Tresferencia de ficheros</string>
+  <string name="copy_url_to_clipboard">Copiar la URL al cartafueyu</string>
   <string name="clipboard_toast">Copióse al cartafueyu</string>
   <string name="runcommand_noruncommandplugin">Esti preséu nun tien activáu\'l plugin Execución de comandos</string>
   <string name="pref_plugin_findremotedevice_desc">Fai que\'l preséu remotu suene</string>
@@ -205,7 +211,8 @@
   <string name="block_contents">Bloquiar el conteníu de los avisos</string>
   <string name="block_images">Bloquiar les imáxenes de los avisos</string>
   <string name="notification_channel_receivenotification">Avisos d\'otros preseos</string>
-  <string name="plugin_photo_desc">Llanza l\'aplicación de la cámarra p\'acenciellar la fechura y tresferencia de semeyes</string>
+  <string name="take_picture">Llanzamientu de la cámara</string>
+  <string name="plugin_photo_desc">Llanza l\'aplicación de la cámara p\'acenciellar la fechura y tresferencia de semeyes</string>
   <string name="no_app_for_opening">Nun alcontró denguna aplicación afayadiza p\'abrir esti ficheru.</string>
   <string name="remote_keyboard_service">Tecláu remotu de KDE Connect</string>
 </resources>
