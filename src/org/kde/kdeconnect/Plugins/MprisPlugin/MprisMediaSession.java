@@ -116,6 +116,11 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
         public void onStop() {
             notificationPlayer.stop();
         }
+
+        @Override
+        public void onSeekTo(long pos) {
+            notificationPlayer.setPosition((int) pos);
+        }
     };
 
     /**
@@ -423,6 +428,10 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
             if (notificationPlayer.isGoNextAllowed()) {
                 notification.addAction(aNext.build());
                 playbackActions |= PlaybackStateCompat.ACTION_SKIP_TO_NEXT;
+                ++numActions;
+            }
+            if (notificationPlayer.isSeekAllowed()) {
+                playbackActions |= PlaybackStateCompat.ACTION_SEEK_TO;
                 ++numActions;
             }
             playbackState.setActions(playbackActions);
