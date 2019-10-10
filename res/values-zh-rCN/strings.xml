@@ -230,6 +230,7 @@
   <string name="addcommand_explanation2">您可以在 KDE Connect 系统设置中添加新命令</string>
   <string name="add_command_description">您可以在桌面添加新命令</string>
   <string name="pref_plugin_mprisreceiver">控制媒体播放器</string>
+  <string name="pref_plugin_mprisreceiver_desc">从其他设备控制您的手机的播放器</string>
   <string name="notification_channel_default">其他通知</string>
   <string name="notification_channel_persistent">持久性通知</string>
   <string name="notification_channel_media_control">媒体控制</string>
