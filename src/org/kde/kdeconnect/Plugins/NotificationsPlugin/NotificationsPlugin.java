@@ -184,7 +184,8 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         if ((notification.flags & Notification.FLAG_FOREGROUND_SERVICE) != 0
                 || (notification.flags & Notification.FLAG_ONGOING_EVENT) != 0
                 || (notification.flags & Notification.FLAG_LOCAL_ONLY) != 0
-                || (notification.flags & NotificationCompat.FLAG_GROUP_SUMMARY) != 0) //The notification that groups other notifications
+                || (notification.flags & NotificationCompat.FLAG_GROUP_SUMMARY) != 0 //The notification that groups other notifications
+        )
         {
             //This is not a notification we want!
             return;
@@ -237,6 +238,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         np.set("actions", extractActions(notification, key));
 
         np.set("id", key);
+        np.set("silent", (notification.flags & NotificationCompat.FLAG_ONLY_ALERT_ONCE) != 0);
         np.set("isClearable", statusBarNotification.isClearable());
         np.set("appName", appName == null ? packageName : appName);
         np.set("time", Long.toString(statusBarNotification.getPostTime()));
