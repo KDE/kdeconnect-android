@@ -149,7 +149,7 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
 
                 setProgress((int)prevProgressPercentage);
 
-                fileDocument = getDocumentFileFor(currentFileName, currentNetworkPacket.getBoolean("open"));
+                fileDocument = getDocumentFileFor(currentFileName, currentNetworkPacket.getBoolean("open", false));
 
                 if (currentNetworkPacket.hasPayload()) {
                     outputStream = new BufferedOutputStream(getDevice().getContext().getContentResolver().openOutputStream(fileDocument.getUri()));

@@ -185,9 +185,9 @@ public class SharePlugin extends Plugin {
         CompositeReceiveFileJob job;
 
         boolean hasNumberOfFiles = np.has(KEY_NUMBER_OF_FILES);
-        boolean hasOpen = np.has("open");
+        boolean isOpen = np.getBoolean("open", false);
 
-        if (hasNumberOfFiles && !hasOpen && receiveFileJob != null) {
+        if (hasNumberOfFiles && !isOpen && receiveFileJob != null) {
             job = receiveFileJob;
         } else {
             job = new CompositeReceiveFileJob(device, receiveFileJobCallback);
@@ -201,7 +201,7 @@ public class SharePlugin extends Plugin {
         job.addNetworkPacket(np);
 
         if (job != receiveFileJob) {
-            if (hasNumberOfFiles && !hasOpen) {
+            if (hasNumberOfFiles && !isOpen) {
                 receiveFileJob = job;
             }
             backgroundJobHandler.runJob(job);
