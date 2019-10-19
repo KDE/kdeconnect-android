@@ -155,59 +155,7 @@ public class ContactsHelper {
     }
 
     /**
-     * Get VCards using the batch database query which requires Android API 21
-     *
-     * @param context    android.content.Context running the request
-     * @param IDs        collection of raw contact IDs to look up
-     * @param lookupKeys
-     * @return Mapping of raw contact IDs to corresponding VCard
-     */
-    @SuppressWarnings("ALL") // Since this method is busted anyway
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    @Deprecated
-    protected static Map<Long, VCardBuilder> getVCardsFast(Context context, Collection<Long> IDs, Map<Long, String> lookupKeys) {
-        LongSparseArray<VCardBuilder> toReturn = new LongSparseArray<>();
-        StringBuilder keys = new StringBuilder();
-
-        List<Long> orderedIDs = new ArrayList<>(IDs);
-
-        for (Long ID : orderedIDs) {
-            String key = lookupKeys.get(ID);
-            keys.append(key);
-            keys.append(':');
-        }
-
-        // Remove trailing ':'
-        keys.deleteCharAt(keys.length() - 1);
-
-        Uri vcardURI = Uri.withAppendedPath(
-                ContactsContract.Contacts.CONTENT_MULTI_VCARD_URI,
-                Uri.encode(keys.toString()));
-
-        ;
-        StringBuilder vcardJumble = new StringBuilder();
-        try (InputStream input = context.getContentResolver().openInputStream(vcardURI)) {
-            BufferedReader bufferedInput = new BufferedReader(new InputStreamReader(input));
-            String line;
-            while ((line = bufferedInput.readLine()) != null) {
-                vcardJumble.append(line).append('\n');
-            }
-        } catch (IOException e) {
-            // If you are experiencing this, please open a bug report indicating how you got here
-            Log.e("Contacts", "Exception while fetching vcards", e);
-        }
-
-        // At this point we are screwed:
-        // There is no way to figure out, given the lookup we just made, which VCard belonges
-        // to which ID. They appear to be in the same order as the request was made, but this
-        // is (provably) unreliable. I am leaving this code in case it is useful, but unless
-        // Android improves their API there is nothing we can do with it
-
-        return null;
-    }
-
-    /**
-     * Get VCards using serial database lookups. This is tragically slow, but the faster method using
+     * Get VCards using serial database lookups. This is tragically slow, so call only when needed.
      *
      * There is a faster API specified using ContactsContract.Contacts.CONTENT_MULTI_VCARD_URI,
      * but there does not seem to be a way to figure out which ID resulted in which VCard using that API
