@@ -188,6 +188,41 @@ public class SMSHelper {
     }
 
     /**
+     * Checks if device supports `Telephony.Sms.SUBSCRIPTION_ID` column in database with URI `uri`
+     *
+     * @param uri Uri indicating the messages database to check
+     * @param context android.content.Context running the request.
+     */
+    private static boolean getSubscriptionIdSupport(@NonNull Uri uri, @NonNull Context context) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1) {
+            return false;
+        }
+        // Some (Xiaomi) devices running >= Android Lollipop (SDK 22+) don't support
+        // `Telephony.Sms.SUBSCRIPTION_ID`, so additional check is needed.
+        // It may be possible to use "sim_id" instead of "sub_id" on these devices
+        // https://stackoverflow.com/a/38152331/6509200
+        try (Cursor availableColumnsCursor = context.getContentResolver().query(
+                uri,
+                new String[] {Telephony.Sms.SUBSCRIPTION_ID},
+                null,
+                null,
+                null)
+        ) {
+            if (availableColumnsCursor != null) {
+                return true; // if we got the cursor, the query shouldn't fail
+            }
+            return false;
+        } catch (SQLiteException e) {
+            // With uri content://mms-sms/conversations this query throws an exception if sub_id is not supported
+            String errMessage = e.getMessage();
+            if (errMessage != null && errMessage.contains(Telephony.Sms.SUBSCRIPTION_ID)) {
+                return false;
+            }
+            return true;
+        }
+    }
+
+    /**
      * Gets messages which match the selection
      *
      * @param uri Uri indicating the messages database to read
@@ -215,7 +250,7 @@ public class SMSHelper {
         Set<String> allColumns = new HashSet<>();
         allColumns.addAll(Arrays.asList(Message.smsColumns));
         allColumns.addAll(Arrays.asList(Message.mmsColumns));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+        if (getSubscriptionIdSupport(uri, context)) {
             allColumns.addAll(Arrays.asList(Message.multiSIMColumns));
         }
 
@@ -372,7 +407,8 @@ public class SMSHelper {
         int read = Integer.parseInt(messageInfo.get(Message.READ));
         @NonNull ThreadID threadID = new ThreadID(Long.parseLong(messageInfo.get(Message.THREAD_ID)));
         long uID = Long.parseLong(messageInfo.get(Message.U_ID));
-        int subscriptionID = Integer.parseInt(messageInfo.get(Message.SUBSCRIPTION_ID));
+        int subscriptionID = messageInfo.get(Message.SUBSCRIPTION_ID) != null ?
+                Integer.parseInt(messageInfo.get(Message.SUBSCRIPTION_ID)) : 0;
 
         return new Message(
                 address,
@@ -404,7 +440,8 @@ public class SMSHelper {
         int read = Integer.parseInt(messageInfo.get(Message.READ));
         @NonNull ThreadID threadID = new ThreadID(Long.parseLong(messageInfo.get(Message.THREAD_ID)));
         long uID = Long.parseLong(messageInfo.get(Message.U_ID));
-        int subscriptionID = Integer.parseInt(messageInfo.get(Message.SUBSCRIPTION_ID));
+        int subscriptionID = messageInfo.get(Message.SUBSCRIPTION_ID) != null ?
+                Integer.parseInt(messageInfo.get(Message.SUBSCRIPTION_ID)) : 0;
 
         String[] columns = {
                 Telephony.Mms.Part._ID,          // The content ID of this part
