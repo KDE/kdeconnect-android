@@ -254,6 +254,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     @Override
     public void onStart() {
         super.onStart();
+        mSwipeRefreshLayout.setEnabled(true);
         BackgroundService.RunCommand(mActivity, service -> service.addDeviceListChangedCallback("PairingFragment", this::updateDeviceList));
         updateDeviceList();
     }
