@@ -76,6 +76,9 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     private ServerSocket tcpServer;
     private DatagramSocket udpServer;
 
+    private long lastBroadcast = 0;
+    private final static long delayBetweenBroadcasts = 500;
+
     private boolean listening = false;
 
     // To prevent infinte loop between Android < IceCream because both device can only broadcast identity package but cannot connect via TCP
@@ -355,6 +358,12 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     }
 
     private void broadcastUdpPacket() {
+        if (System.currentTimeMillis() < lastBroadcast + delayBetweenBroadcasts) {
+            Log.i("LanLinkProvider", "broadcastUdpPacket: relax cowboy");
+            return;
+        }
+        lastBroadcast = System.currentTimeMillis();
+
         new Thread(() -> {
             ArrayList<String> iplist = CustomDevicesActivity
                     .getCustomDeviceList(PreferenceManager.getDefaultSharedPreferences(context));
