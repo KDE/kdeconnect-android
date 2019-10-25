@@ -371,7 +371,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         for (Parcelable p : ms) {
             Bundle m = (Bundle) p;
 
-            if (isGroupConversation) {
+            if (isGroupConversation && m.containsKey("sender")) {
                 messagesBuilder.append(m.get("sender"));
                 messagesBuilder.append(": ");
             }
