@@ -1,148 +1,122 @@
 package org.kde.kdeconnect.UserInterface;
 
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
+import android.Manifest;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ListView;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import org.kde.kdeconnect.Helpers.TrustedNetworkHelper;
+import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.kde.kdeconnect.BackgroundService;
-import org.kde.kdeconnect.Helpers.TrustedNetworkHelper;
-import org.kde.kdeconnect_tp.R;
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.*;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 public class TrustedNetworksActivity extends AppCompatActivity {
 
-    private ListView trustedNetworksView;
     private List<String> trustedNetworks;
 
-    private boolean dialogAlreadyShown = false;
-
+    private ListView trustedNetworksView;
+    private CheckBox allowAllCheckBox;
+    private TrustedNetworkHelper trustedNetworkHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        TrustedNetworkHelper trustedNetworkHelper = new TrustedNetworkHelper(getApplicationContext());
-        super.onCreate(savedInstanceState);
-        trustedNetworks = new ArrayList<>(trustedNetworkHelper.read());
         ThemeUtil.setUserPreferredTheme(this);
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.trusted_network_list);
         trustedNetworksView = findViewById(android.R.id.list);
-        emptyListMessage(trustedNetworkHelper);
 
-        trustedNetworkListView(trustedNetworkHelper);
+        trustedNetworkHelper = new TrustedNetworkHelper(getApplicationContext());
+        trustedNetworks = new ArrayList<>(trustedNetworkHelper.read());
 
-        CheckBox allowAllCheckBox = findViewById(R.id.trust_all_networks_checkBox);
-        allowAllCheckBox.setChecked(trustedNetworkHelper.allAllowed());
+        allowAllCheckBox = findViewById(R.id.trust_all_networks_checkBox);
         allowAllCheckBox.setOnCheckedChangeListener((v, isChecked) -> {
-            trustedNetworkHelper.allAllowed(isChecked);
-            trustedNetworkListView(trustedNetworkHelper);
-        });
 
+            if (trustedNetworkHelper.hasPermissions()) {
+                trustedNetworkHelper.allAllowed(isChecked);
+                updateTrustedNetworkListView();
+                addNetworkButton();
+            } else {
+                allowAllCheckBox.setChecked(true); // Disable unchecking it
+                new PermissionsAlertDialogFragment.Builder()
+                        .setTitle(R.string.location_permission_needed_title)
+                        .setMessage(R.string.location_permission_needed_desc)
+                        .setPositiveButton(R.string.ok)
+                        .setNegativeButton(R.string.cancel)
+                        .setPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION})
+                        .setRequestCode(0)
+                        .create().show(getSupportFragmentManager(), null);
+            }
+        });
+        allowAllCheckBox.setChecked(trustedNetworkHelper.allAllowed());
+
+        updateTrustedNetworkListView();
     }
 
-    private void emptyListMessage(TrustedNetworkHelper trustedNetworkHelper) {
+    private void updateEmptyListMessage() {
         boolean isVisible = trustedNetworks.isEmpty() && !trustedNetworkHelper.allAllowed();
         findViewById(R.id.trusted_network_list_empty)
-                .setVisibility(isVisible ? VISIBLE : GONE );
+                .setVisibility(isVisible ? View.VISIBLE : View.GONE );
     }
 
-    private void trustedNetworkListView(TrustedNetworkHelper trustedNetworkHelper) {
+    private void updateTrustedNetworkListView() {
         Boolean allAllowed = trustedNetworkHelper.allAllowed();
-        emptyListMessage(trustedNetworkHelper);
-//        trustedNetworksView.setVisibility(allAllowed ? GONE : VISIBLE);
-        trustedNetworksView.setVisibility(allAllowed ? VISIBLE : VISIBLE);
-//        if (allAllowed){
-//            return;
-//        }
+        updateEmptyListMessage();
+        trustedNetworksView.setVisibility(allAllowed ? View.GONE : View.VISIBLE);
+        if (allAllowed){
+            return;
+        }
         trustedNetworksView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, trustedNetworks));
-        trustedNetworksView.setOnItemClickListener(onItemClickGenerator(trustedNetworkHelper));
-        addNetworkButton(trustedNetworkHelper);
-    }
-
-    @NonNull
-    private AdapterView.OnItemClickListener onItemClickGenerator(TrustedNetworkHelper trustedNetworkHelper) {
-        return (parent, view, position, id) -> {
-            if (dialogAlreadyShown) {
-                return;
-            }
+        trustedNetworksView.setOnItemClickListener((parent, view, position, id) -> {
             String targetItem = trustedNetworks.get(position);
+            new AlertDialog.Builder(TrustedNetworksActivity.this)
+                .setMessage("Delete " + targetItem + " ?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    trustedNetworks.remove(position);
+                    trustedNetworkHelper.update(trustedNetworks);
+                    ((ArrayAdapter) trustedNetworksView.getAdapter()).notifyDataSetChanged();
+                    addNetworkButton();
+                    updateEmptyListMessage();
+                })
+                .setNegativeButton("No", null)
+                .show();
 
-            // remove touched item after confirmation
-            DialogInterface.OnClickListener confirmationListener = (dialog, which) -> {
-                switch (which) {
-                    case DialogInterface.BUTTON_POSITIVE:
-                        trustedNetworks.remove(position);
-                        trustedNetworkHelper.update(trustedNetworks);
-                        ((ArrayAdapter) trustedNetworksView.getAdapter()).notifyDataSetChanged();
-                        addNetworkButton(trustedNetworkHelper);
-                        emptyListMessage(trustedNetworkHelper);
-                        break;
-                    case DialogInterface.BUTTON_NEGATIVE:
-                        break;
-                }
-            };
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Delete " + targetItem + " ?");
-            builder.setPositiveButton("Yes", confirmationListener);
-            builder.setNegativeButton("No", confirmationListener);
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) { //DismissListener
-                dialogAlreadyShown = true;
-                builder.setOnDismissListener(dialog -> dialogAlreadyShown = false);
-            }
-
-            builder.show();
-        };
+        });
+        addNetworkButton();
     }
 
-    private void addNetworkButton(TrustedNetworkHelper trustedNetworkHelper) {
-        String currentSSID = trustedNetworkHelper.currentSSID();
+
+    private void addNetworkButton() {
+        Button addButton = findViewById(android.R.id.button1);
+        if (trustedNetworkHelper.allAllowed()) {
+            addButton.setVisibility(View.GONE);
+            return;
+        }
+        final String currentSSID = trustedNetworkHelper.currentSSID();
         if (!currentSSID.isEmpty() && trustedNetworks.indexOf(currentSSID) == -1) {
-            Button addButton = (Button) findViewById(android.R.id.button1);
             String buttonText = getString(R.string.add_trusted_network, currentSSID);
             addButton.setText(buttonText);
-            addButton.setOnClickListener(saveCurrentSSIDAsTrustedNetwork(currentSSID, trustedNetworkHelper));
-            addButton.setVisibility(VISIBLE);
+            addButton.setOnClickListener(v -> {
+                if (trustedNetworks.indexOf(currentSSID) != -1){
+                    return;
+                }
+                trustedNetworks.add(currentSSID);
+                trustedNetworkHelper.update(trustedNetworks);
+                ((ArrayAdapter) trustedNetworksView.getAdapter()).notifyDataSetChanged();
+                v.setVisibility(View.GONE);
+                updateEmptyListMessage();
+            });
+            addButton.setVisibility(View.VISIBLE);
+        } else {
+            addButton.setVisibility(View.GONE);
         }
-    }
-
-
-    @NonNull
-    private View.OnClickListener saveCurrentSSIDAsTrustedNetwork(String ssid, TrustedNetworkHelper trustedNetworkHelper) {
-        return v -> {
-            if (trustedNetworks.indexOf(ssid) != -1){
-                return;
-            }
-            trustedNetworks.add(ssid);
-            trustedNetworkHelper.update(trustedNetworks);
-            ((ArrayAdapter) trustedNetworksView.getAdapter()).notifyDataSetChanged();
-            v.setVisibility(GONE);
-        };
-    }
-
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        BackgroundService.addGuiInUseCounter(this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        BackgroundService.removeGuiInUseCounter(this);
     }
 
 }

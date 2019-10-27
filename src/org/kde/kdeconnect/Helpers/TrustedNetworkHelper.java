@@ -4,13 +4,20 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.core.content.ContextCompat;
+
+import org.kde.kdeconnect.UserInterface.PermissionsAlertDialogFragment;
+import org.kde.kdeconnect_tp.R;
 
 public class TrustedNetworkHelper {
 
@@ -40,7 +47,10 @@ public class TrustedNetworkHelper {
                 KEY_CUSTOM_TRUSTED_NETWORKS, serialized).apply();
     }
 
-    public Boolean allAllowed() {
+    public boolean allAllowed() {
+        if (!hasPermissions()) {
+            return true;
+        }
         return PreferenceManager
                 .getDefaultSharedPreferences(context)
                 .getBoolean(KEY_CUSTOM_TRUST_ALL_NETWORKS, Boolean.TRUE);
@@ -52,6 +62,11 @@ public class TrustedNetworkHelper {
                 .edit()
                 .putBoolean(KEY_CUSTOM_TRUST_ALL_NETWORKS, isChecked)
                 .apply();
+    }
+
+    public boolean hasPermissions() {
+        int result = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION);
+        return (result == PackageManager.PERMISSION_GRANTED);
     }
 
     public String currentSSID() {

@@ -41,8 +41,13 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Helpers.TrustedNetworkHelper;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.PairingDeviceItem;
 import org.kde.kdeconnect.UserInterface.List.SectionItem;
@@ -50,10 +55,6 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 
 /**
@@ -72,6 +73,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
 
     private TextView headerText;
     private TextView noWifiHeader;
+    private TextView notTrustedText;
     private Object networkChangeListener;
 
     @Override
@@ -91,6 +93,10 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
         mSwipeRefreshLayout.setOnRefreshListener(
                 this::updateComputerListAction
         );
+
+        notTrustedText = (TextView) inflater.inflate(R.layout.pairing_explanation_not_trusted, null);
+        notTrustedText.setOnClickListener(null);
+        notTrustedText.setOnLongClickListener(null);
         headerText = (TextView) inflater.inflate(R.layout.pairing_explanation_text, null);
         headerText.setOnClickListener(null);
         headerText.setOnLongClickListener(null);
@@ -179,12 +185,16 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
 
             ((ListView) rootView.findViewById(R.id.devices_list)).removeHeaderView(headerText);
             ((ListView) rootView.findViewById(R.id.devices_list)).removeHeaderView(noWifiHeader);
-
+            ((ListView) rootView.findViewById(R.id.devices_list)).removeHeaderView(notTrustedText);
             ConnectivityManager connManager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo wifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
             //Check if we're on Wi-Fi. If we still see a device, don't do anything special
             if (someDevicesReachable || wifi.isConnected()) {
-                ((ListView) rootView.findViewById(R.id.devices_list)).addHeaderView(headerText);
+                if (TrustedNetworkHelper.isNotTrustedNetwork(getContext())) {
+                    ((ListView) rootView.findViewById(R.id.devices_list)).addHeaderView(notTrustedText);
+                } else {
+                    ((ListView) rootView.findViewById(R.id.devices_list)).addHeaderView(headerText);
+                }
             } else {
                 ((ListView) rootView.findViewById(R.id.devices_list)).addHeaderView(noWifiHeader);
             }

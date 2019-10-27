@@ -257,6 +257,7 @@
     <string name="refresh">Refresh</string>
     <string name="unreachable_description">This paired device is not reachable. Make sure it is connected to your same network.</string>
     <string name="no_wifi">You\'re not connected to a Wi-Fi network, so you may not be able to see any devices. Click here to enable Wi-Fi.</string>
+    <string name="on_non_trusted_message">Not on a trusted network: autodiscovery is disabled.</string>
     <string name="no_file_browser">There are no file browsers installed.</string>
     <string name="pref_plugin_telepathy">Send SMS</string>
     <string name="pref_plugin_telepathy_desc">Send text messages from your desktop</string>
@@ -343,8 +344,11 @@
     <string name="presenter_pointer">Pointer</string>
 
     <string name="trusted_networks">Trusted networks</string>
-    <string name="add_trusted_network">Add %1$s</string>
+    <string name="trusted_networks_desc">Restrict autodiscovery to known networks</string>
+    <string name="add_trusted_network">Add %1s</string>
     <string name="empty_trusted_networks_list_text">You haven\'t added any trusted network yet</string>
     <string name="allow_all_networks_text">Allow all</string>
 
+    <string name="location_permission_needed_title">Permission required</string>
+    <string name="location_permission_needed_desc">Android requires the Location permission to identify your WiFi network</string>
 </resources>

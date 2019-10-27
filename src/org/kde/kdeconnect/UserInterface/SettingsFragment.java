@@ -63,10 +63,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         screen.addPreference(renameDevice);
 
-
-        //TODO: Trusted wifi networks settings should go here
-
-
         // Dark mode
         final TwoStatePreference darkThemeSwitch = new SwitchPreferenceCompat(context);
         darkThemeSwitch.setPersistent(false);
@@ -119,6 +115,30 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             });
             screen.addPreference(notificationSwitch);
         }
+
+
+        // Trusted Networks
+        Preference trustedNetworkPref = new Preference(context);
+        trustedNetworkPref.setPersistent(false);
+        trustedNetworkPref.setTitle(R.string.trusted_networks);
+        trustedNetworkPref.setSummary(R.string.trusted_networks_desc);
+        screen.addPreference(trustedNetworkPref);
+        trustedNetworkPref.setOnPreferenceClickListener(preference -> {
+            startActivity(new Intent(context, TrustedNetworksActivity.class));
+            return true;
+        });
+
+        // Add device by IP
+        Preference devicesByIpPreference = new Preference(context);
+        devicesByIpPreference.setPersistent(false);
+        devicesByIpPreference.setTitle(R.string.custom_device_list);
+        screen.addPreference(devicesByIpPreference);
+        devicesByIpPreference.setOnPreferenceClickListener(preference -> {
+
+            startActivity(new Intent(context, CustomDevicesActivity.class));
+            return true;
+        });
+
 
         // More settings text
         Preference moreSettingsText = new Preference(context);
