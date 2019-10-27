@@ -33,6 +33,7 @@ import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Helpers.StringsHelper;
+import org.kde.kdeconnect.Helpers.TrustedNetworkHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.UserInterface.CustomDevicesActivity;
 
@@ -116,6 +117,11 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
 
     //I've received their broadcast and should connect to their TCP socket and send my identity.
     private void udpPacketReceived(DatagramPacket packet) {
+
+        if (TrustedNetworkHelper.isNotTrustedNetwork(context)) {
+            Log.w("LanLinkProvider", "Current WiFi isn't a Trusted Network");
+            return;
+        }
 
         final InetAddress address = packet.getAddress();
 
@@ -363,6 +369,11 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
             return;
         }
         lastBroadcast = System.currentTimeMillis();
+
+        if (TrustedNetworkHelper.isNotTrustedNetwork(context)) {
+            Log.w("LanLinkProvider", "Current WiFi isn't a Trusted Network");
+            return;
+        }
 
         new Thread(() -> {
             ArrayList<String> iplist = CustomDevicesActivity

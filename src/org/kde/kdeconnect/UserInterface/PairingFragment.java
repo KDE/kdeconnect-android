@@ -299,6 +299,10 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
             case R.id.menu_custom_device_list:
                 startActivity(new Intent(mActivity, CustomDevicesActivity.class));
                 break;
+            case R.id.menu_trusted_networks:
+                startActivity(new Intent(mActivity, TrustedNetworksActivity.class));
+                break;
+
             default:
                 break;
         }
