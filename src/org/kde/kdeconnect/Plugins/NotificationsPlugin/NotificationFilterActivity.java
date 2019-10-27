@@ -199,7 +199,7 @@ public class NotificationFilterActivity extends AppCompatActivity {
                                         compoundButton.isChecked()));
 
                         ad.cancel();
-                        myBuilder.create().show();
+                        myBuilder.show();
                         break;
                 }
             });

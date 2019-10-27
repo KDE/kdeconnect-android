@@ -245,7 +245,7 @@ public class DeviceFragment extends Fragment {
                     builder.setMessage(context.getResources().getString(R.string.my_device_fingerprint) + "\n" + SslHelper.getCertificateHash(SslHelper.certificate) + "\n\n"
                             + context.getResources().getString(R.string.remote_device_fingerprint) + "\n" + SslHelper.getCertificateHash(device.certificate));
                 }
-                builder.create().show();
+                builder.show();
                 return true;
             });
         }
