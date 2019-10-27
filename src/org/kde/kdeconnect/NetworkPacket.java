@@ -108,6 +108,13 @@ public class NetworkPacket {
         return mBody.optInt(key, defaultValue);
     }
 
+    public void set(String key, int value) {
+        try {
+            mBody.put(key, value);
+        } catch (Exception ignored) {
+        }
+    }
+
     public long getLong(String key) {
         return mBody.optLong(key, -1);
     }
@@ -116,7 +123,7 @@ public class NetworkPacket {
         return mBody.optLong(key, defaultValue);
     }
 
-    public void set(String key, int value) {
+    public void set(String key, long value) {
         try {
             mBody.put(key, value);
         } catch (Exception ignored) {

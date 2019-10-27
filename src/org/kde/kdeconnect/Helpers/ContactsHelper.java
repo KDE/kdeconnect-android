@@ -33,8 +33,8 @@ import android.util.Base64OutputStream;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.collection.LongSparseArray;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -52,6 +52,7 @@ import java.util.Set;
 
 public class ContactsHelper {
 
+    static final String LOG_TAG = "ContactsHelper";
 
     /**
      * Lookup the name and photoID of a contact given a phone number
@@ -103,7 +104,7 @@ public class ContactsHelper {
             }
             return encodedPhoto.toString();
         } catch (Exception ex) {
-            Log.e("ContactsHelper", ex.toString());
+            Log.e(LOG_TAG, ex.toString());
             return "";
         }
     }
@@ -140,7 +141,7 @@ public class ContactsHelper {
                     } else {
                         // Something went wrong with this contact
                         // If you are experiencing this, please open a bug report indicating how you got here
-                        Log.e("ContactsHelper", "Got a contact which does not have a LOOKUP_KEY");
+                        Log.e(LOG_TAG, "Got a contact which does not have a LOOKUP_KEY");
                         continue;
                     }
 
@@ -211,97 +212,110 @@ public class ContactsHelper {
     }
 
     /**
-     * Return a mapping of contact IDs to a map of the requested data from the Contacts database
-     * <p>
-     * If for some reason there is no row associated with the contact ID in the database,
-     * there will not be a corresponding field in the returned map
+     * Get the last-modified timestamp for every contact in the database
      *
-     * @param context            android.content.Context running the request
-     * @param IDs                collection of contact uIDs to look up
-     * @param contactsProjection List of column names to extract, defined in ContactsContract.Contacts
+     * @param context android.content.Context running the request
+     * @return Mapping of contact uID to last-modified timestamp
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2) // Need API 18 for contact timestamps
+    public static Map<uID, Long> getAllContactTimestamps(Context context) {
+        String[] projection = { uID.COLUMN, ContactsContract.Contacts.CONTACT_LAST_UPDATED_TIMESTAMP };
+
+        Map<uID, Map<String, String>> databaseValues = accessContactsDatabase(context, projection, null, null, null);
+
+        Map<uID, Long> timestamps = new HashMap<>();
+        for (uID contactID : databaseValues.keySet()) {
+            Map<String, String> data = databaseValues.get(contactID);
+            timestamps.put(
+              contactID,
+              Long.parseLong(data.get(ContactsContract.Contacts.CONTACT_LAST_UPDATED_TIMESTAMP))
+            );
+        }
+
+        return timestamps;
+    }
+
+    /**
+     * Get the last-modified timestamp for the specified contact
+     *
+     * @param context   android.content.Context running the request
+     * @param contactID Contact uID to read
+     * @throws ContactNotFoundException If the given ID for some reason does not match a contact
+     * @return          Last-modified timestamp of the contact
+     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2) // Need API 18 for contact timestamps
+    public static Long getContactTimestamp(Context context, uID contactID) throws ContactNotFoundException {
+        String[] projection = { uID.COLUMN, ContactsContract.Contacts.CONTACT_LAST_UPDATED_TIMESTAMP };
+        String selection = uID.COLUMN + " = ?";
+        String[] selectionArgs = { contactID.toString() };
+
+        Map<uID, Map<String, String>> databaseValue = accessContactsDatabase(context, projection, selection, selectionArgs, null);
+
+        if (databaseValue.size() == 0) {
+            throw new ContactNotFoundException("Querying for contact with id " + contactID + " returned no results.");
+        }
+
+        if (databaseValue.size() != 1) {
+            Log.w(LOG_TAG, "Received an improper number of return values from the database in getContactTimestamp: " + databaseValue.size());
+        }
+
+        Long timestamp = Long.parseLong(databaseValue.get(contactID).get(ContactsContract.Contacts.CONTACT_LAST_UPDATED_TIMESTAMP));
+
+        return timestamp;
+    }
+
+    /**
+     * Return a mapping of contact IDs to a map of the requested data from the Contacts database.
+     *
+     * @param context    android.content.Context running the request
+     * @param projection List of column names to extract, defined in ContactsContract.Contacts. Must contain uID.COLUMN
+     * @param selection  Parameterizable filter to use with the ContentResolver query. May be null.
+     * @param selectionArgs Parameters for selection. May be null.
+     * @param sortOrder  Sort order to request from the ContentResolver query. May be null.
      * @return mapping of contact uIDs to desired values, which are a mapping of column names to the data contained there
      */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB) // Needed for Cursor.getType(..)
-    public static Map<uID, Map<String, Object>> getColumnsFromContactsForIDs(Context context, Collection<uID> IDs, String[] contactsProjection) {
-        HashMap<uID, Map<String, Object>> toReturn = new HashMap<>();
-
-        if (IDs.isEmpty()) {
-            return toReturn;
-        }
-
+    private static Map<uID, Map<String, String>> accessContactsDatabase(
+            @NonNull Context context,
+            @NonNull String[] projection,
+            @Nullable String   selection,
+            @Nullable String[] selectionArgs,
+            @Nullable String   sortOrder
+            ) {
         Uri contactsUri = ContactsContract.Contacts.CONTENT_URI;
 
-        // Regardless of whether it was requested, we need to look up the uID column
-        Set<String> lookupProjection = new HashSet<>(Arrays.asList(contactsProjection));
-        lookupProjection.add(uID.COLUMN);
-
-        // We need a selection which looks like "<column> IN(?,?,...?)" with one ? per ID
-        StringBuilder contactsSelection = new StringBuilder(uID.COLUMN);
-        contactsSelection.append(" IN(");
-
-        for (int i = 0; i < IDs.size(); i++) {
-            contactsSelection.append("?,");
-        }
-        // Remove trailing comma
-        contactsSelection.deleteCharAt(contactsSelection.length() - 1);
-        contactsSelection.append(")");
-
-        // We need selection arguments as simply a String representation of each ID
-        List<String> contactsArgs = new ArrayList<>();
-        for (uID ID : IDs) {
-            contactsArgs.add(ID.toString());
-        }
+        HashMap<uID, Map<String, String>> toReturn = new HashMap<>();
 
         try (Cursor contactsCursor = context.getContentResolver().query(
                 contactsUri,
-                lookupProjection.toArray(new String[0]),
-                contactsSelection.toString(),
-                contactsArgs.toArray(new String[0]),
-                null
+                projection,
+                selection,
+                selectionArgs,
+                sortOrder
         )) {
             if (contactsCursor != null && contactsCursor.moveToFirst()) {
                 do {
-                    Map<String, Object> requestedData = new HashMap<>();
+                    Map<String, String> requestedData = new HashMap<>();
 
-                    int lookupKeyIdx = contactsCursor.getColumnIndexOrThrow(uID.COLUMN);
-                    String lookupKey = contactsCursor.getString(lookupKeyIdx);
+                    int uIDIndex = contactsCursor.getColumnIndexOrThrow(uID.COLUMN);
+                    uID uID = new uID(contactsCursor.getString(uIDIndex));
 
                     // For each column, collect the data from that column
-                    for (String column : contactsProjection) {
+                    for (String column : projection) {
                         int index = contactsCursor.getColumnIndex(column);
                         // Since we might be getting various kinds of data, Object is the best we can do
-                        Object data;
-                        int type;
+                        String data;
                         if (index == -1) {
                             // This contact didn't have the requested column? Something is very wrong.
                             // If you are experiencing this, please open a bug report indicating how you got here
-                            Log.e("ContactsHelper", "Got a contact which does not have a requested column");
+                            Log.e(LOG_TAG, "Got a contact which does not have a requested column");
                             continue;
                         }
-
-                        type = contactsCursor.getType(index);
-                        switch (type) {
-                            case Cursor.FIELD_TYPE_INTEGER:
-                                data = contactsCursor.getInt(index);
-                                break;
-                            case Cursor.FIELD_TYPE_FLOAT:
-                                data = contactsCursor.getFloat(index);
-                                break;
-                            case Cursor.FIELD_TYPE_STRING:
-                                data = contactsCursor.getString(index);
-                                break;
-                            case Cursor.FIELD_TYPE_BLOB:
-                                data = contactsCursor.getBlob(index);
-                                break;
-                            default:
-                                Log.e("ContactsHelper", "Got an undefined type of column " + column);
-                                continue;
-                        }
+                        data = contactsCursor.getString(index);
 
                         requestedData.put(column, data);
                     }
 
-                    toReturn.put(new uID(lookupKey), requestedData);
+                    toReturn.put(uID, requestedData);
                 } while (contactsCursor.moveToNext());
             }
         }
@@ -389,6 +403,19 @@ public class ContactsHelper {
                 return contactLookupKey.equals(((uID) other).contactLookupKey);
             }
             return contactLookupKey.equals(other);
+        }
+    }
+
+    /**
+     * Exception to indicate that a specified contact was not found
+     */
+    public static class ContactNotFoundException extends Exception {
+        public ContactNotFoundException(uID contactID) {
+            super("Unable to find contact with ID " + contactID);
+        }
+
+        public ContactNotFoundException(String message) {
+            super(message);
         }
     }
 }
