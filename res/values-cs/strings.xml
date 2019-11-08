@@ -27,8 +27,8 @@
   <string name="pref_plugin_ping_desc">Posílat a přijímat ping</string>
   <string name="pref_plugin_notifications">Synchronizace upozornění</string>
   <string name="pref_plugin_notifications_desc">Zpřístupněte si upozornění z jiných zařízení</string>
-  <string name="pref_plugin_receive_notifications">Přijímat oznámení</string>
-  <string name="pref_plugin_receive_notifications_desc">Přijímat oznámení z jiného zařízení a zobrazovat je v Androidu</string>
+  <string name="pref_plugin_receive_notifications">Přijímat upozornění</string>
+  <string name="pref_plugin_receive_notifications_desc">Přijímat upozornění z jiného zařízení a zobrazovat je v Androidu</string>
   <string name="pref_plugin_sharereceiver">Sdílet a přijmout</string>
   <string name="pref_plugin_sharereceiver_desc">Sdílet soubory a odkazy mezi zařízeními</string>
   <string name="device_list_empty">Žádná zařízení</string>
@@ -36,7 +36,7 @@
   <string name="cancel">Zrušit</string>
   <string name="open_settings">Otevřít nastavení</string>
   <string name="no_permissions">Pro zpřístupnění upozornění potřebujete oprávnění</string>
-  <string name="no_permission_mprisreceiver">Abyste byli schopni ovládat vaše přehrávače médií, musíte udělit přístup k oznámením</string>
+  <string name="no_permission_mprisreceiver">Abyste byli schopni ovládat vaše přehrávače médií, musíte udělit přístup k upozorněním</string>
   <string name="no_permissions_remotekeyboard">Pro zachytávání stisků kláves je potřeba aktivovat vzdálenou klávesnici KDE Connect</string>
   <string name="send_ping">Poslat ping</string>
   <string name="open_mpris_controls">Ovládání multimédií</string>
@@ -255,7 +255,7 @@
   <string name="add_command_description">V pracovním prostředí můžete přidat příkazy</string>
   <string name="pref_plugin_mprisreceiver">Ovládání přehrávače médií</string>
   <string name="pref_plugin_mprisreceiver_desc">Ovládejte přehrávače médií na vašem telefonu z jiného zařízení</string>
-  <string name="notification_channel_default">Ostatní oznámení</string>
+  <string name="notification_channel_default">Ostatní upozornění</string>
   <string name="notification_channel_persistent">Stálý ukazatel</string>
   <string name="notification_channel_media_control">Ovládání médií</string>
   <string name="notification_channel_filetransfer">Přenos souboru</string>
@@ -284,9 +284,9 @@
   <string name="extra_options">Další možnosti</string>
   <string name="privacy_options">Možnosti soukromí</string>
   <string name="set_privacy_options">Nastavte své možnosti soukromí</string>
-  <string name="block_contents">Blokovat obsah oznámení</string>
+  <string name="block_contents">Blokovat obsah upozornění</string>
   <string name="block_images">Blokovat obrázky z upozornění</string>
-  <string name="notification_channel_receivenotification">Oznamování z ostatních zařízení</string>
+  <string name="notification_channel_receivenotification">Upozornění z ostatních zařízení</string>
   <string name="take_picture">Spustit fotoaparát</string>
   <string name="plugin_photo_desc">Spusťte aplikaci fotoaparátu pro snadné zachytávání s přenos obrázků</string>
   <string name="no_app_for_opening">Pro otevření tohoto souboru nebyla nalezena vhodná aplikace</string>
