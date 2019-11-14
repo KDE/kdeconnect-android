@@ -11,13 +11,14 @@
   <string name="pref_plugin_sftp_desc">Gailu honen fitxategi-sistema urrunetik arakatzea ahalbidetzen du</string>
   <string name="pref_plugin_clipboard">Arbelaren sinkronizazioa</string>
   <string name="pref_plugin_clipboard_desc">Partekatu arbelaren edukia</string>
-  <string name="pref_plugin_mousepad">Urruneko sarrera</string>
+  <string name="pref_plugin_mousepad">Urrutiko sarrera</string>
   <string name="pref_plugin_mousepad_desc">Erabili zure telefonoa edo tableta ukimen-sagu eta teklatu gisa</string>
+  <string name="pref_plugin_presenter">Diapositiba emanaldietarako telekomandoa</string>
   <string name="pref_plugin_presenter_desc">Erabili zure gailua aurkezpen bateko diapositibak aldatzeko</string>
   <string name="pref_plugin_remotekeyboard">Jaso urruneko tekla-sakatzeak</string>
   <string name="pref_plugin_remotekeyboard_desc">Jaso tekla-sakatze gertaerak urruneko gailuetatik</string>
   <string name="pref_plugin_mpris">Multimedia kontrolak</string>
-  <string name="pref_plugin_mpris_desc">Zure media jotzailearen urruneko kontrola ematen dizu</string>
+  <string name="pref_plugin_mpris_desc">Zure euskarri-jotzailearen urruneko kontrola ematen dizu</string>
   <string name="pref_plugin_runcommand">Exekutatu agindua</string>
   <string name="pref_plugin_runcommand_desc">Abiarazi urruneko aginduak zure telefono edo tabletatik</string>
   <string name="pref_plugin_contacts">Kontaktuen sinkronizatzailea</string>
@@ -36,6 +37,7 @@
   <string name="open_settings">Ireki ezarpenak</string>
   <string name="no_permissions">Jakinarazpenak atzitzeko baimena eman behar duzu</string>
   <string name="no_permission_mprisreceiver">Zure euskarri-jotzaileak kontrolatu ahal izateko jakinarazpenetara atzipena eman behar diozu</string>
+  <string name="no_permissions_remotekeyboard">Sakatzeak jasotzeko KDE Connecten urruneko teklatua aktibatu behar duzu</string>
   <string name="send_ping">Bidali ping</string>
   <string name="open_mpris_controls">Multimedia kontrola</string>
   <string name="remotekeyboard_editing_only_title">Erabili urruneko teklak editatzean besterik ez</string>
@@ -96,6 +98,14 @@
     <item quantity="one">Fitxategia: %1s</item>
     <item quantity="other">(%3$d(e)tik %2$d fitxategia) : %1$s</item>
   </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">"%2$s(r)i  %1$d fitxategi bidaltzea"</item>
+    <item quantity="other">"%2$s(r)i  %1$d fitxategi bidaltzea"</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Fitxategia: %1$s</item>
+    <item quantity="other">(%3$d(e)tik %2$d. fitxategia) : %1$s</item>
+  </plurals>
   <plurals name="received_files_title">
     <item quantity="one">Fitxategi bat jaso da %1$s-tik</item>
     <item quantity="other">%2$d fitxategi jaso dira %1$s-tik</item>
@@ -103,6 +113,14 @@
   <plurals name="received_files_fail_title">
     <item quantity="one">Huts egin du fitxategi bat %1$s-tik jasotzeak</item>
     <item quantity="other">Huts egin du %2$d/%3$d fitxategi %1$s-tik jasotzeak</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">Fitxategia %1$s(e)ra bidali da</item>
+    <item quantity="other">%2$d fitxategi %1$s(e)ra bidali dira</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Huts egin du fitxategia %1$s(e)ra bidaltzea</item>
+    <item quantity="other">"Huts egin du %3$d(e)tik  %2$d fitxategi %1$s(e)ra bidaltzea"</item>
   </plurals>
   <string name="received_file_text">Tak egin \'%1s\' irekitzeko</string>
   <string name="cannot_create_file">Ezin da sortu %s fitxategia</string>
@@ -140,6 +158,10 @@
   <string name="shareplugin_text_saved">Testua jaso da, arbelean kopiatu da</string>
   <string name="custom_devices_settings">Gailuen zerrenda pertsonalizatua</string>
   <string name="custom_device_list">Gehitu gailuak IP bidez</string>
+  <string name="custom_device_deleted">Norberak finkatutako gailua ezabatu da</string>
+  <string name="custom_device_list_help">Zure gailua ez bada automatikoki detektatzen bere IP helbidea edo ostalari-izena gehitu dezakezu ekintza botoi mugikorrean klik eginez</string>
+  <string name="custom_device_fab_hint">Gehitu gailu bat</string>
+  <string name="undo">Desegin</string>
   <string name="share_notification_preference">Jakinarazpen zaratatsuak</string>
   <string name="share_notification_preference_summary">Bibratu eta jo soinua fitxategia jasotzean</string>
   <string name="share_destination_customize">Pertsonalizatu direktorio xedea</string>
@@ -154,7 +176,27 @@
   <string name="sftp_sdcard">SD txartela</string>
   <string name="sftp_readonly">(irakurri soilik)</string>
   <string name="sftp_camera">Kamerako irudiak</string>
-  <string name="no_players_connected">Ez da jokalaririk aurkitu</string>
+  <string name="add_device_dialog_title">Gehitu gailua</string>
+  <string name="add_device_hint">Ostalari-izena edo IP helbidea</string>
+  <string name="sftp_preference_detected_sdcards">Detektatutako SD txartelak</string>
+  <string name="sftp_preference_edit_sdcard_title">Editatu SD txartela</string>
+  <string name="sftp_preference_configured_storage_locations">Konfiguratutako biltegiratze kokalekuak</string>
+  <string name="sftp_preference_add_storage_location_title">Gehitu biltegiratze kokalekua</string>
+  <string name="sftp_preference_edit_storage_location">Editatu biltegiratze kokalekua</string>
+  <string name="sftp_preference_add_camera_shortcut">Gehitu kamera karpetaren lasterbidea</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_on">Gehitu lasterbide bat kamera karpetara</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_off">Ez gehitu lasterbide bat kamera karpetara</string>
+  <string name="sftp_storage_preference_storage_location">Biltegiratze kokalekua</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">Kokaleku hau jada konfiguratuta dago</string>
+  <string name="sftp_storage_preference_click_to_select">klik egin aukeratzeko</string>
+  <string name="sftp_storage_preference_display_name">Azaltzeko izena</string>
+  <string name="sftp_storage_preference_display_name_already_used">Azaltzeko izen hau jada erabilita dago</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">Azaltzeko izena ezin da hutsik egon</string>
+  <string name="sftp_action_mode_menu_delete">Ezabatu</string>
+  <string name="sftp_no_sdcard_detected">Ez da SD txartelik detektatu</string>
+  <string name="sftp_no_storage_locations_configured">Ez da biltegiratze kokalekurik konfiguratu</string>
+  <string name="sftp_saf_permission_explanation">Fitxategiak urrunetik atzitzeko biltegiratze kokalekuak konfiguratu behar dituzu</string>
+  <string name="no_players_connected">Ez da jotzailerik aurkitu</string>
   <string name="send_files">Bidali fitxategiak</string>
   <string name="pairing_title">KDE Connect gailuak</string>
   <string name="pairing_description">KDE Connect darabilten sareko beste gailuak hemen agertu beharko lirateke.</string>
@@ -162,6 +204,7 @@
   <string name="device_rename_confirm">Aldatu izena</string>
   <string name="refresh">Freskatu</string>
   <string name="unreachable_description">Parekatutako gailu hau ez dago eskuragarri. Egiaztatu sare berera konektatuta dagoela.</string>
+  <string name="no_wifi">Ez zaude Wi-Fi sare batera konektatuta, baliteke gailurik ez ikustea. Egin klik hemen Wi-Fia gaitzeko.</string>
   <string name="no_file_browser">Ez dago fitxategi arakatzailerik instalatuta.</string>
   <string name="pref_plugin_telepathy">Bidali SMSa</string>
   <string name="pref_plugin_telepathy_desc">Bidali testu-mezuak zure mahaigainetik</string>
@@ -178,6 +221,7 @@
   <string name="plugins_need_optional_permission">Plugin batzuek desgaitutako eginbideak dituzte baimenak faltan dituztelako (tak egin informazio gehiagorako):</string>
   <string name="share_optional_permission_explanation">Zure telefonoa eta mahaigainaren artean fitxategiak partekatzeko telefonoaren biltegiratzea atzitzeko baimena eman behar duzu</string>
   <string name="telepathy_permission_explanation">SMSak zure mahaigainetik bidali ahal izateko, SMSak erabiltzeko baimena eman behar duzu</string>
+  <string name="telephony_permission_explanation">Telefono deiak zure mahaigainetik ikusteko, telefono deien egunkarira eta telefonoaren egoerara baimena eman behar duzu</string>
   <string name="telephony_optional_permission_explanation">Telefono zenbakiaren ordez kontaktuaren izena ikusteko telefonoko kontaktuak atzitzeko baimena eman behar duzu</string>
   <string name="contacts_permission_explanation">Zure kontaktuen liburuak mahaigainarekin partekatzeko, kontaktuetara baimena eman behar duzu</string>
   <string name="select_ringtone">Hautatu dei-tonu bat</string>
@@ -188,11 +232,13 @@
   <string name="settings_icon_description">Ezarpenen ikonoa</string>
   <string name="presenter_fullscreen">Pantaila-betea</string>
   <string name="presenter_exit">Irten aurkezpenetik</string>
+  <string name="presenter_lock_tip">Zure gailua giltzatu dezakezu eta bolumen teklak botoi gisa erabili aurreko/hurrengo diapositibara joateko</string>
   <string name="add_command">Gehitu komando bat</string>
   <string name="addcommand_explanation">Ez dago komandorik erregistraturik</string>
   <string name="addcommand_explanation2">Komando berriak gehitu ditzakezu KDE Connect sistemaren ezarpenetan</string>
   <string name="add_command_description">Komandoak gehitu ditzakezu mahaigainean</string>
   <string name="pref_plugin_mprisreceiver">Euskarri-jotzailearen kontrola</string>
+  <string name="pref_plugin_mprisreceiver_desc">Kontrolatu zure telefonoaren euskarri-jotzaileak beste gailu batetik</string>
   <string name="notification_channel_default">Beste jakinarazpen batzuk</string>
   <string name="notification_channel_persistent">Adierazle iraunkorra</string>
   <string name="notification_channel_media_control">Euskarrien kontrola</string>
@@ -217,10 +263,17 @@
   <string name="settings_more_settings_title">Ezarpen gehiago</string>
   <string name="settings_more_settings_text">Gailu-bakoitzeko ezarpenak aurki daitezke \'Pluginen ezarpenak\' barruan.</string>
   <string name="setting_persistent_notification">Erakutsi jakinarazpen iraunkorra</string>
+  <string name="setting_persistent_notification_oreo">Jakinarazpen iraunkorra</string>
+  <string name="setting_persistent_notification_description">Sakatu gaitzeko/desgaitzeko jakinarazpen ezarpenetan</string>
   <string name="extra_options">Aukera gehigarriak</string>
   <string name="privacy_options">Pribatutasun aukerak</string>
   <string name="set_privacy_options">Ezarri zure pribatutasun aukerak</string>
   <string name="block_contents">Oztopatu jakinarazpenen edukiak</string>
   <string name="block_images">Oztopatu jakinarazpenen irudiak</string>
   <string name="notification_channel_receivenotification">Beste gailu batzuen jakinarazpenak</string>
+  <string name="take_picture">Abiarazi kamera</string>
+  <string name="plugin_photo_desc">Abiarazi kamerako aplikazioa argazkiak hartzeko eta transferitzeko</string>
+  <string name="no_app_for_opening">Ez da fitxategi hau irekitzeko aplikazio egokirik aurkitu</string>
+  <string name="remote_keyboard_service">KDE Connect urruneko teklatua</string>
+  <string name="presenter_pointer">Erakuslea</string>
 </resources>
