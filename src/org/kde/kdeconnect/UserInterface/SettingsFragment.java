@@ -3,10 +3,12 @@ package org.kde.kdeconnect.UserInterface;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
+import android.view.View;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -52,7 +54,12 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
             if (TextUtils.isEmpty(name)) {
                 if (getView() != null) {
-                    Snackbar.make(getView(), R.string.invalid_device_name, Snackbar.LENGTH_LONG).show();
+                    Snackbar snackbar = Snackbar.make(getView(), R.string.invalid_device_name, Snackbar.LENGTH_LONG);
+                    if (!prefs.getBoolean("darkTheme", false)) {
+                        // white color is set to the background of snackbar if dark mode is off
+                        snackbar.getView().setBackgroundColor(Color.WHITE);
+                    }
+                    snackbar.show();
                 }
                 return false;
             }
