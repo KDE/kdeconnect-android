@@ -7,6 +7,7 @@
     <style name="KdeConnectTheme.Dark.NoActionBar" parent="KdeConnectThemeBase.Dark.NoActionBar">
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:colorEdgeEffect">@color/darkGrey</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
     </style>
 
 </resources>
