@@ -114,8 +114,7 @@ public class SMSHelper {
         // By my understanding, "simple=true" means we can't support multi-target messages.
         // Go complain to Samsung about their annoying OS changes!
         if ("Samsung".equalsIgnoreCase(Build.MANUFACTURER)) {
-            Log.i("SMSHelper", "Samsung compatibility mode enabled. This may cause some features to not work properly.");
-            return Uri.parse("content://mms-sms/conversations?simple=true");
+            Log.i("SMSHelper", "This appears to be a Samsung device. This may cause some features to not work properly.");
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
