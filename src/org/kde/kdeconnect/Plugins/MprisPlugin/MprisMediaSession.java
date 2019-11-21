@@ -430,9 +430,12 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
                 playbackActions |= PlaybackStateCompat.ACTION_SKIP_TO_NEXT;
                 ++numActions;
             }
-            if (notificationPlayer.isSeekAllowed()) {
-                playbackActions |= PlaybackStateCompat.ACTION_SEEK_TO;
-                ++numActions;
+            // Documentation says that this was added in Lollipop (21) but we had crashes on Marshmallow (23)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                if (notificationPlayer.isSeekAllowed()) {
+                    playbackActions |= PlaybackStateCompat.ACTION_SEEK_TO;
+                    ++numActions;
+                }
             }
             playbackState.setActions(playbackActions);
             mediaSession.setPlaybackState(playbackState.build());
