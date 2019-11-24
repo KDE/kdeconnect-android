@@ -534,8 +534,10 @@ public class Device implements BaseLink.PacketReceiver {
         Log.i("KDE/Device", "removeLink: " + link.getLinkProvider().getName() + " -> " + getName() + " active links: " + links.size());
         if (links.isEmpty()) {
             reloadPluginsFromSettings();
-            packetQueue.disconnected();
-            packetQueue = null;
+            if (packetQueue != null) {
+                packetQueue.disconnected();
+                packetQueue = null;
+            }
         }
     }
 
