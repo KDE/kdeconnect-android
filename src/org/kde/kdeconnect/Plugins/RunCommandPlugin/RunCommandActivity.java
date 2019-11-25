@@ -107,7 +107,11 @@ public class RunCommandActivity extends AppCompatActivity {
 
         deviceId = getIntent().getStringExtra("deviceId");
 
-        boolean canAddCommands = BackgroundService.getInstance().getDevice(deviceId).getPlugin(RunCommandPlugin.class).canAddCommand();
+        boolean canAddCommands = false;
+        try {
+            canAddCommands = BackgroundService.getInstance().getDevice(deviceId).getPlugin(RunCommandPlugin.class).canAddCommand();
+        } catch (Exception ignore) {
+        }
 
         FloatingActionButton addCommandButton = findViewById(R.id.add_command_button);
         if (canAddCommands) {
