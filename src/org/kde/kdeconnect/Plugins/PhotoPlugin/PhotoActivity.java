@@ -19,13 +19,10 @@ import androidx.core.content.FileProvider;
 public class PhotoActivity extends AppCompatActivity {
 
     private Uri photoURI;
-    private PhotoPlugin plugin;
 
     @Override
     protected void onStart() {
         super.onStart();
-
-        BackgroundService.RunWithPlugin(this, getIntent().getStringExtra("deviceId"), PhotoPlugin.class, plugin -> this.plugin = plugin);
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -61,12 +58,13 @@ public class PhotoActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == -1) {
-            plugin.sendPhoto(photoURI);
-        } else {
-            plugin.sendCancel();
-        }
+        BackgroundService.RunWithPlugin(this, getIntent().getStringExtra("deviceId"), PhotoPlugin.class, plugin -> {
+            if (resultCode == -1) {
+                plugin.sendPhoto(photoURI);
+            } else {
+                plugin.sendCancel();
+            }
+        });
         finish();
     }
 }
