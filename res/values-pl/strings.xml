@@ -127,9 +127,9 @@
     <item quantity="other"/>
   </plurals>
   <plurals name="sent_files_title">
-    <item quantity="one">Wyślij plik do %1$s</item>
-    <item quantity="few">Wyślij %2$d pliki do %1$s</item>
-    <item quantity="many">Wyślij %2$d plików do %1$s</item>
+    <item quantity="one">Wysłano plik do %1$s</item>
+    <item quantity="few">Wysłano %2$d pliki do %1$s</item>
+    <item quantity="many">Wysłano %2$d plików do %1$s</item>
     <item quantity="other"/>
   </plurals>
   <plurals name="send_files_fail_title">
@@ -213,7 +213,7 @@
   <string name="sftp_no_storage_locations_configured">Nie ustawiono miejsc w pamięci</string>
   <string name="sftp_saf_permission_explanation">Aby przeglądać pliki zdalnie, należy ustawić miejsca w pamięci</string>
   <string name="no_players_connected">Nie znaleziono żadnego odtwarzacza</string>
-  <string name="send_files">Wyślij pliki</string>
+  <string name="send_files">Wysyłanie plików</string>
   <string name="pairing_title">Urządzenia KDE Connect</string>
   <string name="pairing_description">Tu powinny pojawić się urządzenia podłączone do tej samej sieci i które także mają uruchomione KDE Connect.</string>
   <string name="device_rename_title">Zmień nazwę urządzenia</string>
@@ -223,7 +223,7 @@
   <string name="no_wifi">Brak połączenia z siecią Wi-Fi, więc może nie być widać urządzeń. Naciśnij tutaj, aby włączyć Wi-Fi.</string>
   <string name="no_file_browser">Nie wgrano żadnych przeglądarek plików.</string>
   <string name="pref_plugin_telepathy">Wysyłanie SMSów</string>
-  <string name="pref_plugin_telepathy_desc">Wysyła wiadomość tekstową z komputera</string>
+  <string name="pref_plugin_telepathy_desc">Wysyła wiadomości tekstowe z komputera</string>
   <string name="findmyphone_title">Poszukiwania telefonu</string>
   <string name="findmyphone_title_tablet">Poszukiwania tabletu</string>
   <string name="findmyphone_title_tv">Poszukiwania telewizora</string>
