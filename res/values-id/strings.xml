@@ -3,7 +3,7 @@
   <string name="kde_connect">KDE Connect</string>
   <string name="foreground_notification_no_devices">Belum terkoneksi ke perangkat apa pun</string>
   <string name="foreground_notification_devices">Terkoneksi ke: %s</string>
-  <string name="pref_plugin_telephony">Penotifikasi telepon</string>
+  <string name="pref_plugin_telephony">Penotifikasi ponsel</string>
   <string name="pref_plugin_telephony_desc">Kirim notifikasi untuk panggilan yang masuk</string>
   <string name="pref_plugin_battery">Laporan baterai</string>
   <string name="pref_plugin_battery_desc">Status baterai laporkan secara berkala</string>
@@ -12,14 +12,14 @@
   <string name="pref_plugin_clipboard">Sinkron clipboard</string>
   <string name="pref_plugin_clipboard_desc">Berbagi konten papan-klip</string>
   <string name="pref_plugin_mousepad">Input jarak jauh</string>
-  <string name="pref_plugin_mousepad_desc">Gunakan telepon atau tabletmu sebagai touchpad dan keyboard</string>
+  <string name="pref_plugin_mousepad_desc">Gunakan ponsel atau tabletmu sebagai touchpad dan keyboard</string>
   <string name="pref_plugin_presenter_desc">Gunakan perangkatmu untuk mengubah slide dalam sebuah presentasi</string>
   <string name="pref_plugin_remotekeyboard">Terima penekanan tuts jarak jauh</string>
   <string name="pref_plugin_remotekeyboard_desc">Terima peristiwa tekan-tuts dari perangkat jarak jauh</string>
   <string name="pref_plugin_mpris">Kendalikan multimedia</string>
   <string name="pref_plugin_mpris_desc">Menyediakan sebuah kendali jarak jauh untuk pemutar mediamu</string>
   <string name="pref_plugin_runcommand">Jalankan Perintah</string>
-  <string name="pref_plugin_runcommand_desc">Pemicu perintah jarak jauh dari telepon dan tablet-mu</string>
+  <string name="pref_plugin_runcommand_desc">Pemicu perintah jarak jauh dari ponsel dan tablet-mu</string>
   <string name="pref_plugin_contacts">Penyinkron Kontak</string>
   <string name="pref_plugin_contacts_desc">Bolehkan menyinkronkan buku kontak pada perangkat</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -160,7 +160,7 @@
   <string name="no_file_browser">Tidak adanya penelusur file yang terinstal.</string>
   <string name="pref_plugin_telepathy">Kirim SMS</string>
   <string name="pref_plugin_telepathy_desc">Kirim teks perpesanan dari desktopmu</string>
-  <string name="findmyphone_title">Temukan teleponku</string>
+  <string name="findmyphone_title">Temukan ponselku</string>
   <string name="findmyphone_title_tablet">Temukan tabletku</string>
   <string name="findmyphone_title_tv">Temukan TV-ku</string>
   <string name="findmyphone_description">Deringkan perangkat ini sehingga kamu bisa menemukannya</string>
@@ -173,7 +173,8 @@
   <string name="plugins_need_optional_permission">Beberapa plugin yang memiliki fitur dinonfungsikan karena kurangnya perizinan (ketuk untuk info selebihnya):</string>
   <string name="share_optional_permission_explanation">Untuk membagikan file antara teleponmu dan desktopmu kamu harus memberikan akses ke penyimpanan teleponmu</string>
   <string name="telepathy_permission_explanation">Untuk membaca dan menulis SMS dari desktopmu kamu harus memberikan perizinan untuk SMS</string>
-  <string name="telephony_optional_permission_explanation">Untuk melihat nama kontak alih-alih nomor telepon, kamu harus memberikan akses ke kontak telepon</string>
+  <string name="telephony_permission_explanation">Untuk melihat panggilan ponsel pada desktop kamu harus memberikan perizinan untuk log panggilan ponsel dan keadaan ponsel</string>
+  <string name="telephony_optional_permission_explanation">Untuk melihat nama kontak alih-alih nomor ponsel, kamu harus memberikan akses ke kontak ponsel</string>
   <string name="contacts_permission_explanation">Untuk membagikan buku kontak dengan desktopmu, kamu harus memberikan perizinan kontak</string>
   <string name="select_ringtone">Pilih sebuah ringtone</string>
   <string name="telephony_pref_blocked_title">Nomor yang diblokir</string>
@@ -186,4 +187,9 @@
   <string name="addcommand_explanation2">"Kamu bisa menambahkan perintah baru dalam System Settings KDE Connect "</string>
   <string name="add_command_description">Kamu bisa menambahkan perintah pada desktop</string>
   <string name="pref_plugin_mprisreceiver">Kendali Pemutar Media</string>
+  <string name="pref_plugin_mprisreceiver_desc">Kendalikan pemutar media ponselmu dari perangkat lainnya</string>
+  <string name="devices">Perangkat</string>
+  <string name="settings_rename">Nama perangkat</string>
+  <string name="settings_dark_mode">Tema gelap</string>
+  <string name="settings_more_settings_title">Pengaturan selebihnya</string>
 </resources>
