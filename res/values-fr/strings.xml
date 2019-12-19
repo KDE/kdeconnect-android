@@ -238,6 +238,7 @@
   <string name="addcommand_explanation2">Vous pouvez ajouter de nouvelles commandes dans la configuration système de KDE Connect</string>
   <string name="add_command_description">Vous pouvez ajouter des commandes sur votre ordinateur</string>
   <string name="pref_plugin_mprisreceiver">Contrôle du lecteur multimédia</string>
+  <string name="pref_plugin_mprisreceiver_desc">Contrôlez les lecteurs multimédia de votre téléphone depuis un autre appareil</string>
   <string name="notification_channel_default">Autres notifications</string>
   <string name="notification_channel_persistent">Indicateur persistant</string>
   <string name="notification_channel_media_control">Contrôle multimédia</string>
