@@ -22,6 +22,8 @@ package org.kde.kdeconnect.Helpers.SecurityHelpers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Base64;
@@ -57,6 +59,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Formatter;
+import java.util.Locale;
 
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
@@ -115,6 +118,10 @@ public class SslHelper {
         if (needsToGenerateCertificate) {
             Log.i("KDE/SslHelper", "Generating a certificate");
             try {
+                //Fix for https://issuetracker.google.com/issues/37095309
+                Locale initialLocale = Locale.getDefault();
+                setLocale(Locale.ENGLISH, context);
+
                 X500NameBuilder nameBuilder = new X500NameBuilder(BCStyle.INSTANCE);
                 nameBuilder.addRDN(BCStyle.CN, deviceId);
                 nameBuilder.addRDN(BCStyle.OU, "KDE Connect");
@@ -138,10 +145,20 @@ public class SslHelper {
                 SharedPreferences.Editor edit = settings.edit();
                 edit.putString("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
                 edit.apply();
+
+                setLocale(initialLocale, context);
             } catch (Exception e) {
                 Log.e("KDE/initialiseCert", "Exception", e);
             }
         }
+    }
+
+    private static void setLocale(Locale locale, Context context) {
+        Locale.setDefault(locale);
+        Resources resources = context.getResources();
+        Configuration config = resources.getConfiguration();
+        config.locale = locale;
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
     }
 
     public static boolean isCertificateStored(Context context, String deviceId) {
