@@ -122,8 +122,8 @@
   <string name="show_keyboard">顯示鍵盤</string>
   <string name="device_not_paired">裝置未配對</string>
   <string name="request_pairing">請求配對</string>
-  <string name="pairing_accept">同意</string>
-  <string name="pairing_reject">回絕</string>
+  <string name="pairing_accept">接受</string>
+  <string name="pairing_reject">拒絕</string>
   <string name="settings">設定</string>
   <string name="mpris_play">播放</string>
   <string name="mpris_pause">暫停</string>
