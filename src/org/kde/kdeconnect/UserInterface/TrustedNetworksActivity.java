@@ -1,6 +1,7 @@
 package org.kde.kdeconnect.UserInterface;
 
 import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,6 +26,20 @@ public class TrustedNetworksActivity extends AppCompatActivity {
     private ListView trustedNetworksView;
     private CheckBox allowAllCheckBox;
     private TrustedNetworkHelper trustedNetworkHelper;
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        boolean grantedPermission = false;
+        for (int result : grantResults) {
+            if (result == PackageManager.PERMISSION_GRANTED) {
+                grantedPermission = true;
+                break;
+            }
+        }
+        if (grantedPermission) {
+            allowAllCheckBox.setChecked(false);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

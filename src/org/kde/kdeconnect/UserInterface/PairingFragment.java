@@ -190,10 +190,10 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
             NetworkInfo wifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
             //Check if we're on Wi-Fi. If we still see a device, don't do anything special
             if (someDevicesReachable || wifi.isConnected()) {
-                if (TrustedNetworkHelper.isNotTrustedNetwork(getContext())) {
-                    ((ListView) rootView.findViewById(R.id.devices_list)).addHeaderView(notTrustedText);
-                } else {
+                if (TrustedNetworkHelper.isTrustedNetwork(getContext())) {
                     ((ListView) rootView.findViewById(R.id.devices_list)).addHeaderView(headerText);
+                } else {
+                    ((ListView) rootView.findViewById(R.id.devices_list)).addHeaderView(notTrustedText);
                 }
             } else {
                 ((ListView) rootView.findViewById(R.id.devices_list)).addHeaderView(noWifiHeader);

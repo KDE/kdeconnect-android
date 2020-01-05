@@ -71,27 +71,23 @@ public class TrustedNetworkHelper {
 
     public String currentSSID() {
         WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        Log.d("Fou", "get");
         if (wifiManager == null) return "";
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         if (wifiInfo.getSupplicantState() != SupplicantState.COMPLETED) {
-            Log.d("Fou", "fooo");
             return "";
         }
         String ssid = wifiInfo.getSSID();
         if (ssid.equalsIgnoreCase(NOT_AVAILABLE_SSID_RESULT)){
-            Log.d("Fou", "navail");
             return "";
         }
-        Log.d("Fou", "retn");
         return ssid;
     }
 
-    public static boolean isNotTrustedNetwork(Context context) {
+    public static boolean isTrustedNetwork(Context context) {
         TrustedNetworkHelper trustedNetworkHelper = new TrustedNetworkHelper(context);
         if (trustedNetworkHelper.allAllowed()){
-            return false;
+            return true;
         }
-        return trustedNetworkHelper.read().indexOf(trustedNetworkHelper.currentSSID()) == -1;
+        return trustedNetworkHelper.read().contains(trustedNetworkHelper.currentSSID());
     }
 }

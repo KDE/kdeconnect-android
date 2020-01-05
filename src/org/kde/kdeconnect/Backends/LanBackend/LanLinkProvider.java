@@ -118,11 +118,6 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     //I've received their broadcast and should connect to their TCP socket and send my identity.
     private void udpPacketReceived(DatagramPacket packet) {
 
-        if (TrustedNetworkHelper.isNotTrustedNetwork(context)) {
-            Log.w("LanLinkProvider", "Current WiFi isn't a Trusted Network");
-            return;
-        }
-
         final InetAddress address = packet.getAddress();
 
         try {
@@ -370,15 +365,19 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
         }
         lastBroadcast = System.currentTimeMillis();
 
-        if (TrustedNetworkHelper.isNotTrustedNetwork(context)) {
-            Log.w("LanLinkProvider", "Current WiFi isn't a Trusted Network");
-            return;
-        }
-
         new Thread(() -> {
             ArrayList<String> iplist = CustomDevicesActivity
                     .getCustomDeviceList(PreferenceManager.getDefaultSharedPreferences(context));
-            iplist.add("255.255.255.255"); //Default: broadcast.
+
+            if (TrustedNetworkHelper.isTrustedNetwork(context)) {
+                iplist.add("255.255.255.255"); //Default: broadcast.
+            } else {
+                Log.i("LanLinkProvider", "Current network isn't trusted, not broadcasting");
+            }
+
+            if (iplist.isEmpty()) {
+                return;
+            }
 
             NetworkPacket identity = NetworkPacket.createIdentityPacket(context);
             int port = (tcpServer == null || !tcpServer.isBound()) ? MIN_PORT : tcpServer.getLocalPort();
