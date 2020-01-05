@@ -18,6 +18,7 @@ public class NotificationHelper {
         public final static String MEDIA_CONTROL = "media_control";
         public final static String FILETRANSFER = "filetransfer";
         public final static String RECEIVENOTIFICATION = "receive";
+        public final static String HIGHPRIORITY = "highpriority";
     }
 
     public static void notifyCompat(NotificationManager notificationManager, int notificationId, Notification notification) {
@@ -80,6 +81,8 @@ public class NotificationHelper {
                 NotificationManager.IMPORTANCE_DEFAULT)
         );
 
+        NotificationChannel highPriority = new NotificationChannel(Channels.HIGHPRIORITY, context.getString(R.string.notification_channel_high_priority), NotificationManager.IMPORTANCE_HIGH);
+        manager.createNotificationChannel(highPriority);
     }
 
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.kde.kdeconnect_tp"
     android:versionCode="11350"
     android:versionName="1.13.5">
@@ -33,6 +34,7 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
 
     <application
         android:icon="@drawable/icon"
@@ -40,7 +42,8 @@
         android:supportsRtl="true"
         android:allowBackup="false"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:theme="@style/KdeConnectTheme">
+        android:theme="@style/KdeConnectTheme"
+        android:name="org.kde.kdeconnect.MyApplication">
         <service
             android:name="org.kde.kdeconnect.BackgroundService"
             android:enabled="true" />
@@ -118,6 +121,12 @@
             android:excludeFromRecents="true"
             android:label="@string/findmyphone_title"
             android:launchMode="singleInstance" />
+
+        <receiver android:name="org.kde.kdeconnect.Plugins.FindMyPhonePlugin.FindMyPhoneReceiver">
+            <intent-filter>
+                <action android:name="org.kde.kdeconnect.Plugins.FindMyPhonePlugin.foundIt" />
+            </intent-filter>
+        </receiver>
 
         <!-- Plugin-related activities and services -->
 

@@ -6,7 +6,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.2'
+        classpath 'com.android.tools.build:gradle:3.5.3'
     }
 }
 
@@ -82,6 +82,9 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.preference:preference:1.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.1.0'
+    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.1.0'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.jakewharton:disklrucache:2.0.2' //For caching album art bitmaps
     implementation 'com.jaredrummler:android-device-names:1.1.9' //To get a human-friendly device name

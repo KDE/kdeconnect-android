@@ -264,7 +264,7 @@
     <string name="findmyphone_title_tablet">Find my tablet</string>
     <string name="findmyphone_title_tv">Find my TV</string>
     <string name="findmyphone_description">Rings this device so you can find it</string>
-    <string name="findmyphone_found">Found</string>
+    <string name="findmyphone_found">Found it</string>
 
     <string name="open">Open</string>
     <string name="close">Close</string>
@@ -300,6 +300,7 @@
     <string name="notification_channel_persistent">Persistent indicator</string>
     <string name="notification_channel_media_control">Media control</string>
     <string name="notification_channel_filetransfer">File transfer</string>
+    <string name="notification_channel_high_priority">High priority</string>
 
     <string name="mpris_stop">Stop the current player</string>
     <string name="copy_url_to_clipboard">Copy URL to clipboard</string>

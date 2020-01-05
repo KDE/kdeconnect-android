@@ -19,47 +19,37 @@
  */
 package org.kde.kdeconnect.Plugins.FindMyPhonePlugin;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 
-public class FindMyPhoneActivity extends Activity {
+public class FindMyPhoneActivity extends AppCompatActivity {
+    static final String EXTRA_DEVICE_ID = "deviceId";
 
-    private MediaPlayer mediaPlayer;
-    private int previousVolume;
-    private AudioManager audioManager;
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-
-        if (mediaPlayer != null) {
-            // If this activity was already open and we received the ring packet again, just finish it
-            finish();
-        }
-        // otherwise the activity will become active again
-    }
+    private String deviceId;
+    private FindMyPhonePlugin plugin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         ThemeUtil.setUserPreferredTheme(this);
         setContentView(R.layout.activity_find_my_phone);
 
-        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        if (!getIntent().hasExtra(EXTRA_DEVICE_ID)) {
+            Log.e("FindMyPhoneActivity", "You must include the deviceId for which this activity is started as an intent EXTRA");
+            finish();
+        }
+
+        deviceId = getIntent().getStringExtra(EXTRA_DEVICE_ID);
+        plugin = BackgroundService.getInstance().getDevice(deviceId).getPlugin(FindMyPhonePlugin.class);
 
         Window window = this.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD |
@@ -72,42 +62,19 @@ public class FindMyPhoneActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        try {
-            // Make sure we are heard even when the phone is silent, restore original volume later
-            previousVolume = audioManager.getStreamVolume(AudioManager.STREAM_ALARM);
-            audioManager.setStreamVolume(AudioManager.STREAM_ALARM, audioManager.getStreamMaxVolume(AudioManager.STREAM_ALARM), 0);
-
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            Uri ringtone;
-            String ringtoneString = prefs.getString(getString(R.string.findmyphone_preference_key_ringtone), "");
-            if (ringtoneString.isEmpty()) {
-                ringtone = Settings.System.DEFAULT_RINGTONE_URI;
-            } else {
-                ringtone = Uri.parse(ringtoneString);
-            }
-
-            mediaPlayer = new MediaPlayer();
-            mediaPlayer.setDataSource(this, ringtone);
-            mediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
-            mediaPlayer.setLooping(true);
-            mediaPlayer.prepare();
-            mediaPlayer.start();
-
-        } catch (Exception e) {
-            Log.e("FindMyPhoneActivity", "Exception", e);
-        }
-
+        /*
+           For whatever reason when Android launches this activity as a SystemAlertWindow it calls:
+           onCreate(), onStart(), onResume(), onStop(), onStart(), onResume().
+           When using BackgroundService.RunWithPlugin we get into concurrency problems and sometimes no sound will be played
+        */
+        plugin.startPlaying();
+        plugin.hideNotification();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
 
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
-        }
-        audioManager.setStreamVolume(AudioManager.STREAM_ALARM, previousVolume, 0);
+        plugin.stopPlaying();
     }
-
 }
