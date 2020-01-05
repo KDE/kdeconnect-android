@@ -238,7 +238,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         np.set("actions", extractActions(notification, key));
 
         np.set("id", key);
-        np.set("silent", (notification.flags & NotificationCompat.FLAG_ONLY_ALERT_ONCE) != 0);
+        np.set("onlyOnce", (notification.flags & NotificationCompat.FLAG_ONLY_ALERT_ONCE) != 0);
         np.set("isClearable", statusBarNotification.isClearable());
         np.set("appName", appName == null ? packageName : appName);
         np.set("time", Long.toString(statusBarNotification.getPostTime()));
