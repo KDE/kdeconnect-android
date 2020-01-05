@@ -33,6 +33,7 @@ import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Helpers.StringsHelper;
+import org.kde.kdeconnect.Helpers.TrustedNetworkHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.UserInterface.CustomDevicesActivity;
 
@@ -367,7 +368,16 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
         new Thread(() -> {
             ArrayList<String> iplist = CustomDevicesActivity
                     .getCustomDeviceList(PreferenceManager.getDefaultSharedPreferences(context));
-            iplist.add("255.255.255.255"); //Default: broadcast.
+
+            if (TrustedNetworkHelper.isTrustedNetwork(context)) {
+                iplist.add("255.255.255.255"); //Default: broadcast.
+            } else {
+                Log.i("LanLinkProvider", "Current network isn't trusted, not broadcasting");
+            }
+
+            if (iplist.isEmpty()) {
+                return;
+            }
 
             NetworkPacket identity = NetworkPacket.createIdentityPacket(context);
             int port = (tcpServer == null || !tcpServer.isBound()) ? MIN_PORT : tcpServer.getLocalPort();
