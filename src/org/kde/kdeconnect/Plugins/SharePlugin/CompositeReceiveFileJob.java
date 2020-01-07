@@ -352,6 +352,11 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
             intent.setDataAndType(fileDocument.getUri(), mimeType);
         }
 
+        // Open files for KDE Itinerary explicitly because Android's activity resolution sucks
+        if (fileDocument.getName().endsWith(".itinerary")) {
+            intent.setClassName("org.kde.itinerary", "org.kde.itinerary.Activity");
+        }
+
         getDevice().getContext().startActivity(intent);
     }
 }
