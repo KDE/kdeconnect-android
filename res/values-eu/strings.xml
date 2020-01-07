@@ -212,7 +212,6 @@
   <string name="findmyphone_title_tablet">Bilatu nire tableta</string>
   <string name="findmyphone_title_tv">Aurkitu nire TB</string>
   <string name="findmyphone_description">Gailuaren dei-doinua jotzen du aurki dezazun</string>
-  <string name="findmyphone_found">Aurkituta</string>
   <string name="open">Ireki</string>
   <string name="close">Itxi</string>
   <string name="plugins_need_permission">Plugin batzuek jarduteko baimenak behar dituzte (tak egin informazio gehiagorako):</string>

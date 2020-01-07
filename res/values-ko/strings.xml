@@ -204,7 +204,6 @@
   <string name="findmyphone_title_tablet">내 태블릿 찾기</string>
   <string name="findmyphone_title_tv">내 TV 찾기</string>
   <string name="findmyphone_description">이 장치에서 소리를 울려서 찾는 데 도움을 줍니다</string>
-  <string name="findmyphone_found">찾았음</string>
   <string name="open">열기</string>
   <string name="close">닫기</string>
   <string name="plugins_need_permission">권한이 필요한 플러그인(정보를 보려면 누르기):</string>

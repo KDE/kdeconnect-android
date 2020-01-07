@@ -212,7 +212,6 @@
   <string name="findmyphone_title_tablet">Descobrir o meu \'tablet\'</string>
   <string name="findmyphone_title_tv">Descobrir a minha TV</string>
   <string name="findmyphone_description">Toca este dispositivo para que o possa encontrar</string>
-  <string name="findmyphone_found">Encontrado</string>
   <string name="open">Abrir</string>
   <string name="close">Fechar</string>
   <string name="plugins_need_permission">Alguns \'plugins\' precisam de permissões para funcionar (toque para mais informações):</string>

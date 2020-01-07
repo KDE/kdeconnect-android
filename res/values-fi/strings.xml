@@ -211,7 +211,6 @@
   <string name="findmyphone_title_tablet">Löydä tablettini</string>
   <string name="findmyphone_title_tv">Etsi televeisioni</string>
   <string name="findmyphone_description">Laittaa laitteen soimaan, jotta voit löytää sen.</string>
-  <string name="findmyphone_found">Löytyi</string>
   <string name="open">Avaa</string>
   <string name="close">Sulje</string>
   <string name="plugins_need_permission">Jotkin liitännäiset vaativat toimiakseen lisäkäyttöoikeuksia (lisätietoa napsauttamalla):</string>

@@ -204,7 +204,6 @@
   <string name="findmyphone_title_tablet">タブレットを捜索</string>
   <string name="findmyphone_title_tv">TV を捜索</string>
   <string name="findmyphone_description">このデバイスを鳴らすことで捜索できます</string>
-  <string name="findmyphone_found">発見</string>
   <string name="open">開く</string>
   <string name="close">閉じる</string>
   <string name="plugins_need_permission">いくつかのプラグインが機能するには権限が必要です (タップして詳細情報を表示):</string>

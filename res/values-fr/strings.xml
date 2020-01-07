@@ -212,7 +212,6 @@
   <string name="findmyphone_title_tablet">Trouver ma tablette</string>
   <string name="findmyphone_title_tv">Trouver ma télévision</string>
   <string name="findmyphone_description">Fait sonner le périphérique pour vous aider à le retrouver</string>
-  <string name="findmyphone_found">Trouvé</string>
   <string name="open">Ouvrir</string>
   <string name="close">Fermer</string>
   <string name="plugins_need_permission">Certains modules externes nécessitent des permissions pour fonctionner (tapez pour plus d\'informations) :</string>

@@ -205,6 +205,7 @@
   <string name="refresh">Värskenda</string>
   <string name="unreachable_description">See paardunud seade pole saadaval. Kontrolli, kas see on ikka ühendatud sinuga samasse võrku.</string>
   <string name="no_wifi">Sul puudub ühendus Wi-Fi võrguga, mistõttu sa ei näe ühtegi seadet. Klõpsa siia Wi-Fi sisselülitamiseks.</string>
+  <string name="on_non_trusted_message">See ei ole usaldusväärne võrk: automaatne tuvastamine on keelatud.</string>
   <string name="no_file_browser">Ühtegi failisirvijat pole paigaldatud</string>
   <string name="pref_plugin_telepathy">Saada SMS</string>
   <string name="pref_plugin_telepathy_desc">Tekstisõnumite saatmine oma töölaualt</string>
@@ -243,6 +244,7 @@
   <string name="notification_channel_persistent">Püsiindikaator</string>
   <string name="notification_channel_media_control">Meedia juhtimine</string>
   <string name="notification_channel_filetransfer">Failiülekanne</string>
+  <string name="notification_channel_high_priority">Kõrge prioriteediga</string>
   <string name="mpris_stop">Peata aktiivne mängija</string>
   <string name="copy_url_to_clipboard">Kopeeri URL lõikepuhvrisse</string>
   <string name="clipboard_toast">Kopeeriti lõikepuhvrisse</string>
@@ -276,4 +278,11 @@
   <string name="no_app_for_opening">Selle faili avamiseks ei leitud sobivat rakendust</string>
   <string name="remote_keyboard_service">KDE Connecti kaugklaviatuur</string>
   <string name="presenter_pointer">Osutusseade</string>
+  <string name="trusted_networks">Usaldusväärsed võrgud</string>
+  <string name="trusted_networks_desc">Automaatset tuvastamist kasutatakse ainult tuntud võrkudes</string>
+  <string name="add_trusted_network">Lisa %1s</string>
+  <string name="empty_trusted_networks_list_text">Sa ei ole veel lisanud ühtegi usaldusväärset võrku</string>
+  <string name="allow_all_networks_text">Luba kõik</string>
+  <string name="location_permission_needed_title">Õigusenõue</string>
+  <string name="location_permission_needed_desc">Android nõuab asukohaõigust sinu WiFi-võrgu tuvastamiseks</string>
 </resources>

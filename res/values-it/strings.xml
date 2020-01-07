@@ -212,7 +212,6 @@
   <string name="findmyphone_title_tablet">Trova il mio tablet</string>
   <string name="findmyphone_title_tv">Trova il mio televisore</string>
   <string name="findmyphone_description">Fa squillare questo dispositivo per trovarlo</string>
-  <string name="findmyphone_found">Trovato</string>
   <string name="open">Apri</string>
   <string name="close">Chiudi</string>
   <string name="plugins_need_permission">Alcune estensioni hanno bisogno di permessi per funzionare (tocca per maggiori informazioni):</string>

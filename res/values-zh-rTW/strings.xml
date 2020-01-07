@@ -204,7 +204,6 @@
   <string name="findmyphone_title_tablet">尋找我的平板</string>
   <string name="findmyphone_title_tv">尋找我的電視</string>
   <string name="findmyphone_description">讓這個裝置發出聲響讓您能找到它</string>
-  <string name="findmyphone_found">找到</string>
   <string name="open">開啟</string>
   <string name="close">關閉</string>
   <string name="plugins_need_permission">部份的外掛程式需要權限才能運作（按一下以取得更多資訊）</string>

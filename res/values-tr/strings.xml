@@ -211,7 +211,6 @@
   <string name="findmyphone_title_tablet">Tabletimi bul</string>
   <string name="findmyphone_title_tv">TV\'mi bul</string>
   <string name="findmyphone_description">Aygıtı bulmak için onu çaldır</string>
-  <string name="findmyphone_found">Bulundu</string>
   <string name="open">Aç</string>
   <string name="close">Kapat</string>
   <string name="plugins_need_permission">Bazı Eklentiler çalışmak için izne ihtiyaç duyar (daha fazla bilgi için dokunun):</string>

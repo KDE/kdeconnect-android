@@ -227,7 +227,6 @@
   <string name="findmyphone_title_tablet">Поиск планшета</string>
   <string name="findmyphone_title_tv">Поиск телевизора</string>
   <string name="findmyphone_description">Подача звукового сигнала на устройстве, чтобы вы могли его найти</string>
-  <string name="findmyphone_found">Найден</string>
   <string name="open">Открыть</string>
   <string name="close">Закрыть</string>
   <string name="plugins_need_permission">Некоторым модулям нужны разрешения для работы (нажмите для просмотра подробностей):</string>

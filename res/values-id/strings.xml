@@ -164,7 +164,6 @@
   <string name="findmyphone_title_tablet">Temukan tabletku</string>
   <string name="findmyphone_title_tv">Temukan TV-ku</string>
   <string name="findmyphone_description">Deringkan perangkat ini sehingga kamu bisa menemukannya</string>
-  <string name="findmyphone_found">Ketemu</string>
   <string name="open">Buka</string>
   <string name="close">Tutup</string>
   <string name="plugins_need_permission">Beberapa plugin perlu perizinan untuk kerja (ketuk untuk info selebihnya):</string>

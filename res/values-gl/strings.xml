@@ -212,7 +212,6 @@
   <string name="findmyphone_title_tablet">Atopar a tableta</string>
   <string name="findmyphone_title_tv">Atopar o meu televisor</string>
   <string name="findmyphone_description">Reproduce un son de chamada no dispositivo para que poida atopalo.</string>
-  <string name="findmyphone_found">Atopado</string>
   <string name="open">Abrir</string>
   <string name="close">Pechar</string>
   <string name="plugins_need_permission">Algúns complementos necesitan permisos para funcionar (toque para máis información):</string>

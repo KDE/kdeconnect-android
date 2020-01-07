@@ -205,6 +205,7 @@
   <string name="refresh">Uppdatera</string>
   <string name="unreachable_description">Den här ihopparade apparaten kan inte nås. Försäkra dig om att den är ansluten till samma nätverk.</string>
   <string name="no_wifi">Du är inte ansluten till ett WIFI-nätverk, så du kanske inte kan se alla apparater. Klicka här för att aktivera WIFI.</string>
+  <string name="on_non_trusted_message">Använder inte ett pålitligt nätverk: automatisk upptäckt är inaktiverad.</string>
   <string name="no_file_browser">Det finns inga filbläddrare installerade.</string>
   <string name="pref_plugin_telepathy">Skicka SMS</string>
   <string name="pref_plugin_telepathy_desc">Skicka textmeddelanden från skrivbordet</string>
@@ -243,6 +244,7 @@
   <string name="notification_channel_persistent">Permanent indikering</string>
   <string name="notification_channel_media_control">Kontroll av media</string>
   <string name="notification_channel_filetransfer">Filöverföring</string>
+  <string name="notification_channel_high_priority">Hög prioritet</string>
   <string name="mpris_stop">Stoppa aktuell spelare</string>
   <string name="copy_url_to_clipboard">Kopiera webbadress till klippbordet</string>
   <string name="clipboard_toast">Kopierad till klippbordet</string>
@@ -276,4 +278,11 @@
   <string name="no_app_for_opening">Inget lämpligt program hittades för att öppna filen</string>
   <string name="remote_keyboard_service">KDE-anslut fjärrtangentbord</string>
   <string name="presenter_pointer">Pekare</string>
+  <string name="trusted_networks">Pålitliga nätverk</string>
+  <string name="trusted_networks_desc">Begränsar automatisk upptäckt till kända nätverk</string>
+  <string name="add_trusted_network">Lägg till %1s</string>
+  <string name="empty_trusted_networks_list_text">Du har inte lagt till några pålitliga nätverk ännu</string>
+  <string name="allow_all_networks_text">Tillåt alla</string>
+  <string name="location_permission_needed_title">Rättighet krävs</string>
+  <string name="location_permission_needed_desc">Android kräver platsrättigheter för att identifiera WIFI-nätverk</string>
 </resources>

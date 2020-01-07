@@ -212,7 +212,6 @@
   <string name="findmyphone_title_tablet">Find my tablet</string>
   <string name="findmyphone_title_tv">Find my TV</string>
   <string name="findmyphone_description">Rings this device so you can find it</string>
-  <string name="findmyphone_found">Found</string>
   <string name="open">Open</string>
   <string name="close">Close</string>
   <string name="plugins_need_permission">Some Plugins need permissions to work (tap for more info):</string>

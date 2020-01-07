@@ -228,7 +228,6 @@
   <string name="findmyphone_title_tablet">Nájsť môj tablet</string>
   <string name="findmyphone_title_tv">Nájsť môj TV</string>
   <string name="findmyphone_description">Prezvoní vaše zariadenie, aby ste ho našli</string>
-  <string name="findmyphone_found">Nájdené</string>
   <string name="open">Otvoriť</string>
   <string name="close">Zavrieť</string>
   <string name="plugins_need_permission">Niektoré Pluginy potrebujú oprávnenia aby fungovali (ťuknite pre viac info):</string>

@@ -123,7 +123,6 @@
   <string name="findmyphone_title">جِد جهازي</string>
   <string name="findmyphone_title_tablet">جِد جهازي اللوحيّ</string>
   <string name="findmyphone_description">يرّن هذا الجهاز لتجده</string>
-  <string name="findmyphone_found">وُجد</string>
   <string name="open">افتح</string>
   <string name="close">أغلق</string>
 </resources>

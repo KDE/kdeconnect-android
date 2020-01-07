@@ -204,7 +204,6 @@
   <string name="findmyphone_title_tablet">找到我的平板电脑</string>
   <string name="findmyphone_title_tv">查找我的电视</string>
   <string name="findmyphone_description">让设备响铃从而找到它</string>
-  <string name="findmyphone_found">找到</string>
   <string name="open">打开</string>
   <string name="close">关闭</string>
   <string name="plugins_need_permission">某些插件需要权限才能工作 (点击以获取更多信息)：</string>

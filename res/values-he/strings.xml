@@ -133,7 +133,6 @@
   <string name="findmyphone_title">מצא את הפלאפון שלי</string>
   <string name="findmyphone_title_tablet">מצא את הטבלט שלי</string>
   <string name="findmyphone_description">מפעיל רעש במכשיר כדי שתוכל למצוא אותו.</string>
-  <string name="findmyphone_found">נמצא</string>
   <string name="open">פתח</string>
   <string name="close">סגור</string>
 </resources>

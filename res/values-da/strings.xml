@@ -133,7 +133,6 @@
   <string name="findmyphone_title">Find min telefon</string>
   <string name="findmyphone_title_tablet">Find min tablet</string>
   <string name="findmyphone_description">Ringer til denne enhed, så du kan finde den.</string>
-  <string name="findmyphone_found">Fundet</string>
   <string name="open">Åbn</string>
   <string name="close">Luk</string>
   <string name="plugins_need_permission">Nogle plugins kræver tilladelser for at virke (tap for mere info):</string>
