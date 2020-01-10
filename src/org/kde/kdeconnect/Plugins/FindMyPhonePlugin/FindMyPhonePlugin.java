@@ -35,6 +35,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
 import org.kde.kdeconnect.Helpers.DeviceHelper;
@@ -47,8 +48,6 @@ import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.IOException;
-
-import static android.content.Context.POWER_SERVICE;
 
 @PluginFactory.LoadablePlugin
 public class FindMyPhonePlugin extends Plugin {
@@ -85,7 +84,7 @@ public class FindMyPhonePlugin extends Plugin {
         notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationId = (int) System.currentTimeMillis();
         audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-        powerManager = (PowerManager) context.getSystemService(POWER_SERVICE);
+        powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Uri ringtone;
@@ -138,6 +137,7 @@ public class FindMyPhonePlugin extends Plugin {
         return true;
     }
 
+    @RequiresApi(16)
     private void showBroadcastNotification() {
         Intent intent = new Intent(context, FindMyPhoneReceiver.class);
         intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
