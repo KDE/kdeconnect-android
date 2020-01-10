@@ -172,7 +172,7 @@ public class FindMyPhonePlugin extends Plugin {
     }
 
     void startPlaying() {
-        if (!mediaPlayer.isPlaying()) {
+        if (mediaPlayer != null && !mediaPlayer.isPlaying()) {
             // Make sure we are heard even when the phone is silent, restore original volume later
             previousVolume = audioManager.getStreamVolume(AudioManager.STREAM_ALARM);
             audioManager.setStreamVolume(AudioManager.STREAM_ALARM, audioManager.getStreamMaxVolume(AudioManager.STREAM_ALARM), 0);
