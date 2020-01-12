@@ -13,7 +13,7 @@
   <string name="pref_plugin_clipboard_desc">Udostępnia zawartość schowka</string>
   <string name="pref_plugin_mousepad">Sterowanie z urządzenia przenośnego</string>
   <string name="pref_plugin_mousepad_desc">Telefon lub tablet służy jako gładzik i klawiatura</string>
-  <string name="pref_plugin_presenter">Sterowanie pokazem przeźroczy</string>
+  <string name="pref_plugin_presenter">Sterowanie prezentacją</string>
   <string name="pref_plugin_presenter_desc">Przełącza przeźrocza przy użyciu telefonu</string>
   <string name="pref_plugin_remotekeyboard">Odbieranie zdalnych naciśnięć klawiszy</string>
   <string name="pref_plugin_remotekeyboard_desc">Odbiera naciśnięcia klawiszy z innego urządzenia</string>

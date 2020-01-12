@@ -205,6 +205,7 @@
   <string name="refresh">Atualizar</string>
   <string name="unreachable_description">Este dispositivo emparelhado não está acessível. Certifique-se de que está conectado à mesma rede que você.</string>
   <string name="no_wifi">Você não está conectado a nenhuma rede Wi-Fi, então não conseguirá ver nenhum dispositivo. Clique aqui para ativar o Wi-Fi.</string>
+  <string name="on_non_trusted_message">Não é uma rede confiável: a descoberta automática está desativada.</string>
   <string name="no_file_browser">Não há gerenciadores de arquivos instalados.</string>
   <string name="pref_plugin_telepathy">Enviar SMS</string>
   <string name="pref_plugin_telepathy_desc">Envia mensagens de texto do seu Desktop</string>
@@ -212,6 +213,7 @@
   <string name="findmyphone_title_tablet">Encontrar meu tablet</string>
   <string name="findmyphone_title_tv">Encontrar minha TV</string>
   <string name="findmyphone_description">Faça este aparelho tocar para encontrá-lo</string>
+  <string name="findmyphone_found">Encontrado</string>
   <string name="open">Abrir</string>
   <string name="close">Fechar</string>
   <string name="plugins_need_permission">Alguns plugins precisam de permissões para funcionar (toque para mais informações):</string>
@@ -242,6 +244,7 @@
   <string name="notification_channel_persistent">Indicador persistente</string>
   <string name="notification_channel_media_control">Controle multimídia</string>
   <string name="notification_channel_filetransfer">Transferência de arquivo</string>
+  <string name="notification_channel_high_priority">Prioridade alta</string>
   <string name="mpris_stop">Parar o reprodutor atual</string>
   <string name="copy_url_to_clipboard">Copiar URL para a área de transferência</string>
   <string name="clipboard_toast">Copiado para a área de transferência</string>
@@ -275,4 +278,11 @@
   <string name="no_app_for_opening">Não foi encontrado nenhum aplicativo adequado para abrir este arquivo</string>
   <string name="remote_keyboard_service">Teclado Remoto do KDE Connect</string>
   <string name="presenter_pointer">Ponteiro</string>
+  <string name="trusted_networks">Redes confiáveis</string>
+  <string name="trusted_networks_desc">Restringir a descoberta automática a redes conhecidas</string>
+  <string name="add_trusted_network">Adicionar à %1s</string>
+  <string name="empty_trusted_networks_list_text">Você ainda não adicionou nenhuma rede confiável</string>
+  <string name="allow_all_networks_text">Permitir tudo</string>
+  <string name="location_permission_needed_title">É necessário ter permissão</string>
+  <string name="location_permission_needed_desc">O Android precisa da permissão de Localização para identificar a sua rede Wi-Fi</string>
 </resources>
