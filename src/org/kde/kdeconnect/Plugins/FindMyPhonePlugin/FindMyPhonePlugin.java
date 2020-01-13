@@ -57,7 +57,7 @@ public class FindMyPhonePlugin extends Plugin {
     private int notificationId;
     private AudioManager audioManager;
     private MediaPlayer mediaPlayer;
-    private int previousVolume;
+    private int previousVolume = -1;
     private PowerManager powerManager;
 
     @Override
@@ -112,7 +112,9 @@ public class FindMyPhonePlugin extends Plugin {
 
     @Override
     public void onDestroy() {
-        stopPlaying();
+        if (mediaPlayer.isPlaying()) {
+            stopPlaying();
+        }
         audioManager = null;
         mediaPlayer.release();
         mediaPlayer = null;
@@ -186,7 +188,9 @@ public class FindMyPhonePlugin extends Plugin {
     }
 
     void stopPlaying() {
-        audioManager.setStreamVolume(AudioManager.STREAM_ALARM, previousVolume, 0);
+        if (previousVolume != -1) {
+            audioManager.setStreamVolume(AudioManager.STREAM_ALARM, previousVolume, 0);
+        }
         mediaPlayer.stop();
         try {
             mediaPlayer.prepare();
