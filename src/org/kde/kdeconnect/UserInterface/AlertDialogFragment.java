@@ -78,9 +78,10 @@ public class AlertDialogFragment extends DialogFragment implements DialogInterfa
 
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext())
                 .setTitle(titleString)
-                .setPositiveButton(positiveButtonResId, this)
-                .setNegativeButton(negativeButtonResId, this);
-
+                .setPositiveButton(positiveButtonResId, this);
+        if (negativeButtonResId != 0) {
+                builder.setNegativeButton(negativeButtonResId, this);
+        }
         if (customViewResId != 0) {
             builder.setView(customViewResId);
         } else {
