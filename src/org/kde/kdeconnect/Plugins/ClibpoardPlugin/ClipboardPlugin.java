@@ -125,6 +125,9 @@ public class ClipboardPlugin extends Plugin {
 
     @Override
     public boolean onCreate() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            return false;
+        }
         ClipboardListener.instance(context).registerObserver(observer);
         sendConnectPacket();
         return true;
