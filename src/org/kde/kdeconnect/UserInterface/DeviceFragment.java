@@ -37,6 +37,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import org.kde.kdeconnect.BackgroundService;
@@ -324,13 +325,13 @@ public class DeviceFragment extends Fragment {
                                 pluginListItems.add(new PluginItem(p, v -> p.startMainActivity(mActivity)));
                             }
                             DeviceFragment.this.createPluginsList(device.getPluginsWithoutPermissions(), R.string.plugins_need_permission, (plugin) -> {
-                                AlertDialogFragment dialog = plugin.getPermissionExplanationDialog(MainActivity.RESULT_NEEDS_RELOAD);
+                                DialogFragment dialog = plugin.getPermissionExplanationDialog();
                                 if (dialog != null) {
                                     dialog.show(getChildFragmentManager(), null);
                                 }
                             });
                             DeviceFragment.this.createPluginsList(device.getPluginsWithoutOptionalPermissions(), R.string.plugins_need_optional_permission, (plugin) -> {
-                                AlertDialogFragment dialog = plugin.getOptionalPermissionExplanationDialog(MainActivity.RESULT_NEEDS_RELOAD);
+                                DialogFragment dialog = plugin.getOptionalPermissionExplanationDialog();
 
                                 if (dialog != null) {
                                     dialog.show(getChildFragmentManager(), null);

@@ -35,7 +35,7 @@ import android.view.inputmethod.InputConnection;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
-import org.kde.kdeconnect.UserInterface.AlertDialogFragment;
+import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.StartActivityAlertDialogFragment;
 import org.kde.kdeconnect_tp.R;
 
@@ -44,6 +44,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Pair;
+import androidx.fragment.app.DialogFragment;
 
 @PluginFactory.LoadablePlugin
 public class RemoteKeyboardPlugin extends Plugin {
@@ -403,7 +404,7 @@ public class RemoteKeyboardPlugin extends Plugin {
     }
 
     @Override
-    public AlertDialogFragment getPermissionExplanationDialog(int requestCode) {
+    public DialogFragment getPermissionExplanationDialog() {
         return new StartActivityAlertDialogFragment.Builder()
                 .setTitle(R.string.pref_plugin_remotekeyboard)
                 .setMessage(R.string.no_permissions_remotekeyboard)
@@ -411,7 +412,7 @@ public class RemoteKeyboardPlugin extends Plugin {
                 .setNegativeButton(R.string.cancel)
                 .setIntentAction(Settings.ACTION_INPUT_METHOD_SETTINGS)
                 .setStartForResult(true)
-                .setRequestCode(requestCode)
+                .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
                 .create();
     }
 }

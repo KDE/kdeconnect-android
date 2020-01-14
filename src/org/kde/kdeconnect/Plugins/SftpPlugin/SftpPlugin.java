@@ -96,7 +96,7 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
     }
 
     @Override
-    public AlertDialogFragment getOptionalPermissionExplanationDialog(int requestCode) {
+    public AlertDialogFragment getOptionalPermissionExplanationDialog() {
         return new DeviceSettingsAlertDialogFragment.Builder()
                 .setTitle(getDisplayName())
                 .setMessage(R.string.sftp_saf_permission_explanation)

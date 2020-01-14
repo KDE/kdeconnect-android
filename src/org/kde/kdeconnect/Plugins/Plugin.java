@@ -29,12 +29,14 @@ import android.os.Build;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.UserInterface.AlertDialogFragment;
+import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.PermissionsAlertDialogFragment;
 import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
 
 public abstract class Plugin {
     protected Device device;
@@ -207,14 +209,14 @@ public abstract class Plugin {
         return true;
     }
 
-    private PermissionsAlertDialogFragment requestPermissionDialog(final String[] permissions, @StringRes int reason, int requestCode) {
+    private PermissionsAlertDialogFragment requestPermissionDialog(final String[] permissions, @StringRes int reason) {
         return new PermissionsAlertDialogFragment.Builder()
                 .setTitle(getDisplayName())
                 .setMessage(reason)
                 .setPositiveButton(R.string.ok)
                 .setNegativeButton(R.string.cancel)
                 .setPermissions(permissions)
-                .setRequestCode(requestCode)
+                .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
                 .create();
     }
 
@@ -223,12 +225,12 @@ public abstract class Plugin {
      * the problem (and how to fix it, if possible) to the user.
      */
 
-    public AlertDialogFragment getPermissionExplanationDialog(int requestCode) {
-        return requestPermissionDialog(getRequiredPermissions(), permissionExplanation, requestCode);
+    public DialogFragment getPermissionExplanationDialog() {
+        return requestPermissionDialog(getRequiredPermissions(), permissionExplanation);
     }
 
-    public AlertDialogFragment getOptionalPermissionExplanationDialog(int requestCode) {
-        return requestPermissionDialog(getOptionalPermissions(), optionalPermissionExplanation, requestCode);
+    public AlertDialogFragment getOptionalPermissionExplanationDialog() {
+        return requestPermissionDialog(getOptionalPermissions(), optionalPermissionExplanation);
     }
 
     public boolean checkRequiredPermissions() {

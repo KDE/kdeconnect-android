@@ -35,7 +35,7 @@ import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationReceiver;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
-import org.kde.kdeconnect.UserInterface.AlertDialogFragment;
+import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.StartActivityAlertDialogFragment;
 import org.kde.kdeconnect_tp.R;
 
@@ -44,6 +44,7 @@ import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.fragment.app.DialogFragment;
 
 @PluginFactory.LoadablePlugin
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -245,7 +246,7 @@ public class MprisReceiverPlugin extends Plugin {
     }
 
     @Override
-    public AlertDialogFragment getPermissionExplanationDialog(int requestCode) {
+    public DialogFragment getPermissionExplanationDialog() {
         return new StartActivityAlertDialogFragment.Builder()
                 .setTitle(R.string.pref_plugin_mpris)
                 .setMessage(R.string.no_permission_mprisreceiver)
@@ -253,7 +254,7 @@ public class MprisReceiverPlugin extends Plugin {
                 .setNegativeButton(R.string.cancel)
                 .setIntentAction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")
                 .setStartForResult(true)
-                .setRequestCode(requestCode)
+                .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
                 .create();
     }
 
