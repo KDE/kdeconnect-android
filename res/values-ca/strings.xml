@@ -33,6 +33,7 @@
   <string name="pref_plugin_sharereceiver_desc">Comparteix els fitxers i els URL entre els dispositius</string>
   <string name="device_list_empty">No hi ha cap dispositiu</string>
   <string name="ok">D\'acord</string>
+  <string name="sad_ok">D\'acord :(</string>
   <string name="cancel">Cancel·la</string>
   <string name="open_settings">Obre l\'arranjament</string>
   <string name="no_permissions">Us caldrà concedir permís per accedir a les notificacions</string>
@@ -285,4 +286,5 @@
   <string name="allow_all_networks_text">Permet totes</string>
   <string name="location_permission_needed_title">Es requereix permís</string>
   <string name="location_permission_needed_desc">L\'Android requereix el permís d\'ubicació per identificar la xarxa WiFi</string>
+  <string name="clipboard_android_x_incompat">L\'Android 10 ha llevat l\'accés al porta-retalls a totes les aplicacions. Aquest connector estarà inhabilitat.</string>
 </resources>

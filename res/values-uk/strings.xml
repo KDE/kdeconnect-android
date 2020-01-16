@@ -33,6 +33,7 @@
   <string name="pref_plugin_sharereceiver_desc">Спільне використання файлів і адрес між пристроями</string>
   <string name="device_list_empty">Немає пристроїв</string>
   <string name="ok">Гаразд</string>
+  <string name="sad_ok">Гаразд :(</string>
   <string name="cancel">Скасувати</string>
   <string name="open_settings">Відкрити вікно параметрів</string>
   <string name="no_permissions">Вам слід надати доступ до сповіщень</string>
@@ -301,4 +302,5 @@
   <string name="allow_all_networks_text">Дозволити всі</string>
   <string name="location_permission_needed_title">Потрібні права доступу</string>
   <string name="location_permission_needed_desc">Android потрібні права доступу до даних місця перебування для ідентифікації вашої мережі WiFi</string>
+  <string name="clipboard_android_x_incompat">У Android 10 вилучено доступ до буфера даних для усіх програм. Цей додаток буде вимкнено.</string>
 </resources>

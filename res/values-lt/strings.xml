@@ -33,8 +33,9 @@
   <string name="pref_plugin_sharereceiver_desc">Bendrinti failus ir URL adresus tarp įrenginių</string>
   <string name="device_list_empty">Jokių įrenginių</string>
   <string name="ok">Gerai</string>
+  <string name="sad_ok">Gerai :(</string>
   <string name="cancel">Atsisakyti</string>
-  <string name="open_settings">Atverti nustatymus</string>
+  <string name="open_settings">Atverti nuostatas</string>
   <string name="no_permissions">Norėdami gauti prieigą prie pranešimų, turite suteikti leidimą</string>
   <string name="no_permission_mprisreceiver">Norėdami valdyti savo medijos leistuves, turite suteikti prieigą prie pranešimų</string>
   <string name="no_permissions_remotekeyboard">Norėdami gauti klavišų paspaudimus, turite aktyvuoti KDE Connect nuotolinę klaviatūrą</string>
@@ -74,7 +75,7 @@
   <string name="category_connected_devices">Prijungti įrenginiai</string>
   <string name="category_not_paired_devices">Prieinami įrenginiai</string>
   <string name="category_remembered_devices">Įsiminti įrenginiai</string>
-  <string name="device_menu_plugins">Priedo nuostatos</string>
+  <string name="device_menu_plugins">Papildinio nuostatos</string>
   <string name="device_menu_unpair">Panaikinti suporavimą</string>
   <string name="pair_new_device">Suporuoti naują įrenginį</string>
   <string name="unknown_device">Nežinomas įrenginys</string>
@@ -148,7 +149,7 @@
   <string name="request_pairing">Užklausti suporuoti</string>
   <string name="pairing_accept">Priimti</string>
   <string name="pairing_reject">Atmesti</string>
-  <string name="settings">Nustatyti</string>
+  <string name="settings">Nuostatos</string>
   <string name="mpris_play">Atkurti</string>
   <string name="mpris_pause">Pristabdyti</string>
   <string name="mpris_previous">Ankstesnis</string>
@@ -232,10 +233,10 @@
   <string name="findmyphone_found">Radau</string>
   <string name="open">Atverti</string>
   <string name="close">Užverti</string>
-  <string name="plugins_need_permission">Kai kurie priedai tam, kad veiktų, reikalauja leidimų (bakstelėkite išsamesnei informacijai):</string>
-  <string name="permission_explanation">Šis priedas tam, kad veiktų, reikalauja leidimų</string>
+  <string name="plugins_need_permission">Kai kurie papildiniai tam, kad veiktų, reikalauja leidimų (bakstelėkite išsamesnei informacijai):</string>
+  <string name="permission_explanation">Šis papildinys tam, kad veiktų, reikalauja leidimų</string>
   <string name="optional_permission_explanation">Norėdami įjungti visas funkcijas, turite suteikti papildomus leidimus</string>
-  <string name="plugins_need_optional_permission">Kai kurių priedų ypatybės, dėl leidimų trūkumo, buvo išjungtos (bakstelėkite išsamesnei informacijai):</string>
+  <string name="plugins_need_optional_permission">Kai kurių papildinių ypatybės, dėl leidimų trūkumo, buvo išjungtos (bakstelėkite išsamesnei informacijai):</string>
   <string name="share_optional_permission_explanation">Norėdami bendrinti failus tarp savo telefono ir savo darbalaukio, turite suteikti prieigą prie telefono saugyklos</string>
   <string name="telepathy_permission_explanation">Norėdami skaityti ir rašyti SMS žinutes iš savo darbalaukio, turite suteikti prieigą prie SMS žinučių</string>
   <string name="telephony_permission_explanation">Norėdami matyti telefono skambučius darbalaukyje, turite suteikti prieigą prie telefono skambučių žurnalo ir telefono būsenos</string>
@@ -245,14 +246,14 @@
   <string name="telephony_pref_blocked_title">Užblokuoti numeriai</string>
   <string name="telephony_pref_blocked_dialog_desc">Nerodyti skambučių ir SMS žinučių iš šių numerių. Nurodykite kiekvienoje eilutėje po vieną</string>
   <string name="mpris_coverart_description">Dabartinės įvairialypės terpės iliustracija</string>
-  <string name="device_icon_description">Įrenginio ženkliukas</string>
-  <string name="settings_icon_description">Nustatymų ženkliukas</string>
+  <string name="device_icon_description">Įrenginio piktograma</string>
+  <string name="settings_icon_description">Nuostatų piktograma</string>
   <string name="presenter_fullscreen">Visas ekranas</string>
   <string name="presenter_exit">Išeiti iš pristatymo</string>
   <string name="presenter_lock_tip">Galite užrakinti savo įrenginį ir perėjimui prie kitos/ankstesnės skaidrės naudoti garsumo mygtukus</string>
   <string name="add_command">Pridėti komandą</string>
   <string name="addcommand_explanation">Nėra registruota jokių komandų</string>
-  <string name="addcommand_explanation2">Galite pridėti naujas komandas KDE Connect sistemos nustatymuose</string>
+  <string name="addcommand_explanation2">Galite pridėti naujas komandas KDE Connect sistemos nuostatose</string>
   <string name="add_command_description">Galite pridėti komandas darbalaukyje</string>
   <string name="pref_plugin_mprisreceiver">Medijos leistuvės valdymas</string>
   <string name="pref_plugin_mprisreceiver_desc">Valdyti savo telefono medijos leistuves iš kito įrenginio</string>
@@ -267,7 +268,7 @@
   <string name="runcommand_notreachable">Device is not reachable</string>
   <string name="runcommand_notpaired">Device is not paired</string>
   <string name="runcommand_nosuchdevice">Nėra tokio įrenginio</string>
-  <string name="runcommand_noruncommandplugin">Šis įrenginys neturi įjungto priedo Vykdyti komandą</string>
+  <string name="runcommand_noruncommandplugin">Šis įrenginys neturi įjungto papildinio Vykdyti komandą</string>
   <string name="pref_plugin_findremotedevice">Rasti nuotolinį įrenginį</string>
   <string name="pref_plugin_findremotedevice_desc">Skambinti į nuotolinį įrenginį</string>
   <string name="ring">Skambinti</string>
@@ -278,11 +279,11 @@
   <string name="devices">Įrenginiai</string>
   <string name="settings_rename">Įrenginio pavadinimas</string>
   <string name="settings_dark_mode">Tamsus apipavidalinimas</string>
-  <string name="settings_more_settings_title">Daugiau nustatymų</string>
-  <string name="settings_more_settings_text">Nustatymus kiekvienam atskiram įrenginiui galima rasti įrenginyje \"Priedo nustatymuose\".</string>
+  <string name="settings_more_settings_title">Daugiau nuostatų</string>
+  <string name="settings_more_settings_text">Nuostatas kiekvienam atskiram įrenginiui galima rasti įrenginyje \"Papildinio nuostatose\".</string>
   <string name="setting_persistent_notification">Rodyti pastovų pranešimą</string>
   <string name="setting_persistent_notification_oreo">Pastovus pranešimas</string>
-  <string name="setting_persistent_notification_description">Bakstelėkite, norėdami įjungti/išjungti Pranešimų nustatymuose</string>
+  <string name="setting_persistent_notification_description">Bakstelėkite, norėdami įjungti/išjungti Pranešimų nuostatose</string>
   <string name="extra_options">Papildomos parinktys</string>
   <string name="privacy_options">Privatumo parinktys</string>
   <string name="set_privacy_options">Nustatyti savo privatumo parinktis</string>
@@ -301,4 +302,5 @@
   <string name="allow_all_networks_text">Leisti visus</string>
   <string name="location_permission_needed_title">Reikalingas leidimas</string>
   <string name="location_permission_needed_desc">Android reikalauja Vietos leidimo, kad atpažintų jūsų belaidį (WiFi) tinklą</string>
+  <string name="clipboard_android_x_incompat">Android 10 pašalino iškarpinės prieigą prie visų programėlių. Šis papildinys bus išjungtas.</string>
 </resources>
