@@ -289,4 +289,7 @@
   <string name="no_app_for_opening">Для этого файла нет приложений, способных его открыть</string>
   <string name="remote_keyboard_service">Удалённая клавиатура KDE Connect</string>
   <string name="presenter_pointer">Указатель</string>
+  <string name="mpris_open_url">Открыть URL</string>
+  <string name="cant_open_url">Не удалось открыть URL</string>
+  <string name="cant_format_seek_uri">Не удалось задать позицию в URL</string>
 </resources>

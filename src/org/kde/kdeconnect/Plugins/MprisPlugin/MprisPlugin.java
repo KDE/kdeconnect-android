@@ -20,6 +20,7 @@
 
 package org.kde.kdeconnect.Plugins.MprisPlugin;
 
+import android.annotation.NonNull;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -53,6 +54,7 @@ public class MprisPlugin extends Plugin {
         private String artist = "";
         private String album = "";
         private String albumArtUrl = "";
+        private String url = "";
         private int volume = 50;
         private long length = -1;
         private long lastPosition = 0;
@@ -134,6 +136,11 @@ public class MprisPlugin extends Plugin {
          */
         public Bitmap getAlbumArt() {
             return AlbumArtCache.getAlbumArt(albumArtUrl, MprisPlugin.this, player);
+        }
+
+        @NonNull
+        public String getUrl() {
+            return url;
         }
 
         public boolean isSetVolumeAllowed() {
@@ -282,6 +289,7 @@ public class MprisPlugin extends Plugin {
                 playerStatus.title = np.getString("title", playerStatus.title);
                 playerStatus.artist = np.getString("artist", playerStatus.artist);
                 playerStatus.album = np.getString("album", playerStatus.album);
+                playerStatus.url = np.getString("url", playerStatus.url);
                 playerStatus.volume = np.getInt("volume", playerStatus.volume);
                 playerStatus.length = np.getLong("length", playerStatus.length);
                 if (np.has("pos")) {
