@@ -297,7 +297,7 @@ public class MprisActivity extends AppCompatActivity {
         volumeLayout.setVisibility(playerStatus.isSetVolumeAllowed() ? View.VISIBLE : View.GONE);
         rewButton.setVisibility(playerStatus.isSeekAllowed() ? View.VISIBLE : View.GONE);
         ffButton.setVisibility(playerStatus.isSeekAllowed() ? View.VISIBLE : View.GONE);
-        openUrlButton.setVisibility(playerStatus.getUrl() != null ? View.VISIBLE : View.GONE);
+        openUrlButton.setVisibility("".equals(playerStatus.getUrl()) ? View.GONE : View.VISIBLE);
 
         //Show and hide previous/next buttons simultaneously
         if (playerStatus.isGoPreviousAllowed() || playerStatus.isGoNextAllowed()) {
