@@ -46,6 +46,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -536,6 +537,8 @@ public class SMSHelper {
      * Get the address(es) of an MMS message
      * Original implementation from https://stackoverflow.com/a/6446831/3723163
      *
+     * The message at the first position of the list should be the sender of the message
+     *
      * @param messageID ID of this message in the MMS database for looking up the remaining info
      * @param userPhoneNumbers List of phone numbers which should be removed from the list of addresses
      */
@@ -555,7 +558,8 @@ public class SMSHelper {
         String selection = Telephony.Mms.Addr.MSG_ID + " = ?";
         String[] selectionArgs = {messageID.toString()};
 
-        List<Address> addresses = new ArrayList<>();
+        // Keep an ordered set rather than a list because Android sometimes throws duplicates at us
+        Set<Address> addresses = new LinkedHashSet<>();
 
         try (Cursor addrCursor = context.getContentResolver().query(
                 uri,
@@ -703,6 +707,11 @@ public class SMSHelper {
                 return PhoneNumberUtils.compare(this.address, (String)other);
             }
             return false;
+        }
+
+        @Override
+        public int hashCode() {
+            return this.address.hashCode();
         }
     }
 
