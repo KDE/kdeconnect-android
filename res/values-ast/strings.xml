@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
-  <string name="foreground_notification_no_devices">Nun se coneutó con dengún preséu</string>
+  <string name="foreground_notification_no_devices">Nun se coneutó con nengún preséu</string>
   <string name="foreground_notification_devices">Coneutóse con %s</string>
   <string name="pref_plugin_telephony">Avisador telefónicu</string>
   <string name="pref_plugin_telephony_desc">Unvia avisos de les llamaes entrantes</string>
@@ -167,8 +167,8 @@
   <string name="device_rename_confirm">Renomar</string>
   <string name="refresh">Refrescar</string>
   <string name="unreachable_description">Esti preséu empareyáu nun ye algamable. Asegúrate de que ta coneutáu a la mesma rede que tu.</string>
-  <string name="no_wifi">Nun tas coneutáu a una rede Wi-Fi polo que nun vas ser a ver dengún preséu. Calca equí p\'activar el Wi-Fi.</string>
-  <string name="no_file_browser">Nun hai dengún restolador de ficheros instaláu.</string>
+  <string name="no_wifi">Nun tas coneutáu a una rede Wi-Fi polo que nun vas ser a ver nengún preséu. Calca equí p\'activar el Wi-Fi.</string>
+  <string name="no_file_browser">Nun hai nengún restolador de ficheros instaláu.</string>
   <string name="pref_plugin_telepathy">Unviu de SMS</string>
   <string name="pref_plugin_telepathy_desc">Unvia SMS dende l\'ordenador</string>
   <string name="findmyphone_description">Fai qu\'esti preséu suene pa que pueas alcontralu</string>
@@ -213,6 +213,6 @@
   <string name="notification_channel_receivenotification">Avisos d\'otros preseos</string>
   <string name="take_picture">Llanzamientu de la cámara</string>
   <string name="plugin_photo_desc">Llanza l\'aplicación de la cámara p\'acenciellar la fechura y tresferencia de semeyes</string>
-  <string name="no_app_for_opening">Nun alcontró denguna aplicación afayadiza p\'abrir esti ficheru.</string>
+  <string name="no_app_for_opening">Nun alcontró nenguna aplicación afayadiza p\'abrir esti ficheru.</string>
   <string name="remote_keyboard_service">Tecláu remotu de KDE Connect</string>
 </resources>
