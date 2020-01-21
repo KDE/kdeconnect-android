@@ -33,6 +33,7 @@
   <string name="pref_plugin_sharereceiver_desc">Compartir archivos y URL entre dispositivos</string>
   <string name="device_list_empty">Ningún dispositivo</string>
   <string name="ok">Aceptar</string>
+  <string name="sad_ok">OK :(</string>
   <string name="cancel">Cancelar</string>
   <string name="open_settings">Abrir preferencias</string>
   <string name="no_permissions">Debe otorgar permisos para acceder a las notificaciones</string>
@@ -205,6 +206,7 @@
   <string name="refresh">Actualizar</string>
   <string name="unreachable_description">Este dispositivo vinculado no está disponible. Asegúrese que está conectado a su misma red.</string>
   <string name="no_wifi">No está conectado a una red Wi-Fi, por lo que puede que no vea ningún dispositivo. Pulse aquí para activar el Wi-Fi.</string>
+  <string name="on_non_trusted_message">No se encuentra en una red confiable: el auto-descubrimiento está desactivado.</string>
   <string name="no_file_browser">No hay navegadores de archivos instalados.</string>
   <string name="pref_plugin_telepathy">Enviar SMS</string>
   <string name="pref_plugin_telepathy_desc">Enviar mensajes de texto desde su escritorio</string>
@@ -212,6 +214,7 @@
   <string name="findmyphone_title_tablet">Encontrar mi tableta</string>
   <string name="findmyphone_title_tv">Encontrar mi TV</string>
   <string name="findmyphone_description">Hace sonar este dispositivo para que pueda encontrarlo</string>
+  <string name="findmyphone_found">Encontrado</string>
   <string name="open">Abrir</string>
   <string name="close">Cerrar</string>
   <string name="plugins_need_permission">Algunos complementos necesitan permisos para funcionar (pulse para más información):</string>
@@ -242,6 +245,7 @@
   <string name="notification_channel_persistent">Indicador persistente</string>
   <string name="notification_channel_media_control">Control multimedia</string>
   <string name="notification_channel_filetransfer">Transferencia de archivo</string>
+  <string name="notification_channel_high_priority">Alta prioridad</string>
   <string name="mpris_stop">Parar el reproductor actual</string>
   <string name="copy_url_to_clipboard">Copiar URL al portapapeles</string>
   <string name="clipboard_toast">Copiado en el portapapeles</string>
@@ -275,4 +279,12 @@
   <string name="no_app_for_opening">No se encontró ninguna aplicación adecuada para abrir este archivo</string>
   <string name="remote_keyboard_service">Teclado remoto de KDE Connect</string>
   <string name="presenter_pointer">Puntero</string>
+  <string name="trusted_networks">Redes confiables</string>
+  <string name="trusted_networks_desc">Restringir el auto-descubrimiento para redes conocidas</string>
+  <string name="add_trusted_network">Añadir %1s</string>
+  <string name="empty_trusted_networks_list_text">No ha añadido ninguna red confiable de momento</string>
+  <string name="allow_all_networks_text">Permitir todas</string>
+  <string name="location_permission_needed_title">Permisos requeridos</string>
+  <string name="location_permission_needed_desc">Android necesita el permiso de localización para identificar su red WiFi</string>
+  <string name="clipboard_android_x_incompat">Android 10 ha eliminado el acceso al portapapeles para todas las aplicaciones. Este complemento se desactivará.</string>
 </resources>
