@@ -33,6 +33,7 @@
   <string name="pref_plugin_sharereceiver_desc">장치끼리 파일과 URL 공유</string>
   <string name="device_list_empty">장치 없음</string>
   <string name="ok">확인</string>
+  <string name="sad_ok">확인 :(</string>
   <string name="cancel">취소</string>
   <string name="open_settings">설정 열기</string>
   <string name="no_permissions">알림 접근 권한이 필요합니다</string>
@@ -197,6 +198,7 @@
   <string name="refresh">새로 고침</string>
   <string name="unreachable_description">이 연결된 장치에 접근할 수 없습니다. 같은 네트워크에 있는지 확인하십시오.</string>
   <string name="no_wifi">Wi-Fi 네트워크에 연결된 것 같지 않습니다. 다른 장치를 볼 수 없습니다. 여기를 누르면 Wi-Fi를 활성화합니다.</string>
+  <string name="on_non_trusted_message">신뢰할 수 없는 네트워크: 자동 발견을 비활성화했습니다.</string>
   <string name="no_file_browser">설치된 파일 탐색기가 없습니다.</string>
   <string name="pref_plugin_telepathy">SMS 보내기</string>
   <string name="pref_plugin_telepathy_desc">데스크톱에서 문자 메시지 보내기</string>
@@ -204,6 +206,7 @@
   <string name="findmyphone_title_tablet">내 태블릿 찾기</string>
   <string name="findmyphone_title_tv">내 TV 찾기</string>
   <string name="findmyphone_description">이 장치에서 소리를 울려서 찾는 데 도움을 줍니다</string>
+  <string name="findmyphone_found">찾았음</string>
   <string name="open">열기</string>
   <string name="close">닫기</string>
   <string name="plugins_need_permission">권한이 필요한 플러그인(정보를 보려면 누르기):</string>
@@ -234,6 +237,7 @@
   <string name="notification_channel_persistent">항상 표시된 표시기</string>
   <string name="notification_channel_media_control">미디어 제어</string>
   <string name="notification_channel_filetransfer">파일 전송</string>
+  <string name="notification_channel_high_priority">높은 우선 순위</string>
   <string name="mpris_stop">현재 재생기 정지</string>
   <string name="copy_url_to_clipboard">클립보드로 URL 복사</string>
   <string name="clipboard_toast">클립보드로 복사됨</string>
@@ -267,4 +271,12 @@
   <string name="no_app_for_opening">이 파일을 열 수 있는 앱을 찾을 수 없음</string>
   <string name="remote_keyboard_service">KDE Connect 원격 키보드</string>
   <string name="presenter_pointer">포인터</string>
+  <string name="trusted_networks">신뢰할 수 있는 네트워크</string>
+  <string name="trusted_networks_desc">신뢰할 수 있는 네트워크에서만 자동 발견 사용</string>
+  <string name="add_trusted_network">%1s 추가</string>
+  <string name="empty_trusted_networks_list_text">신뢰할 수 있는 네트워크를 추가하지 않았습니다</string>
+  <string name="allow_all_networks_text">모두 허용</string>
+  <string name="location_permission_needed_title">권한이 필요함</string>
+  <string name="location_permission_needed_desc">안드로이드에서 Wi-Fi 네트워크를 식별하려면 위치 권한이 필요합니다</string>
+  <string name="clipboard_android_x_incompat">안드로이드 10부터는 앱에서 클립보드에 접근할 수 없습니다. 이 플러그인이 비활성화되었습니다.</string>
 </resources>
