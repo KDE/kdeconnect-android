@@ -212,6 +212,7 @@
   <string name="findmyphone_title_tablet">Mein Tablet suchen</string>
   <string name="findmyphone_title_tv">Meinen Fernseher suchen</string>
   <string name="findmyphone_description">Ruft dieses Gerät an, damit Sie es finden können</string>
+  <string name="findmyphone_found">Gefunden</string>
   <string name="open">Öffnen</string>
   <string name="close">Schließen</string>
   <string name="plugins_need_permission">Einige Module benötigen zusätzliche Berechtigungen, tippen Sie für weitere Details:</string>
@@ -242,6 +243,7 @@
   <string name="notification_channel_persistent">Dauerhafte Benachrichtigung</string>
   <string name="notification_channel_media_control">Medienkontrolle</string>
   <string name="notification_channel_filetransfer">Dateiübertragung</string>
+  <string name="notification_channel_high_priority">Hohe Priorität</string>
   <string name="mpris_stop">Die aktuelle Medienwiedergabe beenden</string>
   <string name="copy_url_to_clipboard">Adresse in die Zwischenablage kopieren</string>
   <string name="clipboard_toast">In die Zwischenablage kopiert</string>
@@ -275,4 +277,7 @@
   <string name="no_app_for_opening">Es wurde keine passende App zum Öffnen dieser Datei gefunden</string>
   <string name="remote_keyboard_service">Entfernte Tastatur für KDE-Connect</string>
   <string name="presenter_pointer">Laserpointer</string>
+  <string name="trusted_networks">Vertrauenswürdiges Netzwerk</string>
+  <string name="add_trusted_network">%1s hinzufügen</string>
+  <string name="location_permission_needed_title">Berechtigung erforderlich</string>
 </resources>
