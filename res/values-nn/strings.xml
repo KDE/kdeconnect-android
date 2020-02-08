@@ -212,7 +212,6 @@
   <string name="findmyphone_title_tablet">Finn nettbrettet mitt</string>
   <string name="findmyphone_title_tv">Finn TV-en min</string>
   <string name="findmyphone_description">Spel av lydsignal på eininga, slik at du lett kan finna ho</string>
-  <string name="findmyphone_found">Funnen</string>
   <string name="open">Opna</string>
   <string name="close">Lukk</string>
   <string name="plugins_need_permission">Nokre av tillegga treng utvida løyva for å fungera (trykk på dei for meir informasjon):</string>
