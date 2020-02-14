@@ -434,7 +434,6 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 if (notificationPlayer.isSeekAllowed()) {
                     playbackActions |= PlaybackStateCompat.ACTION_SEEK_TO;
-                    ++numActions;
                 }
             }
             playbackState.setActions(playbackActions);
