@@ -33,6 +33,7 @@
   <string name="pref_plugin_sharereceiver_desc">Del filer og nettadresser mellom einingar</string>
   <string name="device_list_empty">Ingen einingar</string>
   <string name="ok">OK</string>
+  <string name="sad_ok">OK :(</string>
   <string name="cancel">Avbryt</string>
   <string name="open_settings">Opna innstillingar</string>
   <string name="no_permissions">Du må gje tilgang til lesing av varslingar</string>
@@ -205,6 +206,7 @@
   <string name="refresh">Oppdater</string>
   <string name="unreachable_description">Får ikkje kontakt med den para eininga. Sjå til at ho er kopla til same nettverk.</string>
   <string name="no_wifi">Du er ikkje kopla til eit Wi-Fi-nettverk, så du vil ikkje kunna sjå nokon einingar. Trykk her for å slå på Wi-Fi.</string>
+  <string name="on_non_trusted_message">Ikkje på eit tiltrudd nettverk: autooppdaging er slått av.</string>
   <string name="no_file_browser">Ingen filhandsamarar er installerte.</string>
   <string name="pref_plugin_telepathy">Send SMS</string>
   <string name="pref_plugin_telepathy_desc">Send tekstmeldingar frå datamaskina</string>
@@ -212,6 +214,7 @@
   <string name="findmyphone_title_tablet">Finn nettbrettet mitt</string>
   <string name="findmyphone_title_tv">Finn TV-en min</string>
   <string name="findmyphone_description">Spel av lydsignal på eininga, slik at du lett kan finna ho</string>
+  <string name="findmyphone_found">Fann han</string>
   <string name="open">Opna</string>
   <string name="close">Lukk</string>
   <string name="plugins_need_permission">Nokre av tillegga treng utvida løyva for å fungera (trykk på dei for meir informasjon):</string>
@@ -242,6 +245,7 @@
   <string name="notification_channel_persistent">Evigvarande varslingar</string>
   <string name="notification_channel_media_control">Mediestyring</string>
   <string name="notification_channel_filetransfer">Filoverføring</string>
+  <string name="notification_channel_high_priority">Høg prioritet</string>
   <string name="mpris_stop">Stopp gjeldande avspelar</string>
   <string name="copy_url_to_clipboard">Kopier adresse til utklippstavla</string>
   <string name="clipboard_toast">Kopiert til utklippstavla</string>
@@ -275,4 +279,12 @@
   <string name="no_app_for_opening">Fann ikkje nokon app som kan opna denne fila</string>
   <string name="remote_keyboard_service">KDE Connect fjerntastatur</string>
   <string name="presenter_pointer">Peikar</string>
+  <string name="trusted_networks">Tiltrudde nettverk</string>
+  <string name="trusted_networks_desc">Avgrens autooppdaging til kjende nettverk</string>
+  <string name="add_trusted_network">Legg til %1s</string>
+  <string name="empty_trusted_networks_list_text">Du har ikkje lagt til eit tiltrudd nettverk enno</string>
+  <string name="allow_all_networks_text">Tillat alle</string>
+  <string name="location_permission_needed_title">Krev utvida løyve</string>
+  <string name="location_permission_needed_desc">Tilgang til geografisk plassering må vera påslått for identifisering av Wi-Fi-nettverket</string>
+  <string name="clipboard_android_x_incompat">Android 10 har fjerna tilgang til utklippstavla for alle program. Programtillegget vert derfor slått av.</string>
 </resources>
