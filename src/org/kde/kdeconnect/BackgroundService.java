@@ -15,8 +15,8 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
-*/
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 package org.kde.kdeconnect;
 
@@ -43,6 +43,8 @@ import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
+import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandActivity;
+import org.kde.kdeconnect.Plugins.SharePlugin.SendFileActivity;
 import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect_tp.R;
 
@@ -66,7 +68,7 @@ public class BackgroundService extends Service {
         void onDeviceListChanged();
     }
 
-    public interface PluginCallback<T extends Plugin>  {
+    public interface PluginCallback<T extends Plugin> {
         void run(T plugin);
     }
 
@@ -311,22 +313,35 @@ public class BackgroundService extends Service {
                 .setAutoCancel(false);
         notification.setGroup("BackgroundService");
 
-        ArrayList<String> connectedDevices = new ArrayList<>();
-        for (Device device : getDevices().values()) {
-            if (device.isReachable() && device.isPaired()) {
-                connectedDevices.add(device.getName());
-            }
-        }
-
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             //Pre-oreo, the notification will have an empty title line without this
             notification.setContentTitle(getString(R.string.kde_connect));
+        }
+
+        ArrayList<String> connectedDevices = new ArrayList<>();
+        ArrayList<String> deviceIds = new ArrayList<>();
+        for (Device device : getDevices().values()) {
+            if (device.isReachable() && device.isPaired()) {
+                deviceIds.add(device.getDeviceId());
+                connectedDevices.add(device.getName());
+            }
         }
 
         if (connectedDevices.isEmpty()) {
             notification.setContentText(getString(R.string.foreground_notification_no_devices));
         } else {
             notification.setContentText(getString(R.string.foreground_notification_devices, TextUtils.join(", ", connectedDevices)));
+            if (deviceIds.size() == 1) {
+                // Adding two action buttons only when there is a single device connected.
+                Intent sendFile = new Intent(this, SendFileActivity.class);
+                Intent runCommand = new Intent(this, RunCommandActivity.class);
+                sendFile.putExtra("deviceId", deviceIds.get(0));
+                runCommand.putExtra("deviceId", deviceIds.get(0));
+                PendingIntent sendPendingFile = PendingIntent.getActivity(this, 1, sendFile, PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent runPendingCommand = PendingIntent.getActivity(this, 2, runCommand, PendingIntent.FLAG_UPDATE_CURRENT);
+                notification.addAction(0, "Send Files", sendPendingFile)
+                        .addAction(0, "Run Commands", runPendingCommand);
+            }
         }
 
         return notification.build();
