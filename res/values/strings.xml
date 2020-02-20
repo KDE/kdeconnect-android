@@ -9,6 +9,8 @@
     <string name="kde_connect">KDE Connect</string>
     <string name="foreground_notification_no_devices">Not connected to any device</string>
     <string name="foreground_notification_devices">Connected to: %s</string>
+    <string name="foreground_notification_send_files">Send Files</string>
+    <string name="foreground_notification_run_commands">Run Commands</string>
     <string name="pref_plugin_telephony">Telephony notifier</string>
     <string name="pref_plugin_telephony_desc">Send notifications for incoming calls</string>
     <string name="pref_plugin_battery">Battery report</string>

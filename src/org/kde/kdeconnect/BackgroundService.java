@@ -339,8 +339,8 @@ public class BackgroundService extends Service {
                 runCommand.putExtra("deviceId", deviceIds.get(0));
                 PendingIntent sendPendingFile = PendingIntent.getActivity(this, 1, sendFile, PendingIntent.FLAG_UPDATE_CURRENT);
                 PendingIntent runPendingCommand = PendingIntent.getActivity(this, 2, runCommand, PendingIntent.FLAG_UPDATE_CURRENT);
-                notification.addAction(0, "Send Files", sendPendingFile)
-                        .addAction(0, "Run Commands", runPendingCommand);
+                notification.addAction(0, getString(R.string.foreground_notification_send_files), sendPendingFile)
+                        .addAction(0, getString(R.string.foreground_notification_run_commands), runPendingCommand);
             }
         }
 
