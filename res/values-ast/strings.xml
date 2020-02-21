@@ -19,6 +19,7 @@
   <string name="pref_plugin_runcommand_desc">Aiciona comandos remotos dende\'l preséu</string>
   <string name="pref_plugin_contacts">Sincronizador de contautos</string>
   <string name="pref_plugin_contacts_desc">Permite la sincronización de la llista telefónica del teléfonu</string>
+  <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Unviu y receición de pings</string>
   <string name="pref_plugin_notifications">Sincronización d\'avisos</string>
   <string name="pref_plugin_notifications_desc">Accede a los avisos n\'otros preseos</string>
@@ -128,7 +129,7 @@
     <item>2 minutos</item>
   </string-array>
   <string name="mpris_notification_settings_summary">Permite\'l control de reproductores multimedia ensin abrir KDE Connect</string>
-  <string name="share_to">Compartir con...</string>
+  <string name="share_to">Compartir con…</string>
   <string name="protocol_version_newer">Esti preséu una versión nueva del protocolu</string>
   <string name="plugin_settings_with_name">%s</string>
   <string name="custom_devices_settings">Llista de preseos personalizada</string>
@@ -168,6 +169,7 @@
   <string name="refresh">Refrescar</string>
   <string name="unreachable_description">Esti preséu empareyáu nun ye algamable. Asegúrate de que ta coneutáu a la mesma rede que tu.</string>
   <string name="no_wifi">Nun tas coneutáu a una rede Wi-Fi polo que nun vas ser a ver nengún preséu. Calca equí p\'activar el Wi-Fi.</string>
+  <string name="on_non_trusted_message">Nun tas nuna rede d\'enfotu. Desactivóse la descubrición automática.</string>
   <string name="no_file_browser">Nun hai nengún restolador de ficheros instaláu.</string>
   <string name="pref_plugin_telepathy">Unviu de SMS</string>
   <string name="pref_plugin_telepathy_desc">Unvia SMS dende l\'ordenador</string>
@@ -215,4 +217,11 @@
   <string name="plugin_photo_desc">Llanza l\'aplicación de la cámara p\'acenciellar la fechura y tresferencia de semeyes</string>
   <string name="no_app_for_opening">Nun alcontró nenguna aplicación afayadiza p\'abrir esti ficheru.</string>
   <string name="remote_keyboard_service">Tecláu remotu de KDE Connect</string>
+  <string name="trusted_networks">Redes d\'enfotu</string>
+  <string name="trusted_networks_desc">Torga la descubrición automática en redes conocíes</string>
+  <string name="empty_trusted_networks_list_text">Entá nun amestesti nenguna rede d\'enfotu</string>
+  <string name="allow_all_networks_text">Permitir toes</string>
+  <string name="location_permission_needed_title">Ríquese un permisu</string>
+  <string name="location_permission_needed_desc">Android rique\'l permisu Allugamientu pa indentificar redes Wi-Fi</string>
+  <string name="clipboard_android_x_incompat">Android 10 quitó l\'accesu al cartafueyu en toles aplicaciones. Esti plugin va desactivase.</string>
 </resources>
