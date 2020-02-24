@@ -35,7 +35,6 @@ import android.os.Build;
 import android.os.IBinder;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
@@ -60,7 +59,6 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import androidx.core.app.NotificationCompat;
 
-import static android.content.ContentValues.TAG;
 
 //import org.kde.kdeconnect.Backends.BluetoothBackend.BluetoothLinkProvider;
 
@@ -342,7 +340,7 @@ public class BackgroundService extends Service {
                 Intent sendFile = new Intent(this, SendFileActivity.class);
                 sendFile.putExtra("deviceId", deviceIds.get(0));
                 PendingIntent sendPendingFile = PendingIntent.getActivity(this, 1, sendFile, PendingIntent.FLAG_UPDATE_CURRENT);
-                notification.addAction(0, getString(R.string.foreground_notification_send_files), sendPendingFile);
+                notification.addAction(0, getString(R.string.send_files), sendPendingFile);
 
                 // Checking if there are registered commands and adding the button.
                 Device device = getDevice(deviceIds.get(0));
@@ -351,12 +349,10 @@ public class BackgroundService extends Service {
                     Intent runCommand = new Intent(this, RunCommandActivity.class);
                     runCommand.putExtra("deviceId", deviceIds.get(0));
                     PendingIntent runPendingCommand = PendingIntent.getActivity(this, 2, runCommand, PendingIntent.FLAG_UPDATE_CURRENT);
-                    notification.addAction(0, getString(R.string.foreground_notification_run_commands), runPendingCommand);
+                    notification.addAction(0, getString(R.string.pref_plugin_runcommand), runPendingCommand);
                 }
             }
         }
-        notification.setColor(0xf67400);
-
         return notification.build();
     }
 
