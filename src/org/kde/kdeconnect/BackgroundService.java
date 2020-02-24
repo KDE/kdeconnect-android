@@ -24,6 +24,7 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.bluetooth.BluetoothClass;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -34,6 +35,7 @@ import android.os.Build;
 import android.os.IBinder;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
@@ -44,6 +46,7 @@ import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandActivity;
+import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandPlugin;
 import org.kde.kdeconnect.Plugins.SharePlugin.SendFileActivity;
 import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect_tp.R;
@@ -56,6 +59,8 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import androidx.core.app.NotificationCompat;
+
+import static android.content.ContentValues.TAG;
 
 //import org.kde.kdeconnect.Backends.BluetoothBackend.BluetoothLinkProvider;
 
@@ -333,16 +338,24 @@ public class BackgroundService extends Service {
             notification.setContentText(getString(R.string.foreground_notification_devices, TextUtils.join(", ", connectedDevices)));
             if (deviceIds.size() == 1) {
                 // Adding two action buttons only when there is a single device connected.
+                // Setting up Send File Intent.
                 Intent sendFile = new Intent(this, SendFileActivity.class);
-                Intent runCommand = new Intent(this, RunCommandActivity.class);
                 sendFile.putExtra("deviceId", deviceIds.get(0));
-                runCommand.putExtra("deviceId", deviceIds.get(0));
                 PendingIntent sendPendingFile = PendingIntent.getActivity(this, 1, sendFile, PendingIntent.FLAG_UPDATE_CURRENT);
-                PendingIntent runPendingCommand = PendingIntent.getActivity(this, 2, runCommand, PendingIntent.FLAG_UPDATE_CURRENT);
-                notification.addAction(0, getString(R.string.foreground_notification_send_files), sendPendingFile)
-                        .addAction(0, getString(R.string.foreground_notification_run_commands), runPendingCommand);
+                notification.addAction(0, getString(R.string.foreground_notification_send_files), sendPendingFile);
+
+                // Checking if there are registered commands and adding the button.
+                Device device = getDevice(deviceIds.get(0));
+                RunCommandPlugin plugin = (RunCommandPlugin) device.getPlugin("RunCommandPlugin");
+                if (plugin != null && !plugin.getCommandList().isEmpty()) {
+                    Intent runCommand = new Intent(this, RunCommandActivity.class);
+                    runCommand.putExtra("deviceId", deviceIds.get(0));
+                    PendingIntent runPendingCommand = PendingIntent.getActivity(this, 2, runCommand, PendingIntent.FLAG_UPDATE_CURRENT);
+                    notification.addAction(0, getString(R.string.foreground_notification_run_commands), runPendingCommand);
+                }
             }
         }
+        notification.setColor(0xf67400);
 
         return notification.build();
     }
