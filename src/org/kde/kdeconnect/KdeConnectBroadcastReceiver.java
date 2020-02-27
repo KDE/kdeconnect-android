@@ -27,6 +27,8 @@ import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 
+import org.kde.kdeconnect.Helpers.OnBootHelper;
+
 public class KdeConnectBroadcastReceiver extends BroadcastReceiver {
 
 
@@ -55,9 +57,14 @@ public class KdeConnectBroadcastReceiver extends BroadcastReceiver {
                 break;
             case Intent.ACTION_BOOT_COMPLETED:
                 Log.i("KdeConnect", "KdeConnectBroadcastReceiver");
-                BackgroundService.RunCommand(context, service -> {
+                if(OnBootHelper.shouldRunOnBoot(context)) {
+                    BackgroundService.RunCommand(context, service -> {
 
-                });
+                    });
+                } else {
+                    Log.i("KdeConnect", "I am not allowed to start on boot");
+                    return;
+                }
                 break;
             case WifiManager.SUPPLICANT_CONNECTION_CHANGE_ACTION:
             case WifiManager.WIFI_STATE_CHANGED_ACTION:

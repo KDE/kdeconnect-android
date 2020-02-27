@@ -15,6 +15,7 @@ import com.google.android.material.snackbar.Snackbar;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
+import org.kde.kdeconnect.Helpers.OnBootHelper;
 import org.kde.kdeconnect_tp.R;
 
 import androidx.preference.EditTextPreference;
@@ -87,6 +88,20 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 return true;
         });
         screen.addPreference(darkThemeSwitch);
+
+        // Start On Boot
+        final TwoStatePreference onBootSwitch = new SwitchPreferenceCompat(context);
+        onBootSwitch.setPersistent(false);
+        onBootSwitch.setChecked(OnBootHelper.shouldRunOnBoot(context));
+        onBootSwitch.setTitle(R.string.settings_start_on_boot);
+        onBootSwitch.setOnPreferenceChangeListener((preference, newValue) -> {
+            boolean isChecked = (Boolean)newValue;
+            boolean isOnAlready = OnBootHelper.shouldRunOnBoot(context);
+            if (isOnAlready != isChecked)
+                prefs.edit().putBoolean("onBoot", isChecked).apply();
+            return true;
+        });
+        screen.addPreference(onBootSwitch);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
