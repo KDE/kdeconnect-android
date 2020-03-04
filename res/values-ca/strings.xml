@@ -30,7 +30,7 @@
   <string name="pref_plugin_receive_notifications">Rep les notificacions</string>
   <string name="pref_plugin_receive_notifications_desc">Rep notificacions des d\'altres dispositius i mostrar-los a l\'Android</string>
   <string name="pref_plugin_sharereceiver">Comparteix i rep</string>
-  <string name="pref_plugin_sharereceiver_desc">Comparteix els fitxers i els URL entre els dispositius</string>
+  <string name="pref_plugin_sharereceiver_desc">Comparteix els fitxers i URL entre els dispositius</string>
   <string name="device_list_empty">No hi ha cap dispositiu</string>
   <string name="ok">D\'acord</string>
   <string name="sad_ok">D\'acord :(</string>
@@ -198,7 +198,7 @@
   <string name="sftp_no_storage_locations_configured">No s\'ha configurat cap ubicació d\'emmagatzematge</string>
   <string name="sftp_saf_permission_explanation">Per accedir remotament als fitxer cal configurar les ubicacions d\'emmagatzematge</string>
   <string name="no_players_connected">No s\'ha trobat cap reproductor</string>
-  <string name="send_files">Envia els fitxers</string>
+  <string name="send_files">Envia fitxers</string>
   <string name="pairing_title">Dispositius del KDE Connect</string>
   <string name="pairing_description">Els altres dispositius que executin el KDE Connect a la mateixa xarxa han d\'aparèixer aquí.</string>
   <string name="device_rename_title">Reanomena el dispositiu</string>
