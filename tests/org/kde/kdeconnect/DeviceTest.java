@@ -155,17 +155,6 @@ public class DeviceTest {
         Device.PairingCallback pairingCallback = Mockito.mock(Device.PairingCallback.class);
         device.addPairingCallback(pairingCallback);
 
-        KeyPair keyPair;
-        try {
-            KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
-            keyGen.initialize(2048);
-            keyPair = keyGen.genKeyPair();
-        } catch (Exception e) {
-            Log.e("KDE/initializeRsaKeys", "Exception", e);
-            Log.e("KDE/initializeRsaKeys", "Exception", e);
-            return;
-        }
-        device.publicKey = keyPair.getPublic();
 
         ArgumentCaptor<BasePairingHandler.PairingHandlerCallback> pairingHandlerCallback = ArgumentCaptor.forClass(BasePairingHandler.PairingHandlerCallback.class);
         Mockito.verify(link, Mockito.times(1)).getPairingHandler(eq(device), pairingHandlerCallback.capture());
@@ -174,7 +163,6 @@ public class DeviceTest {
         assertEquals(device.getDeviceId(), "unpairedTestDevice");
         assertEquals(device.getName(), "Unpaired Test Device");
         assertEquals(device.getDeviceType(), Device.DeviceType.Phone);
-        assertNotNull(device.publicKey);
         assertNull(device.certificate);
 
         pairingHandlerCallback.getValue().pairingDone();
@@ -196,14 +184,6 @@ public class DeviceTest {
 
     @Test
     public void testPairingDoneWithCertificate() {
-        KeyPair keyPair = null;
-        try {
-            KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
-            keyGen.initialize(2048);
-            keyPair = keyGen.genKeyPair();
-        } catch (Exception e) {
-            Log.e("KDE/initializeRsaKeys", "Exception", e);
-        }
 
         NetworkPacket fakeNetworkPacket = new NetworkPacket(NetworkPacket.PACKET_TYPE_IDENTITY);
         fakeNetworkPacket.set("deviceId", "unpairedTestDevice");
@@ -234,13 +214,11 @@ public class DeviceTest {
         Mockito.when(link.getPairingHandler(any(Device.class), any(BasePairingHandler.PairingHandlerCallback.class))).thenReturn(Mockito.mock(LanPairingHandler.class));
         Mockito.when(link.getLinkProvider()).thenReturn(linkProvider);
         Device device = new Device(context, fakeNetworkPacket, link);
-        device.publicKey = keyPair.getPublic();
 
         assertNotNull(device);
         assertEquals(device.getDeviceId(), "unpairedTestDevice");
         assertEquals(device.getName(), "Unpaired Test Device");
         assertEquals(device.getDeviceType(), Device.DeviceType.Phone);
-        assertNotNull(device.publicKey);
         assertNotNull(device.certificate);
 
         Method method;
