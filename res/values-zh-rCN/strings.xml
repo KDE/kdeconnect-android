@@ -197,6 +197,7 @@
   <string name="refresh">刷新</string>
   <string name="unreachable_description">此配对设备不可达。请确认它已经连接到与您相同的网络。</string>
   <string name="no_wifi">您未连接到 Wi-Fi 网络，所以您可能无法看到任何设备。点击此处启用 Wi-Fi。</string>
+  <string name="on_non_trusted_message">不在信任的网络上：自动发现已被禁用。</string>
   <string name="no_file_browser">未安装文件浏览器</string>
   <string name="pref_plugin_telepathy">发送短消息</string>
   <string name="pref_plugin_telepathy_desc">从桌面发送短消息</string>
@@ -204,6 +205,7 @@
   <string name="findmyphone_title_tablet">找到我的平板电脑</string>
   <string name="findmyphone_title_tv">查找我的电视</string>
   <string name="findmyphone_description">让设备响铃从而找到它</string>
+  <string name="findmyphone_found">已发现</string>
   <string name="open">打开</string>
   <string name="close">关闭</string>
   <string name="plugins_need_permission">某些插件需要权限才能工作 (点击以获取更多信息)：</string>
@@ -234,6 +236,7 @@
   <string name="notification_channel_persistent">持久性通知</string>
   <string name="notification_channel_media_control">媒体控制</string>
   <string name="notification_channel_filetransfer">文件传送</string>
+  <string name="notification_channel_high_priority">高优先级</string>
   <string name="mpris_stop">停止但前播放器</string>
   <string name="copy_url_to_clipboard">复制 URL 到剪贴板</string>
   <string name="clipboard_toast">已复制到剪贴板</string>
@@ -267,4 +270,11 @@
   <string name="no_app_for_opening">没有找到合适的应用程序打开此文件</string>
   <string name="remote_keyboard_service">KDE Connect 远程键盘</string>
   <string name="presenter_pointer">指针</string>
+  <string name="trusted_networks">信任的网络</string>
+  <string name="trusted_networks_desc">限制只在已知网络中启用自动发现</string>
+  <string name="add_trusted_network">添加 %1s</string>
+  <string name="empty_trusted_networks_list_text">您还没有添加任何可信的网络</string>
+  <string name="allow_all_networks_text">允许所有</string>
+  <string name="location_permission_needed_title">需要权限</string>
+  <string name="location_permission_needed_desc">Android 需要位置权限才能识别您的 WiFi 网络</string>
 </resources>
