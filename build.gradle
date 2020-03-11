@@ -97,7 +97,8 @@ dependencies {
     //implementation('com.github.bright:slf4android:0.1.6') { transitive = true } // For org.apache.sshd debugging
     implementation 'com.madgag.spongycastle:bcpkix-jdk15on:1.58.0.0' //For SSL certificate generation
 
-    implementation 'com.jakewharton:butterknife:10.0.0'
+    //noinspection AnnotationProcessorOnCompilePath - c.f. https://issuetracker.google.com/issues/140881211
+    implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
 
     implementation 'org.atteo.classindex:classindex:3.6'
