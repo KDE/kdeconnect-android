@@ -43,6 +43,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -50,6 +51,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -62,41 +65,18 @@ import androidx.annotation.RequiresApi;
 public class SMSHelper {
 
     /**
-     * Get the base address for the SMS content
-     * <p>
-     * If we want to support API < 19, it seems to be possible to read via this query
-     * This is highly undocumented and very likely varies between vendors but appears to work
+     * Get a URI for querying SMS messages
      */
-    private static Uri getSMSURIBad() {
-        return Uri.parse("content://sms/");
-    }
-
-    /**
-     * Get the base address for the SMS content
-     * <p>
-     * Use the new API way which should work on any phone API >= 19
-     */
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
-    private static Uri getSMSURIGood() {
+    private static Uri getSMSUri() {
+        // This constant was introduces with API 19 (KitKat)
+        // The value it represents was used in older Android versions so it *should* work but
+        // might vary between vendors.
         return Telephony.Sms.CONTENT_URI;
     }
 
-    private static Uri getSMSUri() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            return getSMSURIGood();
-        } else {
-            return getSMSURIBad();
-        }
-    }
-
     private static Uri getMMSUri() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            return Telephony.Mms.CONTENT_URI;
-        } else {
-            // Same as with getSMSUriBad, this is unsafe if the manufacturer did their own thing
-            // before this was part of the API
-            return Uri.parse("content://mms/");
-        }
+        // Same warning as getSMSUri: This constant was introduced with API 19
+        return Telephony.Mms.CONTENT_URI;
     }
 
     private static Uri getMMSPartUri() {
@@ -152,15 +132,85 @@ public class SMSHelper {
      *
      * @param context  android.content.Context running the request
      * @param threadID Thread to look up
+     * @param numberToGet Number of messages to return. Pass null for "all"
      * @return List of all messages in the thread
      */
     public static @NonNull List<Message> getMessagesInThread(
             @NonNull Context context,
-            @NonNull ThreadID threadID
+            @NonNull ThreadID threadID,
+            @Nullable Long numberToGet
     ) {
         Uri uri = Uri.withAppendedPath(getConversationUri(), threadID.toString());
 
-        return getMessages(uri, context, null, null, null, null);
+        return getMessages(uri, context, null, null, null, numberToGet);
+    }
+
+    /**
+     * Get some messages in the given thread which have timestamp equal to or after the given timestamp
+     *
+     * @param context  android.content.Context running the request
+     * @param threadID Thread to look up
+     * @param startTimestamp Beginning of the range to return
+     * @param numberToGet Number of messages to return. Pass null for "all"
+     * @return Some messages in the requested conversation
+     */
+    @SuppressLint("NewApi")
+    public static @NonNull List<Message> getMessagesInRange(
+            @NonNull Context context,
+            @NonNull ThreadID threadID,
+            @NonNull Long startTimestamp,
+            @Nullable Long numberToGet
+    ) {
+        // The stickiness with this is that Android's MMS database has its timestamp in epoch *seconds*
+        // while the SMS database uses epoch *milliseconds*.
+        // I can think of no way around this other than manually querying each one with a different
+        // "WHERE" statement.
+        Uri smsUri = getSMSUri();
+        Uri mmsUri = getMMSUri();
+
+        List<String> allSmsColumns = new ArrayList<>(Arrays.asList(Message.smsColumns));
+        List<String> allMmsColumns = new ArrayList<>(Arrays.asList(Message.mmsColumns));
+
+        if (getSubscriptionIdSupport(smsUri, context)) {
+            allSmsColumns.addAll(Arrays.asList(Message.multiSIMColumns));
+        }
+
+        if (getSubscriptionIdSupport(mmsUri, context)) {
+            allMmsColumns.addAll(Arrays.asList(Message.multiSIMColumns));
+        }
+
+        String selection = Message.THREAD_ID + " = ? AND ? >= " + Message.DATE;
+
+        String[] smsSelectionArgs = new String[] { threadID.toString(), startTimestamp.toString() };
+        String[] mmsSelectionArgs = new String[] { threadID.toString(), Long.toString(startTimestamp / 1000) };
+
+        String sortOrder = Message.DATE + " DESC";
+
+        List<Message> allMessages = getMessages(smsUri, context, allSmsColumns, selection, smsSelectionArgs, sortOrder, numberToGet);
+        allMessages.addAll(getMessages(mmsUri, context, allMmsColumns, selection, mmsSelectionArgs, sortOrder, numberToGet));
+
+        // Need to now only return the requested number of messages:
+        // Suppose we were requested to return N values and suppose a user sends only one MMS per
+        // week and N SMS per day. We have requested the same N for each, so if we just return everything
+        // we would return some very old MMS messages which would be very confusing.
+        SortedMap<Long, Collection<Message>> sortedMessages = new TreeMap<>((lhs, rhs) -> Long.compare(rhs, lhs));
+        for (Message message : allMessages) {
+            Collection<Message> existingMessages = sortedMessages.getOrDefault(message.date, new ArrayList<>());
+            assert existingMessages != null;
+            existingMessages.add(message);
+            sortedMessages.put(message.date, existingMessages);
+        }
+
+        List<Message> toReturn = new ArrayList<>(allMessages.size());
+
+        for (Collection<Message> messages : sortedMessages.values()) {
+            toReturn.addAll(messages);
+            if (numberToGet != null && toReturn.size() >= numberToGet) {
+                break;
+            }
+        }
+
+        return toReturn;
     }
 
     /**
@@ -227,6 +277,7 @@ public class SMSHelper {
      *
      * @param uri Uri indicating the messages database to read
      * @param context android.content.Context running the request.
+     * @param fetchColumns List of columns to fetch
      * @param selection Parameterizable filter to use with the ContentResolver query. May be null.
      * @param selectionArgs Parameters for selection. May be null.
      * @param sortOrder Sort ordering passed to Android's content resolver. May be null for unspecified
@@ -236,6 +287,7 @@ public class SMSHelper {
     private static @NonNull List<Message> getMessages(
             @NonNull Uri uri,
             @NonNull Context context,
+            @NonNull Collection<String> fetchColumns,
             @Nullable String selection,
             @Nullable String[] selectionArgs,
             @Nullable String sortOrder,
@@ -247,23 +299,9 @@ public class SMSHelper {
         // of any MMSes
         List<String> userPhoneNumbers = TelephonyHelper.getAllPhoneNumbers(context);
 
-        Set<String> allColumns = new HashSet<>();
-        allColumns.addAll(Arrays.asList(Message.smsColumns));
-        allColumns.addAll(Arrays.asList(Message.mmsColumns));
-        if (getSubscriptionIdSupport(uri, context)) {
-            allColumns.addAll(Arrays.asList(Message.multiSIMColumns));
-        }
-
-        if (!uri.equals(getConversationUri())) {
-            // See https://issuetracker.google.com/issues/134592631
-            allColumns.add(getTransportTypeDiscriminatorColumn());
-        }
-
-        String[] fetchColumns = {};
-        fetchColumns = allColumns.toArray(fetchColumns);
         try (Cursor myCursor = context.getContentResolver().query(
                 uri,
-                fetchColumns,
+                fetchColumns.toArray(new String[]{}),
                 selection,
                 selectionArgs,
                 sortOrder)
@@ -305,19 +343,25 @@ public class SMSHelper {
                         messageInfo.put(colName, body);
                     }
 
-                    Message message;
-                    if (transportType == TransportType.SMS) {
-                        message = parseSMS(context, messageInfo);
-                    } else if (transportType == TransportType.MMS) {
-                        message = parseMMS(context, messageInfo, userPhoneNumbers);
-                    } else {
-                        // As we can see, all possible transportTypes are covered, but the compiler
-                        // requires this line anyway
-                        throw new UnsupportedOperationException("Unknown TransportType encountered");
-                    }
+                    try {
+                        Message message;
+                        if (transportType == TransportType.SMS) {
+                            message = parseSMS(context, messageInfo);
+                        } else if (transportType == TransportType.MMS) {
+                            message = parseMMS(context, messageInfo, userPhoneNumbers);
+                        } else {
+                            // As we can see, all possible transportTypes are covered, but the compiler
+                            // requires this line anyway
+                            throw new UnsupportedOperationException("Unknown TransportType encountered");
+                        }
 
-                    toReturn.add(message);
-                } while ((numberToGet == null || toReturn.size() != numberToGet) && myCursor.moveToNext());
+                        toReturn.add(message);
+                    } catch (Exception e) {
+                        // Swallow exceptions in case we get an error reading one message so that we
+                        // might be able to read some of them
+                        Log.e("SMSHelper", "Got an error reading a message of type " + transportType, e);
+                    }
+                } while ((numberToGet == null || toReturn.size() < numberToGet) && myCursor.moveToNext());
             }
         } catch (SQLiteException e) {
             String[] unfilteredColumns = {};
@@ -332,7 +376,43 @@ public class SMSHelper {
                 throw new MessageAccessException(unfilteredColumns, uri, e);
             }
         }
+
         return toReturn;
+    }
+
+    /**
+     * Gets messages which match the selection
+     *
+     * @param uri Uri indicating the messages database to read
+     * @param context android.content.Context running the request.
+     * @param selection Parameterizable filter to use with the ContentResolver query. May be null.
+     * @param selectionArgs Parameters for selection. May be null.
+     * @param sortOrder Sort ordering passed to Android's content resolver. May be null for unspecified
+     * @param numberToGet Number of things to get from the result. Pass null to get all
+     * @return Returns List<Message> of all messages in the return set, either in the order of sortOrder or in an unspecified order
+     */
+    @SuppressLint("NewApi")
+    private static @NonNull List<Message> getMessages(
+            @NonNull Uri uri,
+            @NonNull Context context,
+            @Nullable String selection,
+            @Nullable String[] selectionArgs,
+            @Nullable String sortOrder,
+            @Nullable Long numberToGet
+    ) {
+        Set<String> allColumns = new HashSet<>();
+        allColumns.addAll(Arrays.asList(Message.smsColumns));
+        allColumns.addAll(Arrays.asList(Message.mmsColumns));
+        if (getSubscriptionIdSupport(uri, context)) {
+            allColumns.addAll(Arrays.asList(Message.multiSIMColumns));
+        }
+
+        if (!uri.equals(getConversationUri())) {
+            // See https://issuetracker.google.com/issues/134592631
+            allColumns.add(getTransportTypeDiscriminatorColumn());
+        }
+
+        return getMessages(uri, context, allColumns, selection, selectionArgs, sortOrder, numberToGet);
     }
 
     /**
@@ -510,8 +590,6 @@ public class SMSHelper {
         // telco service messages) where it is not (only 1 long in that case, just the "sender")
 
         if (addresses.size() >= 2) {
-            // TODO: Handle addresses for multi-target MMS
-            // Probably we will need to figure out the user's address at this point and strip it out of the list
             event = addEventFlag(event, Message.EVENT_MULTI_TARGET);
         }
 
