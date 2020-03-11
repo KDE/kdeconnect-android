@@ -56,12 +56,12 @@ android {
     buildTypes {
         debug {
             minifyEnabled true
-            useProguard true
             signingConfig signingConfigs.debug
         }
-        release { //keep on 'release' for faster builds, set to 'all' when testing to make sure proguard is not deleting important stuff
+        // keep minifyEnabled false above for faster builds; set to 'true'
+        // when testing to make sure ProGuard/R8 is not deleting important stuff
+        release {
             minifyEnabled true
-            useProguard true
         }
     }
 }
