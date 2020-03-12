@@ -162,7 +162,7 @@ public class FilesHelper {
                     // situations were we don't know the size (for instance, if the file is
                     // not local to the device)
                     if (!cursor.isNull(sizeColumnIndex)) {
-                        size = cursor.getInt(sizeColumnIndex);
+                        size = cursor.getLong(sizeColumnIndex);
                     }
 
                     lastModified = getLastModifiedTime(context, uri);
