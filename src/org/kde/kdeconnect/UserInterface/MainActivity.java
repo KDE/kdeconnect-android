@@ -378,12 +378,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         }
     }
 
-    public void reloadCurrentDevicePlugins() {
-        BackgroundService.RunCommand(this, service -> {
-            Device device = service.getDevice(mCurrentDevice);
-            device.reloadPluginsFromSettings();
-        });
-    }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {

@@ -135,6 +135,9 @@
 
         <!-- Plugin-related activities and services -->
 
+        <activity android:name="org.kde.kdeconnect.Plugins.ClibpoardPlugin.ClipboardFloatingActivity"
+            android:theme="@style/Theme.Transparent"/>
+
         <activity
             android:name="org.kde.kdeconnect.Plugins.MprisPlugin.MprisActivity"
             android:label="@string/open_mpris_controls"

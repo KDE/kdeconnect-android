@@ -42,6 +42,7 @@ import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
+import org.kde.kdeconnect.Plugins.ClibpoardPlugin.ClipboardFloatingActivity;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandActivity;
@@ -341,6 +342,14 @@ public class BackgroundService extends Service {
                 sendFile.putExtra("deviceId", deviceIds.get(0));
                 PendingIntent sendPendingFile = PendingIntent.getActivity(this, 1, sendFile, PendingIntent.FLAG_UPDATE_CURRENT);
                 notification.addAction(0, getString(R.string.send_files), sendPendingFile);
+
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+                    Intent sendClipboard = new Intent(this, ClipboardFloatingActivity.class);
+                    sendClipboard.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    sendClipboard.putExtra("deviceId", deviceIds.get(0));
+                    PendingIntent sendPendingClipboard = PendingIntent.getActivity(this, 3, sendClipboard, PendingIntent.FLAG_UPDATE_CURRENT);
+                    notification.addAction(0, getString(R.string.foreground_notification_send_clipboard), sendPendingClipboard);
+                }
 
                 // Checking if there are registered commands and adding the button.
                 Device device = getDevice(deviceIds.get(0));
