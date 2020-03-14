@@ -3,6 +3,7 @@
   <string name="kde_connect">KDE Connect</string>
   <string name="foreground_notification_no_devices">No està connectat a cap dispositiu</string>
   <string name="foreground_notification_devices">Connectat a: %s</string>
+  <string name="foreground_notification_send_clipboard">Envia al porta-retalls</string>
   <string name="pref_plugin_telephony">Notificador de la telefonia</string>
   <string name="pref_plugin_telephony_desc">Envia notificacions per a les trucades entrants</string>
   <string name="pref_plugin_battery">Informa de la bateria</string>
@@ -11,6 +12,7 @@
   <string name="pref_plugin_sftp_desc">Permet navegar de forma remota pel sistema de fitxers del dispositiu</string>
   <string name="pref_plugin_clipboard">Sincronitza el porta-retalls</string>
   <string name="pref_plugin_clipboard_desc">Comparteix el contingut del porta-retalls</string>
+  <string name="pref_plugin_clipboard_sent">S\'ha enviat al porta-retalls</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
   <string name="pref_plugin_mousepad_desc">Usa el vostre telèfon o tauleta com un ratolí i un teclat</string>
   <string name="pref_plugin_presenter">Presentació de diapositives remota</string>

@@ -3,6 +3,7 @@
   <string name="kde_connect">KDE Connect</string>
   <string name="foreground_notification_no_devices">Не з\'єднано із жодним пристроєм</string>
   <string name="foreground_notification_devices">З\'єднано з %s</string>
+  <string name="foreground_notification_send_clipboard">Надіслати вміст буфера</string>
   <string name="pref_plugin_telephony">Телефонний сповіщувач</string>
   <string name="pref_plugin_telephony_desc">Надсилати сповіщення щодо вхідних дзвінків</string>
   <string name="pref_plugin_battery">Звіт щодо заряду</string>
@@ -11,6 +12,7 @@
   <string name="pref_plugin_sftp_desc">Надає змогу віддалено переглядати файлову систему цього пристрою</string>
   <string name="pref_plugin_clipboard">Синхронізація буфера</string>
   <string name="pref_plugin_clipboard_desc">Спільне використання буфера обміну даними</string>
+  <string name="pref_plugin_clipboard_sent">Вміст буфера надіслано</string>
   <string name="pref_plugin_mousepad">Дистанційне введення</string>
   <string name="pref_plugin_mousepad_desc">Скористайтеся телефоном або планшетом як замінником сенсорної панелі і клавіатури</string>
   <string name="pref_plugin_presenter">Віддалений показ слайдів</string>

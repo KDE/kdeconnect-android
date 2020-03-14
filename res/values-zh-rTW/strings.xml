@@ -3,6 +3,7 @@
   <string name="kde_connect">KDE 連線</string>
   <string name="foreground_notification_no_devices">沒有連線到任何裝置</string>
   <string name="foreground_notification_devices">已連線到：%s</string>
+  <string name="foreground_notification_send_clipboard">傳送剪貼簿</string>
   <string name="pref_plugin_telephony">電話通知器</string>
   <string name="pref_plugin_telephony_desc">傳送未接來電的通知</string>
   <string name="pref_plugin_battery">電池報告</string>
@@ -11,6 +12,7 @@
   <string name="pref_plugin_sftp_desc">同意讓遠端可以瀏覽檔案系統</string>
   <string name="pref_plugin_clipboard">同步剪貼簿</string>
   <string name="pref_plugin_clipboard_desc">分享剪貼簿的內容</string>
+  <string name="pref_plugin_clipboard_sent">已傳送剪貼簿</string>
   <string name="pref_plugin_mousepad">遠端輸入</string>
   <string name="pref_plugin_mousepad_desc">使用您的智慧型手機或者平板來模擬觸碰板與鍵盤</string>
   <string name="pref_plugin_presenter">遠端投影片</string>
