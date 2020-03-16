@@ -3,6 +3,7 @@
   <string name="kde_connect">KDE Connect</string>
   <string name="foreground_notification_no_devices">Не подключено ни к одному устройству</string>
   <string name="foreground_notification_devices">Подключено к: %s</string>
+  <string name="foreground_notification_send_clipboard">Передать буфер обмена</string>
   <string name="pref_plugin_telephony">События телефонии</string>
   <string name="pref_plugin_telephony_desc">Отправка уведомлений о звонках</string>
   <string name="pref_plugin_battery">Состояние батареи</string>
@@ -11,6 +12,7 @@
   <string name="pref_plugin_sftp_desc">Позволяет удалённо просматривать файловую систему устройства</string>
   <string name="pref_plugin_clipboard">Синхронизация буфера обмена</string>
   <string name="pref_plugin_clipboard_desc">Использование общего буфера обмена</string>
+  <string name="pref_plugin_clipboard_sent">Буфер обмена передан</string>
   <string name="pref_plugin_mousepad">Удалённый ввод</string>
   <string name="pref_plugin_mousepad_desc">Использование телефона или планшета в качестве сенсорной панели и клавиатуры</string>
   <string name="pref_plugin_presenter">Пульт управления слайд-шоу</string>
@@ -33,6 +35,7 @@
   <string name="pref_plugin_sharereceiver_desc">Пересылка файлов и адресов URL между устройствами</string>
   <string name="device_list_empty">Нет устройств</string>
   <string name="ok">ОК</string>
+  <string name="sad_ok">ОК :(</string>
   <string name="cancel">Отмена</string>
   <string name="open_settings">Настроить</string>
   <string name="no_permissions">Нужно разрешить доступ к уведомлениям</string>
@@ -220,6 +223,8 @@
   <string name="device_rename_confirm">Переименовать</string>
   <string name="refresh">Обновить</string>
   <string name="unreachable_description">Это сопряжённое устройство недоступно. Проверьте, что оно подключено к той же локальной сети.</string>
+  <string name="no_wifi">Другие устройства недоступны, так как вы не подключены к сети Wi-Fi. Нажмите здесь для включения Wi-Fi.</string>
+  <string name="on_non_trusted_message">Автоматическое обнаружение отключено, так как вы подключены к недоверенной сети.</string>
   <string name="no_file_browser">Не удалось открыть диалог выбора файла.</string>
   <string name="pref_plugin_telepathy">Отправка SMS</string>
   <string name="pref_plugin_telepathy_desc">Отправка SMS-сообщений с вашего компьютера</string>
@@ -227,6 +232,7 @@
   <string name="findmyphone_title_tablet">Поиск планшета</string>
   <string name="findmyphone_title_tv">Поиск телевизора</string>
   <string name="findmyphone_description">Подача звукового сигнала на устройстве, чтобы вы могли его найти</string>
+  <string name="findmyphone_found">Найден</string>
   <string name="open">Открыть</string>
   <string name="close">Закрыть</string>
   <string name="plugins_need_permission">Некоторым модулям нужны разрешения для работы (нажмите для просмотра подробностей):</string>
@@ -252,10 +258,12 @@
   <string name="addcommand_explanation2">Вы можете добавить новые команды в «Параметрах системы» в разделе «KDE Connect».</string>
   <string name="add_command_description">Команды возможно добавлять с ПК</string>
   <string name="pref_plugin_mprisreceiver">Управление мультимедиа</string>
+  <string name="pref_plugin_mprisreceiver_desc">Управление воспроизведением на телефоне с другого устройства</string>
   <string name="notification_channel_default">Прочие уведомления</string>
   <string name="notification_channel_persistent">Постоянный индикатор</string>
   <string name="notification_channel_media_control">Управление воспроизведением</string>
   <string name="notification_channel_filetransfer">Передача файлов</string>
+  <string name="notification_channel_high_priority">Высокий приоритет</string>
   <string name="mpris_stop">Остановить воспроизведение</string>
   <string name="copy_url_to_clipboard">Копировать URL в буфер обмена</string>
   <string name="clipboard_toast">Скопировано в буфер обмена</string>
@@ -289,4 +297,12 @@
   <string name="no_app_for_opening">Для этого файла нет приложений, способных его открыть</string>
   <string name="remote_keyboard_service">Удалённая клавиатура KDE Connect</string>
   <string name="presenter_pointer">Указатель</string>
+  <string name="trusted_networks">Доверенные сети</string>
+  <string name="trusted_networks_desc">Не использовать автоматическое обнаружение в недоверенных сетях</string>
+  <string name="add_trusted_network">Добавить %1s</string>
+  <string name="empty_trusted_networks_list_text">Пока нет ни одной доверенной сети</string>
+  <string name="allow_all_networks_text">Разрешить во всех сетях</string>
+  <string name="location_permission_needed_title">Требуется разрешение</string>
+  <string name="location_permission_needed_desc">Для получения сведений о Wi-Fi подключении на ОС Android требуются разрешение доступа к службе определения местоположения</string>
+  <string name="clipboard_android_x_incompat">В ОС Android версии 10 для всех приложений был запрещён доступ к буферу. Этот подключаемый модуль будет отключён.</string>
 </resources>

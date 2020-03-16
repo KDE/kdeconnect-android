@@ -146,6 +146,7 @@
   <string name="title_activity_notification_filter">Peñera d\'avisos</string>
   <string name="filter_apps_info">Van sincronizase los avisos de les aplicaciones esbillaes.</string>
   <string name="sftp_sdcard">Tarxeta SD</string>
+  <string name="sftp_readonly">(namás llectura)</string>
   <string name="add_device_dialog_title">Amiestu d\'un preséu</string>
   <string name="add_device_hint">Nome d\'agospiu o direición IP</string>
   <string name="sftp_preference_configured_storage_locations">Allugamientos d\'almacenamientu configuraos</string>
