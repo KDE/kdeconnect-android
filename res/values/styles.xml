@@ -9,6 +9,8 @@
         <!-- The three colors used by system widgets, according to https://chris.banes.me/2014/10/17/appcompat-v21/ -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorSecondary">@color/primary</item>
+        <item name="colorOnSecondary">@android:color/white</item>
         <item name="colorAccent">@color/accent</item>
         <item name="toolbarStyle">@style/KdeConnectTheme.Toolbar</item>
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
