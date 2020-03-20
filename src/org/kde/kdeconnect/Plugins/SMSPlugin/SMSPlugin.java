@@ -126,7 +126,8 @@ public class SMSPlugin extends Plugin {
      * The body should look like so:
      * { "sendSms": true,
      * "phoneNumber": "542904563213",
-     * "messageBody": "Hi mom!"
+     * "messageBody": "Hi mom!",
+     * "sub_id": "3859358340534"
      * }
      */
     private final static String PACKET_TYPE_SMS_REQUEST = "kdeconnect.sms.request";
@@ -339,9 +340,11 @@ public class SMSPlugin extends Plugin {
                 if (np.getBoolean("sendSms")) {
                     String phoneNo = np.getString("phoneNumber");
                     String sms = np.getString("messageBody");
+                    long subID = np.getLong("subID", -1);
 
                     try {
-                        SmsManager smsManager = SmsManager.getDefault();
+                        SmsManager smsManager = subID == -1? SmsManager.getDefault() :
+                            SmsManager.getSmsManagerForSubscriptionId((int) subID);
                         ArrayList<String> parts = smsManager.divideMessage(sms);
 
                         // If this message turns out to fit in a single SMS, sendMultipartTextMessage
