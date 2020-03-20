@@ -135,8 +135,10 @@
 
         <!-- Plugin-related activities and services -->
 
-        <activity android:name="org.kde.kdeconnect.Plugins.ClibpoardPlugin.ClipboardFloatingActivity"
-            android:theme="@style/Theme.Transparent"/>
+        <activity
+            android:name="org.kde.kdeconnect.Plugins.ClibpoardPlugin.ClipboardFloatingActivity"
+            android:theme="@style/Theme.Transparent"
+            android:excludeFromRecents="true"/>
 
         <activity
             android:name="org.kde.kdeconnect.Plugins.MprisPlugin.MprisActivity"
