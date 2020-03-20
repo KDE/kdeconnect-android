@@ -36,12 +36,21 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.view.ActionMode;
+import androidx.fragment.app.Fragment;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceCategory;
+import androidx.preference.PreferenceScreen;
+import androidx.recyclerview.widget.RecyclerView;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.StorageHelper;
+import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
 import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
@@ -51,15 +60,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.view.ActionMode;
-import androidx.fragment.app.Fragment;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceCategory;
-import androidx.preference.PreferenceManager;
-import androidx.preference.PreferenceScreen;
-import androidx.recyclerview.widget.RecyclerView;
 
 //TODO: Is it possible on API 19 to select a directory and then have write permission for everything beneath it
 //TODO: Is it necessary to check if uri permissions are still in place? If it is make the user aware of the fact (red text or something)
@@ -116,10 +116,10 @@ public class SftpSettingsFragment
 
         int sdkInt = Build.VERSION.SDK_INT;
 
-        storageInfoList = getStorageInfoList(requireContext());
+        storageInfoList = getStorageInfoList(requireContext(), plugin);
 
         PreferenceScreen preferenceScreen = getPreferenceScreen();
-        preferenceCategory = (PreferenceCategory) preferenceScreen
+        preferenceCategory = preferenceScreen
                 .findPreference(getString(R.string.sftp_preference_key_preference_category));
 
         if (sdkInt <= 19) {
@@ -245,30 +245,30 @@ public class SftpSettingsFragment
     }
 
     private void saveStorageInfoList() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(requireContext());
+        SharedPreferences preferences = this.plugin.getPreferences();
 
         JSONArray jsonArray = new JSONArray();
 
         try {
-            for (SftpPlugin.StorageInfo storageInfo : storageInfoList) {
+            for (SftpPlugin.StorageInfo storageInfo : this.storageInfoList) {
                 jsonArray.put(storageInfo.toJSON());
             }
         } catch (JSONException ignored) {}
 
         preferences
                 .edit()
-                .putString(requireContext().getString(R.string.sftp_preference_key_storage_info_list), jsonArray.toString())
+                .putString(requireContext().getString(SftpPlugin.PREFERENCE_KEY_STORAGE_INFO_LIST), jsonArray.toString())
                 .apply();
     }
 
     @NonNull
-    static List<SftpPlugin.StorageInfo> getStorageInfoList(@NonNull Context context) {
+    static List<SftpPlugin.StorageInfo> getStorageInfoList(@NonNull Context context, @NonNull Plugin plugin) {
         ArrayList<SftpPlugin.StorageInfo> storageInfoList = new ArrayList<>();
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences deviceSettings = plugin.getPreferences();
 
-        String jsonString = preferences
-                .getString(context.getString(R.string.sftp_preference_key_storage_info_list), "[]");
+        String jsonString = deviceSettings
+                .getString(context.getString(SftpPlugin.PREFERENCE_KEY_STORAGE_INFO_LIST), "[]");
 
         try {
             JSONArray jsonArray = new JSONArray(jsonString);
@@ -414,11 +414,19 @@ public class SftpSettingsFragment
 
         addStoragePreferences(preferenceCategory);
 
+        Device device = getDeviceOrThrow();
+
+        device.reloadPluginsFromSettings();
+    }
+
+    private Device getDeviceOrThrow() {
         Device device = BackgroundService.getInstance().getDevice(getDeviceId());
 
-        if (device != null) {
-            device.reloadPluginsFromSettings();
+        if (device == null) {
+            throw new RuntimeException("SftpSettingsFragment.getDeviceOrThrow(): No device with id: " + getDeviceId());
         }
+
+        return device;
     }
 
     @Override

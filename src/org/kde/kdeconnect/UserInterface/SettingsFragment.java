@@ -8,14 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
-import android.view.View;
-
-import com.google.android.material.snackbar.Snackbar;
-
-import org.kde.kdeconnect.BackgroundService;
-import org.kde.kdeconnect.Helpers.DeviceHelper;
-import org.kde.kdeconnect.Helpers.NotificationHelper;
-import org.kde.kdeconnect_tp.R;
 
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
@@ -23,6 +15,13 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.SwitchPreferenceCompat;
 import androidx.preference.TwoStatePreference;
+
+import com.google.android.material.snackbar.Snackbar;
+
+import org.kde.kdeconnect.BackgroundService;
+import org.kde.kdeconnect.Helpers.DeviceHelper;
+import org.kde.kdeconnect.Helpers.NotificationHelper;
+import org.kde.kdeconnect_tp.R;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 

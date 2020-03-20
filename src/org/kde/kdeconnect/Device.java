@@ -33,6 +33,12 @@ import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 
+import androidx.annotation.AnyThread;
+import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
+
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
@@ -56,11 +62,6 @@ import java.util.Set;
 import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import androidx.annotation.AnyThread;
-import androidx.annotation.WorkerThread;
-import androidx.core.app.NotificationCompat;
-import androidx.core.content.ContextCompat;
 
 public class Device implements BaseLink.PacketReceiver {
 
@@ -712,11 +713,13 @@ public class Device implements BaseLink.PacketReceiver {
     // Plugin-related functions
     //
 
+    @Nullable
     public <T extends Plugin> T getPlugin(Class<T> pluginClass) {
         Plugin plugin = getPlugin(Plugin.getPluginKey(pluginClass));
         return (T) plugin;
     }
 
+    @Nullable
     public Plugin getPlugin(String pluginKey) {
         return plugins.get(pluginKey);
     }

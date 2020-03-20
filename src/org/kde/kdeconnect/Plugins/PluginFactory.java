@@ -42,14 +42,15 @@ public class PluginFactory {
     public static class PluginInfo {
 
         PluginInfo(String displayName, String description, Drawable icon,
-                   boolean enabledByDefault, boolean hasSettings, boolean listenToUnpaired,
-                   String[] supportedPacketTypes, String[] outgoingPacketTypes,
+                   boolean enabledByDefault, boolean hasSettings, boolean supportsDeviceSpecificSettings,
+                   boolean listenToUnpaired, String[] supportedPacketTypes, String[] outgoingPacketTypes,
                    Class<? extends Plugin> instantiableClass) {
             this.displayName = displayName;
             this.description = description;
             this.icon = icon;
             this.enabledByDefault = enabledByDefault;
             this.hasSettings = hasSettings;
+            this.supportsDeviceSpecificSettings = supportsDeviceSpecificSettings;
             this.listenToUnpaired = listenToUnpaired;
             HashSet<String> incoming = new HashSet<>();
             if (supportedPacketTypes != null) Collections.addAll(incoming, supportedPacketTypes);
@@ -76,6 +77,8 @@ public class PluginFactory {
             return hasSettings;
         }
 
+        public boolean supportsDeviceSpecificSettings() { return supportsDeviceSpecificSettings; }
+
         public boolean isEnabledByDefault() {
             return enabledByDefault;
         }
@@ -101,6 +104,7 @@ public class PluginFactory {
         private final Drawable icon;
         private final boolean enabledByDefault;
         private final boolean hasSettings;
+        private final boolean supportsDeviceSpecificSettings;
         private final boolean listenToUnpaired;
         private final Set<String> supportedPacketTypes;
         private final Set<String> outgoingPacketTypes;
@@ -120,8 +124,9 @@ public class PluginFactory {
                 Plugin p = ((Plugin) pluginClass.newInstance());
                 p.setContext(context, null);
                 PluginInfo info = new PluginInfo(p.getDisplayName(), p.getDescription(), p.getIcon(),
-                        p.isEnabledByDefault(), p.hasSettings(), p.listensToUnpairedDevices(),
-                        p.getSupportedPacketTypes(), p.getOutgoingPacketTypes(), p.getClass());
+                        p.isEnabledByDefault(), p.hasSettings(), p.supportsDeviceSpecificSettings(),
+                        p.listensToUnpairedDevices(), p.getSupportedPacketTypes(),
+                        p.getOutgoingPacketTypes(), p.getClass());
                 pluginInfo.put(p.getPluginKey(), info);
             }
         } catch (Exception e) {

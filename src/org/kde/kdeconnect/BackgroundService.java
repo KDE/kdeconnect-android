@@ -15,8 +15,8 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+*/
 
 package org.kde.kdeconnect;
 
@@ -24,7 +24,6 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.bluetooth.BluetoothClass;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -33,8 +32,11 @@ import android.net.ConnectivityManager;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.core.app.NotificationCompat;
 
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
@@ -53,13 +55,11 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-
-import androidx.core.app.NotificationCompat;
-
 
 //import org.kde.kdeconnect.Backends.BluetoothBackend.BluetoothLinkProvider;
 
@@ -72,7 +72,7 @@ public class BackgroundService extends Service {
         void onDeviceListChanged();
     }
 
-    public interface PluginCallback<T extends Plugin> {
+    public interface PluginCallback<T extends Plugin>  {
         void run(T plugin);
     }
 
@@ -280,6 +280,7 @@ public class BackgroundService extends Service {
         initializeSecurityParameters();
         NotificationHelper.initializeChannels(this);
         loadRememberedDevicesFromSettings();
+        migratePluginSettings();
         registerLinkProviders();
 
         //Link Providers need to be already registered
@@ -290,6 +291,29 @@ public class BackgroundService extends Service {
         }
     }
 
+    private void migratePluginSettings() {
+        SharedPreferences globalPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        for (String pluginKey : PluginFactory.getAvailablePlugins()) {
+            if (PluginFactory.getPluginInfo(pluginKey).supportsDeviceSpecificSettings()) {
+                Iterator<Device> it = devices.values().iterator();
+
+                while (it.hasNext()) {
+                    Device device = it.next();
+                    Plugin plugin = PluginFactory.instantiatePluginForDevice(getBaseContext(), pluginKey, device);
+
+                    if (plugin == null) {
+                        continue;
+                    }
+
+                    plugin.copyGlobalToDeviceSpecificSettings(globalPrefs);
+                    if (!it.hasNext()) {
+                        plugin.removeSettings(globalPrefs);
+                    }
+                }
+            }
+        }
+    }
 
     public void changePersistentNotificationVisibility(boolean visible) {
         NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
