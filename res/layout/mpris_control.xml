@@ -101,6 +101,14 @@
             android:src="@drawable/ic_next_black"
             android:theme="@style/DisableableButton" />
 
+        <ImageButton
+            android:id="@+id/open_url_button"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.25"
+            android:contentDescription="@string/mpris_open_url"
+            android:src="@drawable/ic_arrow_black"
+            android:theme="@style/DisableableButton" />
     </LinearLayout>
 
     <LinearLayout

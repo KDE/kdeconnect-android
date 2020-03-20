@@ -20,9 +20,12 @@
 
 package org.kde.kdeconnect.Plugins.MprisPlugin;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -37,15 +40,18 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.BackgroundService;
+import org.kde.kdeconnect.Helpers.VideoUrlsHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.SystemvolumePlugin.SystemvolumeFragment;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 
+import java.net.MalformedURLException;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -76,6 +82,9 @@ public class MprisActivity extends AppCompatActivity {
 
     @BindView(R.id.ff_button)
     ImageButton ffButton;
+
+    @BindView(R.id.open_url_button)
+    ImageButton openUrlButton;
 
     @BindView(R.id.time_textview)
     TextView timeText;
@@ -288,6 +297,7 @@ public class MprisActivity extends AppCompatActivity {
         volumeLayout.setVisibility(playerStatus.isSetVolumeAllowed() ? View.VISIBLE : View.GONE);
         rewButton.setVisibility(playerStatus.isSeekAllowed() ? View.VISIBLE : View.GONE);
         ffButton.setVisibility(playerStatus.isSeekAllowed() ? View.VISIBLE : View.GONE);
+        openUrlButton.setVisibility("".equals(playerStatus.getUrl()) ? View.GONE : View.VISIBLE);
 
         //Show and hide previous/next buttons simultaneously
         if (playerStatus.isGoPreviousAllowed() || playerStatus.isGoNextAllowed()) {
@@ -386,6 +396,23 @@ public class MprisActivity extends AppCompatActivity {
         performActionOnClick(rewButton, p -> targetPlayer.seek(interval_time * -1));
 
         performActionOnClick(ffButton, p -> p.seek(interval_time));
+
+        performActionOnClick(openUrlButton, p -> {
+            String url = p.getUrl();
+            try {
+                url = VideoUrlsHelper.formatUriWithSeek(p.getUrl(), p.getPosition()).toString();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), String.format("%s '%s'", getString(R.string.cant_format_seek_uri), p.getUrl()), Toast.LENGTH_LONG).show();
+            }
+            try {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(browserIntent);
+            } catch (ActivityNotFoundException e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), String.format("%s '%s'", getString(R.string.cant_open_url), p.getUrl()), Toast.LENGTH_LONG).show();
+            }
+        });
 
         performActionOnClick(nextButton, MprisPlugin.MprisPlayer::next);
 
