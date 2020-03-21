@@ -471,21 +471,16 @@ public class MprisActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (targetPlayer != null) {
-            String url = targetPlayer.getUrl();
             try {
-                url = VideoUrlsHelper.formatUriWithSeek(url, targetPlayer.getPosition()).toString();
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-                Toast.makeText(getApplicationContext(), String.format("%s '%s'", getString(R.string.cant_format_seek_uri), url), Toast.LENGTH_LONG).show();
-            }
-            try {
+                String url = VideoUrlsHelper.formatUriWithSeek(targetPlayer.getUrl(), targetPlayer.getPosition()).toString();
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(browserIntent);
-            } catch (ActivityNotFoundException e) {
+                targetPlayer.pause();
+                return true;
+            } catch (MalformedURLException | ActivityNotFoundException e) {
                 e.printStackTrace();
-                Toast.makeText(getApplicationContext(), String.format("%s '%s'", getString(R.string.cant_open_url), url), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), getString(R.string.cant_open_url), Toast.LENGTH_LONG).show();
             }
-
         }
         return super.onOptionsItemSelected(item);
     }
