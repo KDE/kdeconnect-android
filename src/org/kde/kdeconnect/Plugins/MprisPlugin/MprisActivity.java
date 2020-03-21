@@ -470,7 +470,7 @@ public class MprisActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (targetPlayer != null) {
+        if (targetPlayer != null && item.getItemId() == MENU_OPEN_URL) {
             try {
                 String url = VideoUrlsHelper.formatUriWithSeek(targetPlayer.getUrl(), targetPlayer.getPosition()).toString();
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
