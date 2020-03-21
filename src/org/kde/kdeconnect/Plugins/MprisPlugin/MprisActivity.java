@@ -20,6 +20,7 @@
 
 package org.kde.kdeconnect.Plugins.MprisPlugin;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -31,6 +32,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -82,9 +86,6 @@ public class MprisActivity extends AppCompatActivity {
 
     @BindView(R.id.ff_button)
     ImageButton ffButton;
-
-    @BindView(R.id.open_url_button)
-    ImageButton openUrlButton;
 
     @BindView(R.id.time_textview)
     TextView timeText;
@@ -297,7 +298,8 @@ public class MprisActivity extends AppCompatActivity {
         volumeLayout.setVisibility(playerStatus.isSetVolumeAllowed() ? View.VISIBLE : View.GONE);
         rewButton.setVisibility(playerStatus.isSeekAllowed() ? View.VISIBLE : View.GONE);
         ffButton.setVisibility(playerStatus.isSeekAllowed() ? View.VISIBLE : View.GONE);
-        openUrlButton.setVisibility("".equals(playerStatus.getUrl()) ? View.GONE : View.VISIBLE);
+
+        invalidateOptionsMenu();
 
         //Show and hide previous/next buttons simultaneously
         if (playerStatus.isGoPreviousAllowed() || playerStatus.isGoNextAllowed()) {
@@ -397,23 +399,6 @@ public class MprisActivity extends AppCompatActivity {
 
         performActionOnClick(ffButton, p -> p.seek(interval_time));
 
-        performActionOnClick(openUrlButton, p -> {
-            String url = p.getUrl();
-            try {
-                url = VideoUrlsHelper.formatUriWithSeek(p.getUrl(), p.getPosition()).toString();
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-                Toast.makeText(getApplicationContext(), String.format("%s '%s'", getString(R.string.cant_format_seek_uri), p.getUrl()), Toast.LENGTH_LONG).show();
-            }
-            try {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(browserIntent);
-            } catch (ActivityNotFoundException e) {
-                e.printStackTrace();
-                Toast.makeText(getApplicationContext(), String.format("%s '%s'", getString(R.string.cant_open_url), p.getUrl()), Toast.LENGTH_LONG).show();
-            }
-        });
-
         performActionOnClick(nextButton, MprisPlugin.MprisPlayer::next);
 
         performActionOnClick(stopButton, MprisPlugin.MprisPlayer::stop);
@@ -470,6 +455,39 @@ public class MprisActivity extends AppCompatActivity {
         });
 
         nowPlayingText.setSelected(true);
+    }
+
+
+    final static int MENU_OPEN_URL = Menu.FIRST;
+
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.clear();
+        if(targetPlayer != null && !"".equals(targetPlayer.getUrl())) {
+            menu.add(0, MENU_OPEN_URL, Menu.NONE, R.string.mpris_open_url);
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (targetPlayer != null) {
+            String url = targetPlayer.getUrl();
+            try {
+                url = VideoUrlsHelper.formatUriWithSeek(url, targetPlayer.getPosition()).toString();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), String.format("%s '%s'", getString(R.string.cant_format_seek_uri), url), Toast.LENGTH_LONG).show();
+            }
+            try {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(browserIntent);
+            } catch (ActivityNotFoundException e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), String.format("%s '%s'", getString(R.string.cant_open_url), url), Toast.LENGTH_LONG).show();
+            }
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

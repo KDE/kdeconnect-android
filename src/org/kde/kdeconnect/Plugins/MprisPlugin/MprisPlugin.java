@@ -20,7 +20,6 @@
 
 package org.kde.kdeconnect.Plugins.MprisPlugin;
 
-import android.annotation.NonNull;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -28,6 +27,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+
+import androidx.core.content.ContextCompat;
 
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
@@ -41,8 +42,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-
-import androidx.core.content.ContextCompat;
 
 @PluginFactory.LoadablePlugin
 public class MprisPlugin extends Plugin {
@@ -138,7 +137,7 @@ public class MprisPlugin extends Plugin {
             return AlbumArtCache.getAlbumArt(albumArtUrl, MprisPlugin.this, player);
         }
 
-        @NonNull
+        //@NonNull
         public String getUrl() {
             return url;
         }
