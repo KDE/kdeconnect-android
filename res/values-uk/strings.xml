@@ -305,4 +305,6 @@
   <string name="location_permission_needed_title">Потрібні права доступу</string>
   <string name="location_permission_needed_desc">Android потрібні права доступу до даних місця перебування для ідентифікації вашої мережі WiFi</string>
   <string name="clipboard_android_x_incompat">У Android 10 вилучено доступ до буфера даних для усіх програм. Цей додаток буде вимкнено.</string>
+  <string name="mpris_open_url">Продовжити відтворення тут</string>
+  <string name="cant_open_url">Не вдалося відкрити адресу для продовження відтворення</string>
 </resources>
