@@ -379,8 +379,15 @@ public class MprisActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mpris);
         ButterKnife.bind(this);
 
-        final String targetPlayerName = getIntent().getStringExtra("player");
+        String targetPlayerName = getIntent().getStringExtra("player");
         getIntent().removeExtra("player");
+
+        if (targetPlayerName == null || targetPlayerName.isEmpty()) {
+            if (savedInstanceState != null) {
+                targetPlayerName = savedInstanceState.getString("targetPlayer");
+            }
+        }
+
         deviceId = getIntent().getStringExtra("deviceId");
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -485,4 +492,9 @@ public class MprisActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putString("targetPlayer", targetPlayer.getPlayer());
+        super.onSaveInstanceState(outState);
+    }
 }
