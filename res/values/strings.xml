@@ -358,4 +358,13 @@
     <string name="clipboard_android_x_incompat">Android 10 has removed clipboard access to all apps. This plugin will be disabled.</string>
     <string name="mpris_open_url">Continue playing here</string>
     <string name="cant_open_url">Can\'t open URL to continue playing</string>
+
+    <string name="bigscreen_home">Home</string>
+    <string name="bigscreen_up">Up</string>
+    <string name="bigscreen_left">Left</string>
+    <string name="bigscreen_select">Select</string>
+    <string name="bigscreen_right">Right</string>
+    <string name="bigscreen_down">Down</string>
+    <string name="pref_plugin_bigscreen">Bigscreen remote</string>
+    <string name="pref_plugin_bigscreen_desc">Use your device as a remote for Plasma Bigscreen</string>
 </resources>

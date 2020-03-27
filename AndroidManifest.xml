@@ -207,6 +207,16 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="org.kde.kdeconnect.Plugins.BigscreenPlugin.BigscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/pref_plugin_bigscreen"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
+        </activity>
+        <activity
             android:name="org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadActivity"
             android:label="@string/pref_plugin_mousepad"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
