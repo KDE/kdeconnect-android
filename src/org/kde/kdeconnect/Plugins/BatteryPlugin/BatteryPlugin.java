@@ -85,7 +85,8 @@ public class BatteryPlugin extends Plugin {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
         intentFilter.addAction(Intent.ACTION_BATTERY_LOW);
-        context.registerReceiver(receiver, intentFilter);
+        Intent currentState = context.registerReceiver(receiver, intentFilter);
+        receiver.onReceive(context, currentState);
         return true;
     }
 
