@@ -291,4 +291,12 @@
   <string name="clipboard_android_x_incompat">Android 10 heeft toegang tot het klembord naar alle toepassingen verwijderd. Deze plug-in zal uitgeschakeld worden.</string>
   <string name="mpris_open_url">Hier doorgaan met afspelen</string>
   <string name="cant_open_url">Kan URL niet openen om door te gaan met afspelen</string>
+  <string name="bigscreen_home">Home</string>
+  <string name="bigscreen_up">Omhoog</string>
+  <string name="bigscreen_left">Links</string>
+  <string name="bigscreen_select">Selecteren</string>
+  <string name="bigscreen_right">Rechts</string>
+  <string name="bigscreen_down">Omlaag</string>
+  <string name="pref_plugin_bigscreen">Bigscreen op afstand</string>
+  <string name="pref_plugin_bigscreen_desc">Gebruik uw apparaat als een Bigscreen op afstand</string>
 </resources>

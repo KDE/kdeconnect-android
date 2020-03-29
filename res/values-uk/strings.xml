@@ -307,4 +307,12 @@
   <string name="clipboard_android_x_incompat">У Android 10 вилучено доступ до буфера даних для усіх програм. Цей додаток буде вимкнено.</string>
   <string name="mpris_open_url">Продовжити відтворення тут</string>
   <string name="cant_open_url">Не вдалося відкрити адресу для продовження відтворення</string>
+  <string name="bigscreen_home">Домівка</string>
+  <string name="bigscreen_up">Вгору</string>
+  <string name="bigscreen_left">Ліворуч</string>
+  <string name="bigscreen_select">Вибрати</string>
+  <string name="bigscreen_right">Праворуч</string>
+  <string name="bigscreen_down">Вниз</string>
+  <string name="pref_plugin_bigscreen">Керування великим екраном</string>
+  <string name="pref_plugin_bigscreen_desc">Скористайтеся вашим пристроєм як дистанційним керуванням для великого екрана Плазми</string>
 </resources>

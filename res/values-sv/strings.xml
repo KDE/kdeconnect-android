@@ -291,4 +291,12 @@
   <string name="clipboard_android_x_incompat">Android 10 har tagit bort åtkomst till klippbordet för alla applikationer. Det här insticksprogrammet kommer att inaktiveras.</string>
   <string name="mpris_open_url">Fortsätt spela här</string>
   <string name="cant_open_url">Kan inte öppna webbadress för att sluta spela</string>
+  <string name="bigscreen_home">Hem</string>
+  <string name="bigscreen_up">Uppåt</string>
+  <string name="bigscreen_left">Vänster</string>
+  <string name="bigscreen_select">Markera</string>
+  <string name="bigscreen_right">Höger</string>
+  <string name="bigscreen_down">Neråt</string>
+  <string name="pref_plugin_bigscreen">Fjärrkontroll för storskärm</string>
+  <string name="pref_plugin_bigscreen_desc">Använd apparaten som en fjärrkontroll för Plasma storskärm</string>
 </resources>
