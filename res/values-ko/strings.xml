@@ -3,6 +3,7 @@
   <string name="kde_connect">KDE Connect</string>
   <string name="foreground_notification_no_devices">연결된 장치 없음</string>
   <string name="foreground_notification_devices">연결됨: %s</string>
+  <string name="foreground_notification_send_clipboard">클립보드 보내기</string>
   <string name="pref_plugin_telephony">전화 알림이</string>
   <string name="pref_plugin_telephony_desc">수신 통화 알림 보내기</string>
   <string name="pref_plugin_battery">배터리 보고</string>
@@ -11,6 +12,7 @@
   <string name="pref_plugin_sftp_desc">원격으로 이 장치의 파일 시스템 보기</string>
   <string name="pref_plugin_clipboard">클립보드 동기화</string>
   <string name="pref_plugin_clipboard_desc">클립보드 내용 동기화</string>
+  <string name="pref_plugin_clipboard_sent">클립보드 보냄</string>
   <string name="pref_plugin_mousepad">원격 입력</string>
   <string name="pref_plugin_mousepad_desc">내 휴대폰이나 태블릿을 터치패드와 키보드로 사용하기</string>
   <string name="pref_plugin_presenter">슬라이드 쇼 리모콘</string>
@@ -279,4 +281,14 @@
   <string name="location_permission_needed_title">권한이 필요함</string>
   <string name="location_permission_needed_desc">안드로이드에서 Wi-Fi 네트워크를 식별하려면 위치 권한이 필요합니다</string>
   <string name="clipboard_android_x_incompat">안드로이드 10부터는 앱에서 클립보드에 접근할 수 없습니다. 이 플러그인이 비활성화되었습니다.</string>
+  <string name="mpris_open_url">여기에서 계속 재생</string>
+  <string name="cant_open_url">계속 재생할 URL을 열 수 없음</string>
+  <string name="bigscreen_home">홈</string>
+  <string name="bigscreen_up">위</string>
+  <string name="bigscreen_left">왼쪽</string>
+  <string name="bigscreen_select">선택</string>
+  <string name="bigscreen_right">오른쪽</string>
+  <string name="bigscreen_down">아래</string>
+  <string name="pref_plugin_bigscreen">Bigscreen 리모콘</string>
+  <string name="pref_plugin_bigscreen_desc">내 장치를 Plasma Bigscreen의 리모콘으로 사용</string>
 </resources>

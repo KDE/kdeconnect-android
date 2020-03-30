@@ -291,4 +291,12 @@
   <string name="clipboard_android_x_incompat">O Android 10 removeu o acesso à área de transferência para todas as aplicações. Este \'plugin\' ficará desactivado.</string>
   <string name="mpris_open_url">Continuar a tocar aqui</string>
   <string name="cant_open_url">Não é possível abrir o URL para continuar a tocar</string>
+  <string name="bigscreen_home">Início</string>
+  <string name="bigscreen_up">Cima</string>
+  <string name="bigscreen_left">Esquerda</string>
+  <string name="bigscreen_select">Seleccionar</string>
+  <string name="bigscreen_right">Direita</string>
+  <string name="bigscreen_down">Baixo</string>
+  <string name="pref_plugin_bigscreen">Comando à distância do ecrã grande</string>
+  <string name="pref_plugin_bigscreen_desc">Use o seu dispositivo como um comando à distância para o Plasma em Ecrã Grande</string>
 </resources>
