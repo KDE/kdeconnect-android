@@ -3,6 +3,7 @@
   <string name="kde_connect">KDE Connect</string>
   <string name="foreground_notification_no_devices">Not connected to any device</string>
   <string name="foreground_notification_devices">Connected to: %s</string>
+  <string name="foreground_notification_send_clipboard">Send Clipboard</string>
   <string name="pref_plugin_telephony">Telephony notifier</string>
   <string name="pref_plugin_telephony_desc">Send notifications for incoming calls</string>
   <string name="pref_plugin_battery">Battery report</string>
@@ -11,6 +12,7 @@
   <string name="pref_plugin_sftp_desc">Allows to browse this device\'s filesystem remotely</string>
   <string name="pref_plugin_clipboard">Clipboard sync</string>
   <string name="pref_plugin_clipboard_desc">Share the clipboard content</string>
+  <string name="pref_plugin_clipboard_sent">Clipboard Sent</string>
   <string name="pref_plugin_mousepad">Remote input</string>
   <string name="pref_plugin_mousepad_desc">Use your phone or tablet as a touchpad and keyboard</string>
   <string name="pref_plugin_presenter">Slideshow remote</string>
@@ -33,6 +35,7 @@
   <string name="pref_plugin_sharereceiver_desc">Share files and URLs between devices</string>
   <string name="device_list_empty">No devices</string>
   <string name="ok">OK</string>
+  <string name="sad_ok">OK :(</string>
   <string name="cancel">Cancel</string>
   <string name="open_settings">Open settings</string>
   <string name="no_permissions">You need to grant permission to access notifications</string>
@@ -205,6 +208,7 @@
   <string name="refresh">Refresh</string>
   <string name="unreachable_description">This paired device is not reachable. Make sure it is connected to your same network.</string>
   <string name="no_wifi">You\'re not connected to a Wi-Fi network, so you may not be able to see any devices. Click here to enable Wi-Fi.</string>
+  <string name="on_non_trusted_message">Not on a trusted network: autodiscovery is disabled.</string>
   <string name="no_file_browser">There are no file browsers installed.</string>
   <string name="pref_plugin_telepathy">Send SMS</string>
   <string name="pref_plugin_telepathy_desc">Send text messages from your desktop</string>
@@ -212,6 +216,7 @@
   <string name="findmyphone_title_tablet">Find my tablet</string>
   <string name="findmyphone_title_tv">Find my TV</string>
   <string name="findmyphone_description">Rings this device so you can find it</string>
+  <string name="findmyphone_found">Found it</string>
   <string name="open">Open</string>
   <string name="close">Close</string>
   <string name="plugins_need_permission">Some Plugins need permissions to work (tap for more info):</string>
@@ -242,6 +247,7 @@
   <string name="notification_channel_persistent">Persistent indicator</string>
   <string name="notification_channel_media_control">Media control</string>
   <string name="notification_channel_filetransfer">File transfer</string>
+  <string name="notification_channel_high_priority">High priority</string>
   <string name="mpris_stop">Stop the current player</string>
   <string name="copy_url_to_clipboard">Copy URL to clipboard</string>
   <string name="clipboard_toast">Copied to clipboard</string>
@@ -275,4 +281,22 @@
   <string name="no_app_for_opening">No suitable app found to open this file</string>
   <string name="remote_keyboard_service">KDE Connect Remote Keyboard</string>
   <string name="presenter_pointer">Pointer</string>
+  <string name="trusted_networks">Trusted networks</string>
+  <string name="trusted_networks_desc">Restrict autodiscovery to known networks</string>
+  <string name="add_trusted_network">Add %1s</string>
+  <string name="empty_trusted_networks_list_text">You have not added any trusted network yet</string>
+  <string name="allow_all_networks_text">Allow all</string>
+  <string name="location_permission_needed_title">Permission required</string>
+  <string name="location_permission_needed_desc">Android requires the Location permission to identify your WiFi network</string>
+  <string name="clipboard_android_x_incompat">Android 10 has removed clipboard access to all apps. This plugin will be disabled.</string>
+  <string name="mpris_open_url">Continue playing here</string>
+  <string name="cant_open_url">Cannot open URL to continue playing</string>
+  <string name="bigscreen_home">Home</string>
+  <string name="bigscreen_up">Up</string>
+  <string name="bigscreen_left">Left</string>
+  <string name="bigscreen_select">Select</string>
+  <string name="bigscreen_right">Right</string>
+  <string name="bigscreen_down">Down</string>
+  <string name="pref_plugin_bigscreen">Bigscreen remote</string>
+  <string name="pref_plugin_bigscreen_desc">Use your device as a remote for Plasma Bigscreen</string>
 </resources>
