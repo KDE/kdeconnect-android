@@ -307,4 +307,12 @@
   <string name="clipboard_android_x_incompat">Android 10 pašalino iškarpinės prieigą prie visų programėlių. Šis papildinys bus išjungtas.</string>
   <string name="mpris_open_url">Tęsti atkūrimą čia</string>
   <string name="cant_open_url">Nepavyksta atverti URL, kad būtų tęsiamas atkūrimas</string>
+  <string name="bigscreen_home">Pradžia</string>
+  <string name="bigscreen_up">Aukštyn</string>
+  <string name="bigscreen_left">Kairėn</string>
+  <string name="bigscreen_select">Pasirinkti</string>
+  <string name="bigscreen_right">Dešinėn</string>
+  <string name="bigscreen_down">Žemyn</string>
+  <string name="pref_plugin_bigscreen">Bigscreen nuotolinis pultas</string>
+  <string name="pref_plugin_bigscreen_desc">Naudoti savo įrenginį kaip Plasma Bigscreen nuotolinį pultą</string>
 </resources>
