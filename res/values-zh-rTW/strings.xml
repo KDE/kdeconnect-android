@@ -283,4 +283,12 @@
   <string name="clipboard_android_x_incompat">Android 10 已移除所有應用程式的剪貼簿存取權限。此外掛程式將停用。</string>
   <string name="mpris_open_url">繼續在此播放</string>
   <string name="cant_open_url">無法開啟 URL 以繼續播放</string>
+  <string name="bigscreen_home">首頁</string>
+  <string name="bigscreen_up">上</string>
+  <string name="bigscreen_left">左</string>
+  <string name="bigscreen_select">選擇</string>
+  <string name="bigscreen_right">右</string>
+  <string name="bigscreen_down">下</string>
+  <string name="pref_plugin_bigscreen">Bigscreen 遠端</string>
+  <string name="pref_plugin_bigscreen_desc">將您的裝置用作 Plasma Bigscreen 的遠端</string>
 </resources>
