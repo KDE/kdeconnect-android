@@ -347,10 +347,10 @@ public class BackgroundService extends Service {
         }
 
         ArrayList<String> connectedDevices = new ArrayList<>();
-        ArrayList<String> deviceIds = new ArrayList<>();
+        ArrayList<String> connectedDeviceIds = new ArrayList<>();
         for (Device device : getDevices().values()) {
             if (device.isReachable() && device.isPaired()) {
-                deviceIds.add(device.getDeviceId());
+                connectedDeviceIds.add(device.getDeviceId());
                 connectedDevices.add(device.getName());
             }
         }
@@ -359,28 +359,30 @@ public class BackgroundService extends Service {
             notification.setContentText(getString(R.string.foreground_notification_no_devices));
         } else {
             notification.setContentText(getString(R.string.foreground_notification_devices, TextUtils.join(", ", connectedDevices)));
-            if (deviceIds.size() == 1) {
+
+            // Adding an action button to send clipboard manually in Android 10 and later.
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+                Intent sendClipboard = new Intent(this, ClipboardFloatingActivity.class);
+                sendClipboard.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                sendClipboard.putExtra("connectedDeviceIds", connectedDeviceIds);
+                PendingIntent sendPendingClipboard = PendingIntent.getActivity(this, 3, sendClipboard, PendingIntent.FLAG_UPDATE_CURRENT);
+                notification.addAction(0, getString(R.string.foreground_notification_send_clipboard), sendPendingClipboard);
+            }
+
+            if (connectedDeviceIds.size() == 1) {
                 // Adding two action buttons only when there is a single device connected.
                 // Setting up Send File Intent.
                 Intent sendFile = new Intent(this, SendFileActivity.class);
-                sendFile.putExtra("deviceId", deviceIds.get(0));
+                sendFile.putExtra("deviceId", connectedDeviceIds.get(0));
                 PendingIntent sendPendingFile = PendingIntent.getActivity(this, 1, sendFile, PendingIntent.FLAG_UPDATE_CURRENT);
                 notification.addAction(0, getString(R.string.send_files), sendPendingFile);
 
-                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-                    Intent sendClipboard = new Intent(this, ClipboardFloatingActivity.class);
-                    sendClipboard.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    sendClipboard.putExtra("deviceId", deviceIds.get(0));
-                    PendingIntent sendPendingClipboard = PendingIntent.getActivity(this, 3, sendClipboard, PendingIntent.FLAG_UPDATE_CURRENT);
-                    notification.addAction(0, getString(R.string.foreground_notification_send_clipboard), sendPendingClipboard);
-                }
-
                 // Checking if there are registered commands and adding the button.
-                Device device = getDevice(deviceIds.get(0));
+                Device device = getDevice(connectedDeviceIds.get(0));
                 RunCommandPlugin plugin = (RunCommandPlugin) device.getPlugin("RunCommandPlugin");
                 if (plugin != null && !plugin.getCommandList().isEmpty()) {
                     Intent runCommand = new Intent(this, RunCommandActivity.class);
-                    runCommand.putExtra("deviceId", deviceIds.get(0));
+                    runCommand.putExtra("deviceId", connectedDeviceIds.get(0));
                     PendingIntent runPendingCommand = PendingIntent.getActivity(this, 2, runCommand, PendingIntent.FLAG_UPDATE_CURRENT);
                     notification.addAction(0, getString(R.string.pref_plugin_runcommand), runPendingCommand);
                 }
