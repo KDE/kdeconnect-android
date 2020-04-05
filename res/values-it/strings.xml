@@ -291,4 +291,12 @@
   <string name="clipboard_android_x_incompat">Android 10 ha rimosso l\'accesso agli appunti a tutte le applicazioni. Questa estensione sarà disabilitata.</string>
   <string name="mpris_open_url">Continua qui la riproduzione</string>
   <string name="cant_open_url">Impossibile aprire l\'URL per continuare la riproduzione</string>
+  <string name="bigscreen_home">Inizio</string>
+  <string name="bigscreen_up">Su</string>
+  <string name="bigscreen_left">Sinistra</string>
+  <string name="bigscreen_select">Seleziona</string>
+  <string name="bigscreen_right">A destra</string>
+  <string name="bigscreen_down">Giù</string>
+  <string name="pref_plugin_bigscreen">Telecomando Bigscreen</string>
+  <string name="pref_plugin_bigscreen_desc">Utilizza il tuo dispositivo come telecomando per Plasma Bigscreen</string>
 </resources>
