@@ -150,7 +150,7 @@
   <string name="protocol_version_newer">이 장치의 프로토콜 버전이 더 새롭습니다</string>
   <string name="plugin_settings_with_name">%s 설정</string>
   <string name="invalid_device_name">잘못된 장치 이름</string>
-  <string name="shareplugin_text_saved">텍스트 수신, 클립보드로 복사됨</string>
+  <string name="shareplugin_text_saved">텍스트 수신, 클립보드에 복사됨</string>
   <string name="custom_devices_settings">사용자 정의 장치 목록</string>
   <string name="custom_device_list">IP로 장치 추가</string>
   <string name="custom_device_deleted">사용자 정의 장치 삭제됨</string>
@@ -242,7 +242,7 @@
   <string name="notification_channel_high_priority">높은 우선 순위</string>
   <string name="mpris_stop">현재 재생기 정지</string>
   <string name="copy_url_to_clipboard">클립보드로 URL 복사</string>
-  <string name="clipboard_toast">클립보드로 복사됨</string>
+  <string name="clipboard_toast">클립보드에 복사됨</string>
   <string name="runcommand_notreachable">장치에 접근할 수 없음</string>
   <string name="runcommand_notpaired">장치가 연결되지 않음</string>
   <string name="runcommand_nosuchdevice">장치가 없음</string>
