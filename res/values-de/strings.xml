@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE-Connect</string>
+  <string name="kde_connect">KDE Connect</string>
   <string name="foreground_notification_no_devices">Keine bestehenden Verbindungen</string>
   <string name="foreground_notification_devices">Verbunden mit %s</string>
   <string name="pref_plugin_telephony">Telefon-Integration</string>
@@ -85,7 +85,7 @@
   <string name="error_canceled_by_user">Abbruch durch Benutzer</string>
   <string name="error_canceled_by_other_peer">Abbruch durch Gegenstelle</string>
   <string name="encryption_info_title">Verschlüsselungsinformationen</string>
-  <string name="encryption_info_msg_no_ssl">Das andere Gerät verwendet eine ältere Version von KDE-Connect. Daher muss eine veraltete Verschlüsselungsmethode verwendet werden</string>
+  <string name="encryption_info_msg_no_ssl">Das andere Gerät verwendet eine ältere Version von KDE Connect. Daher muss eine veraltete Verschlüsselungsmethode verwendet werden</string>
   <string name="my_device_fingerprint">Der SHA1-Fingerabdruck Ihres Gerätezertifikats lautet:</string>
   <string name="remote_device_fingerprint">Der SHA1-Fingerabdruck des Gerätezertifikats der Gegenstelle lautet:</string>
   <string name="pair_requested">Verbindung angefordert</string>
@@ -150,7 +150,7 @@
     <item>2 Minuten</item>
   </string-array>
   <string name="mpris_notification_settings_title">Benachrichtigung zur Medienkontrolle anzeigen</string>
-  <string name="mpris_notification_settings_summary">Die Steuerung der Medienwiedergabe auch dann erlauben wenn KDE-Connect nicht geöffnet ist</string>
+  <string name="mpris_notification_settings_summary">Die Steuerung der Medienwiedergabe auch dann erlauben wenn KDE Connect nicht geöffnet ist</string>
   <string name="share_to">Freigeben für ...</string>
   <string name="protocol_version_newer">Dieses Gerät verwendet eine neuere Protokollversion</string>
   <string name="plugin_settings_with_name">%s-Einstellungen</string>
@@ -199,7 +199,7 @@
   <string name="no_players_connected">Keine Medienspieler gefunden</string>
   <string name="send_files">Dateien senden</string>
   <string name="pairing_title">KDE-Connect-Geräte</string>
-  <string name="pairing_description">Andere Geräte im selben Netzwerk, auf denen KDE-Connect läuft, sollten hier angezeigt werden</string>
+  <string name="pairing_description">Andere Geräte im selben Netzwerk, auf denen KDE Connect läuft, sollten hier angezeigt werden</string>
   <string name="device_rename_title">Geräte umbenennen</string>
   <string name="device_rename_confirm">Umbenennen</string>
   <string name="refresh">Aktualisieren</string>
@@ -235,7 +235,7 @@
   <string name="presenter_lock_tip">Sie können Ihr Gerät sperren und mit Hilfe der Lauter-/Leiser-Taste zur vorherigen/nächsten Folie wechseln</string>
   <string name="add_command">Einen Befehl hinzufügen</string>
   <string name="addcommand_explanation">Es sind keine Befehle vorhanden</string>
-  <string name="addcommand_explanation2">Sie können neue Befehle in den Systemeinstellungen für KDE-Connect hinzufügen</string>
+  <string name="addcommand_explanation2">Sie können neue Befehle in den Systemeinstellungen für KDE Connect hinzufügen</string>
   <string name="add_command_description">Sie können neue Befehle auf der Arbeitsfläche hinzufügen</string>
   <string name="pref_plugin_mprisreceiver">Steuerung der Medienwiedergabe</string>
   <string name="pref_plugin_mprisreceiver_desc">Ein verbundenes Gerät zum Steuern der lokalen Medienwiedergabe verwenden</string>
@@ -275,7 +275,7 @@
   <string name="take_picture">Kamera starten</string>
   <string name="plugin_photo_desc">Die Kamera starten um das Erstellen und Übertragen von Bildern zu vereinfachen</string>
   <string name="no_app_for_opening">Es wurde keine passende App zum Öffnen dieser Datei gefunden</string>
-  <string name="remote_keyboard_service">Entfernte Tastatur für KDE-Connect</string>
+  <string name="remote_keyboard_service">Entfernte Tastatur für KDE Connect</string>
   <string name="presenter_pointer">Laserpointer</string>
   <string name="trusted_networks">Vertrauenswürdiges Netzwerk</string>
   <string name="add_trusted_network">%1s hinzufügen</string>
