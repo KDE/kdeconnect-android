@@ -29,8 +29,8 @@ import org.apache.sshd.common.util.SecurityUtils;
 import org.apache.sshd.server.PasswordAuthenticator;
 import org.apache.sshd.server.PublickeyAuthenticator;
 import org.apache.sshd.server.command.ScpCommandFactory;
-import org.apache.sshd.server.kex.DHG1;
 import org.apache.sshd.server.kex.DHG14;
+import org.apache.sshd.server.kex.ECDHP384;
 import org.apache.sshd.server.session.ServerSession;
 import org.apache.sshd.server.sftp.SftpSubsystem;
 import org.kde.kdeconnect.Device;
@@ -38,6 +38,7 @@ import org.kde.kdeconnect.Helpers.RandomHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 
+import java.io.IOException;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -75,8 +76,9 @@ class SimpleSftpServer {
     void init(Context context, Device device) throws GeneralSecurityException {
 
         sshd.setKeyExchangeFactories(Arrays.asList(
-                new DHG14.Factory(),
-                new DHG1.Factory()));
+                new ECDHP384.Factory(), // This is the best we have in mina-sshd 0.14.0 -- Upgrading is non-trivial
+                new DHG14.Factory() // Left for backwards-compatibility, but should probably be removed
+        ));
 
         //Reuse this device keys for the ssh connection as well
         final KeyPair keyPair;
@@ -112,7 +114,7 @@ class SimpleSftpServer {
                     sshd.setPort(port);
                     sshd.start();
                     started = true;
-                } catch (Exception e) {
+                } catch (IOException e) {
                     port++;
                     if (port >= ENDPORT) {
                         port = -1;
