@@ -20,11 +20,15 @@
 
 package org.kde.kdeconnect.Plugins.ClibpoardPlugin;
 
+import android.os.Build;
 
+import androidx.fragment.app.DialogFragment;
+import androidx.preference.PreferenceManager;
 
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
+import org.kde.kdeconnect.UserInterface.NoticeAlertDialogFragment;
 import org.kde.kdeconnect_tp.R;
 
 @PluginFactory.LoadablePlugin
@@ -54,6 +58,8 @@ public class ClipboardPlugin extends Plugin {
      * }
      */
     private final static String PACKET_TYPE_CLIPBOARD_CONNECT = "kdeconnect.clipboard.connect";
+
+    private final static String ANDROID_10_INCOMPAT_DIALOG_SHOWN_PREFERENCE = "android10IncompatDialogShown";
 
     @Override
     public String getDisplayName() {
@@ -87,7 +93,7 @@ public class ClipboardPlugin extends Plugin {
 
     private final ClipboardListener.ClipboardObserver observer = this::propagateClipboard;
 
-    void propagateClipboard(String content) {
+    private void propagateClipboard(String content) {
         NetworkPacket np = new NetworkPacket(ClipboardPlugin.PACKET_TYPE_CLIPBOARD);
         np.set("content", content);
         device.sendPacket(np);
@@ -102,9 +108,26 @@ public class ClipboardPlugin extends Plugin {
         device.sendPacket(np);
     }
 
+    @Override
+    public boolean checkRequiredPermissions() {
+        return Build.VERSION.SDK_INT <= Build.VERSION_CODES.P || PreferenceManager.getDefaultSharedPreferences(context).getBoolean(ANDROID_10_INCOMPAT_DIALOG_SHOWN_PREFERENCE, false);
+    }
+
+    @Override
+    public DialogFragment getPermissionExplanationDialog() {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(ANDROID_10_INCOMPAT_DIALOG_SHOWN_PREFERENCE, true).apply();
+        return new NoticeAlertDialogFragment.Builder()
+            .setTitle(R.string.pref_plugin_clipboard)
+            .setMessage(R.string.clipboard_android_x_incompat)
+            .setPositiveButton(R.string.sad_ok)
+            .create();
+    }
 
     @Override
     public boolean onCreate() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            return false;
+        }
         ClipboardListener.instance(context).registerObserver(observer);
         sendConnectPacket();
         return true;
