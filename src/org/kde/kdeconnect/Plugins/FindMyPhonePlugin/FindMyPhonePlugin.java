@@ -188,6 +188,11 @@ public class FindMyPhonePlugin extends Plugin {
     }
 
     void stopPlaying() {
+        if (audioManager == null) {
+            // The Plugin was destroyed (probably the device disconnected)
+            return;
+        }
+
         if (previousVolume != -1) {
             audioManager.setStreamVolume(AudioManager.STREAM_ALARM, previousVolume, 0);
         }
