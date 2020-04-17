@@ -42,6 +42,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 @PluginFactory.LoadablePlugin
 public class MprisPlugin extends Plugin {
@@ -213,10 +214,9 @@ public class MprisPlugin extends Plugin {
     private final static String PACKET_TYPE_MPRIS = "kdeconnect.mpris";
     private final static String PACKET_TYPE_MPRIS_REQUEST = "kdeconnect.mpris.request";
 
-    private final HashMap<String, MprisPlayer> players = new HashMap<>();
+    private final ConcurrentHashMap<String, MprisPlayer> players = new ConcurrentHashMap<>();
     private boolean supportAlbumArtPayload = false;
     private final HashMap<String, Handler> playerStatusUpdated = new HashMap<>();
-
     private final HashMap<String, Handler> playerListUpdated = new HashMap<>();
 
     @Override
@@ -408,6 +408,9 @@ public class MprisPlugin extends Plugin {
     }
 
     public MprisPlayer getPlayerStatus(String player) {
+        if (player == null) {
+            return null;
+        }
         return players.get(player);
     }
 
@@ -430,6 +433,9 @@ public class MprisPlugin extends Plugin {
     }
 
     boolean hasPlayer(MprisPlayer player) {
+        if (player == null) {
+            return false;
+        }
         return players.containsValue(player);
     }
 
