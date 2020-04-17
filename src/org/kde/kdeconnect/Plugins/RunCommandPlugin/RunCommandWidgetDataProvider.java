@@ -8,6 +8,8 @@ import android.widget.RemoteViewsService;
 
 import org.kde.kdeconnect_tp.R;
 
+import java.util.ArrayList;
+
 
 class RunCommandWidgetDataProvider implements RemoteViewsService.RemoteViewsFactory {
 
@@ -74,10 +76,15 @@ class RunCommandWidgetDataProvider implements RemoteViewsService.RemoteViewsFact
 
     @Override
     public long getItemId(int i) {
-        if (RunCommandWidget.getCurrentDevice() != null)
-            return RunCommandWidget.getCurrentDevice().getPlugin(RunCommandPlugin.class).getCommandItems().get(i).getKey().hashCode();
-
-        return 0;
+        int id = 0;
+        if (RunCommandWidget.getCurrentDevice() != null) {
+            RunCommandPlugin plugin = RunCommandWidget.getCurrentDevice().getPlugin(RunCommandPlugin.class);
+            if (plugin != null) {
+                ArrayList<CommandEntry> items = plugin.getCommandItems();
+                id = items.get(i).getKey().hashCode();
+            }
+        }
+        return id;
     }
 
     @Override
