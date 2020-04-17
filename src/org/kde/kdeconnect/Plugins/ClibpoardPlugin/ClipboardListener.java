@@ -51,6 +51,7 @@ public class ClipboardListener {
     public static ClipboardListener instance(Context context) {
         if (_instance == null) {
             _instance = new ClipboardListener(context);
+            // FIXME: The _instance we return won't be completely initialized yet since initialization happens on a new thread (why?)
         }
         return _instance;
     }
@@ -102,9 +103,11 @@ public class ClipboardListener {
 
     @SuppressWarnings("deprecation")
     public void setText(String text) {
-        updateTimestamp = System.currentTimeMillis();
-        currentContent = text;
-        cm.setText(text);
+        if (cm != null) {
+            updateTimestamp = System.currentTimeMillis();
+            currentContent = text;
+            cm.setText(text);
+        }
     }
 
 }
