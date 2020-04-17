@@ -9,6 +9,7 @@
     <string name="kde_connect">KDE Connect</string>
     <string name="foreground_notification_no_devices">Not connected to any device</string>
     <string name="foreground_notification_devices">Connected to: %s</string>
+    <string name="foreground_notification_send_clipboard">Send Clipboard</string>
     <string name="pref_plugin_telephony">Telephony notifier</string>
     <string name="pref_plugin_telephony_desc">Send notifications for incoming calls</string>
     <string name="pref_plugin_battery">Battery report</string>
@@ -17,6 +18,7 @@
     <string name="pref_plugin_sftp_desc">Allows to browse this device\'s filesystem remotely</string>
     <string name="pref_plugin_clipboard">Clipboard sync</string>
     <string name="pref_plugin_clipboard_desc">Share the clipboard content</string>
+    <string name="pref_plugin_clipboard_sent">Clipboard Sent</string>
     <string name="pref_plugin_mousepad">Remote input</string>
     <string name="pref_plugin_mousepad_desc">Use your phone or tablet as a touchpad and keyboard</string>
     <string name="pref_plugin_presenter">Slideshow remote</string>
