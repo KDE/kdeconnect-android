@@ -495,7 +495,7 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     public void onNotificationPosted(StatusBarNotification n) {
-        if (n.getPackageName().equals("com.spotify.music")) {
+        if ("com.spotify.music".equals(n.getPackageName())) {
             spotifyRunning = true;
             updateMediaNotification();
         }
@@ -504,7 +504,7 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     public void onNotificationRemoved(StatusBarNotification n) {
-        if (n.getPackageName().equals("com.spotify.music")) {
+        if ("com.spotify.music".equals(n.getPackageName())) {
             spotifyRunning = false;
             updateMediaNotification();
         }
@@ -514,7 +514,7 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
     @Override
     public void onListenerConnected(NotificationReceiver service) {
         for (StatusBarNotification n : service.getActiveNotifications()) {
-            if (n.getPackageName().equals("com.spotify.music")) {
+            if ("com.spotify.music".equals(n.getPackageName())) {
                 spotifyRunning = true;
                 updateMediaNotification();
             }
