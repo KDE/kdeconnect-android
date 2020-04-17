@@ -67,12 +67,17 @@ public class PluginSettingsActivity
 
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragmentPlaceHolder);
         if (fragment == null) {
-            if (pluginKey == null) {
-                fragment = PluginSettingsListFragment.newInstance(deviceId);
-            } else {
+            if (pluginKey != null) {
                 Device device = BackgroundService.getInstance().getDevice(deviceId);
-                Plugin plugin = device.getPlugin(pluginKey);
-                fragment = plugin.getSettingsFragment(this);
+                if (device != null) {
+                    Plugin plugin = device.getPlugin(pluginKey);
+                    if (plugin != null) {
+                        fragment = plugin.getSettingsFragment(this);
+                    }
+                }
+            }
+            if (fragment == null) {
+                fragment = PluginSettingsListFragment.newInstance(deviceId);
             }
 
             getSupportFragmentManager()
