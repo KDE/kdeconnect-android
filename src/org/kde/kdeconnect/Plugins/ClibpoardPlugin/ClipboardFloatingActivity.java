@@ -76,6 +76,7 @@ public class ClipboardFloatingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_clipboard_floating);
         WindowManager.LayoutParams wlp = getWindow().getAttributes();
         wlp.dimAmount = 0;
         wlp.flags = WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS |
