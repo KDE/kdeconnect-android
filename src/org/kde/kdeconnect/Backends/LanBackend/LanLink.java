@@ -42,6 +42,7 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.nio.channels.NotYetConnectedException;
 
+import javax.net.ssl.SSLHandshakeException;
 import javax.net.ssl.SSLSocket;
 
 import androidx.annotation.WorkerThread;
@@ -210,6 +211,11 @@ public class LanLink extends BaseLink {
                     }
                     outputStream.flush();
                     Log.i("KDE/LanLink", "Finished sending payload ("+progress+" bytes written)");
+                } catch(SSLHandshakeException e) {
+                    // The exception can be due to several causes. "Connection closed by peer" seems to be a common one.
+                    // If we could distinguish different cases we could react differently for some of them, but I haven't found how.
+                    Log.e("sendPacket","Payload SSLSocket failed");
+                    e.printStackTrace();
                 } finally {
                     try { server.close(); } catch (Exception ignored) { }
                     try { payloadSocket.close(); } catch (Exception ignored) { }
