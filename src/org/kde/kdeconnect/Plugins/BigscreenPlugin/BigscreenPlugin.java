@@ -57,6 +57,11 @@ public class BigscreenPlugin extends Plugin {
     }
 
     @Override
+    public boolean isEnabledByDefault() {
+        return false;
+    }
+
+    @Override
     public boolean hasSettings() {
         return false;
     }
