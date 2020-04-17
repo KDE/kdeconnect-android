@@ -494,7 +494,9 @@ public class MprisActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putString("targetPlayer", targetPlayer.getPlayer());
+        if (targetPlayer != null) {
+            outState.putString("targetPlayer", targetPlayer.getPlayer());
+        }
         super.onSaveInstanceState(outState);
     }
 }
