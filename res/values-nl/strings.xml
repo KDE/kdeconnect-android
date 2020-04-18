@@ -3,7 +3,6 @@
   <string name="kde_connect">KDE Connect</string>
   <string name="foreground_notification_no_devices">Niet verbonden met enig apparaat</string>
   <string name="foreground_notification_devices">Verbonden met: %s</string>
-  <string name="foreground_notification_send_clipboard">Klembord verzenden</string>
   <string name="pref_plugin_telephony">Telefoniemelder</string>
   <string name="pref_plugin_telephony_desc">Stuur meldingen voor inkomende oproepen</string>
   <string name="pref_plugin_battery">Batterijrapportage</string>
@@ -12,7 +11,6 @@
   <string name="pref_plugin_sftp_desc">Het bladeren in het bestandssysteem van het apparaat op afstand toestaan</string>
   <string name="pref_plugin_clipboard">Klembordsynchronisatie</string>
   <string name="pref_plugin_clipboard_desc">De inhoud van het klembord delen</string>
-  <string name="pref_plugin_clipboard_sent">Klembord verzonden</string>
   <string name="pref_plugin_mousepad">Invoer op afstand</string>
   <string name="pref_plugin_mousepad_desc">Uw telefoon of tablet gebruiken als een touchpad en toetsenbord</string>
   <string name="pref_plugin_presenter">Diavoorstelling op afstand</string>

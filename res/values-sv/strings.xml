@@ -3,7 +3,6 @@
   <string name="kde_connect">KDE-anslut</string>
   <string name="foreground_notification_no_devices">Inte ansluten till någon apparat</string>
   <string name="foreground_notification_devices">Ansluten till: %s</string>
-  <string name="foreground_notification_send_clipboard">Skicka klippbordet</string>
   <string name="pref_plugin_telephony">Telefonunderrättelser</string>
   <string name="pref_plugin_telephony_desc">Skicka underrättelser för inkommande samtal</string>
   <string name="pref_plugin_battery">Batterirapport</string>
@@ -12,7 +11,6 @@
   <string name="pref_plugin_sftp_desc">Gör det möjligt att bläddra i apparatens filsystem från annan apparat</string>
   <string name="pref_plugin_clipboard">Synkronisera klippbord</string>
   <string name="pref_plugin_clipboard_desc">Dela klippbordets innehåll</string>
-  <string name="pref_plugin_clipboard_sent">Klippbordet skickat</string>
   <string name="pref_plugin_mousepad">Extern inmatning</string>
   <string name="pref_plugin_mousepad_desc">Använd telefonen eller surfplattan som mus och tangentbord</string>
   <string name="pref_plugin_presenter">Fjärrbildspel</string>

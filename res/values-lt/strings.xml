@@ -3,7 +3,6 @@
   <string name="kde_connect">KDE Connect</string>
   <string name="foreground_notification_no_devices">Neprisijungta prie jokio įrenginio</string>
   <string name="foreground_notification_devices">Prisijungta prie: %s</string>
-  <string name="foreground_notification_send_clipboard">Siųsti iškarpinę</string>
   <string name="pref_plugin_telephony">Telefonijos pranešiklis</string>
   <string name="pref_plugin_telephony_desc">Siųsti gaunamųjų skambučių pranešimus</string>
   <string name="pref_plugin_battery">Akumuliatoriaus ataskaita</string>
@@ -12,7 +11,6 @@
   <string name="pref_plugin_sftp_desc">Leidžia nuotoliniu būdu naršyti šio įrenginio failų sistemą</string>
   <string name="pref_plugin_clipboard">Iškarpinės sinchronizavimas</string>
   <string name="pref_plugin_clipboard_desc">Bendrinti iškarpinės turinį</string>
-  <string name="pref_plugin_clipboard_sent">Iškarpinė išsiųsta</string>
   <string name="pref_plugin_mousepad">Nuotolinis įvedimas</string>
   <string name="pref_plugin_mousepad_desc">Naudoti savo telefoną ar planšetę kaip jutiklinį kilimėlį ir klaviatūrą</string>
   <string name="pref_plugin_presenter">Nuotolinis skaidrių rodymas</string>

@@ -3,7 +3,6 @@
   <string name="kde_connect">KDE Connect</string>
   <string name="foreground_notification_no_devices">Pole ühendatud ühegi seadmega</string>
   <string name="foreground_notification_devices">Ühendatud seadmega: %s</string>
-  <string name="foreground_notification_send_clipboard">Saadeti lõikepuhvrisse</string>
   <string name="pref_plugin_telephony">Telefoni märguanded</string>
   <string name="pref_plugin_telephony_desc">Sisenevate kõnede märguannete saatmine</string>
   <string name="pref_plugin_battery">Aku aruanne</string>
@@ -12,7 +11,6 @@
   <string name="pref_plugin_sftp_desc">Seadme failisüsteemi eemalt sirvimise võimaldamine</string>
   <string name="pref_plugin_clipboard">Lõikepuhvri sünkroonimine</string>
   <string name="pref_plugin_clipboard_desc">Lõikepuhvri sisu jagamine</string>
-  <string name="pref_plugin_clipboard_sent">Lõikepuhvrist saadud</string>
   <string name="pref_plugin_mousepad">Kaugsisestus</string>
   <string name="pref_plugin_mousepad_desc">Telefoni või tahvli kasutamine puuteplaadi ja klaviatuurina</string>
   <string name="pref_plugin_presenter">Kaugslaidiseanss</string>
