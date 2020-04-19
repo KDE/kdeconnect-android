@@ -34,6 +34,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import org.kde.kdeconnect.Helpers.FilesHelper;
+import org.kde.kdeconnect.Helpers.IntentHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
@@ -170,7 +171,7 @@ public class SharePlugin extends Plugin {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        context.startActivity(browserIntent);
+        IntentHelper.startActivityFromBackground(context, browserIntent, url);
     }
 
     private void receiveText(NetworkPacket np) {

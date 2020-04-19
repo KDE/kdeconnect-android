@@ -159,6 +159,7 @@
         <item quantity="one">Failed sending file to %1$s</item>
         <item quantity="other">Failed sending %2$d of %3$d files to %1$s</item>
     </plurals>
+    <string name="tap_to_open">Tap to open</string>
     <string name="received_file_text">Tap to open \'%1s\'</string>
     <string name="cannot_create_file">Cannot create file %s</string>
     <string name="tap_to_answer">Tap to answer</string>
