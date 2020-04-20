@@ -33,7 +33,7 @@
   <string name="pref_plugin_sharereceiver_desc">Udostępnia pliki i adresy URL pomiędzy urządzeniami</string>
   <string name="device_list_empty">Brak urządzeń</string>
   <string name="ok">OK</string>
-  <string name="cancel">Zaniechaj</string>
+  <string name="cancel">Anuluj</string>
   <string name="open_settings">Otwórz ustawienia</string>
   <string name="no_permissions">Aby uzyskać dostęp do powiadomień, należy przydzielić uprawnienia</string>
   <string name="no_permission_mprisreceiver">Aby móc sterować odtwarzaczami multimedialnymi, należy udzielić dostępu powiadomieniom</string>

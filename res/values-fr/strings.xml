@@ -33,6 +33,7 @@
   <string name="pref_plugin_sharereceiver_desc">Partagez des URLs et des fichiers entre périphériques</string>
   <string name="device_list_empty">Pas de périphériques</string>
   <string name="ok">Ok</string>
+  <string name="sad_ok">Ok :(</string>
   <string name="cancel">Annuler</string>
   <string name="open_settings">Accéder aux paramètres</string>
   <string name="no_permissions">Vous devez accorder la permission d\'accéder aux notifications</string>
@@ -205,6 +206,7 @@
   <string name="refresh">Mettre à jour</string>
   <string name="unreachable_description">Ce périphérique associé n\'est pas accessible. Assurez-vous qu\'il est bien connecté au même réseau.</string>
   <string name="no_wifi">Vous n\'êtes connecté à aucun réseau Wi-Fi, il est possible que vous ne puissiez afficher aucun appareil. Cliquez ici pour activer le Wi-Fi.</string>
+  <string name="on_non_trusted_message">Le réseau n\'est pas un réseau de confiance : découverte automatique désactivée.</string>
   <string name="no_file_browser">Aucun navigateur de fichiers installé.</string>
   <string name="pref_plugin_telepathy">Envoyer un SMS</string>
   <string name="pref_plugin_telepathy_desc">Envoyer des SMS depuis votre bureau</string>
@@ -212,6 +214,7 @@
   <string name="findmyphone_title_tablet">Trouver ma tablette</string>
   <string name="findmyphone_title_tv">Trouver ma télévision</string>
   <string name="findmyphone_description">Fait sonner le périphérique pour vous aider à le retrouver</string>
+  <string name="findmyphone_found">Trouvé</string>
   <string name="open">Ouvrir</string>
   <string name="close">Fermer</string>
   <string name="plugins_need_permission">Certains modules externes nécessitent des permissions pour fonctionner (tapez pour plus d\'informations) :</string>
@@ -242,6 +245,7 @@
   <string name="notification_channel_persistent">Indicateur persistant</string>
   <string name="notification_channel_media_control">Contrôle multimédia</string>
   <string name="notification_channel_filetransfer">Transfert de fichiers</string>
+  <string name="notification_channel_high_priority">Haute priorité</string>
   <string name="mpris_stop">Arrêter le lecteur actuel</string>
   <string name="copy_url_to_clipboard">Copier l\'URL dans le presse-papiers</string>
   <string name="clipboard_toast">Copié dans le presse-papier</string>
@@ -275,4 +279,22 @@
   <string name="no_app_for_opening">Aucune application adaptée trouvée pour ouvrir ce fichier.</string>
   <string name="remote_keyboard_service">Clavier à distance KDE Connect</string>
   <string name="presenter_pointer">Pointeur</string>
+  <string name="trusted_networks">Réseaux de confiance</string>
+  <string name="trusted_networks_desc">Restreindre la découverte automatique aux réseaux connus</string>
+  <string name="add_trusted_network">Ajouter %1s</string>
+  <string name="empty_trusted_networks_list_text">Vous n\'avez pas encore ajouté de réseau de confiance</string>
+  <string name="allow_all_networks_text">Tout autoriser</string>
+  <string name="location_permission_needed_title">Permissions requises</string>
+  <string name="location_permission_needed_desc">Android requiert la permission de géolocalisation pour identifier votre réseau Wifi</string>
+  <string name="clipboard_android_x_incompat">Android 10 a supprimé l\'accès des applications au presse-papier. Ce module externe sera désactivé.</string>
+  <string name="mpris_open_url">Continuer la lecture ici</string>
+  <string name="cant_open_url">Impossible d\'ouvrir l\'URL pour continuer la lecture</string>
+  <string name="bigscreen_home">Accueil</string>
+  <string name="bigscreen_up">Vers le haut</string>
+  <string name="bigscreen_left">Vers la gauche</string>
+  <string name="bigscreen_select">Sélectionner</string>
+  <string name="bigscreen_right">Vers la droite</string>
+  <string name="bigscreen_down">Vers le bas</string>
+  <string name="pref_plugin_bigscreen">Télécommande Bigscreen</string>
+  <string name="pref_plugin_bigscreen_desc">Utiliser votre périphérique comme télécommande pour Plasma Bigscreen</string>
 </resources>
