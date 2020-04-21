@@ -123,7 +123,8 @@
     <item quantity="one">Ha fallat en enviar el fitxer a %1$s</item>
     <item quantity="other">Ha fallat en enviar %2$d de %3$d fitxers a %1$s</item>
   </plurals>
-  <string name="received_file_text">Puntegeu per obrir «%1s»</string>
+  <string name="tap_to_open">Toqueu per obrir</string>
+  <string name="received_file_text">Toqueu per obrir «%1s»</string>
   <string name="cannot_create_file">No s\'ha pogut crear el fitxer %s</string>
   <string name="tap_to_answer">Puntegeu per a respondre</string>
   <string name="right_click">Envia un clic del botó dret</string>

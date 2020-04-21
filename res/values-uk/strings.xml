@@ -139,6 +139,7 @@
     <item quantity="many">Не вдалося надіслати %2$d з %3$d файлів до %1$s</item>
     <item quantity="other">Не вдалося надіслати файл до %1$s</item>
   </plurals>
+  <string name="tap_to_open">Натисніть, щоб відкрити</string>
   <string name="received_file_text">Натисніть, щоб відкрити «%1s»</string>
   <string name="cannot_create_file">Не вдалося створити файл %s</string>
   <string name="tap_to_answer">Натисніть, щоб відповісти</string>

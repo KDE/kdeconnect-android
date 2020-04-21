@@ -123,6 +123,7 @@
     <item quantity="one">Verzenden van bestand naar %1$s is mislukt</item>
     <item quantity="other">Verzenden van %2$d van %3$d bestanden naar %1$s is mislukt</item>
   </plurals>
+  <string name="tap_to_open">Tik om te openen</string>
   <string name="received_file_text">Tap om \'%1s\' te openen</string>
   <string name="cannot_create_file">Kan bestand %s niet aanmaken</string>
   <string name="tap_to_answer">Tap om te antwoorden</string>

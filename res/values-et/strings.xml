@@ -123,6 +123,7 @@
     <item quantity="one">Faili saatmine seadmesse %1$s nurjus</item>
     <item quantity="other">%2$d faili saamine %3$d failist seadmesse %1$s nurjus</item>
   </plurals>
+  <string name="tap_to_open">Koputa avamiseks</string>
   <string name="received_file_text">Koputa \"%1s\" avamiseks</string>
   <string name="cannot_create_file">Faili %s loomine nurjus</string>
   <string name="tap_to_answer">Koputa vastamiseks</string>
