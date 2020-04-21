@@ -66,7 +66,7 @@ public class TrustedNetworksActivity extends AppCompatActivity {
                         .setMessage(R.string.location_permission_needed_desc)
                         .setPositiveButton(R.string.ok)
                         .setNegativeButton(R.string.cancel)
-                        .setPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION})
+                        .setPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION})
                         .setRequestCode(0)
                         .create().show(getSupportFragmentManager(), null);
             }

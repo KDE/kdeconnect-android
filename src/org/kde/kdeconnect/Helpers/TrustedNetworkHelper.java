@@ -65,7 +65,7 @@ public class TrustedNetworkHelper {
     }
 
     public boolean hasPermissions() {
-        int result = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION);
+        int result = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION);
         return (result == PackageManager.PERMISSION_GRANTED);
     }
 
