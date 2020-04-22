@@ -120,7 +120,7 @@
   <string name="tap_to_answer">눌러서 응답하기</string>
   <string name="right_click">오른쪽 단추 누름 신호 보내기</string>
   <string name="middle_click">가운데 단추 누름 신호 보내기</string>
-  <string name="show_keyboard">키보드 보이기</string>
+  <string name="show_keyboard">키보드 표시</string>
   <string name="device_not_paired">장치가 연결되지 않음</string>
   <string name="request_pairing">연결 요청</string>
   <string name="pairing_accept">수락</string>
@@ -142,7 +142,7 @@
     <item>1분</item>
     <item>2분</item>
   </string-array>
-  <string name="mpris_notification_settings_title">미디어 제어 알림 보이기</string>
+  <string name="mpris_notification_settings_title">미디어 제어 알림 표시</string>
   <string name="mpris_notification_settings_summary">KDE Connect를 열지 않고 미디어 재생기 제어</string>
   <string name="share_to">다음으로 공유…</string>
   <string name="protocol_version_newer">이 장치의 프로토콜 버전이 더 새롭습니다</string>
@@ -257,7 +257,7 @@
   <string name="settings_dark_mode">어두운 테마</string>
   <string name="settings_more_settings_title">더 많은 설정</string>
   <string name="settings_more_settings_text">장치별 설정은 각각 장치의 \'플러그인 설정\'에서 확인할 수 있습니다.</string>
-  <string name="setting_persistent_notification">항상 표시되는 알림 보이기</string>
+  <string name="setting_persistent_notification">항상 표시되는 알림 표시</string>
   <string name="setting_persistent_notification_oreo">항상 표시되는 알림</string>
   <string name="setting_persistent_notification_description">알림 설정에서 활성화/비활성화하려면 누르십시오</string>
   <string name="extra_options">추가 설정</string>
