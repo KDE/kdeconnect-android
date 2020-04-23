@@ -3,6 +3,7 @@
   <string name="kde_connect">KDE Connect</string>
   <string name="foreground_notification_no_devices">Не подключено ни к одному устройству</string>
   <string name="foreground_notification_devices">Подключено к: %s</string>
+  <string name="foreground_notification_send_clipboard">Передать буфер обмена</string>
   <string name="pref_plugin_telephony">События телефонии</string>
   <string name="pref_plugin_telephony_desc">Отправка уведомлений о звонках</string>
   <string name="pref_plugin_battery">Состояние батареи</string>
@@ -11,6 +12,7 @@
   <string name="pref_plugin_sftp_desc">Позволяет удалённо просматривать файловую систему устройства</string>
   <string name="pref_plugin_clipboard">Синхронизация буфера обмена</string>
   <string name="pref_plugin_clipboard_desc">Использование общего буфера обмена</string>
+  <string name="pref_plugin_clipboard_sent">Буфер обмена передан</string>
   <string name="pref_plugin_mousepad">Удалённый ввод</string>
   <string name="pref_plugin_mousepad_desc">Использование телефона или планшета в качестве сенсорной панели и клавиатуры</string>
   <string name="pref_plugin_presenter">Пульт управления слайд-шоу</string>

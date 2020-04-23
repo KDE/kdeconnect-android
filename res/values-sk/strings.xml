@@ -3,6 +3,7 @@
   <string name="kde_connect">KDE Connect</string>
   <string name="foreground_notification_no_devices">Nepripojené k žiadnemu zariadeniu</string>
   <string name="foreground_notification_devices">Pripojené k: %s</string>
+  <string name="foreground_notification_send_clipboard">Odoslať schránku</string>
   <string name="pref_plugin_telephony">Nástroj na upozornenie telefonátov</string>
   <string name="pref_plugin_telephony_desc">Odošle upozornenia na prichádzajúce hovory</string>
   <string name="pref_plugin_battery">Hlásenia batérie</string>
@@ -11,6 +12,7 @@
   <string name="pref_plugin_sftp_desc">Umožní vzdialené prehliadanie súborového systému zariadenia</string>
   <string name="pref_plugin_clipboard">Synchronizácia schránky</string>
   <string name="pref_plugin_clipboard_desc">Zdieľa obsah schránky</string>
+  <string name="pref_plugin_clipboard_sent">Schránka odoslaná</string>
   <string name="pref_plugin_mousepad">Vzdialený vstup</string>
   <string name="pref_plugin_mousepad_desc">Použije váš telefón alebo tablet ako touchpad a klávesnicu</string>
   <string name="pref_plugin_presenter">Diaľkový ovládač prezentácie</string>

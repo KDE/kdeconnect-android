@@ -3,6 +3,7 @@
   <string name="kde_connect">KDE Connect</string>
   <string name="foreground_notification_no_devices">No conectado a ningún dispositivo</string>
   <string name="foreground_notification_devices">Conectado a: %s</string>
+  <string name="foreground_notification_send_clipboard">Enviar al portapapeles</string>
   <string name="pref_plugin_telephony">Notificador de telefonía</string>
   <string name="pref_plugin_telephony_desc">Enviar notificaciones por llamadas entrantes</string>
   <string name="pref_plugin_battery">Informe de la batería</string>
@@ -11,6 +12,7 @@
   <string name="pref_plugin_sftp_desc">Permite examinar de forma remota el sistema de archivos de este dispositivo</string>
   <string name="pref_plugin_clipboard">Sincronización del portapapeles</string>
   <string name="pref_plugin_clipboard_desc">Compartir el contenido del portapapeles</string>
+  <string name="pref_plugin_clipboard_sent">Enviado al portapapeles</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
   <string name="pref_plugin_mousepad_desc">Usar su teléfono o tableta como teclado y teclado táctil</string>
   <string name="pref_plugin_presenter">Presentación de diapositivas remota</string>
