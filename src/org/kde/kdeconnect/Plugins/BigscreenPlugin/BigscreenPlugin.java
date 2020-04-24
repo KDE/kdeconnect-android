@@ -27,6 +27,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.KeyEvent;
 
+import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
@@ -40,6 +41,11 @@ import static org.kde.kdeconnect.Plugins.MousePadPlugin.KeyListenerView.SpecialK
 public class BigscreenPlugin extends Plugin {
 
     private final static String PACKET_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request";
+
+    @Override
+    public boolean onCreate() {
+        return device.getDeviceType().equals(Device.DeviceType.Tv);
+    }
 
     @Override
     public String getDisplayName() {
@@ -58,7 +64,7 @@ public class BigscreenPlugin extends Plugin {
 
     @Override
     public boolean isEnabledByDefault() {
-        return false;
+        return true;
     }
 
     @Override
