@@ -125,6 +125,7 @@
     <item quantity="one">Misslyckades skicka fil till %1$s</item>
     <item quantity="other">Misslyckades skicka %2$d av %3$d filer till %1$s</item>
   </plurals>
+  <string name="tap_to_open">Rör för att öppna</string>
   <string name="received_file_text">Rör för att öppna \'%1s\'</string>
   <string name="cannot_create_file">Kan inte skapa filen %s</string>
   <string name="tap_to_answer">Rör för att svara</string>
