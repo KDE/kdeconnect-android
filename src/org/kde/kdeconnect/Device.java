@@ -837,6 +837,8 @@ public class Device implements BaseLink.PacketReceiver {
                         plugins.add(pluginKey);
                         newPluginsByIncomingInterface.put(packageType, plugins);
                     }
+                } else {
+                    removePlugin(pluginKey);
                 }
             } else {
                 removePlugin(pluginKey);
