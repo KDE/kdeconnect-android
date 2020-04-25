@@ -125,6 +125,7 @@
     <item quantity="one">Klarte ikkje senda fil til %1$s</item>
     <item quantity="other">Klarte ikkje senda %2$d av %3$d filer til %1$s</item>
   </plurals>
+  <string name="tap_to_open">Trykk for å opna</string>
   <string name="received_file_text">Trykk for å opna «%1s»</string>
   <string name="cannot_create_file">Klarte ikkje oppretta fila %s</string>
   <string name="tap_to_answer">Trykk for å svara</string>
