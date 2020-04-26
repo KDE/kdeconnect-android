@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             addDeviceItem.setCheckable(true);
 
             MenuItem settingsItem = menu.add(Menu.FIRST, MENU_ENTRY_SETTINGS, 1000, R.string.settings);
-            settingsItem.setIcon(R.drawable.ic_action_settings);
+            settingsItem.setIcon(R.drawable.ic_settings_white_32dp);
             settingsItem.setCheckable(true);
 
             //Ids might have changed

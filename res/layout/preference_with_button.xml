@@ -81,6 +81,6 @@
         android:contentDescription="@string/settings_icon_description"
         android:padding="8dip"
         app:tint="?attr/colorControlNormal"
-        android:src="@drawable/ic_action_settings_inverted" />
+        android:src="@drawable/ic_settings_white_32dp" />
 
 </LinearLayout>

@@ -11,7 +11,7 @@
             android:keyWidth="20%" />
         <Key
             android:codes="1"
-            android:keyIcon="@drawable/ic_action_settings"
+            android:keyIcon="@drawable/ic_settings_white_32dp"
             android:keyWidth="40%" />
         <Key
             android:codes="2"
