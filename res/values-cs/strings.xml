@@ -3,6 +3,7 @@
   <string name="kde_connect">KDE Connect</string>
   <string name="foreground_notification_no_devices">Žádná připojená zařízení</string>
   <string name="foreground_notification_devices">Připojen k: %s</string>
+  <string name="foreground_notification_send_clipboard">Poslat schránku</string>
   <string name="pref_plugin_telephony">Upozornění telefonie</string>
   <string name="pref_plugin_telephony_desc">Posílat upozornění na příchozí hovory</string>
   <string name="pref_plugin_battery">Hlášení baterie</string>
@@ -11,6 +12,7 @@
   <string name="pref_plugin_sftp_desc">Umožní vám vzdáleně prohlížet souborový systém tohoto zařízení</string>
   <string name="pref_plugin_clipboard">Synchronizace schránky</string>
   <string name="pref_plugin_clipboard_desc">Sdílet obsah schránky</string>
+  <string name="pref_plugin_clipboard_sent">Schránka poslána</string>
   <string name="pref_plugin_mousepad">Vzdálený vstup</string>
   <string name="pref_plugin_mousepad_desc">Používejte svůj telefon nebo tablet jako touchpad a klávesnici</string>
   <string name="pref_plugin_presenter">Ovladač promítání</string>
@@ -139,6 +141,7 @@
     <item quantity="many">Odesílání %2$d souborů z %3$d na %1$s selhalo</item>
     <item quantity="other"/>
   </plurals>
+  <string name="tap_to_open">Ťukněte pro otevření</string>
   <string name="received_file_text">Ťukněte pro otevření \'%1s\'</string>
   <string name="cannot_create_file">Nelze vytvořit soubor %s</string>
   <string name="tap_to_answer">Ťukněte pro odpovězení</string>
@@ -305,4 +308,12 @@
   <string name="clipboard_android_x_incompat">Android 10 odstranit přístup ke schránce pro všechny aplikace. Tento modul bude zakázán.</string>
   <string name="mpris_open_url">Pokračovat v přehrávání zde</string>
   <string name="cant_open_url">Nelze otevřít URL pro pokračování v přehrávání</string>
+  <string name="bigscreen_home">Domů</string>
+  <string name="bigscreen_up">Nahoru</string>
+  <string name="bigscreen_left">Vlevo</string>
+  <string name="bigscreen_select">Vybrat</string>
+  <string name="bigscreen_right">Vpravo</string>
+  <string name="bigscreen_down">Dolů</string>
+  <string name="pref_plugin_bigscreen">Dálkový ovladač pro Bigscreen</string>
+  <string name="pref_plugin_bigscreen_desc">Používejte své zařízení jako ovladač pro Plasma Bigscreen</string>
 </resources>

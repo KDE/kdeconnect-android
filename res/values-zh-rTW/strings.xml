@@ -117,6 +117,7 @@
   <plurals name="send_files_fail_title">
     <item quantity="other">無法將第 %2$d (共 %3$d) 個檔案傳送至 %1$s</item>
   </plurals>
+  <string name="tap_to_open">按一下開啟</string>
   <string name="received_file_text">按一下開啟 \'%1s\'</string>
   <string name="cannot_create_file">無法建立 %s 檔案</string>
   <string name="tap_to_answer">按一下即可回應</string>
