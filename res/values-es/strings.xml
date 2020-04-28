@@ -125,6 +125,7 @@
     <item quantity="one">Fallo al enviar el archivo a %1$s</item>
     <item quantity="other">Fallo al enviar %2$d de %3$d archivos a %1$s</item>
   </plurals>
+  <string name="tap_to_open">Pulse para abrir</string>
   <string name="received_file_text">Pulse para abrir «%1s»</string>
   <string name="cannot_create_file">No se pudo crear el archivo %s</string>
   <string name="tap_to_answer">Pulse para responder</string>
