@@ -144,7 +144,7 @@ public class MprisActivity extends AppCompatActivity {
         BackgroundService.RunWithPlugin(this, deviceId, MprisPlugin.class, mpris -> {
             targetPlayer = mpris.getPlayerStatus(targetPlayerName);
 
-            addSytemvolumeFragment();
+            addSystemVolumeFragment();
 
             mpris.setPlayerStatusUpdatedHandler("activity", new Handler() {
                 @Override
@@ -226,7 +226,7 @@ public class MprisActivity extends AppCompatActivity {
         });
     }
 
-    private void addSytemvolumeFragment() {
+    private void addSystemVolumeFragment() {
 
         if (findViewById(R.id.systemvolume_fragment) == null)
             return;
