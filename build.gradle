@@ -1,3 +1,7 @@
+import com.android.build.gradle.AppExtension
+import com.android.build.gradle.api.ApkVariantOutput
+import com.android.build.gradle.api.ApplicationVariant
+
 apply plugin: 'com.android.application'
 
 buildscript {
@@ -62,6 +66,54 @@ android {
         // when testing to make sure ProGuard/R8 is not deleting important stuff
         release {
             minifyEnabled true
+        }
+    }
+}
+
+/**
+ * This is a special on-demand Gradle object.
+ *
+ * Its value will not be determined until someone calls one of the gitHashProvider.getXXX() methods.
+ *
+ * If it does not encounter an explicit 'return' statement, getHashProvider.isPresent() will return false.
+ */
+Provider<String> gitHashProvider = project.provider {
+    Process gitCommand = null
+    try {
+        // This invokes 'git' immediately, but does not wait for it to finish
+        gitCommand = 'git rev-parse --short HEAD'.execute([], project.rootDir)
+    } catch (IOException ignored) {
+    }
+
+    if (gitCommand == null) {
+        logger.log(LogLevel.WARN, "Could not make use of the 'git' command-line tool. Output filenames will not be customized.")
+    } else if (gitCommand.waitFor() == 0) {
+        // This call to '::getText' (using the 'text' Groovy accessor syntax) collects the
+        // output stream
+        return '-' + gitCommand.text.trim()
+    } else {
+        logger.log(
+                LogLevel.WARN,
+                "Could not determine which commit is currently checked out -" +
+                        " did you download this code without the .git directory?"
+        )
+    }
+}
+
+// We know we can safely cast the 'android' type to the 'AppExtension' class because
+// we used the 'com.android.application' plugin at the top of the file.
+//
+// Note the use of the '::all' extension method; unlike '::each', it can detect every
+// object added to the collection, no matter in which build phase that happens.
+(android as AppExtension).applicationVariants.all { ApplicationVariant v ->
+    logger.log(LogLevel.INFO, "Found a variant called '${v.name}'.")
+    if (v.buildType.debuggable) {
+        // We're looking at variants made from android.buildTypes.debug! This one
+        // might have multiple outputs, but only one output will be an APK file.
+        v.outputs.matching { it instanceof ApkVariantOutput }.all {
+            // Default output filename is "${project.name}-${v.name}.apk". We want
+            // the Git commit short-hash to be added onto that default filename.
+            (it as ApkVariantOutput).outputFileName = "${project.name}-${v.name}${gitHashProvider.getOrElse("")}.apk"
         }
     }
 }
