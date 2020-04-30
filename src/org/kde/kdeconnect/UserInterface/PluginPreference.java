@@ -1,6 +1,7 @@
 package org.kde.kdeconnect.UserInterface;
 
 import android.content.Context;
+import android.util.TypedValue;
 import android.view.View;
 
 import org.kde.kdeconnect.Device;
@@ -9,10 +10,10 @@ import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
 import androidx.annotation.NonNull;
-import androidx.preference.CheckBoxPreference;
 import androidx.preference.PreferenceViewHolder;
+import androidx.preference.SwitchPreference;
 
-public class PluginPreference extends CheckBoxPreference {
+public class PluginPreference extends SwitchPreference {
     private final Device device;
     private final String pluginKey;
     private final View.OnClickListener listener;
@@ -51,22 +52,55 @@ setIcon(android.R.color.transparent);
     public void onBindViewHolder(PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
 
-        final View button = holder.findViewById(R.id.settingsButton);
-
-        if (listener == null) {
-            button.setVisibility(View.GONE);
-        } else {
-            button.setEnabled(isChecked());
-            button.setVisibility(View.VISIBLE);
-            button.setOnClickListener(listener);
-        }
-
-        holder.itemView.setOnClickListener(v -> {
+        View.OnClickListener toggleListener = v -> {
             boolean newState = !device.isPluginEnabled(pluginKey);
             setChecked(newState); //It actually works on API<14
-            button.setEnabled(newState);
+            onStateChanged(holder, newState);
             device.setPluginEnabled(pluginKey, newState);
-        });
+        };
+
+        View content = holder.findViewById(R.id.content);
+        View widget = holder.findViewById(android.R.id.widget_frame);
+        View parent = holder.itemView;
+        content.setOnClickListener(listener);
+        widget.setOnClickListener(toggleListener);
+        parent.setOnClickListener(toggleListener);
+
+        // Disable child backgrounds when known to be unneeded to prevent duplicate ripples
+        int selectableItemBackground;
+        if (listener == null) {
+            selectableItemBackground = 0;
+        } else {
+            TypedValue value = new TypedValue();
+            getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, value, true);
+            selectableItemBackground = value.resourceId;
+        }
+        content.setBackgroundResource(selectableItemBackground);
+        widget.setBackgroundResource(selectableItemBackground);
+
+        onStateChanged(holder, isChecked());
+    }
+
+    private void onStateChanged(PreferenceViewHolder holder, boolean state) {
+        View content = holder.findViewById(R.id.content);
+        View divider = holder.findViewById(R.id.divider);
+        View widget = holder.findViewById(android.R.id.widget_frame);
+        View parent = holder.itemView;
+
+        boolean hasDetails = state && listener != null;
+
+        divider.setVisibility(hasDetails ? View.VISIBLE : View.GONE);
+        content.setClickable(hasDetails);
+        widget.setClickable(hasDetails);
+        parent.setClickable(!hasDetails);
+
+        if (hasDetails) {
+            // Cancel duplicate ripple caused by pressed state of parent propagating down
+            content.setPressed(false);
+            content.getBackground().jumpToCurrentState();
+            widget.setPressed(false);
+            widget.getBackground().jumpToCurrentState();
+        }
     }
 
     interface PluginPreferenceCallback {

@@ -18,39 +18,20 @@
      type in the "widget_frame" layout. -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackground"
-    android:gravity="center_vertical"
-    android:minHeight="?android:attr/listPreferredItemHeight"
-    android:paddingEnd="?android:attr/scrollbarSize"
-    android:paddingLeft="12dip"
-    android:paddingRight="?android:attr/scrollbarSize"
-    android:paddingStart="12dip">
-
-    <!-- Preference will place its actual preference widget here. -->
-    <LinearLayout
-        android:id="@android:id/widget_frame"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="left|center_vertical|start"
-        android:minWidth="56dp"
-        android:orientation="vertical">
-
-    </LinearLayout>
-
+    android:background="?android:attr/selectableItemBackground"
+    >
     <RelativeLayout
+        android:id="@+id/content"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="6dip"
-        android:layout_marginEnd="4dip"
-        android:layout_marginLeft="4dip"
-        android:layout_marginRight="4dip"
-        android:layout_marginStart="4dip"
-        android:layout_marginTop="6dip"
-        android:layout_weight="1">
-
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:padding="16dp"
+        android:minHeight="?android:attr/listPreferredItemHeight"
+        >
         <TextView
             android:id="@android:id/title"
             android:layout_width="wrap_content"
@@ -58,8 +39,9 @@
             android:ellipsize="marquee"
             android:fadingEdge="horizontal"
             android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            tools:text="Plugin title"
+            />
         <TextView
             android:id="@android:id/summary"
             android:layout_width="wrap_content"
@@ -69,18 +51,26 @@
             android:layout_below="@android:id/title"
             android:maxLines="3"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="?android:attr/textColorSecondary" />
-
+            android:textColor="?android:attr/textColorSecondary"
+            tools:text="Plugin description"
+            />
     </RelativeLayout>
-
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/settingsButton"
+    <View
+        android:id="@+id/divider"
+        android:layout_width="1dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center"
+        android:background="?android:attr/textColorSecondary"
+        />
+    <!-- Preference will place its actual preference widget here. -->
+    <LinearLayout
+        android:id="@android:id/widget_frame"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/abc_btn_borderless_material"
-        android:contentDescription="@string/settings_icon_description"
-        android:padding="8dip"
-        app:tint="?attr/colorControlNormal"
-        android:src="@drawable/ic_settings_white_32dp" />
-
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="16dp"
+        android:orientation="vertical"
+        tools:background="@color/primary"
+        />
 </LinearLayout>
