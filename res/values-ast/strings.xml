@@ -13,6 +13,8 @@
   <string name="pref_plugin_clipboard_desc">Comparte\'l conteníu del cartafueyu</string>
   <string name="pref_plugin_mousepad">Entrada remota</string>
   <string name="pref_plugin_mousepad_desc">Usa\'l preséu como panel táutil y tecláu</string>
+  <string name="pref_plugin_presenter">Mandu pa presentaciones de diapositives</string>
+  <string name="pref_plugin_presenter_desc">Usa esti preséu pa cambiar de diapositives nuna presentación</string>
   <string name="pref_plugin_remotekeyboard">Receición de calcos de tecles remotos</string>
   <string name="pref_plugin_mpris">Controles multimedia</string>
   <string name="pref_plugin_runcommand">Execución de comandos</string>
@@ -22,24 +24,28 @@
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Unviu y receición de pings</string>
   <string name="pref_plugin_notifications">Sincronización d\'avisos</string>
-  <string name="pref_plugin_notifications_desc">Accede a los avisos n\'otros preseos</string>
+  <string name="pref_plugin_notifications_desc">Accede a los avisos d\'otros preseos</string>
   <string name="pref_plugin_receive_notifications">Receición d\'avisos</string>
   <string name="pref_plugin_receive_notifications_desc">Recibe los avisos d\'otros preseos y amúesalos n\'Android</string>
   <string name="pref_plugin_sharereceiver">Compartición y receición</string>
   <string name="pref_plugin_sharereceiver_desc">Comparte ficheros y URLs ente preseos</string>
   <string name="device_list_empty">Nun hai preseos</string>
   <string name="ok">Aceutar</string>
+  <string name="sad_ok">Val :(</string>
   <string name="cancel">Encaboxar</string>
+  <string name="no_permissions">Precises conceder l\'accesu a los avisos</string>
   <string name="no_permission_mprisreceiver">Pa ser a controlar reproductores multimedia precises conceder l\'accesu a los avisos</string>
   <string name="no_permissions_remotekeyboard">Pa recibir calcos de tecles precises activar el tecláu remotu de KDE Connect</string>
   <string name="send_ping">Unviar un ping</string>
   <string name="open_mpris_controls">Mandu multimedia</string>
   <string name="remotekeyboard_editing_only_title">Remanar les tecles remotes namás al editar</string>
+  <string name="remotekeyboard_connected">La conexón col tecláu remotu ta activa</string>
   <string name="open_mousepad">Entrada remota</string>
   <string name="mousepad_info">Movi un deu pela pantalla pa mover el mur. Con un toque faes un clic esquierdu y teniendo primío faes l\'aición d\'arrastrar y soltar, col toque de dos deos simules un clic drechu y col toque de tres simules un clic col botón d\'en mediu del mur. Esliza dos deos pela pantalla pa desplazate.</string>
   <string name="mousepad_double_tap_settings_title">Aición al tocar con dos deos</string>
   <string name="mousepad_triple_tap_settings_title">Aición al tocar con tres deos</string>
   <string name="mousepad_sensitivity_settings_title">Sensibilidá del panel táutil</string>
+  <string name="mousepad_acceleration_profile_settings_title">Aceleración del punteru</string>
   <string name="mousepad_scroll_direction_title">Direición de desplazamientu inversa</string>
   <string-array name="mousepad_tap_entries">
     <item>Clic drechu</item>
@@ -54,12 +60,12 @@
     <item>Perrápida</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>Ensin aceleración</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
+    <item>Nenguna</item>
+    <item>Perpoca</item>
+    <item>Poca</item>
     <item>Normal</item>
-    <item>Fuerte</item>
-    <item>Perfuerte</item>
+    <item>Muncha</item>
+    <item>Permuncha</item>
   </string-array>
   <string name="category_connected_devices">Preseos coneutaos</string>
   <string name="category_not_paired_devices">Preseos disponibles</string>
@@ -128,6 +134,7 @@
     <item>1 minutu</item>
     <item>2 minutos</item>
   </string-array>
+  <string name="mpris_notification_settings_title">Amosar l\'avisu del mandu multimedia</string>
   <string name="mpris_notification_settings_summary">Permite\'l control de reproductores multimedia ensin abrir KDE Connect</string>
   <string name="share_to">Compartir con…</string>
   <string name="protocol_version_newer">Esti preséu una versión nueva del protocolu</string>
@@ -182,8 +189,11 @@
   <string name="plugins_need_optional_permission">Dalgunos plugins tienen carauterísiques desactivaes pola falta de permisos (tócalos pa más información):</string>
   <string name="select_ringtone">Timbre</string>
   <string name="telephony_pref_blocked_title">Númberos bloquiaos</string>
+  <string name="telephony_pref_blocked_dialog_desc">Nun amuesa les llamaes nin SMS de los númberos que configures. Especifica un númberu per llinia.</string>
   <string name="presenter_fullscreen">Pantalla completa</string>
   <string name="presenter_exit">Colar de la presentación</string>
+  <string name="presenter_lock_tip">Pues bloquiar esti preséu y usar les tecles de volume pa dir a la diapositiva anterior/siguiente</string>
+  <string name="add_command">Amiestu d\'un comandu</string>
   <string name="addcommand_explanation">Nun hai comandos rexistraos.</string>
   <string name="addcommand_explanation2">Pues amestar más nos axustes de KDE Connect del ordenador</string>
   <string name="add_command_description">Pues amestar más comandos nel ordenador</string>
@@ -193,6 +203,7 @@
   <string name="notification_channel_persistent">Indicador permanente</string>
   <string name="notification_channel_media_control">Mandu multimedia</string>
   <string name="notification_channel_filetransfer">Tresferencia de ficheros</string>
+  <string name="notification_channel_high_priority">Prioridá alta</string>
   <string name="copy_url_to_clipboard">Copiar la URL al cartafueyu</string>
   <string name="clipboard_toast">Copióse al cartafueyu</string>
   <string name="runcommand_noruncommandplugin">Esti preséu nun tien activáu\'l plugin Execución de comandos</string>
@@ -218,6 +229,7 @@
   <string name="plugin_photo_desc">Llanza l\'aplicación de la cámara p\'acenciellar la fechura y tresferencia de semeyes</string>
   <string name="no_app_for_opening">Nun alcontró nenguna aplicación afayadiza p\'abrir esti ficheru.</string>
   <string name="remote_keyboard_service">Tecláu remotu de KDE Connect</string>
+  <string name="presenter_pointer">Punteru</string>
   <string name="trusted_networks">Redes d\'enfotu</string>
   <string name="trusted_networks_desc">Torga la descubrición automática en redes conocíes</string>
   <string name="empty_trusted_networks_list_text">Entá nun amestesti nenguna rede d\'enfotu</string>
