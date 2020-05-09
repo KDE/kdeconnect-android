@@ -125,6 +125,7 @@
     <item quantity="one">Invio del file a %1$s non riuscito</item>
     <item quantity="other">Invio di %2$d di %3$d file a %1$s non riuscito</item>
   </plurals>
+  <string name="tap_to_open">Tocca per aprire</string>
   <string name="received_file_text">Tocca per aprire «%1s»</string>
   <string name="cannot_create_file">Impossibile creare il file %s</string>
   <string name="tap_to_answer">Tocca per rispondere</string>
