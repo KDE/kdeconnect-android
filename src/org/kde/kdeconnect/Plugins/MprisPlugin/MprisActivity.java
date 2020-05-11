@@ -375,7 +375,6 @@ public class MprisActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeUtil.setUserPreferredTheme(this);
         setContentView(R.layout.activity_mpris);
         ButterKnife.bind(this);
 

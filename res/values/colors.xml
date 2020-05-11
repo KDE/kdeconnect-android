@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#F67400</color>
+    <color name="primaryDark">#BD5900</color>
+    <color name="accent">#4ebffa</color>
+    <color name="disabled_grey">#EEEEEE</color>
+    <color name="on_secondary">@android:color/white</color>
+    <color name="on_high_contrast">@android:color/black</color>
+    <color name="text_color_primary">@android:color/black</color>
+    <color name="text_color">@android:color/black</color>
+    <color name="toolbar_color">#F67400</color>
+</resources>

@@ -37,7 +37,6 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import org.kde.kdeconnect.BackgroundService;
-import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -93,7 +92,6 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeUtil.setUserPreferredTheme(this);
 
         setContentView(R.layout.activity_presenter);
 

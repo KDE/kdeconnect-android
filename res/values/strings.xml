@@ -368,4 +368,17 @@
     <string name="bigscreen_down">Down</string>
     <string name="pref_plugin_bigscreen">Bigscreen remote</string>
     <string name="pref_plugin_bigscreen_desc">Use your device as a remote for Plasma Bigscreen</string>
+
+    <string name="theme_dialog_title">Choose theme</string>
+    <string-array name="theme_list">
+      <item>Set by Battery Saver</item>
+      <item>Light</item>
+      <item>Dark</item>
+    </string-array>
+
+    <string-array name="theme_list_values" translatable="false">
+      <item>default</item>
+      <item>light</item>
+      <item>dark</item>
+    </string-array>
 </resources>

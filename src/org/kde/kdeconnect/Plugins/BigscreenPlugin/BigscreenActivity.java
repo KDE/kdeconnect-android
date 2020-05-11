@@ -34,7 +34,6 @@ public class BigscreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeUtil.setUserPreferredTheme(this);
 
         setContentView(R.layout.activity_bigscreen);
 

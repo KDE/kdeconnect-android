@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryDark">#333333</color>
+    <color name="darkGrey">#555555</color>
+    <color name="darkToolbarBackground">#222222</color>
+    <color name="darkStatusBarBackground">#333333</color>
+    <color name="on_secondary">@android:color/black</color>
+    <color name="on_high_contrast">@android:color/white</color>
+    <color name="text_color_primary">@android:color/white</color>
+    <color name="text_color">@android:color/white</color>
+    <color name="toolbar_color">#222222</color>
+
+<!--    This is for dark theme. In dark theme both selected and unselected text in the
+        navigation bar should be white. This is different from the light theme as both states have
+        different colors so light theme has a selector for this value-->
+    <color name="state_list_drawer_text">@android:color/white</color>
+</resources>

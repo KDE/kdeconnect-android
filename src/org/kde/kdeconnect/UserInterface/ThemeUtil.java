@@ -1,46 +1,38 @@
 package org.kde.kdeconnect.UserInterface;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import android.os.Build;
 
-import org.kde.kdeconnect_tp.R;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatDelegate;
+
 
 /**
  * Utilities for working with android {@link android.content.res.Resources.Theme Themes}.
  */
 public class ThemeUtil {
 
-    /**
-     * This method should be called from the {@code activity}'s onCreate method, before
-     * any calls to {@link Activity#setContentView} or
-     * {@link android.preference.PreferenceActivity#setPreferenceScreen}.
-     *
-     * @param activity any Activity on screen
-     */
-    public static void setUserPreferredTheme(Activity activity) {
-        boolean useDarkTheme = shouldUseDarkTheme(activity);
+    public static final String LIGHT_MODE = "light";
+    public static final String DARK_MODE = "dark";
+    public static final String DEFAULT_MODE = "default";
 
-        // Only MainActivity sets its own Toolbar as the ActionBar.
-        boolean usesOwnActionBar = activity instanceof MainActivity;
-
-        if (useDarkTheme) {
-            activity.setTheme(usesOwnActionBar ? R.style.KdeConnectTheme_Dark_NoActionBar : R.style.KdeConnectTheme_Dark);
-        } else {
-            activity.setTheme(usesOwnActionBar ? R.style.KdeConnectTheme_NoActionBar : R.style.KdeConnectTheme);
+    public static void applyTheme(@NonNull String themePref) {
+        switch (themePref) {
+            case LIGHT_MODE: {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                break;
+            }
+            case DARK_MODE: {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                break;
+            }
+            default: {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY);
+                }
+                break;
+            }
         }
-    }
-
-    /**
-     * Checks {@link SharedPreferences} to figure out whether we should use the light
-     * theme or the dark theme. The app defaults to light theme.
-     *
-     * @param context any active context (Activity, Service, Application, etc.)
-     * @return true if the dark theme should be active, false otherwise
-     */
-    public static boolean shouldUseDarkTheme(Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getBoolean("darkTheme", false);
     }
 }

@@ -2,11 +2,10 @@ package org.kde.kdeconnect.UserInterface;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.TextUtils;
 
 import androidx.preference.EditTextPreference;
@@ -15,6 +14,7 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.SwitchPreferenceCompat;
 import androidx.preference.TwoStatePreference;
+import androidx.preference.ListPreference;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -25,17 +25,13 @@ import org.kde.kdeconnect_tp.R;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
-    private MainActivity mainActivity;
     private EditTextPreference renameDevice;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
 
-        mainActivity = (MainActivity)getActivity();
         Context context = getPreferenceManager().getContext();
-
         PreferenceScreen screen = getPreferenceManager().createPreferenceScreen(context);
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
         // Rename device
         renameDevice = new EditTextPreference(context);
@@ -54,7 +50,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             if (TextUtils.isEmpty(name)) {
                 if (getView() != null) {
                     Snackbar snackbar = Snackbar.make(getView(), R.string.invalid_device_name, Snackbar.LENGTH_LONG);
-                    if (!prefs.getBoolean("darkTheme", false)) {
+                    int currentTheme = getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+                    if (currentTheme != Configuration.UI_MODE_NIGHT_YES) {
                         // white color is set to the background of snackbar if dark mode is off
                         snackbar.getView().setBackgroundColor(Color.WHITE);
                     }
@@ -69,23 +66,21 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         screen.addPreference(renameDevice);
 
-        // Dark mode
-        final TwoStatePreference darkThemeSwitch = new SwitchPreferenceCompat(context);
-        darkThemeSwitch.setPersistent(false);
-        darkThemeSwitch.setChecked(ThemeUtil.shouldUseDarkTheme(context));
-        darkThemeSwitch.setTitle(R.string.settings_dark_mode);
-        darkThemeSwitch.setOnPreferenceChangeListener((preference, newValue) -> {
-                boolean isChecked = (Boolean)newValue;
-                boolean isDarkAlready = prefs.getBoolean("darkTheme", false);
-                if (isDarkAlready != isChecked) {
-                    prefs.edit().putBoolean("darkTheme", isChecked).apply();
-                    if (mainActivity != null) {
-                        mainActivity.recreate();
-                    }
-                }
-                return true;
+        // Theme Selector
+        ListPreference themeSelector = new ListPreference(context);
+        themeSelector.setKey("theme_pref");
+        themeSelector.setTitle(R.string.theme_dialog_title);
+        themeSelector.setDialogTitle(R.string.theme_dialog_title);
+        themeSelector.setEntries(R.array.theme_list);
+        themeSelector.setEntryValues(R.array.theme_list_values);
+        themeSelector.setDefaultValue("default");
+        themeSelector.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
+        themeSelector.setOnPreferenceChangeListener((preference, newValue) -> {
+            String themeValue = (String) newValue;
+            ThemeUtil.applyTheme(themeValue);
+            return true;
         });
-        screen.addPreference(darkThemeSwitch);
+        screen.addPreference(themeSelector);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 

@@ -40,7 +40,6 @@ public class FindMyPhoneActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ThemeUtil.setUserPreferredTheme(this);
         setContentView(R.layout.activity_find_my_phone);
 
         if (!getIntent().hasExtra(EXTRA_DEVICE_ID)) {
