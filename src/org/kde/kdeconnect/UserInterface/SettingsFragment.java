@@ -73,7 +73,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         themeSelector.setDialogTitle(R.string.theme_dialog_title);
         themeSelector.setEntries(R.array.theme_list);
         themeSelector.setEntryValues(R.array.theme_list_values);
-        themeSelector.setDefaultValue("default");
+        themeSelector.setDefaultValue(ThemeUtil.DEFAULT_MODE);
         themeSelector.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
         themeSelector.setOnPreferenceChangeListener((preference, newValue) -> {
             String themeValue = (String) newValue;
