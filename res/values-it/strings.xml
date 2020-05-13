@@ -300,4 +300,9 @@
   <string name="bigscreen_down">Giù</string>
   <string name="pref_plugin_bigscreen">Telecomando Bigscreen</string>
   <string name="pref_plugin_bigscreen_desc">Utilizza il tuo dispositivo come telecomando per Plasma Bigscreen</string>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item/>
+    <item>Dark</item>
+  </string-array>
 </resources>

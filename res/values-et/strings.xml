@@ -300,4 +300,10 @@
   <string name="bigscreen_down">All</string>
   <string name="pref_plugin_bigscreen">Kaugsuurekraan</string>
   <string name="pref_plugin_bigscreen_desc">Oma seadme kasutamine Plasma kaugsuurekraanina</string>
+  <string name="theme_dialog_title">Teema valimine</string>
+  <string-array name="theme_list">
+    <item>Määratud akusäästja poolt</item>
+    <item>Hele</item>
+    <item>Tume</item>
+  </string-array>
 </resources>

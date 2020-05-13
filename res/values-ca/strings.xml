@@ -300,4 +300,10 @@
   <string name="bigscreen_down">Baix</string>
   <string name="pref_plugin_bigscreen">Pantalla gran remota</string>
   <string name="pref_plugin_bigscreen_desc">Useu el dispositiu com a remot per a la Pantalla gran del Plasma</string>
+  <string name="theme_dialog_title">Trieu el tema</string>
+  <string-array name="theme_list">
+    <item>Establert per l\'estalvi de bateria</item>
+    <item>Clar</item>
+    <item>Fosc</item>
+  </string-array>
 </resources>

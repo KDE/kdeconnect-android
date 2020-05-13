@@ -142,4 +142,9 @@
   <string name="share_optional_permission_explanation">For at dele filer mellem din telefon og din desktop skal du give adgang til telefonens datalager.</string>
   <string name="telepathy_permission_explanation">For at læse og skrive sms\'er fra din desktop, skal du give tilladelse til sms</string>
   <string name="telephony_optional_permission_explanation">For at se et kontaktnavn i stedet for et telefonnummer, skal du give adgang til telefonens kontakter</string>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item/>
+    <item>Dark</item>
+  </string-array>
 </resources>

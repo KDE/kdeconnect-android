@@ -289,4 +289,9 @@
   <string name="bigscreen_down">下</string>
   <string name="pref_plugin_bigscreen">电视遥控</string>
   <string name="pref_plugin_bigscreen_desc">使用您手机遥控 Plasma 电视</string>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item/>
+    <item>Dark</item>
+  </string-array>
 </resources>

@@ -68,4 +68,9 @@
   </string-array>
   <string name="protocol_version_newer">Acest dispozitiv folosește o versiune mai nouă a protocolului</string>
   <string name="invalid_device_name">Denumire nevalidă a dispozitivului</string>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item>Light</item>
+    <item>Dark</item>
+  </string-array>
 </resources>

@@ -91,4 +91,9 @@
   <string name="sftp_readonly">(samo za čitanje)</string>
   <string name="sftp_camera">Slike sa kamere</string>
   <string name="no_players_connected">Nema nađenih igrača</string>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item/>
+    <item>Dark</item>
+  </string-array>
 </resources>

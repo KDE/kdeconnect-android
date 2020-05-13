@@ -292,4 +292,9 @@
   <string name="bigscreen_down">下</string>
   <string name="pref_plugin_bigscreen">Bigscreen 遠端</string>
   <string name="pref_plugin_bigscreen_desc">將您的裝置用作 Plasma Bigscreen 的遠端</string>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item/>
+    <item>Dark</item>
+  </string-array>
 </resources>

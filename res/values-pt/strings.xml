@@ -300,4 +300,9 @@
   <string name="bigscreen_down">Baixo</string>
   <string name="pref_plugin_bigscreen">Comando à distância do ecrã grande</string>
   <string name="pref_plugin_bigscreen_desc">Use o seu dispositivo como um comando à distância para o Plasma em Ecrã Grande</string>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item/>
+    <item>Dark</item>
+  </string-array>
 </resources>

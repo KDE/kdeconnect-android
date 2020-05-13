@@ -142,4 +142,9 @@
   <string name="share_optional_permission_explanation">Για το διαμοιρασμό αρχείων ανάμεσα στο τηλέφωνο και τον υπολογιστή σας χρειάζεται να παραχωρήσετε πρόσβαση στον αποθηκευτικό χώρο του τηλεφώνου σας</string>
   <string name="telepathy_permission_explanation">Για να διαβάσετε και να γράψετε SMS από την επιφάνεια εργασίας, χρειάζεται να δώσετε δικαιώματα στο SMS</string>
   <string name="telephony_optional_permission_explanation">Για να δείτε το όνομα επαφής αντί για τον αριθμό κλήσης χρειάζεται να παραχωρήσετε πρόσβαση στις επαφές στο τηλέφωνο</string>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item/>
+    <item>Dark</item>
+  </string-array>
 </resources>

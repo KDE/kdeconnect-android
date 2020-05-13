@@ -275,4 +275,9 @@
   <string name="no_app_for_opening">Non se atopou ningún aplicativo axeitado para abrir este ficheiro</string>
   <string name="remote_keyboard_service">Teclado remoto de KDE Connect</string>
   <string name="presenter_pointer">Punteiro</string>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item/>
+    <item>Dark</item>
+  </string-array>
 </resources>

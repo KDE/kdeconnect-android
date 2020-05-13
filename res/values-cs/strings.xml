@@ -316,4 +316,9 @@
   <string name="bigscreen_down">Dolů</string>
   <string name="pref_plugin_bigscreen">Dálkový ovladač pro Bigscreen</string>
   <string name="pref_plugin_bigscreen_desc">Používejte své zařízení jako ovladač pro Plasma Bigscreen</string>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item/>
+    <item>Dark</item>
+  </string-array>
 </resources>

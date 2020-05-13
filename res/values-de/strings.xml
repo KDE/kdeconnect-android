@@ -280,4 +280,9 @@
   <string name="trusted_networks">Vertrauenswürdiges Netzwerk</string>
   <string name="add_trusted_network">%1s hinzufügen</string>
   <string name="location_permission_needed_title">Berechtigung erforderlich</string>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item/>
+    <item>Dark</item>
+  </string-array>
 </resources>

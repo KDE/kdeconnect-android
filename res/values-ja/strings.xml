@@ -266,4 +266,9 @@
   <string name="no_app_for_opening">このファイルを開くのに適切なアプリが見つかりません</string>
   <string name="remote_keyboard_service">KDE Connect リモートキーボード</string>
   <string name="presenter_pointer">ポインタ</string>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item/>
+    <item>Dark</item>
+  </string-array>
 </resources>

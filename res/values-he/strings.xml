@@ -135,4 +135,9 @@
   <string name="findmyphone_description">מפעיל רעש במכשיר כדי שתוכל למצוא אותו.</string>
   <string name="open">פתח</string>
   <string name="close">סגור</string>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item/>
+    <item>Dark</item>
+  </string-array>
 </resources>

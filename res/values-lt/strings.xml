@@ -315,4 +315,9 @@
   <string name="bigscreen_down">Žemyn</string>
   <string name="pref_plugin_bigscreen">Bigscreen nuotolinis pultas</string>
   <string name="pref_plugin_bigscreen_desc">Naudoti savo įrenginį kaip Plasma Bigscreen nuotolinį pultą</string>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item/>
+    <item>Dark</item>
+  </string-array>
 </resources>

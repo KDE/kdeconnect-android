@@ -125,4 +125,9 @@
   <string name="findmyphone_description">يرّن هذا الجهاز لتجده</string>
   <string name="open">افتح</string>
   <string name="close">أغلق</string>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item/>
+    <item>Dark</item>
+  </string-array>
 </resources>

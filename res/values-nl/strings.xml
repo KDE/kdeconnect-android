@@ -300,4 +300,10 @@
   <string name="bigscreen_down">Omlaag</string>
   <string name="pref_plugin_bigscreen">Bigscreen op afstand</string>
   <string name="pref_plugin_bigscreen_desc">Gebruik uw apparaat als een Bigscreen op afstand</string>
+  <string name="theme_dialog_title">Thema kiezen</string>
+  <string-array name="theme_list">
+    <item>Op batterijbesparing instellen</item>
+    <item>Licht</item>
+    <item>Donker</item>
+  </string-array>
 </resources>

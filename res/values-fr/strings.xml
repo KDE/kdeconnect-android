@@ -297,4 +297,9 @@
   <string name="bigscreen_down">Vers le bas</string>
   <string name="pref_plugin_bigscreen">Télécommande Bigscreen</string>
   <string name="pref_plugin_bigscreen_desc">Utiliser votre périphérique comme télécommande pour Plasma Bigscreen</string>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item/>
+    <item>Dark</item>
+  </string-array>
 </resources>

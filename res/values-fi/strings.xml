@@ -270,4 +270,9 @@
   <string name="take_picture">Käynnistä kamera</string>
   <string name="plugin_photo_desc">Helpota kuvien ottamista ja siirtämistä käynnistämällä kamerasovellus</string>
   <string name="no_app_for_opening">Tämän tiedoston avaamiseen sopivaa sovellusta ei löytynyt</string>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item/>
+    <item>Dark</item>
+  </string-array>
 </resources>
