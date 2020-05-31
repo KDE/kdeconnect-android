@@ -300,9 +300,10 @@
   <string name="bigscreen_down">Abajo</string>
   <string name="pref_plugin_bigscreen">Bigscreen remoto</string>
   <string name="pref_plugin_bigscreen_desc">Use su dispositivo como mando remoto para Plasma Bigscreen</string>
+  <string name="theme_dialog_title">Elegir tema</string>
   <string-array name="theme_list">
-    <item>Set by Battery Saver</item>
-    <item/>
-    <item>Dark</item>
+    <item>Activar ahorro de batería</item>
+    <item>Claro</item>
+    <item>Oscuro</item>
   </string-array>
 </resources>

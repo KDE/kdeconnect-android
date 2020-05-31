@@ -300,9 +300,10 @@
   <string name="bigscreen_down">Neråt</string>
   <string name="pref_plugin_bigscreen">Fjärrkontroll för storskärm</string>
   <string name="pref_plugin_bigscreen_desc">Använd apparaten som en fjärrkontroll för Plasma storskärm</string>
+  <string name="theme_dialog_title">Välj tema</string>
   <string-array name="theme_list">
-    <item>Set by Battery Saver</item>
-    <item/>
-    <item>Dark</item>
+    <item>Inställt för att spara batteri</item>
+    <item>Ljus</item>
+    <item>Mörk</item>
   </string-array>
 </resources>
