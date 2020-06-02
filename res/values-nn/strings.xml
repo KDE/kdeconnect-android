@@ -300,9 +300,10 @@
   <string name="bigscreen_down">Ned</string>
   <string name="pref_plugin_bigscreen">Bigscreen-fjernkontroll</string>
   <string name="pref_plugin_bigscreen_desc">Bruk eininga som fjernkontroll for Plasma Bigscreen</string>
+  <string name="theme_dialog_title">Vel tema</string>
   <string-array name="theme_list">
-    <item>Set by Battery Saver</item>
-    <item>Light</item>
-    <item>Dark</item>
+    <item>Valt av straumsparar</item>
+    <item>Lyst</item>
+    <item>Mørkt</item>
   </string-array>
 </resources>

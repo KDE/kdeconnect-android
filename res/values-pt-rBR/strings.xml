@@ -302,8 +302,8 @@
   <string name="pref_plugin_bigscreen_desc">Use seu dispositivo como um controle remoto para o Plasma Bigscreen</string>
   <string name="theme_dialog_title">Escolher tema</string>
   <string-array name="theme_list">
-    <item>Set by Battery Saver</item>
-    <item/>
-    <item>Dark</item>
+    <item>Definido pelo economizador de bateria</item>
+    <item>Claro</item>
+    <item>Escuro</item>
   </string-array>
 </resources>

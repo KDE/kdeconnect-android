@@ -3,6 +3,7 @@
   <string name="kde_connect">KDE Connect</string>
   <string name="foreground_notification_no_devices">Aucun périphérique connecté</string>
   <string name="foreground_notification_devices">Connecté à : %s</string>
+  <string name="foreground_notification_send_clipboard">Envoyer le presse-papier</string>
   <string name="pref_plugin_telephony">Notifications de téléphonie</string>
   <string name="pref_plugin_telephony_desc">Envoie des notifications pour les appels entrants</string>
   <string name="pref_plugin_battery">Rapport sur la batterie</string>
@@ -11,6 +12,7 @@
   <string name="pref_plugin_sftp_desc">Permettre de parcourir le système de fichiers du périphérique à distance</string>
   <string name="pref_plugin_clipboard">Synchronisation avec le presse-papiers</string>
   <string name="pref_plugin_clipboard_desc">Partage le contenu du presse-papiers</string>
+  <string name="pref_plugin_clipboard_sent">Presse-papiers envoyé</string>
   <string name="pref_plugin_mousepad">Contrôle distant</string>
   <string name="pref_plugin_mousepad_desc">Utilisez votre téléphone ou tablette comme un pavé tactile et un clavier</string>
   <string name="pref_plugin_presenter">Télécommande de présentation</string>
@@ -123,6 +125,7 @@
     <item quantity="one">Impossible d\'envoyer le fichier à %1$s</item>
     <item quantity="other">Impossible d\'envoyer %2$d fichiers sur %3$d à %1$s</item>
   </plurals>
+  <string name="tap_to_open">Tapotez pour ouvrir</string>
   <string name="received_file_text">Appuyez pour ouvrir %1s</string>
   <string name="cannot_create_file">Impossible de créer le fichier %s</string>
   <string name="tap_to_answer">Cliquer pour répondre</string>
@@ -297,9 +300,10 @@
   <string name="bigscreen_down">Vers le bas</string>
   <string name="pref_plugin_bigscreen">Télécommande Bigscreen</string>
   <string name="pref_plugin_bigscreen_desc">Utiliser votre périphérique comme télécommande pour Plasma Bigscreen</string>
+  <string name="theme_dialog_title">Choisir un thème</string>
   <string-array name="theme_list">
-    <item>Set by Battery Saver</item>
-    <item/>
-    <item>Dark</item>
+    <item>Défini par l\'économiseur de batterie</item>
+    <item>Léger</item>
+    <item>Sombre</item>
   </string-array>
 </resources>
