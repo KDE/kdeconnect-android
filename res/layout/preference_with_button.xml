@@ -13,9 +13,9 @@
      limitations under the License.
 -->
 
-<!-- Layout for a Preference in a PreferenceActivity. The
-     Preference is able to place a specific widget for its particular
-     type in the "widget_frame" layout. -->
+<!-- Layout for a Preference in a PreferenceActivity. The bound
+     Preference will place a specific widget representing that
+     Preference in the "widget_frame" ViewGroup in this file. -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -55,12 +55,18 @@
             tools:text="Plugin description"
             />
     </RelativeLayout>
+    <!--
+    NB: This divider (below) should only become visible if the
+    preference links to additional settings. In practical terms,
+    that's when calling '::hasSettings' on the associated Plugin
+    returns true.
+    -->
     <View
         android:id="@+id/divider"
         android:layout_width="1dp"
         android:layout_height="32dp"
         android:layout_gravity="center"
-        android:background="?android:attr/textColorSecondary"
+        android:background="?divider"
         />
     <!-- Preference will place its actual preference widget here. -->
     <LinearLayout
