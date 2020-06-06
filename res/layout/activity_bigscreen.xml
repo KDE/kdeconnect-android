@@ -26,6 +26,16 @@
         android:theme="@style/DisableableButton" />
 
     <ImageButton
+        android:id="@+id/mic_button"
+        grid:layout_column="2"
+        grid:layout_columnWeight="1"
+        grid:layout_row="0"
+        grid:layout_rowWeight="1"
+        android:contentDescription="@string/bigscreen_mic"
+        android:src="@drawable/ic_mic_black"
+        android:theme="@style/DisableableButton" />
+
+    <ImageButton
         android:id="@+id/left_button"
         grid:layout_column="0"
         grid:layout_row="1"

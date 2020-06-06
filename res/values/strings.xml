@@ -366,8 +366,11 @@
     <string name="bigscreen_select">Select</string>
     <string name="bigscreen_right">Right</string>
     <string name="bigscreen_down">Down</string>
+    <string name="bigscreen_mic">Mic</string>
     <string name="pref_plugin_bigscreen">Bigscreen remote</string>
     <string name="pref_plugin_bigscreen_desc">Use your device as a remote for Plasma Bigscreen</string>
+    <string name="bigscreen_optional_permission_explanation">To share microphone input from your phone you need to give access to the phone\'s audio input</string>
+    <string name="bigscreen_speech_extra_prompt">Speech</string>
 
     <string name="theme_dialog_title">Choose theme</string>
     <string-array name="theme_list">
@@ -381,4 +384,5 @@
       <item>light</item>
       <item>dark</item>
     </string-array>
+
 </resources>
