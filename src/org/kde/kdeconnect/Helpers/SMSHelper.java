@@ -363,7 +363,7 @@ public class SMSHelper {
                     }
                 } while ((numberToGet == null || toReturn.size() < numberToGet) && myCursor.moveToNext());
             }
-        } catch (SQLiteException e) {
+        } catch (SQLiteException | IllegalArgumentException e) {
             String[] unfilteredColumns = {};
             try (Cursor unfilteredColumnsCursor = context.getContentResolver().query(uri, null, null, null, null)) {
                 if (unfilteredColumnsCursor != null) {
