@@ -262,7 +262,7 @@ public class SMSHelper {
                 return true; // if we got the cursor, the query shouldn't fail
             }
             return false;
-        } catch (SQLiteException e) {
+        } catch (SQLiteException | IllegalArgumentException e) {
             // With uri content://mms-sms/conversations this query throws an exception if sub_id is not supported
             String errMessage = e.getMessage();
             if (errMessage != null && errMessage.contains(Telephony.Sms.SUBSCRIPTION_ID)) {
