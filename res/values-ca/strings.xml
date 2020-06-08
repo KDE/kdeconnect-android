@@ -298,8 +298,11 @@
   <string name="bigscreen_select">Selecció</string>
   <string name="bigscreen_right">Dreta</string>
   <string name="bigscreen_down">Baix</string>
+  <string name="bigscreen_mic">Micròfon</string>
   <string name="pref_plugin_bigscreen">Bigscreen remota</string>
   <string name="pref_plugin_bigscreen_desc">Useu el dispositiu com a remot per a la Bigscreen del Plasma</string>
+  <string name="bigscreen_optional_permission_explanation">Per a compartir l\'entrada del micròfon del telèfon cal donar accés a l\'entrada d\'àudio del telèfon</string>
+  <string name="bigscreen_speech_extra_prompt">Veu</string>
   <string name="theme_dialog_title">Trieu el tema</string>
   <string-array name="theme_list">
     <item>Establert per l\'estalvi de bateria</item>

@@ -314,8 +314,11 @@
   <string name="bigscreen_select">Вибрати</string>
   <string name="bigscreen_right">Праворуч</string>
   <string name="bigscreen_down">Вниз</string>
+  <string name="bigscreen_mic">Мікрофон</string>
   <string name="pref_plugin_bigscreen">Керування великим екраном</string>
   <string name="pref_plugin_bigscreen_desc">Скористайтеся вашим пристроєм як дистанційним керуванням для великого екрана Плазми</string>
+  <string name="bigscreen_optional_permission_explanation">Щоб оприлюднити вхідні дані з мікрофона вашого телефону, вам слід надати програми доступ до вхідного звукового каналу телефону</string>
+  <string name="bigscreen_speech_extra_prompt">Озвучення</string>
   <string name="theme_dialog_title">Вибір теми</string>
   <string-array name="theme_list">
     <item>Встановлена зберігачем акумулятора</item>

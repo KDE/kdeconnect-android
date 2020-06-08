@@ -298,8 +298,11 @@
   <string name="bigscreen_select">Seleccionar</string>
   <string name="bigscreen_right">Direita</string>
   <string name="bigscreen_down">Baixo</string>
+  <string name="bigscreen_mic">Mic</string>
   <string name="pref_plugin_bigscreen">Comando à distância do ecrã grande</string>
   <string name="pref_plugin_bigscreen_desc">Use o seu dispositivo como um comando à distância para o Plasma em Ecrã Grande</string>
+  <string name="bigscreen_optional_permission_explanation">Para partilhar os dados provenientes do microfone do seu telefone, terá de dar acesso à entrada de áudio do telefone</string>
+  <string name="bigscreen_speech_extra_prompt">Fala</string>
   <string name="theme_dialog_title">Escolha o tema</string>
   <string-array name="theme_list">
     <item>Definido pela Poupança da Bateria</item>

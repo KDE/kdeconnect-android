@@ -298,8 +298,11 @@
   <string name="bigscreen_select">Selecteren</string>
   <string name="bigscreen_right">Rechts</string>
   <string name="bigscreen_down">Omlaag</string>
+  <string name="bigscreen_mic">Mic</string>
   <string name="pref_plugin_bigscreen">Bigscreen op afstand</string>
   <string name="pref_plugin_bigscreen_desc">Gebruik uw apparaat als een Bigscreen op afstand</string>
+  <string name="bigscreen_optional_permission_explanation">Om microfooninvoer vanaf uw telefoon te delen moet u toegang geven tot de geluidsinvoer van de telefoon</string>
+  <string name="bigscreen_speech_extra_prompt">Spraak</string>
   <string name="theme_dialog_title">Thema kiezen</string>
   <string-array name="theme_list">
     <item>Op batterijbesparing instellen</item>
