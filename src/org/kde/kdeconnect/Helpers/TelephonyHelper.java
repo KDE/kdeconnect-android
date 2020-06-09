@@ -96,6 +96,11 @@ public class TelephonyHelper {
                 return Collections.emptyList();
             }
             List<SubscriptionInfo> subscriptionInfos = subscriptionManager.getActiveSubscriptionInfoList();
+            if (subscriptionInfos == null) {
+                // This happens when there is no SIM card inserted
+                Log.w(LOGGING_TAG, "Could not get SubscriptionInfos");
+                return Collections.emptyList();
+            }
             List<String> phoneNumbers = new ArrayList<>(subscriptionInfos.size());
             for (SubscriptionInfo info : subscriptionInfos) {
                 phoneNumbers.add(info.getNumber());
