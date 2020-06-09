@@ -298,8 +298,11 @@
   <string name="bigscreen_select">Seleziona</string>
   <string name="bigscreen_right">A destra</string>
   <string name="bigscreen_down">Giù</string>
+  <string name="bigscreen_mic">Mic</string>
   <string name="pref_plugin_bigscreen">Telecomando Bigscreen</string>
   <string name="pref_plugin_bigscreen_desc">Utilizza il tuo dispositivo come telecomando per Plasma Bigscreen</string>
+  <string name="bigscreen_optional_permission_explanation">Per condividere l\'ingresso del microfono dal telefono è necessario consentire l\'accesso all\'ingresso audio del telefono</string>
+  <string name="bigscreen_speech_extra_prompt">Parlato</string>
   <string name="theme_dialog_title">Scegli il tema</string>
   <string-array name="theme_list">
     <item>Impostato dal risparmio batteria</item>
