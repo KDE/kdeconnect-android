@@ -98,13 +98,7 @@ public class SMSHelper {
             Log.i("SMSHelper", "This appears to be a Samsung device. This may cause some features to not work properly.");
         }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            return Telephony.MmsSms.CONTENT_CONVERSATIONS_URI;
-        } else {
-            // As with getSMSUriBad, this is potentially unsafe depending on whether a specific
-            // manufacturer decided to do their own thing
-            return Uri.parse("content://mms-sms/conversations");
-        }
+        return Uri.parse("content://mms-sms/conversations?simple=true");
     }
 
     @RequiresApi(api = Build.VERSION_CODES.FROYO)
@@ -128,7 +122,7 @@ public class SMSHelper {
     }
 
     /**
-     * Get all the messages in a requested thread
+     * Get some or all the messages in a requested thread
      *
      * @param context  android.content.Context running the request
      * @param threadID Thread to look up
@@ -142,7 +136,9 @@ public class SMSHelper {
     ) {
         Uri uri = Uri.withAppendedPath(getConversationUri(), threadID.toString());
 
-        return getMessages(uri, context, null, null, null, numberToGet);
+        String sortOrder = Message.DATE + " DESC";
+
+        return getMessages(uri, context, null, null, sortOrder, numberToGet);
     }
 
     /**
@@ -447,20 +443,49 @@ public class SMSHelper {
     ) {
         Uri uri = SMSHelper.getConversationUri();
 
-        List<Message> unthreadedMessages = getMessages(uri, context, null, null, null, null);
+        // Step 1: Populate the list of all known threadIDs
+        HashSet<Long> threadIds = new HashSet<>();
+        try (Cursor threadIdCursor = context.getContentResolver().query(
+                uri,
+                null,
+                null,
+                null,
+                null)) {
+            while (threadIdCursor != null && threadIdCursor.moveToNext()) {
+                // The "_id" column returned from the `content://sms-mms/conversations?simple=true` URI
+                // is actually what the rest of the world calls a thread_id.
+                // In my limited experimentation, the other columns are not populated, so don't bother
+                // looking at them here.
+                int idColumn = threadIdCursor.getColumnIndex("_id");
+                if (!threadIdCursor.isNull(idColumn)) {
+                    threadIds.add(threadIdCursor.getLong(idColumn));
+                }
+            }
+        }
 
-        Map<ThreadID, Message> toReturn = new HashMap<>();
+        // Step 2: Get the actual message object from each thread ID
+        Map<ThreadID, Message> firstMessageByThread = new HashMap<>();
 
-        for (Message message : unthreadedMessages) {
-            ThreadID tID = message.threadID;
+        for (Long rawThreadId : threadIds) {
+            ThreadID threadId = new ThreadID(rawThreadId);
 
-            if (toReturn.containsKey(tID)) {
-                Log.w("SMSHelper", "getConversations got two messages for the same ThreadID: " + tID);
+            List<Message> firstMessage = getMessagesInThread(context, threadId, 1L);
+
+            if (firstMessage.size() > 1) {
+                Log.w("SMSHelper", "getConversations got two messages for the same ThreadID: " + threadId);
             }
 
-            toReturn.put(tID, message);
+            if (firstMessage.size() == 0)
+            {
+                Log.e("SMSHelper", "ThreadID: " + threadId + " did not return any messages");
+                // This is a strange issue, but I don't know how to say what is wrong, so just continue along
+                continue;
+            }
+
+            firstMessageByThread.put(threadId, firstMessage.get(0));
         }
-        return toReturn;
+
+        return firstMessageByThread;
     }
 
     private static int addEventFlag(
