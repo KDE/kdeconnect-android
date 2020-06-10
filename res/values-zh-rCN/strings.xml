@@ -3,6 +3,7 @@
   <string name="kde_connect">KDE Connect</string>
   <string name="foreground_notification_no_devices">没有连接到任何设备</string>
   <string name="foreground_notification_devices">已连接到：%s</string>
+  <string name="foreground_notification_send_clipboard">发送剪切板</string>
   <string name="pref_plugin_telephony">电话通知</string>
   <string name="pref_plugin_telephony_desc">发送来电通知</string>
   <string name="pref_plugin_battery">电池报告</string>
@@ -11,6 +12,7 @@
   <string name="pref_plugin_sftp_desc">允许远程浏览设备的文件系统</string>
   <string name="pref_plugin_clipboard">剪贴板同步</string>
   <string name="pref_plugin_clipboard_desc">共享剪贴板内容</string>
+  <string name="pref_plugin_clipboard_sent">剪贴板已发送</string>
   <string name="pref_plugin_mousepad">远程输入</string>
   <string name="pref_plugin_mousepad_desc">将您的手机用或平板电脑用作触摸板和键盘</string>
   <string name="pref_plugin_presenter">幻灯片遥控器</string>
@@ -110,11 +112,12 @@
     <item quantity="other">从 %1$s 接收的 %3$d 个文件中的 %2$d 个失败</item>
   </plurals>
   <plurals name="sent_files_title">
-    <item quantity="other">已发送 %2$d 给文件给 %1$s</item>
+    <item quantity="other">已发送 %2$d 个文件到 %1$s</item>
   </plurals>
   <plurals name="send_files_fail_title">
     <item quantity="other">发送给 %1$s 的 %3$d 个文件中的 %2$d 个失败</item>
   </plurals>
+  <string name="tap_to_open">点击以打开</string>
   <string name="received_file_text">点击以打开“%1s”</string>
   <string name="cannot_create_file">无法创建文件 %s</string>
   <string name="tap_to_answer">点击以应答</string>
@@ -289,9 +292,10 @@
   <string name="bigscreen_down">下</string>
   <string name="pref_plugin_bigscreen">电视遥控</string>
   <string name="pref_plugin_bigscreen_desc">使用您手机遥控 Plasma 电视</string>
+  <string name="theme_dialog_title">选择主题</string>
   <string-array name="theme_list">
     <item>Set by Battery Saver</item>
-    <item/>
-    <item>Dark</item>
+    <item>浅色主题</item>
+    <item>深色主题</item>
   </string-array>
 </resources>
