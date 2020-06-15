@@ -298,8 +298,11 @@
   <string name="bigscreen_select">Vel</string>
   <string name="bigscreen_right">Høgre</string>
   <string name="bigscreen_down">Ned</string>
+  <string name="bigscreen_mic">Mikrofon</string>
   <string name="pref_plugin_bigscreen">Bigscreen-fjernkontroll</string>
   <string name="pref_plugin_bigscreen_desc">Bruk eininga som fjernkontroll for Plasma Bigscreen</string>
+  <string name="bigscreen_optional_permission_explanation">For å kunna dela mikrofon­lyd frå telefonen må du gje appen mikrofontilgang</string>
+  <string name="bigscreen_speech_extra_prompt">Tale</string>
   <string name="theme_dialog_title">Vel tema</string>
   <string-array name="theme_list">
     <item>Valt av straumsparar</item>
