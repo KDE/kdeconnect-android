@@ -100,7 +100,7 @@ class ReceiveNotification {
     }
 
     public void setFinished(String message) {
-        builder = new NotificationCompat.Builder(device.getContext(), NotificationHelper.Channels.DEFAULT);
+        builder = new NotificationCompat.Builder(device.getContext(), NotificationHelper.Channels.FILETRANSFER);
         builder.setContentTitle(message)
                 .setTicker(message)
                 .setSmallIcon(android.R.drawable.stat_sys_download_done)
