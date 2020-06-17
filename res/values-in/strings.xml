@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_no_devices">Belum terkoneksi ke perangkat apa pun</string>
+  <string name="foreground_notification_devices">Terkoneksi ke: %s</string>
+  <string name="pref_plugin_telephony">Penotifikasi ponsel</string>
+  <string name="pref_plugin_telephony_desc">Kirim notifikasi untuk panggilan yang masuk</string>
+  <string name="pref_plugin_battery">Laporan baterai</string>
+  <string name="pref_plugin_battery_desc">Status baterai laporkan secara berkala</string>
+  <string name="pref_plugin_sftp">Menyingkap sistem file</string>
+  <string name="pref_plugin_sftp_desc">Membolehkan menelusuri sistem file perangkat ini secara jarak jauh</string>
+  <string name="pref_plugin_clipboard">Sinkron clipboard</string>
+  <string name="pref_plugin_clipboard_desc">Berbagi konten papan-klip</string>
+  <string name="pref_plugin_mousepad">Input jarak jauh</string>
+  <string name="pref_plugin_mousepad_desc">Gunakan ponsel atau tabletmu sebagai touchpad dan keyboard</string>
+  <string name="pref_plugin_presenter_desc">Gunakan perangkatmu untuk mengubah slide dalam sebuah presentasi</string>
+  <string name="pref_plugin_remotekeyboard">Terima penekanan tuts jarak jauh</string>
+  <string name="pref_plugin_remotekeyboard_desc">Terima peristiwa tekan-tuts dari perangkat jarak jauh</string>
+  <string name="pref_plugin_mpris">Kendalikan multimedia</string>
+  <string name="pref_plugin_mpris_desc">Menyediakan sebuah kendali jarak jauh untuk pemutar mediamu</string>
+  <string name="pref_plugin_runcommand">Jalankan Perintah</string>
+  <string name="pref_plugin_runcommand_desc">Pemicu perintah jarak jauh dari ponsel dan tablet-mu</string>
+  <string name="pref_plugin_contacts">Penyinkron Kontak</string>
+  <string name="pref_plugin_contacts_desc">Bolehkan menyinkronkan buku kontak pada perangkat</string>
+  <string name="pref_plugin_ping">Ping</string>
+  <string name="pref_plugin_ping_desc">Kirim dan terima ping</string>
+  <string name="pref_plugin_notifications">Sinkron notifikasi</string>
+  <string name="pref_plugin_notifications_desc">Akses notifikasimu dari perangkat lain</string>
+  <string name="pref_plugin_receive_notifications">Terima notifikasi</string>
+  <string name="pref_plugin_receive_notifications_desc">Terima notifikasi dari perangkat lain dan menampilkannya pada Android</string>
+  <string name="pref_plugin_sharereceiver">Kirim dan terima</string>
+  <string name="pref_plugin_sharereceiver_desc">Berbagi file-file dan URL-URL antara perangkat</string>
+  <string name="device_list_empty">Tidak ada perangkat</string>
+  <string name="ok">Oke</string>
+  <string name="cancel">Batal</string>
+  <string name="open_settings">Buka pengaturan</string>
+  <string name="no_permissions">Kamu perlu mengabulkan perizinan untuk mengakses notifikasi</string>
+  <string name="no_permission_mprisreceiver">Untuk dapat mengendalikan pemutar mediamu kamu perlu mengabulkan akses ke notifikasi</string>
+  <string name="send_ping">Kirim ping</string>
+  <string name="open_mpris_controls">Kendali multimedia</string>
+  <string name="remotekeyboard_editing_only_title">Menangani tuts jarak jauh hanya ketika mengedit</string>
+  <string name="remotekeyboard_not_connected">Tidak adanya keaktifan koneksi keyboard jarak jauh, yang dibuat dalam kdeconnect</string>
+  <string name="remotekeyboard_connected">Koneksi keyboard jarak jauh telah aktif</string>
+  <string name="remotekeyboard_multiple_connections">Ada lebih dari satu koneksi keyboard jarak jauh, pilihlah perangkat untuk mengkonfigurasi</string>
+  <string name="open_mousepad">Input jarak jauh</string>
+  <string name="mousepad_info">Pindah jari pada layar untuk memindah kursor mouse. Ketuk untuk klik, dan gunakan dua/tiga jari untuk tombol kanan dan tengah. Gunakan 2 jari untuk menggulir. Gunakan tekan lama untuk seret dan taruh.</string>
+  <string name="mousepad_double_tap_settings_title">Set aksi ketuk dua jari</string>
+  <string name="mousepad_triple_tap_settings_title">Set aksi ketuk tiga jari</string>
+  <string name="mousepad_sensitivity_settings_title">Set kepekaan touchpad</string>
+  <string name="mousepad_scroll_direction_title">Arah Menggulir Terbalik</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Klik kanan</item>
+    <item>Klik tengah</item>
+    <item>Tidak ada apa-apa</item>
+  </string-array>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Pelan</item>
+    <item>Agak Pelan</item>
+    <item>Normal</item>
+    <item>Agak Cepat</item>
+    <item>Cepat</item>
+  </string-array>
+  <string-array name="mousepad_acceleration_profile_entries">
+    <item>Tidak ada Akselerasi</item>
+    <item>Sangat Lemah</item>
+    <item>Lemah</item>
+    <item>Menengah</item>
+    <item>Kuat</item>
+    <item>Sangat Kuat</item>
+  </string-array>
+  <string name="category_connected_devices">Perangkat terkoneksi</string>
+  <string name="category_not_paired_devices">Perangkat tersedia</string>
+  <string name="category_remembered_devices">Perangkat teringat</string>
+  <string name="device_menu_plugins">Pengesetan plugin</string>
+  <string name="device_menu_unpair">Leraikan</string>
+  <string name="pair_new_device">Sandingkan perangkat baru</string>
+  <string name="unknown_device">Perangkat tak diketahui</string>
+  <string name="error_not_reachable">Perangkat tidak dapat dicapai</string>
+  <string name="error_already_paired">Perangkat sudah disandingkan</string>
+  <string name="error_could_not_send_package">Tidak dapat mengirim paket</string>
+  <string name="error_timed_out">Waktu habis</string>
+  <string name="error_canceled_by_user">Dibatalkan oleh pengguna</string>
+  <string name="error_canceled_by_other_peer">Dibatalkan oleh kawan lain</string>
+  <string name="encryption_info_title">Info Enkripsi</string>
+  <string name="encryption_info_msg_no_ssl">Perangkat lain tidaklah menggunakan KDE Connect yang berversi saat ini, menggunakan metode enkripsi kuno.</string>
+  <string name="my_device_fingerprint">Sidik jari SHA1 pada sertifikat perangkatmu adalah:</string>
+  <string name="remote_device_fingerprint">Sidik jari SHA1 pada sertifikat perangkat jarak jauh adalah:</string>
+  <string name="pair_requested">Meminta sanding</string>
+  <string name="pairing_request_from">Minta penyandingan dari %1s</string>
+  <plurals name="incoming_file_title">
+    <item quantity="other">Menerima %1$d file dari %2$s</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="other">File: %1s</item>
+  </plurals>
+  <plurals name="received_files_title">
+    <item quantity="other">File yang diterima dari %1$s</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="other">Gagal menerima file dari %1$s</item>
+  </plurals>
+  <string name="received_file_text">Ketuk untuk membuka \'%1s\'</string>
+  <string name="cannot_create_file">Gak bisa menciptakan file %s</string>
+  <string name="tap_to_answer">Ketuk untuk menjawab</string>
+  <string name="right_click">Kirim Klik Kanan</string>
+  <string name="middle_click">Kirim Klik Tengah</string>
+  <string name="show_keyboard">Tampilkan Keyboard</string>
+  <string name="device_not_paired">Perangkat tidak disandingkan</string>
+  <string name="request_pairing">Minta penyandingan</string>
+  <string name="pairing_accept">Setujui</string>
+  <string name="pairing_reject">Apkir</string>
+  <string name="settings">Pengaturan</string>
+  <string name="mpris_play">Putarkan</string>
+  <string name="mpris_pause">Jeda</string>
+  <string name="mpris_previous">Sebelumnya</string>
+  <string name="mpris_rew">Mundur-cepat</string>
+  <string name="mpris_ff">Maju-capat</string>
+  <string name="mpris_next">Selanjutnya</string>
+  <string name="mpris_volume">Volume</string>
+  <string name="mpris_time_settings_title">Tombol mundur-cepat/maju-cepat</string>
+  <string name="mpris_time_settings_summary">Sesuaikan waktu untuk mempercepat mundur/maju ketika ditekan</string>
+  <string-array name="mpris_time_entries">
+    <item>10 detik</item>
+    <item>20 detik</item>
+    <item>30 detik</item>
+    <item>1 menit</item>
+    <item>2 menit</item>
+  </string-array>
+  <string name="mpris_notification_settings_title">Tampilkan notifikasi kendali media</string>
+  <string name="mpris_notification_settings_summary">Memungkinkan pengendalian pemutar media-mu tanpa membuka KDE Connect</string>
+  <string name="share_to">Berbagi Ke...</string>
+  <string name="protocol_version_newer">Perangkat ini menggunakan sebuah versi protokol baru</string>
+  <string name="plugin_settings_with_name">Pengesetan %s</string>
+  <string name="invalid_device_name">Nama perangkat tak absah</string>
+  <string name="shareplugin_text_saved">Teks diterima, tersimpan ke papan-klip</string>
+  <string name="custom_devices_settings">Kustom daftar perangkat</string>
+  <string name="custom_device_list">Tambahkan perangkat dengan IP</string>
+  <string name="share_notification_preference">Notifikasi bising</string>
+  <string name="share_notification_preference_summary">Getar dan putarkan suara ketika menerima sebuah file</string>
+  <string name="share_destination_customize">Menyesuaikan tujuan direktori</string>
+  <string name="share_destination_customize_summary_disabled">File yang diterima akan muncul di Unduhan</string>
+  <string name="share_destination_customize_summary_enabled">File akan disimpan di dalam direktori di bawah ini</string>
+  <string name="share_destination_folder_preference">Direktori tujuan</string>
+  <string name="share">Bagikan</string>
+  <string name="share_received_file">Bagikan \"%s\"</string>
+  <string name="title_activity_notification_filter">Filter notifikasi</string>
+  <string name="filter_apps_info">Notifikasi akan disinkronkan terhadap apl terpilih.</string>
+  <string name="sftp_sdcard_num">Kartu SD %d</string>
+  <string name="sftp_sdcard">Kartu SD</string>
+  <string name="sftp_readonly">(hanya baca)</string>
+  <string name="sftp_camera">Gambar kamera</string>
+  <string name="no_players_connected">Tidak ada pemutar yang ditemukan</string>
+  <string name="send_files">Kirim file</string>
+  <string name="pairing_title">Perangkat KDE Connect</string>
+  <string name="pairing_description">Perangkat lain menjalankan KDE Connect dalam jaringanmu yang sama yang seharusnya muncul di sini.</string>
+  <string name="device_rename_title">Ubah nama perangkat</string>
+  <string name="device_rename_confirm">Ubah Nama</string>
+  <string name="refresh">Segarkan</string>
+  <string name="unreachable_description">Perangkat yang disandingkan ini tidak dapat dicapai. Pastikan ia terkoneksi ke jaringanmu yang sama.</string>
+  <string name="no_file_browser">Tidak adanya penelusur file yang terinstal.</string>
+  <string name="pref_plugin_telepathy">Kirim SMS</string>
+  <string name="pref_plugin_telepathy_desc">Kirim teks perpesanan dari desktopmu</string>
+  <string name="findmyphone_title">Temukan ponselku</string>
+  <string name="findmyphone_title_tablet">Temukan tabletku</string>
+  <string name="findmyphone_title_tv">Temukan TV-ku</string>
+  <string name="findmyphone_description">Deringkan perangkat ini sehingga kamu bisa menemukannya</string>
+  <string name="open">Buka</string>
+  <string name="close">Tutup</string>
+  <string name="plugins_need_permission">Beberapa plugin perlu perizinan untuk kerja (ketuk untuk info selebihnya):</string>
+  <string name="permission_explanation">Plugin ini perlu perizinan untuk kerja</string>
+  <string name="optional_permission_explanation">Kamu perlu mengabulkan perizinan extra untuk memfungsikan semua fungsian</string>
+  <string name="plugins_need_optional_permission">Beberapa plugin yang memiliki fitur dinonfungsikan karena kurangnya perizinan (ketuk untuk info selebihnya):</string>
+  <string name="share_optional_permission_explanation">Untuk membagikan file antara teleponmu dan desktopmu kamu harus memberikan akses ke penyimpanan teleponmu</string>
+  <string name="telepathy_permission_explanation">Untuk membaca dan menulis SMS dari desktopmu kamu harus memberikan perizinan untuk SMS</string>
+  <string name="telephony_permission_explanation">Untuk melihat panggilan ponsel pada desktop kamu harus memberikan perizinan untuk log panggilan ponsel dan keadaan ponsel</string>
+  <string name="telephony_optional_permission_explanation">Untuk melihat nama kontak alih-alih nomor ponsel, kamu harus memberikan akses ke kontak ponsel</string>
+  <string name="contacts_permission_explanation">Untuk membagikan buku kontak dengan desktopmu, kamu harus memberikan perizinan kontak</string>
+  <string name="select_ringtone">Pilih sebuah ringtone</string>
+  <string name="telephony_pref_blocked_title">Nomor yang diblokir</string>
+  <string name="telephony_pref_blocked_dialog_desc">Jangan tampilkan panggilan dan SMS dari nomor tersebut. Silakan tentukan satu nomor tiap baris</string>
+  <string name="mpris_coverart_description">Seni sampul media saat ini</string>
+  <string name="device_icon_description">Ikon perangkat</string>
+  <string name="settings_icon_description">Ikon pengaturan</string>
+  <string name="add_command">Tambahkan sebuah perintah</string>
+  <string name="addcommand_explanation">Tidak ada perintah yang diregister</string>
+  <string name="addcommand_explanation2">"Kamu bisa menambahkan perintah baru dalam System Settings KDE Connect "</string>
+  <string name="add_command_description">Kamu bisa menambahkan perintah pada desktop</string>
+  <string name="pref_plugin_mprisreceiver">Kendali Pemutar Media</string>
+  <string name="pref_plugin_mprisreceiver_desc">Kendalikan pemutar media ponselmu dari perangkat lainnya</string>
+  <string name="devices">Perangkat</string>
+  <string name="settings_rename">Nama perangkat</string>
+  <string name="settings_dark_mode">Tema gelap</string>
+  <string name="settings_more_settings_title">Pengaturan selebihnya</string>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item/>
+    <item>Dark</item>
+  </string-array>
+</resources>

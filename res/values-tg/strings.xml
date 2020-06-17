@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="kde_connect">Пайвасти KDE</string>
+  <string name="foreground_notification_no_devices">Ба ягон дастгоҳ пайваст нашуд</string>
+  <string name="foreground_notification_devices">Ба %s пайваст шуд</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Right click</item>
+    <item>Middle click</item>
+    <item>Nothing</item>
+  </string-array>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Slowest</item>
+    <item>Above Slowest</item>
+    <item>Default</item>
+    <item>Above Default</item>
+    <item>Fastest</item>
+  </string-array>
+  <string-array name="mousepad_acceleration_profile_entries">
+    <item>No Acceleration</item>
+    <item>Weakest</item>
+    <item>Weaker</item>
+    <item>Medium</item>
+    <item>Stronger</item>
+    <item>Strongest</item>
+  </string-array>
+  <string-array name="mpris_time_entries">
+    <item>10 seconds</item>
+    <item>20 seconds</item>
+    <item>30 seconds</item>
+    <item>1 minute</item>
+    <item>2 minutes</item>
+  </string-array>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item>Light</item>
+    <item>Dark</item>
+  </string-array>
+</resources>
