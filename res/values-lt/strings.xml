@@ -314,8 +314,11 @@
   <string name="bigscreen_select">Pasirinkti</string>
   <string name="bigscreen_right">Dešinėn</string>
   <string name="bigscreen_down">Žemyn</string>
+  <string name="bigscreen_mic">Mikrofonas</string>
   <string name="pref_plugin_bigscreen">Bigscreen nuotolinis pultas</string>
   <string name="pref_plugin_bigscreen_desc">Naudoti savo įrenginį kaip Plasma Bigscreen nuotolinį pultą</string>
+  <string name="bigscreen_optional_permission_explanation">Norėdami bendrinti mikrofono įvesti iš savo telefono, turite suteikti priegą prie telefono garso įvesties</string>
+  <string name="bigscreen_speech_extra_prompt">Šneka</string>
   <string name="theme_dialog_title">Pasirinkite apipavidalinimą</string>
   <string-array name="theme_list">
     <item>Nustatytas akumuliatoriaus energijos taupymo</item>
