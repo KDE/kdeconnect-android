@@ -314,8 +314,11 @@
   <string name="bigscreen_select">Vybrať</string>
   <string name="bigscreen_right">Doprava</string>
   <string name="bigscreen_down">Dole</string>
+  <string name="bigscreen_mic">Mikrofón</string>
   <string name="pref_plugin_bigscreen">Diaľkové ovládanie obrazovky Bigscreen</string>
   <string name="pref_plugin_bigscreen_desc">Použije vaše zariadenie ako diaľkové ovládanie obrazovky Plasma Bigscreen</string>
+  <string name="bigscreen_optional_permission_explanation">Na zdieľanie mikrofónového vstupu z vášho telefónu musíte dať prístup k zvukovému vstupu telefónu.</string>
+  <string name="bigscreen_speech_extra_prompt">Reč</string>
   <string name="theme_dialog_title">vybrať tému</string>
   <string-array name="theme_list">
     <item>Nastavené šetričom batérie</item>
