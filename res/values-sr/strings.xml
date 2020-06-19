@@ -23,7 +23,6 @@
   <string name="pref_plugin_receive_notifications_desc">Прима обавештења са других уређаја и приказује их на Андроиду</string>
   <string name="pref_plugin_sharereceiver">Дели и примај</string>
   <string name="pref_plugin_sharereceiver_desc">Дели фајлове и УРЛ‑ове између уређаја</string>
-  <string name="plugin_not_available">Ова могућност није доступна на вашој верзији Андроида</string>
   <string name="device_list_empty">Нема уређаја</string>
   <string name="ok">У реду</string>
   <string name="cancel">Откажи</string>
@@ -65,28 +64,22 @@
   <string name="category_remembered_devices">Упамћени уређаји</string>
   <string name="device_menu_plugins">Поставке прикључака</string>
   <string name="device_menu_unpair">Распари</string>
-  <string name="device_not_reachable">Упарени уређај није доступан</string>
   <string name="pair_new_device">Упари нов уређај</string>
   <string name="unknown_device">Непознат уређај</string>
   <string name="error_not_reachable">Уређај није доступан</string>
-  <string name="error_already_requested">Упаривање је већ тражено</string>
   <string name="error_already_paired">Уређај је већ упарен</string>
   <string name="error_could_not_send_package">Не могу да пошаљем пакет</string>
   <string name="error_timed_out">Истекло је време</string>
   <string name="error_canceled_by_user">Корисник отказао</string>
   <string name="error_canceled_by_other_peer">Отказала друга страна</string>
-  <string name="error_invalid_key">Примљен је неисправан кључ</string>
   <string name="encryption_info_title">Подаци о шифровању</string>
   <string name="encryption_info_msg_no_ssl">Друга страна не користи најновију верзију, стога се користи старији метод шифровања.</string>
   <string name="my_device_fingerprint">СХА‑1 отисак сертификата вашег уређаја је:</string>
   <string name="remote_device_fingerprint">СХА‑1 отисак сертификата удаљеног уређаја је:</string>
   <string name="pair_requested">Упаривање је тражено</string>
   <string name="pairing_request_from">Захтев за упаривање са %1s</string>
-  <string name="received_url_title">Примљена веза са %1s</string>
-  <string name="received_url_text">Тапните да отворите „%1s“</string>
   <string name="received_file_text">Тапните да отворите „%1s“</string>
   <string name="tap_to_answer">Тапните да одговорите</string>
-  <string name="reconnect">Поново повежи</string>
   <string name="right_click">Пошаљи десни клик</string>
   <string name="middle_click">Пошаљи средњи клик</string>
   <string name="show_keyboard">Прикажи тастатуру</string>
@@ -94,15 +87,12 @@
   <string name="request_pairing">Тражи упаривање</string>
   <string name="pairing_accept">Прихвати</string>
   <string name="pairing_reject">Одбаци</string>
-  <string name="device">Уређај</string>
-  <string name="pair_device">Упари уређај</string>
   <string name="mpris_play">Пусти</string>
   <string name="mpris_previous">Претходно</string>
   <string name="mpris_rew">Премотај</string>
   <string name="mpris_ff">Брзо унапред</string>
   <string name="mpris_next">Следеће</string>
   <string name="mpris_volume">Јачина</string>
-  <string name="mpris_settings">Поставке мултимедије</string>
   <string name="mpris_time_settings_title">Напред/назад дугмад</string>
   <string-array name="mpris_time_entries">
     <item>10 секунди</item>
@@ -111,18 +101,11 @@
     <item>1 минут</item>
     <item>2 минута</item>
   </string-array>
-  <string name="protocol_version_older">Овај уређај користи стару верзију протокола</string>
   <string name="protocol_version_newer">Овај уређај користи новију верзију протокола</string>
-  <string name="general_settings">Опште поставке</string>
-  <string name="plugin_settings">Поставке</string>
   <string name="plugin_settings_with_name">%s — поставке</string>
-  <string name="device_name">Назив уређаја</string>
-  <string name="device_name_preference_summary">%s</string>
   <string name="invalid_device_name">Неисправан назив уређаја</string>
   <string name="shareplugin_text_saved">Примљен текст, сачуван у клипборд</string>
   <string name="custom_devices_settings">Списак посебних уређаја</string>
-  <string name="pair_device_action">Упари нови уређај</string>
-  <string name="unpair_device_action">Распари %s</string>
   <string name="custom_device_list">Додај уређај по ИП адреси</string>
   <string name="share_notification_preference">Бучна обавештења</string>
   <string name="share_notification_preference_summary">Вибрирај и пусти звук кад примаш фајл</string>
@@ -132,35 +115,26 @@
   <string name="share_destination_folder_preference">Одредишна фасцикла</string>
   <string name="title_activity_notification_filter">Филтер обавештења</string>
   <string name="filter_apps_info">Обавештења ће се синхронизовати за изабране апликације.</string>
-  <string name="sftp_internal_storage">Унутрашња меморија</string>
   <string name="sftp_sdcard_num">СД картица %d</string>
   <string name="sftp_sdcard">СД картица</string>
   <string name="sftp_readonly">(само за читање)</string>
   <string name="sftp_camera">Слике са камере</string>
-  <string name="add_host">Додај домаћина/ИП</string>
-  <string name="add_host_hint">Име домаћина или ИП</string>
   <string name="no_players_connected">Нисам нашао плејере</string>
-  <string name="mpris_player_on_device">%1$s на %2$s</string>
   <string name="send_files">Пошаљи фајлове</string>
   <string name="pairing_title">Уређаји КДЕ‑конекције</string>
   <string name="pairing_description">Други уређаји на вашој мрежи на којима ради КДЕ‑конекција, појавиће се овде.</string>
-  <string name="device_paired">Уређај упарен</string>
   <string name="device_rename_title">Преименовање уређаја</string>
   <string name="device_rename_confirm">Преименуј</string>
   <string name="refresh">Освежи</string>
   <string name="unreachable_description">Овај упарени уређај није доступан. Проверите да ли је повезан на исту мрежу.</string>
-  <string name="on_data_message">Чини се да сте на мобилној мрежи. КДЕ‑конекција ради само на локалној мрежи.</string>
   <string name="no_file_browser">Нема инсталираних прегледача фајлова.</string>
   <string name="pref_plugin_telepathy">Шаљи СМС</string>
   <string name="pref_plugin_telepathy_desc">Шаљите текстуалне поруке помоћу рачунара</string>
-  <string name="plugin_not_supported">Уређај не подржава овај прикључак</string>
   <string name="findmyphone_title">Нађи мој телефон</string>
   <string name="findmyphone_title_tablet">Нађи мој таблет</string>
   <string name="findmyphone_description">Активира звоно уређаја како бисте га пронашли</string>
-  <string name="findmyphone_found">Нађен</string>
   <string name="open">Отвори</string>
   <string name="close">Затвори</string>
-  <string name="no_permissions_storage">Морате дати дозволе за приступ унутрашњој меморији.</string>
   <string name="plugins_need_permission">Неки прикључци траже дозволе да би радили (тапните за више информација):</string>
   <string name="permission_explanation">Овај прикључак тражи дозволе да би радио.</string>
   <string name="optional_permission_explanation">Морате дати допунске дозволе за активирање свих функција.</string>
@@ -168,4 +142,9 @@
   <string name="share_optional_permission_explanation">За дељење фајлова између телефона и рачунара морате дати приступ складишту телефона.</string>
   <string name="telepathy_permission_explanation">За читање и писање СМС‑ова на рачунару морате дати дозволу за СМС.</string>
   <string name="telephony_optional_permission_explanation">Да бисте видели име контакта уместо броја телефона морате дати приступ за контакте на телефону.</string>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item>Light</item>
+    <item>Dark</item>
+  </string-array>
 </resources>
