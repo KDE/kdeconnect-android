@@ -1,0 +1,328 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_no_devices">Ni povezan z nobeno napravo</string>
+  <string name="foreground_notification_devices">Povezan na: %s</string>
+  <string name="foreground_notification_send_clipboard">Pošlji odložišče</string>
+  <string name="pref_plugin_telephony">Obvestilnik telefona</string>
+  <string name="pref_plugin_telephony_desc">Pošlji obvestila o dohodnih klicih</string>
+  <string name="pref_plugin_battery">Poročilo o bateriji</string>
+  <string name="pref_plugin_battery_desc">Občasno poročaj o stanju baterije</string>
+  <string name="pref_plugin_sftp">Razkrij sistem datotek</string>
+  <string name="pref_plugin_sftp_desc">Omogoča oddaljeno brskanje po sistemu datotek te naprave</string>
+  <string name="pref_plugin_clipboard">Uskladi odložišči</string>
+  <string name="pref_plugin_clipboard_desc">Deli skupno vsebino odložišča</string>
+  <string name="pref_plugin_clipboard_sent">Odložišče je poslano</string>
+  <string name="pref_plugin_mousepad">Oddaljeni vhod</string>
+  <string name="pref_plugin_mousepad_desc">Uporabi telefon ali tablični računalnik kot sledilno ploščico in tipkovnico</string>
+  <string name="pref_plugin_presenter">Oddaljena slikovna predstavitev</string>
+  <string name="pref_plugin_presenter_desc">S svojo napravo lahko menjate slike v predstavitvi</string>
+  <string name="pref_plugin_remotekeyboard">Sprejem oddaljenih pritiskov tipk</string>
+  <string name="pref_plugin_remotekeyboard_desc">Prejemanje dogodkov tipk od oddaljenih naprav</string>
+  <string name="pref_plugin_mpris">Upravljanje večpredstavnosti</string>
+  <string name="pref_plugin_mpris_desc">Omogoča daljinski upravljalnik za predvajalnik medijev</string>
+  <string name="pref_plugin_runcommand">Izvedi ukaz</string>
+  <string name="pref_plugin_runcommand_desc">S telefona ali tabličnega računalnika sprožate oddaljene ukaze</string>
+  <string name="pref_plugin_contacts">Usklajevalnik stikov</string>
+  <string name="pref_plugin_contacts_desc">Dovoli usklajevanje računalnikovega adresarja z imeni iz naprave</string>
+  <string name="pref_plugin_ping">Ping</string>
+  <string name="pref_plugin_ping_desc">Pošli in sprejemaj pinge</string>
+  <string name="pref_plugin_notifications">Usklajevanje obvestil</string>
+  <string name="pref_plugin_notifications_desc">Dostopajte do svojih obvestil iz drugih naprav</string>
+  <string name="pref_plugin_receive_notifications">Prejemaj obvestila</string>
+  <string name="pref_plugin_receive_notifications_desc">Prejemaj obvestila iz drugih naprav in jih prikazuj na Androidu</string>
+  <string name="pref_plugin_sharereceiver">Deli in prejemaj</string>
+  <string name="pref_plugin_sharereceiver_desc">Deli si datoteke in spletne naslove med napravami</string>
+  <string name="device_list_empty">Ni naprav</string>
+  <string name="ok">V redu</string>
+  <string name="sad_ok">V redu :(</string>
+  <string name="cancel">Prekliči</string>
+  <string name="open_settings">Odpri nastavitve</string>
+  <string name="no_permissions">Za dostop do obvestil morate odobriti dovoljenje</string>
+  <string name="no_permission_mprisreceiver">Če želite upravljati svoje predvajalnike medijev, morate odobriti dostop do obvestil</string>
+  <string name="no_permissions_remotekeyboard">Za sprejem pritiskov tipk morate aktivirati oddaljeno tipkovnico KDE Connect</string>
+  <string name="send_ping">Pošlji ping</string>
+  <string name="open_mpris_controls">Upravljanje večpredstavnosti</string>
+  <string name="remotekeyboard_editing_only_title">Oddaljene tipke uporabljajte samo med urejanjem</string>
+  <string name="remotekeyboard_not_connected">Ni dejavne povezave z oddaljeno tipkovnico, vzpostavite jo v kdeconnectu</string>
+  <string name="remotekeyboard_connected">Povezava z oddaljeno tipkovnico je dejavna</string>
+  <string name="remotekeyboard_multiple_connections">Obstaja več kot ena povezava na oddaljeno tipkovnico, izberite napravo in nastavitve</string>
+  <string name="open_mousepad">Oddaljeni input</string>
+  <string name="mousepad_info">Premaknite prst po zaslonu da bi premikali miško. Tapnite za klik in uporabite dva/tri prste za desni in srednji gumb. Za pomikanje uporabite dva prsta. Uporabite dolg pritisk za povleci in spusti.</string>
+  <string name="mousepad_double_tap_settings_title">Nastavite akcijo tapkanja dveh prstov</string>
+  <string name="mousepad_triple_tap_settings_title">Nastavite akcijo tapkanja treh prstov</string>
+  <string name="mousepad_sensitivity_settings_title">Nastavi občutljivost drsne ploščice</string>
+  <string name="mousepad_acceleration_profile_settings_title">Nastavi pospeške kazalca</string>
+  <string name="mousepad_scroll_direction_title">Smer povratnega drsenja</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Deni klik</item>
+    <item>Srednji klik</item>
+    <item>Nič</item>
+  </string-array>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Najpočasneje</item>
+    <item>Neja nad najpočasnejšim</item>
+    <item>Privzeto</item>
+    <item>Nekaj nad privzetim</item>
+    <item>Najhitrejše</item>
+  </string-array>
+  <string-array name="mousepad_acceleration_profile_entries">
+    <item>Brez pospeška</item>
+    <item>Najslabotnejše</item>
+    <item>Slabotno</item>
+    <item>Srednje</item>
+    <item>Močneje</item>
+    <item>Najmočnejše</item>
+  </string-array>
+  <string name="category_connected_devices">Povezane naprave</string>
+  <string name="category_not_paired_devices">Naprave na voljo</string>
+  <string name="category_remembered_devices">Naprave, ki so zapomnjene</string>
+  <string name="device_menu_plugins">Nastavitve vtičnikov</string>
+  <string name="device_menu_unpair">Razkleni par</string>
+  <string name="pair_new_device">Upari novo napravo</string>
+  <string name="unknown_device">Neznana naprava</string>
+  <string name="error_not_reachable">Naprava ni dosegljiva</string>
+  <string name="error_already_paired">Naprava je že uparjena</string>
+  <string name="error_could_not_send_package">Ni bilo mogoče poslati paketa</string>
+  <string name="error_timed_out">Čas je potekel</string>
+  <string name="error_canceled_by_user">Preklical uporabnik</string>
+  <string name="error_canceled_by_other_peer">Preklican od drugega vrstnika</string>
+  <string name="encryption_info_title">Informacija o šifriranju</string>
+  <string name="encryption_info_msg_no_ssl">Druga naprava ne uporablja najnovejše različice KDE Connect, uporablja podedovano metodo šifriranja.</string>
+  <string name="my_device_fingerprint">Prstni odtis SHA1 certifikata vaše naprave je:</string>
+  <string name="remote_device_fingerprint">Prstni odtis SHA1 certifikata oddaljene naprave je:</string>
+  <string name="pair_requested">Zahtevan je par</string>
+  <string name="pairing_request_from">Zahtevek za uparjanje od %1s</string>
+  <plurals name="incoming_file_title">
+    <item quantity="one">Prejemanje %1$d datoteke od %2$s</item>
+    <item quantity="two">Prejemanje %1$d datotek od %2$s</item>
+    <item quantity="few">Prejemanje %1$d datotek od %2$s</item>
+    <item quantity="other">Prejemanje %1$d datotek od %2$s</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="one">(Datoteka %2$d od %3$d) : %1$s</item>
+    <item quantity="two">(Datoteka %2$d od %3$d) : %1$s</item>
+    <item quantity="few">(Datoteka %2$d od %3$d) : %1$s</item>
+    <item quantity="other">(Datoteka %2$d od %3$d) : %1$s</item>
+  </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">Pošiljanje %1$d datoteke na %2$s</item>
+    <item quantity="two">Pošiljanje %1$d datotek na %2$s</item>
+    <item quantity="few">Pošiljanje %1$d datotek na %2$s</item>
+    <item quantity="other">Pošiljanje %1$d datotek na %2$s</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">(Datoteka %2$d od %3$d) : %1$s</item>
+    <item quantity="two">(Datoteka %2$d od %3$d) : %1$s</item>
+    <item quantity="few">(Datoteka %2$d od %3$d) : %1$s</item>
+    <item quantity="other">(Datoteka %2$d od %3$d) : %1$s</item>
+  </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one">Prejeta %2$d datoteka iz %1$s</item>
+    <item quantity="two">Prejeti %2$d datoteki iz %1$s</item>
+    <item quantity="few">Prejete %2$d datoteke iz %1$s</item>
+    <item quantity="other">Prejeto %2$d datotek iz %1$s</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Sprejemanje %2$d od %3$d datoteke od %1$s ni uspelo</item>
+    <item quantity="two">Sprejemanje %2$d od %3$d datotek od %1$s ni uspelo</item>
+    <item quantity="few">Sprejemanje %2$d od %3$d datotek od %1$s ni uspelo</item>
+    <item quantity="other">Sprejemanje %2$d od %3$d datotek od %1$s ni uspelo</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">Poslana %2$d datoteka na %1$s</item>
+    <item quantity="two">Poslani %2$d datoteki na %1$s</item>
+    <item quantity="few">Poslane %2$d datoteke na %1$s</item>
+    <item quantity="other">Poslano %2$d datotek na %1$s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Pošiljanje %2$d od %3$d datoteke na %1$s ni uspelo</item>
+    <item quantity="two">Pošiljanje %2$d od %3$d datotek na %1$s ni uspelo</item>
+    <item quantity="few">Pošiljanje %2$d od %3$d datotek na %1$s ni uspelo</item>
+    <item quantity="other">Pošiljanje %2$d od %3$d datotek na %1$s ni uspelo</item>
+  </plurals>
+  <string name="tap_to_open">Tapkaj, da odpreš</string>
+  <string name="received_file_text">Tapkaj, da odpreš \'%1s\'</string>
+  <string name="cannot_create_file">Ni mogoče ustvariti datoteke %s</string>
+  <string name="tap_to_answer">Tapkaj za odgovor</string>
+  <string name="right_click">Pošlji desni klik</string>
+  <string name="middle_click">Pošlji sredinski klik</string>
+  <string name="show_keyboard">Pokaži tipkovnico</string>
+  <string name="device_not_paired">Naprava ni uparjena</string>
+  <string name="request_pairing">Zahtevaj uparjanje</string>
+  <string name="pairing_accept">Sprejmi</string>
+  <string name="pairing_reject">Zavrni</string>
+  <string name="settings">Nastavitve</string>
+  <string name="mpris_play">Zaigraj</string>
+  <string name="mpris_pause">Premor</string>
+  <string name="mpris_previous">Prejšnji</string>
+  <string name="mpris_rew">Previj</string>
+  <string name="mpris_ff">Hitro previj naprej</string>
+  <string name="mpris_next">Naslednji</string>
+  <string name="mpris_volume">Glasnost</string>
+  <string name="mpris_time_settings_title">Gumba naprej/nazaj</string>
+  <string name="mpris_time_settings_summary">Prilagodite čas za hitro premikanje naprej/nazaj, ko ga pritisnete</string>
+  <string-array name="mpris_time_entries">
+    <item>10 sekund</item>
+    <item>20 sekund</item>
+    <item>30 sekund</item>
+    <item>1 minuta</item>
+    <item>2 minuti</item>
+  </string-array>
+  <string name="mpris_notification_settings_title">Pokaži obvestilo o nadzoru medija</string>
+  <string name="mpris_notification_settings_summary">Dovoli nadzor nad predvajalniki medijev, ne da bi odprli KDE Connect</string>
+  <string name="share_to">Deli z...</string>
+  <string name="protocol_version_newer">Ta naprava uporablja novejšo različico protokola</string>
+  <string name="plugin_settings_with_name">Nastavitve %s</string>
+  <string name="invalid_device_name">Neveljavno ime naprave</string>
+  <string name="shareplugin_text_saved">Prejeto besedilo shranjeno na odložišče</string>
+  <string name="custom_devices_settings">Seznam naprav po meri</string>
+  <string name="custom_device_list">Dodaj naprave po IP</string>
+  <string name="custom_device_deleted">Zbrisana naprava po meri</string>
+  <string name="custom_device_list_help">Če vaša naprava ni samodejno zaznana, lahko dodate njen IP naslov ali ime gostitelja s klikom na gumb Plavajoče dejanje</string>
+  <string name="custom_device_fab_hint">Dodaj napravo</string>
+  <string name="undo">Razveljavi</string>
+  <string name="share_notification_preference">Hrupna obvestila</string>
+  <string name="share_notification_preference_summary">Vibriraj in predvajaj zvok, ko sprejemaš datoteko</string>
+  <string name="share_destination_customize">Ciljni imenik po meri</string>
+  <string name="share_destination_customize_summary_disabled">Prejete datoteke se bodo pojavile v mapi Prenosi</string>
+  <string name="share_destination_customize_summary_enabled">Datoteke bodo shranjene v spodnjem imeniku</string>
+  <string name="share_destination_folder_preference">Ciljni imenik</string>
+  <string name="share">Deli</string>
+  <string name="share_received_file">Deli \"%s\"</string>
+  <string name="title_activity_notification_filter">Filter obvestil</string>
+  <string name="filter_apps_info">Obvestila bodo usklajena za izbrane aplikacije.</string>
+  <string name="sftp_sdcard_num">SD kartica %d</string>
+  <string name="sftp_sdcard">SD kartica</string>
+  <string name="sftp_readonly">(samo za branje)</string>
+  <string name="sftp_camera">Posnetki kamere</string>
+  <string name="add_device_dialog_title">Dodaj napravo</string>
+  <string name="add_device_hint">Ime gostitelja ali naslov IP</string>
+  <string name="sftp_preference_detected_sdcards">Zaznane kartice SD</string>
+  <string name="sftp_preference_edit_sdcard_title">Uredi kartico SD</string>
+  <string name="sftp_preference_configured_storage_locations">Nastavljene lokacije za shranjevanje</string>
+  <string name="sftp_preference_add_storage_location_title">Dodaj lokacijo za shranjevanje</string>
+  <string name="sftp_preference_edit_storage_location">Uredi lokacijo za shranjevanje</string>
+  <string name="sftp_preference_add_camera_shortcut">Dodaj bližnjico do mape kamere</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_on">Dodaj bližnjico za mapo kamere</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_off">Ne dodaj bližnjice do mape za kamero</string>
+  <string name="sftp_storage_preference_storage_location">Lokacija shrambe</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">Ta lokacija je že bila nastavljena</string>
+  <string name="sftp_storage_preference_click_to_select">klikni za izbiro</string>
+  <string name="sftp_storage_preference_display_name">Prikaži ime</string>
+  <string name="sftp_storage_preference_display_name_already_used">To ime je že uporabljeno</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">Ime ne sme biti prazno</string>
+  <string name="sftp_action_mode_menu_delete">Briši</string>
+  <string name="sftp_no_sdcard_detected">Ni naznane kartice SD</string>
+  <string name="sftp_no_storage_locations_configured">Lokacije shranjevanja niso nastavljene</string>
+  <string name="sftp_saf_permission_explanation">Za dostop do datotek na daljavo morate nastaviti lokacije za shranjevanje</string>
+  <string name="no_players_connected">Ni najdenih igralcev</string>
+  <string name="send_files">Pošlji datoteke</string>
+  <string name="pairing_title">Naprave KDE Connect</string>
+  <string name="pairing_description">Tu bi se morale prikazati druge naprave, ki poganjajo KDE Connect v istem omrežju.</string>
+  <string name="device_rename_title">Preimenuj napravo</string>
+  <string name="device_rename_confirm">Preimenuj</string>
+  <string name="refresh">Osveži</string>
+  <string name="unreachable_description">Ta uparjena naprava ni dosegljiva. Prepričajte se, da je povezana v isto omrežje.</string>
+  <string name="no_wifi">Niste povezani z omrežjem Wi-Fi, zato morda ne boste mogli videti nobene naprave. Kliknite tukaj, če želite omogočiti Wi-Fi.</string>
+  <string name="on_non_trusted_message">Ni v zaupanja vrednem omrežju: samodejno odkrivanje je onemogočeno.</string>
+  <string name="no_file_browser">Ni nameščenega nobenega brskalnika datotek.</string>
+  <string name="pref_plugin_telepathy">Pošlji SMS</string>
+  <string name="pref_plugin_telepathy_desc">Pošlji besedilna sporočila z namizja</string>
+  <string name="findmyphone_title">Poišči moj telefon</string>
+  <string name="findmyphone_title_tablet">Poišči mojo tablico</string>
+  <string name="findmyphone_title_tv">Poišči moj TV</string>
+  <string name="findmyphone_description">Pozvoni na tej napravi, da jo lahko najdete</string>
+  <string name="findmyphone_found">Sem našel</string>
+  <string name="open">Odpri</string>
+  <string name="close">Zapri</string>
+  <string name="plugins_need_permission">Nekateri vtičniki potrebujejo dovoljenja za delovanje (tapnite za več informacij):</string>
+  <string name="permission_explanation">Ti vtičniki potrebujejo dovoljenja za delovanje</string>
+  <string name="optional_permission_explanation">Če želite omogočiti vse funkcije, morate podeliti dodatna dovoljenja</string>
+  <string name="plugins_need_optional_permission">Nekateri vtičniki imajo funkcije onemogočene zaradi pomanjkanja dovoljenj (tapnite za več informacij):</string>
+  <string name="share_optional_permission_explanation">Za skupno rabo datotek med telefonom in namizjem morate dovoliti dostop v shrambo telefona</string>
+  <string name="telepathy_permission_explanation">Če želite brati in pisati SMS z namizja, morate izdati dovoljenje za SMS</string>
+  <string name="telephony_permission_explanation">Če želite videti telefonske klice na namizju, morate dati dovoljenje za dnevnike klicev in stanje telefona</string>
+  <string name="telephony_optional_permission_explanation">Če želite namesto telefonske številke videti ime stika, morate omogočiti dostop do stikov telefona</string>
+  <string name="contacts_permission_explanation">Če želite knjigo stikov deliti z namizjem, morate dati dovoljenje za dostop do stikov</string>
+  <string name="select_ringtone">Izberite melodijo zvonjenja</string>
+  <string name="telephony_pref_blocked_title">Blokirane številke</string>
+  <string name="telephony_pref_blocked_dialog_desc">Ne prikazuj klicev in SMS s teh številk. Navedite po eno telefonsko številko v vsaki vrsti</string>
+  <string name="mpris_coverart_description">Naslovnica trenutnega medija</string>
+  <string name="device_icon_description">Ikona naprave</string>
+  <string name="settings_icon_description">Ikona nastavitev</string>
+  <string name="presenter_fullscreen">Polni zaslon</string>
+  <string name="presenter_exit">Izhod iz predstavitve</string>
+  <string name="presenter_lock_tip">Napravo lahko zaklenete in s tipkami za glasnost prehajate na prejšnjo/naslednjo sliko</string>
+  <string name="add_command">Dodaj ukaz</string>
+  <string name="addcommand_explanation">Nobenih ukazov ni registriranih</string>
+  <string name="addcommand_explanation2">Nove ukaze lahko dodate v sistemskih nastavitvah KDE Connect</string>
+  <string name="add_command_description">Ukaze lahko dodate na namizju</string>
+  <string name="pref_plugin_mprisreceiver">Nadzor predvajalnika medijev</string>
+  <string name="pref_plugin_mprisreceiver_desc">Upravljajte predstavnostne predvajalnike telefona iz druge naprave</string>
+  <string name="notification_channel_default">Ostala obvestila</string>
+  <string name="notification_channel_persistent">Obstojni indikator</string>
+  <string name="notification_channel_media_control">Nadzor medija</string>
+  <string name="notification_channel_filetransfer">Prenos datotek</string>
+  <string name="notification_channel_high_priority">Visoka prednost</string>
+  <string name="mpris_stop">Ustavi trenutni predvajalnik</string>
+  <string name="copy_url_to_clipboard">Kopiraj spletni naslov na odložišče</string>
+  <string name="clipboard_toast">Kopirano na odložišče</string>
+  <string name="runcommand_notreachable">Naprava ni dosegljiva</string>
+  <string name="runcommand_notpaired">Naprava ni uparjena</string>
+  <string name="runcommand_nosuchdevice">Ni take naprave</string>
+  <string name="runcommand_noruncommandplugin">Ta naprava nima omogočenega vtičnika za zagonski ukaz</string>
+  <string name="pref_plugin_findremotedevice">Najdi oddaljeno napravo</string>
+  <string name="pref_plugin_findremotedevice_desc">Zazvonite vašo oddaljeno napravo</string>
+  <string name="ring">Zazvoni</string>
+  <string name="pref_plugin_systemvolume">Sistemska glasnost</string>
+  <string name="pref_plugin_systemvolume_desc">Nadzoruj sistemsko glasnost oddaljene naprave</string>
+  <string name="mute">Izklop zvoka</string>
+  <string name="all">Vse</string>
+  <string name="devices">Naprave</string>
+  <string name="settings_rename">Ime naprave</string>
+  <string name="settings_dark_mode">Temna tema</string>
+  <string name="settings_more_settings_title">Več nastavitev</string>
+  <string name="settings_more_settings_text">Nastavitve posamezne naprave najdete v razdelku \'Nastavitve vtičnikov\' v napravi.</string>
+  <string name="setting_persistent_notification">Prikazuj trajno obvestilo</string>
+  <string name="setting_persistent_notification_oreo">Trajno obvestilo</string>
+  <string name="setting_persistent_notification_description">Tapnite, da omogočite/onemogočite v nastavitvah obvestil</string>
+  <string name="extra_options">Dodatne možnosti</string>
+  <string name="privacy_options">Možnosti zasebnosti</string>
+  <string name="set_privacy_options">Nastavite možnosti zasebnosti</string>
+  <string name="block_contents">Blokiraj vsebine obvestil</string>
+  <string name="block_images">Blokiraj slike v obvestilih</string>
+  <string name="notification_channel_receivenotification">Obvestila ostalih naprav</string>
+  <string name="take_picture">Zaženi kamero</string>
+  <string name="plugin_photo_desc">Zaženite aplikacijo za kamero, da olajšate fotografiranje in prenos fotografij</string>
+  <string name="no_app_for_opening">Ni primerne aplikacije za odpiranje te datoteke</string>
+  <string name="remote_keyboard_service">Oddaljena tipkovnica KDE Connect</string>
+  <string name="presenter_pointer">Kazalec</string>
+  <string name="trusted_networks">Zaupanje vredna omrežja</string>
+  <string name="trusted_networks_desc">Omejite samodejno odkrivanje na znana omrežja</string>
+  <string name="add_trusted_network">Dodaj %1s</string>
+  <string name="empty_trusted_networks_list_text">Niste še dodali nobenega zaupanja vrednega omrežja</string>
+  <string name="allow_all_networks_text">Dovoli vse</string>
+  <string name="location_permission_needed_title">Zahtevano dovoljenje</string>
+  <string name="location_permission_needed_desc">Android potrebuje dovoljenje za lokacijo, da prepozna vaše omrežje WiFi</string>
+  <string name="clipboard_android_x_incompat">Android 10 je odstranil dostop do odložišča za vse aplikacije. Ta vtičnik bo onemogočen.</string>
+  <string name="mpris_open_url">Nadaljujte z igranjem tukaj</string>
+  <string name="cant_open_url">Ne morem odpreti spletnega naslova za nadaljevanje predvajanja</string>
+  <string name="bigscreen_home">Domov</string>
+  <string name="bigscreen_up">Gor</string>
+  <string name="bigscreen_left">Levo</string>
+  <string name="bigscreen_select">Izberi</string>
+  <string name="bigscreen_right">Desno</string>
+  <string name="bigscreen_down">Dol</string>
+  <string name="bigscreen_mic">Mikrofon</string>
+  <string name="pref_plugin_bigscreen">Oddaljeni veliki zaslon</string>
+  <string name="pref_plugin_bigscreen_desc">Uporabite svojo napravo kot daljinec za Plasmin veliki zaslon</string>
+  <string name="bigscreen_optional_permission_explanation">Če želite deliti vhod mikrofona iz telefona, morate imeti dostop do avdio vhoda telefona</string>
+  <string name="bigscreen_speech_extra_prompt">Govor</string>
+  <string name="theme_dialog_title">Izberite temo</string>
+  <string-array name="theme_list">
+    <item>Določeno z ohranjevalnikom baterije</item>
+    <item>Svetlo</item>
+    <item>Temno</item>
+  </string-array>
+</resources>
