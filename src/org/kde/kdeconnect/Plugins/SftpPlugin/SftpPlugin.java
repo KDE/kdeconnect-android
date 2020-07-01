@@ -42,6 +42,7 @@ import org.kde.kdeconnect_tp.R;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -118,7 +119,7 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
             ArrayList<String> pathNames = new ArrayList<>();
 
             List<StorageInfo> storageInfoList = SftpSettingsFragment.getStorageInfoList(context, this);
-            Collections.sort(storageInfoList, new StorageInfo.UriNameComparator());
+            Collections.sort(storageInfoList, Comparator.comparing(StorageInfo::getUri));
 
             if (storageInfoList.size() > 0) {
                 getPathsAndNamesForStorageInfoList(paths, pathNames, storageInfoList);
@@ -306,6 +307,11 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
             this.uri = uri;
         }
 
+        @NonNull
+        Uri getUri() {
+            return uri;
+        }
+
         static StorageInfo copy(StorageInfo from) {
             //Both String and Uri are immutable
             return new StorageInfo(from.displayName, from.uri);
@@ -352,20 +358,6 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
             int result = displayName.hashCode();
             result = 31 * result + uri.hashCode();
             return result;
-        }
-
-        static class DisplayNameComparator implements java.util.Comparator<StorageInfo> {
-            @Override
-            public int compare(StorageInfo si1, StorageInfo si2) {
-                return si1.displayName.compareToIgnoreCase(si2.displayName);
-            }
-        }
-
-        static class UriNameComparator implements java.util.Comparator<StorageInfo> {
-            @Override
-            public int compare(StorageInfo si1, StorageInfo si2) {
-                return si1.uri.compareTo(si2.uri);
-            }
         }
     }
 }

@@ -349,7 +349,7 @@ public class SftpSettingsFragment
     }
 
     private void sortStorageInfoListOnDisplayName() {
-        Collections.sort(storageInfoList, new SftpPlugin.StorageInfo.DisplayNameComparator());
+        Collections.sort(storageInfoList, (si1, si2) -> si1.displayName.compareToIgnoreCase(si2.displayName));
     }
 
     @NonNull
