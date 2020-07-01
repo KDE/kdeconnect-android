@@ -1,13 +1,12 @@
 package org.kde.kdeconnect;
 
-import android.app.Application;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
+import androidx.multidex.MultiDexApplication;
 
-public class MyApplication extends Application {
+public class MyApplication extends MultiDexApplication {
     private static class LifecycleObserver implements DefaultLifecycleObserver {
         private boolean inForeground = false;
 

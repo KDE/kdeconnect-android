@@ -20,6 +20,8 @@ android {
         minSdkVersion 14
         targetSdkVersion 29
         proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        multiDexEnabled true
     }
     dexOptions {
         javaMaxHeapSize "2g"
@@ -27,6 +29,9 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+
+        // Flag to enable support for the new language APIs
+        coreLibraryDesugaringEnabled true
     }
     sourceSets {
         main {
@@ -129,6 +134,9 @@ dependencies {
         }
         */
     }
+
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.9'
+    implementation 'androidx.multidex:multidex:2.0.1'
 
     implementation 'androidx.media:media:1.1.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
