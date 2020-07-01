@@ -55,8 +55,10 @@ import java.security.PublicKey;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Formatter;
 import java.util.Locale;
@@ -126,16 +128,15 @@ public class SslHelper {
                 nameBuilder.addRDN(BCStyle.CN, deviceId);
                 nameBuilder.addRDN(BCStyle.OU, "KDE Connect");
                 nameBuilder.addRDN(BCStyle.O, "KDE");
-                Calendar calendar = Calendar.getInstance();
-                calendar.add(Calendar.YEAR, -1);
-                Date notBefore = calendar.getTime();
-                calendar.add(Calendar.YEAR, 10);
-                Date notAfter = calendar.getTime();
+                final LocalDate localDate = LocalDate.now().minusYears(1);
+                final Instant notBefore = localDate.atStartOfDay(ZoneId.systemDefault()).toInstant();
+                final Instant notAfter = localDate.plusYears(10).atStartOfDay(ZoneId.systemDefault())
+                        .toInstant();
                 X509v3CertificateBuilder certificateBuilder = new JcaX509v3CertificateBuilder(
                         nameBuilder.build(),
                         BigInteger.ONE,
-                        notBefore,
-                        notAfter,
+                        Date.from(notBefore),
+                        Date.from(notAfter),
                         nameBuilder.build(),
                         publicKey
                 );
