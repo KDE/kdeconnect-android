@@ -342,14 +342,8 @@ public class MprisPlugin extends Plugin {
             Iterator<HashMap.Entry<String, MprisPlayer>> iter = players.entrySet().iterator();
             while (iter.hasNext()) {
                 String oldPlayer = iter.next().getKey();
-
-                boolean found = false;
-                for (String newPlayer : newPlayerList) {
-                    if (newPlayer.equals(oldPlayer)) {
-                        found = true;
-                        break;
-                    }
-                }
+                final boolean found = newPlayerList.stream().anyMatch(newPlayer ->
+                        newPlayer.equals(oldPlayer));
 
                 if (!found) {
                     iter.remove();
@@ -424,12 +418,7 @@ public class MprisPlugin extends Plugin {
      * @return null if no players are playing, a playing player otherwise
      */
     public MprisPlayer getPlayingPlayer() {
-        for (MprisPlayer player : players.values()) {
-            if (player.isPlaying()) {
-                return player;
-            }
-        }
-        return null;
+        return players.values().stream().filter(MprisPlayer::isPlaying).findFirst().orElse(null);
     }
 
     boolean hasPlayer(MprisPlayer player) {
@@ -471,14 +460,7 @@ public class MprisPlugin extends Plugin {
     }
 
     public void fetchedAlbumArt(String url) {
-        boolean doEmitUpdate = false;
-        for (MprisPlayer player : players.values()) {
-            if (url.equals(player.albumArtUrl)) {
-                doEmitUpdate = true;
-            }
-        }
-
-        if (doEmitUpdate) {
+        if (players.values().stream().anyMatch(player -> url.equals(player.albumArtUrl))) {
             for (String key : playerStatusUpdated.keySet()) {
                 try {
                     playerStatusUpdated.get(key).dispatchMessage(new Message());
