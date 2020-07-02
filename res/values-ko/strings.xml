@@ -117,6 +117,7 @@
   <plurals name="send_files_fail_title">
     <item quantity="other">%1$s(으)로 파일 %3$d개 중 %2$d개를 보낼 수 없음</item>
   </plurals>
+  <string name="tap_to_open">열려면 누르십시오</string>
   <string name="received_file_text">\'%1s\'을(를) 열려면 누르십시오</string>
   <string name="cannot_create_file">파일 %s을(를) 만들 수 없음</string>
   <string name="tap_to_answer">눌러서 응답하기</string>
@@ -289,11 +290,15 @@
   <string name="bigscreen_select">선택</string>
   <string name="bigscreen_right">오른쪽</string>
   <string name="bigscreen_down">아래</string>
+  <string name="bigscreen_mic">마이크</string>
   <string name="pref_plugin_bigscreen">큰 화면 리모콘</string>
   <string name="pref_plugin_bigscreen_desc">내 장치를 Plasma 큰 화면의 리모콘으로 사용</string>
+  <string name="bigscreen_optional_permission_explanation">휴대폰 마이크 입력을 공유하려면 오디오 입력 접근 권한이 필요합니다</string>
+  <string name="bigscreen_speech_extra_prompt">말하기</string>
+  <string name="theme_dialog_title">테마 선택</string>
   <string-array name="theme_list">
-    <item>Set by Battery Saver</item>
-    <item/>
-    <item>Dark</item>
+    <item>배터리 세이버에 의해 설정됨</item>
+    <item>밝음</item>
+    <item>어두움</item>
   </string-array>
 </resources>
