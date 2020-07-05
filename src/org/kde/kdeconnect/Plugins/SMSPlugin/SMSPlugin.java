@@ -39,7 +39,6 @@ import android.provider.Telephony;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -62,6 +61,11 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import androidx.core.content.ContextCompat;
+
+import com.klinker.android.send_message.ApnUtils;
+import com.klinker.android.send_message.Transaction;
+import com.klinker.android.send_message.Utils;
+import com.klinker.android.logger.Log;
 
 import static org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin.PACKET_TYPE_TELEPHONY;
 
@@ -125,9 +129,10 @@ public class SMSPlugin extends Plugin {
      * <p>
      * The body should look like so:
      * { "sendSms": true,
-     * "phoneNumber": "542904563213",
-     * "messageBody": "Hi mom!",
-     * "sub_id": "3859358340534"
+     *   "phoneNumber": "542904563213"     // For older desktop versions of SMS app this packet carries phoneNumber field
+     *   "addresses": <List of Addresses>  // For newer desktop versions of SMS app it contains addresses field instead of phoneNumber field
+     *   "messageBody": "Hi mom!",
+     *   "sub_id": "3859358340534"
      * }
      */
     private final static String PACKET_TYPE_SMS_REQUEST = "kdeconnect.sms.request";
@@ -210,33 +215,64 @@ public class SMSPlugin extends Plugin {
          */
         @Override
         public void onChange(boolean selfChange) {
-            // Lock so no one uses the mostRecentTimestamp between the moment we read it and the
-            // moment we update it. This is because reading the Messages DB can take long.
-            mostRecentTimestampLock.lock();
-
-            if (mostRecentTimestamp == 0) {
-                // Since the timestamp has not been initialized, we know that nobody else
-                // has requested a message. That being the case, there is most likely
-                // nobody listening for message updates, so just drop them
-                mostRecentTimestampLock.unlock();
+            // If the KDE Connect is set as default Sms app
+            // prevent from reading the latest message in the database before the sentReceivers mark it as sent
+            if (Utils.isDefaultSmsApp(context)) {
                 return;
             }
 
-            SMSHelper.Message message = SMSHelper.getNewestMessage(context);
-
-            if (message == null || message.date <= mostRecentTimestamp) {
-                // onChange can trigger many times for a single message. Don't make unnecessary noise
-                mostRecentTimestampLock.unlock();
-                return;
-            }
-
-            // Update the most recent counter
-            mostRecentTimestamp = message.date;
-            mostRecentTimestampLock.unlock();
-
-            // Send the alert about the update
-            device.sendPacket(constructBulkMessagePacket(Collections.singleton(message)));
+            sendLatestMessage();
         }
+
+    }
+
+    /**
+     * This receiver will be invoked only when the app will be set as the default sms app
+     * Whenever the app will be set as the default, the database update alert will be sent
+     * using messageUpdateReceiver and not the contentObserver class
+     */
+    private final BroadcastReceiver messagesUpdateReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            String action = intent.getAction();
+
+            if (Transaction.REFRESH.equals(action)) {
+                sendLatestMessage();
+            }
+        }
+    };
+
+    /**
+     * Helper method to read the latest message from the sms-mms database and sends it to the desktop
+     */
+    private void sendLatestMessage() {
+        // Lock so no one uses the mostRecentTimestamp between the moment we read it and the
+        // moment we update it. This is because reading the Messages DB can take long.
+        mostRecentTimestampLock.lock();
+
+        if (mostRecentTimestamp == 0) {
+            // Since the timestamp has not been initialized, we know that nobody else
+            // has requested a message. That being the case, there is most likely
+            // nobody listening for message updates, so just drop them
+            mostRecentTimestampLock.unlock();
+            return;
+        }
+        SMSHelper.Message message = SMSHelper.getNewestMessage(context);
+
+        if (message == null || message.date <= mostRecentTimestamp) {
+            // onChange can trigger many times for a single message. Don't make unnecessary noise
+            mostRecentTimestampLock.unlock();
+            return;
+        }
+
+        // Update the most recent counter
+        mostRecentTimestamp = message.date;
+        mostRecentTimestampLock.unlock();
+
+        // Send the alert about the update
+        device.sendPacket(constructBulkMessagePacket(Collections.singleton(message)));
+        Log.e("sent", "update");
     }
 
     /**
@@ -304,6 +340,10 @@ public class SMSPlugin extends Plugin {
         filter.setPriority(500);
         context.registerReceiver(receiver, filter);
 
+        IntentFilter refreshFilter = new IntentFilter(Transaction.REFRESH);
+        refreshFilter.setPriority(500);
+        context.registerReceiver(messagesUpdateReceiver, refreshFilter);
+
         Looper helperLooper = SMSHelper.MessageLooper.getLooper();
         ContentObserver messageObserver = new MessageContentObserver(new Handler(helperLooper));
         SMSHelper.registerObserver(messageObserver, context);
@@ -311,6 +351,13 @@ public class SMSPlugin extends Plugin {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             Log.w("SMSPlugin", "This is a very old version of Android. The SMS Plugin might not function as intended.");
         }
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            ApnUtils.initDefaultApns(context, null);
+        }
+
+        // To see debug messages for Klinker library, uncomment the below line
+        //Log.setDebug(true);
 
         return true;
     }
@@ -334,8 +381,22 @@ public class SMSPlugin extends Plugin {
             case PACKET_TYPE_SMS_REQUEST_CONVERSATION:
                 return this.handleRequestConversation(np);
             case PACKET_TYPE_SMS_REQUEST:
-                // Fall through to old-style handling
-                // This space may be filled in differently once MMS support is implemented
+                if (np.getBoolean("sendSms")) {
+                    String textMessage = np.getString("messageBody");
+                    long subID = np.getLong("subID", -1);
+
+                    List<SMSHelper.Address> addressList = SMSHelper.jsonArrayToAddressList(np.getJSONArray("addresses"));
+                    if (addressList == null) {
+                        // If the List of Address is null, then the SMS_REQUEST packet is
+                        // most probably from the older version of the desktop app.
+                        addressList = new ArrayList<>();
+                        addressList.add(new SMSHelper.Address(np.getString("phoneNumber")));
+                    }
+
+                    SmsMmsUtils.sendMessage(context, textMessage, addressList, (int) subID);
+                }
+                break;
+
             case TelephonyPlugin.PACKET_TYPE_TELEPHONY_REQUEST:
                 if (np.getBoolean("sendSms")) {
                     String phoneNo = np.getString("phoneNumber");
@@ -432,6 +493,17 @@ public class SMSPlugin extends Plugin {
             conversation = SMSHelper.getMessagesInRange(this.context, threadID, rangeStartTimestamp, numberToGet);
         }
 
+        // Sometimes when desktop app is kept open while android app is restarted for any reason
+        // mostRecentTimeStamp must be updated in that scenario too if a user request for a
+        // single conversation and not the entire conversation list
+        mostRecentTimestampLock.lock();
+        for (SMSHelper.Message message : conversation) {
+            if (message.date > mostRecentTimestamp) {
+                mostRecentTimestamp = message.date;
+            }
+        }
+        mostRecentTimestampLock.unlock();
+
         NetworkPacket reply = constructBulkMessagePacket(conversation);
 
         device.sendPacket(reply);
@@ -451,6 +523,10 @@ public class SMSPlugin extends Plugin {
         return false;
     }
 
+    @Override
+    public boolean hasSettings() {
+        return true;
+    }
 
     @Override
     public String[] getSupportedPacketTypes() {
@@ -475,6 +551,19 @@ public class SMSPlugin extends Plugin {
                 // READ_PHONE_STATE should be optional, since we can just query the user, but that
                 // requires a GUI implementation for querying the user!
                 Manifest.permission.READ_PHONE_STATE,
+        };
+    }
+
+    /**
+     * Permissions required for sending and receiving MMs messages
+     */
+    public static String[] getMmsPermissions() {
+        return new String[]{
+                Manifest.permission.RECEIVE_SMS,
+                Manifest.permission.RECEIVE_MMS,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.CHANGE_NETWORK_STATE,
+                Manifest.permission.WAKE_LOCK,
         };
     }
 

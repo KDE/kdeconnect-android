@@ -44,3 +44,7 @@
 -dontwarn android.test.**
 -dontwarn java.lang.management.**
 -dontwarn javax.**
+
+-dontwarn android.net.ConnectivityManager
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+-dontwarn android.net.LinkProperties

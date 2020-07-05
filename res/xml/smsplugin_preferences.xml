@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:keep="@xml/smsplugin_preferences">
+
+    <EditTextPreference
+        android:dialogMessage="@string/sms_pref_set_mmsc_dialog_desc"
+        android:key="@string/sms_pref_set_mmsc"
+        android:title="@string/sms_pref_set_mmsc_title"
+        android:defaultValue="Not set"
+        app:useSimpleSummaryProvider="true" />
+
+    <EditTextPreference
+        android:dialogMessage="@string/sms_pref_set_mms_proxy_dialog_desc"
+        android:key="@string/sms_pref_set_mms_proxy"
+        android:title="@string/sms_pref_set_mms_proxy_title"
+        android:defaultValue="Not set"
+        app:useSimpleSummaryProvider="true" />
+
+    <EditTextPreference
+        android:dialogMessage="@string/sms_pref_set_mms_port_dialog_desc"
+        android:key="@string/sms_pref_set_mms_port"
+        android:title="@string/sms_pref_set_mms_port_title"
+        android:defaultValue="Not set"
+        app:useSimpleSummaryProvider="true" />
+
+    <CheckBoxPreference
+        android:id="@+id/group_message_preference"
+        android:defaultValue="true"
+        android:key="@string/set_group_message_as_mms"
+        android:title="@string/set_group_message_as_mms_title" />
+
+    <CheckBoxPreference
+        android:id="@+id/long_text_message_preference"
+        android:defaultValue="false"
+        android:key="@string/set_long_text_as_mms"
+        android:title="@string/set_long_text_as_mms_title" />
+
+    <ListPreference
+        android:id="@+id/convert_to_mms_after_preference"
+        android:defaultValue="@string/convert_to_mms_after_default"
+        android:entries="@array/convert_to_mms_after_entries"
+        android:entryValues="@array/convert_to_mms_after_values"
+        android:key="@string/convert_to_mms_after"
+        android:summary="%s"
+        android:title="@string/convert_to_mms_after_title" />
+
+</PreferenceScreen>

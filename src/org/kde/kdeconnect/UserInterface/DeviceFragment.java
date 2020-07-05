@@ -40,14 +40,18 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import com.klinker.android.send_message.Utils;
+
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
+import org.kde.kdeconnect.Plugins.SMSPlugin.SMSPlugin;
 import org.kde.kdeconnect.UserInterface.List.PluginListHeaderItem;
 import org.kde.kdeconnect.UserInterface.List.FailedPluginListItem;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.PluginItem;
+import org.kde.kdeconnect.UserInterface.List.SetDefaultAppPluginListItem;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
@@ -337,6 +341,29 @@ public class DeviceFragment extends Fragment {
                                     dialog.show(getChildFragmentManager(), null);
                                 }
                             });
+
+                            // Add a button to the pluginList for setting KDE Connect as default sms app for allowing it to send mms
+                            // for now I'm not able to integrate it with other plugin list, but this needs to be reimplemented in a better way.
+                            if (!Utils.isDefaultSmsApp(mActivity)) {
+                                for (Plugin p : plugins) {
+                                    if (p.getPluginKey().equals("SMSPlugin")) {
+                                        pluginListItems.add(new SetDefaultAppPluginListItem(p, mActivity.getResources().getString(R.string.pref_plugin_telepathy_mms), (action) -> {
+                                            DialogFragment dialog = new DefaultSmsAppAlertDialogFragment.Builder()
+                                                    .setTitle(R.string.set_default_sms_app_title)
+                                                    .setMessage(R.string.pref_plugin_telepathy_mms_desc)
+                                                    .setPositiveButton(R.string.ok)
+                                                    .setNegativeButton(R.string.cancel)
+                                                    .setPermissions(SMSPlugin.getMmsPermissions())
+                                                    .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
+                                                    .create();
+
+                                            if (dialog != null) {
+                                                dialog.show(getChildFragmentManager(), null);
+                                            }
+                                        }));
+                                    }
+                                }
+                            }
                         }
 
                         ListAdapter adapter = new ListAdapter(mActivity, pluginListItems);

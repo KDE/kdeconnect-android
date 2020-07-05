@@ -61,6 +61,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import com.klinker.android.send_message.Utils;
+
 @SuppressLint("InlinedApi")
 public class SMSHelper {
 
@@ -295,6 +297,13 @@ public class SMSHelper {
         // of any MMSes
         List<String> userPhoneNumbers = TelephonyHelper.getAllPhoneNumbers(context);
 
+        if (Utils.isDefaultSmsApp(context)) {
+            // Due to some reason, which I'm not able to find out yet, when message sending fails, no sent receiver
+            // gets invoked to mark the message as failed to send. This is the reason we have to delete the failed
+            // messages pending in the outbox before fetching new messages from the database
+            deleteFailedMessages(uri, context, fetchColumns, selection, selectionArgs, sortOrder);
+        }
+
         try (Cursor myCursor = context.getContentResolver().query(
                 uri,
                 fetchColumns.toArray(new String[]{}),
@@ -374,6 +383,83 @@ public class SMSHelper {
         }
 
         return toReturn;
+    }
+
+    /**
+     * Deletes messages which are failed to send due to some reason
+     *
+     * @param uri Uri indicating the messages database to read
+     * @param context android.content.Context running the request.
+     * @param fetchColumns List of columns to fetch
+     * @param selection Parameterizable filter to use with the ContentResolver query. May be null.
+     * @param selectionArgs Parameters for selection. May be null.
+     * @param sortOrder Sort ordering passed to Android's content resolver. May be null for unspecified
+     */
+    private static void deleteFailedMessages(
+            @NonNull Uri uri,
+            @NonNull Context context,
+            @NonNull Collection<String> fetchColumns,
+            @Nullable String selection,
+            @Nullable String[] selectionArgs,
+            @Nullable String sortOrder
+    ) {
+        try (Cursor myCursor = context.getContentResolver().query(
+                uri,
+                fetchColumns.toArray(new String[]{}),
+                selection,
+                selectionArgs,
+                sortOrder)
+        ) {
+            if (myCursor != null && myCursor.moveToFirst()) {
+                do {
+                    String id = null;
+                    String type = null;
+                    String msgBox = null;
+
+                    for (int columnIdx = 0; columnIdx < myCursor.getColumnCount(); columnIdx++) {
+                        String colName = myCursor.getColumnName(columnIdx);
+
+                        if (colName.equals("_id")) {
+                            id = myCursor.getString(columnIdx);
+                        }
+
+                        if(colName.equals("type")) {
+                            type = myCursor.getString(columnIdx);
+                        }
+
+                        if (colName.equals("msg_box")) {
+                            msgBox = myCursor.getString(columnIdx);
+                        }
+                    }
+
+                    if (type != null && id != null) {
+                        if (type.equals(Telephony.Sms.MESSAGE_TYPE_OUTBOX) || type.equals(Telephony.Sms.MESSAGE_TYPE_FAILED)) {
+                            Log.v("Deleting sms", "content://sms/" + id);
+                            context.getContentResolver().delete(Uri.parse("content://sms/" + id), null, null);
+                        }
+                    }
+
+                    if (msgBox != null && id != null) {
+                        if (msgBox.equals(Telephony.Mms.MESSAGE_BOX_OUTBOX) || msgBox.equals(Telephony.Mms.MESSAGE_BOX_FAILED)) {
+                            Log.v("Deleting mms", "content://mms/" + id);
+                            context.getContentResolver().delete(Uri.parse("content://mms/" + id), null, null);
+                        }
+                    }
+                } while (myCursor.moveToNext());
+            }
+        } catch (SQLiteException e) {
+            String[] unfilteredColumns = {};
+            try (Cursor unfilteredColumnsCursor = context.getContentResolver().query(uri, null, null, null, null)) {
+                if (unfilteredColumnsCursor != null) {
+                    unfilteredColumns = unfilteredColumnsCursor.getColumnNames();
+                }
+            }
+            if (unfilteredColumns.length == 0) {
+                throw new MessageAccessException(uri, e);
+            } else {
+                throw new MessageAccessException(unfilteredColumns, uri, e);
+            }
+        }
     }
 
     /**
@@ -816,6 +902,29 @@ public class SMSHelper {
         public int hashCode() {
             return this.address.hashCode();
         }
+    }
+
+    /**
+     * converts a given JSONArray into List<Address>
+     */
+    public static List<Address> jsonArrayToAddressList(JSONArray jsonArray) {
+        if (jsonArray == null) {
+            return null;
+        }
+
+        List<Address> addresses = new ArrayList<>();
+        try {
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                String address = jsonObject.getString("address");
+                addresses.add(new Address(address));
+                Log.e("address", address);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return addresses;
     }
 
     /**

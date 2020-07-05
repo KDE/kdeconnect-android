@@ -165,6 +165,8 @@ dependencies {
     implementation 'org.atteo.classindex:classindex:3.6'
     annotationProcessor 'org.atteo.classindex:classindex:3.6'
 
+    implementation 'com.klinkerapps:android-smsmms:5.2.6' //For SMS and MMS purposes
+
     // Testing
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.powermock:powermock-core:2.0.0'

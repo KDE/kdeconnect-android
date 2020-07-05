@@ -265,6 +265,8 @@
     <string name="no_file_browser">There are no file browsers installed.</string>
     <string name="pref_plugin_telepathy">Send SMS</string>
     <string name="pref_plugin_telepathy_desc">Send text messages from your desktop</string>
+    <string name="pref_plugin_telepathy_mms">Send MMS</string>
+    <string name="pref_plugin_telepathy_mms_desc">To be able to send MMS from KDE Connect you need to set it as the default SMS app.</string>
     <string name="findmyphone_title">Find my phone</string>
     <string name="findmyphone_title_tablet">Find my tablet</string>
     <string name="findmyphone_title_tv">Find my TV</string>
@@ -371,6 +373,38 @@
     <string name="pref_plugin_bigscreen_desc">Use your device as a remote for Plasma Bigscreen</string>
     <string name="bigscreen_optional_permission_explanation">To share microphone input from your phone you need to give access to the phone\'s audio input</string>
     <string name="bigscreen_speech_extra_prompt">Speech</string>
+
+    <string name="set_default_sms_app_title">Send MMS</string>
+    <string name="set_group_message_as_mms_title">Send group MMS</string>
+    <string name="set_group_message_as_mms" translatable="false">set_group_message_as_mms</string>
+    <string name="set_long_text_as_mms_title">Send long text as MMS</string>
+    <string name="set_long_text_as_mms" translatable="false">set_long_text_as_mms</string>
+    <string name="convert_to_mms_after_title">Convert to MMS</string>
+    <string name="convert_to_mms_after" translatable="false">convert_to_mms_after</string>
+    <string name="sms_pref_set_mmsc_dialog_desc">Set MMSC</string>
+    <string name="sms_pref_set_mmsc_title">MMSC</string>
+    <string name="sms_pref_set_mmsc" translatable="false">sms_pref_set_mmsc</string>
+    <string name="sms_pref_set_mms_proxy_dialog_desc">Set MMS proxy</string>
+    <string name="sms_pref_set_mms_proxy_title">MMS proxy</string>
+    <string name="sms_pref_set_mms_proxy" translatable="false">sms_pref_set_mms_proxy</string>
+    <string name="sms_pref_set_mms_port_dialog_desc">Set MMS port</string>
+    <string name="sms_pref_set_mms_port_title">MMS port</string>
+    <string name="sms_pref_set_mms_port" translatable="false">sms_pref_set_mms_port</string>
+    <string name="convert_to_mms_after_default" translatable="false">3</string>
+    <string-array name="convert_to_mms_after_entries">
+        <item>After one message</item>
+        <item>After two messages</item>
+        <item>After three messages</item>
+        <item>After four messages</item>
+        <item>After five messages</item>
+    </string-array>
+    <string-array name="convert_to_mms_after_values" translatable="false">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
 
     <string name="theme_dialog_title">Choose theme</string>
     <string-array name="theme_list">
