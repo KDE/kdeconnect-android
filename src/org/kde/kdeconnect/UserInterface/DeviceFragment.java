@@ -29,10 +29,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -47,22 +43,18 @@ import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.SMSPlugin.SMSPlugin;
-import org.kde.kdeconnect.UserInterface.List.PluginListHeaderItem;
 import org.kde.kdeconnect.UserInterface.List.FailedPluginListItem;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.PluginItem;
+import org.kde.kdeconnect.UserInterface.List.PluginListHeaderItem;
 import org.kde.kdeconnect.UserInterface.List.SetDefaultAppPluginListItem;
 import org.kde.kdeconnect_tp.R;
+import org.kde.kdeconnect_tp.databinding.ActivityDeviceBinding;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
 import java.util.concurrent.ConcurrentHashMap;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.Unbinder;
 
 
 /**
@@ -75,7 +67,6 @@ public class DeviceFragment extends Fragment {
 
     private static final String TAG = "KDE/DeviceFragment";
 
-    private View rootView;
     private String mDeviceId;
     private Device device;
 
@@ -83,18 +74,7 @@ public class DeviceFragment extends Fragment {
 
     private ArrayList<ListAdapter.Item> pluginListItems;
 
-    @BindView(R.id.pair_button) Button pairButton;
-    @BindView(R.id.accept_button) Button acceptButton;
-    @BindView(R.id.reject_button) Button rejectButton;
-    @BindView(R.id.pair_message) TextView pairMessage;
-    @BindView(R.id.pair_progress) ProgressBar pairProgress;
-    @BindView(R.id.pairing_buttons) View pairingButtons;
-    @BindView(R.id.pair_request_buttons) View pairRequestButtons;
-    @BindView(R.id.error_message_container) View errorMessageContainer;
-    @BindView(R.id.not_reachable_message) TextView notReachableMessage;
-    @BindView(R.id.buttons_list) ListView buttonsList;
-
-    private Unbinder unbinder;
+    private ActivityDeviceBinding binding;
 
     public DeviceFragment() {
     }
@@ -111,7 +91,7 @@ public class DeviceFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mActivity = ((MainActivity) getActivity());
     }
@@ -130,9 +110,33 @@ public class DeviceFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        binding = ActivityDeviceBinding.inflate(inflater, container, false);
 
-        rootView = inflater.inflate(R.layout.activity_device, container, false);
-        unbinder = ButterKnife.bind(this, rootView);
+        binding.pairButton.setOnClickListener(v -> {
+            binding.pairButton.setVisibility(View.GONE);
+            binding.pairMessage.setText("");
+            binding.pairProgress.setVisibility(View.VISIBLE);
+            BackgroundService.RunCommand(mActivity, service -> {
+                device = service.getDevice(mDeviceId);
+                if (device == null) return;
+                device.requestPairing();
+            });
+        });
+        binding.acceptButton.setOnClickListener(v -> {
+            if (device != null) {
+                device.acceptPairing();
+                binding.pairingButtons.setVisibility(View.GONE);
+            }
+        });
+        binding.rejectButton.setOnClickListener(v -> {
+            if (device != null) {
+                //Remove listener so buttons don't show for a while before changing the view
+                device.removePluginsChangedListener(pluginsChangedListener);
+                device.removePairingCallback(pairingCallback);
+                device.rejectPairing();
+            }
+            mActivity.onDeviceSelected(null);
+        });
 
         setHasOptionsMenu(true);
 
@@ -153,43 +157,12 @@ public class DeviceFragment extends Fragment {
 
         });
 
-        return rootView;
+        return binding.getRoot();
     }
 
     String getDeviceId() { return mDeviceId; }
 
     private final Device.PluginsChangedListener pluginsChangedListener = device -> refreshUI();
-
-    @OnClick(R.id.pair_button)
-    void pairButtonClicked(Button pairButton) {
-        pairButton.setVisibility(View.GONE);
-        pairMessage.setText("");
-        pairProgress.setVisibility(View.VISIBLE);
-        BackgroundService.RunCommand(mActivity, service -> {
-            device = service.getDevice(mDeviceId);
-            if (device == null) return;
-            device.requestPairing();
-        });
-    }
-
-    @OnClick(R.id.accept_button)
-    void acceptButtonClicked() {
-        if (device != null) {
-            device.acceptPairing();
-            pairingButtons.setVisibility(View.GONE);
-        }
-    }
-
-    @OnClick(R.id.reject_button)
-    void setRejectButtonClicked() {
-        if (device != null) {
-            //Remove listener so buttons don't show for a while before changing the view
-            device.removePluginsChangedListener(pluginsChangedListener);
-            device.removePairingCallback(pairingCallback);
-            device.rejectPairing();
-        }
-        mActivity.onDeviceSelected(null);
-    }
 
     @Override
     public void onDestroyView() {
@@ -200,22 +173,18 @@ public class DeviceFragment extends Fragment {
             device.removePairingCallback(pairingCallback);
         });
 
-        unbinder.unbind();
-        rootView = null;
-
         super.onDestroyView();
+        binding = null;
     }
 
     @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
         super.onPrepareOptionsMenu(menu);
         menu.clear();
 
         if (device == null) {
             return;
         }
-
 
         //Plugins button list
         final Collection<Plugin> plugins = device.getLoadedPlugins().values();
@@ -289,8 +258,7 @@ public class DeviceFragment extends Fragment {
     }
 
     private void refreshUI() {
-
-        if (device == null || rootView == null) {
+        if (device == null || binding.getRoot() == null) {
             return;
         }
 
@@ -300,21 +268,19 @@ public class DeviceFragment extends Fragment {
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
                 if (device.isPairRequestedByPeer()) {
-                    pairMessage.setText(R.string.pair_requested);
-                    pairingButtons.setVisibility(View.VISIBLE);
-                    pairProgress.setVisibility(View.GONE);
-                    pairButton.setVisibility(View.GONE);
-                    pairRequestButtons.setVisibility(View.VISIBLE);
+                    binding.pairMessage.setText(R.string.pair_requested);
+                    binding.pairingButtons.setVisibility(View.VISIBLE);
+                    binding.pairProgress.setVisibility(View.GONE);
+                    binding.pairButton.setVisibility(View.GONE);
+                    binding.pairRequestButtons.setVisibility(View.VISIBLE);
                 } else {
-
                     boolean paired = device.isPaired();
                     boolean reachable = device.isReachable();
 
-                    pairingButtons.setVisibility(paired ? View.GONE : View.VISIBLE);
-                    errorMessageContainer.setVisibility((paired && !reachable) ? View.VISIBLE : View.GONE);
-                    notReachableMessage.setVisibility((paired && !reachable) ? View.VISIBLE : View.GONE);
+                    binding.pairingButtons.setVisibility(paired ? View.GONE : View.VISIBLE);
+                    binding.errorMessageContainer.setVisibility((paired && !reachable) ? View.VISIBLE : View.GONE);
+                    binding.notReachableMessage.setVisibility((paired && !reachable) ? View.VISIBLE : View.GONE);
 
                     try {
                         pluginListItems = new ArrayList<>();
@@ -367,7 +333,7 @@ public class DeviceFragment extends Fragment {
                         }
 
                         ListAdapter adapter = new ListAdapter(mActivity, pluginListItems);
-                        buttonsList.setAdapter(adapter);
+                        binding.buttonsList.setAdapter(adapter);
 
                         mActivity.invalidateOptionsMenu();
 
@@ -399,11 +365,11 @@ public class DeviceFragment extends Fragment {
         @Override
         public void pairingFailed(final String error) {
             mActivity.runOnUiThread(() -> {
-                if (rootView == null) return;
-                pairMessage.setText(error);
-                pairProgress.setVisibility(View.GONE);
-                pairButton.setVisibility(View.VISIBLE);
-                pairRequestButtons.setVisibility(View.GONE);
+                if (binding.getRoot() == null) return;
+                binding.pairMessage.setText(error);
+                binding.pairProgress.setVisibility(View.GONE);
+                binding.pairButton.setVisibility(View.VISIBLE);
+                binding.pairRequestButtons.setVisibility(View.GONE);
                 refreshUI();
             });
         }
@@ -411,11 +377,11 @@ public class DeviceFragment extends Fragment {
         @Override
         public void unpaired() {
             mActivity.runOnUiThread(() -> {
-                if (rootView == null) return;
-                pairMessage.setText(R.string.device_not_paired);
-                pairProgress.setVisibility(View.GONE);
-                pairButton.setVisibility(View.VISIBLE);
-                pairRequestButtons.setVisibility(View.GONE);
+                if (binding.getRoot() == null) return;
+                binding.pairMessage.setText(R.string.device_not_paired);
+                binding.pairProgress.setVisibility(View.GONE);
+                binding.pairButton.setVisibility(View.VISIBLE);
+                binding.pairRequestButtons.setVisibility(View.GONE);
                 refreshUI();
             });
         }
