@@ -42,8 +42,10 @@ import androidx.media.VolumeProviderCompat;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
+import org.kde.kdeconnect_tp.databinding.ActivityPresenterBinding;
 
 public class PresenterActivity extends AppCompatActivity implements SensorEventListener {
+    private ActivityPresenterBinding binding;
 
     private MediaSessionCompat mMediaSession;
 
@@ -76,8 +78,8 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
             return; //Already enabled
         }
         sensorManager = ContextCompat.getSystemService(this, SensorManager.class);
-        findViewById(R.id.pointer_button).setVisibility(View.VISIBLE);
-        findViewById(R.id.pointer_button).setOnTouchListener((v, event) -> {
+        binding.pointerButton.setVisibility(View.VISIBLE);
+        binding.pointerButton.setOnTouchListener((v, event) -> {
             if(event.getAction() == MotionEvent.ACTION_DOWN){
                 sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE), SensorManager.SENSOR_DELAY_GAME);
                 v.performClick(); // The linter complains if this is not called
@@ -95,14 +97,15 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
         super.onCreate(savedInstanceState);
         ThemeUtil.setUserPreferredTheme(this);
 
-        setContentView(R.layout.activity_presenter);
+        binding = ActivityPresenterBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         final String deviceId = getIntent().getStringExtra("deviceId");
 
         BackgroundService.RunWithPlugin(this, deviceId, PresenterPlugin.class, plugin -> runOnUiThread(() -> {
             this.plugin = plugin;
-            findViewById(R.id.next_button).setOnClickListener(v -> plugin.sendNext());
-            findViewById(R.id.previous_button).setOnClickListener(v -> plugin.sendPrevious());
+            binding.nextButton.setOnClickListener(v -> plugin.sendNext());
+            binding.previousButton.setOnClickListener(v -> plugin.sendPrevious());
             if (plugin.isPointerSupported()) {
                 enablePointer();
             }
