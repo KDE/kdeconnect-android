@@ -29,6 +29,7 @@ import org.kde.kdeconnect_tp.R;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.preference.PreferenceDialogFragmentCompat;
 import butterknife.BindView;
@@ -87,7 +88,8 @@ public class StoragePreferenceDialogFragment extends PreferenceDialogFragmentCom
         Drawable drawable = AppCompatResources.getDrawable(requireContext(), R.drawable.ic_arrow_drop_down_24px);
         if (drawable != null) {
             drawable = DrawableCompat.wrap(drawable);
-            DrawableCompat.setTint(drawable, getResources().getColor(android.R.color.darker_gray));
+            DrawableCompat.setTint(drawable, ContextCompat.getColor(requireContext(),
+                    android.R.color.darker_gray));
             drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
             arrowDropDownDrawable = drawable;
         }

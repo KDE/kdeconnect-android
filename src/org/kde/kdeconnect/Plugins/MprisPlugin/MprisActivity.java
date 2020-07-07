@@ -269,7 +269,7 @@ public class MprisActivity extends AppCompatActivity {
             final Drawable drawable = ContextCompat.getDrawable(this, R.drawable.ic_album_art_placeholder);
             assert drawable != null;
             Drawable placeholder_art = DrawableCompat.wrap(drawable);
-            DrawableCompat.setTint(placeholder_art, getResources().getColor(R.color.primary));
+            DrawableCompat.setTint(placeholder_art, ContextCompat.getColor(this, R.color.primary));
             albumArtView.setImageDrawable(placeholder_art);
         } else {
             albumArtView.setImageBitmap(albumArt);
