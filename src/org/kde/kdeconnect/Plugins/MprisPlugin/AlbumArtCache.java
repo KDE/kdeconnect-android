@@ -27,9 +27,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.collection.LruCache;
+import androidx.core.content.ContextCompat;
+import androidx.core.net.ConnectivityManagerCompat;
 
 import com.jakewharton.disklrucache.DiskLruCache;
 
@@ -46,9 +49,6 @@ import java.net.URLDecoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-
-import androidx.collection.LruCache;
-import androidx.core.content.ContextCompat;
 
 /**
  * Handles the cache for album art
@@ -231,11 +231,9 @@ final class AlbumArtCache {
             Log.e("KDE/Mpris/AlbumArtCache", "The disk cache is not intialized!");
             return;
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+        if (ConnectivityManagerCompat.isActiveNetworkMetered(connectivityManager)) {
             //Only download art on unmetered networks (wifi etc.)
-            if (connectivityManager.isActiveNetworkMetered()) {
-                return;
-            }
+            return;
         }
 
         //Only fetch an URL if we're not fetching it already
