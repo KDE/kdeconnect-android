@@ -38,21 +38,20 @@ import android.widget.CheckBox;
 import android.widget.CheckedTextView;
 import android.widget.ListView;
 
-import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import org.kde.kdeconnect_tp.R;
+import org.kde.kdeconnect_tp.databinding.ActivityNotificationFilterBinding;
 
 import java.util.Arrays;
 import java.util.List;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 //TODO: Turn this into a PluginSettingsFragment
 public class NotificationFilterActivity extends AppCompatActivity {
-
+    private ActivityNotificationFilterBinding binding;
     private AppDatabase appDatabase;
-    private ListView listView;
 
     static class AppListInfo {
 
@@ -105,11 +104,12 @@ public class NotificationFilterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ThemeUtil.setUserPreferredTheme(this);
-        setContentView(R.layout.activity_notification_filter);
+
+        binding = ActivityNotificationFilterBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         appDatabase = new AppDatabase(NotificationFilterActivity.this, false);
 
         new Thread(() -> {
-
             PackageManager packageManager = getPackageManager();
             List<ApplicationInfo> appList = packageManager.getInstalledApplications(0);
             int count = appList.size();
@@ -132,16 +132,13 @@ public class NotificationFilterActivity extends AppCompatActivity {
     }
 
     private void displayAppList() {
-
-        listView = findViewById(R.id.lvFilterApps);
+        final ListView listView = binding.lvFilterApps;
         AppListAdapter adapter = new AppListAdapter();
         listView.setAdapter(adapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         listView.setLongClickable(true);
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
-
             if (i == 0) {
-
                 boolean enabled = listView.isItemChecked(0);
                 for (int j = 0; j < apps.length; j++) {
                     listView.setItemChecked(j, enabled);
@@ -214,8 +211,7 @@ public class NotificationFilterActivity extends AppCompatActivity {
         }
 
         listView.setVisibility(View.VISIBLE);
-        findViewById(R.id.spinner).setVisibility(View.GONE);
-
+        binding.spinner.setVisibility(View.GONE);
     }
 
     private Drawable resizeIcon(Drawable icon, int maxSize) {
