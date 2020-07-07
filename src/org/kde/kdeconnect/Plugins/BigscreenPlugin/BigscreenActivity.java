@@ -27,16 +27,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
-import android.util.Log;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.PermissionsAlertDialogFragment;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
-
-import androidx.appcompat.app.AppCompatActivity;
+import org.kde.kdeconnect_tp.databinding.ActivityBigscreenBinding;
 
 import java.util.ArrayList;
 
@@ -49,23 +49,24 @@ public class BigscreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ThemeUtil.setUserPreferredTheme(this);
 
-        setContentView(R.layout.activity_bigscreen);
+        final ActivityBigscreenBinding binding = ActivityBigscreenBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         final String deviceId = getIntent().getStringExtra("deviceId");
 
         if (!SpeechRecognizer.isRecognitionAvailable(this)) {
-            findViewById(R.id.mic_button).setEnabled(false);
-            findViewById(R.id.mic_button).setVisibility(View.INVISIBLE);
+            binding.micButton.setEnabled(false);
+            binding.micButton.setVisibility(View.INVISIBLE);
         }
 
         BackgroundService.RunWithPlugin(this, deviceId, BigscreenPlugin.class, plugin -> runOnUiThread(() -> {
-            findViewById(R.id.left_button).setOnClickListener(v -> plugin.sendLeft());
-            findViewById(R.id.right_button).setOnClickListener(v -> plugin.sendRight());
-            findViewById(R.id.up_button).setOnClickListener(v -> plugin.sendUp());
-            findViewById(R.id.down_button).setOnClickListener(v -> plugin.sendDown());
-            findViewById(R.id.select_button).setOnClickListener(v -> plugin.sendSelect());
-            findViewById(R.id.home_button).setOnClickListener(v -> plugin.sendHome());
-            findViewById(R.id.mic_button).setOnClickListener(v -> {
+            binding.leftButton.setOnClickListener(v -> plugin.sendLeft());
+            binding.rightButton.setOnClickListener(v -> plugin.sendRight());
+            binding.upButton.setOnClickListener(v -> plugin.sendUp());
+            binding.downButton.setOnClickListener(v -> plugin.sendDown());
+            binding.selectButton.setOnClickListener(v -> plugin.sendSelect());
+            binding.homeButton.setOnClickListener(v -> plugin.sendHome());
+            binding.micButton.setOnClickListener(v -> {
                 if (plugin.hasMicPermission()) {
                     activateSTT();
                 } else {
