@@ -37,6 +37,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
@@ -141,7 +142,7 @@ public class BackgroundService extends Service {
 
         if (NotificationHelper.isPersistentNotificationEnabled(this)) {
             //Update the foreground notification with the currently connected device list
-            NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationManager nm = ContextCompat.getSystemService(this, NotificationManager.class);
             nm.notify(FOREGROUND_NOTIFICATION_ID, createForegroundNotification());
         }
     }
@@ -316,7 +317,7 @@ public class BackgroundService extends Service {
     }
 
     public void changePersistentNotificationVisibility(boolean visible) {
-        NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager nm = ContextCompat.getSystemService(this, NotificationManager.class);
         if (visible) {
             nm.notify(FOREGROUND_NOTIFICATION_ID, createForegroundNotification());
         } else {

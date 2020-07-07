@@ -23,7 +23,6 @@ package org.kde.kdeconnect.Plugins.FindMyPhonePlugin;
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
@@ -37,6 +36,7 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
@@ -81,10 +81,10 @@ public class FindMyPhonePlugin extends Plugin {
 
     @Override
     public boolean onCreate() {
-        notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager = ContextCompat.getSystemService(context, NotificationManager.class);
         notificationId = (int) System.currentTimeMillis();
-        audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-        powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+        audioManager = ContextCompat.getSystemService(context, AudioManager.class);
+        powerManager = ContextCompat.getSystemService(context, PowerManager.class);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Uri ringtone;

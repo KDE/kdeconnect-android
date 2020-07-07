@@ -20,7 +20,6 @@
 
 package org.kde.kdeconnect.Plugins.PresenterPlugin;
 
-import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -36,11 +35,12 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.media.VolumeProviderCompat;
+
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect_tp.R;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.media.VolumeProviderCompat;
 
 public class PresenterActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -74,7 +74,7 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
         if (sensorManager != null) {
             return; //Already enabled
         }
-        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        sensorManager = ContextCompat.getSystemService(this, SensorManager.class);
         findViewById(R.id.pointer_button).setVisibility(View.VISIBLE);
         findViewById(R.id.pointer_button).setOnTouchListener((v, event) -> {
             if(event.getAction() == MotionEvent.ACTION_DOWN){
@@ -147,7 +147,7 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
         }
 
         if (mMediaSession != null) {
-            PowerManager pm = (PowerManager) this.getSystemService(Context.POWER_SERVICE);
+            PowerManager pm = ContextCompat.getSystemService(this, PowerManager.class);
             boolean screenOn;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
                 screenOn = pm.isInteractive();

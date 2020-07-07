@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
+import androidx.core.content.ContextCompat;
+
 import org.kde.kdeconnect_tp.R;
 
 public class NotificationHelper {
@@ -45,7 +47,7 @@ public class NotificationHelper {
             return;
         }
 
-        NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager manager = ContextCompat.getSystemService(context, NotificationManager.class);
 
         NotificationChannel persistentChannel = new NotificationChannel(
                 Channels.PERSISTENT,

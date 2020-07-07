@@ -1,9 +1,5 @@
 package org.kde.kdeconnect.Helpers;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -12,12 +8,12 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
-import android.util.Log;
 
 import androidx.core.content.ContextCompat;
 
-import org.kde.kdeconnect.UserInterface.PermissionsAlertDialogFragment;
-import org.kde.kdeconnect_tp.R;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class TrustedNetworkHelper {
 
@@ -70,7 +66,8 @@ public class TrustedNetworkHelper {
     }
 
     public String currentSSID() {
-        WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        WifiManager wifiManager = ContextCompat.getSystemService(context.getApplicationContext(),
+                WifiManager.class);
         if (wifiManager == null) return "";
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         if (wifiInfo.getSupplicantState() != SupplicantState.COMPLETED) {

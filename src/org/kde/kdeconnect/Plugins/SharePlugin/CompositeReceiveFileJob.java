@@ -22,11 +22,15 @@ package org.kde.kdeconnect.Plugins.SharePlugin;
 
 import android.app.DownloadManager;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.GuardedBy;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+import androidx.documentfile.provider.DocumentFile;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.FilesHelper;
@@ -42,10 +46,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.GuardedBy;
-import androidx.core.content.FileProvider;
-import androidx.documentfile.provider.DocumentFile;
 
 /**
  * A type of {@link BackgroundJob} that reads Files from another device.
@@ -330,7 +330,8 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
     private void publishFile(DocumentFile fileDocument, long size) {
         if (!ShareSettingsFragment.isCustomDestinationEnabled(getDevice().getContext())) {
             Log.i("SharePlugin", "Adding to downloads");
-            DownloadManager manager = (DownloadManager) getDevice().getContext().getSystemService(Context.DOWNLOAD_SERVICE);
+            DownloadManager manager = ContextCompat.getSystemService(getDevice().getContext(),
+                    DownloadManager.class);
             manager.addCompletedDownload(fileDocument.getUri().getLastPathSegment(), getDevice().getName(), true, fileDocument.getType(), fileDocument.getUri().getPath(), size, false);
         } else {
             //Make sure it is added to the Android Gallery anyway

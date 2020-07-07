@@ -21,7 +21,6 @@
 package org.kde.kdeconnect.Plugins.MprisReceiverPlugin;
 
 import android.content.ComponentName;
-import android.content.Context;
 import android.media.session.MediaController;
 import android.media.session.MediaSessionManager;
 import android.os.Build;
@@ -29,6 +28,11 @@ import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
 
 import org.kde.kdeconnect.Helpers.AppsHelper;
 import org.kde.kdeconnect.NetworkPacket;
@@ -41,10 +45,6 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.HashMap;
 import java.util.List;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.DialogFragment;
 
 @PluginFactory.LoadablePlugin
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
@@ -65,7 +65,7 @@ public class MprisReceiverPlugin extends Plugin {
 
         players = new HashMap<>();
         try {
-            MediaSessionManager manager = (MediaSessionManager) context.getSystemService(Context.MEDIA_SESSION_SERVICE);
+            MediaSessionManager manager = ContextCompat.getSystemService(context, MediaSessionManager.class);
             if (null == manager)
                 return false;
 
@@ -85,7 +85,7 @@ public class MprisReceiverPlugin extends Plugin {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        MediaSessionManager manager = (MediaSessionManager) context.getSystemService(Context.MEDIA_SESSION_SERVICE);
+        MediaSessionManager manager = ContextCompat.getSystemService(context, MediaSessionManager.class);
         if (manager != null && mediaSessionChangeListener != null) {
             manager.removeOnActiveSessionsChangedListener(mediaSessionChangeListener);
             mediaSessionChangeListener = null;

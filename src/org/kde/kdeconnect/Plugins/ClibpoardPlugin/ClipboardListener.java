@@ -28,6 +28,8 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 
+import androidx.core.content.ContextCompat;
+
 import java.util.HashSet;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -68,7 +70,7 @@ public class ClipboardListener {
         context = ctx;
 
         new Handler(Looper.getMainLooper()).post(() -> {
-            cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+            cm = ContextCompat.getSystemService(context, ClipboardManager.class);
             listener = () -> {
                 try {
 

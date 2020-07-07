@@ -227,7 +227,7 @@ public class TelephonyPlugin extends Plugin {
 
     private void unmuteRinger() {
         if (isMuted) {
-            AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+            AudioManager am = ContextCompat.getSystemService(context, AudioManager.class);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 am.setStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_UNMUTE, 0);
             } else {
@@ -239,7 +239,7 @@ public class TelephonyPlugin extends Plugin {
 
     private void muteRinger() {
         if (!isMuted) {
-            AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+            AudioManager am = ContextCompat.getSystemService(context, AudioManager.class);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 am.setStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_MUTE, 0);
             } else {

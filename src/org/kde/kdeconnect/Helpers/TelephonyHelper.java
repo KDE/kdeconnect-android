@@ -31,6 +31,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,7 +49,8 @@ public class TelephonyHelper {
     public static List<Integer> getActiveSubscriptionIDs(
             @NonNull Context context)
             throws SecurityException {
-        SubscriptionManager subscriptionManager = (SubscriptionManager) context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
+        SubscriptionManager subscriptionManager = ContextCompat.getSystemService(context,
+                SubscriptionManager.class);
         if (subscriptionManager == null) {
             // I don't know why or when this happens...
             Log.w(LOGGING_TAG, "Could not get SubscriptionManager");
@@ -79,7 +81,8 @@ public class TelephonyHelper {
             // See: https://developer.android.com/about/versions/android-5.1.html#multisim
             // There were vendor-specific implmentations before then, but those are very difficult to support
             // S/O Reference: https://stackoverflow.com/a/28571835/3723163
-            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager telephonyManager = ContextCompat.getSystemService(context,
+                    TelephonyManager.class);
             if (telephonyManager == null) {
                 // I don't know why or when this happens...
                 Log.w(LOGGING_TAG, "Could not get TelephonyManager");
@@ -89,7 +92,8 @@ public class TelephonyHelper {
             return Collections.singletonList(phoneNumber);
         } else {
             // Potentially multi-sim case
-            SubscriptionManager subscriptionManager = (SubscriptionManager)context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
+            SubscriptionManager subscriptionManager = ContextCompat.getSystemService(context,
+                    SubscriptionManager.class);
             if (subscriptionManager == null) {
                 // I don't know why or when this happens...
                 Log.w(LOGGING_TAG, "Could not get SubscriptionManager");

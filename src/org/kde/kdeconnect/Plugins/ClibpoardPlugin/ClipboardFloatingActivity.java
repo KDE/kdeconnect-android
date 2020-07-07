@@ -20,14 +20,14 @@
 
 package org.kde.kdeconnect.Plugins.ClibpoardPlugin;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
@@ -56,7 +56,8 @@ public class ClipboardFloatingActivity extends AppCompatActivity {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
             // We are now sure that clipboard can be accessed from here.
-            ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipboardManager clipboardManager = ContextCompat.getSystemService(this,
+                    ClipboardManager.class);
             ClipData.Item item;
             if (clipboardManager.hasPrimaryClip()) {
                 item = clipboardManager.getPrimaryClip().getItemAt(0);

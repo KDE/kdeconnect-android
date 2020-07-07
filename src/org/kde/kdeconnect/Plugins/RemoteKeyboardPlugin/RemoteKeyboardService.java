@@ -20,7 +20,6 @@
 
 package org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin;
 
-import android.content.Context;
 import android.content.Intent;
 import android.inputmethodservice.InputMethodService;
 import android.inputmethodservice.Keyboard;
@@ -34,8 +33,10 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
+import androidx.core.content.ContextCompat;
+
 import org.kde.kdeconnect.UserInterface.MainActivity;
+import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
@@ -189,7 +190,7 @@ public class RemoteKeyboardService
                 break;
             }
             case 2: { // "keyboard"
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = ContextCompat.getSystemService(this, InputMethodManager.class);
                 imm.showInputMethodPicker();
                 break;
             }

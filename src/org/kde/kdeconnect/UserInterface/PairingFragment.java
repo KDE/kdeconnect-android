@@ -42,6 +42,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -123,7 +124,8 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
                     updateDeviceList();
                 }
             };
-            ConnectivityManager connManager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager connManager = ContextCompat.getSystemService(requireContext(),
+                    ConnectivityManager.class);
             connManager.registerNetworkCallback(new NetworkRequest.Builder().build(), (ConnectivityManager.NetworkCallback) networkChangeListener);
         }
 
@@ -133,7 +135,8 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     @Override
     public void onDestroyView() {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ConnectivityManager connManager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager connManager = ContextCompat.getSystemService(requireContext(),
+                    ConnectivityManager.class);
             connManager.unregisterNetworkCallback((ConnectivityManager.NetworkCallback) networkChangeListener);
         }
 
@@ -186,7 +189,8 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
             ((ListView) rootView.findViewById(R.id.devices_list)).removeHeaderView(headerText);
             ((ListView) rootView.findViewById(R.id.devices_list)).removeHeaderView(noWifiHeader);
             ((ListView) rootView.findViewById(R.id.devices_list)).removeHeaderView(notTrustedText);
-            ConnectivityManager connManager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+            ConnectivityManager connManager = ContextCompat.getSystemService(requireContext(),
+                    ConnectivityManager.class);
             NetworkInfo wifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
             //Check if we're on Wi-Fi. If we still see a device, don't do anything special
             if (someDevicesReachable || wifi.isConnected()) {

@@ -47,6 +47,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 import androidx.collection.LruCache;
+import androidx.core.content.ContextCompat;
 
 /**
  * Handles the cache for album art
@@ -110,7 +111,8 @@ final class AlbumArtCache {
             Log.e("KDE/Mpris/AlbumArtCache", "Could not open the album art disk cache!", e);
         }
 
-        connectivityManager = (ConnectivityManager) context.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        connectivityManager = ContextCompat.getSystemService(context.getApplicationContext(),
+                ConnectivityManager.class);
     }
 
     /**

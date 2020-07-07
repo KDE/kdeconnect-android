@@ -23,7 +23,6 @@ package org.kde.kdeconnect.Plugins.SharePlugin;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -32,6 +31,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect_tp.R;
@@ -39,9 +42,6 @@ import org.kde.kdeconnect_tp.R;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-
-import androidx.core.app.NotificationCompat;
-import androidx.core.content.FileProvider;
 
 class ReceiveNotification {
     private final NotificationManager notificationManager;
@@ -59,7 +59,7 @@ class ReceiveNotification {
 
         this.jobId = jobId;
         notificationId = (int) System.currentTimeMillis();
-        notificationManager = (NotificationManager) device.getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager = ContextCompat.getSystemService(device.getContext(), NotificationManager.class);
         builder = new NotificationCompat.Builder(device.getContext(), NotificationHelper.Channels.FILETRANSFER)
                 .setSmallIcon(android.R.drawable.stat_sys_download)
                 .setAutoCancel(true)

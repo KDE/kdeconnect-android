@@ -23,7 +23,6 @@ package org.kde.kdeconnect.Plugins.SharePlugin;
 import android.Manifest;
 import android.app.Activity;
 import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -32,6 +31,10 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.WorkerThread;
+import androidx.core.content.ContextCompat;
 
 import org.kde.kdeconnect.Helpers.FilesHelper;
 import org.kde.kdeconnect.Helpers.IntentHelper;
@@ -45,10 +48,6 @@ import org.kde.kdeconnect_tp.R;
 
 import java.net.URL;
 import java.util.ArrayList;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.WorkerThread;
-import androidx.core.content.ContextCompat;
 
 /**
  * A Plugin for sharing and receiving files and uris.
@@ -176,7 +175,7 @@ public class SharePlugin extends Plugin {
 
     private void receiveText(NetworkPacket np) {
         String text = np.getString("text");
-        ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipboardManager cm = ContextCompat.getSystemService(context, ClipboardManager.class);
         cm.setText(text);
         handler.post(() -> Toast.makeText(context, R.string.shareplugin_text_saved, Toast.LENGTH_LONG).show());
     }

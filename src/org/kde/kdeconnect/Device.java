@@ -396,7 +396,7 @@ public class Device implements BaseLink.PacketReceiver {
 
         Resources res = getContext().getResources();
 
-        final NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        final NotificationManager notificationManager = ContextCompat.getSystemService(getContext(), NotificationManager.class);
 
         Notification noti = new NotificationCompat.Builder(getContext(), NotificationHelper.Channels.DEFAULT)
                 .setContentTitle(res.getString(R.string.pairing_request_from, getName()))
@@ -414,7 +414,8 @@ public class Device implements BaseLink.PacketReceiver {
     }
 
     public void hidePairingNotification() {
-        final NotificationManager notificationManager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+        final NotificationManager notificationManager = ContextCompat.getSystemService(getContext(),
+                NotificationManager.class);
         notificationManager.cancel(notificationId);
     }
 

@@ -21,8 +21,8 @@
 
 package org.kde.kdeconnect.Plugins.RunCommandPlugin;
 
+import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,6 +35,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONException;
@@ -45,10 +50,6 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class RunCommandActivity extends AppCompatActivity {
 
@@ -143,7 +144,7 @@ public class RunCommandActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.copy_url_to_clipboard) {
             CommandEntry entry = (CommandEntry) commandItems.get(info.position);
             String url = "kdeconnect://runcommand/" + deviceId + "/" + entry.getKey();
-            ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipboardManager cm = ContextCompat.getSystemService(this, ClipboardManager.class);
             cm.setText(url);
             Toast toast = Toast.makeText(this, R.string.clipboard_toast, Toast.LENGTH_SHORT);
             toast.show();

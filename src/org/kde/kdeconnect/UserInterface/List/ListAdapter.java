@@ -27,6 +27,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 
@@ -43,7 +44,7 @@ public class ListAdapter extends ArrayAdapter<ListAdapter.Item> {
     public ListAdapter(Context context, ArrayList<Item> items) {
         super(context, 0, items);
         this.items = items;
-        layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        layoutInflater = ContextCompat.getSystemService(context, LayoutInflater.class);
     }
 
     @NonNull

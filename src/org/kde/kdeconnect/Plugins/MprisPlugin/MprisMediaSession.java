@@ -48,6 +48,7 @@ import java.util.HashSet;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.TaskStackBuilder;
+import androidx.core.content.ContextCompat;
 import androidx.media.app.NotificationCompat.MediaStyle;
 
 /**
@@ -461,14 +462,14 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
 
             //Display the notification
             mediaSession.setActive(true);
-            final NotificationManager nm = (NotificationManager) service.getSystemService(Context.NOTIFICATION_SERVICE);
+            final NotificationManager nm = ContextCompat.getSystemService(context, NotificationManager.class);
             nm.notify(MPRIS_MEDIA_NOTIFICATION_ID, notification.build());
         });
     }
 
     public void closeMediaNotification() {
         //Remove the notification
-        NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager nm = ContextCompat.getSystemService(context, NotificationManager.class);
         nm.cancel(MPRIS_MEDIA_NOTIFICATION_ID);
 
         //Clear the current player and media session

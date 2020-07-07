@@ -23,11 +23,13 @@ package org.kde.kdeconnect.Plugins.ReceiveNotificationsPlugin;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.NetworkPacket;
@@ -37,8 +39,6 @@ import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.InputStream;
-
-import androidx.core.app.NotificationCompat;
 
 @PluginFactory.LoadablePlugin
 public class ReceiveNotificationsPlugin extends Plugin {
@@ -106,7 +106,7 @@ public class ReceiveNotificationsPlugin extends Plugin {
             }
         }
 
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager notificationManager = ContextCompat.getSystemService(context, NotificationManager.class);
 
         Notification noti = new NotificationCompat.Builder(context, NotificationHelper.Channels.RECEIVENOTIFICATION)
                 .setContentTitle(np.getString("appName"))
