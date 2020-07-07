@@ -15,16 +15,6 @@ import android.view.SubMenu;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.android.material.navigation.NavigationView;
-
-import org.kde.kdeconnect.BackgroundService;
-import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.Helpers.DeviceHelper;
-import org.kde.kdeconnect_tp.R;
-
-import java.util.Collection;
-import java.util.HashMap;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -33,8 +23,17 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+
+import com.google.android.material.navigation.NavigationView;
+
+import org.kde.kdeconnect.BackgroundService;
+import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Helpers.DeviceHelper;
+import org.kde.kdeconnect_tp.R;
+import org.kde.kdeconnect_tp.databinding.ActivityMainBinding;
+
+import java.util.Collection;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -55,9 +54,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     public static final String EXTRA_DEVICE_ID = "deviceId";
 
-    @BindView(R.id.navigation_drawer) NavigationView mNavigationView;
-    @BindView(R.id.drawer_layout) DrawerLayout mDrawerLayout;
-    @BindView(R.id.toolbar) Toolbar mToolbar;
+    private NavigationView mNavigationView;
+    private DrawerLayout mDrawerLayout;
     private TextView mNavViewDeviceName;
 
     private String mCurrentDevice;
@@ -72,9 +70,12 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         ThemeUtil.setUserPreferredTheme(this);
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        final ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        ButterKnife.bind(this);
+        mNavigationView = binding.navigationDrawer;
+        mDrawerLayout = binding.drawerLayout;
+        final Toolbar mToolbar = binding.toolbar;
 
         View mDrawerHeader = mNavigationView.getHeaderView(0);
         mNavViewDeviceName = mDrawerHeader.findViewById(R.id.device_name);
