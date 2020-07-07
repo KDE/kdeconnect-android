@@ -26,6 +26,9 @@ android {
 
         multiDexEnabled true
     }
+    buildFeatures {
+        viewBinding true
+    }
     dexOptions {
         javaMaxHeapSize "2g"
     }
