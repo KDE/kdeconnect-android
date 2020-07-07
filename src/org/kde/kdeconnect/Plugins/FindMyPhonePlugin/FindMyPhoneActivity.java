@@ -28,12 +28,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
-import org.kde.kdeconnect_tp.R;
+import org.kde.kdeconnect_tp.databinding.ActivityFindMyPhoneBinding;
 
 public class FindMyPhoneActivity extends AppCompatActivity {
     static final String EXTRA_DEVICE_ID = "deviceId";
 
-    private String deviceId;
     private FindMyPhonePlugin plugin;
 
     @Override
@@ -41,14 +40,15 @@ public class FindMyPhoneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ThemeUtil.setUserPreferredTheme(this);
 
-        setContentView(R.layout.activity_find_my_phone);
+        final ActivityFindMyPhoneBinding binding = ActivityFindMyPhoneBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         if (!getIntent().hasExtra(EXTRA_DEVICE_ID)) {
             Log.e("FindMyPhoneActivity", "You must include the deviceId for which this activity is started as an intent EXTRA");
             finish();
         }
 
-        deviceId = getIntent().getStringExtra(EXTRA_DEVICE_ID);
+        String deviceId = getIntent().getStringExtra(EXTRA_DEVICE_ID);
         plugin = BackgroundService.getInstance().getDevice(deviceId).getPlugin(FindMyPhonePlugin.class);
 
         Window window = this.getWindow();
@@ -56,7 +56,7 @@ public class FindMyPhoneActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
-        findViewById(R.id.bFindMyPhone).setOnClickListener(view -> finish());
+        binding.bFindMyPhone.setOnClickListener(view -> finish());
     }
 
     @Override
