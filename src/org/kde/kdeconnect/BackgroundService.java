@@ -455,12 +455,7 @@ public class BackgroundService extends Service {
                     mutex.unlock();
                 }
             }
-            Intent serviceIntent = new Intent(c, BackgroundService.class);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                c.startForegroundService(serviceIntent);
-            } else {
-                c.startService(serviceIntent);
-            }
+            ContextCompat.startForegroundService(c, new Intent(c, BackgroundService.class));
         }).start();
     }
 
