@@ -292,6 +292,13 @@
   <string name="bigscreen_down">下</string>
   <string name="pref_plugin_bigscreen">电视遥控</string>
   <string name="pref_plugin_bigscreen_desc">使用您手机遥控 Plasma 电视</string>
+  <string-array name="convert_to_mms_after_entries">
+    <item>After one message</item>
+    <item>After two messages</item>
+    <item>After three messages</item>
+    <item>After four messages</item>
+    <item>After five messages</item>
+  </string-array>
   <string name="theme_dialog_title">选择主题</string>
   <string-array name="theme_list">
     <item>Set by Battery Saver</item>

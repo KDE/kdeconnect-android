@@ -213,6 +213,8 @@
   <string name="no_file_browser">Det finns inga filbläddrare installerade.</string>
   <string name="pref_plugin_telepathy">Skicka SMS</string>
   <string name="pref_plugin_telepathy_desc">Skicka textmeddelanden från skrivbordet</string>
+  <string name="pref_plugin_telepathy_mms">Skicka MMS</string>
+  <string name="pref_plugin_telepathy_mms_desc">För att kunna skicka MMS från KDE-anslut måste det anges som standardprogram för SMS.</string>
   <string name="findmyphone_title">Hitta min telefon</string>
   <string name="findmyphone_title_tablet">Hitta min surfplatta</string>
   <string name="findmyphone_title_tv">Hitta min tv</string>
@@ -303,6 +305,23 @@
   <string name="pref_plugin_bigscreen_desc">Använd apparaten som en fjärrkontroll för Plasma storskärm</string>
   <string name="bigscreen_optional_permission_explanation">För att dela mikrofoningången från telefonen måste du ge tillgång till telefonens ljudingång</string>
   <string name="bigscreen_speech_extra_prompt">Tal</string>
+  <string name="set_default_sms_app_title">Skicka MMS</string>
+  <string name="set_group_message_as_mms_title">Skicka grupp-MMS</string>
+  <string name="set_long_text_as_mms_title">Skicka lång text som MMS</string>
+  <string name="convert_to_mms_after_title">Konvertera till MMS</string>
+  <string name="sms_pref_set_mmsc_dialog_desc">Ange MMSC</string>
+  <string name="sms_pref_set_mmsc_title">MMSC</string>
+  <string name="sms_pref_set_mms_proxy_dialog_desc">Ange MMS-proxy</string>
+  <string name="sms_pref_set_mms_proxy_title">MMS-proxy</string>
+  <string name="sms_pref_set_mms_port_dialog_desc">Ange MMS-port</string>
+  <string name="sms_pref_set_mms_port_title">MMS-port</string>
+  <string-array name="convert_to_mms_after_entries">
+    <item>Efter ett meddelande</item>
+    <item>Efter två meddelanden</item>
+    <item>Efter tre meddelanden</item>
+    <item>Efter fyra meddelanden</item>
+    <item>Efter fem meddelanden</item>
+  </string-array>
   <string name="theme_dialog_title">Välj tema</string>
   <string-array name="theme_list">
     <item>Inställt för att spara batteri</item>

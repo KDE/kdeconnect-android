@@ -30,6 +30,13 @@
     <item>1 minute</item>
     <item>2 minutes</item>
   </string-array>
+  <string-array name="convert_to_mms_after_entries">
+    <item>After one message</item>
+    <item>After two messages</item>
+    <item>After three messages</item>
+    <item>After four messages</item>
+    <item>After five messages</item>
+  </string-array>
   <string-array name="theme_list">
     <item>Set by Battery Saver</item>
     <item>Light</item>

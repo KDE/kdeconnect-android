@@ -72,6 +72,13 @@
   <string name="protocol_version_newer">Ez az eszköz egy újabb protokollverziót használ</string>
   <string name="invalid_device_name">Érvénytelen eszköznév</string>
   <string name="shareplugin_text_saved">Szöveg érkezett, elmentve a vágólapra</string>
+  <string-array name="convert_to_mms_after_entries">
+    <item>After one message</item>
+    <item>After two messages</item>
+    <item>After three messages</item>
+    <item>After four messages</item>
+    <item>After five messages</item>
+  </string-array>
   <string-array name="theme_list">
     <item>Set by Battery Saver</item>
     <item/>

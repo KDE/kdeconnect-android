@@ -213,6 +213,8 @@
   <string name="no_file_browser">Não existem gestores de ficheiros instalados.</string>
   <string name="pref_plugin_telepathy">Enviar um SMS</string>
   <string name="pref_plugin_telepathy_desc">Enviar mensagens de texto a partir do seu ambiente de trabalho</string>
+  <string name="pref_plugin_telepathy_mms">Enviar um MMS</string>
+  <string name="pref_plugin_telepathy_mms_desc">Para poder enviar MMS\'s a partir do KDE Connect, é necessário configurá-lo como a aplicação de SMS\'s predefinida.</string>
   <string name="findmyphone_title">Descobrir o meu telefone</string>
   <string name="findmyphone_title_tablet">Descobrir o meu \'tablet\'</string>
   <string name="findmyphone_title_tv">Descobrir a minha TV</string>
@@ -303,6 +305,23 @@
   <string name="pref_plugin_bigscreen_desc">Use o seu dispositivo como um comando à distância para o Plasma em Ecrã Grande</string>
   <string name="bigscreen_optional_permission_explanation">Para partilhar os dados provenientes do microfone do seu telefone, terá de dar acesso à entrada de áudio do telefone</string>
   <string name="bigscreen_speech_extra_prompt">Fala</string>
+  <string name="set_default_sms_app_title">Enviar um MMS</string>
+  <string name="set_group_message_as_mms_title">Enviar um MMS em grupo</string>
+  <string name="set_long_text_as_mms_title">Enviar o texto extenso como MMS</string>
+  <string name="convert_to_mms_after_title">Converter para MMS</string>
+  <string name="sms_pref_set_mmsc_dialog_desc">Definir o MMSC</string>
+  <string name="sms_pref_set_mmsc_title">MMSC</string>
+  <string name="sms_pref_set_mms_proxy_dialog_desc">Definir o \'proxy\' do MMS</string>
+  <string name="sms_pref_set_mms_proxy_title">\'Proxy\' do MMS</string>
+  <string name="sms_pref_set_mms_port_dialog_desc">Definir o porto do MMS</string>
+  <string name="sms_pref_set_mms_port_title">Porto do MMS</string>
+  <string-array name="convert_to_mms_after_entries">
+    <item>Ao fim de uma mensagem</item>
+    <item>Ao fim de duas mensagens</item>
+    <item>Ao fim de três mensagens</item>
+    <item>Ao fim de quatro mensagens</item>
+    <item>Ao fim de cinco mensagens</item>
+  </string-array>
   <string name="theme_dialog_title">Escolha o tema</string>
   <string-array name="theme_list">
     <item>Definido pela Poupança da Bateria</item>

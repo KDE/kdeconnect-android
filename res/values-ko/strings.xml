@@ -295,6 +295,13 @@
   <string name="pref_plugin_bigscreen_desc">내 장치를 Plasma 큰 화면의 리모콘으로 사용</string>
   <string name="bigscreen_optional_permission_explanation">휴대폰 마이크 입력을 공유하려면 오디오 입력 접근 권한이 필요합니다</string>
   <string name="bigscreen_speech_extra_prompt">말하기</string>
+  <string-array name="convert_to_mms_after_entries">
+    <item>After one message</item>
+    <item>After two messages</item>
+    <item>After three messages</item>
+    <item>After four messages</item>
+    <item>After five messages</item>
+  </string-array>
   <string name="theme_dialog_title">테마 선택</string>
   <string-array name="theme_list">
     <item>배터리 세이버에 의해 설정됨</item>

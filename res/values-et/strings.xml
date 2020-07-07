@@ -303,6 +303,13 @@
   <string name="pref_plugin_bigscreen_desc">Oma seadme kasutamine Plasma kaugsuurekraanina</string>
   <string name="bigscreen_optional_permission_explanation">Oma telefoni mikrofonisisendi jagamiseks tuleb anda juurdepääs telefoni helisisendile</string>
   <string name="bigscreen_speech_extra_prompt">Kõne</string>
+  <string-array name="convert_to_mms_after_entries">
+    <item>After one message</item>
+    <item>After two messages</item>
+    <item>After three messages</item>
+    <item>After four messages</item>
+    <item>After five messages</item>
+  </string-array>
   <string name="theme_dialog_title">Teema valimine</string>
   <string-array name="theme_list">
     <item>Määratud akusäästja poolt</item>

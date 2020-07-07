@@ -213,6 +213,8 @@
   <string name="no_file_browser">Er zijn geen bestandsbrowsers geïnstalleerd.</string>
   <string name="pref_plugin_telepathy">SMS verzenden</string>
   <string name="pref_plugin_telepathy_desc">Stuur tekstberichten van uw bureaublad</string>
+  <string name="pref_plugin_telepathy_mms">MMS verzenden</string>
+  <string name="pref_plugin_telepathy_mms_desc">Om MMS te kunnen verzenden vanuit KDE Connect moet u het als de standaard SMS-app instellen.</string>
   <string name="findmyphone_title">Zoek mijn telefoon</string>
   <string name="findmyphone_title_tablet">Zoek mijn tablet</string>
   <string name="findmyphone_title_tv">Zoek mijn tv</string>
@@ -303,6 +305,23 @@
   <string name="pref_plugin_bigscreen_desc">Gebruik uw apparaat als een Bigscreen op afstand</string>
   <string name="bigscreen_optional_permission_explanation">Om microfooninvoer vanaf uw telefoon te delen moet u toegang geven tot de geluidsinvoer van de telefoon</string>
   <string name="bigscreen_speech_extra_prompt">Spraak</string>
+  <string name="set_default_sms_app_title">MMS verzenden</string>
+  <string name="set_group_message_as_mms_title">MMS verzenden naar groep</string>
+  <string name="set_long_text_as_mms_title">Lange tekst als MMS verzenden</string>
+  <string name="convert_to_mms_after_title">Naar MMS converteren</string>
+  <string name="sms_pref_set_mmsc_dialog_desc">MMSC instellen</string>
+  <string name="sms_pref_set_mmsc_title">MMSC</string>
+  <string name="sms_pref_set_mms_proxy_dialog_desc">MMS-proxy instellen</string>
+  <string name="sms_pref_set_mms_proxy_title">MMS-proxy</string>
+  <string name="sms_pref_set_mms_port_dialog_desc">MMS-poort instellen</string>
+  <string name="sms_pref_set_mms_port_title">MMS-poort</string>
+  <string-array name="convert_to_mms_after_entries">
+    <item>Na één bericht</item>
+    <item>Na twee berichten</item>
+    <item>Na drie berichten</item>
+    <item>Na vier berichten</item>
+    <item>Na vijf berichten</item>
+  </string-array>
   <string name="theme_dialog_title">Thema kiezen</string>
   <string-array name="theme_list">
     <item>Op batterijbesparing instellen</item>

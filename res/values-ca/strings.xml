@@ -210,9 +210,11 @@
   <string name="unreachable_description">Aquest dispositiu aparellat no és accessible. Assegureu-vos que està connectat a la mateixa xarxa.</string>
   <string name="no_wifi">No esteu connectat a una xarxa Wi-Fi, per tant, no podreu veure cap dispositiu. Feu clic aquí per activar la Wi-Fi.</string>
   <string name="on_non_trusted_message">No és una xarxa de confiança: el descobriment automàtic està desactivat.</string>
-  <string name="no_file_browser">No hi ha instal·lat cap explorador de fitxers.</string>
+  <string name="no_file_browser">No hi ha instal·lat cap navegador de fitxers.</string>
   <string name="pref_plugin_telepathy">Envia un SMS</string>
   <string name="pref_plugin_telepathy_desc">Envia missatges de text des de l\'escriptori</string>
+  <string name="pref_plugin_telepathy_mms">Envia un MMS</string>
+  <string name="pref_plugin_telepathy_mms_desc">Per a poder enviar MMS des del KDE Connect cal establir-la com a aplicació predeterminada per a SMS.</string>
   <string name="findmyphone_title">Troba el meu telèfon</string>
   <string name="findmyphone_title_tablet">Troba la meva tauleta</string>
   <string name="findmyphone_title_tv">Troba la meva TV</string>
@@ -303,6 +305,23 @@
   <string name="pref_plugin_bigscreen_desc">Useu el dispositiu com a remot per a la Bigscreen del Plasma</string>
   <string name="bigscreen_optional_permission_explanation">Per a compartir l\'entrada del micròfon del telèfon cal donar accés a l\'entrada d\'àudio del telèfon</string>
   <string name="bigscreen_speech_extra_prompt">Veu</string>
+  <string name="set_default_sms_app_title">Envia un MMS</string>
+  <string name="set_group_message_as_mms_title">Envia un MMS de grup</string>
+  <string name="set_long_text_as_mms_title">Envia un text llarg com a MMS</string>
+  <string name="convert_to_mms_after_title">Converteix a MMS</string>
+  <string name="sms_pref_set_mmsc_dialog_desc">Estableix el MMSC</string>
+  <string name="sms_pref_set_mmsc_title">MMSC</string>
+  <string name="sms_pref_set_mms_proxy_dialog_desc">Estableix el servidor intermediari de MMS</string>
+  <string name="sms_pref_set_mms_proxy_title">Servidor intermediari de MMS</string>
+  <string name="sms_pref_set_mms_port_dialog_desc">Estableix el port de MMS</string>
+  <string name="sms_pref_set_mms_port_title">Port de MMS</string>
+  <string-array name="convert_to_mms_after_entries">
+    <item>Després d\'un missatge</item>
+    <item>Després de dos missatges</item>
+    <item>Després de tres missatges</item>
+    <item>Després de quatre missatges</item>
+    <item>Després de cinc missatges</item>
+  </string-array>
   <string name="theme_dialog_title">Trieu el tema</string>
   <string-array name="theme_list">
     <item>Establert per l\'estalvi de bateria</item>

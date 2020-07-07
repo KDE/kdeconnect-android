@@ -191,6 +191,13 @@
   <string name="settings_rename">Nama perangkat</string>
   <string name="settings_dark_mode">Tema gelap</string>
   <string name="settings_more_settings_title">Pengaturan selebihnya</string>
+  <string-array name="convert_to_mms_after_entries">
+    <item>After one message</item>
+    <item>After two messages</item>
+    <item>After three messages</item>
+    <item>After four messages</item>
+    <item>After five messages</item>
+  </string-array>
   <string-array name="theme_list">
     <item>Set by Battery Saver</item>
     <item/>

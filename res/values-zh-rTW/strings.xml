@@ -292,6 +292,13 @@
   <string name="bigscreen_down">下</string>
   <string name="pref_plugin_bigscreen">Bigscreen 遠端</string>
   <string name="pref_plugin_bigscreen_desc">將您的裝置用作 Plasma Bigscreen 的遠端</string>
+  <string-array name="convert_to_mms_after_entries">
+    <item>After one message</item>
+    <item>After two messages</item>
+    <item>After three messages</item>
+    <item>After four messages</item>
+    <item>After five messages</item>
+  </string-array>
   <string name="theme_dialog_title">選擇主題</string>
   <string-array name="theme_list">
     <item>由省電工具設定</item>

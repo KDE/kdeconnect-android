@@ -303,6 +303,13 @@
   <string name="pref_plugin_bigscreen_desc">Use seu dispositivo como um controle remoto para o Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">Para compartilhar a entrada do microfone de seu telefone você precisa conceder acesso à entrada de áudio do telefone</string>
   <string name="bigscreen_speech_extra_prompt">Falar</string>
+  <string-array name="convert_to_mms_after_entries">
+    <item>After one message</item>
+    <item>After two messages</item>
+    <item>After three messages</item>
+    <item>After four messages</item>
+    <item>After five messages</item>
+  </string-array>
   <string name="theme_dialog_title">Escolher tema</string>
   <string-array name="theme_list">
     <item>Definido pelo economizador de bateria</item>

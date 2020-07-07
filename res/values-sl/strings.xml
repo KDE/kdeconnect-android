@@ -319,6 +319,13 @@
   <string name="pref_plugin_bigscreen_desc">Uporabite svojo napravo kot daljinec za Plasmin veliki zaslon</string>
   <string name="bigscreen_optional_permission_explanation">Če želite deliti vhod mikrofona iz telefona, morate imeti dostop do avdio vhoda telefona</string>
   <string name="bigscreen_speech_extra_prompt">Govor</string>
+  <string-array name="convert_to_mms_after_entries">
+    <item>After one message</item>
+    <item>After two messages</item>
+    <item>After three messages</item>
+    <item>After four messages</item>
+    <item>After five messages</item>
+  </string-array>
   <string name="theme_dialog_title">Izberite temo</string>
   <string-array name="theme_list">
     <item>Določeno z ohranjevalnikom baterije</item>
