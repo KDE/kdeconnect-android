@@ -77,7 +77,7 @@ public class RemoteKeyboardService
         int disconnectedIcon = R.drawable.ic_phonelink_off_white_36dp;
         int connectedIcon = R.drawable.ic_phonelink_white_36dp;
         int statusKeyIdx = 3;
-        keys.get(statusKeyIdx).icon = getResources().getDrawable(connected ? connectedIcon : disconnectedIcon);
+        keys.get(statusKeyIdx).icon = ContextCompat.getDrawable(this, connected ? connectedIcon : disconnectedIcon);
         inputView.invalidateKey(statusKeyIdx);
     }
 

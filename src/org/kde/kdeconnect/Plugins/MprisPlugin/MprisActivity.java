@@ -20,7 +20,6 @@
 
 package org.kde.kdeconnect.Plugins.MprisPlugin;
 
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -33,7 +32,6 @@ import android.os.Message;
 import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -46,22 +44,23 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.fragment.app.FragmentManager;
+
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Helpers.VideoUrlsHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.SystemvolumePlugin.SystemvolumeFragment;
-import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 
 import java.net.MalformedURLException;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.drawable.DrawableCompat;
-import androidx.fragment.app.FragmentManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -267,7 +266,9 @@ public class MprisActivity extends AppCompatActivity {
 
         Bitmap albumArt = playerStatus.getAlbumArt();
         if (albumArt == null) {
-            Drawable placeholder_art = DrawableCompat.wrap(getResources().getDrawable(R.drawable.ic_album_art_placeholder));
+            final Drawable drawable = ContextCompat.getDrawable(this, R.drawable.ic_album_art_placeholder);
+            assert drawable != null;
+            Drawable placeholder_art = DrawableCompat.wrap(drawable);
             DrawableCompat.setTint(placeholder_art, getResources().getColor(R.color.primary));
             albumArtView.setImageDrawable(placeholder_art);
         } else {
