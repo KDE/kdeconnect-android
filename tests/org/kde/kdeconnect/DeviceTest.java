@@ -58,7 +58,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Matchers.eq;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({Base64.class, Log.class, PreferenceManager.class})
+@PrepareForTest({Base64.class, Log.class, PreferenceManager.class, ContextCompat.class})
 public class DeviceTest {
 
     private Context context;
@@ -113,7 +113,8 @@ public class DeviceTest {
         PowerMockito.when(PreferenceManager.getDefaultSharedPreferences(any())).thenReturn(defaultSettings);
         RsaHelper.initialiseRsaKeys(context);
 
-        Mockito.when(ContextCompat.getSystemService(context, NotificationManager.class)).thenReturn(Mockito.mock(NotificationManager.class));
+        PowerMockito.mockStatic(ContextCompat.class);
+        PowerMockito.when(ContextCompat.getSystemService(context, NotificationManager.class)).thenReturn(Mockito.mock(NotificationManager.class));
     }
 
     @Test
