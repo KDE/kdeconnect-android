@@ -404,8 +404,8 @@ public class Device implements BaseLink.PacketReceiver {
                 .setContentIntent(pendingIntent)
                 .setTicker(res.getString(R.string.pair_requested))
                 .setSmallIcon(R.drawable.ic_notification)
-                .addAction(R.drawable.ic_accept_pairing, res.getString(R.string.pairing_accept), acceptedPendingIntent)
-                .addAction(R.drawable.ic_reject_pairing, res.getString(R.string.pairing_reject), rejectedPendingIntent)
+                .addAction(R.drawable.ic_accept_pairing_24dp, res.getString(R.string.pairing_accept), acceptedPendingIntent)
+                .addAction(R.drawable.ic_reject_pairing_24dp, res.getString(R.string.pairing_reject), rejectedPendingIntent)
                 .setAutoCancel(true)
                 .setDefaults(Notification.DEFAULT_ALL)
                 .build();
