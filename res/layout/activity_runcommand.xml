@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:src="@drawable/ic_action_image_edit"
+        app:srcCompat="@drawable/ic_action_image_edit_24dp"
         app:backgroundTint="@color/primary"
         app:layout_anchor="@id/runcommandslist"
         app:layout_anchorGravity="bottom|end" />
