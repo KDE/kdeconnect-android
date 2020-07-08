@@ -94,7 +94,7 @@ public class SharePlugin extends Plugin {
 
     @Override
     public Drawable getIcon() {
-        return ContextCompat.getDrawable(context, R.drawable.share_plugin_action);
+        return ContextCompat.getDrawable(context, R.drawable.share_plugin_action_24dp);
     }
 
     @Override
