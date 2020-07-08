@@ -157,7 +157,7 @@ public class RemoteKeyboardPlugin extends Plugin {
 
     @Override
     public Drawable getIcon() {
-        return ContextCompat.getDrawable(context, R.drawable.ic_action_keyboard);
+        return ContextCompat.getDrawable(context, R.drawable.ic_action_keyboard_24dp);
     }
 
     @Override

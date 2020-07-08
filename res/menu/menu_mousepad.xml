@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/menu_show_keyboard"
-        android:icon="@drawable/ic_action_keyboard"
+        android:icon="@drawable/ic_action_keyboard_24dp"
         android:title="@string/show_keyboard"
         kdeconnect:showAsAction="ifRoom" />
 
