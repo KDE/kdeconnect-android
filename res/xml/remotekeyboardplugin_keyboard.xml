@@ -7,7 +7,7 @@
     <Row android:rowEdgeFlags="bottom">
         <Key
             android:codes="0"
-            android:keyIcon="@drawable/ic_keyboard_hide_white_36dp"
+            android:keyIcon="@drawable/ic_keyboard_hide_36dp"
             android:keyWidth="20%" />
         <Key
             android:codes="1"
