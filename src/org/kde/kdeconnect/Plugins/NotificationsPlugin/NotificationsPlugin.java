@@ -49,6 +49,8 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.DialogFragment;
 
+import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 import org.json.JSONArray;
 import org.kde.kdeconnect.Helpers.AppsHelper;
 import org.kde.kdeconnect.NetworkPacket;
@@ -65,8 +67,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -86,7 +86,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     private Set<String> currentNotifications;
     private Map<String, RepliableNotification> pendingIntents;
-    private Map<String, List<Notification.Action>> actions;
+    private MultiValuedMap<String, Notification.Action> actions;
     private boolean serviceReady;
 
     @Override
@@ -131,7 +131,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
         pendingIntents = new HashMap<>();
         currentNotifications = new HashSet<>();
-        actions = new HashMap<>();
+        actions = new ArrayListValuedHashMap<>();
 
         appDatabase = new AppDatabase(context, true);
 
@@ -322,7 +322,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Nullable
     private JSONArray extractActions(Notification notification, String key) {
-
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             return null;
         }
@@ -331,7 +330,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             return null;
         }
 
-        actions.put(key, new LinkedList<>());
         JSONArray jsonArray = new JSONArray();
 
         for (Notification.Action action : notification.actions) {
@@ -345,7 +343,9 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                     continue;
 
             jsonArray.put(action.title.toString());
-            actions.get(key).add(action);
+
+            // A list is automatically created if it doesn't already exist.
+            actions.put(key, action);
         }
 
         return jsonArray;

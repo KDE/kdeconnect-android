@@ -39,6 +39,8 @@ import androidx.annotation.WorkerThread;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
+import org.apache.commons.collections4.MultiValuedMap;
+import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
@@ -86,7 +88,7 @@ public class Device implements BaseLink.PacketReceiver {
     private final ConcurrentHashMap<String, Plugin> plugins = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, Plugin> pluginsWithoutPermissions = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, Plugin> pluginsWithoutOptionalPermissions = new ConcurrentHashMap<>();
-    private Map<String, ArrayList<String>> pluginsByIncomingInterface = new HashMap<>();
+    private MultiValuedMap<String, String> pluginsByIncomingInterface = new ArrayListValuedHashMap<>();
 
     private final SharedPreferences settings;
 
@@ -558,7 +560,6 @@ public class Device implements BaseLink.PacketReceiver {
                 }
             }
         } else if (isPaired()) {
-
             // pluginsByIncomingInterface may not be built yet
             if(pluginsByIncomingInterface.isEmpty()) {
                 reloadPluginsFromSettings();
@@ -566,7 +567,7 @@ public class Device implements BaseLink.PacketReceiver {
 
             //If capabilities are not supported, iterate all plugins
             Collection<String> targetPlugins = pluginsByIncomingInterface.get(np.getType());
-            if (targetPlugins != null && !targetPlugins.isEmpty()) {
+            if (!targetPlugins.isEmpty()) {
                 for (String pluginKey : targetPlugins) {
                     Plugin plugin = plugins.get(pluginKey);
                     try {
@@ -589,9 +590,11 @@ public class Device implements BaseLink.PacketReceiver {
 
             unpair();
 
-            //If capabilities are not supported, iterate all plugins
+            //If capabilities are not supported, iterate through all plugins.
             Collection<String> targetPlugins = pluginsByIncomingInterface.get(np.getType());
-            if (targetPlugins != null && !targetPlugins.isEmpty()) {
+            // When a mapping doesn't exist, an empty collection is added to the map and
+            // then returned, so a null check is not necessary.
+            if (!targetPlugins.isEmpty()) {
                 for (String pluginKey : targetPlugins) {
                     Plugin plugin = plugins.get(pluginKey);
                     try {
@@ -604,7 +607,6 @@ public class Device implements BaseLink.PacketReceiver {
                 Log.e("Device", "Ignoring packet with type " + np.getType() + " because no plugin can handle it");
             }
         }
-
     }
 
     public static abstract class SendPacketStatusCallback {
@@ -816,11 +818,9 @@ public class Device implements BaseLink.PacketReceiver {
     }
 
     public void reloadPluginsFromSettings() {
-
-        HashMap<String, ArrayList<String>> newPluginsByIncomingInterface = new HashMap<>();
+        MultiValuedMap<String, String> newPluginsByIncomingInterface = new ArrayListValuedHashMap<>();
 
         for (String pluginKey : supportedPlugins) {
-
             PluginFactory.PluginInfo pluginInfo = PluginFactory.getPluginInfo(pluginKey);
 
             boolean pluginEnabled = false;
@@ -833,10 +833,7 @@ public class Device implements BaseLink.PacketReceiver {
                 boolean success = addPlugin(pluginKey);
                 if (success) {
                     for (String packageType : pluginInfo.getSupportedPacketTypes()) {
-                        ArrayList<String> plugins = newPluginsByIncomingInterface.get(packageType);
-                        if (plugins == null) plugins = new ArrayList<>();
-                        plugins.add(pluginKey);
-                        newPluginsByIncomingInterface.put(packageType, plugins);
+                        newPluginsByIncomingInterface.put(packageType, pluginKey);
                     }
                 } else {
                     removePlugin(pluginKey);
@@ -844,7 +841,6 @@ public class Device implements BaseLink.PacketReceiver {
             } else {
                 removePlugin(pluginKey);
             }
-
         }
 
         pluginsByIncomingInterface = newPluginsByIncomingInterface;
