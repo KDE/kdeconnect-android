@@ -62,7 +62,7 @@ public class BigscreenPlugin extends Plugin {
 
     @Override
     public Drawable getIcon() {
-        return ContextCompat.getDrawable(context, R.drawable.ic_presenter);
+        return ContextCompat.getDrawable(context, R.drawable.ic_presenter_24dp);
     }
 
     @Override
