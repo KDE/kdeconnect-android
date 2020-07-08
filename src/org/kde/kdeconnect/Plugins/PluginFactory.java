@@ -34,6 +34,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static org.apache.commons.collections4.SetUtils.emptyIfNull;
+import static org.apache.commons.collections4.SetUtils.unmodifiableSet;
+
 public class PluginFactory {
 
     @IndexAnnotated
@@ -52,12 +55,8 @@ public class PluginFactory {
             this.hasSettings = hasSettings;
             this.supportsDeviceSpecificSettings = supportsDeviceSpecificSettings;
             this.listenToUnpaired = listenToUnpaired;
-            HashSet<String> incoming = new HashSet<>();
-            if (supportedPacketTypes != null) Collections.addAll(incoming, supportedPacketTypes);
-            this.supportedPacketTypes = Collections.unmodifiableSet(incoming);
-            HashSet<String> outgoing = new HashSet<>();
-            if (outgoingPacketTypes != null) Collections.addAll(outgoing, outgoingPacketTypes);
-            this.outgoingPacketTypes = Collections.unmodifiableSet(outgoing);
+            this.supportedPacketTypes = emptyIfNull(unmodifiableSet(supportedPacketTypes));
+            this.outgoingPacketTypes = emptyIfNull(unmodifiableSet(outgoingPacketTypes));
             this.instantiableClass = instantiableClass;
         }
 
