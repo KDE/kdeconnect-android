@@ -265,7 +265,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             }
 
             MenuItem addDeviceItem = devicesMenu.add(Menu.FIRST, MENU_ENTRY_ADD_DEVICE, 1000, R.string.pair_new_device);
-            addDeviceItem.setIcon(R.drawable.ic_action_content_add_circle_outline);
+            addDeviceItem.setIcon(R.drawable.ic_action_content_add_circle_outline_32dp);
             addDeviceItem.setCheckable(true);
 
             MenuItem settingsItem = menu.add(Menu.FIRST, MENU_ENTRY_SETTINGS, 1000, R.string.settings);
