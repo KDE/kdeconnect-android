@@ -213,6 +213,8 @@
   <string name="no_file_browser">Não há gerenciadores de arquivos instalados.</string>
   <string name="pref_plugin_telepathy">Enviar SMS</string>
   <string name="pref_plugin_telepathy_desc">Envia mensagens de texto do seu Desktop</string>
+  <string name="pref_plugin_telepathy_mms">Enviar MMS</string>
+  <string name="pref_plugin_telepathy_mms_desc">Para poder enviar MMS do KDE Connect você precisa primeiro defini-lo como o aplicativo SMS padrão.</string>
   <string name="findmyphone_title">Encontrar meu telefone</string>
   <string name="findmyphone_title_tablet">Encontrar meu tablet</string>
   <string name="findmyphone_title_tv">Encontrar minha TV</string>
@@ -303,12 +305,22 @@
   <string name="pref_plugin_bigscreen_desc">Use seu dispositivo como um controle remoto para o Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">Para compartilhar a entrada do microfone de seu telefone você precisa conceder acesso à entrada de áudio do telefone</string>
   <string name="bigscreen_speech_extra_prompt">Falar</string>
+  <string name="set_default_sms_app_title">Enviar MMS</string>
+  <string name="set_group_message_as_mms_title">Enviar MMS em grupo</string>
+  <string name="set_long_text_as_mms_title">Enviar texto longo como MMS</string>
+  <string name="convert_to_mms_after_title">Converter para MMS</string>
+  <string name="sms_pref_set_mmsc_dialog_desc">Definir MMSC</string>
+  <string name="sms_pref_set_mmsc_title">MMSC</string>
+  <string name="sms_pref_set_mms_proxy_dialog_desc">Definir proxy MMS</string>
+  <string name="sms_pref_set_mms_proxy_title">Proxy MMS</string>
+  <string name="sms_pref_set_mms_port_dialog_desc">Definir porta MMS</string>
+  <string name="sms_pref_set_mms_port_title">Porta MMS</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>Após uma mensagem</item>
+    <item>Após duas mensagens</item>
+    <item>Após três mensagens</item>
+    <item>Após quatro mensagens</item>
+    <item>Após cinco mensagens</item>
   </string-array>
   <string name="theme_dialog_title">Escolher tema</string>
   <string-array name="theme_list">
