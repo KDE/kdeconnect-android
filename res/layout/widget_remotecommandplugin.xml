@@ -29,7 +29,7 @@
 
     </LinearLayout>
     <ListView
-        android:id="@+id/runcommandslist"
+        android:id="@+id/run_commands_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="4dp"

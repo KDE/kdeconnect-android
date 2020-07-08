@@ -5,7 +5,7 @@
                                                      android:layout_height="match_parent">
 
     <ListView
-        android:id="@+id/runcommandslist"
+        android:id="@+id/run_commands_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="4dp"
@@ -20,11 +20,11 @@
         android:layout_margin="16dp"
         app:srcCompat="@drawable/ic_action_image_edit_24dp"
         app:backgroundTint="@color/primary"
-        app:layout_anchor="@id/runcommandslist"
+        app:layout_anchor="@id/run_commands_list"
         app:layout_anchorGravity="bottom|end" />
 
     <TextView
-        android:id="@+id/addcomand_explanation"
+        android:id="@+id/add_comand_explanation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
