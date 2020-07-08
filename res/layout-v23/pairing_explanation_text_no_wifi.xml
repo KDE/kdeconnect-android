@@ -3,12 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
-    android:clickable="false"
-    android:drawableStart="@drawable/ic_warning"
-    android:drawableLeft="@drawable/ic_warning"
+    android:clickable="true"
+    android:drawableStart="@drawable/ic_wifi"
     android:drawablePadding="8dp"
+    android:drawableTint="?attr/colorControlNormal"
     android:paddingTop="16dp"
     android:paddingBottom="12dp"
-    android:text="@string/on_non_trusted_message">
+    android:text="@string/no_wifi">
 
 </TextView>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mpris_control_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -32,7 +33,7 @@
             android:layout_weight="0.25"
             android:layout_marginRight="3dp"
             android:layout_marginEnd="3dp"
-            android:src="@drawable/ic_previous_black"
+            app:srcCompat="@drawable/ic_previous_black"
             android:theme="@style/DisableableButton" />
 
         <ImageButton
@@ -43,7 +44,7 @@
             android:layout_marginStart="3dp"
             android:layout_weight="0.25"
             android:contentDescription="@string/mpris_ff"
-            android:src="@drawable/ic_next_black"
+            app:srcCompat="@drawable/ic_next_black"
             android:theme="@style/DisableableButton" />
 
     </LinearLayout>

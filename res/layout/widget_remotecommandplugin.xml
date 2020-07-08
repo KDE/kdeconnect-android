@@ -41,11 +41,12 @@
         android:id="@+id/not_reachable_message"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:drawableStart="@drawable/ic_error_outline_black_48dp"
         android:drawableLeft="@drawable/ic_error_outline_black_48dp"
         android:drawablePadding="8dip"
-        android:paddingLeft="8dip"
-        android:drawableStart="@drawable/ic_error_outline_black_48dp"
         android:gravity="center_vertical"
+        android:paddingStart="8dip"
+        android:paddingLeft="8dip"
         android:text="@string/unreachable_description"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 </LinearLayout>

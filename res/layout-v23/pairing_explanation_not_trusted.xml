@@ -5,8 +5,8 @@
     android:background="?attr/selectableItemBackground"
     android:clickable="false"
     android:drawableStart="@drawable/ic_warning"
-    android:drawableLeft="@drawable/ic_warning"
     android:drawablePadding="8dp"
+    android:drawableTint="?attr/colorControlNormal"
     android:paddingTop="16dp"
     android:paddingBottom="12dp"
     android:text="@string/on_non_trusted_message">
