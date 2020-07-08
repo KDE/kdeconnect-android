@@ -6,7 +6,7 @@
     android:padding="20dp">
 
     <ListView
-        android:id="@+id/runcommandsdevicelist"
+        android:id="@+id/run_commands_device_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="4dp"
