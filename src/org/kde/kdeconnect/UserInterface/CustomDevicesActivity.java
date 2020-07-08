@@ -28,26 +28,22 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.BaseTransientBottomBar;
-import com.google.android.material.snackbar.Snackbar;
-
-import org.kde.kdeconnect.BackgroundService;
-import org.kde.kdeconnect_tp.R;
-
-import java.util.ArrayList;
-import java.util.Collections;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.TooltipCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
-import butterknife.Unbinder;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
+
+import org.kde.kdeconnect_tp.R;
+import org.kde.kdeconnect_tp.databinding.ActivityCustomDevicesBinding;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 //TODO: Require wifi connection so entries can be verified
 //TODO: Resolve to ip address and don't allow unresolvable or duplicates based on ip address
@@ -59,13 +55,10 @@ public class CustomDevicesActivity extends AppCompatActivity implements CustomDe
     private static final String IP_DELIM = ",";
     private static final String KEY_EDITING_DEVICE_AT_POSITION = "EditingDeviceAtPosition";
 
-    @BindView(R.id.recyclerView) RecyclerView recyclerView;
-    @BindView(R.id.emptyListMessage) TextView emptyListMessage;
-    @BindView(R.id.floatingActionButton) FloatingActionButton fab;
+    private RecyclerView recyclerView;
+    private TextView emptyListMessage;
 
     private ArrayList<String> customDeviceList;
-    private boolean dialogAlreadyShown = false;
-    private Unbinder unbinder;
     private EditTextAlertDialogFragment addDeviceDialog;
     private SharedPreferences sharedPreferences;
     private CustomDevicesAdapter customDevicesAdapter;
@@ -77,9 +70,15 @@ public class CustomDevicesActivity extends AppCompatActivity implements CustomDe
         ThemeUtil.setUserPreferredTheme(this);
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_custom_devices);
+        final ActivityCustomDevicesBinding binding = ActivityCustomDevicesBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        unbinder = ButterKnife.bind(this);
+        recyclerView = binding.recyclerView;
+        emptyListMessage = binding.emptyListMessage;
+        final FloatingActionButton fab = binding.floatingActionButton;
+
+        fab.setOnClickListener(v -> showEditTextDialog(""));
+
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         customDeviceList = getCustomDeviceList(sharedPreferences);
@@ -109,25 +108,14 @@ public class CustomDevicesActivity extends AppCompatActivity implements CustomDe
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
         outState.putInt(KEY_EDITING_DEVICE_AT_POSITION, editingDeviceAtPosition);
     }
 
-    @Override
-    protected void onDestroy() {
-        unbinder.unbind();
-        super.onDestroy();
-    }
-
     private void showEmptyListMessageIfRequired() {
         emptyListMessage.setVisibility(customDeviceList.isEmpty() ? View.VISIBLE : View.GONE);
-    }
-
-    @OnClick(R.id.floatingActionButton)
-    void onFabClicked() {
-        showEditTextDialog("");
     }
 
     private void showEditTextDialog(@NonNull String text) {
