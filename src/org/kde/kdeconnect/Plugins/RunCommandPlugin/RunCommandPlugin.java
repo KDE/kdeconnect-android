@@ -83,7 +83,7 @@ public class RunCommandPlugin extends Plugin {
 
     @Override
     public Drawable getIcon() {
-        return ContextCompat.getDrawable(context, R.drawable.runcommand_plugin_icon);
+        return ContextCompat.getDrawable(context, R.drawable.run_command_plugin_icon_24dp);
     }
 
     @Override
