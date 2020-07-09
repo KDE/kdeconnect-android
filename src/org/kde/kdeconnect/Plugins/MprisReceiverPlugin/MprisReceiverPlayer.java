@@ -24,6 +24,7 @@ import android.media.MediaMetadata;
 import android.media.session.MediaController;
 import android.media.session.PlaybackState;
 import android.os.Build;
+import android.text.TextUtils;
 
 import androidx.annotation.RequiresApi;
 
@@ -110,9 +111,9 @@ class MprisReceiverPlayer {
         if (metadata == null) return "";
 
         String artist = metadata.getString(MediaMetadata.METADATA_KEY_ARTIST);
-        if (artist == null || artist.isEmpty()) artist = metadata.getString(MediaMetadata.METADATA_KEY_ALBUM_ARTIST);
-        if (artist == null || artist.isEmpty()) artist = metadata.getString(MediaMetadata.METADATA_KEY_AUTHOR);
-        if (artist == null || artist.isEmpty()) artist = metadata.getString(MediaMetadata.METADATA_KEY_WRITER);
+        if (TextUtils.isEmpty(artist)) artist = metadata.getString(MediaMetadata.METADATA_KEY_ALBUM_ARTIST);
+        if (TextUtils.isEmpty(artist)) artist = metadata.getString(MediaMetadata.METADATA_KEY_AUTHOR);
+        if (TextUtils.isEmpty(artist)) artist = metadata.getString(MediaMetadata.METADATA_KEY_WRITER);
 
         return artist != null ? artist : "";
     }
@@ -122,7 +123,7 @@ class MprisReceiverPlayer {
         if (metadata == null) return "";
 
         String title = metadata.getString(MediaMetadata.METADATA_KEY_TITLE);
-        if (title == null || title.isEmpty()) title = metadata.getString(MediaMetadata.METADATA_KEY_DISPLAY_TITLE);
+        if (TextUtils.isEmpty(title)) title = metadata.getString(MediaMetadata.METADATA_KEY_DISPLAY_TITLE);
         return title != null ? title : "";
     }
 

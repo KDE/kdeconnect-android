@@ -28,6 +28,7 @@ import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.jakewharton.disklrucache.DiskLruCache;
@@ -142,7 +143,7 @@ final class AlbumArtCache {
      */
     static Bitmap getAlbumArt(String albumUrl, MprisPlugin plugin, String player) {
         //If the url is invalid, return "no album art"
-        if (albumUrl == null || albumUrl.isEmpty()) {
+        if (TextUtils.isEmpty(albumUrl)) {
             return null;
         }
 

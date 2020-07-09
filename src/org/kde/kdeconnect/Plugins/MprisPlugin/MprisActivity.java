@@ -30,6 +30,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -382,7 +383,7 @@ public class MprisActivity extends AppCompatActivity {
         String targetPlayerName = getIntent().getStringExtra("player");
         getIntent().removeExtra("player");
 
-        if (targetPlayerName == null || targetPlayerName.isEmpty()) {
+        if (TextUtils.isEmpty(targetPlayerName)) {
             if (savedInstanceState != null) {
                 targetPlayerName = savedInstanceState.getString("targetPlayer");
             }

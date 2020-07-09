@@ -7,6 +7,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -46,7 +47,7 @@ public class RunCommandWidget extends AppWidgetProvider {
                     }
                 }
             });
-        } else if (intent != null && intent.getAction() != null && intent.getAction().equals(SET_CURRENT_DEVICE)) {
+        } else if (intent != null && TextUtils.equals(intent.getAction(), SET_CURRENT_DEVICE)) {
             setCurrentDevice(context);
         }
 

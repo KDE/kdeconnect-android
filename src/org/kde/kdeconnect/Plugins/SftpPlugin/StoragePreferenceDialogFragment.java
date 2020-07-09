@@ -127,7 +127,8 @@ public class StoragePreferenceDialogFragment extends PreferenceDialogFragmentCom
                 storageLocation.setText(requireContext().getString(R.string.sftp_storage_preference_click_to_select));
             }
 
-            boolean isClickToSelect = storageLocation.getText() != null && storageLocation.getText().toString().equals(getString(R.string.sftp_storage_preference_click_to_select));
+            boolean isClickToSelect = TextUtils.equals(storageLocation.getText(),
+                    getString(R.string.sftp_storage_preference_click_to_select));
 
             storageLocation.setCompoundDrawables(null, null, isClickToSelect ? arrowDropDownDrawable : null, null);
             storageLocation.setEnabled(isClickToSelect);

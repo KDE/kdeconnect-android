@@ -32,6 +32,7 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.kde.kdeconnect.Helpers.ContactsHelper;
@@ -164,7 +165,7 @@ public class TelephonyPlugin extends Plugin {
                 if (photoUri != null) {
                     try {
                         String base64photo = ContactsHelper.photoId64Encoded(context, photoUri);
-                        if (base64photo != null && !base64photo.isEmpty()) {
+                        if (!TextUtils.isEmpty(base64photo)) {
                             np.set("phoneThumbnail", base64photo);
                         }
                     } catch (Exception e) {
