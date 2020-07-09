@@ -51,6 +51,7 @@ import androidx.fragment.app.DialogFragment;
 
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.kde.kdeconnect.Helpers.AppsHelper;
@@ -323,11 +324,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Nullable
     private JSONArray extractActions(Notification notification, String key) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            return null;
-        }
-
-        if (notification.actions == null || notification.actions.length == 0) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT || ArrayUtils.isEmpty(notification.actions)) {
             return null;
         }
 
@@ -339,9 +336,9 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 continue;
 
             // Check whether it is a reply action. We have special treatment for them
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH)
-                if (action.getRemoteInputs() != null && action.getRemoteInputs().length > 0)
-                    continue;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH &&
+                    ArrayUtils.isNotEmpty(action.getRemoteInputs()))
+                continue;
 
             jsonArray.put(action.title.toString());
 
