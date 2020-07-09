@@ -168,6 +168,8 @@ dependencies {
 
     implementation 'com.klinkerapps:android-smsmms:5.2.6' //For SMS and MMS purposes
 
+    implementation 'org.apache.commons:commons-collections4:4.4'
+
     // Testing
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.powermock:powermock-core:2.0.0'
