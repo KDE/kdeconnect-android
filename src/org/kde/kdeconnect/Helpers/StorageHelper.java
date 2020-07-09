@@ -42,6 +42,8 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+
 //Code from http://stackoverflow.com/questions/9340332/how-can-i-get-the-list-of-mounted-external-storage-of-android-device/19982338#19982338
 //modified to work on Lollipop and other devices
 public class StorageHelper {
@@ -109,7 +111,7 @@ public class StorageHelper {
                     }
                     if (!path.startsWith("/storage/emulated") || dirs.length == 1) {
                         if (!paths.contains(path) && !paths.contains(path2)) {
-                            if (mounts == null || mounts.contains(path) || mounts.contains(path2)) {
+                            if (mounts == null || StringUtils.containsAny(mounts, path, path2)) {
                                 list.add(0, new StorageInfo(path, dir.canWrite(), true, cur_removable_number++));
                                 paths.add(path);
                             }
@@ -123,8 +125,7 @@ public class StorageHelper {
             try (FileReader fileReader = new FileReader("/proc/mounts")) {
                 // The reader is buffered internally, so buffering it separately is unnecessary.
                 final List<String> lines = IOUtils.readLines(fileReader).stream()
-                        .filter(line -> line.contains("vfat") || line.contains("exfat") ||
-                                line.contains("ntfs") || line.contains("/mnt"))
+                        .filter(line -> StringUtils.containsAny(line, "vfat", "exfat", "ntfs", "/mnt"))
                         .collect(Collectors.toList());
                 for (String line : lines) {
                     if (line.contains("/storage/sdcard"))
@@ -147,18 +148,12 @@ public class StorageHelper {
                 List<String> flags = Arrays.asList(tokens.nextToken().split(",")); //flags
                 boolean readonly = flags.contains("ro");
 
-                if (line.contains("/dev/block/vold")) {
-                    if (!line.contains("/mnt/secure")
-                            && !line.contains("/mnt/asec")
-                            && !line.contains("/mnt/obb")
-                            && !line.contains("/dev/mapper")
-                            && !line.contains("tmpfs")) {
-                        paths.add(mount_point);
-                        list.add(new StorageInfo(mount_point, readonly, true, cur_removable_number++));
-                    }
+                if (line.contains("/dev/block/vold") && !StringUtils.containsAny(line, "/mnt/secure",
+                        "/mnt/asec", "/mnt/obb", "/dev/mapper", "tmpfs")) {
+                    paths.add(mount_point);
+                    list.add(new StorageInfo(mount_point, readonly, true, cur_removable_number++));
                 }
             }
-
         }
 
         return list;
