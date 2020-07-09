@@ -183,6 +183,7 @@ dependencies {
 
     implementation 'commons-io:commons-io:2.7'
     implementation 'org.apache.commons:commons-collections4:4.4'
+    implementation 'org.apache.commons:commons-lang3:3.10'
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
