@@ -34,6 +34,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
+import org.apache.commons.lang3.StringUtils;
 import org.kde.kdeconnect.Helpers.AppsHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationReceiver;
@@ -260,7 +261,7 @@ public class MprisReceiverPlugin extends Plugin {
 
     private boolean hasPermission() {
         String notificationListenerList = Settings.Secure.getString(context.getContentResolver(), "enabled_notification_listeners");
-        return (notificationListenerList != null && notificationListenerList.contains(context.getPackageName()));
+        return StringUtils.contains(notificationListenerList, context.getPackageName());
     }
 
 }

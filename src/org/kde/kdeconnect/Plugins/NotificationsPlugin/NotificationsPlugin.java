@@ -51,6 +51,7 @@ import androidx.fragment.app.DialogFragment;
 
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONArray;
 import org.kde.kdeconnect.Helpers.AppsHelper;
 import org.kde.kdeconnect.NetworkPacket;
@@ -121,7 +122,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     private boolean hasPermission() {
         String notificationListenerList = Settings.Secure.getString(context.getContentResolver(), "enabled_notification_listeners");
-        return (notificationListenerList != null && notificationListenerList.contains(context.getPackageName()));
+        return StringUtils.contains(notificationListenerList, context.getPackageName());
     }
 
     @Override
