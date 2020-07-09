@@ -229,6 +229,8 @@
   <string name="no_file_browser">Ni nameščenega nobenega brskalnika datotek.</string>
   <string name="pref_plugin_telepathy">Pošlji SMS</string>
   <string name="pref_plugin_telepathy_desc">Pošlji besedilna sporočila z namizja</string>
+  <string name="pref_plugin_telepathy_mms">Pošlji MMS</string>
+  <string name="pref_plugin_telepathy_mms_desc">Če želite pošiljati MMS iz KDE Connect, ga morate nastaviti kot privzeto aplikacijo za SMS.</string>
   <string name="findmyphone_title">Poišči moj telefon</string>
   <string name="findmyphone_title_tablet">Poišči mojo tablico</string>
   <string name="findmyphone_title_tv">Poišči moj TV</string>
@@ -319,12 +321,22 @@
   <string name="pref_plugin_bigscreen_desc">Uporabite svojo napravo kot daljinec za Plasmin veliki zaslon</string>
   <string name="bigscreen_optional_permission_explanation">Če želite deliti vhod mikrofona iz telefona, morate imeti dostop do avdio vhoda telefona</string>
   <string name="bigscreen_speech_extra_prompt">Govor</string>
+  <string name="set_default_sms_app_title">Pošlji MMS</string>
+  <string name="set_group_message_as_mms_title">Pošlji skupinski SMS</string>
+  <string name="set_long_text_as_mms_title">Pošlji dolgo besedilo kot MMS</string>
+  <string name="convert_to_mms_after_title">Pretvori v MMS</string>
+  <string name="sms_pref_set_mmsc_dialog_desc">Nastavi MMSC</string>
+  <string name="sms_pref_set_mmsc_title">MMSC</string>
+  <string name="sms_pref_set_mms_proxy_dialog_desc">Nastavi posrednika za MMS</string>
+  <string name="sms_pref_set_mms_proxy_title">Posrednik za MMS</string>
+  <string name="sms_pref_set_mms_port_dialog_desc">Nastavi vrata za MMS</string>
+  <string name="sms_pref_set_mms_port_title">Vrata za MMS</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>Po enem sporočilu</item>
+    <item>Po dveh sporočilih</item>
+    <item>Po treh sporočilih</item>
+    <item>Po štirih sporočilih</item>
+    <item>Po petih sporočilih</item>
   </string-array>
   <string name="theme_dialog_title">Izberite temo</string>
   <string-array name="theme_list">
