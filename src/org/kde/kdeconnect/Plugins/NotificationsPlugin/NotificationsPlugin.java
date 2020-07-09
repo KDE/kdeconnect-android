@@ -617,7 +617,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         String result;
         // first check if it's one of our remoteIds
         String tag = statusBarNotification.getTag();
-        if (tag != null && tag.startsWith("kdeconnectId:"))
+        if (StringUtils.startsWith(tag, "kdeconnectId:"))
             result = Integer.toString(statusBarNotification.getId());
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             result = statusBarNotification.getKey();

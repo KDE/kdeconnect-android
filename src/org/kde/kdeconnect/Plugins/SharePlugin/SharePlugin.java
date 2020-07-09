@@ -36,6 +36,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
 
+import org.apache.commons.lang3.StringUtils;
 import org.kde.kdeconnect.Helpers.FilesHelper;
 import org.kde.kdeconnect.Helpers.IntentHelper;
 import org.kde.kdeconnect.NetworkPacket;
@@ -264,7 +265,7 @@ public class SharePlugin extends Plugin {
                 String subject = extras.getString(Intent.EXTRA_SUBJECT);
 
                 //Hack: Detect shared youtube videos, so we can open them in the browser instead of as text
-                if (subject != null && subject.endsWith("YouTube")) {
+                if (StringUtils.endsWith(subject, "YouTube")) {
                     int index = text.indexOf(": http://youtu.be/");
                     if (index > 0) {
                         text = text.substring(index + 2); //Skip ": "
