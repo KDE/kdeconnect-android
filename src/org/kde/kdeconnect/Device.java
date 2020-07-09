@@ -41,6 +41,7 @@ import androidx.core.content.ContextCompat;
 
 import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
+import org.apache.commons.lang3.StringUtils;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
@@ -188,7 +189,7 @@ public class Device implements BaseLink.PacketReceiver {
     }
 
     public String getName() {
-        return name != null ? name : context.getString(R.string.unknown_device);
+        return StringUtils.defaultString(name, context.getString(R.string.unknown_device));
     }
 
     public Drawable getIcon() {

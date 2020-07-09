@@ -243,7 +243,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         np.set("id", key);
         np.set("onlyOnce", (notification.flags & NotificationCompat.FLAG_ONLY_ALERT_ONCE) != 0);
         np.set("isClearable", statusBarNotification.isClearable());
-        np.set("appName", appName == null ? packageName : appName);
+        np.set("appName", StringUtils.defaultString(appName, packageName));
         np.set("time", Long.toString(statusBarNotification.getPostTime()));
 
         if (!appDatabase.getPrivacy(packageName, AppDatabase.PrivacyOptions.BLOCK_CONTENTS)) {
@@ -624,9 +624,8 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         } else {
             String packageName = statusBarNotification.getPackageName();
             int id = statusBarNotification.getId();
-            String safePackageName = (packageName == null) ? "" : packageName;
-            String safeTag = (tag == null) ? "" : tag;
-            result = safePackageName + ":" + safeTag + ":" + id;
+            result = StringUtils.defaultString(packageName) + ":" + StringUtils.defaultString(tag) +
+                    ":" + id;
         }
         return result;
     }

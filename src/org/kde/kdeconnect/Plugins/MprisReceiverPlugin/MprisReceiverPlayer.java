@@ -28,6 +28,8 @@ import android.text.TextUtils;
 
 import androidx.annotation.RequiresApi;
 
+import org.apache.commons.lang3.StringUtils;
+
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 class MprisReceiverPlayer {
 
@@ -102,8 +104,7 @@ class MprisReceiverPlayer {
         MediaMetadata metadata = controller.getMetadata();
         if (metadata == null) return "";
 
-        String album = metadata.getString(MediaMetadata.METADATA_KEY_ALBUM);
-        return album != null ? album : "";
+        return StringUtils.defaultString(metadata.getString(MediaMetadata.METADATA_KEY_ALBUM));
     }
 
     String getArtist() {
@@ -115,7 +116,7 @@ class MprisReceiverPlayer {
         if (TextUtils.isEmpty(artist)) artist = metadata.getString(MediaMetadata.METADATA_KEY_AUTHOR);
         if (TextUtils.isEmpty(artist)) artist = metadata.getString(MediaMetadata.METADATA_KEY_WRITER);
 
-        return artist != null ? artist : "";
+        return StringUtils.defaultString(artist);
     }
 
     String getTitle() {
@@ -124,7 +125,7 @@ class MprisReceiverPlayer {
 
         String title = metadata.getString(MediaMetadata.METADATA_KEY_TITLE);
         if (TextUtils.isEmpty(title)) title = metadata.getString(MediaMetadata.METADATA_KEY_DISPLAY_TITLE);
-        return title != null ? title : "";
+        return StringUtils.defaultString(title);
     }
 
     void previous() {

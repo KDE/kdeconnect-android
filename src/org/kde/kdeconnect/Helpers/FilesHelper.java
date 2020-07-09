@@ -32,6 +32,7 @@ import android.util.Log;
 import android.webkit.MimeTypeMap;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.kde.kdeconnect.NetworkPacket;
 
 import java.io.File;
@@ -43,8 +44,7 @@ public class FilesHelper {
 
     public static String getMimeTypeFromFile(String file) {
         String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(FilenameUtils.getExtension(file));
-        if (mime == null) mime = "*/*";
-        return mime;
+        return StringUtils.defaultString(mime, "*/*");
     }
 
     public static String findNonExistingNameForNewFile(String path, String filename) {
