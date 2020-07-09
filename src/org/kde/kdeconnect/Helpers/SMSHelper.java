@@ -41,6 +41,7 @@ import com.klinker.android.send_message.Utils;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -593,8 +594,7 @@ public class SMSHelper {
         int read = Integer.parseInt(messageInfo.get(Message.READ));
         @NonNull ThreadID threadID = new ThreadID(Long.parseLong(messageInfo.get(Message.THREAD_ID)));
         long uID = Long.parseLong(messageInfo.get(Message.U_ID));
-        int subscriptionID = messageInfo.get(Message.SUBSCRIPTION_ID) != null ?
-                Integer.parseInt(messageInfo.get(Message.SUBSCRIPTION_ID)) : 0;
+        int subscriptionID = NumberUtils.toInt(messageInfo.get(Message.SUBSCRIPTION_ID));
 
         return new Message(
                 address,
@@ -626,8 +626,7 @@ public class SMSHelper {
         int read = Integer.parseInt(messageInfo.get(Message.READ));
         @NonNull ThreadID threadID = new ThreadID(Long.parseLong(messageInfo.get(Message.THREAD_ID)));
         long uID = Long.parseLong(messageInfo.get(Message.U_ID));
-        int subscriptionID = messageInfo.get(Message.SUBSCRIPTION_ID) != null ?
-                Integer.parseInt(messageInfo.get(Message.SUBSCRIPTION_ID)) : 0;
+        int subscriptionID = NumberUtils.toInt(messageInfo.get(Message.SUBSCRIPTION_ID));
 
         String[] columns = {
                 Telephony.Mms.Part._ID,          // The content ID of this part
