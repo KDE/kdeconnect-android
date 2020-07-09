@@ -178,6 +178,7 @@ dependencies {
 
     implementation 'com.klinkerapps:android-smsmms:5.2.6' //For SMS and MMS purposes
 
+    implementation 'commons-io:commons-io:2.7'
     implementation 'org.apache.commons:commons-collections4:4.4'
 
     // Kotlin
