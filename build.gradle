@@ -22,7 +22,6 @@ android {
         proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
         multiDexEnabled true
-        vectorDrawables.useSupportLibrary true
     }
     dexOptions {
         javaMaxHeapSize "2g"
