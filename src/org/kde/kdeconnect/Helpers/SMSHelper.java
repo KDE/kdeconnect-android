@@ -33,14 +33,19 @@ import android.provider.Telephony;
 import android.telephony.PhoneNumberUtils;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+
+import com.klinker.android.send_message.Utils;
+
+import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -57,12 +62,6 @@ import java.util.TreeMap;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-
-import com.klinker.android.send_message.Utils;
 
 @SuppressLint("InlinedApi")
 public class SMSHelper {
@@ -662,7 +661,7 @@ public class SMSHelper {
                 // TODO: Parse charset (As usual, it is skimpily documented) (Possibly refer to MMS spec)
 
                 do {
-                    Long partID = cursor.getLong(partIDColumn);
+                    long partID = cursor.getLong(partIDColumn);
                     String contentType = cursor.getString(contentTypeColumn);
                     String data = cursor.getString(dataColumn);
                     if ("text/plain".equals(contentType)) {
@@ -794,26 +793,18 @@ public class SMSHelper {
      * Get a text part of an MMS message
      * Original implementation from https://stackoverflow.com/a/6446831/3723163
      */
-    private static String getMmsText(
-            @NonNull Context context,
-            @NonNull Long id
-    ) {
+    private static String getMmsText(@NonNull Context context, long id) {
         Uri partURI = ContentUris.withAppendedId(getMMSPartUri(), id);
-        StringBuilder body = new StringBuilder();
+        String body = "";
         try (InputStream is = context.getContentResolver().openInputStream(partURI)) {
             if (is != null) {
-                InputStreamReader isr = new InputStreamReader(is, "UTF-8");
-                BufferedReader reader = new BufferedReader(isr);
-                String temp = reader.readLine();
-                while (temp != null) {
-                    body.append(temp);
-                    temp = reader.readLine();
-                }
+                // The stream is buffered internally, so buffering it separately is unnecessary.
+                body = IOUtils.toString(is, StringsHelper.UTF8);
             }
         } catch (IOException e) {
             throw new SMSHelper.MessageAccessException(partURI, e);
         }
-        return body.toString();
+        return body;
     }
 
     /**

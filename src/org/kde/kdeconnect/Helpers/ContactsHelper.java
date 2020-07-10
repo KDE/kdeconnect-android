@@ -36,19 +36,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import java.io.BufferedReader;
+import org.apache.commons.io.IOUtils;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 public class ContactsHelper {
 
@@ -179,15 +179,10 @@ public class ContactsHelper {
                     throw new NullPointerException("ContentResolver did not give us a stream for the VCard for uID " + ID);
                 }
 
-                BufferedReader bufferedInput = new BufferedReader(new InputStreamReader(input));
-
-                StringBuilder vcard = new StringBuilder();
-                String line;
-                while ((line = bufferedInput.readLine()) != null) {
-                    vcard.append(line).append('\n');
-                }
-
-                toReturn.put(ID, new VCardBuilder(vcard.toString()));
+                final Reader reader = new InputStreamReader(input);
+                final List<String> lines = IOUtils.readLines(reader);
+                reader.close();
+                toReturn.put(ID, new VCardBuilder(lines.stream().collect(Collectors.joining("\n"))));
             } catch (IOException e) {
                 // If you are experiencing this, please open a bug report indicating how you got here
                 Log.e("Contacts", "Exception while fetching vcards", e);

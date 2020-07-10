@@ -28,7 +28,10 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.util.Log;
 
-import java.io.BufferedReader;
+import androidx.annotation.NonNull;
+
+import org.apache.commons.io.IOUtils;
+
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -37,8 +40,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
-
-import androidx.annotation.NonNull;
+import java.util.stream.Collectors;
 
 //Code from http://stackoverflow.com/questions/9340332/how-can-i-get-the-list-of-mounted-external-storage-of-android-device/19982338#19982338
 //modified to work on Lollipop and other devices
@@ -116,18 +118,19 @@ public class StorageHelper {
                 }
             }
         } else {
-
             //Legacy code for Android < 4.0 that still didn't have /storage
-
-            ArrayList<String> entries = new ArrayList<>();
-            try (BufferedReader buf_reader = new BufferedReader(new FileReader("/proc/mounts"))){
-                String entry;
-                while ((entry = buf_reader.readLine()) != null) {
-                    //Log.e("getStorageList", entry);
-                    if (entry.contains("vfat") || entry.contains("exfat") || entry.contains("ntfs") || entry.contains("/mnt")) {
-                        if (entry.contains("/storage/sdcard")) entries.add(0, entry);
-                        else entries.add(entry);
-                    }
+            List<String> entries = new ArrayList<>();
+            try (FileReader fileReader = new FileReader("/proc/mounts")) {
+                // The reader is buffered internally, so buffering it separately is unnecessary.
+                final List<String> lines = IOUtils.readLines(fileReader).stream()
+                        .filter(line -> line.contains("vfat") || line.contains("exfat") ||
+                                line.contains("ntfs") || line.contains("/mnt"))
+                        .collect(Collectors.toList());
+                for (String line : lines) {
+                    if (line.contains("/storage/sdcard"))
+                        entries.add(0, line);
+                    else
+                        entries.add(line);
                 }
             } catch (Exception e) {
                 Log.e("StorageHelper", "Exception", e);
