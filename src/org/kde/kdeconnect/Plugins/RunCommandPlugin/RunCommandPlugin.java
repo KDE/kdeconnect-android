@@ -35,6 +35,7 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 
 import androidx.core.content.ContextCompat;
@@ -120,7 +121,7 @@ public class RunCommandPlugin extends Plugin {
                     }
                 }
 
-                Collections.sort(commandItems, (lhs, rhs) -> lhs.getName().compareTo(rhs.getName()) );
+                Collections.sort(commandItems, Comparator.comparing(CommandEntry::getName));
 
                 Intent updateWidget = new Intent(context, RunCommandWidget.class);
                 context.sendBroadcast(updateWidget);

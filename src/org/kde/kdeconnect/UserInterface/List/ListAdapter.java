@@ -29,7 +29,7 @@ import android.widget.ArrayAdapter;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ListAdapter extends ArrayAdapter<ListAdapter.Item> {
 
@@ -38,11 +38,11 @@ public class ListAdapter extends ArrayAdapter<ListAdapter.Item> {
         View inflateView(LayoutInflater layoutInflater);
     }
 
-    private final ArrayList<Item> items;
+    private final List<? extends Item> items;
     private final LayoutInflater layoutInflater;
 
-    public ListAdapter(Context context, ArrayList<Item> items) {
-        super(context, 0, items);
+    public ListAdapter(Context context, List<? extends Item> items) {
+        super(context, 0, (List<Item>) items);
         this.items = items;
         layoutInflater = ContextCompat.getSystemService(context, LayoutInflater.class);
     }

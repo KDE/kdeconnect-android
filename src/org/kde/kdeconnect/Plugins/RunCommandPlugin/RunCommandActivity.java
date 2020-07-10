@@ -21,7 +21,6 @@
 
 package org.kde.kdeconnect.Plugins.RunCommandPlugin;
 
-import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -50,15 +49,15 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class RunCommandActivity extends AppCompatActivity {
-
     private String deviceId;
     private final RunCommandPlugin.CommandsChangedCallback commandsChangedCallback = this::updateView;
-    private ArrayList<ListAdapter.Item> commandItems;
+    private List<CommandEntry> commandItems;
 
     private void updateView() {
-
         BackgroundService.RunWithPlugin(this, deviceId, RunCommandPlugin.class, plugin -> runOnUiThread(() -> {
             ListView view = findViewById(R.id.runcommandslist);
 
@@ -74,20 +73,12 @@ public class RunCommandActivity extends AppCompatActivity {
                 }
             }
 
-            Collections.sort(commandItems, (lhs, rhs) -> {
-                String lName = ((CommandEntry) lhs).getName();
-                String rName = ((CommandEntry) rhs).getName();
-                return lName.compareTo(rName);
-            });
+            Collections.sort(commandItems, Comparator.comparing(CommandEntry::getName));
 
             ListAdapter adapter = new ListAdapter(RunCommandActivity.this, commandItems);
 
             view.setAdapter(adapter);
-            view.setOnItemClickListener((adapterView, view1, i, l) -> {
-                CommandEntry entry = (CommandEntry) commandItems.get(i);
-                plugin.runCommand(entry.getKey());
-            });
-
+            view.setOnItemClickListener((adapterView, view1, i, l) -> plugin.runCommand(commandItems.get(i).getKey()));
 
             TextView explanation = findViewById(R.id.addcomand_explanation);
             String text = getString(R.string.addcommand_explanation);
