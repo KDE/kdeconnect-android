@@ -1,7 +1,7 @@
 package org.kde.kdeconnect;
 
 import java.util.ArrayDeque;
-import java.util.Iterator;
+import java.util.Optional;
 
 /**
  * Keeps a queue of packets to send to a device, to prevent either blocking or using lots of threads
@@ -47,17 +47,13 @@ class DevicePacketQueue {
                 callback.onFailure(new Exception("Device disconnected!"));
             } else {
                 if (replaceID >= 0) {
-                    Iterator<Item> iter = items.iterator();
-                    while (iter.hasNext()) {
-                        Item item = iter.next();
-                        if (item.replaceID == replaceID) {
-                            //Replace contents with new contents
-                            item.packet = packet;
-                            item.callback = callback;
-                            //There can only be one in the queue, so we're done now
-                            return;
-                        }
-                    }
+                    final Optional<Item> itemOptional = items.stream()
+                            .filter(item -> item.replaceID == replaceID).findFirst();
+                    itemOptional.ifPresent(item -> {
+                        //Replace contents with new contents
+                        item.packet = packet;
+                        item.callback = callback;
+                    });
                 }
                 items.addLast(new Item(packet, replaceID, callback));
                 lock.notify();
@@ -73,13 +69,12 @@ class DevicePacketQueue {
      */
     NetworkPacket getAndRemoveUnsentPacket(int replaceID) {
         synchronized (lock) {
-            Iterator<Item> iter = items.iterator();
-            while (iter.hasNext()) {
-                Item item = iter.next();
-                if (item.replaceID == replaceID) {
-                    iter.remove();
-                    return item.packet;
-                }
+            final Optional<Item> itemOptional = items.stream()
+                    .filter(item -> item.replaceID == replaceID).findFirst();
+            if (itemOptional.isPresent()) {
+                final Item item = itemOptional.get();
+                items.remove(item);
+                return item.packet;
             }
         }
         return null;
