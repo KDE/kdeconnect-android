@@ -26,6 +26,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.navigation.NavigationView;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
@@ -362,14 +363,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        boolean grantedPermission = false;
-        for (int result : grantResults) {
-            if (result == PackageManager.PERMISSION_GRANTED) {
-                grantedPermission = true;
-                break;
-            }
-        }
-        if (grantedPermission) {
+        if (ArrayUtils.contains(grantResults, PackageManager.PERMISSION_GRANTED)) {
             //New permission granted, reload plugins
             BackgroundService.RunCommand(this, service -> {
                 Device device = service.getDevice(mCurrentDevice);

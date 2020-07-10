@@ -13,11 +13,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.internal.util.ArrayUtils;
+
 import org.kde.kdeconnect.Helpers.TrustedNetworkHelper;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.TrustedNetworkListBinding;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class TrustedNetworksActivity extends AppCompatActivity {
@@ -30,14 +33,7 @@ public class TrustedNetworksActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        boolean grantedPermission = false;
-        for (int result : grantResults) {
-            if (result == PackageManager.PERMISSION_GRANTED) {
-                grantedPermission = true;
-                break;
-            }
-        }
-        if (grantedPermission) {
+        if (ArrayUtils.contains(grantResults, PackageManager.PERMISSION_GRANTED)) {
             allowAllCheckBox.setChecked(false);
         }
     }
@@ -53,7 +49,8 @@ public class TrustedNetworksActivity extends AppCompatActivity {
         trustedNetworksView = binding.list;
 
         trustedNetworkHelper = new TrustedNetworkHelper(getApplicationContext());
-        trustedNetworks = new ArrayList<>(trustedNetworkHelper.read());
+        trustedNetworks = new ArrayList<>();
+        Collections.addAll(trustedNetworks, trustedNetworkHelper.read());
 
         allowAllCheckBox = binding.trustAllNetworksCheckBox;
         allowAllCheckBox.setOnCheckedChangeListener((v, isChecked) -> {

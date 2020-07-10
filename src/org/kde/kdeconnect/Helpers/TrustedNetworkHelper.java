@@ -11,8 +11,8 @@ import android.text.TextUtils;
 
 import androidx.core.content.ContextCompat;
 
-import java.util.Arrays;
-import java.util.Collections;
+import org.apache.commons.lang3.ArrayUtils;
+
 import java.util.List;
 
 public class TrustedNetworkHelper {
@@ -29,12 +29,12 @@ public class TrustedNetworkHelper {
         this.context = context;
     }
 
-    public List<String> read() {
+    public String[] read() {
         String serializeTrustedNetwork = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 KEY_CUSTOM_TRUSTED_NETWORKS, "");
         if (serializeTrustedNetwork.isEmpty())
-            return Collections.emptyList();
-        return Arrays.asList(serializeTrustedNetwork.split(NETWORK_SSID_DELIMITER));
+            return ArrayUtils.EMPTY_STRING_ARRAY;
+        return serializeTrustedNetwork.split(NETWORK_SSID_DELIMITER);
     }
 
     public void update(List<String> trustedNetworks) {
@@ -85,6 +85,6 @@ public class TrustedNetworkHelper {
         if (trustedNetworkHelper.allAllowed()){
             return true;
         }
-        return trustedNetworkHelper.read().contains(trustedNetworkHelper.currentSSID());
+        return ArrayUtils.contains(trustedNetworkHelper.read(), trustedNetworkHelper.currentSSID());
     }
 }

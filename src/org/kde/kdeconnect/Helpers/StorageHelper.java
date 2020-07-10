@@ -31,18 +31,17 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.stream.Collectors;
-
-import org.apache.commons.lang3.StringUtils;
 
 //Code from http://stackoverflow.com/questions/9340332/how-can-i-get-the-list-of-mounted-external-storage-of-android-device/19982338#19982338
 //modified to work on Lollipop and other devices
@@ -145,8 +144,8 @@ public class StorageHelper {
                     continue;
                 }
                 tokens.nextToken(); //file system
-                List<String> flags = Arrays.asList(tokens.nextToken().split(",")); //flags
-                boolean readonly = flags.contains("ro");
+                String[] flags = tokens.nextToken().split(","); //flags
+                boolean readonly = ArrayUtils.contains(flags, "ro");
 
                 if (line.contains("/dev/block/vold") && !StringUtils.containsAny(line, "/mnt/secure",
                         "/mnt/asec", "/mnt/obb", "/dev/mapper", "tmpfs")) {
