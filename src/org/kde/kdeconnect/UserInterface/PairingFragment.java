@@ -38,13 +38,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
@@ -53,6 +51,10 @@ import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.PairingDeviceItem;
 import org.kde.kdeconnect.UserInterface.List.SectionItem;
 import org.kde.kdeconnect_tp.R;
+import org.kde.kdeconnect_tp.databinding.DevicesListBinding;
+import org.kde.kdeconnect_tp.databinding.PairingExplanationNotTrustedBinding;
+import org.kde.kdeconnect_tp.databinding.PairingExplanationTextBinding;
+import org.kde.kdeconnect_tp.databinding.PairingExplanationTextNoWifiBinding;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -66,8 +68,11 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
 
     private static final int RESULT_PAIRING_SUCCESFUL = Activity.RESULT_FIRST_USER;
 
-    private View rootView;
-    private SwipeRefreshLayout mSwipeRefreshLayout;
+    private DevicesListBinding devicesListBinding;
+    private PairingExplanationNotTrustedBinding pairingExplanationNotTrustedBinding;
+    private PairingExplanationTextBinding pairingExplanationTextBinding;
+    private PairingExplanationTextNoWifiBinding pairingExplanationTextNoWifiBinding;
+
     private MainActivity mActivity;
 
     private boolean listRefreshCalledThisFrame = false;
@@ -80,34 +85,30 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        //Log.e("PairingFragmen", "OnCreateView");
-
         mActivity.getSupportActionBar().setTitle(R.string.pairing_title);
-
 
         setHasOptionsMenu(true);
 
-        rootView = inflater.inflate(R.layout.devices_list, container, false);
-        View listRootView = rootView.findViewById(R.id.devices_list);
-        mSwipeRefreshLayout = rootView.findViewById(R.id.refresh_list_layout);
-        mSwipeRefreshLayout.setOnRefreshListener(
-                this::updateComputerListAction
-        );
+        devicesListBinding = DevicesListBinding.inflate(inflater, container, false);
+        pairingExplanationNotTrustedBinding = PairingExplanationNotTrustedBinding.inflate(inflater);
+        pairingExplanationTextBinding = PairingExplanationTextBinding.inflate(inflater);
+        pairingExplanationTextNoWifiBinding = PairingExplanationTextNoWifiBinding.inflate(inflater);
 
-        notTrustedText = (TextView) inflater.inflate(R.layout.pairing_explanation_not_trusted, null);
+        devicesListBinding.refreshListLayout.setOnRefreshListener(this::updateComputerListAction);
+
+        notTrustedText = pairingExplanationNotTrustedBinding.getRoot();
         notTrustedText.setOnClickListener(null);
         notTrustedText.setOnLongClickListener(null);
-        headerText = (TextView) inflater.inflate(R.layout.pairing_explanation_text, null);
+
+        headerText = pairingExplanationTextBinding.getRoot();
         headerText.setOnClickListener(null);
         headerText.setOnLongClickListener(null);
-        noWifiHeader = (TextView) inflater.inflate(R.layout.pairing_explanation_text_no_wifi, null);
-        noWifiHeader.setOnClickListener(view -> {
-            startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
-        });
-        ((ListView) listRootView).addHeaderView(headerText);
 
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        noWifiHeader = pairingExplanationTextNoWifiBinding.getRoot();
+        noWifiHeader.setOnClickListener(view -> startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS)));
+        devicesListBinding.devicesList.addHeaderView(headerText);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             networkChangeListener = new ConnectivityManager.NetworkCallback() {
                 @Override
                 public void onAvailable(Network network) {
@@ -129,18 +130,22 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
             connManager.registerNetworkCallback(new NetworkRequest.Builder().build(), (ConnectivityManager.NetworkCallback) networkChangeListener);
         }
 
-        return rootView;
+        return devicesListBinding.getRoot();
     }
 
     @Override
     public void onDestroyView() {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ConnectivityManager connManager = ContextCompat.getSystemService(requireContext(),
                     ConnectivityManager.class);
             connManager.unregisterNetworkCallback((ConnectivityManager.NetworkCallback) networkChangeListener);
         }
 
         super.onDestroyView();
+        devicesListBinding = null;
+        pairingExplanationNotTrustedBinding = null;
+        pairingExplanationTextBinding = null;
+        pairingExplanationTextNoWifiBinding = null;
     }
 
     @Override
@@ -152,13 +157,13 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     private void updateComputerListAction() {
         updateDeviceList();
         BackgroundService.RunCommand(mActivity, BackgroundService::onNetworkChange);
-        mSwipeRefreshLayout.setRefreshing(true);
+        devicesListBinding.refreshListLayout.setRefreshing(true);
         new Thread(() -> {
             try {
                 Thread.sleep(1500);
             } catch (InterruptedException ignored) {
             }
-            mActivity.runOnUiThread(() -> mSwipeRefreshLayout.setRefreshing(false));
+            mActivity.runOnUiThread(() -> devicesListBinding.refreshListLayout.setRefreshing(false));
         }).start();
     }
 
@@ -186,21 +191,21 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
                 }
             }
 
-            ((ListView) rootView.findViewById(R.id.devices_list)).removeHeaderView(headerText);
-            ((ListView) rootView.findViewById(R.id.devices_list)).removeHeaderView(noWifiHeader);
-            ((ListView) rootView.findViewById(R.id.devices_list)).removeHeaderView(notTrustedText);
+            devicesListBinding.devicesList.removeHeaderView(headerText);
+            devicesListBinding.devicesList.removeHeaderView(noWifiHeader);
+            devicesListBinding.devicesList.removeHeaderView(notTrustedText);
             ConnectivityManager connManager = ContextCompat.getSystemService(requireContext(),
                     ConnectivityManager.class);
             NetworkInfo wifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
             //Check if we're on Wi-Fi. If we still see a device, don't do anything special
             if (someDevicesReachable || wifi.isConnected()) {
                 if (TrustedNetworkHelper.isTrustedNetwork(getContext())) {
-                    ((ListView) rootView.findViewById(R.id.devices_list)).addHeaderView(headerText);
+                    devicesListBinding.devicesList.addHeaderView(headerText);
                 } else {
-                    ((ListView) rootView.findViewById(R.id.devices_list)).addHeaderView(notTrustedText);
+                    devicesListBinding.devicesList.addHeaderView(notTrustedText);
                 }
             } else {
-                ((ListView) rootView.findViewById(R.id.devices_list)).addHeaderView(noWifiHeader);
+                devicesListBinding.devicesList.addHeaderView(noWifiHeader);
             }
 
             try {
@@ -245,17 +250,15 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
                     items.remove(items.size() - 1); //Remove remembered devices section if empty
                 }
 
-                final ListView list = rootView.findViewById(R.id.devices_list);
-
                 //Store current scroll
-                int index = list.getFirstVisiblePosition();
-                View v = list.getChildAt(0);
-                int top = (v == null) ? 0 : (v.getTop() - list.getPaddingTop());
+                int index = devicesListBinding.devicesList.getFirstVisiblePosition();
+                View v = devicesListBinding.devicesList.getChildAt(0);
+                int top = (v == null) ? 0 : (v.getTop() - devicesListBinding.devicesList.getPaddingTop());
 
-                list.setAdapter(new ListAdapter(mActivity, items));
+                devicesListBinding.devicesList.setAdapter(new ListAdapter(mActivity, items));
 
                 //Restore scroll
-                list.setSelectionFromTop(index, top);
+                devicesListBinding.devicesList.setSelectionFromTop(index, top);
             } catch (IllegalStateException e) {
                 //Ignore: The activity was closed while we were trying to update it
             } finally {
@@ -268,7 +271,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     @Override
     public void onStart() {
         super.onStart();
-        mSwipeRefreshLayout.setEnabled(true);
+        devicesListBinding.refreshListLayout.setEnabled(true);
         BackgroundService.RunCommand(mActivity, service -> service.addDeviceListChangedCallback("PairingFragment", this::updateDeviceList));
         updateDeviceList();
     }
@@ -276,7 +279,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     @Override
     public void onStop() {
         super.onStop();
-        mSwipeRefreshLayout.setEnabled(false);
+        devicesListBinding.refreshListLayout.setEnabled(false);
         BackgroundService.RunCommand(mActivity, service -> service.removeDeviceListChangedCallback("PairingFragment"));
     }
 
