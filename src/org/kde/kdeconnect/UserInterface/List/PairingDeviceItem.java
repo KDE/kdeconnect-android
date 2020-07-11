@@ -22,13 +22,12 @@ package org.kde.kdeconnect.UserInterface.List;
 
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect_tp.R;
+import org.kde.kdeconnect_tp.databinding.ListItemWithIconEntryBinding;
 
 public class PairingDeviceItem implements ListAdapter.Item {
 
@@ -50,36 +49,31 @@ public class PairingDeviceItem implements ListAdapter.Item {
 
     @NonNull
     @Override
-    public View inflateView(LayoutInflater layoutInflater) {
-        final View v = layoutInflater.inflate(R.layout.list_item_with_icon_entry, null);
+    public View inflateView(@NonNull LayoutInflater layoutInflater) {
+        final ListItemWithIconEntryBinding binding = ListItemWithIconEntryBinding.inflate(layoutInflater);
 
-        ImageView icon = v.findViewById(R.id.list_item_entry_icon);
-        icon.setImageDrawable(device.getIcon());
-
-        TextView titleView = v.findViewById(R.id.list_item_entry_title);
-        titleView.setText(device.getName());
+        binding.listItemEntryIcon.setImageDrawable(device.getIcon());
+        binding.listItemEntryTitle.setText(device.getName());
 
         if (device.compareProtocolVersion() != 0) {
-            TextView summaryView = v.findViewById(R.id.list_item_entry_summary);
-
             if (device.compareProtocolVersion() > 0) {
-                summaryView.setText(R.string.protocol_version_newer);
-                summaryView.setVisibility(View.VISIBLE);
+                binding.listItemEntrySummary.setText(R.string.protocol_version_newer);
+                binding.listItemEntrySummary.setVisibility(View.VISIBLE);
             } else {
                 //FIXME: Uncoment when we decide old versions are old enough to notify the user.
-                summaryView.setVisibility(View.GONE);
+                binding.listItemEntrySummary.setVisibility(View.GONE);
                 /*
                 summaryView.setText(R.string.protocol_version_older);
                 summaryView.setVisibility(View.VISIBLE);
                 */
             }
         } else {
-            v.findViewById(R.id.list_item_entry_summary).setVisibility(View.GONE);
+            binding.listItemEntrySummary.setVisibility(View.GONE);
         }
 
-        v.setOnClickListener(v1 -> callback.pairingClicked(device));
+        binding.getRoot().setOnClickListener(v1 -> callback.pairingClicked(device));
 
-        return v;
+        return binding.getRoot();
     }
 
 }

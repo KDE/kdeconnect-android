@@ -27,30 +27,26 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 
 import java.util.List;
 
 public class ListAdapter extends ArrayAdapter<ListAdapter.Item> {
-
     public interface Item {
         @NonNull
-        View inflateView(LayoutInflater layoutInflater);
+        View inflateView(@NonNull LayoutInflater layoutInflater);
     }
 
     private final List<? extends Item> items;
-    private final LayoutInflater layoutInflater;
 
     public ListAdapter(Context context, List<? extends Item> items) {
         super(context, 0, (List<Item>) items);
         this.items = items;
-        layoutInflater = ContextCompat.getSystemService(context, LayoutInflater.class);
     }
 
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         final Item i = items.get(position);
-        return i.inflateView(layoutInflater);
+        return i.inflateView(LayoutInflater.from(parent.getContext()));
     }
 }

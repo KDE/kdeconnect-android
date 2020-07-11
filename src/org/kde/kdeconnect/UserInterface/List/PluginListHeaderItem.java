@@ -26,10 +26,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import org.kde.kdeconnect_tp.R;
+import org.kde.kdeconnect_tp.databinding.ListItemPluginHeaderBinding;
 
 public class PluginListHeaderItem implements ListAdapter.Item {
-
     private final int text;
 
     public PluginListHeaderItem(int text) {
@@ -38,12 +37,11 @@ public class PluginListHeaderItem implements ListAdapter.Item {
 
     @NonNull
     @Override
-    public View inflateView(LayoutInflater layoutInflater) {
-        TextView v = (TextView) layoutInflater.inflate(R.layout.list_item_plugin_header, null);
-        v.setText(text);
-        v.setOnClickListener(null);
-        v.setOnLongClickListener(null);
-        return v;
+    public View inflateView(@NonNull LayoutInflater layoutInflater) {
+        TextView textView = ListItemPluginHeaderBinding.inflate(layoutInflater).getRoot();
+        textView.setText(text);
+        textView.setOnClickListener(null);
+        textView.setOnLongClickListener(null);
+        return textView;
     }
-
 }

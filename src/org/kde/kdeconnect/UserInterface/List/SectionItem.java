@@ -22,14 +22,12 @@ package org.kde.kdeconnect.UserInterface.List;
 
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import org.kde.kdeconnect_tp.R;
+import org.kde.kdeconnect_tp.databinding.ListItemCategoryBinding;
 
 public class SectionItem implements ListAdapter.Item {
-
     private final String title;
     public boolean isEmpty;
 
@@ -40,22 +38,19 @@ public class SectionItem implements ListAdapter.Item {
 
     @NonNull
     @Override
-    public View inflateView(LayoutInflater layoutInflater) {
-
-        View v = layoutInflater.inflate(R.layout.list_item_category, null);
+    public View inflateView(@NonNull LayoutInflater layoutInflater) {
+        final ListItemCategoryBinding binding = ListItemCategoryBinding.inflate(layoutInflater);
 
         //Make it not selectable
-        v.setOnClickListener(null);
-        v.setOnLongClickListener(null);
+        binding.getRoot().setOnClickListener(null);
+        binding.getRoot().setOnLongClickListener(null);
 
-        TextView sectionView = v.findViewById(R.id.list_item_category_text);
-        sectionView.setText(title);
+        binding.listItemCategoryText.setText(title);
 
         if (isEmpty) {
-            v.findViewById(R.id.list_item_category_empty_placeholder).setVisibility(View.VISIBLE);
+            binding.listItemCategoryEmptyPlaceholder.setVisibility(View.VISIBLE);
         }
 
-        return v;
-
+        return binding.getRoot();
     }
 }

@@ -30,14 +30,8 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 public class SmallEntryItem implements ListAdapter.Item {
-
     private final String title;
     private final View.OnClickListener clickListener;
-
-    public SmallEntryItem(String title) {
-        this.title = title;
-        this.clickListener = null;
-    }
 
     SmallEntryItem(String title, View.OnClickListener clickListener) {
         this.title = title;
@@ -46,14 +40,10 @@ public class SmallEntryItem implements ListAdapter.Item {
 
     @NonNull
     @Override
-    public View inflateView(LayoutInflater layoutInflater) {
+    public View inflateView(@NonNull LayoutInflater layoutInflater) {
         View v = layoutInflater.inflate(android.R.layout.simple_list_item_1, null);
-        v.setPadding(
-                ((int) (28 * layoutInflater.getContext().getResources().getDisplayMetrics().density)),
-                0,
-                ((int) (28 * layoutInflater.getContext().getResources().getDisplayMetrics().density)),
-                0
-        );
+        final int padding = (int) (28 * layoutInflater.getContext().getResources().getDisplayMetrics().density);
+        v.setPadding(padding, 0, padding, 0);
 
         TextView titleView = v.findViewById(android.R.id.text1);
         if (titleView != null) {
@@ -66,5 +56,4 @@ public class SmallEntryItem implements ListAdapter.Item {
 
         return v;
     }
-
 }

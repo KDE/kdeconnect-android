@@ -22,20 +22,17 @@ package org.kde.kdeconnect.UserInterface.List;
 
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import org.kde.kdeconnect_tp.R;
+import org.kde.kdeconnect_tp.databinding.ListItemEntryBinding;
 
 public class EntryItem implements ListAdapter.Item {
-
     protected final String title;
     protected final String subtitle;
 
     public EntryItem(String title) {
-        this.title = title;
-        this.subtitle = null;
+        this(title, null);
     }
 
     protected EntryItem(String title, String subtitle) {
@@ -45,21 +42,16 @@ public class EntryItem implements ListAdapter.Item {
 
     @NonNull
     @Override
-    public View inflateView(LayoutInflater layoutInflater) {
-        View v = layoutInflater.inflate(R.layout.list_item_entry, null);
+    public View inflateView(@NonNull LayoutInflater layoutInflater) {
+        final ListItemEntryBinding binding = ListItemEntryBinding.inflate(layoutInflater);
 
-        TextView titleView = v.findViewById(R.id.list_item_entry_title);
-        if (titleView != null) titleView.setText(title);
+        binding.listItemEntryTitle.setText(title);
 
         if (subtitle != null) {
-            TextView subtitleView = v.findViewById(R.id.list_item_entry_summary);
-            if (subtitleView != null) {
-                subtitleView.setVisibility(View.VISIBLE);
-                subtitleView.setText(subtitle);
-            }
+            binding.listItemEntrySummary.setVisibility(View.VISIBLE);
+            binding.listItemEntrySummary.setText(subtitle);
         }
 
-        return v;
+        return binding.getRoot();
     }
-
 }

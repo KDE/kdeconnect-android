@@ -29,9 +29,9 @@ import androidx.annotation.NonNull;
 
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
+import org.kde.kdeconnect_tp.databinding.ListItemWithIconEntryBinding;
 
 public class PluginItem implements ListAdapter.Item {
-
     private final Plugin plugin;
     private final View.OnClickListener clickListener;
 
@@ -40,21 +40,15 @@ public class PluginItem implements ListAdapter.Item {
         this.clickListener = clickListener;
     }
 
-
     @NonNull
     @Override
-    public View inflateView(final LayoutInflater layoutInflater) {
-        View v = layoutInflater.inflate(R.layout.list_item_with_icon_entry, null);
+    public View inflateView(@NonNull LayoutInflater layoutInflater) {
+        final ListItemWithIconEntryBinding binding = ListItemWithIconEntryBinding.inflate(layoutInflater);
 
-        TextView titleView = v.findViewById(R.id.list_item_entry_title);
-        titleView.setText(plugin.getActionName());
+        binding.listItemEntryTitle.setText(plugin.getActionName());
+        binding.listItemEntryIcon.setImageDrawable(plugin.getIcon());
+        binding.getRoot().setOnClickListener(clickListener);
 
-        ImageView imageView = v.findViewById(R.id.list_item_entry_icon);
-        imageView.setImageDrawable(plugin.getIcon());
-
-        v.setOnClickListener(clickListener);
-
-        return v;
+        return binding.getRoot();
     }
-
 }
