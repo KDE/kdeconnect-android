@@ -33,6 +33,7 @@ import android.os.Build;
 import android.os.Parcelable;
 import android.util.Log;
 
+import org.apache.commons.io.IOUtils;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
@@ -230,7 +231,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
             } catch (Exception e) {
                 synchronized (sockets) {
                     sockets.remove(socket.getRemoteDevice());
-                    if (connection != null) connection.close();
+                    IOUtils.close(connection);
                 }
                 throw e;
             }

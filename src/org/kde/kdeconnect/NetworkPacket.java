@@ -23,6 +23,7 @@ package org.kde.kdeconnect;
 import android.content.Context;
 import android.util.Log;
 
+import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -361,9 +362,7 @@ public class NetworkPacket {
         public void close() {
             //TODO: If socket only close socket if that also closes the streams that is
             try {
-                if (inputStream != null) {
-                    inputStream.close();
-                }
+                IOUtils.close(inputStream);
             } catch(IOException ignored) {}
 
             try {

@@ -32,6 +32,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.documentfile.provider.DocumentFile;
 
+import org.apache.commons.io.IOUtils;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.FilesHelper;
 import org.kde.kdeconnect.Helpers.MediaStoreHelper;
@@ -244,10 +245,9 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
         } finally {
             closeAllInputStreams();
             networkPacketList.clear();
-            if (outputStream != null) {
-                try {
-                    outputStream.close();
-                } catch (IOException ignored) {}
+            try {
+                IOUtils.close(outputStream);
+            } catch (IOException ignored) {
             }
         }
     }
