@@ -71,7 +71,11 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         themeSelector.setKey("theme_pref");
         themeSelector.setTitle(R.string.theme_dialog_title);
         themeSelector.setDialogTitle(R.string.theme_dialog_title);
-        themeSelector.setEntries(R.array.theme_list);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            themeSelector.setEntries(R.array.theme_list_v28);
+        } else {
+            themeSelector.setEntries(R.array.theme_list);
+        }
         themeSelector.setEntryValues(R.array.theme_list_values);
         themeSelector.setDefaultValue(ThemeUtil.DEFAULT_MODE);
         themeSelector.setSummaryProvider(ListPreference.SimpleSummaryProvider.getInstance());
