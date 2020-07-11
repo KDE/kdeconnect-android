@@ -24,11 +24,11 @@ import android.media.MediaMetadata;
 import android.media.session.MediaController;
 import android.media.session.PlaybackState;
 import android.os.Build;
-import android.text.TextUtils;
 
 import androidx.annotation.RequiresApi;
 
-import org.apache.commons.lang3.StringUtils;
+import static org.apache.commons.lang3.StringUtils.defaultString;
+import static org.apache.commons.lang3.StringUtils.firstNonEmpty;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 class MprisReceiverPlayer {
@@ -104,28 +104,24 @@ class MprisReceiverPlayer {
         MediaMetadata metadata = controller.getMetadata();
         if (metadata == null) return "";
 
-        return StringUtils.defaultString(metadata.getString(MediaMetadata.METADATA_KEY_ALBUM));
+        return defaultString(metadata.getString(MediaMetadata.METADATA_KEY_ALBUM));
     }
 
     String getArtist() {
         MediaMetadata metadata = controller.getMetadata();
         if (metadata == null) return "";
 
-        String artist = metadata.getString(MediaMetadata.METADATA_KEY_ARTIST);
-        if (TextUtils.isEmpty(artist)) artist = metadata.getString(MediaMetadata.METADATA_KEY_ALBUM_ARTIST);
-        if (TextUtils.isEmpty(artist)) artist = metadata.getString(MediaMetadata.METADATA_KEY_AUTHOR);
-        if (TextUtils.isEmpty(artist)) artist = metadata.getString(MediaMetadata.METADATA_KEY_WRITER);
-
-        return StringUtils.defaultString(artist);
+        return defaultString(firstNonEmpty(metadata.getString(MediaMetadata.METADATA_KEY_ARTIST),
+                metadata.getString(MediaMetadata.METADATA_KEY_AUTHOR),
+                metadata.getString(MediaMetadata.METADATA_KEY_WRITER)));
     }
 
     String getTitle() {
         MediaMetadata metadata = controller.getMetadata();
         if (metadata == null) return "";
 
-        String title = metadata.getString(MediaMetadata.METADATA_KEY_TITLE);
-        if (TextUtils.isEmpty(title)) title = metadata.getString(MediaMetadata.METADATA_KEY_DISPLAY_TITLE);
-        return StringUtils.defaultString(title);
+        return defaultString(firstNonEmpty(metadata.getString(MediaMetadata.METADATA_KEY_TITLE),
+                metadata.getString(MediaMetadata.METADATA_KEY_DISPLAY_TITLE)));
     }
 
     void previous() {
