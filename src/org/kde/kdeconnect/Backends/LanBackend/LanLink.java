@@ -23,12 +23,13 @@ package org.kde.kdeconnect.Backends.LanBackend;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.annotation.WorkerThread;
+
 import org.json.JSONObject;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
-import org.kde.kdeconnect.Helpers.StringsHelper;
 import org.kde.kdeconnect.NetworkPacket;
 
 import java.io.BufferedReader;
@@ -45,7 +46,7 @@ import java.nio.channels.NotYetConnectedException;
 import javax.net.ssl.SSLHandshakeException;
 import javax.net.ssl.SSLSocket;
 
-import androidx.annotation.WorkerThread;
+import kotlin.text.Charsets;
 
 public class LanLink extends BaseLink {
 
@@ -92,7 +93,7 @@ public class LanLink extends BaseLink {
         //Create a thread to take care of incoming data for the new socket
         new Thread(() -> {
             try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(newSocket.getInputStream(), StringsHelper.UTF8));
+                BufferedReader reader = new BufferedReader(new InputStreamReader(newSocket.getInputStream(), Charsets.UTF_8));
                 while (true) {
                     String packet;
                     try {
@@ -167,7 +168,7 @@ public class LanLink extends BaseLink {
             //Send body of the network package
             try {
                 OutputStream writer = socket.getOutputStream();
-                writer.write(np.serialize().getBytes(StringsHelper.UTF8));
+                writer.write(np.serialize().getBytes(Charsets.UTF_8));
                 writer.flush();
             } catch (Exception e) {
                 disconnect(); //main socket is broken, disconnect

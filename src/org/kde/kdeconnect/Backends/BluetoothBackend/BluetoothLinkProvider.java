@@ -48,6 +48,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import kotlin.text.Charsets;
+
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class BluetoothLinkProvider extends BaseLinkProvider {
 
@@ -199,7 +201,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
                 InputStream inputStream = connection.getDefaultInputStream();
 
                 NetworkPacket np = NetworkPacket.createIdentityPacket(context);
-                byte[] message = np.serialize().getBytes("UTF-8");
+                byte[] message = np.serialize().getBytes(Charsets.UTF_8);
                 outputStream.write(message);
                 outputStream.flush();
 
@@ -207,7 +209,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
 
                 // Listen for the response
                 StringBuilder sb = new StringBuilder();
-                Reader reader = new InputStreamReader(inputStream, "UTF-8");
+                Reader reader = new InputStreamReader(inputStream, Charsets.UTF_8);
                 int charsRead;
                 char[] buf = new char[512];
                 while (sb.lastIndexOf("\n") == -1 && (charsRead = reader.read(buf)) != -1) {

@@ -20,13 +20,11 @@
 
 package org.kde.kdeconnect.Backends.BluetoothBackend;
 
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothServerSocket;
-import android.bluetooth.BluetoothSocket;
 import android.content.Context;
-import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.WorkerThread;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,10 +38,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Reader;
-import java.nio.charset.Charset;
 import java.util.UUID;
 
-import androidx.annotation.WorkerThread;
+import kotlin.text.Charsets;
 
 public class BluetoothLink extends BaseLink {
     private final ConnectionMultiplexer connection;
@@ -59,7 +56,7 @@ public class BluetoothLink extends BaseLink {
         public void run() {
             StringBuilder sb = new StringBuilder();
             try {
-                Reader reader = new InputStreamReader(input, "UTF-8");
+                Reader reader = new InputStreamReader(input, Charsets.UTF_8);
                 char[] buf = new char[512];
                 while (continueAccepting) {
                     while (sb.indexOf("\n") == -1 && continueAccepting) {
@@ -146,7 +143,7 @@ public class BluetoothLink extends BaseLink {
     }
 
     private void sendMessage(NetworkPacket np) throws JSONException, IOException {
-        byte[] message = np.serialize().getBytes(Charset.forName("UTF-8"));
+        byte[] message = np.serialize().getBytes(Charsets.UTF_8);
         Log.i("BluetoothLink", "Beginning to send message");
         output.write(message);
         Log.i("BluetoothLink", "Finished sending message");

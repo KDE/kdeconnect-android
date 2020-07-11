@@ -63,6 +63,8 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import kotlin.text.Charsets;
+
 @SuppressLint("InlinedApi")
 public class SMSHelper {
 
@@ -799,7 +801,7 @@ public class SMSHelper {
         try (InputStream is = context.getContentResolver().openInputStream(partURI)) {
             if (is != null) {
                 // The stream is buffered internally, so buffering it separately is unnecessary.
-                body = IOUtils.toString(is, StringsHelper.UTF8);
+                body = IOUtils.toString(is, Charsets.UTF_8);
             }
         } catch (IOException e) {
             throw new SMSHelper.MessageAccessException(partURI, e);

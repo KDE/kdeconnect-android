@@ -32,7 +32,6 @@ import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
-import org.kde.kdeconnect.Helpers.StringsHelper;
 import org.kde.kdeconnect.Helpers.TrustedNetworkHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.UserInterface.CustomDevicesActivity;
@@ -56,6 +55,8 @@ import java.util.TimerTask;
 
 import javax.net.SocketFactory;
 import javax.net.ssl.SSLSocket;
+
+import kotlin.text.Charsets;
 
 /**
  * This BaseLinkProvider creates {@link LanLink}s to other devices on the same
@@ -122,7 +123,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
 
         try {
 
-            String message = new String(packet.getData(), StringsHelper.UTF8);
+            String message = new String(packet.getData(), Charsets.UTF_8);
             final NetworkPacket identityPacket = NetworkPacket.unserialize(message);
             final String deviceId = identityPacket.getString("deviceId");
             if (!identityPacket.getType().equals(NetworkPacket.PACKET_TYPE_IDENTITY)) {
@@ -388,7 +389,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                 socket = new DatagramSocket();
                 socket.setReuseAddress(true);
                 socket.setBroadcast(true);
-                bytes = identity.serialize().getBytes(StringsHelper.UTF8);
+                bytes = identity.serialize().getBytes(Charsets.UTF_8);
             } catch (Exception e) {
                 Log.e("KDE/LanLinkProvider", "Failed to create DatagramSocket", e);
             }
