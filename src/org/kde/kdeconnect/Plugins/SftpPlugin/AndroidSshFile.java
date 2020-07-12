@@ -22,7 +22,9 @@ package org.kde.kdeconnect.Plugins.SftpPlugin;
 
 import android.content.Context;
 import android.net.Uri;
+import android.util.Log;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.sshd.common.file.nativefs.NativeSshFile;
 import org.kde.kdeconnect.Helpers.MediaStoreHelper;
 
@@ -33,7 +35,7 @@ import java.io.OutputStream;
 import java.io.RandomAccessFile;
 
 class AndroidSshFile extends NativeSshFile {
-    private final static String TAG = AndroidSshFile.class.getSimpleName();
+    private static final String TAG = AndroidSshFile.class.getSimpleName();
     final private Context context;
     final private File file;
 
@@ -97,15 +99,11 @@ class AndroidSshFile extends NativeSshFile {
         if (!exists) {
             // file.exists() returns false when we don't have read permission
             // try to figure out if it really does not exist
-            File parentFile = file.getParentFile();
-            File[] children = parentFile.listFiles();
-            if (children != null) {
-                for (File child : children) {
-                    if (file.equals(child)) {
-                        exists = true;
-                        break;
-                    }
-                }
+            try {
+                exists = FileUtils.directoryContains(file.getParentFile(), file);
+            } catch (IOException | IllegalArgumentException e) {
+                // An IllegalArgumentException is thrown if the parent is null or not a directory.
+                Log.d(TAG, "Exception: ", e);
             }
         }
 
