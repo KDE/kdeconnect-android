@@ -22,6 +22,7 @@ package org.kde.kdeconnect.Plugins.FindRemoteDevicePlugin;
 
 import android.app.Activity;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.FindMyPhonePlugin.FindMyPhonePlugin;
 import org.kde.kdeconnect.Plugins.Plugin;
@@ -70,12 +71,11 @@ public class FindRemoteDevicePlugin extends Plugin {
 
     @Override
     public String[] getSupportedPacketTypes() {
-        return new String[]{};
+        return ArrayUtils.EMPTY_STRING_ARRAY;
     }
 
     @Override
     public String[] getOutgoingPacketTypes() {
         return new String[]{FindMyPhonePlugin.PACKET_TYPE_FINDMYPHONE_REQUEST};
     }
-
 }

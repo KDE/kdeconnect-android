@@ -33,6 +33,7 @@ import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.UserInterface.AlertDialogFragment;
@@ -236,11 +237,11 @@ public abstract class Plugin {
     public abstract String[] getOutgoingPacketTypes();
 
     protected String[] getRequiredPermissions() {
-        return new String[0];
+        return ArrayUtils.EMPTY_STRING_ARRAY;
     }
 
     protected String[] getOptionalPermissions() {
-        return new String[0];
+        return ArrayUtils.EMPTY_STRING_ARRAY;
     }
 
     //Permission from Manifest.permission.*

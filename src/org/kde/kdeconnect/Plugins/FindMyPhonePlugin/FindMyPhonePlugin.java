@@ -38,6 +38,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.MyApplication;
@@ -215,7 +216,7 @@ public class FindMyPhonePlugin extends Plugin {
 
     @Override
     public String[] getOutgoingPacketTypes() {
-        return new String[0];
+        return ArrayUtils.EMPTY_STRING_ARRAY;
     }
 
     @Override

@@ -40,6 +40,7 @@ import androidx.annotation.RequiresApi;
 import com.klinker.android.send_message.Utils;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.json.JSONArray;
@@ -302,7 +303,7 @@ public class SMSHelper {
 
         try (Cursor myCursor = context.getContentResolver().query(
                 uri,
-                fetchColumns.toArray(new String[]{}),
+                fetchColumns.toArray(ArrayUtils.EMPTY_STRING_ARRAY),
                 selection,
                 selectionArgs,
                 sortOrder)
@@ -401,7 +402,7 @@ public class SMSHelper {
     ) {
         try (Cursor myCursor = context.getContentResolver().query(
                 uri,
-                fetchColumns.toArray(new String[]{}),
+                fetchColumns.toArray(ArrayUtils.EMPTY_STRING_ARRAY),
                 selection,
                 selectionArgs,
                 sortOrder)

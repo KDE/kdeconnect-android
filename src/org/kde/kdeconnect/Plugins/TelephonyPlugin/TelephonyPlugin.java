@@ -35,6 +35,7 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.Helpers.ContactsHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
@@ -316,7 +317,7 @@ public class TelephonyPlugin extends Plugin {
                     Manifest.permission.READ_CALL_LOG,
             };
         } else {
-            return new String[0];
+            return ArrayUtils.EMPTY_STRING_ARRAY;
         }
     }
 

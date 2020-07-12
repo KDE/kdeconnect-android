@@ -32,6 +32,7 @@ import com.klinker.android.send_message.Settings;
 import com.klinker.android.send_message.Transaction;
 import com.klinker.android.send_message.Utils;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.Helpers.SMSHelper;
 import org.kde.kdeconnect_tp.R;
 
@@ -92,7 +93,7 @@ public class SmsMmsUtils {
                 addresses.add(address.toString());
             }
 
-            Message message = new Message(textMessage, addresses.toArray(new String[0]));
+            Message message = new Message(textMessage, addresses.toArray(ArrayUtils.EMPTY_STRING_ARRAY));
             message.setSave(true);
 
             // Sending MMS on android requires the app to be set as the default SMS app,

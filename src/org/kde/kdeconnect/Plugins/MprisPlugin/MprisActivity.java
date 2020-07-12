@@ -51,6 +51,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.FragmentManager;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.BackgroundService;
@@ -160,7 +161,7 @@ public class MprisActivity extends AppCompatActivity {
                     final List<String> playerList = mpris.getPlayerList();
                     final ArrayAdapter<String> adapter = new ArrayAdapter<>(MprisActivity.this,
                             android.R.layout.simple_spinner_item,
-                            playerList.toArray(new String[0])
+                            playerList.toArray(ArrayUtils.EMPTY_STRING_ARRAY)
                     );
 
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

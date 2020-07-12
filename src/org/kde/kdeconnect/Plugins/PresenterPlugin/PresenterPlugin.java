@@ -24,17 +24,15 @@ package org.kde.kdeconnect.Plugins.PresenterPlugin;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.net.Network;
-import android.os.Handler;
-import android.os.Message;
 import android.view.KeyEvent;
 
+import androidx.core.content.ContextCompat;
+
+import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
-
-import androidx.core.content.ContextCompat;
 
 import static org.kde.kdeconnect.Plugins.MousePadPlugin.KeyListenerView.SpecialKeysMap;
 
@@ -81,7 +79,7 @@ public class PresenterPlugin extends Plugin {
     }
 
     @Override
-    public String[] getSupportedPacketTypes() {  return new String[0]; }
+    public String[] getSupportedPacketTypes() {  return ArrayUtils.EMPTY_STRING_ARRAY; }
 
     @Override
     public String[] getOutgoingPacketTypes() {
