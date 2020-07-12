@@ -229,6 +229,8 @@
   <string name="no_file_browser">Nie sú nainštalované žiadne prehliadače.</string>
   <string name="pref_plugin_telepathy">Odoslať SMS</string>
   <string name="pref_plugin_telepathy_desc">Odosielanie textových správ z vášho počítača</string>
+  <string name="pref_plugin_telepathy_mms">Odoslať MMS</string>
+  <string name="pref_plugin_telepathy_mms_desc">Aby ste mohli odosielať MMS z KDE Connect, musíte ho nastaviť ako predvolenú aplikáciu SMS.</string>
   <string name="findmyphone_title">Nájsť môj telefón</string>
   <string name="findmyphone_title_tablet">Nájsť môj tablet</string>
   <string name="findmyphone_title_tv">Nájsť môj televízor</string>
@@ -319,12 +321,22 @@
   <string name="pref_plugin_bigscreen_desc">Použije vaše zariadenie ako diaľkové ovládanie obrazovky Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">Na zdieľanie mikrofónového vstupu z vášho telefónu musíte dať prístup k zvukovému vstupu telefónu.</string>
   <string name="bigscreen_speech_extra_prompt">Reč</string>
+  <string name="set_default_sms_app_title">Odoslať MMS</string>
+  <string name="set_group_message_as_mms_title">Odoslať skupinovú MMS</string>
+  <string name="set_long_text_as_mms_title">Poslať dlhý text ako MMS</string>
+  <string name="convert_to_mms_after_title">Konvertovať na MMS</string>
+  <string name="sms_pref_set_mmsc_dialog_desc">Nastaviť MMSC</string>
+  <string name="sms_pref_set_mmsc_title">MMSC</string>
+  <string name="sms_pref_set_mms_proxy_dialog_desc">Nastaviť MMS proxy</string>
+  <string name="sms_pref_set_mms_proxy_title">MMS proxy</string>
+  <string name="sms_pref_set_mms_port_dialog_desc">nastaviť MMS port</string>
+  <string name="sms_pref_set_mms_port_title">MMS port</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>Po jednej správe</item>
+    <item>Po dvoch správach</item>
+    <item>Po troch správach</item>
+    <item>Po štyroch správach</item>
+    <item>Po piatich správach</item>
   </string-array>
   <string name="theme_dialog_title">vybrať tému</string>
   <string-array name="theme_list">
