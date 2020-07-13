@@ -328,4 +328,9 @@
     <item>Clar</item>
     <item>Fosc</item>
   </string-array>
+  <string-array name="theme_list_v28">
+    <item>Predeterminat del sistema</item>
+    <item>Clar</item>
+    <item>Fosc</item>
+  </string-array>
 </resources>

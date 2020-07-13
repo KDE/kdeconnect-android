@@ -328,4 +328,9 @@
     <item>Licht</item>
     <item>Donker</item>
   </string-array>
+  <string-array name="theme_list_v28">
+    <item>Systeemstandaard</item>
+    <item>Licht</item>
+    <item>Donker</item>
+  </string-array>
 </resources>

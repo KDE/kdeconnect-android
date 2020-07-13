@@ -249,4 +249,9 @@
     <item>Light</item>
     <item>Dark</item>
   </string-array>
+  <string-array name="theme_list_v28">
+    <item/>
+    <item>Light</item>
+    <item>Dark</item>
+  </string-array>
 </resources>
