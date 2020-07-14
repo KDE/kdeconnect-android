@@ -328,4 +328,9 @@
     <item>Ljus</item>
     <item>Mörk</item>
   </string-array>
+  <string-array name="theme_list_v28">
+    <item>Systemstandard</item>
+    <item>Ljus</item>
+    <item>Mörk</item>
+  </string-array>
 </resources>
