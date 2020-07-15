@@ -328,4 +328,9 @@
     <item>Claro</item>
     <item>Escuro</item>
   </string-array>
+  <string-array name="theme_list_v28">
+    <item>Predefinição do Sistema</item>
+    <item>Claro</item>
+    <item>Escuro</item>
+  </string-array>
 </resources>

@@ -328,4 +328,9 @@
     <item>Léger</item>
     <item>Sombre</item>
   </string-array>
+  <string-array name="theme_list_v28">
+    <item>Valeur par défaut du système</item>
+    <item>Léger</item>
+    <item>Sombre</item>
+  </string-array>
 </resources>

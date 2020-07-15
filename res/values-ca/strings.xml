@@ -20,7 +20,7 @@
   <string name="pref_plugin_remotekeyboard">Rep les pulsacions remotes de tecla</string>
   <string name="pref_plugin_remotekeyboard_desc">Rep els esdeveniments de pulsacions de tecla des de dispositius remots</string>
   <string name="pref_plugin_mpris">Controls multimèdia</string>
-  <string name="pref_plugin_mpris_desc">Proporciona un comandament a distància pel reproductor multimèdia</string>
+  <string name="pref_plugin_mpris_desc">Proporciona un comandament a distància per al reproductor multimèdia</string>
   <string name="pref_plugin_runcommand">Executa una ordre</string>
   <string name="pref_plugin_runcommand_desc">Activa les ordres remotes des del telèfon o tauleta</string>
   <string name="pref_plugin_contacts">Sincronitzador dels contactes</string>
@@ -38,7 +38,7 @@
   <string name="sad_ok">D\'acord :(</string>
   <string name="cancel">Cancel·la</string>
   <string name="open_settings">Obre l\'arranjament</string>
-  <string name="no_permissions">Us caldrà concedir permís per accedir a les notificacions</string>
+  <string name="no_permissions">Us caldrà concedir permís per a accedir a les notificacions</string>
   <string name="no_permission_mprisreceiver">Per a poder controlar els reproductors multimèdia cal atorgar accés a les notificacions</string>
   <string name="no_permissions_remotekeyboard">Per a rebre les pulsacions de tecles, haureu d\'activar el teclat remot del KDE Connect</string>
   <string name="send_ping">Envia un ping</string>
@@ -46,9 +46,9 @@
   <string name="remotekeyboard_editing_only_title">Fes servir les tecles remotes només en editar</string>
   <string name="remotekeyboard_not_connected">No hi ha cap connexió activa amb el teclat remot, establiu-ne una al kde-connect</string>
   <string name="remotekeyboard_connected">La connexió amb el teclat remot està activa</string>
-  <string name="remotekeyboard_multiple_connections">Hi ha més d\'una connexió amb un teclat remot, seleccioneu el dispositiu per configurar-lo</string>
+  <string name="remotekeyboard_multiple_connections">Hi ha més d\'una connexió amb un teclat remot, seleccioneu el dispositiu per a configurar-lo</string>
   <string name="open_mousepad">Entrada remota</string>
-  <string name="mousepad_info">Moveu un dit per la pantalla per a moure el cursor del ratolí. Toqueu per un clic, i empreu dos/tres dits pels botons dret i mig. Useu 2 dits per desplaçar. Empreu un toc llarg per arrossegar i deixar anar.</string>
+  <string name="mousepad_info">Moveu un dit per la pantalla per a moure el cursor del ratolí. Toqueu per a un clic, i empreu dos/tres dits per als botons dret i mig. Useu 2 dits per a desplaçar. Empreu un toc llarg per a arrossegar i deixar anar.</string>
   <string name="mousepad_double_tap_settings_title">Estableix l\'acció de tocar amb dos dits</string>
   <string name="mousepad_triple_tap_settings_title">Estableix l\'acció de tocar amb tres dits</string>
   <string name="mousepad_sensitivity_settings_title">Estableix la sensibilitat del ratolí tàctil</string>
@@ -125,10 +125,10 @@
     <item quantity="one">Ha fallat en enviar el fitxer a %1$s</item>
     <item quantity="other">Ha fallat en enviar %2$d de %3$d fitxers a %1$s</item>
   </plurals>
-  <string name="tap_to_open">Toqueu per obrir</string>
-  <string name="received_file_text">Toqueu per obrir «%1s»</string>
+  <string name="tap_to_open">Toqueu per a obrir</string>
+  <string name="received_file_text">Toqueu per a obrir «%1s»</string>
   <string name="cannot_create_file">No s\'ha pogut crear el fitxer %s</string>
-  <string name="tap_to_answer">Puntegeu per a respondre</string>
+  <string name="tap_to_answer">Toqueu per a respondre</string>
   <string name="right_click">Envia un clic del botó dret</string>
   <string name="middle_click">Envia un clic del botó del mig</string>
   <string name="show_keyboard">Mostra el teclat</string>
@@ -144,8 +144,8 @@
   <string name="mpris_ff">Avanç ràpid</string>
   <string name="mpris_next">Següent</string>
   <string name="mpris_volume">Volum</string>
-  <string name="mpris_time_settings_title">Botons per avançar o rebobinar</string>
-  <string name="mpris_time_settings_summary">Ajusta el temps per avançar o rebobinar quan es toca</string>
+  <string name="mpris_time_settings_title">Botons per a avançar o rebobinar</string>
+  <string name="mpris_time_settings_summary">Ajusta el temps per a avançar o rebobinar quan es toca</string>
   <string-array name="mpris_time_entries">
     <item>10 segons</item>
     <item>20 segons</item>
@@ -192,14 +192,14 @@
   <string name="sftp_preference_add_camera_shortcut_summary_off">No afegeixis cap drecera a la carpeta de la càmera</string>
   <string name="sftp_storage_preference_storage_location">Ubicació d\'emmagatzematge</string>
   <string name="sftp_storage_preference_storage_location_already_configured">Aquesta ubicació ja s\'ha configurat</string>
-  <string name="sftp_storage_preference_click_to_select">clic per seleccionar</string>
+  <string name="sftp_storage_preference_click_to_select">clic per a seleccionar</string>
   <string name="sftp_storage_preference_display_name">Nom a mostrar</string>
   <string name="sftp_storage_preference_display_name_already_used">Aquest nom a mostrar ja està en ús</string>
   <string name="sftp_storage_preference_display_name_cannot_be_empty">El nom a mostrar no pot estar buit</string>
   <string name="sftp_action_mode_menu_delete">Suprimeix</string>
   <string name="sftp_no_sdcard_detected">No s\'ha detectat cap targeta SD</string>
   <string name="sftp_no_storage_locations_configured">No s\'ha configurat cap ubicació d\'emmagatzematge</string>
-  <string name="sftp_saf_permission_explanation">Per accedir remotament als fitxer cal configurar les ubicacions d\'emmagatzematge</string>
+  <string name="sftp_saf_permission_explanation">Per a accedir remotament als fitxer cal configurar les ubicacions d\'emmagatzematge</string>
   <string name="no_players_connected">No s\'ha trobat cap reproductor</string>
   <string name="send_files">Envia fitxers</string>
   <string name="pairing_title">Dispositius del KDE Connect</string>
@@ -208,7 +208,7 @@
   <string name="device_rename_confirm">Reanomena</string>
   <string name="refresh">Refresca</string>
   <string name="unreachable_description">Aquest dispositiu aparellat no és accessible. Assegureu-vos que està connectat a la mateixa xarxa.</string>
-  <string name="no_wifi">No esteu connectat a una xarxa Wi-Fi, per tant, no podreu veure cap dispositiu. Feu clic aquí per activar la Wi-Fi.</string>
+  <string name="no_wifi">No esteu connectat a una xarxa Wi-Fi, per tant, no podreu veure cap dispositiu. Feu clic aquí per a activar la Wi-Fi.</string>
   <string name="on_non_trusted_message">No és una xarxa de confiança: el descobriment automàtic està desactivat.</string>
   <string name="no_file_browser">No hi ha instal·lat cap navegador de fitxers.</string>
   <string name="pref_plugin_telepathy">Envia un SMS</string>
@@ -222,10 +222,10 @@
   <string name="findmyphone_found">S\'ha trobat</string>
   <string name="open">Obre</string>
   <string name="close">Tanca</string>
-  <string name="plugins_need_permission">Alguns connectors necessiten permisos per a funcionar (puntegeu per a més informació):</string>
+  <string name="plugins_need_permission">Alguns connectors necessiten permisos per a funcionar (toqueu per a més informació):</string>
   <string name="permission_explanation">Aquest connector necessita permisos per a funcionar</string>
-  <string name="optional_permission_explanation">Us caldrà concedir permisos extres per accedir a totes les característiques</string>
-  <string name="plugins_need_optional_permission">Alguns connectors tenen característiques desactivades per la falta de permís (puntegeu per a més informació):</string>
+  <string name="optional_permission_explanation">Us caldrà concedir permisos extres per a accedir a totes les característiques</string>
+  <string name="plugins_need_optional_permission">Alguns connectors tenen característiques desactivades per la falta de permís (toqueu per a més informació):</string>
   <string name="share_optional_permission_explanation">Per a compartir fitxers entre el telèfon i l\'escriptori, haureu de donar accés a l\'emmagatzematge del telèfon</string>
   <string name="telepathy_permission_explanation">Per a llegir i escriure SMS des de l\'escriptori, haureu de donar permís als SMS</string>
   <string name="telephony_permission_explanation">Per a veure les trucades telefòniques des de l\'escriptori, haureu de donar permís d\'accés al registre de trucades telefòniques i a l\'estat del telèfon</string>
@@ -239,7 +239,7 @@
   <string name="settings_icon_description">Icona d\'arranjament</string>
   <string name="presenter_fullscreen">Pantalla completa</string>
   <string name="presenter_exit">Surt de la presentació</string>
-  <string name="presenter_lock_tip">Podeu bloquejar el dispositiu i emprar les tecles de volum per anar a la diapositiva anterior/següent</string>
+  <string name="presenter_lock_tip">Podeu bloquejar el dispositiu i emprar les tecles de volum per a anar a la diapositiva anterior/següent</string>
   <string name="add_command">Afegeix una ordre</string>
   <string name="addcommand_explanation">No hi ha cap ordre registrada</string>
   <string name="addcommand_explanation2">Podeu afegir ordres noves a l\'Arranjament del sistema del KDE Connect</string>
@@ -280,8 +280,8 @@
   <string name="block_images">Bloca les imatges a les notificacions</string>
   <string name="notification_channel_receivenotification">Notificacions des d\'altres dispositius</string>
   <string name="take_picture">Llança la càmera</string>
-  <string name="plugin_photo_desc">Llança l\'aplicació de la càmera per facilitar la presa i la transferència de fotografies</string>
-  <string name="no_app_for_opening">No s\'ha trobat cap aplicació adequada per obrir aquest fitxer</string>
+  <string name="plugin_photo_desc">Llança l\'aplicació de la càmera per a facilitar la presa i la transferència de fotografies</string>
+  <string name="no_app_for_opening">No s\'ha trobat cap aplicació adequada per a obrir aquest fitxer</string>
   <string name="remote_keyboard_service">Teclat remot del KDE Connect</string>
   <string name="presenter_pointer">Apuntador</string>
   <string name="trusted_networks">Xarxes de confiança</string>
@@ -290,7 +290,7 @@
   <string name="empty_trusted_networks_list_text">Encara no heu afegit cap xarxa de confiança</string>
   <string name="allow_all_networks_text">Permet totes</string>
   <string name="location_permission_needed_title">Es requereix permís</string>
-  <string name="location_permission_needed_desc">L\'Android requereix el permís d\'ubicació per identificar la xarxa WiFi</string>
+  <string name="location_permission_needed_desc">L\'Android requereix el permís d\'ubicació per a identificar la xarxa WiFi</string>
   <string name="clipboard_android_x_incompat">L\'Android 10 ha tret l\'accés al porta-retalls a totes les aplicacions. Aquest connector estarà inhabilitat.</string>
   <string name="mpris_open_url">Continua reproduint aquí</string>
   <string name="cant_open_url">No s\'ha pogut obrir l\'URL per a continuar reproduint</string>
