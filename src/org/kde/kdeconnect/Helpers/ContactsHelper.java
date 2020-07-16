@@ -37,6 +37,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -48,7 +49,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ContactsHelper {
 
@@ -178,7 +178,7 @@ public class ContactsHelper {
                 final Reader reader = new InputStreamReader(input);
                 final List<String> lines = IOUtils.readLines(reader);
                 reader.close();
-                toReturn.put(ID, new VCardBuilder(lines.stream().collect(Collectors.joining("\n"))));
+                toReturn.put(ID, new VCardBuilder(StringUtils.join(lines, '\n')));
             } catch (IOException e) {
                 // If you are experiencing this, please open a bug report indicating how you got here
                 Log.e("Contacts", "Exception while fetching vcards", e);
