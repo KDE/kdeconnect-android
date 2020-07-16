@@ -1,9 +1,12 @@
 package org.kde.kdeconnect.UserInterface;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.preference.PreferenceManager;
 
 
 /**
@@ -34,5 +37,14 @@ public class ThemeUtil {
                 break;
             }
         }
+    }
+
+    /**
+    * Called when an activity is created for the first time to reliably load correct theme.
+    **/
+    public static void setUserPreferredTheme(Activity activity) {
+        String appTheme = PreferenceManager.getDefaultSharedPreferences(activity)
+                .getString("theme_pref", DEFAULT_MODE);
+        applyTheme(appTheme);
     }
 }

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
+import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.Comparator;
@@ -21,6 +22,7 @@ public class RunCommandWidgetDeviceSelector extends AppCompatActivity {
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
+        ThemeUtil.setUserPreferredTheme(this);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.widget_remotecommandplugin_dialog);
 

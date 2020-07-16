@@ -44,6 +44,7 @@ public class TrustedNetworksActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        ThemeUtil.setUserPreferredTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.trusted_network_list);
         trustedNetworksView = findViewById(android.R.id.list);

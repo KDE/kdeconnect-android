@@ -40,6 +40,7 @@ import androidx.core.content.ContextCompat;
 import androidx.media.VolumeProviderCompat;
 
 import org.kde.kdeconnect.BackgroundService;
+import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 
 public class PresenterActivity extends AppCompatActivity implements SensorEventListener {
@@ -92,6 +93,7 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeUtil.setUserPreferredTheme(this);
 
         setContentView(R.layout.activity_presenter);
 

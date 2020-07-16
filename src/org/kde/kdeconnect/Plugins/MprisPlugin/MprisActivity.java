@@ -57,6 +57,7 @@ import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Helpers.VideoUrlsHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.SystemvolumePlugin.SystemvolumeFragment;
+import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 
 import java.net.MalformedURLException;
@@ -377,6 +378,7 @@ public class MprisActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeUtil.setUserPreferredTheme(this);
         setContentView(R.layout.activity_mpris);
         ButterKnife.bind(this);
 

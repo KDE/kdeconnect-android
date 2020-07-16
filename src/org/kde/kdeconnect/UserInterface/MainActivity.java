@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ThemeUtil.setUserPreferredTheme(this);
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);

@@ -74,6 +74,7 @@ public class CustomDevicesActivity extends AppCompatActivity implements CustomDe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ThemeUtil.setUserPreferredTheme(this);
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_custom_devices);

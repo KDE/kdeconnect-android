@@ -44,6 +44,7 @@ public class PluginSettingsActivity
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        ThemeUtil.setUserPreferredTheme(this);
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_plugin_settings);
