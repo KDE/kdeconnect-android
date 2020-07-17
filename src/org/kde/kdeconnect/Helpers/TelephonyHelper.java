@@ -22,7 +22,10 @@ package org.kde.kdeconnect.Helpers;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build;
+import android.provider.Telephony;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
@@ -145,6 +148,151 @@ public class TelephonyHelper {
             return null;
         } else {
             return maybeNumber;
+        }
+    }
+
+    /**
+     * Get the APN settings of the current APN for the given subscription ID
+     *
+     * Cobbled together from the [Android sources](https://android.googlesource.com/platform/packages/services/Mms/+/refs/heads/master/src/com/android/mms/service/ApnSettings.java)
+     * and some StackOverflow Posts
+     * [post 1](https://stackoverflow.com/a/18897139/3723163)
+     * [post 2[(https://stackoverflow.com/a/7928751/3723163)
+     *
+     * @param context Context of the requestor
+     * @param subscriptionId Subscription ID for which to get the preferred APN
+     * @return Null if the preferred APN can't be found or doesn't support MMS, otherwise an ApnSetting object
+     */
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public static ApnSetting getPreferredApn(Context context, int subscriptionId) {
+
+        String[] APN_PROJECTION = {
+                Telephony.Carriers.TYPE,
+                Telephony.Carriers.MMSC,
+                Telephony.Carriers.MMSPROXY,
+                Telephony.Carriers.MMSPORT,
+        };
+
+        try (Cursor cursor = context.getContentResolver().query(
+                Uri.withAppendedPath(Telephony.Carriers.CONTENT_URI, "/preferapn/subId/" + subscriptionId),
+                APN_PROJECTION,
+                null,
+                null,
+                Telephony.Carriers.DEFAULT_SORT_ORDER
+        )) {
+            while (cursor != null && cursor.moveToNext()) {
+
+                String type = cursor.getString(cursor.getColumnIndex(Telephony.Carriers.TYPE));
+                if (!isValidApnType(type, APN_TYPE_MMS)) continue;
+
+                ApnSetting.Builder apnBuilder = new ApnSetting.Builder()
+                        .setMmsc(Uri.parse(cursor.getString(cursor.getColumnIndex(Telephony.Carriers.MMSC))))
+                        .setMmsProxyAddress(cursor.getString(cursor.getColumnIndex(Telephony.Carriers.MMSPROXY)));
+
+                String maybeMmsProxyPort = cursor.getString(cursor.getColumnIndex(Telephony.Carriers.MMSPORT));
+                try {
+                    int mmsProxyPort = Integer.parseInt(maybeMmsProxyPort);
+                    apnBuilder.setMmsProxyPort(mmsProxyPort);
+                } catch (Exception e) {
+                    // Lots of APN settings have other values, very commonly something like "Not set"
+                    // just cross your fingers and hope that the default in ApnSetting works...
+                    // If someone finds some documentation which says what the default value should be,
+                    // please share
+                }
+
+                return apnBuilder.build();
+            }
+        } catch (Exception e)
+        {
+            Log.e(LOGGING_TAG, "Error encountered while trying to read APNs", e);
+            throw e;
+        }
+
+        return null;
+    }
+
+    /**
+     * APN types for data connections.  These are usage categories for an APN
+     * entry.  One APN entry may support multiple APN types, eg, a single APN
+     * may service regular internet traffic ("default") as well as MMS-specific
+     * connections.
+     * APN_TYPE_ALL is a special type to indicate that this APN entry can
+     * service all data connections.
+     * Copied from Android's internal source: https://android.googlesource.com/platform/frameworks/base/+/cd92588/telephony/java/com/android/internal/telephony/PhoneConstants.java
+     */
+    private static final String APN_TYPE_ALL = "*";
+    /** APN type for MMS traffic */
+    private static final String APN_TYPE_MMS = "mms";
+
+    /**
+     * Copied directly from Android's source: https://android.googlesource.com/platform/packages/services/Mms/+/refs/heads/master/src/com/android/mms/service/ApnSettings.java
+     * @param types Value of Telephony.Carriers.TYPE for the APN being interrogated
+     * @param requestType Value which we would like to find in types
+     * @return True if the APN supports the requested type, false otherwise
+     */
+    private static boolean isValidApnType(String types, String requestType) {
+        // If APN type is unspecified, assume APN_TYPE_ALL.
+        if (types.isEmpty()) {
+            return true;
+        }
+        for (String type : types.split(",")) {
+            type = type.trim();
+            if (type.equals(requestType) || type.equals(APN_TYPE_ALL)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Light copy of https://developer.android.com/reference/android/telephony/data/ApnSetting so
+     * that we can support older API versions. Delete this when API 28 becomes our supported version.
+     */
+    public static class ApnSetting
+    {
+        private Uri mmscUri = null;
+        private String mmsProxyAddress = null;
+        private int mmsProxyPort = 80; // Default port should be 80 according to code comment in Android's ApnSettings.java
+
+        public static class Builder {
+            private org.kde.kdeconnect.Helpers.TelephonyHelper.ApnSetting internalApnSetting;
+
+            public Builder() {
+                internalApnSetting = new ApnSetting();
+            }
+
+            public Builder setMmsc(Uri mmscUri) {
+                internalApnSetting.mmscUri = mmscUri;
+                return this;
+            }
+
+            public Builder setMmsProxyAddress(String mmsProxy) {
+                internalApnSetting.mmsProxyAddress = mmsProxy;
+                return this;
+            }
+
+            public Builder setMmsProxyPort(int mmsPort) {
+                internalApnSetting.mmsProxyPort = mmsPort;
+                return this;
+            }
+
+            public ApnSetting build() {
+                return internalApnSetting;
+            }
+        }
+
+        private ApnSetting() {};
+
+        public Uri getMmsc() {
+            return mmscUri;
+        }
+
+        public String getMmsProxyAddressAsString() {
+            return mmsProxyAddress;
+        }
+
+        public int getMmsProxyPort() {
+            return mmsProxyPort;
         }
     }
 }
