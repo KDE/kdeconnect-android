@@ -163,7 +163,7 @@ public class BackgroundService extends Service {
     }
 
     private void registerLinkProviders() {
-        linkProviders.add(new LanLinkProvider(this));
+        //linkProviders.add(new LanLinkProvider(this));
         linkProviders.add(new MulticastLinkProvider(this));
 //        linkProviders.add(new LoopbackLinkProvider(this));
 //        linkProviders.add(new BluetoothLinkProvider(this));

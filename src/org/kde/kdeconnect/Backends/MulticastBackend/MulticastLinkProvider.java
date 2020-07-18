@@ -53,6 +53,7 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+import java.nio.charset.StandardCharsets;
 import java.security.cert.Certificate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,7 +62,7 @@ import javax.net.SocketFactory;
 import javax.net.ssl.SSLSocket;
 
 /**
- * This BaseLinkProvider creates {@link MulticastLink}s to other devices on the same
+ * This MulticastLinkProvider creates {@link MulticastLink}s to other devices on the same
  * WiFi network. The first packet sent over a socket must be an
  * {@link NetworkPacket#createIdentityPacket(Context)}.
  *
@@ -73,24 +74,19 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
 
     static final String SERVICE_TYPE = "_kdeconnect._tcp";
 
-    private NsdManager mNsdManager;
-    private RegistrationListener mRegistrationListener;
-    private boolean mServiceRegistered = false;
-
     private final static int MIN_PORT = 1716;
     private final static int MAX_PORT = 1764;
     final static int PAYLOAD_TRANSFER_MIN_PORT = 1739;
 
     private final Context context;
 
-    private final HashMap<String, MulticastLink> visibleComputers = new HashMap<>();  //Links by device id
-
+    private NsdManager mNsdManager;
+    private RegistrationListener mRegistrationListener;
+    private NsdManager.DiscoveryListener discoveryListener;
     private ServerSocket tcpServer;
-
     private boolean listening = false;
 
-    // To prevent infinte loop between Android < IceCream because both device can only broadcast identity package but cannot connect via TCP
-    private final ArrayList<InetAddress> reverseConnectionBlackList = new ArrayList<>();
+    private final HashMap<String, MulticastLink> visibleComputers = new HashMap<>();  //Links by device id
 
     @Override // SocketClosedCallback
     public void linkDisconnected(MulticastLink brokenLink) {
@@ -256,8 +252,8 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String message = reader.readLine();
+            Log.e("TcpListener","Received TCP package: "+message);
             return NetworkPacket.unserialize(message);
-            //Log.e("TcpListener","Received TCP package: "+networkPacket.serialize());
         } catch (Exception e) {
             Log.e(LOG_TAG, "Exception while receiving TCP packet", e);
             return null;
@@ -314,7 +310,7 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
                 // Save the service name. Android may have changed it in order to
                 // resolve a conflict, so update the name you initially requested
                 // with the name Android actually used.
-                Log.i(LOG_TAG, "Registered " + NsdServiceInfo.getServiceName());
+                Log.e(LOG_TAG, "Registered " + NsdServiceInfo.getServiceName());
             }
 
             @Override
@@ -327,7 +323,7 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
             public void onServiceUnregistered(NsdServiceInfo arg0) {
                 // Service has been unregistered. This only happens when you call
                 // NsdManager.unregisterService() and pass in this listener.
-                Log.w(LOG_TAG, "Service unregistered: " + arg0);
+                Log.e(LOG_TAG, "Service unregistered: " + arg0);
             }
 
             @Override
@@ -339,43 +335,35 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
     }
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    public void initializeNsdManager(RegistrationListener registrationListener) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            return;
-        }
+    public void initializeNsdManager() {
+
         mNsdManager = (NsdManager) context.getSystemService(Context.NSD_SERVICE);
-        try {
-            mNsdManager.unregisterService(registrationListener);
-        } catch (java.lang.IllegalArgumentException e) {
-            // not yet registered, but it's fine.
-        }
+
         NsdServiceInfo serviceInfo = new NsdServiceInfo();
 
+        // It wasn't possible for the device which receives the incoming connection
+        // to use these attributes (there's no way to correlate the incoming connection
+        // with a discovered service), so we have to rely on sending this stuff in
+        // an identity packet like in the LanLink. That's the reason this is commented out.
+        // These cause the requirement for api level 21.
+        serviceInfo.setAttribute("id", DeviceHelper.getDeviceId(context));
         // The name is subject to change based on conflicts
         // with other services advertised on the same network.
-        NetworkPacket myIdentity = NetworkPacket.createIdentityPacket(context);
-        String did = myIdentity.getString("deviceID");
-        String name = myIdentity.getString("deviceName");
-        InetAddress addr = this.tcpServer.getInetAddress();
-        int port = this.tcpServer.getLocalPort();
-
-        // These cause the requirement for api level 21.
-        serviceInfo.setAttribute("name", myIdentity.getString("deviceName"));
-        serviceInfo.setAttribute("id", myIdentity.getString("deviceId"));
-        serviceInfo.setAttribute("type", myIdentity.getString("deviceType"));
-        serviceInfo.setAttribute("version", myIdentity.getString("protocolVersion"));
-
+        //serviceInfo.setAttribute("name", DeviceHelper.getDeviceName(context));
+        //serviceInfo.setAttribute("type", DeviceHelper.getDeviceType(context).toString());
+        //serviceInfo.setAttribute("version", Integer.toString(DeviceHelper.ProtocolVersion));
         // It might be nice to add the capabilities in the mDNS advertisement too, but without
         // some kind of encoding that is too large for the TXT record
 
-        serviceInfo.setServiceName("KDE Connect on " + myIdentity.getString("deviceName"));
+        serviceInfo.setServiceName("KDE Connect on " + DeviceHelper.getDeviceName(context));
         serviceInfo.setServiceType(SERVICE_TYPE);
-        serviceInfo.setHost(addr);
-        serviceInfo.setPort(port);
+        // This gets autodetected if not set
+        //serviceInfo.setHost(this.tcpServer.getInetAddress());
+        serviceInfo.setPort(this.tcpServer.getLocalPort());
 
         //Log.d("KDE/Lan", "service: " + serviceInfo.toString());
 
-        mNsdManager.registerService(serviceInfo, NsdManager.PROTOCOL_DNS_SD, registrationListener);
+        mNsdManager.registerService(serviceInfo, NsdManager.PROTOCOL_DNS_SD, mRegistrationListener);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -389,7 +377,13 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
 
             @Override
             public void onServiceResolved(NsdServiceInfo serviceInfo) {
-                Log.i(LOG_TAG, "Successfully resolved " + serviceInfo);
+                Log.e(LOG_TAG, "Successfully resolved " + serviceInfo);
+
+                byte[] id = serviceInfo.getAttributes().get("id");
+                if (id != null && DeviceHelper.getDeviceId(context).equals(new String(id, StandardCharsets.UTF_8))) {
+                    Log.e(LOG_TAG, "Ignoring connection to myself");
+                    return;
+                }
 
                 InetAddress hostname = serviceInfo.getHost();
                 int remotePort = serviceInfo.getPort();
@@ -408,8 +402,8 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
 
                 try {
                     Log.i(LOG_TAG, "Got identity: " + otherIdentity.serialize());
-                } catch (JSONException e) {
-                    Log.e(LOG_TAG, "Got identity, but unable to serialize!", e);
+                } catch (Exception e) {
+                    Log.e(LOG_TAG, "Got identity, but unable to serialize from " + serviceInfo, e);
                     return;
                 }
             }
@@ -419,7 +413,7 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void initializeDiscoveryListener() {
         // Instantiate a new DiscoveryListener
-        NsdManager.DiscoveryListener discoveryListener = new NsdManager.DiscoveryListener() {
+        discoveryListener = new NsdManager.DiscoveryListener() {
 
             // Called as soon as service discovery begins.
             @Override
@@ -430,7 +424,7 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
             @Override
             public void onServiceFound(NsdServiceInfo service) {
                 // A service was found! Do something with it.
-                Log.d(LOG_TAG, "Service discovery success" + service);
+                Log.e(LOG_TAG, "Service discovery success" + service);
                 mNsdManager.resolveService(service, createResolveListener());
             }
 
@@ -443,7 +437,7 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
 
             @Override
             public void onDiscoveryStopped(String serviceType) {
-                Log.i(LOG_TAG, "Discovery stopped: " + serviceType);
+                Log.e(LOG_TAG, "Discovery stopped: " + serviceType);
                 listening = false;
             }
 
@@ -464,43 +458,33 @@ public class MulticastLinkProvider extends BaseLinkProvider implements Multicast
     }
 
     @Override
-    public void onStart() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            Log.i(LOG_TAG, "MulticastBackend not supported on devices older thab Lollipop");
-            return;
-        }
-
-        if (!listening) {
-            listening = true;
-
-            // Need to set up TCP before setting up mDNS because we need to know the TCP listening
-            // address and port
-            setupTcpListener();
-
-            initializeRegistrationListener();
-
-            initializeNsdManager(mRegistrationListener);
-
-            initializeDiscoveryListener();
-        }
-    }
-
-    @Override
     public void onNetworkChange() {
         onStop();
         onStart();
     }
 
     @Override
-    public void onStop() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            // This backend does not work on older Android versions
-            return;
-        }
+    public synchronized void onStart() {
+        if (!listening) {
+            listening = true;
 
-        mNsdManager.unregisterService(mRegistrationListener);
-        tcpServer.close();
-        listening = false;
+            // Need to set up TCP before setting up mDNS because we need to know the TCP listening
+            // address and port
+            setupTcpListener();
+            initializeRegistrationListener();
+            initializeNsdManager();
+            initializeDiscoveryListener();
+        }
+    }
+
+    @Override
+    public synchronized void onStop() {
+        //if (listening) {
+        //    mNsdManager.stopServiceDiscovery(discoveryListener);
+        //    mNsdManager.unregisterService(mRegistrationListener);
+        //    try { tcpServer.close(); } catch (IOException ignored) { }
+        //    listening = false;
+        //}
     }
 
     @Override
