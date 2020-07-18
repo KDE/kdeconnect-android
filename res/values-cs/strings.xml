@@ -229,6 +229,8 @@
   <string name="no_file_browser">Není nainstalován žádný prohlížeč souborů.</string>
   <string name="pref_plugin_telepathy">Poslat SMS</string>
   <string name="pref_plugin_telepathy_desc">Posílejte zprávy ze své pracovní plochy</string>
+  <string name="pref_plugin_telepathy_mms">Poslat MMS</string>
+  <string name="pref_plugin_telepathy_mms_desc">Abyste mohli posílat MMS pomocí KDE Connect jej musíte nastavit jako výchozí aplikaci na SMS.</string>
   <string name="findmyphone_title">Najít můj telefon</string>
   <string name="findmyphone_title_tablet">Najít můj tablet</string>
   <string name="findmyphone_title_tv">Najít mou TV</string>
@@ -319,17 +321,32 @@
   <string name="pref_plugin_bigscreen_desc">Používejte své zařízení jako ovladač pro Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">Pro sdílení vstupu mikrofonu z vašeho telefonu je potřeba udělit přístup ke vstupnímu audio zařízení telefonu</string>
   <string name="bigscreen_speech_extra_prompt">Mluvené slovo</string>
+  <string name="set_default_sms_app_title">Poslat MMS</string>
+  <string name="set_group_message_as_mms_title">Poslat skupinovou MMS</string>
+  <string name="set_long_text_as_mms_title">Poslat dlouhý text jako MMS</string>
+  <string name="convert_to_mms_after_title">Převést na MMS</string>
+  <string name="sms_pref_set_mmsc_dialog_desc">Nastavit MMSC</string>
+  <string name="sms_pref_set_mmsc_title">MMSC</string>
+  <string name="sms_pref_set_mms_proxy_dialog_desc">Nastavit MMS proxy</string>
+  <string name="sms_pref_set_mms_proxy_title">MMS proxy</string>
+  <string name="sms_pref_set_mms_port_dialog_desc">Nastavit port MMS</string>
+  <string name="sms_pref_set_mms_port_title">Port MMS</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>Po jedné zprávě</item>
+    <item>Po dvou zprávách</item>
+    <item>Po třech zprávách</item>
+    <item>Po čtyřech zprávách</item>
+    <item>Po pěti zprávách</item>
   </string-array>
   <string name="theme_dialog_title">Vyberte motiv</string>
   <string-array name="theme_list">
     <item>Nastaveno spořičem baterie</item>
     <item>Lehké</item>
     <item>Tmavé</item>
+  </string-array>
+  <string-array name="theme_list_v28">
+    <item>Výchozí systémový</item>
+    <item>Světlý</item>
+    <item>Tmavý</item>
   </string-array>
 </resources>
