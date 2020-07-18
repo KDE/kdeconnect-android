@@ -154,16 +154,23 @@ public class TelephonyHelper {
     /**
      * Get the APN settings of the current APN for the given subscription ID
      *
+     * Note that this method is broken after Android 4.2 but starts working again "at some point"
+     * After Android 4.2, *reading* APN permissions requires a system permission (WRITE_APN_SETTINGS)
+     * Before this, no permission is required
+     * At some point after, the permission is not required to read non-sensitive columns (which are the
+     * only ones we need)
+     * If anyone has a solution to this (which doesn't involve a vendor-sepecific XML), feel free to share!
+     *
      * Cobbled together from the [Android sources](https://android.googlesource.com/platform/packages/services/Mms/+/refs/heads/master/src/com/android/mms/service/ApnSettings.java)
      * and some StackOverflow Posts
      * [post 1](https://stackoverflow.com/a/18897139/3723163)
      * [post 2[(https://stackoverflow.com/a/7928751/3723163)
      *
      * @param context Context of the requestor
-     * @param subscriptionId Subscription ID for which to get the preferred APN
+     * @param subscriptionId Subscription ID for which to get the preferred APN. Ignored for devices older than Lollypop
      * @return Null if the preferred APN can't be found or doesn't support MMS, otherwise an ApnSetting object
      */
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @SuppressLint("InlinedApi")
     public static ApnSetting getPreferredApn(Context context, int subscriptionId) {
 
         String[] APN_PROJECTION = {
@@ -173,8 +180,28 @@ public class TelephonyHelper {
                 Telephony.Carriers.MMSPORT,
         };
 
+        Uri telephonyCarriersUri;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            telephonyCarriersUri = Telephony.Carriers.CONTENT_URI;
+        } else {
+            // This is provided in the optimistic hope that it will "just work" for older devices
+            // content:// URI from Telephony.Carriers source:
+            // https://android.googlesource.com/platform/frameworks/opt/telephony/+/27bc967ba840d2e2a8941d60aef89d0cb80b1626/src/java/android/provider/Telephony.java
+            telephonyCarriersUri = Uri.parse("content://telephony/carriers");
+        }
+
+        Uri telephonyCarriersPreferredApnUri;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            telephonyCarriersPreferredApnUri = Uri.withAppendedPath(telephonyCarriersUri, "/preferapn/subId/" + subscriptionId);
+        } else {
+            // Ignore subID for devices before that existed
+            telephonyCarriersPreferredApnUri = Uri.withAppendedPath(telephonyCarriersUri, "/preferapn/");
+        }
+
         try (Cursor cursor = context.getContentResolver().query(
-                Uri.withAppendedPath(Telephony.Carriers.CONTENT_URI, "/preferapn/subId/" + subscriptionId),
+                telephonyCarriersPreferredApnUri,
                 APN_PROJECTION,
                 null,
                 null,
@@ -205,7 +232,6 @@ public class TelephonyHelper {
         } catch (Exception e)
         {
             Log.e(LOGGING_TAG, "Error encountered while trying to read APNs", e);
-            throw e;
         }
 
         return null;
