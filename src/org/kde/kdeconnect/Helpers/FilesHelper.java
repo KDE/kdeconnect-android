@@ -31,6 +31,7 @@ import android.provider.OpenableColumns;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 
+import org.apache.commons.io.FilenameUtils;
 import org.kde.kdeconnect.NetworkPacket;
 
 import java.io.File;
@@ -38,33 +39,21 @@ import java.io.InputStream;
 import java.util.Arrays;
 
 public class FilesHelper {
-
     public static final String LOG_TAG = "SendFileActivity";
 
-    private static String getFileExt(String filename) {
-        //return MimeTypeMap.getFileExtensionFromUrl(filename);
-        return filename.substring((filename.lastIndexOf(".") + 1));
-    }
-
-    public static String getFileNameWithoutExt(String filename) {
-        int dot = filename.lastIndexOf(".");
-        return (dot < 0) ? filename : filename.substring(0, dot);
-    }
-
     public static String getMimeTypeFromFile(String file) {
-        String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(getFileExt(file));
+        String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(FilenameUtils.getExtension(file));
         if (mime == null) mime = "*/*";
         return mime;
     }
 
     public static String findNonExistingNameForNewFile(String path, String filename) {
-        int dot = filename.lastIndexOf(".");
-        String name = (dot < 0) ? filename : filename.substring(0, dot);
-        String ext = (dot < 0) ? "" : filename.substring(filename.lastIndexOf("."));
+        String name = FilenameUtils.getBaseName(filename);
+        String ext = FilenameUtils.getExtension(filename);
 
         int num = 1;
         while (new File(path + "/" + filename).exists()) {
-            filename = name + " (" + num + ")" + ext;
+            filename = name + " (" + num + ")." + ext;
             num++;
         }
 
