@@ -97,7 +97,11 @@ public class Device implements BaseLink.PacketReceiver {
     private Set<String> incomingCapabilities = new HashSet<>();
 
     public boolean supportsPacketType(String type) {
-        return incomingCapabilities.contains(type);
+        if (incomingCapabilities == null) {
+            return true;
+        } else {
+            return incomingCapabilities.contains(type);
+        }
     }
 
     public interface PluginsChangedListener {
