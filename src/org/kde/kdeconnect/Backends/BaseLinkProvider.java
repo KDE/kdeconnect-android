@@ -20,8 +20,6 @@
 
 package org.kde.kdeconnect.Backends;
 
-import org.kde.kdeconnect.NetworkPacket;
-
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class BaseLinkProvider {
@@ -29,38 +27,47 @@ public abstract class BaseLinkProvider {
     private final CopyOnWriteArrayList<ConnectionReceiver> connectionReceivers = new CopyOnWriteArrayList<>();
 
     public interface ConnectionReceiver {
-        void onConnectionReceived(NetworkPacket identityPacket, BaseLink link);
-        void onConnectionLost(BaseLink link);
+        void onOfferAdded(DeviceOffer offer);
+        void onOfferRemoved(String id);
+        void onLinkConnected(DeviceOffer offer, DeviceLink link);
+        void onConnectionFailed(DeviceOffer offer, String reason);
+        void onLinkDisconnected(DeviceLink link);
     }
 
     public void addConnectionReceiver(ConnectionReceiver cr) {
         connectionReceivers.add(cr);
     }
+    public boolean removeConnectionReceiver(ConnectionReceiver cr) { return connectionReceivers.remove(cr); }
 
-    public boolean removeConnectionReceiver(ConnectionReceiver cr) {
-        return connectionReceivers.remove(cr);
-    }
-
-    //These two should be called when the provider links to a new computer
-    protected void connectionAccepted(NetworkPacket identityPacket, BaseLink link) {
-        //Log.i("KDE/LinkProvider", "connectionAccepted");
+    protected void onOfferAdded(DeviceOffer offer) {
         for(ConnectionReceiver cr : connectionReceivers) {
-            cr.onConnectionReceived(identityPacket, link);
+            cr.onOfferAdded(offer);
         }
     }
-    protected void connectionLost(BaseLink link) {
-        //Log.i("KDE/LinkProvider", "connectionLost");
+    protected void onOfferRemoved(String id) {
         for(ConnectionReceiver cr : connectionReceivers) {
-            cr.onConnectionLost(link);
+            cr.onOfferRemoved(id);
+        }
+    }
+
+    protected void onLinkConnected(DeviceOffer offer, DeviceLink link) {
+        for(ConnectionReceiver cr : connectionReceivers) {
+            cr.onLinkConnected(offer, link);
+        }
+    }
+    protected void onConnectionFailed(DeviceOffer offer, String reason) {
+        for(ConnectionReceiver cr : connectionReceivers) {
+            cr.onConnectionFailed(offer, reason);
+        }
+    }
+    protected void onLinkDisconnected(DeviceLink link) {
+        for(ConnectionReceiver cr : connectionReceivers) {
+            cr.onLinkDisconnected(link);
         }
     }
 
     //To override
-    public abstract void onStart();
-    public abstract void onStop();
-    public abstract void onNetworkChange();
-
-    //public abstract int getPriority();
+    public abstract void refresh();
     public abstract String getName();
-
+    public abstract void connect(DeviceOffer id);
 }

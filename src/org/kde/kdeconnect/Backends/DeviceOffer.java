@@ -18,41 +18,42 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-package org.kde.kdeconnect.Backends.LoopbackBackend;
+package org.kde.kdeconnect.Backends;
 
-import android.content.Context;
+import android.util.Log;
 
-import org.kde.kdeconnect.Backends.BaseLinkProvider;
-import org.kde.kdeconnect.Backends.DeviceOffer;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.NetworkPacket;
 
-public class LoopbackLinkProvider extends BaseLinkProvider {
+import java.net.InetAddress;
 
-    private final Context context;
 
-    public LoopbackLinkProvider(Context context) {
-        this.context = context;
+public class DeviceOffer {
+
+    public String id;
+    public String name;
+    public Device.DeviceType type;
+    public int protocolVersion;
+
+    public InetAddress host;
+    public int port;
+
+    public static DeviceOffer FromLegacyIdentityPacket(NetworkPacket identityPacket) {
+        DeviceOffer ret = new DeviceOffer();
+        ret.id = identityPacket.getString("deviceId");
+        ret.protocolVersion = identityPacket.getInt("protocolVersion");
+        ret.name = identityPacket.getString("deviceName");
+        ret.type = Device.DeviceType.FromString(identityPacket.getString("deviceType", "desktop"));
+        return ret;
     }
 
-    @Override
-    public void connect(DeviceOffer offer) {
-        onLinkConnected(offer, new LoopbackLink(context, this));
+    public BaseLinkProvider provider = null;
+    public void connect() {
+        if (provider == null) {
+            Log.e("AAA", "ERROR: Can't connect, provider unknown");
+            return;
+        }
+        provider.connect(this);
     }
 
-    @Override
-    public void refresh() {
-        DeviceOffer offer = new DeviceOffer();
-        offer.id = DeviceHelper.getDeviceId(context);
-        offer.name = DeviceHelper.getDeviceName(context);
-        offer.type = DeviceHelper.getDeviceType(context);
-        offer.protocolVersion = DeviceHelper.ProtocolVersion;
-        onOfferAdded(offer);
-    }
-
-    @Override
-    public String getName() {
-        return "LoopbackLinkProvider";
-    }
 }

@@ -39,8 +39,9 @@ import android.util.Log;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
-import org.kde.kdeconnect.Backends.BaseLink;
+import org.kde.kdeconnect.Backends.DeviceLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
+import org.kde.kdeconnect.Backends.DeviceOffer;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.kde.kdeconnect.Backends.MulticastBackend.MulticastLinkProvider;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
@@ -83,6 +84,7 @@ public class BackgroundService extends Service {
     private final ArrayList<BaseLinkProvider> linkProviders = new ArrayList<>();
 
     private final ConcurrentHashMap<String, Device> devices = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, DeviceOffer> deviceOffers = new ConcurrentHashMap<>();
 
     private final HashSet<Object> discoveryModeAcquisitions = new HashSet<>();
 
@@ -98,19 +100,6 @@ public class BackgroundService extends Service {
         }
         //Log.e("acquireDiscoveryMode",key.getClass().getName() +" ["+discoveryModeAcquisitions.size()+"]");
         return wasEmpty;
-    }
-
-    private void releaseDiscoveryMode(Object key) {
-        boolean removed = discoveryModeAcquisitions.remove(key);
-        //Log.e("releaseDiscoveryMode",key.getClass().getName() +" ["+discoveryModeAcquisitions.size()+"]");
-        if (removed && discoveryModeAcquisitions.isEmpty()) {
-            cleanDevices();
-        }
-    }
-
-    private boolean isInDiscoveryMode() {
-        //return !discoveryModeAcquisitions.isEmpty();
-        return true; // Keep it always on for now
     }
 
     private final Device.PairingCallback devicePairingCallback = new Device.PairingCallback() {
@@ -163,7 +152,7 @@ public class BackgroundService extends Service {
     }
 
     private void registerLinkProviders() {
-        linkProviders.add(new LanLinkProvider(this));
+        //linkProviders.add(new LanLinkProvider(this));
         linkProviders.add(new MulticastLinkProvider(this));
 //        linkProviders.add(new LoopbackLinkProvider(this));
 //        linkProviders.add(new BluetoothLinkProvider(this));
@@ -177,46 +166,55 @@ public class BackgroundService extends Service {
         return devices.get(id);
     }
 
-    private void cleanDevices() {
-        new Thread(() -> {
-            for (Device d : devices.values()) {
-                if (!d.isPaired() && !d.isPairRequested() && !d.isPairRequestedByPeer() && !d.deviceShouldBeKeptAlive()) {
-                    d.disconnect();
-                }
-            }
-        }).start();
-    }
-
     private final BaseLinkProvider.ConnectionReceiver deviceListener = new BaseLinkProvider.ConnectionReceiver() {
+
         @Override
-        public void onConnectionReceived(final NetworkPacket identityPacket, final BaseLink link) {
+        public void onOfferAdded(DeviceOffer offer) {
+            deviceOffers.put(offer.id, offer);
 
-            String deviceId = identityPacket.getString("deviceId");
 
-            Device device = devices.get(deviceId);
-
-            if (device != null) {
-                Log.i("KDE/BackgroundService", "addLink, known device: " + deviceId);
-                device.addLink(identityPacket, link);
-            } else {
-                Log.i("KDE/BackgroundService", "addLink,unknown device: " + deviceId);
-                device = new Device(BackgroundService.this, identityPacket, link);
-                if (device.isPaired() || device.isPairRequested() || device.isPairRequestedByPeer()
-                        || link.linkShouldBeKeptAlive()
-                        || isInDiscoveryMode()) {
-                    devices.put(deviceId, device);
-                    device.addPairingCallback(devicePairingCallback);
-                } else {
-                    device.disconnect();
-                }
+            // TEST
+            Log.e("KDE/BackgroundService", "offer added: " + offer.id);
+            Device device = devices.get(offer.id);
+            if (device == null) {
+                device = new Device(BackgroundService.this, offer, Device.PairStatus.NotPaired);
+                devices.put(offer.id, device);
+                Log.e("KDE/BackgroundService", "device stored: " + offer.id);
             }
+            // TEST
+
+            offer.connect();
+
 
             onDeviceListChanged();
         }
 
         @Override
-        public void onConnectionLost(BaseLink link) {
-            Device d = devices.get(link.getDeviceId());
+        public void onOfferRemoved(String id) {
+            Log.e("KDE/BackgroundService", "offer removed: " + id);
+            deviceOffers.remove(id);
+            if (devices.get(id) != null && !devices.get(id).isReachable()  && !devices.get(id).isPaired()) {
+                devices.remove(id);
+            }
+            onDeviceListChanged();
+        }
+
+        @Override
+        public void onLinkConnected(DeviceOffer offer, DeviceLink link) {
+            String deviceId = link.getDeviceId();
+            Log.e("KDE/BackgroundService", "device connected: " + deviceId);
+            Device device = devices.get(deviceId);
+            if (device == null) {
+                device = new Device(BackgroundService.this, offer, Device.PairStatus.Paired);
+                devices.put(link.getDeviceId(), device);
+            }
+            device.addLink(link);
+            onDeviceListChanged();
+        }
+
+        @Override
+        public void onLinkDisconnected(DeviceLink link) {
+            Device d = devices.get(link);
             Log.i("KDE/onConnectionLost", "removeLink, deviceId: " + link.getDeviceId());
             if (d != null) {
                 d.removeLink(link);
@@ -230,6 +228,12 @@ public class BackgroundService extends Service {
             }
             onDeviceListChanged();
         }
+
+        @Override
+        public void onConnectionFailed(DeviceOffer offer, String reason) {
+            Log.e("KDE/BackgroundService", "device connect failed: " + reason);
+        }
+
     };
 
     public ConcurrentHashMap<String, Device> getDevices() {
@@ -237,8 +241,15 @@ public class BackgroundService extends Service {
     }
 
     public void onNetworkChange() {
+        for (DeviceOffer d : deviceOffers.values()) {
+            Log.e("YESOFFER" , "OFFER " + d.name);
+        }
+        for (Device d : devices.values()) {
+            Log.e("NOTOFFER" , "DEVICE " + d.getName());
+        }
+
         for (BaseLinkProvider a : linkProviders) {
-            a.onNetworkChange();
+            a.refresh();
         }
     }
 
@@ -290,7 +301,7 @@ public class BackgroundService extends Service {
         addConnectionListener(deviceListener);
 
         for (BaseLinkProvider a : linkProviders) {
-            a.onStart();
+            a.refresh();
         }
     }
 
@@ -402,9 +413,10 @@ public class BackgroundService extends Service {
     @Override
     public void onDestroy() {
         stopForeground(true);
+        /*
         for (BaseLinkProvider a : linkProviders) {
             a.onStop();
-        }
+        }*/
         super.onDestroy();
     }
 

@@ -26,8 +26,9 @@ import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 
-import org.kde.kdeconnect.Backends.BaseLink;
+import org.kde.kdeconnect.Backends.DeviceLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
+import org.kde.kdeconnect.Backends.DeviceOffer;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
@@ -89,7 +90,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     public void linkDisconnected(LanLink brokenLink) {
         String deviceId = brokenLink.getDeviceId();
         visibleComputers.remove(deviceId);
-        connectionLost(brokenLink);
+        onLinkDisconnected(brokenLink);
     }
 
     //They received my UDP broadcast and are connecting to me. The first thing they sned should be their identity.
@@ -164,7 +165,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                 }, 5 * 1000);
 
                 // Try to cause a reverse connection
-                onNetworkChange();
+                refresh();
             }
         }
     }
@@ -262,7 +263,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
      * link is operated on at a time.
      * <p>
      * Without synchronization, the call to {@link SslHelper#parseCertificate(byte[])} in
-     * {@link Device#addLink(NetworkPacket, BaseLink)} crashes on some devices running Oreo 8.1 (SDK level 27).
+     * {@link Device#addLink(NetworkPacket, DeviceLink)} crashes on some devices running Oreo 8.1 (SDK level 27).
      * </p>
      *
      * @param identityPacket   representation of remote device
@@ -284,12 +285,14 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
             //Let's create the link
             LanLink link = new LanLink(context, deviceId, this, socket, connectionOrigin);
             visibleComputers.put(deviceId, link);
-            connectionAccepted(identityPacket, link);
+            onLinkConnected(DeviceOffer.FromLegacyIdentityPacket(identityPacket), link);
         }
     }
 
-    public LanLinkProvider(Context context) {
+    public LanLinkProvider(Context context)
+    {
         this.context = context;
+        onStart();
     }
 
     private void setupUdpListener() {
@@ -413,7 +416,6 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
         }).start();
     }
 
-    @Override
     public void onStart() {
         //Log.i("KDE/LanLinkProvider", "onStart");
         if (!listening) {
@@ -428,11 +430,10 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     }
 
     @Override
-    public void onNetworkChange() {
+    public void refresh() {
         broadcastUdpPacket();
     }
 
-    @Override
     public void onStop() {
         //Log.i("KDE/LanLinkProvider", "onStop");
         listening = false;
@@ -451,6 +452,11 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     @Override
     public String getName() {
         return "LanLinkProvider";
+    }
+
+    @Override
+    public void connect(DeviceOffer offer) {
+
     }
 
 }

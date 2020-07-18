@@ -25,7 +25,7 @@ import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONObject;
-import org.kde.kdeconnect.Backends.BaseLink;
+import org.kde.kdeconnect.Backends.DeviceLink;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
@@ -45,7 +45,7 @@ import java.nio.channels.NotYetConnectedException;
 
 import javax.net.ssl.SSLSocket;
 
-public class MulticastLink extends BaseLink {
+public class MulticastLink extends DeviceLink {
 
     static final String LOG_TAG = "MulticastLink";
 
@@ -56,11 +56,6 @@ public class MulticastLink extends BaseLink {
     public enum ConnectionStarted {
         Locally, Remotely
     }
-
-    private ConnectionStarted connectionSource; // If the other device sent me a broadcast,
-                                                // I should not close the connection with it
-                                                  // because it's probably trying to find me and
-                                                  // potentially ask for pairing.
 
     private volatile SSLSocket socket = null;
 
@@ -77,12 +72,10 @@ public class MulticastLink extends BaseLink {
     }
 
     //Returns the old socket
-    public SSLSocket reset(final SSLSocket newSocket, ConnectionStarted connectionSource) throws IOException {
+    public SSLSocket reset(final SSLSocket newSocket) throws IOException {
 
         SSLSocket oldSocket = socket;
         socket = newSocket;
-
-        this.connectionSource = connectionSource;
 
         if (oldSocket != null) {
             oldSocket.close(); //This should cancel the readThread
@@ -122,10 +115,10 @@ public class MulticastLink extends BaseLink {
         return oldSocket;
     }
 
-    public MulticastLink(Context context, String deviceId, MulticastLinkProvider linkProvider, SSLSocket socket, ConnectionStarted connectionSource) throws IOException {
+    public MulticastLink(Context context, String deviceId, MulticastLinkProvider linkProvider, SSLSocket socket) throws IOException {
         super(context, deviceId, linkProvider);
         callback = linkProvider;
-        reset(socket, connectionSource);
+        reset(socket);
     }
 
 
@@ -255,14 +248,4 @@ public class MulticastLink extends BaseLink {
         packageReceived(np);
     }
 
-    @Override
-    public boolean linkShouldBeKeptAlive() {
-
-        return true;    //FIXME: Current implementation is broken, so for now we will keep links always established
-
-        //We keep the remotely initiated connections, since the remotes require them if they want to request
-        //pairing to us, or connections that are already paired.
-        //return (connectionSource == ConnectionStarted.Remotely);
-
-    }
 }
