@@ -51,11 +51,11 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.FragmentManager;
 
-import org.kde.kdeconnect.Backends.DeviceLink;
+import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
-import org.kde.kdeconnect.Backends.DeviceOffer;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Helpers.VideoUrlsHelper;
+import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.SystemvolumePlugin.SystemvolumeFragment;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
@@ -237,32 +237,15 @@ public class MprisActivity extends AppCompatActivity {
     }
 
     private final BaseLinkProvider.ConnectionReceiver connectionReceiver = new BaseLinkProvider.ConnectionReceiver() {
-
         @Override
-        public void onOfferAdded(DeviceOffer offer) {
-
-        }
-
-        @Override
-        public void onOfferRemoved(String id) {
-
-        }
-
-        @Override
-        public void onLinkConnected(DeviceOffer offer, DeviceLink link) {
+        public void onConnectionReceived(NetworkPacket identityPacket, BaseLink link) {
             connectToPlugin(null);
         }
 
         @Override
-        public void onConnectionFailed(DeviceOffer offer, String reason) {
+        public void onConnectionLost(BaseLink link) {
 
         }
-
-        @Override
-        public void onLinkDisconnected(DeviceLink link) {
-
-        }
-
     };
 
     @Override

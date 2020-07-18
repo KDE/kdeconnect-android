@@ -20,6 +20,8 @@
 
 package org.kde.kdeconnect.Backends;
 
+import org.kde.kdeconnect.NetworkPacket;
+
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class BaseLinkProvider {
@@ -27,47 +29,38 @@ public abstract class BaseLinkProvider {
     private final CopyOnWriteArrayList<ConnectionReceiver> connectionReceivers = new CopyOnWriteArrayList<>();
 
     public interface ConnectionReceiver {
-        void onOfferAdded(DeviceOffer offer);
-        void onOfferRemoved(String id);
-        void onLinkConnected(DeviceOffer offer, DeviceLink link);
-        void onConnectionFailed(DeviceOffer offer, String reason);
-        void onLinkDisconnected(DeviceLink link);
+        void onConnectionReceived(NetworkPacket identityPacket, BaseLink link);
+        void onConnectionLost(BaseLink link);
     }
 
     public void addConnectionReceiver(ConnectionReceiver cr) {
         connectionReceivers.add(cr);
     }
-    public boolean removeConnectionReceiver(ConnectionReceiver cr) { return connectionReceivers.remove(cr); }
 
-    protected void onOfferAdded(DeviceOffer offer) {
-        for(ConnectionReceiver cr : connectionReceivers) {
-            cr.onOfferAdded(offer);
-        }
-    }
-    protected void onOfferRemoved(String id) {
-        for(ConnectionReceiver cr : connectionReceivers) {
-            cr.onOfferRemoved(id);
-        }
+    public boolean removeConnectionReceiver(ConnectionReceiver cr) {
+        return connectionReceivers.remove(cr);
     }
 
-    protected void onLinkConnected(DeviceOffer offer, DeviceLink link) {
+    //These two should be called when the provider links to a new computer
+    protected void connectionAccepted(NetworkPacket identityPacket, BaseLink link) {
+        //Log.i("KDE/LinkProvider", "connectionAccepted");
         for(ConnectionReceiver cr : connectionReceivers) {
-            cr.onLinkConnected(offer, link);
+            cr.onConnectionReceived(identityPacket, link);
         }
     }
-    protected void onConnectionFailed(DeviceOffer offer, String reason) {
+    protected void connectionLost(BaseLink link) {
+        //Log.i("KDE/LinkProvider", "connectionLost");
         for(ConnectionReceiver cr : connectionReceivers) {
-            cr.onConnectionFailed(offer, reason);
-        }
-    }
-    protected void onLinkDisconnected(DeviceLink link) {
-        for(ConnectionReceiver cr : connectionReceivers) {
-            cr.onLinkDisconnected(link);
+            cr.onConnectionLost(link);
         }
     }
 
     //To override
-    public abstract void refresh();
+    public abstract void onStart();
+    public abstract void onStop();
+    public abstract void onNetworkChange();
+
+    //public abstract int getPriority();
     public abstract String getName();
-    public abstract void connect(DeviceOffer id);
+
 }

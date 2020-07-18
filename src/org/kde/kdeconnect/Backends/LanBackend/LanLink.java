@@ -24,7 +24,7 @@ import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONObject;
-import org.kde.kdeconnect.Backends.DeviceLink;
+import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
@@ -47,7 +47,7 @@ import javax.net.ssl.SSLSocket;
 
 import androidx.annotation.WorkerThread;
 
-public class LanLink extends DeviceLink {
+public class LanLink extends BaseLink {
 
     public interface LinkDisconnectedCallback {
         void linkDisconnected(LanLink brokenLink);
@@ -259,5 +259,16 @@ public class LanLink extends DeviceLink {
         }
 
         packageReceived(np);
+    }
+
+    @Override
+    public boolean linkShouldBeKeptAlive() {
+
+        return true;    //FIXME: Current implementation is broken, so for now we will keep links always established
+
+        //We keep the remotely initiated connections, since the remotes require them if they want to request
+        //pairing to us, or connections that are already paired.
+        //return (connectionSource == ConnectionStarted.Remotely);
+
     }
 }

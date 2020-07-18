@@ -22,7 +22,7 @@ package org.kde.kdeconnect.Backends.LoopbackBackend;
 
 import android.content.Context;
 
-import org.kde.kdeconnect.Backends.DeviceLink;
+import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
@@ -30,7 +30,7 @@ import org.kde.kdeconnect.NetworkPacket;
 
 import androidx.annotation.WorkerThread;
 
-public class LoopbackLink extends DeviceLink {
+public class LoopbackLink extends BaseLink {
 
     public LoopbackLink(Context context, BaseLinkProvider linkProvider) {
         super(context, "loopback", linkProvider);

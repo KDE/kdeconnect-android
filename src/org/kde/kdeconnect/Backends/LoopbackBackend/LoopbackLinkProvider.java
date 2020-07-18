@@ -23,9 +23,6 @@ package org.kde.kdeconnect.Backends.LoopbackBackend;
 import android.content.Context;
 
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
-import org.kde.kdeconnect.Backends.DeviceOffer;
-import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.NetworkPacket;
 
 public class LoopbackLinkProvider extends BaseLinkProvider {
@@ -37,20 +34,25 @@ public class LoopbackLinkProvider extends BaseLinkProvider {
     }
 
     @Override
-    public void connect(DeviceOffer offer) {
-        onLinkConnected(offer, new LoopbackLink(context, this));
+    public void onStart() {
+        onNetworkChange();
     }
 
     @Override
-    public void refresh() {
-        DeviceOffer offer = new DeviceOffer();
-        offer.id = DeviceHelper.getDeviceId(context);
-        offer.name = DeviceHelper.getDeviceName(context);
-        offer.type = DeviceHelper.getDeviceType(context);
-        offer.protocolVersion = DeviceHelper.ProtocolVersion;
-        onOfferAdded(offer);
+    public void onStop() {
     }
 
+    @Override
+    public void onNetworkChange() {
+        NetworkPacket np = NetworkPacket.createIdentityPacket(context);
+        connectionAccepted(np, new LoopbackLink(context, this));
+    }
+/*
+    @Override
+    public int getPriority() {
+        return 0;
+    }
+*/
     @Override
     public String getName() {
         return "LoopbackLinkProvider";

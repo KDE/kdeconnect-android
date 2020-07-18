@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import androidx.annotation.WorkerThread;
 
 
-public abstract class DeviceLink {
+public abstract class BaseLink {
 
     protected final Context context;
 
@@ -44,7 +44,7 @@ public abstract class DeviceLink {
     private final ArrayList<PacketReceiver> receivers = new ArrayList<>();
     protected PrivateKey privateKey;
 
-    protected DeviceLink(Context context, String deviceId, BaseLinkProvider linkProvider) {
+    protected BaseLink(Context context, String deviceId, BaseLinkProvider linkProvider) {
         this.context = context;        
         this.linkProvider = linkProvider;
         this.deviceId = deviceId;
@@ -62,6 +62,15 @@ public abstract class DeviceLink {
         privateKey = key;
     }
 
+    public BaseLinkProvider getLinkProvider() {
+        return linkProvider;
+    }
+
+    //The daemon will periodically destroy unpaired links if this returns false
+    public boolean linkShouldBeKeptAlive() {
+        return false;
+    }
+
     public void addPacketReceiver(PacketReceiver pr) {
         receivers.add(pr);
     }
@@ -77,7 +86,7 @@ public abstract class DeviceLink {
     }
 
     public void disconnect() {
-        linkProvider.onLinkDisconnected(this);
+        linkProvider.connectionLost(this);
     }
 
     //TO OVERRIDE, should be sync

@@ -20,13 +20,17 @@
 
 package org.kde.kdeconnect.Backends.BluetoothBackend;
 
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothServerSocket;
+import android.bluetooth.BluetoothSocket;
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.kde.kdeconnect.Backends.DeviceLink;
+import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
@@ -41,7 +45,7 @@ import java.util.UUID;
 
 import androidx.annotation.WorkerThread;
 
-public class BluetoothLink extends DeviceLink {
+public class BluetoothLink extends BaseLink {
     private final ConnectionMultiplexer connection;
     private final InputStream input;
     private final OutputStream output;
@@ -199,6 +203,10 @@ public class BluetoothLink extends DeviceLink {
         }
     }
 
+    @Override
+    public boolean linkShouldBeKeptAlive() {
+        return receivingThread.isAlive();
+    }
 
     /*
     public boolean isConnected() {

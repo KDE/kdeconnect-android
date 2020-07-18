@@ -35,7 +35,6 @@ import android.util.Log;
 
 import org.apache.commons.io.IOUtils;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
-import org.kde.kdeconnect.Backends.DeviceOffer;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
 
@@ -73,9 +72,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
             return;
         }
         visibleComputers.put(deviceId, link);
-
-        onLinkConnected(DeviceOffer.FromLegacyIdentityPacket(identityPacket), link);
-
+        connectionAccepted(identityPacket, link);
         link.startListening();
         if (oldLink != null) {
             Log.i("BluetoothLinkProvider", "Removing old connection to same device");
@@ -92,6 +89,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
         }
     }
 
+    @Override
     public void onStart() {
         if (bluetoothAdapter == null) {
             return;
@@ -115,11 +113,13 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
         new Thread(serverRunnable).start();
     }
 
-    public void refresh() {
+    @Override
+    public void onNetworkChange() {
         onStop();
         onStart();
     }
 
+    @Override
     public void onStop() {
         if (bluetoothAdapter == null || clientRunnable == null || serverRunnable == null) {
             return;
@@ -129,19 +129,15 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
         serverRunnable.stopProcessing();
     }
 
+    @Override
     public String getName() {
         return "BluetoothLinkProvider";
-    }
-
-    @Override
-    public void connect(DeviceOffer id) {
-        // TODO
     }
 
     public void disconnectedLink(BluetoothLink link, String deviceId, BluetoothDevice remoteAddress) {
         sockets.remove(remoteAddress);
         visibleComputers.remove(deviceId);
-        onLinkDisconnected(link);
+        connectionLost(link);
     }
 
     private class ServerRunnable implements Runnable {
