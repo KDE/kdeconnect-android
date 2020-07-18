@@ -34,6 +34,8 @@ import org.kde.kdeconnect.Device;
 
 public class DeviceHelper {
 
+    public static final int ProtocolVersion = 7;
+
     public static final String KEY_DEVICE_NAME_PREFERENCE = "device_name_preference";
 
     private static boolean fetchingName = false;

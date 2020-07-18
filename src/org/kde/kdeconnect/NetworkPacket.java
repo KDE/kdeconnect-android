@@ -41,8 +41,6 @@ import java.util.Set;
 
 public class NetworkPacket {
 
-    public final static int ProtocolVersion = 7;
-
     public final static String PACKET_TYPE_IDENTITY = "kdeconnect.identity";
     public final static String PACKET_TYPE_PAIR = "kdeconnect.pair";
 
@@ -287,7 +285,7 @@ public class NetworkPacket {
         try {
             np.mBody.put("deviceId", deviceId);
             np.mBody.put("deviceName", DeviceHelper.getDeviceName(context));
-            np.mBody.put("protocolVersion", NetworkPacket.ProtocolVersion);
+            np.mBody.put("protocolVersion", DeviceHelper.ProtocolVersion);
             np.mBody.put("deviceType", DeviceHelper.getDeviceType(context).toString());
             np.mBody.put("incomingCapabilities", new JSONArray(PluginFactory.getIncomingCapabilities()));
             np.mBody.put("outgoingCapabilities", new JSONArray(PluginFactory.getOutgoingCapabilities()));

@@ -43,6 +43,7 @@ import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
+import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
@@ -114,7 +115,7 @@ public class Device implements BaseLink.PacketReceiver {
         Computer,
         Tv;
 
-        static DeviceType FromString(String s) {
+        static public DeviceType FromString(String s) {
             if ("tablet".equals(s)) return Tablet;
             if ("phone".equals(s)) return Phone;
             if ("tv".equals(s)) return Tv;
@@ -155,7 +156,7 @@ public class Device implements BaseLink.PacketReceiver {
         this.deviceId = deviceId;
         this.name = settings.getString("deviceName", context.getString(R.string.unknown_device));
         this.pairStatus = PairStatus.Paired;
-        this.protocolVersion = NetworkPacket.ProtocolVersion; //We don't know it yet
+        this.protocolVersion = DeviceHelper.ProtocolVersion; //We don't know it yet
         this.deviceType = DeviceType.FromString(settings.getString("deviceType", "desktop"));
 
         //Assume every plugin is supported until addLink is called and we can get the actual list
@@ -218,7 +219,7 @@ public class Device implements BaseLink.PacketReceiver {
 
     //Returns 0 if the version matches, < 0 if it is older or > 0 if it is newer
     public int compareProtocolVersion() {
-        return protocolVersion - NetworkPacket.ProtocolVersion;
+        return protocolVersion - DeviceHelper.ProtocolVersion;
     }
 
 
