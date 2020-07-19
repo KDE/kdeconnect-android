@@ -213,6 +213,8 @@
   <string name="no_file_browser">No hay navegadores de archivos instalados.</string>
   <string name="pref_plugin_telepathy">Enviar SMS</string>
   <string name="pref_plugin_telepathy_desc">Enviar mensajes de texto desde su escritorio</string>
+  <string name="pref_plugin_telepathy_mms">Enviar MMS</string>
+  <string name="pref_plugin_telepathy_mms_desc">Para poder enviar MMS desde KDE Connect necesita configurarlo como la aplicación por omisión de SMS.</string>
   <string name="findmyphone_title">Encontrar mi teléfono</string>
   <string name="findmyphone_title_tablet">Encontrar mi tableta</string>
   <string name="findmyphone_title_tv">Encontrar mi TV</string>
@@ -303,16 +305,31 @@
   <string name="pref_plugin_bigscreen_desc">Use su dispositivo como mando remoto para Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">Para compartir la entrada del micrófono desde su teléfono, necesita dar acceso a la entrada de audio de su teléfono</string>
   <string name="bigscreen_speech_extra_prompt">Habla</string>
+  <string name="set_default_sms_app_title">Enviar MMS</string>
+  <string name="set_group_message_as_mms_title">Enviar MMS a un grupo</string>
+  <string name="set_long_text_as_mms_title">Enviar textos largos como MMS</string>
+  <string name="convert_to_mms_after_title">Convertir a MMS</string>
+  <string name="sms_pref_set_mmsc_dialog_desc">Configurar MMSC</string>
+  <string name="sms_pref_set_mmsc_title">MMSC</string>
+  <string name="sms_pref_set_mms_proxy_dialog_desc">Configurar proxy MMS</string>
+  <string name="sms_pref_set_mms_proxy_title">Proxy MMS</string>
+  <string name="sms_pref_set_mms_port_dialog_desc">Configurar puerto MMS</string>
+  <string name="sms_pref_set_mms_port_title">Puerto MMS</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>Tras un mensaje</item>
+    <item>Tras dos mensajes</item>
+    <item>Tras tres mensajes</item>
+    <item>Tras cuatro mensajes</item>
+    <item>Tras cinco mensajes</item>
   </string-array>
   <string name="theme_dialog_title">Elegir tema</string>
   <string-array name="theme_list">
     <item>Activar ahorro de batería</item>
+    <item>Claro</item>
+    <item>Oscuro</item>
+  </string-array>
+  <string-array name="theme_list_v28">
+    <item>Valor por omisión del sistema</item>
     <item>Claro</item>
     <item>Oscuro</item>
   </string-array>
