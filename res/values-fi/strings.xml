@@ -213,6 +213,8 @@
   <string name="no_file_browser">Tiedostoselaimia ei asennettu.</string>
   <string name="pref_plugin_telepathy">Lähetä tekstiviesti</string>
   <string name="pref_plugin_telepathy_desc">Lähetä tekstiviestejä työpöydältäsi</string>
+  <string name="pref_plugin_telepathy_mms">Lähetä multimediaviesti</string>
+  <string name="pref_plugin_telepathy_mms_desc">Multimediaviestien lähettämiseksi KDE Connect on asetettava oletustekstiviestisovellukseksi.</string>
   <string name="findmyphone_title">Löydä puhelimeni</string>
   <string name="findmyphone_title_tablet">Löydä tablettini</string>
   <string name="findmyphone_title_tv">Etsi televeisioni</string>
@@ -303,16 +305,29 @@
   <string name="pref_plugin_bigscreen_desc">Käytä laitetta Plasma Bigscreen -kaukosäätimenä</string>
   <string name="bigscreen_optional_permission_explanation">Jakaaksesi puhelimen mikrofonisyötteen puhelimen äänisyötteeseen on annettava käyttöoikeus</string>
   <string name="bigscreen_speech_extra_prompt">Puhe</string>
+  <string name="set_default_sms_app_title">Lähetä multimediaviesti</string>
+  <string name="set_group_message_as_mms_title">Lähetä ryhmämultimediaviesti</string>
+  <string name="set_long_text_as_mms_title">Lähetä pitkä teksti multimediaviestinä</string>
+  <string name="convert_to_mms_after_title">Muunna multimediaviestiksi</string>
+  <string name="sms_pref_set_mms_proxy_dialog_desc">Aseta multimediaviestien välityspalvelin</string>
+  <string name="sms_pref_set_mms_proxy_title">Multimediaviestien välityspalvelin</string>
+  <string name="sms_pref_set_mms_port_dialog_desc">Aseta multimediaviestien portti</string>
+  <string name="sms_pref_set_mms_port_title">Multimediaviestien portti</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>Yhden viestin jälkeen</item>
+    <item>Kahden viestin jälkeen</item>
+    <item>Kolmen viestin jälkeen</item>
+    <item>Neljän viestin jälkeen</item>
+    <item>Viiden viestin jälkeen</item>
   </string-array>
   <string name="theme_dialog_title">Valitse teema</string>
   <string-array name="theme_list">
     <item>Akunsäästäjän asettama</item>
+    <item>Vaalea</item>
+    <item>Tumma</item>
+  </string-array>
+  <string-array name="theme_list_v28">
+    <item>Järjestelmän oletus</item>
     <item>Vaalea</item>
     <item>Tumma</item>
   </string-array>
