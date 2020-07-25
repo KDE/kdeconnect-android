@@ -87,7 +87,7 @@
             android:paddingLeft="0dip"
             android:paddingRight="8dip"
             android:paddingStart="0dip"
-            app:srcCompat="@drawable/ic_error_outline_48dp"
+            android:src="@drawable/ic_error_outline_48dp"
             app:tint="?attr/colorHighContrast"
             tools:ignore="UnusedAttribute"/>
 

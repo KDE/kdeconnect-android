@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.gridlayout.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:grid="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,7 +12,7 @@
         grid:layout_columnWeight="1"
         grid:layout_rowWeight="1"
         android:contentDescription="@string/bigscreen_home"
-        app:srcCompat="@drawable/ic_home_black_24dp"
+        android:src="@drawable/ic_home_black_24dp"
         android:theme="@style/DisableableButton" />
 
     <ImageButton
@@ -23,7 +22,7 @@
         grid:layout_columnWeight="1"
         grid:layout_rowWeight="1"
         android:contentDescription="@string/bigscreen_up"
-        app:srcCompat="@drawable/ic_arrow_upward_black_24dp"
+        android:src="@drawable/ic_arrow_upward_black_24dp"
         android:theme="@style/DisableableButton" />
 
     <ImageButton
@@ -33,7 +32,7 @@
         grid:layout_row="0"
         grid:layout_rowWeight="1"
         android:contentDescription="@string/bigscreen_mic"
-        app:srcCompat="@drawable/ic_mic_black"
+        android:src="@drawable/ic_mic_black"
         android:theme="@style/DisableableButton" />
 
     <ImageButton
@@ -43,7 +42,7 @@
         grid:layout_columnWeight="1"
         grid:layout_rowWeight="1"
         android:contentDescription="@string/bigscreen_left"
-        app:srcCompat="@drawable/ic_arrow_back_black_24dp"
+        android:src="@drawable/ic_arrow_back_black_24dp"
         android:theme="@style/DisableableButton" />
 
     <ImageButton
@@ -53,7 +52,7 @@
         grid:layout_columnWeight="1"
         grid:layout_rowWeight="1"
         android:contentDescription="@string/bigscreen_select"
-        app:srcCompat="@drawable/ic_keyboard_return_black_24dp"
+        android:src="@drawable/ic_keyboard_return_black_24dp"
         android:theme="@style/DisableableButton" />
 
     <ImageButton
@@ -63,7 +62,7 @@
         grid:layout_columnWeight="1"
         grid:layout_rowWeight="1"
         android:contentDescription="@string/bigscreen_right"
-        app:srcCompat="@drawable/ic_arrow_forward_black_24dp"
+        android:src="@drawable/ic_arrow_forward_black_24dp"
         android:theme="@style/DisableableButton" />
 
     <ImageButton
@@ -73,6 +72,6 @@
         grid:layout_columnWeight="1"
         grid:layout_rowWeight="1"
         android:contentDescription="@string/bigscreen_down"
-        app:srcCompat="@drawable/ic_arrow_downward_black_24dp"
+        android:src="@drawable/ic_arrow_downward_black_24dp"
         android:theme="@style/DisableableButton"  />
 </androidx.gridlayout.widget.GridLayout>

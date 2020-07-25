@@ -27,7 +27,7 @@
             android:background="@android:color/transparent"
             android:contentDescription="@string/mute"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/ic_volume_black"
+            android:src="@drawable/ic_volume_black"
             app:tint="?attr/colorHighContrast" />
 
         <SeekBar
