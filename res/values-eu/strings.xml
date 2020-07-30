@@ -211,8 +211,10 @@
   <string name="no_wifi">Ez zaude Wi-Fi sare batera konektatuta, baliteke gailurik ez ikustea. Egin klik hemen Wi-Fia gaitzeko.</string>
   <string name="on_non_trusted_message">Ez dago konfiantza duen sare batean: aurkitze automatikoa desgaituta dago.</string>
   <string name="no_file_browser">Ez dago fitxategi arakatzailerik instalatuta.</string>
-  <string name="pref_plugin_telepathy">Bidali SMSa</string>
+  <string name="pref_plugin_telepathy">Bidali SMS</string>
   <string name="pref_plugin_telepathy_desc">Bidali testu-mezuak zure mahaigainetik</string>
+  <string name="pref_plugin_telepathy_mms">Bidali MMS</string>
+  <string name="pref_plugin_telepathy_mms_desc">KDE Connect bidez MMSak bidali ahal izateko, SMS aplikazio lehenetsi gisa ezarri behar duzu.</string>
   <string name="findmyphone_title">Bilatu nire telefonoa</string>
   <string name="findmyphone_title_tablet">Bilatu nire tableta</string>
   <string name="findmyphone_title_tv">Aurkitu nire TB</string>
@@ -303,16 +305,31 @@
   <string name="pref_plugin_bigscreen_desc">Erabili zure gailua Plasma Bigscreen-en urrutiko aginte gisa</string>
   <string name="bigscreen_optional_permission_explanation">Zure telefonoko mikrofonoko sarrerakoa partekatzeko, telefonoko audio sarrerakora sarbidea eman behar diozu</string>
   <string name="bigscreen_speech_extra_prompt">Hizketa</string>
+  <string name="set_default_sms_app_title">Bidali MMS</string>
+  <string name="set_group_message_as_mms_title">Bidali taldeko MMS</string>
+  <string name="set_long_text_as_mms_title">Bidali testu luzea MMS gisa</string>
+  <string name="convert_to_mms_after_title">Bihurtu MMS</string>
+  <string name="sms_pref_set_mmsc_dialog_desc">Ezarri MMSC</string>
+  <string name="sms_pref_set_mmsc_title">MMSC</string>
+  <string name="sms_pref_set_mms_proxy_dialog_desc">Ezarri MMS ordezkaria</string>
+  <string name="sms_pref_set_mms_proxy_title">MMS ordezkaria</string>
+  <string name="sms_pref_set_mms_port_dialog_desc">Ezarri MMS ataka</string>
+  <string name="sms_pref_set_mms_port_title">MMS ataka</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>Mezu baten ondoren</item>
+    <item>Bi mezu ondoren</item>
+    <item>Hiru mezu ondoren</item>
+    <item>Lau mezu ondoren</item>
+    <item>Bost mezu ondoren</item>
   </string-array>
   <string name="theme_dialog_title">Aukeratu gaia</string>
   <string-array name="theme_list">
     <item>Ezarri bateria aurrezteko</item>
+    <item>Argia</item>
+    <item>Iluna</item>
+  </string-array>
+  <string-array name="theme_list_v28">
+    <item>Sistemako lehenetsia</item>
     <item>Argia</item>
     <item>Iluna</item>
   </string-array>
