@@ -131,7 +131,8 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
         PreferenceManager.getDefaultSharedPreferences(context).registerOnSharedPreferenceChangeListener(this);
 
         final boolean editingOnly = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.remotekeyboard_editing_only), true);
-        notifyKeyboardState(editingOnly ? RemoteKeyboardService.instance.visible : true);
+        if (RemoteKeyboardService.instance != null)
+            notifyKeyboardState(editingOnly ? RemoteKeyboardService.instance.visible : true);
 
         return true;
     }
