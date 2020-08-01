@@ -205,6 +205,8 @@
   <string name="no_file_browser">未安装文件浏览器</string>
   <string name="pref_plugin_telepathy">发送短消息</string>
   <string name="pref_plugin_telepathy_desc">从桌面发送短消息</string>
+  <string name="pref_plugin_telepathy_mms">发送彩信</string>
+  <string name="pref_plugin_telepathy_mms_desc">您需要将 KDE Connect 设置为默认短信应用程序才能通过它发送彩信。</string>
   <string name="findmyphone_title">找到我的手机</string>
   <string name="findmyphone_title_tablet">找到我的平板电脑</string>
   <string name="findmyphone_title_tv">查找我的电视</string>
@@ -290,24 +292,37 @@
   <string name="bigscreen_select">选择</string>
   <string name="bigscreen_right">右</string>
   <string name="bigscreen_down">下</string>
+  <string name="bigscreen_mic">麦克风</string>
   <string name="pref_plugin_bigscreen">电视遥控</string>
   <string name="pref_plugin_bigscreen_desc">使用您手机遥控 Plasma 电视</string>
+  <string name="bigscreen_optional_permission_explanation">请开启手机的麦克风以共享语音输入。</string>
+  <string name="bigscreen_speech_extra_prompt">语音</string>
+  <string name="set_default_sms_app_title">发送彩信</string>
+  <string name="set_group_message_as_mms_title">群发彩信</string>
+  <string name="set_long_text_as_mms_title">将长文本以彩信形式发送</string>
+  <string name="convert_to_mms_after_title">转换为彩信</string>
+  <string name="sms_pref_set_mmsc_dialog_desc">设置彩信中心</string>
+  <string name="sms_pref_set_mmsc_title">彩信中心</string>
+  <string name="sms_pref_set_mms_proxy_dialog_desc">设置彩信代理</string>
+  <string name="sms_pref_set_mms_proxy_title">彩信代理</string>
+  <string name="sms_pref_set_mms_port_dialog_desc">设置彩信端口</string>
+  <string name="sms_pref_set_mms_port_title">彩信端口</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>在1条消息后</item>
+    <item>在2条消息后</item>
+    <item>在3条消息后</item>
+    <item>在4条消息后</item>
+    <item>在5条消息后</item>
   </string-array>
   <string name="theme_dialog_title">选择主题</string>
   <string-array name="theme_list">
-    <item>Set by Battery Saver</item>
+    <item>由省电模式设定</item>
     <item>浅色主题</item>
     <item>深色主题</item>
   </string-array>
   <string-array name="theme_list_v28">
-    <item>System Default</item>
-    <item>Light</item>
-    <item>Dark</item>
+    <item>系统默认</item>
+    <item>亮色</item>
+    <item>深色</item>
   </string-array>
 </resources>
