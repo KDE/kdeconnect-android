@@ -36,6 +36,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import kotlin.text.Charsets;
+
 public class ContactsHelper {
 
     static final String LOG_TAG = "ContactsHelper";
@@ -155,15 +157,10 @@ public class ContactsHelper {
             Uri vcardURI = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_VCARD_URI, lookupKey);
 
             try (InputStream input = context.getContentResolver().openInputStream(vcardURI)) {
-
-                if (input == null)
-                {
+                if (input == null) {
                     throw new NullPointerException("ContentResolver did not give us a stream for the VCard for uID " + ID);
                 }
-
-                final Reader reader = new InputStreamReader(input);
-                final List<String> lines = IOUtils.readLines(reader);
-                reader.close();
+                final List<String> lines = IOUtils.readLines(input, Charsets.UTF_8);
                 toReturn.put(ID, new VCardBuilder(StringUtils.join(lines, '\n')));
             } catch (IOException e) {
                 // If you are experiencing this, please open a bug report indicating how you got here

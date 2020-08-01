@@ -175,14 +175,19 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
                 }
             }
 
-            ConnectionMultiplexer connection = null;
+            Log.i("BTLinkProvider/Server", "Received connection from " + socket.getRemoteDevice().getAddress());
+
+            //Delay to let bluetooth initialize stuff correctly
             try {
-                Log.i("BTLinkProvider/Server", "Received connection from " + socket.getRemoteDevice().getAddress());
-
-                //Delay to let bluetooth initialize stuff correctly
                 Thread.sleep(500);
+            } catch (Exception e) {
+                synchronized (sockets) {
+                    sockets.remove(socket.getRemoteDevice());
+                }
+                throw e;
+            }
 
-                connection = new ConnectionMultiplexer(socket);
+            try (ConnectionMultiplexer connection = new ConnectionMultiplexer(socket)) {
                 OutputStream outputStream = connection.getDefaultOutputStream();
                 InputStream inputStream = connection.getDefaultInputStream();
 
@@ -219,7 +224,6 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
             } catch (Exception e) {
                 synchronized (sockets) {
                     sockets.remove(socket.getRemoteDevice());
-                    IOUtils.close(connection);
                 }
                 throw e;
             }
