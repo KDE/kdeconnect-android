@@ -91,7 +91,7 @@ public class NetworkPacketTest {
 
         NetworkPacket np = NetworkPacket.createIdentityPacket(context);
 
-        assertEquals(np.getInt("protocolVersion"), NetworkPacket.ProtocolVersion);
+        assertEquals(np.getInt("protocolVersion"), DeviceHelper.ProtocolVersion);
 
     }
 

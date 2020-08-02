@@ -36,6 +36,7 @@ import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Backends.LanBackend.LanLink;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.kde.kdeconnect.Backends.LanBackend.LanPairingHandler;
+import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
@@ -145,7 +146,7 @@ public class DeviceTest {
         NetworkPacket fakeNetworkPacket = new NetworkPacket(NetworkPacket.PACKET_TYPE_IDENTITY);
         fakeNetworkPacket.set("deviceId", "unpairedTestDevice");
         fakeNetworkPacket.set("deviceName", "Unpaired Test Device");
-        fakeNetworkPacket.set("protocolVersion", NetworkPacket.ProtocolVersion);
+        fakeNetworkPacket.set("protocolVersion", DeviceHelper.ProtocolVersion);
         fakeNetworkPacket.set("deviceType", Device.DeviceType.Phone.toString());
 
         LanLinkProvider linkProvider = Mockito.mock(LanLinkProvider.class);
@@ -191,7 +192,7 @@ public class DeviceTest {
         NetworkPacket fakeNetworkPacket = new NetworkPacket(NetworkPacket.PACKET_TYPE_IDENTITY);
         fakeNetworkPacket.set("deviceId", "unpairedTestDevice");
         fakeNetworkPacket.set("deviceName", "Unpaired Test Device");
-        fakeNetworkPacket.set("protocolVersion", NetworkPacket.ProtocolVersion);
+        fakeNetworkPacket.set("protocolVersion", DeviceHelper.ProtocolVersion);
         fakeNetworkPacket.set("deviceType", Device.DeviceType.Phone.toString());
         fakeNetworkPacket.set("certificate",
             "MIIDVzCCAj+gAwIBAgIBCjANBgkqhkiG9w0BAQUFADBVMS8wLQYDVQQDDCZfZGExNzlhOTFfZjA2\n" +
