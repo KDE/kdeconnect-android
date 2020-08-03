@@ -19,6 +19,7 @@ public class NotificationHelper {
         public final static String DEFAULT = "default";
         public final static String MEDIA_CONTROL = "media_control";
         public final static String FILETRANSFER = "filetransfer";
+        public final static String SMS_MMS = "sms_mms";
         public final static String RECEIVENOTIFICATION = "receive";
         public final static String HIGHPRIORITY = "highpriority";
     }
@@ -80,6 +81,12 @@ public class NotificationHelper {
         manager.createNotificationChannel(new NotificationChannel(
                 Channels.RECEIVENOTIFICATION,
                 context.getString(R.string.notification_channel_receivenotification),
+                NotificationManager.IMPORTANCE_DEFAULT)
+        );
+
+        manager.createNotificationChannel(new NotificationChannel(
+                Channels.SMS_MMS,
+                context.getString(R.string.notification_channel_sms_mms),
                 NotificationManager.IMPORTANCE_DEFAULT)
         );
 

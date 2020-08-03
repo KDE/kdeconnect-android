@@ -58,6 +58,7 @@ import org.kde.kdeconnect.Helpers.AppsHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
+import org.kde.kdeconnect.Plugins.SMSPlugin.NotificationReplyReceiver;
 import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect.UserInterface.StartActivityAlertDialogFragment;
@@ -203,7 +204,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         String packageName = statusBarNotification.getPackageName();
         String appName = AppsHelper.appNameLookup(context, packageName);
 
-
         if ("com.facebook.orca".equals(packageName) &&
                 (statusBarNotification.getId() == 10012) &&
                 "Messenger".equals(appName) &&
@@ -219,8 +219,18 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         }
 
         if ("org.kde.kdeconnect_tp".equals(packageName)) {
-            // Don't send our own notifications
-            return;
+            // Don't send our own notifications except notifications posted by SMSPlugin
+            String groupKey = "";
+
+            // SMS Notifications on devices running API's lower than Lollipop are not supported
+            // as groupKey's are not supported on API's older than Lollipop
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                groupKey = statusBarNotification.getGroupKey();
+            }
+
+            if (!groupKey.contains(NotificationReplyReceiver.SMS_NOTIFICATION_GROUP_KEY)) {
+                return;
+            }
         }
 
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_NOTIFICATION);

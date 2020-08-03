@@ -32,12 +32,21 @@ import com.klinker.android.send_message.Settings;
 import com.klinker.android.send_message.Transaction;
 import com.klinker.android.send_message.Utils;
 
+import android.content.ContentUris;
+import android.content.ContentValues;
+import android.provider.Telephony;
+import android.net.Uri;
+import android.util.Log;
+
+import androidx.annotation.RequiresApi;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.Helpers.SMSHelper;
 import org.kde.kdeconnect.Helpers.TelephonyHelper;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class SmsMmsUtils {
@@ -117,6 +126,40 @@ public class SmsMmsUtils {
         } catch (Exception e) {
             //TODO: Notify other end
             com.klinker.android.logger.Log.e(SENDING_MESSAGE, "Exception", e);
+        }
+    }
+
+    /**
+     * Marks a conversation as read in the database.
+     *
+     * @param context      the context to get the content provider with.
+     * @param recipients   the phone numbers to find the conversation with.
+     */
+    public static void markConversationRead(Context context, HashSet<String> recipients) {
+        new Thread() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void run() {
+                try {
+                    long threadId = Utils.getOrCreateThreadId(context, recipients);
+                    markAsRead(context, ContentUris.withAppendedId(Telephony.Threads.CONTENT_URI, threadId), threadId);
+                } catch (Exception e) {
+                    // the conversation doesn't exist
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+    private static void markAsRead(Context context, Uri uri, long threadId) {
+        Log.v("SMSPlugin", "marking thread with threadId " + threadId + " as read at Uri" + uri);
+
+        if (uri != null && context != null) {
+            ContentValues values = new ContentValues(2);
+            values.put("read", 1);
+            values.put("seen", 1);
+
+            context.getContentResolver().update(uri, values, "(read=0 OR seen=0)", null);
         }
     }
 }

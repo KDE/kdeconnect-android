@@ -27,6 +27,10 @@ import com.klinker.android.send_message.SentReceiver;
 import com.klinker.android.send_message.Transaction;
 import com.klinker.android.send_message.Utils;
 
+import org.kde.kdeconnect.Helpers.SMSHelper;
+
+import java.util.ArrayList;
+
 public class SmsSentReceiver extends SentReceiver {
 
     @Override
@@ -42,5 +46,23 @@ public class SmsSentReceiver extends SentReceiver {
 
     @Override
     public void onMessageStatusUpdated(Context context, Intent intent, int receiverResultCode) {
+        SMSHelper.Message message = SMSHelper.getNewestMessage(context);
+
+        ArrayList<String>  addressList =  new ArrayList<>();
+        for (SMSHelper.Address address : message.addresses) {
+            addressList.add(address.toString());
+        }
+
+        Intent repliedNotification = new Intent(context, NotificationReplyReceiver.class);
+        repliedNotification.setAction(NotificationReplyReceiver.SMS_MMS_REPLY_ACTION);
+        repliedNotification.putExtra(NotificationReplyReceiver.TEXT_BODY, message.body);
+        repliedNotification.putExtra(NotificationReplyReceiver.NOTIFICATION_ID, Integer.parseInt(message.threadID.toString()));
+        repliedNotification.putExtra(NotificationReplyReceiver.ADDRESS_LIST, addressList);
+
+        // SEND_ACTION value is required to differentiate between the intents sent from reply action or
+        // SentReceivers inorder to avoid posting duplicate notifications
+        repliedNotification.putExtra(NotificationReplyReceiver.SEND_ACTION, false);
+
+        context.sendBroadcast(repliedNotification);
     }
 }

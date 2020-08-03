@@ -95,6 +95,12 @@
             android:enabled="true"
             android:taskAffinity="com.klinker.android.messaging.MMS_SENT" />
 
+        <receiver
+            android:name="org.kde.kdeconnect.Plugins.SMSPlugin.NotificationReplyReceiver"
+            android:enabled="true"
+            android:exported="true">
+        </receiver>
+
         <service
             android:name="org.kde.kdeconnect.Plugins.SMSPlugin.HeadlessSmsSendService"
             android:exported="true"

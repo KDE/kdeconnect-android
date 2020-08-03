@@ -308,6 +308,7 @@
     <string name="notification_channel_media_control">Media control</string>
     <string name="notification_channel_filetransfer">File transfer</string>
     <string name="notification_channel_high_priority">High priority</string>
+    <string name="notification_channel_sms_mms">New Message</string>
 
     <string name="mpris_stop">Stop the current player</string>
     <string name="copy_url_to_clipboard">Copy URL to clipboard</string>
@@ -374,6 +375,9 @@
     <string name="bigscreen_optional_permission_explanation">To share microphone input from your phone you need to give access to the phone\'s audio input</string>
     <string name="bigscreen_speech_extra_prompt">Speech</string>
 
+    <string name="message_reply_label">REPLY</string>
+    <string name="mark_as_read_label">MARK AS READ</string>
+    <string name="user_display_name">You</string>
     <string name="set_default_sms_app_title">Send MMS</string>
     <string name="set_group_message_as_mms_title">Send group MMS</string>
     <string name="set_group_message_as_mms" translatable="false">set_group_message_as_mms</string>
