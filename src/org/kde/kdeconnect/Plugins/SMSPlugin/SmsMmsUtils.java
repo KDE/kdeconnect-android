@@ -34,6 +34,7 @@ import com.klinker.android.send_message.Utils;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.Helpers.SMSHelper;
+import org.kde.kdeconnect.Helpers.TelephonyHelper;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
@@ -62,16 +63,15 @@ public class SmsMmsUtils {
 
         try {
             Settings settings = new Settings();
+            TelephonyHelper.ApnSetting apnSettings = TelephonyHelper.getPreferredApn(context, subID);
 
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                // If the build version is less than lollipop then we have to manually take the APN settings
-                // from the user in order to be able to send MMS.
-                settings.setMmsc(prefs.getString(context.getString(R.string.sms_pref_set_mmsc), ""));
-                settings.setProxy(prefs.getString(context.getString(R.string.sms_pref_set_mms_proxy), ""));
-                settings.setPort(prefs.getString(context.getString(R.string.sms_pref_set_mms_port), ""));
+            if (apnSettings != null) {
+                settings.setMmsc(apnSettings.getMmsc().toString());
+                settings.setProxy(apnSettings.getMmsProxyAddressAsString());
+                settings.setPort(Integer.toString(apnSettings.getMmsProxyPort()));
+            } else {
+                settings.setUseSystemSending(true);
             }
-
-            settings.setUseSystemSending(true);
 
             if (Utils.isDefaultSmsApp(context)) {
                 settings.setSendLongAsMms(longTextAsMms);

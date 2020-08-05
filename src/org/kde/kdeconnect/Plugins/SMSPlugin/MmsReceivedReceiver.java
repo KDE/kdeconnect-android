@@ -22,14 +22,14 @@ package org.kde.kdeconnect.Plugins.SMSPlugin;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
-import android.preference.PreferenceManager;
+import android.os.Build;
 import android.util.Log;
 
 import com.klinker.android.send_message.Transaction;
+import com.klinker.android.send_message.Utils;
 
-import org.kde.kdeconnect_tp.R;
+import org.kde.kdeconnect.Helpers.TelephonyHelper;
 
 /**
  * Receiver for notifying user when a new MMS has been received by the device. By default it will
@@ -38,9 +38,7 @@ import org.kde.kdeconnect_tp.R;
  */
 public class MmsReceivedReceiver extends com.klinker.android.send_message.MmsReceivedReceiver {
 
-    private String mmscUrl = null;
-    private String mmsProxy = null;
-    private  String mmsPort = null;
+    private TelephonyHelper.ApnSetting apnSetting = null;
 
     @Override
     public void onMessageReceived(Context context, Uri messageUri) {
@@ -56,11 +54,9 @@ public class MmsReceivedReceiver extends com.klinker.android.send_message.MmsRec
         Log.v("MmsReceived", "error: " + error);
     }
 
-    public void loadFromPreferences(Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        mmscUrl = prefs.getString(context.getString(R.string.sms_pref_set_mmsc), "");
-        mmsProxy = prefs.getString(context.getString(R.string.sms_pref_set_mms_proxy), "");
-        mmsPort = prefs.getString(context.getString(R.string.sms_pref_set_mms_port), "");
+    public void getPreferredApn(Context context, Intent intent) {
+        int subscriptionId = intent.getIntExtra(SUBSCRIPTION_ID, Utils.getDefaultSubscriptionId());
+        apnSetting = TelephonyHelper.getPreferredApn(context, subscriptionId);
     }
 
     /**
@@ -71,16 +67,17 @@ public class MmsReceivedReceiver extends com.klinker.android.send_message.MmsRec
      */
     @Override
     public MmscInformation getMmscInfoForReceptionAck() {
+        if (apnSetting != null) {
+            String mmscUrl = apnSetting.getMmsc().toString();
+            String mmsProxy = apnSetting.getMmsProxyAddressAsString();
+            int mmsPort = apnSetting.getMmsProxyPort();
 
-        if (mmscUrl != null || mmsProxy != null || mmsPort != null) {
             try {
-                return new MmscInformation(mmscUrl, mmsProxy, Integer.parseInt(mmsPort));
+                return new MmscInformation(mmscUrl, mmsProxy, mmsPort);
             } catch (Exception e) {
                 Log.e("MmsReceivedReceiver", "Exception", e);
-                return null;
             }
-        } else {
-            return null;
         }
+        return null;
     }
 }

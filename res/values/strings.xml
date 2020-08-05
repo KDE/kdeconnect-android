@@ -381,15 +381,6 @@
     <string name="set_long_text_as_mms" translatable="false">set_long_text_as_mms</string>
     <string name="convert_to_mms_after_title">Convert to MMS</string>
     <string name="convert_to_mms_after" translatable="false">convert_to_mms_after</string>
-    <string name="sms_pref_set_mmsc_dialog_desc">Set MMSC</string>
-    <string name="sms_pref_set_mmsc_title">MMSC</string>
-    <string name="sms_pref_set_mmsc" translatable="false">sms_pref_set_mmsc</string>
-    <string name="sms_pref_set_mms_proxy_dialog_desc">Set MMS proxy</string>
-    <string name="sms_pref_set_mms_proxy_title">MMS proxy</string>
-    <string name="sms_pref_set_mms_proxy" translatable="false">sms_pref_set_mms_proxy</string>
-    <string name="sms_pref_set_mms_port_dialog_desc">Set MMS port</string>
-    <string name="sms_pref_set_mms_port_title">MMS port</string>
-    <string name="sms_pref_set_mms_port" translatable="false">sms_pref_set_mms_port</string>
     <string name="convert_to_mms_after_default" translatable="false">3</string>
     <string-array name="convert_to_mms_after_entries">
         <item>After one message</item>

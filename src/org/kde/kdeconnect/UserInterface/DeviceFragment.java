@@ -22,6 +22,7 @@ package org.kde.kdeconnect.UserInterface;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -41,6 +42,7 @@ import com.klinker.android.send_message.Utils;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
+import org.kde.kdeconnect.Helpers.TelephonyHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.SMSPlugin.SMSPlugin;
 import org.kde.kdeconnect.UserInterface.List.FailedPluginListItem;
@@ -54,6 +56,7 @@ import org.kde.kdeconnect_tp.databinding.ActivityDeviceBinding;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 
@@ -309,10 +312,25 @@ public class DeviceFragment extends Fragment {
                             });
 
                             // Add a button to the pluginList for setting KDE Connect as default sms app for allowing it to send mms
-                            // for now I'm not able to integrate it with other plugin list, but this needs to be reimplemented in a better way.
                             if (!Utils.isDefaultSmsApp(mActivity)) {
+                                // Check if there are any preferred APN settings available on the device, if not then disable the MMS support
+                                boolean hasApnSettings = false;
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+                                    List<Integer> subIds = TelephonyHelper.getActiveSubscriptionIDs(mActivity);
+                                    for (final int subId : subIds) {
+                                        if (TelephonyHelper.getPreferredApn(mActivity, subId) != null) {
+                                            hasApnSettings = true;
+                                            break;
+                                        }
+                                    }
+                                } else {
+                                    if (TelephonyHelper.getPreferredApn(mActivity, 0) != null) {
+                                        hasApnSettings = true;
+                                    }
+                                }
+
                                 for (Plugin p : plugins) {
-                                    if (p.getPluginKey().equals("SMSPlugin")) {
+                                    if (p.getPluginKey().equals("SMSPlugin") && hasApnSettings) {
                                         pluginListItems.add(new SetDefaultAppPluginListItem(p, mActivity.getResources().getString(R.string.pref_plugin_telepathy_mms), (action) -> {
                                             DialogFragment dialog = new DefaultSmsAppAlertDialogFragment.Builder()
                                                     .setTitle(R.string.set_default_sms_app_title)

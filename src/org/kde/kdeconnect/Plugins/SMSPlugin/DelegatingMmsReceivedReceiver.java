@@ -32,7 +32,7 @@ public class DelegatingMmsReceivedReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         MmsReceivedReceiver delegate = new MmsReceivedReceiver();
 
-        delegate.loadFromPreferences(context);
+        delegate.getPreferredApn(context, intent);
         delegate.onReceive(context, intent);
     }
 }
