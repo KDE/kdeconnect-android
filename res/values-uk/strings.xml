@@ -325,12 +325,6 @@
   <string name="set_group_message_as_mms_title">Надіслати групове MMS</string>
   <string name="set_long_text_as_mms_title">Надіслати довгий текст як MMS</string>
   <string name="convert_to_mms_after_title">Перетворити на MMS</string>
-  <string name="sms_pref_set_mmsc_dialog_desc">Встановити MMSC</string>
-  <string name="sms_pref_set_mmsc_title">MMSC</string>
-  <string name="sms_pref_set_mms_proxy_dialog_desc">Встановити проксі MMS</string>
-  <string name="sms_pref_set_mms_proxy_title">Проксі MMS</string>
-  <string name="sms_pref_set_mms_port_dialog_desc">Встановити порт MMS</string>
-  <string name="sms_pref_set_mms_port_title">Порт MMS</string>
   <string-array name="convert_to_mms_after_entries">
     <item>Після одного повідомлення</item>
     <item>Після двох повідомлень</item>

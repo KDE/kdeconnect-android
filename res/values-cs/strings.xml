@@ -325,12 +325,6 @@
   <string name="set_group_message_as_mms_title">Poslat skupinovou MMS</string>
   <string name="set_long_text_as_mms_title">Poslat dlouhý text jako MMS</string>
   <string name="convert_to_mms_after_title">Převést na MMS</string>
-  <string name="sms_pref_set_mmsc_dialog_desc">Nastavit MMSC</string>
-  <string name="sms_pref_set_mmsc_title">MMSC</string>
-  <string name="sms_pref_set_mms_proxy_dialog_desc">Nastavit MMS proxy</string>
-  <string name="sms_pref_set_mms_proxy_title">MMS proxy</string>
-  <string name="sms_pref_set_mms_port_dialog_desc">Nastavit port MMS</string>
-  <string name="sms_pref_set_mms_port_title">Port MMS</string>
   <string-array name="convert_to_mms_after_entries">
     <item>Po jedné zprávě</item>
     <item>Po dvou zprávách</item>

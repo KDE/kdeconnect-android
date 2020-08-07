@@ -251,6 +251,7 @@
   <string name="notification_channel_media_control">Kontroll av media</string>
   <string name="notification_channel_filetransfer">Filöverföring</string>
   <string name="notification_channel_high_priority">Hög prioritet</string>
+  <string name="notification_channel_sms_mms">Nytt meddelande</string>
   <string name="mpris_stop">Stoppa aktuell spelare</string>
   <string name="copy_url_to_clipboard">Kopiera webbadress till klippbordet</string>
   <string name="clipboard_toast">Kopierad till klippbordet</string>
@@ -305,16 +306,13 @@
   <string name="pref_plugin_bigscreen_desc">Använd apparaten som en fjärrkontroll för Plasma storskärm</string>
   <string name="bigscreen_optional_permission_explanation">För att dela mikrofoningången från telefonen måste du ge tillgång till telefonens ljudingång</string>
   <string name="bigscreen_speech_extra_prompt">Tal</string>
+  <string name="message_reply_label">SVARA</string>
+  <string name="mark_as_read_label">MARKERA SOM LÄST</string>
+  <string name="user_display_name">Du</string>
   <string name="set_default_sms_app_title">Skicka MMS</string>
   <string name="set_group_message_as_mms_title">Skicka grupp-MMS</string>
   <string name="set_long_text_as_mms_title">Skicka lång text som MMS</string>
   <string name="convert_to_mms_after_title">Konvertera till MMS</string>
-  <string name="sms_pref_set_mmsc_dialog_desc">Ange MMSC</string>
-  <string name="sms_pref_set_mmsc_title">MMSC</string>
-  <string name="sms_pref_set_mms_proxy_dialog_desc">Ange MMS-proxy</string>
-  <string name="sms_pref_set_mms_proxy_title">MMS-proxy</string>
-  <string name="sms_pref_set_mms_port_dialog_desc">Ange MMS-port</string>
-  <string name="sms_pref_set_mms_port_title">MMS-port</string>
   <string-array name="convert_to_mms_after_entries">
     <item>Efter ett meddelande</item>
     <item>Efter två meddelanden</item>

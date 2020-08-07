@@ -309,12 +309,6 @@
   <string name="set_group_message_as_mms_title">Envoyer un ensemble de « SMS »</string>
   <string name="set_long_text_as_mms_title">Envoyer un long message comme un « MMS »</string>
   <string name="convert_to_mms_after_title">Convertir en « MMS »</string>
-  <string name="sms_pref_set_mmsc_dialog_desc">Définir « MMSC »</string>
-  <string name="sms_pref_set_mmsc_title">MMSC</string>
-  <string name="sms_pref_set_mms_proxy_dialog_desc">Définir un serveur mandataire de « MMS »</string>
-  <string name="sms_pref_set_mms_proxy_title">Serveur mandataire de « MMS »</string>
-  <string name="sms_pref_set_mms_port_dialog_desc">Définir le port « MMS »</string>
-  <string name="sms_pref_set_mms_port_title">Port « MMS »</string>
   <string-array name="convert_to_mms_after_entries">
     <item>Après un message</item>
     <item>Après deux messages</item>

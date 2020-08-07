@@ -251,6 +251,7 @@
   <string name="notification_channel_media_control">Comando multimédia</string>
   <string name="notification_channel_filetransfer">Transferência de ficheiros</string>
   <string name="notification_channel_high_priority">Alta prioridade</string>
+  <string name="notification_channel_sms_mms">Nova Mensagem</string>
   <string name="mpris_stop">Parar o leitor actual</string>
   <string name="copy_url_to_clipboard">Copiar o URL para a área de transferência</string>
   <string name="clipboard_toast">Copiado para a área de transferência</string>
@@ -305,16 +306,13 @@
   <string name="pref_plugin_bigscreen_desc">Use o seu dispositivo como um comando à distância para o Plasma em Ecrã Grande</string>
   <string name="bigscreen_optional_permission_explanation">Para partilhar os dados provenientes do microfone do seu telefone, terá de dar acesso à entrada de áudio do telefone</string>
   <string name="bigscreen_speech_extra_prompt">Fala</string>
+  <string name="message_reply_label">RESPONDER</string>
+  <string name="mark_as_read_label">MARCAR COMO LIDA</string>
+  <string name="user_display_name">Você</string>
   <string name="set_default_sms_app_title">Enviar um MMS</string>
   <string name="set_group_message_as_mms_title">Enviar um MMS em grupo</string>
   <string name="set_long_text_as_mms_title">Enviar o texto extenso como MMS</string>
   <string name="convert_to_mms_after_title">Converter para MMS</string>
-  <string name="sms_pref_set_mmsc_dialog_desc">Definir o MMSC</string>
-  <string name="sms_pref_set_mmsc_title">MMSC</string>
-  <string name="sms_pref_set_mms_proxy_dialog_desc">Definir o \'proxy\' do MMS</string>
-  <string name="sms_pref_set_mms_proxy_title">\'Proxy\' do MMS</string>
-  <string name="sms_pref_set_mms_port_dialog_desc">Definir o porto do MMS</string>
-  <string name="sms_pref_set_mms_port_title">Porto do MMS</string>
   <string-array name="convert_to_mms_after_entries">
     <item>Ao fim de uma mensagem</item>
     <item>Ao fim de duas mensagens</item>

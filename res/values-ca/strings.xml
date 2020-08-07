@@ -251,6 +251,7 @@
   <string name="notification_channel_media_control">Control multimèdia</string>
   <string name="notification_channel_filetransfer">Transferència de fitxers</string>
   <string name="notification_channel_high_priority">Prioritat alta</string>
+  <string name="notification_channel_sms_mms">Missatge nou</string>
   <string name="mpris_stop">Atura el reproductor actual</string>
   <string name="copy_url_to_clipboard">Copia l\'URL al porta-retalls</string>
   <string name="clipboard_toast">Copiat al porta-retalls</string>
@@ -305,16 +306,13 @@
   <string name="pref_plugin_bigscreen_desc">Useu el dispositiu com a remot per a la Bigscreen del Plasma</string>
   <string name="bigscreen_optional_permission_explanation">Per a compartir l\'entrada del micròfon del telèfon cal donar accés a l\'entrada d\'àudio del telèfon</string>
   <string name="bigscreen_speech_extra_prompt">Veu</string>
+  <string name="message_reply_label">RESPON</string>
+  <string name="mark_as_read_label">MARCA COM A LLEGIT</string>
+  <string name="user_display_name">Vós</string>
   <string name="set_default_sms_app_title">Envia un MMS</string>
   <string name="set_group_message_as_mms_title">Envia un MMS de grup</string>
   <string name="set_long_text_as_mms_title">Envia un text llarg com a MMS</string>
   <string name="convert_to_mms_after_title">Converteix a MMS</string>
-  <string name="sms_pref_set_mmsc_dialog_desc">Estableix el MMSC</string>
-  <string name="sms_pref_set_mmsc_title">MMSC</string>
-  <string name="sms_pref_set_mms_proxy_dialog_desc">Estableix el servidor intermediari de MMS</string>
-  <string name="sms_pref_set_mms_proxy_title">Servidor intermediari de MMS</string>
-  <string name="sms_pref_set_mms_port_dialog_desc">Estableix el port de MMS</string>
-  <string name="sms_pref_set_mms_port_title">Port de MMS</string>
   <string-array name="convert_to_mms_after_entries">
     <item>Després d\'un missatge</item>
     <item>Després de dos missatges</item>

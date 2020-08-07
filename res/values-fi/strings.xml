@@ -309,10 +309,6 @@
   <string name="set_group_message_as_mms_title">Lähetä ryhmämultimediaviesti</string>
   <string name="set_long_text_as_mms_title">Lähetä pitkä teksti multimediaviestinä</string>
   <string name="convert_to_mms_after_title">Muunna multimediaviestiksi</string>
-  <string name="sms_pref_set_mms_proxy_dialog_desc">Aseta multimediaviestien välityspalvelin</string>
-  <string name="sms_pref_set_mms_proxy_title">Multimediaviestien välityspalvelin</string>
-  <string name="sms_pref_set_mms_port_dialog_desc">Aseta multimediaviestien portti</string>
-  <string name="sms_pref_set_mms_port_title">Multimediaviestien portti</string>
   <string-array name="convert_to_mms_after_entries">
     <item>Yhden viestin jälkeen</item>
     <item>Kahden viestin jälkeen</item>

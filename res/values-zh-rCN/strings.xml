@@ -301,12 +301,6 @@
   <string name="set_group_message_as_mms_title">群发彩信</string>
   <string name="set_long_text_as_mms_title">将长文本以彩信形式发送</string>
   <string name="convert_to_mms_after_title">转换为彩信</string>
-  <string name="sms_pref_set_mmsc_dialog_desc">设置彩信中心</string>
-  <string name="sms_pref_set_mmsc_title">彩信中心</string>
-  <string name="sms_pref_set_mms_proxy_dialog_desc">设置彩信代理</string>
-  <string name="sms_pref_set_mms_proxy_title">彩信代理</string>
-  <string name="sms_pref_set_mms_port_dialog_desc">设置彩信端口</string>
-  <string name="sms_pref_set_mms_port_title">彩信端口</string>
   <string-array name="convert_to_mms_after_entries">
     <item>在1条消息后</item>
     <item>在2条消息后</item>

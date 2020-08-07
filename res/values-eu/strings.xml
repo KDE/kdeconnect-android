@@ -309,12 +309,6 @@
   <string name="set_group_message_as_mms_title">Bidali taldeko MMS</string>
   <string name="set_long_text_as_mms_title">Bidali testu luzea MMS gisa</string>
   <string name="convert_to_mms_after_title">Bihurtu MMS</string>
-  <string name="sms_pref_set_mmsc_dialog_desc">Ezarri MMSC</string>
-  <string name="sms_pref_set_mmsc_title">MMSC</string>
-  <string name="sms_pref_set_mms_proxy_dialog_desc">Ezarri MMS ordezkaria</string>
-  <string name="sms_pref_set_mms_proxy_title">MMS ordezkaria</string>
-  <string name="sms_pref_set_mms_port_dialog_desc">Ezarri MMS ataka</string>
-  <string name="sms_pref_set_mms_port_title">MMS ataka</string>
   <string-array name="convert_to_mms_after_entries">
     <item>Mezu baten ondoren</item>
     <item>Bi mezu ondoren</item>

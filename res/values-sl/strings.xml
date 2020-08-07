@@ -325,12 +325,6 @@
   <string name="set_group_message_as_mms_title">Pošlji skupinski SMS</string>
   <string name="set_long_text_as_mms_title">Pošlji dolgo besedilo kot MMS</string>
   <string name="convert_to_mms_after_title">Pretvori v MMS</string>
-  <string name="sms_pref_set_mmsc_dialog_desc">Nastavi MMSC</string>
-  <string name="sms_pref_set_mmsc_title">MMSC</string>
-  <string name="sms_pref_set_mms_proxy_dialog_desc">Nastavi posrednika za MMS</string>
-  <string name="sms_pref_set_mms_proxy_title">Posrednik za MMS</string>
-  <string name="sms_pref_set_mms_port_dialog_desc">Nastavi vrata za MMS</string>
-  <string name="sms_pref_set_mms_port_title">Vrata za MMS</string>
   <string-array name="convert_to_mms_after_entries">
     <item>Po enem sporočilu</item>
     <item>Po dveh sporočilih</item>
