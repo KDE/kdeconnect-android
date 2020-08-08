@@ -267,6 +267,7 @@
   <string name="notification_channel_media_control">Multimediálny ovládač</string>
   <string name="notification_channel_filetransfer">Prenos súborov</string>
   <string name="notification_channel_high_priority">Vysoká priorita</string>
+  <string name="notification_channel_sms_mms">Nová správa</string>
   <string name="mpris_stop">Zastaviť aktuálny prehrávač</string>
   <string name="copy_url_to_clipboard">Kopírovať URL do schránky</string>
   <string name="clipboard_toast">Uložené do schránky</string>
@@ -321,6 +322,9 @@
   <string name="pref_plugin_bigscreen_desc">Použije vaše zariadenie ako diaľkové ovládanie obrazovky Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">Na zdieľanie mikrofónového vstupu z vášho telefónu musíte dať prístup k zvukovému vstupu telefónu.</string>
   <string name="bigscreen_speech_extra_prompt">Reč</string>
+  <string name="message_reply_label">Odpovedať</string>
+  <string name="mark_as_read_label">Označiť ako prečítané</string>
+  <string name="user_display_name">Vy</string>
   <string name="set_default_sms_app_title">Odoslať MMS</string>
   <string name="set_group_message_as_mms_title">Odoslať skupinovú MMS</string>
   <string name="set_long_text_as_mms_title">Poslať dlhý text ako MMS</string>
@@ -335,6 +339,11 @@
   <string name="theme_dialog_title">vybrať tému</string>
   <string-array name="theme_list">
     <item>Nastavené šetričom batérie</item>
+    <item>Svetlá</item>
+    <item>Tmavá</item>
+  </string-array>
+  <string-array name="theme_list_v28">
+    <item>Predvolené systémom</item>
     <item>Svetlá</item>
     <item>Tmavá</item>
   </string-array>

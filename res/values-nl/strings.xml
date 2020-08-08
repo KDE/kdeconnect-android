@@ -251,6 +251,7 @@
   <string name="notification_channel_media_control">Besturing van media</string>
   <string name="notification_channel_filetransfer">Bestandsoverdracht</string>
   <string name="notification_channel_high_priority">Hoge prioriteit</string>
+  <string name="notification_channel_sms_mms">Nieuw bericht</string>
   <string name="mpris_stop">Stop de huidige speler</string>
   <string name="copy_url_to_clipboard">URL-adres kopiëren naar klembord</string>
   <string name="clipboard_toast">Gekopieerd naar klembord</string>
@@ -305,6 +306,9 @@
   <string name="pref_plugin_bigscreen_desc">Gebruik uw apparaat als een Bigscreen op afstand</string>
   <string name="bigscreen_optional_permission_explanation">Om microfooninvoer vanaf uw telefoon te delen moet u toegang geven tot de geluidsinvoer van de telefoon</string>
   <string name="bigscreen_speech_extra_prompt">Spraak</string>
+  <string name="message_reply_label">BEANTWOORDEN</string>
+  <string name="mark_as_read_label">MARKEREN ALS GELEZEN</string>
+  <string name="user_display_name">U</string>
   <string name="set_default_sms_app_title">MMS verzenden</string>
   <string name="set_group_message_as_mms_title">MMS verzenden naar groep</string>
   <string name="set_long_text_as_mms_title">Lange tekst als MMS verzenden</string>
