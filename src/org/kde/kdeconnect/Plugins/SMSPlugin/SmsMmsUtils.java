@@ -26,6 +26,10 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
+import com.google.android.mms.pdu_alt.EncodedStringValue;
+import com.google.android.mms.pdu_alt.MultimediaMessagePdu;
+import com.google.android.mms.pdu_alt.PduPersister;
+import com.google.android.mms.pdu_alt.RetrieveConf;
 import com.klinker.android.send_message.Message;
 import com.klinker.android.send_message.MmsSentReceiver;
 import com.klinker.android.send_message.Settings;
@@ -34,8 +38,11 @@ import com.klinker.android.send_message.Utils;
 
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.provider.Telephony;
 import android.net.Uri;
+import android.util.Base64;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
@@ -45,6 +52,9 @@ import org.kde.kdeconnect.Helpers.SMSHelper;
 import org.kde.kdeconnect.Helpers.TelephonyHelper;
 import org.kde.kdeconnect_tp.R;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -127,6 +137,123 @@ public class SmsMmsUtils {
             //TODO: Notify other end
             com.klinker.android.logger.Log.e(SENDING_MESSAGE, "Exception", e);
         }
+    }
+
+    /**
+     * Returns the Address of the sender of the MMS message.
+     * @param uri                content://mms/msgId/addr
+     * @param context            context in which the method is called.
+     * @return                   sender's Address
+     */
+    public static SMSHelper.Address getMmsFrom(Context context, Uri uri) {
+        MultimediaMessagePdu msg;
+
+        try {
+            msg = (MultimediaMessagePdu) PduPersister.getPduPersister(context).load(uri);
+        } catch (Exception e) {
+            return null;
+        }
+
+        EncodedStringValue encodedStringValue = msg.getFrom();
+        SMSHelper.Address from = new SMSHelper.Address(encodedStringValue.getString());
+        return from;
+    }
+
+    /**
+     * returns a List of Addresses of all the recipients of a MMS message.
+     * @param uri       content://mms/part_id
+     * @param context   Context in which the method is called.
+     * @return          List of Addresses of all recipients of an MMS message
+     */
+    public static List<SMSHelper.Address> getMmsTo(Context context, Uri uri) {
+        MultimediaMessagePdu msg;
+
+        try {
+            msg = (MultimediaMessagePdu) PduPersister.getPduPersister(context).load(uri);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        StringBuilder toBuilder = new StringBuilder();
+        EncodedStringValue to[] = msg.getTo();
+
+        if (to != null) {
+            toBuilder.append(EncodedStringValue.concat(to));
+        }
+
+        if (msg instanceof RetrieveConf) {
+            EncodedStringValue cc[] = ((RetrieveConf) msg).getCc();
+            if (cc != null && cc.length == 0) {
+                toBuilder.append(";");
+                toBuilder.append(EncodedStringValue.concat(cc));
+            }
+        }
+
+        String built = toBuilder.toString().replace(";", ", ");
+        if (built.startsWith(", ")) {
+            built = built.substring(2);
+        }
+
+        return stripDuplicatePhoneNumbers(built);
+    }
+
+    /**
+     * Removes duplicate addresses from the string and returns List of Addresses
+     */
+    public static List<SMSHelper.Address> stripDuplicatePhoneNumbers(String phoneNumbers) {
+        if (phoneNumbers == null) {
+            return null;
+        }
+
+        String numbers[] = phoneNumbers.split(", ");
+
+        List<SMSHelper.Address> uniqueNumbers = new ArrayList<>();
+
+        for (String number : numbers) {
+            if (!uniqueNumbers.contains(number.trim())) {
+                uniqueNumbers.add(new SMSHelper.Address(number.trim()));
+            }
+        }
+
+        return uniqueNumbers;
+    }
+    
+    /**
+     * Converts a given bitmap to an encoded Base64 string for sending to desktop
+     * @param bitmap    bitmap to be encoded into string*
+     * @return          Returns the Base64 encoded string
+     */
+    public static String bitMapToBase64(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new  ByteArrayOutputStream();
+
+        // The below line is not really compressing to PNG so much as encoding as PNG, since PNG is lossless
+        boolean isCompressed = bitmap.compress(Bitmap.CompressFormat.PNG,100, byteArrayOutputStream);
+        if (isCompressed) {
+            byte[] b = byteArrayOutputStream.toByteArray();
+            String encodedString = Base64.encodeToString(b, Base64.DEFAULT);
+            return encodedString;
+        }
+        return null;
+    }
+
+    /**
+     * Reads the image files attached with an MMS from MMS database
+     * @param context    Context in which the method is called
+     * @param id         part ID of the image file attached with an MMS message
+     * @return           Returns the image as a bitmap
+     */
+    public static Bitmap getMmsImage(Context context, long id) {
+        Uri partURI = ContentUris.withAppendedId(SMSHelper.getMMSPartUri(), id);
+        Bitmap bitmap = null;
+
+        try (InputStream inputStream = context.getContentResolver().openInputStream(partURI)) {
+            bitmap = BitmapFactory.decodeStream(inputStream);
+        } catch (IOException e) {
+            Log.e("SmsMmsUtils", "Exception", e);
+        }
+
+        return bitmap;
     }
 
     /**

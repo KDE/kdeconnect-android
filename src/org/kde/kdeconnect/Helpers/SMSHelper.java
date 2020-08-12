@@ -26,6 +26,9 @@ import android.content.Context;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteException;
+import android.graphics.Bitmap;
+import android.media.MediaMetadataRetriever;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Looper;
@@ -46,6 +49,8 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.kde.kdeconnect.Plugins.SMSPlugin.MimeType;
+import org.kde.kdeconnect.Plugins.SMSPlugin.SmsMmsUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,7 +61,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -70,6 +74,9 @@ import kotlin.text.Charsets;
 
 @SuppressLint("InlinedApi")
 public class SMSHelper {
+
+    private static final int THUMBNAIL_HEIGHT = 100;
+    private static final int THUMBNAIL_WIDTH = 100;
 
     /**
      * Get a URI for querying SMS messages
@@ -86,7 +93,7 @@ public class SMSHelper {
         return Telephony.Mms.CONTENT_URI;
     }
 
-    private static Uri getMMSPartUri() {
+    public static Uri getMMSPartUri() {
         // Android says we should have Telephony.Mms.Part.CONTENT_URI. Alas, we do not.
         return Uri.parse("content://mms/part/");
     }
@@ -606,7 +613,8 @@ public class SMSHelper {
                 threadID,
                 uID,
                 event,
-                subscriptionID
+                subscriptionID,
+                null
         );
     }
 
@@ -628,6 +636,7 @@ public class SMSHelper {
         @NonNull ThreadID threadID = new ThreadID(Long.parseLong(messageInfo.get(Message.THREAD_ID)));
         long uID = Long.parseLong(messageInfo.get(Message.U_ID));
         int subscriptionID = NumberUtils.toInt(messageInfo.get(Message.SUBSCRIPTION_ID));
+        List<Attachment> attachments = new ArrayList<>();
 
         String[] columns = {
                 Telephony.Mms.Part._ID,          // The content ID of this part
@@ -660,7 +669,7 @@ public class SMSHelper {
                     long partID = cursor.getLong(partIDColumn);
                     String contentType = cursor.getString(contentTypeColumn);
                     String data = cursor.getString(dataColumn);
-                    if ("text/plain".equals(contentType)) {
+                    if (MimeType.isTypeText(contentType)) {
                         if (data != null) {
                             // data != null means the data is on disk. Go get it.
                             body = getMmsText(context, partID);
@@ -668,10 +677,41 @@ public class SMSHelper {
                             body = cursor.getString(textColumn);
                         }
                         event = addEventFlag(event, Message.EVENT_TEXT_MESSAGE);
-                    } //TODO: Parse more content types (photos and other attachments) here
+                    } else if (MimeType.isTypeImage(contentType)) {
+                        String mimeType = contentType;
+                        String fileName = data.substring(data.lastIndexOf('/') + 1);
 
+                        // Get the actual image from the mms database convert it into thumbnail and encode to Base64
+                        Bitmap image = SmsMmsUtils.getMmsImage(context, partID);
+                        Bitmap thumbnailImage = ThumbnailUtils.extractThumbnail(image, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);
+                        String encodedThumbnail = SmsMmsUtils.bitMapToBase64(thumbnailImage);
+
+                        attachments.add(new Attachment(partID, mimeType, encodedThumbnail, fileName));
+                    } else if (MimeType.isTypeVideo(contentType)) {
+                        String mimeType = contentType;
+                        String fileName = data.substring(data.lastIndexOf('/') + 1);
+
+                        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+                        retriever.setDataSource(context, ContentUris.withAppendedId(getMMSPartUri(), partID));
+                        Bitmap videoThumbnail = retriever.getFrameAtTime();
+
+                        String encodedThumbnail = SmsMmsUtils.bitMapToBase64(
+                                Bitmap.createScaledBitmap(videoThumbnail, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT, true)
+                        );
+
+                        attachments.add(new Attachment(partID, mimeType, encodedThumbnail, fileName));
+                    } else if (MimeType.isTypeAudio(contentType)) {
+                        String mimeType = contentType;
+                        String fileName = data.substring(data.lastIndexOf('/') + 1);
+
+                        attachments.add(new Attachment(partID, mimeType, null, fileName));
+                    } else {
+                        Log.v("SMSHelper", "Unsupported attachment type: " + contentType);
+                    }
                 } while (cursor.moveToNext());
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         // Determine whether the message was in- our out- bound
@@ -689,7 +729,26 @@ public class SMSHelper {
         }
 
         // Get address(es) of the message
-        List<Address> addresses = getMmsAddresses(context, Long.parseLong(mmsID), userPhoneNumbers);
+        Uri uri = ContentUris.appendId(getMMSUri().buildUpon(), uID).build();
+        Address from = SmsMmsUtils.getMmsFrom(context, uri);
+
+        List<Address> to = SmsMmsUtils.getMmsTo(context, uri);
+
+        List<Address> addresses = new ArrayList<>();
+        if (from != null) {
+            if (!userPhoneNumbers.contains(from.toString()) && !from.toString().equals("insert-address-token")) {
+                addresses.add(from);
+            }
+        }
+
+        if (to != null) {
+            for (Address address : to) {
+                if (!userPhoneNumbers.contains(address.toString()) && !address.toString().equals("insert-address-token")) {
+                    addresses.add(address);
+                }
+            }
+        }
+
         // It looks like addresses[0] is always the sender of the message and
         // following addresses are recipient(s)
         // This usually means the addresses list is at least 2 long, but there are cases (special
@@ -713,76 +772,9 @@ public class SMSHelper {
                 threadID,
                 uID,
                 event,
-                subscriptionID
+                subscriptionID,
+                attachments
         );
-    }
-
-    /**
-     * Get the address(es) of an MMS message
-     * Original implementation from https://stackoverflow.com/a/6446831/3723163
-     *
-     * The message at the first position of the list should be the sender of the message
-     *
-     * @param messageID ID of this message in the MMS database for looking up the remaining info
-     * @param userPhoneNumbers List of phone numbers which should be removed from the list of addresses
-     */
-    private static @NonNull List<Address> getMmsAddresses(
-            @NonNull Context context,
-            @NonNull Long messageID,
-            @NonNull List<String> userPhoneNumbers
-    ) {
-        Uri uri = ContentUris.appendId(getMMSUri().buildUpon(), messageID).appendPath("addr").build();
-
-        String[] columns = {
-                Telephony.Mms.Addr.MSG_ID,   // ID of the message for which we are fetching addresses
-                Telephony.Mms.Addr.ADDRESS,  // Address of this part
-                Telephony.Mms.Addr.CHARSET,  // Charset of the returned address (where relevant) //TODO: Handle
-        };
-
-        String selection = Telephony.Mms.Addr.MSG_ID + " = ?";
-        String[] selectionArgs = {messageID.toString()};
-
-        // Keep an ordered set rather than a list because Android sometimes throws duplicates at us
-        Set<Address> addresses = new LinkedHashSet<>();
-
-        try (Cursor addrCursor = context.getContentResolver().query(
-                uri,
-                columns,
-                selection,
-                selectionArgs,
-                null
-        )) {
-            if (addrCursor != null && addrCursor.moveToFirst()) {
-                int addressIndex = addrCursor.getColumnIndex(Telephony.Mms.Addr.ADDRESS);
-
-                do {
-                    String address = addrCursor.getString(addressIndex);
-                    addresses.add(new Address(address));
-                } while (addrCursor.moveToNext());
-            }
-        }
-
-        // Prune the user's phone numbers from the list of addresses
-        List<Address> prunedAddresses = new ArrayList<>(addresses);
-        prunedAddresses.removeAll(userPhoneNumbers);
-
-        if (prunedAddresses.size() == 0) {
-            // If it turns out that we have pruned away everything, prune away nothing
-            // (The user is allowed to talk to themself)
-
-            // Remove duplicate entries, since the user knows if a conversation says "Me" on it,
-            // it is the conversation with themself. (We don't need to say "Me, Me")
-            // This leaves the multi-sim case alone, so the returned address list might say
-            // "Me1, Me2"
-
-            prunedAddresses = new ArrayList<>(addresses.size()); // The old one was empty too, but just to be clear...
-            for (Address address : addresses) {
-                if (!prunedAddresses.contains(address)) {
-                    prunedAddresses.add(address);
-                }
-            }
-        }
-        return prunedAddresses;
     }
 
     /**
@@ -846,6 +838,46 @@ public class SMSHelper {
         }
     }
 
+    public static class Attachment {
+        final long partID;
+        final String mimeType;
+        final String base64EncodedFile;
+        final String uniqueIdentifier;
+
+        /**
+         * Attachment object field names
+         */
+        public static final String PART_ID = "part_id";
+        public static final String MIME_TYPE = "mime_type";
+        public static final String ENCODED_THUMBNAIL = "encoded_thumbnail";
+        public static final String UNIQUE_IDENTIFIER = "unique_identifier";
+
+        public Attachment(long partID,
+                          String mimeType,
+                          @Nullable String base64EncodedFile,
+                          String uniqueIdentifier
+        ) {
+            this.partID = partID;
+            this.mimeType = mimeType;
+            this.base64EncodedFile = base64EncodedFile;
+            this.uniqueIdentifier = uniqueIdentifier;
+        }
+
+        public JSONObject toJson() throws JSONException {
+            JSONObject json = new JSONObject();
+
+            json.put(Attachment.PART_ID, this.partID);
+            json.put(Attachment.MIME_TYPE, this.mimeType);
+
+            if (this.base64EncodedFile != null) {
+                json.put(Attachment.ENCODED_THUMBNAIL, this.base64EncodedFile);
+            }
+            json.put(Attachment.UNIQUE_IDENTIFIER, this.uniqueIdentifier);
+
+            return json;
+        }
+    }
+
     public static class Address {
         final String address;
 
@@ -905,7 +937,6 @@ public class SMSHelper {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String address = jsonObject.getString("address");
                 addresses.add(new Address(address));
-                Log.e("address", address);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -951,6 +982,7 @@ public class SMSHelper {
         public final long uID;
         public final int event;
         public final int subscriptionID;
+        public final List<Attachment> attachments;
 
         /**
          * Named constants which are used to construct a Message
@@ -965,6 +997,7 @@ public class SMSHelper {
         static final String U_ID = Telephony.Sms._ID;          // Something which uniquely identifies this message
         static final String EVENT = "event";
         static final String SUBSCRIPTION_ID = Telephony.Sms.SUBSCRIPTION_ID; // An ID which appears to identify a SIM card
+        static final String ATTACHMENTS = "attachments";       // List of files attached in an MMS
 
         /**
          * Event flags
@@ -1016,7 +1049,8 @@ public class SMSHelper {
                 @NonNull ThreadID threadID,
                 long uID,
                 int event,
-                int subscriptionID
+                int subscriptionID,
+                @Nullable List<Attachment> attachments
         ) {
             this.addresses = addresses;
             this.body = body;
@@ -1035,6 +1069,7 @@ public class SMSHelper {
             this.uID = uID;
             this.subscriptionID = subscriptionID;
             this.event = event;
+            this.attachments = attachments;
         }
 
         public JSONObject toJSONObject() throws JSONException {
@@ -1054,6 +1089,14 @@ public class SMSHelper {
             json.put(Message.U_ID, uID);
             json.put(Message.SUBSCRIPTION_ID, subscriptionID);
             json.put(Message.EVENT, event);
+
+            if (this.attachments != null) {
+                JSONArray jsonAttachments = new JSONArray();
+                for (Attachment attachment : this.attachments) {
+                    jsonAttachments.put(attachment.toJson());
+                }
+                json.put(Message.ATTACHMENTS, jsonAttachments);
+            }
 
             return json;
         }

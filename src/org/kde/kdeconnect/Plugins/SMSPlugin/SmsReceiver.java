@@ -31,7 +31,6 @@ import android.telephony.SmsMessage;
 import android.provider.Telephony.Sms;
 import android.net.Uri;
 import android.content.ContentValues;
-import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.Person;
