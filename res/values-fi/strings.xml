@@ -251,6 +251,7 @@
   <string name="notification_channel_media_control">Mediaohjaimet</string>
   <string name="notification_channel_filetransfer">Tiedostonsiirto</string>
   <string name="notification_channel_high_priority">Korkea etusija</string>
+  <string name="notification_channel_sms_mms">Uusi viesti</string>
   <string name="mpris_stop">Pysäytä nykyinen soitin</string>
   <string name="copy_url_to_clipboard">Kopioi verkko-osoite leikepöydälle</string>
   <string name="clipboard_toast">Kopioitu leikepöydälle</string>
@@ -305,6 +306,9 @@
   <string name="pref_plugin_bigscreen_desc">Käytä laitetta Plasma Bigscreen -kaukosäätimenä</string>
   <string name="bigscreen_optional_permission_explanation">Jakaaksesi puhelimen mikrofonisyötteen puhelimen äänisyötteeseen on annettava käyttöoikeus</string>
   <string name="bigscreen_speech_extra_prompt">Puhe</string>
+  <string name="message_reply_label">VASTAA</string>
+  <string name="mark_as_read_label">MERKITSE LUETUKSI</string>
+  <string name="user_display_name">Sinä</string>
   <string name="set_default_sms_app_title">Lähetä multimediaviesti</string>
   <string name="set_group_message_as_mms_title">Lähetä ryhmämultimediaviesti</string>
   <string name="set_long_text_as_mms_title">Lähetä pitkä teksti multimediaviestinä</string>
