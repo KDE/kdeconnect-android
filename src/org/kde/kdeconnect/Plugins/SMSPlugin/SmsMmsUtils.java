@@ -17,7 +17,6 @@ import com.google.android.mms.pdu_alt.MultimediaMessagePdu;
 import com.google.android.mms.pdu_alt.PduPersister;
 import com.google.android.mms.pdu_alt.RetrieveConf;
 import com.klinker.android.send_message.Message;
-import com.klinker.android.send_message.MmsSentReceiver;
 import com.klinker.android.send_message.Settings;
 import com.klinker.android.send_message.Transaction;
 import com.klinker.android.send_message.Utils;
@@ -91,7 +90,7 @@ public class SmsMmsUtils {
 
             Transaction transaction = new Transaction(context, settings);
             transaction.setExplicitBroadcastForSentSms(new Intent(context, SmsSentReceiver.class));
-            transaction.setExplicitBroadcastForSentMms(new Intent(context, MmsSentReceiver.class));
+            transaction.setExplicitBroadcastForSentMms(new Intent(context, MmsSentReceiverImpl.class));
 
             List<String> addresses = new ArrayList<>();
             for (SMSHelper.Address address : addressList) {

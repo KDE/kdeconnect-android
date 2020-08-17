@@ -16,7 +16,7 @@ import org.kde.kdeconnect.Helpers.SMSHelper;
 
 import java.util.ArrayList;
 
-public class MmsSentReceiver extends com.klinker.android.send_message.MmsSentReceiver {
+public class MmsSentReceiverImpl extends com.klinker.android.send_message.MmsSentReceiver {
 
     @Override
     public void updateInInternalDatabase(Context context, Intent intent, int resultCode) {

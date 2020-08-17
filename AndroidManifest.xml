@@ -90,9 +90,8 @@
             android:taskAffinity="com.klinker.android.messaging.MMS_RECEIVED" />
 
         <receiver
-            android:name="org.kde.kdeconnect.Plugins.SMSPlugin.MmsSentReceiver"
+            android:name="org.kde.kdeconnect.Plugins.SMSPlugin.MmsSentReceiverImpl"
             android:exported="true"
-            android:enabled="true"
             android:taskAffinity="com.klinker.android.messaging.MMS_SENT" />
 
         <receiver
