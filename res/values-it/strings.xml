@@ -251,6 +251,7 @@
   <string name="notification_channel_media_control">Controllo multimediale</string>
   <string name="notification_channel_filetransfer">Trasferimento file</string>
   <string name="notification_channel_high_priority">Priorità alta</string>
+  <string name="notification_channel_sms_mms">Nuovo messaggio</string>
   <string name="mpris_stop">Ferma il lettore attuale</string>
   <string name="copy_url_to_clipboard">Copia l\'URL negli appunti</string>
   <string name="clipboard_toast">Copiato negli appunti</string>
@@ -305,6 +306,9 @@
   <string name="pref_plugin_bigscreen_desc">Utilizza il tuo dispositivo come telecomando per Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">Per condividere l\'ingresso del microfono dal telefono è necessario consentire l\'accesso all\'ingresso audio del telefono</string>
   <string name="bigscreen_speech_extra_prompt">Parlato</string>
+  <string name="message_reply_label">RISPONDI</string>
+  <string name="mark_as_read_label">MARCA COME LETTO</string>
+  <string name="user_display_name">Tu</string>
   <string name="set_default_sms_app_title">Invia MMS</string>
   <string name="set_group_message_as_mms_title">Invia MMS di gruppo</string>
   <string name="set_long_text_as_mms_title">Invia testo lungo come MMS</string>
