@@ -149,7 +149,15 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
                 Thread.sleep(1500);
             } catch (InterruptedException ignored) {
             }
-            mActivity.runOnUiThread(() -> devicesListBinding.refreshListLayout.setRefreshing(false));
+            mActivity.runOnUiThread(() ->{
+
+                // the view might be destroyed by now
+                if (devicesListBinding == null) {
+                    return;
+                }
+
+                devicesListBinding.refreshListLayout.setRefreshing(false);
+            });
         }).start();
     }
 
