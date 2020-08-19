@@ -171,7 +171,7 @@
   </string-array>
   <string name="mpris_notification_settings_title">Pokaži obvestilo o nadzoru medija</string>
   <string name="mpris_notification_settings_summary">Dovoli nadzor nad predvajalniki medijev, ne da bi odprli KDE Connect</string>
-  <string name="share_to">Deli z...</string>
+  <string name="share_to">Deli z…</string>
   <string name="protocol_version_newer">Ta naprava uporablja novejšo različico protokola</string>
   <string name="plugin_settings_with_name">Nastavitve %s</string>
   <string name="invalid_device_name">Neveljavno ime naprave</string>
@@ -267,6 +267,7 @@
   <string name="notification_channel_media_control">Nadzor medija</string>
   <string name="notification_channel_filetransfer">Prenos datotek</string>
   <string name="notification_channel_high_priority">Visoka prednost</string>
+  <string name="notification_channel_sms_mms">Novo sporočilo</string>
   <string name="mpris_stop">Ustavi trenutni predvajalnik</string>
   <string name="copy_url_to_clipboard">Kopiraj spletni naslov na odložišče</string>
   <string name="clipboard_toast">Kopirano na odložišče</string>
@@ -321,6 +322,9 @@
   <string name="pref_plugin_bigscreen_desc">Uporabite svojo napravo kot daljinec za Plasmin veliki zaslon</string>
   <string name="bigscreen_optional_permission_explanation">Če želite deliti vhod mikrofona iz telefona, morate imeti dostop do avdio vhoda telefona</string>
   <string name="bigscreen_speech_extra_prompt">Govor</string>
+  <string name="message_reply_label">ODGOVORI</string>
+  <string name="mark_as_read_label">OZNAČI KOT PREBRANO</string>
+  <string name="user_display_name">Vi</string>
   <string name="set_default_sms_app_title">Pošlji MMS</string>
   <string name="set_group_message_as_mms_title">Pošlji skupinski SMS</string>
   <string name="set_long_text_as_mms_title">Pošlji dolgo besedilo kot MMS</string>
