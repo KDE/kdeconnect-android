@@ -14,7 +14,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
@@ -723,8 +722,8 @@ public class Device implements BaseLink.PacketReceiver {
         Plugin existing = plugins.get(pluginKey);
         if (existing != null) {
 
-            if (existing.getMinSdk() > Build.VERSION.SDK_INT) {
-                Log.i("KDE/addPlugin", "Min API level not fulfilled " + pluginKey);
+            if (existing.isIncompatible()) {
+                Log.i("KDE/addPlugin", "Minimum requirements (e.g. API level) not fulfilled " + pluginKey);
                 return false;
             }
 
@@ -745,8 +744,8 @@ public class Device implements BaseLink.PacketReceiver {
             return false;
         }
 
-        if (plugin.getMinSdk() > Build.VERSION.SDK_INT) {
-            Log.i("KDE/addPlugin", "Min API level not fulfilled" + pluginKey);
+        if (plugin.isIncompatible()) {
+            Log.i("KDE/addPlugin", "Minimum requirements (e.g. API level) not fulfilled " + pluginKey);
             return false;
         }
 

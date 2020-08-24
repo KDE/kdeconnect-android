@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 
+import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -189,8 +190,30 @@ public abstract class Plugin {
     }
 
     /**
+     * Determine whether we should avoid loading this Plugin for {@link #device}.
+     * <p>
+     *     Called after {@link #setContext(Context, Device)} but before {@link #onCreate()}.
+     * </p>
+     * <p>
+     *     By default, this just checks if {@link #getMinSdk()} is greater than the
+     *     {@link Build.VERSION#SDK_INT SDK version} of this Android device.
+     * </p>
+     *
+     * @return false if it makes sense to call {@link #onCreate()}, true otherwise
+     */
+    @CallSuper
+    public boolean isIncompatible() {
+        return getMinSdk() > Build.VERSION.SDK_INT;
+    }
+
+    /**
      * Initialize the listeners and structures in your plugin.
-     * Should return true if initialization was successful.
+     * <p>
+     *     If {@link #isIncompatible()} returns false, this will <em>not</em>
+     *     be called.
+     * </p>
+     *
+     * @return true if initialization was successful, false otherwise
      */
     public boolean onCreate() {
         return true;
