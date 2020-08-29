@@ -213,6 +213,8 @@
   <string name="no_file_browser">Ingen filhandsamarar er installerte.</string>
   <string name="pref_plugin_telepathy">Send SMS</string>
   <string name="pref_plugin_telepathy_desc">Send tekstmeldingar frå datamaskina</string>
+  <string name="pref_plugin_telepathy_mms">Send MMS</string>
+  <string name="pref_plugin_telepathy_mms_desc">Du må velja KDE Connect som standard­app for å kunna senda MMS.</string>
   <string name="findmyphone_title">Finn telefonen min</string>
   <string name="findmyphone_title_tablet">Finn nettbrettet mitt</string>
   <string name="findmyphone_title_tv">Finn TV-en min</string>
@@ -249,6 +251,7 @@
   <string name="notification_channel_media_control">Mediestyring</string>
   <string name="notification_channel_filetransfer">Filoverføring</string>
   <string name="notification_channel_high_priority">Høg prioritet</string>
+  <string name="notification_channel_sms_mms">Ny melding</string>
   <string name="mpris_stop">Stopp gjeldande avspelar</string>
   <string name="copy_url_to_clipboard">Kopier adresse til utklippstavla</string>
   <string name="clipboard_toast">Kopiert til utklippstavla</string>
@@ -303,12 +306,19 @@
   <string name="pref_plugin_bigscreen_desc">Bruk eininga som fjernkontroll for Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">For å kunna dela mikrofon­lyd frå telefonen må du gje appen mikrofontilgang</string>
   <string name="bigscreen_speech_extra_prompt">Tale</string>
+  <string name="message_reply_label">SVAR</string>
+  <string name="mark_as_read_label">MERK SOM LESEN</string>
+  <string name="user_display_name">Du</string>
+  <string name="set_default_sms_app_title">Send MMS</string>
+  <string name="set_group_message_as_mms_title">Send gruppe-MMS</string>
+  <string name="set_long_text_as_mms_title">Send lang tekst som MMS</string>
+  <string name="convert_to_mms_after_title">Gjer om til MMS</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>Etter éi melding</item>
+    <item>Etter to meldingar</item>
+    <item>Etter tre meldingar</item>
+    <item>Etter fire meldingar</item>
+    <item>Etter fem meldingar</item>
   </string-array>
   <string name="theme_dialog_title">Vel tema</string>
   <string-array name="theme_list">
@@ -317,8 +327,8 @@
     <item>Mørkt</item>
   </string-array>
   <string-array name="theme_list_v28">
-    <item>System Default</item>
-    <item>Light</item>
-    <item>Dark</item>
+    <item>Systemstandard</item>
+    <item>Lyst</item>
+    <item>Mørk</item>
   </string-array>
 </resources>
