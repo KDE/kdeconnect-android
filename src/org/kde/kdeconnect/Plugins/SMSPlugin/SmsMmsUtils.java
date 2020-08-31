@@ -33,10 +33,13 @@ import android.util.Log;
 import androidx.annotation.RequiresApi;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.io.IOUtils;
 import org.kde.kdeconnect.Helpers.SMSHelper;
 import org.kde.kdeconnect.Helpers.TelephonyHelper;
+import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect_tp.R;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -203,7 +206,7 @@ public class SmsMmsUtils {
 
         return uniqueNumbers;
     }
-    
+
     /**
      * Converts a given bitmap to an encoded Base64 string for sending to desktop
      * @param bitmap    bitmap to be encoded into string*
@@ -239,6 +242,58 @@ public class SmsMmsUtils {
         }
 
         return bitmap;
+    }
+
+    /**
+     * This method loads the byteArray of attachment file stored in the MMS database
+     * @param context    Context in which the method is called
+     * @param id         part ID of the particular multimedia attachment file of MMS
+     * @return           returns the byteArray of the attachment
+     */
+    public static byte[] loadAttachment(Context context, long id) {
+        Uri partURI = ContentUris.withAppendedId(SMSHelper.getMMSPartUri(), id);
+        byte[] byteArray = new byte[0];
+
+        // Open inputStream from the specified URI
+        try (InputStream inputStream = context.getContentResolver().openInputStream(partURI)) {
+            // Try read from the InputStream
+            if (inputStream != null) {
+                byteArray = IOUtils.toByteArray(inputStream);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return byteArray;
+    }
+
+    /**
+     * Create a SMS attachment packet using the partID of the file requested by the device
+     */
+    public static NetworkPacket partIdToMessageAttachmentPacket(
+            final Context context,
+            final long partID,
+            final String filename,
+            String type
+    ) {
+        byte[] attachment = loadAttachment(context, partID);
+        long size = attachment.length;
+        if (size == 0) {
+            Log.e("SmsMmsUtils", "Loaded attachment is empty.");
+        }
+
+        try {
+            InputStream inputStream = new ByteArrayInputStream(attachment);
+
+            NetworkPacket np = new NetworkPacket(type);
+            np.set("filename", filename);
+
+            np.setPayload(new NetworkPacket.Payload(inputStream, size));
+
+            return np;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     /**

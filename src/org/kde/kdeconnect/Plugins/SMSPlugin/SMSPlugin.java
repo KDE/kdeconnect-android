@@ -152,6 +152,24 @@ public class SMSPlugin extends Plugin {
      */
     private final static String PACKET_TYPE_SMS_REQUEST_CONVERSATION = "kdeconnect.sms.request_conversation";
 
+    /**
+     * Packet sent to request an attachment file in a particular message of a conversation
+     * <p>
+     * The body should look like so:
+     * "part_id": <long>                // Part id of the attachment
+     * "unique_identifier": <String>    // This unique_identifier should come from a previous message packet's attachment field
+     */
+    private final static String PACKET_TYPE_SMS_REQUEST_ATTACHMENT = "kdeconnect.sms.request_attachment";
+
+    /**
+     * Packet used to send original attachment file from mms database to desktop
+     * <p>
+     * The following fields are available:
+     * "filename": <String>     // Name of the attachment file in the database
+     * "payload":               // Actual attachment file to be transferred
+     */
+    private final static String PACKET_TYPE_SMS_ATTACHMENT_FILE = "kdeconnect.sms.attachment_file";
+
     private static final String KEY_PREF_BLOCKED_NUMBERS = "telephony_blocked_numbers";
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
@@ -268,7 +286,6 @@ public class SMSPlugin extends Plugin {
 
         // Send the alert about the update
         device.sendPacket(constructBulkMessagePacket(Collections.singleton(message)));
-        Log.e("sent", "update");
     }
 
     /**
@@ -415,6 +432,22 @@ public class SMSPlugin extends Plugin {
                     }
                 }
                 break;
+
+            case PACKET_TYPE_SMS_REQUEST_ATTACHMENT:
+                long partID = np.getLong("part_id");
+                String uniqueIdentifier = np.getString("unique_identifier");
+
+                NetworkPacket networkPacket = SmsMmsUtils.partIdToMessageAttachmentPacket(
+                        context,
+                        partID,
+                        uniqueIdentifier,
+                        PACKET_TYPE_SMS_ATTACHMENT_FILE
+                );
+
+                if (networkPacket != null) {
+                    device.sendPacket(networkPacket);
+                }
+                break;
         }
 
         return true;
@@ -530,13 +563,17 @@ public class SMSPlugin extends Plugin {
                 PACKET_TYPE_SMS_REQUEST,
                 TelephonyPlugin.PACKET_TYPE_TELEPHONY_REQUEST,
                 PACKET_TYPE_SMS_REQUEST_CONVERSATIONS,
-                PACKET_TYPE_SMS_REQUEST_CONVERSATION
+                PACKET_TYPE_SMS_REQUEST_CONVERSATION,
+                PACKET_TYPE_SMS_REQUEST_ATTACHMENT
         };
     }
 
     @Override
     public String[] getOutgoingPacketTypes() {
-        return new String[]{PACKET_TYPE_SMS_MESSAGE};
+        return new String[]{
+                PACKET_TYPE_SMS_MESSAGE,
+                PACKET_TYPE_SMS_ATTACHMENT_FILE
+        };
     }
 
     @Override
