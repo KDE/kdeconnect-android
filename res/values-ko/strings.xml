@@ -205,6 +205,8 @@
   <string name="no_file_browser">설치된 파일 탐색기가 없습니다.</string>
   <string name="pref_plugin_telepathy">SMS 보내기</string>
   <string name="pref_plugin_telepathy_desc">데스크톱에서 문자 메시지 보내기</string>
+  <string name="pref_plugin_telepathy_mms">MMS 보내기</string>
+  <string name="pref_plugin_telepathy_mms_desc">KDE Connect에서 MMS를 보내려면 기본 SMS 앱으로 설정해야 합니다.</string>
   <string name="findmyphone_title">내 휴대폰 찾기</string>
   <string name="findmyphone_title_tablet">내 태블릿 찾기</string>
   <string name="findmyphone_title_tv">내 TV 찾기</string>
@@ -241,6 +243,7 @@
   <string name="notification_channel_media_control">미디어 제어</string>
   <string name="notification_channel_filetransfer">파일 전송</string>
   <string name="notification_channel_high_priority">높은 우선 순위</string>
+  <string name="notification_channel_sms_mms">새 메시지</string>
   <string name="mpris_stop">현재 재생기 정지</string>
   <string name="copy_url_to_clipboard">클립보드로 URL 복사</string>
   <string name="clipboard_toast">클립보드에 복사됨</string>
@@ -295,16 +298,28 @@
   <string name="pref_plugin_bigscreen_desc">내 장치를 Plasma 큰 화면의 리모콘으로 사용</string>
   <string name="bigscreen_optional_permission_explanation">휴대폰 마이크 입력을 공유하려면 오디오 입력 접근 권한이 필요합니다</string>
   <string name="bigscreen_speech_extra_prompt">말하기</string>
+  <string name="message_reply_label">답장</string>
+  <string name="mark_as_read_label">읽은 상태로 표시</string>
+  <string name="user_display_name">나</string>
+  <string name="set_default_sms_app_title">MMS 보내기</string>
+  <string name="set_group_message_as_mms_title">그룹 MMS 보내기</string>
+  <string name="set_long_text_as_mms_title">긴 텍스트를 MMS로 보내기</string>
+  <string name="convert_to_mms_after_title">MMS로 변환</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>메시지 1개 이후</item>
+    <item>메시지 2개 이후</item>
+    <item>메시지 3개 이후</item>
+    <item>메시지 4개 이후</item>
+    <item>메시지 5개 이후</item>
   </string-array>
   <string name="theme_dialog_title">테마 선택</string>
   <string-array name="theme_list">
     <item>배터리 세이버에 의해 설정됨</item>
+    <item>밝음</item>
+    <item>어두움</item>
+  </string-array>
+  <string-array name="theme_list_v28">
+    <item>시스템 기본값</item>
     <item>밝음</item>
     <item>어두움</item>
   </string-array>
