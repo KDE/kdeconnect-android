@@ -6,7 +6,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 buildscript {
-    ext.kotlin_version = '1.3.72'
+    ext.kotlin_version = '1.4.0'
     repositories {
         jcenter()
         google()
@@ -135,7 +135,7 @@ Provider<String> gitHashProvider = project.provider {
 }
 
 ext {
-    coroutines_version = '1.3.6'
+    coroutines_version = '1.3.8'
 }
 
 dependencies {
@@ -150,21 +150,21 @@ dependencies {
         */
     }
 
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.9'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
     implementation 'androidx.multidex:multidex:2.0.1'
 
     implementation 'androidx.media:media:1.1.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.3.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.core:core-ktx:1.3.1'
     implementation 'androidx.preference:preference:1.1.1'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'androidx.documentfile:documentfile:1.0.1'
     implementation 'androidx.lifecycle:lifecycle-runtime:2.2.0'
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.2.0'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
-    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.google.android.material:material:1.2.1'
     implementation 'com.jakewharton:disklrucache:2.0.2' //For caching album art bitmaps
     implementation 'com.jaredrummler:android-device-names:1.1.9' //To get a human-friendly device name
 
