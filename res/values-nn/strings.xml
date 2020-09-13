@@ -90,7 +90,7 @@
   <string name="encryption_info_title">Krypteringsinfo</string>
   <string name="encryption_info_msg_no_ssl">Den andre eininga brukar ein gammal versjon av KDE Connect, med ein utdatert krypteringsmetode.</string>
   <string name="my_device_fingerprint">SHA-fingeravtrykket til einingssertifikatet er:</string>
-  <string name="remote_device_fingerprint">SHA-fingeravtrykket fjerneiningssertifikatet er:</string>
+  <string name="remote_device_fingerprint">SHA-fingeravtrykket til fjerneiningssertifikatet er:</string>
   <string name="pair_requested">Paringsførespurnad</string>
   <string name="pairing_request_from">Paringsførespurnad frå %1s</string>
   <plurals name="incoming_file_title">
