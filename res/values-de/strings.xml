@@ -280,6 +280,8 @@
   <string name="trusted_networks">Vertrauenswürdiges Netzwerk</string>
   <string name="add_trusted_network">%1s hinzufügen</string>
   <string name="location_permission_needed_title">Berechtigung erforderlich</string>
+  <string name="bigscreen_right">Rechts</string>
+  <string name="set_default_sms_app_title">SMS senden</string>
   <string-array name="convert_to_mms_after_entries">
     <item>After one message</item>
     <item>After two messages</item>
