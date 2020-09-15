@@ -86,6 +86,7 @@ public class SMSHelper {
 
     /**
      * Get the base address for all message conversations
+     * We only use this to fetch thread_ids because the data it returns if often incomplete or useless
      */
     private static Uri getConversationUri() {
 
@@ -122,7 +123,7 @@ public class SMSHelper {
     }
 
     /**
-     * Get some or all the messages in a requested thread
+     * Get some or all the messages in a requested thread, starting with the most-recent message
      *
      * @param context  android.content.Context running the request
      * @param threadID Thread to look up
@@ -134,11 +135,7 @@ public class SMSHelper {
             @NonNull ThreadID threadID,
             @Nullable Long numberToGet
     ) {
-        Uri uri = Uri.withAppendedPath(getConversationUri(), threadID.toString());
-
-        String sortOrder = Message.DATE + " DESC";
-
-        return getMessages(uri, context, null, null, sortOrder, numberToGet);
+        return getMessagesInRange(context, threadID, Long.MAX_VALUE, numberToGet);
     }
 
     /**
