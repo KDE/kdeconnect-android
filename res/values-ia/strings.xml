@@ -1,11 +1,32 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_no_devices">Non connectite a ulle dispositivo</string>
+  <string name="foreground_notification_devices">Connectite : %s</string>
+  <string name="foreground_notification_send_clipboard">Invia Area de transferentia</string>
+  <string name="pref_plugin_telephony">Notificator de telephonia</string>
+  <string name="pref_plugin_telephony_desc">Invia notificationes per appellos in arrivata</string>
+  <string name="pref_plugin_battery">Reporto de batteria</string>
+  <string name="pref_plugin_battery_desc">Periodicamente reporta stato de batteria</string>
+  <string name="pref_plugin_sftp_desc">Permitte navigat in le systema de file de iste dispositivo remotemente</string>
+  <string name="pref_plugin_clipboard">Sync de area de transferentia</string>
+  <string name="pref_plugin_clipboard_desc">Comparti le contento de area de transferentia</string>
+  <string name="pref_plugin_clipboard_sent">Area de transferentia inviate</string>
+  <string name="pref_plugin_mousepad">Entrata remote</string>
+  <string name="pref_plugin_presenter">"Sequentia de diapositivas  remote"</string>
+  <string name="pref_plugin_presenter_desc">Usa tu dispositivo per cambiar diapositivas in un presentation</string>
+  <string name="pref_plugin_mpris">Controlos de Multimedia</string>
   <string name="pref_plugin_runcommand">Executa commando</string>
+  <string name="pref_plugin_ping">Ping</string>
   <string name="ok">OK</string>
+  <string name="sad_ok">OK :(</string>
   <string name="cancel">Cancella</string>
+  <string name="send_ping">Invia Ping</string>
+  <string name="open_mpris_controls">Controlo mutimedia</string>
+  <string name="open_mousepad">Entrata remote</string>
   <string-array name="mousepad_tap_entries">
-    <item>Right click</item>
-    <item>Middle click</item>
+    <item>Pulsa a dextera</item>
+    <item>Click in medio</item>
     <item>Nihil</item>
   </string-array>
   <string-array name="mousepad_sensitivity_entries">
@@ -19,16 +40,30 @@
     <item>No Acceleration</item>
     <item>Weakest</item>
     <item>Weaker</item>
-    <item>Medium</item>
+    <item>Medie</item>
     <item>Stronger</item>
     <item>Strongest</item>
   </string-array>
+  <string name="category_connected_devices">Dispositivos connectite</string>
   <string name="category_not_paired_devices">Dispositivos disponibile</string>
   <string name="device_menu_plugins">"Preferentias de plugin "</string>
+  <string name="device_menu_unpair">De-Associa</string>
   <string name="unknown_device">Dispositivo incognite</string>
+  <string name="error_canceled_by_other_peer">Cancellate per altere pare</string>
+  <string name="pair_requested">Coppiar requirite</string>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">"Inviante file %1$d   a  %2$s"</item>
+    <item quantity="other">Invia %1$d files %2$s</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">"Inviate  file a %1$s"</item>
+    <item quantity="other">"Inviate %2$d  files a %1$s"</item>
+  </plurals>
   <string name="pairing_accept">Accepta</string>
   <string name="pairing_reject">Rejecta</string>
+  <string name="settings">Preferentias</string>
   <string name="mpris_play">Reproduce</string>
+  <string name="mpris_pause">Pausa</string>
   <string name="mpris_previous">Precedente</string>
   <string name="mpris_rew">Rebobina</string>
   <string name="mpris_ff">Avantia velocemente</string>
@@ -41,13 +76,50 @@
     <item>1 minuta</item>
     <item>2 minutas</item>
   </string-array>
+  <string name="custom_device_fab_hint">Adde un dispositivo</string>
+  <string name="undo">Annulla</string>
+  <string name="share">Comparti</string>
   <string name="sftp_readonly">(solmente de lectura)</string>
+  <string name="add_device_dialog_title">Adde dispositivo</string>
+  <string name="add_device_hint">Nomine de hospite o adresse IP</string>
+  <string name="sftp_storage_preference_display_name">Nomine de monstrar</string>
+  <string name="sftp_action_mode_menu_delete">Dele</string>
   <string name="send_files">Invia files</string>
   <string name="device_rename_confirm">Renomina</string>
   <string name="refresh">Refresca</string>
   <string name="pref_plugin_telepathy">Invia SMS</string>
+  <string name="pref_plugin_telepathy_mms">Invia MMS</string>
   <string name="open">Aperi</string>
   <string name="close">Claude</string>
+  <string name="device_icon_description">Icone de dispositivo</string>
+  <string name="settings_icon_description">Icone de Preferentias</string>
+  <string name="presenter_fullscreen">Schermo plen</string>
+  <string name="notification_channel_media_control">Controlo de multimedia</string>
+  <string name="notification_channel_filetransfer">Transferimento de file</string>
+  <string name="notification_channel_high_priority">Prioritate alte</string>
+  <string name="notification_channel_sms_mms">Nove message</string>
+  <string name="copy_url_to_clipboard">Copia URL a area de transferentia</string>
+  <string name="runcommand_notpaired">Dispositivo non es associate</string>
+  <string name="mute">Surdina</string>
+  <string name="all">Omne</string>
+  <string name="devices">Dispositivos</string>
+  <string name="settings_rename">Nomine de dispositivo</string>
+  <string name="settings_more_settings_title">Altere preferentias</string>
+  <string name="extra_options">Optiones extra</string>
+  <string name="privacy_options">Optiones de confidentialitate</string>
+  <string name="presenter_pointer">Punctator</string>
+  <string name="bigscreen_home">Domo o initio</string>
+  <string name="bigscreen_up">In alto</string>
+  <string name="bigscreen_left">Sinistra</string>
+  <string name="bigscreen_select">Selige</string>
+  <string name="bigscreen_right">Dextera</string>
+  <string name="bigscreen_down">A basso</string>
+  <string name="bigscreen_speech_extra_prompt">Voce</string>
+  <string name="message_reply_label">RESPONSA</string>
+  <string name="mark_as_read_label">MARCA COMO LEGITE</string>
+  <string name="user_display_name">Tu</string>
+  <string name="set_default_sms_app_title">Invia MMS</string>
+  <string name="set_group_message_as_mms_title">Invia MMS de gruppo</string>
   <string-array name="convert_to_mms_after_entries">
     <item>After one message</item>
     <item>After two messages</item>
@@ -57,12 +129,12 @@
   </string-array>
   <string-array name="theme_list">
     <item>Set by Battery Saver</item>
-    <item>Light</item>
+    <item>Legier</item>
     <item>Dark</item>
   </string-array>
   <string-array name="theme_list_v28">
-    <item/>
-    <item>Light</item>
+    <item>Predefinite de systema</item>
+    <item>Legier</item>
     <item>Dark</item>
   </string-array>
 </resources>

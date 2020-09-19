@@ -1,44 +1,85 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="foreground_notification_no_devices">Niciun dispozitiv conectat</string>
+  <string name="foreground_notification_devices">Conectat la: %s</string>
+  <string name="foreground_notification_send_clipboard">Trimite clipboard</string>
   <string name="pref_plugin_telephony">Notificator de telefonie</string>
+  <string name="pref_plugin_telephony_desc">Trimite notificări pentru apeluri de intrare</string>
   <string name="pref_plugin_battery">Raport acumulator</string>
   <string name="pref_plugin_battery_desc">Raportează periodic starea acumulatorului</string>
   <string name="pref_plugin_sftp">Expunere sistem de fișiere</string>
+  <string name="pref_plugin_sftp_desc">Permite răsfoirea de la distanță a sistemul de fișiere al acestui dispozitiv</string>
   <string name="pref_plugin_clipboard">Sincronizare clipboard</string>
-  <string name="pref_plugin_clipboard_desc">Partajează conținutul clipboardului</string>
+  <string name="pref_plugin_clipboard_desc">Partajează conținutul clipboard-ului</string>
+  <string name="pref_plugin_clipboard_sent">Clipboard trimis</string>
+  <string name="pref_plugin_mousepad">Introducere de la distanță</string>
+  <string name="pref_plugin_mousepad_desc">Folosiți telefonul sau tableta ca zonă tactilă și tastatură</string>
+  <string name="pref_plugin_presenter">Telecomandă pentru diaporamă</string>
+  <string name="pref_plugin_presenter_desc">Folosiți dispozitivul pentru a schimba diapozitivele dintr-o prezentare</string>
+  <string name="pref_plugin_remotekeyboard">Primește apăsări de taste de la distanță</string>
+  <string name="pref_plugin_remotekeyboard_desc">Primește evenimente de apăsare a tastelor de la dispozitive distante</string>
+  <string name="pref_plugin_mpris">Controale multimedia</string>
+  <string name="pref_plugin_mpris_desc">Furnizează control de la distanță pentru lectorul multimedia</string>
+  <string name="pref_plugin_runcommand">Rulează comandă</string>
+  <string name="pref_plugin_runcommand_desc">Declanșează comenzi la distanță de pe telefon sau tabletă</string>
+  <string name="pref_plugin_contacts">Sincronizator de contacte</string>
+  <string name="pref_plugin_contacts_desc">Permite sincronizarea cărții de telefoane a dispozitivului</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Trimite și primește ping-uri</string>
   <string name="pref_plugin_notifications">Sincronizare notificări</string>
   <string name="pref_plugin_notifications_desc">Accesați-vă notificările de pe alte dispozitive</string>
+  <string name="pref_plugin_receive_notifications">Primește notificări</string>
+  <string name="pref_plugin_receive_notifications_desc">Primește notificări de pe alte dispozitive și le afișează în Android</string>
+  <string name="pref_plugin_sharereceiver">Partajează și primește</string>
+  <string name="pref_plugin_sharereceiver_desc">Partajează fișiere și URL-uri între dispozitive</string>
   <string name="device_list_empty">Niciun dispozitiv</string>
   <string name="ok">Bine</string>
+  <string name="sad_ok">Bine :(</string>
   <string name="cancel">Renunță</string>
   <string name="open_settings">Deschide configurările</string>
   <string name="no_permissions">Trebuie să acordați permisiunea pentru accesarea notificărilor</string>
+  <string name="no_permission_mprisreceiver">Pentru a putea controla lectorul multimedia, trebuie să permiteți accesul la notificări</string>
+  <string name="no_permissions_remotekeyboard">Pentru a primi apăsări de taste, trebuie să activați Tastatura de la distanță KDE Connect</string>
   <string name="send_ping">Trimite ping</string>
+  <string name="open_mpris_controls">Control multimedia</string>
+  <string name="remotekeyboard_editing_only_title">Manipulează taste de la distanță numai la redactare</string>
+  <string name="remotekeyboard_not_connected">Nu e nicio conexiune activă de tastatură la distanță, stabiliți una în kdeconnect</string>
+  <string name="remotekeyboard_connected">Conexiunea de tastatură la distanță e activă</string>
+  <string name="remotekeyboard_multiple_connections">Sunt mai multe conexiuni de tastatură la distanță, alegeți dispozitivul de configurat</string>
+  <string name="open_mousepad">Introducere de la distanță</string>
+  <string name="mousepad_info">"Mișcați un deget pe ecran pentru a muta cursorul mausului. Atingeți pentru clic, folosiți două/trei degete pentru butoanele drept și mijlociu. Folosiți 2 degete pentru a derula.  Apăsați lung pentru tragere-și-lăsare."</string>
+  <string name="mousepad_double_tap_settings_title">Stabilește acțiunea de atingere cu două degete</string>
+  <string name="mousepad_triple_tap_settings_title">Stabilește acțiunea de atingere cu trei degete</string>
+  <string name="mousepad_sensitivity_settings_title">Stabilește sensibilitatea zonei tactile</string>
+  <string name="mousepad_acceleration_profile_settings_title">Stabilește accelerația indicatorului</string>
+  <string name="mousepad_scroll_direction_title">Inversează direcția derulării</string>
   <string-array name="mousepad_tap_entries">
-    <item>Right click</item>
-    <item>Middle click</item>
-    <item>Nothing</item>
+    <item>Clic-dreapta</item>
+    <item>Clic-mijloc</item>
+    <item>Nimic</item>
   </string-array>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
-    <item>Above Slowest</item>
-    <item>Default</item>
-    <item>Above Default</item>
-    <item>Fastest</item>
+    <item>Cea mai lentă</item>
+    <item>Mai puțin lentă</item>
+    <item>Implicită</item>
+    <item>Peste implicită</item>
+    <item>Cea mai rapidă</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>No Acceleration</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
-    <item>Medium</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>Fără accelerație</item>
+    <item>Cea mai slabă</item>
+    <item>Mai slabă</item>
+    <item>Medie</item>
+    <item>Mai puternică</item>
+    <item>Cea mai puternică</item>
   </string-array>
   <string name="category_connected_devices">Dispozitive conectate</string>
+  <string name="category_not_paired_devices">Dispozitive disponibile</string>
   <string name="category_remembered_devices">Dispozitive memorizate</string>
+  <string name="device_menu_plugins">Configurare extensii</string>
   <string name="device_menu_unpair">Dezasociază</string>
+  <string name="pair_new_device">Asociază dispozitiv nou</string>
   <string name="unknown_device">Dispozitiv necunoscut</string>
   <string name="error_not_reachable">Dispozitivul nu e accesibil</string>
   <string name="error_already_paired">Dispozitiv asociat deja</string>
@@ -46,43 +87,256 @@
   <string name="error_timed_out">A expirat</string>
   <string name="error_canceled_by_user">Anulat de către utilizator</string>
   <string name="error_canceled_by_other_peer">Anulat de către partener</string>
+  <string name="encryption_info_title">Informații despre criptare</string>
+  <string name="encryption_info_msg_no_ssl">Celălalt dispozitiv nu folosește o versiune recentă de KDE Connect, se va folosi metoda de criptare moștenită.</string>
+  <string name="my_device_fingerprint">Amprenta SHA1 a certificatului acestui dispozitiv e:</string>
+  <string name="remote_device_fingerprint">Amprenta SHA1 a certificatului dispozitivului distant e:</string>
   <string name="pair_requested">Asociere cerută</string>
   <string name="pairing_request_from">Cerere de asociere de la %1s</string>
+  <plurals name="incoming_file_title">
+    <item quantity="one">Se primește %1$d fișier de la %2$s</item>
+    <item quantity="few">Se primesc %1$d fișiere de la %2$s</item>
+    <item quantity="other">Se primesc %1$d de fișiere de la %2$s</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="one">Fișier: %1s</item>
+    <item quantity="few">(Fișier %2$d din %3$d) : %1$s</item>
+    <item quantity="other">(Fișier %2$d din %3$d) : %1$s</item>
+  </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">Se trimite %1$d fișier la %2$s</item>
+    <item quantity="few">Se trimit %1$d fișiere la %2$s</item>
+    <item quantity="other">Se trimit %1$d de fișiere la %2$s</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Fișier: %1$s</item>
+    <item quantity="few">(Fișier %2$d din %3$d) : %1$s</item>
+    <item quantity="other">(Fișier %2$d din %3$d) : %1$s</item>
+  </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one">S-a primit un fișier de la %1$s</item>
+    <item quantity="few">S-au primit %2$d fișiere de la %1$s</item>
+    <item quantity="other">S-au primit %2$d de fișiere de la %1$s</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Primirea unui fișier de la %1$s a eșuat</item>
+    <item quantity="few">Primirea a %2$d din %3$d fișiere de la %1$s a eșuat</item>
+    <item quantity="other">Primirea a %2$d din %3$d de fișiere de la %1$s a eșuat</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">A fost trimis un fișier la %1$s</item>
+    <item quantity="few">Au fost trimise %2$d fișiere la %1$s</item>
+    <item quantity="other">Au fost trimise %2$d de fișiere la %1$s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">A eșuat trimiterea fișierului la %1$s</item>
+    <item quantity="few">A eșuat trimiterea a %2$d din %3$d fișiere la %1$s</item>
+    <item quantity="other">A eșuat trimiterea a %2$d din %3$d de fișiere la %1$s</item>
+  </plurals>
+  <string name="tap_to_open">Atingeți pentru a deschide</string>
+  <string name="received_file_text">Atingeți pentru a deschide „%1s”</string>
+  <string name="cannot_create_file">Nu se poate crea fișierul %s</string>
   <string name="tap_to_answer">Atingeți pentru a răspunde</string>
+  <string name="right_click">Trimite clic drept</string>
+  <string name="middle_click">Trimite clic mijlociu</string>
+  <string name="show_keyboard">Arată tastatura</string>
   <string name="device_not_paired">Dispozitiv neasociat</string>
   <string name="request_pairing">Cere asocierea</string>
   <string name="pairing_accept">Acceptă</string>
   <string name="pairing_reject">Respinge</string>
+  <string name="settings">Configurări</string>
   <string name="mpris_play">Redă</string>
+  <string name="mpris_pause">Întrerupe</string>
   <string name="mpris_previous">Precedent</string>
-  <string name="mpris_rew">Derulează</string>
-  <string name="mpris_ff">Derulare rapidă înainte</string>
+  <string name="mpris_rew">Rebobinează</string>
+  <string name="mpris_ff">Derulează rapid înainte</string>
   <string name="mpris_next">Următor</string>
   <string name="mpris_volume">Volum</string>
+  <string name="mpris_time_settings_title">Butoane pentru derulare/rebobinare</string>
+  <string name="mpris_time_settings_summary">Ajustează durata de derulat/rebobinat rapid la apăsare</string>
   <string-array name="mpris_time_entries">
-    <item>10 seconds</item>
-    <item>20 seconds</item>
-    <item>30 seconds</item>
-    <item>1 minute</item>
-    <item>2 minutes</item>
+    <item>10 secunde</item>
+    <item>20 de secunde</item>
+    <item>30 de secunde</item>
+    <item>1 minut</item>
+    <item>2 minute</item>
   </string-array>
+  <string name="mpris_notification_settings_title">Arată notificare cu control multimedia</string>
+  <string name="mpris_notification_settings_summary">Permite controlul lectorilor multimedia fără a deschide KDE Connect</string>
+  <string name="share_to">Partajează cu...</string>
   <string name="protocol_version_newer">Acest dispozitiv folosește o versiune mai nouă a protocolului</string>
+  <string name="plugin_settings_with_name">Configurări „%s”</string>
   <string name="invalid_device_name">Denumire nevalidă a dispozitivului</string>
+  <string name="shareplugin_text_saved">S-a primit text, salvat în clipboard</string>
+  <string name="custom_devices_settings">Listă de dispozitive personalizate</string>
+  <string name="custom_device_list">Adaugă dispozitive după IP</string>
+  <string name="custom_device_deleted">S-a șters dispozitiv personalizat</string>
+  <string name="custom_device_list_help">Dacă dispozitivul nu e detectat automat, îi puteți adăuga adresa IP saunumele de gazdă apăsând butonul flotant de acțiune</string>
+  <string name="custom_device_fab_hint">Adaugă dispozitiv</string>
+  <string name="undo">Desfă</string>
+  <string name="share_notification_preference">Notificări zgomotoase</string>
+  <string name="share_notification_preference_summary">Vibrează și redă un sunet la primirea unui fișier</string>
+  <string name="share_destination_customize">Specifică dosarul destinație</string>
+  <string name="share_destination_customize_summary_disabled">Fișierele primite vor apărea în Descărcări</string>
+  <string name="share_destination_customize_summary_enabled">Fișierele vor fi stocate în dosarul de mai jos</string>
+  <string name="share_destination_folder_preference">Dosar destinație</string>
+  <string name="share">Partajează</string>
+  <string name="share_received_file">Partajează „%s”</string>
+  <string name="title_activity_notification_filter">Filtru de notificări</string>
+  <string name="filter_apps_info">Notificările vor fi sincronizate pentru aplicațiile alese.</string>
+  <string name="sftp_sdcard_num">Card SD %d</string>
+  <string name="sftp_sdcard">Card SD</string>
+  <string name="sftp_readonly">(numai citire)</string>
+  <string name="sftp_camera">Fotografii</string>
+  <string name="add_device_dialog_title">Adaugă dispozitiv</string>
+  <string name="add_device_hint">Nume gazdă sau adresă IP</string>
+  <string name="sftp_preference_detected_sdcards">Carduri SD detectate</string>
+  <string name="sftp_preference_edit_sdcard_title">Modifică card SD</string>
+  <string name="sftp_preference_configured_storage_locations">Locuri de stocare configurate</string>
+  <string name="sftp_preference_add_storage_location_title">Adaugă loc de stocare</string>
+  <string name="sftp_preference_edit_storage_location">Modifică locul de stocare</string>
+  <string name="sftp_preference_add_camera_shortcut">Adaugă scurtătură pentru dosarul camerei</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_on">Adaugă o scurtătură pentru dosarul camerei de fotografiat</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_off">Nu adăuga o scurtătură pentru dosarul camerei de fotografiat</string>
+  <string name="sftp_storage_preference_storage_location">Loc de stocare</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">Această amplasare a fost configurată deja</string>
+  <string name="sftp_storage_preference_click_to_select">apasă pentru a alege</string>
+  <string name="sftp_storage_preference_display_name">Denumire afișată</string>
+  <string name="sftp_storage_preference_display_name_already_used">Această denumire afișată e folosită deja</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">Denumirea afișată nu poate fi goală</string>
+  <string name="sftp_action_mode_menu_delete">Șterge</string>
+  <string name="sftp_no_sdcard_detected">Niciun card SD detectat</string>
+  <string name="sftp_no_storage_locations_configured">Niciun loc de stocare configurat</string>
+  <string name="sftp_saf_permission_explanation">Pentru a accesa fișiere de la distanță, trebuie să configurați locuri de stocare</string>
+  <string name="no_players_connected">Niciun program de redare găsit</string>
+  <string name="send_files">Trimite fișiere</string>
+  <string name="pairing_title">Dispozitive KDE Connect</string>
+  <string name="pairing_description">Aici ar trebui să apară alte dispozitive ce rulează KDE Connect în aceeași rețea.</string>
+  <string name="device_rename_title">Redenumește dispozitivul</string>
+  <string name="device_rename_confirm">Redenumește</string>
+  <string name="refresh">Reîmprospătează</string>
+  <string name="unreachable_description">Acest dispozitiv asociat nu e disponibil. Asigurați-vă că e conectat la aceeași rețea.</string>
+  <string name="no_wifi">Nu v-ați conectat la o rețea Wi-Fi, așa că s-ar putea să nu vedeți niciun dispozitiv.Apăsați aici pentru a activa Wi-Fi.</string>
+  <string name="on_non_trusted_message">În afara unei rețele de încredere: descoperirea automată e dezactivată.</string>
+  <string name="no_file_browser">Nu e niciun navigator de fișiere instalat.</string>
+  <string name="pref_plugin_telepathy">Expediază SMS</string>
+  <string name="pref_plugin_telepathy_desc">Trimite mesaje textuale de pe calculatorul de birou</string>
+  <string name="pref_plugin_telepathy_mms">Expediază MMS</string>
+  <string name="pref_plugin_telepathy_mms_desc">Pentru a putea trimite MMS-uri din KDE Connect, trebuie să-l indicați ca aplicație implicită de SMS.</string>
+  <string name="findmyphone_title">Găsește-mi telefonul</string>
+  <string name="findmyphone_title_tablet">Găsește-mi tableta</string>
+  <string name="findmyphone_title_tv">Găsește-mi televizorul</string>
+  <string name="findmyphone_description">Sună acest dispozitiv ca să-l puteți găsi</string>
+  <string name="findmyphone_found">L-am găsit</string>
+  <string name="open">Deschide</string>
+  <string name="close">Închide</string>
+  <string name="plugins_need_permission">Unele extensii necesită permisiuni pentru a funcționa (atingeți pentru informații suplimentare):</string>
+  <string name="permission_explanation">Această extensie are nevoie de permisiuni ca să lucreze</string>
+  <string name="optional_permission_explanation">Trebuie să acordați permisiuni suplimentare pentru activarea tuturor funcțiilor</string>
+  <string name="plugins_need_optional_permission">Unele extensii au caracteristici dezactivate din cauza lipsei permisiunilor (atingeți pentru informații suplimentare):</string>
+  <string name="share_optional_permission_explanation">Pentru a partaja fișiere între telefon și calculator, trebuie să permiteți accesul la stocarea telefonului</string>
+  <string name="telepathy_permission_explanation">Pentru a citi și scrie SMS de pe calculatorul de birou, trebuie să acordați permisiuni asupra SMS-urilor</string>
+  <string name="telephony_permission_explanation">Pentru a vedea apelurile pe calculatorul de birou, trebuie să acordați permisiuni asupra jurnalului de apeluri și stării telefonului</string>
+  <string name="telephony_optional_permission_explanation">Pentru a vedea numele contactului în locul numărului de telefon, trebuie să permiteți accesul la contactele telefonului.</string>
+  <string name="contacts_permission_explanation">Pentru a vă partaja agenda de contacte cu biroul, trebuie să permiteți accesul la contacte</string>
+  <string name="select_ringtone">Alegeți tonul de apel</string>
+  <string name="telephony_pref_blocked_title">Numere blocate</string>
+  <string name="telephony_pref_blocked_dialog_desc">Nu arăta apeluri și SMS de la aceste numere. Specificați un număr pe linie</string>
+  <string name="mpris_coverart_description">Coperta piesei actuale</string>
+  <string name="device_icon_description">Pictogramă dispozitiv</string>
+  <string name="settings_icon_description">Pictogramă configurări</string>
+  <string name="presenter_fullscreen">Ecran complet</string>
+  <string name="presenter_exit">Părăsește prezentarea</string>
+  <string name="presenter_lock_tip">Puteți bloca dispozitivul și folosi butoanele de volum pentru a merge la diapozitivul precedent/următor</string>
+  <string name="add_command">Adaugă o comandă</string>
+  <string name="addcommand_explanation">Nu sunt comenzi înregistrate</string>
+  <string name="addcommand_explanation2">Puteți adăuga noi comenzi în configurările de sistem KDE Connect</string>
+  <string name="add_command_description">Puteți adăuga comenzi pe calculatorul de birou</string>
+  <string name="pref_plugin_mprisreceiver">Control lector multimedia</string>
+  <string name="pref_plugin_mprisreceiver_desc">Controlați programele multimedia din telefon de pe alt dispozitiv</string>
+  <string name="notification_channel_default">Alte notificări</string>
+  <string name="notification_channel_persistent">Indicator persistent</string>
+  <string name="notification_channel_media_control">Control multimedia</string>
+  <string name="notification_channel_filetransfer">Transfer de fișiere</string>
+  <string name="notification_channel_high_priority">Prioritate ridicată</string>
+  <string name="notification_channel_sms_mms">Mesaj nou</string>
+  <string name="mpris_stop">Oprește lectorul actual</string>
+  <string name="copy_url_to_clipboard">Copiază URL în clipboard</string>
+  <string name="clipboard_toast">Copiat în clipboard</string>
+  <string name="runcommand_notreachable">Dispozitivul nu e accesibil</string>
+  <string name="runcommand_notpaired">Dispozitivul nu e asociat</string>
+  <string name="runcommand_nosuchdevice">Nu există un asemenea dispozitiv</string>
+  <string name="runcommand_noruncommandplugin">Acest dispozitiv nu are extensia „Rulează comandă” activată</string>
+  <string name="pref_plugin_findremotedevice">Găsește dispozitivul distant</string>
+  <string name="pref_plugin_findremotedevice_desc">Sună dispozitivul distant</string>
+  <string name="ring">Sună</string>
+  <string name="pref_plugin_systemvolume">Volum de sistem</string>
+  <string name="pref_plugin_systemvolume_desc">Controlează volumul de sistem al dispozitivului distant</string>
+  <string name="mute">Muțește</string>
+  <string name="all">Toate</string>
+  <string name="devices">Dispozitive</string>
+  <string name="settings_rename">Denumire dispozitiv</string>
+  <string name="settings_dark_mode">Tematică întunecată</string>
+  <string name="settings_more_settings_title">Mai multe configurări</string>
+  <string name="settings_more_settings_text">Configurările fiecărui dispozitiv le puteți găsi în „Configurare extensii” dintr-un dispozitiv.</string>
+  <string name="setting_persistent_notification">Arată notificare persistentă</string>
+  <string name="setting_persistent_notification_oreo">Notificare persistentă</string>
+  <string name="setting_persistent_notification_description">Atingeți pentru a activa/dezactiva în configurările notificării</string>
+  <string name="extra_options">Opțiuni suplimentare</string>
+  <string name="privacy_options">Opțiuni de intimitate</string>
+  <string name="set_privacy_options">Stabiliți opțiunile de intimitate</string>
+  <string name="block_contents">Blochează conținutul notificărilor</string>
+  <string name="block_images">Blochează imaginile din notificări</string>
+  <string name="notification_channel_receivenotification">Notificări de pe alte dispozitive</string>
+  <string name="take_picture">Lansează aparatul foto</string>
+  <string name="plugin_photo_desc">Lansează aplicația de aparat foto pentru a facilita obținerea și transferul pozelor</string>
+  <string name="no_app_for_opening">Nu a fost găsită nicio aplicație care să deschidă acest fișier</string>
+  <string name="remote_keyboard_service">Tastatura de la distanță KDE Connect</string>
+  <string name="presenter_pointer">Indicator</string>
+  <string name="trusted_networks">Rețele de încredere</string>
+  <string name="trusted_networks_desc">Restricționează descoperirea automată la rețele de încredere</string>
+  <string name="add_trusted_network">Adaugă %1s</string>
+  <string name="empty_trusted_networks_list_text">Încă nu ați adăugat nicio rețea de încredere</string>
+  <string name="allow_all_networks_text">Permite toate</string>
+  <string name="location_permission_needed_title">Permisiune cerută</string>
+  <string name="location_permission_needed_desc">Android cere permisiunea de localizare pentru a vă identifica rețeaua WiFi</string>
+  <string name="clipboard_android_x_incompat">Android 10 a eliminat accesul la clipboard pentru toate aplicațiile. Această extensie va fi dezactivată.</string>
+  <string name="mpris_open_url">Continuă redarea aici</string>
+  <string name="cant_open_url">URL-ul nu poate fi deschis pentru a continua redarea</string>
+  <string name="bigscreen_home">Acasă</string>
+  <string name="bigscreen_up">Sus</string>
+  <string name="bigscreen_left">Stânga</string>
+  <string name="bigscreen_select">Alege</string>
+  <string name="bigscreen_right">Dreapta</string>
+  <string name="bigscreen_down">Jos</string>
+  <string name="bigscreen_mic">Mic</string>
+  <string name="pref_plugin_bigscreen">Telecomandă pentru ecran mare</string>
+  <string name="pref_plugin_bigscreen_desc">Folosiți dispozitivul ca telecomandă pentru Plasma Bigscreen</string>
+  <string name="bigscreen_optional_permission_explanation">Pentru a partaja microfonul de la telefon, trebuie să permiteți accesul laintrarea de sunet a telefonului dumneavoastră.</string>
+  <string name="bigscreen_speech_extra_prompt">Vorbire</string>
+  <string name="message_reply_label">RĂSPUNDE</string>
+  <string name="mark_as_read_label">MARCHEAZĂ CA CITIT</string>
+  <string name="user_display_name">Tu</string>
+  <string name="set_default_sms_app_title">Expediază MMS</string>
+  <string name="set_group_message_as_mms_title">Expediază MMS la grup</string>
+  <string name="set_long_text_as_mms_title">Expediază text lung ca MMS</string>
+  <string name="convert_to_mms_after_title">Convertește la MMS</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>După un mesaj</item>
+    <item>După două mesaje</item>
+    <item>După trei mesaje</item>
+    <item>După patru mesaje</item>
+    <item>După cinci mesaje</item>
   </string-array>
+  <string name="theme_dialog_title">Alege tematica</string>
   <string-array name="theme_list">
-    <item>Set by Battery Saver</item>
-    <item>Light</item>
-    <item>Dark</item>
+    <item>Stabilită de economizorul de acumulator</item>
+    <item>Luminoasă</item>
+    <item>Întunecată</item>
   </string-array>
   <string-array name="theme_list_v28">
-    <item>System Default</item>
-    <item>Light</item>
-    <item>Dark</item>
+    <item>Implicit de sistem</item>
+    <item>Luminoasă</item>
+    <item>Întunecată</item>
   </string-array>
 </resources>
