@@ -390,7 +390,9 @@ public class SMSPlugin extends Plugin {
 
         switch (np.getType()) {
             case PACKET_TYPE_SMS_REQUEST_CONVERSATIONS:
-                return this.handleRequestConversations(np);
+                return this.handleRequestAllConversations(np);
+            case PACKET_TYPE_SMS_REQUEST_CONVERSATION:
+                return this.handleRequestSingleConversation(np);
             case PACKET_TYPE_SMS_REQUEST:
                 if (np.getBoolean("sendSms")) {
                     String textMessage = np.getString("messageBody");
@@ -483,7 +485,7 @@ public class SMSPlugin extends Plugin {
      * <p>
      * Send one packet of type PACKET_TYPE_SMS_MESSAGE with the first message in all conversations
      */
-    private boolean handleRequestConversations(NetworkPacket packet) {
+    private boolean handleRequestAllConversations(NetworkPacket packet) {
         Map<SMSHelper.ThreadID, SMSHelper.Message> conversations = SMSHelper.getConversations(this.context);
 
         // Prepare the mostRecentTimestamp counter based on these messages, since they are the most
@@ -503,7 +505,7 @@ public class SMSPlugin extends Plugin {
         return true;
     }
 
-    private boolean handleRequestConversation(NetworkPacket packet) {
+    private boolean handleRequestSingleConversation(NetworkPacket packet) {
         SMSHelper.ThreadID threadID = new SMSHelper.ThreadID(packet.getLong("threadID"));
 
         Long rangeStartTimestamp = packet.getLong("rangeStartTimestamp", -1);
