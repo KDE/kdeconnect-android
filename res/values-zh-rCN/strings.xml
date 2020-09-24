@@ -243,6 +243,7 @@
   <string name="notification_channel_media_control">媒体控制</string>
   <string name="notification_channel_filetransfer">文件传送</string>
   <string name="notification_channel_high_priority">高优先级</string>
+  <string name="notification_channel_sms_mms">新建消息</string>
   <string name="mpris_stop">停止但前播放器</string>
   <string name="copy_url_to_clipboard">复制 URL 到剪贴板</string>
   <string name="clipboard_toast">已复制到剪贴板</string>
@@ -297,6 +298,9 @@
   <string name="pref_plugin_bigscreen_desc">使用您手机遥控 Plasma 电视</string>
   <string name="bigscreen_optional_permission_explanation">请开启手机的麦克风以共享语音输入。</string>
   <string name="bigscreen_speech_extra_prompt">语音</string>
+  <string name="message_reply_label">回复</string>
+  <string name="mark_as_read_label">标记为已读</string>
+  <string name="user_display_name">您</string>
   <string name="set_default_sms_app_title">发送彩信</string>
   <string name="set_group_message_as_mms_title">群发彩信</string>
   <string name="set_long_text_as_mms_title">将长文本以彩信形式发送</string>
