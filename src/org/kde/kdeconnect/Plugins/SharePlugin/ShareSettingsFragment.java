@@ -124,17 +124,21 @@ public class ShareSettingsFragment extends PluginSettingsFragment {
         if (requestCode == RESULT_PICKER
                 && resultCode == Activity.RESULT_OK
                 && resultData != null) {
-
             Uri uri = resultData.getData();
-
-            requireContext().getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION |
-                    Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            saveStorageLocationPreference(requireContext(), uri);
 
             Preference filePicker = findPreference("share_destination_folder_preference");
             filePicker.setSummary(uri.getPath());
-
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
-            prefs.edit().putString(PREFERENCE_DESTINATION, uri.toString()).apply();
         }
+    }
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    public static void saveStorageLocationPreference(Context context, Uri uri) {
+        context.getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION |
+                Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        prefs.edit().putString(PREFERENCE_DESTINATION, uri.toString()).apply();
+        prefs.edit().putBoolean(PREFERENCE_CUSTOMIZE_DESTINATION, true).apply();
     }
 }

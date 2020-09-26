@@ -1,12 +1,14 @@
 package org.kde.kdeconnect.UserInterface;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
@@ -23,6 +25,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -30,6 +33,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
+import org.kde.kdeconnect.Plugins.SharePlugin.ShareSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityMainBinding;
 
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private static final int MENU_ENTRY_SETTINGS = 2;
     private static final int MENU_ENTRY_DEVICE_FIRST_ID = 1000; //All subsequent ids are devices in the menu
     private static final int MENU_ENTRY_DEVICE_UNKNOWN = 9999; //It's still a device, but we don't know which one yet
+    private static final int STORAGE_lOCATION_CONFIGURED = 2020;
 
     private static final String STATE_SELECTED_MENU_ENTRY = "selected_entry"; //Saved only in onSaveInstanceState
     private static final String STATE_SELECTED_DEVICE = "selected_device"; //Saved persistently in preferences
@@ -356,6 +361,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 Device device = service.getDevice(mCurrentDevice);
                 device.reloadPluginsFromSettings();
             });
+        } else if (requestCode == STORAGE_lOCATION_CONFIGURED && resultCode == RESULT_OK && data != null){
+            Uri uri = data.getData();
+            ShareSettingsFragment.saveStorageLocationPreference(this, uri);
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
@@ -363,7 +371,18 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (ArrayUtils.contains(grantResults, PackageManager.PERMISSION_GRANTED)) {
+        boolean permissionsGranted = ArrayUtils.contains(grantResults, PackageManager.PERMISSION_GRANTED);
+        if (permissionsGranted) {
+            int i = ArrayUtils.indexOf(permissions, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            boolean writeStoragePermissionGranted = (i != ArrayUtils.INDEX_NOT_FOUND &&
+                    grantResults[i] == PackageManager.PERMISSION_GRANTED);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && writeStoragePermissionGranted) {
+                // To get a writeable path manually on Android 10 and later for Share and Receive Plugin.
+                // Otherwise Receiving files will keep failing until the user chooses a path manually to receive files.
+                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+                startActivityForResult(intent, STORAGE_lOCATION_CONFIGURED);
+            }
+
             //New permission granted, reload plugins
             BackgroundService.RunCommand(this, service -> {
                 Device device = service.getDevice(mCurrentDevice);
