@@ -124,14 +124,25 @@ public class SMSPlugin extends Plugin {
      * but be sure the Android side remains compatible with old desktop apps!
      * <p>
      * The body should look like so:
-     * { "sendSms": true,
-     *   "phoneNumber": "542904563213"     // For older desktop versions of SMS app this packet carries phoneNumber field
-     *   "addresses": <List of Addresses>  // For newer desktop versions of SMS app it contains addresses field instead of phoneNumber field
-     *   "messageBody": "Hi mom!",
-     *   "sub_id": "3859358340534"
+     * {
+     *   "version": 2,                     // The version of the packet being sent. Compare to SMS_REQUEST_PACKET_VERSION before attempting to handle.
+     *   "sendSms": true,                  // (Depreciated, ignored) Old versions of the desktop app used to mix phone calls, SMS, etc. in the same packet type and used this field to differentiate.
+     *   "phoneNumber": "542904563213",    // (Depreciated) Retained for backwards-compatibility. Old versions of the desktop app send a single phoneNumber. Use the Addresses field instead.
+     *   "addresses": <List of Addresses>, // The one or many targets of this message
+     *   "messageBody": "Hi mom!",         // Plain-text string to be sent as the body of the message (Optional if sending an attachment)
+     *   "attachments": <List of Attached files>,
+     *   "sub_id": 3859358340534           // Some magic number which tells Android which SIM card to use (Optional, if omitted, sends with the default SIM card)
+     * }
+     *
+     * An AttachmentContainer object looks like:
+     * {
+     *   "fileName": <String>             // Name of the file
+     *   "base64EncodedFile": <String>    // Base64 encoded file
+     *   "mimeType": <String>             // File type (eg: image/jpg, video/mp4 etc.)
      * }
      */
     private final static String PACKET_TYPE_SMS_REQUEST = "kdeconnect.sms.request";
+    private final static int SMS_REQUEST_PACKET_VERSION = 2; // We *handle* packets of this version or lower. Update this number only if future packets break backwards-compatibility.
 
     /**
      * Packet sent to request the most-recent message in each conversations on the device
@@ -387,6 +398,7 @@ public class SMSPlugin extends Plugin {
 
     @Override
     public boolean onPacketReceived(NetworkPacket np) {
+        long subID;
 
         switch (np.getType()) {
             case PACKET_TYPE_SMS_REQUEST_CONVERSATIONS:
@@ -394,27 +406,25 @@ public class SMSPlugin extends Plugin {
             case PACKET_TYPE_SMS_REQUEST_CONVERSATION:
                 return this.handleRequestSingleConversation(np);
             case PACKET_TYPE_SMS_REQUEST:
-                if (np.getBoolean("sendSms")) {
-                    String textMessage = np.getString("messageBody");
-                    long subID = np.getLong("subID", -1);
+                String textMessage = np.getString("messageBody");
+                subID = np.getLong("subID", -1);
 
-                    List<SMSHelper.Address> addressList = SMSHelper.jsonArrayToAddressList(np.getJSONArray("addresses"));
-                    if (addressList == null) {
-                        // If the List of Address is null, then the SMS_REQUEST packet is
-                        // most probably from the older version of the desktop app.
-                        addressList = new ArrayList<>();
-                        addressList.add(new SMSHelper.Address(np.getString("phoneNumber")));
-                    }
-
-                    SmsMmsUtils.sendMessage(context, textMessage, addressList, (int) subID);
+                List<SMSHelper.Address> addressList = SMSHelper.jsonArrayToAddressList(np.getJSONArray("addresses"));
+                if (addressList == null) {
+                    // If the List of Address is null, then the SMS_REQUEST packet is
+                    // most probably from the older version of the desktop app.
+                    addressList = new ArrayList<>();
+                    addressList.add(new SMSHelper.Address(np.getString("phoneNumber")));
                 }
+
+                SmsMmsUtils.sendMessage(context, textMessage, addressList, (int) subID);
                 break;
 
             case TelephonyPlugin.PACKET_TYPE_TELEPHONY_REQUEST:
                 if (np.getBoolean("sendSms")) {
                     String phoneNo = np.getString("phoneNumber");
                     String sms = np.getString("messageBody");
-                    long subID = np.getLong("subID", -1);
+                    subID = np.getLong("subID", -1);
 
                     try {
                         SmsManager smsManager = subID == -1? SmsManager.getDefault() :
