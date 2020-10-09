@@ -15,7 +15,7 @@
   <string name="pref_plugin_clipboard_sent">Lõikepuhvrist saadud</string>
   <string name="pref_plugin_mousepad">Kaugsisestus</string>
   <string name="pref_plugin_mousepad_desc">Telefoni või tahvli kasutamine puuteplaadi ja klaviatuurina</string>
-  <string name="pref_plugin_presenter">Kaugslaidiseanss</string>
+  <string name="pref_plugin_presenter">Slaidiseansi pult</string>
   <string name="pref_plugin_presenter_desc">Seadme kasutamine esitluse slaidide vahetamiseks</string>
   <string name="pref_plugin_remotekeyboard">Kaugklahvivajutuste vastuvõtmine</string>
   <string name="pref_plugin_remotekeyboard_desc">Kaugseadmete klahvivajutuste vastuvõtmine</string>
@@ -211,8 +211,10 @@
   <string name="no_wifi">Sul puudub ühendus Wi-Fi võrguga, mistõttu sa ei näe ühtegi seadet. Klõpsa siia Wi-Fi sisselülitamiseks.</string>
   <string name="on_non_trusted_message">See ei ole usaldusväärne võrk: automaatne tuvastamine on keelatud.</string>
   <string name="no_file_browser">Ühtegi failisirvijat pole paigaldatud</string>
-  <string name="pref_plugin_telepathy">Saada SMS</string>
+  <string name="pref_plugin_telepathy">SMS-ide saatmine</string>
   <string name="pref_plugin_telepathy_desc">Tekstisõnumite saatmine oma töölaualt</string>
+  <string name="pref_plugin_telepathy_mms">MMS-ide saatmine</string>
+  <string name="pref_plugin_telepathy_mms_desc">KDE Connecti kaudu MMS-ide saatmiseks tuleb see määrata SMS-ide vaikerakenduseks.</string>
   <string name="findmyphone_title">Leia mu telefon</string>
   <string name="findmyphone_title_tablet">Leia mu tahvel</string>
   <string name="findmyphone_title_tv">Leia mu teler</string>
@@ -249,6 +251,7 @@
   <string name="notification_channel_media_control">Meedia juhtimine</string>
   <string name="notification_channel_filetransfer">Failiülekanne</string>
   <string name="notification_channel_high_priority">Kõrge prioriteediga</string>
+  <string name="notification_channel_sms_mms">Uus sõnum</string>
   <string name="mpris_stop">Peata aktiivne mängija</string>
   <string name="copy_url_to_clipboard">Kopeeri URL lõikepuhvrisse</string>
   <string name="clipboard_toast">Kopeeriti lõikepuhvrisse</string>
@@ -299,10 +302,12 @@
   <string name="bigscreen_right">Paremal</string>
   <string name="bigscreen_down">All</string>
   <string name="bigscreen_mic">Mikrofon</string>
-  <string name="pref_plugin_bigscreen">Kaugsuurekraan</string>
-  <string name="pref_plugin_bigscreen_desc">Oma seadme kasutamine Plasma kaugsuurekraanina</string>
+  <string name="pref_plugin_bigscreen">Suurekraani pult</string>
+  <string name="pref_plugin_bigscreen_desc">Oma seadme kasutamine Plasma suurekraani puldina</string>
   <string name="bigscreen_optional_permission_explanation">Oma telefoni mikrofonisisendi jagamiseks tuleb anda juurdepääs telefoni helisisendile</string>
   <string name="bigscreen_speech_extra_prompt">Kõne</string>
+  <string name="message_reply_label">VASTA</string>
+  <string name="mark_as_read_label">MÄRGI LOETUKS</string>
   <string-array name="convert_to_mms_after_entries">
     <item>After one message</item>
     <item>After two messages</item>
@@ -313,6 +318,11 @@
   <string name="theme_dialog_title">Teema valimine</string>
   <string-array name="theme_list">
     <item>Määratud akusäästja poolt</item>
+    <item>Hele</item>
+    <item>Tume</item>
+  </string-array>
+  <string-array name="theme_list_v28">
+    <item>Süsteemi vaikeväärtus</item>
     <item>Hele</item>
     <item>Tume</item>
   </string-array>
