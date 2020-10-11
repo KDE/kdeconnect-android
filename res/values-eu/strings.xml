@@ -251,6 +251,7 @@
   <string name="notification_channel_media_control">Euskarrien kontrola</string>
   <string name="notification_channel_filetransfer">Fitxategi transferentzia</string>
   <string name="notification_channel_high_priority">Lehentasun handia</string>
+  <string name="notification_channel_sms_mms">Mezu berria</string>
   <string name="mpris_stop">Gelditu uneko jotzailea</string>
   <string name="copy_url_to_clipboard">Kopiatu URLa arbelera</string>
   <string name="clipboard_toast">Arbelera kopiatua</string>
@@ -305,6 +306,9 @@
   <string name="pref_plugin_bigscreen_desc">Erabili zure gailua Plasma Bigscreen-en urrutiko aginte gisa</string>
   <string name="bigscreen_optional_permission_explanation">Zure telefonoko mikrofonoko sarrerakoa partekatzeko, telefonoko audio sarrerakora sarbidea eman behar diozu</string>
   <string name="bigscreen_speech_extra_prompt">Hizketa</string>
+  <string name="message_reply_label">ERANTZUN</string>
+  <string name="mark_as_read_label">MARKATU IRAKURRITAKO GISA</string>
+  <string name="user_display_name">Zu</string>
   <string name="set_default_sms_app_title">Bidali MMS</string>
   <string name="set_group_message_as_mms_title">Bidali taldeko MMS</string>
   <string name="set_long_text_as_mms_title">Bidali testu luzea MMS gisa</string>
