@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="org.kde.kdeconnect_tp"
-    android:versionCode="11501"
+    android:versionCode="11503"
     android:versionName="1.15.0">
 
     <supports-screens
