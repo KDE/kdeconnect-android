@@ -226,7 +226,7 @@
   <string name="permission_explanation">Este \'plugin\' precisa de permissões para funcionar</string>
   <string name="optional_permission_explanation">Precisa de dar permissões extra para activar todas as funcionalidades</string>
   <string name="plugins_need_optional_permission">Alguns \'plugins\' têm funcionalidades desactivadas devido à falta de permissões (toque para obter mais informações):</string>
-  <string name="share_optional_permission_explanation">Para partilhar ficheiros entre o seu telemóvel e o seu ambiente de trabalho, precisa de permissão para aceder ao armazenamento do seu telemóvel</string>
+  <string name="share_optional_permission_explanation">Para receber os ficheiros partilhados, tem de escolher uma pasta de destino</string>
   <string name="telepathy_permission_explanation">Para ler e escrever SMS\'s a partir do seu ambiente de trabalho, precisa de dar permissões para os SMS\'s</string>
   <string name="telephony_permission_explanation">Para ver as chamadas telefónicas a partir do seu ambiente de trabalho, precisa de dar permissões para o registo de chamadas telefónicas e do estado do telemóvel</string>
   <string name="telephony_optional_permission_explanation">Para ver o nome de um contacto em vez do seu número de telefone, precisa de dar acesso aos contactos do telemóvel</string>

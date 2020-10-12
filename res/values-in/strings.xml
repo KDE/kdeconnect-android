@@ -170,7 +170,6 @@
   <string name="permission_explanation">Plugin ini perlu perizinan untuk kerja</string>
   <string name="optional_permission_explanation">Kamu perlu mengabulkan perizinan extra untuk memfungsikan semua fungsian</string>
   <string name="plugins_need_optional_permission">Beberapa plugin yang memiliki fitur dinonfungsikan karena kurangnya perizinan (ketuk untuk info selebihnya):</string>
-  <string name="share_optional_permission_explanation">Untuk membagikan file antara teleponmu dan desktopmu kamu harus memberikan akses ke penyimpanan teleponmu</string>
   <string name="telepathy_permission_explanation">Untuk membaca dan menulis SMS dari desktopmu kamu harus memberikan perizinan untuk SMS</string>
   <string name="telephony_permission_explanation">Untuk melihat panggilan ponsel pada desktop kamu harus memberikan perizinan untuk log panggilan ponsel dan keadaan ponsel</string>
   <string name="telephony_optional_permission_explanation">Untuk melihat nama kontak alih-alih nomor ponsel, kamu harus memberikan akses ke kontak ponsel</string>

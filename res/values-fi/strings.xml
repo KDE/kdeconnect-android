@@ -226,7 +226,6 @@
   <string name="permission_explanation">Liitännäinen tarvitsee toimiakseen lisäkäyttöoikeuksia</string>
   <string name="optional_permission_explanation">Kaikkien toimintojen käyttämiseksi sinun on annettava lisäkäyttöoikeuksia</string>
   <string name="plugins_need_optional_permission">Jotkin liitännäisten ominaisuudet eivät ole käytössä puuttuvien käyttöoikeuksien takia (lisätietoa napsauttamalla):</string>
-  <string name="share_optional_permission_explanation">Jakaaksesi tiedostoja puhelimen ja työpöydän välillä sinun on annettava käyttöoikeudet puhelimen tallennustilaan</string>
   <string name="telepathy_permission_explanation">Lukeaksesi ja lähettääksesi tekstiviestejä työpöydältä sinun on annettava käyttöoikeudet tekstiviesteihin</string>
   <string name="telephony_permission_explanation">Puhelujen näyttäminen työpöydällä vaatii käyttöoikeuden puhelulokiin ja puhelimen tilaan</string>
   <string name="telephony_optional_permission_explanation">Puhelimen yhteystietoihin on annettava käyttöoikeudet, jotta voit nähdä yhteystiedoissa nimet puhelinnumerojen sijaan</string>

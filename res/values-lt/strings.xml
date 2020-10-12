@@ -240,7 +240,6 @@
   <string name="permission_explanation">Šis papildinys tam, kad veiktų, reikalauja leidimų</string>
   <string name="optional_permission_explanation">Norėdami įjungti visas funkcijas, turite suteikti papildomus leidimus</string>
   <string name="plugins_need_optional_permission">Kai kurių papildinių ypatybės, dėl leidimų trūkumo, buvo išjungtos (bakstelėkite išsamesnei informacijai):</string>
-  <string name="share_optional_permission_explanation">Norėdami bendrinti failus tarp savo telefono ir savo darbalaukio, turite suteikti prieigą prie telefono saugyklos</string>
   <string name="telepathy_permission_explanation">Norėdami skaityti ir rašyti SMS žinutes iš savo darbalaukio, turite suteikti prieigą prie SMS žinučių</string>
   <string name="telephony_permission_explanation">Norėdami matyti telefono skambučius darbalaukyje, turite suteikti prieigą prie telefono skambučių žurnalo ir telefono būsenos</string>
   <string name="telephony_optional_permission_explanation">Norėdami vietoj adresato numerio matyti adresato vardą, turite suteikti priegą prie telefono adresatų</string>

@@ -216,7 +216,6 @@
   <string name="permission_explanation">這外掛程式需要權限以運作</string>
   <string name="optional_permission_explanation">你需要授予延伸的權限以啟用所有的功能</string>
   <string name="plugins_need_optional_permission">部份的外掛程式因為缺乏權限，而導致功能被停用。（按一下以了解更多資訊）：</string>
-  <string name="share_optional_permission_explanation">為了要在您的手機與電腦之間分享檔案，你需要同意存取手機的儲存空間。</string>
   <string name="telepathy_permission_explanation">為了要在您的個人電腦上讀取與撰寫簡訊，你需要提供簡訊的權限。</string>
   <string name="telephony_permission_explanation">為了要在桌面上檢視手機通話，您需要提供手機通話記錄及手機狀態的權限。</string>
   <string name="telephony_optional_permission_explanation">為了要讓聯絡人名稱取代手機號碼，您需要提供手機通訊錄的權限。</string>

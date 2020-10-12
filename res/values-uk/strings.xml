@@ -242,7 +242,7 @@
   <string name="permission_explanation">Для роботи цього додатка потрібні додаткові права доступу</string>
   <string name="optional_permission_explanation">Щоб уможливити використання усіх функцій, вам слід надати програмі додаткові права доступу</string>
   <string name="plugins_need_optional_permission">Можливості деяких додатків вимкнено, оскільки програмі не вистачає прав доступу (натисніть, щоб дізнатися більше):</string>
-  <string name="share_optional_permission_explanation">Щоб спільного використовувати файли на вашому телефоні і робочому комп’ютері, вам слід надати програмі доступ до сховища даних вашого телефону</string>
+  <string name="share_optional_permission_explanation">Для отримання файлів спільного користування вам слід вибрати каталог призначення</string>
   <string name="telepathy_permission_explanation">Щоб читати і писати SMS з вашого робочого комп’ютера, вам слід надати програмі доступ до SMS</string>
   <string name="telephony_permission_explanation">Щоб переглядати дзвінки з робочого комп’ютера, вам слід надати програмі доступ до журналу дзвінків та стану телефону</string>
   <string name="telephony_optional_permission_explanation">Щоб бачити ім’я контакту замість номеру телефону, вам слід надати програмі доступ до записів контактів на телефоні</string>

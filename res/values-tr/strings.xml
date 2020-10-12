@@ -217,7 +217,6 @@
   <string name="permission_explanation">Bu eklenti, çalışmak için izne ihtiyaç duyuyor</string>
   <string name="optional_permission_explanation">Tüm işlevleri etkinleştirmek için daha fazla yetkiye ihtiyacınız var</string>
   <string name="plugins_need_optional_permission">Bazı eklentilerin özellikleri, izin yetersizliğinden kapalı gelmektedir (daha fazla bilgi için dokunun):</string>
-  <string name="share_optional_permission_explanation">Telefon ve masaüstünüz arasında dosya paylaşılabilmesi için, telefonun depolama alanına erişim izni olmalıdır</string>
   <string name="telepathy_permission_explanation">Masaüstünde SMS yazma ve okuma yapmak için SMS izni gereklidir</string>
   <string name="telephony_permission_explanation">Masaüstünde telefon görüşmelerini görmek için telefon görüşmesi kayıtlarına ve telefon durumuna izin vermeniz gerekir</string>
   <string name="telephony_optional_permission_explanation">Telefon numarası yerine kişi ismi görebilmek için telefonun kişilerine erişim gereklidir</string>

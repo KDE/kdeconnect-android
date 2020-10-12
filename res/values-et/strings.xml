@@ -226,7 +226,6 @@
   <string name="permission_explanation">See plugin vajab töötamiseks õigusi</string>
   <string name="optional_permission_explanation">Kõigi funktsioonide lubamiseks tuleb sul anda lisaõigusi</string>
   <string name="plugins_need_optional_permission">Mõne plugina osa omadusi on keelatud õiguste puudumise tõttu (koputa rohkema teabe saamiseks):</string>
-  <string name="share_optional_permission_explanation">Failide jagamiseks telefoni ja töölau vahel tuleb anda telefonile ligipääs</string>
   <string name="telepathy_permission_explanation">SMS-ide lugemiseks ja kirjutamiseks töölaual tuleb anda õigused SMS-ile</string>
   <string name="telephony_permission_explanation">Kõnede nägemiseks töölaual tuleb anda õigused telefonikõnede logile ja telefoni olekule</string>
   <string name="telephony_optional_permission_explanation">Telefoninumbri asemel kontakti nime nägemiseks tuleb anda õigused telefoni kontaktidele</string>

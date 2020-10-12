@@ -226,7 +226,6 @@
   <string name="permission_explanation">Questa estensione ha bisogno di permessi per funzionare</string>
   <string name="optional_permission_explanation">Devi concedere permessi aggiuntivi per abilitare tutte le funzioni</string>
   <string name="plugins_need_optional_permission">Alcune estensioni hanno funzioni disabilitate per una mancanza di permessi (tocca per maggiori informazioni):</string>
-  <string name="share_optional_permission_explanation">Per condividere i file tra il telefono e il tuo desktop devi dare accesso alla memoria del telefono</string>
   <string name="telepathy_permission_explanation">Per leggere e scrivere SMS dal tuo desktop, devi concedere l\'autorizzazione per SMS</string>
   <string name="telephony_permission_explanation">Per vedere le chiamate telefoniche dal desktop devi dare l\'autorizzazione per accedere al registro delle chiamate e allo stato del telefono</string>
   <string name="telephony_optional_permission_explanation">Per vedere il nome di un contatto invece del numero di telefono devi dare accesso alla rubrica del telefono</string>

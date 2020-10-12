@@ -226,7 +226,7 @@
   <string name="permission_explanation">Insticksprogrammet behöver rättigheter för att fungera</string>
   <string name="optional_permission_explanation">Du måste ge extra rättigheter för att aktivera alla funktioner</string>
   <string name="plugins_need_optional_permission">Vissa insticksprogram har inaktiverade funktioner på grund av att rättigheter saknas (rör för mer information):</string>
-  <string name="share_optional_permission_explanation">För att dela filer mellan telefonen och skrivbordet behöver du ge tillgång till telefonens lagringsutrymme</string>
+  <string name="share_optional_permission_explanation">För att ta emot delade filer måste du välja en målkatalog</string>
   <string name="telepathy_permission_explanation">För att läsa och skriva SMS från skrivbordet måste du ge rättigheter för SMS</string>
   <string name="telephony_permission_explanation">För att se telefonsamtal på skrivbordet måste du ge rättigheter för telefonsamtalsloggar och telefontillstånd</string>
   <string name="telephony_optional_permission_explanation">För att se ett kontaktnamn istället för ett telefonnummer måste du ge tillgång till telefonens kontakter</string>
