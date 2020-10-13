@@ -226,6 +226,7 @@
   <string name="permission_explanation">Αυτό το πρόσθετο χρειάζεται δικαιώματα για να λειτουργήσει</string>
   <string name="optional_permission_explanation">Απαιτείται παραχώρηση επιπλέον δικαιωμάτων για την ενεργοποίηση όλων των λειτουργιών</string>
   <string name="plugins_need_optional_permission">Κάποια πρόσθετα έχουν λειτουργίες ανενεργές εξαιτίας της απουσίας δικαιωμάτων (χτυπήστε για περισσότερες πληροφορίες):</string>
+  <string name="share_optional_permission_explanation">Για να λάβετε κοινόχρηστα αρχεία πρέπει να επιλέξετε έναν κατάλογο προορισμού</string>
   <string name="telepathy_permission_explanation">Για να διαβάσετε και να γράψετε SMS από την επιφάνεια εργασίας, χρειάζεται να δώσετε δικαιώματα στο SMS</string>
   <string name="telephony_permission_explanation">Για να δείτε τηλεφωνικές κλήσεις στην επιφάνεια εργασίας απαιτείται να παραχωρήσετε δικαιώματα σε καταγραφές τηλεφωνικών κλήσεων και στην κατάσταση του τηλεφώνου</string>
   <string name="telephony_optional_permission_explanation">Για να δείτε το όνομα επαφής αντί για τον αριθμό κλήσης χρειάζεται να παραχωρήσετε πρόσβαση στις επαφές στο τηλέφωνο</string>

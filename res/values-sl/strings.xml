@@ -242,6 +242,7 @@
   <string name="permission_explanation">Ti vtičniki potrebujejo dovoljenja za delovanje</string>
   <string name="optional_permission_explanation">Če želite omogočiti vse funkcije, morate podeliti dodatna dovoljenja</string>
   <string name="plugins_need_optional_permission">Nekateri vtičniki imajo funkcije onemogočene zaradi pomanjkanja dovoljenj (tapnite za več informacij):</string>
+  <string name="share_optional_permission_explanation">Če želite prejemati datoteke v skupni rabi, morate izbrati ciljni imenik</string>
   <string name="telepathy_permission_explanation">Če želite brati in pisati SMS z namizja, morate izdati dovoljenje za SMS</string>
   <string name="telephony_permission_explanation">Če želite videti telefonske klice na namizju, morate dati dovoljenje za dnevnike klicev in stanje telefona</string>
   <string name="telephony_optional_permission_explanation">Če želite namesto telefonske številke videti ime stika, morate omogočiti dostop do stikov telefona</string>
