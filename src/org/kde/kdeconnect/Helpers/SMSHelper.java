@@ -798,26 +798,26 @@ public class SMSHelper {
      * Represent an ID used to uniquely identify a message thread
      */
     public static class ThreadID {
-        final Long threadID;
+        final long threadID;
         static final String lookupColumn = Telephony.Sms.THREAD_ID;
 
-        public ThreadID(Long threadID) {
+        public ThreadID(long threadID) {
             this.threadID = threadID;
         }
 
         @NonNull
         public String toString() {
-            return threadID.toString();
+            return Long.toString(threadID);
         }
 
         @Override
         public int hashCode() {
-            return threadID.hashCode();
+            return Long.hashCode(threadID);
         }
 
         @Override
         public boolean equals(Object other) {
-            return other.getClass().isAssignableFrom(ThreadID.class) && ((ThreadID) other).threadID.equals(this.threadID);
+            return other.getClass().isAssignableFrom(ThreadID.class) && ((ThreadID) other).threadID == this.threadID;
         }
     }
 
