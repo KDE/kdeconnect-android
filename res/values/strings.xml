@@ -29,6 +29,8 @@
     <string name="pref_plugin_mpris_desc">Provides a remote control for your media player</string>
     <string name="pref_plugin_runcommand">Run Command</string>
     <string name="pref_plugin_runcommand_desc">Trigger remote commands from your phone or tablet</string>
+    <string name="pref_plugin_power">Power</string>
+    <string name="pref_plugin_power_desc">Power off, lock or suspend your device</string>
     <string name="pref_plugin_contacts">Contacts Synchronizer</string>
     <string name="pref_plugin_contacts_desc">Allow synchronizing the device\'s contacts book</string>
     <string name="pref_plugin_ping">Ping</string>
@@ -183,6 +185,9 @@
     <string name="mpris_time_settings_title">Forward/rewind buttons</string>
     <string name="mpris_time_settings_summary">Adjust the time to fast forward/rewind when pressed</string>
     <string name="mpris_time_key" translatable="false">mpris_interval_time</string>
+    <string name="power_shutdown">Shutdown</string>
+    <string name="power_suspend">Suspend</string>
+    <string name="power_lock">Lock screen</string>
     <string-array name="mpris_time_entries">
         <item>10 seconds</item>
         <item>20 seconds</item>

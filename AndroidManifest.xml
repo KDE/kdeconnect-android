@@ -114,6 +114,14 @@
             </intent-filter>
         </service>
 
+        <!-- New signature permission to ensure only systemui can bind to these services -->
+        <service android:name="org.kde.kdeconnect.Plugins.PowerPlugin.PowerControlsService" android:label="@string/kde_connect"
+            android:permission="android.permission.BIND_CONTROLS">
+            <intent-filter>
+                <action android:name="android.service.controls.ControlsProviderService" />
+            </intent-filter>
+        </service>
+
         <service
             android:name="com.android.mms.transaction.TransactionService"
             android:enabled="true"

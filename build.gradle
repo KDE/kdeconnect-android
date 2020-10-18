@@ -18,7 +18,7 @@ buildscript {
 }
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 29
@@ -167,6 +167,8 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'com.jakewharton:disklrucache:2.0.2' //For caching album art bitmaps
     implementation 'com.jaredrummler:android-device-names:1.1.9' //To get a human-friendly device name
+    implementation 'org.reactivestreams:reactive-streams:1.0.3'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
 
     implementation 'org.apache.sshd:sshd-core:0.14.0'
     implementation 'org.apache.mina:mina-core:2.0.19' //For some reason, makes sshd-core:0.14.0 work without NIO, which isn't available until Android 8 (api 26)
