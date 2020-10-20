@@ -122,6 +122,7 @@
     <item quantity="one">Die Datei kann nicht an %1$s gesendet werden</item>
     <item quantity="other">%2$d der %3$d Dateien können nicht an %1$s gesendet werden</item>
   </plurals>
+  <string name="tap_to_open">Tippen um zu öffnen</string>
   <string name="received_file_text">Tippen um „%1s“ zu öffnen</string>
   <string name="cannot_create_file">Die Datei %s kann nicht erstellt werden</string>
   <string name="tap_to_answer">Zum Antworten tippen</string>
@@ -208,6 +209,7 @@
   <string name="no_file_browser">Es sind keine Dateiverwaltungsprogramme installiert</string>
   <string name="pref_plugin_telepathy">SMS senden</string>
   <string name="pref_plugin_telepathy_desc">SMS von Ihrer Arbeitsfläche senden</string>
+  <string name="pref_plugin_telepathy_mms">MMS senden</string>
   <string name="findmyphone_title">Mein Telefon suchen</string>
   <string name="findmyphone_title_tablet">Mein Tablet suchen</string>
   <string name="findmyphone_title_tv">Meinen Fernseher suchen</string>
@@ -294,7 +296,7 @@
     <item>Dark</item>
   </string-array>
   <string-array name="theme_list_v28">
-    <item/>
+    <item>Systemvoreinstellung</item>
     <item/>
     <item>Dark</item>
   </string-array>
