@@ -27,6 +27,7 @@ import android.widget.ListView;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.TextViewCompat;
 
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityNotificationFilterBinding;
@@ -74,10 +75,10 @@ public class NotificationFilterActivity extends AppCompatActivity {
             CheckedTextView checkedTextView = (CheckedTextView) view;
             if (position == 0) {
                 checkedTextView.setText(R.string.all);
-                checkedTextView.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
+                TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(checkedTextView, null, null, null, null);
             } else {
                 checkedTextView.setText(apps[position - 1].name);
-                checkedTextView.setCompoundDrawablesWithIntrinsicBounds(apps[position - 1].icon, null, null, null);
+                TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(checkedTextView, apps[position - 1].icon, null, null, null);
                 checkedTextView.setCompoundDrawablePadding((int) (8 * getResources().getDisplayMetrics().density));
             }
 

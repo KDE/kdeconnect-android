@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.widget.TextViewCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -82,7 +83,7 @@ public class CustomDevicesAdapter extends RecyclerView.Adapter<CustomDevicesAdap
 
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 Drawable deleteDrawable = AppCompatResources.getDrawable(itemView.getContext(), R.drawable.ic_delete);
-                deviceNameOrIPBackdrop.setCompoundDrawablesWithIntrinsicBounds(deleteDrawable, null, deleteDrawable, null);
+                TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(deviceNameOrIPBackdrop, deleteDrawable, null, deleteDrawable, null);
             }
 
             deviceNameOrIP.setOnClickListener(v -> callback.onCustomDeviceClicked(customDevices.get(getAdapterPosition())));
