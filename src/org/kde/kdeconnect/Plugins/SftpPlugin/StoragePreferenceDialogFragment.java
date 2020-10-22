@@ -31,6 +31,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.core.widget.TextViewCompat;
 import androidx.preference.PreferenceDialogFragmentCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -130,7 +131,7 @@ public class StoragePreferenceDialogFragment extends PreferenceDialogFragmentCom
             boolean isClickToSelect = TextUtils.equals(storageLocation.getText(),
                     getString(R.string.sftp_storage_preference_click_to_select));
 
-            storageLocation.setCompoundDrawables(null, null, isClickToSelect ? arrowDropDownDrawable : null, null);
+            TextViewCompat.setCompoundDrawablesRelative(storageLocation, null, null, isClickToSelect ? arrowDropDownDrawable : null, null);
             storageLocation.setEnabled(isClickToSelect);
             storageLocation.setFocusable(false);
             storageLocation.setFocusableInTouchMode(false);
@@ -156,7 +157,7 @@ public class StoragePreferenceDialogFragment extends PreferenceDialogFragmentCom
                 storageDisplayName.setText(storageInfo.displayName);
             }
 
-            storageLocation.setCompoundDrawables(null, null, null, null);
+            TextViewCompat.setCompoundDrawablesRelative(storageLocation, null, null, null, null);
             storageLocation.setEnabled(false);
             storageLocation.setFocusable(false);
             storageLocation.setFocusableInTouchMode(false);
@@ -207,7 +208,7 @@ public class StoragePreferenceDialogFragment extends PreferenceDialogFragmentCom
                     storageInfo = new SftpPlugin.StorageInfo(displayName, uri);
 
                     storageLocation.setText(documentId);
-                    storageLocation.setCompoundDrawables(null, null, null, null);
+                    TextViewCompat.setCompoundDrawablesRelative(storageLocation, null, null, null, null);
                     storageLocation.setError(null);
                     storageLocation.setEnabled(false);
 
