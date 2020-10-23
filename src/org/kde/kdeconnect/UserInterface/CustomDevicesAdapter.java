@@ -12,12 +12,6 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-
-import org.kde.kdeconnect_tp.R;
-
-import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,8 +19,11 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.widget.TextViewCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+
+import org.kde.kdeconnect_tp.R;
+import org.kde.kdeconnect_tp.databinding.CustomDeviceItemBinding;
+
+import java.util.ArrayList;
 
 public class CustomDevicesAdapter extends RecyclerView.Adapter<CustomDevicesAdapter.ViewHolder> {
     private ArrayList<String> customDevices;
@@ -56,9 +53,10 @@ public class CustomDevicesAdapter extends RecyclerView.Adapter<CustomDevicesAdap
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_device_item, parent, false);
+        CustomDeviceItemBinding itemBinding =
+                CustomDeviceItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
 
-        return new ViewHolder(v);
+        return new ViewHolder(itemBinding);
     }
 
     @Override
@@ -72,30 +70,29 @@ public class CustomDevicesAdapter extends RecyclerView.Adapter<CustomDevicesAdap
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements SwipeableViewHolder {
-        @BindView(R.id.deviceNameOrIPBackdrop) TextView deviceNameOrIPBackdrop;
-        @BindView(R.id.swipeableView) FrameLayout swipeableView;
-        @BindView(R.id.deviceNameOrIP) TextView deviceNameOrIP;
+        private final CustomDeviceItemBinding itemBinding;
 
-        ViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            ButterKnife.bind(this, itemView);
+        ViewHolder(@NonNull CustomDeviceItemBinding itemBinding) {
+            super(itemBinding.getRoot());
+            this.itemBinding = itemBinding;
 
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                Drawable deleteDrawable = AppCompatResources.getDrawable(itemView.getContext(), R.drawable.ic_delete);
-                TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(deviceNameOrIPBackdrop, deleteDrawable, null, deleteDrawable, null);
+                Drawable deleteDrawable = AppCompatResources.getDrawable(itemBinding.getRoot().getContext(),
+                        R.drawable.ic_delete);
+                TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(itemBinding.deviceNameOrIPBackdrop,
+                        deleteDrawable, null, deleteDrawable, null);
             }
 
-            deviceNameOrIP.setOnClickListener(v -> callback.onCustomDeviceClicked(customDevices.get(getAdapterPosition())));
+            itemBinding.deviceNameOrIP.setOnClickListener(v -> callback.onCustomDeviceClicked(customDevices.get(getAdapterPosition())));
         }
 
         void bind(String customDevice) {
-            deviceNameOrIP.setText(customDevice);
+            itemBinding.deviceNameOrIP.setText(customDevice);
         }
 
         @Override
         public View getSwipeableView() {
-            return swipeableView;
+            return itemBinding.swipeableView;
         }
     }
 
