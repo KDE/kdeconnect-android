@@ -23,12 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.SeekBar;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -46,12 +41,11 @@ import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.SystemvolumePlugin.SystemvolumeFragment;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
+import org.kde.kdeconnect_tp.databinding.ActivityMprisBinding;
+import org.kde.kdeconnect_tp.databinding.MprisControlBinding;
 
 import java.net.MalformedURLException;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MprisActivity extends AppCompatActivity {
 
@@ -60,54 +54,8 @@ public class MprisActivity extends AppCompatActivity {
     private Runnable positionSeekUpdateRunnable = null;
     private MprisPlugin.MprisPlayer targetPlayer = null;
 
-    @BindView(R.id.play_button)
-    ImageButton playButton;
-
-    @BindView(R.id.prev_button)
-    ImageButton prevButton;
-
-    @BindView(R.id.next_button)
-    ImageButton nextButton;
-
-    @BindView(R.id.rew_button)
-    ImageButton rewButton;
-
-    @BindView(R.id.ff_button)
-    ImageButton ffButton;
-
-    @BindView(R.id.time_textview)
-    TextView timeText;
-
-    @BindView(R.id.album_art)
-    ImageView albumArtView;
-
-    @BindView(R.id.player_spinner)
-    Spinner playerSpinner;
-
-    @BindView(R.id.no_players)
-    TextView noPlayers;
-
-    @BindView(R.id.now_playing_textview)
-    TextView nowPlayingText;
-
-    @BindView(R.id.positionSeek)
-    SeekBar positionBar;
-
-    @BindView(R.id.progress_slider)
-    LinearLayout progressSlider;
-
-    @BindView(R.id.volume_seek)
-    SeekBar volumeSeek;
-
-    @BindView(R.id.volume_layout)
-    LinearLayout volumeLayout;
-
-    @BindView(R.id.stop_button)
-    ImageButton stopButton;
-
-    @BindView(R.id.progress_textview)
-    TextView progressText;
-
+    private ActivityMprisBinding activityMprisBinding;
+    private MprisControlBinding mprisControlBinding;
 
     private static String milisToProgress(long milis) {
         int length = (int) (milis / 1000); //From milis to seconds
@@ -128,7 +76,6 @@ public class MprisActivity extends AppCompatActivity {
     }
 
     private void connectToPlugin(final String targetPlayerName) {
-
         BackgroundService.RunWithPlugin(this, deviceId, MprisPlugin.class, mpris -> {
             targetPlayer = mpris.getPlayerStatus(targetPlayerName);
 
@@ -152,19 +99,18 @@ public class MprisActivity extends AppCompatActivity {
 
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     runOnUiThread(() -> {
-
-                        playerSpinner.setAdapter(adapter);
+                        mprisControlBinding.playerSpinner.setAdapter(adapter);
 
                         if (playerList.isEmpty()) {
-                            noPlayers.setVisibility(View.VISIBLE);
-                            playerSpinner.setVisibility(View.GONE);
-                            nowPlayingText.setText("");
+                            mprisControlBinding.noPlayers.setVisibility(View.VISIBLE);
+                            mprisControlBinding.playerSpinner.setVisibility(View.GONE);
+                            mprisControlBinding.nowPlayingTextview.setText("");
                         } else {
-                            noPlayers.setVisibility(View.GONE);
-                            playerSpinner.setVisibility(View.VISIBLE);
+                            mprisControlBinding.noPlayers.setVisibility(View.GONE);
+                            mprisControlBinding.playerSpinner.setVisibility(View.VISIBLE);
                         }
 
-                        playerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        mprisControlBinding.playerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
 
@@ -196,7 +142,7 @@ public class MprisActivity extends AppCompatActivity {
                         if (targetPlayer != null) {
                             int targetIndex = adapter.getPosition(targetPlayer.getPlayer());
                             if (targetIndex >= 0) {
-                                playerSpinner.setSelection(targetIndex);
+                                mprisControlBinding.playerSpinner.setSelection(targetIndex);
                             } else {
                                 targetPlayer = null;
                             }
@@ -204,18 +150,16 @@ public class MprisActivity extends AppCompatActivity {
                         //If no player selected, select the first one (if any)
                         if (targetPlayer == null && !playerList.isEmpty()) {
                             targetPlayer = mpris.getPlayerStatus(playerList.get(0));
-                            playerSpinner.setSelection(0);
+                            mprisControlBinding.playerSpinner.setSelection(0);
                         }
                         updatePlayerStatus(mpris);
                     });
                 }
             });
-
         });
     }
 
     private void addSystemVolumeFragment() {
-
         if (findViewById(R.id.systemvolume_fragment) == null)
             return;
 
@@ -249,8 +193,8 @@ public class MprisActivity extends AppCompatActivity {
         }
         String song = playerStatus.getCurrentSong();
 
-        if (!nowPlayingText.getText().toString().equals(song)) {
-            nowPlayingText.setText(song);
+        if (!mprisControlBinding.nowPlayingTextview.getText().toString().equals(song)) {
+            mprisControlBinding.nowPlayingTextview.setText(song);
         }
 
         Bitmap albumArt = playerStatus.getAlbumArt();
@@ -259,47 +203,47 @@ public class MprisActivity extends AppCompatActivity {
             assert drawable != null;
             Drawable placeholder_art = DrawableCompat.wrap(drawable);
             DrawableCompat.setTint(placeholder_art, ContextCompat.getColor(this, R.color.primary));
-            albumArtView.setImageDrawable(placeholder_art);
+            activityMprisBinding.albumArt.setImageDrawable(placeholder_art);
         } else {
-            albumArtView.setImageBitmap(albumArt);
+            activityMprisBinding.albumArt.setImageBitmap(albumArt);
         }
 
         if (playerStatus.isSeekAllowed()) {
-            timeText.setText(milisToProgress(playerStatus.getLength()));
-            positionBar.setMax((int) (playerStatus.getLength()));
-            positionBar.setProgress((int) (playerStatus.getPosition()));
-            progressSlider.setVisibility(View.VISIBLE);
+            mprisControlBinding.timeTextview.setText(milisToProgress(playerStatus.getLength()));
+            mprisControlBinding.positionSeek.setMax((int) (playerStatus.getLength()));
+            mprisControlBinding.positionSeek.setProgress((int) (playerStatus.getPosition()));
+            mprisControlBinding.progressSlider.setVisibility(View.VISIBLE);
         } else {
-            progressSlider.setVisibility(View.GONE);
+            mprisControlBinding.progressSlider.setVisibility(View.GONE);
         }
 
         int volume = playerStatus.getVolume();
-        volumeSeek.setProgress(volume);
+        mprisControlBinding.volumeSeek.setProgress(volume);
 
         boolean isPlaying = playerStatus.isPlaying();
         if (isPlaying) {
-            playButton.setImageResource(R.drawable.ic_pause_black);
-            playButton.setEnabled(playerStatus.isPauseAllowed());
+            mprisControlBinding.playButton.setImageResource(R.drawable.ic_pause_black);
+            mprisControlBinding.playButton.setEnabled(playerStatus.isPauseAllowed());
         } else {
-            playButton.setImageResource(R.drawable.ic_play_black);
-            playButton.setEnabled(playerStatus.isPlayAllowed());
+            mprisControlBinding.playButton.setImageResource(R.drawable.ic_play_black);
+            mprisControlBinding.playButton.setEnabled(playerStatus.isPlayAllowed());
         }
 
-        volumeLayout.setVisibility(playerStatus.isSetVolumeAllowed() ? View.VISIBLE : View.GONE);
-        rewButton.setVisibility(playerStatus.isSeekAllowed() ? View.VISIBLE : View.GONE);
-        ffButton.setVisibility(playerStatus.isSeekAllowed() ? View.VISIBLE : View.GONE);
+        mprisControlBinding.volumeLayout.setVisibility(playerStatus.isSetVolumeAllowed() ? View.VISIBLE : View.GONE);
+        mprisControlBinding.rewButton.setVisibility(playerStatus.isSeekAllowed() ? View.VISIBLE : View.GONE);
+        mprisControlBinding.ffButton.setVisibility(playerStatus.isSeekAllowed() ? View.VISIBLE : View.GONE);
 
         invalidateOptionsMenu();
 
         //Show and hide previous/next buttons simultaneously
         if (playerStatus.isGoPreviousAllowed() || playerStatus.isGoNextAllowed()) {
-            prevButton.setVisibility(View.VISIBLE);
-            prevButton.setEnabled(playerStatus.isGoPreviousAllowed());
-            nextButton.setVisibility(View.VISIBLE);
-            nextButton.setEnabled(playerStatus.isGoNextAllowed());
+            mprisControlBinding.prevButton.setVisibility(View.VISIBLE);
+            mprisControlBinding.prevButton.setEnabled(playerStatus.isGoPreviousAllowed());
+            mprisControlBinding.nextButton.setVisibility(View.VISIBLE);
+            mprisControlBinding.nextButton.setEnabled(playerStatus.isGoNextAllowed());
         } else {
-            prevButton.setVisibility(View.GONE);
-            nextButton.setVisibility(View.GONE);
+            mprisControlBinding.prevButton.setVisibility(View.GONE);
+            mprisControlBinding.nextButton.setVisibility(View.GONE);
         }
     }
 
@@ -366,8 +310,11 @@ public class MprisActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ThemeUtil.setUserPreferredTheme(this);
-        setContentView(R.layout.activity_mpris);
-        ButterKnife.bind(this);
+
+        activityMprisBinding = ActivityMprisBinding.inflate(getLayoutInflater());
+        mprisControlBinding = activityMprisBinding.mprisControl;
+
+        setContentView(activityMprisBinding.getRoot());
 
         String targetPlayerName = getIntent().getStringExtra("player");
         getIntent().removeExtra("player");
@@ -388,19 +335,19 @@ public class MprisActivity extends AppCompatActivity {
         BackgroundService.RunCommand(MprisActivity.this, service -> service.addConnectionListener(connectionReceiver));
         connectToPlugin(targetPlayerName);
 
-        performActionOnClick(playButton, MprisPlugin.MprisPlayer::playPause);
+        performActionOnClick(mprisControlBinding.playButton, MprisPlugin.MprisPlayer::playPause);
 
-        performActionOnClick(prevButton, MprisPlugin.MprisPlayer::previous);
+        performActionOnClick(mprisControlBinding.prevButton, MprisPlugin.MprisPlayer::previous);
 
-        performActionOnClick(rewButton, p -> targetPlayer.seek(interval_time * -1));
+        performActionOnClick(mprisControlBinding.rewButton, p -> targetPlayer.seek(interval_time * -1));
 
-        performActionOnClick(ffButton, p -> p.seek(interval_time));
+        performActionOnClick(mprisControlBinding.ffButton, p -> p.seek(interval_time));
 
-        performActionOnClick(nextButton, MprisPlugin.MprisPlayer::next);
+        performActionOnClick(mprisControlBinding.nextButton, MprisPlugin.MprisPlayer::next);
 
-        performActionOnClick(stopButton, MprisPlugin.MprisPlayer::stop);
+        performActionOnClick(mprisControlBinding.stopButton, MprisPlugin.MprisPlayer::stop);
 
-        volumeSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        mprisControlBinding.volumeSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
             }
@@ -416,22 +363,21 @@ public class MprisActivity extends AppCompatActivity {
                     targetPlayer.setVolume(seekBar.getProgress());
                 });
             }
-
         });
 
         positionSeekUpdateRunnable = () -> BackgroundService.RunCommand(MprisActivity.this, service -> {
             if (targetPlayer != null) {
-                positionBar.setProgress((int) (targetPlayer.getPosition()));
+                mprisControlBinding.positionSeek.setProgress((int) (targetPlayer.getPosition()));
             }
             positionSeekUpdateHandler.removeCallbacks(positionSeekUpdateRunnable);
             positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 1000);
         });
         positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 200);
 
-        positionBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        mprisControlBinding.positionSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean byUser) {
-                progressText.setText(milisToProgress(progress));
+                mprisControlBinding.progressTextview.setText(milisToProgress(progress));
             }
 
             @Override
@@ -448,12 +394,10 @@ public class MprisActivity extends AppCompatActivity {
                     positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 200);
                 });
             }
-
         });
 
-        nowPlayingText.setSelected(true);
+        mprisControlBinding.nowPlayingTextview.setSelected(true);
     }
-
 
     final static int MENU_OPEN_URL = Menu.FIRST;
 
