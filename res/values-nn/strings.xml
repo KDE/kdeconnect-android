@@ -226,6 +226,7 @@
   <string name="permission_explanation">Dette tillegget treng utvida løyve for å fungera</string>
   <string name="optional_permission_explanation">Du må gje utvida løyve for at alle funksjonane skal fungera</string>
   <string name="plugins_need_optional_permission">På grunn av manglande løyve vil desse funksjonane ikkje verka (trykk på dei for meir informasjon):</string>
+  <string name="share_optional_permission_explanation">For å kunna ta imot delte filer må du velja ei målmappe</string>
   <string name="telepathy_permission_explanation">For å kunna lesa og skriva tekstmeldingar frå datamaskina må du gje appen tilgang til SMS</string>
   <string name="telephony_permission_explanation">For å kunna sjå telefonsamtalar på datamaskina må du gje appen tilgang til samtaleloggar og telefonstatus</string>
   <string name="telephony_optional_permission_explanation">For å kunna sjå namn på kontaktar i staden for berre telefonnummeret må du gje appen tilgang til kontaktlista di</string>
