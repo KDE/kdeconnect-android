@@ -13,14 +13,13 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.CheckBox;
 
-import org.kde.kdeconnect_tp.R;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.DialogPreference;
 import androidx.preference.PreferenceViewHolder;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+
+import org.kde.kdeconnect_tp.R;
+import org.kde.kdeconnect_tp.databinding.PreferenceCheckboxBinding;
 
 public class StoragePreference extends DialogPreference {
     @Nullable
@@ -28,7 +27,7 @@ public class StoragePreference extends DialogPreference {
     @Nullable
     private OnLongClickListener onLongClickListener;
 
-    @BindView(R.id.checkbox) CheckBox checkbox;
+    CheckBox checkbox;
     public boolean inSelectionMode;
 
     public void setInSelectionMode(boolean inSelectionMode) {
@@ -101,7 +100,7 @@ public class StoragePreference extends DialogPreference {
     public void onBindViewHolder(PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
 
-        ButterKnife.bind(this, holder.itemView);
+        checkbox = PreferenceCheckboxBinding.bind(holder.itemView).checkbox;
 
         checkbox.setVisibility(inSelectionMode ? View.VISIBLE : View.INVISIBLE);
 
