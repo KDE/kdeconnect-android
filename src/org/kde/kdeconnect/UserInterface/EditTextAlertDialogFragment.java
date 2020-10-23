@@ -9,23 +9,22 @@ package org.kde.kdeconnect.UserInterface;
 import android.app.Dialog;
 import android.os.Bundle;
 
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-
-import org.kde.kdeconnect_tp.R;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+
+import com.google.android.material.textfield.TextInputEditText;
+
+import org.kde.kdeconnect_tp.R;
+import org.kde.kdeconnect_tp.databinding.EditTextAlertDialogViewBinding;
 
 public class EditTextAlertDialogFragment extends AlertDialogFragment {
     private static final String KEY_HINT_RES_ID = "HintResId";
     private static final String KEY_TEXT = "Text";
 
-    @BindView(R.id.textInputLayout) TextInputLayout textInputLayout;
-    @BindView(R.id.textInputEditText) TextInputEditText editText;
+    private EditTextAlertDialogViewBinding binding;
+    TextInputEditText editText;
+
     private @StringRes int hintResId;
     private String text;
 
@@ -35,10 +34,12 @@ public class EditTextAlertDialogFragment extends AlertDialogFragment {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
         dialog.setOnShowListener(dialogInterface -> {
             dialog.setOnShowListener(null);
-            ButterKnife.bind(EditTextAlertDialogFragment.this, dialog);
 
-            textInputLayout.setHintEnabled(true);
-            textInputLayout.setHint(getString(hintResId));
+            binding = EditTextAlertDialogViewBinding.bind(dialog.getWindow().getDecorView());
+            editText = binding.textInputEditText;
+
+            binding.textInputLayout.setHintEnabled(true);
+            binding.textInputLayout.setHint(getString(hintResId));
             editText.setText(text);
         });
 
