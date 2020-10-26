@@ -242,6 +242,7 @@
   <string name="permission_explanation">Tento zásuvný modul vyžaduje oprávnenie, aby mohol fungovať</string>
   <string name="optional_permission_explanation">Musíte udeliť oprávnenia navyše, aby boli povolené všetky funkcie</string>
   <string name="plugins_need_optional_permission">Niektoré zásuvné moduly majú zakázané funkcie, pretože im chýbajú oprávnenia (ťuknutím získate viac informácií):</string>
+  <string name="share_optional_permission_explanation">Ak chcete prijímať zdieľané súbory, musíte zvoliť cieľový adresár</string>
   <string name="telepathy_permission_explanation">Na čítanie a písanie SMS z vášho počítača, musíte udeliť oprávnenie k správam SMS</string>
   <string name="telephony_permission_explanation">Na prezeranie telefónnych hovorov z vášho počítača, musíte udeliť oprávnenie k záznamom hovorov a stavu telefónu</string>
   <string name="telephony_optional_permission_explanation">Na prezeranie mien kontaktov namiesto telefónnych čísel, musíte udeliť prístup k telefónnym kontaktom</string>
