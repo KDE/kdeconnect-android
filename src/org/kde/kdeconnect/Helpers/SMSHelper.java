@@ -26,6 +26,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import com.google.android.mms.pdu_alt.MultimediaMessagePdu;
+import com.google.android.mms.pdu_alt.PduPersister;
 import com.klinker.android.send_message.Utils;
 
 import org.apache.commons.io.IOUtils;
@@ -712,10 +714,9 @@ public class SMSHelper {
         }
 
         // Get address(es) of the message
-        Uri uri = ContentUris.appendId(getMMSUri().buildUpon(), uID).build();
-        Address from = SmsMmsUtils.getMmsFrom(context, uri);
-
-        List<Address> to = SmsMmsUtils.getMmsTo(context, uri);
+        MultimediaMessagePdu msg = getMessagePdu(context, uID);
+        Address from = SmsMmsUtils.getMmsFrom(msg);
+        List<Address> to = SmsMmsUtils.getMmsTo(msg);
 
         List<Address> addresses = new ArrayList<>();
         if (from != null) {
@@ -759,6 +760,17 @@ public class SMSHelper {
                 attachments
         );
     }
+
+    private static MultimediaMessagePdu getMessagePdu(Context context, long uID) {
+        Uri uri = ContentUris.appendId(getMMSUri().buildUpon(), uID).build();
+        try {
+            return (MultimediaMessagePdu) PduPersister.getPduPersister(context).load(uri);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
     /**
      * Get a text part of an MMS message

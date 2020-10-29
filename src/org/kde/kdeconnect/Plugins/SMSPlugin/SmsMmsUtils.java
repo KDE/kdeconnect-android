@@ -129,19 +129,10 @@ public class SmsMmsUtils {
 
     /**
      * Returns the Address of the sender of the MMS message.
-     * @param uri                content://mms/msgId/addr
-     * @param context            context in which the method is called.
      * @return                   sender's Address
      */
-    public static SMSHelper.Address getMmsFrom(Context context, Uri uri) {
-        MultimediaMessagePdu msg;
-
-        try {
-            msg = (MultimediaMessagePdu) PduPersister.getPduPersister(context).load(uri);
-        } catch (Exception e) {
-            return null;
-        }
-
+    public static SMSHelper.Address getMmsFrom(MultimediaMessagePdu msg) {
+        if (msg == null) { return null; }
         EncodedStringValue encodedStringValue = msg.getFrom();
         SMSHelper.Address from = new SMSHelper.Address(encodedStringValue.getString());
         return from;
@@ -149,20 +140,10 @@ public class SmsMmsUtils {
 
     /**
      * returns a List of Addresses of all the recipients of a MMS message.
-     * @param uri       content://mms/part_id
-     * @param context   Context in which the method is called.
      * @return          List of Addresses of all recipients of an MMS message
      */
-    public static List<SMSHelper.Address> getMmsTo(Context context, Uri uri) {
-        MultimediaMessagePdu msg;
-
-        try {
-            msg = (MultimediaMessagePdu) PduPersister.getPduPersister(context).load(uri);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-
+    public static List<SMSHelper.Address> getMmsTo(MultimediaMessagePdu msg) {
+        if (msg == null) { return null; }
         StringBuilder toBuilder = new StringBuilder();
         EncodedStringValue to[] = msg.getTo();
 
