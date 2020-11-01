@@ -40,7 +40,6 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.Lock;
@@ -240,12 +239,6 @@ public class SMSPlugin extends Plugin {
          */
         @Override
         public void onChange(boolean selfChange) {
-            // If the KDE Connect is set as default Sms app
-            // prevent from reading the latest message in the database before the sentReceivers mark it as sent
-            if (Utils.isDefaultSmsApp(context)) {
-                return;
-            }
-
             sendLatestMessage();
         }
 
@@ -283,20 +276,21 @@ public class SMSPlugin extends Plugin {
             mostRecentTimestampLock.unlock();
             return;
         }
-        SMSHelper.Message message = SMSHelper.getNewestMessage(context);
+        List<SMSHelper.Message> messages = SMSHelper.getMessagesInRange(context, null, mostRecentTimestamp, null, false);
 
-        if (message == null || message.date <= mostRecentTimestamp) {
-            // onChange can trigger many times for a single message. Don't make unnecessary noise
-            mostRecentTimestampLock.unlock();
-            return;
+        long newMostRecentTimestamp = mostRecentTimestamp;
+        for (SMSHelper.Message message : messages) {
+            if (message == null || message.date <= newMostRecentTimestamp) {
+                newMostRecentTimestamp = message.date;
+            }
         }
 
         // Update the most recent counter
-        mostRecentTimestamp = message.date;
+        mostRecentTimestamp = newMostRecentTimestamp;
         mostRecentTimestampLock.unlock();
 
         // Send the alert about the update
-        device.sendPacket(constructBulkMessagePacket(Collections.singleton(message)));
+        device.sendPacket(constructBulkMessagePacket(messages));
     }
 
     /**
@@ -529,7 +523,7 @@ public class SMSPlugin extends Plugin {
         if (rangeStartTimestamp < 0) {
             conversation = SMSHelper.getMessagesInThread(this.context, threadID, numberToGet);
         } else {
-            conversation = SMSHelper.getMessagesInRange(this.context, threadID, rangeStartTimestamp, numberToGet);
+            conversation = SMSHelper.getMessagesInRange(this.context, threadID, rangeStartTimestamp, numberToGet, true);
         }
 
         // Sometimes when desktop app is kept open while android app is restarted for any reason

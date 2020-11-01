@@ -296,44 +296,6 @@ public class DeviceFragment extends Fragment {
                                     dialog.show(getChildFragmentManager(), null);
                                 }
                             });
-
-                            // Add a button to the pluginList for setting KDE Connect as default sms app for allowing it to send mms
-                            if (!Utils.isDefaultSmsApp(mActivity)) {
-                                // Check if there are any preferred APN settings available on the device, if not then disable the MMS support
-                                boolean hasApnSettings = false;
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
-                                    List<Integer> subIds = TelephonyHelper.getActiveSubscriptionIDs(mActivity);
-                                    for (final int subId : subIds) {
-                                        if (TelephonyHelper.getPreferredApn(mActivity, subId) != null) {
-                                            hasApnSettings = true;
-                                            break;
-                                        }
-                                    }
-                                } else {
-                                    if (TelephonyHelper.getPreferredApn(mActivity, 0) != null) {
-                                        hasApnSettings = true;
-                                    }
-                                }
-
-                                for (Plugin p : plugins) {
-                                    if (p.getPluginKey().equals("SMSPlugin") && hasApnSettings) {
-                                        pluginListItems.add(new SetDefaultAppPluginListItem(p, mActivity.getResources().getString(R.string.pref_plugin_telepathy_mms), (action) -> {
-                                            DialogFragment dialog = new DefaultSmsAppAlertDialogFragment.Builder()
-                                                    .setTitle(R.string.set_default_sms_app_title)
-                                                    .setMessage(R.string.pref_plugin_telepathy_mms_desc)
-                                                    .setPositiveButton(R.string.ok)
-                                                    .setNegativeButton(R.string.cancel)
-                                                    .setPermissions(SMSPlugin.getMmsPermissions())
-                                                    .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
-                                                    .create();
-
-                                            if (dialog != null) {
-                                                dialog.show(getChildFragmentManager(), null);
-                                            }
-                                        }));
-                                    }
-                                }
-                            }
                         }
 
                         ListAdapter adapter = new ListAdapter(mActivity, pluginListItems);

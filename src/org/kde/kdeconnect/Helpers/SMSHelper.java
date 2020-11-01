@@ -28,7 +28,6 @@ import androidx.annotation.RequiresApi;
 
 import com.google.android.mms.pdu_alt.MultimediaMessagePdu;
 import com.google.android.mms.pdu_alt.PduPersister;
-import com.klinker.android.send_message.Utils;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
@@ -137,24 +136,26 @@ public class SMSHelper {
             @NonNull ThreadID threadID,
             @Nullable Long numberToGet
     ) {
-        return getMessagesInRange(context, threadID, Long.MAX_VALUE, numberToGet);
+        return getMessagesInRange(context, threadID, Long.MAX_VALUE, numberToGet, true);
     }
 
     /**
-     * Get some messages in the given thread which have timestamp equal to or after the given timestamp
+     * Get some messages in the given thread based on a start timestamp and an optional count
      *
      * @param context  android.content.Context running the request
-     * @param threadID Thread to look up
+     * @param threadID Optional ThreadID to look up. If not included, this method will return the latest messages from all threads.
      * @param startTimestamp Beginning of the range to return
      * @param numberToGet Number of messages to return. Pass null for "all"
+     * @param getMessagesOlderStartTime If true, get messages with timestamps before the startTimestamp. If false, get newer messages
      * @return Some messages in the requested conversation
      */
     @SuppressLint("NewApi")
     public static @NonNull List<Message> getMessagesInRange(
             @NonNull Context context,
-            @NonNull ThreadID threadID,
+            @Nullable ThreadID threadID,
             @NonNull Long startTimestamp,
-            @Nullable Long numberToGet
+            @Nullable Long numberToGet,
+            @NonNull Boolean getMessagesOlderStartTime
     ) {
         // The stickiness with this is that Android's MMS database has its timestamp in epoch *seconds*
         // while the SMS database uses epoch *milliseconds*.
@@ -174,15 +175,30 @@ public class SMSHelper {
             allMmsColumns.addAll(Arrays.asList(Message.multiSIMColumns));
         }
 
-        String selection = Message.THREAD_ID + " = ? AND ? >= " + Message.DATE;
+        String selection;
 
-        String[] smsSelectionArgs = new String[] { threadID.toString(), startTimestamp.toString() };
-        String[] mmsSelectionArgs = new String[] { threadID.toString(), Long.toString(startTimestamp / 1000) };
+        if (getMessagesOlderStartTime) {
+            selection = Message.DATE + " <= ?";
+        } else {
+            selection = Message.DATE + " >= ?";
+        }
+
+        List<String> smsSelectionArgs = new ArrayList<String>(2);
+        smsSelectionArgs.add(startTimestamp.toString());
+
+        List<String> mmsSelectionArgs = new ArrayList<String>(2);
+        mmsSelectionArgs.add(Long.toString(startTimestamp / 1000));
+
+        if (threadID != null) {
+            selection += " AND " + Message.THREAD_ID + " = ?";
+            smsSelectionArgs.add(threadID.toString());
+            mmsSelectionArgs.add(threadID.toString());
+        }
 
         String sortOrder = Message.DATE + " DESC";
 
-        List<Message> allMessages = getMessages(smsUri, context, allSmsColumns, selection, smsSelectionArgs, sortOrder, numberToGet);
-        allMessages.addAll(getMessages(mmsUri, context, allMmsColumns, selection, mmsSelectionArgs, sortOrder, numberToGet));
+        List<Message> allMessages = getMessages(smsUri, context, allSmsColumns, selection, smsSelectionArgs.toArray(new String[0]), sortOrder, numberToGet);
+        allMessages.addAll(getMessages(mmsUri, context, allMmsColumns, selection, mmsSelectionArgs.toArray(new String[0]), sortOrder, numberToGet));
 
         // Need to now only return the requested number of messages:
         // Suppose we were requested to return N values and suppose a user sends only one MMS per
@@ -205,30 +221,6 @@ public class SMSHelper {
         }
 
         return toReturn;
-    }
-
-    /**
-     * Get the newest sent or received message
-     *
-     * This might have some potential for race conditions if many messages are received in a short
-     * timespan, but my target use-case is humans sending and receiving messages, so I don't think
-     * it will be an issue
-     *
-     * @return null if no matching message is found, otherwise return a Message
-     */
-    public static @Nullable Message getNewestMessage(
-            @NonNull Context context
-    ) {
-        List<Message> messages = getMessagesWithFilter(context, null, null, 1L);
-
-        if (messages.size() > 1) {
-            Log.w("SMSHelper", "getNewestMessage asked for one message but got " + messages.size());
-        }
-        if (messages.size() < 1) {
-            return null;
-        } else {
-            return messages.get(0);
-        }
     }
 
     /**
@@ -284,14 +276,7 @@ public class SMSHelper {
 
         // Get all the active phone numbers so we can filter the user out of the list of targets
         // of any MMSes
-        List<String> userPhoneNumbers = TelephonyHelper.getAllPhoneNumbers(context);
-
-        if (Utils.isDefaultSmsApp(context)) {
-            // Due to some reason, which I'm not able to find out yet, when message sending fails, no sent receiver
-            // gets invoked to mark the message as failed to send. This is the reason we have to delete the failed
-            // messages pending in the outbox before fetching new messages from the database
-            deleteFailedMessages(uri, context, fetchColumns, selection, selectionArgs, sortOrder);
-        }
+        List<TelephonyHelper.LocalPhoneNumber> userPhoneNumbers = TelephonyHelper.getAllPhoneNumbers(context);
 
         try (Cursor myCursor = context.getContentResolver().query(
                 uri,
@@ -610,7 +595,7 @@ public class SMSHelper {
     private static @NonNull Message parseMMS(
             @NonNull Context context,
             @NonNull Map<String, String> messageInfo,
-            @NonNull List<String> userPhoneNumbers
+            @NonNull List<TelephonyHelper.LocalPhoneNumber> userPhoneNumbers
     ) {
         int event = Message.EVENT_UNKNOWN;
 
@@ -720,14 +705,18 @@ public class SMSHelper {
 
         List<Address> addresses = new ArrayList<>();
         if (from != null) {
-            if (!userPhoneNumbers.contains(from.toString()) && !from.toString().equals("insert-address-token")) {
+            boolean isLocalPhoneNumber = userPhoneNumbers.stream().anyMatch(localPhoneNumber -> localPhoneNumber.isMatchingPhoneNumber(from.address));
+
+            if (!isLocalPhoneNumber && !from.toString().equals("insert-address-token")) {
                 addresses.add(from);
             }
         }
 
         if (to != null) {
             for (Address address : to) {
-                if (!userPhoneNumbers.contains(address.toString()) && !address.toString().equals("insert-address-token")) {
+                boolean isLocalPhoneNumber = userPhoneNumbers.stream().anyMatch(localPhoneNumber -> localPhoneNumber.isMatchingPhoneNumber(address.address));
+
+                if (!isLocalPhoneNumber && !from.toString().equals("insert-address-token")) {
                     addresses.add(address);
                 }
             }
@@ -874,7 +863,7 @@ public class SMSHelper {
     }
 
     public static class Address {
-        final String address;
+        public final String address;
 
         /**
          * Address object field names

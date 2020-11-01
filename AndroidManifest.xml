@@ -53,22 +53,6 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/KdeConnectTheme"
         android:name="org.kde.kdeconnect.MyApplication">
-        <receiver
-            android:name="org.kde.kdeconnect.Plugins.SMSPlugin.SmsReceiver"
-            android:exported="true"
-            android:permission="android.permission.BROADCAST_SMS">
-            <intent-filter>
-                <action android:name="android.provider.Telephony.SMS_DELIVER" />
-            </intent-filter>
-            <intent-filter android:priority="999">
-                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
-            </intent-filter>
-        </receiver>
-
-        <receiver
-            android:name="org.kde.kdeconnect.Plugins.SMSPlugin.SmsSentReceiver"
-            android:exported="true"
-            android:taskAffinity="${applicationId}.SMS_SENT" />
 
         <receiver
             android:name="com.android.mms.transaction.PushReceiver"
@@ -80,39 +64,6 @@
                 <data android:mimeType="application/vnd.wap.mms-message" />
             </intent-filter>
         </receiver>
-
-        <receiver
-            android:name="org.kde.kdeconnect.Plugins.SMSPlugin.DelegatingMmsReceivedReceiver"
-            android:enabled="true"
-            android:exported="true"
-            android:taskAffinity="com.klinker.android.messaging.MMS_RECEIVED" />
-
-        <receiver
-            android:name="org.kde.kdeconnect.Plugins.SMSPlugin.MmsSentReceiverImpl"
-            android:exported="true"
-            android:taskAffinity="com.klinker.android.messaging.MMS_SENT" />
-
-        <receiver
-            android:name="org.kde.kdeconnect.Plugins.SMSPlugin.NotificationReplyReceiver"
-            android:enabled="true"
-            android:exported="true">
-        </receiver>
-
-        <service
-            android:name="org.kde.kdeconnect.Plugins.SMSPlugin.HeadlessSmsSendService"
-            android:exported="true"
-            android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE">
-            <intent-filter>
-                <action android:name="android.intent.action.RESPOND_VIA_MESSAGE" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-
-                <data android:scheme="sms" />
-                <data android:scheme="smsto" />
-                <data android:scheme="mms" />
-                <data android:scheme="mmsto" />
-            </intent-filter>
-        </service>
 
         <service
             android:name="com.android.mms.transaction.TransactionService"
@@ -140,22 +91,9 @@
             android:label="KDE Connect"
             android:theme="@style/KdeConnectTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <action android:name="android.intent.action.SENDTO" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="sms" />
-                <data android:scheme="smsto" />
-                <data android:scheme="mms" />
-                <data android:scheme="mmsto" />
-            </intent-filter>
-            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.app.role.SMS"/>
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.SEND_MULTIPLE" />

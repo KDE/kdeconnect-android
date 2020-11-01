@@ -25,6 +25,7 @@ import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TelephonyHelper {
 
@@ -65,7 +66,7 @@ public class TelephonyHelper {
      *
      * Note that entries of the returned list might return null if the phone number is not known by the device
      */
-    public static @NonNull List<String> getAllPhoneNumbers(
+    public static @NonNull List<LocalPhoneNumber> getAllPhoneNumbers(
             @NonNull Context context)
             throws SecurityException {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP_MR1) {
@@ -82,7 +83,7 @@ public class TelephonyHelper {
                 Log.w(LOGGING_TAG, "Could not get TelephonyManager");
                 return Collections.emptyList();
             }
-            String phoneNumber = getPhoneNumber(telephonyManager);
+            LocalPhoneNumber phoneNumber = getPhoneNumber(telephonyManager);
             return Collections.singletonList(phoneNumber);
         } else {
             // Potentially multi-sim case
@@ -99,18 +100,19 @@ public class TelephonyHelper {
                 Log.w(LOGGING_TAG, "Could not get SubscriptionInfos");
                 return Collections.emptyList();
             }
-            List<String> phoneNumbers = new ArrayList<>(subscriptionInfos.size());
+            List<LocalPhoneNumber> phoneNumbers = new ArrayList<>(subscriptionInfos.size());
             for (SubscriptionInfo info : subscriptionInfos) {
-                phoneNumbers.add(info.getNumber());
+                LocalPhoneNumber thisPhoneNumber = new LocalPhoneNumber(info.getNumber(), info.getSubscriptionId());
+                phoneNumbers.add(thisPhoneNumber);
             }
-            return phoneNumbers;
+            return phoneNumbers.stream().filter(localPhoneNumber -> localPhoneNumber.number != null).collect(Collectors.toList());
         }
     }
 
     /**
      * Try to get the phone number to which the TelephonyManager is pinned
      */
-    public static @Nullable String getPhoneNumber(
+    public static @Nullable LocalPhoneNumber getPhoneNumber(
             @NonNull TelephonyManager telephonyManager)
             throws SecurityException {
         @SuppressLint("HardwareIds")
@@ -138,7 +140,7 @@ public class TelephonyHelper {
             Log.d(LOGGING_TAG, "Discarding " + maybeNumber + " because it does not contain a high enough digit ratio to be a real phone number");
             return null;
         } else {
-            return maybeNumber;
+            return new LocalPhoneNumber(maybeNumber, -1);
         }
     }
 
@@ -262,6 +264,31 @@ public class TelephonyHelper {
     }
 
     /**
+     * Canonicalize a phone number by removing all (valid) non-digit characters
+     *
+     * Should be equivalent to SmsHelper::canonicalizePhoneNumber in the C++ implementation
+     *
+     * @param phoneNumber The phone number to canonicalize
+     * @return The canonicalized version of the input phone number
+     */
+    public static String canonicalizePhoneNumber(String phoneNumber)
+    {
+        String toReturn = phoneNumber;
+        toReturn = toReturn.replace(" ", "");
+        toReturn = toReturn.replace("-", "");
+        toReturn = toReturn.replace("(", "");
+        toReturn = toReturn.replace(")", "");
+        toReturn = toReturn.replace("+", "");
+        toReturn = toReturn.replaceFirst("^0*", "");
+
+        if (toReturn.isEmpty()) {
+            // If we have stripped away everything, assume this is a special number (and already canonicalized)
+            return phoneNumber;
+        }
+        return toReturn;
+    }
+
+    /**
      * Light copy of https://developer.android.com/reference/android/telephony/data/ApnSetting so
      * that we can support older API versions. Delete this when API 28 becomes our supported version.
      */
@@ -310,6 +337,65 @@ public class TelephonyHelper {
 
         public int getMmsProxyPort() {
             return mmsProxyPort;
+        }
+    }
+
+    /**
+     * Class representing a phone number which is assigned to the current device
+     */
+    public static class LocalPhoneNumber {
+        /**
+        * The phone number
+        */
+        public final String number;
+
+        /**
+         * The subscription ID to which this phone number belongs
+         */
+        public final int subscriptionID;
+
+       public LocalPhoneNumber(String number, int subscriptionID) {
+           this.number = number;
+           this.subscriptionID = subscriptionID;
+       }
+
+        @Override
+        public String toString() {
+            return number;
+        }
+
+        /**
+         * Do some basic fuzzy matching on two phone numbers to determine whether they match
+         *
+         * This is roughly equivalent to SmsHelper::isPhoneNumberMatch, but might produce more false negatives
+         *
+         * @param potentialMatchingPhoneNumber The phone number to compare to this phone number
+         * @return True if the phone numbers appear to be the same, false otherwise
+         */
+        public boolean isMatchingPhoneNumber(String potentialMatchingPhoneNumber) {
+           String mPhoneNumber = canonicalizePhoneNumber(this.number);
+           String oPhoneNumber = canonicalizePhoneNumber(potentialMatchingPhoneNumber);
+
+            if (mPhoneNumber.isEmpty() || oPhoneNumber.isEmpty()) {
+                // The empty string is not a valid phone number so does not match anything
+                return false;
+            }
+
+            // To decide if a phone number matches:
+            // 1. Are they similar lengths? If two numbers are very different, probably one is junk data and should be ignored
+            // 2. Is one a superset of the other? Phone number digits get more specific the further towards the end of the string,
+            //    so if one phone number ends with the other, it is probably just a more-complete version of the same thing
+            String longerNumber = mPhoneNumber.length() >= oPhoneNumber.length() ? mPhoneNumber : oPhoneNumber;
+            String shorterNumber = mPhoneNumber.length() < oPhoneNumber.length() ? mPhoneNumber : oPhoneNumber;
+
+            // If the numbers are vastly different in length, assume they are not the same
+            if (shorterNumber.length() < 0.75 * longerNumber.length()) {
+                return false;
+            }
+
+            boolean matchingPhoneNumber = longerNumber.endsWith(shorterNumber);
+
+            return matchingPhoneNumber;
         }
     }
 }

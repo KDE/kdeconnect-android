@@ -44,7 +44,6 @@ import org.kde.kdeconnect.Helpers.AppsHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
-import org.kde.kdeconnect.Plugins.SMSPlugin.NotificationReplyReceiver;
 import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect.UserInterface.StartActivityAlertDialogFragment;
@@ -212,10 +211,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             // as groupKey's are not supported on API's older than Lollipop
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 groupKey = statusBarNotification.getGroupKey();
-            }
-
-            if (!groupKey.contains(NotificationReplyReceiver.SMS_NOTIFICATION_GROUP_KEY)) {
-                return;
             }
         }
 

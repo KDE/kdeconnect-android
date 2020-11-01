@@ -6,16 +6,27 @@
 
 package org.kde.kdeconnect.Plugins.SMSPlugin;
 
+import android.content.ContentResolver;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 
+import com.android.mms.dom.smil.parser.SmilXmlSerializer;
+import com.google.android.mms.ContentType;
+import com.google.android.mms.InvalidHeaderValueException;
+import com.google.android.mms.MMSPart;
+import com.google.android.mms.pdu_alt.CharacterSets;
 import com.google.android.mms.pdu_alt.EncodedStringValue;
 import com.google.android.mms.pdu_alt.MultimediaMessagePdu;
-import com.google.android.mms.pdu_alt.PduPersister;
+import com.google.android.mms.pdu_alt.PduBody;
+import com.google.android.mms.pdu_alt.PduComposer;
+import com.google.android.mms.pdu_alt.PduHeaders;
+import com.google.android.mms.pdu_alt.PduPart;
 import com.google.android.mms.pdu_alt.RetrieveConf;
+import com.google.android.mms.pdu_alt.SendReq;
+import com.google.android.mms.smil.SmilHelper;
 import com.klinker.android.send_message.Message;
 import com.klinker.android.send_message.Settings;
 import com.klinker.android.send_message.Transaction;
@@ -27,6 +38,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.provider.Telephony;
 import android.net.Uri;
+import android.telephony.SmsManager;
+import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 
@@ -41,11 +55,15 @@ import org.kde.kdeconnect_tp.R;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 
 public class SmsMmsUtils {
 
@@ -68,6 +86,29 @@ public class SmsMmsUtils {
                 prefs.getString(context.getString(R.string.convert_to_mms_after),
                 context.getString(R.string.convert_to_mms_after_default)));
 
+        TelephonyHelper.LocalPhoneNumber sendingPhoneNumber;
+        List<TelephonyHelper.LocalPhoneNumber> allPhoneNumbers = TelephonyHelper.getAllPhoneNumbers(context);
+
+        Optional<TelephonyHelper.LocalPhoneNumber> maybeSendingPhoneNumber = allPhoneNumbers.stream()
+                .filter(localPhoneNumber -> localPhoneNumber.subscriptionID == subID)
+                .findAny();
+
+        if (maybeSendingPhoneNumber.isPresent()) {
+            sendingPhoneNumber = maybeSendingPhoneNumber.get();
+        } else {
+            if (allPhoneNumbers.isEmpty()) {
+                sendingPhoneNumber = null;
+            } else {
+                sendingPhoneNumber = allPhoneNumbers.get(0);
+            }
+            Log.w(SENDING_MESSAGE, "Unable to get outgoing address for sub ID " + subID + " using " + sendingPhoneNumber);
+        }
+
+        if (sendingPhoneNumber != null) {
+            // Remove the user's phone number if present in the list of recipients
+            addressList.removeIf(address -> sendingPhoneNumber.isMatchingPhoneNumber(address.address));
+        }
+
         try {
             Settings settings = new Settings();
             TelephonyHelper.ApnSetting apnSettings = TelephonyHelper.getPreferredApn(context, subID);
@@ -80,10 +121,8 @@ public class SmsMmsUtils {
                 settings.setUseSystemSending(true);
             }
 
-            if (Utils.isDefaultSmsApp(context)) {
-                settings.setSendLongAsMms(longTextAsMms);
-                settings.setSendLongAsMmsAfter(sendLongAsMmsAfter);
-            }
+            settings.setSendLongAsMms(longTextAsMms);
+            settings.setSendLongAsMmsAfter(sendLongAsMmsAfter);
 
             settings.setGroup(groupMessageAsMms);
 
@@ -92,8 +131,6 @@ public class SmsMmsUtils {
             }
 
             Transaction transaction = new Transaction(context, settings);
-            transaction.setExplicitBroadcastForSentSms(new Intent(context, SmsSentReceiver.class));
-            transaction.setExplicitBroadcastForSentMms(new Intent(context, MmsSentReceiverImpl.class));
 
             List<String> addresses = new ArrayList<>();
             for (SMSHelper.Address address : addressList) {
@@ -101,30 +138,180 @@ public class SmsMmsUtils {
             }
 
             Message message = new Message(textMessage, addresses.toArray(ArrayUtils.EMPTY_STRING_ARRAY));
+            message.setFromAddress(sendingPhoneNumber.number);
             message.setSave(true);
 
             // Sending MMS on android requires the app to be set as the default SMS app,
             // but sending SMS doesn't needs the app to be set as the default app.
             // This is the reason why there are separate branch handling for SMS and MMS.
             if (transaction.checkMMS(message)) {
-                if (Utils.isDefaultSmsApp(context)) {
-                    if (Utils.isMobileDataEnabled(context)) {
-                        com.klinker.android.logger.Log.v("", "Sending new MMS");
-                        transaction.sendNewMessage(message, Transaction.NO_THREAD_ID);
-                    }
+                Log.v("", "Sending new MMS");
+                //transaction.sendNewMessage(message, Transaction.NO_THREAD_ID);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+                    sendMmsMessageNative(context, message, settings);
                 } else {
-                    com.klinker.android.logger.Log.v(SENDING_MESSAGE, "KDE Connect is not set to default SMS app.");
-                    //TODO: Notify other end that they need to enable the mobile data in order to send MMS
+                    // Cross fingers and hope Klinker's library works for this case
+                    transaction.sendNewMessage(message, Transaction.NO_THREAD_ID);
                 }
             } else {
-                com.klinker.android.logger.Log.v(SENDING_MESSAGE, "Sending new SMS");
+                Log.v(SENDING_MESSAGE, "Sending new SMS");
                 transaction.sendNewMessage(message, Transaction.NO_THREAD_ID);
             }
             //TODO: Notify other end
         } catch (Exception e) {
             //TODO: Notify other end
-            com.klinker.android.logger.Log.e(SENDING_MESSAGE, "Exception", e);
+            Log.e(SENDING_MESSAGE, "Exception", e);
         }
+    }
+
+    /**
+     * Send an MMS message using SmsManager.sendMultimediaMessage
+     *
+     * @param context
+     * @param message
+     * @param klinkerSettings
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    protected static void sendMmsMessageNative(Context context, Message message, Settings klinkerSettings) {
+        ArrayList<MMSPart> data = new ArrayList<>();
+
+        for (Message.Part p : message.getParts()) {
+            MMSPart part = new MMSPart();
+            if (p.getName() != null) {
+                part.Name = p.getName();
+            } else {
+                part.Name = p.getContentType().split("/")[0];
+            }
+            part.MimeType = p.getContentType();
+            part.Data = p.getMedia();
+            data.add(part);
+        }
+
+        if (message.getText() != null && !message.getText().equals("")) {
+            // add text to the end of the part and send
+            MMSPart part = new MMSPart();
+            part.Name = "text";
+            part.MimeType = "text/plain";
+            part.Data = message.getText().getBytes();
+            data.add(part);
+        }
+
+        SendReq sendReq = buildPdu(context, message.getFromAddress(), message.getAddresses(), message.getSubject(), data, klinkerSettings);
+
+        Bundle configOverrides = new Bundle();
+        configOverrides.putBoolean(SmsManager.MMS_CONFIG_GROUP_MMS_ENABLED, klinkerSettings.getGroup());
+
+        // Write the PDUs to disk so that we can pass them to the SmsManager
+        final String fileName = "send." + String.valueOf(Math.abs(new Random().nextLong())) + ".dat";
+        File mSendFile = new File(context.getCacheDir(), fileName);
+
+        Uri contentUri = (new Uri.Builder())
+                .authority(context.getPackageName() + ".MmsFileProvider")
+                .path(fileName)
+                .scheme(ContentResolver.SCHEME_CONTENT)
+                .build();
+
+        try (FileOutputStream writer = new FileOutputStream(mSendFile)) {
+            writer.write(new PduComposer(context, sendReq).make());
+        } catch (final IOException e)
+        {
+            android.util.Log.e(SENDING_MESSAGE, "Error while writing temporary PDU file: ", e);
+        }
+
+        SmsManager mSmsManager;
+
+        if (klinkerSettings.getSubscriptionId() < 0)
+        {
+            mSmsManager = SmsManager.getDefault();
+        } else {
+            mSmsManager = SmsManager.getSmsManagerForSubscriptionId(klinkerSettings.getSubscriptionId());
+        }
+
+        mSmsManager.sendMultimediaMessage(context, contentUri, null, null, null);
+    }
+
+    public static final long DEFAULT_EXPIRY_TIME = 7 * 24 * 60 * 60;
+    public static final int DEFAULT_PRIORITY = PduHeaders.PRIORITY_NORMAL;
+
+    /**
+     * Copy of the same-name method from https://github.com/klinker41/android-smsmms
+     */
+    private static SendReq buildPdu(Context context, String fromAddress, String[] recipients, String subject,
+                                    List<MMSPart> parts, Settings settings) {
+        final SendReq req = new SendReq();
+        // From, per spec
+        req.prepareFromAddress(context, fromAddress, settings.getSubscriptionId());
+        // To
+        for (String recipient : recipients) {
+            req.addTo(new EncodedStringValue(recipient));
+        }
+        // Subject
+        if (!TextUtils.isEmpty(subject)) {
+            req.setSubject(new EncodedStringValue(subject));
+        }
+        // Date
+        req.setDate(System.currentTimeMillis() / 1000);
+        // Body
+        PduBody body = new PduBody();
+        // Add text part. Always add a smil part for compatibility, without it there
+        // may be issues on some carriers/client apps
+        int size = 0;
+        for (int i = 0; i < parts.size(); i++) {
+            MMSPart part = parts.get(i);
+            size += addTextPart(body, part, i);
+        }
+
+        // add a SMIL document for compatibility
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        SmilXmlSerializer.serialize(SmilHelper.createSmilDocument(body), out);
+        PduPart smilPart = new PduPart();
+        smilPart.setContentId("smil".getBytes());
+        smilPart.setContentLocation("smil.xml".getBytes());
+        smilPart.setContentType(ContentType.APP_SMIL.getBytes());
+        smilPart.setData(out.toByteArray());
+        body.addPart(0, smilPart);
+
+        req.setBody(body);
+        // Message size
+        req.setMessageSize(size);
+        // Message class
+        req.setMessageClass(PduHeaders.MESSAGE_CLASS_PERSONAL_STR.getBytes());
+        // Expiry
+        req.setExpiry(DEFAULT_EXPIRY_TIME);
+        try {
+            // Priority
+            req.setPriority(DEFAULT_PRIORITY);
+            // Delivery report
+            req.setDeliveryReport(PduHeaders.VALUE_NO);
+            // Read report
+            req.setReadReport(PduHeaders.VALUE_NO);
+        } catch (InvalidHeaderValueException e) {}
+
+        return req;
+    }
+
+    /**
+     * Copy of the same-name method from https://github.com/klinker41/android-smsmms
+     */
+    private static int addTextPart(PduBody pb, MMSPart p, int id) {
+        String filename = p.Name;
+        final PduPart part = new PduPart();
+        // Set Charset if it's a text media.
+        if (p.MimeType.startsWith("text")) {
+            part.setCharset(CharacterSets.UTF_8);
+        }
+        // Set Content-Type.
+        part.setContentType(p.MimeType.getBytes());
+        // Set Content-Location.
+        part.setContentLocation(filename.getBytes());
+        int index = filename.lastIndexOf(".");
+        String contentId = (index == -1) ? filename
+                : filename.substring(0, index);
+        part.setContentId(contentId.getBytes());
+        part.setData(p.Data);
+        pb.addPart(part);
+
+        return part.getData().length;
     }
 
     /**
