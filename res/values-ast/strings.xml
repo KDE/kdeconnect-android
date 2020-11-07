@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
-  <string name="foreground_notification_no_devices">Nun se coneutó con nengún preséu</string>
+  <string name="foreground_notification_no_devices">Nun se conectó con nengún preséu</string>
   <string name="foreground_notification_devices">Coneutóse con %s</string>
   <string name="pref_plugin_telephony">Avisador telefónicu</string>
   <string name="pref_plugin_telephony_desc">Unvia avisos de les llamaes entrantes</string>
@@ -67,7 +67,7 @@
     <item>Muncha</item>
     <item>Permuncha</item>
   </string-array>
-  <string name="category_connected_devices">Preseos coneutaos</string>
+  <string name="category_connected_devices">Preseos conectaos</string>
   <string name="category_not_paired_devices">Preseos disponibles</string>
   <string name="category_remembered_devices">Preseos recordaos</string>
   <string name="device_menu_plugins">Axustes de plugins</string>
@@ -142,7 +142,7 @@
   <string name="custom_devices_settings">Llista de preseos personalizada</string>
   <string name="custom_device_list">Amestar preseos pola IP</string>
   <string name="custom_device_deleted">Desanicióse\'l preséu personalizáu</string>
-  <string name="custom_device_list_help">Si\'l preséu nun se deteuta automáticamente, pues amestar la so direición IP o nome d\'agospiu calcando nel botón flotante d\'aición</string>
+  <string name="custom_device_list_help">Si\'l preséu nun se detecta automáticamente, pues amestar la so direición IP o nome d\'agospiu calcando nel botón flotante d\'aición</string>
   <string name="undo">Desfacer</string>
   <string name="share_notification_preference">Avisos sonoros</string>
   <string name="share_notification_preference_summary">Fai que\'l teléfonu vibre y reproduza un soníu al recibir un ficheru</string>
@@ -175,8 +175,8 @@
   <string name="device_rename_title">Renomáu del preséu</string>
   <string name="device_rename_confirm">Renomar</string>
   <string name="refresh">Refrescar</string>
-  <string name="unreachable_description">Esti preséu empareyáu nun ye algamable. Asegúrate de que ta coneutáu a la mesma rede que tu.</string>
-  <string name="no_wifi">Nun tas coneutáu a una rede Wi-Fi polo que nun vas ser a ver nengún preséu. Calca equí p\'activar el Wi-Fi.</string>
+  <string name="unreachable_description">Esti preséu empareyáu nun ye algamable. Asegúrate de que ta conectáu a la mesma rede que tu.</string>
+  <string name="no_wifi">Nun tas conectáu a una rede Wi-Fi polo que nun vas ser a ver nengún preséu. Calca equí p\'activar el Wi-Fi.</string>
   <string name="on_non_trusted_message">Nun tas nuna rede d\'enfotu. Desactivóse la descubrición automática.</string>
   <string name="no_file_browser">Nun hai nengún restolador de ficheros instaláu.</string>
   <string name="pref_plugin_telepathy">Unviu de SMS</string>
@@ -189,7 +189,7 @@
   <string name="plugins_need_optional_permission">Dalgunos plugins tienen carauterísiques desactivaes pola falta de permisos (tócalos pa más información):</string>
   <string name="select_ringtone">Timbre</string>
   <string name="telephony_pref_blocked_title">Númberos bloquiaos</string>
-  <string name="telephony_pref_blocked_dialog_desc">Nun amuesa les llamaes nin SMS de los númberos que configures. Especifica un númberu per llinia.</string>
+  <string name="telephony_pref_blocked_dialog_desc">Nun s\'amuesen les llamaes nin SMS de los númberos que configures. Especifica un númberu per llinia.</string>
   <string name="presenter_fullscreen">Pantalla completa</string>
   <string name="presenter_exit">Colar de la presentación</string>
   <string name="presenter_lock_tip">Pues bloquiar esti preséu y usar les tecles de volume pa dir a la diapositiva anterior/siguiente</string>
@@ -204,8 +204,11 @@
   <string name="notification_channel_media_control">Mandu multimedia</string>
   <string name="notification_channel_filetransfer">Tresferencia de ficheros</string>
   <string name="notification_channel_high_priority">Prioridá alta</string>
+  <string name="notification_channel_sms_mms">Mensaxes nuevos</string>
   <string name="copy_url_to_clipboard">Copiar la URL al cartafueyu</string>
   <string name="clipboard_toast">Copióse al cartafueyu</string>
+  <string name="runcommand_notreachable">El preséu nun ye algamable</string>
+  <string name="runcommand_notpaired">El preséu nun ta empareyáu</string>
   <string name="runcommand_noruncommandplugin">Esti preséu nun tien activáu\'l plugin Execución de comandos</string>
   <string name="pref_plugin_findremotedevice_desc">Fai que\'l preséu remotu suene</string>
   <string name="ring">Facer sonar</string>
@@ -237,21 +240,28 @@
   <string name="location_permission_needed_title">Ríquese un permisu</string>
   <string name="location_permission_needed_desc">Android rique\'l permisu Allugamientu pa indentificar redes Wi-Fi</string>
   <string name="clipboard_android_x_incompat">Android 10 quitó l\'accesu al cartafueyu en toles aplicaciones. Esti plugin va desactivase.</string>
+  <string name="cant_open_url">Nun pue abrise la URL pa siguir cola reproducción</string>
+  <string name="bigscreen_optional_permission_explanation">Pa compartir la entrada del micrófonu del preséu precises dar accesu a la entrada d\'audiu del preséu</string>
+  <string name="message_reply_label">RESPONDER</string>
+  <string name="user_display_name">Tu</string>
+  <string name="set_long_text_as_mms_title">Unviar testos llargos como MMS</string>
+  <string name="convert_to_mms_after_title">Conversión a MMS</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>Dempués d\'un mensaxes</item>
+    <item>Dempués de dos mensaxes</item>
+    <item>Dempués de tres mensaxes</item>
+    <item>Dempués de cuatro mensaxes</item>
+    <item>Dempués de cinco mensaxes</item>
   </string-array>
+  <string name="theme_dialog_title">Estilu de l\'aplicación</string>
   <string-array name="theme_list">
     <item>Set by Battery Saver</item>
-    <item>Light</item>
-    <item>Dark</item>
+    <item>Claridá</item>
+    <item>Escuridá</item>
   </string-array>
   <string-array name="theme_list_v28">
-    <item/>
-    <item>Light</item>
-    <item>Dark</item>
+    <item>System Default</item>
+    <item>Claridá</item>
+    <item>Escuridá</item>
   </string-array>
 </resources>
