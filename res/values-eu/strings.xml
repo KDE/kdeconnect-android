@@ -226,6 +226,7 @@
   <string name="permission_explanation">Plugin honek baimena behar du funtzionatzeko</string>
   <string name="optional_permission_explanation">Baimen gehiago eman behar dituzu funtzio guztiak gaitzeko</string>
   <string name="plugins_need_optional_permission">Plugin batzuek desgaitutako eginbideak dituzte baimenak faltan dituztelako (tak egin informazio gehiagorako):</string>
+  <string name="share_optional_permission_explanation">Partekatutako fitxategiak jasotzeko jomugako direktorio bat aukeratu behar duzu</string>
   <string name="telepathy_permission_explanation">SMSak zure mahaigainetik bidali ahal izateko, SMSak erabiltzeko baimena eman behar duzu</string>
   <string name="telephony_permission_explanation">Telefono deiak zure mahaigainetik ikusteko, telefono deien egunkarira eta telefonoaren egoerara baimena eman behar duzu</string>
   <string name="telephony_optional_permission_explanation">Telefono zenbakiaren ordez kontaktuaren izena ikusteko telefonoko kontaktuak atzitzeko baimena eman behar duzu</string>
