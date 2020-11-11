@@ -204,14 +204,8 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         }
 
         if ("org.kde.kdeconnect_tp".equals(packageName)) {
-            // Don't send our own notifications except notifications posted by SMSPlugin
-            String groupKey = "";
-
-            // SMS Notifications on devices running API's lower than Lollipop are not supported
-            // as groupKey's are not supported on API's older than Lollipop
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                groupKey = statusBarNotification.getGroupKey();
-            }
+            // Don't send our own notifications
+            return;
         }
 
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_NOTIFICATION);
