@@ -234,6 +234,7 @@
   <string name="permission_explanation">Această extensie are nevoie de permisiuni ca să lucreze</string>
   <string name="optional_permission_explanation">Trebuie să acordați permisiuni suplimentare pentru activarea tuturor funcțiilor</string>
   <string name="plugins_need_optional_permission">Unele extensii au caracteristici dezactivate din cauza lipsei permisiunilor (atingeți pentru informații suplimentare):</string>
+  <string name="share_optional_permission_explanation">Trebuie să alegeți un dosar destinație pentru a primi fișiere partajate</string>
   <string name="telepathy_permission_explanation">Pentru a citi și scrie SMS de pe calculatorul de birou, trebuie să acordați permisiuni asupra SMS-urilor</string>
   <string name="telephony_permission_explanation">Pentru a vedea apelurile pe calculatorul de birou, trebuie să acordați permisiuni asupra jurnalului de apeluri și stării telefonului</string>
   <string name="telephony_optional_permission_explanation">Pentru a vedea numele contactului în locul numărului de telefon, trebuie să permiteți accesul la contactele telefonului.</string>
