@@ -2,7 +2,7 @@
 <resources>
   <string name="kde_connect">KDE Connect</string>
   <string name="foreground_notification_no_devices">Nun se conectó con nengún preséu</string>
-  <string name="foreground_notification_devices">Conecttóse con %s</string>
+  <string name="foreground_notification_devices">Conectóse con %s</string>
   <string name="pref_plugin_telephony">Avisador telefónicu</string>
   <string name="pref_plugin_telephony_desc">Unvia avisos de les llamaes entrantes</string>
   <string name="pref_plugin_battery">Informe de la batería</string>
@@ -41,14 +41,14 @@
   <string name="remotekeyboard_editing_only_title">Remanar les tecles remotes namás al editar</string>
   <string name="remotekeyboard_connected">La conexón col tecláu remotu ta activa</string>
   <string name="open_mousepad">Entrada remota</string>
-  <string name="mousepad_info">Movi un deu pela pantalla pa mover el mur. Con un toque faes un clic esquierdu y teniendo primío faes l\'aición d\'arrastrar y soltar, col toque de dos deos simules un clic drechu y col toque de tres simules un clic col botón d\'en mediu del mur. Esliza dos deos pela pantalla pa desplazate.</string>
+  <string name="mousepad_info">Movi un deu pela pantalla pa mover el mur. Con un toque faes un clic esquierdu y teniendo primío faes l\'aición d\'arrastrar y soltar, col toque de dos deos simules un clic derechu y col toque de tres simules un clic col botón d\'en mediu del mur. Esliza dos deos pela pantalla pa desplazate.</string>
   <string name="mousepad_double_tap_settings_title">Aición al tocar con dos deos</string>
   <string name="mousepad_triple_tap_settings_title">Aición al tocar con tres deos</string>
   <string name="mousepad_sensitivity_settings_title">Sensibilidá del panel táctil</string>
   <string name="mousepad_acceleration_profile_settings_title">Aceleración del punteru</string>
   <string name="mousepad_scroll_direction_title">Direición de desplazamientu inversa</string>
   <string-array name="mousepad_tap_entries">
-    <item>Clic drechu</item>
+    <item>Clic derechu</item>
     <item>Clic d\'en mediu</item>
     <item>Nada</item>
   </string-array>
@@ -116,7 +116,7 @@
   <string name="received_file_text">Toca p\'abrir «%1s»</string>
   <string name="cannot_create_file">Nun pue crease\'l ficheru %s</string>
   <string name="tap_to_answer">Toca pa responder</string>
-  <string name="right_click">Unviar un clic drechu</string>
+  <string name="right_click">Unviar un clic derechu</string>
   <string name="middle_click">Unviar un clic d\'en mediu</string>
   <string name="show_keyboard">Amosar el tecláu</string>
   <string name="device_not_paired">Nun s\'empareyó\'l preséu</string>
