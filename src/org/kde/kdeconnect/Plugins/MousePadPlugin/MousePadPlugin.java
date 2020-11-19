@@ -8,15 +8,22 @@ package org.kde.kdeconnect.Plugins.MousePadPlugin;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
+import org.kde.kdeconnect.Plugins.SftpPlugin.SftpSettingsFragment;
+import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 
 import androidx.core.content.ContextCompat;
+import androidx.preference.SwitchPreference;
+
+import java.util.Collections;
+import java.util.Set;
 
 @PluginFactory.LoadablePlugin
 public class MousePadPlugin extends Plugin {
@@ -53,6 +60,11 @@ public class MousePadPlugin extends Plugin {
     @Override
     public boolean hasSettings() {
         return true;
+    }
+
+    @Override
+    public PluginSettingsFragment getSettingsFragment(Activity activity) {
+        return MousePadSettingsFragment.newInstance(getPluginKey());
     }
 
     @Override
