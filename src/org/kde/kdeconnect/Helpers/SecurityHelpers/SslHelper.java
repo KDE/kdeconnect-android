@@ -30,6 +30,7 @@ import org.spongycastle.cert.jcajce.JcaX509v3CertificateBuilder;
 import org.spongycastle.jce.provider.BouncyCastleProvider;
 import org.spongycastle.operator.ContentSigner;
 import org.spongycastle.operator.jcajce.JcaContentSignerBuilder;
+import org.spongycastle.util.Arrays;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -254,7 +255,7 @@ public class SslHelper {
 
     public static String getCertificateHash(Certificate certificate) {
         try {
-            byte[] hash = MessageDigest.getInstance("SHA-1").digest(certificate.getEncoded());
+            byte[] hash = MessageDigest.getInstance("SHA-256").digest(certificate.getEncoded());
             Formatter formatter = new Formatter();
             int i;
             for (i = 0; i < hash.length - 1; i++) {
@@ -279,4 +280,31 @@ public class SslHelper {
         return IETFUtils.valueToString(rdn.getFirst().getValue());
     }
 
+    public static String getVerificationKey(X509Certificate certificateA, Certificate certificateB) {
+        try {
+            byte[] a = certificateA.getPublicKey().getEncoded();
+            byte[] b = certificateB.getPublicKey().getEncoded();
+
+            if (Arrays.compareUnsigned(a, b) < 0) {
+                // Swap them so on both devices they are in the same order
+                byte[] aux = a;
+                a = b;
+                b = aux;
+            }
+
+            byte[] concat = new byte[a.length + b.length];
+            System.arraycopy(a, 0, concat, 0, a.length);
+            System.arraycopy(b, 0, concat, a.length, b.length);
+
+            byte[] hash = MessageDigest.getInstance("SHA-256").digest(concat);
+            Formatter formatter = new Formatter();
+            for (int i = 0; i < hash.length - 1; i++) {
+                formatter.format("%02x", hash[i]);
+            }
+            return formatter.toString();
+        } catch(Exception e) {
+            e.printStackTrace();
+            return "error";
+        }
+    }
 }

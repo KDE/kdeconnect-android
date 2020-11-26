@@ -391,10 +391,11 @@ public class Device implements BaseLink.PacketReceiver {
 
         final NotificationManager notificationManager = ContextCompat.getSystemService(getContext(), NotificationManager.class);
 
+        String verificationKeyShort = SslHelper.getVerificationKey(SslHelper.certificate, certificate).substring(8);
+
         Notification noti = new NotificationCompat.Builder(getContext(), NotificationHelper.Channels.DEFAULT)
                 .setContentTitle(res.getString(R.string.pairing_request_from, getName()))
-                .setContentText(res.getString(R.string.tap_to_answer))
-                .setContentIntent(pendingIntent)
+                .setContentText(res.getString(R.string.pairing_verification_code, verificationKeyShort))
                 .setTicker(res.getString(R.string.pair_requested))
                 .setSmallIcon(R.drawable.ic_notification)
                 .addAction(R.drawable.ic_accept_pairing_24dp, res.getString(R.string.pairing_accept), acceptedPendingIntent)

@@ -104,6 +104,8 @@ public class DeviceFragment extends Fragment {
         binding.pairButton.setOnClickListener(v -> {
             binding.pairButton.setVisibility(View.GONE);
             binding.pairMessage.setText("");
+            binding.pairVerification.setVisibility(View.VISIBLE);
+            binding.pairVerification.setText(SslHelper.getVerificationKey(SslHelper.certificate, device.certificate));
             binding.pairProgress.setVisibility(View.VISIBLE);
             BackgroundService.RunCommand(mActivity, service -> {
                 device = service.getDevice(mDeviceId);
@@ -259,6 +261,8 @@ public class DeviceFragment extends Fragment {
             public void run() {
                 if (device.isPairRequestedByPeer()) {
                     binding.pairMessage.setText(R.string.pair_requested);
+                    binding.pairVerification.setVisibility(View.VISIBLE);
+                    binding.pairVerification.setText(SslHelper.getVerificationKey(SslHelper.certificate, device.certificate));
                     binding.pairingButtons.setVisibility(View.VISIBLE);
                     binding.pairProgress.setVisibility(View.GONE);
                     binding.pairButton.setVisibility(View.GONE);
@@ -333,6 +337,8 @@ public class DeviceFragment extends Fragment {
             mActivity.runOnUiThread(() -> {
                 if (binding.getRoot() == null) return;
                 binding.pairMessage.setText(error);
+                binding.pairVerification.setText("");
+                binding.pairVerification.setVisibility(View.GONE);
                 binding.pairProgress.setVisibility(View.GONE);
                 binding.pairButton.setVisibility(View.VISIBLE);
                 binding.pairRequestButtons.setVisibility(View.GONE);
@@ -345,6 +351,7 @@ public class DeviceFragment extends Fragment {
             mActivity.runOnUiThread(() -> {
                 if (binding.getRoot() == null) return;
                 binding.pairMessage.setText(R.string.device_not_paired);
+                binding.pairVerification.setVisibility(View.GONE);
                 binding.pairProgress.setVisibility(View.GONE);
                 binding.pairButton.setVisibility(View.VISIBLE);
                 binding.pairRequestButtons.setVisibility(View.GONE);

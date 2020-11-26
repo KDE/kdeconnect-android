@@ -30,6 +30,18 @@
             android:text="@string/device_not_paired"
             android:textAppearance="?android:attr/textAppearanceMedium"/>
 
+        <TextView
+            android:id="@+id/pair_verification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:drawableLeft="@drawable/ic_key"
+            android:drawableStart="@drawable/ic_key"
+            android:layout_marginBottom="8dip"
+            android:visibility="gone"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
         <Button
             android:id="@+id/pair_button"
             android:layout_width="match_parent"
