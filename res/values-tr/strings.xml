@@ -87,7 +87,6 @@
   <string name="encryption_info_title">Şifreleme Bilgisi</string>
   <string name="encryption_info_msg_no_ssl">Diğer aygıt, KDE Connect\'in son sürümünü kullanmıyor, eski şifreleme yöntemini kullanıyor.</string>
   <string name="my_device_fingerprint">Aygıt sertifikanızın SHA1 parmak izi:</string>
-  <string name="remote_device_fingerprint">Uzak aygıt sertifikanızın SHA1 parmak izi:</string>
   <string name="pair_requested">Eşleşme talep edildi</string>
   <string name="pairing_request_from">%1s için eşleşme talebi</string>
   <plurals name="incoming_file_title">

@@ -90,7 +90,6 @@
   <string name="encryption_info_title">Informace o šifrování</string>
   <string name="encryption_info_msg_no_ssl">Druhé zařízení nepoužívá poslední verzi KDE connect. Bude použita stará metoda šifrování.</string>
   <string name="my_device_fingerprint">Otisk SHA1 certifikátu vašeho zařízení je:</string>
-  <string name="remote_device_fingerprint">Otisk SHA1 certifikátu vzdáleného zařízení je:</string>
   <string name="pair_requested">Bylo vyžádáno párování</string>
   <string name="pairing_request_from">Požadavek o párování z %1s</string>
   <plurals name="incoming_file_title">

@@ -90,7 +90,7 @@
   <string name="encryption_info_title">Дані щодо шифрування</string>
   <string name="encryption_info_msg_no_ssl">На сторонньому пристрої не використовується нова версія KDE Connect, у якій використовується застарілий спосіб шифрування.</string>
   <string name="my_device_fingerprint">Відбиток SHA1 сертифіката пристрою:</string>
-  <string name="remote_device_fingerprint">Відбиток SHA1 сертифіката віддаленого пристрою:</string>
+  <string name="remote_device_fingerprint">Відбиток SHA256 сертифіката віддаленого пристрою:</string>
   <string name="pair_requested">Запит щодо пов’язування</string>
   <string name="pairing_request_from">Запит щодо пов’язування від %1s</string>
   <plurals name="incoming_file_title">

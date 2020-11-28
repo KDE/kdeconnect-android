@@ -78,7 +78,6 @@
   <string name="encryption_info_title">Información del cifráu</string>
   <string name="encryption_info_msg_no_ssl">L\'otru preséu nun executa una versión recién de KDE Connect y usa\'l métodu heredáu de cifráu.</string>
   <string name="my_device_fingerprint">La buelga SHA1 d\'esti preséu ye:</string>
-  <string name="remote_device_fingerprint">La buelga SHA1 del preséu remotu ye:</string>
   <string name="pair_requested">Solicitóse l\'empareyamientu</string>
   <string name="pairing_request_from">Solicitú d\'empareyamientu de %1s</string>
   <plurals name="incoming_file_title">

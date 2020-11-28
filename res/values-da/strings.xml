@@ -75,7 +75,6 @@
   <string name="encryption_info_title">Krypteringsinfo</string>
   <string name="encryption_info_msg_no_ssl">Den anden enhed bruger ikke en nylig version af KDE Connect, og bruger dermed den forældede krypteringsmetode.</string>
   <string name="my_device_fingerprint">SHA1-fingeraftrykket for dit enhedscertifikat er:</string>
-  <string name="remote_device_fingerprint">SHA1-fingeraftrykket for det eksterne enhedscertifikat er:</string>
   <string name="pair_requested">Anmodet om parring</string>
   <string name="pairing_request_from">Parringsanmodning fra %1s</string>
   <string name="received_file_text">Tap for at åbne \"%1s\"</string>

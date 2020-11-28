@@ -78,7 +78,7 @@
   <string name="category_not_paired_devices">Dispositius disponibles</string>
   <string name="category_remembered_devices">Dispositius recordats</string>
   <string name="device_menu_plugins">Arranjament del connector</string>
-  <string name="device_menu_unpair">Desparella</string>
+  <string name="device_menu_unpair">Desaparella</string>
   <string name="pair_new_device">Aparella amb un dispositiu nou</string>
   <string name="unknown_device">Dispositiu desconegut</string>
   <string name="error_not_reachable">No es pot accedir al dispositiu</string>
@@ -90,7 +90,7 @@
   <string name="encryption_info_title">Informació de l\'encriptatge</string>
   <string name="encryption_info_msg_no_ssl">L\'altre dispositiu no usa una versió recent del KDE Connect, s\'utilitzarà el mètode d\'encriptatge antic.</string>
   <string name="my_device_fingerprint">L\'empremta digital SHA1 del certificat del vostre dispositiu és:</string>
-  <string name="remote_device_fingerprint">L\'empremta digital SHA1 del certificat del dispositiu remot és:</string>
+  <string name="remote_device_fingerprint">L\'empremta digital SHA256 del certificat del dispositiu remot és:</string>
   <string name="pair_requested">S\'ha demanat aparellar</string>
   <string name="pairing_request_from">S\'ha demanat aparellar des de %1s</string>
   <plurals name="incoming_file_title">
@@ -166,7 +166,7 @@
   <string name="custom_device_list_help">Si el dispositiu no es detecta automàticament, podeu afegir la seva adreça IP o el nom de la màquina fent clic al botó flotant d\'acció</string>
   <string name="custom_device_fab_hint">Afegeix un dispositiu</string>
   <string name="undo">Desfés</string>
-  <string name="share_notification_preference">Rebombori de les notificacions</string>
+  <string name="share_notification_preference">Notificacions sonores</string>
   <string name="share_notification_preference_summary">Vibra i reprodueix un so en rebre un fitxer</string>
   <string name="share_destination_customize">Personalitza el directori de destinació</string>
   <string name="share_destination_customize_summary_disabled">Els fitxers rebuts apareixeran a Baixades</string>

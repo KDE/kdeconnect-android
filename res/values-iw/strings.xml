@@ -75,7 +75,6 @@
   <string name="encryption_info_title">פרטי הצפנה</string>
   <string name="encryption_info_msg_no_ssl">ההתקן השני אינו משתמש בגרסה האחרונה של KDE Connect, משתמש בשיטת ההצפנה הישנה.</string>
   <string name="my_device_fingerprint">טביעת האצבע SHA1 של ההתקן היא:</string>
-  <string name="remote_device_fingerprint">"טביעת האצבע SHA1 של ההתקן המרוחק היא: "</string>
   <string name="pair_requested">בקשת התאמה</string>
   <string name="pairing_request_from">בוקשה התאמה מ־%1s</string>
   <string name="received_file_text">לחץ כדי לפתוח את \"%1s\"</string>

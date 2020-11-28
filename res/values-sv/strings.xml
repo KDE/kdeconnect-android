@@ -90,7 +90,7 @@
   <string name="encryption_info_title">Krypteringsinformation</string>
   <string name="encryption_info_msg_no_ssl">Den andra apparaten använder inte en aktuell version av KDE-anslut. Använder den föråldrade krypteringsmetoden.</string>
   <string name="my_device_fingerprint">SHA1-fingeravtryck för din apparats certifikat är:</string>
-  <string name="remote_device_fingerprint">SHA1-fingeravtryck för den andra apparatens certifikat är:</string>
+  <string name="remote_device_fingerprint">SHA256-fingeravtryck för den andra apparatens certifikat är:</string>
   <string name="pair_requested">Ihopparning begärd</string>
   <string name="pairing_request_from">Begäran om ihopparning från %1s</string>
   <plurals name="incoming_file_title">

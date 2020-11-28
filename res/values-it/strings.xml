@@ -90,7 +90,6 @@
   <string name="encryption_info_title">Informazioni di cifratura</string>
   <string name="encryption_info_msg_no_ssl">L\'altro dispositivo non utilizza una versione recente di KDE Connect, utilizzando il metodo di cifratura precedente.</string>
   <string name="my_device_fingerprint">L\'impronta digitale SHA1 del certificato di dispositivo è:</string>
-  <string name="remote_device_fingerprint">L\'impronta digitale SHA1 del certificato di dispositivo remoto è:</string>
   <string name="pair_requested">Richiesta di associazione</string>
   <string name="pairing_request_from">Richiesta associazione da %1s</string>
   <plurals name="incoming_file_title">
