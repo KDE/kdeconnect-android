@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
-  <string name="foreground_notification_no_devices">Nun se conectó con nengún preséu</string>
-  <string name="foreground_notification_devices">Conectóse con %s</string>
+  <string name="foreground_notification_no_devices">Nun se coneutó con nengún preséu</string>
+  <string name="foreground_notification_devices">Coneutóse con %s</string>
   <string name="pref_plugin_telephony">Avisador telefónicu</string>
   <string name="pref_plugin_telephony_desc">Unvia avisos de les llamaes entrantes</string>
   <string name="pref_plugin_battery">Informe de la batería</string>
@@ -30,7 +30,7 @@
   <string name="pref_plugin_sharereceiver">Compartición y receición</string>
   <string name="pref_plugin_sharereceiver_desc">Comparte ficheros y URLs ente preseos</string>
   <string name="device_list_empty">Nun hai preseos</string>
-  <string name="ok">Aceptar</string>
+  <string name="ok">Aceutar</string>
   <string name="sad_ok">Val :(</string>
   <string name="cancel">Encaboxar</string>
   <string name="no_permissions">Precises conceder l\'accesu a los avisos</string>
@@ -67,7 +67,7 @@
     <item>Muncha</item>
     <item>Permuncha</item>
   </string-array>
-  <string name="category_connected_devices">Preseos conectaos</string>
+  <string name="category_connected_devices">Preseos coneutaos</string>
   <string name="category_not_paired_devices">Preseos disponibles</string>
   <string name="category_remembered_devices">Preseos recordaos</string>
   <string name="device_menu_plugins">Axustes de plugins</string>
@@ -78,6 +78,7 @@
   <string name="encryption_info_title">Información del cifráu</string>
   <string name="encryption_info_msg_no_ssl">L\'otru preséu nun executa una versión recién de KDE Connect y usa\'l métodu heredáu de cifráu.</string>
   <string name="my_device_fingerprint">La buelga SHA1 d\'esti preséu ye:</string>
+  <string name="remote_device_fingerprint">La buelga SHA256 del certificáu del preséu remotu:</string>
   <string name="pair_requested">Solicitóse l\'empareyamientu</string>
   <string name="pairing_request_from">Solicitú d\'empareyamientu de %1s</string>
   <plurals name="incoming_file_title">
@@ -120,7 +121,7 @@
   <string name="show_keyboard">Amosar el tecláu</string>
   <string name="device_not_paired">Nun s\'empareyó\'l preséu</string>
   <string name="request_pairing">Solicitar l\'empareyamientu</string>
-  <string name="pairing_accept">Aceptar</string>
+  <string name="pairing_accept">Aceutar</string>
   <string name="pairing_reject">Refugar</string>
   <string name="settings">Axustes</string>
   <string name="mpris_volume">Volume</string>
@@ -174,8 +175,8 @@
   <string name="device_rename_title">Renomáu del preséu</string>
   <string name="device_rename_confirm">Renomar</string>
   <string name="refresh">Refrescar</string>
-  <string name="unreachable_description">Esti preséu empareyáu nun ye algamable. Asegúrate de que ta conectáu a la mesma rede que tu.</string>
-  <string name="no_wifi">Nun tas conectáu a una rede Wi-Fi polo que nun vas ser a ver nengún preséu. Calca equí p\'activar el Wi-Fi.</string>
+  <string name="unreachable_description">Esti preséu empareyáu nun ye algamable. Asegúrate de que ta coneutáu a la mesma rede que tu.</string>
+  <string name="no_wifi">Nun tas coneutáu a una rede Wi-Fi polo que nun vas ser a ver nengún preséu. Calca equí p\'activar el Wi-Fi.</string>
   <string name="on_non_trusted_message">Nun tas nuna rede d\'enfotu. Desactivóse la descubrición automática.</string>
   <string name="no_file_browser">Nun hai nengún restolador de ficheros instaláu.</string>
   <string name="pref_plugin_telepathy">Unviu de SMS</string>
