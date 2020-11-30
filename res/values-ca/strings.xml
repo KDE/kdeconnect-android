@@ -16,7 +16,7 @@
   <string name="pref_plugin_mousepad">Entrada remota</string>
   <string name="pref_plugin_mousepad_desc">Usa el vostre telèfon o tauleta com un ratolí i un teclat</string>
   <string name="pref_plugin_presenter">Presentació de diapositives remota</string>
-  <string name="pref_plugin_presenter_desc">Usa el dispositiu per a canviar les dispositives d\'una presentació</string>
+  <string name="pref_plugin_presenter_desc">Usa el dispositiu per a canviar les diapositives d\'una presentació</string>
   <string name="pref_plugin_remotekeyboard">Rep les pulsacions remotes de tecla</string>
   <string name="pref_plugin_remotekeyboard_desc">Rep els esdeveniments de pulsacions de tecla des de dispositius remots</string>
   <string name="pref_plugin_mpris">Controls multimèdia</string>
@@ -30,7 +30,7 @@
   <string name="pref_plugin_notifications">Sincronitza les notificacions</string>
   <string name="pref_plugin_notifications_desc">Accedeix a les vostres notificacions des d\'altres dispositius</string>
   <string name="pref_plugin_receive_notifications">Rep les notificacions</string>
-  <string name="pref_plugin_receive_notifications_desc">Rep notificacions des d\'altres dispositius i mostrar-los a l\'Android</string>
+  <string name="pref_plugin_receive_notifications_desc">Rep notificacions des d\'altres dispositius i mostrar-les a l\'Android</string>
   <string name="pref_plugin_sharereceiver">Comparteix i rep</string>
   <string name="pref_plugin_sharereceiver_desc">Comparteix els fitxers i URL entre els dispositius</string>
   <string name="device_list_empty">No hi ha cap dispositiu</string>
@@ -77,7 +77,7 @@
   <string name="category_connected_devices">Dispositius connectats</string>
   <string name="category_not_paired_devices">Dispositius disponibles</string>
   <string name="category_remembered_devices">Dispositius recordats</string>
-  <string name="device_menu_plugins">Arranjament del connector</string>
+  <string name="device_menu_plugins">Arranjament dels connectors</string>
   <string name="device_menu_unpair">Desaparella</string>
   <string name="pair_new_device">Aparella amb un dispositiu nou</string>
   <string name="unknown_device">Dispositiu desconegut</string>
@@ -157,7 +157,7 @@
   <string name="mpris_notification_settings_summary">Permet controlar els reproductors multimèdia sense obrir el KDE Connect</string>
   <string name="share_to">Comparteix amb...</string>
   <string name="protocol_version_newer">Aquest dispositiu usa una versió nova del protocol</string>
-  <string name="plugin_settings_with_name">Ajustaments del %s</string>
+  <string name="plugin_settings_with_name">Configuració del %s</string>
   <string name="invalid_device_name">El nom del dispositiu no és vàlid</string>
   <string name="shareplugin_text_saved">S\'ha rebut text i s\'ha desat al porta-retalls</string>
   <string name="custom_devices_settings">Llista personalitzada de dispositius</string>
@@ -269,11 +269,11 @@
   <string name="devices">Dispositius</string>
   <string name="settings_rename">Nom del dispositiu</string>
   <string name="settings_dark_mode">Tema fosc</string>
-  <string name="settings_more_settings_title">Més ajustaments</string>
-  <string name="settings_more_settings_text">Els ajustaments per dispositiu es poden trobar a «Arranjament del connector» des d\'un dispositiu.</string>
+  <string name="settings_more_settings_title">Més opcions</string>
+  <string name="settings_more_settings_text">La configuració per dispositiu es pot trobar a «Arranjament dels connectors» des d\'un dispositiu.</string>
   <string name="setting_persistent_notification">Mostra les notificacions persistents</string>
   <string name="setting_persistent_notification_oreo">Notificacions persistents</string>
-  <string name="setting_persistent_notification_description">Tocar per a des/activar els ajustaments de les notificacions</string>
+  <string name="setting_persistent_notification_description">Tocar per a des/activar la configuració de les notificacions</string>
   <string name="extra_options">Opcions extres</string>
   <string name="privacy_options">Opcions de privadesa</string>
   <string name="set_privacy_options">Establiu les opcions de privadesa</string>
