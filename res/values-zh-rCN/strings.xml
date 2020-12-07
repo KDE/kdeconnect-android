@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">KDE Connect</string>
-  <string name="foreground_notification_no_devices">没有连接到任何设备</string>
+  <string name="kde_connect">KDE 连接</string>
+  <string name="foreground_notification_no_devices">未连接到任何设备</string>
   <string name="foreground_notification_devices">已连接到：%s</string>
-  <string name="foreground_notification_send_clipboard">发送剪切板</string>
-  <string name="pref_plugin_telephony">电话通知</string>
+  <string name="foreground_notification_send_clipboard">发送剪贴板</string>
+  <string name="pref_plugin_telephony">来电通知</string>
   <string name="pref_plugin_telephony_desc">发送来电通知</string>
   <string name="pref_plugin_battery">电池报告</string>
   <string name="pref_plugin_battery_desc">定期报告电池状态</string>
@@ -20,40 +20,40 @@
   <string name="pref_plugin_remotekeyboard">接收远程按键</string>
   <string name="pref_plugin_remotekeyboard_desc">从远程设备接收按键事件</string>
   <string name="pref_plugin_mpris">多媒体控制</string>
-  <string name="pref_plugin_mpris_desc">媒体播放器的遥控器</string>
-  <string name="pref_plugin_runcommand">执行命令</string>
+  <string name="pref_plugin_mpris_desc">遥控媒体播放器</string>
+  <string name="pref_plugin_runcommand">运行命令</string>
   <string name="pref_plugin_runcommand_desc">触发您的手机或平板电脑的远程命令</string>
-  <string name="pref_plugin_contacts">联系人同步器</string>
+  <string name="pref_plugin_contacts">联系人同步</string>
   <string name="pref_plugin_contacts_desc">允许同步设备的通讯录</string>
   <string name="pref_plugin_ping">Ping</string>
-  <string name="pref_plugin_ping_desc">发送和接受ping</string>
+  <string name="pref_plugin_ping_desc">发送和接受 Ping</string>
   <string name="pref_plugin_notifications">通知同步</string>
   <string name="pref_plugin_notifications_desc">从其他设备访问您的通知</string>
   <string name="pref_plugin_receive_notifications">接收通知</string>
   <string name="pref_plugin_receive_notifications_desc">从其他设备接收通知并显示在 Android 上</string>
-  <string name="pref_plugin_sharereceiver">分享和接收</string>
-  <string name="pref_plugin_sharereceiver_desc">在设备间共享文件和 URL</string>
+  <string name="pref_plugin_sharereceiver">发送和接收</string>
+  <string name="pref_plugin_sharereceiver_desc">在设备间共享文件和链接</string>
   <string name="device_list_empty">无设备</string>
-  <string name="ok">确认</string>
+  <string name="ok">确定</string>
   <string name="sad_ok">确定 :(</string>
   <string name="cancel">取消</string>
-  <string name="open_settings">开启设置</string>
-  <string name="no_permissions">您需要授予权限以便访问通知</string>
-  <string name="no_permission_mprisreceiver">为了能够控制您的媒体播放器，您需要授予访问通知消息的权限</string>
-  <string name="no_permissions_remotekeyboard">要接收按键，您需要激活 KDE Connect 远程键盘</string>
-  <string name="send_ping">发送ping</string>
+  <string name="open_settings">打开设置</string>
+  <string name="no_permissions">您需要授予权限以访问通知</string>
+  <string name="no_permission_mprisreceiver">为了控制您的媒体播放器，您需要授予访问通知的权限</string>
+  <string name="no_permissions_remotekeyboard">要接收按键，您需要激活 K 易连远程键盘</string>
+  <string name="send_ping">发送 Ping</string>
   <string name="open_mpris_controls">多媒体控制</string>
   <string name="remotekeyboard_editing_only_title">只有在编辑时才接受远程按键</string>
-  <string name="remotekeyboard_not_connected">没有活动的远程键盘链接，请在 KDE Connect 中连接</string>
+  <string name="remotekeyboard_not_connected">没有活动的远程键盘链接，请在 K 易连中连接</string>
   <string name="remotekeyboard_connected">远程键盘连接已启用</string>
-  <string name="remotekeyboard_multiple_connections">发现多个远程键盘连接，请选择设备进行配置</string>
+  <string name="remotekeyboard_multiple_connections">发现多个远程键盘连接，请选择要配置的设备</string>
   <string name="open_mousepad">远程输入</string>
   <string name="mousepad_info">在屏幕上移动手指来移动光标。轻击代表左键，双指或三指点击代表右键或中键。用双指滚动。用长按来拖放。</string>
   <string name="mousepad_double_tap_settings_title">设置双指点击动作</string>
   <string name="mousepad_triple_tap_settings_title">设置三指点击动作</string>
   <string name="mousepad_sensitivity_settings_title">设置触摸板灵敏度</string>
-  <string name="mousepad_acceleration_profile_settings_title">设置指针加速</string>
-  <string name="mousepad_scroll_direction_title">滚动方向反向</string>
+  <string name="mousepad_acceleration_profile_settings_title">设置指针加速度</string>
+  <string name="mousepad_scroll_direction_title">反转滚动方向</string>
   <string-array name="mousepad_tap_entries">
     <item>右键点击</item>
     <item>中键点击</item>
@@ -74,24 +74,25 @@
     <item>更强</item>
     <item>最强</item>
   </string-array>
-  <string name="category_connected_devices">已连接设备</string>
-  <string name="category_not_paired_devices">可用设备</string>
-  <string name="category_remembered_devices">已记住设备</string>
+  <string name="category_connected_devices">连接的设备</string>
+  <string name="category_not_paired_devices">可用的设备</string>
+  <string name="category_remembered_devices">记住的设备</string>
   <string name="device_menu_plugins">插件设置</string>
   <string name="device_menu_unpair">取消配对</string>
   <string name="pair_new_device">配对新设备</string>
   <string name="unknown_device">未知设备</string>
   <string name="error_not_reachable">设备不可及</string>
   <string name="error_already_paired">设备已配对</string>
-  <string name="error_could_not_send_package">数据包无法发送</string>
+  <string name="error_could_not_send_package">无法发送数据包</string>
   <string name="error_timed_out">超时</string>
   <string name="error_canceled_by_user">已被用户取消</string>
-  <string name="error_canceled_by_other_peer">已被另一方取消</string>
+  <string name="error_canceled_by_other_peer">已被其他对等点取消</string>
   <string name="encryption_info_title">加密信息</string>
-  <string name="encryption_info_msg_no_ssl">另一设备没有使用最新的 KDE Connect，使用旧版加密方法。</string>
+  <string name="encryption_info_msg_no_ssl">另一设备没有使用最新的 K 易连，使用旧版加密方法。</string>
   <string name="my_device_fingerprint">您的设备证书的 SHA1 指纹是：</string>
+  <string name="remote_device_fingerprint">远程设备证书的 SHA256 指纹是：</string>
   <string name="pair_requested">已请求配对</string>
-  <string name="pairing_request_from">来自%1s的配对请求</string>
+  <string name="pairing_request_from">来自 %1s 的配对请求</string>
   <plurals name="incoming_file_title">
     <item quantity="other">正在从 %2$s 接收 %1$d 个文件</item>
   </plurals>
@@ -99,7 +100,7 @@
     <item quantity="other">(%3$d 个文件中的第 %2$d 个)：%1$s</item>
   </plurals>
   <plurals name="outgoing_file_title">
-    <item quantity="other">正在发送 %1$d 个文件给 %2$s</item>
+    <item quantity="other">正在发送 %1$d 个文件到 %2$s</item>
   </plurals>
   <plurals name="outgoing_files_text">
     <item quantity="other">(%3$d 个文件中的 %2$d 个)：%1$s</item>
@@ -116,10 +117,10 @@
   <plurals name="send_files_fail_title">
     <item quantity="other">发送给 %1$s 的 %3$d 个文件中的 %2$d 个失败</item>
   </plurals>
-  <string name="tap_to_open">点击以打开</string>
-  <string name="received_file_text">点击以打开“%1s”</string>
+  <string name="tap_to_open">点击打开</string>
+  <string name="received_file_text">点击打开“%1s”</string>
   <string name="cannot_create_file">无法创建文件 %s</string>
-  <string name="tap_to_answer">点击以应答</string>
+  <string name="tap_to_answer">点击应答</string>
   <string name="right_click">发送右键点击</string>
   <string name="middle_click">发送中键点击</string>
   <string name="show_keyboard">显示键盘</string>
@@ -193,8 +194,8 @@
   <string name="sftp_saf_permission_explanation">要远程访问文件，您需要配置存储位置</string>
   <string name="no_players_connected">未找到播放器</string>
   <string name="send_files">发送文件</string>
-  <string name="pairing_title">KDE Connect 设备</string>
-  <string name="pairing_description">其他在同一网络运行 KDE Connect 的设备会在此处显示。</string>
+  <string name="pairing_title">K 易连设备</string>
+  <string name="pairing_description">其他在同一网络运行 K 易连的设备会在此处显示。</string>
   <string name="device_rename_title">重命名设备</string>
   <string name="device_rename_confirm">重命名</string>
   <string name="refresh">刷新</string>
@@ -205,7 +206,7 @@
   <string name="pref_plugin_telepathy">发送短消息</string>
   <string name="pref_plugin_telepathy_desc">从桌面发送短消息</string>
   <string name="pref_plugin_telepathy_mms">发送彩信</string>
-  <string name="pref_plugin_telepathy_mms_desc">您需要将 KDE Connect 设置为默认短信应用程序才能通过它发送彩信。</string>
+  <string name="pref_plugin_telepathy_mms_desc">您需要将 K 易连设置为默认短信应用程序才能通过它发送彩信。</string>
   <string name="findmyphone_title">找到我的手机</string>
   <string name="findmyphone_title_tablet">找到我的平板电脑</string>
   <string name="findmyphone_title_tv">查找我的电视</string>
@@ -233,7 +234,7 @@
   <string name="presenter_lock_tip">您可以锁定设备，用音量键作为上一页/下一页按钮</string>
   <string name="add_command">添加命令</string>
   <string name="addcommand_explanation">没有已注册的命令</string>
-  <string name="addcommand_explanation2">您可以在 KDE Connect 系统设置中添加新命令</string>
+  <string name="addcommand_explanation2">您可以在 K 易连系统设置中添加新命令</string>
   <string name="add_command_description">您可以在桌面添加新命令</string>
   <string name="pref_plugin_mprisreceiver">控制媒体播放器</string>
   <string name="pref_plugin_mprisreceiver_desc">从其他设备控制您的手机的播放器</string>
@@ -274,7 +275,7 @@
   <string name="take_picture">启动相机</string>
   <string name="plugin_photo_desc">启动相机应用程序以方便拍摄和转移图片</string>
   <string name="no_app_for_opening">没有找到合适的应用程序打开此文件</string>
-  <string name="remote_keyboard_service">KDE Connect 远程键盘</string>
+  <string name="remote_keyboard_service">K 易连远程键盘</string>
   <string name="presenter_pointer">指针</string>
   <string name="trusted_networks">信任的网络</string>
   <string name="trusted_networks_desc">限制只在已知网络中启用自动发现</string>
