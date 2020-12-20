@@ -19,7 +19,6 @@ import androidx.preference.DialogPreference;
 import androidx.preference.PreferenceViewHolder;
 
 import org.kde.kdeconnect_tp.R;
-import org.kde.kdeconnect_tp.databinding.PreferenceCheckboxBinding;
 
 public class StoragePreference extends DialogPreference {
     @Nullable
@@ -100,7 +99,7 @@ public class StoragePreference extends DialogPreference {
     public void onBindViewHolder(PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
 
-        checkbox = PreferenceCheckboxBinding.bind(holder.itemView).checkbox;
+        checkbox = (CheckBox) holder.itemView.findViewById(R.id.checkbox);
 
         checkbox.setVisibility(inSelectionMode ? View.VISIBLE : View.INVISIBLE);
 
