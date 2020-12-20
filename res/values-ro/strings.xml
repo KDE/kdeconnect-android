@@ -90,6 +90,7 @@
   <string name="encryption_info_title">Informații despre criptare</string>
   <string name="encryption_info_msg_no_ssl">Celălalt dispozitiv nu folosește o versiune recentă de KDE Connect, se va folosi metoda de criptare moștenită.</string>
   <string name="my_device_fingerprint">Amprenta SHA1 a certificatului acestui dispozitiv e:</string>
+  <string name="remote_device_fingerprint">Amprenta SHA256 a certificatului dispozitivului distant e:</string>
   <string name="pair_requested">Asociere cerută</string>
   <string name="pairing_request_from">Cerere de asociere de la %1s</string>
   <plurals name="incoming_file_title">
