@@ -360,6 +360,8 @@ internal object AlbumArtCache {
                 return@withContext true
             } catch (e: IOException) {
                 return@withContext false
+            } catch (e: AssertionError) {
+                return@withContext false
             } finally {
                 payload?.close()
             }
