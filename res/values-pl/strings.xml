@@ -3,6 +3,7 @@
   <string name="kde_connect">KDE Connect</string>
   <string name="foreground_notification_no_devices">Niepodłączony do żadnego urządzenia</string>
   <string name="foreground_notification_devices">Podłączony do: %s</string>
+  <string name="foreground_notification_send_clipboard">Wyślij ze schowka</string>
   <string name="pref_plugin_telephony">Powiadomienia telefonu</string>
   <string name="pref_plugin_telephony_desc">Wysyła powiadomienia o rozmowach przychodzących</string>
   <string name="pref_plugin_battery">Stan baterii</string>
@@ -11,6 +12,7 @@
   <string name="pref_plugin_sftp_desc">Daje dostęp do plików innemu urządzeniu</string>
   <string name="pref_plugin_clipboard">Synchronizacja schowka</string>
   <string name="pref_plugin_clipboard_desc">Udostępnia zawartość schowka</string>
+  <string name="pref_plugin_clipboard_sent">Wysłano ze schowka</string>
   <string name="pref_plugin_mousepad">Sterowanie z urządzenia przenośnego</string>
   <string name="pref_plugin_mousepad_desc">Telefon lub tablet służy jako gładzik i klawiatura</string>
   <string name="pref_plugin_presenter">Sterowanie prezentacją</string>
@@ -33,6 +35,7 @@
   <string name="pref_plugin_sharereceiver_desc">Udostępnia pliki i adresy URL pomiędzy urządzeniami</string>
   <string name="device_list_empty">Brak urządzeń</string>
   <string name="ok">OK</string>
+  <string name="sad_ok">OK :(</string>
   <string name="cancel">Anuluj</string>
   <string name="open_settings">Otwórz ustawienia</string>
   <string name="no_permissions">Aby uzyskać dostęp do powiadomień, należy przydzielić uprawnienia</string>
@@ -87,6 +90,7 @@
   <string name="encryption_info_title">Dane o szyfrowaniu</string>
   <string name="encryption_info_msg_no_ssl">Drugie urządzenie nie używa ostatniej wersji KDE Connect, użyto przestarzałego szyfrowania.</string>
   <string name="my_device_fingerprint">Odcisk palca SHA1 certyfikatu twojego urządzenia to:</string>
+  <string name="remote_device_fingerprint">Odcisk palca SHA256 certyfikatu twojego zdalnego urządzenia to:</string>
   <string name="pair_requested">Zażądano parowania</string>
   <string name="pairing_request_from">Żądanie parowania z %1s</string>
   <plurals name="incoming_file_title">
@@ -137,6 +141,7 @@
     <item quantity="many">Nie udało się wysłać %2$d z %3$d plików do %1$s</item>
     <item quantity="other"/>
   </plurals>
+  <string name="tap_to_open">Stuknij, aby otworzyć</string>
   <string name="received_file_text">Stuknij, aby otworzyć \'%1s\'</string>
   <string name="cannot_create_file">Nie można utworzyć pliku %s</string>
   <string name="tap_to_answer">Stuknij, aby odpowiedzieć</string>
@@ -220,19 +225,24 @@
   <string name="refresh">Odśwież</string>
   <string name="unreachable_description">To sparowane urządzenie jest nieosiągalne. Upewnij się, że jest podłączone do tej samej sieci.</string>
   <string name="no_wifi">Brak połączenia z siecią Wi-Fi, więc może nie być widać urządzeń. Naciśnij tutaj, aby włączyć Wi-Fi.</string>
+  <string name="on_non_trusted_message">Niezaufana sieć: wyłączono samowykrywanie.</string>
   <string name="no_file_browser">Nie wgrano żadnych przeglądarek plików.</string>
   <string name="pref_plugin_telepathy">Wysyłanie SMSów</string>
   <string name="pref_plugin_telepathy_desc">Wysyła wiadomości tekstowe z komputera</string>
+  <string name="pref_plugin_telepathy_mms">Wyślij MMSa</string>
+  <string name="pref_plugin_telepathy_mms_desc">Aby móc wysyłać MMSa z KDE Connect, musisz ustawić go jako domyślny program do SMSów</string>
   <string name="findmyphone_title">Poszukiwania telefonu</string>
   <string name="findmyphone_title_tablet">Poszukiwania tabletu</string>
   <string name="findmyphone_title_tv">Poszukiwania telewizora</string>
   <string name="findmyphone_description">Dzwoni na dane urządzenie, aby można je odnaleźć.</string>
+  <string name="findmyphone_found">Znaleziony</string>
   <string name="open">Otwórz</string>
   <string name="close">Zamknij</string>
   <string name="plugins_need_permission">Niektóre wtyczki wymagają uprawnień do swojego działania (stuknij, aby dowiedzieć się więcej)</string>
   <string name="permission_explanation">Ta wtyczka wymaga uprawnień do działania</string>
   <string name="optional_permission_explanation">Musisz przydzielić dodatkowe uprawnienia, aby włączyć wszystkie funkcje</string>
   <string name="plugins_need_optional_permission">Niektóre wtyczki mają ograniczone możliwości ze względu na ograniczone uprawnienia (stuknij, aby dowiedzieć się więcej)</string>
+  <string name="share_optional_permission_explanation">Aby odbierać udostępnianie pliki, musisz wskazać katalog docelowy na nie</string>
   <string name="telepathy_permission_explanation">Aby odbierać i wysyłać esemesy z pulpitu, należy nadać uprawnienia do esemesów</string>
   <string name="telephony_permission_explanation">Aby widzieć rozmowy telefoniczne na pulpicie, należy nadać uprawnienia do dziennika rozmów i stanu telefonu</string>
   <string name="telephony_optional_permission_explanation">Aby widzieć nazwę kontaktu zamiast numeru telefonu, należy zezwolić na dostęp do kontaktów telefonu</string>
@@ -256,6 +266,8 @@
   <string name="notification_channel_persistent">Nieznikający wskaźnik</string>
   <string name="notification_channel_media_control">Sterowanie multimediami</string>
   <string name="notification_channel_filetransfer">Przesyłanie plików</string>
+  <string name="notification_channel_high_priority">Wysoki priorytet</string>
+  <string name="notification_channel_sms_mms">Nowa wiadomość</string>
   <string name="mpris_stop">Zatrzymaj bieżący odtwarzacz</string>
   <string name="copy_url_to_clipboard">Skopiuj adres URL do schowka</string>
   <string name="clipboard_toast">Skopiowano do schowka</string>
@@ -289,21 +301,50 @@
   <string name="no_app_for_opening">Nie znaleziono aplikacji do otwarcia tego pliku</string>
   <string name="remote_keyboard_service">Zdalna klawiatura KDE Connect</string>
   <string name="presenter_pointer">Wskaźnik</string>
+  <string name="trusted_networks">Sieci zaufane</string>
+  <string name="trusted_networks_desc">Ogranicz samowykrywanie do znanych sieci</string>
+  <string name="add_trusted_network">Dodaj %1s</string>
+  <string name="empty_trusted_networks_list_text">Nie dodałeś jeszcze żadnej zaufanej sieci</string>
+  <string name="allow_all_networks_text">Zezwól wszystkim</string>
+  <string name="location_permission_needed_title">Wymagana zgoda</string>
+  <string name="location_permission_needed_desc">Android wymaga pozwolenia na dostęp do położenia, aby móc rozpoznać twoją sieć WiFi</string>
+  <string name="clipboard_android_x_incompat">Android 10 odebrał dostęp do schowka wszystkim programom. Ta wtyczka pozostanie wyłączona.</string>
+  <string name="mpris_open_url">Kontynuuj odtwarzanie tutaj</string>
+  <string name="cant_open_url">Nie można otworzyć adresu URL, aby kontynuować odtwarzanie</string>
+  <string name="bigscreen_home">Dom</string>
+  <string name="bigscreen_up">Góra</string>
+  <string name="bigscreen_left">Lewo</string>
+  <string name="bigscreen_select">Wybierz</string>
+  <string name="bigscreen_right">Prawo</string>
+  <string name="bigscreen_down">Dół</string>
+  <string name="bigscreen_mic">Mikrofon</string>
+  <string name="pref_plugin_bigscreen">Pilot Dużego Ekranu</string>
+  <string name="pref_plugin_bigscreen_desc">Użyj swojego urządzenia jako pilota dla Dużego Ekranu Plazmy</string>
+  <string name="bigscreen_optional_permission_explanation">Aby zezwolić na używanie mikrofonu twojego telefonu, musisz udzielić do niego dostępu na telefonie</string>
+  <string name="bigscreen_speech_extra_prompt">Mowa</string>
+  <string name="message_reply_label">ODPOWIEDZ</string>
+  <string name="mark_as_read_label">OZNACZ JAKO PRZECZYTANĄ</string>
+  <string name="user_display_name">Ty</string>
+  <string name="set_default_sms_app_title">Wyślij SMSa</string>
+  <string name="set_group_message_as_mms_title">Wyślij MMSa do grupy</string>
+  <string name="set_long_text_as_mms_title">Wyślij długi tekst jako MMS</string>
+  <string name="convert_to_mms_after_title">Przekształć na MMS</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>Po jednej wiadomości</item>
+    <item>Po dwóch wiadomościach</item>
+    <item>Po trzech wiadomościach</item>
+    <item>Po czterech wiadomościach</item>
+    <item>Po pięciu wiadomościach</item>
   </string-array>
+  <string name="theme_dialog_title">Wybierz wygląd</string>
   <string-array name="theme_list">
-    <item>Set by Battery Saver</item>
-    <item/>
-    <item>Dark</item>
+    <item>Wyślij przy oszczędzaniu energii</item>
+    <item>Jasny</item>
+    <item>Ciemny</item>
   </string-array>
   <string-array name="theme_list_v28">
-    <item/>
-    <item/>
-    <item>Dark</item>
+    <item>Domyślne systemowe</item>
+    <item>Jasny</item>
+    <item>Ciemny</item>
   </string-array>
 </resources>
