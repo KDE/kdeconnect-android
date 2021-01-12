@@ -1,9 +1,7 @@
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.api.ApkVariantOutput
 import com.android.build.gradle.api.ApplicationVariant
-
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
+import com.github.jk1.license.render.TextReportRenderer
 
 buildscript {
     ext.kotlin_version = '1.4.21'
@@ -18,6 +16,14 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
+
+plugins {
+    id 'com.github.jk1.dependency-license-report' version '1.16'
+}
+def licenseResDir = new File("$projectDir/build/dependency-license-res")
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 29
@@ -49,7 +55,7 @@ android {
             manifest.srcFile 'AndroidManifest.xml'
             java.srcDirs = ['src']
             resources.srcDirs = ['resources']
-            res.srcDirs = ['res']
+            res.srcDirs = ['res', licenseResDir]
             assets.srcDirs = ['assets']
         }
         test {
@@ -203,3 +209,16 @@ repositories {
     google()
     mavenCentral()
 }
+
+licenseReport {
+    configurations = ALL
+    renderers = [new TextReportRenderer()]
+}
+generateLicenseReport.doLast {
+    def target = new File(licenseResDir, "raw/license")
+    target.parentFile.mkdirs()
+    target.text =
+            files("COPYING", "$projectDir/build/reports/dependency-license/THIRD-PARTY-NOTICES.txt")
+                    .collect { it.getText() }.join('\n')
+}
+preBuild.dependsOn(generateLicenseReport)
