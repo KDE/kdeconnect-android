@@ -331,4 +331,8 @@
     <item>Ljus</item>
     <item>Mörk</item>
   </string-array>
+  <string name="report_bug">Rapportera fel</string>
+  <string name="donate">Ge ett bidrag</string>
+  <string name="source_code">Källkod</string>
+  <string name="licenses">Licenser</string>
 </resources>

@@ -331,4 +331,8 @@
     <item>Licht</item>
     <item>Donker</item>
   </string-array>
+  <string name="report_bug">Bug rapporteren</string>
+  <string name="donate">Doneren</string>
+  <string name="source_code">Broncode</string>
+  <string name="licenses">Licenties</string>
 </resources>

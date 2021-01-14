@@ -331,4 +331,8 @@
     <item>Lyst</item>
     <item>Mørk</item>
   </string-array>
+  <string name="report_bug">Meld frå om feil</string>
+  <string name="donate">Gje pengegåve</string>
+  <string name="source_code">Kjeldekode</string>
+  <string name="licenses">Lisensar</string>
 </resources>

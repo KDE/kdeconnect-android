@@ -347,4 +347,8 @@
     <item>Світла</item>
     <item>Темна</item>
   </string-array>
+  <string name="report_bug">Повідомити про ваду</string>
+  <string name="donate">Підтримати фінансово</string>
+  <string name="source_code">Початковий код</string>
+  <string name="licenses">Ліцензування</string>
 </resources>

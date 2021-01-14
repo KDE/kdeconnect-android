@@ -331,4 +331,8 @@
     <item>Clar</item>
     <item>Fosc</item>
   </string-array>
+  <string name="report_bug">Informa d\'un error</string>
+  <string name="donate">Donació de diners</string>
+  <string name="source_code">Codi font</string>
+  <string name="licenses">Llicències</string>
 </resources>
