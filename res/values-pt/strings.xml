@@ -331,4 +331,8 @@
     <item>Claro</item>
     <item>Escuro</item>
   </string-array>
+  <string name="report_bug">Comunicar um Erro</string>
+  <string name="donate">Doar</string>
+  <string name="source_code">Código-Fonte</string>
+  <string name="licenses">Licenças</string>
 </resources>
