@@ -331,4 +331,8 @@
     <item>İşıqlı</item>
     <item>Qaranlıq</item>
   </string-array>
+  <string name="report_bug">Xəta hesabatı</string>
+  <string name="donate">Maddi Dəstək</string>
+  <string name="source_code">Qaynaq Kodu</string>
+  <string name="licenses">Lisenziyalar</string>
 </resources>

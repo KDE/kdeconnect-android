@@ -168,7 +168,7 @@
   <string name="sftp_action_mode_menu_delete">Desaniciar</string>
   <string name="sftp_no_storage_locations_configured">Nun se configuraron allugamientos d\'almacenamientu</string>
   <string name="sftp_saf_permission_explanation">P\'acceder remotamente a los ficheros tienes de configurar allugamientos d\'almacenamientu</string>
-  <string name="no_players_connected">Nun s\'alcontraron reproductores</string>
+  <string name="no_players_connected">Nun s\'atoparon reproductores</string>
   <string name="send_files">Unviar ficheros</string>
   <string name="pairing_title">Preseos con KDE Connect</string>
   <string name="pairing_description">Equí deberíen apaecer los demás preseos que tean executando KDE Connect na mesma rede.</string>
@@ -181,8 +181,8 @@
   <string name="no_file_browser">Nun hai nengún restolador de ficheros instaláu.</string>
   <string name="pref_plugin_telepathy">Unviu de SMS</string>
   <string name="pref_plugin_telepathy_desc">Unvia SMS dende l\'ordenador</string>
-  <string name="findmyphone_description">Fai qu\'esti preséu suene pa que pueas alcontralu</string>
-  <string name="findmyphone_found">Alcontrélu</string>
+  <string name="findmyphone_description">Fai qu\'esti preséu suene pa que pueas atopalu</string>
+  <string name="findmyphone_found">Atopélu</string>
   <string name="plugins_need_permission">Dalgunos plugins precisen permisos pa funcionar (tócalos pa más información):</string>
   <string name="permission_explanation">Esti plugin precisa permisos pa funcionar</string>
   <string name="optional_permission_explanation">Precises conceder permisos adicionales p\'activar toles funciones</string>
@@ -230,7 +230,7 @@
   <string name="notification_channel_receivenotification">Avisos d\'otros preseos</string>
   <string name="take_picture">Llanzamientu de la cámara</string>
   <string name="plugin_photo_desc">Llanza l\'aplicación de la cámara p\'acenciellar la fechura y tresferencia de semeyes</string>
-  <string name="no_app_for_opening">Nun alcontró nenguna aplicación afayadiza p\'abrir esti ficheru.</string>
+  <string name="no_app_for_opening">Nun atopó nenguna aplicación afayadiza p\'abrir esti ficheru.</string>
   <string name="remote_keyboard_service">Tecláu remotu de KDE Connect</string>
   <string name="presenter_pointer">Punteru</string>
   <string name="trusted_networks">Redes d\'enfotu</string>
