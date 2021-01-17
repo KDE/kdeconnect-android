@@ -130,27 +130,27 @@
   <string name="pairing_reject">拒绝</string>
   <string name="settings">设置</string>
   <string name="mpris_play">播放</string>
-  <string name="mpris_pause">Pause</string>
-  <string name="mpris_previous">前一个</string>
-  <string name="mpris_rew">后退</string>
+  <string name="mpris_pause">暂停</string>
+  <string name="mpris_previous">上一曲</string>
+  <string name="mpris_rew">倒退</string>
   <string name="mpris_ff">快进</string>
-  <string name="mpris_next">下一个</string>
+  <string name="mpris_next">下一曲</string>
   <string name="mpris_volume">音量</string>
-  <string name="mpris_time_settings_title">快进/后退按钮</string>
-  <string name="mpris_time_settings_summary">当按下时调整快进或后退的时间</string>
+  <string name="mpris_time_settings_title">快进/倒退按钮</string>
+  <string name="mpris_time_settings_summary">当按下时调整快进或倒退的时间</string>
   <string-array name="mpris_time_entries">
-    <item>10秒</item>
-    <item>20秒</item>
-    <item>30秒</item>
-    <item>1分钟</item>
-    <item>2分钟</item>
+    <item>10 秒</item>
+    <item>20 秒</item>
+    <item>30 秒</item>
+    <item>1 分钟</item>
+    <item>2 分钟</item>
   </string-array>
-  <string name="mpris_notification_settings_title">显示媒体控制通知部件</string>
+  <string name="mpris_notification_settings_title">显示媒体控制通知</string>
   <string name="mpris_notification_settings_summary">不打开 KDE Connect 也能在常驻通知中控制媒体播放器</string>
   <string name="share_to">分享到...</string>
   <string name="protocol_version_newer">该设备使用较新版本的协议</string>
   <string name="plugin_settings_with_name">%s设置</string>
-  <string name="invalid_device_name">设备名无效</string>
+  <string name="invalid_device_name">无效的设备名</string>
   <string name="shareplugin_text_saved">已收到文本，存至剪贴板</string>
   <string name="custom_devices_settings">自定义设备列表</string>
   <string name="custom_device_list">通过IP增加设备</string>
@@ -323,4 +323,8 @@
     <item>亮色</item>
     <item>深色</item>
   </string-array>
+  <string name="report_bug">报告缺陷</string>
+  <string name="donate">捐款</string>
+  <string name="source_code">源代码</string>
+  <string name="licenses">许可证</string>
 </resources>

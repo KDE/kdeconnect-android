@@ -90,6 +90,7 @@
   <string name="encryption_info_title">Informácie o šifrovaní</string>
   <string name="encryption_info_msg_no_ssl">Druhé zariadenie nepoužíva najnovšiu verziu aplikácie KDE Connect. Použije sa zastaralý spôsob šifrovania.</string>
   <string name="my_device_fingerprint">Odtlačok SHA1 certifikátu vášho zariadenia je:</string>
+  <string name="remote_device_fingerprint">Odtlačok SHA256 certifikátu vzdialeného zariadenia je:</string>
   <string name="pair_requested">Spárovanie vyžiadané</string>
   <string name="pairing_request_from">Požiadavka na spárovanie zo zariadenia %1s</string>
   <plurals name="incoming_file_title">
@@ -346,4 +347,8 @@
     <item>Svetlá</item>
     <item>Tmavá</item>
   </string-array>
+  <string name="report_bug">Nahlásiť chybu</string>
+  <string name="donate">Prispieť</string>
+  <string name="source_code">Zdrojový kód</string>
+  <string name="licenses">Licencie</string>
 </resources>
