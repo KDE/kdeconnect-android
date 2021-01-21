@@ -331,4 +331,8 @@
     <item>Chiaro</item>
     <item>Scuro</item>
   </string-array>
+  <string name="report_bug">Segnala un errore</string>
+  <string name="donate">Fai una donazione</string>
+  <string name="source_code">Codice sorgente</string>
+  <string name="licenses">Licenze</string>
 </resources>

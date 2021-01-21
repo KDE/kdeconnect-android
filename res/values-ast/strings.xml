@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
-  <string name="foreground_notification_no_devices">Nun se coneutó con nengún preséu</string>
+  <string name="foreground_notification_no_devices">Nun se conectó con nengún preséu</string>
   <string name="foreground_notification_devices">Coneutóse con %s</string>
   <string name="pref_plugin_telephony">Avisador telefónicu</string>
   <string name="pref_plugin_telephony_desc">Unvia avisos de les llamaes entrantes</string>
@@ -67,7 +67,7 @@
     <item>Muncha</item>
     <item>Permuncha</item>
   </string-array>
-  <string name="category_connected_devices">Preseos coneutaos</string>
+  <string name="category_connected_devices">Preseos conectaos</string>
   <string name="category_not_paired_devices">Preseos disponibles</string>
   <string name="category_remembered_devices">Preseos recordaos</string>
   <string name="device_menu_plugins">Axustes de plugins</string>
@@ -175,8 +175,8 @@
   <string name="device_rename_title">Renomáu del preséu</string>
   <string name="device_rename_confirm">Renomar</string>
   <string name="refresh">Refrescar</string>
-  <string name="unreachable_description">Esti preséu empareyáu nun ye algamable. Asegúrate de que ta coneutáu a la mesma rede que tu.</string>
-  <string name="no_wifi">Nun tas coneutáu a una rede Wi-Fi polo que nun vas ser a ver nengún preséu. Calca equí p\'activar el Wi-Fi.</string>
+  <string name="unreachable_description">Esti preséu empareyáu nun ye algamable. Asegúrate de que ta conectáu a la mesma rede que tu.</string>
+  <string name="no_wifi">Nun tas conectáu a una rede Wi-Fi polo que nun vas ser a ver nengún preséu. Calca equí p\'activar el Wi-Fi.</string>
   <string name="on_non_trusted_message">Nun tas nuna rede d\'enfotu. Desactivóse la descubrición automática.</string>
   <string name="no_file_browser">Nun hai nengún restolador de ficheros instaláu.</string>
   <string name="pref_plugin_telepathy">Unviu de SMS</string>
