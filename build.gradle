@@ -55,7 +55,7 @@ android {
             manifest.srcFile 'AndroidManifest.xml'
             java.srcDirs = ['src']
             resources.srcDirs = ['resources']
-            res.srcDirs = ['res', licenseResDir]
+            res.srcDirs = [licenseResDir, 'res']
             assets.srcDirs = ['assets']
         }
         test {
