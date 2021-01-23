@@ -347,4 +347,8 @@
     <item>Svetlo</item>
     <item>Temno</item>
   </string-array>
+  <string name="report_bug">Poročaj o napaki</string>
+  <string name="donate">Doniraj</string>
+  <string name="source_code">Izvorna koda</string>
+  <string name="licenses">Licence</string>
 </resources>
