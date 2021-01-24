@@ -44,7 +44,7 @@
   <string name="send_ping">Envoyer un « Ping »</string>
   <string name="open_mpris_controls">Contrôles multimédia</string>
   <string name="remotekeyboard_editing_only_title">Gérer les appuis de touches à distance uniquement lors de l\'édition</string>
-  <string name="remotekeyboard_not_connected">Aucune connexion active d\'un clavier à distance disponible, établissez-en une dans KDE Connect</string>
+  <string name="remotekeyboard_not_connected">Aucune connexion active d\'un clavier à distance disponible, établissez-en une dans « KDEConnect ».</string>
   <string name="remotekeyboard_connected">La connexion au clavier sans fil est active</string>
   <string name="remotekeyboard_multiple_connections">Plusieurs connexions à des claviers sans fil sont disponibles, sélectionnez le périphérique à configurer</string>
   <string name="open_mousepad">Contrôle distant</string>
@@ -306,7 +306,7 @@
   <string name="pref_plugin_bigscreen_desc">Utiliser votre périphérique comme télécommande pour Plasma Bigscreen</string>
   <string name="bigscreen_optional_permission_explanation">Pour partager l\'entrée microphone de votre téléphone, vous devez donner accès à l\'entrée audio du téléphone.</string>
   <string name="bigscreen_speech_extra_prompt">Discours</string>
-  <string name="message_reply_label">REPONDRE</string>
+  <string name="message_reply_label">RÉPONDRE</string>
   <string name="mark_as_read_label">MARQUER COMME LU</string>
   <string name="user_display_name">Vous</string>
   <string name="set_default_sms_app_title">Envoyer un « MMS »</string>
