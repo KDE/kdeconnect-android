@@ -153,7 +153,7 @@
   <string name="invalid_device_name">无效的设备名</string>
   <string name="shareplugin_text_saved">已收到文本，存至剪贴板</string>
   <string name="custom_devices_settings">自定义设备列表</string>
-  <string name="custom_device_list">通过IP增加设备</string>
+  <string name="custom_device_list">通过 IP 添加设备</string>
   <string name="custom_device_deleted">自定义设备已删除</string>
   <string name="custom_device_list_help">如果您的设备未被自动检测到，您点击浮动动作按钮可以添加它的 IP 地址或主机名。</string>
   <string name="custom_device_fab_hint">添加设备</string>
@@ -164,12 +164,12 @@
   <string name="share_destination_customize_summary_disabled">接收的文件会出现在“Downloads”中</string>
   <string name="share_destination_customize_summary_enabled">文件将会被存储在以下目录中</string>
   <string name="share_destination_folder_preference">目标目录</string>
-  <string name="share">共享</string>
+  <string name="share">分享</string>
   <string name="share_received_file">分享 \"%s\"</string>
   <string name="title_activity_notification_filter">通知过滤器</string>
   <string name="filter_apps_info">所选软件的通知将会被同步。</string>
-  <string name="sftp_sdcard_num">SD卡%d</string>
-  <string name="sftp_sdcard">SD卡</string>
+  <string name="sftp_sdcard_num">SD 卡 %d</string>
+  <string name="sftp_sdcard">SD 卡</string>
   <string name="sftp_readonly">(只读)</string>
   <string name="sftp_camera">相机照片</string>
   <string name="add_device_dialog_title">添加设备</string>
