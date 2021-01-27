@@ -146,9 +146,10 @@ class MprisReceiverPlayer {
     }
 
     long getPosition() {
-        if (controller.getPlaybackState() == null)
-            return 0;
-        return controller.getPlaybackState().getPosition();
+        PlaybackState state = controller.getPlaybackState();
+        if (state == null) return 0;
+
+        return state.getPosition();
     }
 
     void setPosition(long position) {
