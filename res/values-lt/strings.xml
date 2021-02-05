@@ -90,6 +90,7 @@
   <string name="encryption_info_title">Šifravimo informacija</string>
   <string name="encryption_info_msg_no_ssl">Kitas įrenginys nenaudoja paskiausios KDE Connect versijos, naudojamas pasenęs šifravimo metodas.</string>
   <string name="my_device_fingerprint">Jūsų įrenginio liudijimo SHA1 kontrolinis kodas yra:</string>
+  <string name="remote_device_fingerprint">Nuotolinio įrenginio liudijimo SHA256 kontrolinis kodas yra:</string>
   <string name="pair_requested">Užklaustas suporavimas</string>
   <string name="pairing_request_from">Suporavimo užklausa iš %1s</string>
   <plurals name="incoming_file_title">
@@ -228,6 +229,8 @@
   <string name="no_file_browser">Nėra įdiegta jokių failų tvarkytuvių.</string>
   <string name="pref_plugin_telepathy">Siųsti SMS žinutę</string>
   <string name="pref_plugin_telepathy_desc">Siųsti tekstines žinutes iš savo darbalaukio</string>
+  <string name="pref_plugin_telepathy_mms">Siųsti MMS žinutę</string>
+  <string name="pref_plugin_telepathy_mms_desc">Norėdami siųsti MMS iš KDE Connect, turite nustatyti ją kaip numatytąją SMS programėlę.</string>
   <string name="findmyphone_title">Rasti telefoną</string>
   <string name="findmyphone_title_tablet">Rasti planšetę</string>
   <string name="findmyphone_title_tv">Rasti televizorių</string>
@@ -239,6 +242,7 @@
   <string name="permission_explanation">Šis papildinys tam, kad veiktų, reikalauja leidimų</string>
   <string name="optional_permission_explanation">Norėdami įjungti visas funkcijas, turite suteikti papildomus leidimus</string>
   <string name="plugins_need_optional_permission">Kai kurių papildinių ypatybės, dėl leidimų trūkumo, buvo išjungtos (bakstelėkite išsamesnei informacijai):</string>
+  <string name="share_optional_permission_explanation">Norėdami gauti bendrinamus failus, turite pasirinkti paskirties katalogą</string>
   <string name="telepathy_permission_explanation">Norėdami skaityti ir rašyti SMS žinutes iš savo darbalaukio, turite suteikti prieigą prie SMS žinučių</string>
   <string name="telephony_permission_explanation">Norėdami matyti telefono skambučius darbalaukyje, turite suteikti prieigą prie telefono skambučių žurnalo ir telefono būsenos</string>
   <string name="telephony_optional_permission_explanation">Norėdami vietoj adresato numerio matyti adresato vardą, turite suteikti priegą prie telefono adresatų</string>
@@ -263,6 +267,7 @@
   <string name="notification_channel_media_control">Įvairialypės terpės valdymas</string>
   <string name="notification_channel_filetransfer">Failų persiuntimas</string>
   <string name="notification_channel_high_priority">Didelė pirmenybė</string>
+  <string name="notification_channel_sms_mms">Nauja žinutė</string>
   <string name="mpris_stop">Stabdyti dabartinę leistuvę</string>
   <string name="copy_url_to_clipboard">Kopijuoti URL į iškarpinę</string>
   <string name="clipboard_toast">Nukopijuota į iškarpinę</string>
@@ -317,12 +322,19 @@
   <string name="pref_plugin_bigscreen_desc">Naudoti savo įrenginį kaip Plasma Bigscreen nuotolinį pultą</string>
   <string name="bigscreen_optional_permission_explanation">Norėdami bendrinti mikrofono įvesti iš savo telefono, turite suteikti priegą prie telefono garso įvesties</string>
   <string name="bigscreen_speech_extra_prompt">Šneka</string>
+  <string name="message_reply_label">ATSAKYTI</string>
+  <string name="mark_as_read_label">ŽYMĖTI KAIP SKAITYTĄ</string>
+  <string name="user_display_name">Jūs</string>
+  <string name="set_default_sms_app_title">Siųsti MMS žinutę</string>
+  <string name="set_group_message_as_mms_title">Siųsti grupinę MMS žinutę</string>
+  <string name="set_long_text_as_mms_title">Siųsti ilgą tekstą kaip MMS žinutę</string>
+  <string name="convert_to_mms_after_title">Kovertuoti į MMS žinutę</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>Po vienos žinutės</item>
+    <item>Po dviejų žinučių</item>
+    <item>Po trijų žinučių</item>
+    <item>Po keturių žinučių</item>
+    <item>Po penkių žinučių</item>
   </string-array>
   <string name="theme_dialog_title">Pasirinkite apipavidalinimą</string>
   <string-array name="theme_list">
@@ -330,4 +342,13 @@
     <item>Šviesus</item>
     <item>Tamsus</item>
   </string-array>
+  <string-array name="theme_list_v28">
+    <item>Sistemos numatytasis</item>
+    <item>Šviesus</item>
+    <item>Tamsus</item>
+  </string-array>
+  <string name="report_bug">Pranešti apie programos klaidą</string>
+  <string name="donate">Paaukoti</string>
+  <string name="source_code">Pradinis kodas</string>
+  <string name="licenses">Licencijos</string>
 </resources>
