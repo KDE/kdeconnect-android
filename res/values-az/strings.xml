@@ -228,7 +228,7 @@
   <string name="plugins_need_optional_permission">Bəzi qoşmalarda icazə çatışmamazlığı səbəbindən bir sıra imkanlar söndürülmüşdür (daha çox məlumat üçün toxunun)</string>
   <string name="share_optional_permission_explanation">Paylaşılan faylları qəbul etmək üçün saxlama qovluğu seçməlisiniz</string>
   <string name="telepathy_permission_explanation">İş Masanızdan telefonunuzdakı SMS\'ləri oxumaq və SMS göndərmək üçün SMS\'ə girişə icazə verməlisiniz</string>
-  <string name="telephony_permission_explanation">İş Masanızda telefon zənglərini görmək üçün Zəng Tarixşəsinə və Zəng yığımı vəziyyətinə icazə verməlisiniz</string>
+  <string name="telephony_permission_explanation">İş Masanızda telefon zənglərini görmək üçün Zəng Tarixçəsinə və Zəng yığımı vəziyyətinə icazə verməlisiniz</string>
   <string name="telephony_optional_permission_explanation">Telefon nömrəsi əvəzinə kontaktın adını görmək üçün Kontakt Kitabçasına girişə icazə verməlisiniz</string>
   <string name="contacts_permission_explanation">İş Masası vasitəsi ilə kontaktlar kitabçasını paylaşmaq üçün kontaktlara girişə icazə verməlisiniz</string>
   <string name="select_ringtone">Zəng səsini seçmək</string>
