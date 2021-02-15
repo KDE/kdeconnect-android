@@ -331,4 +331,8 @@
     <item>Light</item>
     <item>Dark</item>
   </string-array>
+  <string name="report_bug">Report Bug</string>
+  <string name="donate">Donate</string>
+  <string name="source_code">Source Code</string>
+  <string name="licenses">Licences</string>
 </resources>

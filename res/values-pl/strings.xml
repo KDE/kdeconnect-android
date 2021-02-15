@@ -347,4 +347,8 @@
     <item>Jasny</item>
     <item>Ciemny</item>
   </string-array>
+  <string name="report_bug">Zgłoś błąd</string>
+  <string name="donate">Darowizna</string>
+  <string name="source_code">Kod źródłowy</string>
+  <string name="licenses">Licencje</string>
 </resources>

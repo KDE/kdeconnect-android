@@ -151,7 +151,7 @@
   <string name="no_players_connected">Tidak ada pemutar yang ditemukan</string>
   <string name="send_files">Kirim file</string>
   <string name="pairing_title">Perangkat KDE Connect</string>
-  <string name="pairing_description">Perangkat lain menjalankan KDE Connect dalam jaringanmu yang sama yang seharusnya muncul di sini.</string>
+  <string name="pairing_description">Perangkat lain yang menjalankan KDE Connect dalam jaringanmu yang sama seharusnya muncul di sini.</string>
   <string name="device_rename_title">Ubah nama perangkat</string>
   <string name="device_rename_confirm">Ubah Nama</string>
   <string name="refresh">Segarkan</string>
@@ -189,6 +189,7 @@
   <string name="settings_rename">Nama perangkat</string>
   <string name="settings_dark_mode">Tema gelap</string>
   <string name="settings_more_settings_title">Pengaturan selebihnya</string>
+  <string name="notification_channel_receivenotification">Notifikasi dari perangkat lainnya</string>
   <string-array name="convert_to_mms_after_entries">
     <item>After one message</item>
     <item>After two messages</item>
