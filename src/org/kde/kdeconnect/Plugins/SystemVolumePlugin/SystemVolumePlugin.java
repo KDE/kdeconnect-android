@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 */
 
-package org.kde.kdeconnect.Plugins.SystemvolumePlugin;
+package org.kde.kdeconnect.Plugins.SystemVolumePlugin;
 
 import android.util.Log;
 
@@ -79,6 +79,9 @@ public class SystemVolumePlugin extends Plugin {
                 if (np.has("muted")) {
                     sinks.get(name).setMute(np.getBoolean("muted"));
                 }
+                if (np.has("enabled")) {
+                    sinks.get(name).setDefault(np.getBoolean("enabled"));
+                }
             }
         }
         return true;
@@ -94,6 +97,13 @@ public class SystemVolumePlugin extends Plugin {
     void sendMute(String name, boolean mute) {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_SYSTEMVOLUME_REQUEST);
         np.set("muted", mute);
+        np.set("name", name);
+        device.sendPacket(np);
+    }
+
+    void sendEnable(String name) {
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_SYSTEMVOLUME_REQUEST);
+        np.set("enabled", true);
         np.set("name", name);
         device.sendPacket(np);
     }

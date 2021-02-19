@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 */
 
-package org.kde.kdeconnect.Plugins.SystemvolumePlugin;
+package org.kde.kdeconnect.Plugins.SystemVolumePlugin;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,6 +23,7 @@ class Sink {
     private String name;
     private boolean mute;
     private int maxVolume;
+    private boolean enabled;
 
     private final List<UpdateListener> listeners;
 
@@ -33,6 +34,7 @@ class Sink {
         mute = obj.getBoolean("muted");
         description = obj.getString("description");
         maxVolume = obj.getInt("maxVolume");
+        enabled = obj.optBoolean("enabled", false);
     }
 
     int getVolume() {
@@ -61,6 +63,17 @@ class Sink {
 
     void setMute(boolean mute) {
         this.mute = mute;
+        for (UpdateListener l : listeners) {
+            l.updateSink(this);
+        }
+    }
+
+    boolean isDefault() {
+        return enabled;
+    }
+
+    void setDefault(boolean enable) {
+        this.enabled = enable;
         for (UpdateListener l : listeners) {
             l.updateSink(this);
         }

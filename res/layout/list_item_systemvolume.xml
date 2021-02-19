@@ -1,44 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sink_card"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/systemvolume_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="0dp"
+    app:contentPadding="8dp"
+    app:strokeColor="@color/card_stroke_color"
+    app:strokeWidth="1dp">
 
     <LinearLayout
-        android:id="@+id/systemvolume_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="8dip"
-        android:orientation="horizontal">
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/systemvolume_mute"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/mute"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_volume_black"
-            app:tint="?attr/colorHighContrast" />
+        <RadioButton
+            android:id="@+id/systemvolume_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingLeft="14dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            tools:text="Device name" />
 
-        <SeekBar
-            android:id="@+id/systemvolume_seek"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/systemvolume_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
-            android:max="100" />
+            android:layout_marginTop="8dip"
+            android:orientation="horizontal">
 
+            <ImageButton
+                android:id="@+id/systemvolume_mute"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/mute"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_volume_black"
+                app:tint="?attr/colorHighContrast" />
+
+            <SeekBar
+                android:id="@+id/systemvolume_seek"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:max="100" />
+
+        </LinearLayout>
     </LinearLayout>
-
-
-</LinearLayout>
+</com.google.android.material.card.MaterialCardView>

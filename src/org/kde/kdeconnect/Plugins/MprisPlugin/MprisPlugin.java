@@ -197,6 +197,7 @@ public class MprisPlugin extends Plugin {
         }
     }
 
+    public final static String DEVICE_ID_KEY = "deviceId";
     private final static String PACKET_TYPE_MPRIS = "kdeconnect.mpris";
     private final static String PACKET_TYPE_MPRIS_REQUEST = "kdeconnect.mpris.request";
 

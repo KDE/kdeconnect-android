@@ -9,6 +9,7 @@
     <color name="text_color_primary">@android:color/white</color>
     <color name="text_color">@android:color/white</color>
     <color name="toolbar_color">#222222</color>
+    <color name="card_stroke_color">#8C8C8C</color>
 
 <!--    This is for dark theme. In dark theme both selected and unselected text in the
         navigation bar should be white. This is different from the light theme as both states have
