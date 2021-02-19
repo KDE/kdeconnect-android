@@ -331,4 +331,8 @@
     <item>Léger</item>
     <item>Sombre</item>
   </string-array>
+  <string name="report_bug">Signaler un bogue</string>
+  <string name="donate">Faire un don</string>
+  <string name="source_code">Code source</string>
+  <string name="licenses">Licences</string>
 </resources>
