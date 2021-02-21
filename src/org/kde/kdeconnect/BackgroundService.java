@@ -316,7 +316,21 @@ public class BackgroundService extends Service {
 
         //Why is this needed: https://developer.android.com/guide/components/services#Foreground
 
+        ArrayList<String> connectedDevices = new ArrayList<>();
+        ArrayList<String> connectedDeviceIds = new ArrayList<>();
+        for (Device device : getDevices().values()) {
+            if (device.isReachable() && device.isPaired()) {
+                connectedDeviceIds.add(device.getDeviceId());
+                connectedDevices.add(device.getName());
+            }
+        }
+
         Intent intent = new Intent(this, MainActivity.class);
+        if (connectedDeviceIds.size() == 1) {
+            // Force open screen of the only connected device
+            intent.putExtra(MainActivity.EXTRA_DEVICE_ID, connectedDeviceIds.get(0));
+        }
+
         PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder notification = new NotificationCompat.Builder(this, NotificationHelper.Channels.PERSISTENT);
         notification
@@ -331,15 +345,6 @@ public class BackgroundService extends Service {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             //Pre-oreo, the notification will have an empty title line without this
             notification.setContentTitle(getString(R.string.kde_connect));
-        }
-
-        ArrayList<String> connectedDevices = new ArrayList<>();
-        ArrayList<String> connectedDeviceIds = new ArrayList<>();
-        for (Device device : getDevices().values()) {
-            if (device.isReachable() && device.isPaired()) {
-                connectedDeviceIds.add(device.getDeviceId());
-                connectedDevices.add(device.getName());
-            }
         }
 
         if (connectedDevices.isEmpty()) {
