@@ -72,6 +72,8 @@
 
         <service
             android:name="org.kde.kdeconnect.BackgroundService"
+            android:foregroundServiceType="connectedDevice"
+            android:icon="@drawable/icon"
             android:enabled="true" />
         <service
             android:name="org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin.RemoteKeyboardService"
