@@ -28,17 +28,18 @@
 
     </style>
 
-    <style name="KdeConnectThemeBase.NoActionBar" parent="KdeConnectThemeBase">
+    <style name="KdeConnectTheme" parent="KdeConnectThemeBase" />
+
+    <style name="KdeConnectThemeBase.NoActionBar" parent="KdeConnectTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="KdeConnectTheme" parent="KdeConnectThemeBase" />
+    <style name="KdeConnectTheme.NoActionBar" parent="KdeConnectThemeBase.NoActionBar" />
 
     <style name="KdeConnectTheme.Toolbar" parent="Widget.AppCompat.Toolbar">
         <item name="android:background">@color/toolbar_color</item>
     </style>
-    <style name="KdeConnectTheme.NoActionBar" parent="KdeConnectThemeBase.NoActionBar" />
 
     <style name="MainNavigationView">
         <item name="android:background">@drawable/state_list_drawer_background</item>
