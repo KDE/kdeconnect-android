@@ -242,7 +242,7 @@
   <string name="presenter_lock_tip">Siz cihazınızı kilidləyə və səs düymələri ilə əvvəlki/sonrakı slayda keçid edə bilərsiniz</string>
   <string name="add_command">Əmr əlavə etmək</string>
   <string name="addcommand_explanation">Əmrlər qeyd edilməyib</string>
-  <string name="addcommand_explanation2">Sİz KDE Connect Sistem Ayarların\'da yeni əmr əlavə edə bilərsiniz</string>
+  <string name="addcommand_explanation2">Sİz KDE Connect sistem ayarlarında yeni əmrlər əlavə edə bilərsiniz</string>
   <string name="add_command_description">İş Masasında yeni əmr əlavə edə bilərsiniz</string>
   <string name="pref_plugin_mprisreceiver">Media Pleyer İdarəsi</string>
   <string name="pref_plugin_mprisreceiver_desc">Telefonunuzun media pleyerlərini digər cihazdan idarə edin</string>
