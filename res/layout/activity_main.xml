@@ -12,17 +12,7 @@
         android:layout_width="match_parent"
         tools:context="org.kde.kdeconnect.UserInterface.MainActivity">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:elevation="8dp"/>
-        </com.google.android.material.appbar.AppBarLayout>
+        <include layout="@layout/toolbar" android:id="@+id/toolbar_layout" />
 
         <FrameLayout
             android:id="@+id/container"
@@ -37,7 +27,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:headerLayout="@layout/nav_header"
-        style="?attr/mainNavigationViewStyle" />
+        app:headerLayout="@layout/nav_header" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

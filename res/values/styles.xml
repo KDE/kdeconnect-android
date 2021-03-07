@@ -1,6 +1,6 @@
 <resources>
     <!-- NoActionBar because we use a Toolbar widget as ActionBar -->
-    <style name="KdeConnectThemeBase" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="KdeConnectThemeBase" parent="Theme.MaterialComponents.DayNight">
         <!-- The main color attributes -->
         <!-- The three colors used by system widgets, according to https://chris.banes.me/2014/10/17/appcompat-v21/ -->
         <item name="colorPrimary">@color/primary</item>
@@ -9,6 +9,8 @@
         <item name="colorOnSecondary">@color/on_secondary</item>
         <item name="colorAccent">@color/accent</item>
         <item name="colorHighContrast">@color/on_high_contrast</item>
+        <item name="android:windowBackground">@color/activity_background</item>
+        <item name="android:colorBackground">@color/activity_background</item>
         <!-- TODO: The 2 items below change too much (eg snackbar text is now black, should be white) -->
         <item name="android:textColorPrimary">@color/text_color_primary</item>
         <item name="android:textColor">@color/text_color</item>
@@ -18,7 +20,6 @@
 
         <!-- Style overrides -->
         <item name="actionModeStyle">@style/ActionModeStyle</item>
-        <item name="mainNavigationViewStyle">@style/MainNavigationView</item>
         <item name="toolbarStyle">@style/KdeConnectTheme.Toolbar</item>
 
         <!-- Theme overrides -->

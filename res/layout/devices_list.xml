@@ -13,8 +13,6 @@
         android:divider="@null"
         android:dividerHeight="0dp"
         android:orientation="vertical"
-        android:paddingLeft="16dip"
-        android:paddingRight="16dip"
         tools:context=".MainActivity" />
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

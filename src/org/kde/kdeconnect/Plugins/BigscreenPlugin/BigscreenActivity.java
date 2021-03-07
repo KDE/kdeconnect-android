@@ -25,6 +25,7 @@ import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityBigscreenBinding;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class BigscreenActivity extends AppCompatActivity {
 
@@ -37,6 +38,10 @@ public class BigscreenActivity extends AppCompatActivity {
 
         final ActivityBigscreenBinding binding = ActivityBigscreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        setSupportActionBar(binding.toolbarLayout.toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         final String deviceId = getIntent().getStringExtra("deviceId");
 

@@ -1,6 +1,4 @@
 <resources>
-    <!-- The style to use on the MainActivity's NavigationView -->
-    <attr name="mainNavigationViewStyle" format="reference" />
     <!-- A high-contrast color for important visual elements (for less important elements, use colorControlNormal instead) -->
     <attr name="colorHighContrast" format="color" />
 </resources>

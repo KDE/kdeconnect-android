@@ -119,7 +119,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        android:divider="@drawable/list_divider"
         tools:context=".DeviceActivity"
-        tools:listitem="@layout/list_item_with_icon_entry"/>
+        tools:listitem="@layout/list_item_with_icon_entry"
+        android:divider="@null"
+        android:dividerHeight="0dp" />
 </LinearLayout>

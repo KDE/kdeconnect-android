@@ -22,6 +22,7 @@ import org.kde.kdeconnect_tp.databinding.TrustedNetworkListBinding;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class TrustedNetworksActivity extends AppCompatActivity {
     private TrustedNetworkListBinding binding;
@@ -47,6 +48,10 @@ public class TrustedNetworksActivity extends AppCompatActivity {
         binding = TrustedNetworkListBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         trustedNetworksView = binding.list;
+
+        setSupportActionBar(binding.toolbarLayout.toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         trustedNetworkHelper = new TrustedNetworkHelper(getApplicationContext());
         trustedNetworks = new ArrayList<>();

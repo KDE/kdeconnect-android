@@ -11,10 +11,13 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.databinding.ActivityFindMyPhoneBinding;
+
+import java.util.Objects;
 
 public class FindMyPhoneActivity extends AppCompatActivity {
     static final String EXTRA_DEVICE_ID = "deviceId";
@@ -28,6 +31,10 @@ public class FindMyPhoneActivity extends AppCompatActivity {
 
         final ActivityFindMyPhoneBinding binding = ActivityFindMyPhoneBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        setSupportActionBar(binding.toolbarLayout.toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         if (!getIntent().hasExtra(EXTRA_DEVICE_ID)) {
             Log.e("FindMyPhoneActivity", "You must include the deviceId for which this activity is started as an intent EXTRA");

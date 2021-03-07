@@ -30,6 +30,8 @@ import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityPresenterBinding;
 
+import java.util.Objects;
+
 public class PresenterActivity extends AppCompatActivity implements SensorEventListener {
     private ActivityPresenterBinding binding;
 
@@ -85,6 +87,10 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
 
         binding = ActivityPresenterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        setSupportActionBar(binding.toolbarLayout.toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         final String deviceId = getIntent().getStringExtra("deviceId");
 

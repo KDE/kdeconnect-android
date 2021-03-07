@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -81,12 +82,12 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         mNavigationView = binding.navigationDrawer;
         mDrawerLayout = binding.drawerLayout;
-        final Toolbar mToolbar = binding.toolbar;
 
         View mDrawerHeader = mNavigationView.getHeaderView(0);
         mNavViewDeviceName = mDrawerHeader.findViewById(R.id.device_name);
+        ImageView mNavViewDeviceType = mDrawerHeader.findViewById(R.id.device_type);
 
-        setSupportActionBar(mToolbar);
+        setSupportActionBar(binding.toolbarLayout.toolbar);
 
         ActionBar actionBar = getSupportActionBar();
 
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         // it can trigger a background fetch from the internet that will eventually update the preference
         PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(this);
         String deviceName = DeviceHelper.getDeviceName(this);
+        mNavViewDeviceType.setImageDrawable(DeviceHelper.getDeviceType(this).getIcon(this));
         mNavViewDeviceName.setText(deviceName);
 
         mNavigationView.setNavigationItemSelectedListener(menuItem -> {

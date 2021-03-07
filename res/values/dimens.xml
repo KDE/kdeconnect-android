@@ -5,4 +5,7 @@
     <dimen name="key_height">48dip</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="fab_elevation">6dp</dimen>
+    <dimen name="nav_header_horizontal_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">112dp</dimen>
 </resources>

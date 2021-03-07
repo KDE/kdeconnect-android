@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <TextView
@@ -9,14 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:drawableBottom="@drawable/text_section_header"
         android:drawablePadding="4dp"
-        android:paddingLeft="8dip"
-        android:paddingRight="8dip"
-        android:textAllCaps="true"
-        android:textColor="?android:textColorSecondary"
-        android:textSize="14sp"
-        android:textStyle="bold" />
+        android:paddingLeft="16dip"
+        android:paddingRight="16dip"
+        android:textSize="16sp"
+        tools:text="Header" />
 
     <TextView
         android:id="@+id/list_item_category_empty_placeholder"

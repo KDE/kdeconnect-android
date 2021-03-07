@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="org.kde.kdeconnect.UserInterface.PluginSettingsActivity">
+    tools:context="org.kde.kdeconnect.Plugins.SharePlugin.ShareActivity">
 
     <include layout="@layout/toolbar" android:id="@+id/toolbar_layout" />
 
-    <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/fragmentPlaceHolder"
-        android:layout_width="match_parent"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        android:layout_width="match_parent">
+
+        <include
+            layout="@layout/devices_list"
+            android:id="@+id/devices_list_layout" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

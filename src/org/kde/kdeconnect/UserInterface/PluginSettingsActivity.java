@@ -18,6 +18,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import java.util.Objects;
+
 public class PluginSettingsActivity
         extends AppCompatActivity
         implements PluginPreference.PluginPreferenceCallback {
@@ -35,9 +37,9 @@ public class PluginSettingsActivity
 
         setContentView(R.layout.activity_plugin_settings);
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
-        }
+        setSupportActionBar(findViewById(R.id.toolbar));
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         String pluginKey = null;
 

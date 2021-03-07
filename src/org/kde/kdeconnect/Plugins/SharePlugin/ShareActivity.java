@@ -17,19 +17,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.UserInterface.List.EntryItem;
+import org.kde.kdeconnect.UserInterface.List.EntryItemWithIcon;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.SectionItem;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
-import org.kde.kdeconnect_tp.databinding.DevicesListBinding;
+import org.kde.kdeconnect_tp.databinding.ActivityShareBinding;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 
 
 public class ShareActivity extends AppCompatActivity {
-    private DevicesListBinding binding;
+    private ActivityShareBinding binding;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -54,13 +55,13 @@ public class ShareActivity extends AppCompatActivity {
         updateComputerList();
         BackgroundService.RunCommand(ShareActivity.this, BackgroundService::onNetworkChange);
 
-        binding.refreshListLayout.setRefreshing(true);
+        binding.devicesListLayout.refreshListLayout.setRefreshing(true);
         new Thread(() -> {
             try {
                 Thread.sleep(1500);
             } catch (InterruptedException ignored) {
             }
-            runOnUiThread(() -> binding.refreshListLayout.setRefreshing(false));
+            runOnUiThread(() -> binding.devicesListLayout.refreshListLayout.setRefreshing(false));
         }).start();
     }
 
@@ -85,14 +86,14 @@ public class ShareActivity extends AppCompatActivity {
             for (Device d : devices) {
                 if (d.isReachable() && d.isPaired()) {
                     devicesList.add(d);
-                    items.add(new EntryItem(d.getName()));
+                    items.add(new EntryItemWithIcon(d.getName(), d.getIcon()));
                     section.isEmpty = false;
                 }
             }
 
             runOnUiThread(() -> {
-                binding.devicesList.setAdapter(new ListAdapter(ShareActivity.this, items));
-                binding.devicesList.setOnItemClickListener((adapterView, view, i, l) -> {
+                binding.devicesListLayout.devicesList.setAdapter(new ListAdapter(ShareActivity.this, items));
+                binding.devicesListLayout.devicesList.setOnItemClickListener((adapterView, view, i, l) -> {
                     Device device = devicesList.get(i - 1); //NOTE: -1 because of the title!
                     BackgroundService.RunWithPlugin(this, device.getDeviceId(), SharePlugin.class, plugin -> plugin.share(intent));
                     finish();
@@ -106,11 +107,15 @@ public class ShareActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ThemeUtil.setUserPreferredTheme(this);
 
-        binding = DevicesListBinding.inflate(getLayoutInflater());
+        binding = ActivityShareBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        setSupportActionBar(binding.toolbarLayout.toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         ActionBar actionBar = getSupportActionBar();
-        binding.refreshListLayout.setOnRefreshListener(this::updateComputerListAction);
+        binding.devicesListLayout.refreshListLayout.setOnRefreshListener(this::updateComputerListAction);
         if (actionBar != null) {
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_CUSTOM);
         }

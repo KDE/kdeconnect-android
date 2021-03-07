@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 public class RunCommandActivity extends AppCompatActivity {
     private ActivityRunCommandBinding binding;
@@ -80,6 +81,10 @@ public class RunCommandActivity extends AppCompatActivity {
 
         binding = ActivityRunCommandBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        setSupportActionBar(binding.toolbarLayout.toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         deviceId = getIntent().getStringExtra("deviceId");
 

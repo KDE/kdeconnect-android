@@ -22,6 +22,8 @@ import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityMprisBinding;
 
+import java.util.Objects;
+
 public class MprisActivity extends AppCompatActivity {
 
     private ActivityMprisBinding activityMprisBinding;
@@ -85,7 +87,7 @@ public class MprisActivity extends AppCompatActivity {
         tabLayoutMediator.attach();
 
         setSupportActionBar(activityMprisBinding.toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
     static class MprisPagerAdapter extends ExtendedFragmentAdapter {

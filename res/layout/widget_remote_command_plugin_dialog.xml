@@ -11,6 +11,8 @@
         android:layout_height="match_parent"
         android:layout_margin="4dp"
         android:addStatesFromChildren="true"
-        android:orientation="vertical" />
+        android:orientation="vertical"
+        android:divider="@null"
+        android:dividerHeight="0dp" />
 
 </LinearLayout>

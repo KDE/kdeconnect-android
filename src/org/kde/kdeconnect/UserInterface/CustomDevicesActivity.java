@@ -30,6 +30,7 @@ import org.kde.kdeconnect_tp.databinding.ActivityCustomDevicesBinding;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 //TODO: Require wifi connection so entries can be verified
 //TODO: Resolve to ip address and don't allow unresolvable or duplicates based on ip address
@@ -62,6 +63,10 @@ public class CustomDevicesActivity extends AppCompatActivity implements CustomDe
         recyclerView = binding.recyclerView;
         emptyListMessage = binding.emptyListMessage;
         final FloatingActionButton fab = binding.floatingActionButton;
+
+        setSupportActionBar(binding.toolbarLayout.toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         fab.setOnClickListener(v -> showEditTextDialog(""));
 

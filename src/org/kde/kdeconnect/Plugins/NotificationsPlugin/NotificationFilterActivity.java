@@ -34,6 +34,7 @@ import org.kde.kdeconnect_tp.databinding.ActivityNotificationFilterBinding;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 //TODO: Turn this into a PluginSettingsFragment
 public class NotificationFilterActivity extends AppCompatActivity {
@@ -95,6 +96,10 @@ public class NotificationFilterActivity extends AppCompatActivity {
         binding = ActivityNotificationFilterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         appDatabase = new AppDatabase(NotificationFilterActivity.this, false);
+
+        setSupportActionBar(binding.toolbarLayout.toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         new Thread(() -> {
             PackageManager packageManager = getPackageManager();

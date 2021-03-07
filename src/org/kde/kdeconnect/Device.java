@@ -124,6 +124,24 @@ public class Device implements BaseLink.PacketReceiver {
                     return "desktop";
             }
         }
+
+        public Drawable getIcon(Context context) {
+            int drawableId;
+            switch (this) {
+                case Phone:
+                    drawableId = R.drawable.ic_device_phone_32dp;
+                    break;
+                case Tablet:
+                    drawableId = R.drawable.ic_device_tablet_32dp;
+                    break;
+                case Tv:
+                    drawableId = R.drawable.ic_device_tv_32dp;
+                    break;
+                default:
+                    drawableId = R.drawable.ic_device_laptop_32dp;
+            }
+            return ContextCompat.getDrawable(context, drawableId);
+        }
     }
 
     public interface PairingCallback {
@@ -178,21 +196,7 @@ public class Device implements BaseLink.PacketReceiver {
     }
 
     public Drawable getIcon() {
-        int drawableId;
-        switch (deviceType) {
-            case Phone:
-                drawableId = R.drawable.ic_device_phone_32dp;
-                break;
-            case Tablet:
-                drawableId = R.drawable.ic_device_tablet_32dp;
-                break;
-            case Tv:
-                drawableId = R.drawable.ic_device_tv_32dp;
-                break;
-            default:
-                drawableId = R.drawable.ic_device_laptop_32dp;
-        }
-        return ContextCompat.getDrawable(context, drawableId);
+        return deviceType.getIcon(context);
     }
 
     public DeviceType getDeviceType() {

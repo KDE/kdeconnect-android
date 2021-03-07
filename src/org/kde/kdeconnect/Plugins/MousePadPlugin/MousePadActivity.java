@@ -26,6 +26,8 @@ import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 
+import java.util.Objects;
+
 public class MousePadActivity extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener, MousePadGestureDetector.OnGestureListener {
     private String deviceId;
 
@@ -75,6 +77,10 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         ThemeUtil.setUserPreferredTheme(this);
 
         setContentView(R.layout.activity_mousepad);
+
+        setSupportActionBar(findViewById(R.id.toolbar));
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         deviceId = getIntent().getStringExtra("deviceId");
 

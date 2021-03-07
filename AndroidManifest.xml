@@ -51,7 +51,7 @@
         android:supportsRtl="true"
         android:allowBackup="false"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:theme="@style/KdeConnectTheme"
+        android:theme="@style/KdeConnectTheme.NoActionBar"
         android:name="org.kde.kdeconnect.MyApplication">
 
         <receiver

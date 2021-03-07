@@ -1,25 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mousepad_view"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:keepScreenOn="true"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadActivity">
 
-    <TextView
-        style="@android:style/TextAppearance.Medium"
+    <include layout="@layout/toolbar" android:id="@+id/toolbar_layout" />
+
+    <RelativeLayout
+        android:id="@+id/mousepad_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:padding="12dip"
-        android:text="@string/mousepad_info" />
+        android:layout_height="match_parent"
+        android:keepScreenOn="true"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <view
-        android:id="@+id/keyListener"
-        class="org.kde.kdeconnect.Plugins.MousePadPlugin.KeyListenerView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <TextView
+            style="@android:style/TextAppearance.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:padding="12dip"
+            android:text="@string/mousepad_info" />
 
-</RelativeLayout>
+        <view
+            android:id="@+id/keyListener"
+            class="org.kde.kdeconnect.Plugins.MousePadPlugin.KeyListenerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
