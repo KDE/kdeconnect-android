@@ -1,49 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-
-    android:id="@+id/sendkeystrokes_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:keepScreenOn="true"
-    android:orientation="vertical"
-    android:padding="4dp">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="org.kde.kdeconnect.Plugins.MousePadPlugin.SendKeystrokesToHostActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="5dp"
-        app:errorEnabled="true">
+    <include layout="@layout/toolbar" android:id="@+id/toolbar_layout" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textToSend"
-            style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:cursorVisible="true"
-            android:hint="@string/sendkeystrokes_textbox_hint"
-            android:inputType="text"
-            android:lines="1"
-            android:maxLines="1"
-            android:scrollHorizontally="true"
-            android:text="" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <ListView
-        android:id="@+id/devices_list"
+    <LinearLayout
+        android:id="@+id/sendkeystrokes_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:addStatesFromChildren="true"
-        android:divider="@null"
-        android:dividerHeight="0dp"
+        android:keepScreenOn="true"
         android:orientation="vertical"
-        android:paddingTop="16dip"
-        tools:context=".MainActivity" />
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp"
+            android:layout_margin="4dp"
+            app:errorEnabled="true">
 
-</LinearLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/textToSend"
+                style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:cursorVisible="true"
+                android:hint="@string/sendkeystrokes_textbox_hint"
+                android:inputType="text"
+                android:lines="1"
+                android:maxLines="1"
+                android:scrollHorizontally="true"
+                android:text="" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ListView
+            android:id="@+id/devices_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:addStatesFromChildren="true"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:orientation="vertical"
+            android:paddingTop="8dp"
+            tools:context=".MainActivity" />
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

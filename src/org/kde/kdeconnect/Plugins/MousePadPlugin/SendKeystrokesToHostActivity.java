@@ -20,7 +20,7 @@ import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SafeTextChecker;
 import org.kde.kdeconnect.NetworkPacket;
-import org.kde.kdeconnect.UserInterface.List.EntryItem;
+import org.kde.kdeconnect.UserInterface.List.EntryItemWithIcon;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.SectionItem;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
@@ -30,6 +30,7 @@ import org.kde.kdeconnect_tp.databinding.ActivitySendkeystrokesBinding;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class SendKeystrokesToHostActivity extends AppCompatActivity {
@@ -51,6 +52,10 @@ public class SendKeystrokesToHostActivity extends AppCompatActivity {
 
         binding = ActivitySendkeystrokesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        setSupportActionBar(binding.toolbarLayout.toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
 
@@ -151,7 +156,7 @@ public class SendKeystrokesToHostActivity extends AppCompatActivity {
             for (Device d : devices) {
                 if (d.isReachable() && d.isPaired()) {
                     devicesList.add(d);
-                    items.add(new EntryItem(d.getName()));
+                    items.add(new EntryItemWithIcon(d.getName(), d.getIcon()));
                     section.isEmpty = false;
                 }
             }
