@@ -256,6 +256,20 @@
                 android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
         </activity>
         <activity
+            android:name="org.kde.kdeconnect.Plugins.MousePadPlugin.SendKeystrokesToHostActivity"
+            android:label="@string/pref_plugin_mousepad_send_keystrokes"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
+            <!-- Accept data with "text/x-keystrokes" to send the text to the connected host and emulate keystrokes -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/x-keystrokes"/>
+            </intent-filter>
+        </activity>
+        <activity
             android:name="org.kde.kdeconnect.Plugins.PresenterPlugin.PresenterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/pref_plugin_presenter"

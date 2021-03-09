@@ -46,4 +46,28 @@
         android:defaultValue="false"
         android:key="@string/mousepad_scroll_direction"
         android:title="@string/mousepad_scroll_direction_title" />
+
+
+    <org.kde.kdeconnect.Helpers.LongSummaryPreferenceCategory
+        android:key="@string/sendkeystrokes_pref_category"
+        android:summary="@string/sendkeystrokes_pref_category_summary"
+        android:title="@string/sendkeystrokes_pref_category_title">
+
+        <CheckBoxPreference
+            android:id="@+id/pref_keystrokes_enable"
+            android:defaultValue="true"
+            android:key="@string/pref_sendkeystrokes_enabled"
+            android:title="@string/sendkeystrokes_pref_enabled"
+            android:summary="@string/sendkeystrokes_pref_enabled_summary"
+            />
+
+        <CheckBoxPreference
+            android:id="@+id/pref_send_safe_text_immediately"
+            android:defaultValue="true"
+            android:key="@string/pref_send_safe_text_immediately"
+            android:title="@string/sendkeystrokes_safe_text_enabled"
+            android:summary="@string/sendkeystrokes_safe_text_enabled_summary"
+            />
+
+    </org.kde.kdeconnect.Helpers.LongSummaryPreferenceCategory>
 </PreferenceScreen>
