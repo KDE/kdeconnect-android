@@ -1,5 +1,6 @@
 /*
  * SPDX-FileCopyrightText: 2020 Aniket Kumar <anikketkumar786@gmail.com>
+ * SPDX-FileCopyrightText: 2021 Simon Redman <simon@ergotech.com>
  *
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
  */
@@ -39,11 +40,11 @@ import android.graphics.BitmapFactory;
 import android.provider.Telephony;
 import android.net.Uri;
 import android.telephony.SmsManager;
-import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -75,10 +76,17 @@ public class SmsMmsUtils {
      * @param context       context in which the method is called.
      * @param textMessage   text body of the message to be sent.
      * @param addressList   List of addresses.
+     * @param attachedFiles List of attachments. Pass empty list if none.
      * @param subID         Note that here subID is of type int and not long because klinker library requires it as int
      *                      I don't really know the exact reason why they implemented it as int instead of long
      */
-    public static void sendMessage(Context context, String textMessage, List<SMSHelper.Address> addressList, int subID) {
+    public static void sendMessage(
+            Context context,
+            String textMessage,
+            @NonNull List<SMSHelper.Attachment> attachedFiles,
+            List<SMSHelper.Address> addressList,
+            int subID
+    ) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         boolean longTextAsMms = prefs.getBoolean(context.getString(R.string.set_long_text_as_mms), false);
         boolean groupMessageAsMms = prefs.getBoolean(context.getString(R.string.set_group_message_as_mms), true);
@@ -138,6 +146,15 @@ public class SmsMmsUtils {
             }
 
             Message message = new Message(textMessage, addresses.toArray(ArrayUtils.EMPTY_STRING_ARRAY));
+
+            // If there are any attachment files add those into the message
+            for (SMSHelper.Attachment attachedFile : attachedFiles) {
+                byte[] file = Base64.decode(attachedFile.getBase64EncodedFile(), Base64.DEFAULT);
+                String mimeType = attachedFile.getMimeType();
+                String fileName = attachedFile.getUniqueIdentifier();
+                message.addMedia(file, mimeType, fileName);
+            }
+
             message.setFromAddress(sendingPhoneNumber.number);
             message.setSave(true);
 
@@ -202,7 +219,7 @@ public class SmsMmsUtils {
         configOverrides.putBoolean(SmsManager.MMS_CONFIG_GROUP_MMS_ENABLED, klinkerSettings.getGroup());
 
         // Write the PDUs to disk so that we can pass them to the SmsManager
-        final String fileName = "send." + String.valueOf(Math.abs(new Random().nextLong())) + ".dat";
+        final String fileName = "send." + Math.abs(new Random().nextLong()) + ".dat";
         File mSendFile = new File(context.getCacheDir(), fileName);
 
         Uri contentUri = (new Uri.Builder())
@@ -332,14 +349,14 @@ public class SmsMmsUtils {
     public static List<SMSHelper.Address> getMmsTo(MultimediaMessagePdu msg) {
         if (msg == null) { return null; }
         StringBuilder toBuilder = new StringBuilder();
-        EncodedStringValue to[] = msg.getTo();
+        EncodedStringValue[] to = msg.getTo();
 
         if (to != null) {
             toBuilder.append(EncodedStringValue.concat(to));
         }
 
         if (msg instanceof RetrieveConf) {
-            EncodedStringValue cc[] = ((RetrieveConf) msg).getCc();
+            EncodedStringValue[] cc = ((RetrieveConf) msg).getCc();
             if (cc != null && cc.length == 0) {
                 toBuilder.append(";");
                 toBuilder.append(EncodedStringValue.concat(cc));
@@ -362,11 +379,12 @@ public class SmsMmsUtils {
             return null;
         }
 
-        String numbers[] = phoneNumbers.split(", ");
+        String[] numbers = phoneNumbers.split(", ");
 
         List<SMSHelper.Address> uniqueNumbers = new ArrayList<>();
 
         for (String number : numbers) {
+            // noinspection SuspiciousMethodCalls
             if (!uniqueNumbers.contains(number.trim())) {
                 uniqueNumbers.add(new SMSHelper.Address(number.trim()));
             }

@@ -1,6 +1,7 @@
 /*
  * SPDX-FileCopyrightText: 2014 Albert Vaca Cintora <albertvaka@gmail.com>
- * SPDX-FileCopyrightText: 2019 Simon Redman <simon@ergotech.com>
+ * SPDX-FileCopyrightText: 2021 Simon Redman <simon@ergotech.com>
+ * SPDX-FileCopyrightText: 2020 Aniket Kumar <anikketkumar786@gmail.com>
  *
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
  */
@@ -118,10 +119,7 @@ public class SMSPlugin extends Plugin {
 
     /**
      * Packet sent to request a message be sent
-     * <p>
-     * This will almost certainly need to be replaced or augmented to support MMS,
-     * but be sure the Android side remains compatible with old desktop apps!
-     * <p>
+     *
      * The body should look like so:
      * {
      *   "version": 2,                     // The version of the packet being sent. Compare to SMS_REQUEST_PACKET_VERSION before attempting to handle.
@@ -410,8 +408,9 @@ public class SMSPlugin extends Plugin {
                     addressList = new ArrayList<>();
                     addressList.add(new SMSHelper.Address(np.getString("phoneNumber")));
                 }
+                List<SMSHelper.Attachment> attachedFiles = SMSHelper.jsonArrayToAttachmentsList(np.getJSONArray("attachments"));
 
-                SmsMmsUtils.sendMessage(context, textMessage, addressList, (int) subID);
+                SmsMmsUtils.sendMessage(context, textMessage, attachedFiles, addressList, (int) subID);
                 break;
 
             case TelephonyPlugin.PACKET_TYPE_TELEPHONY_REQUEST:

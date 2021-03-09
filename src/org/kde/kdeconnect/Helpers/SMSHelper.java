@@ -1,5 +1,6 @@
 /*
- * SPDX-FileCopyrightText: 2019 Simon Redman <simon@ergotech.com>
+ * SPDX-FileCopyrightText: 2021 Simon Redman <simon@ergotech.com>
+ * SPDX-FileCopyrightText: 2020 Aniket Kumar <anikketkumar786@gmail.com>
  *
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 */
@@ -183,10 +184,10 @@ public class SMSHelper {
             selection = Message.DATE + " >= ?";
         }
 
-        List<String> smsSelectionArgs = new ArrayList<String>(2);
+        List<String> smsSelectionArgs = new ArrayList<>(2);
         smsSelectionArgs.add(startTimestamp.toString());
 
-        List<String> mmsSelectionArgs = new ArrayList<String>(2);
+        List<String> mmsSelectionArgs = new ArrayList<>(2);
         mmsSelectionArgs.add(Long.toString(startTimestamp / 1000));
 
         if (threadID != null) {
@@ -357,83 +358,6 @@ public class SMSHelper {
         }
 
         return toReturn;
-    }
-
-    /**
-     * Deletes messages which are failed to send due to some reason
-     *
-     * @param uri Uri indicating the messages database to read
-     * @param context android.content.Context running the request.
-     * @param fetchColumns List of columns to fetch
-     * @param selection Parameterizable filter to use with the ContentResolver query. May be null.
-     * @param selectionArgs Parameters for selection. May be null.
-     * @param sortOrder Sort ordering passed to Android's content resolver. May be null for unspecified
-     */
-    private static void deleteFailedMessages(
-            @NonNull Uri uri,
-            @NonNull Context context,
-            @NonNull Collection<String> fetchColumns,
-            @Nullable String selection,
-            @Nullable String[] selectionArgs,
-            @Nullable String sortOrder
-    ) {
-        try (Cursor myCursor = context.getContentResolver().query(
-                uri,
-                fetchColumns.toArray(ArrayUtils.EMPTY_STRING_ARRAY),
-                selection,
-                selectionArgs,
-                sortOrder)
-        ) {
-            if (myCursor != null && myCursor.moveToFirst()) {
-                do {
-                    String id = null;
-                    String type = null;
-                    String msgBox = null;
-
-                    for (int columnIdx = 0; columnIdx < myCursor.getColumnCount(); columnIdx++) {
-                        String colName = myCursor.getColumnName(columnIdx);
-
-                        if (colName.equals("_id")) {
-                            id = myCursor.getString(columnIdx);
-                        }
-
-                        if(colName.equals("type")) {
-                            type = myCursor.getString(columnIdx);
-                        }
-
-                        if (colName.equals("msg_box")) {
-                            msgBox = myCursor.getString(columnIdx);
-                        }
-                    }
-
-                    if (type != null && id != null) {
-                        if (type.equals(Telephony.Sms.MESSAGE_TYPE_OUTBOX) || type.equals(Telephony.Sms.MESSAGE_TYPE_FAILED)) {
-                            Log.v("Deleting sms", "content://sms/" + id);
-                            context.getContentResolver().delete(Uri.parse("content://sms/" + id), null, null);
-                        }
-                    }
-
-                    if (msgBox != null && id != null) {
-                        if (msgBox.equals(Telephony.Mms.MESSAGE_BOX_OUTBOX) || msgBox.equals(Telephony.Mms.MESSAGE_BOX_FAILED)) {
-                            Log.v("Deleting mms", "content://mms/" + id);
-                            context.getContentResolver().delete(Uri.parse("content://mms/" + id), null, null);
-                        }
-                    }
-                } while (myCursor.moveToNext());
-            }
-        } catch (SQLiteException e) {
-            String[] unfilteredColumns = {};
-            try (Cursor unfilteredColumnsCursor = context.getContentResolver().query(uri, null, null, null, null)) {
-                if (unfilteredColumnsCursor != null) {
-                    unfilteredColumns = unfilteredColumnsCursor.getColumnNames();
-                }
-            }
-            if (unfilteredColumns.length == 0) {
-                throw new MessageAccessException(uri, e);
-            } else {
-                throw new MessageAccessException(unfilteredColumns, uri, e);
-            }
-        }
     }
 
     /**
@@ -648,7 +572,6 @@ public class SMSHelper {
                         }
                         event = addEventFlag(event, Message.EVENT_TEXT_MESSAGE);
                     } else if (MimeType.isTypeImage(contentType)) {
-                        String mimeType = contentType;
                         String fileName = data.substring(data.lastIndexOf('/') + 1);
 
                         // Get the actual image from the mms database convert it into thumbnail and encode to Base64
@@ -656,9 +579,8 @@ public class SMSHelper {
                         Bitmap thumbnailImage = ThumbnailUtils.extractThumbnail(image, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);
                         String encodedThumbnail = SmsMmsUtils.bitMapToBase64(thumbnailImage);
 
-                        attachments.add(new Attachment(partID, mimeType, encodedThumbnail, fileName));
+                        attachments.add(new Attachment(partID, contentType, encodedThumbnail, fileName));
                     } else if (MimeType.isTypeVideo(contentType)) {
-                        String mimeType = contentType;
                         String fileName = data.substring(data.lastIndexOf('/') + 1);
 
                         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
@@ -669,12 +591,11 @@ public class SMSHelper {
                                 Bitmap.createScaledBitmap(videoThumbnail, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT, true)
                         );
 
-                        attachments.add(new Attachment(partID, mimeType, encodedThumbnail, fileName));
+                        attachments.add(new Attachment(partID, contentType, encodedThumbnail, fileName));
                     } else if (MimeType.isTypeAudio(contentType)) {
-                        String mimeType = contentType;
                         String fileName = data.substring(data.lastIndexOf('/') + 1);
 
-                        attachments.add(new Attachment(partID, mimeType, null, fileName));
+                        attachments.add(new Attachment(partID, contentType, null, fileName));
                     } else {
                         Log.v("SMSHelper", "Unsupported attachment type: " + contentType);
                     }
@@ -847,6 +768,10 @@ public class SMSHelper {
             this.uniqueIdentifier = uniqueIdentifier;
         }
 
+        public String getBase64EncodedFile() { return base64EncodedFile; }
+        public String getMimeType() { return mimeType; }
+        public String getUniqueIdentifier() { return uniqueIdentifier; }
+
         public JSONObject toJson() throws JSONException {
             JSONObject json = new JSONObject();
 
@@ -860,6 +785,41 @@ public class SMSHelper {
 
             return json;
         }
+    }
+
+    /**
+     * Converts a given JSONArray of attachments into List<Attachment>
+     *
+     * The structure of the input is expected to be as follows:
+     * [
+     *   {
+     *     "fileName": <String>             // Name of the file
+     *     "base64EncodedFile": <String>    // Base64 encoded file
+     *     "mimeType": <String>             // File type (eg: image/jpg, video/mp4 etc.)
+     *   },
+     * ...
+     * ]
+     */
+    public static @NonNull List<Attachment> jsonArrayToAttachmentsList(
+            @Nullable JSONArray jsonArray) {
+        if (jsonArray == null) {
+            return Collections.emptyList();
+        }
+
+        List<Attachment> attachedFiles = new ArrayList<>(jsonArray.length());
+        try {
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                String base64EncodedFile = jsonObject.getString("base64EncodedFile");
+                String mimeType = jsonObject.getString("mimeType");
+                String fileName = jsonObject.getString("fileName");
+                attachedFiles.add(new Attachment(-1, mimeType, base64EncodedFile, fileName));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return attachedFiles;
     }
 
     public static class Address {
