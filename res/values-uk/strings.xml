@@ -74,6 +74,18 @@
     <item>Сильне</item>
     <item>Найсильніше</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Надіслати натискання клавіш на</string>
+  <string name="sendkeystrokes_textbox_hint">Надіслати натискання клавіш на вузол</string>
+  <string name="sendkeystrokes_disabled_toast">Надсилання натискань клавіш вимкнено — увімкніть його у параметрах програми</string>
+  <string name="sendkeystrokes_wrong_data">Некоректний тип MIME — типом має бути «text/x-keystrokes»</string>
+  <string name="sendkeystrokes_sent_text">Надіслано %1s на пристрій %2s</string>
+  <string name="sendkeystrokes_pref_category_summary">За допомогою цього модуля інші програми можуть спільно використовувати фрагменти тексту як натискання клавіш, які буде надіслано до з\'єднаного вузла мережі</string>
+  <string name="sendkeystrokes_pref_category_title">Надсилання натискань клавіш</string>
+  <string name="sendkeystrokes_pref_enabled">Увімкнути надсилання натискань клавіш</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Очікувати на дані з типом MIME «text/x-keystrokes»</string>
+  <string name="sendkeystrokes_safe_text_enabled">Надсилати безпечний текст негайно</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Надсилати короткі рядки з цифр без підтвердження</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Надсилати як натискання клавіш</string>
   <string name="category_connected_devices">З’єднані пристрої</string>
   <string name="category_not_paired_devices">Доступні пристрої</string>
   <string name="category_remembered_devices">Відомі пристрої</string>

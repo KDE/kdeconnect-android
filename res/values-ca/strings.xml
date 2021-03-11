@@ -74,6 +74,18 @@
     <item>Forta</item>
     <item>La més forta</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Envia les pulsacions de tecla a</string>
+  <string name="sendkeystrokes_textbox_hint">Envia les pulsacions de tecla a la màquina</string>
+  <string name="sendkeystrokes_disabled_toast">L\'enviament de les pulsacions de tecla està inhabilitat -habiliteu-lo a la configuració-</string>
+  <string name="sendkeystrokes_wrong_data">El tipus MIME no és vàlid -ha de ser «text/x-keystrokes»-</string>
+  <string name="sendkeystrokes_sent_text">Envia %1s al dispositiu %2s</string>
+  <string name="sendkeystrokes_pref_category_summary">Aquest mòdul permet que les altres aplicacions comparteixin segments de text com a pulsacions de tecla que s\'enviaran a la màquina connectada</string>
+  <string name="sendkeystrokes_pref_category_title">Envia les pulsacions de tecla</string>
+  <string name="sendkeystrokes_pref_enabled">Activa l\'enviament de les pulsacions de tecla</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Escolta per a les dades amb el tipus MIME «text/x-keystrokes»</string>
+  <string name="sendkeystrokes_safe_text_enabled">Envia immediatament un text segur</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Només envia cadenes curtes numèriques sense confirmació</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Envia com a pulsacions de tecla</string>
   <string name="category_connected_devices">Dispositius connectats</string>
   <string name="category_not_paired_devices">Dispositius disponibles</string>
   <string name="category_remembered_devices">Dispositius recordats</string>
