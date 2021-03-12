@@ -74,6 +74,18 @@
     <item>Močneje</item>
     <item>Najmočnejše</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Pošlji pritiske tipk na</string>
+  <string name="sendkeystrokes_textbox_hint">Pošlji pritiske tipk gostitelju</string>
+  <string name="sendkeystrokes_disabled_toast">Pošiljanje pritiskov tipk je onemogočeno - omogočite jih v nastavitvah</string>
+  <string name="sendkeystrokes_wrong_data">Neveljavna vrsta mime - mora biti \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_sent_text">Poslano %1s na napravo %2s</string>
+  <string name="sendkeystrokes_pref_category_summary">Ta modul omogoča drugim aplikacijam, da si delijo segmente besedila kot pritiske tipk, ki jih bo prejele za pošiljanje k povezanemu gostitelju</string>
+  <string name="sendkeystrokes_pref_category_title">Pošlji pritiske tipk</string>
+  <string name="sendkeystrokes_pref_enabled">Omogoči pošiljanje pritiskov tipk</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Poslušaj podatke z vrsto mime \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_safe_text_enabled">Pošlji varno besedilo takoj</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Pošlji kratke samo številčne niz brez potrditve</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Pošlji kot pritiske tipk</string>
   <string name="category_connected_devices">Povezane naprave</string>
   <string name="category_not_paired_devices">Naprave na voljo</string>
   <string name="category_remembered_devices">Naprave, ki so zapomnjene</string>

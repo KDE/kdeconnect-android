@@ -74,6 +74,18 @@
     <item>Större</item>
     <item>Störst</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Skicka tangentnedtryckningar till</string>
+  <string name="sendkeystrokes_textbox_hint">Skicka tangentnedtryckningar till värddator</string>
+  <string name="sendkeystrokes_disabled_toast">Skicka tangentnedtryckningar är inaktiverat: aktivera det i inställningarna</string>
+  <string name="sendkeystrokes_wrong_data">Ogiltig Mime-type, måste vara \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_sent_text">Skickade %1s till enhet %2s</string>
+  <string name="sendkeystrokes_pref_category_summary">Modulen låter andra program att dela textsegment som tangentnedtryckningar vilka skickas till den anslutna värddatorn</string>
+  <string name="sendkeystrokes_pref_category_title">Skicka tangentnedtryckningar</string>
+  <string name="sendkeystrokes_pref_enabled">Aktivera skicka tangentnedtryckningar</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Lyssna på data med Mime-typen \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_safe_text_enabled">Skicka säker text omedelbart</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Skicka bara korta numeriska strängar utan att bekräfta</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Skicka som tangentnedtryckningar</string>
   <string name="category_connected_devices">Anslutna apparater</string>
   <string name="category_not_paired_devices">Tillgängliga apparater</string>
   <string name="category_remembered_devices">Ihågkomna apparater</string>
