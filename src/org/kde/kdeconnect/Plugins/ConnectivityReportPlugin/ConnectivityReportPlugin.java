@@ -25,7 +25,7 @@ import org.kde.kdeconnect.Helpers.TelephonyHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
-import org.kde.kdeconnect_tp_alt.R;
+import org.kde.kdeconnect_tp.R;
 
 import java.util.HashMap;
 import java.util.Objects;
