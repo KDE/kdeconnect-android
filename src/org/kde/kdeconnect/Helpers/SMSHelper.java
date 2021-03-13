@@ -29,6 +29,8 @@ import androidx.annotation.RequiresApi;
 
 import com.google.android.mms.pdu_alt.MultimediaMessagePdu;
 import com.google.android.mms.pdu_alt.PduPersister;
+import com.google.android.mms.util_alt.PduCache;
+import com.google.android.mms.util_alt.PduCacheEntry;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
@@ -673,12 +675,27 @@ public class SMSHelper {
 
     private static MultimediaMessagePdu getMessagePdu(Context context, long uID) {
         Uri uri = ContentUris.appendId(getMMSUri().buildUpon(), uID).build();
+        MultimediaMessagePdu toReturn;
         try {
-            return (MultimediaMessagePdu) PduPersister.getPduPersister(context).load(uri);
+            // Work around https://bugs.kde.org/show_bug.cgi?id=434348 by querying the PduCache directly
+            // Most likely, this is how we should do business anyway and we will probably see a
+            // decent speedup...
+            PduCache pduCache = PduCache.getInstance();
+            PduCacheEntry maybePduValue;
+            synchronized (pduCache) {
+                 maybePduValue = pduCache.get(uri);
+            }
+
+            if (maybePduValue != null) {
+                toReturn = (MultimediaMessagePdu) maybePduValue.getPdu();
+            } else {
+                toReturn = (MultimediaMessagePdu) PduPersister.getPduPersister(context).load(uri);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
+        return toReturn;
     }
 
 
