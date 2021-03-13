@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/abc_list_selector_holo_dark"
+    android:background="?android:attr/selectableItemBackground"
     android:baselineAligned="false"
     android:gravity="center_vertical"
     android:minHeight="?android:attr/listPreferredItemHeight"
@@ -13,8 +13,6 @@
     android:paddingRight="?android:attr/scrollbarSize"
     android:paddingStart="12dip"
     android:id="@+id/list_item_entry">
-    <!-- We should use android:background="@android:/listChoiceBackgroundIndicator"
-         instead of abc_list_selector_holo_dark but that's only supported from API11 -->
 
     <TextView
         android:id="@+id/list_item_entry_title"

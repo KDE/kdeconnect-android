@@ -6,14 +6,12 @@
 
 package org.kde.kdeconnect.UserInterface.List;
 
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import org.kde.kdeconnect_tp.R;
-
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 
 public class SmallEntryItem implements ListAdapter.Item {
     private final String title;
@@ -36,7 +34,9 @@ public class SmallEntryItem implements ListAdapter.Item {
             titleView.setText(title);
             if (clickListener != null) {
                 titleView.setOnClickListener(clickListener);
-                v.setBackgroundDrawable(ContextCompat.getDrawable(layoutInflater.getContext(), R.drawable.abc_list_selector_holo_dark));
+                TypedValue outValue = new TypedValue();
+                layoutInflater.getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+                v.setBackgroundResource(outValue.resourceId);
             }
         }
 
