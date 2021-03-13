@@ -74,6 +74,18 @@
     <item>Forte</item>
     <item>Mais Forte</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Enviar os eventos de teclado para</string>
+  <string name="sendkeystrokes_textbox_hint">Enviar os eventos de teclado para a máquina</string>
+  <string name="sendkeystrokes_disabled_toast">O envio de eventos de teclado está desactivado - active-o na configuração</string>
+  <string name="sendkeystrokes_wrong_data">O tipo MIME é inválido - precisa de ser \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_sent_text">Foi enviado o %1s para o dispositivo %2s</string>
+  <string name="sendkeystrokes_pref_category_summary">Este módulo permite a outras aplicações partilharem segmentos de texto como eventos de teclado que serão enviados para a máquina ligada</string>
+  <string name="sendkeystrokes_pref_category_title">Enviar os Eventos de Teclado</string>
+  <string name="sendkeystrokes_pref_enabled">Activar o Envio de Eventos de Teclado</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Fica à espera de dados com o tipo MIME \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_safe_text_enabled">Enviar texto de forma segura e imediata</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Enviar textos curtos e apenas numéricos sem confirmação</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Enviar como eventos de teclado</string>
   <string name="category_connected_devices">Dispositivos ligados</string>
   <string name="category_not_paired_devices">Dispositivos disponíveis</string>
   <string name="category_remembered_devices">Dispositivos recordados</string>
