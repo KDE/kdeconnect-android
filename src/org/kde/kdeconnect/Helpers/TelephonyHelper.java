@@ -14,6 +14,7 @@ import android.os.Build;
 import android.provider.Telephony;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
+import android.telephony.SubscriptionManager.OnSubscriptionsChangedListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
@@ -24,6 +25,7 @@ import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,6 +59,74 @@ public class TelephonyHelper {
             subscriptionIDs.add(info.getSubscriptionId());
         }
         return subscriptionIDs;
+    }
+
+    /**
+     * Callback for `listenActiveSubscriptionIDs`
+     */
+    public interface SubscriptionCallback {
+        void run(Integer subscriptionID);
+    }
+
+    /**
+     * Registers a listener for changes in subscriptionIDs for the device.
+     * This lets you identify additions/removals of SIM cards.
+     * Make sure to call `cancelActiveSubscriptionIDsListener` with the return value of this once you're done.
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    public static OnSubscriptionsChangedListener listenActiveSubscriptionIDs(
+            @NonNull Context context, SubscriptionCallback onAdd, SubscriptionCallback onRemove) {
+        SubscriptionManager sm = ContextCompat.getSystemService(context, SubscriptionManager.class);
+        if (sm == null) {
+            // I don't know why or when this happens...
+            Log.w(LOGGING_TAG, "Could not get SubscriptionManager");
+            return null;
+        }
+
+        HashSet<Integer> activeIDs = new HashSet<>();
+
+        OnSubscriptionsChangedListener listener = new OnSubscriptionsChangedListener() {
+            @Override
+            public void onSubscriptionsChanged() {
+                HashSet<Integer> nextSubs = new HashSet<>(getActiveSubscriptionIDs(context));
+
+                HashSet<Integer> addedSubs = new HashSet<>(nextSubs);
+                addedSubs.removeAll(activeIDs);
+
+                HashSet<Integer> removedSubs = new HashSet<>(activeIDs);
+                removedSubs.removeAll(nextSubs);
+
+                activeIDs.removeAll(removedSubs);
+                activeIDs.addAll(addedSubs);
+
+                // Delete old listeners
+                for (Integer subID : removedSubs) {
+                    onRemove.run(subID);
+                }
+
+                // Create new listeners
+                for (Integer subID : addedSubs) {
+                    onAdd.run(subID);
+                }
+            }
+        };
+        sm.addOnSubscriptionsChangedListener(listener);
+        return listener;
+    }
+
+    /**
+     * Cancels a listener created by `listenActiveSubscriptionIDs`
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
+    public static void cancelActiveSubscriptionIDsListener(@NonNull Context context, @NonNull OnSubscriptionsChangedListener listener) {
+        SubscriptionManager sm = ContextCompat.getSystemService(context, SubscriptionManager.class);
+        if (sm == null) {
+            // I don't know why or when this happens...
+            Log.w(LOGGING_TAG, "Could not get SubscriptionManager");
+            return;
+        }
+
+        sm.removeOnSubscriptionsChangedListener(listener);
     }
 
     /**
