@@ -8,6 +8,8 @@
   <string name="pref_plugin_telephony_desc">Skicka underrättelser för inkommande samtal</string>
   <string name="pref_plugin_battery">Batterirapport</string>
   <string name="pref_plugin_battery_desc">Rapportera periodiskt batteriets status</string>
+  <string name="pref_plugin_connectivity_report">Anslutningsrapport</string>
+  <string name="pref_plugin_connectivity_report_desc">Rapportera nätverkssignalstyrka och status</string>
   <string name="pref_plugin_sftp">Exponera filsystem</string>
   <string name="pref_plugin_sftp_desc">Gör det möjligt att bläddra i apparatens filsystem från annan apparat</string>
   <string name="pref_plugin_clipboard">Synkronisera klippbord</string>
