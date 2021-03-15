@@ -74,6 +74,18 @@
     <item>更强</item>
     <item>最强</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">发送按键到</string>
+  <string name="sendkeystrokes_textbox_hint">发送按键到主机</string>
+  <string name="sendkeystrokes_disabled_toast">发送按键已禁用 - 请在设置中启用它</string>
+  <string name="sendkeystrokes_wrong_data">无效的 MIME 类型 - 需要为“text/x-keystrokes”</string>
+  <string name="sendkeystrokes_sent_text">发送 %1s 到设备 %2s</string>
+  <string name="sendkeystrokes_pref_category_summary">此模块允许其他应用共享文本段作为按键发送到连接的主机</string>
+  <string name="sendkeystrokes_pref_category_title">发送按键</string>
+  <string name="sendkeystrokes_pref_enabled">启用按键发送</string>
+  <string name="sendkeystrokes_pref_enabled_summary">监听 MIME 类型为 “text/x-keystrokes” 的数据</string>
+  <string name="sendkeystrokes_safe_text_enabled">立刻发送安全文本</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">发送短纯数字串时无需确认</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">作为按键发送</string>
   <string name="category_connected_devices">连接的设备</string>
   <string name="category_not_paired_devices">可用的设备</string>
   <string name="category_remembered_devices">记住的设备</string>

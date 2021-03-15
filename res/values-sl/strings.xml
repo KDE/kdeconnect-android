@@ -8,6 +8,8 @@
   <string name="pref_plugin_telephony_desc">Pošlji obvestila o dohodnih klicih</string>
   <string name="pref_plugin_battery">Poročilo o bateriji</string>
   <string name="pref_plugin_battery_desc">Občasno poročaj o stanju baterije</string>
+  <string name="pref_plugin_connectivity_report">Poročilo o povezovanju</string>
+  <string name="pref_plugin_connectivity_report_desc">Poročilo moč signala omrežja in status</string>
   <string name="pref_plugin_sftp">Razkrij sistem datotek</string>
   <string name="pref_plugin_sftp_desc">Omogoča oddaljeno brskanje po sistemu datotek te naprave</string>
   <string name="pref_plugin_clipboard">Uskladi odložišči</string>

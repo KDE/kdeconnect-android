@@ -8,6 +8,8 @@
   <string name="pref_plugin_telephony_desc">Stuur meldingen voor inkomende oproepen</string>
   <string name="pref_plugin_battery">Batterijrapportage</string>
   <string name="pref_plugin_battery_desc">Rapporteer periodiek de status van de batterij</string>
+  <string name="pref_plugin_connectivity_report">Rapport over connectiviteit</string>
+  <string name="pref_plugin_connectivity_report_desc">Signaalsterkte en status van netwerk rapporteren</string>
   <string name="pref_plugin_sftp">Bestandssysteem blootstellen</string>
   <string name="pref_plugin_sftp_desc">Het bladeren in het bestandssysteem van het apparaat op afstand toestaan</string>
   <string name="pref_plugin_clipboard">Klembordsynchronisatie</string>
