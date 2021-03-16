@@ -69,7 +69,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
 
     private boolean listening = false;
 
-    // To prevent infinte loop between Android < IceCream because both device can only broadcast identity package but cannot connect via TCP
+    // To prevent infinte loop between Android < IceCream because both device can only broadcast identity packet but cannot connect via TCP
     private final ArrayList<InetAddress> reverseConnectionBlackList = new ArrayList<>();
 
     @Override // SocketClosedCallback
@@ -94,11 +94,11 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
         }
 
         if (!networkPacket.getType().equals(NetworkPacket.PACKET_TYPE_IDENTITY)) {
-            Log.e("KDE/LanLinkProvider", "Expecting an identity package instead of " + networkPacket.getType());
+            Log.e("KDE/LanLinkProvider", "Expecting an identity packet instead of " + networkPacket.getType());
             return;
         }
 
-        Log.i("KDE/LanLinkProvider", "Identity package received from a TCP connection from " + networkPacket.getString("deviceName"));
+        Log.i("KDE/LanLinkProvider", "identity packet received from a TCP connection from " + networkPacket.getString("deviceName"));
         identityPacketReceived(networkPacket, socket, LanLink.ConnectionStarted.Locally);
     }
 
@@ -113,7 +113,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
             final NetworkPacket identityPacket = NetworkPacket.unserialize(message);
             final String deviceId = identityPacket.getString("deviceId");
             if (!identityPacket.getType().equals(NetworkPacket.PACKET_TYPE_IDENTITY)) {
-                Log.e("KDE/LanLinkProvider", "Expecting an UDP identity package");
+                Log.e("KDE/LanLinkProvider", "Expecting an UDP identity packet");
                 return;
             } else {
                 String myId = DeviceHelper.getDeviceId(context);
@@ -123,7 +123,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                 }
             }
 
-            Log.i("KDE/LanLinkProvider", "Broadcast identity package received from " + identityPacket.getString("deviceName"));
+            Log.i("KDE/LanLinkProvider", "Broadcast identity packet received from " + identityPacket.getString("deviceName"));
 
             int tcpPort = identityPacket.getInt("tcpPort", MIN_PORT);
 
@@ -389,9 +389,9 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                     try {
                         InetAddress client = InetAddress.getByName(ipstr);
                         socket.send(new DatagramPacket(bytes, bytes.length, client, MIN_PORT));
-                        //Log.i("KDE/LanLinkProvider","Udp identity package sent to address "+client);
+                        //Log.i("KDE/LanLinkProvider","Udp identity packet sent to address "+client);
                     } catch (Exception e) {
-                        Log.e("KDE/LanLinkProvider", "Sending udp identity package failed. Invalid address? (" + ipstr + ")", e);
+                        Log.e("KDE/LanLinkProvider", "Sending udp identity packet failed. Invalid address? (" + ipstr + ")", e);
                     }
                 }
             }
