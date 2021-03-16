@@ -101,6 +101,7 @@ public class LanLink extends BaseLink {
                 try { Thread.sleep(300); } catch (InterruptedException ignored) {} // Wait a bit because we might receive a new socket meanwhile
                 boolean thereIsaANewSocket = (newSocket != socket);
                 if (!thereIsaANewSocket) {
+                    Log.i("LanLink", "Socket closed and there's no new socket, disconnecting device");
                     callback.linkDisconnected(LanLink.this);
                 }
             }
