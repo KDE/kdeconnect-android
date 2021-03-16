@@ -367,7 +367,10 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
             }
 
             NetworkPacket identity = NetworkPacket.createIdentityPacket(context);
-            int port = (tcpServer == null || !tcpServer.isBound()) ? MIN_PORT : tcpServer.getLocalPort();
+            if (tcpServer == null || !tcpServer.isBound()) {
+                throw new RuntimeException("Wont't broadcast UDP packet if TCP socket is not ready");
+            }
+            int port = tcpServer.getLocalPort();
             identity.set("tcpPort", port);
             DatagramSocket socket = null;
             byte[] bytes = null;
