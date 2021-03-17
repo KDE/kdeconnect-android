@@ -8,6 +8,8 @@
   <string name="pref_plugin_telephony_desc">Invia notifiche per le chiamate in ingresso</string>
   <string name="pref_plugin_battery">Livello batteria</string>
   <string name="pref_plugin_battery_desc">Comunica periodicamente lo stato della batteria</string>
+  <string name="pref_plugin_connectivity_report">Indicatore di connettività</string>
+  <string name="pref_plugin_connectivity_report_desc">Riporta la potenza e lo stato del segnale di rete</string>
   <string name="pref_plugin_sftp">Esposizione filesystem</string>
   <string name="pref_plugin_sftp_desc">Consente di navigare da remoto il filesystem del dispositivo</string>
   <string name="pref_plugin_clipboard">Sincronizzazione appunti</string>
@@ -74,6 +76,18 @@
     <item>Più forte</item>
     <item>La più forte</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Invia combinazioni di tasti a</string>
+  <string name="sendkeystrokes_textbox_hint">Invia combinazioni di tasti all\'host</string>
+  <string name="sendkeystrokes_disabled_toast">L\'invio di combinazioni di tasti è disabilitato: abilitalo nelle impostazioni</string>
+  <string name="sendkeystrokes_wrong_data">Tipo MIME non valido: deve essere «text/x-keystrokes»</string>
+  <string name="sendkeystrokes_sent_text">Inviato %1s al dispositivo %2s</string>
+  <string name="sendkeystrokes_pref_category_summary">Questo modulo consente ad altre applicazioni di condividere segmenti di testo come sequenze di tasti che saranno inviate all\'host connesso</string>
+  <string name="sendkeystrokes_pref_category_title">Invia combinazioni di tasti</string>
+  <string name="sendkeystrokes_pref_enabled">Abilita l\'invio di combinazioni di tasti</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Intercetta i dati con il tipo MIME «text/x-keystrokes»</string>
+  <string name="sendkeystrokes_safe_text_enabled">Invia subito un testo sicuro</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Invia brevi stringhe composte da soli numeriche senza conferma</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Invia come combinazioni di tasti</string>
   <string name="category_connected_devices">Dispositivi connessi</string>
   <string name="category_not_paired_devices">Dispositivi disponibili</string>
   <string name="category_remembered_devices">Dispositivi memorizzati</string>

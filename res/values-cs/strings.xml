@@ -90,6 +90,7 @@
   <string name="encryption_info_title">Informace o šifrování</string>
   <string name="encryption_info_msg_no_ssl">Druhé zařízení nepoužívá poslední verzi KDE connect. Bude použita stará metoda šifrování.</string>
   <string name="my_device_fingerprint">Otisk SHA1 certifikátu vašeho zařízení je:</string>
+  <string name="remote_device_fingerprint">Otisk certifikátu SHA256 vzdáleného zařízení je:</string>
   <string name="pair_requested">Bylo vyžádáno párování</string>
   <string name="pairing_request_from">Požadavek o párování z %1s</string>
   <plurals name="incoming_file_title">
@@ -241,6 +242,7 @@
   <string name="permission_explanation">Tento modul potřebuje pro práci povolení</string>
   <string name="optional_permission_explanation">Pro zpřístupnění všech funkcí potřebujete další oprávnění</string>
   <string name="plugins_need_optional_permission">Některé moduly mají vypnuté vlastnosti, kvůli nedostatečným oprávněním (ťukněte pro více informací):</string>
+  <string name="share_optional_permission_explanation">Pro příjem souborů je potřeba vybrat cílový adresář</string>
   <string name="telepathy_permission_explanation">Pro čtení a psaní SMS z počítače musíte udělit oprávnění k SMS</string>
   <string name="telephony_permission_explanation">Pro zobrazení telefonátů v počítači musíte udělit oprávnění k záznamům telefonování a stavu telefonu</string>
   <string name="telephony_optional_permission_explanation">Pro zobrazení jména kontaktu u telefonního čísla je potřeba udělit oprávnění ke kontaktům v telefonu</string>
@@ -345,4 +347,8 @@
     <item>Světlý</item>
     <item>Tmavý</item>
   </string-array>
+  <string name="report_bug">Nahlásit chybu</string>
+  <string name="donate">Přispět</string>
+  <string name="source_code">Zdrojový kód</string>
+  <string name="licenses">Licence</string>
 </resources>
