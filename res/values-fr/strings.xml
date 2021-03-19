@@ -8,6 +8,8 @@
   <string name="pref_plugin_telephony_desc">Envoie des notifications pour les appels entrants</string>
   <string name="pref_plugin_battery">Rapport sur la batterie</string>
   <string name="pref_plugin_battery_desc">Rapport périodique sur l\'état de la batterie</string>
+  <string name="pref_plugin_connectivity_report">Rapport sur la connectivité</string>
+  <string name="pref_plugin_connectivity_report_desc">Signaler la force du signal du réseau et son état</string>
   <string name="pref_plugin_sftp">Exposer le système de fichiers</string>
   <string name="pref_plugin_sftp_desc">Permettre de parcourir le système de fichiers du périphérique à distance</string>
   <string name="pref_plugin_clipboard">Synchronisation avec le presse-papiers</string>
@@ -74,6 +76,18 @@
     <item>Relativement forte</item>
     <item>Très forte</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Envoyez les appuis de touches vers</string>
+  <string name="sendkeystrokes_textbox_hint">Envoyez les appuis de touches vers l\'hôte</string>
+  <string name="sendkeystrokes_disabled_toast">L\'envoi des appuis de touches est désactivé. Veuillez l\'activer dans la configuration.</string>
+  <string name="sendkeystrokes_wrong_data">Type « MIME » non valable. Doit être « text/x-keystrokes »</string>
+  <string name="sendkeystrokes_sent_text">Envoi de %1s vers le périphérique %2s</string>
+  <string name="sendkeystrokes_pref_category_summary">Ce module permet aux autres applications de partager des portions de texte comme des appuis de touches, qui seront envoyées vers l\'hôte connecté.</string>
+  <string name="sendkeystrokes_pref_category_title">Envoyez les appuis de touches</string>
+  <string name="sendkeystrokes_pref_enabled">Autoriser l\'envoi des appuis de touches</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Attendre des données avec le type « MIME » « text/x-keystrokes »</string>
+  <string name="sendkeystrokes_safe_text_enabled">Envoyez du texte confirmé immédiatement</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Envoyez des chaînes courtes uniquement numériques sans confirmation</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Envoyez comme appuis de touches</string>
   <string name="category_connected_devices">Périphériques connectés</string>
   <string name="category_not_paired_devices">Périphériques disponibles</string>
   <string name="category_remembered_devices">Périphériques mémorisés</string>
