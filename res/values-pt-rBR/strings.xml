@@ -8,6 +8,7 @@
   <string name="pref_plugin_telephony_desc">Envia notificações de chamadas recebidas</string>
   <string name="pref_plugin_battery">Relatório da bateria</string>
   <string name="pref_plugin_battery_desc">Informação periódica do status da bateria</string>
+  <string name="pref_plugin_connectivity_report">Relatório de conectividade</string>
   <string name="pref_plugin_sftp">Exposição do sistema de arquivos</string>
   <string name="pref_plugin_sftp_desc">Permite navegar remotamente pelo sistema de arquivos deste telefone</string>
   <string name="pref_plugin_clipboard">Sincronizar área de transferência</string>

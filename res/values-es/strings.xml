@@ -8,6 +8,8 @@
   <string name="pref_plugin_telephony_desc">Enviar notificaciones por llamadas entrantes</string>
   <string name="pref_plugin_battery">Informe de la batería</string>
   <string name="pref_plugin_battery_desc">Informar periódicamente del estado de la batería</string>
+  <string name="pref_plugin_connectivity_report">Informe de conectividad</string>
+  <string name="pref_plugin_connectivity_report_desc">Informe de fuerza de la señal de red y su estado</string>
   <string name="pref_plugin_sftp">Mostrar el sistema de archivos</string>
   <string name="pref_plugin_sftp_desc">Permite examinar de forma remota el sistema de archivos de este dispositivo</string>
   <string name="pref_plugin_clipboard">Sincronización del portapapeles</string>
@@ -74,6 +76,18 @@
     <item>Fuerte</item>
     <item>Más fuerte</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Enviar pulsaciones a</string>
+  <string name="sendkeystrokes_textbox_hint">Enviar pulsaciones al servidor</string>
+  <string name="sendkeystrokes_disabled_toast">Enviar pulsaciones está desactivado - activelo en las preferencias</string>
+  <string name="sendkeystrokes_wrong_data">Tipo mime inválido - necesita ser «text/x-keystrokes»</string>
+  <string name="sendkeystrokes_sent_text">Enviado %1s al dispositivo %2s</string>
+  <string name="sendkeystrokes_pref_category_summary">Este módulo permite a otras aplicaciones compartir extractos de texto como pulsaciones que son enviadas al servidor conectado</string>
+  <string name="sendkeystrokes_pref_category_title">Enviar pulsaciones</string>
+  <string name="sendkeystrokes_pref_enabled">Activar el envío de pulsaciones</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Escuchar datos con tipo mime «text/x-keystrokes»</string>
+  <string name="sendkeystrokes_safe_text_enabled">"Envío inmediato de texto seguro "</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Enviar cadenas numéricas cortas sin confirmación</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Enviar como pulsaciones</string>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos disponibles</string>
   <string name="category_remembered_devices">Dispositivos recordados</string>
