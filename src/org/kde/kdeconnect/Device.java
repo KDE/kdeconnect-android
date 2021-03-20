@@ -754,25 +754,16 @@ public class Device implements BaseLink.PacketReceiver {
             return false;
         }
 
-        boolean success;
-        try {
-            success = plugin.onCreate();
-        } catch (Exception e) {
-            success = false;
-            Log.e("KDE/addPlugin", "plugin failed to load " + pluginKey, e);
-        }
-
         plugins.put(pluginKey, plugin);
 
         if (!plugin.checkRequiredPermissions()) {
             Log.e("KDE/addPlugin", "No permission " + pluginKey);
             plugins.remove(pluginKey);
             pluginsWithoutPermissions.put(pluginKey, plugin);
-            success = false;
+            return false;
         } else {
             Log.i("KDE/addPlugin", "Permissions OK " + pluginKey);
             pluginsWithoutPermissions.remove(pluginKey);
-
             if (plugin.checkOptionalPermissions()) {
                 Log.i("KDE/addPlugin", "Optional Permissions OK " + pluginKey);
                 pluginsWithoutOptionalPermissions.remove(pluginKey);
@@ -782,7 +773,12 @@ public class Device implements BaseLink.PacketReceiver {
             }
         }
 
-        return success;
+        try {
+            return plugin.onCreate();
+        } catch (Exception e) {
+            Log.e("KDE/addPlugin", "plugin failed to load " + pluginKey, e);
+            return false;
+        }
     }
 
     private synchronized boolean removePlugin(String pluginKey) {
