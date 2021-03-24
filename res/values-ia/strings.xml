@@ -8,6 +8,7 @@
   <string name="pref_plugin_telephony_desc">Invia notificationes per appellos in arrivata</string>
   <string name="pref_plugin_battery">Reporto de batteria</string>
   <string name="pref_plugin_battery_desc">Periodicamente reporta stato de batteria</string>
+  <string name="pref_plugin_connectivity_report">Reporto de connectivitate</string>
   <string name="pref_plugin_sftp_desc">Permitte navigat in le systema de file de iste dispositivo remotemente</string>
   <string name="pref_plugin_clipboard">Sync de area de transferentia</string>
   <string name="pref_plugin_clipboard_desc">Comparti le contento de area de transferentia</string>
@@ -49,6 +50,8 @@
   <string name="device_menu_plugins">"Preferentias de plugin "</string>
   <string name="device_menu_unpair">De-Associa</string>
   <string name="unknown_device">Dispositivo incognite</string>
+  <string name="error_not_reachable">Dispositivo non attingibile</string>
+  <string name="error_timed_out">Expirate</string>
   <string name="error_canceled_by_other_peer">Cancellate per altere pare</string>
   <string name="pair_requested">Coppiar requirite</string>
   <plurals name="outgoing_file_title">
@@ -79,9 +82,11 @@
   <string name="custom_device_fab_hint">Adde un dispositivo</string>
   <string name="undo">Annulla</string>
   <string name="share">Comparti</string>
+  <string name="sftp_sdcard">Sd Card</string>
   <string name="sftp_readonly">(solmente de lectura)</string>
   <string name="add_device_dialog_title">Adde dispositivo</string>
   <string name="add_device_hint">Nomine de hospite o adresse IP</string>
+  <string name="sftp_storage_preference_click_to_select">pulsa pro seliger</string>
   <string name="sftp_storage_preference_display_name">Nomine de monstrar</string>
   <string name="sftp_action_mode_menu_delete">Dele</string>
   <string name="send_files">Invia files</string>
@@ -137,4 +142,8 @@
     <item>Legier</item>
     <item>Dark</item>
   </string-array>
+  <string name="report_bug">Reporta Bug</string>
+  <string name="donate">Dona</string>
+  <string name="source_code">Codice fonte</string>
+  <string name="licenses">Licentias</string>
 </resources>
