@@ -8,6 +8,8 @@
   <string name="pref_plugin_telephony_desc">发送来电通知</string>
   <string name="pref_plugin_battery">电池报告</string>
   <string name="pref_plugin_battery_desc">定期报告电池状态</string>
+  <string name="pref_plugin_connectivity_report">连接报告</string>
+  <string name="pref_plugin_connectivity_report_desc">报告网络信号强度和状态</string>
   <string name="pref_plugin_sftp">开放文件系统</string>
   <string name="pref_plugin_sftp_desc">允许远程浏览设备的文件系统</string>
   <string name="pref_plugin_clipboard">剪贴板同步</string>
