@@ -78,10 +78,13 @@
   </string-array>
   <string name="sendkeystrokes_send_to">Posílat úhozy kláves na</string>
   <string name="sendkeystrokes_textbox_hint">Posílat úhozy kláves na hostitele</string>
+  <string name="sendkeystrokes_disabled_toast">Odesílání stisků klávesnice je zakázáno - povolte jej v nastavení</string>
   <string name="sendkeystrokes_wrong_data">Neplatný typ MIME - musí být \'text/x-keystrokes\'</string>
   <string name="sendkeystrokes_sent_text">Poslat %1s na zařízení %2s</string>
+  <string name="sendkeystrokes_pref_category_summary">Tento modul umožňuje ostatním aplikacím sdílet kusy textu jako úhozy kláves, které budou odeslány na jiný připojený stroj</string>
   <string name="sendkeystrokes_pref_category_title">Posílat úhozy kláves</string>
   <string name="sendkeystrokes_pref_enabled">Povolit odesílání úhozů kláves</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Naslouchat datům s typem MIME \'text/x-keystrokes\'</string>
   <string name="sendkeystrokes_safe_text_enabled">Poslat bezpečný text ihned</string>
   <string name="sendkeystrokes_safe_text_enabled_summary">Poslat krátké číselné řetězce bez potvrzení</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Posílat jako úhozy kláves</string>
