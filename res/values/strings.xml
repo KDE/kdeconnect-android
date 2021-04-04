@@ -132,6 +132,9 @@
     <string name="pref_sendkeystrokes_enabled" translatable="false">pref_sendkeystrokes_enabled</string>
     <string name="pref_send_safe_text_immediately" translatable="false">pref_send_safe_text_immediately</string>
 
+    <string name="mouse_receiver_plugin_description">Receive remote mouse movement</string>
+    <string name="mouse_receiver_plugin_name">Mouse receiver</string>
+    <string name="mouse_receiver_no_permissions">You need to enable Accessibility Service</string>
     <string name="category_connected_devices">Connected devices</string>
     <string name="category_not_paired_devices">Available devices</string>
     <string name="category_remembered_devices">Remembered devices</string>

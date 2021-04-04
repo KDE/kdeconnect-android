@@ -334,6 +334,16 @@
                 <action android:name="android.service.chooser.ChooserTargetService" />
             </intent-filter>
         </service>
+        <service
+            android:name="org.kde.kdeconnect.Plugins.MouseReceiverPlugin.MouseReceiverService"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/mouse_receiver_service" />
+        </service>
 
         <activity
             android:name="org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationFilterActivity"
