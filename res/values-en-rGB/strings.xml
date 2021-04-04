@@ -8,6 +8,8 @@
   <string name="pref_plugin_telephony_desc">Send notifications for incoming calls</string>
   <string name="pref_plugin_battery">Battery report</string>
   <string name="pref_plugin_battery_desc">Periodically report battery status</string>
+  <string name="pref_plugin_connectivity_report">Connectivity report</string>
+  <string name="pref_plugin_connectivity_report_desc">Report network signal strength and status</string>
   <string name="pref_plugin_sftp">Filesystem expose</string>
   <string name="pref_plugin_sftp_desc">Allows to browse this device\'s filesystem remotely</string>
   <string name="pref_plugin_clipboard">Clipboard sync</string>
@@ -74,6 +76,18 @@
     <item>Stronger</item>
     <item>Strongest</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Send keystrokes to</string>
+  <string name="sendkeystrokes_textbox_hint">Send keystrokes to host</string>
+  <string name="sendkeystrokes_disabled_toast">Sending keystrokes is disabled - enable it in the settings</string>
+  <string name="sendkeystrokes_wrong_data">Invalid mime type - needs to be \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_sent_text">Sent %1s to device %2s</string>
+  <string name="sendkeystrokes_pref_category_summary">This module allows other apps to share text segments as keystrokes which will get send to the connected host</string>
+  <string name="sendkeystrokes_pref_category_title">Send Keystrokes</string>
+  <string name="sendkeystrokes_pref_enabled">Enable Keystrokes sending</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Listen for data with mime type \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_safe_text_enabled">Send safe text immediately</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Send short only-numeric strings without confirmation</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Send as keystrokes</string>
   <string name="category_connected_devices">Connected devices</string>
   <string name="category_not_paired_devices">Available devices</string>
   <string name="category_remembered_devices">Remembered devices</string>
