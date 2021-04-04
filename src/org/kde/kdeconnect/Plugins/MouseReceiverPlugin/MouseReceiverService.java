@@ -85,7 +85,7 @@ public class MouseReceiverService extends AccessibilityService {
 
         hideRunnable = () -> {
             cursorView.setVisibility(View.GONE);
-            Log.i("MouseReceiverService", "hideAfter5Seconds: done");
+            Log.i("MouseReceiverService", "Hiding pointer due to inactivity");
         };
         runHandler = new Handler();
 
@@ -95,7 +95,6 @@ public class MouseReceiverService extends AccessibilityService {
     private void hideAfter5Seconds() {
         runHandler.removeCallbacks(hideRunnable);
         runHandler.postDelayed(hideRunnable, 5000);
-        Log.i("MouseReceiverService", "hideAfter5Seconds: called");
     }
 
     public float getX() {
