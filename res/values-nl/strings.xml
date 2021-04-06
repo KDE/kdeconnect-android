@@ -88,6 +88,9 @@
   <string name="sendkeystrokes_safe_text_enabled">Stuur tekst voor opslag onmiddellijk</string>
   <string name="sendkeystrokes_safe_text_enabled_summary">Stuur korte alleen-numerieke tekenreeks zonder confirmatie</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Als toetsaanslagen verzenden</string>
+  <string name="mouse_receiver_plugin_description">Muisbewegingen van afstand ontvangen</string>
+  <string name="mouse_receiver_plugin_name">Muisontvanger</string>
+  <string name="mouse_receiver_no_permissions">U moet service toegankelijkheid inschakelen</string>
   <string name="category_connected_devices">Verbonden apparaten</string>
   <string name="category_not_paired_devices">Beschikbare apparaten</string>
   <string name="category_remembered_devices">Onthouden apparaten</string>

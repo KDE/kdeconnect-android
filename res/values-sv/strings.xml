@@ -88,6 +88,9 @@
   <string name="sendkeystrokes_safe_text_enabled">Skicka säker text omedelbart</string>
   <string name="sendkeystrokes_safe_text_enabled_summary">Skicka bara korta numeriska strängar utan att bekräfta</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Skicka som tangentnedtryckningar</string>
+  <string name="mouse_receiver_plugin_description">Ta emot externa musrörelser</string>
+  <string name="mouse_receiver_plugin_name">Musmottagare</string>
+  <string name="mouse_receiver_no_permissions">Du måste aktivera åtkomsttjänsten</string>
   <string name="category_connected_devices">Anslutna apparater</string>
   <string name="category_not_paired_devices">Tillgängliga apparater</string>
   <string name="category_remembered_devices">Ihågkomna apparater</string>

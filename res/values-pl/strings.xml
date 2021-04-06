@@ -8,6 +8,8 @@
   <string name="pref_plugin_telephony_desc">Wysyła powiadomienia o rozmowach przychodzących</string>
   <string name="pref_plugin_battery">Stan baterii</string>
   <string name="pref_plugin_battery_desc">Okresowo powiadamia o stanie baterii</string>
+  <string name="pref_plugin_connectivity_report">Sprawozdanie z łączności</string>
+  <string name="pref_plugin_connectivity_report_desc">Zgłaszanie siły i stanu sygnału sieciowego</string>
   <string name="pref_plugin_sftp">Udostępnianie systemu plików</string>
   <string name="pref_plugin_sftp_desc">Daje dostęp do plików innemu urządzeniu</string>
   <string name="pref_plugin_clipboard">Synchronizacja schowka</string>
@@ -74,6 +76,21 @@
     <item>Silniejsze</item>
     <item>Najsilniejsze</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Wyślij naciśnięcia klawiszy do</string>
+  <string name="sendkeystrokes_textbox_hint">Wyślij naciśnięcia klawiszy do gospodarza</string>
+  <string name="sendkeystrokes_disabled_toast">Wysyłanie naciśnięć klawiszy jest wyłączone - włącz je w ustawieniach</string>
+  <string name="sendkeystrokes_wrong_data">Nieprawidłowy rodzaj mime - musi być \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_sent_text">Wysłano %1s na urządzenie %2s</string>
+  <string name="sendkeystrokes_pref_category_summary">Ten moduł umożliwia innym programom współdzielenie odcinków tekstu jako naciśnięć klawiszy, które będą wysyłane do podłączonego gospodarza</string>
+  <string name="sendkeystrokes_pref_category_title">Wysyłanie naciśnięć klawiszy</string>
+  <string name="sendkeystrokes_pref_enabled">Włącz wysyłanie naciśnięć klawiszy</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Nasłuchuj danych o rodzaju mime \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_safe_text_enabled">Wyślij bezpieczny tekst natychmiastowo</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Wyślij krótkie, liczbowe ciągi znaków, bez potwierdzenia</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Wysyłaj jako naciśnięcia klawiszy</string>
+  <string name="mouse_receiver_plugin_description">Odbieranie zdalnych ruchów myszy</string>
+  <string name="mouse_receiver_plugin_name">Odbiornik myszy</string>
+  <string name="mouse_receiver_no_permissions">Musisz włączyć usługę dostępności</string>
   <string name="category_connected_devices">Podłączone urządzenia</string>
   <string name="category_not_paired_devices">Dostępne urządzenia</string>
   <string name="category_remembered_devices">Zapamiętane urządzenia</string>

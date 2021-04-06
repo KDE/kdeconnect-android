@@ -88,6 +88,9 @@
   <string name="sendkeystrokes_safe_text_enabled">Envia immediatament un text segur</string>
   <string name="sendkeystrokes_safe_text_enabled_summary">Només envia cadenes curtes numèriques sense confirmació</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Envia com a pulsacions de tecla</string>
+  <string name="mouse_receiver_plugin_description">Rep el moviment del ratolí remot</string>
+  <string name="mouse_receiver_plugin_name">Receptor del ratolí</string>
+  <string name="mouse_receiver_no_permissions">Cal que habiliteu el servei Accessibilitat</string>
   <string name="category_connected_devices">Dispositius connectats</string>
   <string name="category_not_paired_devices">Dispositius disponibles</string>
   <string name="category_remembered_devices">Dispositius recordats</string>

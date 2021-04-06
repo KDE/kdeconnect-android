@@ -88,6 +88,9 @@
   <string name="sendkeystrokes_safe_text_enabled">Надсилати безпечний текст негайно</string>
   <string name="sendkeystrokes_safe_text_enabled_summary">Надсилати короткі рядки з цифр без підтвердження</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Надсилати як натискання клавіш</string>
+  <string name="mouse_receiver_plugin_description">Отримувати віддалені рухи мишею</string>
+  <string name="mouse_receiver_plugin_name">Отримання даних миші</string>
+  <string name="mouse_receiver_no_permissions">Вам слід увімкнути службу доступності</string>
   <string name="category_connected_devices">З’єднані пристрої</string>
   <string name="category_not_paired_devices">Доступні пристрої</string>
   <string name="category_remembered_devices">Відомі пристрої</string>

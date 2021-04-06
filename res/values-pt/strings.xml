@@ -88,6 +88,9 @@
   <string name="sendkeystrokes_safe_text_enabled">Enviar texto de forma segura e imediata</string>
   <string name="sendkeystrokes_safe_text_enabled_summary">Enviar textos curtos e apenas numéricos sem confirmação</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Enviar como eventos de teclado</string>
+  <string name="mouse_receiver_plugin_description">Receber o movimento remoto do rato</string>
+  <string name="mouse_receiver_plugin_name">Receptor do rato</string>
+  <string name="mouse_receiver_no_permissions">Precisa de activar o Serviço de Acessibilidade</string>
   <string name="category_connected_devices">Dispositivos ligados</string>
   <string name="category_not_paired_devices">Dispositivos disponíveis</string>
   <string name="category_remembered_devices">Dispositivos recordados</string>
