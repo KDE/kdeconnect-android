@@ -122,8 +122,7 @@ public class MouseReceiverPlugin extends Plugin {
 
     @Override
     public String getDescription() {
-        return "MouseReceiverPlugin.getDescription()";
-        //return context.getString(R.string.pref_plugin_remotekeyboard_desc);
+        return context.getString(R.string.mouse_receiver_plugin_description);
     }
 
     @Override
