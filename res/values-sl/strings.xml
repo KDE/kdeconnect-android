@@ -88,6 +88,7 @@
   <string name="sendkeystrokes_safe_text_enabled">Pošlji varno besedilo takoj</string>
   <string name="sendkeystrokes_safe_text_enabled_summary">Pošlji kratke samo številčne niz brez potrditve</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Pošlji kot pritiske tipk</string>
+  <string name="mouse_receiver_plugin_description">Sprejemaj gibanje oddaljene miške</string>
   <string name="category_connected_devices">Povezane naprave</string>
   <string name="category_not_paired_devices">Naprave na voljo</string>
   <string name="category_remembered_devices">Naprave, ki so zapomnjene</string>
