@@ -23,7 +23,7 @@ import java.io.File;
 
 import androidx.annotation.NonNull;
 import androidx.documentfile.provider.DocumentFile;
-import androidx.preference.CheckBoxPreference;
+import androidx.preference.SwitchPreferenceCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 import androidx.preference.PreferenceScreen;
@@ -49,7 +49,7 @@ public class ShareSettingsFragment extends PluginSettingsFragment {
         super.onCreatePreferences(savedInstanceState, rootKey);
 
         PreferenceScreen preferenceScreen = getPreferenceScreen();
-        final CheckBoxPreference customDownloads = (CheckBoxPreference) preferenceScreen.findPreference("share_destination_custom");
+        final SwitchPreferenceCompat customDownloads = preferenceScreen.findPreference("share_destination_custom");
         filePicker = preferenceScreen.findPreference("share_destination_folder_preference");
 
         if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)) {
