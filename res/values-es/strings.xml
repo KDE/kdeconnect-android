@@ -103,7 +103,6 @@
   <string name="error_canceled_by_other_peer">Cancelado por la otra parte</string>
   <string name="encryption_info_title">Información de cifrado</string>
   <string name="encryption_info_msg_no_ssl">El otro dispositivo no dispone de una versión reciente de KDE Connect, se usará un método de cifrado antiguo.</string>
-  <string name="my_device_fingerprint">La huella digital SHA1 del certificado de su dispositivo es:</string>
   <string name="remote_device_fingerprint">La huella digital SHA256 del certificado del dispositivo remoto es:</string>
   <string name="pair_requested">Vinculación solicitada</string>
   <string name="pairing_request_from">Solicitud de vinculación de %1s</string>

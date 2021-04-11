@@ -106,7 +106,7 @@
   <string name="error_canceled_by_other_peer">Cancel·lat per l\'altre parell</string>
   <string name="encryption_info_title">Informació de l\'encriptatge</string>
   <string name="encryption_info_msg_no_ssl">L\'altre dispositiu no usa una versió recent del KDE Connect, s\'utilitzarà el mètode d\'encriptatge antic.</string>
-  <string name="my_device_fingerprint">L\'empremta digital SHA1 del certificat del vostre dispositiu és:</string>
+  <string name="my_device_fingerprint">L\'empremta digital SHA256 del certificat del vostre dispositiu és:</string>
   <string name="remote_device_fingerprint">L\'empremta digital SHA256 del certificat del dispositiu remot és:</string>
   <string name="pair_requested">S\'ha demanat aparellar</string>
   <string name="pairing_request_from">S\'ha demanat aparellar des de %1s</string>

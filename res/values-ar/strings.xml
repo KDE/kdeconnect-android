@@ -68,7 +68,6 @@
   <string name="error_canceled_by_other_peer">ألغاه ندّ آخر</string>
   <string name="encryption_info_title">معلومات التّعمية</string>
   <string name="encryption_info_msg_no_ssl">لا يستخدم الجهاز الآخر إصدارة حديثة من «كدي المتّصل»، ستُستخدم طريقة التّعمية القديمة.</string>
-  <string name="my_device_fingerprint">بصمة SHA1 لشهادة جهازك هي:</string>
   <string name="pair_requested">طُلب الاقتران</string>
   <string name="pairing_request_from">طلب اقتران من %1s</string>
   <string name="received_file_text">المس لفتح \'%1s\'</string>

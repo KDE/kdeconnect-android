@@ -86,7 +86,6 @@
   <string name="error_canceled_by_other_peer">他のピアにキャンセルされました</string>
   <string name="encryption_info_title">暗号化情報</string>
   <string name="encryption_info_msg_no_ssl">他のデバイスは最近のバージョンの KDE Connect を利用していません。古い暗号化方式を使用しています</string>
-  <string name="my_device_fingerprint">このデバイスの証明書の SHA1 フィンガープリント:</string>
   <string name="pair_requested">ペアリング要求済み</string>
   <string name="pairing_request_from">%1s からペアリングを要求されました</string>
   <plurals name="incoming_file_title">

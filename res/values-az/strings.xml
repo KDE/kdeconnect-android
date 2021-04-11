@@ -103,7 +103,6 @@
   <string name="error_canceled_by_other_peer">Digər istifadəçi ləğv etdi</string>
   <string name="encryption_info_title">Şifrələmə məlumatı</string>
   <string name="encryption_info_msg_no_ssl">Digər cihaz köhnə şifrələmə metodu istifadə edən KDE Connect\'in sonuncu versiyasını istifadə etmir.</string>
-  <string name="my_device_fingerprint">Cihazınızın SHA1 şifrə izi:</string>
   <string name="remote_device_fingerprint">Uzaq cihaz sertifikatının SHA256 şifrə izi:</string>
   <string name="pair_requested">Qoşulma soruşuldu</string>
   <string name="pairing_request_from">%1s tərəfindən qoşulma sorğusu</string>

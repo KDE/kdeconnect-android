@@ -103,7 +103,6 @@
   <string name="error_canceled_by_other_peer">Cancelled by other peer</string>
   <string name="encryption_info_title">Encryption Info</string>
   <string name="encryption_info_msg_no_ssl">The other device doesn\'t use a recent version of KDE Connect, using the legacy encryption method.</string>
-  <string name="my_device_fingerprint">SHA1 fingerprint of your device certificate is:</string>
   <string name="remote_device_fingerprint">SHA256 fingerprint of remote device certificate is:</string>
   <string name="pair_requested">Pair requested</string>
   <string name="pairing_request_from">Pairing request from %1s</string>

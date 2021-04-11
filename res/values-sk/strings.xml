@@ -89,7 +89,6 @@
   <string name="error_canceled_by_other_peer">Zrušené druhým účastníkom</string>
   <string name="encryption_info_title">Informácie o šifrovaní</string>
   <string name="encryption_info_msg_no_ssl">Druhé zariadenie nepoužíva najnovšiu verziu aplikácie KDE Connect. Použije sa zastaralý spôsob šifrovania.</string>
-  <string name="my_device_fingerprint">Odtlačok SHA1 certifikátu vášho zariadenia je:</string>
   <string name="remote_device_fingerprint">Odtlačok SHA256 certifikátu vzdialeného zariadenia je:</string>
   <string name="pair_requested">Spárovanie vyžiadané</string>
   <string name="pairing_request_from">Požiadavka na spárovanie zo zariadenia %1s</string>

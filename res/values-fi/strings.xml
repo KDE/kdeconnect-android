@@ -89,7 +89,6 @@
   <string name="error_canceled_by_other_peer">Vertaiskäyttäjä perui</string>
   <string name="encryption_info_title">Salaustiedot</string>
   <string name="encryption_info_msg_no_ssl">Toinen laite ei käytä KDE Connectin uudehkoa versiota, joten käytetään vanhaa salausmenetelmää.</string>
-  <string name="my_device_fingerprint">Laitteen varmenteen SHA1-sormenjälki on:</string>
   <string name="remote_device_fingerprint">Etälaitteen varmenteen SHA256-sormenjälki on:</string>
   <string name="pair_requested">Paripyyntö</string>
   <string name="pairing_request_from">Paripyyntö laitteesta %1s</string>

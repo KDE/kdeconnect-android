@@ -89,7 +89,6 @@
   <string name="error_canceled_by_other_peer">Ακυρώθηκε από άλλον χρήστη</string>
   <string name="encryption_info_title">Πληροφορίες κρυπτογράφησης</string>
   <string name="encryption_info_msg_no_ssl">Η άλλη συσκευή δεν χρησιμοποιεί μια πρόσφατη έκδοση του KDE Connect, θα χρησιμοποιηθεί η παλαιά μέθοδος κρυπτογράφησης.</string>
-  <string name="my_device_fingerprint">Το ίχνος SHA1 του πιστοποιητικού της συσκευής σας είναι:</string>
   <string name="remote_device_fingerprint">Το ίχνος SHA256 του πιστοποιητικού της απομακρυσμένης συσκευής είναι:</string>
   <string name="pair_requested">Ζητήθηκε σύζευξη</string>
   <string name="pairing_request_from">Αίτημα σύζευξης από %1s</string>

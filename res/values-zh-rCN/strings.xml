@@ -103,7 +103,6 @@
   <string name="error_canceled_by_other_peer">已被其他对等点取消</string>
   <string name="encryption_info_title">加密信息</string>
   <string name="encryption_info_msg_no_ssl">另一设备没有使用最新的 KDE Connect，使用旧版加密方法。</string>
-  <string name="my_device_fingerprint">您的设备证书的 SHA1 指纹是：</string>
   <string name="remote_device_fingerprint">远程设备证书的 SHA256 指纹是：</string>
   <string name="pair_requested">已请求配对</string>
   <string name="pairing_request_from">来自 %1s 的配对请求</string>

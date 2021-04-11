@@ -89,7 +89,6 @@
   <string name="error_canceled_by_other_peer">Beste kideak utzita</string>
   <string name="encryption_info_title">Zifratze informazioa</string>
   <string name="encryption_info_msg_no_ssl">Beste gailuak ez du oraintsuko KDE Connect bertsio bat erabiltzen, erabili aurreko bertsioetako metodoa.</string>
-  <string name="my_device_fingerprint">Zure gailuaren ziurtagiriaren SHA1 hatz-marka hau da:</string>
   <string name="remote_device_fingerprint">Urruneko gailuaren ziurtagiriaren SHA256 hatz-marka hau da:</string>
   <string name="pair_requested">Parekatzea eskatu da</string>
   <string name="pairing_request_from">Parekatzeko eskaria %1s-tik</string>

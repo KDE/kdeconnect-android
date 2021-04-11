@@ -89,7 +89,6 @@
   <string name="error_canceled_by_other_peer">Teine pool katkestas</string>
   <string name="encryption_info_title">Krüptimise teave</string>
   <string name="encryption_info_msg_no_ssl">Teine seade ei kasuta KDE Connecti uusimat versiooni ja tarvitab krüptimisel pärandmeetodit.</string>
-  <string name="my_device_fingerprint">Sinu seadme sertifikaadi SHA1 sõrmejälg on:</string>
   <string name="pair_requested">Paardumise soov</string>
   <string name="pairing_request_from">Paardumise soov seadmest %1s</string>
   <plurals name="incoming_file_title">
