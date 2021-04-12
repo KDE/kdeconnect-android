@@ -89,6 +89,8 @@
   <string name="sendkeystrokes_safe_text_enabled_summary">Pošlji kratke samo številčne niz brez potrditve</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Pošlji kot pritiske tipk</string>
   <string name="mouse_receiver_plugin_description">Sprejemaj gibanje oddaljene miške</string>
+  <string name="mouse_receiver_plugin_name">Sprejemnik miške</string>
+  <string name="mouse_receiver_no_permissions">Omogočiti morate storitev dostopnosti</string>
   <string name="category_connected_devices">Povezane naprave</string>
   <string name="category_not_paired_devices">Naprave na voljo</string>
   <string name="category_remembered_devices">Naprave, ki so zapomnjene</string>
@@ -104,6 +106,7 @@
   <string name="error_canceled_by_other_peer">Preklican od drugega vrstnika</string>
   <string name="encryption_info_title">Informacija o šifriranju</string>
   <string name="encryption_info_msg_no_ssl">Druga naprava ne uporablja najnovejše različice KDE Connect, uporablja podedovano metodo šifriranja.</string>
+  <string name="my_device_fingerprint">Prstni odtis SHA256 certifikata vaše naprave je:</string>
   <string name="remote_device_fingerprint">Prstni odtis SHA256 certifikata oddaljene naprave je:</string>
   <string name="pair_requested">Zahtevan je par</string>
   <string name="pairing_request_from">Zahtevek za uparjanje od %1s</string>
