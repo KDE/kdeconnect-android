@@ -88,6 +88,9 @@
   <string name="sendkeystrokes_safe_text_enabled">Invia subito un testo sicuro</string>
   <string name="sendkeystrokes_safe_text_enabled_summary">Invia brevi stringhe composte da soli numeriche senza conferma</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Invia come combinazioni di tasti</string>
+  <string name="mouse_receiver_plugin_description">Ricevi i movimenti remoti del mouse</string>
+  <string name="mouse_receiver_plugin_name">Ricevitore del mouse</string>
+  <string name="mouse_receiver_no_permissions">Devi abilitare Servizio di accessibilità</string>
   <string name="category_connected_devices">Dispositivi connessi</string>
   <string name="category_not_paired_devices">Dispositivi disponibili</string>
   <string name="category_remembered_devices">Dispositivi memorizzati</string>
@@ -103,6 +106,7 @@
   <string name="error_canceled_by_other_peer">Annullata dal dispositivo remoto</string>
   <string name="encryption_info_title">Informazioni di cifratura</string>
   <string name="encryption_info_msg_no_ssl">L\'altro dispositivo non utilizza una versione recente di KDE Connect, utilizzando il metodo di cifratura precedente.</string>
+  <string name="my_device_fingerprint">L\'impronta digitale SHA256 del certificato di dispositivo è:</string>
   <string name="remote_device_fingerprint">L\'impronta digitale SHA256 del certificato del dispositivo remoto è:</string>
   <string name="pair_requested">Richiesta di associazione</string>
   <string name="pairing_request_from">Richiesta associazione da %1s</string>

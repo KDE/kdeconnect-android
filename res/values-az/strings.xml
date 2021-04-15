@@ -88,6 +88,9 @@
   <string name="sendkeystrokes_safe_text_enabled">Təhlükəsiz mətni dərhal göndərin</string>
   <string name="sendkeystrokes_safe_text_enabled_summary">Yalnız qısa nömrəli sətirləri təsdiqləmədən göndərin</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Düymə vuruşu kimi göndərmək</string>
+  <string name="mouse_receiver_plugin_description">Uzaqdakı siçanın hərəkətini qəbul etmək</string>
+  <string name="mouse_receiver_plugin_name">Siçanı qəbul edən</string>
+  <string name="mouse_receiver_no_permissions">Xüsusi İmkanlarda xidməti aktiv etməlisiniz</string>
   <string name="category_connected_devices">Qoşulmuş cihazlar</string>
   <string name="category_not_paired_devices">Mövcud cihazlar</string>
   <string name="category_remembered_devices">Yadda saxlanılan cihazlar</string>
@@ -103,6 +106,7 @@
   <string name="error_canceled_by_other_peer">Digər istifadəçi ləğv etdi</string>
   <string name="encryption_info_title">Şifrələmə məlumatı</string>
   <string name="encryption_info_msg_no_ssl">Digər cihaz köhnə şifrələmə metodu istifadə edən KDE Connect\'in sonuncu versiyasını istifadə etmir.</string>
+  <string name="my_device_fingerprint">Cihazınızın sertifikatının SHA256 şifrə izi:</string>
   <string name="remote_device_fingerprint">Uzaq cihaz sertifikatının SHA256 şifrə izi:</string>
   <string name="pair_requested">Qoşulma soruşuldu</string>
   <string name="pairing_request_from">%1s tərəfindən qoşulma sorğusu</string>

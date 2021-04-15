@@ -9,6 +9,7 @@
   <string name="pref_plugin_battery">Relatório da bateria</string>
   <string name="pref_plugin_battery_desc">Informação periódica do status da bateria</string>
   <string name="pref_plugin_connectivity_report">Relatório de conectividade</string>
+  <string name="pref_plugin_connectivity_report_desc">Reportar o nível de sinal da rede e o status</string>
   <string name="pref_plugin_sftp">Exposição do sistema de arquivos</string>
   <string name="pref_plugin_sftp_desc">Permite navegar remotamente pelo sistema de arquivos deste telefone</string>
   <string name="pref_plugin_clipboard">Sincronizar área de transferência</string>
@@ -75,6 +76,10 @@
     <item>Forte</item>
     <item>Muito forte</item>
   </string-array>
+  <string name="sendkeystrokes_sent_text">Enviar %1s para o dispositivo %2s</string>
+  <string name="mouse_receiver_plugin_description">Receber movimento de mouse remoto</string>
+  <string name="mouse_receiver_plugin_name">Receptor de mouse</string>
+  <string name="mouse_receiver_no_permissions">Você precisa habilitar o serviço de acessibilidade</string>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos disponíveis</string>
   <string name="category_remembered_devices">Dispositivos lembrados</string>
@@ -90,6 +95,7 @@
   <string name="error_canceled_by_other_peer">Cancelado pelo outro dispositivo</string>
   <string name="encryption_info_title">Informação de criptografia</string>
   <string name="encryption_info_msg_no_ssl">O outro dispositivo não usa uma versão recente do KDE Connect. Será utilizado o método antigo de criptografia.</string>
+  <string name="my_device_fingerprint">A impressão digital SHA256 do certificado do seu dispositivo é:</string>
   <string name="remote_device_fingerprint">A impressão digital SHA256 do certificado do dispositivo remoto é:</string>
   <string name="pair_requested">Solicitação de emparelhamento</string>
   <string name="pairing_request_from">Emparelhamento solicitado por %1s</string>
