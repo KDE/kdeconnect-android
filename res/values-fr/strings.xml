@@ -88,6 +88,9 @@
   <string name="sendkeystrokes_safe_text_enabled">Envoyez du texte confirmé immédiatement</string>
   <string name="sendkeystrokes_safe_text_enabled_summary">Envoyez des chaînes courtes uniquement numériques sans confirmation</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Envoyez comme appuis de touches</string>
+  <string name="mouse_receiver_plugin_description">Recevoir les mouvements de la souri distante</string>
+  <string name="mouse_receiver_plugin_name">Récepteur de souris</string>
+  <string name="mouse_receiver_no_permissions">Vous avez besoin d\'accéder au service « Accessibilité »</string>
   <string name="category_connected_devices">Périphériques connectés</string>
   <string name="category_not_paired_devices">Périphériques disponibles</string>
   <string name="category_remembered_devices">Périphériques mémorisés</string>
@@ -103,6 +106,7 @@
   <string name="error_canceled_by_other_peer">Annulé par un autre homologue</string>
   <string name="encryption_info_title">Informations de chiffrement</string>
   <string name="encryption_info_msg_no_ssl">Ce périphérique n\'utilise pas une version récente de KDE Connect qui utilise l\'ancienne méthode de chiffrement.</string>
+  <string name="my_device_fingerprint">L\'empreinte SHA256 du certificat de votre périphérique est :</string>
   <string name="remote_device_fingerprint">L\'empreinte « SHA256 » du certificat du périphérique distant est :</string>
   <string name="pair_requested">Paire demandée</string>
   <string name="pairing_request_from">Demande d\'association provenant de %1s</string>

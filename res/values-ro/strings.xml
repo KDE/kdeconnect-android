@@ -8,6 +8,8 @@
   <string name="pref_plugin_telephony_desc">Trimite notificări pentru apeluri de intrare</string>
   <string name="pref_plugin_battery">Raport acumulator</string>
   <string name="pref_plugin_battery_desc">Raportează periodic starea acumulatorului</string>
+  <string name="pref_plugin_connectivity_report">Raport de conectivitate</string>
+  <string name="pref_plugin_connectivity_report_desc">Raportează puterea și starea semnalului rețelei</string>
   <string name="pref_plugin_sftp">Expunere sistem de fișiere</string>
   <string name="pref_plugin_sftp_desc">Permite răsfoirea de la distanță a sistemul de fișiere al acestui dispozitiv</string>
   <string name="pref_plugin_clipboard">Sincronizare clipboard</string>
@@ -74,6 +76,21 @@
     <item>Mai puternică</item>
     <item>Cea mai puternică</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Trimite apăsări de taste către</string>
+  <string name="sendkeystrokes_textbox_hint">Trimite apăsări de taste către gazdă</string>
+  <string name="sendkeystrokes_disabled_toast">Trimiterea de apăsări de taste e dezactivată – activați-o în configurări</string>
+  <string name="sendkeystrokes_wrong_data">Tip MIME nevalid – trebuie să fie „text/x-keystrokes”</string>
+  <string name="sendkeystrokes_sent_text">Trimis %1s către dispozitivul %2s</string>
+  <string name="sendkeystrokes_pref_category_summary">Acest modul permite altor aplicații să partajeze fragmente de text ca apăsări de taste ce vor fi trimise către gazda conectată</string>
+  <string name="sendkeystrokes_pref_category_title">Trimite apăsări de taste</string>
+  <string name="sendkeystrokes_pref_enabled">Activează trimiterea de apăsări de taste</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Ascultă pentru date cu tipul MIME „text/x-keystrokes”</string>
+  <string name="sendkeystrokes_safe_text_enabled">Trimite textul sigur imediat</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Trimite șiruri numerice scurte fără confirmare</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Trimite ca apăsări de taste</string>
+  <string name="mouse_receiver_plugin_description">Primește mișcări de maus de la distanță</string>
+  <string name="mouse_receiver_plugin_name">Receptor pentru maus</string>
+  <string name="mouse_receiver_no_permissions">Trebuie să activați Serviciul de Accesibilitate</string>
   <string name="category_connected_devices">Dispozitive conectate</string>
   <string name="category_not_paired_devices">Dispozitive disponibile</string>
   <string name="category_remembered_devices">Dispozitive memorizate</string>
@@ -89,6 +106,7 @@
   <string name="error_canceled_by_other_peer">Anulat de către partener</string>
   <string name="encryption_info_title">Informații despre criptare</string>
   <string name="encryption_info_msg_no_ssl">Celălalt dispozitiv nu folosește o versiune recentă de KDE Connect, se va folosi metoda de criptare moștenită.</string>
+  <string name="my_device_fingerprint">Amprenta SHA256 a certificatului acestui dispozitiv e:</string>
   <string name="remote_device_fingerprint">Amprenta SHA256 a certificatului dispozitivului distant e:</string>
   <string name="pair_requested">Asociere cerută</string>
   <string name="pairing_request_from">Cerere de asociere de la %1s</string>
@@ -338,4 +356,8 @@
     <item>Luminoasă</item>
     <item>Întunecată</item>
   </string-array>
+  <string name="report_bug">Raportează defect</string>
+  <string name="donate">Donează</string>
+  <string name="source_code">Codul sursă</string>
+  <string name="licenses">Licențe</string>
 </resources>
