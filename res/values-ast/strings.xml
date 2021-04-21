@@ -77,6 +77,7 @@
   <string name="error_timed_out">Escosó\'l tiempu d\'espera</string>
   <string name="encryption_info_title">Información del cifráu</string>
   <string name="encryption_info_msg_no_ssl">L\'otru preséu nun executa una versión recién de KDE Connect y usa\'l métodu heredáu de cifráu.</string>
+  <string name="my_device_fingerprint">La buelga SHA256 d\'esti preséu ye:</string>
   <string name="remote_device_fingerprint">La buelga SHA256 del certificáu del preséu remotu:</string>
   <string name="pair_requested">Solicitóse l\'empareyamientu</string>
   <string name="pairing_request_from">Solicitú d\'empareyamientu de %1s</string>

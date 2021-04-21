@@ -7,6 +7,7 @@
   <string name="pref_plugin_telephony_desc">Gelen aramalar için bildirim gönder</string>
   <string name="pref_plugin_battery">Batarya raporu</string>
   <string name="pref_plugin_battery_desc">Batarya durumunu belirli aralıklarla raporla</string>
+  <string name="pref_plugin_connectivity_report_desc">Ağ sinyal gücünü ve durumunu bildirin</string>
   <string name="pref_plugin_sftp">Dosya sistemi gösterme</string>
   <string name="pref_plugin_sftp_desc">Bu aıygıtın dosya sistemine uzaktan gözatılmasına izin verir</string>
   <string name="pref_plugin_clipboard">Pano eşitleme</string>
@@ -33,6 +34,7 @@
   <string name="pref_plugin_sharereceiver_desc">Dosyaları ve URL\'leri aygıtlar arasında paylaş</string>
   <string name="device_list_empty">Aygıt yok</string>
   <string name="ok">Tamam</string>
+  <string name="sad_ok">Tamam :(</string>
   <string name="cancel">İptal</string>
   <string name="open_settings">Ayarları aç</string>
   <string name="no_permissions">Bildirimler erişebilmek için izine ihtiyacınız var</string>
@@ -202,9 +204,11 @@
   <string name="device_rename_confirm">Yeniden adlandır</string>
   <string name="refresh">Tazele</string>
   <string name="unreachable_description">Eşleştirilmiş aygıt ulaşılabilir değil. Aynı ağa bağlı olduğundan emin olun.</string>
+  <string name="on_non_trusted_message">Güvenilir bir ağda değil: otomatik bulma devre dışı.</string>
   <string name="no_file_browser">Yüklü bir dosya tarayıcısı yok.</string>
   <string name="pref_plugin_telepathy">SMS Gönder</string>
   <string name="pref_plugin_telepathy_desc">Masaüstünden metin iletisi gönder</string>
+  <string name="pref_plugin_telepathy_mms">MMS Gönder</string>
   <string name="findmyphone_title">Telefonumu bul</string>
   <string name="findmyphone_title_tablet">Tabletimi bul</string>
   <string name="findmyphone_title_tv">TV\'mi bul</string>
@@ -237,6 +241,7 @@
   <string name="notification_channel_persistent">Kalıcı gösterge</string>
   <string name="notification_channel_media_control">Medya kontrolü</string>
   <string name="notification_channel_filetransfer">Dosya aktarımı</string>
+  <string name="notification_channel_sms_mms">Yeni İleti</string>
   <string name="mpris_stop">Geçerli oynatıcıyı durdur</string>
   <string name="copy_url_to_clipboard">URL\'yi panoya kopyala</string>
   <string name="clipboard_toast">Panoya kopyalandı</string>
@@ -268,13 +273,33 @@
   <string name="take_picture">Kamerayı başlat</string>
   <string name="plugin_photo_desc">Fotoğraf çekmeyi ve aktarmayı kolaylaştırmak için kamera uygulamasını başlatın</string>
   <string name="no_app_for_opening">Bu dosyayı açmak için uygun bir uygulama bulunamadı</string>
+  <string name="remote_keyboard_service">KDE Connect uzaktan klavye</string>
+  <string name="trusted_networks">Güvenilir ağlar</string>
+  <string name="trusted_networks_desc">Otomatik keşfi bilinen ağlarla kısıtla</string>
+  <string name="add_trusted_network">%1s Ekle</string>
+  <string name="allow_all_networks_text">Hepsine izin ver</string>
+  <string name="location_permission_needed_title">İzin gerekli</string>
+  <string name="location_permission_needed_desc">Android, WiFi ağınızı tanımlamak için Konum iznine ihtiyaç duyar</string>
+  <string name="clipboard_android_x_incompat">Android 10, tüm uygulamalara pano erişimini kaldırdı. Bu eklenti devre dışı bırakılacak.</string>
+  <string name="bigscreen_home">Başlangıç</string>
+  <string name="bigscreen_up">Yukarı</string>
+  <string name="bigscreen_left">Sol</string>
+  <string name="bigscreen_select">Seç</string>
+  <string name="bigscreen_right">Sağ</string>
+  <string name="bigscreen_down">Aşağı</string>
+  <string name="message_reply_label">YANITLA</string>
+  <string name="user_display_name">Siz</string>
+  <string name="set_default_sms_app_title">MMS Gönder</string>
+  <string name="set_long_text_as_mms_title">Uzun metni MMS olarak gönder</string>
+  <string name="convert_to_mms_after_title">MMS\'e dönüştür</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>Bir mesajdan sonra</item>
+    <item>İki mesajdan sonra</item>
+    <item>Üç mesajdan sonra</item>
+    <item>Dört mesajdan sonra</item>
+    <item>Beş mesajdan sonra</item>
   </string-array>
+  <string name="theme_dialog_title">Tema seçin</string>
   <string-array name="theme_list">
     <item>Set by Battery Saver</item>
     <item/>
@@ -285,4 +310,7 @@
     <item/>
     <item>Dark</item>
   </string-array>
+  <string name="donate">Bağış yap</string>
+  <string name="source_code">Kaynak Kod</string>
+  <string name="licenses">Lisanslar</string>
 </resources>
