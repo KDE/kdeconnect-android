@@ -76,6 +76,9 @@
   </string-array>
   <string name="sendkeystrokes_send_to">Tastendruck senden an</string>
   <string name="sendkeystrokes_textbox_hint">Tastendruck an Rechner senden</string>
+  <string name="sendkeystrokes_sent_text">%1s an Gerät %2s senden</string>
+  <string name="sendkeystrokes_pref_category_title">Tastendrücke senden</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Als Tastendruck senden</string>
   <string name="category_connected_devices">Verbundene Geräte</string>
   <string name="category_not_paired_devices">Verfügbare Geräte</string>
   <string name="category_remembered_devices">Gemerkte Geräte</string>
