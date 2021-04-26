@@ -85,6 +85,7 @@
   <string name="sendkeystrokes_pref_category_title">விசைகளை அனுப்பு</string>
   <string name="sendkeystrokes_pref_enabled">விசைகள் அனுப்புதலை இயக்கு</string>
   <string name="sendkeystrokes_pref_enabled_summary">\'text/x-keystrokes\' என்ற மைம் வகையைக் கொண்ட தரவுக்கு காத்திரு</string>
+  <string name="sendkeystrokes_safe_text_enabled">ஆபத்து விளைவிக்காத சரங்களை உடனே அனுப்பு</string>
   <string name="sendkeystrokes_safe_text_enabled_summary">எண்களை மட்டும் கொண்ட குறுகிய சரங்களை உறுதிப்படுத்தாமல் அனுப்பு</string>
   <string name="pref_plugin_mousepad_send_keystrokes">விசைகளாக அனுப்பு</string>
   <string name="mouse_receiver_plugin_description">தொலை சுட்டி அசைவைப் பெறு</string>
