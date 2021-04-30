@@ -173,7 +173,7 @@
   <string name="undo">Rückgängig machen</string>
   <string name="share_notification_preference">Ausführliche Benachrichtigungen</string>
   <string name="share_notification_preference_summary">Beim Empfang einer Datei vibrieren und einen Sound abspielen</string>
-  <string name="share_destination_customize">Zielverzeichnis anpassen</string>
+  <string name="share_destination_customize">Zielordner anpassen</string>
   <string name="share_destination_customize_summary_disabled">Empfangene Dateien werden im Ordner Downloads gespeichert</string>
   <string name="share_destination_customize_summary_enabled">Dateien werden im folgenden Verzeichnis gespeichert</string>
   <string name="share_destination_folder_preference">Zielverzeichnis</string>
