@@ -4,13 +4,13 @@ import com.android.build.gradle.api.ApplicationVariant
 import com.github.jk1.license.render.TextReportRenderer
 
 buildscript {
-    ext.kotlin_version = '1.4.31'
+    ext.kotlin_version = '1.5.0'
     repositories {
-        jcenter()
+        mavenCentral()
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.3'
+        classpath 'com.android.tools.build:gradle:4.2.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -147,7 +147,7 @@ ext {
 dependencies {
 
     repositories {
-        jcenter()
+        mavenCentral()
         google()
         /* Needed for org.apache.sshd debugging
         maven {
@@ -159,11 +159,11 @@ dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
     implementation 'androidx.multidex:multidex:2.0.1'
 
-    implementation 'androidx.media:media:1.2.1'
+    implementation 'androidx.media:media:1.3.1'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.preference:preference:1.1.1'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'androidx.documentfile:documentfile:1.0.1'
     implementation 'androidx.lifecycle:lifecycle-runtime:2.3.1'
