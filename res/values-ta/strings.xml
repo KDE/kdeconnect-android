@@ -50,11 +50,11 @@
   <string name="remotekeyboard_connected">தொலை விசைப்பலகை இணைப்பு செயலில் உள்ளது</string>
   <string name="remotekeyboard_multiple_connections">பல தொலை விசைப்பலகை இணைப்புகள் உள்ளன. அமைக்க வேண்டிய சாதனத்தை தேர்ந்தெடுங்கள்</string>
   <string name="open_mousepad">தொலை உள்ளீடு</string>
-  <string name="mousepad_info">சுட்டுக்குறியை நகர்த்த ஒரு விரலை திரையில் நகர்த்தவும். \'க்ளிக்\' செய்வதற்கு தட்டுங்கள். வலது/நடு சுட்டி பட்டன்களுக்கு இரண்டு/மூன்று விரல்களை பயன்படுத்தவும். இரண்டு விரல்களைக் கொண்டு உருளவும். இழுத்து போடுவதற்கு நீண்ட அழுத்தத்தை பயன்படுத்தவும்.</string>
+  <string name="mousepad_info">சுட்டிக்குறியை நகர்த்த ஒரு விரலை திரையில் நகர்த்தவும். \'க்ளிக்\' செய்வதற்கு தட்டுங்கள். வலது/நடு சுட்டி பட்டன்களுக்கு இரண்டு/மூன்று விரல்களை பயன்படுத்தவும். இரண்டு விரல்களைக் கொண்டு உருளவும். இழுத்து போடுவதற்கு நீண்ட அழுத்தத்தை பயன்படுத்தவும்.</string>
   <string name="mousepad_double_tap_settings_title">இரண்டு விரல்களால் தட்டுவதற்குரிய செயலை அமை</string>
   <string name="mousepad_triple_tap_settings_title">மூன்று விரல்களால் தட்டுவதற்குரிய செயலை அமை</string>
   <string name="mousepad_sensitivity_settings_title">தொடுபலகையின் உணர்வுத்திறத்தை அமை</string>
-  <string name="mousepad_acceleration_profile_settings_title">சுட்டுக்குறியின் வேகவளர்ச்சியை அமை</string>
+  <string name="mousepad_acceleration_profile_settings_title">சுட்டிக்குறியின் வேகவளர்ச்சியை அமை</string>
   <string name="mousepad_scroll_direction_title">உருளல் திசையை புரட்டு</string>
   <string-array name="mousepad_tap_entries">
     <item>வலது க்ளிக்</item>
