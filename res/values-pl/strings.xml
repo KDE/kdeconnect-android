@@ -22,7 +22,7 @@
   <string name="pref_plugin_remotekeyboard">Odbieranie naciśnięć klawiszy</string>
   <string name="pref_plugin_remotekeyboard_desc">Odbiera naciśnięcia klawiszy z innego urządzenia</string>
   <string name="pref_plugin_mpris">Sterowanie odtwarzaczem</string>
-  <string name="pref_plugin_mpris_desc">Steruje odtwarzaczami z tego urządzenia na innym urządzeniu</string>
+  <string name="pref_plugin_mpris_desc">Steruje odtwarzaczami tego urządzenia z innego urządzenia</string>
   <string name="pref_plugin_runcommand">Wykonywanie poleceń</string>
   <string name="pref_plugin_runcommand_desc">Wykonuje polecenia na innym urządzeniu z tego urządzenia</string>
   <string name="pref_plugin_contacts">Współdzielenie kontaktów</string>
@@ -88,7 +88,7 @@
   <string name="sendkeystrokes_safe_text_enabled">Wyślij bezpieczny tekst natychmiastowo</string>
   <string name="sendkeystrokes_safe_text_enabled_summary">Wyślij krótkie, liczbowe ciągi znaków, bez potwierdzenia</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Wysyłaj jako naciśnięcia klawiszy</string>
-  <string name="mouse_receiver_plugin_description">Odbieranie ruchów myszy</string>
+  <string name="mouse_receiver_plugin_description">Odbiera ruchy myszy</string>
   <string name="mouse_receiver_plugin_name">Odbiornik myszy</string>
   <string name="mouse_receiver_no_permissions">Musisz włączyć usługę dostępności</string>
   <string name="category_connected_devices">Podłączone urządzenia</string>
@@ -278,7 +278,7 @@
   <string name="addcommand_explanation2">Nowe polecenie można dodać w ustawieniach systemowych KDE Connect</string>
   <string name="add_command_description">Możesz dodawać polecenia na pulpicie</string>
   <string name="pref_plugin_mprisreceiver">Sterowanie odtwarzaczem</string>
-  <string name="pref_plugin_mprisreceiver_desc">Steruje odtwarzaczami z innego urządzenia na tym urządzeniu</string>
+  <string name="pref_plugin_mprisreceiver_desc">Steruje odtwarzaczami innego urządzenia z tego urządzenia</string>
   <string name="notification_channel_default">Inne powiadomienia</string>
   <string name="notification_channel_persistent">Nieznikający wskaźnik</string>
   <string name="notification_channel_media_control">Sterowanie multimediami</string>
