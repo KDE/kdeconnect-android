@@ -8,6 +8,8 @@
   <string name="pref_plugin_telephony_desc">Lähetä ilmoitukset saapuvista puheluista</string>
   <string name="pref_plugin_battery">Akkuraportti</string>
   <string name="pref_plugin_battery_desc">Raportoi akun tila säännöllisesti</string>
+  <string name="pref_plugin_connectivity_report">Verkkoyhteysraportti</string>
+  <string name="pref_plugin_connectivity_report_desc">Ilmoita kentän voimakkuus ja tila</string>
   <string name="pref_plugin_sftp">Tiedostojärjestelmän paljastaminen</string>
   <string name="pref_plugin_sftp_desc">Mahdollistaa tämän laitteen tiedostojärjestelmän etäselaamisen</string>
   <string name="pref_plugin_clipboard">Leikepöydän synkronointi</string>
@@ -74,6 +76,21 @@
     <item>Vahvempi</item>
     <item>Vahvin</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Lähetä näppäinpainallukset…</string>
+  <string name="sendkeystrokes_textbox_hint">Lähetä näppäinpainallukset koneelle</string>
+  <string name="sendkeystrokes_disabled_toast">Näppäinpainallusten lähetys ei ole käytössä: ota se käyttöön asetuksista</string>
+  <string name="sendkeystrokes_wrong_data">Virheellinen MIME-tyyppi: vaaditaan ”text/x-keystrokes”</string>
+  <string name="sendkeystrokes_sent_text">Lähetettiin %1s laitteelle %2s</string>
+  <string name="sendkeystrokes_pref_category_summary">Tällä moduulilla muut sovellukset voivat jakaa tekstikatkelmia yhdistetylle koneelle lähetettyinä näppäinpainalluksina</string>
+  <string name="sendkeystrokes_pref_category_title">Lähetä näppäinpainalluksia</string>
+  <string name="sendkeystrokes_pref_enabled">Salli näppäinpainallusten lähettäminen</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Kuuntele dataa, jonka MIME-tyyppi on ”text/x-keystrokes”</string>
+  <string name="sendkeystrokes_safe_text_enabled">Lähetä turvallinen teksti välittömästi</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Lähetä lyhyet vain numeeriset jonot vahvistuksetta</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Lähetä näppäinpainalluksina</string>
+  <string name="mouse_receiver_plugin_description">Vastaanota etähiiren liike</string>
+  <string name="mouse_receiver_plugin_name">Hiirivastaanotin</string>
+  <string name="mouse_receiver_no_permissions">Esteettömyyspalvelu on otettava käyttöön</string>
   <string name="category_connected_devices">Yhdistetyt laitteet</string>
   <string name="category_not_paired_devices">Saatavilla olevat laitteet</string>
   <string name="category_remembered_devices">Muistetut laitteet</string>
@@ -89,6 +106,7 @@
   <string name="error_canceled_by_other_peer">Vertaiskäyttäjä perui</string>
   <string name="encryption_info_title">Salaustiedot</string>
   <string name="encryption_info_msg_no_ssl">Toinen laite ei käytä KDE Connectin uudehkoa versiota, joten käytetään vanhaa salausmenetelmää.</string>
+  <string name="my_device_fingerprint">Laitevarmenteen SHA256-sormenjälki on:</string>
   <string name="remote_device_fingerprint">Etälaitteen varmenteen SHA256-sormenjälki on:</string>
   <string name="pair_requested">Paripyyntö</string>
   <string name="pairing_request_from">Paripyyntö laitteesta %1s</string>
@@ -330,4 +348,8 @@
     <item>Vaalea</item>
     <item>Tumma</item>
   </string-array>
+  <string name="report_bug">Ilmoita ohjelmavirheestä</string>
+  <string name="donate">Lahjoita</string>
+  <string name="source_code">Lähdekoodi</string>
+  <string name="licenses">Lisenssit</string>
 </resources>
