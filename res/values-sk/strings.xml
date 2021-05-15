@@ -335,7 +335,7 @@
     <item>Po štyroch správach</item>
     <item>Po piatich správach</item>
   </string-array>
-  <string name="theme_dialog_title">vybrať tému</string>
+  <string name="theme_dialog_title">Vybrať tému</string>
   <string-array name="theme_list">
     <item>Nastavené šetričom batérie</item>
     <item>Svetlá</item>
