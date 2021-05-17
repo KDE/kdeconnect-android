@@ -8,6 +8,8 @@
   <string name="pref_plugin_telephony_desc">수신 통화 알림 보내기</string>
   <string name="pref_plugin_battery">배터리 보고</string>
   <string name="pref_plugin_battery_desc">주기적으로 배터리 상태 보고</string>
+  <string name="pref_plugin_connectivity_report">연결 상태 보고</string>
+  <string name="pref_plugin_connectivity_report_desc">네트워크 신호 세기 및 상태 보고</string>
   <string name="pref_plugin_sftp">파일 시스템 보기</string>
   <string name="pref_plugin_sftp_desc">원격으로 이 장치의 파일 시스템 보기</string>
   <string name="pref_plugin_clipboard">클립보드 동기화</string>
@@ -74,6 +76,21 @@
     <item>강하게</item>
     <item>매우 강하게</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">다음으로 키 입력 보내기</string>
+  <string name="sendkeystrokes_textbox_hint">호스트로 키 입력 보내기</string>
+  <string name="sendkeystrokes_disabled_toast">키 입력 보내기가 비활성화되어 있습니다. 설정에서 활성화하십시오</string>
+  <string name="sendkeystrokes_wrong_data">MIME 형식이 잘못되었습니다. \'text/x-keystrokes\'여야 합니다</string>
+  <string name="sendkeystrokes_sent_text">%1s을(를) 장치 %2s(으)로 보냄</string>
+  <string name="sendkeystrokes_pref_category_summary">이 모듈에서는 다른 앱에서 키 입력과 같은 문자열 조각을 공유해서 연결된 호스트로 보낼 수 있습니다</string>
+  <string name="sendkeystrokes_pref_category_title">키 입력 보내기</string>
+  <string name="sendkeystrokes_pref_enabled">키 입력 보내기 활성화</string>
+  <string name="sendkeystrokes_pref_enabled_summary">MIME 형식이 \'text/x-keystrokes\'인 데이터 대기</string>
+  <string name="sendkeystrokes_safe_text_enabled">안전한 텍스트 즉시 보내기</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">확인하지 않고 숫자만 있는 짧은 문자열 보내기</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">키 입력으로 보내기</string>
+  <string name="mouse_receiver_plugin_description">원격 마우스 움직임 받기</string>
+  <string name="mouse_receiver_plugin_name">마우스 수신기</string>
+  <string name="mouse_receiver_no_permissions">접근성 서비스를 활성화해야 합니다</string>
   <string name="category_connected_devices">연결된 장치</string>
   <string name="category_not_paired_devices">사용 가능한 장치</string>
   <string name="category_remembered_devices">기억하는 장치</string>
@@ -89,6 +106,8 @@
   <string name="error_canceled_by_other_peer">다른 쪽에서 취소함</string>
   <string name="encryption_info_title">암호화 정보</string>
   <string name="encryption_info_msg_no_ssl">다른 장치에서 KDE Connect의 최근 버전을 실행하고 있지 않아서 레거시 암호화를 사용합니다.</string>
+  <string name="my_device_fingerprint">내 장치 인증서의 SHA256 지문:</string>
+  <string name="remote_device_fingerprint">원격 장치 인증서의 SHA256 지문:</string>
   <string name="pair_requested">연결 요청됨</string>
   <string name="pairing_request_from">%1s에서 연결 요청</string>
   <plurals name="incoming_file_title">
@@ -216,6 +235,7 @@
   <string name="permission_explanation">이 플러그인을 사용하려면 권한이 필요합니다</string>
   <string name="optional_permission_explanation">모든 기능을 사용하려면 추가 권한이 필요합니다</string>
   <string name="plugins_need_optional_permission">일부 플러그인은 권한이 없어서 비활성화되었습니다(정보를 보려면 누르기):</string>
+  <string name="share_optional_permission_explanation">공유된 파일을 받으려면 대상 디렉터리를 선택해야 합니다</string>
   <string name="telepathy_permission_explanation">데스크톱에서 문자 메시지를 읽고 보내려면 문자 메시지 접근 권한이 필요합니다</string>
   <string name="telephony_permission_explanation">데스크톱에서 통화와 문자 메시지를 보려면 통화 기록 및 휴대폰 상태 접근 권한이 필요합니다</string>
   <string name="telephony_optional_permission_explanation">전화번호 대신 연락처에 등록된 이름을 보려면 주소록 접근 권한이 필요합니다</string>
@@ -320,4 +340,8 @@
     <item>밝음</item>
     <item>어두움</item>
   </string-array>
+  <string name="report_bug">버그 보고</string>
+  <string name="donate">기부하기</string>
+  <string name="source_code">소스 코드</string>
+  <string name="licenses">라이선스</string>
 </resources>
