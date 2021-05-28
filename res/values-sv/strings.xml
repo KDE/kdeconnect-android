@@ -172,7 +172,7 @@
   </string-array>
   <string name="mpris_notification_settings_title">Visa underrättelser om mediastyrning</string>
   <string name="mpris_notification_settings_summary">Tillåt att styra mediaspelare utan att KDE-anslut öppnas</string>
-  <string name="share_to">Dela med...</string>
+  <string name="share_to">Dela med…</string>
   <string name="protocol_version_newer">Apparaten använder en nyare protokollversion</string>
   <string name="plugin_settings_with_name">Inställningar av %s</string>
   <string name="invalid_device_name">Ogiltigt apparatnamn</string>
