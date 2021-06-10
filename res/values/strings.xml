@@ -205,6 +205,8 @@
     <string name="mpris_rew">Rewind</string>
     <string name="mpris_ff">Fast-forward</string>
     <string name="mpris_next">Next</string>
+    <string name="mpris_loop">Loop</string>
+    <string name="mpris_shuffle">Shuffle</string>
     <string name="mpris_volume">Volume</string>
     <string name="mpris_time_settings_title">Forward/rewind buttons</string>
     <string name="mpris_time_settings_summary">Adjust the time to fast forward/rewind when pressed</string>

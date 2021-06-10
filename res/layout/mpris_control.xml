@@ -36,18 +36,56 @@
         android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <ImageButton
-        android:id="@+id/play_button"
-        android:layout_width="fill_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="75dp"
         android:layout_gravity="center"
-        android:layout_weight="0"
-        android:adjustViewBounds="false"
-        android:baselineAlignBottom="true"
-        android:clickable="false"
-        android:contentDescription="@string/mpris_play"
-        android:src="@drawable/ic_play_black"
-        android:theme="@style/DisableableButton" />
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/loop_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:adjustViewBounds="false"
+            android:baselineAlignBottom="true"
+            android:clickable="false"
+            android:contentDescription="@string/mpris_loop"
+            android:src="@drawable/ic_loop_none_black"
+            android:theme="@style/DisableableButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.20" />
+
+        <ImageButton
+            android:id="@+id/play_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:adjustViewBounds="false"
+            android:baselineAlignBottom="true"
+            android:clickable="false"
+            android:contentDescription="@string/mpris_play"
+            android:src="@drawable/ic_play_black"
+            android:theme="@style/DisableableButton"
+            app:layout_constraintEnd_toStartOf="@id/shuffle_button"
+            app:layout_constraintStart_toEndOf="@id/loop_button"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/shuffle_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:adjustViewBounds="false"
+            android:baselineAlignBottom="true"
+            android:clickable="false"
+            android:contentDescription="@string/mpris_shuffle"
+            android:src="@drawable/ic_shuffle_off_black"
+            android:theme="@style/DisableableButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintWidth_percent="0.20" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

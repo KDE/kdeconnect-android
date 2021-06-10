@@ -121,7 +121,23 @@ public class MprisNowPlayingFragment extends Fragment implements VolumeKeyListen
             BackgroundService.RunCommand(requireContext(), service -> service.addConnectionListener(connectionReceiver));
             connectToPlugin(targetPlayerName);
 
+            performActionOnClick(mprisControlBinding.loopButton, p -> {
+                switch (p.getLoopStatus()) {
+                    case "None":
+                        p.setLoopStatus("Track");
+                        break;
+                    case "Track":
+                        p.setLoopStatus("Playlist");
+                        break;
+                    case "Playlist":
+                        p.setLoopStatus("None");
+                        break;
+                }
+            });
+
             performActionOnClick(mprisControlBinding.playButton, MprisPlugin.MprisPlayer::playPause);
+
+            performActionOnClick(mprisControlBinding.shuffleButton, p -> p.setShuffle(!p.getShuffle()));
 
             performActionOnClick(mprisControlBinding.prevButton, MprisPlugin.MprisPlayer::previous);
 
@@ -332,6 +348,28 @@ public class MprisNowPlayingFragment extends Fragment implements VolumeKeyListen
             mprisControlBinding.playButton.setEnabled(playerStatus.isPlayAllowed());
         }
 
+        String loopStatus = playerStatus.getLoopStatus();
+        switch (loopStatus) {
+            case "None":
+                mprisControlBinding.loopButton.setImageResource(R.drawable.ic_loop_none_black);
+                break;
+            case "Track":
+                mprisControlBinding.loopButton.setImageResource(R.drawable.ic_loop_track_black);
+                break;
+            case "Playlist":
+                mprisControlBinding.loopButton.setImageResource(R.drawable.ic_loop_playlist_black);
+                break;
+        }
+
+        boolean shuffle = playerStatus.getShuffle();
+        if (shuffle) {
+            mprisControlBinding.shuffleButton.setImageResource(R.drawable.ic_shuffle_on_black);
+        } else {
+            mprisControlBinding.shuffleButton.setImageResource(R.drawable.ic_shuffle_off_black);
+        }
+
+        mprisControlBinding.loopButton.setVisibility(playerStatus.isLoopStatusAllowed() ? View.VISIBLE : View.GONE);
+        mprisControlBinding.shuffleButton.setVisibility(playerStatus.isShuffleAllowed() ? View.VISIBLE : View.GONE);
         mprisControlBinding.volumeLayout.setVisibility(playerStatus.isSetVolumeAllowed() ? View.VISIBLE : View.GONE);
         mprisControlBinding.rewButton.setVisibility(playerStatus.isSeekAllowed() ? View.VISIBLE : View.GONE);
         mprisControlBinding.ffButton.setVisibility(playerStatus.isSeekAllowed() ? View.VISIBLE : View.GONE);
