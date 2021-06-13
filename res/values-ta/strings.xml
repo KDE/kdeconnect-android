@@ -264,7 +264,7 @@
   <string name="pref_plugin_mprisreceiver">ஊடக இயக்கி கட்டுப்பாடு</string>
   <string name="pref_plugin_mprisreceiver_desc">இன்னொரு சாதனத்திலிருந்து உங்கள் திறன்பேசியின் ஊடக இயக்கிகளை கட்டுப்படுத்துங்கள்</string>
   <string name="notification_channel_default">மற்ற அறிவிப்புகள்</string>
-  <string name="notification_channel_persistent">விடாப்பிடியான அறிவிப்பு</string>
+  <string name="notification_channel_persistent">விடாப்பிடி அறிவிப்பு</string>
   <string name="notification_channel_media_control">ஊடக கட்டுப்பாடு</string>
   <string name="notification_channel_filetransfer">கோப்பு இடமாற்றம்</string>
   <string name="notification_channel_high_priority">அதிக முக்கியத்துவம்</string>
@@ -285,7 +285,7 @@
   <string name="all">அனைத்து</string>
   <string name="devices">சாதனங்கள்</string>
   <string name="settings_rename">சாதனத்தின் பெயர்</string>
-  <string name="settings_dark_mode">கருமையான திட்டமுறை</string>
+  <string name="settings_dark_mode">கருமையான நிறத்திட்டம்</string>
   <string name="settings_more_settings_title">மேலும் அமைப்புகள்</string>
   <string name="settings_more_settings_text">தனிப்பட்ட சாதனங்களுக்குரிய அமைப்புகள், ஒவ்வொரு சாதனத்துக்கான \'செருகுநிரல் அமைப்புகள்\' தனில் இருக்கும்.</string>
   <string name="setting_persistent_notification">விடாப்பிடியான அறிவிப்பைக் காட்டவும்</string>
@@ -337,7 +337,7 @@
     <item>நான்கு செய்திகளுக்கு பிறகு</item>
     <item>ஐந்து செய்திகளுக்கு பிறகு</item>
   </string-array>
-  <string name="theme_dialog_title">திட்டமுறையை அமை</string>
+  <string name="theme_dialog_title">நிறத்திட்டத்தை அமை</string>
   <string-array name="theme_list">
     <item>மின்கல சேமிப்பை பொறுத்து அமை</item>
     <item>வெளிர்ந்தது</item>

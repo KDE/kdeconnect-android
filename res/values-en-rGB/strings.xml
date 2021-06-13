@@ -88,6 +88,9 @@
   <string name="sendkeystrokes_safe_text_enabled">Send safe text immediately</string>
   <string name="sendkeystrokes_safe_text_enabled_summary">Send short only-numeric strings without confirmation</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Send as keystrokes</string>
+  <string name="mouse_receiver_plugin_description">Receive remote mouse movement</string>
+  <string name="mouse_receiver_plugin_name">Mouse receiver</string>
+  <string name="mouse_receiver_no_permissions">You need to enable Accessibility Service</string>
   <string name="category_connected_devices">Connected devices</string>
   <string name="category_not_paired_devices">Available devices</string>
   <string name="category_remembered_devices">Remembered devices</string>
@@ -103,6 +106,7 @@
   <string name="error_canceled_by_other_peer">Cancelled by other peer</string>
   <string name="encryption_info_title">Encryption Info</string>
   <string name="encryption_info_msg_no_ssl">The other device doesn\'t use a recent version of KDE Connect, using the legacy encryption method.</string>
+  <string name="my_device_fingerprint">SHA256 fingerprint of your device certificate is:</string>
   <string name="remote_device_fingerprint">SHA256 fingerprint of remote device certificate is:</string>
   <string name="pair_requested">Pair requested</string>
   <string name="pairing_request_from">Pairing request from %1s</string>
