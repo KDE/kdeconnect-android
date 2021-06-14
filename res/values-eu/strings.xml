@@ -8,6 +8,8 @@
   <string name="pref_plugin_telephony_desc">Bidali jakinarazpenak sarrerako deietarako</string>
   <string name="pref_plugin_battery">Bateriaren txostena</string>
   <string name="pref_plugin_battery_desc">Bidali bateriaren egoera aldiro</string>
+  <string name="pref_plugin_connectivity_report">Konektagarritasun txostena</string>
+  <string name="pref_plugin_connectivity_report_desc">Eman sareko seinale-sendotasunaren eta egoeraren berri</string>
   <string name="pref_plugin_sftp">Fitxategi-sistemaren esposaketa</string>
   <string name="pref_plugin_sftp_desc">Gailu honen fitxategi-sistema urrunetik arakatzea ahalbidetzen du</string>
   <string name="pref_plugin_clipboard">Arbelaren sinkronizazioa</string>
@@ -74,6 +76,21 @@
     <item>Sendoagoa</item>
     <item>Sendoena</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Bidali tekla-joaldiak hona</string>
+  <string name="sendkeystrokes_textbox_hint">Bidali tekla-joaldiak ostalarira</string>
+  <string name="sendkeystrokes_disabled_toast">Tekla-joaldiak bidaltzea ezgaituta dago - gaitu ezazu ezarpenetan</string>
+  <string name="sendkeystrokes_wrong_data">MIME-mota baliogabea - \'text/x-keystrokes\' izan behar da</string>
+  <string name="sendkeystrokes_sent_text">Bidali %1s %2s gailura</string>
+  <string name="sendkeystrokes_pref_category_summary">Modulu honek, beste aplikazioei, konektatutako ostalarira tekla-joaldi gisa bidaliko diren testu-segmentuak partekatzeko aukera eskaintzen die</string>
+  <string name="sendkeystrokes_pref_category_title">Bidali tekla-joaldiak</string>
+  <string name="sendkeystrokes_pref_enabled">Gaitu tekla-joaldiak bidaltzea</string>
+  <string name="sendkeystrokes_pref_enabled_summary">\'text/x-keystrokes\' MIME-motako datuak entzutea</string>
+  <string name="sendkeystrokes_safe_text_enabled">Bidali testu segurua berehala</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Bidali zenbakizko kate laburrak berrespenik gabe</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Bidali tekla-joaldi gisa</string>
+  <string name="mouse_receiver_plugin_description">Jaso urrutiko saguaren mugimenduak</string>
+  <string name="mouse_receiver_plugin_name">Sagu jasotzailea</string>
+  <string name="mouse_receiver_no_permissions">Irisgarritasun zerbitzua gaitu behar duzu</string>
   <string name="category_connected_devices">Konektatutako gailuak</string>
   <string name="category_not_paired_devices">Gailu eskuragarriak</string>
   <string name="category_remembered_devices">Gogoratutako gailuak</string>
@@ -89,6 +106,7 @@
   <string name="error_canceled_by_other_peer">Beste kideak utzita</string>
   <string name="encryption_info_title">Zifratze informazioa</string>
   <string name="encryption_info_msg_no_ssl">Beste gailuak ez du oraintsuko KDE Connect bertsio bat erabiltzen, erabili aurreko bertsioetako metodoa.</string>
+  <string name="my_device_fingerprint">Zure gailuaren ziurtagiriaren SHA256 hatz-marka:</string>
   <string name="remote_device_fingerprint">Urruneko gailuaren ziurtagiriaren SHA256 hatz-marka hau da:</string>
   <string name="pair_requested">Parekatzea eskatu da</string>
   <string name="pairing_request_from">Parekatzeko eskaria %1s-tik</string>
@@ -330,4 +348,8 @@
     <item>Argia</item>
     <item>Iluna</item>
   </string-array>
+  <string name="report_bug">Akats baten berri eman</string>
+  <string name="donate">Egin dohaintza</string>
+  <string name="source_code">Sorburu kodea</string>
+  <string name="licenses">Lizentziak</string>
 </resources>
