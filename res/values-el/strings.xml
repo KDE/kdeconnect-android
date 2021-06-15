@@ -8,6 +8,8 @@
   <string name="pref_plugin_telephony_desc">Αποστολή ειδοποιήσεων για εισερχόμενες κλήσεις</string>
   <string name="pref_plugin_battery">Αναφορά μπαταρίας</string>
   <string name="pref_plugin_battery_desc">Περιοδική αναφορά κατάστασης μπαταρίας</string>
+  <string name="pref_plugin_connectivity_report">Αναφορά συνδεσιμότητας</string>
+  <string name="pref_plugin_connectivity_report_desc">Αναφορά ισχύος δικτυακού σήματος και κατάστασης</string>
   <string name="pref_plugin_sftp">Αποκάλυψη συστήματος αρχείων</string>
   <string name="pref_plugin_sftp_desc">Επιτρέπει την απομακρυσμένη περιήγηση του συστήματος αρχείων του κινητού</string>
   <string name="pref_plugin_clipboard">Συγχρονισμός προχείρου</string>
@@ -74,6 +76,21 @@
     <item>Πιο δυνατή</item>
     <item>Η πιο δυνατή</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Αποστολή πληκτρολογήσεων στο</string>
+  <string name="sendkeystrokes_textbox_hint">Αποστολή πληκτρολογήσεων στον υπολογιστή</string>
+  <string name="sendkeystrokes_disabled_toast">Η αποστολή πληκτρολογήσεων είναι ανενεργή - ενεργοποιήστε την στις ρυθμίσεις</string>
+  <string name="sendkeystrokes_wrong_data">Μη έγκυρος τύπος mime - χρειάζεται να γίνει \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_sent_text">Εστάλησαν %1s στη συσκευή %2s</string>
+  <string name="sendkeystrokes_pref_category_summary">Αυτό το άρθρωμα επιτρέπει σε άλλες εφαρμογές να μοιράζονται τμήματα κειμένου ως πληκτρολογήσεις οι οποίες θα αποστέλονται στον συνδεδεμένο υπολογιστή</string>
+  <string name="sendkeystrokes_pref_category_title">Αποστολή πληκτρολογήσεων</string>
+  <string name="sendkeystrokes_pref_enabled">ενεργοποίηση αποστολής πληκτρολογήσεων</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Ετοιμότητα για δεδομένα με mime τύπο \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_safe_text_enabled">Άμεση αποστολή ασφαλούς κειμένου</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Αποστολή σύντομων αριθμητικών-μόνο συμβολοσειρών χωρίς επιβεβαίωση</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Αποστολή ως πληκτρολογήσεις</string>
+  <string name="mouse_receiver_plugin_description">Λήψη απομακρυσμένων κινήσεων του ποντικιού</string>
+  <string name="mouse_receiver_plugin_name">Δέκτης ποντικιού</string>
+  <string name="mouse_receiver_no_permissions">Απαιτείται η ενεργοποίηση της υπηρεσίας προσβασιμότητας</string>
   <string name="category_connected_devices">Συνδεδεμένες συσκευές</string>
   <string name="category_not_paired_devices">Διαθέσιμες συσκευές</string>
   <string name="category_remembered_devices">Συσκευές στη μνήμη</string>
@@ -89,6 +106,7 @@
   <string name="error_canceled_by_other_peer">Ακυρώθηκε από άλλον χρήστη</string>
   <string name="encryption_info_title">Πληροφορίες κρυπτογράφησης</string>
   <string name="encryption_info_msg_no_ssl">Η άλλη συσκευή δεν χρησιμοποιεί μια πρόσφατη έκδοση του KDE Connect, θα χρησιμοποιηθεί η παλαιά μέθοδος κρυπτογράφησης.</string>
+  <string name="my_device_fingerprint">Το ίχνος SHA256 του πιστοποιητικού της συσκευής σας είναι:</string>
   <string name="remote_device_fingerprint">Το ίχνος SHA256 του πιστοποιητικού της απομακρυσμένης συσκευής είναι:</string>
   <string name="pair_requested">Ζητήθηκε σύζευξη</string>
   <string name="pairing_request_from">Αίτημα σύζευξης από %1s</string>
@@ -330,4 +348,8 @@
     <item>Φωτεινό</item>
     <item>Σκούρο</item>
   </string-array>
+  <string name="report_bug">Αναφορά σφάλματος</string>
+  <string name="donate">Δωρεές</string>
+  <string name="source_code">Πηγαίος κώδικας</string>
+  <string name="licenses">Άδειες χρήσης</string>
 </resources>
