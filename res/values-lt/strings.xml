@@ -8,6 +8,8 @@
   <string name="pref_plugin_telephony_desc">Siųsti gaunamųjų skambučių pranešimus</string>
   <string name="pref_plugin_battery">Akumuliatoriaus ataskaita</string>
   <string name="pref_plugin_battery_desc">Periodiškai pranešti apie akumuliatoriaus būseną</string>
+  <string name="pref_plugin_connectivity_report">Jungiamumo ataskaita</string>
+  <string name="pref_plugin_connectivity_report_desc">Pranešti apie tinklo signalo stiprumą ir būseną</string>
   <string name="pref_plugin_sftp">Failų sistemos naršymas</string>
   <string name="pref_plugin_sftp_desc">Leidžia nuotoliniu būdu naršyti šio įrenginio failų sistemą</string>
   <string name="pref_plugin_clipboard">Iškarpinės sinchronizavimas</string>
@@ -74,6 +76,21 @@
     <item>Stipresnis</item>
     <item>Stipriausias</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Siųsti klavišų paspaudimus į</string>
+  <string name="sendkeystrokes_textbox_hint">Siųsti klavišų paspaudimus į serverį</string>
+  <string name="sendkeystrokes_disabled_toast">Klavišų paspaudimų siuntimas yra išjungtas - įjunkite jį nuostatose</string>
+  <string name="sendkeystrokes_wrong_data">Neteisingas mime tipas - turi būti \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_sent_text">%1s išsiųstas į įrenginį %2s</string>
+  <string name="sendkeystrokes_pref_category_summary">Šis modulis leidžia kitoms programėlėms bendrinti teksto segmentus kaip klavišų paspaudimus, kurie bus išsiųsti į prijungtą serverį</string>
+  <string name="sendkeystrokes_pref_category_title">Siųsti klavišų paspaudimus</string>
+  <string name="sendkeystrokes_pref_enabled">Įjungti klavišų paspaudimų siuntimą</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Klausytis duomenų, kurių mime tipas yra \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_safe_text_enabled">Saugų tekstą siųsti nedelsiant</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Siųsti be patvirtinimo tik trumpas skaičių eilutes</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Siųsti kaip klavišų paspaudimus</string>
+  <string name="mouse_receiver_plugin_description">Gauti nuotolinius pelės judesius</string>
+  <string name="mouse_receiver_plugin_name">Pelės gavėjas</string>
+  <string name="mouse_receiver_no_permissions">Jūs turite įjungti prieinamumo tarnybą</string>
   <string name="category_connected_devices">Prijungti įrenginiai</string>
   <string name="category_not_paired_devices">Prieinami įrenginiai</string>
   <string name="category_remembered_devices">Įsiminti įrenginiai</string>
@@ -89,6 +106,7 @@
   <string name="error_canceled_by_other_peer">Lygiarangis atsisakė</string>
   <string name="encryption_info_title">Šifravimo informacija</string>
   <string name="encryption_info_msg_no_ssl">Kitas įrenginys nenaudoja paskiausios KDE Connect versijos, naudojamas pasenęs šifravimo metodas.</string>
+  <string name="my_device_fingerprint">Jūsų įrenginio liudijimo SHA256 kontrolinis kodas yra:</string>
   <string name="remote_device_fingerprint">Nuotolinio įrenginio liudijimo SHA256 kontrolinis kodas yra:</string>
   <string name="pair_requested">Užklaustas suporavimas</string>
   <string name="pairing_request_from">Suporavimo užklausa iš %1s</string>
