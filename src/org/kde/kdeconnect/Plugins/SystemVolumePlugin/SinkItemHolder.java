@@ -47,9 +47,11 @@ class SinkItemHolder extends RecyclerView.ViewHolder
     }
 
     @Override
-    public void onProgressChanged(final SeekBar seekBar, int i, boolean b) {
-        BackgroundService.RunCommand(seekBar.getContext(),
-                service -> plugin.sendVolume(sink.getName(), seekBar.getProgress()));
+    public void onProgressChanged(final SeekBar seekBar, int i, boolean triggeredByUser) {
+        if (triggeredByUser) {
+            BackgroundService.RunCommand(seekBar.getContext(),
+                    service -> plugin.sendVolume(sink.getName(), seekBar.getProgress()));
+        }
     }
 
     @Override
