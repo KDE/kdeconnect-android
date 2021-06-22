@@ -150,7 +150,7 @@ public class MprisPlugin extends Plugin {
         }
 
         public boolean isSetVolumeAllowed() {
-            return !isSpotify();
+            return !isSpotify() && (getVolume() > -1);
         }
 
         public long getPosition() {

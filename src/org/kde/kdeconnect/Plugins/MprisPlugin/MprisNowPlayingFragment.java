@@ -338,7 +338,9 @@ public class MprisNowPlayingFragment extends Fragment implements VolumeKeyListen
 
         int volume = playerStatus.getVolume();
         mprisControlBinding.volumeSeek.setProgress(volume);
-
+        if(!playerStatus.isSetVolumeAllowed()) {
+            mprisControlBinding.volumeSeek.setEnabled(false);
+        }
         boolean isPlaying = playerStatus.isPlaying();
         if (isPlaying) {
             mprisControlBinding.playButton.setImageResource(R.drawable.ic_pause_black);
