@@ -76,7 +76,9 @@
     <item>Forte</item>
     <item>Muito forte</item>
   </string-array>
+  <string name="sendkeystrokes_wrong_data">Tipo MIME inválido - precisa ser \'text/x-keystrokes\'</string>
   <string name="sendkeystrokes_sent_text">Enviar %1s para o dispositivo %2s</string>
+  <string name="sendkeystrokes_safe_text_enabled">Enviar texto seguro imediatamente</string>
   <string name="mouse_receiver_plugin_description">Receber movimento de mouse remoto</string>
   <string name="mouse_receiver_plugin_name">Receptor de mouse</string>
   <string name="mouse_receiver_no_permissions">Você precisa habilitar o serviço de acessibilidade</string>
