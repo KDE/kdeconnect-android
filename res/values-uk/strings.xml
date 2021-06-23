@@ -176,6 +176,8 @@
   <string name="mpris_rew">Повний назад</string>
   <string name="mpris_ff">Повний вперед</string>
   <string name="mpris_next">Далі</string>
+  <string name="mpris_loop">Зациклити</string>
+  <string name="mpris_shuffle">Перемішати</string>
   <string name="mpris_volume">Гучність</string>
   <string name="mpris_time_settings_title">Кнопки «Вперед/Назад»</string>
   <string name="mpris_time_settings_summary">Скоригувати час швидкого гортання вперед або назад при натисканні</string>

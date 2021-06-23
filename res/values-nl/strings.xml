@@ -160,6 +160,8 @@
   <string name="mpris_rew">Terugspoelen</string>
   <string name="mpris_ff">Snel vooruit</string>
   <string name="mpris_next">Volgende</string>
+  <string name="mpris_loop">Lus</string>
+  <string name="mpris_shuffle">Willekeurig afspelen</string>
   <string name="mpris_volume">Volume</string>
   <string name="mpris_time_settings_title">Knoppen vooruit/terug</string>
   <string name="mpris_time_settings_summary">Pas de tijd aan om snel voorwaarts/terug te gaan bij indrukken</string>

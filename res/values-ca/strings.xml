@@ -160,6 +160,8 @@
   <string name="mpris_rew">Rebobina</string>
   <string name="mpris_ff">Avanç ràpid</string>
   <string name="mpris_next">Següent</string>
+  <string name="mpris_loop">Repetició</string>
+  <string name="mpris_shuffle">Mescla</string>
   <string name="mpris_volume">Volum</string>
   <string name="mpris_time_settings_title">Botons per a avançar o rebobinar</string>
   <string name="mpris_time_settings_summary">Ajusta el temps per a avançar o rebobinar quan es toca</string>

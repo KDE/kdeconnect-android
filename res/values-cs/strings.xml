@@ -176,6 +176,8 @@
   <string name="mpris_rew">Přetočit zpět</string>
   <string name="mpris_ff">Rychle vpřed</string>
   <string name="mpris_next">Následující</string>
+  <string name="mpris_loop">Smyčka</string>
+  <string name="mpris_shuffle">Zamíchat</string>
   <string name="mpris_volume">Hlasitost</string>
   <string name="mpris_time_settings_title">Tlačítka vpřed/přetočit</string>
   <string name="mpris_time_settings_summary">Upravit čas pro rychlý posun/přetočení při stisku</string>

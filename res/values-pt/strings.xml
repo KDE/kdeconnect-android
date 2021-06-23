@@ -160,6 +160,8 @@
   <string name="mpris_rew">Recuar</string>
   <string name="mpris_ff">Avançar</string>
   <string name="mpris_next">Seguinte</string>
+  <string name="mpris_loop">Ciclo</string>
+  <string name="mpris_shuffle">Aleatório</string>
   <string name="mpris_volume">Volume</string>
   <string name="mpris_time_settings_title">Botões para avançar/recuar</string>
   <string name="mpris_time_settings_summary">Ajusta o tempo para o avanço/recuo quando pressionar</string>
