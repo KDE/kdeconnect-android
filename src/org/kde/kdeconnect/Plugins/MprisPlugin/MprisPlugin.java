@@ -200,7 +200,7 @@ public class MprisPlugin extends Plugin {
         }
 
         public void setShuffle(boolean shuffle) {
-            MprisPlugin.this.sendCommand(getPlayer(), "setShuffle", String.valueOf(shuffle));
+            MprisPlugin.this.sendCommand(getPlayer(), "setShuffle", shuffle);
         }
 
         public void setVolume(int volume) {
@@ -275,6 +275,13 @@ public class MprisPlugin extends Plugin {
     }
 
     private void sendCommand(String player, String method, String value) {
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_MPRIS_REQUEST);
+        np.set("player", player);
+        np.set(method, value);
+        device.sendPacket(np);
+    }
+
+    private void sendCommand(String player, String method, boolean value) {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MPRIS_REQUEST);
         np.set("player", player);
         np.set(method, value);
