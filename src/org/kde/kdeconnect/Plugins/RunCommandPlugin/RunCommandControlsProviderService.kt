@@ -95,7 +95,10 @@ class RunCommandControlsProviderService : ControlsProviderService() {
             if (commandEntry != null) {
                 val plugin = BackgroundService.getInstance().getDevice(controlId.split("-")[0]).getPlugin(RunCommandPlugin::class.java)
                 if (plugin != null) {
-                    plugin.runCommand(commandEntry.key)
+                    BackgroundService.RunCommand(this) {
+                        plugin.runCommand(commandEntry.key)
+                    }
+                    
                     consumer.accept(ControlAction.RESPONSE_OK)
                 } else {
                     consumer.accept(ControlAction.RESPONSE_FAIL)
