@@ -534,5 +534,6 @@
     <string name="everyone_else">Everyone else who has contributed to KDE Connect over the years</string>
 
     <string name="send_clipboard">Send clipboard</string>
+    <string name="tap_to_execute">Tap to execute</string>
 
 </resources>

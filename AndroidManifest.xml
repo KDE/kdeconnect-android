@@ -396,6 +396,13 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
+        
+        <service android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandControlsProviderService" android:label="@string/kde_connect"
+            android:permission="android.permission.BIND_CONTROLS">
+            <intent-filter>
+                <action android:name="android.service.controls.ControlsProviderService" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

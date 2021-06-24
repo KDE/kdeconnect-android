@@ -9,9 +9,12 @@ package org.kde.kdeconnect.Plugins.RunCommandPlugin;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.kde.kdeconnect.NetworkPacket;
@@ -25,16 +28,20 @@ import java.util.Comparator;
 import java.util.Iterator;
 
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 @PluginFactory.LoadablePlugin
 public class RunCommandPlugin extends Plugin {
 
     private final static String PACKET_TYPE_RUNCOMMAND = "kdeconnect.runcommand";
     private final static String PACKET_TYPE_RUNCOMMAND_REQUEST = "kdeconnect.runcommand.request";
+    public final static String KEY_COMMANDS_PREFERENCE = "commands_preference_";
 
     private final ArrayList<JSONObject> commandList = new ArrayList<>();
     private final ArrayList<CommandsChangedCallback> callbacks = new ArrayList<>();
     private final ArrayList<CommandEntry> commandItems = new ArrayList<>();
+
+    private SharedPreferences sharedPreferences;
 
     private boolean canAddCommand;
 
@@ -75,6 +82,7 @@ public class RunCommandPlugin extends Plugin {
 
     @Override
     public boolean onCreate() {
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this.context);
         requestCommandList();
         return true;
     }
@@ -108,6 +116,17 @@ public class RunCommandPlugin extends Plugin {
                 }
 
                 Collections.sort(commandItems, Comparator.comparing(CommandEntry::getName));
+
+                // Used only by RunCommandControlsProviderService to display controls correctly even when device is not available
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    JSONArray array = new JSONArray();
+
+                    for (JSONObject command : commandList) {
+                        array.put(command);
+                    }
+
+                    sharedPreferences.edit().putString(KEY_COMMANDS_PREFERENCE + device.getDeviceId(), array.toString()).apply();
+                }
 
                 Intent updateWidget = new Intent(context, RunCommandWidget.class);
                 context.sendBroadcast(updateWidget);
