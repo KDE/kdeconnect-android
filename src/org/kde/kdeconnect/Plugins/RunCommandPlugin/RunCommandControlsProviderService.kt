@@ -64,21 +64,19 @@ class RunCommandControlsProviderService : ControlsProviderService() {
                         .setControlTemplate(StatelessTemplate(commandEntry.key))
                         .setCustomIcon(Icon.createWithResource(this, R.drawable.run_command_plugin_icon_24dp))
                         .build())
+            } else if (commandEntry != null && commandEntry.device.isPaired && !commandEntry.device.isReachable) {
+                updatePublisher.onNext(Control.StatefulBuilder(controlId, getIntent(commandEntry.device))
+                        .setTitle(commandEntry.name)
+                        .setSubtitle(commandEntry.command)
+                        .setStructure(commandEntry.device.name)
+                        .setStatus(Control.STATUS_DISABLED)
+                        .setControlTemplate(StatelessTemplate(commandEntry.key))
+                        .setCustomIcon(Icon.createWithResource(this, R.drawable.run_command_plugin_icon_24dp))
+                        .build())
             } else {
-                if (commandEntry != null && commandEntry.device.isPaired && !commandEntry.device.isReachable) {
-                    updatePublisher.onNext(Control.StatefulBuilder(controlId, getIntent(commandEntry.device))
-                            .setTitle(commandEntry.name)
-                            .setSubtitle(commandEntry.command)
-                            .setStructure(commandEntry.device.name)
-                            .setStatus(Control.STATUS_DISABLED)
-                            .setControlTemplate(StatelessTemplate(commandEntry.key))
-                            .setCustomIcon(Icon.createWithResource(this, R.drawable.run_command_plugin_icon_24dp))
-                            .build())
-                } else {
-                    updatePublisher.onNext(Control.StatefulBuilder(controlId, getIntent(commandEntry?.device))
-                            .setStatus(Control.STATUS_NOT_FOUND)
-                            .build())
-                }
+                updatePublisher.onNext(Control.StatefulBuilder(controlId, getIntent(commandEntry?.device))
+                        .setStatus(Control.STATUS_NOT_FOUND)
+                        .build())
             }
         }
 
@@ -162,7 +160,7 @@ class RunCommandControlsProviderService : ControlsProviderService() {
             }
         }
 
-        return Collections.unmodifiableList(commandList)
+        return commandList
     }
 
     private fun getCommandByControlId(controlId: String): CommandEntryWithDevice? {
