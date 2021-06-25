@@ -160,6 +160,8 @@
   <string name="mpris_rew">Geri almaq</string>
   <string name="mpris_ff">Sürətli irəli</string>
   <string name="mpris_next">Sonrakı</string>
+  <string name="mpris_loop">Dairəvi</string>
+  <string name="mpris_shuffle">Qarışıq</string>
   <string name="mpris_volume">Səs səviyyəsi</string>
   <string name="mpris_time_settings_title">İrəli/Geri düymələri</string>
   <string name="mpris_time_settings_summary">Basıldığında sürətli irəli/geriyə üçün vaxtı ayarlamaq</string>
