@@ -160,6 +160,8 @@
   <string name="mpris_rew">Retour rapide</string>
   <string name="mpris_ff">Avance rapide</string>
   <string name="mpris_next">Suivant</string>
+  <string name="mpris_loop">En boucle</string>
+  <string name="mpris_shuffle">Mélanger</string>
   <string name="mpris_volume">Volume</string>
   <string name="mpris_time_settings_title">Boutons avance / retour rapide.</string>
   <string name="mpris_time_settings_summary">Ajustez le temps pour l\'avance ou retour rapide.</string>

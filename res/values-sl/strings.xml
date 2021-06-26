@@ -176,6 +176,8 @@
   <string name="mpris_rew">Previj</string>
   <string name="mpris_ff">Hitro previj naprej</string>
   <string name="mpris_next">Naslednji</string>
+  <string name="mpris_loop">Zanka</string>
+  <string name="mpris_shuffle">Razmešaj</string>
   <string name="mpris_volume">Glasnost</string>
   <string name="mpris_time_settings_title">Gumba naprej/nazaj</string>
   <string name="mpris_time_settings_summary">Prilagodite čas za hitro premikanje naprej/nazaj, ko ga pritisnete</string>
