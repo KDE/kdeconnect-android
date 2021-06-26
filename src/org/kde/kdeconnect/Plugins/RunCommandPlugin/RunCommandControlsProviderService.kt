@@ -167,10 +167,10 @@ class RunCommandControlsProviderService : ControlsProviderService() {
         val controlIdParts = controlId.split("-")
         val device = BackgroundService.getInstance().getDevice(controlIdParts[0])
 
-        if (!device.isPaired) return null
+        if (device == null || !device.isPaired) return null
 
         val commandList = if (device.isReachable) {
-            device?.getPlugin(RunCommandPlugin::class.java)?.commandList?.map { jsonObject ->
+            device.getPlugin(RunCommandPlugin::class.java)?.commandList?.map { jsonObject ->
                 CommandEntryWithDevice(jsonObject.getString("name"), jsonObject.getString("command"), jsonObject.getString("key"), device)
             }
         } else {
