@@ -7,6 +7,7 @@
 package org.kde.kdeconnect.Plugins.NotificationsPlugin;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -22,12 +23,15 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CheckedTextView;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.TextViewCompat;
+
+import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityNotificationFilterBinding;
@@ -40,6 +44,7 @@ import java.util.Objects;
 public class NotificationFilterActivity extends AppCompatActivity {
     private ActivityNotificationFilterBinding binding;
     private AppDatabase appDatabase;
+    private String prefKey;
 
     static class AppListInfo {
 
@@ -96,10 +101,16 @@ public class NotificationFilterActivity extends AppCompatActivity {
         binding = ActivityNotificationFilterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         appDatabase = new AppDatabase(NotificationFilterActivity.this, false);
+        if (getIntent()!= null){
+            prefKey = getIntent().getStringExtra(NotificationsPlugin.getPrefKey());
+        }
 
         setSupportActionBar(binding.toolbarLayout.toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        SharedPreferences preferences = this.getSharedPreferences(prefKey, Context.MODE_PRIVATE);
+
+        configureSwitch(preferences);
 
         new Thread(() -> {
             PackageManager packageManager = getPackageManager();
@@ -121,6 +132,19 @@ public class NotificationFilterActivity extends AppCompatActivity {
             runOnUiThread(this::displayAppList);
         }).start();
 
+    }
+
+    private void configureSwitch(SharedPreferences sharedPreferences) {
+        SwitchMaterial smScreenOffNotification = findViewById(R.id.smScreenOffNotification);
+        smScreenOffNotification.setChecked(
+                sharedPreferences.getBoolean(getString(NotificationsPlugin.PREF_NOTIFICATION_SCREEN_OFF),false)
+        );
+        smScreenOffNotification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                sharedPreferences.edit().putBoolean(getString(NotificationsPlugin.PREF_NOTIFICATION_SCREEN_OFF),isChecked).apply();
+            }
+        });
     }
 
     private void displayAppList() {

@@ -258,6 +258,8 @@
     <string name="share_received_file">Share \"%s\"</string>
     <string name="title_activity_notification_filter">Notification filter</string>
     <string name="filter_apps_info">Notifications will be synchronized for the selected apps.</string>
+    <string name="show_notification_if_screen_off">Send notifications only if the screen is off</string>
+    <string name="screen_off_notification_state" translatable="false">pref_notification_screen_off</string>
     <string name="sftp_sdcard_num">SD card %d</string>
     <string name="sftp_sdcard">SD card</string>
     <string name="sftp_readonly">(read only)</string>

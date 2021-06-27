@@ -8,11 +8,13 @@ package org.kde.kdeconnect.Plugins.NotificationsPlugin;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.KeyguardManager;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.RemoteInput;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -67,6 +69,8 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     private final static String PACKET_TYPE_NOTIFICATION_REQUEST = "kdeconnect.notification.request";
     private final static String PACKET_TYPE_NOTIFICATION_REPLY = "kdeconnect.notification.reply";
     private final static String PACKET_TYPE_NOTIFICATION_ACTION = "kdeconnect.notification.action";
+    private final static String PREF_KEY = "prefKey";
+    protected static final int PREF_NOTIFICATION_SCREEN_OFF = R.string.screen_off_notification_state;
 
     private final static String TAG = "KDE/NotificationsPlugin";
 
@@ -76,6 +80,8 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     private Map<String, RepliableNotification> pendingIntents;
     private MultiValuedMap<String, Notification.Action> actions;
     private boolean serviceReady;
+    private SharedPreferences sharedPreferences;
+    private KeyguardManager keyguardManager;
 
     @Override
     public String getDisplayName() {
@@ -96,6 +102,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     public PluginSettingsFragment getSettingsFragment(Activity activity) {
         if (hasPermission()) {
             Intent intent = new Intent(activity, NotificationFilterActivity.class);
+            intent.putExtra(PREF_KEY, this.getSharedPreferencesName());
             activity.startActivity(intent);
         }
         return null;
@@ -120,6 +127,10 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         pendingIntents = new HashMap<>();
         currentNotifications = new HashSet<>();
         actions = new ArrayListValuedHashMap<>();
+
+        sharedPreferences = context.getSharedPreferences(getSharedPreferencesName(),Context.MODE_PRIVATE);
+
+        keyguardManager = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
 
         appDatabase = new AppDatabase(context, true);
 
@@ -163,7 +174,13 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public void onNotificationPosted(StatusBarNotification statusBarNotification) {
-        sendNotification(statusBarNotification);
+        if (sharedPreferences != null && sharedPreferences.getBoolean(context.getString(PREF_NOTIFICATION_SCREEN_OFF),false)){
+            if (keyguardManager != null && keyguardManager.inKeyguardRestrictedInputMode()){
+                sendNotification(statusBarNotification);
+            }
+        }else {
+            sendNotification(statusBarNotification);
+        }
     }
 
     private void sendNotification(StatusBarNotification statusBarNotification) {
@@ -643,4 +660,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     public int getMinSdk() {
         return Build.VERSION_CODES.JELLY_BEAN_MR2;
     }
+
+    public static String getPrefKey(){ return PREF_KEY;}
 }

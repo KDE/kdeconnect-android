@@ -16,6 +16,16 @@
         tools:context="org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationFilterActivity"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/smScreenOffNotification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingBottom="16dp"
+            android:text="@string/show_notification_if_screen_off" />
+
         <TextView
             android:id="@+id/tFilter"
             android:layout_width="wrap_content"
