@@ -160,6 +160,8 @@
   <string name="mpris_rew">Snabbspola bakåt</string>
   <string name="mpris_ff">Snabbspola framåt</string>
   <string name="mpris_next">Nästa</string>
+  <string name="mpris_loop">Upprepa</string>
+  <string name="mpris_shuffle">Blanda</string>
   <string name="mpris_volume">Volym</string>
   <string name="mpris_time_settings_title">Framåt- och bakåt-knappar</string>
   <string name="mpris_time_settings_summary">Justera tiden för att snabbspola framåt eller tillbaka om nertryckt</string>

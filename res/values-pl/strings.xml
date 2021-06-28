@@ -176,6 +176,8 @@
   <string name="mpris_rew">Przewiń</string>
   <string name="mpris_ff">Przewiń do przodu</string>
   <string name="mpris_next">Następny</string>
+  <string name="mpris_loop">Zapętlij</string>
+  <string name="mpris_shuffle">Wymieszaj</string>
   <string name="mpris_volume">Głośność</string>
   <string name="mpris_time_settings_title">Przyciski naprzód/wstecz</string>
   <string name="mpris_time_settings_summary">Dostosuj czas do przewijania wprzód lub wstecz po naciśnięciu</string>
