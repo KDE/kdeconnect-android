@@ -160,6 +160,8 @@
   <string name="mpris_rew">Ταχεία ώθηση όπισθεν</string>
   <string name="mpris_ff">Ταχεία προώθηση</string>
   <string name="mpris_next">Επόμενο</string>
+  <string name="mpris_loop">Βρόχος</string>
+  <string name="mpris_shuffle">Ανάμιξη</string>
   <string name="mpris_volume">Τόμος</string>
   <string name="mpris_time_settings_title">Κουμπιά ταχείας ώθησης</string>
   <string name="mpris_time_settings_summary">Χρονική προσαρμογή ταχείας ώθησης ανάλογα με την πίεση</string>
