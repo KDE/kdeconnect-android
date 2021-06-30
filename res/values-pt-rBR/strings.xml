@@ -151,6 +151,8 @@
   <string name="mpris_rew">Retornar</string>
   <string name="mpris_ff">Avançar rapidamente</string>
   <string name="mpris_next">Próximo</string>
+  <string name="mpris_loop">Repetição</string>
+  <string name="mpris_shuffle">Embaralhar</string>
   <string name="mpris_volume">Volume</string>
   <string name="mpris_time_settings_title">Botões para avançar/voltar</string>
   <string name="mpris_time_settings_summary">Ajuste o tempo para avançar ou retroceder quando pressionar</string>

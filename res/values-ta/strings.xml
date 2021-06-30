@@ -160,6 +160,8 @@
   <string name="mpris_rew">பின்னோக்கி செல்</string>
   <string name="mpris_ff">வேகமாக முன்னோக்கி செல்</string>
   <string name="mpris_next">அடுத்தது</string>
+  <string name="mpris_loop">சுழற்று</string>
+  <string name="mpris_shuffle">கலக்கு</string>
   <string name="mpris_volume">ஒலி அளவு</string>
   <string name="mpris_time_settings_title">பின்னோக்கி/முன்னோக்கி செல்வதற்கான பட்டன்கள்</string>
   <string name="mpris_time_settings_summary">அழுத்தும்போது எவ்வளவு நேரம் பின்னோக்கி/முன்னோக்கி செல்ல வேண்டும் என்று தேர்வு செய்யுங்கள்</string>
