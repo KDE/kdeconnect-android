@@ -160,6 +160,8 @@
   <string name="mpris_rew">Riavvolgi</string>
   <string name="mpris_ff">Avanti veloce</string>
   <string name="mpris_next">Successivo</string>
+  <string name="mpris_loop">Cicla</string>
+  <string name="mpris_shuffle">Mescola</string>
   <string name="mpris_volume">Volume</string>
   <string name="mpris_time_settings_title">Pulsanti di avanzamento/riavvolgimento</string>
   <string name="mpris_time_settings_summary">Regola l\'ora per avanzare rapidamente o riavvolgere in caso di pressione</string>
