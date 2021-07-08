@@ -152,6 +152,8 @@
   <string name="mpris_rew">倒退</string>
   <string name="mpris_ff">快进</string>
   <string name="mpris_next">下一曲</string>
+  <string name="mpris_loop">循环播放</string>
+  <string name="mpris_shuffle">随机播放</string>
   <string name="mpris_volume">音量</string>
   <string name="mpris_time_settings_title">快进/倒退按钮</string>
   <string name="mpris_time_settings_summary">当按下时调整快进或倒退的时间</string>
