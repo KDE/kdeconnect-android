@@ -105,14 +105,24 @@ public class SmsMmsUtils {
             sendingPhoneNumber = maybeSendingPhoneNumber.get();
         } else {
             if (allPhoneNumbers.isEmpty()) {
-                sendingPhoneNumber = null;
+                // We were not able to get any phone number for the user's device
+                // Use a null "dummy" number instead. This should behave the same as not setting
+                // the FromAddress (below) since the default value there is null.
+                // The only more-correct thing we could do here is query the user (maybe in a
+                // persistent configuration) for their phone number(s).
+                sendingPhoneNumber = new TelephonyHelper.LocalPhoneNumber(null, subID);
+                Log.w(SENDING_MESSAGE, "We do not know *any* phone numbers for this device. "
+                        + "Attempting to send a message without knowing the local phone number is likely "
+                        + "to result in strange behavior, such as the message being sent to yourself, "
+                        + "or might entirely fail to send (or be received).");
             } else {
+                // Pick an arbitrary phone number
                 sendingPhoneNumber = allPhoneNumbers.get(0);
             }
-            Log.w(SENDING_MESSAGE, "Unable to get outgoing address for sub ID " + subID + " using " + sendingPhoneNumber);
+            Log.w(SENDING_MESSAGE, "Unable to determine correct outgoing address for sub ID " + subID + ". Using " + sendingPhoneNumber);
         }
 
-        if (sendingPhoneNumber != null) {
+        if (sendingPhoneNumber.number != null) {
             // Remove the user's phone number if present in the list of recipients
             addressList.removeIf(address -> sendingPhoneNumber.isMatchingPhoneNumber(address.address));
         }
