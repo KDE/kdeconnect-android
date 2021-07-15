@@ -223,6 +223,9 @@ public class MouseReceiverService extends AccessibilityService {
     public boolean stopSwipe() {
         Path path = new Path();
         path.moveTo(getX(), getY());
+        if (swipeStoke == null) {
+            return true;
+        }
         swipeStoke = swipeStoke.continueStroke(path, 0, 1, false);
         GestureDescription.Builder builder = new GestureDescription.Builder();
         builder.addStroke(swipeStoke);
