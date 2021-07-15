@@ -70,9 +70,10 @@ public class MouseReceiverPlugin extends Plugin {
         boolean isMiddleClick = np.getBoolean("middleclick", false);
         boolean isRightClick  = np.getBoolean("rightclick", false);
         boolean isSingleHold  = np.getBoolean("singlehold", false);
+        boolean isSingleRelease  = np.getBoolean("singlerelease", false);
         boolean isScroll = np.getBoolean("scroll", false);
 
-        if (isSingleClick || isDoubleClick || isMiddleClick || isRightClick || isSingleHold || isScroll) {
+        if (isSingleClick || isDoubleClick || isMiddleClick || isRightClick || isSingleHold || isSingleRelease || isScroll) {
             // Perform click
             if (isSingleClick) {
                 // Log.i("MouseReceiverPlugin", "singleClick");
@@ -93,6 +94,11 @@ public class MouseReceiverPlugin extends Plugin {
                     return MouseReceiverService.longClickSwipe();
                 } else {
                     return MouseReceiverService.longClick();
+                }
+            }
+            else if (isSingleRelease) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    return MouseReceiverService.instance.stopSwipe();
                 }
             } else if (isScroll) {
                 // Log.i("MouseReceiverPlugin", "scroll dx: " + dx + " dy: " + dy);

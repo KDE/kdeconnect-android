@@ -220,7 +220,7 @@ public class MouseReceiverService extends AccessibilityService {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private boolean stopSwipe() {
+    public boolean stopSwipe() {
         Path path = new Path();
         path.moveTo(getX(), getY());
         swipeStoke = swipeStoke.continueStroke(path, 0, 1, false);
