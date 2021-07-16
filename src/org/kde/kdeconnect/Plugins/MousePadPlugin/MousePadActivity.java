@@ -55,10 +55,12 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     private KeyListenerView keyListenerView;
 
     enum ClickType {
-        RIGHT, MIDDLE, NONE;
+        LEFT, RIGHT, MIDDLE, NONE;
 
         static ClickType fromString(String s) {
             switch (s) {
+                case "left":
+                    return LEFT;
                 case "right":
                     return RIGHT;
                 case "middle":
@@ -320,6 +322,9 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     @Override
     public boolean onTripleFingerTap(MotionEvent ev) {
         switch (tripleTapAction) {
+            case LEFT:
+                sendLeftClick();
+                break;
             case RIGHT:
                 sendRightClick();
                 break;
@@ -334,6 +339,9 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     @Override
     public boolean onDoubleFingerTap(MotionEvent ev) {
         switch (doubleTapAction) {
+            case LEFT:
+                sendLeftClick();
+                break;
             case RIGHT:
                 sendRightClick();
                 break;
@@ -345,6 +353,10 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         return true;
     }
 
+
+    private void sendLeftClick() {
+        BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendLeftClick);
+    }
 
     private void sendMiddleClick() {
         BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendMiddleClick);
