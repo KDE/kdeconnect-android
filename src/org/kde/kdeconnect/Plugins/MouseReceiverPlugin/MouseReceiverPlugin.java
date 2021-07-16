@@ -68,12 +68,15 @@ public class MouseReceiverPlugin extends Plugin {
         boolean isSingleClick = np.getBoolean("singleclick", false);
         boolean isDoubleClick = np.getBoolean("doubleclick", false);
         boolean isMiddleClick = np.getBoolean("middleclick", false);
+        boolean isForwardClick = np.getBoolean("forwardclick", false);
+        boolean isBackClick = np.getBoolean("backclick", false);
+
         boolean isRightClick  = np.getBoolean("rightclick", false);
         boolean isSingleHold  = np.getBoolean("singlehold", false);
         boolean isSingleRelease  = np.getBoolean("singlerelease", false);
         boolean isScroll = np.getBoolean("scroll", false);
 
-        if (isSingleClick || isDoubleClick || isMiddleClick || isRightClick || isSingleHold || isSingleRelease || isScroll) {
+        if (isSingleClick || isDoubleClick || isMiddleClick || isRightClick || isSingleHold || isSingleRelease || isScroll || isForwardClick || isBackClick) {
             // Perform click
             if (isSingleClick) {
                 // Log.i("MouseReceiverPlugin", "singleClick");
@@ -85,7 +88,11 @@ public class MouseReceiverPlugin extends Plugin {
                 // Log.i("MouseReceiverPlugin", "middleClick");
                 return MouseReceiverService.homeButton();
             } else if (isRightClick) {
-                // Log.i("MouseReceiverPlugin", "rightClick");
+                // TODO right-click menu emulation
+                return MouseReceiverService.backButton();
+            } else if (isForwardClick) {
+                return MouseReceiverService.recentButton();
+            } else if (isBackClick) {
                 return MouseReceiverService.backButton();
             } else if (isSingleHold){
                 // For drag'n drop
@@ -95,8 +102,7 @@ public class MouseReceiverPlugin extends Plugin {
                 } else {
                     return MouseReceiverService.longClick();
                 }
-            }
-            else if (isSingleRelease) {
+            } else if (isSingleRelease) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     return MouseReceiverService.instance.stopSwipe();
                 }
