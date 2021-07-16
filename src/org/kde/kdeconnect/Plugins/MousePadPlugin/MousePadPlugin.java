@@ -97,7 +97,7 @@ public class MousePadPlugin extends Plugin {
         device.sendPacket(np, NetworkPacket.PACKET_REPLACEID_MOUSEMOVE);
     }
 
-    public void sendSingleClick() {
+    public void sendLeftClick() {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_MOUSEPAD_REQUEST);
         np.set("singleclick", true);
         device.sendPacket(np);
