@@ -71,7 +71,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         }
     }
 
-    private ClickType doubleTapAction, tripleTapAction;
+    private ClickType singleTapAction, doubleTapAction, tripleTapAction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +101,8 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         } else {
             scrollDirection = 1;
         }
+        String singleTapSetting = prefs.getString(getString(R.string.mousepad_single_tap_key),
+                getString(R.string.mousepad_default_single));
         String doubleTapSetting = prefs.getString(getString(R.string.mousepad_double_tap_key),
                 getString(R.string.mousepad_default_double));
         String tripleTapSetting = prefs.getString(getString(R.string.mousepad_triple_tap_key),
@@ -113,6 +115,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
         mPointerAccelerationProfile = PointerAccelerationProfileFactory.getProfileWithName(accelerationProfileName);
 
+        singleTapAction = ClickType.fromString(singleTapSetting);
         doubleTapAction = ClickType.fromString(doubleTapSetting);
         tripleTapAction = ClickType.fromString(tripleTapSetting);
 
@@ -304,7 +307,18 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
     @Override
     public boolean onSingleTapConfirmed(MotionEvent e) {
-        BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendLeftClick);
+        switch (singleTapAction) {
+            case LEFT:
+                sendLeftClick();
+                break;
+            case RIGHT:
+                sendRightClick();
+                break;
+            case MIDDLE:
+                sendMiddleClick();
+                break;
+            default:
+        }
         return true;
     }
 

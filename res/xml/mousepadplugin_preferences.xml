@@ -6,6 +6,15 @@
     tools:keep="@xml/mousepadplugin_preferences">
 
     <ListPreference
+        android:id="@+id/mousepad_single_tap_preference"
+        android:defaultValue="@string/mousepad_default_single"
+        android:entries="@array/mousepad_tap_entries"
+        android:entryValues="@array/mousepad_tap_values"
+        android:key="@string/mousepad_single_tap_key"
+        android:summary="%s"
+        android:title="@string/mousepad_single_tap_settings_title" />
+
+    <ListPreference
         android:id="@+id/mousepad_double_tap_preference"
         android:defaultValue="@string/mousepad_default_double"
         android:entries="@array/mousepad_tap_entries"

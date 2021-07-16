@@ -59,10 +59,12 @@
     <string name="remotekeyboard_multiple_connections" translatable="true">There is more than one remote keyboard connection, select the device to configure</string>
     <string name="open_mousepad">Remote input</string>
     <string name="mousepad_info">Move a finger on the screen to move the mouse cursor. Tap for a click, and use two/three fingers for right and middle buttons. Use 2 fingers to scroll. Use a long press to drag\'n drop.</string>
+    <string name="mousepad_single_tap_settings_title">Set one finger tap action</string>
     <string name="mousepad_double_tap_settings_title">Set two finger tap action</string>
     <string name="mousepad_triple_tap_settings_title">Set three finger tap action</string>
     <string name="mousepad_sensitivity_settings_title">Set touchpad sensitivity</string>
     <string name="mousepad_acceleration_profile_settings_title">Set pointer acceleration</string>
+    <string name="mousepad_single_tap_key" translatable="false">mousepad_single_tap_key</string>
     <string name="mousepad_double_tap_key" translatable="false">mousepad_double_tap_key</string>
     <string name="mousepad_triple_tap_key" translatable="false">mousepad_triple_tap_key</string>
     <string name="mousepad_sensitivity_key" translatable="false">mousepad_sensitivity_key</string>
@@ -75,6 +77,7 @@
         <item>Middle click</item>
         <item>Nothing</item>
     </string-array>
+    <string name="mousepad_default_single" translatable="false">left</string>
     <string name="mousepad_default_double" translatable="false">right</string>
     <string name="mousepad_default_triple" translatable="false">middle</string>
     <string name="mousepad_default_sensitivity" translatable="false">default</string>
