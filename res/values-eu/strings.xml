@@ -160,6 +160,8 @@
   <string name="mpris_rew">Atzera eraman</string>
   <string name="mpris_ff">Aurrera eraman</string>
   <string name="mpris_next">Hurrengoa</string>
+  <string name="mpris_loop">Begizta</string>
+  <string name="mpris_shuffle">Nahasi</string>
   <string name="mpris_volume">Bolumena</string>
   <string name="mpris_time_settings_title">Atzera eraman / Aurrera eraman botoiak</string>
   <string name="mpris_time_settings_summary">Doitu sakatzean aurrera/atzera azkar egin beharreko denbora</string>
