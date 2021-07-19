@@ -159,7 +159,7 @@
     <item quantity="other"/>
   </plurals>
   <string name="tap_to_open">Stuknij, aby otworzyć</string>
-  <string name="received_file_text">Stuknij, aby otworzyć \'%1s\'</string>
+  <string name="received_file_text">Stuknij, aby otworzyć „%1s”</string>
   <string name="cannot_create_file">Nie można utworzyć pliku %s</string>
   <string name="tap_to_answer">Stuknij, aby odpowiedzieć</string>
   <string name="right_click">Wyślij naciskając prawym</string>
@@ -196,9 +196,9 @@
   <string name="invalid_device_name">Nieprawidłowa nazwa urządzenia</string>
   <string name="shareplugin_text_saved">Otrzymano tekst, zapisano do schowka</string>
   <string name="custom_devices_settings">Lista własnych urządzeń</string>
-  <string name="custom_device_list">Dodaj urządzenie po numerze IP</string>
+  <string name="custom_device_list">Dodaj urządzenie po adresie IP</string>
   <string name="custom_device_deleted">Usunięto własne urządzenie</string>
-  <string name="custom_device_list_help">Jeśli twoje urządzenie nie zostało samo wykryte, to możesz dodać jego adres IP lub nazwę gospodarza, po dotknięciu pływającego przycisku dodawania</string>
+  <string name="custom_device_list_help">Jeśli twoje urządzenie nie zostało wykryte samoistnie, możesz ręcznie dodać jego adres IP lub nazwę gospodarza, naciskając pomarańczowy przycisk u dołu ekranu</string>
   <string name="custom_device_fab_hint">Dodaj urządzenie</string>
   <string name="undo">Cofnij</string>
   <string name="share_notification_preference">Hałaśliwe powiadomienia</string>
@@ -305,7 +305,7 @@
   <string name="settings_rename">Nazwa urządzenia</string>
   <string name="settings_dark_mode">Ciemny wygląd</string>
   <string name="settings_more_settings_title">Więcej ustawień</string>
-  <string name="settings_more_settings_text">Ustawienia nadawane urządzeniu można znaleźć w \'Ustawienia wtyczek\' w danym urządzeniu.</string>
+  <string name="settings_more_settings_text">Ustawienia danego urządzeniu można znaleźć w „Ustawienia wtyczek” na urządzeniu.</string>
   <string name="setting_persistent_notification">Pokaż nieznikające powiadomienie</string>
   <string name="setting_persistent_notification_oreo">Nieznikające powiadomienie</string>
   <string name="setting_persistent_notification_description">Stuknij, aby je ustawić w ustawieniach powiadamiania</string>
@@ -355,14 +355,14 @@
     <item>Po czterech wiadomościach</item>
     <item>Po pięciu wiadomościach</item>
   </string-array>
-  <string name="theme_dialog_title">Wybierz tryb</string>
+  <string name="theme_dialog_title">Wybierz wygląd</string>
   <string-array name="theme_list">
     <item>Ustaw przy oszczędzaniu energii</item>
     <item>Jasny</item>
     <item>Ciemny</item>
   </string-array>
   <string-array name="theme_list_v28">
-    <item>Domyślne systemowe</item>
+    <item>Zgodny z systemowym</item>
     <item>Jasny</item>
     <item>Ciemny</item>
   </string-array>

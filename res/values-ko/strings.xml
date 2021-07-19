@@ -152,6 +152,8 @@
   <string name="mpris_rew">되감기</string>
   <string name="mpris_ff">빨리 감기</string>
   <string name="mpris_next">다음</string>
+  <string name="mpris_loop">반복</string>
+  <string name="mpris_shuffle">무순서 재생</string>
   <string name="mpris_volume">음량</string>
   <string name="mpris_time_settings_title">되감기/빨리감기 단추</string>
   <string name="mpris_time_settings_summary">눌렀을 때 되감거나 빨리 감을 시간 조정</string>
