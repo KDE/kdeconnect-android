@@ -168,6 +168,8 @@
   <string name="mpris_rew">Rebobinează</string>
   <string name="mpris_ff">Derulează rapid înainte</string>
   <string name="mpris_next">Următor</string>
+  <string name="mpris_loop">Buclă</string>
+  <string name="mpris_shuffle">Amestecă</string>
   <string name="mpris_volume">Volum</string>
   <string name="mpris_time_settings_title">Butoane pentru derulare/rebobinare</string>
   <string name="mpris_time_settings_summary">Ajustează durata de derulat/rebobinat rapid la apăsare</string>
