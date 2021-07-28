@@ -5,13 +5,15 @@
   <string name="foreground_notification_devices">Подключено к: %s</string>
   <string name="foreground_notification_send_clipboard">Передать буфер обмена</string>
   <string name="pref_plugin_telephony">События телефонии</string>
-  <string name="pref_plugin_telephony_desc">Отправка уведомлений о звонках</string>
-  <string name="pref_plugin_battery">Состояние батареи</string>
-  <string name="pref_plugin_battery_desc">Периодическое информирование о состоянии батареи</string>
-  <string name="pref_plugin_sftp">Просмотр файловой системы</string>
-  <string name="pref_plugin_sftp_desc">Позволяет удалённо просматривать файловую систему устройства</string>
+  <string name="pref_plugin_telephony_desc">Посылать уведомления о входящих звонках</string>
+  <string name="pref_plugin_battery">Сведения о состоянии батареи</string>
+  <string name="pref_plugin_battery_desc">Периодически сообщать о состоянии батареи</string>
+  <string name="pref_plugin_connectivity_report">Сведения о возможности подключения</string>
+  <string name="pref_plugin_connectivity_report_desc">Сведения о силе и статусе сигнала</string>
+  <string name="pref_plugin_sftp">Открыть доступ к файловой системе</string>
+  <string name="pref_plugin_sftp_desc">Позволяет удалённо просматривать файловую систему данного устройства</string>
   <string name="pref_plugin_clipboard">Синхронизация буфера обмена</string>
-  <string name="pref_plugin_clipboard_desc">Использование общего буфера обмена</string>
+  <string name="pref_plugin_clipboard_desc">Общий буфер обмена</string>
   <string name="pref_plugin_clipboard_sent">Буфер обмена передан</string>
   <string name="pref_plugin_mousepad">Удалённый ввод</string>
   <string name="pref_plugin_mousepad_desc">Использование телефона или планшета в качестве сенсорной панели и клавиатуры</string>
@@ -19,38 +21,38 @@
   <string name="pref_plugin_presenter_desc">Использование телефона для смены слайдов презентации</string>
   <string name="pref_plugin_remotekeyboard">Получение удалённых нажатий клавиш</string>
   <string name="pref_plugin_remotekeyboard_desc">Получение нажатий клавиш с удалённых устройств</string>
-  <string name="pref_plugin_mpris">Управление воспроизведением</string>
-  <string name="pref_plugin_mpris_desc">Обеспечивает дистанционное управление медиапроигрывателем</string>
+  <string name="pref_plugin_mpris">Элементы управления мультимедия</string>
+  <string name="pref_plugin_mpris_desc">Предоставляет дистанционное управление медиапроигрывателем</string>
   <string name="pref_plugin_runcommand">Запуск команд</string>
   <string name="pref_plugin_runcommand_desc">Удалённый запуск команд с телефона или планшета</string>
   <string name="pref_plugin_contacts">Синхронизация контактов</string>
-  <string name="pref_plugin_contacts_desc">Синхронизация адресной книги</string>
-  <string name="pref_plugin_ping">Пинг</string>
-  <string name="pref_plugin_ping_desc">Отправка и получение тестовых сигналов</string>
+  <string name="pref_plugin_contacts_desc">Разрешить синхронизацию адресной книги устройства</string>
+  <string name="pref_plugin_ping">Проверка связи</string>
+  <string name="pref_plugin_ping_desc">Отправка и получение тестовых запросов</string>
   <string name="pref_plugin_notifications">Синхронизация уведомлений</string>
   <string name="pref_plugin_notifications_desc">Доступ к уведомлениям с других устройств</string>
   <string name="pref_plugin_receive_notifications">Получение уведомлений</string>
   <string name="pref_plugin_receive_notifications_desc">Получение уведомлений с другого устройства и показ их на Android</string>
-  <string name="pref_plugin_sharereceiver">Отправка и приём данных</string>
-  <string name="pref_plugin_sharereceiver_desc">Пересылка файлов и адресов URL между устройствами</string>
+  <string name="pref_plugin_sharereceiver">Общие данные и приём данных</string>
+  <string name="pref_plugin_sharereceiver_desc">Общие файлы и адреса URL для устройств</string>
   <string name="device_list_empty">Нет устройств</string>
   <string name="ok">ОК</string>
   <string name="sad_ok">ОК :(</string>
   <string name="cancel">Отмена</string>
   <string name="open_settings">Настроить</string>
-  <string name="no_permissions">Нужно разрешить доступ к уведомлениям</string>
+  <string name="no_permissions">Разрешите доступ к уведомлениям</string>
   <string name="no_permission_mprisreceiver">Чтобы управлять мультимедийными проигрывателями, необходимо разрешить доступ к уведомлениям</string>
   <string name="no_permissions_remotekeyboard">Чтобы получать нажатия клавиш, необходимо включить удалённую клавиатуру KDE Connect.</string>
   <string name="send_ping">Отправить тестовый сигнал</string>
   <string name="open_mpris_controls">Управление воспроизведением</string>
   <string name="remotekeyboard_editing_only_title">Обрабатывать удалённые нажатия только при редактировании</string>
-  <string name="remotekeyboard_not_connected">Нет активного соединения с удалённой клавиатурой, установите его в KDE Connect</string>
+  <string name="remotekeyboard_not_connected">Нет активного соединения с удалённой клавиатурой, создайте такое соединение в KDE Connect</string>
   <string name="remotekeyboard_connected">Соединение с удалённой клавиатурой активно</string>
   <string name="remotekeyboard_multiple_connections">Подключено более одной удалённой клавиатуры, выберите устройство для настройки</string>
   <string name="open_mousepad">Удалённый ввод</string>
   <string name="mousepad_info">Перемещайте палец по экрану для перемещения курсора мыши. Коснитесь для нажатия, используйте касание двумя/тремя пальцами для правой и средней кнопок. Для выполнения прокрутки используйте два пальца, для перетаскивания — долгое нажатие.</string>
-  <string name="mousepad_double_tap_settings_title">Действие при нажатии двумя пальцами</string>
-  <string name="mousepad_triple_tap_settings_title">Действие при нажатии тремя пальцами</string>
+  <string name="mousepad_double_tap_settings_title">Действие при касании двумя пальцами</string>
+  <string name="mousepad_triple_tap_settings_title">Действие при касании тремя пальцами</string>
   <string name="mousepad_sensitivity_settings_title">Чувствительность сенсорной панели</string>
   <string name="mousepad_acceleration_profile_settings_title">Настройка ускорения курсора</string>
   <string name="mousepad_scroll_direction_title">Инвертировать направление прокрутки</string>
@@ -74,12 +76,27 @@
     <item>Выше среднего</item>
     <item>Высокое</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Куда посылать нажатия клавиш</string>
+  <string name="sendkeystrokes_textbox_hint">Посылать нажатия клавиш на хост</string>
+  <string name="sendkeystrokes_disabled_toast">Отсылка нажатий клавиш отключена: включите её в параметрах</string>
+  <string name="sendkeystrokes_wrong_data">Недопустимый тип mime, тип должен быть «text/x-keystrokes»</string>
+  <string name="sendkeystrokes_sent_text">Отправлено %1s на устройство %2s</string>
+  <string name="sendkeystrokes_pref_category_summary">Данный модуль позволяет другим приложениям делиться фрагментами текста в виде нажатий клавиш, которые будут затем посылаться на подключённый хост.</string>
+  <string name="sendkeystrokes_pref_category_title">Послать нажатия клавиш</string>
+  <string name="sendkeystrokes_pref_enabled">Включить отсылку нажатий клавиш</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Ожидать передачу данных с типом mime «text/x-keystrokes»</string>
+  <string name="sendkeystrokes_safe_text_enabled">Немедленно отправить защищённый текст</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Без подтверждения послать короткие строки только с цифрами</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Послать в виде нажатий клавиш</string>
+  <string name="mouse_receiver_plugin_description">Получать движения удалённой мыши</string>
+  <string name="mouse_receiver_plugin_name">Инструмент получения движений мыши</string>
+  <string name="mouse_receiver_no_permissions">Включите службу специальных возможностей</string>
   <string name="category_connected_devices">Подключённые устройства</string>
   <string name="category_not_paired_devices">Доступные устройства</string>
   <string name="category_remembered_devices">Известные устройства</string>
-  <string name="device_menu_plugins">Настройка модулей</string>
+  <string name="device_menu_plugins">Параметры модулей</string>
   <string name="device_menu_unpair">Снять сопряжение</string>
-  <string name="pair_new_device">Подключить новое устройство</string>
+  <string name="pair_new_device">Создать сопряжение с новым устройством</string>
   <string name="unknown_device">Неизвестное устройство</string>
   <string name="error_not_reachable">Устройство недоступно</string>
   <string name="error_already_paired">Устройство уже сопряжено</string>
@@ -88,7 +105,9 @@
   <string name="error_canceled_by_user">Отменено пользователем</string>
   <string name="error_canceled_by_other_peer">Отменено другим участником</string>
   <string name="encryption_info_title">Информация о шифровании</string>
-  <string name="encryption_info_msg_no_ssl">На другом устройстве используется старая версия KDE Connect, используется старый метод шифрования.</string>
+  <string name="encryption_info_msg_no_ssl">На другом устройстве используется старая версия KDE Connect, будет использован старый метод шифрования.</string>
+  <string name="my_device_fingerprint">Отпечаток SHA-1 сертификата данного устройства:</string>
+  <string name="remote_device_fingerprint">Отпечаток SHA-1 сертификата удалённого устройства:</string>
   <string name="pair_requested">Запрошено сопряжение</string>
   <string name="pairing_request_from">Запрос на сопряжение от %1s</string>
   <plurals name="incoming_file_title">
@@ -139,23 +158,26 @@
     <item quantity="many">Не удалось передать %2$d из %3$d файлов на %1$s</item>
     <item quantity="other">Не удалось передать файл на %1$s</item>
   </plurals>
-  <string name="received_file_text">Нажмите, чтобы открыть «%1s»</string>
+  <string name="tap_to_open">Коснитесь, чтобы открыть</string>
+  <string name="received_file_text">Коснитесь, чтобы открыть «%1s»</string>
   <string name="cannot_create_file">Не удалось создать файл «%s»</string>
-  <string name="tap_to_answer">Нажмите, чтобы ответить</string>
-  <string name="right_click">Нажатие правой кнопки</string>
-  <string name="middle_click">Нажатие средней кнопки</string>
+  <string name="tap_to_answer">Коснитесь, чтобы ответить</string>
+  <string name="right_click">Послать нажатие правой кнопки</string>
+  <string name="middle_click">Послать нажатие средней кнопки</string>
   <string name="show_keyboard">Показать клавиатуру</string>
   <string name="device_not_paired">Устройство не сопряжено</string>
   <string name="request_pairing">Запросить сопряжение</string>
   <string name="pairing_accept">Принять</string>
   <string name="pairing_reject">Отклонить</string>
-  <string name="settings">Настройка</string>
+  <string name="settings">Параметры</string>
   <string name="mpris_play">Воспроизведение</string>
   <string name="mpris_pause">Приостановить</string>
   <string name="mpris_previous">Предыдущая</string>
   <string name="mpris_rew">Назад</string>
   <string name="mpris_ff">Вперёд</string>
   <string name="mpris_next">Следующая</string>
+  <string name="mpris_loop">Повторять</string>
+  <string name="mpris_shuffle">Перемешать</string>
   <string name="mpris_volume">Громкость</string>
   <string name="mpris_time_settings_title">Кнопки вперёд/назад</string>
   <string name="mpris_time_settings_summary">Настройка шага перемотки при нажатии кнопок вперёд или назад</string>
@@ -166,53 +188,53 @@
     <item>1 минута</item>
     <item>2 минуты</item>
   </string-array>
-  <string name="mpris_notification_settings_title">Управление проигрывателем из области уведомлений</string>
-  <string name="mpris_notification_settings_summary">Управление воспроизведением при закрытом KDE Connect</string>
-  <string name="share_to">Отправить на...</string>
+  <string name="mpris_notification_settings_title">Показывать уведомления об управлении воспроизведением</string>
+  <string name="mpris_notification_settings_summary">Разрешить управление воспроизведением при закрытом KDE Connect</string>
+  <string name="share_to">Поделиться c…</string>
   <string name="protocol_version_newer">Это устройство использует более новую версию протокола</string>
-  <string name="plugin_settings_with_name">Настройка %s</string>
+  <string name="plugin_settings_with_name">Параметры %s</string>
   <string name="invalid_device_name">Недопустимое имя устройства</string>
   <string name="shareplugin_text_saved">Получен текст, он сохранен в буфер обмена</string>
   <string name="custom_devices_settings">Устройства, заданные вручную</string>
   <string name="custom_device_list">Добавить устройства по IP</string>
   <string name="custom_device_deleted">Заданное вручную устройство удалено</string>
-  <string name="custom_device_list_help">Если устройство не обнаружено автоматически, возможно добавить его вручную по IP-адресу или по имени хоста.</string>
+  <string name="custom_device_list_help">В случае, если устройство не было определено автоматически, то адрес IP или имя хоста этого устройства можно добавить, нажав на плавающую кнопку действия.</string>
   <string name="custom_device_fab_hint">Добавление устройства</string>
-  <string name="undo">Отменить</string>
-  <string name="share_notification_preference">Звуковые уведомления</string>
-  <string name="share_notification_preference_summary">Использовать вибрацию и звуковой сигнал при получении файла</string>
+  <string name="undo">Отменить действие</string>
+  <string name="share_notification_preference">«Шумные» уведомления</string>
+  <string name="share_notification_preference_summary">При получении файла вибрировать и издавать звуковой сигнал</string>
   <string name="share_destination_customize">Задать целевой каталог</string>
-  <string name="share_destination_customize_summary_disabled">Полученные файлы появятся в каталоге Загрузки</string>
+  <string name="share_destination_customize_summary_disabled">Полученные файлы появятся в каталоге «Загрузки»</string>
   <string name="share_destination_customize_summary_enabled">Файлы будут сохранены в указанном ниже каталоге</string>
   <string name="share_destination_folder_preference">Целевой каталог</string>
-  <string name="share">Отправить</string>
-  <string name="share_received_file">Поделиться «%s» с помощью:</string>
+  <string name="share">Совместное использование</string>
+  <string name="share_received_file">Совместное использование «%s»</string>
   <string name="title_activity_notification_filter">Фильтр уведомлений</string>
-  <string name="filter_apps_info">Уведомления будут синхронизированы для выбранных приложений.</string>
-  <string name="sftp_sdcard_num">SD-карта %d</string>
-  <string name="sftp_sdcard">SD-карта</string>
+  <string name="filter_apps_info">Для выбранных приложений уведомления будут синхронизированы.</string>
+  <string name="sftp_sdcard_num">Карта SD %d</string>
+  <string name="sftp_sdcard">Карта SD</string>
   <string name="sftp_readonly">(только чтение)</string>
   <string name="sftp_camera">Фотографии с камеры</string>
   <string name="add_device_dialog_title">Добавление устройства</string>
-  <string name="add_device_hint">Имя хоста или IP-адрес</string>
-  <string name="sftp_preference_detected_sdcards">Обнаруженные SD-карты</string>
-  <string name="sftp_preference_edit_sdcard_title">Изменить SD-карте</string>
-  <string name="sftp_preference_configured_storage_locations">Настроенные общие папки</string>
-  <string name="sftp_preference_add_storage_location_title">Добавить общую папку</string>
-  <string name="sftp_preference_edit_storage_location">Изменение общей папки</string>
-  <string name="sftp_preference_add_camera_shortcut">Ссылка на папку камеры</string>
-  <string name="sftp_preference_add_camera_shortcut_summary_on">Добавить ссылку на папку камеру</string>
-  <string name="sftp_preference_add_camera_shortcut_summary_off">Не добавлять ссылку на папку камеру</string>
-  <string name="sftp_storage_preference_storage_location">Расположение на устройстве</string>
-  <string name="sftp_storage_preference_storage_location_already_configured">Это расположение уже было добавлено</string>
+  <string name="add_device_hint">Имя хоста или адрес IP</string>
+  <string name="sftp_preference_detected_sdcards">Обнаруженные карты SD</string>
+  <string name="sftp_preference_edit_sdcard_title">Параметры карты SD</string>
+  <string name="sftp_preference_configured_storage_locations">Настроенные местоположения хранилищ</string>
+  <string name="sftp_preference_add_storage_location_title">Добавить местоположение хранилища</string>
+  <string name="sftp_preference_edit_storage_location">Изменить местоположение хранилища</string>
+  <string name="sftp_preference_add_camera_shortcut">Добавить ярлык для папки камеры</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_on">Добавить ярлык для папки камеры</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_off">Не добавлять ярлык для папки камеры</string>
+  <string name="sftp_storage_preference_storage_location">Местоположение хранилища</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">Это местоположение уже было настроено</string>
   <string name="sftp_storage_preference_click_to_select">нажмите для выбора</string>
   <string name="sftp_storage_preference_display_name">Отображаемое имя</string>
-  <string name="sftp_storage_preference_display_name_already_used">Отображаемое имя уже используется</string>
+  <string name="sftp_storage_preference_display_name_already_used">Это отображаемое имя уже используется</string>
   <string name="sftp_storage_preference_display_name_cannot_be_empty">Отображаемое имя не может быть пустым</string>
   <string name="sftp_action_mode_menu_delete">Удалить</string>
-  <string name="sftp_no_sdcard_detected">SD-карт не обнаружено</string>
-  <string name="sftp_no_storage_locations_configured">Нет настроенных общих папок</string>
-  <string name="sftp_saf_permission_explanation">Чтобы разрешить удалённый доступ к файлам, необходимо настроить список общих папок.</string>
+  <string name="sftp_no_sdcard_detected">Карт SD не обнаружено</string>
+  <string name="sftp_no_storage_locations_configured">Нет настроенных хранилищ</string>
+  <string name="sftp_saf_permission_explanation">Для удалённого доступа к файлам необходимо настроить местоположения хранилищ</string>
   <string name="no_players_connected">Медиапроигрывателей не найдено</string>
   <string name="send_files">Отправить файлы</string>
   <string name="pairing_title">Устройства с KDE Connect</string>
@@ -220,56 +242,60 @@
   <string name="device_rename_title">Переименование устройства</string>
   <string name="device_rename_confirm">Переименовать</string>
   <string name="refresh">Обновить</string>
-  <string name="unreachable_description">Это сопряжённое устройство недоступно. Проверьте, что оно подключено к той же локальной сети.</string>
-  <string name="no_wifi">Другие устройства недоступны, так как вы не подключены к сети Wi-Fi. Нажмите здесь для включения Wi-Fi.</string>
-  <string name="on_non_trusted_message">Автоматическое обнаружение отключено, так как вы подключены к недоверенной сети.</string>
-  <string name="no_file_browser">Не удалось открыть диалог выбора файла.</string>
-  <string name="pref_plugin_telepathy">Отправка SMS</string>
-  <string name="pref_plugin_telepathy_desc">Отправка SMS-сообщений с вашего компьютера</string>
+  <string name="unreachable_description">Это сопряжённое устройство недоступно. Проверьте, подключено ли оно к этой же локальной сети.</string>
+  <string name="no_wifi">Устройства могут быть недоступны, так как отсутствует подключение к сети Wi-Fi. Нажмите здесь для включения Wi-Fi.</string>
+  <string name="on_non_trusted_message">Сеть не является доверенной: автообнаружение отключено.</string>
+  <string name="no_file_browser">Просмотрщики файлов не установлены</string>
+  <string name="pref_plugin_telepathy">Отправить SMS</string>
+  <string name="pref_plugin_telepathy_desc">Отправка SMS-сообщений с рабочего стола</string>
+  <string name="pref_plugin_telepathy_mms">Отправка MMS</string>
+  <string name="pref_plugin_telepathy_mms_desc">Чтобы иметь возможность посылать MMS с помощью KDE Connect, нужно настроить его как приложение по умолчанию для отправки SMS.</string>
   <string name="findmyphone_title">Поиск телефона</string>
   <string name="findmyphone_title_tablet">Поиск планшета</string>
   <string name="findmyphone_title_tv">Поиск телевизора</string>
-  <string name="findmyphone_description">Подача звукового сигнала на устройстве, чтобы вы могли его найти</string>
-  <string name="findmyphone_found">Найден</string>
+  <string name="findmyphone_description">Подача звукового сигнала на устройство, чтобы его можно было найти</string>
+  <string name="findmyphone_found">Найдено</string>
   <string name="open">Открыть</string>
   <string name="close">Закрыть</string>
-  <string name="plugins_need_permission">Некоторым модулям нужны разрешения для работы (нажмите для просмотра подробностей):</string>
+  <string name="plugins_need_permission">Некоторым модулям нужны разрешения для работы (коснитесь для просмотра подробностей):</string>
   <string name="permission_explanation">Этому модулю нужны разрешения для работы</string>
-  <string name="optional_permission_explanation">Необходимо предоставить дополнительные разрешения для включения всех функций</string>
-  <string name="plugins_need_optional_permission">Некоторые функции модулей отключены из-за отсутствия необходимых разрешений (нажмите для просмотра подробностей):</string>
-  <string name="telepathy_permission_explanation">Чтобы читать и писать SMS с компьютера, вам необходимо дать разрешение на доступ к SMS</string>
-  <string name="telephony_permission_explanation">Чтобы видеть телефонные звонки на компьютере, необходимо дать разрешение на доступ к списку звонков и состоянию телефона</string>
+  <string name="optional_permission_explanation">Для включения всех функций необходимо предоставить дополнительные разрешения</string>
+  <string name="plugins_need_optional_permission">Некоторые функции модулей отключены из-за отсутствия необходимых разрешений (коснитесь для просмотра подробностей):</string>
+  <string name="share_optional_permission_explanation">Для получения общих файлов нужно настроить целевой каталог</string>
+  <string name="telepathy_permission_explanation">Чтобы просматривать и отправлять SMS с рабочего стола, необходимо дать разрешение на доступ к SMS</string>
+  <string name="telephony_permission_explanation">Чтобы видеть телефонные звонки на рабобчем столе, необходимо дать разрешение на доступ к журналу звонков и состоянию телефона</string>
   <string name="telephony_optional_permission_explanation">Чтобы видеть имя контакта вместо номера телефона, необходимо предоставить доступ к контактам</string>
-  <string name="contacts_permission_explanation">Чтобы открыть доступ к адресной книге, вам необходимо дать разрешение на доступ к контактам</string>
+  <string name="contacts_permission_explanation">Чтобы поделиться адресной книгой с рабочим столом, необходимо дать разрешение на доступ к контактам</string>
   <string name="select_ringtone">Выбор мелодии</string>
   <string name="telephony_pref_blocked_title">Заблокированные номера</string>
-  <string name="telephony_pref_blocked_dialog_desc">Номера, звонки и СМС с которых не будут показаны. Каждый номер с новой строки.</string>
+  <string name="telephony_pref_blocked_dialog_desc">Не показывать звонки и СМС с этих номеров. Каждый номер с новой строки.</string>
   <string name="mpris_coverart_description">Обложка воспроизводимого файла</string>
   <string name="device_icon_description">Значок устройства</string>
-  <string name="settings_icon_description">Значок настройки</string>
+  <string name="settings_icon_description">Значок параметров</string>
   <string name="presenter_fullscreen">На весь экран</string>
   <string name="presenter_exit">Закончить слайд-шоу</string>
-  <string name="presenter_lock_tip">Вы можете заблокировать устройство и использовать кнопки управления громкостью для перехода к предыдущему/следующему слайду.</string>
+  <string name="presenter_lock_tip">Устройство можно заблокировать, и для перехода к предыдущему/следующему слайду использовать кнопки управления громкостью.</string>
   <string name="add_command">Добавить команду</string>
   <string name="addcommand_explanation">Нет настроенных команд.</string>
-  <string name="addcommand_explanation2">Вы можете добавить новые команды в «Параметрах системы» в разделе «KDE Connect».</string>
-  <string name="add_command_description">Команды возможно добавлять с ПК</string>
-  <string name="pref_plugin_mprisreceiver">Управление мультимедиа</string>
+  <string name="addcommand_explanation2">Новые команды можно добавить в системных параметрах KDE Connect.</string>
+  <string name="add_command_description">Команды возможно добавлять с рабочего стола</string>
+  <string name="pref_plugin_mprisreceiver">Управление медиапроигрывателем</string>
   <string name="pref_plugin_mprisreceiver_desc">Управление воспроизведением на телефоне с другого устройства</string>
   <string name="notification_channel_default">Прочие уведомления</string>
   <string name="notification_channel_persistent">Постоянный индикатор</string>
   <string name="notification_channel_media_control">Управление воспроизведением</string>
   <string name="notification_channel_filetransfer">Передача файлов</string>
   <string name="notification_channel_high_priority">Высокий приоритет</string>
-  <string name="mpris_stop">Остановить воспроизведение</string>
+  <string name="notification_channel_sms_mms">Новое сообщение</string>
+  <string name="mpris_stop">Остановить текущее воспроизведение</string>
   <string name="copy_url_to_clipboard">Копировать URL в буфер обмена</string>
   <string name="clipboard_toast">Скопировано в буфер обмена</string>
   <string name="runcommand_notreachable">Устройство недоступно</string>
   <string name="runcommand_notpaired">Устройство не сопряжено</string>
   <string name="runcommand_nosuchdevice">Нет такого устройства</string>
   <string name="runcommand_noruncommandplugin">На устройстве не задействован подключаемый модуль запуска команд</string>
-  <string name="pref_plugin_findremotedevice">Найти устройство</string>
-  <string name="pref_plugin_findremotedevice_desc">Позвонить на устройство</string>
+  <string name="pref_plugin_findremotedevice">Найти удалённое устройство</string>
+  <string name="pref_plugin_findremotedevice_desc">Позвонить на удалённое устройство</string>
   <string name="ring">Звонок</string>
   <string name="pref_plugin_systemvolume">Системная громкость</string>
   <string name="pref_plugin_systemvolume_desc">Управление системной громкостью удалённого устройства</string>
@@ -279,44 +305,69 @@
   <string name="settings_rename">Имя устройства</string>
   <string name="settings_dark_mode">Тёмное оформление</string>
   <string name="settings_more_settings_title">Дополнительные параметры</string>
-  <string name="settings_more_settings_text">Для настройка параметров, применимых к сопряжённому устройству, служит пункт меню «Настройка модулей» на странице устройства.</string>
+  <string name="settings_more_settings_text">Параметры для каждого из устройств можно найти на устройствах в разделе «Параметры модулей»</string>
   <string name="setting_persistent_notification">Показывать постоянное уведомление</string>
   <string name="setting_persistent_notification_oreo">Постоянное уведомление</string>
-  <string name="setting_persistent_notification_description">Нажмите для включения или отключения в настройках уведомлений</string>
+  <string name="setting_persistent_notification_description">Коснитесь, чтобы выключить/выключить в параметрах уведомлений</string>
   <string name="extra_options">Дополнительные параметры</string>
   <string name="privacy_options">Параметры конфиденциальности</string>
   <string name="set_privacy_options">Настройка параметров конфиденциальности</string>
-  <string name="block_contents">Скрывать текст уведомлений</string>
-  <string name="block_images">Скрывать изображения в уведомлениях</string>
+  <string name="block_contents">Блокировать содержимое уведомлений</string>
+  <string name="block_images">Блокировать изображения в уведомлениях</string>
   <string name="notification_channel_receivenotification">Уведомления с других устройств</string>
-  <string name="take_picture">Сделать снимок</string>
-  <string name="plugin_photo_desc">Создание и передача снимков</string>
-  <string name="no_app_for_opening">Для этого файла нет приложений, способных его открыть</string>
+  <string name="take_picture">Запустить камеру</string>
+  <string name="plugin_photo_desc">Запуск камеры для простого создания и передачи снимков</string>
+  <string name="no_app_for_opening">Для открытия этого файла нет подходящих приложений</string>
   <string name="remote_keyboard_service">Удалённая клавиатура KDE Connect</string>
   <string name="presenter_pointer">Указатель</string>
   <string name="trusted_networks">Доверенные сети</string>
-  <string name="trusted_networks_desc">Не использовать автоматическое обнаружение в недоверенных сетях</string>
+  <string name="trusted_networks_desc">Использовать автоматическое обнаружение только в доверенных сетях</string>
   <string name="add_trusted_network">Добавить %1s</string>
-  <string name="empty_trusted_networks_list_text">Пока нет ни одной доверенной сети</string>
+  <string name="empty_trusted_networks_list_text">Ещё не было добавлено ни одной доверенной сети</string>
   <string name="allow_all_networks_text">Разрешить во всех сетях</string>
   <string name="location_permission_needed_title">Требуется разрешение</string>
-  <string name="location_permission_needed_desc">Для получения сведений о Wi-Fi подключении на ОС Android требуются разрешение доступа к службе определения местоположения</string>
+  <string name="location_permission_needed_desc">Для идентификации сети WiFi системе Android требуется разрешение на доступ к местоположению</string>
   <string name="clipboard_android_x_incompat">В ОС Android версии 10 для всех приложений был запрещён доступ к буферу. Этот подключаемый модуль будет отключён.</string>
+  <string name="mpris_open_url">Продолжить воспроизведения отсюда</string>
+  <string name="cant_open_url">Не удалось открыть URL для продолжения воспроизведения</string>
+  <string name="bigscreen_home">На домашнюю страницу</string>
+  <string name="bigscreen_up">Вверх</string>
+  <string name="bigscreen_left">Влево</string>
+  <string name="bigscreen_select">Выбрать</string>
+  <string name="bigscreen_right">Вправо</string>
+  <string name="bigscreen_down">Вниз</string>
+  <string name="bigscreen_mic">Микрофон</string>
+  <string name="pref_plugin_bigscreen">Удалённый Bigscreen</string>
+  <string name="pref_plugin_bigscreen_desc">Использовать это устройство как удалённое для Plasma Bigscreen</string>
+  <string name="bigscreen_optional_permission_explanation">Для общего использования телефонного микрофона разрешите доступ к вводу аудио в телефоне.</string>
+  <string name="bigscreen_speech_extra_prompt">Речь</string>
+  <string name="message_reply_label">ОТВЕТИТЬ</string>
+  <string name="mark_as_read_label">ПОМЕТИТЬ КАК ПРОЧИТАННОЕ</string>
+  <string name="user_display_name">Вы</string>
+  <string name="set_default_sms_app_title">Отправка MMS</string>
+  <string name="set_group_message_as_mms_title">Отправка групповых MMS</string>
+  <string name="set_long_text_as_mms_title">Послать длинный текст в формате MMS</string>
+  <string name="convert_to_mms_after_title">Преобразовать в MMS</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>После одного сообщения</item>
+    <item>После двух сообщений</item>
+    <item>После трёх сообщений</item>
+    <item>После четырёх сообщений</item>
+    <item>После пяти сообщений</item>
   </string-array>
+  <string name="theme_dialog_title">Выбрать тему оформления</string>
   <string-array name="theme_list">
-    <item>Set by Battery Saver</item>
-    <item/>
-    <item>Dark</item>
+    <item>Настроено согласно параметрам «Экономии заряда»</item>
+    <item>Светлая</item>
+    <item>Тёмная</item>
   </string-array>
   <string-array name="theme_list_v28">
-    <item/>
-    <item/>
-    <item>Dark</item>
+    <item>Системная по умолчанию</item>
+    <item>Светлая</item>
+    <item>Тёмная</item>
   </string-array>
+  <string name="report_bug">Сообщить об ошибке</string>
+  <string name="donate">Поддержать</string>
+  <string name="source_code">Исходный код</string>
+  <string name="licenses">Лицензии</string>
 </resources>
