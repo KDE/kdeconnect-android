@@ -454,5 +454,68 @@
     <string name="source_code">Source Code</string>
     <string name="source_code_url" translatable="false">https://invent.kde.org/network/kdeconnect-android/</string>
     <string name="licenses">Licenses</string>
+    <string name="website">Website</string>
+    <string name="website_url" translatable="false">https://kdeconnect.kde.org/</string>
+
+    <string name="copyright_statement" translatable="false">(С) 2013-2021 The KDE Connect Developers</string>
+
+    <string name="about">About</string>
+    <string name="authors">Authors</string>
+    <string name="thanks_to">Thanks To</string>
+    <string name="easter_egg">Easter Egg</string>
+    <string name="email_contributor">Email contributor\n%s</string>
+    <string name="visit_contributors_homepage">Visit contributor\'s homepage\n%s</string>
+    <string name="version">Version %s</string>
+    <string name="about_kde">About KDE</string>
+    <string name="kde_be_free">KDE - Be Free!</string>
+    <string name="kde">KDE</string>
+    <string name="konqi">Konqi</string>
+    <string name="rise_up">Rise Up</string>
+    <string name="rise_down">Rise Down</string>
+
+    <string name="app_description">Multi-platform app that allows your devices to communicate (e.g., your phone and your computer)</string>
+
+    <string name="about_kde_about"><![CDATA[
+      <h1>About</h1>
+      <p>KDE is a world-wide community of software engineers, artists, writers, translators and creators who are committed to <a href="https://www.gnu.org/philosophy/free-sw.html">Free Software</a> development. KDE produces the Plasma desktop environment, hundreds of applications, and the many software libraries that support them.</p>
+      <p>KDE is a cooperative enterprise: no single entity controls its direction or products. Instead, we work together to achieve the common goal of building the world\'s finest Free Software. Everyone is welcome to <a href="https://community.kde.org/Get_Involved">join and contribute</a> to KDE, including you.</p>
+      Visit <a href="https://www.kde.org/">https://www.kde.org/</a> for more information about the KDE community and the software we produce.
+      ]]></string>
+
+    <string name="about_kde_report_bugs_or_wishes"><![CDATA[
+      <h1>Report Bugs or Wishes</h1>
+      <p>Software can always be improved, and the KDE team is ready to do so. However, you - the user - must tell us when something does not work as expected or could be done better.</p>
+      <p>KDE has a bug tracking system. Visit <a href="https://bugs.kde.org/">https://bugs.kde.org/</a> or use the \"Report Bug\" button from the about screen to report bugs.</p>
+      If you have a suggestion for improvement then you are welcome to use the bug tracking system to register your wish. Make sure you use the severity called \"Wishlist\".
+      ]]></string>
+
+    <string name="about_kde_join_kde"><![CDATA[
+      <h1>Join KDE</h1>
+      <p>You do not have to be a software developer to be a member of the KDE team. You can join the national teams that translate program interfaces. You can provide graphics, themes, sounds, and improved documentation. You decide!</p>
+      <p>Visit <a href="https://community.kde.org/Get_Involved">https://community.kde.org/Get_Involved</a> for information on some projects in which you can participate.</p>
+      If you need more information or documentation, then a visit to <a href="https://techbase.kde.org/">https://techbase.kde.org/</a> will provide you with what you need.
+      ]]></string>
+
+    <string name="about_kde_support_kde"><![CDATA[
+      <h1>Support KDE</h1>
+      <p>KDE software is and will always be available free of charge, however creating it is not free.</p>
+      <p>To support development the KDE community has formed the KDE e.V., a non-profit organization legally founded in Germany. KDE e.V. represents the KDE community in legal and financial matters. See <a href="https://ev.kde.org/">https://ev.kde.org/</a> for information on KDE e.V.</p>
+      <p>KDE benefits from many kinds of contributions, including financial. We use the funds to reimburse members and others for expenses they incur when contributing. Further funds are used for legal support and organizing conferences and meetings.</p>
+      <p>We would like to encourage you to support our efforts with a financial donation, using one of the ways described at <a href="https://www.kde.org/community/donations/">https://www.kde.org/community/donations/</a>.</p>
+      Thank you very much in advance for your support.
+      ]]></string>
+
+    <!-- Authors tasks -->
+    <string name="maintainer_and_developer">Maintainer and developer</string>
+    <string name="developer">Developer</string>
+    <string name="apple_support">macOS support. Working on iOS support</string>
+    <string name="bug_fixes_and_general_improvements">Bug fixes and general improvements</string>
+    <string name="samoilenko_yuri_task">SFTP implementation, bug fixes and general improvements</string>
+    <string name="aniket_kumar_task">SMS plugin improvements</string>
+    <string name="alex_fiestas_task">Contacts plugin improvements</string>
+    <string name="maxim_leshchenko_task">UI improvements and this about page</string>
+    <string name="holger_kaelberer_task">Remote keyboard plugin and bug fixes</string>
+    <string name="saikrishna_arcot_task">Support for using the keyboard in the remote input plugin, bug fixes and general improvements</string>
+    <string name="everyone_else">Everyone else who has contributed to KDE Connect over the years</string>
 
 </resources>

@@ -23,10 +23,16 @@ public class ListAdapter extends ArrayAdapter<ListAdapter.Item> {
     }
 
     private final List<? extends Item> items;
+    private final boolean isEnabled;
 
     public ListAdapter(Context context, List<? extends Item> items) {
+        this(context, items, true);
+    }
+
+    public ListAdapter(Context context, List<? extends Item> items, boolean isEnabled) {
         super(context, 0, (List<Item>) items);
         this.items = items;
+        this.isEnabled = isEnabled;
     }
 
     @NonNull
@@ -34,5 +40,10 @@ public class ListAdapter extends ArrayAdapter<ListAdapter.Item> {
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
         final Item i = items.get(position);
         return i.inflateView(LayoutInflater.from(parent.getContext()));
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+        return isEnabled;
     }
 }

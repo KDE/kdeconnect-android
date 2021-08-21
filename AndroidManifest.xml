@@ -365,7 +365,32 @@
                 android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
         </activity>
 
+        <activity
+            android:name="org.kde.kdeconnect.UserInterface.About.EasterEggActivity"
+            android:label="@string/easter_egg"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
+        </activity>
 
+        <activity
+            android:name="org.kde.kdeconnect.UserInterface.About.AboutKDEActivity"
+            android:label="@string/about_kde"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
+        </activity>
+
+        <activity
+            android:name="org.kde.kdeconnect.UserInterface.About.LicensesActivity"
+            android:label="@string/licenses"
+            android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:kdeconnect="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_rise_up"
+        android:icon="@drawable/ic_arrow_upward_black_24dp"
+        android:title="@string/rise_up"
+        android:iconTint="@color/text_color"
+        kdeconnect:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_rise_down"
+        android:icon="@drawable/ic_arrow_downward_black_24dp"
+        android:title="@string/rise_down"
+        android:iconTint="@color/text_color"
+        kdeconnect:showAsAction="ifRoom" />
+</menu>

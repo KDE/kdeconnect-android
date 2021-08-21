@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="org.kde.kdeconnect.UserInterface.About.AboutKDEActivity">
+
+    <include layout="@layout/toolbar" android:id="@+id/toolbar_layout" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:id="@+id/about_layout"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:layout_margin="24dp"
+                android:text="@string/kde_be_free"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                app:drawableLeftCompat="@drawable/ic_kde_48dp"
+                app:drawableStartCompat="@drawable/ic_kde_48dp"
+                app:drawableTint="@color/text_color" />
+
+            <com.google.android.material.card.MaterialCardView
+                xmlns:card_view="https://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                card_view:cardBackgroundColor="@color/card_stroke_color"
+                card_view:cardCornerRadius="12dp"
+                card_view:cardElevation="5dp"
+                card_view:cardUseCompatPadding="true">
+
+                <TextView
+                    android:id="@+id/about_text_view"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:padding="12dp"
+                    android:textIsSelectable="true"
+                    tools:text="@string/about_kde_about" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                xmlns:card_view="https://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                card_view:cardBackgroundColor="@color/card_stroke_color"
+                card_view:cardCornerRadius="12dp"
+                card_view:cardElevation="5dp"
+                card_view:cardUseCompatPadding="true">
+
+                <TextView
+                    android:id="@+id/report_bugs_or_wishes_text_view"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:padding="12dp"
+                    android:textIsSelectable="true"
+                    tools:text="@string/about_kde_report_bugs_or_wishes" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                xmlns:card_view="https://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                card_view:cardBackgroundColor="@color/card_stroke_color"
+                card_view:cardCornerRadius="12dp"
+                card_view:cardElevation="5dp"
+                card_view:cardUseCompatPadding="true">
+
+                <TextView
+                    android:id="@+id/join_kde_text_view"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:padding="12dp"
+                    android:textIsSelectable="true"
+                    tools:text="@string/about_kde_join_kde" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                xmlns:card_view="https://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                card_view:cardBackgroundColor="@color/card_stroke_color"
+                card_view:cardCornerRadius="12dp"
+                card_view:cardElevation="5dp"
+                card_view:cardUseCompatPadding="true">
+
+                <TextView
+                    android:id="@+id/support_kde_text_view"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:padding="12dp"
+                    android:textIsSelectable="true"
+                    tools:text="@string/about_kde_support_kde" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="256dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/konqi"
+                android:paddingBottom="12dp"
+                android:src="@drawable/konqi" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
