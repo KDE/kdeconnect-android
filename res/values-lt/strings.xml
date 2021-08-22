@@ -176,6 +176,8 @@
   <string name="mpris_rew">Persukti atgal</string>
   <string name="mpris_ff">Persukti pirmyn</string>
   <string name="mpris_next">Kitas</string>
+  <string name="mpris_loop">Kartoti iš naujo</string>
+  <string name="mpris_shuffle">Maišyti</string>
   <string name="mpris_volume">Garsumas</string>
   <string name="mpris_time_settings_title">Persukimo pirmyn/atgal mygtukai</string>
   <string name="mpris_time_settings_summary">Reguliuoti persukimo pirmyn/atgal laiką, spustelėjus</string>
