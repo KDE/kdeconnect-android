@@ -31,7 +31,7 @@ import java.util.ArrayList;
     This permission can be gained by only from the adb by the user.
     https://www.reddit.com/r/AndroidBusters/comments/fh60lt/how_to_solve_a_problem_with_the_clipboard_on/
 
-    Currently this activity is bering triggered from a button in Foreground Notification.
+    Currently this activity is bering triggered from a button in Foreground Notification or quick settings tile.
 * */
 public class ClipboardFloatingActivity extends AppCompatActivity {
 

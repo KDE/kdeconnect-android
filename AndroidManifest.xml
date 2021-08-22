@@ -386,6 +386,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
         </activity>
+
+        <service
+            android:name="org.kde.kdeconnect.Plugins.ClibpoardPlugin.ClipboardTileService"
+            android:icon="@drawable/ic_baseline_content_paste_24"
+            android:label="@string/send_clipboard"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

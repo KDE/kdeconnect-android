@@ -528,4 +528,6 @@
     <string name="saikrishna_arcot_task">Support for using the keyboard in the remote input plugin, bug fixes and general improvements</string>
     <string name="everyone_else">Everyone else who has contributed to KDE Connect over the years</string>
 
+    <string name="send_clipboard">Send clipboard</string>
+
 </resources>
