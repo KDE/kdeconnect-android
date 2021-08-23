@@ -354,4 +354,34 @@
   <string name="donate">Doneren</string>
   <string name="source_code">Broncode</string>
   <string name="licenses">Licenties</string>
+  <string name="website">Website</string>
+  <string name="about">Info over</string>
+  <string name="authors">Auteurs</string>
+  <string name="thanks_to">Met dank aan</string>
+  <string name="easter_egg">Paasei</string>
+  <string name="email_contributor">E-mail medewerkers\n%s</string>
+  <string name="visit_contributors_homepage">Homepage van medewerker bezoeken\n%s</string>
+  <string name="version">Versie %s</string>
+  <string name="about_kde">Over KDE</string>
+  <string name="kde_be_free">KDE - Wees vrij!</string>
+  <string name="kde">KDE</string>
+  <string name="konqi">Konqi</string>
+  <string name="rise_up">Opkomen</string>
+  <string name="rise_down">Neergaan</string>
+  <string name="app_description">Multi-platform toepassing die uw apparaten met elkaar laat communiceren (bijv., uw telefoon en uw computer)</string>
+  <string name="about_kde_about">&lt;h1&gt;Info over&lt;/h1&gt; &lt;p&gt;KDE is een wereldwijde gemeenschap van software ingenieurs, artiesten, schrijvers, vertalers en makers die toegewijd zijn aan &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Vrije software&lt;/a&gt; ontwikkeling. KDE produceert de Plasma bureaubladomgeving, honderden toepassingen en de vele software bibliotheken die deze ondersteunen.&lt;/p&gt; &lt;p&gt;KDE is een coöperatieve onderneming: geen enkele entiteit controleert zijn richting of producten. In plaats daarvan werken we samen om het gemeenschappelijke doel te bereiken van het bouwen van de \'s werelds mooiste Vrije software. Iedereen is welkom om &lt;a href=https://community.kde.org/Get_Involved&gt;mee te doen en bij te dragen&lt;/a&gt; aan KDE, inclusief u.&lt;/p&gt; Bezoek &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; voor meer informatie over de KDE gemeenschap en de software die we produceren.</string>
+  <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Bugs of wensen rapporteren&lt;/h1&gt; &lt;p&gt;Software kan altijd verbeterd worden en het KDE team is gereed om dat te doen. Echter, u - de gebruiker - moet ons vertellen wanneer iets niet werkt zoals verwacht of beter gedaan kan worden.&lt;/p&gt; &lt;p&gt;KDE heeft een bugvolgsysteem. Bezoek &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; of gebruik de knop \"Bug rapporteren\" uit het Info over scherm om bugs te rapporteren.&lt;/p&gt; Als u een suggestie voor verbetering dan bent u welkom om het bugvolgsysteem te gebruiken om uw wens te registreren. Ga na dat u de ernst genaamd \"Wishlist\" gebruikt.</string>
+  <string name="about_kde_join_kde">&lt;h1&gt;Mee doen met KDE&lt;/h1&gt; &lt;p&gt;U hoeft geen software ontwerper te zijn om een lid van het KDE-team te worden. U kunt meedoen met een nationaal team dat programmainterfaces vertaalt. U kunt illustraties, thema\'s, geluiden en verbeterde documentatie leveren. U beslist!&lt;/p&gt; &lt;p&gt;Bezoek &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; voor informatie over projecten waarin u kunt participeren.&lt;/p&gt; Als u meer informatie of documentatie nodig hebt, dan kan een bezoek aan &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; u alles wat u nodig hebt leveren.</string>
+  <string name="about_kde_support_kde">&lt;h1&gt;KDE ondersteunen&lt;/h1&gt; &lt;p&gt;KDE software is en zal altijd zonder kosten beschikbaar zijn, echter het maken is niet zonder kosten.&lt;/p&gt; &lt;p&gt;Om te ontwikkelen heeft de KDE gemeenschap de KDE e.V. opgericht, een niet-voor-winst organisatie met een wettelijke basis in Duitsland. KDE e.V. representeert de KDE gemeenschap in juridische en financiële zaken. Zie &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; voor informatie over KDE e.V.&lt;/p&gt; &lt;p&gt;KDE heeft inkomsten uit vele soorten bijdragen, inclusief financiële. We gebruiken de fondsen om leden en anderen te compenseren voor uitgaven die ze doen wanneer ze bijdragen. Verdere fondsen worden gebruikt voor juridische ondersteuning en het organiseren van conferenties en meetings.&lt;/p&gt; &lt;p&gt;We zouden u willen aanmoedigen om onze inspanningen met een financiële donatie te ondersteunen, met gebruik van een van de manieren beschreven in &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Bij voorbaat hartelijk dank voor uw ondersteuning.</string>
+  <string name="maintainer_and_developer">Onderhouder en ontwikkelaar</string>
+  <string name="developer">Ontwikkelaar</string>
+  <string name="apple_support">macOS ondersteuning. Werken aan iOS ondersteuning</string>
+  <string name="bug_fixes_and_general_improvements">Bugreparaties en algemene verbeteringen</string>
+  <string name="samoilenko_yuri_task">SFTP implementatie, reparaties van bugs en algemene verbeteringen</string>
+  <string name="aniket_kumar_task">Verbeteringen aan SMS-plug-in</string>
+  <string name="alex_fiestas_task">Verbeteringen aan contactpersoon-plug-in</string>
+  <string name="maxim_leshchenko_task">Verbeteringen aan UI en deze info over pagina</string>
+  <string name="holger_kaelberer_task">"Plug-in voor toetsenbord op afstand  en reparaties"</string>
+  <string name="saikrishna_arcot_task">Ondersteuning voor gebruik van toetsenbord in de plug-in voor invoer op afstand, bugreparaties en algemene verbeteringen</string>
+  <string name="everyone_else">Ieder ander die over de jaren heeft bijgedragen aan KDE Connect</string>
 </resources>
