@@ -354,4 +354,31 @@
   <string name="donate">Fai una donazione</string>
   <string name="source_code">Codice sorgente</string>
   <string name="licenses">Licenze</string>
+  <string name="website">Sito web</string>
+  <string name="about">Informazioni</string>
+  <string name="authors">Autori</string>
+  <string name="thanks_to">Ringraziamenti</string>
+  <string name="easter_egg">Uovo di Pasqua</string>
+  <string name="email_contributor">Indirizzio email del collaboratore\n%s</string>
+  <string name="visit_contributors_homepage">Visita la pagina web del collaboratore\n%s</string>
+  <string name="version">Versione %s</string>
+  <string name="about_kde">Informazioni su KDE</string>
+  <string name="kde_be_free">KDE - Vivi libero!</string>
+  <string name="kde">KDE</string>
+  <string name="konqi">Konqui</string>
+  <string name="rise_up">Alza</string>
+  <string name="rise_down">Abbassa</string>
+  <string name="app_description">Applicazione multipiattaforma che consente ai tuoi dispositivi di comunicare (ad esempio, il tuo telefono e il tuo computer)</string>
+  <string name="about_kde_support_kde">&lt;h1&gt;Supporta KDE&amp;lt/h1&gt; &lt;p&gt;Il software KDE è e sarà sempre disponibile gratuitamente, tuttavia la sua creazione non è gratuita.&lt;/p&gt; &lt;p&gt;Per supportare lo sviluppo, la comunità KDE ha dato vita a KDE e.V., un\'organizzazione senza scopo di lucro fondata legalmente in Germania. KDE e.V. rappresenta la comunità KDE nelle questioni legali e finanziarie. Vedi &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; per informazioni su KDE e.V.&lt;/p&gt; &lt;p&gt;KDE beneficia di molti tipi di contributi, inclusi quelli finanziari. Usiamo i fondi per rimborsare i membri e altri per le spese che sostengono quando contribuiscono. Ulteriori fondi sono utilizzati per il supporto legale e l\'organizzazione di conferenze e riunioni.&lt;/p&gt; &lt;p&gt;Vorremmo incoraggiarti a sostenere i nostri sforzi con una donazione finanziaria, utilizzando uno dei modi descritti in &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Grazie in anticipo per il tuo supporto.</string>
+  <string name="maintainer_and_developer">Responsabile e sviluppatore</string>
+  <string name="developer">Sviluppatore</string>
+  <string name="apple_support">Supporto macOS. Lavorazione supporto iOS</string>
+  <string name="bug_fixes_and_general_improvements">Correzione bug e miglioramenti generali</string>
+  <string name="samoilenko_yuri_task">Implementazione SFTP, correzioni di bug e miglioramenti generali</string>
+  <string name="aniket_kumar_task">Miglioramenti all\'estensione SMS</string>
+  <string name="alex_fiestas_task">Miglioramenti all\'estensione dei contatti</string>
+  <string name="maxim_leshchenko_task">Miglioramenti all\'interfaccia utente e questa pagina informativa</string>
+  <string name="holger_kaelberer_task">Estensione della tastiera remota e correzioni di bug</string>
+  <string name="saikrishna_arcot_task">Supporto per l\'utilizzo della tastiera nell\'estensione di inserimento remoto, correzioni di bug e miglioramenti generali</string>
+  <string name="everyone_else">Tutti gli altri che hanno contribuito a KDE Connect nel corso degli anni</string>
 </resources>

@@ -370,4 +370,34 @@
   <string name="donate">Doniraj</string>
   <string name="source_code">Izvorna koda</string>
   <string name="licenses">Licence</string>
+  <string name="website">Spletišče</string>
+  <string name="about">O programu</string>
+  <string name="authors">Avtorji</string>
+  <string name="thanks_to">Zahvale tudi</string>
+  <string name="easter_egg">Velikonočno jajce</string>
+  <string name="email_contributor">E-pošta sodelavca\n%s</string>
+  <string name="visit_contributors_homepage">Obiščite spletno stran sodelavca\n%s</string>
+  <string name="version">Različica %s</string>
+  <string name="about_kde">O KDE</string>
+  <string name="kde_be_free">KDE - Bodite svobodni!</string>
+  <string name="kde">KDE</string>
+  <string name="konqi">Konqi</string>
+  <string name="rise_up">Dvigni</string>
+  <string name="rise_down">Spusti</string>
+  <string name="app_description">Aplikacija na več napravah, ki dovoljuje komunikacijo med napravami (npr. vaš telefon in vaš računalnik)</string>
+  <string name="about_kde_about">&lt;h1&gt;O programu&lt;/h1&gt; &lt;p&gt;KDE je svetovna skupnost programskih inženirjev, umetnikov, piscev, prevajalcev in ustvarjalcev, ki so podporniki razvoja &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Prostega programja&lt;/a&gt;. KDE izdeluje Namizno okolje Plasma, stotine aplikacij in veliko programskih knjižnic, ki jih podpirajo. &lt;/p&gt; &lt;p&gt;KDE je zadružno podjetje: noben deležnik posamično ne obvladuje smeri razvoja ali izdelka. Namesto tega delamo skupaj, da bi dosegli skupni cilj razvoja, da bi prišli do najboljšega prostega programja na svetu. Vsakdo je dobrodošel v skupnost &lt;a href=https://community.kde.org/Get_Involved&gt;da se pridruži in prispeva &lt;/a&gt; v KDE vključno z vami. &lt;/p&gt; Obiščite &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; za več informacij o skupnosti KDE community in programju, ki ga razvijamo.</string>
+  <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Poročajte o napakah in željah&lt;/h1&gt; &lt;p&gt;Programje je vedno mogoče izboljšati in skupina KDE je vedno pripravljena na izboljšave. Vendar, vi - kot uporabnica ali uporabnik - nam morate povedati, kadar nekaj ne deluje kot pričakujete ali bi bilo lahko izdelano bolje. &lt;/p&gt; &lt;p&gt;KDE ima sistem sledenja napak. Obiščite &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; ali uporabite gumb \"Poročaj o napaki\" na zaslonu O programu za poročanje napak.&lt;/p&gt; Če imate sugestijo za izboljšanje ste povabljeni, da uporabite sistem za sledenje napakam in zabeležite vašo željo. Zagotovite, da boste resnost napake označili kot \"Seznam želja - Wishlist\".</string>
+  <string name="about_kde_join_kde">&lt;h1&gt;Pridružite se KDE&lt;/h1&gt; &lt;p&gt;Ni treba, da ste razvijalci programov, da bi bili člani skupnosti KDE. Lahko se pridružite nacionalnim skupinam za prevajanje uporabniških vmesnikov. Lahko nudite risbe, teme, zvoke in izboljšano dokumentacijo. Za odločanje&lt;/p&gt; &lt;p&gt;obiščite &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; za informacije pri nekaterih projektih, kjer lahko prispevate.&lt;/p&gt; Če potrebujete več informacij ali dokumentacije, potem obiščite &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; kjer boste dobili potrebna navodila.</string>
+  <string name="about_kde_support_kde">&lt;h1&gt;Podprite KDE&lt;/h1&gt; &lt;p&gt;KDE programje je in bo vedno zastonj, a razvoj tega ni brez stroškov.&lt;/p&gt; &lt;p&gt;Za podporo razvoju je skupnost KDE ustanovila KDE e.V., neprofitno organizacijo legalno ustanovljeno v Nemčiji. KDE e.V. predstavlja skupnost KDE glede pravnih in finančnih vprašanj. Glejte &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; za informacije o KDE e.V.&lt;/p&gt; &lt;p&gt;KDE prejema različne vrste prispevkov vključno finančne. Te prispevke uporabljamo, da članom in ostalim povrnemo stroške, ki nastajajo ob njihovih prispevkih. We use the funds to reimburse members and others for expenses they incur when contributing. Denarna sredstva se uporabljajo tudi za pravno podporo in organiziranje konferenc in srečanj.&lt;/p&gt; &lt;p&gt;Radi bi vas spodbudili, da podprete naša prizadevanja s finančno donacijo, z uporabo enega od načinov, ki so opisani na &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Najlepša hvala vnaprej za vašo podporo.</string>
+  <string name="maintainer_and_developer">Vzdrževalec in razvijalec</string>
+  <string name="developer">Razvijalec</string>
+  <string name="apple_support">podpora za macOS. Delo na podpori za iOS</string>
+  <string name="bug_fixes_and_general_improvements">Popravki napak in splošne izboljšave</string>
+  <string name="samoilenko_yuri_task">Izvedba SFTP, popravki napak in splošne izboljšave</string>
+  <string name="aniket_kumar_task">Izboljšave vtičnika SMS</string>
+  <string name="alex_fiestas_task">Izboljšave vtičnika stikov</string>
+  <string name="maxim_leshchenko_task">Izboljšave uporabniškega vmesnika in ta stran o programu</string>
+  <string name="holger_kaelberer_task">Vtičnik za oddaljeno tipkovnico in popravki napak</string>
+  <string name="saikrishna_arcot_task">Podpora za uporabo tipkovnice vtičnika za oddaljen vnos, popravki napak in splošne izboljšave</string>
+  <string name="everyone_else">Vsi ostali, ki so prispevali za KDE Connect v letih razvoja</string>
 </resources>
