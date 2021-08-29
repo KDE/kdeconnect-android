@@ -160,6 +160,8 @@
   <string name="mpris_rew">Kelaa takaisin</string>
   <string name="mpris_ff">Pikakelaa</string>
   <string name="mpris_next">Seuraava</string>
+  <string name="mpris_loop">Silmukka</string>
+  <string name="mpris_shuffle">Sekoita</string>
   <string name="mpris_volume">Äänenvoimakkuus</string>
   <string name="mpris_time_settings_title">Kelauspainikkeet</string>
   <string name="mpris_time_settings_summary">Säädä painettaessa tapahtuvan kelauksen kestoa</string>
