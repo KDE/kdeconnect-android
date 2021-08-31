@@ -346,4 +346,34 @@
   <string name="donate">捐款</string>
   <string name="source_code">源代码</string>
   <string name="licenses">许可证</string>
+  <string name="website">网站</string>
+  <string name="about">关于</string>
+  <string name="authors">作者</string>
+  <string name="thanks_to">致谢</string>
+  <string name="easter_egg">彩蛋</string>
+  <string name="email_contributor">写信给贡献者\n%s</string>
+  <string name="visit_contributors_homepage">访问贡献者主页\n%s</string>
+  <string name="version">版本 %s</string>
+  <string name="about_kde">关于 KDE</string>
+  <string name="kde_be_free">KDE - 为自由而生！</string>
+  <string name="kde">KDE</string>
+  <string name="konqi">Konqi</string>
+  <string name="rise_up">上升</string>
+  <string name="rise_down">下降</string>
+  <string name="app_description">用于在不同设备之间通信的多平台应用 (例如手机和电脑)</string>
+  <string name="about_kde_about">&lt;h1&gt;关于&lt;/h1&gt; &lt;p&gt;KDE 是由一群致力于&lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;自由软件&lt;/a&gt;事业的人们所组成的全球性协作社区。它的成员包括了来自世界各地的软件工程师、艺术工作者、文字工作者、翻译人员和其他创意人员。KDE 社区开发了 Plasma 桌面环境、数百款功能各异的应用软件、以及用于支持它们的大量程序库。&lt;/p&gt; &lt;p&gt;KDE 是一项立足于协作精神的事业，它的运作和产出不受任何单一个人或者机构的控制。我们的共同目标是为全世界带来高品质的自由软件。不管您来自何方，我们都欢迎您&lt;a href=https://community.kde.org/Get_Involved&gt;加入 KDE 并做出贡献&lt;/a&gt;。&lt;/p&gt;请访问 &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; 来了解 KDE 社区和软件的更多信息。</string>
+  <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;报告程序缺陷和需求&lt;/h1&gt; &lt;p&gt;KDE 团队一直致力于改进软件的品质。为了做到这一点，倾听来自用户的反馈非常重要。如果您遇到了软件不能正常工作的情况，请务必告诉我们。如果您有关于改进软件的想法，也请与我们分享。&lt;/p&gt; &lt;p&gt;KDE 建有程序缺陷跟踪系统，请访问 &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; 或者使用“帮助”菜单中的“报告缺陷”对话框填写报告。&lt;/p&gt;如果您想要提出改进建议而不是报告程序缺陷，请确保在表格的 Severity (严重程度) 选单中选择“Wishlist (需求)”。</string>
+  <string name="about_kde_join_kde">&lt;h1&gt;加入 KDE&lt;/h1&gt; &lt;p&gt;即使您不是软件开发人员，我们也欢迎您加入 KDE 的队伍！您可以加入各国语言的翻译团队来翻译软件的界面，您还可以制作图像、主题、音效，或者改进软件配套的文档……您的角色您来定！&lt;/p&gt; &lt;p&gt;请访问 &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; 来物色您感兴趣的项目。&lt;/p&gt;如需了解更多相关信息和文档，请访问 &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt;。</string>
+  <string name="about_kde_support_kde">&lt;h1&gt;支持 KDE&lt;/h1&gt; &lt;p&gt;KDE 开发的软件是自由且免费的，但是开发这些软件必须投入大量人力物力。&lt;/p&gt; &lt;p&gt;为了支持软件的开发工作，KDE 社区成立了非营利机构 KDE e.V. ，它是在德国合法注册的协会组织。KDE e.V. 代表 KDE 社区进行法务和财务工作。如需了解 KDE e.V. 的更多信息，请访问 &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt;。&lt;/p&gt; &lt;p&gt;KDE 的正常运作需要来自各方面的支持，其中资金支持也是必不可少的。我们的经费主要用于补贴团队成员和其他人员在为 KDE 进行贡献时的开支，其次则是满足法务支持和组织活动所需的开支。&lt;/p&gt; &lt;p&gt;我们期待您能通过捐助资金的方式来支持 KDE 的运作和发展。如需了解具体的捐助途径，请访问 &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt;。&lt;/p&gt;您的慷慨支持，我们必当涌泉相报。</string>
+  <string name="maintainer_and_developer">维护者和开发者</string>
+  <string name="developer">开发者</string>
+  <string name="apple_support">macOS 支持。iOS 支持功能正在开发</string>
+  <string name="bug_fixes_and_general_improvements">程序缺陷修正和常规改进</string>
+  <string name="samoilenko_yuri_task">SFTP 实现、程序缺陷修正和常规改进</string>
+  <string name="aniket_kumar_task">短消息插件改进</string>
+  <string name="alex_fiestas_task">联系人插件改进</string>
+  <string name="maxim_leshchenko_task">界面改进和此关于页面</string>
+  <string name="holger_kaelberer_task">远程键盘插件和程序缺陷修正</string>
+  <string name="saikrishna_arcot_task">支持在远程输入插件中使用键盘、程序缺陷修正和常规改进</string>
+  <string name="everyone_else">以及多年来为 KDE Connect 作出过贡献的其他所有人</string>
 </resources>
