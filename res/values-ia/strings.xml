@@ -35,7 +35,7 @@
     <item>Above Slowest</item>
     <item>Predefinite</item>
     <item>Above Default</item>
-    <item>Fastest</item>
+    <item>le Plus veloce</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
     <item>No Acceleration</item>
@@ -71,6 +71,8 @@
   <string name="mpris_rew">Rebobina</string>
   <string name="mpris_ff">Avantia velocemente</string>
   <string name="mpris_next">Proxime</string>
+  <string name="mpris_loop">Anella</string>
+  <string name="mpris_shuffle">Shuffle (miscer)</string>
   <string name="mpris_volume">Volumine</string>
   <string-array name="mpris_time_entries">
     <item>10 secundas</item>
@@ -135,15 +137,23 @@
   <string-array name="theme_list">
     <item>Set by Battery Saver</item>
     <item>Legier</item>
-    <item>Dark</item>
+    <item>Obscur</item>
   </string-array>
   <string-array name="theme_list_v28">
     <item>Predefinite de systema</item>
     <item>Legier</item>
-    <item>Dark</item>
+    <item>Obscur</item>
   </string-array>
   <string name="report_bug">Reporta Bug</string>
   <string name="donate">Dona</string>
   <string name="source_code">Codice fonte</string>
   <string name="licenses">Licentias</string>
+  <string name="website">Sito Web</string>
+  <string name="authors">Autores</string>
+  <string name="thanks_to">Gratias a</string>
+  <string name="kde">KDE</string>
+  <string name="rise_down">Leva a basso</string>
+  <string name="maintainer_and_developer">Mantenitor e developpator</string>
+  <string name="developer">Disveloppator</string>
+  <string name="bug_fixes_and_general_improvements">Fixationes de bug e melioramentos general</string>
 </resources>
