@@ -5,7 +5,7 @@
   <string name="foreground_notification_devices">Připojen k: %s</string>
   <string name="foreground_notification_send_clipboard">Poslat schránku</string>
   <string name="pref_plugin_telephony">Upozornění telefonie</string>
-  <string name="pref_plugin_telephony_desc">Posílat upozornění na příchozí hovory</string>
+  <string name="pref_plugin_telephony_desc">Posílat oznámení příchozích hovorů</string>
   <string name="pref_plugin_battery">Hlášení baterie</string>
   <string name="pref_plugin_battery_desc">Periodicky hlásit stav baterky</string>
   <string name="pref_plugin_connectivity_report">Hlášení spojení</string>
@@ -29,10 +29,10 @@
   <string name="pref_plugin_contacts_desc">Povolit synchronizaci kontaktů zařízení</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Posílat a přijímat ping</string>
-  <string name="pref_plugin_notifications">Synchronizace upozornění</string>
-  <string name="pref_plugin_notifications_desc">Zpřístupněte si upozornění z jiných zařízení</string>
-  <string name="pref_plugin_receive_notifications">Přijímat upozornění</string>
-  <string name="pref_plugin_receive_notifications_desc">Přijímat upozornění z jiného zařízení a zobrazovat je v Androidu</string>
+  <string name="pref_plugin_notifications">Synchronizace oznámení</string>
+  <string name="pref_plugin_notifications_desc">Zpřístupněte si oznámení z jiných zařízení</string>
+  <string name="pref_plugin_receive_notifications">Přijímat oznámení</string>
+  <string name="pref_plugin_receive_notifications_desc">Přijímat oznámení z jiného zařízení a zobrazovat je v Androidu</string>
   <string name="pref_plugin_sharereceiver">Sdílet a přijmout</string>
   <string name="pref_plugin_sharereceiver_desc">Sdílet soubory a odkazy mezi zařízeními</string>
   <string name="device_list_empty">Žádná zařízení</string>
@@ -40,8 +40,8 @@
   <string name="sad_ok">OK :(</string>
   <string name="cancel">Zrušit</string>
   <string name="open_settings">Otevřít nastavení</string>
-  <string name="no_permissions">Pro zpřístupnění upozornění potřebujete oprávnění</string>
-  <string name="no_permission_mprisreceiver">Abyste byli schopni ovládat vaše přehrávače médií, musíte udělit přístup k upozorněním</string>
+  <string name="no_permissions">Pro zpřístupnění oznámení potřebujete oprávnění</string>
+  <string name="no_permission_mprisreceiver">Abyste byli schopni ovládat vaše přehrávače médií, musíte udělit přístup k oznámením</string>
   <string name="no_permissions_remotekeyboard">Pro zachytávání stisků kláves je potřeba aktivovat vzdálenou klávesnici KDE Connect</string>
   <string name="send_ping">Poslat ping</string>
   <string name="open_mpris_controls">Ovládání multimédií</string>
@@ -188,7 +188,7 @@
     <item>1 minuta</item>
     <item>2 minuty</item>
   </string-array>
-  <string name="mpris_notification_settings_title">Obrazit upozornění pro ovládání médií</string>
+  <string name="mpris_notification_settings_title">Obrazit oznámení pro ovládání médií</string>
   <string name="mpris_notification_settings_summary">Umožnit ovládání přehrávače médií bez otevření KDE Connect</string>
   <string name="share_to">Sdílet s...</string>
   <string name="protocol_version_newer">Toto zařízení používá novější verzi protokolu</string>
@@ -201,7 +201,7 @@
   <string name="custom_device_list_help">Pokud vaše zařízení není automaticky detekováno, můžete přidat jeho adresu IP nebo hostname kliknutím na tlačítko pro plovoucí činnosti</string>
   <string name="custom_device_fab_hint">Přidat zařízení</string>
   <string name="undo">Zpět</string>
-  <string name="share_notification_preference">Hlasitá upozornění</string>
+  <string name="share_notification_preference">Hlasitá oznámení</string>
   <string name="share_notification_preference_summary">Vibrovat a přehrát melodii při přijímání souboru</string>
   <string name="share_destination_customize">Přizpůsobte si cílový adresář</string>
   <string name="share_destination_customize_summary_disabled">Přijaté soubory se objeví v Downloads</string>
@@ -209,8 +209,8 @@
   <string name="share_destination_folder_preference">Cílový adresář</string>
   <string name="share">Sdílet</string>
   <string name="share_received_file">Sdílet \"%s\"</string>
-  <string name="title_activity_notification_filter">Filtr upozornění</string>
-  <string name="filter_apps_info">Upozorňování mezi vybranými aplikacemi bude synchronizováno.</string>
+  <string name="title_activity_notification_filter">Filtr oznámení</string>
+  <string name="filter_apps_info">Oznámení vybraných aplikací bude synchronizováno.</string>
   <string name="sftp_sdcard_num">SD karta %d</string>
   <string name="sftp_sdcard">SD karta</string>
   <string name="sftp_readonly">(pouze ke čtení)</string>
@@ -281,7 +281,7 @@
   <string name="add_command_description">V pracovním prostředí můžete přidat příkazy</string>
   <string name="pref_plugin_mprisreceiver">Ovládání přehrávače médií</string>
   <string name="pref_plugin_mprisreceiver_desc">Ovládejte přehrávače médií na vašem telefonu z jiného zařízení</string>
-  <string name="notification_channel_default">Ostatní upozornění</string>
+  <string name="notification_channel_default">Ostatní oznámení</string>
   <string name="notification_channel_persistent">Stálý ukazatel</string>
   <string name="notification_channel_media_control">Ovládání médií</string>
   <string name="notification_channel_filetransfer">Přenos souboru</string>
@@ -307,14 +307,14 @@
   <string name="settings_more_settings_title">Více nastavení</string>
   <string name="settings_more_settings_text">Nastavení \"pro každé zařízení\" lze najít v \'Nastavení modulu\' v zařízení.</string>
   <string name="setting_persistent_notification">Ukázat stálé upozornění</string>
-  <string name="setting_persistent_notification_oreo">Perzistentní upozornění</string>
-  <string name="setting_persistent_notification_description">Ťuknutím povolíte/zakážete v nastavení upozornění</string>
+  <string name="setting_persistent_notification_oreo">Stálé upozornění</string>
+  <string name="setting_persistent_notification_description">Ťuknutím povolíte/zakážete v nastavení oznámení</string>
   <string name="extra_options">Další možnosti</string>
   <string name="privacy_options">Možnosti soukromí</string>
   <string name="set_privacy_options">Nastavte své možnosti soukromí</string>
-  <string name="block_contents">Blokovat obsah upozornění</string>
-  <string name="block_images">Blokovat obrázky z upozornění</string>
-  <string name="notification_channel_receivenotification">Upozornění z ostatních zařízení</string>
+  <string name="block_contents">Blokovat obsah oznámení</string>
+  <string name="block_images">Blokovat obrázky v oznámení</string>
+  <string name="notification_channel_receivenotification">Oznámení z ostatních zařízení</string>
   <string name="take_picture">Spustit fotoaparát</string>
   <string name="plugin_photo_desc">Spusťte aplikaci fotoaparátu pro snadné zachytávání s přenos obrázků</string>
   <string name="no_app_for_opening">Pro otevření tohoto souboru nebyla nalezena vhodná aplikace</string>
@@ -370,4 +370,32 @@
   <string name="donate">Přispět</string>
   <string name="source_code">Zdrojový kód</string>
   <string name="licenses">Licence</string>
+  <string name="website">Webová stránka</string>
+  <string name="about">O aplikaci</string>
+  <string name="authors">Autoři</string>
+  <string name="thanks_to">Poděkování</string>
+  <string name="easter_egg">Skrytý vtípek</string>
+  <string name="email_contributor">Poslat e-mail autorovi\n%s</string>
+  <string name="visit_contributors_homepage">Navštívit domovskou stránku autora\n%s</string>
+  <string name="version">Verze %s</string>
+  <string name="about_kde">O prostředí KDE</string>
+  <string name="kde_be_free">KDE - Buďte svobodní!</string>
+  <string name="kde">KDE</string>
+  <string name="konqi">Konqi</string>
+  <string name="app_description">Multiplatformní aplikace, která umožňuje vašim zařízením komunikaci (např. váš telefon a počítač)</string>
+  <string name="about_kde_about">&lt;h1&gt;O KDE&lt;/h1&gt; &lt;p&gt;KDE je celosvětová komunita softwarových inženýrů, výtvarníků, překladatelů a jiných přispěvatelů, kteří se odevzdali vývoji &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Svobodného Softwaru&lt;/a&gt;. KDE vytvořilo pracovní prostředí Plasma, stovky aplikací a spousty knihoven, jenž je podporují. &lt;/p&gt; &lt;p&gt;KDE je společné úsilí, kde žádná společnost neřídí jeho směr nebo produkty. Namísto toho spolupracujeme na společném cíli jímž je vytvoření nejlepšího Free Softwaru. Každý je vítán aby &lt;a href=https://community.kde.org/Get_Involved&gt;se zapojil a přispíval&lt;/a&gt; do KDE, včetně vás. Více informací o komunitě KDE a softwaru, na kterém pracujeme najdete na &lt;/a&gt;$3&lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt;.</string>
+  <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Hlaste chyby a návrhy&lt;/h1&gt; &lt;p&gt;Software je možno neustále vylepšovat a tým KDE je k tomu připraven. Avšak vy, uživatel, nám musíte sdělit, když něco nefunguje tak, jak by se očekávalo nebo by mělo být uděláno lépe.&lt;/p&gt; &lt;p&gt;KDE má systém sledování chyb. Chcete-li tedy nahlásit chybu, navštivte &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; nebo použijte dialog \"Nahlásit chybu...\".&lt;/p&gt; Máte-li náměty na vylepšení, budeme rádi, pošlete-li nám svoje přání. Ujistěte se však, že jste označili chybové hlášení jako \"Přání\".</string>
+  <string name="about_kde_join_kde">&lt;h1&gt;Přidejte se ke KDE&lt;/h1&gt; &lt;p&gt;K tomu, abyste se stali členem týmu KDE, není zapotřebí být vývojářem softwaru. Můžete se připojit k národním týmům, které překládají programy. Můžete vytvářet grafiku, motivy, zvuky a lepší dokumentaci. Vy se rozhodněte!&lt;/p&gt; &lt;p&gt;Navštivte &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; kde naleznete informace o některých projektech, kterých se můžete zúčastnit.&lt;/p&gt; Potřebujete-li více informací nebo dokumentace, pak návštěva na &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; vám poskytne, co potřebujete.&lt;/p&gt;České stránky o KDE se nacházejí na adrese &lt;a href=\"http://czechia.kde.org/\"&gt;http://czechia.kde.org/&lt;/a&gt; . Přidejte se k nám!</string>
+  <string name="about_kde_support_kde">&lt;h1&gt;Podpořte KDE&lt;/h1&gt; &lt;p&gt;KDE je a vždy bude dostupné zdarma, ale jeho tvorba zdarma není.&lt;/p&gt; &lt;p&gt;Proto jsme vytvořili Asociaci KDE, neziskovou organizaci založenou v Tuebingenu, Německo. Asociace KDE reprezentuje komunitu KDE v právních a finančních záležitostech. Podívejte se na &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; informace o KDE e.V.&lt;/p&gt; &lt;p&gt;KDE staví na různých způsobech pomoci, včetně finanční. Peníze používáme na proplacení výdajů našich členů a dalších př přispívání. Další finance jsou použity na právnickou podporu, a organizaci konferencí a setkání.&lt;/p&gt; &lt;p&gt;Chtěli bychom vás poprosit o podporu v naší snaze pomocí finančního daru některým ze způsobů popsaných na &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Předem děkujeme za váš příspěvek a podporu.</string>
+  <string name="maintainer_and_developer">Správce a vývojář</string>
+  <string name="developer">Vývojář</string>
+  <string name="apple_support">Podpora macOS. Práce na podpoře iOS</string>
+  <string name="bug_fixes_and_general_improvements">Opravy chyb a vylepšení</string>
+  <string name="samoilenko_yuri_task">Implementace SFTP, opravy chyb a obecná vylepšení</string>
+  <string name="aniket_kumar_task">Vylepšení modulu SMS</string>
+  <string name="alex_fiestas_task">Vylepšení modulu kontaktů</string>
+  <string name="maxim_leshchenko_task">Vylepšení prostředí a tato stránka o aplikaci</string>
+  <string name="holger_kaelberer_task">Vzdálené modul klávesnice a opravy chyb</string>
+  <string name="saikrishna_arcot_task">Podpora použití klávesnice na vzdáleném vstupním modulu, opravy chyb a obecná zlepšení</string>
+  <string name="everyone_else">Každý kdo přispěl do KDE Connect během let</string>
 </resources>
