@@ -123,8 +123,11 @@ public class SmsMmsUtils {
         }
 
         if (sendingPhoneNumber.number != null) {
-            // Remove the user's phone number if present in the list of recipients
-            addressList.removeIf(address -> sendingPhoneNumber.isMatchingPhoneNumber(address.address));
+            // If the message is going to more than one target (to allow the user to send a message to themselves)
+            if (addressList.size() > 1) {
+                // Remove the user's phone number if present in the list of recipients
+                addressList.removeIf(address -> sendingPhoneNumber.isMatchingPhoneNumber(address.address));
+            }
         }
 
         try {
