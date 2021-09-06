@@ -354,4 +354,24 @@
   <string name="donate">நன்கொடை அளியுங்கள்</string>
   <string name="source_code">மூல குறியீடு</string>
   <string name="licenses">உரிமங்கள்</string>
+  <string name="website">இணையதளம்</string>
+  <string name="about">பற்றி</string>
+  <string name="authors">இயற்றியவர்கள்</string>
+  <string name="thanks_to">இவர்களுக்கு நன்றி</string>
+  <string name="easter_egg">எதிர்பார்க்கப்படாத வேடிக்கையான அம்சங்கள்</string>
+  <string name="email_contributor">பங்களிப்பாளருக்கு மின்னஞ்சல் அனுப்பு\n%s</string>
+  <string name="visit_contributors_homepage">பங்களிப்பாளரது முதற்பக்கத்துக்கு செல்\n%s</string>
+  <string name="version">பதிப்பு %s</string>
+  <string name="about_kde">கே.டீ.யீ. பற்றி</string>
+  <string name="kde_be_free">கே.டீ.யீ. — சுதந்திரமாக இரு!</string>
+  <string name="kde">கே.டீ.யீ.</string>
+  <string name="maintainer_and_developer">பராமரிப்பாளரும் நிரலாளரும்</string>
+  <string name="developer">நிரலாளர்</string>
+  <string name="apple_support">macOS ஆதரவு. iOS ஆதரவை வழங்கவும் முயற்சிக்கிறார்</string>
+  <string name="bug_fixes_and_general_improvements">பிழைதிருத்தங்களும் பொதுவான மேம்பாடுகளும்</string>
+  <string name="aniket_kumar_task">SMS செருகுநிரலை மேம்படுத்துதல்</string>
+  <string name="alex_fiestas_task">தொடர்புகள் செருகுநிரலை மேம்படுத்துதல்</string>
+  <string name="maxim_leshchenko_task">இடைமுகப்பு மேம்பாடுகளும் இப்பக்கமும்</string>
+  <string name="holger_kaelberer_task">தொலை விசைப்பலகை செருகுநிரலும் பிழைதிருத்தங்களும்</string>
+  <string name="everyone_else">கடந்த ஆண்டுகளில் கே.டீ.யீ. கனெக்டிற்கு பங்களித்த மற்றவர்கள்</string>
 </resources>
