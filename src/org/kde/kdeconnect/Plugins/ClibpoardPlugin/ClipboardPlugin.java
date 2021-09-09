@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
@@ -126,7 +127,7 @@ public class ClipboardPlugin extends Plugin {
 
     @Override
     public boolean hasMainActivity() {
-        return true;
+        return Build.VERSION.SDK_INT > Build.VERSION_CODES.P;
     }
 
     @Override
