@@ -11,6 +11,7 @@ package org.kde.kdeconnect.Plugins.ClibpoardPlugin;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.graphics.drawable.Drawable;
 import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
