@@ -129,8 +129,8 @@ public class ClipboardPlugin extends Plugin {
     }
 
     @Override
-    public boolean displayInContextMenu() {
-        return true;
+    public Drawable getIcon() {
+        return ContextCompat.getDrawable(context, R.drawable.ic_baseline_content_paste_24);
     }
 
     @Override
