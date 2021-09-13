@@ -111,6 +111,7 @@
   <string name="all">Omne</string>
   <string name="devices">Dispositivos</string>
   <string name="settings_rename">Nomine de dispositivo</string>
+  <string name="settings_dark_mode">Thema obscur</string>
   <string name="settings_more_settings_title">Altere preferentias</string>
   <string name="extra_options">Optiones extra</string>
   <string name="privacy_options">Optiones de confidentialitate</string>
@@ -149,8 +150,11 @@
   <string name="source_code">Codice fonte</string>
   <string name="licenses">Licentias</string>
   <string name="website">Sito Web</string>
+  <string name="about">A proposito</string>
   <string name="authors">Autores</string>
   <string name="thanks_to">Gratias a</string>
+  <string name="about_kde">A proposio de KDE</string>
+  <string name="kde_be_free">KDE- Vos Sia Libere!</string>
   <string name="kde">KDE</string>
   <string name="rise_down">Leva a basso</string>
   <string name="maintainer_and_developer">Mantenitor e developpator</string>
