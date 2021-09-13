@@ -3,6 +3,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
@@ -40,7 +41,9 @@
                 android:fadingEdge="horizontal"
                 android:singleLine="true"
                 android:text=""
-                android:textAppearance="?android:attr/textAppearanceMedium"/>
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                tools:maxLength="20"
+                tools:text="@tools:sample/lorem/random"/>
 
             <TextView
                 android:id="@+id/list_item_entry_summary"
@@ -52,8 +55,10 @@
                 android:text=""
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#CC2222"
-                android:visibility="gone"/>
+                android:visibility="gone"
+                tools:text="Other (optional) info"
+                tools:visibility="visible"/>
 
         </LinearLayout>
 
-    </LinearLayout>
+</LinearLayout>

@@ -11,6 +11,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
@@ -27,7 +29,14 @@ public class BatteryPlugin extends Plugin {
     private static final int THRESHOLD_EVENT_NONE = 0;
     private static final int THRESHOLD_EVENT_BATTERY_LOW = 1;
 
+    public static boolean isLowBattery(@NonNull DeviceBatteryInfo info) {
+        return info.getThresholdEvent() == THRESHOLD_EVENT_BATTERY_LOW;
+    }
+
     private final NetworkPacket batteryInfo = new NetworkPacket(PACKET_TYPE_BATTERY);
+
+    @Nullable
+    private DeviceBatteryInfo remoteBatteryInfo;
 
     @Override
     public String getDisplayName() {
@@ -73,6 +82,11 @@ public class BatteryPlugin extends Plugin {
         intentFilter.addAction(Intent.ACTION_BATTERY_LOW);
         Intent currentState = context.registerReceiver(receiver, intentFilter);
         receiver.onReceive(context, currentState);
+
+        // Request new battery info from the linked device
+        NetworkPacket np = new NetworkPacket(PACKET_TYPE_BATTERY_REQUEST);
+        np.set("request", true);
+        device.sendPacket(np);
         return true;
     }
 
@@ -89,17 +103,36 @@ public class BatteryPlugin extends Plugin {
             device.sendPacket(batteryInfo);
         }
 
+        if (PACKET_TYPE_BATTERY.equals(np.getType())) {
+            remoteBatteryInfo = new DeviceBatteryInfo(np);
+            device.onPluginsChanged();
+        }
+
         return true;
+    }
+
+    /**
+     * The latest battery information about the linked device. Will be null if the linked device
+     * has not sent us any such information yet.
+     * <p>
+     * See {@link DeviceBatteryInfo} for info on which fields we expect to find.
+     * </p>
+     *
+     * @return the most recent packet received from the remote device. May be null
+     */
+    @Nullable
+    public DeviceBatteryInfo getRemoteBatteryInfo() {
+        return remoteBatteryInfo;
     }
 
     @Override
     public String[] getSupportedPacketTypes() {
-        return new String[]{PACKET_TYPE_BATTERY_REQUEST};
+        return new String[]{PACKET_TYPE_BATTERY_REQUEST, PACKET_TYPE_BATTERY};
     }
 
     @Override
     public String[] getOutgoingPacketTypes() {
-        return new String[]{PACKET_TYPE_BATTERY};
+        return new String[]{PACKET_TYPE_BATTERY_REQUEST, PACKET_TYPE_BATTERY};
     }
 
 }
