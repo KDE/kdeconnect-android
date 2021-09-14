@@ -91,6 +91,11 @@
   <string name="mouse_receiver_plugin_description">Jaso urrutiko saguaren mugimenduak</string>
   <string name="mouse_receiver_plugin_name">Sagu jasotzailea</string>
   <string name="mouse_receiver_no_permissions">Irisgarritasun zerbitzua gaitu behar duzu</string>
+  <string name="view_status_title">Egoera</string>
+  <string name="battery_status_format">Bateria: %%%d</string>
+  <string name="battery_status_low_format">Bateria: %%%d bateria baxu</string>
+  <string name="battery_status_charging_format">Bateria: %%%d kargatzen</string>
+  <string name="battery_status_unknown">Bateriari buruzko informazioa ez dago erabilgarri</string>
   <string name="category_connected_devices">Konektatutako gailuak</string>
   <string name="category_not_paired_devices">Gailu eskuragarriak</string>
   <string name="category_remembered_devices">Gogoratutako gailuak</string>
@@ -366,6 +371,8 @@
   <string name="kde_be_free">KDE - Izan aske!</string>
   <string name="kde">KDE</string>
   <string name="konqi">Konqi</string>
+  <string name="rise_up">Igo</string>
+  <string name="rise_down">Jaitsi</string>
   <string name="app_description">Zure gailuei haien artean komunikatzen uzten dien plataforma askotariko aplikazioa (adib., zure telefonoa eta zure ordenagailua)</string>
   <string name="about_kde_about">"&lt;h1&gt;Honi buruz&lt;/h1&gt; &lt;p&gt;KDE &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Software Askearen&lt;/a&gt; garapenarekin engaiatutako mundu osoko software ingeniari, artista, idazle, itzultzaile eta sortzaile elkarte bat da. KDEk Plasma mahaigain ingurunea, ehunka aplikazio, eta haiei euskarria ematen dieten liburutegi ugariak ekoizten ditu. &lt;/p&gt; &lt;p&gt;KDE ekimen kooperatibo bat da: ez dago bere norabidea eta produktuak kontrolatzen dituen erakunderik. Aldiz, elkarrekin lan egiten dugu guztiok partekatzen dugun helburu bera lortzeko, munduko Software Aske bikainena eraikitzearena alegia. Jende oro ongi etorria da  KDErekin &lt;a href=https://community.kde.org/Get_Involved&gt;elkartu eta laguntza ematera&lt;/a&gt;, zu barne. &lt;/p&gt; Bisitatu &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; , KDE elkartearen eta ekoizten dugun softwarearen gaineko informazio zabalagoa eskuratzeko."</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Akatsen edo nahien berri ematea&lt;/h1&gt; &lt;p&gt;Softwarea beti hobetu daiteke, eta KDE taldea horretarako prest dago. Hala ere, zuk - erabiltzailea zaren horrek - zerbait behar bezala ez dabilenean edo hobeto egin daitekeenean esan egin behar diguzu.&lt;/p&gt; &lt;p&gt;KDEk programa-akatsen gaineko jarraipena egiteko sistema bat du. Bisitatu &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; edo erabili Honi buruz pantailako «Akatsa jakinarazi» botoia.&lt;/p&gt; Hobetzeko iradokizunik baduzu, akatsen jarraipen sisteman zure nahia erregistratzera gonbidatzen zaitugu. Larritasun maila bezala \"Wishlist\" (nahien zerrenda) erabil ezazu horretarako.</string>

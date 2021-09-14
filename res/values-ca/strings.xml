@@ -91,6 +91,11 @@
   <string name="mouse_receiver_plugin_description">Rep el moviment del ratolí remot</string>
   <string name="mouse_receiver_plugin_name">Receptor del ratolí</string>
   <string name="mouse_receiver_no_permissions">Cal que habiliteu el servei Accessibilitat</string>
+  <string name="view_status_title">Estat</string>
+  <string name="battery_status_format">Bateria: %d%%</string>
+  <string name="battery_status_low_format">Bateria: %d%% bateria baixa</string>
+  <string name="battery_status_charging_format">Bateria: %d%% està carregant</string>
+  <string name="battery_status_unknown">La informació de la bateria no està disponible</string>
   <string name="category_connected_devices">Dispositius connectats</string>
   <string name="category_not_paired_devices">Dispositius disponibles</string>
   <string name="category_remembered_devices">Dispositius recordats</string>
@@ -193,7 +198,7 @@
   <string name="share_destination_folder_preference">Directori de destinació</string>
   <string name="share">Comparteix</string>
   <string name="share_received_file">Comparteix «%s»</string>
-  <string name="title_activity_notification_filter">Filtre per a les notificacions</string>
+  <string name="title_activity_notification_filter">Filtre de notificacions</string>
   <string name="filter_apps_info">Les notificacions se sincronitzaran per a les aplicacions seleccionades.</string>
   <string name="sftp_sdcard_num">Targeta SD %d</string>
   <string name="sftp_sdcard">Targeta SD</string>

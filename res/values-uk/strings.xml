@@ -91,6 +91,11 @@
   <string name="mouse_receiver_plugin_description">Отримувати віддалені рухи мишею</string>
   <string name="mouse_receiver_plugin_name">Отримання даних миші</string>
   <string name="mouse_receiver_no_permissions">Вам слід увімкнути службу доступності</string>
+  <string name="view_status_title">Стан</string>
+  <string name="battery_status_format">Акумулятор: %d%%</string>
+  <string name="battery_status_low_format">Акумулятор: %d%%, низький заряд</string>
+  <string name="battery_status_charging_format">Акумулятор: %d%% (заряджається)</string>
+  <string name="battery_status_unknown">Дані щодо акумулятора недоступні</string>
   <string name="category_connected_devices">З’єднані пристрої</string>
   <string name="category_not_paired_devices">Доступні пристрої</string>
   <string name="category_remembered_devices">Відомі пристрої</string>
