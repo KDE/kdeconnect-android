@@ -91,6 +91,11 @@
   <string name="mouse_receiver_plugin_description">Ta emot externa musrörelser</string>
   <string name="mouse_receiver_plugin_name">Musmottagare</string>
   <string name="mouse_receiver_no_permissions">Du måste aktivera åtkomsttjänsten</string>
+  <string name="view_status_title">Status</string>
+  <string name="battery_status_format">Batteri: %d %%</string>
+  <string name="battery_status_low_format">Batteri: %d %% låg laddning</string>
+  <string name="battery_status_charging_format">Batteri: %d %% laddas</string>
+  <string name="battery_status_unknown">Batteriinformation inte tillgänglig</string>
   <string name="category_connected_devices">Anslutna apparater</string>
   <string name="category_not_paired_devices">Tillgängliga apparater</string>
   <string name="category_remembered_devices">Ihågkomna apparater</string>

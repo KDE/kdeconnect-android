@@ -8,6 +8,7 @@
   <string name="pref_plugin_telephony_desc">傳送未接來電的通知</string>
   <string name="pref_plugin_battery">電池報告</string>
   <string name="pref_plugin_battery_desc">定期回報電池狀態</string>
+  <string name="pref_plugin_connectivity_report_desc">回報網路訊號強度與狀態</string>
   <string name="pref_plugin_sftp">顯示檔案系統</string>
   <string name="pref_plugin_sftp_desc">同意讓遠端可以瀏覽檔案系統</string>
   <string name="pref_plugin_clipboard">同步剪貼簿</string>
@@ -74,6 +75,11 @@
     <item>安全</item>
     <item>最安全</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">傳送鍵盤輸入至</string>
+  <string name="sendkeystrokes_textbox_hint">傳送鍵盤輸入至主機</string>
+  <string name="sendkeystrokes_disabled_toast">已停用傳送鍵盤輸入的功能——請至「設定」裡啟動</string>
+  <string name="sendkeystrokes_wrong_data">無效的檔案類型——需為 text/x-keystrokes</string>
+  <string name="sendkeystrokes_sent_text">傳送按鍵組合 %1s 至裝置 %2s</string>
   <string name="category_connected_devices">已連結的裝置</string>
   <string name="category_not_paired_devices">可連結的裝置</string>
   <string name="category_remembered_devices">已記住的裝置</string>
@@ -287,8 +293,11 @@
   <string name="bigscreen_select">選擇</string>
   <string name="bigscreen_right">右</string>
   <string name="bigscreen_down">下</string>
-  <string name="pref_plugin_bigscreen">Bigscreen 遠端</string>
-  <string name="pref_plugin_bigscreen_desc">將您的裝置用作 Plasma Bigscreen 的遠端</string>
+  <string name="bigscreen_mic">麥克風</string>
+  <string name="pref_plugin_bigscreen">全覽螢幕遠端</string>
+  <string name="pref_plugin_bigscreen_desc">本裝置將作為 Plasma 全覽螢幕的遠端控制器</string>
+  <string name="bigscreen_optional_permission_explanation">為了與電腦共享手機麥克風端的音效輸入，需要您允許本軟體存取手機的音源輸入權限</string>
+  <string name="bigscreen_speech_extra_prompt">聲控功能</string>
   <string-array name="convert_to_mms_after_entries">
     <item>After one message</item>
     <item>After two messages</item>
@@ -298,7 +307,7 @@
   </string-array>
   <string name="theme_dialog_title">選擇主題</string>
   <string-array name="theme_list">
-    <item>由省電工具設定</item>
+    <item>由省電功能決定</item>
     <item>亮色</item>
     <item>暗色</item>
   </string-array>

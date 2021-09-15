@@ -91,6 +91,11 @@
   <string name="mouse_receiver_plugin_description">Ricevi i movimenti remoti del mouse</string>
   <string name="mouse_receiver_plugin_name">Ricevitore del mouse</string>
   <string name="mouse_receiver_no_permissions">Devi abilitare Servizio di accessibilità</string>
+  <string name="view_status_title">Stato</string>
+  <string name="battery_status_format">Batteria: %d%%</string>
+  <string name="battery_status_low_format">Batteria: %d%% livello basso</string>
+  <string name="battery_status_charging_format">Batteria: %d%% in carica</string>
+  <string name="battery_status_unknown">Informazioni sulla batteria non disponibili</string>
   <string name="category_connected_devices">Dispositivi connessi</string>
   <string name="category_not_paired_devices">Dispositivi disponibili</string>
   <string name="category_remembered_devices">Dispositivi memorizzati</string>

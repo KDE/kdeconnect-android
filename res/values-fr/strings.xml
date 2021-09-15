@@ -91,6 +91,11 @@
   <string name="mouse_receiver_plugin_description">Recevoir les mouvements de la souri distante</string>
   <string name="mouse_receiver_plugin_name">Récepteur de souris</string>
   <string name="mouse_receiver_no_permissions">Vous avez besoin d\'accéder au service « Accessibilité »</string>
+  <string name="view_status_title">État</string>
+  <string name="battery_status_format">Batterie : %d %%</string>
+  <string name="battery_status_low_format">Batterie : %d %% Batterie faible</string>
+  <string name="battery_status_charging_format">Battery: %d%% en charge</string>
+  <string name="battery_status_unknown">Informations de batterie non disponibles</string>
   <string name="category_connected_devices">Périphériques connectés</string>
   <string name="category_not_paired_devices">Périphériques disponibles</string>
   <string name="category_remembered_devices">Périphériques mémorisés</string>
