@@ -91,6 +91,11 @@
   <string name="mouse_receiver_plugin_description">Uzaqdakı siçanın hərəkətini qəbul etmək</string>
   <string name="mouse_receiver_plugin_name">Siçanı qəbul edən</string>
   <string name="mouse_receiver_no_permissions">Xüsusi İmkanlarda xidməti aktiv etməlisiniz</string>
+  <string name="view_status_title">Vəziyyət</string>
+  <string name="battery_status_format">Batareya: %d%%</string>
+  <string name="battery_status_low_format">Batareya: %d%% Zəif batareya</string>
+  <string name="battery_status_charging_format">Batareya: %d%% doldurulur</string>
+  <string name="battery_status_unknown">Batareya haqqında məlumat əlçatan deyil</string>
   <string name="category_connected_devices">Qoşulmuş cihazlar</string>
   <string name="category_not_paired_devices">Mövcud cihazlar</string>
   <string name="category_remembered_devices">Yadda saxlanılan cihazlar</string>
