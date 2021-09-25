@@ -370,4 +370,17 @@
   <string name="donate">Поддержать</string>
   <string name="source_code">Исходный код</string>
   <string name="licenses">Лицензии</string>
+  <string name="website">Веб-сайт</string>
+  <string name="about">О программе</string>
+  <string name="authors">Авторы</string>
+  <string name="thanks_to">Благодарности</string>
+  <string name="kde_be_free">Будьте свободными!</string>
+  <string name="kde">KDE</string>
+  <string name="konqi">Konqi</string>
+  <string name="developer">Разработчик</string>
+  <string name="bug_fixes_and_general_improvements">Исправления и улучшения</string>
+  <string name="aniket_kumar_task">Улучшения модуля SMS</string>
+  <string name="alex_fiestas_task">Улучшения модуля «контакты»</string>
+  <string name="maxim_leshchenko_task">Улучшения интерфейса и страница «О программе\"</string>
+  <string name="holger_kaelberer_task">Модуль «удалённая клавиатура» и исправления ошибок</string>
 </resources>
