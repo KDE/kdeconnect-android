@@ -45,6 +45,7 @@
     <item>Stronger</item>
     <item>Strongest</item>
   </string-array>
+  <string name="view_status_title">Stato</string>
   <string name="category_connected_devices">Dispositivos connectite</string>
   <string name="category_not_paired_devices">Dispositivos disponibile</string>
   <string name="device_menu_plugins">"Preferentias de plugin "</string>
@@ -160,4 +161,5 @@
   <string name="maintainer_and_developer">Mantenitor e developpator</string>
   <string name="developer">Disveloppator</string>
   <string name="bug_fixes_and_general_improvements">Fixationes de bug e melioramentos general</string>
+  <string name="everyone_else">Alcun altere qui ha contribuite a KDE Connect durante le annos</string>
 </resources>

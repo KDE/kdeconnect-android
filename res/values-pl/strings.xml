@@ -91,6 +91,11 @@
   <string name="mouse_receiver_plugin_description">Odbiera ruchy myszy</string>
   <string name="mouse_receiver_plugin_name">Odbiornik myszy</string>
   <string name="mouse_receiver_no_permissions">Musisz włączyć usługę dostępności</string>
+  <string name="view_status_title">Stan</string>
+  <string name="battery_status_format">Bateria: %d%%</string>
+  <string name="battery_status_low_format">Bateria: %d%% niski poziom</string>
+  <string name="battery_status_charging_format">Bateria: %d%% ładowanie</string>
+  <string name="battery_status_unknown">Dane o baterii są niedostępne</string>
   <string name="category_connected_devices">Podłączone urządzenia</string>
   <string name="category_not_paired_devices">Dostępne urządzenia</string>
   <string name="category_remembered_devices">Zapamiętane urządzenia</string>
