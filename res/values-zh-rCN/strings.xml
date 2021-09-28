@@ -284,7 +284,7 @@
   <string name="all">全部</string>
   <string name="devices">设备</string>
   <string name="settings_rename">设备名</string>
-  <string name="settings_dark_mode">暗色主题</string>
+  <string name="settings_dark_mode">深色主题</string>
   <string name="settings_more_settings_title">更多设置</string>
   <string name="settings_more_settings_text">每个设备的独立设置可以在设备页内的“插件设置”下找到。</string>
   <string name="setting_persistent_notification">启用常驻通知栏</string>
@@ -344,7 +344,7 @@
   </string-array>
   <string-array name="theme_list_v28">
     <item>系统默认</item>
-    <item>亮色</item>
+    <item>浅色</item>
     <item>深色</item>
   </string-array>
   <string name="report_bug">报告缺陷</string>
