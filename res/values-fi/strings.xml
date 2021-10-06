@@ -80,7 +80,6 @@
   <string name="sendkeystrokes_textbox_hint">Lähetä näppäinpainallukset koneelle</string>
   <string name="sendkeystrokes_disabled_toast">Näppäinpainallusten lähetys ei ole käytössä: ota se käyttöön asetuksista</string>
   <string name="sendkeystrokes_wrong_data">Virheellinen MIME-tyyppi: vaaditaan ”text/x-keystrokes”</string>
-  <string name="sendkeystrokes_sent_text">Lähetettiin %1s laitteelle %2s</string>
   <string name="sendkeystrokes_pref_category_summary">Tällä moduulilla muut sovellukset voivat jakaa tekstikatkelmia yhdistetylle koneelle lähetettyinä näppäinpainalluksina</string>
   <string name="sendkeystrokes_pref_category_title">Lähetä näppäinpainalluksia</string>
   <string name="sendkeystrokes_pref_enabled">Salli näppäinpainallusten lähettäminen</string>

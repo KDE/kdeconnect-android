@@ -80,7 +80,6 @@
   <string name="sendkeystrokes_textbox_hint">Envoyez les appuis de touches vers l\'hôte</string>
   <string name="sendkeystrokes_disabled_toast">L\'envoi des appuis de touches est désactivé. Veuillez l\'activer dans la configuration.</string>
   <string name="sendkeystrokes_wrong_data">Type « MIME » non valable. Doit être « text/x-keystrokes »</string>
-  <string name="sendkeystrokes_sent_text">Envoi de %1s vers le périphérique %2s</string>
   <string name="sendkeystrokes_pref_category_summary">Ce module permet aux autres applications de partager des portions de texte comme des appuis de touches, qui seront envoyées vers l\'hôte connecté.</string>
   <string name="sendkeystrokes_pref_category_title">Envoyez les appuis de touches</string>
   <string name="sendkeystrokes_pref_enabled">Autoriser l\'envoi des appuis de touches</string>

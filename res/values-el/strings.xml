@@ -80,7 +80,6 @@
   <string name="sendkeystrokes_textbox_hint">Αποστολή πληκτρολογήσεων στον υπολογιστή</string>
   <string name="sendkeystrokes_disabled_toast">Η αποστολή πληκτρολογήσεων είναι ανενεργή - ενεργοποιήστε την στις ρυθμίσεις</string>
   <string name="sendkeystrokes_wrong_data">Μη έγκυρος τύπος mime - χρειάζεται να γίνει \'text/x-keystrokes\'</string>
-  <string name="sendkeystrokes_sent_text">Εστάλησαν %1s στη συσκευή %2s</string>
   <string name="sendkeystrokes_pref_category_summary">Αυτό το άρθρωμα επιτρέπει σε άλλες εφαρμογές να μοιράζονται τμήματα κειμένου ως πληκτρολογήσεις οι οποίες θα αποστέλονται στον συνδεδεμένο υπολογιστή</string>
   <string name="sendkeystrokes_pref_category_title">Αποστολή πληκτρολογήσεων</string>
   <string name="sendkeystrokes_pref_enabled">ενεργοποίηση αποστολής πληκτρολογήσεων</string>

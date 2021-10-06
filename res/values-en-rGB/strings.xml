@@ -80,7 +80,6 @@
   <string name="sendkeystrokes_textbox_hint">Send keystrokes to host</string>
   <string name="sendkeystrokes_disabled_toast">Sending keystrokes is disabled - enable it in the settings</string>
   <string name="sendkeystrokes_wrong_data">Invalid mime type - needs to be \'text/x-keystrokes\'</string>
-  <string name="sendkeystrokes_sent_text">Sent %1s to device %2s</string>
   <string name="sendkeystrokes_pref_category_summary">This module allows other apps to share text segments as keystrokes which will get send to the connected host</string>
   <string name="sendkeystrokes_pref_category_title">Send Keystrokes</string>
   <string name="sendkeystrokes_pref_enabled">Enable Keystrokes sending</string>

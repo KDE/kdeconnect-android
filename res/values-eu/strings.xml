@@ -80,7 +80,6 @@
   <string name="sendkeystrokes_textbox_hint">Bidali tekla-joaldiak ostalarira</string>
   <string name="sendkeystrokes_disabled_toast">Tekla-joaldiak bidaltzea ezgaituta dago - gaitu ezazu ezarpenetan</string>
   <string name="sendkeystrokes_wrong_data">MIME-mota baliogabea - \'text/x-keystrokes\' izan behar da</string>
-  <string name="sendkeystrokes_sent_text">Bidali %1s %2s gailura</string>
   <string name="sendkeystrokes_pref_category_summary">Modulu honek, beste aplikazioei, konektatutako ostalarira tekla-joaldi gisa bidaliko diren testu-segmentuak partekatzeko aukera eskaintzen die</string>
   <string name="sendkeystrokes_pref_category_title">Bidali tekla-joaldiak</string>
   <string name="sendkeystrokes_pref_enabled">Gaitu tekla-joaldiak bidaltzea</string>

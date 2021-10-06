@@ -80,7 +80,6 @@
   <string name="sendkeystrokes_textbox_hint">Invia combinazioni di tasti all\'host</string>
   <string name="sendkeystrokes_disabled_toast">L\'invio di combinazioni di tasti è disabilitato: abilitalo nelle impostazioni</string>
   <string name="sendkeystrokes_wrong_data">Tipo MIME non valido: deve essere «text/x-keystrokes»</string>
-  <string name="sendkeystrokes_sent_text">Inviato %1s al dispositivo %2s</string>
   <string name="sendkeystrokes_pref_category_summary">Questo modulo consente ad altre applicazioni di condividere segmenti di testo come sequenze di tasti che saranno inviate all\'host connesso</string>
   <string name="sendkeystrokes_pref_category_title">Invia combinazioni di tasti</string>
   <string name="sendkeystrokes_pref_enabled">Abilita l\'invio di combinazioni di tasti</string>

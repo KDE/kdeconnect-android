@@ -80,7 +80,7 @@
   <string name="sendkeystrokes_textbox_hint">Skicka tangentnedtryckningar till värddator</string>
   <string name="sendkeystrokes_disabled_toast">Skicka tangentnedtryckningar är inaktiverat: aktivera det i inställningarna</string>
   <string name="sendkeystrokes_wrong_data">Ogiltig Mime-type, måste vara \'text/x-keystrokes\'</string>
-  <string name="sendkeystrokes_sent_text">Skickade %1s till enhet %2s</string>
+  <string name="sendkeystrokes_sent_text">Skickade %1$s till enhet %2$s</string>
   <string name="sendkeystrokes_pref_category_summary">Modulen låter andra program att dela textsegment som tangentnedtryckningar vilka skickas till den anslutna värddatorn</string>
   <string name="sendkeystrokes_pref_category_title">Skicka tangentnedtryckningar</string>
   <string name="sendkeystrokes_pref_enabled">Aktivera skicka tangentnedtryckningar</string>

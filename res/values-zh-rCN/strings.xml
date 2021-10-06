@@ -80,7 +80,6 @@
   <string name="sendkeystrokes_textbox_hint">发送按键到主机</string>
   <string name="sendkeystrokes_disabled_toast">发送按键已禁用 - 请在设置中启用它</string>
   <string name="sendkeystrokes_wrong_data">无效的 MIME 类型 - 需要为“text/x-keystrokes”</string>
-  <string name="sendkeystrokes_sent_text">发送 %1s 到设备 %2s</string>
   <string name="sendkeystrokes_pref_category_summary">此模块允许其他应用共享文本段作为按键发送到连接的主机</string>
   <string name="sendkeystrokes_pref_category_title">发送按键</string>
   <string name="sendkeystrokes_pref_enabled">启用按键发送</string>

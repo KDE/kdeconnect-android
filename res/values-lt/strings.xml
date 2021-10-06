@@ -80,7 +80,6 @@
   <string name="sendkeystrokes_textbox_hint">Siųsti klavišų paspaudimus į serverį</string>
   <string name="sendkeystrokes_disabled_toast">Klavišų paspaudimų siuntimas yra išjungtas - įjunkite jį nuostatose</string>
   <string name="sendkeystrokes_wrong_data">Neteisingas mime tipas - turi būti \'text/x-keystrokes\'</string>
-  <string name="sendkeystrokes_sent_text">%1s išsiųstas į įrenginį %2s</string>
   <string name="sendkeystrokes_pref_category_summary">Šis modulis leidžia kitoms programėlėms bendrinti teksto segmentus kaip klavišų paspaudimus, kurie bus išsiųsti į prijungtą serverį</string>
   <string name="sendkeystrokes_pref_category_title">Siųsti klavišų paspaudimus</string>
   <string name="sendkeystrokes_pref_enabled">Įjungti klavišų paspaudimų siuntimą</string>

@@ -80,7 +80,6 @@
   <string name="sendkeystrokes_textbox_hint">Посылать нажатия клавиш на хост</string>
   <string name="sendkeystrokes_disabled_toast">Отсылка нажатий клавиш отключена: включите её в параметрах</string>
   <string name="sendkeystrokes_wrong_data">Недопустимый тип mime, тип должен быть «text/x-keystrokes»</string>
-  <string name="sendkeystrokes_sent_text">Отправлено %1s на устройство %2s</string>
   <string name="sendkeystrokes_pref_category_summary">Данный модуль позволяет другим приложениям делиться фрагментами текста в виде нажатий клавиш, которые будут затем посылаться на подключённый хост.</string>
   <string name="sendkeystrokes_pref_category_title">Послать нажатия клавиш</string>
   <string name="sendkeystrokes_pref_enabled">Включить отсылку нажатий клавиш</string>

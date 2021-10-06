@@ -80,7 +80,6 @@
   <string name="sendkeystrokes_textbox_hint">Tastendruck an Rechner senden</string>
   <string name="sendkeystrokes_disabled_toast">Das Senden von Tastatureingaben ist deaktiviert - aktivieren Sie es in den Einstellungen</string>
   <string name="sendkeystrokes_wrong_data">Ungültiger MIME-Typ - er muss „text/x-keystrokes“ sein</string>
-  <string name="sendkeystrokes_sent_text">%1s an Gerät %2s senden</string>
   <string name="sendkeystrokes_pref_category_summary">Mit diesem Modul können andere Anwendungen Textsegmente als Tastendrücke teilen, die an den verbundenen Rechner gesendet werden</string>
   <string name="sendkeystrokes_pref_category_title">Tastendrücke senden</string>
   <string name="sendkeystrokes_pref_enabled">Senden von Tastendrücken aktivieren</string>

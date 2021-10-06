@@ -80,7 +80,6 @@
   <string name="sendkeystrokes_textbox_hint">Trimite apăsări de taste către gazdă</string>
   <string name="sendkeystrokes_disabled_toast">Trimiterea de apăsări de taste e dezactivată – activați-o în configurări</string>
   <string name="sendkeystrokes_wrong_data">Tip MIME nevalid – trebuie să fie „text/x-keystrokes”</string>
-  <string name="sendkeystrokes_sent_text">Trimis %1s către dispozitivul %2s</string>
   <string name="sendkeystrokes_pref_category_summary">Acest modul permite altor aplicații să partajeze fragmente de text ca apăsări de taste ce vor fi trimise către gazda conectată</string>
   <string name="sendkeystrokes_pref_category_title">Trimite apăsări de taste</string>
   <string name="sendkeystrokes_pref_enabled">Activează trimiterea de apăsări de taste</string>

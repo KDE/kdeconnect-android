@@ -80,7 +80,6 @@
   <string name="sendkeystrokes_textbox_hint">Düyməyə vurulmanı ana komputerə göndərin</string>
   <string name="sendkeystrokes_disabled_toast">Düyməə vuruşun göndərilməsi söndürülüb - onu ayarlardan aktiv edin</string>
   <string name="sendkeystrokes_wrong_data">Səhv mime növü - \'text/x-keystrokes\' üçün lazımdır</string>
-  <string name="sendkeystrokes_sent_text">%2s cihazına %1s göndərin</string>
   <string name="sendkeystrokes_pref_category_summary">Bu modul, düyməyə vurmaqla, qoşulmuş ana komputerə göndərərərk başqa tətbiqlərin mətn hissəsininlərini mübadilə etməyə imkan verir</string>
   <string name="sendkeystrokes_pref_category_title">Düymələrə vuruşları göndərin</string>
   <string name="sendkeystrokes_pref_enabled">Düyməyə vuruşun göndərilməsini aktiv edin</string>

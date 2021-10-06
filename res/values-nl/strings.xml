@@ -80,7 +80,7 @@
   <string name="sendkeystrokes_textbox_hint">Toetsaanslagen verzenden naar host</string>
   <string name="sendkeystrokes_disabled_toast">Verzenden van toetsaanslagen is uitgeschakeld - schakel het in in de instellingen</string>
   <string name="sendkeystrokes_wrong_data">Ongeldig mime-type - moet \'text/x-keystrokes\' zijn</string>
-  <string name="sendkeystrokes_sent_text">%1s verzenden naar apparaat %2s</string>
+  <string name="sendkeystrokes_sent_text">%1$s verzenden naar apparaat %2$s</string>
   <string name="sendkeystrokes_pref_category_summary">Deze module biedt andere toepassingen om tekstsegmenten als toetsaanslagen te delen die verzonden gaan worden naar de verbonden host</string>
   <string name="sendkeystrokes_pref_category_title">Toetsaanslagen verzenden</string>
   <string name="sendkeystrokes_pref_enabled">Toetsaanslagen verzenden inschakelen</string>

@@ -79,7 +79,6 @@
   <string name="sendkeystrokes_textbox_hint">傳送鍵盤輸入至主機</string>
   <string name="sendkeystrokes_disabled_toast">已停用傳送鍵盤輸入的功能——請至「設定」裡啟動</string>
   <string name="sendkeystrokes_wrong_data">無效的檔案類型——需為 text/x-keystrokes</string>
-  <string name="sendkeystrokes_sent_text">傳送按鍵組合 %1s 至裝置 %2s</string>
   <string name="category_connected_devices">已連結的裝置</string>
   <string name="category_not_paired_devices">可連結的裝置</string>
   <string name="category_remembered_devices">已記住的裝置</string>

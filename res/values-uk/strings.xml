@@ -80,7 +80,7 @@
   <string name="sendkeystrokes_textbox_hint">Надіслати натискання клавіш на вузол</string>
   <string name="sendkeystrokes_disabled_toast">Надсилання натискань клавіш вимкнено — увімкніть його у параметрах програми</string>
   <string name="sendkeystrokes_wrong_data">Некоректний тип MIME — типом має бути «text/x-keystrokes»</string>
-  <string name="sendkeystrokes_sent_text">Надіслано %1s на пристрій %2s</string>
+  <string name="sendkeystrokes_sent_text">%1$s надіслано на пристрій %2$s</string>
   <string name="sendkeystrokes_pref_category_summary">За допомогою цього модуля інші програми можуть спільно використовувати фрагменти тексту як натискання клавіш, які буде надіслано до з\'єднаного вузла мережі</string>
   <string name="sendkeystrokes_pref_category_title">Надсилання натискань клавіш</string>
   <string name="sendkeystrokes_pref_enabled">Увімкнути надсилання натискань клавіш</string>

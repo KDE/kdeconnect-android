@@ -80,7 +80,6 @@
   <string name="sendkeystrokes_textbox_hint">Enviar os eventos de teclado para a máquina</string>
   <string name="sendkeystrokes_disabled_toast">O envio de eventos de teclado está desactivado - active-o na configuração</string>
   <string name="sendkeystrokes_wrong_data">O tipo MIME é inválido - precisa de ser \'text/x-keystrokes\'</string>
-  <string name="sendkeystrokes_sent_text">Foi enviado o %1s para o dispositivo %2s</string>
   <string name="sendkeystrokes_pref_category_summary">Este módulo permite a outras aplicações partilharem segmentos de texto como eventos de teclado que serão enviados para a máquina ligada</string>
   <string name="sendkeystrokes_pref_category_title">Enviar os Eventos de Teclado</string>
   <string name="sendkeystrokes_pref_enabled">Activar o Envio de Eventos de Teclado</string>

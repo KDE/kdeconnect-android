@@ -80,7 +80,6 @@
   <string name="sendkeystrokes_textbox_hint">Enviar pulsaciones al servidor</string>
   <string name="sendkeystrokes_disabled_toast">Enviar pulsaciones está desactivado - activelo en las preferencias</string>
   <string name="sendkeystrokes_wrong_data">Tipo mime inválido - necesita ser «text/x-keystrokes»</string>
-  <string name="sendkeystrokes_sent_text">Enviado %1s al dispositivo %2s</string>
   <string name="sendkeystrokes_pref_category_summary">Este módulo permite a otras aplicaciones compartir extractos de texto como pulsaciones que son enviadas al servidor conectado</string>
   <string name="sendkeystrokes_pref_category_title">Enviar pulsaciones</string>
   <string name="sendkeystrokes_pref_enabled">Activar el envío de pulsaciones</string>
