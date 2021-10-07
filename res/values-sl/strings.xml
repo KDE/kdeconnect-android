@@ -80,6 +80,7 @@
   <string name="sendkeystrokes_textbox_hint">Pošlji pritiske tipk gostitelju</string>
   <string name="sendkeystrokes_disabled_toast">Pošiljanje pritiskov tipk je onemogočeno - omogočite jih v nastavitvah</string>
   <string name="sendkeystrokes_wrong_data">Neveljavna vrsta mime - mora biti \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_sent_text">Poslano %1$s na napravo %2$s</string>
   <string name="sendkeystrokes_pref_category_summary">Ta modul omogoča drugim aplikacijam, da si delijo segmente besedila kot pritiske tipk, ki jih bo prejele za pošiljanje k povezanemu gostitelju</string>
   <string name="sendkeystrokes_pref_category_title">Pošlji pritiske tipk</string>
   <string name="sendkeystrokes_pref_enabled">Omogoči pošiljanje pritiskov tipk</string>
