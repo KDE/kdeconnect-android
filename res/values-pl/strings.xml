@@ -80,6 +80,7 @@
   <string name="sendkeystrokes_textbox_hint">Wyślij naciśnięcia klawiszy do gospodarza</string>
   <string name="sendkeystrokes_disabled_toast">Wysyłanie naciśnięć klawiszy jest wyłączone - włącz je w ustawieniach</string>
   <string name="sendkeystrokes_wrong_data">Nieprawidłowy rodzaj mime - musi być \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_sent_text">Wysłano %1$s na urządzenie %2$s</string>
   <string name="sendkeystrokes_pref_category_summary">Ten moduł umożliwia innym programom współdzielenie odcinków tekstu jako naciśnięć klawiszy, które będą wysyłane do podłączonego gospodarza</string>
   <string name="sendkeystrokes_pref_category_title">Wysyłanie naciśnięć klawiszy</string>
   <string name="sendkeystrokes_pref_enabled">Włącz wysyłanie naciśnięć klawiszy</string>

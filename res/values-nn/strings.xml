@@ -80,7 +80,6 @@
   <string name="sendkeystrokes_textbox_hint">Send tastetrykk til verten</string>
   <string name="sendkeystrokes_disabled_toast">Sending av tastetrykk er slått av. Du kan slå det på i innstillingane.</string>
   <string name="sendkeystrokes_wrong_data">Ugyldig MIME-type – må vera «text/x-keystrokes»</string>
-  <string name="sendkeystrokes_sent_text">Sende %1s til eininga %2s</string>
   <string name="sendkeystrokes_pref_category_summary">Lèt andre appar dela tekstbitar som tastetrykk, som vert sende til den tilkopla verten</string>
   <string name="sendkeystrokes_pref_category_title">Send tastetrykk</string>
   <string name="sendkeystrokes_pref_enabled">Slå på sending av tastetrykk</string>

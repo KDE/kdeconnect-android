@@ -80,6 +80,7 @@
   <string name="sendkeystrokes_textbox_hint">Send keystrokes to host</string>
   <string name="sendkeystrokes_disabled_toast">Sending keystrokes is disabled - enable it in the settings</string>
   <string name="sendkeystrokes_wrong_data">Invalid mime type - needs to be \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_sent_text">Sent %1$s to device %2$s</string>
   <string name="sendkeystrokes_pref_category_summary">This module allows other apps to share text segments as keystrokes which will get send to the connected host</string>
   <string name="sendkeystrokes_pref_category_title">Send Keystrokes</string>
   <string name="sendkeystrokes_pref_enabled">Enable Keystrokes sending</string>
@@ -90,6 +91,11 @@
   <string name="mouse_receiver_plugin_description">Receive remote mouse movement</string>
   <string name="mouse_receiver_plugin_name">Mouse receiver</string>
   <string name="mouse_receiver_no_permissions">You need to enable Accessibility Service</string>
+  <string name="view_status_title">Status</string>
+  <string name="battery_status_format">Battery: %d%%</string>
+  <string name="battery_status_low_format">Battery: %d%% Low Battery</string>
+  <string name="battery_status_charging_format">Battery: %d%% charging</string>
+  <string name="battery_status_unknown">Battery information not available</string>
   <string name="category_connected_devices">Connected devices</string>
   <string name="category_not_paired_devices">Available devices</string>
   <string name="category_remembered_devices">Remembered devices</string>
