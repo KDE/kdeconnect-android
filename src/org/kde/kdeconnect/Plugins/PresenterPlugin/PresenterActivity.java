@@ -185,5 +185,10 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
         };
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        super.onBackPressed();
+        return true;
+    }
 }
 

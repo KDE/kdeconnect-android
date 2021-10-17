@@ -111,6 +111,12 @@ public class PluginSettingsActivity
     }
 
     @Override
+    public boolean onSupportNavigateUp() {
+        super.onBackPressed();
+        return true;
+    }
+
+    @Override
     public void onFinish() {
         finish();
     }

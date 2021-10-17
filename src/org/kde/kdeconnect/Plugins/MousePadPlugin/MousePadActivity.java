@@ -365,5 +365,10 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         imm.toggleSoftInputFromWindow(keyListenerView.getWindowToken(), 0, 0);
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        super.onBackPressed();
+        return true;
+    }
 }
 

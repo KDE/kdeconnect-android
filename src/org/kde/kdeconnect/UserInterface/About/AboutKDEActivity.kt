@@ -45,4 +45,9 @@ class AboutKDEActivity : AppCompatActivity() {
             @Suppress("DEPRECATION") Html.fromHtml(html)
         }
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        super.onBackPressed()
+        return true
+    }
 }

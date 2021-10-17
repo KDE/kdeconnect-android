@@ -223,4 +223,10 @@ public class CustomDevicesActivity extends AppCompatActivity implements CustomDe
             this.position = position;
         }
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        super.onBackPressed();
+        return true;
+    }
 }

@@ -141,4 +141,10 @@ public class MprisActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        super.onBackPressed();
+        return true;
+    }
 }

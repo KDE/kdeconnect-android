@@ -97,5 +97,11 @@ public class BigscreenActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        super.onBackPressed();
+        return true;
+    }
 }
 
