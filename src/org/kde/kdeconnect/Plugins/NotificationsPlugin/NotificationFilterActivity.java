@@ -220,4 +220,10 @@ public class NotificationFilterActivity extends AppCompatActivity {
         return new BitmapDrawable(res, bitmap);
 
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        super.onBackPressed();
+        return true;
+    }
 }
