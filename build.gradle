@@ -4,7 +4,7 @@ import com.android.build.gradle.api.ApplicationVariant
 import com.github.jk1.license.render.TextReportRenderer
 
 buildscript {
-    ext.kotlin_version = '1.5.0'
+    ext.kotlin_version = '1.5.31'
     repositories {
         mavenCentral()
         google()
