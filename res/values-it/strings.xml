@@ -80,6 +80,7 @@
   <string name="sendkeystrokes_textbox_hint">Invia combinazioni di tasti all\'host</string>
   <string name="sendkeystrokes_disabled_toast">L\'invio di combinazioni di tasti è disabilitato: abilitalo nelle impostazioni</string>
   <string name="sendkeystrokes_wrong_data">Tipo MIME non valido: deve essere «text/x-keystrokes»</string>
+  <string name="sendkeystrokes_sent_text">Inviato %1$s al dispositivo %2$s</string>
   <string name="sendkeystrokes_pref_category_summary">Questo modulo consente ad altre applicazioni di condividere segmenti di testo come sequenze di tasti che saranno inviate all\'host connesso</string>
   <string name="sendkeystrokes_pref_category_title">Invia combinazioni di tasti</string>
   <string name="sendkeystrokes_pref_enabled">Abilita l\'invio di combinazioni di tasti</string>
@@ -369,7 +370,7 @@
   <string name="about_kde">Informazioni su KDE</string>
   <string name="kde_be_free">KDE - Vivi libero!</string>
   <string name="kde">KDE</string>
-  <string name="konqi">Konqui</string>
+  <string name="konqi">Konqi</string>
   <string name="rise_up">Alza</string>
   <string name="rise_down">Abbassa</string>
   <string name="app_description">Applicazione multipiattaforma che consente ai tuoi dispositivi di comunicare (ad esempio, il tuo telefono e il tuo computer)</string>

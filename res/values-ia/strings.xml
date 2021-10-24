@@ -45,6 +45,7 @@
     <item>Stronger</item>
     <item>Strongest</item>
   </string-array>
+  <string name="sendkeystrokes_sent_text">"Inviate %1$s   a  dispositivo %2$s"</string>
   <string name="view_status_title">Stato</string>
   <string name="category_connected_devices">Dispositivos connectite</string>
   <string name="category_not_paired_devices">Dispositivos disponibile</string>
