@@ -80,6 +80,7 @@
   <string name="sendkeystrokes_textbox_hint">விசைகளை புரவனுக்கு அனுப்பு</string>
   <string name="sendkeystrokes_disabled_toast">விசைகளை அனுப்புதல் முடங்கியுள்ளது - அமைப்புகளில் இதை இயக்குங்கள்</string>
   <string name="sendkeystrokes_wrong_data">செல்லுபடியாகாத மைம் வகை - \'text/x-keystrokes\'-ஆக இருக்க வேண்டும்</string>
+  <string name="sendkeystrokes_sent_text">%1$s என்பது %2$s என்ற சாதனத்துக்கு அனுப்பப்பட்டது</string>
   <string name="sendkeystrokes_pref_category_summary">மற்ற செயலிகள் பகிரும் சொற்றொடர்களை இணைக்கப்பட்ட புரவனுக்கு விசைகளாக இந்த கூறு அனுப்பும்</string>
   <string name="sendkeystrokes_pref_category_title">விசைகளை அனுப்பு</string>
   <string name="sendkeystrokes_pref_enabled">விசைகள் அனுப்புதலை இயக்கு</string>
