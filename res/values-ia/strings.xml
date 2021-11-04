@@ -9,7 +9,7 @@
   <string name="pref_plugin_battery">Reporto de batteria</string>
   <string name="pref_plugin_battery_desc">Periodicamente reporta stato de batteria</string>
   <string name="pref_plugin_connectivity_report">Reporto de connectivitate</string>
-  <string name="pref_plugin_sftp_desc">Permitte navigat in le systema de file de iste dispositivo remotemente</string>
+  <string name="pref_plugin_sftp_desc">Permitte navigar in le systema de file de iste dispositivo remotemente</string>
   <string name="pref_plugin_clipboard">Sync de area de transferentia</string>
   <string name="pref_plugin_clipboard_desc">Comparti le contento de area de transferentia</string>
   <string name="pref_plugin_clipboard_sent">Area de transferentia inviate</string>
