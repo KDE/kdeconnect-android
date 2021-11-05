@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE Connect</string>
   <string name="pref_plugin_telephony">Telefon értesítő</string>
   <string name="pref_plugin_battery">Akkumulátor jelentés</string>
   <string name="pref_plugin_battery_desc">Akkumulátorállapot időszakos jelentése</string>
@@ -72,6 +73,23 @@
   <string name="protocol_version_newer">Ez az eszköz egy újabb protokollverziót használ</string>
   <string name="invalid_device_name">Érvénytelen eszköznév</string>
   <string name="shareplugin_text_saved">Szöveg érkezett, elmentve a vágólapra</string>
+  <string name="share">Megosztás</string>
+  <string name="title_activity_notification_filter">Értesítésszűrő</string>
+  <string name="add_device_dialog_title">Eszköz hozzáadása</string>
+  <string name="sftp_storage_preference_display_name">Megjelenített név</string>
+  <string name="send_files">Fájlok küldése</string>
+  <string name="pairing_title">KDE Connect eszközök</string>
+  <string name="device_rename_title">Eszköz átnevezése</string>
+  <string name="device_icon_description">Eszközikon</string>
+  <string name="settings_icon_description">Beállítások ikon</string>
+  <string name="notification_channel_default">Egyéb értesítések</string>
+  <string name="notification_channel_media_control">Médiavezérlő</string>
+  <string name="runcommand_notreachable">Az eszköz nem érhető el</string>
+  <string name="runcommand_notpaired">Az eszköz nincs párosítva</string>
+  <string name="devices">Eszközök</string>
+  <string name="settings_rename">Eszköznév</string>
+  <string name="message_reply_label">VÁLASZ</string>
+  <string name="mark_as_read_label">MEGJELÖLÉS OLVASOTTKÉNT</string>
   <string-array name="convert_to_mms_after_entries">
     <item>After one message</item>
     <item>After two messages</item>
@@ -81,12 +99,12 @@
   </string-array>
   <string-array name="theme_list">
     <item>Set by Battery Saver</item>
-    <item/>
-    <item>Dark</item>
+    <item>Világos</item>
+    <item>Sötét</item>
   </string-array>
   <string-array name="theme_list_v28">
-    <item>System Default</item>
-    <item/>
+    <item>Rendszertéma</item>
+    <item>Világos</item>
     <item>Dark</item>
   </string-array>
 </resources>

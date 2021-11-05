@@ -19,6 +19,9 @@
   <string name="pref_plugin_mpris">Controlos de Multimedia</string>
   <string name="pref_plugin_runcommand">Executa commando</string>
   <string name="pref_plugin_ping">Ping</string>
+  <string name="pref_plugin_ping_desc">Invia e recipe pings</string>
+  <string name="pref_plugin_receive_notifications">Recipe notificationes</string>
+  <string name="pref_plugin_sharereceiver">Comparti e recipe</string>
   <string name="ok">OK</string>
   <string name="sad_ok">OK :(</string>
   <string name="cancel">Cancella</string>
@@ -88,6 +91,7 @@
   <string name="share">Comparti</string>
   <string name="sftp_sdcard">Sd Card</string>
   <string name="sftp_readonly">(solmente de lectura)</string>
+  <string name="sftp_camera">Photos de camera</string>
   <string name="add_device_dialog_title">Adde dispositivo</string>
   <string name="add_device_hint">Nomine de hospite o adresse IP</string>
   <string name="sftp_storage_preference_click_to_select">pulsa pro seliger</string>
@@ -109,6 +113,7 @@
   <string name="notification_channel_sms_mms">Nove message</string>
   <string name="copy_url_to_clipboard">Copia URL a area de transferentia</string>
   <string name="runcommand_notpaired">Dispositivo non es associate</string>
+  <string name="pref_plugin_systemvolume">Volumine de systema</string>
   <string name="mute">Surdina</string>
   <string name="all">Omne</string>
   <string name="devices">Dispositivos</string>
