@@ -49,6 +49,9 @@ public class BatteryPlugin extends Plugin {
     }
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
+
+        boolean wasLowBattery = false; // will trigger a low battery notification when the device is connected
+
         @Override
         public void onReceive(Context context, Intent batteryIntent) {
 
@@ -58,8 +61,16 @@ public class BatteryPlugin extends Plugin {
 
             int currentCharge = (level == -1) ? batteryInfo.getInt("currentCharge") : level * 100 / scale;
             boolean isCharging = (plugged == -1) ? batteryInfo.getBoolean("isCharging") : (0 != plugged);
-            boolean lowBattery = Intent.ACTION_BATTERY_LOW.equals(batteryIntent.getAction());
-            int thresholdEvent = lowBattery ? THRESHOLD_EVENT_BATTERY_LOW : THRESHOLD_EVENT_NONE;
+
+            int thresholdEvent = THRESHOLD_EVENT_NONE;
+            if (Intent.ACTION_BATTERY_OKAY.equals(batteryIntent.getAction())) {
+                wasLowBattery = false;
+            } else if (Intent.ACTION_BATTERY_LOW.equals(batteryIntent.getAction())) {
+                if (!wasLowBattery && !isCharging) {
+                    thresholdEvent = THRESHOLD_EVENT_BATTERY_LOW;
+                }
+                wasLowBattery = true;
+            }
 
             if (isCharging != batteryInfo.getBoolean("isCharging")
                     || currentCharge != batteryInfo.getInt("currentCharge")
@@ -80,6 +91,7 @@ public class BatteryPlugin extends Plugin {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
         intentFilter.addAction(Intent.ACTION_BATTERY_LOW);
+        intentFilter.addAction(Intent.ACTION_BATTERY_OKAY);
         Intent currentState = context.registerReceiver(receiver, intentFilter);
         receiver.onReceive(context, currentState);
 
