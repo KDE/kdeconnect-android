@@ -77,6 +77,7 @@
     <item>Muito forte</item>
   </string-array>
   <string name="sendkeystrokes_wrong_data">Tipo MIME inválido - precisa ser \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_sent_text">Enviar %1$s para o dispositivo %2$s</string>
   <string name="sendkeystrokes_safe_text_enabled">Enviar texto seguro imediatamente</string>
   <string name="mouse_receiver_plugin_description">Receber movimento de mouse remoto</string>
   <string name="mouse_receiver_plugin_name">Receptor de mouse</string>
@@ -344,4 +345,16 @@
   <string name="donate">Doar</string>
   <string name="source_code">Código-fonte</string>
   <string name="licenses">Licenças</string>
+  <string name="about_kde">Sobre o KDE</string>
+  <string name="kde_be_free">KDE - Seja livre!</string>
+  <string name="kde">KDE</string>
+  <string name="konqi">Konqi</string>
+  <string name="maintainer_and_developer">Mantenedor e desenvolvedor</string>
+  <string name="developer">Desenvolvedor</string>
+  <string name="apple_support">Suporte ao macOS. Trabalhando no suporte ao iOS</string>
+  <string name="bug_fixes_and_general_improvements">Correções de erros e melhorias em geral</string>
+  <string name="samoilenko_yuri_task">Implementação SFTP, correções de erros e melhorias em geral</string>
+  <string name="aniket_kumar_task">Melhorias no plugin de SMS</string>
+  <string name="alex_fiestas_task">Melhorias no plugin de contatos</string>
+  <string name="maxim_leshchenko_task">Melhorias na interface e nesta página Sobre</string>
 </resources>
