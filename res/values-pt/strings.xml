@@ -80,6 +80,7 @@
   <string name="sendkeystrokes_textbox_hint">Enviar os eventos de teclado para a máquina</string>
   <string name="sendkeystrokes_disabled_toast">O envio de eventos de teclado está desactivado - active-o na configuração</string>
   <string name="sendkeystrokes_wrong_data">O tipo MIME é inválido - precisa de ser \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_sent_text">Foi enviado o %1$s para o dispositivo %2$s</string>
   <string name="sendkeystrokes_pref_category_summary">Este módulo permite a outras aplicações partilharem segmentos de texto como eventos de teclado que serão enviados para a máquina ligada</string>
   <string name="sendkeystrokes_pref_category_title">Enviar os Eventos de Teclado</string>
   <string name="sendkeystrokes_pref_enabled">Activar o Envio de Eventos de Teclado</string>
@@ -90,6 +91,11 @@
   <string name="mouse_receiver_plugin_description">Receber o movimento remoto do rato</string>
   <string name="mouse_receiver_plugin_name">Receptor do rato</string>
   <string name="mouse_receiver_no_permissions">Precisa de activar o Serviço de Acessibilidade</string>
+  <string name="view_status_title">Estado</string>
+  <string name="battery_status_format">Bateria: %d%%</string>
+  <string name="battery_status_low_format">Bateria: %d%% Bateria Fraca</string>
+  <string name="battery_status_charging_format">Bateria: %d%% a carregar</string>
+  <string name="battery_status_unknown">A informação da bateria não está disponível</string>
   <string name="category_connected_devices">Dispositivos ligados</string>
   <string name="category_not_paired_devices">Dispositivos disponíveis</string>
   <string name="category_remembered_devices">Dispositivos recordados</string>
