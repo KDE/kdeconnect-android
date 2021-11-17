@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="org.kde.kdeconnect_tp"
-    android:versionCode="11700"
-    android:versionName="1.17.0">
+    android:versionCode="11800"
+    android:versionName="1.18.0">
 
     <supports-screens
         android:anyDensity="true"

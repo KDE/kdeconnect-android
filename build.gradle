@@ -27,7 +27,7 @@ android {
     compileSdkVersion 31
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 29
+        targetSdkVersion 30
         proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
         multiDexEnabled true
