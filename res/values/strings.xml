@@ -7,6 +7,7 @@
         We really appreciate your translations, but make sure to submit them by working with the proper team!
   -->
     <string name="kde_connect">KDE Connect</string>
+    <string name="manifest_label_share">Send to Device</string>
     <string name="foreground_notification_no_devices">Not connected to any device</string>
     <string name="foreground_notification_devices">Connected to: %s</string>
     <string name="foreground_notification_send_clipboard">Send Clipboard</string>

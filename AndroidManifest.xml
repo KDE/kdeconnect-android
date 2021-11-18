@@ -283,7 +283,7 @@
         </activity>
         <activity
             android:name="org.kde.kdeconnect.Plugins.SharePlugin.ShareActivity"
-            android:label="KDE Connect">
+            android:label="@string/manifest_label_share">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
 
