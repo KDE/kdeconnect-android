@@ -4,11 +4,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:elevation="8dp"/>
+        android:elevation="8dp"
+        app:title="@string/kde_connect"/>
 </com.google.android.material.appbar.AppBarLayout>
