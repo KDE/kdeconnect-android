@@ -8,6 +8,7 @@
   <string name="pref_plugin_telephony_desc">Odošle upozornenia na prichádzajúce hovory</string>
   <string name="pref_plugin_battery">Hlásenia batérie</string>
   <string name="pref_plugin_battery_desc">Pravidelne hlási stav batérie</string>
+  <string name="pref_plugin_connectivity_report_desc">Hlásenie o stave a sile sieťového signálu</string>
   <string name="pref_plugin_sftp">Odhalenie súborového systému</string>
   <string name="pref_plugin_sftp_desc">Umožní vzdialené prehliadanie súborového systému zariadenia</string>
   <string name="pref_plugin_clipboard">Synchronizácia schránky</string>
@@ -74,6 +75,19 @@
     <item>Silnejšie</item>
     <item>Najsilnejšie</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Odoslať stlačenia klávesov do</string>
+  <string name="sendkeystrokes_textbox_hint">Odoslať stlačenia klávesov hostiteľovi</string>
+  <string name="sendkeystrokes_sent_text">Odoslané %1$s do zariadenia %2$s</string>
+  <string name="sendkeystrokes_pref_category_title">Odoslať stlačenia klávesov</string>
+  <string name="sendkeystrokes_pref_enabled">Povoliť odosielanie stlačení klávesov</string>
+  <string name="mouse_receiver_plugin_description">Prijímanie pohybu vzdialenej myši</string>
+  <string name="mouse_receiver_plugin_name">Prijímač myši</string>
+  <string name="mouse_receiver_no_permissions">Musíte povoliť službu dostupnosti</string>
+  <string name="view_status_title">Stav</string>
+  <string name="battery_status_format">Batéria: %d%%</string>
+  <string name="battery_status_low_format">Batéria: %d%% Nízka úroveň batérie</string>
+  <string name="battery_status_charging_format">Batéria: %d%% nabíja sa</string>
+  <string name="battery_status_unknown">Informácie o batérii nie sú dostupné</string>
   <string name="category_connected_devices">Pripojené zariadenia</string>
   <string name="category_not_paired_devices">Dostupné zariadenia</string>
   <string name="category_remembered_devices">Zapamätané zariadenia</string>
@@ -89,6 +103,7 @@
   <string name="error_canceled_by_other_peer">Zrušené druhým účastníkom</string>
   <string name="encryption_info_title">Informácie o šifrovaní</string>
   <string name="encryption_info_msg_no_ssl">Druhé zariadenie nepoužíva najnovšiu verziu aplikácie KDE Connect. Použije sa zastaralý spôsob šifrovania.</string>
+  <string name="my_device_fingerprint">Odtlačok SHA256 certifikátu vášho zariadenia je:</string>
   <string name="remote_device_fingerprint">Odtlačok SHA256 certifikátu vzdialeného zariadenia je:</string>
   <string name="pair_requested">Spárovanie vyžiadané</string>
   <string name="pairing_request_from">Požiadavka na spárovanie zo zariadenia %1s</string>
@@ -158,6 +173,8 @@
   <string name="mpris_rew">Pretočiť dozadu</string>
   <string name="mpris_ff">Pretočiť dopredu</string>
   <string name="mpris_next">Nasledovné</string>
+  <string name="mpris_loop">Opakovať</string>
+  <string name="mpris_shuffle">Zamiešať</string>
   <string name="mpris_volume">Hlasitosť</string>
   <string name="mpris_time_settings_title">Tlačidlá pretočenia dopredu/dozadu</string>
   <string name="mpris_time_settings_summary">Upraviť čas pretáčania dopredu/dozadu po stlačení tlačidla</string>
@@ -170,7 +187,7 @@
   </string-array>
   <string name="mpris_notification_settings_title">Zobraziť upozornenie ovládania médií</string>
   <string name="mpris_notification_settings_summary">Umožní ovládanie vašich multimediálnych prehrávačov bez otvorenia aplikácie KDE Connect</string>
-  <string name="share_to">Zdieľať do...</string>
+  <string name="share_to">Zdieľať do…</string>
   <string name="protocol_version_newer">Toto zariadenie používa novšiu verziu protokolu</string>
   <string name="plugin_settings_with_name">Nastavenia modulu %s</string>
   <string name="invalid_device_name">Neplatný názov zariadenia</string>
@@ -285,7 +302,7 @@
   <string name="settings_rename">Názov zariadenia</string>
   <string name="settings_dark_mode">Tmavý motív</string>
   <string name="settings_more_settings_title">Viac nastavení</string>
-  <string name="settings_more_settings_text">Nastavenia zariadenia môžete nájsť v ponuke \"Nastavenia zás. modulov\" pri každom zariadení</string>
+  <string name="settings_more_settings_text">Nastavenia zariadenia môžete nájsť v ponuke \"Nastavenia zás. modulov\" pri každom zariadení.</string>
   <string name="setting_persistent_notification">Zobrazovať trvalé oznámenie</string>
   <string name="setting_persistent_notification_oreo">Trvalé oznámenie</string>
   <string name="setting_persistent_notification_description">Ťuknutím povolíte/zakážete nastavenia v upozornení</string>
@@ -319,7 +336,7 @@
   <string name="bigscreen_mic">Mikrofón</string>
   <string name="pref_plugin_bigscreen">Diaľkové ovládanie obrazovky Bigscreen</string>
   <string name="pref_plugin_bigscreen_desc">Použije vaše zariadenie ako diaľkové ovládanie obrazovky Plasma Bigscreen</string>
-  <string name="bigscreen_optional_permission_explanation">Na zdieľanie mikrofónového vstupu z vášho telefónu musíte dať prístup k zvukovému vstupu telefónu.</string>
+  <string name="bigscreen_optional_permission_explanation">Na zdieľanie mikrofónového vstupu z vášho telefónu musíte dať prístup k zvukovému vstupu telefónu</string>
   <string name="bigscreen_speech_extra_prompt">Reč</string>
   <string name="message_reply_label">Odpovedať</string>
   <string name="mark_as_read_label">Označiť ako prečítané</string>
@@ -350,4 +367,17 @@
   <string name="donate">Prispieť</string>
   <string name="source_code">Zdrojový kód</string>
   <string name="licenses">Licencie</string>
+  <string name="website">Webová stránka</string>
+  <string name="about">O aplikácii</string>
+  <string name="authors">Tvorcovia</string>
+  <string name="thanks_to">Poďakovanie</string>
+  <string name="email_contributor">Odoslať email prispievateľovi\n%s</string>
+  <string name="visit_contributors_homepage">Navštíviť domovskú stránku prispievateľa\n%s</string>
+  <string name="version">Verzia %s</string>
+  <string name="about_kde">O prostredí KDE</string>
+  <string name="kde_be_free">KDE - Buďte voľní!</string>
+  <string name="kde">KDE</string>
+  <string name="konqi">Konqi</string>
+  <string name="developer">Vývojár</string>
+  <string name="holger_kaelberer_task">Zásuvný modul vzdialenej klávesnice a opravy chýb</string>
 </resources>
