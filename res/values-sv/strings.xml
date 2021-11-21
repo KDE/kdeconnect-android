@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE-anslut</string>
+  <string name="manifest_label_share">Skicka till apparat</string>
   <string name="foreground_notification_no_devices">Inte ansluten till någon apparat</string>
   <string name="foreground_notification_devices">Ansluten till: %s</string>
   <string name="foreground_notification_send_clipboard">Skicka klippbordet</string>
