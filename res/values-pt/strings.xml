@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
+  <string name="manifest_label_share">Enviar para o Dispositivo</string>
   <string name="foreground_notification_no_devices">Não está ligado a nenhum dispositivo</string>
   <string name="foreground_notification_devices">Ligado a: %s</string>
   <string name="foreground_notification_send_clipboard">Enviar para a Área de Transferência</string>
