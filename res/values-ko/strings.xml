@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
+  <string name="manifest_label_share">장치로 보내기</string>
   <string name="foreground_notification_no_devices">연결된 장치 없음</string>
   <string name="foreground_notification_devices">연결됨: %s</string>
   <string name="foreground_notification_send_clipboard">클립보드 보내기</string>
