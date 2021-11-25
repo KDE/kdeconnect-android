@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
+  <string name="manifest_label_share">Enviar para dispositivo</string>
   <string name="foreground_notification_no_devices">Não está conectado a nenhum dispositivo</string>
   <string name="foreground_notification_devices">Conectado a: %s</string>
   <string name="foreground_notification_send_clipboard">Enviar área de transferência</string>
@@ -76,12 +77,22 @@
     <item>Forte</item>
     <item>Muito forte</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">"Enviar pressionamento de teclas para "</string>
+  <string name="sendkeystrokes_disabled_toast">O envio de pressionamento de tecla está desabilitado - habilite-o nas configurações</string>
   <string name="sendkeystrokes_wrong_data">Tipo MIME inválido - precisa ser \'text/x-keystrokes\'</string>
   <string name="sendkeystrokes_sent_text">Enviar %1$s para o dispositivo %2$s</string>
+  <string name="sendkeystrokes_pref_category_title">Enviar pressionamento de teclas</string>
+  <string name="sendkeystrokes_pref_enabled">Habilitar o envio de pressionamento de teclas</string>
   <string name="sendkeystrokes_safe_text_enabled">Enviar texto seguro imediatamente</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Enviar como pressionamento de teclas</string>
   <string name="mouse_receiver_plugin_description">Receber movimento de mouse remoto</string>
   <string name="mouse_receiver_plugin_name">Receptor de mouse</string>
   <string name="mouse_receiver_no_permissions">Você precisa habilitar o serviço de acessibilidade</string>
+  <string name="view_status_title">Status</string>
+  <string name="battery_status_format">Bateria: %d%%</string>
+  <string name="battery_status_low_format">Bateria: %d%% bateria baixa</string>
+  <string name="battery_status_charging_format">Bateria: %d%% carregando</string>
+  <string name="battery_status_unknown">Informação de bateria não disponível</string>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos disponíveis</string>
   <string name="category_remembered_devices">Dispositivos lembrados</string>
@@ -345,10 +356,18 @@
   <string name="donate">Doar</string>
   <string name="source_code">Código-fonte</string>
   <string name="licenses">Licenças</string>
+  <string name="website">Site</string>
+  <string name="about">Sobre</string>
+  <string name="authors">Autores</string>
+  <string name="thanks_to">Agradecimentos a</string>
+  <string name="email_contributor">E-mail do colaborador\n%s</string>
+  <string name="visit_contributors_homepage">Visite o site do colaborador\n%s</string>
+  <string name="version">Versão %s</string>
   <string name="about_kde">Sobre o KDE</string>
   <string name="kde_be_free">KDE - Seja livre!</string>
   <string name="kde">KDE</string>
   <string name="konqi">Konqi</string>
+  <string name="app_description">Aplicativo multiplataforma que permite aos seus dispositivos se comunicarem (ex.: seu celular e seu computador)</string>
   <string name="maintainer_and_developer">Mantenedor e desenvolvedor</string>
   <string name="developer">Desenvolvedor</string>
   <string name="apple_support">Suporte ao macOS. Trabalhando no suporte ao iOS</string>
@@ -357,4 +376,7 @@
   <string name="aniket_kumar_task">Melhorias no plugin de SMS</string>
   <string name="alex_fiestas_task">Melhorias no plugin de contatos</string>
   <string name="maxim_leshchenko_task">Melhorias na interface e nesta página Sobre</string>
+  <string name="holger_kaelberer_task">Plugin de teclado remoto e correções de erros</string>
+  <string name="saikrishna_arcot_task">Suporte para usar o teclado no plugin de entrada remoto, correções de erros e melhorias em geral</string>
+  <string name="everyone_else">Todos os outros que contribuíram para o KDE Connect ao longo dos anos</string>
 </resources>
