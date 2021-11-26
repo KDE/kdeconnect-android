@@ -80,6 +80,7 @@
   <string name="sendkeystrokes_textbox_hint">Lähetä näppäinpainallukset koneelle</string>
   <string name="sendkeystrokes_disabled_toast">Näppäinpainallusten lähetys ei ole käytössä: ota se käyttöön asetuksista</string>
   <string name="sendkeystrokes_wrong_data">Virheellinen MIME-tyyppi: vaaditaan ”text/x-keystrokes”</string>
+  <string name="sendkeystrokes_sent_text">Lähetettiin %1$s laitteelle %2$s</string>
   <string name="sendkeystrokes_pref_category_summary">Tällä moduulilla muut sovellukset voivat jakaa tekstikatkelmia yhdistetylle koneelle lähetettyinä näppäinpainalluksina</string>
   <string name="sendkeystrokes_pref_category_title">Lähetä näppäinpainalluksia</string>
   <string name="sendkeystrokes_pref_enabled">Salli näppäinpainallusten lähettäminen</string>
@@ -90,6 +91,11 @@
   <string name="mouse_receiver_plugin_description">Vastaanota etähiiren liike</string>
   <string name="mouse_receiver_plugin_name">Hiirivastaanotin</string>
   <string name="mouse_receiver_no_permissions">Esteettömyyspalvelu on otettava käyttöön</string>
+  <string name="view_status_title">Tila</string>
+  <string name="battery_status_format">Varaus: %d %%</string>
+  <string name="battery_status_low_format">Varaus: %d %%, vähissä</string>
+  <string name="battery_status_charging_format">Varaus: %d %%, latautuu</string>
+  <string name="battery_status_unknown">Varaustietoa ei ole saatavilla</string>
   <string name="category_connected_devices">Yhdistetyt laitteet</string>
   <string name="category_not_paired_devices">Saatavilla olevat laitteet</string>
   <string name="category_remembered_devices">Muistetut laitteet</string>

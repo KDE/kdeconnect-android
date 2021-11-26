@@ -18,39 +18,83 @@
   <string name="pref_plugin_clipboard_sent">Vágólap elküldve</string>
   <string name="pref_plugin_mousepad">Távirányítás</string>
   <string name="pref_plugin_mousepad_desc">A telefon vagy tablet használata érintőtáblaként és billentyűzetként</string>
+  <string name="pref_plugin_presenter">Bemutató távirányító</string>
+  <string name="pref_plugin_presenter_desc">Az eszköz használata diák léptetésére prezentációkban</string>
+  <string name="pref_plugin_remotekeyboard">Távoli billentyűlenyomások fogadása</string>
+  <string name="pref_plugin_remotekeyboard_desc">Billentyűlenyomás események fogadása távoli eszközökről</string>
+  <string name="pref_plugin_mpris">Multimédiavezérlők</string>
+  <string name="pref_plugin_mpris_desc">Médialejátszók távirányítása</string>
+  <string name="pref_plugin_runcommand">Parancs futtatása</string>
+  <string name="pref_plugin_runcommand_desc">Távoli parancsok kiváltása telefonjáról vagy tabletjéről</string>
+  <string name="pref_plugin_contacts">Névjegyszinkronizáló</string>
+  <string name="pref_plugin_contacts_desc">Az eszköz névjegyeinek szinkronizálása</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Pingek küldése és fogadása</string>
   <string name="pref_plugin_notifications">Értesítés szinkronizáció</string>
   <string name="pref_plugin_notifications_desc">Hozzáférés az értesítésekhez más eszközökről</string>
+  <string name="pref_plugin_receive_notifications">Értesítések fogadása</string>
+  <string name="pref_plugin_receive_notifications_desc">Értesítések fogadása más eszközökről, és megjelenítésük Androidon</string>
+  <string name="pref_plugin_sharereceiver">Megosztás és fogadás</string>
+  <string name="pref_plugin_sharereceiver_desc">Fájlok és URL-ek megosztása eszközök között</string>
   <string name="device_list_empty">Nincsenek eszközök</string>
   <string name="ok">OK</string>
-  <string name="cancel">Mégse</string>
+  <string name="sad_ok">OK :(</string>
+  <string name="cancel">Mégsem</string>
   <string name="open_settings">Beállítások megnyitása</string>
-  <string name="no_permissions">Jogot kell adnia az értesítésekhez való hozzáféréshez</string>
+  <string name="no_permissions">Engedélyt kell adnia az értesítésekhez való hozzáféréshez</string>
+  <string name="no_permission_mprisreceiver">A médialejátszók távirányításához engedélyt kell adnia az értesítésekhez hozzáféréshez</string>
+  <string name="no_permissions_remotekeyboard">A billentyűlenyomások fogadásához aktiválnia kell a KDE Connect távoli billentyűzetet</string>
   <string name="send_ping">Ping küldése</string>
+  <string name="open_mpris_controls">Multimédiavezérlés</string>
+  <string name="remotekeyboard_editing_only_title">Távoli billentyűk kezelése csak szerkesztéskor</string>
+  <string name="remotekeyboard_not_connected">Nincs aktív távoli billentyűzetkapcsolat, létesítsen egyet a kdeconnectben</string>
+  <string name="remotekeyboard_connected">Távoli billentyűzetkapcsolat aktív</string>
+  <string name="remotekeyboard_multiple_connections">Több, mint egy távoli billentyűzetkapcsolat van, válassza ki a beállítandó eszközt</string>
+  <string name="open_mousepad">Távirányítás</string>
+  <string name="mousepad_info">Az egérkurzor mozgatásához mozgassa az ujját a képernyőn. Koppintson a kattintáshoz, és használjon két/három ujjat a jobb és a középső gombokhoz. A görgetéshez használjon 2 ujjat. Hosszan húzza az ejtéshez.</string>
+  <string name="mousepad_double_tap_settings_title">Két ujjas koppintás beállítása</string>
+  <string name="mousepad_triple_tap_settings_title">Három ujjas koppintás beállítása</string>
+  <string name="mousepad_sensitivity_settings_title">Érintőtábla érzékenység beállítása</string>
+  <string name="mousepad_acceleration_profile_settings_title">Mutatógyorsítás beállítása</string>
+  <string name="mousepad_scroll_direction_title">Fordított görgetési irány</string>
   <string-array name="mousepad_tap_entries">
-    <item/>
-    <item/>
-    <item>Nothing</item>
+    <item>Jobb gombos kattintás</item>
+    <item>Középső gombos kattintás</item>
+    <item>Semmi</item>
   </string-array>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
-    <item>Above Slowest</item>
-    <item>Default</item>
-    <item>Above Default</item>
-    <item>Fastest</item>
+    <item>Leglassabb</item>
+    <item>Leglassabb felett</item>
+    <item>Alapértelmezett</item>
+    <item>Alapértelmezett felett</item>
+    <item>Leggyorsabb</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>No Acceleration</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
-    <item>Medium</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>Nincs gyorsítás</item>
+    <item>Leggyengébb</item>
+    <item>Gyengébb</item>
+    <item>Közepes</item>
+    <item>Erősebb</item>
+    <item>Legerősebb</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Billentyűleütések küldése ide:</string>
+  <string name="sendkeystrokes_textbox_hint">Billentyűleütések küldése a gazdagépnek</string>
+  <string name="sendkeystrokes_disabled_toast">Billentyűleütések küldése kikapcsolva - kapcsolja be a beállításokban</string>
+  <string name="sendkeystrokes_wrong_data">Érvénytelen MIME-típus - „text/x-keystrokes” kell</string>
+  <string name="sendkeystrokes_sent_text">%1$s küldése a(z) %2$s eszköznek</string>
+  <string name="sendkeystrokes_pref_category_summary">Ez a modul lehetővé teszi más alkalmazások számára, hogy szövegrészleteket osszanak meg billentyűleütésként, amelyek elküldésre kerülnek a csatlakoztatott gépnek</string>
+  <string name="sendkeystrokes_pref_category_title">Billentyűleütések küldése</string>
+  <string name="sendkeystrokes_pref_enabled">Billentyleütések küldésének bekapcsolása</string>
+  <string name="sendkeystrokes_pref_enabled_summary">A „text/x-keystrokes” MIME-típusú adatok figyelése</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Küldés billentyűleütésként</string>
+  <string name="view_status_title">Állapot</string>
+  <string name="battery_status_format">Akku: %d%%</string>
   <string name="category_connected_devices">Csatlakoztatott eszközök</string>
+  <string name="category_not_paired_devices">Elérhető eszközök</string>
   <string name="category_remembered_devices">Megjegyzett eszközök</string>
+  <string name="device_menu_plugins">Bővítménybeállítások</string>
   <string name="device_menu_unpair">Leválasztás</string>
+  <string name="pair_new_device">Új eszköz párosítása</string>
   <string name="unknown_device">Ismeretlen eszköz</string>
   <string name="error_not_reachable">Az eszköz nem érhető el</string>
   <string name="error_already_paired">Az eszköz már párosítva van</string>
@@ -68,23 +112,34 @@
   <string name="request_pairing">Párosítás kérése</string>
   <string name="pairing_accept">Elfogadás</string>
   <string name="pairing_reject">Elutasítás</string>
+  <string name="settings">Beállítások</string>
   <string name="mpris_play">Lejátszás</string>
+  <string name="mpris_pause">Szünet</string>
   <string name="mpris_previous">Előző</string>
   <string name="mpris_rew">Visszatekerés</string>
   <string name="mpris_ff">Gyors előretekerés</string>
   <string name="mpris_next">Következő</string>
+  <string name="mpris_loop">Ismétlés</string>
+  <string name="mpris_shuffle">Keverés</string>
   <string name="mpris_volume">Hangerő</string>
   <string-array name="mpris_time_entries">
-    <item>10 seconds</item>
-    <item>20 seconds</item>
-    <item>30 seconds</item>
-    <item>1 minute</item>
-    <item>2 minutes</item>
+    <item>10 másodperc</item>
+    <item>20 másodperc</item>
+    <item>30 másodperc</item>
+    <item>1 perc</item>
+    <item>2 perc</item>
   </string-array>
+  <string name="share_to">Megosztás…</string>
   <string name="protocol_version_newer">Ez az eszköz egy újabb protokollverziót használ</string>
+  <string name="plugin_settings_with_name">%s beállításai</string>
   <string name="invalid_device_name">Érvénytelen eszköznév</string>
   <string name="shareplugin_text_saved">Szöveg érkezett, elmentve a vágólapra</string>
+  <string name="custom_device_list">Eszközök hozzáadása IP-cím alapján</string>
+  <string name="custom_device_fab_hint">Eszköz hozzáadása</string>
+  <string name="undo">Visszavonás</string>
+  <string name="share_destination_folder_preference">Célmappa</string>
   <string name="share">Megosztás</string>
+  <string name="share_received_file">„%s” megosztása</string>
   <string name="title_activity_notification_filter">Értesítésszűrő</string>
   <string name="add_device_dialog_title">Eszköz hozzáadása</string>
   <string name="sftp_storage_preference_display_name">Megjelenített név</string>
