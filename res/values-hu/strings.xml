@@ -86,9 +86,17 @@
   <string name="sendkeystrokes_pref_category_title">Billentyűleütések küldése</string>
   <string name="sendkeystrokes_pref_enabled">Billentyleütések küldésének bekapcsolása</string>
   <string name="sendkeystrokes_pref_enabled_summary">A „text/x-keystrokes” MIME-típusú adatok figyelése</string>
+  <string name="sendkeystrokes_safe_text_enabled">Biztonságos szöveg küldése azonnal</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Rövid, csak numerikus karakterláncok küldése megerősítés nélkül</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Küldés billentyűleütésként</string>
+  <string name="mouse_receiver_plugin_description">Távoli egérmozgások fogadása</string>
+  <string name="mouse_receiver_plugin_name">Egérvevő</string>
+  <string name="mouse_receiver_no_permissions">Engedélyeznie kell az akadálymentesítési szolgáltatást</string>
   <string name="view_status_title">Állapot</string>
   <string name="battery_status_format">Akku: %d%%</string>
+  <string name="battery_status_low_format">Akku: %d%% alacsony töltöttség</string>
+  <string name="battery_status_charging_format">Akku: %d%% töltés</string>
+  <string name="battery_status_unknown">Nem érhetők el akkuinformációk</string>
   <string name="category_connected_devices">Csatlakoztatott eszközök</string>
   <string name="category_not_paired_devices">Elérhető eszközök</string>
   <string name="category_remembered_devices">Megjegyzett eszközök</string>
@@ -102,8 +110,32 @@
   <string name="error_timed_out">Időtúllépés</string>
   <string name="error_canceled_by_user">Megszakítva a felhasználó által</string>
   <string name="error_canceled_by_other_peer">A másik partner megszakította</string>
+  <string name="encryption_info_title">Titkosítási információk</string>
+  <string name="encryption_info_msg_no_ssl">A másik eszköz nem használja a KDE Connect legújabb verzióját, régi titkosítási módszert lesz használva.</string>
+  <string name="my_device_fingerprint">Az eszköz tanúsítványának SHA256 ujjlenyomata:</string>
+  <string name="remote_device_fingerprint">A távoli eszköz tanúsítványának SHA256 ujjlenyomata:</string>
   <string name="pair_requested">Párosítás kérve</string>
   <string name="pairing_request_from">Párosítási kérés innen: %1s</string>
+  <plurals name="incoming_file_title">
+    <item quantity="one">%1$d fájl fogadása innen: %2$s</item>
+    <item quantity="other">%1$d fájl fogadása innen: %2$s</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="one">Fájl: %1s</item>
+    <item quantity="other">(%2$d / %3$d fájl): %1$s</item>
+  </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">%1$d fájl küldése ide: %2$s</item>
+    <item quantity="other">%1$d fájl küldése ide: %2$s</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Fájl: %1$s</item>
+    <item quantity="other">(%2$d / %3$d fájl): %1$s</item>
+  </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one">Fájl érkezett innen: %1$s</item>
+    <item quantity="other">%2$d fájl érkezett innen: %1$s</item>
+  </plurals>
   <string name="received_file_text">Koppintson „%1s” megnyitásához</string>
   <string name="tap_to_answer">Érintse meg a válaszhoz</string>
   <string name="right_click">Jobb kattintás küldése</string>
