@@ -136,10 +136,25 @@
     <item quantity="one">Fájl érkezett innen: %1$s</item>
     <item quantity="other">%2$d fájl érkezett innen: %1$s</item>
   </plurals>
-  <string name="received_file_text">Koppintson „%1s” megnyitásához</string>
-  <string name="tap_to_answer">Érintse meg a válaszhoz</string>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Sikertelen fájlfogadás innen: %1$s</item>
+    <item quantity="other">%2$d / %3$d fájl fogadása sikertelen innen: %1$s</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">Fájl küldve ide: %1$s</item>
+    <item quantity="other">%2$d fájl küldve ide: %1$s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Sikertelen fájlküldés ide: %1$s</item>
+    <item quantity="other">%2$d / %3$d fájl küldése sikertelen ide: %1$s</item>
+  </plurals>
+  <string name="tap_to_open">Koppintson a megnyitáshoz</string>
+  <string name="received_file_text">Koppintson a(z) „%1s” megnyitásához</string>
+  <string name="cannot_create_file">Nem hozható létre a(z) %s fájl</string>
+  <string name="tap_to_answer">Koppintson válaszhoz</string>
   <string name="right_click">Jobb kattintás küldése</string>
   <string name="middle_click">Középső kattintás küldése</string>
+  <string name="show_keyboard">Billentyűzet megjelenítése</string>
   <string name="device_not_paired">Az eszköz nincs párosítva</string>
   <string name="request_pairing">Párosítás kérése</string>
   <string name="pairing_accept">Elfogadás</string>
@@ -154,6 +169,8 @@
   <string name="mpris_loop">Ismétlés</string>
   <string name="mpris_shuffle">Keverés</string>
   <string name="mpris_volume">Hangerő</string>
+  <string name="mpris_time_settings_title">Előre/visszatekerő gombok</string>
+  <string name="mpris_time_settings_summary">A gyors előre/visszatekerés idejének beállítása, amikor megnyomják</string>
   <string-array name="mpris_time_entries">
     <item>10 másodperc</item>
     <item>20 másodperc</item>
@@ -161,48 +178,216 @@
     <item>1 perc</item>
     <item>2 perc</item>
   </string-array>
+  <string name="mpris_notification_settings_title">Médiavezérlő értesítéseinek megjelenítése</string>
+  <string name="mpris_notification_settings_summary">Lehetővé teszi a médialejátszók vezérlését a KDE Connect megnyitása nélkül</string>
   <string name="share_to">Megosztás…</string>
   <string name="protocol_version_newer">Ez az eszköz egy újabb protokollverziót használ</string>
   <string name="plugin_settings_with_name">%s beállításai</string>
   <string name="invalid_device_name">Érvénytelen eszköznév</string>
   <string name="shareplugin_text_saved">Szöveg érkezett, elmentve a vágólapra</string>
+  <string name="custom_devices_settings">Saját eszközök listája</string>
   <string name="custom_device_list">Eszközök hozzáadása IP-cím alapján</string>
+  <string name="custom_device_deleted">Saját eszköz észlelve</string>
+  <string name="custom_device_list_help">Ha az eszköz nem kerül automatikusan felismerésre, akkor hozzáadhatja az IP-címét vagy a gépnevét a lebegő műveletgombra kattintva</string>
   <string name="custom_device_fab_hint">Eszköz hozzáadása</string>
   <string name="undo">Visszavonás</string>
+  <string name="share_notification_preference">Hangos értesítések</string>
+  <string name="share_notification_preference_summary">Rezgés és hanglejátszás fájl fogadásakor</string>
+  <string name="share_destination_customize">Célmappa megadása</string>
+  <string name="share_destination_customize_summary_disabled">A fogadott fájlok a Letöltésekben jelennek meg</string>
+  <string name="share_destination_customize_summary_enabled">A fájlok az alábbi mappában lesznek tárolva</string>
   <string name="share_destination_folder_preference">Célmappa</string>
   <string name="share">Megosztás</string>
   <string name="share_received_file">„%s” megosztása</string>
   <string name="title_activity_notification_filter">Értesítésszűrő</string>
+  <string name="filter_apps_info">A kiválasztott alkalmazások értesítései szinkronizálódnak.</string>
+  <string name="sftp_sdcard_num">%d. SD-kártya</string>
+  <string name="sftp_sdcard">SD-kártya</string>
+  <string name="sftp_readonly">(csak olvasható)</string>
+  <string name="sftp_camera">Fényképek</string>
   <string name="add_device_dialog_title">Eszköz hozzáadása</string>
+  <string name="add_device_hint">Gépnév vagy IP-cím</string>
+  <string name="sftp_preference_detected_sdcards">Észlelt SD-kártyák</string>
+  <string name="sftp_preference_edit_sdcard_title">SD-kártya szerkesztése</string>
+  <string name="sftp_preference_configured_storage_locations">Beállított tárolóhelyek</string>
+  <string name="sftp_preference_add_storage_location_title">Tárolóhely hozzáadása</string>
+  <string name="sftp_preference_edit_storage_location">Tárolóhely szerkesztése</string>
+  <string name="sftp_preference_add_camera_shortcut">Kamera mappa ikon hozzáadása</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_on">Parancsikon hozzáadása a kamera mappához</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_off">Ne adjon hozzá a kamera mappához parancsikont</string>
+  <string name="sftp_storage_preference_storage_location">Tárolóhely</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">Ez a hely már be van állítva-</string>
+  <string name="sftp_storage_preference_click_to_select">kattintson a kiválasztáshoz</string>
   <string name="sftp_storage_preference_display_name">Megjelenített név</string>
+  <string name="sftp_storage_preference_display_name_already_used">Ez a név már használatban van</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">A megjelenített név nem lehet üres</string>
+  <string name="sftp_action_mode_menu_delete">Törlés</string>
+  <string name="sftp_no_sdcard_detected">Nem található SD-kártya</string>
+  <string name="sftp_no_storage_locations_configured">Nincs beállítva tárolóhely</string>
+  <string name="sftp_saf_permission_explanation">A fájlok távoli eléréséhez be kell állítania a tárolóhelyeket</string>
+  <string name="no_players_connected">Nem találhatók lejátszók</string>
   <string name="send_files">Fájlok küldése</string>
   <string name="pairing_title">KDE Connect eszközök</string>
+  <string name="pairing_description">Itt kell megjelennie az Ön hálózatában lévő többi, KDE Connectet futtató eszköznek.</string>
   <string name="device_rename_title">Eszköz átnevezése</string>
+  <string name="device_rename_confirm">Átnevezés</string>
+  <string name="refresh">Frissítés</string>
+  <string name="unreachable_description">Ez a párosított eszköz nem érhető el. Ellenőrizze, hogy ugyanarra a hálózatra csatlakozott-e.</string>
+  <string name="no_wifi">Ön nem csatlakozik Wi-Fi hálózathoz, így előfordulhat, hogy nem láthat semmilyen eszközt. Kattintson ide a Wi-Fi bekapcsolásához.</string>
+  <string name="on_non_trusted_message">Nem megbízható hálóat: automatikus felfedezés kikapcsolva.</string>
+  <string name="no_file_browser">Nincsenek fájlkezelők telepítve.</string>
+  <string name="pref_plugin_telepathy">SMS küldése</string>
+  <string name="pref_plugin_telepathy_desc">Szöveges üzenetek küldese a számítógépéről</string>
+  <string name="pref_plugin_telepathy_mms">MMS küldése</string>
+  <string name="pref_plugin_telepathy_mms_desc">Ahhoz, hogy MMS-t tudjon küldeni a KDE Connectből, be kell állítania a KDE Connectet alapértelmezett SMS alkalmazásként.</string>
+  <string name="findmyphone_title">Telefon keresése</string>
+  <string name="findmyphone_title_tablet">Tablet keresése</string>
+  <string name="findmyphone_title_tv">TV keresése</string>
+  <string name="findmyphone_description">Megcsörgeti ezt az eszközt, hogy megtalálhassa</string>
+  <string name="findmyphone_found">Megtalálva</string>
+  <string name="open">Megnyitás</string>
+  <string name="close">Bezárás</string>
+  <string name="plugins_need_permission">Néhány bővítménynek engedélyekre van szüksége a működéshez (koppintson további információkért):</string>
+  <string name="permission_explanation">Ez a bővítmény engedélyeket kér a működéshez</string>
+  <string name="optional_permission_explanation">További engedélyeket kell biztosítania az összes funkció bekapcsolásához</string>
+  <string name="plugins_need_optional_permission">Néhány bővítmény jogosultság hiányában kikapcsolta egyes funkcióit (koppintson további információkért):</string>
+  <string name="share_optional_permission_explanation">Megosztott fájlok fogadásához meg kell adnia egy célmappát</string>
+  <string name="telepathy_permission_explanation">Az SMS-ek írásához és olvasásához a számítógépéről engedélyt kell adnia az SMS-nek</string>
+  <string name="telephony_permission_explanation">Ahhoz, hogy a telefonhívásokat a számítógépén láthassa, engedélyt kell adnia a hívásnaplókhoz és a telefon állapotához</string>
+  <string name="telephony_optional_permission_explanation">Ahhoz, hogy a telefonszám helyett a nevet lássa, hozzáférést kell adnia a telefon névjegyeihez</string>
+  <string name="contacts_permission_explanation">Ahhoz, hogy megoszthassa a névjegyzékét az asztali számítógépével, meg kell adnia a névjegyek engedélyt</string>
+  <string name="select_ringtone">Válasszon csengőhangot</string>
+  <string name="telephony_pref_blocked_title">Blokkolt számok</string>
+  <string name="telephony_pref_blocked_dialog_desc">Ne jelenítsen meg hívásokat és SMS-eket ezekről a számokról. Soronként egy számot adjon meg</string>
+  <string name="mpris_coverart_description">A jelenlegi média borítója</string>
   <string name="device_icon_description">Eszközikon</string>
   <string name="settings_icon_description">Beállítások ikon</string>
+  <string name="presenter_fullscreen">Teljes képernyő</string>
+  <string name="presenter_exit">Kilépés bemutató módból</string>
+  <string name="presenter_lock_tip">Zárolhatja az eszközét, és használhatja a hangerő gombokat az előző/következő diára lépéshez</string>
+  <string name="add_command">Parancs hozzáadása</string>
+  <string name="addcommand_explanation">Nincsenek regisztrálva parancsok</string>
+  <string name="addcommand_explanation2">A KDE Connect rendszerbeállításokban adhat hozzá új parancsokat</string>
+  <string name="add_command_description">A számítógépén adhat hozzá új parancsokat</string>
+  <string name="pref_plugin_mprisreceiver">Médialejátszó vezérlés</string>
+  <string name="pref_plugin_mprisreceiver_desc">A telefon médialejátszóinak vezérlése egy másik eszközről</string>
   <string name="notification_channel_default">Egyéb értesítések</string>
+  <string name="notification_channel_persistent">Állandó jelző</string>
   <string name="notification_channel_media_control">Médiavezérlő</string>
+  <string name="notification_channel_filetransfer">Fájlátvitel</string>
+  <string name="notification_channel_high_priority">Magas prioritás</string>
+  <string name="notification_channel_sms_mms">Új üzenet</string>
+  <string name="mpris_stop">Az aktuális lejátszó leállítása</string>
+  <string name="copy_url_to_clipboard">URL másolása a vágólapra</string>
+  <string name="clipboard_toast">Másolva a vágólapra</string>
   <string name="runcommand_notreachable">Az eszköz nem érhető el</string>
   <string name="runcommand_notpaired">Az eszköz nincs párosítva</string>
+  <string name="runcommand_nosuchdevice">Nincs ilyen eszköz</string>
+  <string name="runcommand_noruncommandplugin">Az eszközön nincs bekapcsolva a Parancs futtatása bővítmény</string>
+  <string name="pref_plugin_findremotedevice">Távoli eszköz keresése</string>
+  <string name="pref_plugin_findremotedevice_desc">Távoli eszköz csörgetése</string>
+  <string name="ring">Csörgetés</string>
+  <string name="pref_plugin_systemvolume">Rendszerhangerő</string>
+  <string name="pref_plugin_systemvolume_desc">A távoli eszköz rendszerhangerejének szabályozása</string>
+  <string name="mute">Némítás</string>
+  <string name="all">Összes</string>
   <string name="devices">Eszközök</string>
   <string name="settings_rename">Eszköznév</string>
+  <string name="settings_dark_mode">Sötét téma</string>
+  <string name="settings_more_settings_title">További beállítások</string>
+  <string name="settings_more_settings_text">Eszközönkénti beállítások a „Bővítménybeállítások” alatt találhatók egy eszközön belül.</string>
+  <string name="setting_persistent_notification">Állandó értesítések megjelenítése</string>
+  <string name="setting_persistent_notification_oreo">Állandó értesítés</string>
+  <string name="setting_persistent_notification_description">Koppintson az Értesítésbeállítások bekapcsolásához/kikapcsolásához</string>
+  <string name="extra_options">További beállítások</string>
+  <string name="privacy_options">Adatvédelmi beállítások</string>
+  <string name="set_privacy_options">Adatvédelmi beállítások megadása</string>
+  <string name="block_contents">Értesítések tartalmának blokkolása</string>
+  <string name="block_images">Képek blokkolása az értesítésekben</string>
+  <string name="notification_channel_receivenotification">Értesítések más eszközökről</string>
+  <string name="take_picture">Kamera indítása</string>
+  <string name="plugin_photo_desc">A kamera alkalmazás indítása képek készítésének és átvitelének megkönnyítésére</string>
+  <string name="no_app_for_opening">Nem található alkalmazás a fájl megnyitásához</string>
+  <string name="remote_keyboard_service">KDE Connect távoli billentyűzet</string>
+  <string name="presenter_pointer">Mutató</string>
+  <string name="trusted_networks">Megbízható hálózatok</string>
+  <string name="trusted_networks_desc">Automatikus felfedezés korlátozása az ismert hálózatokra</string>
+  <string name="add_trusted_network">%1s hozzáadása</string>
+  <string name="empty_trusted_networks_list_text">Még nem adott hozzá megbízható hálózatot</string>
+  <string name="allow_all_networks_text">Összes engedélyezése</string>
+  <string name="location_permission_needed_title">Engedély szükséges</string>
+  <string name="location_permission_needed_desc">Az Androidnak szüksége van a Helymeghatározási engedélyre a WiFi hálózat azonosításához</string>
+  <string name="clipboard_android_x_incompat">Az Android 10 eltávolította a vágólaphoz való hozzáférést minden alkalmazásból. Ez a bővítmény le lesz tiltva.</string>
+  <string name="mpris_open_url">Lejátszás folytatása itt</string>
+  <string name="cant_open_url">Nem lehet megnyitni az URL-t a lejátszás folytatásához</string>
+  <string name="bigscreen_home">Kezdőképernyő</string>
+  <string name="bigscreen_up">Fel</string>
+  <string name="bigscreen_left">Balra</string>
+  <string name="bigscreen_select">Kiválasztás</string>
+  <string name="bigscreen_right">Jobbra</string>
+  <string name="bigscreen_down">Le</string>
+  <string name="bigscreen_mic">Mikrofon</string>
+  <string name="pref_plugin_bigscreen">Bigscreen távirányító</string>
+  <string name="pref_plugin_bigscreen_desc">Használja eszközét a Plasma Bigscreen távirányítójaként</string>
+  <string name="bigscreen_optional_permission_explanation">A telefon mikrofonbemenetének megosztásához hozzáférést kell biztosítania a telefon hangbemenetéhez</string>
+  <string name="bigscreen_speech_extra_prompt">Beszéljen</string>
   <string name="message_reply_label">VÁLASZ</string>
   <string name="mark_as_read_label">MEGJELÖLÉS OLVASOTTKÉNT</string>
+  <string name="user_display_name">Ön</string>
+  <string name="set_default_sms_app_title">MMS küldése</string>
+  <string name="set_group_message_as_mms_title">Csoportos MMS küldése</string>
+  <string name="set_long_text_as_mms_title">Hosszú szöveg küldése MMS-ként</string>
+  <string name="convert_to_mms_after_title">Konvertálás MMS-sé</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>Egy üzenet után</item>
+    <item>Két üzenet után</item>
+    <item>Három üzenet után</item>
+    <item>Négy üzenet után</item>
+    <item>Öt üzenet után</item>
   </string-array>
+  <string name="theme_dialog_title">Témaválasztás</string>
   <string-array name="theme_list">
-    <item>Set by Battery Saver</item>
+    <item>Akkukimélő által beállítva</item>
     <item>Világos</item>
     <item>Sötét</item>
   </string-array>
   <string-array name="theme_list_v28">
     <item>Rendszertéma</item>
     <item>Világos</item>
-    <item>Dark</item>
+    <item>Sötét</item>
   </string-array>
+  <string name="report_bug">Hiba bejelentése</string>
+  <string name="donate">Támogatás</string>
+  <string name="source_code">Forráskód</string>
+  <string name="licenses">Licencek</string>
+  <string name="website">Weboldal</string>
+  <string name="about">Névjegy</string>
+  <string name="authors">Szerzők</string>
+  <string name="thanks_to">Köszönet</string>
+  <string name="easter_egg">Easter Egg</string>
+  <string name="email_contributor">E-mail a közreműködőnek\n%s</string>
+  <string name="visit_contributors_homepage">Ugrás a közreműködő honlapjára\n%s</string>
+  <string name="version">Verzió: %s</string>
+  <string name="about_kde">A KDE névjegye</string>
+  <string name="kde_be_free">KDE - Légy szabad!</string>
+  <string name="kde">KDE</string>
+  <string name="konqi">Konqi</string>
+  <string name="rise_up">Felemelés</string>
+  <string name="rise_down">Leereszkedés</string>
+  <string name="app_description">Multiplatformos alkalmazás, amely lehetővé teszi eszközeinek, hogy kommunikáljanak egymással (például a telefonja és számítógépe)</string>
+  <string name="about_kde_about">&lt;h1&gt;Névjegy&lt;/h1&gt; &lt;p&gt;A KDE fejlesztését és karbantartását egy nemzetközi közösség végzi, melynek tagjai mélyen elkötelezettek &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;szabad szoftverek&lt;/a&gt; iránt. A KDE készíti a Plasma asztali környezetet, alkalmazások százait és az azokat támogató programkönyvtárakat.&lt;/p&gt; &lt;p&gt;Nem egyetlen csoport, vállalat vagy szervezet határozza meg a KDE fejlődési irányát, akár Ön is &lt;a href=https://community.kde.org/Get_Involved &gt;bekapcsolódhat a fejlesztésbe&lt;/a&gt;!&lt;/p&gt; Ha többet szeretne megtudni a KDE közösségről és az általunk készített szoftverekről, látogassa meg a &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; honlapot.</string>
+  <string name="about_kde_report_bugs_or_wishes">"&lt;h1&gt;Hibabejelentés és kérések&lt;/h1&gt; &lt;p&gt;Fejlesztőink folyamatosan próbálják tökéletesíteni a KDE-t, könnyebbé tenni annak kezelését. Ebben a folyamatban hatalmas segítséget jelent, ha Ön, a felhasználó is jelzi, ha valami nem úgy működik, ahogy szeretné.&lt;/p&gt; &lt;p&gt;A KDE rendelkezik egy internetes hibabejelentő rendszerrel. Hiba vagy továbbfejlesztési kívánság bejelentéséhez kérjük látogasson el a &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt;  címre, vagy használja a „Hibabejelentés” menüpontot a névjegy képernyőn.&lt;/p&gt; A hibabejelentő rendszerben nem csak hibákat, hanem továbbfejlesztési ötleteket és javaslatokat is rögzíteni lehet (ebben az esetben kérjük, hogy a bejelentés típusát „Wishlist”-nek - kívánságnak - állítsa be)."</string>
+  <string name="about_kde_join_kde">&lt;h1&gt;Csatlakozás a KDE-hez&lt;/h1&gt; &lt;p&gt;Nem csak szoftverfejlesztőket várunk a KDE csapatba! A magyar KDE örömmel fogad bármiféle segítséget a KDE magyar fordításának jobbá, pontosabbá tételéhez. A KDE fejlesztők örömmel fogadnak mindenkit, aki a mostaninál szebb és jobb képanyagot, hangokat, grafikai témákat vagy teljesebb dokumentációt tud készíteni.&lt;/p&gt; &lt;p&gt;Az egyes projektekről, a bekapcsolódási lehetőségekről sok információ található a &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; weboldalon.&lt;/p&gt; Ha több információt szeretne kapni a fejlesztési témakörökről, kérjük látogasson el a &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; honlapra, ahol választ kaphat minden kérdésére.</string>
+  <string name="about_kde_support_kde">&lt;h1&gt;A KDE támogatása&lt;/h1&gt; &lt;p&gt;A KDE ingyenesen használható, elkészítése azonban nincs ingyen.&lt;/p&gt; &lt;p&gt;Ezért a KDE projekt vezetői létrehoztak egy KDE e.V. nevű nonprofit szervezetet Németországban. A KDE e.V. képviseli a KDE projektet jogi és pénzügyi kérdésekben. Részletes információ itt található: &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt;&lt;/p&gt; &lt;p&gt;A KDE projektnek szüksége van pénzügyi támogatásra a megfelelő működéshez. A pénz elsősorban új tagok toborzásához és a forráskód kezeléséhez szükséges eszközökhöz kell. A további támogatásokat jogi támogatásra, konferenciák és találkozók szervezésére használjuk fel. Ha módjában áll, kérjük járuljon hozzá a projekt finanszírozásához az alább felsorolt módok egyikével: &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Előre is köszönjük a támogatását!</string>
+  <string name="maintainer_and_developer">Karbantartó és fejlesztő</string>
+  <string name="developer">Fejlesztő</string>
+  <string name="apple_support">macOS támogatás, munka az iOS támogatáson</string>
+  <string name="bug_fixes_and_general_improvements">Hibajavítások és általános fejlesztések</string>
+  <string name="samoilenko_yuri_task">SFTP implementáció, hibajavítások és általános fejlesztések</string>
+  <string name="aniket_kumar_task">SMS bővítmény továbbfejlesztése</string>
+  <string name="alex_fiestas_task">Névjegyek bővítmény továbbfejlesztése</string>
+  <string name="maxim_leshchenko_task">Fejlesztések a felhasználói felületen, és a névjegy oldal</string>
+  <string name="holger_kaelberer_task">Távoli billentyűzet bővítmény és hibajavítások</string>
+  <string name="saikrishna_arcot_task">Támogatás a billentyűzet használatához a távoli bement bővítményben, hibajavítások és általános fejlesztések</string>
+  <string name="everyone_else">Mindenki más, aki hozzájárult a KDE Connect fejlesztéséhez az évek alatt</string>
 </resources>

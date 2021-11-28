@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
+  <string name="manifest_label_share">Cihaza göndərin</string>
   <string name="foreground_notification_no_devices">Hər hansı bir cihaz qoşulmayıb</string>
   <string name="foreground_notification_devices">Qoşulub: %s</string>
   <string name="foreground_notification_send_clipboard">Mübadilə buferindəkini göndərmək</string>
