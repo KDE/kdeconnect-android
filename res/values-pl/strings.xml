@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
+  <string name="manifest_label_share">Wyślij na urządzenie</string>
   <string name="foreground_notification_no_devices">Niepołączony z żadnym urządzeniem</string>
   <string name="foreground_notification_devices">Połączony z: %s</string>
   <string name="foreground_notification_send_clipboard">Wysyłanie schowka</string>
@@ -203,7 +204,7 @@
   <string name="custom_devices_settings">Lista własnych urządzeń</string>
   <string name="custom_device_list">Dodaj urządzenie po adresie IP</string>
   <string name="custom_device_deleted">Usunięto własne urządzenie</string>
-  <string name="custom_device_list_help">Jeśli twoje urządzenie nie zostało wykryte samoistnie, możesz ręcznie dodać jego adres IP lub nazwę gospodarza, naciskając pomarańczowy przycisk u dołu ekranu</string>
+  <string name="custom_device_list_help">Jeśli twoje urządzenie nie zostało wykryte samoczynnie, to możesz ręcznie dodać jego adres IP lub nazwę gospodarza, naciskając pomarańczowy przycisk u dołu ekranu</string>
   <string name="custom_device_fab_hint">Dodaj urządzenie</string>
   <string name="undo">Cofnij</string>
   <string name="share_notification_preference">Hałaśliwe powiadomienia</string>
@@ -248,7 +249,7 @@
   <string name="device_rename_confirm">Zmień nazwę</string>
   <string name="refresh">Odśwież</string>
   <string name="unreachable_description">To sparowane urządzenie jest nieosiągalne. Upewnij się, że jest podłączone do tej samej sieci.</string>
-  <string name="no_wifi">Brak połączenia z siecią Wi-Fi, więc może nie być widać urządzeń. Naciśnij tutaj, aby włączyć Wi-Fi.</string>
+  <string name="no_wifi">Nie jesteś połączony z siecią Wi-Fi, więc nie będziesz widział żadnych. Naciśnij tutaj, aby włączyć Wi-Fi.</string>
   <string name="on_non_trusted_message">Niezaufana sieć: wyłączono samowykrywanie.</string>
   <string name="no_file_browser">Nie wgrano żadnych przeglądarek plików.</string>
   <string name="pref_plugin_telepathy">Wysyłanie SMSów</string>
