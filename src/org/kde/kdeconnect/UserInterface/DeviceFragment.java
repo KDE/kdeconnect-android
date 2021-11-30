@@ -277,7 +277,7 @@ public class DeviceFragment extends Fragment {
     }
 
     private void refreshUI() {
-        if (device == null || binding.getRoot() == null) {
+        if (device == null || binding == null || binding.getRoot() == null) {
             return;
         }
 
@@ -366,7 +366,7 @@ public class DeviceFragment extends Fragment {
         @Override
         public void pairingFailed(final String error) {
             mActivity.runOnUiThread(() -> {
-                if (binding.getRoot() == null) return;
+                if (binding == null || binding.getRoot() == null) return;
                 binding.pairMessage.setText(error);
                 binding.pairVerification.setText("");
                 binding.pairVerification.setVisibility(View.GONE);
@@ -380,7 +380,7 @@ public class DeviceFragment extends Fragment {
         @Override
         public void unpaired() {
             mActivity.runOnUiThread(() -> {
-                if (binding.getRoot() == null) return;
+                if (binding == null || binding.getRoot() == null) return;
                 binding.pairMessage.setText(R.string.device_not_paired);
                 binding.pairVerification.setVisibility(View.GONE);
                 binding.pairProgress.setVisibility(View.GONE);
