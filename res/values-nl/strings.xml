@@ -201,6 +201,7 @@
   <string name="share_received_file">\"%s\" delen</string>
   <string name="title_activity_notification_filter">Filter voor meldingen</string>
   <string name="filter_apps_info">Meldingen zullen gesynchroniseerd worden voor de geselecteerde apps.</string>
+  <string name="show_notification_if_screen_off">Meldingen alleen sturen als het scherm uit staat</string>
   <string name="sftp_sdcard_num">SD-kaartje %d</string>
   <string name="sftp_sdcard">SD-kaartje</string>
   <string name="sftp_readonly">(alleen-lezen)</string>
