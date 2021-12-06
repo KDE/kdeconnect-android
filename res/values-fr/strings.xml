@@ -201,6 +201,7 @@
   <string name="share_received_file">Partager « %s »</string>
   <string name="title_activity_notification_filter">Filtre des notifications</string>
   <string name="filter_apps_info">Les notifications seront synchronisées pour les applications sélectionnées.</string>
+  <string name="show_notification_if_screen_off">Envoyer des notifications uniquement si l\'écran est éteint.</string>
   <string name="sftp_sdcard_num">Carte SD %d</string>
   <string name="sftp_sdcard">Carte SD</string>
   <string name="sftp_readonly">(lecture seule)</string>

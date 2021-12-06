@@ -217,6 +217,7 @@
   <string name="share_received_file">Deli \"%s\"</string>
   <string name="title_activity_notification_filter">Filter obvestil</string>
   <string name="filter_apps_info">Obvestila bodo usklajena za izbrane aplikacije.</string>
+  <string name="show_notification_if_screen_off">Pošlji obvestila le, če je zaslon izključen</string>
   <string name="sftp_sdcard_num">SD kartica %d</string>
   <string name="sftp_sdcard">SD kartica</string>
   <string name="sftp_readonly">(samo za branje)</string>

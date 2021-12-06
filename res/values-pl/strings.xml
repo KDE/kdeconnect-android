@@ -217,6 +217,7 @@
   <string name="share_received_file">Udostępnij \"%s\"</string>
   <string name="title_activity_notification_filter">Filtr powiadomień</string>
   <string name="filter_apps_info">Współdzieli powiadomienia wybranych programów między urządzeniami.</string>
+  <string name="show_notification_if_screen_off">Wyślij powiadomienia tylko gdy ekran jest wyłączony</string>
   <string name="sftp_sdcard_num">Karta SD %d</string>
   <string name="sftp_sdcard">Karta SD</string>
   <string name="sftp_readonly">(tylko do odczytu)</string>
