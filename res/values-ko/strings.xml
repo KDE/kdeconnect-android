@@ -193,6 +193,7 @@
   <string name="share_received_file">\"%s\" 공유</string>
   <string name="title_activity_notification_filter">알림 필터</string>
   <string name="filter_apps_info">선택한 앱의 알림을 동기화합니다.</string>
+  <string name="show_notification_if_screen_off">화면이 꺼져 있을 때에만 알림 보내기</string>
   <string name="sftp_sdcard_num">SD 카드 %d</string>
   <string name="sftp_sdcard">SD 카드</string>
   <string name="sftp_readonly">(읽기 전용)</string>
