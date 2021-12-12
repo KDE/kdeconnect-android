@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
+  <string name="manifest_label_share">发送到设备</string>
   <string name="foreground_notification_no_devices">未连接到任何设备</string>
   <string name="foreground_notification_devices">已连接到：%s</string>
   <string name="foreground_notification_send_clipboard">发送剪贴板</string>
@@ -192,6 +193,7 @@
   <string name="share_received_file">分享 \"%s\"</string>
   <string name="title_activity_notification_filter">通知过滤器</string>
   <string name="filter_apps_info">所选软件的通知将会被同步。</string>
+  <string name="show_notification_if_screen_off">仅在屏幕关闭时发送通知</string>
   <string name="sftp_sdcard_num">SD 卡 %d</string>
   <string name="sftp_sdcard">SD 卡</string>
   <string name="sftp_readonly">(只读)</string>
