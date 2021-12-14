@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
+  <string name="manifest_label_share">Siųsti į įrenginį</string>
   <string name="foreground_notification_no_devices">Neprisijungta prie jokio įrenginio</string>
   <string name="foreground_notification_devices">Prisijungta prie: %s</string>
   <string name="foreground_notification_send_clipboard">Siųsti iškarpinę</string>
@@ -80,6 +81,7 @@
   <string name="sendkeystrokes_textbox_hint">Siųsti klavišų paspaudimus į serverį</string>
   <string name="sendkeystrokes_disabled_toast">Klavišų paspaudimų siuntimas yra išjungtas - įjunkite jį nuostatose</string>
   <string name="sendkeystrokes_wrong_data">Neteisingas mime tipas - turi būti \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_sent_text">%1$s išsiųstas į įrenginį %2$s</string>
   <string name="sendkeystrokes_pref_category_summary">Šis modulis leidžia kitoms programėlėms bendrinti teksto segmentus kaip klavišų paspaudimus, kurie bus išsiųsti į prijungtą serverį</string>
   <string name="sendkeystrokes_pref_category_title">Siųsti klavišų paspaudimus</string>
   <string name="sendkeystrokes_pref_enabled">Įjungti klavišų paspaudimų siuntimą</string>
@@ -90,6 +92,11 @@
   <string name="mouse_receiver_plugin_description">Gauti nuotolinius pelės judesius</string>
   <string name="mouse_receiver_plugin_name">Pelės gavėjas</string>
   <string name="mouse_receiver_no_permissions">Jūs turite įjungti prieinamumo tarnybą</string>
+  <string name="view_status_title">Būsena</string>
+  <string name="battery_status_format">Akumuliatorius: %d%%</string>
+  <string name="battery_status_low_format">Akumuliatorius: %d%% baigia išsikrauti</string>
+  <string name="battery_status_charging_format">Akumuliatorius: %d%% įkraunamas</string>
+  <string name="battery_status_unknown">Informacija apie akumuliatorių neprieinama</string>
   <string name="category_connected_devices">Prijungti įrenginiai</string>
   <string name="category_not_paired_devices">Prieinami įrenginiai</string>
   <string name="category_remembered_devices">Įsiminti įrenginiai</string>
@@ -210,6 +217,7 @@
   <string name="share_received_file">Bendrinti \"%s\"</string>
   <string name="title_activity_notification_filter">Pranešimų filtras</string>
   <string name="filter_apps_info">Pranešimai bus sinchronizuojami pasirinktoms programėlėms.</string>
+  <string name="show_notification_if_screen_off">Siųsti pranešimus tik tuo atveju, jei ekranas yra išjungtas</string>
   <string name="sftp_sdcard_num">SD kortelė %d</string>
   <string name="sftp_sdcard">SD kortelė</string>
   <string name="sftp_readonly">(tik skaitymui)</string>
@@ -369,4 +377,34 @@
   <string name="donate">Paaukoti</string>
   <string name="source_code">Pradinis kodas</string>
   <string name="licenses">Licencijos</string>
+  <string name="website">Internetinė svetainė</string>
+  <string name="about">Apie</string>
+  <string name="authors">Autoriai</string>
+  <string name="thanks_to">Dėkojame</string>
+  <string name="easter_egg">Velykų kiaušinis</string>
+  <string name="email_contributor">Parašyti talkininkui el. laišką\n%s</string>
+  <string name="visit_contributors_homepage">Apsilankyti talkininko internetinėje svetainėje\n%s</string>
+  <string name="version">Versija %s</string>
+  <string name="about_kde">Apie KDE</string>
+  <string name="kde_be_free">KDE – būkite laisvi!</string>
+  <string name="kde">KDE</string>
+  <string name="konqi">Konqi</string>
+  <string name="rise_up">Pakelti</string>
+  <string name="rise_down">Nuleisti</string>
+  <string name="app_description">Daugiaplatformė programėlė, leidžianti jūsų įrenginiams susisiekti (pvz., jūsų telefonui ir kompiuteriui)</string>
+  <string name="about_kde_about">&lt;h1&gt;Apie&lt;/h1&gt; &lt;p&gt;KDE yra pasaulinė bendruomenė, sudaryta iš programinės įrangos inžinierių, menininkų, rašytojų, vertėjų ir kūrėjų, kurie yra pasišventę &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;laisvosios programinės įrangos&lt;/a&gt; kūrimui. KDE kuria Plasma darbalaukio aplinką, šimtus programų ir daugybę jas palaikančių bibliotekų.&lt;/p&gt; &lt;p&gt;KDE yra kooperacinė įmonė: nėra vienos esybės, kuri valdytų jos kryptį ar produktus. Vietoj to, mes dirbame kartu, kad pasiektume bendrą tikslą ir sukurtume geriausią laisvają programinę įrangą pasaulyje. Visi, įskaitant jus, yra kviečiami &lt;a href=https://community.kde.org/Get_Involved&gt;prisijungti ir talkinti&lt;/a&gt; KDE.&lt;/p&gt; Išsamesnei informacijai apie KDE bendruomenę ir mūsų kuriamą programinę įrangą, apsilankykite adresu &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt;.</string>
+  <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Praneškite apie klaidas ar pageidavimus&lt;/h1&gt; &lt;p&gt;Programinė įranga gali būti pastoviai tobulinama ir KDE komanda yra pasiruošusi tą daryti. Vis dėlto, būtent jūs - naudotojas - privalote mums pranešti, kai kas nors neveikia taip kaip turėtų ar, kai kas nors gali būti padaryta geriau.&lt;/p&gt; &lt;p&gt;KDE turi klaidų sekimo sistemą. Apsilankykite adresu &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; arba, norėdami pranešti apie klaidas, pasinaudokite mygtuku „Pranešti apie programos klaidą“.&lt;/p&gt; Jei turite pasiūlymų, kaip galima patobulinti programą, kviečiame pasinaudoti klaidų sekimo sistema ir užregistruoti savo pageidavimą. Nepamirškite svarbą pažymėti kaip „Pageidavimų sąrašas“ (angl. Wishlist).</string>
+  <string name="about_kde_join_kde">&lt;h1&gt;Prisijunkite prie KDE&lt;/h1&gt; &lt;p&gt;Norėdami būti KDE komandos nariu, neprivalote būti programinės įrangos programuotoju. Galite prisijungti prie nacionalinių komandų, kurios verčia programų sąsajas. Galite teikti grafiką, apipavidalinimus, garsus ir tobulinti dokumentaciją. Pasirinkite patys!&lt;/p&gt; &lt;p&gt;Išsamesnei informacijai apie projektus, kuriuose galite dalyvauti, apsilankykite adresu &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt;.&lt;/p&gt; Jeigu jums reikia informacijos ar ieškote dokumentacijos, apsilankykite adresu &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt;, kur rasite visą informaciją, kurios jums gali prireikti.</string>
+  <string name="about_kde_support_kde">&lt;h1&gt;Palaikykite KDE&lt;/h1&gt; &lt;p&gt;KDE programinė įranga yra ir visada bus nemokama, vis dėlto, jos plėtojimas nėra nemokamas.&lt;/p&gt; &lt;p&gt;Norėdama remti plėtojimą, KDE bendruomenė įkūrė „KDE e.V.“, pelno nesiekiančią organizaciją, kuri yra teisiškai įsteigta Vokietijoje. „KDE e.V.“ atstovauja KDE bendruomenę teisiniais ir finansiniais klausimais. Išsamesnei informacijai apie „KDE e.V.“ apsilankykite adresu &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;KDE gauna naudą iš daugelio įnašų, įskaitant finansinius. Mes naudojame lėšas, kad apmokėtume nariams ir kitiems asmenims išlaidas, kurias jie patiria talkindami. Likusios lėšos yra naudojamos teisiniams klausimams spręsti bei konferencijų ir susitikimų organizavimui.&lt;/p&gt; &lt;p&gt;Norėtume paraginti jus finansiškai palaikyti mūsų pastangas ir paaukoti, naudojant vieną iš būdų, kurie aprašyti adresu &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Iš anksto labai dėkojame jums už jūsų palaikymą.</string>
+  <string name="maintainer_and_developer">Prižiūrėtojas ir programuotojas</string>
+  <string name="developer">Programuotojas</string>
+  <string name="apple_support">macOS palaikymas. Darbas ties iOS palaikymu</string>
+  <string name="bug_fixes_and_general_improvements">Klaidų pataisymai ir bendri patobulinimai</string>
+  <string name="samoilenko_yuri_task">SFTP įgyvendinimas, klaidų pataisymai ir bendri patobulinimai</string>
+  <string name="aniket_kumar_task">SMS papildinio patobulinimai</string>
+  <string name="alex_fiestas_task">Adresatų papildinio patobulinimai</string>
+  <string name="maxim_leshchenko_task">Naudotojo sąsajos patobulinimai ir šis puslapis apie programą</string>
+  <string name="holger_kaelberer_task">Nuotolinės klaviatūros papildinys ir klaidų pataisymai</string>
+  <string name="saikrishna_arcot_task">Palaikymas, skirtas naudoti klaviatūrą nuotolinio įvedimo papildinyje, klaidų pataisymai ir bendri patobulinimai</string>
+  <string name="everyone_else">Visiems, kas per ilgus metus talkino KDE Connect</string>
 </resources>
