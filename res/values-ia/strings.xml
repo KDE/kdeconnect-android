@@ -90,6 +90,7 @@
   <string name="custom_device_fab_hint">Adde un dispositivo</string>
   <string name="undo">Annulla</string>
   <string name="share">Comparti</string>
+  <string name="show_notification_if_screen_off">Invia notificationes si le schermo es extinguite</string>
   <string name="sftp_sdcard">Sd Card</string>
   <string name="sftp_readonly">(solmente de lectura)</string>
   <string name="sftp_camera">Photos de camera</string>
