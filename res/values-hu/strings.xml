@@ -201,6 +201,7 @@
   <string name="share_received_file">„%s” megosztása</string>
   <string name="title_activity_notification_filter">Értesítésszűrő</string>
   <string name="filter_apps_info">A kiválasztott alkalmazások értesítései szinkronizálódnak.</string>
+  <string name="show_notification_if_screen_off">Értesítések küldése, csak ha a képernyő ki van kapcsolva</string>
   <string name="sftp_sdcard_num">%d. SD-kártya</string>
   <string name="sftp_sdcard">SD-kártya</string>
   <string name="sftp_readonly">(csak olvasható)</string>
