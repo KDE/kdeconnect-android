@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
+  <string name="manifest_label_share">Send to Device</string>
   <string name="foreground_notification_no_devices">Not connected to any device</string>
   <string name="foreground_notification_devices">Connected to: %s</string>
   <string name="foreground_notification_send_clipboard">Send Clipboard</string>
@@ -200,6 +201,7 @@
   <string name="share_received_file">Share \"%s\"</string>
   <string name="title_activity_notification_filter">Notification filter</string>
   <string name="filter_apps_info">Notifications will be synchronised for the selected apps.</string>
+  <string name="show_notification_if_screen_off">Send notifications only if the screen is off</string>
   <string name="sftp_sdcard_num">SD card %d</string>
   <string name="sftp_sdcard">SD card</string>
   <string name="sftp_readonly">(read only)</string>
