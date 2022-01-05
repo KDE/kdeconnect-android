@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
+  <string name="manifest_label_share">Poslat na zařízení</string>
   <string name="foreground_notification_no_devices">Žádná připojená zařízení</string>
   <string name="foreground_notification_devices">Připojen k: %s</string>
   <string name="foreground_notification_send_clipboard">Poslat schránku</string>
@@ -216,6 +217,7 @@
   <string name="share_received_file">Sdílet \"%s\"</string>
   <string name="title_activity_notification_filter">Filtr oznámení</string>
   <string name="filter_apps_info">Oznámení vybraných aplikací bude synchronizováno.</string>
+  <string name="show_notification_if_screen_off">Poslat upozornění pouze při uzamčené obrazovce</string>
   <string name="sftp_sdcard_num">SD karta %d</string>
   <string name="sftp_sdcard">SD karta</string>
   <string name="sftp_readonly">(pouze ke čtení)</string>
