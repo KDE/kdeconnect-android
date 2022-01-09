@@ -291,7 +291,12 @@ public class AndroidSafSshFile implements SshFile {
 
     @Override
     public InputStream createInputStream(final long offset) throws IOException {
-        return fileSystemView.context.getContentResolver().openInputStream(documentInfo.uri);
+        InputStream s = fileSystemView.context.getContentResolver().openInputStream(documentInfo.uri);
+        final long sought = s.skip(offset);
+        if (sought != offset) {
+            throw new IOException(String.format("Unable to seek %d bytes, sought %d bytes.", offset, sought));
+        }
+        return s;
     }
 
     @Override
