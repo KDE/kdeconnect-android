@@ -286,6 +286,9 @@ public class AndroidSafSshFile implements SshFile {
 
     @Override
     public OutputStream createOutputStream(final long offset) throws IOException {
+        if (offset != 0) {
+            throw new IOException("Seeking is not supported.");
+        }
         return fileSystemView.context.getContentResolver().openOutputStream(documentInfo.uri);
     }
 
