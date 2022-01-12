@@ -55,11 +55,6 @@
   <string name="mousepad_sensitivity_settings_title">Nastaviť citlivosť touchpadu</string>
   <string name="mousepad_acceleration_profile_settings_title">Nastaviť zrýchlenie ukazovateľa</string>
   <string name="mousepad_scroll_direction_title">Obrátiť smer rolovania</string>
-  <string-array name="mousepad_tap_entries">
-    <item>Kliknutie pravým tlačidlom</item>
-    <item>Kliknutie stredným tlačidlom</item>
-    <item>Žiadna</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Najpomalšia</item>
     <item>Pomalá</item>

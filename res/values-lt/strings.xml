@@ -57,11 +57,6 @@
   <string name="mousepad_sensitivity_settings_title">Nustatyti jutiklinio kilimėlio jautrumą</string>
   <string name="mousepad_acceleration_profile_settings_title">Nustatyti rodyklės pagreitį</string>
   <string name="mousepad_scroll_direction_title">Apversti slinkimo kryptį</string>
-  <string-array name="mousepad_tap_entries">
-    <item>Dešinysis spustelėjimas</item>
-    <item>Vidurinysis spustelėjimas</item>
-    <item>Nieko</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Lėčiausias</item>
     <item>Virš lėčiausio</item>

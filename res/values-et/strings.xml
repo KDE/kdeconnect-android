@@ -54,11 +54,6 @@
   <string name="mousepad_sensitivity_settings_title">Puutepadja tundlikkuse määramine</string>
   <string name="mousepad_acceleration_profile_settings_title">Osutusseadme kiirenduse määramine</string>
   <string name="mousepad_scroll_direction_title">Vastupidi kerimise suund</string>
-  <string-array name="mousepad_tap_entries">
-    <item>Paremklõps</item>
-    <item>Keskklõps</item>
-    <item>Ei tee midagi</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Kõige aeglasem</item>
     <item>Kõige aeglasemast kiirem</item>

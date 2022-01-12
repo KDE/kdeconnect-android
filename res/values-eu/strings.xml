@@ -56,11 +56,6 @@
   <string name="mousepad_sensitivity_settings_title">Ezarri ukimen-saguaren sentikortasuna</string>
   <string name="mousepad_acceleration_profile_settings_title">Ezarri erakuslearen azelerazio</string>
   <string name="mousepad_scroll_direction_title">Alderantzikatu korritzearen norabidea</string>
-  <string-array name="mousepad_tap_entries">
-    <item>Eskumako klik</item>
-    <item>Erdiko klik</item>
-    <item>Ezer ez</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Motelena</item>
     <item>Motelena baino azkarrago</item>

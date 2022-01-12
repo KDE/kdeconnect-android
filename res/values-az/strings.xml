@@ -52,15 +52,17 @@
   <string name="remotekeyboard_multiple_connections">Birdən çox uzaq klaviatura bağlantısı var, tənzimləmək üçün cihazı seçin</string>
   <string name="open_mousepad">Məsafədən giriş</string>
   <string name="mousepad_info">Siçan kursorunu hərəkət etdirmək üçün barmağı ekranda sürüşdürün. Klik üçün ekrana vurun, sağ və orta siçan düymələri üçün iki/üç barmaqla toxunuş edin. Sürüşdürmək üçün iki barmaqdan istifadə edin. Tutub saxlamaq üçün basın saxlayın.</string>
+  <string name="mousepad_single_tap_settings_title">Bir barmaq toxunuşu əməlini təyin edin</string>
   <string name="mousepad_double_tap_settings_title">İki barmaq toxunuşu əməlini təyin edin</string>
   <string name="mousepad_triple_tap_settings_title">Üç barmaq toxunuşu əməlini təyin edin</string>
   <string name="mousepad_sensitivity_settings_title">Toxunma panelinin həsassləğını təyin edin</string>
   <string name="mousepad_acceleration_profile_settings_title">Kursorun sürətini təyin edin</string>
   <string name="mousepad_scroll_direction_title">Sürüşdürmənin əks istiqaməti</string>
   <string-array name="mousepad_tap_entries">
-    <item>Sağ klik</item>
-    <item>Orta klik</item>
-    <item>Heç biri</item>
+    <item>Sol toxunuş</item>
+    <item>Sağ toxunuş</item>
+    <item>Orta toxunuş</item>
+    <item>Heç nə</item>
   </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Ən yavaş</item>
@@ -391,4 +393,5 @@
   <string name="holger_kaelberer_task">Uzaq klaviatura əlavəsi və xəta sazlamaları</string>
   <string name="saikrishna_arcot_task">Uzaq daxiletmə əlavəsində klaviaturanın istifadəsini dəstəklənməsi, xəta sazlamaları və əsas yaxşılaşdırmalar</string>
   <string name="everyone_else">İllər boyu KDE Connect\'ə töhfə verən hər kəs</string>
+  <string name="send_clipboard">Mübadilə buferinə göndərin</string>
 </resources>

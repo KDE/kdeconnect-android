@@ -54,11 +54,6 @@
   <string name="mousepad_sensitivity_settings_title">Set kepekaan touchpad</string>
   <string name="mousepad_acceleration_profile_settings_title">Setel akselerasi pointer</string>
   <string name="mousepad_scroll_direction_title">Arah Menggulir Terbalik</string>
-  <string-array name="mousepad_tap_entries">
-    <item>Klik kanan</item>
-    <item>Klik tengah</item>
-    <item>Tidak ada apa-apa</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Pelan</item>
     <item>Agak Pelan</item>

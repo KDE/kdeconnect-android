@@ -57,11 +57,6 @@
   <string name="mousepad_sensitivity_settings_title">Establecer sensibilidad del panel táctil</string>
   <string name="mousepad_acceleration_profile_settings_title">Establecer la aceleración del puntero</string>
   <string name="mousepad_scroll_direction_title">Invertir dirección de desplazamiento</string>
-  <string-array name="mousepad_tap_entries">
-    <item>Clic derecho</item>
-    <item>Clic del botón central</item>
-    <item>Nada</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Muy poco sensible</item>
     <item>Poco sensible</item>

@@ -51,11 +51,6 @@
   <string name="mousepad_sensitivity_settings_title">タッチパッドの感度を設定</string>
   <string name="mousepad_acceleration_profile_settings_title">ポインタの速度を設定</string>
   <string name="mousepad_scroll_direction_title">スクロールの方向を反転</string>
-  <string-array name="mousepad_tap_entries">
-    <item>右クリック</item>
-    <item>中クリック</item>
-    <item>なし</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>最も遅く</item>
     <item>遅め</item>

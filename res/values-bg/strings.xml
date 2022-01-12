@@ -17,6 +17,7 @@
   <string name="no_permissions">Трябва да осигурите права за достъп до уведомленията</string>
   <string name="send_ping">Изпращане на пинг</string>
   <string-array name="mousepad_tap_entries">
+    <item>Left click</item>
     <item>Right click</item>
     <item>Middle click</item>
     <item>Nothing</item>

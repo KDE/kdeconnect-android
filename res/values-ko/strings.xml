@@ -57,11 +57,6 @@
   <string name="mousepad_sensitivity_settings_title">터치패드 감도 설정</string>
   <string name="mousepad_acceleration_profile_settings_title">포인터 가속 설정</string>
   <string name="mousepad_scroll_direction_title">스크롤 방향 뒤집기</string>
-  <string-array name="mousepad_tap_entries">
-    <item>오른쪽 단추 누름</item>
-    <item>가운데 단추 누름</item>
-    <item>아무것도 안 함</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>느리게</item>
     <item>느리게 이상</item>

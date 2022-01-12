@@ -56,11 +56,6 @@
   <string name="mousepad_sensitivity_settings_title">Stabilește sensibilitatea zonei tactile</string>
   <string name="mousepad_acceleration_profile_settings_title">Stabilește accelerația indicatorului</string>
   <string name="mousepad_scroll_direction_title">Inversează direcția derulării</string>
-  <string-array name="mousepad_tap_entries">
-    <item>Clic-dreapta</item>
-    <item>Clic-mijloc</item>
-    <item>Nimic</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Cea mai lentă</item>
     <item>Mai puțin lentă</item>

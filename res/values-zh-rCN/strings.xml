@@ -57,11 +57,6 @@
   <string name="mousepad_sensitivity_settings_title">设置触摸板灵敏度</string>
   <string name="mousepad_acceleration_profile_settings_title">设置指针加速度</string>
   <string name="mousepad_scroll_direction_title">反转滚动方向</string>
-  <string-array name="mousepad_tap_entries">
-    <item>右键点击</item>
-    <item>中键点击</item>
-    <item>无</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>最慢</item>
     <item>高于最慢</item>

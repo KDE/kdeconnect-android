@@ -29,11 +29,6 @@
   <string name="send_ping">Invia Ping</string>
   <string name="open_mpris_controls">Controlo mutimedia</string>
   <string name="open_mousepad">Entrata remote</string>
-  <string-array name="mousepad_tap_entries">
-    <item>Pulsa a dextera</item>
-    <item>Click in medio</item>
-    <item>Nihil</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Slowest</item>
     <item>Above Slowest</item>

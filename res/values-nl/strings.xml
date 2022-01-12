@@ -52,12 +52,14 @@
   <string name="remotekeyboard_multiple_connections">Er is meer dan een verbinding met een toetsenbord op afstand, selecteer het te configureren apparaat</string>
   <string name="open_mousepad">Invoer op afstand</string>
   <string name="mousepad_info">Veeg met een vinger op het scherm om de muiscursor te verplaatsen. Tik om te klikken en gebruik twee/drie vingers voor rechter en middelste knop. Twee vingers gebruiken voor schuiven. Druk lang voor slepen en loslaten.</string>
+  <string name="mousepad_single_tap_settings_title">Tikactie met één vinger instellen</string>
   <string name="mousepad_double_tap_settings_title">Tikactie met twee vingers instellen</string>
   <string name="mousepad_triple_tap_settings_title">Tikactie met drie vingers instellen</string>
   <string name="mousepad_sensitivity_settings_title">Gevoeligheid van touchpad instellen</string>
   <string name="mousepad_acceleration_profile_settings_title">Aanwijzerversnelling instellen</string>
   <string name="mousepad_scroll_direction_title">Schuifrichting omdraaien</string>
   <string-array name="mousepad_tap_entries">
+    <item>Linker muisklik</item>
     <item>Rechter muisklik</item>
     <item>Middelste muisklik</item>
     <item>Niets</item>
@@ -391,4 +393,5 @@
   <string name="holger_kaelberer_task">"Plug-in voor toetsenbord op afstand  en reparaties"</string>
   <string name="saikrishna_arcot_task">Ondersteuning voor gebruik van toetsenbord in de plug-in voor invoer op afstand, bugreparaties en algemene verbeteringen</string>
   <string name="everyone_else">Ieder ander die over de jaren heeft bijgedragen aan KDE Connect</string>
+  <string name="send_clipboard">Klembord verzenden</string>
 </resources>

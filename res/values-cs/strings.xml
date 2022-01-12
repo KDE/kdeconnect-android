@@ -58,9 +58,10 @@
   <string name="mousepad_acceleration_profile_settings_title">Nastavit akceleraci ukazatele</string>
   <string name="mousepad_scroll_direction_title">Obrácený směr posunu</string>
   <string-array name="mousepad_tap_entries">
-    <item>Kliknutí pravým tlačítkem myši</item>
-    <item>Kliknutí prostředním tlačítkem myši</item>
-    <item>Nic</item>
+    <item>Left click</item>
+    <item>Right click</item>
+    <item>Middle click</item>
+    <item>Nothing</item>
   </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Nejpomalejší</item>

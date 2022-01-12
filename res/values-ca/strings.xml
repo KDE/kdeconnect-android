@@ -52,12 +52,14 @@
   <string name="remotekeyboard_multiple_connections">Hi ha més d\'una connexió amb un teclat remot, seleccioneu el dispositiu per a configurar-lo</string>
   <string name="open_mousepad">Entrada remota</string>
   <string name="mousepad_info">Moveu un dit per la pantalla per a moure el cursor del ratolí. Toqueu per a un clic, i empreu dos/tres dits per als botons dret i mig. Useu 2 dits per a desplaçar. Empreu un toc llarg per a arrossegar i deixar anar.</string>
+  <string name="mousepad_single_tap_settings_title">Estableix l\'acció de tocar amb un dit</string>
   <string name="mousepad_double_tap_settings_title">Estableix l\'acció de tocar amb dos dits</string>
   <string name="mousepad_triple_tap_settings_title">Estableix l\'acció de tocar amb tres dits</string>
   <string name="mousepad_sensitivity_settings_title">Estableix la sensibilitat del ratolí tàctil</string>
   <string name="mousepad_acceleration_profile_settings_title">Estableix l\'acceleració de l\'apuntador</string>
   <string name="mousepad_scroll_direction_title">Inverteix la direcció del desplaçament</string>
   <string-array name="mousepad_tap_entries">
+    <item>Clic esquerre</item>
     <item>Clic dret</item>
     <item>Clic del mig</item>
     <item>No fer res</item>
@@ -391,4 +393,5 @@
   <string name="holger_kaelberer_task">Connector de teclat remot i esmenes d\'errors</string>
   <string name="saikrishna_arcot_task">Suport per a usar el teclat en el connector d\'entrada remota, esmenes d\'errors i millores generals</string>
   <string name="everyone_else">Tothom qui ha contribuït al KDE Connect al llarg dels anys</string>
+  <string name="send_clipboard">Envia el porta-retalls</string>
 </resources>

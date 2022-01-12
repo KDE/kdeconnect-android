@@ -57,11 +57,6 @@
   <string name="mousepad_sensitivity_settings_title">Ställ in tryckplattans känslighet</string>
   <string name="mousepad_acceleration_profile_settings_title">Ställ in pekaracceleration</string>
   <string name="mousepad_scroll_direction_title">Omvänd rullningsriktning</string>
-  <string-array name="mousepad_tap_entries">
-    <item>Högerklick</item>
-    <item>Mittenklick</item>
-    <item>Ingenting</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Långsammaste</item>
     <item>Ovanför långsammaste</item>

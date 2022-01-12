@@ -56,11 +56,6 @@
   <string name="mousepad_sensitivity_settings_title">Чувствительность сенсорной панели</string>
   <string name="mousepad_acceleration_profile_settings_title">Настройка ускорения курсора</string>
   <string name="mousepad_scroll_direction_title">Инвертировать направление прокрутки</string>
-  <string-array name="mousepad_tap_entries">
-    <item>Нажатие правой кнопки</item>
-    <item>Нажатие средней кнопки</item>
-    <item>Ничего не делать</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Самая низкая</item>
     <item>Низкая</item>

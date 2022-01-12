@@ -53,11 +53,6 @@
   <string name="mousepad_sensitivity_settings_title">Dokunmatik yüzey hassasiyetini ayarla</string>
   <string name="mousepad_acceleration_profile_settings_title">İşaretçi ivmesini ayarla</string>
   <string name="mousepad_scroll_direction_title">Ters Kaydırma Yönü</string>
-  <string-array name="mousepad_tap_entries">
-    <item>Sağ tık</item>
-    <item>Orta tık</item>
-    <item>Hiçbiri</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>En Yavaş</item>
     <item>En Yavaşın Üstü</item>

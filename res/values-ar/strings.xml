@@ -33,11 +33,6 @@
   <string name="mousepad_triple_tap_settings_title">اضبط إجراء اللمس بثلاث أصابع</string>
   <string name="mousepad_sensitivity_settings_title">اضبط حساسيّة لوحة اللمس</string>
   <string name="mousepad_scroll_direction_title">اعكس اتّجاه التّمرير</string>
-  <string-array name="mousepad_tap_entries">
-    <item>النّقر باليمين</item>
-    <item>النّقر بالوسط</item>
-    <item>لا شيء</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>الأبطأ</item>
     <item>الأقل بطئًا</item>

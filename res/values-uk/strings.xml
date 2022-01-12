@@ -57,11 +57,6 @@
   <string name="mousepad_sensitivity_settings_title">Встановити чутливість сенсорної панелі</string>
   <string name="mousepad_acceleration_profile_settings_title">Встановити прискорення вказівника</string>
   <string name="mousepad_scroll_direction_title">Зворотний напрямок гортання</string>
-  <string-array name="mousepad_tap_entries">
-    <item>Клацання правою</item>
-    <item>Клацання середньою</item>
-    <item>Нічого</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Найповільніший</item>
     <item>Швидший за найповільніший</item>

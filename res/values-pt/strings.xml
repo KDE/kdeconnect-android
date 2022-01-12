@@ -57,11 +57,6 @@
   <string name="mousepad_sensitivity_settings_title">Definir a sensibilidade do rato por toque</string>
   <string name="mousepad_acceleration_profile_settings_title">Definir a aceleração do cursor</string>
   <string name="mousepad_scroll_direction_title">Direcção de Deslocamento Inversa</string>
-  <string-array name="mousepad_tap_entries">
-    <item>Botão direito</item>
-    <item>Botão do meio</item>
-    <item>Nada</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Mais Lento</item>
     <item>Ainda Mais Lento</item>

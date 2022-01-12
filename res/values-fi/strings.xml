@@ -57,11 +57,6 @@
   <string name="mousepad_sensitivity_settings_title">Aseta kosketuslevyn herkkyys</string>
   <string name="mousepad_acceleration_profile_settings_title">Aseta osoittimen kiihdytys</string>
   <string name="mousepad_scroll_direction_title">Käänteinen vierityssuunta</string>
-  <string-array name="mousepad_tap_entries">
-    <item>Oikea napsautus</item>
-    <item>Keskinapsautus</item>
-    <item>Ei toimintoa</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Hitain</item>
     <item>Hitainta suurempi</item>

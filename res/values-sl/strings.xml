@@ -57,11 +57,6 @@
   <string name="mousepad_sensitivity_settings_title">Nastavi občutljivost drsne ploščice</string>
   <string name="mousepad_acceleration_profile_settings_title">Nastavi pospeške kazalca</string>
   <string name="mousepad_scroll_direction_title">Smer povratnega drsenja</string>
-  <string-array name="mousepad_tap_entries">
-    <item>Deni klik</item>
-    <item>Srednji klik</item>
-    <item>Nič</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Najpočasneje</item>
     <item>Neja nad najpočasnejšim</item>

@@ -39,11 +39,6 @@
   <string name="mousepad_triple_tap_settings_title">הגדר פעולה ללחיצת שלוש אצבעות</string>
   <string name="mousepad_sensitivity_settings_title">הגדר רגישות משטח המגע</string>
   <string name="mousepad_scroll_direction_title">הפוך את כיוון הגלילה</string>
-  <string-array name="mousepad_tap_entries">
-    <item>"לחיצה ימנית "</item>
-    <item>לחיצה אצמעית (גלגלת)</item>
-    <item>שום דבר</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>הכי איטי</item>
     <item>יותר מההכי איטי</item>

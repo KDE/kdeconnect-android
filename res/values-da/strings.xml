@@ -39,11 +39,6 @@
   <string name="mousepad_triple_tap_settings_title">Angiv handling for tap med tre fingre</string>
   <string name="mousepad_sensitivity_settings_title">Angiv følsomhed for touchpad</string>
   <string name="mousepad_scroll_direction_title">Omvendt rulleretning</string>
-  <string-array name="mousepad_tap_entries">
-    <item>Højreklik</item>
-    <item>Midterklik</item>
-    <item>Intet</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Mest langsom</item>
     <item>Over mest langsom</item>

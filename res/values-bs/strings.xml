@@ -19,11 +19,6 @@
   <string name="send_ping">Pošalji ping</string>
   <string name="mousepad_double_tap_settings_title">Postavite akciju tapa sa dva prsta</string>
   <string name="mousepad_triple_tap_settings_title">Postavite akciju tapa sa tri prsta</string>
-  <string-array name="mousepad_tap_entries">
-    <item>Desni klik</item>
-    <item>Srednji klik</item>
-    <item>Ništa</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Slowest</item>
     <item>Above Slowest</item>

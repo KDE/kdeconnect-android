@@ -56,11 +56,6 @@
   <string name="mousepad_sensitivity_settings_title">Ρύθμιση ευαισθησίας της οθόνης αφής</string>
   <string name="mousepad_acceleration_profile_settings_title">Ρύθμιση επιτάχυνσης δείκτη</string>
   <string name="mousepad_scroll_direction_title">Κατεύθυνση ανάστροφης κύλησης</string>
-  <string-array name="mousepad_tap_entries">
-    <item>Δεξί κλικ</item>
-    <item>Μεσαίο κλικ</item>
-    <item>Τίποτα</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Το πιο αργό</item>
     <item>Πάνω από το πιο αργό</item>

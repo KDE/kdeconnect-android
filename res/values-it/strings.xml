@@ -57,11 +57,6 @@
   <string name="mousepad_sensitivity_settings_title">Imposta la sensibilità del touchpad</string>
   <string name="mousepad_acceleration_profile_settings_title">Imposta accelerazione del puntatore</string>
   <string name="mousepad_scroll_direction_title">Inverti direzione di scorrimento</string>
-  <string-array name="mousepad_tap_entries">
-    <item>Clic destro</item>
-    <item>Clic centrale</item>
-    <item>Niente</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Minima</item>
     <item>Più veloce</item>

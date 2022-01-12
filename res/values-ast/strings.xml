@@ -47,11 +47,6 @@
   <string name="mousepad_sensitivity_settings_title">Sensibilidá del panel táctil</string>
   <string name="mousepad_acceleration_profile_settings_title">Aceleración del punteru</string>
   <string name="mousepad_scroll_direction_title">Direición de desplazamientu inversa</string>
-  <string-array name="mousepad_tap_entries">
-    <item>Clic derechu</item>
-    <item>Clic d\'en mediu</item>
-    <item>Nada</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Perlenta</item>
     <item>Lenta</item>

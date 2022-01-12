@@ -57,11 +57,6 @@
   <string name="mousepad_sensitivity_settings_title">Set touchpad sensitivity</string>
   <string name="mousepad_acceleration_profile_settings_title">Set pointer acceleration</string>
   <string name="mousepad_scroll_direction_title">Reverse Scrolling Direction</string>
-  <string-array name="mousepad_tap_entries">
-    <item>Right click</item>
-    <item>Middle click</item>
-    <item>Nothing</item>
-  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Slowest</item>
     <item>Above Slowest</item>
