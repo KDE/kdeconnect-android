@@ -57,9 +57,10 @@
   <string name="mousepad_acceleration_profile_settings_title">Vel peikarakselerasjon</string>
   <string name="mousepad_scroll_direction_title">Omvend rulleretning</string>
   <string-array name="mousepad_tap_entries">
-    <item>Høgreklikk</item>
-    <item>Midtklikk</item>
-    <item>Ingenting</item>
+    <item>Left click</item>
+    <item>Right click</item>
+    <item>Middle click</item>
+    <item>Nothing</item>
   </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Saktast</item>

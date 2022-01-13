@@ -52,11 +52,18 @@
   <string name="remotekeyboard_multiple_connections">Obstaja več kot ena povezava na oddaljeno tipkovnico, izberite napravo in nastavitve</string>
   <string name="open_mousepad">Oddaljeni input</string>
   <string name="mousepad_info">Premaknite prst po zaslonu da bi premikali miško. Tapnite za klik in uporabite dva/tri prste za desni in srednji gumb. Za pomikanje uporabite dva prsta. Uporabite dolg pritisk za povleci in spusti.</string>
+  <string name="mousepad_single_tap_settings_title">Nastavite akcijo tapkanja enega prsta</string>
   <string name="mousepad_double_tap_settings_title">Nastavite akcijo tapkanja dveh prstov</string>
   <string name="mousepad_triple_tap_settings_title">Nastavite akcijo tapkanja treh prstov</string>
   <string name="mousepad_sensitivity_settings_title">Nastavi občutljivost drsne ploščice</string>
   <string name="mousepad_acceleration_profile_settings_title">Nastavi pospeške kazalca</string>
   <string name="mousepad_scroll_direction_title">Smer povratnega drsenja</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Levi klik</item>
+    <item>Desni klik</item>
+    <item>Srednji klik</item>
+    <item>Nič</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Najpočasneje</item>
     <item>Neja nad najpočasnejšim</item>
@@ -402,4 +409,5 @@
   <string name="holger_kaelberer_task">Vtičnik za oddaljeno tipkovnico in popravki napak</string>
   <string name="saikrishna_arcot_task">Podpora za uporabo tipkovnice vtičnika za oddaljen vnos, popravki napak in splošne izboljšave</string>
   <string name="everyone_else">Vsi ostali, ki so prispevali za KDE Connect v letih razvoja</string>
+  <string name="send_clipboard">Pošlji odložišče</string>
 </resources>
