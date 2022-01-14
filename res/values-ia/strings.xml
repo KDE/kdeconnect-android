@@ -29,6 +29,12 @@
   <string name="send_ping">Invia Ping</string>
   <string name="open_mpris_controls">Controlo mutimedia</string>
   <string name="open_mousepad">Entrata remote</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Click sinistre</item>
+    <item>Click dextere</item>
+    <item>Click in medio</item>
+    <item>Nihil</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Slowest</item>
     <item>Above Slowest</item>
@@ -119,7 +125,12 @@
   <string name="settings_more_settings_title">Altere preferentias</string>
   <string name="extra_options">Optiones extra</string>
   <string name="privacy_options">Optiones de confidentialitate</string>
+  <string name="take_picture">Lancea camera</string>
   <string name="presenter_pointer">Punctator</string>
+  <string name="trusted_networks">Retes digne de fide</string>
+  <string name="add_trusted_network">Adde %1s</string>
+  <string name="allow_all_networks_text">Permitte toto</string>
+  <string name="location_permission_needed_title">Permission requirite</string>
   <string name="bigscreen_home">Domo o initio</string>
   <string name="bigscreen_up">In alto</string>
   <string name="bigscreen_left">Sinistra</string>
@@ -132,15 +143,17 @@
   <string name="user_display_name">Tu</string>
   <string name="set_default_sms_app_title">Invia MMS</string>
   <string name="set_group_message_as_mms_title">Invia MMS de gruppo</string>
+  <string name="convert_to_mms_after_title">"Converte  a MMS"</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>Post un message</item>
+    <item>Post duo messages</item>
+    <item>Post tres messages</item>
+    <item>Post quatro messages</item>
+    <item>POst cinque messages</item>
   </string-array>
+  <string name="theme_dialog_title">Selige thema</string>
   <string-array name="theme_list">
-    <item>Set by Battery Saver</item>
+    <item>Fixate per le sparnio de batteria</item>
     <item>Legier</item>
     <item>Obscur</item>
   </string-array>
@@ -157,12 +170,17 @@
   <string name="about">A proposito</string>
   <string name="authors">Autores</string>
   <string name="thanks_to">Gratias a</string>
+  <string name="easter_egg">Ovo de Pascha</string>
+  <string name="version">Version %s</string>
   <string name="about_kde">A proposio de KDE</string>
   <string name="kde_be_free">KDE- Vos Sia Libere!</string>
   <string name="kde">KDE</string>
+  <string name="konqi">Konqi</string>
   <string name="rise_down">Leva a basso</string>
   <string name="maintainer_and_developer">Mantenitor e developpator</string>
   <string name="developer">Disveloppator</string>
   <string name="bug_fixes_and_general_improvements">Fixationes de bug e melioramentos general</string>
+  <string name="holger_kaelberer_task">Plugin de claviero remote e correctiones de falta</string>
   <string name="everyone_else">Alcun altere qui ha contribuite a KDE Connect durante le annos</string>
+  <string name="send_clipboard">Invia Area de transferentia</string>
 </resources>

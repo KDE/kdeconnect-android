@@ -52,16 +52,17 @@
   <string name="remotekeyboard_multiple_connections">Je k dispozici více než jedno připojení klávesnice. Vyberte zařízení pro jeho nastavení.</string>
   <string name="open_mousepad">Vzdálený vstup</string>
   <string name="mousepad_info">Pohybujte prstem po obrazovce pro pohybování kurzorem myši. Ťukněte pro kliknutí a použijte dva/tři prsty jako pravé a prostřední tlačítko. Použijte 2 prsty pro posunování. Pro přetažení dlouze podržte.</string>
+  <string name="mousepad_single_tap_settings_title">Nastavit činnost pro ťuknutí prstem</string>
   <string name="mousepad_double_tap_settings_title">Nastavit činnost pro ťuknutí dvěma prsty</string>
   <string name="mousepad_triple_tap_settings_title">Nastavit činnost pro ťuknutí třemi prsty</string>
   <string name="mousepad_sensitivity_settings_title">Nastavit citlivost touchpadu</string>
   <string name="mousepad_acceleration_profile_settings_title">Nastavit akceleraci ukazatele</string>
   <string name="mousepad_scroll_direction_title">Obrácený směr posunu</string>
   <string-array name="mousepad_tap_entries">
-    <item>Left click</item>
-    <item>Right click</item>
-    <item>Middle click</item>
-    <item>Nothing</item>
+    <item>Kliknutí levým tlačítkem myši</item>
+    <item>Kliknutí pravým tlačítkem myši</item>
+    <item>Kliknutí prostředním tlačítkem myši</item>
+    <item>Nic</item>
   </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Nejpomalejší</item>
@@ -406,4 +407,5 @@
   <string name="holger_kaelberer_task">Vzdálené modul klávesnice a opravy chyb</string>
   <string name="saikrishna_arcot_task">Podpora použití klávesnice na vzdáleném vstupním modulu, opravy chyb a obecná zlepšení</string>
   <string name="everyone_else">Každý kdo přispěl do KDE Connect během let</string>
+  <string name="send_clipboard">Poslat schránku</string>
 </resources>

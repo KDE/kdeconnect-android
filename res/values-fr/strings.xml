@@ -52,11 +52,18 @@
   <string name="remotekeyboard_multiple_connections">Plusieurs connexions à des claviers sans fil sont disponibles, sélectionnez le périphérique à configurer</string>
   <string name="open_mousepad">Contrôle distant</string>
   <string name="mousepad_info">Faites glisser votre doigt sur l\'écran pour déplacer le pointeur de la souris. Appuyez pour cliquer et utilisez deux/trois doigts pour les clic droit et centre. Utilisez 2 doigts pour faire défiler. Appuyez longtemps pour faire un glisser-déposer.</string>
+  <string name="mousepad_single_tap_settings_title">Définir une action pour tapotage avec un doigt</string>
   <string name="mousepad_double_tap_settings_title">Action pour l\'appui à deux doigts</string>
   <string name="mousepad_triple_tap_settings_title">Action pour l\'appui à trois doigts</string>
   <string name="mousepad_sensitivity_settings_title">Définir la sensibilité du pavé tactile</string>
   <string name="mousepad_acceleration_profile_settings_title">Définir l\'accélération du pointeur</string>
   <string name="mousepad_scroll_direction_title">Inverser la direction du défilement</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Clic gauche</item>
+    <item>Clic droit</item>
+    <item>Clic central</item>
+    <item>Rien</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Le plus lent</item>
     <item>Assez lent</item>
@@ -386,4 +393,5 @@
   <string name="holger_kaelberer_task">Corrections du module externe de clavier sans fil et de bogues</string>
   <string name="saikrishna_arcot_task">Prise en charge de l\'utilisation du clavier dans le module d\'entrée à distance, corrections de bogues et améliorations générales</string>
   <string name="everyone_else">Toutes les autres personnes ayant contribué à « KDE Connect » depuis plusieurs années</string>
+  <string name="send_clipboard">Envoyer le presse-papier</string>
 </resources>

@@ -196,6 +196,7 @@
   <string name="share_received_file">Jaa ”%s”</string>
   <string name="title_activity_notification_filter">Ilmoitussuodatin</string>
   <string name="filter_apps_info">Valittujen sovellusten ilmoitukset synkronoidaan.</string>
+  <string name="show_notification_if_screen_off">Lähetä ilmoitukset vain näyttö ei ole käytössä</string>
   <string name="sftp_sdcard_num">SD-kortti %d</string>
   <string name="sftp_sdcard">SD-kortti</string>
   <string name="sftp_readonly">(vain luku)</string>
