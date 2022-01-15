@@ -488,6 +488,11 @@
     <string name="rise_up">Rise Up</string>
     <string name="rise_down">Rise Down</string>
 
+  <string name="click_here_to_type">Tap here to type</string>
+  <string name="clear_compose">Clear</string>
+  <string name="send_compose">Send</string>
+  <string name="open_compose_send">Compose text</string>
+
     <string name="app_description">Multi-platform app that allows your devices to communicate (e.g., your phone and your computer)</string>
 
     <string name="about_kde_about"><![CDATA[

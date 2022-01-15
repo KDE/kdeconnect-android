@@ -247,10 +247,19 @@
         <activity
             android:name="org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadActivity"
             android:label="@string/pref_plugin_mousepad"
+            android:launchMode="singleTop"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
+        </activity>
+        <activity
+            android:name="org.kde.kdeconnect.Plugins.MousePadPlugin.ComposeSendActivity"
+            android:label="Compose send"
+            android:parentActivityName="org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadActivity" />
         </activity>
         <activity
             android:name="org.kde.kdeconnect.Plugins.MousePadPlugin.SendKeystrokesToHostActivity"

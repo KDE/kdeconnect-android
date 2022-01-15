@@ -6,6 +6,7 @@
 
 package org.kde.kdeconnect.Plugins.MousePadPlugin;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -191,6 +192,12 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
                 return true;
             case R.id.menu_show_keyboard:
                 showKeyboard();
+                return true;
+            case R.id.menu_open_compose_send:
+
+                Intent intent = new Intent(this, ComposeSendActivity.class);
+                intent.putExtra("org.kde.kdeconnect.Plugins.MousePadPlugin.deviceId",deviceId);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

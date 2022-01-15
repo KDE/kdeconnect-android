@@ -9,6 +9,10 @@
         kdeconnect:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/menu_open_compose_send"
+        android:title="@string/open_compose_send"
+        kdeconnect:showAsAction="ifRoom" />
+    <item
         android:id="@+id/menu_right_click"
         android:title="@string/right_click"
         kdeconnect:showAsAction="never" />
