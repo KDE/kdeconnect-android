@@ -52,11 +52,18 @@
   <string name="remotekeyboard_multiple_connections">Det finns mer än en anslutning till externt tangentbord, välj apparat att anpassa</string>
   <string name="open_mousepad">Extern inmatning</string>
   <string name="mousepad_info">Flytta fingret på skärmen för att röra muspekaren. Rör för att klicka, och använd två eller tre fingrar för höger- och mittenknapparna. Använd två fingrar för att panorera. Använd en längre beröring för drag och släpp.</string>
+  <string name="mousepad_single_tap_settings_title">Ställ in åtgärd vid en fingerberöring</string>
   <string name="mousepad_double_tap_settings_title">Ställ in åtgärd vid två fingerberöringar</string>
   <string name="mousepad_triple_tap_settings_title">Ställ in åtgärd vid tre fingerberöringar</string>
   <string name="mousepad_sensitivity_settings_title">Ställ in tryckplattans känslighet</string>
   <string name="mousepad_acceleration_profile_settings_title">Ställ in pekaracceleration</string>
   <string name="mousepad_scroll_direction_title">Omvänd rullningsriktning</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Vänsterklick</item>
+    <item>Högerklick</item>
+    <item>Mittenklick</item>
+    <item>Ingenting</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Långsammaste</item>
     <item>Ovanför långsammaste</item>
@@ -386,4 +393,5 @@
   <string name="holger_kaelberer_task">Insticksprogram för fjärrtangentbord och felrättningar</string>
   <string name="saikrishna_arcot_task">Stöd för användning av tangentbordet i insticksprogrammet för fjärrinmatning, felrättningar och allmänna förbättringar</string>
   <string name="everyone_else">Alla andra som har bidragit till KDE-anslut under alla år</string>
+  <string name="send_clipboard">Skicka klippbord</string>
 </resources>
