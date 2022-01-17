@@ -377,6 +377,10 @@
   <string name="konqi">Konqi</string>
   <string name="rise_up">Opkomen</string>
   <string name="rise_down">Neergaan</string>
+  <string name="click_here_to_type">Tik hier om te typen</string>
+  <string name="clear_compose">Wissen</string>
+  <string name="send_compose">Verzenden</string>
+  <string name="open_compose_send">Tekst opstellen</string>
   <string name="app_description">Multi-platform toepassing die uw apparaten met elkaar laat communiceren (bijv., uw telefoon en uw computer)</string>
   <string name="about_kde_about">&lt;h1&gt;Info over&lt;/h1&gt; &lt;p&gt;KDE is een wereldwijde gemeenschap van software ingenieurs, artiesten, schrijvers, vertalers en makers die toegewijd zijn aan &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Vrije software&lt;/a&gt; ontwikkeling. KDE produceert de Plasma bureaubladomgeving, honderden toepassingen en de vele software bibliotheken die deze ondersteunen.&lt;/p&gt; &lt;p&gt;KDE is een coöperatieve onderneming: geen enkele entiteit controleert zijn richting of producten. In plaats daarvan werken we samen om het gemeenschappelijke doel te bereiken van het bouwen van de \'s werelds mooiste Vrije software. Iedereen is welkom om &lt;a href=https://community.kde.org/Get_Involved&gt;mee te doen en bij te dragen&lt;/a&gt; aan KDE, inclusief u.&lt;/p&gt; Bezoek &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; voor meer informatie over de KDE gemeenschap en de software die we produceren.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Bugs of wensen rapporteren&lt;/h1&gt; &lt;p&gt;Software kan altijd verbeterd worden en het KDE team is gereed om dat te doen. Echter, u - de gebruiker - moet ons vertellen wanneer iets niet werkt zoals verwacht of beter gedaan kan worden.&lt;/p&gt; &lt;p&gt;KDE heeft een bugvolgsysteem. Bezoek &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; of gebruik de knop \"Bug rapporteren\" uit het Info over scherm om bugs te rapporteren.&lt;/p&gt; Als u een suggestie voor verbetering dan bent u welkom om het bugvolgsysteem te gebruiken om uw wens te registreren. Ga na dat u de ernst genaamd \"Wishlist\" gebruikt.</string>
@@ -394,4 +398,5 @@
   <string name="saikrishna_arcot_task">Ondersteuning voor gebruik van toetsenbord in de plug-in voor invoer op afstand, bugreparaties en algemene verbeteringen</string>
   <string name="everyone_else">Ieder ander die over de jaren heeft bijgedragen aan KDE Connect</string>
   <string name="send_clipboard">Klembord verzenden</string>
+  <string name="tap_to_execute">Tik om uit te voeren</string>
 </resources>

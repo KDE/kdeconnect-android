@@ -393,6 +393,10 @@
   <string name="konqi">Konqi</string>
   <string name="rise_up">Podnieś</string>
   <string name="rise_down">Obniż</string>
+  <string name="click_here_to_type">Stuknij tutaj, aby wpisać</string>
+  <string name="clear_compose">Wyczyść</string>
+  <string name="send_compose">Wyślij</string>
+  <string name="open_compose_send">Napisz tekst</string>
   <string name="app_description">"Wieloplatformowa aplikacja, która umożliwia twoim urządzeniom porozumiewanie się (np. twojemu telefonowi i komputerowi). "</string>
   <string name="about_kde_about">"&lt;h1&gt;O programie&lt;/h1&gt; &lt;p&gt;KDE to światowa społeczność inżynierów oprogramowania, artystów, pisarzy, tłumaczy i twórców, którzy są częścią rozwoju &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Wolnego Oprogramowania&lt;/a&gt;. KDE tworzy środowisko pulpitu Plazmy, setki aplikacji  i wiele bibliotek programistycznych, aby je wspierać.&lt;/p&gt; &lt;p&gt;KDE jest przedsięwzięciem istniejącym ze współpracy; jego ruchami, czy produktami, nie steruje żaden pojedynczy byt. Pracujemy razem, aby osiągnąć wspólny cel, czyli budowę najlepszego Wolnego Oprogramowania na świecie. Każdy jest mile wiedziany, żeby &lt;a href=https://community.kde.org/Get_Involved&gt;dołączył i zaczął współtworzyć&lt;/a&gt; KDE, włączając w to ciebie.&lt;/p&gt; Odwiedź &lt; href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; po więcej szczegółów nt. społeczności KDE i oprogramowania, które tworzymy."</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Zgłaszaj błędy lub życzenia&lt;/h1&gt; &lt;p&gt;Oprogramowanie zawsze można ulepszyć, a zespół KDE jest gotowy, aby to robić. Jednakże ty - użytkownik - musisz nam powiedzieć o tym, co nie działa jak powinno lub co można zrobić lepiej.&lt;/p&gt; &lt;p&gt;KDE ma system obsługi błędów. Odwiedź &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; lub użyj przycisku \"Zgłoś błąd\" z ekranu o programie do zgłaszania błędów.&lt;/p&gt; Jeśli masz sugestie nt. usprawnień, to także możesz ją zarejestrować w naszym systemie obsługi błędów. Upewnij się, że użyjesz ważności o nazwie \"Lista życzeń\".</string>
@@ -410,4 +414,5 @@
   <string name="saikrishna_arcot_task">Wsparcie do obsługi klawiatury we wtyczce zdalnego wprowadzania, usuwanie błędów i ogólne usprawnienia</string>
   <string name="everyone_else">Inni którzy współtworzyli KDE Connect na przestrzeni lat</string>
   <string name="send_clipboard">Wysyłanie schowka</string>
+  <string name="tap_to_execute">Stuknij, aby wykonać</string>
 </resources>
