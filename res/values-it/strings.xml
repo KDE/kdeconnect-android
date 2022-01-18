@@ -52,11 +52,18 @@
   <string name="remotekeyboard_multiple_connections">Ci sono più connessioni di tastiere remote, seleziona il dispositivo da configurare</string>
   <string name="open_mousepad">Impulso remoto</string>
   <string name="mousepad_info">Muovi un dito sullo schermo per spostare il puntatore del mouse. Tocca per un clic e usa due/tre dita per i pulsanti destro e centrale. Utilizza 2 dita per scorrere. Utilizza una pressione lunga per trascinare e rilasciare.</string>
+  <string name="mousepad_single_tap_settings_title">Imposta azione per il tocco a un dito</string>
   <string name="mousepad_double_tap_settings_title">Imposta azione per il tocco a due dita</string>
   <string name="mousepad_triple_tap_settings_title">Imposta azione per il tocco a tre dita</string>
   <string name="mousepad_sensitivity_settings_title">Imposta la sensibilità del touchpad</string>
   <string name="mousepad_acceleration_profile_settings_title">Imposta accelerazione del puntatore</string>
   <string name="mousepad_scroll_direction_title">Inverti direzione di scorrimento</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Clic sinistro</item>
+    <item>Clic destro</item>
+    <item>Clic centrale</item>
+    <item>Niente</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Minima</item>
     <item>Più veloce</item>
@@ -370,6 +377,10 @@
   <string name="konqi">Konqi</string>
   <string name="rise_up">Alza</string>
   <string name="rise_down">Abbassa</string>
+  <string name="click_here_to_type">Tocca qui per scrivere</string>
+  <string name="clear_compose">Pulisci</string>
+  <string name="send_compose">Invia</string>
+  <string name="open_compose_send">Componi il testo</string>
   <string name="app_description">Applicazione multipiattaforma che consente ai tuoi dispositivi di comunicare (ad esempio, il tuo telefono e il tuo computer)</string>
   <string name="about_kde_about">&lt;h1&gt;Informazioni&lt;/h1&gt; &lt;p&gt;KDE è una comunità mondiale di ingegneri del software, artisti, scrittori, traduttori e creatori che si impegnano a sviluppare &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;software libero&lt;/a&gt;. KDE produce l\'ambiente desktop Plasma, centinaia di applicazioni e le numerose librerie software che le supportano.&lt;/p&gt; &lt;p&gt;KDE è un\'impresa cooperativa: nessuna singola entità ne controlla la direzione o i prodotti. Invece, lavoriamo insieme per raggiungere l\'obiettivo comune di costruire il miglior software libero del mondo. Tutti sono invitati a &lt;a href=https://community.kde.org/Get_Involved&gt;unirsi e contribuire&lt;/a&gt; a KDE, incluso te.&lt;/p&gt; Visita &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; per ulteriori informazioni sulla comunità KDE e sul software che produciamo.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Segnala bug o desideri&lt;/h1&gt; &lt;p&gt;Il software può sempre essere migliorato e il team di KDE è pronto a farlo. Tuttavia, tu - l\'utente - devi dirci quando qualcosa non funziona come previsto o potrebbe essere fatto meglio.&lt;/p&gt; &lt;p&gt;KDE ha un sistema di tracciamento dei bug. Visita &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; oppure utilizza il pulsante «Segnala bug» dalla schermata delle informazioni per segnalare i bug.&lt;/p&gt; Se hai un suggerimento per il miglioramento, puoi utilizzare il sistema di tracciamento dei bug per registrare il tuo desiderio. Assicurati di utilizzare «Wishlist» per il campo Severity.</string>
@@ -386,4 +397,6 @@
   <string name="holger_kaelberer_task">Estensione della tastiera remota e correzioni di bug</string>
   <string name="saikrishna_arcot_task">Supporto per l\'utilizzo della tastiera nell\'estensione di inserimento remoto, correzioni di bug e miglioramenti generali</string>
   <string name="everyone_else">Tutti gli altri che hanno contribuito a KDE Connect nel corso degli anni</string>
+  <string name="send_clipboard">Invia gli appunti</string>
+  <string name="tap_to_execute">Tocca per eseguire</string>
 </resources>
