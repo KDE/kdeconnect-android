@@ -131,12 +131,15 @@
   <string name="add_trusted_network">Adde %1s</string>
   <string name="allow_all_networks_text">Permitte toto</string>
   <string name="location_permission_needed_title">Permission requirite</string>
+  <string name="mpris_open_url">Continua a executar hic</string>
+  <string name="cant_open_url">Non pote aperir URL per continuar a executar</string>
   <string name="bigscreen_home">Domo o initio</string>
   <string name="bigscreen_up">In alto</string>
   <string name="bigscreen_left">Sinistra</string>
   <string name="bigscreen_select">Selige</string>
   <string name="bigscreen_right">Dextera</string>
   <string name="bigscreen_down">A basso</string>
+  <string name="bigscreen_mic">Mic</string>
   <string name="bigscreen_speech_extra_prompt">Voce</string>
   <string name="message_reply_label">RESPONSA</string>
   <string name="mark_as_read_label">MARCA COMO LEGITE</string>
@@ -177,10 +180,15 @@
   <string name="kde">KDE</string>
   <string name="konqi">Konqi</string>
   <string name="rise_down">Leva a basso</string>
+  <string name="click_here_to_type">Tocca hic pro typar</string>
+  <string name="clear_compose">Clara</string>
+  <string name="send_compose">Invia</string>
+  <string name="open_compose_send">Compone texto</string>
   <string name="maintainer_and_developer">Mantenitor e developpator</string>
   <string name="developer">Disveloppator</string>
   <string name="bug_fixes_and_general_improvements">Fixationes de bug e melioramentos general</string>
   <string name="holger_kaelberer_task">Plugin de claviero remote e correctiones de falta</string>
   <string name="everyone_else">Alcun altere qui ha contribuite a KDE Connect durante le annos</string>
   <string name="send_clipboard">Invia Area de transferentia</string>
+  <string name="tap_to_execute">Toccaper executar</string>
 </resources>
