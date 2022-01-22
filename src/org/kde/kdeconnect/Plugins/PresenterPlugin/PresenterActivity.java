@@ -112,15 +112,15 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
-            case R.id.fullscreen:
-                plugin.sendFullscreen();
-                return true;
-            case R.id.exit_presentation:
-                plugin.sendEsc();
-                return true;
-            default:
-                return super.onContextItemSelected(item);
+        int id = item.getItemId();
+        if (id == R.id.fullscreen) {
+            plugin.sendFullscreen();
+            return true;
+        } else if (id == R.id.exit_presentation) {
+            plugin.sendEsc();
+            return true;
+        } else {
+            return super.onContextItemSelected(item);
         }
     }
 

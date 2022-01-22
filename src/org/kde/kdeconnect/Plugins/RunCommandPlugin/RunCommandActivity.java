@@ -129,6 +129,7 @@ public class RunCommandActivity extends AppCompatActivity {
             cm.setText(url);
             Toast toast = Toast.makeText(this, R.string.clipboard_toast, Toast.LENGTH_SHORT);
             toast.show();
+            return true;
         }
         return false;
     }

@@ -303,21 +303,19 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_refresh:
-                updateComputerListAction();
-                break;
-            case R.id.menu_custom_device_list:
-                startActivity(new Intent(mActivity, CustomDevicesActivity.class));
-                break;
-            case R.id.menu_trusted_networks:
-                startActivity(new Intent(mActivity, TrustedNetworksActivity.class));
-                break;
-
-            default:
-                break;
+        int id = item.getItemId();
+        if (id == R.id.menu_refresh) {
+            updateComputerListAction();
+            return true;
+        } else if (id == R.id.menu_custom_device_list) {
+            startActivity(new Intent(mActivity, CustomDevicesActivity.class));
+            return true;
+        } else if (id == R.id.menu_trusted_networks) {
+            startActivity(new Intent(mActivity, TrustedNetworksActivity.class));
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
-        return true;
     }
 
 

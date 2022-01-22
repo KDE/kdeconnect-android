@@ -465,29 +465,28 @@ public class SftpSettingsFragment
 
     @Override
     public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.delete:
-                for (int count = preferenceCategory.getPreferenceCount(), i = count - 1; i >= 0; i--) {
-                    StoragePreference preference = (StoragePreference) preferenceCategory.getPreference(i);
-                    if (preference.checkbox.isChecked()) {
-                        SftpPlugin.StorageInfo info = storageInfoList.remove(i);
+        if (item.getItemId() == R.id.delete) {
+            for (int count = preferenceCategory.getPreferenceCount(), i = count - 1; i >= 0; i--) {
+                StoragePreference preference = (StoragePreference) preferenceCategory.getPreference(i);
+                if (preference.checkbox.isChecked()) {
+                    SftpPlugin.StorageInfo info = storageInfoList.remove(i);
 
-                        if (Build.VERSION.SDK_INT >= 21) {
-                            try {
-                                // This throws when trying to release a URI we don't have access to
-                                requireContext().getContentResolver().releasePersistableUriPermission(info.uri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-                            } catch (SecurityException e) {
-                                // Usually safe to ignore, but who knows?
-                                Log.e("SFTP Settings", "Exception", e);
-                            }
+                    if (Build.VERSION.SDK_INT >= 21) {
+                        try {
+                            // This throws when trying to release a URI we don't have access to
+                            requireContext().getContentResolver().releasePersistableUriPermission(info.uri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                        } catch (SecurityException e) {
+                            // Usually safe to ignore, but who knows?
+                            Log.e("SFTP Settings", "Exception", e);
                         }
                     }
                 }
+            }
 
-                handleChangedStorageInfoList();
-                return true;
-            default:
-                return false;
+            handleChangedStorageInfoList();
+            return true;
+        } else {
+            return false;
         }
     }
 

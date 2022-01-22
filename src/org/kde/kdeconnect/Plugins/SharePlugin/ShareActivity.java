@@ -41,14 +41,12 @@ public class ShareActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_refresh:
-                updateComputerListAction();
-                break;
-            default:
-                break;
+        if (item.getItemId() == R.id.menu_refresh) {
+            updateComputerListAction();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
-        return true;
     }
 
     private void updateComputerListAction() {

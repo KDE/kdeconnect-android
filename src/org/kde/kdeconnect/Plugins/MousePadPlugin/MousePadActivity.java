@@ -183,24 +183,23 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_right_click:
-                sendRightClick();
-                return true;
-            case R.id.menu_middle_click:
-                sendMiddleClick();
-                return true;
-            case R.id.menu_show_keyboard:
-                showKeyboard();
-                return true;
-            case R.id.menu_open_compose_send:
-
-                Intent intent = new Intent(this, ComposeSendActivity.class);
-                intent.putExtra("org.kde.kdeconnect.Plugins.MousePadPlugin.deviceId",deviceId);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        int id = item.getItemId();
+        if (id == R.id.menu_right_click) {
+            sendRightClick();
+            return true;
+        } else if (id == R.id.menu_middle_click) {
+            sendMiddleClick();
+            return true;
+        } else if (id == R.id.menu_show_keyboard) {
+            showKeyboard();
+            return true;
+        } else if (id == R.id.menu_open_compose_send) {
+            Intent intent = new Intent(this, ComposeSendActivity.class);
+            intent.putExtra("org.kde.kdeconnect.Plugins.MousePadPlugin.deviceId", deviceId);
+            startActivity(intent);
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 

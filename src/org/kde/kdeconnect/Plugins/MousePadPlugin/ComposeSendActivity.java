@@ -110,14 +110,15 @@ public class ComposeSendActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_clear_compose:
-                clear();
-                return true;
-            case R.id.menu_send_compose:
-                sendComposed();
-            default:
-                return super.onOptionsItemSelected(item);
+        int id = item.getItemId();
+        if (id == R.id.menu_clear_compose) {
+            clear();
+            return true;
+        } else if (id == R.id.menu_send_compose) {
+            sendComposed();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
     }
 }
