@@ -92,6 +92,7 @@ public class ComposeSendActivity extends AppCompatActivity {
 
         String editTextStr = editText.getText().toString();
         sendChars(editTextStr);
+        clear();
     }
 
     public void clear() {
