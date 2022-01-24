@@ -377,6 +377,10 @@
   <string name="konqi">Konqi</string>
   <string name="rise_up">Levantar</string>
   <string name="rise_down">Bajar</string>
+  <string name="click_here_to_type">Pulse para escribir</string>
+  <string name="clear_compose">Borrar</string>
+  <string name="send_compose">Enviar</string>
+  <string name="open_compose_send">Componer texto</string>
   <string name="app_description">Aplicación multi-plataforma que permite a sus dispositivos comunicarse (por ejemplo entre su teléfono y su equipo)</string>
   <string name="about_kde_about">&lt;h1&gt;Acerca de&lt;/h1&gt; &lt;p&gt;KDE es una comunidad global de ingenieros software, artistas, escritores, traductores y creadores que siguen el desarrollo de &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Software Libre&lt;/a&gt;. KDE produce el entorno de escritorio Plasma, cientos de aplicaciones y todas las librerías en las que se basan.&lt;/p&gt; &lt;p&gt;KDE es una empresa colaborativa: no hay una entidad única que controla sus productos o su dirección. En su lugar, trabajamos de manera conjunta para conseguir la meta común de construir el mejor software libre posible. Todo el mundo es bienvenido a &lt;a href=https://community.kde.org/Get_Involved&gt;unirse y contribuir&lt;/a&gt; a KDE, incluido usted.&lt;/p&gt; Visite &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; para más información sobre la comunidad KDE y el software que creamos.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Reporte errores o deseos&lt;/h1&gt; &lt;p&gt;El software siempre puede ser mejorado y el equipo de KDE está preparado para ello. Sin embargo, usted - el usuario - debe comunicarnos cuando algo no funciona como es esperado o que puede ser mejorado. &lt;/p&gt; &lt;p&gt; KDE tiene un sistema de traqueo de errores. Visite &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; o use el botón «Informar de fallo» en la ventana «Acerca de» para reportar errores.&lt;/p&gt; Si tiene una sugerencia de mejora entonces use el sistema de traqueo de errores para registrar su sugerencia. Asegúrese de que usa la severidad «Lista de deseos».</string>
@@ -394,4 +398,5 @@
   <string name="saikrishna_arcot_task">Soporte para usar el teclado en el complemento de entrada remota, arreglos y mejoras generales</string>
   <string name="everyone_else">Todos los demás que han contribuido a KDE Connect a lo largo de su historia</string>
   <string name="send_clipboard">Enviar al portapapeles</string>
+  <string name="tap_to_execute">Pulse para ejecutar</string>
 </resources>
