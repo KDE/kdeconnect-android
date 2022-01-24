@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="org.kde.kdeconnect_tp"
-    android:versionCode="11900"
-    android:versionName="1.19">
+    android:versionCode="11910"
+    android:versionName="1.19.1">
 
     <supports-screens
         android:anyDensity="true"
@@ -405,7 +405,7 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
-        
+
         <service android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandControlsProviderService" android:label="@string/kde_connect"
             android:permission="android.permission.BIND_CONTROLS">
             <intent-filter>
