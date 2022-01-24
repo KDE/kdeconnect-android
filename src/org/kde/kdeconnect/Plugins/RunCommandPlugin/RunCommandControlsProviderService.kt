@@ -140,7 +140,9 @@ class RunCommandControlsProviderService : ControlsProviderService() {
     private fun getAllCommandsList(): List<CommandEntryWithDevice> {
         val commandList = mutableListOf<CommandEntryWithDevice>()
 
-        for (device in BackgroundService.getInstance().devices.values) {
+        val service = BackgroundService.getInstance() ?: return commandList
+
+        for (device in service.devices.values) {
             if (!device.isReachable) {
                 commandList.addAll(getSavedCommandsList(device))
                 continue
