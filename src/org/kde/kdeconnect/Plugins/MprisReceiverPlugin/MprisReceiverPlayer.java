@@ -133,6 +133,7 @@ class MprisReceiverPlayer {
     int getVolume() {
         MediaController.PlaybackInfo info = controller.getPlaybackInfo();
         if (info == null) return 0;
+        if (info.getMaxVolume() == 0) return 0;
         return 100 * info.getCurrentVolume() / info.getMaxVolume();
     }
 
