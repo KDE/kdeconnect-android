@@ -395,7 +395,7 @@ public class TelephonyHelper {
             }
         }
 
-        private ApnSetting() {};
+        private ApnSetting() {}
 
         public Uri getMmsc() {
             return mmscUri;

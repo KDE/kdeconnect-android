@@ -281,7 +281,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
         @TargetApi(value = Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (action.equals(BluetoothDevice.ACTION_UUID)) {
+            if (BluetoothDevice.ACTION_UUID.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 Parcelable[] activeUuids = intent.getParcelableArrayExtra(BluetoothDevice.EXTRA_UUID);
 

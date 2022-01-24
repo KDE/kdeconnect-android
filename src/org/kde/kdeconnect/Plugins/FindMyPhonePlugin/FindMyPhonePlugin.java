@@ -55,7 +55,6 @@ public class FindMyPhonePlugin extends Plugin {
             case Tablet:
                 return context.getString(R.string.findmyphone_title_tablet);
             case Phone:
-                return context.getString(R.string.findmyphone_title);
             default:
                 return context.getString(R.string.findmyphone_title);
         }

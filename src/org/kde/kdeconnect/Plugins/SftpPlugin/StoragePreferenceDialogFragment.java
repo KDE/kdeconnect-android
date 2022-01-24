@@ -277,7 +277,7 @@ public class StoragePreferenceDialogFragment extends PreferenceDialogFragmentCom
         }
     }
 
-    private class FileSeparatorCharFilter implements InputFilter {
+    private static class FileSeparatorCharFilter implements InputFilter {
         //TODO: Add more chars to refuse?
         //https://www.cyberciti.biz/faq/linuxunix-rules-for-naming-file-and-directory-names/
         String notAllowed = "/\\><|:&?*";

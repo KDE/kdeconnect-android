@@ -229,7 +229,7 @@ public class ConnectivityReportPlugin extends Plugin {
 
     @Override
     public boolean onPacketReceived(NetworkPacket np) {
-        if (np.getType() == PACKET_TYPE_CONNECTIVITY_REPORT_REQUEST) {
+        if (PACKET_TYPE_CONNECTIVITY_REPORT_REQUEST.equals(np.getType())) {
             Log.i("ConnectivityReport", "Requested");
             serializeSignalStrengths();
             device.sendPacket(connectivityInfo);

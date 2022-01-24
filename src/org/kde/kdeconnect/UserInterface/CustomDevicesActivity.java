@@ -214,7 +214,7 @@ public class CustomDevicesActivity extends AppCompatActivity implements CustomDe
         }
     }
 
-    private class DeletedCustomDevice {
+    private static class DeletedCustomDevice {
         @NonNull String hostnameOrIP;
         int position;
 

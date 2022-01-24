@@ -152,6 +152,7 @@ public class PointerAccelerationProfileFactory {
     public static PointerAccelerationProfile getProfileWithName(String name) {
         switch (name) {
             case "noacceleration":
+            default:
                 return new DefaultProfile();
             case "weaker":
                 return new PolynomialProfile(0.25f);
@@ -163,8 +164,6 @@ public class PointerAccelerationProfileFactory {
                 return new PolynomialProfile(1.5f);
             case "stronger":
                 return new PolynomialProfile(2.0f);
-            default:
-                return new DefaultProfile();
         }
     }
 }

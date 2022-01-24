@@ -8,7 +8,6 @@ package org.kde.kdeconnect.UserInterface;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -24,22 +23,16 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
-import com.klinker.android.send_message.Utils;
-
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
-import org.kde.kdeconnect.Helpers.TelephonyHelper;
-import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.BatteryPlugin.BatteryPlugin;
 import org.kde.kdeconnect.Plugins.BatteryPlugin.DeviceBatteryInfo;
 import org.kde.kdeconnect.Plugins.Plugin;
-import org.kde.kdeconnect.Plugins.SMSPlugin.SMSPlugin;
 import org.kde.kdeconnect.UserInterface.List.FailedPluginListItem;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.PluginItem;
 import org.kde.kdeconnect.UserInterface.List.PluginListHeaderItem;
-import org.kde.kdeconnect.UserInterface.List.SetDefaultAppPluginListItem;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityDeviceBinding;
 import org.kde.kdeconnect_tp.databinding.ViewPairErrorBinding;
@@ -48,7 +41,6 @@ import org.kde.kdeconnect_tp.databinding.ViewPairRequestBinding;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 
@@ -277,7 +269,7 @@ public class DeviceFragment extends Fragment {
     }
 
     private void refreshUI() {
-        if (device == null || binding == null || binding.getRoot() == null) {
+        if (device == null || binding == null) {
             return;
         }
 
@@ -366,7 +358,7 @@ public class DeviceFragment extends Fragment {
         @Override
         public void pairingFailed(final String error) {
             mActivity.runOnUiThread(() -> {
-                if (binding == null || binding.getRoot() == null) return;
+                if (binding == null) return;
                 binding.pairMessage.setText(error);
                 binding.pairVerification.setText("");
                 binding.pairVerification.setVisibility(View.GONE);
@@ -380,7 +372,7 @@ public class DeviceFragment extends Fragment {
         @Override
         public void unpaired() {
             mActivity.runOnUiThread(() -> {
-                if (binding == null || binding.getRoot() == null) return;
+                if (binding == null) return;
                 binding.pairMessage.setText(R.string.device_not_paired);
                 binding.pairVerification.setVisibility(View.GONE);
                 binding.pairProgress.setVisibility(View.GONE);

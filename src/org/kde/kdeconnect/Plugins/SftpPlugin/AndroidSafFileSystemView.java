@@ -99,7 +99,7 @@ public class AndroidSafFileSystemView implements FileSystemView {
                     String treeDocumentId = DocumentsContract.getTreeDocumentId(treeUri);
                     File nameWithoutRootFile = new File(nameWithoutRoot);
                     String parentSuffix = nameWithoutRootFile.getParent();
-                    String parentDocumentId = treeDocumentId + (parentSuffix.equals("/") ? "" : parentSuffix);
+                    String parentDocumentId = treeDocumentId + ("/".equals(parentSuffix) ? "" : parentSuffix);
 
                     Uri parentUri = DocumentsContract.buildDocumentUriUsingTree(treeUri, parentDocumentId);
 

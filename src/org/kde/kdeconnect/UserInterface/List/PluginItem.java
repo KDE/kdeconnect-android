@@ -17,24 +17,19 @@ import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ListItemWithIconEntryBinding;
 
-public class PluginItem implements ListAdapter.Item {
-    private final Plugin plugin;
+public class PluginItem extends EntryItemWithIcon {
     private final View.OnClickListener clickListener;
 
     public PluginItem(Plugin p, View.OnClickListener clickListener) {
-        this.plugin = p;
+        super(p.getActionName(), p.getIcon());
         this.clickListener = clickListener;
     }
 
     @NonNull
     @Override
     public View inflateView(@NonNull LayoutInflater layoutInflater) {
-        final ListItemWithIconEntryBinding binding = ListItemWithIconEntryBinding.inflate(layoutInflater);
-
-        binding.listItemEntryTitle.setText(plugin.getActionName());
-        binding.listItemEntryIcon.setImageDrawable(plugin.getIcon());
-        binding.getRoot().setOnClickListener(clickListener);
-
-        return binding.getRoot();
+        final View root = super.inflateView(layoutInflater);
+        root.setOnClickListener(clickListener);
+        return root;
     }
 }

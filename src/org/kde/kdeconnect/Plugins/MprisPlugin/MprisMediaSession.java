@@ -427,11 +427,7 @@ public class MprisMediaSession implements SharedPreferences.OnSharedPreferenceCh
             mediaSession.setPlaybackState(playbackState.build());
 
             //Only allow deletion if no music is notificationPlayer
-            if (notificationPlayer.isPlaying()) {
-                notification.setOngoing(true);
-            } else {
-                notification.setOngoing(false);
-            }
+            notification.setOngoing(notificationPlayer.isPlaying());
 
             //Use the MediaStyle notification, so it feels like other media players. That also allows adding actions
             MediaStyle mediaStyle = new MediaStyle();

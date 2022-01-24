@@ -15,7 +15,7 @@ public class ASUUtils {
      * Implementation of SignalStrength.toLevel usable from API Level 7+
      */
     public static int signalStrengthToLevel(SignalStrength signalStrength) {
-        int level = 0;
+        int level;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             level = signalStrength.getLevel();
         } else {

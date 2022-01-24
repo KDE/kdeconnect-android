@@ -80,7 +80,7 @@ public class MprisPlugin extends Plugin {
         }
 
         boolean isSpotify() {
-            return getPlayer().toLowerCase().equals("spotify");
+            return getPlayer().equalsIgnoreCase("spotify");
         }
 
         public String getLoopStatus() {

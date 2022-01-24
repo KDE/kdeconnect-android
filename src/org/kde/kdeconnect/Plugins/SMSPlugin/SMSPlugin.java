@@ -511,7 +511,7 @@ public class SMSPlugin extends Plugin {
     private boolean handleRequestSingleConversation(NetworkPacket packet) {
         SMSHelper.ThreadID threadID = new SMSHelper.ThreadID(packet.getLong("threadID"));
 
-        Long rangeStartTimestamp = packet.getLong("rangeStartTimestamp", -1);
+        long rangeStartTimestamp = packet.getLong("rangeStartTimestamp", -1);
         Long numberToGet = packet.getLong("numberToRequest", -1);
 
         if (numberToGet < 0) {
