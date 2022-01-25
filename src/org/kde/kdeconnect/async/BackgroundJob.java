@@ -6,9 +6,9 @@
 
 package org.kde.kdeconnect.async;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 import androidx.annotation.NonNull;
+
+import java.util.concurrent.atomic.AtomicLong;
 
 public abstract class BackgroundJob<I, R> implements Runnable {
     private static AtomicLong atomicLong = new AtomicLong(0);

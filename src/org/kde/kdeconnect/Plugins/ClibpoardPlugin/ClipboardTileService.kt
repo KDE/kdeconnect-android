@@ -11,7 +11,6 @@ import android.os.Build
 import android.service.quicksettings.TileService
 import androidx.annotation.RequiresApi
 import org.kde.kdeconnect.BackgroundService
-import org.kde.kdeconnect.Device
 
 @RequiresApi(Build.VERSION_CODES.N)
 class ClipboardTileService : TileService() {
