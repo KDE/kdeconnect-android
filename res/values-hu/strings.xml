@@ -52,11 +52,18 @@
   <string name="remotekeyboard_multiple_connections">Több, mint egy távoli billentyűzetkapcsolat van, válassza ki a beállítandó eszközt</string>
   <string name="open_mousepad">Távirányítás</string>
   <string name="mousepad_info">Az egérkurzor mozgatásához mozgassa az ujját a képernyőn. Koppintson a kattintáshoz, és használjon két/három ujjat a jobb és a középső gombokhoz. A görgetéshez használjon 2 ujjat. Hosszan húzza az ejtéshez.</string>
+  <string name="mousepad_single_tap_settings_title">Egy ujjas koppintás beállítása</string>
   <string name="mousepad_double_tap_settings_title">Két ujjas koppintás beállítása</string>
   <string name="mousepad_triple_tap_settings_title">Három ujjas koppintás beállítása</string>
   <string name="mousepad_sensitivity_settings_title">Érintőtábla érzékenység beállítása</string>
   <string name="mousepad_acceleration_profile_settings_title">Mutatógyorsítás beállítása</string>
   <string name="mousepad_scroll_direction_title">Fordított görgetési irány</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Bal gombos kattintás</item>
+    <item>Jobb gombos kattintás</item>
+    <item>Középső gombos kattintás</item>
+    <item>Semmi</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Leglassabb</item>
     <item>Leglassabb felett</item>
@@ -370,6 +377,10 @@
   <string name="konqi">Konqi</string>
   <string name="rise_up">Felemelés</string>
   <string name="rise_down">Leereszkedés</string>
+  <string name="click_here_to_type">Koppintson a gépeléshez</string>
+  <string name="clear_compose">Törlés</string>
+  <string name="send_compose">Küldés</string>
+  <string name="open_compose_send">Szöveg írása</string>
   <string name="app_description">Multiplatformos alkalmazás, amely lehetővé teszi eszközeinek, hogy kommunikáljanak egymással (például a telefonja és számítógépe)</string>
   <string name="about_kde_about">&lt;h1&gt;Névjegy&lt;/h1&gt; &lt;p&gt;A KDE fejlesztését és karbantartását egy nemzetközi közösség végzi, melynek tagjai mélyen elkötelezettek &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;szabad szoftverek&lt;/a&gt; iránt. A KDE készíti a Plasma asztali környezetet, alkalmazások százait és az azokat támogató programkönyvtárakat.&lt;/p&gt; &lt;p&gt;Nem egyetlen csoport, vállalat vagy szervezet határozza meg a KDE fejlődési irányát, akár Ön is &lt;a href=https://community.kde.org/Get_Involved &gt;bekapcsolódhat a fejlesztésbe&lt;/a&gt;!&lt;/p&gt; Ha többet szeretne megtudni a KDE közösségről és az általunk készített szoftverekről, látogassa meg a &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; honlapot.</string>
   <string name="about_kde_report_bugs_or_wishes">"&lt;h1&gt;Hibabejelentés és kérések&lt;/h1&gt; &lt;p&gt;Fejlesztőink folyamatosan próbálják tökéletesíteni a KDE-t, könnyebbé tenni annak kezelését. Ebben a folyamatban hatalmas segítséget jelent, ha Ön, a felhasználó is jelzi, ha valami nem úgy működik, ahogy szeretné.&lt;/p&gt; &lt;p&gt;A KDE rendelkezik egy internetes hibabejelentő rendszerrel. Hiba vagy továbbfejlesztési kívánság bejelentéséhez kérjük látogasson el a &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt;  címre, vagy használja a „Hibabejelentés” menüpontot a névjegy képernyőn.&lt;/p&gt; A hibabejelentő rendszerben nem csak hibákat, hanem továbbfejlesztési ötleteket és javaslatokat is rögzíteni lehet (ebben az esetben kérjük, hogy a bejelentés típusát „Wishlist”-nek - kívánságnak - állítsa be)."</string>
@@ -386,4 +397,6 @@
   <string name="holger_kaelberer_task">Távoli billentyűzet bővítmény és hibajavítások</string>
   <string name="saikrishna_arcot_task">Támogatás a billentyűzet használatához a távoli bement bővítményben, hibajavítások és általános fejlesztések</string>
   <string name="everyone_else">Mindenki más, aki hozzájárult a KDE Connect fejlesztéséhez az évek alatt</string>
+  <string name="send_clipboard">Vágólap küldése</string>
+  <string name="tap_to_execute">Koppintson a végrehajtáshoz</string>
 </resources>
