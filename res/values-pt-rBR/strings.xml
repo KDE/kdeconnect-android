@@ -57,6 +57,12 @@
   <string name="mousepad_sensitivity_settings_title">Definir sensibilidade do touchpad</string>
   <string name="mousepad_acceleration_profile_settings_title">Definir aceleração do ponteiro</string>
   <string name="mousepad_scroll_direction_title">Direção de rolagem inversa</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Clique esquerdo</item>
+    <item>Clique direito</item>
+    <item>Clique com o botão do meio</item>
+    <item>Nenhuma</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Mais lento</item>
     <item>Acima do mais lento</item>
@@ -76,6 +82,7 @@
   <string name="sendkeystrokes_disabled_toast">O envio de pressionamento de tecla está desabilitado - habilite-o nas configurações</string>
   <string name="sendkeystrokes_wrong_data">Tipo MIME inválido - precisa ser \'text/x-keystrokes\'</string>
   <string name="sendkeystrokes_sent_text">Enviar %1$s para o dispositivo %2$s</string>
+  <string name="sendkeystrokes_pref_category_summary">Este módulo permite a outros aplicativos compartilhar segmentos de texto como pressionamento de teclas que serão enviados para o host conectado</string>
   <string name="sendkeystrokes_pref_category_title">Enviar pressionamento de teclas</string>
   <string name="sendkeystrokes_pref_enabled">Habilitar o envio de pressionamento de teclas</string>
   <string name="sendkeystrokes_safe_text_enabled">Enviar texto seguro imediatamente</string>
@@ -192,6 +199,7 @@
   <string name="share_received_file">Compartilhar \"%s\"</string>
   <string name="title_activity_notification_filter">Filtro de notificações</string>
   <string name="filter_apps_info">As notificações dos aplicativos selecionados serão sincronizadas.</string>
+  <string name="show_notification_if_screen_off">Envia notificações apenas se a tela estiver desligada</string>
   <string name="sftp_sdcard_num">Cartão SD %d</string>
   <string name="sftp_sdcard">Cartão SD</string>
   <string name="sftp_readonly">(somente leitura)</string>
@@ -362,6 +370,10 @@
   <string name="kde_be_free">KDE - Seja livre!</string>
   <string name="kde">KDE</string>
   <string name="konqi">Konqi</string>
+  <string name="click_here_to_type">Toque aqui para digitar</string>
+  <string name="clear_compose">Limpar</string>
+  <string name="send_compose">Enviar</string>
+  <string name="open_compose_send">Compor texto</string>
   <string name="app_description">Aplicativo multiplataforma que permite aos seus dispositivos se comunicarem (ex.: seu celular e seu computador)</string>
   <string name="maintainer_and_developer">Mantenedor e desenvolvedor</string>
   <string name="developer">Desenvolvedor</string>
@@ -374,4 +386,6 @@
   <string name="holger_kaelberer_task">Plugin de teclado remoto e correções de erros</string>
   <string name="saikrishna_arcot_task">Suporte para usar o teclado no plugin de entrada remoto, correções de erros e melhorias em geral</string>
   <string name="everyone_else">Todos os outros que contribuíram para o KDE Connect ao longo dos anos</string>
+  <string name="send_clipboard">Enviar para área de transferência</string>
+  <string name="tap_to_execute">Toque para executar</string>
 </resources>
