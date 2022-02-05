@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
+  <string name="manifest_label_share">Trimite către dispozitiv</string>
   <string name="foreground_notification_no_devices">Niciun dispozitiv conectat</string>
   <string name="foreground_notification_devices">Conectat la: %s</string>
   <string name="foreground_notification_send_clipboard">Trimite clipboard</string>
@@ -51,11 +52,18 @@
   <string name="remotekeyboard_multiple_connections">Sunt mai multe conexiuni de tastatură la distanță, alegeți dispozitivul de configurat</string>
   <string name="open_mousepad">Introducere de la distanță</string>
   <string name="mousepad_info">"Mișcați un deget pe ecran pentru a muta cursorul mausului. Atingeți pentru clic, folosiți două/trei degete pentru butoanele drept și mijlociu. Folosiți 2 degete pentru a derula.  Apăsați lung pentru tragere-și-lăsare."</string>
+  <string name="mousepad_single_tap_settings_title">Stabilește acțiunea de atingere cu un deget</string>
   <string name="mousepad_double_tap_settings_title">Stabilește acțiunea de atingere cu două degete</string>
   <string name="mousepad_triple_tap_settings_title">Stabilește acțiunea de atingere cu trei degete</string>
   <string name="mousepad_sensitivity_settings_title">Stabilește sensibilitatea zonei tactile</string>
   <string name="mousepad_acceleration_profile_settings_title">Stabilește accelerația indicatorului</string>
   <string name="mousepad_scroll_direction_title">Inversează direcția derulării</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Clic stâng</item>
+    <item>Clic drept</item>
+    <item>Clic mijlociu</item>
+    <item>Nimic</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Cea mai lentă</item>
     <item>Mai puțin lentă</item>
@@ -75,6 +83,7 @@
   <string name="sendkeystrokes_textbox_hint">Trimite apăsări de taste către gazdă</string>
   <string name="sendkeystrokes_disabled_toast">Trimiterea de apăsări de taste e dezactivată – activați-o în configurări</string>
   <string name="sendkeystrokes_wrong_data">Tip MIME nevalid – trebuie să fie „text/x-keystrokes”</string>
+  <string name="sendkeystrokes_sent_text">Trimis %1$s către dispozitivul %2$s</string>
   <string name="sendkeystrokes_pref_category_summary">Acest modul permite altor aplicații să partajeze fragmente de text ca apăsări de taste ce vor fi trimise către gazda conectată</string>
   <string name="sendkeystrokes_pref_category_title">Trimite apăsări de taste</string>
   <string name="sendkeystrokes_pref_enabled">Activează trimiterea de apăsări de taste</string>
@@ -85,6 +94,11 @@
   <string name="mouse_receiver_plugin_description">Primește mișcări de maus de la distanță</string>
   <string name="mouse_receiver_plugin_name">Receptor pentru maus</string>
   <string name="mouse_receiver_no_permissions">Trebuie să activați Serviciul de Accesibilitate</string>
+  <string name="view_status_title">Stare</string>
+  <string name="battery_status_format">Acumulator: %d%%</string>
+  <string name="battery_status_low_format">Acumulator: %d%% Acumulator scăzut</string>
+  <string name="battery_status_charging_format">Acumulator: %d%% se încarcă</string>
+  <string name="battery_status_unknown">Nu sunt disponibile informații despre acumulator</string>
   <string name="category_connected_devices">Dispozitive conectate</string>
   <string name="category_not_paired_devices">Dispozitive disponibile</string>
   <string name="category_remembered_devices">Dispozitive memorizate</string>
@@ -197,6 +211,7 @@
   <string name="share_received_file">Partajează „%s”</string>
   <string name="title_activity_notification_filter">Filtru de notificări</string>
   <string name="filter_apps_info">Notificările vor fi sincronizate pentru aplicațiile alese.</string>
+  <string name="show_notification_if_screen_off">Trimite notificări doar dacă ecranul e stins</string>
   <string name="sftp_sdcard_num">Card SD %d</string>
   <string name="sftp_sdcard">Card SD</string>
   <string name="sftp_readonly">(numai citire)</string>
@@ -356,4 +371,22 @@
   <string name="donate">Donează</string>
   <string name="source_code">Codul sursă</string>
   <string name="licenses">Licențe</string>
+  <string name="website">Sait</string>
+  <string name="about">Despre</string>
+  <string name="authors">Autori</string>
+  <string name="thanks_to">Mulțumiri</string>
+  <string name="easter_egg">Surpriză</string>
+  <string name="email_contributor">Trimite mesaj contribuitorului\n%s</string>
+  <string name="visit_contributors_homepage">Vizitează pagina contribuitorului\n%s</string>
+  <string name="version">Versiunea %s</string>
+  <string name="about_kde">Despre KDE</string>
+  <string name="kde_be_free">KDE – Fii liber!</string>
+  <string name="kde">KDE</string>
+  <string name="konqi">Konqi</string>
+  <string name="click_here_to_type">Atingeți aici pentru a tasta</string>
+  <string name="clear_compose">Curăță</string>
+  <string name="send_compose">Expediază</string>
+  <string name="open_compose_send">Compune textul</string>
+  <string name="maintainer_and_developer">Responsabil și dezvoltator</string>
+  <string name="developer">Dezvoltator</string>
 </resources>
