@@ -52,11 +52,18 @@
   <string name="remotekeyboard_multiple_connections">Etänäppäimistöyhteyksiä on useampia: valitse asetettava laite</string>
   <string name="open_mousepad">Kauko-ohjaus</string>
   <string name="mousepad_info">Siirrä hiirikohdistinta liikuttamalla sormea näytöllä. Tee hiirenpainallus napauttamalla, ja käytä kahta tai kolmea sormea oikealle ja keskipainikkeelle. Vieritä kahdella sormella. Pitkällä painalluksella voit vetää ja pudottaa.</string>
+  <string name="mousepad_single_tap_settings_title">Aseta yhden sormen napautuksen toiminto</string>
   <string name="mousepad_double_tap_settings_title">Aseta kahden sormen napautuksen toiminto</string>
   <string name="mousepad_triple_tap_settings_title">Aseta kolmen sormen napautuksen toiminto</string>
   <string name="mousepad_sensitivity_settings_title">Aseta kosketuslevyn herkkyys</string>
   <string name="mousepad_acceleration_profile_settings_title">Aseta osoittimen kiihdytys</string>
   <string name="mousepad_scroll_direction_title">Käänteinen vierityssuunta</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Vasen napsautus</item>
+    <item>Oikea napsautus</item>
+    <item>Keskinapsautus</item>
+    <item>Ei toimintoa</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Hitain</item>
     <item>Hitainta suurempi</item>
@@ -370,6 +377,10 @@
   <string name="konqi">Konqi</string>
   <string name="rise_up">Nouse ylemmäs</string>
   <string name="rise_down">Laskeudu alemmas</string>
+  <string name="click_here_to_type">Napauta ja kirjoita</string>
+  <string name="clear_compose">Tyhjennä</string>
+  <string name="send_compose">Lähetä</string>
+  <string name="open_compose_send">Kirjoita teksti</string>
   <string name="app_description">Usean alustan sovellus, jolla laitteet (esim. puhelin ja tietokone) voivat viestiä keskenään</string>
   <string name="maintainer_and_developer">Ylläpitäjä ja kehittäjä</string>
   <string name="developer">Kehittäjä</string>
@@ -382,4 +393,6 @@
   <string name="holger_kaelberer_task">Etänäppäimistöliitännäinen ja virheenkorjaukset</string>
   <string name="saikrishna_arcot_task">Tuki näppäimistön käytölle etäsyöteliitännäisessä, virheenkorjaukset ja yleisparannukset</string>
   <string name="everyone_else">Kaikki muut vuosien varrella KDE Connectia avustaneet</string>
+  <string name="send_clipboard">Lähetä leikepöytä</string>
+  <string name="tap_to_execute">Suorita napauttamalla</string>
 </resources>
