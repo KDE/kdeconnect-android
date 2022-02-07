@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">கே.டீ.யீ. கனெக்ட்</string>
+  <string name="manifest_label_share">சாதனத்திற்கு அனுப்பு</string>
   <string name="foreground_notification_no_devices">எச்சாதனத்துடனும் இணைக்கப்படவில்லை</string>
   <string name="foreground_notification_devices">%s உடன் இணைந்துள்ளது</string>
   <string name="foreground_notification_send_clipboard">பிடிப்புப்பலகையை அனுப்பு</string>
@@ -96,7 +97,7 @@
   <string name="view_status_title">நிலை</string>
   <string name="battery_status_format">மின்கலம்: %d%%</string>
   <string name="battery_status_low_format">மின்கலம்: %d%% குறைந்த மின்கலம்</string>
-  <string name="battery_status_charging_format">மின்கலம்: %d%% ஆற்றல் ஏறுகிறது</string>
+  <string name="battery_status_charging_format">மின்கலம்: %d%% மின்னேறுகிறது</string>
   <string name="battery_status_unknown">மின்கல விவரங்கள் கிடைக்கவில்லை</string>
   <string name="category_connected_devices">இணைக்கப்பட்ட சாதனங்கள்</string>
   <string name="category_not_paired_devices">கிட்டுகின்ற சாதனங்கள்</string>
@@ -150,7 +151,7 @@
     <item quantity="other">%1$s-க்கு %3$d-இல் %2$d கோப்புகளை அனுப்புதல் தோல்வியடைந்தது</item>
   </plurals>
   <string name="tap_to_open">திறக்க தட்டவும்</string>
-  <string name="received_file_text">\'%1s\'-ஐ திறக்க தட்டவும்</string>
+  <string name="received_file_text">\'%1s\'-ஐ திறக்க தட்டு</string>
   <string name="cannot_create_file">%s என்ற கோப்பை உருவாக்க முடியவில்லை</string>
   <string name="tap_to_answer">பதிலளிக்க தட்டவும்</string>
   <string name="right_click">வலது க்ளிக்கை அனுப்பு</string>
@@ -192,9 +193,9 @@
   <string name="custom_device_list_help">உங்கள் சாதனம் தானாக கண்டறியப்படவில்லையெனில் நீங்கள் மிதக்கும் செயல் பொத்தானை அழுத்தி அதன் IP முகவரி அல்லது புரவன் பெயரை சேர்க்கலாம்</string>
   <string name="custom_device_fab_hint">சாதனத்தைச் சேர்</string>
   <string name="undo">செயல்நீக்கு</string>
-  <string name="share_notification_preference">ஒலியுடன் கூடிய அறிவிப்புகள்</string>
+  <string name="share_notification_preference">ஒலியெழுப்பும் அறிவிப்பு</string>
   <string name="share_notification_preference_summary">கோப்பைப் பெறும்போது அதிர்வு மற்றும் ஓசையை உண்டாக்கு</string>
-  <string name="share_destination_customize">இலக்கு அடைவை தேர்ந்தெடுங்கள்</string>
+  <string name="share_destination_customize">இலக்கை மாற்று</string>
   <string name="share_destination_customize_summary_disabled">பெறப்பட்ட கோப்புகள் பதிவிறக்கங்களில் தோன்றும்</string>
   <string name="share_destination_customize_summary_enabled">கோப்புகள் கீழ்காணும் அடைவில் சேமிக்கப்படும்</string>
   <string name="share_destination_folder_preference">இலக்கு அடைவு</string>
@@ -202,7 +203,7 @@
   <string name="share_received_file">\"%s\"-ஐப் பகிர்</string>
   <string name="title_activity_notification_filter">அறிவிப்பு வடிகட்டி</string>
   <string name="filter_apps_info">தேர்ந்தெடுக்கப்பட்ட செயலிகளின் அறிவிப்புகள் மட்டும் ஒத்திசையும்.</string>
-  <string name="show_notification_if_screen_off">திரை முடக்கப்பட்டிருந்தால் மட்டும் அறிவிப்புகள் அனுப்பு</string>
+  <string name="show_notification_if_screen_off">திரை அணைவிலிருந்தால் மட்டும் அறிவிப்புகள் அனுப்பு</string>
   <string name="sftp_sdcard_num">SD அட்டை %d</string>
   <string name="sftp_sdcard">SD அட்டை</string>
   <string name="sftp_readonly">(படித்தல் மட்டும்)</string>
@@ -277,7 +278,7 @@
   <string name="notification_channel_persistent">விடாப்பிடி அறிவிப்பு</string>
   <string name="notification_channel_media_control">ஊடக கட்டுப்பாடு</string>
   <string name="notification_channel_filetransfer">கோப்பு இடமாற்றம்</string>
-  <string name="notification_channel_high_priority">அதிக முக்கியத்துவம்</string>
+  <string name="notification_channel_high_priority">அதிக முன்னுரிமை</string>
   <string name="notification_channel_sms_mms">புதிய தகவல்</string>
   <string name="mpris_stop">தற்போதைய இயக்கியை நிறுத்து</string>
   <string name="copy_url_to_clipboard">முகவரியை பிடிப்புப்பலகையில் நகலெடு</string>
@@ -307,8 +308,8 @@
   <string name="block_contents">அறிவிப்புகளின் உள்ளடக்கத்தை காட்டாதே</string>
   <string name="block_images">அறிவிப்புகளில் படங்களை காட்டாதே</string>
   <string name="notification_channel_receivenotification">மற்ற சாதனங்களிலிருந்து அறிவிப்புகள்</string>
-  <string name="take_picture">புகைப்பட கருவியை இயக்கு</string>
-  <string name="plugin_photo_desc">புகைப்படங்களை எளிதாக எடுக்க மற்றும் மாற்ற படக்கருவி செயலியை இயக்கு</string>
+  <string name="take_picture">புகைப்பட செயலியை திற</string>
+  <string name="plugin_photo_desc">புகைப்படங்களை எளிதாக எடுக்கவும் மாற்றவும் படக்கருவி செயலியை திறக்கும்</string>
   <string name="no_app_for_opening">இக்கோப்பை திறப்பதற்குகந்த செயலி ஏதுமில்லை</string>
   <string name="remote_keyboard_service">கே.டீ.யீ. கனெக்ட் தொலை விசைப்பலகை</string>
   <string name="presenter_pointer">சுட்டி</string>
@@ -391,5 +392,6 @@
   <string name="maxim_leshchenko_task">இடைமுகப்பு மேம்பாடுகளும் இப்பக்கமும்</string>
   <string name="holger_kaelberer_task">தொலை விசைப்பலகை செருகுநிரலும் பிழைதிருத்தங்களும்</string>
   <string name="everyone_else">கடந்த ஆண்டுகளில் கே.டீ.யீ. கனெக்டிற்கு பங்களித்த மற்றவர்கள்</string>
+  <string name="send_clipboard">பிடிப்புப்பலகையை அனுப்பு</string>
   <string name="tap_to_execute">இயக்க தட்டவும்</string>
 </resources>
