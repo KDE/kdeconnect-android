@@ -52,11 +52,18 @@
   <string name="remotekeyboard_multiple_connections">发现多个远程键盘连接，请选择要配置的设备</string>
   <string name="open_mousepad">远程输入</string>
   <string name="mousepad_info">在屏幕上移动手指来移动光标。轻击代表左键，双指或三指点击代表右键或中键。用双指滚动。用长按来拖放。</string>
+  <string name="mousepad_single_tap_settings_title">设置单指点击操作</string>
   <string name="mousepad_double_tap_settings_title">设置双指点击操作</string>
   <string name="mousepad_triple_tap_settings_title">设置三指点击操作</string>
   <string name="mousepad_sensitivity_settings_title">设置触摸板灵敏度</string>
   <string name="mousepad_acceleration_profile_settings_title">设置指针加速度</string>
   <string name="mousepad_scroll_direction_title">反转滚动方向</string>
+  <string-array name="mousepad_tap_entries">
+    <item>左键点击</item>
+    <item>右键点击</item>
+    <item>中间键点击</item>
+    <item>无操作</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>最慢</item>
     <item>高于最慢</item>
@@ -362,6 +369,10 @@
   <string name="konqi">Konqi</string>
   <string name="rise_up">上升</string>
   <string name="rise_down">下降</string>
+  <string name="click_here_to_type">轻触此处输入</string>
+  <string name="clear_compose">清除</string>
+  <string name="send_compose">发送</string>
+  <string name="open_compose_send">编写文本</string>
   <string name="app_description">用于在不同设备之间通信的多平台应用 (例如手机和电脑)</string>
   <string name="about_kde_about">&lt;h1&gt;关于&lt;/h1&gt; &lt;p&gt;KDE 是由一群致力于&lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;自由软件&lt;/a&gt;事业的人们所组成的全球性协作社区。它的成员包括了来自世界各地的软件工程师、艺术工作者、文字工作者、翻译人员和其他创意人员。KDE 社区开发了 Plasma 桌面环境、数百款功能各异的应用软件、以及用于支持它们的大量程序库。&lt;/p&gt; &lt;p&gt;KDE 是一项立足于协作精神的事业，它的运作和产出不受任何单一个人或者机构的控制。我们的共同目标是为全世界带来高品质的自由软件。不管您来自何方，我们都欢迎您&lt;a href=https://community.kde.org/Get_Involved&gt;加入 KDE 并做出贡献&lt;/a&gt;。&lt;/p&gt;请访问 &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; 来了解 KDE 社区和软件的更多信息。</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;报告程序缺陷和需求&lt;/h1&gt; &lt;p&gt;KDE 团队一直致力于改进软件的品质。为了做到这一点，倾听来自用户的反馈非常重要。如果您遇到了软件不能正常工作的情况，请务必告诉我们。如果您有关于改进软件的想法，也请与我们分享。&lt;/p&gt; &lt;p&gt;KDE 建有程序缺陷跟踪系统，请访问 &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; 或者使用“帮助”菜单中的“报告缺陷”对话框填写报告。&lt;/p&gt;如果您想要提出改进建议而不是报告程序缺陷，请确保在表格的 Severity (严重程度) 选单中选择“Wishlist (需求)”。</string>
@@ -378,4 +389,6 @@
   <string name="holger_kaelberer_task">远程键盘插件和程序缺陷修正</string>
   <string name="saikrishna_arcot_task">支持在远程输入插件中使用键盘、程序缺陷修正和常规改进</string>
   <string name="everyone_else">以及多年来为 KDE Connect 作出过贡献的其他所有人</string>
+  <string name="send_clipboard">发送剪贴板</string>
+  <string name="tap_to_execute">轻触执行</string>
 </resources>
