@@ -12,7 +12,7 @@
   <string name="pref_plugin_connectivity_report">Zgłaszanie łączności</string>
   <string name="pref_plugin_connectivity_report_desc">Zgłasza siłę i stanu sygnału sieciowego</string>
   <string name="pref_plugin_sftp">Udostępnianie systemu plików</string>
-  <string name="pref_plugin_sftp_desc">Udostępnia systemu plików tego urządzenia innemu urządzeniu do przeglądania</string>
+  <string name="pref_plugin_sftp_desc">Udostępnia system plików tego urządzenia do przeglądania innemu urządzeniu</string>
   <string name="pref_plugin_clipboard">Współdzielenie schowka</string>
   <string name="pref_plugin_clipboard_desc">Współdzieli schowek między urządzeniami</string>
   <string name="pref_plugin_clipboard_sent">Wysłano ze schowka</string>
@@ -28,7 +28,7 @@
   <string name="pref_plugin_runcommand_desc">Wykonuje polecenia na innym urządzeniu z tego urządzenia</string>
   <string name="pref_plugin_contacts">Udostępnianie kontaktów</string>
   <string name="pref_plugin_contacts_desc">Udostępnia książkę kontaktów tego urządzenia innemu urządzeniu</string>
-  <string name="pref_plugin_ping">Wysłanie pingów</string>
+  <string name="pref_plugin_ping">Wysyłanie pingów</string>
   <string name="pref_plugin_ping_desc">Odbiera i wysyła pingi między urządzeniami</string>
   <string name="pref_plugin_notifications">Wysyłanie powiadomień</string>
   <string name="pref_plugin_notifications_desc">Wysyła powiadomienia na inne urządzenia</string>
@@ -206,7 +206,7 @@
   <string name="custom_devices_settings">Lista własnych urządzeń</string>
   <string name="custom_device_list">Dodaj urządzenie po adresie IP</string>
   <string name="custom_device_deleted">Usunięto własne urządzenie</string>
-  <string name="custom_device_list_help">Jeśli twoje urządzenie nie zostało wykryte samoczynnie, to możesz ręcznie dodać jego adres IP lub nazwę gospodarza, naciskając pomarańczowy przycisk u dołu ekranu</string>
+  <string name="custom_device_list_help">Jeśli twoje urządzenie nie zostało wykryte samoczynnie, to możesz dodać je ręcznie po wpisaniu jego adresu IP lub nazwy gospodarza. Aby to zrobić, naciśnij pomarańczowy przycisk u dołu ekranu.</string>
   <string name="custom_device_fab_hint">Dodaj urządzenie</string>
   <string name="undo">Cofnij</string>
   <string name="share_notification_preference">Hałaśliwe powiadomienia</string>
@@ -252,11 +252,11 @@
   <string name="device_rename_confirm">Zmień nazwę</string>
   <string name="refresh">Odśwież</string>
   <string name="unreachable_description">To sparowane urządzenie jest nieosiągalne. Upewnij się, że jest podłączone do tej samej sieci.</string>
-  <string name="no_wifi">Nie jesteś połączony z siecią Wi-Fi, więc nie będziesz widział żadnych. Naciśnij tutaj, aby włączyć Wi-Fi.</string>
+  <string name="no_wifi">Nie jesteś połączony z siecią Wi-Fi, więc nie będziesz widział żadnych urządzeń. Naciśnij tutaj, aby włączyć Wi-Fi.</string>
   <string name="on_non_trusted_message">Niezaufana sieć: wyłączono samowykrywanie.</string>
   <string name="no_file_browser">Nie wgrano żadnych przeglądarek plików.</string>
   <string name="pref_plugin_telepathy">Wysyłanie SMSów</string>
-  <string name="pref_plugin_telepathy_desc">Wysyła wiadomości tekstowe z innego urządzenia poprzez to urządzenie</string>
+  <string name="pref_plugin_telepathy_desc">Wysyła wiadomości tekstowe tym urządzeniem z innego urządzenia</string>
   <string name="pref_plugin_telepathy_mms">Wyślij MMSa</string>
   <string name="pref_plugin_telepathy_mms_desc">Aby móc wysyłać MMSa z KDE Connect, musisz ustawić go jako domyślny program do SMSów</string>
   <string name="findmyphone_title">Poszukiwania tego telefonu</string>
@@ -314,10 +314,10 @@
   <string name="settings_rename">Nazwa urządzenia</string>
   <string name="settings_dark_mode">Ciemny wygląd</string>
   <string name="settings_more_settings_title">Więcej ustawień</string>
-  <string name="settings_more_settings_text">Ustawienia danego urządzeniu można znaleźć w „Ustawienia wtyczek” na urządzeniu.</string>
-  <string name="setting_persistent_notification">Pokaż nieznikające powiadomienie</string>
-  <string name="setting_persistent_notification_oreo">Nieznikające powiadomienie</string>
-  <string name="setting_persistent_notification_description">Stuknij, aby je ustawić w ustawieniach powiadamiania</string>
+  <string name="settings_more_settings_text">Dodatkowe ustawienia, dotyczące danego urządzenia, można znaleźć po wejściu na nie i wybranie „Ustawienia wtyczek”.</string>
+  <string name="setting_persistent_notification">Pokaż nieznikające powiadomienia</string>
+  <string name="setting_persistent_notification_oreo">Nieznikające powiadomienia</string>
+  <string name="setting_persistent_notification_description">Stuknij, aby je ustawić w ustawieniach powiadomień</string>
   <string name="extra_options">Ustawienia dodatkowe</string>
   <string name="privacy_options">Ustawienia prywatności</string>
   <string name="set_privacy_options">Ustaw swoją prywatność</string>
@@ -325,7 +325,7 @@
   <string name="block_images">Blokuj obrazy w powiadomieniach</string>
   <string name="notification_channel_receivenotification">Powiadomienia z innych urządzeń</string>
   <string name="take_picture">Uruchamianie aparatu</string>
-  <string name="plugin_photo_desc">Zezwala na uruchomienie aparatu do łatwego robienia i przesyłanie zdjęć</string>
+  <string name="plugin_photo_desc">Zezwala na uruchamianie aparatu, aby ułatwić robienie i przesyłanie zdjęć</string>
   <string name="no_app_for_opening">Nie znaleziono aplikacji do otwarcia tego pliku</string>
   <string name="remote_keyboard_service">Zdalna klawiatura KDE Connect</string>
   <string name="presenter_pointer">Wskaźnik</string>
@@ -364,7 +364,7 @@
     <item>Po czterech wiadomościach</item>
     <item>Po pięciu wiadomościach</item>
   </string-array>
-  <string name="theme_dialog_title">Wybierz wygląd</string>
+  <string name="theme_dialog_title">Obowiązujący wygląd</string>
   <string-array name="theme_list">
     <item>Ustaw przy oszczędzaniu energii</item>
     <item>Jasny</item>
