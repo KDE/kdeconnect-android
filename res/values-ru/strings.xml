@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
+  <string name="manifest_label_share">Отправить на устройство</string>
   <string name="foreground_notification_no_devices">Не подключено ни к одному устройству</string>
   <string name="foreground_notification_devices">Подключено к: %s</string>
   <string name="foreground_notification_send_clipboard">Передать буфер обмена</string>
@@ -51,11 +52,18 @@
   <string name="remotekeyboard_multiple_connections">Подключено более одной удалённой клавиатуры, выберите устройство для настройки</string>
   <string name="open_mousepad">Удалённый ввод</string>
   <string name="mousepad_info">Перемещайте палец по экрану для перемещения курсора мыши. Коснитесь для нажатия, используйте касание двумя/тремя пальцами для правой и средней кнопок. Для выполнения прокрутки используйте два пальца, для перетаскивания — долгое нажатие.</string>
+  <string name="mousepad_single_tap_settings_title">Действие при касании одним пальцем</string>
   <string name="mousepad_double_tap_settings_title">Действие при касании двумя пальцами</string>
   <string name="mousepad_triple_tap_settings_title">Действие при касании тремя пальцами</string>
   <string name="mousepad_sensitivity_settings_title">Чувствительность сенсорной панели</string>
   <string name="mousepad_acceleration_profile_settings_title">Настройка ускорения курсора</string>
   <string name="mousepad_scroll_direction_title">Инвертировать направление прокрутки</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Нажатие левой кнопки</item>
+    <item>Нажатие правой кнопки</item>
+    <item>Нажатие средней кнопки</item>
+    <item>Ничего не делать</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Самая низкая</item>
     <item>Низкая</item>
@@ -85,6 +93,9 @@
   <string name="mouse_receiver_plugin_description">Получать движения удалённой мыши</string>
   <string name="mouse_receiver_plugin_name">Инструмент получения движений мыши</string>
   <string name="mouse_receiver_no_permissions">Включите службу специальных возможностей</string>
+  <string name="view_status_title">Состояние</string>
+  <string name="battery_status_format">Заряд батареи: %d%%</string>
+  <string name="battery_status_unknown">Информация о заряде батареи недоступна</string>
   <string name="category_connected_devices">Подключённые устройства</string>
   <string name="category_not_paired_devices">Доступные устройства</string>
   <string name="category_remembered_devices">Известные устройства</string>
@@ -368,13 +379,24 @@
   <string name="about">О программе</string>
   <string name="authors">Авторы</string>
   <string name="thanks_to">Благодарности</string>
+  <string name="easter_egg">Пасхальное яйцо</string>
+  <string name="version">Версия %s</string>
+  <string name="about_kde">О KDE</string>
   <string name="kde_be_free">Будьте свободными!</string>
   <string name="kde">KDE</string>
   <string name="konqi">Konqi</string>
+  <string name="clear_compose">Очистить</string>
+  <string name="send_compose">Отправить</string>
+  <string name="open_compose_send">Написать сообщение</string>
+  <string name="maintainer_and_developer">Сопровождающий и разработчик</string>
   <string name="developer">Разработчик</string>
+  <string name="apple_support">Поддержка macOS, работа над поддержкой iOS.</string>
   <string name="bug_fixes_and_general_improvements">Исправления и улучшения</string>
+  <string name="samoilenko_yuri_task">Реализация поддержки протокола SFTP, исправления и улучшения</string>
   <string name="aniket_kumar_task">Улучшения модуля SMS</string>
   <string name="alex_fiestas_task">Улучшения модуля «контакты»</string>
   <string name="maxim_leshchenko_task">Улучшения интерфейса и страница «О программе\"</string>
   <string name="holger_kaelberer_task">Модуль «удалённая клавиатура» и исправления ошибок</string>
+  <string name="send_clipboard">Передать буфер обмена</string>
+  <string name="tap_to_execute">Коснитесь, чтобы выполнить действие</string>
 </resources>
