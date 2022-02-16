@@ -1,0 +1,66 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+  <group android:scaleX="0.8"
+      android:scaleY="0.8"
+      android:translateX="10.8"
+      android:translateY="10.8">
+    <path
+        android:pathData="M40,27L68,27A2,2 0,0 1,70 29L70,79A2,2 0,0 1,68 81L40,81A2,2 0,0 1,38 79L38,29A2,2 0,0 1,40 27z"
+        android:strokeWidth="1.73436">
+      <aapt:attr name="android:fillColor">
+        <gradient 
+            android:startY="27"
+            android:startX="38"
+            android:endY="81"
+            android:endX="38"
+            android:type="linear">
+          <item android:offset="0" android:color="#FFF5F5F5"/>
+          <item android:offset="1" android:color="#FFF0F0F0"/>
+        </gradient>
+      </aapt:attr>
+    </path>
+    <path
+        android:pathData="m41,30h26v48h-26z"
+        android:strokeWidth="1.00241"
+        android:fillColor="#2d2d2d"/>
+    <path
+        android:pathData="M50.25,28.25L57.75,28.25A0.25,0.25 0,0 1,58 28.5L58,28.5A0.25,0.25 0,0 1,57.75 28.75L50.25,28.75A0.25,0.25 0,0 1,50 28.5L50,28.5A0.25,0.25 0,0 1,50.25 28.25z"
+        android:strokeWidth=".632455"
+        android:fillColor="#2d2d2d"/>
+    <path
+        android:pathData="m47.694,47.379c-0.04,0.004 -0.083,0.015 -0.113,0.045 0,0 -1.381,1.381 -1.381,1.381 -0.058,0.058 -0.065,0.147 -0.023,0.218 0,0 1.614,2.665 1.614,2.665 -0.287,0.482 -0.519,0.999 -0.683,1.547 0,0 -2.965,0.616 -2.965,0.616 -0.083,0.017 -0.143,0.096 -0.143,0.18v1.952c0,0.083 0.063,0.153 0.143,0.173 0,0 2.875,0.698 2.875,0.698 0.154,0.634 0.391,1.241 0.706,1.794 0,0 -1.667,2.538 -1.667,2.538 -0.046,0.071 -0.037,0.165 0.023,0.225 0,0 1.381,1.381 1.381,1.381 0.058,0.058 0.147,0.065 0.218,0.023 0,0 2.613,-1.584 2.613,-1.584 0.512,0.296 1.067,0.533 1.652,0.691 0,0 0.608,2.928 0.608,2.928 0.017,0.083 0.088,0.143 0.173,0.143h1.952c0.082,0 0.153,-0.055 0.173,-0.135 0,0 0.721,-2.943 0.721,-2.943 0.603,-0.163 1.171,-0.404 1.697,-0.713 0,0 2.575,1.689 2.575,1.689 0.071,0.046 0.165,0.037 0.225,-0.023 0,0 1.374,-1.381 1.374,-1.381 0.058,-0.058 0.073,-0.147 0.03,-0.218 0,0 -0.938,-1.547 -0.938,-1.547s-0.308,0.098 -0.308,0.098c-0.044,0.014 -0.094,-0.006 -0.12,-0.045 0,0 -0.593,-0.872 -1.366,-2.005 -0.925,1.81 -2.812,3.048 -4.985,3.048 -3.088,0 -5.593,-2.505 -5.593,-5.593 0,-2.271 1.358,-4.222 3.303,-5.098v-1.441c-0.354,0.124 -0.696,0.273 -1.021,0.45 -0.001,-0 0.001,-0.007 0,-0.007 0,0 -2.635,-1.727 -2.635,-1.727 -0.035,-0.023 -0.073,-0.027 -0.113,-0.023 0,0 0,0 0,-0zM55.659,43.85s-3.514,0.338 -3.514,0.338v14.475s3.476,-0.526 3.476,-0.526v-6.171s4.677,6.847 4.677,6.847 3.664,-1.164 3.664,-1.164 -4.79,-6.584 -4.79,-6.584 4.827,-6.209 4.827,-6.209 -3.739,-0.856 -3.739,-0.856 -4.64,6.209 -4.64,6.209 0.038,-6.359 0.038,-6.359z"
+        android:fillColor="#f2f2f2"/>
+    <path
+        android:pathData="m41,30h22l-18,45h-4z"
+        android:strokeAlpha="0.1"
+        android:fillAlpha="0.1">
+      <aapt:attr name="android:fillColor">
+        <gradient 
+            android:startY="30"
+            android:startX="41"
+            android:endY="70"
+            android:endX="60"
+            android:type="linear">
+          <item android:offset="0" android:color="#FFFFFFFD"/>
+          <item android:offset="1" android:color="#00FFFFFD"/>
+        </gradient>
+      </aapt:attr>
+    </path>
+    <path
+        android:fillColor="#FF000000"
+        android:pathData="m38,78v1c0,1.108 0.892,2 2,2h28c1.108,0 2,-0.892 2,-2v-1c0,1.108 -0.892,2 -2,2h-28c-1.108,0 -2,-0.892 -2,-2z"
+        android:strokeAlpha="0.1"
+        android:strokeWidth="1.73436"
+        android:fillAlpha="0.1"/>
+    <path
+        android:pathData="m70,30v-1c0,-1.108 -0.892,-2 -2,-2h-28c-1.108,0 -2,0.892 -2,2v1c0,-1.108 0.892,-2 2,-2h28c1.108,0 2,0.892 2,2z"
+        android:strokeAlpha="0.5"
+        android:strokeWidth="1.73436"
+        android:fillColor="#fffff8"
+        android:fillAlpha="0.5"/>
+  </group>
+</vector>
