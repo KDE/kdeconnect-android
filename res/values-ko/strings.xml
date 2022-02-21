@@ -52,11 +52,18 @@
   <string name="remotekeyboard_multiple_connections">원격 키보드 연결이 여러 개 있습니다. 설정할 장치를 선택하십시오</string>
   <string name="open_mousepad">원격 입력</string>
   <string name="mousepad_info">화면에서 손가락을 움직이면 마우스 커서를 움직입니다. 화면을 누르면 왼쪽 단추를 누르고, 두 손가락과 세 손가락으로 누르면 오른쪽/가운데 단추를 누릅니다. 두 손가락을 사용하여 스크롤할 수 있습니다. 드래그 앤 드롭을 사용하려면 길게 누르십시오.</string>
+  <string name="mousepad_single_tap_settings_title">한 손가락으로 눌렀을 때 동작 설정</string>
   <string name="mousepad_double_tap_settings_title">두 손가락으로 눌렀을 때 동작 설정</string>
   <string name="mousepad_triple_tap_settings_title">세 손가락으로 눌렀을 때 동작 설정</string>
   <string name="mousepad_sensitivity_settings_title">터치패드 감도 설정</string>
   <string name="mousepad_acceleration_profile_settings_title">포인터 가속 설정</string>
   <string name="mousepad_scroll_direction_title">스크롤 방향 뒤집기</string>
+  <string-array name="mousepad_tap_entries">
+    <item>왼쪽 클릭</item>
+    <item>오른쪽 단추 누름</item>
+    <item>가운데 단추 누름</item>
+    <item>아무것도 안 함</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>느리게</item>
     <item>느리게 이상</item>
@@ -362,6 +369,10 @@
   <string name="konqi">Konqi</string>
   <string name="rise_up">위로 올리기</string>
   <string name="rise_down">아래로 내리기</string>
+  <string name="click_here_to_type">입력하려면 누르십시오</string>
+  <string name="clear_compose">지우기</string>
+  <string name="send_compose">보내기</string>
+  <string name="open_compose_send">텍스트 작성</string>
   <string name="app_description">장치간 통신을 지원하는 멀티 플랫폼 앱(예: 휴대폰과 컴퓨터)</string>
   <string name="maintainer_and_developer">관리자 및 개발자</string>
   <string name="developer">개발자</string>
@@ -374,4 +385,6 @@
   <string name="holger_kaelberer_task">원격 키보드 플러그인과 버그 수정</string>
   <string name="saikrishna_arcot_task">원격 입력 플러그인에서 키보드 사용 지원, 버그 수정과 개선</string>
   <string name="everyone_else">그 외 오랫동안 KDE Connect에 기여한 사람들</string>
+  <string name="send_clipboard">클립보드 보내기</string>
+  <string name="tap_to_execute">실행하려면 누르십시오</string>
 </resources>
