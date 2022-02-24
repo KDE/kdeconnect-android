@@ -1,30 +1,33 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
+  <string name="manifest_label_share">Kirim ke Perangkat</string>
   <string name="foreground_notification_no_devices">Belum terkoneksi ke perangkat apa pun</string>
-  <string name="foreground_notification_devices">Terkoneksi ke: %s</string>
+  <string name="foreground_notification_devices">Terhubung ke: %s</string>
   <string name="foreground_notification_send_clipboard">Kirimkan Clipboard</string>
   <string name="pref_plugin_telephony">Penotifikasi ponsel</string>
   <string name="pref_plugin_telephony_desc">Kirim notifikasi untuk panggilan yang masuk</string>
   <string name="pref_plugin_battery">Laporan baterai</string>
   <string name="pref_plugin_battery_desc">Status baterai laporkan secara berkala</string>
-  <string name="pref_plugin_sftp">Menyingkap sistem file</string>
-  <string name="pref_plugin_sftp_desc">Membolehkan menelusuri sistem file perangkat ini secara jarak jauh</string>
-  <string name="pref_plugin_clipboard">Sinkron clipboard</string>
-  <string name="pref_plugin_clipboard_desc">Berbagi konten papan-klip</string>
-  <string name="pref_plugin_clipboard_sent">Kiriman Clipboard</string>
+  <string name="pref_plugin_connectivity_report">Laporan koneksi</string>
+  <string name="pref_plugin_connectivity_report_desc">Laporkan kekuatan sinyal jaringan dan status</string>
+  <string name="pref_plugin_sftp">Singkapan sistem file</string>
+  <string name="pref_plugin_sftp_desc">Memungkinkan untuk menelusuri sistem file perangkat ini secara jarak jauh</string>
+  <string name="pref_plugin_clipboard">Sinkron papan klip</string>
+  <string name="pref_plugin_clipboard_desc">Berbagi konten papan klip</string>
+  <string name="pref_plugin_clipboard_sent">Papan Klip Terkirim</string>
   <string name="pref_plugin_mousepad">Input jarak jauh</string>
   <string name="pref_plugin_mousepad_desc">Gunakan ponsel atau tabletmu sebagai touchpad dan keyboard</string>
-  <string name="pref_plugin_presenter">Remot Salindia</string>
+  <string name="pref_plugin_presenter">Remot salindia</string>
   <string name="pref_plugin_presenter_desc">Gunakan perangkatmu untuk mengubah slide dalam sebuah presentasi</string>
-  <string name="pref_plugin_remotekeyboard">Terima penekanan tuts jarak jauh</string>
-  <string name="pref_plugin_remotekeyboard_desc">Terima peristiwa tekan-tuts dari perangkat jarak jauh</string>
+  <string name="pref_plugin_remotekeyboard">Terima penekanan tombol jarak jauh</string>
+  <string name="pref_plugin_remotekeyboard_desc">Terima peristiwa penekanan tombol dari perangkat jarak jauh</string>
   <string name="pref_plugin_mpris">Kendalikan multimedia</string>
   <string name="pref_plugin_mpris_desc">Menyediakan sebuah kendali jarak jauh untuk pemutar mediamu</string>
   <string name="pref_plugin_runcommand">Jalankan Perintah</string>
   <string name="pref_plugin_runcommand_desc">Pemicu perintah jarak jauh dari ponsel dan tablet-mu</string>
   <string name="pref_plugin_contacts">Penyinkron Kontak</string>
-  <string name="pref_plugin_contacts_desc">Bolehkan menyinkronkan buku kontak pada perangkat</string>
+  <string name="pref_plugin_contacts_desc">Izinkan menyinkronkan buku kontak pada perangkat</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Kirim dan terima ping</string>
   <string name="pref_plugin_notifications">Sinkron notifikasi</string>
@@ -32,28 +35,35 @@
   <string name="pref_plugin_receive_notifications">Terima notifikasi</string>
   <string name="pref_plugin_receive_notifications_desc">Terima notifikasi dari perangkat lain dan menampilkannya pada Android</string>
   <string name="pref_plugin_sharereceiver">Kirim dan terima</string>
-  <string name="pref_plugin_sharereceiver_desc">Berbagi file-file dan URL-URL antara perangkat</string>
+  <string name="pref_plugin_sharereceiver_desc">Berbagi file dan URL antara perangkat</string>
   <string name="device_list_empty">Tidak ada perangkat</string>
   <string name="ok">Oke</string>
-  <string name="sad_ok">OKE :(</string>
+  <string name="sad_ok">Oke :(</string>
   <string name="cancel">Batal</string>
   <string name="open_settings">Buka pengaturan</string>
-  <string name="no_permissions">Kamu perlu mengabulkan perizinan untuk mengakses notifikasi</string>
-  <string name="no_permission_mprisreceiver">Untuk dapat mengendalikan pemutar mediamu kamu perlu mengabulkan akses ke notifikasi</string>
+  <string name="no_permissions">Kamu perlu memberikan izin untuk mengakses notifikasi</string>
+  <string name="no_permission_mprisreceiver">Untuk dapat mengendalikan pemutar mediamu kamu perlu memberikan akses ke notifikasi</string>
   <string name="no_permissions_remotekeyboard">Untuk menerima penekanan tombol, kamu perlu mengaktifkan KDE Connect Remote Keyboard</string>
   <string name="send_ping">Kirim ping</string>
   <string name="open_mpris_controls">Kendali multimedia</string>
-  <string name="remotekeyboard_editing_only_title">Menangani tuts jarak jauh hanya ketika mengedit</string>
-  <string name="remotekeyboard_not_connected">Tidak adanya keaktifan koneksi keyboard jarak jauh, yang dibuat dalam kdeconnect</string>
+  <string name="remotekeyboard_editing_only_title">Menangani tombol jarak jauh hanya ketika mengedit</string>
+  <string name="remotekeyboard_not_connected">Tidak ada koneksi keyboard jarak jauh yang aktif, buat satu dalam kdeconnect</string>
   <string name="remotekeyboard_connected">Koneksi keyboard jarak jauh telah aktif</string>
   <string name="remotekeyboard_multiple_connections">Ada lebih dari satu koneksi keyboard jarak jauh, pilihlah perangkat untuk mengkonfigurasi</string>
   <string name="open_mousepad">Input jarak jauh</string>
   <string name="mousepad_info">Pindah jari pada layar untuk memindah kursor mouse. Ketuk untuk klik, dan gunakan dua/tiga jari untuk tombol kanan dan tengah. Gunakan 2 jari untuk menggulir. Gunakan tekan lama untuk seret dan taruh.</string>
+  <string name="mousepad_single_tap_settings_title">Set aksi ketuk satu jari</string>
   <string name="mousepad_double_tap_settings_title">Set aksi ketuk dua jari</string>
   <string name="mousepad_triple_tap_settings_title">Set aksi ketuk tiga jari</string>
   <string name="mousepad_sensitivity_settings_title">Set kepekaan touchpad</string>
   <string name="mousepad_acceleration_profile_settings_title">Setel akselerasi pointer</string>
   <string name="mousepad_scroll_direction_title">Arah Menggulir Terbalik</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Klik kiri</item>
+    <item>Klik kanan</item>
+    <item>Klik tengah</item>
+    <item>Tidak ada apa-apa</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Pelan</item>
     <item>Agak Pelan</item>
@@ -62,13 +72,33 @@
     <item>Cepat</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>Tidak ada Akselerasi</item>
+    <item>Tidak Ada Akselerasi</item>
     <item>Sangat Lemah</item>
     <item>Lemah</item>
     <item>Menengah</item>
     <item>Kuat</item>
     <item>Sangat Kuat</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Kirimkan penekanan tombol ke</string>
+  <string name="sendkeystrokes_textbox_hint">Kirimkan penekanan tombol ke host</string>
+  <string name="sendkeystrokes_disabled_toast">Mengirim penekanan tombol dinonaktifkan - aktifkan di pengaturan</string>
+  <string name="sendkeystrokes_wrong_data">Tipe mime tidak sah - harus \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_sent_text">Terkirim %1$s ke perangkat %2$s</string>
+  <string name="sendkeystrokes_pref_category_summary">Modul ini mengizinkan aplikasi lain untuk membagikan segmen teks sebagai penekanan tombol yang akan terkirim ke host yang terhubung</string>
+  <string name="sendkeystrokes_pref_category_title">Kirimkan Penekanan Tombol</string>
+  <string name="sendkeystrokes_pref_enabled">Aktifkan pengiriman Penekanan Tombol</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Mendengarkan untuk data dengan tipe mime \'text/x-keystrokes\'</string>
+  <string name="sendkeystrokes_safe_text_enabled">Segera mengirim teks aman</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Kirimkan string pendek hanya angka tanpa konfirmasi</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Kirim sebagai penekanan tombol</string>
+  <string name="mouse_receiver_plugin_description">Terima penggerakan mouse jarak jauh</string>
+  <string name="mouse_receiver_plugin_name">Penerima mouse</string>
+  <string name="mouse_receiver_no_permissions">Kamu harus mengaktifkan Layanan Aksesibilitas</string>
+  <string name="view_status_title">Status</string>
+  <string name="battery_status_format">Baterai: %d%%</string>
+  <string name="battery_status_low_format">Baterai: %d%% Baterai Lemah</string>
+  <string name="battery_status_charging_format">Baterai %d%% mengisi</string>
+  <string name="battery_status_unknown">Informasi baterai tidak tersedia</string>
   <string name="category_connected_devices">Perangkat terkoneksi</string>
   <string name="category_not_paired_devices">Perangkat tersedia</string>
   <string name="category_remembered_devices">Perangkat teringat</string>
@@ -84,6 +114,7 @@
   <string name="error_canceled_by_other_peer">Dibatalkan oleh kawan lain</string>
   <string name="encryption_info_title">Info Enkripsi</string>
   <string name="encryption_info_msg_no_ssl">Perangkat lain tidaklah menggunakan KDE Connect yang berversi saat ini, menggunakan metode enkripsi kuno.</string>
+  <string name="my_device_fingerprint">Sidik jari SHA256 pada sertifikat perangkatmu adalah:</string>
   <string name="remote_device_fingerprint">Sidik jari SHA256 pada sertifikat perangkat jarak jauh adalah:</string>
   <string name="pair_requested">Meminta sanding</string>
   <string name="pairing_request_from">Minta penyandingan dari %1s</string>
@@ -129,6 +160,8 @@
   <string name="mpris_rew">Mundur-cepat</string>
   <string name="mpris_ff">Maju-capat</string>
   <string name="mpris_next">Selanjutnya</string>
+  <string name="mpris_loop">Ulangi</string>
+  <string name="mpris_shuffle">Acak</string>
   <string name="mpris_volume">Volume</string>
   <string name="mpris_time_settings_title">Tombol mundur-cepat/maju-cepat</string>
   <string name="mpris_time_settings_summary">Sesuaikan waktu untuk mempercepat mundur/maju ketika ditekan</string>
@@ -162,6 +195,7 @@
   <string name="share_received_file">Bagikan \"%s\"</string>
   <string name="title_activity_notification_filter">Filter notifikasi</string>
   <string name="filter_apps_info">Notifikasi akan disinkronkan terhadap apl terpilih.</string>
+  <string name="show_notification_if_screen_off">Hanya kirimkan notifikasi saja ketika layarnya mati</string>
   <string name="sftp_sdcard_num">Kartu SD %d</string>
   <string name="sftp_sdcard">Kartu SD</string>
   <string name="sftp_readonly">(hanya baca)</string>
@@ -321,4 +355,28 @@
   <string name="donate">Donasi</string>
   <string name="source_code">Kode Sumber</string>
   <string name="licenses">Lisensi</string>
+  <string name="website">Situs</string>
+  <string name="about">Tentang</string>
+  <string name="authors">Penulis</string>
+  <string name="thanks_to">Terima Kasih Kepada</string>
+  <string name="easter_egg">Easter Egg</string>
+  <string name="email_contributor">Email kontributor\n%s</string>
+  <string name="visit_contributors_homepage">Kunjungi laman kontributor\n%s</string>
+  <string name="version">Versi %s</string>
+  <string name="about_kde">Tentang KDE</string>
+  <string name="kde_be_free">KDE - Secara Bebas!</string>
+  <string name="kde">KDE</string>
+  <string name="konqi">Konqi</string>
+  <string name="rise_up">Naik</string>
+  <string name="rise_down">Turun</string>
+  <string name="click_here_to_type">Ketuk di sini untuk mengetik</string>
+  <string name="clear_compose">Hapus</string>
+  <string name="send_compose">Kirim</string>
+  <string name="open_compose_send">Komposisikan teks</string>
+  <string name="app_description">Aplikasi multi-platform yang memungkinkan perangkatmu untuk berkomunikasi (mis., ponselmu dan komputermu)</string>
+  <string name="about_kde_about">&lt;h1&gt;Tentang&lt;/h1&gt; &lt;p&gt;KDE adalah komunitas seluruh dunia dari insinyur, seniman, penulis, penerjemah dan pemfasilitas perangkat lunak yang mana berkomitmen untuk developmen &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Free Software&lt;/a&gt;. KDE memproduksi lingkungan desktop Plasma, ratusan aplikasi, dan banyak pustaka perangkat lunak yang mendukungnya.&lt;/p&gt; &lt;p&gt;KDE adalah perusahaan koperasi: di mana tiada entitas satu pun yang mengendalikan arah atau usaha. Alih-alih, kami kerja bersama-sama untuk mencapai tujuan umum pembangunan dalam dunia Free Software yang baik. Siapa pun disambut untuk &lt;a href=https://community.kde.org/Get_Involved&gt;bergabung dan berkontribusi&lt;/a&gt; untuk KDE, termasuk kamu.&lt;/p&gt; Kunjungi &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; untuk informasi tentang komunitas KDE dan perangkat lunak yang kami produksi.</string>
+  <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Laporkan Bug atau Saran&lt;/h1&gt; &lt;p&gt;Perangkat lunak selalu dapat ditingkatkan, dan Tim KDE siap untuk melakukannya. Tapi, kamu - sebagai pengguna - harus memberitahu kami jika sesuatu tidak berjalan sebagaimana mestinya atau seharusnya dapat berjalan dengan lebih baik.&lt;/p&gt; &lt;p&gt;KDE memiliki sistem pelacakan bug. Kunjungi &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; atau gunakan dialog \"Laporkan Bug\" dari layar tentang untuk melaporkan bug.&lt;/p&gt; Jika kamu memiliki saran untuk peningkatan maka anda dipersilakan untuk menggunakan sistem pelacakan bug untuk memasukkan permintaan kamu. Pastikan anda menggunakan tingkat kegawatan yang bernama \"Senarai Permintaan\".</string>
+  <string name="holger_kaelberer_task">Plugin keyboard jarak jauh dan perbaikan kutu</string>
+  <string name="send_clipboard">Kirimkan papan klip</string>
+  <string name="tap_to_execute">Ketuk untuk menjalankan</string>
 </resources>
