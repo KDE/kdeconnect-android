@@ -41,9 +41,9 @@
   <string name="sad_ok">Oke :(</string>
   <string name="cancel">Batal</string>
   <string name="open_settings">Buka pengaturan</string>
-  <string name="no_permissions">Kamu perlu memberikan izin untuk mengakses notifikasi</string>
-  <string name="no_permission_mprisreceiver">Untuk dapat mengendalikan pemutar mediamu kamu perlu memberikan akses ke notifikasi</string>
-  <string name="no_permissions_remotekeyboard">Untuk menerima penekanan tombol, kamu perlu mengaktifkan KDE Connect Remote Keyboard</string>
+  <string name="no_permissions">Anda perlu memberikan izin untuk mengakses notifikasi</string>
+  <string name="no_permission_mprisreceiver">Untuk dapat mengendalikan pemutar media, Anda perlu memberikan akses ke notifikasi</string>
+  <string name="no_permissions_remotekeyboard">Untuk menerima penekanan tombol, Anda perlu mengaktifkan KDE Connect Remote Keyboard</string>
   <string name="send_ping">Kirim ping</string>
   <string name="open_mpris_controls">Kendali multimedia</string>
   <string name="remotekeyboard_editing_only_title">Menangani tombol jarak jauh hanya ketika mengedit</string>
@@ -93,7 +93,7 @@
   <string name="pref_plugin_mousepad_send_keystrokes">Kirim sebagai penekanan tombol</string>
   <string name="mouse_receiver_plugin_description">Terima penggerakan mouse jarak jauh</string>
   <string name="mouse_receiver_plugin_name">Penerima mouse</string>
-  <string name="mouse_receiver_no_permissions">Kamu harus mengaktifkan Layanan Aksesibilitas</string>
+  <string name="mouse_receiver_no_permissions">Anda harus mengaktifkan Layanan Aksesibilitas</string>
   <string name="view_status_title">Status</string>
   <string name="battery_status_format">Baterai: %d%%</string>
   <string name="battery_status_low_format">Baterai: %d%% Baterai Lemah</string>
@@ -182,7 +182,7 @@
   <string name="custom_devices_settings">Kustom daftar perangkat</string>
   <string name="custom_device_list">Tambahkan perangkat dengan IP</string>
   <string name="custom_device_deleted">Perangkat kustom yang dihapus</string>
-  <string name="custom_device_list_help">Jika perangkatmu tidak terdeteksi secara otomatis, kamu bisa menambahkan alamat IP atau nama host-nya dengan mengeklik Tombol Aksi Yang Mengambang</string>
+  <string name="custom_device_list_help">Jika perangkat Anda tidak terdeteksi secara otomatis, Anda dapat menambahkan alamat IP atau nama host-nya dengan mengklik Tombol Aksi Yang Mengambang</string>
   <string name="custom_device_fab_hint">Tambahkan sebuah perangkat</string>
   <string name="undo">Urungkan</string>
   <string name="share_notification_preference">Notifikasi bising</string>
@@ -219,7 +219,7 @@
   <string name="sftp_action_mode_menu_delete">Hapus</string>
   <string name="sftp_no_sdcard_detected">Tidak ada kartu SD yang terdeteksi</string>
   <string name="sftp_no_storage_locations_configured">Tidak ada lokasi penyimpanan yang dikonfigurasi</string>
-  <string name="sftp_saf_permission_explanation">Untuk mengakses file secara jarak jauh, kamu harus mengkonfigurasi lokasi penyimpanan</string>
+  <string name="sftp_saf_permission_explanation">Untuk mengakses file secara jarak jauh, Anda harus mengkonfigurasi lokasi penyimpanan</string>
   <string name="no_players_connected">Tidak ada pemutar yang ditemukan</string>
   <string name="send_files">Kirim file</string>
   <string name="pairing_title">Perangkat KDE Connect</string>
@@ -228,26 +228,26 @@
   <string name="device_rename_confirm">Ubah Nama</string>
   <string name="refresh">Segarkan</string>
   <string name="unreachable_description">Perangkat yang disandingkan ini tidak dapat dicapai. Pastikan ia terkoneksi ke jaringanmu yang sama.</string>
-  <string name="no_wifi">Kamu belum terkoneksi ke jaringan Wi-Fi, sehingga kamu tidak bisa melihat perangkat apapun. Klik di sini untuk memfungsikan Wi-Fi.</string>
+  <string name="no_wifi">Kamu belum terkoneksi ke jaringan Wi-Fi, sehingga Anda tidak bisa melihat perangkat apapun. Klik di sini untuk memfungsikan Wi-Fi.</string>
   <string name="on_non_trusted_message">Bukan pada jaringan yang dipercaya: autodiscovery telah dinonfungsikan.</string>
   <string name="no_file_browser">Tidak adanya penelusur file yang terinstal.</string>
   <string name="pref_plugin_telepathy">Kirim SMS</string>
   <string name="pref_plugin_telepathy_desc">Kirim teks perpesanan dari desktopmu</string>
   <string name="pref_plugin_telepathy_mms">Kirim MMS</string>
-  <string name="pref_plugin_telepathy_mms_desc">Supaya bisa mengirim MMS dari KDE Connect, kamu perlu mengaturnya sebagai aplikasi SMS default.</string>
+  <string name="pref_plugin_telepathy_mms_desc">Supaya dapat mengirim MMS dari KDE Connect, Anda perlu mengaturnya sebagai aplikasi SMS default.</string>
   <string name="findmyphone_title">Temukan ponselku</string>
   <string name="findmyphone_title_tablet">Temukan tabletku</string>
   <string name="findmyphone_title_tv">Temukan TV-ku</string>
-  <string name="findmyphone_description">Deringkan perangkat ini sehingga kamu bisa menemukannya</string>
+  <string name="findmyphone_description">Deringkan perangkat ini sehingga Anda dapat menemukannya</string>
   <string name="findmyphone_found">Ketemu</string>
   <string name="open">Buka</string>
   <string name="close">Tutup</string>
   <string name="plugins_need_permission">Beberapa plugin perlu perizinan untuk kerja (ketuk untuk info selebihnya):</string>
   <string name="permission_explanation">Plugin ini perlu perizinan untuk kerja</string>
-  <string name="optional_permission_explanation">Kamu perlu mengabulkan perizinan extra untuk memfungsikan semua fungsian</string>
+  <string name="optional_permission_explanation">Anda perlu memberikan perizinan tambahan untuk memfungsikan semua fungsi</string>
   <string name="plugins_need_optional_permission">Beberapa plugin yang memiliki fitur dinonfungsikan karena kurangnya perizinan (ketuk untuk info selebihnya):</string>
-  <string name="share_optional_permission_explanation">Untuk menerima file yang dibagikan kamu perlu memilih sebuah direktori tujuan</string>
-  <string name="telepathy_permission_explanation">Untuk membaca dan menulis SMS dari desktopmu kamu harus memberikan perizinan untuk SMS</string>
+  <string name="share_optional_permission_explanation">Untuk menerima file yang dibagikan Anda perlu memilih sebuah direktori tujuan</string>
+  <string name="telepathy_permission_explanation">Untuk membaca dan menulis SMS dari desktop, Anda harus memberikan perizinan untuk SMS</string>
   <string name="telephony_permission_explanation">Untuk melihat panggilan ponsel pada desktop kamu harus memberikan perizinan untuk log panggilan ponsel dan keadaan ponsel</string>
   <string name="telephony_optional_permission_explanation">Untuk melihat nama kontak alih-alih nomor ponsel, kamu harus memberikan akses ke kontak ponsel</string>
   <string name="contacts_permission_explanation">Untuk membagikan buku kontak dengan desktopmu, kamu harus memberikan perizinan kontak</string>
@@ -327,7 +327,7 @@
   <string name="bigscreen_optional_permission_explanation">Untuk membagikan input mikrofon dari ponselmu kamu perlu memberikan akses terhadap input audio si ponsel</string>
   <string name="bigscreen_speech_extra_prompt">Ucapan</string>
   <string name="message_reply_label">BALAS</string>
-  <string name="mark_as_read_label">TANDAI SEBAGAI SUDAH DIBACA</string>
+  <string name="mark_as_read_label">TANDAI SEBAGAI DIBACA</string>
   <string name="user_display_name">KAMU</string>
   <string name="set_default_sms_app_title">Kirim MMS</string>
   <string name="set_group_message_as_mms_title">Kirim MMS grup</string>
@@ -375,7 +375,7 @@
   <string name="open_compose_send">Komposisikan teks</string>
   <string name="app_description">Aplikasi multi-platform yang memungkinkan perangkatmu untuk berkomunikasi (mis., ponselmu dan komputermu)</string>
   <string name="about_kde_about">&lt;h1&gt;Tentang&lt;/h1&gt; &lt;p&gt;KDE adalah komunitas seluruh dunia dari insinyur, seniman, penulis, penerjemah dan pemfasilitas perangkat lunak yang mana berkomitmen untuk developmen &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Free Software&lt;/a&gt;. KDE memproduksi lingkungan desktop Plasma, ratusan aplikasi, dan banyak pustaka perangkat lunak yang mendukungnya.&lt;/p&gt; &lt;p&gt;KDE adalah perusahaan koperasi: di mana tiada entitas satu pun yang mengendalikan arah atau usaha. Alih-alih, kami kerja bersama-sama untuk mencapai tujuan umum pembangunan dalam dunia Free Software yang baik. Siapa pun disambut untuk &lt;a href=https://community.kde.org/Get_Involved&gt;bergabung dan berkontribusi&lt;/a&gt; untuk KDE, termasuk kamu.&lt;/p&gt; Kunjungi &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; untuk informasi tentang komunitas KDE dan perangkat lunak yang kami produksi.</string>
-  <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Laporkan Bug atau Saran&lt;/h1&gt; &lt;p&gt;Perangkat lunak selalu dapat ditingkatkan, dan Tim KDE siap untuk melakukannya. Tapi, kamu - sebagai pengguna - harus memberitahu kami jika sesuatu tidak berjalan sebagaimana mestinya atau seharusnya dapat berjalan dengan lebih baik.&lt;/p&gt; &lt;p&gt;KDE memiliki sistem pelacakan bug. Kunjungi &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; atau gunakan dialog \"Laporkan Bug\" dari layar tentang untuk melaporkan bug.&lt;/p&gt; Jika kamu memiliki saran untuk peningkatan maka anda dipersilakan untuk menggunakan sistem pelacakan bug untuk memasukkan permintaan kamu. Pastikan anda menggunakan tingkat kegawatan yang bernama \"Senarai Permintaan\".</string>
+  <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Laporkan Bug atau Saran&lt;/h1&gt; &lt;p&gt;Perangkat lunak selalu dapat ditingkatkan, dan Tim KDE siap untuk melakukannya. Tapi, Anda - sebagai pengguna - harus memberitahu kami jika sesuatu tidak berjalan sebagaimana mestinya atau seharusnya dapat berjalan dengan lebih baik.&lt;/p&gt; &lt;p&gt;KDE memiliki sistem pelacakan bug. Kunjungi &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; atau gunakan dialog \"Laporkan Bug\" dari layar tentang untuk melaporkan bug.&lt;/p&gt; Jika Anda memiliki saran untuk peningkatan maka anda dipersilakan untuk menggunakan sistem pelacakan bug untuk memasukkan permintaan Anda. Pastikan anda menggunakan tingkat kegawatan yang bernama \"Senarai Permintaan\".</string>
   <string name="holger_kaelberer_task">Plugin keyboard jarak jauh dan perbaikan kutu</string>
   <string name="send_clipboard">Kirimkan papan klip</string>
   <string name="tap_to_execute">Ketuk untuk menjalankan</string>
