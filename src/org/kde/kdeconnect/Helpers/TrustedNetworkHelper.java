@@ -8,6 +8,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.core.content.ContextCompat;
 
@@ -75,6 +76,7 @@ public class TrustedNetworkHelper {
         }
         String ssid = wifiInfo.getSSID();
         if (ssid.equalsIgnoreCase(NOT_AVAILABLE_SSID_RESULT)){
+            Log.d("TrustedNetworkHelper", "Current SSID is unknown");
             return "";
         }
         return ssid;
