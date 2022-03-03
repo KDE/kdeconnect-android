@@ -10,7 +10,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.4'
+        classpath 'com.android.tools.build:gradle:7.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -58,13 +58,9 @@ android {
         }
     }
     packagingOptions {
-        merge "META-INF/DEPENDENCIES"
-        merge "META-INF/LICENSE"
-        merge "META-INF/NOTICE"
-    }
-    lintOptions {
-        abortOnError false
-        checkReleaseBuilds false
+        resources {
+            merges += ['META-INF/DEPENDENCIES', 'META-INF/LICENSE', 'META-INF/NOTICE']
+        }
     }
     signingConfigs {
         debug {
@@ -86,6 +82,10 @@ android {
             minifyEnabled true
             shrinkResources true
         }
+    }
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
     }
 }
 
