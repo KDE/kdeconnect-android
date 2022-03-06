@@ -32,6 +32,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.attribute.FileTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -160,6 +163,18 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
                     //TODO: Only set progress to 100 if this is the only file/packet to send
                     setProgress(100);
                     publishFile(fileDocument, 0);
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    if (currentNetworkPacket.has("lastModified")) {
+                        try {
+                            long lastModified = currentNetworkPacket.getLong("lastModified");
+                            Files.setLastModifiedTime(Paths.get(fileDocument.getUri().getPath()), FileTime.fromMillis(lastModified));
+                        } catch (Exception e) {
+                            Log.e("SharePlugin", "Can't set date on file");
+                            e.printStackTrace();
+                        }
+                    }
                 }
 
                 boolean listIsEmpty;
