@@ -52,11 +52,18 @@
   <string name="remotekeyboard_multiple_connections">Existe mais que uma ligação a teclados remotos; seleccione o dispositivo a configurar</string>
   <string name="open_mousepad">Introdução remota de dados</string>
   <string name="mousepad_info">Mova um dedo pelo ecrã para mover o cursor do rato. Dê um toque para carregar no botão esquerdo e use dois/três dedos para os botões direito e do meio. Use uma pressão longa para arrastar e largar.</string>
+  <string name="mousepad_single_tap_settings_title">Definir a acção do toque com um dedo</string>
   <string name="mousepad_double_tap_settings_title">Definir a acção do toque com dois dedos</string>
   <string name="mousepad_triple_tap_settings_title">Definir a acção do toque com três dedos</string>
   <string name="mousepad_sensitivity_settings_title">Definir a sensibilidade do rato por toque</string>
   <string name="mousepad_acceleration_profile_settings_title">Definir a aceleração do cursor</string>
   <string name="mousepad_scroll_direction_title">Direcção de Deslocamento Inversa</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Botão esquerdo</item>
+    <item>Botão direito</item>
+    <item>Botão do meio</item>
+    <item>Nada</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Mais Lento</item>
     <item>Ainda Mais Lento</item>
@@ -196,6 +203,7 @@
   <string name="share_received_file">Partilhar o \"%s\"</string>
   <string name="title_activity_notification_filter">Filtro de notificações</string>
   <string name="filter_apps_info">As notificações serão sincronizadas para as aplicações seleccionadas.</string>
+  <string name="show_notification_if_screen_off">Enviar notificações apenas se o ecrã estiver desligado</string>
   <string name="sftp_sdcard_num">Cartão SD %d</string>
   <string name="sftp_sdcard">Cartão SD</string>
   <string name="sftp_readonly">(apenas para leitura)</string>
@@ -369,6 +377,10 @@
   <string name="konqi">Konqi</string>
   <string name="rise_up">Subir</string>
   <string name="rise_down">Descer</string>
+  <string name="click_here_to_type">Toque aqui para abrir</string>
+  <string name="clear_compose">Limpar</string>
+  <string name="send_compose">Enviar</string>
+  <string name="open_compose_send">Compor o texto</string>
   <string name="app_description">Aplicação multi-plataformas que permite aos seus dispositivos comunicarem (p.ex., o seu telefone e o seu computador)</string>
   <string name="about_kde_about">&lt;h1&gt;Acerca&lt;/h1&gt; &lt;p&gt;O KDE é uma grande comunidade mundial de engenheiros de \'software\', artistas, tradutores e criadores comprometidos com o desenvolvimento de &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Software Livre&lt;/a&gt;. O KDE produz o ambiente de trabalho Plasma, centenas de aplicações e as diversas bibliotecas de \'software\' que dão suporte a elas.&lt;/p&gt; &lt;p&gt;O KDE é uma empresa cooperativa: nenhuma entidade única controla a sua direcção ou produtos. Em vez disso, trabalhamos juntos para atingir o objectivo comum de criar o melhor Software Livre do mundo. Todos são bem-vindos para se &lt;a href=https://community.kde.org/Get_Involved&gt;juntarem e contribuírem&lt;/a&gt; para o KDE, incluindo você mesmo.&lt;/p&gt; Vá a &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; para obter mais informações sobre a comunidade do KDE e as aplicações que produzimos.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Comunicar Erros ou Pedidos&lt;/h1&gt; &lt;p&gt;O software pode ser sempre melhorado, e a equipa do KDE está preparada para o fazer. Contudo, você - o utilizador - deve--nos avisar quando algo não funciona como seria de esperar ou quando poderá ser feito de melhor maneira.&lt;/p&gt; &lt;p&gt;O KDE tem um sistema de registo de erros. Vá a &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; ou use o botão \"Comunicar um Erro\" do ecrã \'Acerca\' para relatar erros.&lt;/p&gt; Se tiver uma sugestão de melhorias, então é bem-vindo para usar o sistema de registo de erros para registar o seu pedido. Certifique-se que usa o tipo de criticidade \"Wishlist\" (Lista de Pedidos).</string>
@@ -385,4 +397,6 @@
   <string name="holger_kaelberer_task">\'Plugin\' do teclado remoto e correcções de erros</string>
   <string name="saikrishna_arcot_task">Suporte para usar o teclado no \'plugin\' de introdução de dados remoto, correcções de erros e melhorias gerais</string>
   <string name="everyone_else">Todos os que contribuíram para o KDE Connect ao longo dos tempos</string>
+  <string name="send_clipboard">Enviar para a área de transferência</string>
+  <string name="tap_to_execute">Toque para executar</string>
 </resources>
