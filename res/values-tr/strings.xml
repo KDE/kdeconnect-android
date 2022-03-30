@@ -1,23 +1,27 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
+  <string name="manifest_label_share">Aygıta Gönder</string>
   <string name="foreground_notification_no_devices">Hiçbir aygıta bağlı değil</string>
   <string name="foreground_notification_devices">Bağlı: %s</string>
+  <string name="foreground_notification_send_clipboard">Pano Gönder</string>
   <string name="pref_plugin_telephony">Telefon bildiricisi</string>
   <string name="pref_plugin_telephony_desc">Gelen aramalar için bildirim gönder</string>
-  <string name="pref_plugin_battery">Batarya raporu</string>
-  <string name="pref_plugin_battery_desc">Batarya durumunu belirli aralıklarla raporla</string>
+  <string name="pref_plugin_battery">Pil raporu</string>
+  <string name="pref_plugin_battery_desc">Pil durumunu belirli aralıklarla raporla</string>
+  <string name="pref_plugin_connectivity_report">Bağlantı raporu</string>
   <string name="pref_plugin_connectivity_report_desc">Ağ sinyal gücünü ve durumunu bildirin</string>
   <string name="pref_plugin_sftp">Dosya sistemi gösterme</string>
   <string name="pref_plugin_sftp_desc">Bu aıygıtın dosya sistemine uzaktan gözatılmasına izin verir</string>
   <string name="pref_plugin_clipboard">Pano eşitleme</string>
   <string name="pref_plugin_clipboard_desc">Pano içeriğini paylaş</string>
+  <string name="pref_plugin_clipboard_sent">Pano Gönderildi</string>
   <string name="pref_plugin_mousepad">Uzak girdi</string>
   <string name="pref_plugin_mousepad_desc">Telefonunuzu veya tabletinizi, dokunmatik veya klavye olarak kullanın</string>
   <string name="pref_plugin_presenter">Uzaktan slayt gösterisi</string>
   <string name="pref_plugin_presenter_desc">Sunumdaki slaytları değiştirmek için aygıtınızı kullanın</string>
-  <string name="pref_plugin_remotekeyboard">Uzak tuşa basmaları getir</string>
-  <string name="pref_plugin_remotekeyboard_desc">Tuş basma eylemlerini, uzak aygıtlardan getir</string>
+  <string name="pref_plugin_remotekeyboard">Uzak düğme basımlarını al</string>
+  <string name="pref_plugin_remotekeyboard_desc">Düğme basım eylemlerini, uzak aygıtlardan getir</string>
   <string name="pref_plugin_mpris">Çoklu ortam denetimleri</string>
   <string name="pref_plugin_mpris_desc">Ortam oynatıcınız için uzak denetim sağlar</string>
   <string name="pref_plugin_runcommand">Komut Çalıştır</string>
@@ -38,21 +42,28 @@
   <string name="cancel">İptal</string>
   <string name="open_settings">Ayarları aç</string>
   <string name="no_permissions">Bildirimler erişebilmek için izine ihtiyacınız var</string>
-  <string name="no_permission_mprisreceiver">Medya oynatıcılarınızı kontrol edebilmek için bildirimlere erişim izni vermeniz gerekir</string>
-  <string name="no_permissions_remotekeyboard">Tuşlara basmak için KDE Connect Uzak Klavye\'yi etkinleştirmeniz gerekir</string>
+  <string name="no_permission_mprisreceiver">Ortam oynatıcılarınızı denelemek için bildirimlere erişim izni vermeniz gerekir</string>
+  <string name="no_permissions_remotekeyboard">Düğmelere basmak için KDE Connect Uzak Klavye\'yi etkinleştirmeniz gerekir</string>
   <string name="send_ping">Ping gönder</string>
   <string name="open_mpris_controls">Çoklu ortam denetimi</string>
-  <string name="remotekeyboard_editing_only_title">Uzak tuşları, sadece düzenleme yaparken işle</string>
+  <string name="remotekeyboard_editing_only_title">Uzak düğmeleri, yalnızca düzenleme yaparken işle</string>
   <string name="remotekeyboard_not_connected">Etkin bir uzak klavye bağlantısı yok, kdeconnect ile bir bağlantı kurun</string>
   <string name="remotekeyboard_connected">Uzak klavye bağlantısı etkin</string>
   <string name="remotekeyboard_multiple_connections">Birden çok uzak klavye bağlantısı mevcut, yapılandırmak istediğiniz aygıtı seçin</string>
   <string name="open_mousepad">Girdi sil</string>
-  <string name="mousepad_info">İmleç kontrolü için parmağınızı ekranda hareket ettirin. Bir tıklama için hafifçe vurun, sağ ve orta düğmeler için iki/üç parmağınızı kullanın. Kaydırmak için 2 parmağınızı kullanın. Bırakıp sürüklemek için uzun basın.</string>
+  <string name="mousepad_info">İmleç denetimi için parmağınızı ekranda hareket ettirin. Bir tıklama için hafifçe vurun, sağ ve orta düğmeler için iki/üç parmağınızı kullanın. Kaydırmak için 2 parmağınızı kullanın. Bırakıp sürüklemek için uzun basın.</string>
+  <string name="mousepad_single_tap_settings_title">Tek parmak dokunma eylemini ayarla</string>
   <string name="mousepad_double_tap_settings_title">İki parmak dokunma eylemini ayarla</string>
   <string name="mousepad_triple_tap_settings_title">Üç parmak dokunma eylemini ayarla</string>
   <string name="mousepad_sensitivity_settings_title">Dokunmatik yüzey hassasiyetini ayarla</string>
   <string name="mousepad_acceleration_profile_settings_title">İşaretçi ivmesini ayarla</string>
   <string name="mousepad_scroll_direction_title">Ters Kaydırma Yönü</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Sol tık</item>
+    <item>Sağ tık</item>
+    <item>Orta tık</item>
+    <item>Hiçbiri</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>En Yavaş</item>
     <item>En Yavaşın Üstü</item>
@@ -68,6 +79,26 @@
     <item>Güçlü</item>
     <item>Kuvvetli</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Düğme basımlarını gönder</string>
+  <string name="sendkeystrokes_textbox_hint">Ana makineye düğme basımlarını gönder</string>
+  <string name="sendkeystrokes_disabled_toast">Düğme basımlarını gönderme devre dışı - ayarlarda etkinleştirin</string>
+  <string name="sendkeystrokes_wrong_data">Geçersiz MIME türü - \'text/x-keystrokes\' olmalı</string>
+  <string name="sendkeystrokes_sent_text">%2$s aygıtına %1$s gönderildi</string>
+  <string name="sendkeystrokes_pref_category_summary">Bu modül, diğer uygulamaların metin segmentlerini düğme basımları olarak bağlı olan makineye göndermelerine izin verir.</string>
+  <string name="sendkeystrokes_pref_category_title">Düğme Basımları Gönder</string>
+  <string name="sendkeystrokes_pref_enabled">Düğme basımı göndermeyi etkinleştir</string>
+  <string name="sendkeystrokes_pref_enabled_summary">\'text/x-keystrokes\' MIME türlü veriyi dinle</string>
+  <string name="sendkeystrokes_safe_text_enabled">Güvenli metni anında gönder</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Onay olmadan yalnızca sayısal kısa diziler gönder</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Düğme basımları olarak gönder</string>
+  <string name="mouse_receiver_plugin_description">Uzak fare hareketini al</string>
+  <string name="mouse_receiver_plugin_name">Fare alıcısı</string>
+  <string name="mouse_receiver_no_permissions">Erişilebilirlik Hizmeti\'ni etkinleştirmeniz gerekiyor</string>
+  <string name="view_status_title">Durum</string>
+  <string name="battery_status_format">Pil: %d%%</string>
+  <string name="battery_status_low_format">Pil: %d%% Düşük pil</string>
+  <string name="battery_status_charging_format">Pil: %d%% Şarj oluyor</string>
+  <string name="battery_status_unknown">Pil bilgisi mevcut değil</string>
   <string name="category_connected_devices">Bağlı aygıtlar</string>
   <string name="category_not_paired_devices">Kullanılabilir aygıtlar</string>
   <string name="category_remembered_devices">Hatırlanan aygıtlar</string>
@@ -83,6 +114,8 @@
   <string name="error_canceled_by_other_peer">Diğer eş tarafından iptal edildi</string>
   <string name="encryption_info_title">Şifreleme Bilgisi</string>
   <string name="encryption_info_msg_no_ssl">Diğer aygıt, KDE Connect\'in son sürümünü kullanmıyor, eski şifreleme yöntemini kullanıyor.</string>
+  <string name="my_device_fingerprint">Aygıt sertifikanızın SHA256 parmak izi:</string>
+  <string name="remote_device_fingerprint">Uzak aygıt sertifikanızın SHA256 parmak izi:</string>
   <string name="pair_requested">Eşleşme talep edildi</string>
   <string name="pairing_request_from">%1s için eşleşme talebi</string>
   <plurals name="incoming_file_title">
@@ -117,6 +150,7 @@
     <item quantity="one">Dosya gönderilemedi %1$s</item>
     <item quantity="other">Dosya gönderilemedi %2$d %3$d şuraya %1$s</item>
   </plurals>
+  <string name="tap_to_open">Açmak için dokunun</string>
   <string name="received_file_text">\'%1s\' açmak için dokunun</string>
   <string name="cannot_create_file">Dosya oluşturulamıyor %s</string>
   <string name="tap_to_answer">Cevap için dokunun</string>
@@ -134,6 +168,8 @@
   <string name="mpris_rew">Geri Sar</string>
   <string name="mpris_ff">Hızlı İleri Sar</string>
   <string name="mpris_next">Sonraki</string>
+  <string name="mpris_loop">Döngü</string>
+  <string name="mpris_shuffle">Karıştır</string>
   <string name="mpris_volume">Ses</string>
   <string name="mpris_time_settings_title">İleri/geri düğmeleri</string>
   <string name="mpris_time_settings_summary">Basıldığında hızlı ileri/geri sarma süresini ayarlayın</string>
@@ -144,8 +180,8 @@
     <item>1 dakika</item>
     <item>2 dakika</item>
   </string-array>
-  <string name="mpris_notification_settings_title">Medya kontrol bildirimini göster</string>
-  <string name="mpris_notification_settings_summary">KDE Connect\'i açmadan medya oynatıcılarınızı kontrol etmenize izin verin</string>
+  <string name="mpris_notification_settings_title">Ortam denetim bildirimini göster</string>
+  <string name="mpris_notification_settings_summary">KDE Connect\'i açmadan ortam oynatıcılarınızı denetlemenize izin verin</string>
   <string name="share_to">Paylaş…</string>
   <string name="protocol_version_newer">Bu aygıt, daha yeni bir protokol sürümü kullanıyor</string>
   <string name="plugin_settings_with_name">%s ayarları</string>
@@ -154,7 +190,7 @@
   <string name="custom_devices_settings">Özel aygıt listesi</string>
   <string name="custom_device_list">IP\'ye göre aygıtları ekle</string>
   <string name="custom_device_deleted">Özel aygıt silindi</string>
-  <string name="custom_device_list_help">Cihazınız otomatik olarak algılanmazsa, İşlem Düğmesine tıklayarak IP adresini veya ana bilgisayar adını ekleyebilirsiniz</string>
+  <string name="custom_device_list_help">Aygıtınız kendiliğinden algılanmazsa İşlem Düğmesine tıklayarak IP adresini veya ana bilgisayar adını ekleyebilirsiniz</string>
   <string name="custom_device_fab_hint">Aygıt ekle</string>
   <string name="undo">Geri al</string>
   <string name="share_notification_preference">Sesli bildirimler</string>
@@ -167,9 +203,10 @@
   <string name="share_received_file">Paylaş \"%s\"</string>
   <string name="title_activity_notification_filter">Bildirim süzgeci</string>
   <string name="filter_apps_info">Bildirimler, seçili uygulamalar için eşitlenecektir.</string>
+  <string name="show_notification_if_screen_off">Yalnızca ekran kapalıysa bildirimler gönder</string>
   <string name="sftp_sdcard_num">SD kart %d</string>
   <string name="sftp_sdcard">SD kart</string>
-  <string name="sftp_readonly">(salt okunur)</string>
+  <string name="sftp_readonly">(saltokunur)</string>
   <string name="sftp_camera">Kamera resimleri</string>
   <string name="add_device_dialog_title">Aygıt ekle</string>
   <string name="add_device_hint">Makine adı veya IP adresi</string>
@@ -199,43 +236,49 @@
   <string name="device_rename_confirm">Yeniden adlandır</string>
   <string name="refresh">Tazele</string>
   <string name="unreachable_description">Eşleştirilmiş aygıt ulaşılabilir değil. Aynı ağa bağlı olduğundan emin olun.</string>
+  <string name="no_wifi">Bir Wi-Fi ağına bağlı değilsiniz dolayısıyla herhangi bir aygıt göremeyebilirsiniz. Wi-Fi\'yi etkinleştirmek için buraya tıklayın.</string>
   <string name="on_non_trusted_message">Güvenilir bir ağda değil: otomatik bulma devre dışı.</string>
   <string name="no_file_browser">Yüklü bir dosya tarayıcısı yok.</string>
   <string name="pref_plugin_telepathy">SMS Gönder</string>
   <string name="pref_plugin_telepathy_desc">Masaüstünden metin iletisi gönder</string>
   <string name="pref_plugin_telepathy_mms">MMS Gönder</string>
+  <string name="pref_plugin_telepathy_mms_desc">KDE Connect üzerinden MMS göndermek için onu öntanımlı SMS uygulaması olarak ayarlayın.</string>
   <string name="findmyphone_title">Telefonumu bul</string>
   <string name="findmyphone_title_tablet">Tabletimi bul</string>
   <string name="findmyphone_title_tv">TV\'mi bul</string>
   <string name="findmyphone_description">Aygıtı bulmak için onu çaldır</string>
+  <string name="findmyphone_found">Bulundu</string>
   <string name="open">Aç</string>
   <string name="close">Kapat</string>
   <string name="plugins_need_permission">Bazı Eklentiler çalışmak için izne ihtiyaç duyar (daha fazla bilgi için dokunun):</string>
   <string name="permission_explanation">Bu eklenti, çalışmak için izne ihtiyaç duyuyor</string>
   <string name="optional_permission_explanation">Tüm işlevleri etkinleştirmek için daha fazla yetkiye ihtiyacınız var</string>
   <string name="plugins_need_optional_permission">Bazı eklentilerin özellikleri, izin yetersizliğinden kapalı gelmektedir (daha fazla bilgi için dokunun):</string>
+  <string name="share_optional_permission_explanation">Paylaşılan dosyaların almak için bir hedef dizin seçmelisiniz.</string>
   <string name="telepathy_permission_explanation">Masaüstünde SMS yazma ve okuma yapmak için SMS izni gereklidir</string>
   <string name="telephony_permission_explanation">Masaüstünde telefon görüşmelerini görmek için telefon görüşmesi kayıtlarına ve telefon durumuna izin vermeniz gerekir</string>
-  <string name="telephony_optional_permission_explanation">Telefon numarası yerine kişi ismi görebilmek için telefonun kişilerine erişim gereklidir</string>
+  <string name="telephony_optional_permission_explanation">Telefon numarası yerine kişi adı görebilmek için telefonun kişilerine erişim gereklidir</string>
   <string name="contacts_permission_explanation">Rehberinizi masaüstüyle paylaşmak için rehbere izin vermeniz gerekir</string>
   <string name="select_ringtone">Bir zil sesi seç</string>
   <string name="telephony_pref_blocked_title">Engellenen numaralar</string>
   <string name="telephony_pref_blocked_dialog_desc">Bu numaralardan gelen aramaları ve SMS\'leri gösterme. Lütfen her satıra bir numara belirtin</string>
-  <string name="mpris_coverart_description">Güncel medyanın kapak resmi</string>
+  <string name="mpris_coverart_description">Geçerli ortamın kapak resmi</string>
   <string name="device_icon_description">Aygıt simgesi</string>
   <string name="settings_icon_description">Ayarlar simgesi</string>
   <string name="presenter_fullscreen">Tam ekran</string>
   <string name="presenter_exit">Sunumdan çık</string>
-  <string name="presenter_lock_tip">Bir önceki/bir sonraki slayta geçmek için aygıtınızı kilitleyebilir ve ses seviyesi tuşlarını kullanabilirsiniz</string>
+  <string name="presenter_lock_tip">Bir önceki/bir sonraki slayta geçmek için aygıtınızı kilitleyebilir ve ses düzeyi düğmelerini kullanabilirsiniz</string>
   <string name="add_command">Komut ekle</string>
   <string name="addcommand_explanation">Kayıtlı komut yok</string>
   <string name="addcommand_explanation2">KDE Connect Sistem Ayarlarında yeni komutlar ekleyebilirsiniz</string>
   <string name="add_command_description">Masaüstüne komut ekleyebilirsiniz</string>
-  <string name="pref_plugin_mprisreceiver">Medya Oynatıcı Kontrolü</string>
+  <string name="pref_plugin_mprisreceiver">Ortam Oynatıcı Denetimi</string>
+  <string name="pref_plugin_mprisreceiver_desc">Telefonunuzun ortam oynatıcılarını başka bir aygıttan denetleyin</string>
   <string name="notification_channel_default">Diğer bildirimler</string>
   <string name="notification_channel_persistent">Kalıcı gösterge</string>
-  <string name="notification_channel_media_control">Medya kontrolü</string>
+  <string name="notification_channel_media_control">Ortam denetimi</string>
   <string name="notification_channel_filetransfer">Dosya aktarımı</string>
+  <string name="notification_channel_high_priority">Yüksek öncelik</string>
   <string name="notification_channel_sms_mms">Yeni İleti</string>
   <string name="mpris_stop">Geçerli oynatıcıyı durdur</string>
   <string name="copy_url_to_clipboard">URL\'yi panoya kopyala</string>
@@ -243,12 +286,12 @@
   <string name="runcommand_notreachable">Aygıt erişilebilir değil</string>
   <string name="runcommand_notpaired">Aygıt eşleştirilmedi</string>
   <string name="runcommand_nosuchdevice">Böyle bir aygıt yok</string>
-  <string name="runcommand_noruncommandplugin">Bu cihazda Komut Çalıştır Eklentisi etkin değil</string>
+  <string name="runcommand_noruncommandplugin">Bu aygıtta Komut Çalıştır Eklentisi etkin değil</string>
   <string name="pref_plugin_findremotedevice">Uzak aygıtı bul</string>
   <string name="pref_plugin_findremotedevice_desc">Uzak aygıtı çaldır</string>
   <string name="ring">Zil sesi</string>
   <string name="pref_plugin_systemvolume">Sistem sesi</string>
-  <string name="pref_plugin_systemvolume_desc">Uzak cihazın sistem sesini kontrol et</string>
+  <string name="pref_plugin_systemvolume_desc">Uzak aygıtın sistem sesini denetle</string>
   <string name="mute">Sessiz</string>
   <string name="all">Tümü</string>
   <string name="devices">Aygıtlar</string>
@@ -269,43 +312,91 @@
   <string name="plugin_photo_desc">Fotoğraf çekmeyi ve aktarmayı kolaylaştırmak için kamera uygulamasını başlatın</string>
   <string name="no_app_for_opening">Bu dosyayı açmak için uygun bir uygulama bulunamadı</string>
   <string name="remote_keyboard_service">KDE Connect uzaktan klavye</string>
+  <string name="presenter_pointer">İşaretçi</string>
   <string name="trusted_networks">Güvenilir ağlar</string>
   <string name="trusted_networks_desc">Otomatik keşfi bilinen ağlarla kısıtla</string>
   <string name="add_trusted_network">%1s Ekle</string>
+  <string name="empty_trusted_networks_list_text">Henüz herhangi bir güvenilen ağ eklemediniz</string>
   <string name="allow_all_networks_text">Hepsine izin ver</string>
   <string name="location_permission_needed_title">İzin gerekli</string>
   <string name="location_permission_needed_desc">Android, WiFi ağınızı tanımlamak için Konum iznine ihtiyaç duyar</string>
   <string name="clipboard_android_x_incompat">Android 10, tüm uygulamalara pano erişimini kaldırdı. Bu eklenti devre dışı bırakılacak.</string>
+  <string name="mpris_open_url">Oynamayı burada sürdürün</string>
+  <string name="cant_open_url">Oynamayı sürdürmek için URL açılamıyor</string>
   <string name="bigscreen_home">Başlangıç</string>
   <string name="bigscreen_up">Yukarı</string>
   <string name="bigscreen_left">Sol</string>
   <string name="bigscreen_select">Seç</string>
   <string name="bigscreen_right">Sağ</string>
   <string name="bigscreen_down">Aşağı</string>
+  <string name="bigscreen_mic">Mikrofon</string>
+  <string name="pref_plugin_bigscreen">Bigscreen uzaktan kumandası</string>
+  <string name="pref_plugin_bigscreen_desc">Aygıtınızı Plasma Bigscreen için uzaktan kumanda olarak kullanın</string>
+  <string name="bigscreen_optional_permission_explanation">Telefonunuzdan mikrofon girişini paylaşmak için telefonun ses girişine erişim izni vermeniz gerekir</string>
+  <string name="bigscreen_speech_extra_prompt">Konuşma</string>
   <string name="message_reply_label">YANITLA</string>
+  <string name="mark_as_read_label">OKUNDU OLARAK İMLE</string>
   <string name="user_display_name">Siz</string>
   <string name="set_default_sms_app_title">MMS Gönder</string>
+  <string name="set_group_message_as_mms_title">Grup MMS gönder</string>
   <string name="set_long_text_as_mms_title">Uzun metni MMS olarak gönder</string>
   <string name="convert_to_mms_after_title">MMS\'e dönüştür</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>Bir mesajdan sonra</item>
-    <item>İki mesajdan sonra</item>
-    <item>Üç mesajdan sonra</item>
-    <item>Dört mesajdan sonra</item>
-    <item>Beş mesajdan sonra</item>
+    <item>Bir iletiden sonra</item>
+    <item>İki iletiden sonra</item>
+    <item>Üç iletiden sonra</item>
+    <item>Dört iletiden sonra</item>
+    <item>Beş iletiden sonra</item>
   </string-array>
   <string name="theme_dialog_title">Tema seçin</string>
   <string-array name="theme_list">
-    <item>Set by Battery Saver</item>
-    <item/>
-    <item>Dark</item>
+    <item>Pil Koruyucu tarafından ayarlandı</item>
+    <item>Açık</item>
+    <item>Koyu</item>
   </string-array>
   <string-array name="theme_list_v28">
-    <item/>
-    <item/>
-    <item>Dark</item>
+    <item>Sistem Öntanımlısı</item>
+    <item>Açık</item>
+    <item>Koyu</item>
   </string-array>
+  <string name="report_bug">Hata Bildir</string>
   <string name="donate">Bağış yap</string>
   <string name="source_code">Kaynak Kod</string>
   <string name="licenses">Lisanslar</string>
+  <string name="website">Web Sitesi</string>
+  <string name="about">Hakkında</string>
+  <string name="authors">Yazarlar</string>
+  <string name="thanks_to">Teşekkürler</string>
+  <string name="easter_egg">Sürpriz Yumurta</string>
+  <string name="email_contributor">E-posta katkıcısı\n%s</string>
+  <string name="visit_contributors_homepage">Katkıcının web sayfasını ziyaret edin\n%s</string>
+  <string name="version">Sürüm %s</string>
+  <string name="about_kde">KDE Hakkında</string>
+  <string name="kde_be_free">KDE - Özgür olun!</string>
+  <string name="kde">KDE</string>
+  <string name="konqi">Konqi</string>
+  <string name="rise_up">Kalk</string>
+  <string name="rise_down">İndir</string>
+  <string name="click_here_to_type">Yazmak için buraya dokunun</string>
+  <string name="clear_compose">Temiz</string>
+  <string name="send_compose">Gönder</string>
+  <string name="open_compose_send">Metin oluştur</string>
+  <string name="app_description">Aygıtlarınızın (örn. telefon ve bilgisayarınızın) birbiriyle iletişim kurmasına izin veren çok platformlu uygulama</string>
+  <string name="about_kde_about">&lt;h1&gt;Hakkında&lt;/h1&gt; &lt;p&gt;KDE, &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Özgür Yazılım&lt;/a&gt; hareketine destek veren yazılım mühendislerinin, sanatçıların, yazarların, çevirmenlerin ve yaratıcıların bir araya geldiği dünya çapında bir topluluktur KDE, Plasma masaüstü ortamını, yüzlerce uygulamayı ve onları destekleyen sayısız yazılım kitaplığını üretir.&lt;/p&gt; &lt;p&gt;KDE, işbirlikçi bir kurumdur: Tek bir varlık yönünü veya ürünlerini kontrol etmez. Bunun yerine, dünyanın en kaliteli Özgür Yazılım\'larını üretme hedefi için birlikte çalışırız. Herkes, sen de dahil olmak üzere, KDE\'ye &lt;a href=https://community.kde.org/Get_Involved&gt;katılıp katkıda bulunmakta özgürdür&lt;/a&gt;.&lt;/p&gt; KDE topluluğu ve ürettiğimiz yazılımlar hakkında daha fazla bilgi için &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; adresini ziyaret edin.</string>
+  <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Hataları veya İsteklerinizi Bildirin&lt;/h1&gt; &lt;p&gt;Yazılım her zaman iyileştirilebilir ve KDE takımın bunu yapmaya hazır. Ancak siz de bir şey beklendiği gibi gitmezse veya hata verirse bize bildirin.&lt;/p&gt; &lt;p&gt;KDE\'nin bir hata takip sistemi vardır. &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; adresini ziyaret edin veya hakkında ekranının \"Hata Bildir\" düğmesini kullanarak hataları bildirin.&lt;/p&gt; Bir iyileştirme için öneriniz varsa bunu bildirmek için hata takip sistemini kullanabilirsiniz; yalnızca \"Wishlist\" ciddiyet düzeyini kullandığınızdan emin olun.</string>
+  <string name="about_kde_join_kde">"&lt;h1&gt;KDE\'ye Katılın&lt;/h1&gt; &lt;p&gt;KDE takımının bir üyesi olmak için yazılım geliştirici olmanıza gerek yok. Program arayüzlerini çeviren yerel takımlara katılabilirsiniz. Grafikler, temalar, sesler ve iyileştirilmiş belgelendirme sağlayabilirsiniz. Siz karar verin!&lt;/p&gt; &lt;p&gt;Katılabileceğiniz bazı projeler hakkında bilgi almak için  &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; sayfasını ziyaret edin.&lt;/p&gt; Daha fazla bilgiye veya belgeye gereksiniminiz varsa &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; sayfasında aradığınızı bulabilirsiniz."</string>
+  <string name="about_kde_support_kde">"&lt;h1&gt;KDE\'yi Destekleyin&lt;/h1&gt; &lt;p&gt;KDE yazılımları her zaman ücretsiz kalmayı sürdürecektir; ancak bunu oluşturmak bedava değildir. &lt;/p&gt; &lt;p&gt;Geliştirmeyi desteklemek için KDE topluluğu, kar amacı gütmeyen bir kuruluş olan KDE e.V.\'yi kurmuştur, bu topluluk KDE topluğunu yasal ve finansal konularda temsil eder. KDE e.V. hakkında daha fazla bilgi için  &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; adresini ziyadet edin.&lt;/p&gt; &lt;p&gt;KDE, finansal da dahil olmak üzere her türlü katkıdan yarar sağlar. Maddi kaynaklarımızla, geliştiricilerimizin ve diğerlerinin katkıda bulunurken oluşan masraflarını karşılıyoruz. Ayrıca yasal destek ve konferanslar ve toplantılar için de kullanılmaktadır.&lt;/p&gt; &lt;p&gt;Emeklerimizi, finansal destekle desteklemeniz için &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt; adresinde bulunan yollardan birini kullanabilirsiniz.&lt;/p&gt; Desteğiniz için şimdiden teşekkürler."</string>
+  <string name="maintainer_and_developer">Projeyi sürdüren ve geliştirici</string>
+  <string name="developer">Geliştirici</string>
+  <string name="apple_support">macOS desteği. iOS desteği üzerinde çalışılmaktadır.</string>
+  <string name="bug_fixes_and_general_improvements">Hata düzeltmeleri ve genel iyileştirmeler</string>
+  <string name="samoilenko_yuri_task">SFTP desteği, hata düzeltmeleri ve genel iyileştirmeler</string>
+  <string name="aniket_kumar_task">SMS eklentisi iyileştirmeleri</string>
+  <string name="alex_fiestas_task">Kişiler eklentisi iyileştirmeleri</string>
+  <string name="maxim_leshchenko_task">Kullanıcı arabirimi iyileştirmeleri ve bu hakkında sayfası</string>
+  <string name="holger_kaelberer_task">Uzak klavye eklentisi ve hata düzeltmeleri</string>
+  <string name="saikrishna_arcot_task">Uzaktan girdi eklentisinde klavye kullanımı desteği, hata düzeltmeleri ve genel iyileştirmeler</string>
+  <string name="everyone_else">KDE Connect\'e yıllar boyunca katkıda bulunan herkes</string>
+  <string name="send_clipboard">Pano gönder</string>
+  <string name="tap_to_execute">Çalıştırmak için dokunun</string>
 </resources>
