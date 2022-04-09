@@ -8,7 +8,12 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -32,6 +37,14 @@ import java.nio.charset.Charset;
 public class SettingsFragment extends PreferenceFragmentCompat {
 
     private EditTextPreference renameDevice;
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (getActivity() != null) {
+            ((MainActivity) requireActivity()).getSupportActionBar().setTitle(R.string.settings);
+        }
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
