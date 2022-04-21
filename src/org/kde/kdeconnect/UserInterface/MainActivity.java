@@ -249,6 +249,10 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     public void onBackPressed() {
         if (mDrawerLayout.isDrawerOpen(mNavigationView)) {
             mDrawerLayout.closeDrawer(mNavigationView);
+        } else if (mCurrentMenuEntry == MENU_ENTRY_SETTINGS || mCurrentMenuEntry == MENU_ENTRY_ABOUT) {
+            mCurrentMenuEntry = MENU_ENTRY_ADD_DEVICE;
+            mNavigationView.setCheckedItem(MENU_ENTRY_ADD_DEVICE);
+            setContentFragment(new PairingFragment());
         } else {
             super.onBackPressed();
         }
