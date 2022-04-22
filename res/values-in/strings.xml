@@ -325,13 +325,13 @@
   <string name="pref_plugin_bigscreen">Remot bigscreen</string>
   <string name="pref_plugin_bigscreen_desc">Gunakan perangkatmu sebagai remot untuk Plasma Bigsreen</string>
   <string name="bigscreen_optional_permission_explanation">Untuk membagikan input mikrofon dari ponselmu kamu perlu memberikan akses terhadap input audio si ponsel</string>
-  <string name="bigscreen_speech_extra_prompt">Ucapan</string>
+  <string name="bigscreen_speech_extra_prompt">Lisankan</string>
   <string name="message_reply_label">BALAS</string>
   <string name="mark_as_read_label">TANDAI SEBAGAI DIBACA</string>
   <string name="user_display_name">KAMU</string>
   <string name="set_default_sms_app_title">Kirim MMS</string>
   <string name="set_group_message_as_mms_title">Kirim MMS grup</string>
-  <string name="set_long_text_as_mms_title">Kirim pesan text panjang sebagai MMS</string>
+  <string name="set_long_text_as_mms_title">Kirim pesan teks panjang sebagai MMS</string>
   <string name="convert_to_mms_after_title">Konversikan ke MMS</string>
   <string-array name="convert_to_mms_after_entries">
     <item>Setelah satu pesan</item>
