@@ -184,7 +184,7 @@
   <string name="custom_device_deleted">Perangkat kustom yang dihapus</string>
   <string name="custom_device_list_help">Jika perangkat Anda tidak terdeteksi secara otomatis, Anda dapat menambahkan alamat IP atau nama host-nya dengan mengklik Tombol Aksi Yang Mengambang</string>
   <string name="custom_device_fab_hint">Tambahkan sebuah perangkat</string>
-  <string name="undo">Urungkan</string>
+  <string name="undo">Urung</string>
   <string name="share_notification_preference">Notifikasi bising</string>
   <string name="share_notification_preference_summary">Getar dan putarkan suara ketika menerima sebuah file</string>
   <string name="share_destination_customize">Menyesuaikan tujuan direktori</string>
