@@ -260,7 +260,7 @@ public class SslHelper {
             byte[] hash = MessageDigest.getInstance("SHA-256").digest(certificate.getEncoded());
             Formatter formatter = new Formatter();
             int i;
-            for (i = 0; i < hash.length - 1; i++) {
+            for (i = 0; i < hash.length; i++) {
                 formatter.format("%02x:", hash[i]);
             }
             formatter.format("%02x", hash[i]);
@@ -300,7 +300,7 @@ public class SslHelper {
 
             byte[] hash = MessageDigest.getInstance("SHA-256").digest(concat);
             Formatter formatter = new Formatter();
-            for (int i = 0; i < hash.length - 1; i++) {
+            for (int i = 0; i < hash.length; i++) {
                 formatter.format("%02x", hash[i]);
             }
             return formatter.toString();
