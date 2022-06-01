@@ -8,14 +8,12 @@ package org.kde.kdeconnect.Plugins.SystemVolumePlugin;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.asynclayoutinflater.view.AsyncLayoutInflater;
 import androidx.core.util.Consumer;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +21,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.kde.kdeconnect.BackgroundService;
+import org.kde.kdeconnect.Helpers.VolumeHelperKt;
 import org.kde.kdeconnect.Plugins.MprisPlugin.MprisPlugin;
 import org.kde.kdeconnect.Plugins.MprisPlugin.VolumeKeyListener;
 import org.kde.kdeconnect_tp.R;
@@ -31,7 +30,6 @@ import org.kde.kdeconnect_tp.databinding.SystemVolumeFragmentBinding;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class SystemVolumeFragment
         extends Fragment
@@ -91,7 +89,7 @@ public class SystemVolumeFragment
     }
 
     @Override
-    public void updateSink(final Sink sink) {
+    public void updateSink(@NonNull final Sink sink) {
 
         // Don't set progress while the slider is moved
         if (!tracking) {
@@ -138,27 +136,18 @@ public class SystemVolumeFragment
 
     private void updateDefaultSinkVolume(int percent) {
 
-        if (percent < -100) percent = -100;
-        if (percent > 100) percent = 100;
+        Sink defaultSink = SystemVolumeUtilsKt.getDefaultSink(plugin);
+        if (defaultSink == null) return;
 
-        Optional<Sink> foundSink = plugin.getSinks().stream().filter(Sink::isDefault).findFirst();
-        if (foundSink.isPresent()) {
-            Sink defaultSink = foundSink.get();
+        int newVolume = VolumeHelperKt.calculateNewVolume(
+                defaultSink.getVolume(),
+                defaultSink.getMaxVolume(),
+                percent
+        );
 
-            int step = defaultSink.getMaxVolume() * percent / 100;
+        if (defaultSink.getVolume() == newVolume) return;
 
-            int newVolume = defaultSink.getVolume() + step;
-
-            if (newVolume > defaultSink.getMaxVolume()) {
-                newVolume = defaultSink.getMaxVolume();
-            } else if (newVolume < 0) {
-                newVolume = 0;
-            }
-
-            if (defaultSink.getVolume() == newVolume) return;
-
-            plugin.sendVolume(defaultSink.getName(), newVolume);
-        }
+        plugin.sendVolume(defaultSink.getName(), newVolume);
     }
 
     private String getDeviceId() {

@@ -34,6 +34,7 @@ import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Helpers.VideoUrlsHelper;
+import org.kde.kdeconnect.Helpers.VolumeHelperKt;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.MprisControlBinding;
@@ -396,36 +397,23 @@ public class MprisNowPlayingFragment extends Fragment implements VolumeKeyListen
      * @param step step size volume change
      */
     private void updateVolume(int step) {
-        Log.e("NowPlayingVolume", String.valueOf(step));
-        if (targetPlayer == null) {
-            return;
-        }
-        Log.e("NowPlayingVolumePlayer", targetPlayer.getTitle());
-        Log.e("NowPlayingVolumeP", String.valueOf(targetPlayer.getVolume()));
+        if (targetPlayer == null) return;
 
-        final int currentVolume = targetPlayer.getVolume();
+        int newVolume = VolumeHelperKt.calculateNewVolume(targetPlayer.getVolume(), VolumeHelperKt.DEFAULT_MAX_VOLUME, step);
 
-        if (currentVolume <= 100 && currentVolume >= 0) {
-            int newVolume = currentVolume + step;
-            if (newVolume > 100) {
-                newVolume = 100;
-            } else if (newVolume < 0) {
-                newVolume = 0;
-            }
-
-            Log.e("NowPlayingVolumeN", String.valueOf(newVolume));
+        if (targetPlayer.getVolume() != newVolume) {
             targetPlayer.setVolume(newVolume);
         }
     }
 
     @Override
     public void onVolumeUp() {
-        updateVolume(5);
+        updateVolume(VolumeHelperKt.DEFAULT_VOLUME_STEP);
     }
 
     @Override
     public void onVolumeDown() {
-        updateVolume(-5);
+        updateVolume(-VolumeHelperKt.DEFAULT_VOLUME_STEP);
     }
 
     @Override

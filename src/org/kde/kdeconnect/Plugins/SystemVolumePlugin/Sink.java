@@ -6,6 +6,8 @@
 
 package org.kde.kdeconnect.Plugins.SystemVolumePlugin;
 
+import androidx.annotation.NonNull;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,7 +17,7 @@ import java.util.List;
 class Sink {
 
     interface UpdateListener {
-        void updateSink(Sink sink);
+        void updateSink(@NonNull Sink sink);
     }
 
     private int volume;
