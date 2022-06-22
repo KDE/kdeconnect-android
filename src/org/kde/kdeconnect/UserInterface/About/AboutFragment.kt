@@ -16,6 +16,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import org.kde.kdeconnect.Plugins.BigscreenPlugin.BigscreenActivity
 import org.kde.kdeconnect.UserInterface.List.ListAdapter
 import org.kde.kdeconnect.UserInterface.MainActivity
 import org.kde.kdeconnect_tp.R
@@ -89,8 +90,9 @@ class AboutFragment : Fragment() {
             startActivity(Intent(context, LicensesActivity::class.java))
         }
 
+        // TODO change back go AboutKDEActivity::class.java before merging
         binding!!.aboutKdeButton.setOnClickListener {
-            startActivity(Intent(context, AboutKDEActivity::class.java))
+            startActivity(Intent(context, BigscreenActivity::class.java))
         }
 
         setupInfoButton(aboutData.websiteURL, binding!!.websiteButton)

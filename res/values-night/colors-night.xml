@@ -2,6 +2,7 @@
 <resources>
     <color name="primaryDark">@android:color/black</color>
     <color name="darkGrey">#555555</color>
+    <color name="disabled_grey">@color/darkGrey</color>
     <color name="darkToolbarBackground">#222222</color>
     <color name="darkStatusBarBackground">#333333</color>
     <color name="on_secondary">@android:color/black</color>

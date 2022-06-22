@@ -52,6 +52,19 @@
         <item name="colorButtonNormal">@drawable/disableable_button</item>
     </style>
 
+    <style name="TransparentButton" parent="android:Widget.ActionButton">
+<!--        <item name="android:padding">0dp</item>-->
+<!--        <item name="android:layout_margin">0dp</item>-->
+        <item name="background">@android:color/transparent</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+    </style>
+
+    <style name="CircleButton" parent="android:Widget.ActionButton">
+        <item name="android:background">@drawable/button_circle</item>
+    </style>
+
     <style name="ActionModeStyle" parent="Widget.AppCompat.ActionMode">
         <item name="background">@color/primaryDark</item>
     </style>
