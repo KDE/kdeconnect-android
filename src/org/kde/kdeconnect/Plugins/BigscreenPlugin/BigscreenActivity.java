@@ -43,35 +43,36 @@ public class BigscreenActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        final String deviceId = getIntent().getStringExtra("deviceId");
-
-        if (!SpeechRecognizer.isRecognitionAvailable(this)) {
-            binding.micButton.setEnabled(false);
-            binding.micButton.setVisibility(View.INVISIBLE);
-        }
-
-        BackgroundService.RunWithPlugin(this, deviceId, BigscreenPlugin.class, plugin -> runOnUiThread(() -> {
-            binding.leftButton.setOnClickListener(v -> plugin.sendLeft());
-            binding.rightButton.setOnClickListener(v -> plugin.sendRight());
-            binding.upButton.setOnClickListener(v -> plugin.sendUp());
-            binding.downButton.setOnClickListener(v -> plugin.sendDown());
-            binding.selectButton.setOnClickListener(v -> plugin.sendSelect());
-            binding.homeButton.setOnClickListener(v -> plugin.sendHome());
-            binding.micButton.setOnClickListener(v -> {
-                if (plugin.hasMicPermission()) {
-                    activateSTT();
-                } else {
-                    new PermissionsAlertDialogFragment.Builder()
-                            .setTitle(plugin.getDisplayName())
-                            .setMessage(R.string.bigscreen_optional_permission_explanation)
-                            .setPositiveButton(R.string.ok)
-                            .setNegativeButton(R.string.cancel)
-                            .setPermissions(new String[]{Manifest.permission.RECORD_AUDIO})
-                            .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
-                            .create().show(getSupportFragmentManager(), null);
-                }
-            });
-        }));
+        // TODO uncomment before merging
+//        final String deviceId = getIntent().getStringExtra("deviceId");
+//
+//        if (!SpeechRecognizer.isRecognitionAvailable(this)) {
+//            binding.micButton.setEnabled(false);
+//            binding.micButton.setVisibility(View.INVISIBLE);
+//        }
+//
+//        BackgroundService.RunWithPlugin(this, deviceId, BigscreenPlugin.class, plugin -> runOnUiThread(() -> {
+//            binding.leftButton.setOnClickListener(v -> plugin.sendLeft());
+//            binding.rightButton.setOnClickListener(v -> plugin.sendRight());
+//            binding.upButton.setOnClickListener(v -> plugin.sendUp());
+//            binding.downButton.setOnClickListener(v -> plugin.sendDown());
+//            binding.selectButton.setOnClickListener(v -> plugin.sendSelect());
+//            binding.homeButton.setOnClickListener(v -> plugin.sendHome());
+//            binding.micButton.setOnClickListener(v -> {
+//                if (plugin.hasMicPermission()) {
+//                    activateSTT();
+//                } else {
+//                    new PermissionsAlertDialogFragment.Builder()
+//                            .setTitle(plugin.getDisplayName())
+//                            .setMessage(R.string.bigscreen_optional_permission_explanation)
+//                            .setPositiveButton(R.string.ok)
+//                            .setNegativeButton(R.string.cancel)
+//                            .setPermissions(new String[]{Manifest.permission.RECORD_AUDIO})
+//                            .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
+//                            .create().show(getSupportFragmentManager(), null);
+//                }
+//            });
+//        }));
     }
 
     public void activateSTT() {
