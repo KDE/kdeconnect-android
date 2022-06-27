@@ -120,7 +120,7 @@ public class MprisPlugin extends Plugin {
         }
 
         public boolean isSeekAllowed() {
-            return seekAllowed && getLength() >= 0 && getPosition() >= 0 && !isSpotify();
+            return seekAllowed && getLength() >= 0 && getPosition() >= 0;
         }
 
         public boolean hasAlbumArt() {
@@ -142,15 +142,15 @@ public class MprisPlugin extends Plugin {
         }
 
         public boolean isLoopStatusAllowed() {
-            return loopStatusAllowed && !isSpotify();
+            return loopStatusAllowed;
         }
 
         public boolean isShuffleAllowed() {
-            return shuffleAllowed && !isSpotify();
+            return shuffleAllowed;
         }
 
         public boolean isSetVolumeAllowed() {
-            return !isSpotify() && (getVolume() > -1);
+            return getVolume() > -1;
         }
 
         public long getPosition() {
