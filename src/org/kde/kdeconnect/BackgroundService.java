@@ -6,6 +6,7 @@
 
 package org.kde.kdeconnect;
 
+import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -14,6 +15,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.os.Binder;
 import android.os.Build;
@@ -353,10 +355,9 @@ public class BackgroundService extends Service {
             notification.setContentText(getString(R.string.foreground_notification_devices, TextUtils.join(", ", connectedDevices)));
 
             // Adding an action button to send clipboard manually in Android 10 and later.
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-                Intent sendClipboard = new Intent(this, ClipboardFloatingActivity.class);
-                sendClipboard.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                sendClipboard.putExtra("connectedDeviceIds", connectedDeviceIds);
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P &&
+                    ContextCompat.checkSelfPermission(this, Manifest.permission.READ_LOGS) == PackageManager.PERMISSION_DENIED) {
+                Intent sendClipboard = ClipboardFloatingActivity.getIntent(this, true);
                 PendingIntent sendPendingClipboard = PendingIntent.getActivity(this, 3, sendClipboard, PendingIntent.FLAG_UPDATE_CURRENT);
                 notification.addAction(0, getString(R.string.foreground_notification_send_clipboard), sendPendingClipboard);
             }

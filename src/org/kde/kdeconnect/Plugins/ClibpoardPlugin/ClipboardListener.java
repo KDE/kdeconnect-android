@@ -1,22 +1,32 @@
 /*
  * SPDX-FileCopyrightText: 2014 Albert Vaca Cintora <albertvaka@gmail.com>
+ * SPDX-FileCopyrightText: 2021 Ilmaz Gumerov <ilmaz1309@gmail.com>
  *
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 */
 
 package org.kde.kdeconnect.Plugins.ClibpoardPlugin;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 
 import androidx.core.content.ContextCompat;
 
+import org.kde.kdeconnect_tp.BuildConfig;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class ClipboardListener {
@@ -32,7 +42,6 @@ public class ClipboardListener {
     private long updateTimestamp;
 
     private ClipboardManager cm = null;
-    private ClipboardManager.OnPrimaryClipChangedListener listener;
 
     private static ClipboardListener _instance = null;
 
@@ -57,28 +66,51 @@ public class ClipboardListener {
 
         new Handler(Looper.getMainLooper()).post(() -> {
             cm = ContextCompat.getSystemService(context, ClipboardManager.class);
-            listener = () -> {
-                try {
-
-                    ClipData.Item item = cm.getPrimaryClip().getItemAt(0);
-                    String content = item.coerceToText(context).toString();
-
-                    if (content.equals(currentContent)) {
-                        return;
-                    }
-                    updateTimestamp = System.currentTimeMillis();
-                    currentContent = content;
-
-                    for (ClipboardObserver observer : observers) {
-                        observer.clipboardChanged(content);
-                    }
-
-                } catch (Exception e) {
-                    //Probably clipboard was not text
-                }
-            };
-            cm.addPrimaryClipChangedListener(listener);
+            cm.addPrimaryClipChangedListener(this::onClipboardChanged);
         });
+
+
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P &&
+                ContextCompat.checkSelfPermission(context, Manifest.permission.READ_LOGS) == PackageManager.PERMISSION_GRANTED) {
+            new Thread(() -> {
+                try {
+                    String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.US).format(new Date());
+                    // Listen only ClipboardService errors after now
+                    Process process = Runtime.getRuntime().exec(new String[]{"logcat", "-T", timeStamp, "ClipboardService:E", "*:S"});
+                    BufferedReader bufferedReader = new BufferedReader(
+                            new InputStreamReader(
+                                    process.getInputStream()
+                            )
+                    );
+                    String line;
+                    while ((line = bufferedReader.readLine()) != null) {
+                        if (line.contains(BuildConfig.APPLICATION_ID)) {
+                            context.startActivity(ClipboardFloatingActivity.getIntent(context, false));
+                        }
+                    }
+                } catch (Exception ignored) {
+                }
+            }).start();
+        }
+    }
+
+    public void onClipboardChanged() {
+        try {
+            ClipData.Item item = cm.getPrimaryClip().getItemAt(0);
+            String content = item.coerceToText(context).toString();
+
+            if (content.equals(currentContent)) {
+                return;
+            }
+            updateTimestamp = System.currentTimeMillis();
+            currentContent = content;
+
+            for (ClipboardObserver observer : observers) {
+                observer.clipboardChanged(content);
+            }
+        } catch (Exception e) {
+            //Probably clipboard was not text
+        }
     }
 
     public String getCurrentContent() {
