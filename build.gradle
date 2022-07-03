@@ -5,10 +5,6 @@ import com.github.jk1.license.render.TextReportRenderer
 
 buildscript {
     ext.kotlin_version = '1.6.10'
-    repositories {
-        mavenCentral()
-        google()
-    }
     dependencies {
         classpath 'com.android.tools.build:gradle:7.2.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -142,17 +138,6 @@ ext {
 }
 
 dependencies {
-
-    repositories {
-        mavenCentral()
-        google()
-        /* Needed for org.apache.sshd debugging
-        maven {
-            url "https://jitpack.io"
-        }
-        */
-    }
-
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
     implementation 'androidx.multidex:multidex:2.0.1'
 
@@ -202,11 +187,6 @@ dependencies {
     // For device controls
     implementation 'org.reactivestreams:reactive-streams:1.0.3'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
-}
-
-repositories {
-    google()
-    mavenCentral()
 }
 
 licenseReport {
