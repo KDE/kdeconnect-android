@@ -26,7 +26,7 @@
   <string name="pref_plugin_mpris_desc">Media oynadıcınızı idarə etməyə imkan verir</string>
   <string name="pref_plugin_runcommand">Əmr başlatmaq</string>
   <string name="pref_plugin_runcommand_desc">Əmrləri telefon və ya planşetiniz ilə məsafədən başlatmaq</string>
-  <string name="pref_plugin_contacts">Kontaktları eyniləşdirmək</string>
+  <string name="pref_plugin_contacts">Əlaqələri eyniləşdirin</string>
   <string name="pref_plugin_contacts_desc">Cihazın kontak kitabçasını eyniləşdirməyə icazə vermək</string>
   <string name="pref_plugin_ping">Dümsükləmək</string>
   <string name="pref_plugin_ping_desc">Siqnal göndərmək və almaq</string>
@@ -257,8 +257,8 @@
   <string name="share_optional_permission_explanation">Paylaşılan faylları qəbul etmək üçün saxlama qovluğu seçməlisiniz</string>
   <string name="telepathy_permission_explanation">İş Masanızdan telefonunuzdakı SMS\'ləri oxumaq və SMS göndərmək üçün SMS\'ə girişə icazə verməlisiniz</string>
   <string name="telephony_permission_explanation">İş Masanızda telefon zənglərini görmək üçün Zəng Tarixçəsinə və Zəng yığımı vəziyyətinə icazə verməlisiniz</string>
-  <string name="telephony_optional_permission_explanation">Telefon nömrəsi əvəzinə kontaktın adını görmək üçün Kontakt Kitabçasına girişə icazə verməlisiniz</string>
-  <string name="contacts_permission_explanation">İş masası vasitəsi ilə kontaktlar kitabçasını paylaşmaq üçün kontaktlara girişə icazə verməlisiniz</string>
+  <string name="telephony_optional_permission_explanation">Telefon nömrəsi əvəzinə əlaqənin adını görmək üçün Əlaqə Kitabçasına girişə icazə verməlisiniz</string>
+  <string name="contacts_permission_explanation">İş masası vasitəsi ilə əlaqələr kitabçasını paylaşmaq üçün əlaqələra girişə icazə verməlisiniz</string>
   <string name="select_ringtone">Zəng səsini seçmək</string>
   <string name="telephony_pref_blocked_title">Əngəllənmiş nömrələr</string>
   <string name="telephony_pref_blocked_dialog_desc">Bu nömrədən SMS və zənglər göstərilməsin. Hər sətirdə bir nömrə göstərin</string>
