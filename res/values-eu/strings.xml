@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
+  <string name="manifest_label_share">Bidali gailura</string>
   <string name="foreground_notification_no_devices">Ez dago ezein gailuetara konektaturik</string>
   <string name="foreground_notification_devices">Honetara konektatua: %s</string>
   <string name="foreground_notification_send_clipboard">Bidali arbelekoa</string>
@@ -51,11 +52,18 @@
   <string name="remotekeyboard_multiple_connections">Urruneko teklatuekin konexio bat baino gehiago dago, hautatu konfiguratu beharreko gailua</string>
   <string name="open_mousepad">Urruneko sarrera</string>
   <string name="mousepad_info">Mugitu hatz bat pantailan zehar saguaren erakuslea mugitzeko. Egin tak klik baterako, eta erabili bi/hiru hatz eskuin eta erdiko botoietarako. Erabili 2 hatz labaintzeko. Erabili sakatze luze bat arrastatu eta jaregiteko.</string>
+  <string name="mousepad_single_tap_settings_title">Ezarri hatz bakarrarekin tak egitearen ekintza</string>
   <string name="mousepad_double_tap_settings_title">Ezarri bi hatzez tak egitearen ekintza</string>
   <string name="mousepad_triple_tap_settings_title">Ezarri hiru hatzez tak egitearen ekintza</string>
   <string name="mousepad_sensitivity_settings_title">Ezarri ukimen-saguaren sentikortasuna</string>
   <string name="mousepad_acceleration_profile_settings_title">Ezarri erakuslearen azelerazio</string>
   <string name="mousepad_scroll_direction_title">Alderantzikatu korritzearen norabidea</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Ezkerreko klik</item>
+    <item>Eskuineko klik</item>
+    <item>Erdiko klik</item>
+    <item>Ezer ez</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Motelena</item>
     <item>Motelena baino azkarrago</item>
@@ -195,6 +203,7 @@
   <string name="share_received_file">Partekatu \"%s\"</string>
   <string name="title_activity_notification_filter">Jakinarazpenen iragazkia</string>
   <string name="filter_apps_info">Aukeratutako aplikazioen jakinarazpenak sinkronizatuko dira</string>
+  <string name="show_notification_if_screen_off">Bidali jakinarazpenak bakarrik pantaila itzalita badago</string>
   <string name="sftp_sdcard_num">%d SD txartela</string>
   <string name="sftp_sdcard">SD txartela</string>
   <string name="sftp_readonly">(irakurri soilik)</string>
@@ -292,7 +301,7 @@
   <string name="settings_more_settings_text">Gailu-bakoitzeko ezarpenak aurki daitezke \'Pluginen ezarpenak\' barruan.</string>
   <string name="setting_persistent_notification">Erakutsi jakinarazpen iraunkorra</string>
   <string name="setting_persistent_notification_oreo">Jakinarazpen iraunkorra</string>
-  <string name="setting_persistent_notification_description">Sakatu gaitzeko/desgaitzeko jakinarazpen ezarpenetan</string>
+  <string name="setting_persistent_notification_description">Tak egin jakinarazpen ezarpenetan gaitzeko/ezgaitzeko</string>
   <string name="extra_options">Aukera gehigarriak</string>
   <string name="privacy_options">Pribatutasun aukerak</string>
   <string name="set_privacy_options">Ezarri zure pribatutasun aukerak</string>
@@ -368,6 +377,10 @@
   <string name="konqi">Konqi</string>
   <string name="rise_up">Igo</string>
   <string name="rise_down">Jaitsi</string>
+  <string name="click_here_to_type">Tak egin hemen tekleatzeko</string>
+  <string name="clear_compose">Garbitu</string>
+  <string name="send_compose">Bidali</string>
+  <string name="open_compose_send">Konposatu testua</string>
   <string name="app_description">Zure gailuei haien artean komunikatzen uzten dien plataforma askotariko aplikazioa (adib., zure telefonoa eta zure ordenagailua)</string>
   <string name="about_kde_about">"&lt;h1&gt;Honi buruz&lt;/h1&gt; &lt;p&gt;KDE &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Software Askearen&lt;/a&gt; garapenarekin engaiatutako mundu osoko software ingeniari, artista, idazle, itzultzaile eta sortzaile elkarte bat da. KDEk Plasma mahaigain ingurunea, ehunka aplikazio, eta haiei euskarria ematen dieten liburutegi ugariak ekoizten ditu. &lt;/p&gt; &lt;p&gt;KDE ekimen kooperatibo bat da: ez dago bere norabidea eta produktuak kontrolatzen dituen erakunderik. Aldiz, elkarrekin lan egiten dugu guztiok partekatzen dugun helburu bera lortzeko, munduko Software Aske bikainena eraikitzearena alegia. Jende oro ongi etorria da  KDErekin &lt;a href=https://community.kde.org/Get_Involved&gt;elkartu eta laguntza ematera&lt;/a&gt;, zu barne. &lt;/p&gt; Bisitatu &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; , KDE elkartearen eta ekoizten dugun softwarearen gaineko informazio zabalagoa eskuratzeko."</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Akatsen edo nahien berri ematea&lt;/h1&gt; &lt;p&gt;Softwarea beti hobetu daiteke, eta KDE taldea horretarako prest dago. Hala ere, zuk - erabiltzailea zaren horrek - zerbait behar bezala ez dabilenean edo hobeto egin daitekeenean esan egin behar diguzu.&lt;/p&gt; &lt;p&gt;KDEk programa-akatsen gaineko jarraipena egiteko sistema bat du. Bisitatu &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; edo erabili Honi buruz pantailako «Akatsa jakinarazi» botoia.&lt;/p&gt; Hobetzeko iradokizunik baduzu, akatsen jarraipen sisteman zure nahia erregistratzera gonbidatzen zaitugu. Larritasun maila bezala \"Wishlist\" (nahien zerrenda) erabil ezazu horretarako.</string>
@@ -384,4 +397,6 @@
   <string name="holger_kaelberer_task">Urruneko teklatuaren plugina eta akatsen konponketa</string>
   <string name="saikrishna_arcot_task">Urruneko sarrerako pluginean teklatua erabiltzeko euskarria, akatsen konponketa eta hobekuntza orokorrak</string>
   <string name="everyone_else">Urteetan KDE Connect-ekin lagundu duten gainerako guztiak</string>
+  <string name="send_clipboard">Bidali arbelekoa</string>
+  <string name="tap_to_execute">Tak egin exekutatzeko</string>
 </resources>
