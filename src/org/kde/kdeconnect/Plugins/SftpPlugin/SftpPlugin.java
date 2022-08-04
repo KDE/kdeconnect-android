@@ -8,13 +8,10 @@ package org.kde.kdeconnect.Plugins.SftpPlugin;
 
 import android.app.Activity;
 import android.content.ContentResolver;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
-import android.provider.Settings;
 import android.util.Log;
-import android.os.Environment;
 
 import androidx.annotation.NonNull;
 
@@ -61,8 +58,6 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
         try {
             server.init(context, device);
 
-            Log.e("KDECONNECT", "has it " + Environment.isExternalStorageManager());
-
             if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
                 return SftpSettingsFragment.getStorageInfoList(context, this).size() != 0;
             }
@@ -85,13 +80,6 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
 
     @Override
     public AlertDialogFragment getOptionalPermissionExplanationDialog() {
-
-        Intent intent = new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-        context.startActivity(intent);
-
-
         return new DeviceSettingsAlertDialogFragment.Builder()
                 .setTitle(getDisplayName())
                 .setMessage(R.string.sftp_saf_permission_explanation)
