@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">كدي المتّصل</string>
+  <string name="manifest_label_share">أرسِل إلى جهاز</string>
   <string name="pref_plugin_telephony">مُخطِر المهاتفة</string>
   <string name="pref_plugin_battery">تقرير البطّاريّة</string>
   <string name="pref_plugin_battery_desc">بلّغ عن حالة البطّاريّة دوريًّا</string>
@@ -23,6 +25,7 @@
   <string name="pref_plugin_sharereceiver_desc">شارك الملفّات والعناوين بين الجهازين</string>
   <string name="device_list_empty">لا أجهزة</string>
   <string name="ok">حسنًا</string>
+  <string name="sad_ok">حسنًا ):</string>
   <string name="cancel">ألغِ</string>
   <string name="open_settings">افتح الإعدادات</string>
   <string name="no_permissions">عليك إعطاء التّطبيق صلاحيّات للنّفاذ إلى الإخطارات</string>
@@ -33,6 +36,12 @@
   <string name="mousepad_triple_tap_settings_title">اضبط إجراء اللمس بثلاث أصابع</string>
   <string name="mousepad_sensitivity_settings_title">اضبط حساسيّة لوحة اللمس</string>
   <string name="mousepad_scroll_direction_title">اعكس اتّجاه التّمرير</string>
+  <string-array name="mousepad_tap_entries">
+    <item>النّقر باليسار</item>
+    <item>النقر باليمين</item>
+    <item>النّقر بالوسط</item>
+    <item>لا شيء</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>الأبطأ</item>
     <item>الأقل بطئًا</item>
@@ -44,8 +53,8 @@
     <item>No Acceleration</item>
     <item>Weakest</item>
     <item>Weaker</item>
-    <item>Medium</item>
-    <item>Stronger</item>
+    <item/>
+    <item>أقوى</item>
     <item>Strongest</item>
   </string-array>
   <string name="category_connected_devices">الأجهزة المقترن بها</string>
@@ -74,11 +83,15 @@
   <string name="request_pairing">اطلب الاقتران</string>
   <string name="pairing_accept">اقبل</string>
   <string name="pairing_reject">ارفض</string>
+  <string name="settings">إعدادات</string>
   <string name="mpris_play">شغّل</string>
+  <string name="mpris_pause">ألبث</string>
   <string name="mpris_previous">السّابق</string>
   <string name="mpris_rew">رجوع</string>
   <string name="mpris_ff">تقدّم سريع</string>
   <string name="mpris_next">التّالي</string>
+  <string name="mpris_loop">حلقة</string>
+  <string name="mpris_shuffle">اخلط</string>
   <string name="mpris_volume">المستوى</string>
   <string name="mpris_time_settings_title">زرّا التّقدّم والإرجاع</string>
   <string-array name="mpris_time_entries">
@@ -102,6 +115,7 @@
   <string name="sftp_sdcard">بطاقة SD</string>
   <string name="sftp_readonly">(للقراءة فقط)</string>
   <string name="sftp_camera">صور الكاميرا</string>
+  <string name="sftp_storage_preference_display_name">اسم العرض</string>
   <string name="no_players_connected">لم يُعثر على مشغّلات</string>
   <string name="send_files">أرسل ملفّات</string>
   <string name="pairing_title">أجهزة «كدي المتّصل»</string>
@@ -118,6 +132,16 @@
   <string name="findmyphone_description">يرّن هذا الجهاز لتجده</string>
   <string name="open">افتح</string>
   <string name="close">أغلق</string>
+  <string name="presenter_fullscreen">ملء الشّاشة</string>
+  <string name="notification_channel_filetransfer">نقل الملفّات</string>
+  <string name="notification_channel_high_priority">مرتفعة الأولوية</string>
+  <string name="notification_channel_sms_mms">رسالة جديدة</string>
+  <string name="copy_url_to_clipboard">انسخ المسار إلى الحافظة</string>
+  <string name="ring">حلقة</string>
+  <string name="pref_plugin_systemvolume">صوت النظام</string>
+  <string name="settings_rename">اسم الجهاز</string>
+  <string name="presenter_pointer">المؤشر</string>
+  <string name="user_display_name">أنت</string>
   <string-array name="convert_to_mms_after_entries">
     <item>After one message</item>
     <item>After two messages</item>
@@ -127,12 +151,13 @@
   </string-array>
   <string-array name="theme_list">
     <item>Set by Battery Saver</item>
-    <item/>
-    <item>Dark</item>
   </string-array>
   <string-array name="theme_list_v28">
-    <item/>
-    <item/>
-    <item>Dark</item>
+    <item>افتراضيات النظام</item>
   </string-array>
+  <string name="donate">تبرّع</string>
+  <string name="thanks_to">الشكر إلى</string>
+  <string name="kde">كدي</string>
+  <string name="send_compose">أرسل</string>
+  <string name="bug_fixes_and_general_improvements">إصلاح علل وتحسينات عامة</string>
 </resources>
