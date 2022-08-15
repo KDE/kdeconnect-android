@@ -1,16 +1,21 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
   <string name="kde_connect">KDE Connect</string>
+  <string name="manifest_label_share">デバイスに送信</string>
   <string name="foreground_notification_no_devices">デバイスに接続されていません</string>
   <string name="foreground_notification_devices">接続済み: %s</string>
+  <string name="foreground_notification_send_clipboard">クリップボードを送信</string>
   <string name="pref_plugin_telephony">電話通知</string>
   <string name="pref_plugin_telephony_desc">着信通知を送信</string>
   <string name="pref_plugin_battery">バッテリーレポート</string>
   <string name="pref_plugin_battery_desc">定期的にバッテリー状態を報告します</string>
+  <string name="pref_plugin_connectivity_report">接続性レポート</string>
+  <string name="pref_plugin_connectivity_report_desc">信号強度とネットワークの状態を報告します</string>
   <string name="pref_plugin_sftp">ファイルシステムの参照</string>
   <string name="pref_plugin_sftp_desc">リモートからこのデバイスのファイルシステムへの閲覧を可能にします</string>
   <string name="pref_plugin_clipboard">クリップボードの同期</string>
   <string name="pref_plugin_clipboard_desc">クリップボードの内容を共有</string>
+  <string name="pref_plugin_clipboard_sent">クリップボードが送信されました</string>
   <string name="pref_plugin_mousepad">リモート入力</string>
   <string name="pref_plugin_mousepad_desc">あなたのスマートフォンやタブレットをタッチパッドやキーボードとして利用します</string>
   <string name="pref_plugin_presenter">リモートスライドショー</string>
@@ -33,6 +38,7 @@
   <string name="pref_plugin_sharereceiver_desc">デバイス間でファイルと URL を共有</string>
   <string name="device_list_empty">デバイスなし</string>
   <string name="ok">OK</string>
+  <string name="sad_ok">OK (´・ω・｀)</string>
   <string name="cancel">キャンセル</string>
   <string name="open_settings">設定を開く</string>
   <string name="no_permissions">通知にアクセスするには権限を許可する必要があります</string>
@@ -46,11 +52,18 @@
   <string name="remotekeyboard_multiple_connections">一つ以上のリモートキーボード接続があります。設定するデバイスを選択してください</string>
   <string name="open_mousepad">リモート入力</string>
   <string name="mousepad_info">スクリーン上で指を動かしてマウスカーソルを移動します。タップはクリックとなり、2/3本指で右クリック、中クリックとなります。2本指を使ってスクロールが可能です。長押しすることでドラッグ&amp;ドロップできます。</string>
+  <string name="mousepad_single_tap_settings_title">1本指タップのアクションを設定</string>
   <string name="mousepad_double_tap_settings_title">2本指タップのアクションを設定</string>
   <string name="mousepad_triple_tap_settings_title">3本指タップのアクションを設定</string>
   <string name="mousepad_sensitivity_settings_title">タッチパッドの感度を設定</string>
   <string name="mousepad_acceleration_profile_settings_title">ポインタの速度を設定</string>
   <string name="mousepad_scroll_direction_title">スクロールの方向を反転</string>
+  <string-array name="mousepad_tap_entries">
+    <item>左クリック</item>
+    <item>右クリック</item>
+    <item>中クリック</item>
+    <item>なし</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>最も遅く</item>
     <item>遅め</item>
@@ -66,6 +79,26 @@
     <item>強</item>
     <item>最強</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">キー入力を送信</string>
+  <string name="sendkeystrokes_textbox_hint">キー入力をホストに送信</string>
+  <string name="sendkeystrokes_disabled_toast">キー入力の送信は無効化されています。設定で有効化してください</string>
+  <string name="sendkeystrokes_wrong_data">無効な MIME タイプです。\'text/x-keystrokes\' である必要があります</string>
+  <string name="sendkeystrokes_sent_text">ファイル %1$s をデバイス %2$s へ送信しました</string>
+  <string name="sendkeystrokes_pref_category_summary">このモジュールは他のアプリがテキストのセグメントを接続されたホストに送信されるキー入力として共有できるようにします</string>
+  <string name="sendkeystrokes_pref_category_title">キー入力を送信</string>
+  <string name="sendkeystrokes_pref_enabled">キー入力の送信を有効化</string>
+  <string name="sendkeystrokes_pref_enabled_summary">MIME タイプが \'text/x-keystrokes\' のデータを受け付ける</string>
+  <string name="sendkeystrokes_safe_text_enabled">安全なテキストをすぐに送信する</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">確認なしで短い数値のみの文字列を送信する</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">キー入力として送信</string>
+  <string name="mouse_receiver_plugin_description">リモートからマウスの動きを受信</string>
+  <string name="mouse_receiver_plugin_name">マウスレシーバ</string>
+  <string name="mouse_receiver_no_permissions">アクセシビリティサービスを有効化する必要があります</string>
+  <string name="view_status_title">ステータス</string>
+  <string name="battery_status_format">バッテリ: %d%%</string>
+  <string name="battery_status_low_format">バッテリ: %d%% 残量低下</string>
+  <string name="battery_status_charging_format">バッテリ: %d%% 充電中</string>
+  <string name="battery_status_unknown">バッテリ情報が利用できません</string>
   <string name="category_connected_devices">接続済みのデバイス</string>
   <string name="category_not_paired_devices">利用可能なデバイス</string>
   <string name="category_remembered_devices">ペアリング済みのデバイス</string>
@@ -81,6 +114,8 @@
   <string name="error_canceled_by_other_peer">他のピアにキャンセルされました</string>
   <string name="encryption_info_title">暗号化情報</string>
   <string name="encryption_info_msg_no_ssl">他のデバイスは最近のバージョンの KDE Connect を利用していません。古い暗号化方式を使用しています</string>
+  <string name="my_device_fingerprint">このデバイスの証明書の SHA256 フィンガープリント:</string>
+  <string name="remote_device_fingerprint">リモートデバイスの証明書の SHA256 フィンガープリント:</string>
   <string name="pair_requested">ペアリング要求済み</string>
   <string name="pairing_request_from">%1s からペアリングを要求されました</string>
   <plurals name="incoming_file_title">
@@ -107,6 +142,7 @@
   <plurals name="send_files_fail_title">
     <item quantity="other">%1$s へのファイル送信に失敗</item>
   </plurals>
+  <string name="tap_to_open">タップして開く</string>
   <string name="received_file_text">タップして \'%1s\' を開く</string>
   <string name="cannot_create_file">ファイル %s を作成できません</string>
   <string name="tap_to_answer">タップして応答</string>
@@ -124,6 +160,8 @@
   <string name="mpris_rew">巻き戻し</string>
   <string name="mpris_ff">早送り</string>
   <string name="mpris_next">次へ</string>
+  <string name="mpris_loop">繰り返し</string>
+  <string name="mpris_shuffle">シャッフル</string>
   <string name="mpris_volume">音量</string>
   <string name="mpris_time_settings_title">早送り/巻き戻しボタン</string>
   <string name="mpris_time_settings_summary">押した時に早送り/巻き戻しする時間を調整</string>
@@ -157,6 +195,7 @@
   <string name="share_received_file">\"%s\" を共有</string>
   <string name="title_activity_notification_filter">通知フィルタ</string>
   <string name="filter_apps_info">選択されたアプリケーションの通知が同期されます。</string>
+  <string name="show_notification_if_screen_off">スクリーンがオフのときのみ通知を送信</string>
   <string name="sftp_sdcard_num">SD カード %d</string>
   <string name="sftp_sdcard">SD カード</string>
   <string name="sftp_readonly">(読み取り専用)</string>
@@ -190,19 +229,24 @@
   <string name="refresh">更新</string>
   <string name="unreachable_description">このペアリング済みデバイスに到達できません。同一のネットワーク内に 接続されていることを確認してください</string>
   <string name="no_wifi">Wi-Fi ネットワークに接続していないため、デバイスが一つも表示されない可能性があります。ここをクリックして Wi-Fi を有効化</string>
+  <string name="on_non_trusted_message">信頼されたネットワークに接続されていません: 自動検出が無効化されました。</string>
   <string name="no_file_browser">ファイルブラウザがインストールされていません</string>
   <string name="pref_plugin_telepathy">SMS を送信</string>
   <string name="pref_plugin_telepathy_desc">デスクトップからテキストメッセージを送信</string>
+  <string name="pref_plugin_telepathy_mms">SMS を送信</string>
+  <string name="pref_plugin_telepathy_mms_desc">KDE Connect から MMS を送信するには MMS をデフォルトの SMS アプリとして設定する必要があります。</string>
   <string name="findmyphone_title">スマートフォンを捜索</string>
   <string name="findmyphone_title_tablet">タブレットを捜索</string>
   <string name="findmyphone_title_tv">TV を捜索</string>
   <string name="findmyphone_description">このデバイスを鳴らすことで捜索できます</string>
+  <string name="findmyphone_found">発見しました</string>
   <string name="open">開く</string>
   <string name="close">閉じる</string>
   <string name="plugins_need_permission">いくつかのプラグインが機能するには権限が必要です (タップして詳細情報を表示):</string>
   <string name="permission_explanation">このプラグインが機能するには権限が必要です</string>
   <string name="optional_permission_explanation">すべての機能を有効にするには、追加の権限を許可する必要があります</string>
   <string name="plugins_need_optional_permission">権限が不足しているため、いくつかのプラグインの機能は無効化されています (タップして詳細情報を表示):</string>
+  <string name="share_optional_permission_explanation">共有されたファイルを受信するには保存するディレクトリを指定する必要があります</string>
   <string name="telepathy_permission_explanation">デスクトップから SMS を送受信するには SMS の権限を付与する必要があります</string>
   <string name="telephony_permission_explanation">デスクトップで通話を表示するために、電話の状態と通話履歴の権限を許可する必要があります</string>
   <string name="telephony_optional_permission_explanation">電話番号ではなく連絡先名を見るには、端末の連絡先へのアクセスを許可する必要があります</string>
@@ -221,10 +265,13 @@
   <string name="addcommand_explanation2">KDE Connect のシステム設定で新しいコマンドを追加できます</string>
   <string name="add_command_description">デスクトップから新しいコマンドを追加できます</string>
   <string name="pref_plugin_mprisreceiver">メディアプレーヤーの操作</string>
+  <string name="pref_plugin_mprisreceiver_desc">他のデバイスからスマートフォンのメディアプレーヤーを操作</string>
   <string name="notification_channel_default">他の通知</string>
   <string name="notification_channel_persistent">永続的なインジケータ</string>
   <string name="notification_channel_media_control">メディアの操作</string>
   <string name="notification_channel_filetransfer">ファイル転送</string>
+  <string name="notification_channel_high_priority">高い優先度</string>
+  <string name="notification_channel_sms_mms">新しいメッセージ</string>
   <string name="mpris_stop">現在のプレーヤーを停止</string>
   <string name="copy_url_to_clipboard">URL をクリップボードにコピー</string>
   <string name="clipboard_toast">クリップボードにコピーしました</string>
@@ -258,21 +305,84 @@
   <string name="no_app_for_opening">このファイルを開くのに適切なアプリが見つかりません</string>
   <string name="remote_keyboard_service">KDE Connect リモートキーボード</string>
   <string name="presenter_pointer">ポインタ</string>
+  <string name="trusted_networks">信頼されたネットワーク</string>
+  <string name="trusted_networks_desc">自動検出を既知のネットワークでのみに制限する</string>
+  <string name="add_trusted_network">%1s を追加</string>
+  <string name="empty_trusted_networks_list_text">追加された信頼されたネットワークはありません</string>
+  <string name="allow_all_networks_text">すべて許可</string>
+  <string name="location_permission_needed_title">許可が必要です</string>
+  <string name="location_permission_needed_desc">WiFi ネットワークを発見するには、位置情報を Android に提供する必要があります。</string>
+  <string name="clipboard_android_x_incompat">Android 10 はすべてのアプリからクリップボードへのアクセスを削除しました。このプラグインは無効化されます。</string>
+  <string name="mpris_open_url">このデバイスで再生を続ける</string>
+  <string name="cant_open_url">再生を続けるための URL を開けません</string>
+  <string name="bigscreen_home">ホーム</string>
+  <string name="bigscreen_up">上</string>
+  <string name="bigscreen_left">左</string>
+  <string name="bigscreen_select">選択</string>
+  <string name="bigscreen_right">右</string>
+  <string name="bigscreen_down">下</string>
+  <string name="bigscreen_mic">マイク</string>
+  <string name="pref_plugin_bigscreen">Bigscreen リモート</string>
+  <string name="pref_plugin_bigscreen_desc">デバイスを Plasma Bigscreen のリモコンとして使う</string>
+  <string name="bigscreen_optional_permission_explanation">端末のマイク入力を共有するには、端末の音声入力へのアクセスを許可する必要があります</string>
+  <string name="bigscreen_speech_extra_prompt">発声</string>
+  <string name="message_reply_label">返信</string>
+  <string name="mark_as_read_label">既読としてマーク</string>
+  <string name="user_display_name">あなた</string>
+  <string name="set_default_sms_app_title">SMS を送信</string>
+  <string name="set_group_message_as_mms_title">グループ MMS を送信</string>
+  <string name="set_long_text_as_mms_title">長いテキストを MMS として送信する</string>
+  <string name="convert_to_mms_after_title">MMS に変換</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>1 つのメッセージの後</item>
+    <item>2 つのメッセージの後</item>
+    <item>3 つのメッセージの後</item>
+    <item>4 つのメッセージの後</item>
+    <item>5 つのメッセージの後</item>
   </string-array>
+  <string name="theme_dialog_title">テーマを選択</string>
   <string-array name="theme_list">
-    <item>Set by Battery Saver</item>
-    <item/>
-    <item>Dark</item>
+    <item>バッテリセーバによる設定</item>
+    <item>ライト</item>
+    <item>ダーク</item>
   </string-array>
   <string-array name="theme_list_v28">
-    <item/>
-    <item/>
-    <item>Dark</item>
+    <item>デフォルト</item>
+    <item>ライト</item>
+    <item>ダーク</item>
   </string-array>
+  <string name="report_bug">バグを報告</string>
+  <string name="donate">寄付</string>
+  <string name="source_code">ソースコード</string>
+  <string name="licenses">ライセンス</string>
+  <string name="website">ウェブサイト</string>
+  <string name="about">情報</string>
+  <string name="authors">作者</string>
+  <string name="thanks_to">感謝</string>
+  <string name="easter_egg">イースターエッグ</string>
+  <string name="email_contributor">貢献者にメールを送る\n%s</string>
+  <string name="visit_contributors_homepage">貢献者のホームページを訪れる\n%s</string>
+  <string name="version">バージョン %s</string>
+  <string name="about_kde">KDE について</string>
+  <string name="kde_be_free">KDE - Be Free!</string>
+  <string name="kde">KDE</string>
+  <string name="konqi">Konqi</string>
+  <string name="click_here_to_type">タップしてタイプ</string>
+  <string name="clear_compose">クリア</string>
+  <string name="send_compose">送信</string>
+  <string name="open_compose_send">テキストを作成する</string>
+  <string name="app_description">デバイス間のコミュニケーションを可能にするマルチプラットフォームなアプリ (例: 携帯電話とコンピュータ)</string>
+  <string name="maintainer_and_developer">メンテナと開発者</string>
+  <string name="developer">開発者</string>
+  <string name="apple_support">macOS サポート。iOS サポートに取り組み中</string>
+  <string name="bug_fixes_and_general_improvements">バグ修正と全体的な改善</string>
+  <string name="samoilenko_yuri_task">SFTP の実装、バグ修正と全体的な改善</string>
+  <string name="aniket_kumar_task">SMS プラグインの改善</string>
+  <string name="alex_fiestas_task">連絡先プラグインの改善</string>
+  <string name="maxim_leshchenko_task">UI の改善とこの情報ページ</string>
+  <string name="holger_kaelberer_task">リモートキーボードプラグインとバグ修正</string>
+  <string name="saikrishna_arcot_task">リモート入力プラグインでのキーボードのサポート、バグ修正と全体的な改善</string>
+  <string name="everyone_else">KDE Connect に貢献してきたその他すべての人々</string>
+  <string name="send_clipboard">クリップボードを送信</string>
+  <string name="tap_to_execute">タップして実行</string>
 </resources>
