@@ -1,16 +1,19 @@
 package org.kde.kdeconnect.Helpers;
 
 import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
-import androidx.core.content.ContextCompat;
+import androidx.core.app.NotificationChannelCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import org.kde.kdeconnect_tp.R;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class NotificationHelper {
 
@@ -43,57 +46,41 @@ public class NotificationHelper {
     }
 
     public static void initializeChannels(Context context) {
+        final NotificationChannelCompat persistentChannel = new NotificationChannelCompat
+                .Builder(Channels.PERSISTENT, NotificationManagerCompat.IMPORTANCE_MIN)
+                .setDescription(context.getString(R.string.notification_channel_persistent))
+                .build();
+        final NotificationChannelCompat defaultChannel = new NotificationChannelCompat
+                .Builder(Channels.DEFAULT, NotificationManagerCompat.IMPORTANCE_DEFAULT)
+                .setDescription(context.getString(R.string.notification_channel_default))
+                .build();
+        final NotificationChannelCompat mediaChannel = new NotificationChannelCompat
+                .Builder(Channels.MEDIA_CONTROL, NotificationManagerCompat.IMPORTANCE_LOW)
+                .setDescription(context.getString(R.string.notification_channel_media_control))
+                .build();
+        final NotificationChannelCompat fileTransferChannel = new NotificationChannelCompat
+                .Builder(Channels.FILETRANSFER, NotificationManagerCompat.IMPORTANCE_LOW)
+                .setDescription(context.getString(R.string.notification_channel_filetransfer))
+                .setVibrationEnabled(false)
+                .build();
+        final NotificationChannelCompat receiveNotificationChannel = new NotificationChannelCompat
+                .Builder(Channels.RECEIVENOTIFICATION, NotificationManagerCompat.IMPORTANCE_DEFAULT)
+                .setDescription(context.getString(R.string.notification_channel_receivenotification))
+                .build();
+        final NotificationChannelCompat smsMmsChannel = new NotificationChannelCompat
+                .Builder(Channels.SMS_MMS, NotificationManagerCompat.IMPORTANCE_DEFAULT)
+                .setDescription(context.getString(R.string.notification_channel_sms_mms))
+                .build();
+        final NotificationChannelCompat highPriorityChannel = new NotificationChannelCompat
+                .Builder(Channels.HIGHPRIORITY, NotificationManagerCompat.IMPORTANCE_HIGH)
+                .setDescription(context.getString(R.string.notification_channel_high_priority))
+                .build();
 
-        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O) {
-            return;
-        }
-
-        NotificationManager manager = ContextCompat.getSystemService(context, NotificationManager.class);
-
-        NotificationChannel persistentChannel = new NotificationChannel(
-                Channels.PERSISTENT,
-                context.getString(R.string.notification_channel_persistent),
-                NotificationManager.IMPORTANCE_MIN);
-
-        manager.createNotificationChannel(persistentChannel);
-
-        manager.createNotificationChannel(new NotificationChannel(
-                Channels.DEFAULT,
-                context.getString(R.string.notification_channel_default),
-                NotificationManager.IMPORTANCE_DEFAULT)
-        );
-
-        manager.createNotificationChannel(new NotificationChannel(
-                Channels.MEDIA_CONTROL,
-                context.getString(R.string.notification_channel_media_control),
-                NotificationManager.IMPORTANCE_LOW)
-        );
-
-        NotificationChannel fileTransfer = new NotificationChannel(
-                Channels.FILETRANSFER,
-                context.getString(R.string.notification_channel_filetransfer),
-                NotificationManager.IMPORTANCE_LOW);
-
-        fileTransfer.enableVibration(false);
-
-        manager.createNotificationChannel(fileTransfer);
-
-        manager.createNotificationChannel(new NotificationChannel(
-                Channels.RECEIVENOTIFICATION,
-                context.getString(R.string.notification_channel_receivenotification),
-                NotificationManager.IMPORTANCE_DEFAULT)
-        );
-
-        manager.createNotificationChannel(new NotificationChannel(
-                Channels.SMS_MMS,
-                context.getString(R.string.notification_channel_sms_mms),
-                NotificationManager.IMPORTANCE_DEFAULT)
-        );
-
-        NotificationChannel highPriority = new NotificationChannel(Channels.HIGHPRIORITY, context.getString(R.string.notification_channel_high_priority), NotificationManager.IMPORTANCE_HIGH);
-        manager.createNotificationChannel(highPriority);
+        final List<NotificationChannelCompat> channels = Arrays.asList(persistentChannel,
+                defaultChannel, mediaChannel, fileTransferChannel, receiveNotificationChannel,
+                smsMmsChannel, highPriorityChannel);
+        NotificationManagerCompat.from(context).createNotificationChannelsCompat(channels);
     }
-
 
     public static void setPersistentNotificationEnabled(Context context, boolean enabled) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
