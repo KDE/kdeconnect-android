@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="manifest_label_share">Senda til tækis</string>
+  <string name="foreground_notification_no_devices">Ekki tengt við nein tæki</string>
+  <string name="foreground_notification_devices">Tengt við: %s</string>
+  <string name="foreground_notification_send_clipboard">Senda klippispjald</string>
+  <string name="pref_plugin_clipboard_sent">Klippispjald sent</string>
+  <string name="pref_plugin_mousepad">Fjartengd ritun</string>
+  <string name="pref_plugin_mpris">Margmiðlunarstýringar</string>
+  <string name="pref_plugin_runcommand">Keyra skipun</string>
+  <string name="pref_plugin_ping">Ping-skipun</string>
+  <string name="device_list_empty">Engin tæki</string>
+  <string name="ok">Í lagi</string>
+  <string name="sad_ok">Í lagi :(</string>
+  <string name="cancel">Hætta við</string>
+  <string name="open_settings">Opna stillingar</string>
+  <string name="send_ping">"Senda ping-beiðni "</string>
+  <string name="open_mpris_controls">Margmiðlunarstýring</string>
+  <string name="open_mousepad">Fjartengd ritun</string>
+  <string name="mousepad_scroll_direction_title">Öfug skrunstefna</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Vinstri músarsmellur</item>
+    <item>Hægri músarsmellur</item>
+    <item>Middle click</item>
+    <item>Ekkert</item>
+  </string-array>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>Hægast</item>
+    <item>Above Slowest</item>
+    <item>Sjálfgefið</item>
+    <item>Above Default</item>
+    <item>Hraðasta</item>
+  </string-array>
+  <string-array name="mousepad_acceleration_profile_entries">
+    <item>Engin hröðun</item>
+    <item>Weakest</item>
+    <item>Weaker</item>
+    <item>Miðlungs</item>
+    <item>Stronger</item>
+    <item>Strongest</item>
+  </string-array>
+  <string name="view_status_title">Staða</string>
+  <string name="battery_status_format">Rafhlaða: %d%%</string>
+  <string name="battery_status_low_format">Rafhlaða: %d%% lítil hleðsla</string>
+  <string name="battery_status_charging_format">Rafhlaða: %d%% í hleðslu</string>
+  <string name="battery_status_unknown">Upplýsingar um rafhlöðu ekki tiltækar</string>
+  <string name="category_connected_devices">Tengd tæki</string>
+  <string name="device_menu_plugins">Stillingar á forritsviðbót</string>
+  <string name="device_menu_unpair">Afpara</string>
+  <string name="unknown_device">Óþekkt tæki</string>
+  <string name="error_not_reachable">Tæki er ekki aðgengilegt</string>
+  <string name="error_timed_out">Féll á tíma</string>
+  <string name="error_canceled_by_user">Hætt við af notanda</string>
+  <string name="error_canceled_by_other_peer">Hætt við af hinum notandanum</string>
+  <string name="pair_requested">Beðið um pörun</string>
+  <string name="pairing_accept">Samþykkja</string>
+  <string name="pairing_reject">Hafna</string>
+  <string name="settings">Stillingar</string>
+  <string name="mpris_play">Spila</string>
+  <string name="mpris_pause">Í bið</string>
+  <string name="mpris_previous">Fyrra</string>
+  <string name="mpris_rew">Spóla til baka</string>
+  <string name="mpris_ff">Spóla áfram</string>
+  <string name="mpris_next">Næsta</string>
+  <string name="mpris_loop">Endurtaka</string>
+  <string name="mpris_shuffle">Stokka</string>
+  <string name="mpris_volume">Hljóðstyrkur</string>
+  <string-array name="mpris_time_entries">
+    <item>10 sekúndur</item>
+    <item>20 sekúndur</item>
+    <item>30 sekúndur</item>
+    <item>1 mínúta</item>
+    <item>2 mínútur</item>
+  </string-array>
+  <string name="undo">Afturkalla</string>
+  <string name="share_notification_preference">Háværar tilkynningar</string>
+  <string name="share_destination_folder_preference">Móttökumappa</string>
+  <string name="share">Deila</string>
+  <string name="title_activity_notification_filter">Tilkynningasía</string>
+  <string name="sftp_readonly">(skrifvarið)</string>
+  <string name="add_device_dialog_title">Bæta við tæki</string>
+  <string name="sftp_storage_preference_display_name">Birtingarnafn</string>
+  <string name="sftp_action_mode_menu_delete">Eyða</string>
+  <string name="send_files">Senda skrár</string>
+  <string name="device_rename_confirm">Endurnefna</string>
+  <string name="refresh">Endurlesa</string>
+  <string name="pref_plugin_telepathy">Senda SMS</string>
+  <string name="open">Opna</string>
+  <string name="close">Loka</string>
+  <string name="presenter_fullscreen">Skjáfylli</string>
+  <string name="notification_channel_filetransfer">Skráarflutningur</string>
+  <string name="notification_channel_high_priority">Hár forgangur</string>
+  <string name="notification_channel_sms_mms">Ný skilaboð</string>
+  <string name="copy_url_to_clipboard">Afrita slóð á klippispjaldið</string>
+  <string name="clipboard_toast">Afritað á klippispjald</string>
+  <string name="ring">Hringur</string>
+  <string name="mute">Hljóð af</string>
+  <string name="all">Allt</string>
+  <string name="devices">Tæki</string>
+  <string name="settings_rename">Heiti tækis</string>
+  <string name="settings_dark_mode">Dökkt þema</string>
+  <string name="settings_more_settings_title">Fleiri stillingar</string>
+  <string name="extra_options">Fleiri valkostir</string>
+  <string name="privacy_options">Valkostir friðhelgi</string>
+  <string name="presenter_pointer">Bendill</string>
+  <string name="add_trusted_network">Bæta við %1s</string>
+  <string name="location_permission_needed_title">Krafist er heimildar</string>
+  <string name="bigscreen_home">Heim</string>
+  <string name="bigscreen_up">Upp</string>
+  <string name="bigscreen_left">Vinstri</string>
+  <string name="bigscreen_select">Velja</string>
+  <string name="bigscreen_right">Hægri</string>
+  <string name="bigscreen_down">Niður</string>
+  <string name="bigscreen_speech_extra_prompt">Tal</string>
+  <string name="message_reply_label">SVARA</string>
+  <string name="mark_as_read_label">MERKJA SEM LESIÐ</string>
+  <string name="user_display_name">Þú</string>
+  <string-array name="convert_to_mms_after_entries">
+    <item>After one message</item>
+    <item>After two messages</item>
+    <item>After three messages</item>
+    <item>After four messages</item>
+    <item>After five messages</item>
+  </string-array>
+  <string-array name="theme_list">
+    <item>Set by Battery Saver</item>
+    <item>Ljóst</item>
+    <item>Dökkt</item>
+  </string-array>
+  <string-array name="theme_list_v28">
+    <item>Sjálfgefið í kerfinu</item>
+    <item>Ljóst</item>
+    <item>Dökkt</item>
+  </string-array>
+  <string name="report_bug">Tilkynna galla</string>
+  <string name="donate">Styrkja</string>
+  <string name="source_code">Grunnkóði</string>
+  <string name="licenses">Notkunarleyfi</string>
+  <string name="website">Vefsvæði</string>
+  <string name="about">Um hugbúnaðinn</string>
+  <string name="authors">Höfundar</string>
+  <string name="thanks_to">Þakkir fá</string>
+  <string name="version">Útgáfa %s</string>
+  <string name="about_kde">Um KDE</string>
+  <string name="kde_be_free">KDE - Vertu frjáls!</string>
+  <string name="kde">KDE</string>
+  <string name="konqi">Konqi</string>
+  <string name="clear_compose">Hreinsa</string>
+  <string name="send_compose">Senda</string>
+  <string name="maintainer_and_developer">Umsjónarmaður og forritari</string>
+  <string name="developer">Forritari</string>
+</resources>
