@@ -5,11 +5,19 @@
   <string name="foreground_notification_no_devices">Ekki tengt við nein tæki</string>
   <string name="foreground_notification_devices">Tengt við: %s</string>
   <string name="foreground_notification_send_clipboard">Senda klippispjald</string>
+  <string name="pref_plugin_telephony">Símatilkynningar</string>
+  <string name="pref_plugin_telephony_desc">Birta tilkynningar fyrir innhringingar</string>
+  <string name="pref_plugin_battery">Staða rafhlöðu</string>
+  <string name="pref_plugin_clipboard">Samstilling klippispjalda</string>
   <string name="pref_plugin_clipboard_sent">Klippispjald sent</string>
   <string name="pref_plugin_mousepad">Fjartengd ritun</string>
+  <string name="pref_plugin_presenter">Fjarstýring skyggnusýninga</string>
   <string name="pref_plugin_mpris">Margmiðlunarstýringar</string>
   <string name="pref_plugin_runcommand">Keyra skipun</string>
+  <string name="pref_plugin_contacts">Samstilling tengiliða</string>
   <string name="pref_plugin_ping">Ping-skipun</string>
+  <string name="pref_plugin_receive_notifications">Taka á móti tilkynningum</string>
+  <string name="pref_plugin_sharereceiver">Senda og taka við</string>
   <string name="device_list_empty">Engin tæki</string>
   <string name="ok">Í lagi</string>
   <string name="sad_ok">Í lagi :(</string>
@@ -22,7 +30,7 @@
   <string-array name="mousepad_tap_entries">
     <item>Vinstri músarsmellur</item>
     <item>Hægri músarsmellur</item>
-    <item>Middle click</item>
+    <item>Miðjumúsarsmellur</item>
     <item>Ekkert</item>
   </string-array>
   <string-array name="mousepad_sensitivity_entries">
@@ -40,20 +48,76 @@
     <item>Stronger</item>
     <item>Strongest</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Senda lyklaáslátt til</string>
+  <string name="sendkeystrokes_textbox_hint">Senda lyklaáslátt til hýsilvélar</string>
+  <string name="sendkeystrokes_sent_text">Sendi %1$s til tækisins %2$s</string>
+  <string name="sendkeystrokes_pref_category_title">Senda lyklaáslátt</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Senda sem lyklaáslátt</string>
+  <string name="mouse_receiver_plugin_name">Móttakari músarmerkja</string>
   <string name="view_status_title">Staða</string>
   <string name="battery_status_format">Rafhlaða: %d%%</string>
   <string name="battery_status_low_format">Rafhlaða: %d%% lítil hleðsla</string>
   <string name="battery_status_charging_format">Rafhlaða: %d%% í hleðslu</string>
   <string name="battery_status_unknown">Upplýsingar um rafhlöðu ekki tiltækar</string>
   <string name="category_connected_devices">Tengd tæki</string>
+  <string name="category_not_paired_devices">Tiltæk tæki</string>
+  <string name="category_remembered_devices">Munuð tæki</string>
   <string name="device_menu_plugins">Stillingar á forritsviðbót</string>
   <string name="device_menu_unpair">Afpara</string>
+  <string name="pair_new_device">Para nýtt tæki</string>
   <string name="unknown_device">Óþekkt tæki</string>
   <string name="error_not_reachable">Tæki er ekki aðgengilegt</string>
+  <string name="error_already_paired">Tæki er þegar parað</string>
+  <string name="error_could_not_send_package">Gat ekki sent pakka</string>
   <string name="error_timed_out">Féll á tíma</string>
   <string name="error_canceled_by_user">Hætt við af notanda</string>
   <string name="error_canceled_by_other_peer">Hætt við af hinum notandanum</string>
+  <string name="encryption_info_title">Upplýsingar um dulritun</string>
+  <string name="my_device_fingerprint">SHA256-fingrafar af skilríki tækisins þíns er:</string>
+  <string name="remote_device_fingerprint">SHA256-fingrafar af skilríki fjartengda tækisins er:</string>
   <string name="pair_requested">Beðið um pörun</string>
+  <string name="pairing_request_from">Beiðni um pörun frá %1s</string>
+  <plurals name="incoming_file_title">
+    <item quantity="one">Tek á móti %1$d skrá frá %2$s</item>
+    <item quantity="other">Tek á móti %1$d skrám frá %2$s</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="one">Skrá: %1s</item>
+    <item quantity="other">(Skrá %2$d af %3$d) : %1$s</item>
+  </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">Sendi %1$d skrá til %2$s</item>
+    <item quantity="other">Sendi %1$d skrár til %2$s</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Skrá: %1$s</item>
+    <item quantity="other">(Skrá %2$d af %3$d) : %1$s</item>
+  </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one">Tók við skrá frá %1$s</item>
+    <item quantity="other">Tók við %2$d skrám frá %1$s</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Mistókst að taka við skrá frá %1$s</item>
+    <item quantity="other">Mistókst að taka við %2$d af %3$d skrám frá %1$s</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">Sendi skrá til %1$s</item>
+    <item quantity="other">Sendi %2$d skrár til %1$s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Mistókst að senda skrá til %1$s</item>
+    <item quantity="other">Mistókst að senda %2$d af %3$d skrám til %1$s</item>
+  </plurals>
+  <string name="tap_to_open">Pikkaðu til að opna</string>
+  <string name="received_file_text">Pikkaðu til að opna \'%1s\'</string>
+  <string name="cannot_create_file">Get ekki búið til skrána %s</string>
+  <string name="tap_to_answer">Pikkaðu til að svara</string>
+  <string name="right_click">Senda hægri músarsmell</string>
+  <string name="middle_click">Senda miðjumúsarsmell</string>
+  <string name="show_keyboard">Birta lyklaborð</string>
+  <string name="device_not_paired">Tæki er ekki parað</string>
+  <string name="request_pairing">Biðja um pörun</string>
   <string name="pairing_accept">Samþykkja</string>
   <string name="pairing_reject">Hafna</string>
   <string name="settings">Stillingar</string>
@@ -66,6 +130,7 @@
   <string name="mpris_loop">Endurtaka</string>
   <string name="mpris_shuffle">Stokka</string>
   <string name="mpris_volume">Hljóðstyrkur</string>
+  <string name="mpris_time_settings_title">Áfram- og afturábak-hnappar</string>
   <string-array name="mpris_time_entries">
     <item>10 sekúndur</item>
     <item>20 sekúndur</item>
@@ -73,28 +138,48 @@
     <item>1 mínúta</item>
     <item>2 mínútur</item>
   </string-array>
+  <string name="share_to">Deila með…</string>
+  <string name="plugin_settings_with_name">Stillingar %s</string>
+  <string name="invalid_device_name">Ógilt heiti tækis</string>
   <string name="undo">Afturkalla</string>
   <string name="share_notification_preference">Háværar tilkynningar</string>
   <string name="share_destination_folder_preference">Móttökumappa</string>
   <string name="share">Deila</string>
+  <string name="share_received_file">Deila \"%s\"</string>
   <string name="title_activity_notification_filter">Tilkynningasía</string>
+  <string name="sftp_sdcard_num">SD-minniskort %d</string>
+  <string name="sftp_sdcard">SD-minniskort</string>
   <string name="sftp_readonly">(skrifvarið)</string>
   <string name="add_device_dialog_title">Bæta við tæki</string>
+  <string name="sftp_preference_edit_sdcard_title">Breyta SD-minniskorti</string>
+  <string name="sftp_storage_preference_storage_location">Staðsetning gagnageymslu</string>
+  <string name="sftp_storage_preference_click_to_select">smelltu til að velja</string>
   <string name="sftp_storage_preference_display_name">Birtingarnafn</string>
   <string name="sftp_action_mode_menu_delete">Eyða</string>
   <string name="send_files">Senda skrár</string>
   <string name="device_rename_confirm">Endurnefna</string>
   <string name="refresh">Endurlesa</string>
   <string name="pref_plugin_telepathy">Senda SMS</string>
+  <string name="pref_plugin_telepathy_mms">Senda MMS</string>
+  <string name="findmyphone_title">Finna símann minn</string>
+  <string name="findmyphone_title_tablet">Finna spjaldtölvuna mína</string>
+  <string name="findmyphone_title_tv">Finna sjónvarpið mitt</string>
+  <string name="findmyphone_description">Hringir í þetta tæki svo þú getir fundið það</string>
+  <string name="findmyphone_found">Fann það</string>
   <string name="open">Opna</string>
   <string name="close">Loka</string>
+  <string name="select_ringtone">Veldu hringitón</string>
+  <string name="telephony_pref_blocked_title">Útilokuð símanúmer</string>
+  <string name="device_icon_description">Táknmynd tækis</string>
   <string name="presenter_fullscreen">Skjáfylli</string>
   <string name="notification_channel_filetransfer">Skráarflutningur</string>
   <string name="notification_channel_high_priority">Hár forgangur</string>
   <string name="notification_channel_sms_mms">Ný skilaboð</string>
   <string name="copy_url_to_clipboard">Afrita slóð á klippispjaldið</string>
   <string name="clipboard_toast">Afritað á klippispjald</string>
+  <string name="pref_plugin_findremotedevice">Finna fjartengt tæki</string>
   <string name="ring">Hringur</string>
+  <string name="pref_plugin_systemvolume">Hljóðstyrkur kerfis</string>
   <string name="mute">Hljóð af</string>
   <string name="all">Allt</string>
   <string name="devices">Tæki</string>
@@ -103,8 +188,11 @@
   <string name="settings_more_settings_title">Fleiri stillingar</string>
   <string name="extra_options">Fleiri valkostir</string>
   <string name="privacy_options">Valkostir friðhelgi</string>
+  <string name="take_picture">Ræsa myndavél</string>
   <string name="presenter_pointer">Bendill</string>
+  <string name="trusted_networks">Treyst netkerfi</string>
   <string name="add_trusted_network">Bæta við %1s</string>
+  <string name="allow_all_networks_text">Leyfa allt</string>
   <string name="location_permission_needed_title">Krafist er heimildar</string>
   <string name="bigscreen_home">Heim</string>
   <string name="bigscreen_up">Upp</string>
@@ -112,10 +200,15 @@
   <string name="bigscreen_select">Velja</string>
   <string name="bigscreen_right">Hægri</string>
   <string name="bigscreen_down">Niður</string>
+  <string name="bigscreen_mic">Hljóðnemi</string>
   <string name="bigscreen_speech_extra_prompt">Tal</string>
   <string name="message_reply_label">SVARA</string>
   <string name="mark_as_read_label">MERKJA SEM LESIÐ</string>
   <string name="user_display_name">Þú</string>
+  <string name="set_default_sms_app_title">Senda MMS</string>
+  <string name="set_group_message_as_mms_title">Senda hóp-MMS</string>
+  <string name="set_long_text_as_mms_title">Senda langan texta sem MMS</string>
+  <string name="convert_to_mms_after_title">Umbreyta í MMS</string>
   <string-array name="convert_to_mms_after_entries">
     <item>After one message</item>
     <item>After two messages</item>
@@ -123,6 +216,7 @@
     <item>After four messages</item>
     <item>After five messages</item>
   </string-array>
+  <string name="theme_dialog_title">Veldu þema</string>
   <string-array name="theme_list">
     <item>Set by Battery Saver</item>
     <item>Ljóst</item>
@@ -141,6 +235,7 @@
   <string name="about">Um hugbúnaðinn</string>
   <string name="authors">Höfundar</string>
   <string name="thanks_to">Þakkir fá</string>
+  <string name="easter_egg">Páskaegg</string>
   <string name="version">Útgáfa %s</string>
   <string name="about_kde">Um KDE</string>
   <string name="kde_be_free">KDE - Vertu frjáls!</string>
