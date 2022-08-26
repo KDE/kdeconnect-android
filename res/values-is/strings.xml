@@ -8,14 +8,25 @@
   <string name="pref_plugin_telephony">Símatilkynningar</string>
   <string name="pref_plugin_telephony_desc">Birta tilkynningar fyrir innhringingar</string>
   <string name="pref_plugin_battery">Staða rafhlöðu</string>
+  <string name="pref_plugin_battery_desc">Tilkynnir reglulega um stöðu rafhlöðu</string>
+  <string name="pref_plugin_connectivity_report">Staða tenginga</string>
+  <string name="pref_plugin_connectivity_report_desc">Tilkynnir reglulega um styrk merkis og ástand</string>
+  <string name="pref_plugin_sftp">Skoðun skráakerfis</string>
+  <string name="pref_plugin_sftp_desc">Gerir kleift að fletta upp í skráakerfi þessa tækis</string>
   <string name="pref_plugin_clipboard">Samstilling klippispjalda</string>
+  <string name="pref_plugin_clipboard_desc">Deildu innihaldi klippispjaldsins</string>
   <string name="pref_plugin_clipboard_sent">Klippispjald sent</string>
   <string name="pref_plugin_mousepad">Fjartengd ritun</string>
+  <string name="pref_plugin_mousepad_desc">Notaðu símann þinn eða spjaldtölvu sem snertiplatta og lyklaborð</string>
   <string name="pref_plugin_presenter">Fjarstýring skyggnusýninga</string>
+  <string name="pref_plugin_remotekeyboard">"Tekur á móti  fjartengdum innslætti"</string>
   <string name="pref_plugin_mpris">Margmiðlunarstýringar</string>
   <string name="pref_plugin_runcommand">Keyra skipun</string>
   <string name="pref_plugin_contacts">Samstilling tengiliða</string>
   <string name="pref_plugin_ping">Ping-skipun</string>
+  <string name="pref_plugin_ping_desc">Senda og taka við ping-merkjum</string>
+  <string name="pref_plugin_notifications">Samstilling tilkynninga</string>
+  <string name="pref_plugin_notifications_desc">Fáðu aðgang að tilkynningum frá öðrum tækjum</string>
   <string name="pref_plugin_receive_notifications">Taka á móti tilkynningum</string>
   <string name="pref_plugin_sharereceiver">Senda og taka við</string>
   <string name="device_list_empty">Engin tæki</string>
@@ -23,9 +34,19 @@
   <string name="sad_ok">Í lagi :(</string>
   <string name="cancel">Hætta við</string>
   <string name="open_settings">Opna stillingar</string>
+  <string name="no_permissions">Þú verður að gefa heimild til að fá aðgang að tilkynningum</string>
   <string name="send_ping">"Senda ping-beiðni "</string>
   <string name="open_mpris_controls">Margmiðlunarstýring</string>
+  <string name="remotekeyboard_editing_only_title">Aðeins meðhöndla fjartengda lykla við breytingar/ritun</string>
+  <string name="remotekeyboard_not_connected">Engin fjartenging lyklaborðs er virk, virkjaðu eina slíka í KDE Connect</string>
+  <string name="remotekeyboard_connected">Fjartenging lyklaborðs er virk</string>
   <string name="open_mousepad">Fjartengd ritun</string>
+  <string name="mousepad_info">Færðu fingur á skjánum til að færa bendilinn. Pikkaðu til að smella og notaðu tvo/þrjá fingur sem hægri- og miðjuhnappa. Notaðu tvo fingur til að skruna. Ýttu lengi til að draga-sleppa.</string>
+  <string name="mousepad_single_tap_settings_title">Stilla aðgerð við pikk með einum fingri</string>
+  <string name="mousepad_double_tap_settings_title">Stilla aðgerð við pikk með tveimur fingrum</string>
+  <string name="mousepad_triple_tap_settings_title">Stilla aðgerð við pikk með þremur fingrum</string>
+  <string name="mousepad_sensitivity_settings_title">Stilla næmni snertiplatta</string>
+  <string name="mousepad_acceleration_profile_settings_title">Stilla hröðun bendils</string>
   <string name="mousepad_scroll_direction_title">Öfug skrunstefna</string>
   <string-array name="mousepad_tap_entries">
     <item>Vinstri músarsmellur</item>
@@ -150,13 +171,18 @@
   <string name="sftp_sdcard_num">SD-minniskort %d</string>
   <string name="sftp_sdcard">SD-minniskort</string>
   <string name="sftp_readonly">(skrifvarið)</string>
+  <string name="sftp_camera">Myndir á myndavél</string>
   <string name="add_device_dialog_title">Bæta við tæki</string>
+  <string name="add_device_hint">Vélarheiti eða IP vistfang</string>
   <string name="sftp_preference_edit_sdcard_title">Breyta SD-minniskorti</string>
   <string name="sftp_storage_preference_storage_location">Staðsetning gagnageymslu</string>
   <string name="sftp_storage_preference_click_to_select">smelltu til að velja</string>
   <string name="sftp_storage_preference_display_name">Birtingarnafn</string>
   <string name="sftp_action_mode_menu_delete">Eyða</string>
+  <string name="no_players_connected">Engir spilarar fundust</string>
   <string name="send_files">Senda skrár</string>
+  <string name="pairing_title">KDE Connect tæki</string>
+  <string name="device_rename_title">Endurnefna tæki</string>
   <string name="device_rename_confirm">Endurnefna</string>
   <string name="refresh">Endurlesa</string>
   <string name="pref_plugin_telepathy">Senda SMS</string>
@@ -172,6 +198,8 @@
   <string name="telephony_pref_blocked_title">Útilokuð símanúmer</string>
   <string name="device_icon_description">Táknmynd tækis</string>
   <string name="presenter_fullscreen">Skjáfylli</string>
+  <string name="presenter_exit">Fara úr kynningu</string>
+  <string name="add_command">Bæta við skipun</string>
   <string name="notification_channel_filetransfer">Skráarflutningur</string>
   <string name="notification_channel_high_priority">Hár forgangur</string>
   <string name="notification_channel_sms_mms">Ný skilaboð</string>
@@ -210,15 +238,15 @@
   <string name="set_long_text_as_mms_title">Senda langan texta sem MMS</string>
   <string name="convert_to_mms_after_title">Umbreyta í MMS</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>Eftir ein skilaboð</item>
+    <item>Eftir tvenn skilaboð</item>
+    <item>Eftir þrenn skilaboð</item>
+    <item>Eftir fjögur skilaboð</item>
+    <item>Eftir fimm skilaboð</item>
   </string-array>
   <string name="theme_dialog_title">Veldu þema</string>
   <string-array name="theme_list">
-    <item>Set by Battery Saver</item>
+    <item>Stillt af rafhlöðusparnaðarkerfi</item>
     <item>Ljóst</item>
     <item>Dökkt</item>
   </string-array>
@@ -236,6 +264,7 @@
   <string name="authors">Höfundar</string>
   <string name="thanks_to">Þakkir fá</string>
   <string name="easter_egg">Páskaegg</string>
+  <string name="email_contributor">Senda þátttakanda tölvupóst\n%s</string>
   <string name="version">Útgáfa %s</string>
   <string name="about_kde">Um KDE</string>
   <string name="kde_be_free">KDE - Vertu frjáls!</string>
