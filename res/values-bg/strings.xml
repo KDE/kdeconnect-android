@@ -1,45 +1,110 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="manifest_label_share">Изпращане до устройство</string>
+  <string name="foreground_notification_no_devices">Няма свързано устройство</string>
+  <string name="foreground_notification_devices">Свързан с: %s</string>
+  <string name="foreground_notification_send_clipboard">Изпращане на клипборда</string>
   <string name="pref_plugin_telephony">Известяване за обаждания</string>
+  <string name="pref_plugin_telephony_desc">Изпращане на известие за входящо обаждане</string>
   <string name="pref_plugin_battery">Доклад за батерията</string>
   <string name="pref_plugin_battery_desc">Периодично съобщаване за състоянието на батерията</string>
+  <string name="pref_plugin_connectivity_report">Доклад за свързаност</string>
+  <string name="pref_plugin_connectivity_report_desc">Доклад за силата на сигнала на мрежата и състоянието</string>
   <string name="pref_plugin_sftp">Достъп до файловата система</string>
+  <string name="pref_plugin_sftp_desc">Разрешаване на отдалечен преглед на файловта система на устройството</string>
   <string name="pref_plugin_clipboard">Синхронизиране на буфера</string>
   <string name="pref_plugin_clipboard_desc">Споделяне съдържанието на буфера</string>
+  <string name="pref_plugin_clipboard_sent">Изпратено съдържание на клипборда</string>
+  <string name="pref_plugin_mousepad">Отдалечено входно устройство</string>
+  <string name="pref_plugin_mousepad_desc">Използване на телефона като тъчпад и клавиатура</string>
+  <string name="pref_plugin_presenter">Отдалечена прожекция</string>
+  <string name="pref_plugin_presenter_desc">Използвайте устройството си за прелистване на слайдовете на презентация</string>
+  <string name="pref_plugin_remotekeyboard">Отдалечени клавишни набирания</string>
+  <string name="pref_plugin_remotekeyboard_desc">Получаване на клавишни набирания от отдалечено устройство</string>
+  <string name="pref_plugin_mpris">Мултимедиен контрол</string>
+  <string name="pref_plugin_mpris_desc">Осигурява отдалечен контрол за вашия медиен плеър</string>
+  <string name="pref_plugin_runcommand">Изпълняване на команда</string>
+  <string name="pref_plugin_runcommand_desc">Изпълняване на отдалечена команда от вашия телефон или таблет</string>
+  <string name="pref_plugin_contacts">Синхронизиране на контакти</string>
+  <string name="pref_plugin_contacts_desc">Позволява синхронизиране на контактите от телефона</string>
   <string name="pref_plugin_ping">Пинг</string>
   <string name="pref_plugin_ping_desc">Изпращане и получаване на пинг</string>
   <string name="pref_plugin_notifications">Синхронизиране на уведомленията</string>
   <string name="pref_plugin_notifications_desc">Достъп до уведомленията от други устройства</string>
+  <string name="pref_plugin_receive_notifications">Получаване на известия</string>
+  <string name="pref_plugin_receive_notifications_desc">Получаване на известия от друго устройство и показването им в Android</string>
+  <string name="pref_plugin_sharereceiver">Споделяне и получаване</string>
+  <string name="pref_plugin_sharereceiver_desc">Споделяне на файлове и адреси между устройствата</string>
   <string name="device_list_empty">Няма устройства</string>
   <string name="ok">Добре</string>
+  <string name="sad_ok">OK :(</string>
   <string name="cancel">Отказ</string>
   <string name="open_settings">Отваряне на настройките</string>
   <string name="no_permissions">Трябва да осигурите права за достъп до уведомленията</string>
+  <string name="no_permission_mprisreceiver">За да можете да контролирате вашия медиен плеър. трябва да осигурите права за достъп до известията</string>
+  <string name="no_permissions_remotekeyboard">За получавате клавишни набирания, трябва да активирате Отдалечена клавиатура на KDE Connect</string>
   <string name="send_ping">Изпращане на пинг</string>
+  <string name="open_mpris_controls">Мултимедиен контрол</string>
+  <string name="remotekeyboard_editing_only_title">Работете с отдалечените клавиши само при редактиране</string>
+  <string name="remotekeyboard_not_connected">Няма активна отдалечена клавиатура, установете такава в kdeconnect</string>
+  <string name="remotekeyboard_connected">Отдалечената връзка с клавиатурата е активна</string>
+  <string name="remotekeyboard_multiple_connections">Има повече от една отдалечена връзка за клавиатура, изберете устройството за конфигуриране</string>
+  <string name="open_mousepad">Отдалечен вход</string>
+  <string name="mousepad_info">Преместете пръст на екрана, за да преместите курсора на мишката. Докоснете за щракване иИзползвайте два/три пръста за десни и средни бутони. Използвайте 2 пръста за превъртане.Използвайте дълго натискане за влачене.</string>
+  <string name="mousepad_single_tap_settings_title">Задаване на действие с натискане с един пръст</string>
+  <string name="mousepad_double_tap_settings_title">Задаване на действие за докосване с два пръста</string>
+  <string name="mousepad_triple_tap_settings_title">Задаване на действие с докосване с три пръста</string>
+  <string name="mousepad_sensitivity_settings_title">Настройка на чувствителността на тъчпада</string>
+  <string name="mousepad_acceleration_profile_settings_title">Задаване на ускорение на показалеца</string>
+  <string name="mousepad_scroll_direction_title">Обръщане на посоката на превъртане</string>
   <string-array name="mousepad_tap_entries">
-    <item>Left click</item>
-    <item>Right click</item>
-    <item>Middle click</item>
-    <item>Nothing</item>
+    <item>Щракване с ляв бутон</item>
+    <item>Щракване с десен бутон</item>
+    <item>Щракване със среден бутон</item>
+    <item>Не</item>
   </string-array>
   <string-array name="mousepad_sensitivity_entries">
-    <item>Slowest</item>
-    <item>Above Slowest</item>
-    <item>Default</item>
-    <item>Above Default</item>
-    <item>Fastest</item>
+    <item>Най-бавно</item>
+    <item>Над най-бавното</item>
+    <item>По подразбиране</item>
+    <item>Над стандартното</item>
+    <item>Най-бърз</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>No Acceleration</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
-    <item>Medium</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>Без ускорение</item>
+    <item>Най-слабо</item>
+    <item>По-бавно</item>
+    <item>Средно</item>
+    <item>По-силно</item>
+    <item>Най-силно</item>
   </string-array>
+  <string name="sendkeystrokes_send_to">Изпращане на натискания на клавиши към</string>
+  <string name="sendkeystrokes_textbox_hint">Изпращане на клавишни комбинации към хост</string>
+  <string name="sendkeystrokes_disabled_toast">Изпращането на натискания на клавиши е деактивирано - разрешете го в настройките</string>
+  <string name="sendkeystrokes_wrong_data">Невалиден тип mime - трябва да бъде \"text/x-keystrokes\"</string>
+  <string name="sendkeystrokes_sent_text">Изпратени %1$s до устройство %2$s</string>
+  <string name="sendkeystrokes_pref_category_summary">Този модул позволява на други приложения да споделят текстови сегменти като натискания на клавиши, коитоще се изпраща до свързания хост</string>
+  <string name="sendkeystrokes_pref_category_title">Изпращане клавишни набирания</string>
+  <string name="sendkeystrokes_pref_enabled">Активиране на изпращане на клавишни набирания</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Следене за данни с mime тип \"text/x-keystrokes\"</string>
+  <string name="sendkeystrokes_safe_text_enabled">Изпращане на безопасен текст незабавно</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Изпращане на кратки само цифрови низове без потвърждение</string>
+  <string name="pref_plugin_mousepad_send_keystrokes">Изпращане като клавишни комбинации</string>
+  <string name="mouse_receiver_plugin_description">Получаване на дистанционно движение на мишката</string>
+  <string name="mouse_receiver_plugin_name">Приемане на движение на мишката</string>
+  <string name="mouse_receiver_no_permissions">Трябва да активирате услугата за достъпност</string>
+  <string name="view_status_title">Състояние</string>
+  <string name="battery_status_format">Батерия: %d%%</string>
+  <string name="battery_status_low_format">Батерия: %d%% Ниско ниво на батерията</string>
+  <string name="battery_status_charging_format">Батерия: %d%% зареждане</string>
+  <string name="battery_status_unknown">Информацията за батерията не е налична</string>
   <string name="category_connected_devices">Свързани устройства</string>
+  <string name="category_not_paired_devices">Налични устройства</string>
   <string name="category_remembered_devices">Запомнени устройства</string>
+  <string name="device_menu_plugins">Настройки на приставки</string>
   <string name="device_menu_unpair">Разкачване</string>
+  <string name="pair_new_device">Сдвояване на ново устройство</string>
   <string name="unknown_device">Неизвестно устройство</string>
   <string name="error_not_reachable">Устройството е недостъпно</string>
   <string name="error_already_paired">Устройството вече е сдвоено</string>
@@ -47,43 +112,291 @@
   <string name="error_timed_out">Просрочка</string>
   <string name="error_canceled_by_user">Отхвърлена от потребителя</string>
   <string name="error_canceled_by_other_peer">Отказана от другата страна</string>
+  <string name="encryption_info_title">Информация за криптиране</string>
+  <string name="encryption_info_msg_no_ssl">Другото устройство не използва последна версия на KDE Connect, като използва остарял метод на криптиране.</string>
+  <string name="my_device_fingerprint">SHA256 отпечатък на сертификата на вашето устройство е:</string>
+  <string name="remote_device_fingerprint">SHA256 отпечатък на сертификата на отдалеченото устройство е:</string>
   <string name="pair_requested">Заявено е сдвояване</string>
   <string name="pairing_request_from">Заявено е сдвояване от %1s</string>
+  <plurals name="incoming_file_title">
+    <item quantity="one">Получаване на %1$d файл от %2$s</item>
+    <item quantity="other">Получаване на %1$d файлове от %2$s</item>
+  </plurals>
+  <plurals name="incoming_files_text">
+    <item quantity="one">Файл: %1s</item>
+    <item quantity="other">(Файл %2$d от %3$d) : %1$s</item>
+  </plurals>
+  <plurals name="outgoing_file_title">
+    <item quantity="one">Изпращане на %1$d файл до %2$s</item>
+    <item quantity="other">Изпращане на %1$d файла към %2$s</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">Файл: %1$s</item>
+    <item quantity="other">(Файл %2$d от %3$d) : %1$s</item>
+  </plurals>
+  <plurals name="received_files_title">
+    <item quantity="one">Получен файл от %1$s</item>
+    <item quantity="other">Получени %2$d файла от %1$s</item>
+  </plurals>
+  <plurals name="received_files_fail_title">
+    <item quantity="one">Неуспешно получаване на файл от %1$s</item>
+    <item quantity="other">Неуспешно получаване на %2$d от %3$d файла от %1$s</item>
+  </plurals>
+  <plurals name="sent_files_title">
+    <item quantity="one">Изпратен файл до %1$s</item>
+    <item quantity="other">Изпратени %2$d файла до %1$s</item>
+  </plurals>
+  <plurals name="send_files_fail_title">
+    <item quantity="one">Неуспешно изпращане на файл до %1$s</item>
+    <item quantity="other">Неуспешно изпращане на %2$d от %3$d файлове до %1$s</item>
+  </plurals>
+  <string name="tap_to_open">Докоснете, за да отворите</string>
+  <string name="received_file_text">Докоснете, за да отворите \'%1s\'</string>
+  <string name="cannot_create_file">Не може да се създаде файл %s</string>
   <string name="tap_to_answer">Докоснете за да отговорите</string>
+  <string name="right_click">Изпращане на щракване с десен бутон</string>
+  <string name="middle_click">Изпращане на средно щракване</string>
+  <string name="show_keyboard">Показване на клавиатурата</string>
   <string name="device_not_paired">Устройството не е сдвоено</string>
   <string name="request_pairing">Заявка за сдвояване</string>
   <string name="pairing_accept">Приемане</string>
   <string name="pairing_reject">Отхвърляне</string>
+  <string name="settings">Настройки</string>
   <string name="mpris_play">Възпроизвеждане</string>
+  <string name="mpris_pause">Пауза</string>
   <string name="mpris_previous">Предишен</string>
   <string name="mpris_rew">Превъртане назад</string>
   <string name="mpris_ff">Превъртане напред</string>
   <string name="mpris_next">Следващ</string>
+  <string name="mpris_loop">Повторение</string>
+  <string name="mpris_shuffle">Разбъркване</string>
   <string name="mpris_volume">Сила на звука</string>
+  <string name="mpris_time_settings_title">Бутони за превъртане напред/назад</string>
+  <string name="mpris_time_settings_summary">Регулиране на времето за превъртане напред/назад при натискане</string>
   <string-array name="mpris_time_entries">
-    <item>10 seconds</item>
-    <item>20 seconds</item>
-    <item>30 seconds</item>
-    <item>1 minute</item>
-    <item>2 minutes</item>
+    <item>10 секунди</item>
+    <item>20 секунди</item>
+    <item>30 секунди</item>
+    <item>1 минута</item>
+    <item>2 минути</item>
   </string-array>
+  <string name="mpris_notification_settings_title">Показване на известие за управление на медиите</string>
+  <string name="mpris_notification_settings_summary">Разрешаване на управлението на медийните плейъри, без да отваряте KDE Connect</string>
+  <string name="share_to">Споделяне към...</string>
   <string name="protocol_version_newer">Това устройство използва по-нова версия на протокола</string>
+  <string name="plugin_settings_with_name">%s настройки</string>
   <string name="invalid_device_name">Невалидно име на устройство</string>
+  <string name="shareplugin_text_saved">Получен текст, запазен в клипборда</string>
+  <string name="custom_devices_settings">Списък с потребителски устройства</string>
+  <string name="custom_device_list">Добавяне на устройства по IP адрес</string>
+  <string name="custom_device_deleted">Изтрито потребителско устройство</string>
+  <string name="custom_device_list_help">Ако устройството ви не е открито автоматично, можете да добавите неговия IP адрес или име на хост, като щракнете върху плаващия бутон за действие</string>
+  <string name="custom_device_fab_hint">Добавяне на устройство</string>
+  <string name="undo">Отмяна</string>
+  <string name="share_notification_preference">Шумни известия</string>
+  <string name="share_notification_preference_summary">Вибриране и възпроизвеждане на звук при получаване на файл</string>
+  <string name="share_destination_customize">Персонализиране на директорията на местоназначението</string>
+  <string name="share_destination_customize_summary_disabled">Получените файлове ще се появят в Download</string>
+  <string name="share_destination_customize_summary_enabled">Файловете ще се съхраняват в директорията по-долу</string>
+  <string name="share_destination_folder_preference">Директория на местоназначението</string>
+  <string name="share">Споделяне</string>
+  <string name="share_received_file">Споделяне на \"%s\"</string>
+  <string name="title_activity_notification_filter">Филтър на известия</string>
+  <string name="filter_apps_info">Известията ще се синхронизират за избраните приложения.</string>
+  <string name="show_notification_if_screen_off">Изпращане на известия само ако екранът е изключен</string>
+  <string name="sftp_sdcard_num">SD карта %d</string>
+  <string name="sftp_sdcard">SD карта</string>
+  <string name="sftp_readonly">(само за четене)</string>
+  <string name="sftp_camera">Снимки от камерата</string>
+  <string name="add_device_dialog_title">Добавяне на устройство</string>
+  <string name="add_device_hint">Име на хост или IP адрес</string>
+  <string name="sftp_preference_detected_sdcards">Открити SD карти</string>
+  <string name="sftp_preference_edit_sdcard_title">Редактиране на SD карта</string>
+  <string name="sftp_preference_configured_storage_locations">Конфигурирани места за съхранение</string>
+  <string name="sftp_preference_add_storage_location_title">Добавяне на място за съхранение</string>
+  <string name="sftp_preference_edit_storage_location">Редактиране на място за съхранение</string>
+  <string name="sftp_preference_add_camera_shortcut">Добавяне на пряк път до папката на камерата</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_on">Добавяне на пряк път до папката на камерата</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_off">Да не се добавя пряк път до папката на камерата</string>
+  <string name="sftp_storage_preference_storage_location">Място за съхранение</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">Това местоположение вече е конфигурирано</string>
+  <string name="sftp_storage_preference_click_to_select">кликнете за избор</string>
+  <string name="sftp_storage_preference_display_name">Показвано име</string>
+  <string name="sftp_storage_preference_display_name_already_used">Това име на дисплея вече се използва</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">Името на дисплея не може да бъде празно</string>
+  <string name="sftp_action_mode_menu_delete">Изтриване</string>
+  <string name="sftp_no_sdcard_detected">Не е открита SD карта</string>
+  <string name="sftp_no_storage_locations_configured">Няма конфигурирани места за съхранение</string>
+  <string name="sftp_saf_permission_explanation">За да получите достъп до файлове от разстояние, трябва да конфигурирате местата за съхранение</string>
+  <string name="no_players_connected">Не са открити играчи</string>
+  <string name="send_files">Изпращане на файлове</string>
+  <string name="pairing_title">Устройства на KDE Connect</string>
+  <string name="pairing_description">Тук трябва да се появят други устройства, работещи с KDE Connect в същата мрежа.</string>
+  <string name="device_rename_title">Преименуване на устройство</string>
+  <string name="device_rename_confirm">Преименуване</string>
+  <string name="refresh">Презареждане</string>
+  <string name="unreachable_description">Това сдвоено устройство не е достижимо. Уверете се, че то е свързано към същата мрежа.</string>
+  <string name="no_wifi">Не сте свързани към Wi-Fi мрежа, така че може да не можете да видите нито едно устройства. Щракнете тук, за да активирате Wi-Fi.</string>
+  <string name="on_non_trusted_message">Не сте в доверена мрежа: автоматичното откриване е деактивирано.</string>
+  <string name="no_file_browser">Няма инсталирани файлови браузъри.</string>
+  <string name="pref_plugin_telepathy">Изпращане на SMS</string>
+  <string name="pref_plugin_telepathy_desc">Изпращане на текстови съобщения от работния ви плот</string>
+  <string name="pref_plugin_telepathy_mms">Изпращане на MMS</string>
+  <string name="pref_plugin_telepathy_mms_desc">За да можете да изпращате MMS от KDE Connect, трябва да го зададете като SMS приложение по подразбиране.</string>
+  <string name="findmyphone_title">Намиране на моя телефон</string>
+  <string name="findmyphone_title_tablet">Намиране на моя таблет</string>
+  <string name="findmyphone_title_tv">Намери моя телевизор</string>
+  <string name="findmyphone_description">Позвънете на това устройство, за да можете да го намерите</string>
+  <string name="findmyphone_found">Намерих го</string>
+  <string name="open">Отваряне</string>
+  <string name="close">Затваряне</string>
+  <string name="plugins_need_permission">Някои плъгини се нуждаят от разрешения, за да работят (докоснете за повече информация):</string>
+  <string name="permission_explanation">Тази приставка се нуждае от разрешения, за да работи</string>
+  <string name="optional_permission_explanation">Трябва да предоставите допълнителни разрешения, за да активирате всички функции</string>
+  <string name="plugins_need_optional_permission">Някои плъгини имат деактивирани функции поради липса на разрешение (докоснете за повече информация):</string>
+  <string name="share_optional_permission_explanation">За да получавате споделени файлове, трябва да изберете директория за местоназначение</string>
+  <string name="telepathy_permission_explanation">За да четете и записвате SMS от работния плот, трябва да дадете разрешение за SMS</string>
+  <string name="telephony_permission_explanation">За да виждате телефонни обаждания на работния плот, трябва да дадете разрешение за телефонни обаждания дневници и състояние на телефона</string>
+  <string name="telephony_optional_permission_explanation">За да видите име на контакт вместо телефонен номер, трябва да дадете достъп до контактите на телефона</string>
+  <string name="contacts_permission_explanation">За да споделите книгата си с контакти с десктопа, трябва да дадете разрешение за контакти разрешение</string>
+  <string name="select_ringtone">Избор на мелодия на звънене</string>
+  <string name="telephony_pref_blocked_title">Блокирани номера</string>
+  <string name="telephony_pref_blocked_dialog_desc">Не показвайте обажданията и SMS от тези номера. Моля, посочете по един номер за линия</string>
+  <string name="mpris_coverart_description">Обложка на текущата медия</string>
+  <string name="device_icon_description">Икона на устройство</string>
+  <string name="settings_icon_description">Икона за настройки</string>
+  <string name="presenter_fullscreen">Цял екран</string>
+  <string name="presenter_exit">Изход от презентацията</string>
+  <string name="presenter_lock_tip">Можете да заключите устройството си и да използвате клавишите за сила на звука, за да преминете към предишната/следващата слайд</string>
+  <string name="add_command">Добавяне на команда</string>
+  <string name="addcommand_explanation">Няма регистрирани команди</string>
+  <string name="addcommand_explanation2">Можете да добавите нови команди в системните настройки на KDE Connect</string>
+  <string name="add_command_description">Можете да добавяте команди на работния плот</string>
+  <string name="pref_plugin_mprisreceiver">Управление на медийния плейър</string>
+  <string name="pref_plugin_mprisreceiver_desc">Управление на медийните плейъри на телефона от друго устройство</string>
+  <string name="notification_channel_default">Други известия</string>
+  <string name="notification_channel_persistent">Постоянен индикатор</string>
+  <string name="notification_channel_media_control">Контрол на медиите</string>
+  <string name="notification_channel_filetransfer">Прехвърляне на файл</string>
+  <string name="notification_channel_high_priority">Висок приоритет</string>
+  <string name="notification_channel_sms_mms">Ново съобщение</string>
+  <string name="mpris_stop">Спиране на текущия плейър</string>
+  <string name="copy_url_to_clipboard">Копиране на URL в клипборда</string>
+  <string name="clipboard_toast">Копиран в клипборда</string>
+  <string name="runcommand_notreachable">Устройството не е достъпно</string>
+  <string name="runcommand_notpaired">Устройството не е сдвоено</string>
+  <string name="runcommand_nosuchdevice">Няма такова устройство</string>
+  <string name="runcommand_noruncommandplugin">Това устройство няма активиран плъгин за изпълнение на команди</string>
+  <string name="pref_plugin_findremotedevice">Намиране на отдалечено устройство</string>
+  <string name="pref_plugin_findremotedevice_desc">Позвъняване на отдалеченото устройство</string>
+  <string name="ring">Позвъняване</string>
+  <string name="pref_plugin_systemvolume">Сила на звука на системта</string>
+  <string name="pref_plugin_systemvolume_desc">Управление на системната сила на звука на отдалеченото устройство</string>
+  <string name="mute">Заглушаване</string>
+  <string name="all">Всички</string>
+  <string name="devices">Устройства</string>
+  <string name="settings_rename">Име на устройство</string>
+  <string name="settings_dark_mode">Тъмна тема</string>
+  <string name="settings_more_settings_title">Още настройки</string>
+  <string name="settings_more_settings_text">Настройките за всяко устройство могат да бъдат намерени в раздел \"Настройки на плъгина\" в рамките на устройство.</string>
+  <string name="setting_persistent_notification">Показване на постоянна нотификация</string>
+  <string name="setting_persistent_notification_oreo">Постоянна нотификация</string>
+  <string name="setting_persistent_notification_description">Докоснете, за да разрешите/забраните в настройките за известия</string>
+  <string name="extra_options">Допълнителни опции</string>
+  <string name="privacy_options">Опции за поверителност</string>
+  <string name="set_privacy_options">Задаване на опции за поверителност</string>
+  <string name="block_contents">Блокиране на съдържанието на известията</string>
+  <string name="block_images">Блокиране на изображения в известията</string>
+  <string name="notification_channel_receivenotification">Известия от други устройства</string>
+  <string name="take_picture">Стартиране на камерата</string>
+  <string name="plugin_photo_desc">Стартирайте приложението за камера, за да улесните правенето и прехвърлянето на снимки</string>
+  <string name="no_app_for_opening">Не е намерено подходящо приложение за отваряне на този файл</string>
+  <string name="remote_keyboard_service">Отдалечена клавиатура KDE Connect</string>
+  <string name="presenter_pointer">Показалец</string>
+  <string name="trusted_networks">Доверени мрежи</string>
+  <string name="trusted_networks_desc">Ограничаване на автоматичното откриване до познати мрежи</string>
+  <string name="add_trusted_network">Добавяне на %1s</string>
+  <string name="empty_trusted_networks_list_text">Все още не сте добавили надеждна мрежа</string>
+  <string name="allow_all_networks_text">Allow all</string>
+  <string name="location_permission_needed_title">Изисква се разрешение</string>
+  <string name="location_permission_needed_desc">Android изисква разрешение за местоположение, за да идентифицира вашата WiFi мрежа</string>
+  <string name="clipboard_android_x_incompat">Android 10 премахна достъпа до клипборда за всички приложения. Тази приставка ще бъде деактивирана.</string>
+  <string name="mpris_open_url">Продължете да играете тук</string>
+  <string name="cant_open_url">Не мога да отворя URL адреса, за да продължа играта</string>
+  <string name="bigscreen_home">Домашен адрес</string>
+  <string name="bigscreen_up">Преместване нагоре</string>
+  <string name="bigscreen_left">Ляво</string>
+  <string name="bigscreen_select">Избор</string>
+  <string name="bigscreen_right">Дясно</string>
+  <string name="bigscreen_down">Преместване надолу</string>
+  <string name="bigscreen_mic">Микрофон</string>
+  <string name="pref_plugin_bigscreen">Дистанционно управление за Bigscreen</string>
+  <string name="pref_plugin_bigscreen_desc">Използвайте устройството си като дистанционно за Plasma Bigscreen</string>
+  <string name="bigscreen_optional_permission_explanation">За да споделите входа на микрофона от телефона си, трябва да дадете достъп до аудиовхода на телефона</string>
+  <string name="bigscreen_speech_extra_prompt">Реч</string>
+  <string name="message_reply_label">ОТГОВОР</string>
+  <string name="mark_as_read_label">МАРКИРАНЕ КАТО ПРОЧЕТЕНО</string>
+  <string name="user_display_name">Вие</string>
+  <string name="set_default_sms_app_title">Изпращане на MMS</string>
+  <string name="set_group_message_as_mms_title">Изпращане на групови MMS</string>
+  <string name="set_long_text_as_mms_title">Изпращане на дълъг текст като MMS</string>
+  <string name="convert_to_mms_after_title">Конвертиране в MMS</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>След едно съобщение</item>
+    <item>След две съобщения</item>
+    <item>След три съобщения</item>
+    <item>След четири съобщения</item>
+    <item>След пет съобщения</item>
   </string-array>
+  <string name="theme_dialog_title">Изберете тема</string>
   <string-array name="theme_list">
-    <item>Set by Battery Saver</item>
-    <item>Light</item>
-    <item>Dark</item>
+    <item>Зададено от Пестене на батерията</item>
+    <item>Лек</item>
+    <item>Тъмно</item>
   </string-array>
   <string-array name="theme_list_v28">
-    <item>System Default</item>
-    <item>Light</item>
-    <item>Dark</item>
+    <item>Системни настройки по подразбиране</item>
+    <item>Слаб</item>
+    <item>Тъмна</item>
   </string-array>
+  <string name="report_bug">Подаване на сигнал за грешка</string>
+  <string name="donate">Дарение</string>
+  <string name="source_code">Изходен код</string>
+  <string name="licenses">Лицензи</string>
+  <string name="website">Уебсайт</string>
+  <string name="about">За програмата</string>
+  <string name="authors">Автори</string>
+  <string name="thanks_to">Благодарности на</string>
+  <string name="easter_egg">Великденско яйце</string>
+  <string name="email_contributor">Сътрудник за имейл\n%s</string>
+  <string name="visit_contributors_homepage">Посетете домашната страница на автора\n%s</string>
+  <string name="version">Версия %s</string>
+  <string name="about_kde">Относно KDE</string>
+  <string name="kde_be_free">KDE - Бъдете свободни!</string>
+  <string name="kde">KDE</string>
+  <string name="konqi">Konqi</string>
+  <string name="rise_up">Разширяване на горе</string>
+  <string name="rise_down">Разширяване на долу</string>
+  <string name="click_here_to_type">Докоснете тук, за да въведете</string>
+  <string name="clear_compose">Изчистване</string>
+  <string name="send_compose">Изпращане</string>
+  <string name="open_compose_send">Съставяне на текст</string>
+  <string name="app_description">Мултиплатформено приложение, което позволява на устройствата ви да комуникират (напр. телефонът ви и вашия компютър)</string>
+  <string name="about_kde_about">&lt;h1&gt;За&lt;/h1&gt; &lt;p&gt;KDE е световна общност от софтуерни инженери, художници, писатели, преводачи и творци, които са отдадени на &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;свободното разработване на софтуер&lt;/a&gt;. KDE създава работната среда Plasma, стотици приложения и многобройните софтуерни библиотеки, които ги поддържат.&lt;/p&gt; &lt;p&gt;KDE е кооперативно предприятие: нито една отделна организация контролира насоките или продуктите му. Вместо това ние работим заедно, за да постигнем общата цел да създадем най-добрия свободен софтуер в света. Всеки е добре дошъл да се присъедини и да да допринесе&lt;/a&gt; за KDE, включително и вие.&lt;/p&gt; Посетете &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; за повече информация за общността на KDE и за софтуера, който създаваме.</string>
+  <string name="about_kde_report_bugs_or_wishes">" &lt;h1&gt;Докладвайте за грешки или желания&lt;/h1&gt; &lt;p&gt;Софтуерът винаги може да бъде подобрен и екипът на KDE е готов да го направи. Въпреки това вие - потребителят - трябва да да ни кажете, когато нещо не работи според очакванията или може да бъде направено по-добре.&lt;/p&gt; &lt;p&gt;KDE разполага със система за проследяване на грешки. Посетете &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; или използвайте бутона \"Докладване на грешка\" от екрана за програмата, за да съобщите за грешки.&lt;/p&gt; Ако имате предложение за подобрение, тогава можете да използвате системата за проследяване на грешки, за да регистрирате желанието си. Уверете се, че използвате тежестта, наречена \"Wishlist\"."</string>
+  <string name="about_kde_join_kde">&lt;h1&gt;Присъединете се към KDE&lt;/h1&gt; &lt;p&gt;Не е необходимо да сте софтуерен разработчик на софтуер, за да сте член на екипа на KDE. Можете да се присъедините към националните екипи които превеждат програмни интерфейси. Можете да предоставяте графики, теми, звуци, и подобрена документация. Вие решавате!&lt;/p&gt; &lt;p&gt;Посетете &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; за информация относно някои проекти, в които можете да да участвате.&lt;/p&gt; Ако имате нужда от повече информация или документация, тогава посетете &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; ще ви предостави необходимото.</string>
+  <string name="about_kde_support_kde">&lt;h1&gt;Подкрепете KDE&lt;/h1&gt; &lt;p&gt;Софтуерът на KDE е и винаги ще бъде достъпен безплатно, но създаването му не е безплатно.&lt;/p&gt; &lt;p&gt;За да подкрепи разработката, общността на KDE е създала KDE e.V., дружество, което еорганизация с не-стопанска цел, законно основана в Германия. KDE e.V. представлява KDE общността по правни и финансови въпроси. Вижте &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; за информация относно KDE e.V.&lt;/p&gt; &lt;p&gt;KDE се възползва от много видове принос, включително финансов. Ние използваме средствата, за да възстановим на членовете и други лица разходите, които те правят, когато допринасят. Други средства се използват за правна подкрепа и организиране на конференции и срещи.&lt;/p&gt; &lt;p&gt;Бихме искали да ви насърчим да да подкрепите нашите усилия с финансово дарение, като използвате един от начините описани в &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Благодаря ви многопредварително за вашата подкрепа.</string>
+  <string name="maintainer_and_developer">Поддържащ и разработчик</string>
+  <string name="developer">Разработка</string>
+  <string name="apple_support">Поддръжка на macOS. Работи се по поддръжката на iOS</string>
+  <string name="bug_fixes_and_general_improvements">Поправки на грешки и общи подобрения</string>
+  <string name="samoilenko_yuri_task">Внедряване на SFTP, поправки на грешки и общи подобрения</string>
+  <string name="aniket_kumar_task">Подобрения на плъгина за SMS</string>
+  <string name="alex_fiestas_task">Подобрения на плъгина за контакти</string>
+  <string name="maxim_leshchenko_task">Подобрения на потребителския интерфейс и тази страница за</string>
+  <string name="holger_kaelberer_task">Плъгин за отдалечена клавиатура и поправки на грешки</string>
+  <string name="saikrishna_arcot_task">Поддръжка за използване на клавиатура в плъгина за отдалечено въвеждане, поправки на грешки и общи подобрения</string>
+  <string name="everyone_else">Всички останали, които са допринесли за KDE Connect през годините</string>
+  <string name="send_clipboard">Изпращане на клипборд</string>
+  <string name="tap_to_execute">Докоснете, за да се изпълни</string>
 </resources>
