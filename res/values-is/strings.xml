@@ -162,6 +162,7 @@
   <string name="share_to">Deila með…</string>
   <string name="plugin_settings_with_name">Stillingar %s</string>
   <string name="invalid_device_name">Ógilt heiti tækis</string>
+  <string name="custom_device_fab_hint">Bæta við tæki</string>
   <string name="undo">Afturkalla</string>
   <string name="share_notification_preference">Háværar tilkynningar</string>
   <string name="share_destination_folder_preference">Móttökumappa</string>
@@ -179,6 +180,7 @@
   <string name="sftp_storage_preference_click_to_select">smelltu til að velja</string>
   <string name="sftp_storage_preference_display_name">Birtingarnafn</string>
   <string name="sftp_action_mode_menu_delete">Eyða</string>
+  <string name="sftp_no_sdcard_detected">Ekkert SD-minniskort fannst</string>
   <string name="no_players_connected">Engir spilarar fundust</string>
   <string name="send_files">Senda skrár</string>
   <string name="pairing_title">KDE Connect tæki</string>
@@ -272,6 +274,14 @@
   <string name="konqi">Konqi</string>
   <string name="clear_compose">Hreinsa</string>
   <string name="send_compose">Senda</string>
+  <string name="open_compose_send">Semja texta</string>
   <string name="maintainer_and_developer">Umsjónarmaður og forritari</string>
   <string name="developer">Forritari</string>
+  <string name="apple_support">Stuðningur við macOS. Unnið að stuðningi við iOS</string>
+  <string name="bug_fixes_and_general_improvements">Villuleiðréttingar og almennar endurbætur</string>
+  <string name="samoilenko_yuri_task">SFTP-innleiðing, villuleiðréttingar og almennar endurbætur</string>
+  <string name="aniket_kumar_task">Endurbætur á SMS-viðbót</string>
+  <string name="alex_fiestas_task">Endurbætur á tengiliðaviðbót</string>
+  <string name="send_clipboard">Senda klippispjald</string>
+  <string name="tap_to_execute">Pikkaðu til að keyra</string>
 </resources>
