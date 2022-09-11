@@ -2,19 +2,26 @@
 <resources>
   <string name="kde_connect">كدي المتّصل</string>
   <string name="manifest_label_share">أرسِل إلى جهاز</string>
+  <string name="foreground_notification_no_devices">غير متصل بأي جهاز</string>
+  <string name="foreground_notification_devices">متّصل بـ: %s</string>
+  <string name="foreground_notification_send_clipboard">أرسل الحافظة</string>
   <string name="pref_plugin_telephony">مُخطِر المهاتفة</string>
+  <string name="pref_plugin_telephony_desc">أرسل إخطارات للمكالمات الواردة</string>
   <string name="pref_plugin_battery">تقرير البطّاريّة</string>
   <string name="pref_plugin_battery_desc">بلّغ عن حالة البطّاريّة دوريًّا</string>
+  <string name="pref_plugin_connectivity_report">تقرير الاتصال</string>
   <string name="pref_plugin_sftp">اكشف نظام الملفّات</string>
   <string name="pref_plugin_sftp_desc">تسمح بتصفّح نظام ملفّات هذا الهاتف عن بعد</string>
   <string name="pref_plugin_clipboard">مزامنة الحافظة</string>
   <string name="pref_plugin_clipboard_desc">شارك محتوى الحافظة</string>
+  <string name="pref_plugin_clipboard_sent">أرسل الحافظة</string>
   <string name="pref_plugin_mousepad">الدّخل البعيد</string>
   <string name="pref_plugin_mousepad_desc">استخدم الهاتف أو اللوحيّ كفأرة ولوحة مفاتيح</string>
   <string name="pref_plugin_mpris">تحكّمات الوسائط المتعدّدة</string>
   <string name="pref_plugin_mpris_desc">توفّر تحكّمًا بعيدًا لمشغّل الوسائط</string>
   <string name="pref_plugin_runcommand">شغّل أمرًا</string>
   <string name="pref_plugin_runcommand_desc">تحفّز أوامر عن بعد من الهاتف أو اللوحيّ</string>
+  <string name="pref_plugin_contacts">مزامن المتراسلين</string>
   <string name="pref_plugin_ping">وخزة</string>
   <string name="pref_plugin_ping_desc">أرسل واستقبل وخزات</string>
   <string name="pref_plugin_notifications">مزامنة الإخطارات</string>
@@ -32,9 +39,11 @@
   <string name="send_ping">أرسل وخزة</string>
   <string name="open_mpris_controls">تحكّمات الوسائط المتعدّدة</string>
   <string name="open_mousepad">الدّخل البعيد</string>
+  <string name="mousepad_single_tap_settings_title">اضبط إجراء الطَرق بالأصبع</string>
   <string name="mousepad_double_tap_settings_title">اضبط إجراء اللمس بإصبعين</string>
   <string name="mousepad_triple_tap_settings_title">اضبط إجراء اللمس بثلاث أصابع</string>
   <string name="mousepad_sensitivity_settings_title">اضبط حساسيّة لوحة اللمس</string>
+  <string name="mousepad_acceleration_profile_settings_title">عيّن تسارع المؤشر</string>
   <string name="mousepad_scroll_direction_title">اعكس اتّجاه التّمرير</string>
   <string-array name="mousepad_tap_entries">
     <item>النّقر باليسار</item>
@@ -50,13 +59,17 @@
     <item>الأسرع</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>No Acceleration</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
-    <item/>
+    <item>بدون تسريع</item>
+    <item>الأكثر ضعفاً</item>
+    <item>ضعيف</item>
+    <item>متوسط</item>
     <item>أقوى</item>
-    <item>Strongest</item>
+    <item>الأقوى</item>
   </string-array>
+  <string name="view_status_title">الحالة</string>
+  <string name="battery_status_format">البطارية: %d%%</string>
+  <string name="battery_status_low_format">البطارية: %d%% منخفضة</string>
+  <string name="battery_status_charging_format">البطارية: %d%% تشحن</string>
   <string name="category_connected_devices">الأجهزة المقترن بها</string>
   <string name="category_not_paired_devices">الأجهزة المتوفّرة</string>
   <string name="category_remembered_devices">الأجهزة المتذكَّرة</string>
@@ -74,6 +87,7 @@
   <string name="encryption_info_msg_no_ssl">لا يستخدم الجهاز الآخر إصدارة حديثة من «كدي المتّصل»، ستُستخدم طريقة التّعمية القديمة.</string>
   <string name="pair_requested">طُلب الاقتران</string>
   <string name="pairing_request_from">طلب اقتران من %1s</string>
+  <string name="tap_to_open">اطرق لتفتح</string>
   <string name="received_file_text">المس لفتح \'%1s\'</string>
   <string name="tap_to_answer">المس للإجابة</string>
   <string name="right_click">أرسل نقرة باليمين</string>
@@ -94,6 +108,7 @@
   <string name="mpris_shuffle">اخلط</string>
   <string name="mpris_volume">المستوى</string>
   <string name="mpris_time_settings_title">زرّا التّقدّم والإرجاع</string>
+  <string name="mpris_time_settings_summary">اضبط الوقت عند نقر زرّيّ التّقديم أو الإرجاع</string>
   <string-array name="mpris_time_entries">
     <item>10 ثوان</item>
     <item>20 ثانية</item>
@@ -101,21 +116,33 @@
     <item>دقيقة واحدة</item>
     <item>دقيقتان</item>
   </string-array>
+  <string name="share_to">شارك مع...</string>
   <string name="protocol_version_newer">يستخدم هذا الجهاز إصدار ميفاق أحدث</string>
   <string name="plugin_settings_with_name">إعدادات %s</string>
   <string name="invalid_device_name">اسم جهاز غير صالح</string>
   <string name="shareplugin_text_saved">استُقبل نصّ، حُفظ إلى الحافظة</string>
   <string name="custom_devices_settings">قائمة أجهزة مخصّصة</string>
   <string name="custom_device_list">أضف أجهزة بميفاق الإنترنت م​إ</string>
+  <string name="custom_device_deleted">حُذف الجهاز المخصّص</string>
+  <string name="custom_device_fab_hint">أضف جهازاً</string>
+  <string name="undo">تراجع</string>
   <string name="share_notification_preference">إخطارات مزعجة</string>
   <string name="share_notification_preference_summary">اهتزّ وشغّل صوتًا عند استقبال ملفّ</string>
+  <string name="share_destination_folder_preference">مجلد الوجهة</string>
+  <string name="share">شارك</string>
+  <string name="share_received_file">شارك \"%s\"</string>
   <string name="title_activity_notification_filter">مرشّح الإخطارات</string>
   <string name="filter_apps_info">ستُزامن الإخطارات من التّطبيقات المحدّدة.</string>
   <string name="sftp_sdcard_num">بطاقة SD ‏%d</string>
   <string name="sftp_sdcard">بطاقة SD</string>
   <string name="sftp_readonly">(للقراءة فقط)</string>
   <string name="sftp_camera">صور الكاميرا</string>
+  <string name="add_device_dialog_title">أضف جهازاً</string>
+  <string name="add_device_hint">اسم المضيف أو عنوان IP</string>
+  <string name="sftp_storage_preference_click_to_select">"انقر للاختيار "</string>
   <string name="sftp_storage_preference_display_name">اسم العرض</string>
+  <string name="sftp_action_mode_menu_delete">احذف</string>
+  <string name="sftp_no_sdcard_detected">لم يكتشف أي بطاقة ذاكرة</string>
   <string name="no_players_connected">لم يُعثر على مشغّلات</string>
   <string name="send_files">أرسل ملفّات</string>
   <string name="pairing_title">أجهزة «كدي المتّصل»</string>
@@ -130,34 +157,108 @@
   <string name="findmyphone_title">جِد جهازي</string>
   <string name="findmyphone_title_tablet">جِد جهازي اللوحيّ</string>
   <string name="findmyphone_description">يرّن هذا الجهاز لتجده</string>
+  <string name="findmyphone_found">عثر عليه</string>
   <string name="open">افتح</string>
   <string name="close">أغلق</string>
+  <string name="select_ringtone">اختر النغمة</string>
+  <string name="telephony_pref_blocked_title">أرقام محظورة</string>
+  <string name="mpris_coverart_description">الصورة الفنية للوسيط الحالي</string>
+  <string name="device_icon_description">أيقونة الجهاز</string>
+  <string name="settings_icon_description">أيقونة الإعدادات</string>
   <string name="presenter_fullscreen">ملء الشّاشة</string>
+  <string name="presenter_exit">اخرج من العرض التقديمي</string>
+  <string name="add_command">أضف أمراً</string>
+  <string name="addcommand_explanation">لا يوجد أوامر مسجلة</string>
+  <string name="pref_plugin_mprisreceiver">متحكم الوسائط</string>
+  <string name="notification_channel_default">إخطارات أخرى</string>
+  <string name="notification_channel_media_control">متحكم الوسائط</string>
   <string name="notification_channel_filetransfer">نقل الملفّات</string>
   <string name="notification_channel_high_priority">مرتفعة الأولوية</string>
   <string name="notification_channel_sms_mms">رسالة جديدة</string>
+  <string name="mpris_stop">أوقف المشغل الحالي</string>
   <string name="copy_url_to_clipboard">انسخ المسار إلى الحافظة</string>
-  <string name="ring">حلقة</string>
+  <string name="clipboard_toast">نُسخ إلى الحافظة</string>
+  <string name="runcommand_notreachable">الجهاز غير قابل الوصول</string>
+  <string name="runcommand_notpaired">الجهاز غير مقترن</string>
+  <string name="pref_plugin_findremotedevice">اعثر على جهاز بعيد</string>
+  <string name="pref_plugin_findremotedevice_desc">رنّ على الجهاز البعيد</string>
+  <string name="ring">رّن</string>
   <string name="pref_plugin_systemvolume">صوت النظام</string>
+  <string name="mute">اكتم</string>
+  <string name="all">الكلّ</string>
+  <string name="devices">الأجهزة</string>
   <string name="settings_rename">اسم الجهاز</string>
+  <string name="settings_dark_mode">سمة مظلمة</string>
+  <string name="settings_more_settings_title">المزيد من الإعدادات</string>
+  <string name="privacy_options">خيارات الخصوصية</string>
+  <string name="set_privacy_options">حدد خيارات الخصوصية</string>
+  <string name="block_contents">امنح محتويات الإخطارات</string>
+  <string name="block_images">امنع الصور في الإخطارات</string>
+  <string name="notification_channel_receivenotification">إخطارات من أجهزة أخرى</string>
+  <string name="take_picture">شغّل الكاميرا</string>
   <string name="presenter_pointer">المؤشر</string>
+  <string name="trusted_networks">الشّبكات الموثوقة</string>
+  <string name="add_trusted_network">أضف %s</string>
+  <string name="allow_all_networks_text">اسمح للكل</string>
+  <string name="location_permission_needed_title">الإذن مطلوب</string>
+  <string name="bigscreen_home">المنزل</string>
+  <string name="bigscreen_up">أعلى</string>
+  <string name="bigscreen_left">يسار</string>
+  <string name="bigscreen_select">اختر</string>
+  <string name="bigscreen_right">يمين</string>
+  <string name="bigscreen_down">أسفل</string>
+  <string name="bigscreen_mic">اللاقط</string>
+  <string name="pref_plugin_bigscreen">متحكم الشاشة الكبيرة</string>
+  <string name="bigscreen_speech_extra_prompt">حديث</string>
+  <string name="message_reply_label">ردّ</string>
+  <string name="mark_as_read_label">علّم كمقروءة</string>
   <string name="user_display_name">أنت</string>
+  <string name="set_default_sms_app_title">أرسل رسالة قصيرة</string>
+  <string name="set_group_message_as_mms_title">أرسل رسالة جماعية</string>
+  <string name="set_long_text_as_mms_title">أرسل نص طويل كرسالة وسائط</string>
+  <string name="convert_to_mms_after_title">حول إلى رسالة وسائط</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>بعد رسالة واحدة</item>
+    <item>بعد رسالتين</item>
+    <item>بعد ثلاث رسائل</item>
+    <item>بعد أربع رسائل</item>
+    <item>بعد خمس رسائل</item>
   </string-array>
+  <string name="theme_dialog_title">اختر سمة</string>
   <string-array name="theme_list">
-    <item>Set by Battery Saver</item>
+    <item>معينة بواسطة حافظ البطارية</item>
+    <item>خفيف</item>
+    <item>مظلمة</item>
   </string-array>
   <string-array name="theme_list_v28">
     <item>افتراضيات النظام</item>
+    <item>خفيف</item>
+    <item>مظلمة</item>
   </string-array>
+  <string name="report_bug">أبلغ عن علة</string>
   <string name="donate">تبرّع</string>
+  <string name="source_code">الشيفرة المصدرية</string>
+  <string name="licenses">الرّخص</string>
+  <string name="website">موقع الوبّ</string>
+  <string name="about">عن</string>
+  <string name="authors">المؤلفين</string>
   <string name="thanks_to">الشكر إلى</string>
+  <string name="easter_egg">بيض الفصح</string>
+  <string name="email_contributor">راسل المساهم:\n%s</string>
+  <string name="visit_contributors_homepage">زر صفحة المساهم الرئيسية\n%s</string>
+  <string name="version">الإصدار %s</string>
+  <string name="about_kde">عن كدي</string>
+  <string name="kde_be_free">كدي- كن حرًّا!</string>
   <string name="kde">كدي</string>
+  <string name="konqi">كوينكي</string>
+  <string name="rise_up">ارفع</string>
+  <string name="rise_down">اخفض</string>
+  <string name="click_here_to_type">اطُرق لتكتب</string>
+  <string name="clear_compose">امسح</string>
   <string name="send_compose">أرسل</string>
+  <string name="open_compose_send">ألف نص</string>
+  <string name="maintainer_and_developer">المصين ومطوّر</string>
+  <string name="developer">مطوّر</string>
   <string name="bug_fixes_and_general_improvements">إصلاح علل وتحسينات عامة</string>
+  <string name="send_clipboard">أرسل الحافظة</string>
 </resources>
