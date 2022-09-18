@@ -56,16 +56,4 @@
         app:tint="@color/text_color"
         tools:visibility="visible" />
 
-    <ImageButton
-        android:id="@+id/about_person_list_item_entry_email_button"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginRight="4dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/email_contributor"
-        android:src="@drawable/ic_baseline_send_24"
-        android:visibility="gone"
-        app:tint="@color/text_color"
-        tools:visibility="visible" />
 </LinearLayout>

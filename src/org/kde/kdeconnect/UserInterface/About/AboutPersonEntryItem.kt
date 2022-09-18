@@ -27,14 +27,6 @@ class AboutPersonEntryItem(val person: AboutPerson) : ListAdapter.Item {
             binding.aboutPersonListItemEntryTask.text = layoutInflater.context.getString(person.task)
         }
 
-        if (person.emailAddress != null) {
-            binding.aboutPersonListItemEntryEmailButton.visibility = View.VISIBLE
-            TooltipCompat.setTooltipText(binding.aboutPersonListItemEntryEmailButton, layoutInflater.context.getString(R.string.email_contributor, person.emailAddress))
-            binding.aboutPersonListItemEntryEmailButton.setOnClickListener {
-                layoutInflater.context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("mailto:" + person.emailAddress)))
-            }
-        }
-
         if (person.webAddress != null) {
             binding.aboutPersonListItemEntryVisitHomepageButton.visibility = View.VISIBLE
             TooltipCompat.setTooltipText(binding.aboutPersonListItemEntryVisitHomepageButton, layoutInflater.context.resources.getString(R.string.visit_contributors_homepage, person.webAddress))
