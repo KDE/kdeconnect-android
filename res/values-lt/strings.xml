@@ -52,11 +52,18 @@
   <string name="remotekeyboard_multiple_connections">Yra daugiau nei vienas nuotolinės klaviatūros ryšys, pasirinkite kurį įrenginį konfigūruoti</string>
   <string name="open_mousepad">Nuotolinis įvedimas</string>
   <string name="mousepad_info">Norėdami judinti pelės žymeklį, judinkite pirštu po ekraną. Bakstelėkite vienkartiniam spustelėjimui ir naudokite du/tris pirštus dešiniajam ir viduriniajam mygtukui. Naudokite 2 pirštus, norėdami slinkti. Naudokite ilgą paspaudimą, norėdami tempti.</string>
+  <string name="mousepad_single_tap_settings_title">Nustatyti bakstelėjimo vienu pirštu veiksmą</string>
   <string name="mousepad_double_tap_settings_title">Nustatyti bakstelėjimo dviem pirštais veiksmą</string>
   <string name="mousepad_triple_tap_settings_title">Nustatyti bakstelėjimo trimis pirštais veiksmą</string>
   <string name="mousepad_sensitivity_settings_title">Nustatyti jutiklinio kilimėlio jautrumą</string>
   <string name="mousepad_acceleration_profile_settings_title">Nustatyti rodyklės pagreitį</string>
   <string name="mousepad_scroll_direction_title">Apversti slinkimo kryptį</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Kairiojo mygtuko spustelėjimas</item>
+    <item>Dešiniojo mygtuko spustelėjimas</item>
+    <item>Viduriniojo mygtuko spustelėjimas</item>
+    <item>Nieko</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Lėčiausias</item>
     <item>Virš lėčiausio</item>
@@ -386,6 +393,10 @@
   <string name="konqi">Konqi</string>
   <string name="rise_up">Pakelti</string>
   <string name="rise_down">Nuleisti</string>
+  <string name="click_here_to_type">Bakstelėkite čia, norėdami rašyti</string>
+  <string name="clear_compose">Išvalyti</string>
+  <string name="send_compose">Siųsti</string>
+  <string name="open_compose_send">Rašyti tekstą</string>
   <string name="app_description">Daugiaplatformė programėlė, leidžianti jūsų įrenginiams susisiekti (pvz., jūsų telefonui ir kompiuteriui)</string>
   <string name="about_kde_about">&lt;h1&gt;Apie&lt;/h1&gt; &lt;p&gt;KDE yra pasaulinė bendruomenė, sudaryta iš programinės įrangos inžinierių, menininkų, rašytojų, vertėjų ir kūrėjų, kurie yra pasišventę &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;laisvosios programinės įrangos&lt;/a&gt; kūrimui. KDE kuria Plasma darbalaukio aplinką, šimtus programų ir daugybę jas palaikančių bibliotekų.&lt;/p&gt; &lt;p&gt;KDE yra kooperacinė įmonė: nėra vienos esybės, kuri valdytų jos kryptį ar produktus. Vietoj to, mes dirbame kartu, kad pasiektume bendrą tikslą ir sukurtume geriausią laisvają programinę įrangą pasaulyje. Visi, įskaitant jus, yra kviečiami &lt;a href=https://community.kde.org/Get_Involved&gt;prisijungti ir talkinti&lt;/a&gt; KDE.&lt;/p&gt; Išsamesnei informacijai apie KDE bendruomenę ir mūsų kuriamą programinę įrangą, apsilankykite adresu &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt;.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Praneškite apie klaidas ar pageidavimus&lt;/h1&gt; &lt;p&gt;Programinė įranga gali būti pastoviai tobulinama ir KDE komanda yra pasiruošusi tą daryti. Vis dėlto, būtent jūs - naudotojas - privalote mums pranešti, kai kas nors neveikia taip kaip turėtų ar, kai kas nors gali būti padaryta geriau.&lt;/p&gt; &lt;p&gt;KDE turi klaidų sekimo sistemą. Apsilankykite adresu &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; arba, norėdami pranešti apie klaidas, pasinaudokite mygtuku „Pranešti apie programos klaidą“.&lt;/p&gt; Jei turite pasiūlymų, kaip galima patobulinti programą, kviečiame pasinaudoti klaidų sekimo sistema ir užregistruoti savo pageidavimą. Nepamirškite svarbą pažymėti kaip „Pageidavimų sąrašas“ (angl. Wishlist).</string>
@@ -402,4 +413,6 @@
   <string name="holger_kaelberer_task">Nuotolinės klaviatūros papildinys ir klaidų pataisymai</string>
   <string name="saikrishna_arcot_task">Palaikymas, skirtas naudoti klaviatūrą nuotolinio įvedimo papildinyje, klaidų pataisymai ir bendri patobulinimai</string>
   <string name="everyone_else">Visiems, kas per ilgus metus talkino KDE Connect</string>
+  <string name="send_clipboard">Siųsti iškarpinę</string>
+  <string name="tap_to_execute">Bakstelėkite, norėdami vykdyti</string>
 </resources>
