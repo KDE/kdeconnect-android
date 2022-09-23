@@ -19,16 +19,23 @@
   <string name="pref_plugin_mousepad">Fjartengd ritun</string>
   <string name="pref_plugin_mousepad_desc">Notaðu símann þinn eða spjaldtölvu sem snertiplatta og lyklaborð</string>
   <string name="pref_plugin_presenter">Fjarstýring skyggnusýninga</string>
+  <string name="pref_plugin_presenter_desc">Notaðu tækið þitt til að skipta á milli skyggna í kynningum</string>
   <string name="pref_plugin_remotekeyboard">"Tekur á móti  fjartengdum innslætti"</string>
+  <string name="pref_plugin_remotekeyboard_desc">Taktu á móti lyklainnslætti frá fjartengdum tækjum</string>
   <string name="pref_plugin_mpris">Margmiðlunarstýringar</string>
+  <string name="pref_plugin_mpris_desc">Er með fjarstýringu fyrir margmiðlunarspilara</string>
   <string name="pref_plugin_runcommand">Keyra skipun</string>
+  <string name="pref_plugin_runcommand_desc">Settu fjartengt í gang skipanir frá símanum þínum eða spjaldtölvu</string>
   <string name="pref_plugin_contacts">Samstilling tengiliða</string>
+  <string name="pref_plugin_contacts_desc">Gerir kleift að samstilla við tengiliðaskrá tækisins</string>
   <string name="pref_plugin_ping">Ping-skipun</string>
   <string name="pref_plugin_ping_desc">Senda og taka við ping-merkjum</string>
   <string name="pref_plugin_notifications">Samstilling tilkynninga</string>
   <string name="pref_plugin_notifications_desc">Fáðu aðgang að tilkynningum frá öðrum tækjum</string>
   <string name="pref_plugin_receive_notifications">Taka á móti tilkynningum</string>
+  <string name="pref_plugin_receive_notifications_desc">Taktu á móti tilkynningum frá hinu tækinu og birtu þær á Android</string>
   <string name="pref_plugin_sharereceiver">Senda og taka við</string>
+  <string name="pref_plugin_sharereceiver_desc">Deildu skrám og slóðum á milli tækja</string>
   <string name="device_list_empty">Engin tæki</string>
   <string name="ok">Í lagi</string>
   <string name="sad_ok">Í lagi :(</string>
@@ -56,25 +63,31 @@
   </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Hægast</item>
-    <item>Above Slowest</item>
+    <item>Hraðar en hægast</item>
     <item>Sjálfgefið</item>
-    <item>Above Default</item>
+    <item>Hraðar en sjálfgefið</item>
     <item>Hraðasta</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
     <item>Engin hröðun</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
+    <item>Veikast</item>
+    <item>Veikara</item>
     <item>Miðlungs</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>Sterkara</item>
+    <item>Sterkast</item>
   </string-array>
   <string name="sendkeystrokes_send_to">Senda lyklaáslátt til</string>
   <string name="sendkeystrokes_textbox_hint">Senda lyklaáslátt til hýsilvélar</string>
+  <string name="sendkeystrokes_disabled_toast">Sending lyklaásláttar er ekki virkt, virkjaðu það í stillingunum</string>
   <string name="sendkeystrokes_sent_text">Sendi %1$s til tækisins %2$s</string>
   <string name="sendkeystrokes_pref_category_title">Senda lyklaáslátt</string>
+  <string name="sendkeystrokes_pref_enabled">Virkja sendingu lyklaásláttar</string>
+  <string name="sendkeystrokes_safe_text_enabled">Senda öruggan texta strax</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Senda stutta strengi einungis með tölum án staðfestingar</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Senda sem lyklaáslátt</string>
+  <string name="mouse_receiver_plugin_description">"Taka á móti  fjartengdum músarhreyfingum"</string>
   <string name="mouse_receiver_plugin_name">Móttakari músarmerkja</string>
+  <string name="mouse_receiver_no_permissions">Þú þarft að virkja þjónustuna fyrir aukið aðgengi</string>
   <string name="view_status_title">Staða</string>
   <string name="battery_status_format">Rafhlaða: %d%%</string>
   <string name="battery_status_low_format">Rafhlaða: %d%% lítil hleðsla</string>
@@ -152,6 +165,7 @@
   <string name="mpris_shuffle">Stokka</string>
   <string name="mpris_volume">Hljóðstyrkur</string>
   <string name="mpris_time_settings_title">Áfram- og afturábak-hnappar</string>
+  <string name="mpris_time_settings_summary">Aðlagaðu tímann þegar ýtt er á hraðspólun/spóla til baka</string>
   <string-array name="mpris_time_entries">
     <item>10 sekúndur</item>
     <item>20 sekúndur</item>
@@ -162,9 +176,12 @@
   <string name="share_to">Deila með…</string>
   <string name="plugin_settings_with_name">Stillingar %s</string>
   <string name="invalid_device_name">Ógilt heiti tækis</string>
+  <string name="custom_devices_settings">Listi yfir sérsniðin tæki</string>
+  <string name="custom_device_deleted">Sérsniðnu tæki eytt</string>
   <string name="custom_device_fab_hint">Bæta við tæki</string>
   <string name="undo">Afturkalla</string>
   <string name="share_notification_preference">Háværar tilkynningar</string>
+  <string name="share_destination_customize">Sérsníða móttökumöppu</string>
   <string name="share_destination_folder_preference">Móttökumappa</string>
   <string name="share">Deila</string>
   <string name="share_received_file">Deila \"%s\"</string>
@@ -175,19 +192,32 @@
   <string name="sftp_camera">Myndir á myndavél</string>
   <string name="add_device_dialog_title">Bæta við tæki</string>
   <string name="add_device_hint">Vélarheiti eða IP vistfang</string>
+  <string name="sftp_preference_detected_sdcards">SD-minniskort sem hafa fundist</string>
   <string name="sftp_preference_edit_sdcard_title">Breyta SD-minniskorti</string>
+  <string name="sftp_preference_configured_storage_locations">Stilltar geymslustaðsetningar</string>
+  <string name="sftp_preference_add_storage_location_title">Bæta við staðsetningu gagnageymslu</string>
+  <string name="sftp_preference_edit_storage_location">Breyta staðsetningu gagnageymslu</string>
+  <string name="sftp_preference_add_camera_shortcut">Bæta við flýtileið í myndavélarmöppu</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_on">Bæta við flýtileið í myndavélarmöppuna</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_off">Ekki bæta við flýtileið í myndavélarmöppuna</string>
   <string name="sftp_storage_preference_storage_location">Staðsetning gagnageymslu</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">Þessi staðsetning er þegar stillt.</string>
   <string name="sftp_storage_preference_click_to_select">smelltu til að velja</string>
   <string name="sftp_storage_preference_display_name">Birtingarnafn</string>
+  <string name="sftp_storage_preference_display_name_already_used">Birtingarnafnið er þegar í notkun</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">Birtingarnafn má ekki vera tómt</string>
   <string name="sftp_action_mode_menu_delete">Eyða</string>
   <string name="sftp_no_sdcard_detected">Ekkert SD-minniskort fannst</string>
+  <string name="sftp_no_storage_locations_configured">Engar geymslustaðsetningar stilltar</string>
   <string name="no_players_connected">Engir spilarar fundust</string>
   <string name="send_files">Senda skrár</string>
   <string name="pairing_title">KDE Connect tæki</string>
   <string name="device_rename_title">Endurnefna tæki</string>
   <string name="device_rename_confirm">Endurnefna</string>
   <string name="refresh">Endurlesa</string>
+  <string name="no_file_browser">Það eru engir skráavafrar uppsettir.</string>
   <string name="pref_plugin_telepathy">Senda SMS</string>
+  <string name="pref_plugin_telepathy_desc">Sendu textaskilaboð úr tölvunni þinni</string>
   <string name="pref_plugin_telepathy_mms">Senda MMS</string>
   <string name="findmyphone_title">Finna símann minn</string>
   <string name="findmyphone_title_tablet">Finna spjaldtölvuna mína</string>
@@ -198,6 +228,7 @@
   <string name="close">Loka</string>
   <string name="select_ringtone">Veldu hringitón</string>
   <string name="telephony_pref_blocked_title">Útilokuð símanúmer</string>
+  <string name="mpris_coverart_description">Umslagsmyndefni núverandi gagnamiðils</string>
   <string name="device_icon_description">Táknmynd tækis</string>
   <string name="settings_icon_description">Stillingatáknmynd</string>
   <string name="presenter_fullscreen">Skjáfylli</string>
@@ -225,6 +256,7 @@
   <string name="settings_rename">Heiti tækis</string>
   <string name="settings_dark_mode">Dökkt þema</string>
   <string name="settings_more_settings_title">Fleiri stillingar</string>
+  <string name="setting_persistent_notification">Birta viðvarandi tilkynningu</string>
   <string name="extra_options">Fleiri valkostir</string>
   <string name="privacy_options">Valkostir friðhelgi</string>
   <string name="set_privacy_options">Valkostir friðhelgi þinnar</string>
@@ -232,6 +264,7 @@
   <string name="block_images">Loka á myndir í tilkynningum</string>
   <string name="notification_channel_receivenotification">Tilkynningar frá öðrum tækjum</string>
   <string name="take_picture">Ræsa myndavél</string>
+  <string name="no_app_for_opening">Ekkert hentugt forrit fannst til að opna þessa skrá</string>
   <string name="remote_keyboard_service">Fjartengt lyklaborð KDE Connect</string>
   <string name="presenter_pointer">Bendill</string>
   <string name="trusted_networks">Treyst netkerfi</string>
