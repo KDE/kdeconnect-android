@@ -1,0 +1,241 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="kde_connect">KDE Connect</string>
+  <string name="manifest_label_share">მოწყობილობაზე გაგზავნა</string>
+  <string name="foreground_notification_no_devices">არც ერთ მოწყობილობასთან მიერთებული არ ბრძანდებით</string>
+  <string name="foreground_notification_devices">მიერთებულია %s-თან</string>
+  <string name="foreground_notification_send_clipboard">ბუფერის გაგზავნა</string>
+  <string name="pref_plugin_telephony">ტელეფონიის გაფრთხილებები</string>
+  <string name="pref_plugin_telephony_desc">შემომავალი ზარების შეტყობინებები</string>
+  <string name="pref_plugin_battery">ელემენტის ანგარიში</string>
+  <string name="pref_plugin_battery_desc">პერიოდულად ელემენტის მდგომარეობის შემოწმება</string>
+  <string name="pref_plugin_connectivity_report">მიერთების ანგარიში</string>
+  <string name="pref_plugin_connectivity_report_desc">ქსელის სიგნალის სიძლიერისა და სტატუსის ანგარიში</string>
+  <string name="pref_plugin_sftp">ფაილური სისტემის გამოჩენა</string>
+  <string name="pref_plugin_sftp_desc">ამ მოწყობილობის ფაილური სისტემის დაშორებულად დათვალიერების ნების დართვა</string>
+  <string name="pref_plugin_clipboard">ბაფერის სინქრონიზაცია</string>
+  <string name="pref_plugin_clipboard_desc">ბუფერის შემცველობის გაზიარება</string>
+  <string name="pref_plugin_clipboard_sent">ბუფერი გაგზავნილია</string>
+  <string name="pref_plugin_mousepad">დაშორებული შეყვანა</string>
+  <string name="pref_plugin_mousepad_desc">გამოიყენეთ თქვენი ტელეფონი ან ტაბლეტი როგორც თაჩპედი და კლავიატურა</string>
+  <string name="pref_plugin_presenter">დაშორებული სლაიდშოუ</string>
+  <string name="pref_plugin_presenter_desc">გამოიყენეთ თქვენი მოწყობილობა სლაიდშოუს სამართავად</string>
+  <string name="pref_plugin_remotekeyboard">დაშორებული ღილაკების მიღება</string>
+  <string name="pref_plugin_mpris">მულტიმედიის მართვა</string>
+  <string name="pref_plugin_mpris_desc">თქვენი მედიის დამკვრელის კონტროლი</string>
+  <string name="pref_plugin_runcommand">ბრძანების გაშვება</string>
+  <string name="pref_plugin_contacts">კონტაქტების სინქრონიზატორი</string>
+  <string name="pref_plugin_contacts_desc">მოწყობილობის კონტაქტების წიგნაკის სინქრონიზაციის დაშვება</string>
+  <string name="pref_plugin_ping">პინგი</string>
+  <string name="pref_plugin_ping_desc">პინგების მიღების და გაგზავნა</string>
+  <string name="pref_plugin_notifications">შეტყობინების სინქრონიზაცია</string>
+  <string name="pref_plugin_receive_notifications">გაფრთხილებებს მიღება</string>
+  <string name="pref_plugin_sharereceiver">გაზიარება და მიღება</string>
+  <string name="device_list_empty">მოწყობილობების გარეშე</string>
+  <string name="ok">OK</string>
+  <string name="sad_ok">დიახ :(</string>
+  <string name="cancel">გაუქმება</string>
+  <string name="open_settings">პარამეტრების გახსნა</string>
+  <string name="send_ping">პინგის გაგზავნა</string>
+  <string name="open_mpris_controls">მულტიმედიის კონტროლი</string>
+  <string name="open_mousepad">დაშორებული შეყვანა</string>
+  <string name="mousepad_sensitivity_settings_title">დააყენეთ თაჩპედის მგრძნობიარობა</string>
+  <string name="mousepad_acceleration_profile_settings_title">კურსორის აჩქარების დაყენება</string>
+  <string name="mousepad_scroll_direction_title">აწევ-ჩამოწევის მიმართულების რევერსი</string>
+  <string-array name="mousepad_tap_entries">
+    <item>მარცხენა-წკაპი</item>
+    <item>მარჯვენა წკაპი</item>
+    <item>შუა-წკაპი</item>
+    <item>არაფერი</item>
+  </string-array>
+  <string-array name="mousepad_sensitivity_entries">
+    <item>ყველაზე ნელი</item>
+    <item>ყველაზე ნელზე ზემოთ</item>
+    <item>ნაგულისხმები</item>
+    <item>ნაგულსიხმებზე ზემოთ</item>
+    <item>უსწრაფესი</item>
+  </string-array>
+  <string-array name="mousepad_acceleration_profile_entries">
+    <item>No Acceleration</item>
+    <item>Weakest</item>
+    <item>Weaker</item>
+    <item>საშუალო</item>
+    <item>Stronger</item>
+    <item>Strongest</item>
+  </string-array>
+  <string name="view_status_title">მდგომარეობა</string>
+  <string name="battery_status_format">ელემენტი: %d%%</string>
+  <string name="category_connected_devices">მიერთებული მოწყობილობები</string>
+  <string name="category_not_paired_devices">ხელმისაწვდომი მოწყობილობები</string>
+  <string name="category_remembered_devices">დამახსოვრებული მოწყობილობები</string>
+  <string name="device_menu_plugins">დამატების პარამეტრები</string>
+  <string name="device_menu_unpair">დაწყვილების მოხსნა</string>
+  <string name="pair_new_device">ახალი მოწყობილობის დაწყვილება</string>
+  <string name="unknown_device">უცნობი მოწყობილობა</string>
+  <string name="error_not_reachable">მოწყობილობა მიუწვდოელია</string>
+  <string name="error_already_paired">მოწყობილობა უკვე დაწყვილებულია</string>
+  <string name="error_could_not_send_package">პაკეტის გაგზავნა შეუძლებელია</string>
+  <string name="error_timed_out">ვადა გავიდა</string>
+  <string name="error_canceled_by_user">გაუქმებულია მომხმარებლის მიერ</string>
+  <string name="error_canceled_by_other_peer">გაუქმებულია პარტნიორის მიერ</string>
+  <string name="encryption_info_title">დაშიფვრის ინფორმაცია</string>
+  <string name="pair_requested">დაწყვილების მოთხოვნა</string>
+  <plurals name="incoming_files_text">
+    <item quantity="one">ფაილი: %1s</item>
+    <item quantity="other">(ფაილი %2$d of %3$d) : %1$s</item>
+  </plurals>
+  <plurals name="outgoing_files_text">
+    <item quantity="one">ფაილი: %1$s</item>
+    <item quantity="other">(ფაილი %2$d of %3$d) : %1$s</item>
+  </plurals>
+  <string name="tap_to_open">გასახსნელად დაატყაპუნეთ</string>
+  <string name="tap_to_answer">საპასუხოდ დაატყაპუნეთ</string>
+  <string name="right_click">მარჯვენა წკაპის გაგზავნა</string>
+  <string name="middle_click">შუა წკაპის გაგზავნა</string>
+  <string name="show_keyboard">კლავიატურის ჩვენება</string>
+  <string name="device_not_paired">მოწყობილოვა დაწყვილებული არაა</string>
+  <string name="pairing_accept">დასტური</string>
+  <string name="pairing_reject">უარყოფა</string>
+  <string name="settings">პარამეტრები</string>
+  <string name="mpris_play">დაკვრა</string>
+  <string name="mpris_pause">შეჩერება</string>
+  <string name="mpris_previous">წინა</string>
+  <string name="mpris_rew">გადახვევა</string>
+  <string name="mpris_next">შემდეგი</string>
+  <string name="mpris_loop">მარყუჟი</string>
+  <string name="mpris_shuffle">შემთხვევით</string>
+  <string name="mpris_volume">ტომი</string>
+  <string-array name="mpris_time_entries">
+    <item>10 წამი</item>
+    <item>20 წამი</item>
+    <item>30 წამი</item>
+    <item>1 წუთი</item>
+    <item>2 წუთი</item>
+  </string-array>
+  <string name="share_to">გაზიარება…</string>
+  <string name="plugin_settings_with_name">%s-ის მორგება</string>
+  <string name="invalid_device_name">მოწყობილობის არასწორი სახელი</string>
+  <string name="custom_device_list">მოწყობილობების IP-ით დამატება</string>
+  <string name="custom_device_deleted">ხელით მითითებული მოწყობილობა წაშლილია</string>
+  <string name="custom_device_fab_hint">მოწყობილობის დამატება</string>
+  <string name="undo">დაბრუნება</string>
+  <string name="share_destination_folder_preference">სამიზნე საქაღალდე</string>
+  <string name="share">გაზიარება</string>
+  <string name="share_received_file">\"%s\"-ის გაზიარება</string>
+  <string name="sftp_sdcard_num">SD ბარათი %d</string>
+  <string name="sftp_sdcard">SD ბარათი</string>
+  <string name="sftp_camera">კამერის სურათები</string>
+  <string name="add_device_dialog_title">მოწყობილობის დამატება</string>
+  <string name="add_device_hint">ჰოსტის სახელი ან IP მისამართი</string>
+  <string name="sftp_preference_detected_sdcards">ნაპოვნი SD ბარათები</string>
+  <string name="sftp_preference_edit_sdcard_title">SD ბართის ჩასწორება</string>
+  <string name="sftp_preference_configured_storage_locations">მორგებული საცავის მდებარეობები</string>
+  <string name="sftp_preference_add_storage_location_title">საცავის მდებარეობის დამატება</string>
+  <string name="sftp_preference_edit_storage_location">საცავის მდებარეობის ჩასწორება</string>
+  <string name="sftp_preference_add_camera_shortcut">კამერის საქაღალდის მალსახმობის დამატება</string>
+  <string name="sftp_storage_preference_storage_location">საცავის მდებარეობა</string>
+  <string name="sftp_storage_preference_click_to_select">მოსანიშნად დააწკაპუნეთ</string>
+  <string name="sftp_storage_preference_display_name">ნაჩვენები სახელი</string>
+  <string name="sftp_action_mode_menu_delete">წაშლა</string>
+  <string name="sftp_no_sdcard_detected">SD ბარათი ვერ ვიპოვე</string>
+  <string name="send_files">ფაილების გაგზავნა</string>
+  <string name="pairing_title">KDE Connect -ის მოწყობილობები</string>
+  <string name="device_rename_title">მოწყობილობის სახელის გადარქმევა</string>
+  <string name="device_rename_confirm">გადარქმევა</string>
+  <string name="refresh">განახლება</string>
+  <string name="pref_plugin_telepathy">SMS-ის გაგზავნა</string>
+  <string name="pref_plugin_telepathy_mms">MMS-ის გაგზავნა</string>
+  <string name="findmyphone_title">იპოვე ჩემი ტელეფონი</string>
+  <string name="findmyphone_title_tablet">იპოვე ჩემი ტაბლეტი</string>
+  <string name="findmyphone_title_tv">იპოვე ჩემი ტელევიზორი</string>
+  <string name="findmyphone_description">რეკავს მოწყობილობაზე, რომ იპოვოთ ის</string>
+  <string name="findmyphone_found">ვიპოვე</string>
+  <string name="open">გახსნა</string>
+  <string name="close">დახურვა</string>
+  <string name="select_ringtone">"ზარის  არჩევა"</string>
+  <string name="telephony_pref_blocked_title">დაბლოკილი ნომრები</string>
+  <string name="device_icon_description">მოწყობილობის ხატულა</string>
+  <string name="settings_icon_description">პარამეტრების ხატულა</string>
+  <string name="presenter_fullscreen">მთელ ეკრანზე</string>
+  <string name="presenter_exit">პრეზენტაციიდან გასვლა</string>
+  <string name="add_command">ბრძანების დამატება</string>
+  <string name="notification_channel_media_control">მედიის კონტროლი</string>
+  <string name="notification_channel_filetransfer">ფაილის მიმოცვლა</string>
+  <string name="notification_channel_high_priority">მაღალი პრიორიტეტი</string>
+  <string name="notification_channel_sms_mms">ახალი შეტყობინება</string>
+  <string name="mpris_stop">მიმდინარე დამკვრელის გაჩერება</string>
+  <string name="copy_url_to_clipboard">URL-ის ბუფერში კოპირება</string>
+  <string name="clipboard_toast">დაკოპირდა გაცვლის ბაფერში</string>
+  <string name="runcommand_notpaired">მოწყობილობა დაწყვილებული არაა</string>
+  <string name="runcommand_nosuchdevice">მოწყობილობა არ არსებობს</string>
+  <string name="ring">ზარი</string>
+  <string name="pref_plugin_systemvolume">სისტემის ხმა</string>
+  <string name="mute">დადუმება</string>
+  <string name="all">ყველა</string>
+  <string name="devices">მოწყობილობები</string>
+  <string name="settings_rename">მოწყობილობის სახელი</string>
+  <string name="settings_dark_mode">ბნელი თემა</string>
+  <string name="settings_more_settings_title">მეტი პარამეტრი</string>
+  <string name="extra_options">დამატებითი პარამეტრები</string>
+  <string name="privacy_options">კონფიდენციალობის პარამეტრები</string>
+  <string name="set_privacy_options">თქვენი კონფიდენციალობის პარამეტრების დაყენება</string>
+  <string name="take_picture">კამერის გაშვება</string>
+  <string name="presenter_pointer">კურსორი</string>
+  <string name="trusted_networks">სანდო ქსელები</string>
+  <string name="add_trusted_network">%1s-ის დაყენება</string>
+  <string name="allow_all_networks_text">ყველას დაშვება</string>
+  <string name="bigscreen_home">საწყისი</string>
+  <string name="bigscreen_up">მაღლა</string>
+  <string name="bigscreen_left">მარცხენა</string>
+  <string name="bigscreen_select">მონიშნეთ</string>
+  <string name="bigscreen_right">Right</string>
+  <string name="bigscreen_down">ქვემოთ</string>
+  <string name="bigscreen_mic">მიკროფონის</string>
+  <string name="bigscreen_speech_extra_prompt">საუბარი</string>
+  <string name="message_reply_label">პასუხი</string>
+  <string name="mark_as_read_label">წაკითხულად მონიშვნა</string>
+  <string name="user_display_name">თქვენ</string>
+  <string name="set_default_sms_app_title">MMS-ის გაგზავნა</string>
+  <string name="set_group_message_as_mms_title">ჯგუფური MMS-ის გაგზავნა</string>
+  <string-array name="convert_to_mms_after_entries">
+    <item>After one message</item>
+    <item>After two messages</item>
+    <item>After three messages</item>
+    <item>After four messages</item>
+    <item>After five messages</item>
+  </string-array>
+  <string name="theme_dialog_title">თემის არჩევა</string>
+  <string-array name="theme_list">
+    <item>დაყენებულია ელემენტის მომვლელის მიერ</item>
+    <item>ღია</item>
+    <item>ბნელი</item>
+  </string-array>
+  <string-array name="theme_list_v28">
+    <item>სისტემის ნაგულისხმები</item>
+    <item>ღია</item>
+    <item>ბნელი</item>
+  </string-array>
+  <string name="report_bug">შეცდომის ანგარიში</string>
+  <string name="donate">შემოწირულობა</string>
+  <string name="source_code">საწყისი კოდი</string>
+  <string name="licenses">ლიცენზიები</string>
+  <string name="website">ვებსაიტი</string>
+  <string name="about">შესახებ</string>
+  <string name="authors">ავტორები</string>
+  <string name="thanks_to">&amp;მადლობა</string>
+  <string name="easter_egg">სააღდგომო კვერცხი</string>
+  <string name="email_contributor">ელფოსტით შემომწირავი \n%s</string>
+  <string name="version">ვერისა %s</string>
+  <string name="about_kde">KDE-ს შესახებ</string>
+  <string name="kde_be_free">KDE - იყავი თავისუფალი!</string>
+  <string name="kde">KDE</string>
+  <string name="konqi">Konqi</string>
+  <string name="rise_up">აწევა</string>
+  <string name="rise_down">დაწევა</string>
+  <string name="click_here_to_type">ასაკრეფად აქ დაატყაპუნეთ</string>
+  <string name="clear_compose">გაწმენდა</string>
+  <string name="send_compose">გაგზავნა</string>
+  <string name="open_compose_send">ტექსტის შედგენა</string>
+  <string name="maintainer_and_developer">პროგრამისტი და წამყვანი</string>
+  <string name="developer">პროგრამისტი</string>
+</resources>
