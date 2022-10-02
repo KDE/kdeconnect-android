@@ -1,0 +1,1651 @@
+# Tomohiro Hyakutake <tomhioo@outlook.jp>, 2019.
+# Ryuichi Yamada <ryuichi_ya220@outlook.jp>, 2022.
+# Fumiaki Okushi <fumiaki.okushi@gmail.com>, 2019, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-01-16 00:43+0000\n"
+"PO-Revision-Date: 2022-08-13 21:35-0700\n"
+"Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
+"Language-Team: Japanese <kde-jp@kde.org>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+"X-Generator: Lokalize 22.04.1\n"
+
+#. # Dear potential translators:          Thank you for your interest in KDE
+#. Connect! We do not actually handle our own translations.         All
+#. translations for all KDE apps are handled by the [localization
+#. team](https://l10n.kde.org).         We really appreciate your translations,
+#. but make sure to submit them by working with the proper team!
+msgctxt "kde_connect"
+msgid "KDE Connect"
+msgstr "KDE Connect"
+
+msgctxt "manifest_label_share"
+msgid "Send to Device"
+msgstr "デバイスに送信"
+
+msgctxt "foreground_notification_no_devices"
+msgid "Not connected to any device"
+msgstr "デバイスに接続されていません"
+
+#, c-format
+msgctxt "foreground_notification_devices"
+msgid "Connected to: %s"
+msgstr "接続済み: %s"
+
+msgctxt "foreground_notification_send_clipboard"
+msgid "Send Clipboard"
+msgstr "クリップボードを送信"
+
+msgctxt "pref_plugin_telephony"
+msgid "Telephony notifier"
+msgstr "電話通知"
+
+msgctxt "pref_plugin_telephony_desc"
+msgid "Send notifications for incoming calls"
+msgstr "着信通知を送信"
+
+msgctxt "pref_plugin_battery"
+msgid "Battery report"
+msgstr "バッテリーレポート"
+
+msgctxt "pref_plugin_battery_desc"
+msgid "Periodically report battery status"
+msgstr "定期的にバッテリー状態を報告します"
+
+msgctxt "pref_plugin_connectivity_report"
+msgid "Connectivity report"
+msgstr "接続性レポート"
+
+msgctxt "pref_plugin_connectivity_report_desc"
+msgid "Report network signal strength and status"
+msgstr "信号強度とネットワークの状態を報告します"
+
+msgctxt "pref_plugin_sftp"
+msgid "Filesystem expose"
+msgstr "ファイルシステムの参照"
+
+msgctxt "pref_plugin_sftp_desc"
+msgid "Allows to browse this device's filesystem remotely"
+msgstr "リモートからこのデバイスのファイルシステムへの閲覧を可能にします"
+
+msgctxt "pref_plugin_clipboard"
+msgid "Clipboard sync"
+msgstr "クリップボードの同期"
+
+msgctxt "pref_plugin_clipboard_desc"
+msgid "Share the clipboard content"
+msgstr "クリップボードの内容を共有"
+
+msgctxt "pref_plugin_clipboard_sent"
+msgid "Clipboard Sent"
+msgstr "クリップボードが送信されました"
+
+msgctxt "pref_plugin_mousepad"
+msgid "Remote input"
+msgstr "リモート入力"
+
+msgctxt "pref_plugin_mousepad_desc"
+msgid "Use your phone or tablet as a touchpad and keyboard"
+msgstr ""
+"あなたのスマートフォンやタブレットをタッチパッドやキーボードとして利用します"
+
+msgctxt "pref_plugin_presenter"
+msgid "Slideshow remote"
+msgstr "リモートスライドショー"
+
+msgctxt "pref_plugin_presenter_desc"
+msgid "Use your device to change slides in a presentation"
+msgstr "あなたのデバイスを使ってプレゼンテーションのスライドを変更"
+
+msgctxt "pref_plugin_remotekeyboard"
+msgid "Receive remote keypresses"
+msgstr "リモートからキー入力を受信"
+
+msgctxt "pref_plugin_remotekeyboard_desc"
+msgid "Receive keypress events from remote devices"
+msgstr "リモートデバイスからキーイベントを受信"
+
+msgctxt "pref_plugin_mpris"
+msgid "Multimedia controls"
+msgstr "マルチメディアの操作"
+
+msgctxt "pref_plugin_mpris_desc"
+msgid "Provides a remote control for your media player"
+msgstr "あなたのメディアプレーヤーへのリモート操作を提供します"
+
+msgctxt "pref_plugin_runcommand"
+msgid "Run Command"
+msgstr "コマンドを実行"
+
+msgctxt "pref_plugin_runcommand_desc"
+msgid "Trigger remote commands from your phone or tablet"
+msgstr "スマートフォンやタブレットからリモートコマンドを実行"
+
+msgctxt "pref_plugin_contacts"
+msgid "Contacts Synchronizer"
+msgstr "連絡先の同期"
+
+msgctxt "pref_plugin_contacts_desc"
+msgid "Allow synchronizing the device's contacts book"
+msgstr "デバイスの連絡先の同期を許可"
+
+msgctxt "pref_plugin_ping"
+msgid "Ping"
+msgstr "Ping"
+
+msgctxt "pref_plugin_ping_desc"
+msgid "Send and receive pings"
+msgstr "Ping を送受信"
+
+msgctxt "pref_plugin_notifications"
+msgid "Notification sync"
+msgstr "通知の同期"
+
+msgctxt "pref_plugin_notifications_desc"
+msgid "Access your notifications from other devices"
+msgstr "他のデバイスから通知にアクセス"
+
+msgctxt "pref_plugin_receive_notifications"
+msgid "Receive notifications"
+msgstr "通知の受信"
+
+msgctxt "pref_plugin_receive_notifications_desc"
+msgid "Receive notifications from the other device and display them on Android"
+msgstr "他のデバイスから通知を受信し、Android に表示します"
+
+msgctxt "pref_plugin_sharereceiver"
+msgid "Share and receive"
+msgstr "共有と受信"
+
+msgctxt "pref_plugin_sharereceiver_desc"
+msgid "Share files and URLs between devices"
+msgstr "デバイス間でファイルと URL を共有"
+
+msgctxt "device_list_empty"
+msgid "No devices"
+msgstr "デバイスなし"
+
+msgctxt "ok"
+msgid "OK"
+msgstr "OK"
+
+msgctxt "sad_ok"
+msgid "OK :("
+msgstr "OK (´・ω・｀)"
+
+msgctxt "cancel"
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgctxt "open_settings"
+msgid "Open settings"
+msgstr "設定を開く"
+
+msgctxt "no_permissions"
+msgid "You need to grant permission to access notifications"
+msgstr "通知にアクセスするには権限を許可する必要があります"
+
+msgctxt "no_permission_mprisreceiver"
+msgid ""
+"To be able to control your media players you need to grant access to the "
+"notifications"
+msgstr ""
+"メディアプレーヤーを操作するためには、通知へのアクセスを許可する必要がありま"
+"す"
+
+msgctxt "no_permissions_remotekeyboard"
+msgid ""
+"To receive keypresses you need to activate the KDE Connect Remote Keyboard"
+msgstr ""
+"キー入力を受信するには KDE Connect リモートキーボードをアクティブ化する必要が"
+"あります"
+
+msgctxt "send_ping"
+msgid "Send ping"
+msgstr "Ping を送信"
+
+msgctxt "open_mpris_controls"
+msgid "Multimedia control"
+msgstr "マルチメディアの操作"
+
+msgctxt "remotekeyboard_editing_only_title"
+msgid "Handle remote keys only when editing"
+msgstr "編集中にのみリモートキーを取り扱う"
+
+msgctxt "remotekeyboard_not_connected"
+msgid ""
+"There is no active remote keyboard connection, establish one in kdeconnect"
+msgstr ""
+"有効なリモートキーボード接続がありません。KDE Connect で確立してください"
+
+msgctxt "remotekeyboard_connected"
+msgid "Remote keyboard connection is active"
+msgstr "リモートキーボード接続はアクティブです"
+
+msgctxt "remotekeyboard_multiple_connections"
+msgid ""
+"There is more than one remote keyboard connection, select the device to "
+"configure"
+msgstr ""
+"一つ以上のリモートキーボード接続があります。設定するデバイスを選択してくださ"
+"い"
+
+msgctxt "open_mousepad"
+msgid "Remote input"
+msgstr "リモート入力"
+
+msgctxt "mousepad_info"
+msgid ""
+"Move a finger on the screen to move the mouse cursor. Tap for a click, and "
+"use two/three fingers for right and middle buttons. Use 2 fingers to scroll. "
+"Use a long press to drag'n drop."
+msgstr ""
+"スクリーン上で指を動かしてマウスカーソルを移動します。タップはクリックとな"
+"り、2/3本指で右クリック、中クリックとなります。2本指を使ってスクロールが可能"
+"です。長押しすることでドラッグ&ドロップできます。"
+
+msgctxt "mousepad_single_tap_settings_title"
+msgid "Set one finger tap action"
+msgstr "1本指タップのアクションを設定"
+
+msgctxt "mousepad_double_tap_settings_title"
+msgid "Set two finger tap action"
+msgstr "2本指タップのアクションを設定"
+
+msgctxt "mousepad_triple_tap_settings_title"
+msgid "Set three finger tap action"
+msgstr "3本指タップのアクションを設定"
+
+msgctxt "mousepad_sensitivity_settings_title"
+msgid "Set touchpad sensitivity"
+msgstr "タッチパッドの感度を設定"
+
+msgctxt "mousepad_acceleration_profile_settings_title"
+msgid "Set pointer acceleration"
+msgstr "ポインタの速度を設定"
+
+msgctxt "mousepad_scroll_direction_title"
+msgid "Reverse Scrolling Direction"
+msgstr "スクロールの方向を反転"
+
+msgctxt "mousepad_tap_entries:0"
+msgid "Left click"
+msgstr "左クリック"
+
+msgctxt "mousepad_tap_entries:1"
+msgid "Right click"
+msgstr "右クリック"
+
+msgctxt "mousepad_tap_entries:2"
+msgid "Middle click"
+msgstr "中クリック"
+
+msgctxt "mousepad_tap_entries:3"
+msgid "Nothing"
+msgstr "なし"
+
+msgctxt "mousepad_sensitivity_entries:0"
+msgid "Slowest"
+msgstr "最も遅く"
+
+msgctxt "mousepad_sensitivity_entries:1"
+msgid "Above Slowest"
+msgstr "遅め"
+
+msgctxt "mousepad_sensitivity_entries:2"
+msgid "Default"
+msgstr "デフォルト"
+
+msgctxt "mousepad_sensitivity_entries:3"
+msgid "Above Default"
+msgstr "デフォルト以上"
+
+msgctxt "mousepad_sensitivity_entries:4"
+msgid "Fastest"
+msgstr "高速"
+
+msgctxt "mousepad_acceleration_profile_entries:0"
+msgid "No Acceleration"
+msgstr "加速なし"
+
+msgctxt "mousepad_acceleration_profile_entries:1"
+msgid "Weakest"
+msgstr "最弱"
+
+msgctxt "mousepad_acceleration_profile_entries:2"
+msgid "Weaker"
+msgstr "弱"
+
+msgctxt "mousepad_acceleration_profile_entries:3"
+msgid "Medium"
+msgstr "中"
+
+msgctxt "mousepad_acceleration_profile_entries:4"
+msgid "Stronger"
+msgstr "強"
+
+msgctxt "mousepad_acceleration_profile_entries:5"
+msgid "Strongest"
+msgstr "最強"
+
+msgctxt "sendkeystrokes_send_to"
+msgid "Send keystrokes to"
+msgstr "キー入力を送信"
+
+msgctxt "sendkeystrokes_textbox_hint"
+msgid "Send keystrokes to host"
+msgstr "キー入力をホストに送信"
+
+msgctxt "sendkeystrokes_disabled_toast"
+msgid "Sending keystrokes is disabled - enable it in the settings"
+msgstr "キー入力の送信は無効化されています。設定で有効化してください"
+
+msgctxt "sendkeystrokes_wrong_data"
+msgid "Invalid mime type - needs to be 'text/x-keystrokes'"
+msgstr "無効な MIME タイプです。'text/x-keystrokes' である必要があります"
+
+#, c-format
+msgctxt "sendkeystrokes_sent_text"
+msgid "Sent %1$s to device %2$s"
+msgstr "ファイル %1$s をデバイス %2$s へ送信しました"
+
+msgctxt "sendkeystrokes_pref_category_summary"
+msgid ""
+"This module allows other apps to share text segments as keystrokes which "
+"will get send to the connected host"
+msgstr ""
+"このモジュールは他のアプリがテキストのセグメントを接続されたホストに送信され"
+"るキー入力として共有できるようにします"
+
+msgctxt "sendkeystrokes_pref_category_title"
+msgid "Send Keystrokes"
+msgstr "キー入力を送信"
+
+msgctxt "sendkeystrokes_pref_enabled"
+msgid "Enable Keystrokes sending"
+msgstr "キー入力の送信を有効化"
+
+msgctxt "sendkeystrokes_pref_enabled_summary"
+msgid "Listen for data with mime type 'text/x-keystrokes'"
+msgstr "MIME タイプが 'text/x-keystrokes' のデータを受け付ける"
+
+msgctxt "sendkeystrokes_safe_text_enabled"
+msgid "Send safe text immediately"
+msgstr "安全なテキストをすぐに送信する"
+
+msgctxt "sendkeystrokes_safe_text_enabled_summary"
+msgid "Send short only-numeric strings without confirmation"
+msgstr "確認なしで短い数値のみの文字列を送信する"
+
+msgctxt "pref_plugin_mousepad_send_keystrokes"
+msgid "Send as keystrokes"
+msgstr "キー入力として送信"
+
+msgctxt "mouse_receiver_plugin_description"
+msgid "Receive remote mouse movement"
+msgstr "リモートからマウスの動きを受信"
+
+msgctxt "mouse_receiver_plugin_name"
+msgid "Mouse receiver"
+msgstr "マウスレシーバ"
+
+msgctxt "mouse_receiver_no_permissions"
+msgid "You need to enable Accessibility Service"
+msgstr "アクセシビリティサービスを有効化する必要があります"
+
+msgctxt "view_status_title"
+msgid "Status"
+msgstr "ステータス"
+
+#, c-format
+msgctxt "battery_status_format"
+msgid "Battery: %d%%"
+msgstr "バッテリ: %d%%"
+
+#, c-format
+msgctxt "battery_status_low_format"
+msgid "Battery: %d%% Low Battery"
+msgstr "バッテリ: %d%% 残量低下"
+
+#, c-format
+msgctxt "battery_status_charging_format"
+msgid "Battery: %d%% charging"
+msgstr "バッテリ: %d%% 充電中"
+
+msgctxt "battery_status_unknown"
+msgid "Battery information not available"
+msgstr "バッテリ情報が利用できません"
+
+msgctxt "category_connected_devices"
+msgid "Connected devices"
+msgstr "接続済みのデバイス"
+
+msgctxt "category_not_paired_devices"
+msgid "Available devices"
+msgstr "利用可能なデバイス"
+
+msgctxt "category_remembered_devices"
+msgid "Remembered devices"
+msgstr "ペアリング済みのデバイス"
+
+msgctxt "device_menu_plugins"
+msgid "Plugin settings"
+msgstr "プラグイン設定"
+
+msgctxt "device_menu_unpair"
+msgid "Unpair"
+msgstr "ペアリング解除"
+
+msgctxt "pair_new_device"
+msgid "Pair new device"
+msgstr "新しいデバイスをペアリング"
+
+msgctxt "unknown_device"
+msgid "Unknown device"
+msgstr "不明なデバイス"
+
+msgctxt "error_not_reachable"
+msgid "Device not reachable"
+msgstr "デバイスに到達できません"
+
+msgctxt "error_already_paired"
+msgid "Device already paired"
+msgstr "デバイスは既にペアリング済みです"
+
+msgctxt "error_could_not_send_package"
+msgid "Could not send package"
+msgstr "パッケージを送信できませんでした"
+
+msgctxt "error_timed_out"
+msgid "Timed out"
+msgstr "タイムアウト"
+
+msgctxt "error_canceled_by_user"
+msgid "Canceled by user"
+msgstr "ユーザにキャンセルされました"
+
+msgctxt "error_canceled_by_other_peer"
+msgid "Canceled by other peer"
+msgstr "他のピアにキャンセルされました"
+
+msgctxt "encryption_info_title"
+msgid "Encryption Info"
+msgstr "暗号化情報"
+
+msgctxt "encryption_info_msg_no_ssl"
+msgid ""
+"The other device doesn't use a recent version of KDE Connect, using the "
+"legacy encryption method."
+msgstr ""
+"他のデバイスは最近のバージョンの KDE Connect を利用していません。古い暗号化方"
+"式を使用しています"
+
+msgctxt "my_device_fingerprint"
+msgid "SHA256 fingerprint of your device certificate is:"
+msgstr "このデバイスの証明書の SHA256 フィンガープリント:"
+
+msgctxt "remote_device_fingerprint"
+msgid "SHA256 fingerprint of remote device certificate is:"
+msgstr "リモートデバイスの証明書の SHA256 フィンガープリント:"
+
+msgctxt "pair_requested"
+msgid "Pair requested"
+msgstr "ペアリング要求済み"
+
+#, c-format
+msgctxt "pairing_request_from"
+msgid "Pairing request from %1s"
+msgstr "%1s からペアリングを要求されました"
+
+#, c-format
+msgctxt "incoming_file_title"
+msgid "Receiving %1$d file from %2$s"
+msgid_plural "Receiving %1$d files from %2$s"
+msgstr[0] "%1$d ファイルを %2$s から受信しています"
+msgstr[1] "%1$d ファイルを %2$s から受信しています"
+
+#, c-format
+msgctxt "incoming_files_text"
+msgid "File: %1s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "ファイル: %1s"
+msgstr[1] "(%3$d 個中 %2$d 個のファイル) : %1$s"
+
+#, c-format
+msgctxt "outgoing_file_title"
+msgid "Sending %1$d file to %2$s"
+msgid_plural "Sending %1$d files to %2$s"
+msgstr[0] "%1$d ファイルを %2$s へ送信中"
+msgstr[1] "%1$d ファイルを %2$s へ送信中"
+
+#, c-format
+msgctxt "outgoing_files_text"
+msgid "File: %1$s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "ファイル: %1$s"
+msgstr[1] "(%3$d 個中 %2$d 個のファイル) : %1$s"
+
+#, c-format
+msgctxt "received_files_title"
+msgid "Received file from %1$s"
+msgid_plural "Received %2$d files from %1$s"
+msgstr[0] "%1$s からファイルを受信"
+msgstr[1] "%1$s から %2$d ファイルを受信"
+
+#, c-format
+msgctxt "received_files_fail_title"
+msgid "Failed receiving file from %1$s"
+msgid_plural "Failed receiving %2$d of %3$d files from %1$s"
+msgstr[0] "%1$s からのファイルの受信に失敗"
+msgstr[1] "%1$s からの %3$d 個中 %2$d 個のファイルの受信に失敗"
+
+#, c-format
+msgctxt "sent_files_title"
+msgid "Sent file to %1$s"
+msgid_plural "Sent %2$d files to %1$s"
+msgstr[0] "%1$s にファイルを送信済み"
+msgstr[1] "%1$s に %2$d 個のファイルを送信済み"
+
+#, c-format
+msgctxt "send_files_fail_title"
+msgid "Failed sending file to %1$s"
+msgid_plural "Failed sending %2$d of %3$d files to %1$s"
+msgstr[0] "%1$s へのファイル送信に失敗"
+msgstr[1] "%1$s への %3$d 個中 %2$d 個のファイル送信に失敗"
+
+msgctxt "tap_to_open"
+msgid "Tap to open"
+msgstr "タップして開く"
+
+#, c-format
+msgctxt "received_file_text"
+msgid "Tap to open '%1s'"
+msgstr "タップして '%1s' を開く"
+
+#, c-format
+msgctxt "cannot_create_file"
+msgid "Cannot create file %s"
+msgstr "ファイル %s を作成できません"
+
+msgctxt "tap_to_answer"
+msgid "Tap to answer"
+msgstr "タップして応答"
+
+msgctxt "right_click"
+msgid "Send Right Click"
+msgstr "右クリックを送信"
+
+msgctxt "middle_click"
+msgid "Send Middle Click"
+msgstr "中クリックを送信"
+
+msgctxt "show_keyboard"
+msgid "Show Keyboard"
+msgstr "キーボードを表示"
+
+msgctxt "device_not_paired"
+msgid "Device not paired"
+msgstr "デバイスはペアリングされていません"
+
+msgctxt "request_pairing"
+msgid "Request pairing"
+msgstr "ペアリングを要求"
+
+msgctxt "pairing_accept"
+msgid "Accept"
+msgstr "許可"
+
+msgctxt "pairing_reject"
+msgid "Reject"
+msgstr "拒否"
+
+msgctxt "settings"
+msgid "Settings"
+msgstr "設定"
+
+msgctxt "mpris_play"
+msgid "Play"
+msgstr "再生"
+
+msgctxt "mpris_pause"
+msgid "Pause"
+msgstr "一時停止"
+
+msgctxt "mpris_previous"
+msgid "Previous"
+msgstr "前へ"
+
+msgctxt "mpris_rew"
+msgid "Rewind"
+msgstr "巻き戻し"
+
+msgctxt "mpris_ff"
+msgid "Fast-forward"
+msgstr "早送り"
+
+msgctxt "mpris_next"
+msgid "Next"
+msgstr "次へ"
+
+msgctxt "mpris_loop"
+msgid "Loop"
+msgstr "繰り返し"
+
+msgctxt "mpris_shuffle"
+msgid "Shuffle"
+msgstr "シャッフル"
+
+msgctxt "mpris_volume"
+msgid "Volume"
+msgstr "音量"
+
+msgctxt "mpris_time_settings_title"
+msgid "Forward/rewind buttons"
+msgstr "早送り/巻き戻しボタン"
+
+msgctxt "mpris_time_settings_summary"
+msgid "Adjust the time to fast forward/rewind when pressed"
+msgstr "押した時に早送り/巻き戻しする時間を調整"
+
+msgctxt "mpris_time_entries:0"
+msgid "10 seconds"
+msgstr "10 秒"
+
+msgctxt "mpris_time_entries:1"
+msgid "20 seconds"
+msgstr "20 秒"
+
+msgctxt "mpris_time_entries:2"
+msgid "30 seconds"
+msgstr "30 秒"
+
+msgctxt "mpris_time_entries:3"
+msgid "1 minute"
+msgstr "1 分"
+
+msgctxt "mpris_time_entries:4"
+msgid "2 minutes"
+msgstr "2 分"
+
+msgctxt "mpris_notification_settings_title"
+msgid "Show media control notification"
+msgstr "メディア操作の通知を表示"
+
+msgctxt "mpris_notification_settings_summary"
+msgid "Allow controlling your media players without opening KDE Connect"
+msgstr "KDE Connect を開かずにメディアプレーヤーをコントロール可能にします"
+
+msgctxt "share_to"
+msgid "Share To…"
+msgstr "共有先..."
+
+msgctxt "protocol_version_newer"
+msgid "This device uses a newer protocol version"
+msgstr "このデバイスはより新しいプロトコルバージョンを使用しています"
+
+#, c-format
+msgctxt "plugin_settings_with_name"
+msgid "%s settings"
+msgstr "%s 設定"
+
+msgctxt "invalid_device_name"
+msgid "Invalid device name"
+msgstr "不正なデバイス名"
+
+msgctxt "shareplugin_text_saved"
+msgid "Received text, saved to clipboard"
+msgstr "テキストを受信し、クリップボードに保存しました"
+
+msgctxt "custom_devices_settings"
+msgid "Custom device list"
+msgstr "カスタムデバイスリスト"
+
+msgctxt "custom_device_list"
+msgid "Add devices by IP"
+msgstr "IP アドレスでデバイスを追加"
+
+msgctxt "custom_device_deleted"
+msgid "Custom device deleted"
+msgstr "カスタムデバイスが削除されました"
+
+msgctxt "custom_device_list_help"
+msgid ""
+"If your device is not automatically detected you can add its IP address or "
+"hostname by clicking on the Floating Action Button"
+msgstr ""
+"もしデバイスが自動的に検出されない場合、フローティングアクションボタンを押し"
+"て手動で IP アドレスやホストネームを追加できます"
+
+msgctxt "custom_device_fab_hint"
+msgid "Add a device"
+msgstr "デバイスを追加"
+
+msgctxt "undo"
+msgid "Undo"
+msgstr "元に戻す"
+
+msgctxt "share_notification_preference"
+msgid "Noisy notifications"
+msgstr "うるさい通知"
+
+msgctxt "share_notification_preference_summary"
+msgid "Vibrate and play a sound when receiving a file"
+msgstr "ファイル受信時にバイブレートし、音声を再生します"
+
+msgctxt "share_destination_customize"
+msgid "Customize destination directory"
+msgstr "行き先ディレクトリをカスタマイズ"
+
+msgctxt "share_destination_customize_summary_disabled"
+msgid "Received files will appear in Downloads"
+msgstr "受信したファイルは Downloads に保存されます"
+
+msgctxt "share_destination_customize_summary_enabled"
+msgid "Files will be stored in the directory below"
+msgstr "ファイルは以下のディレクトリに保存されます"
+
+msgctxt "share_destination_folder_preference"
+msgid "Destination directory"
+msgstr "行き先ディレクトリ"
+
+msgctxt "share"
+msgid "Share"
+msgstr "共有"
+
+#, c-format
+msgctxt "share_received_file"
+msgid "Share \"%s\""
+msgstr "\"%s\" を共有"
+
+msgctxt "title_activity_notification_filter"
+msgid "Notification filter"
+msgstr "通知フィルタ"
+
+msgctxt "filter_apps_info"
+msgid "Notifications will be synchronized for the selected apps."
+msgstr "選択されたアプリケーションの通知が同期されます。"
+
+msgctxt "show_notification_if_screen_off"
+msgid "Send notifications only if the screen is off"
+msgstr "スクリーンがオフのときのみ通知を送信"
+
+#, c-format
+msgctxt "sftp_sdcard_num"
+msgid "SD card %d"
+msgstr "SD カード %d"
+
+msgctxt "sftp_sdcard"
+msgid "SD card"
+msgstr "SD カード"
+
+msgctxt "sftp_readonly"
+msgid "(read only)"
+msgstr "(読み取り専用)"
+
+msgctxt "sftp_camera"
+msgid "Camera pictures"
+msgstr "カメラ画像"
+
+msgctxt "add_device_dialog_title"
+msgid "Add device"
+msgstr "デバイスを追加"
+
+msgctxt "add_device_hint"
+msgid "Hostname or IP address"
+msgstr "ホスト名/IPアドレス"
+
+msgctxt "sftp_preference_detected_sdcards"
+msgid "Detected SD cards"
+msgstr "検出された SD カード"
+
+msgctxt "sftp_preference_edit_sdcard_title"
+msgid "Edit SD card"
+msgstr "SD カードを編集"
+
+msgctxt "sftp_preference_configured_storage_locations"
+msgid "Configured storage locations"
+msgstr "設定されたストレージの場所"
+
+msgctxt "sftp_preference_add_storage_location_title"
+msgid "Add storage location"
+msgstr "ストレージの場所を追加"
+
+msgctxt "sftp_preference_edit_storage_location"
+msgid "Edit storage location"
+msgstr "ストレージの場所を編集"
+
+msgctxt "sftp_preference_add_camera_shortcut"
+msgid "Add camera folder shortcut"
+msgstr "カメラフォルダのショートカットを追加"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_on"
+msgid "Add a shortcut to the camera folder"
+msgstr "カメラフォルダへのショートカットを追加"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_off"
+msgid "Do not add a shortcut to the camera folder"
+msgstr "カメラフォルダのショートカットを追加しない"
+
+msgctxt "sftp_storage_preference_storage_location"
+msgid "Storage location"
+msgstr "ストレージの場所"
+
+msgctxt "sftp_storage_preference_storage_location_already_configured"
+msgid "This location has already been configured"
+msgstr "この場所は既に設定されています"
+
+msgctxt "sftp_storage_preference_click_to_select"
+msgid "click to select"
+msgstr "クリックして選択"
+
+msgctxt "sftp_storage_preference_display_name"
+msgid "Display name"
+msgstr "表示名"
+
+msgctxt "sftp_storage_preference_display_name_already_used"
+msgid "This display name is already used"
+msgstr "この表示名は既に使用されています"
+
+msgctxt "sftp_storage_preference_display_name_cannot_be_empty"
+msgid "Display name cannot be empty"
+msgstr "表示名は空にできません"
+
+msgctxt "sftp_action_mode_menu_delete"
+msgid "Delete"
+msgstr "削除"
+
+msgctxt "sftp_no_sdcard_detected"
+msgid "No SD card detected"
+msgstr "SD カードが検出されません"
+
+msgctxt "sftp_no_storage_locations_configured"
+msgid "No storage locations configured"
+msgstr "ストレージの場所が設定されていません"
+
+msgctxt "sftp_saf_permission_explanation"
+msgid "To access files remotely you have to configure storage locations"
+msgstr ""
+"リモートからファイルにアクセスするには、ストレージの場所を設定する必要があり"
+"ます"
+
+msgctxt "no_players_connected"
+msgid "No players found"
+msgstr "プレーヤーが見つかりませんでした"
+
+msgctxt "send_files"
+msgid "Send files"
+msgstr "ファイルを送信"
+
+msgctxt "pairing_title"
+msgid "KDE Connect Devices"
+msgstr "KDE Connect デバイス"
+
+msgctxt "pairing_description"
+msgid ""
+"Other devices running KDE Connect in your same network should appear here."
+msgstr ""
+"同じネットワーク内で KDE Connect を実行しているデバイスがここに表示されます"
+
+msgctxt "device_rename_title"
+msgid "Rename device"
+msgstr "デバイス名を変更"
+
+msgctxt "device_rename_confirm"
+msgid "Rename"
+msgstr "名前変更"
+
+msgctxt "refresh"
+msgid "Refresh"
+msgstr "更新"
+
+msgctxt "unreachable_description"
+msgid ""
+"This paired device is not reachable. Make sure it is connected to your same "
+"network."
+msgstr ""
+"このペアリング済みデバイスに到達できません。同一のネットワーク内に 接続されて"
+"いることを確認してください"
+
+msgctxt "no_wifi"
+msgid ""
+"You're not connected to a Wi-Fi network, so you may not be able to see any "
+"devices. Click here to enable Wi-Fi."
+msgstr ""
+"Wi-Fi ネットワークに接続していないため、デバイスが一つも表示されない可能性が"
+"あります。ここをクリックして Wi-Fi を有効化"
+
+msgctxt "on_non_trusted_message"
+msgid "Not on a trusted network: autodiscovery is disabled."
+msgstr ""
+"信頼されたネットワークに接続されていません: 自動検出が無効化されました。"
+
+msgctxt "no_file_browser"
+msgid "There are no file browsers installed."
+msgstr "ファイルブラウザがインストールされていません"
+
+msgctxt "pref_plugin_telepathy"
+msgid "Send SMS"
+msgstr "SMS を送信"
+
+msgctxt "pref_plugin_telepathy_desc"
+msgid "Send text messages from your desktop"
+msgstr "デスクトップからテキストメッセージを送信"
+
+msgctxt "pref_plugin_telepathy_mms"
+msgid "Send MMS"
+msgstr "SMS を送信"
+
+msgctxt "pref_plugin_telepathy_mms_desc"
+msgid ""
+"To be able to send MMS from KDE Connect you need to set it as the default "
+"SMS app."
+msgstr ""
+"KDE Connect から MMS を送信するには MMS をデフォルトの SMS アプリとして設定す"
+"る必要があります。"
+
+msgctxt "findmyphone_title"
+msgid "Find my phone"
+msgstr "スマートフォンを捜索"
+
+msgctxt "findmyphone_title_tablet"
+msgid "Find my tablet"
+msgstr "タブレットを捜索"
+
+msgctxt "findmyphone_title_tv"
+msgid "Find my TV"
+msgstr "TV を捜索"
+
+msgctxt "findmyphone_description"
+msgid "Rings this device so you can find it"
+msgstr "このデバイスを鳴らすことで捜索できます"
+
+msgctxt "findmyphone_found"
+msgid "Found it"
+msgstr "発見しました"
+
+msgctxt "open"
+msgid "Open"
+msgstr "開く"
+
+msgctxt "close"
+msgid "Close"
+msgstr "閉じる"
+
+msgctxt "plugins_need_permission"
+msgid "Some Plugins need permissions to work (tap for more info):"
+msgstr ""
+"いくつかのプラグインが機能するには権限が必要です (タップして詳細情報を表示):"
+
+msgctxt "permission_explanation"
+msgid "This plugin needs permissions to work"
+msgstr "このプラグインが機能するには権限が必要です"
+
+msgctxt "optional_permission_explanation"
+msgid "You need to grant extra permissions to enable all functions"
+msgstr "すべての機能を有効にするには、追加の権限を許可する必要があります"
+
+msgctxt "plugins_need_optional_permission"
+msgid ""
+"Some plugins have features disabled because of lack of permission (tap for "
+"more info):"
+msgstr ""
+"権限が不足しているため、いくつかのプラグインの機能は無効化されています (タッ"
+"プして詳細情報を表示):"
+
+msgctxt "share_optional_permission_explanation"
+msgid "To receive shared files you need to choose a destination directory"
+msgstr ""
+"共有されたファイルを受信するには保存するディレクトリを指定する必要があります"
+
+msgctxt "telepathy_permission_explanation"
+msgid ""
+"To read and write SMS from your desktop you need to give permission to SMS"
+msgstr ""
+"デスクトップから SMS を送受信するには SMS の権限を付与する必要があります"
+
+msgctxt "telephony_permission_explanation"
+msgid ""
+"To see phone calls on the desktop you need to give permission to phone call "
+"logs and phone state"
+msgstr ""
+"デスクトップで通話を表示するために、電話の状態と通話履歴の権限を許可する必要"
+"があります"
+
+msgctxt "telephony_optional_permission_explanation"
+msgid ""
+"To see a contact name instead of a phone number you need to give access to "
+"the phone's contacts"
+msgstr ""
+"電話番号ではなく連絡先名を見るには、端末の連絡先へのアクセスを許可する必要が"
+"あります"
+
+msgctxt "contacts_permission_explanation"
+msgid ""
+"To share your contacts book with the desktop, you need to give contacts "
+"permission"
+msgstr "連絡先をデスクトップと共有するために、連絡先の権限が必要です"
+
+msgctxt "select_ringtone"
+msgid "Select a ringtone"
+msgstr "着信音を選択"
+
+msgctxt "telephony_pref_blocked_title"
+msgid "Blocked numbers"
+msgstr "ブロックされた番号"
+
+msgctxt "telephony_pref_blocked_dialog_desc"
+msgid ""
+"Don't show calls and SMS from these numbers. Please specify one number per "
+"line"
+msgstr ""
+"これらの番号からの通話と SMS を表示しません。一行に1つの電話番号を指定してく"
+"ださい"
+
+msgctxt "mpris_coverart_description"
+msgid "Cover art of current media"
+msgstr "現在のメディアのカバーアート"
+
+msgctxt "device_icon_description"
+msgid "Device icon"
+msgstr "デバイスアイコン"
+
+msgctxt "settings_icon_description"
+msgid "Settings icon"
+msgstr "設定アイコン"
+
+msgctxt "presenter_fullscreen"
+msgid "Fullscreen"
+msgstr "フルスクリーン"
+
+msgctxt "presenter_exit"
+msgid "Exit presentation"
+msgstr "プレゼンテーションを終了"
+
+msgctxt "presenter_lock_tip"
+msgid ""
+"You can lock your device and use the volume keys to go to the previous/next "
+"slide"
+msgstr "デバイスをロックして、音量キーでスライドを前/次に移動できます"
+
+msgctxt "add_command"
+msgid "Add a command"
+msgstr "コマンドを追加"
+
+msgctxt "addcommand_explanation"
+msgid "There are no commands registered"
+msgstr "コマンドが登録されていません"
+
+msgctxt "addcommand_explanation2"
+msgid "You can add new commands in the KDE Connect System Settings"
+msgstr "KDE Connect のシステム設定で新しいコマンドを追加できます"
+
+msgctxt "add_command_description"
+msgid "You can add commands on the desktop"
+msgstr "デスクトップから新しいコマンドを追加できます"
+
+msgctxt "pref_plugin_mprisreceiver"
+msgid "Media Player Control"
+msgstr "メディアプレーヤーの操作"
+
+msgctxt "pref_plugin_mprisreceiver_desc"
+msgid "Control your phone's media players from another device"
+msgstr "他のデバイスからスマートフォンのメディアプレーヤーを操作"
+
+msgctxt "notification_channel_default"
+msgid "Other notifications"
+msgstr "他の通知"
+
+msgctxt "notification_channel_persistent"
+msgid "Persistent indicator"
+msgstr "永続的なインジケータ"
+
+msgctxt "notification_channel_media_control"
+msgid "Media control"
+msgstr "メディアの操作"
+
+msgctxt "notification_channel_filetransfer"
+msgid "File transfer"
+msgstr "ファイル転送"
+
+msgctxt "notification_channel_high_priority"
+msgid "High priority"
+msgstr "高い優先度"
+
+msgctxt "notification_channel_sms_mms"
+msgid "New Message"
+msgstr "新しいメッセージ"
+
+msgctxt "mpris_stop"
+msgid "Stop the current player"
+msgstr "現在のプレーヤーを停止"
+
+msgctxt "copy_url_to_clipboard"
+msgid "Copy URL to clipboard"
+msgstr "URL をクリップボードにコピー"
+
+msgctxt "clipboard_toast"
+msgid "Copied to clipboard"
+msgstr "クリップボードにコピーしました"
+
+msgctxt "runcommand_notreachable"
+msgid "Device is not reachable"
+msgstr "デバイスに到達できません"
+
+msgctxt "runcommand_notpaired"
+msgid "Device is not paired"
+msgstr "デバイスはペアリングされていません"
+
+msgctxt "runcommand_nosuchdevice"
+msgid "There is no such device"
+msgstr "そのようなデバイスはありません"
+
+msgctxt "runcommand_noruncommandplugin"
+msgid "This device does not have the Run Command Plugin enabled"
+msgstr "このデバイスは 'コマンドを実行' プラグインを有効にしていません"
+
+msgctxt "pref_plugin_findremotedevice"
+msgid "Find remote device"
+msgstr "リモートデバイスを捜索"
+
+msgctxt "pref_plugin_findremotedevice_desc"
+msgid "Ring your remote device"
+msgstr "リモートデバイスを捜索"
+
+msgctxt "ring"
+msgid "Ring"
+msgstr "鳴らす"
+
+msgctxt "pref_plugin_systemvolume"
+msgid "System volume"
+msgstr "システム音量"
+
+msgctxt "pref_plugin_systemvolume_desc"
+msgid "Control the system volume of the remote device"
+msgstr "リモートデバイスのシステム音量を操作"
+
+msgctxt "mute"
+msgid "Mute"
+msgstr "ミュート"
+
+msgctxt "all"
+msgid "All"
+msgstr "すべて"
+
+msgctxt "devices"
+msgid "Devices"
+msgstr "デバイス"
+
+msgctxt "settings_rename"
+msgid "Device name"
+msgstr "デバイス名"
+
+msgctxt "settings_dark_mode"
+msgid "Dark theme"
+msgstr "ダーク テーマ"
+
+msgctxt "settings_more_settings_title"
+msgid "More settings"
+msgstr "その他の設定"
+
+msgctxt "settings_more_settings_text"
+msgid ""
+"Per-device settings can be found under 'Plugin settings' from within a "
+"device."
+msgstr "デバイスごとの設定はデバイス内の 'プラグイン設定' にあります"
+
+msgctxt "setting_persistent_notification"
+msgid "Show persistent notification"
+msgstr "永続的な通知を表示"
+
+msgctxt "setting_persistent_notification_oreo"
+msgid "Persistent notification"
+msgstr "永続的な通知"
+
+msgctxt "setting_persistent_notification_description"
+msgid "Tap to enable/disable in Notification settings"
+msgstr "タップして通知設定内で有効化/無効化します"
+
+msgctxt "extra_options"
+msgid "Extra options"
+msgstr "追加オプション"
+
+msgctxt "privacy_options"
+msgid "Privacy options"
+msgstr "プライバシーオプション"
+
+msgctxt "set_privacy_options"
+msgid "Set your privacy options"
+msgstr "プライバシーオプションを設定"
+
+msgctxt "block_contents"
+msgid "Block contents of notifications"
+msgstr "通知の内容をブロック"
+
+msgctxt "block_images"
+msgid "Block images in notifications"
+msgstr "通知の画像をブロック"
+
+msgctxt "notification_channel_receivenotification"
+msgid "Notifications from other devices"
+msgstr "他のデバイスからの通知"
+
+msgctxt "take_picture"
+msgid "Launch camera"
+msgstr "カメラを起動"
+
+msgctxt "plugin_photo_desc"
+msgid "Launch the camera app to ease taking and transferring pictures"
+msgstr "素早く写真を撮り、転送するためにカメラを起動"
+
+msgctxt "no_app_for_opening"
+msgid "No suitable app found to open this file"
+msgstr "このファイルを開くのに適切なアプリが見つかりません"
+
+msgctxt "remote_keyboard_service"
+msgid "KDE Connect Remote Keyboard"
+msgstr "KDE Connect リモートキーボード"
+
+msgctxt "presenter_pointer"
+msgid "Pointer"
+msgstr "ポインタ"
+
+msgctxt "trusted_networks"
+msgid "Trusted networks"
+msgstr "信頼されたネットワーク"
+
+msgctxt "trusted_networks_desc"
+msgid "Restrict autodiscovery to known networks"
+msgstr "自動検出を既知のネットワークでのみに制限する"
+
+#, c-format
+msgctxt "add_trusted_network"
+msgid "Add %1s"
+msgstr "%1s を追加"
+
+msgctxt "empty_trusted_networks_list_text"
+msgid "You haven't added any trusted network yet"
+msgstr "追加された信頼されたネットワークはありません"
+
+msgctxt "allow_all_networks_text"
+msgid "Allow all"
+msgstr "すべて許可"
+
+msgctxt "location_permission_needed_title"
+msgid "Permission required"
+msgstr "許可が必要です"
+
+msgctxt "location_permission_needed_desc"
+msgid "Android requires the Location permission to identify your WiFi network"
+msgstr ""
+"WiFi ネットワークを発見するには、位置情報を Android に提供する必要がありま"
+"す。"
+
+msgctxt "clipboard_android_x_incompat"
+msgid ""
+"Android 10 has removed clipboard access to all apps. This plugin will be "
+"disabled."
+msgstr ""
+"Android 10 はすべてのアプリからクリップボードへのアクセスを削除しました。この"
+"プラグインは無効化されます。"
+
+msgctxt "mpris_open_url"
+msgid "Continue playing here"
+msgstr "このデバイスで再生を続ける"
+
+msgctxt "cant_open_url"
+msgid "Can't open URL to continue playing"
+msgstr "再生を続けるための URL を開けません"
+
+msgctxt "bigscreen_home"
+msgid "Home"
+msgstr "ホーム"
+
+msgctxt "bigscreen_up"
+msgid "Up"
+msgstr "上"
+
+msgctxt "bigscreen_left"
+msgid "Left"
+msgstr "左"
+
+msgctxt "bigscreen_select"
+msgid "Select"
+msgstr "選択"
+
+msgctxt "bigscreen_right"
+msgid "Right"
+msgstr "右"
+
+msgctxt "bigscreen_down"
+msgid "Down"
+msgstr "下"
+
+msgctxt "bigscreen_mic"
+msgid "Mic"
+msgstr "マイク"
+
+msgctxt "pref_plugin_bigscreen"
+msgid "Bigscreen remote"
+msgstr "Bigscreen リモート"
+
+msgctxt "pref_plugin_bigscreen_desc"
+msgid "Use your device as a remote for Plasma Bigscreen"
+msgstr "デバイスを Plasma Bigscreen のリモコンとして使う"
+
+msgctxt "bigscreen_optional_permission_explanation"
+msgid ""
+"To share microphone input from your phone you need to give access to the "
+"phone's audio input"
+msgstr ""
+"端末のマイク入力を共有するには、端末の音声入力へのアクセスを許可する必要があ"
+"ります"
+
+msgctxt "bigscreen_speech_extra_prompt"
+msgid "Speech"
+msgstr "発声"
+
+msgctxt "message_reply_label"
+msgid "REPLY"
+msgstr "返信"
+
+msgctxt "mark_as_read_label"
+msgid "MARK AS READ"
+msgstr "既読としてマーク"
+
+msgctxt "user_display_name"
+msgid "You"
+msgstr "あなた"
+
+msgctxt "set_default_sms_app_title"
+msgid "Send MMS"
+msgstr "SMS を送信"
+
+msgctxt "set_group_message_as_mms_title"
+msgid "Send group MMS"
+msgstr "グループ MMS を送信"
+
+msgctxt "set_long_text_as_mms_title"
+msgid "Send long text as MMS"
+msgstr "長いテキストを MMS として送信する"
+
+msgctxt "convert_to_mms_after_title"
+msgid "Convert to MMS"
+msgstr "MMS に変換"
+
+msgctxt "convert_to_mms_after_entries:0"
+msgid "After one message"
+msgstr "1 つのメッセージの後"
+
+msgctxt "convert_to_mms_after_entries:1"
+msgid "After two messages"
+msgstr "2 つのメッセージの後"
+
+msgctxt "convert_to_mms_after_entries:2"
+msgid "After three messages"
+msgstr "3 つのメッセージの後"
+
+msgctxt "convert_to_mms_after_entries:3"
+msgid "After four messages"
+msgstr "4 つのメッセージの後"
+
+msgctxt "convert_to_mms_after_entries:4"
+msgid "After five messages"
+msgstr "5 つのメッセージの後"
+
+msgctxt "theme_dialog_title"
+msgid "Choose theme"
+msgstr "テーマを選択"
+
+msgctxt "theme_list:0"
+msgid "Set by Battery Saver"
+msgstr "バッテリセーバによる設定"
+
+msgctxt "theme_list:1"
+msgid "Light"
+msgstr "ライト"
+
+msgctxt "theme_list:2"
+msgid "Dark"
+msgstr "ダーク"
+
+msgctxt "theme_list_v28:0"
+msgid "System Default"
+msgstr "デフォルト"
+
+msgctxt "theme_list_v28:1"
+msgid "Light"
+msgstr "ライト"
+
+msgctxt "theme_list_v28:2"
+msgid "Dark"
+msgstr "ダーク"
+
+msgctxt "report_bug"
+msgid "Report Bug"
+msgstr "バグを報告"
+
+msgctxt "donate"
+msgid "Donate"
+msgstr "寄付"
+
+msgctxt "source_code"
+msgid "Source Code"
+msgstr "ソースコード"
+
+msgctxt "licenses"
+msgid "Licenses"
+msgstr "ライセンス"
+
+msgctxt "website"
+msgid "Website"
+msgstr "ウェブサイト"
+
+msgctxt "about"
+msgid "About"
+msgstr "情報"
+
+msgctxt "authors"
+msgid "Authors"
+msgstr "作者"
+
+msgctxt "thanks_to"
+msgid "Thanks To"
+msgstr "感謝"
+
+msgctxt "easter_egg"
+msgid "Easter Egg"
+msgstr "イースターエッグ"
+
+#, c-format
+msgctxt "email_contributor"
+msgid ""
+"Email contributor\n"
+"%s"
+msgstr ""
+"貢献者にメールを送る\n"
+"%s"
+
+#, c-format
+msgctxt "visit_contributors_homepage"
+msgid ""
+"Visit contributor's homepage\n"
+"%s"
+msgstr ""
+"貢献者のホームページを訪れる\n"
+"%s"
+
+#, c-format
+msgctxt "version"
+msgid "Version %s"
+msgstr "バージョン %s"
+
+msgctxt "about_kde"
+msgid "About KDE"
+msgstr "KDE について"
+
+msgctxt "kde_be_free"
+msgid "KDE - Be Free!"
+msgstr "KDE - Be Free!"
+
+msgctxt "kde"
+msgid "KDE"
+msgstr "KDE"
+
+msgctxt "konqi"
+msgid "Konqi"
+msgstr "Konqi"
+
+msgctxt "rise_up"
+msgid "Rise Up"
+msgstr ""
+
+msgctxt "rise_down"
+msgid "Rise Down"
+msgstr ""
+
+msgctxt "click_here_to_type"
+msgid "Tap here to type"
+msgstr "タップしてタイプ"
+
+msgctxt "clear_compose"
+msgid "Clear"
+msgstr "クリア"
+
+msgctxt "send_compose"
+msgid "Send"
+msgstr "送信"
+
+msgctxt "open_compose_send"
+msgid "Compose text"
+msgstr "テキストを作成する"
+
+msgctxt "app_description"
+msgid ""
+"Multi-platform app that allows your devices to communicate (e.g., your phone "
+"and your computer)"
+msgstr ""
+"デバイス間のコミュニケーションを可能にするマルチプラットフォームなアプリ "
+"(例: 携帯電話とコンピュータ)"
+
+msgctxt "about_kde_about"
+msgid ""
+"&lt;h1&gt;About&lt;/h1&gt; &lt;p&gt;KDE is a world-wide community of "
+"software engineers, artists, writers, translators and creators who are "
+"committed to &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Free "
+"Software&lt;/a&gt; development. KDE produces the Plasma desktop environment, "
+"hundreds of applications, and the many software libraries that support them."
+"&lt;/p&gt; &lt;p&gt;KDE is a cooperative enterprise: no single entity "
+"controls its direction or products. Instead, we work together to achieve the "
+"common goal of building the world's finest Free Software. Everyone is "
+"welcome to &lt;a href=https://community.kde.org/Get_Involved&gt;join and "
+"contribute&lt;/a&gt; to KDE, including you.&lt;/p&gt; Visit &lt;a "
+"href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; for more "
+"information about the KDE community and the software we produce."
+msgstr ""
+
+msgctxt "about_kde_report_bugs_or_wishes"
+msgid ""
+"&lt;h1&gt;Report Bugs or Wishes&lt;/h1&gt; &lt;p&gt;Software can always be "
+"improved, and the KDE team is ready to do so. However, you - the user - must "
+"tell us when something does not work as expected or could be done better."
+"&lt;/p&gt; &lt;p&gt;KDE has a bug tracking system. Visit &lt;a href=https://"
+"bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; or use the \"Report Bug\" "
+"button from the about screen to report bugs.&lt;/p&gt; If you have a "
+"suggestion for improvement then you are welcome to use the bug tracking "
+"system to register your wish. Make sure you use the severity called "
+"\"Wishlist\"."
+msgstr ""
+
+msgctxt "about_kde_join_kde"
+msgid ""
+"&lt;h1&gt;Join KDE&lt;/h1&gt; &lt;p&gt;You do not have to be a software "
+"developer to be a member of the KDE team. You can join the national teams "
+"that translate program interfaces. You can provide graphics, themes, sounds, "
+"and improved documentation. You decide!&lt;/p&gt; &lt;p&gt;Visit &lt;a "
+"href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/"
+"Get_Involved&lt;/a&gt; for information on some projects in which you can "
+"participate.&lt;/p&gt; If you need more information or documentation, then a "
+"visit to &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/"
+"&lt;/a&gt; will provide you with what you need."
+msgstr ""
+
+msgctxt "about_kde_support_kde"
+msgid ""
+"&lt;h1&gt;Support KDE&lt;/h1&gt; &lt;p&gt;KDE software is and will always be "
+"available free of charge, however creating it is not free.&lt;/p&gt; &lt;"
+"p&gt;To support development the KDE community has formed the KDE e.V., a non-"
+"profit organization legally founded in Germany. KDE e.V. represents the KDE "
+"community in legal and financial matters. See &lt;a href=https://ev.kde.org/"
+"&gt;https://ev.kde.org/&lt;/a&gt; for information on KDE e.V.&lt;/p&gt; &lt;"
+"p&gt;KDE benefits from many kinds of contributions, including financial. We "
+"use the funds to reimburse members and others for expenses they incur when "
+"contributing. Further funds are used for legal support and organizing "
+"conferences and meetings.&lt;/p&gt; &lt;p&gt;We would like to encourage you "
+"to support our efforts with a financial donation, using one of the ways "
+"described at &lt;a href=https://www.kde.org/community/donations/&gt;https://"
+"www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Thank you very much in "
+"advance for your support."
+msgstr ""
+
+#. Authors tasks
+msgctxt "maintainer_and_developer"
+msgid "Maintainer and developer"
+msgstr "メンテナと開発者"
+
+msgctxt "developer"
+msgid "Developer"
+msgstr "開発者"
+
+msgctxt "apple_support"
+msgid "macOS support. Working on iOS support"
+msgstr "macOS サポート。iOS サポートに取り組み中"
+
+msgctxt "bug_fixes_and_general_improvements"
+msgid "Bug fixes and general improvements"
+msgstr "バグ修正と全体的な改善"
+
+msgctxt "samoilenko_yuri_task"
+msgid "SFTP implementation, bug fixes and general improvements"
+msgstr "SFTP の実装、バグ修正と全体的な改善"
+
+msgctxt "aniket_kumar_task"
+msgid "SMS plugin improvements"
+msgstr "SMS プラグインの改善"
+
+msgctxt "alex_fiestas_task"
+msgid "Contacts plugin improvements"
+msgstr "連絡先プラグインの改善"
+
+msgctxt "maxim_leshchenko_task"
+msgid "UI improvements and this about page"
+msgstr "UI の改善とこの情報ページ"
+
+msgctxt "holger_kaelberer_task"
+msgid "Remote keyboard plugin and bug fixes"
+msgstr "リモートキーボードプラグインとバグ修正"
+
+msgctxt "saikrishna_arcot_task"
+msgid ""
+"Support for using the keyboard in the remote input plugin, bug fixes and "
+"general improvements"
+msgstr "リモート入力プラグインでのキーボードのサポート、バグ修正と全体的な改善"
+
+msgctxt "everyone_else"
+msgid "Everyone else who has contributed to KDE Connect over the years"
+msgstr "KDE Connect に貢献してきたその他すべての人々"
+
+msgctxt "send_clipboard"
+msgid "Send clipboard"
+msgstr "クリップボードを送信"
+
+msgctxt "tap_to_execute"
+msgid "Tap to execute"
+msgstr "タップして実行"

@@ -1,0 +1,1913 @@
+# Translations template for PROJECT.
+# Copyright (C) 2018 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+# Wantoyo <wantoyek@gmail.com>, 2018, 2019, 2020, 2021, 2022.
+# Linerly <linerly@protonmail.com>, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-01-16 00:43+0000\n"
+"PO-Revision-Date: 2022-08-26 23:44+0700\n"
+"Last-Translator: Wantoyèk <wantoyek@gmail.com>\n"
+"Language-Team: https://t.me/Localizations_KDE_Indonesia\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 21.12.3\n"
+
+#. # Dear potential translators:          Thank you for your interest in KDE
+#. Connect! We do not actually handle our own translations.         All
+#. translations for all KDE apps are handled by the [localization
+#. team](https://l10n.kde.org).         We really appreciate your translations,
+#. but make sure to submit them by working with the proper team!
+msgctxt "kde_connect"
+msgid "KDE Connect"
+msgstr "KDE Connect"
+
+msgctxt "manifest_label_share"
+msgid "Send to Device"
+msgstr "Kirim ke Peranti"
+
+msgctxt "foreground_notification_no_devices"
+msgid "Not connected to any device"
+msgstr "Belum terkoneksi ke peranti apa pun"
+
+#, c-format
+msgctxt "foreground_notification_devices"
+msgid "Connected to: %s"
+msgstr "Terhubung ke: %s"
+
+msgctxt "foreground_notification_send_clipboard"
+msgid "Send Clipboard"
+msgstr "Kirimkan Clipboard"
+
+msgctxt "pref_plugin_telephony"
+msgid "Telephony notifier"
+msgstr "Penotifikasi ponsel"
+
+msgctxt "pref_plugin_telephony_desc"
+msgid "Send notifications for incoming calls"
+msgstr "Kirim notifikasi untuk panggilan yang masuk"
+
+msgctxt "pref_plugin_battery"
+msgid "Battery report"
+msgstr "Laporan baterai"
+
+msgctxt "pref_plugin_battery_desc"
+msgid "Periodically report battery status"
+msgstr "Status baterai laporkan secara berkala"
+
+msgctxt "pref_plugin_connectivity_report"
+msgid "Connectivity report"
+msgstr "Laporan koneksi"
+
+msgctxt "pref_plugin_connectivity_report_desc"
+msgid "Report network signal strength and status"
+msgstr "Laporkan kekuatan sinyal jaringan dan status"
+
+msgctxt "pref_plugin_sftp"
+msgid "Filesystem expose"
+msgstr "Singkapan sistem file"
+
+msgctxt "pref_plugin_sftp_desc"
+msgid "Allows to browse this device's filesystem remotely"
+msgstr ""
+"Memungkinkan untuk menelusuri sistem file peranti ini secara jarak jauh"
+
+msgctxt "pref_plugin_clipboard"
+msgid "Clipboard sync"
+msgstr "Sinkron papan klip"
+
+msgctxt "pref_plugin_clipboard_desc"
+msgid "Share the clipboard content"
+msgstr "Berbagi konten papan klip"
+
+msgctxt "pref_plugin_clipboard_sent"
+msgid "Clipboard Sent"
+msgstr "Papan Klip Terkirim"
+
+msgctxt "pref_plugin_mousepad"
+msgid "Remote input"
+msgstr "Input jarak jauh"
+
+msgctxt "pref_plugin_mousepad_desc"
+msgid "Use your phone or tablet as a touchpad and keyboard"
+msgstr "Gunakan ponsel atau tabletmu sebagai touchpad dan keyboard"
+
+msgctxt "pref_plugin_presenter"
+msgid "Slideshow remote"
+msgstr "Remot salindia"
+
+msgctxt "pref_plugin_presenter_desc"
+msgid "Use your device to change slides in a presentation"
+msgstr "Gunakan perantimu untuk mengubah slide dalam sebuah presentasi"
+
+msgctxt "pref_plugin_remotekeyboard"
+msgid "Receive remote keypresses"
+msgstr "Terima penekanan tombol jarak jauh"
+
+msgctxt "pref_plugin_remotekeyboard_desc"
+msgid "Receive keypress events from remote devices"
+msgstr "Terima peristiwa penekanan tombol dari peranti jarak jauh"
+
+msgctxt "pref_plugin_mpris"
+msgid "Multimedia controls"
+msgstr "Kendalikan multimedia"
+
+msgctxt "pref_plugin_mpris_desc"
+msgid "Provides a remote control for your media player"
+msgstr "Menyediakan sebuah kendali jarak jauh untuk pemutar mediamu"
+
+msgctxt "pref_plugin_runcommand"
+msgid "Run Command"
+msgstr "Jalankan Perintah"
+
+msgctxt "pref_plugin_runcommand_desc"
+msgid "Trigger remote commands from your phone or tablet"
+msgstr "Pemicu perintah jarak jauh dari ponsel dan tablet-mu"
+
+msgctxt "pref_plugin_contacts"
+msgid "Contacts Synchronizer"
+msgstr "Penyinkron Kontak"
+
+msgctxt "pref_plugin_contacts_desc"
+msgid "Allow synchronizing the device's contacts book"
+msgstr "Izinkan menyinkronkan buku kontak pada peranti"
+
+msgctxt "pref_plugin_ping"
+msgid "Ping"
+msgstr "Ping"
+
+msgctxt "pref_plugin_ping_desc"
+msgid "Send and receive pings"
+msgstr "Kirim dan terima ping"
+
+msgctxt "pref_plugin_notifications"
+msgid "Notification sync"
+msgstr "Sinkron notifikasi"
+
+msgctxt "pref_plugin_notifications_desc"
+msgid "Access your notifications from other devices"
+msgstr "Akses notifikasimu dari peranti lain"
+
+msgctxt "pref_plugin_receive_notifications"
+msgid "Receive notifications"
+msgstr "Terima notifikasi"
+
+msgctxt "pref_plugin_receive_notifications_desc"
+msgid "Receive notifications from the other device and display them on Android"
+msgstr "Terima notifikasi dari peranti lain dan menampilkannya pada Android"
+
+msgctxt "pref_plugin_sharereceiver"
+msgid "Share and receive"
+msgstr "Kirim dan terima"
+
+msgctxt "pref_plugin_sharereceiver_desc"
+msgid "Share files and URLs between devices"
+msgstr "Berbagi file dan URL antara peranti"
+
+msgctxt "device_list_empty"
+msgid "No devices"
+msgstr "Tidak ada peranti"
+
+msgctxt "ok"
+msgid "OK"
+msgstr "Oke"
+
+msgctxt "sad_ok"
+msgid "OK :("
+msgstr "Oke :("
+
+msgctxt "cancel"
+msgid "Cancel"
+msgstr "Batal"
+
+msgctxt "open_settings"
+msgid "Open settings"
+msgstr "Buka pengaturan"
+
+msgctxt "no_permissions"
+msgid "You need to grant permission to access notifications"
+msgstr "Anda perlu memberikan izin untuk mengakses notifikasi"
+
+msgctxt "no_permission_mprisreceiver"
+msgid ""
+"To be able to control your media players you need to grant access to the "
+"notifications"
+msgstr ""
+"Untuk dapat mengendalikan pemutar media, Anda perlu memberikan akses ke "
+"notifikasi"
+
+msgctxt "no_permissions_remotekeyboard"
+msgid ""
+"To receive keypresses you need to activate the KDE Connect Remote Keyboard"
+msgstr ""
+"Untuk menerima penekanan tombol, Anda perlu mengaktifkan KDE Connect Remote "
+"Keyboard"
+
+msgctxt "send_ping"
+msgid "Send ping"
+msgstr "Kirim ping"
+
+msgctxt "open_mpris_controls"
+msgid "Multimedia control"
+msgstr "Kendali multimedia"
+
+msgctxt "remotekeyboard_editing_only_title"
+msgid "Handle remote keys only when editing"
+msgstr "Menangani tombol jarak jauh hanya ketika mengedit"
+
+msgctxt "remotekeyboard_not_connected"
+msgid ""
+"There is no active remote keyboard connection, establish one in kdeconnect"
+msgstr ""
+"Tidak ada koneksi keyboard jarak jauh yang aktif, buat satu dalam kdeconnect"
+
+msgctxt "remotekeyboard_connected"
+msgid "Remote keyboard connection is active"
+msgstr "Koneksi keyboard jarak jauh telah aktif"
+
+msgctxt "remotekeyboard_multiple_connections"
+msgid ""
+"There is more than one remote keyboard connection, select the device to "
+"configure"
+msgstr ""
+"Ada lebih dari satu koneksi keyboard jarak jauh, pilihlah peranti untuk "
+"mengkonfigurasi"
+
+msgctxt "open_mousepad"
+msgid "Remote input"
+msgstr "Input jarak jauh"
+
+msgctxt "mousepad_info"
+msgid ""
+"Move a finger on the screen to move the mouse cursor. Tap for a click, and "
+"use two/three fingers for right and middle buttons. Use 2 fingers to scroll. "
+"Use a long press to drag'n drop."
+msgstr ""
+"Pindah jari pada layar untuk memindah kursor mouse. Ketuk untuk klik, dan "
+"gunakan dua/tiga jari untuk tombol kanan dan tengah. Gunakan 2 jari untuk "
+"menggulir. Gunakan tekan lama untuk seret dan taruh."
+
+msgctxt "mousepad_single_tap_settings_title"
+msgid "Set one finger tap action"
+msgstr "Set aksi ketuk satu jari"
+
+msgctxt "mousepad_double_tap_settings_title"
+msgid "Set two finger tap action"
+msgstr "Set aksi ketuk dua jari"
+
+msgctxt "mousepad_triple_tap_settings_title"
+msgid "Set three finger tap action"
+msgstr "Set aksi ketuk tiga jari"
+
+msgctxt "mousepad_sensitivity_settings_title"
+msgid "Set touchpad sensitivity"
+msgstr "Set kepekaan touchpad"
+
+msgctxt "mousepad_acceleration_profile_settings_title"
+msgid "Set pointer acceleration"
+msgstr "Setel akselerasi pointer"
+
+msgctxt "mousepad_scroll_direction_title"
+msgid "Reverse Scrolling Direction"
+msgstr "Arah Menggulir Terbalik"
+
+msgctxt "mousepad_tap_entries:0"
+msgid "Left click"
+msgstr "Klik kiri"
+
+msgctxt "mousepad_tap_entries:1"
+msgid "Right click"
+msgstr "Klik kanan"
+
+msgctxt "mousepad_tap_entries:2"
+msgid "Middle click"
+msgstr "Klik tengah"
+
+msgctxt "mousepad_tap_entries:3"
+msgid "Nothing"
+msgstr "Tidak ada apa-apa"
+
+# Tingkatan kepekaan
+msgctxt "mousepad_sensitivity_entries:0"
+msgid "Slowest"
+msgstr "Pelan"
+
+# Tingkatan kepekaan
+msgctxt "mousepad_sensitivity_entries:1"
+msgid "Above Slowest"
+msgstr "Agak Pelan"
+
+# Tingkatan kepekaan
+msgctxt "mousepad_sensitivity_entries:2"
+msgid "Default"
+msgstr "Normal"
+
+# Tingkatan kepekaan
+msgctxt "mousepad_sensitivity_entries:3"
+msgid "Above Default"
+msgstr "Agak Cepat"
+
+# Tingkatan kepekaan
+msgctxt "mousepad_sensitivity_entries:4"
+msgid "Fastest"
+msgstr "Cepat"
+
+msgctxt "mousepad_acceleration_profile_entries:0"
+msgid "No Acceleration"
+msgstr "Tidak Ada Akselerasi"
+
+msgctxt "mousepad_acceleration_profile_entries:1"
+msgid "Weakest"
+msgstr "Sangat Lemah"
+
+msgctxt "mousepad_acceleration_profile_entries:2"
+msgid "Weaker"
+msgstr "Lemah"
+
+msgctxt "mousepad_acceleration_profile_entries:3"
+msgid "Medium"
+msgstr "Menengah"
+
+msgctxt "mousepad_acceleration_profile_entries:4"
+msgid "Stronger"
+msgstr "Kuat"
+
+msgctxt "mousepad_acceleration_profile_entries:5"
+msgid "Strongest"
+msgstr "Sangat Kuat"
+
+msgctxt "sendkeystrokes_send_to"
+msgid "Send keystrokes to"
+msgstr "Kirimkan penekanan tombol ke"
+
+msgctxt "sendkeystrokes_textbox_hint"
+msgid "Send keystrokes to host"
+msgstr "Kirimkan penekanan tombol ke host"
+
+msgctxt "sendkeystrokes_disabled_toast"
+msgid "Sending keystrokes is disabled - enable it in the settings"
+msgstr "Mengirim penekanan tombol dinonaktifkan - aktifkan di pengaturan"
+
+msgctxt "sendkeystrokes_wrong_data"
+msgid "Invalid mime type - needs to be 'text/x-keystrokes'"
+msgstr "Tipe mime tidak sah - harus 'text/x-keystrokes'"
+
+#, c-format
+msgctxt "sendkeystrokes_sent_text"
+msgid "Sent %1$s to device %2$s"
+msgstr "Terkirim %1$s ke peranti %2$s"
+
+msgctxt "sendkeystrokes_pref_category_summary"
+msgid ""
+"This module allows other apps to share text segments as keystrokes which "
+"will get send to the connected host"
+msgstr ""
+"Modul ini mengizinkan aplikasi lain untuk membagikan segmen teks sebagai "
+"penekanan tombol yang akan terkirim ke host yang terhubung"
+
+msgctxt "sendkeystrokes_pref_category_title"
+msgid "Send Keystrokes"
+msgstr "Kirimkan Penekanan Tombol"
+
+msgctxt "sendkeystrokes_pref_enabled"
+msgid "Enable Keystrokes sending"
+msgstr "Aktifkan pengiriman Penekanan Tombol"
+
+msgctxt "sendkeystrokes_pref_enabled_summary"
+msgid "Listen for data with mime type 'text/x-keystrokes'"
+msgstr "Mendengarkan untuk data dengan tipe mime 'text/x-keystrokes'"
+
+msgctxt "sendkeystrokes_safe_text_enabled"
+msgid "Send safe text immediately"
+msgstr "Segera mengirim teks aman"
+
+msgctxt "sendkeystrokes_safe_text_enabled_summary"
+msgid "Send short only-numeric strings without confirmation"
+msgstr "Kirimkan string pendek hanya angka tanpa konfirmasi"
+
+msgctxt "pref_plugin_mousepad_send_keystrokes"
+msgid "Send as keystrokes"
+msgstr "Kirim sebagai penekanan tombol"
+
+msgctxt "mouse_receiver_plugin_description"
+msgid "Receive remote mouse movement"
+msgstr "Terima penggerakan mouse jarak jauh"
+
+msgctxt "mouse_receiver_plugin_name"
+msgid "Mouse receiver"
+msgstr "Penerima mouse"
+
+msgctxt "mouse_receiver_no_permissions"
+msgid "You need to enable Accessibility Service"
+msgstr "Anda harus mengaktifkan Layanan Aksesibilitas"
+
+msgctxt "view_status_title"
+msgid "Status"
+msgstr "Status"
+
+#, c-format
+msgctxt "battery_status_format"
+msgid "Battery: %d%%"
+msgstr "Baterai: %d%%"
+
+#, c-format
+msgctxt "battery_status_low_format"
+msgid "Battery: %d%% Low Battery"
+msgstr "Baterai: %d%% Baterai Lemah"
+
+#, c-format
+msgctxt "battery_status_charging_format"
+msgid "Battery: %d%% charging"
+msgstr "Baterai %d%% mengisi"
+
+msgctxt "battery_status_unknown"
+msgid "Battery information not available"
+msgstr "Informasi baterai tidak tersedia"
+
+msgctxt "category_connected_devices"
+msgid "Connected devices"
+msgstr "Perangkat terkoneksi"
+
+msgctxt "category_not_paired_devices"
+msgid "Available devices"
+msgstr "Perangkat tersedia"
+
+msgctxt "category_remembered_devices"
+msgid "Remembered devices"
+msgstr "Perangkat teringat"
+
+msgctxt "device_menu_plugins"
+msgid "Plugin settings"
+msgstr "Pengesetan plugin"
+
+msgctxt "device_menu_unpair"
+msgid "Unpair"
+msgstr "Leraikan"
+
+msgctxt "pair_new_device"
+msgid "Pair new device"
+msgstr "Sandingkan peranti baru"
+
+msgctxt "unknown_device"
+msgid "Unknown device"
+msgstr "Perangkat tak diketahui"
+
+msgctxt "error_not_reachable"
+msgid "Device not reachable"
+msgstr "Peranti tidak dapat dicapai"
+
+msgctxt "error_already_paired"
+msgid "Device already paired"
+msgstr "Peranti sudah disandingkan"
+
+msgctxt "error_could_not_send_package"
+msgid "Could not send package"
+msgstr "Tidak dapat mengirim paket"
+
+msgctxt "error_timed_out"
+msgid "Timed out"
+msgstr "Waktu habis"
+
+msgctxt "error_canceled_by_user"
+msgid "Canceled by user"
+msgstr "Dibatalkan oleh pengguna"
+
+msgctxt "error_canceled_by_other_peer"
+msgid "Canceled by other peer"
+msgstr "Dibatalkan oleh kawan lain"
+
+msgctxt "encryption_info_title"
+msgid "Encryption Info"
+msgstr "Info Enkripsi"
+
+msgctxt "encryption_info_msg_no_ssl"
+msgid ""
+"The other device doesn't use a recent version of KDE Connect, using the "
+"legacy encryption method."
+msgstr ""
+"Perangkat lain tidaklah menggunakan KDE Connect yang berversi saat ini, "
+"menggunakan metode enkripsi kuno."
+
+msgctxt "my_device_fingerprint"
+msgid "SHA256 fingerprint of your device certificate is:"
+msgstr "Sidik jari SHA256 pada sertifikat perantimu adalah:"
+
+msgctxt "remote_device_fingerprint"
+msgid "SHA256 fingerprint of remote device certificate is:"
+msgstr "Sidik jari SHA256 pada sertifikat peranti jarak jauh adalah:"
+
+msgctxt "pair_requested"
+msgid "Pair requested"
+msgstr "Meminta sanding"
+
+#, c-format
+msgctxt "pairing_request_from"
+msgid "Pairing request from %1s"
+msgstr "Minta penyandingan dari %1s"
+
+#, c-format
+msgctxt "incoming_file_title"
+msgid "Receiving %1$d file from %2$s"
+msgid_plural "Receiving %1$d files from %2$s"
+msgstr[0] "Menerima %1$d file dari %2$s"
+msgstr[1] "Menerima %1$d file dari %2$s"
+
+#, c-format
+msgctxt "incoming_files_text"
+msgid "File: %1s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "File: %1s"
+msgstr[1] "(File %2$d dari %3$d) : %1$s"
+
+#, c-format
+msgctxt "outgoing_file_title"
+msgid "Sending %1$d file to %2$s"
+msgid_plural "Sending %1$d files to %2$s"
+msgstr[0] "Mengirim %1$d file ke %2$s"
+msgstr[1] "Mengirim %1$d file ke %2$s"
+
+#, c-format
+msgctxt "outgoing_files_text"
+msgid "File: %1$s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "File: %1$s"
+msgstr[1] "(File %2$d dari %3$d) : %1$s"
+
+#, c-format
+msgctxt "received_files_title"
+msgid "Received file from %1$s"
+msgid_plural "Received %2$d files from %1$s"
+msgstr[0] "File yang diterima dari %1$s"
+msgstr[1] "File %2$d yang diterima dari %1$s"
+
+#, c-format
+msgctxt "received_files_fail_title"
+msgid "Failed receiving file from %1$s"
+msgid_plural "Failed receiving %2$d of %3$d files from %1$s"
+msgstr[0] "Gagal menerima file dari %1$s"
+msgstr[1] "Gagal menerima file %2$d pada %3$d dari %1$s"
+
+#, c-format
+msgctxt "sent_files_title"
+msgid "Sent file to %1$s"
+msgid_plural "Sent %2$d files to %1$s"
+msgstr[0] "Kiriman file ke %1$s"
+msgstr[1] "Kirim %2$d file ke %1$s"
+
+#, c-format
+msgctxt "send_files_fail_title"
+msgid "Failed sending file to %1$s"
+msgid_plural "Failed sending %2$d of %3$d files to %1$s"
+msgstr[0] "Gagal mengirim file ke %1$s"
+msgstr[1] "Gagal mengirim %2$d dari %3$d file ke %1$s"
+
+msgctxt "tap_to_open"
+msgid "Tap to open"
+msgstr "Ketuk untuk membuka"
+
+#, c-format
+msgctxt "received_file_text"
+msgid "Tap to open '%1s'"
+msgstr "Ketuk untuk membuka '%1s'"
+
+#, c-format
+msgctxt "cannot_create_file"
+msgid "Cannot create file %s"
+msgstr "Gak bisa menciptakan file %s"
+
+msgctxt "tap_to_answer"
+msgid "Tap to answer"
+msgstr "Ketuk untuk menjawab"
+
+msgctxt "right_click"
+msgid "Send Right Click"
+msgstr "Kirim Klik Kanan"
+
+msgctxt "middle_click"
+msgid "Send Middle Click"
+msgstr "Kirim Klik Tengah"
+
+msgctxt "show_keyboard"
+msgid "Show Keyboard"
+msgstr "Tampilkan Keyboard"
+
+msgctxt "device_not_paired"
+msgid "Device not paired"
+msgstr "Peranti tidak disandingkan"
+
+msgctxt "request_pairing"
+msgid "Request pairing"
+msgstr "Minta penyandingan"
+
+msgctxt "pairing_accept"
+msgid "Accept"
+msgstr "Setujui"
+
+msgctxt "pairing_reject"
+msgid "Reject"
+msgstr "Apkir"
+
+msgctxt "settings"
+msgid "Settings"
+msgstr "Pengaturan"
+
+msgctxt "mpris_play"
+msgid "Play"
+msgstr "Putarkan"
+
+msgctxt "mpris_pause"
+msgid "Pause"
+msgstr "Jeda"
+
+msgctxt "mpris_previous"
+msgid "Previous"
+msgstr "Sebelumnya"
+
+msgctxt "mpris_rew"
+msgid "Rewind"
+msgstr "Mundur-cepat"
+
+msgctxt "mpris_ff"
+msgid "Fast-forward"
+msgstr "Maju-capat"
+
+msgctxt "mpris_next"
+msgid "Next"
+msgstr "Selanjutnya"
+
+msgctxt "mpris_loop"
+msgid "Loop"
+msgstr "Ulangi"
+
+msgctxt "mpris_shuffle"
+msgid "Shuffle"
+msgstr "Acak"
+
+msgctxt "mpris_volume"
+msgid "Volume"
+msgstr "Volume"
+
+msgctxt "mpris_time_settings_title"
+msgid "Forward/rewind buttons"
+msgstr "Tombol mundur-cepat/maju-cepat"
+
+msgctxt "mpris_time_settings_summary"
+msgid "Adjust the time to fast forward/rewind when pressed"
+msgstr "Sesuaikan waktu untuk mempercepat mundur/maju ketika ditekan"
+
+msgctxt "mpris_time_entries:0"
+msgid "10 seconds"
+msgstr "10 detik"
+
+msgctxt "mpris_time_entries:1"
+msgid "20 seconds"
+msgstr "20 detik"
+
+msgctxt "mpris_time_entries:2"
+msgid "30 seconds"
+msgstr "30 detik"
+
+msgctxt "mpris_time_entries:3"
+msgid "1 minute"
+msgstr "1 menit"
+
+msgctxt "mpris_time_entries:4"
+msgid "2 minutes"
+msgstr "2 menit"
+
+msgctxt "mpris_notification_settings_title"
+msgid "Show media control notification"
+msgstr "Tampilkan notifikasi kendali media"
+
+msgctxt "mpris_notification_settings_summary"
+msgid "Allow controlling your media players without opening KDE Connect"
+msgstr "Memungkinkan pengendalian pemutar media-mu tanpa membuka KDE Connect"
+
+msgctxt "share_to"
+msgid "Share To…"
+msgstr "Berbagi Ke..."
+
+msgctxt "protocol_version_newer"
+msgid "This device uses a newer protocol version"
+msgstr "Perangkat ini menggunakan sebuah versi protokol baru"
+
+#, c-format
+msgctxt "plugin_settings_with_name"
+msgid "%s settings"
+msgstr "Pengesetan %s"
+
+msgctxt "invalid_device_name"
+msgid "Invalid device name"
+msgstr "Nama peranti tak absah"
+
+msgctxt "shareplugin_text_saved"
+msgid "Received text, saved to clipboard"
+msgstr "Teks diterima, tersimpan ke papan-klip"
+
+msgctxt "custom_devices_settings"
+msgid "Custom device list"
+msgstr "Kustom daftar peranti"
+
+msgctxt "custom_device_list"
+msgid "Add devices by IP"
+msgstr "Tambahkan peranti dengan IP"
+
+msgctxt "custom_device_deleted"
+msgid "Custom device deleted"
+msgstr "Perangkat kustom yang dihapus"
+
+msgctxt "custom_device_list_help"
+msgid ""
+"If your device is not automatically detected you can add its IP address or "
+"hostname by clicking on the Floating Action Button"
+msgstr ""
+"Jika peranti Anda tidak terdeteksi secara otomatis, Anda dapat menambahkan "
+"alamat IP atau nama host-nya dengan mengklik Tombol Aksi Yang Mengambang"
+
+msgctxt "custom_device_fab_hint"
+msgid "Add a device"
+msgstr "Tambahkan sebuah peranti"
+
+msgctxt "undo"
+msgid "Undo"
+msgstr "Urung"
+
+msgctxt "share_notification_preference"
+msgid "Noisy notifications"
+msgstr "Notifikasi bising"
+
+msgctxt "share_notification_preference_summary"
+msgid "Vibrate and play a sound when receiving a file"
+msgstr "Getar dan putarkan suara ketika menerima sebuah file"
+
+msgctxt "share_destination_customize"
+msgid "Customize destination directory"
+msgstr "Menyesuaikan tujuan direktori"
+
+msgctxt "share_destination_customize_summary_disabled"
+msgid "Received files will appear in Downloads"
+msgstr "File yang diterima akan muncul di Unduhan"
+
+msgctxt "share_destination_customize_summary_enabled"
+msgid "Files will be stored in the directory below"
+msgstr "File akan disimpan di dalam direktori di bawah ini"
+
+msgctxt "share_destination_folder_preference"
+msgid "Destination directory"
+msgstr "Direktori tujuan"
+
+msgctxt "share"
+msgid "Share"
+msgstr "Bagikan"
+
+#, c-format
+msgctxt "share_received_file"
+msgid "Share \"%s\""
+msgstr "Bagikan \"%s\""
+
+msgctxt "title_activity_notification_filter"
+msgid "Notification filter"
+msgstr "Filter notifikasi"
+
+msgctxt "filter_apps_info"
+msgid "Notifications will be synchronized for the selected apps."
+msgstr "Notifikasi akan disinkronkan terhadap apl terpilih."
+
+msgctxt "show_notification_if_screen_off"
+msgid "Send notifications only if the screen is off"
+msgstr "Hanya kirimkan notifikasi saja ketika layarnya mati"
+
+#, c-format
+msgctxt "sftp_sdcard_num"
+msgid "SD card %d"
+msgstr "Kartu SD %d"
+
+msgctxt "sftp_sdcard"
+msgid "SD card"
+msgstr "Kartu SD"
+
+msgctxt "sftp_readonly"
+msgid "(read only)"
+msgstr "(hanya baca)"
+
+msgctxt "sftp_camera"
+msgid "Camera pictures"
+msgstr "Gambar kamera"
+
+msgctxt "add_device_dialog_title"
+msgid "Add device"
+msgstr "Tambahkan peranti"
+
+msgctxt "add_device_hint"
+msgid "Hostname or IP address"
+msgstr "Alamat IP atau hostname"
+
+msgctxt "sftp_preference_detected_sdcards"
+msgid "Detected SD cards"
+msgstr "Kartu SD terdeteksi"
+
+msgctxt "sftp_preference_edit_sdcard_title"
+msgid "Edit SD card"
+msgstr "Edit kartu SD"
+
+msgctxt "sftp_preference_configured_storage_locations"
+msgid "Configured storage locations"
+msgstr "Lokasi penyimpanan terkonfigurasi"
+
+msgctxt "sftp_preference_add_storage_location_title"
+msgid "Add storage location"
+msgstr "Tambahkan lokasi penyimpanan"
+
+msgctxt "sftp_preference_edit_storage_location"
+msgid "Edit storage location"
+msgstr "Edit lokasi penyimpanan"
+
+msgctxt "sftp_preference_add_camera_shortcut"
+msgid "Add camera folder shortcut"
+msgstr "Tambahkan shortcut folder kamera"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_on"
+msgid "Add a shortcut to the camera folder"
+msgstr "Tambahkan sebuah shortcut ke folder kamera"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_off"
+msgid "Do not add a shortcut to the camera folder"
+msgstr "Jangan tambahkan sebuah shortcut ke folder kamera"
+
+msgctxt "sftp_storage_preference_storage_location"
+msgid "Storage location"
+msgstr "Lokasi penyimpanan"
+
+msgctxt "sftp_storage_preference_storage_location_already_configured"
+msgid "This location has already been configured"
+msgstr "Lokasi ini sudah dikonfigurasi"
+
+msgctxt "sftp_storage_preference_click_to_select"
+msgid "click to select"
+msgstr "klik untuk pilih"
+
+msgctxt "sftp_storage_preference_display_name"
+msgid "Display name"
+msgstr "Tampilan nama"
+
+msgctxt "sftp_storage_preference_display_name_already_used"
+msgid "This display name is already used"
+msgstr "Tampilan nama ini sudah digunakan"
+
+msgctxt "sftp_storage_preference_display_name_cannot_be_empty"
+msgid "Display name cannot be empty"
+msgstr "Tampilan nama tidak boleh kosong"
+
+msgctxt "sftp_action_mode_menu_delete"
+msgid "Delete"
+msgstr "Hapus"
+
+msgctxt "sftp_no_sdcard_detected"
+msgid "No SD card detected"
+msgstr "Tidak ada kartu SD yang terdeteksi"
+
+msgctxt "sftp_no_storage_locations_configured"
+msgid "No storage locations configured"
+msgstr "Tidak ada lokasi penyimpanan yang dikonfigurasi"
+
+msgctxt "sftp_saf_permission_explanation"
+msgid "To access files remotely you have to configure storage locations"
+msgstr ""
+"Untuk mengakses file secara jarak jauh, Anda harus mengkonfigurasi lokasi "
+"penyimpanan"
+
+msgctxt "no_players_connected"
+msgid "No players found"
+msgstr "Tidak ada pemutar yang ditemukan"
+
+msgctxt "send_files"
+msgid "Send files"
+msgstr "Kirim file"
+
+msgctxt "pairing_title"
+msgid "KDE Connect Devices"
+msgstr "Peranti KDE Connect"
+
+msgctxt "pairing_description"
+msgid ""
+"Other devices running KDE Connect in your same network should appear here."
+msgstr ""
+"Perangkat lain yang menjalankan KDE Connect dalam jaringanmu yang sama "
+"seharusnya muncul di sini."
+
+msgctxt "device_rename_title"
+msgid "Rename device"
+msgstr "Ubah nama peranti"
+
+msgctxt "device_rename_confirm"
+msgid "Rename"
+msgstr "Ubah Nama"
+
+msgctxt "refresh"
+msgid "Refresh"
+msgstr "Segarkan"
+
+msgctxt "unreachable_description"
+msgid ""
+"This paired device is not reachable. Make sure it is connected to your same "
+"network."
+msgstr ""
+"Perangkat yang disandingkan ini tidak dapat dicapai. Pastikan ia terkoneksi "
+"ke jaringanmu yang sama."
+
+msgctxt "no_wifi"
+msgid ""
+"You're not connected to a Wi-Fi network, so you may not be able to see any "
+"devices. Click here to enable Wi-Fi."
+msgstr ""
+"Kamu belum terkoneksi ke jaringan Wi-Fi, sehingga Anda tidak bisa melihat "
+"peranti apapun. Klik di sini untuk memfungsikan Wi-Fi."
+
+msgctxt "on_non_trusted_message"
+msgid "Not on a trusted network: autodiscovery is disabled."
+msgstr ""
+"Bukan pada jaringan yang dipercaya: autodiscovery telah dinonfungsikan."
+
+msgctxt "no_file_browser"
+msgid "There are no file browsers installed."
+msgstr "Tidak adanya penelusur file yang terinstal."
+
+msgctxt "pref_plugin_telepathy"
+msgid "Send SMS"
+msgstr "Kirim SMS"
+
+msgctxt "pref_plugin_telepathy_desc"
+msgid "Send text messages from your desktop"
+msgstr "Kirim teks perpesanan dari desktopmu"
+
+msgctxt "pref_plugin_telepathy_mms"
+msgid "Send MMS"
+msgstr "Kirim MMS"
+
+msgctxt "pref_plugin_telepathy_mms_desc"
+msgid ""
+"To be able to send MMS from KDE Connect you need to set it as the default "
+"SMS app."
+msgstr ""
+"Supaya dapat mengirim MMS dari KDE Connect, Anda perlu mengaturnya sebagai "
+"aplikasi SMS default."
+
+msgctxt "findmyphone_title"
+msgid "Find my phone"
+msgstr "Temukan ponselku"
+
+msgctxt "findmyphone_title_tablet"
+msgid "Find my tablet"
+msgstr "Temukan tabletku"
+
+msgctxt "findmyphone_title_tv"
+msgid "Find my TV"
+msgstr "Temukan TV-ku"
+
+msgctxt "findmyphone_description"
+msgid "Rings this device so you can find it"
+msgstr "Deringkan peranti ini sehingga Anda dapat menemukannya"
+
+msgctxt "findmyphone_found"
+msgid "Found it"
+msgstr "Ketemu"
+
+msgctxt "open"
+msgid "Open"
+msgstr "Buka"
+
+msgctxt "close"
+msgid "Close"
+msgstr "Tutup"
+
+msgctxt "plugins_need_permission"
+msgid "Some Plugins need permissions to work (tap for more info):"
+msgstr ""
+"Beberapa plugin perlu perizinan untuk kerja (ketuk untuk info selebihnya):"
+
+msgctxt "permission_explanation"
+msgid "This plugin needs permissions to work"
+msgstr "Plugin ini perlu perizinan untuk kerja"
+
+msgctxt "optional_permission_explanation"
+msgid "You need to grant extra permissions to enable all functions"
+msgstr ""
+"Anda perlu memberikan perizinan tambahan untuk memfungsikan semua fungsi"
+
+msgctxt "plugins_need_optional_permission"
+msgid ""
+"Some plugins have features disabled because of lack of permission (tap for "
+"more info):"
+msgstr ""
+"Beberapa plugin yang memiliki fitur dinonfungsikan karena kurangnya "
+"perizinan (ketuk untuk info selebihnya):"
+
+msgctxt "share_optional_permission_explanation"
+msgid "To receive shared files you need to choose a destination directory"
+msgstr ""
+"Untuk menerima file yang dibagikan Anda perlu memilih sebuah direktori tujuan"
+
+msgctxt "telepathy_permission_explanation"
+msgid ""
+"To read and write SMS from your desktop you need to give permission to SMS"
+msgstr ""
+"Untuk membaca dan menulis SMS dari desktop, Anda harus memberikan perizinan "
+"untuk SMS"
+
+msgctxt "telephony_permission_explanation"
+msgid ""
+"To see phone calls on the desktop you need to give permission to phone call "
+"logs and phone state"
+msgstr ""
+"Untuk melihat panggilan ponsel pada desktop kamu harus memberikan perizinan "
+"untuk log panggilan ponsel dan keadaan ponsel"
+
+msgctxt "telephony_optional_permission_explanation"
+msgid ""
+"To see a contact name instead of a phone number you need to give access to "
+"the phone's contacts"
+msgstr ""
+"Untuk melihat nama kontak alih-alih nomor ponsel, kamu harus memberikan "
+"akses ke kontak ponsel"
+
+msgctxt "contacts_permission_explanation"
+msgid ""
+"To share your contacts book with the desktop, you need to give contacts "
+"permission"
+msgstr ""
+"Untuk membagikan buku kontak dengan desktopmu, kamu harus memberikan "
+"perizinan kontak"
+
+msgctxt "select_ringtone"
+msgid "Select a ringtone"
+msgstr "Pilih sebuah ringtone"
+
+msgctxt "telephony_pref_blocked_title"
+msgid "Blocked numbers"
+msgstr "Nomor yang diblokir"
+
+msgctxt "telephony_pref_blocked_dialog_desc"
+msgid ""
+"Don't show calls and SMS from these numbers. Please specify one number per "
+"line"
+msgstr ""
+"Jangan tampilkan panggilan dan SMS dari nomor tersebut. Silakan tentukan "
+"satu nomor tiap baris"
+
+msgctxt "mpris_coverart_description"
+msgid "Cover art of current media"
+msgstr "Seni sampul media saat ini"
+
+msgctxt "device_icon_description"
+msgid "Device icon"
+msgstr "Ikon perangkat"
+
+msgctxt "settings_icon_description"
+msgid "Settings icon"
+msgstr "Ikon pengaturan"
+
+msgctxt "presenter_fullscreen"
+msgid "Fullscreen"
+msgstr "Layar penuh"
+
+msgctxt "presenter_exit"
+msgid "Exit presentation"
+msgstr "Keluarkan presentasi"
+
+msgctxt "presenter_lock_tip"
+msgid ""
+"You can lock your device and use the volume keys to go to the previous/next "
+"slide"
+msgstr ""
+"Kamu bisa mengunci perantimu dan gunakanlah tombol volume untuk menuju ke "
+"slide sebelumnya/selanjutnya"
+
+msgctxt "add_command"
+msgid "Add a command"
+msgstr "Tambahkan sebuah perintah"
+
+msgctxt "addcommand_explanation"
+msgid "There are no commands registered"
+msgstr "Tidak ada perintah yang diregister"
+
+msgctxt "addcommand_explanation2"
+msgid "You can add new commands in the KDE Connect System Settings"
+msgstr "Kamu bisa menambahkan perintah baru dalam System Settings KDE Connect "
+
+msgctxt "add_command_description"
+msgid "You can add commands on the desktop"
+msgstr "Kamu bisa menambahkan perintah pada desktop"
+
+msgctxt "pref_plugin_mprisreceiver"
+msgid "Media Player Control"
+msgstr "Kendali Pemutar Media"
+
+msgctxt "pref_plugin_mprisreceiver_desc"
+msgid "Control your phone's media players from another device"
+msgstr "Kendalikan pemutar media ponselmu dari peranti lainnya"
+
+msgctxt "notification_channel_default"
+msgid "Other notifications"
+msgstr "Notifikasi lainnya"
+
+msgctxt "notification_channel_persistent"
+msgid "Persistent indicator"
+msgstr "Indikator kukuh"
+
+msgctxt "notification_channel_media_control"
+msgid "Media control"
+msgstr "Kontrol multimedia"
+
+msgctxt "notification_channel_filetransfer"
+msgid "File transfer"
+msgstr "Transfer file"
+
+msgctxt "notification_channel_high_priority"
+msgid "High priority"
+msgstr "Prioritas tinggi"
+
+msgctxt "notification_channel_sms_mms"
+msgid "New Message"
+msgstr "Pesan Baru"
+
+msgctxt "mpris_stop"
+msgid "Stop the current player"
+msgstr "Hentikan player saat ini"
+
+msgctxt "copy_url_to_clipboard"
+msgid "Copy URL to clipboard"
+msgstr "Salin URL ke clipboard"
+
+msgctxt "clipboard_toast"
+msgid "Copied to clipboard"
+msgstr "Disalin ke clipboard"
+
+msgctxt "runcommand_notreachable"
+msgid "Device is not reachable"
+msgstr "Peranti tidak tercapai"
+
+msgctxt "runcommand_notpaired"
+msgid "Device is not paired"
+msgstr "Peranti tidak tersanding"
+
+msgctxt "runcommand_nosuchdevice"
+msgid "There is no such device"
+msgstr "Di sini tidak ada peranti seperti itu"
+
+msgctxt "runcommand_noruncommandplugin"
+msgid "This device does not have the Run Command Plugin enabled"
+msgstr "Perangkat ini tidak memiliki Plugin Run Command yang difungsikan"
+
+msgctxt "pref_plugin_findremotedevice"
+msgid "Find remote device"
+msgstr "Temukan peranti remot"
+
+msgctxt "pref_plugin_findremotedevice_desc"
+msgid "Ring your remote device"
+msgstr "Deringkan peranti remotmu"
+
+msgctxt "ring"
+msgid "Ring"
+msgstr "Deringkan"
+
+msgctxt "pref_plugin_systemvolume"
+msgid "System volume"
+msgstr "System volume"
+
+msgctxt "pref_plugin_systemvolume_desc"
+msgid "Control the system volume of the remote device"
+msgstr "Kendalikan volume sistem pada peranti remot"
+
+msgctxt "mute"
+msgid "Mute"
+msgstr "Bungkam"
+
+msgctxt "all"
+msgid "All"
+msgstr "Semua"
+
+msgctxt "devices"
+msgid "Devices"
+msgstr "Peranti"
+
+msgctxt "settings_rename"
+msgid "Device name"
+msgstr "Nama perangkat"
+
+msgctxt "settings_dark_mode"
+msgid "Dark theme"
+msgstr "Tema gelap"
+
+msgctxt "settings_more_settings_title"
+msgid "More settings"
+msgstr "Pengaturan selebihnya"
+
+msgctxt "settings_more_settings_text"
+msgid ""
+"Per-device settings can be found under 'Plugin settings' from within a "
+"device."
+msgstr ""
+"Tiap pengaturan peranti bisa ditemukan dibawah 'pengaturan Plugin' dari "
+"setiap sebuah peranti."
+
+msgctxt "setting_persistent_notification"
+msgid "Show persistent notification"
+msgstr "Tampilkan notifikasi kukuh"
+
+msgctxt "setting_persistent_notification_oreo"
+msgid "Persistent notification"
+msgstr "Notifikasi kukuh"
+
+msgctxt "setting_persistent_notification_description"
+msgid "Tap to enable/disable in Notification settings"
+msgstr "Ketuk untuk memfungsikan/menonfungsikan dalam pengaturan Notifikasi"
+
+msgctxt "extra_options"
+msgid "Extra options"
+msgstr "Opsi ekstra"
+
+msgctxt "privacy_options"
+msgid "Privacy options"
+msgstr "Opsi privasi"
+
+msgctxt "set_privacy_options"
+msgid "Set your privacy options"
+msgstr "Atur opsi privasimu"
+
+msgctxt "block_contents"
+msgid "Block contents of notifications"
+msgstr "Blokir konten-konten notifikasi"
+
+msgctxt "block_images"
+msgid "Block images in notifications"
+msgstr "Blokir citra-citra dalam notifikasi"
+
+msgctxt "notification_channel_receivenotification"
+msgid "Notifications from other devices"
+msgstr "Notifikasi dari peranti lainnya"
+
+msgctxt "take_picture"
+msgid "Launch camera"
+msgstr "Luncurkan kamera"
+
+msgctxt "plugin_photo_desc"
+msgid "Launch the camera app to ease taking and transferring pictures"
+msgstr "Luncurkan sebuah aplikasi kamera agar memudahkan pe"
+
+msgctxt "no_app_for_opening"
+msgid "No suitable app found to open this file"
+msgstr "Tidak menemukan aplikasi yang pantas untuk membuka file ini"
+
+msgctxt "remote_keyboard_service"
+msgid "KDE Connect Remote Keyboard"
+msgstr "Keyboard Remote KDE Connect"
+
+msgctxt "presenter_pointer"
+msgid "Pointer"
+msgstr "Penunjuk"
+
+msgctxt "trusted_networks"
+msgid "Trusted networks"
+msgstr "Jaringan terpercaya"
+
+msgctxt "trusted_networks_desc"
+msgid "Restrict autodiscovery to known networks"
+msgstr "Membatasi autodiscovery untuk mengetahui jaringan"
+
+#, c-format
+msgctxt "add_trusted_network"
+msgid "Add %1s"
+msgstr "Tambahkan %1s"
+
+msgctxt "empty_trusted_networks_list_text"
+msgid "You haven't added any trusted network yet"
+msgstr "Kamu belum memiliki jaringan terpercaya apa pun yang ditambahkan"
+
+msgctxt "allow_all_networks_text"
+msgid "Allow all"
+msgstr "Bolehkan semua"
+
+msgctxt "location_permission_needed_title"
+msgid "Permission required"
+msgstr "Diperlukan perizinan"
+
+msgctxt "location_permission_needed_desc"
+msgid "Android requires the Location permission to identify your WiFi network"
+msgstr ""
+"Android memerlukan perizinan Lokasi untuk mengidentifikasi jaringan WiFi kamu"
+
+msgctxt "clipboard_android_x_incompat"
+msgid ""
+"Android 10 has removed clipboard access to all apps. This plugin will be "
+"disabled."
+msgstr ""
+"Android 10 telah menghapus akses clipboard ke semua aplikasi. Plugin ini "
+"akan dinonfungsikan."
+
+msgctxt "mpris_open_url"
+msgid "Continue playing here"
+msgstr "Lanjut memutar di sini"
+
+msgctxt "cant_open_url"
+msgid "Can't open URL to continue playing"
+msgstr "Tidak bisa membuka URL untuk melanjutkan pemutaran"
+
+msgctxt "bigscreen_home"
+msgid "Home"
+msgstr "Rumah"
+
+msgctxt "bigscreen_up"
+msgid "Up"
+msgstr "Naik"
+
+msgctxt "bigscreen_left"
+msgid "Left"
+msgstr "Kiri"
+
+msgctxt "bigscreen_select"
+msgid "Select"
+msgstr "Pilih"
+
+msgctxt "bigscreen_right"
+msgid "Right"
+msgstr "Kanan"
+
+msgctxt "bigscreen_down"
+msgid "Down"
+msgstr "Turun"
+
+msgctxt "bigscreen_mic"
+msgid "Mic"
+msgstr "Mic"
+
+msgctxt "pref_plugin_bigscreen"
+msgid "Bigscreen remote"
+msgstr "Remot bigscreen"
+
+msgctxt "pref_plugin_bigscreen_desc"
+msgid "Use your device as a remote for Plasma Bigscreen"
+msgstr "Gunakan perantimu sebagai remot untuk Plasma Bigsreen"
+
+msgctxt "bigscreen_optional_permission_explanation"
+msgid ""
+"To share microphone input from your phone you need to give access to the "
+"phone's audio input"
+msgstr ""
+"Untuk membagikan input mikrofon dari ponselmu kamu perlu memberikan akses "
+"terhadap input audio si ponsel"
+
+msgctxt "bigscreen_speech_extra_prompt"
+msgid "Speech"
+msgstr "Lisankan"
+
+msgctxt "message_reply_label"
+msgid "REPLY"
+msgstr "BALAS"
+
+msgctxt "mark_as_read_label"
+msgid "MARK AS READ"
+msgstr "TANDAI SEBAGAI DIBACA"
+
+msgctxt "user_display_name"
+msgid "You"
+msgstr "KAMU"
+
+msgctxt "set_default_sms_app_title"
+msgid "Send MMS"
+msgstr "Kirim MMS"
+
+msgctxt "set_group_message_as_mms_title"
+msgid "Send group MMS"
+msgstr "Kirim MMS grup"
+
+msgctxt "set_long_text_as_mms_title"
+msgid "Send long text as MMS"
+msgstr "Kirim pesan teks panjang sebagai MMS"
+
+msgctxt "convert_to_mms_after_title"
+msgid "Convert to MMS"
+msgstr "Konversikan ke MMS"
+
+msgctxt "convert_to_mms_after_entries:0"
+msgid "After one message"
+msgstr "Setelah satu pesan"
+
+msgctxt "convert_to_mms_after_entries:1"
+msgid "After two messages"
+msgstr "Setelah dua pesan"
+
+msgctxt "convert_to_mms_after_entries:2"
+msgid "After three messages"
+msgstr "Setelah tiga pesan"
+
+msgctxt "convert_to_mms_after_entries:3"
+msgid "After four messages"
+msgstr "Setelah empat pesan"
+
+msgctxt "convert_to_mms_after_entries:4"
+msgid "After five messages"
+msgstr "Setelah lima pesan"
+
+msgctxt "theme_dialog_title"
+msgid "Choose theme"
+msgstr "Pilih tema"
+
+msgctxt "theme_list:0"
+msgid "Set by Battery Saver"
+msgstr "Atur berdasarkan Hemat Baterai"
+
+msgctxt "theme_list:1"
+msgid "Light"
+msgstr "Terang"
+
+msgctxt "theme_list:2"
+msgid "Dark"
+msgstr "Gelap"
+
+# Tingkatan kepekaan
+msgctxt "theme_list_v28:0"
+msgid "System Default"
+msgstr "Sistem Default"
+
+msgctxt "theme_list_v28:1"
+msgid "Light"
+msgstr "Terang"
+
+msgctxt "theme_list_v28:2"
+msgid "Dark"
+msgstr "Gelap"
+
+msgctxt "report_bug"
+msgid "Report Bug"
+msgstr "Laporkan Bug"
+
+msgctxt "donate"
+msgid "Donate"
+msgstr "Donasi"
+
+msgctxt "source_code"
+msgid "Source Code"
+msgstr "Kode Sumber"
+
+msgctxt "licenses"
+msgid "Licenses"
+msgstr "Lisensi"
+
+msgctxt "website"
+msgid "Website"
+msgstr "Situs"
+
+msgctxt "about"
+msgid "About"
+msgstr "Tentang"
+
+msgctxt "authors"
+msgid "Authors"
+msgstr "Penulis"
+
+msgctxt "thanks_to"
+msgid "Thanks To"
+msgstr "Terima Kasih Kepada"
+
+msgctxt "easter_egg"
+msgid "Easter Egg"
+msgstr "Easter Egg"
+
+#, c-format
+msgctxt "email_contributor"
+msgid ""
+"Email contributor\n"
+"%s"
+msgstr ""
+"Email kontributor\n"
+"%s"
+
+#, c-format
+msgctxt "visit_contributors_homepage"
+msgid ""
+"Visit contributor's homepage\n"
+"%s"
+msgstr ""
+"Kunjungi laman kontributor\n"
+"%s"
+
+#, c-format
+msgctxt "version"
+msgid "Version %s"
+msgstr "Versi %s"
+
+msgctxt "about_kde"
+msgid "About KDE"
+msgstr "Tentang KDE"
+
+msgctxt "kde_be_free"
+msgid "KDE - Be Free!"
+msgstr "KDE - Secara Bebas!"
+
+msgctxt "kde"
+msgid "KDE"
+msgstr "KDE"
+
+msgctxt "konqi"
+msgid "Konqi"
+msgstr "Konqi"
+
+msgctxt "rise_up"
+msgid "Rise Up"
+msgstr "Naik"
+
+msgctxt "rise_down"
+msgid "Rise Down"
+msgstr "Turun"
+
+msgctxt "click_here_to_type"
+msgid "Tap here to type"
+msgstr "Ketuk di sini untuk mengetik"
+
+msgctxt "clear_compose"
+msgid "Clear"
+msgstr "Hapus"
+
+msgctxt "send_compose"
+msgid "Send"
+msgstr "Kirim"
+
+msgctxt "open_compose_send"
+msgid "Compose text"
+msgstr "Komposisikan teks"
+
+msgctxt "app_description"
+msgid ""
+"Multi-platform app that allows your devices to communicate (e.g., your phone "
+"and your computer)"
+msgstr ""
+"Aplikasi multi-platform yang memungkinkan perantimu untuk berkomunikasi "
+"(mis., ponselmu dan komputermu)"
+
+msgctxt "about_kde_about"
+msgid ""
+"&lt;h1&gt;About&lt;/h1&gt; &lt;p&gt;KDE is a world-wide community of "
+"software engineers, artists, writers, translators and creators who are "
+"committed to &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Free "
+"Software&lt;/a&gt; development. KDE produces the Plasma desktop environment, "
+"hundreds of applications, and the many software libraries that support them."
+"&lt;/p&gt; &lt;p&gt;KDE is a cooperative enterprise: no single entity "
+"controls its direction or products. Instead, we work together to achieve the "
+"common goal of building the world's finest Free Software. Everyone is "
+"welcome to &lt;a href=https://community.kde.org/Get_Involved&gt;join and "
+"contribute&lt;/a&gt; to KDE, including you.&lt;/p&gt; Visit &lt;a "
+"href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; for more "
+"information about the KDE community and the software we produce."
+msgstr ""
+"&lt;h1&gt;Tentang&lt;/h1&gt; &lt;p&gt;KDE adalah komunitas seluruh dunia "
+"dari insinyur, seniman, penulis, penerjemah dan pemfasilitas perangkat lunak "
+"yang mana berkomitmen untuk developmen &lt;a href=https://www.gnu.org/"
+"philosophy/free-sw.html&gt;Free Software&lt;/a&gt;. KDE memproduksi "
+"lingkungan desktop Plasma, ratusan aplikasi, dan banyak pustaka perangkat "
+"lunak yang mendukungnya.&lt;/p&gt; &lt;p&gt;KDE adalah perusahaan koperasi: "
+"di mana tiada entitas satu pun yang mengendalikan arah atau usaha. Alih-"
+"alih, kami kerja bersama-sama untuk mencapai tujuan umum pembangunan dalam "
+"dunia Free Software yang baik. Siapa pun disambut untuk &lt;a href=https://"
+"community.kde.org/Get_Involved&gt;bergabung dan berkontribusi&lt;/a&gt; "
+"untuk KDE, termasuk kamu.&lt;/p&gt; Kunjungi &lt;a href=https://www.kde.org/"
+"&gt;https://www.kde.org/&lt;/a&gt; untuk informasi tentang komunitas KDE dan "
+"perangkat lunak yang kami produksi."
+
+msgctxt "about_kde_report_bugs_or_wishes"
+msgid ""
+"&lt;h1&gt;Report Bugs or Wishes&lt;/h1&gt; &lt;p&gt;Software can always be "
+"improved, and the KDE team is ready to do so. However, you - the user - must "
+"tell us when something does not work as expected or could be done better."
+"&lt;/p&gt; &lt;p&gt;KDE has a bug tracking system. Visit &lt;a href=https://"
+"bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; or use the \"Report Bug\" "
+"button from the about screen to report bugs.&lt;/p&gt; If you have a "
+"suggestion for improvement then you are welcome to use the bug tracking "
+"system to register your wish. Make sure you use the severity called "
+"\"Wishlist\"."
+msgstr ""
+"&lt;h1&gt;Laporkan Bug atau Saran&lt;/h1&gt; &lt;p&gt;Perangkat lunak selalu "
+"dapat ditingkatkan, dan Tim KDE siap untuk melakukannya. Tapi, Anda - "
+"sebagai pengguna - harus memberitahu kami jika sesuatu tidak berjalan "
+"sebagaimana mestinya atau seharusnya dapat berjalan dengan lebih baik.&lt;/"
+"p&gt; &lt;p&gt;KDE memiliki sistem pelacakan bug. Kunjungi &lt;a "
+"href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; atau gunakan "
+"dialog \"Laporkan Bug\" dari layar tentang untuk melaporkan bug.&lt;/p&gt; "
+"Jika Anda memiliki saran untuk peningkatan maka anda dipersilakan untuk "
+"menggunakan sistem pelacakan bug untuk memasukkan permintaan Anda. Pastikan "
+"anda menggunakan tingkat kegawatan yang bernama \"Senarai Permintaan\"."
+
+msgctxt "about_kde_join_kde"
+msgid ""
+"&lt;h1&gt;Join KDE&lt;/h1&gt; &lt;p&gt;You do not have to be a software "
+"developer to be a member of the KDE team. You can join the national teams "
+"that translate program interfaces. You can provide graphics, themes, sounds, "
+"and improved documentation. You decide!&lt;/p&gt; &lt;p&gt;Visit &lt;a "
+"href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/"
+"Get_Involved&lt;/a&gt; for information on some projects in which you can "
+"participate.&lt;/p&gt; If you need more information or documentation, then a "
+"visit to &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/"
+"&lt;/a&gt; will provide you with what you need."
+msgstr ""
+"&lt;h1&gt;Bergabunglah dengan KDE&lt;/ h1&gt; &lt;p&gt; Kamu tidak harus "
+"menjadi pengembang perangkat lunak untuk menjadi anggota tim KDE. Kamu bisa "
+"bergabung dengan tim nasional yang menerjemahkan antarmuka program. Kamu "
+"bisa memberikan grafik, tema, suara, dan dokumentasi yang ditingkatkan. Kamu "
+"putuskan!&lt;/p&gt; &lt;p&gt;Kunjungi&lt;a href=https://community.kde.org/"
+"Get_involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; untuk "
+"informasi tentang beberapa proyek di mana kamu bisa berpartisipasi.&lt;/"
+"p&gt; Jika kamu memerlukan informasi atau dokumentasi lebih lanjut, maka "
+"kunjungilah &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/"
+"&lt;/a&gt; yang akan memberimu apa yang kamu butuhkan."
+
+msgctxt "about_kde_support_kde"
+msgid ""
+"&lt;h1&gt;Support KDE&lt;/h1&gt; &lt;p&gt;KDE software is and will always be "
+"available free of charge, however creating it is not free.&lt;/p&gt; &lt;"
+"p&gt;To support development the KDE community has formed the KDE e.V., a non-"
+"profit organization legally founded in Germany. KDE e.V. represents the KDE "
+"community in legal and financial matters. See &lt;a href=https://ev.kde.org/"
+"&gt;https://ev.kde.org/&lt;/a&gt; for information on KDE e.V.&lt;/p&gt; &lt;"
+"p&gt;KDE benefits from many kinds of contributions, including financial. We "
+"use the funds to reimburse members and others for expenses they incur when "
+"contributing. Further funds are used for legal support and organizing "
+"conferences and meetings.&lt;/p&gt; &lt;p&gt;We would like to encourage you "
+"to support our efforts with a financial donation, using one of the ways "
+"described at &lt;a href=https://www.kde.org/community/donations/&gt;https://"
+"www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Thank you very much in "
+"advance for your support."
+msgstr ""
+"&lt;h1&gt;Dukung KDE&lt;/h1&gt; &lt;p&gt;Perangkat lunak KDE adalah dan akan "
+"selalu tersedia secara gratis, namun membuatnya tidak gratis.&lt;/p&gt; &lt;"
+"p&gt;Untuk mendukung pengembangan Komunitas KDE telah membentuk KDE e.V., "
+"sebuah organisasi nirlaba yang didirikan secara legal di Jerman. KDE e.V. "
+"mewakili komunitas KDE dalam masalah hukum dan keuangan. Lihat &lt;a "
+"href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; untuk informasi "
+"tentang KDE e.V.&lt;/p&gt; &lt;p&gt;KDE mendapat manfaat dari berbagai macam "
+"kontribusi, termasuk keuangan. Kami menggunakan dana untuk mengganti anggota "
+"dan lainnya untuk pengeluaran yang mereka anggap ketika berkontribusi. Dana "
+"lebih lanjut digunakan untuk dukungan hukum dan pengorganisasian konferensi "
+"dan rapat.&lt;/p&gt; &lt;p&gt;Kami ingin mendorong kamu untuk mendukung "
+"upaya kami dengan sumbangan keuangan, menggunakan salah satu cara yang "
+"dijelaskan di &lt;a href=https://www.kde.org/community/donations/&gt;https://"
+"www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Terima kasih banyak "
+"sebelumnya atas dukunganmu."
+
+#. Authors tasks
+msgctxt "maintainer_and_developer"
+msgid "Maintainer and developer"
+msgstr "Perawat dan pengembang"
+
+msgctxt "developer"
+msgid "Developer"
+msgstr "Pengembang"
+
+msgctxt "apple_support"
+msgid "macOS support. Working on iOS support"
+msgstr "Dukungan macOS. Bekerja pada dukungan iOS"
+
+msgctxt "bug_fixes_and_general_improvements"
+msgid "Bug fixes and general improvements"
+msgstr "Perbaikan bug dan peningkatan umum"
+
+msgctxt "samoilenko_yuri_task"
+msgid "SFTP implementation, bug fixes and general improvements"
+msgstr "Implementasi SFTP, perbaikan bug dan peningkatan pada umumnya"
+
+msgctxt "aniket_kumar_task"
+msgid "SMS plugin improvements"
+msgstr "Peningkatan plugin SMS"
+
+msgctxt "alex_fiestas_task"
+msgid "Contacts plugin improvements"
+msgstr "Peningkatan plugin kontak"
+
+msgctxt "maxim_leshchenko_task"
+msgid "UI improvements and this about page"
+msgstr "Peningkatan UI dan halaman tentang ini"
+
+msgctxt "holger_kaelberer_task"
+msgid "Remote keyboard plugin and bug fixes"
+msgstr "Plugin keyboard jarak jauh dan perbaikan kutu"
+
+msgctxt "saikrishna_arcot_task"
+msgid ""
+"Support for using the keyboard in the remote input plugin, bug fixes and "
+"general improvements"
+msgstr ""
+"Dukungan untuk penggunaan keyboard di dalam plugin input jarak jauh, "
+"perbaikan bug dan peningkatan pada umumnya"
+
+msgctxt "everyone_else"
+msgid "Everyone else who has contributed to KDE Connect over the years"
+msgstr ""
+"Semua orang yang telah berkontribusi pada KDE Connect selama bertahun-tahun"
+
+msgctxt "send_clipboard"
+msgid "Send clipboard"
+msgstr "Kirimkan papan klip"
+
+msgctxt "tap_to_execute"
+msgid "Tap to execute"
+msgstr "Ketuk untuk menjalankan"
+
+#~ msgctxt "share_optional_permission_explanation"
+#~ msgid ""
+#~ "To share files between your phone and your desktop you need to give "
+#~ "access to the phone's storage"
+#~ msgstr ""
+#~ "Untuk membagikan file antara teleponmu dan desktopmu kamu harus "
+#~ "memberikan akses ke penyimpanan teleponmu"
+
+#~ msgctxt "on_data_message"
+#~ msgid ""
+#~ "It looks like you are on a mobile data connection. KDE Connect only works "
+#~ "on local networks."
+#~ msgstr ""
+#~ "Nampaknya kamu berada pada koneksi data seluler. KDE Connect hanya "
+#~ "bekerja pada jaringan lokal."
+
+#~ msgctxt "plugin_not_available"
+#~ msgid "This feature is not available in your Android version"
+#~ msgstr "Fitur ini tidak tersedia dalam versi Android-mu"
+
+#~ msgctxt "device_not_reachable"
+#~ msgid "Paired device not reachable"
+#~ msgstr "Menyandingkan perangkat tidak dapat dicapai"
+
+#~ msgctxt "error_already_requested"
+#~ msgid "Pairing already requested"
+#~ msgstr "Penyandingan sudah diminta"
+
+#~ msgctxt "error_invalid_key"
+#~ msgid "Invalid key received"
+#~ msgstr "Diterima kunci yang tak absah"
+
+#~ msgctxt "received_url_title"
+#~ msgid "Received link from %1s"
+#~ msgstr "Tautan diterima dari %1s"
+
+#~ msgctxt "received_url_text"
+#~ msgid "Tap to open '%1s'"
+#~ msgstr "Ketuk untuk membuka '%1s'"
+
+#~ msgctxt "reconnect"
+#~ msgid "Reconnect"
+#~ msgstr "Sambung-ulang"
+
+#~ msgctxt "device"
+#~ msgid "Device"
+#~ msgstr "Perangkat"
+
+#~ msgctxt "pair_device"
+#~ msgid "Pair device"
+#~ msgstr "Sandingkan perangkat"
+
+#~ msgctxt "mpris_settings"
+#~ msgid "Multimedia Settings"
+#~ msgstr "Setelan Multimedia"
+
+#~ msgctxt "protocol_version_older"
+#~ msgid "This device uses an old protocol version"
+#~ msgstr "Perangkat ini menggunakan sebuah versi protokol lawas"
+
+#~ msgctxt "general_settings"
+#~ msgid "General Settings"
+#~ msgstr "Setelan Umum"
+
+#~ msgctxt "plugin_settings"
+#~ msgid "Settings"
+#~ msgstr "Setelan"
+
+#~ msgctxt "device_name"
+#~ msgid "Device name"
+#~ msgstr "Nama perangkat"
+
+#~ msgctxt "device_name_preference_summary"
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#~ msgctxt "pair_device_action"
+#~ msgid "Pair a new device"
+#~ msgstr "Sandingkan sebuah perangkat baru"
+
+#~ msgctxt "unpair_device_action"
+#~ msgid "Unpair %s"
+#~ msgstr "Leraikan %s"
+
+#~ msgctxt "sftp_internal_storage"
+#~ msgid "Internal storage"
+#~ msgstr "Penyimpanan internal"
+
+#~ msgctxt "add_host"
+#~ msgid "Add host/IP"
+#~ msgstr "Tambahkan host/IP"
+
+#, fuzzy
+#~| msgctxt "add_host_hint"
+#~| msgid "Hostname or IP"
+#~ msgctxt "add_host_hint"
+#~ msgid "Hostname or IP"
+#~ msgstr "Hostname atau IP"
+
+#~ msgctxt "mpris_player_on_device"
+#~ msgid "%1$s on %2$s"
+#~ msgstr "%1$s pada %2$s"
+
+#~ msgctxt "device_paired"
+#~ msgid "Device paired"
+#~ msgstr "Perangkat disandingkan"
+
+#~ msgctxt "plugin_not_supported"
+#~ msgid "This plugin is not supported by the device"
+#~ msgstr "Plugin ini tidaklah didukung oleh perangkat"
+
+#~ msgctxt "no_permissions_storage"
+#~ msgid "You need to grant permissions to access the storage"
+#~ msgstr "Kamu perlu mengabulkan perizinan untuk mengakses penyimpanan"
+
+#~ msgctxt "dark_theme"
+#~ msgid "Dark theme"
+#~ msgstr "Tema gelap"
+
+#, fuzzy
+#~| msgctxt "share_notification_preference"
+#~| msgid "Noisy notifications"
+#~ msgctxt "new_notification"
+#~ msgid "New notification"
+#~ msgstr "Notifikasi bising"
+
+#~ msgctxt "outgoing_files_title"
+#~ msgid "Sending files to %1s"
+#~ msgstr "Mengirim file ke %1s"
+
+# Need review
+#~ msgctxt "outgoing_files_text"
+#~ msgid "Sent %1$d file"
+#~ msgid_plural "Sent %1$d out of %2$d files"
+#~ msgstr[0] "Kirimkan file %1$d"
+#~ msgstr[1] "Kirimkan %1$d dari dalam file %2$d"
+
+#~ msgctxt "sent_file_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "sent_file_failed_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "sftp_all_files"
+#~ msgid "All files"
+#~ msgstr "Semua file"
+
+#~ msgctxt "sftp_permission_explanation"
+#~ msgid ""
+#~ "To access your files from your PC the app needs permission to access your "
+#~ "phone's storage"
+#~ msgstr ""
+#~ "Untuk mengakses filemu dari PC-mu si apl perlu perizinan untuk mengakses "
+#~ "penyimpanan teleponmu"
+
+#, fuzzy
+#~| msgctxt "sftp_camera"
+#~| msgid "Camera pictures"
+#~ msgctxt "take_picture"
+#~ msgid "Take picture"
+#~ msgstr "Gambar kamera"
+
+#~ msgctxt "custom_dev_list_help"
+#~ msgid ""
+#~ "Use this option only if your device is not automatically detected. Enter "
+#~ "IP address or hostname below and touch the button to add it to the list. "
+#~ "Touch an existing item to remove it from the list."
+#~ msgstr ""
+#~ "Gunakan opsi ini hanya jika perangkatmu tidaklah secara otomatis "
+#~ "terdeteksi. Masukkan alamat IP atau hostname di bawah ini dan sentuh "
+#~ "tombol untuk menambahkannya ke daftar. Sentuh item yang ada untuk "
+#~ "membuangnya dari daftar."
+
+#~ msgctxt "plugins_failed_to_load"
+#~ msgid "Plugins failed to load (tap for more info):"
+#~ msgstr "Plugin gagal memuat (ketuk untuk info selebihnya):"
+
+#~ msgctxt "remote_control"
+#~ msgid "Remote control"
+#~ msgstr "Kendali Jarak Jauh"
+
+#~ msgctxt "incoming_file_title"
+#~ msgid "Incoming file from %1s"
+#~ msgstr "File masuk dari %1s"
+
+#~ msgctxt "incoming_file_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "settings"
+#~ msgid "KDE Connect Settings"
+#~ msgstr "Setelan KDE Connect"

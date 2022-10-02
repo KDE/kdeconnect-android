@@ -1,0 +1,1894 @@
+# Translations template for PROJECT.
+# Copyright (C) 2014 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+#
+# Automatically generated, 2014.
+# Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>, 2015.
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-01-16 00:43+0000\n"
+"PO-Revision-Date: 2022-09-19 13:01+0300\n"
+"Last-Translator: Moo <<>>\n"
+"Language-Team: lt <kde-i18n-lt@kde.org>\n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
+"%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
+"Generated-By: Babel 1.0dev\n"
+"X-Generator: Poedit 3.1.1\n"
+
+#. # Dear potential translators:          Thank you for your interest in KDE
+#. Connect! We do not actually handle our own translations.         All
+#. translations for all KDE apps are handled by the [localization
+#. team](https://l10n.kde.org).         We really appreciate your translations,
+#. but make sure to submit them by working with the proper team!
+msgctxt "kde_connect"
+msgid "KDE Connect"
+msgstr "KDE Connect"
+
+msgctxt "manifest_label_share"
+msgid "Send to Device"
+msgstr "Siųsti į įrenginį"
+
+msgctxt "foreground_notification_no_devices"
+msgid "Not connected to any device"
+msgstr "Neprisijungta prie jokio įrenginio"
+
+#, c-format
+msgctxt "foreground_notification_devices"
+msgid "Connected to: %s"
+msgstr "Prisijungta prie: %s"
+
+msgctxt "foreground_notification_send_clipboard"
+msgid "Send Clipboard"
+msgstr "Siųsti iškarpinę"
+
+msgctxt "pref_plugin_telephony"
+msgid "Telephony notifier"
+msgstr "Telefonijos pranešiklis"
+
+msgctxt "pref_plugin_telephony_desc"
+msgid "Send notifications for incoming calls"
+msgstr "Siųsti gaunamųjų skambučių pranešimus"
+
+msgctxt "pref_plugin_battery"
+msgid "Battery report"
+msgstr "Akumuliatoriaus ataskaita"
+
+msgctxt "pref_plugin_battery_desc"
+msgid "Periodically report battery status"
+msgstr "Periodiškai pranešti apie akumuliatoriaus būseną"
+
+msgctxt "pref_plugin_connectivity_report"
+msgid "Connectivity report"
+msgstr "Jungiamumo ataskaita"
+
+msgctxt "pref_plugin_connectivity_report_desc"
+msgid "Report network signal strength and status"
+msgstr "Pranešti apie tinklo signalo stiprumą ir būseną"
+
+msgctxt "pref_plugin_sftp"
+msgid "Filesystem expose"
+msgstr "Failų sistemos naršymas"
+
+msgctxt "pref_plugin_sftp_desc"
+msgid "Allows to browse this device's filesystem remotely"
+msgstr "Leidžia nuotoliniu būdu naršyti šio įrenginio failų sistemą"
+
+msgctxt "pref_plugin_clipboard"
+msgid "Clipboard sync"
+msgstr "Iškarpinės sinchronizavimas"
+
+msgctxt "pref_plugin_clipboard_desc"
+msgid "Share the clipboard content"
+msgstr "Bendrinti iškarpinės turinį"
+
+msgctxt "pref_plugin_clipboard_sent"
+msgid "Clipboard Sent"
+msgstr "Iškarpinė išsiųsta"
+
+msgctxt "pref_plugin_mousepad"
+msgid "Remote input"
+msgstr "Nuotolinis įvedimas"
+
+msgctxt "pref_plugin_mousepad_desc"
+msgid "Use your phone or tablet as a touchpad and keyboard"
+msgstr ""
+"Naudoti savo telefoną ar planšetę kaip jutiklinį kilimėlį ir klaviatūrą"
+
+msgctxt "pref_plugin_presenter"
+msgid "Slideshow remote"
+msgstr "Nuotolinis skaidrių rodymas"
+
+msgctxt "pref_plugin_presenter_desc"
+msgid "Use your device to change slides in a presentation"
+msgstr "Naudoti savo įrenginį pateikties skaidrių keitimui"
+
+msgctxt "pref_plugin_remotekeyboard"
+msgid "Receive remote keypresses"
+msgstr "Gauti nuotolinius klavišų paspaudimus"
+
+msgctxt "pref_plugin_remotekeyboard_desc"
+msgid "Receive keypress events from remote devices"
+msgstr "Gauti klavišų paspaudimo įvykius iš nuotolinių įrenginių"
+
+msgctxt "pref_plugin_mpris"
+msgid "Multimedia controls"
+msgstr "Įvairialypės terpės valdikliai"
+
+msgctxt "pref_plugin_mpris_desc"
+msgid "Provides a remote control for your media player"
+msgstr "Pateikia jūsų medijos leistuvės nuotolinį valdymą"
+
+msgctxt "pref_plugin_runcommand"
+msgid "Run Command"
+msgstr "Vykdyti komandą"
+
+msgctxt "pref_plugin_runcommand_desc"
+msgid "Trigger remote commands from your phone or tablet"
+msgstr "Paleisti nuotolines komandas iš savo telefono ar planšetės"
+
+msgctxt "pref_plugin_contacts"
+msgid "Contacts Synchronizer"
+msgstr "Adresatų sinchronizavimas"
+
+msgctxt "pref_plugin_contacts_desc"
+msgid "Allow synchronizing the device's contacts book"
+msgstr "Leisti sinchronizuoti įrenginio adresatų knygą"
+
+msgctxt "pref_plugin_ping"
+msgid "Ping"
+msgstr "Ryšio patikrinimas"
+
+msgctxt "pref_plugin_ping_desc"
+msgid "Send and receive pings"
+msgstr "Siųsti ir gauti ryšio patikrinimus"
+
+msgctxt "pref_plugin_notifications"
+msgid "Notification sync"
+msgstr "Pranešimų sinchronizavimas"
+
+msgctxt "pref_plugin_notifications_desc"
+msgid "Access your notifications from other devices"
+msgstr "Gauti prieigą prie savo pranešimų iš kitų įrenginių"
+
+msgctxt "pref_plugin_receive_notifications"
+msgid "Receive notifications"
+msgstr "Gauti pranešimus"
+
+msgctxt "pref_plugin_receive_notifications_desc"
+msgid "Receive notifications from the other device and display them on Android"
+msgstr "Gauti pranešimus iš kito įrenginio ir rodyti juos Android įrenginyje"
+
+msgctxt "pref_plugin_sharereceiver"
+msgid "Share and receive"
+msgstr "Bendrinti ir gauti"
+
+msgctxt "pref_plugin_sharereceiver_desc"
+msgid "Share files and URLs between devices"
+msgstr "Bendrinti failus ir URL adresus tarp įrenginių"
+
+msgctxt "device_list_empty"
+msgid "No devices"
+msgstr "Jokių įrenginių"
+
+msgctxt "ok"
+msgid "OK"
+msgstr "Gerai"
+
+msgctxt "sad_ok"
+msgid "OK :("
+msgstr "Gerai :("
+
+msgctxt "cancel"
+msgid "Cancel"
+msgstr "Atsisakyti"
+
+msgctxt "open_settings"
+msgid "Open settings"
+msgstr "Atverti nuostatas"
+
+msgctxt "no_permissions"
+msgid "You need to grant permission to access notifications"
+msgstr "Norėdami gauti prieigą prie pranešimų, turite suteikti leidimą"
+
+msgctxt "no_permission_mprisreceiver"
+msgid ""
+"To be able to control your media players you need to grant access to the "
+"notifications"
+msgstr ""
+"Norėdami valdyti savo medijos leistuves, turite suteikti prieigą prie "
+"pranešimų"
+
+msgctxt "no_permissions_remotekeyboard"
+msgid ""
+"To receive keypresses you need to activate the KDE Connect Remote Keyboard"
+msgstr ""
+"Norėdami gauti klavišų paspaudimus, turite aktyvuoti KDE Connect nuotolinę "
+"klaviatūrą"
+
+msgctxt "send_ping"
+msgid "Send ping"
+msgstr "Tikrinti ryšį"
+
+msgctxt "open_mpris_controls"
+msgid "Multimedia control"
+msgstr "Įvairialypės terpės valdymas"
+
+msgctxt "remotekeyboard_editing_only_title"
+msgid "Handle remote keys only when editing"
+msgstr "Apdoroti nuotolinius klavišus tik redaguojant"
+
+msgctxt "remotekeyboard_not_connected"
+msgid ""
+"There is no active remote keyboard connection, establish one in kdeconnect"
+msgstr ""
+"Nėra jokio aktyvaus nuotolinės klaviatūros ryšio, užmegzkite jį naudodami "
+"kdeconnect"
+
+msgctxt "remotekeyboard_connected"
+msgid "Remote keyboard connection is active"
+msgstr "Nuotolinės klaviatūros ryšys yra aktyvus"
+
+msgctxt "remotekeyboard_multiple_connections"
+msgid ""
+"There is more than one remote keyboard connection, select the device to "
+"configure"
+msgstr ""
+"Yra daugiau nei vienas nuotolinės klaviatūros ryšys, pasirinkite kurį "
+"įrenginį konfigūruoti"
+
+msgctxt "open_mousepad"
+msgid "Remote input"
+msgstr "Nuotolinis įvedimas"
+
+msgctxt "mousepad_info"
+msgid ""
+"Move a finger on the screen to move the mouse cursor. Tap for a click, and "
+"use two/three fingers for right and middle buttons. Use 2 fingers to scroll. "
+"Use a long press to drag'n drop."
+msgstr ""
+"Norėdami judinti pelės žymeklį, judinkite pirštu po ekraną. Bakstelėkite "
+"vienkartiniam spustelėjimui ir naudokite du/tris pirštus dešiniajam ir "
+"viduriniajam mygtukui. Naudokite 2 pirštus, norėdami slinkti. Naudokite ilgą "
+"paspaudimą, norėdami tempti."
+
+msgctxt "mousepad_single_tap_settings_title"
+msgid "Set one finger tap action"
+msgstr "Nustatyti bakstelėjimo vienu pirštu veiksmą"
+
+msgctxt "mousepad_double_tap_settings_title"
+msgid "Set two finger tap action"
+msgstr "Nustatyti bakstelėjimo dviem pirštais veiksmą"
+
+msgctxt "mousepad_triple_tap_settings_title"
+msgid "Set three finger tap action"
+msgstr "Nustatyti bakstelėjimo trimis pirštais veiksmą"
+
+msgctxt "mousepad_sensitivity_settings_title"
+msgid "Set touchpad sensitivity"
+msgstr "Nustatyti jutiklinio kilimėlio jautrumą"
+
+msgctxt "mousepad_acceleration_profile_settings_title"
+msgid "Set pointer acceleration"
+msgstr "Nustatyti rodyklės pagreitį"
+
+msgctxt "mousepad_scroll_direction_title"
+msgid "Reverse Scrolling Direction"
+msgstr "Apversti slinkimo kryptį"
+
+msgctxt "mousepad_tap_entries:0"
+msgid "Left click"
+msgstr "Kairiojo mygtuko spustelėjimas"
+
+msgctxt "mousepad_tap_entries:1"
+msgid "Right click"
+msgstr "Dešiniojo mygtuko spustelėjimas"
+
+msgctxt "mousepad_tap_entries:2"
+msgid "Middle click"
+msgstr "Viduriniojo mygtuko spustelėjimas"
+
+msgctxt "mousepad_tap_entries:3"
+msgid "Nothing"
+msgstr "Nieko"
+
+msgctxt "mousepad_sensitivity_entries:0"
+msgid "Slowest"
+msgstr "Lėčiausias"
+
+msgctxt "mousepad_sensitivity_entries:1"
+msgid "Above Slowest"
+msgstr "Virš lėčiausio"
+
+msgctxt "mousepad_sensitivity_entries:2"
+msgid "Default"
+msgstr "Numatytasis"
+
+msgctxt "mousepad_sensitivity_entries:3"
+msgid "Above Default"
+msgstr "Virš numatytojo"
+
+msgctxt "mousepad_sensitivity_entries:4"
+msgid "Fastest"
+msgstr "Greičiausias"
+
+msgctxt "mousepad_acceleration_profile_entries:0"
+msgid "No Acceleration"
+msgstr "Jokio pagreičio"
+
+msgctxt "mousepad_acceleration_profile_entries:1"
+msgid "Weakest"
+msgstr "Silpniausias"
+
+msgctxt "mousepad_acceleration_profile_entries:2"
+msgid "Weaker"
+msgstr "Silpnesnis"
+
+msgctxt "mousepad_acceleration_profile_entries:3"
+msgid "Medium"
+msgstr "Vidutinis"
+
+msgctxt "mousepad_acceleration_profile_entries:4"
+msgid "Stronger"
+msgstr "Stipresnis"
+
+msgctxt "mousepad_acceleration_profile_entries:5"
+msgid "Strongest"
+msgstr "Stipriausias"
+
+msgctxt "sendkeystrokes_send_to"
+msgid "Send keystrokes to"
+msgstr "Siųsti klavišų paspaudimus į"
+
+msgctxt "sendkeystrokes_textbox_hint"
+msgid "Send keystrokes to host"
+msgstr "Siųsti klavišų paspaudimus į serverį"
+
+msgctxt "sendkeystrokes_disabled_toast"
+msgid "Sending keystrokes is disabled - enable it in the settings"
+msgstr "Klavišų paspaudimų siuntimas yra išjungtas - įjunkite jį nuostatose"
+
+msgctxt "sendkeystrokes_wrong_data"
+msgid "Invalid mime type - needs to be 'text/x-keystrokes'"
+msgstr "Neteisingas mime tipas - turi būti 'text/x-keystrokes'"
+
+#, c-format
+msgctxt "sendkeystrokes_sent_text"
+msgid "Sent %1$s to device %2$s"
+msgstr "%1$s išsiųstas į įrenginį %2$s"
+
+msgctxt "sendkeystrokes_pref_category_summary"
+msgid ""
+"This module allows other apps to share text segments as keystrokes which "
+"will get send to the connected host"
+msgstr ""
+"Šis modulis leidžia kitoms programėlėms bendrinti teksto segmentus kaip "
+"klavišų paspaudimus, kurie bus išsiųsti į prijungtą serverį"
+
+msgctxt "sendkeystrokes_pref_category_title"
+msgid "Send Keystrokes"
+msgstr "Siųsti klavišų paspaudimus"
+
+msgctxt "sendkeystrokes_pref_enabled"
+msgid "Enable Keystrokes sending"
+msgstr "Įjungti klavišų paspaudimų siuntimą"
+
+msgctxt "sendkeystrokes_pref_enabled_summary"
+msgid "Listen for data with mime type 'text/x-keystrokes'"
+msgstr "Klausytis duomenų, kurių mime tipas yra 'text/x-keystrokes'"
+
+msgctxt "sendkeystrokes_safe_text_enabled"
+msgid "Send safe text immediately"
+msgstr "Saugų tekstą siųsti nedelsiant"
+
+msgctxt "sendkeystrokes_safe_text_enabled_summary"
+msgid "Send short only-numeric strings without confirmation"
+msgstr "Siųsti be patvirtinimo tik trumpas skaičių eilutes"
+
+msgctxt "pref_plugin_mousepad_send_keystrokes"
+msgid "Send as keystrokes"
+msgstr "Siųsti kaip klavišų paspaudimus"
+
+msgctxt "mouse_receiver_plugin_description"
+msgid "Receive remote mouse movement"
+msgstr "Gauti nuotolinius pelės judesius"
+
+msgctxt "mouse_receiver_plugin_name"
+msgid "Mouse receiver"
+msgstr "Pelės gavėjas"
+
+msgctxt "mouse_receiver_no_permissions"
+msgid "You need to enable Accessibility Service"
+msgstr "Jūs turite įjungti prieinamumo tarnybą"
+
+msgctxt "view_status_title"
+msgid "Status"
+msgstr "Būsena"
+
+#, c-format
+msgctxt "battery_status_format"
+msgid "Battery: %d%%"
+msgstr "Akumuliatorius: %d%%"
+
+#, c-format
+msgctxt "battery_status_low_format"
+msgid "Battery: %d%% Low Battery"
+msgstr "Akumuliatorius: %d%% baigia išsikrauti"
+
+#, c-format
+msgctxt "battery_status_charging_format"
+msgid "Battery: %d%% charging"
+msgstr "Akumuliatorius: %d%% įkraunamas"
+
+msgctxt "battery_status_unknown"
+msgid "Battery information not available"
+msgstr "Informacija apie akumuliatorių neprieinama"
+
+msgctxt "category_connected_devices"
+msgid "Connected devices"
+msgstr "Prijungti įrenginiai"
+
+msgctxt "category_not_paired_devices"
+msgid "Available devices"
+msgstr "Prieinami įrenginiai"
+
+msgctxt "category_remembered_devices"
+msgid "Remembered devices"
+msgstr "Įsiminti įrenginiai"
+
+msgctxt "device_menu_plugins"
+msgid "Plugin settings"
+msgstr "Papildinio nuostatos"
+
+msgctxt "device_menu_unpair"
+msgid "Unpair"
+msgstr "Panaikinti suporavimą"
+
+msgctxt "pair_new_device"
+msgid "Pair new device"
+msgstr "Suporuoti naują įrenginį"
+
+msgctxt "unknown_device"
+msgid "Unknown device"
+msgstr "Nežinomas įrenginys"
+
+msgctxt "error_not_reachable"
+msgid "Device not reachable"
+msgstr "Įrenginys nepasiekiamas"
+
+msgctxt "error_already_paired"
+msgid "Device already paired"
+msgstr "Įrenginys jau suporuotas"
+
+msgctxt "error_could_not_send_package"
+msgid "Could not send package"
+msgstr "Nepavyko išsiųsti paketo"
+
+msgctxt "error_timed_out"
+msgid "Timed out"
+msgstr "Pasibaigė skirtas laikas"
+
+msgctxt "error_canceled_by_user"
+msgid "Canceled by user"
+msgstr "Naudotojas atsisakė"
+
+msgctxt "error_canceled_by_other_peer"
+msgid "Canceled by other peer"
+msgstr "Lygiarangis atsisakė"
+
+msgctxt "encryption_info_title"
+msgid "Encryption Info"
+msgstr "Šifravimo informacija"
+
+msgctxt "encryption_info_msg_no_ssl"
+msgid ""
+"The other device doesn't use a recent version of KDE Connect, using the "
+"legacy encryption method."
+msgstr ""
+"Kitas įrenginys nenaudoja paskiausios KDE Connect versijos, naudojamas "
+"pasenęs šifravimo metodas."
+
+msgctxt "my_device_fingerprint"
+msgid "SHA256 fingerprint of your device certificate is:"
+msgstr "Jūsų įrenginio liudijimo SHA256 kontrolinis kodas yra:"
+
+msgctxt "remote_device_fingerprint"
+msgid "SHA256 fingerprint of remote device certificate is:"
+msgstr "Nuotolinio įrenginio liudijimo SHA256 kontrolinis kodas yra:"
+
+msgctxt "pair_requested"
+msgid "Pair requested"
+msgstr "Užklaustas suporavimas"
+
+#, c-format
+msgctxt "pairing_request_from"
+msgid "Pairing request from %1s"
+msgstr "Suporavimo užklausa iš %1s"
+
+#, c-format
+msgctxt "incoming_file_title"
+msgid "Receiving %1$d file from %2$s"
+msgid_plural "Receiving %1$d files from %2$s"
+msgstr[0] "Gaunamas %1$d failas iš %2$s"
+msgstr[1] "Gaunami %1$d failai iš %2$s"
+msgstr[2] "Gaunama %1$d failų iš %2$s"
+msgstr[3] "Gaunamas %1$d failas iš %2$s"
+
+#, c-format
+msgctxt "incoming_files_text"
+msgid "File: %1s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "Failas: %1s"
+msgstr[1] "(Failas %2$d iš %3$d) : %1$s"
+msgstr[2] "(Failas %2$d iš %3$d) : %1$s"
+msgstr[3] "(Failas %2$d iš %3$d) : %1$s"
+
+#, c-format
+msgctxt "outgoing_file_title"
+msgid "Sending %1$d file to %2$s"
+msgid_plural "Sending %1$d files to %2$s"
+msgstr[0] "Siunčiamas %1$d failas į %2$s"
+msgstr[1] "Siunčiami %1$d failai į %2$s"
+msgstr[2] "Siunčiama %1$d failų į %2$s"
+msgstr[3] "Siunčiamas %1$d failas į %2$s"
+
+#, c-format
+msgctxt "outgoing_files_text"
+msgid "File: %1$s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "Failas: %1$s"
+msgstr[1] "(Failas %2$d iš %3$d) : %1$s"
+msgstr[2] "(Failas %2$d iš %3$d) : %1$s"
+msgstr[3] "(Failas %2$d iš %3$d) : %1$s"
+
+#, c-format
+msgctxt "received_files_title"
+msgid "Received file from %1$s"
+msgid_plural "Received %2$d files from %1$s"
+msgstr[0] "Gautas failas iš %1$s"
+msgstr[1] "Gauti %2$d failai iš %1$s"
+msgstr[2] "Gauta %2$d failų iš %1$s"
+msgstr[3] "Gautas %2$d failas iš %1$s"
+
+#, c-format
+msgctxt "received_files_fail_title"
+msgid "Failed receiving file from %1$s"
+msgid_plural "Failed receiving %2$d of %3$d files from %1$s"
+msgstr[0] "Nepavyko gauti failo iš %1$s"
+msgstr[1] "Nepavyko gauti %2$d iš %3$d failų iš %1$s"
+msgstr[2] "Nepavyko gauti %2$d iš %3$d failų iš %1$s"
+msgstr[3] "Nepavyko gauti %2$d iš %3$d failo iš %1$s"
+
+#, c-format
+msgctxt "sent_files_title"
+msgid "Sent file to %1$s"
+msgid_plural "Sent %2$d files to %1$s"
+msgstr[0] "Failas išsiųstas į %1$s"
+msgstr[1] "Išsiųsti %2$d failai į %1$s"
+msgstr[2] "Išsiųsta %2$d failų į %1$s"
+msgstr[3] "Išsiųstas %2$d failas į %1$s"
+
+#, c-format
+msgctxt "send_files_fail_title"
+msgid "Failed sending file to %1$s"
+msgid_plural "Failed sending %2$d of %3$d files to %1$s"
+msgstr[0] "Nepavyko išsiųsti failo į %1$s"
+msgstr[1] "Nepavyko išsiųsti %2$d iš %3$d failų į %1$s"
+msgstr[2] "Nepavyko išsiųsti %2$d iš %3$d failų į %1$s"
+msgstr[3] "Nepavyko išsiųsti %2$d iš %3$d failo į %1$s"
+
+msgctxt "tap_to_open"
+msgid "Tap to open"
+msgstr "Bakstelėkite, norėdami atverti"
+
+#, c-format
+msgctxt "received_file_text"
+msgid "Tap to open '%1s'"
+msgstr "Bakstelėkite,norėdami atverti \"%1s\""
+
+#, c-format
+msgctxt "cannot_create_file"
+msgid "Cannot create file %s"
+msgstr "Nepavyksta sukurti failo %s"
+
+msgctxt "tap_to_answer"
+msgid "Tap to answer"
+msgstr "Bakstelėkite norėdami atsakyti"
+
+msgctxt "right_click"
+msgid "Send Right Click"
+msgstr "Siųsti dešinįjį spustelėjimą"
+
+msgctxt "middle_click"
+msgid "Send Middle Click"
+msgstr "Siųsti vidurinįjį spustelėjimą"
+
+msgctxt "show_keyboard"
+msgid "Show Keyboard"
+msgstr "Rodyti klaviatūrą"
+
+msgctxt "device_not_paired"
+msgid "Device not paired"
+msgstr "Įrenginys nesuporuotas"
+
+msgctxt "request_pairing"
+msgid "Request pairing"
+msgstr "Užklausti suporuoti"
+
+msgctxt "pairing_accept"
+msgid "Accept"
+msgstr "Priimti"
+
+msgctxt "pairing_reject"
+msgid "Reject"
+msgstr "Atmesti"
+
+msgctxt "settings"
+msgid "Settings"
+msgstr "Nuostatos"
+
+msgctxt "mpris_play"
+msgid "Play"
+msgstr "Atkurti"
+
+msgctxt "mpris_pause"
+msgid "Pause"
+msgstr "Pristabdyti"
+
+msgctxt "mpris_previous"
+msgid "Previous"
+msgstr "Ankstesnis"
+
+msgctxt "mpris_rew"
+msgid "Rewind"
+msgstr "Persukti atgal"
+
+msgctxt "mpris_ff"
+msgid "Fast-forward"
+msgstr "Persukti pirmyn"
+
+msgctxt "mpris_next"
+msgid "Next"
+msgstr "Kitas"
+
+msgctxt "mpris_loop"
+msgid "Loop"
+msgstr "Kartoti iš naujo"
+
+msgctxt "mpris_shuffle"
+msgid "Shuffle"
+msgstr "Maišyti"
+
+msgctxt "mpris_volume"
+msgid "Volume"
+msgstr "Garsumas"
+
+msgctxt "mpris_time_settings_title"
+msgid "Forward/rewind buttons"
+msgstr "Persukimo pirmyn/atgal mygtukai"
+
+msgctxt "mpris_time_settings_summary"
+msgid "Adjust the time to fast forward/rewind when pressed"
+msgstr "Reguliuoti persukimo pirmyn/atgal laiką, spustelėjus"
+
+msgctxt "mpris_time_entries:0"
+msgid "10 seconds"
+msgstr "10 sekundžių"
+
+msgctxt "mpris_time_entries:1"
+msgid "20 seconds"
+msgstr "20 sekundžių"
+
+msgctxt "mpris_time_entries:2"
+msgid "30 seconds"
+msgstr "30 sekundžių"
+
+msgctxt "mpris_time_entries:3"
+msgid "1 minute"
+msgstr "1 minutė"
+
+msgctxt "mpris_time_entries:4"
+msgid "2 minutes"
+msgstr "2 minutės"
+
+msgctxt "mpris_notification_settings_title"
+msgid "Show media control notification"
+msgstr "Rodyti įvairialypės terpės valdymo pranešimus"
+
+msgctxt "mpris_notification_settings_summary"
+msgid "Allow controlling your media players without opening KDE Connect"
+msgstr "Leisti valdyti medijos leistuves neatveriant KDE Connect"
+
+msgctxt "share_to"
+msgid "Share To…"
+msgstr "Bendrinti su…"
+
+msgctxt "protocol_version_newer"
+msgid "This device uses a newer protocol version"
+msgstr "Šis įrenginys naudoja naujesnę protokolo versiją"
+
+#, c-format
+msgctxt "plugin_settings_with_name"
+msgid "%s settings"
+msgstr "%s nuostatos"
+
+msgctxt "invalid_device_name"
+msgid "Invalid device name"
+msgstr "Netinkamas įrenginio pavadinimas"
+
+msgctxt "shareplugin_text_saved"
+msgid "Received text, saved to clipboard"
+msgstr "Gautas tekstas, įrašytas į iškarpinę"
+
+msgctxt "custom_devices_settings"
+msgid "Custom device list"
+msgstr "Tinkintų įrenginių sąrašas"
+
+msgctxt "custom_device_list"
+msgid "Add devices by IP"
+msgstr "Pridėti įrenginius pagal IP"
+
+msgctxt "custom_device_deleted"
+msgid "Custom device deleted"
+msgstr "Tinkintas įrenginys ištrintas"
+
+msgctxt "custom_device_list_help"
+msgid ""
+"If your device is not automatically detected you can add its IP address or "
+"hostname by clicking on the Floating Action Button"
+msgstr ""
+"Jeigu jūsų įrenginys nėra automatiškai aptinkamas, galite pridėti jo IP "
+"adresą arba mazgo pavadinimą, spusteldami ant slankiojančio veiksmo mygtuko"
+
+msgctxt "custom_device_fab_hint"
+msgid "Add a device"
+msgstr "Pridėti įrenginį"
+
+msgctxt "undo"
+msgid "Undo"
+msgstr "Atšaukti"
+
+msgctxt "share_notification_preference"
+msgid "Noisy notifications"
+msgstr "Triukšmingi pranešimai"
+
+msgctxt "share_notification_preference_summary"
+msgid "Vibrate and play a sound when receiving a file"
+msgstr "Gaunant failą, vibruoti ir atkurti garsą"
+
+msgctxt "share_destination_customize"
+msgid "Customize destination directory"
+msgstr "Tinkinti paskirties katalogą"
+
+msgctxt "share_destination_customize_summary_disabled"
+msgid "Received files will appear in Downloads"
+msgstr "Gauti failai atsiras Atsiuntimų aplanke"
+
+msgctxt "share_destination_customize_summary_enabled"
+msgid "Files will be stored in the directory below"
+msgstr "Failai bus saugomi žemiau esančiame kataloge"
+
+msgctxt "share_destination_folder_preference"
+msgid "Destination directory"
+msgstr "Paskirties katalogas"
+
+msgctxt "share"
+msgid "Share"
+msgstr "Bendrinti"
+
+#, c-format
+msgctxt "share_received_file"
+msgid "Share \"%s\""
+msgstr "Bendrinti \"%s\""
+
+msgctxt "title_activity_notification_filter"
+msgid "Notification filter"
+msgstr "Pranešimų filtras"
+
+msgctxt "filter_apps_info"
+msgid "Notifications will be synchronized for the selected apps."
+msgstr "Pranešimai bus sinchronizuojami pasirinktoms programėlėms."
+
+msgctxt "show_notification_if_screen_off"
+msgid "Send notifications only if the screen is off"
+msgstr "Siųsti pranešimus tik tuo atveju, jei ekranas yra išjungtas"
+
+#, c-format
+msgctxt "sftp_sdcard_num"
+msgid "SD card %d"
+msgstr "SD kortelė %d"
+
+msgctxt "sftp_sdcard"
+msgid "SD card"
+msgstr "SD kortelė"
+
+msgctxt "sftp_readonly"
+msgid "(read only)"
+msgstr "(tik skaitymui)"
+
+msgctxt "sftp_camera"
+msgid "Camera pictures"
+msgstr "Kameros nuotraukos"
+
+msgctxt "add_device_dialog_title"
+msgid "Add device"
+msgstr "Pridėti įrenginį"
+
+msgctxt "add_device_hint"
+msgid "Hostname or IP address"
+msgstr "Mazgo pavadinimas arba IP adresas"
+
+msgctxt "sftp_preference_detected_sdcards"
+msgid "Detected SD cards"
+msgstr "Aptiktos SD kortelės"
+
+msgctxt "sftp_preference_edit_sdcard_title"
+msgid "Edit SD card"
+msgstr "Taisyti SD kortelė"
+
+msgctxt "sftp_preference_configured_storage_locations"
+msgid "Configured storage locations"
+msgstr "Sukonfigūruotos saugyklų vietos"
+
+msgctxt "sftp_preference_add_storage_location_title"
+msgid "Add storage location"
+msgstr "Pridėti saugyklos vietą"
+
+msgctxt "sftp_preference_edit_storage_location"
+msgid "Edit storage location"
+msgstr "Taisyti saugyklos vietą"
+
+msgctxt "sftp_preference_add_camera_shortcut"
+msgid "Add camera folder shortcut"
+msgstr "Pridėti kameros aplanko trumpinį"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_on"
+msgid "Add a shortcut to the camera folder"
+msgstr "Pridėti šaukinį į kameros aplanką"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_off"
+msgid "Do not add a shortcut to the camera folder"
+msgstr "Nepridėti šaukinio į kameros aplanką"
+
+msgctxt "sftp_storage_preference_storage_location"
+msgid "Storage location"
+msgstr "Saugyklos vieta"
+
+msgctxt "sftp_storage_preference_storage_location_already_configured"
+msgid "This location has already been configured"
+msgstr "Ši vieta jau yra sukonfigūruota"
+
+msgctxt "sftp_storage_preference_click_to_select"
+msgid "click to select"
+msgstr "spustelėkite norėdami pasirinkti"
+
+msgctxt "sftp_storage_preference_display_name"
+msgid "Display name"
+msgstr "Rodomas pavadinimas"
+
+msgctxt "sftp_storage_preference_display_name_already_used"
+msgid "This display name is already used"
+msgstr "Šis rodomas pavadinimas jau yra naudojamas"
+
+msgctxt "sftp_storage_preference_display_name_cannot_be_empty"
+msgid "Display name cannot be empty"
+msgstr "Rodomas pavadinimas negali būti tuščias"
+
+msgctxt "sftp_action_mode_menu_delete"
+msgid "Delete"
+msgstr "Ištrinti"
+
+msgctxt "sftp_no_sdcard_detected"
+msgid "No SD card detected"
+msgstr "Neaptikta jokios SD kortelės"
+
+msgctxt "sftp_no_storage_locations_configured"
+msgid "No storage locations configured"
+msgstr "Nėra sukonfigūruota jokių saugyklos vietų"
+
+msgctxt "sftp_saf_permission_explanation"
+msgid "To access files remotely you have to configure storage locations"
+msgstr ""
+"Norėdami gauti nuotolinę prieigą prie failų, turite sukonfigūruoti saugyklos "
+"vietas"
+
+msgctxt "no_players_connected"
+msgid "No players found"
+msgstr "Nerasta jokių leistuvių"
+
+msgctxt "send_files"
+msgid "Send files"
+msgstr "Siųsti failus"
+
+msgctxt "pairing_title"
+msgid "KDE Connect Devices"
+msgstr "KDE Connect įrenginiai"
+
+msgctxt "pairing_description"
+msgid ""
+"Other devices running KDE Connect in your same network should appear here."
+msgstr ""
+"Čia turėtų atsirasti kiti to paties tinklo įrenginiai, naudojantys KDE "
+"Connect."
+
+msgctxt "device_rename_title"
+msgid "Rename device"
+msgstr "Pervadinti įrenginį"
+
+msgctxt "device_rename_confirm"
+msgid "Rename"
+msgstr "Pervadinti"
+
+msgctxt "refresh"
+msgid "Refresh"
+msgstr "Įkelti iš naujo"
+
+msgctxt "unreachable_description"
+msgid ""
+"This paired device is not reachable. Make sure it is connected to your same "
+"network."
+msgstr ""
+"Šis suporuotas įrenginys nepasiekiamas. Įsitikinkite, kad jis yra prijungtas "
+"prie to paties tinklo."
+
+msgctxt "no_wifi"
+msgid ""
+"You're not connected to a Wi-Fi network, so you may not be able to see any "
+"devices. Click here to enable Wi-Fi."
+msgstr ""
+"Nesate prisijungę prie belaidžio (Wi-Fi) tinklo, taigi, galite nematyti "
+"jokių įrenginių. Spustelėkite čia, norėdami įjungti belaidį (Wi-Fi)."
+
+msgctxt "on_non_trusted_message"
+msgid "Not on a trusted network: autodiscovery is disabled."
+msgstr "Nepatikimas tinklas: automatinis aptikimas yra išjungtas."
+
+msgctxt "no_file_browser"
+msgid "There are no file browsers installed."
+msgstr "Nėra įdiegta jokių failų tvarkytuvių."
+
+msgctxt "pref_plugin_telepathy"
+msgid "Send SMS"
+msgstr "Siųsti SMS žinutę"
+
+msgctxt "pref_plugin_telepathy_desc"
+msgid "Send text messages from your desktop"
+msgstr "Siųsti tekstines žinutes iš savo darbalaukio"
+
+msgctxt "pref_plugin_telepathy_mms"
+msgid "Send MMS"
+msgstr "Siųsti MMS žinutę"
+
+msgctxt "pref_plugin_telepathy_mms_desc"
+msgid ""
+"To be able to send MMS from KDE Connect you need to set it as the default "
+"SMS app."
+msgstr ""
+"Norėdami siųsti MMS iš KDE Connect, turite nustatyti ją kaip numatytąją SMS "
+"programėlę."
+
+msgctxt "findmyphone_title"
+msgid "Find my phone"
+msgstr "Rasti telefoną"
+
+msgctxt "findmyphone_title_tablet"
+msgid "Find my tablet"
+msgstr "Rasti planšetę"
+
+msgctxt "findmyphone_title_tv"
+msgid "Find my TV"
+msgstr "Rasti televizorių"
+
+msgctxt "findmyphone_description"
+msgid "Rings this device so you can find it"
+msgstr "Skambina į šį įrenginį, kad galėtumėte jį rasti"
+
+msgctxt "findmyphone_found"
+msgid "Found it"
+msgstr "Radau"
+
+msgctxt "open"
+msgid "Open"
+msgstr "Atverti"
+
+msgctxt "close"
+msgid "Close"
+msgstr "Užverti"
+
+msgctxt "plugins_need_permission"
+msgid "Some Plugins need permissions to work (tap for more info):"
+msgstr ""
+"Kai kurie papildiniai tam, kad veiktų, reikalauja leidimų (bakstelėkite "
+"išsamesnei informacijai):"
+
+msgctxt "permission_explanation"
+msgid "This plugin needs permissions to work"
+msgstr "Šis papildinys tam, kad veiktų, reikalauja leidimų"
+
+msgctxt "optional_permission_explanation"
+msgid "You need to grant extra permissions to enable all functions"
+msgstr "Norėdami įjungti visas funkcijas, turite suteikti papildomus leidimus"
+
+msgctxt "plugins_need_optional_permission"
+msgid ""
+"Some plugins have features disabled because of lack of permission (tap for "
+"more info):"
+msgstr ""
+"Kai kurių papildinių ypatybės, dėl leidimų trūkumo, buvo išjungtos "
+"(bakstelėkite išsamesnei informacijai):"
+
+msgctxt "share_optional_permission_explanation"
+msgid "To receive shared files you need to choose a destination directory"
+msgstr ""
+"Norėdami gauti bendrinamus failus, turite pasirinkti paskirties katalogą"
+
+msgctxt "telepathy_permission_explanation"
+msgid ""
+"To read and write SMS from your desktop you need to give permission to SMS"
+msgstr ""
+"Norėdami skaityti ir rašyti SMS žinutes iš savo darbalaukio, turite suteikti "
+"prieigą prie SMS žinučių"
+
+msgctxt "telephony_permission_explanation"
+msgid ""
+"To see phone calls on the desktop you need to give permission to phone call "
+"logs and phone state"
+msgstr ""
+"Norėdami matyti telefono skambučius darbalaukyje, turite suteikti prieigą "
+"prie telefono skambučių žurnalo ir telefono būsenos"
+
+msgctxt "telephony_optional_permission_explanation"
+msgid ""
+"To see a contact name instead of a phone number you need to give access to "
+"the phone's contacts"
+msgstr ""
+"Norėdami vietoj adresato numerio matyti adresato vardą, turite suteikti "
+"priegą prie telefono adresatų"
+
+msgctxt "contacts_permission_explanation"
+msgid ""
+"To share your contacts book with the desktop, you need to give contacts "
+"permission"
+msgstr ""
+"Norėdami bendrinti savo adresatų knygą su darbalaukiu, turite suteikti "
+"adresatų leidimą"
+
+msgctxt "select_ringtone"
+msgid "Select a ringtone"
+msgstr "Pasirinkti skambučio melodiją"
+
+msgctxt "telephony_pref_blocked_title"
+msgid "Blocked numbers"
+msgstr "Užblokuoti numeriai"
+
+msgctxt "telephony_pref_blocked_dialog_desc"
+msgid ""
+"Don't show calls and SMS from these numbers. Please specify one number per "
+"line"
+msgstr ""
+"Nerodyti skambučių ir SMS žinučių iš šių numerių. Nurodykite kiekvienoje "
+"eilutėje po vieną"
+
+msgctxt "mpris_coverart_description"
+msgid "Cover art of current media"
+msgstr "Dabartinės įvairialypės terpės iliustracija"
+
+msgctxt "device_icon_description"
+msgid "Device icon"
+msgstr "Įrenginio piktograma"
+
+msgctxt "settings_icon_description"
+msgid "Settings icon"
+msgstr "Nuostatų piktograma"
+
+msgctxt "presenter_fullscreen"
+msgid "Fullscreen"
+msgstr "Visas ekranas"
+
+msgctxt "presenter_exit"
+msgid "Exit presentation"
+msgstr "Išeiti iš pristatymo"
+
+msgctxt "presenter_lock_tip"
+msgid ""
+"You can lock your device and use the volume keys to go to the previous/next "
+"slide"
+msgstr ""
+"Galite užrakinti savo įrenginį ir perėjimui prie kitos/ankstesnės skaidrės "
+"naudoti garsumo mygtukus"
+
+msgctxt "add_command"
+msgid "Add a command"
+msgstr "Pridėti komandą"
+
+msgctxt "addcommand_explanation"
+msgid "There are no commands registered"
+msgstr "Nėra registruota jokių komandų"
+
+msgctxt "addcommand_explanation2"
+msgid "You can add new commands in the KDE Connect System Settings"
+msgstr "Galite pridėti naujas komandas KDE Connect sistemos nuostatose"
+
+msgctxt "add_command_description"
+msgid "You can add commands on the desktop"
+msgstr "Galite pridėti komandas darbalaukyje"
+
+msgctxt "pref_plugin_mprisreceiver"
+msgid "Media Player Control"
+msgstr "Medijos leistuvės valdymas"
+
+msgctxt "pref_plugin_mprisreceiver_desc"
+msgid "Control your phone's media players from another device"
+msgstr "Valdyti savo telefono medijos leistuves iš kito įrenginio"
+
+msgctxt "notification_channel_default"
+msgid "Other notifications"
+msgstr "Kiti pranešimai"
+
+msgctxt "notification_channel_persistent"
+msgid "Persistent indicator"
+msgstr "Pastovus indikatorius"
+
+msgctxt "notification_channel_media_control"
+msgid "Media control"
+msgstr "Įvairialypės terpės valdymas"
+
+msgctxt "notification_channel_filetransfer"
+msgid "File transfer"
+msgstr "Failų persiuntimas"
+
+msgctxt "notification_channel_high_priority"
+msgid "High priority"
+msgstr "Didelė pirmenybė"
+
+msgctxt "notification_channel_sms_mms"
+msgid "New Message"
+msgstr "Nauja žinutė"
+
+msgctxt "mpris_stop"
+msgid "Stop the current player"
+msgstr "Stabdyti dabartinę leistuvę"
+
+msgctxt "copy_url_to_clipboard"
+msgid "Copy URL to clipboard"
+msgstr "Kopijuoti URL į iškarpinę"
+
+msgctxt "clipboard_toast"
+msgid "Copied to clipboard"
+msgstr "Nukopijuota į iškarpinę"
+
+msgctxt "runcommand_notreachable"
+msgid "Device is not reachable"
+msgstr "Device is not reachable"
+
+msgctxt "runcommand_notpaired"
+msgid "Device is not paired"
+msgstr "Device is not paired"
+
+msgctxt "runcommand_nosuchdevice"
+msgid "There is no such device"
+msgstr "Nėra tokio įrenginio"
+
+msgctxt "runcommand_noruncommandplugin"
+msgid "This device does not have the Run Command Plugin enabled"
+msgstr "Šis įrenginys neturi įjungto papildinio Vykdyti komandą"
+
+msgctxt "pref_plugin_findremotedevice"
+msgid "Find remote device"
+msgstr "Rasti nuotolinį įrenginį"
+
+msgctxt "pref_plugin_findremotedevice_desc"
+msgid "Ring your remote device"
+msgstr "Skambinti į nuotolinį įrenginį"
+
+msgctxt "ring"
+msgid "Ring"
+msgstr "Skambinti"
+
+msgctxt "pref_plugin_systemvolume"
+msgid "System volume"
+msgstr "Sistemos garsumas"
+
+msgctxt "pref_plugin_systemvolume_desc"
+msgid "Control the system volume of the remote device"
+msgstr "Valdyti nuotolinio įrenginio sistemos garsumą"
+
+msgctxt "mute"
+msgid "Mute"
+msgstr "Nutildyti"
+
+msgctxt "all"
+msgid "All"
+msgstr "Visi"
+
+msgctxt "devices"
+msgid "Devices"
+msgstr "Įrenginiai"
+
+msgctxt "settings_rename"
+msgid "Device name"
+msgstr "Įrenginio pavadinimas"
+
+msgctxt "settings_dark_mode"
+msgid "Dark theme"
+msgstr "Tamsus apipavidalinimas"
+
+msgctxt "settings_more_settings_title"
+msgid "More settings"
+msgstr "Daugiau nuostatų"
+
+msgctxt "settings_more_settings_text"
+msgid ""
+"Per-device settings can be found under 'Plugin settings' from within a "
+"device."
+msgstr ""
+"Nuostatas kiekvienam atskiram įrenginiui galima rasti įrenginyje "
+"\"Papildinio nuostatose\"."
+
+msgctxt "setting_persistent_notification"
+msgid "Show persistent notification"
+msgstr "Rodyti pastovų pranešimą"
+
+msgctxt "setting_persistent_notification_oreo"
+msgid "Persistent notification"
+msgstr "Pastovus pranešimas"
+
+msgctxt "setting_persistent_notification_description"
+msgid "Tap to enable/disable in Notification settings"
+msgstr "Bakstelėkite, norėdami įjungti/išjungti Pranešimų nuostatose"
+
+msgctxt "extra_options"
+msgid "Extra options"
+msgstr "Papildomos parinktys"
+
+msgctxt "privacy_options"
+msgid "Privacy options"
+msgstr "Privatumo parinktys"
+
+msgctxt "set_privacy_options"
+msgid "Set your privacy options"
+msgstr "Nustatyti savo privatumo parinktis"
+
+msgctxt "block_contents"
+msgid "Block contents of notifications"
+msgstr "Blokuoti pranešimų turinį"
+
+msgctxt "block_images"
+msgid "Block images in notifications"
+msgstr "Blokuoti pranešimuose paveiksliukus"
+
+msgctxt "notification_channel_receivenotification"
+msgid "Notifications from other devices"
+msgstr "Pranešimai iš kitų įrenginių"
+
+msgctxt "take_picture"
+msgid "Launch camera"
+msgstr "Paleisti kamerą"
+
+msgctxt "plugin_photo_desc"
+msgid "Launch the camera app to ease taking and transferring pictures"
+msgstr ""
+"Paleisti kameros programėlę, kad būtų palengvintas nuotraukų darymas ir "
+"persiuntimas"
+
+msgctxt "no_app_for_opening"
+msgid "No suitable app found to open this file"
+msgstr "Šio failo atvėrimui nerasta jokios tinkamos programėlės"
+
+msgctxt "remote_keyboard_service"
+msgid "KDE Connect Remote Keyboard"
+msgstr "KDE Connect nuotolinė klaviatūra"
+
+msgctxt "presenter_pointer"
+msgid "Pointer"
+msgstr "Rodyklė"
+
+msgctxt "trusted_networks"
+msgid "Trusted networks"
+msgstr "Patikimi tinklai"
+
+msgctxt "trusted_networks_desc"
+msgid "Restrict autodiscovery to known networks"
+msgstr "Apriboti automatinį aptikimą iki žinomų tinklų"
+
+#, c-format
+msgctxt "add_trusted_network"
+msgid "Add %1s"
+msgstr "Pridėti %1s"
+
+msgctxt "empty_trusted_networks_list_text"
+msgid "You haven't added any trusted network yet"
+msgstr "Kol kas nesate pridėję jokių patikimų tinklų"
+
+msgctxt "allow_all_networks_text"
+msgid "Allow all"
+msgstr "Leisti visus"
+
+msgctxt "location_permission_needed_title"
+msgid "Permission required"
+msgstr "Reikalingas leidimas"
+
+msgctxt "location_permission_needed_desc"
+msgid "Android requires the Location permission to identify your WiFi network"
+msgstr ""
+"Android reikalauja Vietos leidimo, kad atpažintų jūsų belaidį (WiFi) tinklą"
+
+msgctxt "clipboard_android_x_incompat"
+msgid ""
+"Android 10 has removed clipboard access to all apps. This plugin will be "
+"disabled."
+msgstr ""
+"Android 10 pašalino iškarpinės prieigą prie visų programėlių. Šis papildinys "
+"bus išjungtas."
+
+msgctxt "mpris_open_url"
+msgid "Continue playing here"
+msgstr "Tęsti atkūrimą čia"
+
+msgctxt "cant_open_url"
+msgid "Can't open URL to continue playing"
+msgstr "Nepavyksta atverti URL, kad būtų tęsiamas atkūrimas"
+
+msgctxt "bigscreen_home"
+msgid "Home"
+msgstr "Pradžia"
+
+msgctxt "bigscreen_up"
+msgid "Up"
+msgstr "Aukštyn"
+
+msgctxt "bigscreen_left"
+msgid "Left"
+msgstr "Kairėn"
+
+msgctxt "bigscreen_select"
+msgid "Select"
+msgstr "Pasirinkti"
+
+msgctxt "bigscreen_right"
+msgid "Right"
+msgstr "Dešinėn"
+
+msgctxt "bigscreen_down"
+msgid "Down"
+msgstr "Žemyn"
+
+msgctxt "bigscreen_mic"
+msgid "Mic"
+msgstr "Mikrofonas"
+
+msgctxt "pref_plugin_bigscreen"
+msgid "Bigscreen remote"
+msgstr "Bigscreen nuotolinis pultas"
+
+msgctxt "pref_plugin_bigscreen_desc"
+msgid "Use your device as a remote for Plasma Bigscreen"
+msgstr "Naudoti savo įrenginį kaip Plasma Bigscreen nuotolinį pultą"
+
+msgctxt "bigscreen_optional_permission_explanation"
+msgid ""
+"To share microphone input from your phone you need to give access to the "
+"phone's audio input"
+msgstr ""
+"Norėdami bendrinti mikrofono įvesti iš savo telefono, turite suteikti priegą "
+"prie telefono garso įvesties"
+
+msgctxt "bigscreen_speech_extra_prompt"
+msgid "Speech"
+msgstr "Šneka"
+
+msgctxt "message_reply_label"
+msgid "REPLY"
+msgstr "ATSAKYTI"
+
+msgctxt "mark_as_read_label"
+msgid "MARK AS READ"
+msgstr "ŽYMĖTI KAIP SKAITYTĄ"
+
+msgctxt "user_display_name"
+msgid "You"
+msgstr "Jūs"
+
+msgctxt "set_default_sms_app_title"
+msgid "Send MMS"
+msgstr "Siųsti MMS žinutę"
+
+msgctxt "set_group_message_as_mms_title"
+msgid "Send group MMS"
+msgstr "Siųsti grupinę MMS žinutę"
+
+msgctxt "set_long_text_as_mms_title"
+msgid "Send long text as MMS"
+msgstr "Siųsti ilgą tekstą kaip MMS žinutę"
+
+msgctxt "convert_to_mms_after_title"
+msgid "Convert to MMS"
+msgstr "Kovertuoti į MMS žinutę"
+
+msgctxt "convert_to_mms_after_entries:0"
+msgid "After one message"
+msgstr "Po vienos žinutės"
+
+msgctxt "convert_to_mms_after_entries:1"
+msgid "After two messages"
+msgstr "Po dviejų žinučių"
+
+msgctxt "convert_to_mms_after_entries:2"
+msgid "After three messages"
+msgstr "Po trijų žinučių"
+
+msgctxt "convert_to_mms_after_entries:3"
+msgid "After four messages"
+msgstr "Po keturių žinučių"
+
+msgctxt "convert_to_mms_after_entries:4"
+msgid "After five messages"
+msgstr "Po penkių žinučių"
+
+msgctxt "theme_dialog_title"
+msgid "Choose theme"
+msgstr "Pasirinkite apipavidalinimą"
+
+msgctxt "theme_list:0"
+msgid "Set by Battery Saver"
+msgstr "Nustatytas akumuliatoriaus energijos taupymo"
+
+msgctxt "theme_list:1"
+msgid "Light"
+msgstr "Šviesus"
+
+msgctxt "theme_list:2"
+msgid "Dark"
+msgstr "Tamsus"
+
+msgctxt "theme_list_v28:0"
+msgid "System Default"
+msgstr "Sistemos numatytasis"
+
+msgctxt "theme_list_v28:1"
+msgid "Light"
+msgstr "Šviesus"
+
+msgctxt "theme_list_v28:2"
+msgid "Dark"
+msgstr "Tamsus"
+
+msgctxt "report_bug"
+msgid "Report Bug"
+msgstr "Pranešti apie programos klaidą"
+
+msgctxt "donate"
+msgid "Donate"
+msgstr "Paaukoti"
+
+msgctxt "source_code"
+msgid "Source Code"
+msgstr "Pradinis kodas"
+
+msgctxt "licenses"
+msgid "Licenses"
+msgstr "Licencijos"
+
+msgctxt "website"
+msgid "Website"
+msgstr "Internetinė svetainė"
+
+msgctxt "about"
+msgid "About"
+msgstr "Apie"
+
+msgctxt "authors"
+msgid "Authors"
+msgstr "Autoriai"
+
+msgctxt "thanks_to"
+msgid "Thanks To"
+msgstr "Dėkojame"
+
+msgctxt "easter_egg"
+msgid "Easter Egg"
+msgstr "Velykų kiaušinis"
+
+#, c-format
+msgctxt "email_contributor"
+msgid ""
+"Email contributor\n"
+"%s"
+msgstr ""
+"Parašyti talkininkui el. laišką\n"
+"%s"
+
+#, c-format
+msgctxt "visit_contributors_homepage"
+msgid ""
+"Visit contributor's homepage\n"
+"%s"
+msgstr ""
+"Apsilankyti talkininko internetinėje svetainėje\n"
+"%s"
+
+#, c-format
+msgctxt "version"
+msgid "Version %s"
+msgstr "Versija %s"
+
+msgctxt "about_kde"
+msgid "About KDE"
+msgstr "Apie KDE"
+
+msgctxt "kde_be_free"
+msgid "KDE - Be Free!"
+msgstr "KDE – būkite laisvi!"
+
+msgctxt "kde"
+msgid "KDE"
+msgstr "KDE"
+
+msgctxt "konqi"
+msgid "Konqi"
+msgstr "Konqi"
+
+msgctxt "rise_up"
+msgid "Rise Up"
+msgstr "Pakelti"
+
+msgctxt "rise_down"
+msgid "Rise Down"
+msgstr "Nuleisti"
+
+msgctxt "click_here_to_type"
+msgid "Tap here to type"
+msgstr "Bakstelėkite čia, norėdami rašyti"
+
+msgctxt "clear_compose"
+msgid "Clear"
+msgstr "Išvalyti"
+
+msgctxt "send_compose"
+msgid "Send"
+msgstr "Siųsti"
+
+msgctxt "open_compose_send"
+msgid "Compose text"
+msgstr "Rašyti tekstą"
+
+msgctxt "app_description"
+msgid ""
+"Multi-platform app that allows your devices to communicate (e.g., your phone "
+"and your computer)"
+msgstr ""
+"Daugiaplatformė programėlė, leidžianti jūsų įrenginiams susisiekti (pvz., "
+"jūsų telefonui ir kompiuteriui)"
+
+msgctxt "about_kde_about"
+msgid ""
+"&lt;h1&gt;About&lt;/h1&gt; &lt;p&gt;KDE is a world-wide community of "
+"software engineers, artists, writers, translators and creators who are "
+"committed to &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Free "
+"Software&lt;/a&gt; development. KDE produces the Plasma desktop environment, "
+"hundreds of applications, and the many software libraries that support them."
+"&lt;/p&gt; &lt;p&gt;KDE is a cooperative enterprise: no single entity "
+"controls its direction or products. Instead, we work together to achieve the "
+"common goal of building the world's finest Free Software. Everyone is "
+"welcome to &lt;a href=https://community.kde.org/Get_Involved&gt;join and "
+"contribute&lt;/a&gt; to KDE, including you.&lt;/p&gt; Visit &lt;a "
+"href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; for more "
+"information about the KDE community and the software we produce."
+msgstr ""
+"&lt;h1&gt;Apie&lt;/h1&gt; &lt;p&gt;KDE yra pasaulinė bendruomenė, sudaryta "
+"iš programinės įrangos inžinierių, menininkų, rašytojų, vertėjų ir kūrėjų, "
+"kurie yra pasišventę &lt;a href=https://www.gnu.org/philosophy/free-sw."
+"html&gt;laisvosios programinės įrangos&lt;/a&gt; kūrimui. KDE kuria Plasma "
+"darbalaukio aplinką, šimtus programų ir daugybę jas palaikančių bibliotekų."
+"&lt;/p&gt; &lt;p&gt;KDE yra kooperacinė įmonė: nėra vienos esybės, kuri "
+"valdytų jos kryptį ar produktus. Vietoj to, mes dirbame kartu, kad "
+"pasiektume bendrą tikslą ir sukurtume geriausią laisvają programinę įrangą "
+"pasaulyje. Visi, įskaitant jus, yra kviečiami &lt;a href=https://community."
+"kde.org/Get_Involved&gt;prisijungti ir talkinti&lt;/a&gt; KDE.&lt;/p&gt; "
+"Išsamesnei informacijai apie KDE bendruomenę ir mūsų kuriamą programinę "
+"įrangą, apsilankykite adresu &lt;a href=https://www.kde.org/&gt;https://www."
+"kde.org/&lt;/a&gt;."
+
+msgctxt "about_kde_report_bugs_or_wishes"
+msgid ""
+"&lt;h1&gt;Report Bugs or Wishes&lt;/h1&gt; &lt;p&gt;Software can always be "
+"improved, and the KDE team is ready to do so. However, you - the user - must "
+"tell us when something does not work as expected or could be done better."
+"&lt;/p&gt; &lt;p&gt;KDE has a bug tracking system. Visit &lt;a href=https://"
+"bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; or use the \"Report Bug\" "
+"button from the about screen to report bugs.&lt;/p&gt; If you have a "
+"suggestion for improvement then you are welcome to use the bug tracking "
+"system to register your wish. Make sure you use the severity called "
+"\"Wishlist\"."
+msgstr ""
+"&lt;h1&gt;Praneškite apie klaidas ar pageidavimus&lt;/h1&gt; &lt;p&gt;"
+"Programinė įranga gali būti pastoviai tobulinama ir KDE komanda yra "
+"pasiruošusi tą daryti. Vis dėlto, būtent jūs - naudotojas - privalote mums "
+"pranešti, kai kas nors neveikia taip kaip turėtų ar, kai kas nors gali būti "
+"padaryta geriau.&lt;/p&gt; &lt;p&gt;KDE turi klaidų sekimo sistemą. "
+"Apsilankykite adresu &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde."
+"org/&lt;/a&gt; arba, norėdami pranešti apie klaidas, pasinaudokite mygtuku "
+"„Pranešti apie programos klaidą“.&lt;/p&gt; Jei turite pasiūlymų, kaip "
+"galima patobulinti programą, kviečiame pasinaudoti klaidų sekimo sistema ir "
+"užregistruoti savo pageidavimą. Nepamirškite svarbą pažymėti kaip "
+"„Pageidavimų sąrašas“ (angl. Wishlist)."
+
+msgctxt "about_kde_join_kde"
+msgid ""
+"&lt;h1&gt;Join KDE&lt;/h1&gt; &lt;p&gt;You do not have to be a software "
+"developer to be a member of the KDE team. You can join the national teams "
+"that translate program interfaces. You can provide graphics, themes, sounds, "
+"and improved documentation. You decide!&lt;/p&gt; &lt;p&gt;Visit &lt;a "
+"href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/"
+"Get_Involved&lt;/a&gt; for information on some projects in which you can "
+"participate.&lt;/p&gt; If you need more information or documentation, then a "
+"visit to &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/"
+"&lt;/a&gt; will provide you with what you need."
+msgstr ""
+"&lt;h1&gt;Prisijunkite prie KDE&lt;/h1&gt; &lt;p&gt;Norėdami būti KDE "
+"komandos nariu, neprivalote būti programinės įrangos programuotoju. Galite "
+"prisijungti prie nacionalinių komandų, kurios verčia programų sąsajas. "
+"Galite teikti grafiką, apipavidalinimus, garsus ir tobulinti dokumentaciją. "
+"Pasirinkite patys!&lt;/p&gt; &lt;p&gt;Išsamesnei informacijai apie "
+"projektus, kuriuose galite dalyvauti, apsilankykite adresu &lt;a "
+"href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/"
+"Get_Involved&lt;/a&gt;.&lt;/p&gt; Jeigu jums reikia informacijos ar ieškote "
+"dokumentacijos, apsilankykite adresu &lt;a href=https://techbase.kde.org/&gt;"
+"https://techbase.kde.org/&lt;/a&gt;, kur rasite visą informaciją, kurios "
+"jums gali prireikti."
+
+msgctxt "about_kde_support_kde"
+msgid ""
+"&lt;h1&gt;Support KDE&lt;/h1&gt; &lt;p&gt;KDE software is and will always be "
+"available free of charge, however creating it is not free.&lt;/p&gt; &lt;"
+"p&gt;To support development the KDE community has formed the KDE e.V., a non-"
+"profit organization legally founded in Germany. KDE e.V. represents the KDE "
+"community in legal and financial matters. See &lt;a href=https://ev.kde.org/"
+"&gt;https://ev.kde.org/&lt;/a&gt; for information on KDE e.V.&lt;/p&gt; &lt;"
+"p&gt;KDE benefits from many kinds of contributions, including financial. We "
+"use the funds to reimburse members and others for expenses they incur when "
+"contributing. Further funds are used for legal support and organizing "
+"conferences and meetings.&lt;/p&gt; &lt;p&gt;We would like to encourage you "
+"to support our efforts with a financial donation, using one of the ways "
+"described at &lt;a href=https://www.kde.org/community/donations/&gt;https://"
+"www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Thank you very much in "
+"advance for your support."
+msgstr ""
+"&lt;h1&gt;Palaikykite KDE&lt;/h1&gt; &lt;p&gt;KDE programinė įranga yra ir "
+"visada bus nemokama, vis dėlto, jos plėtojimas nėra nemokamas.&lt;/p&gt; &lt;"
+"p&gt;Norėdama remti plėtojimą, KDE bendruomenė įkūrė „KDE e.V.“, pelno "
+"nesiekiančią organizaciją, kuri yra teisiškai įsteigta Vokietijoje. „KDE e."
+"V.“ atstovauja KDE bendruomenę teisiniais ir finansiniais klausimais. "
+"Išsamesnei informacijai apie „KDE e.V.“ apsilankykite adresu &lt;a "
+"href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt;.&lt;/p&gt; &lt;"
+"p&gt;KDE gauna naudą iš daugelio įnašų, įskaitant finansinius. Mes naudojame "
+"lėšas, kad apmokėtume nariams ir kitiems asmenims išlaidas, kurias jie "
+"patiria talkindami. Likusios lėšos yra naudojamos teisiniams klausimams "
+"spręsti bei konferencijų ir susitikimų organizavimui.&lt;/p&gt; &lt;p&gt;"
+"Norėtume paraginti jus finansiškai palaikyti mūsų pastangas ir paaukoti, "
+"naudojant vieną iš būdų, kurie aprašyti adresu &lt;a href=https://www.kde."
+"org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/"
+"a&gt;.&lt;/p&gt; Iš anksto labai dėkojame jums už jūsų palaikymą."
+
+#. Authors tasks
+msgctxt "maintainer_and_developer"
+msgid "Maintainer and developer"
+msgstr "Prižiūrėtojas ir programuotojas"
+
+msgctxt "developer"
+msgid "Developer"
+msgstr "Programuotojas"
+
+msgctxt "apple_support"
+msgid "macOS support. Working on iOS support"
+msgstr "macOS palaikymas. Darbas ties iOS palaikymu"
+
+msgctxt "bug_fixes_and_general_improvements"
+msgid "Bug fixes and general improvements"
+msgstr "Klaidų pataisymai ir bendri patobulinimai"
+
+msgctxt "samoilenko_yuri_task"
+msgid "SFTP implementation, bug fixes and general improvements"
+msgstr "SFTP įgyvendinimas, klaidų pataisymai ir bendri patobulinimai"
+
+msgctxt "aniket_kumar_task"
+msgid "SMS plugin improvements"
+msgstr "SMS papildinio patobulinimai"
+
+msgctxt "alex_fiestas_task"
+msgid "Contacts plugin improvements"
+msgstr "Adresatų papildinio patobulinimai"
+
+msgctxt "maxim_leshchenko_task"
+msgid "UI improvements and this about page"
+msgstr "Naudotojo sąsajos patobulinimai ir šis puslapis apie programą"
+
+msgctxt "holger_kaelberer_task"
+msgid "Remote keyboard plugin and bug fixes"
+msgstr "Nuotolinės klaviatūros papildinys ir klaidų pataisymai"
+
+msgctxt "saikrishna_arcot_task"
+msgid ""
+"Support for using the keyboard in the remote input plugin, bug fixes and "
+"general improvements"
+msgstr ""
+"Palaikymas, skirtas naudoti klaviatūrą nuotolinio įvedimo papildinyje, "
+"klaidų pataisymai ir bendri patobulinimai"
+
+msgctxt "everyone_else"
+msgid "Everyone else who has contributed to KDE Connect over the years"
+msgstr "Visiems, kas per ilgus metus talkino KDE Connect"
+
+msgctxt "send_clipboard"
+msgid "Send clipboard"
+msgstr "Siųsti iškarpinę"
+
+msgctxt "tap_to_execute"
+msgid "Tap to execute"
+msgstr "Bakstelėkite, norėdami vykdyti"
+
+#~ msgctxt "share_optional_permission_explanation"
+#~ msgid ""
+#~ "To share files between your phone and your desktop you need to give "
+#~ "access to the phone's storage"
+#~ msgstr ""
+#~ "Norėdami bendrinti failus tarp savo telefono ir savo darbalaukio, turite "
+#~ "suteikti prieigą prie telefono saugyklos"
+
+#~ msgctxt "on_data_message"
+#~ msgid ""
+#~ "It looks like you are on a mobile data connection. KDE Connect only works "
+#~ "on local networks."
+#~ msgstr ""
+#~ "Atrodo, kad naudojate mobiliųjų duomenų ryšį. KDE Connect veikia tik "
+#~ "vietiniuose tinkluose."
+
+#~ msgctxt "plugin_not_available"
+#~ msgid "This feature is not available in your Android version"
+#~ msgstr "Ši ypatybė jūsų Android versijoje yra neprieinama"
+
+#~ msgctxt "device_not_reachable"
+#~ msgid "Paired device not reachable"
+#~ msgstr "Suporuotas įrenginys nepasiekiamas"
+
+#~ msgctxt "error_already_requested"
+#~ msgid "Pairing already requested"
+#~ msgstr "Suporavimas jau užklaustas"
+
+#~ msgctxt "error_invalid_key"
+#~ msgid "Invalid key received"
+#~ msgstr "Gautas negaliojantis raktas"
+
+#~ msgctxt "received_url_title"
+#~ msgid "Received link from %1s"
+#~ msgstr "Gauta nuoroda iš %1s"
+
+#~ msgctxt "received_url_text"
+#~ msgid "Tap to open '%1s'"
+#~ msgstr "Bakstelėkite, norėdami atverti \"%1s\""
+
+#~ msgctxt "reconnect"
+#~ msgid "Reconnect"
+#~ msgstr "Prisijungti iš naujo"
+
+#~ msgctxt "device"
+#~ msgid "Device"
+#~ msgstr "Įrenginys"
+
+#~ msgctxt "pair_device"
+#~ msgid "Pair device"
+#~ msgstr "Suporuoti įrenginį"
+
+#~ msgctxt "mpris_settings"
+#~ msgid "Multimedia Settings"
+#~ msgstr "Įvairialypės terpės nuostatos"
+
+#~ msgctxt "protocol_version_older"
+#~ msgid "This device uses an old protocol version"
+#~ msgstr "Šis įrenginys naudoja seną protokolo versiją"
+
+#~ msgctxt "general_settings"
+#~ msgid "General Settings"
+#~ msgstr "Bendrosios nuostatos"
+
+#~ msgctxt "plugin_settings"
+#~ msgid "Settings"
+#~ msgstr "Nuostatos"
+
+#~ msgctxt "device_name"
+#~ msgid "Device name"
+#~ msgstr "Įrenginio pavadinimas"
+
+#~ msgctxt "device_name_preference_summary"
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#~ msgctxt "pair_device_action"
+#~ msgid "Pair a new device"
+#~ msgstr "Suporuoti naują įrenginį"
+
+#~ msgctxt "unpair_device_action"
+#~ msgid "Unpair %s"
+#~ msgstr "Panaikinti suporavimą su %s"
+
+#~ msgctxt "delete_custom_device"
+#~ msgid "Delete %s?"
+#~ msgstr "Ištrinti %s?"
+
+#~ msgctxt "sftp_internal_storage"
+#~ msgid "Internal storage"
+#~ msgstr "Vidinė saugykla"
+
+#~ msgctxt "add_host"
+#~ msgid "Add host/IP"
+#~ msgstr "Pridėti mazgą/IP"
+
+#~ msgctxt "add_host_hint"
+#~ msgid "Hostname or IP"
+#~ msgstr "Mazgo pavadinimas ar IP"
+
+#~ msgctxt "mpris_player_on_device"
+#~ msgid "%1$s on %2$s"
+#~ msgstr "%1$s - %2$s"
+
+#~ msgctxt "device_paired"
+#~ msgid "Device paired"
+#~ msgstr "Įrenginys suporuotas"
+
+#~ msgctxt "plugin_not_supported"
+#~ msgid "This plugin is not supported by the device"
+#~ msgstr "Šis įrenginys nepalaiko šio priedo"
+
+#~ msgctxt "no_permissions_storage"
+#~ msgid "You need to grant permissions to access the storage"
+#~ msgstr "Norėdami gauti prieigą prie saugyklos, turite suteikti leidimus"
+
+#~ msgctxt "dark_theme"
+#~ msgid "Dark theme"
+#~ msgstr "Tamsus apipavidalinimas"
+
+#~ msgctxt "new_notification"
+#~ msgid "New notification"
+#~ msgstr "Naujas pranešimas"
+
+#, fuzzy
+#~| msgctxt "send_files"
+#~| msgid "Send files"
+#~ msgctxt "outgoing_files_text"
+#~ msgid "Sent %1$d file"
+#~ msgid_plural "Sent %1$d out of %2$d files"
+#~ msgstr[0] "Siųsti failus"
+#~ msgstr[1] "Siųsti failus"
+#~ msgstr[2] "Siųsti failus"
+#~ msgstr[3] "Siųsti failus"
+
+#~ msgctxt "sftp_all_files"
+#~ msgid "All files"
+#~ msgstr "Visi failai"
+
+#, fuzzy
+#~| msgctxt "sftp_camera"
+#~| msgid "Camera pictures"
+#~ msgctxt "take_picture"
+#~ msgid "Take picture"
+#~ msgstr "Nuotraukos"
+
+#~ msgctxt "remote_control"
+#~ msgid "Remote control"
+#~ msgstr "Nuotolinis valdymas"
+
+#~ msgctxt "settings"
+#~ msgid "KDE Connect Settings"
+#~ msgstr "„KDE Connect“ nuostatos"
+
+#, fuzzy
+#~| msgctxt "pref_plugin_runcommand"
+#~| msgid "Run Command"
+#~ msgctxt "addcommand_command"
+#~ msgid "Command"
+#~ msgstr "Vykdyti komandą"

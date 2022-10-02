@@ -1,0 +1,2048 @@
+# Translation of kdeconnect-android.po to Ukrainian
+# Copyright (C) 2013-2021 This_file_is_part_of_KDE
+# This file is distributed under the license LGPL version 2.1 or
+# version 3 or later versions approved by the membership of KDE e.V.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# Yuri Chornoivan <yurchor@ukr.net>, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdeconnect-android\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-01-16 00:43+0000\n"
+"PO-Revision-Date: 2022-01-16 09:41+0200\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.0dev\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Lokalize 20.12.0\n"
+
+#. # Dear potential translators:          Thank you for your interest in KDE
+#. Connect! We do not actually handle our own translations.         All
+#. translations for all KDE apps are handled by the [localization
+#. team](https://l10n.kde.org).         We really appreciate your translations,
+#. but make sure to submit them by working with the proper team!
+msgctxt "kde_connect"
+msgid "KDE Connect"
+msgstr "KDE Connect"
+
+msgctxt "manifest_label_share"
+msgid "Send to Device"
+msgstr "Надіслати на пристрій"
+
+msgctxt "foreground_notification_no_devices"
+msgid "Not connected to any device"
+msgstr "Не з'єднано із жодним пристроєм"
+
+#, c-format
+msgctxt "foreground_notification_devices"
+msgid "Connected to: %s"
+msgstr "З'єднано з %s"
+
+msgctxt "foreground_notification_send_clipboard"
+msgid "Send Clipboard"
+msgstr "Надіслати вміст буфера"
+
+msgctxt "pref_plugin_telephony"
+msgid "Telephony notifier"
+msgstr "Телефонний сповіщувач"
+
+msgctxt "pref_plugin_telephony_desc"
+msgid "Send notifications for incoming calls"
+msgstr "Надсилати сповіщення щодо вхідних дзвінків"
+
+msgctxt "pref_plugin_battery"
+msgid "Battery report"
+msgstr "Звіт щодо заряду"
+
+msgctxt "pref_plugin_battery_desc"
+msgid "Periodically report battery status"
+msgstr "Періодична інформація щодо стану акумулятора"
+
+msgctxt "pref_plugin_connectivity_report"
+msgid "Connectivity report"
+msgstr "Звіт щодо з'єднання"
+
+msgctxt "pref_plugin_connectivity_report_desc"
+msgid "Report network signal strength and status"
+msgstr "Повідомити про потужність сигналу мережі та її стан"
+
+msgctxt "pref_plugin_sftp"
+msgid "Filesystem expose"
+msgstr "Показ файлової системи"
+
+msgctxt "pref_plugin_sftp_desc"
+msgid "Allows to browse this device's filesystem remotely"
+msgstr "Надає змогу віддалено переглядати файлову систему цього пристрою"
+
+msgctxt "pref_plugin_clipboard"
+msgid "Clipboard sync"
+msgstr "Синхронізація буфера"
+
+msgctxt "pref_plugin_clipboard_desc"
+msgid "Share the clipboard content"
+msgstr "Спільне використання буфера обміну даними"
+
+msgctxt "pref_plugin_clipboard_sent"
+msgid "Clipboard Sent"
+msgstr "Вміст буфера надіслано"
+
+msgctxt "pref_plugin_mousepad"
+msgid "Remote input"
+msgstr "Дистанційне введення"
+
+msgctxt "pref_plugin_mousepad_desc"
+msgid "Use your phone or tablet as a touchpad and keyboard"
+msgstr ""
+"Скористайтеся телефоном або планшетом як замінником сенсорної панелі і "
+"клавіатури"
+
+msgctxt "pref_plugin_presenter"
+msgid "Slideshow remote"
+msgstr "Віддалений показ слайдів"
+
+msgctxt "pref_plugin_presenter_desc"
+msgid "Use your device to change slides in a presentation"
+msgstr ""
+"Скористайтеся вашим пристроєм для того, щоб змінювати слайди у презентації"
+
+msgctxt "pref_plugin_remotekeyboard"
+msgid "Receive remote keypresses"
+msgstr "Отримувати віддалені натискання клавіш"
+
+msgctxt "pref_plugin_remotekeyboard_desc"
+msgid "Receive keypress events from remote devices"
+msgstr "Отримувати події натискання клавіш з віддаленого пристрою"
+
+msgctxt "pref_plugin_mpris"
+msgid "Multimedia controls"
+msgstr "Керування відтворенням"
+
+msgctxt "pref_plugin_mpris_desc"
+msgid "Provides a remote control for your media player"
+msgstr ""
+"Надає можливість віддаленого керування вашим мультимедійним програвачем"
+
+msgctxt "pref_plugin_runcommand"
+msgid "Run Command"
+msgstr "Виконати команду"
+
+msgctxt "pref_plugin_runcommand_desc"
+msgid "Trigger remote commands from your phone or tablet"
+msgstr "Віддалені команди з вашого телефону або планшета"
+
+msgctxt "pref_plugin_contacts"
+msgid "Contacts Synchronizer"
+msgstr "Засіб синхронізації контактів"
+
+msgctxt "pref_plugin_contacts_desc"
+msgid "Allow synchronizing the device's contacts book"
+msgstr "Уможливлює синхронізацію записів контактів на пристрої"
+
+msgctxt "pref_plugin_ping"
+msgid "Ping"
+msgstr "Підтримання зв’язку"
+
+msgctxt "pref_plugin_ping_desc"
+msgid "Send and receive pings"
+msgstr "Надсилання і отримання сигналів підтримання зв’язку"
+
+msgctxt "pref_plugin_notifications"
+msgid "Notification sync"
+msgstr "Синхронізація сповіщень"
+
+msgctxt "pref_plugin_notifications_desc"
+msgid "Access your notifications from other devices"
+msgstr "Доступ до ваших сповіщень з інших пристроїв"
+
+msgctxt "pref_plugin_receive_notifications"
+msgid "Receive notifications"
+msgstr "Отримати сповіщення"
+
+msgctxt "pref_plugin_receive_notifications_desc"
+msgid "Receive notifications from the other device and display them on Android"
+msgstr "Отримання сповіщень з іншого пристрою і показ їх у Android"
+
+msgctxt "pref_plugin_sharereceiver"
+msgid "Share and receive"
+msgstr "Надання і отримання"
+
+msgctxt "pref_plugin_sharereceiver_desc"
+msgid "Share files and URLs between devices"
+msgstr "Спільне використання файлів і адрес між пристроями"
+
+msgctxt "device_list_empty"
+msgid "No devices"
+msgstr "Немає пристроїв"
+
+msgctxt "ok"
+msgid "OK"
+msgstr "Гаразд"
+
+msgctxt "sad_ok"
+msgid "OK :("
+msgstr "Гаразд :("
+
+msgctxt "cancel"
+msgid "Cancel"
+msgstr "Скасувати"
+
+msgctxt "open_settings"
+msgid "Open settings"
+msgstr "Відкрити вікно параметрів"
+
+msgctxt "no_permissions"
+msgid "You need to grant permission to access notifications"
+msgstr "Вам слід надати доступ до сповіщень"
+
+msgctxt "no_permission_mprisreceiver"
+msgid ""
+"To be able to control your media players you need to grant access to the "
+"notifications"
+msgstr ""
+"Щоб мати змогу керувати вашими програвачами мультимедійних даних, вам слід "
+"надати доступ до сповіщень."
+
+msgctxt "no_permissions_remotekeyboard"
+msgid ""
+"To receive keypresses you need to activate the KDE Connect Remote Keyboard"
+msgstr ""
+"Щоб отримувати повідомлення щодо натискання клавіш, вам слід активувати "
+"віддалену клавіатуру KDE Connect"
+
+msgctxt "send_ping"
+msgid "Send ping"
+msgstr "Надіслати сигнал підтримання зв’язку"
+
+msgctxt "open_mpris_controls"
+msgid "Multimedia control"
+msgstr "Керування відтворенням"
+
+msgctxt "remotekeyboard_editing_only_title"
+msgid "Handle remote keys only when editing"
+msgstr "Обробляти віддалені клавіші лише під час редагування"
+
+msgctxt "remotekeyboard_not_connected"
+msgid ""
+"There is no active remote keyboard connection, establish one in kdeconnect"
+msgstr ""
+"Немає активних з’єднань із віддаленою клавіатурою. Встановіть таке з’єднання "
+"у kdeconnect."
+
+msgctxt "remotekeyboard_connected"
+msgid "Remote keyboard connection is active"
+msgstr "З’єднання з віддаленою клавіатурою є активним"
+
+msgctxt "remotekeyboard_multiple_connections"
+msgid ""
+"There is more than one remote keyboard connection, select the device to "
+"configure"
+msgstr ""
+"Існує декілька з’єднань із віддаленою клавіатурою. Виберіть пристрій для "
+"налаштовування."
+
+msgctxt "open_mousepad"
+msgid "Remote input"
+msgstr "Дистанційне введення"
+
+msgctxt "mousepad_info"
+msgid ""
+"Move a finger on the screen to move the mouse cursor. Tap for a click, and "
+"use two/three fingers for right and middle buttons. Use 2 fingers to scroll. "
+"Use a long press to drag'n drop."
+msgstr ""
+"Проведіть по екрану пальцем, щоб пересунути вказівник миші. Дотик одним "
+"пальцем означатиме клацання, дотиком двома або трьома пальцями можна "
+"імітувати праву і середню кнопки. Гортання відбувається за допомогою двох "
+"пальців. Для перетягування зі скиданням скористайтеся тривалим натисканням."
+
+msgctxt "mousepad_single_tap_settings_title"
+msgid "Set one finger tap action"
+msgstr "Встановлення дії для торкання одним пальцем"
+
+msgctxt "mousepad_double_tap_settings_title"
+msgid "Set two finger tap action"
+msgstr "Встановлення дії для торкання двома пальцями"
+
+msgctxt "mousepad_triple_tap_settings_title"
+msgid "Set three finger tap action"
+msgstr "Встановлення дії для торкання трьома пальцями"
+
+msgctxt "mousepad_sensitivity_settings_title"
+msgid "Set touchpad sensitivity"
+msgstr "Встановити чутливість сенсорної панелі"
+
+msgctxt "mousepad_acceleration_profile_settings_title"
+msgid "Set pointer acceleration"
+msgstr "Встановити прискорення вказівника"
+
+msgctxt "mousepad_scroll_direction_title"
+msgid "Reverse Scrolling Direction"
+msgstr "Зворотний напрямок гортання"
+
+msgctxt "mousepad_tap_entries:0"
+msgid "Left click"
+msgstr "Клацання лівою"
+
+msgctxt "mousepad_tap_entries:1"
+msgid "Right click"
+msgstr "Клацання правою"
+
+msgctxt "mousepad_tap_entries:2"
+msgid "Middle click"
+msgstr "Клацання середньою"
+
+msgctxt "mousepad_tap_entries:3"
+msgid "Nothing"
+msgstr "Нічого"
+
+msgctxt "mousepad_sensitivity_entries:0"
+msgid "Slowest"
+msgstr "Найповільніший"
+
+msgctxt "mousepad_sensitivity_entries:1"
+msgid "Above Slowest"
+msgstr "Швидший за найповільніший"
+
+msgctxt "mousepad_sensitivity_entries:2"
+msgid "Default"
+msgstr "Типовий"
+
+msgctxt "mousepad_sensitivity_entries:3"
+msgid "Above Default"
+msgstr "Швидший за типовий"
+
+msgctxt "mousepad_sensitivity_entries:4"
+msgid "Fastest"
+msgstr "Найшвидший"
+
+msgctxt "mousepad_acceleration_profile_entries:0"
+msgid "No Acceleration"
+msgstr "Немає прискорення"
+
+msgctxt "mousepad_acceleration_profile_entries:1"
+msgid "Weakest"
+msgstr "Найслабше"
+
+msgctxt "mousepad_acceleration_profile_entries:2"
+msgid "Weaker"
+msgstr "Слабке"
+
+msgctxt "mousepad_acceleration_profile_entries:3"
+msgid "Medium"
+msgstr "Середнє"
+
+msgctxt "mousepad_acceleration_profile_entries:4"
+msgid "Stronger"
+msgstr "Сильне"
+
+msgctxt "mousepad_acceleration_profile_entries:5"
+msgid "Strongest"
+msgstr "Найсильніше"
+
+msgctxt "sendkeystrokes_send_to"
+msgid "Send keystrokes to"
+msgstr "Надіслати натискання клавіш на"
+
+msgctxt "sendkeystrokes_textbox_hint"
+msgid "Send keystrokes to host"
+msgstr "Надіслати натискання клавіш на вузол"
+
+msgctxt "sendkeystrokes_disabled_toast"
+msgid "Sending keystrokes is disabled - enable it in the settings"
+msgstr ""
+"Надсилання натискань клавіш вимкнено — увімкніть його у параметрах програми"
+
+msgctxt "sendkeystrokes_wrong_data"
+msgid "Invalid mime type - needs to be 'text/x-keystrokes'"
+msgstr "Некоректний тип MIME — типом має бути «text/x-keystrokes»"
+
+#, c-format
+msgctxt "sendkeystrokes_sent_text"
+msgid "Sent %1$s to device %2$s"
+msgstr "%1$s надіслано на пристрій %2$s"
+
+msgctxt "sendkeystrokes_pref_category_summary"
+msgid ""
+"This module allows other apps to share text segments as keystrokes which "
+"will get send to the connected host"
+msgstr ""
+"За допомогою цього модуля інші програми можуть спільно використовувати "
+"фрагменти тексту як натискання клавіш, які буде надіслано до з'єднаного "
+"вузла мережі"
+
+msgctxt "sendkeystrokes_pref_category_title"
+msgid "Send Keystrokes"
+msgstr "Надсилання натискань клавіш"
+
+msgctxt "sendkeystrokes_pref_enabled"
+msgid "Enable Keystrokes sending"
+msgstr "Увімкнути надсилання натискань клавіш"
+
+msgctxt "sendkeystrokes_pref_enabled_summary"
+msgid "Listen for data with mime type 'text/x-keystrokes'"
+msgstr "Очікувати на дані з типом MIME «text/x-keystrokes»"
+
+msgctxt "sendkeystrokes_safe_text_enabled"
+msgid "Send safe text immediately"
+msgstr "Надсилати безпечний текст негайно"
+
+msgctxt "sendkeystrokes_safe_text_enabled_summary"
+msgid "Send short only-numeric strings without confirmation"
+msgstr "Надсилати короткі рядки з цифр без підтвердження"
+
+msgctxt "pref_plugin_mousepad_send_keystrokes"
+msgid "Send as keystrokes"
+msgstr "Надсилати як натискання клавіш"
+
+msgctxt "mouse_receiver_plugin_description"
+msgid "Receive remote mouse movement"
+msgstr "Отримувати віддалені рухи мишею"
+
+msgctxt "mouse_receiver_plugin_name"
+msgid "Mouse receiver"
+msgstr "Отримання даних миші"
+
+msgctxt "mouse_receiver_no_permissions"
+msgid "You need to enable Accessibility Service"
+msgstr "Вам слід увімкнути службу доступності"
+
+msgctxt "view_status_title"
+msgid "Status"
+msgstr "Стан"
+
+#, c-format
+msgctxt "battery_status_format"
+msgid "Battery: %d%%"
+msgstr "Акумулятор: %d%%"
+
+#, c-format
+msgctxt "battery_status_low_format"
+msgid "Battery: %d%% Low Battery"
+msgstr "Акумулятор: %d%%, низький заряд"
+
+#, c-format
+msgctxt "battery_status_charging_format"
+msgid "Battery: %d%% charging"
+msgstr "Акумулятор: %d%% (заряджається)"
+
+msgctxt "battery_status_unknown"
+msgid "Battery information not available"
+msgstr "Дані щодо акумулятора недоступні"
+
+msgctxt "category_connected_devices"
+msgid "Connected devices"
+msgstr "З’єднані пристрої"
+
+msgctxt "category_not_paired_devices"
+msgid "Available devices"
+msgstr "Доступні пристрої"
+
+msgctxt "category_remembered_devices"
+msgid "Remembered devices"
+msgstr "Відомі пристрої"
+
+msgctxt "device_menu_plugins"
+msgid "Plugin settings"
+msgstr "Параметри додатків"
+
+msgctxt "device_menu_unpair"
+msgid "Unpair"
+msgstr "Скасувати пов’язування"
+
+msgctxt "pair_new_device"
+msgid "Pair new device"
+msgstr "Пов’язати новий пристрій"
+
+msgctxt "unknown_device"
+msgid "Unknown device"
+msgstr "Невідомий пристрій"
+
+msgctxt "error_not_reachable"
+msgid "Device not reachable"
+msgstr "Немає доступу до пристрою"
+
+msgctxt "error_already_paired"
+msgid "Device already paired"
+msgstr "Пристрій вже пов’язано"
+
+msgctxt "error_could_not_send_package"
+msgid "Could not send package"
+msgstr "Не вдалося надіслати пакунок"
+
+msgctxt "error_timed_out"
+msgid "Timed out"
+msgstr "Час очікування вичерпано"
+
+msgctxt "error_canceled_by_user"
+msgid "Canceled by user"
+msgstr "Скасовано користувачем"
+
+msgctxt "error_canceled_by_other_peer"
+msgid "Canceled by other peer"
+msgstr "Скасовано з іншого вузла пов’язування"
+
+msgctxt "encryption_info_title"
+msgid "Encryption Info"
+msgstr "Дані щодо шифрування"
+
+msgctxt "encryption_info_msg_no_ssl"
+msgid ""
+"The other device doesn't use a recent version of KDE Connect, using the "
+"legacy encryption method."
+msgstr ""
+"На сторонньому пристрої не використовується нова версія KDE Connect, у якій "
+"використовується застарілий спосіб шифрування."
+
+msgctxt "my_device_fingerprint"
+msgid "SHA256 fingerprint of your device certificate is:"
+msgstr "Відбиток SHA256 сертифіката пристрою:"
+
+msgctxt "remote_device_fingerprint"
+msgid "SHA256 fingerprint of remote device certificate is:"
+msgstr "Відбиток SHA256 сертифіката віддаленого пристрою:"
+
+msgctxt "pair_requested"
+msgid "Pair requested"
+msgstr "Запит щодо пов’язування"
+
+#, c-format
+msgctxt "pairing_request_from"
+msgid "Pairing request from %1s"
+msgstr "Запит щодо пов’язування від %1s"
+
+#, c-format
+msgctxt "incoming_file_title"
+msgid "Receiving %1$d file from %2$s"
+msgid_plural "Receiving %1$d files from %2$s"
+msgstr[0] "Отримуємо %1$d файл з %2$s"
+msgstr[1] "Отримуємо %1$d файли з %2$s"
+msgstr[2] "Отримуємо %1$d файлів з %2$s"
+msgstr[3] "Отримуємо %1$d файл з %2$s"
+
+#, c-format
+msgctxt "incoming_files_text"
+msgid "File: %1s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "(Файл %2$d з %3$d): %1$s"
+msgstr[1] "(Файл %2$d з %3$d): %1$s"
+msgstr[2] "(Файл %2$d з %3$d): %1$s"
+msgstr[3] "Файл: %1$s"
+
+#, c-format
+msgctxt "outgoing_file_title"
+msgid "Sending %1$d file to %2$s"
+msgid_plural "Sending %1$d files to %2$s"
+msgstr[0] "Надсилаємо %1$d файл до %2$s"
+msgstr[1] "Надсилаємо %1$d файли до %2$s"
+msgstr[2] "Надсилаємо %1$d файлів до %2$s"
+msgstr[3] "Надсилаємо %1$d файл до %2$s"
+
+#, c-format
+msgctxt "outgoing_files_text"
+msgid "File: %1$s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "(Файл %2$d з %3$d) : %1$s"
+msgstr[1] "(Файл %2$d з %3$d) : %1$s"
+msgstr[2] "(Файл %2$d з %3$d) : %1$s"
+msgstr[3] "Файл: %1$s"
+
+#, c-format
+msgctxt "received_files_title"
+msgid "Received file from %1$s"
+msgid_plural "Received %2$d files from %1$s"
+msgstr[0] "Отримано %2$d файл з %1$s"
+msgstr[1] "Отримано %2$d файли з %1$s"
+msgstr[2] "Отримано %2$d файлів з %1$s"
+msgstr[3] "Отримано один файл з %1$s"
+
+#, c-format
+msgctxt "received_files_fail_title"
+msgid "Failed receiving file from %1$s"
+msgid_plural "Failed receiving %2$d of %3$d files from %1$s"
+msgstr[0] "Не вдалося отримати %2$d з %3$d файла з %1$s"
+msgstr[1] "Не вдалося отримати %2$d з %3$d файлів з %1$s"
+msgstr[2] "Не вдалося отримати %2$d з %3$d файлів з %1$s"
+msgstr[3] "Не вдалося отримати файл з %1$s"
+
+#, c-format
+msgctxt "sent_files_title"
+msgid "Sent file to %1$s"
+msgid_plural "Sent %2$d files to %1$s"
+msgstr[0] "До %1$s надіслано %2$d файл"
+msgstr[1] "До %1$s надіслано %2$d файли"
+msgstr[2] "До %1$s надіслано %2$d файлів"
+msgstr[3] "Файл надіслано до %1s"
+
+#, c-format
+msgctxt "send_files_fail_title"
+msgid "Failed sending file to %1$s"
+msgid_plural "Failed sending %2$d of %3$d files to %1$s"
+msgstr[0] "Не вдалося надіслати %2$d з %3$d файлів до %1$s"
+msgstr[1] "Не вдалося надіслати %2$d з %3$d файлів до %1$s"
+msgstr[2] "Не вдалося надіслати %2$d з %3$d файлів до %1$s"
+msgstr[3] "Не вдалося надіслати файл до %1$s"
+
+msgctxt "tap_to_open"
+msgid "Tap to open"
+msgstr "Натисніть, щоб відкрити"
+
+#, c-format
+msgctxt "received_file_text"
+msgid "Tap to open '%1s'"
+msgstr "Натисніть, щоб відкрити «%1s»"
+
+#, c-format
+msgctxt "cannot_create_file"
+msgid "Cannot create file %s"
+msgstr "Не вдалося створити файл %s"
+
+msgctxt "tap_to_answer"
+msgid "Tap to answer"
+msgstr "Натисніть, щоб відповісти"
+
+msgctxt "right_click"
+msgid "Send Right Click"
+msgstr "Надіслати клацання правою кнопкою"
+
+msgctxt "middle_click"
+msgid "Send Middle Click"
+msgstr "Надіслати клацання лівою кнопкою"
+
+msgctxt "show_keyboard"
+msgid "Show Keyboard"
+msgstr "Показати клавіатуру"
+
+msgctxt "device_not_paired"
+msgid "Device not paired"
+msgstr "Пристрій не пов’язано"
+
+msgctxt "request_pairing"
+msgid "Request pairing"
+msgstr "Надіслати запит щодо пов’язування"
+
+msgctxt "pairing_accept"
+msgid "Accept"
+msgstr "Прийняти"
+
+msgctxt "pairing_reject"
+msgid "Reject"
+msgstr "Відмовити"
+
+msgctxt "settings"
+msgid "Settings"
+msgstr "Параметри"
+
+msgctxt "mpris_play"
+msgid "Play"
+msgstr "Пуск"
+
+msgctxt "mpris_pause"
+msgid "Pause"
+msgstr "Пауза"
+
+msgctxt "mpris_previous"
+msgid "Previous"
+msgstr "Назад"
+
+msgctxt "mpris_rew"
+msgid "Rewind"
+msgstr "Повний назад"
+
+msgctxt "mpris_ff"
+msgid "Fast-forward"
+msgstr "Повний вперед"
+
+msgctxt "mpris_next"
+msgid "Next"
+msgstr "Далі"
+
+msgctxt "mpris_loop"
+msgid "Loop"
+msgstr "Зациклити"
+
+msgctxt "mpris_shuffle"
+msgid "Shuffle"
+msgstr "Перемішати"
+
+msgctxt "mpris_volume"
+msgid "Volume"
+msgstr "Гучність"
+
+msgctxt "mpris_time_settings_title"
+msgid "Forward/rewind buttons"
+msgstr "Кнопки «Вперед/Назад»"
+
+msgctxt "mpris_time_settings_summary"
+msgid "Adjust the time to fast forward/rewind when pressed"
+msgstr "Скоригувати час швидкого гортання вперед або назад при натисканні"
+
+msgctxt "mpris_time_entries:0"
+msgid "10 seconds"
+msgstr "10 секунд"
+
+msgctxt "mpris_time_entries:1"
+msgid "20 seconds"
+msgstr "20 секунд"
+
+msgctxt "mpris_time_entries:2"
+msgid "30 seconds"
+msgstr "30 секунд"
+
+msgctxt "mpris_time_entries:3"
+msgid "1 minute"
+msgstr "1 хвилина"
+
+msgctxt "mpris_time_entries:4"
+msgid "2 minutes"
+msgstr "2 хвилини"
+
+msgctxt "mpris_notification_settings_title"
+msgid "Show media control notification"
+msgstr "Показувати сповіщення щодо керування відтворенням"
+
+msgctxt "mpris_notification_settings_summary"
+msgid "Allow controlling your media players without opening KDE Connect"
+msgstr ""
+"Уможливлює керування відтворенням мультимедійних даних без відкриття KDE "
+"Connect"
+
+msgctxt "share_to"
+msgid "Share To…"
+msgstr "Використовувати спільно з…"
+
+msgctxt "protocol_version_newer"
+msgid "This device uses a newer protocol version"
+msgstr "На цьому пристрої використовується новіша версія протоколу"
+
+#, c-format
+msgctxt "plugin_settings_with_name"
+msgid "%s settings"
+msgstr "Параметри %s"
+
+msgctxt "invalid_device_name"
+msgid "Invalid device name"
+msgstr "Некоректна назва пристрою"
+
+msgctxt "shareplugin_text_saved"
+msgid "Received text, saved to clipboard"
+msgstr "Отримано текст, збережено до буфера обміну даними"
+
+msgctxt "custom_devices_settings"
+msgid "Custom device list"
+msgstr "Список нетипових пристроїв"
+
+msgctxt "custom_device_list"
+msgid "Add devices by IP"
+msgstr "Додати пристрої за IP"
+
+msgctxt "custom_device_deleted"
+msgid "Custom device deleted"
+msgstr "Нетиповий пристрій вилучено"
+
+msgctxt "custom_device_list_help"
+msgid ""
+"If your device is not automatically detected you can add its IP address or "
+"hostname by clicking on the Floating Action Button"
+msgstr ""
+"Якщо ваш пристрій не було виявлено автоматично, ви можете додати його IP-"
+"адресу або назву вузла, натиснувши рухому кнопку дій."
+
+msgctxt "custom_device_fab_hint"
+msgid "Add a device"
+msgstr "Додати пристрій"
+
+msgctxt "undo"
+msgid "Undo"
+msgstr "Скасувати"
+
+msgctxt "share_notification_preference"
+msgid "Noisy notifications"
+msgstr "Звукові сповіщення"
+
+msgctxt "share_notification_preference_summary"
+msgid "Vibrate and play a sound when receiving a file"
+msgstr "Вібрація і відтворення звуку у відповідь на отримання файла"
+
+msgctxt "share_destination_customize"
+msgid "Customize destination directory"
+msgstr "Налаштування каталогу призначення"
+
+msgctxt "share_destination_customize_summary_disabled"
+msgid "Received files will appear in Downloads"
+msgstr "Отримані файли зберігатимуться до каталогу «Завантаження»"
+
+msgctxt "share_destination_customize_summary_enabled"
+msgid "Files will be stored in the directory below"
+msgstr "Файли зберігатимуться у вказаному нижче каталозі"
+
+msgctxt "share_destination_folder_preference"
+msgid "Destination directory"
+msgstr "Каталог призначення"
+
+msgctxt "share"
+msgid "Share"
+msgstr "Оприлюднити"
+
+#, c-format
+msgctxt "share_received_file"
+msgid "Share \"%s\""
+msgstr "Оприлюднити «%s»"
+
+msgctxt "title_activity_notification_filter"
+msgid "Notification filter"
+msgstr "Фільтр сповіщень"
+
+msgctxt "filter_apps_info"
+msgid "Notifications will be synchronized for the selected apps."
+msgstr "Сповіщення буде синхронізовано для позначених програм."
+
+msgctxt "show_notification_if_screen_off"
+msgid "Send notifications only if the screen is off"
+msgstr "Надсилати сповіщення, лише якщо екран вимкнено"
+
+#, c-format
+msgctxt "sftp_sdcard_num"
+msgid "SD card %d"
+msgstr "Картка SD %d"
+
+msgctxt "sftp_sdcard"
+msgid "SD card"
+msgstr "Картка SD"
+
+msgctxt "sftp_readonly"
+msgid "(read only)"
+msgstr "(лише читання)"
+
+msgctxt "sftp_camera"
+msgid "Camera pictures"
+msgstr "Знімки фотоапарата"
+
+msgctxt "add_device_dialog_title"
+msgid "Add device"
+msgstr "Додавання пристрою"
+
+msgctxt "add_device_hint"
+msgid "Hostname or IP address"
+msgstr "Назва або IP-адреса вузла"
+
+msgctxt "sftp_preference_detected_sdcards"
+msgid "Detected SD cards"
+msgstr "Виявлені картки SD"
+
+msgctxt "sftp_preference_edit_sdcard_title"
+msgid "Edit SD card"
+msgstr "Редагувати картку SD"
+
+msgctxt "sftp_preference_configured_storage_locations"
+msgid "Configured storage locations"
+msgstr "Налаштовані розташування сховищ"
+
+msgctxt "sftp_preference_add_storage_location_title"
+msgid "Add storage location"
+msgstr "Додати розташування сховища"
+
+msgctxt "sftp_preference_edit_storage_location"
+msgid "Edit storage location"
+msgstr "Редагувати розташування сховища"
+
+msgctxt "sftp_preference_add_camera_shortcut"
+msgid "Add camera folder shortcut"
+msgstr "Додати кнопку для теки камери"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_on"
+msgid "Add a shortcut to the camera folder"
+msgstr "Додати кнопку для теки камери"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_off"
+msgid "Do not add a shortcut to the camera folder"
+msgstr "Не додавати кнопку для теки камери"
+
+msgctxt "sftp_storage_preference_storage_location"
+msgid "Storage location"
+msgstr "Розташування сховища"
+
+msgctxt "sftp_storage_preference_storage_location_already_configured"
+msgid "This location has already been configured"
+msgstr "Це розташування вже налаштовано"
+
+msgctxt "sftp_storage_preference_click_to_select"
+msgid "click to select"
+msgstr "клацання для позначення"
+
+msgctxt "sftp_storage_preference_display_name"
+msgid "Display name"
+msgstr "Назва дисплея"
+
+msgctxt "sftp_storage_preference_display_name_already_used"
+msgid "This display name is already used"
+msgstr "Цю назву дисплея вже використано"
+
+msgctxt "sftp_storage_preference_display_name_cannot_be_empty"
+msgid "Display name cannot be empty"
+msgstr "Назва дисплея не може бути порожньою"
+
+msgctxt "sftp_action_mode_menu_delete"
+msgid "Delete"
+msgstr "Вилучити"
+
+msgctxt "sftp_no_sdcard_detected"
+msgid "No SD card detected"
+msgstr "Не виявлено карток SD"
+
+msgctxt "sftp_no_storage_locations_configured"
+msgid "No storage locations configured"
+msgstr "Не налаштовано розташувань сховищ"
+
+msgctxt "sftp_saf_permission_explanation"
+msgid "To access files remotely you have to configure storage locations"
+msgstr ""
+"Щоб отримувати віддалений доступ до файлів, вам слід налаштувати "
+"розташування сховищ"
+
+msgctxt "no_players_connected"
+msgid "No players found"
+msgstr "Не знайдено програвачів"
+
+msgctxt "send_files"
+msgid "Send files"
+msgstr "Надіслати файли"
+
+msgctxt "pairing_title"
+msgid "KDE Connect Devices"
+msgstr "Пристрої KDE Connect"
+
+msgctxt "pairing_description"
+msgid ""
+"Other devices running KDE Connect in your same network should appear here."
+msgstr ""
+"Тут має бути показано інші пристрої у вашій мережі, де запущено KDE Connect."
+
+msgctxt "device_rename_title"
+msgid "Rename device"
+msgstr "Перейменувати пристрій"
+
+msgctxt "device_rename_confirm"
+msgid "Rename"
+msgstr "Перейменувати"
+
+msgctxt "refresh"
+msgid "Refresh"
+msgstr "Оновити"
+
+msgctxt "unreachable_description"
+msgid ""
+"This paired device is not reachable. Make sure it is connected to your same "
+"network."
+msgstr ""
+"Цей пов’язаний пристрій недоступний. Переконайтеся, що його з’єднано з вашою "
+"мережею."
+
+msgctxt "no_wifi"
+msgid ""
+"You're not connected to a Wi-Fi network, so you may not be able to see any "
+"devices. Click here to enable Wi-Fi."
+msgstr ""
+"Ваш комп'ютер не з'єднано із мережею Wi-Fi, отже перегляд пристроїв у мережі "
+"неможливий. Натисніть тут, щоб увімкнути Wi-Fi."
+
+msgctxt "on_non_trusted_message"
+msgid "Not on a trusted network: autodiscovery is disabled."
+msgstr "Не є надійною мережею: автовиявлення вимкнено."
+
+msgctxt "no_file_browser"
+msgid "There are no file browsers installed."
+msgstr "Програм для навігації файловою системою не встановлено."
+
+msgctxt "pref_plugin_telepathy"
+msgid "Send SMS"
+msgstr "Надіслати SMS"
+
+msgctxt "pref_plugin_telepathy_desc"
+msgid "Send text messages from your desktop"
+msgstr "Надсилати текстові повідомлення з вашої робочої станції"
+
+msgctxt "pref_plugin_telepathy_mms"
+msgid "Send MMS"
+msgstr "Надіслати MMS"
+
+msgctxt "pref_plugin_telepathy_mms_desc"
+msgid ""
+"To be able to send MMS from KDE Connect you need to set it as the default "
+"SMS app."
+msgstr ""
+"Щоб мати змогу надсилати MMS з KDE Connect, вам слід встановити цю програму "
+"як типову програму для роботи з SMS."
+
+msgctxt "findmyphone_title"
+msgid "Find my phone"
+msgstr "Знайти телефон"
+
+msgctxt "findmyphone_title_tablet"
+msgid "Find my tablet"
+msgstr "Знайти планшет"
+
+msgctxt "findmyphone_title_tv"
+msgid "Find my TV"
+msgstr "Знайти мій телевізор"
+
+msgctxt "findmyphone_description"
+msgid "Rings this device so you can find it"
+msgstr "Відтворити дзвінок, щоб цей пристрій було простіше знайти"
+
+msgctxt "findmyphone_found"
+msgid "Found it"
+msgstr "Знайдено"
+
+msgctxt "open"
+msgid "Open"
+msgstr "Відкрити"
+
+msgctxt "close"
+msgid "Close"
+msgstr "Закрити"
+
+msgctxt "plugins_need_permission"
+msgid "Some Plugins need permissions to work (tap for more info):"
+msgstr ""
+"Для роботи деяких додатків потрібні додаткові права доступу (натисніть, щоб "
+"дізнатися більше):"
+
+msgctxt "permission_explanation"
+msgid "This plugin needs permissions to work"
+msgstr "Для роботи цього додатка потрібні додаткові права доступу"
+
+msgctxt "optional_permission_explanation"
+msgid "You need to grant extra permissions to enable all functions"
+msgstr ""
+"Щоб уможливити використання усіх функцій, вам слід надати програмі додаткові "
+"права доступу"
+
+msgctxt "plugins_need_optional_permission"
+msgid ""
+"Some plugins have features disabled because of lack of permission (tap for "
+"more info):"
+msgstr ""
+"Можливості деяких додатків вимкнено, оскільки програмі не вистачає прав "
+"доступу (натисніть, щоб дізнатися більше):"
+
+msgctxt "share_optional_permission_explanation"
+msgid "To receive shared files you need to choose a destination directory"
+msgstr ""
+"Для отримання файлів спільного користування вам слід вибрати каталог "
+"призначення"
+
+msgctxt "telepathy_permission_explanation"
+msgid ""
+"To read and write SMS from your desktop you need to give permission to SMS"
+msgstr ""
+"Щоб читати і писати SMS з вашого робочого комп’ютера, вам слід надати "
+"програмі доступ до SMS"
+
+msgctxt "telephony_permission_explanation"
+msgid ""
+"To see phone calls on the desktop you need to give permission to phone call "
+"logs and phone state"
+msgstr ""
+"Щоб переглядати дзвінки з робочого комп’ютера, вам слід надати програмі "
+"доступ до журналу дзвінків та стану телефону"
+
+msgctxt "telephony_optional_permission_explanation"
+msgid ""
+"To see a contact name instead of a phone number you need to give access to "
+"the phone's contacts"
+msgstr ""
+"Щоб бачити ім’я контакту замість номеру телефону, вам слід надати програмі "
+"доступ до записів контактів на телефоні"
+
+msgctxt "contacts_permission_explanation"
+msgid ""
+"To share your contacts book with the desktop, you need to give contacts "
+"permission"
+msgstr ""
+"Щоб мати змогу спільно використовувати ваші записи контактів на пристрої і "
+"на комп'ютері, вам слід надати програмі доступ до контактів"
+
+msgctxt "select_ringtone"
+msgid "Select a ringtone"
+msgstr "Виберіть мелодію дзвінка"
+
+msgctxt "telephony_pref_blocked_title"
+msgid "Blocked numbers"
+msgstr "Заблоковані номери"
+
+msgctxt "telephony_pref_blocked_dialog_desc"
+msgid ""
+"Don't show calls and SMS from these numbers. Please specify one number per "
+"line"
+msgstr ""
+"Не показувати виклики та SMS з цих номерів. Будь ласка, вказуйте кожен із "
+"номерів у окремому рядку."
+
+msgctxt "mpris_coverart_description"
+msgid "Cover art of current media"
+msgstr "Зображення обкладинки відтворюваних даних"
+
+msgctxt "device_icon_description"
+msgid "Device icon"
+msgstr "Піктограма пристрою"
+
+msgctxt "settings_icon_description"
+msgid "Settings icon"
+msgstr "Піктограма параметрів"
+
+msgctxt "presenter_fullscreen"
+msgid "Fullscreen"
+msgstr "На увесь екран"
+
+msgctxt "presenter_exit"
+msgid "Exit presentation"
+msgstr "Вийти з презентації"
+
+msgctxt "presenter_lock_tip"
+msgid ""
+"You can lock your device and use the volume keys to go to the previous/next "
+"slide"
+msgstr ""
+"Ви можете заблокувати ваш пристрій так, щоб користуватися кнопками зміни "
+"гучності як кнопками зміни слайдів «Назад»/«Далі»."
+
+msgctxt "add_command"
+msgid "Add a command"
+msgstr "Додати команду"
+
+msgctxt "addcommand_explanation"
+msgid "There are no commands registered"
+msgstr "Жодних команд не зареєстровано"
+
+msgctxt "addcommand_explanation2"
+msgid "You can add new commands in the KDE Connect System Settings"
+msgstr ""
+"Ви можете додавати нові команди за допомогою Системних параметрів KDE Connect"
+
+msgctxt "add_command_description"
+msgid "You can add commands on the desktop"
+msgstr "Ви можете додавати команди на комп'ютері"
+
+msgctxt "pref_plugin_mprisreceiver"
+msgid "Media Player Control"
+msgstr "Керування відтворенням"
+
+msgctxt "pref_plugin_mprisreceiver_desc"
+msgid "Control your phone's media players from another device"
+msgstr "Керування вашими програвачами на телефоні з іншого пристрою"
+
+msgctxt "notification_channel_default"
+msgid "Other notifications"
+msgstr "Інші сповіщення"
+
+msgctxt "notification_channel_persistent"
+msgid "Persistent indicator"
+msgstr "Постійний індикатор"
+
+msgctxt "notification_channel_media_control"
+msgid "Media control"
+msgstr "Керування відтворенням"
+
+msgctxt "notification_channel_filetransfer"
+msgid "File transfer"
+msgstr "Передавання файлів"
+
+msgctxt "notification_channel_high_priority"
+msgid "High priority"
+msgstr "Високий пріоритет"
+
+msgctxt "notification_channel_sms_mms"
+msgid "New Message"
+msgstr "Нове повідомлення"
+
+msgctxt "mpris_stop"
+msgid "Stop the current player"
+msgstr "Зупинити відтворення у поточному програвачі"
+
+msgctxt "copy_url_to_clipboard"
+msgid "Copy URL to clipboard"
+msgstr "Скопіювати адресу до буфера"
+
+msgctxt "clipboard_toast"
+msgid "Copied to clipboard"
+msgstr "Скопійовано до буфера"
+
+msgctxt "runcommand_notreachable"
+msgid "Device is not reachable"
+msgstr "Немає доступу до пристрою"
+
+msgctxt "runcommand_notpaired"
+msgid "Device is not paired"
+msgstr "Пристрій не пов’язано"
+
+msgctxt "runcommand_nosuchdevice"
+msgid "There is no such device"
+msgstr "Такого пристрою не існує"
+
+msgctxt "runcommand_noruncommandplugin"
+msgid "This device does not have the Run Command Plugin enabled"
+msgstr "Для цього пристрою не увімкнено додаток виконання команд"
+
+msgctxt "pref_plugin_findremotedevice"
+msgid "Find remote device"
+msgstr "Знайти віддалений пристрій"
+
+msgctxt "pref_plugin_findremotedevice_desc"
+msgid "Ring your remote device"
+msgstr "Дзвінок на вашому віддаленому пристрої"
+
+msgctxt "ring"
+msgid "Ring"
+msgstr "Дзвінок"
+
+msgctxt "pref_plugin_systemvolume"
+msgid "System volume"
+msgstr "Системний том"
+
+msgctxt "pref_plugin_systemvolume_desc"
+msgid "Control the system volume of the remote device"
+msgstr "Керування системним томом на віддаленому пристрої"
+
+msgctxt "mute"
+msgid "Mute"
+msgstr "Вимкнути звук"
+
+msgctxt "all"
+msgid "All"
+msgstr "Усі"
+
+msgctxt "devices"
+msgid "Devices"
+msgstr "Пристрої"
+
+msgctxt "settings_rename"
+msgid "Device name"
+msgstr "Назва пристрою"
+
+msgctxt "settings_dark_mode"
+msgid "Dark theme"
+msgstr "Темна тема"
+
+msgctxt "settings_more_settings_title"
+msgid "More settings"
+msgstr "Додаткові параметри"
+
+msgctxt "settings_more_settings_text"
+msgid ""
+"Per-device settings can be found under 'Plugin settings' from within a "
+"device."
+msgstr ""
+"Окремі параметри пристроїв наведено на сторінці «Параметри додатків» "
+"сторінки пристрою."
+
+msgctxt "setting_persistent_notification"
+msgid "Show persistent notification"
+msgstr "Показувати постійне сповіщення"
+
+msgctxt "setting_persistent_notification_oreo"
+msgid "Persistent notification"
+msgstr "Постійне сповіщення"
+
+msgctxt "setting_persistent_notification_description"
+msgid "Tap to enable/disable in Notification settings"
+msgstr "Торкніться, щоб увімкнути або вимкнути сповіщення"
+
+msgctxt "extra_options"
+msgid "Extra options"
+msgstr "Додаткові параметри"
+
+msgctxt "privacy_options"
+msgid "Privacy options"
+msgstr "Параметри конфіденційності"
+
+msgctxt "set_privacy_options"
+msgid "Set your privacy options"
+msgstr "Вкажіть ваші параметри конфіденційності"
+
+msgctxt "block_contents"
+msgid "Block contents of notifications"
+msgstr "Блокувати вміст сповіщень"
+
+msgctxt "block_images"
+msgid "Block images in notifications"
+msgstr "Блокувати зображення у сповіщеннях"
+
+msgctxt "notification_channel_receivenotification"
+msgid "Notifications from other devices"
+msgstr "Сповіщення з інших пристроїв"
+
+msgctxt "take_picture"
+msgid "Launch camera"
+msgstr "Запустити камеру"
+
+msgctxt "plugin_photo_desc"
+msgid "Launch the camera app to ease taking and transferring pictures"
+msgstr ""
+"Запустити додаток камери для спрощення знімання та передавання фотографій"
+
+msgctxt "no_app_for_opening"
+msgid "No suitable app found to open this file"
+msgstr "Не знайдено відповідної програми для відкриття цього файла"
+
+msgctxt "remote_keyboard_service"
+msgid "KDE Connect Remote Keyboard"
+msgstr "Віддалена клавіатура KDE Connect"
+
+msgctxt "presenter_pointer"
+msgid "Pointer"
+msgstr "Указка"
+
+msgctxt "trusted_networks"
+msgid "Trusted networks"
+msgstr "Надійні мережі"
+
+msgctxt "trusted_networks_desc"
+msgid "Restrict autodiscovery to known networks"
+msgstr "Обмежити автовиявлення відомими мережами"
+
+#, c-format
+msgctxt "add_trusted_network"
+msgid "Add %1s"
+msgstr "Додати %1s"
+
+msgctxt "empty_trusted_networks_list_text"
+msgid "You haven't added any trusted network yet"
+msgstr "Вами ще не додано надійних мереж"
+
+msgctxt "allow_all_networks_text"
+msgid "Allow all"
+msgstr "Дозволити всі"
+
+msgctxt "location_permission_needed_title"
+msgid "Permission required"
+msgstr "Потрібні права доступу"
+
+msgctxt "location_permission_needed_desc"
+msgid "Android requires the Location permission to identify your WiFi network"
+msgstr ""
+"Android потрібні права доступу до даних місця перебування для ідентифікації "
+"вашої мережі WiFi"
+
+msgctxt "clipboard_android_x_incompat"
+msgid ""
+"Android 10 has removed clipboard access to all apps. This plugin will be "
+"disabled."
+msgstr ""
+"У Android 10 вилучено доступ до буфера даних для усіх програм. Цей додаток "
+"буде вимкнено."
+
+msgctxt "mpris_open_url"
+msgid "Continue playing here"
+msgstr "Продовжити відтворення тут"
+
+msgctxt "cant_open_url"
+msgid "Can't open URL to continue playing"
+msgstr "Не вдалося відкрити адресу для продовження відтворення"
+
+msgctxt "bigscreen_home"
+msgid "Home"
+msgstr "Домівка"
+
+msgctxt "bigscreen_up"
+msgid "Up"
+msgstr "Вгору"
+
+msgctxt "bigscreen_left"
+msgid "Left"
+msgstr "Ліворуч"
+
+msgctxt "bigscreen_select"
+msgid "Select"
+msgstr "Вибрати"
+
+msgctxt "bigscreen_right"
+msgid "Right"
+msgstr "Праворуч"
+
+msgctxt "bigscreen_down"
+msgid "Down"
+msgstr "Вниз"
+
+msgctxt "bigscreen_mic"
+msgid "Mic"
+msgstr "Мікрофон"
+
+msgctxt "pref_plugin_bigscreen"
+msgid "Bigscreen remote"
+msgstr "Керування великим екраном"
+
+msgctxt "pref_plugin_bigscreen_desc"
+msgid "Use your device as a remote for Plasma Bigscreen"
+msgstr ""
+"Скористайтеся вашим пристроєм як дистанційним керуванням для великого екрана "
+"Плазми"
+
+msgctxt "bigscreen_optional_permission_explanation"
+msgid ""
+"To share microphone input from your phone you need to give access to the "
+"phone's audio input"
+msgstr ""
+"Щоб оприлюднити вхідні дані з мікрофона вашого телефону, вам слід надати "
+"програми доступ до вхідного звукового каналу телефону"
+
+msgctxt "bigscreen_speech_extra_prompt"
+msgid "Speech"
+msgstr "Озвучення"
+
+msgctxt "message_reply_label"
+msgid "REPLY"
+msgstr "ВІДПОВІСТИ"
+
+msgctxt "mark_as_read_label"
+msgid "MARK AS READ"
+msgstr "ПОЗНАЧИТИ ЯК ПРОЧИТАНЕ"
+
+msgctxt "user_display_name"
+msgid "You"
+msgstr "Ви"
+
+msgctxt "set_default_sms_app_title"
+msgid "Send MMS"
+msgstr "Надіслати MMS"
+
+msgctxt "set_group_message_as_mms_title"
+msgid "Send group MMS"
+msgstr "Надіслати групове MMS"
+
+msgctxt "set_long_text_as_mms_title"
+msgid "Send long text as MMS"
+msgstr "Надіслати довгий текст як MMS"
+
+msgctxt "convert_to_mms_after_title"
+msgid "Convert to MMS"
+msgstr "Перетворити на MMS"
+
+msgctxt "convert_to_mms_after_entries:0"
+msgid "After one message"
+msgstr "Після одного повідомлення"
+
+msgctxt "convert_to_mms_after_entries:1"
+msgid "After two messages"
+msgstr "Після двох повідомлень"
+
+msgctxt "convert_to_mms_after_entries:2"
+msgid "After three messages"
+msgstr "Після трьох повідомлень"
+
+msgctxt "convert_to_mms_after_entries:3"
+msgid "After four messages"
+msgstr "Після чотирьох повідомлень"
+
+msgctxt "convert_to_mms_after_entries:4"
+msgid "After five messages"
+msgstr "Після п'яти повідомлень"
+
+msgctxt "theme_dialog_title"
+msgid "Choose theme"
+msgstr "Вибір теми"
+
+msgctxt "theme_list:0"
+msgid "Set by Battery Saver"
+msgstr "Встановлена зберігачем акумулятора"
+
+msgctxt "theme_list:1"
+msgid "Light"
+msgstr "Світла"
+
+msgctxt "theme_list:2"
+msgid "Dark"
+msgstr "Темна"
+
+msgctxt "theme_list_v28:0"
+msgid "System Default"
+msgstr "Типова для системи"
+
+msgctxt "theme_list_v28:1"
+msgid "Light"
+msgstr "Світла"
+
+msgctxt "theme_list_v28:2"
+msgid "Dark"
+msgstr "Темна"
+
+msgctxt "report_bug"
+msgid "Report Bug"
+msgstr "Повідомити про ваду"
+
+msgctxt "donate"
+msgid "Donate"
+msgstr "Підтримати фінансово"
+
+msgctxt "source_code"
+msgid "Source Code"
+msgstr "Початковий код"
+
+msgctxt "licenses"
+msgid "Licenses"
+msgstr "Ліцензування"
+
+msgctxt "website"
+msgid "Website"
+msgstr "Сайт"
+
+msgctxt "about"
+msgid "About"
+msgstr "Про програму"
+
+msgctxt "authors"
+msgid "Authors"
+msgstr "Автори"
+
+msgctxt "thanks_to"
+msgid "Thanks To"
+msgstr "Подяки"
+
+msgctxt "easter_egg"
+msgid "Easter Egg"
+msgstr "Великоднє яйце"
+
+#, c-format
+msgctxt "email_contributor"
+msgid ""
+"Email contributor\n"
+"%s"
+msgstr ""
+"Написати учаснику розробки\n"
+"%s"
+
+#, c-format
+msgctxt "visit_contributors_homepage"
+msgid ""
+"Visit contributor's homepage\n"
+"%s"
+msgstr ""
+"Відвідати домашню сторінку учасника розробки\n"
+"%s"
+
+#, c-format
+msgctxt "version"
+msgid "Version %s"
+msgstr "Версія %s"
+
+msgctxt "about_kde"
+msgid "About KDE"
+msgstr "Про KDE"
+
+msgctxt "kde_be_free"
+msgid "KDE - Be Free!"
+msgstr "KDE — почувайтеся вільно!"
+
+msgctxt "kde"
+msgid "KDE"
+msgstr "KDE"
+
+msgctxt "konqi"
+msgid "Konqi"
+msgstr "Konqi"
+
+msgctxt "rise_up"
+msgid "Rise Up"
+msgstr "Підняти"
+
+msgctxt "rise_down"
+msgid "Rise Down"
+msgstr "Опустити"
+
+msgctxt "click_here_to_type"
+msgid "Tap here to type"
+msgstr "Торкніться тут, щоб почати введення"
+
+msgctxt "clear_compose"
+msgid "Clear"
+msgstr "Спорожнити"
+
+msgctxt "send_compose"
+msgid "Send"
+msgstr "Надіслати"
+
+msgctxt "open_compose_send"
+msgid "Compose text"
+msgstr "Редагувати текст"
+
+msgctxt "app_description"
+msgid ""
+"Multi-platform app that allows your devices to communicate (e.g., your phone "
+"and your computer)"
+msgstr ""
+"Багатоплатформова програма, за допомогою якої пристрої (наприклад ваш "
+"телефон і комп'ютер) можуть обмінюватися даними"
+
+msgctxt "about_kde_about"
+msgid ""
+"&lt;h1&gt;About&lt;/h1&gt; &lt;p&gt;KDE is a world-wide community of "
+"software engineers, artists, writers, translators and creators who are "
+"committed to &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Free "
+"Software&lt;/a&gt; development. KDE produces the Plasma desktop environment, "
+"hundreds of applications, and the many software libraries that support them."
+"&lt;/p&gt; &lt;p&gt;KDE is a cooperative enterprise: no single entity "
+"controls its direction or products. Instead, we work together to achieve the "
+"common goal of building the world's finest Free Software. Everyone is "
+"welcome to &lt;a href=https://community.kde.org/Get_Involved&gt;join and "
+"contribute&lt;/a&gt; to KDE, including you.&lt;/p&gt; Visit &lt;a "
+"href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; for more "
+"information about the KDE community and the software we produce."
+msgstr ""
+"&lt;h1&gt;Інформація&lt;/h1&gt; &lt;p&gt;KDE — це всесвітня спільнота "
+"програмістів, художників, авторів текстів, перекладачів та фахівців з "
+"полегшення користування програмами, які роблять свій внесок до розвитку &lt;"
+"a href=https://www.gnu.org/philosophy/free-sw.html&gt;вільного програмного "
+"забезпечення&lt;/a&gt;. KDE створено стільничне середовище Плазма, сотні "
+"вільних програм і багато бібліотек, які є їхньою основою.&lt;/p&gt; &lt;p&gt;"
+"Розробка KDE є спільною працею, у якій жоден з учасників не має переважного "
+"контролю над зусиллями або результатами роботи інших розробників KDE. Ми "
+"працюємо разом заради спільної мети — створення найкращого вільного "
+"програмного забезпечення. Кожен може &lt;a href=https://community.kde.org/"
+"Get_Involved&gt;долучитися і зробити свій внесок&lt;/a&gt;, зокрема це "
+"можете зробити ви.&lt;/p&gt; Відвідайте сайт &lt;a href=https://www.kde.org/"
+"&gt;https://www.kde.org/&lt;/a&gt;, щоб дізнатися більше про спільноту KDE "
+"та створене нею програмне забезпечення."
+
+msgctxt "about_kde_report_bugs_or_wishes"
+msgid ""
+"&lt;h1&gt;Report Bugs or Wishes&lt;/h1&gt; &lt;p&gt;Software can always be "
+"improved, and the KDE team is ready to do so. However, you - the user - must "
+"tell us when something does not work as expected or could be done better."
+"&lt;/p&gt; &lt;p&gt;KDE has a bug tracking system. Visit &lt;a href=https://"
+"bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; or use the \"Report Bug\" "
+"button from the about screen to report bugs.&lt;/p&gt; If you have a "
+"suggestion for improvement then you are welcome to use the bug tracking "
+"system to register your wish. Make sure you use the severity called "
+"\"Wishlist\"."
+msgstr ""
+"&lt;h1&gt;Повідомляйте про вади і ваші побажання&lt;/h1&gt; &lt;p&gt;"
+"Програмне забезпечення завжди потребує вдосконалення, і команда KDE готова "
+"це робити. Проте, вам (користувачеві) варто повідомити нам, якщо щось не "
+"працює, як слід, або щось можна покращити.&lt;/p&gt; &lt;p&gt;KDE має "
+"систему стеження за вадами. Завітайте на сторінку &lt;a href=https://bugs."
+"kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; , щоб повідомити розробників про "
+"ваду у програмі.&lt;/p&gt;Якщо у вас є пропозиція щодо вдосконалення, за "
+"допомогою цієї системи можна зареєструвати ваше побажання. Переконайтеся, що "
+"поле «Важливість» встановлено у значення «Список побажань» («Wishlist»)."
+
+msgctxt "about_kde_join_kde"
+msgid ""
+"&lt;h1&gt;Join KDE&lt;/h1&gt; &lt;p&gt;You do not have to be a software "
+"developer to be a member of the KDE team. You can join the national teams "
+"that translate program interfaces. You can provide graphics, themes, sounds, "
+"and improved documentation. You decide!&lt;/p&gt; &lt;p&gt;Visit &lt;a "
+"href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/"
+"Get_Involved&lt;/a&gt; for information on some projects in which you can "
+"participate.&lt;/p&gt; If you need more information or documentation, then a "
+"visit to &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/"
+"&lt;/a&gt; will provide you with what you need."
+msgstr ""
+"&lt;h1&gt;Долучайтеся до KDE&lt;/h1&gt; &lt;p&gt;Не обов'язково бути "
+"програмістом, щоб належати до Команди KDE. Можете приєднатися до "
+"національних команд, що перекладають інтерфейс програм. Можете забезпечувати "
+"користувачів графікою, темами, звуками та вдосконаленою документацію. Вам "
+"вирішувати!&lt;/p&gt; &lt;p&gt;Завітайте на сторінку &lt;a href=https://"
+"community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/"
+"a&gt; щодо інформації про деякі проєкти, у яких можна взяти участь.&lt;/p&gt;"
+"Якщо ви потребуєте більше інформації або документації, відвідайте &lt;a "
+"href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt;, щоб "
+"ознайомитися з нею."
+
+msgctxt "about_kde_support_kde"
+msgid ""
+"&lt;h1&gt;Support KDE&lt;/h1&gt; &lt;p&gt;KDE software is and will always be "
+"available free of charge, however creating it is not free.&lt;/p&gt; &lt;"
+"p&gt;To support development the KDE community has formed the KDE e.V., a non-"
+"profit organization legally founded in Germany. KDE e.V. represents the KDE "
+"community in legal and financial matters. See &lt;a href=https://ev.kde.org/"
+"&gt;https://ev.kde.org/&lt;/a&gt; for information on KDE e.V.&lt;/p&gt; &lt;"
+"p&gt;KDE benefits from many kinds of contributions, including financial. We "
+"use the funds to reimburse members and others for expenses they incur when "
+"contributing. Further funds are used for legal support and organizing "
+"conferences and meetings.&lt;/p&gt; &lt;p&gt;We would like to encourage you "
+"to support our efforts with a financial donation, using one of the ways "
+"described at &lt;a href=https://www.kde.org/community/donations/&gt;https://"
+"www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Thank you very much in "
+"advance for your support."
+msgstr ""
+"&lt;h1&gt;Підтримка KDE&lt;/h1&gt; &lt;p&gt;Програмне забезпечення KDE є і "
+"завжди буде доступним безкоштовно. Втім, його створення все ж чогось коштує."
+"&lt;/p&gt; &lt;p&gt;Для підтримки розвитку команда KDE створила Спілку KDE  "
+"(KDE e.V.) — неприбуткову організацію, яку юридично зареєстровано у "
+"Тюбінгені, Німеччина. Спілка KDE юридично та фінансово представляє спільноту "
+"KDE. Дивіться &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/"
+"a&gt;, щоб дізнатися більше про Спілку KDE.&lt;/p&gt; &lt;p&gt;Команда KDE "
+"потребує допомоги у багатьох аспектах, зокрема фінансових. В основному кошти "
+"витрачаються на відшкодування витрат людям, які працюють над розробкою KDE. "
+"Інші кошти буде витрачено на підтримку та організацію конференцій та "
+"зустрічей.&lt;/p&gt; &lt;p&gt;Якщо ви бажаєте підтримати KDE фінансово, "
+"скористайтесь одним зі способів, описаних за адресою &lt;a href=https://www."
+"kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/"
+"a&gt;.&lt;/p&gt; Заздалегідь вдячні вам за допомогу."
+
+#. Authors tasks
+msgctxt "maintainer_and_developer"
+msgid "Maintainer and developer"
+msgstr "Супровідник і розробник"
+
+msgctxt "developer"
+msgid "Developer"
+msgstr "Розробник"
+
+msgctxt "apple_support"
+msgid "macOS support. Working on iOS support"
+msgstr "Підтримка macOS. Робота над підтримкою iOS"
+
+msgctxt "bug_fixes_and_general_improvements"
+msgid "Bug fixes and general improvements"
+msgstr "Налагодження і загальні вдосконалення"
+
+msgctxt "samoilenko_yuri_task"
+msgid "SFTP implementation, bug fixes and general improvements"
+msgstr "Реалізація SFTP, виправлення вад і загальні удосконалення"
+
+msgctxt "aniket_kumar_task"
+msgid "SMS plugin improvements"
+msgstr "Удосконалення додатка SMS"
+
+msgctxt "alex_fiestas_task"
+msgid "Contacts plugin improvements"
+msgstr "Удосконалення додатка контактів"
+
+msgctxt "maxim_leshchenko_task"
+msgid "UI improvements and this about page"
+msgstr "Удосконалення інтерфейсу та ця інформаційна сторінка"
+
+msgctxt "holger_kaelberer_task"
+msgid "Remote keyboard plugin and bug fixes"
+msgstr "Додаток бездротової клавіатури та виправлення вад"
+
+msgctxt "saikrishna_arcot_task"
+msgid ""
+"Support for using the keyboard in the remote input plugin, bug fixes and "
+"general improvements"
+msgstr ""
+"Підтримка використання клавіатури у додатку віддаленого введення, "
+"виправлення вад і загальні удосконалення"
+
+msgctxt "everyone_else"
+msgid "Everyone else who has contributed to KDE Connect over the years"
+msgstr "Усім іншим, хто робив внесок до KDE Connect протягом років розробки"
+
+msgctxt "send_clipboard"
+msgid "Send clipboard"
+msgstr "Надіслати вміст буфера"
+
+msgctxt "tap_to_execute"
+msgid "Tap to execute"
+msgstr "Торкніться, щоб виконати"
+
+#~ msgctxt "share_optional_permission_explanation"
+#~ msgid ""
+#~ "To share files between your phone and your desktop you need to give "
+#~ "access to the phone's storage"
+#~ msgstr ""
+#~ "Щоб спільного використовувати файли на вашому телефоні і робочому "
+#~ "комп’ютері, вам слід надати програмі доступ до сховища даних вашого "
+#~ "телефону"
+
+#~ msgctxt "sms_pref_set_mmsc_dialog_desc"
+#~ msgid "Set MMSC"
+#~ msgstr "Встановити MMSC"
+
+#~ msgctxt "sms_pref_set_mmsc_title"
+#~ msgid "MMSC"
+#~ msgstr "MMSC"
+
+#~ msgctxt "sms_pref_set_mms_proxy_dialog_desc"
+#~ msgid "Set MMS proxy"
+#~ msgstr "Встановити проксі MMS"
+
+#~ msgctxt "sms_pref_set_mms_proxy_title"
+#~ msgid "MMS proxy"
+#~ msgstr "Проксі MMS"
+
+#~ msgctxt "sms_pref_set_mms_port_dialog_desc"
+#~ msgid "Set MMS port"
+#~ msgstr "Встановити порт MMS"
+
+#~ msgctxt "sms_pref_set_mms_port_title"
+#~ msgid "MMS port"
+#~ msgstr "Порт MMS"
+
+#~ msgctxt "on_data_message"
+#~ msgid ""
+#~ "It looks like you are on a mobile data connection. KDE Connect only works "
+#~ "on local networks."
+#~ msgstr ""
+#~ "Здається, мережа працює у режимі мобільного з’єднання. KDE Connect може "
+#~ "працювати лише у локальних мережах."
+
+#~ msgctxt "plugin_not_available"
+#~ msgid "This feature is not available in your Android version"
+#~ msgstr "Ця можливість є недоступною для вашої версії для Android"
+
+#~ msgctxt "device_not_reachable"
+#~ msgid "Paired device not reachable"
+#~ msgstr "Немає доступу до пов’язаного пристрою"
+
+#~ msgctxt "error_already_requested"
+#~ msgid "Pairing already requested"
+#~ msgstr "Запит щодо пов’язування вже надіслано"
+
+#~ msgctxt "error_invalid_key"
+#~ msgid "Invalid key received"
+#~ msgstr "Отримано некоректний ключ"
+
+#~ msgctxt "received_url_title"
+#~ msgid "Received link from %1s"
+#~ msgstr "Отримано посилання від %1s"
+
+#~ msgctxt "received_url_text"
+#~ msgid "Tap to open '%1s'"
+#~ msgstr "Натисніть, щоб відкрити «%1s»"
+
+#~ msgctxt "reconnect"
+#~ msgid "Reconnect"
+#~ msgstr "З'єднати знову"
+
+#~ msgctxt "device"
+#~ msgid "Device"
+#~ msgstr "Пристрій"
+
+#~ msgctxt "pair_device"
+#~ msgid "Pair device"
+#~ msgstr "Пов’язати пристрій"
+
+#~ msgctxt "mpris_settings"
+#~ msgid "Multimedia Settings"
+#~ msgstr "Мультимедійні параметри"
+
+#~ msgctxt "protocol_version_older"
+#~ msgid "This device uses an old protocol version"
+#~ msgstr "На цьому пристрої використовується стара версія протоколу"
+
+#~ msgctxt "general_settings"
+#~ msgid "General Settings"
+#~ msgstr "Загальні параметри"
+
+#~ msgctxt "plugin_settings"
+#~ msgid "Settings"
+#~ msgstr "Параметри"
+
+#~ msgctxt "device_name"
+#~ msgid "Device name"
+#~ msgstr "Назва пристрою"
+
+#~ msgctxt "device_name_preference_summary"
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#~ msgctxt "pair_device_action"
+#~ msgid "Pair a new device"
+#~ msgstr "Пов’язати новий пристрій"
+
+#~ msgctxt "unpair_device_action"
+#~ msgid "Unpair %s"
+#~ msgstr "Розірвати прив’язку %s"
+
+#~ msgctxt "delete_custom_device"
+#~ msgid "Delete %s?"
+#~ msgstr "Вилучити %s?"
+
+#~ msgctxt "sftp_internal_storage"
+#~ msgid "Internal storage"
+#~ msgstr "Вбудоване сховище даних"
+
+#~ msgctxt "add_host"
+#~ msgid "Add host/IP"
+#~ msgstr "Додати вузол/IP"
+
+#~ msgctxt "add_host_hint"
+#~ msgid "Hostname or IP"
+#~ msgstr "Назва або IP-адреса вузла"
+
+#~ msgctxt "mpris_player_on_device"
+#~ msgid "%1$s on %2$s"
+#~ msgstr "%1$s на %2$s"
+
+#~ msgctxt "device_paired"
+#~ msgid "Device paired"
+#~ msgstr "Пристрій пов’язано"
+
+#~ msgctxt "plugin_not_supported"
+#~ msgid "This plugin is not supported by the device"
+#~ msgstr "Підтримки цього додатка не передбачено на пристрої"
+
+#~ msgctxt "no_permissions_storage"
+#~ msgid "You need to grant permissions to access the storage"
+#~ msgstr "Для доступу до сховища даних вам слід надати програмі права доступу"
+
+#~ msgctxt "dark_theme"
+#~ msgid "Dark theme"
+#~ msgstr "Темна тема"
+
+#~ msgctxt "new_notification"
+#~ msgid "New notification"
+#~ msgstr "Нове сповіщення"
+
+#~ msgctxt "outgoing_files_title"
+#~ msgid "Sending files to %1s"
+#~ msgstr "Надсилаємо файли на %1s"
+
+#~ msgctxt "outgoing_files_text"
+#~ msgid "Sent %1$d file"
+#~ msgid_plural "Sent %1$d out of %2$d files"
+#~ msgstr[0] "Надіслано %1$d з %2$d файла"
+#~ msgstr[1] "Надіслано %1$d з %2$d файлів"
+#~ msgstr[2] "Надіслано %1$d з %2$d файлів"
+#~ msgstr[3] "Надіслано %1$d файл"
+
+#~ msgctxt "sent_file_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "sent_file_failed_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "sftp_all_files"
+#~ msgid "All files"
+#~ msgstr "Усі файли"
+
+#~ msgctxt "sftp_permission_explanation"
+#~ msgid ""
+#~ "To access your files from your PC the app needs permission to access your "
+#~ "phone's storage"
+#~ msgstr ""
+#~ "Для доступу до ваших файлі із персонального комп’ютера програмі потрібні "
+#~ "права доступу до сховища даних вашого телефону"
+
+#~ msgctxt "take_picture"
+#~ msgid "Take picture"
+#~ msgstr "Створити знімок"
+
+#~ msgctxt "plugin_photo_desc"
+#~ msgid "Take a picture and send it to another device"
+#~ msgstr "Зробити знімок і надіслати його на інший пристрій"
+
+#~ msgctxt "custom_dev_list_help"
+#~ msgid ""
+#~ "Use this option only if your device is not automatically detected. Enter "
+#~ "IP address or hostname below and touch the button to add it to the list. "
+#~ "Touch an existing item to remove it from the list."
+#~ msgstr ""
+#~ "Цим пунктом слід користуватися, лише якщо ваш пристрій не було визначено "
+#~ "у автоматичному режимі. Введіть IP-адресу або назву вузла нижче і "
+#~ "натисніть кнопку, щоб додати пункт до списку. Натисніть наявний пункт, "
+#~ "щоб вилучити його зі списку."
+
+#~ msgctxt "plugins_failed_to_load"
+#~ msgid "Plugins failed to load (tap for more info):"
+#~ msgstr ""
+#~ "Додатки, які не вдалося завантажити (натисніть, щоб дізнатися більше):"
+
+#~ msgctxt "setting_persistent_notification_oreo_description"
+#~ msgid "Required by Android since Android 8.0"
+#~ msgstr "Є обов'язковим для Android з версії Android 8.0"
+
+#~ msgctxt "setting_persistent_notification_pie_description"
+#~ msgid ""
+#~ "Since Android 9.0, this notification can only be minimized by long "
+#~ "tapping on it"
+#~ msgstr ""
+#~ "Починаючи з версії 9.0, це сповіщення можна мінімізувати лише довгим його "
+#~ "натисканням"
+
+#~ msgctxt "remote_control"
+#~ msgid "Remote control"
+#~ msgstr "Дистанційне керування"
+
+#~ msgctxt "incoming_file_title"
+#~ msgid "Incoming file from %1s"
+#~ msgstr "Вхідний файл з %1s"
+
+#~ msgctxt "incoming_file_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "settings"
+#~ msgid "KDE Connect Settings"
+#~ msgstr "Параметри з’єднання з KDE"
+
+#~ msgctxt "addcommand_name"
+#~ msgid "Name"
+#~ msgstr "Назва"
+
+#~ msgctxt "addcommand_command"
+#~ msgid "Command"
+#~ msgstr "Команда"
+
+#~ msgctxt "outgoing_file_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "mousepad_triple_default"
+#~ msgid "middle"
+#~ msgstr "середня"
+
+#~ msgctxt "mousepad_sensitivity_default"
+#~ msgid "default"
+#~ msgstr "типва"
+
+#~ msgctxt "pref_plugin_mpris_desc"
+#~ msgid "Control audio/video from your phone"
+#~ msgstr "Керування відтворенням звуку та відео з вашого телефону"
+
+#~ msgctxt "pref_plugin_runcommand_desc"
+#~ msgid "Runs a command on your system"
+#~ msgstr "Виконує команду у вашій системі"
+
+#~ msgctxt "pref_plugin_sharereceiver_desc"
+#~ msgid "Save incoming files to the phone storage"
+#~ msgstr "Зберігає вхідні файли на носій даних телефону"
+
+#~ msgctxt "open_mpris_controls"
+#~ msgid "Open remote control"
+#~ msgstr "Відкрити дистанційне керування"
+
+#~ msgctxt "open_mousepad"
+#~ msgid "Open touchpad control"
+#~ msgstr "Відкрити керування сенсорною панеллю"
+
+#~ msgctxt "mousepad_info"
+#~ msgid "Move a finger on the screen to move the mouse cursor"
+#~ msgstr "Проведіть по екрану пальцем, щоб пересунути вказівник миші"
+
+#~ msgctxt "device_menu_plugins"
+#~ msgid "Select plugins"
+#~ msgstr "Виберіть додатки"
+
+#~ msgctxt "mpris_time_settings_title"
+#~ msgid "Interval Time"
+#~ msgstr "Часовий інтервал"
+
+#~ msgctxt "custom_device_list"
+#~ msgid "Custom device list"
+#~ msgstr "Список нетипових пристроїв"
+
+#~ msgctxt "custom_device_list_summary"
+#~ msgid "Custom device list"
+#~ msgstr "Список нетипових пристроїв"
+
+#~ msgctxt "category_not_paired_devices"
+#~ msgid "Not paired devices"
+#~ msgstr "Непов’язані пристрої"
+
+#~ msgctxt "pref_plugin_mousepad"
+#~ msgid "Mouse Remote Control"
+#~ msgstr "Дистанційне керування мишею"
+
+#~ msgctxt "pref_plugin_mousepad_desc"
+#~ msgid "Control your mouse remotely"
+#~ msgstr "Віддалене керування вашою мишею"

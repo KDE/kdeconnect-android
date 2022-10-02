@@ -1,0 +1,1922 @@
+# Translations template for PROJECT.
+# Copyright (C) 2015 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+# Safa Alfulaij <safa1996alfulaij@gmail.com>, 2015, ٢٠١٦.
+# Zayed Al-Saidi <zayed.alsaidi@gmail.com>, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-01-16 00:43+0000\n"
+"PO-Revision-Date: 2022-09-10 20:58+0400\n"
+"Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
+"Language-Team: ar\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.0dev\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: Lokalize 21.12.3\n"
+
+#. # Dear potential translators:          Thank you for your interest in KDE
+#. Connect! We do not actually handle our own translations.         All
+#. translations for all KDE apps are handled by the [localization
+#. team](https://l10n.kde.org).         We really appreciate your translations,
+#. but make sure to submit them by working with the proper team!
+msgctxt "kde_connect"
+msgid "KDE Connect"
+msgstr "كدي المتّصل"
+
+msgctxt "manifest_label_share"
+msgid "Send to Device"
+msgstr "أرسِل إلى جهاز"
+
+msgctxt "foreground_notification_no_devices"
+msgid "Not connected to any device"
+msgstr "غير متصل بأي جهاز"
+
+#, c-format
+msgctxt "foreground_notification_devices"
+msgid "Connected to: %s"
+msgstr "متّصل بـ: %s"
+
+msgctxt "foreground_notification_send_clipboard"
+msgid "Send Clipboard"
+msgstr "أرسل الحافظة"
+
+msgctxt "pref_plugin_telephony"
+msgid "Telephony notifier"
+msgstr "مُخطِر المهاتفة"
+
+msgctxt "pref_plugin_telephony_desc"
+msgid "Send notifications for incoming calls"
+msgstr "أرسل إخطارات للمكالمات الواردة"
+
+msgctxt "pref_plugin_battery"
+msgid "Battery report"
+msgstr "تقرير البطّاريّة"
+
+msgctxt "pref_plugin_battery_desc"
+msgid "Periodically report battery status"
+msgstr "بلّغ عن حالة البطّاريّة دوريًّا"
+
+msgctxt "pref_plugin_connectivity_report"
+msgid "Connectivity report"
+msgstr "تقرير الاتصال"
+
+msgctxt "pref_plugin_connectivity_report_desc"
+msgid "Report network signal strength and status"
+msgstr ""
+
+msgctxt "pref_plugin_sftp"
+msgid "Filesystem expose"
+msgstr "اكشف نظام الملفّات"
+
+msgctxt "pref_plugin_sftp_desc"
+msgid "Allows to browse this device's filesystem remotely"
+msgstr "تسمح بتصفّح نظام ملفّات هذا الهاتف عن بعد"
+
+msgctxt "pref_plugin_clipboard"
+msgid "Clipboard sync"
+msgstr "مزامنة الحافظة"
+
+msgctxt "pref_plugin_clipboard_desc"
+msgid "Share the clipboard content"
+msgstr "شارك محتوى الحافظة"
+
+msgctxt "pref_plugin_clipboard_sent"
+msgid "Clipboard Sent"
+msgstr "أرسل الحافظة"
+
+msgctxt "pref_plugin_mousepad"
+msgid "Remote input"
+msgstr "الدّخل البعيد"
+
+msgctxt "pref_plugin_mousepad_desc"
+msgid "Use your phone or tablet as a touchpad and keyboard"
+msgstr "استخدم الهاتف أو اللوحيّ كفأرة ولوحة مفاتيح"
+
+msgctxt "pref_plugin_presenter"
+msgid "Slideshow remote"
+msgstr ""
+
+msgctxt "pref_plugin_presenter_desc"
+msgid "Use your device to change slides in a presentation"
+msgstr ""
+
+msgctxt "pref_plugin_remotekeyboard"
+msgid "Receive remote keypresses"
+msgstr ""
+
+msgctxt "pref_plugin_remotekeyboard_desc"
+msgid "Receive keypress events from remote devices"
+msgstr ""
+
+msgctxt "pref_plugin_mpris"
+msgid "Multimedia controls"
+msgstr "تحكّمات الوسائط المتعدّدة"
+
+msgctxt "pref_plugin_mpris_desc"
+msgid "Provides a remote control for your media player"
+msgstr "توفّر تحكّمًا بعيدًا لمشغّل الوسائط"
+
+msgctxt "pref_plugin_runcommand"
+msgid "Run Command"
+msgstr "شغّل أمرًا"
+
+msgctxt "pref_plugin_runcommand_desc"
+msgid "Trigger remote commands from your phone or tablet"
+msgstr "تحفّز أوامر عن بعد من الهاتف أو اللوحيّ"
+
+msgctxt "pref_plugin_contacts"
+msgid "Contacts Synchronizer"
+msgstr "مزامن المتراسلين"
+
+msgctxt "pref_plugin_contacts_desc"
+msgid "Allow synchronizing the device's contacts book"
+msgstr ""
+
+msgctxt "pref_plugin_ping"
+msgid "Ping"
+msgstr "وخزة"
+
+msgctxt "pref_plugin_ping_desc"
+msgid "Send and receive pings"
+msgstr "أرسل واستقبل وخزات"
+
+msgctxt "pref_plugin_notifications"
+msgid "Notification sync"
+msgstr "مزامنة الإخطارات"
+
+msgctxt "pref_plugin_notifications_desc"
+msgid "Access your notifications from other devices"
+msgstr "انفذ إلى إخطاراتك من أجهزة أخرى"
+
+msgctxt "pref_plugin_receive_notifications"
+msgid "Receive notifications"
+msgstr "استقبل الإخطارات"
+
+msgctxt "pref_plugin_receive_notifications_desc"
+msgid "Receive notifications from the other device and display them on Android"
+msgstr "استقبل الإخطارات من الجهاز الآخر واعرضها على أندرويد"
+
+msgctxt "pref_plugin_sharereceiver"
+msgid "Share and receive"
+msgstr "شارك واستقبل"
+
+msgctxt "pref_plugin_sharereceiver_desc"
+msgid "Share files and URLs between devices"
+msgstr "شارك الملفّات والعناوين بين الجهازين"
+
+msgctxt "device_list_empty"
+msgid "No devices"
+msgstr "لا أجهزة"
+
+msgctxt "ok"
+msgid "OK"
+msgstr "حسنًا"
+
+msgctxt "sad_ok"
+msgid "OK :("
+msgstr "حسنًا ):"
+
+msgctxt "cancel"
+msgid "Cancel"
+msgstr "ألغِ"
+
+msgctxt "open_settings"
+msgid "Open settings"
+msgstr "افتح الإعدادات"
+
+msgctxt "no_permissions"
+msgid "You need to grant permission to access notifications"
+msgstr "عليك إعطاء التّطبيق صلاحيّات للنّفاذ إلى الإخطارات"
+
+msgctxt "no_permission_mprisreceiver"
+msgid ""
+"To be able to control your media players you need to grant access to the "
+"notifications"
+msgstr ""
+
+msgctxt "no_permissions_remotekeyboard"
+msgid ""
+"To receive keypresses you need to activate the KDE Connect Remote Keyboard"
+msgstr ""
+
+msgctxt "send_ping"
+msgid "Send ping"
+msgstr "أرسل وخزة"
+
+msgctxt "open_mpris_controls"
+msgid "Multimedia control"
+msgstr "تحكّمات الوسائط المتعدّدة"
+
+msgctxt "remotekeyboard_editing_only_title"
+msgid "Handle remote keys only when editing"
+msgstr ""
+
+msgctxt "remotekeyboard_not_connected"
+msgid ""
+"There is no active remote keyboard connection, establish one in kdeconnect"
+msgstr ""
+
+msgctxt "remotekeyboard_connected"
+msgid "Remote keyboard connection is active"
+msgstr ""
+
+msgctxt "remotekeyboard_multiple_connections"
+msgid ""
+"There is more than one remote keyboard connection, select the device to "
+"configure"
+msgstr ""
+
+msgctxt "open_mousepad"
+msgid "Remote input"
+msgstr "الدّخل البعيد"
+
+#, fuzzy
+#| msgctxt "mousepad_info"
+#| msgid ""
+#| "Move a finger on the screen to move the mouse cursor. Tap for a click, "
+#| "and use two/three fingers for right and middle buttons. Use a long press "
+#| "to drag'n drop."
+msgctxt "mousepad_info"
+msgid ""
+"Move a finger on the screen to move the mouse cursor. Tap for a click, and "
+"use two/three fingers for right and middle buttons. Use 2 fingers to scroll. "
+"Use a long press to drag'n drop."
+msgstr ""
+"حرّك اصبعًا على الشّاشة لتحريك مؤشّر الفأرة. المس للنّقر واستخدم إصبعين أو ثلاث "
+"للزّرّين الأيمن والأوسط. انقر مطوّلًا للسّحب والإفلات."
+
+msgctxt "mousepad_single_tap_settings_title"
+msgid "Set one finger tap action"
+msgstr "اضبط إجراء الطَرق بالأصبع"
+
+msgctxt "mousepad_double_tap_settings_title"
+msgid "Set two finger tap action"
+msgstr "اضبط إجراء اللمس بإصبعين"
+
+msgctxt "mousepad_triple_tap_settings_title"
+msgid "Set three finger tap action"
+msgstr "اضبط إجراء اللمس بثلاث أصابع"
+
+msgctxt "mousepad_sensitivity_settings_title"
+msgid "Set touchpad sensitivity"
+msgstr "اضبط حساسيّة لوحة اللمس"
+
+msgctxt "mousepad_acceleration_profile_settings_title"
+msgid "Set pointer acceleration"
+msgstr "عيّن تسارع المؤشر"
+
+msgctxt "mousepad_scroll_direction_title"
+msgid "Reverse Scrolling Direction"
+msgstr "اعكس اتّجاه التّمرير"
+
+msgctxt "mousepad_tap_entries:0"
+msgid "Left click"
+msgstr "النّقر باليسار"
+
+msgctxt "mousepad_tap_entries:1"
+msgid "Right click"
+msgstr "النقر باليمين"
+
+msgctxt "mousepad_tap_entries:2"
+msgid "Middle click"
+msgstr "النّقر بالوسط"
+
+msgctxt "mousepad_tap_entries:3"
+msgid "Nothing"
+msgstr "لا شيء"
+
+msgctxt "mousepad_sensitivity_entries:0"
+msgid "Slowest"
+msgstr "الأبطأ"
+
+msgctxt "mousepad_sensitivity_entries:1"
+msgid "Above Slowest"
+msgstr "الأقل بطئًا"
+
+msgctxt "mousepad_sensitivity_entries:2"
+msgid "Default"
+msgstr "الافتراضيّ"
+
+msgctxt "mousepad_sensitivity_entries:3"
+msgid "Above Default"
+msgstr "الأسرع قليلًا"
+
+msgctxt "mousepad_sensitivity_entries:4"
+msgid "Fastest"
+msgstr "الأسرع"
+
+msgctxt "mousepad_acceleration_profile_entries:0"
+msgid "No Acceleration"
+msgstr "بدون تسريع"
+
+msgctxt "mousepad_acceleration_profile_entries:1"
+msgid "Weakest"
+msgstr "الأكثر ضعفاً"
+
+msgctxt "mousepad_acceleration_profile_entries:2"
+msgid "Weaker"
+msgstr "ضعيف"
+
+msgctxt "mousepad_acceleration_profile_entries:3"
+msgid "Medium"
+msgstr "متوسط"
+
+msgctxt "mousepad_acceleration_profile_entries:4"
+msgid "Stronger"
+msgstr "أقوى"
+
+msgctxt "mousepad_acceleration_profile_entries:5"
+msgid "Strongest"
+msgstr "الأقوى"
+
+msgctxt "sendkeystrokes_send_to"
+msgid "Send keystrokes to"
+msgstr ""
+
+msgctxt "sendkeystrokes_textbox_hint"
+msgid "Send keystrokes to host"
+msgstr ""
+
+msgctxt "sendkeystrokes_disabled_toast"
+msgid "Sending keystrokes is disabled - enable it in the settings"
+msgstr ""
+
+msgctxt "sendkeystrokes_wrong_data"
+msgid "Invalid mime type - needs to be 'text/x-keystrokes'"
+msgstr ""
+
+#, fuzzy, c-format
+#| msgctxt "outgoing_file_title"
+#| msgid "Sending file to %1s"
+msgctxt "sendkeystrokes_sent_text"
+msgid "Sent %1$s to device %2$s"
+msgstr "يرسل ملفًّا إلى %1s"
+
+msgctxt "sendkeystrokes_pref_category_summary"
+msgid ""
+"This module allows other apps to share text segments as keystrokes which "
+"will get send to the connected host"
+msgstr ""
+
+msgctxt "sendkeystrokes_pref_category_title"
+msgid "Send Keystrokes"
+msgstr ""
+
+msgctxt "sendkeystrokes_pref_enabled"
+msgid "Enable Keystrokes sending"
+msgstr ""
+
+msgctxt "sendkeystrokes_pref_enabled_summary"
+msgid "Listen for data with mime type 'text/x-keystrokes'"
+msgstr ""
+
+msgctxt "sendkeystrokes_safe_text_enabled"
+msgid "Send safe text immediately"
+msgstr ""
+
+msgctxt "sendkeystrokes_safe_text_enabled_summary"
+msgid "Send short only-numeric strings without confirmation"
+msgstr ""
+
+msgctxt "pref_plugin_mousepad_send_keystrokes"
+msgid "Send as keystrokes"
+msgstr ""
+
+msgctxt "mouse_receiver_plugin_description"
+msgid "Receive remote mouse movement"
+msgstr ""
+
+msgctxt "mouse_receiver_plugin_name"
+msgid "Mouse receiver"
+msgstr ""
+
+msgctxt "mouse_receiver_no_permissions"
+msgid "You need to enable Accessibility Service"
+msgstr ""
+
+msgctxt "view_status_title"
+msgid "Status"
+msgstr "الحالة"
+
+#, c-format
+msgctxt "battery_status_format"
+msgid "Battery: %d%%"
+msgstr "البطارية: %d%%"
+
+#, c-format
+msgctxt "battery_status_low_format"
+msgid "Battery: %d%% Low Battery"
+msgstr "البطارية: %d%% منخفضة"
+
+#, c-format
+msgctxt "battery_status_charging_format"
+msgid "Battery: %d%% charging"
+msgstr "البطارية: %d%% تشحن"
+
+msgctxt "battery_status_unknown"
+msgid "Battery information not available"
+msgstr ""
+
+msgctxt "category_connected_devices"
+msgid "Connected devices"
+msgstr "الأجهزة المقترن بها"
+
+msgctxt "category_not_paired_devices"
+msgid "Available devices"
+msgstr "الأجهزة المتوفّرة"
+
+msgctxt "category_remembered_devices"
+msgid "Remembered devices"
+msgstr "الأجهزة المتذكَّرة"
+
+msgctxt "device_menu_plugins"
+msgid "Plugin settings"
+msgstr "إعدادات الملحقة"
+
+msgctxt "device_menu_unpair"
+msgid "Unpair"
+msgstr "ألغِ الاقتران"
+
+msgctxt "pair_new_device"
+msgid "Pair new device"
+msgstr "اقرن جهازًا جديدًا"
+
+msgctxt "unknown_device"
+msgid "Unknown device"
+msgstr "جهاز مجهول"
+
+msgctxt "error_not_reachable"
+msgid "Device not reachable"
+msgstr "الجهاز غير قابل الوصول"
+
+msgctxt "error_already_paired"
+msgid "Device already paired"
+msgstr "الجهاز مقترن بالفعل"
+
+msgctxt "error_could_not_send_package"
+msgid "Could not send package"
+msgstr "تعذّر إرسال الحزمة"
+
+msgctxt "error_timed_out"
+msgid "Timed out"
+msgstr "انتهت المهلة"
+
+msgctxt "error_canceled_by_user"
+msgid "Canceled by user"
+msgstr "ألغاه المستخدم"
+
+msgctxt "error_canceled_by_other_peer"
+msgid "Canceled by other peer"
+msgstr "ألغاه ندّ آخر"
+
+msgctxt "encryption_info_title"
+msgid "Encryption Info"
+msgstr "معلومات التّعمية"
+
+msgctxt "encryption_info_msg_no_ssl"
+msgid ""
+"The other device doesn't use a recent version of KDE Connect, using the "
+"legacy encryption method."
+msgstr ""
+"لا يستخدم الجهاز الآخر إصدارة حديثة من «كدي المتّصل»، ستُستخدم طريقة التّعمية "
+"القديمة."
+
+#, fuzzy
+#| msgctxt "my_device_fingerprint"
+#| msgid "SHA1 fingerprint of your device certificate is:"
+msgctxt "my_device_fingerprint"
+msgid "SHA256 fingerprint of your device certificate is:"
+msgstr "بصمة SHA1 لشهادة جهازك هي:"
+
+#, fuzzy
+#| msgctxt "remote_device_fingerprint"
+#| msgid "SHA1 fingerprint of remote device certificate is:"
+msgctxt "remote_device_fingerprint"
+msgid "SHA256 fingerprint of remote device certificate is:"
+msgstr "بصمة SHA1 لشهادة الجهاز البعيد هي:"
+
+msgctxt "pair_requested"
+msgid "Pair requested"
+msgstr "طُلب الاقتران"
+
+#, c-format
+msgctxt "pairing_request_from"
+msgid "Pairing request from %1s"
+msgstr "طلب اقتران من %1s"
+
+#, fuzzy, c-format
+#| msgctxt "received_file_title"
+#| msgid "Received file from %1s"
+msgctxt "incoming_file_title"
+msgid "Receiving %1$d file from %2$s"
+msgid_plural "Receiving %1$d files from %2$s"
+msgstr[0] "استُقبل ملفّ من %1s"
+msgstr[1] "استُقبل ملفّ من %1s"
+msgstr[2] "استُقبل ملفّ من %1s"
+msgstr[3] "استُقبل ملفّ من %1s"
+msgstr[4] "استُقبل ملفّ من %1s"
+msgstr[5] "استُقبل ملفّ من %1s"
+
+#, c-format
+msgctxt "incoming_files_text"
+msgid "File: %1s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#, fuzzy, c-format
+#| msgctxt "outgoing_file_title"
+#| msgid "Sending file to %1s"
+msgctxt "outgoing_file_title"
+msgid "Sending %1$d file to %2$s"
+msgid_plural "Sending %1$d files to %2$s"
+msgstr[0] "يرسل ملفًّا إلى %1s"
+msgstr[1] "يرسل ملفًّا إلى %1s"
+msgstr[2] "يرسل ملفًّا إلى %1s"
+msgstr[3] "يرسل ملفًّا إلى %1s"
+msgstr[4] "يرسل ملفًّا إلى %1s"
+msgstr[5] "يرسل ملفًّا إلى %1s"
+
+#, c-format
+msgctxt "outgoing_files_text"
+msgid "File: %1$s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#, fuzzy, c-format
+#| msgctxt "received_file_title"
+#| msgid "Received file from %1s"
+msgctxt "received_files_title"
+msgid "Received file from %1$s"
+msgid_plural "Received %2$d files from %1$s"
+msgstr[0] "استُقبل ملفّ من %1s"
+msgstr[1] "استُقبل ملفّ من %1s"
+msgstr[2] "استُقبل ملفّ من %1s"
+msgstr[3] "استُقبل ملفّ من %1s"
+msgstr[4] "استُقبل ملفّ من %1s"
+msgstr[5] "استُقبل ملفّ من %1s"
+
+#, fuzzy, c-format
+#| msgctxt "received_file_fail_title"
+#| msgid "Failed receiving file from %1s"
+msgctxt "received_files_fail_title"
+msgid "Failed receiving file from %1$s"
+msgid_plural "Failed receiving %2$d of %3$d files from %1$s"
+msgstr[0] "فشل استقبال الملفّ من %1s"
+msgstr[1] "فشل استقبال الملفّ من %1s"
+msgstr[2] "فشل استقبال الملفّ من %1s"
+msgstr[3] "فشل استقبال الملفّ من %1s"
+msgstr[4] "فشل استقبال الملفّ من %1s"
+msgstr[5] "فشل استقبال الملفّ من %1s"
+
+#, fuzzy, c-format
+#| msgctxt "sent_file_title"
+#| msgid "Sent file to %1s"
+msgctxt "sent_files_title"
+msgid "Sent file to %1$s"
+msgid_plural "Sent %2$d files to %1$s"
+msgstr[0] "أرسل ملفًّا إلى %1s"
+msgstr[1] "أرسل ملفًّا إلى %1s"
+msgstr[2] "أرسل ملفًّا إلى %1s"
+msgstr[3] "أرسل ملفًّا إلى %1s"
+msgstr[4] "أرسل ملفًّا إلى %1s"
+msgstr[5] "أرسل ملفًّا إلى %1s"
+
+#, fuzzy, c-format
+#| msgctxt "sent_file_failed_title"
+#| msgid "Failed to send file %1s"
+msgctxt "send_files_fail_title"
+msgid "Failed sending file to %1$s"
+msgid_plural "Failed sending %2$d of %3$d files to %1$s"
+msgstr[0] "فشل إرسال الملفّ %1s"
+msgstr[1] "فشل إرسال الملفّ %1s"
+msgstr[2] "فشل إرسال الملفّ %1s"
+msgstr[3] "فشل إرسال الملفّ %1s"
+msgstr[4] "فشل إرسال الملفّ %1s"
+msgstr[5] "فشل إرسال الملفّ %1s"
+
+msgctxt "tap_to_open"
+msgid "Tap to open"
+msgstr "اطرق لتفتح"
+
+#, c-format
+msgctxt "received_file_text"
+msgid "Tap to open '%1s'"
+msgstr "المس لفتح '%1s'"
+
+#, c-format
+msgctxt "cannot_create_file"
+msgid "Cannot create file %s"
+msgstr ""
+
+msgctxt "tap_to_answer"
+msgid "Tap to answer"
+msgstr "المس للإجابة"
+
+msgctxt "right_click"
+msgid "Send Right Click"
+msgstr "أرسل نقرة باليمين"
+
+msgctxt "middle_click"
+msgid "Send Middle Click"
+msgstr "أرسل نقرة بالوسط"
+
+msgctxt "show_keyboard"
+msgid "Show Keyboard"
+msgstr "أظهر لوحة المفاتيح"
+
+msgctxt "device_not_paired"
+msgid "Device not paired"
+msgstr "الجهاز غير مقترن"
+
+msgctxt "request_pairing"
+msgid "Request pairing"
+msgstr "اطلب الاقتران"
+
+msgctxt "pairing_accept"
+msgid "Accept"
+msgstr "اقبل"
+
+msgctxt "pairing_reject"
+msgid "Reject"
+msgstr "ارفض"
+
+msgctxt "settings"
+msgid "Settings"
+msgstr "إعدادات"
+
+msgctxt "mpris_play"
+msgid "Play"
+msgstr "شغّل"
+
+msgctxt "mpris_pause"
+msgid "Pause"
+msgstr "ألبث"
+
+msgctxt "mpris_previous"
+msgid "Previous"
+msgstr "السّابق"
+
+msgctxt "mpris_rew"
+msgid "Rewind"
+msgstr "رجوع"
+
+msgctxt "mpris_ff"
+msgid "Fast-forward"
+msgstr "تقدّم سريع"
+
+msgctxt "mpris_next"
+msgid "Next"
+msgstr "التّالي"
+
+msgctxt "mpris_loop"
+msgid "Loop"
+msgstr "حلقة"
+
+msgctxt "mpris_shuffle"
+msgid "Shuffle"
+msgstr "اخلط"
+
+msgctxt "mpris_volume"
+msgid "Volume"
+msgstr "المستوى"
+
+msgctxt "mpris_time_settings_title"
+msgid "Forward/rewind buttons"
+msgstr "زرّا التّقدّم والإرجاع"
+
+msgctxt "mpris_time_settings_summary"
+msgid "Adjust the time to fast forward/rewind when pressed"
+msgstr "اضبط الوقت عند نقر زرّيّ التّقديم أو الإرجاع"
+
+msgctxt "mpris_time_entries:0"
+msgid "10 seconds"
+msgstr "10 ثوان"
+
+msgctxt "mpris_time_entries:1"
+msgid "20 seconds"
+msgstr "20 ثانية"
+
+msgctxt "mpris_time_entries:2"
+msgid "30 seconds"
+msgstr "30 ثانية"
+
+msgctxt "mpris_time_entries:3"
+msgid "1 minute"
+msgstr "دقيقة واحدة"
+
+msgctxt "mpris_time_entries:4"
+msgid "2 minutes"
+msgstr "دقيقتان"
+
+msgctxt "mpris_notification_settings_title"
+msgid "Show media control notification"
+msgstr ""
+
+msgctxt "mpris_notification_settings_summary"
+msgid "Allow controlling your media players without opening KDE Connect"
+msgstr ""
+
+msgctxt "share_to"
+msgid "Share To…"
+msgstr "شارك مع..."
+
+msgctxt "protocol_version_newer"
+msgid "This device uses a newer protocol version"
+msgstr "يستخدم هذا الجهاز إصدار ميفاق أحدث"
+
+#, c-format
+msgctxt "plugin_settings_with_name"
+msgid "%s settings"
+msgstr "إعدادات %s"
+
+msgctxt "invalid_device_name"
+msgid "Invalid device name"
+msgstr "اسم جهاز غير صالح"
+
+msgctxt "shareplugin_text_saved"
+msgid "Received text, saved to clipboard"
+msgstr "استُقبل نصّ، حُفظ إلى الحافظة"
+
+msgctxt "custom_devices_settings"
+msgid "Custom device list"
+msgstr "قائمة أجهزة مخصّصة"
+
+msgctxt "custom_device_list"
+msgid "Add devices by IP"
+msgstr "أضف أجهزة بميفاق الإنترنت م​إ"
+
+msgctxt "custom_device_deleted"
+msgid "Custom device deleted"
+msgstr "حُذف الجهاز المخصّص"
+
+msgctxt "custom_device_list_help"
+msgid ""
+"If your device is not automatically detected you can add its IP address or "
+"hostname by clicking on the Floating Action Button"
+msgstr ""
+
+msgctxt "custom_device_fab_hint"
+msgid "Add a device"
+msgstr "أضف جهازاً"
+
+msgctxt "undo"
+msgid "Undo"
+msgstr "تراجع"
+
+msgctxt "share_notification_preference"
+msgid "Noisy notifications"
+msgstr "إخطارات مزعجة"
+
+msgctxt "share_notification_preference_summary"
+msgid "Vibrate and play a sound when receiving a file"
+msgstr "اهتزّ وشغّل صوتًا عند استقبال ملفّ"
+
+msgctxt "share_destination_customize"
+msgid "Customize destination directory"
+msgstr ""
+
+msgctxt "share_destination_customize_summary_disabled"
+msgid "Received files will appear in Downloads"
+msgstr ""
+
+msgctxt "share_destination_customize_summary_enabled"
+msgid "Files will be stored in the directory below"
+msgstr ""
+
+msgctxt "share_destination_folder_preference"
+msgid "Destination directory"
+msgstr "مجلد الوجهة"
+
+msgctxt "share"
+msgid "Share"
+msgstr "شارك"
+
+#, c-format
+msgctxt "share_received_file"
+msgid "Share \"%s\""
+msgstr "شارك \"%s\""
+
+msgctxt "title_activity_notification_filter"
+msgid "Notification filter"
+msgstr "مرشّح الإخطارات"
+
+msgctxt "filter_apps_info"
+msgid "Notifications will be synchronized for the selected apps."
+msgstr "ستُزامن الإخطارات من التّطبيقات المحدّدة."
+
+#, fuzzy
+#| msgctxt "pref_plugin_telephony_desc"
+#| msgid "Send notifications for SMS and calls"
+msgctxt "show_notification_if_screen_off"
+msgid "Send notifications only if the screen is off"
+msgstr "أرسل إخطارات لرسائل SMS والمكالمات"
+
+#, c-format
+msgctxt "sftp_sdcard_num"
+msgid "SD card %d"
+msgstr "بطاقة SD ‏%d"
+
+msgctxt "sftp_sdcard"
+msgid "SD card"
+msgstr "بطاقة SD"
+
+msgctxt "sftp_readonly"
+msgid "(read only)"
+msgstr "(للقراءة فقط)"
+
+msgctxt "sftp_camera"
+msgid "Camera pictures"
+msgstr "صور الكاميرا"
+
+msgctxt "add_device_dialog_title"
+msgid "Add device"
+msgstr "أضف جهازاً"
+
+msgctxt "add_device_hint"
+msgid "Hostname or IP address"
+msgstr "اسم المضيف أو عنوان IP"
+
+msgctxt "sftp_preference_detected_sdcards"
+msgid "Detected SD cards"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "sftp_sdcard"
+#| msgid "SD card"
+msgctxt "sftp_preference_edit_sdcard_title"
+msgid "Edit SD card"
+msgstr "بطاقة SD"
+
+msgctxt "sftp_preference_configured_storage_locations"
+msgid "Configured storage locations"
+msgstr ""
+
+msgctxt "sftp_preference_add_storage_location_title"
+msgid "Add storage location"
+msgstr ""
+
+msgctxt "sftp_preference_edit_storage_location"
+msgid "Edit storage location"
+msgstr ""
+
+msgctxt "sftp_preference_add_camera_shortcut"
+msgid "Add camera folder shortcut"
+msgstr ""
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_on"
+msgid "Add a shortcut to the camera folder"
+msgstr ""
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_off"
+msgid "Do not add a shortcut to the camera folder"
+msgstr ""
+
+msgctxt "sftp_storage_preference_storage_location"
+msgid "Storage location"
+msgstr ""
+
+msgctxt "sftp_storage_preference_storage_location_already_configured"
+msgid "This location has already been configured"
+msgstr ""
+
+msgctxt "sftp_storage_preference_click_to_select"
+msgid "click to select"
+msgstr "انقر للاختيار "
+
+msgctxt "sftp_storage_preference_display_name"
+msgid "Display name"
+msgstr "اسم العرض"
+
+msgctxt "sftp_storage_preference_display_name_already_used"
+msgid "This display name is already used"
+msgstr ""
+
+msgctxt "sftp_storage_preference_display_name_cannot_be_empty"
+msgid "Display name cannot be empty"
+msgstr ""
+
+msgctxt "sftp_action_mode_menu_delete"
+msgid "Delete"
+msgstr "احذف"
+
+msgctxt "sftp_no_sdcard_detected"
+msgid "No SD card detected"
+msgstr "لم يكتشف أي بطاقة ذاكرة"
+
+msgctxt "sftp_no_storage_locations_configured"
+msgid "No storage locations configured"
+msgstr ""
+
+msgctxt "sftp_saf_permission_explanation"
+msgid "To access files remotely you have to configure storage locations"
+msgstr ""
+
+msgctxt "no_players_connected"
+msgid "No players found"
+msgstr "لم يُعثر على مشغّلات"
+
+msgctxt "send_files"
+msgid "Send files"
+msgstr "أرسل ملفّات"
+
+msgctxt "pairing_title"
+msgid "KDE Connect Devices"
+msgstr "أجهزة «كدي المتّصل»"
+
+msgctxt "pairing_description"
+msgid ""
+"Other devices running KDE Connect in your same network should appear here."
+msgstr "الأجهزة الأخرى التي تشغّل «كدي المتّصل» وعلى نفس الشّبكة ستظهر هنا."
+
+msgctxt "device_rename_title"
+msgid "Rename device"
+msgstr "أعد تسمية الجهاز"
+
+msgctxt "device_rename_confirm"
+msgid "Rename"
+msgstr "أعد التّسمية"
+
+msgctxt "refresh"
+msgid "Refresh"
+msgstr "أنعش"
+
+msgctxt "unreachable_description"
+msgid ""
+"This paired device is not reachable. Make sure it is connected to your same "
+"network."
+msgstr "الجهاز المقترن هذا لا يمكن الوصول إليه. تأكّد من اتّصاله بنفس الشّبكة."
+
+msgctxt "no_wifi"
+msgid ""
+"You're not connected to a Wi-Fi network, so you may not be able to see any "
+"devices. Click here to enable Wi-Fi."
+msgstr ""
+
+msgctxt "on_non_trusted_message"
+msgid "Not on a trusted network: autodiscovery is disabled."
+msgstr ""
+
+msgctxt "no_file_browser"
+msgid "There are no file browsers installed."
+msgstr "لا متصفّحات ملفّات مثبّتة."
+
+msgctxt "pref_plugin_telepathy"
+msgid "Send SMS"
+msgstr "أرسل SMS"
+
+msgctxt "pref_plugin_telepathy_desc"
+msgid "Send text messages from your desktop"
+msgstr "أرسل رسائل نصّيّة من سطح المكتب"
+
+#, fuzzy
+#| msgctxt "pref_plugin_telepathy"
+#| msgid "Send SMS"
+msgctxt "pref_plugin_telepathy_mms"
+msgid "Send MMS"
+msgstr "أرسل SMS"
+
+msgctxt "pref_plugin_telepathy_mms_desc"
+msgid ""
+"To be able to send MMS from KDE Connect you need to set it as the default "
+"SMS app."
+msgstr ""
+
+msgctxt "findmyphone_title"
+msgid "Find my phone"
+msgstr "جِد جهازي"
+
+msgctxt "findmyphone_title_tablet"
+msgid "Find my tablet"
+msgstr "جِد جهازي اللوحيّ"
+
+#, fuzzy
+#| msgctxt "findmyphone_title"
+#| msgid "Find my phone"
+msgctxt "findmyphone_title_tv"
+msgid "Find my TV"
+msgstr "جِد جهازي"
+
+msgctxt "findmyphone_description"
+msgid "Rings this device so you can find it"
+msgstr "يرّن هذا الجهاز لتجده"
+
+msgctxt "findmyphone_found"
+msgid "Found it"
+msgstr "عثر عليه"
+
+msgctxt "open"
+msgid "Open"
+msgstr "افتح"
+
+msgctxt "close"
+msgid "Close"
+msgstr "أغلق"
+
+#, fuzzy
+#| msgctxt "plugins_failed_to_load"
+#| msgid "Plugins failed to load (tap for more info):"
+msgctxt "plugins_need_permission"
+msgid "Some Plugins need permissions to work (tap for more info):"
+msgstr "فشل تحميل الملحقات (المس لمعلومات اكثر):"
+
+msgctxt "permission_explanation"
+msgid "This plugin needs permissions to work"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "no_permissions"
+#| msgid "You need to grant permission to access notifications"
+msgctxt "optional_permission_explanation"
+msgid "You need to grant extra permissions to enable all functions"
+msgstr "عليك إعطاء التّطبيق صلاحيّات للنّفاذ إلى الإخطارات"
+
+#, fuzzy
+#| msgctxt "plugins_failed_to_load"
+#| msgid "Plugins failed to load (tap for more info):"
+msgctxt "plugins_need_optional_permission"
+msgid ""
+"Some plugins have features disabled because of lack of permission (tap for "
+"more info):"
+msgstr "فشل تحميل الملحقات (المس لمعلومات اكثر):"
+
+msgctxt "share_optional_permission_explanation"
+msgid "To receive shared files you need to choose a destination directory"
+msgstr ""
+
+msgctxt "telepathy_permission_explanation"
+msgid ""
+"To read and write SMS from your desktop you need to give permission to SMS"
+msgstr ""
+
+msgctxt "telephony_permission_explanation"
+msgid ""
+"To see phone calls on the desktop you need to give permission to phone call "
+"logs and phone state"
+msgstr ""
+
+msgctxt "telephony_optional_permission_explanation"
+msgid ""
+"To see a contact name instead of a phone number you need to give access to "
+"the phone's contacts"
+msgstr ""
+
+msgctxt "contacts_permission_explanation"
+msgid ""
+"To share your contacts book with the desktop, you need to give contacts "
+"permission"
+msgstr ""
+
+msgctxt "select_ringtone"
+msgid "Select a ringtone"
+msgstr "اختر النغمة"
+
+msgctxt "telephony_pref_blocked_title"
+msgid "Blocked numbers"
+msgstr "أرقام محظورة"
+
+msgctxt "telephony_pref_blocked_dialog_desc"
+msgid ""
+"Don't show calls and SMS from these numbers. Please specify one number per "
+"line"
+msgstr ""
+
+msgctxt "mpris_coverart_description"
+msgid "Cover art of current media"
+msgstr "الصورة الفنية للوسيط الحالي"
+
+msgctxt "device_icon_description"
+msgid "Device icon"
+msgstr "أيقونة الجهاز"
+
+msgctxt "settings_icon_description"
+msgid "Settings icon"
+msgstr "أيقونة الإعدادات"
+
+msgctxt "presenter_fullscreen"
+msgid "Fullscreen"
+msgstr "ملء الشّاشة"
+
+msgctxt "presenter_exit"
+msgid "Exit presentation"
+msgstr "اخرج من العرض التقديمي"
+
+msgctxt "presenter_lock_tip"
+msgid ""
+"You can lock your device and use the volume keys to go to the previous/next "
+"slide"
+msgstr ""
+
+msgctxt "add_command"
+msgid "Add a command"
+msgstr "أضف أمراً"
+
+msgctxt "addcommand_explanation"
+msgid "There are no commands registered"
+msgstr "لا يوجد أوامر مسجلة"
+
+msgctxt "addcommand_explanation2"
+msgid "You can add new commands in the KDE Connect System Settings"
+msgstr ""
+
+msgctxt "add_command_description"
+msgid "You can add commands on the desktop"
+msgstr ""
+
+msgctxt "pref_plugin_mprisreceiver"
+msgid "Media Player Control"
+msgstr "متحكم الوسائط"
+
+msgctxt "pref_plugin_mprisreceiver_desc"
+msgid "Control your phone's media players from another device"
+msgstr ""
+
+msgctxt "notification_channel_default"
+msgid "Other notifications"
+msgstr "إخطارات أخرى"
+
+msgctxt "notification_channel_persistent"
+msgid "Persistent indicator"
+msgstr ""
+
+msgctxt "notification_channel_media_control"
+msgid "Media control"
+msgstr "متحكم الوسائط"
+
+msgctxt "notification_channel_filetransfer"
+msgid "File transfer"
+msgstr "نقل الملفّات"
+
+msgctxt "notification_channel_high_priority"
+msgid "High priority"
+msgstr "مرتفعة الأولوية"
+
+msgctxt "notification_channel_sms_mms"
+msgid "New Message"
+msgstr "رسالة جديدة"
+
+msgctxt "mpris_stop"
+msgid "Stop the current player"
+msgstr "أوقف المشغل الحالي"
+
+msgctxt "copy_url_to_clipboard"
+msgid "Copy URL to clipboard"
+msgstr "انسخ المسار إلى الحافظة"
+
+msgctxt "clipboard_toast"
+msgid "Copied to clipboard"
+msgstr "نُسخ إلى الحافظة"
+
+msgctxt "runcommand_notreachable"
+msgid "Device is not reachable"
+msgstr "الجهاز غير قابل الوصول"
+
+msgctxt "runcommand_notpaired"
+msgid "Device is not paired"
+msgstr "الجهاز غير مقترن"
+
+msgctxt "runcommand_nosuchdevice"
+msgid "There is no such device"
+msgstr ""
+
+msgctxt "runcommand_noruncommandplugin"
+msgid "This device does not have the Run Command Plugin enabled"
+msgstr ""
+
+msgctxt "pref_plugin_findremotedevice"
+msgid "Find remote device"
+msgstr "اعثر على جهاز بعيد"
+
+msgctxt "pref_plugin_findremotedevice_desc"
+msgid "Ring your remote device"
+msgstr "رنّ على الجهاز البعيد"
+
+msgctxt "ring"
+msgid "Ring"
+msgstr "رّن"
+
+msgctxt "pref_plugin_systemvolume"
+msgid "System volume"
+msgstr "صوت النظام"
+
+msgctxt "pref_plugin_systemvolume_desc"
+msgid "Control the system volume of the remote device"
+msgstr ""
+
+msgctxt "mute"
+msgid "Mute"
+msgstr "اكتم"
+
+msgctxt "all"
+msgid "All"
+msgstr "الكلّ"
+
+msgctxt "devices"
+msgid "Devices"
+msgstr "الأجهزة"
+
+msgctxt "settings_rename"
+msgid "Device name"
+msgstr "اسم الجهاز"
+
+msgctxt "settings_dark_mode"
+msgid "Dark theme"
+msgstr "سمة مظلمة"
+
+msgctxt "settings_more_settings_title"
+msgid "More settings"
+msgstr "المزيد من الإعدادات"
+
+msgctxt "settings_more_settings_text"
+msgid ""
+"Per-device settings can be found under 'Plugin settings' from within a "
+"device."
+msgstr ""
+
+#, fuzzy
+#| msgctxt "share_notification_preference"
+#| msgid "Noisy notifications"
+msgctxt "setting_persistent_notification"
+msgid "Show persistent notification"
+msgstr "إخطارات مزعجة"
+
+#, fuzzy
+#| msgctxt "share_notification_preference"
+#| msgid "Noisy notifications"
+msgctxt "setting_persistent_notification_oreo"
+msgid "Persistent notification"
+msgstr "إخطارات مزعجة"
+
+msgctxt "setting_persistent_notification_description"
+msgid "Tap to enable/disable in Notification settings"
+msgstr ""
+
+#, fuzzy
+msgctxt "extra_options"
+msgid "Extra options"
+msgstr "الخيارات الإضافية"
+
+msgctxt "privacy_options"
+msgid "Privacy options"
+msgstr "خيارات الخصوصية"
+
+msgctxt "set_privacy_options"
+msgid "Set your privacy options"
+msgstr "حدد خيارات الخصوصية"
+
+msgctxt "block_contents"
+msgid "Block contents of notifications"
+msgstr "امنح محتويات الإخطارات"
+
+msgctxt "block_images"
+msgid "Block images in notifications"
+msgstr "امنع الصور في الإخطارات"
+
+msgctxt "notification_channel_receivenotification"
+msgid "Notifications from other devices"
+msgstr "إخطارات من أجهزة أخرى"
+
+msgctxt "take_picture"
+msgid "Launch camera"
+msgstr "شغّل الكاميرا"
+
+msgctxt "plugin_photo_desc"
+msgid "Launch the camera app to ease taking and transferring pictures"
+msgstr ""
+
+msgctxt "no_app_for_opening"
+msgid "No suitable app found to open this file"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "pairing_title"
+#| msgid "KDE Connect Devices"
+msgctxt "remote_keyboard_service"
+msgid "KDE Connect Remote Keyboard"
+msgstr "أجهزة «كدي المتّصل»"
+
+msgctxt "presenter_pointer"
+msgid "Pointer"
+msgstr "المؤشر"
+
+msgctxt "trusted_networks"
+msgid "Trusted networks"
+msgstr "الشّبكات الموثوقة"
+
+msgctxt "trusted_networks_desc"
+msgid "Restrict autodiscovery to known networks"
+msgstr ""
+
+#, c-format
+msgctxt "add_trusted_network"
+msgid "Add %1s"
+msgstr "أضف %s"
+
+msgctxt "empty_trusted_networks_list_text"
+msgid "You haven't added any trusted network yet"
+msgstr ""
+
+msgctxt "allow_all_networks_text"
+msgid "Allow all"
+msgstr "اسمح للكل"
+
+msgctxt "location_permission_needed_title"
+msgid "Permission required"
+msgstr "الإذن مطلوب"
+
+msgctxt "location_permission_needed_desc"
+msgid "Android requires the Location permission to identify your WiFi network"
+msgstr ""
+
+msgctxt "clipboard_android_x_incompat"
+msgid ""
+"Android 10 has removed clipboard access to all apps. This plugin will be "
+"disabled."
+msgstr ""
+
+msgctxt "mpris_open_url"
+msgid "Continue playing here"
+msgstr ""
+
+msgctxt "cant_open_url"
+msgid "Can't open URL to continue playing"
+msgstr ""
+
+msgctxt "bigscreen_home"
+msgid "Home"
+msgstr "المنزل"
+
+msgctxt "bigscreen_up"
+msgid "Up"
+msgstr "أعلى"
+
+msgctxt "bigscreen_left"
+msgid "Left"
+msgstr "يسار"
+
+msgctxt "bigscreen_select"
+msgid "Select"
+msgstr "اختر"
+
+msgctxt "bigscreen_right"
+msgid "Right"
+msgstr "يمين"
+
+msgctxt "bigscreen_down"
+msgid "Down"
+msgstr "أسفل"
+
+msgctxt "bigscreen_mic"
+msgid "Mic"
+msgstr "اللاقط"
+
+msgctxt "pref_plugin_bigscreen"
+msgid "Bigscreen remote"
+msgstr "متحكم الشاشة الكبيرة"
+
+msgctxt "pref_plugin_bigscreen_desc"
+msgid "Use your device as a remote for Plasma Bigscreen"
+msgstr ""
+
+msgctxt "bigscreen_optional_permission_explanation"
+msgid ""
+"To share microphone input from your phone you need to give access to the "
+"phone's audio input"
+msgstr ""
+
+msgctxt "bigscreen_speech_extra_prompt"
+msgid "Speech"
+msgstr "حديث"
+
+msgctxt "message_reply_label"
+msgid "REPLY"
+msgstr "ردّ"
+
+msgctxt "mark_as_read_label"
+msgid "MARK AS READ"
+msgstr "علّم كمقروءة"
+
+msgctxt "user_display_name"
+msgid "You"
+msgstr "أنت"
+
+msgctxt "set_default_sms_app_title"
+msgid "Send MMS"
+msgstr "أرسل رسالة قصيرة"
+
+msgctxt "set_group_message_as_mms_title"
+msgid "Send group MMS"
+msgstr "أرسل رسالة جماعية"
+
+msgctxt "set_long_text_as_mms_title"
+msgid "Send long text as MMS"
+msgstr "أرسل نص طويل كرسالة وسائط"
+
+msgctxt "convert_to_mms_after_title"
+msgid "Convert to MMS"
+msgstr "حول إلى رسالة وسائط"
+
+msgctxt "convert_to_mms_after_entries:0"
+msgid "After one message"
+msgstr "بعد رسالة واحدة"
+
+msgctxt "convert_to_mms_after_entries:1"
+msgid "After two messages"
+msgstr "بعد رسالتين"
+
+msgctxt "convert_to_mms_after_entries:2"
+msgid "After three messages"
+msgstr "بعد ثلاث رسائل"
+
+msgctxt "convert_to_mms_after_entries:3"
+msgid "After four messages"
+msgstr "بعد أربع رسائل"
+
+msgctxt "convert_to_mms_after_entries:4"
+msgid "After five messages"
+msgstr "بعد خمس رسائل"
+
+msgctxt "theme_dialog_title"
+msgid "Choose theme"
+msgstr "اختر سمة"
+
+msgctxt "theme_list:0"
+msgid "Set by Battery Saver"
+msgstr "معينة بواسطة حافظ البطارية"
+
+msgctxt "theme_list:1"
+msgid "Light"
+msgstr "خفيف"
+
+msgctxt "theme_list:2"
+msgid "Dark"
+msgstr "مظلمة"
+
+msgctxt "theme_list_v28:0"
+msgid "System Default"
+msgstr "افتراضيات النظام"
+
+msgctxt "theme_list_v28:1"
+msgid "Light"
+msgstr "خفيف"
+
+msgctxt "theme_list_v28:2"
+msgid "Dark"
+msgstr "مظلمة"
+
+msgctxt "report_bug"
+msgid "Report Bug"
+msgstr "أبلغ عن علة"
+
+msgctxt "donate"
+msgid "Donate"
+msgstr "تبرّع"
+
+msgctxt "source_code"
+msgid "Source Code"
+msgstr "الشيفرة المصدرية"
+
+msgctxt "licenses"
+msgid "Licenses"
+msgstr "الرّخص"
+
+msgctxt "website"
+msgid "Website"
+msgstr "موقع الوبّ"
+
+msgctxt "about"
+msgid "About"
+msgstr "عن"
+
+msgctxt "authors"
+msgid "Authors"
+msgstr "المؤلفين"
+
+msgctxt "thanks_to"
+msgid "Thanks To"
+msgstr "الشكر إلى"
+
+msgctxt "easter_egg"
+msgid "Easter Egg"
+msgstr "بيض الفصح"
+
+#, c-format
+msgctxt "email_contributor"
+msgid ""
+"Email contributor\n"
+"%s"
+msgstr ""
+"راسل المساهم:\n"
+"%s"
+
+#, c-format
+msgctxt "visit_contributors_homepage"
+msgid ""
+"Visit contributor's homepage\n"
+"%s"
+msgstr ""
+"زر صفحة المساهم الرئيسية\n"
+"%s"
+
+#, c-format
+msgctxt "version"
+msgid "Version %s"
+msgstr "الإصدار %s"
+
+msgctxt "about_kde"
+msgid "About KDE"
+msgstr "عن كدي"
+
+msgctxt "kde_be_free"
+msgid "KDE - Be Free!"
+msgstr "كدي- كن حرًّا!"
+
+msgctxt "kde"
+msgid "KDE"
+msgstr "كدي"
+
+msgctxt "konqi"
+msgid "Konqi"
+msgstr "كوينكي"
+
+msgctxt "rise_up"
+msgid "Rise Up"
+msgstr "ارفع"
+
+msgctxt "rise_down"
+msgid "Rise Down"
+msgstr "اخفض"
+
+msgctxt "click_here_to_type"
+msgid "Tap here to type"
+msgstr "اطُرق لتكتب"
+
+msgctxt "clear_compose"
+msgid "Clear"
+msgstr "امسح"
+
+msgctxt "send_compose"
+msgid "Send"
+msgstr "أرسل"
+
+msgctxt "open_compose_send"
+msgid "Compose text"
+msgstr "ألف نص"
+
+msgctxt "app_description"
+msgid ""
+"Multi-platform app that allows your devices to communicate (e.g., your phone "
+"and your computer)"
+msgstr ""
+
+msgctxt "about_kde_about"
+msgid ""
+"&lt;h1&gt;About&lt;/h1&gt; &lt;p&gt;KDE is a world-wide community of "
+"software engineers, artists, writers, translators and creators who are "
+"committed to &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Free "
+"Software&lt;/a&gt; development. KDE produces the Plasma desktop environment, "
+"hundreds of applications, and the many software libraries that support them."
+"&lt;/p&gt; &lt;p&gt;KDE is a cooperative enterprise: no single entity "
+"controls its direction or products. Instead, we work together to achieve the "
+"common goal of building the world's finest Free Software. Everyone is "
+"welcome to &lt;a href=https://community.kde.org/Get_Involved&gt;join and "
+"contribute&lt;/a&gt; to KDE, including you.&lt;/p&gt; Visit &lt;a "
+"href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; for more "
+"information about the KDE community and the software we produce."
+msgstr ""
+
+msgctxt "about_kde_report_bugs_or_wishes"
+msgid ""
+"&lt;h1&gt;Report Bugs or Wishes&lt;/h1&gt; &lt;p&gt;Software can always be "
+"improved, and the KDE team is ready to do so. However, you - the user - must "
+"tell us when something does not work as expected or could be done better."
+"&lt;/p&gt; &lt;p&gt;KDE has a bug tracking system. Visit &lt;a href=https://"
+"bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; or use the \"Report Bug\" "
+"button from the about screen to report bugs.&lt;/p&gt; If you have a "
+"suggestion for improvement then you are welcome to use the bug tracking "
+"system to register your wish. Make sure you use the severity called "
+"\"Wishlist\"."
+msgstr ""
+
+msgctxt "about_kde_join_kde"
+msgid ""
+"&lt;h1&gt;Join KDE&lt;/h1&gt; &lt;p&gt;You do not have to be a software "
+"developer to be a member of the KDE team. You can join the national teams "
+"that translate program interfaces. You can provide graphics, themes, sounds, "
+"and improved documentation. You decide!&lt;/p&gt; &lt;p&gt;Visit &lt;a "
+"href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/"
+"Get_Involved&lt;/a&gt; for information on some projects in which you can "
+"participate.&lt;/p&gt; If you need more information or documentation, then a "
+"visit to &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/"
+"&lt;/a&gt; will provide you with what you need."
+msgstr ""
+
+msgctxt "about_kde_support_kde"
+msgid ""
+"&lt;h1&gt;Support KDE&lt;/h1&gt; &lt;p&gt;KDE software is and will always be "
+"available free of charge, however creating it is not free.&lt;/p&gt; &lt;"
+"p&gt;To support development the KDE community has formed the KDE e.V., a non-"
+"profit organization legally founded in Germany. KDE e.V. represents the KDE "
+"community in legal and financial matters. See &lt;a href=https://ev.kde.org/"
+"&gt;https://ev.kde.org/&lt;/a&gt; for information on KDE e.V.&lt;/p&gt; &lt;"
+"p&gt;KDE benefits from many kinds of contributions, including financial. We "
+"use the funds to reimburse members and others for expenses they incur when "
+"contributing. Further funds are used for legal support and organizing "
+"conferences and meetings.&lt;/p&gt; &lt;p&gt;We would like to encourage you "
+"to support our efforts with a financial donation, using one of the ways "
+"described at &lt;a href=https://www.kde.org/community/donations/&gt;https://"
+"www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Thank you very much in "
+"advance for your support."
+msgstr ""
+
+#. Authors tasks
+msgctxt "maintainer_and_developer"
+msgid "Maintainer and developer"
+msgstr "المصين ومطوّر"
+
+msgctxt "developer"
+msgid "Developer"
+msgstr "مطوّر"
+
+msgctxt "apple_support"
+msgid "macOS support. Working on iOS support"
+msgstr ""
+
+msgctxt "bug_fixes_and_general_improvements"
+msgid "Bug fixes and general improvements"
+msgstr "إصلاح علل وتحسينات عامة"
+
+msgctxt "samoilenko_yuri_task"
+msgid "SFTP implementation, bug fixes and general improvements"
+msgstr ""
+
+msgctxt "aniket_kumar_task"
+msgid "SMS plugin improvements"
+msgstr ""
+
+msgctxt "alex_fiestas_task"
+msgid "Contacts plugin improvements"
+msgstr ""
+
+msgctxt "maxim_leshchenko_task"
+msgid "UI improvements and this about page"
+msgstr ""
+
+msgctxt "holger_kaelberer_task"
+msgid "Remote keyboard plugin and bug fixes"
+msgstr ""
+
+msgctxt "saikrishna_arcot_task"
+msgid ""
+"Support for using the keyboard in the remote input plugin, bug fixes and "
+"general improvements"
+msgstr ""
+
+msgctxt "everyone_else"
+msgid "Everyone else who has contributed to KDE Connect over the years"
+msgstr ""
+
+msgctxt "send_clipboard"
+msgid "Send clipboard"
+msgstr "أرسل الحافظة"
+
+#, fuzzy
+#| msgctxt "received_file_text"
+#| msgid "Tap to open '%1s'"
+msgctxt "tap_to_execute"
+msgid "Tap to execute"
+msgstr "المس لفتح '%1s'"
+
+#~ msgctxt "plugin_not_available"
+#~ msgid "This feature is not available in your Android version"
+#~ msgstr "هذه الميزة غير متوفّرة في إصدار أندرويد لديك"
+
+#~ msgctxt "device_not_reachable"
+#~ msgid "Paired device not reachable"
+#~ msgstr "الجهاز المقترن غير قابل الوصول"
+
+#~ msgctxt "error_already_requested"
+#~ msgid "Pairing already requested"
+#~ msgstr "طُلب الاقتران بالفعل"
+
+#~ msgctxt "error_invalid_key"
+#~ msgid "Invalid key received"
+#~ msgstr "استُقبل مفتاح غير صالح"
+
+#~ msgctxt "received_url_title"
+#~ msgid "Received link from %1s"
+#~ msgstr "استُلمت وصلة من %1s"
+
+#~ msgctxt "received_url_text"
+#~ msgid "Tap to open '%1s'"
+#~ msgstr "المس لفتح '%1s'"
+
+#~ msgctxt "reconnect"
+#~ msgid "Reconnect"
+#~ msgstr "أعد الاتّصال"
+
+#~ msgctxt "device"
+#~ msgid "Device"
+#~ msgstr "الجهاز"
+
+#~ msgctxt "pair_device"
+#~ msgid "Pair device"
+#~ msgstr "اقرن الجهاز"
+
+#~ msgctxt "mpris_settings"
+#~ msgid "Multimedia Settings"
+#~ msgstr "إعدادات الوسائط المتعدّدة"
+
+#~ msgctxt "protocol_version_older"
+#~ msgid "This device uses an old protocol version"
+#~ msgstr "يستخدم هذا الجهاز إصدار ميفاق أقدم"
+
+#~ msgctxt "general_settings"
+#~ msgid "General Settings"
+#~ msgstr "إعدادات عامّة"
+
+#~ msgctxt "plugin_settings"
+#~ msgid "Settings"
+#~ msgstr "إعدادات"
+
+#~ msgctxt "device_name"
+#~ msgid "Device name"
+#~ msgstr "اسم الجهاز"
+
+#~ msgctxt "device_name_preference_summary"
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#~ msgctxt "pair_device_action"
+#~ msgid "Pair a new device"
+#~ msgstr "اقرن جهازًا جديدًا"
+
+#~ msgctxt "unpair_device_action"
+#~ msgid "Unpair %s"
+#~ msgstr "ألغِ اقتران %s"
+
+#~ msgctxt "sftp_internal_storage"
+#~ msgid "Internal storage"
+#~ msgstr "التّخزين الدّاخليّ"
+
+#~ msgctxt "add_host"
+#~ msgid "Add host/IP"
+#~ msgstr "أضف مضيفًا/م​إ"
+
+#, fuzzy
+#~| msgctxt "add_host_hint"
+#~| msgid "Hostname or IP"
+#~ msgctxt "add_host_hint"
+#~ msgid "Hostname or IP"
+#~ msgstr "اسم المضيف أو عنوان IP"
+
+#~ msgctxt "mpris_player_on_device"
+#~ msgid "%1$s on %2$s"
+#~ msgstr "%1$s على %2$s"
+
+#~ msgctxt "device_paired"
+#~ msgid "Device paired"
+#~ msgstr "اقتُرن الجهاز"
+
+#~ msgctxt "plugin_not_supported"
+#~ msgid "This plugin is not supported by the device"
+#~ msgstr "لا يدعم جهازك هذه الملحقة"
+
+#, fuzzy
+#~| msgctxt "no_permissions"
+#~| msgid "You need to grant permission to access notifications"
+#~ msgctxt "no_permissions_storage"
+#~ msgid "You need to grant permissions to access the storage"
+#~ msgstr "عليك إعطاء التّطبيق صلاحيّات للنّفاذ إلى الإخطارات"
+
+#, fuzzy
+#~| msgctxt "share_notification_preference"
+#~| msgid "Noisy notifications"
+#~ msgctxt "new_notification"
+#~ msgid "New notification"
+#~ msgstr "إخطارات مزعجة"
+
+#, fuzzy
+#~| msgctxt "outgoing_file_title"
+#~| msgid "Sending file to %1s"
+#~ msgctxt "outgoing_files_title"
+#~ msgid "Sending files to %1s"
+#~ msgstr "يرسل ملفًّا إلى %1s"
+
+#, fuzzy
+#~| msgctxt "send_files"
+#~| msgid "Send files"
+#~ msgctxt "outgoing_files_text"
+#~ msgid "Sent %1$d file"
+#~ msgid_plural "Sent %1$d out of %2$d files"
+#~ msgstr[0] "أرسل ملفّات"
+#~ msgstr[1] "أرسل ملفّات"
+#~ msgstr[2] "أرسل ملفّات"
+#~ msgstr[3] "أرسل ملفّات"
+#~ msgstr[4] "أرسل ملفّات"
+#~ msgstr[5] "أرسل ملفّات"
+
+#~ msgctxt "sent_file_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "sent_file_failed_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "sftp_all_files"
+#~ msgid "All files"
+#~ msgstr "كلّ الملفّات"
+
+#, fuzzy
+#~| msgctxt "sftp_camera"
+#~| msgid "Camera pictures"
+#~ msgctxt "take_picture"
+#~ msgid "Take picture"
+#~ msgstr "صور الكاميرا"
+
+#~ msgctxt "custom_dev_list_help"
+#~ msgid ""
+#~ "Use this option only if your device is not automatically detected. Enter "
+#~ "IP address or hostname below and touch the button to add it to the list. "
+#~ "Touch an existing item to remove it from the list."
+#~ msgstr ""
+#~ "استخدم هذا الخيار فقط إن لم يُكتَشف جهازك آليًّا. أدخِل عنوان م​إ أو اسم المضيف "
+#~ "أدناه والمس الزرّ لإضافته إلى القائمة. المس عنصرًا موجودًا لإزالته من "
+#~ "القائمة."
+
+#~ msgctxt "plugins_failed_to_load"
+#~ msgid "Plugins failed to load (tap for more info):"
+#~ msgstr "فشل تحميل الملحقات (المس لمعلومات اكثر):"
+
+#~ msgctxt "remote_control"
+#~ msgid "Remote control"
+#~ msgstr "التّحكّم البعيد"
+
+#~ msgctxt "incoming_file_title"
+#~ msgid "Incoming file from %1s"
+#~ msgstr "ملفّ وارد من %1s"
+
+#~ msgctxt "incoming_file_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "settings"
+#~ msgid "KDE Connect Settings"
+#~ msgstr "إعدادات كدي المتّصل"
+
+#, fuzzy
+#~| msgctxt "pref_plugin_runcommand"
+#~| msgid "Run Command"
+#~ msgctxt "addcommand_command"
+#~ msgid "Command"
+#~ msgstr "شغّل أمرًا"
+
+#~ msgctxt "outgoing_file_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "pref_plugin_mpris_desc"
+#~ msgid "Control audio/video from your phone"
+#~ msgstr "تحكّم بالصّوت والصّورة من هاتفك"
+
+#~ msgctxt "pref_plugin_sharereceiver_desc"
+#~ msgid "Save incoming files to the phone storage"
+#~ msgstr "احفظ الملفّات الواردة إلى تخزين الهاتف"
+
+#~ msgctxt "open_mpris_controls"
+#~ msgid "Open remote control"
+#~ msgstr "افتح التّحكّم البعيد"
+
+#~ msgctxt "open_mousepad"
+#~ msgid "Open touchpad control"
+#~ msgstr "افتح تحكّم لوحة اللمس"
+
+#~ msgctxt "mousepad_info"
+#~ msgid "Move a finger on the screen to move the mouse cursor"
+#~ msgstr "حرّك إصبعك على الشّاشة لتحريك مؤشّر الفأرة"
+
+#~ msgctxt "device_menu_plugins"
+#~ msgid "Select plugins"
+#~ msgstr "حدّد الملحقات"
+
+#~ msgctxt "mpris_time_settings_title"
+#~ msgid "Interval Time"
+#~ msgstr "وقت الفترة"

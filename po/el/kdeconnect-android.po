@@ -1,0 +1,1981 @@
+# Translations template for PROJECT.
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PROJECT project.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+# Stelios <sstavra@gmail.com>, 2016, 2017, 2020, 2021.
+# Dimitris Kardarakos <dimkard@gmail.com>, 2016.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdeconnect-android\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-01-16 00:43+0000\n"
+"PO-Revision-Date: 2021-10-06 10:24+0300\n"
+"Last-Translator: Stelios <sstavra@gmail.com>\n"
+"Language-Team: Greek <kde-i18n-el@kde.org>\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.2.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 20.04.2\n"
+
+#. # Dear potential translators:          Thank you for your interest in KDE
+#. Connect! We do not actually handle our own translations.         All
+#. translations for all KDE apps are handled by the [localization
+#. team](https://l10n.kde.org).         We really appreciate your translations,
+#. but make sure to submit them by working with the proper team!
+msgctxt "kde_connect"
+msgid "KDE Connect"
+msgstr "KDE Connect"
+
+#, fuzzy
+#| msgctxt "sendkeystrokes_sent_text"
+#| msgid "Sent %1$s to device %2$s"
+msgctxt "manifest_label_share"
+msgid "Send to Device"
+msgstr "Εστάλησαν %1$s στη συσκευή %2$s"
+
+msgctxt "foreground_notification_no_devices"
+msgid "Not connected to any device"
+msgstr "Δεν είναι συνδεδεμένο σε συσκευή"
+
+#, c-format
+msgctxt "foreground_notification_devices"
+msgid "Connected to: %s"
+msgstr "Συνδεδεμένό σε: %s"
+
+msgctxt "foreground_notification_send_clipboard"
+msgid "Send Clipboard"
+msgstr "Αποστολή προχείρου"
+
+msgctxt "pref_plugin_telephony"
+msgid "Telephony notifier"
+msgstr "Ειδοποιήσεις τηλεφωνίας"
+
+msgctxt "pref_plugin_telephony_desc"
+msgid "Send notifications for incoming calls"
+msgstr "Αποστολή ειδοποιήσεων για εισερχόμενες κλήσεις"
+
+msgctxt "pref_plugin_battery"
+msgid "Battery report"
+msgstr "Αναφορά μπαταρίας"
+
+msgctxt "pref_plugin_battery_desc"
+msgid "Periodically report battery status"
+msgstr "Περιοδική αναφορά κατάστασης μπαταρίας"
+
+msgctxt "pref_plugin_connectivity_report"
+msgid "Connectivity report"
+msgstr "Αναφορά συνδεσιμότητας"
+
+msgctxt "pref_plugin_connectivity_report_desc"
+msgid "Report network signal strength and status"
+msgstr "Αναφορά ισχύος δικτυακού σήματος και κατάστασης"
+
+msgctxt "pref_plugin_sftp"
+msgid "Filesystem expose"
+msgstr "Αποκάλυψη συστήματος αρχείων"
+
+msgctxt "pref_plugin_sftp_desc"
+msgid "Allows to browse this device's filesystem remotely"
+msgstr ""
+"Επιτρέπει την απομακρυσμένη περιήγηση του συστήματος αρχείων του κινητού"
+
+msgctxt "pref_plugin_clipboard"
+msgid "Clipboard sync"
+msgstr "Συγχρονισμός προχείρου"
+
+msgctxt "pref_plugin_clipboard_desc"
+msgid "Share the clipboard content"
+msgstr "Διαμοιρασμός περιεχομένου προχείρου"
+
+msgctxt "pref_plugin_clipboard_sent"
+msgid "Clipboard Sent"
+msgstr "Το πρόχειρο εστάλη"
+
+msgctxt "pref_plugin_mousepad"
+msgid "Remote input"
+msgstr "Απομακρυσμένη είσοδος στοιχείων"
+
+msgctxt "pref_plugin_mousepad_desc"
+msgid "Use your phone or tablet as a touchpad and keyboard"
+msgstr ""
+"Χρήση του τηλεφώνου ή της ταμπλέτας σας ως επιφάνεια αφής και πληκτρολόγιο"
+
+msgctxt "pref_plugin_presenter"
+msgid "Slideshow remote"
+msgstr "Απομακρυσμένος έλεγχος παρουσίασης διαφανειών"
+
+msgctxt "pref_plugin_presenter_desc"
+msgid "Use your device to change slides in a presentation"
+msgstr ""
+"Χρησιμοποιήστε τη συσκευή σας για να αλλάξετε διαφάνειες σε μία παρουσίαση"
+
+msgctxt "pref_plugin_remotekeyboard"
+msgid "Receive remote keypresses"
+msgstr "Λήψη απομακρυσμένων πληκτρολογήσεων"
+
+msgctxt "pref_plugin_remotekeyboard_desc"
+msgid "Receive keypress events from remote devices"
+msgstr "Λήψη συμβάντων πληκτρολόγησης από απομακρυσμένες συσκευές"
+
+msgctxt "pref_plugin_mpris"
+msgid "Multimedia controls"
+msgstr "Κονσόλα πολυμέσων"
+
+msgctxt "pref_plugin_mpris_desc"
+msgid "Provides a remote control for your media player"
+msgstr "Παρέχει ένα τηλεχειριστήριο για την αναπαραγωγή πολυμέσων"
+
+msgctxt "pref_plugin_runcommand"
+msgid "Run Command"
+msgstr "Εκτέλεση εντολής"
+
+msgctxt "pref_plugin_runcommand_desc"
+msgid "Trigger remote commands from your phone or tablet"
+msgstr "Εκτέλεση απομακρυσμένων εντολών από το τηλέφωνο ή την ταμπλέτα"
+
+msgctxt "pref_plugin_contacts"
+msgid "Contacts Synchronizer"
+msgstr "Πρόγραμμα συγχρονισμού επαφών"
+
+msgctxt "pref_plugin_contacts_desc"
+msgid "Allow synchronizing the device's contacts book"
+msgstr "Επιτρέπει το συγχρονισμό του βιβλίου επαφών της συσκευής"
+
+msgctxt "pref_plugin_ping"
+msgid "Ping"
+msgstr "Ping"
+
+msgctxt "pref_plugin_ping_desc"
+msgid "Send and receive pings"
+msgstr "Αποστολή και λήψη pings"
+
+msgctxt "pref_plugin_notifications"
+msgid "Notification sync"
+msgstr "Συγχρονισμός ειδοποιήσεων"
+
+msgctxt "pref_plugin_notifications_desc"
+msgid "Access your notifications from other devices"
+msgstr "Πρόσβαση σε ειδοποιήσεις από άλλες συσκευές"
+
+msgctxt "pref_plugin_receive_notifications"
+msgid "Receive notifications"
+msgstr "Λήψη ειδοποιήσεων"
+
+msgctxt "pref_plugin_receive_notifications_desc"
+msgid "Receive notifications from the other device and display them on Android"
+msgstr "Λήψη ειδοποιήσεων από την άλλη συσκευή και προβολή τους στο Android"
+
+msgctxt "pref_plugin_sharereceiver"
+msgid "Share and receive"
+msgstr "Διαμοιρασμός και λήψη"
+
+msgctxt "pref_plugin_sharereceiver_desc"
+msgid "Share files and URLs between devices"
+msgstr "Διαμοιρασμός αρχείων και URL μεταξύ συσκευών"
+
+msgctxt "device_list_empty"
+msgid "No devices"
+msgstr "Χωρίς συσκευές"
+
+msgctxt "ok"
+msgid "OK"
+msgstr "Εντάξει"
+
+msgctxt "sad_ok"
+msgid "OK :("
+msgstr "Εντάξει :("
+
+msgctxt "cancel"
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+msgctxt "open_settings"
+msgid "Open settings"
+msgstr "Ρυθμίσεις ανοίγματος"
+
+msgctxt "no_permissions"
+msgid "You need to grant permission to access notifications"
+msgstr "Απαιτείται παραχώρηση δικαιωμάτων για την πρόσβαση σε ειδοποιήσεις"
+
+msgctxt "no_permission_mprisreceiver"
+msgid ""
+"To be able to control your media players you need to grant access to the "
+"notifications"
+msgstr ""
+"Για να ελέγξετε τους αναπαραγωγείς πολυμέσων απαιτείται να παραχωρήσετε "
+"πρόσβαση στις ειδοποιήσεις"
+
+msgctxt "no_permissions_remotekeyboard"
+msgid ""
+"To receive keypresses you need to activate the KDE Connect Remote Keyboard"
+msgstr ""
+"Για να λαμβάνετε πατήματα πλήκτρων απαιτείται να ενεργοποιήσετε το "
+"πληκτρολόγιο απομακρυσμένης σύνδεσης του KDE"
+
+msgctxt "send_ping"
+msgid "Send ping"
+msgstr "Αποστολή ping"
+
+msgctxt "open_mpris_controls"
+msgid "Multimedia control"
+msgstr "Έλεγχος πολυμέσων"
+
+msgctxt "remotekeyboard_editing_only_title"
+msgid "Handle remote keys only when editing"
+msgstr "Χειρισμός απομακρυσμένων πλήκτρων μόνο στην επεξεργασία"
+
+msgctxt "remotekeyboard_not_connected"
+msgid ""
+"There is no active remote keyboard connection, establish one in kdeconnect"
+msgstr ""
+"Δεν υπάρχει ενεργή σύνδεση με απομακρυσμένο πληκτρολόγιο, άνοιξε μία στο "
+"kdeconnect"
+
+msgctxt "remotekeyboard_connected"
+msgid "Remote keyboard connection is active"
+msgstr "Η σύνδεση με απομακρυσμένο πληκτρολόγιο είναι ενεργή"
+
+msgctxt "remotekeyboard_multiple_connections"
+msgid ""
+"There is more than one remote keyboard connection, select the device to "
+"configure"
+msgstr ""
+"Υπάρχουν περισσότερες της μίας συνδέσεις με απομακρυσμένο πληκτρολόγιο, "
+"επιλέξτε ποια συσκευή θα διαμορφώσετε"
+
+msgctxt "open_mousepad"
+msgid "Remote input"
+msgstr "Απομακρυσμένη είσοδος στοιχείων"
+
+msgctxt "mousepad_info"
+msgid ""
+"Move a finger on the screen to move the mouse cursor. Tap for a click, and "
+"use two/three fingers for right and middle buttons. Use 2 fingers to scroll. "
+"Use a long press to drag'n drop."
+msgstr ""
+"Μετακινείστε το δάκτυλο στην οθόνη για να μετακινηθεί ο δρομέας του "
+"ποντικιού. Χτυπήστε για κλικ και χρησιμοποιήστε δύο/τρία δάκτυλα για δεξί "
+"και μεσαίο κλικ. Χρησιμοποιήστε 2 δάκτυλα για κύλιση. Πιέστε με διάρκεια για "
+"μετακίνηση και απόθεση."
+
+#, fuzzy
+#| msgctxt "mousepad_double_tap_settings_title"
+#| msgid "Set two finger tap action"
+msgctxt "mousepad_single_tap_settings_title"
+msgid "Set one finger tap action"
+msgstr "Ρύθμιση δύο δακτύλων για την ενέργεια χτυπήματος"
+
+msgctxt "mousepad_double_tap_settings_title"
+msgid "Set two finger tap action"
+msgstr "Ρύθμιση δύο δακτύλων για την ενέργεια χτυπήματος"
+
+msgctxt "mousepad_triple_tap_settings_title"
+msgid "Set three finger tap action"
+msgstr "Ρύθμιση τριών δακτύλων για την ενέργεια χτυπήματος"
+
+msgctxt "mousepad_sensitivity_settings_title"
+msgid "Set touchpad sensitivity"
+msgstr "Ρύθμιση ευαισθησίας της οθόνης αφής"
+
+msgctxt "mousepad_acceleration_profile_settings_title"
+msgid "Set pointer acceleration"
+msgstr "Ρύθμιση επιτάχυνσης δείκτη"
+
+msgctxt "mousepad_scroll_direction_title"
+msgid "Reverse Scrolling Direction"
+msgstr "Κατεύθυνση ανάστροφης κύλησης"
+
+#, fuzzy
+#| msgctxt "mousepad_tap_entries:0"
+#| msgid "Right click"
+msgctxt "mousepad_tap_entries:0"
+msgid "Left click"
+msgstr "Δεξί κλικ"
+
+#, fuzzy
+#| msgctxt "mousepad_tap_entries:0"
+#| msgid "Right click"
+msgctxt "mousepad_tap_entries:1"
+msgid "Right click"
+msgstr "Δεξί κλικ"
+
+#, fuzzy
+#| msgctxt "mousepad_tap_entries:1"
+#| msgid "Middle click"
+msgctxt "mousepad_tap_entries:2"
+msgid "Middle click"
+msgstr "Μεσαίο κλικ"
+
+#, fuzzy
+#| msgctxt "mousepad_tap_entries:2"
+#| msgid "Nothing"
+msgctxt "mousepad_tap_entries:3"
+msgid "Nothing"
+msgstr "Τίποτα"
+
+msgctxt "mousepad_sensitivity_entries:0"
+msgid "Slowest"
+msgstr "Το πιο αργό"
+
+msgctxt "mousepad_sensitivity_entries:1"
+msgid "Above Slowest"
+msgstr "Πάνω από το πιο αργό"
+
+msgctxt "mousepad_sensitivity_entries:2"
+msgid "Default"
+msgstr "Προκαθορισμένο"
+
+msgctxt "mousepad_sensitivity_entries:3"
+msgid "Above Default"
+msgstr "Πάνω από το προκαθορισμένο"
+
+msgctxt "mousepad_sensitivity_entries:4"
+msgid "Fastest"
+msgstr "Το ταχύτερο"
+
+msgctxt "mousepad_acceleration_profile_entries:0"
+msgid "No Acceleration"
+msgstr "Χωρίς επιτάχυνση"
+
+msgctxt "mousepad_acceleration_profile_entries:1"
+msgid "Weakest"
+msgstr "Η πιο αδύναμη"
+
+msgctxt "mousepad_acceleration_profile_entries:2"
+msgid "Weaker"
+msgstr "Πιο αδύναμη"
+
+msgctxt "mousepad_acceleration_profile_entries:3"
+msgid "Medium"
+msgstr "Μέση"
+
+msgctxt "mousepad_acceleration_profile_entries:4"
+msgid "Stronger"
+msgstr "Πιο δυνατή"
+
+msgctxt "mousepad_acceleration_profile_entries:5"
+msgid "Strongest"
+msgstr "Η πιο δυνατή"
+
+msgctxt "sendkeystrokes_send_to"
+msgid "Send keystrokes to"
+msgstr "Αποστολή πληκτρολογήσεων στο"
+
+msgctxt "sendkeystrokes_textbox_hint"
+msgid "Send keystrokes to host"
+msgstr "Αποστολή πληκτρολογήσεων στον υπολογιστή"
+
+msgctxt "sendkeystrokes_disabled_toast"
+msgid "Sending keystrokes is disabled - enable it in the settings"
+msgstr ""
+"Η αποστολή πληκτρολογήσεων είναι ανενεργή - ενεργοποιήστε την στις ρυθμίσεις"
+
+msgctxt "sendkeystrokes_wrong_data"
+msgid "Invalid mime type - needs to be 'text/x-keystrokes'"
+msgstr "Μη έγκυρος τύπος mime - χρειάζεται να γίνει 'text/x-keystrokes'"
+
+#, c-format
+msgctxt "sendkeystrokes_sent_text"
+msgid "Sent %1$s to device %2$s"
+msgstr "Εστάλησαν %1$s στη συσκευή %2$s"
+
+msgctxt "sendkeystrokes_pref_category_summary"
+msgid ""
+"This module allows other apps to share text segments as keystrokes which "
+"will get send to the connected host"
+msgstr ""
+"Αυτό το άρθρωμα επιτρέπει σε άλλες εφαρμογές να μοιράζονται τμήματα κειμένου "
+"ως πληκτρολογήσεις οι οποίες θα αποστέλονται στον συνδεδεμένο υπολογιστή"
+
+msgctxt "sendkeystrokes_pref_category_title"
+msgid "Send Keystrokes"
+msgstr "Αποστολή πληκτρολογήσεων"
+
+msgctxt "sendkeystrokes_pref_enabled"
+msgid "Enable Keystrokes sending"
+msgstr "ενεργοποίηση αποστολής πληκτρολογήσεων"
+
+msgctxt "sendkeystrokes_pref_enabled_summary"
+msgid "Listen for data with mime type 'text/x-keystrokes'"
+msgstr "Ετοιμότητα για δεδομένα με mime τύπο 'text/x-keystrokes'"
+
+msgctxt "sendkeystrokes_safe_text_enabled"
+msgid "Send safe text immediately"
+msgstr "Άμεση αποστολή ασφαλούς κειμένου"
+
+msgctxt "sendkeystrokes_safe_text_enabled_summary"
+msgid "Send short only-numeric strings without confirmation"
+msgstr "Αποστολή σύντομων αριθμητικών-μόνο συμβολοσειρών χωρίς επιβεβαίωση"
+
+msgctxt "pref_plugin_mousepad_send_keystrokes"
+msgid "Send as keystrokes"
+msgstr "Αποστολή ως πληκτρολογήσεις"
+
+msgctxt "mouse_receiver_plugin_description"
+msgid "Receive remote mouse movement"
+msgstr "Λήψη απομακρυσμένων κινήσεων του ποντικιού"
+
+msgctxt "mouse_receiver_plugin_name"
+msgid "Mouse receiver"
+msgstr "Δέκτης ποντικιού"
+
+msgctxt "mouse_receiver_no_permissions"
+msgid "You need to enable Accessibility Service"
+msgstr "Απαιτείται η ενεργοποίηση της υπηρεσίας προσβασιμότητας"
+
+msgctxt "view_status_title"
+msgid "Status"
+msgstr "Κατάσταση"
+
+#, c-format
+msgctxt "battery_status_format"
+msgid "Battery: %d%%"
+msgstr "Μπαταρία: %d%%"
+
+#, c-format
+msgctxt "battery_status_low_format"
+msgid "Battery: %d%% Low Battery"
+msgstr "Μπαταρία: %d%% Χαμηλή συάθμη"
+
+#, c-format
+msgctxt "battery_status_charging_format"
+msgid "Battery: %d%% charging"
+msgstr "Μπαταρία: %d%% φόρτιση"
+
+msgctxt "battery_status_unknown"
+msgid "Battery information not available"
+msgstr "Πληροφορίες για τη μπαταρία δεν είναι διαθέσιμες"
+
+msgctxt "category_connected_devices"
+msgid "Connected devices"
+msgstr "Συνδεδεμένες συσκευές"
+
+msgctxt "category_not_paired_devices"
+msgid "Available devices"
+msgstr "Διαθέσιμες συσκευές"
+
+msgctxt "category_remembered_devices"
+msgid "Remembered devices"
+msgstr "Συσκευές στη μνήμη"
+
+msgctxt "device_menu_plugins"
+msgid "Plugin settings"
+msgstr "Ρυθμίσεις προσθέτων"
+
+msgctxt "device_menu_unpair"
+msgid "Unpair"
+msgstr "Διαχωρισμός"
+
+msgctxt "pair_new_device"
+msgid "Pair new device"
+msgstr "Σύζευξη νέας συσκευής"
+
+msgctxt "unknown_device"
+msgid "Unknown device"
+msgstr "Άγνωστη συσκευή"
+
+msgctxt "error_not_reachable"
+msgid "Device not reachable"
+msgstr "Η συσκευή δεν είναι προσβάσιμη"
+
+msgctxt "error_already_paired"
+msgid "Device already paired"
+msgstr "Η συσκευή ήδη συζεύχθηκε"
+
+msgctxt "error_could_not_send_package"
+msgid "Could not send package"
+msgstr "Αδυναμία αποστολής πακέτου"
+
+msgctxt "error_timed_out"
+msgid "Timed out"
+msgstr "Τέλος χρονικού ορίου"
+
+msgctxt "error_canceled_by_user"
+msgid "Canceled by user"
+msgstr "Ακυρώθηκε από τον χρήστη"
+
+msgctxt "error_canceled_by_other_peer"
+msgid "Canceled by other peer"
+msgstr "Ακυρώθηκε από άλλον χρήστη"
+
+msgctxt "encryption_info_title"
+msgid "Encryption Info"
+msgstr "Πληροφορίες κρυπτογράφησης"
+
+msgctxt "encryption_info_msg_no_ssl"
+msgid ""
+"The other device doesn't use a recent version of KDE Connect, using the "
+"legacy encryption method."
+msgstr ""
+"Η άλλη συσκευή δεν χρησιμοποιεί μια πρόσφατη έκδοση του KDE Connect, θα "
+"χρησιμοποιηθεί η παλαιά μέθοδος κρυπτογράφησης."
+
+msgctxt "my_device_fingerprint"
+msgid "SHA256 fingerprint of your device certificate is:"
+msgstr "Το ίχνος SHA256 του πιστοποιητικού της συσκευής σας είναι:"
+
+msgctxt "remote_device_fingerprint"
+msgid "SHA256 fingerprint of remote device certificate is:"
+msgstr "Το ίχνος SHA256 του πιστοποιητικού της απομακρυσμένης συσκευής είναι:"
+
+msgctxt "pair_requested"
+msgid "Pair requested"
+msgstr "Ζητήθηκε σύζευξη"
+
+#, c-format
+msgctxt "pairing_request_from"
+msgid "Pairing request from %1s"
+msgstr "Αίτημα σύζευξης από %1s"
+
+#, c-format
+msgctxt "incoming_file_title"
+msgid "Receiving %1$d file from %2$s"
+msgid_plural "Receiving %1$d files from %2$s"
+msgstr[0] "Ελήφθη %1$d αρχείο από %2$s`"
+msgstr[1] "Ελήφθησαν %1$d αρχεία από %2$s"
+
+#, c-format
+msgctxt "incoming_files_text"
+msgid "File: %1s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "Αρχείο: %1s"
+msgstr[1] "(Αρχείο %2$d από %3$d) : %1$s"
+
+#, c-format
+msgctxt "outgoing_file_title"
+msgid "Sending %1$d file to %2$s"
+msgid_plural "Sending %1$d files to %2$s"
+msgstr[0] "Αποστολή %1$d αρχείου σε %2$s"
+msgstr[1] "Αποστολή %1$d αρχείων σε %2$s"
+
+#, c-format
+msgctxt "outgoing_files_text"
+msgid "File: %1$s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "Αρχείο: %1$s"
+msgstr[1] "(Αρχείο %2$d από %3$d) : %1$s"
+
+#, c-format
+msgctxt "received_files_title"
+msgid "Received file from %1$s"
+msgid_plural "Received %2$d files from %1$s"
+msgstr[0] "Ελήφθη αρχείο από %1$s"
+msgstr[1] "Ελήφθησαν %2$d αρχεία από %1$s"
+
+#, c-format
+msgctxt "received_files_fail_title"
+msgid "Failed receiving file from %1$s"
+msgid_plural "Failed receiving %2$d of %3$d files from %1$s"
+msgstr[0] "Αποτυχία λήψης αρχείου από %1$s"
+msgstr[1] "Αποτυχία λήψης %2$d από %3$d αρχείου από %1$s"
+
+#, c-format
+msgctxt "sent_files_title"
+msgid "Sent file to %1$s"
+msgid_plural "Sent %2$d files to %1$s"
+msgstr[0] "Εστάλη αρχείο στο %1$s"
+msgstr[1] "Εστάλησαν %2$d αρχεία στο %1$s"
+
+#, c-format
+msgctxt "send_files_fail_title"
+msgid "Failed sending file to %1$s"
+msgid_plural "Failed sending %2$d of %3$d files to %1$s"
+msgstr[0] "Αποτυχία αποστολής αρχείου στο %1$s"
+msgstr[1] "Αποτυχία αποστολής %2$d σπό %3$d αρχείων στο %1$s"
+
+msgctxt "tap_to_open"
+msgid "Tap to open"
+msgstr "Χτυπήστε για άνοιγμα"
+
+#, c-format
+msgctxt "received_file_text"
+msgid "Tap to open '%1s'"
+msgstr "Χτυπήστε για άνοιγμα '%1s'"
+
+#, c-format
+msgctxt "cannot_create_file"
+msgid "Cannot create file %s"
+msgstr "Αδυναμία δημιουργίας αρχείου %s"
+
+msgctxt "tap_to_answer"
+msgid "Tap to answer"
+msgstr "Χτυπήστε για να απαντήσετε"
+
+msgctxt "right_click"
+msgid "Send Right Click"
+msgstr "Αποστολή δεξιού κλικ"
+
+msgctxt "middle_click"
+msgid "Send Middle Click"
+msgstr "Αποστολή μεσαίου κλικ"
+
+msgctxt "show_keyboard"
+msgid "Show Keyboard"
+msgstr "Εμφάνιση πληκτρολογίου"
+
+msgctxt "device_not_paired"
+msgid "Device not paired"
+msgstr "Η συσκευή δεν συζεύχθηκε"
+
+msgctxt "request_pairing"
+msgid "Request pairing"
+msgstr "Αίτημα σύζευξης"
+
+msgctxt "pairing_accept"
+msgid "Accept"
+msgstr "Αποδοχή"
+
+msgctxt "pairing_reject"
+msgid "Reject"
+msgstr "Απόρριψη"
+
+msgctxt "settings"
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+msgctxt "mpris_play"
+msgid "Play"
+msgstr "Αναπαραγωγή"
+
+msgctxt "mpris_pause"
+msgid "Pause"
+msgstr "Παύση"
+
+msgctxt "mpris_previous"
+msgid "Previous"
+msgstr "Προηγούμενο"
+
+msgctxt "mpris_rew"
+msgid "Rewind"
+msgstr "Ταχεία ώθηση όπισθεν"
+
+msgctxt "mpris_ff"
+msgid "Fast-forward"
+msgstr "Ταχεία προώθηση"
+
+msgctxt "mpris_next"
+msgid "Next"
+msgstr "Επόμενο"
+
+msgctxt "mpris_loop"
+msgid "Loop"
+msgstr "Βρόχος"
+
+msgctxt "mpris_shuffle"
+msgid "Shuffle"
+msgstr "Ανάμιξη"
+
+msgctxt "mpris_volume"
+msgid "Volume"
+msgstr "Τόμος"
+
+msgctxt "mpris_time_settings_title"
+msgid "Forward/rewind buttons"
+msgstr "Κουμπιά ταχείας ώθησης"
+
+msgctxt "mpris_time_settings_summary"
+msgid "Adjust the time to fast forward/rewind when pressed"
+msgstr "Χρονική προσαρμογή ταχείας ώθησης ανάλογα με την πίεση"
+
+msgctxt "mpris_time_entries:0"
+msgid "10 seconds"
+msgstr "10 seconds"
+
+msgctxt "mpris_time_entries:1"
+msgid "20 seconds"
+msgstr "20 seconds"
+
+msgctxt "mpris_time_entries:2"
+msgid "30 seconds"
+msgstr "30 seconds"
+
+msgctxt "mpris_time_entries:3"
+msgid "1 minute"
+msgstr "1 λεπτό"
+
+msgctxt "mpris_time_entries:4"
+msgid "2 minutes"
+msgstr "2 λεπτά"
+
+msgctxt "mpris_notification_settings_title"
+msgid "Show media control notification"
+msgstr "Εμφάνιση ειδοποίησης κονσόλας πολυμέσων"
+
+msgctxt "mpris_notification_settings_summary"
+msgid "Allow controlling your media players without opening KDE Connect"
+msgstr ""
+"Να επιτρέπεται ο έλεγχος των αναπαραφωγέων πολυμέσων χωρίς άνοιγμα του KDE "
+"Connect"
+
+msgctxt "share_to"
+msgid "Share To…"
+msgstr "Διαμοιρασμός με…"
+
+msgctxt "protocol_version_newer"
+msgid "This device uses a newer protocol version"
+msgstr "Η συσκευή αυτή χρησιμοποιεί νεότερη έκδοση πρωτοκόλλου"
+
+#, c-format
+msgctxt "plugin_settings_with_name"
+msgid "%s settings"
+msgstr "%s ρυθμίσεις"
+
+msgctxt "invalid_device_name"
+msgid "Invalid device name"
+msgstr "Μη έγκυρο όνομα συσκευής"
+
+msgctxt "shareplugin_text_saved"
+msgid "Received text, saved to clipboard"
+msgstr "Ελήφθη κείμενο, αποθηκεύτηκε στο πρόχειρο"
+
+msgctxt "custom_devices_settings"
+msgid "Custom device list"
+msgstr "Προσαρμοσμένη λίστα συσκευών"
+
+msgctxt "custom_device_list"
+msgid "Add devices by IP"
+msgstr "Προσθήκη συσκευών ανά IP"
+
+msgctxt "custom_device_deleted"
+msgid "Custom device deleted"
+msgstr "Η προσαρμοσμένη λίστα διαγράφηκε"
+
+msgctxt "custom_device_list_help"
+msgid ""
+"If your device is not automatically detected you can add its IP address or "
+"hostname by clicking on the Floating Action Button"
+msgstr ""
+"Αν η συσκευή σας δεν εντοπίζεται αυτόματα μπορείτε να προσθέσετε την IP "
+"διεύθυνσή της ή το όνομά της με κλικ στο κουμπί αιωρούμενης ενέργειας"
+
+msgctxt "custom_device_fab_hint"
+msgid "Add a device"
+msgstr "Προσθήκη συσκευής"
+
+msgctxt "undo"
+msgid "Undo"
+msgstr "Αναίρεση"
+
+msgctxt "share_notification_preference"
+msgid "Noisy notifications"
+msgstr "Θορυβώδεις ειδοποιήσεις"
+
+msgctxt "share_notification_preference_summary"
+msgid "Vibrate and play a sound when receiving a file"
+msgstr "Δόνηση και ηχητική ένδειξη με τη λήψη αρχείου"
+
+msgctxt "share_destination_customize"
+msgid "Customize destination directory"
+msgstr "Προσαρμογή καταλόγου προορισμού"
+
+msgctxt "share_destination_customize_summary_disabled"
+msgid "Received files will appear in Downloads"
+msgstr "Τα ληφθέντα αρχεία θα εμφανίζονται στις Λήψεις"
+
+msgctxt "share_destination_customize_summary_enabled"
+msgid "Files will be stored in the directory below"
+msgstr "Τα αρχεία θα αποθηκεύονται στον παρακάτω κατάλογο"
+
+msgctxt "share_destination_folder_preference"
+msgid "Destination directory"
+msgstr "Κατάλογος προορισμού"
+
+msgctxt "share"
+msgid "Share"
+msgstr "Διαμοιρασμός"
+
+#, c-format
+msgctxt "share_received_file"
+msgid "Share \"%s\""
+msgstr "Διαμοιρασμός «%s»"
+
+msgctxt "title_activity_notification_filter"
+msgid "Notification filter"
+msgstr "Φιλτράρισμα ειδοποιήσεων"
+
+msgctxt "filter_apps_info"
+msgid "Notifications will be synchronized for the selected apps."
+msgstr "Οι ειδοποιήσεις θα συγχρονίζονται για επιλεγμένες εφαρμογές."
+
+#, fuzzy
+#| msgctxt "pref_plugin_telephony_desc"
+#| msgid "Send notifications for incoming calls"
+msgctxt "show_notification_if_screen_off"
+msgid "Send notifications only if the screen is off"
+msgstr "Αποστολή ειδοποιήσεων για εισερχόμενες κλήσεις"
+
+#, c-format
+msgctxt "sftp_sdcard_num"
+msgid "SD card %d"
+msgstr "SD card %d"
+
+msgctxt "sftp_sdcard"
+msgid "SD card"
+msgstr "SD card"
+
+msgctxt "sftp_readonly"
+msgid "(read only)"
+msgstr "(ανάγνωση μόνο)"
+
+msgctxt "sftp_camera"
+msgid "Camera pictures"
+msgstr "Φωτογραφίες"
+
+msgctxt "add_device_dialog_title"
+msgid "Add device"
+msgstr "Προσθήκη συσκευής"
+
+msgctxt "add_device_hint"
+msgid "Hostname or IP address"
+msgstr "Όνομα ή IP διεύθυνση"
+
+msgctxt "sftp_preference_detected_sdcards"
+msgid "Detected SD cards"
+msgstr "Εντοπισμένες SD κάρτες"
+
+msgctxt "sftp_preference_edit_sdcard_title"
+msgid "Edit SD card"
+msgstr "Επεξεργασία SD κάρτας"
+
+msgctxt "sftp_preference_configured_storage_locations"
+msgid "Configured storage locations"
+msgstr "Διαμορφωμένες τοποθεσίες αποθήκης"
+
+msgctxt "sftp_preference_add_storage_location_title"
+msgid "Add storage location"
+msgstr "Προσθήκη τοποθεσίας αποθήκης"
+
+msgctxt "sftp_preference_edit_storage_location"
+msgid "Edit storage location"
+msgstr "Επεξεργασία τοποθεσίας αποθήκης"
+
+msgctxt "sftp_preference_add_camera_shortcut"
+msgid "Add camera folder shortcut"
+msgstr "Προσθήκη συντόμευσης φακέλου κάμερας"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_on"
+msgid "Add a shortcut to the camera folder"
+msgstr "Προσθήκη συντόμευσης στο φάκελο της κάμερας"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_off"
+msgid "Do not add a shortcut to the camera folder"
+msgstr "Να μην προστεθεί συντόμευση στο φάκελο της κάμερας"
+
+msgctxt "sftp_storage_preference_storage_location"
+msgid "Storage location"
+msgstr "Τοποθεσία αποθήκης"
+
+msgctxt "sftp_storage_preference_storage_location_already_configured"
+msgid "This location has already been configured"
+msgstr "Αυτή η τοποθεσία έχει ήδη διαμορφωθεί"
+
+msgctxt "sftp_storage_preference_click_to_select"
+msgid "click to select"
+msgstr "κλικ για επιλογή"
+
+msgctxt "sftp_storage_preference_display_name"
+msgid "Display name"
+msgstr "Όνομα οθόνης"
+
+msgctxt "sftp_storage_preference_display_name_already_used"
+msgid "This display name is already used"
+msgstr "Αυτό το όνομα οθόνης είναι σε χρήση"
+
+msgctxt "sftp_storage_preference_display_name_cannot_be_empty"
+msgid "Display name cannot be empty"
+msgstr "Το όνομα οθόνης δε γίνεται να είναι κενό"
+
+msgctxt "sftp_action_mode_menu_delete"
+msgid "Delete"
+msgstr "Διαγραφή"
+
+msgctxt "sftp_no_sdcard_detected"
+msgid "No SD card detected"
+msgstr "Δεν εντοπίστηκε SD κάρτα"
+
+msgctxt "sftp_no_storage_locations_configured"
+msgid "No storage locations configured"
+msgstr "Δεν διαμορφώθηκαν τοποθεσίες αποθήκης"
+
+msgctxt "sftp_saf_permission_explanation"
+msgid "To access files remotely you have to configure storage locations"
+msgstr ""
+"Για να έχετε απομακρυσμένη πρόσβαση σε αρχεία απαιτείται να διαμορφώσετε "
+"τοποθεσίες αποθήκης"
+
+msgctxt "no_players_connected"
+msgid "No players found"
+msgstr "Δεν βρέθηκαν συσκευές αναπαραγωγής"
+
+msgctxt "send_files"
+msgid "Send files"
+msgstr "Αποστολή αρχείων"
+
+msgctxt "pairing_title"
+msgid "KDE Connect Devices"
+msgstr "Συσκευές KDE Connect"
+
+msgctxt "pairing_description"
+msgid ""
+"Other devices running KDE Connect in your same network should appear here."
+msgstr "Άλλες συσκευές με KDE Connect στο ίδιο δίκτυο θα εμφανίζονται εδώ."
+
+msgctxt "device_rename_title"
+msgid "Rename device"
+msgstr "Μετονομασία συσκευής"
+
+msgctxt "device_rename_confirm"
+msgid "Rename"
+msgstr "Μετονομασία"
+
+msgctxt "refresh"
+msgid "Refresh"
+msgstr "Ανανέωση"
+
+msgctxt "unreachable_description"
+msgid ""
+"This paired device is not reachable. Make sure it is connected to your same "
+"network."
+msgstr ""
+"Αυτή η συζευγμένη συσκευή δεν είναι προσβάσιμη. Βεβαιωθείτε ότι είναι "
+"συνδεδεμένη στο δίκτυό σας."
+
+msgctxt "no_wifi"
+msgid ""
+"You're not connected to a Wi-Fi network, so you may not be able to see any "
+"devices. Click here to enable Wi-Fi."
+msgstr ""
+"Δεν είστε συνδεδεμένοι σε ασύρματο δίκτυο, έτσι ίσως να μη βλέπετε καμία "
+"συσκευή.Κάνετε κλικ εδώ για να ενεργοποιήσετε το Wi-Fi."
+
+msgctxt "on_non_trusted_message"
+msgid "Not on a trusted network: autodiscovery is disabled."
+msgstr "Δεν είστε σε έμπιστο δίκτυο: ο αυτόματος εντοπισμός είναι ανενεργός."
+
+msgctxt "no_file_browser"
+msgid "There are no file browsers installed."
+msgstr "Δεν υπάρχουν εγκατεστημένοι περιηγητές αρχείων."
+
+msgctxt "pref_plugin_telepathy"
+msgid "Send SMS"
+msgstr "Αποστολή SMS"
+
+msgctxt "pref_plugin_telepathy_desc"
+msgid "Send text messages from your desktop"
+msgstr "Αποστολή μηνυμάτων κειμένου από τον υπολογιστή σας"
+
+msgctxt "pref_plugin_telepathy_mms"
+msgid "Send MMS"
+msgstr "Αποστολή MMS"
+
+msgctxt "pref_plugin_telepathy_mms_desc"
+msgid ""
+"To be able to send MMS from KDE Connect you need to set it as the default "
+"SMS app."
+msgstr ""
+"Για να μπορείτε να στέλνετε MMS από το KDE Connect απαιτείται να το "
+"ρυθμίσετε ως την προκαθορισμένη εφαρμογή για SMS."
+
+msgctxt "findmyphone_title"
+msgid "Find my phone"
+msgstr "Αναζήτηση του κινητού μου"
+
+msgctxt "findmyphone_title_tablet"
+msgid "Find my tablet"
+msgstr "Αναζήτηση του πινακίου μου"
+
+msgctxt "findmyphone_title_tv"
+msgid "Find my TV"
+msgstr "Αναζήτηση της τηλεόρασής μου"
+
+msgctxt "findmyphone_description"
+msgid "Rings this device so you can find it"
+msgstr "Καλεί αυτή τη συσκευή ώστε να την εντοπίσετε"
+
+msgctxt "findmyphone_found"
+msgid "Found it"
+msgstr "Βρέθηκε"
+
+msgctxt "open"
+msgid "Open"
+msgstr "Άνοιγμα"
+
+msgctxt "close"
+msgid "Close"
+msgstr "Κλείσιμο"
+
+msgctxt "plugins_need_permission"
+msgid "Some Plugins need permissions to work (tap for more info):"
+msgstr ""
+"Κάποια πρόσθετα απαιτούν δικαιώματα για να λειτουργήσουν (χτυπήστε για "
+"περισσότερες πληροφορίες):"
+
+msgctxt "permission_explanation"
+msgid "This plugin needs permissions to work"
+msgstr "Αυτό το πρόσθετο χρειάζεται δικαιώματα για να λειτουργήσει"
+
+msgctxt "optional_permission_explanation"
+msgid "You need to grant extra permissions to enable all functions"
+msgstr ""
+"Απαιτείται παραχώρηση επιπλέον δικαιωμάτων για την ενεργοποίηση όλων των "
+"λειτουργιών"
+
+msgctxt "plugins_need_optional_permission"
+msgid ""
+"Some plugins have features disabled because of lack of permission (tap for "
+"more info):"
+msgstr ""
+"Κάποια πρόσθετα έχουν λειτουργίες ανενεργές εξαιτίας της απουσίας "
+"δικαιωμάτων (χτυπήστε για περισσότερες πληροφορίες):"
+
+msgctxt "share_optional_permission_explanation"
+msgid "To receive shared files you need to choose a destination directory"
+msgstr ""
+"Για να λάβετε κοινόχρηστα αρχεία πρέπει να επιλέξετε έναν κατάλογο προορισμού"
+
+msgctxt "telepathy_permission_explanation"
+msgid ""
+"To read and write SMS from your desktop you need to give permission to SMS"
+msgstr ""
+"Για να διαβάσετε και να γράψετε SMS από την επιφάνεια εργασίας, χρειάζεται "
+"να δώσετε δικαιώματα στο SMS"
+
+msgctxt "telephony_permission_explanation"
+msgid ""
+"To see phone calls on the desktop you need to give permission to phone call "
+"logs and phone state"
+msgstr ""
+"Για να δείτε τηλεφωνικές κλήσεις στην επιφάνεια εργασίας απαιτείται να "
+"παραχωρήσετε δικαιώματα σε καταγραφές τηλεφωνικών κλήσεων και στην κατάσταση "
+"του τηλεφώνου"
+
+msgctxt "telephony_optional_permission_explanation"
+msgid ""
+"To see a contact name instead of a phone number you need to give access to "
+"the phone's contacts"
+msgstr ""
+"Για να δείτε το όνομα επαφής αντί για τον αριθμό κλήσης χρειάζεται να "
+"παραχωρήσετε πρόσβαση στις επαφές στο τηλέφωνο"
+
+msgctxt "contacts_permission_explanation"
+msgid ""
+"To share your contacts book with the desktop, you need to give contacts "
+"permission"
+msgstr ""
+"Για να μοιραστείτε το βιβλίο επαφών σας με την επιφάνεια εργασίας, "
+"απαιτείται να δώσετε δικαιώματα στις επαφές"
+
+msgctxt "select_ringtone"
+msgid "Select a ringtone"
+msgstr "Επιλογή ήχου κλήσης"
+
+msgctxt "telephony_pref_blocked_title"
+msgid "Blocked numbers"
+msgstr "Αριθμοί σε φραγή"
+
+msgctxt "telephony_pref_blocked_dialog_desc"
+msgid ""
+"Don't show calls and SMS from these numbers. Please specify one number per "
+"line"
+msgstr ""
+"Να μην εμφανίζονται κλήσεις ή SMS από αυτούς τους αριθμούς. Καθορίστε έναν "
+"αριθμό ανά γραμμή"
+
+msgctxt "mpris_coverart_description"
+msgid "Cover art of current media"
+msgstr "Καλλιτεχνικό εξώφυλλο των πολυμέσων"
+
+msgctxt "device_icon_description"
+msgid "Device icon"
+msgstr "Εικονίδιο συσκευής"
+
+msgctxt "settings_icon_description"
+msgid "Settings icon"
+msgstr "Εικονίδιο ρυθμίσεων"
+
+msgctxt "presenter_fullscreen"
+msgid "Fullscreen"
+msgstr "Πλήρης οθόνη"
+
+msgctxt "presenter_exit"
+msgid "Exit presentation"
+msgstr "Έξοδος από την παρουσίαση"
+
+msgctxt "presenter_lock_tip"
+msgid ""
+"You can lock your device and use the volume keys to go to the previous/next "
+"slide"
+msgstr ""
+"Μπορείτε να κλειδώσετε τη συσκευή σας και να χρησιμοποιήσετε τα πλήκτρα της "
+"έντασης για να μεταβείτε σε προηγούμενη/επόμενη διαφάνεια"
+
+msgctxt "add_command"
+msgid "Add a command"
+msgstr "Προσθήκη εντολής"
+
+msgctxt "addcommand_explanation"
+msgid "There are no commands registered"
+msgstr "Δεν υπάρχουν καταχωρημένες εντολές"
+
+msgctxt "addcommand_explanation2"
+msgid "You can add new commands in the KDE Connect System Settings"
+msgstr ""
+"Μπορείτε να προσθέσετε νέες εντολές στις ρυθμίσεις συστήματος του KDE Connect"
+
+msgctxt "add_command_description"
+msgid "You can add commands on the desktop"
+msgstr "Μπορείτε να προσθέσετε εντολές στην επιφάνεια εργασίας"
+
+msgctxt "pref_plugin_mprisreceiver"
+msgid "Media Player Control"
+msgstr "Κονσόλα αναπαραγωγέα πολυμέσων"
+
+msgctxt "pref_plugin_mprisreceiver_desc"
+msgid "Control your phone's media players from another device"
+msgstr ""
+"Ελέγξτε τους αναπαραγωγείς πολυμέσων του τηλεφώνου σας από άλλη συσκευή"
+
+msgctxt "notification_channel_default"
+msgid "Other notifications"
+msgstr "Άλλες ειδοποιήσεις"
+
+msgctxt "notification_channel_persistent"
+msgid "Persistent indicator"
+msgstr "Μόνιμος δείκτης"
+
+msgctxt "notification_channel_media_control"
+msgid "Media control"
+msgstr "Κονσόλα πολυμέσων"
+
+msgctxt "notification_channel_filetransfer"
+msgid "File transfer"
+msgstr "Μεταφορά αρχείου"
+
+msgctxt "notification_channel_high_priority"
+msgid "High priority"
+msgstr "Υψηλής προτεραιότητας"
+
+msgctxt "notification_channel_sms_mms"
+msgid "New Message"
+msgstr "Νέο μήνυμα"
+
+msgctxt "mpris_stop"
+msgid "Stop the current player"
+msgstr "Διακοπή του τρέχοντος αναπαραγωγέα"
+
+msgctxt "copy_url_to_clipboard"
+msgid "Copy URL to clipboard"
+msgstr "Αντιγραφή του URL στο πρόχειρο"
+
+msgctxt "clipboard_toast"
+msgid "Copied to clipboard"
+msgstr "Έγινε αντιγραφή στο πρόχειρο"
+
+msgctxt "runcommand_notreachable"
+msgid "Device is not reachable"
+msgstr "Η συσκευή δεν είναι προσβάσιμη"
+
+msgctxt "runcommand_notpaired"
+msgid "Device is not paired"
+msgstr "Η συσκευή δεν συζεύχθηκε"
+
+msgctxt "runcommand_nosuchdevice"
+msgid "There is no such device"
+msgstr "Δεν υπάρχει τέτοια συσκευή"
+
+msgctxt "runcommand_noruncommandplugin"
+msgid "This device does not have the Run Command Plugin enabled"
+msgstr "Αυτή η συσκευή δεν έχει ενεργοποιημένο το πρόσθετο εκτέλεσης εντολής"
+
+msgctxt "pref_plugin_findremotedevice"
+msgid "Find remote device"
+msgstr "Εύρεση απομακρυσμένης συσκευής"
+
+msgctxt "pref_plugin_findremotedevice_desc"
+msgid "Ring your remote device"
+msgstr "Ενεργοποιήστε τον ήχο κλήσης της απομακρυσμένης συσκευής σας"
+
+msgctxt "ring"
+msgid "Ring"
+msgstr "Ήχος κλήσης"
+
+msgctxt "pref_plugin_systemvolume"
+msgid "System volume"
+msgstr "Ένταση συστήματος"
+
+msgctxt "pref_plugin_systemvolume_desc"
+msgid "Control the system volume of the remote device"
+msgstr "Ελέγξτε την ένταση του συστήματος της απομακρυσμένης συσκευής"
+
+msgctxt "mute"
+msgid "Mute"
+msgstr "Σίγαση"
+
+msgctxt "all"
+msgid "All"
+msgstr "Όλα"
+
+msgctxt "devices"
+msgid "Devices"
+msgstr "Συσκευές"
+
+msgctxt "settings_rename"
+msgid "Device name"
+msgstr "Όνομα συσκευής"
+
+msgctxt "settings_dark_mode"
+msgid "Dark theme"
+msgstr "Σκούρο θέμα"
+
+msgctxt "settings_more_settings_title"
+msgid "More settings"
+msgstr "Περισσότερες ρυθμίσεις"
+
+msgctxt "settings_more_settings_text"
+msgid ""
+"Per-device settings can be found under 'Plugin settings' from within a "
+"device."
+msgstr ""
+"Ρυθμίσεις ανά συσκευή είναι στο 'Ρυθμίσεις προσθέτων' μέσα από τη συσκευή."
+
+msgctxt "setting_persistent_notification"
+msgid "Show persistent notification"
+msgstr "Εμφάνιση μόνιμων ειδοποιήσεων"
+
+msgctxt "setting_persistent_notification_oreo"
+msgid "Persistent notification"
+msgstr "Μόνιμες ειδοποιήσεις"
+
+msgctxt "setting_persistent_notification_description"
+msgid "Tap to enable/disable in Notification settings"
+msgstr "Χτύπημα για (απ)ενεργοποίηση στις ρυμίσεις ειδοποιήσεων"
+
+msgctxt "extra_options"
+msgid "Extra options"
+msgstr "Επιπλέον επιλογές"
+
+msgctxt "privacy_options"
+msgid "Privacy options"
+msgstr "Επιλογές ιδιωτικού απορρήτου"
+
+msgctxt "set_privacy_options"
+msgid "Set your privacy options"
+msgstr "Ρύθμιση επιλογών ιδιωτικού απορρήτου"
+
+msgctxt "block_contents"
+msgid "Block contents of notifications"
+msgstr "Φραγή περιεχομένου ειδοποιήσεων"
+
+msgctxt "block_images"
+msgid "Block images in notifications"
+msgstr "Φραγή εικόνων σε ειδοποιήσεις"
+
+msgctxt "notification_channel_receivenotification"
+msgid "Notifications from other devices"
+msgstr "Ειδοποιήσεις από άλλες συσκευές"
+
+msgctxt "take_picture"
+msgid "Launch camera"
+msgstr "Εκτέλεση κάμερας"
+
+msgctxt "plugin_photo_desc"
+msgid "Launch the camera app to ease taking and transferring pictures"
+msgstr ""
+"Εκτέλεση της εφαρμογής κάμερας για διευκόλυνση στη λήψη και μεταφορά "
+"φωτογραφιών"
+
+msgctxt "no_app_for_opening"
+msgid "No suitable app found to open this file"
+msgstr "Δεν βρέθηκε κατάλληλη εφαρμογή για το άνοιγμα αυτού του αρχείου"
+
+msgctxt "remote_keyboard_service"
+msgid "KDE Connect Remote Keyboard"
+msgstr "Απομακρυσμένο πληκτρολόγιο KDE Connect"
+
+msgctxt "presenter_pointer"
+msgid "Pointer"
+msgstr "Δείκτης"
+
+msgctxt "trusted_networks"
+msgid "Trusted networks"
+msgstr "Έμπιστα δίκτυα"
+
+msgctxt "trusted_networks_desc"
+msgid "Restrict autodiscovery to known networks"
+msgstr "Να περιοριστεί η αυτόματη ανακάλυψη σε γνωστά δίκτυα"
+
+#, c-format
+msgctxt "add_trusted_network"
+msgid "Add %1s"
+msgstr "Προσθήκη %1s"
+
+msgctxt "empty_trusted_networks_list_text"
+msgid "You haven't added any trusted network yet"
+msgstr "Δεν έχετε προσθέσει ακόμη κάποιο έμπιστο δίκτυο"
+
+msgctxt "allow_all_networks_text"
+msgid "Allow all"
+msgstr "Να επιτρέπονται όλα"
+
+msgctxt "location_permission_needed_title"
+msgid "Permission required"
+msgstr "Απαιτείται πρόσβαση"
+
+msgctxt "location_permission_needed_desc"
+msgid "Android requires the Location permission to identify your WiFi network"
+msgstr ""
+"Το android απαιτεί το δικαίωμα πρόσβασης στην τοποθεσία για να αναγνωρίσει "
+"το WiFI δίκτυό σας"
+
+msgctxt "clipboard_android_x_incompat"
+msgid ""
+"Android 10 has removed clipboard access to all apps. This plugin will be "
+"disabled."
+msgstr ""
+"Το android έχει αφαιρέσει την πρόσβαση στο πρόχειρο από όλες τις εφαρμογές. "
+"Αυτό το πρόσθετο θα απενεργοποιηθεί."
+
+msgctxt "mpris_open_url"
+msgid "Continue playing here"
+msgstr "Συνεχίστε να παίζετε εδώ"
+
+msgctxt "cant_open_url"
+msgid "Can't open URL to continue playing"
+msgstr "Αδυναμία ανοίγματος URL για να συνεχίσετε να παίζετε"
+
+msgctxt "bigscreen_home"
+msgid "Home"
+msgstr "Αρχική"
+
+msgctxt "bigscreen_up"
+msgid "Up"
+msgstr "Επάνω"
+
+msgctxt "bigscreen_left"
+msgid "Left"
+msgstr "Αριστερά"
+
+msgctxt "bigscreen_select"
+msgid "Select"
+msgstr "Επιλογή"
+
+msgctxt "bigscreen_right"
+msgid "Right"
+msgstr "Δεξιά"
+
+msgctxt "bigscreen_down"
+msgid "Down"
+msgstr "Κάτω"
+
+msgctxt "bigscreen_mic"
+msgid "Mic"
+msgstr "Μικ"
+
+msgctxt "pref_plugin_bigscreen"
+msgid "Bigscreen remote"
+msgstr "Απομακρυσμένη μεγάλη οθόνη"
+
+msgctxt "pref_plugin_bigscreen_desc"
+msgid "Use your device as a remote for Plasma Bigscreen"
+msgstr "Χρησιμοποιήστε τη συσκευή σας ως απομακρυσμένη για το Plasma Bigscreen"
+
+msgctxt "bigscreen_optional_permission_explanation"
+msgid ""
+"To share microphone input from your phone you need to give access to the "
+"phone's audio input"
+msgstr ""
+"Για να μοιραστείτε την είσοδο του μικροφώνου από το τηλέφωνό σας απαιτείται "
+"να παραχωρήσετε πρόσβαση στην είσοδο ήχου του τηλεφώνου"
+
+msgctxt "bigscreen_speech_extra_prompt"
+msgid "Speech"
+msgstr "Ομιλία"
+
+msgctxt "message_reply_label"
+msgid "REPLY"
+msgstr "ΑΠΑΝΤΗΣΗ"
+
+msgctxt "mark_as_read_label"
+msgid "MARK AS READ"
+msgstr "ΝΑ ΣΗΜΕΙΩΘΕΙ ΩΣ ΑΝΑΓΝΩΣΜΕΝΟ"
+
+msgctxt "user_display_name"
+msgid "You"
+msgstr "Εσείς"
+
+msgctxt "set_default_sms_app_title"
+msgid "Send MMS"
+msgstr "Αποστολή MMS"
+
+msgctxt "set_group_message_as_mms_title"
+msgid "Send group MMS"
+msgstr "Αποστολή MMS σε ομάδα"
+
+msgctxt "set_long_text_as_mms_title"
+msgid "Send long text as MMS"
+msgstr "Αποστολή μεγάλου κειμένου ως MMS"
+
+msgctxt "convert_to_mms_after_title"
+msgid "Convert to MMS"
+msgstr "Μετατροπή σε MMS"
+
+msgctxt "convert_to_mms_after_entries:0"
+msgid "After one message"
+msgstr "Μετά από ένα μήνυμα"
+
+msgctxt "convert_to_mms_after_entries:1"
+msgid "After two messages"
+msgstr "Μετά από δύο μηνύματα"
+
+msgctxt "convert_to_mms_after_entries:2"
+msgid "After three messages"
+msgstr "Μετά από τρία μηνύματα"
+
+msgctxt "convert_to_mms_after_entries:3"
+msgid "After four messages"
+msgstr "Μετά από τέσσερα μηνύματα"
+
+msgctxt "convert_to_mms_after_entries:4"
+msgid "After five messages"
+msgstr "Μετά από πέντε μηνύματα"
+
+msgctxt "theme_dialog_title"
+msgid "Choose theme"
+msgstr "Επιλογή θέματος"
+
+msgctxt "theme_list:0"
+msgid "Set by Battery Saver"
+msgstr "Ρύθμιση με την εξοικονόμηση μπαταρίας"
+
+msgctxt "theme_list:1"
+msgid "Light"
+msgstr "Φωτεινό"
+
+msgctxt "theme_list:2"
+msgid "Dark"
+msgstr "Σκούρο"
+
+msgctxt "theme_list_v28:0"
+msgid "System Default"
+msgstr "Προκαθορισμένο συστήματος"
+
+msgctxt "theme_list_v28:1"
+msgid "Light"
+msgstr "Φωτεινό"
+
+msgctxt "theme_list_v28:2"
+msgid "Dark"
+msgstr "Σκούρο"
+
+msgctxt "report_bug"
+msgid "Report Bug"
+msgstr "Αναφορά σφάλματος"
+
+msgctxt "donate"
+msgid "Donate"
+msgstr "Δωρεές"
+
+msgctxt "source_code"
+msgid "Source Code"
+msgstr "Πηγαίος κώδικας"
+
+msgctxt "licenses"
+msgid "Licenses"
+msgstr "Άδειες χρήσης"
+
+msgctxt "website"
+msgid "Website"
+msgstr "Ιστότοπος"
+
+msgctxt "about"
+msgid "About"
+msgstr "Σχετικά"
+
+msgctxt "authors"
+msgid "Authors"
+msgstr "Συγγραφείς"
+
+msgctxt "thanks_to"
+msgid "Thanks To"
+msgstr "Ευχαριστίες"
+
+msgctxt "easter_egg"
+msgid "Easter Egg"
+msgstr "Πασχαλινό αυγό"
+
+#, c-format
+msgctxt "email_contributor"
+msgid ""
+"Email contributor\n"
+"%s"
+msgstr ""
+"Email συμβαλλόμενου\n"
+"%s"
+
+#, c-format
+msgctxt "visit_contributors_homepage"
+msgid ""
+"Visit contributor's homepage\n"
+"%s"
+msgstr ""
+"Επισκεφθείτε τη σελίδα του συμβαλλόμενου\n"
+"%s"
+
+#, c-format
+msgctxt "version"
+msgid "Version %s"
+msgstr "Έκδοση %s"
+
+msgctxt "about_kde"
+msgid "About KDE"
+msgstr "Σχετικά με το KDE"
+
+msgctxt "kde_be_free"
+msgid "KDE - Be Free!"
+msgstr "KDE - Απελευθερωθείτε!"
+
+msgctxt "kde"
+msgid "KDE"
+msgstr "KDE"
+
+msgctxt "konqi"
+msgid "Konqi"
+msgstr "Konqi"
+
+msgctxt "rise_up"
+msgid "Rise Up"
+msgstr "Άνοδος"
+
+msgctxt "rise_down"
+msgid "Rise Down"
+msgstr "Κάθοδος"
+
+#, fuzzy
+#| msgctxt "tap_to_open"
+#| msgid "Tap to open"
+msgctxt "click_here_to_type"
+msgid "Tap here to type"
+msgstr "Χτυπήστε για άνοιγμα"
+
+msgctxt "clear_compose"
+msgid "Clear"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "pref_plugin_telepathy"
+#| msgid "Send SMS"
+msgctxt "send_compose"
+msgid "Send"
+msgstr "Αποστολή SMS"
+
+#, fuzzy
+#| msgctxt "theme_dialog_title"
+#| msgid "Choose theme"
+msgctxt "open_compose_send"
+msgid "Compose text"
+msgstr "Επιλογή θέματος"
+
+msgctxt "app_description"
+msgid ""
+"Multi-platform app that allows your devices to communicate (e.g., your phone "
+"and your computer)"
+msgstr ""
+"Εφαρμογή γα πολλές πλατφόρμες που επιτρέπει στις συσκευές σας να "
+"επικοινωνούν (π.χ. το κινητό με τον υπολογιστή)"
+
+msgctxt "about_kde_about"
+msgid ""
+"&lt;h1&gt;About&lt;/h1&gt; &lt;p&gt;KDE is a world-wide community of "
+"software engineers, artists, writers, translators and creators who are "
+"committed to &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Free "
+"Software&lt;/a&gt; development. KDE produces the Plasma desktop environment, "
+"hundreds of applications, and the many software libraries that support them."
+"&lt;/p&gt; &lt;p&gt;KDE is a cooperative enterprise: no single entity "
+"controls its direction or products. Instead, we work together to achieve the "
+"common goal of building the world's finest Free Software. Everyone is "
+"welcome to &lt;a href=https://community.kde.org/Get_Involved&gt;join and "
+"contribute&lt;/a&gt; to KDE, including you.&lt;/p&gt; Visit &lt;a "
+"href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; for more "
+"information about the KDE community and the software we produce."
+msgstr ""
+"&lt;h1&gt;Σχετικά&lt;/h1&gt; &lt;p&gt;Το KDE είναι μια παγκόσμια κοινότητα "
+"μηχανικών λογισμικού, καλλιτεχνών, συγγραφέων, μεταφραστών και δημιουργών οι "
+"οποίοι είναι αφοσιωμένοι στην ανάπτυξη του &lt;a href=https://www.gnu.org/"
+"philosophy/free-sw.html&gt;Ελεύθερου Λογισμικού&lt;/a&gt;. Το KDE παράγει το "
+"περιβάλλον γραφείου Plasma, εκατοντάδες εφαρμογές και πολλές βιβλιοθήκες που "
+"τις υποστηρίζουν.&lt;/p&gt; &lt;p&gt;Το KDE είναι ένα συνεργατικό εγχείρημα: "
+"καμιά οντότητα από μόνη της δεν ελέγχει την κατεύθυνση ή τα προϊόντα του. "
+"Αντίθετα, συνεργαζόμαστε για να επιτύχουμε τον κοινό στόχο της κατασκευής "
+"του πληρέστερου στον κόσμο Ελεύθερου Λογισμικού. Οποιοσδήποτε είναι "
+"ευπρόσδεκτος να &lt;a href=https://community.kde.org/Get_Involved&gt;γίνει "
+"μέλος και να συμβάλει&lt;/a&gt; στο KDE, και εσείς φυσικά.&lt;/p&gt; "
+"Επισκεφθείτε το &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/"
+"a&gt; για περισσότερες πληροφορίες σχετικά με την κοινότητα του KDE και το "
+"λογισμικό που παράγουμε."
+
+msgctxt "about_kde_report_bugs_or_wishes"
+msgid ""
+"&lt;h1&gt;Report Bugs or Wishes&lt;/h1&gt; &lt;p&gt;Software can always be "
+"improved, and the KDE team is ready to do so. However, you - the user - must "
+"tell us when something does not work as expected or could be done better."
+"&lt;/p&gt; &lt;p&gt;KDE has a bug tracking system. Visit &lt;a href=https://"
+"bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; or use the \"Report Bug\" "
+"button from the about screen to report bugs.&lt;/p&gt; If you have a "
+"suggestion for improvement then you are welcome to use the bug tracking "
+"system to register your wish. Make sure you use the severity called "
+"\"Wishlist\"."
+msgstr ""
+"&lt;h1&gt;Αναφέρετε σφάλματα ή επιθυμίες στο&lt;/h1&gt; &lt;p&gt;Το "
+"Λογισμικό μπορεί πάντα να βελτιώνεται και η ομάδα του KDE είναι έτοιμη γι' "
+"αυτό. Ωστόσο, εσείς - ο χρήστης - πρέπει να μας ενημερώνετε αν κάτι δεν "
+"λειτουργεί όπως θα έπρεπε ή αν θα μπορούσε να γίνει καλύτερο.&lt;/p&gt; &lt;"
+"p&gt;Το KDE έχει ένα σύστημα ανίχνευσης σφαλμάτων. Επισκεφθείτε το &lt;a "
+"href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; ή "
+"χρησιμοποιήστε το κουμπί «Αναφορά σφάλματος» από την οθόνη Σχετικά για να "
+"αναφέρετε σφάλματα.&lt;/p&gt; Αν έχετε κάποια πρόταση για βελτίωση, "
+"χρησιμοποιήστε το σύστημα ανίχνευσης σφαλμάτων για να εγγράψετε την επιθυμία "
+"σας. Βεβαιωθείτε ότι χρησιμοποιείτε τη «Λίστα επιθυμιών»."
+
+msgctxt "about_kde_join_kde"
+msgid ""
+"&lt;h1&gt;Join KDE&lt;/h1&gt; &lt;p&gt;You do not have to be a software "
+"developer to be a member of the KDE team. You can join the national teams "
+"that translate program interfaces. You can provide graphics, themes, sounds, "
+"and improved documentation. You decide!&lt;/p&gt; &lt;p&gt;Visit &lt;a "
+"href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/"
+"Get_Involved&lt;/a&gt; for information on some projects in which you can "
+"participate.&lt;/p&gt; If you need more information or documentation, then a "
+"visit to &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/"
+"&lt;/a&gt; will provide you with what you need."
+msgstr ""
+"&lt;h1&gt;Γίνετε μέλη του KDE&lt;/h1&gt; &lt;p&gt;Δεν χρειάζεται να είστε "
+"προγραμματιστής για να γίνετε μέλος της ομάδας του KDE. Μπορείτε να "
+"ενταχθείτε στις εθνικές ομάδες που μεταφράζουν τις διεπαφές των εφαρμογών. "
+"Μπορείτε να παρέχετε γραφικά, θέματα, ήχους και να βελτιώσετε την "
+"τεκμηρίωση. Εσείς αποφασίζετε!&lt;/p&gt; &lt;p&gt;Επισκεφθείτε το &lt;a "
+"href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/"
+"Get_Involved&lt;/a&gt; για πληροφρίες σε ορισμένα έργα στα οποία μπορείτε να "
+"δηλώσετε συμμετοχή.&lt;/p&gt; Αν χρειάζεστε πρόσθετη πληροφόρηση ή "
+"τεκμηρίωση, μια επίσκεψη στο &lt;a href=https://techbase.kde.org/&gt;https://"
+"techbase.kde.org/&lt;/a&gt; θα σας παρέχει ό,τι χρειάζεστε."
+
+msgctxt "about_kde_support_kde"
+msgid ""
+"&lt;h1&gt;Support KDE&lt;/h1&gt; &lt;p&gt;KDE software is and will always be "
+"available free of charge, however creating it is not free.&lt;/p&gt; &lt;"
+"p&gt;To support development the KDE community has formed the KDE e.V., a non-"
+"profit organization legally founded in Germany. KDE e.V. represents the KDE "
+"community in legal and financial matters. See &lt;a href=https://ev.kde.org/"
+"&gt;https://ev.kde.org/&lt;/a&gt; for information on KDE e.V.&lt;/p&gt; &lt;"
+"p&gt;KDE benefits from many kinds of contributions, including financial. We "
+"use the funds to reimburse members and others for expenses they incur when "
+"contributing. Further funds are used for legal support and organizing "
+"conferences and meetings.&lt;/p&gt; &lt;p&gt;We would like to encourage you "
+"to support our efforts with a financial donation, using one of the ways "
+"described at &lt;a href=https://www.kde.org/community/donations/&gt;https://"
+"www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Thank you very much in "
+"advance for your support."
+msgstr ""
+"&lt;h1&gt;Υποστηρίξτε το KDE&lt;/h1&gt; &lt;p&gt;Το λογισμικό του KDE είναι "
+"και θα είναι πάντα διαθέσιμο δωρεάν, ωστόσο η δημιουργία του δεν είναι "
+"δωρεάν.&lt;/p&gt; &lt;p&gt;Για να υποστηρίξετε την ανάπτυξη η κοινότητα του "
+"KDE έχει δημιουργήσει στη Γερμανία το KDE e.V., έναν μη-κερδοσκοπικό "
+"οργανισμό. Το KDE e.V. εκπροσωπεί την κοινότητα του KDE σε νομικά και "
+"χρηματοοικονομικά θέματα. Δείτε το&lt;a href=https://ev.kde.org/&gt;https://"
+"ev.kde.org/&lt;/a&gt; για πληροφορίες για το KDE e.V.&lt;/p&gt; &lt;p&gt;Το "
+"KDE ωφελείται από πολλά είδη συνεισφορών, και οικονομικών. Χρησιμοποιούμε "
+"τους οικονομικούς πόρους για αμοιβές μελών και άλλων για έξοδα που "
+"παρουσιάζονται όταν συμμετέχουν. Άλλα κονδύλια χρησιμοποιούνται για τη "
+"νομική υποστήριξη και τη διοργάνωση συνεδρίων και συναντήσεων.&lt;/p&gt; &lt;"
+"p&gt;Θα θέλαμε να σας ενθαρρύνουμε να υποστηρίξετε τις προσπάθειές μας με "
+"μια δωρεά, με έναν από τους τρόπους που περιγράφονται στο &lt;a href=https://"
+"www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/"
+"&lt;/a&gt;.&lt;/p&gt; Σας ευχαριστούμε πολύ εκ των προτέρων για την "
+"υποστήριξή σας."
+
+#. Authors tasks
+msgctxt "maintainer_and_developer"
+msgid "Maintainer and developer"
+msgstr "Συντηρητής και προγραμματιστής"
+
+msgctxt "developer"
+msgid "Developer"
+msgstr "Προγραμματιστής"
+
+msgctxt "apple_support"
+msgid "macOS support. Working on iOS support"
+msgstr "Υποστήριξη macos. Εργασία υποστήριξης iOS"
+
+msgctxt "bug_fixes_and_general_improvements"
+msgid "Bug fixes and general improvements"
+msgstr "Διόρθωση σφαλμάτων και γενικές βελτιώσεις"
+
+msgctxt "samoilenko_yuri_task"
+msgid "SFTP implementation, bug fixes and general improvements"
+msgstr "Υλοποίηση SFTP, διόρθωση σφαλμάτων και γενικές βελτιώσεις"
+
+msgctxt "aniket_kumar_task"
+msgid "SMS plugin improvements"
+msgstr "Βελτιώσεις πρόσθετου SMS"
+
+msgctxt "alex_fiestas_task"
+msgid "Contacts plugin improvements"
+msgstr "Βελτιώσεις πρόσθετου επαφών"
+
+msgctxt "maxim_leshchenko_task"
+msgid "UI improvements and this about page"
+msgstr "Βελτιώσεις γραφικού περιβάλλοντος και της σελίδας του περιγράμματος"
+
+msgctxt "holger_kaelberer_task"
+msgid "Remote keyboard plugin and bug fixes"
+msgstr "Πρόσθετο απομακρυσμένου πληκτρολπγίου και διορθώσεις σφαλμάτων"
+
+msgctxt "saikrishna_arcot_task"
+msgid ""
+"Support for using the keyboard in the remote input plugin, bug fixes and "
+"general improvements"
+msgstr ""
+"Υποστήριξη της χρήσης του πληκτρολογίου στο πρόσθετο απομακρυσμένης "
+"σύνδεσης, διορθώσεις σφαλμάτων και γενικές βελτιώσεις"
+
+msgctxt "everyone_else"
+msgid "Everyone else who has contributed to KDE Connect over the years"
+msgstr "Οποιοσδήποτε άλλος έχει συμβάλλει στο παρελθόν στο KDE Contact"
+
+#, fuzzy
+#| msgctxt "foreground_notification_send_clipboard"
+#| msgid "Send Clipboard"
+msgctxt "send_clipboard"
+msgid "Send clipboard"
+msgstr "Αποστολή προχείρου"
+
+#, fuzzy
+#| msgctxt "tap_to_open"
+#| msgid "Tap to open"
+msgctxt "tap_to_execute"
+msgid "Tap to execute"
+msgstr "Χτυπήστε για άνοιγμα"
+
+#~ msgctxt "share_optional_permission_explanation"
+#~ msgid ""
+#~ "To share files between your phone and your desktop you need to give "
+#~ "access to the phone's storage"
+#~ msgstr ""
+#~ "Για το διαμοιρασμό αρχείων ανάμεσα στο τηλέφωνο και τον υπολογιστή σας "
+#~ "χρειάζεται να παραχωρήσετε πρόσβαση στον αποθηκευτικό χώρο του τηλεφώνου "
+#~ "σας"
+
+#~ msgctxt "on_data_message"
+#~ msgid ""
+#~ "It looks like you are on a mobile data connection. KDE Connect only works "
+#~ "on local networks."
+#~ msgstr ""
+#~ "Φαίνεται ότι είστε σε σύνδεση δεδομένων από κινητό. Το KDE Connect "
+#~ "λειτουργεί μόνο σε τοπικά δίκτυα."
+
+#~ msgctxt "plugin_not_available"
+#~ msgid "This feature is not available in your Android version"
+#~ msgstr ""
+#~ "Αυτή η λειτουργία δεν είναι διαθέσιμη στην τρέχουσα έκδοση του Android"
+
+#~ msgctxt "device_not_reachable"
+#~ msgid "Paired device not reachable"
+#~ msgstr "Η συζευγμένη συσκευή δεν είναι προσβάσιμη"
+
+#~ msgctxt "error_already_requested"
+#~ msgid "Pairing already requested"
+#~ msgstr "Η σύζευξη ήδη ζητήθηκε"
+
+#~ msgctxt "error_invalid_key"
+#~ msgid "Invalid key received"
+#~ msgstr "Ελήφθη μη έγκυρο κλειδί"
+
+#~ msgctxt "received_url_title"
+#~ msgid "Received link from %1s"
+#~ msgstr "Ελήφθη σύνδεσμος από %1s"
+
+#~ msgctxt "received_url_text"
+#~ msgid "Tap to open '%1s'"
+#~ msgstr "Χτυπήστε για άνοιγμα '%1s'"
+
+#~ msgctxt "reconnect"
+#~ msgid "Reconnect"
+#~ msgstr "Επανασύνδεση"
+
+#~ msgctxt "device"
+#~ msgid "Device"
+#~ msgstr "Συσκευή"
+
+#~ msgctxt "pair_device"
+#~ msgid "Pair device"
+#~ msgstr "Σύζευξη συσκευής"
+
+#~ msgctxt "mpris_settings"
+#~ msgid "Multimedia Settings"
+#~ msgstr "Ρυθμίσεις πολυμέσων"
+
+#~ msgctxt "protocol_version_older"
+#~ msgid "This device uses an old protocol version"
+#~ msgstr "Η συσκευή αυτή χρησιμοποιεί παλαιά έκδοση πρωτοκόλλου"
+
+#~ msgctxt "general_settings"
+#~ msgid "General Settings"
+#~ msgstr "Γενικές ρυθμίσεις"
+
+#~ msgctxt "plugin_settings"
+#~ msgid "Settings"
+#~ msgstr "Ρυθμίσεις"
+
+#~ msgctxt "device_name"
+#~ msgid "Device name"
+#~ msgstr "Όνομα συσκευής"
+
+#~ msgctxt "device_name_preference_summary"
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#~ msgctxt "pair_device_action"
+#~ msgid "Pair a new device"
+#~ msgstr "Σύζευξη νέας συσκευής"
+
+#~ msgctxt "unpair_device_action"
+#~ msgid "Unpair %s"
+#~ msgstr "Διαχωρισμός %s"
+
+#~ msgctxt "sftp_internal_storage"
+#~ msgid "Internal storage"
+#~ msgstr "Εσωτερικός αποθηκευτικός χώρος"
+
+#~ msgctxt "add_host"
+#~ msgid "Add host/IP"
+#~ msgstr "Προσθήκη υπολογιστή/IP"
+
+#, fuzzy
+#~| msgctxt "add_host_hint"
+#~| msgid "Hostname or IP"
+#~ msgctxt "add_host_hint"
+#~ msgid "Hostname or IP"
+#~ msgstr "Όνομα υπολογιστή ή IP"
+
+#~ msgctxt "mpris_player_on_device"
+#~ msgid "%1$s on %2$s"
+#~ msgstr "%1$s σε %2$s"
+
+#~ msgctxt "device_paired"
+#~ msgid "Device paired"
+#~ msgstr "Η συσκευή συζεύχθηκε"
+
+#~ msgctxt "plugin_not_supported"
+#~ msgid "This plugin is not supported by the device"
+#~ msgstr "Αυτό το πρόσθετο δεν υποστηρίζεται από τη συσκευή"
+
+#~ msgctxt "no_permissions_storage"
+#~ msgid "You need to grant permissions to access the storage"
+#~ msgstr ""
+#~ "Απαιτείται παραχώρηση δικαιωμάτων για την πρόσβαση στον αποθηκευτικό χώρο"
+
+#, fuzzy
+#~| msgctxt "share_notification_preference"
+#~| msgid "Noisy notifications"
+#~ msgctxt "new_notification"
+#~ msgid "New notification"
+#~ msgstr "Θορυβώδεις ειδοποιήσεις"
+
+#~ msgctxt "outgoing_files_title"
+#~ msgid "Sending files to %1s"
+#~ msgstr "Αποστολή αρχείων σε %1s"
+
+#, fuzzy
+#~| msgctxt "send_files"
+#~| msgid "Send files"
+#~ msgctxt "outgoing_files_text"
+#~ msgid "Sent %1$d file"
+#~ msgid_plural "Sent %1$d out of %2$d files"
+#~ msgstr[0] "Αποστολή αρχείων"
+#~ msgstr[1] "Αποστολή αρχείων"
+
+#~ msgctxt "sent_file_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "sent_file_failed_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "sftp_all_files"
+#~ msgid "All files"
+#~ msgstr "Όλα τα αρχεία"
+
+#~ msgctxt "sftp_permission_explanation"
+#~ msgid ""
+#~ "To access your files from your PC the app needs permission to access your "
+#~ "phone's storage"
+#~ msgstr ""
+#~ "Για την πρόσβαση στα αρχεία σας από τον υπολογιστή η εφαρμογή χρειάζεται "
+#~ "δικαιώματα πρόσβασης στον αποθηκευτικό χώρο του κινητού σας"
+
+#, fuzzy
+#~| msgctxt "sftp_camera"
+#~| msgid "Camera pictures"
+#~ msgctxt "take_picture"
+#~ msgid "Take picture"
+#~ msgstr "Φωτογραφίες"
+
+#~ msgctxt "custom_dev_list_help"
+#~ msgid ""
+#~ "Use this option only if your device is not automatically detected. Enter "
+#~ "IP address or hostname below and touch the button to add it to the list. "
+#~ "Touch an existing item to remove it from the list."
+#~ msgstr ""
+#~ "Χρησιμοποιήστε την επιλογή αυτή μόνο αν η συσκευή σας δεν έχει εντοπιστεί "
+#~ "αυτόματα. Δώστε την IP διεύθυνση ή το όνομα του υπολογιστή και αγγίξτε το "
+#~ "κουμπί για να προστεθεί στη λίστα. Αγγίξτε ένα αντικείμενο της λίστας για "
+#~ "να το αφαιρέσετε."
+
+#~ msgctxt "plugins_failed_to_load"
+#~ msgid "Plugins failed to load (tap for more info):"
+#~ msgstr ""
+#~ "Αποτυχία φόρτωσης προσθέτων (χτυπήστε για περισσότερες πληροφορίες):"
+
+#~ msgctxt "remote_control"
+#~ msgid "Remote control"
+#~ msgstr "Απομακρυσμένος έλεγχος"
+
+#~ msgctxt "incoming_file_title"
+#~ msgid "Incoming file from %1s"
+#~ msgstr "Εισερχόμενο αρχείο από %1s"
+
+#~ msgctxt "incoming_file_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "settings"
+#~ msgid "KDE Connect Settings"
+#~ msgstr "Ρυθμίσεις KDE Connect"
+
+#, fuzzy
+#~| msgctxt "pref_plugin_runcommand"
+#~| msgid "Run Command"
+#~ msgctxt "addcommand_command"
+#~ msgid "Command"
+#~ msgstr "Εκτέλεση εντολής"
+
+#~ msgctxt "outgoing_file_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "mousepad_triple_default"
+#~ msgid "middle"
+#~ msgstr "μεσαίο"
+
+#~ msgctxt "mousepad_sensitivity_default"
+#~ msgid "default"
+#~ msgstr "προκαθορισμένο"
+
+#~ msgctxt "pref_plugin_mpris_desc"
+#~ msgid "Control audio/video from your phone"
+#~ msgstr "Έλεγχος μουσικής/βίντεο από το κινητό"

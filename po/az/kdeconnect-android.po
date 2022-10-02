@@ -1,0 +1,1711 @@
+# Translations template for PROJECT.
+# Copyright (C) 2020 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+# Kheyyam Gojayev <xxmn77@gmail.com>, 2020, 2021, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-01-16 00:43+0000\n"
+"PO-Revision-Date: 2022-07-06 18:00+0400\n"
+"Last-Translator: Kheyyam <xxmn77@gmail.com>\n"
+"Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
+"Language: az\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 22.04.2\n"
+
+#. # Dear potential translators:          Thank you for your interest in KDE
+#. Connect! We do not actually handle our own translations.         All
+#. translations for all KDE apps are handled by the [localization
+#. team](https://l10n.kde.org).         We really appreciate your translations,
+#. but make sure to submit them by working with the proper team!
+msgctxt "kde_connect"
+msgid "KDE Connect"
+msgstr "KDE Connect"
+
+msgctxt "manifest_label_share"
+msgid "Send to Device"
+msgstr "Cihaza göndərin"
+
+msgctxt "foreground_notification_no_devices"
+msgid "Not connected to any device"
+msgstr "Hər hansı bir cihaz qoşulmayıb"
+
+#, c-format
+msgctxt "foreground_notification_devices"
+msgid "Connected to: %s"
+msgstr "Qoşulub: %s"
+
+msgctxt "foreground_notification_send_clipboard"
+msgid "Send Clipboard"
+msgstr "Mübadilə buferindəkini göndərmək"
+
+msgctxt "pref_plugin_telephony"
+msgid "Telephony notifier"
+msgstr "Telefon bildirişi"
+
+msgctxt "pref_plugin_telephony_desc"
+msgid "Send notifications for incoming calls"
+msgstr "Gələn zəng bildirişlərini göndərmək"
+
+msgctxt "pref_plugin_battery"
+msgid "Battery report"
+msgstr "Batareya məlumatı"
+
+msgctxt "pref_plugin_battery_desc"
+msgid "Periodically report battery status"
+msgstr "Batareya vəziyyətini vaxtaşırı bildirmək"
+
+msgctxt "pref_plugin_connectivity_report"
+msgid "Connectivity report"
+msgstr "Bağlantı hesabatı"
+
+msgctxt "pref_plugin_connectivity_report_desc"
+msgid "Report network signal strength and status"
+msgstr "Şəbəkə siqnalının gücünü və vəziyyətini bildirin"
+
+msgctxt "pref_plugin_sftp"
+msgid "Filesystem expose"
+msgstr "Fayl sistemi açılır"
+
+msgctxt "pref_plugin_sftp_desc"
+msgid "Allows to browse this device's filesystem remotely"
+msgstr "Bu cihazın fayl sisteminə baxmağa icazə vermək"
+
+msgctxt "pref_plugin_clipboard"
+msgid "Clipboard sync"
+msgstr "Mübadilə Buferini eyniləşdirmək"
+
+msgctxt "pref_plugin_clipboard_desc"
+msgid "Share the clipboard content"
+msgstr "Mübadilə buferi tərkiblərini paylaşmaq"
+
+msgctxt "pref_plugin_clipboard_sent"
+msgid "Clipboard Sent"
+msgstr "Mübadilə buferini göndərmək"
+
+msgctxt "pref_plugin_mousepad"
+msgid "Remote input"
+msgstr "Məsafədən giriş"
+
+msgctxt "pref_plugin_mousepad_desc"
+msgid "Use your phone or tablet as a touchpad and keyboard"
+msgstr ""
+"Telefon və Planşetinizi toxunma paneli və klaviatura kimi istifadə edin"
+
+msgctxt "pref_plugin_presenter"
+msgid "Slideshow remote"
+msgstr "Məsafədən slayd göstərişi"
+
+msgctxt "pref_plugin_presenter_desc"
+msgid "Use your device to change slides in a presentation"
+msgstr "Cihazınızı təqdimatda slaydları dəyişmək üçün istifadə edin"
+
+msgctxt "pref_plugin_remotekeyboard"
+msgid "Receive remote keypresses"
+msgstr "Məsafədən düyməyə basmanı almaq"
+
+msgctxt "pref_plugin_remotekeyboard_desc"
+msgid "Receive keypress events from remote devices"
+msgstr "Düyməyə basmanı məsafədəki qurğudan almaq"
+
+msgctxt "pref_plugin_mpris"
+msgid "Multimedia controls"
+msgstr "Multimedia idarəsi"
+
+msgctxt "pref_plugin_mpris_desc"
+msgid "Provides a remote control for your media player"
+msgstr "Media oynadıcınızı idarə etməyə imkan verir"
+
+msgctxt "pref_plugin_runcommand"
+msgid "Run Command"
+msgstr "Əmr başlatmaq"
+
+msgctxt "pref_plugin_runcommand_desc"
+msgid "Trigger remote commands from your phone or tablet"
+msgstr "Əmrləri telefon və ya planşetiniz ilə məsafədən başlatmaq"
+
+msgctxt "pref_plugin_contacts"
+msgid "Contacts Synchronizer"
+msgstr "Əlaqələri eyniləşdirin"
+
+msgctxt "pref_plugin_contacts_desc"
+msgid "Allow synchronizing the device's contacts book"
+msgstr "Cihazın kontak kitabçasını eyniləşdirməyə icazə vermək"
+
+msgctxt "pref_plugin_ping"
+msgid "Ping"
+msgstr "Dümsükləmək"
+
+msgctxt "pref_plugin_ping_desc"
+msgid "Send and receive pings"
+msgstr "Siqnal göndərmək və almaq"
+
+msgctxt "pref_plugin_notifications"
+msgid "Notification sync"
+msgstr "Bildiriş eyniləşdirməsi"
+
+msgctxt "pref_plugin_notifications_desc"
+msgid "Access your notifications from other devices"
+msgstr "Bildirişləri digər cihazlardan əldə etmək"
+
+msgctxt "pref_plugin_receive_notifications"
+msgid "Receive notifications"
+msgstr "Bildirişləri almaq"
+
+msgctxt "pref_plugin_receive_notifications_desc"
+msgid "Receive notifications from the other device and display them on Android"
+msgstr "Bildirişləri digər cihazlardan almaq və onları Android'də göstərmək"
+
+msgctxt "pref_plugin_sharereceiver"
+msgid "Share and receive"
+msgstr "Paylaşmaq və Almaq"
+
+msgctxt "pref_plugin_sharereceiver_desc"
+msgid "Share files and URLs between devices"
+msgstr "Faylları və URL'ları cihazlarla paylaşmaq"
+
+msgctxt "device_list_empty"
+msgid "No devices"
+msgstr "Cihaz yoxdur"
+
+msgctxt "ok"
+msgid "OK"
+msgstr "OK"
+
+msgctxt "sad_ok"
+msgid "OK :("
+msgstr "OK :("
+
+msgctxt "cancel"
+msgid "Cancel"
+msgstr "İmtina"
+
+msgctxt "open_settings"
+msgid "Open settings"
+msgstr "Ayarları açmaq"
+
+msgctxt "no_permissions"
+msgid "You need to grant permission to access notifications"
+msgstr "Bildirişlər almağa icazə verməniz lazımdır"
+
+msgctxt "no_permission_mprisreceiver"
+msgid ""
+"To be able to control your media players you need to grant access to the "
+"notifications"
+msgstr ""
+"Media oynadıcını idarə etmək üçün bildirişlərə girişə icazə verməniz lazımdır"
+
+msgctxt "no_permissions_remotekeyboard"
+msgid ""
+"To receive keypresses you need to activate the KDE Connect Remote Keyboard"
+msgstr ""
+"Düymə basılmalarını almaq üçün KDE Connect Klaviaturasını aktiv etməlisiniz"
+
+msgctxt "send_ping"
+msgid "Send ping"
+msgstr "Dümsükləmək"
+
+msgctxt "open_mpris_controls"
+msgid "Multimedia control"
+msgstr "Multimedia idarə edilməsi"
+
+msgctxt "remotekeyboard_editing_only_title"
+msgid "Handle remote keys only when editing"
+msgstr "Məsafədəki düymələri yalnız redaktə edərkən idarə edin"
+
+msgctxt "remotekeyboard_not_connected"
+msgid ""
+"There is no active remote keyboard connection, establish one in kdeconnect"
+msgstr "Aktiv bir uzaq klaviatura bağlantısı yoxdur, onu kdeconnect-də yaradın"
+
+msgctxt "remotekeyboard_connected"
+msgid "Remote keyboard connection is active"
+msgstr "Uzaq klaviatura bağlantısını aktiv edin"
+
+msgctxt "remotekeyboard_multiple_connections"
+msgid ""
+"There is more than one remote keyboard connection, select the device to "
+"configure"
+msgstr ""
+"Birdən çox uzaq klaviatura bağlantısı var, tənzimləmək üçün cihazı seçin"
+
+msgctxt "open_mousepad"
+msgid "Remote input"
+msgstr "Məsafədən giriş"
+
+msgctxt "mousepad_info"
+msgid ""
+"Move a finger on the screen to move the mouse cursor. Tap for a click, and "
+"use two/three fingers for right and middle buttons. Use 2 fingers to scroll. "
+"Use a long press to drag'n drop."
+msgstr ""
+"Siçan kursorunu hərəkət etdirmək üçün barmağı ekranda sürüşdürün. Klik üçün "
+"ekrana vurun, sağ və orta siçan düymələri üçün iki/üç barmaqla toxunuş edin. "
+"Sürüşdürmək üçün iki barmaqdan istifadə edin. Tutub saxlamaq üçün basın "
+"saxlayın."
+
+msgctxt "mousepad_single_tap_settings_title"
+msgid "Set one finger tap action"
+msgstr "Bir barmaq toxunuşu əməlini təyin edin"
+
+msgctxt "mousepad_double_tap_settings_title"
+msgid "Set two finger tap action"
+msgstr "İki barmaq toxunuşu əməlini təyin edin"
+
+msgctxt "mousepad_triple_tap_settings_title"
+msgid "Set three finger tap action"
+msgstr "Üç barmaq toxunuşu əməlini təyin edin"
+
+msgctxt "mousepad_sensitivity_settings_title"
+msgid "Set touchpad sensitivity"
+msgstr "Toxunma panelinin həsassləğını təyin edin"
+
+msgctxt "mousepad_acceleration_profile_settings_title"
+msgid "Set pointer acceleration"
+msgstr "Kursorun sürətini təyin edin"
+
+msgctxt "mousepad_scroll_direction_title"
+msgid "Reverse Scrolling Direction"
+msgstr "Sürüşdürmənin əks istiqaməti"
+
+msgctxt "mousepad_tap_entries:0"
+msgid "Left click"
+msgstr "Sol toxunuş"
+
+msgctxt "mousepad_tap_entries:1"
+msgid "Right click"
+msgstr "Sağ toxunuş"
+
+msgctxt "mousepad_tap_entries:2"
+msgid "Middle click"
+msgstr "Orta toxunuş"
+
+msgctxt "mousepad_tap_entries:3"
+msgid "Nothing"
+msgstr "Heç nə"
+
+msgctxt "mousepad_sensitivity_entries:0"
+msgid "Slowest"
+msgstr "Ən yavaş"
+
+msgctxt "mousepad_sensitivity_entries:1"
+msgid "Above Slowest"
+msgstr "Ən yavaşın üstü"
+
+msgctxt "mousepad_sensitivity_entries:2"
+msgid "Default"
+msgstr "Standart"
+
+msgctxt "mousepad_sensitivity_entries:3"
+msgid "Above Default"
+msgstr "Standartın üstü"
+
+msgctxt "mousepad_sensitivity_entries:4"
+msgid "Fastest"
+msgstr "Ən tez"
+
+msgctxt "mousepad_acceleration_profile_entries:0"
+msgid "No Acceleration"
+msgstr "Sürətlənmə yoxdur"
+
+msgctxt "mousepad_acceleration_profile_entries:1"
+msgid "Weakest"
+msgstr "Ən zəif"
+
+msgctxt "mousepad_acceleration_profile_entries:2"
+msgid "Weaker"
+msgstr "Zəif"
+
+msgctxt "mousepad_acceleration_profile_entries:3"
+msgid "Medium"
+msgstr "Orta"
+
+msgctxt "mousepad_acceleration_profile_entries:4"
+msgid "Stronger"
+msgstr "Güclü"
+
+msgctxt "mousepad_acceleration_profile_entries:5"
+msgid "Strongest"
+msgstr "Ən güclü"
+
+msgctxt "sendkeystrokes_send_to"
+msgid "Send keystrokes to"
+msgstr "Düymələrə vuruşları buraya göndərin:"
+
+msgctxt "sendkeystrokes_textbox_hint"
+msgid "Send keystrokes to host"
+msgstr "Düyməyə vurulmanı ana komputerə göndərin"
+
+msgctxt "sendkeystrokes_disabled_toast"
+msgid "Sending keystrokes is disabled - enable it in the settings"
+msgstr "Düyməə vuruşun göndərilməsi söndürülüb - onu ayarlardan aktiv edin"
+
+msgctxt "sendkeystrokes_wrong_data"
+msgid "Invalid mime type - needs to be 'text/x-keystrokes'"
+msgstr "Səhv mime növü - 'text/x-keystrokes' üçün lazımdır"
+
+#, c-format
+msgctxt "sendkeystrokes_sent_text"
+msgid "Sent %1$s to device %2$s"
+msgstr "%2s cihazına %1s göndərildi"
+
+msgctxt "sendkeystrokes_pref_category_summary"
+msgid ""
+"This module allows other apps to share text segments as keystrokes which "
+"will get send to the connected host"
+msgstr ""
+"Bu modul, düyməyə vurmaqla, qoşulmuş ana komputerə göndərərərk başqa "
+"tətbiqlərin mətn hissəsininlərini mübadilə etməyə imkan verir"
+
+msgctxt "sendkeystrokes_pref_category_title"
+msgid "Send Keystrokes"
+msgstr "Düymələrə vuruşları göndərin"
+
+msgctxt "sendkeystrokes_pref_enabled"
+msgid "Enable Keystrokes sending"
+msgstr "Düyməyə vuruşun göndərilməsini aktiv edin"
+
+msgctxt "sendkeystrokes_pref_enabled_summary"
+msgid "Listen for data with mime type 'text/x-keystrokes'"
+msgstr "'text/x-keystrokes' mime növü ilə verilənləri dinləyin"
+
+msgctxt "sendkeystrokes_safe_text_enabled"
+msgid "Send safe text immediately"
+msgstr "Təhlükəsiz mətni dərhal göndərin"
+
+msgctxt "sendkeystrokes_safe_text_enabled_summary"
+msgid "Send short only-numeric strings without confirmation"
+msgstr "Yalnız qısa nömrəli sətirləri təsdiqləmədən göndərin"
+
+msgctxt "pref_plugin_mousepad_send_keystrokes"
+msgid "Send as keystrokes"
+msgstr "Düymə vuruşu kimi göndərmək"
+
+msgctxt "mouse_receiver_plugin_description"
+msgid "Receive remote mouse movement"
+msgstr "Uzaqdakı siçanın hərəkətini qəbul etmək"
+
+msgctxt "mouse_receiver_plugin_name"
+msgid "Mouse receiver"
+msgstr "Siçanı qəbul edən"
+
+msgctxt "mouse_receiver_no_permissions"
+msgid "You need to enable Accessibility Service"
+msgstr "Xüsusi İmkanlarda xidməti aktiv etməlisiniz"
+
+msgctxt "view_status_title"
+msgid "Status"
+msgstr "Vəziyyət"
+
+#, c-format
+msgctxt "battery_status_format"
+msgid "Battery: %d%%"
+msgstr "Batareya: %d%%"
+
+#, c-format
+msgctxt "battery_status_low_format"
+msgid "Battery: %d%% Low Battery"
+msgstr "Batareya: %d%% Zəif batareya"
+
+#, c-format
+msgctxt "battery_status_charging_format"
+msgid "Battery: %d%% charging"
+msgstr "Batareya: %d%% doldurulur"
+
+msgctxt "battery_status_unknown"
+msgid "Battery information not available"
+msgstr "Batareya haqqında məlumat əlçatan deyil"
+
+msgctxt "category_connected_devices"
+msgid "Connected devices"
+msgstr "Qoşulmuş cihazlar"
+
+msgctxt "category_not_paired_devices"
+msgid "Available devices"
+msgstr "Mövcud cihazlar"
+
+msgctxt "category_remembered_devices"
+msgid "Remembered devices"
+msgstr "Yadda saxlanılan cihazlar"
+
+msgctxt "device_menu_plugins"
+msgid "Plugin settings"
+msgstr "Plaqin ayarları"
+
+msgctxt "device_menu_unpair"
+msgid "Unpair"
+msgstr "Ayırmaq"
+
+msgctxt "pair_new_device"
+msgid "Pair new device"
+msgstr "Yeni cihaz qoşmaq"
+
+msgctxt "unknown_device"
+msgid "Unknown device"
+msgstr "Naməlum Cihaz"
+
+msgctxt "error_not_reachable"
+msgid "Device not reachable"
+msgstr "Cihaz əlçatmazdır"
+
+msgctxt "error_already_paired"
+msgid "Device already paired"
+msgstr "Cihaz artıq qoşulub"
+
+msgctxt "error_could_not_send_package"
+msgid "Could not send package"
+msgstr "Paket göndərilə bilmədi"
+
+msgctxt "error_timed_out"
+msgid "Timed out"
+msgstr "Vaxt bitdi"
+
+msgctxt "error_canceled_by_user"
+msgid "Canceled by user"
+msgstr "İstifadəçi ləğv etdi"
+
+msgctxt "error_canceled_by_other_peer"
+msgid "Canceled by other peer"
+msgstr "Digər istifadəçi ləğv etdi"
+
+msgctxt "encryption_info_title"
+msgid "Encryption Info"
+msgstr "Şifrələmə məlumatı"
+
+msgctxt "encryption_info_msg_no_ssl"
+msgid ""
+"The other device doesn't use a recent version of KDE Connect, using the "
+"legacy encryption method."
+msgstr ""
+"Digər cihaz köhnə şifrələmə metodu istifadə edən KDE Connect'in sonuncu "
+"versiyasını istifadə etmir."
+
+msgctxt "my_device_fingerprint"
+msgid "SHA256 fingerprint of your device certificate is:"
+msgstr "Cihazınızın sertifikatının SHA256 şifrə izi:"
+
+msgctxt "remote_device_fingerprint"
+msgid "SHA256 fingerprint of remote device certificate is:"
+msgstr "Uzaq cihaz sertifikatının SHA256 şifrə izi:"
+
+msgctxt "pair_requested"
+msgid "Pair requested"
+msgstr "Qoşulma soruşuldu"
+
+#, c-format
+msgctxt "pairing_request_from"
+msgid "Pairing request from %1s"
+msgstr "%1s tərəfindən qoşulma sorğusu"
+
+#, c-format
+msgctxt "incoming_file_title"
+msgid "Receiving %1$d file from %2$s"
+msgid_plural "Receiving %1$d files from %2$s"
+msgstr[0] "%1$d fayl %2$s'dn alınır"
+msgstr[1] "%1$d fayl %2$s'dn alınır"
+
+#, c-format
+msgctxt "incoming_files_text"
+msgid "File: %1s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "Fayl: %1s"
+msgstr[1] "(Fayl %2$d %3$d) : %1$s"
+
+#, c-format
+msgctxt "outgoing_file_title"
+msgid "Sending %1$d file to %2$s"
+msgid_plural "Sending %1$d files to %2$s"
+msgstr[0] "%1$d fayl %2$s'a(ə) göndərilir"
+msgstr[1] "%1$d fayl %2$s'a(ə) göndərilir"
+
+#, c-format
+msgctxt "outgoing_files_text"
+msgid "File: %1$s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "Fayl: %1$s"
+msgstr[1] "(Fayl %2$d %3$d) : %1$s"
+
+#, c-format
+msgctxt "received_files_title"
+msgid "Received file from %1$s"
+msgid_plural "Received %2$d files from %1$s"
+msgstr[0] "Fayl %1$s'dn alındı"
+msgstr[1] "%2$d fayl %1$s'dn alındı"
+
+#, c-format
+msgctxt "received_files_fail_title"
+msgid "Failed receiving file from %1$s"
+msgid_plural "Failed receiving %2$d of %3$d files from %1$s"
+msgstr[0] "Faylın %1$sdn alınması baş tutmadı"
+msgstr[1] "%3$d-n %2$d faylının %1$s'dn alınması baş tutmadı"
+
+#, c-format
+msgctxt "sent_files_title"
+msgid "Sent file to %1$s"
+msgid_plural "Sent %2$d files to %1$s"
+msgstr[0] "Faylı %1$s'a(ə) göndərmək"
+msgstr[1] "%2$d faylı %1$s göndərmək"
+
+#, c-format
+msgctxt "send_files_fail_title"
+msgid "Failed sending file to %1$s"
+msgid_plural "Failed sending %2$d of %3$d files to %1$s"
+msgstr[0] "faylı %1$s'a(ə) göndərmək baş tutmadı"
+msgstr[1] "%3$d-n %2$d faylını %1$s'a(ə) göndərək baş tutmadı"
+
+msgctxt "tap_to_open"
+msgid "Tap to open"
+msgstr "Açmaq üçün toxunun"
+
+#, c-format
+msgctxt "received_file_text"
+msgid "Tap to open '%1s'"
+msgstr "'%1s' açmaq üçün toxunun"
+
+#, c-format
+msgctxt "cannot_create_file"
+msgid "Cannot create file %s"
+msgstr "%s faylı yaradıla bilmir"
+
+msgctxt "tap_to_answer"
+msgid "Tap to answer"
+msgstr "Cavab üçün toxunun"
+
+msgctxt "right_click"
+msgid "Send Right Click"
+msgstr "Sağ Klik göndərmək"
+
+msgctxt "middle_click"
+msgid "Send Middle Click"
+msgstr "Orta Klik göndərmək"
+
+msgctxt "show_keyboard"
+msgid "Show Keyboard"
+msgstr "Klaviaturanı göstərmək"
+
+msgctxt "device_not_paired"
+msgid "Device not paired"
+msgstr "Cihaz qoşulmayıb"
+
+msgctxt "request_pairing"
+msgid "Request pairing"
+msgstr "Qoşulma tələbi"
+
+msgctxt "pairing_accept"
+msgid "Accept"
+msgstr "Qəbul etmək"
+
+msgctxt "pairing_reject"
+msgid "Reject"
+msgstr "İmtina etmək"
+
+msgctxt "settings"
+msgid "Settings"
+msgstr "Ayarlar"
+
+msgctxt "mpris_play"
+msgid "Play"
+msgstr "Səsləndirmək"
+
+msgctxt "mpris_pause"
+msgid "Pause"
+msgstr "Fasilə"
+
+msgctxt "mpris_previous"
+msgid "Previous"
+msgstr "Əvvəlki"
+
+msgctxt "mpris_rew"
+msgid "Rewind"
+msgstr "Geri almaq"
+
+msgctxt "mpris_ff"
+msgid "Fast-forward"
+msgstr "Sürətli irəli"
+
+msgctxt "mpris_next"
+msgid "Next"
+msgstr "Sonrakı"
+
+msgctxt "mpris_loop"
+msgid "Loop"
+msgstr "Dairəvi"
+
+msgctxt "mpris_shuffle"
+msgid "Shuffle"
+msgstr "Qarışıq"
+
+msgctxt "mpris_volume"
+msgid "Volume"
+msgstr "Səs səviyyəsi"
+
+msgctxt "mpris_time_settings_title"
+msgid "Forward/rewind buttons"
+msgstr "İrəli/Geri düymələri"
+
+msgctxt "mpris_time_settings_summary"
+msgid "Adjust the time to fast forward/rewind when pressed"
+msgstr "Basıldığında sürətli irəli/geriyə üçün vaxtı ayarlamaq"
+
+msgctxt "mpris_time_entries:0"
+msgid "10 seconds"
+msgstr "10 saniyə"
+
+msgctxt "mpris_time_entries:1"
+msgid "20 seconds"
+msgstr "20 saniyə"
+
+msgctxt "mpris_time_entries:2"
+msgid "30 seconds"
+msgstr "30 saniyə"
+
+msgctxt "mpris_time_entries:3"
+msgid "1 minute"
+msgstr "1 dəqiqə"
+
+msgctxt "mpris_time_entries:4"
+msgid "2 minutes"
+msgstr "2 dəqiqə"
+
+msgctxt "mpris_notification_settings_title"
+msgid "Show media control notification"
+msgstr "Media idarəetmə bildirişlərini göstərmək"
+
+msgctxt "mpris_notification_settings_summary"
+msgid "Allow controlling your media players without opening KDE Connect"
+msgstr "KDE Connect açmadan media oynadıcınızın idarəsinə icazə vermək"
+
+msgctxt "share_to"
+msgid "Share To…"
+msgstr "Paylaşmaq..."
+
+msgctxt "protocol_version_newer"
+msgid "This device uses a newer protocol version"
+msgstr "Bu cihaz yeni protokol versiyası istifadə edir"
+
+#, c-format
+msgctxt "plugin_settings_with_name"
+msgid "%s settings"
+msgstr "%s ayarları"
+
+msgctxt "invalid_device_name"
+msgid "Invalid device name"
+msgstr "Səhv cihaz adı"
+
+msgctxt "shareplugin_text_saved"
+msgid "Received text, saved to clipboard"
+msgstr "Mətn alındı, mübadilə buferində saxlanıldı"
+
+msgctxt "custom_devices_settings"
+msgid "Custom device list"
+msgstr "Fərdi cihaz siyahısı"
+
+msgctxt "custom_device_list"
+msgid "Add devices by IP"
+msgstr "Cihazı İP ilə əlavə etmək"
+
+msgctxt "custom_device_deleted"
+msgid "Custom device deleted"
+msgstr "Fərdi cihaz silindi"
+
+msgctxt "custom_device_list_help"
+msgid ""
+"If your device is not automatically detected you can add its IP address or "
+"hostname by clicking on the Floating Action Button"
+msgstr ""
+"Əgər cihazınız avtomatik aşkar edilməmişsə, Üzən Fəaliyyət Düyməsinə vuraraq "
+"onun onun İP ünvanını və host adını daxil edə bilərsiniz"
+
+msgctxt "custom_device_fab_hint"
+msgid "Add a device"
+msgstr "Cihaz əlavə etmək"
+
+msgctxt "undo"
+msgid "Undo"
+msgstr "Geriyə qaytarmaq"
+
+msgctxt "share_notification_preference"
+msgid "Noisy notifications"
+msgstr "Səsli bildirişlər"
+
+msgctxt "share_notification_preference_summary"
+msgid "Vibrate and play a sound when receiving a file"
+msgstr "Fayl qəbul edilərkən vibrasiya və səsli bildiriş"
+
+msgctxt "share_destination_customize"
+msgid "Customize destination directory"
+msgstr "Hədəf qovluğunu təyin etmək"
+
+msgctxt "share_destination_customize_summary_disabled"
+msgid "Received files will appear in Downloads"
+msgstr "Alınan fayllar Yüklənənlər'də saxlanılacaq"
+
+msgctxt "share_destination_customize_summary_enabled"
+msgid "Files will be stored in the directory below"
+msgstr "Fayllar aşağıdakı qovluqda saxlanılacaq"
+
+msgctxt "share_destination_folder_preference"
+msgid "Destination directory"
+msgstr "Hədəf qovluğu"
+
+msgctxt "share"
+msgid "Share"
+msgstr "Paylaşmaq"
+
+#, c-format
+msgctxt "share_received_file"
+msgid "Share \"%s\""
+msgstr "\"%s\" paylaşmaq"
+
+msgctxt "title_activity_notification_filter"
+msgid "Notification filter"
+msgstr "Bildiriş filtri"
+
+msgctxt "filter_apps_info"
+msgid "Notifications will be synchronized for the selected apps."
+msgstr "Bildirişlər seçilmiş tətbiqlər üçün eyniləşdiriləcəkdir"
+
+msgctxt "show_notification_if_screen_off"
+msgid "Send notifications only if the screen is off"
+msgstr "Yalnız ekran söndükdə bildiriş göndərmək"
+
+#, c-format
+msgctxt "sftp_sdcard_num"
+msgid "SD card %d"
+msgstr "SD kart %d"
+
+msgctxt "sftp_sdcard"
+msgid "SD card"
+msgstr "SD kart"
+
+msgctxt "sftp_readonly"
+msgid "(read only)"
+msgstr "(yalnız oxumaq)"
+
+msgctxt "sftp_camera"
+msgid "Camera pictures"
+msgstr "Kamera şəkilləri"
+
+msgctxt "add_device_dialog_title"
+msgid "Add device"
+msgstr "Cihaz əlavə etmək"
+
+msgctxt "add_device_hint"
+msgid "Hostname or IP address"
+msgstr "Host_adı və ya İP ünvanı"
+
+msgctxt "sftp_preference_detected_sdcards"
+msgid "Detected SD cards"
+msgstr "SD kartı aşkar edildi"
+
+msgctxt "sftp_preference_edit_sdcard_title"
+msgid "Edit SD card"
+msgstr "SD karta düzəliş"
+
+msgctxt "sftp_preference_configured_storage_locations"
+msgid "Configured storage locations"
+msgstr "Saxlama yerini tənzimləmək"
+
+msgctxt "sftp_preference_add_storage_location_title"
+msgid "Add storage location"
+msgstr "Saxlama yeri əlavə etmək"
+
+msgctxt "sftp_preference_edit_storage_location"
+msgid "Edit storage location"
+msgstr "Saxlama yerinə düzəliş"
+
+msgctxt "sftp_preference_add_camera_shortcut"
+msgid "Add camera folder shortcut"
+msgstr "Kamera qovluğu qısayolu yaratmaq"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_on"
+msgid "Add a shortcut to the camera folder"
+msgstr "Kamera qovluğuna qısayolu əlavə etmək"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_off"
+msgid "Do not add a shortcut to the camera folder"
+msgstr "Kamera qovluğuna qısayol əlavə etməmək"
+
+msgctxt "sftp_storage_preference_storage_location"
+msgid "Storage location"
+msgstr "Saxlama yeri"
+
+msgctxt "sftp_storage_preference_storage_location_already_configured"
+msgid "This location has already been configured"
+msgstr "Bu yer artıq tənzimlənib"
+
+msgctxt "sftp_storage_preference_click_to_select"
+msgid "click to select"
+msgstr "klikləyərək seçin"
+
+msgctxt "sftp_storage_preference_display_name"
+msgid "Display name"
+msgstr "Görünən adı"
+
+msgctxt "sftp_storage_preference_display_name_already_used"
+msgid "This display name is already used"
+msgstr "Bu ad artıq istifadə olunub"
+
+msgctxt "sftp_storage_preference_display_name_cannot_be_empty"
+msgid "Display name cannot be empty"
+msgstr "Görünən ad boş ola bilməz"
+
+msgctxt "sftp_action_mode_menu_delete"
+msgid "Delete"
+msgstr "Silmək"
+
+msgctxt "sftp_no_sdcard_detected"
+msgid "No SD card detected"
+msgstr "SD kart aşkar edilmədi"
+
+msgctxt "sftp_no_storage_locations_configured"
+msgid "No storage locations configured"
+msgstr "Saxlama yeri tənzimlənməyib"
+
+msgctxt "sftp_saf_permission_explanation"
+msgid "To access files remotely you have to configure storage locations"
+msgstr ""
+"Fayllara uzaqdan daxil olmaq üçün saxlama yerlərini konfiqurasiya etməlisiniz"
+
+msgctxt "no_players_connected"
+msgid "No players found"
+msgstr "Pleyer tapılmadı"
+
+msgctxt "send_files"
+msgid "Send files"
+msgstr "Faylları göndərmək"
+
+msgctxt "pairing_title"
+msgid "KDE Connect Devices"
+msgstr "KDE Connect Cihazları"
+
+msgctxt "pairing_description"
+msgid ""
+"Other devices running KDE Connect in your same network should appear here."
+msgstr "Eyni şəbəkədəki KDE Connect işləyən digər cihazlar burada görünməlidir"
+
+msgctxt "device_rename_title"
+msgid "Rename device"
+msgstr "Cihazın adını dəyişmək"
+
+msgctxt "device_rename_confirm"
+msgid "Rename"
+msgstr "Adını Dəyişmək"
+
+msgctxt "refresh"
+msgid "Refresh"
+msgstr "Təzələmək"
+
+msgctxt "unreachable_description"
+msgid ""
+"This paired device is not reachable. Make sure it is connected to your same "
+"network."
+msgstr ""
+"Bu qoşulan cihaz əlçatan deyil. Bu cihazın sizinki ilə eyni şəbəkəyə "
+"qoşulduğundan əmin olun."
+
+msgctxt "no_wifi"
+msgid ""
+"You're not connected to a Wi-Fi network, so you may not be able to see any "
+"devices. Click here to enable Wi-Fi."
+msgstr ""
+"Siz  Wi-Fi şəbəkəsinə qoşulmamısınız, belə ki, siz digər cihazları görə "
+"bilməzsiniz. Wi-Fi'ı aktiv etmək üçün buraya vurun."
+
+msgctxt "on_non_trusted_message"
+msgid "Not on a trusted network: autodiscovery is disabled."
+msgstr "Etibarlı şəbəkədə deyil, avtomatik aşkar edilmə söndürüldü."
+
+msgctxt "no_file_browser"
+msgid "There are no file browsers installed."
+msgstr "Fayllara baxma vasitəsi quraşdırılmayıb."
+
+msgctxt "pref_plugin_telepathy"
+msgid "Send SMS"
+msgstr "SMS göndərmək"
+
+msgctxt "pref_plugin_telepathy_desc"
+msgid "Send text messages from your desktop"
+msgstr "İş Masanızdan mətn ismarıcı göndərin"
+
+msgctxt "pref_plugin_telepathy_mms"
+msgid "Send MMS"
+msgstr "MMS göndərmək"
+
+msgctxt "pref_plugin_telepathy_mms_desc"
+msgid ""
+"To be able to send MMS from KDE Connect you need to set it as the default "
+"SMS app."
+msgstr ""
+"KDE Connect'dən MMS göndərmək üçün, onu standart SMS tətbiqi kimi təyin "
+"etməniz lazımdır."
+
+msgctxt "findmyphone_title"
+msgid "Find my phone"
+msgstr "Telefonumu tapmaq"
+
+msgctxt "findmyphone_title_tablet"
+msgid "Find my tablet"
+msgstr "Planşetimi tapmaq"
+
+msgctxt "findmyphone_title_tv"
+msgid "Find my TV"
+msgstr "TV-ni tapmaq"
+
+msgctxt "findmyphone_description"
+msgid "Rings this device so you can find it"
+msgstr "Cihaz zəng çalır, beləliklə onu tapırsınız"
+
+msgctxt "findmyphone_found"
+msgid "Found it"
+msgstr "Onu tapmaq"
+
+msgctxt "open"
+msgid "Open"
+msgstr "Açmaq"
+
+msgctxt "close"
+msgid "Close"
+msgstr "Bağlamaq"
+
+msgctxt "plugins_need_permission"
+msgid "Some Plugins need permissions to work (tap for more info):"
+msgstr ""
+"Bəzi qoşmaların işləməsi üçün icazələr lazımdır (daha çox məlumat üçün "
+"toxunun):"
+
+msgctxt "permission_explanation"
+msgid "This plugin needs permissions to work"
+msgstr "Bu qoşmanın işləməsi üçün icazələr lazımdır"
+
+msgctxt "optional_permission_explanation"
+msgid "You need to grant extra permissions to enable all functions"
+msgstr "Bütün funksiyaların işləməsi üçün əlavə icazələr verməlisiniz"
+
+msgctxt "plugins_need_optional_permission"
+msgid ""
+"Some plugins have features disabled because of lack of permission (tap for "
+"more info):"
+msgstr ""
+"Bəzi qoşmalarda icazə çatışmamazlığı səbəbindən bir sıra imkanlar "
+"söndürülmüşdür (daha çox məlumat üçün toxunun)"
+
+msgctxt "share_optional_permission_explanation"
+msgid "To receive shared files you need to choose a destination directory"
+msgstr "Paylaşılan faylları qəbul etmək üçün saxlama qovluğu seçməlisiniz"
+
+msgctxt "telepathy_permission_explanation"
+msgid ""
+"To read and write SMS from your desktop you need to give permission to SMS"
+msgstr ""
+"İş Masanızdan telefonunuzdakı SMS'ləri oxumaq və SMS göndərmək üçün SMS'ə "
+"girişə icazə verməlisiniz"
+
+msgctxt "telephony_permission_explanation"
+msgid ""
+"To see phone calls on the desktop you need to give permission to phone call "
+"logs and phone state"
+msgstr ""
+"İş Masanızda telefon zənglərini görmək üçün Zəng Tarixçəsinə və Zəng yığımı "
+"vəziyyətinə icazə verməlisiniz"
+
+msgctxt "telephony_optional_permission_explanation"
+msgid ""
+"To see a contact name instead of a phone number you need to give access to "
+"the phone's contacts"
+msgstr ""
+"Telefon nömrəsi əvəzinə əlaqənin adını görmək üçün Əlaqə Kitabçasına girişə "
+"icazə verməlisiniz"
+
+msgctxt "contacts_permission_explanation"
+msgid ""
+"To share your contacts book with the desktop, you need to give contacts "
+"permission"
+msgstr ""
+"İş masası vasitəsi ilə əlaqələr kitabçasını paylaşmaq üçün əlaqələra girişə "
+"icazə verməlisiniz"
+
+msgctxt "select_ringtone"
+msgid "Select a ringtone"
+msgstr "Zəng səsini seçmək"
+
+msgctxt "telephony_pref_blocked_title"
+msgid "Blocked numbers"
+msgstr "Əngəllənmiş nömrələr"
+
+msgctxt "telephony_pref_blocked_dialog_desc"
+msgid ""
+"Don't show calls and SMS from these numbers. Please specify one number per "
+"line"
+msgstr ""
+"Bu nömrədən SMS və zənglər göstərilməsin. Hər sətirdə bir nömrə göstərin"
+
+msgctxt "mpris_coverart_description"
+msgid "Cover art of current media"
+msgstr "Mövcud medianın üz qabığı"
+
+msgctxt "device_icon_description"
+msgid "Device icon"
+msgstr "Cihaın nişanı"
+
+msgctxt "settings_icon_description"
+msgid "Settings icon"
+msgstr "Ayarlar nişanı"
+
+msgctxt "presenter_fullscreen"
+msgid "Fullscreen"
+msgstr "Tam_Ekran"
+
+msgctxt "presenter_exit"
+msgid "Exit presentation"
+msgstr "Təqdimatdan çıxış"
+
+msgctxt "presenter_lock_tip"
+msgid ""
+"You can lock your device and use the volume keys to go to the previous/next "
+"slide"
+msgstr ""
+"Siz cihazınızı kilidləyə və səs düymələri ilə əvvəlki/sonrakı slayda keçid "
+"edə bilərsiniz"
+
+msgctxt "add_command"
+msgid "Add a command"
+msgstr "Əmr əlavə etmək"
+
+msgctxt "addcommand_explanation"
+msgid "There are no commands registered"
+msgstr "Əmrlər qeyd edilməyib"
+
+msgctxt "addcommand_explanation2"
+msgid "You can add new commands in the KDE Connect System Settings"
+msgstr "Sİz KDE Connect sistem ayarlarında yeni əmrlər əlavə edə bilərsiniz"
+
+msgctxt "add_command_description"
+msgid "You can add commands on the desktop"
+msgstr "İş masasında yeni əmr əlavə edə bilərsiniz"
+
+msgctxt "pref_plugin_mprisreceiver"
+msgid "Media Player Control"
+msgstr "Media Pleyer İdarəsi"
+
+msgctxt "pref_plugin_mprisreceiver_desc"
+msgid "Control your phone's media players from another device"
+msgstr "Telefonunuzun media pleyerlərini digər cihazdan idarə edin"
+
+msgctxt "notification_channel_default"
+msgid "Other notifications"
+msgstr "Digər bildirişlər"
+
+msgctxt "notification_channel_persistent"
+msgid "Persistent indicator"
+msgstr "Daimi göstərici"
+
+msgctxt "notification_channel_media_control"
+msgid "Media control"
+msgstr "Media İdarəsi"
+
+msgctxt "notification_channel_filetransfer"
+msgid "File transfer"
+msgstr "Fayl göndərişi"
+
+msgctxt "notification_channel_high_priority"
+msgid "High priority"
+msgstr "Yüksək üstünlük"
+
+msgctxt "notification_channel_sms_mms"
+msgid "New Message"
+msgstr "Yeni İsmarıc"
+
+msgctxt "mpris_stop"
+msgid "Stop the current player"
+msgstr "Cari pleyeri dayandırmaq"
+
+msgctxt "copy_url_to_clipboard"
+msgid "Copy URL to clipboard"
+msgstr "URL'u mübadilə buferinə kopyalamaq"
+
+msgctxt "clipboard_toast"
+msgid "Copied to clipboard"
+msgstr "Mübadilə buferinə kopyalandı"
+
+msgctxt "runcommand_notreachable"
+msgid "Device is not reachable"
+msgstr "Cihaz əlçatan deyil"
+
+msgctxt "runcommand_notpaired"
+msgid "Device is not paired"
+msgstr "Cihaz qoşulmayıb"
+
+msgctxt "runcommand_nosuchdevice"
+msgid "There is no such device"
+msgstr "Belə cihaz yoxdur"
+
+msgctxt "runcommand_noruncommandplugin"
+msgid "This device does not have the Run Command Plugin enabled"
+msgstr "Bu cihazda aktiv edilmiş Əmr Başlatma Əlavəsi yoxdur"
+
+msgctxt "pref_plugin_findremotedevice"
+msgid "Find remote device"
+msgstr "Uzaq cihazı tapmaq"
+
+msgctxt "pref_plugin_findremotedevice_desc"
+msgid "Ring your remote device"
+msgstr "Uzaq cihazınıza zəng göndərin"
+
+msgctxt "ring"
+msgid "Ring"
+msgstr "Zəng"
+
+msgctxt "pref_plugin_systemvolume"
+msgid "System volume"
+msgstr "Sistem səs səviyyəsi"
+
+msgctxt "pref_plugin_systemvolume_desc"
+msgid "Control the system volume of the remote device"
+msgstr "Uzaq cihazın sistem səs səviyəsini idarə etmək"
+
+msgctxt "mute"
+msgid "Mute"
+msgstr "Susdurmaq"
+
+msgctxt "all"
+msgid "All"
+msgstr "Hamısı"
+
+msgctxt "devices"
+msgid "Devices"
+msgstr "Cihazlar"
+
+msgctxt "settings_rename"
+msgid "Device name"
+msgstr "Cihazın adı"
+
+msgctxt "settings_dark_mode"
+msgid "Dark theme"
+msgstr "Qaranlıq Görünüş"
+
+msgctxt "settings_more_settings_title"
+msgid "More settings"
+msgstr "Digər ayarlar"
+
+msgctxt "settings_more_settings_text"
+msgid ""
+"Per-device settings can be found under 'Plugin settings' from within a "
+"device."
+msgstr ""
+"Hər cihaz üçün ayarları cihazın 'Qoşma Ayarları' bölməsində tapa bilərsiniz."
+
+msgctxt "setting_persistent_notification"
+msgid "Show persistent notification"
+msgstr "Daimi bildirişi göstərmək"
+
+msgctxt "setting_persistent_notification_oreo"
+msgid "Persistent notification"
+msgstr "Daimi bildiriş"
+
+msgctxt "setting_persistent_notification_description"
+msgid "Tap to enable/disable in Notification settings"
+msgstr "Bildiriş ayarlarında aktiv/deaktiv etmək üçün toxunun"
+
+msgctxt "extra_options"
+msgid "Extra options"
+msgstr "Əlavə seçimlər"
+
+msgctxt "privacy_options"
+msgid "Privacy options"
+msgstr "Məxfilik seçimləri"
+
+msgctxt "set_privacy_options"
+msgid "Set your privacy options"
+msgstr "Məxfilik seçimlərini quraşdırın"
+
+msgctxt "block_contents"
+msgid "Block contents of notifications"
+msgstr "Bildirişlərin məzmununu bloklamaq"
+
+msgctxt "block_images"
+msgid "Block images in notifications"
+msgstr "Bildirişlərin şəkillərini bloklamaq"
+
+msgctxt "notification_channel_receivenotification"
+msgid "Notifications from other devices"
+msgstr "Digar cihazlardan bilsirişlər"
+
+msgctxt "take_picture"
+msgid "Launch camera"
+msgstr "Kameranı açmaq"
+
+msgctxt "plugin_photo_desc"
+msgid "Launch the camera app to ease taking and transferring pictures"
+msgstr ""
+"Şəkillər çəkmək və göndərməyi asanlaşdırmaq üçün kamera tətbiqini başladın"
+
+msgctxt "no_app_for_opening"
+msgid "No suitable app found to open this file"
+msgstr "Bu faylı açmaq üçün uyğun tətbiq tapılmadı"
+
+msgctxt "remote_keyboard_service"
+msgid "KDE Connect Remote Keyboard"
+msgstr "KDE Connect Uzaq Klaviaturası"
+
+msgctxt "presenter_pointer"
+msgid "Pointer"
+msgstr "Kursor"
+
+msgctxt "trusted_networks"
+msgid "Trusted networks"
+msgstr "Etibarlı şəbəkələr"
+
+msgctxt "trusted_networks_desc"
+msgid "Restrict autodiscovery to known networks"
+msgstr "Bilinən şəbəkələrin avtomatik aşkar edilməsini məhdudlaşdırmaq"
+
+#, c-format
+msgctxt "add_trusted_network"
+msgid "Add %1s"
+msgstr "%1s əlavə etmək"
+
+msgctxt "empty_trusted_networks_list_text"
+msgid "You haven't added any trusted network yet"
+msgstr "Hələlik hər hansı bir etibarlı şəbəkə əlavə edilməyib"
+
+msgctxt "allow_all_networks_text"
+msgid "Allow all"
+msgstr "Hamısına icazə vermək"
+
+msgctxt "location_permission_needed_title"
+msgid "Permission required"
+msgstr "İcazə tələb edlir"
+
+msgctxt "location_permission_needed_desc"
+msgid "Android requires the Location permission to identify your WiFi network"
+msgstr "Android, Sizin WiFi şəbəkənizi müəyyənləşdirmək üçün icazə tələb edir"
+
+msgctxt "clipboard_android_x_incompat"
+msgid ""
+"Android 10 has removed clipboard access to all apps. This plugin will be "
+"disabled."
+msgstr ""
+"Android 10 bütün tətbiqlər üçün mübadilə buferinə girişi aradan qaldırıb. Bu "
+"qoşma söndürüləcək."
+
+msgctxt "mpris_open_url"
+msgid "Continue playing here"
+msgstr "Burada oxutmağa davam edin"
+
+msgctxt "cant_open_url"
+msgid "Can't open URL to continue playing"
+msgstr "Oxutmanı davam etdirmək üçün URL açıla bilmir"
+
+msgctxt "bigscreen_home"
+msgid "Home"
+msgstr "Ev"
+
+msgctxt "bigscreen_up"
+msgid "Up"
+msgstr "Yuxarı"
+
+msgctxt "bigscreen_left"
+msgid "Left"
+msgstr "Sola"
+
+msgctxt "bigscreen_select"
+msgid "Select"
+msgstr "Seçim"
+
+msgctxt "bigscreen_right"
+msgid "Right"
+msgstr "Sağa"
+
+msgctxt "bigscreen_down"
+msgid "Down"
+msgstr "Aşağı"
+
+msgctxt "bigscreen_mic"
+msgid "Mic"
+msgstr "Mik"
+
+msgctxt "pref_plugin_bigscreen"
+msgid "Bigscreen remote"
+msgstr "Böyük ekran məsafədən idarəsi"
+
+msgctxt "pref_plugin_bigscreen_desc"
+msgid "Use your device as a remote for Plasma Bigscreen"
+msgstr "Plasma Böyük Ekran'ını cihazınızla məsafədən idarə edin"
+
+msgctxt "bigscreen_optional_permission_explanation"
+msgid ""
+"To share microphone input from your phone you need to give access to the "
+"phone's audio input"
+msgstr ""
+"Telefonunuzun mikrofon girişini paylaşmaq üçün telefonun səs girişinə icazə "
+"verməlisiniz"
+
+msgctxt "bigscreen_speech_extra_prompt"
+msgid "Speech"
+msgstr "Danışıq"
+
+msgctxt "message_reply_label"
+msgid "REPLY"
+msgstr "CAVAB"
+
+msgctxt "mark_as_read_label"
+msgid "MARK AS READ"
+msgstr "OXUNMUŞ KİMİ İŞARƏLƏMƏK"
+
+msgctxt "user_display_name"
+msgid "You"
+msgstr "Siz"
+
+msgctxt "set_default_sms_app_title"
+msgid "Send MMS"
+msgstr "MMS göndərmək"
+
+msgctxt "set_group_message_as_mms_title"
+msgid "Send group MMS"
+msgstr "MMS qrupu göndərmək"
+
+msgctxt "set_long_text_as_mms_title"
+msgid "Send long text as MMS"
+msgstr "Uzun mətni MMS kimi göndərmək"
+
+msgctxt "convert_to_mms_after_title"
+msgid "Convert to MMS"
+msgstr "MMS'ə çevirmək"
+
+msgctxt "convert_to_mms_after_entries:0"
+msgid "After one message"
+msgstr "Bir ismarıcdan sonra"
+
+msgctxt "convert_to_mms_after_entries:1"
+msgid "After two messages"
+msgstr "İki ismarıcdan sonra"
+
+msgctxt "convert_to_mms_after_entries:2"
+msgid "After three messages"
+msgstr "Üş ismarıcdan sonra1"
+
+msgctxt "convert_to_mms_after_entries:3"
+msgid "After four messages"
+msgstr "Dörd ismarıcdan sonra1"
+
+msgctxt "convert_to_mms_after_entries:4"
+msgid "After five messages"
+msgstr "Beş ismarıcdan sonra1"
+
+msgctxt "theme_dialog_title"
+msgid "Choose theme"
+msgstr "Mövzunu seçin"
+
+msgctxt "theme_list:0"
+msgid "Set by Battery Saver"
+msgstr "Batareyaya Qənaət tərəfindən təyin edilr"
+
+msgctxt "theme_list:1"
+msgid "Light"
+msgstr "İşıqlı"
+
+msgctxt "theme_list:2"
+msgid "Dark"
+msgstr "Qaranlıq"
+
+msgctxt "theme_list_v28:0"
+msgid "System Default"
+msgstr "Standart Sistem"
+
+msgctxt "theme_list_v28:1"
+msgid "Light"
+msgstr "İşıqlı"
+
+msgctxt "theme_list_v28:2"
+msgid "Dark"
+msgstr "Qaranlıq"
+
+msgctxt "report_bug"
+msgid "Report Bug"
+msgstr "Xəta hesabatı"
+
+msgctxt "donate"
+msgid "Donate"
+msgstr "Maddi Dəstək"
+
+msgctxt "source_code"
+msgid "Source Code"
+msgstr "Qaynaq Kodu"
+
+msgctxt "licenses"
+msgid "Licenses"
+msgstr "Lisenziyalar"
+
+msgctxt "website"
+msgid "Website"
+msgstr "Veb sayt"
+
+msgctxt "about"
+msgid "About"
+msgstr "Haqqında"
+
+msgctxt "authors"
+msgid "Authors"
+msgstr "Müəlliflər"
+
+msgctxt "thanks_to"
+msgid "Thanks To"
+msgstr "Minəttdarlıq"
+
+msgctxt "easter_egg"
+msgid "Easter Egg"
+msgstr "Pasxa yumurtası"
+
+#, c-format
+msgctxt "email_contributor"
+msgid ""
+"Email contributor\n"
+"%s"
+msgstr ""
+"Əməkdaşın e-poçt ünvanı\n"
+"%s"
+
+#, c-format
+msgctxt "visit_contributors_homepage"
+msgid ""
+"Visit contributor's homepage\n"
+"%s"
+msgstr ""
+"Əməkdaşın ev səhifəsinə baxın\n"
+"%s"
+
+#, c-format
+msgctxt "version"
+msgid "Version %s"
+msgstr "Versiya %s"
+
+msgctxt "about_kde"
+msgid "About KDE"
+msgstr "KDE haqqında"
+
+msgctxt "kde_be_free"
+msgid "KDE - Be Free!"
+msgstr "KDE - Sərbəst olun!"
+
+msgctxt "kde"
+msgid "KDE"
+msgstr "KDE"
+
+msgctxt "konqi"
+msgid "Konqi"
+msgstr "Konqi"
+
+msgctxt "rise_up"
+msgid "Rise Up"
+msgstr "Qalxmaq"
+
+msgctxt "rise_down"
+msgid "Rise Down"
+msgstr "Aşağı enmək"
+
+msgctxt "click_here_to_type"
+msgid "Tap here to type"
+msgstr "Yazmaq üçün toxunun"
+
+msgctxt "clear_compose"
+msgid "Clear"
+msgstr "Təmizləmək"
+
+msgctxt "send_compose"
+msgid "Send"
+msgstr "Göndərin"
+
+msgctxt "open_compose_send"
+msgid "Compose text"
+msgstr "Mətn yazın"
+
+msgctxt "app_description"
+msgid ""
+"Multi-platform app that allows your devices to communicate (e.g., your phone "
+"and your computer)"
+msgstr ""
+"Cihazlarınızı (məs., telefonunuz və ya kompyuteriniz) arasında əlaqə "
+"yaratmaq üçün çox platformalı tətbiq."
+
+msgctxt "about_kde_about"
+msgid ""
+"&lt;h1&gt;About&lt;/h1&gt; &lt;p&gt;KDE is a world-wide community of "
+"software engineers, artists, writers, translators and creators who are "
+"committed to &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Free "
+"Software&lt;/a&gt; development. KDE produces the Plasma desktop environment, "
+"hundreds of applications, and the many software libraries that support them."
+"&lt;/p&gt; &lt;p&gt;KDE is a cooperative enterprise: no single entity "
+"controls its direction or products. Instead, we work together to achieve the "
+"common goal of building the world's finest Free Software. Everyone is "
+"welcome to &lt;a href=https://community.kde.org/Get_Involved&gt;join and "
+"contribute&lt;/a&gt; to KDE, including you.&lt;/p&gt; Visit &lt;a "
+"href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; for more "
+"information about the KDE community and the software we produce."
+msgstr ""
+"&lt;h1&gt;Haqqında&lt;/h1&gt; &lt;p&gt;KDE, özlərini &lt;a href=https://www."
+"gnu.org/philosophy/free-sw.html&gt;Azad Proqram Təminatı&lt;/a&gt; "
+"tərtibatına həsr etmiş, proqram təminatı üzrə mühəndislərdən, rəssamlardan, "
+"yazıçılardan, tərcüməçilərdən və yaradıcılardan ibarət dünya miqyasında bir "
+"cəmiyyətdir. KDE, Plasma İş masası mühiti, yüzlərlə tətbiqlər və onları "
+"dəstəkləyən proqram təminatı kitabxanaları nəşr edir. &lt;/p&gt; &lt;p&gt;"
+"KDE kooperativ bir müəssisədir: heç bir müəssisə onun işinə və məhsullarına "
+"nəzarət etmir. Bunun əvəzinə, dünyanın ən yaxşı Proqram Təminatını yaratmaq "
+"məsədimizə çatmaq üçün birlikdə çalışırıq. &lt;a href=https://community.kde."
+"org/Get_Involved&gt;KDE'yə qoşulmaq və işimizə töhvə vermək istəyən, &lt;/"
+"a&gt; siz də daxil olmaqla&lt;/p&gt; hər kəsi salamlayırıq. &lt;a "
+"href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; saytına daxil "
+"olun ki, KDE cəmiyyəti və bizim proqram təminatı və məhsullarımız haqqında "
+"daha çox məlumat əldə edə biləsiniz."
+
+msgctxt "about_kde_report_bugs_or_wishes"
+msgid ""
+"&lt;h1&gt;Report Bugs or Wishes&lt;/h1&gt; &lt;p&gt;Software can always be "
+"improved, and the KDE team is ready to do so. However, you - the user - must "
+"tell us when something does not work as expected or could be done better."
+"&lt;/p&gt; &lt;p&gt;KDE has a bug tracking system. Visit &lt;a href=https://"
+"bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; or use the \"Report Bug\" "
+"button from the about screen to report bugs.&lt;/p&gt; If you have a "
+"suggestion for improvement then you are welcome to use the bug tracking "
+"system to register your wish. Make sure you use the severity called "
+"\"Wishlist\"."
+msgstr ""
+"&lt;h1&gt;Səhvləri və Arzularınızı bildirin&lt;/h1&gt; &lt;p&gt;Proqram "
+"təminatı hər zaman təkmilləşdirilə bilər və KDE komandası buna hazırdır. "
+"Lakin siz - istifadəçi - , nə isə gözlənildiyi kimi düzgün işləmədikdə və ya "
+"bundan daha yaxşısını yaratmaq barədə təklifiniz olduqda bizə "
+"bildirməlisiniz.&lt;/p&gt; &lt;p&gt;KDE'nin xətaları izləmə sistemi var. &lt;"
+"a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; ziyarət edin "
+"və ya xətalar haqında hesabat vermək üçün ekrandakı \"Xətaları bildirin\" "
+"düyməsindən istifadə edin.&lt;/p&gt; Əgər təkmilləşdirmə üçün bir təklifiniz "
+"varsa, bu istəyinizi bildirmək üçün xətaları izləmə sistemində qeyd edə "
+"bilərsiniz. \"İstəklər siyahısı\" ciddilik səviyyəsindən istifadə etdiyinizə "
+"əmin olun."
+
+msgctxt "about_kde_join_kde"
+msgid ""
+"&lt;h1&gt;Join KDE&lt;/h1&gt; &lt;p&gt;You do not have to be a software "
+"developer to be a member of the KDE team. You can join the national teams "
+"that translate program interfaces. You can provide graphics, themes, sounds, "
+"and improved documentation. You decide!&lt;/p&gt; &lt;p&gt;Visit &lt;a "
+"href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/"
+"Get_Involved&lt;/a&gt; for information on some projects in which you can "
+"participate.&lt;/p&gt; If you need more information or documentation, then a "
+"visit to &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/"
+"&lt;/a&gt; will provide you with what you need."
+msgstr ""
+"&lt;h1&gt;KDE'yə qoşulun&lt;/h1&gt; &lt;p&gt;KDE komandasının üzvü olmaq "
+"üçün proqram tərtibatçısı olmanız vacib deyil. Sİz proqram interfeysini "
+"tərcümə etmək üçün milli komandanıza da qoşula bilərsiniz. Siz, həmçinin "
+"qrafiklər, mövzular, səslər və təkmilləşdirilmiş sənədləşmələr təqdim edə "
+"bilərsiniz. Siz, &lt;/p&gt; &lt;p&gt;buradan - &lt;a href=https://community."
+"kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; - "
+"üzərində çalışmağa qərar verdiyiniz bəzi layihələr haqqında məlumat ala "
+"bilərsiniz.&lt;/p&gt; Daha çox məlumat əldə etmək istəsəniz, lazım lazım "
+"olan nə varsa tapa biləcəyiniz bu sayta daxil olun: &lt;a href=https://"
+"techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt;."
+
+msgctxt "about_kde_support_kde"
+msgid ""
+"&lt;h1&gt;Support KDE&lt;/h1&gt; &lt;p&gt;KDE software is and will always be "
+"available free of charge, however creating it is not free.&lt;/p&gt; &lt;"
+"p&gt;To support development the KDE community has formed the KDE e.V., a non-"
+"profit organization legally founded in Germany. KDE e.V. represents the KDE "
+"community in legal and financial matters. See &lt;a href=https://ev.kde.org/"
+"&gt;https://ev.kde.org/&lt;/a&gt; for information on KDE e.V.&lt;/p&gt; &lt;"
+"p&gt;KDE benefits from many kinds of contributions, including financial. We "
+"use the funds to reimburse members and others for expenses they incur when "
+"contributing. Further funds are used for legal support and organizing "
+"conferences and meetings.&lt;/p&gt; &lt;p&gt;We would like to encourage you "
+"to support our efforts with a financial donation, using one of the ways "
+"described at &lt;a href=https://www.kde.org/community/donations/&gt;https://"
+"www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Thank you very much in "
+"advance for your support."
+msgstr ""
+"&lt;h1&gt;KDE'yə dəstək&lt;/h1&gt; &lt;p&gt;KDE tətbiqləri pulsuzdur və bu "
+"hər zaman belə olacaqdır, lakin onların yaradılması pulsuz deyil.&lt;/p&gt; "
+"&lt;p&gt;KDE Cəmiyyətini dəstəkləmək üçün Almaniyada qanuni olaraq "
+"yaradılmış, qeyri-kommersiya təşkilatı olan KDE e.V formalaşdırlıb. KDE e."
+"V., KDE Cəmiyyətinə maddi və hüquqi yardım göstərir. Da çox məlumat üçün: "
+"&lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; KDE e.V. "
+"baxın&lt;/p&gt; &lt;p&gt;KDE ona göstərilən malliyə da daxil olmaqla bir çox "
+"yardımlardan faydalanır. Vəsaitlər, üzvlərə və başqalarına töhfə verərkən "
+"çəkdikləri xərcləri ödəmək üçün xərclənir. Əlavə vəsait, hüquqi dəstək üçün "
+"və konfrans və görüşlərin təşkili üçün istifadə olunur.&lt;/p&gt; &lt;p&gt;"
+"Biz sizi, aşağıda göstərilən yollardan istifadə etməklə bizə maddi "
+"dəstəyinizi göztərməyə dəvət edirik: &lt;a href=https://www.kde.org/"
+"community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt;."
+"&lt;/p&gt; Göstərdiyiniz və göstərəcəyiniz hər hansı dəstək üçün sizə "
+"təşəkkür edirik."
+
+#. Authors tasks
+msgctxt "maintainer_and_developer"
+msgid "Maintainer and developer"
+msgstr "Müşayətçi və tərtibatçı"
+
+msgctxt "developer"
+msgid "Developer"
+msgstr "Tərtibatçı"
+
+msgctxt "apple_support"
+msgid "macOS support. Working on iOS support"
+msgstr "macOS dəstəyi. İOS dəstəklənməsi üzərində işləyirik"
+
+msgctxt "bug_fixes_and_general_improvements"
+msgid "Bug fixes and general improvements"
+msgstr "Xəta sazlamaları və əsas yaxşılaşdırmalar"
+
+msgctxt "samoilenko_yuri_task"
+msgid "SFTP implementation, bug fixes and general improvements"
+msgstr "SFTP tətbiqi, xəta sazlamaları və əsas yaxşılaşdırmalar"
+
+msgctxt "aniket_kumar_task"
+msgid "SMS plugin improvements"
+msgstr "SMS əlavəsi yaxşılaşdırılması"
+
+msgctxt "alex_fiestas_task"
+msgid "Contacts plugin improvements"
+msgstr "Əlaqələr əlavəsi yaxşılaşdırılması"
+
+msgctxt "maxim_leshchenko_task"
+msgid "UI improvements and this about page"
+msgstr "İİ yaxşılaşdırmaları və bu haqda səhifə"
+
+msgctxt "holger_kaelberer_task"
+msgid "Remote keyboard plugin and bug fixes"
+msgstr "Uzaq klaviatura əlavəsi və xəta sazlamaları"
+
+msgctxt "saikrishna_arcot_task"
+msgid ""
+"Support for using the keyboard in the remote input plugin, bug fixes and "
+"general improvements"
+msgstr ""
+"Uzaq daxiletmə əlavəsində klaviaturanın istifadəsini dəstəklənməsi, xəta "
+"sazlamaları və əsas yaxşılaşdırmalar"
+
+msgctxt "everyone_else"
+msgid "Everyone else who has contributed to KDE Connect over the years"
+msgstr "İllər boyu KDE Connect'ə töhfə verən hər kəs"
+
+msgctxt "send_clipboard"
+msgid "Send clipboard"
+msgstr "Mübadilə buferinə göndərin"
+
+msgctxt "tap_to_execute"
+msgid "Tap to execute"
+msgstr "İcra etmək üçün vurun"
+
+#~ msgctxt "share_optional_permission_explanation"
+#~ msgid ""
+#~ "To share files between your phone and your desktop you need to give "
+#~ "access to the phone's storage"
+#~ msgstr ""
+#~ "Telefonunuz və İş Masanız arasında fayllar mübadiləsi üçün telefon "
+#~ "yaddaşına girişə icazə verməlisiniz"

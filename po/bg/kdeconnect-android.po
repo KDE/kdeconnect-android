@@ -1,0 +1,1717 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Svetoslav Stefanov <svetlisashkov@yahoo.com>, 2014.
+# Mincho Kondarev <mkondarev@yahoo.de>, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdeconnect-android\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-01-16 00:43+0000\n"
+"PO-Revision-Date: 2022-08-31 21:29+0200\n"
+"Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
+"Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Generated-By: Babel 1.0dev\n"
+"X-Generator: Lokalize 22.08.0\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#. # Dear potential translators:          Thank you for your interest in KDE
+#. Connect! We do not actually handle our own translations.         All
+#. translations for all KDE apps are handled by the [localization
+#. team](https://l10n.kde.org).         We really appreciate your translations,
+#. but make sure to submit them by working with the proper team!
+msgctxt "kde_connect"
+msgid "KDE Connect"
+msgstr "KDE Connect"
+
+msgctxt "manifest_label_share"
+msgid "Send to Device"
+msgstr "Изпращане до устройство"
+
+msgctxt "foreground_notification_no_devices"
+msgid "Not connected to any device"
+msgstr "Няма свързано устройство"
+
+#, c-format
+msgctxt "foreground_notification_devices"
+msgid "Connected to: %s"
+msgstr "Свързан с: %s"
+
+msgctxt "foreground_notification_send_clipboard"
+msgid "Send Clipboard"
+msgstr "Изпращане на клипборда"
+
+msgctxt "pref_plugin_telephony"
+msgid "Telephony notifier"
+msgstr "Известяване за обаждания"
+
+msgctxt "pref_plugin_telephony_desc"
+msgid "Send notifications for incoming calls"
+msgstr "Изпращане на известие за входящо обаждане"
+
+msgctxt "pref_plugin_battery"
+msgid "Battery report"
+msgstr "Доклад за батерията"
+
+msgctxt "pref_plugin_battery_desc"
+msgid "Periodically report battery status"
+msgstr "Периодично съобщаване за състоянието на батерията"
+
+msgctxt "pref_plugin_connectivity_report"
+msgid "Connectivity report"
+msgstr "Доклад за свързаност"
+
+msgctxt "pref_plugin_connectivity_report_desc"
+msgid "Report network signal strength and status"
+msgstr "Доклад за силата на сигнала на мрежата и състоянието"
+
+msgctxt "pref_plugin_sftp"
+msgid "Filesystem expose"
+msgstr "Достъп до файловата система"
+
+msgctxt "pref_plugin_sftp_desc"
+msgid "Allows to browse this device's filesystem remotely"
+msgstr "Разрешаване на отдалечен преглед на файловта система на устройството"
+
+msgctxt "pref_plugin_clipboard"
+msgid "Clipboard sync"
+msgstr "Синхронизиране на буфера"
+
+msgctxt "pref_plugin_clipboard_desc"
+msgid "Share the clipboard content"
+msgstr "Споделяне съдържанието на буфера"
+
+msgctxt "pref_plugin_clipboard_sent"
+msgid "Clipboard Sent"
+msgstr "Изпратено съдържание на клипборда"
+
+msgctxt "pref_plugin_mousepad"
+msgid "Remote input"
+msgstr "Отдалечено входно устройство"
+
+msgctxt "pref_plugin_mousepad_desc"
+msgid "Use your phone or tablet as a touchpad and keyboard"
+msgstr "Използване на телефона като тъчпад и клавиатура"
+
+msgctxt "pref_plugin_presenter"
+msgid "Slideshow remote"
+msgstr "Отдалечена прожекция"
+
+msgctxt "pref_plugin_presenter_desc"
+msgid "Use your device to change slides in a presentation"
+msgstr ""
+"Използвайте устройството си за прелистване на слайдовете на презентация"
+
+msgctxt "pref_plugin_remotekeyboard"
+msgid "Receive remote keypresses"
+msgstr "Отдалечени клавишни набирания"
+
+msgctxt "pref_plugin_remotekeyboard_desc"
+msgid "Receive keypress events from remote devices"
+msgstr "Получаване на клавишни набирания от отдалечено устройство"
+
+msgctxt "pref_plugin_mpris"
+msgid "Multimedia controls"
+msgstr "Мултимедиен контрол"
+
+msgctxt "pref_plugin_mpris_desc"
+msgid "Provides a remote control for your media player"
+msgstr "Осигурява отдалечен контрол за вашия медиен плеър"
+
+msgctxt "pref_plugin_runcommand"
+msgid "Run Command"
+msgstr "Изпълняване на команда"
+
+msgctxt "pref_plugin_runcommand_desc"
+msgid "Trigger remote commands from your phone or tablet"
+msgstr "Изпълняване на отдалечена команда от вашия телефон или таблет"
+
+msgctxt "pref_plugin_contacts"
+msgid "Contacts Synchronizer"
+msgstr "Синхронизиране на контакти"
+
+msgctxt "pref_plugin_contacts_desc"
+msgid "Allow synchronizing the device's contacts book"
+msgstr "Позволява синхронизиране на контактите от телефона"
+
+msgctxt "pref_plugin_ping"
+msgid "Ping"
+msgstr "Пинг"
+
+msgctxt "pref_plugin_ping_desc"
+msgid "Send and receive pings"
+msgstr "Изпращане и получаване на пинг"
+
+msgctxt "pref_plugin_notifications"
+msgid "Notification sync"
+msgstr "Синхронизиране на уведомленията"
+
+msgctxt "pref_plugin_notifications_desc"
+msgid "Access your notifications from other devices"
+msgstr "Достъп до уведомленията от други устройства"
+
+msgctxt "pref_plugin_receive_notifications"
+msgid "Receive notifications"
+msgstr "Получаване на известия"
+
+msgctxt "pref_plugin_receive_notifications_desc"
+msgid "Receive notifications from the other device and display them on Android"
+msgstr "Получаване на известия от друго устройство и показването им в Android"
+
+msgctxt "pref_plugin_sharereceiver"
+msgid "Share and receive"
+msgstr "Споделяне и получаване"
+
+msgctxt "pref_plugin_sharereceiver_desc"
+msgid "Share files and URLs between devices"
+msgstr "Споделяне на файлове и адреси между устройствата"
+
+msgctxt "device_list_empty"
+msgid "No devices"
+msgstr "Няма устройства"
+
+msgctxt "ok"
+msgid "OK"
+msgstr "Добре"
+
+msgctxt "sad_ok"
+msgid "OK :("
+msgstr "OK :("
+
+msgctxt "cancel"
+msgid "Cancel"
+msgstr "Отказ"
+
+msgctxt "open_settings"
+msgid "Open settings"
+msgstr "Отваряне на настройките"
+
+msgctxt "no_permissions"
+msgid "You need to grant permission to access notifications"
+msgstr "Трябва да осигурите права за достъп до уведомленията"
+
+msgctxt "no_permission_mprisreceiver"
+msgid ""
+"To be able to control your media players you need to grant access to the "
+"notifications"
+msgstr ""
+"За да можете да контролирате вашия медиен плеър. трябва да осигурите права "
+"за достъп до известията"
+
+msgctxt "no_permissions_remotekeyboard"
+msgid ""
+"To receive keypresses you need to activate the KDE Connect Remote Keyboard"
+msgstr ""
+"За получавате клавишни набирания, трябва да активирате Отдалечена клавиатура "
+"на KDE Connect"
+
+msgctxt "send_ping"
+msgid "Send ping"
+msgstr "Изпращане на пинг"
+
+msgctxt "open_mpris_controls"
+msgid "Multimedia control"
+msgstr "Мултимедиен контрол"
+
+msgctxt "remotekeyboard_editing_only_title"
+msgid "Handle remote keys only when editing"
+msgstr "Работете с отдалечените клавиши само при редактиране"
+
+msgctxt "remotekeyboard_not_connected"
+msgid ""
+"There is no active remote keyboard connection, establish one in kdeconnect"
+msgstr "Няма активна отдалечена клавиатура, установете такава в kdeconnect"
+
+msgctxt "remotekeyboard_connected"
+msgid "Remote keyboard connection is active"
+msgstr "Отдалечената връзка с клавиатурата е активна"
+
+msgctxt "remotekeyboard_multiple_connections"
+msgid ""
+"There is more than one remote keyboard connection, select the device to "
+"configure"
+msgstr ""
+"Има повече от една отдалечена връзка за клавиатура, изберете устройството за "
+"конфигуриране"
+
+msgctxt "open_mousepad"
+msgid "Remote input"
+msgstr "Отдалечен вход"
+
+msgctxt "mousepad_info"
+msgid ""
+"Move a finger on the screen to move the mouse cursor. Tap for a click, and "
+"use two/three fingers for right and middle buttons. Use 2 fingers to scroll. "
+"Use a long press to drag'n drop."
+msgstr ""
+"Преместете пръст на екрана, за да преместите курсора на мишката. Докоснете "
+"за щракване иИзползвайте два/три пръста за десни и средни бутони. "
+"Използвайте 2 пръста за превъртане.Използвайте дълго натискане за влачене."
+
+msgctxt "mousepad_single_tap_settings_title"
+msgid "Set one finger tap action"
+msgstr "Задаване на действие с натискане с един пръст"
+
+msgctxt "mousepad_double_tap_settings_title"
+msgid "Set two finger tap action"
+msgstr "Задаване на действие за докосване с два пръста"
+
+msgctxt "mousepad_triple_tap_settings_title"
+msgid "Set three finger tap action"
+msgstr "Задаване на действие с докосване с три пръста"
+
+msgctxt "mousepad_sensitivity_settings_title"
+msgid "Set touchpad sensitivity"
+msgstr "Настройка на чувствителността на тъчпада"
+
+msgctxt "mousepad_acceleration_profile_settings_title"
+msgid "Set pointer acceleration"
+msgstr "Задаване на ускорение на показалеца"
+
+msgctxt "mousepad_scroll_direction_title"
+msgid "Reverse Scrolling Direction"
+msgstr "Обръщане на посоката на превъртане"
+
+msgctxt "mousepad_tap_entries:0"
+msgid "Left click"
+msgstr "Щракване с ляв бутон"
+
+msgctxt "mousepad_tap_entries:1"
+msgid "Right click"
+msgstr "Щракване с десен бутон"
+
+msgctxt "mousepad_tap_entries:2"
+msgid "Middle click"
+msgstr "Щракване със среден бутон"
+
+msgctxt "mousepad_tap_entries:3"
+msgid "Nothing"
+msgstr "Не"
+
+msgctxt "mousepad_sensitivity_entries:0"
+msgid "Slowest"
+msgstr "Най-бавно"
+
+msgctxt "mousepad_sensitivity_entries:1"
+msgid "Above Slowest"
+msgstr "Над най-бавното"
+
+msgctxt "mousepad_sensitivity_entries:2"
+msgid "Default"
+msgstr "По подразбиране"
+
+msgctxt "mousepad_sensitivity_entries:3"
+msgid "Above Default"
+msgstr "Над стандартното"
+
+msgctxt "mousepad_sensitivity_entries:4"
+msgid "Fastest"
+msgstr "Най-бърз"
+
+msgctxt "mousepad_acceleration_profile_entries:0"
+msgid "No Acceleration"
+msgstr "Без ускорение"
+
+msgctxt "mousepad_acceleration_profile_entries:1"
+msgid "Weakest"
+msgstr "Най-слабо"
+
+msgctxt "mousepad_acceleration_profile_entries:2"
+msgid "Weaker"
+msgstr "По-бавно"
+
+msgctxt "mousepad_acceleration_profile_entries:3"
+msgid "Medium"
+msgstr "Средно"
+
+msgctxt "mousepad_acceleration_profile_entries:4"
+msgid "Stronger"
+msgstr "По-силно"
+
+msgctxt "mousepad_acceleration_profile_entries:5"
+msgid "Strongest"
+msgstr "Най-силно"
+
+msgctxt "sendkeystrokes_send_to"
+msgid "Send keystrokes to"
+msgstr "Изпращане на натискания на клавиши към"
+
+msgctxt "sendkeystrokes_textbox_hint"
+msgid "Send keystrokes to host"
+msgstr "Изпращане на клавишни комбинации към хост"
+
+msgctxt "sendkeystrokes_disabled_toast"
+msgid "Sending keystrokes is disabled - enable it in the settings"
+msgstr ""
+"Изпращането на натискания на клавиши е деактивирано - разрешете го в "
+"настройките"
+
+msgctxt "sendkeystrokes_wrong_data"
+msgid "Invalid mime type - needs to be 'text/x-keystrokes'"
+msgstr "Невалиден тип mime - трябва да бъде \"text/x-keystrokes\""
+
+#, c-format
+msgctxt "sendkeystrokes_sent_text"
+msgid "Sent %1$s to device %2$s"
+msgstr "Изпратени %1$s до устройство %2$s"
+
+msgctxt "sendkeystrokes_pref_category_summary"
+msgid ""
+"This module allows other apps to share text segments as keystrokes which "
+"will get send to the connected host"
+msgstr ""
+"Този модул позволява на други приложения да споделят текстови сегменти като "
+"натискания на клавиши, коитоще се изпраща до свързания хост"
+
+msgctxt "sendkeystrokes_pref_category_title"
+msgid "Send Keystrokes"
+msgstr "Изпращане клавишни набирания"
+
+msgctxt "sendkeystrokes_pref_enabled"
+msgid "Enable Keystrokes sending"
+msgstr "Активиране на изпращане на клавишни набирания"
+
+msgctxt "sendkeystrokes_pref_enabled_summary"
+msgid "Listen for data with mime type 'text/x-keystrokes'"
+msgstr "Следене за данни с mime тип \"text/x-keystrokes\""
+
+msgctxt "sendkeystrokes_safe_text_enabled"
+msgid "Send safe text immediately"
+msgstr "Изпращане на безопасен текст незабавно"
+
+msgctxt "sendkeystrokes_safe_text_enabled_summary"
+msgid "Send short only-numeric strings without confirmation"
+msgstr "Изпращане на кратки само цифрови низове без потвърждение"
+
+msgctxt "pref_plugin_mousepad_send_keystrokes"
+msgid "Send as keystrokes"
+msgstr "Изпращане като клавишни комбинации"
+
+msgctxt "mouse_receiver_plugin_description"
+msgid "Receive remote mouse movement"
+msgstr "Получаване на дистанционно движение на мишката"
+
+msgctxt "mouse_receiver_plugin_name"
+msgid "Mouse receiver"
+msgstr "Приемане на движение на мишката"
+
+msgctxt "mouse_receiver_no_permissions"
+msgid "You need to enable Accessibility Service"
+msgstr "Трябва да активирате услугата за достъпност"
+
+msgctxt "view_status_title"
+msgid "Status"
+msgstr "Състояние"
+
+#, c-format
+msgctxt "battery_status_format"
+msgid "Battery: %d%%"
+msgstr "Батерия: %d%%"
+
+#, c-format
+msgctxt "battery_status_low_format"
+msgid "Battery: %d%% Low Battery"
+msgstr "Батерия: %d%% Ниско ниво на батерията"
+
+#, c-format
+msgctxt "battery_status_charging_format"
+msgid "Battery: %d%% charging"
+msgstr "Батерия: %d%% зареждане"
+
+msgctxt "battery_status_unknown"
+msgid "Battery information not available"
+msgstr "Информацията за батерията не е налична"
+
+msgctxt "category_connected_devices"
+msgid "Connected devices"
+msgstr "Свързани устройства"
+
+msgctxt "category_not_paired_devices"
+msgid "Available devices"
+msgstr "Налични устройства"
+
+msgctxt "category_remembered_devices"
+msgid "Remembered devices"
+msgstr "Запомнени устройства"
+
+msgctxt "device_menu_plugins"
+msgid "Plugin settings"
+msgstr "Настройки на приставки"
+
+msgctxt "device_menu_unpair"
+msgid "Unpair"
+msgstr "Разкачване"
+
+msgctxt "pair_new_device"
+msgid "Pair new device"
+msgstr "Сдвояване на ново устройство"
+
+msgctxt "unknown_device"
+msgid "Unknown device"
+msgstr "Неизвестно устройство"
+
+msgctxt "error_not_reachable"
+msgid "Device not reachable"
+msgstr "Устройството е недостъпно"
+
+msgctxt "error_already_paired"
+msgid "Device already paired"
+msgstr "Устройството вече е сдвоено"
+
+msgctxt "error_could_not_send_package"
+msgid "Could not send package"
+msgstr "Пакетът не може да бъде изпратен"
+
+msgctxt "error_timed_out"
+msgid "Timed out"
+msgstr "Просрочка"
+
+msgctxt "error_canceled_by_user"
+msgid "Canceled by user"
+msgstr "Отхвърлена от потребителя"
+
+msgctxt "error_canceled_by_other_peer"
+msgid "Canceled by other peer"
+msgstr "Отказана от другата страна"
+
+msgctxt "encryption_info_title"
+msgid "Encryption Info"
+msgstr "Информация за криптиране"
+
+msgctxt "encryption_info_msg_no_ssl"
+msgid ""
+"The other device doesn't use a recent version of KDE Connect, using the "
+"legacy encryption method."
+msgstr ""
+"Другото устройство не използва последна версия на KDE Connect, като използва "
+"остарял метод на криптиране."
+
+msgctxt "my_device_fingerprint"
+msgid "SHA256 fingerprint of your device certificate is:"
+msgstr "SHA256 отпечатък на сертификата на вашето устройство е:"
+
+msgctxt "remote_device_fingerprint"
+msgid "SHA256 fingerprint of remote device certificate is:"
+msgstr "SHA256 отпечатък на сертификата на отдалеченото устройство е:"
+
+msgctxt "pair_requested"
+msgid "Pair requested"
+msgstr "Заявено е сдвояване"
+
+#, c-format
+msgctxt "pairing_request_from"
+msgid "Pairing request from %1s"
+msgstr "Заявено е сдвояване от %1s"
+
+#, c-format
+msgctxt "incoming_file_title"
+msgid "Receiving %1$d file from %2$s"
+msgid_plural "Receiving %1$d files from %2$s"
+msgstr[0] "Получаване на %1$d файл от %2$s"
+msgstr[1] "Получаване на %1$d файлове от %2$s"
+
+#, c-format
+msgctxt "incoming_files_text"
+msgid "File: %1s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "Файл: %1s"
+msgstr[1] "(Файл %2$d от %3$d) : %1$s"
+
+#, c-format
+msgctxt "outgoing_file_title"
+msgid "Sending %1$d file to %2$s"
+msgid_plural "Sending %1$d files to %2$s"
+msgstr[0] "Изпращане на %1$d файл до %2$s"
+msgstr[1] "Изпращане на %1$d файла към %2$s"
+
+#, c-format
+msgctxt "outgoing_files_text"
+msgid "File: %1$s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "Файл: %1$s"
+msgstr[1] "(Файл %2$d от %3$d) : %1$s"
+
+#, c-format
+msgctxt "received_files_title"
+msgid "Received file from %1$s"
+msgid_plural "Received %2$d files from %1$s"
+msgstr[0] "Получен файл от %1$s"
+msgstr[1] "Получени %2$d файла от %1$s"
+
+#, c-format
+msgctxt "received_files_fail_title"
+msgid "Failed receiving file from %1$s"
+msgid_plural "Failed receiving %2$d of %3$d files from %1$s"
+msgstr[0] "Неуспешно получаване на файл от %1$s"
+msgstr[1] "Неуспешно получаване на %2$d от %3$d файла от %1$s"
+
+#, c-format
+msgctxt "sent_files_title"
+msgid "Sent file to %1$s"
+msgid_plural "Sent %2$d files to %1$s"
+msgstr[0] "Изпратен файл до %1$s"
+msgstr[1] "Изпратени %2$d файла до %1$s"
+
+#, c-format
+msgctxt "send_files_fail_title"
+msgid "Failed sending file to %1$s"
+msgid_plural "Failed sending %2$d of %3$d files to %1$s"
+msgstr[0] "Неуспешно изпращане на файл до %1$s"
+msgstr[1] "Неуспешно изпращане на %2$d от %3$d файлове до %1$s"
+
+msgctxt "tap_to_open"
+msgid "Tap to open"
+msgstr "Докоснете, за да отворите"
+
+#, c-format
+msgctxt "received_file_text"
+msgid "Tap to open '%1s'"
+msgstr "Докоснете, за да отворите '%1s'"
+
+#, c-format
+msgctxt "cannot_create_file"
+msgid "Cannot create file %s"
+msgstr "Не може да се създаде файл %s"
+
+msgctxt "tap_to_answer"
+msgid "Tap to answer"
+msgstr "Докоснете за да отговорите"
+
+msgctxt "right_click"
+msgid "Send Right Click"
+msgstr "Изпращане на щракване с десен бутон"
+
+msgctxt "middle_click"
+msgid "Send Middle Click"
+msgstr "Изпращане на средно щракване"
+
+msgctxt "show_keyboard"
+msgid "Show Keyboard"
+msgstr "Показване на клавиатурата"
+
+msgctxt "device_not_paired"
+msgid "Device not paired"
+msgstr "Устройството не е сдвоено"
+
+msgctxt "request_pairing"
+msgid "Request pairing"
+msgstr "Заявка за сдвояване"
+
+msgctxt "pairing_accept"
+msgid "Accept"
+msgstr "Приемане"
+
+msgctxt "pairing_reject"
+msgid "Reject"
+msgstr "Отхвърляне"
+
+msgctxt "settings"
+msgid "Settings"
+msgstr "Настройки"
+
+msgctxt "mpris_play"
+msgid "Play"
+msgstr "Възпроизвеждане"
+
+msgctxt "mpris_pause"
+msgid "Pause"
+msgstr "Пауза"
+
+msgctxt "mpris_previous"
+msgid "Previous"
+msgstr "Предишен"
+
+msgctxt "mpris_rew"
+msgid "Rewind"
+msgstr "Превъртане назад"
+
+msgctxt "mpris_ff"
+msgid "Fast-forward"
+msgstr "Превъртане напред"
+
+msgctxt "mpris_next"
+msgid "Next"
+msgstr "Следващ"
+
+msgctxt "mpris_loop"
+msgid "Loop"
+msgstr "Повторение"
+
+msgctxt "mpris_shuffle"
+msgid "Shuffle"
+msgstr "Разбъркване"
+
+msgctxt "mpris_volume"
+msgid "Volume"
+msgstr "Сила на звука"
+
+msgctxt "mpris_time_settings_title"
+msgid "Forward/rewind buttons"
+msgstr "Бутони за превъртане напред/назад"
+
+msgctxt "mpris_time_settings_summary"
+msgid "Adjust the time to fast forward/rewind when pressed"
+msgstr "Регулиране на времето за превъртане напред/назад при натискане"
+
+msgctxt "mpris_time_entries:0"
+msgid "10 seconds"
+msgstr "10 секунди"
+
+msgctxt "mpris_time_entries:1"
+msgid "20 seconds"
+msgstr "20 секунди"
+
+msgctxt "mpris_time_entries:2"
+msgid "30 seconds"
+msgstr "30 секунди"
+
+msgctxt "mpris_time_entries:3"
+msgid "1 minute"
+msgstr "1 минута"
+
+msgctxt "mpris_time_entries:4"
+msgid "2 minutes"
+msgstr "2 минути"
+
+msgctxt "mpris_notification_settings_title"
+msgid "Show media control notification"
+msgstr "Показване на известие за управление на медиите"
+
+msgctxt "mpris_notification_settings_summary"
+msgid "Allow controlling your media players without opening KDE Connect"
+msgstr ""
+"Разрешаване на управлението на медийните плейъри, без да отваряте KDE Connect"
+
+msgctxt "share_to"
+msgid "Share To…"
+msgstr "Споделяне към..."
+
+msgctxt "protocol_version_newer"
+msgid "This device uses a newer protocol version"
+msgstr "Това устройство използва по-нова версия на протокола"
+
+#, c-format
+msgctxt "plugin_settings_with_name"
+msgid "%s settings"
+msgstr "%s настройки"
+
+msgctxt "invalid_device_name"
+msgid "Invalid device name"
+msgstr "Невалидно име на устройство"
+
+msgctxt "shareplugin_text_saved"
+msgid "Received text, saved to clipboard"
+msgstr "Получен текст, запазен в клипборда"
+
+msgctxt "custom_devices_settings"
+msgid "Custom device list"
+msgstr "Списък с потребителски устройства"
+
+msgctxt "custom_device_list"
+msgid "Add devices by IP"
+msgstr "Добавяне на устройства по IP адрес"
+
+msgctxt "custom_device_deleted"
+msgid "Custom device deleted"
+msgstr "Изтрито потребителско устройство"
+
+msgctxt "custom_device_list_help"
+msgid ""
+"If your device is not automatically detected you can add its IP address or "
+"hostname by clicking on the Floating Action Button"
+msgstr ""
+"Ако устройството ви не е открито автоматично, можете да добавите неговия IP "
+"адрес или име на хост, като щракнете върху плаващия бутон за действие"
+
+msgctxt "custom_device_fab_hint"
+msgid "Add a device"
+msgstr "Добавяне на устройство"
+
+msgctxt "undo"
+msgid "Undo"
+msgstr "Отмяна"
+
+msgctxt "share_notification_preference"
+msgid "Noisy notifications"
+msgstr "Шумни известия"
+
+msgctxt "share_notification_preference_summary"
+msgid "Vibrate and play a sound when receiving a file"
+msgstr "Вибриране и възпроизвеждане на звук при получаване на файл"
+
+msgctxt "share_destination_customize"
+msgid "Customize destination directory"
+msgstr "Персонализиране на директорията на местоназначението"
+
+msgctxt "share_destination_customize_summary_disabled"
+msgid "Received files will appear in Downloads"
+msgstr "Получените файлове ще се появят в Download"
+
+msgctxt "share_destination_customize_summary_enabled"
+msgid "Files will be stored in the directory below"
+msgstr "Файловете ще се съхраняват в директорията по-долу"
+
+msgctxt "share_destination_folder_preference"
+msgid "Destination directory"
+msgstr "Директория на местоназначението"
+
+msgctxt "share"
+msgid "Share"
+msgstr "Споделяне"
+
+#, c-format
+msgctxt "share_received_file"
+msgid "Share \"%s\""
+msgstr "Споделяне на \"%s\""
+
+msgctxt "title_activity_notification_filter"
+msgid "Notification filter"
+msgstr "Филтър на известия"
+
+msgctxt "filter_apps_info"
+msgid "Notifications will be synchronized for the selected apps."
+msgstr "Известията ще се синхронизират за избраните приложения."
+
+msgctxt "show_notification_if_screen_off"
+msgid "Send notifications only if the screen is off"
+msgstr "Изпращане на известия само ако екранът е изключен"
+
+#, c-format
+msgctxt "sftp_sdcard_num"
+msgid "SD card %d"
+msgstr "SD карта %d"
+
+msgctxt "sftp_sdcard"
+msgid "SD card"
+msgstr "SD карта"
+
+msgctxt "sftp_readonly"
+msgid "(read only)"
+msgstr "(само за четене)"
+
+msgctxt "sftp_camera"
+msgid "Camera pictures"
+msgstr "Снимки от камерата"
+
+msgctxt "add_device_dialog_title"
+msgid "Add device"
+msgstr "Добавяне на устройство"
+
+msgctxt "add_device_hint"
+msgid "Hostname or IP address"
+msgstr "Име на хост или IP адрес"
+
+msgctxt "sftp_preference_detected_sdcards"
+msgid "Detected SD cards"
+msgstr "Открити SD карти"
+
+msgctxt "sftp_preference_edit_sdcard_title"
+msgid "Edit SD card"
+msgstr "Редактиране на SD карта"
+
+msgctxt "sftp_preference_configured_storage_locations"
+msgid "Configured storage locations"
+msgstr "Конфигурирани места за съхранение"
+
+msgctxt "sftp_preference_add_storage_location_title"
+msgid "Add storage location"
+msgstr "Добавяне на място за съхранение"
+
+msgctxt "sftp_preference_edit_storage_location"
+msgid "Edit storage location"
+msgstr "Редактиране на място за съхранение"
+
+msgctxt "sftp_preference_add_camera_shortcut"
+msgid "Add camera folder shortcut"
+msgstr "Добавяне на пряк път до папката на камерата"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_on"
+msgid "Add a shortcut to the camera folder"
+msgstr "Добавяне на пряк път до папката на камерата"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_off"
+msgid "Do not add a shortcut to the camera folder"
+msgstr "Да не се добавя пряк път до папката на камерата"
+
+msgctxt "sftp_storage_preference_storage_location"
+msgid "Storage location"
+msgstr "Място за съхранение"
+
+msgctxt "sftp_storage_preference_storage_location_already_configured"
+msgid "This location has already been configured"
+msgstr "Това местоположение вече е конфигурирано"
+
+msgctxt "sftp_storage_preference_click_to_select"
+msgid "click to select"
+msgstr "кликнете за избор"
+
+msgctxt "sftp_storage_preference_display_name"
+msgid "Display name"
+msgstr "Показвано име"
+
+msgctxt "sftp_storage_preference_display_name_already_used"
+msgid "This display name is already used"
+msgstr "Това име на дисплея вече се използва"
+
+msgctxt "sftp_storage_preference_display_name_cannot_be_empty"
+msgid "Display name cannot be empty"
+msgstr "Името на дисплея не може да бъде празно"
+
+msgctxt "sftp_action_mode_menu_delete"
+msgid "Delete"
+msgstr "Изтриване"
+
+msgctxt "sftp_no_sdcard_detected"
+msgid "No SD card detected"
+msgstr "Не е открита SD карта"
+
+msgctxt "sftp_no_storage_locations_configured"
+msgid "No storage locations configured"
+msgstr "Няма конфигурирани места за съхранение"
+
+msgctxt "sftp_saf_permission_explanation"
+msgid "To access files remotely you have to configure storage locations"
+msgstr ""
+"За да получите достъп до файлове от разстояние, трябва да конфигурирате "
+"местата за съхранение"
+
+msgctxt "no_players_connected"
+msgid "No players found"
+msgstr "Не са открити играчи"
+
+msgctxt "send_files"
+msgid "Send files"
+msgstr "Изпращане на файлове"
+
+msgctxt "pairing_title"
+msgid "KDE Connect Devices"
+msgstr "Устройства на KDE Connect"
+
+msgctxt "pairing_description"
+msgid ""
+"Other devices running KDE Connect in your same network should appear here."
+msgstr ""
+"Тук трябва да се появят други устройства, работещи с KDE Connect в същата "
+"мрежа."
+
+msgctxt "device_rename_title"
+msgid "Rename device"
+msgstr "Преименуване на устройство"
+
+msgctxt "device_rename_confirm"
+msgid "Rename"
+msgstr "Преименуване"
+
+msgctxt "refresh"
+msgid "Refresh"
+msgstr "Презареждане"
+
+msgctxt "unreachable_description"
+msgid ""
+"This paired device is not reachable. Make sure it is connected to your same "
+"network."
+msgstr ""
+"Това сдвоено устройство не е достижимо. Уверете се, че то е свързано към "
+"същата мрежа."
+
+msgctxt "no_wifi"
+msgid ""
+"You're not connected to a Wi-Fi network, so you may not be able to see any "
+"devices. Click here to enable Wi-Fi."
+msgstr ""
+"Не сте свързани към Wi-Fi мрежа, така че може да не можете да видите нито "
+"едно устройства. Щракнете тук, за да активирате Wi-Fi."
+
+msgctxt "on_non_trusted_message"
+msgid "Not on a trusted network: autodiscovery is disabled."
+msgstr "Не сте в доверена мрежа: автоматичното откриване е деактивирано."
+
+msgctxt "no_file_browser"
+msgid "There are no file browsers installed."
+msgstr "Няма инсталирани файлови браузъри."
+
+msgctxt "pref_plugin_telepathy"
+msgid "Send SMS"
+msgstr "Изпращане на SMS"
+
+msgctxt "pref_plugin_telepathy_desc"
+msgid "Send text messages from your desktop"
+msgstr "Изпращане на текстови съобщения от работния ви плот"
+
+msgctxt "pref_plugin_telepathy_mms"
+msgid "Send MMS"
+msgstr "Изпращане на MMS"
+
+msgctxt "pref_plugin_telepathy_mms_desc"
+msgid ""
+"To be able to send MMS from KDE Connect you need to set it as the default "
+"SMS app."
+msgstr ""
+"За да можете да изпращате MMS от KDE Connect, трябва да го зададете като SMS "
+"приложение по подразбиране."
+
+msgctxt "findmyphone_title"
+msgid "Find my phone"
+msgstr "Намиране на моя телефон"
+
+msgctxt "findmyphone_title_tablet"
+msgid "Find my tablet"
+msgstr "Намиране на моя таблет"
+
+msgctxt "findmyphone_title_tv"
+msgid "Find my TV"
+msgstr "Намери моя телевизор"
+
+msgctxt "findmyphone_description"
+msgid "Rings this device so you can find it"
+msgstr "Позвънете на това устройство, за да можете да го намерите"
+
+msgctxt "findmyphone_found"
+msgid "Found it"
+msgstr "Намерих го"
+
+msgctxt "open"
+msgid "Open"
+msgstr "Отваряне"
+
+msgctxt "close"
+msgid "Close"
+msgstr "Затваряне"
+
+msgctxt "plugins_need_permission"
+msgid "Some Plugins need permissions to work (tap for more info):"
+msgstr ""
+"Някои плъгини се нуждаят от разрешения, за да работят (докоснете за повече "
+"информация):"
+
+msgctxt "permission_explanation"
+msgid "This plugin needs permissions to work"
+msgstr "Тази приставка се нуждае от разрешения, за да работи"
+
+msgctxt "optional_permission_explanation"
+msgid "You need to grant extra permissions to enable all functions"
+msgstr ""
+"Трябва да предоставите допълнителни разрешения, за да активирате всички "
+"функции"
+
+msgctxt "plugins_need_optional_permission"
+msgid ""
+"Some plugins have features disabled because of lack of permission (tap for "
+"more info):"
+msgstr ""
+"Някои плъгини имат деактивирани функции поради липса на разрешение "
+"(докоснете за повече информация):"
+
+msgctxt "share_optional_permission_explanation"
+msgid "To receive shared files you need to choose a destination directory"
+msgstr ""
+"За да получавате споделени файлове, трябва да изберете директория за "
+"местоназначение"
+
+msgctxt "telepathy_permission_explanation"
+msgid ""
+"To read and write SMS from your desktop you need to give permission to SMS"
+msgstr ""
+"За да четете и записвате SMS от работния плот, трябва да дадете разрешение "
+"за SMS"
+
+msgctxt "telephony_permission_explanation"
+msgid ""
+"To see phone calls on the desktop you need to give permission to phone call "
+"logs and phone state"
+msgstr ""
+"За да виждате телефонни обаждания на работния плот, трябва да дадете "
+"разрешение за телефонни обаждания дневници и състояние на телефона"
+
+msgctxt "telephony_optional_permission_explanation"
+msgid ""
+"To see a contact name instead of a phone number you need to give access to "
+"the phone's contacts"
+msgstr ""
+"За да видите име на контакт вместо телефонен номер, трябва да дадете достъп "
+"до контактите на телефона"
+
+msgctxt "contacts_permission_explanation"
+msgid ""
+"To share your contacts book with the desktop, you need to give contacts "
+"permission"
+msgstr ""
+"За да споделите книгата си с контакти с десктопа, трябва да дадете "
+"разрешение за контакти разрешение"
+
+msgctxt "select_ringtone"
+msgid "Select a ringtone"
+msgstr "Избор на мелодия на звънене"
+
+msgctxt "telephony_pref_blocked_title"
+msgid "Blocked numbers"
+msgstr "Блокирани номера"
+
+msgctxt "telephony_pref_blocked_dialog_desc"
+msgid ""
+"Don't show calls and SMS from these numbers. Please specify one number per "
+"line"
+msgstr ""
+"Не показвайте обажданията и SMS от тези номера. Моля, посочете по един номер "
+"за линия"
+
+msgctxt "mpris_coverart_description"
+msgid "Cover art of current media"
+msgstr "Обложка на текущата медия"
+
+msgctxt "device_icon_description"
+msgid "Device icon"
+msgstr "Икона на устройство"
+
+msgctxt "settings_icon_description"
+msgid "Settings icon"
+msgstr "Икона за настройки"
+
+msgctxt "presenter_fullscreen"
+msgid "Fullscreen"
+msgstr "Цял екран"
+
+msgctxt "presenter_exit"
+msgid "Exit presentation"
+msgstr "Изход от презентацията"
+
+msgctxt "presenter_lock_tip"
+msgid ""
+"You can lock your device and use the volume keys to go to the previous/next "
+"slide"
+msgstr ""
+"Можете да заключите устройството си и да използвате клавишите за сила на "
+"звука, за да преминете към предишната/следващата слайд"
+
+msgctxt "add_command"
+msgid "Add a command"
+msgstr "Добавяне на команда"
+
+msgctxt "addcommand_explanation"
+msgid "There are no commands registered"
+msgstr "Няма регистрирани команди"
+
+msgctxt "addcommand_explanation2"
+msgid "You can add new commands in the KDE Connect System Settings"
+msgstr "Можете да добавите нови команди в системните настройки на KDE Connect"
+
+msgctxt "add_command_description"
+msgid "You can add commands on the desktop"
+msgstr "Можете да добавяте команди на работния плот"
+
+msgctxt "pref_plugin_mprisreceiver"
+msgid "Media Player Control"
+msgstr "Управление на медийния плейър"
+
+msgctxt "pref_plugin_mprisreceiver_desc"
+msgid "Control your phone's media players from another device"
+msgstr "Управление на медийните плейъри на телефона от друго устройство"
+
+msgctxt "notification_channel_default"
+msgid "Other notifications"
+msgstr "Други известия"
+
+msgctxt "notification_channel_persistent"
+msgid "Persistent indicator"
+msgstr "Постоянен индикатор"
+
+msgctxt "notification_channel_media_control"
+msgid "Media control"
+msgstr "Контрол на медиите"
+
+msgctxt "notification_channel_filetransfer"
+msgid "File transfer"
+msgstr "Прехвърляне на файл"
+
+msgctxt "notification_channel_high_priority"
+msgid "High priority"
+msgstr "Висок приоритет"
+
+msgctxt "notification_channel_sms_mms"
+msgid "New Message"
+msgstr "Ново съобщение"
+
+msgctxt "mpris_stop"
+msgid "Stop the current player"
+msgstr "Спиране на текущия плейър"
+
+msgctxt "copy_url_to_clipboard"
+msgid "Copy URL to clipboard"
+msgstr "Копиране на URL в клипборда"
+
+msgctxt "clipboard_toast"
+msgid "Copied to clipboard"
+msgstr "Копиран в клипборда"
+
+msgctxt "runcommand_notreachable"
+msgid "Device is not reachable"
+msgstr "Устройството не е достъпно"
+
+msgctxt "runcommand_notpaired"
+msgid "Device is not paired"
+msgstr "Устройството не е сдвоено"
+
+msgctxt "runcommand_nosuchdevice"
+msgid "There is no such device"
+msgstr "Няма такова устройство"
+
+msgctxt "runcommand_noruncommandplugin"
+msgid "This device does not have the Run Command Plugin enabled"
+msgstr "Това устройство няма активиран плъгин за изпълнение на команди"
+
+msgctxt "pref_plugin_findremotedevice"
+msgid "Find remote device"
+msgstr "Намиране на отдалечено устройство"
+
+msgctxt "pref_plugin_findremotedevice_desc"
+msgid "Ring your remote device"
+msgstr "Позвъняване на отдалеченото устройство"
+
+msgctxt "ring"
+msgid "Ring"
+msgstr "Позвъняване"
+
+msgctxt "pref_plugin_systemvolume"
+msgid "System volume"
+msgstr "Сила на звука на системта"
+
+msgctxt "pref_plugin_systemvolume_desc"
+msgid "Control the system volume of the remote device"
+msgstr "Управление на системната сила на звука на отдалеченото устройство"
+
+msgctxt "mute"
+msgid "Mute"
+msgstr "Заглушаване"
+
+msgctxt "all"
+msgid "All"
+msgstr "Всички"
+
+msgctxt "devices"
+msgid "Devices"
+msgstr "Устройства"
+
+msgctxt "settings_rename"
+msgid "Device name"
+msgstr "Име на устройство"
+
+msgctxt "settings_dark_mode"
+msgid "Dark theme"
+msgstr "Тъмна тема"
+
+msgctxt "settings_more_settings_title"
+msgid "More settings"
+msgstr "Още настройки"
+
+msgctxt "settings_more_settings_text"
+msgid ""
+"Per-device settings can be found under 'Plugin settings' from within a "
+"device."
+msgstr ""
+"Настройките за всяко устройство могат да бъдат намерени в раздел \"Настройки "
+"на плъгина\" в рамките на устройство."
+
+msgctxt "setting_persistent_notification"
+msgid "Show persistent notification"
+msgstr "Показване на постоянна нотификация"
+
+msgctxt "setting_persistent_notification_oreo"
+msgid "Persistent notification"
+msgstr "Постоянна нотификация"
+
+msgctxt "setting_persistent_notification_description"
+msgid "Tap to enable/disable in Notification settings"
+msgstr "Докоснете, за да разрешите/забраните в настройките за известия"
+
+msgctxt "extra_options"
+msgid "Extra options"
+msgstr "Допълнителни опции"
+
+msgctxt "privacy_options"
+msgid "Privacy options"
+msgstr "Опции за поверителност"
+
+msgctxt "set_privacy_options"
+msgid "Set your privacy options"
+msgstr "Задаване на опции за поверителност"
+
+msgctxt "block_contents"
+msgid "Block contents of notifications"
+msgstr "Блокиране на съдържанието на известията"
+
+msgctxt "block_images"
+msgid "Block images in notifications"
+msgstr "Блокиране на изображения в известията"
+
+msgctxt "notification_channel_receivenotification"
+msgid "Notifications from other devices"
+msgstr "Известия от други устройства"
+
+msgctxt "take_picture"
+msgid "Launch camera"
+msgstr "Стартиране на камерата"
+
+msgctxt "plugin_photo_desc"
+msgid "Launch the camera app to ease taking and transferring pictures"
+msgstr ""
+"Стартирайте приложението за камера, за да улесните правенето и прехвърлянето "
+"на снимки"
+
+msgctxt "no_app_for_opening"
+msgid "No suitable app found to open this file"
+msgstr "Не е намерено подходящо приложение за отваряне на този файл"
+
+msgctxt "remote_keyboard_service"
+msgid "KDE Connect Remote Keyboard"
+msgstr "Отдалечена клавиатура KDE Connect"
+
+msgctxt "presenter_pointer"
+msgid "Pointer"
+msgstr "Показалец"
+
+msgctxt "trusted_networks"
+msgid "Trusted networks"
+msgstr "Доверени мрежи"
+
+msgctxt "trusted_networks_desc"
+msgid "Restrict autodiscovery to known networks"
+msgstr "Ограничаване на автоматичното откриване до познати мрежи"
+
+#, c-format
+msgctxt "add_trusted_network"
+msgid "Add %1s"
+msgstr "Добавяне на %1s"
+
+msgctxt "empty_trusted_networks_list_text"
+msgid "You haven't added any trusted network yet"
+msgstr "Все още не сте добавили надеждна мрежа"
+
+msgctxt "allow_all_networks_text"
+msgid "Allow all"
+msgstr "Allow all"
+
+msgctxt "location_permission_needed_title"
+msgid "Permission required"
+msgstr "Изисква се разрешение"
+
+msgctxt "location_permission_needed_desc"
+msgid "Android requires the Location permission to identify your WiFi network"
+msgstr ""
+"Android изисква разрешение за местоположение, за да идентифицира вашата WiFi "
+"мрежа"
+
+msgctxt "clipboard_android_x_incompat"
+msgid ""
+"Android 10 has removed clipboard access to all apps. This plugin will be "
+"disabled."
+msgstr ""
+"Android 10 премахна достъпа до клипборда за всички приложения. Тази "
+"приставка ще бъде деактивирана."
+
+msgctxt "mpris_open_url"
+msgid "Continue playing here"
+msgstr "Продължете да играете тук"
+
+msgctxt "cant_open_url"
+msgid "Can't open URL to continue playing"
+msgstr "Не мога да отворя URL адреса, за да продължа играта"
+
+msgctxt "bigscreen_home"
+msgid "Home"
+msgstr "Домашен адрес"
+
+msgctxt "bigscreen_up"
+msgid "Up"
+msgstr "Преместване нагоре"
+
+msgctxt "bigscreen_left"
+msgid "Left"
+msgstr "Ляво"
+
+msgctxt "bigscreen_select"
+msgid "Select"
+msgstr "Избор"
+
+msgctxt "bigscreen_right"
+msgid "Right"
+msgstr "Дясно"
+
+msgctxt "bigscreen_down"
+msgid "Down"
+msgstr "Преместване надолу"
+
+msgctxt "bigscreen_mic"
+msgid "Mic"
+msgstr "Микрофон"
+
+msgctxt "pref_plugin_bigscreen"
+msgid "Bigscreen remote"
+msgstr "Дистанционно управление за Bigscreen"
+
+msgctxt "pref_plugin_bigscreen_desc"
+msgid "Use your device as a remote for Plasma Bigscreen"
+msgstr "Използвайте устройството си като дистанционно за Plasma Bigscreen"
+
+msgctxt "bigscreen_optional_permission_explanation"
+msgid ""
+"To share microphone input from your phone you need to give access to the "
+"phone's audio input"
+msgstr ""
+"За да споделите входа на микрофона от телефона си, трябва да дадете достъп "
+"до аудиовхода на телефона"
+
+msgctxt "bigscreen_speech_extra_prompt"
+msgid "Speech"
+msgstr "Реч"
+
+msgctxt "message_reply_label"
+msgid "REPLY"
+msgstr "ОТГОВОР"
+
+msgctxt "mark_as_read_label"
+msgid "MARK AS READ"
+msgstr "МАРКИРАНЕ КАТО ПРОЧЕТЕНО"
+
+msgctxt "user_display_name"
+msgid "You"
+msgstr "Вие"
+
+msgctxt "set_default_sms_app_title"
+msgid "Send MMS"
+msgstr "Изпращане на MMS"
+
+msgctxt "set_group_message_as_mms_title"
+msgid "Send group MMS"
+msgstr "Изпращане на групови MMS"
+
+msgctxt "set_long_text_as_mms_title"
+msgid "Send long text as MMS"
+msgstr "Изпращане на дълъг текст като MMS"
+
+msgctxt "convert_to_mms_after_title"
+msgid "Convert to MMS"
+msgstr "Конвертиране в MMS"
+
+msgctxt "convert_to_mms_after_entries:0"
+msgid "After one message"
+msgstr "След едно съобщение"
+
+msgctxt "convert_to_mms_after_entries:1"
+msgid "After two messages"
+msgstr "След две съобщения"
+
+msgctxt "convert_to_mms_after_entries:2"
+msgid "After three messages"
+msgstr "След три съобщения"
+
+msgctxt "convert_to_mms_after_entries:3"
+msgid "After four messages"
+msgstr "След четири съобщения"
+
+msgctxt "convert_to_mms_after_entries:4"
+msgid "After five messages"
+msgstr "След пет съобщения"
+
+msgctxt "theme_dialog_title"
+msgid "Choose theme"
+msgstr "Изберете тема"
+
+msgctxt "theme_list:0"
+msgid "Set by Battery Saver"
+msgstr "Зададено от Пестене на батерията"
+
+msgctxt "theme_list:1"
+msgid "Light"
+msgstr "Лек"
+
+msgctxt "theme_list:2"
+msgid "Dark"
+msgstr "Тъмно"
+
+msgctxt "theme_list_v28:0"
+msgid "System Default"
+msgstr "Системни настройки по подразбиране"
+
+msgctxt "theme_list_v28:1"
+msgid "Light"
+msgstr "Слаб"
+
+msgctxt "theme_list_v28:2"
+msgid "Dark"
+msgstr "Тъмна"
+
+msgctxt "report_bug"
+msgid "Report Bug"
+msgstr "Подаване на сигнал за грешка"
+
+msgctxt "donate"
+msgid "Donate"
+msgstr "Дарение"
+
+msgctxt "source_code"
+msgid "Source Code"
+msgstr "Изходен код"
+
+msgctxt "licenses"
+msgid "Licenses"
+msgstr "Лицензи"
+
+msgctxt "website"
+msgid "Website"
+msgstr "Уебсайт"
+
+msgctxt "about"
+msgid "About"
+msgstr "За програмата"
+
+msgctxt "authors"
+msgid "Authors"
+msgstr "Автори"
+
+msgctxt "thanks_to"
+msgid "Thanks To"
+msgstr "Благодарности на"
+
+msgctxt "easter_egg"
+msgid "Easter Egg"
+msgstr "Великденско яйце"
+
+#, c-format
+msgctxt "email_contributor"
+msgid ""
+"Email contributor\n"
+"%s"
+msgstr ""
+"Сътрудник за имейл\n"
+"%s"
+
+#, c-format
+msgctxt "visit_contributors_homepage"
+msgid ""
+"Visit contributor's homepage\n"
+"%s"
+msgstr ""
+"Посетете домашната страница на автора\n"
+"%s"
+
+#, c-format
+msgctxt "version"
+msgid "Version %s"
+msgstr "Версия %s"
+
+msgctxt "about_kde"
+msgid "About KDE"
+msgstr "Относно KDE"
+
+msgctxt "kde_be_free"
+msgid "KDE - Be Free!"
+msgstr "KDE - Бъдете свободни!"
+
+msgctxt "kde"
+msgid "KDE"
+msgstr "KDE"
+
+msgctxt "konqi"
+msgid "Konqi"
+msgstr "Konqi"
+
+msgctxt "rise_up"
+msgid "Rise Up"
+msgstr "Разширяване на горе"
+
+msgctxt "rise_down"
+msgid "Rise Down"
+msgstr "Разширяване на долу"
+
+msgctxt "click_here_to_type"
+msgid "Tap here to type"
+msgstr "Докоснете тук, за да въведете"
+
+msgctxt "clear_compose"
+msgid "Clear"
+msgstr "Изчистване"
+
+msgctxt "send_compose"
+msgid "Send"
+msgstr "Изпращане"
+
+msgctxt "open_compose_send"
+msgid "Compose text"
+msgstr "Съставяне на текст"
+
+msgctxt "app_description"
+msgid ""
+"Multi-platform app that allows your devices to communicate (e.g., your phone "
+"and your computer)"
+msgstr ""
+"Мултиплатформено приложение, което позволява на устройствата ви да "
+"комуникират (напр. телефонът ви и вашия компютър)"
+
+msgctxt "about_kde_about"
+msgid ""
+"&lt;h1&gt;About&lt;/h1&gt; &lt;p&gt;KDE is a world-wide community of "
+"software engineers, artists, writers, translators and creators who are "
+"committed to &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Free "
+"Software&lt;/a&gt; development. KDE produces the Plasma desktop environment, "
+"hundreds of applications, and the many software libraries that support them."
+"&lt;/p&gt; &lt;p&gt;KDE is a cooperative enterprise: no single entity "
+"controls its direction or products. Instead, we work together to achieve the "
+"common goal of building the world's finest Free Software. Everyone is "
+"welcome to &lt;a href=https://community.kde.org/Get_Involved&gt;join and "
+"contribute&lt;/a&gt; to KDE, including you.&lt;/p&gt; Visit &lt;a "
+"href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; for more "
+"information about the KDE community and the software we produce."
+msgstr ""
+"&lt;h1&gt;За&lt;/h1&gt; &lt;p&gt;KDE е световна общност от софтуерни "
+"инженери, художници, писатели, преводачи и творци, които са отдадени на &lt;"
+"a href=https://www.gnu.org/philosophy/free-sw.html&gt;свободното "
+"разработване на софтуер&lt;/a&gt;. KDE създава работната среда Plasma, "
+"стотици приложения и многобройните софтуерни библиотеки, които ги поддържат."
+"&lt;/p&gt; &lt;p&gt;KDE е кооперативно предприятие: нито една отделна "
+"организация контролира насоките или продуктите му. Вместо това ние работим "
+"заедно, за да постигнем общата цел да създадем най-добрия свободен софтуер в "
+"света. Всеки е добре дошъл да се присъедини и да да допринесе&lt;/a&gt; за "
+"KDE, включително и вие.&lt;/p&gt; Посетете &lt;a href=https://www.kde.org/"
+"&gt;https://www.kde.org/&lt;/a&gt; за повече информация за общността на KDE "
+"и за софтуера, който създаваме."
+
+msgctxt "about_kde_report_bugs_or_wishes"
+msgid ""
+"&lt;h1&gt;Report Bugs or Wishes&lt;/h1&gt; &lt;p&gt;Software can always be "
+"improved, and the KDE team is ready to do so. However, you - the user - must "
+"tell us when something does not work as expected or could be done better."
+"&lt;/p&gt; &lt;p&gt;KDE has a bug tracking system. Visit &lt;a href=https://"
+"bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; or use the \"Report Bug\" "
+"button from the about screen to report bugs.&lt;/p&gt; If you have a "
+"suggestion for improvement then you are welcome to use the bug tracking "
+"system to register your wish. Make sure you use the severity called "
+"\"Wishlist\"."
+msgstr ""
+" &lt;h1&gt;Докладвайте за грешки или желания&lt;/h1&gt; &lt;p&gt;Софтуерът "
+"винаги може да бъде подобрен и екипът на KDE е готов да го направи. Въпреки "
+"това вие - потребителят - трябва да да ни кажете, когато нещо не работи "
+"според очакванията или може да бъде направено по-добре.&lt;/p&gt; &lt;p&gt;"
+"KDE разполага със система за проследяване на грешки. Посетете &lt;a "
+"href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; или "
+"използвайте бутона \"Докладване на грешка\" от екрана за програмата, за да "
+"съобщите за грешки.&lt;/p&gt; Ако имате предложение за подобрение, тогава "
+"можете да използвате системата за проследяване на грешки, за да регистрирате "
+"желанието си. Уверете се, че използвате тежестта, наречена \"Wishlist\"."
+
+msgctxt "about_kde_join_kde"
+msgid ""
+"&lt;h1&gt;Join KDE&lt;/h1&gt; &lt;p&gt;You do not have to be a software "
+"developer to be a member of the KDE team. You can join the national teams "
+"that translate program interfaces. You can provide graphics, themes, sounds, "
+"and improved documentation. You decide!&lt;/p&gt; &lt;p&gt;Visit &lt;a "
+"href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/"
+"Get_Involved&lt;/a&gt; for information on some projects in which you can "
+"participate.&lt;/p&gt; If you need more information or documentation, then a "
+"visit to &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/"
+"&lt;/a&gt; will provide you with what you need."
+msgstr ""
+"&lt;h1&gt;Присъединете се към KDE&lt;/h1&gt; &lt;p&gt;Не е необходимо да сте "
+"софтуерен разработчик на софтуер, за да сте член на екипа на KDE. Можете да "
+"се присъедините към националните екипи които превеждат програмни интерфейси. "
+"Можете да предоставяте графики, теми, звуци, и подобрена документация. Вие "
+"решавате!&lt;/p&gt; &lt;p&gt;Посетете &lt;a href=https://community.kde.org/"
+"Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; за "
+"информация относно някои проекти, в които можете да да участвате.&lt;/p&gt; "
+"Ако имате нужда от повече информация или документация, тогава посетете &lt;a "
+"href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; ще ви "
+"предостави необходимото."
+
+msgctxt "about_kde_support_kde"
+msgid ""
+"&lt;h1&gt;Support KDE&lt;/h1&gt; &lt;p&gt;KDE software is and will always be "
+"available free of charge, however creating it is not free.&lt;/p&gt; &lt;"
+"p&gt;To support development the KDE community has formed the KDE e.V., a non-"
+"profit organization legally founded in Germany. KDE e.V. represents the KDE "
+"community in legal and financial matters. See &lt;a href=https://ev.kde.org/"
+"&gt;https://ev.kde.org/&lt;/a&gt; for information on KDE e.V.&lt;/p&gt; &lt;"
+"p&gt;KDE benefits from many kinds of contributions, including financial. We "
+"use the funds to reimburse members and others for expenses they incur when "
+"contributing. Further funds are used for legal support and organizing "
+"conferences and meetings.&lt;/p&gt; &lt;p&gt;We would like to encourage you "
+"to support our efforts with a financial donation, using one of the ways "
+"described at &lt;a href=https://www.kde.org/community/donations/&gt;https://"
+"www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Thank you very much in "
+"advance for your support."
+msgstr ""
+"&lt;h1&gt;Подкрепете KDE&lt;/h1&gt; &lt;p&gt;Софтуерът на KDE е и винаги ще "
+"бъде достъпен безплатно, но създаването му не е безплатно.&lt;/p&gt; &lt;"
+"p&gt;За да подкрепи разработката, общността на KDE е създала KDE e.V., "
+"дружество, което еорганизация с не-стопанска цел, законно основана в "
+"Германия. KDE e.V. представлява KDE общността по правни и финансови въпроси. "
+"Вижте &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; за "
+"информация относно KDE e.V.&lt;/p&gt; &lt;p&gt;KDE се възползва от много "
+"видове принос, включително финансов. Ние използваме средствата, за да "
+"възстановим на членовете и други лица разходите, които те правят, когато "
+"допринасят. Други средства се използват за правна подкрепа и организиране на "
+"конференции и срещи.&lt;/p&gt; &lt;p&gt;Бихме искали да ви насърчим да да "
+"подкрепите нашите усилия с финансово дарение, като използвате един от "
+"начините описани в &lt;a href=https://www.kde.org/community/donations/&gt;"
+"https://www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Благодаря ви "
+"многопредварително за вашата подкрепа."
+
+#. Authors tasks
+msgctxt "maintainer_and_developer"
+msgid "Maintainer and developer"
+msgstr "Поддържащ и разработчик"
+
+msgctxt "developer"
+msgid "Developer"
+msgstr "Разработка"
+
+msgctxt "apple_support"
+msgid "macOS support. Working on iOS support"
+msgstr "Поддръжка на macOS. Работи се по поддръжката на iOS"
+
+msgctxt "bug_fixes_and_general_improvements"
+msgid "Bug fixes and general improvements"
+msgstr "Поправки на грешки и общи подобрения"
+
+msgctxt "samoilenko_yuri_task"
+msgid "SFTP implementation, bug fixes and general improvements"
+msgstr "Внедряване на SFTP, поправки на грешки и общи подобрения"
+
+msgctxt "aniket_kumar_task"
+msgid "SMS plugin improvements"
+msgstr "Подобрения на плъгина за SMS"
+
+msgctxt "alex_fiestas_task"
+msgid "Contacts plugin improvements"
+msgstr "Подобрения на плъгина за контакти"
+
+msgctxt "maxim_leshchenko_task"
+msgid "UI improvements and this about page"
+msgstr "Подобрения на потребителския интерфейс и тази страница за"
+
+msgctxt "holger_kaelberer_task"
+msgid "Remote keyboard plugin and bug fixes"
+msgstr "Плъгин за отдалечена клавиатура и поправки на грешки"
+
+msgctxt "saikrishna_arcot_task"
+msgid ""
+"Support for using the keyboard in the remote input plugin, bug fixes and "
+"general improvements"
+msgstr ""
+"Поддръжка за използване на клавиатура в плъгина за отдалечено въвеждане, "
+"поправки на грешки и общи подобрения"
+
+msgctxt "everyone_else"
+msgid "Everyone else who has contributed to KDE Connect over the years"
+msgstr "Всички останали, които са допринесли за KDE Connect през годините"
+
+msgctxt "send_clipboard"
+msgid "Send clipboard"
+msgstr "Изпращане на клипборд"
+
+msgctxt "tap_to_execute"
+msgid "Tap to execute"
+msgstr "Докоснете, за да се изпълни"

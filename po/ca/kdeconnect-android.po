@@ -1,0 +1,1719 @@
+# Translation of kdeconnect-android.po to Catalan
+# Copyright (C) 2014-2022 This_file_is_part_of_KDE
+# This file is distributed under the license LGPL version 2.1 or
+# version 3 or later versions approved by the membership of KDE e.V.
+#
+# Antoni Bella Pérez <antonibella5@yahoo.com>, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021.
+# Josep M. Ferrer <txemaq@gmail.com>, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdeconnect-android\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-01-16 00:43+0000\n"
+"PO-Revision-Date: 2022-07-13 18:33+0200\n"
+"Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
+"Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.0dev\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Accelerator-Marker: &\n"
+"X-Generator: Lokalize 20.12.0\n"
+
+#. # Dear potential translators:          Thank you for your interest in KDE
+#. Connect! We do not actually handle our own translations.         All
+#. translations for all KDE apps are handled by the [localization
+#. team](https://l10n.kde.org).         We really appreciate your translations,
+#. but make sure to submit them by working with the proper team!
+msgctxt "kde_connect"
+msgid "KDE Connect"
+msgstr "KDE Connect"
+
+msgctxt "manifest_label_share"
+msgid "Send to Device"
+msgstr "Envia a un dispositiu"
+
+msgctxt "foreground_notification_no_devices"
+msgid "Not connected to any device"
+msgstr "No està connectat a cap dispositiu"
+
+#, c-format
+msgctxt "foreground_notification_devices"
+msgid "Connected to: %s"
+msgstr "Connectat a: %s"
+
+msgctxt "foreground_notification_send_clipboard"
+msgid "Send Clipboard"
+msgstr "Envia al porta-retalls"
+
+msgctxt "pref_plugin_telephony"
+msgid "Telephony notifier"
+msgstr "Notificador de telefonia"
+
+msgctxt "pref_plugin_telephony_desc"
+msgid "Send notifications for incoming calls"
+msgstr "Envia notificacions per a les trucades entrants"
+
+msgctxt "pref_plugin_battery"
+msgid "Battery report"
+msgstr "Informe de bateria"
+
+msgctxt "pref_plugin_battery_desc"
+msgid "Periodically report battery status"
+msgstr "Informa periòdicament sobre l'estat de la bateria"
+
+msgctxt "pref_plugin_connectivity_report"
+msgid "Connectivity report"
+msgstr "Informa de la connectivitat"
+
+msgctxt "pref_plugin_connectivity_report_desc"
+msgid "Report network signal strength and status"
+msgstr "Informar la intensitat i l'estat del senyal de la xarxa"
+
+msgctxt "pref_plugin_sftp"
+msgid "Filesystem expose"
+msgstr "Exposa el sistema de fitxers"
+
+msgctxt "pref_plugin_sftp_desc"
+msgid "Allows to browse this device's filesystem remotely"
+msgstr "Permet navegar de forma remota pel sistema de fitxers del dispositiu"
+
+msgctxt "pref_plugin_clipboard"
+msgid "Clipboard sync"
+msgstr "Sincronitza el porta-retalls"
+
+msgctxt "pref_plugin_clipboard_desc"
+msgid "Share the clipboard content"
+msgstr "Comparteix el contingut del porta-retalls"
+
+msgctxt "pref_plugin_clipboard_sent"
+msgid "Clipboard Sent"
+msgstr "S'ha enviat al porta-retalls"
+
+msgctxt "pref_plugin_mousepad"
+msgid "Remote input"
+msgstr "Entrada remota"
+
+msgctxt "pref_plugin_mousepad_desc"
+msgid "Use your phone or tablet as a touchpad and keyboard"
+msgstr "Usa el vostre telèfon o tauleta com un ratolí tàctil i un teclat"
+
+msgctxt "pref_plugin_presenter"
+msgid "Slideshow remote"
+msgstr "Presentació de diapositives remota"
+
+msgctxt "pref_plugin_presenter_desc"
+msgid "Use your device to change slides in a presentation"
+msgstr "Usa el dispositiu per a canviar les diapositives d'una presentació"
+
+msgctxt "pref_plugin_remotekeyboard"
+msgid "Receive remote keypresses"
+msgstr "Rep les pulsacions remotes de tecles"
+
+msgctxt "pref_plugin_remotekeyboard_desc"
+msgid "Receive keypress events from remote devices"
+msgstr "Rep els esdeveniments de pulsacions de tecla des de dispositius remots"
+
+msgctxt "pref_plugin_mpris"
+msgid "Multimedia controls"
+msgstr "Controls multimèdia"
+
+msgctxt "pref_plugin_mpris_desc"
+msgid "Provides a remote control for your media player"
+msgstr "Proporciona un comandament a distància per al reproductor multimèdia"
+
+msgctxt "pref_plugin_runcommand"
+msgid "Run Command"
+msgstr "Executa una ordre"
+
+msgctxt "pref_plugin_runcommand_desc"
+msgid "Trigger remote commands from your phone or tablet"
+msgstr "Activa les ordres remotes des del telèfon o tauleta"
+
+msgctxt "pref_plugin_contacts"
+msgid "Contacts Synchronizer"
+msgstr "Sincronitzador dels contactes"
+
+msgctxt "pref_plugin_contacts_desc"
+msgid "Allow synchronizing the device's contacts book"
+msgstr "Permet sincronitzar la llibreta de contactes del dispositiu"
+
+msgctxt "pref_plugin_ping"
+msgid "Ping"
+msgstr "Ping"
+
+msgctxt "pref_plugin_ping_desc"
+msgid "Send and receive pings"
+msgstr "Envia i rep els «ping»"
+
+msgctxt "pref_plugin_notifications"
+msgid "Notification sync"
+msgstr "Sincronitza les notificacions"
+
+msgctxt "pref_plugin_notifications_desc"
+msgid "Access your notifications from other devices"
+msgstr "Accedeix a les vostres notificacions des d'altres dispositius"
+
+msgctxt "pref_plugin_receive_notifications"
+msgid "Receive notifications"
+msgstr "Rep les notificacions"
+
+msgctxt "pref_plugin_receive_notifications_desc"
+msgid "Receive notifications from the other device and display them on Android"
+msgstr "Rep notificacions des d'altres dispositius i mostrar-les a l'Android"
+
+msgctxt "pref_plugin_sharereceiver"
+msgid "Share and receive"
+msgstr "Comparteix i rep"
+
+msgctxt "pref_plugin_sharereceiver_desc"
+msgid "Share files and URLs between devices"
+msgstr "Comparteix els fitxers i URL entre els dispositius"
+
+msgctxt "device_list_empty"
+msgid "No devices"
+msgstr "No hi ha cap dispositiu"
+
+msgctxt "ok"
+msgid "OK"
+msgstr "D'acord"
+
+msgctxt "sad_ok"
+msgid "OK :("
+msgstr "D'acord :("
+
+msgctxt "cancel"
+msgid "Cancel"
+msgstr "Cancel·la"
+
+msgctxt "open_settings"
+msgid "Open settings"
+msgstr "Obre l'arranjament"
+
+msgctxt "no_permissions"
+msgid "You need to grant permission to access notifications"
+msgstr "Us caldrà concedir permís per a accedir a les notificacions"
+
+msgctxt "no_permission_mprisreceiver"
+msgid ""
+"To be able to control your media players you need to grant access to the "
+"notifications"
+msgstr ""
+"Per a poder controlar els reproductors multimèdia cal atorgar accés a les "
+"notificacions"
+
+msgctxt "no_permissions_remotekeyboard"
+msgid ""
+"To receive keypresses you need to activate the KDE Connect Remote Keyboard"
+msgstr ""
+"Per a rebre les pulsacions de tecles, haureu d'activar el teclat remot del "
+"KDE Connect"
+
+msgctxt "send_ping"
+msgid "Send ping"
+msgstr "Envia un ping"
+
+msgctxt "open_mpris_controls"
+msgid "Multimedia control"
+msgstr "Control multimèdia"
+
+msgctxt "remotekeyboard_editing_only_title"
+msgid "Handle remote keys only when editing"
+msgstr "Fes servir les tecles remotes només en editar"
+
+msgctxt "remotekeyboard_not_connected"
+msgid ""
+"There is no active remote keyboard connection, establish one in kdeconnect"
+msgstr ""
+"No hi ha cap connexió activa amb el teclat remot, establiu-ne una al kde-"
+"connect"
+
+msgctxt "remotekeyboard_connected"
+msgid "Remote keyboard connection is active"
+msgstr "La connexió amb el teclat remot està activa"
+
+msgctxt "remotekeyboard_multiple_connections"
+msgid ""
+"There is more than one remote keyboard connection, select the device to "
+"configure"
+msgstr ""
+"Hi ha més d'una connexió amb un teclat remot, seleccioneu el dispositiu per "
+"a configurar-lo"
+
+msgctxt "open_mousepad"
+msgid "Remote input"
+msgstr "Entrada remota"
+
+msgctxt "mousepad_info"
+msgid ""
+"Move a finger on the screen to move the mouse cursor. Tap for a click, and "
+"use two/three fingers for right and middle buttons. Use 2 fingers to scroll. "
+"Use a long press to drag'n drop."
+msgstr ""
+"Moveu un dit per la pantalla per a moure el cursor del ratolí. Toqueu per a "
+"un clic, i empreu dos/tres dits per als botons dret i mig. Useu 2 dits per a "
+"desplaçar. Empreu un toc llarg per a arrossegar i deixar anar."
+
+msgctxt "mousepad_single_tap_settings_title"
+msgid "Set one finger tap action"
+msgstr "Estableix l'acció de tocar amb un dit"
+
+msgctxt "mousepad_double_tap_settings_title"
+msgid "Set two finger tap action"
+msgstr "Estableix l'acció de tocar amb dos dits"
+
+msgctxt "mousepad_triple_tap_settings_title"
+msgid "Set three finger tap action"
+msgstr "Estableix l'acció de tocar amb tres dits"
+
+msgctxt "mousepad_sensitivity_settings_title"
+msgid "Set touchpad sensitivity"
+msgstr "Estableix la sensibilitat del ratolí tàctil"
+
+msgctxt "mousepad_acceleration_profile_settings_title"
+msgid "Set pointer acceleration"
+msgstr "Estableix l'acceleració de l'apuntador"
+
+msgctxt "mousepad_scroll_direction_title"
+msgid "Reverse Scrolling Direction"
+msgstr "Inverteix la direcció del desplaçament"
+
+msgctxt "mousepad_tap_entries:0"
+msgid "Left click"
+msgstr "Clic esquerre"
+
+msgctxt "mousepad_tap_entries:1"
+msgid "Right click"
+msgstr "Clic dret"
+
+msgctxt "mousepad_tap_entries:2"
+msgid "Middle click"
+msgstr "Clic del mig"
+
+msgctxt "mousepad_tap_entries:3"
+msgid "Nothing"
+msgstr "No fer res"
+
+msgctxt "mousepad_sensitivity_entries:0"
+msgid "Slowest"
+msgstr "La més lenta"
+
+msgctxt "mousepad_sensitivity_entries:1"
+msgid "Above Slowest"
+msgstr "Lenta"
+
+msgctxt "mousepad_sensitivity_entries:2"
+msgid "Default"
+msgstr "Predeterminada"
+
+msgctxt "mousepad_sensitivity_entries:3"
+msgid "Above Default"
+msgstr "Ràpida"
+
+msgctxt "mousepad_sensitivity_entries:4"
+msgid "Fastest"
+msgstr "La més ràpida"
+
+msgctxt "mousepad_acceleration_profile_entries:0"
+msgid "No Acceleration"
+msgstr "Sense acceleració"
+
+msgctxt "mousepad_acceleration_profile_entries:1"
+msgid "Weakest"
+msgstr "La més feble"
+
+msgctxt "mousepad_acceleration_profile_entries:2"
+msgid "Weaker"
+msgstr "Feble"
+
+msgctxt "mousepad_acceleration_profile_entries:3"
+msgid "Medium"
+msgstr "Mitjana"
+
+msgctxt "mousepad_acceleration_profile_entries:4"
+msgid "Stronger"
+msgstr "Forta"
+
+msgctxt "mousepad_acceleration_profile_entries:5"
+msgid "Strongest"
+msgstr "La més forta"
+
+msgctxt "sendkeystrokes_send_to"
+msgid "Send keystrokes to"
+msgstr "Envia les pulsacions de tecla a"
+
+msgctxt "sendkeystrokes_textbox_hint"
+msgid "Send keystrokes to host"
+msgstr "Envia les pulsacions de tecla a la màquina"
+
+msgctxt "sendkeystrokes_disabled_toast"
+msgid "Sending keystrokes is disabled - enable it in the settings"
+msgstr ""
+"L'enviament de les pulsacions de tecla està inhabilitat -habiliteu-lo a la "
+"configuració-"
+
+msgctxt "sendkeystrokes_wrong_data"
+msgid "Invalid mime type - needs to be 'text/x-keystrokes'"
+msgstr "El tipus MIME no és vàlid -ha de ser «text/x-keystrokes»-"
+
+#, c-format
+msgctxt "sendkeystrokes_sent_text"
+msgid "Sent %1$s to device %2$s"
+msgstr "Envia %1$s al dispositiu %2$s"
+
+msgctxt "sendkeystrokes_pref_category_summary"
+msgid ""
+"This module allows other apps to share text segments as keystrokes which "
+"will get send to the connected host"
+msgstr ""
+"Aquest mòdul permet que les altres aplicacions comparteixin segments de text "
+"com a pulsacions de tecla que s'enviaran a la màquina connectada"
+
+msgctxt "sendkeystrokes_pref_category_title"
+msgid "Send Keystrokes"
+msgstr "Envia les pulsacions de tecla"
+
+msgctxt "sendkeystrokes_pref_enabled"
+msgid "Enable Keystrokes sending"
+msgstr "Activa l'enviament de les pulsacions de tecla"
+
+msgctxt "sendkeystrokes_pref_enabled_summary"
+msgid "Listen for data with mime type 'text/x-keystrokes'"
+msgstr "Escolta per a les dades amb el tipus MIME «text/x-keystrokes»"
+
+msgctxt "sendkeystrokes_safe_text_enabled"
+msgid "Send safe text immediately"
+msgstr "Envia immediatament un text segur"
+
+msgctxt "sendkeystrokes_safe_text_enabled_summary"
+msgid "Send short only-numeric strings without confirmation"
+msgstr "Només envia cadenes curtes numèriques sense confirmació"
+
+msgctxt "pref_plugin_mousepad_send_keystrokes"
+msgid "Send as keystrokes"
+msgstr "Envia com a pulsacions de tecla"
+
+msgctxt "mouse_receiver_plugin_description"
+msgid "Receive remote mouse movement"
+msgstr "Rep el moviment del ratolí remot"
+
+msgctxt "mouse_receiver_plugin_name"
+msgid "Mouse receiver"
+msgstr "Receptor del ratolí"
+
+msgctxt "mouse_receiver_no_permissions"
+msgid "You need to enable Accessibility Service"
+msgstr "Cal que habiliteu el servei Accessibilitat"
+
+msgctxt "view_status_title"
+msgid "Status"
+msgstr "Estat"
+
+#, c-format
+msgctxt "battery_status_format"
+msgid "Battery: %d%%"
+msgstr "Bateria: %d%%"
+
+#, c-format
+msgctxt "battery_status_low_format"
+msgid "Battery: %d%% Low Battery"
+msgstr "Bateria: %d%% bateria baixa"
+
+#, c-format
+msgctxt "battery_status_charging_format"
+msgid "Battery: %d%% charging"
+msgstr "Bateria: %d%% està carregant"
+
+msgctxt "battery_status_unknown"
+msgid "Battery information not available"
+msgstr "La informació de la bateria no està disponible"
+
+msgctxt "category_connected_devices"
+msgid "Connected devices"
+msgstr "Dispositius connectats"
+
+msgctxt "category_not_paired_devices"
+msgid "Available devices"
+msgstr "Dispositius disponibles"
+
+msgctxt "category_remembered_devices"
+msgid "Remembered devices"
+msgstr "Dispositius recordats"
+
+msgctxt "device_menu_plugins"
+msgid "Plugin settings"
+msgstr "Arranjament dels connectors"
+
+msgctxt "device_menu_unpair"
+msgid "Unpair"
+msgstr "Desaparella"
+
+msgctxt "pair_new_device"
+msgid "Pair new device"
+msgstr "Aparella amb un dispositiu nou"
+
+msgctxt "unknown_device"
+msgid "Unknown device"
+msgstr "Dispositiu desconegut"
+
+msgctxt "error_not_reachable"
+msgid "Device not reachable"
+msgstr "No es pot accedir al dispositiu"
+
+msgctxt "error_already_paired"
+msgid "Device already paired"
+msgstr "El dispositiu ja està aparellat"
+
+msgctxt "error_could_not_send_package"
+msgid "Could not send package"
+msgstr "No s'ha pogut enviar el paquet"
+
+msgctxt "error_timed_out"
+msgid "Timed out"
+msgstr "Ha excedit el temps"
+
+msgctxt "error_canceled_by_user"
+msgid "Canceled by user"
+msgstr "Cancel·lat per l'usuari"
+
+msgctxt "error_canceled_by_other_peer"
+msgid "Canceled by other peer"
+msgstr "Cancel·lat per l'altre parell"
+
+msgctxt "encryption_info_title"
+msgid "Encryption Info"
+msgstr "Informació de l'encriptatge"
+
+msgctxt "encryption_info_msg_no_ssl"
+msgid ""
+"The other device doesn't use a recent version of KDE Connect, using the "
+"legacy encryption method."
+msgstr ""
+"L'altre dispositiu no usa una versió recent del KDE Connect, s'utilitzarà el "
+"mètode d'encriptatge antic."
+
+msgctxt "my_device_fingerprint"
+msgid "SHA256 fingerprint of your device certificate is:"
+msgstr "L'empremta digital SHA256 del certificat del vostre dispositiu és:"
+
+msgctxt "remote_device_fingerprint"
+msgid "SHA256 fingerprint of remote device certificate is:"
+msgstr "L'empremta digital SHA256 del certificat del dispositiu remot és:"
+
+msgctxt "pair_requested"
+msgid "Pair requested"
+msgstr "S'ha demanat aparellar"
+
+#, c-format
+msgctxt "pairing_request_from"
+msgid "Pairing request from %1s"
+msgstr "S'ha demanat aparellar des de %1s"
+
+#, c-format
+msgctxt "incoming_file_title"
+msgid "Receiving %1$d file from %2$s"
+msgid_plural "Receiving %1$d files from %2$s"
+msgstr[0] "S'està rebent %1$d fitxer des de %2$s"
+msgstr[1] "S'estan rebent %1$d fitxers des de %2$s"
+
+#, c-format
+msgctxt "incoming_files_text"
+msgid "File: %1s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "Fitxer: %1s"
+msgstr[1] "(Fitxer %2$d de %3$d): %1$s"
+
+#, c-format
+msgctxt "outgoing_file_title"
+msgid "Sending %1$d file to %2$s"
+msgid_plural "Sending %1$d files to %2$s"
+msgstr[0] "S'està enviant el fitxer %1$d a %2$s"
+msgstr[1] "S'estan enviant els fitxers %1$d a %2$s"
+
+#, c-format
+msgctxt "outgoing_files_text"
+msgid "File: %1$s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "Fitxer: %1$s"
+msgstr[1] "(Fitxer %2$d de %3$d): %1$s"
+
+#, c-format
+msgctxt "received_files_title"
+msgid "Received file from %1$s"
+msgid_plural "Received %2$d files from %1$s"
+msgstr[0] "S'ha rebut un fitxer des de %1$s"
+msgstr[1] "S'han rebut %2$d fitxers des de %1$s"
+
+#, c-format
+msgctxt "received_files_fail_title"
+msgid "Failed receiving file from %1$s"
+msgid_plural "Failed receiving %2$d of %3$d files from %1$s"
+msgstr[0] "Ha fallat en rebre un fitxer des de %1$s"
+msgstr[1] "Ha fallat en rebre %2$d de %3$d fitxers des de %1$s"
+
+#, c-format
+msgctxt "sent_files_title"
+msgid "Sent file to %1$s"
+msgid_plural "Sent %2$d files to %1$s"
+msgstr[0] "Fitxer enviat a %1$s"
+msgstr[1] "%2$d fitxers enviats a %1$s"
+
+#, c-format
+msgctxt "send_files_fail_title"
+msgid "Failed sending file to %1$s"
+msgid_plural "Failed sending %2$d of %3$d files to %1$s"
+msgstr[0] "Ha fallat en enviar el fitxer a %1$s"
+msgstr[1] "Ha fallat en enviar %2$d de %3$d fitxers a %1$s"
+
+msgctxt "tap_to_open"
+msgid "Tap to open"
+msgstr "Toqueu per a obrir"
+
+#, c-format
+msgctxt "received_file_text"
+msgid "Tap to open '%1s'"
+msgstr "Toqueu per a obrir «%1s»"
+
+#, c-format
+msgctxt "cannot_create_file"
+msgid "Cannot create file %s"
+msgstr "No s'ha pogut crear el fitxer %s"
+
+msgctxt "tap_to_answer"
+msgid "Tap to answer"
+msgstr "Toqueu per a respondre"
+
+msgctxt "right_click"
+msgid "Send Right Click"
+msgstr "Envia un clic dret"
+
+msgctxt "middle_click"
+msgid "Send Middle Click"
+msgstr "Envia un clic del mig"
+
+msgctxt "show_keyboard"
+msgid "Show Keyboard"
+msgstr "Mostra el teclat"
+
+msgctxt "device_not_paired"
+msgid "Device not paired"
+msgstr "El dispositiu no està aparellat"
+
+msgctxt "request_pairing"
+msgid "Request pairing"
+msgstr "Demana aparellar"
+
+msgctxt "pairing_accept"
+msgid "Accept"
+msgstr "Accepta"
+
+msgctxt "pairing_reject"
+msgid "Reject"
+msgstr "Rebutja"
+
+msgctxt "settings"
+msgid "Settings"
+msgstr "Arranjament"
+
+msgctxt "mpris_play"
+msgid "Play"
+msgstr "Reprodueix"
+
+msgctxt "mpris_pause"
+msgid "Pause"
+msgstr "Pausa"
+
+msgctxt "mpris_previous"
+msgid "Previous"
+msgstr "Anterior"
+
+msgctxt "mpris_rew"
+msgid "Rewind"
+msgstr "Rebobina"
+
+msgctxt "mpris_ff"
+msgid "Fast-forward"
+msgstr "Avanç ràpid"
+
+msgctxt "mpris_next"
+msgid "Next"
+msgstr "Següent"
+
+msgctxt "mpris_loop"
+msgid "Loop"
+msgstr "Repetició"
+
+msgctxt "mpris_shuffle"
+msgid "Shuffle"
+msgstr "Mescla"
+
+msgctxt "mpris_volume"
+msgid "Volume"
+msgstr "Volum"
+
+msgctxt "mpris_time_settings_title"
+msgid "Forward/rewind buttons"
+msgstr "Botons per a avançar o rebobinar"
+
+msgctxt "mpris_time_settings_summary"
+msgid "Adjust the time to fast forward/rewind when pressed"
+msgstr "Ajusta el temps per a avançar o rebobinar quan es toca"
+
+msgctxt "mpris_time_entries:0"
+msgid "10 seconds"
+msgstr "10 segons"
+
+msgctxt "mpris_time_entries:1"
+msgid "20 seconds"
+msgstr "20 segons"
+
+msgctxt "mpris_time_entries:2"
+msgid "30 seconds"
+msgstr "30 segons"
+
+msgctxt "mpris_time_entries:3"
+msgid "1 minute"
+msgstr "1 minut"
+
+msgctxt "mpris_time_entries:4"
+msgid "2 minutes"
+msgstr "2 minuts"
+
+msgctxt "mpris_notification_settings_title"
+msgid "Show media control notification"
+msgstr "Mostra les notificacions dels reproductors"
+
+msgctxt "mpris_notification_settings_summary"
+msgid "Allow controlling your media players without opening KDE Connect"
+msgstr ""
+"Permet controlar els reproductors multimèdia sense obrir el KDE Connect"
+
+msgctxt "share_to"
+msgid "Share To…"
+msgstr "Comparteix amb…"
+
+msgctxt "protocol_version_newer"
+msgid "This device uses a newer protocol version"
+msgstr "Aquest dispositiu usa una versió nova del protocol"
+
+#, c-format
+msgctxt "plugin_settings_with_name"
+msgid "%s settings"
+msgstr "Configuració del %s"
+
+msgctxt "invalid_device_name"
+msgid "Invalid device name"
+msgstr "El nom del dispositiu no és vàlid"
+
+msgctxt "shareplugin_text_saved"
+msgid "Received text, saved to clipboard"
+msgstr "S'ha rebut text i s'ha desat al porta-retalls"
+
+msgctxt "custom_devices_settings"
+msgid "Custom device list"
+msgstr "Llista personalitzada de dispositius"
+
+msgctxt "custom_device_list"
+msgid "Add devices by IP"
+msgstr "Afegeix dispositius per la IP"
+
+msgctxt "custom_device_deleted"
+msgid "Custom device deleted"
+msgstr "S'ha suprimit un dispositiu personalitzat"
+
+msgctxt "custom_device_list_help"
+msgid ""
+"If your device is not automatically detected you can add its IP address or "
+"hostname by clicking on the Floating Action Button"
+msgstr ""
+"Si el dispositiu no es detecta automàticament, podeu afegir la seva adreça "
+"IP o el nom de la màquina fent clic al botó flotant d'acció"
+
+msgctxt "custom_device_fab_hint"
+msgid "Add a device"
+msgstr "Afegeix un dispositiu"
+
+msgctxt "undo"
+msgid "Undo"
+msgstr "Desfés"
+
+msgctxt "share_notification_preference"
+msgid "Noisy notifications"
+msgstr "Notificacions sonores"
+
+msgctxt "share_notification_preference_summary"
+msgid "Vibrate and play a sound when receiving a file"
+msgstr "Vibra i reprodueix un so en rebre un fitxer"
+
+msgctxt "share_destination_customize"
+msgid "Customize destination directory"
+msgstr "Personalitza el directori de destinació"
+
+msgctxt "share_destination_customize_summary_disabled"
+msgid "Received files will appear in Downloads"
+msgstr "Els fitxers rebuts apareixeran a Baixades"
+
+msgctxt "share_destination_customize_summary_enabled"
+msgid "Files will be stored in the directory below"
+msgstr "Els fitxers seran emmagatzemats al directori de sota"
+
+msgctxt "share_destination_folder_preference"
+msgid "Destination directory"
+msgstr "Directori de destinació"
+
+msgctxt "share"
+msgid "Share"
+msgstr "Comparteix"
+
+#, c-format
+msgctxt "share_received_file"
+msgid "Share \"%s\""
+msgstr "Comparteix «%s»"
+
+msgctxt "title_activity_notification_filter"
+msgid "Notification filter"
+msgstr "Filtre de notificacions"
+
+msgctxt "filter_apps_info"
+msgid "Notifications will be synchronized for the selected apps."
+msgstr ""
+"Les notificacions se sincronitzaran per a les aplicacions seleccionades."
+
+msgctxt "show_notification_if_screen_off"
+msgid "Send notifications only if the screen is off"
+msgstr "Envia les notificacions només si la pantalla està apagada"
+
+#, c-format
+msgctxt "sftp_sdcard_num"
+msgid "SD card %d"
+msgstr "Targeta SD %d"
+
+msgctxt "sftp_sdcard"
+msgid "SD card"
+msgstr "Targeta SD"
+
+msgctxt "sftp_readonly"
+msgid "(read only)"
+msgstr "(només de lectura)"
+
+msgctxt "sftp_camera"
+msgid "Camera pictures"
+msgstr "Imatges de la càmera"
+
+msgctxt "add_device_dialog_title"
+msgid "Add device"
+msgstr "Afegeix un dispositiu"
+
+msgctxt "add_device_hint"
+msgid "Hostname or IP address"
+msgstr "Nom de la màquina o adreça IP"
+
+msgctxt "sftp_preference_detected_sdcards"
+msgid "Detected SD cards"
+msgstr "S'han detectat targetes SD"
+
+msgctxt "sftp_preference_edit_sdcard_title"
+msgid "Edit SD card"
+msgstr "Edita una targeta SD"
+
+msgctxt "sftp_preference_configured_storage_locations"
+msgid "Configured storage locations"
+msgstr "Ubicacions d'emmagatzematge configurades"
+
+msgctxt "sftp_preference_add_storage_location_title"
+msgid "Add storage location"
+msgstr "Afegeix una ubicació d'emmagatzematge"
+
+msgctxt "sftp_preference_edit_storage_location"
+msgid "Edit storage location"
+msgstr "Edita una ubicació d'emmagatzematge"
+
+msgctxt "sftp_preference_add_camera_shortcut"
+msgid "Add camera folder shortcut"
+msgstr "Afegeix una drecera a la carpeta de càmera"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_on"
+msgid "Add a shortcut to the camera folder"
+msgstr "Afegeix una drecera a la carpeta de la càmera"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_off"
+msgid "Do not add a shortcut to the camera folder"
+msgstr "No afegeixis cap drecera a la carpeta de la càmera"
+
+msgctxt "sftp_storage_preference_storage_location"
+msgid "Storage location"
+msgstr "Ubicació d'emmagatzematge"
+
+msgctxt "sftp_storage_preference_storage_location_already_configured"
+msgid "This location has already been configured"
+msgstr "Aquesta ubicació ja s'ha configurat"
+
+msgctxt "sftp_storage_preference_click_to_select"
+msgid "click to select"
+msgstr "clic per a seleccionar"
+
+msgctxt "sftp_storage_preference_display_name"
+msgid "Display name"
+msgstr "Nom a mostrar"
+
+msgctxt "sftp_storage_preference_display_name_already_used"
+msgid "This display name is already used"
+msgstr "Aquest nom a mostrar ja està en ús"
+
+msgctxt "sftp_storage_preference_display_name_cannot_be_empty"
+msgid "Display name cannot be empty"
+msgstr "El nom a mostrar no pot estar buit"
+
+msgctxt "sftp_action_mode_menu_delete"
+msgid "Delete"
+msgstr "Suprimeix"
+
+msgctxt "sftp_no_sdcard_detected"
+msgid "No SD card detected"
+msgstr "No s'ha detectat cap targeta SD"
+
+msgctxt "sftp_no_storage_locations_configured"
+msgid "No storage locations configured"
+msgstr "No s'ha configurat cap ubicació d'emmagatzematge"
+
+msgctxt "sftp_saf_permission_explanation"
+msgid "To access files remotely you have to configure storage locations"
+msgstr ""
+"Per a accedir remotament als fitxers cal configurar les ubicacions "
+"d'emmagatzematge"
+
+msgctxt "no_players_connected"
+msgid "No players found"
+msgstr "No s'ha trobat cap reproductor"
+
+msgctxt "send_files"
+msgid "Send files"
+msgstr "Envia fitxers"
+
+msgctxt "pairing_title"
+msgid "KDE Connect Devices"
+msgstr "Dispositius del KDE Connect"
+
+msgctxt "pairing_description"
+msgid ""
+"Other devices running KDE Connect in your same network should appear here."
+msgstr ""
+"Els altres dispositius que executin el KDE Connect a la mateixa xarxa han "
+"d'aparèixer aquí."
+
+msgctxt "device_rename_title"
+msgid "Rename device"
+msgstr "Reanomena el dispositiu"
+
+msgctxt "device_rename_confirm"
+msgid "Rename"
+msgstr "Reanomena"
+
+msgctxt "refresh"
+msgid "Refresh"
+msgstr "Actualitza"
+
+msgctxt "unreachable_description"
+msgid ""
+"This paired device is not reachable. Make sure it is connected to your same "
+"network."
+msgstr ""
+"Aquest dispositiu aparellat no és accessible. Assegureu-vos que està "
+"connectat a la mateixa xarxa."
+
+msgctxt "no_wifi"
+msgid ""
+"You're not connected to a Wi-Fi network, so you may not be able to see any "
+"devices. Click here to enable Wi-Fi."
+msgstr ""
+"No esteu connectat a una xarxa Wi-Fi, per tant, no podreu veure cap "
+"dispositiu. Feu clic aquí per a activar la Wi-Fi."
+
+msgctxt "on_non_trusted_message"
+msgid "Not on a trusted network: autodiscovery is disabled."
+msgstr ""
+"No és una xarxa de confiança: el descobriment automàtic està desactivat."
+
+msgctxt "no_file_browser"
+msgid "There are no file browsers installed."
+msgstr "No hi ha instal·lat cap navegador de fitxers."
+
+msgctxt "pref_plugin_telepathy"
+msgid "Send SMS"
+msgstr "Envia un SMS"
+
+msgctxt "pref_plugin_telepathy_desc"
+msgid "Send text messages from your desktop"
+msgstr "Envia missatges de text des de l'escriptori"
+
+msgctxt "pref_plugin_telepathy_mms"
+msgid "Send MMS"
+msgstr "Envia un MMS"
+
+msgctxt "pref_plugin_telepathy_mms_desc"
+msgid ""
+"To be able to send MMS from KDE Connect you need to set it as the default "
+"SMS app."
+msgstr ""
+"Per a poder enviar MMS des del KDE Connect cal establir-la com a aplicació "
+"predeterminada per a SMS."
+
+msgctxt "findmyphone_title"
+msgid "Find my phone"
+msgstr "Troba el meu telèfon"
+
+msgctxt "findmyphone_title_tablet"
+msgid "Find my tablet"
+msgstr "Troba la meva tauleta"
+
+msgctxt "findmyphone_title_tv"
+msgid "Find my TV"
+msgstr "Troba el meu televisor"
+
+msgctxt "findmyphone_description"
+msgid "Rings this device so you can find it"
+msgstr "Fa sonar aquest dispositiu perquè el pugueu trobar"
+
+msgctxt "findmyphone_found"
+msgid "Found it"
+msgstr "S'ha trobat"
+
+msgctxt "open"
+msgid "Open"
+msgstr "Obre"
+
+msgctxt "close"
+msgid "Close"
+msgstr "Tanca"
+
+msgctxt "plugins_need_permission"
+msgid "Some Plugins need permissions to work (tap for more info):"
+msgstr ""
+"Alguns connectors necessiten permisos per a funcionar (toqueu per a més "
+"informació):"
+
+msgctxt "permission_explanation"
+msgid "This plugin needs permissions to work"
+msgstr "Aquest connector necessita permisos per a funcionar"
+
+msgctxt "optional_permission_explanation"
+msgid "You need to grant extra permissions to enable all functions"
+msgstr ""
+"Us caldrà concedir permisos extres per a accedir a totes les característiques"
+
+msgctxt "plugins_need_optional_permission"
+msgid ""
+"Some plugins have features disabled because of lack of permission (tap for "
+"more info):"
+msgstr ""
+"Alguns connectors tenen característiques desactivades per la falta de permís "
+"(toqueu per a més informació):"
+
+msgctxt "share_optional_permission_explanation"
+msgid "To receive shared files you need to choose a destination directory"
+msgstr "Per a rebre fitxers compartits cal triar un directori de destinació"
+
+msgctxt "telepathy_permission_explanation"
+msgid ""
+"To read and write SMS from your desktop you need to give permission to SMS"
+msgstr ""
+"Per a llegir i escriure SMS des de l'escriptori, haureu de donar permís als "
+"SMS"
+
+msgctxt "telephony_permission_explanation"
+msgid ""
+"To see phone calls on the desktop you need to give permission to phone call "
+"logs and phone state"
+msgstr ""
+"Per a veure les trucades telefòniques des de l'escriptori, haureu de donar "
+"permís d'accés al registre de trucades telefòniques i a l'estat del telèfon"
+
+msgctxt "telephony_optional_permission_explanation"
+msgid ""
+"To see a contact name instead of a phone number you need to give access to "
+"the phone's contacts"
+msgstr ""
+"Per a veure un nom de contacte en comptes d'un número de telèfon, haureu de "
+"donar permís als contactes del telèfon"
+
+msgctxt "contacts_permission_explanation"
+msgid ""
+"To share your contacts book with the desktop, you need to give contacts "
+"permission"
+msgstr ""
+"Per a compartir els vostres contactes amb l'escriptori, caldrà que els hi "
+"doneu permís"
+
+msgctxt "select_ringtone"
+msgid "Select a ringtone"
+msgstr "Seleccioneu un to de la trucada"
+
+msgctxt "telephony_pref_blocked_title"
+msgid "Blocked numbers"
+msgstr "Nombres blocats"
+
+msgctxt "telephony_pref_blocked_dialog_desc"
+msgid ""
+"Don't show calls and SMS from these numbers. Please specify one number per "
+"line"
+msgstr ""
+"No es mostren ni les trucades ni els SMS d'aquests números. Especifiqueu un "
+"número per línia"
+
+msgctxt "mpris_coverart_description"
+msgid "Cover art of current media"
+msgstr "Caràtula del suport actual"
+
+msgctxt "device_icon_description"
+msgid "Device icon"
+msgstr "Icona del dispositiu"
+
+msgctxt "settings_icon_description"
+msgid "Settings icon"
+msgstr "Icona d'arranjament"
+
+msgctxt "presenter_fullscreen"
+msgid "Fullscreen"
+msgstr "Pantalla completa"
+
+msgctxt "presenter_exit"
+msgid "Exit presentation"
+msgstr "Surt de la presentació"
+
+msgctxt "presenter_lock_tip"
+msgid ""
+"You can lock your device and use the volume keys to go to the previous/next "
+"slide"
+msgstr ""
+"Podeu bloquejar el dispositiu i emprar les tecles de volum per a anar a la "
+"diapositiva anterior/següent"
+
+msgctxt "add_command"
+msgid "Add a command"
+msgstr "Afegeix una ordre"
+
+msgctxt "addcommand_explanation"
+msgid "There are no commands registered"
+msgstr "No hi ha cap ordre registrada"
+
+msgctxt "addcommand_explanation2"
+msgid "You can add new commands in the KDE Connect System Settings"
+msgstr "Podeu afegir ordres noves a l'Arranjament del sistema del KDE Connect"
+
+msgctxt "add_command_description"
+msgid "You can add commands on the desktop"
+msgstr "Podeu afegir ordres per a l'escriptori"
+
+msgctxt "pref_plugin_mprisreceiver"
+msgid "Media Player Control"
+msgstr "Control del reproductor multimèdia"
+
+msgctxt "pref_plugin_mprisreceiver_desc"
+msgid "Control your phone's media players from another device"
+msgstr ""
+"Controla els reproductors multimèdia del telèfon des d'un altre dispositiu"
+
+msgctxt "notification_channel_default"
+msgid "Other notifications"
+msgstr "Altres notificacions"
+
+msgctxt "notification_channel_persistent"
+msgid "Persistent indicator"
+msgstr "Indicador de persistent"
+
+msgctxt "notification_channel_media_control"
+msgid "Media control"
+msgstr "Control multimèdia"
+
+msgctxt "notification_channel_filetransfer"
+msgid "File transfer"
+msgstr "Transferència de fitxers"
+
+msgctxt "notification_channel_high_priority"
+msgid "High priority"
+msgstr "Prioritat alta"
+
+msgctxt "notification_channel_sms_mms"
+msgid "New Message"
+msgstr "Missatge nou"
+
+msgctxt "mpris_stop"
+msgid "Stop the current player"
+msgstr "Atura el reproductor actual"
+
+msgctxt "copy_url_to_clipboard"
+msgid "Copy URL to clipboard"
+msgstr "Copia l'URL al porta-retalls"
+
+msgctxt "clipboard_toast"
+msgid "Copied to clipboard"
+msgstr "Copiat al porta-retalls"
+
+msgctxt "runcommand_notreachable"
+msgid "Device is not reachable"
+msgstr "No es pot accedir al dispositiu"
+
+msgctxt "runcommand_notpaired"
+msgid "Device is not paired"
+msgstr "El dispositiu no està aparellat"
+
+msgctxt "runcommand_nosuchdevice"
+msgid "There is no such device"
+msgstr "El dispositiu no existeix"
+
+msgctxt "runcommand_noruncommandplugin"
+msgid "This device does not have the Run Command Plugin enabled"
+msgstr "Aquest dispositiu no té el connector d'executar ordres activat"
+
+msgctxt "pref_plugin_findremotedevice"
+msgid "Find remote device"
+msgstr "Cerca el dispositiu remot"
+
+msgctxt "pref_plugin_findremotedevice_desc"
+msgid "Ring your remote device"
+msgstr "Truca al dispositiu remot"
+
+msgctxt "ring"
+msgid "Ring"
+msgstr "Truca"
+
+msgctxt "pref_plugin_systemvolume"
+msgid "System volume"
+msgstr "Volum del sistema"
+
+msgctxt "pref_plugin_systemvolume_desc"
+msgid "Control the system volume of the remote device"
+msgstr "Controla el volum del sistema des del dispositiu remot"
+
+msgctxt "mute"
+msgid "Mute"
+msgstr "Silencia"
+
+msgctxt "all"
+msgid "All"
+msgstr "Tot"
+
+msgctxt "devices"
+msgid "Devices"
+msgstr "Dispositius"
+
+msgctxt "settings_rename"
+msgid "Device name"
+msgstr "Nom del dispositiu"
+
+msgctxt "settings_dark_mode"
+msgid "Dark theme"
+msgstr "Tema fosc"
+
+msgctxt "settings_more_settings_title"
+msgid "More settings"
+msgstr "Més opcions"
+
+msgctxt "settings_more_settings_text"
+msgid ""
+"Per-device settings can be found under 'Plugin settings' from within a "
+"device."
+msgstr ""
+"La configuració per dispositiu es pot trobar a «Arranjament dels connectors» "
+"des d'un dispositiu."
+
+msgctxt "setting_persistent_notification"
+msgid "Show persistent notification"
+msgstr "Mostra les notificacions persistents"
+
+msgctxt "setting_persistent_notification_oreo"
+msgid "Persistent notification"
+msgstr "Notificacions persistents"
+
+msgctxt "setting_persistent_notification_description"
+msgid "Tap to enable/disable in Notification settings"
+msgstr "Tocar per a des/activar la configuració de les notificacions"
+
+msgctxt "extra_options"
+msgid "Extra options"
+msgstr "Opcions extres"
+
+msgctxt "privacy_options"
+msgid "Privacy options"
+msgstr "Opcions de privadesa"
+
+msgctxt "set_privacy_options"
+msgid "Set your privacy options"
+msgstr "Establiu les opcions de privadesa"
+
+msgctxt "block_contents"
+msgid "Block contents of notifications"
+msgstr "Bloca el contingut de les notificacions"
+
+msgctxt "block_images"
+msgid "Block images in notifications"
+msgstr "Bloca les imatges a les notificacions"
+
+msgctxt "notification_channel_receivenotification"
+msgid "Notifications from other devices"
+msgstr "Notificacions des d'altres dispositius"
+
+msgctxt "take_picture"
+msgid "Launch camera"
+msgstr "Inicia la càmera"
+
+msgctxt "plugin_photo_desc"
+msgid "Launch the camera app to ease taking and transferring pictures"
+msgstr ""
+"Llança l'aplicació de càmera per a facilitar la presa i la transferència de "
+"fotografies"
+
+msgctxt "no_app_for_opening"
+msgid "No suitable app found to open this file"
+msgstr "No s'ha trobat cap aplicació adequada per a obrir aquest fitxer"
+
+msgctxt "remote_keyboard_service"
+msgid "KDE Connect Remote Keyboard"
+msgstr "Teclat remot del KDE Connect"
+
+msgctxt "presenter_pointer"
+msgid "Pointer"
+msgstr "Apuntador"
+
+msgctxt "trusted_networks"
+msgid "Trusted networks"
+msgstr "Xarxes de confiança"
+
+msgctxt "trusted_networks_desc"
+msgid "Restrict autodiscovery to known networks"
+msgstr "Restringeix el descobriment automàtic a les xarxes conegudes"
+
+#, c-format
+msgctxt "add_trusted_network"
+msgid "Add %1s"
+msgstr "Afegeix %1s"
+
+msgctxt "empty_trusted_networks_list_text"
+msgid "You haven't added any trusted network yet"
+msgstr "Encara no heu afegit cap xarxa de confiança"
+
+msgctxt "allow_all_networks_text"
+msgid "Allow all"
+msgstr "Permet totes"
+
+msgctxt "location_permission_needed_title"
+msgid "Permission required"
+msgstr "Es requereix permís"
+
+msgctxt "location_permission_needed_desc"
+msgid "Android requires the Location permission to identify your WiFi network"
+msgstr ""
+"L'Android requereix el permís d'ubicació per a identificar la xarxa Wi-Fi"
+
+msgctxt "clipboard_android_x_incompat"
+msgid ""
+"Android 10 has removed clipboard access to all apps. This plugin will be "
+"disabled."
+msgstr ""
+"L'Android 10 ha tret l'accés al porta-retalls a totes les aplicacions. "
+"Aquest connector estarà inhabilitat."
+
+msgctxt "mpris_open_url"
+msgid "Continue playing here"
+msgstr "Continua reproduint aquí"
+
+msgctxt "cant_open_url"
+msgid "Can't open URL to continue playing"
+msgstr "No s'ha pogut obrir l'URL per a continuar reproduint"
+
+msgctxt "bigscreen_home"
+msgid "Home"
+msgstr "Inici"
+
+msgctxt "bigscreen_up"
+msgid "Up"
+msgstr "Amunt"
+
+msgctxt "bigscreen_left"
+msgid "Left"
+msgstr "Esquerra"
+
+msgctxt "bigscreen_select"
+msgid "Select"
+msgstr "Selecció"
+
+msgctxt "bigscreen_right"
+msgid "Right"
+msgstr "Dreta"
+
+msgctxt "bigscreen_down"
+msgid "Down"
+msgstr "Avall"
+
+msgctxt "bigscreen_mic"
+msgid "Mic"
+msgstr "Micròfon"
+
+msgctxt "pref_plugin_bigscreen"
+msgid "Bigscreen remote"
+msgstr "Bigscreen remota"
+
+msgctxt "pref_plugin_bigscreen_desc"
+msgid "Use your device as a remote for Plasma Bigscreen"
+msgstr "Useu el dispositiu com a remot per a la Bigscreen del Plasma"
+
+msgctxt "bigscreen_optional_permission_explanation"
+msgid ""
+"To share microphone input from your phone you need to give access to the "
+"phone's audio input"
+msgstr ""
+"Per a compartir l'entrada del micròfon del telèfon cal donar accés a "
+"l'entrada d'àudio del telèfon"
+
+msgctxt "bigscreen_speech_extra_prompt"
+msgid "Speech"
+msgstr "Veu"
+
+msgctxt "message_reply_label"
+msgid "REPLY"
+msgstr "RESPON"
+
+msgctxt "mark_as_read_label"
+msgid "MARK AS READ"
+msgstr "MARCA COM A LLEGIT"
+
+msgctxt "user_display_name"
+msgid "You"
+msgstr "Vós"
+
+msgctxt "set_default_sms_app_title"
+msgid "Send MMS"
+msgstr "Envia un MMS"
+
+msgctxt "set_group_message_as_mms_title"
+msgid "Send group MMS"
+msgstr "Envia un MMS de grup"
+
+msgctxt "set_long_text_as_mms_title"
+msgid "Send long text as MMS"
+msgstr "Envia un text llarg com a MMS"
+
+msgctxt "convert_to_mms_after_title"
+msgid "Convert to MMS"
+msgstr "Converteix a MMS"
+
+msgctxt "convert_to_mms_after_entries:0"
+msgid "After one message"
+msgstr "Després d'un missatge"
+
+msgctxt "convert_to_mms_after_entries:1"
+msgid "After two messages"
+msgstr "Després de dos missatges"
+
+msgctxt "convert_to_mms_after_entries:2"
+msgid "After three messages"
+msgstr "Després de tres missatges"
+
+msgctxt "convert_to_mms_after_entries:3"
+msgid "After four messages"
+msgstr "Després de quatre missatges"
+
+msgctxt "convert_to_mms_after_entries:4"
+msgid "After five messages"
+msgstr "Després de cinc missatges"
+
+msgctxt "theme_dialog_title"
+msgid "Choose theme"
+msgstr "Trieu el tema"
+
+msgctxt "theme_list:0"
+msgid "Set by Battery Saver"
+msgstr "Establert per l'estalvi de bateria"
+
+msgctxt "theme_list:1"
+msgid "Light"
+msgstr "Clar"
+
+msgctxt "theme_list:2"
+msgid "Dark"
+msgstr "Fosc"
+
+msgctxt "theme_list_v28:0"
+msgid "System Default"
+msgstr "Predeterminat del sistema"
+
+msgctxt "theme_list_v28:1"
+msgid "Light"
+msgstr "Clar"
+
+msgctxt "theme_list_v28:2"
+msgid "Dark"
+msgstr "Fosc"
+
+msgctxt "report_bug"
+msgid "Report Bug"
+msgstr "Informa d'un error"
+
+msgctxt "donate"
+msgid "Donate"
+msgstr "Donació de diners"
+
+msgctxt "source_code"
+msgid "Source Code"
+msgstr "Codi font"
+
+msgctxt "licenses"
+msgid "Licenses"
+msgstr "Llicències"
+
+msgctxt "website"
+msgid "Website"
+msgstr "Lloc web"
+
+msgctxt "about"
+msgid "About"
+msgstr "Quant al"
+
+msgctxt "authors"
+msgid "Authors"
+msgstr "Autors"
+
+msgctxt "thanks_to"
+msgid "Thanks To"
+msgstr "Gràcies a"
+
+msgctxt "easter_egg"
+msgid "Easter Egg"
+msgstr "Ou de Pasqua"
+
+#, c-format
+msgctxt "email_contributor"
+msgid ""
+"Email contributor\n"
+"%s"
+msgstr ""
+"Correu electrònic del col·laborador\n"
+"%s"
+
+#, c-format
+msgctxt "visit_contributors_homepage"
+msgid ""
+"Visit contributor's homepage\n"
+"%s"
+msgstr ""
+"Visiteu la pàgina d'inici del col·laborador\n"
+"%s"
+
+#, c-format
+msgctxt "version"
+msgid "Version %s"
+msgstr "Versió %s"
+
+msgctxt "about_kde"
+msgid "About KDE"
+msgstr "Quant al KDE"
+
+msgctxt "kde_be_free"
+msgid "KDE - Be Free!"
+msgstr "KDE - Sigues lliure!"
+
+msgctxt "kde"
+msgid "KDE"
+msgstr "KDE"
+
+msgctxt "konqi"
+msgid "Konqi"
+msgstr "Konqi"
+
+msgctxt "rise_up"
+msgid "Rise Up"
+msgstr "Cap amunt"
+
+msgctxt "rise_down"
+msgid "Rise Down"
+msgstr "Cap avall"
+
+msgctxt "click_here_to_type"
+msgid "Tap here to type"
+msgstr "Toqueu aquí per a teclejar"
+
+msgctxt "clear_compose"
+msgid "Clear"
+msgstr "Neteja"
+
+msgctxt "send_compose"
+msgid "Send"
+msgstr "Envia"
+
+msgctxt "open_compose_send"
+msgid "Compose text"
+msgstr "Redacta text"
+
+msgctxt "app_description"
+msgid ""
+"Multi-platform app that allows your devices to communicate (e.g., your phone "
+"and your computer)"
+msgstr ""
+"Aplicació multiplataforma que permet que els dispositius es comuniquin (p. "
+"ex., el telèfon i l'ordinador)"
+
+msgctxt "about_kde_about"
+msgid ""
+"&lt;h1&gt;About&lt;/h1&gt; &lt;p&gt;KDE is a world-wide community of "
+"software engineers, artists, writers, translators and creators who are "
+"committed to &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Free "
+"Software&lt;/a&gt; development. KDE produces the Plasma desktop environment, "
+"hundreds of applications, and the many software libraries that support them."
+"&lt;/p&gt; &lt;p&gt;KDE is a cooperative enterprise: no single entity "
+"controls its direction or products. Instead, we work together to achieve the "
+"common goal of building the world's finest Free Software. Everyone is "
+"welcome to &lt;a href=https://community.kde.org/Get_Involved&gt;join and "
+"contribute&lt;/a&gt; to KDE, including you.&lt;/p&gt; Visit &lt;a "
+"href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; for more "
+"information about the KDE community and the software we produce."
+msgstr ""
+"&lt;h1&gt;Quant al&lt;/h1&gt; &lt;p&gt;El KDE és una comunitat mundial "
+"d'enginyers, artistes, escriptors, traductors i creadors de programari "
+"compromesos amb el desenvolupament de &lt;a href=https://www.gnu.org/"
+"philosophy/free-sw.html&gt;programari lliure&lt;/a&gt;. El KDE produeix "
+"l'entorn d'escriptori Plasma, centenars d'aplicacions i moltes biblioteques "
+"de programari que els donen suport.&lt;/p&gt; &lt;p&gt;El KDE és una empresa "
+"en cooperativa: cap entitat controla la seva direcció o els productes. En el "
+"seu lloc, treballem junts per a aconseguir l'objectiu comú de construir el "
+"millor programari lliure del món. Tothom hi és benvingut a &lt;a "
+"href=https://community.kde.org/Get_Involved&gt;unir-se i contribuir&lt;/"
+"a&gt; al KDE, inclosos vosaltres.&lt;/p&gt; Visiteu &lt;a href=https://www."
+"kde.org/ca/&gt;https://www.kde.org/ca/&lt;/a&gt; per a obtenir més "
+"informació sobre la comunitat KDE i el programari que produïm."
+
+msgctxt "about_kde_report_bugs_or_wishes"
+msgid ""
+"&lt;h1&gt;Report Bugs or Wishes&lt;/h1&gt; &lt;p&gt;Software can always be "
+"improved, and the KDE team is ready to do so. However, you - the user - must "
+"tell us when something does not work as expected or could be done better."
+"&lt;/p&gt; &lt;p&gt;KDE has a bug tracking system. Visit &lt;a href=https://"
+"bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; or use the \"Report Bug\" "
+"button from the about screen to report bugs.&lt;/p&gt; If you have a "
+"suggestion for improvement then you are welcome to use the bug tracking "
+"system to register your wish. Make sure you use the severity called "
+"\"Wishlist\"."
+msgstr ""
+"&lt;h1&gt;Informeu dels errors o desitjos&lt;/h1&gt; &lt;p&gt;El programari "
+"sempre es pot millorar, i l'equip del KDE està a punt per a fer-ho. No "
+"obstant això, l'usuari, ha de dir-nos quan alguna cosa no funciona com "
+"s'esperava o si podria fer-se millor.&lt;/p&gt; &lt;p&gt;El KDE té un "
+"sistema de seguiment d'errors. Per a informar-ne d'un, visiteu &lt;a "
+"href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; o useu el botó "
+"\"Informa d'un error\" des de la pantalla Quant al.&lt;/p&gt; Si teniu un "
+"suggeriment de millora, podeu usar el sistema de seguiment d'errors per a "
+"enregistrar el vostre desig. Assegureu-vos d'usar la severitat anomenada "
+"\"Llista de desitjos\" (Wishlist)."
+
+msgctxt "about_kde_join_kde"
+msgid ""
+"&lt;h1&gt;Join KDE&lt;/h1&gt; &lt;p&gt;You do not have to be a software "
+"developer to be a member of the KDE team. You can join the national teams "
+"that translate program interfaces. You can provide graphics, themes, sounds, "
+"and improved documentation. You decide!&lt;/p&gt; &lt;p&gt;Visit &lt;a "
+"href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/"
+"Get_Involved&lt;/a&gt; for information on some projects in which you can "
+"participate.&lt;/p&gt; If you need more information or documentation, then a "
+"visit to &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/"
+"&lt;/a&gt; will provide you with what you need."
+msgstr ""
+"&lt;h1&gt;Uniu-vos al KDE&lt;/h1&gt; &lt;p&gt;No cal ser un desenvolupador "
+"de programari per a ser membre de l'equip KDE. Podeu unir-vos als equips "
+"nacionals que tradueixen la interfície dels programes. Podeu proporcionar "
+"gràfics, temes, sons i documentació millorada. Vosaltres decidiu!&lt;/p&gt; "
+"&lt;p&gt;Visiteu &lt;a href=https://community.kde.org/Get_Involved&gt;"
+"https://community.kde.org/Get_Involved&lt;/a&gt; per a obtenir informació "
+"sobre alguns projectes en què podeu participar-hi.&lt;/p&gt; Si us cal més "
+"informació o documentació, una visita a &lt;a href=https://techbase.kde.org/"
+"&gt;https://techbase.kde.org/&lt;/a&gt; us proporcionarà el que necessiteu."
+
+msgctxt "about_kde_support_kde"
+msgid ""
+"&lt;h1&gt;Support KDE&lt;/h1&gt; &lt;p&gt;KDE software is and will always be "
+"available free of charge, however creating it is not free.&lt;/p&gt; &lt;"
+"p&gt;To support development the KDE community has formed the KDE e.V., a non-"
+"profit organization legally founded in Germany. KDE e.V. represents the KDE "
+"community in legal and financial matters. See &lt;a href=https://ev.kde.org/"
+"&gt;https://ev.kde.org/&lt;/a&gt; for information on KDE e.V.&lt;/p&gt; &lt;"
+"p&gt;KDE benefits from many kinds of contributions, including financial. We "
+"use the funds to reimburse members and others for expenses they incur when "
+"contributing. Further funds are used for legal support and organizing "
+"conferences and meetings.&lt;/p&gt; &lt;p&gt;We would like to encourage you "
+"to support our efforts with a financial donation, using one of the ways "
+"described at &lt;a href=https://www.kde.org/community/donations/&gt;https://"
+"www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Thank you very much in "
+"advance for your support."
+msgstr ""
+"&lt;h1&gt;Contribució al KDE&lt;/h1&gt; &lt;p&gt;El programari KDE està i "
+"sempre estarà disponible de forma gratuïta, però la creació no està lliure "
+"de càrrecs.&lt;/p&gt; &lt;p&gt;Per a donar suport al desenvolupament, la "
+"comunitat KDE ha format la KDE e.V., una organització sense ànim de lucre "
+"legalment fundada a Alemanya. La KDE e.V. representa a la comunitat KDE en "
+"els assumptes legals i financers. Per a obtenir informació sobre la KDE e."
+"V., vegeu &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt;.El "
+"KDE es beneficia de molts tipus de contribucions, inclosa la financera. Usem "
+"els fons per a reemborsar als membres i altra gent per les despeses que "
+"incorren col·laborant-hi. S'usen més fons per al suport legal i "
+"l'organització de les conferències i reunions.&lt;/p&gt; &lt;p&gt;Us animem "
+"a ajudar al KDE mitjançant donacions monetàries, usant un dels mitjans "
+"descrits a &lt;a href=https://kde.org/ca/community/donations/&gt;https://kde."
+"org/ca/community/donations/&lt;/a&gt;.&lt;/p&gt;. Moltes gràcies per "
+"endavant per la vostra ajuda."
+
+#. Authors tasks
+msgctxt "maintainer_and_developer"
+msgid "Maintainer and developer"
+msgstr "Mantenidor i desenvolupador"
+
+msgctxt "developer"
+msgid "Developer"
+msgstr "Desenvolupador"
+
+msgctxt "apple_support"
+msgid "macOS support. Working on iOS support"
+msgstr "Suport de macOS. Treballant en el suport d'iOS"
+
+msgctxt "bug_fixes_and_general_improvements"
+msgid "Bug fixes and general improvements"
+msgstr "Esmenes d'errors i millores generals"
+
+msgctxt "samoilenko_yuri_task"
+msgid "SFTP implementation, bug fixes and general improvements"
+msgstr "Implementació d'SFTP, esmenes d'errors i millores generals"
+
+msgctxt "aniket_kumar_task"
+msgid "SMS plugin improvements"
+msgstr "Millores en el connector SMS"
+
+msgctxt "alex_fiestas_task"
+msgid "Contacts plugin improvements"
+msgstr "Millores en el connector de contactes"
+
+msgctxt "maxim_leshchenko_task"
+msgid "UI improvements and this about page"
+msgstr "Millores en la IU i ha creat aquesta pàgina"
+
+msgctxt "holger_kaelberer_task"
+msgid "Remote keyboard plugin and bug fixes"
+msgstr "Connector de teclat remot i esmenes d'errors"
+
+msgctxt "saikrishna_arcot_task"
+msgid ""
+"Support for using the keyboard in the remote input plugin, bug fixes and "
+"general improvements"
+msgstr ""
+"Suport per a usar el teclat en el connector d'entrada remota, esmenes "
+"d'errors i millores generals"
+
+msgctxt "everyone_else"
+msgid "Everyone else who has contributed to KDE Connect over the years"
+msgstr "Tothom qui ha contribuït al KDE Connect al llarg dels anys"
+
+msgctxt "send_clipboard"
+msgid "Send clipboard"
+msgstr "Envia el porta-retalls"
+
+msgctxt "tap_to_execute"
+msgid "Tap to execute"
+msgstr "Toqueu per a executar"

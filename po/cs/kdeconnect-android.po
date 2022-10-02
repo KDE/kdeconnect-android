@@ -1,0 +1,1705 @@
+# Translations template for PROJECT.
+# Copyright (C) 2013 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# Vít Pelčák <vit@pelcak.org>, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021.
+# Vit Pelcak <vpelcak@suse.cz>, 2021, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-01-16 00:43+0000\n"
+"PO-Revision-Date: 2022-01-17 14:43+0100\n"
+"Last-Translator: Vit Pelcak <vpelcak@suse.cz>\n"
+"Language-Team: Czech <kde-i18n-doc@kde.org>\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Lokalize 21.12.1\n"
+
+#. # Dear potential translators:          Thank you for your interest in KDE
+#. Connect! We do not actually handle our own translations.         All
+#. translations for all KDE apps are handled by the [localization
+#. team](https://l10n.kde.org).         We really appreciate your translations,
+#. but make sure to submit them by working with the proper team!
+msgctxt "kde_connect"
+msgid "KDE Connect"
+msgstr "KDE Connect"
+
+msgctxt "manifest_label_share"
+msgid "Send to Device"
+msgstr "Poslat na zařízení"
+
+msgctxt "foreground_notification_no_devices"
+msgid "Not connected to any device"
+msgstr "Žádná připojená zařízení"
+
+#, c-format
+msgctxt "foreground_notification_devices"
+msgid "Connected to: %s"
+msgstr "Připojen k: %s"
+
+msgctxt "foreground_notification_send_clipboard"
+msgid "Send Clipboard"
+msgstr "Poslat schránku"
+
+msgctxt "pref_plugin_telephony"
+msgid "Telephony notifier"
+msgstr "Upozornění telefonie"
+
+msgctxt "pref_plugin_telephony_desc"
+msgid "Send notifications for incoming calls"
+msgstr "Posílat oznámení příchozích hovorů"
+
+msgctxt "pref_plugin_battery"
+msgid "Battery report"
+msgstr "Hlášení baterie"
+
+msgctxt "pref_plugin_battery_desc"
+msgid "Periodically report battery status"
+msgstr "Periodicky hlásit stav baterky"
+
+msgctxt "pref_plugin_connectivity_report"
+msgid "Connectivity report"
+msgstr "Hlášení spojení"
+
+msgctxt "pref_plugin_connectivity_report_desc"
+msgid "Report network signal strength and status"
+msgstr "Nahlásit stav a sílu signálu sítě"
+
+msgctxt "pref_plugin_sftp"
+msgid "Filesystem expose"
+msgstr "Přístup k souborovému systému"
+
+msgctxt "pref_plugin_sftp_desc"
+msgid "Allows to browse this device's filesystem remotely"
+msgstr "Umožní vám vzdáleně prohlížet souborový systém tohoto zařízení"
+
+msgctxt "pref_plugin_clipboard"
+msgid "Clipboard sync"
+msgstr "Synchronizace schránky"
+
+msgctxt "pref_plugin_clipboard_desc"
+msgid "Share the clipboard content"
+msgstr "Sdílet obsah schránky"
+
+msgctxt "pref_plugin_clipboard_sent"
+msgid "Clipboard Sent"
+msgstr "Schránka poslána"
+
+msgctxt "pref_plugin_mousepad"
+msgid "Remote input"
+msgstr "Vzdálený vstup"
+
+msgctxt "pref_plugin_mousepad_desc"
+msgid "Use your phone or tablet as a touchpad and keyboard"
+msgstr "Používejte svůj telefon nebo tablet jako touchpad a klávesnici"
+
+msgctxt "pref_plugin_presenter"
+msgid "Slideshow remote"
+msgstr "Ovladač promítání"
+
+msgctxt "pref_plugin_presenter_desc"
+msgid "Use your device to change slides in a presentation"
+msgstr "Použijte své zařízení pro přepínání snímků prezentace"
+
+msgctxt "pref_plugin_remotekeyboard"
+msgid "Receive remote keypresses"
+msgstr "Přijímat stisky kláves se vzdálených zařízení"
+
+msgctxt "pref_plugin_remotekeyboard_desc"
+msgid "Receive keypress events from remote devices"
+msgstr "Přijímat události stisku kláves ze vzdálených zařízení"
+
+msgctxt "pref_plugin_mpris"
+msgid "Multimedia controls"
+msgstr "Ovládání multimédií"
+
+msgctxt "pref_plugin_mpris_desc"
+msgid "Provides a remote control for your media player"
+msgstr "Poskytuje dálkové ovládání přehrávačů médií"
+
+msgctxt "pref_plugin_runcommand"
+msgid "Run Command"
+msgstr "Spustit příkaz"
+
+msgctxt "pref_plugin_runcommand_desc"
+msgid "Trigger remote commands from your phone or tablet"
+msgstr "Spouštějte příkazy vzdáleně z vašeho telefonu"
+
+msgctxt "pref_plugin_contacts"
+msgid "Contacts Synchronizer"
+msgstr "Synchronizace kontaktů"
+
+msgctxt "pref_plugin_contacts_desc"
+msgid "Allow synchronizing the device's contacts book"
+msgstr "Povolit synchronizaci kontaktů zařízení"
+
+msgctxt "pref_plugin_ping"
+msgid "Ping"
+msgstr "Ping"
+
+msgctxt "pref_plugin_ping_desc"
+msgid "Send and receive pings"
+msgstr "Posílat a přijímat ping"
+
+msgctxt "pref_plugin_notifications"
+msgid "Notification sync"
+msgstr "Synchronizace oznámení"
+
+msgctxt "pref_plugin_notifications_desc"
+msgid "Access your notifications from other devices"
+msgstr "Zpřístupněte si oznámení z jiných zařízení"
+
+msgctxt "pref_plugin_receive_notifications"
+msgid "Receive notifications"
+msgstr "Přijímat oznámení"
+
+msgctxt "pref_plugin_receive_notifications_desc"
+msgid "Receive notifications from the other device and display them on Android"
+msgstr "Přijímat oznámení z jiného zařízení a zobrazovat je v Androidu"
+
+msgctxt "pref_plugin_sharereceiver"
+msgid "Share and receive"
+msgstr "Sdílet a přijmout"
+
+msgctxt "pref_plugin_sharereceiver_desc"
+msgid "Share files and URLs between devices"
+msgstr "Sdílet soubory a odkazy mezi zařízeními"
+
+msgctxt "device_list_empty"
+msgid "No devices"
+msgstr "Žádná zařízení"
+
+msgctxt "ok"
+msgid "OK"
+msgstr "OK"
+
+msgctxt "sad_ok"
+msgid "OK :("
+msgstr "OK :("
+
+msgctxt "cancel"
+msgid "Cancel"
+msgstr "Zrušit"
+
+msgctxt "open_settings"
+msgid "Open settings"
+msgstr "Otevřít nastavení"
+
+msgctxt "no_permissions"
+msgid "You need to grant permission to access notifications"
+msgstr "Pro zpřístupnění oznámení potřebujete oprávnění"
+
+msgctxt "no_permission_mprisreceiver"
+msgid ""
+"To be able to control your media players you need to grant access to the "
+"notifications"
+msgstr ""
+"Abyste byli schopni ovládat vaše přehrávače médií, musíte udělit přístup k "
+"oznámením"
+
+msgctxt "no_permissions_remotekeyboard"
+msgid ""
+"To receive keypresses you need to activate the KDE Connect Remote Keyboard"
+msgstr ""
+"Pro zachytávání stisků kláves je potřeba aktivovat vzdálenou klávesnici KDE "
+"Connect"
+
+msgctxt "send_ping"
+msgid "Send ping"
+msgstr "Poslat ping"
+
+msgctxt "open_mpris_controls"
+msgid "Multimedia control"
+msgstr "Ovládání multimédií"
+
+msgctxt "remotekeyboard_editing_only_title"
+msgid "Handle remote keys only when editing"
+msgstr "Ovládat vzdálené klávesy při editaci"
+
+msgctxt "remotekeyboard_not_connected"
+msgid ""
+"There is no active remote keyboard connection, establish one in kdeconnect"
+msgstr ""
+"Není k dispozici žádné vzdálené připojení klávesnice. Nastavte nějaké pomocí "
+"kdeconnect"
+
+msgctxt "remotekeyboard_connected"
+msgid "Remote keyboard connection is active"
+msgstr "Vzdálené připojení klávesnice je aktivní"
+
+msgctxt "remotekeyboard_multiple_connections"
+msgid ""
+"There is more than one remote keyboard connection, select the device to "
+"configure"
+msgstr ""
+"Je k dispozici více než jedno připojení klávesnice. Vyberte zařízení pro "
+"jeho nastavení."
+
+msgctxt "open_mousepad"
+msgid "Remote input"
+msgstr "Vzdálený vstup"
+
+msgctxt "mousepad_info"
+msgid ""
+"Move a finger on the screen to move the mouse cursor. Tap for a click, and "
+"use two/three fingers for right and middle buttons. Use 2 fingers to scroll. "
+"Use a long press to drag'n drop."
+msgstr ""
+"Pohybujte prstem po obrazovce pro pohybování kurzorem myši. Ťukněte pro "
+"kliknutí a použijte dva/tři prsty jako pravé a prostřední tlačítko. Použijte "
+"2 prsty pro posunování. Pro přetažení dlouze podržte."
+
+msgctxt "mousepad_single_tap_settings_title"
+msgid "Set one finger tap action"
+msgstr "Nastavit činnost pro ťuknutí prstem"
+
+msgctxt "mousepad_double_tap_settings_title"
+msgid "Set two finger tap action"
+msgstr "Nastavit činnost pro ťuknutí dvěma prsty"
+
+msgctxt "mousepad_triple_tap_settings_title"
+msgid "Set three finger tap action"
+msgstr "Nastavit činnost pro ťuknutí třemi prsty"
+
+msgctxt "mousepad_sensitivity_settings_title"
+msgid "Set touchpad sensitivity"
+msgstr "Nastavit citlivost touchpadu"
+
+msgctxt "mousepad_acceleration_profile_settings_title"
+msgid "Set pointer acceleration"
+msgstr "Nastavit akceleraci ukazatele"
+
+msgctxt "mousepad_scroll_direction_title"
+msgid "Reverse Scrolling Direction"
+msgstr "Obrácený směr posunu"
+
+msgctxt "mousepad_tap_entries:0"
+msgid "Left click"
+msgstr "Kliknutí levým tlačítkem myši"
+
+msgctxt "mousepad_tap_entries:1"
+msgid "Right click"
+msgstr "Kliknutí pravým tlačítkem myši"
+
+msgctxt "mousepad_tap_entries:2"
+msgid "Middle click"
+msgstr "Kliknutí prostředním tlačítkem myši"
+
+msgctxt "mousepad_tap_entries:3"
+msgid "Nothing"
+msgstr "Nic"
+
+msgctxt "mousepad_sensitivity_entries:0"
+msgid "Slowest"
+msgstr "Nejpomalejší"
+
+msgctxt "mousepad_sensitivity_entries:1"
+msgid "Above Slowest"
+msgstr "Méně pomalý"
+
+msgctxt "mousepad_sensitivity_entries:2"
+msgid "Default"
+msgstr "Výchozí"
+
+msgctxt "mousepad_sensitivity_entries:3"
+msgid "Above Default"
+msgstr "Rychlejší"
+
+msgctxt "mousepad_sensitivity_entries:4"
+msgid "Fastest"
+msgstr "Nejrychlejší"
+
+msgctxt "mousepad_acceleration_profile_entries:0"
+msgid "No Acceleration"
+msgstr "Bez akcelerace"
+
+msgctxt "mousepad_acceleration_profile_entries:1"
+msgid "Weakest"
+msgstr "Nejslabší"
+
+msgctxt "mousepad_acceleration_profile_entries:2"
+msgid "Weaker"
+msgstr "Slabší"
+
+msgctxt "mousepad_acceleration_profile_entries:3"
+msgid "Medium"
+msgstr "Střední"
+
+msgctxt "mousepad_acceleration_profile_entries:4"
+msgid "Stronger"
+msgstr "Silná"
+
+msgctxt "mousepad_acceleration_profile_entries:5"
+msgid "Strongest"
+msgstr "Nejsilnější"
+
+msgctxt "sendkeystrokes_send_to"
+msgid "Send keystrokes to"
+msgstr "Posílat úhozy kláves na"
+
+msgctxt "sendkeystrokes_textbox_hint"
+msgid "Send keystrokes to host"
+msgstr "Posílat úhozy kláves na hostitele"
+
+msgctxt "sendkeystrokes_disabled_toast"
+msgid "Sending keystrokes is disabled - enable it in the settings"
+msgstr "Odesílání stisků klávesnice je zakázáno - povolte jej v nastavení"
+
+msgctxt "sendkeystrokes_wrong_data"
+msgid "Invalid mime type - needs to be 'text/x-keystrokes'"
+msgstr "Neplatný typ MIME - musí být 'text/x-keystrokes'"
+
+#, c-format
+msgctxt "sendkeystrokes_sent_text"
+msgid "Sent %1$s to device %2$s"
+msgstr "Poslat %1$s na zařízení %2$s"
+
+msgctxt "sendkeystrokes_pref_category_summary"
+msgid ""
+"This module allows other apps to share text segments as keystrokes which "
+"will get send to the connected host"
+msgstr ""
+"Tento modul umožňuje ostatním aplikacím sdílet kusy textu jako úhozy kláves, "
+"které budou odeslány na jiný připojený stroj"
+
+msgctxt "sendkeystrokes_pref_category_title"
+msgid "Send Keystrokes"
+msgstr "Posílat úhozy kláves"
+
+msgctxt "sendkeystrokes_pref_enabled"
+msgid "Enable Keystrokes sending"
+msgstr "Povolit odesílání úhozů kláves"
+
+msgctxt "sendkeystrokes_pref_enabled_summary"
+msgid "Listen for data with mime type 'text/x-keystrokes'"
+msgstr "Naslouchat datům s typem MIME 'text/x-keystrokes'"
+
+msgctxt "sendkeystrokes_safe_text_enabled"
+msgid "Send safe text immediately"
+msgstr "Poslat bezpečný text ihned"
+
+msgctxt "sendkeystrokes_safe_text_enabled_summary"
+msgid "Send short only-numeric strings without confirmation"
+msgstr "Poslat krátké číselné řetězce bez potvrzení"
+
+msgctxt "pref_plugin_mousepad_send_keystrokes"
+msgid "Send as keystrokes"
+msgstr "Posílat jako úhozy kláves"
+
+msgctxt "mouse_receiver_plugin_description"
+msgid "Receive remote mouse movement"
+msgstr "Přijímat vzdálený pohyb myši"
+
+msgctxt "mouse_receiver_plugin_name"
+msgid "Mouse receiver"
+msgstr "Příjemce myši"
+
+msgctxt "mouse_receiver_no_permissions"
+msgid "You need to enable Accessibility Service"
+msgstr "Musíte povolit Službu Zpřístupnění."
+
+msgctxt "view_status_title"
+msgid "Status"
+msgstr "Stav"
+
+#, c-format
+msgctxt "battery_status_format"
+msgid "Battery: %d%%"
+msgstr "Baterie: %d%%"
+
+#, c-format
+msgctxt "battery_status_low_format"
+msgid "Battery: %d%% Low Battery"
+msgstr "Baterie: %d%% Téměř vybitá baterie"
+
+#, c-format
+msgctxt "battery_status_charging_format"
+msgid "Battery: %d%% charging"
+msgstr "Battery: %d%% nabíjí se"
+
+msgctxt "battery_status_unknown"
+msgid "Battery information not available"
+msgstr "Informace o baterii jsou nedostupné"
+
+msgctxt "category_connected_devices"
+msgid "Connected devices"
+msgstr "Připojená zařízení"
+
+msgctxt "category_not_paired_devices"
+msgid "Available devices"
+msgstr "Dostupná zařízení"
+
+msgctxt "category_remembered_devices"
+msgid "Remembered devices"
+msgstr "Zapamatovaná zařízení"
+
+msgctxt "device_menu_plugins"
+msgid "Plugin settings"
+msgstr "Nastavení modulů"
+
+msgctxt "device_menu_unpair"
+msgid "Unpair"
+msgstr "Zrušit párování"
+
+msgctxt "pair_new_device"
+msgid "Pair new device"
+msgstr "Spárovat nové zařízení"
+
+msgctxt "unknown_device"
+msgid "Unknown device"
+msgstr "Neznámé zařízení"
+
+msgctxt "error_not_reachable"
+msgid "Device not reachable"
+msgstr "Zařízení je nedostupné"
+
+msgctxt "error_already_paired"
+msgid "Device already paired"
+msgstr "Zařízení je již spárováno"
+
+msgctxt "error_could_not_send_package"
+msgid "Could not send package"
+msgstr "Balíček nelze poslat"
+
+msgctxt "error_timed_out"
+msgid "Timed out"
+msgstr "Čas vypršel"
+
+msgctxt "error_canceled_by_user"
+msgid "Canceled by user"
+msgstr "Přerušeno uživatelem"
+
+msgctxt "error_canceled_by_other_peer"
+msgid "Canceled by other peer"
+msgstr "Přerušeno druhým uživatelem"
+
+msgctxt "encryption_info_title"
+msgid "Encryption Info"
+msgstr "Informace o šifrování"
+
+msgctxt "encryption_info_msg_no_ssl"
+msgid ""
+"The other device doesn't use a recent version of KDE Connect, using the "
+"legacy encryption method."
+msgstr ""
+"Druhé zařízení nepoužívá poslední verzi KDE connect. Bude použita stará "
+"metoda šifrování."
+
+msgctxt "my_device_fingerprint"
+msgid "SHA256 fingerprint of your device certificate is:"
+msgstr "Otisk SHA256 certifikátu vašeho zařízení je:"
+
+msgctxt "remote_device_fingerprint"
+msgid "SHA256 fingerprint of remote device certificate is:"
+msgstr "Otisk certifikátu SHA256 vzdáleného zařízení je:"
+
+msgctxt "pair_requested"
+msgid "Pair requested"
+msgstr "Bylo vyžádáno párování"
+
+#, c-format
+msgctxt "pairing_request_from"
+msgid "Pairing request from %1s"
+msgstr "Požadavek o párování z %1s"
+
+#, c-format
+msgctxt "incoming_file_title"
+msgid "Receiving %1$d file from %2$s"
+msgid_plural "Receiving %1$d files from %2$s"
+msgstr[0] "Přijímám %1$d soubor z %2$s"
+msgstr[1] "Přijímám %1$d soubory z %2$s"
+msgstr[2] "Přijímám %1$d souborů z %2$s"
+
+#, c-format
+msgctxt "incoming_files_text"
+msgid "File: %1s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "Soubor: %1s"
+msgstr[1] "(Soubor %2$d of %3$d) : %1$s"
+msgstr[2] "(Soubor %2$d of %3$d) : %1$s"
+
+#, c-format
+msgctxt "outgoing_file_title"
+msgid "Sending %1$d file to %2$s"
+msgid_plural "Sending %1$d files to %2$s"
+msgstr[0] "Odesílám %1$d soubor do %2$s"
+msgstr[1] "Odesílám %1$d soubory do %2$s"
+msgstr[2] "Odesílám %1$d souborů do %2$s"
+
+#, c-format
+msgctxt "outgoing_files_text"
+msgid "File: %1$s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "Soubor: %1$s"
+msgstr[1] "(Soubor %2$d z %3$d) : %1$s"
+msgstr[2] "(Soubor %2$d z %3$d) : %1$s"
+
+#, c-format
+msgctxt "received_files_title"
+msgid "Received file from %1$s"
+msgid_plural "Received %2$d files from %1$s"
+msgstr[0] "Přijat soubor z %1$s"
+msgstr[1] "Přijaty %2$d soubory z %1$s"
+msgstr[2] "Přijato %2$d souborů z %1$s"
+
+#, c-format
+msgctxt "received_files_fail_title"
+msgid "Failed receiving file from %1$s"
+msgid_plural "Failed receiving %2$d of %3$d files from %1$s"
+msgstr[0] "Selhalo přijímání souboru z %1$s"
+msgstr[1] "Selhalo přijímání %2$d ze %3$d souborů z %1$s"
+msgstr[2] "Selhalo přijímání %2$d ze %3$d souborů z %1$s"
+
+#, c-format
+msgctxt "sent_files_title"
+msgid "Sent file to %1$s"
+msgid_plural "Sent %2$d files to %1$s"
+msgstr[0] "Soubor byl odeslán do %1$s"
+msgstr[1] " %2$d soubory byly odeslány do %1$s"
+msgstr[2] " %2$d souborů bylo odesláno do %1$s"
+
+#, c-format
+msgctxt "send_files_fail_title"
+msgid "Failed sending file to %1$s"
+msgid_plural "Failed sending %2$d of %3$d files to %1$s"
+msgstr[0] "Odesílání souboru na %1$s selhalo"
+msgstr[1] "Odesílání %2$d souborů z %3$d na %1$s selhalo"
+msgstr[2] "Odesílání %2$d souborů z %3$d na %1$s selhalo"
+
+msgctxt "tap_to_open"
+msgid "Tap to open"
+msgstr "Ťukněte pro otevření"
+
+#, c-format
+msgctxt "received_file_text"
+msgid "Tap to open '%1s'"
+msgstr "Ťukněte pro otevření '%1s'"
+
+#, c-format
+msgctxt "cannot_create_file"
+msgid "Cannot create file %s"
+msgstr "Nelze vytvořit soubor %s"
+
+msgctxt "tap_to_answer"
+msgid "Tap to answer"
+msgstr "Ťukněte pro odpovězení"
+
+msgctxt "right_click"
+msgid "Send Right Click"
+msgstr "Poslat kliknutí pravým tlačítkem"
+
+msgctxt "middle_click"
+msgid "Send Middle Click"
+msgstr "Poslat kliknutí prostředním tlačítkem"
+
+msgctxt "show_keyboard"
+msgid "Show Keyboard"
+msgstr "Zobrazit klávesnici"
+
+msgctxt "device_not_paired"
+msgid "Device not paired"
+msgstr "Zařízení není spárováno"
+
+msgctxt "request_pairing"
+msgid "Request pairing"
+msgstr "Vyžádat párování"
+
+msgctxt "pairing_accept"
+msgid "Accept"
+msgstr "Přijmout"
+
+msgctxt "pairing_reject"
+msgid "Reject"
+msgstr "Odmítnout"
+
+msgctxt "settings"
+msgid "Settings"
+msgstr "Nastavení"
+
+msgctxt "mpris_play"
+msgid "Play"
+msgstr "Přehrát"
+
+msgctxt "mpris_pause"
+msgid "Pause"
+msgstr "Pozastavit"
+
+msgctxt "mpris_previous"
+msgid "Previous"
+msgstr "Předchozí"
+
+msgctxt "mpris_rew"
+msgid "Rewind"
+msgstr "Přetočit zpět"
+
+msgctxt "mpris_ff"
+msgid "Fast-forward"
+msgstr "Rychle vpřed"
+
+msgctxt "mpris_next"
+msgid "Next"
+msgstr "Následující"
+
+msgctxt "mpris_loop"
+msgid "Loop"
+msgstr "Smyčka"
+
+msgctxt "mpris_shuffle"
+msgid "Shuffle"
+msgstr "Zamíchat"
+
+msgctxt "mpris_volume"
+msgid "Volume"
+msgstr "Hlasitost"
+
+msgctxt "mpris_time_settings_title"
+msgid "Forward/rewind buttons"
+msgstr "Tlačítka vpřed/přetočit"
+
+msgctxt "mpris_time_settings_summary"
+msgid "Adjust the time to fast forward/rewind when pressed"
+msgstr "Upravit čas pro rychlý posun/přetočení při stisku"
+
+msgctxt "mpris_time_entries:0"
+msgid "10 seconds"
+msgstr "10 sekund"
+
+msgctxt "mpris_time_entries:1"
+msgid "20 seconds"
+msgstr "20 sekund"
+
+msgctxt "mpris_time_entries:2"
+msgid "30 seconds"
+msgstr "30 sekund"
+
+msgctxt "mpris_time_entries:3"
+msgid "1 minute"
+msgstr "1 minuta"
+
+msgctxt "mpris_time_entries:4"
+msgid "2 minutes"
+msgstr "2 minuty"
+
+msgctxt "mpris_notification_settings_title"
+msgid "Show media control notification"
+msgstr "Obrazit oznámení pro ovládání médií"
+
+msgctxt "mpris_notification_settings_summary"
+msgid "Allow controlling your media players without opening KDE Connect"
+msgstr "Umožnit ovládání přehrávače médií bez otevření KDE Connect"
+
+msgctxt "share_to"
+msgid "Share To…"
+msgstr "Sdílet s..."
+
+msgctxt "protocol_version_newer"
+msgid "This device uses a newer protocol version"
+msgstr "Toto zařízení používá novější verzi protokolu"
+
+#, c-format
+msgctxt "plugin_settings_with_name"
+msgid "%s settings"
+msgstr "Nastavení %s"
+
+msgctxt "invalid_device_name"
+msgid "Invalid device name"
+msgstr "Neplatný název zařízení"
+
+msgctxt "shareplugin_text_saved"
+msgid "Received text, saved to clipboard"
+msgstr "Přijatý text byl uložen do schránky"
+
+msgctxt "custom_devices_settings"
+msgid "Custom device list"
+msgstr "Seznam vlastních zařízení"
+
+msgctxt "custom_device_list"
+msgid "Add devices by IP"
+msgstr "Přidat zařízení podle IP"
+
+msgctxt "custom_device_deleted"
+msgid "Custom device deleted"
+msgstr "Vlastní zařízení bylo smazáno"
+
+msgctxt "custom_device_list_help"
+msgid ""
+"If your device is not automatically detected you can add its IP address or "
+"hostname by clicking on the Floating Action Button"
+msgstr ""
+"Pokud vaše zařízení není automaticky detekováno, můžete přidat jeho adresu "
+"IP nebo hostname kliknutím na tlačítko pro plovoucí činnosti"
+
+msgctxt "custom_device_fab_hint"
+msgid "Add a device"
+msgstr "Přidat zařízení"
+
+msgctxt "undo"
+msgid "Undo"
+msgstr "Zpět"
+
+msgctxt "share_notification_preference"
+msgid "Noisy notifications"
+msgstr "Hlasitá oznámení"
+
+msgctxt "share_notification_preference_summary"
+msgid "Vibrate and play a sound when receiving a file"
+msgstr "Vibrovat a přehrát melodii při přijímání souboru"
+
+msgctxt "share_destination_customize"
+msgid "Customize destination directory"
+msgstr "Přizpůsobte si cílový adresář"
+
+msgctxt "share_destination_customize_summary_disabled"
+msgid "Received files will appear in Downloads"
+msgstr "Přijaté soubory se objeví v Downloads"
+
+msgctxt "share_destination_customize_summary_enabled"
+msgid "Files will be stored in the directory below"
+msgstr "Soubory budou ukládány v adresáři níže"
+
+msgctxt "share_destination_folder_preference"
+msgid "Destination directory"
+msgstr "Cílový adresář"
+
+msgctxt "share"
+msgid "Share"
+msgstr "Sdílet"
+
+#, c-format
+msgctxt "share_received_file"
+msgid "Share \"%s\""
+msgstr "Sdílet \"%s\""
+
+msgctxt "title_activity_notification_filter"
+msgid "Notification filter"
+msgstr "Filtr oznámení"
+
+msgctxt "filter_apps_info"
+msgid "Notifications will be synchronized for the selected apps."
+msgstr "Oznámení vybraných aplikací bude synchronizováno."
+
+msgctxt "show_notification_if_screen_off"
+msgid "Send notifications only if the screen is off"
+msgstr "Poslat upozornění pouze při uzamčené obrazovce"
+
+#, c-format
+msgctxt "sftp_sdcard_num"
+msgid "SD card %d"
+msgstr "SD karta %d"
+
+msgctxt "sftp_sdcard"
+msgid "SD card"
+msgstr "SD karta"
+
+msgctxt "sftp_readonly"
+msgid "(read only)"
+msgstr "(pouze ke čtení)"
+
+msgctxt "sftp_camera"
+msgid "Camera pictures"
+msgstr "Obrázky z fotoaparátu"
+
+msgctxt "add_device_dialog_title"
+msgid "Add device"
+msgstr "Přidat zařízení"
+
+msgctxt "add_device_hint"
+msgid "Hostname or IP address"
+msgstr "Název hostitele nebo IP adresa"
+
+msgctxt "sftp_preference_detected_sdcards"
+msgid "Detected SD cards"
+msgstr "Nalezené karty SD"
+
+msgctxt "sftp_preference_edit_sdcard_title"
+msgid "Edit SD card"
+msgstr "Upravit kartu SD"
+
+msgctxt "sftp_preference_configured_storage_locations"
+msgid "Configured storage locations"
+msgstr "Nastavená umístění úložiště"
+
+msgctxt "sftp_preference_add_storage_location_title"
+msgid "Add storage location"
+msgstr "Přidejte umístění úložiště"
+
+msgctxt "sftp_preference_edit_storage_location"
+msgid "Edit storage location"
+msgstr "Upravit umístění úložiště"
+
+msgctxt "sftp_preference_add_camera_shortcut"
+msgid "Add camera folder shortcut"
+msgstr "Přidat zkratku na složku fotoaparátu"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_on"
+msgid "Add a shortcut to the camera folder"
+msgstr "Přidat zkratku na složku fotoaparátu"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_off"
+msgid "Do not add a shortcut to the camera folder"
+msgstr "Nepřidávat zkratku na složku fotoaparátu"
+
+msgctxt "sftp_storage_preference_storage_location"
+msgid "Storage location"
+msgstr "Umístění úložiště"
+
+msgctxt "sftp_storage_preference_storage_location_already_configured"
+msgid "This location has already been configured"
+msgstr "´Operace již byla zrušena"
+
+msgctxt "sftp_storage_preference_click_to_select"
+msgid "click to select"
+msgstr "klikněte pro výběr"
+
+msgctxt "sftp_storage_preference_display_name"
+msgid "Display name"
+msgstr "Název obrazovky"
+
+msgctxt "sftp_storage_preference_display_name_already_used"
+msgid "This display name is already used"
+msgstr "Tento název obrazovky je již použit"
+
+msgctxt "sftp_storage_preference_display_name_cannot_be_empty"
+msgid "Display name cannot be empty"
+msgstr "Název obrazovky nesmí být prázdný"
+
+msgctxt "sftp_action_mode_menu_delete"
+msgid "Delete"
+msgstr "Smazat"
+
+msgctxt "sftp_no_sdcard_detected"
+msgid "No SD card detected"
+msgstr "Nebyla zjištěna žádná karta SD"
+
+msgctxt "sftp_no_storage_locations_configured"
+msgid "No storage locations configured"
+msgstr "Nebyla nastavena umístění úložiště."
+
+msgctxt "sftp_saf_permission_explanation"
+msgid "To access files remotely you have to configure storage locations"
+msgstr "Pro vzdálený přístup k souborům musíte nastavit umístění úložišť"
+
+msgctxt "no_players_connected"
+msgid "No players found"
+msgstr "Přehrávač nenalezen"
+
+msgctxt "send_files"
+msgid "Send files"
+msgstr "Odeslat soubory"
+
+msgctxt "pairing_title"
+msgid "KDE Connect Devices"
+msgstr "Zařízení KDE Connect"
+
+msgctxt "pairing_description"
+msgid ""
+"Other devices running KDE Connect in your same network should appear here."
+msgstr ""
+"Zde by se měla zobrazit další zařízení, na kterých běží KDE Connect ve "
+"stejné síti."
+
+msgctxt "device_rename_title"
+msgid "Rename device"
+msgstr "Přejmenovat zařízení"
+
+msgctxt "device_rename_confirm"
+msgid "Rename"
+msgstr "Přejmenovat"
+
+msgctxt "refresh"
+msgid "Refresh"
+msgstr "Obnovit"
+
+msgctxt "unreachable_description"
+msgid ""
+"This paired device is not reachable. Make sure it is connected to your same "
+"network."
+msgstr ""
+"Toto spárované zařízení je nedosažitelné. Ujistěte se, že běží ve stejné "
+"síti."
+
+msgctxt "no_wifi"
+msgid ""
+"You're not connected to a Wi-Fi network, so you may not be able to see any "
+"devices. Click here to enable Wi-Fi."
+msgstr ""
+"Nejste připojeni k síti WiFi, takže nemůžete vidět žádná zařízení. Pro "
+"zapnutí WiFi klikněte zde."
+
+msgctxt "on_non_trusted_message"
+msgid "Not on a trusted network: autodiscovery is disabled."
+msgstr "Síť není důvěryhodná. Automatické hledání bylo vypnuto."
+
+msgctxt "no_file_browser"
+msgid "There are no file browsers installed."
+msgstr "Není nainstalován žádný prohlížeč souborů."
+
+msgctxt "pref_plugin_telepathy"
+msgid "Send SMS"
+msgstr "Poslat SMS"
+
+msgctxt "pref_plugin_telepathy_desc"
+msgid "Send text messages from your desktop"
+msgstr "Posílejte zprávy ze své pracovní plochy"
+
+msgctxt "pref_plugin_telepathy_mms"
+msgid "Send MMS"
+msgstr "Poslat MMS"
+
+msgctxt "pref_plugin_telepathy_mms_desc"
+msgid ""
+"To be able to send MMS from KDE Connect you need to set it as the default "
+"SMS app."
+msgstr ""
+"Abyste mohli posílat MMS pomocí KDE Connect jej musíte nastavit jako výchozí "
+"aplikaci na SMS."
+
+msgctxt "findmyphone_title"
+msgid "Find my phone"
+msgstr "Najít můj telefon"
+
+msgctxt "findmyphone_title_tablet"
+msgid "Find my tablet"
+msgstr "Najít můj tablet"
+
+msgctxt "findmyphone_title_tv"
+msgid "Find my TV"
+msgstr "Najít mou TV"
+
+msgctxt "findmyphone_description"
+msgid "Rings this device so you can find it"
+msgstr "Prozvoní toto zařízení, takže jej můžete najít"
+
+msgctxt "findmyphone_found"
+msgid "Found it"
+msgstr "Nalezeno"
+
+msgctxt "open"
+msgid "Open"
+msgstr "Otevřít"
+
+msgctxt "close"
+msgid "Close"
+msgstr "Zavřít"
+
+msgctxt "plugins_need_permission"
+msgid "Some Plugins need permissions to work (tap for more info):"
+msgstr ""
+"Některé moduly potřebují pro práci povolení (ťukněte pro více informací):"
+
+msgctxt "permission_explanation"
+msgid "This plugin needs permissions to work"
+msgstr "Tento modul potřebuje pro práci povolení"
+
+msgctxt "optional_permission_explanation"
+msgid "You need to grant extra permissions to enable all functions"
+msgstr "Pro zpřístupnění všech funkcí potřebujete další oprávnění"
+
+msgctxt "plugins_need_optional_permission"
+msgid ""
+"Some plugins have features disabled because of lack of permission (tap for "
+"more info):"
+msgstr ""
+"Některé moduly mají vypnuté vlastnosti, kvůli nedostatečným oprávněním "
+"(ťukněte pro více informací):"
+
+msgctxt "share_optional_permission_explanation"
+msgid "To receive shared files you need to choose a destination directory"
+msgstr "Pro příjem souborů je potřeba vybrat cílový adresář"
+
+msgctxt "telepathy_permission_explanation"
+msgid ""
+"To read and write SMS from your desktop you need to give permission to SMS"
+msgstr "Pro čtení a psaní SMS z počítače musíte udělit oprávnění k SMS"
+
+msgctxt "telephony_permission_explanation"
+msgid ""
+"To see phone calls on the desktop you need to give permission to phone call "
+"logs and phone state"
+msgstr ""
+"Pro zobrazení telefonátů v počítači musíte udělit oprávnění k záznamům "
+"telefonování a stavu telefonu"
+
+msgctxt "telephony_optional_permission_explanation"
+msgid ""
+"To see a contact name instead of a phone number you need to give access to "
+"the phone's contacts"
+msgstr ""
+"Pro zobrazení jména kontaktu u telefonního čísla je potřeba udělit oprávnění "
+"ke kontaktům v telefonu"
+
+msgctxt "contacts_permission_explanation"
+msgid ""
+"To share your contacts book with the desktop, you need to give contacts "
+"permission"
+msgstr ""
+"Pro sdílení knihy kontaktů s pracovním prostředím, musíte udělit přístup ke "
+"kontaktům"
+
+msgctxt "select_ringtone"
+msgid "Select a ringtone"
+msgstr "Vybrat vyzváněcí tón"
+
+msgctxt "telephony_pref_blocked_title"
+msgid "Blocked numbers"
+msgstr "Blokovaná čísla"
+
+msgctxt "telephony_pref_blocked_dialog_desc"
+msgid ""
+"Don't show calls and SMS from these numbers. Please specify one number per "
+"line"
+msgstr ""
+"Nezobrazovat volnání a SMS z těchto čísel. Prosím, zadejte pouze jedno slovo "
+"na řádek."
+
+msgctxt "mpris_coverart_description"
+msgid "Cover art of current media"
+msgstr "Obal současného média"
+
+msgctxt "device_icon_description"
+msgid "Device icon"
+msgstr "Ikona zařízení"
+
+msgctxt "settings_icon_description"
+msgid "Settings icon"
+msgstr "Ikona nastavení"
+
+msgctxt "presenter_fullscreen"
+msgid "Fullscreen"
+msgstr "Celá obrazovka"
+
+msgctxt "presenter_exit"
+msgid "Exit presentation"
+msgstr "Ukončit prezentaci"
+
+msgctxt "presenter_lock_tip"
+msgid ""
+"You can lock your device and use the volume keys to go to the previous/next "
+"slide"
+msgstr ""
+"Můžete zamknout zařízení a použít klávesy pro ovládání hlasitosti pro posun "
+"na předchozí/další snímek"
+
+msgctxt "add_command"
+msgid "Add a command"
+msgstr "Přidat příkaz"
+
+msgctxt "addcommand_explanation"
+msgid "There are no commands registered"
+msgstr "Nejsou registrovány žádné příkazy"
+
+msgctxt "addcommand_explanation2"
+msgid "You can add new commands in the KDE Connect System Settings"
+msgstr "Nové příkazy můžete přidat v nastavení systému KDE Connect"
+
+msgctxt "add_command_description"
+msgid "You can add commands on the desktop"
+msgstr "V pracovním prostředí můžete přidat příkazy"
+
+msgctxt "pref_plugin_mprisreceiver"
+msgid "Media Player Control"
+msgstr "Ovládání přehrávače médií"
+
+msgctxt "pref_plugin_mprisreceiver_desc"
+msgid "Control your phone's media players from another device"
+msgstr "Ovládejte přehrávače médií na vašem telefonu z jiného zařízení"
+
+msgctxt "notification_channel_default"
+msgid "Other notifications"
+msgstr "Ostatní oznámení"
+
+msgctxt "notification_channel_persistent"
+msgid "Persistent indicator"
+msgstr "Stálý ukazatel"
+
+msgctxt "notification_channel_media_control"
+msgid "Media control"
+msgstr "Ovládání médií"
+
+msgctxt "notification_channel_filetransfer"
+msgid "File transfer"
+msgstr "Přenos souboru"
+
+msgctxt "notification_channel_high_priority"
+msgid "High priority"
+msgstr "Vysoká priorita"
+
+msgctxt "notification_channel_sms_mms"
+msgid "New Message"
+msgstr "Nová zpráva"
+
+msgctxt "mpris_stop"
+msgid "Stop the current player"
+msgstr "Zastavit současný přehrávač"
+
+msgctxt "copy_url_to_clipboard"
+msgid "Copy URL to clipboard"
+msgstr "Kopírovat URL do schránky"
+
+msgctxt "clipboard_toast"
+msgid "Copied to clipboard"
+msgstr "Zkopírováno do schránky"
+
+msgctxt "runcommand_notreachable"
+msgid "Device is not reachable"
+msgstr "Zařízení je nedostupné"
+
+msgctxt "runcommand_notpaired"
+msgid "Device is not paired"
+msgstr "Zařízení není spárováno"
+
+msgctxt "runcommand_nosuchdevice"
+msgid "There is no such device"
+msgstr "Není zde žádné takové zařízení"
+
+msgctxt "runcommand_noruncommandplugin"
+msgid "This device does not have the Run Command Plugin enabled"
+msgstr "Toto zařízení nemá povolený modul pro spouštění příkazů"
+
+msgctxt "pref_plugin_findremotedevice"
+msgid "Find remote device"
+msgstr "Najít vzdálené zařízení"
+
+msgctxt "pref_plugin_findremotedevice_desc"
+msgid "Ring your remote device"
+msgstr "Prozvonit vzdálené zařízení"
+
+msgctxt "ring"
+msgid "Ring"
+msgstr "Prozvonit"
+
+msgctxt "pref_plugin_systemvolume"
+msgid "System volume"
+msgstr "Hlasitost systému"
+
+msgctxt "pref_plugin_systemvolume_desc"
+msgid "Control the system volume of the remote device"
+msgstr "Ovládejte hlasitost systému vzdáleného zařízení"
+
+msgctxt "mute"
+msgid "Mute"
+msgstr "Ztlumit"
+
+msgctxt "all"
+msgid "All"
+msgstr "Vše"
+
+msgctxt "devices"
+msgid "Devices"
+msgstr "Zařízení"
+
+msgctxt "settings_rename"
+msgid "Device name"
+msgstr "Název zařízení"
+
+msgctxt "settings_dark_mode"
+msgid "Dark theme"
+msgstr "Tmavý motiv"
+
+msgctxt "settings_more_settings_title"
+msgid "More settings"
+msgstr "Více nastavení"
+
+msgctxt "settings_more_settings_text"
+msgid ""
+"Per-device settings can be found under 'Plugin settings' from within a "
+"device."
+msgstr ""
+"Nastavení \"pro každé zařízení\" lze najít v 'Nastavení modulu' v zařízení."
+
+msgctxt "setting_persistent_notification"
+msgid "Show persistent notification"
+msgstr "Ukázat stálé upozornění"
+
+msgctxt "setting_persistent_notification_oreo"
+msgid "Persistent notification"
+msgstr "Stálé upozornění"
+
+msgctxt "setting_persistent_notification_description"
+msgid "Tap to enable/disable in Notification settings"
+msgstr "Ťuknutím povolíte/zakážete v nastavení oznámení"
+
+msgctxt "extra_options"
+msgid "Extra options"
+msgstr "Další možnosti"
+
+msgctxt "privacy_options"
+msgid "Privacy options"
+msgstr "Možnosti soukromí"
+
+msgctxt "set_privacy_options"
+msgid "Set your privacy options"
+msgstr "Nastavte své možnosti soukromí"
+
+msgctxt "block_contents"
+msgid "Block contents of notifications"
+msgstr "Blokovat obsah oznámení"
+
+msgctxt "block_images"
+msgid "Block images in notifications"
+msgstr "Blokovat obrázky v oznámení"
+
+msgctxt "notification_channel_receivenotification"
+msgid "Notifications from other devices"
+msgstr "Oznámení z ostatních zařízení"
+
+msgctxt "take_picture"
+msgid "Launch camera"
+msgstr "Spustit fotoaparát"
+
+msgctxt "plugin_photo_desc"
+msgid "Launch the camera app to ease taking and transferring pictures"
+msgstr "Spusťte aplikaci fotoaparátu pro snadné zachytávání s přenos obrázků"
+
+msgctxt "no_app_for_opening"
+msgid "No suitable app found to open this file"
+msgstr "Pro otevření tohoto souboru nebyla nalezena vhodná aplikace"
+
+msgctxt "remote_keyboard_service"
+msgid "KDE Connect Remote Keyboard"
+msgstr "Vzdálená klávesnice pro KDE Connect"
+
+msgctxt "presenter_pointer"
+msgid "Pointer"
+msgstr "Ukazatel"
+
+msgctxt "trusted_networks"
+msgid "Trusted networks"
+msgstr "Důvěryhodné sítě"
+
+msgctxt "trusted_networks_desc"
+msgid "Restrict autodiscovery to known networks"
+msgstr "Omezit automatické hledání na známé sítě"
+
+#, c-format
+msgctxt "add_trusted_network"
+msgid "Add %1s"
+msgstr "Přidat %1s"
+
+msgctxt "empty_trusted_networks_list_text"
+msgid "You haven't added any trusted network yet"
+msgstr "Nepřidali jste žádné důvěryhodné sítě"
+
+msgctxt "allow_all_networks_text"
+msgid "Allow all"
+msgstr "Povolit všechny"
+
+msgctxt "location_permission_needed_title"
+msgid "Permission required"
+msgstr "Získán přístup"
+
+msgctxt "location_permission_needed_desc"
+msgid "Android requires the Location permission to identify your WiFi network"
+msgstr "Pro identifikaci sítě WiFi Android vyžaduje oprávnění zjistit polohu"
+
+msgctxt "clipboard_android_x_incompat"
+msgid ""
+"Android 10 has removed clipboard access to all apps. This plugin will be "
+"disabled."
+msgstr ""
+"Android 10 odstranit přístup ke schránce pro všechny aplikace. Tento modul "
+"bude zakázán."
+
+msgctxt "mpris_open_url"
+msgid "Continue playing here"
+msgstr "Pokračovat v přehrávání zde"
+
+msgctxt "cant_open_url"
+msgid "Can't open URL to continue playing"
+msgstr "Nelze otevřít URL pro pokračování v přehrávání"
+
+msgctxt "bigscreen_home"
+msgid "Home"
+msgstr "Domů"
+
+msgctxt "bigscreen_up"
+msgid "Up"
+msgstr "Nahoru"
+
+msgctxt "bigscreen_left"
+msgid "Left"
+msgstr "Vlevo"
+
+msgctxt "bigscreen_select"
+msgid "Select"
+msgstr "Vybrat"
+
+msgctxt "bigscreen_right"
+msgid "Right"
+msgstr "Vpravo"
+
+msgctxt "bigscreen_down"
+msgid "Down"
+msgstr "Dolů"
+
+msgctxt "bigscreen_mic"
+msgid "Mic"
+msgstr "Mikrofon"
+
+msgctxt "pref_plugin_bigscreen"
+msgid "Bigscreen remote"
+msgstr "Dálkový ovladač pro Bigscreen"
+
+msgctxt "pref_plugin_bigscreen_desc"
+msgid "Use your device as a remote for Plasma Bigscreen"
+msgstr "Používejte své zařízení jako ovladač pro Plasma Bigscreen"
+
+msgctxt "bigscreen_optional_permission_explanation"
+msgid ""
+"To share microphone input from your phone you need to give access to the "
+"phone's audio input"
+msgstr ""
+"Pro sdílení vstupu mikrofonu z vašeho telefonu je potřeba udělit přístup ke "
+"vstupnímu audio zařízení telefonu"
+
+msgctxt "bigscreen_speech_extra_prompt"
+msgid "Speech"
+msgstr "Mluvené slovo"
+
+msgctxt "message_reply_label"
+msgid "REPLY"
+msgstr "ODPOVĚĎ"
+
+msgctxt "mark_as_read_label"
+msgid "MARK AS READ"
+msgstr "OZNAČIT JAKO PŘEČTENÉ"
+
+msgctxt "user_display_name"
+msgid "You"
+msgstr "Vy"
+
+msgctxt "set_default_sms_app_title"
+msgid "Send MMS"
+msgstr "Poslat MMS"
+
+msgctxt "set_group_message_as_mms_title"
+msgid "Send group MMS"
+msgstr "Poslat skupinovou MMS"
+
+msgctxt "set_long_text_as_mms_title"
+msgid "Send long text as MMS"
+msgstr "Poslat dlouhý text jako MMS"
+
+msgctxt "convert_to_mms_after_title"
+msgid "Convert to MMS"
+msgstr "Převést na MMS"
+
+msgctxt "convert_to_mms_after_entries:0"
+msgid "After one message"
+msgstr "Po jedné zprávě"
+
+msgctxt "convert_to_mms_after_entries:1"
+msgid "After two messages"
+msgstr "Po dvou zprávách"
+
+msgctxt "convert_to_mms_after_entries:2"
+msgid "After three messages"
+msgstr "Po třech zprávách"
+
+msgctxt "convert_to_mms_after_entries:3"
+msgid "After four messages"
+msgstr "Po čtyřech zprávách"
+
+msgctxt "convert_to_mms_after_entries:4"
+msgid "After five messages"
+msgstr "Po pěti zprávách"
+
+msgctxt "theme_dialog_title"
+msgid "Choose theme"
+msgstr "Vyberte motiv"
+
+msgctxt "theme_list:0"
+msgid "Set by Battery Saver"
+msgstr "Nastaveno spořičem baterie"
+
+msgctxt "theme_list:1"
+msgid "Light"
+msgstr "Lehké"
+
+msgctxt "theme_list:2"
+msgid "Dark"
+msgstr "Tmavé"
+
+msgctxt "theme_list_v28:0"
+msgid "System Default"
+msgstr "Výchozí systémový"
+
+msgctxt "theme_list_v28:1"
+msgid "Light"
+msgstr "Světlý"
+
+msgctxt "theme_list_v28:2"
+msgid "Dark"
+msgstr "Tmavý"
+
+msgctxt "report_bug"
+msgid "Report Bug"
+msgstr "Nahlásit chybu"
+
+msgctxt "donate"
+msgid "Donate"
+msgstr "Přispět"
+
+msgctxt "source_code"
+msgid "Source Code"
+msgstr "Zdrojový kód"
+
+msgctxt "licenses"
+msgid "Licenses"
+msgstr "Licence"
+
+msgctxt "website"
+msgid "Website"
+msgstr "Webová stránka"
+
+msgctxt "about"
+msgid "About"
+msgstr "O aplikaci"
+
+msgctxt "authors"
+msgid "Authors"
+msgstr "Autoři"
+
+msgctxt "thanks_to"
+msgid "Thanks To"
+msgstr "Poděkování"
+
+msgctxt "easter_egg"
+msgid "Easter Egg"
+msgstr "Skrytý vtípek"
+
+#, c-format
+msgctxt "email_contributor"
+msgid ""
+"Email contributor\n"
+"%s"
+msgstr ""
+"Poslat e-mail autorovi\n"
+"%s"
+
+#, c-format
+msgctxt "visit_contributors_homepage"
+msgid ""
+"Visit contributor's homepage\n"
+"%s"
+msgstr ""
+"Navštívit domovskou stránku autora\n"
+"%s"
+
+#, c-format
+msgctxt "version"
+msgid "Version %s"
+msgstr "Verze %s"
+
+msgctxt "about_kde"
+msgid "About KDE"
+msgstr "O prostředí KDE"
+
+msgctxt "kde_be_free"
+msgid "KDE - Be Free!"
+msgstr "KDE - Buďte svobodní!"
+
+msgctxt "kde"
+msgid "KDE"
+msgstr "KDE"
+
+msgctxt "konqi"
+msgid "Konqi"
+msgstr "Konqi"
+
+msgctxt "rise_up"
+msgid "Rise Up"
+msgstr ""
+
+msgctxt "rise_down"
+msgid "Rise Down"
+msgstr ""
+
+msgctxt "click_here_to_type"
+msgid "Tap here to type"
+msgstr "Pro psaní ťukněte sem"
+
+msgctxt "clear_compose"
+msgid "Clear"
+msgstr "Vyprázdnit"
+
+msgctxt "send_compose"
+msgid "Send"
+msgstr "Odeslat"
+
+msgctxt "open_compose_send"
+msgid "Compose text"
+msgstr "Napsat text"
+
+msgctxt "app_description"
+msgid ""
+"Multi-platform app that allows your devices to communicate (e.g., your phone "
+"and your computer)"
+msgstr ""
+"Multiplatformní aplikace, která umožňuje vašim zařízením komunikaci (např. "
+"váš telefon a počítač)"
+
+msgctxt "about_kde_about"
+msgid ""
+"&lt;h1&gt;About&lt;/h1&gt; &lt;p&gt;KDE is a world-wide community of "
+"software engineers, artists, writers, translators and creators who are "
+"committed to &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Free "
+"Software&lt;/a&gt; development. KDE produces the Plasma desktop environment, "
+"hundreds of applications, and the many software libraries that support them."
+"&lt;/p&gt; &lt;p&gt;KDE is a cooperative enterprise: no single entity "
+"controls its direction or products. Instead, we work together to achieve the "
+"common goal of building the world's finest Free Software. Everyone is "
+"welcome to &lt;a href=https://community.kde.org/Get_Involved&gt;join and "
+"contribute&lt;/a&gt; to KDE, including you.&lt;/p&gt; Visit &lt;a "
+"href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; for more "
+"information about the KDE community and the software we produce."
+msgstr ""
+"&lt;h1&gt;O KDE&lt;/h1&gt; &lt;p&gt;KDE je celosvětová komunita softwarových "
+"inženýrů, výtvarníků, překladatelů a jiných přispěvatelů, kteří se odevzdali "
+"vývoji &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Svobodného "
+"Softwaru&lt;/a&gt;. KDE vytvořilo pracovní prostředí Plasma, stovky aplikací "
+"a spousty knihoven, jenž je podporují. &lt;/p&gt; &lt;p&gt;KDE je společné "
+"úsilí, kde žádná společnost neřídí jeho směr nebo produkty. Namísto toho "
+"spolupracujeme na společném cíli jímž je vytvoření nejlepšího Free Softwaru. "
+"Každý je vítán aby &lt;a href=https://community.kde.org/Get_Involved&gt;se "
+"zapojil a přispíval&lt;/a&gt; do KDE, včetně vás. Více informací o komunitě "
+"KDE a softwaru, na kterém pracujeme najdete na &lt;/a&gt;$3&lt;a "
+"href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt;."
+
+msgctxt "about_kde_report_bugs_or_wishes"
+msgid ""
+"&lt;h1&gt;Report Bugs or Wishes&lt;/h1&gt; &lt;p&gt;Software can always be "
+"improved, and the KDE team is ready to do so. However, you - the user - must "
+"tell us when something does not work as expected or could be done better."
+"&lt;/p&gt; &lt;p&gt;KDE has a bug tracking system. Visit &lt;a href=https://"
+"bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; or use the \"Report Bug\" "
+"button from the about screen to report bugs.&lt;/p&gt; If you have a "
+"suggestion for improvement then you are welcome to use the bug tracking "
+"system to register your wish. Make sure you use the severity called "
+"\"Wishlist\"."
+msgstr ""
+"&lt;h1&gt;Hlaste chyby a návrhy&lt;/h1&gt; &lt;p&gt;Software je možno "
+"neustále vylepšovat a tým KDE je k tomu připraven. Avšak vy, uživatel, nám "
+"musíte sdělit, když něco nefunguje tak, jak by se očekávalo nebo by mělo být "
+"uděláno lépe.&lt;/p&gt; &lt;p&gt;KDE má systém sledování chyb. Chcete-li "
+"tedy nahlásit chybu, navštivte &lt;a href=https://bugs.kde.org/&gt;https://"
+"bugs.kde.org/&lt;/a&gt; nebo použijte dialog \"Nahlásit chybu...\".&lt;/"
+"p&gt; Máte-li náměty na vylepšení, budeme rádi, pošlete-li nám svoje přání. "
+"Ujistěte se však, že jste označili chybové hlášení jako \"Přání\"."
+
+msgctxt "about_kde_join_kde"
+msgid ""
+"&lt;h1&gt;Join KDE&lt;/h1&gt; &lt;p&gt;You do not have to be a software "
+"developer to be a member of the KDE team. You can join the national teams "
+"that translate program interfaces. You can provide graphics, themes, sounds, "
+"and improved documentation. You decide!&lt;/p&gt; &lt;p&gt;Visit &lt;a "
+"href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/"
+"Get_Involved&lt;/a&gt; for information on some projects in which you can "
+"participate.&lt;/p&gt; If you need more information or documentation, then a "
+"visit to &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/"
+"&lt;/a&gt; will provide you with what you need."
+msgstr ""
+"&lt;h1&gt;Přidejte se ke KDE&lt;/h1&gt; &lt;p&gt;K tomu, abyste se stali "
+"členem týmu KDE, není zapotřebí být vývojářem softwaru. Můžete se připojit k "
+"národním týmům, které překládají programy. Můžete vytvářet grafiku, motivy, "
+"zvuky a lepší dokumentaci. Vy se rozhodněte!&lt;/p&gt; &lt;p&gt;Navštivte "
+"&lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde."
+"org/Get_Involved&lt;/a&gt; kde naleznete informace o některých projektech, "
+"kterých se můžete zúčastnit.&lt;/p&gt; Potřebujete-li více informací nebo "
+"dokumentace, pak návštěva na &lt;a href=https://techbase.kde.org/&gt;https://"
+"techbase.kde.org/&lt;/a&gt; vám poskytne, co potřebujete.&lt;/p&gt;České "
+"stránky o KDE se nacházejí na adrese &lt;a href=\"http://czechia.kde.org/"
+"\"&gt;http://czechia.kde.org/&lt;/a&gt; . Přidejte se k nám!"
+
+msgctxt "about_kde_support_kde"
+msgid ""
+"&lt;h1&gt;Support KDE&lt;/h1&gt; &lt;p&gt;KDE software is and will always be "
+"available free of charge, however creating it is not free.&lt;/p&gt; &lt;"
+"p&gt;To support development the KDE community has formed the KDE e.V., a non-"
+"profit organization legally founded in Germany. KDE e.V. represents the KDE "
+"community in legal and financial matters. See &lt;a href=https://ev.kde.org/"
+"&gt;https://ev.kde.org/&lt;/a&gt; for information on KDE e.V.&lt;/p&gt; &lt;"
+"p&gt;KDE benefits from many kinds of contributions, including financial. We "
+"use the funds to reimburse members and others for expenses they incur when "
+"contributing. Further funds are used for legal support and organizing "
+"conferences and meetings.&lt;/p&gt; &lt;p&gt;We would like to encourage you "
+"to support our efforts with a financial donation, using one of the ways "
+"described at &lt;a href=https://www.kde.org/community/donations/&gt;https://"
+"www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Thank you very much in "
+"advance for your support."
+msgstr ""
+"&lt;h1&gt;Podpořte KDE&lt;/h1&gt; &lt;p&gt;KDE je a vždy bude dostupné "
+"zdarma, ale jeho tvorba zdarma není.&lt;/p&gt; &lt;p&gt;Proto jsme vytvořili "
+"Asociaci KDE, neziskovou organizaci založenou v Tuebingenu, Německo. "
+"Asociace KDE reprezentuje komunitu KDE v právních a finančních "
+"záležitostech. Podívejte se na &lt;a href=https://ev.kde.org/&gt;https://ev."
+"kde.org/&lt;/a&gt; informace o KDE e.V.&lt;/p&gt; &lt;p&gt;KDE staví na "
+"různých způsobech pomoci, včetně finanční. Peníze používáme na proplacení "
+"výdajů našich členů a dalších př přispívání. Další finance jsou použity na "
+"právnickou podporu, a organizaci konferencí a setkání.&lt;/p&gt; &lt;p&gt;"
+"Chtěli bychom vás poprosit o podporu v naší snaze pomocí finančního daru "
+"některým ze způsobů popsaných na &lt;a href=https://www.kde.org/community/"
+"donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; "
+"Předem děkujeme za váš příspěvek a podporu."
+
+#. Authors tasks
+msgctxt "maintainer_and_developer"
+msgid "Maintainer and developer"
+msgstr "Správce a vývojář"
+
+msgctxt "developer"
+msgid "Developer"
+msgstr "Vývojář"
+
+msgctxt "apple_support"
+msgid "macOS support. Working on iOS support"
+msgstr "Podpora macOS. Práce na podpoře iOS"
+
+msgctxt "bug_fixes_and_general_improvements"
+msgid "Bug fixes and general improvements"
+msgstr "Opravy chyb a vylepšení"
+
+msgctxt "samoilenko_yuri_task"
+msgid "SFTP implementation, bug fixes and general improvements"
+msgstr "Implementace SFTP, opravy chyb a obecná vylepšení"
+
+msgctxt "aniket_kumar_task"
+msgid "SMS plugin improvements"
+msgstr "Vylepšení modulu SMS"
+
+msgctxt "alex_fiestas_task"
+msgid "Contacts plugin improvements"
+msgstr "Vylepšení modulu kontaktů"
+
+msgctxt "maxim_leshchenko_task"
+msgid "UI improvements and this about page"
+msgstr "Vylepšení prostředí a tato stránka o aplikaci"
+
+msgctxt "holger_kaelberer_task"
+msgid "Remote keyboard plugin and bug fixes"
+msgstr "Vzdálené modul klávesnice a opravy chyb"
+
+msgctxt "saikrishna_arcot_task"
+msgid ""
+"Support for using the keyboard in the remote input plugin, bug fixes and "
+"general improvements"
+msgstr ""
+"Podpora použití klávesnice na vzdáleném vstupním modulu, opravy chyb a "
+"obecná zlepšení"
+
+msgctxt "everyone_else"
+msgid "Everyone else who has contributed to KDE Connect over the years"
+msgstr "Každý kdo přispěl do KDE Connect během let"
+
+msgctxt "send_clipboard"
+msgid "Send clipboard"
+msgstr "Poslat schránku"
+
+msgctxt "tap_to_execute"
+msgid "Tap to execute"
+msgstr "Pro spuštění ťukněte sem"

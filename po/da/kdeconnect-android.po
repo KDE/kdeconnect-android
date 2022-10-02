@@ -1,0 +1,2120 @@
+# Danish translations for PROJECT.
+# Copyright (C) 2013 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+#
+# Martin Schlander <mschlander@opensuse.org>, 2013, 2014, 2015, 2016, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdeconnect-android\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-01-16 00:43+0000\n"
+"PO-Revision-Date: 2017-07-23 12:51+0100\n"
+"Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
+"Language-Team: Danish <kde-i18n-doc@kde.org>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.0dev\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 2.0\n"
+
+#. # Dear potential translators:          Thank you for your interest in KDE
+#. Connect! We do not actually handle our own translations.         All
+#. translations for all KDE apps are handled by the [localization
+#. team](https://l10n.kde.org).         We really appreciate your translations,
+#. but make sure to submit them by working with the proper team!
+#, fuzzy
+#| msgctxt "pairing_title"
+#| msgid "KDE Connect Devices"
+msgctxt "kde_connect"
+msgid "KDE Connect"
+msgstr "KDE Connect-enheder"
+
+#, fuzzy
+#| msgctxt "outgoing_files_text"
+#| msgid "Sent %1$d out of %2$d files"
+msgctxt "manifest_label_share"
+msgid "Send to Device"
+msgstr "Sendte %1$d ud af %2$d filer"
+
+#, fuzzy
+#| msgctxt "category_connected_devices"
+#| msgid "Connected devices"
+msgctxt "foreground_notification_no_devices"
+msgid "Not connected to any device"
+msgstr "Forbundne enheder"
+
+#, fuzzy, c-format
+#| msgctxt "category_connected_devices"
+#| msgid "Connected devices"
+msgctxt "foreground_notification_devices"
+msgid "Connected to: %s"
+msgstr "Forbundne enheder"
+
+#, fuzzy
+#| msgctxt "shareplugin_text_saved"
+#| msgid "Received text, saved to clipboard"
+msgctxt "foreground_notification_send_clipboard"
+msgid "Send Clipboard"
+msgstr "Modtog tekst, gemt til udklipsholder"
+
+msgctxt "pref_plugin_telephony"
+msgid "Telephony notifier"
+msgstr "Telefonibekendtgørelse"
+
+#, fuzzy
+#| msgctxt "pref_plugin_telephony_desc"
+#| msgid "Send notifications for SMS and calls"
+msgctxt "pref_plugin_telephony_desc"
+msgid "Send notifications for incoming calls"
+msgstr "Send bekendtgørelser om SMS'er og opkald"
+
+msgctxt "pref_plugin_battery"
+msgid "Battery report"
+msgstr "Batterirapport"
+
+msgctxt "pref_plugin_battery_desc"
+msgid "Periodically report battery status"
+msgstr "Rapportér batteristatus periodisk"
+
+#, fuzzy
+#| msgctxt "pref_plugin_battery"
+#| msgid "Battery report"
+msgctxt "pref_plugin_connectivity_report"
+msgid "Connectivity report"
+msgstr "Batterirapport"
+
+msgctxt "pref_plugin_connectivity_report_desc"
+msgid "Report network signal strength and status"
+msgstr ""
+
+msgctxt "pref_plugin_sftp"
+msgid "Filesystem expose"
+msgstr "Filsystem-expose"
+
+msgctxt "pref_plugin_sftp_desc"
+msgid "Allows to browse this device's filesystem remotely"
+msgstr "Muliggør at gennemsøge denne enheds filsystem eksternt"
+
+msgctxt "pref_plugin_clipboard"
+msgid "Clipboard sync"
+msgstr "Synk. af udklipsholder"
+
+msgctxt "pref_plugin_clipboard_desc"
+msgid "Share the clipboard content"
+msgstr "Del indholdet af udklipsholderen"
+
+#, fuzzy
+#| msgctxt "pref_plugin_clipboard"
+#| msgid "Clipboard sync"
+msgctxt "pref_plugin_clipboard_sent"
+msgid "Clipboard Sent"
+msgstr "Synk. af udklipsholder"
+
+msgctxt "pref_plugin_mousepad"
+msgid "Remote input"
+msgstr "Eksternt input"
+
+msgctxt "pref_plugin_mousepad_desc"
+msgid "Use your phone or tablet as a touchpad and keyboard"
+msgstr "Brug din telefon eller tablet som mus og tastatur"
+
+msgctxt "pref_plugin_presenter"
+msgid "Slideshow remote"
+msgstr ""
+
+msgctxt "pref_plugin_presenter_desc"
+msgid "Use your device to change slides in a presentation"
+msgstr ""
+
+msgctxt "pref_plugin_remotekeyboard"
+msgid "Receive remote keypresses"
+msgstr "Modtag eksterne tastetryk"
+
+msgctxt "pref_plugin_remotekeyboard_desc"
+msgid "Receive keypress events from remote devices"
+msgstr "Modtag tastetryk-hændelser fra eksterne enheder"
+
+msgctxt "pref_plugin_mpris"
+msgid "Multimedia controls"
+msgstr "Multimediekontroller"
+
+msgctxt "pref_plugin_mpris_desc"
+msgid "Provides a remote control for your media player"
+msgstr "Giver en fjernbetjening til din medieafspiller"
+
+msgctxt "pref_plugin_runcommand"
+msgid "Run Command"
+msgstr "Kør kommando"
+
+msgctxt "pref_plugin_runcommand_desc"
+msgid "Trigger remote commands from your phone or tablet"
+msgstr "Kør eksterne kommandoer fra din telefon eller tablet"
+
+msgctxt "pref_plugin_contacts"
+msgid "Contacts Synchronizer"
+msgstr ""
+
+msgctxt "pref_plugin_contacts_desc"
+msgid "Allow synchronizing the device's contacts book"
+msgstr ""
+
+msgctxt "pref_plugin_ping"
+msgid "Ping"
+msgstr "Ping"
+
+msgctxt "pref_plugin_ping_desc"
+msgid "Send and receive pings"
+msgstr "Send og modtag ping"
+
+msgctxt "pref_plugin_notifications"
+msgid "Notification sync"
+msgstr "Synk. af bekendtgørelser"
+
+msgctxt "pref_plugin_notifications_desc"
+msgid "Access your notifications from other devices"
+msgstr "Tilgå dine bekendtgørelser fra andre enheder"
+
+msgctxt "pref_plugin_receive_notifications"
+msgid "Receive notifications"
+msgstr "Modtag bekendtgørelser"
+
+msgctxt "pref_plugin_receive_notifications_desc"
+msgid "Receive notifications from the other device and display them on Android"
+msgstr "Modtag bekendtgørelser fra den anden enhed og vis dem på Android"
+
+msgctxt "pref_plugin_sharereceiver"
+msgid "Share and receive"
+msgstr "Del og modtag"
+
+msgctxt "pref_plugin_sharereceiver_desc"
+msgid "Share files and URLs between devices"
+msgstr "Del filer og URL'er mellem enheder"
+
+msgctxt "device_list_empty"
+msgid "No devices"
+msgstr "Ingen enheder"
+
+msgctxt "ok"
+msgid "OK"
+msgstr "OK"
+
+msgctxt "sad_ok"
+msgid "OK :("
+msgstr ""
+
+msgctxt "cancel"
+msgid "Cancel"
+msgstr "Annullér"
+
+msgctxt "open_settings"
+msgid "Open settings"
+msgstr "Åbn indstillinger"
+
+msgctxt "no_permissions"
+msgid "You need to grant permission to access notifications"
+msgstr "Du skal give tilladelse for at tilgå bekendtgørelser"
+
+#, fuzzy
+#| msgctxt "telephony_optional_permission_explanation"
+#| msgid ""
+#| "To see a contact name instead of a phone number you need to give access "
+#| "to the phone's contacts"
+msgctxt "no_permission_mprisreceiver"
+msgid ""
+"To be able to control your media players you need to grant access to the "
+"notifications"
+msgstr ""
+"For at se et kontaktnavn i stedet for et telefonnummer, skal du give adgang "
+"til telefonens kontakter"
+
+msgctxt "no_permissions_remotekeyboard"
+msgid ""
+"To receive keypresses you need to activate the KDE Connect Remote Keyboard"
+msgstr ""
+
+msgctxt "send_ping"
+msgid "Send ping"
+msgstr "Send ping"
+
+msgctxt "open_mpris_controls"
+msgid "Multimedia control"
+msgstr "Multimediekontrol"
+
+msgctxt "remotekeyboard_editing_only_title"
+msgid "Handle remote keys only when editing"
+msgstr "Håndtér kun eksterne tastetryk under redigering"
+
+msgctxt "remotekeyboard_not_connected"
+msgid ""
+"There is no active remote keyboard connection, establish one in kdeconnect"
+msgstr "Der er ingen aktiv ekstern tastaturforbindelse. Opret en i kdeconnect"
+
+msgctxt "remotekeyboard_connected"
+msgid "Remote keyboard connection is active"
+msgstr "Ekstern tastaturforbindelse er aktiv"
+
+msgctxt "remotekeyboard_multiple_connections"
+msgid ""
+"There is more than one remote keyboard connection, select the device to "
+"configure"
+msgstr ""
+"Der er mere end en ekstern tastaturforbindelse, vælg den enhed der skal "
+"konfigureres"
+
+msgctxt "open_mousepad"
+msgid "Remote input"
+msgstr "Eksternt input"
+
+#, fuzzy
+#| msgctxt "mousepad_info"
+#| msgid ""
+#| "Move a finger on the screen to move the mouse cursor. Tap for a click, "
+#| "and use two/three fingers for right and middle buttons. Use a long press "
+#| "to drag'n drop."
+msgctxt "mousepad_info"
+msgid ""
+"Move a finger on the screen to move the mouse cursor. Tap for a click, and "
+"use two/three fingers for right and middle buttons. Use 2 fingers to scroll. "
+"Use a long press to drag'n drop."
+msgstr ""
+"Bevæg en finger på skærmen for at flytte musemarkøren. Tap for at klikke og "
+"brug to/tre-fingre for højre og midterste museknap. Brug et langt tryk til "
+"at trække og slippe."
+
+#, fuzzy
+#| msgctxt "mousepad_double_tap_settings_title"
+#| msgid "Set two finger tap action"
+msgctxt "mousepad_single_tap_settings_title"
+msgid "Set one finger tap action"
+msgstr "Angiv handling for tap med to fingre"
+
+msgctxt "mousepad_double_tap_settings_title"
+msgid "Set two finger tap action"
+msgstr "Angiv handling for tap med to fingre"
+
+msgctxt "mousepad_triple_tap_settings_title"
+msgid "Set three finger tap action"
+msgstr "Angiv handling for tap med tre fingre"
+
+msgctxt "mousepad_sensitivity_settings_title"
+msgid "Set touchpad sensitivity"
+msgstr "Angiv følsomhed for touchpad"
+
+#, fuzzy
+#| msgctxt "mousepad_double_tap_settings_title"
+#| msgid "Set two finger tap action"
+msgctxt "mousepad_acceleration_profile_settings_title"
+msgid "Set pointer acceleration"
+msgstr "Angiv handling for tap med to fingre"
+
+msgctxt "mousepad_scroll_direction_title"
+msgid "Reverse Scrolling Direction"
+msgstr "Omvendt rulleretning"
+
+#, fuzzy
+#| msgctxt "mousepad_tap_entries:0"
+#| msgid "Right click"
+msgctxt "mousepad_tap_entries:0"
+msgid "Left click"
+msgstr "Højreklik"
+
+#, fuzzy
+#| msgctxt "mousepad_tap_entries:0"
+#| msgid "Right click"
+msgctxt "mousepad_tap_entries:1"
+msgid "Right click"
+msgstr "Højreklik"
+
+#, fuzzy
+#| msgctxt "mousepad_tap_entries:1"
+#| msgid "Middle click"
+msgctxt "mousepad_tap_entries:2"
+msgid "Middle click"
+msgstr "Midterklik"
+
+#, fuzzy
+#| msgctxt "mousepad_tap_entries:2"
+#| msgid "Nothing"
+msgctxt "mousepad_tap_entries:3"
+msgid "Nothing"
+msgstr "Intet"
+
+msgctxt "mousepad_sensitivity_entries:0"
+msgid "Slowest"
+msgstr "Mest langsom"
+
+msgctxt "mousepad_sensitivity_entries:1"
+msgid "Above Slowest"
+msgstr "Over mest langsom"
+
+msgctxt "mousepad_sensitivity_entries:2"
+msgid "Default"
+msgstr "Standard"
+
+msgctxt "mousepad_sensitivity_entries:3"
+msgid "Above Default"
+msgstr "Over standard"
+
+msgctxt "mousepad_sensitivity_entries:4"
+msgid "Fastest"
+msgstr "Hurtigst"
+
+msgctxt "mousepad_acceleration_profile_entries:0"
+msgid "No Acceleration"
+msgstr ""
+
+msgctxt "mousepad_acceleration_profile_entries:1"
+msgid "Weakest"
+msgstr ""
+
+msgctxt "mousepad_acceleration_profile_entries:2"
+msgid "Weaker"
+msgstr ""
+
+msgctxt "mousepad_acceleration_profile_entries:3"
+msgid "Medium"
+msgstr ""
+
+msgctxt "mousepad_acceleration_profile_entries:4"
+msgid "Stronger"
+msgstr ""
+
+msgctxt "mousepad_acceleration_profile_entries:5"
+msgid "Strongest"
+msgstr ""
+
+msgctxt "sendkeystrokes_send_to"
+msgid "Send keystrokes to"
+msgstr ""
+
+msgctxt "sendkeystrokes_textbox_hint"
+msgid "Send keystrokes to host"
+msgstr ""
+
+msgctxt "sendkeystrokes_disabled_toast"
+msgid "Sending keystrokes is disabled - enable it in the settings"
+msgstr ""
+
+msgctxt "sendkeystrokes_wrong_data"
+msgid "Invalid mime type - needs to be 'text/x-keystrokes'"
+msgstr ""
+
+#, fuzzy, c-format
+#| msgctxt "outgoing_files_text"
+#| msgid "Sent %1$d out of %2$d files"
+msgctxt "sendkeystrokes_sent_text"
+msgid "Sent %1$s to device %2$s"
+msgstr "Sendte %1$d ud af %2$d filer"
+
+msgctxt "sendkeystrokes_pref_category_summary"
+msgid ""
+"This module allows other apps to share text segments as keystrokes which "
+"will get send to the connected host"
+msgstr ""
+
+msgctxt "sendkeystrokes_pref_category_title"
+msgid "Send Keystrokes"
+msgstr ""
+
+msgctxt "sendkeystrokes_pref_enabled"
+msgid "Enable Keystrokes sending"
+msgstr ""
+
+msgctxt "sendkeystrokes_pref_enabled_summary"
+msgid "Listen for data with mime type 'text/x-keystrokes'"
+msgstr ""
+
+msgctxt "sendkeystrokes_safe_text_enabled"
+msgid "Send safe text immediately"
+msgstr ""
+
+msgctxt "sendkeystrokes_safe_text_enabled_summary"
+msgid "Send short only-numeric strings without confirmation"
+msgstr ""
+
+msgctxt "pref_plugin_mousepad_send_keystrokes"
+msgid "Send as keystrokes"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "pref_plugin_remotekeyboard"
+#| msgid "Receive remote keypresses"
+msgctxt "mouse_receiver_plugin_description"
+msgid "Receive remote mouse movement"
+msgstr "Modtag eksterne tastetryk"
+
+msgctxt "mouse_receiver_plugin_name"
+msgid "Mouse receiver"
+msgstr ""
+
+msgctxt "mouse_receiver_no_permissions"
+msgid "You need to enable Accessibility Service"
+msgstr ""
+
+msgctxt "view_status_title"
+msgid "Status"
+msgstr ""
+
+#, c-format
+msgctxt "battery_status_format"
+msgid "Battery: %d%%"
+msgstr ""
+
+#, c-format
+msgctxt "battery_status_low_format"
+msgid "Battery: %d%% Low Battery"
+msgstr ""
+
+#, c-format
+msgctxt "battery_status_charging_format"
+msgid "Battery: %d%% charging"
+msgstr ""
+
+msgctxt "battery_status_unknown"
+msgid "Battery information not available"
+msgstr ""
+
+msgctxt "category_connected_devices"
+msgid "Connected devices"
+msgstr "Forbundne enheder"
+
+msgctxt "category_not_paired_devices"
+msgid "Available devices"
+msgstr "Tilgængelig enheder"
+
+msgctxt "category_remembered_devices"
+msgid "Remembered devices"
+msgstr "Huskede enheder"
+
+msgctxt "device_menu_plugins"
+msgid "Plugin settings"
+msgstr "Plugin-indstillinger"
+
+msgctxt "device_menu_unpair"
+msgid "Unpair"
+msgstr "Fjern parring"
+
+msgctxt "pair_new_device"
+msgid "Pair new device"
+msgstr "Par med ny enhed"
+
+msgctxt "unknown_device"
+msgid "Unknown device"
+msgstr "Ukendt enhed"
+
+msgctxt "error_not_reachable"
+msgid "Device not reachable"
+msgstr "Enheden kan ikke nås"
+
+msgctxt "error_already_paired"
+msgid "Device already paired"
+msgstr "Enhed allerede parret"
+
+msgctxt "error_could_not_send_package"
+msgid "Could not send package"
+msgstr "Kunne ikke sende pakke"
+
+msgctxt "error_timed_out"
+msgid "Timed out"
+msgstr "Tidsudløb"
+
+msgctxt "error_canceled_by_user"
+msgid "Canceled by user"
+msgstr "Annulleret af brugeren"
+
+msgctxt "error_canceled_by_other_peer"
+msgid "Canceled by other peer"
+msgstr "Annulleret af modpart"
+
+msgctxt "encryption_info_title"
+msgid "Encryption Info"
+msgstr "Krypteringsinfo"
+
+msgctxt "encryption_info_msg_no_ssl"
+msgid ""
+"The other device doesn't use a recent version of KDE Connect, using the "
+"legacy encryption method."
+msgstr ""
+"Den anden enhed bruger ikke en nylig version af KDE Connect, og bruger "
+"dermed den forældede krypteringsmetode."
+
+#, fuzzy
+#| msgctxt "my_device_fingerprint"
+#| msgid "SHA1 fingerprint of your device certificate is:"
+msgctxt "my_device_fingerprint"
+msgid "SHA256 fingerprint of your device certificate is:"
+msgstr "SHA1-fingeraftrykket for dit enhedscertifikat er:"
+
+#, fuzzy
+#| msgctxt "remote_device_fingerprint"
+#| msgid "SHA1 fingerprint of remote device certificate is:"
+msgctxt "remote_device_fingerprint"
+msgid "SHA256 fingerprint of remote device certificate is:"
+msgstr "SHA1-fingeraftrykket for det eksterne enhedscertifikat er:"
+
+msgctxt "pair_requested"
+msgid "Pair requested"
+msgstr "Anmodet om parring"
+
+#, c-format
+msgctxt "pairing_request_from"
+msgid "Pairing request from %1s"
+msgstr "Parringsanmodning fra %1s"
+
+#, fuzzy, c-format
+#| msgctxt "received_file_title"
+#| msgid "Received file from %1s"
+msgctxt "incoming_file_title"
+msgid "Receiving %1$d file from %2$s"
+msgid_plural "Receiving %1$d files from %2$s"
+msgstr[0] "Modtog fil fra %1s"
+msgstr[1] "Modtog fil fra %1s"
+
+#, c-format
+msgctxt "incoming_files_text"
+msgid "File: %1s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] ""
+msgstr[1] ""
+
+#, fuzzy, c-format
+#| msgctxt "outgoing_file_title"
+#| msgid "Sending file to %1s"
+msgctxt "outgoing_file_title"
+msgid "Sending %1$d file to %2$s"
+msgid_plural "Sending %1$d files to %2$s"
+msgstr[0] "Sender fil til %1s"
+msgstr[1] "Sender fil til %1s"
+
+#, c-format
+msgctxt "outgoing_files_text"
+msgid "File: %1$s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] ""
+msgstr[1] ""
+
+#, fuzzy, c-format
+#| msgctxt "received_file_title"
+#| msgid "Received file from %1s"
+msgctxt "received_files_title"
+msgid "Received file from %1$s"
+msgid_plural "Received %2$d files from %1$s"
+msgstr[0] "Modtog fil fra %1s"
+msgstr[1] "Modtog fil fra %1s"
+
+#, fuzzy, c-format
+#| msgctxt "received_file_fail_title"
+#| msgid "Failed receiving file from %1s"
+msgctxt "received_files_fail_title"
+msgid "Failed receiving file from %1$s"
+msgid_plural "Failed receiving %2$d of %3$d files from %1$s"
+msgstr[0] "Kunne ikke modtage fil fra %1s"
+msgstr[1] "Kunne ikke modtage fil fra %1s"
+
+#, fuzzy, c-format
+#| msgctxt "sent_file_title"
+#| msgid "Sent file to %1s"
+msgctxt "sent_files_title"
+msgid "Sent file to %1$s"
+msgid_plural "Sent %2$d files to %1$s"
+msgstr[0] "Fil sendt til %1s"
+msgstr[1] "Fil sendt til %1s"
+
+#, fuzzy, c-format
+#| msgctxt "sent_file_failed_title"
+#| msgid "Failed to send file to %1s"
+msgctxt "send_files_fail_title"
+msgid "Failed sending file to %1$s"
+msgid_plural "Failed sending %2$d of %3$d files to %1$s"
+msgstr[0] "Kunne ikke sende filen til %1s"
+msgstr[1] "Kunne ikke sende filen til %1s"
+
+#, fuzzy
+#| msgctxt "received_file_text"
+#| msgid "Tap to open '%1s'"
+msgctxt "tap_to_open"
+msgid "Tap to open"
+msgstr "Tap for at åbne \"%1s\""
+
+#, c-format
+msgctxt "received_file_text"
+msgid "Tap to open '%1s'"
+msgstr "Tap for at åbne \"%1s\""
+
+#, c-format
+msgctxt "cannot_create_file"
+msgid "Cannot create file %s"
+msgstr ""
+
+msgctxt "tap_to_answer"
+msgid "Tap to answer"
+msgstr "Tap for at svare"
+
+msgctxt "right_click"
+msgid "Send Right Click"
+msgstr "Send højreklik"
+
+msgctxt "middle_click"
+msgid "Send Middle Click"
+msgstr "Send midterklik"
+
+msgctxt "show_keyboard"
+msgid "Show Keyboard"
+msgstr "Vis tastatur"
+
+msgctxt "device_not_paired"
+msgid "Device not paired"
+msgstr "Enhed ikke parret"
+
+msgctxt "request_pairing"
+msgid "Request pairing"
+msgstr "Anmod om parring"
+
+msgctxt "pairing_accept"
+msgid "Accept"
+msgstr "Acceptér"
+
+msgctxt "pairing_reject"
+msgid "Reject"
+msgstr "Afvis"
+
+#, fuzzy
+#| msgctxt "plugin_settings"
+#| msgid "Settings"
+msgctxt "settings"
+msgid "Settings"
+msgstr "Indstillinger"
+
+msgctxt "mpris_play"
+msgid "Play"
+msgstr "Afspil"
+
+msgctxt "mpris_pause"
+msgid "Pause"
+msgstr ""
+
+msgctxt "mpris_previous"
+msgid "Previous"
+msgstr "Forrige"
+
+msgctxt "mpris_rew"
+msgid "Rewind"
+msgstr "Spol tilbage"
+
+msgctxt "mpris_ff"
+msgid "Fast-forward"
+msgstr "Spol frem"
+
+msgctxt "mpris_next"
+msgid "Next"
+msgstr "Næste"
+
+msgctxt "mpris_loop"
+msgid "Loop"
+msgstr ""
+
+msgctxt "mpris_shuffle"
+msgid "Shuffle"
+msgstr ""
+
+msgctxt "mpris_volume"
+msgid "Volume"
+msgstr "Lydstyrke"
+
+msgctxt "mpris_time_settings_title"
+msgid "Forward/rewind buttons"
+msgstr "Spol frem/tilbage-knapper"
+
+#, fuzzy
+#| msgctxt "mpris_time_settings_summary"
+#| msgid "Adjust the time to fast forward/rewind when pressed."
+msgctxt "mpris_time_settings_summary"
+msgid "Adjust the time to fast forward/rewind when pressed"
+msgstr "Justér tiden for når der trykkes på spol frem/tilbage."
+
+msgctxt "mpris_time_entries:0"
+msgid "10 seconds"
+msgstr "10 sekunder"
+
+msgctxt "mpris_time_entries:1"
+msgid "20 seconds"
+msgstr "20 sekunder"
+
+msgctxt "mpris_time_entries:2"
+msgid "30 seconds"
+msgstr "30 sekunder"
+
+msgctxt "mpris_time_entries:3"
+msgid "1 minute"
+msgstr "1 minut"
+
+msgctxt "mpris_time_entries:4"
+msgid "2 minutes"
+msgstr "2 minutter"
+
+msgctxt "mpris_notification_settings_title"
+msgid "Show media control notification"
+msgstr ""
+
+msgctxt "mpris_notification_settings_summary"
+msgid "Allow controlling your media players without opening KDE Connect"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "share_to"
+#| msgid "Share To..."
+msgctxt "share_to"
+msgid "Share To…"
+msgstr "Del på..."
+
+msgctxt "protocol_version_newer"
+msgid "This device uses a newer protocol version"
+msgstr "Denne enhed bruger en nyere protokolversion"
+
+#, c-format
+msgctxt "plugin_settings_with_name"
+msgid "%s settings"
+msgstr "Indstilling af %s"
+
+msgctxt "invalid_device_name"
+msgid "Invalid device name"
+msgstr "Ugyldigt enhedsnavn"
+
+msgctxt "shareplugin_text_saved"
+msgid "Received text, saved to clipboard"
+msgstr "Modtog tekst, gemt til udklipsholder"
+
+msgctxt "custom_devices_settings"
+msgid "Custom device list"
+msgstr "Brugertilpasset liste over enheder"
+
+msgctxt "custom_device_list"
+msgid "Add devices by IP"
+msgstr "Tilføj enheder via IP"
+
+#, fuzzy
+#| msgctxt "custom_devices_settings"
+#| msgid "Custom device list"
+msgctxt "custom_device_deleted"
+msgid "Custom device deleted"
+msgstr "Brugertilpasset liste over enheder"
+
+msgctxt "custom_device_list_help"
+msgid ""
+"If your device is not automatically detected you can add its IP address or "
+"hostname by clicking on the Floating Action Button"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "pair_device"
+#| msgid "Pair device"
+msgctxt "custom_device_fab_hint"
+msgid "Add a device"
+msgstr "Par med enhed"
+
+msgctxt "undo"
+msgid "Undo"
+msgstr ""
+
+msgctxt "share_notification_preference"
+msgid "Noisy notifications"
+msgstr "Støjende bekendtgørelser"
+
+msgctxt "share_notification_preference_summary"
+msgid "Vibrate and play a sound when receiving a file"
+msgstr "Vibrér og afspil en lyd når en fil modtages"
+
+msgctxt "share_destination_customize"
+msgid "Customize destination directory"
+msgstr "Tilpas destinationsmappe"
+
+msgctxt "share_destination_customize_summary_disabled"
+msgid "Received files will appear in Downloads"
+msgstr "Modtagne filer vil dukke op i Downloads"
+
+msgctxt "share_destination_customize_summary_enabled"
+msgid "Files will be stored in the directory below"
+msgstr "Filer vil blive gemt i mappen nedenfor"
+
+msgctxt "share_destination_folder_preference"
+msgid "Destination directory"
+msgstr "Destinationsmappe"
+
+#, fuzzy
+#| msgctxt "share_to"
+#| msgid "Share To..."
+msgctxt "share"
+msgid "Share"
+msgstr "Del på..."
+
+#, c-format
+msgctxt "share_received_file"
+msgid "Share \"%s\""
+msgstr ""
+
+msgctxt "title_activity_notification_filter"
+msgid "Notification filter"
+msgstr "Bekendtgørelsesfilter"
+
+msgctxt "filter_apps_info"
+msgid "Notifications will be synchronized for the selected apps."
+msgstr "Bekendtgørelser vil blive synkroniseret for de valgte apps."
+
+#, fuzzy
+#| msgctxt "pref_plugin_telephony_desc"
+#| msgid "Send notifications for SMS and calls"
+msgctxt "show_notification_if_screen_off"
+msgid "Send notifications only if the screen is off"
+msgstr "Send bekendtgørelser om SMS'er og opkald"
+
+#, c-format
+msgctxt "sftp_sdcard_num"
+msgid "SD card %d"
+msgstr "SD-kort %d"
+
+msgctxt "sftp_sdcard"
+msgid "SD card"
+msgstr "SD-kort"
+
+msgctxt "sftp_readonly"
+msgid "(read only)"
+msgstr "(skrivebeskyttet)"
+
+msgctxt "sftp_camera"
+msgid "Camera pictures"
+msgstr "Kamerabilleder"
+
+#, fuzzy
+#| msgctxt "custom_device_list"
+#| msgid "Add devices by IP"
+msgctxt "add_device_dialog_title"
+msgid "Add device"
+msgstr "Tilføj enheder via IP"
+
+#, fuzzy
+#| msgctxt "add_host_hint"
+#| msgid "Hostname or IP"
+msgctxt "add_device_hint"
+msgid "Hostname or IP address"
+msgstr "Værtsnavn eller IP"
+
+msgctxt "sftp_preference_detected_sdcards"
+msgid "Detected SD cards"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "sftp_sdcard"
+#| msgid "SD card"
+msgctxt "sftp_preference_edit_sdcard_title"
+msgid "Edit SD card"
+msgstr "SD-kort"
+
+msgctxt "sftp_preference_configured_storage_locations"
+msgid "Configured storage locations"
+msgstr ""
+
+msgctxt "sftp_preference_add_storage_location_title"
+msgid "Add storage location"
+msgstr ""
+
+msgctxt "sftp_preference_edit_storage_location"
+msgid "Edit storage location"
+msgstr ""
+
+msgctxt "sftp_preference_add_camera_shortcut"
+msgid "Add camera folder shortcut"
+msgstr ""
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_on"
+msgid "Add a shortcut to the camera folder"
+msgstr ""
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_off"
+msgid "Do not add a shortcut to the camera folder"
+msgstr ""
+
+msgctxt "sftp_storage_preference_storage_location"
+msgid "Storage location"
+msgstr ""
+
+msgctxt "sftp_storage_preference_storage_location_already_configured"
+msgid "This location has already been configured"
+msgstr ""
+
+msgctxt "sftp_storage_preference_click_to_select"
+msgid "click to select"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "device_name"
+#| msgid "Device name"
+msgctxt "sftp_storage_preference_display_name"
+msgid "Display name"
+msgstr "Enhedsnavn"
+
+msgctxt "sftp_storage_preference_display_name_already_used"
+msgid "This display name is already used"
+msgstr ""
+
+msgctxt "sftp_storage_preference_display_name_cannot_be_empty"
+msgid "Display name cannot be empty"
+msgstr ""
+
+msgctxt "sftp_action_mode_menu_delete"
+msgid "Delete"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "sftp_sdcard_num"
+#| msgid "SD card %d"
+msgctxt "sftp_no_sdcard_detected"
+msgid "No SD card detected"
+msgstr "SD-kort %d"
+
+msgctxt "sftp_no_storage_locations_configured"
+msgid "No storage locations configured"
+msgstr ""
+
+msgctxt "sftp_saf_permission_explanation"
+msgid "To access files remotely you have to configure storage locations"
+msgstr ""
+
+msgctxt "no_players_connected"
+msgid "No players found"
+msgstr "Ingen afspillere fundet"
+
+msgctxt "send_files"
+msgid "Send files"
+msgstr "Send filer"
+
+msgctxt "pairing_title"
+msgid "KDE Connect Devices"
+msgstr "KDE Connect-enheder"
+
+msgctxt "pairing_description"
+msgid ""
+"Other devices running KDE Connect in your same network should appear here."
+msgstr ""
+"Andre enheder som kører KDE Connect i samme netværk som dig, bør dukke op "
+"her."
+
+msgctxt "device_rename_title"
+msgid "Rename device"
+msgstr "Omdøb enhed"
+
+msgctxt "device_rename_confirm"
+msgid "Rename"
+msgstr "Omdøb"
+
+msgctxt "refresh"
+msgid "Refresh"
+msgstr "Genopfrisk"
+
+msgctxt "unreachable_description"
+msgid ""
+"This paired device is not reachable. Make sure it is connected to your same "
+"network."
+msgstr ""
+"Denne parrede enhed kan ikke nås. Sørg for at den er forbundet til samme "
+"netværk som dig."
+
+msgctxt "no_wifi"
+msgid ""
+"You're not connected to a Wi-Fi network, so you may not be able to see any "
+"devices. Click here to enable Wi-Fi."
+msgstr ""
+
+msgctxt "on_non_trusted_message"
+msgid "Not on a trusted network: autodiscovery is disabled."
+msgstr ""
+
+msgctxt "no_file_browser"
+msgid "There are no file browsers installed."
+msgstr "Der er ingen filhåndtering installeret."
+
+msgctxt "pref_plugin_telepathy"
+msgid "Send SMS"
+msgstr "Send SMS"
+
+msgctxt "pref_plugin_telepathy_desc"
+msgid "Send text messages from your desktop"
+msgstr "Send SMS-beskeder fra din desktop"
+
+#, fuzzy
+#| msgctxt "pref_plugin_telepathy"
+#| msgid "Send SMS"
+msgctxt "pref_plugin_telepathy_mms"
+msgid "Send MMS"
+msgstr "Send SMS"
+
+msgctxt "pref_plugin_telepathy_mms_desc"
+msgid ""
+"To be able to send MMS from KDE Connect you need to set it as the default "
+"SMS app."
+msgstr ""
+
+msgctxt "findmyphone_title"
+msgid "Find my phone"
+msgstr "Find min telefon"
+
+msgctxt "findmyphone_title_tablet"
+msgid "Find my tablet"
+msgstr "Find min tablet"
+
+#, fuzzy
+#| msgctxt "findmyphone_title"
+#| msgid "Find my phone"
+msgctxt "findmyphone_title_tv"
+msgid "Find my TV"
+msgstr "Find min telefon"
+
+msgctxt "findmyphone_description"
+msgid "Rings this device so you can find it"
+msgstr "Ringer til denne enhed, så du kan finde den."
+
+#, fuzzy
+#| msgctxt "findmyphone_found"
+#| msgid "Found"
+msgctxt "findmyphone_found"
+msgid "Found it"
+msgstr "Fundet"
+
+msgctxt "open"
+msgid "Open"
+msgstr "Åbn"
+
+msgctxt "close"
+msgid "Close"
+msgstr "Luk"
+
+msgctxt "plugins_need_permission"
+msgid "Some Plugins need permissions to work (tap for more info):"
+msgstr "Nogle plugins kræver tilladelser for at virke (tap for mere info):"
+
+msgctxt "permission_explanation"
+msgid "This plugin needs permissions to work"
+msgstr "Dette plugin kræver tilladelser for at virke"
+
+msgctxt "optional_permission_explanation"
+msgid "You need to grant extra permissions to enable all functions"
+msgstr "Du skal give ekstra tilladelser for at aktivere alle funktioner"
+
+msgctxt "plugins_need_optional_permission"
+msgid ""
+"Some plugins have features disabled because of lack of permission (tap for "
+"more info):"
+msgstr ""
+"Nogle plugins har deaktiverede funktioner pga. manglende tilladelser (tap "
+"for mere info):"
+
+msgctxt "share_optional_permission_explanation"
+msgid "To receive shared files you need to choose a destination directory"
+msgstr ""
+
+msgctxt "telepathy_permission_explanation"
+msgid ""
+"To read and write SMS from your desktop you need to give permission to SMS"
+msgstr ""
+"For at læse og skrive sms'er fra din desktop, skal du give tilladelse til sms"
+
+#, fuzzy
+#| msgctxt "telephony_permission_explanation"
+#| msgid ""
+#| "To see phone calls and SMS from the desktop you need to give permission "
+#| "to phone calls and SMS"
+msgctxt "telephony_permission_explanation"
+msgid ""
+"To see phone calls on the desktop you need to give permission to phone call "
+"logs and phone state"
+msgstr ""
+"For at se telefonopkald og sms'er fra desktoppen, skal du give tilladelse "
+"til telefonopkald og sms."
+
+msgctxt "telephony_optional_permission_explanation"
+msgid ""
+"To see a contact name instead of a phone number you need to give access to "
+"the phone's contacts"
+msgstr ""
+"For at se et kontaktnavn i stedet for et telefonnummer, skal du give adgang "
+"til telefonens kontakter"
+
+#, fuzzy
+#| msgctxt "telepathy_permission_explanation"
+#| msgid ""
+#| "To read and write SMS from your desktop you need to give permission to SMS"
+msgctxt "contacts_permission_explanation"
+msgid ""
+"To share your contacts book with the desktop, you need to give contacts "
+"permission"
+msgstr ""
+"For at læse og skrive sms'er fra din desktop, skal du give tilladelse til sms"
+
+msgctxt "select_ringtone"
+msgid "Select a ringtone"
+msgstr ""
+
+msgctxt "telephony_pref_blocked_title"
+msgid "Blocked numbers"
+msgstr ""
+
+msgctxt "telephony_pref_blocked_dialog_desc"
+msgid ""
+"Don't show calls and SMS from these numbers. Please specify one number per "
+"line"
+msgstr ""
+
+msgctxt "mpris_coverart_description"
+msgid "Cover art of current media"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "device_name"
+#| msgid "Device name"
+msgctxt "device_icon_description"
+msgid "Device icon"
+msgstr "Enhedsnavn"
+
+#, fuzzy
+#| msgctxt "plugin_settings"
+#| msgid "Settings"
+msgctxt "settings_icon_description"
+msgid "Settings icon"
+msgstr "Indstillinger"
+
+msgctxt "presenter_fullscreen"
+msgid "Fullscreen"
+msgstr ""
+
+msgctxt "presenter_exit"
+msgid "Exit presentation"
+msgstr ""
+
+msgctxt "presenter_lock_tip"
+msgid ""
+"You can lock your device and use the volume keys to go to the previous/next "
+"slide"
+msgstr ""
+
+msgctxt "add_command"
+msgid "Add a command"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "no_file_browser"
+#| msgid "There are no file browsers installed."
+msgctxt "addcommand_explanation"
+msgid "There are no commands registered"
+msgstr "Der er ingen filhåndtering installeret."
+
+msgctxt "addcommand_explanation2"
+msgid "You can add new commands in the KDE Connect System Settings"
+msgstr ""
+
+msgctxt "add_command_description"
+msgid "You can add commands on the desktop"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "open_mpris_controls"
+#| msgid "Multimedia control"
+msgctxt "pref_plugin_mprisreceiver"
+msgid "Media Player Control"
+msgstr "Multimediekontrol"
+
+msgctxt "pref_plugin_mprisreceiver_desc"
+msgid "Control your phone's media players from another device"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "pref_plugin_receive_notifications"
+#| msgid "Receive notifications"
+msgctxt "notification_channel_default"
+msgid "Other notifications"
+msgstr "Modtag bekendtgørelser"
+
+msgctxt "notification_channel_persistent"
+msgid "Persistent indicator"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "open_mpris_controls"
+#| msgid "Multimedia control"
+msgctxt "notification_channel_media_control"
+msgid "Media control"
+msgstr "Multimediekontrol"
+
+msgctxt "notification_channel_filetransfer"
+msgid "File transfer"
+msgstr ""
+
+msgctxt "notification_channel_high_priority"
+msgid "High priority"
+msgstr ""
+
+msgctxt "notification_channel_sms_mms"
+msgid "New Message"
+msgstr ""
+
+msgctxt "mpris_stop"
+msgid "Stop the current player"
+msgstr ""
+
+msgctxt "copy_url_to_clipboard"
+msgid "Copy URL to clipboard"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "shareplugin_text_saved"
+#| msgid "Received text, saved to clipboard"
+msgctxt "clipboard_toast"
+msgid "Copied to clipboard"
+msgstr "Modtog tekst, gemt til udklipsholder"
+
+#, fuzzy
+#| msgctxt "error_not_reachable"
+#| msgid "Device not reachable"
+msgctxt "runcommand_notreachable"
+msgid "Device is not reachable"
+msgstr "Enheden kan ikke nås"
+
+#, fuzzy
+#| msgctxt "device_not_paired"
+#| msgid "Device not paired"
+msgctxt "runcommand_notpaired"
+msgid "Device is not paired"
+msgstr "Enhed ikke parret"
+
+msgctxt "runcommand_nosuchdevice"
+msgid "There is no such device"
+msgstr ""
+
+msgctxt "runcommand_noruncommandplugin"
+msgid "This device does not have the Run Command Plugin enabled"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "device_rename_title"
+#| msgid "Rename device"
+msgctxt "pref_plugin_findremotedevice"
+msgid "Find remote device"
+msgstr "Omdøb enhed"
+
+#, fuzzy
+#| msgctxt "device_rename_title"
+#| msgid "Rename device"
+msgctxt "pref_plugin_findremotedevice_desc"
+msgid "Ring your remote device"
+msgstr "Omdøb enhed"
+
+msgctxt "ring"
+msgid "Ring"
+msgstr ""
+
+msgctxt "pref_plugin_systemvolume"
+msgid "System volume"
+msgstr ""
+
+msgctxt "pref_plugin_systemvolume_desc"
+msgid "Control the system volume of the remote device"
+msgstr ""
+
+msgctxt "mute"
+msgid "Mute"
+msgstr ""
+
+msgctxt "all"
+msgid "All"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "device"
+#| msgid "Device"
+msgctxt "devices"
+msgid "Devices"
+msgstr "Enhed"
+
+#, fuzzy
+#| msgctxt "device_name"
+#| msgid "Device name"
+msgctxt "settings_rename"
+msgid "Device name"
+msgstr "Enhedsnavn"
+
+msgctxt "settings_dark_mode"
+msgid "Dark theme"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "open_settings"
+#| msgid "Open settings"
+msgctxt "settings_more_settings_title"
+msgid "More settings"
+msgstr "Åbn indstillinger"
+
+msgctxt "settings_more_settings_text"
+msgid ""
+"Per-device settings can be found under 'Plugin settings' from within a "
+"device."
+msgstr ""
+
+#, fuzzy
+#| msgctxt "share_notification_preference"
+#| msgid "Noisy notifications"
+msgctxt "setting_persistent_notification"
+msgid "Show persistent notification"
+msgstr "Støjende bekendtgørelser"
+
+#, fuzzy
+#| msgctxt "share_notification_preference"
+#| msgid "Noisy notifications"
+msgctxt "setting_persistent_notification_oreo"
+msgid "Persistent notification"
+msgstr "Støjende bekendtgørelser"
+
+msgctxt "setting_persistent_notification_description"
+msgid "Tap to enable/disable in Notification settings"
+msgstr ""
+
+msgctxt "extra_options"
+msgid "Extra options"
+msgstr ""
+
+msgctxt "privacy_options"
+msgid "Privacy options"
+msgstr ""
+
+msgctxt "set_privacy_options"
+msgid "Set your privacy options"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "share_notification_preference"
+#| msgid "Noisy notifications"
+msgctxt "block_contents"
+msgid "Block contents of notifications"
+msgstr "Støjende bekendtgørelser"
+
+#, fuzzy
+#| msgctxt "share_notification_preference"
+#| msgid "Noisy notifications"
+msgctxt "block_images"
+msgid "Block images in notifications"
+msgstr "Støjende bekendtgørelser"
+
+#, fuzzy
+#| msgctxt "pref_plugin_notifications_desc"
+#| msgid "Access your notifications from other devices"
+msgctxt "notification_channel_receivenotification"
+msgid "Notifications from other devices"
+msgstr "Tilgå dine bekendtgørelser fra andre enheder"
+
+msgctxt "take_picture"
+msgid "Launch camera"
+msgstr ""
+
+msgctxt "plugin_photo_desc"
+msgid "Launch the camera app to ease taking and transferring pictures"
+msgstr ""
+
+msgctxt "no_app_for_opening"
+msgid "No suitable app found to open this file"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "pairing_title"
+#| msgid "KDE Connect Devices"
+msgctxt "remote_keyboard_service"
+msgid "KDE Connect Remote Keyboard"
+msgstr "KDE Connect-enheder"
+
+msgctxt "presenter_pointer"
+msgid "Pointer"
+msgstr ""
+
+msgctxt "trusted_networks"
+msgid "Trusted networks"
+msgstr ""
+
+msgctxt "trusted_networks_desc"
+msgid "Restrict autodiscovery to known networks"
+msgstr ""
+
+#, c-format
+msgctxt "add_trusted_network"
+msgid "Add %1s"
+msgstr ""
+
+msgctxt "empty_trusted_networks_list_text"
+msgid "You haven't added any trusted network yet"
+msgstr ""
+
+msgctxt "allow_all_networks_text"
+msgid "Allow all"
+msgstr ""
+
+msgctxt "location_permission_needed_title"
+msgid "Permission required"
+msgstr ""
+
+msgctxt "location_permission_needed_desc"
+msgid "Android requires the Location permission to identify your WiFi network"
+msgstr ""
+
+msgctxt "clipboard_android_x_incompat"
+msgid ""
+"Android 10 has removed clipboard access to all apps. This plugin will be "
+"disabled."
+msgstr ""
+
+msgctxt "mpris_open_url"
+msgid "Continue playing here"
+msgstr ""
+
+msgctxt "cant_open_url"
+msgid "Can't open URL to continue playing"
+msgstr ""
+
+msgctxt "bigscreen_home"
+msgid "Home"
+msgstr ""
+
+msgctxt "bigscreen_up"
+msgid "Up"
+msgstr ""
+
+msgctxt "bigscreen_left"
+msgid "Left"
+msgstr ""
+
+msgctxt "bigscreen_select"
+msgid "Select"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "mousepad_double_default"
+#| msgid "right"
+msgctxt "bigscreen_right"
+msgid "Right"
+msgstr "højre"
+
+msgctxt "bigscreen_down"
+msgid "Down"
+msgstr ""
+
+msgctxt "bigscreen_mic"
+msgid "Mic"
+msgstr ""
+
+msgctxt "pref_plugin_bigscreen"
+msgid "Bigscreen remote"
+msgstr ""
+
+msgctxt "pref_plugin_bigscreen_desc"
+msgid "Use your device as a remote for Plasma Bigscreen"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "telephony_optional_permission_explanation"
+#| msgid ""
+#| "To see a contact name instead of a phone number you need to give access "
+#| "to the phone's contacts"
+msgctxt "bigscreen_optional_permission_explanation"
+msgid ""
+"To share microphone input from your phone you need to give access to the "
+"phone's audio input"
+msgstr ""
+"For at se et kontaktnavn i stedet for et telefonnummer, skal du give adgang "
+"til telefonens kontakter"
+
+msgctxt "bigscreen_speech_extra_prompt"
+msgid "Speech"
+msgstr ""
+
+msgctxt "message_reply_label"
+msgid "REPLY"
+msgstr ""
+
+msgctxt "mark_as_read_label"
+msgid "MARK AS READ"
+msgstr ""
+
+msgctxt "user_display_name"
+msgid "You"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "pref_plugin_telepathy"
+#| msgid "Send SMS"
+msgctxt "set_default_sms_app_title"
+msgid "Send MMS"
+msgstr "Send SMS"
+
+#, fuzzy
+#| msgctxt "pref_plugin_telepathy"
+#| msgid "Send SMS"
+msgctxt "set_group_message_as_mms_title"
+msgid "Send group MMS"
+msgstr "Send SMS"
+
+msgctxt "set_long_text_as_mms_title"
+msgid "Send long text as MMS"
+msgstr ""
+
+msgctxt "convert_to_mms_after_title"
+msgid "Convert to MMS"
+msgstr ""
+
+msgctxt "convert_to_mms_after_entries:0"
+msgid "After one message"
+msgstr ""
+
+msgctxt "convert_to_mms_after_entries:1"
+msgid "After two messages"
+msgstr ""
+
+msgctxt "convert_to_mms_after_entries:2"
+msgid "After three messages"
+msgstr ""
+
+msgctxt "convert_to_mms_after_entries:3"
+msgid "After four messages"
+msgstr ""
+
+msgctxt "convert_to_mms_after_entries:4"
+msgid "After five messages"
+msgstr ""
+
+msgctxt "theme_dialog_title"
+msgid "Choose theme"
+msgstr ""
+
+msgctxt "theme_list:0"
+msgid "Set by Battery Saver"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "mousepad_double_default"
+#| msgid "right"
+msgctxt "theme_list:1"
+msgid "Light"
+msgstr "højre"
+
+msgctxt "theme_list:2"
+msgid "Dark"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "mousepad_sensitivity_entries:3"
+#| msgid "Above Default"
+msgctxt "theme_list_v28:0"
+msgid "System Default"
+msgstr "Over standard"
+
+#, fuzzy
+#| msgctxt "mousepad_double_default"
+#| msgid "right"
+msgctxt "theme_list_v28:1"
+msgid "Light"
+msgstr "højre"
+
+msgctxt "theme_list_v28:2"
+msgid "Dark"
+msgstr ""
+
+msgctxt "report_bug"
+msgid "Report Bug"
+msgstr ""
+
+msgctxt "donate"
+msgid "Donate"
+msgstr ""
+
+msgctxt "source_code"
+msgid "Source Code"
+msgstr ""
+
+msgctxt "licenses"
+msgid "Licenses"
+msgstr ""
+
+msgctxt "website"
+msgid "Website"
+msgstr ""
+
+msgctxt "about"
+msgid "About"
+msgstr ""
+
+msgctxt "authors"
+msgid "Authors"
+msgstr ""
+
+msgctxt "thanks_to"
+msgid "Thanks To"
+msgstr ""
+
+msgctxt "easter_egg"
+msgid "Easter Egg"
+msgstr ""
+
+#, c-format
+msgctxt "email_contributor"
+msgid ""
+"Email contributor\n"
+"%s"
+msgstr ""
+
+#, c-format
+msgctxt "visit_contributors_homepage"
+msgid ""
+"Visit contributor's homepage\n"
+"%s"
+msgstr ""
+
+#, c-format
+msgctxt "version"
+msgid "Version %s"
+msgstr ""
+
+msgctxt "about_kde"
+msgid "About KDE"
+msgstr ""
+
+msgctxt "kde_be_free"
+msgid "KDE - Be Free!"
+msgstr ""
+
+msgctxt "kde"
+msgid "KDE"
+msgstr ""
+
+msgctxt "konqi"
+msgid "Konqi"
+msgstr ""
+
+msgctxt "rise_up"
+msgid "Rise Up"
+msgstr ""
+
+msgctxt "rise_down"
+msgid "Rise Down"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "received_file_text"
+#| msgid "Tap to open '%1s'"
+msgctxt "click_here_to_type"
+msgid "Tap here to type"
+msgstr "Tap for at åbne \"%1s\""
+
+msgctxt "clear_compose"
+msgid "Clear"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "pref_plugin_telepathy"
+#| msgid "Send SMS"
+msgctxt "send_compose"
+msgid "Send"
+msgstr "Send SMS"
+
+msgctxt "open_compose_send"
+msgid "Compose text"
+msgstr ""
+
+msgctxt "app_description"
+msgid ""
+"Multi-platform app that allows your devices to communicate (e.g., your phone "
+"and your computer)"
+msgstr ""
+
+msgctxt "about_kde_about"
+msgid ""
+"&lt;h1&gt;About&lt;/h1&gt; &lt;p&gt;KDE is a world-wide community of "
+"software engineers, artists, writers, translators and creators who are "
+"committed to &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Free "
+"Software&lt;/a&gt; development. KDE produces the Plasma desktop environment, "
+"hundreds of applications, and the many software libraries that support them."
+"&lt;/p&gt; &lt;p&gt;KDE is a cooperative enterprise: no single entity "
+"controls its direction or products. Instead, we work together to achieve the "
+"common goal of building the world's finest Free Software. Everyone is "
+"welcome to &lt;a href=https://community.kde.org/Get_Involved&gt;join and "
+"contribute&lt;/a&gt; to KDE, including you.&lt;/p&gt; Visit &lt;a "
+"href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; for more "
+"information about the KDE community and the software we produce."
+msgstr ""
+
+msgctxt "about_kde_report_bugs_or_wishes"
+msgid ""
+"&lt;h1&gt;Report Bugs or Wishes&lt;/h1&gt; &lt;p&gt;Software can always be "
+"improved, and the KDE team is ready to do so. However, you - the user - must "
+"tell us when something does not work as expected or could be done better."
+"&lt;/p&gt; &lt;p&gt;KDE has a bug tracking system. Visit &lt;a href=https://"
+"bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; or use the \"Report Bug\" "
+"button from the about screen to report bugs.&lt;/p&gt; If you have a "
+"suggestion for improvement then you are welcome to use the bug tracking "
+"system to register your wish. Make sure you use the severity called "
+"\"Wishlist\"."
+msgstr ""
+
+msgctxt "about_kde_join_kde"
+msgid ""
+"&lt;h1&gt;Join KDE&lt;/h1&gt; &lt;p&gt;You do not have to be a software "
+"developer to be a member of the KDE team. You can join the national teams "
+"that translate program interfaces. You can provide graphics, themes, sounds, "
+"and improved documentation. You decide!&lt;/p&gt; &lt;p&gt;Visit &lt;a "
+"href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/"
+"Get_Involved&lt;/a&gt; for information on some projects in which you can "
+"participate.&lt;/p&gt; If you need more information or documentation, then a "
+"visit to &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/"
+"&lt;/a&gt; will provide you with what you need."
+msgstr ""
+
+msgctxt "about_kde_support_kde"
+msgid ""
+"&lt;h1&gt;Support KDE&lt;/h1&gt; &lt;p&gt;KDE software is and will always be "
+"available free of charge, however creating it is not free.&lt;/p&gt; &lt;"
+"p&gt;To support development the KDE community has formed the KDE e.V., a non-"
+"profit organization legally founded in Germany. KDE e.V. represents the KDE "
+"community in legal and financial matters. See &lt;a href=https://ev.kde.org/"
+"&gt;https://ev.kde.org/&lt;/a&gt; for information on KDE e.V.&lt;/p&gt; &lt;"
+"p&gt;KDE benefits from many kinds of contributions, including financial. We "
+"use the funds to reimburse members and others for expenses they incur when "
+"contributing. Further funds are used for legal support and organizing "
+"conferences and meetings.&lt;/p&gt; &lt;p&gt;We would like to encourage you "
+"to support our efforts with a financial donation, using one of the ways "
+"described at &lt;a href=https://www.kde.org/community/donations/&gt;https://"
+"www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Thank you very much in "
+"advance for your support."
+msgstr ""
+
+#. Authors tasks
+msgctxt "maintainer_and_developer"
+msgid "Maintainer and developer"
+msgstr ""
+
+msgctxt "developer"
+msgid "Developer"
+msgstr ""
+
+msgctxt "apple_support"
+msgid "macOS support. Working on iOS support"
+msgstr ""
+
+msgctxt "bug_fixes_and_general_improvements"
+msgid "Bug fixes and general improvements"
+msgstr ""
+
+msgctxt "samoilenko_yuri_task"
+msgid "SFTP implementation, bug fixes and general improvements"
+msgstr ""
+
+msgctxt "aniket_kumar_task"
+msgid "SMS plugin improvements"
+msgstr ""
+
+msgctxt "alex_fiestas_task"
+msgid "Contacts plugin improvements"
+msgstr ""
+
+msgctxt "maxim_leshchenko_task"
+msgid "UI improvements and this about page"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "remotekeyboard_connected"
+#| msgid "Remote keyboard connection is active"
+msgctxt "holger_kaelberer_task"
+msgid "Remote keyboard plugin and bug fixes"
+msgstr "Ekstern tastaturforbindelse er aktiv"
+
+msgctxt "saikrishna_arcot_task"
+msgid ""
+"Support for using the keyboard in the remote input plugin, bug fixes and "
+"general improvements"
+msgstr ""
+
+msgctxt "everyone_else"
+msgid "Everyone else who has contributed to KDE Connect over the years"
+msgstr ""
+
+#, fuzzy
+#| msgctxt "shareplugin_text_saved"
+#| msgid "Received text, saved to clipboard"
+msgctxt "send_clipboard"
+msgid "Send clipboard"
+msgstr "Modtog tekst, gemt til udklipsholder"
+
+#, fuzzy
+#| msgctxt "received_file_text"
+#| msgid "Tap to open '%1s'"
+msgctxt "tap_to_execute"
+msgid "Tap to execute"
+msgstr "Tap for at åbne \"%1s\""
+
+#~ msgctxt "share_optional_permission_explanation"
+#~ msgid ""
+#~ "To share files between your phone and your desktop you need to give "
+#~ "access to the phone's storage"
+#~ msgstr ""
+#~ "For at dele filer mellem din telefon og din desktop skal du give adgang "
+#~ "til telefonens datalager."
+
+#~ msgctxt "on_data_message"
+#~ msgid ""
+#~ "It looks like you are on a mobile data connection. KDE Connect only works "
+#~ "on local networks."
+#~ msgstr ""
+#~ "Det lader til at du er på en mobil dataforbindelse. KDE Connect virker "
+#~ "kun på lokale netværk."
+
+#~ msgctxt "plugin_not_available"
+#~ msgid "This feature is not available in your Android version"
+#~ msgstr "Denne funktion er ikke tilgængelig i din Android-version"
+
+#~ msgctxt "device_not_reachable"
+#~ msgid "Paired device not reachable"
+#~ msgstr "Den parrede enhed kan ikke tilgås"
+
+#~ msgctxt "error_already_requested"
+#~ msgid "Pairing already requested"
+#~ msgstr "Allerede anmodet om parring"
+
+#~ msgctxt "error_invalid_key"
+#~ msgid "Invalid key received"
+#~ msgstr "Ugyldige nøgle modtaget"
+
+#~ msgctxt "received_url_title"
+#~ msgid "Received link from %1s"
+#~ msgstr "Modtog link fra %1s"
+
+#~ msgctxt "received_url_text"
+#~ msgid "Tap to open '%1s'"
+#~ msgstr "Tap for at åbne \"%1s\""
+
+#~ msgctxt "reconnect"
+#~ msgid "Reconnect"
+#~ msgstr "Forbind igen"
+
+#~ msgctxt "device"
+#~ msgid "Device"
+#~ msgstr "Enhed"
+
+#~ msgctxt "pair_device"
+#~ msgid "Pair device"
+#~ msgstr "Par med enhed"
+
+#~ msgctxt "mpris_settings"
+#~ msgid "Multimedia Settings"
+#~ msgstr "Multimedieindstillinger"
+
+#~ msgctxt "protocol_version_older"
+#~ msgid "This device uses an old protocol version"
+#~ msgstr "Denne enhed bruger en gammel protokolversion"
+
+#~ msgctxt "general_settings"
+#~ msgid "General Settings"
+#~ msgstr "Generelle indstillinger"
+
+#~ msgctxt "plugin_settings"
+#~ msgid "Settings"
+#~ msgstr "Indstillinger"
+
+#~ msgctxt "device_name"
+#~ msgid "Device name"
+#~ msgstr "Enhedsnavn"
+
+#~ msgctxt "device_name_preference_summary"
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#~ msgctxt "pair_device_action"
+#~ msgid "Pair a new device"
+#~ msgstr "Par med en ny enhed"
+
+#~ msgctxt "unpair_device_action"
+#~ msgid "Unpair %s"
+#~ msgstr "Fjern parring med %s"
+
+#~ msgctxt "sftp_internal_storage"
+#~ msgid "Internal storage"
+#~ msgstr "Intern lagring"
+
+#~ msgctxt "add_host"
+#~ msgid "Add host/IP"
+#~ msgstr "Tilføj vært/IP"
+
+#, fuzzy
+#~| msgctxt "add_host_hint"
+#~| msgid "Hostname or IP"
+#~ msgctxt "add_host_hint"
+#~ msgid "Hostname or IP"
+#~ msgstr "Værtsnavn eller IP"
+
+#~ msgctxt "mpris_player_on_device"
+#~ msgid "%1$s on %2$s"
+#~ msgstr "%1$s på %2$s"
+
+#~ msgctxt "device_paired"
+#~ msgid "Device paired"
+#~ msgstr "Enhed parret"
+
+#~ msgctxt "plugin_not_supported"
+#~ msgid "This plugin is not supported by the device"
+#~ msgstr "Dette plugin er ikke understøttet af enheden"
+
+#~ msgctxt "no_permissions_storage"
+#~ msgid "You need to grant permissions to access the storage"
+#~ msgstr "Du skal give tilladelse for at tilgå datalagret"
+
+#, fuzzy
+#~| msgctxt "share_notification_preference"
+#~| msgid "Noisy notifications"
+#~ msgctxt "new_notification"
+#~ msgid "New notification"
+#~ msgstr "Støjende bekendtgørelser"
+
+#~ msgctxt "outgoing_files_title"
+#~ msgid "Sending files to %1s"
+#~ msgstr "Sender filer til %1s"
+
+#, fuzzy
+#~| msgctxt "send_files"
+#~| msgid "Send files"
+#~ msgctxt "outgoing_files_text"
+#~ msgid "Sent %1$d file"
+#~ msgid_plural "Sent %1$d out of %2$d files"
+#~ msgstr[0] "Send filer"
+#~ msgstr[1] "Send filer"
+
+#~ msgctxt "sent_file_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "sent_file_failed_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "sftp_all_files"
+#~ msgid "All files"
+#~ msgstr "Alle filer"
+
+#~ msgctxt "sftp_permission_explanation"
+#~ msgid ""
+#~ "To access your files from your PC the app needs permission to access your "
+#~ "phone's storage"
+#~ msgstr ""
+#~ "For at tilgå filerne fra din pc, skal app'en have tilladelse til at til "
+#~ "gå telefonens datalager"
+
+#, fuzzy
+#~| msgctxt "sftp_camera"
+#~| msgid "Camera pictures"
+#~ msgctxt "take_picture"
+#~ msgid "Take picture"
+#~ msgstr "Kamerabilleder"
+
+#~ msgctxt "custom_dev_list_help"
+#~ msgid ""
+#~ "Use this option only if your device is not automatically detected. Enter "
+#~ "IP address or hostname below and touch the button to add it to the list. "
+#~ "Touch an existing item to remove it from the list."
+#~ msgstr ""
+#~ "Brug kun denne indstilling hvis din enhed ikke opdages automatisk. Angiv "
+#~ "IP-adresse eller værtsnavn nedenfor og tryk på knappen for at føje den "
+#~ "til listen. Tryk på et eksisterende element for at fjerne det fra listen."
+
+#~ msgctxt "plugins_failed_to_load"
+#~ msgid "Plugins failed to load (tap for more info):"
+#~ msgstr "Plugins kunne ikke indlæses (tap for mere info):"
+
+#~ msgctxt "remote_control"
+#~ msgid "Remote control"
+#~ msgstr "Fjernbetjening"
+
+#~ msgctxt "incoming_file_title"
+#~ msgid "Incoming file from %1s"
+#~ msgstr "Indkommende fil fra %1s"
+
+#~ msgctxt "incoming_file_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "settings"
+#~ msgid "KDE Connect Settings"
+#~ msgstr "Indstilling af KDE Connect"
+
+#, fuzzy
+#~| msgctxt "pref_plugin_runcommand"
+#~| msgid "Run Command"
+#~ msgctxt "addcommand_command"
+#~ msgid "Command"
+#~ msgstr "Kør kommando"
+
+#~ msgctxt "outgoing_file_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "mousepad_triple_default"
+#~ msgid "middle"
+#~ msgstr "midter"
+
+#~ msgctxt "mousepad_sensitivity_default"
+#~ msgid "default"
+#~ msgstr "standard"
+
+#~ msgctxt "pref_plugin_mpris_desc"
+#~ msgid "Control audio/video from your phone"
+#~ msgstr "Styr lyd og video fra din telefon"
+
+#~ msgctxt "pref_plugin_runcommand_desc"
+#~ msgid "Runs a command on your system"
+#~ msgstr "Kører en kommando på dit system"
+
+#~ msgctxt "pref_plugin_sharereceiver_desc"
+#~ msgid "Save incoming files to the phone storage"
+#~ msgstr "Gem indkommende filer til telefonens lager"
+
+#~ msgctxt "open_mpris_controls"
+#~ msgid "Open remote control"
+#~ msgstr "Åbn fjernbetjening"
+
+#~ msgctxt "open_mousepad"
+#~ msgid "Open touchpad control"
+#~ msgstr "Åbn touchpad-kontrol"
+
+#~ msgctxt "mousepad_info"
+#~ msgid "Move a finger on the screen to move the mouse cursor"
+#~ msgstr "Bevæg en finger på skærmen for at flytte musemarkøren"
+
+#~ msgctxt "device_menu_plugins"
+#~ msgid "Select plugins"
+#~ msgstr "Vælg plugins"
+
+#, fuzzy
+#~| msgctxt "device_list_empty"
+#~| msgid "No devices"
+#~ msgctxt "custom_device_list"
+#~ msgid "Custom device list"
+#~ msgstr "Ingen enheder"
+
+#, fuzzy
+#~| msgctxt "device_list_empty"
+#~| msgid "No devices"
+#~ msgctxt "custom_device_list_summary"
+#~ msgid "Custom device list"
+#~ msgstr "Ingen enheder"
+
+#~ msgctxt "category_not_paired_devices"
+#~ msgid "Not paired devices"
+#~ msgstr "Ikke parrede enheder"
+
+#~ msgctxt "pref_plugin_mousepad"
+#~ msgid "Mouse Remote Control"
+#~ msgstr "Fjernbetjening af mus"
+
+#~ msgctxt "pref_plugin_mousepad_desc"
+#~ msgid "Control your mouse remotely"
+#~ msgstr "Styrer din mus på afstand"

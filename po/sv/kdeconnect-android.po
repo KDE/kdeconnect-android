@@ -1,0 +1,2006 @@
+# Translations template for PROJECT.
+# Copyright (C) 2013 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+# Stefan Asserhäll <stefan.asserhall@bredband.net>, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-01-16 00:43+0000\n"
+"PO-Revision-Date: 2022-01-16 11:46+0100\n"
+"Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
+"Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.0dev\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 20.08.1\n"
+
+#. # Dear potential translators:          Thank you for your interest in KDE
+#. Connect! We do not actually handle our own translations.         All
+#. translations for all KDE apps are handled by the [localization
+#. team](https://l10n.kde.org).         We really appreciate your translations,
+#. but make sure to submit them by working with the proper team!
+msgctxt "kde_connect"
+msgid "KDE Connect"
+msgstr "KDE-anslut"
+
+msgctxt "manifest_label_share"
+msgid "Send to Device"
+msgstr "Skicka till apparat"
+
+msgctxt "foreground_notification_no_devices"
+msgid "Not connected to any device"
+msgstr "Inte ansluten till någon apparat"
+
+#, c-format
+msgctxt "foreground_notification_devices"
+msgid "Connected to: %s"
+msgstr "Ansluten till: %s"
+
+msgctxt "foreground_notification_send_clipboard"
+msgid "Send Clipboard"
+msgstr "Skicka klippbordet"
+
+msgctxt "pref_plugin_telephony"
+msgid "Telephony notifier"
+msgstr "Telefonunderrättelser"
+
+msgctxt "pref_plugin_telephony_desc"
+msgid "Send notifications for incoming calls"
+msgstr "Skicka underrättelser för inkommande samtal"
+
+msgctxt "pref_plugin_battery"
+msgid "Battery report"
+msgstr "Batterirapport"
+
+msgctxt "pref_plugin_battery_desc"
+msgid "Periodically report battery status"
+msgstr "Rapportera periodiskt batteriets status"
+
+msgctxt "pref_plugin_connectivity_report"
+msgid "Connectivity report"
+msgstr "Anslutningsrapport"
+
+msgctxt "pref_plugin_connectivity_report_desc"
+msgid "Report network signal strength and status"
+msgstr "Rapportera nätverkssignalstyrka och status"
+
+msgctxt "pref_plugin_sftp"
+msgid "Filesystem expose"
+msgstr "Exponera filsystem"
+
+msgctxt "pref_plugin_sftp_desc"
+msgid "Allows to browse this device's filesystem remotely"
+msgstr "Gör det möjligt att bläddra i apparatens filsystem från annan apparat"
+
+msgctxt "pref_plugin_clipboard"
+msgid "Clipboard sync"
+msgstr "Synkronisera klippbord"
+
+msgctxt "pref_plugin_clipboard_desc"
+msgid "Share the clipboard content"
+msgstr "Dela klippbordets innehåll"
+
+msgctxt "pref_plugin_clipboard_sent"
+msgid "Clipboard Sent"
+msgstr "Klippbordet skickat"
+
+msgctxt "pref_plugin_mousepad"
+msgid "Remote input"
+msgstr "Extern inmatning"
+
+msgctxt "pref_plugin_mousepad_desc"
+msgid "Use your phone or tablet as a touchpad and keyboard"
+msgstr "Använd telefonen eller surfplattan som mus och tangentbord"
+
+msgctxt "pref_plugin_presenter"
+msgid "Slideshow remote"
+msgstr "Fjärrbildspel"
+
+msgctxt "pref_plugin_presenter_desc"
+msgid "Use your device to change slides in a presentation"
+msgstr "Använd apparaten för att byta bilder i en presentation"
+
+msgctxt "pref_plugin_remotekeyboard"
+msgid "Receive remote keypresses"
+msgstr "Ta emot externa tangentnedtryckningar"
+
+msgctxt "pref_plugin_remotekeyboard_desc"
+msgid "Receive keypress events from remote devices"
+msgstr "Ta emot tangentnedtryckningar från externa apparater"
+
+msgctxt "pref_plugin_mpris"
+msgid "Multimedia controls"
+msgstr "Multimediakontroller"
+
+msgctxt "pref_plugin_mpris_desc"
+msgid "Provides a remote control for your media player"
+msgstr "Tillhandahåller en fjärrkontroll för mediaspelaren"
+
+msgctxt "pref_plugin_runcommand"
+msgid "Run Command"
+msgstr "Kör kommando"
+
+msgctxt "pref_plugin_runcommand_desc"
+msgid "Trigger remote commands from your phone or tablet"
+msgstr "Utlös fjärrkommandon från din telefon eller surfplatta"
+
+msgctxt "pref_plugin_contacts"
+msgid "Contacts Synchronizer"
+msgstr "Kontaktsynkronisering"
+
+msgctxt "pref_plugin_contacts_desc"
+msgid "Allow synchronizing the device's contacts book"
+msgstr "Tillåt synkronisering av apparatens kontaktlista"
+
+msgctxt "pref_plugin_ping"
+msgid "Ping"
+msgstr "Ping"
+
+msgctxt "pref_plugin_ping_desc"
+msgid "Send and receive pings"
+msgstr "Skicka och ta emot ping"
+
+msgctxt "pref_plugin_notifications"
+msgid "Notification sync"
+msgstr "Synkronisering av underrättelser"
+
+msgctxt "pref_plugin_notifications_desc"
+msgid "Access your notifications from other devices"
+msgstr "Kom åt underrättelser från andra apparater"
+
+msgctxt "pref_plugin_receive_notifications"
+msgid "Receive notifications"
+msgstr "Ta emot underrättelser"
+
+msgctxt "pref_plugin_receive_notifications_desc"
+msgid "Receive notifications from the other device and display them on Android"
+msgstr "Ta emot underrättelser från andra apparater och visa dem på Android"
+
+msgctxt "pref_plugin_sharereceiver"
+msgid "Share and receive"
+msgstr "Dela och ta emot"
+
+msgctxt "pref_plugin_sharereceiver_desc"
+msgid "Share files and URLs between devices"
+msgstr "Dela filer och webbadresser mellan apparater"
+
+msgctxt "device_list_empty"
+msgid "No devices"
+msgstr "Inga apparater"
+
+msgctxt "ok"
+msgid "OK"
+msgstr "Ok"
+
+msgctxt "sad_ok"
+msgid "OK :("
+msgstr "Ok"
+
+msgctxt "cancel"
+msgid "Cancel"
+msgstr "Avbryt"
+
+msgctxt "open_settings"
+msgid "Open settings"
+msgstr "Öppna inställningarna"
+
+msgctxt "no_permissions"
+msgid "You need to grant permission to access notifications"
+msgstr "Du måste ge rättighet att komma åt underrättelser"
+
+msgctxt "no_permission_mprisreceiver"
+msgid ""
+"To be able to control your media players you need to grant access to the "
+"notifications"
+msgstr ""
+"För att kunna styra mediaspelare måste du ge tillgång till underrättelser"
+
+msgctxt "no_permissions_remotekeyboard"
+msgid ""
+"To receive keypresses you need to activate the KDE Connect Remote Keyboard"
+msgstr ""
+"KDE-ansluts fjärrtangentbord måste aktiveras för att ta emot "
+"tangentnedtryckningar"
+
+msgctxt "send_ping"
+msgid "Send ping"
+msgstr "Skicka ping"
+
+msgctxt "open_mpris_controls"
+msgid "Multimedia control"
+msgstr "Kontroll av multimedia"
+
+msgctxt "remotekeyboard_editing_only_title"
+msgid "Handle remote keys only when editing"
+msgstr "Hantera bara externa tangenter vid redigering"
+
+msgctxt "remotekeyboard_not_connected"
+msgid ""
+"There is no active remote keyboard connection, establish one in kdeconnect"
+msgstr ""
+"Det finns ingen aktiv anslutning till externt tangentbord, upprätta en i KDE-"
+"anslut"
+
+msgctxt "remotekeyboard_connected"
+msgid "Remote keyboard connection is active"
+msgstr "Anslutning till externt tangentbord är aktiv"
+
+msgctxt "remotekeyboard_multiple_connections"
+msgid ""
+"There is more than one remote keyboard connection, select the device to "
+"configure"
+msgstr ""
+"Det finns mer än en anslutning till externt tangentbord, välj apparat att "
+"anpassa"
+
+msgctxt "open_mousepad"
+msgid "Remote input"
+msgstr "Extern inmatning"
+
+msgctxt "mousepad_info"
+msgid ""
+"Move a finger on the screen to move the mouse cursor. Tap for a click, and "
+"use two/three fingers for right and middle buttons. Use 2 fingers to scroll. "
+"Use a long press to drag'n drop."
+msgstr ""
+"Flytta fingret på skärmen för att röra muspekaren. Rör för att klicka, och "
+"använd två eller tre fingrar för höger- och mittenknapparna. Använd två "
+"fingrar för att panorera. Använd en längre beröring för drag och släpp."
+
+msgctxt "mousepad_single_tap_settings_title"
+msgid "Set one finger tap action"
+msgstr "Ställ in åtgärd vid en fingerberöring"
+
+msgctxt "mousepad_double_tap_settings_title"
+msgid "Set two finger tap action"
+msgstr "Ställ in åtgärd vid två fingerberöringar"
+
+msgctxt "mousepad_triple_tap_settings_title"
+msgid "Set three finger tap action"
+msgstr "Ställ in åtgärd vid tre fingerberöringar"
+
+msgctxt "mousepad_sensitivity_settings_title"
+msgid "Set touchpad sensitivity"
+msgstr "Ställ in tryckplattans känslighet"
+
+msgctxt "mousepad_acceleration_profile_settings_title"
+msgid "Set pointer acceleration"
+msgstr "Ställ in pekaracceleration"
+
+msgctxt "mousepad_scroll_direction_title"
+msgid "Reverse Scrolling Direction"
+msgstr "Omvänd rullningsriktning"
+
+msgctxt "mousepad_tap_entries:0"
+msgid "Left click"
+msgstr "Vänsterklick"
+
+msgctxt "mousepad_tap_entries:1"
+msgid "Right click"
+msgstr "Högerklick"
+
+msgctxt "mousepad_tap_entries:2"
+msgid "Middle click"
+msgstr "Mittenklick"
+
+msgctxt "mousepad_tap_entries:3"
+msgid "Nothing"
+msgstr "Ingenting"
+
+msgctxt "mousepad_sensitivity_entries:0"
+msgid "Slowest"
+msgstr "Långsammaste"
+
+msgctxt "mousepad_sensitivity_entries:1"
+msgid "Above Slowest"
+msgstr "Ovanför långsammaste"
+
+msgctxt "mousepad_sensitivity_entries:2"
+msgid "Default"
+msgstr "Normal"
+
+msgctxt "mousepad_sensitivity_entries:3"
+msgid "Above Default"
+msgstr "Ovanför normal"
+
+msgctxt "mousepad_sensitivity_entries:4"
+msgid "Fastest"
+msgstr "Snabbaste"
+
+msgctxt "mousepad_acceleration_profile_entries:0"
+msgid "No Acceleration"
+msgstr "Ingen acceleration"
+
+msgctxt "mousepad_acceleration_profile_entries:1"
+msgid "Weakest"
+msgstr "Minsta"
+
+msgctxt "mousepad_acceleration_profile_entries:2"
+msgid "Weaker"
+msgstr "Mindre"
+
+msgctxt "mousepad_acceleration_profile_entries:3"
+msgid "Medium"
+msgstr "Medium"
+
+msgctxt "mousepad_acceleration_profile_entries:4"
+msgid "Stronger"
+msgstr "Större"
+
+msgctxt "mousepad_acceleration_profile_entries:5"
+msgid "Strongest"
+msgstr "Störst"
+
+msgctxt "sendkeystrokes_send_to"
+msgid "Send keystrokes to"
+msgstr "Skicka tangentnedtryckningar till"
+
+msgctxt "sendkeystrokes_textbox_hint"
+msgid "Send keystrokes to host"
+msgstr "Skicka tangentnedtryckningar till värddator"
+
+msgctxt "sendkeystrokes_disabled_toast"
+msgid "Sending keystrokes is disabled - enable it in the settings"
+msgstr ""
+"Skicka tangentnedtryckningar är inaktiverat: aktivera det i inställningarna"
+
+msgctxt "sendkeystrokes_wrong_data"
+msgid "Invalid mime type - needs to be 'text/x-keystrokes'"
+msgstr "Ogiltig Mime-type, måste vara 'text/x-keystrokes'"
+
+#, c-format
+msgctxt "sendkeystrokes_sent_text"
+msgid "Sent %1$s to device %2$s"
+msgstr "Skickade %1$s till enhet %2$s"
+
+msgctxt "sendkeystrokes_pref_category_summary"
+msgid ""
+"This module allows other apps to share text segments as keystrokes which "
+"will get send to the connected host"
+msgstr ""
+"Modulen låter andra program att dela textsegment som tangentnedtryckningar "
+"vilka skickas till den anslutna värddatorn"
+
+msgctxt "sendkeystrokes_pref_category_title"
+msgid "Send Keystrokes"
+msgstr "Skicka tangentnedtryckningar"
+
+msgctxt "sendkeystrokes_pref_enabled"
+msgid "Enable Keystrokes sending"
+msgstr "Aktivera skicka tangentnedtryckningar"
+
+msgctxt "sendkeystrokes_pref_enabled_summary"
+msgid "Listen for data with mime type 'text/x-keystrokes'"
+msgstr "Lyssna på data med Mime-typen 'text/x-keystrokes'"
+
+msgctxt "sendkeystrokes_safe_text_enabled"
+msgid "Send safe text immediately"
+msgstr "Skicka säker text omedelbart"
+
+msgctxt "sendkeystrokes_safe_text_enabled_summary"
+msgid "Send short only-numeric strings without confirmation"
+msgstr "Skicka bara korta numeriska strängar utan att bekräfta"
+
+msgctxt "pref_plugin_mousepad_send_keystrokes"
+msgid "Send as keystrokes"
+msgstr "Skicka som tangentnedtryckningar"
+
+msgctxt "mouse_receiver_plugin_description"
+msgid "Receive remote mouse movement"
+msgstr "Ta emot externa musrörelser"
+
+msgctxt "mouse_receiver_plugin_name"
+msgid "Mouse receiver"
+msgstr "Musmottagare"
+
+msgctxt "mouse_receiver_no_permissions"
+msgid "You need to enable Accessibility Service"
+msgstr "Du måste aktivera åtkomsttjänsten"
+
+msgctxt "view_status_title"
+msgid "Status"
+msgstr "Status"
+
+#, c-format
+msgctxt "battery_status_format"
+msgid "Battery: %d%%"
+msgstr "Batteri: %d %%"
+
+#, c-format
+msgctxt "battery_status_low_format"
+msgid "Battery: %d%% Low Battery"
+msgstr "Batteri: %d %% låg laddning"
+
+#, c-format
+msgctxt "battery_status_charging_format"
+msgid "Battery: %d%% charging"
+msgstr "Batteri: %d %% laddas"
+
+msgctxt "battery_status_unknown"
+msgid "Battery information not available"
+msgstr "Batteriinformation inte tillgänglig"
+
+msgctxt "category_connected_devices"
+msgid "Connected devices"
+msgstr "Anslutna apparater"
+
+msgctxt "category_not_paired_devices"
+msgid "Available devices"
+msgstr "Tillgängliga apparater"
+
+msgctxt "category_remembered_devices"
+msgid "Remembered devices"
+msgstr "Ihågkomna apparater"
+
+msgctxt "device_menu_plugins"
+msgid "Plugin settings"
+msgstr "Inställningar av insticksprogram"
+
+msgctxt "device_menu_unpair"
+msgid "Unpair"
+msgstr "Ta bort ihopparning"
+
+msgctxt "pair_new_device"
+msgid "Pair new device"
+msgstr "Para ihop ny apparat"
+
+msgctxt "unknown_device"
+msgid "Unknown device"
+msgstr "Okänd apparat"
+
+msgctxt "error_not_reachable"
+msgid "Device not reachable"
+msgstr "Apparaten kan inte nås"
+
+msgctxt "error_already_paired"
+msgid "Device already paired"
+msgstr "Apparat redan ihopparad"
+
+msgctxt "error_could_not_send_package"
+msgid "Could not send package"
+msgstr "Kunde inte skicka paket"
+
+msgctxt "error_timed_out"
+msgid "Timed out"
+msgstr "Tidsgräns överskriden"
+
+msgctxt "error_canceled_by_user"
+msgid "Canceled by user"
+msgstr "Avbruten av användaren"
+
+msgctxt "error_canceled_by_other_peer"
+msgid "Canceled by other peer"
+msgstr "Avbruten av motparten"
+
+msgctxt "encryption_info_title"
+msgid "Encryption Info"
+msgstr "Krypteringsinformation"
+
+msgctxt "encryption_info_msg_no_ssl"
+msgid ""
+"The other device doesn't use a recent version of KDE Connect, using the "
+"legacy encryption method."
+msgstr ""
+"Den andra apparaten använder inte en aktuell version av KDE-anslut. Använder "
+"den föråldrade krypteringsmetoden."
+
+msgctxt "my_device_fingerprint"
+msgid "SHA256 fingerprint of your device certificate is:"
+msgstr "SHA256-fingeravtryck för din apparats certifikat är:"
+
+msgctxt "remote_device_fingerprint"
+msgid "SHA256 fingerprint of remote device certificate is:"
+msgstr "SHA256-fingeravtryck för den andra apparatens certifikat är:"
+
+msgctxt "pair_requested"
+msgid "Pair requested"
+msgstr "Ihopparning begärd"
+
+#, c-format
+msgctxt "pairing_request_from"
+msgid "Pairing request from %1s"
+msgstr "Begäran om ihopparning från %1s"
+
+#, c-format
+msgctxt "incoming_file_title"
+msgid "Receiving %1$d file from %2$s"
+msgid_plural "Receiving %1$d files from %2$s"
+msgstr[0] "Tar emot %1$d fil från %2$s"
+msgstr[1] "Tar emot %1$d filer från %2$s"
+
+#, c-format
+msgctxt "incoming_files_text"
+msgid "File: %1s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "Fil: %1s"
+msgstr[1] "(Fil %2$d av %3$d) : %1$s"
+
+#, c-format
+msgctxt "outgoing_file_title"
+msgid "Sending %1$d file to %2$s"
+msgid_plural "Sending %1$d files to %2$s"
+msgstr[0] "Skickar %1$d fil till %2$s"
+msgstr[1] "Skickar %1$d filer till %2$s"
+
+#, c-format
+msgctxt "outgoing_files_text"
+msgid "File: %1$s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "Fil: %1$s"
+msgstr[1] "(Fil %2$d av %3$d) : %1$s"
+
+#, c-format
+msgctxt "received_files_title"
+msgid "Received file from %1$s"
+msgid_plural "Received %2$d files from %1$s"
+msgstr[0] "Tog emot fil från %1$s"
+msgstr[1] "Tog emot %2$d filer från %1$s"
+
+#, c-format
+msgctxt "received_files_fail_title"
+msgid "Failed receiving file from %1$s"
+msgid_plural "Failed receiving %2$d of %3$d files from %1$s"
+msgstr[0] "Misslyckades ta emot fil från %1$s"
+msgstr[1] "Misslyckades ta emot %2$d av %3$d filer från %1$s"
+
+#, c-format
+msgctxt "sent_files_title"
+msgid "Sent file to %1$s"
+msgid_plural "Sent %2$d files to %1$s"
+msgstr[0] "Skickade fil till %1$s"
+msgstr[1] "Skickade %2$d filer till %1$s"
+
+#, c-format
+msgctxt "send_files_fail_title"
+msgid "Failed sending file to %1$s"
+msgid_plural "Failed sending %2$d of %3$d files to %1$s"
+msgstr[0] "Misslyckades skicka fil till %1$s"
+msgstr[1] "Misslyckades skicka %2$d av %3$d filer till %1$s"
+
+msgctxt "tap_to_open"
+msgid "Tap to open"
+msgstr "Rör för att öppna"
+
+#, c-format
+msgctxt "received_file_text"
+msgid "Tap to open '%1s'"
+msgstr "Rör för att öppna '%1s'"
+
+#, c-format
+msgctxt "cannot_create_file"
+msgid "Cannot create file %s"
+msgstr "Kan inte skapa filen %s"
+
+msgctxt "tap_to_answer"
+msgid "Tap to answer"
+msgstr "Rör för att svara"
+
+msgctxt "right_click"
+msgid "Send Right Click"
+msgstr "Skicka högerklick"
+
+msgctxt "middle_click"
+msgid "Send Middle Click"
+msgstr "Skicka mittenklick"
+
+msgctxt "show_keyboard"
+msgid "Show Keyboard"
+msgstr "Visa tangentbord"
+
+msgctxt "device_not_paired"
+msgid "Device not paired"
+msgstr "Apparat inte ihopparad"
+
+msgctxt "request_pairing"
+msgid "Request pairing"
+msgstr "Begära ihopparning"
+
+msgctxt "pairing_accept"
+msgid "Accept"
+msgstr "Acceptera"
+
+msgctxt "pairing_reject"
+msgid "Reject"
+msgstr "Avslå"
+
+msgctxt "settings"
+msgid "Settings"
+msgstr "Inställningar"
+
+msgctxt "mpris_play"
+msgid "Play"
+msgstr "Spela"
+
+msgctxt "mpris_pause"
+msgid "Pause"
+msgstr "Paus"
+
+msgctxt "mpris_previous"
+msgid "Previous"
+msgstr "Föregående"
+
+msgctxt "mpris_rew"
+msgid "Rewind"
+msgstr "Snabbspola bakåt"
+
+msgctxt "mpris_ff"
+msgid "Fast-forward"
+msgstr "Snabbspola framåt"
+
+msgctxt "mpris_next"
+msgid "Next"
+msgstr "Nästa"
+
+msgctxt "mpris_loop"
+msgid "Loop"
+msgstr "Upprepa"
+
+msgctxt "mpris_shuffle"
+msgid "Shuffle"
+msgstr "Blanda"
+
+msgctxt "mpris_volume"
+msgid "Volume"
+msgstr "Volym"
+
+msgctxt "mpris_time_settings_title"
+msgid "Forward/rewind buttons"
+msgstr "Framåt- och bakåt-knappar"
+
+msgctxt "mpris_time_settings_summary"
+msgid "Adjust the time to fast forward/rewind when pressed"
+msgstr "Justera tiden för att snabbspola framåt eller tillbaka om nertryckt"
+
+msgctxt "mpris_time_entries:0"
+msgid "10 seconds"
+msgstr "10 sekunder"
+
+msgctxt "mpris_time_entries:1"
+msgid "20 seconds"
+msgstr "20 sekunder"
+
+msgctxt "mpris_time_entries:2"
+msgid "30 seconds"
+msgstr "30 sekunder"
+
+msgctxt "mpris_time_entries:3"
+msgid "1 minute"
+msgstr "1 minut"
+
+msgctxt "mpris_time_entries:4"
+msgid "2 minutes"
+msgstr "2 minuter"
+
+msgctxt "mpris_notification_settings_title"
+msgid "Show media control notification"
+msgstr "Visa underrättelser om mediastyrning"
+
+msgctxt "mpris_notification_settings_summary"
+msgid "Allow controlling your media players without opening KDE Connect"
+msgstr "Tillåt att styra mediaspelare utan att KDE-anslut öppnas"
+
+msgctxt "share_to"
+msgid "Share To…"
+msgstr "Dela med…"
+
+msgctxt "protocol_version_newer"
+msgid "This device uses a newer protocol version"
+msgstr "Apparaten använder en nyare protokollversion"
+
+#, c-format
+msgctxt "plugin_settings_with_name"
+msgid "%s settings"
+msgstr "Inställningar av %s"
+
+msgctxt "invalid_device_name"
+msgid "Invalid device name"
+msgstr "Ogiltigt apparatnamn"
+
+msgctxt "shareplugin_text_saved"
+msgid "Received text, saved to clipboard"
+msgstr "Tog emot text, spara på klippbordet"
+
+msgctxt "custom_devices_settings"
+msgid "Custom device list"
+msgstr "Egen apparatlista"
+
+msgctxt "custom_device_list"
+msgid "Add devices by IP"
+msgstr "Lägg till apparater enligt IP-adress"
+
+msgctxt "custom_device_deleted"
+msgid "Custom device deleted"
+msgstr "Egen apparat borttagen"
+
+msgctxt "custom_device_list_help"
+msgid ""
+"If your device is not automatically detected you can add its IP address or "
+"hostname by clicking on the Floating Action Button"
+msgstr ""
+"Om apparaten inte detekteras automatiskt kan dess IP-adress eller "
+"värddatornamn läggas till genom att klicka på den lösa åtgärdsknappen."
+
+msgctxt "custom_device_fab_hint"
+msgid "Add a device"
+msgstr "Lägg till en apparat"
+
+msgctxt "undo"
+msgid "Undo"
+msgstr "Ångra"
+
+msgctxt "share_notification_preference"
+msgid "Noisy notifications"
+msgstr "Ljudliga underrättelser"
+
+msgctxt "share_notification_preference_summary"
+msgid "Vibrate and play a sound when receiving a file"
+msgstr "Vibrera och spela ett ljud när en fil tas emot"
+
+msgctxt "share_destination_customize"
+msgid "Customize destination directory"
+msgstr "Anpassa målkatalog"
+
+msgctxt "share_destination_customize_summary_disabled"
+msgid "Received files will appear in Downloads"
+msgstr "Mottagna filer hamnar i Nerladdningar"
+
+msgctxt "share_destination_customize_summary_enabled"
+msgid "Files will be stored in the directory below"
+msgstr "Filer lagras i katalogen nedan"
+
+msgctxt "share_destination_folder_preference"
+msgid "Destination directory"
+msgstr "Målkatalog"
+
+msgctxt "share"
+msgid "Share"
+msgstr "Dela"
+
+#, c-format
+msgctxt "share_received_file"
+msgid "Share \"%s\""
+msgstr "Dela \"%s\""
+
+msgctxt "title_activity_notification_filter"
+msgid "Notification filter"
+msgstr "Underrättelsefilter"
+
+msgctxt "filter_apps_info"
+msgid "Notifications will be synchronized for the selected apps."
+msgstr "Underrättelser synkroniseras för markerade applikationer."
+
+msgctxt "show_notification_if_screen_off"
+msgid "Send notifications only if the screen is off"
+msgstr "Skicka bara underrättelser om skärmen är av"
+
+#, c-format
+msgctxt "sftp_sdcard_num"
+msgid "SD card %d"
+msgstr "SD-kort %d"
+
+msgctxt "sftp_sdcard"
+msgid "SD card"
+msgstr "SD-kort"
+
+msgctxt "sftp_readonly"
+msgid "(read only)"
+msgstr "(skrivskyddat)"
+
+msgctxt "sftp_camera"
+msgid "Camera pictures"
+msgstr "Kamerabilder"
+
+msgctxt "add_device_dialog_title"
+msgid "Add device"
+msgstr "Lägg till apparat"
+
+msgctxt "add_device_hint"
+msgid "Hostname or IP address"
+msgstr "Värddatornamn eller IP-adress"
+
+msgctxt "sftp_preference_detected_sdcards"
+msgid "Detected SD cards"
+msgstr "Detekterade SD-kort"
+
+msgctxt "sftp_preference_edit_sdcard_title"
+msgid "Edit SD card"
+msgstr "Redigera SD-kort"
+
+msgctxt "sftp_preference_configured_storage_locations"
+msgid "Configured storage locations"
+msgstr "Anpassa lagringsplatser"
+
+msgctxt "sftp_preference_add_storage_location_title"
+msgid "Add storage location"
+msgstr "Lägg till lagringsplats"
+
+msgctxt "sftp_preference_edit_storage_location"
+msgid "Edit storage location"
+msgstr "Redigera lagringsplats"
+
+msgctxt "sftp_preference_add_camera_shortcut"
+msgid "Add camera folder shortcut"
+msgstr "Lägg till genväg till kamerakatalog"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_on"
+msgid "Add a shortcut to the camera folder"
+msgstr "Lägg till en genväg till kamerakatalogen"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_off"
+msgid "Do not add a shortcut to the camera folder"
+msgstr "Lägg inte till en genväg till kamerakatalogen"
+
+msgctxt "sftp_storage_preference_storage_location"
+msgid "Storage location"
+msgstr "Lagringsplats"
+
+msgctxt "sftp_storage_preference_storage_location_already_configured"
+msgid "This location has already been configured"
+msgstr "Platsen har redan ställts in"
+
+msgctxt "sftp_storage_preference_click_to_select"
+msgid "click to select"
+msgstr "klicka för att välja"
+
+msgctxt "sftp_storage_preference_display_name"
+msgid "Display name"
+msgstr "Namn att visa"
+
+msgctxt "sftp_storage_preference_display_name_already_used"
+msgid "This display name is already used"
+msgstr "Namn att visa används redan"
+
+msgctxt "sftp_storage_preference_display_name_cannot_be_empty"
+msgid "Display name cannot be empty"
+msgstr "Namn att visa kan inte vara tomt"
+
+msgctxt "sftp_action_mode_menu_delete"
+msgid "Delete"
+msgstr "Ta bort"
+
+msgctxt "sftp_no_sdcard_detected"
+msgid "No SD card detected"
+msgstr "Inga SD-kort detekterades"
+
+msgctxt "sftp_no_storage_locations_configured"
+msgid "No storage locations configured"
+msgstr "Inga lagringsplatser inställda"
+
+msgctxt "sftp_saf_permission_explanation"
+msgid "To access files remotely you have to configure storage locations"
+msgstr ""
+"För att komma åt filer från en annan apparat måste lagringsplatser ställas in"
+
+msgctxt "no_players_connected"
+msgid "No players found"
+msgstr "Inga spelare hittades"
+
+msgctxt "send_files"
+msgid "Send files"
+msgstr "Skicka filer"
+
+msgctxt "pairing_title"
+msgid "KDE Connect Devices"
+msgstr "KDE-anslut apparater"
+
+msgctxt "pairing_description"
+msgid ""
+"Other devices running KDE Connect in your same network should appear here."
+msgstr "Andra apparater som kör KDE-anslut i samma nätverk ska synas här."
+
+msgctxt "device_rename_title"
+msgid "Rename device"
+msgstr "Byt namn på apparat"
+
+msgctxt "device_rename_confirm"
+msgid "Rename"
+msgstr "Byt namn"
+
+msgctxt "refresh"
+msgid "Refresh"
+msgstr "Uppdatera"
+
+msgctxt "unreachable_description"
+msgid ""
+"This paired device is not reachable. Make sure it is connected to your same "
+"network."
+msgstr ""
+"Den här ihopparade apparaten kan inte nås. Försäkra dig om att den är "
+"ansluten till samma nätverk."
+
+msgctxt "no_wifi"
+msgid ""
+"You're not connected to a Wi-Fi network, so you may not be able to see any "
+"devices. Click here to enable Wi-Fi."
+msgstr ""
+"Du är inte ansluten till ett WIFI-nätverk, så du kanske inte kan se alla "
+"apparater. Klicka här för att aktivera WIFI."
+
+msgctxt "on_non_trusted_message"
+msgid "Not on a trusted network: autodiscovery is disabled."
+msgstr ""
+"Använder inte ett pålitligt nätverk: automatisk upptäckt är inaktiverad."
+
+msgctxt "no_file_browser"
+msgid "There are no file browsers installed."
+msgstr "Det finns inga filbläddrare installerade."
+
+msgctxt "pref_plugin_telepathy"
+msgid "Send SMS"
+msgstr "Skicka SMS"
+
+msgctxt "pref_plugin_telepathy_desc"
+msgid "Send text messages from your desktop"
+msgstr "Skicka textmeddelanden från skrivbordet"
+
+msgctxt "pref_plugin_telepathy_mms"
+msgid "Send MMS"
+msgstr "Skicka MMS"
+
+msgctxt "pref_plugin_telepathy_mms_desc"
+msgid ""
+"To be able to send MMS from KDE Connect you need to set it as the default "
+"SMS app."
+msgstr ""
+"För att kunna skicka MMS från KDE-anslut måste det anges som standardprogram "
+"för SMS."
+
+msgctxt "findmyphone_title"
+msgid "Find my phone"
+msgstr "Hitta min telefon"
+
+msgctxt "findmyphone_title_tablet"
+msgid "Find my tablet"
+msgstr "Hitta min surfplatta"
+
+msgctxt "findmyphone_title_tv"
+msgid "Find my TV"
+msgstr "Hitta min tv"
+
+msgctxt "findmyphone_description"
+msgid "Rings this device so you can find it"
+msgstr "Ringer till apparaten så att du kan hitta den"
+
+msgctxt "findmyphone_found"
+msgid "Found it"
+msgstr "Hittade den"
+
+msgctxt "open"
+msgid "Open"
+msgstr "Öppna"
+
+msgctxt "close"
+msgid "Close"
+msgstr "Stäng"
+
+msgctxt "plugins_need_permission"
+msgid "Some Plugins need permissions to work (tap for more info):"
+msgstr ""
+"Vissa insticksprogram kräver rättigheter för att fungera (rör för mer "
+"information):"
+
+msgctxt "permission_explanation"
+msgid "This plugin needs permissions to work"
+msgstr "Insticksprogrammet behöver rättigheter för att fungera"
+
+msgctxt "optional_permission_explanation"
+msgid "You need to grant extra permissions to enable all functions"
+msgstr "Du måste ge extra rättigheter för att aktivera alla funktioner"
+
+msgctxt "plugins_need_optional_permission"
+msgid ""
+"Some plugins have features disabled because of lack of permission (tap for "
+"more info):"
+msgstr ""
+"Vissa insticksprogram har inaktiverade funktioner på grund av att "
+"rättigheter saknas (rör för mer information):"
+
+msgctxt "share_optional_permission_explanation"
+msgid "To receive shared files you need to choose a destination directory"
+msgstr "För att ta emot delade filer måste du välja en målkatalog"
+
+msgctxt "telepathy_permission_explanation"
+msgid ""
+"To read and write SMS from your desktop you need to give permission to SMS"
+msgstr ""
+"För att läsa och skriva SMS från skrivbordet måste du ge rättigheter för SMS"
+
+msgctxt "telephony_permission_explanation"
+msgid ""
+"To see phone calls on the desktop you need to give permission to phone call "
+"logs and phone state"
+msgstr ""
+"För att se telefonsamtal på skrivbordet måste du ge rättigheter för "
+"telefonsamtalsloggar och telefontillstånd"
+
+msgctxt "telephony_optional_permission_explanation"
+msgid ""
+"To see a contact name instead of a phone number you need to give access to "
+"the phone's contacts"
+msgstr ""
+"För att se ett kontaktnamn istället för ett telefonnummer måste du ge "
+"tillgång till telefonens kontakter"
+
+msgctxt "contacts_permission_explanation"
+msgid ""
+"To share your contacts book with the desktop, you need to give contacts "
+"permission"
+msgstr ""
+"För att dela kontaktlistan med skrivbordet måste du ge rättigheter för "
+"kontakter"
+
+msgctxt "select_ringtone"
+msgid "Select a ringtone"
+msgstr "Välj en ringsignal"
+
+msgctxt "telephony_pref_blocked_title"
+msgid "Blocked numbers"
+msgstr "Blockerade nummer"
+
+msgctxt "telephony_pref_blocked_dialog_desc"
+msgid ""
+"Don't show calls and SMS from these numbers. Please specify one number per "
+"line"
+msgstr "Visa inte samtal och SMS från dessa nummer. Ange ett nummer per rad."
+
+msgctxt "mpris_coverart_description"
+msgid "Cover art of current media"
+msgstr "Omslag för aktuell media"
+
+msgctxt "device_icon_description"
+msgid "Device icon"
+msgstr "Apparatikon"
+
+msgctxt "settings_icon_description"
+msgid "Settings icon"
+msgstr "Inställningsikon"
+
+msgctxt "presenter_fullscreen"
+msgid "Fullscreen"
+msgstr "Fullskärm"
+
+msgctxt "presenter_exit"
+msgid "Exit presentation"
+msgstr "Avsluta presentation"
+
+msgctxt "presenter_lock_tip"
+msgid ""
+"You can lock your device and use the volume keys to go to the previous/next "
+"slide"
+msgstr ""
+"Apparaten kan låsas och volymtangenterna användas för att gå till föregående "
+"eller nästa bild"
+
+msgctxt "add_command"
+msgid "Add a command"
+msgstr "Lägg till ett kommando"
+
+msgctxt "addcommand_explanation"
+msgid "There are no commands registered"
+msgstr "Det finns inga kommandon registrerade"
+
+msgctxt "addcommand_explanation2"
+msgid "You can add new commands in the KDE Connect System Settings"
+msgstr "Du kan lägga till nya kommandon i KDE-ansluts systeminställningar"
+
+msgctxt "add_command_description"
+msgid "You can add commands on the desktop"
+msgstr "Du kan lägga till kommandon på skrivbordet"
+
+msgctxt "pref_plugin_mprisreceiver"
+msgid "Media Player Control"
+msgstr "Styrning av mediaspelare"
+
+msgctxt "pref_plugin_mprisreceiver_desc"
+msgid "Control your phone's media players from another device"
+msgstr "Styr telefonens mediaspelare från en annan apparat"
+
+msgctxt "notification_channel_default"
+msgid "Other notifications"
+msgstr "Andra underrättelser"
+
+msgctxt "notification_channel_persistent"
+msgid "Persistent indicator"
+msgstr "Permanent indikering"
+
+msgctxt "notification_channel_media_control"
+msgid "Media control"
+msgstr "Kontroll av media"
+
+msgctxt "notification_channel_filetransfer"
+msgid "File transfer"
+msgstr "Filöverföring"
+
+msgctxt "notification_channel_high_priority"
+msgid "High priority"
+msgstr "Hög prioritet"
+
+msgctxt "notification_channel_sms_mms"
+msgid "New Message"
+msgstr "Nytt meddelande"
+
+msgctxt "mpris_stop"
+msgid "Stop the current player"
+msgstr "Stoppa aktuell spelare"
+
+msgctxt "copy_url_to_clipboard"
+msgid "Copy URL to clipboard"
+msgstr "Kopiera webbadress till klippbordet"
+
+msgctxt "clipboard_toast"
+msgid "Copied to clipboard"
+msgstr "Kopierad till klippbordet"
+
+msgctxt "runcommand_notreachable"
+msgid "Device is not reachable"
+msgstr "Apparaten kan inte nås"
+
+msgctxt "runcommand_notpaired"
+msgid "Device is not paired"
+msgstr "Apparat inte ihopparad"
+
+msgctxt "runcommand_nosuchdevice"
+msgid "There is no such device"
+msgstr "Det finns ingen sådan apparat"
+
+msgctxt "runcommand_noruncommandplugin"
+msgid "This device does not have the Run Command Plugin enabled"
+msgstr "Apparaten har inte insticksprogrammet Kör kommando aktiverat"
+
+msgctxt "pref_plugin_findremotedevice"
+msgid "Find remote device"
+msgstr "Hitta extern apparat"
+
+msgctxt "pref_plugin_findremotedevice_desc"
+msgid "Ring your remote device"
+msgstr "Ring till extern apparat"
+
+msgctxt "ring"
+msgid "Ring"
+msgstr "Ring"
+
+msgctxt "pref_plugin_systemvolume"
+msgid "System volume"
+msgstr "Systemvolym"
+
+msgctxt "pref_plugin_systemvolume_desc"
+msgid "Control the system volume of the remote device"
+msgstr "Kontrollera systemvolymen för den externa apparaten"
+
+msgctxt "mute"
+msgid "Mute"
+msgstr "Tyst"
+
+msgctxt "all"
+msgid "All"
+msgstr "Alla"
+
+msgctxt "devices"
+msgid "Devices"
+msgstr "Apparater"
+
+msgctxt "settings_rename"
+msgid "Device name"
+msgstr "Apparatnamn"
+
+msgctxt "settings_dark_mode"
+msgid "Dark theme"
+msgstr "Mörkt tema"
+
+msgctxt "settings_more_settings_title"
+msgid "More settings"
+msgstr "Fler inställningar"
+
+msgctxt "settings_more_settings_text"
+msgid ""
+"Per-device settings can be found under 'Plugin settings' from within a "
+"device."
+msgstr ""
+"Inställningar per apparat hittas i 'Insticksprograminställningar' på "
+"apparaten."
+
+msgctxt "setting_persistent_notification"
+msgid "Show persistent notification"
+msgstr "Visa permanent underrättelse"
+
+msgctxt "setting_persistent_notification_oreo"
+msgid "Persistent notification"
+msgstr "Permanent underrättelse"
+
+msgctxt "setting_persistent_notification_description"
+msgid "Tap to enable/disable in Notification settings"
+msgstr "Tryck för att aktivera eller inaktivera i underrättelseinställningarna"
+
+msgctxt "extra_options"
+msgid "Extra options"
+msgstr "Extra alternativ"
+
+msgctxt "privacy_options"
+msgid "Privacy options"
+msgstr "Integritetsalternativ"
+
+msgctxt "set_privacy_options"
+msgid "Set your privacy options"
+msgstr "Ställ in integritetsalternativ"
+
+msgctxt "block_contents"
+msgid "Block contents of notifications"
+msgstr "Blockera underrättelsernas innehåll"
+
+msgctxt "block_images"
+msgid "Block images in notifications"
+msgstr "Blockera bilder i underrättelser"
+
+msgctxt "notification_channel_receivenotification"
+msgid "Notifications from other devices"
+msgstr "Underrättelser från andra apparater"
+
+msgctxt "take_picture"
+msgid "Launch camera"
+msgstr "Starta kamera"
+
+msgctxt "plugin_photo_desc"
+msgid "Launch the camera app to ease taking and transferring pictures"
+msgstr "Starta kameraprogrammet för att förenkla att ta och överföra bilder"
+
+msgctxt "no_app_for_opening"
+msgid "No suitable app found to open this file"
+msgstr "Inget lämpligt program hittades för att öppna filen"
+
+msgctxt "remote_keyboard_service"
+msgid "KDE Connect Remote Keyboard"
+msgstr "KDE-anslut fjärrtangentbord"
+
+msgctxt "presenter_pointer"
+msgid "Pointer"
+msgstr "Pekare"
+
+msgctxt "trusted_networks"
+msgid "Trusted networks"
+msgstr "Pålitliga nätverk"
+
+msgctxt "trusted_networks_desc"
+msgid "Restrict autodiscovery to known networks"
+msgstr "Begränsar automatisk upptäckt till kända nätverk"
+
+#, c-format
+msgctxt "add_trusted_network"
+msgid "Add %1s"
+msgstr "Lägg till %1s"
+
+msgctxt "empty_trusted_networks_list_text"
+msgid "You haven't added any trusted network yet"
+msgstr "Du har inte lagt till några pålitliga nätverk ännu"
+
+msgctxt "allow_all_networks_text"
+msgid "Allow all"
+msgstr "Tillåt alla"
+
+msgctxt "location_permission_needed_title"
+msgid "Permission required"
+msgstr "Rättighet krävs"
+
+msgctxt "location_permission_needed_desc"
+msgid "Android requires the Location permission to identify your WiFi network"
+msgstr "Android kräver platsrättigheter för att identifiera WIFI-nätverk"
+
+msgctxt "clipboard_android_x_incompat"
+msgid ""
+"Android 10 has removed clipboard access to all apps. This plugin will be "
+"disabled."
+msgstr ""
+"Android 10 har tagit bort åtkomst till klippbordet för alla applikationer. "
+"Det här insticksprogrammet kommer att inaktiveras."
+
+msgctxt "mpris_open_url"
+msgid "Continue playing here"
+msgstr "Fortsätt spela här"
+
+msgctxt "cant_open_url"
+msgid "Can't open URL to continue playing"
+msgstr "Kan inte öppna webbadress för att sluta spela"
+
+msgctxt "bigscreen_home"
+msgid "Home"
+msgstr "Hem"
+
+msgctxt "bigscreen_up"
+msgid "Up"
+msgstr "Uppåt"
+
+msgctxt "bigscreen_left"
+msgid "Left"
+msgstr "Vänster"
+
+msgctxt "bigscreen_select"
+msgid "Select"
+msgstr "Markera"
+
+msgctxt "bigscreen_right"
+msgid "Right"
+msgstr "Höger"
+
+msgctxt "bigscreen_down"
+msgid "Down"
+msgstr "Neråt"
+
+msgctxt "bigscreen_mic"
+msgid "Mic"
+msgstr "Mikrofon"
+
+msgctxt "pref_plugin_bigscreen"
+msgid "Bigscreen remote"
+msgstr "Fjärrkontroll för storskärm"
+
+msgctxt "pref_plugin_bigscreen_desc"
+msgid "Use your device as a remote for Plasma Bigscreen"
+msgstr "Använd apparaten som en fjärrkontroll för Plasma storskärm"
+
+msgctxt "bigscreen_optional_permission_explanation"
+msgid ""
+"To share microphone input from your phone you need to give access to the "
+"phone's audio input"
+msgstr ""
+"För att dela mikrofoningången från telefonen måste du ge tillgång till "
+"telefonens ljudingång"
+
+msgctxt "bigscreen_speech_extra_prompt"
+msgid "Speech"
+msgstr "Tal"
+
+msgctxt "message_reply_label"
+msgid "REPLY"
+msgstr "SVARA"
+
+msgctxt "mark_as_read_label"
+msgid "MARK AS READ"
+msgstr "MARKERA SOM LÄST"
+
+msgctxt "user_display_name"
+msgid "You"
+msgstr "Du"
+
+msgctxt "set_default_sms_app_title"
+msgid "Send MMS"
+msgstr "Skicka MMS"
+
+msgctxt "set_group_message_as_mms_title"
+msgid "Send group MMS"
+msgstr "Skicka grupp-MMS"
+
+msgctxt "set_long_text_as_mms_title"
+msgid "Send long text as MMS"
+msgstr "Skicka lång text som MMS"
+
+msgctxt "convert_to_mms_after_title"
+msgid "Convert to MMS"
+msgstr "Konvertera till MMS"
+
+msgctxt "convert_to_mms_after_entries:0"
+msgid "After one message"
+msgstr "Efter ett meddelande"
+
+msgctxt "convert_to_mms_after_entries:1"
+msgid "After two messages"
+msgstr "Efter två meddelanden"
+
+msgctxt "convert_to_mms_after_entries:2"
+msgid "After three messages"
+msgstr "Efter tre meddelanden"
+
+msgctxt "convert_to_mms_after_entries:3"
+msgid "After four messages"
+msgstr "Efter fyra meddelanden"
+
+msgctxt "convert_to_mms_after_entries:4"
+msgid "After five messages"
+msgstr "Efter fem meddelanden"
+
+msgctxt "theme_dialog_title"
+msgid "Choose theme"
+msgstr "Välj tema"
+
+msgctxt "theme_list:0"
+msgid "Set by Battery Saver"
+msgstr "Inställt för att spara batteri"
+
+msgctxt "theme_list:1"
+msgid "Light"
+msgstr "Ljus"
+
+msgctxt "theme_list:2"
+msgid "Dark"
+msgstr "Mörk"
+
+msgctxt "theme_list_v28:0"
+msgid "System Default"
+msgstr "Systemstandard"
+
+msgctxt "theme_list_v28:1"
+msgid "Light"
+msgstr "Ljus"
+
+msgctxt "theme_list_v28:2"
+msgid "Dark"
+msgstr "Mörk"
+
+msgctxt "report_bug"
+msgid "Report Bug"
+msgstr "Rapportera fel"
+
+msgctxt "donate"
+msgid "Donate"
+msgstr "Ge ett bidrag"
+
+msgctxt "source_code"
+msgid "Source Code"
+msgstr "Källkod"
+
+msgctxt "licenses"
+msgid "Licenses"
+msgstr "Licenser"
+
+msgctxt "website"
+msgid "Website"
+msgstr "Webbplats"
+
+msgctxt "about"
+msgid "About"
+msgstr "Om"
+
+msgctxt "authors"
+msgid "Authors"
+msgstr "Författare"
+
+msgctxt "thanks_to"
+msgid "Thanks To"
+msgstr "Tack till"
+
+msgctxt "easter_egg"
+msgid "Easter Egg"
+msgstr "Påskägg"
+
+#, c-format
+msgctxt "email_contributor"
+msgid ""
+"Email contributor\n"
+"%s"
+msgstr ""
+"E-postbidragsgivare\n"
+"%s"
+
+#, c-format
+msgctxt "visit_contributors_homepage"
+msgid ""
+"Visit contributor's homepage\n"
+"%s"
+msgstr ""
+"Besök bidragsgivarens hemsida\n"
+"%s"
+
+#, c-format
+msgctxt "version"
+msgid "Version %s"
+msgstr "Version %s"
+
+msgctxt "about_kde"
+msgid "About KDE"
+msgstr "Om KDE"
+
+msgctxt "kde_be_free"
+msgid "KDE - Be Free!"
+msgstr "KDE - Lev fri!"
+
+msgctxt "kde"
+msgid "KDE"
+msgstr "KDE"
+
+msgctxt "konqi"
+msgid "Konqi"
+msgstr "Konqi"
+
+msgctxt "rise_up"
+msgid "Rise Up"
+msgstr "Höj upp"
+
+msgctxt "rise_down"
+msgid "Rise Down"
+msgstr "Höj ner"
+
+msgctxt "click_here_to_type"
+msgid "Tap here to type"
+msgstr "Rör här för att skriva"
+
+msgctxt "clear_compose"
+msgid "Clear"
+msgstr "Rensa"
+
+msgctxt "send_compose"
+msgid "Send"
+msgstr "Skicka"
+
+msgctxt "open_compose_send"
+msgid "Compose text"
+msgstr "Skriv text"
+
+msgctxt "app_description"
+msgid ""
+"Multi-platform app that allows your devices to communicate (e.g., your phone "
+"and your computer)"
+msgstr ""
+"Program för flera plattformar som låter dina apparater kommunicera (t.ex. "
+"din telefon och din dator)"
+
+msgctxt "about_kde_about"
+msgid ""
+"&lt;h1&gt;About&lt;/h1&gt; &lt;p&gt;KDE is a world-wide community of "
+"software engineers, artists, writers, translators and creators who are "
+"committed to &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Free "
+"Software&lt;/a&gt; development. KDE produces the Plasma desktop environment, "
+"hundreds of applications, and the many software libraries that support them."
+"&lt;/p&gt; &lt;p&gt;KDE is a cooperative enterprise: no single entity "
+"controls its direction or products. Instead, we work together to achieve the "
+"common goal of building the world's finest Free Software. Everyone is "
+"welcome to &lt;a href=https://community.kde.org/Get_Involved&gt;join and "
+"contribute&lt;/a&gt; to KDE, including you.&lt;/p&gt; Visit &lt;a "
+"href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; for more "
+"information about the KDE community and the software we produce."
+msgstr ""
+"&lt;h1&gt;Om&lt;/h1&gt; &lt;p&gt;KDE är ett världsomspännande nätverk av "
+"programvaruingenjörer, grafiker, författare, översättare och kreatörer som "
+"är engagerade i utveckling av &lt;a href=https://www.gnu.org/philosophy/free-"
+"sw.html&gt;fri programvara&lt;/a&gt;. KDE producerar skrivbordsmiljön "
+"Plasma, hundratals program, och de talrika programvarubibliotek som stöder "
+"dem.&lt;/p&gt; &lt;p&gt;KDE är ett kooperativ, där ingen enskild person styr "
+"inriktningen eller produkterna. Istället arbetar vi tillsammans för att "
+"uppnå det gemensamma målet att skapa värdens finaste fria programvara. Alla "
+"är välkomna att &lt;a href=https://community.kde.org/Get_Involved&gt;gå med "
+"och bidra&lt;/a&gt; till KDE, inklusive du själv.&lt;/p&gt; Besök &lt;a "
+"href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; för ytterligare "
+"information om KDE-gemenskapen och programvaran vi skapar."
+
+msgctxt "about_kde_report_bugs_or_wishes"
+msgid ""
+"&lt;h1&gt;Report Bugs or Wishes&lt;/h1&gt; &lt;p&gt;Software can always be "
+"improved, and the KDE team is ready to do so. However, you - the user - must "
+"tell us when something does not work as expected or could be done better."
+"&lt;/p&gt; &lt;p&gt;KDE has a bug tracking system. Visit &lt;a href=https://"
+"bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; or use the \"Report Bug\" "
+"button from the about screen to report bugs.&lt;/p&gt; If you have a "
+"suggestion for improvement then you are welcome to use the bug tracking "
+"system to register your wish. Make sure you use the severity called "
+"\"Wishlist\"."
+msgstr ""
+"&lt;h1&gt;Rapportera fel eller önskemål&lt;/h1&gt; &lt;p&gt;Programvara kan "
+"alltid förbättras, och KDE-gruppen är beredd att göra det. Men du - "
+"användaren - måste berätta för oss om något inte fungerar som förväntat "
+"eller kunde ha gjorts bättre.&lt;/p&gt; &lt;p&gt;KDE har ett "
+"felrapporteringssystem. Besök &lt;a href=https://bugs.kde.org/&gt;https://"
+"bugs.kde.org/&lt;/a&gt; eller använd dialogrutan \"Rapportera fel...\" från "
+"om-skärmen för att rapportera fel.&lt;/p&gt; Om du har ett förslag på en "
+"förbättring kan du använda felrapporteringssystemet för att registrera din "
+"önskan. Se då till att du använder allvarlighetsgraden \"Önskan\"."
+
+msgctxt "about_kde_join_kde"
+msgid ""
+"&lt;h1&gt;Join KDE&lt;/h1&gt; &lt;p&gt;You do not have to be a software "
+"developer to be a member of the KDE team. You can join the national teams "
+"that translate program interfaces. You can provide graphics, themes, sounds, "
+"and improved documentation. You decide!&lt;/p&gt; &lt;p&gt;Visit &lt;a "
+"href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/"
+"Get_Involved&lt;/a&gt; for information on some projects in which you can "
+"participate.&lt;/p&gt; If you need more information or documentation, then a "
+"visit to &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/"
+"&lt;/a&gt; will provide you with what you need."
+msgstr ""
+"&lt;h1&gt;Gå med i KDE&lt;/h1&gt; &lt;p&gt;Du behöver inte vara en "
+"programutvecklare för att bli medlem i KDE-gruppen. Du kan gå med i de "
+"nationella grupperna som översätter programmens gränssnitt. Du kan bidra med "
+"grafik, teman, ljud och förbättrad dokumentation. Det är upp till dig!&lt;/"
+"p&gt; &lt;p&gt;Besök &lt;a href=https://community.kde.org/Get_Involved&gt;"
+"https://community.kde.org/Get_Involved&lt;/a&gt; för information om några "
+"projekt som du kan delta i.&lt;/p&gt;Om du behöver mer information eller "
+"dokumentation kommer ett besök på &lt;a href=https://techbase.kde.org/&gt;"
+"https://techbase.kde.org/&lt;/a&gt; att ge dig det du behöver."
+
+msgctxt "about_kde_support_kde"
+msgid ""
+"&lt;h1&gt;Support KDE&lt;/h1&gt; &lt;p&gt;KDE software is and will always be "
+"available free of charge, however creating it is not free.&lt;/p&gt; &lt;"
+"p&gt;To support development the KDE community has formed the KDE e.V., a non-"
+"profit organization legally founded in Germany. KDE e.V. represents the KDE "
+"community in legal and financial matters. See &lt;a href=https://ev.kde.org/"
+"&gt;https://ev.kde.org/&lt;/a&gt; for information on KDE e.V.&lt;/p&gt; &lt;"
+"p&gt;KDE benefits from many kinds of contributions, including financial. We "
+"use the funds to reimburse members and others for expenses they incur when "
+"contributing. Further funds are used for legal support and organizing "
+"conferences and meetings.&lt;/p&gt; &lt;p&gt;We would like to encourage you "
+"to support our efforts with a financial donation, using one of the ways "
+"described at &lt;a href=https://www.kde.org/community/donations/&gt;https://"
+"www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Thank you very much in "
+"advance for your support."
+msgstr ""
+"&lt;h1&gt;Stöd KDE&lt;/h1&gt; &lt;p&gt;KDE är och kommer alltid att vara "
+"tillgängligt utan avgift, dock är det inte gratis att ta fram det.&lt;/p&gt; "
+"&lt;p&gt;För att stödja utvecklingen upprättade KDE-gruppen KDE e.V., en "
+"ideell organisation som juridiskt grundats i Tyskland. KDE e.V. "
+"representerar KDE-gemenskapen i juridiska och ekonomiska angelägenheter. Se "
+"&lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; för "
+"information om KDE e.V.&lt;/p&gt; &lt;p&gt;KDE gagnas av många olika typer "
+"av bidrag, inklusive ekonomiska. Medlen används för att ersätta medlemmar "
+"och andra för utgifter som de åsamkas när de bidrar till KDE. Ytterligare "
+"medel används för juridiskt stöd och för att organisera konferenser och "
+"möten.&lt;/p&gt; &lt;p&gt;Vi vill gärna uppmuntra dig att stödja vårt arbete "
+"med en donation, på något av sätten som beskrivs på &lt;a href=https://www."
+"kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/"
+"a&gt;.&lt;/p&gt;Tack på förhand för ditt stöd."
+
+#. Authors tasks
+msgctxt "maintainer_and_developer"
+msgid "Maintainer and developer"
+msgstr "Underhåll och utvecklare"
+
+msgctxt "developer"
+msgid "Developer"
+msgstr "Utvecklare"
+
+msgctxt "apple_support"
+msgid "macOS support. Working on iOS support"
+msgstr "Stöd för macOS, arbete på stöd för iOS"
+
+msgctxt "bug_fixes_and_general_improvements"
+msgid "Bug fixes and general improvements"
+msgstr "Felrättningar och allmänna förbättringar"
+
+msgctxt "samoilenko_yuri_task"
+msgid "SFTP implementation, bug fixes and general improvements"
+msgstr "SFTP-implementering, felrättningar och allmänna förbättringar"
+
+msgctxt "aniket_kumar_task"
+msgid "SMS plugin improvements"
+msgstr "Förbättringar av SMS-insticksprogram"
+
+msgctxt "alex_fiestas_task"
+msgid "Contacts plugin improvements"
+msgstr "Förbättringar av kontaktinsticksprogram"
+
+msgctxt "maxim_leshchenko_task"
+msgid "UI improvements and this about page"
+msgstr "Förbättringar av användargränssnitt och den här om-sidan"
+
+msgctxt "holger_kaelberer_task"
+msgid "Remote keyboard plugin and bug fixes"
+msgstr "Insticksprogram för fjärrtangentbord och felrättningar"
+
+msgctxt "saikrishna_arcot_task"
+msgid ""
+"Support for using the keyboard in the remote input plugin, bug fixes and "
+"general improvements"
+msgstr ""
+"Stöd för användning av tangentbordet i insticksprogrammet för "
+"fjärrinmatning, felrättningar och allmänna förbättringar"
+
+msgctxt "everyone_else"
+msgid "Everyone else who has contributed to KDE Connect over the years"
+msgstr "Alla andra som har bidragit till KDE-anslut under alla år"
+
+msgctxt "send_clipboard"
+msgid "Send clipboard"
+msgstr "Skicka klippbord"
+
+msgctxt "tap_to_execute"
+msgid "Tap to execute"
+msgstr "Rör för att köra"
+
+#~ msgctxt "share_optional_permission_explanation"
+#~ msgid ""
+#~ "To share files between your phone and your desktop you need to give "
+#~ "access to the phone's storage"
+#~ msgstr ""
+#~ "För att dela filer mellan telefonen och skrivbordet behöver du ge "
+#~ "tillgång till telefonens lagringsutrymme"
+
+#~ msgctxt "sms_pref_set_mmsc_dialog_desc"
+#~ msgid "Set MMSC"
+#~ msgstr "Ange MMSC"
+
+#~ msgctxt "sms_pref_set_mmsc_title"
+#~ msgid "MMSC"
+#~ msgstr "MMSC"
+
+#~ msgctxt "sms_pref_set_mms_proxy_dialog_desc"
+#~ msgid "Set MMS proxy"
+#~ msgstr "Ange MMS-proxy"
+
+#~ msgctxt "sms_pref_set_mms_proxy_title"
+#~ msgid "MMS proxy"
+#~ msgstr "MMS-proxy"
+
+#~ msgctxt "sms_pref_set_mms_port_dialog_desc"
+#~ msgid "Set MMS port"
+#~ msgstr "Ange MMS-port"
+
+#~ msgctxt "sms_pref_set_mms_port_title"
+#~ msgid "MMS port"
+#~ msgstr "MMS-port"
+
+#~ msgctxt "on_data_message"
+#~ msgid ""
+#~ "It looks like you are on a mobile data connection. KDE Connect only works "
+#~ "on local networks."
+#~ msgstr ""
+#~ "Det verkar som om du använder en mobil dataanslutning. KDE-anslut "
+#~ "fungerar bara på lokala nätverk."
+
+#~ msgctxt "plugin_not_available"
+#~ msgid "This feature is not available in your Android version"
+#~ msgstr "Funktionen är inte tillgänglig i Android-versionen"
+
+#~ msgctxt "device_not_reachable"
+#~ msgid "Paired device not reachable"
+#~ msgstr "Ihopparad apparat kan inte nås"
+
+#~ msgctxt "error_already_requested"
+#~ msgid "Pairing already requested"
+#~ msgstr "Ihopparning redan begärd"
+
+#~ msgctxt "error_invalid_key"
+#~ msgid "Invalid key received"
+#~ msgstr "Ogiltig nyckel mottagen"
+
+#~ msgctxt "received_url_title"
+#~ msgid "Received link from %1s"
+#~ msgstr "Tog emot länk från %1s"
+
+#~ msgctxt "received_url_text"
+#~ msgid "Tap to open '%1s'"
+#~ msgstr "Rör för att öppna '%1s'"
+
+#~ msgctxt "reconnect"
+#~ msgid "Reconnect"
+#~ msgstr "Anslut igen"
+
+#~ msgctxt "device"
+#~ msgid "Device"
+#~ msgstr "Apparat"
+
+#~ msgctxt "pair_device"
+#~ msgid "Pair device"
+#~ msgstr "Para ihop apparat"
+
+#~ msgctxt "mpris_settings"
+#~ msgid "Multimedia Settings"
+#~ msgstr "Multimediainställningar"
+
+#~ msgctxt "protocol_version_older"
+#~ msgid "This device uses an old protocol version"
+#~ msgstr "Apparaten använder en gammal protokollversion"
+
+#~ msgctxt "general_settings"
+#~ msgid "General Settings"
+#~ msgstr "Allmänna inställningar"
+
+#~ msgctxt "plugin_settings"
+#~ msgid "Settings"
+#~ msgstr "Inställningar"
+
+#~ msgctxt "device_name"
+#~ msgid "Device name"
+#~ msgstr "Apparatnamn"
+
+#~ msgctxt "device_name_preference_summary"
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#~ msgctxt "pair_device_action"
+#~ msgid "Pair a new device"
+#~ msgstr "Para ihop med ny apparat"
+
+#~ msgctxt "unpair_device_action"
+#~ msgid "Unpair %s"
+#~ msgstr "Ta bort ihopparning %s"
+
+#~ msgctxt "delete_custom_device"
+#~ msgid "Delete %s?"
+#~ msgstr "Ta bort %s?"
+
+#~ msgctxt "sftp_internal_storage"
+#~ msgid "Internal storage"
+#~ msgstr "Intern lagring"
+
+#~ msgctxt "add_host"
+#~ msgid "Add host/IP"
+#~ msgstr "Lägg till värddator/IP-adress"
+
+#~ msgctxt "add_host_hint"
+#~ msgid "Hostname or IP"
+#~ msgstr "Värddatornamn eller IP"
+
+#~ msgctxt "mpris_player_on_device"
+#~ msgid "%1$s on %2$s"
+#~ msgstr "%1$s på %2$s"
+
+#~ msgctxt "device_paired"
+#~ msgid "Device paired"
+#~ msgstr "Apparat ihopparad"
+
+#~ msgctxt "plugin_not_supported"
+#~ msgid "This plugin is not supported by the device"
+#~ msgstr "Insticksprogrammet stöds inte av apparaten"
+
+#~ msgctxt "no_permissions_storage"
+#~ msgid "You need to grant permissions to access the storage"
+#~ msgstr "Du måste ge rättighet att komma åt lagringen"
+
+#~ msgctxt "dark_theme"
+#~ msgid "Dark theme"
+#~ msgstr "Mörkt tema"
+
+#~ msgctxt "new_notification"
+#~ msgid "New notification"
+#~ msgstr "Ny underrättelse"
+
+#~ msgctxt "outgoing_files_title"
+#~ msgid "Sending files to %1s"
+#~ msgstr "Skickar filer till %1s"
+
+#~ msgctxt "outgoing_files_text"
+#~ msgid "Sent %1$d file"
+#~ msgid_plural "Sent %1$d out of %2$d files"
+#~ msgstr[0] "Skickade %1$d fil"
+#~ msgstr[1] "Skickade %1$d av %2$d filer"
+
+#~ msgctxt "sent_file_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "sent_file_failed_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "sftp_all_files"
+#~ msgid "All files"
+#~ msgstr "Alla filer"
+
+#~ msgctxt "sftp_permission_explanation"
+#~ msgid ""
+#~ "To access your files from your PC the app needs permission to access your "
+#~ "phone's storage"
+#~ msgstr ""
+#~ "För att komma åt filerna från din dator behöver applikationen rättighet "
+#~ "att komma åt telefonens lagringsutrymme"
+
+#~ msgctxt "take_picture"
+#~ msgid "Take picture"
+#~ msgstr "Ta bild"
+
+#~ msgctxt "plugin_photo_desc"
+#~ msgid "Take a picture and send it to another device"
+#~ msgstr "Ta en bild och skicka den till en annan apparat"
+
+#~ msgctxt "custom_dev_list_help"
+#~ msgid ""
+#~ "Use this option only if your device is not automatically detected. Enter "
+#~ "IP address or hostname below and touch the button to add it to the list. "
+#~ "Touch an existing item to remove it from the list."
+#~ msgstr ""
+#~ "Använd bara alternativet om apparaten inte detekteras automatiskt. Skriv "
+#~ "in IP-adress eller värddatornamn nedan och rör vid knappen för att lägga "
+#~ "till den i listan. Rör vid ett befintligt objekt för att ta bort det från "
+#~ "listan."
+
+#~ msgctxt "plugins_failed_to_load"
+#~ msgid "Plugins failed to load (tap for more info):"
+#~ msgstr "Misslyckades ladda insticksprogram (rör för mer information):"
+
+#~ msgctxt "setting_persistent_notification_oreo_description"
+#~ msgid "Required by Android since Android 8.0"
+#~ msgstr "Krävs av Android sedan Android 8.0"
+
+#~ msgctxt "setting_persistent_notification_pie_description"
+#~ msgid ""
+#~ "Since Android 9.0, this notification can only be minimized by long "
+#~ "tapping on it"
+#~ msgstr ""
+#~ "Sedan Android 9.0, kan underrättelsen bara minimeras genom att röra vid "
+#~ "den länge"
+
+#~ msgctxt "remote_control"
+#~ msgid "Remote control"
+#~ msgstr "Fjärrkontroll"
+
+#~ msgctxt "incoming_file_title"
+#~ msgid "Incoming file from %1s"
+#~ msgstr "Inkommande fil från %1s"
+
+#~ msgctxt "incoming_file_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "settings"
+#~ msgid "KDE Connect Settings"
+#~ msgstr "KDE anslutningsinställningar"
+
+#~ msgctxt "addcommand_name"
+#~ msgid "Name"
+#~ msgstr "Namn"
+
+#~ msgctxt "addcommand_command"
+#~ msgid "Command"
+#~ msgstr "Kommando"
+
+#~ msgctxt "outgoing_file_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "mousepad_triple_default"
+#~ msgid "middle"
+#~ msgstr "mitten"
+
+#~ msgctxt "mousepad_sensitivity_default"
+#~ msgid "default"
+#~ msgstr "normal"
+
+#~ msgctxt "pref_plugin_mpris_desc"
+#~ msgid "Control audio/video from your phone"
+#~ msgstr "Styr ljud och video från telefonen"
+
+#~ msgctxt "pref_plugin_runcommand_desc"
+#~ msgid "Runs a command on your system"
+#~ msgstr "Kör ett kommando på systemet"
+
+#~ msgctxt "pref_plugin_sharereceiver_desc"
+#~ msgid "Save incoming files to the phone storage"
+#~ msgstr "Spara inkommande filer i telefonens minne"
+
+#~ msgctxt "open_mpris_controls"
+#~ msgid "Open remote control"
+#~ msgstr "Öppna fjärrkontroll"
+
+#~ msgctxt "open_mousepad"
+#~ msgid "Open touchpad control"
+#~ msgstr "Öppna kontroll med tryckplatta"
+
+#~ msgctxt "mousepad_info"
+#~ msgid "Move a finger on the screen to move the mouse cursor"
+#~ msgstr "Flytta ett finger på skärmen för att flytta muspekaren"
+
+#~ msgctxt "device_menu_plugins"
+#~ msgid "Select plugins"
+#~ msgstr "Välj insticksprogram"
+
+#~ msgctxt "mpris_time_settings_title"
+#~ msgid "Interval Time"
+#~ msgstr "Intervalltid"
+
+#, fuzzy
+#~| msgctxt "device_list_empty"
+#~| msgid "No devices"
+#~ msgctxt "custom_device_list"
+#~ msgid "Custom device list"
+#~ msgstr "Inga apparater"
+
+#, fuzzy
+#~| msgctxt "device_list_empty"
+#~| msgid "No devices"
+#~ msgctxt "custom_device_list_summary"
+#~ msgid "Custom device list"
+#~ msgstr "Inga apparater"
+
+#~ msgctxt "category_not_paired_devices"
+#~ msgid "Not paired devices"
+#~ msgstr "Inga parade apparater"
+
+#~ msgctxt "pref_plugin_mousepad"
+#~ msgid "Mouse Remote Control"
+#~ msgstr "Musfjärrkontroll"
+
+#~ msgctxt "pref_plugin_mousepad_desc"
+#~ msgid "Control your mouse remotely"
+#~ msgstr "Fjärrstyr musen"

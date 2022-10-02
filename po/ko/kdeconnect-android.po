@@ -1,0 +1,1929 @@
+# Translations template for PROJECT.
+# Copyright (C) 2014 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+# Shinjo Park <kde@peremen.name>, 2014, 2015, 2017, 2018, 2019, 2020, 2021, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-01-16 00:43+0000\n"
+"PO-Revision-Date: 2022-05-07 14:41+0200\n"
+"Last-Translator: Shinjo Park <kde@peremen.name>\n"
+"Language-Team: Korean <kde-kr@kde.org>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 21.12.3\n"
+
+#. # Dear potential translators:          Thank you for your interest in KDE
+#. Connect! We do not actually handle our own translations.         All
+#. translations for all KDE apps are handled by the [localization
+#. team](https://l10n.kde.org).         We really appreciate your translations,
+#. but make sure to submit them by working with the proper team!
+msgctxt "kde_connect"
+msgid "KDE Connect"
+msgstr "KDE Connect"
+
+msgctxt "manifest_label_share"
+msgid "Send to Device"
+msgstr "장치로 보내기"
+
+msgctxt "foreground_notification_no_devices"
+msgid "Not connected to any device"
+msgstr "연결된 장치 없음"
+
+#, c-format
+msgctxt "foreground_notification_devices"
+msgid "Connected to: %s"
+msgstr "연결됨: %s"
+
+msgctxt "foreground_notification_send_clipboard"
+msgid "Send Clipboard"
+msgstr "클립보드 보내기"
+
+msgctxt "pref_plugin_telephony"
+msgid "Telephony notifier"
+msgstr "전화 알림이"
+
+msgctxt "pref_plugin_telephony_desc"
+msgid "Send notifications for incoming calls"
+msgstr "수신 통화 알림 보내기"
+
+msgctxt "pref_plugin_battery"
+msgid "Battery report"
+msgstr "배터리 보고"
+
+msgctxt "pref_plugin_battery_desc"
+msgid "Periodically report battery status"
+msgstr "주기적으로 배터리 상태 보고"
+
+msgctxt "pref_plugin_connectivity_report"
+msgid "Connectivity report"
+msgstr "연결 상태 보고"
+
+msgctxt "pref_plugin_connectivity_report_desc"
+msgid "Report network signal strength and status"
+msgstr "네트워크 신호 세기 및 상태 보고"
+
+msgctxt "pref_plugin_sftp"
+msgid "Filesystem expose"
+msgstr "파일 시스템 보기"
+
+msgctxt "pref_plugin_sftp_desc"
+msgid "Allows to browse this device's filesystem remotely"
+msgstr "원격으로 이 장치의 파일 시스템 보기"
+
+msgctxt "pref_plugin_clipboard"
+msgid "Clipboard sync"
+msgstr "클립보드 동기화"
+
+msgctxt "pref_plugin_clipboard_desc"
+msgid "Share the clipboard content"
+msgstr "클립보드 내용 동기화"
+
+msgctxt "pref_plugin_clipboard_sent"
+msgid "Clipboard Sent"
+msgstr "클립보드 보냄"
+
+msgctxt "pref_plugin_mousepad"
+msgid "Remote input"
+msgstr "원격 입력"
+
+msgctxt "pref_plugin_mousepad_desc"
+msgid "Use your phone or tablet as a touchpad and keyboard"
+msgstr "내 휴대폰이나 태블릿을 터치패드와 키보드로 사용하기"
+
+msgctxt "pref_plugin_presenter"
+msgid "Slideshow remote"
+msgstr "슬라이드 쇼 리모콘"
+
+msgctxt "pref_plugin_presenter_desc"
+msgid "Use your device to change slides in a presentation"
+msgstr "내 장치로 프레젠테이션 슬라이드 전환하기"
+
+msgctxt "pref_plugin_remotekeyboard"
+msgid "Receive remote keypresses"
+msgstr "원격 키 입력 받기"
+
+msgctxt "pref_plugin_remotekeyboard_desc"
+msgid "Receive keypress events from remote devices"
+msgstr "원격 장치의 키 입력 이벤트 받기"
+
+msgctxt "pref_plugin_mpris"
+msgid "Multimedia controls"
+msgstr "멀티미디어 제어"
+
+msgctxt "pref_plugin_mpris_desc"
+msgid "Provides a remote control for your media player"
+msgstr "내 미디어 재생기 원격 제어"
+
+msgctxt "pref_plugin_runcommand"
+msgid "Run Command"
+msgstr "명령 실행"
+
+msgctxt "pref_plugin_runcommand_desc"
+msgid "Trigger remote commands from your phone or tablet"
+msgstr "내 휴대폰이나 태블릿에서 원격 명령 실행"
+
+msgctxt "pref_plugin_contacts"
+msgid "Contacts Synchronizer"
+msgstr "연락처 동기화 도구"
+
+msgctxt "pref_plugin_contacts_desc"
+msgid "Allow synchronizing the device's contacts book"
+msgstr "장치의 주소록에 있는 연락처 동기화"
+
+msgctxt "pref_plugin_ping"
+msgid "Ping"
+msgstr "핑"
+
+msgctxt "pref_plugin_ping_desc"
+msgid "Send and receive pings"
+msgstr "핑 보내고 받기"
+
+msgctxt "pref_plugin_notifications"
+msgid "Notification sync"
+msgstr "알림 동기화"
+
+msgctxt "pref_plugin_notifications_desc"
+msgid "Access your notifications from other devices"
+msgstr "다른 장치에서 알림 보기"
+
+msgctxt "pref_plugin_receive_notifications"
+msgid "Receive notifications"
+msgstr "알림 받기"
+
+msgctxt "pref_plugin_receive_notifications_desc"
+msgid "Receive notifications from the other device and display them on Android"
+msgstr "다른 장치의 알림을 받아서 안드로이드 알림에 표시"
+
+msgctxt "pref_plugin_sharereceiver"
+msgid "Share and receive"
+msgstr "공유하고 받기"
+
+msgctxt "pref_plugin_sharereceiver_desc"
+msgid "Share files and URLs between devices"
+msgstr "장치끼리 파일과 URL 공유"
+
+msgctxt "device_list_empty"
+msgid "No devices"
+msgstr "장치 없음"
+
+msgctxt "ok"
+msgid "OK"
+msgstr "확인"
+
+msgctxt "sad_ok"
+msgid "OK :("
+msgstr "확인 :("
+
+msgctxt "cancel"
+msgid "Cancel"
+msgstr "취소"
+
+msgctxt "open_settings"
+msgid "Open settings"
+msgstr "설정 열기"
+
+msgctxt "no_permissions"
+msgid "You need to grant permission to access notifications"
+msgstr "알림 접근 권한이 필요합니다"
+
+msgctxt "no_permission_mprisreceiver"
+msgid ""
+"To be able to control your media players you need to grant access to the "
+"notifications"
+msgstr "미디어 재생기를 제어하려면 알림 접근 권한이 필요합니다"
+
+msgctxt "no_permissions_remotekeyboard"
+msgid ""
+"To receive keypresses you need to activate the KDE Connect Remote Keyboard"
+msgstr "키 입력을 받으려면 KDE Connect 원격 키보드를 활성화해야 합니다"
+
+msgctxt "send_ping"
+msgid "Send ping"
+msgstr "핑 보내기"
+
+msgctxt "open_mpris_controls"
+msgid "Multimedia control"
+msgstr "멀티미디어 제어"
+
+msgctxt "remotekeyboard_editing_only_title"
+msgid "Handle remote keys only when editing"
+msgstr "편집할 때에만 원격 키 처리하기"
+
+msgctxt "remotekeyboard_not_connected"
+msgid ""
+"There is no active remote keyboard connection, establish one in kdeconnect"
+msgstr "활성화된 원격 키보드 연결이 없습니다. KDE Connect에서 설정하십시오"
+
+msgctxt "remotekeyboard_connected"
+msgid "Remote keyboard connection is active"
+msgstr "원격 키보드 연결이 활성화됨"
+
+msgctxt "remotekeyboard_multiple_connections"
+msgid ""
+"There is more than one remote keyboard connection, select the device to "
+"configure"
+msgstr "원격 키보드 연결이 여러 개 있습니다. 설정할 장치를 선택하십시오"
+
+msgctxt "open_mousepad"
+msgid "Remote input"
+msgstr "원격 입력"
+
+msgctxt "mousepad_info"
+msgid ""
+"Move a finger on the screen to move the mouse cursor. Tap for a click, and "
+"use two/three fingers for right and middle buttons. Use 2 fingers to scroll. "
+"Use a long press to drag'n drop."
+msgstr ""
+"화면에서 손가락을 움직이면 마우스 커서를 움직입니다. 화면을 누르면 왼쪽 단추"
+"를 누르고, 두 손가락과 세 손가락으로 누르면 오른쪽/가운데 단추를 누릅니다. "
+"두 손가락을 사용하여 스크롤할 수 있습니다. 드래그 앤 드롭을 사용하려면 길게 "
+"누르십시오."
+
+msgctxt "mousepad_single_tap_settings_title"
+msgid "Set one finger tap action"
+msgstr "한 손가락으로 눌렀을 때 동작 설정"
+
+msgctxt "mousepad_double_tap_settings_title"
+msgid "Set two finger tap action"
+msgstr "두 손가락으로 눌렀을 때 동작 설정"
+
+msgctxt "mousepad_triple_tap_settings_title"
+msgid "Set three finger tap action"
+msgstr "세 손가락으로 눌렀을 때 동작 설정"
+
+msgctxt "mousepad_sensitivity_settings_title"
+msgid "Set touchpad sensitivity"
+msgstr "터치패드 감도 설정"
+
+msgctxt "mousepad_acceleration_profile_settings_title"
+msgid "Set pointer acceleration"
+msgstr "포인터 가속 설정"
+
+msgctxt "mousepad_scroll_direction_title"
+msgid "Reverse Scrolling Direction"
+msgstr "스크롤 방향 뒤집기"
+
+msgctxt "mousepad_tap_entries:0"
+msgid "Left click"
+msgstr "왼쪽 클릭"
+
+msgctxt "mousepad_tap_entries:1"
+msgid "Right click"
+msgstr "오른쪽 단추 클릭"
+
+msgctxt "mousepad_tap_entries:2"
+msgid "Middle click"
+msgstr "가운데 단추 클릭"
+
+msgctxt "mousepad_tap_entries:3"
+msgid "Nothing"
+msgstr "아무것도 안 함"
+
+msgctxt "mousepad_sensitivity_entries:0"
+msgid "Slowest"
+msgstr "느리게"
+
+msgctxt "mousepad_sensitivity_entries:1"
+msgid "Above Slowest"
+msgstr "느리게 이상"
+
+msgctxt "mousepad_sensitivity_entries:2"
+msgid "Default"
+msgstr "기본값"
+
+msgctxt "mousepad_sensitivity_entries:3"
+msgid "Above Default"
+msgstr "기본값 이상"
+
+msgctxt "mousepad_sensitivity_entries:4"
+msgid "Fastest"
+msgstr "빠르게"
+
+msgctxt "mousepad_acceleration_profile_entries:0"
+msgid "No Acceleration"
+msgstr "가속 없음"
+
+msgctxt "mousepad_acceleration_profile_entries:1"
+msgid "Weakest"
+msgstr "매우 약하게"
+
+msgctxt "mousepad_acceleration_profile_entries:2"
+msgid "Weaker"
+msgstr "약하게"
+
+msgctxt "mousepad_acceleration_profile_entries:3"
+msgid "Medium"
+msgstr "중간"
+
+msgctxt "mousepad_acceleration_profile_entries:4"
+msgid "Stronger"
+msgstr "강하게"
+
+msgctxt "mousepad_acceleration_profile_entries:5"
+msgid "Strongest"
+msgstr "매우 강하게"
+
+msgctxt "sendkeystrokes_send_to"
+msgid "Send keystrokes to"
+msgstr "다음으로 키 입력 보내기"
+
+msgctxt "sendkeystrokes_textbox_hint"
+msgid "Send keystrokes to host"
+msgstr "호스트로 키 입력 보내기"
+
+msgctxt "sendkeystrokes_disabled_toast"
+msgid "Sending keystrokes is disabled - enable it in the settings"
+msgstr "키 입력 보내기가 비활성화되어 있습니다. 설정에서 활성화하십시오"
+
+msgctxt "sendkeystrokes_wrong_data"
+msgid "Invalid mime type - needs to be 'text/x-keystrokes'"
+msgstr "MIME 형식이 잘못되었습니다. 'text/x-keystrokes'여야 합니다"
+
+#, c-format
+msgctxt "sendkeystrokes_sent_text"
+msgid "Sent %1$s to device %2$s"
+msgstr "%1$s을(를) %2$s 장치로 보냄"
+
+msgctxt "sendkeystrokes_pref_category_summary"
+msgid ""
+"This module allows other apps to share text segments as keystrokes which "
+"will get send to the connected host"
+msgstr ""
+"이 모듈에서는 다른 앱에서 키 입력과 같은 문자열 조각을 공유해서 연결된 호스트"
+"로 보낼 수 있습니다"
+
+msgctxt "sendkeystrokes_pref_category_title"
+msgid "Send Keystrokes"
+msgstr "키 입력 보내기"
+
+msgctxt "sendkeystrokes_pref_enabled"
+msgid "Enable Keystrokes sending"
+msgstr "키 입력 보내기 활성화"
+
+msgctxt "sendkeystrokes_pref_enabled_summary"
+msgid "Listen for data with mime type 'text/x-keystrokes'"
+msgstr "MIME 형식이 'text/x-keystrokes'인 데이터 대기"
+
+msgctxt "sendkeystrokes_safe_text_enabled"
+msgid "Send safe text immediately"
+msgstr "안전한 텍스트 즉시 보내기"
+
+msgctxt "sendkeystrokes_safe_text_enabled_summary"
+msgid "Send short only-numeric strings without confirmation"
+msgstr "확인하지 않고 숫자만 있는 짧은 문자열 보내기"
+
+msgctxt "pref_plugin_mousepad_send_keystrokes"
+msgid "Send as keystrokes"
+msgstr "키 입력으로 보내기"
+
+msgctxt "mouse_receiver_plugin_description"
+msgid "Receive remote mouse movement"
+msgstr "원격 마우스 움직임 받기"
+
+msgctxt "mouse_receiver_plugin_name"
+msgid "Mouse receiver"
+msgstr "마우스 수신기"
+
+# 안드로이드 AOSP 기준
+msgctxt "mouse_receiver_no_permissions"
+msgid "You need to enable Accessibility Service"
+msgstr "접근성 서비스를 활성화해야 합니다"
+
+msgctxt "view_status_title"
+msgid "Status"
+msgstr "상태"
+
+#, c-format
+msgctxt "battery_status_format"
+msgid "Battery: %d%%"
+msgstr "배터리: %d%%"
+
+#, c-format
+msgctxt "battery_status_low_format"
+msgid "Battery: %d%% Low Battery"
+msgstr "배터리: %d%% 배터리 부족"
+
+#, c-format
+msgctxt "battery_status_charging_format"
+msgid "Battery: %d%% charging"
+msgstr "배터리: %d%% 충전 중"
+
+msgctxt "battery_status_unknown"
+msgid "Battery information not available"
+msgstr "배터리 정보를 사용할 수 없음"
+
+msgctxt "category_connected_devices"
+msgid "Connected devices"
+msgstr "연결된 장치"
+
+msgctxt "category_not_paired_devices"
+msgid "Available devices"
+msgstr "사용 가능한 장치"
+
+msgctxt "category_remembered_devices"
+msgid "Remembered devices"
+msgstr "기억하는 장치"
+
+msgctxt "device_menu_plugins"
+msgid "Plugin settings"
+msgstr "플러그인 설정"
+
+msgctxt "device_menu_unpair"
+msgid "Unpair"
+msgstr "연결 해제"
+
+msgctxt "pair_new_device"
+msgid "Pair new device"
+msgstr "새 장치 연결"
+
+msgctxt "unknown_device"
+msgid "Unknown device"
+msgstr "알 수 없는 장치"
+
+msgctxt "error_not_reachable"
+msgid "Device not reachable"
+msgstr "장치에 접근할 수 없음"
+
+msgctxt "error_already_paired"
+msgid "Device already paired"
+msgstr "장치가 이미 연결됨"
+
+msgctxt "error_could_not_send_package"
+msgid "Could not send package"
+msgstr "패키지를 보낼 수 없음"
+
+msgctxt "error_timed_out"
+msgid "Timed out"
+msgstr "시간 초과됨"
+
+msgctxt "error_canceled_by_user"
+msgid "Canceled by user"
+msgstr "사용자가 취소함"
+
+msgctxt "error_canceled_by_other_peer"
+msgid "Canceled by other peer"
+msgstr "다른 쪽에서 취소함"
+
+msgctxt "encryption_info_title"
+msgid "Encryption Info"
+msgstr "암호화 정보"
+
+msgctxt "encryption_info_msg_no_ssl"
+msgid ""
+"The other device doesn't use a recent version of KDE Connect, using the "
+"legacy encryption method."
+msgstr ""
+"다른 장치에서 KDE Connect의 최근 버전을 실행하고 있지 않아서 레거시 암호화를 "
+"사용합니다."
+
+msgctxt "my_device_fingerprint"
+msgid "SHA256 fingerprint of your device certificate is:"
+msgstr "내 장치 인증서의 SHA256 지문:"
+
+msgctxt "remote_device_fingerprint"
+msgid "SHA256 fingerprint of remote device certificate is:"
+msgstr "원격 장치 인증서의 SHA256 지문:"
+
+msgctxt "pair_requested"
+msgid "Pair requested"
+msgstr "연결 요청됨"
+
+#, c-format
+msgctxt "pairing_request_from"
+msgid "Pairing request from %1s"
+msgstr "%1s에서 연결 요청"
+
+#, c-format
+msgctxt "incoming_file_title"
+msgid "Receiving %1$d file from %2$s"
+msgid_plural "Receiving %1$d files from %2$s"
+msgstr[0] "%2$s에서 보낸 파일 %1$d개 받음"
+
+#, c-format
+msgctxt "incoming_files_text"
+msgid "File: %1s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "(파일 %3$d개 중 %2$d개): %1$s"
+
+#, c-format
+msgctxt "outgoing_file_title"
+msgid "Sending %1$d file to %2$s"
+msgid_plural "Sending %1$d files to %2$s"
+msgstr[0] "%2$s(으)로 파일 %1$d개 보내는 중"
+
+#, c-format
+msgctxt "outgoing_files_text"
+msgid "File: %1$s"
+msgid_plural "(File %2$d of %3$d) : %1$s"
+msgstr[0] "(파일 %3$d개 중 %2$d개): %1$s"
+
+#, c-format
+msgctxt "received_files_title"
+msgid "Received file from %1$s"
+msgid_plural "Received %2$d files from %1$s"
+msgstr[0] "%1$s에서 파일 %2$d개 받음"
+
+#, c-format
+msgctxt "received_files_fail_title"
+msgid "Failed receiving file from %1$s"
+msgid_plural "Failed receiving %2$d of %3$d files from %1$s"
+msgstr[0] "%1$s에서 보낸 파일 %3$d개 중 %2$d개를 받을 수 없음"
+
+#, c-format
+msgctxt "sent_files_title"
+msgid "Sent file to %1$s"
+msgid_plural "Sent %2$d files to %1$s"
+msgstr[0] "%1$s(으)로 파일 %2$d개 보냄"
+
+#, c-format
+msgctxt "send_files_fail_title"
+msgid "Failed sending file to %1$s"
+msgid_plural "Failed sending %2$d of %3$d files to %1$s"
+msgstr[0] "%1$s(으)로 파일 %3$d개 중 %2$d개를 보낼 수 없음"
+
+msgctxt "tap_to_open"
+msgid "Tap to open"
+msgstr "열려면 누르십시오"
+
+#, c-format
+msgctxt "received_file_text"
+msgid "Tap to open '%1s'"
+msgstr "'%1s'을(를) 열려면 누르십시오"
+
+#, c-format
+msgctxt "cannot_create_file"
+msgid "Cannot create file %s"
+msgstr "파일 %s을(를) 만들 수 없음"
+
+msgctxt "tap_to_answer"
+msgid "Tap to answer"
+msgstr "눌러서 응답하기"
+
+msgctxt "right_click"
+msgid "Send Right Click"
+msgstr "오른쪽 단추 클릭 신호 보내기"
+
+msgctxt "middle_click"
+msgid "Send Middle Click"
+msgstr "가운데 단추 클릭 신호 보내기"
+
+msgctxt "show_keyboard"
+msgid "Show Keyboard"
+msgstr "키보드 표시"
+
+msgctxt "device_not_paired"
+msgid "Device not paired"
+msgstr "장치가 연결되지 않음"
+
+msgctxt "request_pairing"
+msgid "Request pairing"
+msgstr "연결 요청"
+
+msgctxt "pairing_accept"
+msgid "Accept"
+msgstr "수락"
+
+msgctxt "pairing_reject"
+msgid "Reject"
+msgstr "거부"
+
+msgctxt "settings"
+msgid "Settings"
+msgstr "설정"
+
+msgctxt "mpris_play"
+msgid "Play"
+msgstr "재생"
+
+msgctxt "mpris_pause"
+msgid "Pause"
+msgstr "일시 정지"
+
+msgctxt "mpris_previous"
+msgid "Previous"
+msgstr "이전"
+
+msgctxt "mpris_rew"
+msgid "Rewind"
+msgstr "되감기"
+
+msgctxt "mpris_ff"
+msgid "Fast-forward"
+msgstr "빨리 감기"
+
+msgctxt "mpris_next"
+msgid "Next"
+msgstr "다음"
+
+msgctxt "mpris_loop"
+msgid "Loop"
+msgstr "반복"
+
+msgctxt "mpris_shuffle"
+msgid "Shuffle"
+msgstr "무순서 재생"
+
+msgctxt "mpris_volume"
+msgid "Volume"
+msgstr "음량"
+
+msgctxt "mpris_time_settings_title"
+msgid "Forward/rewind buttons"
+msgstr "되감기/빨리감기 단추"
+
+msgctxt "mpris_time_settings_summary"
+msgid "Adjust the time to fast forward/rewind when pressed"
+msgstr "눌렀을 때 되감거나 빨리 감을 시간 조정"
+
+msgctxt "mpris_time_entries:0"
+msgid "10 seconds"
+msgstr "10초"
+
+msgctxt "mpris_time_entries:1"
+msgid "20 seconds"
+msgstr "20초"
+
+msgctxt "mpris_time_entries:2"
+msgid "30 seconds"
+msgstr "30초"
+
+msgctxt "mpris_time_entries:3"
+msgid "1 minute"
+msgstr "1분"
+
+msgctxt "mpris_time_entries:4"
+msgid "2 minutes"
+msgstr "2분"
+
+msgctxt "mpris_notification_settings_title"
+msgid "Show media control notification"
+msgstr "미디어 제어 알림 표시"
+
+msgctxt "mpris_notification_settings_summary"
+msgid "Allow controlling your media players without opening KDE Connect"
+msgstr "KDE Connect를 열지 않고 미디어 재생기 제어"
+
+msgctxt "share_to"
+msgid "Share To…"
+msgstr "다음으로 공유…"
+
+msgctxt "protocol_version_newer"
+msgid "This device uses a newer protocol version"
+msgstr "이 장치의 프로토콜 버전이 더 새롭습니다"
+
+#, c-format
+msgctxt "plugin_settings_with_name"
+msgid "%s settings"
+msgstr "%s 설정"
+
+msgctxt "invalid_device_name"
+msgid "Invalid device name"
+msgstr "잘못된 장치 이름"
+
+msgctxt "shareplugin_text_saved"
+msgid "Received text, saved to clipboard"
+msgstr "텍스트 수신, 클립보드에 복사됨"
+
+msgctxt "custom_devices_settings"
+msgid "Custom device list"
+msgstr "사용자 정의 장치 목록"
+
+msgctxt "custom_device_list"
+msgid "Add devices by IP"
+msgstr "IP로 장치 추가"
+
+msgctxt "custom_device_deleted"
+msgid "Custom device deleted"
+msgstr "사용자 정의 장치 삭제됨"
+
+msgctxt "custom_device_list_help"
+msgid ""
+"If your device is not automatically detected you can add its IP address or "
+"hostname by clicking on the Floating Action Button"
+msgstr ""
+"장치가 자동으로 감지되지 않았다면 떠 다니는 동작 단추를 클릭해서 IP 주소나 호"
+"스트 이름으로 장치를 수동으로 추가할 수 있습니다"
+
+msgctxt "custom_device_fab_hint"
+msgid "Add a device"
+msgstr "장치 추가"
+
+msgctxt "undo"
+msgid "Undo"
+msgstr "실행 취소"
+
+msgctxt "share_notification_preference"
+msgid "Noisy notifications"
+msgstr "시끄러운 알림"
+
+msgctxt "share_notification_preference_summary"
+msgid "Vibrate and play a sound when receiving a file"
+msgstr "파일을 받았을 때 진동과 소리로 알림"
+
+msgctxt "share_destination_customize"
+msgid "Customize destination directory"
+msgstr "대상 디렉터리 사용자 정의"
+
+msgctxt "share_destination_customize_summary_disabled"
+msgid "Received files will appear in Downloads"
+msgstr "받은 파일을 다운로드 디렉터리에 저장함"
+
+msgctxt "share_destination_customize_summary_enabled"
+msgid "Files will be stored in the directory below"
+msgstr "받은 파일을 아래 디렉터리에 저장함"
+
+msgctxt "share_destination_folder_preference"
+msgid "Destination directory"
+msgstr "대상 디렉터리"
+
+msgctxt "share"
+msgid "Share"
+msgstr "공유"
+
+#, c-format
+msgctxt "share_received_file"
+msgid "Share \"%s\""
+msgstr "\"%s\" 공유"
+
+msgctxt "title_activity_notification_filter"
+msgid "Notification filter"
+msgstr "알림 필터"
+
+msgctxt "filter_apps_info"
+msgid "Notifications will be synchronized for the selected apps."
+msgstr "선택한 앱의 알림을 동기화합니다."
+
+msgctxt "show_notification_if_screen_off"
+msgid "Send notifications only if the screen is off"
+msgstr "화면이 꺼져 있을 때에만 알림 보내기"
+
+#, c-format
+msgctxt "sftp_sdcard_num"
+msgid "SD card %d"
+msgstr "SD 카드 %d"
+
+msgctxt "sftp_sdcard"
+msgid "SD card"
+msgstr "SD 카드"
+
+msgctxt "sftp_readonly"
+msgid "(read only)"
+msgstr "(읽기 전용)"
+
+msgctxt "sftp_camera"
+msgid "Camera pictures"
+msgstr "카메라 사진"
+
+msgctxt "add_device_dialog_title"
+msgid "Add device"
+msgstr "장치 추가"
+
+msgctxt "add_device_hint"
+msgid "Hostname or IP address"
+msgstr "호스트 이름이나 IP 주소"
+
+msgctxt "sftp_preference_detected_sdcards"
+msgid "Detected SD cards"
+msgstr "감지된 SD 카드"
+
+msgctxt "sftp_preference_edit_sdcard_title"
+msgid "Edit SD card"
+msgstr "SD 카드 편집"
+
+msgctxt "sftp_preference_configured_storage_locations"
+msgid "Configured storage locations"
+msgstr "설정된 저장소 위치"
+
+msgctxt "sftp_preference_add_storage_location_title"
+msgid "Add storage location"
+msgstr "저장소 위치 추가"
+
+msgctxt "sftp_preference_edit_storage_location"
+msgid "Edit storage location"
+msgstr "저장소 위치 편집"
+
+msgctxt "sftp_preference_add_camera_shortcut"
+msgid "Add camera folder shortcut"
+msgstr "카메라 폴더 바로 가기 추가"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_on"
+msgid "Add a shortcut to the camera folder"
+msgstr "카메라 폴더 바로 가기 추가"
+
+msgctxt "sftp_preference_add_camera_shortcut_summary_off"
+msgid "Do not add a shortcut to the camera folder"
+msgstr "카메라 폴더 바로 가기 추가하지 않음"
+
+msgctxt "sftp_storage_preference_storage_location"
+msgid "Storage location"
+msgstr "저장소 위치"
+
+msgctxt "sftp_storage_preference_storage_location_already_configured"
+msgid "This location has already been configured"
+msgstr "이 위치는 이미 설정됨"
+
+msgctxt "sftp_storage_preference_click_to_select"
+msgid "click to select"
+msgstr "클릭해서 선택"
+
+msgctxt "sftp_storage_preference_display_name"
+msgid "Display name"
+msgstr "표시 이름"
+
+msgctxt "sftp_storage_preference_display_name_already_used"
+msgid "This display name is already used"
+msgstr "이 표시 이름이 이미 사용 중임"
+
+msgctxt "sftp_storage_preference_display_name_cannot_be_empty"
+msgid "Display name cannot be empty"
+msgstr "표시 이름을 비워둘 수 없음"
+
+msgctxt "sftp_action_mode_menu_delete"
+msgid "Delete"
+msgstr "삭제"
+
+msgctxt "sftp_no_sdcard_detected"
+msgid "No SD card detected"
+msgstr "SD 카드가 감지되지 않았음"
+
+msgctxt "sftp_no_storage_locations_configured"
+msgid "No storage locations configured"
+msgstr "저장소 위치가 설정되지 않았음"
+
+msgctxt "sftp_saf_permission_explanation"
+msgid "To access files remotely you have to configure storage locations"
+msgstr "원격으로 파일에 접근하려면 저장소 위치를 설정해야 함"
+
+msgctxt "no_players_connected"
+msgid "No players found"
+msgstr "재생기를 찾을 수 없음"
+
+msgctxt "send_files"
+msgid "Send files"
+msgstr "파일 보내기"
+
+msgctxt "pairing_title"
+msgid "KDE Connect Devices"
+msgstr "KDE Connect 장치"
+
+msgctxt "pairing_description"
+msgid ""
+"Other devices running KDE Connect in your same network should appear here."
+msgstr ""
+"같은 네트워크에서 KDE Connect를 실행하는 다른 장치가 여기에 표시됩니다."
+
+msgctxt "device_rename_title"
+msgid "Rename device"
+msgstr "장치 이름 바꾸기"
+
+msgctxt "device_rename_confirm"
+msgid "Rename"
+msgstr "이름 바꾸기"
+
+msgctxt "refresh"
+msgid "Refresh"
+msgstr "새로 고침"
+
+msgctxt "unreachable_description"
+msgid ""
+"This paired device is not reachable. Make sure it is connected to your same "
+"network."
+msgstr ""
+"이 연결된 장치에 접근할 수 없습니다. 같은 네트워크에 있는지 확인하십시오."
+
+msgctxt "no_wifi"
+msgid ""
+"You're not connected to a Wi-Fi network, so you may not be able to see any "
+"devices. Click here to enable Wi-Fi."
+msgstr ""
+"Wi-Fi 네트워크에 연결된 것 같지 않습니다. 다른 장치를 볼 수 없습니다. 여기를 "
+"클릭하면 Wi-Fi를 활성화합니다."
+
+msgctxt "on_non_trusted_message"
+msgid "Not on a trusted network: autodiscovery is disabled."
+msgstr "신뢰할 수 없는 네트워크: 자동 발견을 비활성화했습니다."
+
+msgctxt "no_file_browser"
+msgid "There are no file browsers installed."
+msgstr "설치된 파일 탐색기가 없습니다."
+
+msgctxt "pref_plugin_telepathy"
+msgid "Send SMS"
+msgstr "SMS 보내기"
+
+msgctxt "pref_plugin_telepathy_desc"
+msgid "Send text messages from your desktop"
+msgstr "데스크톱에서 문자 메시지 보내기"
+
+msgctxt "pref_plugin_telepathy_mms"
+msgid "Send MMS"
+msgstr "MMS 보내기"
+
+msgctxt "pref_plugin_telepathy_mms_desc"
+msgid ""
+"To be able to send MMS from KDE Connect you need to set it as the default "
+"SMS app."
+msgstr "KDE Connect에서 MMS를 보내려면 기본 SMS 앱으로 설정해야 합니다."
+
+msgctxt "findmyphone_title"
+msgid "Find my phone"
+msgstr "내 휴대폰 찾기"
+
+msgctxt "findmyphone_title_tablet"
+msgid "Find my tablet"
+msgstr "내 태블릿 찾기"
+
+msgctxt "findmyphone_title_tv"
+msgid "Find my TV"
+msgstr "내 TV 찾기"
+
+msgctxt "findmyphone_description"
+msgid "Rings this device so you can find it"
+msgstr "이 장치에서 소리를 울려서 찾는 데 도움을 줍니다"
+
+msgctxt "findmyphone_found"
+msgid "Found it"
+msgstr "찾았음"
+
+msgctxt "open"
+msgid "Open"
+msgstr "열기"
+
+msgctxt "close"
+msgid "Close"
+msgstr "닫기"
+
+msgctxt "plugins_need_permission"
+msgid "Some Plugins need permissions to work (tap for more info):"
+msgstr "권한이 필요한 플러그인(정보를 보려면 누르기):"
+
+msgctxt "permission_explanation"
+msgid "This plugin needs permissions to work"
+msgstr "이 플러그인을 사용하려면 권한이 필요합니다"
+
+msgctxt "optional_permission_explanation"
+msgid "You need to grant extra permissions to enable all functions"
+msgstr "모든 기능을 사용하려면 추가 권한이 필요합니다"
+
+msgctxt "plugins_need_optional_permission"
+msgid ""
+"Some plugins have features disabled because of lack of permission (tap for "
+"more info):"
+msgstr ""
+"일부 플러그인은 권한이 없어서 비활성화되었습니다(정보를 보려면 누르기):"
+
+msgctxt "share_optional_permission_explanation"
+msgid "To receive shared files you need to choose a destination directory"
+msgstr "공유된 파일을 받으려면 대상 디렉터리를 선택해야 합니다"
+
+msgctxt "telepathy_permission_explanation"
+msgid ""
+"To read and write SMS from your desktop you need to give permission to SMS"
+msgstr ""
+"데스크톱에서 문자 메시지를 읽고 보내려면 문자 메시지 접근 권한이 필요합니다"
+
+msgctxt "telephony_permission_explanation"
+msgid ""
+"To see phone calls on the desktop you need to give permission to phone call "
+"logs and phone state"
+msgstr ""
+"데스크톱에서 통화와 문자 메시지를 보려면 통화 기록 및 휴대폰 상태 접근 권한"
+"이 필요합니다"
+
+msgctxt "telephony_optional_permission_explanation"
+msgid ""
+"To see a contact name instead of a phone number you need to give access to "
+"the phone's contacts"
+msgstr ""
+"전화번호 대신 연락처에 등록된 이름을 보려면 주소록 접근 권한이 필요합니다"
+
+msgctxt "contacts_permission_explanation"
+msgid ""
+"To share your contacts book with the desktop, you need to give contacts "
+"permission"
+msgstr "데스크톱과 주소록을 공유하려면 주소록 접근 권한이 필요합니다"
+
+msgctxt "select_ringtone"
+msgid "Select a ringtone"
+msgstr "벨소리 선택"
+
+msgctxt "telephony_pref_blocked_title"
+msgid "Blocked numbers"
+msgstr "차단된 번호"
+
+msgctxt "telephony_pref_blocked_dialog_desc"
+msgid ""
+"Don't show calls and SMS from these numbers. Please specify one number per "
+"line"
+msgstr ""
+"다음 번호에서 걸려 온 통화나 보낸 문자를 표시하지 않습니다. 한 줄당 하나의 번"
+"호를 지정하십시오"
+
+msgctxt "mpris_coverart_description"
+msgid "Cover art of current media"
+msgstr "현재 미디어 커버 아트"
+
+msgctxt "device_icon_description"
+msgid "Device icon"
+msgstr "장치 아이콘"
+
+msgctxt "settings_icon_description"
+msgid "Settings icon"
+msgstr "설정 아이콘"
+
+msgctxt "presenter_fullscreen"
+msgid "Fullscreen"
+msgstr "전체 화면"
+
+msgctxt "presenter_exit"
+msgid "Exit presentation"
+msgstr "프레젠테이션 끝내기"
+
+msgctxt "presenter_lock_tip"
+msgid ""
+"You can lock your device and use the volume keys to go to the previous/next "
+"slide"
+msgstr ""
+"장치 잠금 상태에서는 음량 키를 이전/다음 슬라이드 단추로 사용할 수 있습니다"
+
+msgctxt "add_command"
+msgid "Add a command"
+msgstr "명령 추가"
+
+msgctxt "addcommand_explanation"
+msgid "There are no commands registered"
+msgstr "등록된 명령이 없습니다"
+
+msgctxt "addcommand_explanation2"
+msgid "You can add new commands in the KDE Connect System Settings"
+msgstr "시스템 설정의 KDE Connect에서 새로운 명령을 추가할 수 있습니다"
+
+msgctxt "add_command_description"
+msgid "You can add commands on the desktop"
+msgstr "데스크톱에서 명령을 추가할 수 있습니다"
+
+msgctxt "pref_plugin_mprisreceiver"
+msgid "Media Player Control"
+msgstr "미디어 재생기 제어"
+
+msgctxt "pref_plugin_mprisreceiver_desc"
+msgid "Control your phone's media players from another device"
+msgstr "다른 장치에서 휴대폰의 미디어 재생기 제어"
+
+msgctxt "notification_channel_default"
+msgid "Other notifications"
+msgstr "기타 알림"
+
+msgctxt "notification_channel_persistent"
+msgid "Persistent indicator"
+msgstr "항상 표시된 표시기"
+
+msgctxt "notification_channel_media_control"
+msgid "Media control"
+msgstr "미디어 제어"
+
+msgctxt "notification_channel_filetransfer"
+msgid "File transfer"
+msgstr "파일 전송"
+
+msgctxt "notification_channel_high_priority"
+msgid "High priority"
+msgstr "높은 우선 순위"
+
+msgctxt "notification_channel_sms_mms"
+msgid "New Message"
+msgstr "새 메시지"
+
+msgctxt "mpris_stop"
+msgid "Stop the current player"
+msgstr "현재 재생기 정지"
+
+msgctxt "copy_url_to_clipboard"
+msgid "Copy URL to clipboard"
+msgstr "클립보드로 URL 복사"
+
+msgctxt "clipboard_toast"
+msgid "Copied to clipboard"
+msgstr "클립보드에 복사됨"
+
+msgctxt "runcommand_notreachable"
+msgid "Device is not reachable"
+msgstr "장치에 접근할 수 없음"
+
+msgctxt "runcommand_notpaired"
+msgid "Device is not paired"
+msgstr "장치가 연결되지 않음"
+
+msgctxt "runcommand_nosuchdevice"
+msgid "There is no such device"
+msgstr "장치가 없음"
+
+msgctxt "runcommand_noruncommandplugin"
+msgid "This device does not have the Run Command Plugin enabled"
+msgstr "이 장치에서 명령 실행 플러그인이 활성화되어 있지 않음"
+
+msgctxt "pref_plugin_findremotedevice"
+msgid "Find remote device"
+msgstr "원격 장치 찾기"
+
+msgctxt "pref_plugin_findremotedevice_desc"
+msgid "Ring your remote device"
+msgstr "원격 장치 알림 울리기"
+
+msgctxt "ring"
+msgid "Ring"
+msgstr "울리기"
+
+msgctxt "pref_plugin_systemvolume"
+msgid "System volume"
+msgstr "시스템 음량"
+
+msgctxt "pref_plugin_systemvolume_desc"
+msgid "Control the system volume of the remote device"
+msgstr "원격 장치의 시스템 음량 제어"
+
+msgctxt "mute"
+msgid "Mute"
+msgstr "음소거"
+
+msgctxt "all"
+msgid "All"
+msgstr "모두"
+
+msgctxt "devices"
+msgid "Devices"
+msgstr "장치"
+
+msgctxt "settings_rename"
+msgid "Device name"
+msgstr "장치 이름"
+
+msgctxt "settings_dark_mode"
+msgid "Dark theme"
+msgstr "어두운 테마"
+
+msgctxt "settings_more_settings_title"
+msgid "More settings"
+msgstr "더 많은 설정"
+
+msgctxt "settings_more_settings_text"
+msgid ""
+"Per-device settings can be found under 'Plugin settings' from within a "
+"device."
+msgstr "장치별 설정은 각각 장치의 '플러그인 설정'에서 확인할 수 있습니다."
+
+msgctxt "setting_persistent_notification"
+msgid "Show persistent notification"
+msgstr "항상 표시되는 알림 표시"
+
+msgctxt "setting_persistent_notification_oreo"
+msgid "Persistent notification"
+msgstr "항상 표시되는 알림"
+
+msgctxt "setting_persistent_notification_description"
+msgid "Tap to enable/disable in Notification settings"
+msgstr "알림 설정에서 활성화/비활성화하려면 누르십시오"
+
+msgctxt "extra_options"
+msgid "Extra options"
+msgstr "추가 설정"
+
+msgctxt "privacy_options"
+msgid "Privacy options"
+msgstr "프라이버시 설정"
+
+msgctxt "set_privacy_options"
+msgid "Set your privacy options"
+msgstr "프라이버시 설정 변경"
+
+msgctxt "block_contents"
+msgid "Block contents of notifications"
+msgstr "알림 내용 숨기기"
+
+msgctxt "block_images"
+msgid "Block images in notifications"
+msgstr "알림 이미지 숨기기"
+
+msgctxt "notification_channel_receivenotification"
+msgid "Notifications from other devices"
+msgstr "다른 장치의 알림"
+
+msgctxt "take_picture"
+msgid "Launch camera"
+msgstr "카메라 실행"
+
+msgctxt "plugin_photo_desc"
+msgid "Launch the camera app to ease taking and transferring pictures"
+msgstr "카메라 앱을 실행하여 쉽게 사진을 찍고 전송"
+
+msgctxt "no_app_for_opening"
+msgid "No suitable app found to open this file"
+msgstr "이 파일을 열 수 있는 앱을 찾을 수 없음"
+
+msgctxt "remote_keyboard_service"
+msgid "KDE Connect Remote Keyboard"
+msgstr "KDE Connect 원격 키보드"
+
+msgctxt "presenter_pointer"
+msgid "Pointer"
+msgstr "포인터"
+
+msgctxt "trusted_networks"
+msgid "Trusted networks"
+msgstr "신뢰할 수 있는 네트워크"
+
+msgctxt "trusted_networks_desc"
+msgid "Restrict autodiscovery to known networks"
+msgstr "신뢰할 수 있는 네트워크에서만 자동 발견 사용"
+
+#, c-format
+msgctxt "add_trusted_network"
+msgid "Add %1s"
+msgstr "%1s 추가"
+
+msgctxt "empty_trusted_networks_list_text"
+msgid "You haven't added any trusted network yet"
+msgstr "신뢰할 수 있는 네트워크를 추가하지 않았습니다"
+
+msgctxt "allow_all_networks_text"
+msgid "Allow all"
+msgstr "모두 허용"
+
+msgctxt "location_permission_needed_title"
+msgid "Permission required"
+msgstr "권한이 필요함"
+
+msgctxt "location_permission_needed_desc"
+msgid "Android requires the Location permission to identify your WiFi network"
+msgstr "안드로이드에서 Wi-Fi 네트워크를 식별하려면 위치 권한이 필요합니다"
+
+msgctxt "clipboard_android_x_incompat"
+msgid ""
+"Android 10 has removed clipboard access to all apps. This plugin will be "
+"disabled."
+msgstr ""
+"안드로이드 10부터는 앱에서 클립보드에 접근할 수 없습니다. 이 플러그인이 비활"
+"성화되었습니다."
+
+msgctxt "mpris_open_url"
+msgid "Continue playing here"
+msgstr "여기에서 계속 재생"
+
+msgctxt "cant_open_url"
+msgid "Can't open URL to continue playing"
+msgstr "계속 재생할 URL을 열 수 없음"
+
+msgctxt "bigscreen_home"
+msgid "Home"
+msgstr "홈"
+
+msgctxt "bigscreen_up"
+msgid "Up"
+msgstr "위"
+
+msgctxt "bigscreen_left"
+msgid "Left"
+msgstr "왼쪽"
+
+msgctxt "bigscreen_select"
+msgid "Select"
+msgstr "선택"
+
+msgctxt "bigscreen_right"
+msgid "Right"
+msgstr "오른쪽"
+
+msgctxt "bigscreen_down"
+msgid "Down"
+msgstr "아래"
+
+msgctxt "bigscreen_mic"
+msgid "Mic"
+msgstr "마이크"
+
+msgctxt "pref_plugin_bigscreen"
+msgid "Bigscreen remote"
+msgstr "큰 화면 리모콘"
+
+msgctxt "pref_plugin_bigscreen_desc"
+msgid "Use your device as a remote for Plasma Bigscreen"
+msgstr "내 장치를 Plasma 큰 화면의 리모콘으로 사용"
+
+msgctxt "bigscreen_optional_permission_explanation"
+msgid ""
+"To share microphone input from your phone you need to give access to the "
+"phone's audio input"
+msgstr "휴대폰 마이크 입력을 공유하려면 오디오 입력 접근 권한이 필요합니다"
+
+msgctxt "bigscreen_speech_extra_prompt"
+msgid "Speech"
+msgstr "말하기"
+
+msgctxt "message_reply_label"
+msgid "REPLY"
+msgstr "답장"
+
+msgctxt "mark_as_read_label"
+msgid "MARK AS READ"
+msgstr "읽은 상태로 표시"
+
+msgctxt "user_display_name"
+msgid "You"
+msgstr "나"
+
+msgctxt "set_default_sms_app_title"
+msgid "Send MMS"
+msgstr "MMS 보내기"
+
+msgctxt "set_group_message_as_mms_title"
+msgid "Send group MMS"
+msgstr "그룹 MMS 보내기"
+
+msgctxt "set_long_text_as_mms_title"
+msgid "Send long text as MMS"
+msgstr "긴 텍스트를 MMS로 보내기"
+
+msgctxt "convert_to_mms_after_title"
+msgid "Convert to MMS"
+msgstr "MMS로 변환"
+
+msgctxt "convert_to_mms_after_entries:0"
+msgid "After one message"
+msgstr "메시지 1개 이후"
+
+msgctxt "convert_to_mms_after_entries:1"
+msgid "After two messages"
+msgstr "메시지 2개 이후"
+
+msgctxt "convert_to_mms_after_entries:2"
+msgid "After three messages"
+msgstr "메시지 3개 이후"
+
+msgctxt "convert_to_mms_after_entries:3"
+msgid "After four messages"
+msgstr "메시지 4개 이후"
+
+msgctxt "convert_to_mms_after_entries:4"
+msgid "After five messages"
+msgstr "메시지 5개 이후"
+
+msgctxt "theme_dialog_title"
+msgid "Choose theme"
+msgstr "테마 선택"
+
+# AOSP: "배터리 세이버"
+msgctxt "theme_list:0"
+msgid "Set by Battery Saver"
+msgstr "배터리 세이버에 의해 설정됨"
+
+msgctxt "theme_list:1"
+msgid "Light"
+msgstr "밝음"
+
+msgctxt "theme_list:2"
+msgid "Dark"
+msgstr "어두움"
+
+msgctxt "theme_list_v28:0"
+msgid "System Default"
+msgstr "시스템 기본값"
+
+msgctxt "theme_list_v28:1"
+msgid "Light"
+msgstr "밝음"
+
+msgctxt "theme_list_v28:2"
+msgid "Dark"
+msgstr "어두움"
+
+msgctxt "report_bug"
+msgid "Report Bug"
+msgstr "버그 보고"
+
+msgctxt "donate"
+msgid "Donate"
+msgstr "기부하기"
+
+msgctxt "source_code"
+msgid "Source Code"
+msgstr "소스 코드"
+
+msgctxt "licenses"
+msgid "Licenses"
+msgstr "라이선스"
+
+msgctxt "website"
+msgid "Website"
+msgstr "웹 사이트"
+
+msgctxt "about"
+msgid "About"
+msgstr "정보"
+
+msgctxt "authors"
+msgid "Authors"
+msgstr "작성자"
+
+msgctxt "thanks_to"
+msgid "Thanks To"
+msgstr "고마운 분"
+
+msgctxt "easter_egg"
+msgid "Easter Egg"
+msgstr "이스터 에그"
+
+#, c-format
+msgctxt "email_contributor"
+msgid ""
+"Email contributor\n"
+"%s"
+msgstr ""
+"이메일 보내기\n"
+"%s"
+
+#, c-format
+msgctxt "visit_contributors_homepage"
+msgid ""
+"Visit contributor's homepage\n"
+"%s"
+msgstr ""
+"기여자의 홈페이지 방문하기\n"
+"%s"
+
+#, c-format
+msgctxt "version"
+msgid "Version %s"
+msgstr "버전 %s"
+
+msgctxt "about_kde"
+msgid "About KDE"
+msgstr "KDE 정보"
+
+msgctxt "kde_be_free"
+msgid "KDE - Be Free!"
+msgstr "KDE - 자유롭게!"
+
+msgctxt "kde"
+msgid "KDE"
+msgstr "KDE"
+
+msgctxt "konqi"
+msgid "Konqi"
+msgstr "Konqi"
+
+msgctxt "rise_up"
+msgid "Rise Up"
+msgstr "위로 올리기"
+
+msgctxt "rise_down"
+msgid "Rise Down"
+msgstr "아래로 내리기"
+
+msgctxt "click_here_to_type"
+msgid "Tap here to type"
+msgstr "입력하려면 누르십시오"
+
+msgctxt "clear_compose"
+msgid "Clear"
+msgstr "지우기"
+
+msgctxt "send_compose"
+msgid "Send"
+msgstr "보내기"
+
+msgctxt "open_compose_send"
+msgid "Compose text"
+msgstr "텍스트 작성"
+
+msgctxt "app_description"
+msgid ""
+"Multi-platform app that allows your devices to communicate (e.g., your phone "
+"and your computer)"
+msgstr "장치간 통신을 지원하는 멀티 플랫폼 앱(예: 휴대폰과 컴퓨터)"
+
+# kxmlgui5.po
+msgctxt "about_kde_about"
+msgid ""
+"&lt;h1&gt;About&lt;/h1&gt; &lt;p&gt;KDE is a world-wide community of "
+"software engineers, artists, writers, translators and creators who are "
+"committed to &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Free "
+"Software&lt;/a&gt; development. KDE produces the Plasma desktop environment, "
+"hundreds of applications, and the many software libraries that support them."
+"&lt;/p&gt; &lt;p&gt;KDE is a cooperative enterprise: no single entity "
+"controls its direction or products. Instead, we work together to achieve the "
+"common goal of building the world's finest Free Software. Everyone is "
+"welcome to &lt;a href=https://community.kde.org/Get_Involved&gt;join and "
+"contribute&lt;/a&gt; to KDE, including you.&lt;/p&gt; Visit &lt;a "
+"href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; for more "
+"information about the KDE community and the software we produce."
+msgstr ""
+"&lt;h1&gt;정보&lt;h1&gt; &lt;p&gt;KDE는 &lt;a href=https://www.gnu.org/"
+"philosophy/free-sw.html&gt;자유 소프트웨어&lt;/a&gt;를 개발하려고 모인 소프트"
+"웨어 개발자, 예술가, 집필가, 번역가 및 기타 인원의 모임입니다. KDE 커뮤니티에"
+"서는 Plasma 데스크톱 환경, 다양한 프로그램 및 지원 라이브러리를 개발합니다."
+"&lt;p&gt; &lt;p&gt;KDE는 협동 조합입니다. 어떠한 단일 집단도 방향이나 제품을 "
+"결정하지 않습니다. 우리는 전 세계에서 가장 뛰어난 자유 소프트웨어 개발이라는 "
+"공통 목표를 향해 함께 힘을 모으고 있습니다. KDE에는 이 글을 읽는 여러분과 같"
+"은 누구나 &lt;a href=https://community.kde.org/Get_Involved&gt;참여하고 기여"
+"&lt;/a&gt;할 수 있습니다.&lt;p&gt; &lt;a href=https://www.kde.org/&gt;"
+"https://www.kde.org/&lt;/a&gt; 페이지를 방문하셔서 KDE 커뮤니티와 소프트웨어"
+"에 대해 알아 보십시오."
+
+# kxmlgui5.po
+msgctxt "about_kde_report_bugs_or_wishes"
+msgid ""
+"&lt;h1&gt;Report Bugs or Wishes&lt;/h1&gt; &lt;p&gt;Software can always be "
+"improved, and the KDE team is ready to do so. However, you - the user - must "
+"tell us when something does not work as expected or could be done better."
+"&lt;/p&gt; &lt;p&gt;KDE has a bug tracking system. Visit &lt;a href=https://"
+"bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; or use the \"Report Bug\" "
+"button from the about screen to report bugs.&lt;/p&gt; If you have a "
+"suggestion for improvement then you are welcome to use the bug tracking "
+"system to register your wish. Make sure you use the severity called "
+"\"Wishlist\"."
+msgstr ""
+"&lt;h1&gt;버그나 요구 사항 보고&lt;/h1&gt; &lt;p&gt;소프트웨어는 항상 개선되"
+"며, KDE 팀도 그럴 준비가 되어 있습니다. 따라서 사용자 여러분은 무언가가 예상"
+"한 대로 작동하지 않거나 더 잘 작동하기를 바라면 개발자에게 알려 주십시오."
+"&lt;/p&gt; &lt;p&gt;KDE는 버그 추적 시스템을 가지고 있습니다. &lt;a "
+"href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt;를 방문하시거나 "
+"\"도움말\" 메뉴의 \"버그 보고...\" 대화 상자를 이용하셔서 버그를 보고해 주십"
+"시오.&lt;/p&gt; 개선 사항 제안을  하고 싶으시다면 버그 보고 시스템을 통해서 "
+"알려 주십시오. 이 경우 심각성  항목에서 \"Wishlist\"를 선택하셔야 합니다."
+
+# kxmlgui5.po
+msgctxt "about_kde_join_kde"
+msgid ""
+"&lt;h1&gt;Join KDE&lt;/h1&gt; &lt;p&gt;You do not have to be a software "
+"developer to be a member of the KDE team. You can join the national teams "
+"that translate program interfaces. You can provide graphics, themes, sounds, "
+"and improved documentation. You decide!&lt;/p&gt; &lt;p&gt;Visit &lt;a "
+"href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/"
+"Get_Involved&lt;/a&gt; for information on some projects in which you can "
+"participate.&lt;/p&gt; If you need more information or documentation, then a "
+"visit to &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/"
+"&lt;/a&gt; will provide you with what you need."
+msgstr ""
+"&lt;h1&gt;KDE에 참여하기&lt;/h1&gt; &lt;p&gt;소프트웨어 개발자만이 KDE에 참가"
+"할 수 있는 것은 아닙니다. 프로그램 인터페이스를 번역하는 각 나라 번역팀을 도"
+"울 수도 있습니다. 또한 그래픽, 테마, 소리, 더 나은 문서 등을 기여할 수도 있습"
+"니다. 직접 결정하십시오!&lt;/p&gt; &lt;p&gt;&lt;a href=https://community.kde."
+"org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; 페이지"
+"를 방문하셔서 참여할 수 있는 프로젝트를 찾아 보십시오.&lt;/p&gt; 만약 더 많"
+"은 정보나 문서가 필요하다면, &lt;a href=https://techbase.kde.org/&gt;https://"
+"techbase.kde.org/&lt;/a&gt; 사이트를 방문하셔서 원하는 정보를 찾으십시오."
+
+# kxmlgui5.po
+msgctxt "about_kde_support_kde"
+msgid ""
+"&lt;h1&gt;Support KDE&lt;/h1&gt; &lt;p&gt;KDE software is and will always be "
+"available free of charge, however creating it is not free.&lt;/p&gt; &lt;"
+"p&gt;To support development the KDE community has formed the KDE e.V., a non-"
+"profit organization legally founded in Germany. KDE e.V. represents the KDE "
+"community in legal and financial matters. See &lt;a href=https://ev.kde.org/"
+"&gt;https://ev.kde.org/&lt;/a&gt; for information on KDE e.V.&lt;/p&gt; &lt;"
+"p&gt;KDE benefits from many kinds of contributions, including financial. We "
+"use the funds to reimburse members and others for expenses they incur when "
+"contributing. Further funds are used for legal support and organizing "
+"conferences and meetings.&lt;/p&gt; &lt;p&gt;We would like to encourage you "
+"to support our efforts with a financial donation, using one of the ways "
+"described at &lt;a href=https://www.kde.org/community/donations/&gt;https://"
+"www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Thank you very much in "
+"advance for your support."
+msgstr ""
+"&lt;h1&gt;KDE 지원&lt;/h1&gt; &lt;p&gt;KDE는 무료로 사용 가능하지만, 만드는 "
+"것은 무료가 아닙니다.&lt;/p&gt; &lt;p&gt;따라서 KDE 커뮤니티는 독일에 비영리 "
+"재단 KDE e.V.를 설립했습니다. KDE e.V.는 KDE 커뮤니티를 법적, 재정적인 면에"
+"서 후원합니다. &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/"
+"a&gt; 사이트를 방문하셔서 KDE e.V.에 관한 정보를 확인하십시오.&lt;/p&gt; &lt;"
+"p&gt;KDE는 재정적인 보조가 필요합니다. 대부분의 지원금은 구성원에게 대가를 지"
+"급하거나 KDE에 기여하는 데 드는 돈을 대는 데 사용됩니다. &lt;a href=https://"
+"www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/"
+"&lt;/a&gt;에 있는 방법을 사용하여 재정적인 지원을 해 주십시오.&lt;/p&gt;여러"
+"분의 협조에  미리 감사드립니다."
+
+#. Authors tasks
+msgctxt "maintainer_and_developer"
+msgid "Maintainer and developer"
+msgstr "관리자 및 개발자"
+
+msgctxt "developer"
+msgid "Developer"
+msgstr "개발자"
+
+msgctxt "apple_support"
+msgid "macOS support. Working on iOS support"
+msgstr "macOS 지원. iOS 지원 작업 중"
+
+msgctxt "bug_fixes_and_general_improvements"
+msgid "Bug fixes and general improvements"
+msgstr "버그 수정과 개선"
+
+msgctxt "samoilenko_yuri_task"
+msgid "SFTP implementation, bug fixes and general improvements"
+msgstr "SFTP 구현, 버그 수정과 개선"
+
+msgctxt "aniket_kumar_task"
+msgid "SMS plugin improvements"
+msgstr "SMS 플러그인 개선"
+
+msgctxt "alex_fiestas_task"
+msgid "Contacts plugin improvements"
+msgstr "연락처 플러그인 개선"
+
+msgctxt "maxim_leshchenko_task"
+msgid "UI improvements and this about page"
+msgstr "UI 개선과 정보 페이지"
+
+msgctxt "holger_kaelberer_task"
+msgid "Remote keyboard plugin and bug fixes"
+msgstr "원격 키보드 플러그인과 버그 수정"
+
+msgctxt "saikrishna_arcot_task"
+msgid ""
+"Support for using the keyboard in the remote input plugin, bug fixes and "
+"general improvements"
+msgstr "원격 입력 플러그인에서 키보드 사용 지원, 버그 수정과 개선"
+
+msgctxt "everyone_else"
+msgid "Everyone else who has contributed to KDE Connect over the years"
+msgstr "그 외 오랫동안 KDE Connect에 기여한 사람들"
+
+msgctxt "send_clipboard"
+msgid "Send clipboard"
+msgstr "클립보드 보내기"
+
+msgctxt "tap_to_execute"
+msgid "Tap to execute"
+msgstr "실행하려면 누르십시오"
+
+#~ msgctxt "share_optional_permission_explanation"
+#~ msgid ""
+#~ "To share files between your phone and your desktop you need to give "
+#~ "access to the phone's storage"
+#~ msgstr ""
+#~ "휴대폰과 데스크톱간 파일을 공유하려면 휴대폰 저장소 접근 권한이 필요합니다"
+
+#~ msgctxt "on_data_message"
+#~ msgid ""
+#~ "It looks like you are on a mobile data connection. KDE Connect only works "
+#~ "on local networks."
+#~ msgstr ""
+#~ "모바일 데이터 연결을 사용하고 있는 것 같습니다. KDE Connect는 로컬 네트워"
+#~ "크에서만 작동합니다."
+
+#~ msgctxt "plugin_not_available"
+#~ msgid "This feature is not available in your Android version"
+#~ msgstr "현재 안드로이드 버전에서 사용할 수 없습니다"
+
+#~ msgctxt "device_not_reachable"
+#~ msgid "Paired device not reachable"
+#~ msgstr "연결된 장치에 도달할 수 없음"
+
+#~ msgctxt "error_already_requested"
+#~ msgid "Pairing already requested"
+#~ msgstr "연결이 이미 요청됨"
+
+#~ msgctxt "error_invalid_key"
+#~ msgid "Invalid key received"
+#~ msgstr "잘못된 키 받음"
+
+#~ msgctxt "received_url_title"
+#~ msgid "Received link from %1s"
+#~ msgstr "%1s에서 링크 받음"
+
+#~ msgctxt "received_url_text"
+#~ msgid "Tap to open '%1s'"
+#~ msgstr "'%1s'을(를) 열려면 누르십시오"
+
+#~ msgctxt "reconnect"
+#~ msgid "Reconnect"
+#~ msgstr "다시 연결"
+
+#~ msgctxt "device"
+#~ msgid "Device"
+#~ msgstr "장치"
+
+#~ msgctxt "pair_device"
+#~ msgid "Pair device"
+#~ msgstr "장치 연결"
+
+#~ msgctxt "mpris_settings"
+#~ msgid "Multimedia Settings"
+#~ msgstr "멀티미디어 설정"
+
+#~ msgctxt "protocol_version_older"
+#~ msgid "This device uses an old protocol version"
+#~ msgstr "이 장치의 프로토콜 버전이 오래되었습니다"
+
+#~ msgctxt "general_settings"
+#~ msgid "General Settings"
+#~ msgstr "일반 설정"
+
+#~ msgctxt "plugin_settings"
+#~ msgid "Settings"
+#~ msgstr "설정"
+
+#~ msgctxt "device_name"
+#~ msgid "Device name"
+#~ msgstr "장치 이름"
+
+#~ msgctxt "device_name_preference_summary"
+#~ msgid "%s"
+#~ msgstr "%s"
+
+#~ msgctxt "pair_device_action"
+#~ msgid "Pair a new device"
+#~ msgstr "새 장치 연결"
+
+#~ msgctxt "unpair_device_action"
+#~ msgid "Unpair %s"
+#~ msgstr "%s 연결 해제"
+
+#~ msgctxt "delete_custom_device"
+#~ msgid "Delete %s?"
+#~ msgstr "%s을(를) 삭제하시겠습니까?"
+
+#~ msgctxt "sftp_internal_storage"
+#~ msgid "Internal storage"
+#~ msgstr "내부 저장소"
+
+#~ msgctxt "add_host"
+#~ msgid "Add host/IP"
+#~ msgstr "호스트/IP 주소 추가"
+
+#~ msgctxt "add_host_hint"
+#~ msgid "Hostname or IP"
+#~ msgstr "호스트 이름이나 IP"
+
+#~ msgctxt "mpris_player_on_device"
+#~ msgid "%1$s on %2$s"
+#~ msgstr "%2$s의 %1$s"
+
+#~ msgctxt "device_paired"
+#~ msgid "Device paired"
+#~ msgstr "장치 연결됨"
+
+#~ msgctxt "plugin_not_supported"
+#~ msgid "This plugin is not supported by the device"
+#~ msgstr "장치에서 이 플러그인을 지원하지 않습니다"
+
+#~ msgctxt "no_permissions_storage"
+#~ msgid "You need to grant permissions to access the storage"
+#~ msgstr "저장소 접근 권한이 필요합니다"
+
+#~ msgctxt "dark_theme"
+#~ msgid "Dark theme"
+#~ msgstr "어두운 테마"
+
+#~ msgctxt "new_notification"
+#~ msgid "New notification"
+#~ msgstr "새 알림"
+
+#~ msgctxt "outgoing_files_title"
+#~ msgid "Sending files to %1s"
+#~ msgstr "%1s(으)로 파일 보내는 중"
+
+#~ msgctxt "outgoing_files_text"
+#~ msgid "Sent %1$d file"
+#~ msgid_plural "Sent %1$d out of %2$d files"
+#~ msgstr[0] "파일 %2$d개 중 %1$d개 보냄"
+
+#~ msgctxt "sent_file_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "sent_file_failed_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "sftp_all_files"
+#~ msgid "All files"
+#~ msgstr "모든 파일"
+
+#~ msgctxt "sftp_permission_explanation"
+#~ msgid ""
+#~ "To access your files from your PC the app needs permission to access your "
+#~ "phone's storage"
+#~ msgstr ""
+#~ "PC에서 파일에 접근하려면 앱에서 휴대폰 저장소 접근 권한이 필요합니다"
+
+#, fuzzy
+#~| msgctxt "sftp_camera"
+#~| msgid "Camera pictures"
+#~ msgctxt "take_picture"
+#~ msgid "Take picture"
+#~ msgstr "카메라 사진"
+
+#~ msgctxt "custom_dev_list_help"
+#~ msgid ""
+#~ "Use this option only if your device is not automatically detected. Enter "
+#~ "IP address or hostname below and touch the button to add it to the list. "
+#~ "Touch an existing item to remove it from the list."
+#~ msgstr ""
+#~ "장치를 자동으로 인식할 수 없을 때 이 옵션을 사용하십시오. IP 주소나 호스"
+#~ "트 이름을 입력하고 단추를 누르면 목록에 추가합니다. 목록에 있는 항목을 누"
+#~ "르면 삭제합니다."
+
+#~ msgctxt "plugins_failed_to_load"
+#~ msgid "Plugins failed to load (tap for more info):"
+#~ msgstr "불러올 수 없는 플러그인(정보를 보려면 누르기):"
+
+#~ msgctxt "remote_control"
+#~ msgid "Remote control"
+#~ msgstr "원격 제어"
+
+#~ msgctxt "incoming_file_title"
+#~ msgid "Incoming file from %1s"
+#~ msgstr "%1s에서 파일 보냄"
+
+#~ msgctxt "incoming_file_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "settings"
+#~ msgid "KDE Connect Settings"
+#~ msgstr "KDE Connect 설정"
+
+#, fuzzy
+#~| msgctxt "pref_plugin_runcommand"
+#~| msgid "Run Command"
+#~ msgctxt "addcommand_command"
+#~ msgid "Command"
+#~ msgstr "명령 실행"
+
+#~ msgctxt "outgoing_file_text"
+#~ msgid "%1s"
+#~ msgstr "%1s"
+
+#~ msgctxt "mousepad_triple_default"
+#~ msgid "middle"
+#~ msgstr "가운데"
+
+#~ msgctxt "mousepad_sensitivity_default"
+#~ msgid "default"
+#~ msgstr "기본값"
+
+#~ msgctxt "pref_plugin_mpris_desc"
+#~ msgid "Control audio/video from your phone"
+#~ msgstr "휴대폰에서 오디오/비디오 제어"
+
+#~ msgctxt "pref_plugin_runcommand_desc"
+#~ msgid "Runs a command on your system"
+#~ msgstr "시스템에서 명령 실행"
+
+#~ msgctxt "pref_plugin_sharereceiver_desc"
+#~ msgid "Save incoming files to the phone storage"
+#~ msgstr "보낸 파일을 장치에 저장합니다"
+
+#~ msgctxt "open_mpris_controls"
+#~ msgid "Open remote control"
+#~ msgstr "원격 제어 열기"
+
+#~ msgctxt "open_mousepad"
+#~ msgid "Open touchpad control"
+#~ msgstr "터치패드 제어 열기"
+
+#~ msgctxt "mousepad_info"
+#~ msgid "Move a finger on the screen to move the mouse cursor"
+#~ msgstr "화면 위에서 손가락을 움직이면 마우스 커서가 움직입니다"
+
+#~ msgctxt "device_menu_plugins"
+#~ msgid "Select plugins"
+#~ msgstr "플러그인 선택"
+
+#~ msgctxt "mpris_time_settings_title"
+#~ msgid "Interval Time"
+#~ msgstr "시간 간격 조정"
+
+#, fuzzy
+#~| msgctxt "device_list_empty"
+#~| msgid "No devices"
+#~ msgctxt "custom_device_list"
+#~ msgid "Custom device list"
+#~ msgstr "장치 없음"
+
+#, fuzzy
+#~| msgctxt "device_list_empty"
+#~| msgid "No devices"
+#~ msgctxt "custom_device_list_summary"
+#~ msgid "Custom device list"
+#~ msgstr "장치 없음"
+
+#~ msgctxt "category_not_paired_devices"
+#~ msgid "Not paired devices"
+#~ msgstr "페어링되지 않은 장치"
+
+#, fuzzy
+#~| msgctxt "remote_control"
+#~| msgid "Remote control"
+#~ msgctxt "pref_plugin_mousepad"
+#~ msgid "Mouse Remote Control"
+#~ msgstr "원격 제어"
