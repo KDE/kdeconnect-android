@@ -234,7 +234,7 @@
   <string name="pairing_description">KDE Connect\'te çalışan, aynı ağdaki diğer aygıtlar burada gözükmelidir.</string>
   <string name="device_rename_title">Aygıtı yeniden adlandır</string>
   <string name="device_rename_confirm">Yeniden adlandır</string>
-  <string name="refresh">Tazele</string>
+  <string name="refresh">Yenile</string>
   <string name="unreachable_description">Eşleştirilmiş aygıt ulaşılabilir değil. Aynı ağa bağlı olduğundan emin olun.</string>
   <string name="no_wifi">Bir Wi-Fi ağına bağlı değilsiniz dolayısıyla herhangi bir aygıt göremeyebilirsiniz. Wi-Fi\'yi etkinleştirmek için buraya tıklayın.</string>
   <string name="on_non_trusted_message">Güvenilir bir ağda değil: otomatik bulma devre dışı.</string>
