@@ -387,10 +387,12 @@
   <string name="developer">நிரலாளர்</string>
   <string name="apple_support">macOS ஆதரவு. iOS ஆதரவை வழங்கவும் முயற்சிக்கிறார்</string>
   <string name="bug_fixes_and_general_improvements">பிழைதிருத்தங்களும் பொதுவான மேம்பாடுகளும்</string>
-  <string name="aniket_kumar_task">SMS செருகுநிரலை மேம்படுத்துதல்</string>
-  <string name="alex_fiestas_task">தொடர்புகள் செருகுநிரலை மேம்படுத்துதல்</string>
+  <string name="samoilenko_yuri_task">SFTP ஆதரவு, பிழைதிருத்தம், மற்றும் பொதுவான மேம்பாடு</string>
+  <string name="aniket_kumar_task">SMS செருகுநிரலை மேம்படுத்தியது</string>
+  <string name="alex_fiestas_task">தொடர்புகள் செருகுநிரலை மேம்படுத்தியது</string>
   <string name="maxim_leshchenko_task">இடைமுகப்பு மேம்பாடுகளும் இப்பக்கமும்</string>
   <string name="holger_kaelberer_task">தொலை விசைப்பலகை செருகுநிரலும் பிழைதிருத்தங்களும்</string>
+  <string name="saikrishna_arcot_task">தொலை உள்ளீட்டு செருகுநிரலில் விசைப்பலகையைப் பயன்படுத்துவதற்கான ஆதரவு, பிழைதிருத்தம், மற்றும் பொதுவான மேம்பாடு</string>
   <string name="everyone_else">கடந்த ஆண்டுகளில் கே.டீ.யீ. கனெக்டிற்கு பங்களித்த மற்றவர்கள்</string>
   <string name="send_clipboard">பிடிப்புப்பலகையை அனுப்பு</string>
   <string name="tap_to_execute">இயக்க தட்டவும்</string>
