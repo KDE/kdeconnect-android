@@ -174,9 +174,12 @@
     <item>2 mínútur</item>
   </string-array>
   <string name="share_to">Deila með…</string>
+  <string name="protocol_version_newer">Þetta tæki notar nýrri útgáfu samskiptastaðals</string>
   <string name="plugin_settings_with_name">Stillingar %s</string>
   <string name="invalid_device_name">Ógilt heiti tækis</string>
+  <string name="shareplugin_text_saved">Tók við texta, vistaði á klippispjald</string>
   <string name="custom_devices_settings">Listi yfir sérsniðin tæki</string>
+  <string name="custom_device_list">Bæta við tækjum eftir auðkennum</string>
   <string name="custom_device_deleted">Sérsniðnu tæki eytt</string>
   <string name="custom_device_fab_hint">Bæta við tæki</string>
   <string name="undo">Afturkalla</string>
