@@ -48,32 +48,32 @@ public class NotificationHelper {
     public static void initializeChannels(Context context) {
         final NotificationChannelCompat persistentChannel = new NotificationChannelCompat
                 .Builder(Channels.PERSISTENT, NotificationManagerCompat.IMPORTANCE_MIN)
-                .setDescription(context.getString(R.string.notification_channel_persistent))
+                .setName(context.getString(R.string.notification_channel_persistent))
                 .build();
         final NotificationChannelCompat defaultChannel = new NotificationChannelCompat
                 .Builder(Channels.DEFAULT, NotificationManagerCompat.IMPORTANCE_DEFAULT)
-                .setDescription(context.getString(R.string.notification_channel_default))
+                .setName(context.getString(R.string.notification_channel_default))
                 .build();
         final NotificationChannelCompat mediaChannel = new NotificationChannelCompat
                 .Builder(Channels.MEDIA_CONTROL, NotificationManagerCompat.IMPORTANCE_LOW)
-                .setDescription(context.getString(R.string.notification_channel_media_control))
+                .setName(context.getString(R.string.notification_channel_media_control))
                 .build();
         final NotificationChannelCompat fileTransferChannel = new NotificationChannelCompat
                 .Builder(Channels.FILETRANSFER, NotificationManagerCompat.IMPORTANCE_LOW)
-                .setDescription(context.getString(R.string.notification_channel_filetransfer))
+                .setName(context.getString(R.string.notification_channel_filetransfer))
                 .setVibrationEnabled(false)
                 .build();
         final NotificationChannelCompat receiveNotificationChannel = new NotificationChannelCompat
                 .Builder(Channels.RECEIVENOTIFICATION, NotificationManagerCompat.IMPORTANCE_DEFAULT)
-                .setDescription(context.getString(R.string.notification_channel_receivenotification))
+                .setName(context.getString(R.string.notification_channel_receivenotification))
                 .build();
         final NotificationChannelCompat smsMmsChannel = new NotificationChannelCompat
                 .Builder(Channels.SMS_MMS, NotificationManagerCompat.IMPORTANCE_DEFAULT)
-                .setDescription(context.getString(R.string.notification_channel_sms_mms))
+                .setName(context.getString(R.string.notification_channel_sms_mms))
                 .build();
         final NotificationChannelCompat highPriorityChannel = new NotificationChannelCompat
                 .Builder(Channels.HIGHPRIORITY, NotificationManagerCompat.IMPORTANCE_HIGH)
-                .setDescription(context.getString(R.string.notification_channel_high_priority))
+                .setName(context.getString(R.string.notification_channel_high_priority))
                 .build();
 
         final List<NotificationChannelCompat> channels = Arrays.asList(persistentChannel,
