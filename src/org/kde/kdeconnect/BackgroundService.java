@@ -335,7 +335,13 @@ public class BackgroundService extends Service {
         }
 
         PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        NotificationCompat.Builder notification = new NotificationCompat.Builder(this, NotificationHelper.Channels.PERSISTENT);
+
+        NotificationCompat.Builder notification;
+        if (connectedDevices.isEmpty()) {
+            notification = new NotificationCompat.Builder(this, NotificationHelper.Channels.PERSISTENT_NO_DEVICES);
+        } else {
+            notification = new NotificationCompat.Builder(this, NotificationHelper.Channels.PERSISTENT_WITH_DEVICES);
+        }
         notification
                 .setSmallIcon(R.drawable.ic_notification)
                 .setOngoing(true)
