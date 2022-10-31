@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">@android:color/system_accent2_500</color>
+    <color name="primaryDark">@android:color/system_neutral1_50</color>
+    <color name="accent">@android:color/system_accent2_500</color>
+    <color name="disabled_grey">#EEEEEE</color>
+    <color name="on_secondary">@android:color/system_accent1_200</color>
+    <color name="on_high_contrast">@android:color/system_accent1_700</color>
+    <color name="text_color_primary">@android:color/system_accent2_700</color>
+    <color name="text_color">@android:color/system_neutral2_700</color>
+    <color name="toolbar_color">@android:color/system_neutral1_50</color>
+    <color name="card_stroke_color">@android:color/system_neutral2_100</color>
+    <color name="activity_background">@android:color/system_neutral1_50</color>
+    <item name="lightMode" type="bool">true</item>
+</resources>
+
