@@ -1,5 +1,7 @@
 package org.kde.kdeconnect;
 
+import org.kde.kdeconnect.Helpers.ThreadHelper;
+
 import java.util.ArrayDeque;
 import java.util.Optional;
 
@@ -32,7 +34,7 @@ class DevicePacketQueue {
 
     DevicePacketQueue(Device device) {
         mDevice = device;
-        new Thread(new SendingThread()).start();
+        ThreadHelper.execute(new SendingRunnable());
     }
 
     /**
@@ -87,7 +89,7 @@ class DevicePacketQueue {
         }
     }
 
-    private final class SendingThread implements Runnable {
+    private final class SendingRunnable implements Runnable {
         @Override
         public void run() {
             while (true) {

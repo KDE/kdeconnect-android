@@ -19,6 +19,7 @@ import android.os.Looper;
 
 import androidx.core.content.ContextCompat;
 
+import org.kde.kdeconnect.Helpers.ThreadHelper;
 import org.kde.kdeconnect_tp.BuildConfig;
 
 import java.io.BufferedReader;
@@ -72,7 +73,7 @@ public class ClipboardListener {
 
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P &&
                 ContextCompat.checkSelfPermission(context, Manifest.permission.READ_LOGS) == PackageManager.PERMISSION_GRANTED) {
-            new Thread(() -> {
+            ThreadHelper.execute(() -> {
                 try {
                     String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.US).format(new Date());
                     // Listen only ClipboardService errors after now
@@ -90,7 +91,7 @@ public class ClipboardListener {
                     }
                 } catch (Exception ignored) {
                 }
-            }).start();
+            });
         }
     }
 

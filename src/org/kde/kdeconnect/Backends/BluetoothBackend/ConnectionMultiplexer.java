@@ -2,6 +2,8 @@ package org.kde.kdeconnect.Backends.BluetoothBackend;
 
 import android.bluetooth.BluetoothSocket;
 
+import org.kde.kdeconnect.Helpers.ThreadHelper;
+
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
@@ -214,7 +216,7 @@ public final class ConnectionMultiplexer implements Closeable {
 
         sendProtocolVersion();
 
-        new ListenThread(socket).start();
+        ThreadHelper.execute(new ListenRunnable(socket));
     }
 
     private void sendProtocolVersion() throws IOException {
@@ -409,11 +411,11 @@ public final class ConnectionMultiplexer implements Closeable {
         }
     }
 
-    private final class ListenThread extends Thread {
+    private final class ListenRunnable implements Runnable {
         InputStream input;
         OutputStream output;
 
-        ListenThread(BluetoothSocket socket) throws IOException {
+        ListenRunnable(BluetoothSocket socket) throws IOException {
             input = socket.getInputStream();
             output = socket.getOutputStream();
         }

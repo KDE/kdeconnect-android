@@ -18,6 +18,7 @@ import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
+import org.kde.kdeconnect.Helpers.ThreadHelper;
 import org.kde.kdeconnect.Helpers.TrustedNetworkHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.UserInterface.CustomDevicesActivity;
@@ -224,7 +225,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                 }
             });
             //Handshake is blocking, so do it on another thread and free this thread to keep receiving new connection
-            new Thread(() -> {
+            ThreadHelper.execute(() -> {
                 try {
                     synchronized (this) {
                         sslsocket.startHandshake();
@@ -237,7 +238,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                     //    Log.i("SupportedCiphers","cipher: " + cipher);
                     //}
                 }
-            }).start();
+            });
         } catch (Exception e) {
             Log.e("LanLink", "Exception", e);
         }
@@ -288,7 +289,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
             Log.e("LanLinkProvider", "Error creating udp server", e);
             return;
         }
-        new Thread(() -> {
+        ThreadHelper.execute(() -> {
             while (listening) {
                 final int bufferSize = 1024 * 512;
                 byte[] data = new byte[bufferSize];
@@ -301,7 +302,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                 }
             }
             Log.w("UdpListener", "Stopping UDP listener");
-        }).start();
+        });
     }
 
     private void setupTcpListener() {
@@ -311,7 +312,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
             Log.e("LanLinkProvider", "Error creating tcp server", e);
             return;
         }
-        new Thread(() -> {
+        ThreadHelper.execute(() -> {
             while (listening) {
                 try {
                     Socket socket = tcpServer.accept();
@@ -322,7 +323,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                 }
             }
             Log.w("TcpListener", "Stopping TCP listener");
-        }).start();
+        });
 
     }
 
@@ -352,7 +353,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
         }
         lastBroadcast = System.currentTimeMillis();
 
-        new Thread(() -> {
+        ThreadHelper.execute(() -> {
             ArrayList<String> iplist = CustomDevicesActivity
                     .getCustomDeviceList(PreferenceManager.getDefaultSharedPreferences(context));
 
@@ -400,7 +401,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                 socket.close();
             }
 
-        }).start();
+        });
     }
 
     @Override

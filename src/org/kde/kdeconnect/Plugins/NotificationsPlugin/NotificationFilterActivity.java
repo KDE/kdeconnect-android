@@ -26,6 +26,7 @@ import android.widget.CheckedTextView;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 
+import org.kde.kdeconnect.Helpers.ThreadHelper;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -112,7 +113,7 @@ public class NotificationFilterActivity extends AppCompatActivity {
 
         configureSwitch(preferences);
 
-        new Thread(() -> {
+        ThreadHelper.execute(() -> {
             PackageManager packageManager = getPackageManager();
             List<ApplicationInfo> appList = packageManager.getInstalledApplications(0);
             int count = appList.size();
@@ -130,7 +131,7 @@ public class NotificationFilterActivity extends AppCompatActivity {
             Arrays.sort(apps, (lhs, rhs) -> lhs.name.compareToIgnoreCase(rhs.name));
 
             runOnUiThread(this::displayAppList);
-        }).start();
+        });
 
     }
 

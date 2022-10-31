@@ -33,6 +33,7 @@ import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
+import org.kde.kdeconnect.Helpers.ThreadHelper;
 import org.kde.kdeconnect.Plugins.ClibpoardPlugin.ClipboardFloatingActivity;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
@@ -164,13 +165,13 @@ public class BackgroundService extends Service {
     }
 
     private void cleanDevices() {
-        new Thread(() -> {
+        ThreadHelper.execute(() -> {
             for (Device d : devices.values()) {
                 if (!d.isPaired() && !d.isPairRequested() && !d.isPairRequestedByPeer() && !d.deviceShouldBeKeptAlive()) {
                     d.disconnect();
                 }
             }
-        }).start();
+        });
     }
 
     private final BaseLinkProvider.ConnectionReceiver deviceListener = new BaseLinkProvider.ConnectionReceiver() {
@@ -438,7 +439,7 @@ public class BackgroundService extends Service {
     }
 
     public static void RunCommand(final Context c, final InstanceCallback callback) {
-        new Thread(() -> {
+        ThreadHelper.execute(() -> {
             if (callback != null) {
                 mutex.lock();
                 try {
@@ -448,7 +449,7 @@ public class BackgroundService extends Service {
                 }
             }
             ContextCompat.startForegroundService(c, new Intent(c, BackgroundService.class));
-        }).start();
+        });
     }
 
     public static <T extends Plugin> void RunWithPlugin(final Context c, final String deviceId, final Class<T> pluginClass, final PluginCallback<T> cb) {

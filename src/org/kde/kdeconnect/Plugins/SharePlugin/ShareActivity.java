@@ -54,13 +54,10 @@ public class ShareActivity extends AppCompatActivity {
         BackgroundService.RunCommand(ShareActivity.this, BackgroundService::onNetworkChange);
 
         binding.devicesListLayout.refreshListLayout.setRefreshing(true);
-        new Thread(() -> {
-            try {
-                Thread.sleep(1500);
-            } catch (InterruptedException ignored) {
-            }
-            runOnUiThread(() -> binding.devicesListLayout.refreshListLayout.setRefreshing(false));
-        }).start();
+
+        binding.devicesListLayout.refreshListLayout.postDelayed(() -> {
+            binding.devicesListLayout.refreshListLayout.setRefreshing(false);
+        }, 1500);
     }
 
     private void updateComputerList() {

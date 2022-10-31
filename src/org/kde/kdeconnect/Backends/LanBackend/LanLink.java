@@ -16,6 +16,7 @@ import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
+import org.kde.kdeconnect.Helpers.ThreadHelper;
 import org.kde.kdeconnect.NetworkPacket;
 
 import java.io.BufferedReader;
@@ -77,7 +78,7 @@ public class LanLink extends BaseLink {
 
         //Log.e("LanLink", "Start listening");
         //Create a thread to take care of incoming data for the new socket
-        new Thread(() -> {
+        ThreadHelper.execute(() -> {
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(newSocket.getInputStream(), Charsets.UTF_8));
                 while (true) {
@@ -105,7 +106,7 @@ public class LanLink extends BaseLink {
                     callback.linkDisconnected(LanLink.this);
                 }
             }
-        }).start();
+        });
 
         return oldSocket;
     }
