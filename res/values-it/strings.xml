@@ -275,7 +275,6 @@
   <string name="pref_plugin_mprisreceiver">Controllo lettore multimediale</string>
   <string name="pref_plugin_mprisreceiver_desc">Controlla i lettori multimediali del tuo telefono da un altro dispositivo</string>
   <string name="notification_channel_default">Altre notifiche</string>
-  <string name="notification_channel_persistent">Indicatore persistente</string>
   <string name="notification_channel_media_control">Controllo multimediale</string>
   <string name="notification_channel_filetransfer">Trasferimento file</string>
   <string name="notification_channel_high_priority">Priorità alta</string>

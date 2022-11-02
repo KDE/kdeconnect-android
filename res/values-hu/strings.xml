@@ -275,7 +275,6 @@
   <string name="pref_plugin_mprisreceiver">Médialejátszó vezérlés</string>
   <string name="pref_plugin_mprisreceiver_desc">A telefon médialejátszóinak vezérlése egy másik eszközről</string>
   <string name="notification_channel_default">Egyéb értesítések</string>
-  <string name="notification_channel_persistent">Állandó jelző</string>
   <string name="notification_channel_media_control">Médiavezérlő</string>
   <string name="notification_channel_filetransfer">Fájlátvitel</string>
   <string name="notification_channel_high_priority">Magas prioritás</string>

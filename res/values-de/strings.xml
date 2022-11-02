@@ -253,7 +253,6 @@
   <string name="pref_plugin_mprisreceiver">Steuerung der Medienwiedergabe</string>
   <string name="pref_plugin_mprisreceiver_desc">Ein verbundenes Gerät zum Steuern der lokalen Medienwiedergabe verwenden</string>
   <string name="notification_channel_default">Andere Benachrichtigungen</string>
-  <string name="notification_channel_persistent">Dauerhafte Benachrichtigung</string>
   <string name="notification_channel_media_control">Medienkontrolle</string>
   <string name="notification_channel_filetransfer">Dateiübertragung</string>
   <string name="notification_channel_high_priority">Hohe Priorität</string>

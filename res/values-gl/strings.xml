@@ -231,7 +231,6 @@
   <string name="pref_plugin_mprisreceiver">Control do reprodutor de multimedia</string>
   <string name="pref_plugin_mprisreceiver_desc">Controlar os reprodutores do seu móbil desde outro dispositivo</string>
   <string name="notification_channel_default">Outras notificacións</string>
-  <string name="notification_channel_persistent">Indicador persistente</string>
   <string name="notification_channel_media_control">Control de reprodución</string>
   <string name="notification_channel_filetransfer">Transferencia de ficheiros</string>
   <string name="mpris_stop">Deter o reprodutor actual</string>

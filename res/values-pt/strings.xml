@@ -275,7 +275,6 @@
   <string name="pref_plugin_mprisreceiver">Controlo de Leitores Multimédia</string>
   <string name="pref_plugin_mprisreceiver_desc">Controle os leitores multimédia dos seus telemóveis a partir de outro dispositivo</string>
   <string name="notification_channel_default">Outras notificações</string>
-  <string name="notification_channel_persistent">Indicador persistente</string>
   <string name="notification_channel_media_control">Comando multimédia</string>
   <string name="notification_channel_filetransfer">Transferência de ficheiros</string>
   <string name="notification_channel_high_priority">Alta prioridade</string>

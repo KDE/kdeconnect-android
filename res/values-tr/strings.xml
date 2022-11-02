@@ -275,7 +275,8 @@
   <string name="pref_plugin_mprisreceiver">Ortam Oynatıcı Denetimi</string>
   <string name="pref_plugin_mprisreceiver_desc">Telefonunuzun ortam oynatıcılarını başka bir aygıttan denetleyin</string>
   <string name="notification_channel_default">Diğer bildirimler</string>
-  <string name="notification_channel_persistent">Kalıcı gösterge</string>
+  <string name="notification_channel_persistent_no_devices">Kalıcı gösterge (aygıtsız)</string>
+  <string name="notification_channel_persistent_with_devices">Kalıcı gösterge (aygıtla)</string>
   <string name="notification_channel_media_control">Ortam denetimi</string>
   <string name="notification_channel_filetransfer">Dosya aktarımı</string>
   <string name="notification_channel_high_priority">Yüksek öncelik</string>

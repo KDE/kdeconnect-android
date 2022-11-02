@@ -274,7 +274,6 @@
   <string name="pref_plugin_mprisreceiver">Multimediálny ovládač</string>
   <string name="pref_plugin_mprisreceiver_desc">Ovláda multimediálne prehrávače vášho telefónu z iného zariadenia</string>
   <string name="notification_channel_default">Ostatné upozornenia</string>
-  <string name="notification_channel_persistent">Trvalý indikátor</string>
   <string name="notification_channel_media_control">Multimediálny ovládač</string>
   <string name="notification_channel_filetransfer">Prenos súborov</string>
   <string name="notification_channel_high_priority">Vysoká priorita</string>

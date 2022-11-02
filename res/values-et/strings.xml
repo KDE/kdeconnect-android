@@ -239,7 +239,6 @@
   <string name="pref_plugin_mprisreceiver">Meediafailide mängija juhtimine</string>
   <string name="pref_plugin_mprisreceiver_desc">Telefoni meediamängijate juhtimine teisest seadmest</string>
   <string name="notification_channel_default">Muud märguanded</string>
-  <string name="notification_channel_persistent">Püsiindikaator</string>
   <string name="notification_channel_media_control">Meedia juhtimine</string>
   <string name="notification_channel_filetransfer">Failiülekanne</string>
   <string name="notification_channel_high_priority">Kõrge prioriteediga</string>

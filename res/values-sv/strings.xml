@@ -275,7 +275,6 @@
   <string name="pref_plugin_mprisreceiver">Styrning av mediaspelare</string>
   <string name="pref_plugin_mprisreceiver_desc">Styr telefonens mediaspelare från en annan apparat</string>
   <string name="notification_channel_default">Andra underrättelser</string>
-  <string name="notification_channel_persistent">Permanent indikering</string>
   <string name="notification_channel_media_control">Kontroll av media</string>
   <string name="notification_channel_filetransfer">Filöverföring</string>
   <string name="notification_channel_high_priority">Hög prioritet</string>

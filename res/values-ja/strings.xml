@@ -267,7 +267,6 @@
   <string name="pref_plugin_mprisreceiver">メディアプレーヤーの操作</string>
   <string name="pref_plugin_mprisreceiver_desc">他のデバイスからスマートフォンのメディアプレーヤーを操作</string>
   <string name="notification_channel_default">他の通知</string>
-  <string name="notification_channel_persistent">永続的なインジケータ</string>
   <string name="notification_channel_media_control">メディアの操作</string>
   <string name="notification_channel_filetransfer">ファイル転送</string>
   <string name="notification_channel_high_priority">高い優先度</string>

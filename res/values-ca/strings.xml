@@ -275,7 +275,8 @@
   <string name="pref_plugin_mprisreceiver">Control del reproductor multimèdia</string>
   <string name="pref_plugin_mprisreceiver_desc">Controla els reproductors multimèdia del telèfon des d\'un altre dispositiu</string>
   <string name="notification_channel_default">Altres notificacions</string>
-  <string name="notification_channel_persistent">Indicador de persistent</string>
+  <string name="notification_channel_persistent_no_devices">Indicador de persistència (sense dispositius)</string>
+  <string name="notification_channel_persistent_with_devices">Indicador de persistència (amb dispositius)</string>
   <string name="notification_channel_media_control">Control multimèdia</string>
   <string name="notification_channel_filetransfer">Transferència de fitxers</string>
   <string name="notification_channel_high_priority">Prioritat alta</string>

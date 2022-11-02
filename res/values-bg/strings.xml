@@ -275,7 +275,6 @@
   <string name="pref_plugin_mprisreceiver">Управление на медийния плейър</string>
   <string name="pref_plugin_mprisreceiver_desc">Управление на медийните плейъри на телефона от друго устройство</string>
   <string name="notification_channel_default">Други известия</string>
-  <string name="notification_channel_persistent">Постоянен индикатор</string>
   <string name="notification_channel_media_control">Контрол на медиите</string>
   <string name="notification_channel_filetransfer">Прехвърляне на файл</string>
   <string name="notification_channel_high_priority">Висок приоритет</string>

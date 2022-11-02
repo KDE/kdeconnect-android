@@ -283,7 +283,6 @@
   <string name="pref_plugin_mprisreceiver">Control lector multimedia</string>
   <string name="pref_plugin_mprisreceiver_desc">Controlați programele multimedia din telefon de pe alt dispozitiv</string>
   <string name="notification_channel_default">Alte notificări</string>
-  <string name="notification_channel_persistent">Indicator persistent</string>
   <string name="notification_channel_media_control">Control multimedia</string>
   <string name="notification_channel_filetransfer">Transfer de fișiere</string>
   <string name="notification_channel_high_priority">Prioritate ridicată</string>

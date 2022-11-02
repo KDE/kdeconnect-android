@@ -267,7 +267,6 @@
   <string name="pref_plugin_mprisreceiver">Kendali Pemutar Media</string>
   <string name="pref_plugin_mprisreceiver_desc">Kendalikan pemutar media ponselmu dari peranti lainnya</string>
   <string name="notification_channel_default">Notifikasi lainnya</string>
-  <string name="notification_channel_persistent">Indikator kukuh</string>
   <string name="notification_channel_media_control">Kontrol multimedia</string>
   <string name="notification_channel_filetransfer">Transfer file</string>
   <string name="notification_channel_high_priority">Prioritas tinggi</string>

@@ -275,7 +275,6 @@
   <string name="pref_plugin_mprisreceiver">Media Pleyer İdarəsi</string>
   <string name="pref_plugin_mprisreceiver_desc">Telefonunuzun media pleyerlərini digər cihazdan idarə edin</string>
   <string name="notification_channel_default">Digər bildirişlər</string>
-  <string name="notification_channel_persistent">Daimi göstərici</string>
   <string name="notification_channel_media_control">Media İdarəsi</string>
   <string name="notification_channel_filetransfer">Fayl göndərişi</string>
   <string name="notification_channel_high_priority">Yüksək üstünlük</string>

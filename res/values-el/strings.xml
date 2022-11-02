@@ -266,7 +266,6 @@
   <string name="pref_plugin_mprisreceiver">Κονσόλα αναπαραγωγέα πολυμέσων</string>
   <string name="pref_plugin_mprisreceiver_desc">Ελέγξτε τους αναπαραγωγείς πολυμέσων του τηλεφώνου σας από άλλη συσκευή</string>
   <string name="notification_channel_default">Άλλες ειδοποιήσεις</string>
-  <string name="notification_channel_persistent">Μόνιμος δείκτης</string>
   <string name="notification_channel_media_control">Κονσόλα πολυμέσων</string>
   <string name="notification_channel_filetransfer">Μεταφορά αρχείου</string>
   <string name="notification_channel_high_priority">Υψηλής προτεραιότητας</string>
