@@ -291,6 +291,8 @@
   <string name="pref_plugin_mprisreceiver">Nadzor predvajalnika medijev</string>
   <string name="pref_plugin_mprisreceiver_desc">Upravljajte predstavnostne predvajalnike telefona iz druge naprave</string>
   <string name="notification_channel_default">Ostala obvestila</string>
+  <string name="notification_channel_persistent_no_devices">Obstojni indikator (ni naprav)</string>
+  <string name="notification_channel_persistent_with_devices">Obstojni indikator (z napravami)</string>
   <string name="notification_channel_media_control">Nadzor medija</string>
   <string name="notification_channel_filetransfer">Prenos datotek</string>
   <string name="notification_channel_high_priority">Visoka prednost</string>

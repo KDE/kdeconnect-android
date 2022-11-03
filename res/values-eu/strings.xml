@@ -275,6 +275,8 @@
   <string name="pref_plugin_mprisreceiver">Euskarri-jotzailearen kontrola</string>
   <string name="pref_plugin_mprisreceiver_desc">Kontrolatu zure telefonoaren euskarri-jotzaileak beste gailu batetik</string>
   <string name="notification_channel_default">Beste jakinarazpen batzuk</string>
+  <string name="notification_channel_persistent_no_devices">Adierazle iraunkorra (gailurik ez)</string>
+  <string name="notification_channel_persistent_with_devices">Adierazle iraunkorra (gailuekin)</string>
   <string name="notification_channel_media_control">Euskarrien kontrola</string>
   <string name="notification_channel_filetransfer">Fitxategi transferentzia</string>
   <string name="notification_channel_high_priority">Lehentasun handia</string>
