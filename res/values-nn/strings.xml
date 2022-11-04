@@ -275,7 +275,6 @@
   <string name="pref_plugin_mprisreceiver">Mediespelarkontrollar</string>
   <string name="pref_plugin_mprisreceiver_desc">Kontroller mediespelarar på telefonen din frå ei anna eining</string>
   <string name="notification_channel_default">Andre varslingar</string>
-  <string name="notification_channel_persistent">Evigvarande varslingar</string>
   <string name="notification_channel_media_control">Mediestyring</string>
   <string name="notification_channel_filetransfer">Filoverføring</string>
   <string name="notification_channel_high_priority">Høg prioritet</string>
