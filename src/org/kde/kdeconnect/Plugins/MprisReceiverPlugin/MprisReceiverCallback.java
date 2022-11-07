@@ -11,7 +11,6 @@ import android.media.session.MediaController;
 import android.media.session.PlaybackState;
 import android.os.Build;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 

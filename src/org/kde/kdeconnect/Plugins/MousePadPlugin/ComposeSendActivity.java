@@ -17,7 +17,6 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.NetworkPacket;

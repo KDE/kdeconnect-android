@@ -6,7 +6,6 @@
 
 package org.kde.kdeconnect.Helpers;
 
-import android.app.Activity;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;

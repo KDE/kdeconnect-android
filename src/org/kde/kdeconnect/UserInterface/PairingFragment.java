@@ -32,7 +32,6 @@ import androidx.fragment.app.Fragment;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.Helpers.ThreadHelper;
 import org.kde.kdeconnect.Helpers.TrustedNetworkHelper;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.PairingDeviceItem;

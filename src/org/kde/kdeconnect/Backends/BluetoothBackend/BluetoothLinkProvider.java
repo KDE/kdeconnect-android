@@ -19,7 +19,6 @@ import android.os.Build;
 import android.os.Parcelable;
 import android.util.Log;
 
-import org.apache.commons.io.IOUtils;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.ThreadHelper;

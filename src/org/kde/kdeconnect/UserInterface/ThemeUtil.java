@@ -1,7 +1,6 @@
 package org.kde.kdeconnect.UserInterface;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Build;
 
 import androidx.annotation.NonNull;

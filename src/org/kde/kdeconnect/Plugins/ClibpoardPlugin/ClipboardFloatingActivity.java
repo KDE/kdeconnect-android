@@ -7,8 +7,6 @@
 
 package org.kde.kdeconnect.Plugins.ClibpoardPlugin;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
