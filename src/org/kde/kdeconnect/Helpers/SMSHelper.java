@@ -55,6 +55,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -109,7 +110,6 @@ public class SMSHelper {
         return Uri.parse("content://mms-sms/conversations?simple=true");
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.FROYO)
     private static Uri getCompleteConversationsUri() {
         // This glorious - but completely undocumented - content URI gives us all messages, both MMS and SMS,
         // in all conversations
@@ -490,7 +490,7 @@ public class SMSHelper {
                     continue;
                 }
 
-                threadTimestampPair.add(new Pair(threadID, messageDate));
+                threadTimestampPair.add(new Pair<>(threadID, messageDate));
             }
 
             threadIds = threadTimestampPair.stream()
@@ -555,13 +555,30 @@ public class SMSHelper {
         event = addEventFlag(event, Message.EVENT_TEXT_MESSAGE);
 
         @NonNull List<Address> address = Collections.singletonList(new Address(messageInfo.get(Telephony.Sms.ADDRESS)));
-        @NonNull String body = messageInfo.get(Message.BODY);
-        long date = Long.parseLong(messageInfo.get(Message.DATE));
-        int type = Integer.parseInt(messageInfo.get(Message.TYPE));
-        int read = Integer.parseInt(messageInfo.get(Message.READ));
-        @NonNull ThreadID threadID = new ThreadID(Long.parseLong(messageInfo.get(Message.THREAD_ID)));
-        long uID = Long.parseLong(messageInfo.get(Message.U_ID));
-        int subscriptionID = NumberUtils.toInt(messageInfo.get(Message.SUBSCRIPTION_ID));
+        @Nullable String maybeBody = messageInfo.getOrDefault(Message.BODY, "");
+        @NonNull String body = maybeBody != null ? maybeBody : "";
+        long date = NumberUtils.toLong(messageInfo.getOrDefault(Message.DATE, null));
+        int type = NumberUtils.toInt(messageInfo.getOrDefault(Message.TYPE, null));
+        int read = NumberUtils.toInt(messageInfo.getOrDefault(Message.READ, null));
+        @NonNull ThreadID threadID = new ThreadID(NumberUtils.toLong(messageInfo.getOrDefault(Message.THREAD_ID, null), ThreadID.invalidThreadId.threadID));
+        long uID = NumberUtils.toLong(messageInfo.getOrDefault(Message.U_ID, null));
+        int subscriptionID = NumberUtils.toInt(messageInfo.getOrDefault(Message.SUBSCRIPTION_ID, null));
+
+        // Examine all the required SMS columns and emit a log if something seems amiss
+        boolean anyNulls = Arrays.stream(new String[] {
+                        Telephony.Sms.ADDRESS,
+                        Message.BODY,
+                        Message.DATE,
+                        Message.TYPE,
+                        Message.READ,
+                        Message.THREAD_ID,
+                        Message.U_ID })
+                .map(key -> messageInfo.getOrDefault(key, null))
+                .anyMatch(Objects::isNull);
+        if (anyNulls)
+        {
+            Log.e("parseSMS", "Some fields were invalid. This indicates either a corrupted SMS database or an unsupported device.");
+        }
 
         return new Message(
                 address,
@@ -591,9 +608,9 @@ public class SMSHelper {
         @NonNull String body = "";
         long date;
         int type;
-        int read = Integer.parseInt(messageInfo.get(Message.READ));
-        @NonNull ThreadID threadID = new ThreadID(Long.parseLong(messageInfo.get(Message.THREAD_ID)));
-        long uID = Long.parseLong(messageInfo.get(Message.U_ID));
+        int read = NumberUtils.toInt(messageInfo.get(Message.READ));
+        @NonNull ThreadID threadID = new ThreadID(NumberUtils.toLong(messageInfo.getOrDefault(Message.THREAD_ID, null), ThreadID.invalidThreadId.threadID));
+        long uID = NumberUtils.toLong(messageInfo.get(Message.U_ID));
         int subscriptionID = NumberUtils.toInt(messageInfo.get(Message.SUBSCRIPTION_ID));
         List<Attachment> attachments = new ArrayList<>();
 
@@ -671,7 +688,7 @@ public class SMSHelper {
         }
 
         // Determine whether the message was in- our out- bound
-        long messageBox = Long.parseLong(messageInfo.get(Telephony.Mms.MESSAGE_BOX));
+        long messageBox = NumberUtils.toLong(messageInfo.get(Telephony.Mms.MESSAGE_BOX));
         if (messageBox == Telephony.Mms.MESSAGE_BOX_INBOX) {
             type = Telephony.Sms.MESSAGE_TYPE_INBOX;
         } else if (messageBox == Telephony.Mms.MESSAGE_BOX_SENT) {
@@ -681,7 +698,7 @@ public class SMSHelper {
             // are the same as Sms.MESSAGE_TYPE_* of the same type. So by default let's just use
             // the value we've got.
             // This includes things like drafts, which are a far-distant plan to support
-            type = Integer.parseInt(messageInfo.get(Telephony.Mms.MESSAGE_BOX));
+            type = NumberUtils.toInt(messageInfo.get(Telephony.Mms.MESSAGE_BOX));
         }
 
         // Get address(es) of the message
@@ -699,11 +716,11 @@ public class SMSHelper {
         }
 
         if (to != null) {
-            for (Address address : to) {
-                boolean isLocalPhoneNumber = userPhoneNumbers.stream().anyMatch(localPhoneNumber -> localPhoneNumber.isMatchingPhoneNumber(address.address));
+            for (Address toAddress : to) {
+                boolean isLocalPhoneNumber = userPhoneNumbers.stream().anyMatch(localPhoneNumber -> localPhoneNumber.isMatchingPhoneNumber(toAddress.address));
 
-                if (!isLocalPhoneNumber && !from.toString().equals("insert-address-token")) {
-                    addresses.add(address);
+                if (!isLocalPhoneNumber && !toAddress.toString().equals("insert-address-token")) {
+                    addresses.add(toAddress);
                 }
             }
         }
@@ -719,7 +736,7 @@ public class SMSHelper {
 
         // Canonicalize the date field
         // SMS uses epoch milliseconds, MMS uses epoch seconds. Standardize on milliseconds.
-        long rawDate = Long.parseLong(messageInfo.get(Message.DATE));
+        long rawDate = NumberUtils.toLong(messageInfo.get(Message.DATE));
         date = rawDate * 1000;
 
         return new Message(
@@ -802,6 +819,12 @@ public class SMSHelper {
     public static class ThreadID {
         final long threadID;
         static final String lookupColumn = Telephony.Sms.THREAD_ID;
+
+        /**
+         * Define a value against which we can compare others, which should never be returned from
+         * a valid thread.
+         */
+        public static final ThreadID invalidThreadId = new ThreadID(-1);
 
         public ThreadID(long threadID) {
             this.threadID = threadID;
@@ -922,6 +945,7 @@ public class SMSHelper {
             return json;
         }
 
+        @NonNull
         @Override
         public String toString() {
             return address;
@@ -1125,6 +1149,7 @@ public class SMSHelper {
             return json;
         }
 
+        @NonNull
         @Override
         public String toString() {
             return body;
