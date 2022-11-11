@@ -51,13 +51,13 @@
   <string name="remotekeyboard_connected">Uzak klavye bağlantısı etkin</string>
   <string name="remotekeyboard_multiple_connections">Birden çok uzak klavye bağlantısı mevcut, yapılandırmak istediğiniz aygıtı seçin</string>
   <string name="open_mousepad">Girdi sil</string>
-  <string name="mousepad_info">İmleç denetimi için parmağınızı ekranda hareket ettirin. Bir tıklama için hafifçe vurun, sağ ve orta düğmeler için iki/üç parmağınızı kullanın. Kaydırmak için 2 parmağınızı kullanın. Bırakıp sürüklemek için uzun basın.</string>
+  <string name="mousepad_info">İmleç denetimi için parmağınızı ekranda hareket ettirin. Bir tıklama için hafifçe vurun, sağ ve orta düğmeler için iki/üç parmağınızı kullanın. Sarmak için 2 parmağınızı kullanın. Bırakıp sürüklemek için uzun basın.</string>
   <string name="mousepad_single_tap_settings_title">Tek parmak dokunma eylemini ayarla</string>
   <string name="mousepad_double_tap_settings_title">İki parmak dokunma eylemini ayarla</string>
   <string name="mousepad_triple_tap_settings_title">Üç parmak dokunma eylemini ayarla</string>
   <string name="mousepad_sensitivity_settings_title">Dokunmatik yüzey hassasiyetini ayarla</string>
   <string name="mousepad_acceleration_profile_settings_title">İşaretçi ivmesini ayarla</string>
-  <string name="mousepad_scroll_direction_title">Ters Kaydırma Yönü</string>
+  <string name="mousepad_scroll_direction_title">Sarma Yönünü Tersine Çevir</string>
   <string-array name="mousepad_tap_entries">
     <item>Sol tık</item>
     <item>Sağ tık</item>
