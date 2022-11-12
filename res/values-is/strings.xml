@@ -184,7 +184,10 @@
   <string name="custom_device_fab_hint">Bæta við tæki</string>
   <string name="undo">Afturkalla</string>
   <string name="share_notification_preference">Háværar tilkynningar</string>
+  <string name="share_notification_preference_summary">Titra og spila hljóð þegar tekið er á móti skrá</string>
   <string name="share_destination_customize">Sérsníða móttökumöppu</string>
+  <string name="share_destination_customize_summary_disabled">Mótteknar skrár munu birtast í niðurhalsmöppu</string>
+  <string name="share_destination_customize_summary_enabled">Skrár verða geymdar í möppunni hér fyrir neðan</string>
   <string name="share_destination_folder_preference">Móttökumappa</string>
   <string name="share">Deila</string>
   <string name="share_received_file">Deila \"%s\"</string>
@@ -237,12 +240,16 @@
   <string name="presenter_fullscreen">Skjáfylli</string>
   <string name="presenter_exit">Fara úr kynningu</string>
   <string name="add_command">Bæta við skipun</string>
+  <string name="addcommand_explanation">Það eru engar skipanir skráðar</string>
+  <string name="addcommand_explanation2">Þú getur bætt við nýjum skipunum í stillingum KDE Connect</string>
+  <string name="add_command_description">Þú getur bætt við skipunum á skjáborðinu</string>
   <string name="pref_plugin_mprisreceiver">Margmiðlunarstýring</string>
   <string name="notification_channel_default">Aðrar tilkynningar</string>
   <string name="notification_channel_media_control">Margmiðlunarstýring</string>
   <string name="notification_channel_filetransfer">Skráarflutningur</string>
   <string name="notification_channel_high_priority">Hár forgangur</string>
   <string name="notification_channel_sms_mms">Ný skilaboð</string>
+  <string name="mpris_stop">Stöðva virkan spilara</string>
   <string name="copy_url_to_clipboard">Afrita slóð á klippispjaldið</string>
   <string name="clipboard_toast">Afritað á klippispjald</string>
   <string name="runcommand_notreachable">Tækið er ekki aðgengilegt</string>
@@ -260,6 +267,7 @@
   <string name="settings_dark_mode">Dökkt þema</string>
   <string name="settings_more_settings_title">Fleiri stillingar</string>
   <string name="setting_persistent_notification">Birta viðvarandi tilkynningu</string>
+  <string name="setting_persistent_notification_oreo">Viðvarandi tilkynning</string>
   <string name="extra_options">Fleiri valkostir</string>
   <string name="privacy_options">Valkostir friðhelgi</string>
   <string name="set_privacy_options">Valkostir friðhelgi þinnar</string>
@@ -271,10 +279,13 @@
   <string name="remote_keyboard_service">Fjartengt lyklaborð KDE Connect</string>
   <string name="presenter_pointer">Bendill</string>
   <string name="trusted_networks">Treyst netkerfi</string>
+  <string name="trusted_networks_desc">Takmarka sjálfvirka uppgötvun við þekkt netkerfi</string>
   <string name="add_trusted_network">Bæta við %1s</string>
+  <string name="empty_trusted_networks_list_text">Þú hefur ekki ennþá bætt við neinum treystum netkerfum</string>
   <string name="allow_all_networks_text">Leyfa allt</string>
   <string name="location_permission_needed_title">Krafist er heimildar</string>
   <string name="mpris_open_url">Halda áfram spilun hér</string>
+  <string name="cant_open_url">Næ ekki að opna slóð til að halda áfram spilun</string>
   <string name="bigscreen_home">Heim</string>
   <string name="bigscreen_up">Upp</string>
   <string name="bigscreen_left">Vinstri</string>
@@ -337,6 +348,9 @@
   <string name="samoilenko_yuri_task">SFTP-innleiðing, villuleiðréttingar og almennar endurbætur</string>
   <string name="aniket_kumar_task">Endurbætur á SMS-viðbót</string>
   <string name="alex_fiestas_task">Endurbætur á tengiliðaviðbót</string>
+  <string name="maxim_leshchenko_task">Endurbætur á viðmóti og þessi síða</string>
+  <string name="holger_kaelberer_task">Viðbót fyrir fjartengt lyklaborð og lagfæringar á villum</string>
+  <string name="everyone_else">Allir aðrir sem hafa lagt af mörkum til KDE Connect í gegnum árin</string>
   <string name="send_clipboard">Senda klippispjald</string>
   <string name="tap_to_execute">Pikkaðu til að keyra</string>
 </resources>
