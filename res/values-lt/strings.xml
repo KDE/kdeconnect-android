@@ -291,6 +291,8 @@
   <string name="pref_plugin_mprisreceiver">Medijos leistuvės valdymas</string>
   <string name="pref_plugin_mprisreceiver_desc">Valdyti savo telefono medijos leistuves iš kito įrenginio</string>
   <string name="notification_channel_default">Kiti pranešimai</string>
+  <string name="notification_channel_persistent_no_devices">Pastovus indikatorius (be įrenginių)</string>
+  <string name="notification_channel_persistent_with_devices">Pastovus indikatorius (su įrenginiais)</string>
   <string name="notification_channel_media_control">Įvairialypės terpės valdymas</string>
   <string name="notification_channel_filetransfer">Failų persiuntimas</string>
   <string name="notification_channel_high_priority">Didelė pirmenybė</string>
