@@ -2,9 +2,9 @@
 <resources>
   <string name="kde_connect">KDE Connect</string>
   <string name="manifest_label_share">Kirim ke Peranti</string>
-  <string name="foreground_notification_no_devices">Belum terkoneksi ke peranti apa pun</string>
+  <string name="foreground_notification_no_devices">Belum terhubung ke peranti apa pun</string>
   <string name="foreground_notification_devices">Terhubung ke: %s</string>
-  <string name="foreground_notification_send_clipboard">Kirimkan Clipboard</string>
+  <string name="foreground_notification_send_clipboard">Kirim Papan Klip</string>
   <string name="pref_plugin_telephony">Penotifikasi ponsel</string>
   <string name="pref_plugin_telephony_desc">Kirim notifikasi untuk panggilan yang masuk</string>
   <string name="pref_plugin_battery">Laporan baterai</string>
@@ -16,22 +16,22 @@
   <string name="pref_plugin_clipboard">Sinkron papan klip</string>
   <string name="pref_plugin_clipboard_desc">Berbagi konten papan klip</string>
   <string name="pref_plugin_clipboard_sent">Papan Klip Terkirim</string>
-  <string name="pref_plugin_mousepad">Input jarak jauh</string>
-  <string name="pref_plugin_mousepad_desc">Gunakan ponsel atau tabletmu sebagai touchpad dan keyboard</string>
+  <string name="pref_plugin_mousepad">Masukan jarak jauh</string>
+  <string name="pref_plugin_mousepad_desc">Gunakan ponsel atau tablet Anda sebagai touchpad dan keyboard</string>
   <string name="pref_plugin_presenter">Remot salindia</string>
-  <string name="pref_plugin_presenter_desc">Gunakan perantimu untuk mengubah slide dalam sebuah presentasi</string>
+  <string name="pref_plugin_presenter_desc">Gunakan peranti Anda untuk mengubah slide dalam sebuah presentasi</string>
   <string name="pref_plugin_remotekeyboard">Terima penekanan tombol jarak jauh</string>
   <string name="pref_plugin_remotekeyboard_desc">Terima peristiwa penekanan tombol dari peranti jarak jauh</string>
   <string name="pref_plugin_mpris">Kendalikan multimedia</string>
-  <string name="pref_plugin_mpris_desc">Menyediakan sebuah kendali jarak jauh untuk pemutar mediamu</string>
+  <string name="pref_plugin_mpris_desc">Menyediakan sebuah kendali jarak jauh untuk pemutar media Anda</string>
   <string name="pref_plugin_runcommand">Jalankan Perintah</string>
-  <string name="pref_plugin_runcommand_desc">Pemicu perintah jarak jauh dari ponsel dan tablet-mu</string>
+  <string name="pref_plugin_runcommand_desc">Pemicu perintah jarak jauh dari ponsel dan tablet Anda</string>
   <string name="pref_plugin_contacts">Penyinkron Kontak</string>
   <string name="pref_plugin_contacts_desc">Izinkan menyinkronkan buku kontak pada peranti</string>
   <string name="pref_plugin_ping">Ping</string>
   <string name="pref_plugin_ping_desc">Kirim dan terima ping</string>
   <string name="pref_plugin_notifications">Sinkron notifikasi</string>
-  <string name="pref_plugin_notifications_desc">Akses notifikasimu dari peranti lain</string>
+  <string name="pref_plugin_notifications_desc">Akses notifikasi Anda dari peranti lain</string>
   <string name="pref_plugin_receive_notifications">Terima notifikasi</string>
   <string name="pref_plugin_receive_notifications_desc">Terima notifikasi dari peranti lain dan menampilkannya pada Android</string>
   <string name="pref_plugin_sharereceiver">Kirim dan terima</string>
@@ -49,8 +49,8 @@
   <string name="remotekeyboard_editing_only_title">Menangani tombol jarak jauh hanya ketika mengedit</string>
   <string name="remotekeyboard_not_connected">Tidak ada koneksi keyboard jarak jauh yang aktif, buat satu dalam kdeconnect</string>
   <string name="remotekeyboard_connected">Koneksi keyboard jarak jauh telah aktif</string>
-  <string name="remotekeyboard_multiple_connections">Ada lebih dari satu koneksi keyboard jarak jauh, pilihlah peranti untuk mengkonfigurasi</string>
-  <string name="open_mousepad">Input jarak jauh</string>
+  <string name="remotekeyboard_multiple_connections">Ada lebih dari satu koneksi keyboard jarak jauh, pilih peranti untuk diatur</string>
+  <string name="open_mousepad">Masukan jarak jauh</string>
   <string name="mousepad_info">Pindah jari pada layar untuk memindah kursor mouse. Ketuk untuk klik, dan gunakan dua/tiga jari untuk tombol kanan dan tengah. Gunakan 2 jari untuk menggulir. Gunakan tekan lama untuk seret dan taruh.</string>
   <string name="mousepad_single_tap_settings_title">Set aksi ketuk satu jari</string>
   <string name="mousepad_double_tap_settings_title">Set aksi ketuk dua jari</string>
@@ -99,7 +99,7 @@
   <string name="battery_status_low_format">Baterai: %d%% Baterai Lemah</string>
   <string name="battery_status_charging_format">Baterai %d%% mengisi</string>
   <string name="battery_status_unknown">Informasi baterai tidak tersedia</string>
-  <string name="category_connected_devices">Perangkat terkoneksi</string>
+  <string name="category_connected_devices">Perangkat terhubung</string>
   <string name="category_not_paired_devices">Perangkat tersedia</string>
   <string name="category_remembered_devices">Perangkat teringat</string>
   <string name="device_menu_plugins">Pengesetan plugin</string>
@@ -114,7 +114,7 @@
   <string name="error_canceled_by_other_peer">Dibatalkan oleh kawan lain</string>
   <string name="encryption_info_title">Info Enkripsi</string>
   <string name="encryption_info_msg_no_ssl">Perangkat lain tidaklah menggunakan KDE Connect yang berversi saat ini, menggunakan metode enkripsi kuno.</string>
-  <string name="my_device_fingerprint">Sidik jari SHA256 pada sertifikat perantimu adalah:</string>
+  <string name="my_device_fingerprint">Sidik jari SHA256 pada sertifikat peranti adalah:</string>
   <string name="remote_device_fingerprint">Sidik jari SHA256 pada sertifikat peranti jarak jauh adalah:</string>
   <string name="pair_requested">Meminta sanding</string>
   <string name="pairing_request_from">Minta penyandingan dari %1s</string>
@@ -157,13 +157,13 @@
   <string name="mpris_play">Putarkan</string>
   <string name="mpris_pause">Jeda</string>
   <string name="mpris_previous">Sebelumnya</string>
-  <string name="mpris_rew">Mundur-cepat</string>
+  <string name="mpris_rew">Mundur</string>
   <string name="mpris_ff">Maju-capat</string>
   <string name="mpris_next">Selanjutnya</string>
   <string name="mpris_loop">Ulangi</string>
   <string name="mpris_shuffle">Acak</string>
   <string name="mpris_volume">Volume</string>
-  <string name="mpris_time_settings_title">Tombol mundur-cepat/maju-cepat</string>
+  <string name="mpris_time_settings_title">Tombol mundur/maju</string>
   <string name="mpris_time_settings_summary">Sesuaikan waktu untuk mempercepat mundur/maju ketika ditekan</string>
   <string-array name="mpris_time_entries">
     <item>10 detik</item>
@@ -173,7 +173,7 @@
     <item>2 menit</item>
   </string-array>
   <string name="mpris_notification_settings_title">Tampilkan notifikasi kendali media</string>
-  <string name="mpris_notification_settings_summary">Memungkinkan pengendalian pemutar media-mu tanpa membuka KDE Connect</string>
+  <string name="mpris_notification_settings_summary">Memungkinkan pengendalian pemutar media Anda tanpa membuka KDE Connect</string>
   <string name="share_to">Berbagi Ke...</string>
   <string name="protocol_version_newer">Perangkat ini menggunakan sebuah versi protokol baru</string>
   <string name="plugin_settings_with_name">Pengesetan %s</string>
@@ -188,7 +188,7 @@
   <string name="share_notification_preference">Notifikasi bising</string>
   <string name="share_notification_preference_summary">Getar dan putarkan suara ketika menerima sebuah file</string>
   <string name="share_destination_customize">Menyesuaikan tujuan direktori</string>
-  <string name="share_destination_customize_summary_disabled">File yang diterima akan muncul di Unduhan</string>
+  <string name="share_destination_customize_summary_disabled">Berkas yang diterima akan muncul di Unduhan</string>
   <string name="share_destination_customize_summary_enabled">File akan disimpan di dalam direktori di bawah ini</string>
   <string name="share_destination_folder_preference">Direktori tujuan</string>
   <string name="share">Bagikan</string>
@@ -223,21 +223,21 @@
   <string name="no_players_connected">Tidak ada pemutar yang ditemukan</string>
   <string name="send_files">Kirim file</string>
   <string name="pairing_title">Peranti KDE Connect</string>
-  <string name="pairing_description">Perangkat lain yang menjalankan KDE Connect dalam jaringanmu yang sama seharusnya muncul di sini.</string>
+  <string name="pairing_description">Perangkat lain yang menjalankan KDE Connect dalam jaringan Anda yang sama seharusnya muncul di sini.</string>
   <string name="device_rename_title">Ubah nama peranti</string>
   <string name="device_rename_confirm">Ubah Nama</string>
   <string name="refresh">Segarkan</string>
-  <string name="unreachable_description">Perangkat yang disandingkan ini tidak dapat dicapai. Pastikan ia terkoneksi ke jaringanmu yang sama.</string>
-  <string name="no_wifi">Kamu belum terkoneksi ke jaringan Wi-Fi, sehingga Anda tidak bisa melihat peranti apapun. Klik di sini untuk memfungsikan Wi-Fi.</string>
+  <string name="unreachable_description">Perangkat yang disandingkan ini tidak dapat dicapai. Pastikan itu terhubung ke jaringan Anda yang sama.</string>
+  <string name="no_wifi">Anda belum terhubung ke jaringan Wi-Fi, sehingga Anda tidak bisa melihat peranti apa pun. Klik di sini untuk mengaktifkan Wi-Fi.</string>
   <string name="on_non_trusted_message">Bukan pada jaringan yang dipercaya: autodiscovery telah dinonfungsikan.</string>
   <string name="no_file_browser">Tidak adanya penelusur file yang terinstal.</string>
   <string name="pref_plugin_telepathy">Kirim SMS</string>
-  <string name="pref_plugin_telepathy_desc">Kirim teks perpesanan dari desktopmu</string>
+  <string name="pref_plugin_telepathy_desc">Kirim teks perpesanan dari desktop Anda</string>
   <string name="pref_plugin_telepathy_mms">Kirim MMS</string>
   <string name="pref_plugin_telepathy_mms_desc">Supaya dapat mengirim MMS dari KDE Connect, Anda perlu mengaturnya sebagai aplikasi SMS default.</string>
-  <string name="findmyphone_title">Temukan ponselku</string>
-  <string name="findmyphone_title_tablet">Temukan tabletku</string>
-  <string name="findmyphone_title_tv">Temukan TV-ku</string>
+  <string name="findmyphone_title">Temukan ponsel saya</string>
+  <string name="findmyphone_title_tablet">Temukan tablet saya</string>
+  <string name="findmyphone_title_tv">Temukan TV saya</string>
   <string name="findmyphone_description">Deringkan peranti ini sehingga Anda dapat menemukannya</string>
   <string name="findmyphone_found">Ketemu</string>
   <string name="open">Buka</string>
@@ -248,9 +248,9 @@
   <string name="plugins_need_optional_permission">Beberapa plugin yang memiliki fitur dinonfungsikan karena kurangnya perizinan (ketuk untuk info selebihnya):</string>
   <string name="share_optional_permission_explanation">Untuk menerima file yang dibagikan Anda perlu memilih sebuah direktori tujuan</string>
   <string name="telepathy_permission_explanation">Untuk membaca dan menulis SMS dari desktop, Anda harus memberikan perizinan untuk SMS</string>
-  <string name="telephony_permission_explanation">Untuk melihat panggilan ponsel pada desktop kamu harus memberikan perizinan untuk log panggilan ponsel dan keadaan ponsel</string>
-  <string name="telephony_optional_permission_explanation">Untuk melihat nama kontak alih-alih nomor ponsel, kamu harus memberikan akses ke kontak ponsel</string>
-  <string name="contacts_permission_explanation">Untuk membagikan buku kontak dengan desktopmu, kamu harus memberikan perizinan kontak</string>
+  <string name="telephony_permission_explanation">Untuk melihat panggilan ponsel pada desktop Anda harus memberikan perizinan untuk catatan panggilan ponsel dan keadaan ponsel</string>
+  <string name="telephony_optional_permission_explanation">Untuk melihat nama kontak daripada nomor ponsel, Anda harus memberikan akses ke kontak ponsel</string>
+  <string name="contacts_permission_explanation">Untuk membagikan buku kontak dengan desktop, Anda harus memberikan perizinan kontak</string>
   <string name="select_ringtone">Pilih sebuah ringtone</string>
   <string name="telephony_pref_blocked_title">Nomor yang diblokir</string>
   <string name="telephony_pref_blocked_dialog_desc">Jangan tampilkan panggilan dan SMS dari nomor tersebut. Silakan tentukan satu nomor tiap baris</string>
@@ -259,13 +259,13 @@
   <string name="settings_icon_description">Ikon pengaturan</string>
   <string name="presenter_fullscreen">Layar penuh</string>
   <string name="presenter_exit">Keluarkan presentasi</string>
-  <string name="presenter_lock_tip">Kamu bisa mengunci perantimu dan gunakanlah tombol volume untuk menuju ke slide sebelumnya/selanjutnya</string>
+  <string name="presenter_lock_tip">Anda dapat mengunci peranti Anda dan gunakanlah tombol volume untuk menuju ke salindia sebelumnya/selanjutnya</string>
   <string name="add_command">Tambahkan sebuah perintah</string>
   <string name="addcommand_explanation">Tidak ada perintah yang diregister</string>
-  <string name="addcommand_explanation2">"Kamu bisa menambahkan perintah baru dalam System Settings KDE Connect "</string>
-  <string name="add_command_description">Kamu bisa menambahkan perintah pada desktop</string>
+  <string name="addcommand_explanation2">Anda dapat menambahkan perintah baru dalam System Settings KDE Connect</string>
+  <string name="add_command_description">Anda dapat menambahkan perintah pada desktop</string>
   <string name="pref_plugin_mprisreceiver">Kendali Pemutar Media</string>
-  <string name="pref_plugin_mprisreceiver_desc">Kendalikan pemutar media ponselmu dari peranti lainnya</string>
+  <string name="pref_plugin_mprisreceiver_desc">Kendalikan pemutar media ponsel Anda dari peranti lainnya</string>
   <string name="notification_channel_default">Notifikasi lainnya</string>
   <string name="notification_channel_media_control">Kontrol multimedia</string>
   <string name="notification_channel_filetransfer">Transfer file</string>
@@ -278,8 +278,8 @@
   <string name="runcommand_notpaired">Peranti tidak tersanding</string>
   <string name="runcommand_nosuchdevice">Di sini tidak ada peranti seperti itu</string>
   <string name="runcommand_noruncommandplugin">Perangkat ini tidak memiliki Plugin Run Command yang difungsikan</string>
-  <string name="pref_plugin_findremotedevice">Temukan peranti remot</string>
-  <string name="pref_plugin_findremotedevice_desc">Deringkan peranti remotmu</string>
+  <string name="pref_plugin_findremotedevice">Temukan peranti jarak jauh</string>
+  <string name="pref_plugin_findremotedevice_desc">Deringkan peranti jarak jauh Anda</string>
   <string name="ring">Deringkan</string>
   <string name="pref_plugin_systemvolume">System volume</string>
   <string name="pref_plugin_systemvolume_desc">Kendalikan volume sistem pada peranti remot</string>
@@ -289,30 +289,30 @@
   <string name="settings_rename">Nama perangkat</string>
   <string name="settings_dark_mode">Tema gelap</string>
   <string name="settings_more_settings_title">Pengaturan selebihnya</string>
-  <string name="settings_more_settings_text">Tiap pengaturan peranti bisa ditemukan dibawah \'pengaturan Plugin\' dari setiap sebuah peranti.</string>
+  <string name="settings_more_settings_text">Tiap pengaturan peranti bisa ditemukan di bawah \'Pengaturan plugin\' dari setiap sebuah peranti.</string>
   <string name="setting_persistent_notification">Tampilkan notifikasi kukuh</string>
   <string name="setting_persistent_notification_oreo">Notifikasi kukuh</string>
   <string name="setting_persistent_notification_description">Ketuk untuk memfungsikan/menonfungsikan dalam pengaturan Notifikasi</string>
   <string name="extra_options">Opsi ekstra</string>
   <string name="privacy_options">Opsi privasi</string>
-  <string name="set_privacy_options">Atur opsi privasimu</string>
+  <string name="set_privacy_options">Atur opsi privasi Anda</string>
   <string name="block_contents">Blokir konten-konten notifikasi</string>
   <string name="block_images">Blokir citra-citra dalam notifikasi</string>
   <string name="notification_channel_receivenotification">Notifikasi dari peranti lainnya</string>
   <string name="take_picture">Luncurkan kamera</string>
-  <string name="plugin_photo_desc">Luncurkan sebuah aplikasi kamera agar memudahkan pe</string>
-  <string name="no_app_for_opening">Tidak menemukan aplikasi yang pantas untuk membuka file ini</string>
+  <string name="plugin_photo_desc">Luncurkan aplikasi kamera untuk memudahkan mengambil dan mentransfer foto</string>
+  <string name="no_app_for_opening">Tidak menemukan aplikasi yang dapat membuka berkas ini</string>
   <string name="remote_keyboard_service">Keyboard Remote KDE Connect</string>
   <string name="presenter_pointer">Penunjuk</string>
   <string name="trusted_networks">Jaringan terpercaya</string>
   <string name="trusted_networks_desc">Membatasi autodiscovery untuk mengetahui jaringan</string>
   <string name="add_trusted_network">Tambahkan %1s</string>
-  <string name="empty_trusted_networks_list_text">Kamu belum memiliki jaringan terpercaya apa pun yang ditambahkan</string>
-  <string name="allow_all_networks_text">Bolehkan semua</string>
+  <string name="empty_trusted_networks_list_text">Anda belum memiliki jaringan terpercaya apa pun yang ditambahkan</string>
+  <string name="allow_all_networks_text">Perbolehkan semua</string>
   <string name="location_permission_needed_title">Diperlukan perizinan</string>
-  <string name="location_permission_needed_desc">Android memerlukan perizinan Lokasi untuk mengidentifikasi jaringan WiFi kamu</string>
-  <string name="clipboard_android_x_incompat">Android 10 telah menghapus akses clipboard ke semua aplikasi. Plugin ini akan dinonfungsikan.</string>
-  <string name="mpris_open_url">Lanjut memutar di sini</string>
+  <string name="location_permission_needed_desc">Android memerlukan perizinan Lokasi untuk mengidentifikasi jaringan WiFi Anda</string>
+  <string name="clipboard_android_x_incompat">Android 10 telah menghapus akses papan klip ke semua aplikasi. Plugin ini akan dinonaktifkan.</string>
+  <string name="mpris_open_url">Lanjut putar di sini</string>
   <string name="cant_open_url">Tidak bisa membuka URL untuk melanjutkan pemutaran</string>
   <string name="bigscreen_home">Rumah</string>
   <string name="bigscreen_up">Naik</string>
@@ -322,12 +322,12 @@
   <string name="bigscreen_down">Turun</string>
   <string name="bigscreen_mic">Mic</string>
   <string name="pref_plugin_bigscreen">Remot bigscreen</string>
-  <string name="pref_plugin_bigscreen_desc">Gunakan perantimu sebagai remot untuk Plasma Bigsreen</string>
-  <string name="bigscreen_optional_permission_explanation">Untuk membagikan input mikrofon dari ponselmu kamu perlu memberikan akses terhadap input audio si ponsel</string>
+  <string name="pref_plugin_bigscreen_desc">Gunakan peranti Anda sebagai remot untuk Plasma Bigscreen</string>
+  <string name="bigscreen_optional_permission_explanation">Untuk membagikan masukan mikrofon dari ponsel Anda perlu memberikan akses terhadap masukan audio ponsel</string>
   <string name="bigscreen_speech_extra_prompt">Lisankan</string>
   <string name="message_reply_label">BALAS</string>
   <string name="mark_as_read_label">TANDAI SEBAGAI DIBACA</string>
-  <string name="user_display_name">KAMU</string>
+  <string name="user_display_name">Anda</string>
   <string name="set_default_sms_app_title">Kirim MMS</string>
   <string name="set_group_message_as_mms_title">Kirim MMS grup</string>
   <string name="set_long_text_as_mms_title">Kirim pesan teks panjang sebagai MMS</string>
@@ -350,7 +350,7 @@
     <item>Terang</item>
     <item>Gelap</item>
   </string-array>
-  <string name="report_bug">Laporkan Bug</string>
+  <string name="report_bug">Laporkan Kutu</string>
   <string name="donate">Donasi</string>
   <string name="source_code">Kode Sumber</string>
   <string name="licenses">Lisensi</string>
@@ -372,22 +372,22 @@
   <string name="clear_compose">Hapus</string>
   <string name="send_compose">Kirim</string>
   <string name="open_compose_send">Komposisikan teks</string>
-  <string name="app_description">Aplikasi multi-platform yang memungkinkan perantimu untuk berkomunikasi (mis., ponselmu dan komputermu)</string>
-  <string name="about_kde_about">&lt;h1&gt;Tentang&lt;/h1&gt; &lt;p&gt;KDE adalah komunitas seluruh dunia dari insinyur, seniman, penulis, penerjemah dan pemfasilitas perangkat lunak yang mana berkomitmen untuk developmen &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Free Software&lt;/a&gt;. KDE memproduksi lingkungan desktop Plasma, ratusan aplikasi, dan banyak pustaka perangkat lunak yang mendukungnya.&lt;/p&gt; &lt;p&gt;KDE adalah perusahaan koperasi: di mana tiada entitas satu pun yang mengendalikan arah atau usaha. Alih-alih, kami kerja bersama-sama untuk mencapai tujuan umum pembangunan dalam dunia Free Software yang baik. Siapa pun disambut untuk &lt;a href=https://community.kde.org/Get_Involved&gt;bergabung dan berkontribusi&lt;/a&gt; untuk KDE, termasuk kamu.&lt;/p&gt; Kunjungi &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; untuk informasi tentang komunitas KDE dan perangkat lunak yang kami produksi.</string>
-  <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Laporkan Bug atau Saran&lt;/h1&gt; &lt;p&gt;Perangkat lunak selalu dapat ditingkatkan, dan Tim KDE siap untuk melakukannya. Tapi, Anda - sebagai pengguna - harus memberitahu kami jika sesuatu tidak berjalan sebagaimana mestinya atau seharusnya dapat berjalan dengan lebih baik.&lt;/p&gt; &lt;p&gt;KDE memiliki sistem pelacakan bug. Kunjungi &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; atau gunakan dialog \"Laporkan Bug\" dari layar tentang untuk melaporkan bug.&lt;/p&gt; Jika Anda memiliki saran untuk peningkatan maka anda dipersilakan untuk menggunakan sistem pelacakan bug untuk memasukkan permintaan Anda. Pastikan anda menggunakan tingkat kegawatan yang bernama \"Senarai Permintaan\".</string>
-  <string name="about_kde_join_kde">&lt;h1&gt;Bergabunglah dengan KDE&lt;/ h1&gt; &lt;p&gt; Kamu tidak harus menjadi pengembang perangkat lunak untuk menjadi anggota tim KDE. Kamu bisa bergabung dengan tim nasional yang menerjemahkan antarmuka program. Kamu bisa memberikan grafik, tema, suara, dan dokumentasi yang ditingkatkan. Kamu putuskan!&lt;/p&gt; &lt;p&gt;Kunjungi&lt;a href=https://community.kde.org/Get_involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; untuk informasi tentang beberapa proyek di mana kamu bisa berpartisipasi.&lt;/p&gt; Jika kamu memerlukan informasi atau dokumentasi lebih lanjut, maka kunjungilah &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; yang akan memberimu apa yang kamu butuhkan.</string>
-  <string name="about_kde_support_kde">&lt;h1&gt;Dukung KDE&lt;/h1&gt; &lt;p&gt;Perangkat lunak KDE adalah dan akan selalu tersedia secara gratis, namun membuatnya tidak gratis.&lt;/p&gt; &lt;p&gt;Untuk mendukung pengembangan Komunitas KDE telah membentuk KDE e.V., sebuah organisasi nirlaba yang didirikan secara legal di Jerman. KDE e.V. mewakili komunitas KDE dalam masalah hukum dan keuangan. Lihat &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; untuk informasi tentang KDE e.V.&lt;/p&gt; &lt;p&gt;KDE mendapat manfaat dari berbagai macam kontribusi, termasuk keuangan. Kami menggunakan dana untuk mengganti anggota dan lainnya untuk pengeluaran yang mereka anggap ketika berkontribusi. Dana lebih lanjut digunakan untuk dukungan hukum dan pengorganisasian konferensi dan rapat.&lt;/p&gt; &lt;p&gt;Kami ingin mendorong kamu untuk mendukung upaya kami dengan sumbangan keuangan, menggunakan salah satu cara yang dijelaskan di &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Terima kasih banyak sebelumnya atas dukunganmu.</string>
+  <string name="app_description">Aplikasi multi-platform yang memungkinkan peranti Anda untuk berkomunikasi (mis., ponsel dan komputer Anda)</string>
+  <string name="about_kde_about">&lt;h1&gt;Tentang&lt;/h1&gt; &lt;p&gt;KDE adalah komunitas seluruh dunia dari insinyur, seniman, penulis, penerjemah dan pemfasilitas perangkat lunak yang berkomitmen untuk pengembangan &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Perangkat Lunak Bebas&lt;/a&gt;. KDE memproduksi lingkungan desktop Plasma, ratusan aplikasi, dan banyak pustaka perangkat lunak yang mendukungnya.&lt;/p&gt; &lt;p&gt;KDE adalah perusahaan koperasi: di mana tiada entitas satu pun yang mengendalikan arah atau usaha. Kami bekerja bersama-sama untuk mencapai tujuan umum pembangunan dalam dunia Perangkat Lunak Bebas yang baik. Siapa pun disambut untuk &lt;a href=https://community.kde.org/Get_Involved&gt;bergabung dan berkontribusi&lt;/a&gt; untuk KDE, termasuk Anda.&lt;/p&gt; Kunjungi &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; untuk informasi tentang komunitas KDE dan perangkat lunak yang kami buat.</string>
+  <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Laporkan Kutu atau Saran&lt;/h1&gt; &lt;p&gt;Perangkat lunak selalu dapat ditingkatkan, dan Tim KDE siap untuk melakukannya. Tapi, Anda - sebagai pengguna - harus memberitahu kami jika sesuatu tidak berjalan sebagaimana mestinya atau seharusnya dapat berjalan dengan lebih baik.&lt;/p&gt; &lt;p&gt;KDE memiliki sistem pelacakan kutu. Kunjungi &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; atau gunakan dialog \"Laporkan Kutu\" dari layar tentang untuk melaporkan kutu.&lt;/p&gt; Jika Anda memiliki saran untuk peningkatan maka Anda dipersilakan untuk menggunakan sistem pelacakan kutu untuk memasukkan permintaan Anda. Pastikan Anda menggunakan tingkat kegawatan yang bernama \"Senarai Permintaan\".</string>
+  <string name="about_kde_join_kde">&lt;h1&gt;Bergabung dengan KDE&lt;/ h1&gt; &lt;p&gt; Anda tidak harus menjadi pengembang perangkat lunak untuk menjadi anggota tim KDE. Anda dapat bergabung dengan tim nasional yang menerjemahkan antarmuka program. Anda dapat memberikan grafik, tema, suara, dan dokumentasi yang ditingkatkan. Anda putuskan!&lt;/p&gt; &lt;p&gt;Kunjungi&lt;a href=https://community.kde.org/Get_involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; untuk informasi tentang beberapa proyek di mana Anda dapat berpartisipasi.&lt;/p&gt; Jika Anda memerlukan informasi atau dokumentasi lebih lanjut, maka kunjungi &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; yang akan memberi Anda apa yang Anda butuhkan.</string>
+  <string name="about_kde_support_kde">&lt;h1&gt;Dukung KDE&lt;/h1&gt; &lt;p&gt;Perangkat lunak KDE adalah dan akan selalu tersedia secara gratis, namun membuatnya tidak gratis.&lt;/p&gt; &lt;p&gt;Untuk mendukung pengembangan Komunitas KDE telah membentuk KDE e.V., sebuah organisasi nirlaba yang didirikan secara legal di Jerman. KDE e.V. mewakili komunitas KDE dalam masalah hukum dan keuangan. Lihat &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; untuk informasi tentang KDE e.V.&lt;/p&gt; &lt;p&gt;KDE mendapat manfaat dari berbagai macam kontribusi, termasuk keuangan. Kami menggunakan dana untuk mengganti anggota dan lainnya untuk pengeluaran yang mereka anggap ketika berkontribusi. Dana lebih lanjut digunakan untuk dukungan hukum dan pengorganisasian konferensi dan rapat.&lt;/p&gt; &lt;p&gt;Kami ingin mendorong Anda untuk mendukung upaya kami dengan sumbangan keuangan, menggunakan salah satu cara yang dijelaskan di &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Terima kasih banyak sebelumnya atas dukungan Anda.</string>
   <string name="maintainer_and_developer">Perawat dan pengembang</string>
   <string name="developer">Pengembang</string>
   <string name="apple_support">Dukungan macOS. Bekerja pada dukungan iOS</string>
-  <string name="bug_fixes_and_general_improvements">Perbaikan bug dan peningkatan umum</string>
-  <string name="samoilenko_yuri_task">Implementasi SFTP, perbaikan bug dan peningkatan pada umumnya</string>
+  <string name="bug_fixes_and_general_improvements">Perbaikan kutu dan peningkatan umum</string>
+  <string name="samoilenko_yuri_task">Implementasi SFTP, perbaikan kutu dan peningkatan pada umumnya</string>
   <string name="aniket_kumar_task">Peningkatan plugin SMS</string>
   <string name="alex_fiestas_task">Peningkatan plugin kontak</string>
   <string name="maxim_leshchenko_task">Peningkatan UI dan halaman tentang ini</string>
   <string name="holger_kaelberer_task">Plugin keyboard jarak jauh dan perbaikan kutu</string>
-  <string name="saikrishna_arcot_task">Dukungan untuk penggunaan keyboard di dalam plugin input jarak jauh, perbaikan bug dan peningkatan pada umumnya</string>
+  <string name="saikrishna_arcot_task">Dukungan untuk penggunaan keyboard di dalam plugin masukan jarak jauh, perbaikan kutu dan peningkatan pada umumnya</string>
   <string name="everyone_else">Semua orang yang telah berkontribusi pada KDE Connect selama bertahun-tahun</string>
-  <string name="send_clipboard">Kirimkan papan klip</string>
+  <string name="send_clipboard">Kirim papan klip</string>
   <string name="tap_to_execute">Ketuk untuk menjalankan</string>
 </resources>
