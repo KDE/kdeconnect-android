@@ -334,7 +334,7 @@ public class BackgroundService extends Service {
             intent.putExtra(MainActivity.EXTRA_DEVICE_ID, connectedDeviceIds.get(0));
         }
 
-        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
 
         NotificationCompat.Builder notification;
         if (connectedDevices.isEmpty()) {
@@ -365,7 +365,7 @@ public class BackgroundService extends Service {
             if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P &&
                     ContextCompat.checkSelfPermission(this, Manifest.permission.READ_LOGS) == PackageManager.PERMISSION_DENIED) {
                 Intent sendClipboard = ClipboardFloatingActivity.getIntent(this, true);
-                PendingIntent sendPendingClipboard = PendingIntent.getActivity(this, 3, sendClipboard, PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent sendPendingClipboard = PendingIntent.getActivity(this, 3, sendClipboard, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
                 notification.addAction(0, getString(R.string.foreground_notification_send_clipboard), sendPendingClipboard);
             }
 
@@ -374,7 +374,7 @@ public class BackgroundService extends Service {
                 // Setting up Send File Intent.
                 Intent sendFile = new Intent(this, SendFileActivity.class);
                 sendFile.putExtra("deviceId", connectedDeviceIds.get(0));
-                PendingIntent sendPendingFile = PendingIntent.getActivity(this, 1, sendFile, PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent sendPendingFile = PendingIntent.getActivity(this, 1, sendFile, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
                 notification.addAction(0, getString(R.string.send_files), sendPendingFile);
 
                 // Checking if there are registered commands and adding the button.
@@ -383,7 +383,7 @@ public class BackgroundService extends Service {
                 if (plugin != null && !plugin.getCommandList().isEmpty()) {
                     Intent runCommand = new Intent(this, RunCommandActivity.class);
                     runCommand.putExtra("deviceId", connectedDeviceIds.get(0));
-                    PendingIntent runPendingCommand = PendingIntent.getActivity(this, 2, runCommand, PendingIntent.FLAG_UPDATE_CURRENT);
+                    PendingIntent runPendingCommand = PendingIntent.getActivity(this, 2, runCommand, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
                     notification.addAction(0, getString(R.string.pref_plugin_runcommand), runPendingCommand);
                 }
             }

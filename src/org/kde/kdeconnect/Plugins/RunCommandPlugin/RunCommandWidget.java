@@ -96,7 +96,7 @@ public class RunCommandWidget extends AppWidgetProvider {
 
             intent = new Intent(context, RunCommandWidget.class);
             intent.setAction(SET_CURRENT_DEVICE);
-            pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
             views.setOnClickPendingIntent(R.id.runcommandWidgetTitleHeader, pendingIntent);
 
             if (getCurrentDevice() == null || !getCurrentDevice().isReachable()) {
@@ -117,7 +117,7 @@ public class RunCommandWidget extends AppWidgetProvider {
                 views.setRemoteAdapter(R.id.run_commands_list, intent);
 
                 intent = new Intent(context, RunCommandWidget.class);
-                pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
                 views.setPendingIntentTemplate(R.id.run_commands_list, pendingIntent);
 
                 AppWidgetManager.getInstance(context).updateAppWidget(appWidgetId, views);

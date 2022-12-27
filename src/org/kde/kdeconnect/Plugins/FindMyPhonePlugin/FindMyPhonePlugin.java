@@ -132,7 +132,7 @@ public class FindMyPhonePlugin extends Plugin {
         intent.setAction(FindMyPhoneReceiver.ACTION_FOUND_IT);
         intent.putExtra(FindMyPhoneReceiver.EXTRA_DEVICE_ID, device.getDeviceId());
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
 
         createNotification(pendingIntent);
     }
@@ -141,7 +141,7 @@ public class FindMyPhonePlugin extends Plugin {
         Intent intent = new Intent(context, FindMyPhoneActivity.class);
         intent.putExtra(FindMyPhoneActivity.EXTRA_DEVICE_ID, device.getDeviceId());
 
-        PendingIntent pi = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pi = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
         createNotification(pi);
     }
 

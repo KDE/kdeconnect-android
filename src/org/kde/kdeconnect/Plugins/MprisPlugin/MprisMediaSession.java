@@ -335,7 +335,7 @@ public class MprisMediaSession implements
             iPlay.setAction(MprisMediaNotificationReceiver.ACTION_PLAY);
             iPlay.putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDevice);
             iPlay.putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, notificationPlayer.getPlayer());
-            PendingIntent piPlay = PendingIntent.getBroadcast(service, 0, iPlay, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent piPlay = PendingIntent.getBroadcast(service, 0, iPlay, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
             NotificationCompat.Action.Builder aPlay = new NotificationCompat.Action.Builder(
                     R.drawable.ic_play_white, service.getString(R.string.mpris_play), piPlay);
 
@@ -343,7 +343,7 @@ public class MprisMediaSession implements
             iPause.setAction(MprisMediaNotificationReceiver.ACTION_PAUSE);
             iPause.putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDevice);
             iPause.putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, notificationPlayer.getPlayer());
-            PendingIntent piPause = PendingIntent.getBroadcast(service, 0, iPause, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent piPause = PendingIntent.getBroadcast(service, 0, iPause, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
             NotificationCompat.Action.Builder aPause = new NotificationCompat.Action.Builder(
                     R.drawable.ic_pause_white, service.getString(R.string.mpris_pause), piPause);
 
@@ -351,7 +351,7 @@ public class MprisMediaSession implements
             iPrevious.setAction(MprisMediaNotificationReceiver.ACTION_PREVIOUS);
             iPrevious.putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDevice);
             iPrevious.putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, notificationPlayer.getPlayer());
-            PendingIntent piPrevious = PendingIntent.getBroadcast(service, 0, iPrevious, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent piPrevious = PendingIntent.getBroadcast(service, 0, iPrevious, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
             NotificationCompat.Action.Builder aPrevious = new NotificationCompat.Action.Builder(
                     R.drawable.ic_previous_white, service.getString(R.string.mpris_previous), piPrevious);
 
@@ -359,7 +359,7 @@ public class MprisMediaSession implements
             iNext.setAction(MprisMediaNotificationReceiver.ACTION_NEXT);
             iNext.putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDevice);
             iNext.putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, notificationPlayer.getPlayer());
-            PendingIntent piNext = PendingIntent.getBroadcast(service, 0, iNext, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent piNext = PendingIntent.getBroadcast(service, 0, iNext, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
             NotificationCompat.Action.Builder aNext = new NotificationCompat.Action.Builder(
                     R.drawable.ic_next_white, service.getString(R.string.mpris_next), piNext);
 
@@ -374,7 +374,7 @@ public class MprisMediaSession implements
              */
             PendingIntent piOpenActivity = TaskStackBuilder.create(context)
                     .addNextIntentWithParentStack(iOpenActivity)
-                    .getPendingIntent(Build.VERSION.SDK_INT > 15 ? 0 : (int) System.currentTimeMillis(), PendingIntent.FLAG_UPDATE_CURRENT);
+                    .getPendingIntent(Build.VERSION.SDK_INT > 15 ? 0 : (int) System.currentTimeMillis(), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
 
             NotificationCompat.Builder notification = new NotificationCompat.Builder(context, NotificationHelper.Channels.MEDIA_CONTROL);
 
@@ -412,7 +412,7 @@ public class MprisMediaSession implements
                 iCloseNotification.setAction(MprisMediaNotificationReceiver.ACTION_CLOSE_NOTIFICATION);
                 iCloseNotification.putExtra(MprisMediaNotificationReceiver.EXTRA_DEVICE_ID, notificationDevice);
                 iCloseNotification.putExtra(MprisMediaNotificationReceiver.EXTRA_MPRIS_PLAYER, notificationPlayer.getPlayer());
-                PendingIntent piCloseNotification = PendingIntent.getBroadcast(service, 0, iCloseNotification, PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent piCloseNotification = PendingIntent.getBroadcast(service, 0, iCloseNotification, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
                 notification.setDeleteIntent(piCloseNotification);
             }
 

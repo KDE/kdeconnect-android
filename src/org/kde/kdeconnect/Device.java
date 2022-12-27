@@ -375,7 +375,7 @@ public class Device implements BaseLink.PacketReceiver {
         Intent intent = new Intent(getContext(), MainActivity.class);
         intent.putExtra(MainActivity.EXTRA_DEVICE_ID, getDeviceId());
         intent.putExtra(MainActivity.PAIR_REQUEST_STATUS, MainActivity.PAIRING_PENDING);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 1, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(), 1, intent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_MUTABLE);
 
         Intent acceptIntent = new Intent(getContext(), MainActivity.class);
         Intent rejectIntent = new Intent(getContext(), MainActivity.class);
@@ -388,8 +388,8 @@ public class Device implements BaseLink.PacketReceiver {
         //rejectIntent.putExtra("notificationId", notificationId);
         rejectIntent.putExtra(MainActivity.PAIR_REQUEST_STATUS, MainActivity.PAIRING_REJECTED);
 
-        PendingIntent acceptedPendingIntent = PendingIntent.getActivity(getContext(), 2, acceptIntent, PendingIntent.FLAG_ONE_SHOT);
-        PendingIntent rejectedPendingIntent = PendingIntent.getActivity(getContext(), 4, rejectIntent, PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent acceptedPendingIntent = PendingIntent.getActivity(getContext(), 2, acceptIntent, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_MUTABLE);
+        PendingIntent rejectedPendingIntent = PendingIntent.getActivity(getContext(), 4, rejectIntent, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_MUTABLE);
 
         Resources res = getContext().getResources();
 

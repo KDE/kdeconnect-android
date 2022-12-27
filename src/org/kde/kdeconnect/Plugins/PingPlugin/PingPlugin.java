@@ -52,7 +52,7 @@ public class PingPlugin extends Plugin {
                 context,
                 0,
                 new Intent(context, MainActivity.class),
-                PendingIntent.FLAG_UPDATE_CURRENT
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE
         );
 
         int id;

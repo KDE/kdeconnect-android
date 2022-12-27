@@ -83,6 +83,7 @@
         <service
             android:name="org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin.RemoteKeyboardService"
             android:label="@string/remote_keyboard_service"
+            android:exported="false"
             android:permission="android.permission.BIND_INPUT_METHOD">
             <intent-filter>
                 <action android:name="android.view.InputMethod" />
@@ -96,6 +97,7 @@
         <activity
             android:name="org.kde.kdeconnect.UserInterface.MainActivity"
             android:label="KDE Connect"
+            android:exported="true"
             android:theme="@style/KdeConnectTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -106,6 +108,7 @@
         <activity
             android:name="org.kde.kdeconnect.UserInterface.PluginSettingsActivity"
             android:label="@string/device_menu_plugins"
+            android:exported="false"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -114,6 +117,7 @@
         <activity
             android:name="org.kde.kdeconnect.UserInterface.CustomDevicesActivity"
             android:label="@string/custom_devices_settings"
+            android:exported="false"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -122,13 +126,15 @@
         <activity
             android:name="org.kde.kdeconnect.Plugins.SharePlugin.SendFileActivity"
             android:label="KDE Connect"
+            android:exported="true"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
         </activity>
 
-        <receiver android:name="org.kde.kdeconnect.KdeConnectBroadcastReceiver">
+        <receiver android:name="org.kde.kdeconnect.KdeConnectBroadcastReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REPLACED" />
 
@@ -158,7 +164,8 @@
             android:label="@string/findmyphone_title"
             android:launchMode="singleInstance" />
 
-        <receiver android:name="org.kde.kdeconnect.Plugins.FindMyPhonePlugin.FindMyPhoneReceiver">
+        <receiver android:name="org.kde.kdeconnect.Plugins.FindMyPhonePlugin.FindMyPhoneReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="org.kde.kdeconnect.Plugins.FindMyPhonePlugin.foundIt" />
             </intent-filter>
@@ -182,7 +189,8 @@
                 android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
         </activity>
 
-        <receiver android:name="org.kde.kdeconnect.Plugins.MprisPlugin.MprisMediaNotificationReceiver">
+        <receiver android:name="org.kde.kdeconnect.Plugins.MprisPlugin.MprisMediaNotificationReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
@@ -191,6 +199,7 @@
         <activity
             android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandActivity"
             android:label="@string/pref_plugin_runcommand"
+            android:exported="false"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -212,7 +221,8 @@
 
         <receiver
             android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandWidget"
-            android:label="@string/pref_plugin_runcommand">
+            android:label="@string/pref_plugin_runcommand"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -225,7 +235,8 @@
                 android:resource="@xml/remotecommandplugin_widget" />
         </receiver>
 
-        <activity android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandUrlActivity">
+        <activity android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandUrlActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
@@ -242,6 +253,7 @@
             android:name="org.kde.kdeconnect.Plugins.BigscreenPlugin.BigscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/pref_plugin_bigscreen"
+            android:exported="true"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity"
             android:windowSoftInputMode="stateHidden|adjustResize">
             <meta-data
@@ -251,6 +263,7 @@
         <activity
             android:name="org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadActivity"
             android:label="@string/pref_plugin_mousepad"
+            android:exported="false"
             android:launchMode="singleTop"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
             <meta-data
@@ -260,6 +273,7 @@
         <activity
             android:name="org.kde.kdeconnect.Plugins.MousePadPlugin.ComposeSendActivity"
             android:label="Compose send"
+            android:exported="false"
             android:parentActivityName="org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -268,6 +282,7 @@
         <activity
             android:name="org.kde.kdeconnect.Plugins.MousePadPlugin.SendKeystrokesToHostActivity"
             android:label="@string/pref_plugin_mousepad_send_keystrokes"
+            android:exported="false"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -283,6 +298,7 @@
             android:name="org.kde.kdeconnect.Plugins.PresenterPlugin.PresenterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/pref_plugin_presenter"
+            android:exported="false"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity"
             android:windowSoftInputMode="stateHidden|adjustResize">
             <meta-data
@@ -291,6 +307,7 @@
         </activity>
         <activity
             android:name="org.kde.kdeconnect.Plugins.SharePlugin.ShareActivity"
+            android:exported="true"
             android:label="@string/manifest_label_share">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
@@ -312,7 +329,8 @@
                 android:value="org.kde.kdeconnect.Plugins.SharePlugin.ShareChooserTargetService" />
         </activity>
 
-        <receiver android:name="org.kde.kdeconnect.Plugins.SharePlugin.ShareBroadcastReceiver">
+        <receiver android:name="org.kde.kdeconnect.Plugins.SharePlugin.ShareBroadcastReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="org.kde.kdeconnect.Plugins.SharePlugin.CancelShare" />
             </intent-filter>
@@ -330,6 +348,7 @@
 
         <service
             android:name="org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationReceiver"
+            android:exported="true"
             android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
             <intent-filter>
                 <action android:name="android.service.notification.NotificationListenerService" />
@@ -337,6 +356,7 @@
         </service>
         <service
             android:name="org.kde.kdeconnect.Plugins.SharePlugin.ShareChooserTargetService"
+            android:exported="true"
             android:permission="android.permission.BIND_CHOOSER_TARGET_SERVICE">
             <intent-filter>
                 <action android:name="android.service.chooser.ChooserTargetService" />
@@ -344,6 +364,7 @@
         </service>
         <service
             android:name="org.kde.kdeconnect.Plugins.MouseReceiverPlugin.MouseReceiverService"
+            android:exported="true"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
@@ -403,6 +424,7 @@
         <service
             android:name="org.kde.kdeconnect.Plugins.ClibpoardPlugin.ClipboardTileService"
             android:icon="@drawable/ic_baseline_content_paste_24"
+            android:exported="true"
             android:label="@string/send_clipboard"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
@@ -410,7 +432,9 @@
             </intent-filter>
         </service>
 
-        <service android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandControlsProviderService" android:label="@string/kde_connect"
+        <service android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandControlsProviderService"
+            android:label="@string/kde_connect"
+            android:exported="true"
             android:permission="android.permission.BIND_CONTROLS">
             <intent-filter>
                 <action android:name="android.service.controls.ControlsProviderService" />
