@@ -20,7 +20,7 @@ import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.StartActivityAlertDialogFragment;
 import org.kde.kdeconnect_tp.R;
 
-@PluginFactory.LoadablePlugin
+//@PluginFactory.LoadablePlugin
 @RequiresApi(api = Build.VERSION_CODES.N)
 public class MouseReceiverPlugin extends Plugin {
     private final static String PACKET_TYPE_MOUSEPAD_REQUEST = "kdeconnect.mousepad.request";
