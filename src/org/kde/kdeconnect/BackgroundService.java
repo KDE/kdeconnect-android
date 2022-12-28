@@ -161,6 +161,9 @@ public class BackgroundService extends Service {
     }
 
     public Device getDevice(String id) {
+        if (id == null) {
+            return null;
+        }
         return devices.get(id);
     }
 
@@ -370,21 +373,24 @@ public class BackgroundService extends Service {
             }
 
             if (connectedDeviceIds.size() == 1) {
-                // Adding two action buttons only when there is a single device connected.
-                // Setting up Send File Intent.
-                Intent sendFile = new Intent(this, SendFileActivity.class);
-                sendFile.putExtra("deviceId", connectedDeviceIds.get(0));
-                PendingIntent sendPendingFile = PendingIntent.getActivity(this, 1, sendFile, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
-                notification.addAction(0, getString(R.string.send_files), sendPendingFile);
+                String deviceId = connectedDeviceIds.get(0);
+                Device device = getDevice(deviceId);
+                if (device != null) {
+                    // Adding two action buttons only when there is a single device connected.
+                    // Setting up Send File Intent.
+                    Intent sendFile = new Intent(this, SendFileActivity.class);
+                    sendFile.putExtra("deviceId", deviceId);
+                    PendingIntent sendPendingFile = PendingIntent.getActivity(this, 1, sendFile, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
+                    notification.addAction(0, getString(R.string.send_files), sendPendingFile);
 
-                // Checking if there are registered commands and adding the button.
-                Device device = getDevice(connectedDeviceIds.get(0));
-                RunCommandPlugin plugin = (RunCommandPlugin) device.getPlugin("RunCommandPlugin");
-                if (plugin != null && !plugin.getCommandList().isEmpty()) {
-                    Intent runCommand = new Intent(this, RunCommandActivity.class);
-                    runCommand.putExtra("deviceId", connectedDeviceIds.get(0));
-                    PendingIntent runPendingCommand = PendingIntent.getActivity(this, 2, runCommand, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
-                    notification.addAction(0, getString(R.string.pref_plugin_runcommand), runPendingCommand);
+                    // Checking if there are registered commands and adding the button.
+                    RunCommandPlugin plugin = (RunCommandPlugin) device.getPlugin("RunCommandPlugin");
+                    if (plugin != null && !plugin.getCommandList().isEmpty()) {
+                        Intent runCommand = new Intent(this, RunCommandActivity.class);
+                        runCommand.putExtra("deviceId", connectedDeviceIds.get(0));
+                        PendingIntent runPendingCommand = PendingIntent.getActivity(this, 2, runCommand, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
+                        notification.addAction(0, getString(R.string.pref_plugin_runcommand), runPendingCommand);
+                    }
                 }
             }
         }
