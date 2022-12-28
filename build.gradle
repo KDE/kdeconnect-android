@@ -168,7 +168,7 @@ dependencies {
 
     implementation 'com.klinkerapps:android-smsmms:5.2.6' //For SMS and MMS purposes
 
-    implementation 'commons-io:commons-io:2.11.0'
+    implementation 'commons-io:commons-io:2.8.0' // newer versions don't work on Android 7: https://stackoverflow.com/questions/73604534/no-static-method-threadlocal-withinitial-commons-io-dependency
     implementation 'org.apache.commons:commons-collections4:4.4'
     implementation 'org.apache.commons:commons-lang3:3.11'
 
