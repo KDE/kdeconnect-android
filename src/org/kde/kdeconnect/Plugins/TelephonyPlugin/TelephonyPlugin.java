@@ -6,6 +6,7 @@
 
 package org.kde.kdeconnect.Plugins.TelephonyPlugin;
 
+import android.app.Activity;
 import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -26,6 +27,7 @@ import org.kde.kdeconnect.Helpers.ContactsHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
+import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.Map;
@@ -317,5 +319,10 @@ public class TelephonyPlugin extends Plugin {
     @Override
     public boolean hasSettings() {
         return true;
+    }
+
+    @Override
+    public PluginSettingsFragment getSettingsFragment(Activity activity) {
+        return PluginSettingsFragment.newInstance(getPluginKey(), R.xml.telephonyplugin_preferences);
     }
 }

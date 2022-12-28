@@ -263,7 +263,7 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
 
     @Override
     public PluginSettingsFragment getSettingsFragment(Activity activity) {
-        return SftpSettingsFragment.newInstance(getPluginKey());
+        return SftpSettingsFragment.newInstance(getPluginKey(), R.xml.sftpplugin_preferences);
     }
 
     @Override

@@ -8,6 +8,7 @@
 
 package org.kde.kdeconnect.Plugins.SMSPlugin;
 
+import android.app.Activity;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
@@ -36,6 +37,7 @@ import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin;
+import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.BuildConfig;
 import org.kde.kdeconnect_tp.R;
 
@@ -555,6 +557,11 @@ public class SMSPlugin extends Plugin {
     @Override
     public boolean hasSettings() {
         return true;
+    }
+
+    @Override
+    public PluginSettingsFragment getSettingsFragment(Activity activity) {
+        return PluginSettingsFragment.newInstance(getPluginKey(), R.xml.smsplugin_preferences);
     }
 
     @Override

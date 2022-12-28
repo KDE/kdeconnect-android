@@ -13,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
+import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 
 import androidx.core.content.ContextCompat;
@@ -52,6 +53,11 @@ public class MousePadPlugin extends Plugin {
     @Override
     public boolean hasSettings() {
         return true;
+    }
+
+    @Override
+    public PluginSettingsFragment getSettingsFragment(Activity activity) {
+        return PluginSettingsFragment.newInstance(getPluginKey(), R.xml.mousepadplugin_preferences);
     }
 
     @Override

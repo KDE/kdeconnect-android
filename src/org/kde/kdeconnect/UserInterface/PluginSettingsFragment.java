@@ -18,28 +18,33 @@ import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
+import android.util.Log;
 
 import java.util.Locale;
 
 public class PluginSettingsFragment extends PreferenceFragmentCompat {
     private static final String ARG_PLUGIN_KEY = "plugin_key";
+    private static final String ARG_LAYOUT = "layout";
 
     private String pluginKey;
+    private int layout;
     protected Device device;
     protected Plugin plugin;
 
-    public static PluginSettingsFragment newInstance(@NonNull String pluginKey) {
+    public static PluginSettingsFragment newInstance(@NonNull String pluginKey, int settingsLayout) {
         PluginSettingsFragment fragment = new PluginSettingsFragment();
-        fragment.setArguments(pluginKey);
+        fragment.setArguments(pluginKey, settingsLayout);
 
         return fragment;
     }
 
     public PluginSettingsFragment() {}
 
-    protected Bundle setArguments(@NonNull String pluginKey) {
+    protected Bundle setArguments(@NonNull String pluginKey, int settingsLayout) {
         Bundle args = new Bundle();
         args.putString(ARG_PLUGIN_KEY, pluginKey);
+        args.putInt(ARG_LAYOUT, settingsLayout);
+
 
         setArguments(args);
 
@@ -52,7 +57,8 @@ public class PluginSettingsFragment extends PreferenceFragmentCompat {
             throw new RuntimeException("You must provide a pluginKey by calling setArguments(@NonNull String pluginKey)");
         }
 
-        pluginKey = getArguments().getString(ARG_PLUGIN_KEY);
+        this.pluginKey = getArguments().getString(ARG_PLUGIN_KEY);
+        this.layout = getArguments().getInt(ARG_LAYOUT);
         this.device = getDeviceOrThrow(getDeviceId());
         this.plugin = device.getPlugin(pluginKey);
 
@@ -67,9 +73,7 @@ public class PluginSettingsFragment extends PreferenceFragmentCompat {
             prefsManager.setSharedPreferencesMode(Context.MODE_PRIVATE);
         }
 
-        int resFile = getResources().getIdentifier(pluginKey.toLowerCase(Locale.ENGLISH) + "_preferences", "xml",
-                requireContext().getPackageName());
-        addPreferencesFromResource(resFile);
+        addPreferencesFromResource(layout);
     }
 
     @Override

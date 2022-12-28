@@ -211,6 +211,6 @@ public class FindMyPhonePlugin extends Plugin {
 
     @Override
     public PluginSettingsFragment getSettingsFragment(Activity activity) {
-        return FindMyPhoneSettingsFragment.newInstance(getPluginKey());
+        return FindMyPhoneSettingsFragment.newInstance(getPluginKey(), R.xml.findmyphoneplugin_preferences);
     }
 }

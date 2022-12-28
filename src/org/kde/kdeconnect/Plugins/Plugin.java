@@ -166,7 +166,8 @@ public abstract class Plugin {
      * @return The PluginSettingsFragment used to display this plugins settings
      */
     public PluginSettingsFragment getSettingsFragment(Activity activity) {
-        return PluginSettingsFragment.newInstance(getPluginKey());
+        throw new RuntimeException("Plugin doesn't reimplement getSettingsFragment: " + getPluginKey());
+
     }
 
     /**

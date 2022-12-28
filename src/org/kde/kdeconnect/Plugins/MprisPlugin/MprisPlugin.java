@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
+import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.R;
 
 import java.net.MalformedURLException;
@@ -252,6 +253,11 @@ public class MprisPlugin extends Plugin {
     @Override
     public boolean hasSettings() {
         return true;
+    }
+
+    @Override
+    public PluginSettingsFragment getSettingsFragment(Activity activity) {
+        return PluginSettingsFragment.newInstance(getPluginKey(), R.xml.mprisplugin_preferences);
     }
 
     @Override

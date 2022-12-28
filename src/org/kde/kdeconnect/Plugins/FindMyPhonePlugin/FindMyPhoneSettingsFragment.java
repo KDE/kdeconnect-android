@@ -28,9 +28,9 @@ public class FindMyPhoneSettingsFragment extends PluginSettingsFragment {
     private SharedPreferences sharedPreferences;
     private Preference ringtonePreference;
 
-    public static FindMyPhoneSettingsFragment newInstance(@NonNull String pluginKey) {
+    public static FindMyPhoneSettingsFragment newInstance(@NonNull String pluginKey, int layout) {
         FindMyPhoneSettingsFragment fragment = new FindMyPhoneSettingsFragment();
-        fragment.setArguments(pluginKey);
+        fragment.setArguments(pluginKey, layout);
 
         return fragment;
     }
