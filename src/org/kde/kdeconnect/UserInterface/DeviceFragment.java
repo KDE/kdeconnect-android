@@ -269,16 +269,17 @@ public class DeviceFragment extends Fragment {
     }
 
     private void refreshUI() {
-        if (device == null || binding == null) {
-            return;
+        if (device != null) {
+            //Once in-app, there is no point in keep displaying the notification if any
+            device.hidePairingNotification();
         }
-
-        //Once in-app, there is no point in keep displaying the notification if any
-        device.hidePairingNotification();
 
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
+                if (device == null || binding == null) {
+                    return;
+                }
                 if (device.isPairRequestedByPeer()) {
                     binding.pairMessage.setText(R.string.pair_requested);
                     binding.pairVerification.setVisibility(View.VISIBLE);
