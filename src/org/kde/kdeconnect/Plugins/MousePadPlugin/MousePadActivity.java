@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -171,13 +172,6 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_mousepad, menu);
-
-        BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> {
-            if (!plugin.isKeyboardEnabled()) {
-                menu.removeItem(R.id.menu_show_keyboard);
-            }
-        });
-
         return true;
     }
 
@@ -191,12 +185,24 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
             sendMiddleClick();
             return true;
         } else if (id == R.id.menu_show_keyboard) {
-            showKeyboard();
+            BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> {
+                if (plugin.isKeyboardEnabled()) {
+                    showKeyboard();
+                } else {
+                    Toast toast = Toast.makeText(this, R.string.mousepad_keyboard_input_not_supported, Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            });
             return true;
         } else if (id == R.id.menu_open_compose_send) {
-            Intent intent = new Intent(this, ComposeSendActivity.class);
-            intent.putExtra("org.kde.kdeconnect.Plugins.MousePadPlugin.deviceId", deviceId);
-            startActivity(intent);
+            BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> {
+                if (plugin.isKeyboardEnabled()) {
+                    showCompose();
+                } else {
+                    Toast toast = Toast.makeText(this, R.string.mousepad_keyboard_input_not_supported, Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            });
             return true;
         } else {
             return super.onOptionsItemSelected(item);
@@ -395,6 +401,12 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         InputMethodManager imm = ContextCompat.getSystemService(this, InputMethodManager.class);
         keyListenerView.requestFocus();
         imm.toggleSoftInputFromWindow(keyListenerView.getWindowToken(), 0, 0);
+    }
+
+    private void showCompose() {
+        Intent intent = new Intent(this, ComposeSendActivity.class);
+        intent.putExtra("org.kde.kdeconnect.Plugins.MousePadPlugin.deviceId", deviceId);
+        startActivity(intent);
     }
 
     @Override
