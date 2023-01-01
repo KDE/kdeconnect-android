@@ -52,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">Існує декілька з’єднань із віддаленою клавіатурою. Виберіть пристрій для налаштовування.</string>
   <string name="open_mousepad">Дистанційне введення</string>
   <string name="mousepad_info">Проведіть по екрану пальцем, щоб пересунути вказівник миші. Дотик одним пальцем означатиме клацання, дотиком двома або трьома пальцями можна імітувати праву і середню кнопки. Гортання відбувається за допомогою двох пальців. Для перетягування зі скиданням скористайтеся тривалим натисканням.</string>
+  <string name="mousepad_keyboard_input_not_supported">Підтримки введення з клавіатури на пов\'язаному пристрої не передбачено</string>
   <string name="mousepad_single_tap_settings_title">Встановлення дії для торкання одним пальцем</string>
   <string name="mousepad_double_tap_settings_title">Встановлення дії для торкання двома пальцями</string>
   <string name="mousepad_triple_tap_settings_title">Встановлення дії для торкання трьома пальцями</string>

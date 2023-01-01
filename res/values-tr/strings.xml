@@ -52,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">Birden çok uzak klavye bağlantısı mevcut, yapılandırmak istediğiniz aygıtı seçin</string>
   <string name="open_mousepad">Girdi sil</string>
   <string name="mousepad_info">İmleç denetimi için parmağınızı ekranda hareket ettirin. Bir tıklama için hafifçe vurun, sağ ve orta düğmeler için iki/üç parmağınızı kullanın. Sarmak için 2 parmağınızı kullanın. Bırakıp sürüklemek için uzun basın.</string>
+  <string name="mousepad_keyboard_input_not_supported">Klavye girişi, eşlenen aygıt tarafından desteklenmiyor</string>
   <string name="mousepad_single_tap_settings_title">Tek parmak dokunma eylemini ayarla</string>
   <string name="mousepad_double_tap_settings_title">İki parmak dokunma eylemini ayarla</string>
   <string name="mousepad_triple_tap_settings_title">Üç parmak dokunma eylemini ayarla</string>

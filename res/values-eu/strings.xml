@@ -52,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">Urruneko teklatuekin konexio bat baino gehiago dago, hautatu konfiguratu beharreko gailua</string>
   <string name="open_mousepad">Urruneko sarrera</string>
   <string name="mousepad_info">Mugitu hatz bat pantailan zehar saguaren erakuslea mugitzeko. Egin tak klik baterako, eta erabili bi/hiru hatz eskuin eta erdiko botoietarako. Erabili 2 hatz labaintzeko. Erabili sakatze luze bat arrastatu eta jaregiteko.</string>
+  <string name="mousepad_keyboard_input_not_supported">Parekatutako gailuak ez du teklatuko sarreraren euskarririk</string>
   <string name="mousepad_single_tap_settings_title">Ezarri hatz bakarrarekin tak egitearen ekintza</string>
   <string name="mousepad_double_tap_settings_title">Ezarri bi hatzez tak egitearen ekintza</string>
   <string name="mousepad_triple_tap_settings_title">Ezarri hiru hatzez tak egitearen ekintza</string>
