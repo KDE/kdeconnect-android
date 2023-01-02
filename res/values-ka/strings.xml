@@ -56,15 +56,19 @@
     <item>უსწრაფესი</item>
   </string-array>
   <string-array name="mousepad_acceleration_profile_entries">
-    <item>No Acceleration</item>
-    <item>Weakest</item>
-    <item>Weaker</item>
+    <item>ამაჩქარებლის გარეშე</item>
+    <item>მინიმალური</item>
+    <item>საშუალოზე დაბალი</item>
     <item>საშუალო</item>
-    <item>Stronger</item>
-    <item>Strongest</item>
+    <item>ძლიერი</item>
+    <item>უძლიერესი</item>
   </string-array>
+  <string name="mouse_receiver_plugin_name">თაგუნას მიმღები</string>
   <string name="view_status_title">მდგომარეობა</string>
   <string name="battery_status_format">ელემენტი: %d%%</string>
+  <string name="battery_status_low_format">ელემენტი: %d%% ელემენტი დასატენია</string>
+  <string name="battery_status_charging_format">ელემენტი: %d%% იტენება</string>
+  <string name="battery_status_unknown">ელემენტის ინფორმაცია ხელმიუწვდომელია</string>
   <string name="category_connected_devices">მიერთებული მოწყობილობები</string>
   <string name="category_not_paired_devices">ხელმისაწვდომი მოწყობილობები</string>
   <string name="category_remembered_devices">დამახსოვრებული მოწყობილობები</string>
@@ -89,11 +93,14 @@
     <item quantity="other">(ფაილი %2$d of %3$d) : %1$s</item>
   </plurals>
   <string name="tap_to_open">გასახსნელად დაატყაპუნეთ</string>
+  <string name="received_file_text">\'%1s\'-ის გასახსნელად დაატყაპუნეთ</string>
+  <string name="cannot_create_file">ფაილის (%s) შექმნის შეცდომა</string>
   <string name="tap_to_answer">საპასუხოდ დაატყაპუნეთ</string>
   <string name="right_click">მარჯვენა წკაპის გაგზავნა</string>
   <string name="middle_click">შუა წკაპის გაგზავნა</string>
   <string name="show_keyboard">კლავიატურის ჩვენება</string>
   <string name="device_not_paired">მოწყობილოვა დაწყვილებული არაა</string>
+  <string name="request_pairing">დაწყვილების მოთხოვნა</string>
   <string name="pairing_accept">დასტური</string>
   <string name="pairing_reject">უარყოფა</string>
   <string name="settings">პარამეტრები</string>
@@ -105,6 +112,7 @@
   <string name="mpris_loop">მარყუჟი</string>
   <string name="mpris_shuffle">შემთხვევით</string>
   <string name="mpris_volume">ტომი</string>
+  <string name="mpris_time_settings_title">წინ/გადახვევის ღილაკები</string>
   <string-array name="mpris_time_entries">
     <item>10 წამი</item>
     <item>20 წამი</item>
@@ -124,6 +132,7 @@
   <string name="share_received_file">\"%s\"-ის გაზიარება</string>
   <string name="sftp_sdcard_num">SD ბარათი %d</string>
   <string name="sftp_sdcard">SD ბარათი</string>
+  <string name="sftp_readonly">(მხოლოდ კითხვადი)</string>
   <string name="sftp_camera">კამერის სურათები</string>
   <string name="add_device_dialog_title">მოწყობილობის დამატება</string>
   <string name="add_device_hint">ჰოსტის სახელი ან IP მისამართი</string>
@@ -133,11 +142,17 @@
   <string name="sftp_preference_add_storage_location_title">საცავის მდებარეობის დამატება</string>
   <string name="sftp_preference_edit_storage_location">საცავის მდებარეობის ჩასწორება</string>
   <string name="sftp_preference_add_camera_shortcut">კამერის საქაღალდის მალსახმობის დამატება</string>
+  <string name="sftp_preference_add_camera_shortcut_summary_off">კამერის საქაღალდეს მალსახმობი არ დაემატება</string>
   <string name="sftp_storage_preference_storage_location">საცავის მდებარეობა</string>
+  <string name="sftp_storage_preference_storage_location_already_configured">ეს მდებარეობა უკვე მორგებულია</string>
   <string name="sftp_storage_preference_click_to_select">მოსანიშნად დააწკაპუნეთ</string>
   <string name="sftp_storage_preference_display_name">ნაჩვენები სახელი</string>
+  <string name="sftp_storage_preference_display_name_already_used">საჩვენებელი სახელი უკვე გამოიყენება</string>
+  <string name="sftp_storage_preference_display_name_cannot_be_empty">საჩვენებელი სახელი ცარიელი არ შეიძლება იყოს</string>
   <string name="sftp_action_mode_menu_delete">წაშლა</string>
   <string name="sftp_no_sdcard_detected">SD ბარათი ვერ ვიპოვე</string>
+  <string name="sftp_no_storage_locations_configured">საცავის მდებარეობები მითითებული არაა</string>
+  <string name="no_players_connected">დამკვრელები ნაპოვნი არაა</string>
   <string name="send_files">ფაილების გაგზავნა</string>
   <string name="pairing_title">KDE Connect -ის მოწყობილობები</string>
   <string name="device_rename_title">მოწყობილობის სახელის გადარქმევა</string>
