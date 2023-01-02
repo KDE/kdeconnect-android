@@ -170,7 +170,7 @@ dependencies {
 
     implementation 'commons-io:commons-io:2.8.0' // newer versions don't work on Android 7: https://stackoverflow.com/questions/73604534/no-static-method-threadlocal-withinitial-commons-io-dependency
     implementation 'org.apache.commons:commons-collections4:4.4'
-    implementation 'org.apache.commons:commons-lang3:3.11'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
@@ -182,8 +182,8 @@ dependencies {
     testImplementation 'org.powermock:powermock-core:2.0.0'
     testImplementation 'org.powermock:powermock-module-junit4:2.0.0'
     testImplementation 'org.powermock:powermock-api-mockito2:2.0.0'
-    testImplementation 'org.mockito:mockito-core:2.23.0'
-    testImplementation 'org.skyscreamer:jsonassert:1.3.0'
+    testImplementation 'org.mockito:mockito-core:3.12.4' // powermock isn't compatible with mockito 4
+    testImplementation 'org.skyscreamer:jsonassert:1.5.1'
 
     // For device controls
     implementation 'org.reactivestreams:reactive-streams:1.0.4'
