@@ -165,6 +165,11 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
         actions.remove(id);
 
+        if (!appDatabase.isEnabled(statusBarNotification.getPackageName())) {
+            currentNotifications.remove(id);
+            return;
+        }
+
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_NOTIFICATION);
         np.set("id", id);
         np.set("isCancel", true);
