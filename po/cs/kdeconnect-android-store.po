@@ -3,7 +3,7 @@
 # This file is distributed under the same license as kdeconnect-android.
 # Albert Vaca Cintora <albertvaka@gmail.com>, 2014.
 # Vít Pelčák <vit@pelcak.org>, 2014.
-# Vit Pelcak <vpelcak@suse.cz>, 2021.
+# Vit Pelcak <vit@pelcak.org>, 2021.
 #
 msgid ""
 msgstr ""
