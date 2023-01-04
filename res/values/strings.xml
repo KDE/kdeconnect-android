@@ -348,8 +348,7 @@
     <string name="pref_plugin_mprisreceiver_desc">Control your phone\'s media players from another device</string>
 
     <string name="notification_channel_default">Other notifications</string>
-    <string name="notification_channel_persistent_no_devices">Persistent indicator (no devices)</string>
-    <string name="notification_channel_persistent_with_devices">Persistent indicator (with devices)</string>
+    <string name="notification_channel_persistent">Persistent indicator</string>
     <string name="notification_channel_media_control">Media control</string>
     <string name="notification_channel_filetransfer">File transfer</string>
     <string name="notification_channel_high_priority">High priority</string>

@@ -18,8 +18,7 @@ import java.util.List;
 public class NotificationHelper {
 
     public static class Channels {
-        public final static String PERSISTENT_NO_DEVICES = "persistent_no_devices";
-        public final static String PERSISTENT_WITH_DEVICES = "persistent_with_devices";
+        public final static String PERSISTENT = "persistent";
         public final static String DEFAULT = "default";
         public final static String MEDIA_CONTROL = "media_control";
         public final static String FILETRANSFER = "filetransfer";
@@ -47,13 +46,9 @@ public class NotificationHelper {
     }
 
     public static void initializeChannels(Context context) {
-        final NotificationChannelCompat persistentChannelNoDevices = new NotificationChannelCompat
-                .Builder(Channels.PERSISTENT_NO_DEVICES, NotificationManagerCompat.IMPORTANCE_MIN)
-                .setName(context.getString(R.string.notification_channel_persistent_no_devices))
-                .build();
-        final NotificationChannelCompat persistentChannelWithDevices = new NotificationChannelCompat
-                .Builder(Channels.PERSISTENT_WITH_DEVICES, NotificationManagerCompat.IMPORTANCE_MIN)
-                .setName(context.getString(R.string.notification_channel_persistent_with_devices))
+        final NotificationChannelCompat persistentChannel = new NotificationChannelCompat
+                .Builder(Channels.PERSISTENT, NotificationManagerCompat.IMPORTANCE_MIN)
+                .setName(context.getString(R.string.notification_channel_persistent))
                 .build();
         final NotificationChannelCompat defaultChannel = new NotificationChannelCompat
                 .Builder(Channels.DEFAULT, NotificationManagerCompat.IMPORTANCE_DEFAULT)
@@ -81,9 +76,9 @@ public class NotificationHelper {
                 .setName(context.getString(R.string.notification_channel_high_priority))
                 .build();
 
-        final List<NotificationChannelCompat> channels = Arrays.asList(persistentChannelNoDevices,
-                persistentChannelWithDevices, defaultChannel, mediaChannel, fileTransferChannel,
-                receiveNotificationChannel, smsMmsChannel, highPriorityChannel);
+        final List<NotificationChannelCompat> channels = Arrays.asList(persistentChannel,
+                defaultChannel, mediaChannel, fileTransferChannel, receiveNotificationChannel,
+                smsMmsChannel, highPriorityChannel);
         NotificationManagerCompat.from(context).createNotificationChannelsCompat(channels);
     }
 
