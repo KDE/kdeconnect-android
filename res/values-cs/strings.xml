@@ -52,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">Je k dispozici více než jedno připojení klávesnice. Vyberte zařízení pro jeho nastavení.</string>
   <string name="open_mousepad">Vzdálený vstup</string>
   <string name="mousepad_info">Pohybujte prstem po obrazovce pro pohybování kurzorem myši. Ťukněte pro kliknutí a použijte dva/tři prsty jako pravé a prostřední tlačítko. Použijte 2 prsty pro posunování. Pro přetažení dlouze podržte.</string>
+  <string name="mousepad_keyboard_input_not_supported">Vstup pomocí klávesnice není spárovaným zařízením podporován</string>
   <string name="mousepad_single_tap_settings_title">Nastavit činnost pro ťuknutí prstem</string>
   <string name="mousepad_double_tap_settings_title">Nastavit činnost pro ťuknutí dvěma prsty</string>
   <string name="mousepad_triple_tap_settings_title">Nastavit činnost pro ťuknutí třemi prsty</string>
@@ -291,6 +292,8 @@
   <string name="pref_plugin_mprisreceiver">Ovládání přehrávače médií</string>
   <string name="pref_plugin_mprisreceiver_desc">Ovládejte přehrávače médií na vašem telefonu z jiného zařízení</string>
   <string name="notification_channel_default">Ostatní oznámení</string>
+  <string name="notification_channel_persistent_no_devices">Stálý ukazatel (žádná zařízení)</string>
+  <string name="notification_channel_persistent_with_devices">Stálý ukazatel (se zařízeními)</string>
   <string name="notification_channel_media_control">Ovládání médií</string>
   <string name="notification_channel_filetransfer">Přenos souboru</string>
   <string name="notification_channel_high_priority">Vysoká priorita</string>
