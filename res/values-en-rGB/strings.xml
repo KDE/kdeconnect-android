@@ -321,7 +321,6 @@
   <string name="empty_trusted_networks_list_text">You have not added any trusted network yet</string>
   <string name="allow_all_networks_text">Allow all</string>
   <string name="location_permission_needed_title">Permission required</string>
-  <string name="location_permission_needed_desc">Android requires the Location permission to identify your WiFi network</string>
   <string name="clipboard_android_x_incompat">Android 10 has removed clipboard access to all apps. This plugin will be disabled.</string>
   <string name="mpris_open_url">Continue playing here</string>
   <string name="cant_open_url">Cannot open URL to continue playing</string>

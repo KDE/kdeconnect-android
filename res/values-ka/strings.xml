@@ -84,10 +84,6 @@
   <string name="error_canceled_by_other_peer">გაუქმებულია პარტნიორის მიერ</string>
   <string name="encryption_info_title">დაშიფვრის ინფორმაცია</string>
   <string name="pair_requested">დაწყვილების მოთხოვნა</string>
-  <plurals name="incoming_files_text">
-    <item quantity="one">ფაილი: %1s</item>
-    <item quantity="other">(ფაილი %2$d of %3$d) : %1$s</item>
-  </plurals>
   <plurals name="outgoing_files_text">
     <item quantity="one">ფაილი: %1$s</item>
     <item quantity="other">(ფაილი %2$d of %3$d) : %1$s</item>
@@ -123,10 +119,13 @@
   <string name="share_to">გაზიარება…</string>
   <string name="plugin_settings_with_name">%s-ის მორგება</string>
   <string name="invalid_device_name">მოწყობილობის არასწორი სახელი</string>
+  <string name="custom_devices_settings">მოწყობილობები სიის ხელით მითითება</string>
   <string name="custom_device_list">მოწყობილობების IP-ით დამატება</string>
   <string name="custom_device_deleted">ხელით მითითებული მოწყობილობა წაშლილია</string>
   <string name="custom_device_fab_hint">მოწყობილობის დამატება</string>
   <string name="undo">დაბრუნება</string>
+  <string name="share_notification_preference">ხმაურიანი შეტყობინებები</string>
+  <string name="share_destination_customize">სამიზნე საქაღალდის მორგება</string>
   <string name="share_destination_folder_preference">სამიზნე საქაღალდე</string>
   <string name="share">გაზიარება</string>
   <string name="share_received_file">\"%s\"-ის გაზიარება</string>
