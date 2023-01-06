@@ -292,8 +292,6 @@
   <string name="pref_plugin_mprisreceiver">Sterowanie odtwarzaczem</string>
   <string name="pref_plugin_mprisreceiver_desc">Steruje odtwarzaczami innego urządzenia z tego urządzenia</string>
   <string name="notification_channel_default">Inne powiadomienia</string>
-  <string name="notification_channel_persistent_no_devices">Nieznikające powiadomienie (bez urządzeń)</string>
-  <string name="notification_channel_persistent_with_devices">Nieznikające powiadomienie (z urządzeniami)</string>
   <string name="notification_channel_media_control">Sterowanie multimediami</string>
   <string name="notification_channel_filetransfer">Przesyłanie plików</string>
   <string name="notification_channel_high_priority">Wysoki priorytet</string>

@@ -84,6 +84,10 @@
   <string name="error_canceled_by_other_peer">გაუქმებულია პარტნიორის მიერ</string>
   <string name="encryption_info_title">დაშიფვრის ინფორმაცია</string>
   <string name="pair_requested">დაწყვილების მოთხოვნა</string>
+  <plurals name="incoming_files_text">
+    <item quantity="one">File: %1s</item>
+    <item quantity="other">(File %2$d of %3$d) : %1$s</item>
+  </plurals>
   <plurals name="outgoing_files_text">
     <item quantity="one">ფაილი: %1$s</item>
     <item quantity="other">(ფაილი %2$d of %3$d) : %1$s</item>
@@ -168,11 +172,16 @@
   <string name="close">დახურვა</string>
   <string name="select_ringtone">"ზარის  არჩევა"</string>
   <string name="telephony_pref_blocked_title">დაბლოკილი ნომრები</string>
+  <string name="mpris_coverart_description">მიმდინარე მედიის ყდა</string>
   <string name="device_icon_description">მოწყობილობის ხატულა</string>
   <string name="settings_icon_description">პარამეტრების ხატულა</string>
   <string name="presenter_fullscreen">მთელ ეკრანზე</string>
   <string name="presenter_exit">პრეზენტაციიდან გასვლა</string>
   <string name="add_command">ბრძანების დამატება</string>
+  <string name="addcommand_explanation">ბრძანება რეგისტრირებული არაა</string>
+  <string name="pref_plugin_mprisreceiver">მედია დამკვრელის კონტროლი</string>
+  <string name="notification_channel_default">სხვა გაფრთხილებები</string>
+  <string name="notification_channel_persistent">მუდმივი მაჩვენებელი</string>
   <string name="notification_channel_media_control">მედიის კონტროლი</string>
   <string name="notification_channel_filetransfer">ფაილის მიმოცვლა</string>
   <string name="notification_channel_high_priority">მაღალი პრიორიტეტი</string>
@@ -180,8 +189,10 @@
   <string name="mpris_stop">მიმდინარე დამკვრელის გაჩერება</string>
   <string name="copy_url_to_clipboard">URL-ის ბუფერში კოპირება</string>
   <string name="clipboard_toast">დაკოპირდა გაცვლის ბაფერში</string>
+  <string name="runcommand_notreachable">მოწყობილობა მიუწვდომელია</string>
   <string name="runcommand_notpaired">მოწყობილობა დაწყვილებული არაა</string>
   <string name="runcommand_nosuchdevice">მოწყობილობა არ არსებობს</string>
+  <string name="pref_plugin_findremotedevice">დაშორებული მოწყობილობის პოვნა</string>
   <string name="ring">ზარი</string>
   <string name="pref_plugin_systemvolume">სისტემის ხმა</string>
   <string name="mute">დადუმება</string>
@@ -193,6 +204,8 @@
   <string name="extra_options">დამატებითი პარამეტრები</string>
   <string name="privacy_options">კონფიდენციალობის პარამეტრები</string>
   <string name="set_privacy_options">თქვენი კონფიდენციალობის პარამეტრების დაყენება</string>
+  <string name="block_contents">გაფრთხილების შემცველობის დაბლოკვა</string>
+  <string name="block_images">გაფრთხილებებში გამოსახულებების დაბლოკვა</string>
   <string name="take_picture">კამერის გაშვება</string>
   <string name="presenter_pointer">კურსორი</string>
   <string name="trusted_networks">სანდო ქსელები</string>

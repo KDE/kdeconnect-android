@@ -276,8 +276,7 @@
   <string name="pref_plugin_mprisreceiver">ஊடக இயக்கி கட்டுப்பாடு</string>
   <string name="pref_plugin_mprisreceiver_desc">இன்னொரு சாதனத்திலிருந்து உங்கள் திறன்பேசியின் ஊடக இயக்கிகளை கட்டுப்படுத்துங்கள்</string>
   <string name="notification_channel_default">பிற அறிவிப்புகள்</string>
-  <string name="notification_channel_persistent_no_devices">விடாப்பிடியான அறிவிப்பு (சாதனங்கள் இல்லாதபோது)</string>
-  <string name="notification_channel_persistent_with_devices">விடாப்பிடியான அறிவிப்பு (சாதனங்கள் உள்ளபோது)</string>
+  <string name="notification_channel_persistent">விடாப்பிடி அறிவிப்பு</string>
   <string name="notification_channel_media_control">ஊடக கட்டுப்பாடு</string>
   <string name="notification_channel_filetransfer">கோப்பு இடமாற்றம்</string>
   <string name="notification_channel_high_priority">அதிக முன்னுரிமை</string>
@@ -321,6 +320,7 @@
   <string name="empty_trusted_networks_list_text">நீங்கள் இன்னும் எந்த நம்பகமான பிணையத்தையும் சேர்க்கவில்லை</string>
   <string name="allow_all_networks_text">அனைத்தையும் அனுமதி</string>
   <string name="location_permission_needed_title">அனுமதி தேவை</string>
+  <string name="location_permission_needed_desc">"கே.டீ.யீ. கனெக்ட் குவியத்தில் இல்லாத போதும் அருகலை பிணையங்களைக் கண்டறிய, பின்னணி இருப்பிட அனுமதி தேவை.  இவ்வனுமதியைக் கொண்டு உங்கள் இருப்பிடத்தைக் கண்டுபிடிக்கும் சாத்தியமுள்ளதால் இது இப்பெயரைக் கொண்டுள்ளது, ஆனால் கே.டீ.யீ. கனெக்ட் ஒருபோதும் உங்கள் இருப்பிடத்தைக் கண்டறிய முயற்சிக்காது."</string>
   <string name="clipboard_android_x_incompat">ஆண்ட்ராய்டு 10 எல்லா செயலிகளுக்கான பிடிப்புப்பலகை அனுமதியை நீக்கிவிட்டது. இந்த செருகுநிரல் இயங்காது.</string>
   <string name="mpris_open_url">இங்கிருந்து தொடர்ந்து இயக்கு</string>
   <string name="cant_open_url">தொடர்ந்து இயக்க முகவரியை திறக்க முடியவில்லை</string>

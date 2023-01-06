@@ -292,8 +292,7 @@
   <string name="pref_plugin_mprisreceiver">Керування відтворенням</string>
   <string name="pref_plugin_mprisreceiver_desc">Керування вашими програвачами на телефоні з іншого пристрою</string>
   <string name="notification_channel_default">Інші сповіщення</string>
-  <string name="notification_channel_persistent_no_devices">Постійний індикатор (немає пристроїв)</string>
-  <string name="notification_channel_persistent_with_devices">Постійний індикатор (з пристроями)</string>
+  <string name="notification_channel_persistent">Постійний індикатор</string>
   <string name="notification_channel_media_control">Керування відтворенням</string>
   <string name="notification_channel_filetransfer">Передавання файлів</string>
   <string name="notification_channel_high_priority">Високий пріоритет</string>

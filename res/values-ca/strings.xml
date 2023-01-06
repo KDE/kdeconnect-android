@@ -263,7 +263,7 @@
   <string name="select_ringtone">Seleccioneu un to de la trucada</string>
   <string name="telephony_pref_blocked_title">Nombres blocats</string>
   <string name="telephony_pref_blocked_dialog_desc">No es mostren ni les trucades ni els SMS d\'aquests números. Especifiqueu un número per línia</string>
-  <string name="mpris_coverart_description">Caràtula del suport actual</string>
+  <string name="mpris_coverart_description">Caràtula del fitxer multimèdia actual</string>
   <string name="device_icon_description">Icona del dispositiu</string>
   <string name="settings_icon_description">Icona d\'arranjament</string>
   <string name="presenter_fullscreen">Pantalla completa</string>
@@ -276,8 +276,7 @@
   <string name="pref_plugin_mprisreceiver">Control del reproductor multimèdia</string>
   <string name="pref_plugin_mprisreceiver_desc">Controla els reproductors multimèdia del telèfon des d\'un altre dispositiu</string>
   <string name="notification_channel_default">Altres notificacions</string>
-  <string name="notification_channel_persistent_no_devices">Indicador de persistència (sense dispositius)</string>
-  <string name="notification_channel_persistent_with_devices">Indicador de persistència (amb dispositius)</string>
+  <string name="notification_channel_persistent">Indicador de persistència</string>
   <string name="notification_channel_media_control">Control multimèdia</string>
   <string name="notification_channel_filetransfer">Transferència de fitxers</string>
   <string name="notification_channel_high_priority">Prioritat alta</string>

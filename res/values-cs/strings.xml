@@ -292,8 +292,6 @@
   <string name="pref_plugin_mprisreceiver">Ovládání přehrávače médií</string>
   <string name="pref_plugin_mprisreceiver_desc">Ovládejte přehrávače médií na vašem telefonu z jiného zařízení</string>
   <string name="notification_channel_default">Ostatní oznámení</string>
-  <string name="notification_channel_persistent_no_devices">Stálý ukazatel (žádná zařízení)</string>
-  <string name="notification_channel_persistent_with_devices">Stálý ukazatel (se zařízeními)</string>
   <string name="notification_channel_media_control">Ovládání médií</string>
   <string name="notification_channel_filetransfer">Přenos souboru</string>
   <string name="notification_channel_high_priority">Vysoká priorita</string>

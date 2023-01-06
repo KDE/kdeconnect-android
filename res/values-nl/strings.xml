@@ -276,8 +276,7 @@
   <string name="pref_plugin_mprisreceiver">Besturing van mediaspeler</string>
   <string name="pref_plugin_mprisreceiver_desc">Uw mediaspelers op uw telefoon besturen vanaf een andere apparaat</string>
   <string name="notification_channel_default">Overige meldingen</string>
-  <string name="notification_channel_persistent_no_devices">Blijvende indicator (geen apparaten)</string>
-  <string name="notification_channel_persistent_with_devices">Blijvende indicator (met apparaten)</string>
+  <string name="notification_channel_persistent">Blijvende indicator</string>
   <string name="notification_channel_media_control">Besturing van media</string>
   <string name="notification_channel_filetransfer">Bestandsoverdracht</string>
   <string name="notification_channel_high_priority">Hoge prioriteit</string>
