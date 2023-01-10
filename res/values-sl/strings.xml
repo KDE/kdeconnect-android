@@ -179,7 +179,7 @@
   <string name="pairing_accept">Sprejmi</string>
   <string name="pairing_reject">Zavrni</string>
   <string name="settings">Nastavitve</string>
-  <string name="mpris_play">Zaigraj</string>
+  <string name="mpris_play">Predvajaj</string>
   <string name="mpris_pause">Premor</string>
   <string name="mpris_previous">Prejšnji</string>
   <string name="mpris_rew">Previj</string>
@@ -245,7 +245,7 @@
   <string name="sftp_no_sdcard_detected">Ni naznane kartice SD</string>
   <string name="sftp_no_storage_locations_configured">Lokacije shranjevanja niso nastavljene</string>
   <string name="sftp_saf_permission_explanation">Za dostop do datotek na daljavo morate nastaviti lokacije za shranjevanje</string>
-  <string name="no_players_connected">Ni najdenih igralcev</string>
+  <string name="no_players_connected">Ni najdenih predvajalnikov</string>
   <string name="send_files">Pošlji datoteke</string>
   <string name="pairing_title">Naprave KDE Connect</string>
   <string name="pairing_description">Tu bi se morale prikazati druge naprave, ki poganjajo KDE Connect v istem omrežju.</string>
@@ -338,7 +338,7 @@
   <string name="location_permission_needed_title">Zahtevano dovoljenje</string>
   <string name="location_permission_needed_desc">"KDE Connect potrebuje dovoljenje omrežja, da pozna WiFi omrežje, s katerim ste povezani, tudi če je aplikacija v ozadju. To je zato, ker se ime omrežja wifi  lahko uporabi za iskanje svoje lokacije, četudi to ne počne KDE Connect."</string>
   <string name="clipboard_android_x_incompat">Android 10 je odstranil dostop do odložišča za vse aplikacije. Ta vtičnik bo onemogočen.</string>
-  <string name="mpris_open_url">Nadaljujte z igranjem tukaj</string>
+  <string name="mpris_open_url">Nadaljuj s predvajanjem tukaj</string>
   <string name="cant_open_url">Ne morem odpreti spletnega naslova za nadaljevanje predvajanja</string>
   <string name="bigscreen_home">Domov</string>
   <string name="bigscreen_up">Gor</string>

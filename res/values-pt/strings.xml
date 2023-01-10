@@ -52,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">Existe mais que uma ligação a teclados remotos; seleccione o dispositivo a configurar</string>
   <string name="open_mousepad">Introdução remota de dados</string>
   <string name="mousepad_info">Mova um dedo pelo ecrã para mover o cursor do rato. Dê um toque para carregar no botão esquerdo e use dois/três dedos para os botões direito e do meio. Use uma pressão longa para arrastar e largar.</string>
+  <string name="mousepad_keyboard_input_not_supported">O uso do teclado não é suportado pelo dispositivo emparelhado</string>
   <string name="mousepad_single_tap_settings_title">Definir a acção do toque com um dedo</string>
   <string name="mousepad_double_tap_settings_title">Definir a acção do toque com dois dedos</string>
   <string name="mousepad_triple_tap_settings_title">Definir a acção do toque com três dedos</string>
@@ -275,6 +276,7 @@
   <string name="pref_plugin_mprisreceiver">Controlo de Leitores Multimédia</string>
   <string name="pref_plugin_mprisreceiver_desc">Controle os leitores multimédia dos seus telemóveis a partir de outro dispositivo</string>
   <string name="notification_channel_default">Outras notificações</string>
+  <string name="notification_channel_persistent">Indicador persistente</string>
   <string name="notification_channel_media_control">Comando multimédia</string>
   <string name="notification_channel_filetransfer">Transferência de ficheiros</string>
   <string name="notification_channel_high_priority">Alta prioridade</string>
@@ -318,6 +320,7 @@
   <string name="empty_trusted_networks_list_text">Ainda não adicionou nenhuma rede fidedigna</string>
   <string name="allow_all_networks_text">Permitir tudo</string>
   <string name="location_permission_needed_title">É necessária a permissão</string>
+  <string name="location_permission_needed_desc">O KDE Connect precisa de permissões de localização em segundo plano para saber a rede WiFi a que se encontra ligado, mesmo quando a aplicação está em segundo plano. Isto acontece porque os nomes das redes WiFi à sua volta podem ser usados para descobrir a sua localização, mesmo quando isto não é o que o KDE Connect faz.</string>
   <string name="clipboard_android_x_incompat">O Android 10 removeu o acesso à área de transferência para todas as aplicações. Este \'plugin\' ficará desactivado.</string>
   <string name="mpris_open_url">Continuar a tocar aqui</string>
   <string name="cant_open_url">Não é possível abrir o URL para continuar a tocar</string>
