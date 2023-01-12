@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-01-16 00:43+0000\n"
-"PO-Revision-Date: 2022-12-30 03:34+0100\n"
+"PO-Revision-Date: 2023-01-11 15:22+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -305,15 +305,15 @@ msgstr "უსწრაფესი"
 
 msgctxt "mousepad_acceleration_profile_entries:0"
 msgid "No Acceleration"
-msgstr ""
+msgstr "ამაჩქარებლის გარეშე"
 
 msgctxt "mousepad_acceleration_profile_entries:1"
 msgid "Weakest"
-msgstr ""
+msgstr "მინიმალური"
 
 msgctxt "mousepad_acceleration_profile_entries:2"
 msgid "Weaker"
-msgstr ""
+msgstr "საშუალოზე დაბალი"
 
 msgctxt "mousepad_acceleration_profile_entries:3"
 msgid "Medium"
@@ -321,11 +321,11 @@ msgstr "საშუალო"
 
 msgctxt "mousepad_acceleration_profile_entries:4"
 msgid "Stronger"
-msgstr ""
+msgstr "ძლიერი"
 
 msgctxt "mousepad_acceleration_profile_entries:5"
 msgid "Strongest"
-msgstr ""
+msgstr "უძლიერესი"
 
 msgctxt "sendkeystrokes_send_to"
 msgid "Send keystrokes to"
@@ -384,7 +384,7 @@ msgstr ""
 
 msgctxt "mouse_receiver_plugin_name"
 msgid "Mouse receiver"
-msgstr ""
+msgstr "თაგუნას მიმღები"
 
 msgctxt "mouse_receiver_no_permissions"
 msgid "You need to enable Accessibility Service"
@@ -402,16 +402,16 @@ msgstr "ელემენტი: %d%%"
 #, c-format
 msgctxt "battery_status_low_format"
 msgid "Battery: %d%% Low Battery"
-msgstr ""
+msgstr "ელემენტი: %d%% ელემენტი დასატენია"
 
 #, c-format
 msgctxt "battery_status_charging_format"
 msgid "Battery: %d%% charging"
-msgstr ""
+msgstr "ელემენტი: %d%% იტენება"
 
 msgctxt "battery_status_unknown"
 msgid "Battery information not available"
-msgstr ""
+msgstr "ელემენტის ინფორმაცია ხელმიუწვდომელია"
 
 msgctxt "category_connected_devices"
 msgid "Connected devices"
@@ -503,8 +503,8 @@ msgstr[1] ""
 msgctxt "incoming_files_text"
 msgid "File: %1s"
 msgid_plural "(File %2$d of %3$d) : %1$s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "File: %1s"
+msgstr[1] "(File %2$d of %3$d) : %1$s"
 
 #, c-format
 msgctxt "outgoing_file_title"
@@ -555,12 +555,12 @@ msgstr "გასახსნელად დაატყაპუნეთ"
 #, c-format
 msgctxt "received_file_text"
 msgid "Tap to open '%1s'"
-msgstr ""
+msgstr "'%1s'-ის გასახსნელად დაატყაპუნეთ"
 
 #, c-format
 msgctxt "cannot_create_file"
 msgid "Cannot create file %s"
-msgstr ""
+msgstr "ფაილის (%s) შექმნის შეცდომა"
 
 msgctxt "tap_to_answer"
 msgid "Tap to answer"
@@ -584,7 +584,7 @@ msgstr "მოწყობილოვა დაწყვილებული �
 
 msgctxt "request_pairing"
 msgid "Request pairing"
-msgstr ""
+msgstr "დაწყვილების მოთხოვნა"
 
 msgctxt "pairing_accept"
 msgid "Accept"
@@ -636,7 +636,7 @@ msgstr "ტომი"
 
 msgctxt "mpris_time_settings_title"
 msgid "Forward/rewind buttons"
-msgstr ""
+msgstr "წინ/გადახვევის ღილაკები"
 
 msgctxt "mpris_time_settings_summary"
 msgid "Adjust the time to fast forward/rewind when pressed"
@@ -693,7 +693,7 @@ msgstr ""
 
 msgctxt "custom_devices_settings"
 msgid "Custom device list"
-msgstr ""
+msgstr "მოწყობილობები სიის ხელით მითითება"
 
 msgctxt "custom_device_list"
 msgid "Add devices by IP"
@@ -719,7 +719,7 @@ msgstr "დაბრუნება"
 
 msgctxt "share_notification_preference"
 msgid "Noisy notifications"
-msgstr ""
+msgstr "ხმაურიანი შეტყობინებები"
 
 msgctxt "share_notification_preference_summary"
 msgid "Vibrate and play a sound when receiving a file"
@@ -727,7 +727,7 @@ msgstr ""
 
 msgctxt "share_destination_customize"
 msgid "Customize destination directory"
-msgstr ""
+msgstr "სამიზნე საქაღალდის მორგება"
 
 msgctxt "share_destination_customize_summary_disabled"
 msgid "Received files will appear in Downloads"
@@ -773,7 +773,7 @@ msgstr "SD ბარათი"
 
 msgctxt "sftp_readonly"
 msgid "(read only)"
-msgstr ""
+msgstr "(მხოლოდ კითხვადი)"
 
 msgctxt "sftp_camera"
 msgid "Camera pictures"
@@ -817,7 +817,7 @@ msgstr ""
 
 msgctxt "sftp_preference_add_camera_shortcut_summary_off"
 msgid "Do not add a shortcut to the camera folder"
-msgstr ""
+msgstr "კამერის საქაღალდეს მალსახმობი არ დაემატება"
 
 msgctxt "sftp_storage_preference_storage_location"
 msgid "Storage location"
@@ -825,7 +825,7 @@ msgstr "საცავის მდებარეობა"
 
 msgctxt "sftp_storage_preference_storage_location_already_configured"
 msgid "This location has already been configured"
-msgstr ""
+msgstr "ეს მდებარეობა უკვე მორგებულია"
 
 msgctxt "sftp_storage_preference_click_to_select"
 msgid "click to select"
@@ -837,11 +837,11 @@ msgstr "ნაჩვენები სახელი"
 
 msgctxt "sftp_storage_preference_display_name_already_used"
 msgid "This display name is already used"
-msgstr ""
+msgstr "საჩვენებელი სახელი უკვე გამოიყენება"
 
 msgctxt "sftp_storage_preference_display_name_cannot_be_empty"
 msgid "Display name cannot be empty"
-msgstr ""
+msgstr "საჩვენებელი სახელი ცარიელი არ შეიძლება იყოს"
 
 msgctxt "sftp_action_mode_menu_delete"
 msgid "Delete"
@@ -853,7 +853,7 @@ msgstr "SD ბარათი ვერ ვიპოვე"
 
 msgctxt "sftp_no_storage_locations_configured"
 msgid "No storage locations configured"
-msgstr ""
+msgstr "საცავის მდებარეობები მითითებული არაა"
 
 msgctxt "sftp_saf_permission_explanation"
 msgid "To access files remotely you have to configure storage locations"
@@ -861,7 +861,7 @@ msgstr ""
 
 msgctxt "no_players_connected"
 msgid "No players found"
-msgstr ""
+msgstr "დამკვრელები ნაპოვნი არაა"
 
 msgctxt "send_files"
 msgid "Send files"
@@ -1015,7 +1015,7 @@ msgstr ""
 
 msgctxt "mpris_coverart_description"
 msgid "Cover art of current media"
-msgstr ""
+msgstr "მიმდინარე მედიის ყდა"
 
 msgctxt "device_icon_description"
 msgid "Device icon"
@@ -1045,7 +1045,7 @@ msgstr "ბრძანების დამატება"
 
 msgctxt "addcommand_explanation"
 msgid "There are no commands registered"
-msgstr ""
+msgstr "ბრძანება რეგისტრირებული არაა"
 
 msgctxt "addcommand_explanation2"
 msgid "You can add new commands in the KDE Connect System Settings"
@@ -1057,7 +1057,7 @@ msgstr ""
 
 msgctxt "pref_plugin_mprisreceiver"
 msgid "Media Player Control"
-msgstr ""
+msgstr "მედია დამკვრელის კონტროლი"
 
 msgctxt "pref_plugin_mprisreceiver_desc"
 msgid "Control your phone's media players from another device"
@@ -1065,11 +1065,11 @@ msgstr ""
 
 msgctxt "notification_channel_default"
 msgid "Other notifications"
-msgstr ""
+msgstr "სხვა გაფრთხილებები"
 
 msgctxt "notification_channel_persistent"
 msgid "Persistent indicator"
-msgstr ""
+msgstr "მუდმივი მაჩვენებელი"
 
 msgctxt "notification_channel_media_control"
 msgid "Media control"
@@ -1101,7 +1101,7 @@ msgstr "დაკოპირდა გაცვლის ბაფერში"
 
 msgctxt "runcommand_notreachable"
 msgid "Device is not reachable"
-msgstr ""
+msgstr "მოწყობილობა მიუწვდომელია"
 
 msgctxt "runcommand_notpaired"
 msgid "Device is not paired"
@@ -1117,7 +1117,7 @@ msgstr ""
 
 msgctxt "pref_plugin_findremotedevice"
 msgid "Find remote device"
-msgstr ""
+msgstr "დაშორებული მოწყობილობის პოვნა"
 
 msgctxt "pref_plugin_findremotedevice_desc"
 msgid "Ring your remote device"
@@ -1191,11 +1191,11 @@ msgstr "თქვენი კონფიდენციალობის პ�
 
 msgctxt "block_contents"
 msgid "Block contents of notifications"
-msgstr ""
+msgstr "გაფრთხილების შემცველობის დაბლოკვა"
 
 msgctxt "block_images"
 msgid "Block images in notifications"
-msgstr ""
+msgstr "გაფრთხილებებში გამოსახულებების დაბლოკვა"
 
 msgctxt "notification_channel_receivenotification"
 msgid "Notifications from other devices"
