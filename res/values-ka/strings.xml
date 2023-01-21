@@ -39,6 +39,9 @@
   <string name="send_ping">პინგის გაგზავნა</string>
   <string name="open_mpris_controls">მულტიმედიის კონტროლი</string>
   <string name="open_mousepad">დაშორებული შეყვანა</string>
+  <string name="mousepad_single_tap_settings_title">ქმედება ერთი თითით შეხებისას</string>
+  <string name="mousepad_double_tap_settings_title">ქმედება ორი თითით შეხებისას</string>
+  <string name="mousepad_triple_tap_settings_title">ქმედება სამი თითით შეხებისას</string>
   <string name="mousepad_sensitivity_settings_title">დააყენეთ თაჩპედის მგრძნობიარობა</string>
   <string name="mousepad_acceleration_profile_settings_title">კურსორის აჩქარების დაყენება</string>
   <string name="mousepad_scroll_direction_title">აწევ-ჩამოწევის მიმართულების რევერსი</string>
@@ -63,6 +66,8 @@
     <item>ძლიერი</item>
     <item>უძლიერესი</item>
   </string-array>
+  <string name="sendkeystrokes_pref_category_title">სად გაიგზავნება ღილაკის დაჭერა</string>
+  <string name="sendkeystrokes_pref_enabled">ღილაკის დაჭერის გაგზავნის ჩართვა</string>
   <string name="mouse_receiver_plugin_name">თაგუნას მიმღები</string>
   <string name="view_status_title">მდგომარეობა</string>
   <string name="battery_status_format">ელემენტი: %d%%</string>
@@ -85,7 +90,7 @@
   <string name="encryption_info_title">დაშიფვრის ინფორმაცია</string>
   <string name="pair_requested">დაწყვილების მოთხოვნა</string>
   <plurals name="incoming_files_text">
-    <item quantity="one">File: %1s</item>
+    <item quantity="one">File: %1$s</item>
     <item quantity="other">(File %2$d of %3$d) : %1$s</item>
   </plurals>
   <plurals name="outgoing_files_text">
@@ -108,6 +113,7 @@
   <string name="mpris_pause">შეჩერება</string>
   <string name="mpris_previous">წინა</string>
   <string name="mpris_rew">გადახვევა</string>
+  <string name="mpris_ff">წინ</string>
   <string name="mpris_next">შემდეგი</string>
   <string name="mpris_loop">მარყუჟი</string>
   <string name="mpris_shuffle">შემთხვევით</string>
@@ -121,8 +127,10 @@
     <item>2 წუთი</item>
   </string-array>
   <string name="share_to">გაზიარება…</string>
+  <string name="protocol_version_newer">მოწყობილობა პროტოკოლის უფრო ახალ ვერსიას იყენებს</string>
   <string name="plugin_settings_with_name">%s-ის მორგება</string>
   <string name="invalid_device_name">მოწყობილობის არასწორი სახელი</string>
+  <string name="shareplugin_text_saved">მიღებული ტექსტი ბუფერში იქნაშენახული</string>
   <string name="custom_devices_settings">მოწყობილობები სიის ხელით მითითება</string>
   <string name="custom_device_list">მოწყობილობების IP-ით დამატება</string>
   <string name="custom_device_deleted">ხელით მითითებული მოწყობილობა წაშლილია</string>
@@ -130,9 +138,11 @@
   <string name="undo">დაბრუნება</string>
   <string name="share_notification_preference">ხმაურიანი შეტყობინებები</string>
   <string name="share_destination_customize">სამიზნე საქაღალდის მორგება</string>
+  <string name="share_destination_customize_summary_enabled">ფაილები ქვემოთ მითითებულ საქაღალდეში იქნება შენახული</string>
   <string name="share_destination_folder_preference">სამიზნე საქაღალდე</string>
   <string name="share">გაზიარება</string>
   <string name="share_received_file">\"%s\"-ის გაზიარება</string>
+  <string name="title_activity_notification_filter">შეტყობინებების ფილტრი</string>
   <string name="sftp_sdcard_num">SD ბარათი %d</string>
   <string name="sftp_sdcard">SD ბარათი</string>
   <string name="sftp_readonly">(მხოლოდ კითხვადი)</string>
@@ -161,7 +171,10 @@
   <string name="device_rename_title">მოწყობილობის სახელის გადარქმევა</string>
   <string name="device_rename_confirm">გადარქმევა</string>
   <string name="refresh">განახლება</string>
+  <string name="on_non_trusted_message">არასანდო ქსელი: ავტომატური აღმოჩენა გათიშულია.</string>
+  <string name="no_file_browser">ფაილის მმართველები დაყენებული არაა.</string>
   <string name="pref_plugin_telepathy">SMS-ის გაგზავნა</string>
+  <string name="pref_plugin_telepathy_desc">გააგზავნეთ ტექსტური შეტყობინებები თქვენი კომპიუტერიდან</string>
   <string name="pref_plugin_telepathy_mms">MMS-ის გაგზავნა</string>
   <string name="findmyphone_title">იპოვე ჩემი ტელეფონი</string>
   <string name="findmyphone_title_tablet">იპოვე ჩემი ტაბლეტი</string>
@@ -170,6 +183,8 @@
   <string name="findmyphone_found">ვიპოვე</string>
   <string name="open">გახსნა</string>
   <string name="close">დახურვა</string>
+  <string name="plugins_need_permission">ზოგიერთ დამატებას სამუშაოდ წვდომები ესაჭიროება (დაატყაპუნეთ მეტი ინფორმაციისთვის):</string>
+  <string name="permission_explanation">დამატებას სამუშაოდ წვდომები ესაჭიროება</string>
   <string name="select_ringtone">"ზარის  არჩევა"</string>
   <string name="telephony_pref_blocked_title">დაბლოკილი ნომრები</string>
   <string name="mpris_coverart_description">მიმდინარე მედიის ყდა</string>
@@ -179,6 +194,7 @@
   <string name="presenter_exit">პრეზენტაციიდან გასვლა</string>
   <string name="add_command">ბრძანების დამატება</string>
   <string name="addcommand_explanation">ბრძანება რეგისტრირებული არაა</string>
+  <string name="add_command_description">შეგიძლიათ სამუშაო მაგიდაზე ბრძანებები დაამატოთ</string>
   <string name="pref_plugin_mprisreceiver">მედია დამკვრელის კონტროლი</string>
   <string name="notification_channel_default">სხვა გაფრთხილებები</string>
   <string name="notification_channel_persistent">მუდმივი მაჩვენებელი</string>
@@ -193,6 +209,7 @@
   <string name="runcommand_notpaired">მოწყობილობა დაწყვილებული არაა</string>
   <string name="runcommand_nosuchdevice">მოწყობილობა არ არსებობს</string>
   <string name="pref_plugin_findremotedevice">დაშორებული მოწყობილობის პოვნა</string>
+  <string name="pref_plugin_findremotedevice_desc">თქვენს დაშორებულ მოწყობილობაზე დარეკვა</string>
   <string name="ring">ზარი</string>
   <string name="pref_plugin_systemvolume">სისტემის ხმა</string>
   <string name="mute">დადუმება</string>
@@ -210,7 +227,9 @@
   <string name="presenter_pointer">კურსორი</string>
   <string name="trusted_networks">სანდო ქსელები</string>
   <string name="add_trusted_network">%1s-ის დაყენება</string>
+  <string name="empty_trusted_networks_list_text">სანდო ექსელები ჯერ არ დაგიმატებიათ</string>
   <string name="allow_all_networks_text">ყველას დაშვება</string>
+  <string name="location_permission_needed_title">საჭიროა წვდომა</string>
   <string name="bigscreen_home">საწყისი</string>
   <string name="bigscreen_up">მაღლა</string>
   <string name="bigscreen_left">მარცხენა</string>
@@ -224,12 +243,14 @@
   <string name="user_display_name">თქვენ</string>
   <string name="set_default_sms_app_title">MMS-ის გაგზავნა</string>
   <string name="set_group_message_as_mms_title">ჯგუფური MMS-ის გაგზავნა</string>
+  <string name="set_long_text_as_mms_title">გრძელი ტექსტის MMS-ის სახით გაგზავნა</string>
+  <string name="convert_to_mms_after_title">MMS-ად გარდაქმნა</string>
   <string-array name="convert_to_mms_after_entries">
-    <item>After one message</item>
-    <item>After two messages</item>
-    <item>After three messages</item>
-    <item>After four messages</item>
-    <item>After five messages</item>
+    <item>ერთი შეტყობინების შემდეგ</item>
+    <item>ორი შეტყობინების შემდეგ</item>
+    <item>სამი შეტყობინების შემდეგ</item>
+    <item>ოთხი შეტყობინების შემდეგ</item>
+    <item>ხუთი შეტყობინების შემდეგ</item>
   </string-array>
   <string name="theme_dialog_title">თემის არჩევა</string>
   <string-array name="theme_list">
@@ -265,4 +286,8 @@
   <string name="open_compose_send">ტექსტის შედგენა</string>
   <string name="maintainer_and_developer">პროგრამისტი და წამყვანი</string>
   <string name="developer">პროგრამისტი</string>
+  <string name="aniket_kumar_task">SMS-ის დამატების გაუმჯობესება</string>
+  <string name="alex_fiestas_task">კონტაქტების დამატების გაუმჯობესება</string>
+  <string name="send_clipboard">ბუფერის გაგზავნა</string>
+  <string name="tap_to_execute">ქმედების შესასრულებლად დაატყაპუნეთ</string>
 </resources>
