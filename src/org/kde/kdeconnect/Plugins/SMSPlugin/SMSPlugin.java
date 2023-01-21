@@ -279,8 +279,8 @@ public class SMSPlugin extends Plugin {
 
         long newMostRecentTimestamp = mostRecentTimestamp;
         for (SMSHelper.Message message : messages) {
-            if (message == null || message.date <= newMostRecentTimestamp) {
-                newMostRecentTimestamp = message.date;
+            if (message == null || message.date >= newMostRecentTimestamp) {
+                  newMostRecentTimestamp = message.date;
             }
         }
 
