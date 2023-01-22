@@ -370,7 +370,7 @@ public class SmsMmsUtils {
 
         if (msg instanceof RetrieveConf) {
             EncodedStringValue[] cc = ((RetrieveConf) msg).getCc();
-            if (cc != null && cc.length == 0) {
+            if (cc != null && cc.length != 0) {
                 toBuilder.append(";");
                 toBuilder.append(EncodedStringValue.concat(cc));
             }
