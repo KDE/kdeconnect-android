@@ -22,7 +22,7 @@ apply plugin: 'kotlin-android'
 android {
     compileSdkVersion 33
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 21
         targetSdkVersion 31
         proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
@@ -166,7 +166,13 @@ dependencies {
     implementation 'org.atteo.classindex:classindex:3.6'
     annotationProcessor 'org.atteo.classindex:classindex:3.6'
 
-    implementation 'com.klinkerapps:android-smsmms:5.2.6' //For SMS and MMS purposes
+    // The android-smsmms library is the only way I know to handle MMS in Android
+    // (Shouldn't a phone OS make phone things easy?)
+    // This library was originally authored as com.klinkerapps at https://github.com/klinker41/android-smsmms.
+    // However, that version is under-loved. I have therefore made "some fixes" and published it.
+    // Please see https://invent.kde.org/sredman/android-smsmms/-/tree/master
+    implementation 'org.kde:android-smsmms:5.2.7'
+    implementation 'com.klinkerapps:logger:1.0.3'
 
     implementation 'commons-io:commons-io:2.8.0' // newer versions don't work on Android 7: https://stackoverflow.com/questions/73604534/no-static-method-threadlocal-withinitial-commons-io-dependency
     implementation 'org.apache.commons:commons-collections4:4.4'
