@@ -16,10 +16,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven {
-            name = "KDE Invent Maven"
-            // This project_id corresponds to kdeconnect-android project
-            // Depending on how long we need this custom package, we may decide to move it to a more-official repo
-            url = "https://invent.kde.org/api/v4/projects/72/packages/maven"
+            url = "https://jitpack.io"
         }
     }
 }
