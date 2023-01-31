@@ -4,13 +4,13 @@
 #
 # Albert Vaca Cintora <albertvaka@gmail.com>, 2014.
 # Volkan Gezer <volkangezer@gmail.com>, 2017.
-# Emir SARI <emir_sari@icloud.com>, 2022.
+# Emir SARI <emir_sari@icloud.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2019-06-30 11:38+0200\n"
-"PO-Revision-Date: 2022-03-29 19:27+0300\n"
+"PO-Revision-Date: 2023-01-31 01:02+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 22.12.1\n"
 
 #: dummy:1
 msgid "Integrate Android with the KDE Plasma Desktop."
@@ -68,13 +68,13 @@ msgstr ""
 "- WiFi bağlantısı: USB kablosu veya bluetooth gerekmez.\n"
 "- RSA Şifreleme: Bilgileriniz güvende.\n"
 "\n"
-"Bu uygulamanın çalışabilmesi için bilgisayarınıza KDE Connect'ı yüklemeniz "
-"ve en son özelliklerin çalışması için masaüstü sürümünü Android sürümü ile "
+"Bu uygulamanın çalışabilmesi için bilgisayarınıza KDE Connect'ı kurmanız ve "
+"en son özelliklerin çalışması için masaüstü sürümünü Android sürümü ile "
 "güncel tutmanız gerektiğini lütfen unutmayın.\n"
 "\n"
 "*Ubuntu kullanıcıları için NOT: Ubuntu'lu kullanıcılar depolarını bu "
 "uygulama güncelleştirildiği kadar hızlı bir şekilde güncellemiyorlar. "
-"Masaüstünüzdeki KDE Connect sürümü telefonunuzdakiyle uyumlu değilse bazı "
+"Masaüstünüzdeki KDE Connect sürümü telefonunuzdaki ile uyumlu değilse bazı "
 "özellikler çalışmaz. Masaüstünüzde her zaman en yeni sürüme sahip "
 "olduğunuzdan emin olmak için şu PPA havuzunu kullanın: https://code."
 "launchpad.net/~vikoadi/+archive/ubuntu/ppa/ \n"
