@@ -239,7 +239,7 @@
   <string name="unreachable_description">Eşleştirilmiş aygıt ulaşılabilir değil. Aynı ağa bağlı olduğundan emin olun.</string>
   <string name="no_wifi">Bir Wi-Fi ağına bağlı değilsiniz dolayısıyla herhangi bir aygıt göremeyebilirsiniz. Wi-Fi\'yi etkinleştirmek için buraya tıklayın.</string>
   <string name="on_non_trusted_message">Güvenilir bir ağda değil: otomatik bulma devre dışı.</string>
-  <string name="no_file_browser">Yüklü bir dosya tarayıcısı yok.</string>
+  <string name="no_file_browser">Kurulu bir dosya tarayıcı yok.</string>
   <string name="pref_plugin_telepathy">SMS Gönder</string>
   <string name="pref_plugin_telepathy_desc">Masaüstünden metin iletisi gönder</string>
   <string name="pref_plugin_telepathy_mms">MMS Gönder</string>
