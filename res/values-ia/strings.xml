@@ -69,6 +69,7 @@
     <item quantity="one">"Inviate  file a %1$s"</item>
     <item quantity="other">"Inviate %2$d  files a %1$s"</item>
   </plurals>
+  <string name="tap_to_open">Tocca per aperir</string>
   <string name="pairing_accept">Accepta</string>
   <string name="pairing_reject">Rejecta</string>
   <string name="settings">Preferentias</string>
