@@ -292,6 +292,7 @@
   <string name="pref_plugin_mprisreceiver">Sterowanie odtwarzaczem</string>
   <string name="pref_plugin_mprisreceiver_desc">Steruje odtwarzaczami innego urządzenia z tego urządzenia</string>
   <string name="notification_channel_default">Inne powiadomienia</string>
+  <string name="notification_channel_persistent">Nieznikający wskaźnik</string>
   <string name="notification_channel_media_control">Sterowanie multimediami</string>
   <string name="notification_channel_filetransfer">Przesyłanie plików</string>
   <string name="notification_channel_high_priority">Wysoki priorytet</string>
@@ -335,6 +336,7 @@
   <string name="empty_trusted_networks_list_text">Nie dodałeś jeszcze żadnej zaufanej sieci</string>
   <string name="allow_all_networks_text">Zezwól wszystkim</string>
   <string name="location_permission_needed_title">Wymagana zgoda</string>
+  <string name="location_permission_needed_desc">KDE Connect potrzebuje uprawnień do sprawdzania twojego położenia w tle, aby móc poznać sieć WiFi, do której jesteś podłączony także wtedy, gdy aplikacja działa w tle. Jest tak dlatego, że nazwy sieci WiFi wokół ciebie mogą zostać użyte do ustalenia twojego położenia, mimo że KDE Connect nie robi tego w ten sposób.</string>
   <string name="clipboard_android_x_incompat">Android 10 odebrał dostęp do schowka wszystkim programom. Ta wtyczka pozostanie wyłączona.</string>
   <string name="mpris_open_url">Kontynuuj odtwarzanie tutaj</string>
   <string name="cant_open_url">Nie można otworzyć adresu URL, aby kontynuować odtwarzanie</string>

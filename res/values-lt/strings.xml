@@ -52,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">Yra daugiau nei vienas nuotolinės klaviatūros ryšys, pasirinkite kurį įrenginį konfigūruoti</string>
   <string name="open_mousepad">Nuotolinis įvedimas</string>
   <string name="mousepad_info">Norėdami judinti pelės žymeklį, judinkite pirštu po ekraną. Bakstelėkite vienkartiniam spustelėjimui ir naudokite du/tris pirštus dešiniajam ir viduriniajam mygtukui. Naudokite 2 pirštus, norėdami slinkti. Naudokite ilgą paspaudimą, norėdami tempti.</string>
+  <string name="mousepad_keyboard_input_not_supported">Suporuotas įrenginys nepalaiko įvedimo klaviatūra</string>
   <string name="mousepad_single_tap_settings_title">Nustatyti bakstelėjimo vienu pirštu veiksmą</string>
   <string name="mousepad_double_tap_settings_title">Nustatyti bakstelėjimo dviem pirštais veiksmą</string>
   <string name="mousepad_triple_tap_settings_title">Nustatyti bakstelėjimo trimis pirštais veiksmą</string>
@@ -291,6 +292,7 @@
   <string name="pref_plugin_mprisreceiver">Medijos leistuvės valdymas</string>
   <string name="pref_plugin_mprisreceiver_desc">Valdyti savo telefono medijos leistuves iš kito įrenginio</string>
   <string name="notification_channel_default">Kiti pranešimai</string>
+  <string name="notification_channel_persistent">Pastovus indikatorius</string>
   <string name="notification_channel_media_control">Įvairialypės terpės valdymas</string>
   <string name="notification_channel_filetransfer">Failų persiuntimas</string>
   <string name="notification_channel_high_priority">Didelė pirmenybė</string>
@@ -334,6 +336,7 @@
   <string name="empty_trusted_networks_list_text">Kol kas nesate pridėję jokių patikimų tinklų</string>
   <string name="allow_all_networks_text">Leisti visus</string>
   <string name="location_permission_needed_title">Reikalingas leidimas</string>
+  <string name="location_permission_needed_desc">KDE Connect reikia foninio vietovės leidimo, kad, netgi tuomet, kai programėlė veikia fone, ji žinotų belaidžio (WiFi) tinklo ryšius, prie kurių esate prisijungę. Taip yra todėl, kad aplink jus esančių belaidžių tinklų pavadinimai gali būti naudojami, siekiant geriau nustatyti jūsų buvimo vietą, nors KDE Connect to ir nedaro.</string>
   <string name="clipboard_android_x_incompat">Android 10 pašalino iškarpinės prieigą prie visų programėlių. Šis papildinys bus išjungtas.</string>
   <string name="mpris_open_url">Tęsti atkūrimą čia</string>
   <string name="cant_open_url">Nepavyksta atverti URL, kad būtų tęsiamas atkūrimas</string>

@@ -16,16 +16,16 @@
   <string name="pref_plugin_clipboard">Pano eşitleme</string>
   <string name="pref_plugin_clipboard_desc">Pano içeriğini paylaş</string>
   <string name="pref_plugin_clipboard_sent">Pano Gönderildi</string>
-  <string name="pref_plugin_mousepad">Uzak girdi</string>
+  <string name="pref_plugin_mousepad">Uzaktan giriş</string>
   <string name="pref_plugin_mousepad_desc">Telefonunuzu veya tabletinizi, dokunmatik veya klavye olarak kullanın</string>
   <string name="pref_plugin_presenter">Uzaktan slayt gösterisi</string>
   <string name="pref_plugin_presenter_desc">Sunumdaki slaytları değiştirmek için aygıtınızı kullanın</string>
-  <string name="pref_plugin_remotekeyboard">Uzak düğme basımlarını al</string>
+  <string name="pref_plugin_remotekeyboard">Uzaktan düğme basımlarını al</string>
   <string name="pref_plugin_remotekeyboard_desc">Düğme basım eylemlerini, uzak aygıtlardan getir</string>
   <string name="pref_plugin_mpris">Çoklu ortam denetimleri</string>
-  <string name="pref_plugin_mpris_desc">Ortam oynatıcınız için uzak denetim sağlar</string>
+  <string name="pref_plugin_mpris_desc">Ortam oynatıcınız için uzaktan denetim sağlar</string>
   <string name="pref_plugin_runcommand">Komut Çalıştır</string>
-  <string name="pref_plugin_runcommand_desc">Uzak komutları, telefon veya tabletinizden tetikler</string>
+  <string name="pref_plugin_runcommand_desc">Telefon veya tabletten uzak komutları tetikle</string>
   <string name="pref_plugin_contacts">Rehber Eşitleyici</string>
   <string name="pref_plugin_contacts_desc">Aygıtın rehberini eşitle</string>
   <string name="pref_plugin_ping">Ping</string>
@@ -46,11 +46,11 @@
   <string name="no_permissions_remotekeyboard">Düğmelere basmak için KDE Bağlan Uzak Klavye\'yi etkinleştirmeniz gerekir</string>
   <string name="send_ping">Ping gönder</string>
   <string name="open_mpris_controls">Çoklu ortam denetimi</string>
-  <string name="remotekeyboard_editing_only_title">Uzak düğmeleri, yalnızca düzenleme yaparken işle</string>
+  <string name="remotekeyboard_editing_only_title">Yalnızca düzenlerken uzaktan düğmeleri işle</string>
   <string name="remotekeyboard_not_connected">Etkin bir uzak klavye bağlantısı yok, kdeconnect ile bir bağlantı kurun</string>
   <string name="remotekeyboard_connected">Uzak klavye bağlantısı etkin</string>
   <string name="remotekeyboard_multiple_connections">Birden çok uzak klavye bağlantısı mevcut, yapılandırmak istediğiniz aygıtı seçin</string>
-  <string name="open_mousepad">Girdi sil</string>
+  <string name="open_mousepad">Uzaktan giriş</string>
   <string name="mousepad_info">İmleç denetimi için parmağınızı ekranda hareket ettirin. Bir tıklama için hafifçe vurun, sağ ve orta düğmeler için iki/üç parmağınızı kullanın. Sarmak için 2 parmağınızı kullanın. Bırakıp sürüklemek için uzun basın.</string>
   <string name="mousepad_keyboard_input_not_supported">Klavye girişi, eşlenen aygıt tarafından desteklenmiyor</string>
   <string name="mousepad_single_tap_settings_title">Tek parmak dokunma eylemini ayarla</string>
@@ -92,7 +92,7 @@
   <string name="sendkeystrokes_safe_text_enabled">Güvenli metni anında gönder</string>
   <string name="sendkeystrokes_safe_text_enabled_summary">Onay olmadan yalnızca sayısal kısa diziler gönder</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Düğme basımları olarak gönder</string>
-  <string name="mouse_receiver_plugin_description">Uzak fare hareketini al</string>
+  <string name="mouse_receiver_plugin_description">Uzaktan fare hareketi al</string>
   <string name="mouse_receiver_plugin_name">Fare alıcısı</string>
   <string name="mouse_receiver_no_permissions">Erişilebilirlik Hizmeti\'ni etkinleştirmeniz gerekiyor</string>
   <string name="view_status_title">Durum</string>
@@ -312,7 +312,7 @@
   <string name="take_picture">Kamerayı başlat</string>
   <string name="plugin_photo_desc">Fotoğraf çekmeyi ve aktarmayı kolaylaştırmak için kamera uygulamasını başlatın</string>
   <string name="no_app_for_opening">Bu dosyayı açmak için uygun bir uygulama bulunamadı</string>
-  <string name="remote_keyboard_service">KDE Bağlan uzaktan klavye</string>
+  <string name="remote_keyboard_service">KDE Bağlan Uzaktan Klavye</string>
   <string name="presenter_pointer">İşaretçi</string>
   <string name="trusted_networks">Güvenilir ağlar</string>
   <string name="trusted_networks_desc">Otomatik keşfi bilinen ağlarla kısıtla</string>
@@ -331,8 +331,8 @@
   <string name="bigscreen_right">Sağ</string>
   <string name="bigscreen_down">Aşağı</string>
   <string name="bigscreen_mic">Mikrofon</string>
-  <string name="pref_plugin_bigscreen">Bigscreen uzaktan kumandası</string>
-  <string name="pref_plugin_bigscreen_desc">Aygıtınızı Plasma Bigscreen için uzaktan kumanda olarak kullanın</string>
+  <string name="pref_plugin_bigscreen">Büyük Ekran uzaktan kumandası</string>
+  <string name="pref_plugin_bigscreen_desc">Aygıtınızı Plasma Büyük Ekran için uzaktan kumanda olarak kullanın</string>
   <string name="bigscreen_optional_permission_explanation">Telefonunuzdan mikrofon girişini paylaşmak için telefonun ses girişine erişim izni vermeniz gerekir</string>
   <string name="bigscreen_speech_extra_prompt">Konuşma</string>
   <string name="message_reply_label">YANITLA</string>
@@ -389,7 +389,7 @@
   <string name="about_kde_support_kde">"&lt;h1&gt;KDE\'yi Destekleyin&lt;/h1&gt; &lt;p&gt;KDE yazılımları her zaman ücretsiz kalmayı sürdürecektir; ancak bunu oluşturmak bedava değildir. &lt;/p&gt; &lt;p&gt;Geliştirmeyi desteklemek için KDE topluluğu, kar amacı gütmeyen bir kuruluş olan KDE e.V.\'yi kurmuştur, bu topluluk KDE topluğunu yasal ve finansal konularda temsil eder. KDE e.V. hakkında daha fazla bilgi için  &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; adresini ziyadet edin.&lt;/p&gt; &lt;p&gt;KDE, finansal da dahil olmak üzere her türlü katkıdan yarar sağlar. Maddi kaynaklarımızla, geliştiricilerimizin ve diğerlerinin katkıda bulunurken oluşan masraflarını karşılıyoruz. Ayrıca yasal destek ve konferanslar ve toplantılar için de kullanılmaktadır.&lt;/p&gt; &lt;p&gt;Emeklerimizi, finansal destekle desteklemeniz için &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt; adresinde bulunan yollardan birini kullanabilirsiniz.&lt;/p&gt; Desteğiniz için şimdiden teşekkürler."</string>
   <string name="maintainer_and_developer">Projeyi sürdüren ve geliştirici</string>
   <string name="developer">Geliştirici</string>
-  <string name="apple_support">macOS desteği. iOS desteği üzerinde çalışılmaktadır.</string>
+  <string name="apple_support">macOS ve iOS desteği üzerinde çalışılmaktadır.</string>
   <string name="bug_fixes_and_general_improvements">Hata düzeltmeleri ve genel iyileştirmeler</string>
   <string name="samoilenko_yuri_task">SFTP desteği, hata düzeltmeleri ve genel iyileştirmeler</string>
   <string name="aniket_kumar_task">SMS eklentisi iyileştirmeleri</string>
@@ -399,5 +399,5 @@
   <string name="saikrishna_arcot_task">Uzaktan girdi eklentisinde klavye kullanımı desteği, hata düzeltmeleri ve genel iyileştirmeler</string>
   <string name="everyone_else">KDE Bağlan\'a yıllar boyunca katkıda bulunan herkes</string>
   <string name="send_clipboard">Pano gönder</string>
-  <string name="tap_to_execute">Çalıştırmak için dokunun</string>
+  <string name="tap_to_execute">Yürütmek için dokun</string>
 </resources>
