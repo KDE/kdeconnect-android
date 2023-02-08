@@ -52,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">发现多个远程键盘连接，请选择要配置的设备</string>
   <string name="open_mousepad">远程输入</string>
   <string name="mousepad_info">在屏幕上移动手指来移动光标。轻击代表左键，双指或三指点击代表右键或中键。用双指滚动。用长按来拖放。</string>
+  <string name="mousepad_keyboard_input_not_supported">配对的设备不支持键盘输入</string>
   <string name="mousepad_single_tap_settings_title">设置单指点击操作</string>
   <string name="mousepad_double_tap_settings_title">设置双指点击操作</string>
   <string name="mousepad_triple_tap_settings_title">设置三指点击操作</string>
@@ -267,6 +268,7 @@
   <string name="pref_plugin_mprisreceiver">控制媒体播放器</string>
   <string name="pref_plugin_mprisreceiver_desc">从其他设备控制您的手机的播放器</string>
   <string name="notification_channel_default">其他通知</string>
+  <string name="notification_channel_persistent">持久性通知</string>
   <string name="notification_channel_media_control">媒体控制</string>
   <string name="notification_channel_filetransfer">文件传送</string>
   <string name="notification_channel_high_priority">高优先级</string>
@@ -310,6 +312,7 @@
   <string name="empty_trusted_networks_list_text">您还没有添加任何可信的网络</string>
   <string name="allow_all_networks_text">允许所有</string>
   <string name="location_permission_needed_title">需要权限</string>
+  <string name="location_permission_needed_desc">KDE Connect 需要后台位置权限才能在后台检测您连接到的 WiFi 网络。后台位置权限是一个敏感权限，这是因为该权限可以让应用程序通过您周围的 WiFi 网络名称来查找您的位置。尽管 KDE Connect 申请了该权限，但它不会对您进行定位。</string>
   <string name="clipboard_android_x_incompat">Android 10 已删除所有应用的剪贴板访问权限。此插件将被禁用。</string>
   <string name="mpris_open_url">继续在此播放</string>
   <string name="cant_open_url">无法大概 URL 继续播放</string>
