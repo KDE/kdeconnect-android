@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.pm.ServiceInfo;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkRequest;
@@ -453,7 +454,11 @@ public class BackgroundService extends Service {
         }
 
         if (NotificationHelper.isPersistentNotificationEnabled(this)) {
-            startForeground(FOREGROUND_NOTIFICATION_ID, createForegroundNotification());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                startForeground(FOREGROUND_NOTIFICATION_ID, createForegroundNotification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE);
+            } else {
+                startForeground(FOREGROUND_NOTIFICATION_ID, createForegroundNotification());
+            }
         }
         return Service.START_STICKY;
     }
