@@ -1,18 +1,18 @@
 # Translation of kdeconnect-android-store.po to Catalan
-# Copyright (C) 2014-2020 This_file_is_part_of_KDE
+# Copyright (C) 2014-2023 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
 # Albert Vaca Cintora <albertvaka@gmail.com>, 2014.
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2014, 2020.
-# Josep M. Ferrer <txemaq@gmail.com>, 2015.
+# Josep M. Ferrer <txemaq@gmail.com>, 2015, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kdeconnect-android\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2019-06-30 11:38+0200\n"
-"PO-Revision-Date: 2020-08-06 00:23+0200\n"
-"Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
+"PO-Revision-Date: 2023-02-26 18:51+0100\n"
+"Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -20,12 +20,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
-"X-Generator: Lokalize 20.04.3\n"
+"X-Generator: Lokalize 20.12.0\n"
 
 #: dummy:1
 msgid "Integrate Android with the KDE Plasma Desktop."
 msgstr "Integra l'Android amb l'escriptori Plasma del KDE."
 
+# skip-rule: rst-1asterisk
 #: dummy:2
 msgid ""
 "KDE Connect provides several features to integrate your phone and your "
