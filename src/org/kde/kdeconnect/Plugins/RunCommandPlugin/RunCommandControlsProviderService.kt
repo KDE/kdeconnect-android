@@ -40,7 +40,7 @@ class RunCommandControlsProviderService : ControlsProviderService() {
 
     override fun createPublisherForAllAvailable(): Flow.Publisher<Control> {
         return FlowAdapters.toFlowPublisher(Flowable.fromIterable(getAllCommandsList().map { commandEntry ->
-            Control.StatelessBuilder(commandEntry.device.deviceId + "-" + commandEntry.key, getIntent(commandEntry.device))
+            Control.StatelessBuilder(commandEntry.device.deviceId + ":" + commandEntry.key, getIntent(commandEntry.device))
                 .setTitle(commandEntry.name)
                 .setSubtitle(commandEntry.command)
                 .setStructure(commandEntry.device.name)
@@ -91,7 +91,7 @@ class RunCommandControlsProviderService : ControlsProviderService() {
         if (action is CommandAction) {
             val commandEntry = getCommandByControlId(controlId)
             if (commandEntry != null) {
-                val plugin = BackgroundService.getInstance().getDevice(controlId.split("-")[0]).getPlugin(RunCommandPlugin::class.java)
+                val plugin = BackgroundService.getInstance().getDevice(controlId.split(":")[0]).getPlugin(RunCommandPlugin::class.java)
                 if (plugin != null) {
                     BackgroundService.RunCommand(this) {
                         plugin.runCommand(commandEntry.key)
@@ -166,7 +166,7 @@ class RunCommandControlsProviderService : ControlsProviderService() {
     }
 
     private fun getCommandByControlId(controlId: String): CommandEntryWithDevice? {
-        val controlIdParts = controlId.split("-")
+        val controlIdParts = controlId.split(":")
 
         val service = BackgroundService.getInstance();
 
