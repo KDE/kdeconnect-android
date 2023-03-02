@@ -52,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">원격 키보드 연결이 여러 개 있습니다. 설정할 장치를 선택하십시오</string>
   <string name="open_mousepad">원격 입력</string>
   <string name="mousepad_info">화면에서 손가락을 움직이면 마우스 커서를 움직입니다. 화면을 누르면 왼쪽 단추를 누르고, 두 손가락과 세 손가락으로 누르면 오른쪽/가운데 단추를 누릅니다. 두 손가락을 사용하여 스크롤할 수 있습니다. 드래그 앤 드롭을 사용하려면 길게 누르십시오.</string>
+  <string name="mousepad_keyboard_input_not_supported">페어링된 장치에서 키보드 입력을 지원하지 않음</string>
   <string name="mousepad_single_tap_settings_title">한 손가락으로 눌렀을 때 동작 설정</string>
   <string name="mousepad_double_tap_settings_title">두 손가락으로 눌렀을 때 동작 설정</string>
   <string name="mousepad_triple_tap_settings_title">세 손가락으로 눌렀을 때 동작 설정</string>
@@ -267,6 +268,7 @@
   <string name="pref_plugin_mprisreceiver">미디어 재생기 제어</string>
   <string name="pref_plugin_mprisreceiver_desc">다른 장치에서 휴대폰의 미디어 재생기 제어</string>
   <string name="notification_channel_default">기타 알림</string>
+  <string name="notification_channel_persistent">항상 표시된 표시기</string>
   <string name="notification_channel_media_control">미디어 제어</string>
   <string name="notification_channel_filetransfer">파일 전송</string>
   <string name="notification_channel_high_priority">높은 우선 순위</string>
@@ -310,6 +312,7 @@
   <string name="empty_trusted_networks_list_text">신뢰할 수 있는 네트워크를 추가하지 않았습니다</string>
   <string name="allow_all_networks_text">모두 허용</string>
   <string name="location_permission_needed_title">권한이 필요함</string>
+  <string name="location_permission_needed_desc">KDE Connect에서 현재 연결된 Wi-Fi 네트워크 정보를 얻으려면 앱이 백그라운드에서 실행 중일 때에도 백그라운드 권한이 필요합니다. KDE Connect에서는 사용자의 위치를 찾지 않지만, 내 주변에 있는 Wi-Fi 네트워크의 이름으로도 위치를 찾을 수 있기 때문입니다.</string>
   <string name="clipboard_android_x_incompat">안드로이드 10부터는 앱에서 클립보드에 접근할 수 없습니다. 이 플러그인이 비활성화되었습니다.</string>
   <string name="mpris_open_url">여기에서 계속 재생</string>
   <string name="cant_open_url">계속 재생할 URL을 열 수 없음</string>
@@ -353,7 +356,7 @@
   <string name="donate">기부하기</string>
   <string name="source_code">소스 코드</string>
   <string name="licenses">라이선스</string>
-  <string name="website">웹 사이트</string>
+  <string name="website">웹사이트</string>
   <string name="about">정보</string>
   <string name="authors">작성자</string>
   <string name="thanks_to">고마운 분</string>
