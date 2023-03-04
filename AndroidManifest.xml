@@ -54,6 +54,7 @@
         android:label="KDE Connect"
         android:supportsRtl="true"
         android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
         android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/KdeConnectTheme.NoActionBar"
         android:name="org.kde.kdeconnect.MyApplication">
