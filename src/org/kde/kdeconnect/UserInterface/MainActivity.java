@@ -391,6 +391,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode,permissions,grantResults);
         boolean permissionsGranted = ArrayUtils.contains(grantResults, PackageManager.PERMISSION_GRANTED);
         if (permissionsGranted) {
             int i = ArrayUtils.indexOf(permissions, Manifest.permission.WRITE_EXTERNAL_STORAGE);
