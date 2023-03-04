@@ -304,7 +304,7 @@ public class DeviceFragment extends Fragment {
                             //Plugins button list
                             final Collection<Plugin> plugins = device.getLoadedPlugins().values();
                             for (final Plugin p : plugins) {
-                                if (!p.hasMainActivity()) continue;
+                                if (!p.hasMainActivity(getContext())) continue;
                                 if (p.displayInContextMenu()) continue;
 
                                 pluginListItems.add(new PluginItem(p, v -> p.startMainActivity(mActivity)));

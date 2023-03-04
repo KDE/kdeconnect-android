@@ -6,6 +6,7 @@
 
 package org.kde.kdeconnect.Plugins.SystemVolumePlugin;
 
+import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -115,7 +116,7 @@ public class SystemVolumePlugin extends Plugin {
     }
 
     @Override
-    public boolean hasMainActivity() {
+    public boolean hasMainActivity(Context context) {
         return false;
     }
 

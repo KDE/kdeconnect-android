@@ -6,6 +6,7 @@
 
 package org.kde.kdeconnect.Plugins;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -173,7 +174,7 @@ public abstract class Plugin {
     /**
      * Return true if the plugin should display something in the Device main view
      */
-    public boolean hasMainActivity() {
+    public boolean hasMainActivity(Context context) {
         return false;
     }
 

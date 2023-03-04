@@ -7,6 +7,7 @@
 package org.kde.kdeconnect.Plugins.MousePadPlugin;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 
@@ -61,7 +62,7 @@ public class MousePadPlugin extends Plugin {
     }
 
     @Override
-    public boolean hasMainActivity() {
+    public boolean hasMainActivity(Context context) {
         return true;
     }
 

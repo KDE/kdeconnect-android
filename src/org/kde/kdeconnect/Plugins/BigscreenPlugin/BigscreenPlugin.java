@@ -10,6 +10,7 @@ package org.kde.kdeconnect.Plugins.BigscreenPlugin;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.KeyEvent;
@@ -67,7 +68,7 @@ public class BigscreenPlugin extends Plugin {
     }
 
     @Override
-    public boolean hasMainActivity() {
+    public boolean hasMainActivity(Context context) {
         return true;
     }
 

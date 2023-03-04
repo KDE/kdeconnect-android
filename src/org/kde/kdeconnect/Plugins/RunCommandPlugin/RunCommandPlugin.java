@@ -8,6 +8,7 @@
 package org.kde.kdeconnect.Plugins.RunCommandPlugin;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
@@ -171,7 +172,7 @@ public class RunCommandPlugin extends Plugin {
     }
 
     @Override
-    public boolean hasMainActivity() {
+    public boolean hasMainActivity(Context context) {
         return true;
     }
 

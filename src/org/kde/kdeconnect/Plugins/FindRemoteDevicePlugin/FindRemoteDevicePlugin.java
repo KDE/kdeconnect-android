@@ -7,6 +7,7 @@
 package org.kde.kdeconnect.Plugins.FindRemoteDevicePlugin;
 
 import android.app.Activity;
+import android.content.Context;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.NetworkPacket;
@@ -46,7 +47,7 @@ public class FindRemoteDevicePlugin extends Plugin {
     }
 
     @Override
-    public boolean hasMainActivity() {
+    public boolean hasMainActivity(Context context) {
         return true;
     }
 

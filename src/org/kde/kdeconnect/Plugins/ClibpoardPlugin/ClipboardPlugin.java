@@ -8,9 +8,12 @@ package org.kde.kdeconnect.Plugins.ClibpoardPlugin;
 
 
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.widget.Toast;
@@ -126,8 +129,9 @@ public class ClipboardPlugin extends Plugin {
     }
 
     @Override
-    public boolean hasMainActivity() {
-        return Build.VERSION.SDK_INT > Build.VERSION_CODES.P;
+    public boolean hasMainActivity(Context context) {
+        return Build.VERSION.SDK_INT > Build.VERSION_CODES.P &&
+                ContextCompat.checkSelfPermission(context, Manifest.permission.READ_LOGS) == PackageManager.PERMISSION_DENIED;
     }
 
     @Override

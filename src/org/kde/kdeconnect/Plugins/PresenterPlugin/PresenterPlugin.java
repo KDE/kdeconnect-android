@@ -8,6 +8,7 @@ package org.kde.kdeconnect.Plugins.PresenterPlugin;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.KeyEvent;
@@ -53,7 +54,7 @@ public class PresenterPlugin extends Plugin {
     }
 
     @Override
-    public boolean hasMainActivity() {
+    public boolean hasMainActivity(Context context) {
         return true;
     }
 

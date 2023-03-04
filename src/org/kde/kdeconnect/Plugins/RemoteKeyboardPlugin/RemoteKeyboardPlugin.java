@@ -7,6 +7,7 @@
 package org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
@@ -167,7 +168,7 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
     }
 
     @Override
-    public boolean hasMainActivity() {
+    public boolean hasMainActivity(Context context) {
         return false;
     }
 
