@@ -67,10 +67,10 @@ public class TrustedNetworksActivity extends AppCompatActivity {
                 allowAllCheckBox.setChecked(true); // Disable unchecking it
                 new PermissionsAlertDialogFragment.Builder()
                         .setTitle(R.string.location_permission_needed_title)
-                        .setMessage(R.string.location_permission_needed_desc)
+                        .setMessage(TrustedNetworkHelper.ACCESS_WIFI_NETWORKS_PERMISSION_EXPLANATION)
                         .setPositiveButton(R.string.ok)
                         .setNegativeButton(R.string.cancel)
-                        .setPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION})
+                        .setPermissions(new String[]{TrustedNetworkHelper.ACCESS_WIFI_NETWORKS_PERMISSION})
                         .setRequestCode(0)
                         .create().show(getSupportFragmentManager(), null);
             }

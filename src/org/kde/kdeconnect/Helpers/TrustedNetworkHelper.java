@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.util.Log;
 import androidx.core.content.ContextCompat;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.kde.kdeconnect_tp.R;
 
 import java.util.List;
 
@@ -23,6 +25,8 @@ public class TrustedNetworkHelper {
     private static final String NETWORK_SSID_DELIMITER = "#_#";
     private static final String NOT_AVAILABLE_SSID_RESULT = "<unknown ssid>";
 
+    public static final String ACCESS_WIFI_NETWORKS_PERMISSION = Build.VERSION.SDK_INT >= 33? Manifest.permission.NEARBY_WIFI_DEVICES : Manifest.permission.ACCESS_FINE_LOCATION;
+    public static final int ACCESS_WIFI_NETWORKS_PERMISSION_EXPLANATION = Build.VERSION.SDK_INT >= 33?  R.string.wifi_permission_needed_desc : R.string.location_permission_needed_desc;
 
     private final Context context;
 
@@ -62,7 +66,7 @@ public class TrustedNetworkHelper {
     }
 
     public boolean hasPermissions() {
-        int result = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION);
+        int result = ContextCompat.checkSelfPermission(context, ACCESS_WIFI_NETWORKS_PERMISSION);
         return (result == PackageManager.PERMISSION_GRANTED);
     }
 
