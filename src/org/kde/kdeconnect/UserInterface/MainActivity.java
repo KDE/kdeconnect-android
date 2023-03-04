@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private static final int MENU_ENTRY_ABOUT = 3;
     private static final int MENU_ENTRY_DEVICE_FIRST_ID = 1000; //All subsequent ids are devices in the menu
     private static final int MENU_ENTRY_DEVICE_UNKNOWN = 9999; //It's still a device, but we don't know which one yet
-    private static final int STORAGE_lOCATION_CONFIGURED = 2020;
+    private static final int STORAGE_LOCATION_CONFIGURED = 2020;
 
     private static final String STATE_SELECTED_MENU_ENTRY = "selected_entry"; //Saved only in onSaveInstanceState
     private static final String STATE_SELECTED_DEVICE = "selected_device"; //Saved persistently in preferences
@@ -381,7 +381,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 Device device = service.getDevice(mCurrentDevice);
                 device.reloadPluginsFromSettings();
             });
-        } else if (requestCode == STORAGE_lOCATION_CONFIGURED && resultCode == RESULT_OK && data != null){
+        } else if (requestCode == STORAGE_LOCATION_CONFIGURED && resultCode == RESULT_OK && data != null){
             Uri uri = data.getData();
             ShareSettingsFragment.saveStorageLocationPreference(this, uri);
         } else {
@@ -400,7 +400,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 // To get a writeable path manually on Android 10 and later for Share and Receive Plugin.
                 // Otherwise Receiving files will keep failing until the user chooses a path manually to receive files.
                 Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-                startActivityForResult(intent, STORAGE_lOCATION_CONFIGURED);
+                startActivityForResult(intent, STORAGE_LOCATION_CONFIGURED);
             }
 
             //New permission granted, reload plugins
