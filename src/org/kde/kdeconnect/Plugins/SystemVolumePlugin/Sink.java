@@ -21,10 +21,10 @@ class Sink {
     }
 
     private int volume;
-    private String description;
-    private String name;
+    private final String description;
+    private final String name;
     private boolean mute;
-    private int maxVolume;
+    private final int maxVolume;
     private boolean enabled;
 
     private final List<UpdateListener> listeners;

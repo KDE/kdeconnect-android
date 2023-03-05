@@ -88,7 +88,7 @@ public class CustomDevicesAdapter extends RecyclerView.Adapter<CustomDevicesAdap
     }
 
     private static class ItemTouchHelperCallback extends ItemTouchHelper.Callback {
-        @NonNull private Callback callback;
+        @NonNull private final Callback callback;
 
         private ItemTouchHelperCallback(@NonNull Callback callback) {
             this.callback = callback;

@@ -34,7 +34,7 @@ class ReceiveNotification {
     private final int notificationId;
     private NotificationCompat.Builder builder;
     private final Device device;
-    private long jobId;
+    private final long jobId;
 
     //https://documentation.onesignal.com/docs/android-customizations#section-big-picture
     private static final int bigImageWidth = 1440;

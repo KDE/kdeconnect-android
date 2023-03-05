@@ -118,7 +118,7 @@ public class AlertDialogFragment extends DialogFragment implements DialogInterfa
     }
 
     public static abstract class AbstractBuilder<B extends AbstractBuilder<B, F>, F extends DialogFragment> {
-        Bundle args;
+        final Bundle args;
 
         AbstractBuilder() {
             args = new Bundle();

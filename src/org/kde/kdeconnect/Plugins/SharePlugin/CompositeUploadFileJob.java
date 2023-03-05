@@ -41,13 +41,13 @@ import java.util.List;
  */
 public class CompositeUploadFileJob extends BackgroundJob<Device, Void> {
     private boolean isRunning;
-    private Handler handler;
+    private final Handler handler;
     private String currentFileName;
     private int currentFileNum;
     private boolean updatePacketPending;
     private long totalSend;
     private int prevProgressPercentage;
-    private UploadNotification uploadNotification;
+    private final UploadNotification uploadNotification;
 
     private final Object lock;                              //Use to protect concurrent access to the variables below
     @GuardedBy("lock")

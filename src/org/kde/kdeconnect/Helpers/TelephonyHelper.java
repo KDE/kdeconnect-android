@@ -360,7 +360,7 @@ public class TelephonyHelper {
         private int mmsProxyPort = 80; // Default port should be 80 according to code comment in Android's ApnSettings.java
 
         public static class Builder {
-            private org.kde.kdeconnect.Helpers.TelephonyHelper.ApnSetting internalApnSetting;
+            private final org.kde.kdeconnect.Helpers.TelephonyHelper.ApnSetting internalApnSetting;
 
             public Builder() {
                 internalApnSetting = new ApnSetting();

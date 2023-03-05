@@ -11,13 +11,13 @@ import androidx.annotation.NonNull;
 import java.util.concurrent.atomic.AtomicLong;
 
 public abstract class BackgroundJob<I, R> implements Runnable {
-    private static AtomicLong atomicLong = new AtomicLong(0);
+    private static final AtomicLong atomicLong = new AtomicLong(0);
     protected volatile boolean canceled;
     private BackgroundJobHandler backgroundJobHandler;
-    private long id;
+    private final long id;
 
-    protected I requestInfo;
-    private Callback<R> callback;
+    protected final I requestInfo;
+    private final Callback<R> callback;
 
     public BackgroundJob(I requestInfo, Callback<R> callback) {
         this.id = atomicLong.incrementAndGet();

@@ -43,9 +43,9 @@ class AppDatabase {
             + KEY_PRIVACY_OPTIONS + " INTEGER NOT NULL); ";
 
 
-    private SQLiteDatabase ourDatabase;
-    private DbHelper ourHelper;
-    private SharedPreferences prefs;
+    private final SQLiteDatabase ourDatabase;
+    private final DbHelper ourHelper;
+    private final SharedPreferences prefs;
 
     AppDatabase(Context context, boolean readonly) {
         ourHelper = new DbHelper(context);

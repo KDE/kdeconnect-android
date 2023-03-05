@@ -43,7 +43,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
     private final Map<String, BluetoothLink> visibleComputers = new HashMap<>();
     private final Map<BluetoothDevice, BluetoothSocket> sockets = new HashMap<>();
 
-    private BluetoothAdapter bluetoothAdapter;
+    private final BluetoothAdapter bluetoothAdapter;
 
     private ServerRunnable serverRunnable;
     private ClientRunnable clientRunnable;

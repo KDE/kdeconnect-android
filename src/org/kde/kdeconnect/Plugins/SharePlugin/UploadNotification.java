@@ -25,7 +25,7 @@ class UploadNotification {
     private NotificationCompat.Builder builder;
     private final int notificationId;
     private final Device device;
-    private long jobId;
+    private final long jobId;
 
     UploadNotification(Device device, long jobId) {
         this.device = device;

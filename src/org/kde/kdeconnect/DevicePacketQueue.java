@@ -17,7 +17,7 @@ class DevicePacketQueue {
         /**
          * Replacement ID: if positive, it can be replaced by later packets with the same ID
          */
-        int replaceID;
+        final int replaceID;
         Device.SendPacketStatusCallback callback;
 
         Item(NetworkPacket packet, int replaceID, Device.SendPacketStatusCallback callback) {
@@ -28,7 +28,7 @@ class DevicePacketQueue {
     }
 
     private final ArrayDeque<Item> items = new ArrayDeque<>();
-    private Device mDevice;
+    private final Device mDevice;
     private final Object lock = new Object();
     private boolean exit = false;
 

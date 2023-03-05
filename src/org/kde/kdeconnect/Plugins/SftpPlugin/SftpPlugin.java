@@ -36,7 +36,7 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
     private final static String PACKET_TYPE_SFTP = "kdeconnect.sftp";
     private final static String PACKET_TYPE_SFTP_REQUEST = "kdeconnect.sftp.request";
 
-    static int PREFERENCE_KEY_STORAGE_INFO_LIST = R.string.sftp_preference_key_storage_info_list;
+    static final int PREFERENCE_KEY_STORAGE_INFO_LIST = R.string.sftp_preference_key_storage_info_list;
 
     private static final SimpleSftpServer server = new SimpleSftpServer();
 
@@ -242,8 +242,10 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
         private static final String KEY_DISPLAY_NAME = "DisplayName";
         private static final String KEY_URI = "Uri";
 
-        @NonNull String displayName;
-        @NonNull Uri uri;
+        @NonNull
+        String displayName;
+        @NonNull
+        final Uri uri;
 
         StorageInfo(@NonNull String displayName, @NonNull Uri uri) {
             this.displayName = displayName;

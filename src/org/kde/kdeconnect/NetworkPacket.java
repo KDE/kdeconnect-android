@@ -310,9 +310,9 @@ public class NetworkPacket {
     }
 
     public static class Payload {
-        private InputStream inputStream;
-        private Socket inputSocket;
-        private long payloadSize;
+        private final InputStream inputStream;
+        private final Socket inputSocket;
+        private final long payloadSize;
 
         public Payload(long payloadSize) {
             this((InputStream)null, payloadSize);

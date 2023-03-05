@@ -19,7 +19,7 @@ public final class ConnectionMultiplexer implements Closeable {
     private static final int BUFFER_SIZE = 4096;
 
     private static final class ChannelInputStream extends InputStream implements Closeable {
-        Channel channel;
+        final Channel channel;
 
         ChannelInputStream(Channel channel) {
             this.channel = channel;
@@ -57,7 +57,7 @@ public final class ConnectionMultiplexer implements Closeable {
     }
 
     private static final class ChannelOutputStream extends OutputStream implements Closeable {
-        Channel channel;
+        final Channel channel;
 
         ChannelOutputStream(Channel channel) {
             this.channel = channel;
@@ -92,9 +92,9 @@ public final class ConnectionMultiplexer implements Closeable {
     }
 
     private static final class Channel implements Closeable {
-        ConnectionMultiplexer multiplexer;
-        UUID id;
-        ByteBuffer read_buffer = ByteBuffer.allocate(BUFFER_SIZE);
+        final ConnectionMultiplexer multiplexer;
+        final UUID id;
+        final ByteBuffer read_buffer = ByteBuffer.allocate(BUFFER_SIZE);
         final Object lock = new Object();
         boolean open = true;
         int requestedReadAmount = 0; //Number of times we requested some bytes from the channel
@@ -199,7 +199,7 @@ public final class ConnectionMultiplexer implements Closeable {
     }
 
     private BluetoothSocket socket;
-    private Map<UUID, Channel> channels = new HashMap<>();
+    private final Map<UUID, Channel> channels = new HashMap<>();
     private final Object lock = new Object();
     private boolean open = true;
     private boolean receivedProtocolVersion = false;
