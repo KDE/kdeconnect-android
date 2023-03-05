@@ -41,7 +41,6 @@
                 android:layout_height="fill_parent"
                 android:contentDescription="@string/mpris_rew"
                 android:layout_weight="0.25"
-                android:layout_marginRight="3dp"
                 android:layout_marginEnd="3dp"
                 android:src="@drawable/ic_previous_black"
                 android:theme="@style/DisableableButton" />
@@ -50,7 +49,6 @@
                 android:id="@+id/next_button"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:layout_marginLeft="3dp"
                 android:layout_marginStart="3dp"
                 android:layout_weight="0.25"
                 android:contentDescription="@string/mpris_ff"

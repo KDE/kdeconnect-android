@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="@color/on_secondary"
     android:theme="@style/KdeConnectTheme"
@@ -7,7 +8,7 @@
     <LinearLayout
         android:id="@+id/runcommandWidgetTitleHeader"
         android:background="@color/primary"
-        android:gravity="center_vertical|left"
+        android:gravity="center_vertical|start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -42,12 +43,10 @@
         android:id="@+id/not_reachable_message"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:drawableStart="@drawable/ic_error_outline_48dp"
-        android:drawableLeft="@drawable/ic_error_outline_48dp"
         android:drawablePadding="8dip"
         android:gravity="center_vertical"
         android:paddingStart="8dip"
-        android:paddingLeft="8dip"
         android:text="@string/unreachable_description"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        app:drawableStartCompat="@drawable/ic_error_outline_48dp"/>
 </LinearLayout>

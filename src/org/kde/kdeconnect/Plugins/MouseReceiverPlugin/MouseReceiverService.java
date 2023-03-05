@@ -72,7 +72,7 @@ public class MouseReceiverService extends AccessibilityService {
             cursorLayout.layoutInDisplayCutoutMode = LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
         }
 
-        cursorLayout.gravity = Gravity.LEFT | Gravity.TOP;
+        cursorLayout.gravity = Gravity.START | Gravity.TOP;
         cursorLayout.x = displayMetrics.widthPixels / 2;
         cursorLayout.y = displayMetrics.heightPixels / 2;
 

@@ -12,8 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingEnd="?android:attr/listPreferredItemPaddingRight"
-        android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
-        android:paddingRight="?android:attr/listPreferredItemPaddingRight"
         android:paddingStart="?android:attr/listPreferredItemPaddingLeft"/>
 
     <FrameLayout
@@ -30,8 +28,6 @@
             android:gravity="center_vertical"
             android:minHeight="?android:attr/listPreferredItemHeightSmall"
             android:paddingEnd="?android:attr/listPreferredItemPaddingRight"
-            android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
-            android:paddingRight="?android:attr/listPreferredItemPaddingRight"
             android:paddingStart="?android:attr/listPreferredItemPaddingLeft"
             android:textAppearance="?android:attr/textAppearanceListItemSmall"
             android:visibility="visible"

@@ -182,7 +182,6 @@
                     android:textSize="14sp"
                     android:layout_marginTop="8dp"
                     android:paddingStart="4dp"
-                    android:paddingLeft="4dp"
                     tools:text="Everyone else who has contributed to KDE Connect over the years"
                     tools:ignore="RtlSymmetry" />
             </LinearLayout>

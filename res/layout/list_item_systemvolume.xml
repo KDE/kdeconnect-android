@@ -24,7 +24,7 @@
             android:layout_gravity="start"
             android:ellipsize="end"
             android:maxLines="1"
-            android:paddingLeft="14dp"
+            android:paddingStart="14dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             tools:text="Device name" />
 

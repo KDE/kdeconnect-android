@@ -18,8 +18,6 @@
         android:layout_height="wrap_content"
         android:importantForAccessibility="no"
         android:paddingEnd="8dip"
-        android:paddingLeft="0dip"
-        android:paddingRight="8dip"
         android:paddingStart="0dip"
         android:src="@drawable/ic_error_outline_48dp"
         app:tint="?attr/colorHighContrast"
