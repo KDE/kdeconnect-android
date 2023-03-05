@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.DocumentsContract;
 import android.text.Editable;
@@ -145,11 +144,7 @@ public class StoragePreferenceDialogFragment extends PreferenceDialogFragmentCom
 
                 storageInfo = SftpPlugin.StorageInfo.copy(info);
 
-                if (Build.VERSION.SDK_INT < 21) {
-                    binding.storageLocation.setText(storageInfo.uri.getPath());
-                } else {
-                    binding.storageLocation.setText(DocumentsContract.getTreeDocumentId(storageInfo.uri));
-                }
+                binding.storageLocation.setText(DocumentsContract.getTreeDocumentId(storageInfo.uri));
 
                 binding.storageDisplayName.setText(storageInfo.displayName);
             }

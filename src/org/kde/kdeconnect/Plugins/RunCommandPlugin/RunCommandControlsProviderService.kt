@@ -10,6 +10,7 @@ import android.app.PendingIntent
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.drawable.Icon
+import android.os.Build
 import android.service.controls.Control
 import android.service.controls.ControlsProviderService
 import android.service.controls.actions.CommandAction
@@ -33,7 +34,7 @@ import java.util.function.Consumer
 
 private class CommandEntryWithDevice(name: String, cmd: String, key: String, val device: Device) : CommandEntry(name, cmd, key)
 
-@RequiresApi(30)
+@RequiresApi(Build.VERSION_CODES.R)
 class RunCommandControlsProviderService : ControlsProviderService() {
     private lateinit var updatePublisher: ReplayProcessor<Control>
     private lateinit var sharedPreferences: SharedPreferences

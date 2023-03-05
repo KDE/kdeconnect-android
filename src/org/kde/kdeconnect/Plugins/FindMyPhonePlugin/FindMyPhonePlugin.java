@@ -20,7 +20,6 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 
-import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
@@ -125,7 +124,6 @@ public class FindMyPhonePlugin extends Plugin {
         return true;
     }
 
-    @RequiresApi(16)
     private void showBroadcastNotification() {
         Intent intent = new Intent(context, FindMyPhoneReceiver.class);
         intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);

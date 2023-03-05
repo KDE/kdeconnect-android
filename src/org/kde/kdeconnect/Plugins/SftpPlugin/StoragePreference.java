@@ -7,7 +7,6 @@
 package org.kde.kdeconnect.Plugins.SftpPlugin;
 
 import android.content.Context;
-import android.os.Build;
 import android.provider.DocumentsContract;
 import android.util.AttributeSet;
 import android.view.View;
@@ -67,11 +66,7 @@ public class StoragePreference extends DialogPreference {
         this.storageInfo = storageInfo;
 
         setTitle(storageInfo.displayName);
-        if (Build.VERSION.SDK_INT < 21) {
-            setSummary(storageInfo.uri.getPath());
-        } else {
-            setSummary(DocumentsContract.getTreeDocumentId(storageInfo.uri));
-        }
+        setSummary(DocumentsContract.getTreeDocumentId(storageInfo.uri));
     }
 
     @Nullable

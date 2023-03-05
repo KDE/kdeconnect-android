@@ -8,7 +8,6 @@
 package org.kde.kdeconnect.Plugins.RunCommandPlugin;
 
 import android.content.ClipboardManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -18,7 +17,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -118,7 +116,6 @@ public class RunCommandActivity extends AppCompatActivity {
         inflater.inflate(R.menu.runcommand_context, menu);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();

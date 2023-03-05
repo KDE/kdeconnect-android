@@ -154,6 +154,7 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
     private void createMediaSession() {
         mMediaSession = new MediaSessionCompat(this, "kdeconnect");
 
+        // Deprecated flags not required in Build.VERSION_CODES.O and later
         mMediaSession.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS |
                 MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
         mMediaSession.setPlaybackState(new PlaybackStateCompat.Builder()

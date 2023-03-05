@@ -287,6 +287,7 @@ public class MprisMediaSession implements
             if (mediaSession == null) {
                 mediaSession = new MediaSessionCompat(context, MPRIS_MEDIA_SESSION_TAG);
                 mediaSession.setCallback(mediaSessionCallback);
+                // Deprecated flags not required in Build.VERSION_CODES.O and later
                 mediaSession.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS | MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
             }
 
@@ -369,7 +370,7 @@ public class MprisMediaSession implements
              */
             PendingIntent piOpenActivity = TaskStackBuilder.create(context)
                     .addNextIntentWithParentStack(iOpenActivity)
-                    .getPendingIntent(Build.VERSION.SDK_INT > 15 ? 0 : (int) System.currentTimeMillis(), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
+                    .getPendingIntent((int) System.currentTimeMillis(), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
 
             NotificationCompat.Builder notification = new NotificationCompat.Builder(context, NotificationHelper.Channels.MEDIA_CONTROL);
 
