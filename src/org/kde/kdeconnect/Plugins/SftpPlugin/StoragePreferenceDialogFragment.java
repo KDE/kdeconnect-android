@@ -104,7 +104,7 @@ public class StoragePreferenceDialogFragment extends PreferenceDialogFragmentCom
     }
 
     @Override
-    protected void onBindDialogView(View view) {
+    protected void onBindDialogView(@NonNull View view) {
         super.onBindDialogView(view);
 
         binding = FragmentStoragePreferenceDialogBinding.bind(view);

@@ -130,7 +130,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         mActivity = ((MainActivity) getActivity());
     }
@@ -286,7 +286,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(@NonNull Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.pairing, menu);
     }
 

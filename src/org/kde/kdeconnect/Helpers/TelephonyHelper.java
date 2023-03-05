@@ -420,6 +420,7 @@ public class TelephonyHelper {
            this.subscriptionID = subscriptionID;
        }
 
+        @NonNull
         @Override
         public String toString() {
             return number;

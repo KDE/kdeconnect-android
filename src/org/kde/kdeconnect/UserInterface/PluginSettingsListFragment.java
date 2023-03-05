@@ -93,8 +93,9 @@ public class PluginSettingsListFragment extends PreferenceFragmentCompat {
         });
     }
 
+    @NonNull
     @Override
-    protected RecyclerView.Adapter onCreateAdapter(PreferenceScreen preferenceScreen) {
+    protected RecyclerView.Adapter onCreateAdapter(@NonNull PreferenceScreen preferenceScreen) {
         RecyclerView.Adapter adapter = super.onCreateAdapter(preferenceScreen);
 
         /*
@@ -144,7 +145,7 @@ public class PluginSettingsListFragment extends PreferenceFragmentCompat {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
         Parcelable layoutManagerState = recyclerViewLayoutManagerState;

@@ -49,7 +49,7 @@ setIcon(android.R.color.transparent);
     }
 
     @Override
-    public void onBindViewHolder(PreferenceViewHolder holder) {
+    public void onBindViewHolder(@NonNull PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
 
         View.OnClickListener toggleListener = v -> {

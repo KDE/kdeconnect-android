@@ -10,6 +10,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceViewHolder;
 
@@ -24,7 +25,7 @@ public class LongSummaryPreferenceCategory extends PreferenceCategory {
     }
 
     @Override
-    public void onBindViewHolder(PreferenceViewHolder holder) {
+    public void onBindViewHolder(@NonNull PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
         TextView summary = (TextView) holder.findViewById(android.R.id.summary);
         summary.setMaxLines(3);

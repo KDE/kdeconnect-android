@@ -368,7 +368,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(STATE_SELECTED_DEVICE, mCurrentDevice);
         outState.putInt(STATE_SELECTED_MENU_ENTRY, mCurrentMenuEntry);

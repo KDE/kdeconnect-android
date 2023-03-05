@@ -32,6 +32,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
     private EditTextPreference renameDevice;
 
+    @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (getActivity() != null) {

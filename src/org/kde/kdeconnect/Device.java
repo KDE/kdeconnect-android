@@ -19,6 +19,7 @@ import android.util.Base64;
 import android.util.Log;
 
 import androidx.annotation.AnyThread;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 import androidx.core.app.NotificationCompat;
@@ -112,6 +113,7 @@ public class Device implements BaseLink.PacketReceiver {
             return Computer; //Default
         }
 
+        @NonNull
         public String toString() {
             switch (this) {
                 case Tablet:

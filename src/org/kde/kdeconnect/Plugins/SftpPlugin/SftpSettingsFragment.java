@@ -128,8 +128,9 @@ public class SftpSettingsFragment
         }
     }
 
+    @NonNull
     @Override
-    protected RecyclerView.Adapter onCreateAdapter(PreferenceScreen preferenceScreen) {
+    protected RecyclerView.Adapter onCreateAdapter(@NonNull PreferenceScreen preferenceScreen) {
         if (savedActionModeState != null) {
             getListView().post(this::restoreActionMode);
         }
@@ -162,7 +163,7 @@ public class SftpSettingsFragment
     }
 
     @Override
-    public void onDisplayPreferenceDialog(Preference preference) {
+    public void onDisplayPreferenceDialog(@NonNull Preference preference) {
         if (preference instanceof StoragePreference) {
             StoragePreferenceDialogFragment fragment = StoragePreferenceDialogFragment.newInstance(preference.getKey());
             fragment.setTargetFragment(this, 0);
@@ -174,7 +175,7 @@ public class SftpSettingsFragment
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
         try {
@@ -340,7 +341,7 @@ public class SftpSettingsFragment
     }
 
     @Override
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
+    public boolean onPreferenceChange(@NonNull Preference preference, Object newValue) {
         SftpPlugin.StorageInfo newStorageInfo = (SftpPlugin.StorageInfo) newValue;
 
         ListIterator<SftpPlugin.StorageInfo> it = storageInfoList.listIterator();

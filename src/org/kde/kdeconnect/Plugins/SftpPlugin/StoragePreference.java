@@ -96,7 +96,7 @@ public class StoragePreference extends DialogPreference {
     }
 
     @Override
-    public void onBindViewHolder(PreferenceViewHolder holder) {
+    public void onBindViewHolder(@NonNull PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
 
         checkbox = (CheckBox) holder.itemView.findViewById(R.id.checkbox);
