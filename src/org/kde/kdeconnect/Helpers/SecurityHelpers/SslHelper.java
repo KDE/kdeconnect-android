@@ -65,7 +65,23 @@ public class SslHelper {
 
     public static X509Certificate certificate; //my device's certificate
 
-    public static final BouncyCastleProvider BC = new BouncyCastleProvider();
+    public final static BouncyCastleProvider BC = new BouncyCastleProvider();
+
+    private final static TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
+        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+            return new X509Certificate[0];
+        }
+
+        @Override
+        public void checkClientTrusted(X509Certificate[] certs, String authType) {
+        }
+
+        @Override
+        public void checkServerTrusted(X509Certificate[] certs, String authType) {
+        }
+
+    }
+    };
 
     public static void initialiseCertificate(Context context) {
         PrivateKey privateKey;
@@ -191,22 +207,6 @@ public class SslHelper {
             trustManagerFactory.init(keyStore);
 
             // Setup custom trust manager if device not trusted
-            TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
-                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                    return new X509Certificate[0];
-                }
-
-                @Override
-                public void checkClientTrusted(X509Certificate[] certs, String authType) {
-                }
-
-                @Override
-                public void checkServerTrusted(X509Certificate[] certs, String authType) {
-                }
-
-            }
-            };
-
             SSLContext tlsContext = SSLContext.getInstance("TLSv1"); //Newer TLS versions are only supported on API 16+
             if (isDeviceTrusted) {
                 tlsContext.init(keyManagerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), RandomHelper.secureRandom);
