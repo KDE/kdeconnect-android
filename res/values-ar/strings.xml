@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-  <string name="kde_connect">كدي المتّصل</string>
+  <string name="kde_connect">كِيدِي المتّصل</string>
   <string name="manifest_label_share">أرسِل إلى جهاز</string>
   <string name="foreground_notification_no_devices">غير متصل بأي جهاز</string>
   <string name="foreground_notification_devices">متّصل بـ: %s</string>
@@ -84,7 +84,7 @@
   <string name="error_canceled_by_user">ألغاه المستخدم</string>
   <string name="error_canceled_by_other_peer">ألغاه ندّ آخر</string>
   <string name="encryption_info_title">معلومات التّعمية</string>
-  <string name="encryption_info_msg_no_ssl">لا يستخدم الجهاز الآخر إصدارة حديثة من «كدي المتّصل»، ستُستخدم طريقة التّعمية القديمة.</string>
+  <string name="encryption_info_msg_no_ssl">لا يستخدم الجهاز الآخر إصدارة حديثة من «كِيدِي المتّصل»، ستُستخدم طريقة التّعمية القديمة.</string>
   <string name="pair_requested">طُلب الاقتران</string>
   <string name="pairing_request_from">طلب اقتران من %1s</string>
   <string name="tap_to_open">اطرق لتفتح</string>
@@ -145,8 +145,8 @@
   <string name="sftp_no_sdcard_detected">لم يكتشف أي بطاقة ذاكرة</string>
   <string name="no_players_connected">لم يُعثر على مشغّلات</string>
   <string name="send_files">أرسل ملفّات</string>
-  <string name="pairing_title">أجهزة «كدي المتّصل»</string>
-  <string name="pairing_description">الأجهزة الأخرى التي تشغّل «كدي المتّصل» وعلى نفس الشّبكة ستظهر هنا.</string>
+  <string name="pairing_title">أجهزة «كِيدِي المتّصل»</string>
+  <string name="pairing_description">الأجهزة الأخرى التي تشغّل «كِيدِي المتّصل» وعلى نفس الشّبكة ستظهر هنا.</string>
   <string name="device_rename_title">أعد تسمية الجهاز</string>
   <string name="device_rename_confirm">أعد التّسمية</string>
   <string name="refresh">أنعش</string>
@@ -247,9 +247,9 @@
   <string name="email_contributor">راسل المساهم:\n%s</string>
   <string name="visit_contributors_homepage">زر صفحة المساهم الرئيسية\n%s</string>
   <string name="version">الإصدار %s</string>
-  <string name="about_kde">عن كدي</string>
-  <string name="kde_be_free">كدي- كن حرًّا!</string>
-  <string name="kde">كدي</string>
+  <string name="about_kde">عن كِيدِي</string>
+  <string name="kde_be_free">كِيدِي- كن حرًّا!</string>
+  <string name="kde">كِيدِي</string>
   <string name="konqi">كوينكي</string>
   <string name="rise_up">ارفع</string>
   <string name="rise_down">اخفض</string>
