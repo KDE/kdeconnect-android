@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
@@ -38,9 +37,11 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.security.KeyStore;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.cert.Certificate;
+import java.security.cert.CertificateEncodingException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.time.Instant;
@@ -255,18 +256,17 @@ public class SslHelper {
     }
 
     public static String getCertificateHash(Certificate certificate) {
+        byte[] hash;
         try {
-            byte[] hash = MessageDigest.getInstance("SHA-256").digest(certificate.getEncoded());
-            Formatter formatter = new Formatter();
-            int i;
-            for (i = 0; i < hash.length; i++) {
-                formatter.format("%02x:", hash[i]);
-            }
-            formatter.format("%02x", hash[i]);
-            return formatter.toString();
-        } catch (Exception e) {
-            return null;
+            hash = MessageDigest.getInstance("SHA-256").digest(certificate.getEncoded());
+        } catch (NoSuchAlgorithmException | CertificateEncodingException e) {
+            throw new RuntimeException(e);
         }
+        Formatter formatter = new Formatter();
+        for (byte b : hash) {
+            formatter.format("%02x:", b);
+        }
+        return formatter.toString();
     }
 
     public static Certificate parseCertificate(byte[] certificateBytes) throws IOException, CertificateException {
@@ -299,8 +299,8 @@ public class SslHelper {
 
             byte[] hash = MessageDigest.getInstance("SHA-256").digest(concat);
             Formatter formatter = new Formatter();
-            for (int i = 0; i < hash.length; i++) {
-                formatter.format("%02x", hash[i]);
+            for (byte value : hash) {
+                formatter.format("%02x", value);
             }
             return formatter.toString();
         } catch(Exception e) {
