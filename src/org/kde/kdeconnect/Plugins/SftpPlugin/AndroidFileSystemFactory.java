@@ -40,17 +40,6 @@ class AndroidFileSystemFactory implements FileSystemFactory {
 
     @Override
     public FileSystemView createFileSystemView(final Session username) {
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
-            if (roots.size() == 0) {
-                throw new RuntimeException("roots cannot be empty");
-            }
-
-            String[] rootsAsString = new String[roots.size()];
-            roots.keySet().toArray(rootsAsString);
-
-            return new AndroidFileSystemView(roots, rootsAsString[0], username.getUsername(), context);
-        } else {
-            return new AndroidSafFileSystemView(roots, username.getUsername(), context);
-        }
+        return new AndroidSafFileSystemView(roots, username.getUsername(), context);
     }
 }

@@ -4,9 +4,8 @@
     tools:keep="@xml/sftpplugin_preferences">
     <PreferenceCategory
         android:key="@string/sftp_preference_key_preference_category"
-        android:title="@string/sftp_preference_detected_sdcards"
+        android:title="@string/sftp_preference_configured_storage_locations"
         android:persistent="false">
-
     </PreferenceCategory>
 
     <org.kde.kdeconnect.Plugins.SftpPlugin.StoragePreference
@@ -14,11 +13,4 @@
         android:icon="@drawable/ic_add"
         android:title="@string/sftp_preference_add_storage_location_title"
         android:persistent="false"/>
-
-    <androidx.preference.SwitchPreferenceCompat
-        android:defaultValue="true"
-        android:key="@string/sftp_preference_key_add_camera_shortcut"
-        android:summaryOff="@string/sftp_preference_add_camera_shortcut_summary_off"
-        android:summaryOn="@string/sftp_preference_add_camera_shortcut_summary_on"
-        android:title="@string/sftp_preference_add_camera_shortcut"/>
 </PreferenceScreen>
