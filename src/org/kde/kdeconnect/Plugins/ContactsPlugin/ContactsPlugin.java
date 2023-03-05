@@ -29,7 +29,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 @PluginFactory.LoadablePlugin
 public class ContactsPlugin extends Plugin {
 
@@ -110,12 +109,6 @@ public class ContactsPlugin extends Plugin {
     public String[] getRequiredPermissions() {
         return new String[]{Manifest.permission.READ_CONTACTS};
         // One day maybe we will also support WRITE_CONTACTS, but not yet
-    }
-
-    @Override
-    public int getMinSdk() {
-        // Need API 18 for contact timestamps
-        return Build.VERSION_CODES.JELLY_BEAN_MR2;
     }
 
     /**

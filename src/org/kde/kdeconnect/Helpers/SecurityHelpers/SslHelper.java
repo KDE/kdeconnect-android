@@ -223,13 +223,12 @@ public class SslHelper {
     private static void configureSslSocket(SSLSocket socket, boolean isDeviceTrusted, boolean isClient) throws SocketException {
 
         // These cipher suites are most common of them that are accepted by kde and android during handshake
+        // FIXME: Check if we can remove this and let Android chose
         ArrayList<String> supportedCiphers = new ArrayList<>();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            supportedCiphers.add("TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384");  // API 20+
-            supportedCiphers.add("TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256");  // API 20+
-            supportedCiphers.add("TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384");    // API 20+
-            supportedCiphers.add("TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256");    // API 20+
-        }
+        supportedCiphers.add("TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384");  // API 20+
+        supportedCiphers.add("TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256");  // API 20+
+        supportedCiphers.add("TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384");    // API 20+
+        supportedCiphers.add("TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256");    // API 20+
         supportedCiphers.add("TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA");       // API 11+
         socket.setEnabledCipherSuites(supportedCiphers.toArray(ArrayUtils.EMPTY_STRING_ARRAY));
 

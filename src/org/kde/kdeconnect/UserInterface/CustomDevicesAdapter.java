@@ -75,14 +75,6 @@ public class CustomDevicesAdapter extends RecyclerView.Adapter<CustomDevicesAdap
         ViewHolder(@NonNull CustomDeviceItemBinding itemBinding) {
             super(itemBinding.getRoot());
             this.itemBinding = itemBinding;
-
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                Drawable deleteDrawable = AppCompatResources.getDrawable(itemBinding.getRoot().getContext(),
-                        R.drawable.ic_delete);
-                TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(itemBinding.deviceNameOrIPBackdrop,
-                        deleteDrawable, null, deleteDrawable, null);
-            }
-
             itemBinding.deviceNameOrIP.setOnClickListener(v -> callback.onCustomDeviceClicked(customDevices.get(getAdapterPosition())));
         }
 

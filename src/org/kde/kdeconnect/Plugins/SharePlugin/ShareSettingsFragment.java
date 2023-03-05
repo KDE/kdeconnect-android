@@ -52,20 +52,16 @@ public class ShareSettingsFragment extends PluginSettingsFragment {
         final SwitchPreferenceCompat customDownloads = preferenceScreen.findPreference("share_destination_custom");
         filePicker = preferenceScreen.findPreference("share_destination_folder_preference");
 
-        if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)) {
-            customDownloads.setOnPreferenceChangeListener((preference, newValue) -> {
-                updateFilePickerStatus((Boolean) newValue);
-                return true;
-            });
-            filePicker.setOnPreferenceClickListener(preference -> {
-                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-                startActivityForResult(intent, RESULT_PICKER);
-                return true;
-            });
-        } else {
-            customDownloads.setEnabled(false);
-            filePicker.setEnabled(false);
-        }
+        customDownloads.setOnPreferenceChangeListener((preference, newValue) -> {
+            updateFilePickerStatus((Boolean) newValue);
+            return true;
+        });
+        filePicker.setOnPreferenceClickListener(preference -> {
+            Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+            startActivityForResult(intent, RESULT_PICKER);
+            return true;
+        });
+
 
         boolean customized = PreferenceManager
                 .getDefaultSharedPreferences(requireContext())
@@ -118,7 +114,6 @@ public class ShareSettingsFragment extends PluginSettingsFragment {
         return DocumentFile.fromFile(getDefaultDestinationDirectory());
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
         if (requestCode == RESULT_PICKER
@@ -132,7 +127,6 @@ public class ShareSettingsFragment extends PluginSettingsFragment {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     public static void saveStorageLocationPreference(Context context, Uri uri) {
         context.getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION |
                 Intent.FLAG_GRANT_WRITE_URI_PERMISSION);

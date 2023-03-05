@@ -378,7 +378,6 @@ public class SftpSettingsFragment
         return result;
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void addNewStoragePreference(@NonNull SftpPlugin.StorageInfo storageInfo, int takeFlags) {
         storageInfoList.add(storageInfo);

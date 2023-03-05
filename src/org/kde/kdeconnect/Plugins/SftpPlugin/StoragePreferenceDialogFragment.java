@@ -171,7 +171,6 @@ public class StoragePreferenceDialogFragment extends PreferenceDialogFragmentCom
         binding = null;
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

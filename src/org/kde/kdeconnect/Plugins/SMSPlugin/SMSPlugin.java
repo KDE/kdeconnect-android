@@ -365,14 +365,6 @@ public class SMSPlugin extends Plugin {
         ContentObserver messageObserver = new MessageContentObserver(new Handler(helperLooper));
         SMSHelper.registerObserver(messageObserver, context);
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            Log.w("SMSPlugin", "This is a very old version of Android. The SMS Plugin might not function as intended.");
-        }
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            ApnUtils.initDefaultApns(context, null);
-        }
-
         // To see debug messages for Klinker library, uncomment the below line
         //Log.setDebug(true);
 

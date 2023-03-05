@@ -138,18 +138,16 @@ public class MprisMediaSession implements
         mpris.setPlayerListUpdatedHandler("media_notification", mediaNotificationHandler);
         mpris.setPlayerStatusUpdatedHandler("media_notification", mediaNotificationHandler);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            NotificationReceiver.RunCommand(context, service -> {
+        NotificationReceiver.RunCommand(context, service -> {
 
-                service.addListener(MprisMediaSession.this);
+            service.addListener(MprisMediaSession.this);
 
-                boolean serviceReady = service.isConnected();
+            boolean serviceReady = service.isConnected();
 
-                if (serviceReady) {
-                    onListenerConnected(service);
-                }
-            });
-        }
+            if (serviceReady) {
+                onListenerConnected(service);
+            }
+        });
 
         updateMediaNotification();
     }
@@ -258,8 +256,6 @@ public class MprisMediaSession implements
 
     private void updateRemoteDeviceVolumeControl() {
         // Volume control feature is only available from Lollipop onwards
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) return;
-
         BackgroundService.RunWithPlugin(context, notificationDevice, SystemVolumePlugin.class, plugin -> {
             SystemVolumeProvider systemVolumeProvider = SystemVolumeProvider.fromPlugin(plugin);
             systemVolumeProvider.addStateListener(this);
@@ -502,7 +498,6 @@ public class MprisMediaSession implements
         updateMediaNotification();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     public void onNotificationPosted(StatusBarNotification n) {
         if ("com.spotify.music".equals(n.getPackageName())) {
@@ -511,7 +506,6 @@ public class MprisMediaSession implements
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     public void onNotificationRemoved(StatusBarNotification n) {
         if ("com.spotify.music".equals(n.getPackageName())) {
@@ -520,7 +514,6 @@ public class MprisMediaSession implements
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     public void onListenerConnected(NotificationReceiver service) {
         for (StatusBarNotification n : service.getActiveNotifications()) {

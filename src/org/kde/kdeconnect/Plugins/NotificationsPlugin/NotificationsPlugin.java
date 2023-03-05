@@ -61,7 +61,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
 @PluginFactory.LoadablePlugin
 public class NotificationsPlugin extends Plugin implements NotificationReceiver.NotificationListener {
 
@@ -291,7 +290,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     }
 
     @NonNull
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private static Bundle getExtras(Notification notification) {
         // NotificationCompat.getExtras() is expected to return non-null values for JELLY_BEAN+
         return Objects.requireNonNull(NotificationCompat.getExtras(notification));
@@ -331,7 +329,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Nullable
     private JSONArray extractActions(Notification notification, String key) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT || ArrayUtils.isEmpty(notification.actions)) {
+        if (ArrayUtils.isEmpty(notification.actions)) {
             return null;
         }
 
@@ -343,8 +341,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
                 continue;
 
             // Check whether it is a reply action. We have special treatment for them
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH &&
-                    ArrayUtils.isNotEmpty(action.getRemoteInputs()))
+            if (ArrayUtils.isNotEmpty(action.getRemoteInputs()))
                 continue;
 
             jsonArray.put(action.title.toString());
@@ -414,7 +411,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         return drawableToBitmap(icon.loadDrawable(foreignContext));
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     private void replyToNotification(String id, String message) {
         if (pendingIntents.isEmpty() || !pendingIntents.containsKey(id)) {
             Log.e(TAG, "No such notification");
@@ -449,10 +445,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Nullable
     private RepliableNotification extractRepliableNotification(StatusBarNotification statusBarNotification) {
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            return null;
-        }
 
         if (statusBarNotification.getNotification().actions == null) {
             return null;
@@ -531,7 +523,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     @Override
     public boolean onPacketReceived(final NetworkPacket np) {
 
-        if (np.getType().equals(PACKET_TYPE_NOTIFICATION_ACTION) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        if (np.getType().equals(PACKET_TYPE_NOTIFICATION_ACTION)) {
 
             String key = np.getString("key");
             String title = np.getString("action");
@@ -562,11 +554,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             currentNotifications.remove(dismissedId);
             NotificationReceiver.RunCommand(context, service -> cancelNotificationCompat(service, dismissedId));
         } else if (np.has("requestReplyId") && np.has("message")) {
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-                replyToNotification(np.getString("requestReplyId"), np.getString("message"));
-            }
-
+            replyToNotification(np.getString("requestReplyId"), np.getString("message"));
         }
 
         return true;
@@ -597,27 +585,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     //For compat with API<21, because lollipop changed the way to cancel notifications
     private static void cancelNotificationCompat(NotificationReceiver service, String compatKey) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             service.cancelNotification(compatKey);
-        } else {
-            int first = compatKey.indexOf(':');
-            if (first == -1) {
-                Log.e(TAG, "Not formatted like a notification key: " + compatKey);
-                return;
-            }
-            int last = compatKey.lastIndexOf(':');
-            String packageName = compatKey.substring(0, first);
-            String tag = compatKey.substring(first + 1, last);
-            if (tag.length() == 0) tag = null;
-            String idString = compatKey.substring(last + 1);
-            int id;
-            try {
-                id = Integer.parseInt(idString);
-            } catch (Exception e) {
-                id = 0;
-            }
-            service.cancelNotification(packageName, tag, id);
-        }
     }
 
     private static String getNotificationKeyCompat(StatusBarNotification statusBarNotification) {
@@ -626,13 +594,8 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         String tag = statusBarNotification.getTag();
         if (StringUtils.startsWith(tag, "kdeconnectId:"))
             result = Integer.toString(statusBarNotification.getId());
-        else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        else {
             result = statusBarNotification.getKey();
-        } else {
-            String packageName = statusBarNotification.getPackageName();
-            int id = statusBarNotification.getId();
-            result = StringUtils.defaultString(packageName) + ":" + StringUtils.defaultString(tag) +
-                    ":" + id;
         }
         return result;
     }
@@ -659,11 +622,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
             hexChars[j * 2 + 1] = hexArray[v & 0x0F];
         }
         return new String(hexChars).toLowerCase();
-    }
-
-    @Override
-    public int getMinSdk() {
-        return Build.VERSION_CODES.JELLY_BEAN_MR2;
     }
 
     public static String getPrefKey(){ return PREF_KEY;}

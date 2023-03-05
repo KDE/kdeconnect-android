@@ -345,7 +345,7 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
     private void openFile(DocumentFile fileDocument) {
         String mimeType = FilesHelper.getMimeTypeFromFile(fileDocument.getName());
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        if (Build.VERSION.SDK_INT >= 24) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             //Nougat and later require "content://" uris instead of "file://" uris
             File file = new File(fileDocument.getUri().getPath());
             Uri contentUri = FileProvider.getUriForFile(getDevice().getContext(), "org.kde.kdeconnect_tp.fileprovider", file);

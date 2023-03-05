@@ -189,7 +189,6 @@ public class ContactsHelper {
      * @param context android.content.Context running the request
      * @return Mapping of contact uID to last-modified timestamp
      */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2) // Need API 18 for contact timestamps
     public static Map<uID, Long> getAllContactTimestamps(Context context) {
         String[] projection = { uID.COLUMN, ContactsContract.Contacts.CONTACT_LAST_UPDATED_TIMESTAMP };
 
@@ -215,7 +214,6 @@ public class ContactsHelper {
      * @throws ContactNotFoundException If the given ID for some reason does not match a contact
      * @return          Last-modified timestamp of the contact
      */
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2) // Need API 18 for contact timestamps
     public static Long getContactTimestamp(Context context, uID contactID) throws ContactNotFoundException {
         String[] projection = { uID.COLUMN, ContactsContract.Contacts.CONTACT_LAST_UPDATED_TIMESTAMP };
         String selection = uID.COLUMN + " = ?";

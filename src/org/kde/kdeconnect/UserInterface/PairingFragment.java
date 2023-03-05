@@ -94,38 +94,34 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
         noWifiHeader.setOnClickListener(view -> startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS)));
         devicesListBinding.devicesList.addHeaderView(headerText);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            networkChangeListener = new ConnectivityManager.NetworkCallback() {
-                @Override
-                public void onAvailable(Network network) {
-                    updateDeviceList();
-                }
+        networkChangeListener = new ConnectivityManager.NetworkCallback() {
+            @Override
+            public void onAvailable(Network network) {
+                updateDeviceList();
+            }
 
-                @Override
-                public void onLost(Network network) {
-                    updateDeviceList();
-                }
+            @Override
+            public void onLost(Network network) {
+                updateDeviceList();
+            }
 
-                @Override
-                public void onLinkPropertiesChanged(Network network, LinkProperties linkProperties) {
-                    updateDeviceList();
-                }
-            };
-            ConnectivityManager connManager = ContextCompat.getSystemService(requireContext(),
-                    ConnectivityManager.class);
-            connManager.registerNetworkCallback(new NetworkRequest.Builder().build(), (ConnectivityManager.NetworkCallback) networkChangeListener);
-        }
+            @Override
+            public void onLinkPropertiesChanged(Network network, LinkProperties linkProperties) {
+                updateDeviceList();
+            }
+        };
+        ConnectivityManager connManager = ContextCompat.getSystemService(requireContext(),
+                ConnectivityManager.class);
+        connManager.registerNetworkCallback(new NetworkRequest.Builder().build(), (ConnectivityManager.NetworkCallback) networkChangeListener);
 
         return devicesListBinding.getRoot();
     }
 
     @Override
     public void onDestroyView() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ConnectivityManager connManager = ContextCompat.getSystemService(requireContext(),
-                    ConnectivityManager.class);
-            connManager.unregisterNetworkCallback((ConnectivityManager.NetworkCallback) networkChangeListener);
-        }
+        ConnectivityManager connManager = ContextCompat.getSystemService(requireContext(),
+                ConnectivityManager.class);
+        connManager.unregisterNetworkCallback((ConnectivityManager.NetworkCallback) networkChangeListener);
 
         super.onDestroyView();
         devicesListBinding = null;

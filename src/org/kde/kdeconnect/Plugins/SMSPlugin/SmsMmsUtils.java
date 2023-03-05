@@ -503,7 +503,6 @@ public class SmsMmsUtils {
      */
     public static void markConversationRead(Context context, HashSet<String> recipients) {
         new Thread() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void run() {
                 try {

@@ -105,7 +105,6 @@ public class MouseReceiverService extends AccessibilityService {
         return cursorLayout.y + cursorView.getHeight() / 2;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void moveView(double dx, double dy) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         instance.windowManager.getDefaultDisplay().getRealMetrics(displayMetrics);
@@ -127,7 +126,6 @@ public class MouseReceiverService extends AccessibilityService {
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static boolean move(double dx, double dy) {
         if (instance == null) return false;
 
@@ -235,7 +233,6 @@ public class MouseReceiverService extends AccessibilityService {
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public static boolean scroll(double dx, double dy) {
         if (instance == null) return false;
 
@@ -257,7 +254,6 @@ public class MouseReceiverService extends AccessibilityService {
     }
 
     // https://codelabs.developers.google.com/codelabs/developing-android-a11y-service/#6
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private AccessibilityNodeInfo findNodeByAciton(AccessibilityNodeInfo root, AccessibilityNodeInfo.AccessibilityAction action) {
         Deque<AccessibilityNodeInfo> deque = new ArrayDeque<>();
         deque.add(root);
@@ -273,25 +269,21 @@ public class MouseReceiverService extends AccessibilityService {
         return null;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean backButton() {
         if (instance == null) return false;
         return instance.performGlobalAction(GLOBAL_ACTION_BACK);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean homeButton() {
         if (instance == null) return false;
         return instance.performGlobalAction(GLOBAL_ACTION_HOME);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean recentButton() {
         if (instance == null) return false;
         return instance.performGlobalAction(GLOBAL_ACTION_RECENTS);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static boolean powerButton() {
         if (instance == null) return false;
 

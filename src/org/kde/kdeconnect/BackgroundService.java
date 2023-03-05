@@ -270,21 +270,19 @@ public class BackgroundService extends Service {
         }
         registerReceiver(new KdeConnectBroadcastReceiver(), filter);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkRequest.Builder builder = new NetworkRequest.Builder();
-            cm.registerNetworkCallback(builder.build(), new ConnectivityManager.NetworkCallback() {
-                @Override
-                public void onAvailable(Network network) {
-                    onDeviceListChanged();
-                    onNetworkChange();
-                }
-                @Override
-                public void onLost(Network network) {
-                    onDeviceListChanged();
-                }
-           });
-        }
+        ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkRequest.Builder builder = new NetworkRequest.Builder();
+        cm.registerNetworkCallback(builder.build(), new ConnectivityManager.NetworkCallback() {
+            @Override
+            public void onAvailable(Network network) {
+                onDeviceListChanged();
+                onNetworkChange();
+            }
+            @Override
+            public void onLost(Network network) {
+                onDeviceListChanged();
+            }
+        });
 
         Log.i("KDE/BackgroundService", "Service not started yet, initializing...");
 

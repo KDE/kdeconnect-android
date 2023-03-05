@@ -19,7 +19,6 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import androidx.annotation.RequiresApi;
 
-@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
 public class NotificationReceiver extends NotificationListenerService {
 
     private boolean connected;

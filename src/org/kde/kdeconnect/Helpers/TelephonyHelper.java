@@ -243,16 +243,7 @@ public class TelephonyHelper {
                 Telephony.Carriers.MMSPORT,
         };
 
-        Uri telephonyCarriersUri;
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            telephonyCarriersUri = Telephony.Carriers.CONTENT_URI;
-        } else {
-            // This is provided in the optimistic hope that it will "just work" for older devices
-            // content:// URI from Telephony.Carriers source:
-            // https://android.googlesource.com/platform/frameworks/opt/telephony/+/27bc967ba840d2e2a8941d60aef89d0cb80b1626/src/java/android/provider/Telephony.java
-            telephonyCarriersUri = Uri.parse("content://telephony/carriers");
-        }
+        Uri telephonyCarriersUri = Telephony.Carriers.CONTENT_URI;
 
         Uri telephonyCarriersPreferredApnUri;
 

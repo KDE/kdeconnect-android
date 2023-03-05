@@ -16,7 +16,6 @@ import androidx.annotation.RequiresApi;
 import static org.apache.commons.lang3.StringUtils.defaultString;
 import static org.apache.commons.lang3.StringUtils.firstNonEmpty;
 
-@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 class MprisReceiverPlayer {
 
     private final MediaController controller;

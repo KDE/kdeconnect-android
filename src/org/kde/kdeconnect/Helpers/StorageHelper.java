@@ -153,7 +153,6 @@ public class StorageHelper {
      * content://com.android.externalstorage.documents/tree/primary:DCIM          => primary:DCIM
      * content://com.android.externalstorage.documents/tree/primary:Download/bla  => primary:Download/bla
      */
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static String getDisplayName(@NonNull Context context, @NonNull Uri treeUri) {
         List<String> pathSegments = treeUri.getPathSegments();
 

@@ -213,7 +213,7 @@ public class AndroidSafSshFile implements SshFile {
             String sourceTreeDocumentId = DocumentsContract.getTreeDocumentId(parentUri);
             String destTreeDocumentId = DocumentsContract.getTreeDocumentId(((AndroidSafSshFile) dest).parentUri);
 
-            if (sourceTreeDocumentId.equals(destTreeDocumentId) && Build.VERSION.SDK_INT >= 24) {
+            if (sourceTreeDocumentId.equals(destTreeDocumentId) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 try {
                     Uri newUri = DocumentsContract.moveDocument(fileSystemView.context.getContentResolver(), documentInfo.uri, parentUri, destParentUri);
                     if (newUri != null) {

@@ -145,12 +145,7 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
 
         if (mMediaSession != null) {
             PowerManager pm = ContextCompat.getSystemService(this, PowerManager.class);
-            boolean screenOn;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-                screenOn = pm.isInteractive();
-            } else {
-                screenOn = pm.isScreenOn();
-            }
+            boolean screenOn = pm.isInteractive();
             if (screenOn) {
                 mMediaSession.release();
             } // else we are in the lockscreen, keep the mediasession

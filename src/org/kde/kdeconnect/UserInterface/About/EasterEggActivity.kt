@@ -40,11 +40,9 @@ class EasterEggActivity : AppCompatActivity(), SensorEventListener {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_NOSENSOR
 
         // Make the status bar blue to make the Easter Egg beautiful
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            window.statusBarColor = KDE_ICON_BACKGROUND_COLOR
-            window.navigationBarColor = KDE_ICON_BACKGROUND_COLOR
-            setLightSystemWindowsEnabled(false)
-        }
+        window.statusBarColor = KDE_ICON_BACKGROUND_COLOR
+        window.navigationBarColor = KDE_ICON_BACKGROUND_COLOR
+        setLightSystemWindowsEnabled(false)
 
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         if (hasAccelerometer()) {
@@ -65,18 +63,16 @@ class EasterEggActivity : AppCompatActivity(), SensorEventListener {
                 binding!!.logo.setColorFilter(ContextCompat.getColor(this, R.color.text_color))
                 binding!!.angle.setTextColor(ContextCompat.getColor(this, R.color.text_color))
 
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                    var typedArray = this.theme.obtainStyledAttributes(intArrayOf(android.R.attr.statusBarColor))
-                    window.statusBarColor = typedArray.getColor(0, Color.WHITE)
-                    window.navigationBarColor = typedArray.getColor(0, Color.WHITE)
+                var typedArray = this.theme.obtainStyledAttributes(intArrayOf(android.R.attr.statusBarColor))
+                window.statusBarColor = typedArray.getColor(0, Color.WHITE)
+                window.navigationBarColor = typedArray.getColor(0, Color.WHITE)
 
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                        typedArray = this.theme.obtainStyledAttributes(intArrayOf(android.R.attr.windowLightStatusBar))
-                        setLightSystemWindowsEnabled(typedArray.getBoolean(0, true))
-                    }
-
-                    typedArray.recycle()
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    typedArray = this.theme.obtainStyledAttributes(intArrayOf(android.R.attr.windowLightStatusBar))
+                    setLightSystemWindowsEnabled(typedArray.getBoolean(0, true))
                 }
+
+                typedArray.recycle()
             }
 
             val icon = intArrayOf(
@@ -110,12 +106,8 @@ class EasterEggActivity : AppCompatActivity(), SensorEventListener {
             if (icon == R.drawable.konqi) {
                 binding!!.logo.clearColorFilter()
                 binding!!.easterEggLayout.setBackgroundColor(KONQI_BACKGROUND_COLOR)
-
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                    window.statusBarColor = KONQI_BACKGROUND_COLOR
-                    window.navigationBarColor = KONQI_BACKGROUND_COLOR
-                }
-
+                window.statusBarColor = KONQI_BACKGROUND_COLOR
+                window.navigationBarColor = KONQI_BACKGROUND_COLOR
                 isAlreadyLongClicked = false
             }
 
