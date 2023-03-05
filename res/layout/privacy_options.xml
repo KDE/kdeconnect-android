@@ -8,11 +8,11 @@
         android:id="@+id/checkbox_contents"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Block notification contents" />
+        android:text="@string/block_notification_contents" />
 
     <CheckBox
         android:id="@+id/checkbox_images"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Block notification images" />
+        android:text="@string/block_notification_images" />
 </LinearLayout>

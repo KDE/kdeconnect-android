@@ -287,6 +287,9 @@
     <string name="no_players_connected">No players found</string>
     <string name="send_files">Send files</string>
 
+    <string name="block_notification_contents">Block notification contents</string>
+    <string name="block_notification_images">Block notification images</string>
+
     <string name="pairing_title">KDE Connect Devices</string>
     <string name="pairing_description">Other devices running KDE Connect in your same network should appear here.</string>
     <string name="device_rename_title">Rename device</string>
