@@ -139,10 +139,10 @@ public class KeyListenerView extends View {
             //Alt will change the utf symbol to non-ascii characters, we want the plain original letter
             //Since getDisplayLabel will always have a value, we have to check for special keys before
             char keyCharacter = event.getDisplayLabel();
-            np.set("key", new String(new char[]{keyCharacter}).toLowerCase());
+            np.set("key", String.valueOf(keyCharacter).toLowerCase());
         } else {
             //A normal key, but still not handled by the KeyInputConnection (happens with numbers)
-            np.set("key", new String(new char[]{(char) event.getUnicodeChar()}));
+            np.set("key", String.valueOf((char) event.getUnicodeChar()));
         }
 
         sendKeyPressPacket(np);

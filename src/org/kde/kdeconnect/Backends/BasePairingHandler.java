@@ -59,7 +59,7 @@ public abstract class BasePairingHandler {
     }
 
     /* To be implemented by respective pairing handler */
-    public abstract void packageReceived(NetworkPacket np) throws Exception;
+    public abstract void packageReceived(NetworkPacket np);
     public abstract void requestPairing();
     public abstract void acceptPairing();
     public abstract void rejectPairing();

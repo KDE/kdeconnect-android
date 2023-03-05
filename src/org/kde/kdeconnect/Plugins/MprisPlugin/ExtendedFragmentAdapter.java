@@ -36,9 +36,7 @@ public abstract class ExtendedFragmentAdapter extends FragmentStateAdapter {
                 //noinspection unchecked
                 return (LongSparseArray<Fragment>) fieldData;
             }
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
+        } catch (NoSuchFieldException | IllegalAccessException e) {
             e.printStackTrace();
         }
 

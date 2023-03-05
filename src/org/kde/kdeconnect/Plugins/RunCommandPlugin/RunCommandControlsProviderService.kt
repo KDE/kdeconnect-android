@@ -168,9 +168,7 @@ class RunCommandControlsProviderService : ControlsProviderService() {
     private fun getCommandByControlId(controlId: String): CommandEntryWithDevice? {
         val controlIdParts = controlId.split(":")
 
-        val service = BackgroundService.getInstance();
-
-        if (service == null) return null
+        val service = BackgroundService.getInstance() ?: return null
 
         val device = service.getDevice(controlIdParts[0])
 

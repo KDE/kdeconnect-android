@@ -130,7 +130,7 @@ public class VideoUrlsHelper {
         }
         if (value == null) {
             newValue = String.format(Locale.getDefault(), "%s%s%s%s%s",
-                    url.toString(), separator, parameter, position, trailer);
+                    url, separator, parameter, position, trailer);
             return new URL(newValue);
         }
         if (inQuery) {
