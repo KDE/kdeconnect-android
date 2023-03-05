@@ -90,9 +90,9 @@ public class BigscreenActivity extends AppCompatActivity {
                         .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                 if (result.get(0) != null) {
                     final String deviceId = getIntent().getStringExtra("deviceId");
-                    BackgroundService.RunWithPlugin(this, deviceId, BigscreenPlugin.class, plugin -> runOnUiThread(() -> {
-                        plugin.sendSTT(result.get(0));
-                    }));
+                    BackgroundService.RunWithPlugin(this, deviceId, BigscreenPlugin.class, plugin ->
+                            runOnUiThread(() -> plugin.sendSTT(result.get(0)))
+                    );
                 }
             }
         }

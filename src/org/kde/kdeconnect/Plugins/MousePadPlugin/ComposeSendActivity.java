@@ -10,13 +10,11 @@ package org.kde.kdeconnect.Plugins.MousePadPlugin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -50,21 +48,17 @@ public class ComposeSendActivity extends AppCompatActivity {
         EditText editText = findViewById(R.id.compose);
 
         editText.requestFocus();
-        editText.setOnEditorActionListener(new EditText.OnEditorActionListener() {
-            @Override
-
-            // this is almost never used
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEND) {
-                    sendComposed();
-                    return true;
-                }
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    clear();
-                    return true;
-                }
-                return false;
+        // this is almost never used
+        editText.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEND) {
+                sendComposed();
+                return true;
             }
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                clear();
+                return true;
+            }
+            return false;
         });
     }
 
