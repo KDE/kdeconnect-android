@@ -62,12 +62,12 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
     }
 
     @Override
-    public boolean checkOptionalPermissions() {
+    public boolean checkRequiredPermissions() {
         return SftpSettingsFragment.getStorageInfoList(context, this).size() != 0;
     }
 
     @Override
-    public AlertDialogFragment getOptionalPermissionExplanationDialog() {
+    public AlertDialogFragment getPermissionExplanationDialog() {
         return new DeviceSettingsAlertDialogFragment.Builder()
                 .setTitle(getDisplayName())
                 .setMessage(R.string.sftp_saf_permission_explanation)
