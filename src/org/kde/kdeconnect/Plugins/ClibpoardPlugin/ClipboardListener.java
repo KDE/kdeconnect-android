@@ -8,7 +8,6 @@
 package org.kde.kdeconnect.Plugins.ClibpoardPlugin;
 
 import android.Manifest;
-import android.annotation.TargetApi;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -29,7 +28,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Locale;
 
-@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class ClipboardListener {
 
     public interface ClipboardObserver {

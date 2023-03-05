@@ -9,15 +9,12 @@ package org.kde.kdeconnect.Plugins.NotificationsPlugin;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 
 import java.util.ArrayList;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-
-import androidx.annotation.RequiresApi;
 
 public class NotificationReceiver extends NotificationListenerService {
 

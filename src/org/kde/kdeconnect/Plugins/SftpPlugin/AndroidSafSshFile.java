@@ -6,7 +6,6 @@
 
 package org.kde.kdeconnect.Plugins.SftpPlugin;
 
-import android.annotation.TargetApi;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -37,7 +36,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-@TargetApi(21)
 public class AndroidSafSshFile implements SshFile {
     private static final String TAG = AndroidSafSshFile.class.getSimpleName();
 

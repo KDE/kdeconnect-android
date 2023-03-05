@@ -7,7 +7,6 @@
 package org.kde.kdeconnect.Plugins.SftpPlugin;
 
 import android.content.Context;
-import android.os.Build;
 
 import org.apache.sshd.common.Session;
 import org.apache.sshd.common.file.FileSystemFactory;

@@ -6,7 +6,6 @@
 
 package org.kde.kdeconnect.Plugins.SftpPlugin;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.net.Uri;
 import android.provider.DocumentsContract;
@@ -20,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@TargetApi(21)
 public class AndroidSafFileSystemView implements FileSystemView {
     final String userName;
     final Context context;

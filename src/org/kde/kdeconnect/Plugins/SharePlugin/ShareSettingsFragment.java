@@ -6,27 +6,25 @@
 
 package org.kde.kdeconnect.Plugins.SharePlugin;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 
-import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
-
-import java.io.File;
-
 import androidx.annotation.NonNull;
 import androidx.documentfile.provider.DocumentFile;
-import androidx.preference.SwitchPreferenceCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 import androidx.preference.PreferenceScreen;
+import androidx.preference.SwitchPreferenceCompat;
+
+import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
+
+import java.io.File;
 
 public class ShareSettingsFragment extends PluginSettingsFragment {
 

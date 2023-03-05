@@ -26,14 +26,14 @@ import android.widget.CheckedTextView;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 
-import org.kde.kdeconnect.Helpers.ThreadHelper;
-import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.TextViewCompat;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
+import org.kde.kdeconnect.Helpers.ThreadHelper;
+import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityNotificationFilterBinding;
 

@@ -6,15 +6,12 @@
 
 package org.kde.kdeconnect.Plugins.MprisReceiverPlugin;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+import static org.apache.commons.lang3.StringUtils.firstNonEmpty;
+
 import android.media.MediaMetadata;
 import android.media.session.MediaController;
 import android.media.session.PlaybackState;
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
-import static org.apache.commons.lang3.StringUtils.defaultString;
-import static org.apache.commons.lang3.StringUtils.firstNonEmpty;
 
 class MprisReceiverPlayer {
 

@@ -7,6 +7,8 @@
 package org.kde.kdeconnect.Plugins.PresenterPlugin;
 
 
+import static org.kde.kdeconnect.Plugins.MousePadPlugin.KeyListenerView.SpecialKeysMap;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -20,8 +22,6 @@ import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
-
-import static org.kde.kdeconnect.Plugins.MousePadPlugin.KeyListenerView.SpecialKeysMap;
 
 @PluginFactory.LoadablePlugin
 public class PresenterPlugin extends Plugin {

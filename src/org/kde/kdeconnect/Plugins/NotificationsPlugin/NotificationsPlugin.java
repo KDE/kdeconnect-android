@@ -6,7 +6,6 @@
 
 package org.kde.kdeconnect.Plugins.NotificationsPlugin;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.KeyguardManager;
 import android.app.Notification;

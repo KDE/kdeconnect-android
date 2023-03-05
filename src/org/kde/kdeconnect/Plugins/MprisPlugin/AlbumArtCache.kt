@@ -28,7 +28,6 @@ import java.net.MalformedURLException
 import java.net.URL
 import java.net.URLDecoder
 import java.security.MessageDigest
-import java.util.*
 
 /**
  * Handles the cache for album art

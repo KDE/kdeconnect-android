@@ -9,6 +9,9 @@ package org.kde.kdeconnect.Plugins.SharePlugin;
 import android.os.Handler;
 import android.os.Looper;
 
+import androidx.annotation.GuardedBy;
+import androidx.annotation.NonNull;
+
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.async.BackgroundJob;
@@ -16,9 +19,6 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.GuardedBy;
-import androidx.annotation.NonNull;
 
 /**
  * A type of {@link BackgroundJob} that sends Files to another device.

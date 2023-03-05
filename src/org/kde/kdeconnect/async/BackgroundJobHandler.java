@@ -71,7 +71,7 @@ public class BackgroundJobHandler {
     }
 
     private final ThreadPoolExecutor threadPoolExecutor;
-    private Handler handler;
+    private final Handler handler;
 
     private BackgroundJobHandler(int corePoolSize, int maxPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue) {
         this.handler = new Handler(Looper.getMainLooper());

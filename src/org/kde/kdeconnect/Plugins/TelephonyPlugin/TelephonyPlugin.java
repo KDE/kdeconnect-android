@@ -6,8 +6,8 @@
 
 package org.kde.kdeconnect.Plugins.TelephonyPlugin;
 
-import android.app.Activity;
 import android.Manifest;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -22,6 +22,8 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.core.content.ContextCompat;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.Helpers.ContactsHelper;
 import org.kde.kdeconnect.NetworkPacket;
@@ -33,8 +35,6 @@ import org.kde.kdeconnect_tp.R;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import androidx.core.content.ContextCompat;
 
 @PluginFactory.LoadablePlugin
 public class TelephonyPlugin extends Plugin {

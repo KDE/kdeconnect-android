@@ -14,12 +14,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 
-import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
-import org.kde.kdeconnect_tp.R;
-
 import androidx.annotation.NonNull;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
+
+import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
+import org.kde.kdeconnect_tp.R;
 
 public class FindMyPhoneSettingsFragment extends PluginSettingsFragment {
     private static final int REQUEST_CODE_SELECT_RINGTONE = 1000;

@@ -8,13 +8,13 @@ package org.kde.kdeconnect.Backends;
 
 import android.content.Context;
 
+import androidx.annotation.WorkerThread;
+
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
 
 import java.security.PrivateKey;
 import java.util.ArrayList;
-
-import androidx.annotation.WorkerThread;
 
 
 public abstract class BaseLink {

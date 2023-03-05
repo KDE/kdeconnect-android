@@ -11,13 +11,13 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 
+import androidx.core.content.ContextCompat;
+
 import org.kde.kdeconnect.Helpers.FilesHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
-
-import androidx.core.content.ContextCompat;
 
 @PluginFactory.LoadablePlugin
 public class PhotoPlugin extends Plugin {

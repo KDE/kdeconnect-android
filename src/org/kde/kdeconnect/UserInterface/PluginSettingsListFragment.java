@@ -9,17 +9,17 @@ package org.kde.kdeconnect.UserInterface;
 import android.os.Bundle;
 import android.os.Parcelable;
 
-import org.kde.kdeconnect.BackgroundService;
-import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect_tp.R;
-
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
 import androidx.recyclerview.widget.RecyclerView;
+
+import org.kde.kdeconnect.BackgroundService;
+import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect_tp.R;
+
+import java.util.List;
 
 public class PluginSettingsListFragment extends PreferenceFragmentCompat {
     private static final String ARG_DEVICE_ID = "deviceId";

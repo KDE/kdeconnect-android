@@ -6,11 +6,11 @@
 
 package org.kde.kdeconnect.Plugins.SharePlugin;
 
+import androidx.documentfile.provider.DocumentFile;
+
 import org.kde.kdeconnect.NetworkPacket;
 
 import java.io.OutputStream;
-
-import androidx.documentfile.provider.DocumentFile;
 
 class ShareInfo {
     String fileName;

@@ -6,7 +6,6 @@
 
 package org.kde.kdeconnect.Plugins;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;

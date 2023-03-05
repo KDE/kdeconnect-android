@@ -18,9 +18,6 @@ import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
-import android.util.Log;
-
-import java.util.Locale;
 
 public class PluginSettingsFragment extends PreferenceFragmentCompat {
     private static final String ARG_PLUGIN_KEY = "plugin_key";

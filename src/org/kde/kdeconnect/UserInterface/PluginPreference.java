@@ -4,14 +4,14 @@ import android.content.Context;
 import android.util.TypedValue;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.preference.PreferenceViewHolder;
+import androidx.preference.SwitchPreference;
+
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
-
-import androidx.annotation.NonNull;
-import androidx.preference.PreferenceViewHolder;
-import androidx.preference.SwitchPreference;
 
 public class PluginPreference extends SwitchPreference {
     private final Device device;

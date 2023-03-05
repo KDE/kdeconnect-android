@@ -6,7 +6,6 @@
 
 package org.kde.kdeconnect.Plugins.SharePlugin;
 
-import android.annotation.TargetApi;
 import android.content.ComponentName;
 import android.content.IntentFilter;
 import android.graphics.drawable.Icon;
@@ -22,7 +21,6 @@ import org.kde.kdeconnect_tp.R;
 import java.util.ArrayList;
 import java.util.List;
 
-@TargetApi(23)
 public class ShareChooserTargetService extends ChooserTargetService {
     @Override
     public List<ChooserTarget> onGetChooserTargets(ComponentName targetActivityName, IntentFilter matchedFilter) {

@@ -7,20 +7,15 @@
 package org.kde.kdeconnect.UserInterface;
 
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.widget.TextViewCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.CustomDeviceItemBinding;
 
 import java.util.ArrayList;

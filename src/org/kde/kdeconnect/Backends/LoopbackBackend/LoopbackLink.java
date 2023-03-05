@@ -8,13 +8,13 @@ package org.kde.kdeconnect.Backends.LoopbackBackend;
 
 import android.content.Context;
 
+import androidx.annotation.WorkerThread;
+
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
-
-import androidx.annotation.WorkerThread;
 
 public class LoopbackLink extends BaseLink {
 

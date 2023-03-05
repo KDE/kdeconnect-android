@@ -8,11 +8,24 @@
 package org.kde.kdeconnect.Plugins.SMSPlugin;
 
 import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.Telephony;
+import android.telephony.SmsManager;
+import android.text.TextUtils;
+import android.util.Base64;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.android.mms.dom.smil.parser.SmilXmlSerializer;
 import com.google.android.mms.ContentType;
@@ -33,22 +46,8 @@ import com.klinker.android.send_message.Settings;
 import com.klinker.android.send_message.Transaction;
 import com.klinker.android.send_message.Utils;
 
-import android.content.ContentUris;
-import android.content.ContentValues;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.provider.Telephony;
-import android.net.Uri;
-import android.telephony.SmsManager;
-import android.text.TextUtils;
-import android.util.Base64;
-import android.util.Log;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.Helpers.SMSHelper;
 import org.kde.kdeconnect.Helpers.TelephonyHelper;
 import org.kde.kdeconnect.NetworkPacket;

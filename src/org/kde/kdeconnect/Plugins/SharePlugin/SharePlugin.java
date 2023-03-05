@@ -56,7 +56,7 @@ public class SharePlugin extends Plugin {
     final static String KEY_NUMBER_OF_FILES = "numberOfFiles";
     final static String KEY_TOTAL_PAYLOAD_SIZE = "totalPayloadSize";
 
-    private BackgroundJobHandler backgroundJobHandler;
+    private final BackgroundJobHandler backgroundJobHandler;
     private final Handler handler;
 
     private CompositeReceiveFileJob receiveFileJob;

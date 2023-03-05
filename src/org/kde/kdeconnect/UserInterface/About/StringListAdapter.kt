@@ -6,9 +6,9 @@
 
 package org.kde.kdeconnect.UserInterface.About
 
-import android.widget.TextView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.view.setPadding
 import androidx.recyclerview.widget.RecyclerView
 

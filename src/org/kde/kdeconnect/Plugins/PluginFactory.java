@@ -6,6 +6,9 @@
 
 package org.kde.kdeconnect.Plugins;
 
+import static org.apache.commons.collections4.SetUtils.emptyIfNull;
+import static org.apache.commons.collections4.SetUtils.unmodifiableSet;
+
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
@@ -19,9 +22,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-
-import static org.apache.commons.collections4.SetUtils.emptyIfNull;
-import static org.apache.commons.collections4.SetUtils.unmodifiableSet;
 
 public class PluginFactory {
 

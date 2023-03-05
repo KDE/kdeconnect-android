@@ -10,14 +10,12 @@
 package org.kde.kdeconnect.Plugins.ContactsPlugin;
 
 import android.Manifest;
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.util.Log;
 
 import org.kde.kdeconnect.Helpers.ContactsHelper;
+import org.kde.kdeconnect.Helpers.ContactsHelper.ContactNotFoundException;
 import org.kde.kdeconnect.Helpers.ContactsHelper.VCardBuilder;
 import org.kde.kdeconnect.Helpers.ContactsHelper.uID;
-import org.kde.kdeconnect.Helpers.ContactsHelper.ContactNotFoundException;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
