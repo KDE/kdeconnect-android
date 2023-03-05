@@ -89,9 +89,10 @@ public class SftpSettingsFragment
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         super.onCreatePreferences(savedInstanceState, rootKey);
 
-        TypedArray ta = requireContext().obtainStyledAttributes(new int[]{R.attr.colorAccent});
-        int colorAccent = ta.getColor(0, 0);
-        ta.recycle();
+        int colorAccent;
+        try (TypedArray ta = requireContext().obtainStyledAttributes(new int[]{R.attr.colorAccent})) {
+            colorAccent = ta.getColor(0, 0);
+        }
 
         storageInfoList = getStorageInfoList(requireContext(), plugin);
 
