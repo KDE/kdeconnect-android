@@ -193,11 +193,7 @@ public class BluetoothLink extends BaseLink {
 
     /*
     public boolean isConnected() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            return socket.isConnected();
-        } else {
-            return true;
-        }
+        return socket.isConnected();
     }
 */
 }
