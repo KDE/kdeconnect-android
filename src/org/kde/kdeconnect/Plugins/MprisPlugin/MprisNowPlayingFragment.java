@@ -255,7 +255,7 @@ public class MprisNowPlayingFragment extends Fragment implements VolumeKeyListen
                                 targetPlayer = mpris.getPlayerStatus(player);
                                 updatePlayerStatus(mpris);
 
-                                if (targetPlayer.isPlaying()) {
+                                if (targetPlayer != null && targetPlayer.isPlaying()) {
                                     MprisMediaSession.getInstance().playerSelected(targetPlayer);
                                 }
                             }
