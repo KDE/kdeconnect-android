@@ -81,10 +81,6 @@
   <string name="share_notification_preference_summary">Vibriraj i reprodukuj zvuk kad se prima datoteka</string>
   <string name="title_activity_notification_filter">Filter napomena</string>
   <string name="filter_apps_info">Notifikacije će biti sinhronizovane s izabranim aplikacijama.</string>
-  <string name="sftp_sdcard_num">SD kartica %d</string>
-  <string name="sftp_sdcard">SD kartica</string>
-  <string name="sftp_readonly">(samo za čitanje)</string>
-  <string name="sftp_camera">Slike sa kamere</string>
   <string name="no_players_connected">Nema nađenih igrača</string>
   <string-array name="convert_to_mms_after_entries">
     <item>After one message</item>

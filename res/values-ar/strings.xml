@@ -133,16 +133,11 @@
   <string name="share_received_file">شارك \"%s\"</string>
   <string name="title_activity_notification_filter">مرشّح الإخطارات</string>
   <string name="filter_apps_info">ستُزامن الإخطارات من التّطبيقات المحدّدة.</string>
-  <string name="sftp_sdcard_num">بطاقة SD ‏%d</string>
-  <string name="sftp_sdcard">بطاقة SD</string>
-  <string name="sftp_readonly">(للقراءة فقط)</string>
-  <string name="sftp_camera">صور الكاميرا</string>
   <string name="add_device_dialog_title">أضف جهازاً</string>
   <string name="add_device_hint">اسم المضيف أو عنوان IP</string>
   <string name="sftp_storage_preference_click_to_select">"انقر للاختيار "</string>
   <string name="sftp_storage_preference_display_name">اسم العرض</string>
   <string name="sftp_action_mode_menu_delete">احذف</string>
-  <string name="sftp_no_sdcard_detected">لم يكتشف أي بطاقة ذاكرة</string>
   <string name="no_players_connected">لم يُعثر على مشغّلات</string>
   <string name="send_files">أرسل ملفّات</string>
   <string name="pairing_title">أجهزة «كِيدِي المتّصل»</string>

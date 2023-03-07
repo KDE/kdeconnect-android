@@ -93,9 +93,6 @@
   <string name="undo">Annulla</string>
   <string name="share">Comparti</string>
   <string name="show_notification_if_screen_off">Invia notificationes si le schermo es extinguite</string>
-  <string name="sftp_sdcard">Sd Card</string>
-  <string name="sftp_readonly">(solmente de lectura)</string>
-  <string name="sftp_camera">Photos de camera</string>
   <string name="add_device_dialog_title">Adde dispositivo</string>
   <string name="add_device_hint">Nomine de hospite o adresse IP</string>
   <string name="sftp_storage_preference_click_to_select">pulsa pro seliger</string>

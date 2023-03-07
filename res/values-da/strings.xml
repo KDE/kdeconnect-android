@@ -108,10 +108,6 @@
   <string name="share_destination_folder_preference">Destinationsmappe</string>
   <string name="title_activity_notification_filter">Bekendtgørelsesfilter</string>
   <string name="filter_apps_info">Bekendtgørelser vil blive synkroniseret for de valgte apps.</string>
-  <string name="sftp_sdcard_num">SD-kort %d</string>
-  <string name="sftp_sdcard">SD-kort</string>
-  <string name="sftp_readonly">(skrivebeskyttet)</string>
-  <string name="sftp_camera">Kamerabilleder</string>
   <string name="no_players_connected">Ingen afspillere fundet</string>
   <string name="send_files">Send filer</string>
   <string name="pairing_title">KDE Connect-enheder</string>

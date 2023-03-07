@@ -143,19 +143,11 @@
   <string name="share">გაზიარება</string>
   <string name="share_received_file">\"%s\"-ის გაზიარება</string>
   <string name="title_activity_notification_filter">შეტყობინებების ფილტრი</string>
-  <string name="sftp_sdcard_num">SD ბარათი %d</string>
-  <string name="sftp_sdcard">SD ბარათი</string>
-  <string name="sftp_readonly">(მხოლოდ კითხვადი)</string>
-  <string name="sftp_camera">კამერის სურათები</string>
   <string name="add_device_dialog_title">მოწყობილობის დამატება</string>
   <string name="add_device_hint">ჰოსტის სახელი ან IP მისამართი</string>
-  <string name="sftp_preference_detected_sdcards">ნაპოვნი SD ბარათები</string>
-  <string name="sftp_preference_edit_sdcard_title">SD ბართის ჩასწორება</string>
   <string name="sftp_preference_configured_storage_locations">მორგებული საცავის მდებარეობები</string>
   <string name="sftp_preference_add_storage_location_title">საცავის მდებარეობის დამატება</string>
   <string name="sftp_preference_edit_storage_location">საცავის მდებარეობის ჩასწორება</string>
-  <string name="sftp_preference_add_camera_shortcut">კამერის საქაღალდის მალსახმობის დამატება</string>
-  <string name="sftp_preference_add_camera_shortcut_summary_off">კამერის საქაღალდეს მალსახმობი არ დაემატება</string>
   <string name="sftp_storage_preference_storage_location">საცავის მდებარეობა</string>
   <string name="sftp_storage_preference_storage_location_already_configured">ეს მდებარეობა უკვე მორგებულია</string>
   <string name="sftp_storage_preference_click_to_select">მოსანიშნად დააწკაპუნეთ</string>
@@ -163,7 +155,6 @@
   <string name="sftp_storage_preference_display_name_already_used">საჩვენებელი სახელი უკვე გამოიყენება</string>
   <string name="sftp_storage_preference_display_name_cannot_be_empty">საჩვენებელი სახელი ცარიელი არ შეიძლება იყოს</string>
   <string name="sftp_action_mode_menu_delete">წაშლა</string>
-  <string name="sftp_no_sdcard_detected">SD ბარათი ვერ ვიპოვე</string>
   <string name="sftp_no_storage_locations_configured">საცავის მდებარეობები მითითებული არაა</string>
   <string name="no_players_connected">დამკვრელები ნაპოვნი არაა</string>
   <string name="send_files">ფაილების გაგზავნა</string>

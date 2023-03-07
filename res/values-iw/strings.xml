@@ -108,10 +108,6 @@
   <string name="share_destination_folder_preference">תיקית יעד</string>
   <string name="title_activity_notification_filter">סנן התראות</string>
   <string name="filter_apps_info">התראות יסונכרנו רק לאפליקציות נבחרות</string>
-  <string name="sftp_sdcard_num">כרטיס זיכרון %d</string>
-  <string name="sftp_sdcard">כרטיס זיכרון</string>
-  <string name="sftp_readonly">(לקריאה בלבד)</string>
-  <string name="sftp_camera">תמונות מצלמה</string>
   <string name="no_players_connected">לא נמצא נגן</string>
   <string name="send_files">שלח קובץ</string>
   <string name="pairing_title">מכשירי KDE Connect</string>
