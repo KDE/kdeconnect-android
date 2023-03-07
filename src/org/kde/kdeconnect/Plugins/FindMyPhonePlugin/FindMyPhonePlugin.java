@@ -107,7 +107,7 @@ public class FindMyPhonePlugin extends Plugin {
 
     @Override
     public boolean onPacketReceived(NetworkPacket np) {
-        if (Build.VERSION.SDK_INT < 29 || MyApplication.isInForeground()) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q || MyApplication.isInForeground()) {
             Intent intent = new Intent(context, FindMyPhoneActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra(FindMyPhoneActivity.EXTRA_DEVICE_ID, device.getDeviceId());
