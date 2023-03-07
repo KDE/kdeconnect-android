@@ -7,17 +7,23 @@
 package org.kde.kdeconnect.UserInterface;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.apache.commons.lang3.StringUtils;
+import org.kde.kdeconnect_tp.BuildConfig;
+
 public class StartActivityAlertDialogFragment extends AlertDialogFragment {
     private static final String KEY_INTENT_ACTION = "IntentAction";
+    private static final String KEY_INTENT_URL = "IntentUrl";
     private static final String KEY_REQUEST_CODE = "RequestCode";
     private static final String KEY_START_FOR_RESULT = "StartForResult";
 
     private String intentAction;
+    private String intentUrl;
     private int requestCode;
     private boolean startForResult;
 
@@ -34,6 +40,7 @@ public class StartActivityAlertDialogFragment extends AlertDialogFragment {
         }
 
         intentAction = args.getString(KEY_INTENT_ACTION);
+        intentUrl = args.getString(KEY_INTENT_URL);
         requestCode = args.getInt(KEY_REQUEST_CODE, 0);
         startForResult = args.getBoolean(KEY_START_FOR_RESULT);
 
@@ -44,8 +51,13 @@ public class StartActivityAlertDialogFragment extends AlertDialogFragment {
         setCallback(new Callback() {
             @Override
             public void onPositiveButtonClicked() {
-                Intent intent = new Intent(intentAction);
-
+                Intent intent;
+                if (StringUtils.isNotEmpty(intentUrl)) {
+                    Uri uri = Uri.parse(intentUrl);
+                    intent = new Intent(intentAction, uri);
+                } else {
+                    intent = new Intent(intentAction);
+                }
                 if (startForResult) {
                     requireActivity().startActivityForResult(intent, requestCode);
                 } else {
@@ -63,6 +75,12 @@ public class StartActivityAlertDialogFragment extends AlertDialogFragment {
 
         public StartActivityAlertDialogFragment.Builder setIntentAction(@NonNull String intentAction) {
             args.putString(KEY_INTENT_ACTION, intentAction);
+
+            return getThis();
+        }
+
+        public StartActivityAlertDialogFragment.Builder setIntentUrl(@NonNull String intentUrl) {
+            args.putString(KEY_INTENT_URL, intentUrl);
 
             return getThis();
         }

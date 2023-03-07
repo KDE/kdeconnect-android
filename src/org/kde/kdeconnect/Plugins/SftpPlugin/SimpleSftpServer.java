@@ -7,9 +7,11 @@
 package org.kde.kdeconnect.Plugins.SftpPlugin;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 
 import org.apache.sshd.SshServer;
+import org.apache.sshd.common.file.nativefs.NativeFileSystemFactory;
 import org.apache.sshd.common.keyprovider.AbstractKeyPairProvider;
 import org.apache.sshd.common.util.SecurityUtils;
 import org.apache.sshd.server.PasswordAuthenticator;
@@ -57,7 +59,11 @@ class SimpleSftpServer {
     }
 
     private final SshServer sshd = SshServer.setUpDefaultServer();
-    private AndroidFileSystemFactory fileSystemFactory;
+    private AndroidFileSystemFactory safFileSystemFactory;
+
+    public void setSafRoots(List<SftpPlugin.StorageInfo> storageInfoList) {
+        safFileSystemFactory.initRoots(storageInfoList);
+    }
 
     void init(Context context, Device device) throws GeneralSecurityException {
 
@@ -78,8 +84,12 @@ class SimpleSftpServer {
             }
         });
 
-        fileSystemFactory = new AndroidFileSystemFactory(context);
-        sshd.setFileSystemFactory(fileSystemFactory);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            sshd.setFileSystemFactory(new NativeFileSystemFactory());
+        } else {
+            safFileSystemFactory = new AndroidFileSystemFactory(context);
+            sshd.setFileSystemFactory(safFileSystemFactory);
+        }
         sshd.setCommandFactory(new ScpCommandFactory());
         sshd.setSubsystemFactories(Collections.singletonList(new SftpSubsystem.Factory()));
 
@@ -89,9 +99,8 @@ class SimpleSftpServer {
         sshd.setPasswordAuthenticator(passwordAuth);
     }
 
-    public boolean start(List<SftpPlugin.StorageInfo> storageInfoList) {
+    public boolean start() {
         if (!started) {
-            fileSystemFactory.initRoots(storageInfoList);
             passwordAuth.password = RandomHelper.randomString(28);
 
             port = STARTPORT;

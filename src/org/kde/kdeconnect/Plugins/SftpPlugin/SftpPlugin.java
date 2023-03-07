@@ -8,11 +8,18 @@ package org.kde.kdeconnect.Plugins.SftpPlugin;
 
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.os.storage.StorageManager;
+import android.os.storage.StorageVolume;
+import android.provider.Settings;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,9 +28,13 @@ import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.AlertDialogFragment;
 import org.kde.kdeconnect.UserInterface.DeviceSettingsAlertDialogFragment;
+import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
+import org.kde.kdeconnect.UserInterface.StartActivityAlertDialogFragment;
+import org.kde.kdeconnect_tp.BuildConfig;
 import org.kde.kdeconnect_tp.R;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -63,19 +74,36 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
 
     @Override
     public boolean checkRequiredPermissions() {
-        return SftpSettingsFragment.getStorageInfoList(context, this).size() != 0;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            return Environment.isExternalStorageManager();
+        } else {
+            return SftpSettingsFragment.getStorageInfoList(context, this).size() != 0;
+        }
     }
 
     @Override
     public AlertDialogFragment getPermissionExplanationDialog() {
-        return new DeviceSettingsAlertDialogFragment.Builder()
-                .setTitle(getDisplayName())
-                .setMessage(R.string.sftp_saf_permission_explanation)
-                .setPositiveButton(R.string.ok)
-                .setNegativeButton(R.string.cancel)
-                .setDeviceId(device.getDeviceId())
-                .setPluginKey(getPluginKey())
-                .create();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            return new StartActivityAlertDialogFragment.Builder()
+                    .setTitle(getDisplayName())
+                    .setMessage(R.string.sftp_manage_storage_permission_explanation)
+                    .setPositiveButton(R.string.open_settings)
+                    .setNegativeButton(R.string.cancel)
+                    .setIntentAction(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
+                    .setIntentUrl("package:" + BuildConfig.APPLICATION_ID)
+                    .setStartForResult(true)
+                    .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
+                    .create();
+        } else {
+            return new DeviceSettingsAlertDialogFragment.Builder()
+                    .setTitle(getDisplayName())
+                    .setMessage(R.string.sftp_saf_permission_explanation)
+                    .setPositiveButton(R.string.ok)
+                    .setNegativeButton(R.string.cancel)
+                    .setDeviceId(device.getDeviceId())
+                    .setPluginKey(getPluginKey())
+                    .create();
+        }
     }
 
     @Override
@@ -92,35 +120,45 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
             ArrayList<String> paths = new ArrayList<>();
             ArrayList<String> pathNames = new ArrayList<>();
 
-            List<StorageInfo> storageInfoList = SftpSettingsFragment.getStorageInfoList(context, this);
-            Collections.sort(storageInfoList, Comparator.comparing(StorageInfo::getUri));
-
-            if (storageInfoList.size() > 0) {
-                getPathsAndNamesForStorageInfoList(paths, pathNames, storageInfoList);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                List<StorageVolume> volumes = context.getSystemService(StorageManager.class).getStorageVolumes();
+                for (StorageVolume sv : volumes) {
+                    pathNames.add(sv.getDescription(context));
+                    paths.add(sv.getDirectory().getPath());
+                }
             } else {
-                NetworkPacket np2 = new NetworkPacket(PACKET_TYPE_SFTP);
-                np2.set("errorMessage", context.getString(R.string.sftp_no_storage_locations_configured));
-                device.sendPacket(np2);
-                return true;
+                List<StorageInfo> storageInfoList = SftpSettingsFragment.getStorageInfoList(context, this);
+                Collections.sort(storageInfoList, Comparator.comparing(StorageInfo::getUri));
+                if (storageInfoList.size() > 0) {
+                    getPathsAndNamesForStorageInfoList(paths, pathNames, storageInfoList);
+                } else {
+                    NetworkPacket np2 = new NetworkPacket(PACKET_TYPE_SFTP);
+                    np2.set("errorMessage", context.getString(R.string.sftp_no_storage_locations_configured));
+                    device.sendPacket(np2);
+                    return true;
+                }
+                removeChildren(storageInfoList);
+                server.setSafRoots(storageInfoList);
             }
 
-            removeChildren(storageInfoList);
-
-            if (server.start(storageInfoList)) {
+            if (server.start()) {
                 if (preferences != null) {
                     preferences.registerOnSharedPreferenceChangeListener(this);
                 }
 
                 NetworkPacket np2 = new NetworkPacket(PACKET_TYPE_SFTP);
 
-                //TODO: ip is not used on desktop any more remove both here and from desktop code when nobody ships 1.2.0
-                np2.set("ip", server.getLocalIpAddress());
+                np2.set("ip", server.getLocalIpAddress()); // for backwards compatibility
                 np2.set("port", server.getPort());
                 np2.set("user", SimpleSftpServer.USER);
                 np2.set("password", server.getPassword());
 
                 //Kept for compatibility, in case "multiPaths" is not possible or the other end does not support it
-                np2.set("path", "/");
+                if (paths.size() == 1) {
+                    np2.set("path", paths.get(0));
+                } else {
+                    np2.set("path", "/");
+                }
 
                 if (paths.size() > 0) {
                     np2.set("multiPaths", paths);
@@ -193,7 +231,7 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
 
     @Override
     public boolean hasSettings() {
-        return true;
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.R;
     }
 
     @Override
@@ -227,7 +265,6 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(context.getString(PREFERENCE_KEY_STORAGE_INFO_LIST))) {
-            //TODO: There used to be a way to request an un-mount (see desktop SftpPlugin's Mounter::onPackageReceived) but that is not handled anymore by the SftpPlugin on KDE.
             if (server.isStarted()) {
                 server.stop();
 

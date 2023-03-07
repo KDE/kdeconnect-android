@@ -283,6 +283,7 @@
     <string name="sftp_action_mode_menu_delete">Delete</string>
     <string name="sftp_no_storage_locations_configured">No storage locations configured</string>
     <string name="sftp_saf_permission_explanation">To access files remotely you have to configure storage locations</string>
+    <string name="sftp_manage_storage_permission_explanation">To allow remote access to files on this device you need to allow KDE Connect to manage the storage.</string>
     <string name="no_players_connected">No players found</string>
     <string name="send_files">Send files</string>
 
