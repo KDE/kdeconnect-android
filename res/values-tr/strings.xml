@@ -221,6 +221,8 @@
   <string name="sftp_saf_permission_explanation">Dosyalara uzaktan erişmek için depolama konumlarını yapılandırmanız gerekir</string>
   <string name="no_players_connected">Onatıcı bulunamadı</string>
   <string name="send_files">Dosyaları gönder</string>
+  <string name="block_notification_contents">Bildirim içeriğini engelle</string>
+  <string name="block_notification_images">Bildirim görsellerini engelle</string>
   <string name="pairing_title">KDE Bağlan Aygıtları</string>
   <string name="pairing_description">KDE Bağlan\'te çalışan, aynı ağdaki diğer aygıtlar burada gözükmelidir.</string>
   <string name="device_rename_title">Aygıtı yeniden adlandır</string>

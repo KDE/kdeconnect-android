@@ -237,6 +237,8 @@
   <string name="sftp_saf_permission_explanation">Za dostop do datotek na daljavo morate nastaviti lokacije za shranjevanje</string>
   <string name="no_players_connected">Ni najdenih predvajalnikov</string>
   <string name="send_files">Pošlji datoteke</string>
+  <string name="block_notification_contents">Blokiraj vsebine obvestil</string>
+  <string name="block_notification_images">Blokiraj slike v obvestilih</string>
   <string name="pairing_title">Naprave KDE Connect</string>
   <string name="pairing_description">Tu bi se morale prikazati druge naprave, ki poganjajo KDE Connect v istem omrežju.</string>
   <string name="device_rename_title">Preimenuj napravo</string>
