@@ -221,6 +221,8 @@
   <string name="sftp_saf_permission_explanation">За да получите достъп до файлове от разстояние, трябва да конфигурирате местата за съхранение</string>
   <string name="no_players_connected">Не са открити играчи</string>
   <string name="send_files">Изпращане на файлове</string>
+  <string name="block_notification_contents">Блокиране на съдържанието в известията</string>
+  <string name="block_notification_images">Блокиране на изображения в известията</string>
   <string name="pairing_title">Устройства на KDE Connect</string>
   <string name="pairing_description">Тук трябва да се появят други устройства, работещи с KDE Connect в същата мрежа.</string>
   <string name="device_rename_title">Преименуване на устройство</string>

@@ -221,6 +221,8 @@
   <string name="sftp_saf_permission_explanation">Vous devez configurer des emplacements de stockage pour accéder aux fichiers à distance</string>
   <string name="no_players_connected">Aucun lecteur trouvé</string>
   <string name="send_files">Envoyer des fichiers</string>
+  <string name="block_notification_contents">Bloquer les contenus de notifications</string>
+  <string name="block_notification_images">Bloquer les images de notifications</string>
   <string name="pairing_title">Périphériques KDE Connect</string>
   <string name="pairing_description">Les autres périphériques utilisant KDE Connect dans votre réseau apparaissent ici.</string>
   <string name="device_rename_title">Renommer le périphérique</string>
