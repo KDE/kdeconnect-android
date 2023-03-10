@@ -41,7 +41,7 @@
   <string name="sad_ok">Tamam :(</string>
   <string name="cancel">İptal</string>
   <string name="open_settings">Ayarları aç</string>
-  <string name="no_permissions">Bildirimler erişebilmek için izine ihtiyacınız var</string>
+  <string name="no_permissions">Bildirimler erişebilmek için izine gereksiniminiz var</string>
   <string name="no_permission_mprisreceiver">Ortam oynatıcılarınızı denelemek için bildirimlere erişim izni vermeniz gerekir</string>
   <string name="no_permissions_remotekeyboard">Düğmelere basmak için KDE Bağlan Uzak Klavye\'yi etkinleştirmeniz gerekir</string>
   <string name="send_ping">Ping gönder</string>
@@ -243,9 +243,9 @@
   <string name="findmyphone_found">Bulundu</string>
   <string name="open">Aç</string>
   <string name="close">Kapat</string>
-  <string name="plugins_need_permission">Bazı Eklentiler çalışmak için izne ihtiyaç duyar (daha fazla bilgi için dokunun):</string>
-  <string name="permission_explanation">Bu eklenti, çalışmak için izne ihtiyaç duyuyor</string>
-  <string name="optional_permission_explanation">Tüm işlevleri etkinleştirmek için daha fazla yetkiye ihtiyacınız var</string>
+  <string name="plugins_need_permission">Bazı Eklentiler çalışmak için izne gereksinim duyar (daha fazla bilgi için dokunun):</string>
+  <string name="permission_explanation">Bu eklenti, çalışmak için izne gereksinim duyuyor</string>
+  <string name="optional_permission_explanation">Tüm işlevleri etkinleştirmek için daha fazla yetkiye gereksiniminiz var</string>
   <string name="plugins_need_optional_permission">Bazı eklentilerin özellikleri, izin yetersizliğinden kapalı gelmektedir (daha fazla bilgi için dokunun):</string>
   <string name="share_optional_permission_explanation">Paylaşılan dosyaların almak için bir hedef dizin seçmelisiniz.</string>
   <string name="telepathy_permission_explanation">Masaüstünde SMS yazma ve okuma yapmak için SMS izni gereklidir</string>
@@ -312,7 +312,7 @@
   <string name="empty_trusted_networks_list_text">Henüz herhangi bir güvenilen ağ eklemediniz</string>
   <string name="allow_all_networks_text">Hepsine izin ver</string>
   <string name="location_permission_needed_title">İzin gerekli</string>
-  <string name="location_permission_needed_desc">KDE Bağlan, uygulama arka planda olsa bile bağlı olduğunuz WiFi ağını bilmek için arka plan konumu iznine ihtiyaç duyar. Bunun nedeni, çevrenizdeki WiFi ağlarının adının, KDE Bağlan\'ın yaptığı bu olmasa bile konumunuzu bulmak için kullanılabilmesidir.</string>
+  <string name="location_permission_needed_desc">KDE Bağlan, uygulama arka planda olsa bile bağlı olduğunuz WiFi ağını bilmek için arka plan konumu iznine gereksinim duyar. Bunun nedeni, çevrenizdeki WiFi ağlarının adının, KDE Bağlan\'ın yaptığı bu olmasa bile konumunuzu bulmak için kullanılabilmesidir.</string>
   <string name="clipboard_android_x_incompat">Android 10, tüm uygulamalara pano erişimini kaldırdı. Bu eklenti devre dışı bırakılacak.</string>
   <string name="mpris_open_url">Oynamayı burada sürdürün</string>
   <string name="cant_open_url">Oynamayı sürdürmek için URL açılamıyor</string>

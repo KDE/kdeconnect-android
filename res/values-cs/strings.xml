@@ -237,6 +237,8 @@
   <string name="sftp_saf_permission_explanation">Pro vzdálený přístup k souborům musíte nastavit umístění úložišť</string>
   <string name="no_players_connected">Přehrávač nenalezen</string>
   <string name="send_files">Odeslat soubory</string>
+  <string name="block_notification_contents">Blokovat obsah upozornění</string>
+  <string name="block_notification_images">Blokovat obrázky upozornění</string>
   <string name="pairing_title">Zařízení KDE Connect</string>
   <string name="pairing_description">Zde by se měla zobrazit další zařízení, na kterých běží KDE Connect ve stejné síti.</string>
   <string name="device_rename_title">Přejmenovat zařízení</string>
