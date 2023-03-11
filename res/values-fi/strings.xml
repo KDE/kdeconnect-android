@@ -265,6 +265,7 @@
   <string name="pref_plugin_mprisreceiver">Mediasoittimen hallinta</string>
   <string name="pref_plugin_mprisreceiver_desc">Hallitse puhelimesi mediasoittimia toiselta laitteelta</string>
   <string name="notification_channel_default">Muut ilmoitukset</string>
+  <string name="notification_channel_persistent">Pysyvä ilmaisin</string>
   <string name="notification_channel_media_control">Mediaohjaimet</string>
   <string name="notification_channel_filetransfer">Tiedostonsiirto</string>
   <string name="notification_channel_high_priority">Korkea etusija</string>
