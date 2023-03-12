@@ -18,12 +18,19 @@ import org.atteo.classindex.IndexAnnotated;
 import org.kde.kdeconnect.Device;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 public class PluginFactory {
+
+    public static void sortPluginList(List<String> plugins) {
+        plugins.sort(Comparator.comparing(o -> pluginInfo.get(o).displayName));
+    }
 
     @IndexAnnotated
     public @interface LoadablePlugin { } //Annotate plugins with this so PluginFactory finds them

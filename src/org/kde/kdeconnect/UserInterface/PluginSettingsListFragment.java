@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.List;
@@ -84,6 +85,7 @@ public class PluginSettingsListFragment extends PreferenceFragmentCompat {
                 return;
             }
             List<String> plugins = device.getSupportedPlugins();
+            PluginFactory.sortPluginList(plugins);
 
             for (final String pluginKey : plugins) {
                 //TODO: Use PreferenceManagers context
