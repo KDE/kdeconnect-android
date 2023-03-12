@@ -213,6 +213,8 @@
   <string name="sftp_saf_permission_explanation">要远程访问文件，您需要配置存储位置</string>
   <string name="no_players_connected">未找到播放器</string>
   <string name="send_files">发送文件</string>
+  <string name="block_notification_contents">屏蔽通知内容</string>
+  <string name="block_notification_images">屏蔽通知图像</string>
   <string name="pairing_title">KDE Connect 设备</string>
   <string name="pairing_description">其他在同一网络运行 KDE Connect 的设备会在此处显示。</string>
   <string name="device_rename_title">重命名设备</string>

@@ -221,6 +221,8 @@
   <string name="sftp_saf_permission_explanation">For å få tilgang til filer over nettet må du setja opp lagringsområde.</string>
   <string name="no_players_connected">Fann ingen spelarar</string>
   <string name="send_files">Send filer</string>
+  <string name="block_notification_contents">Blokker varslingsinnhald</string>
+  <string name="block_notification_images">Blokker varslingsbilete</string>
   <string name="pairing_title">KDE Connect-einingar</string>
   <string name="pairing_description">Andre einingar i nettverket som køyrer KDE Connect, vil dukka opp her.</string>
   <string name="device_rename_title">Endra namn på eining</string>
