@@ -221,6 +221,8 @@
   <string name="sftp_saf_permission_explanation">Per accedere da remoto ai file, devi configurare posizioni di archiviazione</string>
   <string name="no_players_connected">Nessun lettore trovato</string>
   <string name="send_files">Invia file</string>
+  <string name="block_notification_contents">Blocca i contenuti delle notifiche</string>
+  <string name="block_notification_images">Blocca le immagini nelle notifiche</string>
   <string name="pairing_title">Dispositivi KDE Connect</string>
   <string name="pairing_description">Altri dispositivi che eseguono KDE Connect nella tua stessa rete dovrebbero apparire qui.</string>
   <string name="device_rename_title">Rinomina dispositivo</string>
