@@ -363,14 +363,9 @@ public class MprisMediaSession implements
             iOpenActivity.putExtra("deviceId", notificationDevice);
             iOpenActivity.putExtra("player", notificationPlayer.getPlayer());
 
-            /*
-                TODO: Remove when Min SDK >= 16
-                The only way the intent extra's are delivered on API 14 and 15 is by either using a different requestCode every time
-                or using PendingIntent.FLAG_CANCEL_CURRENT instead of PendingIntent.FLAG_UPDATE_CURRENT
-             */
             PendingIntent piOpenActivity = TaskStackBuilder.create(context)
                     .addNextIntentWithParentStack(iOpenActivity)
-                    .getPendingIntent((int) System.currentTimeMillis(), PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
+                    .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
 
             NotificationCompat.Builder notification = new NotificationCompat.Builder(context, NotificationHelper.Channels.MEDIA_CONTROL);
 
