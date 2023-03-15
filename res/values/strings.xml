@@ -316,7 +316,7 @@
     <string name="permission_explanation">This plugin needs permissions to work</string>
     <string name="optional_permission_explanation">You need to grant extra permissions to enable all functions</string>
     <string name="plugins_need_optional_permission">Some plugins have features disabled because of lack of permission (tap for more info):</string>
-    <string name="share_optional_permission_explanation">To receive shared files you need to choose a destination directory</string>
+    <string name="share_optional_permission_explanation">To receive files you need to allow storage access</string>
     <string name="telepathy_permission_explanation">To read and write SMS from your desktop you need to give permission to SMS</string>
     <string name="telephony_permission_explanation">To see phone calls on the desktop you need to give permission to phone call logs and phone state</string>
     <string name="telephony_optional_permission_explanation">To see a contact name instead of a phone number you need to give access to the phone\'s contacts</string>

@@ -132,20 +132,15 @@ class ReceiveNotification {
             }
         }
 
-        if (!"file".equals(destinationUri.getScheme())) {
-            return;
-        }
-
         Intent intent = new Intent(Intent.ACTION_VIEW);
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType(mimeType);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && "file".equals(destinationUri.getScheme())) {
             //Nougat and later require "content://" uris instead of "file://" uris
             File file = new File(destinationUri.getPath());
             Uri contentUri = FileProvider.getUriForFile(device.getContext(), "org.kde.kdeconnect_tp.fileprovider", file);
             intent.setDataAndType(contentUri, mimeType);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
             shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
         } else {
             intent.setDataAndType(destinationUri, mimeType);
