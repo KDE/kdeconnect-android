@@ -722,6 +722,15 @@ public class Device implements BaseLink.PacketReceiver {
         return plugins.get(pluginKey);
     }
 
+    @Nullable
+    public Plugin getPluginIncludingWithoutPermissions(String pluginKey) {
+        Plugin p = plugins.get(pluginKey);
+        if (p == null) {
+            p = pluginsWithoutPermissions.get(pluginKey);
+        }
+        return p;
+    }
+
     private synchronized boolean addPlugin(final String pluginKey) {
         Plugin existing = plugins.get(pluginKey);
         if (existing != null) {

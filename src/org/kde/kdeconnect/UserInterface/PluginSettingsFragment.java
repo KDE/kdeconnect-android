@@ -57,7 +57,7 @@ public class PluginSettingsFragment extends PreferenceFragmentCompat {
         this.pluginKey = getArguments().getString(ARG_PLUGIN_KEY);
         this.layout = getArguments().getInt(ARG_LAYOUT);
         this.device = getDeviceOrThrow(getDeviceId());
-        this.plugin = device.getPlugin(pluginKey);
+        this.plugin = device.getPluginIncludingWithoutPermissions(pluginKey);
 
         super.onCreate(savedInstanceState);
     }

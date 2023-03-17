@@ -58,7 +58,7 @@ public class PluginSettingsActivity
             if (pluginKey != null) {
                 Device device = BackgroundService.getInstance().getDevice(deviceId);
                 if (device != null) {
-                    Plugin plugin = device.getPlugin(pluginKey);
+                    Plugin plugin = device.getPluginIncludingWithoutPermissions(pluginKey);
                     if (plugin != null) {
                         fragment = plugin.getSettingsFragment(this);
                     }
