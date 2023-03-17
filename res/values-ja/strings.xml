@@ -237,7 +237,6 @@
   <string name="permission_explanation">このプラグインが機能するには権限が必要です</string>
   <string name="optional_permission_explanation">すべての機能を有効にするには、追加の権限を許可する必要があります</string>
   <string name="plugins_need_optional_permission">権限が不足しているため、いくつかのプラグインの機能は無効化されています (タップして詳細情報を表示):</string>
-  <string name="share_optional_permission_explanation">共有されたファイルを受信するには保存するディレクトリを指定する必要があります</string>
   <string name="telepathy_permission_explanation">デスクトップから SMS を送受信するには SMS の権限を付与する必要があります</string>
   <string name="telephony_permission_explanation">デスクトップで通話を表示するために、電話の状態と通話履歴の権限を許可する必要があります</string>
   <string name="telephony_optional_permission_explanation">電話番号ではなく連絡先名を見るには、端末の連絡先へのアクセスを許可する必要があります</string>

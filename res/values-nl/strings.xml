@@ -247,7 +247,7 @@
   <string name="permission_explanation">Deze plug-in heeft toestemming nodig om te werken</string>
   <string name="optional_permission_explanation">U moet toestemming geven om alle functies in te schakelen</string>
   <string name="plugins_need_optional_permission">Sommige plug-ins hebben functies uitgeschakeld vanwege ontbrekende toestemming (tik voor meer informatie):</string>
-  <string name="share_optional_permission_explanation">Om gedeelde bestanden te ontvangen moet u een bestemmingsmap kiezen</string>
+  <string name="share_optional_permission_explanation">Om bestanden te ontvangen die u nodig hebt voor toegang tot opslag</string>
   <string name="telepathy_permission_explanation">Om een SMS te lezen of te schrijven vanaf uw bureaublad moet u toestemming geven tot SMS</string>
   <string name="telephony_permission_explanation">Om telefoonoproepen te zien op het bureaublad moet u toestemming geven tot telefoonoproeplogs en telefoonstatus</string>
   <string name="telephony_optional_permission_explanation">Om een naam van een contactpersoon te zien in plaats van een telefoonnummer moet u toegang geven tot de contacten in uw telefoon</string>

@@ -247,7 +247,7 @@
   <string name="permission_explanation">Aquest connector necessita permisos per a funcionar</string>
   <string name="optional_permission_explanation">Us caldrà concedir permisos extres per a accedir a totes les característiques</string>
   <string name="plugins_need_optional_permission">Alguns connectors tenen característiques desactivades per la falta de permís (toqueu per a més informació):</string>
-  <string name="share_optional_permission_explanation">Per a rebre fitxers compartits cal triar un directori de destinació</string>
+  <string name="share_optional_permission_explanation">Per a rebre fitxers cal permetre l\'accés a l\'emmagatzematge</string>
   <string name="telepathy_permission_explanation">Per a llegir i escriure SMS des de l\'escriptori, haureu de donar permís als SMS</string>
   <string name="telephony_permission_explanation">Per a veure les trucades telefòniques des de l\'escriptori, haureu de donar permís d\'accés al registre de trucades telefòniques i a l\'estat del telèfon</string>
   <string name="telephony_optional_permission_explanation">Per a veure un nom de contacte en comptes d\'un número de telèfon, haureu de donar permís als contactes del telèfon</string>

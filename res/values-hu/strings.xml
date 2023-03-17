@@ -244,7 +244,6 @@
   <string name="permission_explanation">Ez a bővítmény engedélyeket kér a működéshez</string>
   <string name="optional_permission_explanation">További engedélyeket kell biztosítania az összes funkció bekapcsolásához</string>
   <string name="plugins_need_optional_permission">Néhány bővítmény jogosultság hiányában kikapcsolta egyes funkcióit (koppintson további információkért):</string>
-  <string name="share_optional_permission_explanation">Megosztott fájlok fogadásához meg kell adnia egy célmappát</string>
   <string name="telepathy_permission_explanation">Az SMS-ek írásához és olvasásához a számítógépéről engedélyt kell adnia az SMS-nek</string>
   <string name="telephony_permission_explanation">Ahhoz, hogy a telefonhívásokat a számítógépén láthassa, engedélyt kell adnia a hívásnaplókhoz és a telefon állapotához</string>
   <string name="telephony_optional_permission_explanation">Ahhoz, hogy a telefonszám helyett a nevet lássa, hozzáférést kell adnia a telefon névjegyeihez</string>

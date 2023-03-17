@@ -261,7 +261,6 @@
   <string name="permission_explanation">Ta wtyczka wymaga uprawnień do działania</string>
   <string name="optional_permission_explanation">Musisz przydzielić dodatkowe uprawnienia, aby włączyć wszystkie funkcje</string>
   <string name="plugins_need_optional_permission">Niektóre wtyczki mają ograniczone możliwości ze względu na ograniczone uprawnienia (stuknij, aby dowiedzieć się więcej)</string>
-  <string name="share_optional_permission_explanation">Aby odbierać udostępnianie pliki, musisz wskazać katalog docelowy na nie</string>
   <string name="telepathy_permission_explanation">Aby czytać i pisać esemesy na innym urządzeniu, należy nadać uprawnienia do esemesów</string>
   <string name="telephony_permission_explanation">Aby widzieć rozmowy telefoniczne na innym urządzeniu, należy nadać uprawnienia do dziennika rozmów i stanu telefonu</string>
   <string name="telephony_optional_permission_explanation">Aby widzieć nazwę kontaktu zamiast numeru telefonu, należy zezwolić na dostęp do kontaktów telefonu</string>

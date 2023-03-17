@@ -240,7 +240,6 @@
   <string name="permission_explanation">Este plugin precisa de permissões para funcionar</string>
   <string name="optional_permission_explanation">Você precisa conceder permissões extras para ativar todas as funções</string>
   <string name="plugins_need_optional_permission">Alguns plugins possuem recursos desativados devido à falta de permissões (toque para obter mais informações):</string>
-  <string name="share_optional_permission_explanation">Para receber arquivos compartilhados você precisa escolher uma pasta de destino</string>
   <string name="telepathy_permission_explanation">Para ler e gravar SMS a partir do seu ambiente de trabalho é necessário conceder permissão para SMS</string>
   <string name="telephony_permission_explanation">Para ver as chamadas telefônicas no seu ambiente de trabalho é preciso dar permissões para registro de chamadas telefônicas e do estado do celular</string>
   <string name="telephony_optional_permission_explanation">Para ver o nome de um contato em vez do seu número de telefone é necessário conceder acesso aos contatos do celular</string>
