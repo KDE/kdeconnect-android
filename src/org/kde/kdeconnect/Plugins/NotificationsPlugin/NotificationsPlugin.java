@@ -98,11 +98,9 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
 
     @Override
     public PluginSettingsFragment getSettingsFragment(Activity activity) {
-        if (hasPermission()) {
-            Intent intent = new Intent(activity, NotificationFilterActivity.class);
-            intent.putExtra(PREF_KEY, this.getSharedPreferencesName());
-            activity.startActivity(intent);
-        }
+        Intent intent = new Intent(activity, NotificationFilterActivity.class);
+        intent.putExtra(PREF_KEY, this.getSharedPreferencesName());
+        activity.startActivity(intent);
         return null;
     }
 
