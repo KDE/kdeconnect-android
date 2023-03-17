@@ -563,9 +563,8 @@ public class Device implements BaseLink.PacketReceiver {
                 reloadPluginsFromSettings();
             }
 
-            //If capabilities are not supported, iterate all plugins
             Collection<String> targetPlugins = pluginsByIncomingInterface.get(np.getType());
-            if (!targetPlugins.isEmpty()) {
+            if (!targetPlugins.isEmpty()) { // When a key doesn't exist the multivaluemap returns an empty collection, so we don't need to check for null
                 for (String pluginKey : targetPlugins) {
                     Plugin plugin = plugins.get(pluginKey);
                     try {
@@ -588,10 +587,8 @@ public class Device implements BaseLink.PacketReceiver {
 
             unpair();
 
-            //If capabilities are not supported, iterate through all plugins.
+            // The following code is NOT USED. It adds support for receiving packets from not trusted devices, but as of March 2023 no plugin implements "onUnpairedDevicePacketReceived".
             Collection<String> targetPlugins = pluginsByIncomingInterface.get(np.getType());
-            // When a mapping doesn't exist, an empty collection is added to the map and
-            // then returned, so a null check is not necessary.
             if (!targetPlugins.isEmpty()) {
                 for (String pluginKey : targetPlugins) {
                     Plugin plugin = plugins.get(pluginKey);
