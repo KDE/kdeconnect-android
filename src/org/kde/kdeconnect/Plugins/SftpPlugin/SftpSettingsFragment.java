@@ -89,10 +89,10 @@ public class SftpSettingsFragment
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         super.onCreatePreferences(savedInstanceState, rootKey);
 
-        int colorAccent;
-        try (TypedArray ta = requireContext().obtainStyledAttributes(new int[]{R.attr.colorAccent})) {
-            colorAccent = ta.getColor(0, 0);
-        }
+        // Can't use try-with-resources since TypedArray's close method was only added in API 31
+        TypedArray ta = requireContext().obtainStyledAttributes(new int[]{R.attr.colorAccent});
+        int colorAccent = ta.getColor(0, 0);
+        ta.recycle();
 
         storageInfoList = getStorageInfoList(requireContext(), plugin);
 

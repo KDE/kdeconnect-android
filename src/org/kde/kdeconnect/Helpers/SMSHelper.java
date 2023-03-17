@@ -658,14 +658,17 @@ public class SMSHelper {
                         attachments.add(new Attachment(partID, contentType, encodedThumbnail, fileName));
                     } else if (MimeType.isTypeVideo(contentType)) {
                         String fileName = data.substring(data.lastIndexOf('/') + 1);
-                        try (MediaMetadataRetriever retriever = new MediaMetadataRetriever()) {
-                            retriever.setDataSource(context, ContentUris.withAppendedId(getMMSPartUri(), partID));
-                            Bitmap videoThumbnail = retriever.getFrameAtTime();
-                            String encodedThumbnail = SmsMmsUtils.bitMapToBase64(
-                                    Bitmap.createScaledBitmap(videoThumbnail, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT, true)
-                            );
-                            attachments.add(new Attachment(partID, contentType, encodedThumbnail, fileName));
-                        };
+
+                        // Can't use try-with-resources since MediaMetadataRetriever's close method was only added in API 29
+                        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+                        retriever.setDataSource(context, ContentUris.withAppendedId(getMMSPartUri(), partID));
+                        Bitmap videoThumbnail = retriever.getFrameAtTime();
+
+                        String encodedThumbnail = SmsMmsUtils.bitMapToBase64(
+                                Bitmap.createScaledBitmap(videoThumbnail, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT, true)
+                        );
+
+                        attachments.add(new Attachment(partID, contentType, encodedThumbnail, fileName));
                     } else if (MimeType.isTypeAudio(contentType)) {
                         String fileName = data.substring(data.lastIndexOf('/') + 1);
 
