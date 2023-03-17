@@ -351,7 +351,7 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
 
         if (!np.getType().equals(PACKET_TYPE_MOUSEPAD_REQUEST)
                 || (!np.has("key") && !np.has("specialKey"))) {  // expect at least key OR specialKey
-            Log.e("RemoteKeyboardPlugin", "Invalid package for remotekeyboard plugin!");
+            Log.e("RemoteKeyboardPlugin", "Invalid packet type for remotekeyboard plugin!");
             return false;
         }
 

@@ -153,7 +153,7 @@ public class LanLink extends BaseLink {
 
             //Log.e("LanLink/sendPacket", np.getType());
 
-            //Send body of the network package
+            //Send body of the network packet
             try {
                 OutputStream writer = socket.getOutputStream();
                 writer.write(np.serialize().getBytes(Charsets.UTF_8));
@@ -247,7 +247,7 @@ public class LanLink extends BaseLink {
 
         }
 
-        packageReceived(np);
+        packetReceived(np);
     }
 
     @Override

@@ -64,8 +64,8 @@ public abstract class BaseLink {
         receivers.remove(pr);
     }
 
-    //Should be called from a background thread listening to packages
-    protected void packageReceived(NetworkPacket np) {
+    //Should be called from a background thread listening for packets
+    protected void packetReceived(NetworkPacket np) {
         for(PacketReceiver pr : receivers) {
             pr.onPacketReceived(np);
         }

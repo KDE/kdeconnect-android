@@ -142,7 +142,7 @@ public class ContactsPlugin extends Plugin {
      * The identifiers returned can be used in future requests to get more information
      * about the contact
      *
-     * @param np The package containing the request
+     * @param np The packet containing the request
      * @return true if successfully handled, false otherwise
      */
     @SuppressWarnings("SameReturnValue")

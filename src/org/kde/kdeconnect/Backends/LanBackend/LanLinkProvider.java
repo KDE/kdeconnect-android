@@ -88,7 +88,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String message = reader.readLine();
             networkPacket = NetworkPacket.unserialize(message);
-            //Log.e("TcpListener","Received TCP package: "+networkPacket.serialize());
+            //Log.e("TcpListener", "Received TCP packet: " + networkPacket.serialize());
         } catch (Exception e) {
             Log.e("KDE/LanLinkProvider", "Exception while receiving TCP packet", e);
             return;

@@ -19,7 +19,7 @@ public class LoopbackPairingHandler extends BasePairingHandler {
     }
 
     @Override
-    public void packageReceived(NetworkPacket np) {
+    public void packetReceived(NetworkPacket np) {
 
     }
 

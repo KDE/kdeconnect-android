@@ -60,7 +60,7 @@ public class ReceiveNotificationsPlugin extends Plugin {
     public boolean onPacketReceived(final NetworkPacket np) {
 
         if (!np.has("ticker") || !np.has("appName") || !np.has("id")) {
-            Log.e("NotificationsPlugin", "Received notification package lacks properties");
+            Log.e("NotificationsPlugin", "Received notification packet lacks properties");
             return true;
         }
 

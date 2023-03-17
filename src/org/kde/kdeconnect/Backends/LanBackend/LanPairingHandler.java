@@ -41,7 +41,7 @@ public class LanPairingHandler extends BasePairingHandler {
     }
 
     @Override
-    public void packageReceived(NetworkPacket np) {
+    public void packetReceived(NetworkPacket np) {
 
         boolean wantsPair = np.getBoolean("pair");
 
@@ -130,7 +130,7 @@ public class LanPairingHandler extends BasePairingHandler {
             @Override
             public void onFailure(Throwable e) {
                 Log.e("LanPairing/onFailure", "Exception", e);
-                mCallback.pairingFailed(mDevice.getContext().getString(R.string.error_could_not_send_package));
+                mCallback.pairingFailed(mDevice.getContext().getString(R.string.runcommand_notreachable));
             }
         };
         mDevice.sendPacket(createPairPacket(), statusCallback);

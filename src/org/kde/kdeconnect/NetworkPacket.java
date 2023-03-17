@@ -276,7 +276,7 @@ public class NetworkPacket {
             np.mBody.put("incomingCapabilities", new JSONArray(PluginFactory.getIncomingCapabilities()));
             np.mBody.put("outgoingCapabilities", new JSONArray(PluginFactory.getOutgoingCapabilities()));
         } catch (Exception e) {
-            Log.e("NetworkPackage", "Exception on createIdentityPacket", e);
+            Log.e("NetworkPacket", "Exception on createIdentityPacket", e);
         }
 
         return np;

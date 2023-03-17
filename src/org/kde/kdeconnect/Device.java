@@ -286,8 +286,8 @@ public class Device implements BaseLink.PacketReceiver {
     }
 
     /**
-     * This method does not send an unpair package, instead it unpairs internally by deleting trusted device info. . Likely to be called after sending package from
-     * pairing handler
+     * This method does not send an unpair packet, instead it unpairs internally by deleting trusted device info.
+     * Likely to be called after sending packet from pairing handler
      */
     private void unpairInternal() {
 
@@ -548,11 +548,11 @@ public class Device implements BaseLink.PacketReceiver {
 
         if (NetworkPacket.PACKET_TYPE_PAIR.equals(np.getType())) {
 
-            Log.i("KDE/Device", "Pair package");
+            Log.i("KDE/Device", "Pair packet");
 
             for (BasePairingHandler ph : pairingHandlers.values()) {
                 try {
-                    ph.packageReceived(np);
+                    ph.packetReceived(np);
                 } catch (Exception e) {
                     Log.e("PairingPacketReceived", "Exception", e);
                 }
@@ -579,9 +579,9 @@ public class Device implements BaseLink.PacketReceiver {
             }
         } else {
 
-            //Log.e("KDE/onPacketReceived","Device not paired, will pass package to unpairedPacketListeners");
+            //Log.e("KDE/onPacketReceived","Device not paired, will pass packet to unpairedPacketListeners");
 
-            // If it is pair package, it should be captured by "if" at start
+            // If it is pair packet, it should be captured by "if" at start
             // If not and device is paired, it should be captured by isPaired
             // Else unpair, this handles the situation when one device unpairs, but other dont know like unpairing when wi-fi is off
 
@@ -647,7 +647,7 @@ public class Device implements BaseLink.PacketReceiver {
     /**
      * Send a packet to the device asynchronously
      * @param np The packet
-     * @param replaceID If positive, replaces all unsent packages with the same replaceID
+     * @param replaceID If positive, replaces all unsent packets with the same replaceID
      * @param callback A callback for success/failure
      */
     @AnyThread
@@ -686,8 +686,8 @@ public class Device implements BaseLink.PacketReceiver {
 
         /*
         if (!m_outgoingCapabilities.contains(np.getType()) && !NetworkPacket.protocolPacketTypes.contains(np.getType())) {
-            Log.e("Device/sendPacket", "Plugin tried to send an undeclared package: " + np.getType());
-            Log.w("Device/sendPacket", "Declared outgoing package types: " + Arrays.toString(m_outgoingCapabilities.toArray()));
+            Log.e("Device/sendPacket", "Plugin tried to send an undeclared packet: " + np.getType());
+            Log.w("Device/sendPacket", "Declared outgoing packet types: " + Arrays.toString(m_outgoingCapabilities.toArray()));
         }
         */
 
@@ -701,7 +701,7 @@ public class Device implements BaseLink.PacketReceiver {
         }
 
         if (!success) {
-            Log.e("KDE/sendPacket", "No device link (of " + links.size() + " available) could send the package. Packet " + np.getType() + " to " + name + " lost!");
+            Log.e("KDE/sendPacket", "No device link (of " + links.size() + " available) could send the packet. Packet " + np.getType() + " to " + name + " lost!");
         }
 
         return success;
@@ -823,8 +823,8 @@ public class Device implements BaseLink.PacketReceiver {
             if (pluginEnabled) {
                 boolean success = addPlugin(pluginKey);
                 if (success) {
-                    for (String packageType : pluginInfo.getSupportedPacketTypes()) {
-                        newPluginsByIncomingInterface.put(packageType, pluginKey);
+                    for (String packetType : pluginInfo.getSupportedPacketTypes()) {
+                        newPluginsByIncomingInterface.put(packetType, pluginKey);
                     }
                 } else {
                     removePlugin(pluginKey);

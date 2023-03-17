@@ -63,7 +63,7 @@ public abstract class Plugin {
     }
 
     /**
-     * To receive the network package from the unpaired device, override
+     * To receive the network packet from the unpaired device, override
      * listensToUnpairedDevices to return true and this method.
      */
     public boolean onUnpairedDevicePacketReceived(NetworkPacket np) {
@@ -228,8 +228,8 @@ public abstract class Plugin {
     }
 
     /**
-     * Called when a plugin receives a package. By convention we return true
-     * when we have done something in response to the package or false
+     * Called when a plugin receives a packet. By convention we return true
+     * when we have done something in response to the packet or false
      * otherwise, even though that value is unused as of now.
      */
     public boolean onPacketReceived(NetworkPacket np) {

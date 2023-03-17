@@ -91,7 +91,7 @@ public class FilesHelper {
     }
 
 
-    //Create the network package from the URI
+    //Create the network packet from the URI
     public static NetworkPacket uriToNetworkPacket(final Context context, final Uri uri, String type) {
 
         try {

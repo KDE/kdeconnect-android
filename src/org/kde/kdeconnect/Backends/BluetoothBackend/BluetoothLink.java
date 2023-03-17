@@ -89,7 +89,7 @@ public class BluetoothLink extends BaseLink {
                 }
             }
 
-            packageReceived(np);
+            packetReceived(np);
         }
     });
 
