@@ -132,7 +132,7 @@ Provider<String> gitHashProvider = project.provider {
 }
 
 ext {
-    coroutines_version = '1.6.0'
+    coroutines_version = '1.6.4'
 }
 
 dependencies {
@@ -143,17 +143,17 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.preference:preference-ktx:1.2.0'
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.recyclerview:recyclerview:1.3.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     implementation 'androidx.documentfile:documentfile:1.0.1'
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0"
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.0'
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
-    implementation 'androidx.lifecycle:lifecycle-common-java8:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.6.0'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'com.jakewharton:disklrucache:2.0.2' //For caching album art bitmaps
-    implementation 'com.jaredrummler:android-device-names:1.1.9' //To get a human-friendly device name
+    implementation 'com.jaredrummler:android-device-names:2.1.1' //To get a human-friendly device name
 
     implementation 'org.apache.sshd:sshd-core:0.14.0'
     implementation 'org.apache.mina:mina-core:2.0.19' //For some reason, makes sshd-core:0.14.0 work without NIO, which isn't available until Android 8 (api 26)
@@ -161,8 +161,8 @@ dependencies {
     //implementation('com.github.bright:slf4android:0.1.6') { transitive = true } // For org.apache.sshd debugging
     implementation 'com.madgag.spongycastle:bcpkix-jdk15on:1.58.0.0' //For SSL certificate generation
 
-    implementation 'org.atteo.classindex:classindex:3.6'
-    annotationProcessor 'org.atteo.classindex:classindex:3.6'
+    implementation 'org.atteo.classindex:classindex:3.13'
+    annotationProcessor 'org.atteo.classindex:classindex:3.13'
 
     // The android-smsmms library is the only way I know to handle MMS in Android
     // (Shouldn't a phone OS make phone things easy?)
