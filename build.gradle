@@ -153,7 +153,7 @@ dependencies {
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'com.jakewharton:disklrucache:2.0.2' //For caching album art bitmaps
-    implementation 'com.jaredrummler:android-device-names:2.1.1' //To get a human-friendly device name
+    implementation 'com.jaredrummler:android-device-names:1.1.9' //To get a human-friendly device name
 
     implementation 'org.apache.sshd:sshd-core:0.14.0'
     implementation 'org.apache.mina:mina-core:2.0.19' //For some reason, makes sshd-core:0.14.0 work without NIO, which isn't available until Android 8 (api 26)

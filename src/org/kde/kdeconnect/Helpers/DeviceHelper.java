@@ -53,6 +53,7 @@ public class DeviceHelper {
         // Could use preferences.contains but would need to check for empty String anyway.
         String deviceName = preferences.getString(KEY_DEVICE_NAME_PREFERENCE, "");
         if (deviceName.isEmpty()) {
+            //DeviceName.init(context); // Needed in DeviceName 2.x +
             if (!fetchingName) {
                 fetchingName = true;
                 DeviceHelper.backgroundFetchDeviceName(context); //Starts a background thread that will eventually update the shared pref
