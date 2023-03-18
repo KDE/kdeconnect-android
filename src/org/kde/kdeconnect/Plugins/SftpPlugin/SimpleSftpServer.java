@@ -24,7 +24,6 @@ import org.apache.sshd.server.sftp.SftpSubsystem;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.RandomHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
-import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 
 import java.io.IOException;
 import java.net.Inet4Address;
@@ -35,7 +34,6 @@ import java.security.GeneralSecurityException;
 import java.security.KeyPair;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.security.Security;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -54,7 +52,6 @@ class SimpleSftpServer {
     private final SimplePublicKeyAuthenticator keyAuth = new SimplePublicKeyAuthenticator();
 
     static {
-        Security.insertProviderAt(SslHelper.BC, 1);
         SecurityUtils.setRegisterBouncyCastle(false);
     }
 

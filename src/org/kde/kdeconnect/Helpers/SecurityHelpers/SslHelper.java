@@ -14,23 +14,20 @@ import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.RandomHelper;
-import org.spongycastle.asn1.x500.RDN;
-import org.spongycastle.asn1.x500.X500Name;
-import org.spongycastle.asn1.x500.X500NameBuilder;
-import org.spongycastle.asn1.x500.style.BCStyle;
-import org.spongycastle.asn1.x500.style.IETFUtils;
-import org.spongycastle.cert.X509CertificateHolder;
-import org.spongycastle.cert.X509v3CertificateBuilder;
-import org.spongycastle.cert.jcajce.JcaX509CertificateConverter;
-import org.spongycastle.cert.jcajce.JcaX509v3CertificateBuilder;
-import org.spongycastle.jce.provider.BouncyCastleProvider;
-import org.spongycastle.operator.ContentSigner;
-import org.spongycastle.operator.jcajce.JcaContentSignerBuilder;
-import org.spongycastle.util.Arrays;
+import org.bouncycastle.asn1.x500.RDN;
+import org.bouncycastle.asn1.x500.X500Name;
+import org.bouncycastle.asn1.x500.X500NameBuilder;
+import org.bouncycastle.asn1.x500.style.BCStyle;
+import org.bouncycastle.asn1.x500.style.IETFUtils;
+import org.bouncycastle.cert.X509v3CertificateBuilder;
+import org.bouncycastle.cert.jcajce.JcaX509v3CertificateBuilder;
+import org.bouncycastle.operator.ContentSigner;
+import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
+import org.bouncycastle.util.Arrays;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.net.Socket;
@@ -43,11 +40,11 @@ import java.security.PublicKey;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateEncodingException;
 import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Formatter;
 import java.util.Locale;
@@ -63,9 +60,15 @@ import javax.security.auth.x500.X500Principal;
 
 public class SslHelper {
 
-    public static X509Certificate certificate; //my device's certificate
-
-    public final static BouncyCastleProvider BC = new BouncyCastleProvider();
+    public static Certificate certificate; //my device's certificate
+    private static CertificateFactory factory;
+    static {
+        try {
+            factory = CertificateFactory.getInstance("X.509");
+        } catch (CertificateException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private final static TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
         public java.security.cert.X509Certificate[] getAcceptedIssuers() {
@@ -103,8 +106,7 @@ public class SslHelper {
             try {
                 SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(context);
                 byte[] certificateBytes = Base64.decode(globalSettings.getString("certificate", ""), 0);
-                X509CertificateHolder certificateHolder = new X509CertificateHolder(certificateBytes);
-                X509Certificate cert = new JcaX509CertificateConverter().setProvider(BC).getCertificate(certificateHolder);
+                X509Certificate cert = (X509Certificate) parseCertificate(certificateBytes);
 
                 String certDeviceId = getCommonNameFromCertificate(cert);
                 if (!certDeviceId.equals(deviceId)) {
@@ -145,11 +147,12 @@ public class SslHelper {
                         nameBuilder.build(),
                         publicKey
                 );
-                ContentSigner contentSigner = new JcaContentSignerBuilder("SHA256WithRSAEncryption").setProvider(BC).build(privateKey);
-                certificate = new JcaX509CertificateConverter().setProvider(BC).getCertificate(certificateBuilder.build(contentSigner));
+                ContentSigner contentSigner = new JcaContentSignerBuilder("SHA256WithRSA").build(privateKey);
+                byte[] certificateBytes = certificateBuilder.build(contentSigner).getEncoded();
+                certificate = parseCertificate(certificateBytes);
 
                 SharedPreferences.Editor edit = settings.edit();
-                edit.putString("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
+                edit.putString("certificate", Base64.encodeToString(certificateBytes, 0));
                 edit.apply();
 
                 setLocale(initialLocale, context);
@@ -180,12 +183,11 @@ public class SslHelper {
             PrivateKey privateKey = RsaHelper.getPrivateKey(context);
 
             // Get remote device certificate if trusted
-            X509Certificate remoteDeviceCertificate = null;
+            Certificate remoteDeviceCertificate = null;
             if (isDeviceTrusted) {
                 SharedPreferences devicePreferences = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
                 byte[] certificateBytes = Base64.decode(devicePreferences.getString("certificate", ""), 0);
-                X509CertificateHolder certificateHolder = new X509CertificateHolder(certificateBytes);
-                remoteDeviceCertificate = new JcaX509CertificateConverter().setProvider(BC).getCertificate(certificateHolder);
+                remoteDeviceCertificate = parseCertificate(certificateBytes);
             }
 
             // Setup keystore
@@ -257,9 +259,8 @@ public class SslHelper {
         return formatter.toString();
     }
 
-    public static Certificate parseCertificate(byte[] certificateBytes) throws IOException, CertificateException {
-        X509CertificateHolder certificateHolder = new X509CertificateHolder(certificateBytes);
-        return new JcaX509CertificateConverter().setProvider(BC).getCertificate(certificateHolder);
+    public static Certificate parseCertificate(byte[] certificateBytes) throws CertificateException {
+        return factory.generateCertificate(new ByteArrayInputStream(certificateBytes));
     }
 
     private static String getCommonNameFromCertificate(X509Certificate cert) {
@@ -269,7 +270,7 @@ public class SslHelper {
         return IETFUtils.valueToString(rdn.getFirst().getValue());
     }
 
-    public static String getVerificationKey(X509Certificate certificateA, Certificate certificateB) {
+    public static String getVerificationKey(Certificate certificateA, Certificate certificateB) {
         try {
             byte[] a = certificateA.getPublicKey().getEncoded();
             byte[] b = certificateB.getPublicKey().getEncoded();
