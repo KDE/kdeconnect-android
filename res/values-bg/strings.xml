@@ -247,6 +247,7 @@
   <string name="permission_explanation">Тази приставка се нуждае от разрешения, за да работи</string>
   <string name="optional_permission_explanation">Трябва да предоставите допълнителни разрешения, за да активирате всички функции</string>
   <string name="plugins_need_optional_permission">Някои плъгини имат деактивирани функции поради липса на разрешение (докоснете за повече информация):</string>
+  <string name="share_optional_permission_explanation">За да получавате файлове, трябва да разрешите достъпа до хранилището</string>
   <string name="telepathy_permission_explanation">За да четете и записвате SMS от работния плот, трябва да дадете разрешение за SMS</string>
   <string name="telephony_permission_explanation">За да виждате телефонни обаждания на работния плот, трябва да дадете разрешение за телефонни обаждания дневници и състояние на телефона</string>
   <string name="telephony_optional_permission_explanation">За да видите име на контакт вместо телефонен номер, трябва да дадете достъп до контактите на телефона</string>
