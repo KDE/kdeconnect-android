@@ -8,7 +8,6 @@ package org.kde.kdeconnect.Plugins.SftpPlugin;
 
 import android.app.Activity;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
@@ -16,10 +15,8 @@ import android.os.Environment;
 import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
 import android.provider.Settings;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,7 +31,7 @@ import org.kde.kdeconnect.UserInterface.StartActivityAlertDialogFragment;
 import org.kde.kdeconnect_tp.BuildConfig;
 import org.kde.kdeconnect_tp.R;
 
-import java.io.File;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -63,13 +60,7 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
 
     @Override
     public boolean onCreate() {
-        try {
-            server.init(context, device);
-            return true;
-        } catch (Exception e) {
-            Log.e("SFTP", "Exception in server.init()", e);
-            return false;
-        }
+        return true;
     }
 
     @Override
@@ -117,6 +108,14 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
     @Override
     public boolean onPacketReceived(NetworkPacket np) {
         if (np.getBoolean("startBrowsing")) {
+            if (!server.isInitialized()) {
+                try {
+                    server.initialize(context, device);
+                } catch (GeneralSecurityException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
             ArrayList<String> paths = new ArrayList<>();
             ArrayList<String> pathNames = new ArrayList<>();
 

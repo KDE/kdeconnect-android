@@ -58,6 +58,8 @@ class SimpleSftpServer {
         SecurityUtils.setRegisterBouncyCastle(false);
     }
 
+    boolean initialized = false;
+
     private final SshServer sshd = SshServer.setUpDefaultServer();
     private AndroidFileSystemFactory safFileSystemFactory;
 
@@ -65,7 +67,7 @@ class SimpleSftpServer {
         safFileSystemFactory.initRoots(storageInfoList);
     }
 
-    void init(Context context, Device device) throws GeneralSecurityException {
+    void initialize(Context context, Device device) throws GeneralSecurityException {
 
         sshd.setKeyExchangeFactories(Arrays.asList(
                 new ECDHP384.Factory(), // This is the best we have in mina-sshd 0.14.0 -- Upgrading is non-trivial
@@ -97,6 +99,8 @@ class SimpleSftpServer {
 
         sshd.setPublickeyAuthenticator(keyAuth);
         sshd.setPasswordAuthenticator(passwordAuth);
+
+        initialized = true;
     }
 
     public boolean start() {
@@ -175,6 +179,10 @@ class SimpleSftpServer {
         } catch (SocketException ignored) {
         }
         return ip6;
+    }
+
+    public boolean isInitialized() {
+        return initialized;
     }
 
     static class SimplePasswordAuthenticator implements PasswordAuthenticator {
