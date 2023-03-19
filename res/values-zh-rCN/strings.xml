@@ -109,7 +109,6 @@
   <string name="unknown_device">未知设备</string>
   <string name="error_not_reachable">设备不可及</string>
   <string name="error_already_paired">设备已配对</string>
-  <string name="error_could_not_send_package">无法发送数据包</string>
   <string name="error_timed_out">超时</string>
   <string name="error_canceled_by_user">已被用户取消</string>
   <string name="error_canceled_by_other_peer">已被其他对等点取消</string>

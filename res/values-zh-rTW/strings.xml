@@ -83,7 +83,6 @@
   <string name="unknown_device">不明的裝置</string>
   <string name="error_not_reachable">裝置無法連結</string>
   <string name="error_already_paired">裝置已經配對</string>
-  <string name="error_could_not_send_package">無法傳送封包</string>
   <string name="error_timed_out">逾時</string>
   <string name="error_canceled_by_user">使用者中斷</string>
   <string name="error_canceled_by_other_peer">被其他同等功能應用中斷</string>

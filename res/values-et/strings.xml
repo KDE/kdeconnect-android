@@ -78,7 +78,6 @@
   <string name="unknown_device">Tundmatu seade</string>
   <string name="error_not_reachable">Seade pole saadaval</string>
   <string name="error_already_paired">Seade on juba paaritatud</string>
-  <string name="error_could_not_send_package">Paketi saatmine nurjus</string>
   <string name="error_timed_out">Ajaületus</string>
   <string name="error_canceled_by_user">Kasutaja katkestas</string>
   <string name="error_canceled_by_other_peer">Teine pool katkestas</string>

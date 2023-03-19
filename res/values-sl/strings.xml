@@ -109,7 +109,6 @@
   <string name="unknown_device">Neznana naprava</string>
   <string name="error_not_reachable">Naprava ni dosegljiva</string>
   <string name="error_already_paired">Naprava je že uparjena</string>
-  <string name="error_could_not_send_package">Ni bilo mogoče poslati paketa</string>
   <string name="error_timed_out">Čas je potekel</string>
   <string name="error_canceled_by_user">Preklical uporabnik</string>
   <string name="error_canceled_by_other_peer">Preklican od drugega vrstnika</string>

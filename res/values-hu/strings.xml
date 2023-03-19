@@ -108,7 +108,6 @@
   <string name="unknown_device">Ismeretlen eszköz</string>
   <string name="error_not_reachable">Az eszköz nem érhető el</string>
   <string name="error_already_paired">Az eszköz már párosítva van</string>
-  <string name="error_could_not_send_package">Nem sikerült elküldeni a csomagot</string>
   <string name="error_timed_out">Időtúllépés</string>
   <string name="error_canceled_by_user">Megszakítva a felhasználó által</string>
   <string name="error_canceled_by_other_peer">A másik partner megszakította</string>

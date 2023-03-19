@@ -109,7 +109,6 @@
   <string name="unknown_device">Naməlum Cihaz</string>
   <string name="error_not_reachable">Cihaz əlçatmazdır</string>
   <string name="error_already_paired">Cihaz artıq qoşulub</string>
-  <string name="error_could_not_send_package">Paket göndərilə bilmədi</string>
   <string name="error_timed_out">Vaxt bitdi</string>
   <string name="error_canceled_by_user">İstifadəçi ləğv etdi</string>
   <string name="error_canceled_by_other_peer">Digər istifadəçi ləğv etdi</string>

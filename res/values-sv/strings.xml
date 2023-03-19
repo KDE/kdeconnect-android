@@ -108,7 +108,6 @@
   <string name="unknown_device">Okänd apparat</string>
   <string name="error_not_reachable">Apparaten kan inte nås</string>
   <string name="error_already_paired">Apparat redan ihopparad</string>
-  <string name="error_could_not_send_package">Kunde inte skicka paket</string>
   <string name="error_timed_out">Tidsgräns överskriden</string>
   <string name="error_canceled_by_user">Avbruten av användaren</string>
   <string name="error_canceled_by_other_peer">Avbruten av motparten</string>

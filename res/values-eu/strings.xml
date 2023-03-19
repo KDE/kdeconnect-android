@@ -109,7 +109,6 @@
   <string name="unknown_device">Gailu ezezaguna</string>
   <string name="error_not_reachable">Gailua ez dago eskuragarri</string>
   <string name="error_already_paired">Gailua dagoeneko parekatuta</string>
-  <string name="error_could_not_send_package">Ezin izan da paketea bidali</string>
   <string name="error_timed_out">Denbora-muga agortu da</string>
   <string name="error_canceled_by_user">Erabiltzaileak utzita</string>
   <string name="error_canceled_by_other_peer">Beste kideak utzita</string>

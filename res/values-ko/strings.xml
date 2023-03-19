@@ -109,7 +109,6 @@
   <string name="unknown_device">알 수 없는 장치</string>
   <string name="error_not_reachable">장치에 접근할 수 없음</string>
   <string name="error_already_paired">장치가 이미 연결됨</string>
-  <string name="error_could_not_send_package">패키지를 보낼 수 없음</string>
   <string name="error_timed_out">시간 초과됨</string>
   <string name="error_canceled_by_user">사용자가 취소함</string>
   <string name="error_canceled_by_other_peer">다른 쪽에서 취소함</string>

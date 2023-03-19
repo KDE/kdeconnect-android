@@ -108,7 +108,6 @@
   <string name="unknown_device">Tuntematon laite</string>
   <string name="error_not_reachable">Laite tavoittamattomissa</string>
   <string name="error_already_paired">Laite on jo kytketty pariksi</string>
-  <string name="error_could_not_send_package">Ei voitu lähettää pakettia</string>
   <string name="error_timed_out">Aikakatkaisu</string>
   <string name="error_canceled_by_user">Käyttäjä perui</string>
   <string name="error_canceled_by_other_peer">Vertaiskäyttäjä perui</string>

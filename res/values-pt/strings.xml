@@ -109,7 +109,6 @@
   <string name="unknown_device">Dispositivo desconhecido</string>
   <string name="error_not_reachable">Dispositivo inacessível</string>
   <string name="error_already_paired">O dispositivo já foi emparelhado</string>
-  <string name="error_could_not_send_package">Não foi possível enviar o pacote</string>
   <string name="error_timed_out">Expirou o tempo-limite</string>
   <string name="error_canceled_by_user">Cancelado pelo utilizador</string>
   <string name="error_canceled_by_other_peer">Cancelado pela outra máquina</string>

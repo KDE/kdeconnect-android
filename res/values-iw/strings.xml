@@ -63,7 +63,6 @@
   <string name="unknown_device">התקן לא ידוע</string>
   <string name="error_not_reachable">ההתקן לא זמין</string>
   <string name="error_already_paired">ההתקן כבר מותאם</string>
-  <string name="error_could_not_send_package">לא יכול לשלוח חבילה</string>
   <string name="error_timed_out">נגמר הזמן</string>
   <string name="error_canceled_by_user">בוטל על ידי המשתמש</string>
   <string name="error_canceled_by_other_peer">בוטל על ידי מישהו אחר</string>

@@ -109,7 +109,6 @@
   <string name="unknown_device">Nežinomas įrenginys</string>
   <string name="error_not_reachable">Įrenginys nepasiekiamas</string>
   <string name="error_already_paired">Įrenginys jau suporuotas</string>
-  <string name="error_could_not_send_package">Nepavyko išsiųsti paketo</string>
   <string name="error_timed_out">Pasibaigė skirtas laikas</string>
   <string name="error_canceled_by_user">Naudotojas atsisakė</string>
   <string name="error_canceled_by_other_peer">Lygiarangis atsisakė</string>

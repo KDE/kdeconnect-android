@@ -108,7 +108,6 @@
   <string name="unknown_device">Perangkat tak diketahui</string>
   <string name="error_not_reachable">Peranti tidak dapat dicapai</string>
   <string name="error_already_paired">Peranti sudah disandingkan</string>
-  <string name="error_could_not_send_package">Tidak dapat mengirim paket</string>
   <string name="error_timed_out">Waktu habis</string>
   <string name="error_canceled_by_user">Dibatalkan oleh pengguna</string>
   <string name="error_canceled_by_other_peer">Dibatalkan oleh kawan lain</string>

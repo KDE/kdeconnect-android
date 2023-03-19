@@ -42,7 +42,6 @@
   <string name="unknown_device">Nepoznat uređaj</string>
   <string name="error_not_reachable">Uređaj nije dostupan</string>
   <string name="error_already_paired">Uređaj već uparen</string>
-  <string name="error_could_not_send_package">Nije moguće poslati paket</string>
   <string name="error_timed_out">Isteklo</string>
   <string name="error_canceled_by_user">Prekinuo korisnik</string>
   <string name="error_canceled_by_other_peer">Prekinuo drugi korisnik</string>

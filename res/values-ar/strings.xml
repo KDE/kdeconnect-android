@@ -79,7 +79,6 @@
   <string name="unknown_device">جهاز مجهول</string>
   <string name="error_not_reachable">الجهاز غير قابل الوصول</string>
   <string name="error_already_paired">الجهاز مقترن بالفعل</string>
-  <string name="error_could_not_send_package">تعذّر إرسال الحزمة</string>
   <string name="error_timed_out">انتهت المهلة</string>
   <string name="error_canceled_by_user">ألغاه المستخدم</string>
   <string name="error_canceled_by_other_peer">ألغاه ندّ آخر</string>

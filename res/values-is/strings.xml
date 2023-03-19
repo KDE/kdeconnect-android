@@ -102,7 +102,6 @@
   <string name="unknown_device">Óþekkt tæki</string>
   <string name="error_not_reachable">Tæki er ekki aðgengilegt</string>
   <string name="error_already_paired">Tæki er þegar parað</string>
-  <string name="error_could_not_send_package">Gat ekki sent pakka</string>
   <string name="error_timed_out">Féll á tíma</string>
   <string name="error_canceled_by_user">Hætt við af notanda</string>
   <string name="error_canceled_by_other_peer">Hætt við af hinum notandanum</string>

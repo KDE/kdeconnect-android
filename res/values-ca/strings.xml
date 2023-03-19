@@ -109,7 +109,6 @@
   <string name="unknown_device">Dispositiu desconegut</string>
   <string name="error_not_reachable">No es pot accedir al dispositiu</string>
   <string name="error_already_paired">El dispositiu ja està aparellat</string>
-  <string name="error_could_not_send_package">No s\'ha pogut enviar el paquet</string>
   <string name="error_timed_out">Ha excedit el temps</string>
   <string name="error_canceled_by_user">Cancel·lat per l\'usuari</string>
   <string name="error_canceled_by_other_peer">Cancel·lat per l\'altre parell</string>

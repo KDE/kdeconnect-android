@@ -92,7 +92,6 @@
   <string name="unknown_device">Neznáme zariadenie</string>
   <string name="error_not_reachable">Zariadenie nie je dosiahnuteľné</string>
   <string name="error_already_paired">Zariadenie je už spárované</string>
-  <string name="error_could_not_send_package">Nepodarilo sa odoslať balík</string>
   <string name="error_timed_out">Čas vypršal</string>
   <string name="error_canceled_by_user">Zrušené používateľom</string>
   <string name="error_canceled_by_other_peer">Zrušené druhým účastníkom</string>

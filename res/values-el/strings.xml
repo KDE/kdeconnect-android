@@ -100,7 +100,6 @@
   <string name="unknown_device">Άγνωστη συσκευή</string>
   <string name="error_not_reachable">Η συσκευή δεν είναι προσβάσιμη</string>
   <string name="error_already_paired">Η συσκευή ήδη συζεύχθηκε</string>
-  <string name="error_could_not_send_package">Αδυναμία αποστολής πακέτου</string>
   <string name="error_timed_out">Τέλος χρονικού ορίου</string>
   <string name="error_canceled_by_user">Ακυρώθηκε από τον χρήστη</string>
   <string name="error_canceled_by_other_peer">Ακυρώθηκε από άλλον χρήστη</string>

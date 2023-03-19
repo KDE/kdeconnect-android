@@ -109,7 +109,6 @@
   <string name="unknown_device">Nieznane urządzenie</string>
   <string name="error_not_reachable">Urządzenie nieosiągalne</string>
   <string name="error_already_paired">Urządzenie już sparowano</string>
-  <string name="error_could_not_send_package">Nie można wysłać pakietu</string>
   <string name="error_timed_out">Upłynął czas na odpowiedź</string>
   <string name="error_canceled_by_user">Użytkownik zaniechał</string>
   <string name="error_canceled_by_other_peer">Inny uczestnik zaniechał</string>

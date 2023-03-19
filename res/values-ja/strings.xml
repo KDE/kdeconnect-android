@@ -109,7 +109,6 @@
   <string name="unknown_device">不明なデバイス</string>
   <string name="error_not_reachable">デバイスに到達できません</string>
   <string name="error_already_paired">デバイスは既にペアリング済みです</string>
-  <string name="error_could_not_send_package">パッケージを送信できませんでした</string>
   <string name="error_timed_out">タイムアウト</string>
   <string name="error_canceled_by_user">ユーザにキャンセルされました</string>
   <string name="error_canceled_by_other_peer">他のピアにキャンセルされました</string>

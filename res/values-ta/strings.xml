@@ -109,7 +109,6 @@
   <string name="unknown_device">தெரியாத சாதனம்</string>
   <string name="error_not_reachable">சாதனத்தை கிட்ட முடியவில்லை</string>
   <string name="error_already_paired">சாதனம் ஏற்கனவே இணைந்துள்ளது</string>
-  <string name="error_could_not_send_package">தொகுப்பை அனுப்ப முடியவில்லை</string>
   <string name="error_timed_out">காலாவதி ஆகிவிட்டது</string>
   <string name="error_canceled_by_user">பயனரால் ரத்து செய்யப்பட்டது</string>
   <string name="error_canceled_by_other_peer">மறு சாதனத்தால் ரத்து செய்யப்பட்டது</string>

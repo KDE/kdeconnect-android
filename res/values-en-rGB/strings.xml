@@ -109,7 +109,6 @@
   <string name="unknown_device">Unknown device</string>
   <string name="error_not_reachable">Device not reachable</string>
   <string name="error_already_paired">Device already paired</string>
-  <string name="error_could_not_send_package">Could not send package</string>
   <string name="error_timed_out">Timed out</string>
   <string name="error_canceled_by_user">Cancelled by user</string>
   <string name="error_canceled_by_other_peer">Cancelled by other peer</string>

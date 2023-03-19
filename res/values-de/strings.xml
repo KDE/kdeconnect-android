@@ -89,7 +89,6 @@
   <string name="unknown_device">Unbekanntes Gerät</string>
   <string name="error_not_reachable">Das Gerät ist nicht erreichbar</string>
   <string name="error_already_paired">Das Gerät ist bereits verbunden</string>
-  <string name="error_could_not_send_package">Das Paket kann nicht gesendet werden</string>
   <string name="error_timed_out">Zeitüberschreitung</string>
   <string name="error_canceled_by_user">Abbruch durch Benutzer</string>
   <string name="error_canceled_by_other_peer">Abbruch durch Gegenstelle</string>

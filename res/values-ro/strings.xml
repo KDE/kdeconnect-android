@@ -108,7 +108,6 @@
   <string name="unknown_device">Dispozitiv necunoscut</string>
   <string name="error_not_reachable">Dispozitivul nu e accesibil</string>
   <string name="error_already_paired">Dispozitiv asociat deja</string>
-  <string name="error_could_not_send_package">Pachetul nu a putut fi trimis</string>
   <string name="error_timed_out">A expirat</string>
   <string name="error_canceled_by_user">Anulat de către utilizator</string>
   <string name="error_canceled_by_other_peer">Anulat de către partener</string>

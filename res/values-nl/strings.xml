@@ -109,7 +109,6 @@
   <string name="unknown_device">Onbekend apparaat</string>
   <string name="error_not_reachable">Apparaat niet bereikbaar</string>
   <string name="error_already_paired">Apparaat is al gepaard</string>
-  <string name="error_could_not_send_package">Kon pakket niet verzenden</string>
   <string name="error_timed_out">Tijdslimiet overschreden</string>
   <string name="error_canceled_by_user">Geannuleerd door gebruiker</string>
   <string name="error_canceled_by_other_peer">Geannuleerd door andere kant</string>

@@ -109,7 +109,6 @@
   <string name="unknown_device">Périphérique inconnu</string>
   <string name="error_not_reachable">Périphérique inaccessible</string>
   <string name="error_already_paired">Périphérique déjà associé</string>
-  <string name="error_could_not_send_package">Il est impossible d\'envoyer un paquet</string>
   <string name="error_timed_out">Délai expiré</string>
   <string name="error_canceled_by_user">Annulé par l\'utilisateur</string>
   <string name="error_canceled_by_other_peer">Annulé par un autre homologue</string>
@@ -247,6 +246,7 @@
   <string name="permission_explanation">Ce module externe nécessite des permissions pour fonctionner</string>
   <string name="optional_permission_explanation">Vous devez accorder des permissions supplémentaires pour activer toutes les fonctionnalités</string>
   <string name="plugins_need_optional_permission">Certaines fonctionnalités de modules externes sont désactivées faute de permissions suffisantes (tapez pour plus d\'informations) :</string>
+  <string name="share_optional_permission_explanation">Pour la réception de fichiers, vous devez autoriser un accès en écriture.</string>
   <string name="telepathy_permission_explanation">Pour lire et écrire des SMS depuis votre ordinateur, veuillez permettre l\'accès aux SMS</string>
   <string name="telephony_permission_explanation">Pour voir les appels depuis votre ordinateur, veuillez permettre l\'accès au journal des appels et à l\'état du téléphone</string>
   <string name="telephony_optional_permission_explanation">Pour voir le nom du contact au lieu du numéro de téléphone, veuillez permettre l\'accès aux contacts du téléphone</string>

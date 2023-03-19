@@ -109,7 +109,6 @@
   <string name="unknown_device">Невідомий пристрій</string>
   <string name="error_not_reachable">Немає доступу до пристрою</string>
   <string name="error_already_paired">Пристрій вже пов’язано</string>
-  <string name="error_could_not_send_package">Не вдалося надіслати пакунок</string>
   <string name="error_timed_out">Час очікування вичерпано</string>
   <string name="error_canceled_by_user">Скасовано користувачем</string>
   <string name="error_canceled_by_other_peer">Скасовано з іншого вузла пов’язування</string>
