@@ -16,6 +16,7 @@ import androidx.fragment.app.DialogFragment;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
+import org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin.RemoteKeyboardPlugin;
 import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.StartActivityAlertDialogFragment;
 import org.kde.kdeconnect_tp.R;
@@ -58,8 +59,12 @@ public class MouseReceiverPlugin extends Plugin {
     @Override
     public boolean onPacketReceived(NetworkPacket np) {
         if (!np.getType().equals(PACKET_TYPE_MOUSEPAD_REQUEST)) {
-            Log.e("MouseReceiverPlugin", "cannot receive packets of type: " + np.getType());
+            Log.e("MouseReceiverPlugin", "Invalid packet type for MouseReceiverPlugin: " + np.getType());
             return false;
+        }
+
+        if (RemoteKeyboardPlugin.getMousePadPacketType(np) != RemoteKeyboardPlugin.MousePadPacketType.Mouse) {
+            return false; // This packet will be handled by the RemoteKeyboardPlugin instead, silently ignore
         }
 
         double dx = np.getDouble("dx", 0);
