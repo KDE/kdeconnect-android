@@ -172,7 +172,7 @@ dependencies {
     implementation 'org.kde.invent.sredman:android-smsmms:kdeconnect-1-21-0'
     implementation 'com.klinkerapps:logger:1.0.3'
 
-    implementation 'commons-io:commons-io:2.11.0' // newer versions don't work on Android 7: https://stackoverflow.com/questions/73604534/no-static-method-threadlocal-withinitial-commons-io-dependency
+    implementation 'commons-io:commons-io:2.11.0'
     implementation 'org.apache.commons:commons-collections4:4.4'
     implementation 'org.apache.commons:commons-lang3:3.12.0'
 
