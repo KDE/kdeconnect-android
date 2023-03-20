@@ -246,6 +246,7 @@
   <string name="permission_explanation">இச்செருகுநிரல் இயங்க அனுமதிகள் தேவை</string>
   <string name="optional_permission_explanation">எல்லா செயல்பாடுகளையும் இயக்க நீங்கள் கூடுதல் அனுமதிகளை வழங்க வேண்டும்</string>
   <string name="plugins_need_optional_permission">அனுமதி இல்லாததால் சில செருகுநிரல்களின் அம்சங்கள் முடங்கியுள்ளன (மேலும் விவரங்களுக்கு தட்டவும்):</string>
+  <string name="share_optional_permission_explanation">கோப்புகளை பெற சேமிப்பக அனுமதி தேவைப்படலாம்</string>
   <string name="telepathy_permission_explanation">உங்கள் மேசைக்கணினியிலிருந்து SMS எழுத மற்றும் படிக்க நீங்கள் SMS அனுமதியைத் தர வேண்டும்</string>
   <string name="telephony_permission_explanation">மேசைக்கணினியிலிருந்து அழைப்புகளைக் காண நீங்கள் அழைப்பு வரலாறு மற்றும் தொலைபேசி நிலைக்கான அனுமதியைத் தர வேண்டும்</string>
   <string name="telephony_optional_permission_explanation">தொலைபேசி எண்ணுக்குப் பதிலாக நபரின் பெயரைக் காண நீங்கள் தொடர்புகளை அணுகும் அனுமதியைத் தர வேண்டும்</string>

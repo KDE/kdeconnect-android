@@ -109,7 +109,6 @@
   <string name="unknown_device">Ukjend eining</string>
   <string name="error_not_reachable">Får ikkje kontakt med eininga</string>
   <string name="error_already_paired">Eininga er alt para</string>
-  <string name="error_could_not_send_package">Klarte ikkje senda pakke</string>
   <string name="error_timed_out">Tidsavbrot</string>
   <string name="error_canceled_by_user">Avbroten av brukar</string>
   <string name="error_canceled_by_other_peer">Avbroten av den andre eininga</string>
@@ -247,6 +246,7 @@
   <string name="permission_explanation">Dette tillegget treng utvida løyve for å fungera</string>
   <string name="optional_permission_explanation">Du må gje utvida løyve for at alle funksjonane skal fungera</string>
   <string name="plugins_need_optional_permission">På grunn av manglande løyve vil desse funksjonane ikkje verka (trykk på dei for meir informasjon):</string>
+  <string name="share_optional_permission_explanation">For å kunna ta imot filer må du gje tilgangsløyve til lagringsområdet</string>
   <string name="telepathy_permission_explanation">For å kunna lesa og skriva tekstmeldingar frå datamaskina må du gje appen tilgang til SMS</string>
   <string name="telephony_permission_explanation">For å kunna sjå telefonsamtalar på datamaskina må du gje appen tilgang til samtaleloggar og telefonstatus</string>
   <string name="telephony_optional_permission_explanation">For å kunna sjå namn på kontaktar i staden for berre telefonnummeret må du gje appen tilgang til kontaktlista di</string>
