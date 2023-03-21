@@ -234,6 +234,7 @@
   <string name="sftp_action_mode_menu_delete">Вилучити</string>
   <string name="sftp_no_storage_locations_configured">Не налаштовано розташувань сховищ</string>
   <string name="sftp_saf_permission_explanation">Щоб отримувати віддалений доступ до файлів, вам слід налаштувати розташування сховищ</string>
+  <string name="sftp_manage_storage_permission_explanation">Щоб уможливити віддалений доступу до файлів на цьому пристрої, вам слід дозволити KDE Connect керувати сховищем даних.</string>
   <string name="no_players_connected">Не знайдено програвачів</string>
   <string name="send_files">Надіслати файли</string>
   <string name="block_notification_contents">Блокувати вміст сповіщення</string>

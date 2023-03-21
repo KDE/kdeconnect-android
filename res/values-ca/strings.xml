@@ -218,6 +218,7 @@
   <string name="sftp_action_mode_menu_delete">Suprimeix</string>
   <string name="sftp_no_storage_locations_configured">No s\'ha configurat cap ubicació d\'emmagatzematge</string>
   <string name="sftp_saf_permission_explanation">Per a accedir remotament als fitxers cal configurar les ubicacions d\'emmagatzematge</string>
+  <string name="sftp_manage_storage_permission_explanation">Per a permetre l\'accés remot als fitxers d\'aquest dispositiu, haureu de permetre que el KDE Connect gestioni l\'emmagatzematge.</string>
   <string name="no_players_connected">No s\'ha trobat cap reproductor</string>
   <string name="send_files">Envia fitxers</string>
   <string name="block_notification_contents">Bloca el contingut de les notificacions</string>

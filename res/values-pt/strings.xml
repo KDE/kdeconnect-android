@@ -218,6 +218,7 @@
   <string name="sftp_action_mode_menu_delete">Apagar</string>
   <string name="sftp_no_storage_locations_configured">Não estão configurados locais de armazenamento</string>
   <string name="sftp_saf_permission_explanation">Para aceder a ficheiros remotos, tem de configurar os locais de armazenamento</string>
+  <string name="sftp_manage_storage_permission_explanation">Para permitir o acesso remoto aos ficheiros neste dispositivo, precisa de autorizar o KDE Connect a gerir o armazenamento.</string>
   <string name="no_players_connected">Não foram encontrados leitores</string>
   <string name="send_files">Enviar os ficheiros</string>
   <string name="block_notification_contents">Bloquear os conteúdos das notificações</string>
@@ -246,6 +247,7 @@
   <string name="permission_explanation">Este \'plugin\' precisa de permissões para funcionar</string>
   <string name="optional_permission_explanation">Precisa de dar permissões extra para activar todas as funcionalidades</string>
   <string name="plugins_need_optional_permission">Alguns \'plugins\' têm funcionalidades desactivadas devido à falta de permissões (toque para obter mais informações):</string>
+  <string name="share_optional_permission_explanation">Para receber os ficheiros, é preciso autorizar o acesso ao armazenamento</string>
   <string name="telepathy_permission_explanation">Para ler e escrever SMS\'s a partir do seu ambiente de trabalho, precisa de dar permissões para os SMS\'s</string>
   <string name="telephony_permission_explanation">Para ver as chamadas telefónicas a partir do seu ambiente de trabalho, precisa de dar permissões para o registo de chamadas telefónicas e do estado do telemóvel</string>
   <string name="telephony_optional_permission_explanation">Para ver o nome de um contacto em vez do seu número de telefone, precisa de dar acesso aos contactos do telemóvel</string>

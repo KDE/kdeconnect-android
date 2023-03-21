@@ -262,6 +262,7 @@
   <string name="permission_explanation">Tento modul potřebuje pro práci povolení</string>
   <string name="optional_permission_explanation">Pro zpřístupnění všech funkcí potřebujete další oprávnění</string>
   <string name="plugins_need_optional_permission">Některé moduly mají vypnuté vlastnosti, kvůli nedostatečným oprávněním (ťukněte pro více informací):</string>
+  <string name="share_optional_permission_explanation">Pro příjem souborů je potřeba povolit přístup k úložišti</string>
   <string name="telepathy_permission_explanation">Pro čtení a psaní SMS z počítače musíte udělit oprávnění k SMS</string>
   <string name="telephony_permission_explanation">Pro zobrazení telefonátů v počítači musíte udělit oprávnění k záznamům telefonování a stavu telefonu</string>
   <string name="telephony_optional_permission_explanation">Pro zobrazení jména kontaktu u telefonního čísla je potřeba udělit oprávnění ke kontaktům v telefonu</string>

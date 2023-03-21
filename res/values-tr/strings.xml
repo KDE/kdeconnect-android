@@ -218,6 +218,7 @@
   <string name="sftp_action_mode_menu_delete">Sil</string>
   <string name="sftp_no_storage_locations_configured">Yapılandırılmış depolama yeri yok</string>
   <string name="sftp_saf_permission_explanation">Dosyalara uzaktan erişmek için depolama konumlarını yapılandırmanız gerekir</string>
+  <string name="sftp_manage_storage_permission_explanation">Bu aygıttaki dosyalara uzak erişime izin vermek için KDE Bağlan\'a depolamayı yönetmesi için izin vermeniz gerekiyor.</string>
   <string name="no_players_connected">Onatıcı bulunamadı</string>
   <string name="send_files">Dosyaları gönder</string>
   <string name="block_notification_contents">Bildirim içeriğini engelle</string>

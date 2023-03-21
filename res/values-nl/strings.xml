@@ -218,6 +218,7 @@
   <string name="sftp_action_mode_menu_delete">Verwijderen</string>
   <string name="sftp_no_storage_locations_configured">Geen opslaglocaties geconfigureerd</string>
   <string name="sftp_saf_permission_explanation">Om toegang te hebben tot bestanden op afstand moet u opslaglocaties configureren</string>
+  <string name="sftp_manage_storage_permission_explanation">Om toegang tot bestanden op dit apparaat toe te staan moet u toestaan dat KDE Connect de opslag mag beheren.</string>
   <string name="no_players_connected">Geen spelers gevonden</string>
   <string name="send_files">Bestanden verzenden</string>
   <string name="block_notification_contents">Inhoud van meldingen blokkeren</string>
