@@ -130,7 +130,7 @@ public class RunCommandWidget extends AppWidgetProvider {
         }
 
         if (BackgroundService.getInstance() != null) {
-            BackgroundService.getInstance().addDeviceListChangedCallback("RunCommandWidget", () -> {
+            BackgroundService.getInstance().addDeviceListChangedCallback("RunCommandWidget", isConnectedToNonCellularNetwork -> {
                 Intent updateWidget = new Intent(context, RunCommandWidget.class);
                 context.sendBroadcast(updateWidget);
             });

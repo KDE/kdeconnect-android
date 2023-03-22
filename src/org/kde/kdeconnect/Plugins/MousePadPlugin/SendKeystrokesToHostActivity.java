@@ -108,7 +108,7 @@ public class SendKeystrokesToHostActivity extends AppCompatActivity {
                 // subscribe to new connected devices
                 BackgroundService.RunCommand(this, service -> {
                     service.onNetworkChange();
-                    service.addDeviceListChangedCallback("SendKeystrokesToHostActivity", this::updateDeviceList);
+                    service.addDeviceListChangedCallback("SendKeystrokesToHostActivity", isConnectedToNonCellularNetwork -> updateDeviceList());
                 });
 
                 // list all currently connected devices

@@ -19,6 +19,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ServiceInfo;
 import android.net.ConnectivityManager;
 import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
 import android.os.Binder;
 import android.os.Build;
@@ -62,7 +63,7 @@ public class BackgroundService extends Service {
     private static BackgroundService instance;
 
     public interface DeviceListChangedCallback {
-        void onDeviceListChanged();
+        void onDeviceListChanged(boolean isConnectedToNonCellularNetwork);
     }
 
     public interface PluginCallback<T extends Plugin>  {
@@ -80,6 +81,8 @@ public class BackgroundService extends Service {
     public static BackgroundService getInstance() {
         return instance;
     }
+
+    boolean isConnectedToNonCellularNetwork; // True when connected over wifi/usb/bluetooth/(anything other than cellular)
 
     private boolean acquireDiscoveryMode(Object key) {
         boolean wasEmpty = discoveryModeAcquisitions.isEmpty();
@@ -128,9 +131,8 @@ public class BackgroundService extends Service {
 
     public void onDeviceListChanged() {
         for (DeviceListChangedCallback callback : deviceListChangedCallbacks.values()) {
-            callback.onDeviceListChanged();
+            callback.onDeviceListChanged(isConnectedToNonCellularNetwork);
         }
-
 
         if (NotificationHelper.isPersistentNotificationEnabled(this)) {
             //Update the foreground notification with the currently connected device list
@@ -270,16 +272,30 @@ public class BackgroundService extends Service {
         }
         registerReceiver(new KdeConnectBroadcastReceiver(), filter);
 
+        // Watch for changes on all network connections except cellular networks
+        NetworkRequest.Builder networkRequestBuilder = new NetworkRequest.Builder()
+                .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+                .addTransportType(NetworkCapabilities.TRANSPORT_VPN)
+                .addTransportType(NetworkCapabilities.TRANSPORT_ETHERNET)
+                .addTransportType(NetworkCapabilities.TRANSPORT_BLUETOOTH);
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) {
+            networkRequestBuilder.addTransportType(NetworkCapabilities.TRANSPORT_WIFI_AWARE);
+        }
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.S) {
+            networkRequestBuilder.addTransportType(NetworkCapabilities.TRANSPORT_USB)
+                                 .addTransportType(NetworkCapabilities.TRANSPORT_LOWPAN);
+        }
         ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkRequest.Builder builder = new NetworkRequest.Builder();
-        cm.registerNetworkCallback(builder.build(), new ConnectivityManager.NetworkCallback() {
+        cm.registerNetworkCallback(networkRequestBuilder.build(), new ConnectivityManager.NetworkCallback() {
             @Override
             public void onAvailable(Network network) {
+                isConnectedToNonCellularNetwork = true;
                 onDeviceListChanged();
                 onNetworkChange();
             }
             @Override
             public void onLost(Network network) {
+                isConnectedToNonCellularNetwork = false;
                 onDeviceListChanged();
             }
         });

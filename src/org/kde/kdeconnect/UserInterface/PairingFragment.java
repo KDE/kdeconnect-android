@@ -10,11 +10,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.net.ConnectivityManager;
-import android.net.LinkProperties;
-import android.net.Network;
-import android.net.NetworkInfo;
-import android.net.NetworkRequest;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.LayoutInflater;
@@ -26,7 +21,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import org.kde.kdeconnect.BackgroundService;
@@ -65,7 +59,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     private TextView headerText;
     private TextView noWifiHeader;
     private TextView notTrustedText;
-    private Object networkChangeListener;
+    private boolean isConnectedToNonCellularNetwork = true;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -93,35 +87,11 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
         noWifiHeader.setOnClickListener(view -> startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS)));
         devicesListBinding.devicesList.addHeaderView(headerText);
 
-        networkChangeListener = new ConnectivityManager.NetworkCallback() {
-            @Override
-            public void onAvailable(Network network) {
-                updateDeviceList();
-            }
-
-            @Override
-            public void onLost(Network network) {
-                updateDeviceList();
-            }
-
-            @Override
-            public void onLinkPropertiesChanged(Network network, LinkProperties linkProperties) {
-                updateDeviceList();
-            }
-        };
-        ConnectivityManager connManager = ContextCompat.getSystemService(requireContext(),
-                ConnectivityManager.class);
-        connManager.registerNetworkCallback(new NetworkRequest.Builder().build(), (ConnectivityManager.NetworkCallback) networkChangeListener);
-
         return devicesListBinding.getRoot();
     }
 
     @Override
     public void onDestroyView() {
-        ConnectivityManager connManager = ContextCompat.getSystemService(requireContext(),
-                ConnectivityManager.class);
-        connManager.unregisterNetworkCallback((ConnectivityManager.NetworkCallback) networkChangeListener);
-
         super.onDestroyView();
         devicesListBinding = null;
         pairingExplanationNotTrustedBinding = null;
@@ -177,11 +147,9 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
             devicesListBinding.devicesList.removeHeaderView(headerText);
             devicesListBinding.devicesList.removeHeaderView(noWifiHeader);
             devicesListBinding.devicesList.removeHeaderView(notTrustedText);
-            ConnectivityManager connManager = ContextCompat.getSystemService(requireContext(),
-                    ConnectivityManager.class);
-            NetworkInfo wifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-            //Check if we're on Wi-Fi. If we still see a device, don't do anything special
-            if (someDevicesReachable || wifi.isConnected()) {
+
+            //Check if we're on Wi-Fi/Local network. If we still see a device, don't do anything special
+            if (someDevicesReachable || isConnectedToNonCellularNetwork) {
                 if (TrustedNetworkHelper.isTrustedNetwork(getContext())) {
                     devicesListBinding.devicesList.addHeaderView(headerText);
                 } else {
@@ -255,7 +223,10 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     public void onStart() {
         super.onStart();
         devicesListBinding.refreshListLayout.setEnabled(true);
-        BackgroundService.RunCommand(mActivity, service -> service.addDeviceListChangedCallback("PairingFragment", this::updateDeviceList));
+        BackgroundService.RunCommand(mActivity, service -> service.addDeviceListChangedCallback("PairingFragment", newIsConnectedToNonCellularNetwork -> {
+            isConnectedToNonCellularNetwork = newIsConnectedToNonCellularNetwork;
+            updateDeviceList();
+        }));
         updateDeviceList();
     }
 
