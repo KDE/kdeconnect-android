@@ -234,6 +234,7 @@
   <string name="sftp_action_mode_menu_delete">Briši</string>
   <string name="sftp_no_storage_locations_configured">Lokacije shranjevanja niso nastavljene</string>
   <string name="sftp_saf_permission_explanation">Za dostop do datotek na daljavo morate nastaviti lokacije za shranjevanje</string>
+  <string name="sftp_manage_storage_permission_explanation">Da bi dovolili oddaljeni dostop do datotek na tej napravi, morate dovoliti, da KDE Connect upravlja s hrambo.</string>
   <string name="no_players_connected">Ni najdenih predvajalnikov</string>
   <string name="send_files">Pošlji datoteke</string>
   <string name="block_notification_contents">Blokiraj vsebine obvestil</string>

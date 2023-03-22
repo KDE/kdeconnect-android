@@ -206,6 +206,8 @@
   <string name="sftp_no_storage_locations_configured">Engar geymslustaðsetningar stilltar</string>
   <string name="no_players_connected">Engir spilarar fundust</string>
   <string name="send_files">Senda skrár</string>
+  <string name="block_notification_contents">Loka á efni í tilkynningum</string>
+  <string name="block_notification_images">Loka á myndir í tilkynningum</string>
   <string name="pairing_title">KDE Connect tæki</string>
   <string name="device_rename_title">Endurnefna tæki</string>
   <string name="device_rename_confirm">Endurnefna</string>
@@ -234,6 +236,7 @@
   <string name="add_command_description">Þú getur bætt við skipunum á skjáborðinu</string>
   <string name="pref_plugin_mprisreceiver">Margmiðlunarstýring</string>
   <string name="notification_channel_default">Aðrar tilkynningar</string>
+  <string name="notification_channel_persistent">Viðvarandi gaumvísir</string>
   <string name="notification_channel_media_control">Margmiðlunarstýring</string>
   <string name="notification_channel_filetransfer">Skráarflutningur</string>
   <string name="notification_channel_high_priority">Hár forgangur</string>
