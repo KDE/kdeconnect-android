@@ -80,7 +80,7 @@ public class SendKeystrokesToHostActivity extends AppCompatActivity {
                 // device is connected and send the text to it without user confirmation, to make sending of
                 // short and safe text like PINs/TANs very fluent
                 //
-                // (contentIsOkay gets used in updateComputerList again)
+                // (contentIsOkay gets used in updateDeviceList again)
                 if (prefs.getBoolean(getString(R.string.pref_send_safe_text_immediately), true)) {
                     SafeTextChecker safeTextChecker = new SafeTextChecker(SAFE_CHARS, MAX_SAFE_LENGTH);
                     contentIsOkay = safeTextChecker.isSafe(toSend);
@@ -108,11 +108,11 @@ public class SendKeystrokesToHostActivity extends AppCompatActivity {
                 // subscribe to new connected devices
                 BackgroundService.RunCommand(this, service -> {
                     service.onNetworkChange();
-                    service.addDeviceListChangedCallback("SendKeystrokesToHostActivity", this::updateComputerList);
+                    service.addDeviceListChangedCallback("SendKeystrokesToHostActivity", this::updateDeviceList);
                 });
 
                 // list all currently connected devices
-                updateComputerList();
+                updateDeviceList();
 
             } else {
                 Toast.makeText(getApplicationContext(), R.string.sendkeystrokes_wrong_data, Toast.LENGTH_LONG).show();
@@ -143,7 +143,7 @@ public class SendKeystrokesToHostActivity extends AppCompatActivity {
     }
 
 
-    private void updateComputerList() {
+    private void updateDeviceList() {
         BackgroundService.RunCommand(this, service -> {
 
             Collection<Device> devices = service.getDevices().values();

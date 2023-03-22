@@ -79,7 +79,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
         pairingExplanationTextBinding = PairingExplanationTextBinding.inflate(inflater);
         pairingExplanationTextNoWifiBinding = PairingExplanationTextNoWifiBinding.inflate(inflater);
 
-        devicesListBinding.refreshListLayout.setOnRefreshListener(this::updateComputerListAction);
+        devicesListBinding.refreshListLayout.setOnRefreshListener(this::updateDeviceListAction);
 
         notTrustedText = pairingExplanationNotTrustedBinding.getRoot();
         notTrustedText.setOnClickListener(null);
@@ -135,7 +135,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
         mActivity = ((MainActivity) getActivity());
     }
 
-    private void updateComputerListAction() {
+    private void updateDeviceListAction() {
         updateDeviceList();
         BackgroundService.RunCommand(mActivity, BackgroundService::onNetworkChange);
         devicesListBinding.refreshListLayout.setRefreshing(true);
@@ -294,7 +294,7 @@ public class PairingFragment extends Fragment implements PairingDeviceItem.Callb
     public boolean onOptionsItemSelected(final MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_refresh) {
-            updateComputerListAction();
+            updateDeviceListAction();
             return true;
         } else if (id == R.id.menu_custom_device_list) {
             startActivity(new Intent(mActivity, CustomDevicesActivity.class));

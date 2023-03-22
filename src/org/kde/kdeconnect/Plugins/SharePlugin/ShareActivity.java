@@ -42,15 +42,15 @@ public class ShareActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         if (item.getItemId() == R.id.menu_refresh) {
-            updateComputerListAction();
+            updateDeviceListAction();
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
     }
 
-    private void updateComputerListAction() {
-        updateComputerList();
+    private void updateDeviceListAction() {
+        updateDeviceList();
         BackgroundService.RunCommand(ShareActivity.this, BackgroundService::onNetworkChange);
 
         binding.devicesListLayout.refreshListLayout.setRefreshing(true);
@@ -60,7 +60,7 @@ public class ShareActivity extends AppCompatActivity {
         }, 1500);
     }
 
-    private void updateComputerList() {
+    private void updateDeviceList() {
         final Intent intent = getIntent();
 
         String action = intent.getAction();
@@ -110,7 +110,7 @@ public class ShareActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         ActionBar actionBar = getSupportActionBar();
-        binding.devicesListLayout.refreshListLayout.setOnRefreshListener(this::updateComputerListAction);
+        binding.devicesListLayout.refreshListLayout.setOnRefreshListener(this::updateDeviceListAction);
         if (actionBar != null) {
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_CUSTOM);
         }
@@ -131,9 +131,9 @@ public class ShareActivity extends AppCompatActivity {
         } else {
             BackgroundService.RunCommand(this, service -> {
                 service.onNetworkChange();
-                service.addDeviceListChangedCallback("ShareActivity", this::updateComputerList);
+                service.addDeviceListChangedCallback("ShareActivity", this::updateDeviceList);
             });
-            updateComputerList();
+            updateDeviceList();
         }
     }
 
