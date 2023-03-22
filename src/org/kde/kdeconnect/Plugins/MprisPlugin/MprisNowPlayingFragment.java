@@ -9,7 +9,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -213,80 +212,71 @@ public class MprisNowPlayingFragment extends Fragment implements VolumeKeyListen
         BackgroundService.RunWithPlugin(requireContext(), deviceId, MprisPlugin.class, mpris -> {
             targetPlayer = mpris.getPlayerStatus(targetPlayerName);
 
-            mpris.setPlayerStatusUpdatedHandler("activity", new Handler() {
-                @Override
-                public void handleMessage(Message msg) {
-                    requireActivity().runOnUiThread(() -> updatePlayerStatus(mpris));
-                }
-            });
+            mpris.setPlayerStatusUpdatedHandler("activity", () -> requireActivity().runOnUiThread(() -> updatePlayerStatus(mpris)));
+            mpris.setPlayerListUpdatedHandler("activity", () -> {
+                final List<String> playerList = mpris.getPlayerList();
+                final ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
+                        android.R.layout.simple_spinner_item,
+                        playerList.toArray(ArrayUtils.EMPTY_STRING_ARRAY)
+                );
 
-            mpris.setPlayerListUpdatedHandler("activity", new Handler() {
-                @Override
-                public void handleMessage(Message msg) {
-                    final List<String> playerList = mpris.getPlayerList();
-                    final ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
-                            android.R.layout.simple_spinner_item,
-                            playerList.toArray(ArrayUtils.EMPTY_STRING_ARRAY)
-                    );
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                requireActivity().runOnUiThread(() -> {
+                    mprisControlBinding.playerSpinner.setAdapter(adapter);
 
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    requireActivity().runOnUiThread(() -> {
-                        mprisControlBinding.playerSpinner.setAdapter(adapter);
+                    if (playerList.isEmpty()) {
+                        mprisControlBinding.noPlayers.setVisibility(View.VISIBLE);
+                        mprisControlBinding.playerSpinner.setVisibility(View.GONE);
+                        mprisControlBinding.nowPlayingTextview.setText("");
+                    } else {
+                        mprisControlBinding.noPlayers.setVisibility(View.GONE);
+                        mprisControlBinding.playerSpinner.setVisibility(View.VISIBLE);
+                    }
 
-                        if (playerList.isEmpty()) {
-                            mprisControlBinding.noPlayers.setVisibility(View.VISIBLE);
-                            mprisControlBinding.playerSpinner.setVisibility(View.GONE);
-                            mprisControlBinding.nowPlayingTextview.setText("");
-                        } else {
-                            mprisControlBinding.noPlayers.setVisibility(View.GONE);
-                            mprisControlBinding.playerSpinner.setVisibility(View.VISIBLE);
-                        }
+                    mprisControlBinding.playerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
 
-                        mprisControlBinding.playerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
+                            if (pos >= playerList.size()) return;
 
-                                if (pos >= playerList.size()) return;
-
-                                String player = playerList.get(pos);
-                                if (targetPlayer != null && player.equals(targetPlayer.getPlayer())) {
-                                    return; //Player hasn't actually changed
-                                }
-                                targetPlayer = mpris.getPlayerStatus(player);
-                                updatePlayerStatus(mpris);
-
-                                if (targetPlayer != null && targetPlayer.isPlaying()) {
-                                    MprisMediaSession.getInstance().playerSelected(targetPlayer);
-                                }
+                            String player = playerList.get(pos);
+                            if (targetPlayer != null && player.equals(targetPlayer.getPlayer())) {
+                                return; //Player hasn't actually changed
                             }
+                            targetPlayer = mpris.getPlayerStatus(player);
+                            updatePlayerStatus(mpris);
 
-                            @Override
-                            public void onNothingSelected(AdapterView<?> arg0) {
-                                targetPlayer = null;
-                            }
-                        });
-
-                        if (targetPlayer == null) {
-                            //If no player is selected, try to select a playing player
-                            targetPlayer = mpris.getPlayingPlayer();
-                        }
-                        //Try to select the specified player
-                        if (targetPlayer != null) {
-                            int targetIndex = adapter.getPosition(targetPlayer.getPlayer());
-                            if (targetIndex >= 0) {
-                                mprisControlBinding.playerSpinner.setSelection(targetIndex);
-                            } else {
-                                targetPlayer = null;
+                            if (targetPlayer != null && targetPlayer.isPlaying()) {
+                                MprisMediaSession.getInstance().playerSelected(targetPlayer);
                             }
                         }
-                        //If no player selected, select the first one (if any)
-                        if (targetPlayer == null && !playerList.isEmpty()) {
-                            targetPlayer = mpris.getPlayerStatus(playerList.get(0));
-                            mprisControlBinding.playerSpinner.setSelection(0);
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> arg0) {
+                            targetPlayer = null;
                         }
-                        updatePlayerStatus(mpris);
                     });
-                }
+
+                    if (targetPlayer == null) {
+                        //If no player is selected, try to select a playing player
+                        targetPlayer = mpris.getPlayingPlayer();
+                    }
+                    //Try to select the specified player
+                    if (targetPlayer != null) {
+                        int targetIndex = adapter.getPosition(targetPlayer.getPlayer());
+                        if (targetIndex >= 0) {
+                            mprisControlBinding.playerSpinner.setSelection(targetIndex);
+                        } else {
+                            targetPlayer = null;
+                        }
+                    }
+                    //If no player selected, select the first one (if any)
+                    if (targetPlayer == null && !playerList.isEmpty()) {
+                        targetPlayer = mpris.getPlayerStatus(playerList.get(0));
+                        mprisControlBinding.playerSpinner.setSelection(0);
+                    }
+                    updatePlayerStatus(mpris);
+                });
             });
         });
     }

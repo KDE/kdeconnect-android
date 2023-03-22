@@ -227,14 +227,18 @@ public class MprisPlugin extends Plugin {
         }
     }
 
+    public interface Callback {
+        void callback();
+    }
+
     public final static String DEVICE_ID_KEY = "deviceId";
     private final static String PACKET_TYPE_MPRIS = "kdeconnect.mpris";
     private final static String PACKET_TYPE_MPRIS_REQUEST = "kdeconnect.mpris.request";
 
     private final ConcurrentHashMap<String, MprisPlayer> players = new ConcurrentHashMap<>();
     private boolean supportAlbumArtPayload = false;
-    private final ConcurrentHashMap<String, Handler> playerStatusUpdated = new ConcurrentHashMap<>();
-    private final ConcurrentHashMap<String, Handler> playerListUpdated = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, Callback> playerStatusUpdated = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, Callback> playerListUpdated = new ConcurrentHashMap<>();
 
     @Override
     public String getDisplayName() {
@@ -349,7 +353,7 @@ public class MprisPlugin extends Plugin {
 
                 for (String key : playerStatusUpdated.keySet()) {
                     try {
-                        playerStatusUpdated.get(key).dispatchMessage(new Message());
+                        playerStatusUpdated.get(key).callback();
                     } catch (Exception e) {
                         Log.e("MprisControl", "Exception", e);
                         playerStatusUpdated.remove(key);
@@ -390,7 +394,7 @@ public class MprisPlugin extends Plugin {
             if (!equals) {
                 for (String key : playerListUpdated.keySet()) {
                     try {
-                        playerListUpdated.get(key).dispatchMessage(new Message());
+                        playerListUpdated.get(key).callback();
                     } catch (Exception e) {
                         Log.e("MprisControl", "Exception", e);
                         playerListUpdated.remove(key);
@@ -412,20 +416,19 @@ public class MprisPlugin extends Plugin {
         return new String[]{PACKET_TYPE_MPRIS_REQUEST};
     }
 
-    public void setPlayerStatusUpdatedHandler(String id, Handler h) {
+    public void setPlayerStatusUpdatedHandler(String id, Callback h) {
         playerStatusUpdated.put(id, h);
-
-        h.dispatchMessage(new Message());
+        h.callback();
     }
 
     public void removePlayerStatusUpdatedHandler(String id) {
         playerStatusUpdated.remove(id);
     }
 
-    public void setPlayerListUpdatedHandler(String id, Handler h) {
+    public void setPlayerListUpdatedHandler(String id, Callback h) {
         playerListUpdated.put(id, h);
 
-        h.dispatchMessage(new Message());
+        h.callback();
     }
 
     public void removePlayerListUpdatedHandler(String id) {
@@ -500,7 +503,7 @@ public class MprisPlugin extends Plugin {
         if (players.values().stream().anyMatch(player -> url.equals(player.albumArtUrl))) {
             for (String key : playerStatusUpdated.keySet()) {
                 try {
-                    playerStatusUpdated.get(key).dispatchMessage(new Message());
+                    playerStatusUpdated.get(key).callback();
                 } catch (Exception e) {
                     Log.e("MprisControl", "Exception", e);
                     playerStatusUpdated.remove(key);

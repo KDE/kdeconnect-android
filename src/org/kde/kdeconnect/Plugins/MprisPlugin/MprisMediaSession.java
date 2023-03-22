@@ -14,9 +14,6 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.preference.PreferenceManager;
 import android.service.notification.StatusBarNotification;
 import android.support.v4.media.MediaMetadataCompat;
@@ -77,13 +74,6 @@ public class MprisMediaSession implements
     private Context context;
     private MediaSessionCompat mediaSession;
 
-    //Callback for mpris plugin updates
-    private final Handler mediaNotificationHandler = new Handler(Looper.getMainLooper()) {
-        @Override
-        public void handleMessage(Message msg) {
-            updateMediaNotification();
-        }
-    };
     //Callback for control via the media session API
     private final MediaSessionCompat.Callback mediaSessionCallback = new MediaSessionCompat.Callback() {
         @Override
@@ -134,8 +124,8 @@ public class MprisMediaSession implements
         context = _context;
         mprisDevices.add(device);
 
-        mpris.setPlayerListUpdatedHandler("media_notification", mediaNotificationHandler);
-        mpris.setPlayerStatusUpdatedHandler("media_notification", mediaNotificationHandler);
+        mpris.setPlayerListUpdatedHandler("media_notification", this::updateMediaNotification);
+        mpris.setPlayerStatusUpdatedHandler("media_notification", this::updateMediaNotification);
 
         NotificationReceiver.RunCommand(context, service -> {
 
