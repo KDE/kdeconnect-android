@@ -233,8 +233,8 @@ public class MprisPlugin extends Plugin {
 
     private final ConcurrentHashMap<String, MprisPlayer> players = new ConcurrentHashMap<>();
     private boolean supportAlbumArtPayload = false;
-    private final HashMap<String, Handler> playerStatusUpdated = new HashMap<>();
-    private final HashMap<String, Handler> playerListUpdated = new HashMap<>();
+    private final ConcurrentHashMap<String, Handler> playerStatusUpdated = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, Handler> playerListUpdated = new ConcurrentHashMap<>();
 
     @Override
     public String getDisplayName() {
