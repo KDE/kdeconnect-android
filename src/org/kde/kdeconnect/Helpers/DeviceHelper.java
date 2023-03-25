@@ -99,7 +99,7 @@ public class DeviceHelper {
         if (preferences.getAll().isEmpty()) {
             // For new installations, use random IDs
             Log.e("DeviceHelper", "No device ID found and this looks like a new installation, creating a random ID");
-            deviceName = UUID.randomUUID().toString();
+            deviceName = UUID.randomUUID().toString().replace('-','_');
         } else {
             // Use the ANDROID_ID as device ID for existing installations, for backwards compatibility
             Log.e("DeviceHelper", "No device ID found but this seems an existing installation, using the Android ID");
