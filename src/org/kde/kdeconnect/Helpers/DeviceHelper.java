@@ -6,6 +6,7 @@
 
 package org.kde.kdeconnect.Helpers;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -18,11 +19,14 @@ import com.jaredrummler.android.device.DeviceName;
 
 import org.kde.kdeconnect.Device;
 
+import java.util.UUID;
+
 public class DeviceHelper {
 
     public static final int ProtocolVersion = 7;
 
     public static final String KEY_DEVICE_NAME_PREFERENCE = "device_name_preference";
+    public static final String KEY_DEVICE_ID_PREFERENCE = "device_id_preference";
 
     private static boolean fetchingName = false;
 
@@ -84,7 +88,29 @@ public class DeviceHelper {
         preferences.edit().putString(KEY_DEVICE_NAME_PREFERENCE, name).apply();
     }
 
-    public static String getDeviceId(Context context) {
-        return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+
+    @SuppressLint("HardwareIds")
+    public static void initializeDeviceId(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        if (preferences.contains(KEY_DEVICE_ID_PREFERENCE)) {
+            return; // We already have an ID
+        }
+        String deviceName;
+        if (preferences.getAll().isEmpty()) {
+            // For new installations, use random IDs
+            Log.e("DeviceHelper", "No device ID found and this looks like a new installation, creating a random ID");
+            deviceName = UUID.randomUUID().toString();
+        } else {
+            // Use the ANDROID_ID as device ID for existing installations, for backwards compatibility
+            Log.e("DeviceHelper", "No device ID found but this seems an existing installation, using the Android ID");
+            deviceName = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+        }
+        preferences.edit().putString(KEY_DEVICE_ID_PREFERENCE, deviceName).apply();
     }
+
+    public static String getDeviceId(Context context) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return preferences.getString(KEY_DEVICE_ID_PREFERENCE, null);
+    }
+
 }

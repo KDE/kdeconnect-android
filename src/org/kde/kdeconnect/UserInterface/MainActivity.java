@@ -80,6 +80,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         super.onCreate(savedInstanceState);
         ThemeUtil.setUserPreferredTheme(this); // Workaround: If the activity starts in landscape orientation and we call this before super.onCreate, the PluginItem entries appears with white on white background
 
+        DeviceHelper.initializeDeviceId(this);
+
         final ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
