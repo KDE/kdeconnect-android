@@ -218,6 +218,7 @@
   <string name="sftp_action_mode_menu_delete">Borrar</string>
   <string name="sftp_no_storage_locations_configured">No hay configurada ninguna localización de almacenamiento</string>
   <string name="sftp_saf_permission_explanation">Para acceder a los archivos remotamente debe configurar las localizaciones de almacenamiento</string>
+  <string name="sftp_manage_storage_permission_explanation">Para permitir el acceso remoto a archivos en este dispositivo necesita permitir a KDE Connect a administrar el almacenamiento.</string>
   <string name="no_players_connected">Ningún reproductor encontrado</string>
   <string name="send_files">Enviar archivos</string>
   <string name="block_notification_contents">Bloquear los contenidos de las notificaciones</string>
