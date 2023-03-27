@@ -72,6 +72,7 @@
     <string name="mousepad_acceleration_profile_key" translatable="false">mousepad_acceleration_profile_key</string>
     <string name="mousepad_scroll_direction_title">Reverse Scrolling Direction</string>
     <string name="mousepad_scroll_direction" translatable="false">mousepad_scroll_direction</string>
+    <string name="gyro_mouse_enabled" translatable="false">gyro_mouse_enabled</string>
     <string-array name="mousepad_tap_entries">
         <item>Left click</item>
         <item>Right click</item>

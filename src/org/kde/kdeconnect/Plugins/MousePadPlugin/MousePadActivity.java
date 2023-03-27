@@ -16,9 +16,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.hardware.SensorManager;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorEvent;
+import android.hardware.Sensor;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
+import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -29,7 +34,7 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.Objects;
 
-public class MousePadActivity extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener, MousePadGestureDetector.OnGestureListener {
+public class MousePadActivity extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener, MousePadGestureDetector.OnGestureListener, SensorEventListener {
     private String deviceId;
 
     private final static float MinDistanceToSendScroll = 2.5f; // touch gesture scroll
@@ -43,11 +48,13 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     private float mCurrentSensitivity;
     private float displayDpiMultiplier;
     private int scrollDirection = 1;
-
+    private boolean allowGyro = false;
+    private boolean gyroEnabled = false;
     private boolean isScrolling = false;
     private float accumulatedDistanceY = 0;
 
     private GestureDetector mDetector;
+    private SensorManager mSensorManager;
     private MousePadGestureDetector mMousePadGestureDetector;
     private PointerAccelerationProfile mPointerAccelerationProfile;
 
@@ -75,6 +82,37 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     private ClickType singleTapAction, doubleTapAction, tripleTapAction;
 
     @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        float[] values = event.values;
+
+        float X = -values[2] * 70 * mCurrentSensitivity * displayDpiMultiplier;
+        float Y = -values[0] * 70 * mCurrentSensitivity * displayDpiMultiplier;
+
+        if (X < 0.25 && X > -0.25) {
+            X = 0;
+        } else {
+            X = X * mCurrentSensitivity * displayDpiMultiplier;
+        }
+
+        if (Y < 0.25 && Y > -0.25) {
+            Y = 0;
+        } else {
+            Y = Y * mCurrentSensitivity * displayDpiMultiplier;
+        }
+
+        final float nX = X;
+        final float nY = Y;
+
+        BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> {
+                plugin.sendMouseDelta(nX, nY);
+        });
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ThemeUtil.setUserPreferredTheme(this);
@@ -92,6 +130,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         mDetector = new GestureDetector(this, this);
         mMousePadGestureDetector = new MousePadGestureDetector(this);
         mDetector.setOnDoubleTapListener(this);
+        mSensorManager = ContextCompat.getSystemService(this, SensorManager.class);
 
         keyListenerView = findViewById(R.id.keyListener);
         keyListenerView.setDeviceId(deviceId);
@@ -101,6 +140,9 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
             scrollDirection = -1;
         } else {
             scrollDirection = 1;
+        }
+        if ((prefs.getBoolean(getString(R.string.gyro_mouse_enabled), false)) && (mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE) != null)) {
+            allowGyro = true;
         }
         String singleTapSetting = prefs.getString(getString(R.string.mousepad_single_tap_key),
                 getString(R.string.mousepad_default_single));
@@ -123,7 +165,6 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         //Technically xdpi and ydpi should be handled separately,
         //but since ydpi is usually almost equal to xdpi, only xdpi is used for the multiplier.
         displayDpiMultiplier = StandardDpi / getResources().getDisplayMetrics().xdpi;
-
         switch (sensitivitySetting) {
             case "slowest":
                 mCurrentSensitivity = 0.2f;
@@ -158,7 +199,32 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
                 getWindow().getDecorView().setSystemUiVisibility(fullscreenType);
             }
         });
+    }
 
+    @Override
+    protected void onResume() {
+        if (allowGyro == true && gyroEnabled == false) {
+            mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE), SensorManager.SENSOR_DELAY_GAME);
+            gyroEnabled = true;
+        }
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        if (gyroEnabled == true) {
+            mSensorManager.unregisterListener(this);
+            gyroEnabled = false;
+        }
+        super.onPause();
+    }
+
+    @Override protected void onStop() {
+        if (gyroEnabled == true) {
+            mSensorManager.unregisterListener(this);
+            gyroEnabled = false;
+        }
+        super.onStop();
     }
 
     @Override
@@ -244,6 +310,8 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
                     mPrevX = mCurrentX;
                     mPrevY = mCurrentY;
                 });
+
+
                 break;
         }
         return true;
