@@ -218,6 +218,7 @@
   <string name="sftp_action_mode_menu_delete">Изтриване</string>
   <string name="sftp_no_storage_locations_configured">Няма конфигурирани места за съхранение</string>
   <string name="sftp_saf_permission_explanation">За да получите достъп до файлове от разстояние, трябва да конфигурирате местата за съхранение</string>
+  <string name="sftp_manage_storage_permission_explanation">За да разрешите отдалечен достъп до файловете на това устройство, трябва да разрешите KDE Connect да управлява хранилището.</string>
   <string name="no_players_connected">Не са открити играчи</string>
   <string name="send_files">Изпращане на файлове</string>
   <string name="block_notification_contents">Блокиране на съдържанието в известията</string>

@@ -210,6 +210,7 @@
   <string name="sftp_action_mode_menu_delete">删除</string>
   <string name="sftp_no_storage_locations_configured">未配置存储位置</string>
   <string name="sftp_saf_permission_explanation">要远程访问文件，您需要配置存储位置</string>
+  <string name="sftp_manage_storage_permission_explanation">要允许远程访问此设备上的文件，您必须允许 KDE Connect 管理它的存储。</string>
   <string name="no_players_connected">未找到播放器</string>
   <string name="send_files">发送文件</string>
   <string name="block_notification_contents">屏蔽通知内容</string>
@@ -238,6 +239,7 @@
   <string name="permission_explanation">这个插件需要权限才能工作</string>
   <string name="optional_permission_explanation">您需要授予额外权限以启用全部功能</string>
   <string name="plugins_need_optional_permission">因缺少权限，某些插件的一些功能已禁用（点击以查看更多信息）：</string>
+  <string name="share_optional_permission_explanation">要接收文件，您必须允许存储访问权限</string>
   <string name="telepathy_permission_explanation">从计算机桌面读取、写入短消息需要向应用程序授予 SMS 权限</string>
   <string name="telephony_permission_explanation">要桌面上查看手机通话记录，您需要授予访问通话记录和手机状态的权限</string>
   <string name="telephony_optional_permission_explanation">要查看联系人姓名而非电话号码，您需要授予访问手机通讯录的权限</string>
