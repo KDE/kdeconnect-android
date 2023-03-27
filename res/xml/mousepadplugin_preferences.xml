@@ -1,89 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:keep="@xml/mousepadplugin_preferences">
+                  xmlns:tools="http://schemas.android.com/tools"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  tools:keep="@xml/mousepadplugin_preferences">
 
     <ListPreference
-        android:id="@+id/mousepad_single_tap_preference"
-        android:defaultValue="@string/mousepad_default_single"
-        android:entries="@array/mousepad_tap_entries"
-        android:entryValues="@array/mousepad_tap_values"
-        android:key="@string/mousepad_single_tap_key"
-        android:summary="%s"
-        android:title="@string/mousepad_single_tap_settings_title" />
+            android:id="@+id/mousepad_single_tap_preference"
+            android:defaultValue="@string/mousepad_default_single"
+            android:entries="@array/mousepad_tap_entries"
+            android:entryValues="@array/mousepad_tap_values"
+            android:key="@string/mousepad_single_tap_key"
+            android:summary="%s"
+            android:title="@string/mousepad_single_tap_settings_title" />
 
     <ListPreference
-        android:id="@+id/mousepad_double_tap_preference"
-        android:defaultValue="@string/mousepad_default_double"
-        android:entries="@array/mousepad_tap_entries"
-        android:entryValues="@array/mousepad_tap_values"
-        android:key="@string/mousepad_double_tap_key"
-        android:summary="%s"
-        android:title="@string/mousepad_double_tap_settings_title" />
+            android:id="@+id/mousepad_double_tap_preference"
+            android:defaultValue="@string/mousepad_default_double"
+            android:entries="@array/mousepad_tap_entries"
+            android:entryValues="@array/mousepad_tap_values"
+            android:key="@string/mousepad_double_tap_key"
+            android:summary="%s"
+            android:title="@string/mousepad_double_tap_settings_title" />
 
     <ListPreference
-        android:id="@+id/mousepad_triple_tap_preference"
-        android:defaultValue="@string/mousepad_default_triple"
-        android:entries="@array/mousepad_tap_entries"
-        android:entryValues="@array/mousepad_tap_values"
-        android:key="@string/mousepad_triple_tap_key"
-        android:summary="%s"
-        android:title="@string/mousepad_triple_tap_settings_title" />
+            android:id="@+id/mousepad_triple_tap_preference"
+            android:defaultValue="@string/mousepad_default_triple"
+            android:entries="@array/mousepad_tap_entries"
+            android:entryValues="@array/mousepad_tap_values"
+            android:key="@string/mousepad_triple_tap_key"
+            android:summary="%s"
+            android:title="@string/mousepad_triple_tap_settings_title" />
 
     <ListPreference
-        android:id="@+id/mousepad_sensitivity_preference"
-        android:defaultValue="@string/mousepad_default_sensitivity"
-        android:entries="@array/mousepad_sensitivity_entries"
-        android:entryValues="@array/mousepad_sensitivity_values"
-        android:key="@string/mousepad_sensitivity_key"
-        android:summary="%s"
-        android:title="@string/mousepad_sensitivity_settings_title" />
+            android:id="@+id/mousepad_sensitivity_preference"
+            android:defaultValue="@string/mousepad_default_sensitivity"
+            android:entries="@array/mousepad_sensitivity_entries"
+            android:entryValues="@array/mousepad_sensitivity_values"
+            android:key="@string/mousepad_sensitivity_key"
+            android:summary="%s"
+            android:title="@string/mousepad_sensitivity_settings_title" />
 
     <ListPreference
-        android:id="@+id/mousepad_acceleration_profile_preference"
-        android:defaultValue="@string/mousepad_default_acceleration_profile"
-        android:entries="@array/mousepad_acceleration_profile_entries"
-        android:entryValues="@array/mousepad_acceleration_profile_values"
-        android:key="@string/mousepad_acceleration_profile_key"
-        android:summary="%s"
-        android:title="@string/mousepad_acceleration_profile_settings_title" />
+            android:id="@+id/mousepad_acceleration_profile_preference"
+            android:defaultValue="@string/mousepad_default_acceleration_profile"
+            android:entries="@array/mousepad_acceleration_profile_entries"
+            android:entryValues="@array/mousepad_acceleration_profile_values"
+            android:key="@string/mousepad_acceleration_profile_key"
+            android:summary="%s"
+            android:title="@string/mousepad_acceleration_profile_settings_title" />
 
     <SwitchPreferenceCompat
-        android:id="@+id/mousepad_scroll_preference"
-        android:defaultValue="false"
-        android:key="@string/mousepad_scroll_direction"
-        android:title="@string/mousepad_scroll_direction_title" />
+            android:id="@+id/mousepad_scroll_preference"
+            android:defaultValue="false"
+            android:key="@string/mousepad_scroll_direction"
+            android:title="@string/mousepad_scroll_direction_title" />
 
 
     <SwitchPreferenceCompat
-        android:id="@+id/gyro_mouse_enabled"
-        android:defaultValue="false"
-        android:key="@string/gyro_mouse_enabled"
-        android:title="Gyro mouse" />
+            android:id="@+id/gyro_mouse_enabled"
+            android:defaultValue="false"
+            android:key="@string/gyro_mouse_enabled"
+            android:title="@string/gyro_mouse_enabled_title"/>
+
+    <SeekBarPreference
+            android:id="@+id/mousepad_gyro_sensitivity"
+            android:defaultValue="false"
+            android:key="@string/gyro_mouse_sensitivity"
+            android:title="@string/gyro_mouse_sensitivity_title" android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
 
     <org.kde.kdeconnect.Helpers.LongSummaryPreferenceCategory
-        android:key="@string/sendkeystrokes_pref_category"
-        android:summary="@string/sendkeystrokes_pref_category_summary"
-        android:title="@string/sendkeystrokes_pref_category_title">
+            android:key="@string/sendkeystrokes_pref_category"
+            android:summary="@string/sendkeystrokes_pref_category_summary"
+            android:title="@string/sendkeystrokes_pref_category_title">
 
         <SwitchPreferenceCompat
-            android:id="@+id/pref_keystrokes_enable"
-            android:defaultValue="true"
-            android:key="@string/pref_sendkeystrokes_enabled"
-            android:title="@string/sendkeystrokes_pref_enabled"
-            android:summary="@string/sendkeystrokes_pref_enabled_summary"
-            />
+                android:id="@+id/pref_keystrokes_enable"
+                android:defaultValue="true"
+                android:key="@string/pref_sendkeystrokes_enabled"
+                android:title="@string/sendkeystrokes_pref_enabled"
+                android:summary="@string/sendkeystrokes_pref_enabled_summary"
+        />
 
         <SwitchPreferenceCompat
-            android:id="@+id/pref_send_safe_text_immediately"
-            android:defaultValue="true"
-            android:key="@string/pref_send_safe_text_immediately"
-            android:title="@string/sendkeystrokes_safe_text_enabled"
-            android:summary="@string/sendkeystrokes_safe_text_enabled_summary"
-            />
+                android:id="@+id/pref_send_safe_text_immediately"
+                android:defaultValue="true"
+                android:key="@string/pref_send_safe_text_immediately"
+                android:title="@string/sendkeystrokes_safe_text_enabled"
+                android:summary="@string/sendkeystrokes_safe_text_enabled_summary"
+        />
 
     </org.kde.kdeconnect.Helpers.LongSummaryPreferenceCategory>
 </PreferenceScreen>

@@ -50,6 +50,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     private int scrollDirection = 1;
     private boolean allowGyro = false;
     private boolean gyroEnabled = false;
+    private int gyroscopeSensitivity = 100;
     private boolean isScrolling = false;
     private float accumulatedDistanceY = 0;
 
@@ -89,26 +90,26 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     public void onSensorChanged(SensorEvent event) {
         float[] values = event.values;
 
-        float X = -values[2] * 70 * mCurrentSensitivity * displayDpiMultiplier;
-        float Y = -values[0] * 70 * mCurrentSensitivity * displayDpiMultiplier;
+        float X = -values[2] * 70 * (gyroscopeSensitivity/100.0f);
+        float Y = -values[0] * 70 * (gyroscopeSensitivity/100.0f);
 
         if (X < 0.25 && X > -0.25) {
             X = 0;
         } else {
-            X = X * mCurrentSensitivity * displayDpiMultiplier;
+            X = X * (gyroscopeSensitivity/100.0f);
         }
 
         if (Y < 0.25 && Y > -0.25) {
             Y = 0;
         } else {
-            Y = Y * mCurrentSensitivity * displayDpiMultiplier;
+            Y = Y * (gyroscopeSensitivity/100.0f);
         }
 
         final float nX = X;
         final float nY = Y;
 
         BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> {
-                plugin.sendMouseDelta(nX, nY);
+            plugin.sendMouseDelta(nX, nY);
         });
     }
 
@@ -143,7 +144,9 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         }
         if ((prefs.getBoolean(getString(R.string.gyro_mouse_enabled), false)) && (mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE) != null)) {
             allowGyro = true;
+            gyroscopeSensitivity = prefs.getInt(getString(R.string.gyro_mouse_sensitivity),100);
         }
+
         String singleTapSetting = prefs.getString(getString(R.string.mousepad_single_tap_key),
                 getString(R.string.mousepad_default_single));
         String doubleTapSetting = prefs.getString(getString(R.string.mousepad_double_tap_key),
@@ -476,4 +479,3 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         return true;
     }
 }
-

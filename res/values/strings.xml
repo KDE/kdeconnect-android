@@ -73,6 +73,9 @@
     <string name="mousepad_scroll_direction_title">Reverse Scrolling Direction</string>
     <string name="mousepad_scroll_direction" translatable="false">mousepad_scroll_direction</string>
     <string name="gyro_mouse_enabled" translatable="false">gyro_mouse_enabled</string>
+    <string name="gyro_mouse_enabled_title">Enable gyroscope mouse</string>
+    <string name="gyro_mouse_sensitivity_title">Gyroscope sensitivity</string>
+    <string name="gyro_mouse_sensitivity" translatable="false">gyro_mouse_sensitivity</string>
     <string-array name="mousepad_tap_entries">
         <item>Left click</item>
         <item>Right click</item>
