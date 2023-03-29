@@ -12,35 +12,24 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
-import org.kde.kdeconnect_tp.databinding.ListItemWithIconEntryBinding;
+import org.kde.kdeconnect_tp.databinding.ListPluginEntryBinding;
 
 public class EntryItemWithIcon implements ListAdapter.Item {
     protected final String title;
-    protected final String subtitle;
     protected final Drawable icon;
 
     public EntryItemWithIcon(String title, Drawable icon) {
-        this(title, null, icon);
-    }
-
-    protected EntryItemWithIcon(String title, String subtitle, Drawable icon) {
         this.title = title;
-        this.subtitle = subtitle;
         this.icon = icon;
     }
 
     @NonNull
     @Override
     public View inflateView(@NonNull LayoutInflater layoutInflater) {
-        final ListItemWithIconEntryBinding binding = ListItemWithIconEntryBinding.inflate(layoutInflater);
+        final ListPluginEntryBinding binding = ListPluginEntryBinding.inflate(layoutInflater);
 
         binding.listItemEntryTitle.setText(title);
         binding.listItemEntryIcon.setImageDrawable(icon);
-
-        if (subtitle != null) {
-            binding.listItemEntrySummary.setVisibility(View.VISIBLE);
-            binding.listItemEntrySummary.setText(subtitle);
-        }
 
         return binding.getRoot();
     }

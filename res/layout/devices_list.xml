@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/refresh_list_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin">
 
     <ListView
         android:id="@+id/devices_list"
@@ -11,8 +12,9 @@
         android:layout_height="match_parent"
         android:addStatesFromChildren="true"
         android:divider="@null"
-        android:dividerHeight="0dp"
+        android:dividerHeight="12dp"
         android:orientation="vertical"
+        tools:listitem="@layout/list_plugin_entry"
         tools:context=".MainActivity" />
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

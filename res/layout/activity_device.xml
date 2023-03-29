@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="@integer/activity_device_orientation"
     tools:context="org.kde.kdeconnect.UserInterface.DeviceFragment">
 
     <!-- Layout shown when device is reachable but not yet paired -->
@@ -18,51 +18,27 @@
         layout="@layout/view_pair_error"
         tools:visibility="gone"/>
 
-    <!-- Layout shown when device is paired and reachable -->
+    <!-- Layouts shown when device is paired and reachable -->
+    <GridView
+        android:id="@+id/plugins_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="@integer/plugins_list_weight"
+        android:numColumns="@integer/plugins_columns"
+        android:horizontalSpacing="8dp"
+        android:verticalSpacing="8dp"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        tools:listitem="@layout/list_plugin_entry"
+        tools:layout_height="300dp" />
+
     <ListView
         android:id="@+id/buttons_list"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:fillViewport="true"
+        android:layout_height="wrap_content"
+        android:layout_weight="@integer/buttons_list_weight"
+        android:divider="@null"
+        android:dividerHeight="0dp"
         tools:context=".DeviceActivity"
         tools:listitem="@layout/list_item_with_icon_entry"
-        android:layout_weight=".8"
-        android:divider="@null"
-        android:dividerHeight="0dp" />
-
-    <!-- Extra information about the current device -->
-    <RelativeLayout
-        android:id="@+id/view_status_container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="4dp"
-        android:padding="8dp"
-        android:visibility="gone"
-        tools:visibility="visible"
-        tools:ignore="UnusedAttribute">
-
-        <TextView
-            android:id="@+id/view_status_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:padding="4dp"
-            android:text="@string/view_status_title"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
-            />
-
-        <CheckedTextView
-            android:id="@+id/view_battery_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/view_status_title"
-            android:checkMark="@null"
-            android:clickable="false"
-            android:padding="4dp"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-            android:text="@string/battery_status_unknown"
-            tools:text="100%"
-            />
-
-    </RelativeLayout>
+        tools:layout_height="300dp" />
 </LinearLayout>

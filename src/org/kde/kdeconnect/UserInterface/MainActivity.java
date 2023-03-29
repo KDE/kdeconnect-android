@@ -350,7 +350,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             } else {
                 mNavigationView.setCheckedItem(mCurrentMenuEntry);
             }
-            setContentFragment(DeviceFragment.newInstance(deviceId, fromDeviceList));
+            setContentFragment(DeviceFragment.Companion.newInstance(deviceId, fromDeviceList));
         } else {
             mCurrentMenuEntry = MENU_ENTRY_ADD_DEVICE;
             mNavigationView.setCheckedItem(mCurrentMenuEntry);

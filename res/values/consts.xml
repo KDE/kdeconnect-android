@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- https://developer.android.com/reference/android/R.attr.html#orientation -->
+    <integer name="orientation_horizontal">0</integer>
+    <integer name="orientation_vertical">1</integer>
+
+    <!--used in activity_device-->
+    <integer name="activity_device_orientation">@integer/orientation_vertical</integer>
+    <integer name="plugins_list_weight">@null</integer>
+    <integer name="buttons_list_weight">@null</integer>
+    <integer name="plugins_columns">2</integer>
+
+</resources>
