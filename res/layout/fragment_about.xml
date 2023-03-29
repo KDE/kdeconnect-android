@@ -19,9 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
-            card_view:cardBackgroundColor="@color/card_stroke_color"
-            card_view:cardCornerRadius="12dp"
-            card_view:cardElevation="5dp"
             card_view:cardUseCompatPadding="true">
 
             <LinearLayout
@@ -151,9 +148,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
-            card_view:cardBackgroundColor="@color/card_stroke_color"
-            card_view:cardCornerRadius="12dp"
-            card_view:cardElevation="5dp"
+            style="@style/Widget.Material3.CardView.Elevated"
             card_view:cardUseCompatPadding="true">
 
             <LinearLayout

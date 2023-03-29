@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.PreferenceManager;
 
+import com.google.android.material.color.DynamicColors;
+
 
 /**
  * Utilities for working with android {@link android.content.res.Resources.Theme Themes}.
@@ -44,6 +46,7 @@ public class ThemeUtil {
     public static void setUserPreferredTheme(Activity activity) {
         String appTheme = PreferenceManager.getDefaultSharedPreferences(activity)
                 .getString("theme_pref", DEFAULT_MODE);
+        DynamicColors.applyIfAvailable(activity);
         applyTheme(appTheme);
     }
 }

@@ -47,6 +47,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         Context context = getPreferenceManager().getContext();
         PreferenceScreen screen = getPreferenceManager().createPreferenceScreen(context);
 
+        // TODO: preference alert dialogs don't use the material alert dialogs yet
+        // see https://github.com/material-components/material-components-android/issues/2732
+
         // Rename device
         renameDevice = new EditTextPreference(context);
         renameDevice.setKey(DeviceHelper.KEY_DEVICE_NAME_PREFERENCE);

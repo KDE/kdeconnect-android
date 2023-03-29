@@ -15,8 +15,7 @@
         android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:hintEnabled="false"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox">
+        app:hintEnabled="false">
 
         <!-- inputType="text" is needed, without it lines and maxLines is ignored https://issuetracker.google.com/issues/37118772 -->
         <com.google.android.material.textfield.TextInputEditText
@@ -25,8 +24,7 @@
             android:layout_height="wrap_content"
             android:lines="1"
             android:maxLines="1"
-            android:inputType="text"
-            style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"/>
+            android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
 </FrameLayout>

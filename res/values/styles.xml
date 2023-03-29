@@ -1,6 +1,6 @@
 <resources>
     <!-- NoActionBar because we use a Toolbar widget as ActionBar -->
-    <style name="KdeConnectThemeBase" parent="Theme.MaterialComponents.DayNight">
+    <style name="KdeConnectThemeBase" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- The main color attributes -->
         <!-- The three colors used by system widgets, according to https://chris.banes.me/2014/10/17/appcompat-v21/ -->
         <item name="colorPrimary">@color/primary</item>
@@ -26,6 +26,7 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.DayNight</item>
 
+        <item name="materialCardViewStyle">@style/Widget.Material3.CardView.Elevated</item>
     </style>
 
     <style name="KdeConnectTheme" parent="KdeConnectThemeBase" />

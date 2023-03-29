@@ -42,9 +42,7 @@
                 android:layout_marginRight="12dp"
                 android:layout_marginEnd="12dp"
                 android:layout_marginBottom="12dp"
-                card_view:cardBackgroundColor="@color/card_stroke_color"
                 card_view:cardCornerRadius="12dp"
-                card_view:cardElevation="5dp"
                 card_view:cardUseCompatPadding="true">
 
                 <TextView
@@ -65,9 +63,7 @@
                 android:layout_marginRight="12dp"
                 android:layout_marginEnd="12dp"
                 android:layout_marginBottom="12dp"
-                card_view:cardBackgroundColor="@color/card_stroke_color"
                 card_view:cardCornerRadius="12dp"
-                card_view:cardElevation="5dp"
                 card_view:cardUseCompatPadding="true">
 
                 <TextView
@@ -88,9 +84,7 @@
                 android:layout_marginRight="12dp"
                 android:layout_marginEnd="12dp"
                 android:layout_marginBottom="12dp"
-                card_view:cardBackgroundColor="@color/card_stroke_color"
                 card_view:cardCornerRadius="12dp"
-                card_view:cardElevation="5dp"
                 card_view:cardUseCompatPadding="true">
 
                 <TextView
@@ -111,9 +105,7 @@
                 android:layout_marginRight="12dp"
                 android:layout_marginEnd="12dp"
                 android:layout_marginBottom="12dp"
-                card_view:cardBackgroundColor="@color/card_stroke_color"
                 card_view:cardCornerRadius="12dp"
-                card_view:cardElevation="5dp"
                 card_view:cardUseCompatPadding="true">
 
                 <TextView

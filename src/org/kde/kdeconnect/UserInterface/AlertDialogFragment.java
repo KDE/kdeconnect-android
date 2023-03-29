@@ -18,6 +18,8 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 public class AlertDialogFragment extends DialogFragment implements DialogInterface.OnClickListener {
     private static final String KEY_TITLE_RES_ID = "TitleResId";
     private static final String KEY_TITLE = "Title";
@@ -62,7 +64,7 @@ public class AlertDialogFragment extends DialogFragment implements DialogInterfa
         @SuppressLint("ResourceType")
         String titleString = titleResId > 0 ? getString(titleResId) : title;
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext())
+        AlertDialog.Builder builder = new MaterialAlertDialogBuilder(requireContext())
                 .setTitle(titleString)
                 .setPositiveButton(positiveButtonResId, this);
         if (negativeButtonResId != 0) {
