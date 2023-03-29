@@ -58,7 +58,7 @@
         </LinearLayout>
 
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/pointer_button"
             android:layout_width="match_parent"
             android:layout_marginBottom="6dp"
