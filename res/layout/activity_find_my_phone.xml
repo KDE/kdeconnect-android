@@ -19,7 +19,7 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bFindMyPhone"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
