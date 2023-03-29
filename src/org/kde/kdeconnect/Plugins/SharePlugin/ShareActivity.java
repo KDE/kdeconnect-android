@@ -131,7 +131,7 @@ public class ShareActivity extends AppCompatActivity {
         } else {
             BackgroundService.RunCommand(this, service -> {
                 service.onNetworkChange();
-                service.addDeviceListChangedCallback("ShareActivity", isConnectedToNonCellularNetwork -> updateDeviceList());
+                service.addDeviceListChangedCallback("ShareActivity", unused -> updateDeviceList());
             });
             updateDeviceList();
         }

@@ -273,18 +273,7 @@ public class BackgroundService extends Service {
         registerReceiver(new KdeConnectBroadcastReceiver(), filter);
 
         // Watch for changes on all network connections except cellular networks
-        NetworkRequest.Builder networkRequestBuilder = new NetworkRequest.Builder()
-                .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
-                .addTransportType(NetworkCapabilities.TRANSPORT_VPN)
-                .addTransportType(NetworkCapabilities.TRANSPORT_ETHERNET)
-                .addTransportType(NetworkCapabilities.TRANSPORT_BLUETOOTH);
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) {
-            networkRequestBuilder.addTransportType(NetworkCapabilities.TRANSPORT_WIFI_AWARE);
-        }
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.S) {
-            networkRequestBuilder.addTransportType(NetworkCapabilities.TRANSPORT_USB)
-                                 .addTransportType(NetworkCapabilities.TRANSPORT_LOWPAN);
-        }
+        NetworkRequest.Builder networkRequestBuilder = getNonCellularNetworkRequestBuilder();
         ConnectivityManager cm = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
         cm.registerNetworkCallback(networkRequestBuilder.build(), new ConnectivityManager.NetworkCallback() {
             @Override
@@ -315,6 +304,22 @@ public class BackgroundService extends Service {
         for (BaseLinkProvider a : linkProviders) {
             a.onStart();
         }
+    }
+
+    private static NetworkRequest.Builder getNonCellularNetworkRequestBuilder() {
+        NetworkRequest.Builder networkRequestBuilder = new NetworkRequest.Builder()
+                .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
+                .addTransportType(NetworkCapabilities.TRANSPORT_VPN)
+                .addTransportType(NetworkCapabilities.TRANSPORT_ETHERNET)
+                .addTransportType(NetworkCapabilities.TRANSPORT_BLUETOOTH);
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) {
+            networkRequestBuilder.addTransportType(NetworkCapabilities.TRANSPORT_WIFI_AWARE);
+        }
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.S) {
+            networkRequestBuilder.addTransportType(NetworkCapabilities.TRANSPORT_USB)
+                                 .addTransportType(NetworkCapabilities.TRANSPORT_LOWPAN);
+        }
+        return networkRequestBuilder;
     }
 
     private void migratePluginSettings() {

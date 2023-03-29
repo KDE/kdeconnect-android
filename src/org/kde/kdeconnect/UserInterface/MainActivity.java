@@ -314,7 +314,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         super.onStart();
         BackgroundService.RunCommand(this, service -> {
             service.onNetworkChange();
-            service.addDeviceListChangedCallback("MainActivity", isConnectedToNonCellularNetwork -> updateDeviceList());
+            service.addDeviceListChangedCallback("MainActivity", unused -> updateDeviceList());
         });
         updateDeviceList();
     }
