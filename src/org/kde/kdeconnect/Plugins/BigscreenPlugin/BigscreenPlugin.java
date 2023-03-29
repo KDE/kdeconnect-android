@@ -32,8 +32,8 @@ public class BigscreenPlugin extends Plugin {
     private final static String PACKET_TYPE_BIGSCREEN_STT = "kdeconnect.bigscreen.stt";
 
     @Override
-    public boolean isIncompatible() {
-        return !device.getDeviceType().equals(Device.DeviceType.Tv) || super.isIncompatible();
+    public boolean isCompatible() {
+        return device.getDeviceType().equals(Device.DeviceType.Tv) && super.isCompatible();
     }
 
     @Override

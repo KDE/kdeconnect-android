@@ -191,26 +191,26 @@ public abstract class Plugin {
     }
 
     /**
-     * Determine whether we should avoid loading this Plugin for {@link #device}.
+     * Returns false when we should avoid loading this Plugin for {@link #device}.
      * <p>
      *     Called after {@link #setContext(Context, Device)} but before {@link #onCreate()}.
      * </p>
      * <p>
-     *     By default, this just checks if {@link #getMinSdk()} is greater than the
+     *     By default, this just checks if {@link #getMinSdk()} is smaller or equal than the
      *     {@link Build.VERSION#SDK_INT SDK version} of this Android device.
      * </p>
      *
-     * @return false if it makes sense to call {@link #onCreate()}, true otherwise
+     * @return true if it's safe to call {@link #onCreate()}
      */
     @CallSuper
-    public boolean isIncompatible() {
-        return getMinSdk() > Build.VERSION.SDK_INT;
+    public boolean isCompatible() {
+        return Build.VERSION.SDK_INT >= getMinSdk();
     }
 
     /**
      * Initialize the listeners and structures in your plugin.
      * <p>
-     *     If {@link #isIncompatible()} returns false, this will <em>not</em>
+     *     If {@link #isCompatible()} returns false, this will <em>not</em>
      *     be called.
      * </p>
      *

@@ -735,7 +735,7 @@ public class Device implements BaseLink.PacketReceiver {
         Plugin existing = plugins.get(pluginKey);
         if (existing != null) {
 
-            if (existing.isIncompatible()) {
+            if (!existing.isCompatible()) {
                 Log.i("KDE/addPlugin", "Minimum requirements (e.g. API level) not fulfilled " + pluginKey);
                 return false;
             }
@@ -757,7 +757,7 @@ public class Device implements BaseLink.PacketReceiver {
             return false;
         }
 
-        if (plugin.isIncompatible()) {
+        if (!plugin.isCompatible()) {
             Log.i("KDE/addPlugin", "Minimum requirements (e.g. API level) not fulfilled " + pluginKey);
             return false;
         }
