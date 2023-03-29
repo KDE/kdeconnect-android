@@ -58,13 +58,11 @@
         </LinearLayout>
 
 
-        <Button
             android:id="@+id/pointer_button"
             android:layout_width="match_parent"
             android:layout_marginBottom="6dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.30"
-            android:visibility="gone"
             android:text="@string/presenter_pointer"
             android:theme="@style/DisableableButton" />
 
