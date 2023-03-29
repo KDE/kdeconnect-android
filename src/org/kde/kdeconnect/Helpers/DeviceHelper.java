@@ -19,6 +19,7 @@ import com.jaredrummler.android.device.DeviceName;
 
 import org.kde.kdeconnect.Device;
 
+import java.util.Set;
 import java.util.UUID;
 
 public class DeviceHelper {
@@ -92,17 +93,18 @@ public class DeviceHelper {
     @SuppressLint("HardwareIds")
     public static void initializeDeviceId(Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        if (preferences.contains(KEY_DEVICE_ID_PREFERENCE)) {
+        Set<String> preferenceKeys = preferences.getAll().keySet();
+        if (preferenceKeys.contains(KEY_DEVICE_ID_PREFERENCE)) {
             return; // We already have an ID
         }
         String deviceName;
-        if (preferences.getAll().isEmpty()) {
+        if (preferenceKeys.isEmpty()) {
             // For new installations, use random IDs
-            Log.e("DeviceHelper", "No device ID found and this looks like a new installation, creating a random ID");
+            Log.i("DeviceHelper", "No device ID found and this looks like a new installation, creating a random ID");
             deviceName = UUID.randomUUID().toString().replace('-','_');
         } else {
             // Use the ANDROID_ID as device ID for existing installations, for backwards compatibility
-            Log.e("DeviceHelper", "No device ID found but this seems an existing installation, using the Android ID");
+            Log.i("DeviceHelper", "No device ID found but this seems an existing installation, using the Android ID");
             deviceName = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
         }
         preferences.edit().putString(KEY_DEVICE_ID_PREFERENCE, deviceName).apply();
