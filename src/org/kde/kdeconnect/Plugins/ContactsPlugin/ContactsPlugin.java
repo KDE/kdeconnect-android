@@ -92,10 +92,8 @@ public class ContactsPlugin extends Plugin {
     }
 
     @Override
-    public boolean onCreate() {
-        permissionExplanation = R.string.contacts_permission_explanation;
-
-        return true;
+    protected int getPermissionExplanation() {
+        return R.string.contacts_permission_explanation;
     }
 
     @Override

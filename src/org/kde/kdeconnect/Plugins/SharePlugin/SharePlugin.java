@@ -73,9 +73,8 @@ public class SharePlugin extends Plugin {
     }
 
     @Override
-    public boolean onCreate() {
-        optionalPermissionExplanation = R.string.share_optional_permission_explanation;
-        return true;
+    protected int getOptionalPermissionExplanation() {
+        return R.string.share_optional_permission_explanation;
     }
 
     @Override

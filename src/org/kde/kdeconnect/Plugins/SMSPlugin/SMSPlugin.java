@@ -44,6 +44,7 @@ import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.Plugins.TelephonyPlugin.TelephonyPlugin;
+import org.kde.kdeconnect.UserInterface.AlertDialogFragment;
 import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 import org.kde.kdeconnect_tp.BuildConfig;
 import org.kde.kdeconnect_tp.R;
@@ -349,9 +350,12 @@ public class SMSPlugin extends Plugin {
     }
 
     @Override
-    public boolean onCreate() {
-        permissionExplanation = R.string.telepathy_permission_explanation;
+    public int getPermissionExplanation() {
+        return R.string.telepathy_permission_explanation;
+    }
 
+    @Override
+    public boolean onCreate() {
         IntentFilter filter = new IntentFilter(Telephony.Sms.Intents.SMS_RECEIVED_ACTION);
         filter.setPriority(500);
         context.registerReceiver(receiver, filter);

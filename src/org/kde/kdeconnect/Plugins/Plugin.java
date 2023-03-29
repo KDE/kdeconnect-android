@@ -32,8 +32,6 @@ import org.kde.kdeconnect_tp.R;
 public abstract class Plugin {
     protected Device device;
     protected Context context;
-    protected int permissionExplanation = R.string.permission_explanation;
-    protected int optionalPermissionExplanation = R.string.optional_permission_explanation;
     @Nullable
     protected SharedPreferences preferences;
 
@@ -210,8 +208,8 @@ public abstract class Plugin {
     /**
      * Initialize the listeners and structures in your plugin.
      * <p>
-     *     If {@link #isCompatible()} returns false, this will <em>not</em>
-     *     be called.
+     *     If {@link #isCompatible()} or {@link #checkRequiredPermissions()} returns false, this
+     *     will <em>not</em> be called.
      * </p>
      *
      * @return true if initialization was successful, false otherwise
@@ -246,12 +244,34 @@ public abstract class Plugin {
      */
     public abstract String[] getOutgoingPacketTypes();
 
+    /**
+     * Should return the list of permissions from Manifest.permission.* that, if not present,
+     * mean the plugin can't be loaded.
+     */
     protected String[] getRequiredPermissions() {
         return ArrayUtils.EMPTY_STRING_ARRAY;
     }
 
+    /**
+     * Should return the list of permissions from Manifest.permission.* that enable additional
+     * functionality in the plugin (without preventing the plugin to load).
+     */
     protected String[] getOptionalPermissions() {
         return ArrayUtils.EMPTY_STRING_ARRAY;
+    }
+
+    /**
+     * Returns the string to display before asking for the required permissions for the plugin.
+     */
+    protected @StringRes int getPermissionExplanation() {
+        return R.string.permission_explanation;
+    }
+
+    /**
+     * Returns the string to display before asking for the optional permissions for the plugin.
+     */
+    protected @StringRes int getOptionalPermissionExplanation() {
+        return R.string.optional_permission_explanation;
     }
 
     //Permission from Manifest.permission.*
@@ -286,11 +306,11 @@ public abstract class Plugin {
      */
 
     public DialogFragment getPermissionExplanationDialog() {
-        return requestPermissionDialog(getRequiredPermissions(), permissionExplanation);
+        return requestPermissionDialog(getRequiredPermissions(), getPermissionExplanation());
     }
 
     public AlertDialogFragment getOptionalPermissionExplanationDialog() {
-        return requestPermissionDialog(getOptionalPermissions(), optionalPermissionExplanation);
+        return requestPermissionDialog(getOptionalPermissions(), getOptionalPermissionExplanation());
     }
 
     public boolean checkRequiredPermissions() {

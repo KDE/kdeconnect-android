@@ -240,12 +240,20 @@ public class TelephonyPlugin extends Plugin {
     }
 
     @Override
+    protected int getPermissionExplanation() {
+        return R.string.telephony_permission_explanation;
+    }
+
+    @Override
+    protected int getOptionalPermissionExplanation() {
+        return R.string.telephony_optional_permission_explanation;
+    }
+
+    @Override
     public boolean onCreate() {
         IntentFilter filter = new IntentFilter(TelephonyManager.ACTION_PHONE_STATE_CHANGED);
         filter.setPriority(500);
         context.registerReceiver(receiver, filter);
-        permissionExplanation = R.string.telephony_permission_explanation;
-        optionalPermissionExplanation = R.string.telephony_optional_permission_explanation;
         return true;
     }
 

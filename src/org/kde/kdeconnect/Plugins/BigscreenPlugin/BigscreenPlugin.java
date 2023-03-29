@@ -37,9 +37,8 @@ public class BigscreenPlugin extends Plugin {
     }
 
     @Override
-    public boolean onCreate() {
-        optionalPermissionExplanation = R.string.bigscreen_optional_permission_explanation;
-        return true;
+    protected int getOptionalPermissionExplanation() {
+        return R.string.bigscreen_optional_permission_explanation;
     }
 
     @Override
