@@ -234,6 +234,7 @@
   <string name="sftp_action_mode_menu_delete">Smazat</string>
   <string name="sftp_no_storage_locations_configured">Nebyla nastavena umístění úložiště.</string>
   <string name="sftp_saf_permission_explanation">Pro vzdálený přístup k souborům musíte nastavit umístění úložišť</string>
+  <string name="sftp_manage_storage_permission_explanation">Pro umožnění vzdáleného přístupu k souborům na tomto zařízení musíte povolit aplikaci KDE Connect spravovat úložiště.</string>
   <string name="no_players_connected">Přehrávač nenalezen</string>
   <string name="send_files">Odeslat soubory</string>
   <string name="block_notification_contents">Blokovat obsah upozornění</string>
@@ -260,6 +261,7 @@
   <string name="close">Zavřít</string>
   <string name="plugins_need_permission">Některé moduly potřebují pro práci povolení (ťukněte pro více informací):</string>
   <string name="permission_explanation">Tento modul potřebuje pro práci povolení</string>
+  <string name="all_permissions_granted">Veškerá oprávnění udělena 🎉</string>
   <string name="optional_permission_explanation">Pro zpřístupnění všech funkcí potřebujete další oprávnění</string>
   <string name="plugins_need_optional_permission">Některé moduly mají vypnuté vlastnosti, kvůli nedostatečným oprávněním (ťukněte pro více informací):</string>
   <string name="share_optional_permission_explanation">Pro příjem souborů je potřeba povolit přístup k úložišti</string>

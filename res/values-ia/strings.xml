@@ -26,6 +26,7 @@
   <string name="ok">OK</string>
   <string name="sad_ok">OK :(</string>
   <string name="cancel">Cancella</string>
+  <string name="open_settings">Aperi Preferentias</string>
   <string name="send_ping">Invia Ping</string>
   <string name="open_mpris_controls">Controlo mutimedia</string>
   <string name="open_mousepad">Entrata remote</string>
@@ -89,6 +90,7 @@
     <item>1 minuta</item>
     <item>2 minutas</item>
   </string-array>
+  <string name="share_to">Comparti a…</string>
   <string name="custom_device_fab_hint">Adde un dispositivo</string>
   <string name="undo">Annulla</string>
   <string name="share">Comparti</string>
@@ -99,6 +101,8 @@
   <string name="sftp_storage_preference_display_name">Nomine de monstrar</string>
   <string name="sftp_action_mode_menu_delete">Dele</string>
   <string name="send_files">Invia files</string>
+  <string name="block_notification_contents">Bloca contentos de notification</string>
+  <string name="block_notification_images">Bloca imagines de notification</string>
   <string name="device_rename_confirm">Renomina</string>
   <string name="refresh">Refresca</string>
   <string name="pref_plugin_telepathy">Invia SMS</string>

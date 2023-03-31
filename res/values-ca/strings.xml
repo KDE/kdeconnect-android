@@ -41,7 +41,7 @@
   <string name="sad_ok">D\'acord :(</string>
   <string name="cancel">Cancel·la</string>
   <string name="open_settings">Obre l\'arranjament</string>
-  <string name="no_permissions">Us caldrà concedir permís per a accedir a les notificacions</string>
+  <string name="no_permissions">Us caldrà atorgar permís per a accedir a les notificacions</string>
   <string name="no_permission_mprisreceiver">Per a poder controlar els reproductors multimèdia cal atorgar accés a les notificacions</string>
   <string name="no_permissions_remotekeyboard">Per a rebre les pulsacions de tecles, haureu d\'activar el teclat remot del KDE Connect</string>
   <string name="send_ping">Envia un ping</string>
@@ -245,7 +245,8 @@
   <string name="close">Tanca</string>
   <string name="plugins_need_permission">Alguns connectors necessiten permisos per a funcionar (toqueu per a més informació):</string>
   <string name="permission_explanation">Aquest connector necessita permisos per a funcionar</string>
-  <string name="optional_permission_explanation">Us caldrà concedir permisos extres per a accedir a totes les característiques</string>
+  <string name="all_permissions_granted">S\'han atorgat tots els permisos 🎉</string>
+  <string name="optional_permission_explanation">Us caldrà atorgar permisos extres per a accedir a totes les característiques</string>
   <string name="plugins_need_optional_permission">Alguns connectors tenen característiques desactivades per la falta de permís (toqueu per a més informació):</string>
   <string name="share_optional_permission_explanation">Per a rebre fitxers cal permetre l\'accés a l\'emmagatzematge</string>
   <string name="telepathy_permission_explanation">Per a llegir i escriure SMS des de l\'escriptori, haureu de donar permís als SMS</string>

@@ -245,6 +245,7 @@
   <string name="close">Kapat</string>
   <string name="plugins_need_permission">Bazı Eklentiler çalışmak için izne gereksinim duyar (daha fazla bilgi için dokunun):</string>
   <string name="permission_explanation">Bu eklenti, çalışmak için izne gereksinim duyuyor</string>
+  <string name="all_permissions_granted">Tüm izinler verildi 🎉</string>
   <string name="optional_permission_explanation">Tüm işlevleri etkinleştirmek için daha fazla yetkiye gereksiniminiz var</string>
   <string name="plugins_need_optional_permission">Bazı eklentilerin özellikleri, izin yetersizliğinden kapalı gelmektedir (daha fazla bilgi için dokunun):</string>
   <string name="share_optional_permission_explanation">Dosyalar almak için depolama erişimini etkinleştirmelisiniz</string>
