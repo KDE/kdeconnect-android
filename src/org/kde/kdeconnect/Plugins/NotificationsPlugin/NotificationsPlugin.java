@@ -171,14 +171,16 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     public void onNotificationPosted(StatusBarNotification statusBarNotification) {
         if (sharedPreferences != null && sharedPreferences.getBoolean(context.getString(PREF_NOTIFICATION_SCREEN_OFF),false)){
             if (keyguardManager != null && keyguardManager.inKeyguardRestrictedInputMode()){
-                sendNotification(statusBarNotification);
+                sendNotification(statusBarNotification, false);
             }
         }else {
-            sendNotification(statusBarNotification);
+            sendNotification(statusBarNotification, false);
         }
     }
 
-    private void sendNotification(StatusBarNotification statusBarNotification) {
+    // isPreexisting is true for notifications that we are sending in response to a request command
+    // and that we want to send with the "silent" flag set
+    private void sendNotification(StatusBarNotification statusBarNotification, boolean isPreexisting) {
 
         Notification notification = statusBarNotification.getNotification();
 
@@ -242,6 +244,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         np.set("isClearable", statusBarNotification.isClearable());
         np.set("appName", StringUtils.defaultString(appName, packageName));
         np.set("time", Long.toString(statusBarNotification.getPostTime()));
+        np.set("silent", isPreexisting);
 
         if (!appDatabase.getPrivacy(packageName, AppDatabase.PrivacyOptions.BLOCK_CONTENTS)) {
             RepliableNotification rn = extractRepliableNotification(statusBarNotification);
@@ -506,7 +509,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         StatusBarNotification[] notifications = service.getActiveNotifications();
         if (notifications != null) { //Can happen only on API 23 and lower
             for (StatusBarNotification notification : notifications) {
-                sendNotification(notification);
+                sendNotification(notification, true);
             }
         }
     }
