@@ -107,18 +107,12 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     @Override
     public boolean checkRequiredPermissions() {
         //Notifications use a different kind of permission, because it was added before the current runtime permissions model
-        return hasPermission();
-    }
-
-    private boolean hasPermission() {
         String notificationListenerList = Settings.Secure.getString(context.getContentResolver(), "enabled_notification_listeners");
         return StringUtils.contains(notificationListenerList, context.getPackageName());
     }
 
     @Override
     public boolean onCreate() {
-
-        if (!hasPermission()) return false;
 
         pendingIntents = new HashMap<>();
         currentNotifications = new HashSet<>();
