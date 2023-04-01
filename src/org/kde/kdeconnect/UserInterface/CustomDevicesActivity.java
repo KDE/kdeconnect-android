@@ -54,7 +54,6 @@ public class CustomDevicesActivity extends AppCompatActivity implements CustomDe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ThemeUtil.setUserPreferredTheme(this);
         super.onCreate(savedInstanceState);
 
         final ActivityCustomDevicesBinding binding = ActivityCustomDevicesBinding.inflate(getLayoutInflater());

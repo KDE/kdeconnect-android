@@ -2,23 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="@integer/mpris_now_playing_orientation"
     android:paddingHorizontal="@dimen/activity_horizontal_margin"
     android:paddingVertical="@dimen/activity_vertical_margin">
 
     <ImageView
         android:id="@+id/album_art"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="25dp"
-        android:layout_weight="4"
+        android:layout_width="@dimen/mpris_now_playing_album_width"
+        android:layout_height="@dimen/mpris_now_playing_album_height"
+        android:layout_margin="25dp"
+        android:layout_weight="@integer/mpris_now_playing_album_weight"
         android:contentDescription="@string/mpris_coverart_description"
         android:scaleType="fitCenter" />
 
     <include
         android:id="@+id/mpris_control"
         layout="@layout/mpris_control"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="@dimen/mpris_now_playing_controls_width"
+        android:layout_height="@dimen/mpris_now_playing_controls_height"
+        android:layout_weight="@integer/mpris_now_playing_controls_weight" />
 
 </LinearLayout>

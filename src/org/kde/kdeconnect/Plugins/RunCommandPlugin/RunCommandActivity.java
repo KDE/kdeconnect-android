@@ -75,7 +75,6 @@ public class RunCommandActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeUtil.setUserPreferredTheme(this);
 
         binding = ActivityRunCommandBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

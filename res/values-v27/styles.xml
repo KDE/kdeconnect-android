@@ -7,4 +7,14 @@
     </style>
 
     <style name="KdeConnectTheme" parent="KdeConnectThemeBase.V27" />
+
+    <style name="PreferenceThemeOverlay" parent="BasePreferenceThemeOverlay">
+        <item name="preferenceCategoryTitleTextColor">?android:attr/colorAccent</item>
+        <!--Applying m3 style switch-->
+        <item name="switchPreferenceStyle">@style/Preference.SwitchPreferenceMaterial</item>
+    </style>
+
+    <style name="Preference.SwitchPreferenceMaterial" parent="Preference.SwitchPreference.Material">
+        <item name="android:widgetLayout">@layout/preference_widget_material_switch</item>
+    </style>
 </resources>

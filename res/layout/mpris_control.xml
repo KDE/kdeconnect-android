@@ -42,7 +42,7 @@
         android:layout_gravity="center"
         android:orientation="horizontal">
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/loop_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -51,13 +51,13 @@
             android:baselineAlignBottom="true"
             android:clickable="false"
             android:contentDescription="@string/mpris_loop"
-            android:src="@drawable/ic_loop_none_black"
-            android:theme="@style/DisableableButton"
+            app:icon="@drawable/ic_loop_none_black"
+            style="@style/KdeConnectButton.IconButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.20" />
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/play_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -66,13 +66,13 @@
             android:baselineAlignBottom="true"
             android:clickable="false"
             android:contentDescription="@string/mpris_play"
-            android:src="@drawable/ic_play_black"
-            android:theme="@style/DisableableButton"
+            app:icon="@drawable/ic_play_black"
+            style="@style/KdeConnectButton.IconButton"
             app:layout_constraintEnd_toStartOf="@id/shuffle_button"
             app:layout_constraintStart_toEndOf="@id/loop_button"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/shuffle_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -81,8 +81,8 @@
             android:baselineAlignBottom="true"
             android:clickable="false"
             android:contentDescription="@string/mpris_shuffle"
-            android:src="@drawable/ic_shuffle_off_black"
-            android:theme="@style/DisableableButton"
+            app:icon="@drawable/ic_shuffle_off_black"
+            style="@style/KdeConnectButton.IconButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintWidth_percent="0.20" />
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -93,51 +93,51 @@
         android:layout_gravity="center"
         android:orientation="horizontal">
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/prev_button"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_weight="0.25"
             android:contentDescription="@string/mpris_previous"
-            android:src="@drawable/ic_previous_black"
-            android:theme="@style/DisableableButton" />
+            app:icon="@drawable/ic_previous_black"
+            style="@style/KdeConnectButton.IconButton.Secondary" />
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/rew_button"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_weight="0.25"
             android:contentDescription="@string/mpris_rew"
-            android:src="@drawable/ic_rewind_black"
-            android:theme="@style/DisableableButton" />
+            app:icon="@drawable/ic_rewind_black"
+            style="@style/KdeConnectButton.IconButton.Secondary" />
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/stop_button"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_weight="0.25"
             android:contentDescription="@string/mpris_stop"
-            android:src="@drawable/ic_stop"
-            android:theme="@style/DisableableButton" />
+            app:icon="@drawable/ic_stop"
+            style="@style/KdeConnectButton.IconButton.Secondary" />
 
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/ff_button"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_weight="0.25"
             android:contentDescription="@string/mpris_ff"
-            android:src="@drawable/ic_fast_forward_black"
-            android:theme="@style/DisableableButton" />
+            app:icon="@drawable/ic_fast_forward_black"
+            style="@style/KdeConnectButton.IconButton.Secondary" />
 
-        <ImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/next_button"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_weight="0.25"
             android:contentDescription="@string/mpris_next"
-            android:src="@drawable/ic_next_black"
-            android:theme="@style/DisableableButton" />
+            app:icon="@drawable/ic_next_black"
+            style="@style/KdeConnectButton.IconButton.Secondary" />
     </LinearLayout>
 
     <LinearLayout

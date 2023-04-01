@@ -82,7 +82,6 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeUtil.setUserPreferredTheme(this);
 
         binding = ActivityPresenterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

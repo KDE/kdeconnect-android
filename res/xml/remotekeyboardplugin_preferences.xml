@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:keep="@xml/remotekeyboardplugin_preferences">
 
-    <SwitchPreferenceCompat
+    <SwitchPreference
         android:id="@+id/remotekeyboard_editing_only"
         android:defaultValue="true"
         android:key="@string/remotekeyboard_editing_only"

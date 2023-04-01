@@ -5,13 +5,13 @@
     android:layout_height="match_parent"
     tools:keep="@xml/smsplugin_preferences">
 
-    <SwitchPreferenceCompat
+    <SwitchPreference
         android:id="@+id/group_message_preference"
         android:defaultValue="true"
         android:key="@string/set_group_message_as_mms"
         android:title="@string/set_group_message_as_mms_title" />
 
-    <SwitchPreferenceCompat
+    <SwitchPreference
         android:id="@+id/long_text_message_preference"
         android:defaultValue="false"
         android:key="@string/set_long_text_as_mms"

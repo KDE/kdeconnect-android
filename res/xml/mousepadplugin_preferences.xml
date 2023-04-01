@@ -50,14 +50,14 @@
         android:summary="%s"
         android:title="@string/mousepad_acceleration_profile_settings_title" />
 
-    <SwitchPreferenceCompat
+    <SwitchPreference
         android:id="@+id/mousepad_scroll_preference"
         android:defaultValue="false"
         android:key="@string/mousepad_scroll_direction"
         android:title="@string/mousepad_scroll_direction_title" />
 
 
-    <SwitchPreferenceCompat
+    <SwitchPreference
         android:id="@+id/gyro_mouse_enabled"
         android:defaultValue="false"
         android:key="@string/gyro_mouse_enabled"
@@ -69,7 +69,7 @@
         android:summary="@string/sendkeystrokes_pref_category_summary"
         android:title="@string/sendkeystrokes_pref_category_title">
 
-        <SwitchPreferenceCompat
+        <SwitchPreference
             android:id="@+id/pref_keystrokes_enable"
             android:defaultValue="true"
             android:key="@string/pref_sendkeystrokes_enabled"
@@ -77,7 +77,7 @@
             android:summary="@string/sendkeystrokes_pref_enabled_summary"
             />
 
-        <SwitchPreferenceCompat
+        <SwitchPreference
             android:id="@+id/pref_send_safe_text_immediately"
             android:defaultValue="true"
             android:key="@string/pref_send_safe_text_immediately"

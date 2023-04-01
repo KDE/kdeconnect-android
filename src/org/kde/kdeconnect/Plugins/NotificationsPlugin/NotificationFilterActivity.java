@@ -29,7 +29,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.TextViewCompat;
 
-import com.google.android.material.switchmaterial.SwitchMaterial;
+import com.google.android.material.materialswitch.MaterialSwitch;
 
 import org.kde.kdeconnect.Helpers.ThreadHelper;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
@@ -96,7 +96,6 @@ public class NotificationFilterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeUtil.setUserPreferredTheme(this);
 
         binding = ActivityNotificationFilterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -135,7 +134,7 @@ public class NotificationFilterActivity extends AppCompatActivity {
     }
 
     private void configureSwitch(SharedPreferences sharedPreferences) {
-        SwitchMaterial smScreenOffNotification = findViewById(R.id.smScreenOffNotification);
+        MaterialSwitch smScreenOffNotification = findViewById(R.id.smScreenOffNotification);
         smScreenOffNotification.setChecked(
                 sharedPreferences.getBoolean(getString(NotificationsPlugin.PREF_NOTIFICATION_SCREEN_OFF),false)
         );

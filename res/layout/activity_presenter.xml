@@ -35,30 +35,30 @@
             android:orientation="horizontal"
             android:layout_weight="1">
 
-            <ImageButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/previous_button"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:contentDescription="@string/mpris_rew"
                 android:layout_weight="0.25"
                 android:layout_marginEnd="3dp"
-                android:src="@drawable/ic_previous_black"
-                android:theme="@style/DisableableButton" />
+                app:icon="@drawable/ic_previous_black"
+                style="@style/KdeConnectButton.IconButton" />
 
-            <ImageButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/next_button"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:layout_marginStart="3dp"
                 android:layout_weight="0.25"
                 android:contentDescription="@string/mpris_ff"
-                android:src="@drawable/ic_next_black"
-                android:theme="@style/DisableableButton" />
+                app:icon="@drawable/ic_next_black"
+                style="@style/KdeConnectButton.IconButton" />
 
         </LinearLayout>
 
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/pointer_button"
             android:layout_width="match_parent"
             android:layout_marginBottom="6dp"
@@ -66,7 +66,8 @@
             android:layout_weight="0.30"
             android:visibility="gone"
             android:text="@string/presenter_pointer"
-            android:theme="@style/DisableableButton" />
+            style="@style/KdeConnectButton.IconButton.Secondary"
+            tools:visibility="visible" />
 
 
     </LinearLayout>

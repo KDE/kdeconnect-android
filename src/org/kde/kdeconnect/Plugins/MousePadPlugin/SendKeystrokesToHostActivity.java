@@ -48,7 +48,6 @@ public class SendKeystrokesToHostActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeUtil.setUserPreferredTheme(this);
 
         binding = ActivitySendkeystrokesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

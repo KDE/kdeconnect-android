@@ -21,7 +21,6 @@ public class RunCommandWidgetDeviceSelector extends AppCompatActivity {
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
-        ThemeUtil.setUserPreferredTheme(this);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         final WidgetRemoteCommandPluginDialogBinding binding =

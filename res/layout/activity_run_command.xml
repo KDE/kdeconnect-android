@@ -30,8 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
-            android:src="@drawable/ic_action_image_edit_24dp"
-            app:backgroundTint="@color/primary"
+            app:srcCompat="@drawable/ic_action_image_edit_24dp"
             app:layout_anchor="@id/run_commands_list"
             app:layout_anchorGravity="bottom|end" />
 

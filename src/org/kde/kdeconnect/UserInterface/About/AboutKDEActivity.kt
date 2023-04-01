@@ -17,7 +17,6 @@ import org.kde.kdeconnect_tp.databinding.ActivityAboutKdeBinding
 
 class AboutKDEActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        ThemeUtil.setUserPreferredTheme(this)
         super.onCreate(savedInstanceState)
 
         val binding = ActivityAboutKdeBinding.inflate(layoutInflater)

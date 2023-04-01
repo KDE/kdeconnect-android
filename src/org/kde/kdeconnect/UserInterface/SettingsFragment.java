@@ -18,7 +18,7 @@ import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
-import androidx.preference.SwitchPreferenceCompat;
+import androidx.preference.SwitchPreference;
 import androidx.preference.TwoStatePreference;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -46,9 +46,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         Context context = getPreferenceManager().getContext();
         PreferenceScreen screen = getPreferenceManager().createPreferenceScreen(context);
-
-        // TODO: preference alert dialogs don't use the material alert dialogs yet
-        // see https://github.com/material-components/material-components-android/issues/2732
 
         // Rename device
         renameDevice = new EditTextPreference(context);
@@ -119,7 +116,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             screen.addPreference(persistentNotif);
         } else {
             // Persistent notification toggle for Android Versions below Oreo
-            final TwoStatePreference notificationSwitch = new SwitchPreferenceCompat(context);
+            final TwoStatePreference notificationSwitch = new SwitchPreference(context);
             notificationSwitch.setPersistent(false);
             notificationSwitch.setChecked(NotificationHelper.isPersistentNotificationEnabled(context));
             notificationSwitch.setTitle(R.string.setting_persistent_notification);

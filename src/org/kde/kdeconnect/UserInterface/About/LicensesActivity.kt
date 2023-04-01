@@ -23,7 +23,6 @@ class LicensesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLicensesBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        ThemeUtil.setUserPreferredTheme(this)
         super.onCreate(savedInstanceState)
 
         binding = ActivityLicensesBinding.inflate(layoutInflater)

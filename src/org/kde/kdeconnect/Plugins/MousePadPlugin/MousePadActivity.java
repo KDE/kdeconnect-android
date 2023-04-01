@@ -115,7 +115,6 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeUtil.setUserPreferredTheme(this);
 
         setContentView(R.layout.activity_mousepad);
 

@@ -63,7 +63,6 @@ public class MprisActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeUtil.setUserPreferredTheme(this);
 
         activityMprisBinding = ActivityMprisBinding.inflate(getLayoutInflater());
 

@@ -43,7 +43,6 @@ public class TrustedNetworksActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        ThemeUtil.setUserPreferredTheme(this);
         super.onCreate(savedInstanceState);
 
         binding = TrustedNetworkListBinding.inflate(getLayoutInflater());

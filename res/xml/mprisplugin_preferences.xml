@@ -14,7 +14,7 @@
         android:summary="@string/mpris_time_settings_summary"
         android:title="@string/mpris_time_settings_title" />
 
-    <SwitchPreferenceCompat
+    <SwitchPreference
         android:id="@+id/mpris_notification_preference"
         android:defaultValue="true"
         android:key="@string/mpris_notification_key"

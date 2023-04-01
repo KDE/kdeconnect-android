@@ -5,10 +5,23 @@
     <integer name="orientation_horizontal">0</integer>
     <integer name="orientation_vertical">1</integer>
 
+    <!-- https://developer.android.com/reference/android/view/ViewGroup.LayoutParams -->
+    <item name="layout_match_parent" type="dimen">-1</item>
+    <item name="layout_wrap_content" type="dimen">-2</item>
+
     <!--used in activity_device-->
     <integer name="activity_device_orientation">@integer/orientation_vertical</integer>
     <integer name="plugins_list_weight">@null</integer>
     <integer name="buttons_list_weight">@null</integer>
     <integer name="plugins_columns">2</integer>
+
+    <!--used in mpris_now_playing-->
+    <integer name="mpris_now_playing_orientation">@integer/orientation_vertical</integer>
+    <integer name="mpris_now_playing_album_weight">4</integer>
+    <integer name="mpris_now_playing_controls_weight">@null</integer>
+    <dimen name="mpris_now_playing_album_width">@dimen/layout_match_parent</dimen>
+    <dimen name="mpris_now_playing_album_height">0dp</dimen>
+    <dimen name="mpris_now_playing_controls_width">@dimen/layout_match_parent</dimen>
+    <dimen name="mpris_now_playing_controls_height">@dimen/layout_wrap_content</dimen>
 
 </resources>

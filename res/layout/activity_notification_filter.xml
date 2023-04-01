@@ -16,7 +16,7 @@
         tools:context="org.kde.kdeconnect.Plugins.NotificationsPlugin.NotificationFilterActivity"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
+        <com.google.android.material.materialswitch.MaterialSwitch
             android:id="@+id/smScreenOffNotification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

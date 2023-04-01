@@ -333,31 +333,31 @@ public class MprisNowPlayingFragment extends Fragment implements VolumeKeyListen
         }
         boolean isPlaying = playerStatus.isPlaying();
         if (isPlaying) {
-            mprisControlBinding.playButton.setImageResource(R.drawable.ic_pause_black);
+            mprisControlBinding.playButton.setIconResource(R.drawable.ic_pause_black);
             mprisControlBinding.playButton.setEnabled(playerStatus.isPauseAllowed());
         } else {
-            mprisControlBinding.playButton.setImageResource(R.drawable.ic_play_black);
+            mprisControlBinding.playButton.setIconResource(R.drawable.ic_play_black);
             mprisControlBinding.playButton.setEnabled(playerStatus.isPlayAllowed());
         }
 
         String loopStatus = playerStatus.getLoopStatus();
         switch (loopStatus) {
             case "None":
-                mprisControlBinding.loopButton.setImageResource(R.drawable.ic_loop_none_black);
+                mprisControlBinding.loopButton.setIconResource(R.drawable.ic_loop_none_black);
                 break;
             case "Track":
-                mprisControlBinding.loopButton.setImageResource(R.drawable.ic_loop_track_black);
+                mprisControlBinding.loopButton.setIconResource(R.drawable.ic_loop_track_black);
                 break;
             case "Playlist":
-                mprisControlBinding.loopButton.setImageResource(R.drawable.ic_loop_playlist_black);
+                mprisControlBinding.loopButton.setIconResource(R.drawable.ic_loop_playlist_black);
                 break;
         }
 
         boolean shuffle = playerStatus.getShuffle();
         if (shuffle) {
-            mprisControlBinding.shuffleButton.setImageResource(R.drawable.ic_shuffle_on_black);
+            mprisControlBinding.shuffleButton.setIconResource(R.drawable.ic_shuffle_on_black);
         } else {
-            mprisControlBinding.shuffleButton.setImageResource(R.drawable.ic_shuffle_off_black);
+            mprisControlBinding.shuffleButton.setIconResource(R.drawable.ic_shuffle_off_black);
         }
 
         mprisControlBinding.loopButton.setVisibility(playerStatus.isLoopStatusAllowed() ? View.VISIBLE : View.GONE);

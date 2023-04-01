@@ -100,7 +100,6 @@ public class ShareActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeUtil.setUserPreferredTheme(this);
 
         binding = ActivityShareBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

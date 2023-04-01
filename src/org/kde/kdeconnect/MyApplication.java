@@ -5,6 +5,7 @@ import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.multidex.MultiDexApplication;
+import org.kde.kdeconnect.UserInterface.ThemeUtil;
 
 public class MyApplication extends MultiDexApplication {
     private static class LifecycleObserver implements DefaultLifecycleObserver {
@@ -30,7 +31,7 @@ public class MyApplication extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        ThemeUtil.setUserPreferredTheme(this);
         ProcessLifecycleOwner.get().getLifecycle().addObserver(foregroundTracker);
     }
 

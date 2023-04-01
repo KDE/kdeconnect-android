@@ -20,7 +20,7 @@ import androidx.documentfile.provider.DocumentFile;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceManager;
 import androidx.preference.PreferenceScreen;
-import androidx.preference.SwitchPreferenceCompat;
+import androidx.preference.SwitchPreference;
 
 import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
 
@@ -47,7 +47,7 @@ public class ShareSettingsFragment extends PluginSettingsFragment {
         super.onCreatePreferences(savedInstanceState, rootKey);
 
         PreferenceScreen preferenceScreen = getPreferenceScreen();
-        final SwitchPreferenceCompat customDownloads = preferenceScreen.findPreference("share_destination_custom");
+        final SwitchPreference customDownloads = preferenceScreen.findPreference("share_destination_custom");
         filePicker = preferenceScreen.findPreference("share_destination_folder_preference");
 
         customDownloads.setOnPreferenceChangeListener((preference, newValue) -> {

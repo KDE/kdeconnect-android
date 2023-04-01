@@ -33,7 +33,6 @@ public class ComposeSendActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeUtil.setUserPreferredTheme(this);
 
         setContentView(R.layout.activity_compose_send);
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="0dp"
     android:layout_height="wrap_content"
-    style="@style/Widget.Material3.CardView.Filled"
+    style="@style/KdeConnectCardStyle.Filled"
     app:contentPadding="12dp"
     tools:layout_width="240dp">
 

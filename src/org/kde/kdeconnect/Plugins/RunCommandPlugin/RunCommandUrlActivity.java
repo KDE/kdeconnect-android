@@ -19,7 +19,6 @@ public class RunCommandUrlActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        ThemeUtil.setUserPreferredTheme(this);
         super.onCreate(savedInstanceState);
 
         if (getIntent().getAction() != null) {

@@ -30,7 +30,6 @@ public class SendFileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ThemeUtil.setUserPreferredTheme(this);
 
         mDeviceId = getIntent().getStringExtra("deviceId");
 

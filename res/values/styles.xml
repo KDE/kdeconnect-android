@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- NoActionBar because we use a Toolbar widget as ActionBar -->
     <style name="KdeConnectThemeBase" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- The main color attributes -->
@@ -26,7 +26,10 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.DayNight</item>
 
-        <item name="materialCardViewStyle">@style/Widget.Material3.CardView.Elevated</item>
+        <item name="materialCardViewStyle">@style/KdeConnectCardStyle</item>
+
+        <!-- https://github.com/material-components/material-components-android/issues/2732 -->
+        <item name="alertDialogTheme">@style/KdeConnectDialogStyle</item>
     </style>
 
     <style name="KdeConnectTheme" parent="KdeConnectThemeBase" />
@@ -42,6 +45,16 @@
         <item name="android:background">@color/toolbar_color</item>
     </style>
 
+    <style name="KdeConnectDialogStyle" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="android:layout" tools:ignore="PrivateResource">@layout/m3_alert_dialog</item>
+        <item name="dialogCornerRadius" tools:ignore="PrivateResource">@dimen/m3_alert_dialog_corner_size</item>
+        <item name="android:colorBackground">?colorSurface</item>
+    </style>
+
+    <style name="KdeConnectCardStyle" parent="@style/Widget.Material3.CardView.Elevated"/>
+
+    <style name="KdeConnectCardStyle.Filled" parent="@style/Widget.Material3.CardView.Filled"/>
+
     <style name="MainNavigationView">
         <item name="android:background">@drawable/state_list_drawer_background</item>
         <item name="itemBackground">@drawable/state_list_drawer_background</item>
@@ -51,6 +64,16 @@
 
     <style name="DisableableButton" parent="ThemeOverlay.AppCompat">
         <item name="colorButtonNormal">@drawable/disableable_button</item>
+    </style>
+
+    <style name="KdeConnectButton.IconButton" parent="Widget.Material3.Button.IconButton.Filled">
+        <item name="iconGravity">textStart</item>
+        <item name="cornerRadius">24dp</item>
+    </style>
+
+    <style name="KdeConnectButton.IconButton.Secondary" parent="Widget.Material3.Button.IconButton.Filled.Tonal">
+        <item name="iconGravity">textStart</item>
+        <item name="cornerRadius">12dp</item>
     </style>
 
     <style name="ActionModeStyle" parent="Widget.AppCompat.ActionMode">
