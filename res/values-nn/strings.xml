@@ -218,6 +218,7 @@
   <string name="sftp_action_mode_menu_delete">Slett</string>
   <string name="sftp_no_storage_locations_configured">Ingen lagringsområde er sette opp</string>
   <string name="sftp_saf_permission_explanation">For å få tilgang til filer over nettet må du setja opp lagringsområde.</string>
+  <string name="sftp_manage_storage_permission_explanation">For fjerntilgang til filer på denne eininga må du gje KDE Connect tilgangsløyve til lagringsområdet.</string>
   <string name="no_players_connected">Fann ingen spelarar</string>
   <string name="send_files">Send filer</string>
   <string name="block_notification_contents">Blokker varslingsinnhald</string>
@@ -244,6 +245,7 @@
   <string name="close">Lukk</string>
   <string name="plugins_need_permission">Nokre av tillegga treng utvida løyva for å fungera (trykk på dei for meir informasjon):</string>
   <string name="permission_explanation">Dette tillegget treng utvida løyve for å fungera</string>
+  <string name="all_permissions_granted">Alle tilgangsløyva er gjevne 🎉</string>
   <string name="optional_permission_explanation">Du må gje utvida løyve for at alle funksjonane skal fungera</string>
   <string name="plugins_need_optional_permission">På grunn av manglande løyve vil desse funksjonane ikkje verka (trykk på dei for meir informasjon):</string>
   <string name="share_optional_permission_explanation">For å kunna ta imot filer må du gje tilgangsløyve til lagringsområdet</string>
