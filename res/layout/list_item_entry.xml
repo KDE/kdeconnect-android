@@ -20,7 +20,7 @@
         android:fadingEdge="horizontal"
         android:singleLine="true"
         android:text=""
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/list_item_entry_summary"

@@ -100,7 +100,7 @@ public class RunCommandWidget extends AppWidgetProvider {
             views.setOnClickPendingIntent(R.id.runcommandWidgetTitleHeader, pendingIntent);
 
             if (getCurrentDevice() == null || !getCurrentDevice().isReachable()) {
-                views.setTextViewText(R.id.runcommandWidgetTitle, context.getString(R.string.pref_plugin_runcommand));
+                views.setTextViewText(R.id.runcommandWidgetTitle, context.getString(R.string.kde_connect));
                 views.setViewVisibility(R.id.run_commands_list, View.GONE);
                 views.setViewVisibility(R.id.not_reachable_message, View.VISIBLE);
             } else {

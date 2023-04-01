@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
     android:background="@color/on_secondary"
     android:theme="@style/KdeConnectTheme"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
     <LinearLayout
         android:id="@+id/runcommandWidgetTitleHeader"
         android:background="@color/primary"
@@ -27,14 +28,13 @@
             android:ellipsize="marquee"
             android:fadingEdge="horizontal"
             android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
     </LinearLayout>
     <ListView
         android:id="@+id/run_commands_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="4dp"
         android:addStatesFromChildren="true"
         android:visibility="gone"
         android:orientation="vertical" />
@@ -46,7 +46,7 @@
         android:drawablePadding="8dip"
         android:gravity="center_vertical"
         android:paddingStart="8dip"
-        android:text="@string/unreachable_description"
+        android:text="@string/runcommand_notreachable"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        app:drawableStartCompat="@drawable/ic_error_outline_48dp"/>
+        android:drawableStart="@drawable/ic_error_outline_48dp"/>
 </LinearLayout>
