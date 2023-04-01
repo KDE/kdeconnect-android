@@ -367,11 +367,6 @@ class DeviceFragment : Fragment() {
      *  * Whether the remote device is low on power
      *  * Whether the remote device is currently charging
      *
-     *
-     *
-     * This will show a simple message on the view instead if we don't have
-     * accurate info right now.
-     *
      */
     private fun displayBatteryInfoIfPossible() {
         val batteryPlugin = device?.loadedPlugins?.get(Plugin.getPluginKey(BatteryPlugin::class.java)) as BatteryPlugin?
@@ -390,9 +385,8 @@ class DeviceFragment : Fragment() {
 
             mActivity?.supportActionBar?.subtitle = mActivity?.getString(resId, info.currentCharge)
         } else {
-            mActivity?.supportActionBar?.setSubtitle(R.string.battery_status_unknown)
+            mActivity?.supportActionBar?.subtitle = null
         }
-        //TODO don't show text if plugin is disabled by user
     }
 
 }

@@ -148,7 +148,6 @@
     <string name="battery_status_format">Battery: %d%%</string>
     <string name="battery_status_low_format">Battery: %d%% Low Battery</string>
     <string name="battery_status_charging_format">Battery: %d%% charging</string>
-    <string name="battery_status_unknown">Battery information not available</string>
 
     <string name="category_connected_devices">Connected devices</string>
     <string name="category_not_paired_devices">Available devices</string>
