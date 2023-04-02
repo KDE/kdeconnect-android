@@ -245,6 +245,7 @@
   <string name="close">Fechar</string>
   <string name="plugins_need_permission">Alguns \'plugins\' precisam de permissões para funcionar (toque para mais informações):</string>
   <string name="permission_explanation">Este \'plugin\' precisa de permissões para funcionar</string>
+  <string name="all_permissions_granted">Todas as permissões concedidas 🎉</string>
   <string name="optional_permission_explanation">Precisa de dar permissões extra para activar todas as funcionalidades</string>
   <string name="plugins_need_optional_permission">Alguns \'plugins\' têm funcionalidades desactivadas devido à falta de permissões (toque para obter mais informações):</string>
   <string name="share_optional_permission_explanation">Para receber os ficheiros, é preciso autorizar o acesso ao armazenamento</string>

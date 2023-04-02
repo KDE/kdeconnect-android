@@ -245,6 +245,7 @@
   <string name="close">Fermer</string>
   <string name="plugins_need_permission">Certains modules externes nécessitent des permissions pour fonctionner (tapez pour plus d\'informations) :</string>
   <string name="permission_explanation">Ce module externe nécessite des permissions pour fonctionner</string>
+  <string name="all_permissions_granted">Tous les droits d\'accès ont été autorisés 🎉</string>
   <string name="optional_permission_explanation">Vous devez accorder des permissions supplémentaires pour activer toutes les fonctionnalités</string>
   <string name="plugins_need_optional_permission">Certaines fonctionnalités de modules externes sont désactivées faute de permissions suffisantes (tapez pour plus d\'informations) :</string>
   <string name="share_optional_permission_explanation">Pour la réception de fichiers, vous devez autoriser un accès en écriture.</string>

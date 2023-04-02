@@ -245,6 +245,7 @@
   <string name="close">Close</string>
   <string name="plugins_need_permission">Some Plugins need permissions to work (tap for more info):</string>
   <string name="permission_explanation">This plugin needs permissions to work</string>
+  <string name="all_permissions_granted">All permissions granted 🎉</string>
   <string name="optional_permission_explanation">You need to grant extra permissions to enable all functions</string>
   <string name="plugins_need_optional_permission">Some plugins have features disabled because of lack of permission (tap for more info):</string>
   <string name="share_optional_permission_explanation">To receive files you need to allow storage access</string>

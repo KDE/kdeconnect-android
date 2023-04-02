@@ -261,6 +261,7 @@
   <string name="close">Zapri</string>
   <string name="plugins_need_permission">Nekateri vtičniki potrebujejo dovoljenja za delovanje (tapnite za več informacij):</string>
   <string name="permission_explanation">Ti vtičniki potrebujejo dovoljenja za delovanje</string>
+  <string name="all_permissions_granted">Podeljene vse pravice 🎉</string>
   <string name="optional_permission_explanation">Če želite omogočiti vse funkcije, morate podeliti dodatna dovoljenja</string>
   <string name="plugins_need_optional_permission">Nekateri vtičniki imajo funkcije onemogočene zaradi pomanjkanja dovoljenj (tapnite za več informacij):</string>
   <string name="share_optional_permission_explanation">Če želite prejemati datoteke, morate dovoliti dostop do hrambe</string>

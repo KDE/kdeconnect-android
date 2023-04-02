@@ -245,6 +245,7 @@
   <string name="close">Cerrar</string>
   <string name="plugins_need_permission">Algunos complementos necesitan permisos para funcionar (pulse para más información):</string>
   <string name="permission_explanation">Este complemento necesita permisos para funcionar</string>
+  <string name="all_permissions_granted">Se han garantizado todos los permisos 🎉</string>
   <string name="optional_permission_explanation">Debe otorgar permisos extra para activar todas las funciones</string>
   <string name="plugins_need_optional_permission">Algunos complementos tienen funcionalidades desactivadas por falta de permisos (pulse para más información):</string>
   <string name="share_optional_permission_explanation">Para recibir archivos necesita permitir el acceso a almacenamiento</string>
