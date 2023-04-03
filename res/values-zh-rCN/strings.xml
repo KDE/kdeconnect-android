@@ -99,7 +99,6 @@
   <string name="battery_status_format">电池：%d%%</string>
   <string name="battery_status_low_format">电池：%d%% 电量低</string>
   <string name="battery_status_charging_format">电池：%d%% 正在充电</string>
-  <string name="battery_status_unknown">电池信息不可用</string>
   <string name="category_connected_devices">已连接设备</string>
   <string name="category_not_paired_devices">可用的设备</string>
   <string name="category_remembered_devices">记住的设备</string>

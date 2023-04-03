@@ -99,7 +99,6 @@
   <string name="battery_status_format">Baterija: %d%%</string>
   <string name="battery_status_low_format">Baterija: %d%% skoraj prazna</string>
   <string name="battery_status_charging_format">Baterija: %d%% se polni</string>
-  <string name="battery_status_unknown">Ni podatkov o bateriji</string>
   <string name="category_connected_devices">Povezane naprave</string>
   <string name="category_not_paired_devices">Naprave na voljo</string>
   <string name="category_remembered_devices">Naprave, ki so zapomnjene</string>

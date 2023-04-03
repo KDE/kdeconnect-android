@@ -98,7 +98,6 @@
   <string name="battery_status_format">Batteri: %d %%</string>
   <string name="battery_status_low_format">Batteri: %d %% låg laddning</string>
   <string name="battery_status_charging_format">Batteri: %d %% laddas</string>
-  <string name="battery_status_unknown">Batteriinformation inte tillgänglig</string>
   <string name="category_connected_devices">Anslutna apparater</string>
   <string name="category_not_paired_devices">Tillgängliga apparater</string>
   <string name="category_remembered_devices">Ihågkomna apparater</string>

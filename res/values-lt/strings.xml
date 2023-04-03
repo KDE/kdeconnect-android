@@ -99,7 +99,6 @@
   <string name="battery_status_format">Akumuliatorius: %d%%</string>
   <string name="battery_status_low_format">Akumuliatorius: %d%% baigia išsikrauti</string>
   <string name="battery_status_charging_format">Akumuliatorius: %d%% įkraunamas</string>
-  <string name="battery_status_unknown">Informacija apie akumuliatorių neprieinama</string>
   <string name="category_connected_devices">Prijungti įrenginiai</string>
   <string name="category_not_paired_devices">Prieinami įrenginiai</string>
   <string name="category_remembered_devices">Įsiminti įrenginiai</string>

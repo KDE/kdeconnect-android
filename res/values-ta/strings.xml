@@ -99,7 +99,6 @@
   <string name="battery_status_format">மின்கலம்: %d%%</string>
   <string name="battery_status_low_format">மின்கலம்: %d%% குறைந்த மின்கலம்</string>
   <string name="battery_status_charging_format">மின்கலம்: %d%% மின்னேறுகிறது</string>
-  <string name="battery_status_unknown">மின்கல விவரங்கள் கிடைக்கவில்லை</string>
   <string name="category_connected_devices">இணைக்கப்பட்ட சாதனங்கள்</string>
   <string name="category_not_paired_devices">கிட்டுகின்ற சாதனங்கள்</string>
   <string name="category_remembered_devices">நினைவிலுள்ள சாதனங்கள்</string>
@@ -245,6 +244,7 @@
   <string name="close">மூடு</string>
   <string name="plugins_need_permission">சில செருகுநிரல்கள் இயங்க அனுமதிகள் தேவை (மேலும் விவரங்களுக்குத் தட்டவும்):</string>
   <string name="permission_explanation">இச்செருகுநிரல் இயங்க அனுமதிகள் தேவை</string>
+  <string name="all_permissions_granted">அனைத்து அனுமதிகளும் வழங்கப்பட்டன</string>
   <string name="optional_permission_explanation">எல்லா செயல்பாடுகளையும் இயக்க நீங்கள் கூடுதல் அனுமதிகளை வழங்க வேண்டும்</string>
   <string name="plugins_need_optional_permission">அனுமதி இல்லாததால் சில செருகுநிரல்களின் அம்சங்கள் முடங்கியுள்ளன (மேலும் விவரங்களுக்கு தட்டவும்):</string>
   <string name="share_optional_permission_explanation">கோப்புகளை பெற சேமிப்பக அனுமதி தேவைப்படலாம்</string>

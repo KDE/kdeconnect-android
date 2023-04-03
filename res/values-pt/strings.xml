@@ -99,7 +99,6 @@
   <string name="battery_status_format">Bateria: %d%%</string>
   <string name="battery_status_low_format">Bateria: %d%% Bateria Fraca</string>
   <string name="battery_status_charging_format">Bateria: %d%% a carregar</string>
-  <string name="battery_status_unknown">A informação da bateria não está disponível</string>
   <string name="category_connected_devices">Dispositivos ligados</string>
   <string name="category_not_paired_devices">Dispositivos disponíveis</string>
   <string name="category_remembered_devices">Dispositivos recordados</string>

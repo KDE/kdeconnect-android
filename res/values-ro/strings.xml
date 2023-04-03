@@ -98,7 +98,6 @@
   <string name="battery_status_format">Acumulator: %d%%</string>
   <string name="battery_status_low_format">Acumulator: %d%% Acumulator scăzut</string>
   <string name="battery_status_charging_format">Acumulator: %d%% se încarcă</string>
-  <string name="battery_status_unknown">Nu sunt disponibile informații despre acumulator</string>
   <string name="category_connected_devices">Dispozitive conectate</string>
   <string name="category_not_paired_devices">Dispozitive disponibile</string>
   <string name="category_remembered_devices">Dispozitive memorizate</string>

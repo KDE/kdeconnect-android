@@ -82,7 +82,6 @@
   <string name="battery_status_format">Batéria: %d%%</string>
   <string name="battery_status_low_format">Batéria: %d%% Nízka úroveň batérie</string>
   <string name="battery_status_charging_format">Batéria: %d%% nabíja sa</string>
-  <string name="battery_status_unknown">Informácie o batérii nie sú dostupné</string>
   <string name="category_connected_devices">Pripojené zariadenia</string>
   <string name="category_not_paired_devices">Dostupné zariadenia</string>
   <string name="category_remembered_devices">Zapamätané zariadenia</string>

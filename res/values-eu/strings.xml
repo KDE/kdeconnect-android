@@ -99,7 +99,6 @@
   <string name="battery_status_format">Bateria: %%%d</string>
   <string name="battery_status_low_format">Bateria: %%%d bateria baxu</string>
   <string name="battery_status_charging_format">Bateria: %%%d kargatzen</string>
-  <string name="battery_status_unknown">Bateriari buruzko informazioa ez dago erabilgarri</string>
   <string name="category_connected_devices">Konektatutako gailuak</string>
   <string name="category_not_paired_devices">Gailu eskuragarriak</string>
   <string name="category_remembered_devices">Gogoratutako gailuak</string>
