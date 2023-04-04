@@ -38,5 +38,7 @@ fun getApplicationAboutData(context: Context): AboutData {
     aboutData.authors += AboutPerson("Holger Kaelberer", R.string.holger_kaelberer_task, "holger.k@elberer.de")
     aboutData.authors += AboutPerson("Saikrishna Arcot", R.string.saikrishna_arcot_task, "saiarcot895@gmail.com")
 
+    // Have you made some contributions and think your name should be here? Open a MR to add yourself to the list :)
+
     return aboutData
 }
