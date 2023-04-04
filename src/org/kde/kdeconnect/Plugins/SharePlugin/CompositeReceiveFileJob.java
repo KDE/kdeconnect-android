@@ -165,15 +165,13 @@ public class CompositeReceiveFileJob extends BackgroundJob<Device, Void> {
                     publishFile(fileDocument, 0);
                 }
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    if (currentNetworkPacket.has("lastModified")) {
-                        try {
-                            long lastModified = currentNetworkPacket.getLong("lastModified");
-                            Files.setLastModifiedTime(Paths.get(fileDocument.getUri().getPath()), FileTime.fromMillis(lastModified));
-                        } catch (Exception e) {
-                            Log.e("SharePlugin", "Can't set date on file");
-                            e.printStackTrace();
-                        }
+                if (currentNetworkPacket.has("lastModified")) {
+                    try {
+                        long lastModified = currentNetworkPacket.getLong("lastModified");
+                        Files.setLastModifiedTime(Paths.get(fileDocument.getUri().getPath()), FileTime.fromMillis(lastModified));
+                    } catch (Exception e) {
+                        Log.e("SharePlugin", "Can't set date on file");
+                        e.printStackTrace();
                     }
                 }
 

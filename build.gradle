@@ -136,7 +136,7 @@ ext {
 }
 
 dependencies {
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.2'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs_nio:2.0.3'
 
     implementation 'androidx.media:media:1.6.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -155,7 +155,7 @@ dependencies {
     implementation 'com.jaredrummler:android-device-names:1.1.9' //To get a human-friendly device name
 
     implementation 'org.apache.sshd:sshd-core:0.14.0'
-    implementation 'org.apache.mina:mina-core:2.0.19' //For some reason, makes sshd-core:0.14.0 work without NIO, which isn't available until Android 8 (api 26)
+    implementation 'org.apache.mina:mina-core:2.0.19' // Desugar does not backport AsynchronousSocketChannel.
 
     //implementation('com.github.bright:slf4android:0.1.6') { transitive = true } // For org.apache.sshd debugging
     implementation 'org.bouncycastle:bcpkix-jdk15on:1.70' //For SSL certificate generation
