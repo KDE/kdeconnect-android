@@ -57,7 +57,6 @@ class AboutFragment : Fragment() {
         // Update general info
 
         binding!!.appName.text = aboutData.name
-        binding!!.appDescription.text = this.context?.let { aboutData.getDescriptionString(it) } + if (aboutData.copyrightStatement == null) "" else "\n\n" + aboutData.copyrightStatement
         binding!!.appIcon.setImageDrawable(this.context?.let { ContextCompat.getDrawable(it, aboutData.icon) })
         binding!!.appVersion.text = this.context?.getString(R.string.version, aboutData.versionName)
 
