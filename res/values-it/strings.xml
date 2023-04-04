@@ -244,6 +244,7 @@
   <string name="close">Chiudi</string>
   <string name="plugins_need_permission">Alcune estensioni hanno bisogno di permessi per funzionare (tocca per maggiori informazioni):</string>
   <string name="permission_explanation">Questa estensione ha bisogno di permessi per funzionare</string>
+  <string name="all_permissions_granted">Tutti i permessi accordati 🎉</string>
   <string name="optional_permission_explanation">Devi concedere permessi aggiuntivi per abilitare tutte le funzioni</string>
   <string name="plugins_need_optional_permission">Alcune estensioni hanno funzioni disabilitate per una mancanza di permessi (tocca per maggiori informazioni):</string>
   <string name="share_optional_permission_explanation">Per ricevere i file devi consentire l\'accesso allo spazio di archiviazione</string>

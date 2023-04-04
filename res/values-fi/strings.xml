@@ -52,6 +52,7 @@
   <string name="remotekeyboard_multiple_connections">Etänäppäimistöyhteyksiä on useampia: valitse asetettava laite</string>
   <string name="open_mousepad">Kauko-ohjaus</string>
   <string name="mousepad_info">Siirrä hiirikohdistinta liikuttamalla sormea näytöllä. Tee hiirenpainallus napauttamalla, ja käytä kahta tai kolmea sormea oikealle ja keskipainikkeelle. Vieritä kahdella sormella. Pitkällä painalluksella voit vetää ja pudottaa.</string>
+  <string name="mousepad_keyboard_input_not_supported">Paritettu laite ei tue näppäimistösyötettä</string>
   <string name="mousepad_single_tap_settings_title">Aseta yhden sormen napautuksen toiminto</string>
   <string name="mousepad_double_tap_settings_title">Aseta kahden sormen napautuksen toiminto</string>
   <string name="mousepad_triple_tap_settings_title">Aseta kolmen sormen napautuksen toiminto</string>
@@ -216,8 +217,11 @@
   <string name="sftp_action_mode_menu_delete">Poista</string>
   <string name="sftp_no_storage_locations_configured">Tallennustiloja ei ole asetettu</string>
   <string name="sftp_saf_permission_explanation">Tallennustilat on asetettava etätiedostojen käyttämiseksi</string>
+  <string name="sftp_manage_storage_permission_explanation">Tiedostojen etäkäytön sallimiseksi tällä laitteella KDE Connectin on annettava hallita talletustilaa.</string>
   <string name="no_players_connected">Soittimia ei löytynyt</string>
   <string name="send_files">Lähetä tiedostoja</string>
+  <string name="block_notification_contents">Estä ilmoitusten sisältö</string>
+  <string name="block_notification_images">Estä ilmoitusten kuvat</string>
   <string name="pairing_title">KDE Connect -laitteet</string>
   <string name="pairing_description">Muiden samassa verkossa olevien KDE Connectia käyttävien laitteiden pitäisi ilmestyä tähän.</string>
   <string name="device_rename_title">Muuta laitteen nimeä</string>
@@ -242,6 +246,7 @@
   <string name="permission_explanation">Liitännäinen tarvitsee toimiakseen lisäkäyttöoikeuksia</string>
   <string name="optional_permission_explanation">Kaikkien toimintojen käyttämiseksi sinun on annettava lisäkäyttöoikeuksia</string>
   <string name="plugins_need_optional_permission">Jotkin liitännäisten ominaisuudet eivät ole käytössä puuttuvien käyttöoikeuksien takia (lisätietoa napsauttamalla):</string>
+  <string name="share_optional_permission_explanation">Talletustilan käyttö on sallittava tiedostojen vastaanottamiseksi</string>
   <string name="telepathy_permission_explanation">Lukeaksesi ja lähettääksesi tekstiviestejä työpöydältä sinun on annettava käyttöoikeudet tekstiviesteihin</string>
   <string name="telephony_permission_explanation">Puhelujen näyttäminen työpöydällä vaatii käyttöoikeuden puhelulokiin ja puhelimen tilaan</string>
   <string name="telephony_optional_permission_explanation">Puhelimen yhteystietoihin on annettava käyttöoikeudet, jotta voit nähdä yhteystiedoissa nimet puhelinnumerojen sijaan</string>
@@ -306,6 +311,7 @@
   <string name="empty_trusted_networks_list_text">Luotettuja verkkoja ei ole vielä lisätty</string>
   <string name="allow_all_networks_text">Salli kaikki</string>
   <string name="location_permission_needed_title">Käyttöoikeus vaaditaan</string>
+  <string name="location_permission_needed_desc">KDE Connect tarvitsee taustasijaintioikeudet tietääkseen myös sovelluksen olleessa taustalla, mihin langattomaan verkkoon on kirjauduttu. Ympärilläsi olevien langattomien verkkojen nimiä voi käyttää sijaintisi selvittämiseen, vaikka KDE Connect ei tietoa siihen käytäkään.</string>
   <string name="clipboard_android_x_incompat">Android 10 on poistanut kaikkien sovellusten leikepöytäkäytön. Liitännäinen poistetaan käytöstä.</string>
   <string name="mpris_open_url">Jatka toistoa tästä</string>
   <string name="cant_open_url">Verkko-osoitetta ei voi avata toiston jatkamiseksi</string>
