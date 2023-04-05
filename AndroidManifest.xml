@@ -85,7 +85,7 @@
         <service
             android:name="org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin.RemoteKeyboardService"
             android:label="@string/remote_keyboard_service"
-            android:exported="false"
+            android:exported="true"
             android:permission="android.permission.BIND_INPUT_METHOD">
             <intent-filter>
                 <action android:name="android.view.InputMethod" />
@@ -284,7 +284,7 @@
         <activity
             android:name="org.kde.kdeconnect.Plugins.MousePadPlugin.SendKeystrokesToHostActivity"
             android:label="@string/pref_plugin_mousepad_send_keystrokes"
-            android:exported="false"
+            android:exported="true"
             android:parentActivityName="org.kde.kdeconnect.UserInterface.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
