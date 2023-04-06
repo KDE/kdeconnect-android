@@ -10,9 +10,6 @@
     <item name="layout_wrap_content" type="dimen">-2</item>
 
     <!--used in activity_device-->
-    <integer name="activity_device_orientation">@integer/orientation_vertical</integer>
-    <integer name="plugins_list_weight">@null</integer>
-    <integer name="buttons_list_weight">@null</integer>
     <integer name="plugins_columns">2</integer>
 
     <!--used in mpris_now_playing-->

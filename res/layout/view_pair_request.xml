@@ -33,17 +33,14 @@
         android:drawablePadding="5dp"
         android:layout_marginBottom="8dip"
         android:visibility="gone"
-        android:text=""
         android:textAppearance="?android:attr/textAppearanceMedium"
         app:drawableStartCompat="@drawable/ic_key" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/pair_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_round"
-        android:text="@string/request_pairing"
-        android:textColor="@android:color/white" />
+        android:text="@string/request_pairing" />
 
 
     <LinearLayout
@@ -51,27 +48,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:paddingVertical="4dp"
+        tools:visibility="visible">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/accept_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dip"
             android:layout_weight="1"
-            android:background="@drawable/button_round"
-            android:text="@string/pairing_accept"
-            android:textColor="@android:color/white" />
+            android:text="@string/pairing_accept" />
 
-        <Button
+        <android.widget.Space
+                android:layout_width="8dp"
+                android:layout_height="8dp" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/reject_button"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dip"
             android:layout_weight="1"
-            android:background="@drawable/button_round"
-            android:text="@string/pairing_reject"
-            android:textColor="@android:color/white" />
+            android:text="@string/pairing_reject" />
 
     </LinearLayout>
 </LinearLayout>

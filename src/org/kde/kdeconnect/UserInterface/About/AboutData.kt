@@ -41,12 +41,10 @@ class AboutData(var name: String, var description: Int, var icon: Int, var versi
         parcel.writeString(sourceCodeURL)
         parcel.writeString(donateURL)
 
-        if (authorsFooterText == null) {
-            parcel.writeByte(0x00)
-        } else {
+        authorsFooterText?.let {
             parcel.writeByte(0x01)
-            parcel.writeInt(authorsFooterText!!)
-        }
+            parcel.writeInt(it)
+        } ?: parcel.writeByte(0x00)
     }
 
     override fun describeContents(): Int = 0

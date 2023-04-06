@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <integer name="activity_device_orientation">@integer/orientation_horizontal</integer>
-
-    <integer name="plugins_list_weight">4</integer>
-    <integer name="buttons_list_weight">6</integer>
-
     <integer name="mpris_now_playing_orientation">@integer/orientation_horizontal</integer>
     <integer name="mpris_now_playing_album_weight">1</integer>
     <integer name="mpris_now_playing_controls_weight">1</integer>

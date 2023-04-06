@@ -32,13 +32,11 @@ internal class SystemVolumeProvider private constructor(plugin: SystemVolumePlug
 
         @JvmStatic
         fun fromPlugin(systemVolumePlugin: SystemVolumePlugin): SystemVolumeProvider {
-            if (currentProvider == null) {
-                currentProvider = SystemVolumeProvider(systemVolumePlugin)
-            }
+            val currentProvider = currentProvider ?: SystemVolumeProvider(systemVolumePlugin)
 
-            currentProvider!!.update(systemVolumePlugin)
+            currentProvider.update(systemVolumePlugin)
 
-            return currentProvider!!
+            return currentProvider
         }
 
         private fun scale(value: Int, maxValue: Int, maxScaled: Int): Int {
