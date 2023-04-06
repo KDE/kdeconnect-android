@@ -358,7 +358,6 @@
   <string name="clear_compose">クリア</string>
   <string name="send_compose">送信</string>
   <string name="open_compose_send">テキストを作成する</string>
-  <string name="app_description">複数のデバイスを連携させるマルチプラットフォームなアプリケーション (例: 携帯電話とコンピュータ)</string>
   <string name="maintainer_and_developer">メンテナと開発者</string>
   <string name="developer">開発者</string>
   <string name="apple_support">macOS サポート。iOS サポートに取り組み中</string>
