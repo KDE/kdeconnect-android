@@ -13,14 +13,5 @@
         android:icon="@drawable/ic_edit_note_24dp"
         android:title="@string/open_compose_send"
         kdeconnect:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/menu_right_click"
-        android:title="@string/right_click"
-        kdeconnect:showAsAction="never" />
-
-    <item
-        android:id="@+id/menu_middle_click"
-        android:title="@string/middle_click"
-        kdeconnect:showAsAction="never" />
 
 </menu>

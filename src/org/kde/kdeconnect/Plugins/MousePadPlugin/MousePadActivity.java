@@ -28,8 +28,8 @@ import java.util.List;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.material.materialswitch.MaterialSwitch;
 import org.kde.kdeconnect.BackgroundService;
-import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.Objects;
@@ -140,8 +140,17 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         } else {
             scrollDirection = 1;
         }
-        if ((prefs.getBoolean(getString(R.string.gyro_mouse_enabled), false)) && (mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE) != null)) {
-            allowGyro = true;
+        boolean isGyroPrefEnabled = prefs.getBoolean(getString(R.string.gyro_mouse_enabled), false);
+        MaterialSwitch gyroSwitch = findViewById(R.id.gyro_mouse_switch);
+        if (mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE) != null) {
+            if (isGyroPrefEnabled) allowGyro = true;
+            gyroSwitch.setChecked(isGyroPrefEnabled);
+            gyroSwitch.setOnCheckedChangeListener((v, checked) -> {
+                setAllowGyro(checked);
+                prefs.edit().putBoolean(getString(R.string.gyro_mouse_enabled), checked).apply();
+            });
+        } else {
+            gyroSwitch.setVisibility(View.GONE);
         }
         String singleTapSetting = prefs.getString(getString(R.string.mousepad_single_tap_key),
                 getString(R.string.mousepad_default_single));
@@ -185,6 +194,10 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
                 return;
         }
 
+        findViewById(R.id.mouse_click_left).setOnClickListener(v -> sendLeftClick());
+        findViewById(R.id.mouse_click_middle).setOnClickListener(v -> sendMiddleClick());
+        findViewById(R.id.mouse_click_right).setOnClickListener(v -> sendRightClick());
+
         final View decorView = getWindow().getDecorView();
         decorView.setOnSystemUiVisibilityChangeListener(visibility -> {
             if ((visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) == 0) {
@@ -202,7 +215,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
     @Override
     protected void onResume() {
-        if (allowGyro == true && gyroEnabled == false) {
+        if (allowGyro && !gyroEnabled) {
             mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE), SensorManager.SENSOR_DELAY_GAME);
             gyroEnabled = true;
         }
@@ -211,7 +224,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
     @Override
     protected void onPause() {
-        if (gyroEnabled == true) {
+        if (gyroEnabled) {
             mSensorManager.unregisterListener(this);
             gyroEnabled = false;
         }
@@ -219,7 +232,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     }
 
     @Override protected void onStop() {
-        if (gyroEnabled == true) {
+        if (gyroEnabled) {
             mSensorManager.unregisterListener(this);
             gyroEnabled = false;
         }
@@ -236,13 +249,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.menu_right_click) {
-            sendRightClick();
-            return true;
-        } else if (id == R.id.menu_middle_click) {
-            sendMiddleClick();
-            return true;
-        } else if (id == R.id.menu_show_keyboard) {
+        if (id == R.id.menu_show_keyboard) {
             BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> {
                 if (plugin.isKeyboardEnabled()) {
                     showKeyboard();
@@ -473,6 +480,17 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     public boolean onSupportNavigateUp() {
         super.onBackPressed();
         return true;
+    }
+
+    private void setAllowGyro(Boolean enabled) {
+        if (allowGyro == enabled) return;
+        if (enabled) {
+            mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE), SensorManager.SENSOR_DELAY_GAME);
+        } else {
+            mSensorManager.unregisterListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE));
+        }
+        allowGyro = enabled;
+        gyroEnabled = enabled;
     }
 }
 
