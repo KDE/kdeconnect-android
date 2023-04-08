@@ -6,12 +6,31 @@
         android:id="@+id/menu_show_keyboard"
         android:icon="@drawable/ic_action_keyboard_24dp"
         android:title="@string/show_keyboard"
+        kdeconnect:iconTint="?colorOnBackground"
         kdeconnect:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_open_compose_send"
         android:icon="@drawable/ic_edit_note_24dp"
         android:title="@string/open_compose_send"
+        kdeconnect:iconTint="?colorOnBackground"
         kdeconnect:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_open_mousepad_settings"
+        android:title="@string/device_menu_plugins"
+        android:icon="@drawable/ic_settings_24dp"
+        kdeconnect:iconTint="?colorOnBackground"
+        kdeconnect:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/menu_right_click"
+        android:title="@string/right_click"
+        kdeconnect:showAsAction="never" />
+
+    <item
+        android:id="@+id/menu_middle_click"
+        android:title="@string/middle_click"
+        kdeconnect:showAsAction="never" />
 
 </menu>

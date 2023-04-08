@@ -18,15 +18,6 @@
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <com.google.android.material.materialswitch.MaterialSwitch
-                android:id="@+id/gyro_mouse_switch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:textAppearance="?attr/textAppearanceLabelMedium"
-                android:paddingHorizontal="@dimen/activity_horizontal_margin"
-                android:text="Gyro mouse" />
-
         <TextView
             style="@android:style/TextAppearance.Medium"
             android:layout_width="match_parent"
@@ -39,11 +30,13 @@
         <org.kde.kdeconnect.Plugins.MousePadPlugin.KeyListenerView
             android:id="@+id/keyListener"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_above="@id/mouse_buttons"/>
 
         <LinearLayout
+                android:id="@+id/mouse_buttons"
                 android:layout_width="match_parent"
-                android:layout_height="68dp"
+                android:layout_height="70dp"
                 android:orientation="horizontal"
                 android:layout_alignParentBottom="true">
 
@@ -52,6 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
+                    app:icon="@drawable/left_click_48dp"
                     style="@style/KdeConnectButton.IconButton" />
 
             <com.google.android.material.button.MaterialButton
@@ -66,9 +60,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
+                    app:icon="@drawable/right_click_48dp"
                     style="@style/KdeConnectButton.IconButton" />
 
         </LinearLayout>
     </RelativeLayout>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
