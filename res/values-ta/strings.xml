@@ -57,6 +57,7 @@
   <string name="mousepad_double_tap_settings_title">இரண்டு விரல்களால் தட்டுவதற்குரிய செயலை அமை</string>
   <string name="mousepad_triple_tap_settings_title">மூன்று விரல்களால் தட்டுவதற்குரிய செயலை அமை</string>
   <string name="mousepad_sensitivity_settings_title">தொடுபலகையின் உணர்வுத்திறத்தை அமை</string>
+  <string name="mousepad_mouse_buttons_title">சுட்டி பட்டன்களைக் காட்டு</string>
   <string name="mousepad_acceleration_profile_settings_title">சுட்டிக்குறியின் வேகவளர்ச்சியை அமை</string>
   <string name="mousepad_scroll_direction_title">உருளல் திசையை புரட்டு</string>
   <string-array name="mousepad_tap_entries">
