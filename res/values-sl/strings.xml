@@ -57,6 +57,7 @@
   <string name="mousepad_double_tap_settings_title">Nastavite akcijo tapkanja dveh prstov</string>
   <string name="mousepad_triple_tap_settings_title">Nastavite akcijo tapkanja treh prstov</string>
   <string name="mousepad_sensitivity_settings_title">Nastavi občutljivost drsne ploščice</string>
+  <string name="mousepad_mouse_buttons_title">Prikaži miškine gumbe</string>
   <string name="mousepad_acceleration_profile_settings_title">Nastavi pospeške kazalca</string>
   <string name="mousepad_scroll_direction_title">Smer povratnega drsenja</string>
   <string-array name="mousepad_tap_entries">

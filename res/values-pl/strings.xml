@@ -57,6 +57,7 @@
   <string name="mousepad_double_tap_settings_title">Ustaw działanie po stuknięciu dwoma palcami</string>
   <string name="mousepad_triple_tap_settings_title">Ustaw działanie po stuknięciu trzema palcami</string>
   <string name="mousepad_sensitivity_settings_title">Ustaw czułość gładzika</string>
+  <string name="mousepad_mouse_buttons_title">Pokaż przyciski myszy</string>
   <string name="mousepad_acceleration_profile_settings_title">Ustaw przyspieszenie wskaźnika</string>
   <string name="mousepad_scroll_direction_title">Odwróć stronę przewijania</string>
   <string-array name="mousepad_tap_entries">
@@ -233,8 +234,11 @@
   <string name="sftp_action_mode_menu_delete">Usuń</string>
   <string name="sftp_no_storage_locations_configured">Nie ustawiono miejsc w pamięci</string>
   <string name="sftp_saf_permission_explanation">Aby przeglądać pliki zdalnie, należy ustawić miejsca w pamięci</string>
+  <string name="sftp_manage_storage_permission_explanation">Aby zezwolić na zdalny dostęp do plików tego urządzenia, musisz zezwolić na zarządzanie pamięcią przez KDE Connect.</string>
   <string name="no_players_connected">Nie znaleziono żadnych odtwarzaczy</string>
   <string name="send_files">Wysyłanie plików</string>
+  <string name="block_notification_contents">Blokuj treść powiadomień</string>
+  <string name="block_notification_images">Blokuj obrazy powiadomień</string>
   <string name="pairing_title">Urządzenia KDE Connect</string>
   <string name="pairing_description">Tu powinny pojawić się urządzenia podłączone do tej samej sieci i które także mają uruchomione KDE Connect.</string>
   <string name="device_rename_title">Zmień nazwę urządzenia</string>
@@ -257,8 +261,10 @@
   <string name="close">Zamknij</string>
   <string name="plugins_need_permission">Niektóre wtyczki wymagają uprawnień do swojego działania (stuknij, aby dowiedzieć się więcej)</string>
   <string name="permission_explanation">Ta wtyczka wymaga uprawnień do działania</string>
+  <string name="all_permissions_granted">Przyznano wszystkie uprawnienia 🎉</string>
   <string name="optional_permission_explanation">Musisz przydzielić dodatkowe uprawnienia, aby włączyć wszystkie funkcje</string>
   <string name="plugins_need_optional_permission">Niektóre wtyczki mają ograniczone możliwości ze względu na ograniczone uprawnienia (stuknij, aby dowiedzieć się więcej)</string>
+  <string name="share_optional_permission_explanation">Aby odbierać pliki musisz zezwolić na dostęp do pamięci</string>
   <string name="telepathy_permission_explanation">Aby czytać i pisać esemesy na innym urządzeniu, należy nadać uprawnienia do esemesów</string>
   <string name="telephony_permission_explanation">Aby widzieć rozmowy telefoniczne na innym urządzeniu, należy nadać uprawnienia do dziennika rozmów i stanu telefonu</string>
   <string name="telephony_optional_permission_explanation">Aby widzieć nazwę kontaktu zamiast numeru telefonu, należy zezwolić na dostęp do kontaktów telefonu</string>

@@ -57,6 +57,7 @@
   <string name="mousepad_double_tap_settings_title">设置双指点击操作</string>
   <string name="mousepad_triple_tap_settings_title">设置三指点击操作</string>
   <string name="mousepad_sensitivity_settings_title">设置触摸板灵敏度</string>
+  <string name="mousepad_mouse_buttons_title">显示鼠标按钮</string>
   <string name="mousepad_acceleration_profile_settings_title">设置指针加速度</string>
   <string name="mousepad_scroll_direction_title">反转滚动方向</string>
   <string-array name="mousepad_tap_entries">
@@ -236,6 +237,7 @@
   <string name="close">关闭</string>
   <string name="plugins_need_permission">某些插件需要权限才能工作 (点击以获取更多信息)：</string>
   <string name="permission_explanation">这个插件需要权限才能工作</string>
+  <string name="all_permissions_granted">已授予所有权限 🎉</string>
   <string name="optional_permission_explanation">您需要授予额外权限以启用全部功能</string>
   <string name="plugins_need_optional_permission">因缺少权限，某些插件的一些功能已禁用（点击以查看更多信息）：</string>
   <string name="share_optional_permission_explanation">要接收文件，您必须允许存储访问权限</string>
