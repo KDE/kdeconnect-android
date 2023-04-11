@@ -76,19 +76,17 @@ public class SMSHelper {
      * Get a URI for querying SMS messages
      */
     private static Uri getSMSUri() {
-        // This constant was introduces with API 19 (KitKat)
         // The value it represents was used in older Android versions so it *should* work but
         // might vary between vendors.
         return Telephony.Sms.CONTENT_URI;
     }
 
     private static Uri getMMSUri() {
-        // Same warning as getSMSUri: This constant was introduced with API 19
         return Telephony.Mms.CONTENT_URI;
     }
 
     public static Uri getMMSPartUri() {
-        // Android says we should have Telephony.Mms.Part.CONTENT_URI. Alas, we do not.
+        // The constant Telephony.Mms.Part.CONTENT_URI was added in API 29
         return Uri.parse("content://mms/part/");
     }
 
