@@ -142,7 +142,7 @@ class DeviceFragment : Fragment() {
 
         requireDeviceBinding().pluginsList.layoutManager =
             GridLayoutManager(requireContext(), resources.getInteger(R.integer.plugins_columns))
-        requireDeviceBinding().buttonsList.layoutManager = LinearLayoutManager(requireContext())
+        requireDeviceBinding().permissionsList.layoutManager = LinearLayoutManager(requireContext())
 
         return deviceBinding.root
     }
@@ -168,12 +168,11 @@ class DeviceFragment : Fragment() {
         //Plugins button list
         val plugins: Collection<Plugin> = device.loadedPlugins.values
         for (p in plugins) {
-            if (!p.displayInContextMenu()) {
-                continue
-            }
-            menu.add(p.actionName).setOnMenuItemClickListener {
-                p.startMainActivity(mActivity)
-                true
+            if (p.displayInContextMenu()) {
+                menu.add(p.actionName).setOnMenuItemClickListener {
+                    p.startMainActivity(mActivity)
+                    true
+                }
             }
         }
         val intent = Intent(mActivity, PluginSettingsActivity::class.java)
@@ -259,12 +258,12 @@ class DeviceFragment : Fragment() {
                     if (paired && !reachable) {
                         requireErrorBinding().errorMessageContainer.visibility = View.VISIBLE
                         requireErrorBinding().notReachableMessage.visibility = View.VISIBLE
-                        requireDeviceBinding().buttonsList.visibility = View.GONE
+                        requireDeviceBinding().permissionsList.visibility = View.GONE
                         requireDeviceBinding().pluginsList.visibility = View.GONE
                     } else {
                         requireErrorBinding().errorMessageContainer.visibility = View.GONE
                         requireErrorBinding().notReachableMessage.visibility = View.GONE
-                        requireDeviceBinding().buttonsList.visibility = View.VISIBLE
+                        requireDeviceBinding().permissionsList.visibility = View.VISIBLE
                         requireDeviceBinding().pluginsList.visibility = View.VISIBLE
                     }
                     try {
@@ -278,10 +277,11 @@ class DeviceFragment : Fragment() {
 
                             //Fill enabled plugins ArrayList
                             for (p in plugins) {
-                                if (!p.hasMainActivity(context) || p.displayInContextMenu()) continue
-                                pluginListItems.add(
-                                    PluginItem(requireContext(), p, { p.startMainActivity(mActivity) })
-                                )
+                                if (p.hasMainActivity(context) && !p.displayInContextMenu()) {
+                                    pluginListItems.add(
+                                        PluginItem(requireContext(), p, { p.startMainActivity(mActivity) })
+                                    )
+                                }
                             }
 
                             //Fill permissionListItems with permissions plugins
@@ -298,11 +298,12 @@ class DeviceFragment : Fragment() {
                                 p.optionalPermissionExplanationDialog?.show(childFragmentManager, null)
                             }
 
-                            requireDeviceBinding().buttonsList.adapter =
+                            requireDeviceBinding().permissionsList.adapter =
                                 PluginAdapter(permissionListItems, R.layout.list_item_plugin_header)
                             requireDeviceBinding().pluginsList.adapter =
                                 PluginAdapter(pluginListItems, R.layout.list_plugin_entry)
 
+                            requireDeviceBinding().permissionsList.adapter?.notifyDataSetChanged()
                             requireDeviceBinding().pluginsList.adapter?.notifyDataSetChanged()
 
                             displayBatteryInfoIfPossible()
