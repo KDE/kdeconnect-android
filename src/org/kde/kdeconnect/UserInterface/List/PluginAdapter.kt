@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import org.kde.kdeconnect.Plugins.Plugin
-import org.kde.kdeconnect.Plugins.StubTextPlugin
 import org.kde.kdeconnect_tp.R
 
 /**
@@ -20,30 +18,24 @@ import org.kde.kdeconnect_tp.R
  * Any other TextView layout
  */
 class PluginAdapter(
-    private val pluginList: ArrayList<Pair<Plugin, (() -> Unit)?>>,
-    private val layout: Int,
+    private val pluginList: ArrayList<PluginItem>,
+    private val layoutRes: Int,
 ) : RecyclerView.Adapter<PluginAdapter.PluginViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, type: Int) =
-        PluginViewHolder(LayoutInflater.from(viewGroup.context).inflate(layout, viewGroup, false))
+        PluginViewHolder(LayoutInflater.from(viewGroup.context).inflate(layoutRes, viewGroup, false))
 
     override fun getItemCount() = pluginList.size
 
     @TargetApi(Build.VERSION_CODES.M)
     override fun onBindViewHolder(holder: PluginViewHolder, position: Int) {
-        pluginList[position].let { (plugin, action) ->
-            holder.pluginTitle.text = plugin.displayName
+        pluginList[position].let { plugin ->
+            holder.pluginTitle.text = plugin.header
             holder.pluginIcon?.setImageDrawable(plugin.icon)
 
-            //Set regular text for unclickable StubTextPlugin and bold for supposedly clickable TextView items
-            when {
-                plugin is StubTextPlugin ->
-                    holder.pluginTitle.setTextAppearance(R.style.TextAppearance_Material3_BodyMedium)
-                holder.itemView is TextView ->
-                    holder.pluginTitle.setTextAppearance(R.style.TextAppearance_Material3_LabelLarge)
-            }
+            plugin.textStyleRes?.let { holder.pluginTitle.setTextAppearance(it) }
 
-            action?.let { holder.itemView.setOnClickListener { action.invoke() } }
+            plugin.action?.let { action -> holder.itemView.setOnClickListener { action.invoke() } }
         }
     }
 

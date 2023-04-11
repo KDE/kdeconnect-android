@@ -25,8 +25,8 @@ import org.kde.kdeconnect.Device.PluginsChangedListener
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
 import org.kde.kdeconnect.Plugins.BatteryPlugin.BatteryPlugin
 import org.kde.kdeconnect.Plugins.Plugin
-import org.kde.kdeconnect.Plugins.StubTextPlugin
 import org.kde.kdeconnect.UserInterface.List.PluginAdapter
+import org.kde.kdeconnect.UserInterface.List.PluginItem
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityDeviceBinding
 import org.kde.kdeconnect_tp.databinding.ViewPairErrorBinding
@@ -45,8 +45,8 @@ class DeviceFragment : Fragment() {
     private val mActivity: MainActivity? by lazy { activity as MainActivity? }
 
     //TODO use LinkedHashMap and delete irrelevant records when plugins changed
-    private val pluginListItems: ArrayList<Pair<Plugin, (() -> Unit)?>> = ArrayList()
-    private val permissionListItems: ArrayList<Pair<Plugin, (() -> Unit)?>> = ArrayList()
+    private val pluginListItems: ArrayList<PluginItem> = ArrayList()
+    private val permissionListItems: ArrayList<PluginItem> = ArrayList()
 
     /**
      * Top-level ViewBinding for this fragment.
@@ -259,9 +259,13 @@ class DeviceFragment : Fragment() {
                     if (paired && !reachable) {
                         requireErrorBinding().errorMessageContainer.visibility = View.VISIBLE
                         requireErrorBinding().notReachableMessage.visibility = View.VISIBLE
+                        requireDeviceBinding().buttonsList.visibility = View.GONE
+                        requireDeviceBinding().pluginsList.visibility = View.GONE
                     } else {
                         requireErrorBinding().errorMessageContainer.visibility = View.GONE
                         requireErrorBinding().notReachableMessage.visibility = View.GONE
+                        requireDeviceBinding().buttonsList.visibility = View.VISIBLE
+                        requireDeviceBinding().pluginsList.visibility = View.VISIBLE
                     }
                     try {
                         if (paired && reachable) {
@@ -275,7 +279,9 @@ class DeviceFragment : Fragment() {
                             //Fill enabled plugins ArrayList
                             for (p in plugins) {
                                 if (!p.hasMainActivity(context) || p.displayInContextMenu()) continue
-                                pluginListItems.add(p to { p.startMainActivity(mActivity) })
+                                pluginListItems.add(
+                                    PluginItem(requireContext(), p, { p.startMainActivity(mActivity) })
+                                )
                             }
 
                             //Fill permissionListItems with permissions plugins
@@ -358,10 +364,18 @@ class DeviceFragment : Fragment() {
     ) {
         if (plugins.isEmpty()) return
         val device = device ?: return
-        permissionListItems.add(StubTextPlugin(requireContext().getString(headerText)) to null)
+        permissionListItems.add(
+            PluginItem(
+                context = requireContext(),
+                header = requireContext().getString(headerText),
+                textStyleRes = R.style.TextAppearance_Material3_BodyMedium,
+            )
+        )
         for (plugin in plugins.values) {
             if (device.isPluginEnabled(plugin.pluginKey)) {
-                permissionListItems.add(plugin to { action(plugin) })
+                permissionListItems.add(
+                    PluginItem(requireContext(), plugin, action, R.style.TextAppearance_Material3_LabelLarge)
+                )
             }
         }
     }

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
     style="@style/KdeConnectCardStyle.Filled"
-    app:contentPadding="12dp"
+    app:contentPadding="@dimen/view_default_padding"
     tools:layout_width="240dp">
 
     <LinearLayout
