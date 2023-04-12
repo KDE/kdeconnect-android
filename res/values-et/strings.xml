@@ -48,7 +48,6 @@
   <string name="remotekeyboard_connected">Kaugklaviatuuri ühendus on aktiivne</string>
   <string name="remotekeyboard_multiple_connections">Kaugklaviatuuri ühendusi on üle ühe, palun vali seade, mida seadistada</string>
   <string name="open_mousepad">Kaugsisestus</string>
-  <string name="mousepad_info">Hiirekursori liigutamiseks liiguta sõrme ekraanil. Koputa klõpsamiseks ja kasuta kaht või kolme sõrme parema ja keskmise nupu jaoks. Kahe sõrmega saab kerida. Pika vajutusega saab lohistada.</string>
   <string name="mousepad_double_tap_settings_title">Kahe sõrmega koputamise toimingu määramine</string>
   <string name="mousepad_triple_tap_settings_title">Kolme sõrmega koputamise toimingu määramine</string>
   <string name="mousepad_sensitivity_settings_title">Puutepadja tundlikkuse määramine</string>

@@ -51,7 +51,6 @@
   <string name="remotekeyboard_connected">Отдалечената връзка с клавиатурата е активна</string>
   <string name="remotekeyboard_multiple_connections">Има повече от една отдалечена връзка за клавиатура, изберете устройството за конфигуриране</string>
   <string name="open_mousepad">Отдалечен вход</string>
-  <string name="mousepad_info">Преместете пръст на екрана, за да преместите курсора на мишката. Докоснете за щракване иИзползвайте два/три пръста за десни и средни бутони. Използвайте 2 пръста за превъртане.Използвайте дълго натискане за влачене.</string>
   <string name="mousepad_keyboard_input_not_supported">Въвеждането от клавиатурата не се поддържа от сдвоеното устройство</string>
   <string name="mousepad_single_tap_settings_title">Задаване на действие с натискане с един пръст</string>
   <string name="mousepad_double_tap_settings_title">Задаване на действие за докосване с два пръста</string>

@@ -51,7 +51,6 @@
   <string name="remotekeyboard_connected">リモートキーボード接続はアクティブです</string>
   <string name="remotekeyboard_multiple_connections">複数のリモートキーボード接続があります。設定するデバイスを選択してください</string>
   <string name="open_mousepad">リモート入力</string>
-  <string name="mousepad_info">スクリーン上で指を動かしてマウスカーソルを移動します。タップは左クリックになり、2本指タップは右クリック、3本指タップは中クリックになります。2本指でスクロール、長押しでドラッグ&amp;ドロップができます。</string>
   <string name="mousepad_keyboard_input_not_supported">キーボード入力はペアリングされたデバイスによってサポートされていません</string>
   <string name="mousepad_single_tap_settings_title">1本指タップのアクションを設定</string>
   <string name="mousepad_double_tap_settings_title">2本指タップのアクションを設定</string>

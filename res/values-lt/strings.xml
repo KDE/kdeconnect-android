@@ -51,7 +51,6 @@
   <string name="remotekeyboard_connected">Nuotolinės klaviatūros ryšys yra aktyvus</string>
   <string name="remotekeyboard_multiple_connections">Yra daugiau nei vienas nuotolinės klaviatūros ryšys, pasirinkite kurį įrenginį konfigūruoti</string>
   <string name="open_mousepad">Nuotolinis įvedimas</string>
-  <string name="mousepad_info">Norėdami judinti pelės žymeklį, judinkite pirštu po ekraną. Bakstelėkite vienkartiniam spustelėjimui ir naudokite du/tris pirštus dešiniajam ir viduriniajam mygtukui. Naudokite 2 pirštus, norėdami slinkti. Naudokite ilgą paspaudimą, norėdami tempti.</string>
   <string name="mousepad_keyboard_input_not_supported">Suporuotas įrenginys nepalaiko įvedimo klaviatūra</string>
   <string name="mousepad_single_tap_settings_title">Nustatyti bakstelėjimo vienu pirštu veiksmą</string>
   <string name="mousepad_double_tap_settings_title">Nustatyti bakstelėjimo dviem pirštais veiksmą</string>

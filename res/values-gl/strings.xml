@@ -51,7 +51,6 @@
   <string name="remotekeyboard_connected">A conexión de teclado remoto está activa.</string>
   <string name="remotekeyboard_multiple_connections">Hai máis dunha conexión de teclado remoto, seleccione o dispositivo para configurar.</string>
   <string name="open_mousepad">Entrada remota</string>
-  <string name="mousepad_info">Mova un dedo na pantalla para mover o cursor do rato. Toque para facer clic, e use dous ou tres dedos para os botóns secundario e central. Use dous dedos para desprazar. Prema durante un tempo para arrastrar e soltar.</string>
   <string name="mousepad_keyboard_input_not_supported">O dispositivo emparellado non permite entrada de teclado</string>
   <string name="mousepad_single_tap_settings_title">Definir a acción de tocar cun dedo</string>
   <string name="mousepad_double_tap_settings_title">Definir a acción de tocar con dous dedos</string>

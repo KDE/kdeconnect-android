@@ -51,7 +51,6 @@
   <string name="remotekeyboard_connected">Távoli billentyűzetkapcsolat aktív</string>
   <string name="remotekeyboard_multiple_connections">Több, mint egy távoli billentyűzetkapcsolat van, válassza ki a beállítandó eszközt</string>
   <string name="open_mousepad">Távirányítás</string>
-  <string name="mousepad_info">Az egérkurzor mozgatásához mozgassa az ujját a képernyőn. Koppintson a kattintáshoz, és használjon két/három ujjat a jobb és a középső gombokhoz. A görgetéshez használjon 2 ujjat. Hosszan húzza az ejtéshez.</string>
   <string name="mousepad_single_tap_settings_title">Egy ujjas koppintás beállítása</string>
   <string name="mousepad_double_tap_settings_title">Két ujjas koppintás beállítása</string>
   <string name="mousepad_triple_tap_settings_title">Három ujjas koppintás beállítása</string>

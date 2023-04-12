@@ -51,7 +51,6 @@
   <string name="remotekeyboard_connected">Koneksi keyboard jarak jauh telah aktif</string>
   <string name="remotekeyboard_multiple_connections">Ada lebih dari satu koneksi keyboard jarak jauh, pilih peranti untuk diatur</string>
   <string name="open_mousepad">Masukan jarak jauh</string>
-  <string name="mousepad_info">Pindah jari pada layar untuk memindah kursor mouse. Ketuk untuk klik, dan gunakan dua/tiga jari untuk tombol kanan dan tengah. Gunakan 2 jari untuk menggulir. Gunakan tekan lama untuk seret dan taruh.</string>
   <string name="mousepad_single_tap_settings_title">Set aksi ketuk satu jari</string>
   <string name="mousepad_double_tap_settings_title">Set aksi ketuk dua jari</string>
   <string name="mousepad_triple_tap_settings_title">Set aksi ketuk tiga jari</string>

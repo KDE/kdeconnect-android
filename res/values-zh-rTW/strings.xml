@@ -49,7 +49,6 @@
   <string name="remotekeyboard_connected">遠端鍵盤連線為啟用狀態</string>
   <string name="remotekeyboard_multiple_connections">這裡有兩個以上的遠端鍵盤連結，選擇一個裝置以設定。</string>
   <string name="open_mousepad">遠端輸入</string>
-  <string name="mousepad_info">在您的智慧型手機的螢幕上移動手指頭，用來控制電腦螢幕的游標。按一下表示滑鼠的左鍵，使用兩隻/三隻手指頭按一下來表示滑鼠的右鍵/中鍵。使用兩隻手指頭捲動。長按則表示要拖拉。</string>
   <string name="mousepad_double_tap_settings_title">設定兩隻手指頭按一下的動作</string>
   <string name="mousepad_triple_tap_settings_title">設定三隻手指頭按一下的動作</string>
   <string name="mousepad_sensitivity_settings_title">設定觸碰板的靈敏度</string>

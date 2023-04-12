@@ -48,7 +48,6 @@
   <string name="remotekeyboard_not_connected">Engin fjartenging lyklaborðs er virk, virkjaðu eina slíka í KDE Connect</string>
   <string name="remotekeyboard_connected">Fjartenging lyklaborðs er virk</string>
   <string name="open_mousepad">Fjartengd ritun</string>
-  <string name="mousepad_info">Færðu fingur á skjánum til að færa bendilinn. Pikkaðu til að smella og notaðu tvo/þrjá fingur sem hægri- og miðjuhnappa. Notaðu tvo fingur til að skruna. Ýttu lengi til að draga-sleppa.</string>
   <string name="mousepad_single_tap_settings_title">Stilla aðgerð við pikk með einum fingri</string>
   <string name="mousepad_double_tap_settings_title">Stilla aðgerð við pikk með tveimur fingrum</string>
   <string name="mousepad_triple_tap_settings_title">Stilla aðgerð við pikk með þremur fingrum</string>

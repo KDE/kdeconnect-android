@@ -51,7 +51,6 @@
   <string name="remotekeyboard_connected">Uzaq klaviatura bağlantısını aktiv edin</string>
   <string name="remotekeyboard_multiple_connections">Birdən çox uzaq klaviatura bağlantısı var, tənzimləmək üçün cihazı seçin</string>
   <string name="open_mousepad">Məsafədən giriş</string>
-  <string name="mousepad_info">Siçan kursorunu hərəkət etdirmək üçün barmağı ekranda sürüşdürün. Klik üçün ekrana vurun, sağ və orta siçan düymələri üçün iki/üç barmaqla toxunuş edin. Sürüşdürmək üçün iki barmaqdan istifadə edin. Tutub saxlamaq üçün basın saxlayın.</string>
   <string name="mousepad_keyboard_input_not_supported">Qoşulmuş cihaz üçün klaviatura ilə daxiletmə dəstəklənmir</string>
   <string name="mousepad_single_tap_settings_title">Bir barmaq toxunuşu əməlini təyin edin</string>
   <string name="mousepad_double_tap_settings_title">İki barmaq toxunuşu əməlini təyin edin</string>

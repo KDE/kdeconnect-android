@@ -51,7 +51,6 @@
   <string name="remotekeyboard_connected">A ligação ao teclado remoto está activa</string>
   <string name="remotekeyboard_multiple_connections">Existe mais que uma ligação a teclados remotos; seleccione o dispositivo a configurar</string>
   <string name="open_mousepad">Introdução remota de dados</string>
-  <string name="mousepad_info">Mova um dedo pelo ecrã para mover o cursor do rato. Dê um toque para carregar no botão esquerdo e use dois/três dedos para os botões direito e do meio. Use uma pressão longa para arrastar e largar.</string>
   <string name="mousepad_keyboard_input_not_supported">O uso do teclado não é suportado pelo dispositivo emparelhado</string>
   <string name="mousepad_single_tap_settings_title">Definir a acção do toque com um dedo</string>
   <string name="mousepad_double_tap_settings_title">Definir a acção do toque com dois dedos</string>

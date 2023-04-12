@@ -51,7 +51,6 @@
   <string name="remotekeyboard_connected">Conexiunea de tastatură la distanță e activă</string>
   <string name="remotekeyboard_multiple_connections">Sunt mai multe conexiuni de tastatură la distanță, alegeți dispozitivul de configurat</string>
   <string name="open_mousepad">Introducere de la distanță</string>
-  <string name="mousepad_info">"Mișcați un deget pe ecran pentru a muta cursorul mausului. Atingeți pentru clic, folosiți două/trei degete pentru butoanele drept și mijlociu. Folosiți 2 degete pentru a derula.  Apăsați lung pentru tragere-și-lăsare."</string>
   <string name="mousepad_single_tap_settings_title">Stabilește acțiunea de atingere cu un deget</string>
   <string name="mousepad_double_tap_settings_title">Stabilește acțiunea de atingere cu două degete</string>
   <string name="mousepad_triple_tap_settings_title">Stabilește acțiunea de atingere cu trei degete</string>
