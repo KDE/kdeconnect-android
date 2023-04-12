@@ -330,8 +330,10 @@ public class SMSHelper {
                         switch (transportType) {
                             case SMS:
                                 toReturn.add(parseSMS(context, messageInfo));
+                                break;
                             case MMS:
                                 toReturn.add(parseMMS(context, messageInfo, userPhoneNumbers));
+                                break;
                         }
                     } catch (Exception e) {
                         // Swallow exceptions in case we get an error reading one message so that we
