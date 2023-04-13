@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     public static final String PAIRING_PENDING = "pending";
 
     public static final String EXTRA_DEVICE_ID = "deviceId";
+    public static final String FLAG_FORCE_OVERVIEW = "forceOverview";
 
     private NavigationView mNavigationView;
     private DrawerLayout mDrawerLayout;
@@ -95,21 +96,23 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
         ActionBar actionBar = getSupportActionBar();
 
-        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
-                mDrawerLayout, /* DrawerLayout object */
-                R.string.open, /* "open drawer" description */
-                R.string.close /* "close drawer" description */
-        );
+        if (mDrawerLayout != null) {
+            ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
+                    mDrawerLayout, /* DrawerLayout object */
+                    R.string.open, /* "open drawer" description */
+                    R.string.close /* "close drawer" description */
+            );
 
-        mDrawerLayout.addDrawerListener(mDrawerToggle);
-        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
+            mDrawerLayout.addDrawerListener(mDrawerToggle);
+            mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
 
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
+            if (actionBar != null) {
+                actionBar.setDisplayHomeAsUpEnabled(true);
+            }
+
+            mDrawerToggle.setDrawerIndicatorEnabled(true);
+            mDrawerToggle.syncState();
         }
-
-        mDrawerToggle.setDrawerIndicatorEnabled(true);
-        mDrawerToggle.syncState();
 
         preferences = getSharedPreferences("stored_menu_selection", Context.MODE_PRIVATE);
 
@@ -144,14 +147,16 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                     break;
             }
 
-            mDrawerLayout.closeDrawer(mNavigationView);
+            if (mDrawerLayout != null) {
+                mDrawerLayout.closeDrawer(mNavigationView);
+            }
             return true;
         });
 
         // Decide which menu entry should be selected at start
         String savedDevice;
         int savedMenuEntry;
-        if (getIntent().hasExtra("forceOverview")) {
+        if (getIntent().hasExtra(FLAG_FORCE_OVERVIEW)) {
             Log.i("MainActivity", "Requested to start main overview");
             savedDevice = null;
             savedMenuEntry = MENU_ENTRY_ADD_DEVICE;
@@ -248,7 +253,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     @Override
     public void onBackPressed() {
-        if (mDrawerLayout.isDrawerOpen(mNavigationView)) {
+        if (mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mNavigationView)) {
             mDrawerLayout.closeDrawer(mNavigationView);
         } else if (mCurrentMenuEntry == MENU_ENTRY_SETTINGS || mCurrentMenuEntry == MENU_ENTRY_ABOUT) {
             mCurrentMenuEntry = MENU_ENTRY_ADD_DEVICE;
@@ -261,7 +266,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
+        if (mDrawerLayout != null && item.getItemId() == android.R.id.home) {
             mDrawerLayout.openDrawer(mNavigationView);
             return true;
         } else {

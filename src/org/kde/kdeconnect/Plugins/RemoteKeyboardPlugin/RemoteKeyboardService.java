@@ -162,7 +162,7 @@ public class RemoteKeyboardService
                         }
                     } else { // != 1 instance of plugin -> show main activity view
                         Intent intent = new Intent(this, MainActivity.class);
-                        intent.putExtra("forceOverview", true);
+                        intent.putExtra(MainActivity.FLAG_FORCE_OVERVIEW, true);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                         if (instances.size() < 1)

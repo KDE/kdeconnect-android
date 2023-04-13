@@ -6,7 +6,6 @@
 package org.kde.kdeconnect.UserInterface
 
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -14,10 +13,10 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.annotation.StringRes
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Device
@@ -26,10 +25,8 @@ import org.kde.kdeconnect.Device.PluginsChangedListener
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
 import org.kde.kdeconnect.Plugins.BatteryPlugin.BatteryPlugin
 import org.kde.kdeconnect.Plugins.Plugin
-import org.kde.kdeconnect.UserInterface.List.FailedPluginListItem
-import org.kde.kdeconnect.UserInterface.List.ListAdapter
+import org.kde.kdeconnect.UserInterface.List.PluginAdapter
 import org.kde.kdeconnect.UserInterface.List.PluginItem
-import org.kde.kdeconnect.UserInterface.List.PluginListHeaderItem
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityDeviceBinding
 import org.kde.kdeconnect_tp.databinding.ViewPairErrorBinding
@@ -48,8 +45,8 @@ class DeviceFragment : Fragment() {
     private val mActivity: MainActivity? by lazy { activity as MainActivity? }
 
     //TODO use LinkedHashMap and delete irrelevant records when plugins changed
-    private val pluginListItems: ArrayList<ListAdapter.Item> = ArrayList()
-    private val permissionListItems: ArrayList<ListAdapter.Item> = ArrayList()
+    private val pluginListItems: ArrayList<PluginItem> = ArrayList()
+    private val permissionListItems: ArrayList<PluginItem> = ArrayList()
 
     /**
      * Top-level ViewBinding for this fragment.
@@ -106,11 +103,13 @@ class DeviceFragment : Fragment() {
         }
 
         requireBinding().pairButton.setOnClickListener {
-            requireBinding().pairButton.visibility = View.GONE
-            requireBinding().pairMessage.text = null
-            requireBinding().pairVerification.visibility = View.VISIBLE
-            requireBinding().pairVerification.text = SslHelper.getVerificationKey(SslHelper.certificate, device?.certificate)
-            requireBinding().pairProgress.visibility = View.VISIBLE
+            with(requireBinding()) {
+                pairButton.visibility = View.GONE
+                pairMessage.text = null
+                pairVerification.visibility = View.VISIBLE
+                pairVerification.text = SslHelper.getVerificationKey(SslHelper.certificate, device?.certificate)
+                pairProgress.visibility = View.VISIBLE
+            }
             device?.requestPairing()
         }
         requireBinding().acceptButton.setOnClickListener {
@@ -141,6 +140,10 @@ class DeviceFragment : Fragment() {
             refreshUI()
         }
 
+        requireDeviceBinding().pluginsList.layoutManager =
+            GridLayoutManager(requireContext(), resources.getInteger(R.integer.plugins_columns))
+        requireDeviceBinding().permissionsList.layoutManager = LinearLayoutManager(requireContext())
+
         return deviceBinding.root
     }
 
@@ -165,12 +168,11 @@ class DeviceFragment : Fragment() {
         //Plugins button list
         val plugins: Collection<Plugin> = device.loadedPlugins.values
         for (p in plugins) {
-            if (!p.displayInContextMenu()) {
-                continue
-            }
-            menu.add(p.actionName).setOnMenuItemClickListener {
-                p.startMainActivity(mActivity)
-                true
+            if (p.displayInContextMenu()) {
+                menu.add(p.actionName).setOnMenuItemClickListener {
+                    p.startMainActivity(mActivity)
+                    true
+                }
             }
         }
         val intent = Intent(mActivity, PluginSettingsActivity::class.java)
@@ -256,45 +258,57 @@ class DeviceFragment : Fragment() {
                     if (paired && !reachable) {
                         requireErrorBinding().errorMessageContainer.visibility = View.VISIBLE
                         requireErrorBinding().notReachableMessage.visibility = View.VISIBLE
+                        requireDeviceBinding().permissionsList.visibility = View.GONE
+                        requireDeviceBinding().pluginsList.visibility = View.GONE
                     } else {
                         requireErrorBinding().errorMessageContainer.visibility = View.GONE
                         requireErrorBinding().notReachableMessage.visibility = View.GONE
+                        requireDeviceBinding().permissionsList.visibility = View.VISIBLE
+                        requireDeviceBinding().pluginsList.visibility = View.VISIBLE
                     }
                     try {
                         if (paired && reachable) {
                             //Plugins button list
                             val plugins: Collection<Plugin> = device.loadedPlugins.values
+
+                            //TODO look for LinkedHashMap mention above
                             pluginListItems.clear()
                             permissionListItems.clear()
+
+                            //Fill enabled plugins ArrayList
                             for (p in plugins) {
-                                if (!p.hasMainActivity(context) || p.displayInContextMenu()) continue
-                                pluginListItems.add(PluginItem(p) { p.startMainActivity(mActivity) })
+                                if (p.hasMainActivity(context) && !p.displayInContextMenu()) {
+                                    pluginListItems.add(
+                                        PluginItem(requireContext(), p, { p.startMainActivity(mActivity) })
+                                    )
+                                }
                             }
+
+                            //Fill permissionListItems with permissions plugins
                             createPermissionsList(
                                 device.pluginsWithoutPermissions,
                                 R.string.plugins_need_permission
-                            ) { plugin: Plugin ->
-                                val dialog = plugin.permissionExplanationDialog
-                                dialog?.show(childFragmentManager, null)
+                            ) { p: Plugin ->
+                                p.permissionExplanationDialog?.show(childFragmentManager, null)
                             }
                             createPermissionsList(
                                 device.pluginsWithoutOptionalPermissions,
                                 R.string.plugins_need_optional_permission
-                            ) { plugin: Plugin ->
-                                val dialog: DialogFragment? = plugin.optionalPermissionExplanationDialog
-                                dialog?.show(childFragmentManager, null)
+                            ) { p: Plugin ->
+                                p.optionalPermissionExplanationDialog?.show(childFragmentManager, null)
                             }
+
+                            requireDeviceBinding().permissionsList.adapter =
+                                PluginAdapter(permissionListItems, R.layout.list_item_plugin_header)
+                            requireDeviceBinding().pluginsList.adapter =
+                                PluginAdapter(pluginListItems, R.layout.list_plugin_entry)
+
+                            requireDeviceBinding().permissionsList.adapter?.notifyDataSetChanged()
+                            requireDeviceBinding().pluginsList.adapter?.notifyDataSetChanged()
 
                             displayBatteryInfoIfPossible()
                         }
-                        requireDeviceBinding().pluginsList.adapter = ListAdapter(mActivity, pluginListItems)
-                        //don't do unnecessary work when all permissions granted and remove view for landscape orientation
-                        if (permissionListItems.isEmpty()) {
-                            requireDeviceBinding().buttonsList.visibility = View.GONE
-                        } else {
-                            requireDeviceBinding().buttonsList.adapter = ListAdapter(mActivity, permissionListItems)
-                            requireDeviceBinding().buttonsList.visibility = View.VISIBLE
-                        }
+
                         mActivity?.invalidateOptionsMenu()
                     } catch (e: IllegalStateException) {
                         //Ignore: The activity was closed while we were trying to update it
@@ -320,7 +334,7 @@ class DeviceFragment : Fragment() {
             mActivity?.runOnUiThread {
                 with(requireBinding()) {
                     pairMessage.text = error
-                    pairVerification.text = ""
+                    pairVerification.text = null
                     pairVerification.visibility = View.GONE
                     pairProgress.visibility = View.GONE
                     pairButton.visibility = View.VISIBLE
@@ -346,17 +360,24 @@ class DeviceFragment : Fragment() {
 
     private fun createPermissionsList(
         plugins: ConcurrentHashMap<String, Plugin>,
-        headerText: Int,
-        action: FailedPluginListItem.Action
+        @StringRes headerText: Int,
+        action: (Plugin) -> Unit,
     ) {
         if (plugins.isEmpty()) return
         val device = device ?: return
-        permissionListItems.add(PluginListHeaderItem(headerText))
+        permissionListItems.add(
+            PluginItem(
+                context = requireContext(),
+                header = requireContext().getString(headerText),
+                textStyleRes = R.style.TextAppearance_Material3_BodyMedium,
+            )
+        )
         for (plugin in plugins.values) {
-            if (!device.isPluginEnabled(plugin.pluginKey)) {
-                continue
+            if (device.isPluginEnabled(plugin.pluginKey)) {
+                permissionListItems.add(
+                    PluginItem(requireContext(), plugin, action, R.style.TextAppearance_Material3_LabelLarge)
+                )
             }
-            permissionListItems.add(FailedPluginListItem(plugin, action))
         }
     }
 
@@ -375,12 +396,10 @@ class DeviceFragment : Fragment() {
         if (info != null) {
 
             @StringRes
-            val resId: Int = if (info.isCharging) {
-                R.string.battery_status_charging_format
-            } else if (BatteryPlugin.isLowBattery(info)) {
-                R.string.battery_status_low_format
-            } else {
-                R.string.battery_status_format
+            val resId = when {
+                info.isCharging -> R.string.battery_status_charging_format
+                BatteryPlugin.isLowBattery(info) -> R.string.battery_status_low_format
+                else -> R.string.battery_status_format
             }
 
             mActivity?.supportActionBar?.subtitle = mActivity?.getString(resId, info.currentCharge)
