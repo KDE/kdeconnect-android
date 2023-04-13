@@ -61,8 +61,8 @@ class DeviceFragment : Fragment() {
      *
      * Used to start and retry pairing.
      */
-    private var binding: ViewPairRequestBinding? = null
-    private fun requireBinding() = binding ?: throw IllegalStateException("binding is not set")
+    private var pairingBinding: ViewPairRequestBinding? = null
+    private fun requirePairingBinding() = pairingBinding ?: throw IllegalStateException("binding is not set")
 
     /**
      * Cannot-communicate ViewBinding.
@@ -94,7 +94,7 @@ class DeviceFragment : Fragment() {
         val deviceBinding = deviceBinding ?: return null
 
         // Inner binding for the layout shown when we're not paired yet...
-        binding = deviceBinding.pairRequest
+        pairingBinding = deviceBinding.pairRequest
         // ...and for when pairing doesn't (or can't) work
         errorBinding = deviceBinding.pairError
 
@@ -102,8 +102,8 @@ class DeviceFragment : Fragment() {
             device = it.getDevice(deviceId)
         }
 
-        requireBinding().pairButton.setOnClickListener {
-            with(requireBinding()) {
+        requirePairingBinding().pairButton.setOnClickListener {
+            with(requirePairingBinding()) {
                 pairButton.visibility = View.GONE
                 pairMessage.text = null
                 pairVerification.visibility = View.VISIBLE
@@ -112,13 +112,13 @@ class DeviceFragment : Fragment() {
             }
             device?.requestPairing()
         }
-        requireBinding().acceptButton.setOnClickListener {
+        requirePairingBinding().acceptButton.setOnClickListener {
             device?.apply {
                 acceptPairing()
-                requireBinding().pairingButtons.visibility = View.GONE
+                requirePairingBinding().pairingButtons.visibility = View.GONE
             }
         }
-        requireBinding().rejectButton.setOnClickListener {
+        requirePairingBinding().rejectButton.setOnClickListener {
             device?.apply {
                 //Remove listener so buttons don't show for a while before changing the view
                 removePluginsChangedListener(pluginsChangedListener)
@@ -155,7 +155,7 @@ class DeviceFragment : Fragment() {
             device.removePairingCallback(pairingCallback)
         }
         super.onDestroyView()
-        binding = null
+        pairingBinding = null
         errorBinding = null
         deviceBinding = null
     }
@@ -243,18 +243,23 @@ class DeviceFragment : Fragment() {
         mActivity?.runOnUiThread(object : Runnable {
             override fun run() {
                 if (device.isPairRequestedByPeer) {
-                    requireBinding().pairMessage.setText(R.string.pair_requested)
-                    requireBinding().pairVerification.visibility = View.VISIBLE
-                    requireBinding().pairVerification.text =
-                        SslHelper.getVerificationKey(SslHelper.certificate, device.certificate)
-                    requireBinding().pairingButtons.visibility = View.VISIBLE
-                    requireBinding().pairProgress.visibility = View.GONE
-                    requireBinding().pairButton.visibility = View.GONE
-                    requireBinding().pairRequestButtons.visibility = View.VISIBLE
+                    with (requirePairingBinding()) {
+                        pairMessage.setText(R.string.pair_requested)
+                        pairVerification.visibility = View.VISIBLE
+                        pairVerification.text = SslHelper.getVerificationKey(SslHelper.certificate, device.certificate)
+                        pairingButtons.visibility = View.VISIBLE
+                        pairProgress.visibility = View.GONE
+                        pairButton.visibility = View.GONE
+                        pairRequestButtons.visibility = View.VISIBLE
+                    }
+                    with (requireDeviceBinding()) {
+                        permissionsList.visibility = View.GONE
+                        pluginsList.visibility = View.GONE
+                    }
                 } else {
                     val paired = device.isPaired
                     val reachable = device.isReachable
-                    requireBinding().pairingButtons.visibility = if (paired) View.GONE else View.VISIBLE
+                    requirePairingBinding().pairingButtons.visibility = if (paired) View.GONE else View.VISIBLE
                     if (paired && !reachable) {
                         requireErrorBinding().errorMessageContainer.visibility = View.VISIBLE
                         requireErrorBinding().notReachableMessage.visibility = View.VISIBLE
@@ -332,7 +337,7 @@ class DeviceFragment : Fragment() {
 
         override fun pairingFailed(error: String) {
             mActivity?.runOnUiThread {
-                with(requireBinding()) {
+                with(requirePairingBinding()) {
                     pairMessage.text = error
                     pairVerification.text = null
                     pairVerification.visibility = View.GONE
@@ -346,7 +351,7 @@ class DeviceFragment : Fragment() {
 
         override fun unpaired() {
             mActivity?.runOnUiThread {
-                with(requireBinding()) {
+                with(requirePairingBinding()) {
                     pairMessage.setText(R.string.device_not_paired)
                     pairVerification.visibility = View.GONE
                     pairProgress.visibility = View.GONE
