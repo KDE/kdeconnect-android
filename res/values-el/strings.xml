@@ -50,7 +50,6 @@
   <string name="remotekeyboard_connected">Η σύνδεση με απομακρυσμένο πληκτρολόγιο είναι ενεργή</string>
   <string name="remotekeyboard_multiple_connections">Υπάρχουν περισσότερες της μίας συνδέσεις με απομακρυσμένο πληκτρολόγιο, επιλέξτε ποια συσκευή θα διαμορφώσετε</string>
   <string name="open_mousepad">Απομακρυσμένη είσοδος στοιχείων</string>
-  <string name="mousepad_info">Μετακινείστε το δάκτυλο στην οθόνη για να μετακινηθεί ο δρομέας του ποντικιού. Χτυπήστε για κλικ και χρησιμοποιήστε δύο/τρία δάκτυλα για δεξί και μεσαίο κλικ. Χρησιμοποιήστε 2 δάκτυλα για κύλιση. Πιέστε με διάρκεια για μετακίνηση και απόθεση.</string>
   <string name="mousepad_double_tap_settings_title">Ρύθμιση δύο δακτύλων για την ενέργεια χτυπήματος</string>
   <string name="mousepad_triple_tap_settings_title">Ρύθμιση τριών δακτύλων για την ενέργεια χτυπήματος</string>
   <string name="mousepad_sensitivity_settings_title">Ρύθμιση ευαισθησίας της οθόνης αφής</string>
@@ -90,7 +89,6 @@
   <string name="battery_status_format">Μπαταρία: %d%%</string>
   <string name="battery_status_low_format">Μπαταρία: %d%% Χαμηλή συάθμη</string>
   <string name="battery_status_charging_format">Μπαταρία: %d%% φόρτιση</string>
-  <string name="battery_status_unknown">Πληροφορίες για τη μπαταρία δεν είναι διαθέσιμες</string>
   <string name="category_connected_devices">Συνδεδεμένες συσκευές</string>
   <string name="category_not_paired_devices">Διαθέσιμες συσκευές</string>
   <string name="category_remembered_devices">Συσκευές στη μνήμη</string>
@@ -354,7 +352,6 @@
   <string name="konqi">Konqi</string>
   <string name="rise_up">Άνοδος</string>
   <string name="rise_down">Κάθοδος</string>
-  <string name="app_description">Εφαρμογή γα πολλές πλατφόρμες που επιτρέπει στις συσκευές σας να επικοινωνούν (π.χ. το κινητό με τον υπολογιστή)</string>
   <string name="about_kde_about">&lt;h1&gt;Σχετικά&lt;/h1&gt; &lt;p&gt;Το KDE είναι μια παγκόσμια κοινότητα μηχανικών λογισμικού, καλλιτεχνών, συγγραφέων, μεταφραστών και δημιουργών οι οποίοι είναι αφοσιωμένοι στην ανάπτυξη του &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Ελεύθερου Λογισμικού&lt;/a&gt;. Το KDE παράγει το περιβάλλον γραφείου Plasma, εκατοντάδες εφαρμογές και πολλές βιβλιοθήκες που τις υποστηρίζουν.&lt;/p&gt; &lt;p&gt;Το KDE είναι ένα συνεργατικό εγχείρημα: καμιά οντότητα από μόνη της δεν ελέγχει την κατεύθυνση ή τα προϊόντα του. Αντίθετα, συνεργαζόμαστε για να επιτύχουμε τον κοινό στόχο της κατασκευής του πληρέστερου στον κόσμο Ελεύθερου Λογισμικού. Οποιοσδήποτε είναι ευπρόσδεκτος να &lt;a href=https://community.kde.org/Get_Involved&gt;γίνει μέλος και να συμβάλει&lt;/a&gt; στο KDE, και εσείς φυσικά.&lt;/p&gt; Επισκεφθείτε το &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; για περισσότερες πληροφορίες σχετικά με την κοινότητα του KDE και το λογισμικό που παράγουμε.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Αναφέρετε σφάλματα ή επιθυμίες στο&lt;/h1&gt; &lt;p&gt;Το Λογισμικό μπορεί πάντα να βελτιώνεται και η ομάδα του KDE είναι έτοιμη γι\' αυτό. Ωστόσο, εσείς - ο χρήστης - πρέπει να μας ενημερώνετε αν κάτι δεν λειτουργεί όπως θα έπρεπε ή αν θα μπορούσε να γίνει καλύτερο.&lt;/p&gt; &lt;p&gt;Το KDE έχει ένα σύστημα ανίχνευσης σφαλμάτων. Επισκεφθείτε το &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; ή χρησιμοποιήστε το κουμπί «Αναφορά σφάλματος» από την οθόνη Σχετικά για να αναφέρετε σφάλματα.&lt;/p&gt; Αν έχετε κάποια πρόταση για βελτίωση, χρησιμοποιήστε το σύστημα ανίχνευσης σφαλμάτων για να εγγράψετε την επιθυμία σας. Βεβαιωθείτε ότι χρησιμοποιείτε τη «Λίστα επιθυμιών».</string>
   <string name="about_kde_join_kde">&lt;h1&gt;Γίνετε μέλη του KDE&lt;/h1&gt; &lt;p&gt;Δεν χρειάζεται να είστε προγραμματιστής για να γίνετε μέλος της ομάδας του KDE. Μπορείτε να ενταχθείτε στις εθνικές ομάδες που μεταφράζουν τις διεπαφές των εφαρμογών. Μπορείτε να παρέχετε γραφικά, θέματα, ήχους και να βελτιώσετε την τεκμηρίωση. Εσείς αποφασίζετε!&lt;/p&gt; &lt;p&gt;Επισκεφθείτε το &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; για πληροφρίες σε ορισμένα έργα στα οποία μπορείτε να δηλώσετε συμμετοχή.&lt;/p&gt; Αν χρειάζεστε πρόσθετη πληροφόρηση ή τεκμηρίωση, μια επίσκεψη στο &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; θα σας παρέχει ό,τι χρειάζεστε.</string>

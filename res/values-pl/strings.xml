@@ -51,12 +51,12 @@
   <string name="remotekeyboard_connected">Połączenie zdalnej klawiatury jest nawiązane</string>
   <string name="remotekeyboard_multiple_connections">Nawiązano więcej niż jedno połączenie zdalnej klawiatury, wybierz urządzenie do ustawienia</string>
   <string name="open_mousepad">Zdalne sterowanie</string>
-  <string name="mousepad_info">Przesuwanie palcem po ekranie przesuwa wskaźnik myszy. Stuknięcie jednym, dwoma i trzema palcami wywołuje odpowiednio naciśnięcie lewym, prawym i środkowym przyciskiem myszy. Dwa palce przewijają. Długie naciśnięcie rozpoczyna czynność przeciągania i upuszczania.</string>
   <string name="mousepad_keyboard_input_not_supported">Wpisywanie z klawiatury jest nieobsługiwane przez sparowane urządzenie</string>
   <string name="mousepad_single_tap_settings_title">Ustaw działanie po stuknięciu jednym palcem</string>
   <string name="mousepad_double_tap_settings_title">Ustaw działanie po stuknięciu dwoma palcami</string>
   <string name="mousepad_triple_tap_settings_title">Ustaw działanie po stuknięciu trzema palcami</string>
   <string name="mousepad_sensitivity_settings_title">Ustaw czułość gładzika</string>
+  <string name="mousepad_mouse_buttons_title">Pokaż przyciski myszy</string>
   <string name="mousepad_acceleration_profile_settings_title">Ustaw przyspieszenie wskaźnika</string>
   <string name="mousepad_scroll_direction_title">Odwróć stronę przewijania</string>
   <string-array name="mousepad_tap_entries">
@@ -99,7 +99,6 @@
   <string name="battery_status_format">Bateria: %d%%</string>
   <string name="battery_status_low_format">Bateria: %d%% niski poziom</string>
   <string name="battery_status_charging_format">Bateria: %d%% ładowanie</string>
-  <string name="battery_status_unknown">Dane o baterii są niedostępne</string>
   <string name="category_connected_devices">Podłączone urządzenia</string>
   <string name="category_not_paired_devices">Dostępne urządzenia</string>
   <string name="category_remembered_devices">Zapamiętane urządzenia</string>
@@ -234,8 +233,11 @@
   <string name="sftp_action_mode_menu_delete">Usuń</string>
   <string name="sftp_no_storage_locations_configured">Nie ustawiono miejsc w pamięci</string>
   <string name="sftp_saf_permission_explanation">Aby przeglądać pliki zdalnie, należy ustawić miejsca w pamięci</string>
+  <string name="sftp_manage_storage_permission_explanation">Aby zezwolić na zdalny dostęp do plików tego urządzenia, musisz zezwolić na zarządzanie pamięcią przez KDE Connect.</string>
   <string name="no_players_connected">Nie znaleziono żadnych odtwarzaczy</string>
   <string name="send_files">Wysyłanie plików</string>
+  <string name="block_notification_contents">Blokuj treść powiadomień</string>
+  <string name="block_notification_images">Blokuj obrazy powiadomień</string>
   <string name="pairing_title">Urządzenia KDE Connect</string>
   <string name="pairing_description">Tu powinny pojawić się urządzenia podłączone do tej samej sieci i które także mają uruchomione KDE Connect.</string>
   <string name="device_rename_title">Zmień nazwę urządzenia</string>
@@ -258,8 +260,10 @@
   <string name="close">Zamknij</string>
   <string name="plugins_need_permission">Niektóre wtyczki wymagają uprawnień do swojego działania (stuknij, aby dowiedzieć się więcej)</string>
   <string name="permission_explanation">Ta wtyczka wymaga uprawnień do działania</string>
+  <string name="all_permissions_granted">Przyznano wszystkie uprawnienia 🎉</string>
   <string name="optional_permission_explanation">Musisz przydzielić dodatkowe uprawnienia, aby włączyć wszystkie funkcje</string>
   <string name="plugins_need_optional_permission">Niektóre wtyczki mają ograniczone możliwości ze względu na ograniczone uprawnienia (stuknij, aby dowiedzieć się więcej)</string>
+  <string name="share_optional_permission_explanation">Aby odbierać pliki musisz zezwolić na dostęp do pamięci</string>
   <string name="telepathy_permission_explanation">Aby czytać i pisać esemesy na innym urządzeniu, należy nadać uprawnienia do esemesów</string>
   <string name="telephony_permission_explanation">Aby widzieć rozmowy telefoniczne na innym urządzeniu, należy nadać uprawnienia do dziennika rozmów i stanu telefonu</string>
   <string name="telephony_optional_permission_explanation">Aby widzieć nazwę kontaktu zamiast numeru telefonu, należy zezwolić na dostęp do kontaktów telefonu</string>
@@ -386,7 +390,6 @@
   <string name="clear_compose">Wyczyść</string>
   <string name="send_compose">Wyślij</string>
   <string name="open_compose_send">Napisz tekst</string>
-  <string name="app_description">"Wieloplatformowa aplikacja, która umożliwia twoim urządzeniom porozumiewanie się (np. twojemu telefonowi i komputerowi). "</string>
   <string name="about_kde_about">"&lt;h1&gt;O programie&lt;/h1&gt; &lt;p&gt;KDE to światowa społeczność inżynierów oprogramowania, artystów, pisarzy, tłumaczy i twórców, którzy są częścią rozwoju &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Wolnego Oprogramowania&lt;/a&gt;. KDE tworzy środowisko pulpitu Plazmy, setki aplikacji  i wiele bibliotek programistycznych, aby je wspierać.&lt;/p&gt; &lt;p&gt;KDE jest przedsięwzięciem istniejącym ze współpracy; jego ruchami, czy produktami, nie steruje żaden pojedynczy byt. Pracujemy razem, aby osiągnąć wspólny cel, czyli budowę najlepszego Wolnego Oprogramowania na świecie. Każdy jest mile wiedziany, żeby &lt;a href=https://community.kde.org/Get_Involved&gt;dołączył i zaczął współtworzyć&lt;/a&gt; KDE, włączając w to ciebie.&lt;/p&gt; Odwiedź &lt; href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; po więcej szczegółów nt. społeczności KDE i oprogramowania, które tworzymy."</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Zgłaszaj błędy lub życzenia&lt;/h1&gt; &lt;p&gt;Oprogramowanie zawsze można ulepszyć, a zespół KDE jest gotowy, aby to robić. Jednakże ty - użytkownik - musisz nam powiedzieć o tym, co nie działa jak powinno lub co można zrobić lepiej.&lt;/p&gt; &lt;p&gt;KDE ma system obsługi błędów. Odwiedź &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; lub użyj przycisku \"Zgłoś błąd\" z ekranu o programie do zgłaszania błędów.&lt;/p&gt; Jeśli masz sugestie nt. usprawnień, to także możesz ją zarejestrować w naszym systemie obsługi błędów. Upewnij się, że użyjesz ważności o nazwie \"Lista życzeń\".</string>
   <string name="about_kde_join_kde">&lt;h1&gt;Dołącz do KDE&lt;/h1&gt; &lt;p&gt;Nie musisz być programistą, aby być członkiem zespołu KDE. Możesz dołączyć do narodowych zespołów, które tłumaczą oprogramowanie. Możesz dostarczać grafikę, zestawy wyglądu, dźwięki i ulepszać dokumentację. To ty decydujesz!&lt;/p&gt; &lt;p&gt;odwiedź &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; po szczegóły nt. projektów, w których możesz wziąć udział .&lt;/p&gt; Jeśli potrzebujesz więcej szczegółów lub dokumentacji, to odwiedziny na &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; dadzą ci to, czego chcesz.</string>

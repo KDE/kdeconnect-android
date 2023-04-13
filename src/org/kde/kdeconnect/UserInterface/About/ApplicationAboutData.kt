@@ -14,7 +14,7 @@ import org.kde.kdeconnect_tp.R
 * Add authors and credits here
  */
 fun getApplicationAboutData(context: Context): AboutData {
-    val aboutData = AboutData(context.getString(R.string.kde_connect), R.string.app_description, R.drawable.icon, BuildConfig.VERSION_NAME, context.getString(R.string.copyright_statement),
+    val aboutData = AboutData(context.getString(R.string.kde_connect), R.drawable.icon, BuildConfig.VERSION_NAME,
                               context.getString(R.string.report_bug_url), context.getString(R.string.website_url), context.getString(R.string.source_code_url), context.getString(R.string.donate_url),
                               R.string.everyone_else)
 
@@ -37,6 +37,8 @@ fun getApplicationAboutData(context: Context): AboutData {
     aboutData.authors += AboutPerson("Maxim Leshchenko", R.string.maxim_leshchenko_task, "cnmaks90@gmail.com")
     aboutData.authors += AboutPerson("Holger Kaelberer", R.string.holger_kaelberer_task, "holger.k@elberer.de")
     aboutData.authors += AboutPerson("Saikrishna Arcot", R.string.saikrishna_arcot_task, "saiarcot895@gmail.com")
+
+    // Have you made some contributions and think your name should be here? Open a MR to add yourself to the list :)
 
     return aboutData
 }

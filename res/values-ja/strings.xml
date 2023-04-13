@@ -51,7 +51,6 @@
   <string name="remotekeyboard_connected">リモートキーボード接続はアクティブです</string>
   <string name="remotekeyboard_multiple_connections">複数のリモートキーボード接続があります。設定するデバイスを選択してください</string>
   <string name="open_mousepad">リモート入力</string>
-  <string name="mousepad_info">スクリーン上で指を動かしてマウスカーソルを移動します。タップは左クリックになり、2本指タップは右クリック、3本指タップは中クリックになります。2本指でスクロール、長押しでドラッグ&amp;ドロップができます。</string>
   <string name="mousepad_keyboard_input_not_supported">キーボード入力はペアリングされたデバイスによってサポートされていません</string>
   <string name="mousepad_single_tap_settings_title">1本指タップのアクションを設定</string>
   <string name="mousepad_double_tap_settings_title">2本指タップのアクションを設定</string>
@@ -99,7 +98,6 @@
   <string name="battery_status_format">バッテリ: %d%%</string>
   <string name="battery_status_low_format">バッテリ: %d%% 残量低下</string>
   <string name="battery_status_charging_format">バッテリ: %d%% 充電中</string>
-  <string name="battery_status_unknown">バッテリ情報が利用できません</string>
   <string name="category_connected_devices">接続済みのデバイス</string>
   <string name="category_not_paired_devices">利用可能なデバイス</string>
   <string name="category_remembered_devices">ペアリング済みのデバイス</string>
@@ -359,7 +357,6 @@
   <string name="clear_compose">クリア</string>
   <string name="send_compose">送信</string>
   <string name="open_compose_send">テキストを作成する</string>
-  <string name="app_description">複数のデバイスを連携させるマルチプラットフォームなアプリケーション (例: 携帯電話とコンピュータ)</string>
   <string name="maintainer_and_developer">メンテナと開発者</string>
   <string name="developer">開発者</string>
   <string name="apple_support">macOS サポート。iOS サポートに取り組み中</string>

@@ -37,8 +37,10 @@ import org.kde.kdeconnect.async.BackgroundJob;
 import org.kde.kdeconnect.async.BackgroundJobHandler;
 import org.kde.kdeconnect_tp.R;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * A Plugin for sharing and receiving files and uris.
@@ -224,54 +226,57 @@ public class SharePlugin extends Plugin {
 
     public void share(Intent intent) {
         Bundle extras = intent.getExtras();
-        if (extras != null) {
-            if (extras.containsKey(Intent.EXTRA_STREAM)) {
+        ArrayList<Uri> streams = streamsFromIntent(intent, extras);
+        if (streams != null && !streams.isEmpty()) {
+            sendUriList(streams);
+        } else if (extras != null && extras.containsKey(Intent.EXTRA_TEXT)) {
+            Log.i("SharePlugin", "Intent contains text to share");
+            String text = extras.getString(Intent.EXTRA_TEXT);
+            String subject = extras.getString(Intent.EXTRA_SUBJECT);
 
-                try {
-
-                    ArrayList<Uri> uriList;
-                    if (!Intent.ACTION_SEND.equals(intent.getAction())) {
-                        uriList = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
-                    } else {
-                        Uri uri = extras.getParcelable(Intent.EXTRA_STREAM);
-                        uriList = new ArrayList<>();
-                        uriList.add(uri);
-                    }
-
-                    sendUriList(uriList);
-                } catch (Exception e) {
-                    Log.e("ShareActivity", "Exception");
-                    e.printStackTrace();
+            //Hack: Detect shared youtube videos, so we can open them in the browser instead of as text
+            if (StringUtils.endsWith(subject, "YouTube")) {
+                int index = text.indexOf(": http://youtu.be/");
+                if (index > 0) {
+                    text = text.substring(index + 2); //Skip ": "
                 }
-
-            } else if (extras.containsKey(Intent.EXTRA_TEXT)) {
-                String text = extras.getString(Intent.EXTRA_TEXT);
-                String subject = extras.getString(Intent.EXTRA_SUBJECT);
-
-                //Hack: Detect shared youtube videos, so we can open them in the browser instead of as text
-                if (StringUtils.endsWith(subject, "YouTube")) {
-                    int index = text.indexOf(": http://youtu.be/");
-                    if (index > 0) {
-                        text = text.substring(index + 2); //Skip ": "
-                    }
-                }
-
-                boolean isUrl;
-                try {
-                    new URL(text);
-                    isUrl = true;
-                } catch (Exception e) {
-                    isUrl = false;
-                }
-                NetworkPacket np = new NetworkPacket(SharePlugin.PACKET_TYPE_SHARE_REQUEST);
-                if (isUrl) {
-                    np.set("url", text);
-                } else {
-                    np.set("text", text);
-                }
-                device.sendPacket(np);
             }
+            boolean isUrl;
+            try {
+                new URL(text);
+                isUrl = true;
+            } catch (MalformedURLException e) {
+                isUrl = false;
+            }
+            NetworkPacket np = new NetworkPacket(SharePlugin.PACKET_TYPE_SHARE_REQUEST);
+            if (isUrl) {
+                np.set("url", text);
+            } else {
+                np.set("text", text);
+            }
+            device.sendPacket(np);
+        } else {
+            Log.e("SharePlugin", "There's nothing we know how to share");
         }
+    }
+
+    private ArrayList<Uri> streamsFromIntent(Intent intent, Bundle extras) {
+        if (extras == null || !extras.containsKey(Intent.EXTRA_STREAM)) {
+            return null;
+        }
+        Log.i("SharePlugin", "Intent contains streams to share");
+        ArrayList<Uri> uriList;
+        if (Intent.ACTION_SEND_MULTIPLE.equals(intent.getAction())) {
+            uriList = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
+        } else {
+            uriList = new ArrayList<>();
+            uriList.add(extras.getParcelable(Intent.EXTRA_STREAM));
+        }
+        uriList.removeAll(Collections.singleton(null));
+        if (uriList.isEmpty()) {
+            Log.w("SharePlugin", "All streams were null");
+        }
+        return uriList;
     }
 
     @Override

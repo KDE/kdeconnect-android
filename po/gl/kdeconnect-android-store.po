@@ -1,23 +1,24 @@
 # KDE Connect store listing texts
 # Copyright (C) 2014 Albert Vaca Cintora
 # This file is distributed under the same license as kdeconnect-android.
-#
 # Albert Vaca Cintora <albertvaka@gmail.com>, 2014.
 # Adrián Chaves Fernández (Gallaecio) <adriyetichaves@gmail.com>, 2015.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2023.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2019-06-30 11:38+0200\n"
-"PO-Revision-Date: 2015-07-10 18:40+0100\n"
-"Last-Translator: Adrián Chaves Fernández (Gallaecio) <adriyetichaves@gmail."
-"com>\n"
+"PO-Revision-Date: 2023-04-06 22:26+0200\n"
+"Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #: dummy:1
 msgid "Integrate Android with the KDE Plasma Desktop."
@@ -56,9 +57,9 @@ msgstr ""
 "\n"
 "- Compartir ficheiros e enderezos URL con KDE desde calquera aplicativo, sen "
 "restricións.\n"
-"- Emulación de suerficie táctil: use a pantalla do teléfono como superficie "
+"- Emulación de superficie táctil: use a pantalla do teléfono como superficie "
 "táctil para o computador*.\n"
-"- Sincroniza ción de notificacións(4.3+): acceda ás notificacións de Android "
+"- Sincronización de notificacións(4.3+): acceda ás notificacións de Android "
 "desde o computador.\n"
 "- Portapapeis compartido: copie e pegue entre o teléfono e o computador.\n"
 "- Mando a distancia de son e vídeo: use o teléfono como mando a distancia "

@@ -51,7 +51,6 @@
   <string name="remotekeyboard_connected">La connessione della tastiera remota è attiva</string>
   <string name="remotekeyboard_multiple_connections">Ci sono più connessioni di tastiere remote, seleziona il dispositivo da configurare</string>
   <string name="open_mousepad">Impulso remoto</string>
-  <string name="mousepad_info">Muovi un dito sullo schermo per spostare il puntatore del mouse. Tocca per un clic e usa due/tre dita per i pulsanti destro e centrale. Utilizza 2 dita per scorrere. Utilizza una pressione lunga per trascinare e rilasciare.</string>
   <string name="mousepad_keyboard_input_not_supported">Immissione da tastiera non supportata dal dispositivo associato</string>
   <string name="mousepad_single_tap_settings_title">Imposta azione per il tocco a un dito</string>
   <string name="mousepad_double_tap_settings_title">Imposta azione per il tocco a due dita</string>
@@ -99,7 +98,6 @@
   <string name="battery_status_format">Batteria: %d%%</string>
   <string name="battery_status_low_format">Batteria: %d%% livello basso</string>
   <string name="battery_status_charging_format">Batteria: %d%% in carica</string>
-  <string name="battery_status_unknown">Informazioni sulla batteria non disponibili</string>
   <string name="category_connected_devices">Dispositivi connessi</string>
   <string name="category_not_paired_devices">Dispositivi disponibili</string>
   <string name="category_remembered_devices">Dispositivi memorizzati</string>
@@ -245,6 +243,7 @@
   <string name="close">Chiudi</string>
   <string name="plugins_need_permission">Alcune estensioni hanno bisogno di permessi per funzionare (tocca per maggiori informazioni):</string>
   <string name="permission_explanation">Questa estensione ha bisogno di permessi per funzionare</string>
+  <string name="all_permissions_granted">Tutti i permessi accordati 🎉</string>
   <string name="optional_permission_explanation">Devi concedere permessi aggiuntivi per abilitare tutte le funzioni</string>
   <string name="plugins_need_optional_permission">Alcune estensioni hanno funzioni disabilitate per una mancanza di permessi (tocca per maggiori informazioni):</string>
   <string name="share_optional_permission_explanation">Per ricevere i file devi consentire l\'accesso allo spazio di archiviazione</string>
@@ -374,7 +373,6 @@
   <string name="clear_compose">Pulisci</string>
   <string name="send_compose">Invia</string>
   <string name="open_compose_send">Componi il testo</string>
-  <string name="app_description">Applicazione multipiattaforma che consente ai tuoi dispositivi di comunicare (ad esempio, il tuo telefono e il tuo computer)</string>
   <string name="about_kde_about">&lt;h1&gt;Informazioni&lt;/h1&gt; &lt;p&gt;KDE è una comunità mondiale di ingegneri del software, artisti, scrittori, traduttori e creatori che si impegnano a sviluppare &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;software libero&lt;/a&gt;. KDE produce l\'ambiente desktop Plasma, centinaia di applicazioni e le numerose librerie software che le supportano.&lt;/p&gt; &lt;p&gt;KDE è un\'impresa cooperativa: nessuna singola entità ne controlla la direzione o i prodotti. Invece, lavoriamo insieme per raggiungere l\'obiettivo comune di costruire il miglior software libero del mondo. Tutti sono invitati a &lt;a href=https://community.kde.org/Get_Involved&gt;unirsi e contribuire&lt;/a&gt; a KDE, incluso te.&lt;/p&gt; Visita &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; per ulteriori informazioni sulla comunità KDE e sul software che produciamo.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Segnala bug o desideri&lt;/h1&gt; &lt;p&gt;Il software può sempre essere migliorato e il team di KDE è pronto a farlo. Tuttavia, tu - l\'utente - devi dirci quando qualcosa non funziona come previsto o potrebbe essere fatto meglio.&lt;/p&gt; &lt;p&gt;KDE ha un sistema di tracciamento dei bug. Visita &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; oppure utilizza il pulsante «Segnala bug» dalla schermata delle informazioni per segnalare i bug.&lt;/p&gt; Se hai un suggerimento per il miglioramento, puoi utilizzare il sistema di tracciamento dei bug per registrare il tuo desiderio. Assicurati di utilizzare «Wishlist» per il campo Severity.</string>
   <string name="about_kde_join_kde">&lt;h1&gt;Unisciti a KDE&lt;/h1&gt; &lt;p&gt;Non devi essere uno sviluppatore di software per essere un membro della squadra di KDE. Puoi unirti ai gruppi nazionali che traducono le interfacce dei programmi. Puoi fornire grafica, temi, suoni e documentazione migliorata. Decidi tu!&lt;/p&gt; &lt;p&gt;Visita &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; per informazioni su alcuni progetti a cui puoi partecipare.&lt;/p&gt; Se hai bisogno di ulteriori informazioni o documentazione, visita &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; ti fornirà ciò di cui hai bisogno.</string>

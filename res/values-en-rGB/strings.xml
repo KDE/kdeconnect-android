@@ -51,7 +51,6 @@
   <string name="remotekeyboard_connected">Remote keyboard connection is active</string>
   <string name="remotekeyboard_multiple_connections">There is more than one remote keyboard connection, select the device to configure</string>
   <string name="open_mousepad">Remote input</string>
-  <string name="mousepad_info">Move a finger on the screen to move the mouse cursor. Tap for a click, and use two/three fingers for right and middle buttons. Use 2 fingers to scroll. Use a long press to drag\'n drop.</string>
   <string name="mousepad_keyboard_input_not_supported">Keyboard input not supported by the paired device</string>
   <string name="mousepad_single_tap_settings_title">Set one finger tap action</string>
   <string name="mousepad_double_tap_settings_title">Set two finger tap action</string>
@@ -99,7 +98,6 @@
   <string name="battery_status_format">Battery: %d%%</string>
   <string name="battery_status_low_format">Battery: %d%% Low Battery</string>
   <string name="battery_status_charging_format">Battery: %d%% charging</string>
-  <string name="battery_status_unknown">Battery information not available</string>
   <string name="category_connected_devices">Connected devices</string>
   <string name="category_not_paired_devices">Available devices</string>
   <string name="category_remembered_devices">Remembered devices</string>
@@ -375,7 +373,6 @@
   <string name="clear_compose">Clear</string>
   <string name="send_compose">Send</string>
   <string name="open_compose_send">Compose text</string>
-  <string name="app_description">Multi-platform app that allows your devices to communicate (e.g., your phone and your computer)</string>
   <string name="about_kde_about">&lt;h1&gt;About&lt;/h1&gt; &lt;p&gt;KDE is a world-wide community of software engineers, artists, writers, translators and creators who are committed to &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Free Software&lt;/a&gt; development. KDE produces the Plasma desktop environment, hundreds of applications, and the many software libraries that support them.&lt;/p&gt; &lt;p&gt;KDE is a cooperative enterprise: no single entity controls its direction or products. Instead, we work together to achieve the common goal of building the world\'s finest Free Software. Everyone is welcome to &lt;a href=https://community.kde.org/Get_Involved&gt;join and contribute&lt;/a&gt; to KDE, including you.&lt;/p&gt; Visit &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; for more information about the KDE community and the software we produce.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Report Bugs or Wishes&lt;/h1&gt; &lt;p&gt;Software can always be improved, and the KDE team is ready to do so. However, you - the user - must tell us when something does not work as expected or could be done better.&lt;/p&gt; &lt;p&gt;KDE has a bug tracking system. Visit &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; or use the \"Report Bug\" button from the about screen to report bugs.&lt;/p&gt; If you have a suggestion for improvement then you are welcome to use the bug tracking system to register your wish. Make sure you use the severity called \"Wishlist\".</string>
   <string name="about_kde_join_kde">&lt;h1&gt;Join KDE&lt;/h1&gt; &lt;p&gt;You do not have to be a software developer to be a member of the KDE team. You can join the national teams that translate program interfaces. You can provide graphics, themes, sounds, and improved documentation. You decide!&lt;/p&gt; &lt;p&gt;Visit &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; for information on some projects in which you can participate.&lt;/p&gt; If you need more information or documentation, then a visit to &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; will provide you with what you need.</string>

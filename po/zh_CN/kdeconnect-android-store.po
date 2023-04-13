@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2019-06-30 11:38+0200\n"
-"PO-Revision-Date: 2023-03-27 11:59\n"
+"PO-Revision-Date: 2023-04-10 14:10\n"
 "Last-Translator: Albert Vaca Cintora <albertvaka@gmail.com>\n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: dummy:1
 msgid "Integrate Android with the KDE Plasma Desktop."
-msgstr "整合Android和KDE Plasma桌面。"
+msgstr "将安卓系统与 KDE Plasma 桌面进行整合。"
 
 #: dummy:2
 msgid ""

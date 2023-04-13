@@ -51,7 +51,6 @@
   <string name="remotekeyboard_connected">Anslutning till externt tangentbord är aktiv</string>
   <string name="remotekeyboard_multiple_connections">Det finns mer än en anslutning till externt tangentbord, välj apparat att anpassa</string>
   <string name="open_mousepad">Extern inmatning</string>
-  <string name="mousepad_info">Flytta fingret på skärmen för att röra muspekaren. Rör för att klicka, och använd två eller tre fingrar för höger- och mittenknapparna. Använd två fingrar för att panorera. Använd en längre beröring för drag och släpp.</string>
   <string name="mousepad_single_tap_settings_title">Ställ in åtgärd vid en fingerberöring</string>
   <string name="mousepad_double_tap_settings_title">Ställ in åtgärd vid två fingerberöringar</string>
   <string name="mousepad_triple_tap_settings_title">Ställ in åtgärd vid tre fingerberöringar</string>
@@ -98,7 +97,6 @@
   <string name="battery_status_format">Batteri: %d %%</string>
   <string name="battery_status_low_format">Batteri: %d %% låg laddning</string>
   <string name="battery_status_charging_format">Batteri: %d %% laddas</string>
-  <string name="battery_status_unknown">Batteriinformation inte tillgänglig</string>
   <string name="category_connected_devices">Anslutna apparater</string>
   <string name="category_not_paired_devices">Tillgängliga apparater</string>
   <string name="category_remembered_devices">Ihågkomna apparater</string>
@@ -367,7 +365,6 @@
   <string name="clear_compose">Rensa</string>
   <string name="send_compose">Skicka</string>
   <string name="open_compose_send">Skriv text</string>
-  <string name="app_description">Program för flera plattformar som låter dina apparater kommunicera (t.ex. din telefon och din dator)</string>
   <string name="about_kde_about">&lt;h1&gt;Om&lt;/h1&gt; &lt;p&gt;KDE är ett världsomspännande nätverk av programvaruingenjörer, grafiker, författare, översättare och kreatörer som är engagerade i utveckling av &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;fri programvara&lt;/a&gt;. KDE producerar skrivbordsmiljön Plasma, hundratals program, och de talrika programvarubibliotek som stöder dem.&lt;/p&gt; &lt;p&gt;KDE är ett kooperativ, där ingen enskild person styr inriktningen eller produkterna. Istället arbetar vi tillsammans för att uppnå det gemensamma målet att skapa värdens finaste fria programvara. Alla är välkomna att &lt;a href=https://community.kde.org/Get_Involved&gt;gå med och bidra&lt;/a&gt; till KDE, inklusive du själv.&lt;/p&gt; Besök &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; för ytterligare information om KDE-gemenskapen och programvaran vi skapar.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Rapportera fel eller önskemål&lt;/h1&gt; &lt;p&gt;Programvara kan alltid förbättras, och KDE-gruppen är beredd att göra det. Men du - användaren - måste berätta för oss om något inte fungerar som förväntat eller kunde ha gjorts bättre.&lt;/p&gt; &lt;p&gt;KDE har ett felrapporteringssystem. Besök &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; eller använd dialogrutan \"Rapportera fel...\" från om-skärmen för att rapportera fel.&lt;/p&gt; Om du har ett förslag på en förbättring kan du använda felrapporteringssystemet för att registrera din önskan. Se då till att du använder allvarlighetsgraden \"Önskan\".</string>
   <string name="about_kde_join_kde">&lt;h1&gt;Gå med i KDE&lt;/h1&gt; &lt;p&gt;Du behöver inte vara en programutvecklare för att bli medlem i KDE-gruppen. Du kan gå med i de nationella grupperna som översätter programmens gränssnitt. Du kan bidra med grafik, teman, ljud och förbättrad dokumentation. Det är upp till dig!&lt;/p&gt; &lt;p&gt;Besök &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; för information om några projekt som du kan delta i.&lt;/p&gt;Om du behöver mer information eller dokumentation kommer ett besök på &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; att ge dig det du behöver.</string>

@@ -9,7 +9,6 @@ package org.kde.kdeconnect.Plugins.MousePadPlugin;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.GestureDetector;
 import android.view.HapticFeedbackConstants;
 import android.view.Menu;
@@ -23,13 +22,13 @@ import android.hardware.Sensor;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
-import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import androidx.preference.PreferenceManager;
 import org.kde.kdeconnect.BackgroundService;
-import org.kde.kdeconnect.UserInterface.ThemeUtil;
+import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.util.Objects;
@@ -61,6 +60,8 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     private PointerAccelerationProfile.MouseDelta mouseDelta; // to be reused on every touch move event
 
     private KeyListenerView keyListenerView;
+
+    private SharedPreferences prefs = null;
 
     enum ClickType {
         LEFT, RIGHT, MIDDLE, NONE;
@@ -134,13 +135,15 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         keyListenerView = findViewById(R.id.keyListener);
         keyListenerView.setDeviceId(deviceId);
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
         if (prefs.getBoolean(getString(R.string.mousepad_scroll_direction), false)) {
             scrollDirection = -1;
         } else {
             scrollDirection = 1;
         }
-        if ((prefs.getBoolean(getString(R.string.gyro_mouse_enabled), false)) && (mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE) != null)) {
+        if (mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE) != null
+                && prefs.getBoolean(getString(R.string.gyro_mouse_enabled), false)) {
             allowGyro = true;
         }
         String singleTapSetting = prefs.getString(getString(R.string.mousepad_single_tap_key),
@@ -202,16 +205,27 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
     @Override
     protected void onResume() {
-        if (allowGyro == true && gyroEnabled == false) {
+        if (allowGyro && !gyroEnabled) {
             mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE), SensorManager.SENSOR_DELAY_GAME);
             gyroEnabled = true;
         }
+
+        if (prefs.getBoolean(getString(R.string.mousepad_mouse_buttons_enabled_pref), true)) {
+            findViewById(R.id.mouse_buttons).setVisibility(View.VISIBLE);
+            findViewById(R.id.mouse_click_left).setOnClickListener(v -> sendLeftClick());
+            findViewById(R.id.mouse_click_middle).setOnClickListener(v -> sendMiddleClick());
+            findViewById(R.id.mouse_click_right).setOnClickListener(v -> sendRightClick());
+        } else {
+            findViewById(R.id.mouse_buttons).setVisibility(View.GONE);
+        }
+        invalidateMenu();
+
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        if (gyroEnabled == true) {
+        if (gyroEnabled) {
             mSensorManager.unregisterListener(this);
             gyroEnabled = false;
         }
@@ -219,7 +233,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     }
 
     @Override protected void onStop() {
-        if (gyroEnabled == true) {
+        if (gyroEnabled) {
             mSensorManager.unregisterListener(this);
             gyroEnabled = false;
         }
@@ -230,6 +244,12 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_mousepad, menu);
+
+        boolean mouseButtonsEnabled = prefs
+                .getBoolean(getString(R.string.mousepad_mouse_buttons_enabled_pref), true);
+        menu.findItem(R.id.menu_right_click).setVisible(!mouseButtonsEnabled);
+        menu.findItem(R.id.menu_middle_click).setVisible(!mouseButtonsEnabled);
+
         return true;
     }
 
@@ -241,6 +261,12 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
             return true;
         } else if (id == R.id.menu_middle_click) {
             sendMiddleClick();
+            return true;
+        } else if (id == R.id.menu_open_mousepad_settings) {
+            Intent intent = new Intent(this, PluginSettingsActivity.class)
+                    .putExtra(PluginSettingsActivity.EXTRA_DEVICE_ID, deviceId)
+                    .putExtra(PluginSettingsActivity.EXTRA_PLUGIN_KEY, MousePadPlugin.class.getSimpleName());
+            startActivity(intent);
             return true;
         } else if (id == R.id.menu_show_keyboard) {
             BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> {

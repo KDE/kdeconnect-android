@@ -51,7 +51,6 @@
   <string name="remotekeyboard_connected">Vzdálené připojení klávesnice je aktivní</string>
   <string name="remotekeyboard_multiple_connections">Je k dispozici více než jedno připojení klávesnice. Vyberte zařízení pro jeho nastavení.</string>
   <string name="open_mousepad">Vzdálený vstup</string>
-  <string name="mousepad_info">Pohybujte prstem po obrazovce pro pohybování kurzorem myši. Ťukněte pro kliknutí a použijte dva/tři prsty jako pravé a prostřední tlačítko. Použijte 2 prsty pro posunování. Pro přetažení dlouze podržte.</string>
   <string name="mousepad_keyboard_input_not_supported">Vstup pomocí klávesnice není spárovaným zařízením podporován</string>
   <string name="mousepad_single_tap_settings_title">Nastavit činnost pro ťuknutí prstem</string>
   <string name="mousepad_double_tap_settings_title">Nastavit činnost pro ťuknutí dvěma prsty</string>
@@ -99,7 +98,6 @@
   <string name="battery_status_format">Baterie: %d%%</string>
   <string name="battery_status_low_format">Baterie: %d%% Téměř vybitá baterie</string>
   <string name="battery_status_charging_format">Battery: %d%% nabíjí se</string>
-  <string name="battery_status_unknown">Informace o baterii jsou nedostupné</string>
   <string name="category_connected_devices">Připojená zařízení</string>
   <string name="category_not_paired_devices">Dostupná zařízení</string>
   <string name="category_remembered_devices">Zapamatovaná zařízení</string>
@@ -389,7 +387,6 @@
   <string name="clear_compose">Vyprázdnit</string>
   <string name="send_compose">Odeslat</string>
   <string name="open_compose_send">Napsat text</string>
-  <string name="app_description">Multiplatformní aplikace, která umožňuje vašim zařízením komunikaci (např. váš telefon a počítač)</string>
   <string name="about_kde_about">&lt;h1&gt;O KDE&lt;/h1&gt; &lt;p&gt;KDE je celosvětová komunita softwarových inženýrů, výtvarníků, překladatelů a jiných přispěvatelů, kteří se odevzdali vývoji &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Svobodného Softwaru&lt;/a&gt;. KDE vytvořilo pracovní prostředí Plasma, stovky aplikací a spousty knihoven, jenž je podporují. &lt;/p&gt; &lt;p&gt;KDE je společné úsilí, kde žádná společnost neřídí jeho směr nebo produkty. Namísto toho spolupracujeme na společném cíli jímž je vytvoření nejlepšího Free Softwaru. Každý je vítán aby &lt;a href=https://community.kde.org/Get_Involved&gt;se zapojil a přispíval&lt;/a&gt; do KDE, včetně vás. Více informací o komunitě KDE a softwaru, na kterém pracujeme najdete na &lt;/a&gt;$3&lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt;.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Hlaste chyby a návrhy&lt;/h1&gt; &lt;p&gt;Software je možno neustále vylepšovat a tým KDE je k tomu připraven. Avšak vy, uživatel, nám musíte sdělit, když něco nefunguje tak, jak by se očekávalo nebo by mělo být uděláno lépe.&lt;/p&gt; &lt;p&gt;KDE má systém sledování chyb. Chcete-li tedy nahlásit chybu, navštivte &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; nebo použijte dialog \"Nahlásit chybu...\".&lt;/p&gt; Máte-li náměty na vylepšení, budeme rádi, pošlete-li nám svoje přání. Ujistěte se však, že jste označili chybové hlášení jako \"Přání\".</string>
   <string name="about_kde_join_kde">&lt;h1&gt;Přidejte se ke KDE&lt;/h1&gt; &lt;p&gt;K tomu, abyste se stali členem týmu KDE, není zapotřebí být vývojářem softwaru. Můžete se připojit k národním týmům, které překládají programy. Můžete vytvářet grafiku, motivy, zvuky a lepší dokumentaci. Vy se rozhodněte!&lt;/p&gt; &lt;p&gt;Navštivte &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; kde naleznete informace o některých projektech, kterých se můžete zúčastnit.&lt;/p&gt; Potřebujete-li více informací nebo dokumentace, pak návštěva na &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; vám poskytne, co potřebujete.&lt;/p&gt;České stránky o KDE se nacházejí na adrese &lt;a href=\"http://czechia.kde.org/\"&gt;http://czechia.kde.org/&lt;/a&gt; . Přidejte se k nám!</string>

@@ -51,7 +51,6 @@
   <string name="remotekeyboard_connected">A conexión de teclado remoto está activa.</string>
   <string name="remotekeyboard_multiple_connections">Hai máis dunha conexión de teclado remoto, seleccione o dispositivo para configurar.</string>
   <string name="open_mousepad">Entrada remota</string>
-  <string name="mousepad_info">Mova un dedo na pantalla para mover o cursor do rato. Toque para facer clic, e use dous ou tres dedos para os botóns secundario e central. Use dous dedos para desprazar. Prema durante un tempo para arrastrar e soltar.</string>
   <string name="mousepad_keyboard_input_not_supported">O dispositivo emparellado non permite entrada de teclado</string>
   <string name="mousepad_single_tap_settings_title">Definir a acción de tocar cun dedo</string>
   <string name="mousepad_double_tap_settings_title">Definir a acción de tocar con dous dedos</string>
@@ -99,7 +98,6 @@
   <string name="battery_status_format">Batería: %d%%</string>
   <string name="battery_status_low_format">Batería: %d%% (baixa)</string>
   <string name="battery_status_charging_format">Batería: %d%% (cargando)</string>
-  <string name="battery_status_unknown">A información da batería non está dispoñíbel</string>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos dispoñíbeis</string>
   <string name="category_remembered_devices">Dispositivos coñecidos</string>
@@ -245,6 +243,7 @@
   <string name="close">Pechar</string>
   <string name="plugins_need_permission">Algúns complementos necesitan permisos para funcionar (toque para máis información):</string>
   <string name="permission_explanation">Este complemento necesita permisos para funcionar.</string>
+  <string name="all_permissions_granted">Garantíronse todos os permisos 🎉</string>
   <string name="optional_permission_explanation">Ten que conceder permisos adicionais para activar todas as funcións.</string>
   <string name="plugins_need_optional_permission">Algúns complementos teñen funcionalidades desactivadas por mor dunha falta de permisos (toque para máis información):</string>
   <string name="share_optional_permission_explanation">Para recibir ficheiros ten que permitir acceder ao almacenamento</string>
@@ -374,7 +373,6 @@
   <string name="clear_compose">Borrar</string>
   <string name="send_compose">Enviar</string>
   <string name="open_compose_send">Escribir texto</string>
-  <string name="app_description">Aplicación multi-plataforma que permite aos seus dispositivos comunicarse (p. ex. o seu teléfono e o seu computador)</string>
   <string name="about_kde_about">"&lt;h1&gt;Sobre&lt;/h1&gt; &lt;p&gt;KDE é unha comunidade internacional de persoas adicadas á enxeñaría de software, á arte, á documentación, á tradución e á creación, todas elas comprometidas co desenvolvemento de &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;software libre&lt;/a&gt;. KDE produce o ambiente de escritorio Plasma, centos de aplicacións, e as moitas bibliotecas de software sobre as que estas están construídas.&lt;/p&gt; &lt;p&gt;KDE é un esforzo cooperativo: non hai unha única entidade que controle a súa dirección ou os seus produtos. No seu lugar, xuntámonos para traballar no obxectivo común de construír o mellor software libre do mundo.  Todas as persoas son benvidas a &lt;a href=https://community.kde.org/Get_Involved&gt;unirse e colaborar&lt;/a&gt; en KDE, incluída vostede.&lt;/p&gt; Visite &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; para máis información sobre a comunidade KDE e o software que produce."</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Informe de fallos ou pida melloras&lt;/h1&gt; &lt;p&gt;O software sempre pode mellorarse, e o equipo de KDE está preparado para facelo. Porén, vostede, a persoa usuaria, ten que avisarnos cando algo non funciona como espera ou podería mellorarse.&lt;/p&gt; &lt;p&gt;KDE ten un sistema de seguimento de fallos. Visite &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; ou use o botón de «Informar dun fallo» da pantalla de información para informar dun fallo.&lt;/p&gt; Se ten unha suxestión de mellora tamén pode usar o sistema de seguimento de fallos para rexistrala. Asegúrese nese caso de usar a severidade «Lista de desexos».</string>
   <string name="about_kde_join_kde">&lt;h1&gt;Únase a KDE&lt;/h1&gt; &lt;p&gt;Non necesita coñecementos de enxeñaría de software para formar parte do equipo de KDE. Pode unirse aos equipos nacionais que traducen as interfaces dos programas. Pode crear imaxes, temas, sons, e mellorar a documentación. Vostede decide!&lt;/p&gt; &lt;p&gt;Visite &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; para informarse sobre os proxectos nos que pode participar.&lt;/p&gt; Se necesita máis información ou documentación, atopará o que necesita en &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt;.</string>

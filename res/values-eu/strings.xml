@@ -51,7 +51,6 @@
   <string name="remotekeyboard_connected">Urruneko teklatuarekin konexioa aktibo dago</string>
   <string name="remotekeyboard_multiple_connections">Urruneko teklatuekin konexio bat baino gehiago dago, hautatu konfiguratu beharreko gailua</string>
   <string name="open_mousepad">Urruneko sarrera</string>
-  <string name="mousepad_info">Mugitu hatz bat pantailan zehar saguaren erakuslea mugitzeko. Egin tak klik baterako, eta erabili bi/hiru hatz eskuin eta erdiko botoietarako. Erabili 2 hatz labaintzeko. Erabili sakatze luze bat arrastatu eta jaregiteko.</string>
   <string name="mousepad_keyboard_input_not_supported">Parekatutako gailuak ez du teklatuko sarreraren euskarririk</string>
   <string name="mousepad_single_tap_settings_title">Ezarri hatz bakarrarekin tak egitearen ekintza</string>
   <string name="mousepad_double_tap_settings_title">Ezarri bi hatzez tak egitearen ekintza</string>
@@ -99,7 +98,6 @@
   <string name="battery_status_format">Bateria: %%%d</string>
   <string name="battery_status_low_format">Bateria: %%%d bateria baxu</string>
   <string name="battery_status_charging_format">Bateria: %%%d kargatzen</string>
-  <string name="battery_status_unknown">Bateriari buruzko informazioa ez dago erabilgarri</string>
   <string name="category_connected_devices">Konektatutako gailuak</string>
   <string name="category_not_paired_devices">Gailu eskuragarriak</string>
   <string name="category_remembered_devices">Gogoratutako gailuak</string>
@@ -370,7 +368,6 @@
   <string name="clear_compose">Garbitu</string>
   <string name="send_compose">Bidali</string>
   <string name="open_compose_send">Konposatu testua</string>
-  <string name="app_description">Zure gailuei haien artean komunikatzen uzten dien plataforma askotariko aplikazioa (adib., zure telefonoa eta zure ordenagailua)</string>
   <string name="about_kde_about">"&lt;h1&gt;Honi buruz&lt;/h1&gt; &lt;p&gt;KDE &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Software Askearen&lt;/a&gt; garapenarekin engaiatutako mundu osoko software ingeniari, artista, idazle, itzultzaile eta sortzaile elkarte bat da. KDEk Plasma mahaigain ingurunea, ehunka aplikazio, eta haiei euskarria ematen dieten liburutegi ugariak ekoizten ditu. &lt;/p&gt; &lt;p&gt;KDE ekimen kooperatibo bat da: ez dago bere norabidea eta produktuak kontrolatzen dituen erakunderik. Aldiz, elkarrekin lan egiten dugu guztiok partekatzen dugun helburu bera lortzeko, munduko Software Aske bikainena eraikitzearena alegia. Jende oro ongi etorria da  KDErekin &lt;a href=https://community.kde.org/Get_Involved&gt;elkartu eta laguntza ematera&lt;/a&gt;, zu barne. &lt;/p&gt; Bisitatu &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; , KDE elkartearen eta ekoizten dugun softwarearen gaineko informazio zabalagoa eskuratzeko."</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Akatsen edo nahien berri ematea&lt;/h1&gt; &lt;p&gt;Softwarea beti hobetu daiteke, eta KDE taldea horretarako prest dago. Hala ere, zuk - erabiltzailea zaren horrek - zerbait behar bezala ez dabilenean edo hobeto egin daitekeenean esan egin behar diguzu.&lt;/p&gt; &lt;p&gt;KDEk programa-akatsen gaineko jarraipena egiteko sistema bat du. Bisitatu &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; edo erabili Honi buruz pantailako «Akatsa jakinarazi» botoia.&lt;/p&gt; Hobetzeko iradokizunik baduzu, akatsen jarraipen sisteman zure nahia erregistratzera gonbidatzen zaitugu. Larritasun maila bezala \"Wishlist\" (nahien zerrenda) erabil ezazu horretarako.</string>
   <string name="about_kde_join_kde">"&lt;h1&gt;Zatoz KDEra&lt;/h1&gt; &lt;p&gt;Ez duzu software garatzailea izan behar KDEren taldeko kide izateko. Programen interfazeak itzultzen dituzten hizkuntzen taldeetara batu zaitezke. Grafikoak, gaiak, soinuak, eta dokumentazio hobetua eskain ditzakezu. Zeuk erabaki!&lt;/p&gt; &lt;p&gt;Bisitatu &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt;  parte hartu dezakezun proiektuen informazioa eskuratzeko.&lt;/p&gt; Informazio edo dokumentazio gehiago behar baduzu, &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; bisitatuz behar duzuna eskuratuko duzu."</string>

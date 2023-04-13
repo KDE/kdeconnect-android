@@ -50,7 +50,6 @@
   <string name="remotekeyboard_connected">Verbindung zu entfernter Tastatur ist aktiv</string>
   <string name="remotekeyboard_multiple_connections">Es besteht mehr als eine Verbindungen zu einer entfernten Tastatur. Um Ihre Konfiguration anzupassen, wählen Sie bitte ein Gerät aus</string>
   <string name="open_mousepad">Ferneingabe</string>
-  <string name="mousepad_info">Bewegen Sie Ihren Finger über den Bildschirm um den Mauszeiger zu bewegen. Tippen Sie auf den Bildschirm, um einen Klick zu simulieren und benutzen Sie entsprechend zwei/drei Finger für einen Rechts-/Mittelklick. Verwenden Sie zwei Finger, um zu Scrollen und einen langen Druck um Objekte zu verschieben</string>
   <string name="mousepad_double_tap_settings_title">Aktionsausführung bei Berührung mit zwei Fingern einstellen</string>
   <string name="mousepad_triple_tap_settings_title">Aktionsausführung bei Berührung mit drei Fingern einstellen</string>
   <string name="mousepad_sensitivity_settings_title">Empfindlichkeit des Touchpads einstellen</string>

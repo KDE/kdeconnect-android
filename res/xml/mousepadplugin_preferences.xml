@@ -63,6 +63,12 @@
         android:key="@string/gyro_mouse_enabled"
         android:title="Gyro mouse" />
 
+    <SwitchPreference
+        android:id="@+id/mousepad_mouse_buttons_enabled_pref"
+        android:defaultValue="true"
+        android:key="@string/mousepad_mouse_buttons_enabled_pref"
+        android:title="@string/mousepad_mouse_buttons_title" />
+
 
     <org.kde.kdeconnect.Helpers.LongSummaryPreferenceCategory
         android:key="@string/sendkeystrokes_pref_category"

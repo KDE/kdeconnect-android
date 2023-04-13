@@ -51,7 +51,6 @@
   <string name="remotekeyboard_connected">A conexão ao teclado remoto está ativa</string>
   <string name="remotekeyboard_multiple_connections">Existe mais que uma conexão a teclados remotos. Selecione o dispositivo a configurar</string>
   <string name="open_mousepad">Introdução de dados remota</string>
-  <string name="mousepad_info">Mova um dedo pela tela para mover o ponteiro do mouse. Dê um toque para clicar e use dois/três dedos para os botões da direita e do meio. Use dois dedos para rolar a tela. Use uma pressão longa para arrastar e soltar.</string>
   <string name="mousepad_double_tap_settings_title">Definir ação do toque com dois dedos</string>
   <string name="mousepad_triple_tap_settings_title">Definir ação do toque com três dedos</string>
   <string name="mousepad_sensitivity_settings_title">Definir sensibilidade do touchpad</string>
@@ -94,7 +93,6 @@
   <string name="battery_status_format">Bateria: %d%%</string>
   <string name="battery_status_low_format">Bateria: %d%% bateria baixa</string>
   <string name="battery_status_charging_format">Bateria: %d%% carregando</string>
-  <string name="battery_status_unknown">Informação de bateria não disponível</string>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos disponíveis</string>
   <string name="category_remembered_devices">Dispositivos lembrados</string>
@@ -360,7 +358,6 @@
   <string name="clear_compose">Limpar</string>
   <string name="send_compose">Enviar</string>
   <string name="open_compose_send">Compor texto</string>
-  <string name="app_description">Aplicativo multiplataforma que permite aos seus dispositivos se comunicarem (ex.: seu celular e seu computador)</string>
   <string name="maintainer_and_developer">Mantenedor e desenvolvedor</string>
   <string name="developer">Desenvolvedor</string>
   <string name="apple_support">Suporte ao macOS. Trabalhando no suporte ao iOS</string>

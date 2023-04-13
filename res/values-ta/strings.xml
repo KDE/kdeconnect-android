@@ -51,12 +51,12 @@
   <string name="remotekeyboard_connected">தொலை விசைப்பலகை இணைப்பு செயலில் உள்ளது</string>
   <string name="remotekeyboard_multiple_connections">பல தொலை விசைப்பலகை இணைப்புகள் உள்ளன. அமைக்க வேண்டிய சாதனத்தை தேர்ந்தெடுங்கள்</string>
   <string name="open_mousepad">தொலை உள்ளீடு</string>
-  <string name="mousepad_info">சுட்டிக்குறியை நகர்த்த ஒரு விரலை திரையில் நகர்த்தவும். \'க்ளிக்\' செய்வதற்கு தட்டுங்கள். வலது/நடு சுட்டி பட்டன்களுக்கு இரண்டு/மூன்று விரல்களை பயன்படுத்தவும். இரண்டு விரல்களைக் கொண்டு உருளவும். இழுத்து போடுவதற்கு நீண்ட அழுத்தத்தை பயன்படுத்தவும்.</string>
   <string name="mousepad_keyboard_input_not_supported">இணைக்கப்பட்டுள்ள சாதனம், விசைப்பலகை உள்ளீட்டை ஆதரிக்காது</string>
   <string name="mousepad_single_tap_settings_title">ஒருவிரலால் தட்டுவதற்குரிய செயலை அமை</string>
   <string name="mousepad_double_tap_settings_title">இரண்டு விரல்களால் தட்டுவதற்குரிய செயலை அமை</string>
   <string name="mousepad_triple_tap_settings_title">மூன்று விரல்களால் தட்டுவதற்குரிய செயலை அமை</string>
   <string name="mousepad_sensitivity_settings_title">தொடுபலகையின் உணர்வுத்திறத்தை அமை</string>
+  <string name="mousepad_mouse_buttons_title">சுட்டி பட்டன்களைக் காட்டு</string>
   <string name="mousepad_acceleration_profile_settings_title">சுட்டிக்குறியின் வேகவளர்ச்சியை அமை</string>
   <string name="mousepad_scroll_direction_title">உருளல் திசையை புரட்டு</string>
   <string-array name="mousepad_tap_entries">
@@ -99,7 +99,6 @@
   <string name="battery_status_format">மின்கலம்: %d%%</string>
   <string name="battery_status_low_format">மின்கலம்: %d%% குறைந்த மின்கலம்</string>
   <string name="battery_status_charging_format">மின்கலம்: %d%% மின்னேறுகிறது</string>
-  <string name="battery_status_unknown">மின்கல விவரங்கள் கிடைக்கவில்லை</string>
   <string name="category_connected_devices">இணைக்கப்பட்ட சாதனங்கள்</string>
   <string name="category_not_paired_devices">கிட்டுகின்ற சாதனங்கள்</string>
   <string name="category_remembered_devices">நினைவிலுள்ள சாதனங்கள்</string>
@@ -245,6 +244,7 @@
   <string name="close">மூடு</string>
   <string name="plugins_need_permission">சில செருகுநிரல்கள் இயங்க அனுமதிகள் தேவை (மேலும் விவரங்களுக்குத் தட்டவும்):</string>
   <string name="permission_explanation">இச்செருகுநிரல் இயங்க அனுமதிகள் தேவை</string>
+  <string name="all_permissions_granted">அனைத்து அனுமதிகளும் வழங்கப்பட்டன</string>
   <string name="optional_permission_explanation">எல்லா செயல்பாடுகளையும் இயக்க நீங்கள் கூடுதல் அனுமதிகளை வழங்க வேண்டும்</string>
   <string name="plugins_need_optional_permission">அனுமதி இல்லாததால் சில செருகுநிரல்களின் அம்சங்கள் முடங்கியுள்ளன (மேலும் விவரங்களுக்கு தட்டவும்):</string>
   <string name="share_optional_permission_explanation">கோப்புகளை பெற சேமிப்பக அனுமதி தேவைப்படலாம்</string>
@@ -371,7 +371,6 @@
   <string name="clear_compose">காலியாக்கு</string>
   <string name="send_compose">அனுப்பு</string>
   <string name="open_compose_send">உரையை இயற்று</string>
-  <string name="app_description">பல இயக்குதளங்களில் இயங்கி உங்கள் சாதனங்களை இணைக்கும் (எ.கா. கைபேசியையும் கணினியையும்) செயலி</string>
   <string name="about_kde_about">"&lt;h1&gt;பற்றி&lt;/h1&gt; &lt;p&gt;கே.டீ.யீ. என்பது, &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;கட்டற்ற மென்பொருள்&lt;/a&gt; உருவாக்கத்திற்கு அர்பணிப்புக் கொண்ட மென்பொருள் பொறிஞர்கள், கலைஞர்கள், எழுத்தாளர்கள், மொழிபெயர்ப்பாளர்கள் மற்றும் படைப்பாலிகளைக் கொண்ட உலகளாவிய குழு ஆகும். பிளாஸ்மா பணிமேடை சூழல், நூற்றுக்கணக்கானசெயலிகள், மற்றும் அவற்றை ஆதரிக்கும் பல நிரலகங்களை கே.டீ.யீ. உருவாக்குகிறது.&lt;/p&gt; &lt;p&gt;கே.டீ.யீ. ஒரு கூட்டுறவு அமைப்பாகும்: எந்தவொரு தனிப்பட்ட நிறுவனமோ நபரோ அதன் நோக்கத்தையோ படைப்புக்களையோ கட்டுப்படுத்துவதில்லை. கே.டீ.யீ.-யில் நீங்கள் உட்பட எவரேனும்  &lt;a href=https://community.kde.org/Get_Involved&gt;இணைந்து பங்களிக்கலாம்&lt;/a&gt;. &lt;/p&gt; கே.டீ.யீ. சமூகத்தை பற்றியும் நாங்கள் உருவாக்கும் மென்பொருட்களை பற்றியும் அறிய &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; என்ற பக்கத்தை அணுகுங்கள்."</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;பிழைகளையோ விருப்பங்களையோ தாக்கல் செய்யுங்கள்&lt;/h1&gt; &lt;p&gt;எந்த மென்பொருளும் மேம்படுத்த தக்கதே. கே.டீ.யீ. குழு அதனைச் செய்ய தயாராக உள்ளது. ஆயினும் பயனராகிய நீங்கள், எதிர்பார்த்த படி பணிசெய்யாதவை குறித்தும், இன்னும் சிறப்பாகச் செய்யக்கூடியவை குறித்தும் எங்களுக்கு தெரியப்படுத்த வேண்டும். &lt;/p&gt; &lt;p&gt;கே.டீ.யீ.க்கு, பிழைகளை கண்காணிக்கும் அமைப்பொன்று உள்ளது. &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; என்ற பக்கத்தை அணுகவும், அல்லது \"உதவி\" பட்டியிலுள்ள \"பிழையைத் தெரிவி...\" என்ற சாளரத்தை பயன்படுத்தவும்.&lt;/p&gt; நீங்கள் விரும்பும் மாற்றங்களை பரிந்துரைக்கக் கூட பிழைகளை கண்காணிக்கும் அமைப்பினைப் பயன்படுத்தலாம். அப்படி தெரிவிக்கும்போது, \"Wishlist\" என்ற முக்கியத்துவத்தை தேர்ந்தெடுங்கள்.</string>
   <string name="about_kde_join_kde">&lt;h1&gt;கே.டீ.யீ.-யில் சேருங்கள்&lt;/h1&gt; &lt;p&gt;கே.டீ.யீ. குழுவில் சேர, நீங்கள் நிரலாளராக இருக்க வேண்டாம். நிரல் இடைமுகப்புகளை மொழிபெயர்க்கும் குழுக்களில் நீங்கள் சேரலாம்.வரைகலை, ஒலிகள், தோற்ற திட்டமுறைகள், மற்றும் மேம்படுத்தப்பட்ட கையேடுகளை நீங்கள் வழங்கலாம். நீங்களே முடிவு செய்யுங்கள்!&lt;/p&gt; &lt;p&gt; நீங்கள் பங்கேற்கக்கூடிய சில திட்டப்பணிகளைப் பற்றிய தகவல்களைப் பெற &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; என்ற பக்கத்தை அணுகுங்கள்.&lt;/p&gt; மேலும் விவரங்கள் வேண்டுமெனில், &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; என்ற பக்கத்துக்கு செல்லுங்கள்.</string>

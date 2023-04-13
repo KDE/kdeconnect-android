@@ -51,7 +51,6 @@
   <string name="remotekeyboard_connected">Koneksi keyboard jarak jauh telah aktif</string>
   <string name="remotekeyboard_multiple_connections">Ada lebih dari satu koneksi keyboard jarak jauh, pilih peranti untuk diatur</string>
   <string name="open_mousepad">Masukan jarak jauh</string>
-  <string name="mousepad_info">Pindah jari pada layar untuk memindah kursor mouse. Ketuk untuk klik, dan gunakan dua/tiga jari untuk tombol kanan dan tengah. Gunakan 2 jari untuk menggulir. Gunakan tekan lama untuk seret dan taruh.</string>
   <string name="mousepad_single_tap_settings_title">Set aksi ketuk satu jari</string>
   <string name="mousepad_double_tap_settings_title">Set aksi ketuk dua jari</string>
   <string name="mousepad_triple_tap_settings_title">Set aksi ketuk tiga jari</string>
@@ -98,7 +97,6 @@
   <string name="battery_status_format">Baterai: %d%%</string>
   <string name="battery_status_low_format">Baterai: %d%% Baterai Lemah</string>
   <string name="battery_status_charging_format">Baterai %d%% mengisi</string>
-  <string name="battery_status_unknown">Informasi baterai tidak tersedia</string>
   <string name="category_connected_devices">Perangkat terhubung</string>
   <string name="category_not_paired_devices">Perangkat tersedia</string>
   <string name="category_remembered_devices">Perangkat teringat</string>
@@ -359,7 +357,6 @@
   <string name="clear_compose">Hapus</string>
   <string name="send_compose">Kirim</string>
   <string name="open_compose_send">Komposisikan teks</string>
-  <string name="app_description">Aplikasi multi-platform yang memungkinkan peranti Anda untuk berkomunikasi (mis., ponsel dan komputer Anda)</string>
   <string name="about_kde_about">&lt;h1&gt;Tentang&lt;/h1&gt; &lt;p&gt;KDE adalah komunitas seluruh dunia dari insinyur, seniman, penulis, penerjemah dan pemfasilitas perangkat lunak yang berkomitmen untuk pengembangan &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Perangkat Lunak Bebas&lt;/a&gt;. KDE memproduksi lingkungan desktop Plasma, ratusan aplikasi, dan banyak pustaka perangkat lunak yang mendukungnya.&lt;/p&gt; &lt;p&gt;KDE adalah perusahaan koperasi: di mana tiada entitas satu pun yang mengendalikan arah atau usaha. Kami bekerja bersama-sama untuk mencapai tujuan umum pembangunan dalam dunia Perangkat Lunak Bebas yang baik. Siapa pun disambut untuk &lt;a href=https://community.kde.org/Get_Involved&gt;bergabung dan berkontribusi&lt;/a&gt; untuk KDE, termasuk Anda.&lt;/p&gt; Kunjungi &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; untuk informasi tentang komunitas KDE dan perangkat lunak yang kami buat.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Laporkan Kutu atau Saran&lt;/h1&gt; &lt;p&gt;Perangkat lunak selalu dapat ditingkatkan, dan Tim KDE siap untuk melakukannya. Tapi, Anda - sebagai pengguna - harus memberitahu kami jika sesuatu tidak berjalan sebagaimana mestinya atau seharusnya dapat berjalan dengan lebih baik.&lt;/p&gt; &lt;p&gt;KDE memiliki sistem pelacakan kutu. Kunjungi &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; atau gunakan dialog \"Laporkan Kutu\" dari layar tentang untuk melaporkan kutu.&lt;/p&gt; Jika Anda memiliki saran untuk peningkatan maka Anda dipersilakan untuk menggunakan sistem pelacakan kutu untuk memasukkan permintaan Anda. Pastikan Anda menggunakan tingkat kegawatan yang bernama \"Senarai Permintaan\".</string>
   <string name="about_kde_join_kde">&lt;h1&gt;Bergabung dengan KDE&lt;/ h1&gt; &lt;p&gt; Anda tidak harus menjadi pengembang perangkat lunak untuk menjadi anggota tim KDE. Anda dapat bergabung dengan tim nasional yang menerjemahkan antarmuka program. Anda dapat memberikan grafik, tema, suara, dan dokumentasi yang ditingkatkan. Anda putuskan!&lt;/p&gt; &lt;p&gt;Kunjungi&lt;a href=https://community.kde.org/Get_involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; untuk informasi tentang beberapa proyek di mana Anda dapat berpartisipasi.&lt;/p&gt; Jika Anda memerlukan informasi atau dokumentasi lebih lanjut, maka kunjungi &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; yang akan memberi Anda apa yang Anda butuhkan.</string>

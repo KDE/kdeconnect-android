@@ -51,7 +51,6 @@
   <string name="remotekeyboard_connected">La conexión remota de teclado está activa</string>
   <string name="remotekeyboard_multiple_connections">Hay más de una conexión remota de teclado, seleccione el dispositivo a configurar</string>
   <string name="open_mousepad">Entrada remota</string>
-  <string name="mousepad_info">Mueva un dedo sobre la pantalla para mover el cursor del ratón. Pulse para ejecutar un clic y use dos/tres dedos para emular los botones derecho y central. Use 2 dedos para desplazar las pantalla. Use una pulsación larga para arrastrar y soltar.</string>
   <string name="mousepad_keyboard_input_not_supported">Entrada de teclado no soportada por el dispositivo vinculado.</string>
   <string name="mousepad_single_tap_settings_title">Establecer la acción al pulsar con un dedo</string>
   <string name="mousepad_double_tap_settings_title">Establecer la acción al pulsar con dos dedos</string>
@@ -99,7 +98,6 @@
   <string name="battery_status_format">Batería: %d%%</string>
   <string name="battery_status_low_format">Batería: %d%% Batería baja</string>
   <string name="battery_status_charging_format">Batería: %d%% cargando</string>
-  <string name="battery_status_unknown">Información de batería no disponible</string>
   <string name="category_connected_devices">Dispositivos conectados</string>
   <string name="category_not_paired_devices">Dispositivos disponibles</string>
   <string name="category_remembered_devices">Dispositivos recordados</string>
@@ -375,7 +373,6 @@
   <string name="clear_compose">Borrar</string>
   <string name="send_compose">Enviar</string>
   <string name="open_compose_send">Componer texto</string>
-  <string name="app_description">Aplicación multi-plataforma que permite a sus dispositivos comunicarse (por ejemplo entre su teléfono y su equipo)</string>
   <string name="about_kde_about">&lt;h1&gt;Acerca de&lt;/h1&gt; &lt;p&gt;KDE es una comunidad global de ingenieros software, artistas, escritores, traductores y creadores que siguen el desarrollo de &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Software Libre&lt;/a&gt;. KDE produce el entorno de escritorio Plasma, cientos de aplicaciones y todas las librerías en las que se basan.&lt;/p&gt; &lt;p&gt;KDE es una empresa colaborativa: no hay una entidad única que controla sus productos o su dirección. En su lugar, trabajamos de manera conjunta para conseguir la meta común de construir el mejor software libre posible. Todo el mundo es bienvenido a &lt;a href=https://community.kde.org/Get_Involved&gt;unirse y contribuir&lt;/a&gt; a KDE, incluido usted.&lt;/p&gt; Visite &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; para más información sobre la comunidad KDE y el software que creamos.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Reporte errores o deseos&lt;/h1&gt; &lt;p&gt;El software siempre puede ser mejorado y el equipo de KDE está preparado para ello. Sin embargo, usted - el usuario - debe comunicarnos cuando algo no funciona como es esperado o que puede ser mejorado. &lt;/p&gt; &lt;p&gt; KDE tiene un sistema de traqueo de errores. Visite &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; o use el botón «Informar de fallo» en la ventana «Acerca de» para reportar errores.&lt;/p&gt; Si tiene una sugerencia de mejora entonces use el sistema de traqueo de errores para registrar su sugerencia. Asegúrese de que usa la severidad «Lista de deseos».</string>
   <string name="about_kde_join_kde">&lt;h1&gt;Unirse a KDE&lt;/h1&gt; &lt;p&gt;No tiene por que ser un desarrollador de software para ser miembro del equipo KDE. Se puede unir a los equipos nacionales que traducen las interfaces de los programas. Puede proporcionar gráficos, temas, sonidos y mejorar la documentación. ¡Tú decides!&lt;/p&gt; &lt;p&gt;Visite &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; para más información sobre los proyectos en los que puede participar.&lt;/p&gt; Si necesita más información o documentación, entonces una visita a &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; le proporcionará la información que necesite.</string>

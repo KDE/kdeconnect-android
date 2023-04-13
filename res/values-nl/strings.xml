@@ -51,12 +51,13 @@
   <string name="remotekeyboard_connected">Verbinding met toetsenbord op afstand is actief</string>
   <string name="remotekeyboard_multiple_connections">Er is meer dan een verbinding met een toetsenbord op afstand, selecteer het te configureren apparaat</string>
   <string name="open_mousepad">Invoer op afstand</string>
-  <string name="mousepad_info">Veeg met een vinger op het scherm om de muiscursor te verplaatsen. Tik om te klikken en gebruik twee/drie vingers voor rechter en middelste knop. Twee vingers gebruiken voor schuiven. Druk lang voor slepen en loslaten.</string>
+  <string name="mousepad_info">Veeg met een vinger op het scherm om de muiscursor te verplaatsen. Tik om te klikken en gebruik twee/drie vingers voor rechter en middelste knop. Twee vingers gebruiken voor schuiven. Druk lang voor slepen en loslaten. Functionaliteit van gyro-muis kan ingeschakeld worden vanuit voorkeuren in plug-in</string>
   <string name="mousepad_keyboard_input_not_supported">Toetsenbordinvoer wordt niet ondersteund door het gepaarde apparaat</string>
   <string name="mousepad_single_tap_settings_title">Tikactie met één vinger instellen</string>
   <string name="mousepad_double_tap_settings_title">Tikactie met twee vingers instellen</string>
   <string name="mousepad_triple_tap_settings_title">Tikactie met drie vingers instellen</string>
   <string name="mousepad_sensitivity_settings_title">Gevoeligheid van touchpad instellen</string>
+  <string name="mousepad_mouse_buttons_title">Muisknoppen tonen</string>
   <string name="mousepad_acceleration_profile_settings_title">Aanwijzerversnelling instellen</string>
   <string name="mousepad_scroll_direction_title">Schuifrichting omdraaien</string>
   <string-array name="mousepad_tap_entries">
@@ -99,7 +100,6 @@
   <string name="battery_status_format">Batterij: %d%%</string>
   <string name="battery_status_low_format">Batterij: %d%% lage batterij</string>
   <string name="battery_status_charging_format">Batterij: %d%% opladen</string>
-  <string name="battery_status_unknown">Batterij-informatie niet beschikbaar</string>
   <string name="category_connected_devices">Verbonden apparaten</string>
   <string name="category_not_paired_devices">Beschikbare apparaten</string>
   <string name="category_remembered_devices">Onthouden apparaten</string>
@@ -375,7 +375,6 @@
   <string name="clear_compose">Wissen</string>
   <string name="send_compose">Verzenden</string>
   <string name="open_compose_send">Tekst opstellen</string>
-  <string name="app_description">Multi-platform toepassing die uw apparaten met elkaar laat communiceren (bijv., uw telefoon en uw computer)</string>
   <string name="about_kde_about">&lt;h1&gt;Info over&lt;/h1&gt; &lt;p&gt;KDE is een wereldwijde gemeenschap van software ingenieurs, artiesten, schrijvers, vertalers en makers die toegewijd zijn aan &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Vrije software&lt;/a&gt; ontwikkeling. KDE produceert de Plasma bureaubladomgeving, honderden toepassingen en de vele software bibliotheken die deze ondersteunen.&lt;/p&gt; &lt;p&gt;KDE is een coöperatieve onderneming: geen enkele entiteit controleert zijn richting of producten. In plaats daarvan werken we samen om het gemeenschappelijke doel te bereiken van het bouwen van de \'s werelds mooiste Vrije software. Iedereen is welkom om &lt;a href=https://community.kde.org/Get_Involved&gt;mee te doen en bij te dragen&lt;/a&gt; aan KDE, inclusief u.&lt;/p&gt; Bezoek &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; voor meer informatie over de KDE gemeenschap en de software die we produceren.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Bugs of wensen rapporteren&lt;/h1&gt; &lt;p&gt;Software kan altijd verbeterd worden en het KDE team is gereed om dat te doen. Echter, u - de gebruiker - moet ons vertellen wanneer iets niet werkt zoals verwacht of beter gedaan kan worden.&lt;/p&gt; &lt;p&gt;KDE heeft een bugvolgsysteem. Bezoek &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; of gebruik de knop \"Bug rapporteren\" uit het Info over scherm om bugs te rapporteren.&lt;/p&gt; Als u een suggestie voor verbetering dan bent u welkom om het bugvolgsysteem te gebruiken om uw wens te registreren. Ga na dat u de ernst genaamd \"Wishlist\" gebruikt.</string>
   <string name="about_kde_join_kde">&lt;h1&gt;Mee doen met KDE&lt;/h1&gt; &lt;p&gt;U hoeft geen software ontwerper te zijn om een lid van het KDE-team te worden. U kunt meedoen met een nationaal team dat programmainterfaces vertaalt. U kunt illustraties, thema\'s, geluiden en verbeterde documentatie leveren. U beslist!&lt;/p&gt; &lt;p&gt;Bezoek &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; voor informatie over projecten waarin u kunt participeren.&lt;/p&gt; Als u meer informatie of documentatie nodig hebt, dan kan een bezoek aan &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; u alles wat u nodig hebt leveren.</string>
