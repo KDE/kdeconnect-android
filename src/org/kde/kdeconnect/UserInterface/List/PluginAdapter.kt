@@ -1,7 +1,6 @@
 package org.kde.kdeconnect.UserInterface.List
 
-import android.annotation.TargetApi
-import android.os.Build
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import org.kde.kdeconnect_tp.R
+
 
 /**
  * Adapter for showing enabled plugins and permission requests
@@ -22,18 +22,24 @@ class PluginAdapter(
     private val layoutRes: Int,
 ) : RecyclerView.Adapter<PluginAdapter.PluginViewHolder>() {
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, type: Int) =
-        PluginViewHolder(LayoutInflater.from(viewGroup.context).inflate(layoutRes, viewGroup, false))
+    private lateinit var context: Context
+
+    override fun onCreateViewHolder(viewGroup: ViewGroup, type: Int) : PluginViewHolder {
+        context = viewGroup.context
+        return PluginViewHolder(
+            LayoutInflater.from(context).inflate(layoutRes, viewGroup, false)
+        )
+    }
 
     override fun getItemCount() = pluginList.size
 
-    @TargetApi(Build.VERSION_CODES.M)
     override fun onBindViewHolder(holder: PluginViewHolder, position: Int) {
         pluginList[position].let { plugin ->
             holder.pluginTitle.text = plugin.header
             holder.pluginIcon?.setImageDrawable(plugin.icon)
 
-            plugin.textStyleRes?.let { holder.pluginTitle.setTextAppearance(it) }
+            // Remove context when we require API 23+
+            plugin.textStyleRes?.let { holder.pluginTitle.setTextAppearance(context, it) }
 
             plugin.action?.let { action -> holder.itemView.setOnClickListener { action.invoke() } }
         }
