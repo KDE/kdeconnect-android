@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="org.kde.kdeconnect_tp"
-    android:versionCode="12400"
-    android:versionName="1.24.0">
+    android:versionCode="12401"
+    android:versionName="1.24.1">
 
     <supports-screens
         android:anyDensity="true"
