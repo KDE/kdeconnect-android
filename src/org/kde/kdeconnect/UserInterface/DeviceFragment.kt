@@ -265,11 +265,14 @@ class DeviceFragment : Fragment() {
                         requireErrorBinding().notReachableMessage.visibility = View.VISIBLE
                         requireDeviceBinding().permissionsList.visibility = View.GONE
                         requireDeviceBinding().pluginsList.visibility = View.GONE
-                    } else {
+                    } else if (paired) {
                         requireErrorBinding().errorMessageContainer.visibility = View.GONE
                         requireErrorBinding().notReachableMessage.visibility = View.GONE
                         requireDeviceBinding().permissionsList.visibility = View.VISIBLE
                         requireDeviceBinding().pluginsList.visibility = View.VISIBLE
+                    } else {
+                        requireDeviceBinding().permissionsList.visibility = View.GONE
+                        requireDeviceBinding().pluginsList.visibility = View.GONE
                     }
                     try {
                         if (paired && reachable) {
