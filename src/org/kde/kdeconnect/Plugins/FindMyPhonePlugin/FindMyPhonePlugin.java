@@ -151,6 +151,7 @@ public class FindMyPhonePlugin extends Plugin {
                 .setFullScreenIntent(pendingIntent, true)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setAutoCancel(true)
+                .setOngoing(true)
                 .setContentTitle(context.getString(R.string.findmyphone_found));
         notification.setGroup("BackgroundService");
 
