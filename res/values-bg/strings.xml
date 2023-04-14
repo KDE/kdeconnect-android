@@ -51,11 +51,13 @@
   <string name="remotekeyboard_connected">Отдалечената връзка с клавиатурата е активна</string>
   <string name="remotekeyboard_multiple_connections">Има повече от една отдалечена връзка за клавиатура, изберете устройството за конфигуриране</string>
   <string name="open_mousepad">Отдалечен вход</string>
+  <string name="mousepad_info">Преместете пръст на екрана, за да преместите курсора на мишката. Докоснете за щракване и използвайте два/три пръста за десни и средни бутони. Използвайте 2 пръста за превъртане.Използвайте дълго натискане за влачене. Функцията на жироскопската мишка може да бъде активирана в настройките на плъгина</string>
   <string name="mousepad_keyboard_input_not_supported">Въвеждането от клавиатурата не се поддържа от сдвоеното устройство</string>
   <string name="mousepad_single_tap_settings_title">Задаване на действие с натискане с един пръст</string>
   <string name="mousepad_double_tap_settings_title">Задаване на действие за докосване с два пръста</string>
   <string name="mousepad_triple_tap_settings_title">Задаване на действие с докосване с три пръста</string>
   <string name="mousepad_sensitivity_settings_title">Настройка на чувствителността на тъчпада</string>
+  <string name="mousepad_mouse_buttons_title">Показване на бутони на мишката</string>
   <string name="mousepad_acceleration_profile_settings_title">Задаване на ускорение на показалеца</string>
   <string name="mousepad_scroll_direction_title">Обръщане на посоката на превъртане</string>
   <string-array name="mousepad_tap_entries">

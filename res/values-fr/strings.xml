@@ -51,6 +51,7 @@
   <string name="remotekeyboard_connected">La connexion au clavier sans fil est active</string>
   <string name="remotekeyboard_multiple_connections">Plusieurs connexions à des claviers sans fil sont disponibles, sélectionnez le périphérique à configurer</string>
   <string name="open_mousepad">Contrôle distant</string>
+  <string name="mousepad_info">Faites glisser votre doigt sur l\'écran pour déplacer le pointeur de la souris. Tapotez pour cliquer et utilisez deux / trois doigts pour les clics droit et centre. Utilisez 2 doigts pour faire un défilement. Faites un appui prolongé pour réaliser un glisser-déposer. La fonctionnalité de gyroscope de souris peut être activée à partir des préférences de module externe.</string>
   <string name="mousepad_keyboard_input_not_supported">La saisie par le clavier n\'est pas pris en charge par le périphérique appairée.</string>
   <string name="mousepad_single_tap_settings_title">Définir une action pour tapotage avec un doigt</string>
   <string name="mousepad_double_tap_settings_title">Action pour l\'appui à deux doigts</string>
