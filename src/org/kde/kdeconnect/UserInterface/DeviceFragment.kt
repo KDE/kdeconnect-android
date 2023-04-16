@@ -416,4 +416,8 @@ class DeviceFragment : Fragment() {
         }
     }
 
+    override fun onDetach() {
+        super.onDetach()
+        mActivity?.supportActionBar?.subtitle = null
+    }
 }
