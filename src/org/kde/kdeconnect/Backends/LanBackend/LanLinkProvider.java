@@ -66,7 +66,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     private DatagramSocket udpServer;
 
     private long lastBroadcast = 0;
-    private final static long delayBetweenBroadcasts = 500;
+    private final static long delayBetweenBroadcasts = 200;
 
     private boolean listening = false;
 
@@ -385,7 +385,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
             }
 
             if (bytes != null) {
-                //Log.e("KDE/LanLinkProvider","Sending packet to "+iplist.size()+" ips");
+                Log.i("KDE/LanLinkProvider","Sending broadcast to "+iplist.size()+" ips");
                 for (String ipstr : iplist) {
                     try {
                         InetAddress client = InetAddress.getByName(ipstr);
