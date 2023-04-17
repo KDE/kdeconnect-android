@@ -51,6 +51,7 @@
   <string name="remotekeyboard_connected">远程键盘连接已启用</string>
   <string name="remotekeyboard_multiple_connections">发现多个远程键盘连接，请选择要配置的设备</string>
   <string name="open_mousepad">远程输入</string>
+  <string name="mousepad_info">在屏幕上移动手指来移动光标。轻击代表左键，双指或三指点击代表右键或中键。用双指滚动。用长按来拖放。基于陀螺仪的空中鼠标功能可以在插件的首选项中启用。</string>
   <string name="mousepad_keyboard_input_not_supported">配对的设备不支持键盘输入</string>
   <string name="mousepad_single_tap_settings_title">设置单指点击操作</string>
   <string name="mousepad_double_tap_settings_title">设置双指点击操作</string>
