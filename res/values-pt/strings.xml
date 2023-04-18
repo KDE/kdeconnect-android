@@ -51,11 +51,13 @@
   <string name="remotekeyboard_connected">A ligação ao teclado remoto está activa</string>
   <string name="remotekeyboard_multiple_connections">Existe mais que uma ligação a teclados remotos; seleccione o dispositivo a configurar</string>
   <string name="open_mousepad">Introdução remota de dados</string>
+  <string name="mousepad_info">Mova um dedo pelo ecrã para mover o cursor do rato. Dê um toque para carregar no botão esquerdo e use dois/três dedos para os botões direito e do meio. Use 2 dedos para deslocar-se. Use uma pressão longa para arrastar e largar. A funcionalidade giroscópica do rato pode ser activada a partir das preferências do \'plugin\'</string>
   <string name="mousepad_keyboard_input_not_supported">O uso do teclado não é suportado pelo dispositivo emparelhado</string>
   <string name="mousepad_single_tap_settings_title">Definir a acção do toque com um dedo</string>
   <string name="mousepad_double_tap_settings_title">Definir a acção do toque com dois dedos</string>
   <string name="mousepad_triple_tap_settings_title">Definir a acção do toque com três dedos</string>
   <string name="mousepad_sensitivity_settings_title">Definir a sensibilidade do rato por toque</string>
+  <string name="mousepad_mouse_buttons_title">Mostrar os botões do rato</string>
   <string name="mousepad_acceleration_profile_settings_title">Definir a aceleração do cursor</string>
   <string name="mousepad_scroll_direction_title">Direcção de Deslocamento Inversa</string>
   <string-array name="mousepad_tap_entries">
