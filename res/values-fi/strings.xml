@@ -243,6 +243,7 @@
   <string name="close">Sulje</string>
   <string name="plugins_need_permission">Jotkin liitännäiset vaativat toimiakseen lisäkäyttöoikeuksia (lisätietoa napsauttamalla):</string>
   <string name="permission_explanation">Liitännäinen tarvitsee toimiakseen lisäkäyttöoikeuksia</string>
+  <string name="all_permissions_granted">Kaikki oikeudet myönnetty 🎉</string>
   <string name="optional_permission_explanation">Kaikkien toimintojen käyttämiseksi sinun on annettava lisäkäyttöoikeuksia</string>
   <string name="plugins_need_optional_permission">Jotkin liitännäisten ominaisuudet eivät ole käytössä puuttuvien käyttöoikeuksien takia (lisätietoa napsauttamalla):</string>
   <string name="share_optional_permission_explanation">Talletustilan käyttö on sallittava tiedostojen vastaanottamiseksi</string>
