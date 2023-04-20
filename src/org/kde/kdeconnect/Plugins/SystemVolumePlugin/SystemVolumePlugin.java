@@ -67,8 +67,10 @@ public class SystemVolumePlugin extends Plugin {
                 Log.e("KDEConnect", "Exception", e);
             }
 
-            for (SinkListener l : listeners) {
-                l.sinksChanged();
+            synchronized(listeners) {
+                for (SinkListener l : listeners) {
+                    l.sinksChanged();
+                }
             }
 
         } else {
@@ -140,11 +142,15 @@ public class SystemVolumePlugin extends Plugin {
     }
 
     void addSinkListener(SinkListener listener) {
-        listeners.add(listener);
+        synchronized(listeners) {
+            listeners.add(listener);
+        }
     }
 
     void removeSinkListener(SinkListener listener) {
-        listeners.remove(listener);
+        synchronized(listeners) {
+            listeners.remove(listener);
+        }
     }
 
 }
