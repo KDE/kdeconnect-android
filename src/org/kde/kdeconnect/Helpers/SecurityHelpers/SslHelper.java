@@ -209,7 +209,7 @@ public class SslHelper {
             trustManagerFactory.init(keyStore);
 
             // Setup custom trust manager if device not trusted
-            SSLContext tlsContext = SSLContext.getInstance("TLS");
+            SSLContext tlsContext = SSLContext.getDefault();
             if (isDeviceTrusted) {
                 tlsContext.init(keyManagerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), RandomHelper.secureRandom);
             } else {
