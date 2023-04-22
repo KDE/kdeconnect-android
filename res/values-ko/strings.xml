@@ -51,11 +51,13 @@
   <string name="remotekeyboard_connected">원격 키보드 연결이 활성화됨</string>
   <string name="remotekeyboard_multiple_connections">원격 키보드 연결이 여러 개 있습니다. 설정할 장치를 선택하십시오</string>
   <string name="open_mousepad">원격 입력</string>
+  <string name="mousepad_info">화면에서 손가락을 움직이면 마우스 커서를 움직입니다. 화면을 누르면 왼쪽 단추를 누르고, 두 손가락과 세 손가락으로 누르면 오른쪽/가운데 단추를 누릅니다. 두 손가락을 사용하여 스크롤할 수 있습니다. 드래그 앤 드롭을 사용하려면 길게 누르십시오. 플러그인 설정에서 자이로 마우스를 활성화할 수 있습니다</string>
   <string name="mousepad_keyboard_input_not_supported">페어링된 장치에서 키보드 입력을 지원하지 않음</string>
   <string name="mousepad_single_tap_settings_title">한 손가락으로 눌렀을 때 동작 설정</string>
   <string name="mousepad_double_tap_settings_title">두 손가락으로 눌렀을 때 동작 설정</string>
   <string name="mousepad_triple_tap_settings_title">세 손가락으로 눌렀을 때 동작 설정</string>
   <string name="mousepad_sensitivity_settings_title">터치패드 감도 설정</string>
+  <string name="mousepad_mouse_buttons_title">마우스 단추 표시</string>
   <string name="mousepad_acceleration_profile_settings_title">포인터 가속 설정</string>
   <string name="mousepad_scroll_direction_title">스크롤 방향 뒤집기</string>
   <string-array name="mousepad_tap_entries">
@@ -208,8 +210,11 @@
   <string name="sftp_action_mode_menu_delete">삭제</string>
   <string name="sftp_no_storage_locations_configured">저장소 위치가 설정되지 않았음</string>
   <string name="sftp_saf_permission_explanation">원격으로 파일에 접근하려면 저장소 위치를 설정해야 함</string>
+  <string name="sftp_manage_storage_permission_explanation">이 장치에 있는 파일에 원격 접근을 허용하려면 KDE Connect에서 저장소를 관리할 수 있도록 허용해야 합니다.</string>
   <string name="no_players_connected">재생기를 찾을 수 없음</string>
   <string name="send_files">파일 보내기</string>
+  <string name="block_notification_contents">알림 내용 숨기기</string>
+  <string name="block_notification_images">알림 이미지 숨기기</string>
   <string name="pairing_title">KDE Connect 장치</string>
   <string name="pairing_description">같은 네트워크에서 KDE Connect를 실행하는 다른 장치가 여기에 표시됩니다.</string>
   <string name="device_rename_title">장치 이름 바꾸기</string>
@@ -232,8 +237,10 @@
   <string name="close">닫기</string>
   <string name="plugins_need_permission">권한이 필요한 플러그인(정보를 보려면 누르기):</string>
   <string name="permission_explanation">이 플러그인을 사용하려면 권한이 필요합니다</string>
+  <string name="all_permissions_granted">모든 권한 허가됨 🎉</string>
   <string name="optional_permission_explanation">모든 기능을 사용하려면 추가 권한이 필요합니다</string>
   <string name="plugins_need_optional_permission">일부 플러그인은 권한이 없어서 비활성화되었습니다(정보를 보려면 누르기):</string>
+  <string name="share_optional_permission_explanation">공유된 파일을 받으려면 저장소 접근을 허가해야 합니다</string>
   <string name="telepathy_permission_explanation">데스크톱에서 문자 메시지를 읽고 보내려면 문자 메시지 접근 권한이 필요합니다</string>
   <string name="telephony_permission_explanation">데스크톱에서 통화와 문자 메시지를 보려면 통화 기록 및 휴대폰 상태 접근 권한이 필요합니다</string>
   <string name="telephony_optional_permission_explanation">전화번호 대신 연락처에 등록된 이름을 보려면 주소록 접근 권한이 필요합니다</string>
