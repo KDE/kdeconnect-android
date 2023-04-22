@@ -20,7 +20,7 @@ class PluginItem(
         textStyleRes: Int? = null,
     ) : this(
         context = context,
-        header = plugin.displayName,
+        header = plugin.actionName,
         textStyleRes = textStyleRes,
     ) {
         this.action = { action(plugin) }
