@@ -51,11 +51,13 @@
   <string name="remotekeyboard_connected">Uzaq klaviatura bağlantısını aktiv edin</string>
   <string name="remotekeyboard_multiple_connections">Birdən çox uzaq klaviatura bağlantısı var, tənzimləmək üçün cihazı seçin</string>
   <string name="open_mousepad">Məsafədən giriş</string>
+  <string name="mousepad_info">Siçan kursorunu hərəkət etdirmək üçün barmağı ekranda sürüşdürün. Klik üçün ekrana vurun, sağ və orta siçan düymələri üçün iki/üç barmaqla toxunuş edin. Sürüşdürmək üçün iki barmaqdan istifadə edin. Hiroskop siçan funksionallığı plaqin ayarlarında aktiv edilməlidir</string>
   <string name="mousepad_keyboard_input_not_supported">Qoşulmuş cihaz üçün klaviatura ilə daxiletmə dəstəklənmir</string>
   <string name="mousepad_single_tap_settings_title">Bir barmaq toxunuşu əməlini təyin edin</string>
   <string name="mousepad_double_tap_settings_title">İki barmaq toxunuşu əməlini təyin edin</string>
   <string name="mousepad_triple_tap_settings_title">Üç barmaq toxunuşu əməlini təyin edin</string>
   <string name="mousepad_sensitivity_settings_title">Toxunma panelinin həsassləğını təyin edin</string>
+  <string name="mousepad_mouse_buttons_title">Siçan düymələrini göstərmək</string>
   <string name="mousepad_acceleration_profile_settings_title">Kursorun sürətini təyin edin</string>
   <string name="mousepad_scroll_direction_title">Sürüşdürmənin əks istiqaməti</string>
   <string-array name="mousepad_tap_entries">
@@ -216,8 +218,11 @@
   <string name="sftp_action_mode_menu_delete">Silmək</string>
   <string name="sftp_no_storage_locations_configured">Saxlama yeri tənzimlənməyib</string>
   <string name="sftp_saf_permission_explanation">Fayllara uzaqdan daxil olmaq üçün saxlama yerlərini konfiqurasiya etməlisiniz</string>
+  <string name="sftp_manage_storage_permission_explanation">Bu cihazdakı fayllara giriş əldə etmək üçün KDE Connect-ə yaddaşı idarə etməyə icazə vermək lazımdır.</string>
   <string name="no_players_connected">Pleyer tapılmadı</string>
   <string name="send_files">Faylları göndərmək</string>
+  <string name="block_notification_contents">Bildirilərin tərkiblərini kilidləmək</string>
+  <string name="block_notification_images">Bildiriş şəlkillərini kilidləmək</string>
   <string name="pairing_title">KDE Connect Cihazları</string>
   <string name="pairing_description">Eyni şəbəkədəki KDE Connect işləyən digər cihazlar burada görünməlidir</string>
   <string name="device_rename_title">Cihazın adını dəyişmək</string>
@@ -240,8 +245,10 @@
   <string name="close">Bağlamaq</string>
   <string name="plugins_need_permission">Bəzi qoşmaların işləməsi üçün icazələr lazımdır (daha çox məlumat üçün toxunun):</string>
   <string name="permission_explanation">Bu qoşmanın işləməsi üçün icazələr lazımdır</string>
+  <string name="all_permissions_granted">Bütün icazələr verildi 🎉</string>
   <string name="optional_permission_explanation">Bütün funksiyaların işləməsi üçün əlavə icazələr verməlisiniz</string>
   <string name="plugins_need_optional_permission">Bəzi qoşmalarda icazə çatışmamazlığı səbəbindən bir sıra imkanlar söndürülmüşdür (daha çox məlumat üçün toxunun)</string>
+  <string name="share_optional_permission_explanation">Faylları qəbul etmək üçün yaddaşa girişə icazə verilməlidirü</string>
   <string name="telepathy_permission_explanation">İş Masanızdan telefonunuzdakı SMS\'ləri oxumaq və SMS göndərmək üçün SMS\'ə girişə icazə verməlisiniz</string>
   <string name="telephony_permission_explanation">İş Masanızda telefon zənglərini görmək üçün Zəng Tarixçəsinə və Zəng yığımı vəziyyətinə icazə verməlisiniz</string>
   <string name="telephony_optional_permission_explanation">Telefon nömrəsi əvəzinə əlaqənin adını görmək üçün Əlaqə Kitabçasına girişə icazə verməlisiniz</string>
