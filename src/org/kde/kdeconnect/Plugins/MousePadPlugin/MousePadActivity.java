@@ -478,7 +478,7 @@ public class MousePadActivity
         }
 
         allowGyro = isGyroSensorAvailable() && prefs.getBoolean(getString(R.string.gyro_mouse_enabled), false);
-        if (allowGyro) gyroscopeSensitivity = prefs.getInt(getString(R.string.gyro_mouse_sensitivity),100);
+        if (allowGyro) gyroscopeSensitivity = prefs.getInt(getString(R.string.gyro_mouse_sensitivity), 100);
 
         String singleTapSetting = prefs.getString(getString(R.string.mousepad_single_tap_key),
                 getString(R.string.mousepad_default_single));
