@@ -89,7 +89,6 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
             it.addDrawerListener(mDrawerToggle)
             it.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START)
         } ?: {
-            closeDrawerCallback.isEnabled = false
             supportActionBar?.setDisplayShowHomeEnabled(false)
             supportActionBar?.setHomeButtonEnabled(false)
         }
@@ -110,13 +109,11 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
                 }
 
                 MENU_ENTRY_SETTINGS -> {
-//                    mCurrentDevice = null
                     preferences.edit().putString(STATE_SELECTED_DEVICE, null).apply()
                     setContentFragment(SettingsFragment())
                 }
 
                 MENU_ENTRY_ABOUT -> {
-//                    mCurrentDevice = null
                     preferences.edit().putString(STATE_SELECTED_DEVICE, null).apply()
                     setContentFragment(newInstance(getApplicationAboutData(this)))
                 }
@@ -187,9 +184,6 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
                 else -> setContentFragment(PairingFragment())
             }
         }
-
-        onBackPressedDispatcher.addCallback(mainFragmentCallback)
-        onBackPressedDispatcher.addCallback(closeDrawerCallback)
     }
 
     override fun onDestroy() {
@@ -274,11 +268,16 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
             service.addDeviceListChangedCallback(this::class.simpleName) { updateDeviceList() }
         }
         updateDeviceList()
+        onBackPressedDispatcher.addCallback(mainFragmentCallback)
+        onBackPressedDispatcher.addCallback(closeDrawerCallback)
+        if (mDrawerLayout == null) closeDrawerCallback.isEnabled = false
     }
 
     override fun onStop() {
         BackgroundService.RunCommand(this) { service: BackgroundService -> service.removeDeviceListChangedCallback(this::class.simpleName) }
         super.onStop()
+        mainFragmentCallback.remove()
+        closeDrawerCallback.remove()
     }
 
     @JvmOverloads
