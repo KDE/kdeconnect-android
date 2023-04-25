@@ -6,7 +6,7 @@ import com.github.jk1.license.render.TextReportRenderer
 buildscript {
     ext.kotlin_version = '1.8.10'
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.2'
+        classpath 'com.android.tools.build:gradle:8.0.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -20,6 +20,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
+    namespace 'org.kde.kdeconnect_tp'
     compileSdkVersion 33
     defaultConfig {
         minSdkVersion 21
