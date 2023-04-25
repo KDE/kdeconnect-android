@@ -221,18 +221,20 @@ class DeviceFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        requireView().isFocusableInTouchMode = true
-        requireView().requestFocus()
-        requireView().setOnKeyListener { view, keyCode, event ->
-            if (event.action == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                val fromDeviceList = requireArguments().getBoolean(ARG_FROM_DEVICE_LIST, false)
-                // Handle back button, so we go to the list of devices in case we came from there
-                if (fromDeviceList) {
-                    mActivity?.onDeviceSelected(null)
-                    return@setOnKeyListener true
+        with(requireView()) {
+            isFocusableInTouchMode = true
+            requestFocus()
+            setOnKeyListener { _, keyCode, event ->
+                if (event.action == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    val fromDeviceList = requireArguments().getBoolean(ARG_FROM_DEVICE_LIST, false)
+                    // Handle back button, so we go to the list of devices in case we came from there
+                    if (fromDeviceList) {
+                        mActivity?.onDeviceSelected(null)
+                        return@setOnKeyListener true
+                    }
                 }
+                false
             }
-            false
         }
     }
 
