@@ -33,7 +33,13 @@ import org.kde.kdeconnect_tp.R;
 
 import java.util.Objects;
 
-public class MousePadActivity extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener, MousePadGestureDetector.OnGestureListener, SensorEventListener {
+public class MousePadActivity
+        extends AppCompatActivity
+        implements GestureDetector.OnGestureListener,
+        GestureDetector.OnDoubleTapListener,
+        MousePadGestureDetector.OnGestureListener,
+        SensorEventListener,
+        SharedPreferences.OnSharedPreferenceChangeListener {
     private String deviceId;
 
     private final static float MinDistanceToSendScroll = 2.5f; // touch gesture scroll
@@ -49,6 +55,7 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     private int scrollDirection = 1;
     private boolean allowGyro = false;
     private boolean gyroEnabled = false;
+    private int gyroscopeSensitivity = 100;
     private boolean isScrolling = false;
     private float accumulatedDistanceY = 0;
 
@@ -62,6 +69,8 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     private KeyListenerView keyListenerView;
 
     private SharedPreferences prefs = null;
+
+    private boolean prefsApplied = false;
 
     enum ClickType {
         LEFT, RIGHT, MIDDLE, NONE;
@@ -90,27 +99,25 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
     public void onSensorChanged(SensorEvent event) {
         float[] values = event.values;
 
-        float X = -values[2] * 70 * mCurrentSensitivity * displayDpiMultiplier;
-        float Y = -values[0] * 70 * mCurrentSensitivity * displayDpiMultiplier;
+        float X = -values[2] * 70 * (gyroscopeSensitivity/100.0f);
+        float Y = -values[0] * 70 * (gyroscopeSensitivity/100.0f);
 
         if (X < 0.25 && X > -0.25) {
             X = 0;
         } else {
-            X = X * mCurrentSensitivity * displayDpiMultiplier;
+            X = X * (gyroscopeSensitivity/100.0f);
         }
 
         if (Y < 0.25 && Y > -0.25) {
             Y = 0;
         } else {
-            Y = Y * mCurrentSensitivity * displayDpiMultiplier;
+            Y = Y * (gyroscopeSensitivity/100.0f);
         }
 
         final float nX = X;
         final float nY = Y;
 
-        BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> {
-                plugin.sendMouseDelta(nX, nY);
-        });
+        BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> plugin.sendMouseDelta(nX, nY));
     }
 
     @Override
@@ -122,6 +129,10 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         setSupportActionBar(findViewById(R.id.toolbar));
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        findViewById(R.id.mouse_click_left).setOnClickListener(v -> sendLeftClick());
+        findViewById(R.id.mouse_click_middle).setOnClickListener(v -> sendMiddleClick());
+        findViewById(R.id.mouse_click_right).setOnClickListener(v -> sendRightClick());
 
         deviceId = getIntent().getStringExtra("deviceId");
 
@@ -136,57 +147,13 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         keyListenerView.setDeviceId(deviceId);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs.registerOnSharedPreferenceChangeListener(this);
 
-        if (prefs.getBoolean(getString(R.string.mousepad_scroll_direction), false)) {
-            scrollDirection = -1;
-        } else {
-            scrollDirection = 1;
-        }
-        if (mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE) != null
-                && prefs.getBoolean(getString(R.string.gyro_mouse_enabled), false)) {
-            allowGyro = true;
-        }
-        String singleTapSetting = prefs.getString(getString(R.string.mousepad_single_tap_key),
-                getString(R.string.mousepad_default_single));
-        String doubleTapSetting = prefs.getString(getString(R.string.mousepad_double_tap_key),
-                getString(R.string.mousepad_default_double));
-        String tripleTapSetting = prefs.getString(getString(R.string.mousepad_triple_tap_key),
-                getString(R.string.mousepad_default_triple));
-        String sensitivitySetting = prefs.getString(getString(R.string.mousepad_sensitivity_key),
-                getString(R.string.mousepad_default_sensitivity));
-
-        String accelerationProfileName = prefs.getString(getString(R.string.mousepad_acceleration_profile_key),
-                getString(R.string.mousepad_default_acceleration_profile));
-
-        mPointerAccelerationProfile = PointerAccelerationProfileFactory.getProfileWithName(accelerationProfileName);
-
-        singleTapAction = ClickType.fromString(singleTapSetting);
-        doubleTapAction = ClickType.fromString(doubleTapSetting);
-        tripleTapAction = ClickType.fromString(tripleTapSetting);
+        applyPrefs();
 
         //Technically xdpi and ydpi should be handled separately,
         //but since ydpi is usually almost equal to xdpi, only xdpi is used for the multiplier.
         displayDpiMultiplier = StandardDpi / getResources().getDisplayMetrics().xdpi;
-        switch (sensitivitySetting) {
-            case "slowest":
-                mCurrentSensitivity = 0.2f;
-                break;
-            case "aboveSlowest":
-                mCurrentSensitivity = 0.5f;
-                break;
-            case "default":
-                mCurrentSensitivity = 1.0f;
-                break;
-            case "aboveDefault":
-                mCurrentSensitivity = 1.5f;
-                break;
-            case "fastest":
-                mCurrentSensitivity = 2.0f;
-                break;
-            default:
-                mCurrentSensitivity = 1.0f;
-                return;
-        }
 
         final View decorView = getWindow().getDecorView();
         decorView.setOnSystemUiVisibilityChangeListener(visibility -> {
@@ -205,19 +172,13 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
 
     @Override
     protected void onResume() {
+        applyPrefs();
+
         if (allowGyro && !gyroEnabled) {
             mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE), SensorManager.SENSOR_DELAY_GAME);
             gyroEnabled = true;
         }
 
-        if (prefs.getBoolean(getString(R.string.mousepad_mouse_buttons_enabled_pref), true)) {
-            findViewById(R.id.mouse_buttons).setVisibility(View.VISIBLE);
-            findViewById(R.id.mouse_click_left).setOnClickListener(v -> sendLeftClick());
-            findViewById(R.id.mouse_click_middle).setOnClickListener(v -> sendMiddleClick());
-            findViewById(R.id.mouse_click_right).setOnClickListener(v -> sendRightClick());
-        } else {
-            findViewById(R.id.mouse_buttons).setVisibility(View.GONE);
-        }
         invalidateMenu();
 
         super.onResume();
@@ -232,12 +193,19 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         super.onPause();
     }
 
-    @Override protected void onStop() {
+    @Override
+    protected void onStop() {
         if (gyroEnabled) {
             mSensorManager.unregisterListener(this);
             gyroEnabled = false;
         }
         super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        prefs.unregisterOnSharedPreferenceChangeListener(this);
+        super.onDestroy();
     }
 
     @Override
@@ -465,6 +433,11 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         return true;
     }
 
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (prefsApplied) prefsApplied = false;
+    }
+
 
     private void sendLeftClick() {
         BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendLeftClick);
@@ -493,6 +466,70 @@ public class MousePadActivity extends AppCompatActivity implements GestureDetect
         Intent intent = new Intent(this, ComposeSendActivity.class);
         intent.putExtra("org.kde.kdeconnect.Plugins.MousePadPlugin.deviceId", deviceId);
         startActivity(intent);
+    }
+
+    private void applyPrefs() {
+        if (prefsApplied) return;
+
+        if (prefs.getBoolean(getString(R.string.mousepad_scroll_direction), false)) {
+            scrollDirection = -1;
+        } else {
+            scrollDirection = 1;
+        }
+
+        allowGyro = isGyroSensorAvailable() && prefs.getBoolean(getString(R.string.gyro_mouse_enabled), false);
+        if (allowGyro) gyroscopeSensitivity = prefs.getInt(getString(R.string.gyro_mouse_sensitivity), 100);
+
+        String singleTapSetting = prefs.getString(getString(R.string.mousepad_single_tap_key),
+                getString(R.string.mousepad_default_single));
+        String doubleTapSetting = prefs.getString(getString(R.string.mousepad_double_tap_key),
+                getString(R.string.mousepad_default_double));
+        String tripleTapSetting = prefs.getString(getString(R.string.mousepad_triple_tap_key),
+                getString(R.string.mousepad_default_triple));
+        String sensitivitySetting = prefs.getString(getString(R.string.mousepad_sensitivity_key),
+                getString(R.string.mousepad_default_sensitivity));
+
+        String accelerationProfileName = prefs.getString(getString(R.string.mousepad_acceleration_profile_key),
+                getString(R.string.mousepad_default_acceleration_profile));
+
+        mPointerAccelerationProfile = PointerAccelerationProfileFactory.getProfileWithName(accelerationProfileName);
+
+        singleTapAction = ClickType.fromString(singleTapSetting);
+        doubleTapAction = ClickType.fromString(doubleTapSetting);
+        tripleTapAction = ClickType.fromString(tripleTapSetting);
+
+        switch (sensitivitySetting) {
+            case "slowest":
+                mCurrentSensitivity = 0.2f;
+                break;
+            case "aboveSlowest":
+                mCurrentSensitivity = 0.5f;
+                break;
+            case "default":
+                mCurrentSensitivity = 1.0f;
+                break;
+            case "aboveDefault":
+                mCurrentSensitivity = 1.5f;
+                break;
+            case "fastest":
+                mCurrentSensitivity = 2.0f;
+                break;
+            default:
+                mCurrentSensitivity = 1.0f;
+                return;
+        }
+
+        if (prefs.getBoolean(getString(R.string.mousepad_mouse_buttons_enabled_pref), true)) {
+            findViewById(R.id.mouse_buttons).setVisibility(View.VISIBLE);
+        } else {
+            findViewById(R.id.mouse_buttons).setVisibility(View.GONE);
+        }
+
+        prefsApplied = true;
+    }
+
+    private boolean isGyroSensorAvailable() {
+        return mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE) != null;
     }
 
     @Override
