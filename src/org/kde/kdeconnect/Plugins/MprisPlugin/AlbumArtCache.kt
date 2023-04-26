@@ -6,7 +6,6 @@
 package org.kde.kdeconnect.Plugins.MprisPlugin
 
 import android.content.Context
-import android.content.pm.PackageManager.NameNotFoundException
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.ConnectivityManager
@@ -20,6 +19,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.kde.kdeconnect.NetworkPacket.Payload
+import org.kde.kdeconnect_tp.BuildConfig
 import java.io.File
 import java.io.IOException
 import java.io.InputStream
@@ -78,14 +78,9 @@ internal object AlbumArtCache {
     fun initializeDiskCache(context: Context) {
         if (this::diskCache.isInitialized) return
         val cacheDir = File(context.cacheDir, "album_art")
-        val versionCode: Int
         try {
-            val info = context.packageManager.getPackageInfo(context.packageName, 0)
-            versionCode = info.versionCode
             //Initialize the disk cache with a limit of 5 MB storage (fits ~830 images, taking Spotify as reference)
-            diskCache = DiskLruCache.open(cacheDir, versionCode, 1, 1000 * 1000 * 5.toLong())
-        } catch (e: NameNotFoundException) {
-            throw AssertionError(e)
+            diskCache = DiskLruCache.open(cacheDir, BuildConfig.VERSION_CODE, 1, 1000 * 1000 * 5.toLong())
         } catch (e: IOException) {
             Log.e("KDE/Mpris/AlbumArtCache", "Could not open the album art disk cache!", e)
         }
