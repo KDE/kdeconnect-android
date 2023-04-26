@@ -11,7 +11,6 @@
     <color name="toolbar_color">@android:color/black</color>
     <color name="card_stroke_color">#8C8C8C</color>
     <color name="activity_background">@android:color/black</color>
-    <item name="lightMode" type="bool">false</item>
 
 <!--    This is for dark theme. In dark theme both selected and unselected text in the
         navigation bar should be white. This is different from the light theme as both states have

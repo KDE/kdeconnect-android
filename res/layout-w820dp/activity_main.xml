@@ -16,7 +16,8 @@
         android:id="@+id/coordinatorLayout"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        tools:context="org.kde.kdeconnect.UserInterface.MainActivity">
+        tools:context="org.kde.kdeconnect.UserInterface.MainActivity"
+        android:fitsSystemWindows="true">
 
         <include layout="@layout/toolbar" android:id="@+id/toolbar_layout" />
 

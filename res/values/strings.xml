@@ -488,6 +488,7 @@
   <string name="click_here_to_type">Tap here to type</string>
   <string name="clear_compose">Clear</string>
   <string name="send_compose">Send</string>
+  <string name="compose_send_title">Compose send</string>
   <string name="open_compose_send">Compose text</string>
 
     <string name="about_kde_about"><![CDATA[

@@ -7,14 +7,14 @@
     <androidx.drawerlayout.widget.DrawerLayout
             android:id="@+id/drawer_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true">  <!-- fitSystemWindows to make the drawer slide below the Lollipop transparent status bar -->
+            android:layout_height="match_parent">
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:id="@+id/coordinatorLayout"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                tools:context="org.kde.kdeconnect.UserInterface.MainActivity">
+                tools:context="org.kde.kdeconnect.UserInterface.MainActivity"
+                android:fitsSystemWindows="true">
 
             <include layout="@layout/toolbar" android:id="@+id/toolbar_layout"/>
 

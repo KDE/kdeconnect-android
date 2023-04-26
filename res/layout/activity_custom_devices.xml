@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="org.kde.kdeconnect.UserInterface.CustomDevicesActivity">
+    tools:context="org.kde.kdeconnect.UserInterface.CustomDevicesActivity"
+    android:fitsSystemWindows="true">
 
     <include layout="@layout/toolbar" android:id="@+id/toolbar_layout" />
 

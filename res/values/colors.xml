@@ -11,5 +11,4 @@
     <color name="toolbar_color">@android:color/white</color>
     <color name="card_stroke_color">#C8C8C8</color>
     <color name="activity_background">@android:color/white</color>
-    <item name="lightMode" type="bool">true</item>
 </resources>

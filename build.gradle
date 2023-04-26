@@ -29,7 +29,13 @@ android {
     }
     buildFeatures {
         viewBinding true
+        compose true
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.2"
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -138,6 +144,12 @@ ext {
 
 dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
+
+    implementation 'androidx.compose.material3:material3:1.0.1'
+    implementation 'androidx.compose.ui:ui-tooling-preview:1.4.2'
+    implementation 'androidx.activity:activity-compose:1.7.1'
+    implementation 'com.google.accompanist:accompanist-themeadapter-material3:0.31.0-alpha'
+    implementation 'androidx.constraintlayout:constraintlayout-compose:1.0.1'
 
     implementation 'androidx.media:media:1.6.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'

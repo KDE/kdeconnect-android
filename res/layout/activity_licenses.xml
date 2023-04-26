@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
     tools:context="org.kde.kdeconnect.UserInterface.About.LicensesActivity">
 
     <include layout="@layout/toolbar" android:id="@+id/toolbar_layout" />

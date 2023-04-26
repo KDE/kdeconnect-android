@@ -275,9 +275,10 @@
         </activity>
         <activity
             android:name="org.kde.kdeconnect.Plugins.MousePadPlugin.ComposeSendActivity"
-            android:label="Compose send"
+            android:label="@string/compose_send_title"
             android:exported="false"
-            android:parentActivityName="org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadActivity">
+            android:parentActivityName="org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadActivity"
+            android:windowSoftInputMode="adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.kde.kdeconnect.Plugins.MousePadPlugin.MousePadActivity" />

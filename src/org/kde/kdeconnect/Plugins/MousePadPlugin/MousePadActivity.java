@@ -8,6 +8,10 @@ package org.kde.kdeconnect.Plugins.MousePadPlugin;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.HapticFeedbackConstants;
@@ -15,17 +19,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.hardware.SensorManager;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorEvent;
-import android.hardware.Sensor;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
 import androidx.preference.PreferenceManager;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
@@ -455,7 +453,6 @@ public class MousePadActivity
         BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> plugin.sendScroll(0, y));
     }
 
-    //TODO: Does not work on KitKat with or without requestFocus()
     private void showKeyboard() {
         InputMethodManager imm = ContextCompat.getSystemService(this, InputMethodManager.class);
         keyListenerView.requestFocus();
