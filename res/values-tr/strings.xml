@@ -60,6 +60,8 @@
   <string name="mousepad_mouse_buttons_title">Fare düğmelerini göster</string>
   <string name="mousepad_acceleration_profile_settings_title">İşaretçi ivmesini ayarla</string>
   <string name="mousepad_scroll_direction_title">Sarma Yönünü Tersine Çevir</string>
+  <string name="gyro_mouse_enabled_title">Jiroskop fareyi etkinleştir</string>
+  <string name="gyro_mouse_sensitivity_title">Jiroskop hassasiyeti</string>
   <string-array name="mousepad_tap_entries">
     <item>Sol tık</item>
     <item>Sağ tık</item>
