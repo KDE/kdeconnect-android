@@ -45,6 +45,8 @@
   <string name="mousepad_sensitivity_settings_title">დააყენეთ თაჩპედის მგრძნობიარობა</string>
   <string name="mousepad_acceleration_profile_settings_title">კურსორის აჩქარების დაყენება</string>
   <string name="mousepad_scroll_direction_title">აწევ-ჩამოწევის მიმართულების რევერსი</string>
+  <string name="gyro_mouse_enabled_title">გიროსკოპის თაგუნას დაჩართვა</string>
+  <string name="gyro_mouse_sensitivity_title">გიროსკოპის მგრძნობელობა</string>
   <string-array name="mousepad_tap_entries">
     <item>მარცხენა-წკაპი</item>
     <item>მარჯვენა წკაპი</item>
@@ -66,6 +68,7 @@
     <item>ძლიერი</item>
     <item>უძლიერესი</item>
   </string-array>
+  <string name="sendkeystrokes_sent_text">%1$s გაგზავნილია მოწყობილობაზე %2$s</string>
   <string name="sendkeystrokes_pref_category_title">სად გაიგზავნება ღილაკის დაჭერა</string>
   <string name="sendkeystrokes_pref_enabled">ღილაკის დაჭერის გაგზავნის ჩართვა</string>
   <string name="mouse_receiver_plugin_name">თაგუნას მიმღები</string>
@@ -274,6 +277,7 @@
   <string name="click_here_to_type">ასაკრეფად აქ დაატყაპუნეთ</string>
   <string name="clear_compose">გაწმენდა</string>
   <string name="send_compose">გაგზავნა</string>
+  <string name="compose_send_title">შედგენის გაგზავნა</string>
   <string name="open_compose_send">ტექსტის შედგენა</string>
   <string name="maintainer_and_developer">პროგრამისტი და წამყვანი</string>
   <string name="developer">პროგრამისტი</string>
