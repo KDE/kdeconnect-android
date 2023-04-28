@@ -41,6 +41,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.kde.kdeconnect.Helpers.ContactsHelper;
 import org.kde.kdeconnect.Helpers.SMSHelper;
+import org.kde.kdeconnect.Helpers.ThreadHelper;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
@@ -53,6 +54,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -390,7 +394,10 @@ public class SMSPlugin extends Plugin {
 
         switch (np.getType()) {
             case PACKET_TYPE_SMS_REQUEST_CONVERSATIONS:
-                return this.handleRequestAllConversations(np);
+                Callable<Boolean> callable = () -> this.handleRequestAllConversations(np);
+                ThreadHelper.executeCallable(callable);
+                return true;
+
             case PACKET_TYPE_SMS_REQUEST_CONVERSATION:
                 return this.handleRequestSingleConversation(np);
             case PACKET_TYPE_SMS_REQUEST:
