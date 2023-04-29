@@ -60,6 +60,8 @@
   <string name="mousepad_mouse_buttons_title">Mostrar os botões do rato</string>
   <string name="mousepad_acceleration_profile_settings_title">Definir a aceleração do cursor</string>
   <string name="mousepad_scroll_direction_title">Direcção de Deslocamento Inversa</string>
+  <string name="gyro_mouse_enabled_title">Activar o rato com giroscópio</string>
+  <string name="gyro_mouse_sensitivity_title">Sensibilidade do giroscópio</string>
   <string-array name="mousepad_tap_entries">
     <item>Botão esquerdo</item>
     <item>Botão direito</item>
@@ -374,6 +376,7 @@
   <string name="click_here_to_type">Toque aqui para abrir</string>
   <string name="clear_compose">Limpar</string>
   <string name="send_compose">Enviar</string>
+  <string name="compose_send_title">Compor o envio</string>
   <string name="open_compose_send">Compor o texto</string>
   <string name="about_kde_about">&lt;h1&gt;Acerca&lt;/h1&gt; &lt;p&gt;O KDE é uma grande comunidade mundial de engenheiros de \'software\', artistas, tradutores e criadores comprometidos com o desenvolvimento de &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Software Livre&lt;/a&gt;. O KDE produz o ambiente de trabalho Plasma, centenas de aplicações e as diversas bibliotecas de \'software\' que dão suporte a elas.&lt;/p&gt; &lt;p&gt;O KDE é uma empresa cooperativa: nenhuma entidade única controla a sua direcção ou produtos. Em vez disso, trabalhamos juntos para atingir o objectivo comum de criar o melhor Software Livre do mundo. Todos são bem-vindos para se &lt;a href=https://community.kde.org/Get_Involved&gt;juntarem e contribuírem&lt;/a&gt; para o KDE, incluindo você mesmo.&lt;/p&gt; Vá a &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; para obter mais informações sobre a comunidade do KDE e as aplicações que produzimos.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Comunicar Erros ou Pedidos&lt;/h1&gt; &lt;p&gt;O software pode ser sempre melhorado, e a equipa do KDE está preparada para o fazer. Contudo, você - o utilizador - deve--nos avisar quando algo não funciona como seria de esperar ou quando poderá ser feito de melhor maneira.&lt;/p&gt; &lt;p&gt;O KDE tem um sistema de registo de erros. Vá a &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; ou use o botão \"Comunicar um Erro\" do ecrã \'Acerca\' para relatar erros.&lt;/p&gt; Se tiver uma sugestão de melhorias, então é bem-vindo para usar o sistema de registo de erros para registar o seu pedido. Certifique-se que usa o tipo de criticidade \"Wishlist\" (Lista de Pedidos).</string>

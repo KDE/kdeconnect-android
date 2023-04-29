@@ -185,6 +185,7 @@
   <string name="click_here_to_type">Tocca hic pro typar</string>
   <string name="clear_compose">Clara</string>
   <string name="send_compose">Invia</string>
+  <string name="compose_send_title">Compone invia</string>
   <string name="open_compose_send">Compone texto</string>
   <string name="maintainer_and_developer">Mantenitor e developpator</string>
   <string name="developer">Disveloppator</string>
