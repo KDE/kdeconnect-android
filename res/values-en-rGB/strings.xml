@@ -60,6 +60,8 @@
   <string name="mousepad_mouse_buttons_title">Show mouse buttons</string>
   <string name="mousepad_acceleration_profile_settings_title">Set pointer acceleration</string>
   <string name="mousepad_scroll_direction_title">Reverse Scrolling Direction</string>
+  <string name="gyro_mouse_enabled_title">Enable gyroscope mouse</string>
+  <string name="gyro_mouse_sensitivity_title">Gyroscope sensitivity</string>
   <string-array name="mousepad_tap_entries">
     <item>Left click</item>
     <item>Right click</item>
@@ -374,6 +376,7 @@
   <string name="click_here_to_type">Tap here to type</string>
   <string name="clear_compose">Clear</string>
   <string name="send_compose">Send</string>
+  <string name="compose_send_title">Compose send</string>
   <string name="open_compose_send">Compose text</string>
   <string name="about_kde_about">&lt;h1&gt;About&lt;/h1&gt; &lt;p&gt;KDE is a world-wide community of software engineers, artists, writers, translators and creators who are committed to &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Free Software&lt;/a&gt; development. KDE produces the Plasma desktop environment, hundreds of applications, and the many software libraries that support them.&lt;/p&gt; &lt;p&gt;KDE is a cooperative enterprise: no single entity controls its direction or products. Instead, we work together to achieve the common goal of building the world\'s finest Free Software. Everyone is welcome to &lt;a href=https://community.kde.org/Get_Involved&gt;join and contribute&lt;/a&gt; to KDE, including you.&lt;/p&gt; Visit &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; for more information about the KDE community and the software we produce.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Report Bugs or Wishes&lt;/h1&gt; &lt;p&gt;Software can always be improved, and the KDE team is ready to do so. However, you - the user - must tell us when something does not work as expected or could be done better.&lt;/p&gt; &lt;p&gt;KDE has a bug tracking system. Visit &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; or use the \"Report Bug\" button from the about screen to report bugs.&lt;/p&gt; If you have a suggestion for improvement then you are welcome to use the bug tracking system to register your wish. Make sure you use the severity called \"Wishlist\".</string>

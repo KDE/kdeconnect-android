@@ -51,11 +51,23 @@
   <string name="remotekeyboard_connected">Verbindung zu entfernter Tastatur ist aktiv</string>
   <string name="remotekeyboard_multiple_connections">Es besteht mehr als eine Verbindungen zu einer entfernten Tastatur. Um Ihre Konfiguration anzupassen, wählen Sie bitte ein Gerät aus</string>
   <string name="open_mousepad">Ferneingabe</string>
+  <string name="mousepad_info">Bewegen Sie Ihren Finger über den Bildschirm um den Mauszeiger zu bewegen. Tippen Sie auf den Bildschirm, um einen Klick zu simulieren und benutzen Sie entsprechend zwei/drei Finger für einen Rechts-/Mittelklick. Verwenden Sie zwei Finger, um zu Scrollen und einen langen Druck um Objekte zu verschieben. Gyroskop-Maus-Funktionen können Sie in den Modul-Einstellungen aktivieren.</string>
+  <string name="mousepad_keyboard_input_not_supported">Das verbundene Gerät unterstützt keine Tastatureingaben</string>
+  <string name="mousepad_single_tap_settings_title">Aktionsausführung bei Berührung mit einem Finger einstellen</string>
   <string name="mousepad_double_tap_settings_title">Aktionsausführung bei Berührung mit zwei Fingern einstellen</string>
   <string name="mousepad_triple_tap_settings_title">Aktionsausführung bei Berührung mit drei Fingern einstellen</string>
   <string name="mousepad_sensitivity_settings_title">Empfindlichkeit des Touchpads einstellen</string>
+  <string name="mousepad_mouse_buttons_title">Maustasten anzeigen</string>
   <string name="mousepad_acceleration_profile_settings_title">Zeigerbeschleunigung einstellen</string>
   <string name="mousepad_scroll_direction_title">Bildlaufrichtung umkehren</string>
+  <string name="gyro_mouse_enabled_title">Gyroskop-Maus aktivieren</string>
+  <string name="gyro_mouse_sensitivity_title">Empfindlichkeit des Gyroskops einstellen</string>
+  <string-array name="mousepad_tap_entries">
+    <item>Linksklick</item>
+    <item>Rechtsklick</item>
+    <item>Mittelklick</item>
+    <item>Nichts</item>
+  </string-array>
   <string-array name="mousepad_sensitivity_entries">
     <item>Langsamste</item>
     <item>Langsam</item>
@@ -75,11 +87,19 @@
   <string name="sendkeystrokes_textbox_hint">Tastendruck an Rechner senden</string>
   <string name="sendkeystrokes_disabled_toast">Das Senden von Tastatureingaben ist deaktiviert - aktivieren Sie es in den Einstellungen</string>
   <string name="sendkeystrokes_wrong_data">Ungültiger MIME-Typ - er muss „text/x-keystrokes“ sein</string>
+  <string name="sendkeystrokes_sent_text">%1$s an Gerät %2$s senden</string>
   <string name="sendkeystrokes_pref_category_summary">Mit diesem Modul können andere Anwendungen Textsegmente als Tastendrücke teilen, die an den verbundenen Rechner gesendet werden</string>
   <string name="sendkeystrokes_pref_category_title">Tastendrücke senden</string>
   <string name="sendkeystrokes_pref_enabled">Senden von Tastendrücken aktivieren</string>
   <string name="sendkeystrokes_pref_enabled_summary">Auf Daten mit dem MIME-Typ „text/x-keystrokes“ warten</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Als Tastendruck senden</string>
+  <string name="mouse_receiver_plugin_description">Empfänger für entfernte Mauseingaben</string>
+  <string name="mouse_receiver_plugin_name">Maus-Empfänger</string>
+  <string name="mouse_receiver_no_permissions">Sie müssen den Zugangshilfendienst aktivieren</string>
+  <string name="view_status_title">Status</string>
+  <string name="battery_status_format">Akku: %d%%</string>
+  <string name="battery_status_low_format">Akku: %d%% Niedriger Ladestand</string>
+  <string name="battery_status_charging_format">Akku: %d%% Wird geladen</string>
   <string name="category_connected_devices">Verbundene Geräte</string>
   <string name="category_not_paired_devices">Verfügbare Geräte</string>
   <string name="category_remembered_devices">Gemerkte Geräte</string>
@@ -148,6 +168,8 @@
   <string name="mpris_rew">Schneller Rücklauf</string>
   <string name="mpris_ff">Vorlauf</string>
   <string name="mpris_next">Weiter</string>
+  <string name="mpris_loop">Wiederholen</string>
+  <string name="mpris_shuffle">Mischen</string>
   <string name="mpris_volume">Lautstärke</string>
   <string name="mpris_time_settings_title">Knöpfe Vorwärts/Rückwärts</string>
   <string name="mpris_time_settings_summary">Sprungweite für Vorlauf/Rücklauf anpassen</string>
@@ -181,6 +203,7 @@
   <string name="share_received_file">%s freigeben</string>
   <string name="title_activity_notification_filter">Benachrichtigungs-Filter</string>
   <string name="filter_apps_info">Benachrichtigungen werden zwischen den ausgewählten Anwendungen abgeglichen</string>
+  <string name="show_notification_if_screen_off">Nur bei ausgeschaltetem Bildschirm Benachrichtigungen senden</string>
   <string name="add_device_dialog_title">Gerät hinzufügen</string>
   <string name="add_device_hint">Rechnername oder IP-Adresse</string>
   <string name="sftp_preference_configured_storage_locations">Vorhandene Speicherort</string>
@@ -197,6 +220,8 @@
   <string name="sftp_saf_permission_explanation">Um von außerhalb auf Ihre Dateien zugreifen zu können, muss mindestens ein Speicherort vorhanden sein</string>
   <string name="no_players_connected">Keine Medienspieler gefunden</string>
   <string name="send_files">Dateien senden</string>
+  <string name="block_notification_contents">Benachrichtigungsinhalte blockieren</string>
+  <string name="block_notification_images">Bilder in Benachrichtigungen blockieren</string>
   <string name="pairing_title">KDE-Connect-Geräte</string>
   <string name="pairing_description">Andere Geräte im selben Netzwerk, auf denen KDE Connect läuft, sollten hier angezeigt werden</string>
   <string name="device_rename_title">Geräte umbenennen</string>
@@ -219,6 +244,7 @@
   <string name="close">Schließen</string>
   <string name="plugins_need_permission">Einige Module benötigen zusätzliche Berechtigungen, tippen Sie für weitere Details:</string>
   <string name="permission_explanation">Dieses Modul benötigt zusätzliche Berechtigungen</string>
+  <string name="all_permissions_granted">Alle Berechtigungen erteilt 🎉</string>
   <string name="optional_permission_explanation">Es müssen weitere Berechtigungen erteilt werden, um alle Funktionen nutzen zu können</string>
   <string name="plugins_need_optional_permission">Einige Module haben eingeschränkte Funktionen wegen fehlender Berechtigungen, tippen Sie für weitere Informationen:</string>
   <string name="telepathy_permission_explanation">Um SMS vom Rechner aus zu lesen und zu versenden, muss der Zugriff auf die SMS-Funktion gewährt werden</string>
@@ -241,6 +267,7 @@
   <string name="pref_plugin_mprisreceiver">Steuerung der Medienwiedergabe</string>
   <string name="pref_plugin_mprisreceiver_desc">Ein verbundenes Gerät zum Steuern der lokalen Medienwiedergabe verwenden</string>
   <string name="notification_channel_default">Andere Benachrichtigungen</string>
+  <string name="notification_channel_persistent">Dauerhafte Benachrichtigung</string>
   <string name="notification_channel_media_control">Medienkontrolle</string>
   <string name="notification_channel_filetransfer">Dateiübertragung</string>
   <string name="notification_channel_high_priority">Hohe Priorität</string>
@@ -287,6 +314,7 @@
   <string name="clipboard_android_x_incompat">In Android 10 wurde der Zugriff auf die Zwischenablage für alle Apps entfernt. Diese Modul wird deaktiviert.</string>
   <string name="mpris_open_url">Wiedergabe hier fortsetzen</string>
   <string name="cant_open_url">Die URL zum Fortsetzen der Wiedergabe kann nicht geöffnet werden</string>
+  <string name="bigscreen_home">Startseite</string>
   <string name="bigscreen_up">Oben</string>
   <string name="bigscreen_left">Links</string>
   <string name="bigscreen_select">Auswählen</string>
@@ -324,4 +352,25 @@
   <string name="donate">Spenden</string>
   <string name="source_code">Quelltext</string>
   <string name="licenses">Lizenzen</string>
+  <string name="website">Webseite</string>
+  <string name="about">Über</string>
+  <string name="authors">Autoren</string>
+  <string name="thanks_to">Dank an</string>
+  <string name="email_contributor">E-Mail an den Mitwirkenden senden\n%s</string>
+  <string name="visit_contributors_homepage">Internetseite des Mitwirkenden besuchen\n%s</string>
+  <string name="version">Version %s</string>
+  <string name="about_kde">Über KDE</string>
+  <string name="kde_be_free">KDE - Freiheit genießen.</string>
+  <string name="kde">KDE</string>
+  <string name="konqi">Konqi</string>
+  <string name="clear_compose">Leeren</string>
+  <string name="send_compose">Senden</string>
+  <string name="open_compose_send">Text schreiben</string>
+  <string name="maintainer_and_developer">Betreuer und Entwickler</string>
+  <string name="developer">Entwickler</string>
+  <string name="bug_fixes_and_general_improvements">Fehlerbereinigung und allgemeine Verbesserungen</string>
+  <string name="aniket_kumar_task">Verbesserungen am SMS-Modul</string>
+  <string name="alex_fiestas_task">Verbesserungen am Kontakte-Modul</string>
+  <string name="send_clipboard">Zwischenablage senden</string>
+  <string name="tap_to_execute">Tippen um auszuführen</string>
 </resources>
