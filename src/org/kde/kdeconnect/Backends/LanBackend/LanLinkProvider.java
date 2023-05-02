@@ -369,7 +369,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
 
             NetworkPacket identity = NetworkPacket.createIdentityPacket(context);
             if (tcpServer == null || !tcpServer.isBound()) {
-                throw new RuntimeException("Wont't broadcast UDP packet if TCP socket is not ready");
+                throw new IllegalStateException("Wont't broadcast UDP packet if TCP socket is not ready");
             }
             int port = tcpServer.getLocalPort();
             identity.set("tcpPort", port);
@@ -420,7 +420,11 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
 
     @Override
     public void onNetworkChange() {
-        broadcastUdpPacket();
+        try {
+            broadcastUdpPacket();
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
