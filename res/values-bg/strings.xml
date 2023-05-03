@@ -60,6 +60,8 @@
   <string name="mousepad_mouse_buttons_title">Показване на бутони на мишката</string>
   <string name="mousepad_acceleration_profile_settings_title">Задаване на ускорение на показалеца</string>
   <string name="mousepad_scroll_direction_title">Обръщане на посоката на превъртане</string>
+  <string name="gyro_mouse_enabled_title">Активиране на жироскопската мишка</string>
+  <string name="gyro_mouse_sensitivity_title">Чувствителност на жироскопа</string>
   <string-array name="mousepad_tap_entries">
     <item>Щракване с ляв бутон</item>
     <item>Щракване с десен бутон</item>
@@ -374,6 +376,7 @@
   <string name="click_here_to_type">Докоснете тук, за да въведете</string>
   <string name="clear_compose">Изчистване</string>
   <string name="send_compose">Изпращане</string>
+  <string name="compose_send_title">Текстът е изпратен</string>
   <string name="open_compose_send">Съставяне на текст</string>
   <string name="about_kde_about">&lt;h1&gt;За&lt;/h1&gt; &lt;p&gt;KDE е световна общност от софтуерни инженери, художници, писатели, преводачи и творци, които са отдадени на &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;свободното разработване на софтуер&lt;/a&gt;. KDE създава работната среда Plasma, стотици приложения и многобройните софтуерни библиотеки, които ги поддържат.&lt;/p&gt; &lt;p&gt;KDE е кооперативно предприятие: нито една отделна организация контролира насоките или продуктите му. Вместо това ние работим заедно, за да постигнем общата цел да създадем най-добрия свободен софтуер в света. Всеки е добре дошъл да се присъедини и да да допринесе&lt;/a&gt; за KDE, включително и вие.&lt;/p&gt; Посетете &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; за повече информация за общността на KDE и за софтуера, който създаваме.</string>
   <string name="about_kde_report_bugs_or_wishes">" &lt;h1&gt;Докладвайте за грешки или желания&lt;/h1&gt; &lt;p&gt;Софтуерът винаги може да бъде подобрен и екипът на KDE е готов да го направи. Въпреки това вие - потребителят - трябва да да ни кажете, когато нещо не работи според очакванията или може да бъде направено по-добре.&lt;/p&gt; &lt;p&gt;KDE разполага със система за проследяване на грешки. Посетете &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; или използвайте бутона \"Докладване на грешка\" от екрана за програмата, за да съобщите за грешки.&lt;/p&gt; Ако имате предложение за подобрение, тогава можете да използвате системата за проследяване на грешки, за да регистрирате желанието си. Уверете се, че използвате тежестта, наречена \"Wishlist\"."</string>
