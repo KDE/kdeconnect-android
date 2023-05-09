@@ -5,13 +5,6 @@
     android:versionCode="12405"
     android:versionName="1.24.5">
 
-    <supports-screens
-        android:anyDensity="true"
-        android:largeScreens="true"
-        android:normalScreens="true"
-        android:smallScreens="true"
-        android:xlargeScreens="true" />
-
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
