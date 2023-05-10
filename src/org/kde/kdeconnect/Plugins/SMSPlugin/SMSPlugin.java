@@ -395,12 +395,8 @@ public class SMSPlugin extends Plugin {
         switch (np.getType()) {
             case PACKET_TYPE_SMS_REQUEST_CONVERSATIONS:
                 Callable<Boolean> callable = () -> this.handleRequestAllConversations(np);
-                Future future = ThreadHelper.executeCallable(callable);
-                try {
-                    return (boolean) future.get();
-                } catch (InterruptedException | ExecutionException e) {
-                    Log.d("SMSPlugin", "Error while getting result from callable: " + e.getMessage());
-                }
+                ThreadHelper.executeCallable(callable);
+                return true;
 
             case PACKET_TYPE_SMS_REQUEST_CONVERSATION:
                 return this.handleRequestSingleConversation(np);
