@@ -7,7 +7,6 @@ public class RunCommandWidgetDataProviderService extends RemoteViewsService {
 
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
-
-        return (new RunCommandWidgetDataProvider(RunCommandWidgetDataProviderService.this, intent));
+        return new RunCommandWidgetDataProvider(this, intent);
     }
 }
