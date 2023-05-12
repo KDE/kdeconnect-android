@@ -44,6 +44,7 @@ public class MprisPlugin extends Plugin {
         private String albumArtUrl = "";
         private String url = "";
         private String loopStatus = "";
+        private double rate = 1.0;
         private boolean loopStatusAllowed = false;
         private boolean shuffle = false;
         private boolean shuffleAllowed = false;
@@ -87,6 +88,10 @@ public class MprisPlugin extends Plugin {
 
         public String getLoopStatus() {
             return loopStatus;
+        }
+
+        public double getRate() {
+            return rate;
         }
 
         public boolean getShuffle() {
@@ -157,7 +162,7 @@ public class MprisPlugin extends Plugin {
 
         public long getPosition() {
             if (playing) {
-                return lastPosition + (System.currentTimeMillis() - lastPositionTime);
+                return (int) Math.round(lastPosition + (System.currentTimeMillis() - lastPositionTime) * rate);
             } else {
                 return lastPosition;
             }
@@ -199,6 +204,10 @@ public class MprisPlugin extends Plugin {
 
         public void setLoopStatus(String loopStatus) {
             MprisPlugin.this.sendCommand(getPlayer(), "setLoopStatus", loopStatus);
+        }
+
+        public void setRate(double rate) {
+            MprisPlugin.this.sendCommand(getPlayer(), "setRate", rate);
         }
 
         public void setShuffle(boolean shuffle) {
@@ -326,6 +335,7 @@ public class MprisPlugin extends Plugin {
                     playerStatus.loopStatus = np.getString("loopStatus", playerStatus.loopStatus);
                     playerStatus.loopStatusAllowed = true;
                 }
+                playerStatus.rate = np.getDouble("rate", playerStatus.rate);
                 if (np.has("shuffle")) {
                     playerStatus.shuffle = np.getBoolean("shuffle", playerStatus.shuffle);
                     playerStatus.shuffleAllowed = true;
