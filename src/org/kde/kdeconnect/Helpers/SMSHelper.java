@@ -128,6 +128,27 @@ public class SMSHelper {
     }
 
     /**
+     * Get the timestamp of the newest known message. Will return Integer.MIN_VALUE if there are no messages.
+     *
+     * @param context  android.content.Context running the request
+     * @return Timestamp of the oldest known message.
+     */
+    public static @Nullable long getNewestMessageTimestamp(
+            @NonNull Context context
+    ) {
+        long oldestMessageTimestamp = Long.MIN_VALUE;
+        List<SMSHelper.Message> newestMessage = SMSHelper.getMessagesInRange(context, null, Long.MAX_VALUE, 1l, true);
+        // There should only be one, but in case for some reason there are more, take the latest
+        for (SMSHelper.Message message : newestMessage) {
+            if (message != null && message.date > oldestMessageTimestamp) {
+                oldestMessageTimestamp = message.date;
+            }
+        }
+
+        return oldestMessageTimestamp;
+    }
+
+    /**
      * Get some or all the messages in a requested thread, starting with the most-recent message
      *
      * @param context  android.content.Context running the request
