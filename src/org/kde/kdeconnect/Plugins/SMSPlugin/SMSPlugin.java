@@ -30,6 +30,7 @@ import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 
+import androidx.annotation.WorkerThread;
 import androidx.core.content.ContextCompat;
 
 import com.klinker.android.logger.Log;
@@ -375,6 +376,17 @@ public class SMSPlugin extends Plugin {
         // To see debug messages for Klinker library, uncomment the below line
         //Log.setDebug(true);
 
+        // Initialize mostRecentTimestamp
+        List<SMSHelper.Message> newestMessage = SMSHelper.getMessagesInRange(context, null, Long.MAX_VALUE, 1l, true);
+        // There should only be one, but in case for some reason there are more, take the latest
+        mostRecentTimestampLock.lock();
+        for (SMSHelper.Message message : newestMessage) {
+            if (message.date > mostRecentTimestamp) {
+                mostRecentTimestamp = message.date;
+            }
+        }
+        mostRecentTimestampLock.unlock();
+
         return true;
     }
 
@@ -491,24 +503,19 @@ public class SMSPlugin extends Plugin {
      * <p>
      * Send one packet of type PACKET_TYPE_SMS_MESSAGE with the first message in all conversations
      */
+    @WorkerThread
     private boolean handleRequestAllConversations(NetworkPacket packet) {
         Iterable<SMSHelper.Message> conversations = SMSHelper.getConversations(this.context);
 
-        // Prepare the mostRecentTimestamp counter based on these messages, since they are the most
-        // recent in every conversation
-        mostRecentTimestampLock.lock();
         for (SMSHelper.Message message : conversations) {
-            if (message.date > mostRecentTimestamp) {
-                mostRecentTimestamp = message.date;
-            }
             NetworkPacket partialReply = constructBulkMessagePacket(Collections.singleton(message));
             device.sendPacket(partialReply);
         }
-        mostRecentTimestampLock.unlock();
 
         return true;
     }
 
+    @WorkerThread
     private boolean handleRequestSingleConversation(NetworkPacket packet) {
         SMSHelper.ThreadID threadID = new SMSHelper.ThreadID(packet.getLong("threadID"));
 
@@ -525,17 +532,6 @@ public class SMSPlugin extends Plugin {
         } else {
             conversation = SMSHelper.getMessagesInRange(this.context, threadID, rangeStartTimestamp, numberToGet, true);
         }
-
-        // Sometimes when desktop app is kept open while android app is restarted for any reason
-        // mostRecentTimeStamp must be updated in that scenario too if a user request for a
-        // single conversation and not the entire conversation list
-        mostRecentTimestampLock.lock();
-        for (SMSHelper.Message message : conversation) {
-            if (message.date > mostRecentTimestamp) {
-                mostRecentTimestamp = message.date;
-            }
-        }
-        mostRecentTimestampLock.unlock();
 
         NetworkPacket reply = constructBulkMessagePacket(conversation);
 
