@@ -7,7 +7,7 @@
 # - Set up gitlab-runner, as described here: https://stackoverflow.com/a/52724374
 # - Run `gitlab-runner exec docker --docker-privileged assembleDebug`
 
-image: openjdk:11-jdk
+image: eclipse-temurin:17-jdk-focal
 
 variables:
   ANDROID_COMPILE_SDK: "31"
