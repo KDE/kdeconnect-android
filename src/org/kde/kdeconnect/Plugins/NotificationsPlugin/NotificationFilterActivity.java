@@ -17,6 +17,8 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -27,6 +29,7 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.widget.TextViewCompat;
 
 import com.google.android.material.materialswitch.MaterialSwitch;
@@ -36,9 +39,12 @@ import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityNotificationFilterBinding;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.IntFunction;
+import java.util.function.Predicate;
 
 //TODO: Turn this into a PluginSettingsFragment
 public class NotificationFilterActivity extends AppCompatActivity {
@@ -54,18 +60,20 @@ public class NotificationFilterActivity extends AppCompatActivity {
         boolean isEnabled;
     }
 
-    private AppListInfo[] apps;
+    // This variable stores all app information and serves as a data source for filtering.
+    private List<AppListInfo> mAllApps;
+    private List<AppListInfo> apps; // Filtered data.
 
     class AppListAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
-            return apps.length + 1;
+            return apps.size() + 1;
         }
 
         @Override
         public AppListInfo getItem(int position) {
-            return apps[position - 1];
+            return apps.get(position - 1);
         }
 
         @Override
@@ -82,10 +90,13 @@ public class NotificationFilterActivity extends AppCompatActivity {
             if (position == 0) {
                 checkedTextView.setText(R.string.all);
                 TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(checkedTextView, null, null, null, null);
+                binding.lvFilterApps.setItemChecked(position, appDatabase.getAllEnabled());
             } else {
-                checkedTextView.setText(apps[position - 1].name);
-                TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(checkedTextView, apps[position - 1].icon, null, null, null);
+                final AppListInfo info = apps.get(position - 1);
+                checkedTextView.setText(info.name);
+                TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(checkedTextView, info.icon, null, null, null);
                 checkedTextView.setCompoundDrawablePadding((int) (8 * getResources().getDisplayMetrics().density));
+                binding.lvFilterApps.setItemChecked(position, info.isEnabled);
             }
 
             return view;
@@ -116,18 +127,18 @@ public class NotificationFilterActivity extends AppCompatActivity {
             List<ApplicationInfo> appList = packageManager.getInstalledApplications(0);
             int count = appList.size();
 
-            apps = new AppListInfo[count];
+            AppListInfo[] allApps = new AppListInfo[count];
             for (int i = 0; i < count; i++) {
                 ApplicationInfo appInfo = appList.get(i);
-                apps[i] = new AppListInfo();
-                apps[i].pkg = appInfo.packageName;
-                apps[i].name = appInfo.loadLabel(packageManager).toString();
-                apps[i].icon = resizeIcon(appInfo.loadIcon(packageManager), 48);
-                apps[i].isEnabled = appDatabase.isEnabled(appInfo.packageName);
+                allApps[i] = new AppListInfo();
+                allApps[i].pkg = appInfo.packageName;
+                allApps[i].name = appInfo.loadLabel(packageManager).toString();
+                allApps[i].icon = resizeIcon(appInfo.loadIcon(packageManager), 48);
+                allApps[i].isEnabled = appDatabase.isEnabled(appInfo.packageName);
             }
-
-            Arrays.sort(apps, (lhs, rhs) -> lhs.name.compareToIgnoreCase(rhs.name));
-
+            Arrays.sort(allApps, (lhs, rhs) -> lhs.name.compareToIgnoreCase(rhs.name));
+            mAllApps = Arrays.asList(allApps);
+            apps = new ArrayList<>(mAllApps);
             runOnUiThread(this::displayAppList);
         });
 
@@ -152,14 +163,16 @@ public class NotificationFilterActivity extends AppCompatActivity {
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
             if (i == 0) {
                 boolean enabled = listView.isItemChecked(0);
-                for (int j = 0; j < apps.length; j++) {
-                    listView.setItemChecked(j, enabled);
+                for (int j = 0; j < mAllApps.size(); j++) {
+                    mAllApps.get(j).isEnabled = enabled;
                 }
                 appDatabase.setAllEnabled(enabled);
+                ((AppListAdapter) adapterView.getAdapter()).notifyDataSetChanged();
             } else {
                 boolean checked = listView.isItemChecked(i);
-                appDatabase.setEnabled(apps[i - 1].pkg, checked);
-                apps[i - 1].isEnabled = checked;
+                apps.get(i - 1).isEnabled = checked;
+                appDatabase.setEnabled(apps.get(i - 1).pkg, checked);
+                ((AppListAdapter) adapterView.getAdapter()).notifyDataSetChanged();
             }
         });
         listView.setOnItemLongClickListener((adapterView, view, i, l) -> {
@@ -185,7 +198,7 @@ public class NotificationFilterActivity extends AppCompatActivity {
                 switch (new_i){
                     case 0:
                         AlertDialog.Builder myBuilder = new AlertDialog.Builder(context);
-                        String packageName = apps[i - 1].pkg;
+                        String packageName = apps.get(i - 1).pkg;
 
                         View myView = getLayoutInflater().inflate(R.layout.privacy_options, null);
                         CheckBox checkbox_contents = myView.findViewById(R.id.checkbox_contents);
@@ -218,8 +231,8 @@ public class NotificationFilterActivity extends AppCompatActivity {
         });
 
         listView.setItemChecked(0, appDatabase.getAllEnabled()); //"Select all" button
-        for (int i = 0; i < apps.length; i++) {
-            listView.setItemChecked(i + 1, apps[i].isEnabled);
+        for (int i = 0; i < apps.size(); i++) {
+            listView.setItemChecked(i + 1, apps.get(i).isEnabled);
         }
 
         listView.setVisibility(View.VISIBLE);
@@ -244,6 +257,42 @@ public class NotificationFilterActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         super.onBackPressed();
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        MenuItem mitem = menu.add(android.R.string.search_go);
+        mitem.setIcon(R.drawable.ic_search_24);
+        mitem.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        SearchView searchView = new SearchView(this);
+        mitem.setActionView(searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return  true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if(mAllApps == null) return false;
+                apps.clear();
+                if(newText.isEmpty()){
+                    apps.addAll(mAllApps);
+                } else {
+                    for (AppListInfo s : mAllApps) {
+                        if (s.name.toLowerCase().contains(newText.toLowerCase().trim()))
+                            apps.add(s);
+                    }
+                }
+
+                ((AppListAdapter) binding.lvFilterApps.getAdapter()).notifyDataSetChanged();
+                return true;
+            }
+        });
+
+
         return true;
     }
 }
