@@ -379,13 +379,13 @@ class DeviceFragment : Fragment() {
             PluginItem(
                 context = requireContext(),
                 header = requireContext().getString(headerText),
-                textStyleRes = R.style.TextAppearance_Material3_BodyMedium,
+                textStyleRes = com.google.android.material.R.style.TextAppearance_Material3_BodyMedium,
             )
         )
         for (plugin in plugins.values) {
             if (device.isPluginEnabled(plugin.pluginKey)) {
                 permissionListItems.add(
-                    PluginItem(requireContext(), plugin, action, R.style.TextAppearance_Material3_LabelLarge)
+                    PluginItem(requireContext(), plugin, action, com.google.android.material.R.style.TextAppearance_Material3_LabelLarge)
                 )
             }
         }

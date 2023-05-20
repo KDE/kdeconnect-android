@@ -90,7 +90,7 @@ public class SftpSettingsFragment
         super.onCreatePreferences(savedInstanceState, rootKey);
 
         // Can't use try-with-resources since TypedArray's close method was only added in API 31
-        TypedArray ta = requireContext().obtainStyledAttributes(new int[]{R.attr.colorAccent});
+        TypedArray ta = requireContext().obtainStyledAttributes(new int[]{androidx.appcompat.R.attr.colorAccent});
         int colorAccent = ta.getColor(0, 0);
         ta.recycle();
 
