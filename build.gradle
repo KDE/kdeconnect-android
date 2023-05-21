@@ -88,6 +88,18 @@ android {
         abortOnError false
         checkReleaseBuilds false
     }
+    testOptions {
+        unitTests.all {
+            jvmArgs += [
+                    "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+                    "--add-opens", "java.base/java.security=ALL-UNNAMED",
+                    "--add-opens", "java.base/sun.security.rsa=ALL-UNNAMED",
+                    "--add-opens", "java.base/sun.security.x509=ALL-UNNAMED",
+                    "--add-opens", "java.base/java.util=ALL-UNNAMED",
+                    "--add-opens", "java.base/java.lang.reflect=ALL-UNNAMED"
+            ]
+        }
+    }
 }
 
 /**
