@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.apache.commons.lang3.StringUtils;
-import org.kde.kdeconnect_tp.BuildConfig;
 
 public class StartActivityAlertDialogFragment extends AlertDialogFragment {
     private static final String KEY_INTENT_ACTION = "IntentAction";

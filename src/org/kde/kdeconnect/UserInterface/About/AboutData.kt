@@ -6,7 +6,6 @@
 
 package org.kde.kdeconnect.UserInterface.About
 
-import android.content.Context
 import android.os.Parcel
 import android.os.Parcelable
 

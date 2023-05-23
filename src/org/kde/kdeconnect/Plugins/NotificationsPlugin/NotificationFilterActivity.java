@@ -35,7 +35,6 @@ import androidx.core.widget.TextViewCompat;
 import com.google.android.material.materialswitch.MaterialSwitch;
 
 import org.kde.kdeconnect.Helpers.ThreadHelper;
-import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityNotificationFilterBinding;
 
@@ -43,8 +42,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.IntFunction;
-import java.util.function.Predicate;
 
 //TODO: Turn this into a PluginSettingsFragment
 public class NotificationFilterActivity extends AppCompatActivity {

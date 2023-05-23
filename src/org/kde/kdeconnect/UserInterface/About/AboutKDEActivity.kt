@@ -11,7 +11,6 @@ import android.text.Html
 import android.text.Spanned
 import android.text.method.LinkMovementMethod
 import androidx.appcompat.app.AppCompatActivity
-import org.kde.kdeconnect.UserInterface.ThemeUtil
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityAboutKdeBinding
 

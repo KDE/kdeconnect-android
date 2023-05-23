@@ -15,7 +15,6 @@ import androidx.fragment.app.DialogFragment;
 
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
-import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin.RemoteKeyboardPlugin;
 import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect.UserInterface.StartActivityAlertDialogFragment;
@@ -48,12 +47,6 @@ public class MouseReceiverPlugin extends Plugin {
                 .setStartForResult(true)
                 .setRequestCode(MainActivity.RESULT_NEEDS_RELOAD)
                 .create();
-    }
-
-    @Override
-    public void onDestroy() {
-        Log.e("MouseReceiverPlugin", "onDestroy()");
-        super.onDestroy();
     }
 
     @Override

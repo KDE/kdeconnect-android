@@ -220,10 +220,11 @@ public abstract class Plugin {
 
     /**
      * Finish any ongoing operations, remove listeners... so
-     * this object could be garbage collected.
+     * this object could be garbage collected. Note that this gets
+     * called as well if onCreate threw an exception, so your plugin
+     * could be not fully initialized.
      */
-    public void onDestroy() {
-    }
+    public void onDestroy() { }
 
     /**
      * Called when a plugin receives a packet. By convention we return true
