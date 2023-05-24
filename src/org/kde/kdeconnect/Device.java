@@ -38,6 +38,7 @@ import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect_tp.R;
 
+import java.io.IOException;
 import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.cert.Certificate;
@@ -694,7 +695,11 @@ public class Device implements BaseLink.PacketReceiver {
         boolean success = false;
         for (final BaseLink link : links) {
             if (link == null) continue;
-            success = link.sendPacket(np, callback);
+            try {
+                success = link.sendPacket(np, callback);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             if (success) break;
         }
 

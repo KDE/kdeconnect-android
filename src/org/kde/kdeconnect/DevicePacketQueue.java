@@ -1,5 +1,7 @@
 package org.kde.kdeconnect;
 
+import android.util.Log;
+
 import org.kde.kdeconnect.Helpers.ThreadHelper;
 
 import java.util.ArrayDeque;
@@ -101,7 +103,10 @@ class DevicePacketQueue {
                         } catch (InterruptedException ignored) {
                         }
                     }
-                    if (exit) break;
+                    if (exit) {
+                        Log.i("DevicePacketQueue", "Terminating sending loop");
+                        break;
+                    }
 
                     item = items.removeFirst();
                 }

@@ -13,6 +13,7 @@ import androidx.annotation.WorkerThread;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
 
+import java.io.IOException;
 import java.security.PrivateKey;
 import java.util.ArrayList;
 
@@ -77,5 +78,5 @@ public abstract class BaseLink {
 
     //TO OVERRIDE, should be sync
     @WorkerThread
-    public abstract boolean sendPacket(NetworkPacket np, Device.SendPacketStatusCallback callback);
+    public abstract boolean sendPacket(NetworkPacket np, Device.SendPacketStatusCallback callback) throws IOException;
 }
