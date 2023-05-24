@@ -546,7 +546,7 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
         } else if (np.has("cancel")) {
             final String dismissedId = np.getString("cancel");
             currentNotifications.remove(dismissedId);
-            NotificationReceiver.RunCommand(context, service -> cancelNotificationCompat(service, dismissedId));
+            NotificationReceiver.RunCommand(context, service -> service.cancelNotification(dismissedId));
         } else if (np.has("requestReplyId") && np.has("message")) {
             replyToNotification(np.getString("requestReplyId"), np.getString("message"));
         }
@@ -575,11 +575,6 @@ public class NotificationsPlugin extends Plugin implements NotificationReceiver.
     @Override
     public String[] getOutgoingPacketTypes() {
         return new String[]{PACKET_TYPE_NOTIFICATION};
-    }
-
-    //For compat with API<21, because lollipop changed the way to cancel notifications
-    private static void cancelNotificationCompat(NotificationReceiver service, String compatKey) {
-            service.cancelNotification(compatKey);
     }
 
     private static String getNotificationKeyCompat(StatusBarNotification statusBarNotification) {

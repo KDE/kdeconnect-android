@@ -692,12 +692,10 @@ public class Device implements BaseLink.PacketReceiver {
         */
 
         boolean success = false;
-        //Make a copy to avoid concurrent modification exception if the original list changes
         for (final BaseLink link : links) {
-            if (link == null)
-                continue; //Since we made a copy, maybe somebody destroyed the link in the meanwhile
+            if (link == null) continue;
             success = link.sendPacket(np, callback);
-            if (success) break; //If the link didn't call sendSuccess(), try the next one
+            if (success) break;
         }
 
         if (!success) {
