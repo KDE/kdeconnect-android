@@ -205,6 +205,8 @@ public class LanLink extends BaseLink {
                     // If we could distinguish different cases we could react differently for some of them, but I haven't found how.
                     Log.e("sendPacket","Payload SSLSocket failed");
                     e.printStackTrace();
+                } catch(SocketTimeoutException e) {
+                    Log.e("LanLink", "Socket for payload in packet " + np.getType() + " timed out. The other end didn't fetch the payload.");
                 } finally {
                     try { server.close(); } catch (Exception ignored) { }
                     try { payloadSocket.close(); } catch (Exception ignored) { }
