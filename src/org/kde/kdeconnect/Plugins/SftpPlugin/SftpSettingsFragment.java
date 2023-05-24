@@ -30,8 +30,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
 import org.kde.kdeconnect.UserInterface.PluginSettingsFragment;
@@ -326,19 +326,9 @@ public class SftpSettingsFragment
 
         addStoragePreferences(preferenceCategory);
 
-        Device device = getDeviceOrThrow();
+        Device device = KdeConnect.getInstance().getDevice(getDeviceId());
 
         device.reloadPluginsFromSettings();
-    }
-
-    private Device getDeviceOrThrow() {
-        Device device = BackgroundService.getInstance().getDevice(getDeviceId());
-
-        if (device == null) {
-            throw new RuntimeException("SftpSettingsFragment.getDeviceOrThrow(): No device with id: " + getDeviceId());
-        }
-
-        return device;
     }
 
     @Override

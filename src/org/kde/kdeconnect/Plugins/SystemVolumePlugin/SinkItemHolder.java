@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.core.util.Consumer;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ListItemSystemvolumeBinding;
 
@@ -49,8 +48,7 @@ class SinkItemHolder extends RecyclerView.ViewHolder
     @Override
     public void onProgressChanged(final SeekBar seekBar, int i, boolean triggeredByUser) {
         if (triggeredByUser) {
-            BackgroundService.RunCommand(seekBar.getContext(),
-                    service -> plugin.sendVolume(sink.getName(), seekBar.getProgress()));
+            plugin.sendVolume(sink.getName(), seekBar.getProgress());
         }
     }
 
@@ -62,8 +60,7 @@ class SinkItemHolder extends RecyclerView.ViewHolder
     @Override
     public void onStopTrackingTouch(final SeekBar seekBar) {
         seekBarTracking.accept(false);
-        BackgroundService.RunCommand(seekBar.getContext(),
-                service -> plugin.sendVolume(sink.getName(), seekBar.getProgress()));
+        plugin.sendVolume(sink.getName(), seekBar.getProgress());
     }
 
     @Override

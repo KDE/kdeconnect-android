@@ -11,8 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.media.session.MediaSessionCompat;
 
-import org.kde.kdeconnect.BackgroundService;
-import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.KdeConnect;
 
 /**
  * Called when the mpris media notification's buttons are pressed
@@ -29,7 +28,7 @@ public class MprisMediaNotificationReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        //First case: buttons send by other applications via the media session APIs
+        //First case: buttons send by other applications via the media session APIs. They don't target a specific device.
         if (Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())) {
             //Route these buttons to the media session, which will handle them
             MediaSessionCompat mediaSession = MprisMediaSession.getMediaSession();
@@ -39,13 +38,10 @@ public class MprisMediaNotificationReceiver extends BroadcastReceiver {
             //Second case: buttons on the notification, which we created ourselves
 
             //Get the correct device, the mpris plugin and the mpris player
-            BackgroundService service = BackgroundService.getInstance();
-            if (service == null) return;
-            Device device = service.getDevice(intent.getStringExtra(EXTRA_DEVICE_ID));
-            if (device == null) return;
-            MprisPlugin mpris = device.getPlugin(MprisPlugin.class);
-            if (mpris == null) return;
-            MprisPlugin.MprisPlayer player = mpris.getPlayerStatus(intent.getStringExtra(EXTRA_MPRIS_PLAYER));
+            String deviceId = intent.getStringExtra(EXTRA_DEVICE_ID);
+            MprisPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MprisPlugin.class);
+            if (plugin == null) return;
+            MprisPlugin.MprisPlayer player = plugin.getPlayerStatus(intent.getStringExtra(EXTRA_MPRIS_PLAYER));
             if (player == null) return;
 
             //Forward the action to the player
@@ -65,7 +61,9 @@ public class MprisMediaNotificationReceiver extends BroadcastReceiver {
                 case ACTION_CLOSE_NOTIFICATION:
                     //The user dismissed the notification: actually handle its removal correctly
                     MprisMediaSession.getInstance().closeMediaNotification();
+                    break;
             }
         }
     }
+
 }

@@ -186,11 +186,6 @@ public class BluetoothLink extends BaseLink {
         }
     }
 
-    @Override
-    public boolean linkShouldBeKeptAlive() {
-        return receivingThread.isAlive();
-    }
-
     /*
     public boolean isConnected() {
         return socket.isConnected();

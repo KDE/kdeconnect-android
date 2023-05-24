@@ -13,8 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
-import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
@@ -56,7 +56,7 @@ public class PluginSettingsFragment extends PreferenceFragmentCompat {
 
         this.pluginKey = getArguments().getString(ARG_PLUGIN_KEY);
         this.layout = getArguments().getInt(ARG_LAYOUT);
-        this.device = getDeviceOrThrow(getDeviceId());
+        this.device = KdeConnect.getInstance().getDevice(getDeviceId());
         this.plugin = device.getPluginIncludingWithoutPermissions(pluginKey);
 
         super.onCreate(savedInstanceState);
@@ -85,13 +85,4 @@ public class PluginSettingsFragment extends PreferenceFragmentCompat {
         return ((PluginSettingsActivity)requireActivity()).getDeviceId();
     }
 
-    private Device getDeviceOrThrow(String deviceId) {
-        Device device = BackgroundService.getInstance().getDevice(deviceId);
-
-        if (device == null) {
-            throw new RuntimeException("PluginSettingsFragment.onCreatePreferences() - No device with id " + getDeviceId());
-        }
-
-        return device;
-    }
 }

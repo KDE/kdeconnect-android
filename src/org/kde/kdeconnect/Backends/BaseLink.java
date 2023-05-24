@@ -53,11 +53,6 @@ public abstract class BaseLink {
         return linkProvider;
     }
 
-    //The daemon will periodically destroy unpaired links if this returns false
-    public boolean linkShouldBeKeptAlive() {
-        return false;
-    }
-
     public void addPacketReceiver(PacketReceiver pr) {
         receivers.add(pr);
     }

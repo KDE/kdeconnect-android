@@ -27,7 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.preference.PreferenceManager
 import com.google.accompanist.themeadapter.material3.Mdc3Theme
-import org.kde.kdeconnect.BackgroundService
+import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.NetworkPacket
 import org.kde.kdeconnect.UserInterface.compose.KdeTextButton
 import org.kde.kdeconnect.UserInterface.compose.KdeTextField
@@ -72,9 +72,12 @@ class ComposeSendActivity : AppCompatActivity() {
         } catch (e: Exception) {
             Log.e("KDE/ComposeSend", "Exception", e)
         }
-        BackgroundService.RunWithPlugin(
-            this, deviceId, MousePadPlugin::class.java
-        ) { plugin: MousePadPlugin -> plugin.sendKeyboardPacket(np) }
+        val plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin::class.java)
+        if (plugin == null) {
+            finish();
+            return;
+        }
+        plugin.sendKeyboardPacket(np);
     }
 
     private fun sendComposed() {

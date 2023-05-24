@@ -23,8 +23,8 @@ import io.reactivex.Flowable
 import io.reactivex.processors.ReplayProcessor
 import org.json.JSONArray
 import org.json.JSONException
-import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Device
+import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.UserInterface.MainActivity
 import org.kde.kdeconnect_tp.R
 import org.reactivestreams.FlowAdapters
@@ -92,12 +92,10 @@ class RunCommandControlsProviderService : ControlsProviderService() {
         if (action is CommandAction) {
             val commandEntry = getCommandByControlId(controlId)
             if (commandEntry != null) {
-                val plugin = BackgroundService.getInstance().getDevice(controlId.split(":")[0]).getPlugin(RunCommandPlugin::class.java)
+                val deviceId = controlId.split(":")[0]
+                val plugin = KdeConnect.getInstance().getDevicePlugin(deviceId ,RunCommandPlugin::class.java)
                 if (plugin != null) {
-                    BackgroundService.RunCommand(this) {
-                        plugin.runCommand(commandEntry.key)
-                    }
-                    
+                    plugin.runCommand(commandEntry.key)
                     consumer.accept(ControlAction.RESPONSE_OK)
                 } else {
                     consumer.accept(ControlAction.RESPONSE_FAIL)
@@ -141,9 +139,7 @@ class RunCommandControlsProviderService : ControlsProviderService() {
     private fun getAllCommandsList(): List<CommandEntryWithDevice> {
         val commandList = mutableListOf<CommandEntryWithDevice>()
 
-        val service = BackgroundService.getInstance() ?: return commandList
-
-        for (device in service.devices.values) {
+        for (device in KdeConnect.getInstance().devices.values) {
             if (!device.isReachable) {
                 commandList.addAll(getSavedCommandsList(device))
                 continue
@@ -169,9 +165,7 @@ class RunCommandControlsProviderService : ControlsProviderService() {
     private fun getCommandByControlId(controlId: String): CommandEntryWithDevice? {
         val controlIdParts = controlId.split(":")
 
-        val service = BackgroundService.getInstance() ?: return null
-
-        val device = service.getDevice(controlIdParts[0])
+        val device = KdeConnect.getInstance().getDevice(controlIdParts[0])
 
         if (device == null || !device.isPaired) return null
 

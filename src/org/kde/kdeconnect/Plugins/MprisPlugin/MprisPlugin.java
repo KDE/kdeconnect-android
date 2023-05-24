@@ -11,8 +11,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 
 import androidx.core.content.ContextCompat;
@@ -77,12 +75,12 @@ public class MprisPlugin extends Plugin {
             return album;
         }
 
-        public String getPlayer() {
+        public String getPlayerName() {
             return player;
         }
 
         boolean isSpotify() {
-            return getPlayer().equalsIgnoreCase("spotify");
+            return getPlayerName().equalsIgnoreCase("spotify");
         }
 
         public String getLoopStatus() {
@@ -165,55 +163,55 @@ public class MprisPlugin extends Plugin {
 
         public void playPause() {
             if (isPauseAllowed() || isPlayAllowed()) {
-                MprisPlugin.this.sendCommand(getPlayer(), "action", "PlayPause");
+                sendCommand(getPlayerName(), "action", "PlayPause");
             }
         }
 
         public void play() {
             if (isPlayAllowed()) {
-                MprisPlugin.this.sendCommand(getPlayer(), "action", "Play");
+                sendCommand(getPlayerName(), "action", "Play");
             }
         }
 
         public void pause() {
             if (isPauseAllowed()) {
-                MprisPlugin.this.sendCommand(getPlayer(), "action", "Pause");
+                sendCommand(getPlayerName(), "action", "Pause");
             }
         }
 
         public void stop() {
-            MprisPlugin.this.sendCommand(getPlayer(), "action", "Stop");
+            sendCommand(getPlayerName(), "action", "Stop");
         }
 
         public void previous() {
             if (isGoPreviousAllowed()) {
-                MprisPlugin.this.sendCommand(getPlayer(), "action", "Previous");
+                sendCommand(getPlayerName(), "action", "Previous");
             }
         }
 
         public void next() {
             if (isGoNextAllowed()) {
-                MprisPlugin.this.sendCommand(getPlayer(), "action", "Next");
+                sendCommand(getPlayerName(), "action", "Next");
             }
         }
 
         public void setLoopStatus(String loopStatus) {
-            MprisPlugin.this.sendCommand(getPlayer(), "setLoopStatus", loopStatus);
+            sendCommand(getPlayerName(), "setLoopStatus", loopStatus);
         }
 
         public void setShuffle(boolean shuffle) {
-            MprisPlugin.this.sendCommand(getPlayer(), "setShuffle", shuffle);
+            sendCommand(getPlayerName(), "setShuffle", shuffle);
         }
 
         public void setVolume(int volume) {
             if (isSetVolumeAllowed()) {
-                MprisPlugin.this.sendCommand(getPlayer(), "setVolume", volume);
+                sendCommand(getPlayerName(), "setVolume", volume);
             }
         }
 
         public void setPosition(int position) {
             if (isSeekAllowed()) {
-                MprisPlugin.this.sendCommand(getPlayer(), "SetPosition", position);
+                sendCommand(getPlayerName(), "SetPosition", position);
 
                 lastPosition = position;
                 lastPositionTime = System.currentTimeMillis();
@@ -222,7 +220,7 @@ public class MprisPlugin extends Plugin {
 
         public void seek(int offset) {
             if (isSeekAllowed()) {
-                MprisPlugin.this.sendCommand(getPlayer(), "Seek", offset);
+                sendCommand(getPlayerName(), "Seek", offset);
             }
         }
     }
@@ -522,7 +520,7 @@ public class MprisPlugin extends Plugin {
 
         if (player.albumArtUrl.equals(url)) {
             NetworkPacket np = new NetworkPacket(PACKET_TYPE_MPRIS_REQUEST);
-            np.set("player", player.getPlayer());
+            np.set("player", player.getPlayerName());
             np.set("albumArtUrl", url);
             device.sendPacket(np);
             return true;

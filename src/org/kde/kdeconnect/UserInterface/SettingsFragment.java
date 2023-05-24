@@ -125,8 +125,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
                 final boolean isChecked = (Boolean) newValue;
 
                 NotificationHelper.setPersistentNotificationEnabled(context, isChecked);
-                BackgroundService.RunCommand(context,
-                        service -> service.changePersistentNotificationVisibility(isChecked));
+                BackgroundService service = BackgroundService.getInstance();
+                if (service != null) {
+                    service.changePersistentNotificationVisibility(isChecked);
+                }
 
                 NotificationHelper.setPersistentNotificationEnabled(context, isChecked);
 

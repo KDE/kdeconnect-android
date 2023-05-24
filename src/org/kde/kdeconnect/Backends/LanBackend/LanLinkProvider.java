@@ -14,12 +14,12 @@ import android.util.Log;
 
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
-import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Helpers.ThreadHelper;
 import org.kde.kdeconnect.Helpers.TrustedNetworkHelper;
+import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.UserInterface.CustomDevicesActivity;
 
@@ -196,13 +196,13 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
 
             if (isDeviceTrusted && !SslHelper.isCertificateStored(context, deviceId)) {
                 //Device paired with and old version, we can't use it as we lack the certificate
-                BackgroundService.RunCommand(context, service -> {
-                    Device device = service.getDevice(deviceId);
-                    if (device == null) return;
-                    device.unpair();
-                    //Retry as unpaired
-                    identityPacketReceived(identityPacket, socket, connectionStarted);
-                });
+                Device device = KdeConnect.getInstance().getDevice(deviceId);
+                if (device == null) {
+                    return;
+                }
+                device.unpair();
+                //Retry as unpaired
+                identityPacketReceived(identityPacket, socket, connectionStarted);
             }
 
             Log.i("KDE/LanLinkProvider", "Starting SSL handshake with " + identityPacket.getString("deviceName") + " trusted:" + isDeviceTrusted);
@@ -217,11 +217,11 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                     addLink(identityPacket, sslsocket, connectionStarted);
                 } catch (Exception e) {
                     Log.e("KDE/LanLinkProvider", "Handshake as " + mode + " failed with " + identityPacket.getString("deviceName"), e);
-                    BackgroundService.RunCommand(context, service -> {
-                        Device device = service.getDevice(deviceId);
-                        if (device == null) return;
-                        device.unpair();
-                    });
+                    Device device = KdeConnect.getInstance().getDevice(deviceId);
+                    if (device == null) {
+                        return;
+                    }
+                    device.unpair();
                 }
             });
             //Handshake is blocking, so do it on another thread and free this thread to keep receiving new connection

@@ -10,9 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
-import org.kde.kdeconnect.UserInterface.ThemeUtil;
+import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect_tp.R;
 
 public class RunCommandUrlActivity extends AppCompatActivity {
@@ -26,40 +25,38 @@ public class RunCommandUrlActivity extends AppCompatActivity {
                 Uri uri = getIntent().getData();
                 String deviceId = uri.getPathSegments().get(0);
 
-                BackgroundService.RunCommand(this, service -> {
-                    final Device device = service.getDevice(deviceId);
+                final Device device = KdeConnect.getInstance().getDevice(deviceId);
 
-                    if(device == null) {
-                        error(R.string.runcommand_nosuchdevice);
-                        return;
+                if(device == null) {
+                    error(R.string.runcommand_nosuchdevice);
+                    return;
+                }
+
+                if (!device.isPaired()) {
+                    error(R.string.runcommand_notpaired);
+                    return;
+                }
+
+                if (!device.isReachable()) {
+                    error(R.string.runcommand_notreachable);
+                    return;
+                }
+
+                final RunCommandPlugin plugin = device.getPlugin(RunCommandPlugin.class);
+                if (plugin == null) {
+                    error(R.string.runcommand_noruncommandplugin);
+                    return;
+                }
+
+                plugin.runCommand(uri.getPathSegments().get(1));
+                RunCommandUrlActivity.this.finish();
+
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    Vibrator vibrator = getSystemService(Vibrator.class);
+                    if(vibrator != null && vibrator.hasVibrator()) {
+                        vibrator.vibrate(100);
                     }
-
-                    if (!device.isPaired()) {
-                        error(R.string.runcommand_notpaired);
-                        return;
-                    }
-
-                    if (!device.isReachable()) {
-                        error(R.string.runcommand_notreachable);
-                        return;
-                    }
-
-                    final RunCommandPlugin plugin = device.getPlugin(RunCommandPlugin.class);
-                    if (plugin == null) {
-                        error(R.string.runcommand_noruncommandplugin);
-                        return;
-                    }
-
-                    plugin.runCommand(uri.getPathSegments().get(1));
-                    RunCommandUrlActivity.this.finish();
-
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                        Vibrator vibrator = RunCommandUrlActivity.this.getSystemService(Vibrator.class);
-                        if(vibrator != null && vibrator.hasVibrator()) {
-                            vibrator.vibrate(100);
-                        }
-                    }
-                });
+                }
             } catch (Exception e) {
                 Log.e("RuncommandPlugin", "Exception", e);
             }

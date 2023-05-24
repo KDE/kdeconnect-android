@@ -25,6 +25,7 @@ import org.apache.commons.lang3.ArrayUtils
 import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.Helpers.DeviceHelper
+import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.Plugins.SharePlugin.ShareSettingsFragment
 import org.kde.kdeconnect.UserInterface.About.AboutFragment.Companion.newInstance
 import org.kde.kdeconnect.UserInterface.About.getApplicationAboutData
@@ -194,16 +195,14 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
     private fun onPairResultFromNotification(deviceId: String?, pairStatus: String): String? {
         assert(deviceId != null)
         if (pairStatus != PAIRING_PENDING) {
-            BackgroundService.RunCommand(this) { service: BackgroundService ->
-                val device = service.getDevice(deviceId)
-                if (device == null) {
-                    Log.w(this::class.simpleName, "Reject pairing - device no longer exists: $deviceId")
-                    return@RunCommand
-                }
-                when (pairStatus) {
-                    PAIRING_ACCEPTED -> device.acceptPairing()
-                    PAIRING_REJECTED -> device.rejectPairing()
-                }
+            val device = KdeConnect.getInstance().getDevice(deviceId)
+            if (device == null) {
+                Log.w(this::class.simpleName, "Reject pairing - device no longer exists: $deviceId")
+                return null
+            }
+            when (pairStatus) {
+                PAIRING_ACCEPTED -> device.acceptPairing()
+                PAIRING_REJECTED -> device.rejectPairing()
             }
         }
         return if (pairStatus == PAIRING_ACCEPTED || pairStatus == PAIRING_PENDING) deviceId else null
@@ -228,45 +227,41 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
     }
 
     private fun updateDeviceList() {
-        BackgroundService.RunCommand(this@MainActivity) { service: BackgroundService ->
-            val menu = mNavigationView.menu
-            menu.clear()
-            mMapMenuToDeviceId.clear()
-            val devicesMenu = menu.addSubMenu(R.string.devices)
-            var id = MENU_ENTRY_DEVICE_FIRST_ID
-            val devices: Collection<Device> = service.devices.values
-            for (device in devices) {
-                if (device.isReachable && device.isPaired) {
-                    val item = devicesMenu.add(Menu.FIRST, id++, 1, device.name)
-                    item.icon = device.icon
-                    item.isCheckable = true
-                    mMapMenuToDeviceId[item] = device.deviceId
-                }
+        val menu = mNavigationView.menu
+        menu.clear()
+        mMapMenuToDeviceId.clear()
+        val devicesMenu = menu.addSubMenu(R.string.devices)
+        var id = MENU_ENTRY_DEVICE_FIRST_ID
+        val devices: Collection<Device> = KdeConnect.getInstance().devices.values
+        for (device in devices) {
+            if (device.isReachable && device.isPaired) {
+                val item = devicesMenu.add(Menu.FIRST, id++, 1, device.name)
+                item.icon = device.icon
+                item.isCheckable = true
+                mMapMenuToDeviceId[item] = device.deviceId
             }
-            val addDeviceItem = devicesMenu.add(Menu.FIRST, MENU_ENTRY_ADD_DEVICE, 1000, R.string.pair_new_device)
-            addDeviceItem.setIcon(R.drawable.ic_action_content_add_circle_outline_32dp)
-            addDeviceItem.isCheckable = true
-            val settingsItem = menu.add(Menu.FIRST, MENU_ENTRY_SETTINGS, 1000, R.string.settings)
-            settingsItem.setIcon(R.drawable.ic_settings_white_32dp)
-            settingsItem.isCheckable = true
-            val aboutItem = menu.add(Menu.FIRST, MENU_ENTRY_ABOUT, 1000, R.string.about)
-            aboutItem.setIcon(R.drawable.ic_baseline_info_24)
-            aboutItem.isCheckable = true
-
-            //Ids might have changed
-            if (mCurrentMenuEntry >= MENU_ENTRY_DEVICE_FIRST_ID) {
-                mCurrentMenuEntry = deviceIdToMenuEntryId(mCurrentDevice)
-            }
-            mNavigationView.setCheckedItem(mCurrentMenuEntry)
         }
+        val addDeviceItem = devicesMenu.add(Menu.FIRST, MENU_ENTRY_ADD_DEVICE, 1000, R.string.pair_new_device)
+        addDeviceItem.setIcon(R.drawable.ic_action_content_add_circle_outline_32dp)
+        addDeviceItem.isCheckable = true
+        val settingsItem = menu.add(Menu.FIRST, MENU_ENTRY_SETTINGS, 1000, R.string.settings)
+        settingsItem.setIcon(R.drawable.ic_settings_white_32dp)
+        settingsItem.isCheckable = true
+        val aboutItem = menu.add(Menu.FIRST, MENU_ENTRY_ABOUT, 1000, R.string.about)
+        aboutItem.setIcon(R.drawable.ic_baseline_info_24)
+        aboutItem.isCheckable = true
+
+        //Ids might have changed
+        if (mCurrentMenuEntry >= MENU_ENTRY_DEVICE_FIRST_ID) {
+            mCurrentMenuEntry = deviceIdToMenuEntryId(mCurrentDevice)
+        }
+        mNavigationView.setCheckedItem(mCurrentMenuEntry)
     }
 
     override fun onStart() {
         super.onStart()
-        BackgroundService.RunCommand(this) { service: BackgroundService ->
-            service.onNetworkChange()
-            service.addDeviceListChangedCallback(this::class.simpleName) { updateDeviceList() }
-        }
+        BackgroundService.Start(applicationContext);
+        KdeConnect.getInstance().addDeviceListChangedCallback(this::class.simpleName) { runOnUiThread { updateDeviceList() } }
         updateDeviceList()
         onBackPressedDispatcher.addCallback(mainFragmentCallback)
         onBackPressedDispatcher.addCallback(closeDrawerCallback)
@@ -274,10 +269,10 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
     }
 
     override fun onStop() {
-        BackgroundService.RunCommand(this) { service: BackgroundService -> service.removeDeviceListChangedCallback(this::class.simpleName) }
-        super.onStop()
+        KdeConnect.getInstance().removeDeviceListChangedCallback(this::class.simpleName)
         mainFragmentCallback.remove()
         closeDrawerCallback.remove()
+        super.onStop()
     }
 
     @JvmOverloads
@@ -315,11 +310,9 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when {
-            requestCode == RESULT_NEEDS_RELOAD -> BackgroundService.RunCommand(this) { service: BackgroundService ->
-                val device = service.getDevice(mCurrentDevice)
-                device.reloadPluginsFromSettings()
+            requestCode == RESULT_NEEDS_RELOAD -> {
+                KdeConnect.getInstance().getDevice(mCurrentDevice)?.reloadPluginsFromSettings()
             }
-
             requestCode == STORAGE_LOCATION_CONFIGURED && resultCode == RESULT_OK && data != null -> {
                 val uri = data.data
                 ShareSettingsFragment.saveStorageLocationPreference(this, uri)
@@ -344,17 +337,14 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
             }
 
             //New permission granted, reload plugins
-            BackgroundService.RunCommand(this) { service: BackgroundService ->
-                val device = service.getDevice(mCurrentDevice)
-                device.reloadPluginsFromSettings()
-            }
+            KdeConnect.getInstance().getDevice(mCurrentDevice)?.reloadPluginsFromSettings()
         }
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
         if (DeviceHelper.KEY_DEVICE_NAME_PREFERENCE == key) {
             mNavViewDeviceName.text = DeviceHelper.getDeviceName(this)
-            BackgroundService.RunCommand(this) { obj: BackgroundService -> obj.onNetworkChange() } //Re-send our identity packet
+            BackgroundService.ForceRefreshConnections(this) //Re-send our identity packet
         }
     }
 

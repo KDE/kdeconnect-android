@@ -15,7 +15,6 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import org.kde.kdeconnect.MyApplication;
 import org.kde.kdeconnect_tp.R;
 
 public class IntentHelper {
@@ -27,8 +26,8 @@ public class IntentHelper {
      * @param intent the Intent to be started
      * @param title a title which is shown in the notification on Android 10+
      */
-    public static void startActivityFromBackground(Context context, Intent intent, String title) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !MyApplication.isInForeground()) {
+    public static void startActivityFromBackgroundOrCreateNotification(Context context, Intent intent, String title) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !LifecycleHelper.isInForeground()) {
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_MUTABLE);
             Notification notification = new NotificationCompat
                     .Builder(context, NotificationHelper.Channels.HIGHPRIORITY)

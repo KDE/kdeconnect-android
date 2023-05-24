@@ -25,8 +25,8 @@ import androidx.core.content.ContextCompat;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
+import org.kde.kdeconnect.Helpers.LifecycleHelper;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
-import org.kde.kdeconnect.MyApplication;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
@@ -107,7 +107,7 @@ public class FindMyPhonePlugin extends Plugin {
 
     @Override
     public boolean onPacketReceived(NetworkPacket np) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q || MyApplication.isInForeground()) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q || LifecycleHelper.isInForeground()) {
             Intent intent = new Intent(context, FindMyPhoneActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra(FindMyPhoneActivity.EXTRA_DEVICE_ID, device.getDeviceId());

@@ -1,15 +1,12 @@
-package org.kde.kdeconnect;
-
-import android.app.Application;
+package org.kde.kdeconnect.Helpers;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ProcessLifecycleOwner;
 
-import org.kde.kdeconnect.UserInterface.ThemeUtil;
+public class LifecycleHelper {
 
-public class MyApplication extends Application {
     private static class LifecycleObserver implements DefaultLifecycleObserver {
         private boolean inForeground = false;
 
@@ -28,16 +25,13 @@ public class MyApplication extends Application {
         }
     }
 
-    private static final LifecycleObserver foregroundTracker = new LifecycleObserver();
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        ThemeUtil.setUserPreferredTheme(this);
-        ProcessLifecycleOwner.get().getLifecycle().addObserver(foregroundTracker);
-    }
+    private final static LifecycleObserver foregroundTracker = new LifecycleObserver();
 
     public static boolean isInForeground() {
         return foregroundTracker.isInForeground();
+    }
+
+    public static void initializeObserver() {
+        ProcessLifecycleOwner.get().getLifecycle().addObserver(foregroundTracker);
     }
 }

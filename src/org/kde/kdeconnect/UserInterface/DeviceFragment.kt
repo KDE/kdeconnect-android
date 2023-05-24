@@ -18,11 +18,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.Device.PairingCallback
 import org.kde.kdeconnect.Device.PluginsChangedListener
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
+import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.Plugins.BatteryPlugin.BatteryPlugin
 import org.kde.kdeconnect.Plugins.Plugin
 import org.kde.kdeconnect.UserInterface.List.PluginAdapter
@@ -98,9 +98,7 @@ class DeviceFragment : Fragment() {
         // ...and for when pairing doesn't (or can't) work
         errorBinding = deviceBinding.pairError
 
-        BackgroundService.RunCommand(mActivity) {
-            device = it.getDevice(deviceId)
-        }
+        device = KdeConnect.getInstance().getDevice(deviceId)
 
         requirePairingBinding().pairButton.setOnClickListener {
             with(requirePairingBinding()) {
@@ -128,36 +126,35 @@ class DeviceFragment : Fragment() {
             mActivity?.onDeviceSelected(null)
         }
         setHasOptionsMenu(true)
-        BackgroundService.RunCommand(mActivity) { service: BackgroundService ->
-            device = service.getDevice(deviceId) ?: let {
-                Log.e(TAG, "Trying to display a device fragment but the device is not present")
-                mActivity?.onDeviceSelected(null)
-                return@RunCommand
-            }
-            mActivity?.supportActionBar?.title = device?.name
-            device?.addPairingCallback(pairingCallback)
-            device?.addPluginsChangedListener(pluginsChangedListener)
-            refreshUI()
-        }
 
         requireDeviceBinding().pluginsList.layoutManager =
             GridLayoutManager(requireContext(), resources.getInteger(R.integer.plugins_columns))
         requireDeviceBinding().permissionsList.layoutManager = LinearLayoutManager(requireContext())
+
+        device?.apply {
+            mActivity?.supportActionBar?.title = name
+            addPairingCallback(pairingCallback)
+            addPluginsChangedListener(pluginsChangedListener)
+        } ?: run { // device is null
+            Log.e(TAG, "Trying to display a device fragment but the device is not present")
+            mActivity?.onDeviceSelected(null)
+        }
+
+        refreshUI()
 
         return deviceBinding.root
     }
 
     private val pluginsChangedListener = PluginsChangedListener { refreshUI() }
     override fun onDestroyView() {
-        BackgroundService.RunCommand(mActivity) { service: BackgroundService ->
-            val device = service.getDevice(deviceId) ?: return@RunCommand
-            device.removePluginsChangedListener(pluginsChangedListener)
-            device.removePairingCallback(pairingCallback)
+        device?.apply {
+            removePluginsChangedListener(pluginsChangedListener)
+            removePairingCallback(pairingCallback)
         }
-        super.onDestroyView()
         pairingBinding = null
         errorBinding = null
         deviceBinding = null
+        super.onDestroyView()
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {

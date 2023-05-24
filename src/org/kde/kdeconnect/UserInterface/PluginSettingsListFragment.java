@@ -15,8 +15,8 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect_tp.R;
 
@@ -77,22 +77,20 @@ public class PluginSettingsListFragment extends PreferenceFragmentCompat {
 
         final String deviceId = getArguments().getString(ARG_DEVICE_ID);
 
-        BackgroundService.RunCommand(requireContext(), service -> {
-            final Device device = service.getDevice(deviceId);
-            if (device == null) {
-                final FragmentActivity activity = requireActivity();
-                activity.runOnUiThread(activity::finish);
-                return;
-            }
-            List<String> plugins = device.getSupportedPlugins();
-            PluginFactory.sortPluginList(plugins);
+        Device device = KdeConnect.getInstance().getDevice(deviceId);
+        if (device == null) {
+            final FragmentActivity activity = requireActivity();
+            activity.runOnUiThread(activity::finish);
+            return;
+        }
+        List<String> plugins = device.getSupportedPlugins();
+        PluginFactory.sortPluginList(plugins);
 
-            for (final String pluginKey : plugins) {
-                //TODO: Use PreferenceManagers context
-                PluginPreference pref = new PluginPreference(requireContext(), pluginKey, device, callback);
-                preferenceScreen.addPreference(pref);
-            }
-        });
+        for (final String pluginKey : plugins) {
+            //TODO: Use PreferenceManagers context
+            PluginPreference pref = new PluginPreference(requireContext(), pluginKey, device, callback);
+            preferenceScreen.addPreference(pref);
+        }
     }
 
     @NonNull

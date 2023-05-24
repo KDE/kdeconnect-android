@@ -15,7 +15,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -157,7 +156,7 @@ public class SharePlugin extends Plugin {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         browserIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        IntentHelper.startActivityFromBackground(context, browserIntent, url);
+        IntentHelper.startActivityFromBackgroundOrCreateNotification(context, browserIntent, url);
     }
 
     private void receiveText(NetworkPacket np) {

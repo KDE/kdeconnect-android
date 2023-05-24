@@ -24,8 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.media.VolumeProviderCompat;
 
-import org.kde.kdeconnect.BackgroundService;
-import org.kde.kdeconnect.UserInterface.ThemeUtil;
+import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityPresenterBinding;
 
@@ -90,16 +89,14 @@ public class PresenterActivity extends AppCompatActivity implements SensorEventL
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        final String deviceId = getIntent().getStringExtra("deviceId");
+        String deviceId = getIntent().getStringExtra("deviceId");
+        this.plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, PresenterPlugin.class);
 
-        BackgroundService.RunWithPlugin(this, deviceId, PresenterPlugin.class, plugin -> runOnUiThread(() -> {
-            this.plugin = plugin;
-            binding.nextButton.setOnClickListener(v -> plugin.sendNext());
-            binding.previousButton.setOnClickListener(v -> plugin.sendPrevious());
-            if (plugin.isPointerSupported()) {
-                enablePointer();
-            }
-        }));
+        binding.nextButton.setOnClickListener(v -> plugin.sendNext());
+        binding.previousButton.setOnClickListener(v -> plugin.sendPrevious());
+        if (plugin.isPointerSupported()) {
+            enablePointer();
+        }
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

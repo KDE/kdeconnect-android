@@ -252,14 +252,4 @@ public class LanLink extends BaseLink {
         packetReceived(np);
     }
 
-    @Override
-    public boolean linkShouldBeKeptAlive() {
-
-        return true;    //FIXME: Current implementation is broken, so for now we will keep links always established
-
-        //We keep the remotely initiated connections, since the remotes require them if they want to request
-        //pairing to us, or connections that are already paired.
-        //return (connectionSource == ConnectionStarted.Remotely);
-
-    }
 }

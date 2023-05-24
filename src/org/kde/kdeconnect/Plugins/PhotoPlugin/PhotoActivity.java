@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
-import org.kde.kdeconnect.BackgroundService;
+import org.kde.kdeconnect.KdeConnect;
 
 import java.io.File;
 import java.io.IOException;
@@ -58,13 +58,17 @@ public class PhotoActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        BackgroundService.RunWithPlugin(this, getIntent().getStringExtra("deviceId"), PhotoPlugin.class, plugin -> {
-            if (resultCode == -1) {
-                plugin.sendPhoto(photoURI);
-            } else {
-                plugin.sendCancel();
-            }
-        });
+        String deviceId =  getIntent().getStringExtra("deviceId");
+        PhotoPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, PhotoPlugin.class);
+        if (plugin == null) {
+            finish();
+            return;
+        }
+        if (resultCode == -1) {
+            plugin.sendPhoto(photoURI);
+        } else {
+            plugin.sendCancel();
+        }
         finish();
     }
 }

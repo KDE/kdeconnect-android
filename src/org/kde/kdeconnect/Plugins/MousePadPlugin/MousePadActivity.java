@@ -22,10 +22,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
-import org.kde.kdeconnect.BackgroundService;
+
+import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.UserInterface.PluginSettingsActivity;
 import org.kde.kdeconnect_tp.R;
 
@@ -115,7 +117,12 @@ public class MousePadActivity
         final float nX = X;
         final float nY = Y;
 
-        BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> plugin.sendMouseDelta(nX, nY));
+        MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
+        if (plugin == null) {
+            finish();
+            return;
+        }
+        plugin.sendMouseDelta(nX, nY);
     }
 
     @Override
@@ -235,24 +242,30 @@ public class MousePadActivity
             startActivity(intent);
             return true;
         } else if (id == R.id.menu_show_keyboard) {
-            BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> {
-                if (plugin.isKeyboardEnabled()) {
-                    showKeyboard();
-                } else {
-                    Toast toast = Toast.makeText(this, R.string.mousepad_keyboard_input_not_supported, Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-            });
+            MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
+            if (plugin == null) {
+                finish();
+                return true;
+            }
+            if (plugin.isKeyboardEnabled()) {
+                showKeyboard();
+            } else {
+                Toast toast = Toast.makeText(this, R.string.mousepad_keyboard_input_not_supported, Toast.LENGTH_SHORT);
+                toast.show();
+            }
             return true;
         } else if (id == R.id.menu_open_compose_send) {
-            BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> {
-                if (plugin.isKeyboardEnabled()) {
-                    showCompose();
-                } else {
-                    Toast toast = Toast.makeText(this, R.string.mousepad_keyboard_input_not_supported, Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-            });
+            MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
+            if (plugin == null) {
+                finish();
+                return true;
+            }
+            if (plugin.isKeyboardEnabled()) {
+                showCompose();
+            } else {
+                Toast toast = Toast.makeText(this, R.string.mousepad_keyboard_input_not_supported, Toast.LENGTH_SHORT);
+                toast.show();
+            }
             return true;
         } else {
             return super.onOptionsItemSelected(item);
@@ -288,20 +301,23 @@ public class MousePadActivity
                 mCurrentX = event.getX();
                 mCurrentY = event.getY();
 
-                BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> {
-                    float deltaX = (mCurrentX - mPrevX) * displayDpiMultiplier * mCurrentSensitivity;
-                    float deltaY = (mCurrentY - mPrevY) * displayDpiMultiplier * mCurrentSensitivity;
+                MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
+                if (plugin == null) {
+                    finish();
+                    return true;
+                }
 
-                    // Run the mouse delta through the pointer acceleration profile
-                    mPointerAccelerationProfile.touchMoved(deltaX, deltaY, event.getEventTime());
-                    mouseDelta = mPointerAccelerationProfile.commitAcceleratedMouseDelta(mouseDelta);
+                float deltaX = (mCurrentX - mPrevX) * displayDpiMultiplier * mCurrentSensitivity;
+                float deltaY = (mCurrentY - mPrevY) * displayDpiMultiplier * mCurrentSensitivity;
 
-                    plugin.sendMouseDelta(mouseDelta.x, mouseDelta.y);
+                // Run the mouse delta through the pointer acceleration profile
+                mPointerAccelerationProfile.touchMoved(deltaX, deltaY, event.getEventTime());
+                mouseDelta = mPointerAccelerationProfile.commitAcceleratedMouseDelta(mouseDelta);
 
-                    mPrevX = mCurrentX;
-                    mPrevY = mCurrentY;
-                });
+                plugin.sendMouseDelta(mouseDelta.x, mouseDelta.y);
 
+                mPrevX = mCurrentX;
+                mPrevY = mCurrentY;
 
                 break;
         }
@@ -361,7 +377,12 @@ public class MousePadActivity
     @Override
     public void onLongPress(MotionEvent e) {
         getWindow().getDecorView().performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-        BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendSingleHold);
+        MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
+        if (plugin == null) {
+            finish();
+            return;
+        }
+        plugin.sendSingleHold();
     }
 
     @Override
@@ -388,7 +409,12 @@ public class MousePadActivity
 
     @Override
     public boolean onDoubleTap(MotionEvent e) {
-        BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendDoubleClick);
+        MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
+        if (plugin == null) {
+            finish();
+            return true;
+        }
+        plugin.sendDoubleClick();
         return true;
     }
 
@@ -438,19 +464,39 @@ public class MousePadActivity
 
 
     private void sendLeftClick() {
-        BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendLeftClick);
+        MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
+        if (plugin == null) {
+            finish();
+            return;
+        }
+        plugin.sendLeftClick();
     }
 
     private void sendMiddleClick() {
-        BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendMiddleClick);
+        MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
+        if (plugin == null) {
+            finish();
+            return;
+        }
+        plugin.sendMiddleClick();
     }
 
     private void sendRightClick() {
-        BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, MousePadPlugin::sendRightClick);
+        MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
+        if (plugin == null) {
+            finish();
+            return;
+        }
+        plugin.sendRightClick();
     }
 
     private void sendScroll(final float y) {
-        BackgroundService.RunWithPlugin(this, deviceId, MousePadPlugin.class, plugin -> plugin.sendScroll(0, y));
+        MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
+        if (plugin == null) {
+            finish();
+            return;
+        }
+        plugin.sendScroll(0, y);
     }
 
     private void showKeyboard() {

@@ -13,8 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
@@ -55,7 +55,7 @@ public class PluginSettingsActivity
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.fragmentPlaceHolder);
         if (fragment == null) {
             if (pluginKey != null) {
-                Device device = BackgroundService.getInstance().getDevice(deviceId);
+                Device device = KdeConnect.getInstance().getDevice(deviceId);
                 if (device != null) {
                     Plugin plugin = device.getPluginIncludingWithoutPermissions(pluginKey);
                     if (plugin != null) {

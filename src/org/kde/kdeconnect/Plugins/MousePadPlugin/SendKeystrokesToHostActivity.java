@@ -19,11 +19,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SafeTextChecker;
+import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.UserInterface.List.EntryItemWithIcon;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.SectionItem;
-import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivitySendkeystrokesBinding;
 
@@ -89,7 +89,7 @@ public class SendKeystrokesToHostActivity extends AppCompatActivity {
 
                 // If we trust the sending app, check if there is only one device paired / reachable...
                 if (contentIsOkay) {
-                    List<Device> reachableDevices = BackgroundService.getInstance().getDevices().values().stream()
+                    List<Device> reachableDevices = KdeConnect.getInstance().getDevices().values().stream()
                             .filter(Device::isReachable)
                             .limit(2)  // we only need the first two; if its more than one, we need to show the user the device-selection
                             .collect(Collectors.toList());
@@ -103,16 +103,9 @@ public class SendKeystrokesToHostActivity extends AppCompatActivity {
                     }
                 }
 
-
-                // subscribe to new connected devices
-                BackgroundService.RunCommand(this, service -> {
-                    service.onNetworkChange();
-                    service.addDeviceListChangedCallback("SendKeystrokesToHostActivity", unused -> updateDeviceList());
-                });
-
-                // list all currently connected devices
+                KdeConnect.getInstance().addDeviceListChangedCallback("SendKeystrokesToHostActivity", () -> runOnUiThread(this::updateDeviceList));
+                BackgroundService.ForceRefreshConnections(this); // force a network re-discover
                 updateDeviceList();
-
             } else {
                 Toast.makeText(getApplicationContext(), R.string.sendkeystrokes_wrong_data, Toast.LENGTH_LONG).show();
                 finish();
@@ -122,7 +115,7 @@ public class SendKeystrokesToHostActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-        BackgroundService.RunCommand(this, service -> service.removeDeviceListChangedCallback("SendKeystrokesToHostActivity"));
+        KdeConnect.getInstance().removeDeviceListChangedCallback("SendKeystrokesToHostActivity");
         super.onStop();
     }
 
@@ -131,7 +124,12 @@ public class SendKeystrokesToHostActivity extends AppCompatActivity {
         if (binding.textToSend.getText() != null && (toSend = binding.textToSend.getText().toString().trim()).length() > 0) {
             final NetworkPacket np = new NetworkPacket(MousePadPlugin.PACKET_TYPE_MOUSEPAD_REQUEST);
             np.set("key", toSend);
-            BackgroundService.RunWithPlugin(this, deviceId.getDeviceId(), MousePadPlugin.class, plugin -> plugin.sendKeyboardPacket(np));
+            MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId.getDeviceId(), MousePadPlugin.class);
+            if (plugin == null) {
+                finish();
+                return;
+            }
+            plugin.sendKeyboardPacket(np);
             Toast.makeText(
                     getApplicationContext(),
                     getString(R.string.sendkeystrokes_sent_text, toSend, deviceId.getName()),
@@ -143,41 +141,37 @@ public class SendKeystrokesToHostActivity extends AppCompatActivity {
 
 
     private void updateDeviceList() {
-        BackgroundService.RunCommand(this, service -> {
+        Collection<Device> devices = KdeConnect.getInstance().getDevices().values();
+        final ArrayList<Device> devicesList = new ArrayList<>();
+        final ArrayList<ListAdapter.Item> items = new ArrayList<>();
 
-            Collection<Device> devices = service.getDevices().values();
-            final ArrayList<Device> devicesList = new ArrayList<>();
-            final ArrayList<ListAdapter.Item> items = new ArrayList<>();
+        SectionItem section = new SectionItem(getString(R.string.sendkeystrokes_send_to));
+        items.add(section);
 
-            SectionItem section = new SectionItem(getString(R.string.sendkeystrokes_send_to));
-            items.add(section);
-
-            for (Device d : devices) {
-                if (d.isReachable() && d.isPaired()) {
-                    devicesList.add(d);
-                    items.add(new EntryItemWithIcon(d.getName(), d.getIcon()));
-                    section.isEmpty = false;
-                }
+        for (Device d : devices) {
+            if (d.isReachable() && d.isPaired()) {
+                devicesList.add(d);
+                items.add(new EntryItemWithIcon(d.getName(), d.getIcon()));
+                section.isEmpty = false;
             }
-            runOnUiThread(() -> {
-                binding.devicesList.setAdapter(new ListAdapter(SendKeystrokesToHostActivity.this, items));
-                binding.devicesList.setOnItemClickListener((adapterView, view, i, l) -> {
-                    Device device = devicesList.get(i - 1); // NOTE: -1 because of the title!
-                    sendKeys(device);
-                    this.finish(); // close the activity
-                });
-            });
+        }
 
-            // only one device is connected and we trust the text to send -> send it and close the activity.
-            // Usually we already check it in `onStart` - but if the BackgroundService was not started/connected to the host
-            // it will not have the deviceList in memory. Use this callback as second chance (but it will flicker a bit, because the activity might
-            // already been visible and get closed again quickly)
-            if (devicesList.size() == 1 && contentIsOkay) {
-                Device device = devicesList.get(0);
-                sendKeys(device);
-                this.finish(); // close the activity
-            }
+        binding.devicesList.setAdapter(new ListAdapter(SendKeystrokesToHostActivity.this, items));
+        binding.devicesList.setOnItemClickListener((adapterView, view, i, l) -> {
+            Device device = devicesList.get(i - 1); // NOTE: -1 because of the title!
+            sendKeys(device);
+            this.finish(); // close the activity
         });
+
+        // only one device is connected and we trust the text to send -> send it and close the activity.
+        // Usually we already check it in `onStart` - but if the BackgroundService was not started/connected to the host
+        // it will not have the deviceList in memory. Use this callback as second chance (but it will flicker a bit, because the activity might
+        // already been visible and get closed again quickly)
+        if (devicesList.size() == 1 && contentIsOkay) {
+            Device device = devicesList.get(0);
+            sendKeys(device);
+            this.finish(); // close the activity
+        }
     }
 }
 

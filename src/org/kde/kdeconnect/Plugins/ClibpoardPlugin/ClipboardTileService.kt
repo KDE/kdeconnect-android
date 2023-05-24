@@ -10,7 +10,7 @@ import android.content.Intent
 import android.os.Build
 import android.service.quicksettings.TileService
 import androidx.annotation.RequiresApi
-import org.kde.kdeconnect.BackgroundService
+import org.kde.kdeconnect.KdeConnect
 
 @RequiresApi(Build.VERSION_CODES.N)
 class ClipboardTileService : TileService() {
@@ -20,12 +20,9 @@ class ClipboardTileService : TileService() {
         startActivityAndCollapse(Intent(this, ClipboardFloatingActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             var ids : List<String> = emptyList()
-            val service = BackgroundService.getInstance()
-            if (service != null) {
-                ids = service.devices.values
-                    .filter { it.isReachable && it.isPaired }
-                    .map { it.deviceId }
-            }
+            ids = KdeConnect.getInstance().devices.values
+                .filter { it.isReachable && it.isPaired }
+                .map { it.deviceId }
             putExtra("connectedDeviceIds", ArrayList(ids))
         })
     }

@@ -12,9 +12,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect_tp.R;
+
+import java.util.concurrent.ConcurrentHashMap;
 
 public class RunCommandWidget extends AppWidgetProvider {
 
@@ -35,18 +37,16 @@ public class RunCommandWidget extends AppWidgetProvider {
             final String targetCommand = intent.getStringExtra(TARGET_COMMAND);
             final String targetDevice = intent.getStringExtra(TARGET_DEVICE);
 
-            BackgroundService.RunCommand(context, service -> {
-                RunCommandPlugin plugin = service.getDevice(targetDevice).getPlugin(RunCommandPlugin.class);
+            RunCommandPlugin plugin = KdeConnect.getInstance().getDevicePlugin(targetDevice, RunCommandPlugin.class);
 
-                if (plugin != null) {
-                    try {
+            if (plugin != null) {
+                try {
 
-                        plugin.runCommand(targetCommand);
-                    } catch (Exception ex) {
-                        Log.e("RunCommandWidget", "Error running command", ex);
-                    }
+                    plugin.runCommand(targetCommand);
+                } catch (Exception ex) {
+                    Log.e("RunCommandWidget", "Error running command", ex);
                 }
-            });
+            }
         } else if (intent != null && TextUtils.equals(intent.getAction(), SET_CURRENT_DEVICE)) {
             setCurrentDevice(context);
         }
@@ -70,14 +70,13 @@ public class RunCommandWidget extends AppWidgetProvider {
 
     private void updateWidget(final Context context) {
 
-        if (getCurrentDevice() == null || !getCurrentDevice().isReachable()) {
+        Device device = getCurrentDevice();
 
-            BackgroundService.RunCommand(context, service -> {
-                if (service.getDevices().size() > 0)
-                    currentDeviceId = service.getDevices().elements().nextElement().getDeviceId();
-
-                updateWidgetImpl(context);
-            });
+        if (device == null || !device.isReachable()) {
+            ConcurrentHashMap<String, Device>  devices = KdeConnect.getInstance().getDevices();
+            if (devices.size() > 0) {
+                currentDeviceId = devices.elements().nextElement().getDeviceId();
+            }
         }
 
         updateWidgetImpl(context);
@@ -99,12 +98,13 @@ public class RunCommandWidget extends AppWidgetProvider {
             pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_MUTABLE);
             views.setOnClickPendingIntent(R.id.runcommandWidgetTitleHeader, pendingIntent);
 
-            if (getCurrentDevice() == null || !getCurrentDevice().isReachable()) {
+            Device device = getCurrentDevice();
+            if (device == null || !device.isReachable()) {
                 views.setTextViewText(R.id.runcommandWidgetTitle, context.getString(R.string.kde_connect));
                 views.setViewVisibility(R.id.run_commands_list, View.GONE);
                 views.setViewVisibility(R.id.not_reachable_message, View.VISIBLE);
             } else {
-                views.setTextViewText(R.id.runcommandWidgetTitle, getCurrentDevice().getName());
+                views.setTextViewText(R.id.runcommandWidgetTitle, device.getName());
                 views.setViewVisibility(R.id.run_commands_list, View.VISIBLE);
                 views.setViewVisibility(R.id.not_reachable_message, View.GONE);
             }
@@ -129,21 +129,15 @@ public class RunCommandWidget extends AppWidgetProvider {
             Log.e("RunCommandWidget", "Error updating widget", ex);
         }
 
-        if (BackgroundService.getInstance() != null) {
-            BackgroundService.getInstance().addDeviceListChangedCallback("RunCommandWidget", unused -> {
-                Intent updateWidget = new Intent(context, RunCommandWidget.class);
-                context.sendBroadcast(updateWidget);
-            });
-        }
+
+        KdeConnect.getInstance().addDeviceListChangedCallback("RunCommandWidget", () -> {
+            Intent updateWidget = new Intent(context, RunCommandWidget.class);
+            context.sendBroadcast(updateWidget);
+        });
     }
 
     public static Device getCurrentDevice() {
-
-        try {
-            return BackgroundService.getInstance().getDevice(currentDeviceId);
-        } catch (Exception ex) {
-            return null;
-        }
+        return KdeConnect.getInstance().getDevice(currentDeviceId);
     }
 
     public static void setCurrentDevice(final String DeviceId) {

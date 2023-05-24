@@ -1,7 +1,6 @@
 package org.kde.kdeconnect.Plugins.MprisPlugin;
 
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -10,7 +9,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,12 +26,9 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.kde.kdeconnect.Backends.BaseLink;
-import org.kde.kdeconnect.Backends.BaseLinkProvider;
-import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Helpers.VideoUrlsHelper;
 import org.kde.kdeconnect.Helpers.VolumeHelperKt;
-import org.kde.kdeconnect.NetworkPacket;
+import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.MprisControlBinding;
 import org.kde.kdeconnect_tp.databinding.MprisNowPlayingBinding;
@@ -49,18 +44,9 @@ public class MprisNowPlayingFragment extends Fragment implements VolumeKeyListen
     private MprisNowPlayingBinding activityMprisBinding;
     private String deviceId;
     private Runnable positionSeekUpdateRunnable = null;
+
+    private String targetPlayerName = "";
     private MprisPlugin.MprisPlayer targetPlayer = null;
-    private final BaseLinkProvider.ConnectionReceiver connectionReceiver = new BaseLinkProvider.ConnectionReceiver() {
-        @Override
-        public void onConnectionReceived(NetworkPacket identityPacket, BaseLink link) {
-            connectToPlugin(null);
-        }
-
-        @Override
-        public void onConnectionLost(BaseLink link) {
-
-        }
-    };
 
     public static MprisNowPlayingFragment newInstance(String deviceId) {
         MprisNowPlayingFragment mprisNowPlayingFragment = new MprisNowPlayingFragment();
@@ -94,211 +80,217 @@ public class MprisNowPlayingFragment extends Fragment implements VolumeKeyListen
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        activityMprisBinding = MprisNowPlayingBinding.inflate(inflater);
+        mprisControlBinding = activityMprisBinding.mprisControl;
 
-        if (activityMprisBinding == null) {
-            activityMprisBinding = MprisNowPlayingBinding.inflate(inflater);
-            mprisControlBinding = activityMprisBinding.mprisControl;
+        deviceId = requireArguments().getString(MprisPlugin.DEVICE_ID_KEY);
 
-            String targetPlayerName = "";
-            Intent activityIntent = requireActivity().getIntent();
-            activityIntent.getStringExtra("player");
+        targetPlayerName = "";
+        Intent activityIntent = requireActivity().getIntent();
+        if (activityIntent.hasExtra("player")) {
+            targetPlayerName = activityIntent.getStringExtra("player");
             activityIntent.removeExtra("player");
+        } else if (savedInstanceState != null) {
+            targetPlayerName = savedInstanceState.getString("targetPlayer");
+        }
 
-            if (TextUtils.isEmpty(targetPlayerName)) {
-                if (savedInstanceState != null) {
-                    targetPlayerName = savedInstanceState.getString("targetPlayer");
-                }
+        connectToPlugin();
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
+        String interval_time_str = prefs.getString(getString(R.string.mpris_time_key),
+                getString(R.string.mpris_time_default));
+        final int interval_time = Integer.parseInt(interval_time_str);
+
+        performActionOnClick(mprisControlBinding.loopButton, p -> {
+            switch (p.getLoopStatus()) {
+                case "None":
+                    p.setLoopStatus("Track");
+                    break;
+                case "Track":
+                    p.setLoopStatus("Playlist");
+                    break;
+                case "Playlist":
+                    p.setLoopStatus("None");
+                    break;
+            }
+        });
+
+        performActionOnClick(mprisControlBinding.playButton, MprisPlugin.MprisPlayer::playPause);
+
+        performActionOnClick(mprisControlBinding.shuffleButton, p -> p.setShuffle(!p.getShuffle()));
+
+        performActionOnClick(mprisControlBinding.prevButton, MprisPlugin.MprisPlayer::previous);
+
+        performActionOnClick(mprisControlBinding.rewButton, p -> targetPlayer.seek(interval_time * -1));
+
+        performActionOnClick(mprisControlBinding.ffButton, p -> p.seek(interval_time));
+
+        performActionOnClick(mprisControlBinding.nextButton, MprisPlugin.MprisPlayer::next);
+
+        performActionOnClick(mprisControlBinding.stopButton, MprisPlugin.MprisPlayer::stop);
+
+        mprisControlBinding.volumeSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
             }
 
-            deviceId = requireArguments().getString(MprisPlugin.DEVICE_ID_KEY);
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
 
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
-            String interval_time_str = prefs.getString(getString(R.string.mpris_time_key),
-                    getString(R.string.mpris_time_default));
-            final int interval_time = Integer.parseInt(interval_time_str);
+            @Override
+            public void onStopTrackingTouch(final SeekBar seekBar) {
+                if (targetPlayer == null) return;
+                targetPlayer.setVolume(seekBar.getProgress());
+            }
+        });
 
-            BackgroundService.RunCommand(requireContext(), service -> service.addConnectionListener(connectionReceiver));
-            connectToPlugin(targetPlayerName);
+        positionSeekUpdateRunnable = () -> {
+            if (!isAdded()) return; // Fragment was already detached
+            if (targetPlayer != null) {
+                mprisControlBinding.positionSeek.setProgress((int) (targetPlayer.getPosition()));
+            }
+            positionSeekUpdateHandler.removeCallbacks(positionSeekUpdateRunnable);
+            positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 1000);
+        };
+        positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 200);
 
-            performActionOnClick(mprisControlBinding.loopButton, p -> {
-                switch (p.getLoopStatus()) {
-                    case "None":
-                        p.setLoopStatus("Track");
-                        break;
-                    case "Track":
-                        p.setLoopStatus("Playlist");
-                        break;
-                    case "Playlist":
-                        p.setLoopStatus("None");
-                        break;
+        mprisControlBinding.positionSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean byUser) {
+                mprisControlBinding.progressTextview.setText(milisToProgress(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                positionSeekUpdateHandler.removeCallbacks(positionSeekUpdateRunnable);
+            }
+
+            @Override
+            public void onStopTrackingTouch(final SeekBar seekBar) {
+                if (targetPlayer != null) {
+                    targetPlayer.setPosition(seekBar.getProgress());
                 }
-            });
+                positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 200);
+            }
+        });
 
-            performActionOnClick(mprisControlBinding.playButton, MprisPlugin.MprisPlayer::playPause);
-
-            performActionOnClick(mprisControlBinding.shuffleButton, p -> p.setShuffle(!p.getShuffle()));
-
-            performActionOnClick(mprisControlBinding.prevButton, MprisPlugin.MprisPlayer::previous);
-
-            performActionOnClick(mprisControlBinding.rewButton, p -> targetPlayer.seek(interval_time * -1));
-
-            performActionOnClick(mprisControlBinding.ffButton, p -> p.seek(interval_time));
-
-            performActionOnClick(mprisControlBinding.nextButton, MprisPlugin.MprisPlayer::next);
-
-            performActionOnClick(mprisControlBinding.stopButton, MprisPlugin.MprisPlayer::stop);
-
-            mprisControlBinding.volumeSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                @Override
-                public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                }
-
-                @Override
-                public void onStartTrackingTouch(SeekBar seekBar) {
-                }
-
-                @Override
-                public void onStopTrackingTouch(final SeekBar seekBar) {
-                    BackgroundService.RunCommand(requireContext(), service -> {
-                        if (targetPlayer == null) return;
-                        targetPlayer.setVolume(seekBar.getProgress());
-                    });
-                }
-            });
-
-            positionSeekUpdateRunnable = () -> {
-                Context context = getContext();
-                if (context == null) return; // Fragment was already detached
-                BackgroundService.RunCommand(context, service -> {
-                    if (targetPlayer != null) {
-                        mprisControlBinding.positionSeek.setProgress((int) (targetPlayer.getPosition()));
-                    }
-                    positionSeekUpdateHandler.removeCallbacks(positionSeekUpdateRunnable);
-                    positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 1000);
-                });
-            };
-            positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 200);
-
-            mprisControlBinding.positionSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                @Override
-                public void onProgressChanged(SeekBar seekBar, int progress, boolean byUser) {
-                    mprisControlBinding.progressTextview.setText(milisToProgress(progress));
-                }
-
-                @Override
-                public void onStartTrackingTouch(SeekBar seekBar) {
-                    positionSeekUpdateHandler.removeCallbacks(positionSeekUpdateRunnable);
-                }
-
-                @Override
-                public void onStopTrackingTouch(final SeekBar seekBar) {
-                    BackgroundService.RunCommand(requireContext(), service -> {
-                        if (targetPlayer != null) {
-                            targetPlayer.setPosition(seekBar.getProgress());
-                        }
-                        positionSeekUpdateHandler.postDelayed(positionSeekUpdateRunnable, 200);
-                    });
-                }
-            });
-
-            mprisControlBinding.nowPlayingTextview.setSelected(true);
-
-        }
+        mprisControlBinding.nowPlayingTextview.setSelected(true);
 
         return activityMprisBinding.getRoot();
     }
 
-    private void connectToPlugin(final String targetPlayerName) {
-        BackgroundService.RunWithPlugin(requireContext(), deviceId, MprisPlugin.class, mpris -> {
-            targetPlayer = mpris.getPlayerStatus(targetPlayerName);
-
-            mpris.setPlayerStatusUpdatedHandler("activity", () -> requireActivity().runOnUiThread(() -> updatePlayerStatus(mpris)));
-            mpris.setPlayerListUpdatedHandler("activity", () -> {
-                final List<String> playerList = mpris.getPlayerList();
-                final ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
-                        android.R.layout.simple_spinner_item,
-                        playerList.toArray(ArrayUtils.EMPTY_STRING_ARRAY)
-                );
-
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                requireActivity().runOnUiThread(() -> {
-                    mprisControlBinding.playerSpinner.setAdapter(adapter);
-
-                    if (playerList.isEmpty()) {
-                        mprisControlBinding.noPlayers.setVisibility(View.VISIBLE);
-                        mprisControlBinding.playerSpinner.setVisibility(View.GONE);
-                        mprisControlBinding.nowPlayingTextview.setText("");
-                    } else {
-                        mprisControlBinding.noPlayers.setVisibility(View.GONE);
-                        mprisControlBinding.playerSpinner.setVisibility(View.VISIBLE);
-                    }
-
-                    mprisControlBinding.playerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
-
-                            if (pos >= playerList.size()) return;
-
-                            String player = playerList.get(pos);
-                            if (targetPlayer != null && player.equals(targetPlayer.getPlayer())) {
-                                return; //Player hasn't actually changed
-                            }
-                            targetPlayer = mpris.getPlayerStatus(player);
-                            updatePlayerStatus(mpris);
-
-                            if (targetPlayer != null && targetPlayer.isPlaying()) {
-                                MprisMediaSession.getInstance().playerSelected(targetPlayer);
-                            }
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> arg0) {
-                            targetPlayer = null;
-                        }
-                    });
-
-                    if (targetPlayer == null) {
-                        //If no player is selected, try to select a playing player
-                        targetPlayer = mpris.getPlayingPlayer();
-                    }
-                    //Try to select the specified player
-                    if (targetPlayer != null) {
-                        int targetIndex = adapter.getPosition(targetPlayer.getPlayer());
-                        if (targetIndex >= 0) {
-                            mprisControlBinding.playerSpinner.setSelection(targetIndex);
-                        } else {
-                            targetPlayer = null;
-                        }
-                    }
-                    //If no player selected, select the first one (if any)
-                    if (targetPlayer == null && !playerList.isEmpty()) {
-                        targetPlayer = mpris.getPlayerStatus(playerList.get(0));
-                        mprisControlBinding.playerSpinner.setSelection(0);
-                    }
-                    updatePlayerStatus(mpris);
-                });
-            });
-        });
-    }
-
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        BackgroundService.RunCommand(requireContext(), service -> service.removeConnectionListener(connectionReceiver));
+    public void onDestroyView() {
+        disconnectFromPlugin();
+        super.onDestroyView();
     }
 
-    private void performActionOnClick(View v, MprisPlayerCallback l) {
-        v.setOnClickListener(view -> BackgroundService.RunCommand(requireContext(), service -> {
-            if (targetPlayer == null) return;
-            l.performAction(targetPlayer);
+    private void disconnectFromPlugin() {
+        MprisPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MprisPlugin.class);
+        if (plugin != null) {
+            plugin.removePlayerListUpdatedHandler("activity");
+            plugin.removePlayerStatusUpdatedHandler("activity");
+        }
+    }
+
+    private void connectToPlugin() {
+        MprisPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MprisPlugin.class);
+        if (plugin == null) {
+            if (isAdded()) {
+                requireActivity().finish();
+            }
+            return;
+        }
+        targetPlayer = plugin.getPlayerStatus(targetPlayerName);
+
+        plugin.setPlayerStatusUpdatedHandler("activity", () -> requireActivity().runOnUiThread(() -> {
+            updatePlayerStatus(plugin);
+        }));
+        plugin.setPlayerListUpdatedHandler("activity", () -> requireActivity().runOnUiThread(() -> {
+            final List<String> playerList = plugin.getPlayerList();
+            final ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
+                    android.R.layout.simple_spinner_item,
+                    playerList.toArray(ArrayUtils.EMPTY_STRING_ARRAY)
+            );
+
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            mprisControlBinding.playerSpinner.setAdapter(adapter);
+
+            if (playerList.isEmpty()) {
+                mprisControlBinding.noPlayers.setVisibility(View.VISIBLE);
+                mprisControlBinding.playerSpinner.setVisibility(View.GONE);
+                mprisControlBinding.nowPlayingTextview.setText("");
+            } else {
+                mprisControlBinding.noPlayers.setVisibility(View.GONE);
+                mprisControlBinding.playerSpinner.setVisibility(View.VISIBLE);
+            }
+
+            mprisControlBinding.playerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> arg0, View arg1, int pos, long id) {
+
+                    if (pos >= playerList.size()) return;
+
+                    String player = playerList.get(pos);
+                    if (targetPlayer != null && player.equals(targetPlayer.getPlayerName())) {
+                        return; //Player hasn't actually changed
+                    }
+                    targetPlayer = plugin.getPlayerStatus(player);
+                    targetPlayerName = targetPlayer.getPlayerName();
+                    updatePlayerStatus(plugin);
+
+                    if (targetPlayer != null && targetPlayer.isPlaying()) {
+                        MprisMediaSession.getInstance().playerSelected(targetPlayer);
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> arg0) {
+                    targetPlayer = null;
+                }
+            });
+
+            if (targetPlayer == null) {
+                //If no player is selected, try to select a playing player
+                targetPlayer = plugin.getPlayingPlayer();
+            }
+            //Try to select the specified player
+            if (targetPlayer != null) {
+                int targetIndex = adapter.getPosition(targetPlayer.getPlayerName());
+                if (targetIndex >= 0) {
+                    mprisControlBinding.playerSpinner.setSelection(targetIndex);
+                } else {
+                    targetPlayer = null;
+                }
+            }
+            //If no player selected, select the first one (if any)
+            if (targetPlayer == null && !playerList.isEmpty()) {
+                targetPlayer = plugin.getPlayerStatus(playerList.get(0));
+                mprisControlBinding.playerSpinner.setSelection(0);
+            }
+            updatePlayerStatus(plugin);
         }));
     }
 
-    private void updatePlayerStatus(MprisPlugin mpris) {
+    private void performActionOnClick(View v, MprisPlayerCallback l) {
+        v.setOnClickListener(view -> {
+            if (targetPlayer == null) return;
+            l.performAction(targetPlayer);
+        });
+    }
+
+    private void updatePlayerStatus(MprisPlugin plugin) {
+        if (!isAdded()) {
+            //Fragment is not attached to an activity. We will crash if we try to do anything here.
+            return;
+        }
+
         MprisPlugin.MprisPlayer playerStatus = targetPlayer;
         if (playerStatus == null) {
             //No player with that name found, just display "empty" data
-            playerStatus = mpris.getEmptyPlayer();
+            playerStatus = plugin.getEmptyPlayer();
         }
         String song = playerStatus.getCurrentSong();
 
@@ -433,7 +425,7 @@ public class MprisNowPlayingFragment extends Fragment implements VolumeKeyListen
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         if (targetPlayer != null) {
-            outState.putString("targetPlayer", targetPlayer.getPlayer());
+            outState.putString("targetPlayer", targetPlayerName);
         }
     }
 

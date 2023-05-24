@@ -6,7 +6,6 @@
 
 package org.kde.kdeconnect.Plugins.SystemVolumePlugin;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +19,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Helpers.VolumeHelperKt;
+import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.Plugins.MprisPlugin.MprisPlugin;
 import org.kde.kdeconnect.Plugins.MprisPlugin.VolumeKeyListener;
 import org.kde.kdeconnect_tp.R;
@@ -73,19 +72,15 @@ public class SystemVolumeFragment
             recyclerView.setAdapter(recyclerAdapter);
         }
 
+        connectToPlugin(getDeviceId());
+
         return systemVolumeFragmentBinding.getRoot();
     }
 
     @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        connectToPlugin(getDeviceId());
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
+    public void onDestroyView() {
         disconnectFromPlugin(getDeviceId());
+        super.onDestroyView();
     }
 
     @Override
@@ -99,16 +94,21 @@ public class SystemVolumeFragment
     }
 
     private void connectToPlugin(final String deviceId) {
-        BackgroundService.RunWithPlugin(requireActivity(), deviceId, SystemVolumePlugin.class, plugin -> {
-            this.plugin = plugin;
-            plugin.addSinkListener(SystemVolumeFragment.this);
-            plugin.requestSinkList();
-        });
+        SystemVolumePlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, SystemVolumePlugin.class);
+        if (plugin == null) {
+            return;
+        }
+        this.plugin = plugin;
+        plugin.addSinkListener(SystemVolumeFragment.this);
+        plugin.requestSinkList();
     }
 
     private void disconnectFromPlugin(final String deviceId) {
-        BackgroundService.RunWithPlugin(requireActivity(), deviceId, SystemVolumePlugin.class, plugin ->
-                plugin.removeSinkListener(SystemVolumeFragment.this));
+        SystemVolumePlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, SystemVolumePlugin.class);
+        if (plugin == null) {
+            return;
+        }
+        plugin.removeSinkListener(SystemVolumeFragment.this);
     }
 
     @Override

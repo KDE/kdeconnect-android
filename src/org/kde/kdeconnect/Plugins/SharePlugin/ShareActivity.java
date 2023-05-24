@@ -17,10 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.kde.kdeconnect.BackgroundService;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.UserInterface.List.EntryItemWithIcon;
 import org.kde.kdeconnect.UserInterface.List.ListAdapter;
 import org.kde.kdeconnect.UserInterface.List.SectionItem;
-import org.kde.kdeconnect.UserInterface.ThemeUtil;
 import org.kde.kdeconnect_tp.R;
 import org.kde.kdeconnect_tp.databinding.ActivityShareBinding;
 
@@ -42,19 +42,17 @@ public class ShareActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         if (item.getItemId() == R.id.menu_refresh) {
-            updateDeviceListAction();
+            refreshDevicesAction();
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
     }
 
-    private void updateDeviceListAction() {
-        updateDeviceList();
-        BackgroundService.RunCommand(ShareActivity.this, BackgroundService::onNetworkChange);
+    private void refreshDevicesAction() {
+        BackgroundService.ForceRefreshConnections(this);
 
         binding.devicesListLayout.refreshListLayout.setRefreshing(true);
-
         binding.devicesListLayout.refreshListLayout.postDelayed(() -> {
             binding.devicesListLayout.refreshListLayout.setRefreshing(false);
         }, 1500);
@@ -69,31 +67,29 @@ public class ShareActivity extends AppCompatActivity {
             return;
         }
 
-        BackgroundService.RunCommand(this, service -> {
+        Collection<Device> devices = KdeConnect.getInstance().getDevices().values();
+        final ArrayList<Device> devicesList = new ArrayList<>();
+        final ArrayList<ListAdapter.Item> items = new ArrayList<>();
 
-            Collection<Device> devices = service.getDevices().values();
-            final ArrayList<Device> devicesList = new ArrayList<>();
-            final ArrayList<ListAdapter.Item> items = new ArrayList<>();
+        SectionItem section = new SectionItem(getString(R.string.share_to));
+        items.add(section);
 
-            SectionItem section = new SectionItem(getString(R.string.share_to));
-            items.add(section);
-
-            for (Device d : devices) {
-                if (d.isReachable() && d.isPaired()) {
-                    devicesList.add(d);
-                    items.add(new EntryItemWithIcon(d.getName(), d.getIcon()));
-                    section.isEmpty = false;
-                }
+        for (Device d : devices) {
+            if (d.isReachable() && d.isPaired()) {
+                devicesList.add(d);
+                items.add(new EntryItemWithIcon(d.getName(), d.getIcon()));
+                section.isEmpty = false;
             }
+        }
 
-            runOnUiThread(() -> {
-                binding.devicesListLayout.devicesList.setAdapter(new ListAdapter(ShareActivity.this, items));
-                binding.devicesListLayout.devicesList.setOnItemClickListener((adapterView, view, i, l) -> {
-                    Device device = devicesList.get(i - 1); //NOTE: -1 because of the title!
-                    BackgroundService.RunWithPlugin(this, device.getDeviceId(), SharePlugin.class, plugin -> plugin.share(intent));
-                    finish();
-                });
-            });
+        binding.devicesListLayout.devicesList.setAdapter(new ListAdapter(ShareActivity.this, items));
+        binding.devicesListLayout.devicesList.setOnItemClickListener((adapterView, view, i, l) -> {
+            Device device = devicesList.get(i - 1); //NOTE: -1 because of the title!
+            SharePlugin plugin = KdeConnect.getInstance().getDevicePlugin(device.getDeviceId(), SharePlugin.class);
+            if (plugin != null) {
+                plugin.share(intent);
+            }
+            finish();
         });
     }
 
@@ -109,7 +105,7 @@ public class ShareActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         ActionBar actionBar = getSupportActionBar();
-        binding.devicesListLayout.refreshListLayout.setOnRefreshListener(this::updateDeviceListAction);
+        binding.devicesListLayout.refreshListLayout.setOnRefreshListener(this::refreshDevicesAction);
         if (actionBar != null) {
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_HOME | ActionBar.DISPLAY_SHOW_TITLE | ActionBar.DISPLAY_SHOW_CUSTOM);
         }
@@ -123,22 +119,21 @@ public class ShareActivity extends AppCompatActivity {
         final String deviceId = intent.getStringExtra("deviceId");
 
         if (deviceId != null) {
-            BackgroundService.RunWithPlugin(this, deviceId, SharePlugin.class, plugin -> {
+            SharePlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, SharePlugin.class);
+            if (plugin != null) {
                 plugin.share(intent);
-                finish();
-            });
+            }
+            finish();
         } else {
-            BackgroundService.RunCommand(this, service -> {
-                service.onNetworkChange();
-                service.addDeviceListChangedCallback("ShareActivity", unused -> updateDeviceList());
-            });
+            KdeConnect.getInstance().addDeviceListChangedCallback("ShareActivity", () -> runOnUiThread(this::updateDeviceList));
+            BackgroundService.ForceRefreshConnections(this); // force a network re-discover
             updateDeviceList();
         }
     }
 
     @Override
     protected void onStop() {
-        BackgroundService.RunCommand(this, service -> service.removeDeviceListChangedCallback("ShareActivity"));
+        KdeConnect.getInstance().removeDeviceListChangedCallback("ShareActivity");
         super.onStop();
     }
 }

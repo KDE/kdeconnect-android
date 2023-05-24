@@ -14,7 +14,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 
-import org.kde.kdeconnect.BackgroundService;
+import org.kde.kdeconnect.KdeConnect;
 import org.kde.kdeconnect.NetworkPacket;
 
 public class KeyListenerView extends View {
@@ -89,7 +89,11 @@ public class KeyListenerView extends View {
     }
 
     private void sendKeyPressPacket(final NetworkPacket np) {
-        BackgroundService.RunWithPlugin(getContext(), deviceId, MousePadPlugin.class, plugin -> plugin.sendKeyboardPacket(np));
+        MousePadPlugin plugin = KdeConnect.getInstance().getDevicePlugin(deviceId, MousePadPlugin.class);
+        if (plugin == null) {
+            return;
+        }
+        plugin.sendKeyboardPacket(np);
     }
 
     @Override
