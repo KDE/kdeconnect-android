@@ -18,6 +18,7 @@ import android.view.KeyEvent;
 import androidx.core.content.ContextCompat;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
@@ -36,6 +37,11 @@ public class PresenterPlugin extends Plugin {
     @Override
     public String getDisplayName() {
         return context.getString(R.string.pref_plugin_presenter);
+    }
+
+    @Override
+    public boolean isCompatible() {
+        return !device.getDeviceType().equals(Device.DeviceType.Phone) && super.isCompatible();
     }
 
     @Override
