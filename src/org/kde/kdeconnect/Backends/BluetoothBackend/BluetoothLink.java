@@ -137,7 +137,8 @@ public class BluetoothLink extends BaseLink {
 
     @WorkerThread
     @Override
-    public boolean sendPacket(NetworkPacket np, final Device.SendPacketStatusCallback callback) {
+    public boolean sendPacket(NetworkPacket np, Device.SendPacketStatusCallback callback, boolean sendPayloadFromSameThread) throws IOException {
+        // sendPayloadFromSameThread is ignored, we always send from the same thread!
 
         /*if (!isConnected()) {
             Log.e("BluetoothLink", "sendPacketEncrypted failed: not connected");
@@ -168,7 +169,7 @@ public class BluetoothLink extends BaseLink {
                         progress += bytesRead;
                         payloadStream.write(buffer, 0, bytesRead);
                         if (np.getPayloadSize() > 0) {
-                            callback.onProgressChanged((int) (100 * progress / np.getPayloadSize()));
+                            callback.onPayloadProgressChanged((int) (100 * progress / np.getPayloadSize()));
                         }
                     }
                     payloadStream.flush();

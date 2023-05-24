@@ -71,7 +71,7 @@ public abstract class BaseLink {
         linkProvider.connectionLost(this);
     }
 
-    //TO OVERRIDE, should be sync
+    //TO OVERRIDE, should be sync. If sendPayloadFromSameThread is false, it should only block to send the packet but start a separate thread to send the payload.
     @WorkerThread
-    public abstract boolean sendPacket(NetworkPacket np, Device.SendPacketStatusCallback callback) throws IOException;
+    public abstract boolean sendPacket(NetworkPacket np, Device.SendPacketStatusCallback callback, boolean sendPayloadFromSameThread) throws IOException;
 }

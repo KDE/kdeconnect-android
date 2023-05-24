@@ -34,12 +34,12 @@ public class LoopbackLink extends BaseLink {
 
     @WorkerThread
     @Override
-    public boolean sendPacket(NetworkPacket in, Device.SendPacketStatusCallback callback) {
+    public boolean sendPacket(NetworkPacket in, Device.SendPacketStatusCallback callback, boolean sendPayloadFromSameThread) {
         packetReceived(in);
         if (in.hasPayload()) {
-            callback.onProgressChanged(0);
+            callback.onPayloadProgressChanged(0);
             in.setPayload(in.getPayload());
-            callback.onProgressChanged(100);
+            callback.onPayloadProgressChanged(100);
         }
         callback.onSuccess();
         return true;

@@ -104,7 +104,9 @@ public class CompositeUploadFileJob extends BackgroundJob<Device, Void> {
 
                 addTotalsToNetworkPacket(currentNetworkPacket);
 
-                if (!getDevice().sendPacketBlocking(currentNetworkPacket, sendPacketStatusCallback)) {
+                // We set sendPayloadFromSameThread to true so this call blocks until the payload
+                // has been received by the other end,  so payloads are sent one by one.
+                if (!getDevice().sendPacketBlocking(currentNetworkPacket, sendPacketStatusCallback, true)) {
                     throw new RuntimeException("Sending packet failed");
                 }
 
@@ -202,7 +204,7 @@ public class CompositeUploadFileJob extends BackgroundJob<Device, Void> {
 
     private class SendPacketStatusCallback extends Device.SendPacketStatusCallback {
         @Override
-        public void onProgressChanged(int percent) {
+        public void onPayloadProgressChanged(int percent) {
             float send = totalSend + (currentNetworkPacket.getPayloadSize() * ((float)percent / 100));
             int progress = (int)((send * 100) / totalPayloadSize);
 

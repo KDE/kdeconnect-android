@@ -131,7 +131,7 @@ public class LanLink extends BaseLink {
     //Blocking, do not call from main thread
     @WorkerThread
     @Override
-    public boolean sendPacket(NetworkPacket np, final Device.SendPacketStatusCallback callback) {
+    public boolean sendPacket(NetworkPacket np, final Device.SendPacketStatusCallback callback, boolean sendPayloadFromSameThread) {
         if (socket == null) {
             Log.e("KDE/sendPacket", "Not yet connected");
             callback.onFailure(new NotYetConnectedException());
@@ -165,53 +165,17 @@ public class LanLink extends BaseLink {
 
             //Send payload
             if (server != null) {
-                Socket payloadSocket = null;
-                OutputStream outputStream = null;
-                InputStream inputStream;
-                try {
-                    //Wait a maximum of 10 seconds for the other end to establish a connection with our socket, close it afterwards
-                    server.setSoTimeout(10*1000);
-
-                    payloadSocket = server.accept();
-
-                    //Convert to SSL if needed
-                    payloadSocket = SslHelper.convertToSslSocket(context, payloadSocket, getDeviceId(), true, false);
-
-                    outputStream = payloadSocket.getOutputStream();
-                    inputStream = np.getPayload().getInputStream();
-
-                    Log.i("KDE/LanLink", "Beginning to send payload");
-                    byte[] buffer = new byte[4096];
-                    int bytesRead;
-                    long size = np.getPayloadSize();
-                    long progress = 0;
-                    long timeSinceLastUpdate = -1;
-                    while (!np.isCanceled() && (bytesRead = inputStream.read(buffer)) != -1) {
-                        //Log.e("ok",""+bytesRead);
-                        progress += bytesRead;
-                        outputStream.write(buffer, 0, bytesRead);
-                        if (size > 0) {
-                            if (timeSinceLastUpdate + 500 < System.currentTimeMillis()) { //Report progress every half a second
-                                long percent = ((100 * progress) / size);
-                                callback.onProgressChanged((int) percent);
-                                timeSinceLastUpdate = System.currentTimeMillis();
-                            }
+                if (sendPayloadFromSameThread) {
+                    sendPayload(np, callback, server);
+                } else {
+                    ThreadHelper.execute(() -> {
+                        try {
+                            sendPayload(np, callback, server);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            Log.e("LanLink/sendPacket", "Async sendPayload failed for packet of type " + np.getType() + ". The Plugin was NOT notified.");
                         }
-                    }
-                    outputStream.flush();
-                    Log.i("KDE/LanLink", "Finished sending payload ("+progress+" bytes written)");
-                } catch(SSLHandshakeException e) {
-                    // The exception can be due to several causes. "Connection closed by peer" seems to be a common one.
-                    // If we could distinguish different cases we could react differently for some of them, but I haven't found how.
-                    Log.e("sendPacket","Payload SSLSocket failed");
-                    e.printStackTrace();
-                } catch(SocketTimeoutException e) {
-                    Log.e("LanLink", "Socket for payload in packet " + np.getType() + " timed out. The other end didn't fetch the payload.");
-                } finally {
-                    try { server.close(); } catch (Exception ignored) { }
-                    try { payloadSocket.close(); } catch (Exception ignored) { }
-                    np.getPayload().close();
-                    try { outputStream.close(); } catch (Exception ignored) { }
+                    });
                 }
             }
 
@@ -229,6 +193,59 @@ public class LanLink extends BaseLink {
             if (np.hasPayload()) {
                 np.getPayload().close();
             }
+        }
+    }
+
+    private void sendPayload(NetworkPacket np, Device.SendPacketStatusCallback callback, ServerSocket server) throws IOException {
+        Socket payloadSocket = null;
+        OutputStream outputStream = null;
+        InputStream inputStream;
+        try {
+            if (!np.isCanceled()) {
+                //Wait a maximum of 10 seconds for the other end to establish a connection with our socket, close it afterwards
+                server.setSoTimeout(10 * 1000);
+
+                payloadSocket = server.accept();
+
+                //Convert to SSL if needed
+                payloadSocket = SslHelper.convertToSslSocket(context, payloadSocket, getDeviceId(), true, false);
+
+                outputStream = payloadSocket.getOutputStream();
+                inputStream = np.getPayload().getInputStream();
+
+                Log.i("KDE/LanLink", "Beginning to send payload for " + np.getType());
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+                long size = np.getPayloadSize();
+                long progress = 0;
+                long timeSinceLastUpdate = -1;
+                while (!np.isCanceled() && (bytesRead = inputStream.read(buffer)) != -1) {
+                    //Log.e("ok",""+bytesRead);
+                    progress += bytesRead;
+                    outputStream.write(buffer, 0, bytesRead);
+                    if (size > 0) {
+                        if (timeSinceLastUpdate + 500 < System.currentTimeMillis()) { //Report progress every half a second
+                            long percent = ((100 * progress) / size);
+                            callback.onPayloadProgressChanged((int) percent);
+                            timeSinceLastUpdate = System.currentTimeMillis();
+                        }
+                    }
+                }
+                outputStream.flush();
+                Log.i("KDE/LanLink", "Finished sending payload (" + progress + " bytes written)");
+            }
+        } catch(SocketTimeoutException e) {
+            Log.e("LanLink", "Socket for payload in packet " + np.getType() + " timed out. The other end didn't fetch the payload.");
+        } catch(SSLHandshakeException e) {
+            // The exception can be due to several causes. "Connection closed by peer" seems to be a common one.
+            // If we could distinguish different cases we could react differently for some of them, but I haven't found how.
+            Log.e("sendPacket","Payload SSLSocket failed");
+            e.printStackTrace();
+        } finally {
+            try { server.close(); } catch (Exception ignored) { }
+            try { payloadSocket.close(); } catch (Exception ignored) { }
+            np.getPayload().close();
+            try { outputStream.close(); } catch (Exception ignored) { }
         }
     }
 

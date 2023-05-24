@@ -378,7 +378,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
                     public void onFailure(Throwable e) {
 
                     }
-                });
+                }, true);
             } catch (Exception e) {
                 Log.e("BTLinkProvider/Client", "Connection lost/disconnected on " + device.getAddress(), e);
             }

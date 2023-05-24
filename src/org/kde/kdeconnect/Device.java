@@ -610,7 +610,7 @@ public class Device implements BaseLink.PacketReceiver {
 
         public abstract void onFailure(Throwable e);
 
-        public void onProgressChanged(int percent) {
+        public void onPayloadProgressChanged(int percent) {
         }
     }
 
@@ -674,16 +674,24 @@ public class Device implements BaseLink.PacketReceiver {
         }
     }
 
+    @WorkerThread
+    public boolean sendPacketBlocking(final NetworkPacket np, final SendPacketStatusCallback callback) {
+        return sendPacketBlocking(np, callback, false);
+    }
+
     /**
      * Send {@code np} over one of this device's connected {@link #links}.
      *
-     * @param np       the packet to send
-     * @param callback a callback that can receive realtime updates
+     * @param np                        the packet to send
+     * @param callback                  a callback that can receive realtime updates
+     * @param sendPayloadFromSameThread when set to true and np contains a Payload, this function
+     *                                  won't return until the Payload has been received by the
+     *                                  other end, or times out after 10 seconds
      * @return true if the packet was sent ok, false otherwise
      * @see BaseLink#sendPacket(NetworkPacket, SendPacketStatusCallback)
      */
     @WorkerThread
-    public boolean sendPacketBlocking(final NetworkPacket np, final SendPacketStatusCallback callback) {
+    public boolean sendPacketBlocking(final NetworkPacket np, final SendPacketStatusCallback callback, boolean sendPayloadFromSameThread) {
 
         /*
         if (!m_outgoingCapabilities.contains(np.getType()) && !NetworkPacket.protocolPacketTypes.contains(np.getType())) {
@@ -696,7 +704,7 @@ public class Device implements BaseLink.PacketReceiver {
         for (final BaseLink link : links) {
             if (link == null) continue;
             try {
-                success = link.sendPacket(np, callback);
+                success = link.sendPacket(np, callback, sendPayloadFromSameThread);
             } catch (IOException e) {
                 e.printStackTrace();
             }
