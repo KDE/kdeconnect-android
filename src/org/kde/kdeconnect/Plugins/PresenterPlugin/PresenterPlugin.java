@@ -113,6 +113,7 @@ public class PresenterPlugin extends Plugin {
         if (np == null) {
             np = new NetworkPacket(PACKET_TYPE_PRESENTER);
         } else {
+            // TODO: In my tests we never get here. Decide if it's worth keeping the logic to replace unsent packets.
             xDelta += np.getInt("dx");
             yDelta += np.getInt("dy");
         }
