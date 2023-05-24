@@ -238,20 +238,20 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
             for (device in devices) {
                 if (device.isReachable && device.isPaired) {
                     val item = devicesMenu.add(Menu.FIRST, id++, 1, device.name)
-                    item.setIcon(device.icon)
-                    item.setCheckable(true)
+                    item.icon = device.icon
+                    item.isCheckable = true
                     mMapMenuToDeviceId[item] = device.deviceId
                 }
             }
             val addDeviceItem = devicesMenu.add(Menu.FIRST, MENU_ENTRY_ADD_DEVICE, 1000, R.string.pair_new_device)
             addDeviceItem.setIcon(R.drawable.ic_action_content_add_circle_outline_32dp)
-            addDeviceItem.setCheckable(true)
+            addDeviceItem.isCheckable = true
             val settingsItem = menu.add(Menu.FIRST, MENU_ENTRY_SETTINGS, 1000, R.string.settings)
             settingsItem.setIcon(R.drawable.ic_settings_white_32dp)
-            settingsItem.setCheckable(true)
+            settingsItem.isCheckable = true
             val aboutItem = menu.add(Menu.FIRST, MENU_ENTRY_ABOUT, 1000, R.string.about)
             aboutItem.setIcon(R.drawable.ic_baseline_info_24)
-            aboutItem.setCheckable(true)
+            aboutItem.isCheckable = true
 
             //Ids might have changed
             if (mCurrentMenuEntry >= MENU_ENTRY_DEVICE_FIRST_ID) {
