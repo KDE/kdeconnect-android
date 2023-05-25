@@ -151,6 +151,7 @@ class DeviceFragment : Fragment() {
             removePluginsChangedListener(pluginsChangedListener)
             removePairingCallback(pairingCallback)
         }
+        device = null
         pairingBinding = null
         errorBinding = null
         deviceBinding = null
