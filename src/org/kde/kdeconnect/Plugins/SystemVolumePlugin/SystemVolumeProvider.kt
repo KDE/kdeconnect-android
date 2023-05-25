@@ -65,8 +65,9 @@ internal class SystemVolumeProvider private constructor(plugin: SystemVolumePlug
 
         propagateState(false)
         defaultSink = null
-        stopSinkUpdatesTracking()
+        stopListeningForSinks()
         systemVolumePlugin = plugin
+        startListeningForSinks()
     }
 
     override fun sinksChanged() {
@@ -154,18 +155,18 @@ internal class SystemVolumeProvider private constructor(plugin: SystemVolumePlug
         return sink != null
     }
 
-    fun startTrackingVolumeKeys() {
+    fun startListeningForSinks() {
         systemVolumePlugin.addSinkListener(this)
         systemVolumePlugin.requestSinkList()
     }
 
     fun release() {
-        stopSinkUpdatesTracking()
+        stopListeningForSinks()
         stateListeners.clear()
         currentProvider = null
     }
 
-    private fun stopSinkUpdatesTracking() {
+    private fun stopListeningForSinks() {
         for (sink in systemVolumePlugin.sinks) {
             sink.removeListener(this)
         }

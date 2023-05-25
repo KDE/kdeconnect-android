@@ -247,7 +247,6 @@ public class MprisMediaSession implements
         }
         SystemVolumeProvider systemVolumeProvider = SystemVolumeProvider.fromPlugin(plugin);
         systemVolumeProvider.addStateListener(this);
-        systemVolumeProvider.startTrackingVolumeKeys();
     }
 
     /**
