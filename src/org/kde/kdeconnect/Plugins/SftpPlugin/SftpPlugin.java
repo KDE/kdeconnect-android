@@ -237,26 +237,6 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
     public boolean supportsDeviceSpecificSettings() { return true; }
 
     @Override
-    public void copyGlobalToDeviceSpecificSettings(SharedPreferences globalSharedPreferences) {
-        String KeyStorageInfoList = context.getString(PREFERENCE_KEY_STORAGE_INFO_LIST);
-
-        if (this.preferences != null && !this.preferences.contains(KeyStorageInfoList)) {
-            this.preferences
-                    .edit()
-                    .putString(KeyStorageInfoList, globalSharedPreferences.getString(KeyStorageInfoList, "[]"))
-                    .apply();
-        }
-    }
-
-    @Override
-    public void removeSettings(SharedPreferences sharedPreferences) {
-        sharedPreferences
-                .edit()
-                .remove(context.getString(PREFERENCE_KEY_STORAGE_INFO_LIST))
-                .apply();
-    }
-
-    @Override
     public PluginSettingsFragment getSettingsFragment(Activity activity) {
         return SftpSettingsFragment.newInstance(getPluginKey(), R.xml.sftpplugin_preferences);
     }

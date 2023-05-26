@@ -142,21 +142,6 @@ public abstract class Plugin {
     public boolean supportsDeviceSpecificSettings() { return false; }
 
     /**
-     * Called when it's time to move the plugin settings from the global preferences
-     * to device specific preferences
-     *
-     * @param globalSharedPreferences The global Preferences to copy the settings from
-     */
-    public void copyGlobalToDeviceSpecificSettings(SharedPreferences globalSharedPreferences) {}
-
-    /**
-     *  Called when the plugin should remove it's settings from the provided ShardPreferences
-     *
-     * @param sharedPreferences The SharedPreferences to remove the settings from
-     */
-    public void removeSettings(SharedPreferences sharedPreferences) {}
-
-    /**
      * If hasSettings returns true, this will be called when the user
      * wants to access this plugin's preferences. The default implementation
      * will return a PluginSettingsFragment with content from "yourplugin"_preferences.xml
