@@ -15,6 +15,7 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
@@ -86,17 +87,17 @@ public class MprisReceiverPlugin extends Plugin {
     }
 
     @Override
-    public String getDisplayName() {
+    public @NonNull String getDisplayName() {
         return context.getResources().getString(R.string.pref_plugin_mprisreceiver);
     }
 
     @Override
-    public String getDescription() {
+    public @NonNull String getDescription() {
         return context.getResources().getString(R.string.pref_plugin_mprisreceiver_desc);
     }
 
     @Override
-    public boolean onPacketReceived(NetworkPacket np) {
+    public boolean onPacketReceived(@NonNull NetworkPacket np) {
 
         if (np.getBoolean("requestPlayerList")) {
             sendPlayerList();
@@ -158,12 +159,12 @@ public class MprisReceiverPlugin extends Plugin {
     }
 
     @Override
-    public String[] getSupportedPacketTypes() {
+    public @NonNull String[] getSupportedPacketTypes() {
         return new String[]{PACKET_TYPE_MPRIS_REQUEST};
     }
 
     @Override
-    public String[] getOutgoingPacketTypes() {
+    public @NonNull String[] getOutgoingPacketTypes() {
         return new String[]{PACKET_TYPE_MPRIS};
     }
 
@@ -233,7 +234,7 @@ public class MprisReceiverPlugin extends Plugin {
     }
 
     @Override
-    public DialogFragment getPermissionExplanationDialog() {
+    public @NonNull DialogFragment getPermissionExplanationDialog() {
         return new StartActivityAlertDialogFragment.Builder()
                 .setTitle(R.string.pref_plugin_mpris)
                 .setMessage(R.string.no_permission_mprisreceiver)

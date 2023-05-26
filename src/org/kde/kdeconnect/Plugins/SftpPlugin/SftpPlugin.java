@@ -49,12 +49,12 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
     private static final SimpleSftpServer server = new SimpleSftpServer();
 
     @Override
-    public String getDisplayName() {
+    public @NonNull String getDisplayName() {
         return context.getResources().getString(R.string.pref_plugin_sftp);
     }
 
     @Override
-    public String getDescription() {
+    public @NonNull String getDescription() {
         return context.getResources().getString(R.string.pref_plugin_sftp_desc);
     }
 
@@ -73,7 +73,7 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
     }
 
     @Override
-    public AlertDialogFragment getPermissionExplanationDialog() {
+    public @NonNull AlertDialogFragment getPermissionExplanationDialog() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             return new StartActivityAlertDialogFragment.Builder()
                     .setTitle(getDisplayName())
@@ -106,7 +106,7 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
     }
 
     @Override
-    public boolean onPacketReceived(NetworkPacket np) {
+    public boolean onPacketReceived(@NonNull NetworkPacket np) {
         if (np.getBoolean("startBrowsing")) {
             if (!server.isInitialized()) {
                 try {
@@ -219,12 +219,12 @@ public class SftpPlugin extends Plugin implements SharedPreferences.OnSharedPref
     }
 
     @Override
-    public String[] getSupportedPacketTypes() {
+    public @NonNull String[] getSupportedPacketTypes() {
         return new String[]{PACKET_TYPE_SFTP_REQUEST};
     }
 
     @Override
-    public String[] getOutgoingPacketTypes() {
+    public @NonNull String[] getOutgoingPacketTypes() {
         return new String[]{PACKET_TYPE_SFTP};
     }
 

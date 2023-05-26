@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import org.kde.kdeconnect.NetworkPacket;
@@ -239,12 +240,12 @@ public class MprisPlugin extends Plugin {
     private final ConcurrentHashMap<String, Callback> playerListUpdated = new ConcurrentHashMap<>();
 
     @Override
-    public String getDisplayName() {
+    public @NonNull String getDisplayName() {
         return context.getResources().getString(R.string.pref_plugin_mpris);
     }
 
     @Override
-    public String getDescription() {
+    public @NonNull String getDescription() {
         return context.getResources().getString(R.string.pref_plugin_mpris_desc);
     }
 
@@ -305,7 +306,7 @@ public class MprisPlugin extends Plugin {
     }
 
     @Override
-    public boolean onPacketReceived(NetworkPacket np) {
+    public boolean onPacketReceived(@NonNull NetworkPacket np) {
         if (np.getBoolean("transferringAlbumArt", false)) {
             AlbumArtCache.payloadToDiskCache(np.getString("albumArtUrl"), np.getPayload());
             return true;
@@ -405,12 +406,12 @@ public class MprisPlugin extends Plugin {
     }
 
     @Override
-    public String[] getSupportedPacketTypes() {
+    public @NonNull String[] getSupportedPacketTypes() {
         return new String[]{PACKET_TYPE_MPRIS};
     }
 
     @Override
-    public String[] getOutgoingPacketTypes() {
+    public @NonNull String[] getOutgoingPacketTypes() {
         return new String[]{PACKET_TYPE_MPRIS_REQUEST};
     }
 
@@ -493,7 +494,7 @@ public class MprisPlugin extends Plugin {
     }
 
     @Override
-    public String getActionName() {
+    public @NonNull String getActionName() {
         return context.getString(R.string.open_mpris_controls);
     }
 

@@ -16,6 +16,7 @@ import android.telephony.SubscriptionManager.OnSubscriptionsChangedListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import org.json.JSONException;
@@ -70,12 +71,12 @@ public class ConnectivityReportPlugin extends Plugin {
     private final HashMap<Integer, SubscriptionState> states = new HashMap<>();
 
     @Override
-    public String getDisplayName() {
+    public @NonNull String getDisplayName() {
         return context.getResources().getString(R.string.pref_plugin_connectivity_report);
     }
 
     @Override
-    public String getDescription() {
+    public @NonNull String getDescription() {
         return context.getResources().getString(R.string.pref_plugin_connectivity_report_desc);
     }
 
@@ -228,7 +229,7 @@ public class ConnectivityReportPlugin extends Plugin {
     }
 
     @Override
-    public boolean onPacketReceived(NetworkPacket np) {
+    public boolean onPacketReceived(@NonNull NetworkPacket np) {
         if (PACKET_TYPE_CONNECTIVITY_REPORT_REQUEST.equals(np.getType())) {
             Log.i("ConnectivityReport", "Requested");
             serializeSignalStrengths();
@@ -239,17 +240,17 @@ public class ConnectivityReportPlugin extends Plugin {
     }
 
     @Override
-    public String[] getSupportedPacketTypes() {
+    public @NonNull String[] getSupportedPacketTypes() {
         return new String[]{PACKET_TYPE_CONNECTIVITY_REPORT_REQUEST};
     }
 
     @Override
-    public String[] getOutgoingPacketTypes() {
+    public @NonNull String[] getOutgoingPacketTypes() {
         return new String[]{PACKET_TYPE_CONNECTIVITY_REPORT};
     }
 
     @Override
-    public String[] getRequiredPermissions() {
+    public @NonNull String[] getRequiredPermissions() {
         return new String[]{
                 Manifest.permission.READ_PHONE_STATE,
         };

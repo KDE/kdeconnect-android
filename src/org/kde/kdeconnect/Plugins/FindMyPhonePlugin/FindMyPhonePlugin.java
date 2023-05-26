@@ -20,6 +20,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
@@ -47,7 +48,7 @@ public class FindMyPhonePlugin extends Plugin {
     private PowerManager powerManager;
 
     @Override
-    public String getDisplayName() {
+    public @NonNull String getDisplayName() {
         switch (DeviceHelper.getDeviceType(context)) {
             case Tv:
                 return context.getString(R.string.findmyphone_title_tv);
@@ -60,7 +61,7 @@ public class FindMyPhonePlugin extends Plugin {
     }
 
     @Override
-    public String getDescription() {
+    public @NonNull String getDescription() {
         return context.getString(R.string.findmyphone_description);
     }
 
@@ -106,7 +107,7 @@ public class FindMyPhonePlugin extends Plugin {
     }
 
     @Override
-    public boolean onPacketReceived(NetworkPacket np) {
+    public boolean onPacketReceived(@NonNull NetworkPacket np) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q || LifecycleHelper.isInForeground()) {
             Intent intent = new Intent(context, FindMyPhoneActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -194,12 +195,12 @@ public class FindMyPhonePlugin extends Plugin {
     }
 
     @Override
-    public String[] getSupportedPacketTypes() {
+    public @NonNull String[] getSupportedPacketTypes() {
         return new String[]{PACKET_TYPE_FINDMYPHONE_REQUEST};
     }
 
     @Override
-    public String[] getOutgoingPacketTypes() {
+    public @NonNull String[] getOutgoingPacketTypes() {
         return ArrayUtils.EMPTY_STRING_ARRAY;
     }
 

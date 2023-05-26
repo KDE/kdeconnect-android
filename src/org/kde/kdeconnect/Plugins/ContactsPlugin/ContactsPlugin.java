@@ -12,6 +12,8 @@ package org.kde.kdeconnect.Plugins.ContactsPlugin;
 import android.Manifest;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import org.kde.kdeconnect.Helpers.ContactsHelper;
 import org.kde.kdeconnect.Helpers.ContactsHelper.ContactNotFoundException;
 import org.kde.kdeconnect.Helpers.ContactsHelper.VCardBuilder;
@@ -66,17 +68,17 @@ public class ContactsPlugin extends Plugin {
     private static final String PACKET_TYPE_CONTACTS_RESPONSE_VCARDS = "kdeconnect.contacts.response_vcards";
 
     @Override
-    public String getDisplayName() {
+    public @NonNull String getDisplayName() {
         return context.getResources().getString(R.string.pref_plugin_contacts);
     }
 
     @Override
-    public String getDescription() {
+    public @NonNull String getDescription() {
         return context.getResources().getString(R.string.pref_plugin_contacts_desc);
     }
 
     @Override
-    public String[] getSupportedPacketTypes() {
+    public @NonNull String[] getSupportedPacketTypes() {
         return new String[]{
                 PACKET_TYPE_CONTACTS_REQUEST_ALL_UIDS_TIMESTAMPS,
                 PACKET_TYPE_CONTACTS_REQUEST_VCARDS_BY_UIDS
@@ -84,7 +86,7 @@ public class ContactsPlugin extends Plugin {
     }
 
     @Override
-    public String[] getOutgoingPacketTypes() {
+    public @NonNull String[] getOutgoingPacketTypes() {
         return new String[]{
                 PACKET_TYPE_CONTACTS_RESPONSE_UIDS_TIMESTAMPS,
                 PACKET_TYPE_CONTACTS_RESPONSE_VCARDS
@@ -102,7 +104,7 @@ public class ContactsPlugin extends Plugin {
     }
 
     @Override
-    public String[] getRequiredPermissions() {
+    public @NonNull String[] getRequiredPermissions() {
         return new String[]{Manifest.permission.READ_CONTACTS};
         // One day maybe we will also support WRITE_CONTACTS, but not yet
     }
@@ -214,7 +216,7 @@ public class ContactsPlugin extends Plugin {
     }
 
     @Override
-    public boolean onPacketReceived(NetworkPacket np) {
+    public boolean onPacketReceived(@NonNull NetworkPacket np) {
         switch (np.getType()) {
             case PACKET_TYPE_CONTACTS_REQUEST_ALL_UIDS_TIMESTAMPS:
                 return this.handleRequestAllUIDsTimestamps(np);

@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.KeyEvent;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import org.kde.kdeconnect.Device;
@@ -42,12 +43,12 @@ public class BigscreenPlugin extends Plugin {
     }
 
     @Override
-    public String getDisplayName() {
+    public @NonNull String getDisplayName() {
         return context.getString(R.string.pref_plugin_bigscreen);
     }
 
     @Override
-    public String getDescription() {
+    public @NonNull String getDescription() {
         return context.getString(R.string.pref_plugin_bigscreen_desc);
     }
 
@@ -79,19 +80,19 @@ public class BigscreenPlugin extends Plugin {
     }
 
     @Override
-    public String[] getSupportedPacketTypes() {  return new String[]{PACKET_TYPE_BIGSCREEN_STT}; }
+    public @NonNull String[] getSupportedPacketTypes() {  return new String[]{PACKET_TYPE_BIGSCREEN_STT}; }
 
     @Override
-    public String[] getOutgoingPacketTypes() {
+    public @NonNull String[] getOutgoingPacketTypes() {
         return new String[]{PACKET_TYPE_MOUSEPAD_REQUEST, PACKET_TYPE_BIGSCREEN_STT};
     }
 
     @Override
-    public String getActionName() {
+    public @NonNull String getActionName() {
         return context.getString(R.string.pref_plugin_bigscreen);
     }
 
-    public String[] getOptionalPermissions() {
+    public @NonNull String[] getOptionalPermissions() {
         return new String[]{Manifest.permission.RECORD_AUDIO};
     }
 

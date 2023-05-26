@@ -21,6 +21,7 @@ import android.view.inputmethod.ExtractedText;
 import android.view.inputmethod.ExtractedTextRequest;
 import android.view.inputmethod.InputConnection;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Pair;
 import androidx.fragment.app.DialogFragment;
@@ -143,12 +144,12 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
     }
 
     @Override
-    public String getDisplayName() {
+    public @NonNull String getDisplayName() {
         return context.getString(R.string.pref_plugin_remotekeyboard);
     }
 
     @Override
-    public String getDescription() {
+    public @NonNull String getDescription() {
         return context.getString(R.string.pref_plugin_remotekeyboard_desc);
     }
 
@@ -173,12 +174,12 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
     }
 
     @Override
-    public String[] getSupportedPacketTypes() {
+    public @NonNull String[] getSupportedPacketTypes() {
         return new String[]{PACKET_TYPE_MOUSEPAD_REQUEST};
     }
 
     @Override
-    public String[] getOutgoingPacketTypes() {
+    public @NonNull String[] getOutgoingPacketTypes() {
         return new String[]{PACKET_TYPE_MOUSEPAD_ECHO, PACKET_TYPE_MOUSEPAD_KEYBOARDSTATE};
     }
 
@@ -361,7 +362,7 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
     }
 
     @Override
-    public boolean onPacketReceived(NetworkPacket np) {
+    public boolean onPacketReceived(@NonNull NetworkPacket np) {
 
         if (!np.getType().equals(PACKET_TYPE_MOUSEPAD_REQUEST)) {
             Log.e("RemoteKeyboardPlugin", "Invalid packet type for RemoteKeyboardPlugin: "+np.getType());
@@ -423,7 +424,7 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
     }
 
     @Override
-    public DialogFragment getPermissionExplanationDialog() {
+    public @NonNull DialogFragment getPermissionExplanationDialog() {
         return new StartActivityAlertDialogFragment.Builder()
                 .setTitle(R.string.pref_plugin_remotekeyboard)
                 .setMessage(R.string.no_permissions_remotekeyboard)

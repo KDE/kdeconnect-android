@@ -10,9 +10,11 @@ import android.os.Build;
 import android.provider.Settings;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin.RemoteKeyboardPlugin;
@@ -37,7 +39,7 @@ public class MouseReceiverPlugin extends Plugin {
     }
 
     @Override
-    public DialogFragment getPermissionExplanationDialog() {
+    public @NonNull DialogFragment getPermissionExplanationDialog() {
         return new StartActivityAlertDialogFragment.Builder()
                 .setTitle(R.string.mouse_receiver_plugin_description)
                 .setMessage(R.string.mouse_receiver_no_permissions)
@@ -50,7 +52,7 @@ public class MouseReceiverPlugin extends Plugin {
     }
 
     @Override
-    public boolean onPacketReceived(NetworkPacket np) {
+    public boolean onPacketReceived(@NonNull NetworkPacket np) {
         if (!np.getType().equals(PACKET_TYPE_MOUSEPAD_REQUEST)) {
             Log.e("MouseReceiverPlugin", "Invalid packet type for MouseReceiverPlugin: " + np.getType());
             return false;
@@ -126,22 +128,22 @@ public class MouseReceiverPlugin extends Plugin {
     }
 
     @Override
-    public String getDisplayName() {
+    public @NonNull String getDisplayName() {
         return context.getString(R.string.mouse_receiver_plugin_name);
     }
 
     @Override
-    public String getDescription() {
+    public @NonNull String getDescription() {
         return context.getString(R.string.mouse_receiver_plugin_description);
     }
 
     @Override
-    public String[] getSupportedPacketTypes() {
+    public @NonNull String[] getSupportedPacketTypes() {
         return new String[]{PACKET_TYPE_MOUSEPAD_REQUEST};
     }
 
     @Override
-    public String[] getOutgoingPacketTypes() {
-        return new String[0];
+    public @NonNull String[] getOutgoingPacketTypes() {
+        return ArrayUtils.EMPTY_STRING_ARRAY;
     }
 }

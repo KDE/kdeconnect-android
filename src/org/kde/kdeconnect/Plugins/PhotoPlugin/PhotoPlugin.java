@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import org.kde.kdeconnect.Helpers.FilesHelper;
@@ -26,17 +27,17 @@ public class PhotoPlugin extends Plugin {
     private final static String PACKET_TYPE_PHOTO_REQUEST = "kdeconnect.photo.request";
 
     @Override
-    public String getDisplayName() {
+    public @NonNull String getDisplayName() {
         return context.getResources().getString(R.string.take_picture);
     }
 
     @Override
-    public String getDescription() {
+    public @NonNull String getDescription() {
         return context.getResources().getString(R.string.plugin_photo_desc);
     }
 
     @Override
-    public boolean onPacketReceived(NetworkPacket np) {
+    public boolean onPacketReceived(@NonNull NetworkPacket np) {
         Intent intent = new Intent(context, PhotoActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("deviceId", device.getDeviceId());
@@ -62,12 +63,12 @@ public class PhotoPlugin extends Plugin {
     }
 
     @Override
-    public String[] getSupportedPacketTypes() {
+    public @NonNull String[] getSupportedPacketTypes() {
         return new String[]{PACKET_TYPE_PHOTO_REQUEST};
     }
 
     @Override
-    public String[] getOutgoingPacketTypes() {
+    public @NonNull String[] getOutgoingPacketTypes() {
         return new String[]{PACKET_TYPE_PHOTO};
     }
 

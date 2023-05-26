@@ -30,6 +30,7 @@ import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import com.klinker.android.logger.Log;
@@ -374,17 +375,17 @@ public class SMSPlugin extends Plugin {
     }
 
     @Override
-    public String getDisplayName() {
+    public @NonNull String getDisplayName() {
         return context.getResources().getString(R.string.pref_plugin_telepathy);
     }
 
     @Override
-    public String getDescription() {
+    public @NonNull String getDescription() {
         return context.getResources().getString(R.string.pref_plugin_telepathy_desc);
     }
 
     @Override
-    public boolean onPacketReceived(NetworkPacket np) {
+    public boolean onPacketReceived(@NonNull NetworkPacket np) {
         long subID;
 
         switch (np.getType()) {
@@ -559,7 +560,7 @@ public class SMSPlugin extends Plugin {
     }
 
     @Override
-    public String[] getSupportedPacketTypes() {
+    public @NonNull String[] getSupportedPacketTypes() {
         return new String[]{
                 PACKET_TYPE_SMS_REQUEST,
                 TelephonyPlugin.PACKET_TYPE_TELEPHONY_REQUEST,
@@ -570,7 +571,7 @@ public class SMSPlugin extends Plugin {
     }
 
     @Override
-    public String[] getOutgoingPacketTypes() {
+    public @NonNull String[] getOutgoingPacketTypes() {
         return new String[]{
                 PACKET_TYPE_SMS_MESSAGE,
                 PACKET_TYPE_SMS_ATTACHMENT_FILE
@@ -578,7 +579,7 @@ public class SMSPlugin extends Plugin {
     }
 
     @Override
-    public String[] getRequiredPermissions() {
+    public @NonNull String[] getRequiredPermissions() {
         return new String[]{
                 Manifest.permission.SEND_SMS,
                 Manifest.permission.READ_SMS,

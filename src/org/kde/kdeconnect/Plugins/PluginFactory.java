@@ -6,12 +6,14 @@
 
 package org.kde.kdeconnect.Plugins;
 
-import static org.apache.commons.collections4.SetUtils.emptyIfNull;
 import static org.apache.commons.collections4.SetUtils.unmodifiableSet;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.atteo.classindex.ClassIndex;
 import org.atteo.classindex.IndexAnnotated;
@@ -27,7 +29,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class PluginFactory {
 
-    public static void sortPluginList(List<String> plugins) {
+    public static void sortPluginList(@NonNull List<String> plugins) {
         plugins.sort(Comparator.comparing(o -> pluginInfo.get(o).displayName));
     }
 
@@ -36,10 +38,10 @@ public class PluginFactory {
 
     public static class PluginInfo {
 
-        PluginInfo(String displayName, String description, Drawable icon,
+        PluginInfo(@NonNull String displayName, @NonNull String description, @Nullable Drawable icon,
                    boolean enabledByDefault, boolean hasSettings, boolean supportsDeviceSpecificSettings,
-                   boolean listenToUnpaired, String[] supportedPacketTypes, String[] outgoingPacketTypes,
-                   Class<? extends Plugin> instantiableClass) {
+                   boolean listenToUnpaired, @NonNull String[] supportedPacketTypes, @NonNull String[] outgoingPacketTypes,
+                   @NonNull Class<? extends Plugin> instantiableClass) {
             this.displayName = displayName;
             this.description = description;
             this.icon = icon;
@@ -47,20 +49,20 @@ public class PluginFactory {
             this.hasSettings = hasSettings;
             this.supportsDeviceSpecificSettings = supportsDeviceSpecificSettings;
             this.listenToUnpaired = listenToUnpaired;
-            this.supportedPacketTypes = emptyIfNull(unmodifiableSet(supportedPacketTypes));
-            this.outgoingPacketTypes = emptyIfNull(unmodifiableSet(outgoingPacketTypes));
+            this.supportedPacketTypes = unmodifiableSet(supportedPacketTypes);
+            this.outgoingPacketTypes = unmodifiableSet(outgoingPacketTypes);
             this.instantiableClass = instantiableClass;
         }
 
-        public String getDisplayName() {
+        public @NonNull String getDisplayName() {
             return displayName;
         }
 
-        public String getDescription() {
+        public @NonNull String getDescription() {
             return description;
         }
 
-        public Drawable getIcon() {
+        public @Nullable Drawable getIcon() {
             return icon;
         }
 
@@ -90,15 +92,15 @@ public class PluginFactory {
             return instantiableClass;
         }
 
-        private final String displayName;
-        private final String description;
-        private final Drawable icon;
+        private final @NonNull String displayName;
+        private final @NonNull String description;
+        private final @Nullable Drawable icon;
         private final boolean enabledByDefault;
         private final boolean hasSettings;
         private final boolean supportsDeviceSpecificSettings;
         private final boolean listenToUnpaired;
-        private final Set<String> supportedPacketTypes;
-        private final Set<String> outgoingPacketTypes;
+        private final @NonNull Set<String> supportedPacketTypes;
+        private final @NonNull Set<String> outgoingPacketTypes;
         private final Class<? extends Plugin> instantiableClass;
 
     }
@@ -126,11 +128,11 @@ public class PluginFactory {
         Log.i("PluginFactory","Loaded "+pluginInfo.size()+" plugins");
     }
 
-    public static Set<String> getAvailablePlugins() {
+    public static @NonNull Set<String> getAvailablePlugins() {
         return pluginInfo.keySet();
     }
 
-    public static Plugin instantiatePluginForDevice(Context context, String pluginKey, Device device) {
+    public static @Nullable Plugin instantiatePluginForDevice(Context context, String pluginKey, Device device) {
         PluginInfo info = pluginInfo.get(pluginKey);
         try {
             Plugin plugin = info.getInstantiableClass().newInstance();
@@ -142,7 +144,7 @@ public class PluginFactory {
         }
     }
 
-    public static Set<String> getIncomingCapabilities() {
+    public static @NonNull Set<String> getIncomingCapabilities() {
         HashSet<String> capabilities = new HashSet<>();
         for (PluginInfo plugin : pluginInfo.values()) {
             capabilities.addAll(plugin.getSupportedPacketTypes());
@@ -150,7 +152,7 @@ public class PluginFactory {
         return capabilities;
     }
 
-    public static Set<String> getOutgoingCapabilities() {
+    public static @NonNull Set<String> getOutgoingCapabilities() {
         HashSet<String> capabilities = new HashSet<>();
         for (PluginInfo plugin : pluginInfo.values()) {
             capabilities.addAll(plugin.getOutgoingPacketTypes());
@@ -158,7 +160,7 @@ public class PluginFactory {
         return capabilities;
     }
 
-    public static Set<String> pluginsForCapabilities(Set<String> incoming, Set<String> outgoing) {
+    public static @NonNull Set<String> pluginsForCapabilities(Set<String> incoming, Set<String> outgoing) {
         HashSet<String> plugins = new HashSet<>();
         for (Map.Entry<String, PluginInfo> entry : pluginInfo.entrySet()) {
             String pluginId = entry.getKey();

@@ -40,12 +40,12 @@ public class BatteryPlugin extends Plugin {
     private DeviceBatteryInfo remoteBatteryInfo;
 
     @Override
-    public String getDisplayName() {
+    public @NonNull String getDisplayName() {
         return context.getResources().getString(R.string.pref_plugin_battery);
     }
 
     @Override
-    public String getDescription() {
+    public @NonNull String getDescription() {
         return context.getResources().getString(R.string.pref_plugin_battery_desc);
     }
 
@@ -110,7 +110,7 @@ public class BatteryPlugin extends Plugin {
     }
 
     @Override
-    public boolean onPacketReceived(NetworkPacket np) {
+    public boolean onPacketReceived(@NonNull NetworkPacket np) {
 
         if (np.getBoolean("request")) {
             device.sendPacket(batteryInfo);
@@ -139,12 +139,12 @@ public class BatteryPlugin extends Plugin {
     }
 
     @Override
-    public String[] getSupportedPacketTypes() {
+    public @NonNull String[] getSupportedPacketTypes() {
         return new String[]{PACKET_TYPE_BATTERY_REQUEST, PACKET_TYPE_BATTERY};
     }
 
     @Override
-    public String[] getOutgoingPacketTypes() {
+    public @NonNull String[] getOutgoingPacketTypes() {
         return new String[]{PACKET_TYPE_BATTERY_REQUEST, PACKET_TYPE_BATTERY};
     }
 

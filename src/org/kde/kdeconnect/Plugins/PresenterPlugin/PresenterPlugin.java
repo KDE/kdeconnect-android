@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.KeyEvent;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -35,7 +36,7 @@ public class PresenterPlugin extends Plugin {
     }
 
     @Override
-    public String getDisplayName() {
+    public @NonNull String getDisplayName() {
         return context.getString(R.string.pref_plugin_presenter);
     }
 
@@ -45,7 +46,7 @@ public class PresenterPlugin extends Plugin {
     }
 
     @Override
-    public String getDescription() {
+    public @NonNull String getDescription() {
         return context.getString(R.string.pref_plugin_presenter_desc);
     }
 
@@ -72,15 +73,15 @@ public class PresenterPlugin extends Plugin {
     }
 
     @Override
-    public String[] getSupportedPacketTypes() {  return ArrayUtils.EMPTY_STRING_ARRAY; }
+    public @NonNull String[] getSupportedPacketTypes() {  return ArrayUtils.EMPTY_STRING_ARRAY; }
 
     @Override
-    public String[] getOutgoingPacketTypes() {
+    public @NonNull String[] getOutgoingPacketTypes() {
         return new String[]{PACKET_TYPE_MOUSEPAD_REQUEST, PACKET_TYPE_PRESENTER};
     }
 
     @Override
-    public String getActionName() {
+    public @NonNull String getActionName() {
         return context.getString(R.string.pref_plugin_presenter);
     }
 

@@ -22,6 +22,7 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -122,12 +123,12 @@ public class TelephonyPlugin extends Plugin {
     };
 
     @Override
-    public String getDisplayName() {
+    public @NonNull String getDisplayName() {
         return context.getResources().getString(R.string.pref_plugin_telephony);
     }
 
     @Override
-    public String getDescription() {
+    public @NonNull String getDescription() {
         return context.getResources().getString(R.string.pref_plugin_telephony_desc);
     }
 
@@ -263,7 +264,7 @@ public class TelephonyPlugin extends Plugin {
     }
 
     @Override
-    public boolean onPacketReceived(NetworkPacket np) {
+    public boolean onPacketReceived(@NonNull NetworkPacket np) {
 
         switch (np.getType()) {
             case PACKET_TYPE_TELEPHONY_REQUEST:
@@ -291,7 +292,7 @@ public class TelephonyPlugin extends Plugin {
     }
 
     @Override
-    public String[] getSupportedPacketTypes() {
+    public @NonNull String[] getSupportedPacketTypes() {
         return new String[]{
                 PACKET_TYPE_TELEPHONY_REQUEST,
                 PACKET_TYPE_TELEPHONY_REQUEST_MUTE,
@@ -299,14 +300,14 @@ public class TelephonyPlugin extends Plugin {
     }
 
     @Override
-    public String[] getOutgoingPacketTypes() {
+    public @NonNull String[] getOutgoingPacketTypes() {
         return new String[]{
                 PACKET_TYPE_TELEPHONY
         };
     }
 
     @Override
-    public String[] getRequiredPermissions() {
+    public @NonNull String[] getRequiredPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             return new String[]{
                     Manifest.permission.READ_PHONE_STATE,
@@ -318,7 +319,7 @@ public class TelephonyPlugin extends Plugin {
     }
 
     @Override
-    public String[] getOptionalPermissions() {
+    public @NonNull String[] getOptionalPermissions() {
         return new String[]{
                 Manifest.permission.READ_CONTACTS,
         };

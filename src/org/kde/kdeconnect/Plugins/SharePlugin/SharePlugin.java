@@ -79,7 +79,7 @@ public class SharePlugin extends Plugin {
     }
 
     @Override
-    public String getDisplayName() {
+    public @NonNull String getDisplayName() {
         return context.getResources().getString(R.string.pref_plugin_sharereceiver);
     }
 
@@ -89,7 +89,7 @@ public class SharePlugin extends Plugin {
     }
 
     @Override
-    public String getDescription() {
+    public @NonNull String getDescription() {
         return context.getResources().getString(R.string.pref_plugin_sharereceiver_desc);
     }
 
@@ -99,7 +99,7 @@ public class SharePlugin extends Plugin {
     }
 
     @Override
-    public String getActionName() {
+    public @NonNull String getActionName() {
         return context.getString(R.string.send_files);
     }
 
@@ -117,7 +117,7 @@ public class SharePlugin extends Plugin {
 
     @Override
     @WorkerThread
-    public boolean onPacketReceived(NetworkPacket np) {
+    public boolean onPacketReceived(@NonNull NetworkPacket np) {
         try {
             if (np.getType().equals(PACKET_TYPE_SHARE_REQUEST_UPDATE)) {
                 if (receiveFileJob != null && receiveFileJob.isRunning()) {
@@ -279,17 +279,17 @@ public class SharePlugin extends Plugin {
     }
 
     @Override
-    public String[] getSupportedPacketTypes() {
+    public @NonNull String[] getSupportedPacketTypes() {
         return new String[]{PACKET_TYPE_SHARE_REQUEST, PACKET_TYPE_SHARE_REQUEST_UPDATE};
     }
 
     @Override
-    public String[] getOutgoingPacketTypes() {
+    public @NonNull String[] getOutgoingPacketTypes() {
         return new String[]{PACKET_TYPE_SHARE_REQUEST};
     }
 
     @Override
-    public String[] getOptionalPermissions() {
+    public @NonNull String[] getOptionalPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             return ArrayUtils.EMPTY_STRING_ARRAY;
         } else {

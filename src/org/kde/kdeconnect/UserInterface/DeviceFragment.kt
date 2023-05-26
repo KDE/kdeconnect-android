@@ -297,13 +297,13 @@ class DeviceFragment : Fragment() {
                                 device.pluginsWithoutPermissions,
                                 R.string.plugins_need_permission
                             ) { p: Plugin ->
-                                p.permissionExplanationDialog?.show(childFragmentManager, null)
+                                p.permissionExplanationDialog.show(childFragmentManager, null)
                             }
                             createPermissionsList(
                                 device.pluginsWithoutOptionalPermissions,
                                 R.string.plugins_need_optional_permission
                             ) { p: Plugin ->
-                                p.optionalPermissionExplanationDialog?.show(childFragmentManager, null)
+                                p.optionalPermissionExplanationDialog.show(childFragmentManager, null)
                             }
 
                             requireDeviceBinding().permissionsList.adapter =

@@ -21,6 +21,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.jetbrains.annotations.NotNull;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.UserInterface.AlertDialogFragment;
@@ -44,7 +45,7 @@ public abstract class Plugin {
         }
     }
 
-    public String getSharedPreferencesName() {
+    public @NotNull String getSharedPreferencesName() {
         if (device == null) {
             throw new RuntimeException("You have to call setContext() before you can call getSharedPreferencesName()");
         }
@@ -55,8 +56,7 @@ public abstract class Plugin {
             return this.getPluginKey() + "_preferences";
     }
 
-    @Nullable
-    public SharedPreferences getPreferences() {
+    public @Nullable SharedPreferences getPreferences() {
         return this.preferences;
     }
 
@@ -64,7 +64,7 @@ public abstract class Plugin {
      * To receive the network packet from the unpaired device, override
      * listensToUnpairedDevices to return true and this method.
      */
-    public boolean onUnpairedDevicePacketReceived(NetworkPacket np) {
+    public boolean onUnpairedDevicePacketReceived(@NonNull NetworkPacket np) {
         return false;
     }
 
@@ -80,11 +80,11 @@ public abstract class Plugin {
      * Return the internal plugin name, that will be used as a
      * unique key to distinguish it. Use the class name as key.
      */
-    public String getPluginKey() {
+    public final @NonNull String getPluginKey() {
         return getPluginKey(this.getClass());
     }
 
-    public static String getPluginKey(Class<? extends Plugin> p) {
+    public static @NonNull String getPluginKey(Class<? extends Plugin> p) {
         return p.getSimpleName();
     }
 
@@ -92,19 +92,19 @@ public abstract class Plugin {
      * Return the human-readable plugin name. This function can
      * access this.context to provide translated text.
      */
-    public abstract String getDisplayName();
+    public abstract @NonNull String getDisplayName();
 
     /**
      * Return the human-readable description of this plugin. This
      * function can access this.context to provide translated text.
      */
-    public abstract String getDescription();
+    public abstract @NonNull String getDescription();
 
     /**
      * Return the action name displayed in the main activity, that
      * will call startMainActivity when clicked
      */
-    public String getActionName() {
+    public @NonNull String getActionName() {
         return getDisplayName();
     }
 
@@ -112,7 +112,7 @@ public abstract class Plugin {
      * Return an icon associated to this plugin. This function can
      * access this.context to load the image from resources.
      */
-    public Drawable getIcon() {
+    public @Nullable Drawable getIcon() {
         return null;
     }
 
@@ -148,7 +148,7 @@ public abstract class Plugin {
      *
      * @return The PluginSettingsFragment used to display this plugins settings
      */
-    public PluginSettingsFragment getSettingsFragment(Activity activity) {
+    public @Nullable PluginSettingsFragment getSettingsFragment(Activity activity) {
         throw new RuntimeException("Plugin doesn't reimplement getSettingsFragment: " + getPluginKey());
 
     }
@@ -216,25 +216,25 @@ public abstract class Plugin {
      * when we have done something in response to the packet or false
      * otherwise, even though that value is unused as of now.
      */
-    public boolean onPacketReceived(NetworkPacket np) {
+    public boolean onPacketReceived(@NonNull NetworkPacket np) {
         return false;
     }
 
     /**
      * Should return the list of NetworkPacket types that this plugin can handle
      */
-    public abstract String[] getSupportedPacketTypes();
+    public abstract @NonNull String[] getSupportedPacketTypes();
 
     /**
      * Should return the list of NetworkPacket types that this plugin can send
      */
-    public abstract String[] getOutgoingPacketTypes();
+    public abstract @NonNull String[] getOutgoingPacketTypes();
 
     /**
      * Should return the list of permissions from Manifest.permission.* that, if not present,
      * mean the plugin can't be loaded.
      */
-    protected String[] getRequiredPermissions() {
+    protected @NonNull String[] getRequiredPermissions() {
         return ArrayUtils.EMPTY_STRING_ARRAY;
     }
 
@@ -242,7 +242,7 @@ public abstract class Plugin {
      * Should return the list of permissions from Manifest.permission.* that enable additional
      * functionality in the plugin (without preventing the plugin to load).
      */
-    protected String[] getOptionalPermissions() {
+    protected @NonNull String[] getOptionalPermissions() {
         return ArrayUtils.EMPTY_STRING_ARRAY;
     }
 
@@ -261,12 +261,12 @@ public abstract class Plugin {
     }
 
     //Permission from Manifest.permission.*
-    protected boolean isPermissionGranted(String permission) {
+    protected boolean isPermissionGranted(@NonNull String permission) {
         int result = ContextCompat.checkSelfPermission(context, permission);
         return (result == PackageManager.PERMISSION_GRANTED);
     }
 
-    private boolean arePermissionsGranted(String[] permissions) {
+    private boolean arePermissionsGranted(@NonNull String[] permissions) {
         for (String permission : permissions) {
             if (!isPermissionGranted(permission)) {
                 return false;
@@ -275,7 +275,7 @@ public abstract class Plugin {
         return true;
     }
 
-    private PermissionsAlertDialogFragment requestPermissionDialog(final String[] permissions, @StringRes int reason) {
+    private @NonNull PermissionsAlertDialogFragment requestPermissionDialog(@NonNull final String[] permissions, @StringRes int reason) {
         return new PermissionsAlertDialogFragment.Builder()
                 .setTitle(getDisplayName())
                 .setMessage(reason)
@@ -291,11 +291,11 @@ public abstract class Plugin {
      * the problem (and how to fix it, if possible) to the user.
      */
 
-    public DialogFragment getPermissionExplanationDialog() {
+    public @NonNull DialogFragment getPermissionExplanationDialog() {
         return requestPermissionDialog(getRequiredPermissions(), getPermissionExplanation());
     }
 
-    public AlertDialogFragment getOptionalPermissionExplanationDialog() {
+    public @NonNull AlertDialogFragment getOptionalPermissionExplanationDialog() {
         return requestPermissionDialog(getOptionalPermissions(), getOptionalPermissionExplanation());
     }
 
