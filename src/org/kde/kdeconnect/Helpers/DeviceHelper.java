@@ -11,14 +11,22 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 
-import com.jaredrummler.android.device.DeviceName;
+import com.univocity.parsers.csv.CsvParser;
+import com.univocity.parsers.csv.CsvParserSettings;
 
 import org.kde.kdeconnect.Device;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 import java.util.Set;
 import java.util.UUID;
 
@@ -27,9 +35,12 @@ public class DeviceHelper {
     public static final int ProtocolVersion = 7;
 
     public static final String KEY_DEVICE_NAME_PREFERENCE = "device_name_preference";
+    public static final String KEY_DEVICE_NAME_FETCHED_FROM_THE_INTERNET = "device_name_downloaded_preference";
     public static final String KEY_DEVICE_ID_PREFERENCE = "device_id_preference";
 
     private static boolean fetchingName = false;
+
+    public static final String DEVICE_DATABASE = "https://storage.googleapis.com/play_public/supported_devices.csv";
 
     private static boolean isTablet() {
         Configuration config = Resources.getSystem().getConfiguration();
@@ -52,35 +63,55 @@ public class DeviceHelper {
         }
     }
 
-    //It returns getAndroidDeviceName() if no user-defined name has been set with setDeviceName().
     public static String getDeviceName(Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        // Could use preferences.contains but would need to check for empty String anyway.
-        String deviceName = preferences.getString(KEY_DEVICE_NAME_PREFERENCE, "");
-        if (deviceName.isEmpty()) {
-            //DeviceName.init(context); // Needed in DeviceName 2.x +
-            if (!fetchingName) {
-                fetchingName = true;
-                DeviceHelper.backgroundFetchDeviceName(context); //Starts a background thread that will eventually update the shared pref
-            }
-            return DeviceName.getDeviceName(); //Temp name while we fetch it from the internet
+        if (!preferences.contains(KEY_DEVICE_NAME_PREFERENCE)
+                && !preferences.getBoolean(KEY_DEVICE_NAME_FETCHED_FROM_THE_INTERNET, false)
+                && !fetchingName) {
+            fetchingName = true;
+            DeviceHelper.backgroundFetchDeviceName(context);
+            return Build.MODEL;
         }
-        return deviceName;
+        return preferences.getString(KEY_DEVICE_NAME_PREFERENCE, Build.MODEL);
     }
 
     private static void backgroundFetchDeviceName(final Context context) {
-        DeviceName.with(context).request((info, error) -> {
+        ThreadHelper.execute(() -> {
+            try {
+                URL url = new URL(DEVICE_DATABASE);
+                URLConnection connection = url.openConnection();
+
+                // If we get here we managed to download the file. Mark that as done so we don't try again even if we don't end up finding a name.
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+                preferences.edit().putBoolean(KEY_DEVICE_NAME_FETCHED_FROM_THE_INTERNET, true).apply();
+
+                try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_16))) {
+                    CsvParserSettings settings = new CsvParserSettings();
+                    settings.setHeaderExtractionEnabled(true);
+                    CsvParser parser = new CsvParser(settings);
+                    boolean found = false;
+                    for (String[] records : parser.iterate(reader)) {
+                        if (records.length < 4) {
+                            continue;
+                        }
+                        String buildModel = records[3];
+                        if (Build.MODEL.equals(buildModel)) {
+                            String deviceName = records[1];
+                            Log.i("DeviceHelper", "Got device name: " + deviceName);
+                            // Update the shared preference. Places that display the name should be listening to this change and update it
+                            setDeviceName(context, deviceName);
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        Log.e("DeviceHelper", "Didn't find a device name for " + Build.MODEL);
+                    }
+                }
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
             fetchingName = false;
-            if (error != null) {
-                Log.e("DeviceHelper", "Error fetching device name");
-                error.printStackTrace();
-            }
-            if (info != null) {
-                String deviceName = info.getName();
-                Log.i("DeviceHelper", "Got device name: " + deviceName);
-                // Update the shared preference. Places that display the name should be listening to this change and update it
-                setDeviceName(context, deviceName);
-            }
         });
     }
 
