@@ -8,6 +8,7 @@ package org.kde.kdeconnect.Backends;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.kde.kdeconnect.Device;
@@ -20,18 +21,17 @@ import java.util.ArrayList;
 
 public abstract class BaseLink {
 
-    protected final Context context;
-
     public interface PacketReceiver {
-        void onPacketReceived(NetworkPacket np);
+        void onPacketReceived(@NonNull NetworkPacket np);
     }
 
+    protected final Context context;
     private final BaseLinkProvider linkProvider;
     private final String deviceId;
     private final ArrayList<PacketReceiver> receivers = new ArrayList<>();
     protected PrivateKey privateKey;
 
-    protected BaseLink(Context context, String deviceId, BaseLinkProvider linkProvider) {
+    protected BaseLink(@NonNull Context context, @NonNull String deviceId, @NonNull BaseLinkProvider linkProvider) {
         this.context = context;        
         this.linkProvider = linkProvider;
         this.deviceId = deviceId;
@@ -39,13 +39,13 @@ public abstract class BaseLink {
 
     /* To be implemented by each link for pairing handlers */
     public abstract String getName();
-    public abstract BasePairingHandler getPairingHandler(Device device, BasePairingHandler.PairingHandlerCallback callback);
+    public abstract BasePairingHandler getPairingHandler(@NonNull Device device, @NonNull BasePairingHandler.PairingHandlerCallback callback);
 
     public String getDeviceId() {
         return deviceId;
     }
 
-    public void setPrivateKey(PrivateKey key) {
+    public void setPrivateKey(@NonNull PrivateKey key) {
         privateKey = key;
     }
 
@@ -53,15 +53,15 @@ public abstract class BaseLink {
         return linkProvider;
     }
 
-    public void addPacketReceiver(PacketReceiver pr) {
+    public void addPacketReceiver(@NonNull PacketReceiver pr) {
         receivers.add(pr);
     }
-    public void removePacketReceiver(PacketReceiver pr) {
+    public void removePacketReceiver(@NonNull PacketReceiver pr) {
         receivers.remove(pr);
     }
 
     //Should be called from a background thread listening for packets
-    protected void packetReceived(NetworkPacket np) {
+    protected void packetReceived(@NonNull NetworkPacket np) {
         for(PacketReceiver pr : receivers) {
             pr.onPacketReceived(np);
         }
@@ -73,5 +73,5 @@ public abstract class BaseLink {
 
     //TO OVERRIDE, should be sync. If sendPayloadFromSameThread is false, it should only block to send the packet but start a separate thread to send the payload.
     @WorkerThread
-    public abstract boolean sendPacket(NetworkPacket np, Device.SendPacketStatusCallback callback, boolean sendPayloadFromSameThread) throws IOException;
+    public abstract boolean sendPacket(@NonNull NetworkPacket np, @NonNull Device.SendPacketStatusCallback callback, boolean sendPayloadFromSameThread) throws IOException;
 }

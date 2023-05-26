@@ -8,6 +8,7 @@ package org.kde.kdeconnect.Backends.LoopbackBackend;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.kde.kdeconnect.Backends.BaseLink;
@@ -34,7 +35,7 @@ public class LoopbackLink extends BaseLink {
 
     @WorkerThread
     @Override
-    public boolean sendPacket(NetworkPacket in, Device.SendPacketStatusCallback callback, boolean sendPayloadFromSameThread) {
+    public boolean sendPacket(@NonNull NetworkPacket in, @NonNull Device.SendPacketStatusCallback callback, boolean sendPayloadFromSameThread) {
         packetReceived(in);
         if (in.hasPayload()) {
             callback.onPayloadProgressChanged(0);

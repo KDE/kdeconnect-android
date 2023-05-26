@@ -9,6 +9,7 @@ package org.kde.kdeconnect.Backends.LanBackend;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.json.JSONObject;
@@ -131,7 +132,7 @@ public class LanLink extends BaseLink {
     //Blocking, do not call from main thread
     @WorkerThread
     @Override
-    public boolean sendPacket(NetworkPacket np, final Device.SendPacketStatusCallback callback, boolean sendPayloadFromSameThread) {
+    public boolean sendPacket(@NonNull NetworkPacket np, @NonNull final Device.SendPacketStatusCallback callback, boolean sendPayloadFromSameThread) {
         if (socket == null) {
             Log.e("KDE/sendPacket", "Not yet connected");
             callback.onFailure(new NotYetConnectedException());

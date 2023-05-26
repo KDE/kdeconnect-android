@@ -93,7 +93,7 @@ public class Device implements BaseLink.PacketReceiver {
     }
 
     public interface PluginsChangedListener {
-        void onPluginsChanged(Device device);
+        void onPluginsChanged(@NonNull Device device);
     }
 
     public enum PairStatus {
@@ -626,22 +626,22 @@ public class Device implements BaseLink.PacketReceiver {
     };
 
     @AnyThread
-    public void sendPacket(NetworkPacket np) {
+    public void sendPacket(@NonNull NetworkPacket np) {
         sendPacket(np, -1, defaultCallback);
     }
 
     @AnyThread
-    public void sendPacket(NetworkPacket np, int replaceID) {
+    public void sendPacket(@NonNull NetworkPacket np, int replaceID) {
         sendPacket(np, replaceID, defaultCallback);
     }
 
     @WorkerThread
-    public boolean sendPacketBlocking(NetworkPacket np) {
+    public boolean sendPacketBlocking(@NonNull NetworkPacket np) {
         return sendPacketBlocking(np, defaultCallback);
     }
 
     @AnyThread
-    public void sendPacket(final NetworkPacket np, final SendPacketStatusCallback callback) {
+    public void sendPacket(@NonNull final NetworkPacket np, @NonNull final SendPacketStatusCallback callback) {
         sendPacket(np, -1, callback);
     }
 
@@ -652,7 +652,7 @@ public class Device implements BaseLink.PacketReceiver {
      * @param callback A callback for success/failure
      */
     @AnyThread
-    public void sendPacket(final NetworkPacket np, int replaceID, final SendPacketStatusCallback callback) {
+    public void sendPacket(@NonNull final NetworkPacket np, int replaceID, @NonNull final SendPacketStatusCallback callback) {
         if (packetQueue == null) {
             callback.onFailure(new Exception("Device disconnected!"));
         } else {
@@ -675,7 +675,7 @@ public class Device implements BaseLink.PacketReceiver {
     }
 
     @WorkerThread
-    public boolean sendPacketBlocking(final NetworkPacket np, final SendPacketStatusCallback callback) {
+    public boolean sendPacketBlocking(@NonNull final NetworkPacket np, @NonNull final SendPacketStatusCallback callback) {
         return sendPacketBlocking(np, callback, false);
     }
 
@@ -691,7 +691,7 @@ public class Device implements BaseLink.PacketReceiver {
      * @see BaseLink#sendPacket(NetworkPacket, SendPacketStatusCallback)
      */
     @WorkerThread
-    public boolean sendPacketBlocking(final NetworkPacket np, final SendPacketStatusCallback callback, boolean sendPayloadFromSameThread) {
+    public boolean sendPacketBlocking(@NonNull final NetworkPacket np, @NonNull final SendPacketStatusCallback callback, boolean sendPayloadFromSameThread) {
 
         /*
         if (!m_outgoingCapabilities.contains(np.getType()) && !NetworkPacket.protocolPacketTypes.contains(np.getType())) {

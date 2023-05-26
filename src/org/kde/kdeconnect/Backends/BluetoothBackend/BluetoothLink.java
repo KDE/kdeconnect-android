@@ -10,6 +10,7 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.json.JSONException;
@@ -137,7 +138,7 @@ public class BluetoothLink extends BaseLink {
 
     @WorkerThread
     @Override
-    public boolean sendPacket(NetworkPacket np, Device.SendPacketStatusCallback callback, boolean sendPayloadFromSameThread) throws IOException {
+    public boolean sendPacket(@NonNull NetworkPacket np, @NonNull Device.SendPacketStatusCallback callback, boolean sendPayloadFromSameThread) throws IOException {
         // sendPayloadFromSameThread is ignored, we always send from the same thread!
 
         /*if (!isConnected()) {
