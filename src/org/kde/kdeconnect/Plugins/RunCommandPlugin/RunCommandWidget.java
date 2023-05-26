@@ -41,7 +41,6 @@ public class RunCommandWidget extends AppWidgetProvider {
 
             if (plugin != null) {
                 try {
-
                     plugin.runCommand(targetCommand);
                 } catch (Exception ex) {
                     Log.e("RunCommandWidget", "Error running command", ex);
@@ -51,10 +50,14 @@ public class RunCommandWidget extends AppWidgetProvider {
             setCurrentDevice(context);
         }
 
-        final Intent newIntent = new Intent(context, RunCommandWidgetDataProviderService.class);
-        context.startService(newIntent);
-        updateWidget(context);
-
+        try {
+            // FIXME: Remove the need for a background service, we are not allowed to start them in API 31+
+            final Intent newIntent = new Intent(context, RunCommandWidgetDataProviderService.class);
+            context.startService(newIntent);
+            updateWidget(context);
+        } catch(IllegalStateException exception) { // Meant to catch BackgroundServiceStartNotAllowedException on API 31+
+            exception.printStackTrace();
+        }
     }
 
     private void setCurrentDevice(final Context context) {
