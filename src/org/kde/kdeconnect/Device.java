@@ -401,6 +401,7 @@ public class Device implements BaseLink.PacketReceiver {
                 .setContentText(res.getString(R.string.pairing_verification_code, verificationKeyShort))
                 .setTicker(res.getString(R.string.pair_requested))
                 .setSmallIcon(R.drawable.ic_notification)
+                .setContentIntent(pendingIntent)
                 .addAction(R.drawable.ic_accept_pairing_24dp, res.getString(R.string.pairing_accept), acceptedPendingIntent)
                 .addAction(R.drawable.ic_reject_pairing_24dp, res.getString(R.string.pairing_reject), rejectedPendingIntent)
                 .setAutoCancel(true)
