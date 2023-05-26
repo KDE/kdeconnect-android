@@ -14,7 +14,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 
@@ -39,10 +38,7 @@ import org.kde.kdeconnect.UserInterface.MainActivity;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.IOException;
-import java.security.KeyFactory;
-import java.security.PrivateKey;
 import java.security.cert.Certificate;
-import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -460,15 +456,6 @@ public class Device implements BaseLink.PacketReceiver {
                 Log.e("KDE/Device", "Error getting certificate", e);
 
             }
-        }
-
-        try {
-            SharedPreferences globalSettings = PreferenceManager.getDefaultSharedPreferences(context);
-            byte[] privateKeyBytes = Base64.decode(globalSettings.getString("privateKey", ""), 0);
-            PrivateKey privateKey = KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(privateKeyBytes));
-            link.setPrivateKey(privateKey);
-        } catch (Exception e) {
-            Log.e("KDE/Device", "Exception reading our own private key", e); //Should not happen
         }
 
         Log.i("KDE/Device", "addLink " + link.getLinkProvider().getName() + " -> " + getName() + " active links: " + links.size());

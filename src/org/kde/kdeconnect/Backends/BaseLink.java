@@ -15,7 +15,6 @@ import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
 
 import java.io.IOException;
-import java.security.PrivateKey;
 import java.util.ArrayList;
 
 
@@ -29,7 +28,6 @@ public abstract class BaseLink {
     private final BaseLinkProvider linkProvider;
     private final String deviceId;
     private final ArrayList<PacketReceiver> receivers = new ArrayList<>();
-    protected PrivateKey privateKey;
 
     protected BaseLink(@NonNull Context context, @NonNull String deviceId, @NonNull BaseLinkProvider linkProvider) {
         this.context = context;        
@@ -43,10 +41,6 @@ public abstract class BaseLink {
 
     public String getDeviceId() {
         return deviceId;
-    }
-
-    public void setPrivateKey(@NonNull PrivateKey key) {
-        privateKey = key;
     }
 
     public BaseLinkProvider getLinkProvider() {
