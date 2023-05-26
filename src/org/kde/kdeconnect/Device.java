@@ -361,9 +361,6 @@ public class Device implements BaseLink.PacketReceiver {
     //
     // Notification related methods used during pairing
     //
-    public int getNotificationId() {
-        return notificationId;
-    }
 
     public void displayPairingNotification() {
 
@@ -380,11 +377,9 @@ public class Device implements BaseLink.PacketReceiver {
         Intent rejectIntent = new Intent(getContext(), MainActivity.class);
 
         acceptIntent.putExtra(MainActivity.EXTRA_DEVICE_ID, getDeviceId());
-        //acceptIntent.putExtra("notificationId", notificationId);
         acceptIntent.putExtra(MainActivity.PAIR_REQUEST_STATUS, MainActivity.PAIRING_ACCEPTED);
 
         rejectIntent.putExtra(MainActivity.EXTRA_DEVICE_ID, getDeviceId());
-        //rejectIntent.putExtra("notificationId", notificationId);
         rejectIntent.putExtra(MainActivity.PAIR_REQUEST_STATUS, MainActivity.PAIRING_REJECTED);
 
         PendingIntent acceptedPendingIntent = PendingIntent.getActivity(getContext(), 2, acceptIntent, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_MUTABLE);
