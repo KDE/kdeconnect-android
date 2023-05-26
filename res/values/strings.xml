@@ -538,4 +538,6 @@
     <string name="send_clipboard">Send clipboard</string>
     <string name="tap_to_execute">Tap to execute</string>
 
+    <string name="plugin_stats">Plugin stats</string>
+
 </resources>

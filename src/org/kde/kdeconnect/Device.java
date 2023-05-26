@@ -529,7 +529,9 @@ public class Device implements BaseLink.PacketReceiver {
     }
 
     @Override
-    public void onPacketReceived(NetworkPacket np) {
+    public void onPacketReceived(@NonNull NetworkPacket np) {
+
+        PacketStats.countReceived(getDeviceId(), np.getType());
 
         if (NetworkPacket.PACKET_TYPE_PAIR.equals(np.getType())) {
 
@@ -692,6 +694,7 @@ public class Device implements BaseLink.PacketReceiver {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            PacketStats.countSent(getDeviceId(), np.getType(), success);
             if (success) break;
         }
 

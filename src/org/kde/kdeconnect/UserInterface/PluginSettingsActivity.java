@@ -6,15 +6,20 @@
 
 package org.kde.kdeconnect.UserInterface;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.KdeConnect;
+import org.kde.kdeconnect.PacketStats;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
@@ -88,6 +93,24 @@ public class PluginSettingsActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menu.clear();
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N) {
+            return false; // PacketStats not working in API < 24
+        }
+        menu.add(R.string.plugin_stats).setOnMenuItemClickListener(item -> {
+            String stats = PacketStats.getStatsForDevice(deviceId);
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(PluginSettingsActivity.this);
+            builder.setTitle(R.string.plugin_stats);
+            builder.setPositiveButton(R.string.ok, (dialog, which) -> dialog.dismiss());
+            builder.setMessage(stats);
+            builder.show();
+            return true;
+        });
+        return true;
+    }
 
     @Override
     public void onStartPluginSettingsFragment(Plugin plugin) {
