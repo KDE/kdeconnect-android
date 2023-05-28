@@ -51,13 +51,17 @@
   <string name="remotekeyboard_connected">Eksternt tastatursamband er verksamt</string>
   <string name="remotekeyboard_multiple_connections">Det finst meir enn eitt eksternt tastatursamband (vel eining å setja opp)</string>
   <string name="open_mousepad">Fjernstyring</string>
+  <string name="mousepad_info">Dra ein finger over skjermen for å flytta peikaren på datamaskina. Trykk for å klikka, og bruk to eller tre fingrar for høvesvis høgre- og midtknappen. Bruk to fingrar for å rulla. Trykk lenge for å dra og sleppa. Funksjonalitet for gyromus kan du slå på i programtillegg-innstillingane.</string>
   <string name="mousepad_keyboard_input_not_supported">Tekst frå tastaturet er ikkje støtta av den para eininga</string>
   <string name="mousepad_single_tap_settings_title">Vel handling for éinfingertrykk</string>
   <string name="mousepad_double_tap_settings_title">Vel handling for tofingertrykk</string>
   <string name="mousepad_triple_tap_settings_title">Vel handling for trefingertrykk</string>
   <string name="mousepad_sensitivity_settings_title">Vel følsemd for styreplate</string>
+  <string name="mousepad_mouse_buttons_title">Vis museknappar</string>
   <string name="mousepad_acceleration_profile_settings_title">Vel peikarakselerasjon</string>
   <string name="mousepad_scroll_direction_title">Omvend rulleretning</string>
+  <string name="gyro_mouse_enabled_title">Slå på gyromus</string>
+  <string name="gyro_mouse_sensitivity_title">Gyroskop-følsemd</string>
   <string-array name="mousepad_tap_entries">
     <item>Venstreklikk</item>
     <item>Høgreklikk</item>
