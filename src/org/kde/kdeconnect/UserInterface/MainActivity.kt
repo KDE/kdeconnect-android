@@ -27,9 +27,8 @@ import org.kde.kdeconnect.Device
 import org.kde.kdeconnect.Helpers.DeviceHelper
 import org.kde.kdeconnect.KdeConnect
 import org.kde.kdeconnect.Plugins.SharePlugin.ShareSettingsFragment
-import org.kde.kdeconnect.UserInterface.About.AboutFragment.Companion.newInstance
+import org.kde.kdeconnect.UserInterface.About.AboutFragment
 import org.kde.kdeconnect.UserInterface.About.getApplicationAboutData
-import org.kde.kdeconnect.UserInterface.DeviceFragment.Companion.newInstance
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityMainBinding
 
@@ -69,7 +68,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         override fun handleOnBackPressed() {
             mCurrentMenuEntry = mCurrentDevice?.let { deviceIdToMenuEntryId(it) } ?: MENU_ENTRY_ADD_DEVICE
             mNavigationView.setCheckedItem(mCurrentMenuEntry)
-            setContentFragment(mCurrentDevice?.let { newInstance(it, false) } ?: PairingFragment())
+            setContentFragment(mCurrentDevice?.let { DeviceFragment.newInstance(it, false) } ?: PairingFragment())
         }
     }
 
@@ -116,7 +115,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
 
                 MENU_ENTRY_ABOUT -> {
                     preferences.edit().putString(STATE_SELECTED_DEVICE, null).apply()
-                    setContentFragment(newInstance(getApplicationAboutData(this)))
+                    setContentFragment(AboutFragment.newInstance(getApplicationAboutData(this)))
                 }
 
                 else -> {
@@ -181,7 +180,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         } else {
             when (mCurrentMenuEntry) {
                 MENU_ENTRY_SETTINGS -> setContentFragment(SettingsFragment())
-                MENU_ENTRY_ABOUT -> setContentFragment(newInstance(getApplicationAboutData(this)))
+                MENU_ENTRY_ABOUT -> setContentFragment(AboutFragment.newInstance(getApplicationAboutData(this)))
                 else -> setContentFragment(PairingFragment())
             }
         }
@@ -286,7 +285,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
             } else {
                 mNavigationView.setCheckedItem(mCurrentMenuEntry)
             }
-            setContentFragment(newInstance(deviceId, fromDeviceList))
+            setContentFragment(DeviceFragment.newInstance(deviceId, fromDeviceList))
         } else {
             mCurrentMenuEntry = MENU_ENTRY_ADD_DEVICE
             mNavigationView.setCheckedItem(mCurrentMenuEntry)
