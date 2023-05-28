@@ -6,7 +6,6 @@
 
 package org.kde.kdeconnect.Plugins.SystemVolumePlugin;
 
-import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -117,16 +116,6 @@ public class SystemVolumePlugin extends Plugin {
         NetworkPacket np = new NetworkPacket(PACKET_TYPE_SYSTEMVOLUME_REQUEST);
         np.set("requestSinks", true);
         device.sendPacket(np);
-    }
-
-    @Override
-    public boolean hasMainActivity(Context context) {
-        return false;
-    }
-
-    @Override
-    public boolean displayInContextMenu() {
-        return false;
     }
 
     @Override

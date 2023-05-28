@@ -7,7 +7,6 @@
 package org.kde.kdeconnect.Plugins.FindRemoteDevicePlugin;
 
 import android.app.Activity;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 
@@ -46,11 +45,6 @@ public class FindRemoteDevicePlugin extends Plugin {
         if (device != null) {
             device.sendPacket(new NetworkPacket(FindMyPhonePlugin.PACKET_TYPE_FINDMYPHONE_REQUEST));
         }
-    }
-
-    @Override
-    public boolean hasMainActivity(Context context) {
-        return true;
     }
 
     @Override

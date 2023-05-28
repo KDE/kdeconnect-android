@@ -22,7 +22,7 @@ public class PluginPreference extends SwitchPreference {
                             @NonNull final Device device, @NonNull PluginPreferenceCallback callback) {
         super(context);
 
-        setLayoutResource(R.layout.preference_with_button/*R.layout.preference_with_button_androidx*/);
+        setLayoutResource(R.layout.preference_with_button);
 
         this.device = device;
         this.pluginKey = pluginKey;
@@ -30,7 +30,6 @@ public class PluginPreference extends SwitchPreference {
         PluginFactory.PluginInfo info = PluginFactory.getPluginInfo(pluginKey);
         setTitle(info.getDisplayName());
         setSummary(info.getDescription());
-        setIcon(android.R.color.transparent);
         setChecked(device.isPluginEnabled(pluginKey));
 
         if (info.hasSettings()) {

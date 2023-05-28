@@ -53,16 +53,6 @@ public class PhotoPlugin extends Plugin {
     }
 
     @Override
-    public boolean hasMainActivity(Context context) {
-        return false;
-    }
-
-    @Override
-    public boolean displayInContextMenu() {
-        return false;
-    }
-
-    @Override
     public @NonNull String[] getSupportedPacketTypes() {
         return new String[]{PACKET_TYPE_PHOTO_REQUEST};
     }
