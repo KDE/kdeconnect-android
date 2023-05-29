@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -51,6 +52,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         renameDevice = new EditTextPreference(context);
         renameDevice.setKey(DeviceHelper.KEY_DEVICE_NAME_PREFERENCE);
         renameDevice.setSelectable(true);
+        renameDevice.setOnBindEditTextListener(TextView::setSingleLine);
         String deviceName = DeviceHelper.getDeviceName(context);
         renameDevice.setTitle(R.string.settings_rename);
         renameDevice.setSummary(deviceName);
