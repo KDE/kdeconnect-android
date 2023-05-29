@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="org.kde.kdeconnect_tp"
-    android:versionCode="12405"
-    android:versionName="1.24.5">
+    android:versionCode="12500"
+    android:versionName="1.25.0">
 
     <uses-feature
         android:name="android.hardware.telephony"
