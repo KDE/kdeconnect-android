@@ -7,6 +7,8 @@
 
 package org.kde.kdeconnect.Plugins.RunCommandPlugin;
 
+import static org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandWidgetProviderKt.forceRefreshWidgets;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -129,8 +131,7 @@ public class RunCommandPlugin extends Plugin {
                     sharedPreferences.edit().putString(KEY_COMMANDS_PREFERENCE + device.getDeviceId(), array.toString()).apply();
                 }
 
-                Intent updateWidget = new Intent(context, RunCommandWidget.class);
-                context.sendBroadcast(updateWidget);
+                forceRefreshWidgets(context);
 
             } catch (JSONException e) {
                 Log.e("RunCommand", "Error parsing JSON", e);

@@ -202,7 +202,7 @@
                 android:value="org.kde.kdeconnect.UserInterface.MainActivity" />
         </activity>
         <activity
-            android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandWidgetDeviceSelector"
+            android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandWidgetConfig"
             android:excludeFromRecents="true"
             android:label="@string/pref_plugin_runcommand"
             android:launchMode="singleTask"
@@ -211,12 +211,12 @@
             android:theme="@style/Theme.AppCompat.Light.Dialog" />
 
         <service
-            android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandWidgetDataProviderService"
+            android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.CommandsRemoteViewsService"
             android:exported="false"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <receiver
-            android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandWidget"
+            android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandWidgetProvider"
             android:label="@string/pref_plugin_runcommand"
             android:exported="true">
             <intent-filter>
