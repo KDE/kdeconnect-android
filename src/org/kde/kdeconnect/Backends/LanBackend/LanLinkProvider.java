@@ -287,7 +287,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
             udpServer.setBroadcast(true);
         } catch (SocketException e) {
             Log.e("LanLinkProvider", "Error creating udp server", e);
-            return;
+            throw new RuntimeException(e);
         }
         ThreadHelper.execute(() -> {
             while (listening) {
@@ -308,9 +308,9 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
     private void setupTcpListener() {
         try {
             tcpServer = openServerSocketOnFreePort(MIN_PORT);
-        } catch (Exception e) {
+        } catch (IOException e) {
             Log.e("LanLinkProvider", "Error creating tcp server", e);
-            return;
+            throw new RuntimeException(e);
         }
         ThreadHelper.execute(() -> {
             while (listening) {
