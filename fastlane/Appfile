@@ -1,0 +1,2 @@
+json_key_file("/please/pass/the/key/using/--json-key/instead")
+package_name("org.kde.kdeconnect_tp")
