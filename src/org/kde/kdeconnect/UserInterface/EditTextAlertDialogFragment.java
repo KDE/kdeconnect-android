@@ -32,23 +32,22 @@ public class EditTextAlertDialogFragment extends AlertDialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
+
+        Bundle args = getArguments();
+        if (args != null) {
+            hintResId = args.getInt(KEY_HINT_RES_ID);
+            text = args.getString(KEY_TEXT, "");
+        }
+
         dialog.setOnShowListener(dialogInterface -> {
             dialog.setOnShowListener(null);
 
             binding = EditTextAlertDialogViewBinding.bind(dialog.getWindow().getDecorView());
             editText = binding.textInputEditText;
 
-            binding.textInputLayout.setHintEnabled(true);
             binding.textInputLayout.setHint(getString(hintResId));
             editText.setText(text);
         });
-
-        Bundle args = getArguments();
-
-        if (args != null) {
-            hintResId = args.getInt(KEY_HINT_RES_ID);
-            text = args.getString(KEY_TEXT, "");
-        }
 
         return dialog;
     }

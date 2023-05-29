@@ -15,7 +15,7 @@
         android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:hintEnabled="false">
+        app:hintEnabled="true">
 
         <!-- inputType="text" is needed, without it lines and maxLines is ignored https://issuetracker.google.com/issues/37118772 -->
         <com.google.android.material.textfield.TextInputEditText
