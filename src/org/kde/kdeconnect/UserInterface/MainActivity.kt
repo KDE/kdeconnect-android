@@ -259,7 +259,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
 
     override fun onStart() {
         super.onStart()
-        BackgroundService.Start(applicationContext);
+        BackgroundService.Start(applicationContext)
         KdeConnect.getInstance().addDeviceListChangedCallback(this::class.simpleName) { runOnUiThread { updateDeviceList() } }
         updateDeviceList()
         onBackPressedDispatcher.addCallback(mainFragmentCallback)
