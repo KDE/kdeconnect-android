@@ -265,7 +265,7 @@ public class BackgroundService extends Service {
                 startForeground(FOREGROUND_NOTIFICATION_ID, createForegroundNotification());
             }
         }
-        if (intent.hasExtra("refresh")) {
+        if (intent != null && intent.getBooleanExtra("refresh", false)) {
             onNetworkChange();
         }
         return Service.START_STICKY;
@@ -273,14 +273,15 @@ public class BackgroundService extends Service {
 
     public static void Start(Context context) {
         Log.d("KDE/BackgroundService", "Start");
-        ContextCompat.startForegroundService(context, new Intent(context, BackgroundService.class));
+        Intent intent = new Intent(context, BackgroundService.class);
+        ContextCompat.startForegroundService(context, intent);
     }
 
     public static void ForceRefreshConnections(Context context) {
         Log.d("KDE/BackgroundService", "ForceRefreshConnections");
-        Intent i = new Intent(context, BackgroundService.class);
-        i.putExtra("refresh", true);
-        ContextCompat.startForegroundService(context, i);
+        Intent intent = new Intent(context, BackgroundService.class);
+        intent.putExtra("refresh", true);
+        ContextCompat.startForegroundService(context, intent);
     }
 
     public void Stop() {

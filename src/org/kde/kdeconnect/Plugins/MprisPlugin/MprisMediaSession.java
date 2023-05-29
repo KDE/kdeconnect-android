@@ -261,11 +261,13 @@ public class MprisMediaSession implements
             return;
         }
 
-        if (mediaSession == null) {
-            mediaSession = new MediaSessionCompat(context, MPRIS_MEDIA_SESSION_TAG);
-            mediaSession.setCallback(mediaSessionCallback, new Handler(context.getMainLooper()));
-            // Deprecated flags not required in Build.VERSION_CODES.O and later
-            mediaSession.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS | MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
+        synchronized (instance) {
+            if (mediaSession == null) {
+                mediaSession = new MediaSessionCompat(context, MPRIS_MEDIA_SESSION_TAG);
+                mediaSession.setCallback(mediaSessionCallback, new Handler(context.getMainLooper()));
+                // Deprecated flags not required in Build.VERSION_CODES.O and later
+                mediaSession.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS | MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS);
+            }
         }
 
         //Make sure our information is up-to-date
@@ -454,16 +456,18 @@ public class MprisMediaSession implements
 
         //Clear the current player and media session
         notificationPlayer = null;
-        if (mediaSession != null) {
-            mediaSession.setPlaybackState(new PlaybackStateCompat.Builder().build());
-            mediaSession.setMetadata(new MediaMetadataCompat.Builder().build());
-            mediaSession.setActive(false);
-            mediaSession.release();
-            mediaSession = null;
+        synchronized (instance) {
+            if (mediaSession != null) {
+                mediaSession.setPlaybackState(new PlaybackStateCompat.Builder().build());
+                mediaSession.setMetadata(new MediaMetadataCompat.Builder().build());
+                mediaSession.setActive(false);
+                mediaSession.release();
+                mediaSession = null;
 
-            SystemVolumeProvider currentProvider = SystemVolumeProvider.getCurrentProvider();
-            if (currentProvider != null) {
-                currentProvider.release();
+                SystemVolumeProvider currentProvider = SystemVolumeProvider.getCurrentProvider();
+                if (currentProvider != null) {
+                    currentProvider.release();
+                }
             }
         }
     }
