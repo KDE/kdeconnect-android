@@ -118,7 +118,7 @@ class DeviceFragment : Fragment() {
         }
         requirePairingBinding().rejectButton.setOnClickListener {
             device?.apply {
-                //Remove listener so buttons don't show for a while before changing the view
+                // Remove listener so buttons don't show for an instant before changing the view
                 removePluginsChangedListener(pluginsChangedListener)
                 removePairingCallback(pairingCallback)
                 rejectPairing()
@@ -207,10 +207,12 @@ class DeviceFragment : Fragment() {
         }
         if (device.isPaired) {
             menu.add(R.string.device_menu_unpair).setOnMenuItemClickListener {
-                //Remove listener so buttons don't show for a while before changing the view
-                device.removePluginsChangedListener(pluginsChangedListener)
-                device.removePairingCallback(pairingCallback)
-                device.unpair()
+                // Remove listener so buttons don't show for an instant before changing the view
+                device.apply {
+                    removePairingCallback(pairingCallback)
+                    removePluginsChangedListener(pluginsChangedListener)
+                    unpair()
+                }
                 mActivity?.onDeviceSelected(null)
                 true
             }
