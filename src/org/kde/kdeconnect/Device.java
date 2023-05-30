@@ -226,20 +226,22 @@ public class Device implements BaseLink.PacketReceiver {
 
     /* Asks all pairing handlers that, is pair requested? */
     public boolean isPairRequested() {
-        boolean pairRequested = false;
         for (BasePairingHandler ph : pairingHandlers.values()) {
-            pairRequested = pairRequested || ph.isPairRequested();
+            if (ph.isPairRequested()) {
+                return true;
+            }
         }
-        return pairRequested;
+        return false;
     }
 
     /* Asks all pairing handlers that, is pair requested by peer? */
     public boolean isPairRequestedByPeer() {
-        boolean pairRequestedByPeer = false;
         for (BasePairingHandler ph : pairingHandlers.values()) {
-            pairRequestedByPeer = pairRequestedByPeer || ph.isPairRequestedByPeer();
+            if (ph.isPairRequestedByPeer()) {
+                return true;
+            }
         }
-        return pairRequestedByPeer;
+        return false;
     }
 
     public void addPairingCallback(PairingCallback callback) {
