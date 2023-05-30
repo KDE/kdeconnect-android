@@ -46,7 +46,7 @@ public class LanPairingHandler extends BasePairingHandler {
         boolean wantsPair = np.getBoolean("pair");
 
         if (wantsPair == isPaired()) {
-            if (mPairStatus == PairStatus.Requested) {
+            if (mPairStatus == PairStatus.Requested || mPairStatus == PairStatus.RequestedByPeer) {
                 //Log.e("Device","Unpairing (pair rejected)");
                 mPairStatus = PairStatus.NotPaired;
                 hidePairingNotification();
@@ -162,7 +162,7 @@ public class LanPairingHandler extends BasePairingHandler {
     }
 
     @Override
-    public void rejectPairing() {
+    public void cancelPairing() {
         hidePairingNotification();
         mPairStatus = PairStatus.NotPaired;
         NetworkPacket np = new NetworkPacket(NetworkPacket.PACKET_TYPE_PAIR);

@@ -201,7 +201,7 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
             }
             when (pairStatus) {
                 PAIRING_ACCEPTED -> device.acceptPairing()
-                PAIRING_REJECTED -> device.rejectPairing()
+                PAIRING_REJECTED -> device.cancelPairing()
             }
         }
         return if (pairStatus == PAIRING_ACCEPTED || pairStatus == PAIRING_PENDING) deviceId else null

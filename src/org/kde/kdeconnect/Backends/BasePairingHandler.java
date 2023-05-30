@@ -62,7 +62,7 @@ public abstract class BasePairingHandler {
     public abstract void packetReceived(NetworkPacket np);
     public abstract void requestPairing();
     public abstract void acceptPairing();
-    public abstract void rejectPairing();
+    public abstract void cancelPairing();
     public abstract void unpair();
 
 }

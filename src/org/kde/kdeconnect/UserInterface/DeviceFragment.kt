@@ -109,6 +109,7 @@ class DeviceFragment : Fragment() {
                 pairProgress.visibility = View.VISIBLE
             }
             device?.requestPairing()
+            mActivity?.invalidateOptionsMenu()
         }
         requirePairingBinding().acceptButton.setOnClickListener {
             device?.apply {
@@ -121,7 +122,7 @@ class DeviceFragment : Fragment() {
                 // Remove listener so buttons don't show for an instant before changing the view
                 removePluginsChangedListener(pluginsChangedListener)
                 removePairingCallback(pairingCallback)
-                rejectPairing()
+                cancelPairing()
             }
             mActivity?.onDeviceSelected(null)
         }
@@ -214,6 +215,12 @@ class DeviceFragment : Fragment() {
                     unpair()
                 }
                 mActivity?.onDeviceSelected(null)
+                true
+            }
+        }
+        if (device.isPairRequested) {
+            menu.add(R.string.cancel_pairing).setOnMenuItemClickListener {
+                device.cancelPairing()
                 true
             }
         }

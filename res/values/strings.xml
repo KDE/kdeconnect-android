@@ -160,6 +160,7 @@
     <string name="device_menu_plugins">Plugin settings</string>
     <string name="device_menu_unpair">Unpair</string>
     <string name="pair_new_device">Pair new device</string>
+    <string name="cancel_pairing">Cancel pairing</string>
     <string name="unknown_device">Unknown device</string>
     <string name="error_not_reachable">Device not reachable</string>
     <string name="error_already_paired">Device already paired</string>

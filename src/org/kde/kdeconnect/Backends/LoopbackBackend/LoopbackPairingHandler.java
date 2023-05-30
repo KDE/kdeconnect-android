@@ -36,8 +36,8 @@ public class LoopbackPairingHandler extends BasePairingHandler {
     }
 
     @Override
-    public void rejectPairing() {
-        Log.i("LoopbackPairing", "rejectPairing");
+    public void cancelPairing() {
+        Log.i("LoopbackPairing", "cancelPairing");
         mCallback.unpaired();
     }
 

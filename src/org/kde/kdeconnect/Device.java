@@ -343,15 +343,14 @@ public class Device implements BaseLink.PacketReceiver {
     }
 
     /* This method is called after rejecting pairing from GUI */
-    public void rejectPairing() {
+    public void cancelPairing() {
 
-        Log.i("KDE/Device", "Rejected pair request started by the other device");
+        Log.i("KDE/Device", "This side cancelled the pair request");
 
-        //Log.e("Device","Unpairing (rejectPairing)");
         pairStatus = PairStatus.NotPaired;
 
         for (BasePairingHandler ph : pairingHandlers.values()) {
-            ph.rejectPairing();
+            ph.cancelPairing();
         }
 
         for (PairingCallback cb : pairingCallback) {

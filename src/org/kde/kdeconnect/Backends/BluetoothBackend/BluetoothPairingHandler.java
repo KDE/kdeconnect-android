@@ -154,7 +154,7 @@ public class BluetoothPairingHandler extends BasePairingHandler {
     }
 
     @Override
-    public void rejectPairing() {
+    public void cancelPairing() {
         hidePairingNotification();
         mPairStatus = PairStatus.NotPaired;
         NetworkPacket np = new NetworkPacket(NetworkPacket.PACKET_TYPE_PAIR);
