@@ -104,7 +104,7 @@
   <string name="battery_status_charging_format">Pil: %d%% Şarj oluyor</string>
   <string name="category_connected_devices">Bağlı aygıtlar</string>
   <string name="category_not_paired_devices">Kullanılabilir aygıtlar</string>
-  <string name="category_remembered_devices">Hatırlanan aygıtlar</string>
+  <string name="category_remembered_devices">Anımsanan aygıtlar</string>
   <string name="device_menu_plugins">Eklenti ayarları</string>
   <string name="device_menu_unpair">Ayır</string>
   <string name="pair_new_device">Yeni bir aygıt eşleştir</string>

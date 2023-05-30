@@ -60,6 +60,8 @@
   <string name="mousepad_mouse_buttons_title">Siçan düymələrini göstərmək</string>
   <string name="mousepad_acceleration_profile_settings_title">Kursorun sürətini təyin edin</string>
   <string name="mousepad_scroll_direction_title">Sürüşdürmənin əks istiqaməti</string>
+  <string name="gyro_mouse_enabled_title">Qiroskoplu siçanı qoşun</string>
+  <string name="gyro_mouse_sensitivity_title">Qiroskopun həssaslığı</string>
   <string-array name="mousepad_tap_entries">
     <item>Sol toxunuş</item>
     <item>Sağ toxunuş</item>
@@ -83,7 +85,7 @@
   </string-array>
   <string name="sendkeystrokes_send_to">Düymələrə vuruşları buraya göndərin:</string>
   <string name="sendkeystrokes_textbox_hint">Düyməyə vurulmanı ana komputerə göndərin</string>
-  <string name="sendkeystrokes_disabled_toast">Düyməə vuruşun göndərilməsi söndürülüb - onu ayarlardan aktiv edin</string>
+  <string name="sendkeystrokes_disabled_toast">Düymə vuruşun göndərilməsi söndürülüb - onu ayarlardan aktiv edin</string>
   <string name="sendkeystrokes_wrong_data">Səhv mime növü - \'text/x-keystrokes\' üçün lazımdır</string>
   <string name="sendkeystrokes_sent_text">%2s cihazına %1s göndərildi</string>
   <string name="sendkeystrokes_pref_category_summary">Bu modul, düyməyə vurmaqla, qoşulmuş ana komputerə göndərərərk başqa tətbiqlərin mətn hissəsininlərini mübadilə etməyə imkan verir</string>
@@ -374,6 +376,7 @@
   <string name="click_here_to_type">Yazmaq üçün toxunun</string>
   <string name="clear_compose">Təmizləmək</string>
   <string name="send_compose">Göndərin</string>
+  <string name="compose_send_title">Yazın göndərin</string>
   <string name="open_compose_send">Mətn yazın</string>
   <string name="about_kde_about">&lt;h1&gt;Haqqında&lt;/h1&gt; &lt;p&gt;KDE, özlərini &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Azad Proqram Təminatı&lt;/a&gt; tərtibatına həsr etmiş, proqram təminatı üzrə mühəndislərdən, rəssamlardan, yazıçılardan, tərcüməçilərdən və yaradıcılardan ibarət dünya miqyasında bir cəmiyyətdir. KDE, Plasma İş masası mühiti, yüzlərlə tətbiqlər və onları dəstəkləyən proqram təminatı kitabxanaları nəşr edir. &lt;/p&gt; &lt;p&gt;KDE kooperativ bir müəssisədir: heç bir müəssisə onun işinə və məhsullarına nəzarət etmir. Bunun əvəzinə, dünyanın ən yaxşı Proqram Təminatını yaratmaq məsədimizə çatmaq üçün birlikdə çalışırıq. &lt;a href=https://community.kde.org/Get_Involved&gt;KDE\'yə qoşulmaq və işimizə töhvə vermək istəyən, &lt;/a&gt; siz də daxil olmaqla&lt;/p&gt; hər kəsi salamlayırıq. &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; saytına daxil olun ki, KDE cəmiyyəti və bizim proqram təminatı və məhsullarımız haqqında daha çox məlumat əldə edə biləsiniz.</string>
   <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Səhvləri və Arzularınızı bildirin&lt;/h1&gt; &lt;p&gt;Proqram təminatı hər zaman təkmilləşdirilə bilər və KDE komandası buna hazırdır. Lakin siz - istifadəçi - , nə isə gözlənildiyi kimi düzgün işləmədikdə və ya bundan daha yaxşısını yaratmaq barədə təklifiniz olduqda bizə bildirməlisiniz.&lt;/p&gt; &lt;p&gt;KDE\'nin xətaları izləmə sistemi var. &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; ziyarət edin və ya xətalar haqında hesabat vermək üçün ekrandakı \"Xətaları bildirin\" düyməsindən istifadə edin.&lt;/p&gt; Əgər təkmilləşdirmə üçün bir təklifiniz varsa, bu istəyinizi bildirmək üçün xətaları izləmə sistemində qeyd edə bilərsiniz. \"İstəklər siyahısı\" ciddilik səviyyəsindən istifadə etdiyinizə əmin olun.</string>
