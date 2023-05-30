@@ -672,7 +672,7 @@ public class Device implements BaseLink.PacketReceiver {
      *                                  won't return until the Payload has been received by the
      *                                  other end, or times out after 10 seconds
      * @return true if the packet was sent ok, false otherwise
-     * @see BaseLink#sendPacket(NetworkPacket, SendPacketStatusCallback)
+     * @see BaseLink#sendPacket(NetworkPacket, SendPacketStatusCallback, boolean)
      */
     @WorkerThread
     public boolean sendPacketBlocking(@NonNull final NetworkPacket np, @NonNull final SendPacketStatusCallback callback, boolean sendPayloadFromSameThread) {
