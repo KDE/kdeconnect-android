@@ -46,11 +46,6 @@ public class LanLink extends BaseLink {
         Locally, Remotely
     }
 
-    private ConnectionStarted connectionSource; // If the other device sent me a broadcast,
-                                                // I should not close the connection with it
-                                                  // because it's probably trying to find me and
-                                                  // potentially ask for pairing.
-
     private volatile SSLSocket socket = null;
 
     private final LinkDisconnectedCallback callback;
@@ -66,12 +61,10 @@ public class LanLink extends BaseLink {
     }
 
     //Returns the old socket
-    public SSLSocket reset(final SSLSocket newSocket, ConnectionStarted connectionSource) throws IOException {
+    public SSLSocket reset(final SSLSocket newSocket) throws IOException {
 
         SSLSocket oldSocket = socket;
         socket = newSocket;
-
-        this.connectionSource = connectionSource;
 
         if (oldSocket != null) {
             oldSocket.close(); //This should cancel the readThread
@@ -112,10 +105,10 @@ public class LanLink extends BaseLink {
         return oldSocket;
     }
 
-    public LanLink(Context context, String deviceId, LanLinkProvider linkProvider, SSLSocket socket, ConnectionStarted connectionSource) throws IOException {
+    public LanLink(Context context, String deviceId, LanLinkProvider linkProvider, SSLSocket socket) throws IOException {
         super(context, deviceId, linkProvider);
         callback = linkProvider;
-        reset(socket, connectionSource);
+        reset(socket);
     }
 
 

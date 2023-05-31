@@ -214,7 +214,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                     Certificate certificate = event.getPeerCertificates()[0];
                     identityPacket.set("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
                     Log.i("KDE/LanLinkProvider", "Handshake as " + mode + " successful with " + identityPacket.getString("deviceName") + " secured with " + event.getCipherSuite());
-                    addLink(identityPacket, sslsocket, connectionStarted);
+                    addLink(identityPacket, sslsocket);
                 } catch (Exception e) {
                     Log.e("KDE/LanLinkProvider", "Handshake as " + mode + " failed with " + identityPacket.getString("deviceName"), e);
                     Device device = KdeConnect.getInstance().getDevice(deviceId);
@@ -258,19 +258,19 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
      * @param connectionOrigin which side started this connection
      * @throws IOException if an exception is thrown by {@link LanLink#reset(SSLSocket, LanLink.ConnectionStarted)}
      */
-    private void addLink(final NetworkPacket identityPacket, SSLSocket socket, LanLink.ConnectionStarted connectionOrigin) throws IOException {
+    private void addLink(final NetworkPacket identityPacket, SSLSocket socket) throws IOException {
 
         String deviceId = identityPacket.getString("deviceId");
         LanLink currentLink = visibleComputers.get(deviceId);
         if (currentLink != null) {
             //Update old link
             Log.i("KDE/LanLinkProvider", "Reusing same link for device " + deviceId);
-            final Socket oldSocket = currentLink.reset(socket, connectionOrigin);
+            final Socket oldSocket = currentLink.reset(socket);
             //Log.e("KDE/LanLinkProvider", "Replacing socket. old: "+ oldSocket.hashCode() + " - new: "+ socket.hashCode());
         } else {
             Log.i("KDE/LanLinkProvider", "Creating a new link for device " + deviceId);
             //Let's create the link
-            LanLink link = new LanLink(context, deviceId, this, socket, connectionOrigin);
+            LanLink link = new LanLink(context, deviceId, this, socket);
             visibleComputers.put(deviceId, link);
             connectionAccepted(identityPacket, link);
         }
