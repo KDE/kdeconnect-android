@@ -9,6 +9,8 @@ package org.kde.kdeconnect.Backends.LoopbackBackend;
 import android.content.Context;
 
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
+import org.kde.kdeconnect.Helpers.DeviceHelper;
+import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.NetworkPacket;
 
 public class LoopbackLinkProvider extends BaseLinkProvider {
@@ -31,14 +33,10 @@ public class LoopbackLinkProvider extends BaseLinkProvider {
     @Override
     public void onNetworkChange() {
         NetworkPacket np = NetworkPacket.createIdentityPacket(context);
-        connectionAccepted(np, new LoopbackLink(context, this));
+        String deviceId = DeviceHelper.getDeviceId(context);
+        connectionAccepted(deviceId, SslHelper.certificate, np, new LoopbackLink(context, this));
     }
-/*
-    @Override
-    public int getPriority() {
-        return 0;
-    }
-*/
+
     @Override
     public String getName() {
         return "LoopbackLinkProvider";

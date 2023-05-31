@@ -6,8 +6,11 @@
 
 package org.kde.kdeconnect.Backends;
 
+import androidx.annotation.NonNull;
+
 import org.kde.kdeconnect.NetworkPacket;
 
+import java.security.cert.Certificate;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public abstract class BaseLinkProvider {
@@ -15,7 +18,10 @@ public abstract class BaseLinkProvider {
     private final CopyOnWriteArrayList<ConnectionReceiver> connectionReceivers = new CopyOnWriteArrayList<>();
 
     public interface ConnectionReceiver {
-        void onConnectionReceived(NetworkPacket identityPacket, BaseLink link);
+        void onConnectionReceived(@NonNull final String deviceId,
+                                  @NonNull final Certificate certificate,
+                                  @NonNull final NetworkPacket identityPacket,
+                                  @NonNull final BaseLink link);
         void onConnectionLost(BaseLink link);
     }
 
@@ -28,10 +34,13 @@ public abstract class BaseLinkProvider {
     }
 
     //These two should be called when the provider links to a new computer
-    protected void connectionAccepted(NetworkPacket identityPacket, BaseLink link) {
+    protected void connectionAccepted(@NonNull final String deviceId,
+                                      @NonNull final Certificate certificate,
+                                      @NonNull final NetworkPacket identityPacket,
+                                      @NonNull final BaseLink link) {
         //Log.i("KDE/LinkProvider", "connectionAccepted");
         for(ConnectionReceiver cr : connectionReceivers) {
-            cr.onConnectionReceived(identityPacket, link);
+            cr.onConnectionReceived(deviceId, certificate, identityPacket, link);
         }
     }
     protected void connectionLost(BaseLink link) {
@@ -45,8 +54,6 @@ public abstract class BaseLinkProvider {
     public abstract void onStart();
     public abstract void onStop();
     public abstract void onNetworkChange();
-
-    //public abstract int getPriority();
     public abstract String getName();
 
 }

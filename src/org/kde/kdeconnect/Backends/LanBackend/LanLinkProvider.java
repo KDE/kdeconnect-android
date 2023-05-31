@@ -211,9 +211,8 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
                 String mode = clientMode ? "client" : "server";
                 try {
                     Certificate certificate = event.getPeerCertificates()[0];
-                    identityPacket.set("certificate", Base64.encodeToString(certificate.getEncoded(), 0));
                     Log.i("KDE/LanLinkProvider", "Handshake as " + mode + " successful with " + identityPacket.getString("deviceName") + " secured with " + event.getCipherSuite());
-                    addLink(identityPacket, sslsocket);
+                    addLink(deviceId, certificate, identityPacket, sslsocket);
                 } catch (Exception e) {
                     Log.e("KDE/LanLinkProvider", "Handshake as " + mode + " failed with " + identityPacket.getString("deviceName"), e);
                     Device device = KdeConnect.getInstance().getDevice(deviceId);
@@ -252,14 +251,13 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
      * {@link Device#addLink(NetworkPacket, BaseLink)} crashes on some devices running Oreo 8.1 (SDK level 27).
      * </p>
      *
-     * @param identityPacket   representation of remote device
-     * @param socket           a new Socket, which should be used to receive packets from the remote device
-     * @param connectionOrigin which side started this connection
-     * @throws IOException if an exception is thrown by {@link LanLink#reset(SSLSocket, LanLink.ConnectionStarted)}
+     * @param deviceId         remote device id
+     * @param certificate      remote device certificate
+     * @param identityPacket   identity packet with the remote device's device name, type, protocol version, etc.
+     * @param socket           a new Socket, which should be used to send and receive packets from the remote device
+     * @throws IOException if an exception is thrown by {@link LanLink#reset(SSLSocket)}
      */
-    private void addLink(final NetworkPacket identityPacket, SSLSocket socket) throws IOException {
-
-        String deviceId = identityPacket.getString("deviceId");
+    private void addLink(String deviceId, Certificate certificate, final NetworkPacket identityPacket, SSLSocket socket) throws IOException {
         LanLink currentLink = visibleComputers.get(deviceId);
         if (currentLink != null) {
             //Update old link
@@ -271,7 +269,7 @@ public class LanLinkProvider extends BaseLinkProvider implements LanLink.LinkDis
             //Let's create the link
             LanLink link = new LanLink(context, deviceId, this, socket);
             visibleComputers.put(deviceId, link);
-            connectionAccepted(identityPacket, link);
+            connectionAccepted(deviceId, certificate, identityPacket, link);
         }
     }
 
