@@ -32,6 +32,7 @@ import org.kde.kdeconnect.Backends.LanBackend.LanLink;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
+import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.UserInterface.PairingHandler;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
@@ -42,6 +43,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateEncodingException;
+import java.security.cert.CertificateException;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({Base64.class, Log.class, PreferenceManager.class, ContextCompat.class})
@@ -56,16 +60,22 @@ public class DeviceTest {
 
         String deviceId = "testDevice";
         String name = "Test Device";
-
-        KeyPair keyPair;
-        try {
-            KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
-            keyGen.initialize(2048);
-            keyPair = keyGen.genKeyPair();
-        } catch (Exception e) {
-            Log.e("KDE/initializeRsaKeys", "Exception", e);
-            return;
-        }
+        String encodedCertificate = "MIIDVzCCAj+gAwIBAgIBCjANBgkqhkiG9w0BAQUFADBVMS8wLQYDVQQDDCZfZGExNzlhOTFfZjA2\n" +
+            "NF80NzhlX2JlOGNfMTkzNWQ3NTQ0ZDU0XzEMMAoGA1UECgwDS0RFMRQwEgYDVQQLDAtLZGUgY29u\n" +
+            "bmVjdDAeFw0xNTA2MDMxMzE0MzhaFw0yNTA2MDMxMzE0MzhaMFUxLzAtBgNVBAMMJl9kYTE3OWE5\n" +
+            "MV9mMDY0XzQ3OGVfYmU4Y18xOTM1ZDc1NDRkNTRfMQwwCgYDVQQKDANLREUxFDASBgNVBAsMC0tk\n" +
+            "ZSBjb25uZWN0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzH9GxS1lctpwYdSGAoPH\n" +
+            "ws+MnVaL0PVDCuzrpxzXc+bChR87xofhQIesLPLZEcmUJ1MlEJ6jx4W+gVhvY2tUN7SoiKKbnq8s\n" +
+            "WjI5ovs5yML3C1zPbOSJAdK613FcdkK+UGd/9dQk54gIozinC58iyTAChVVpB3pAF38EPxwKkuo2\n" +
+            "qTzwk24d6PRxz1skkzwEphUQQzGboyHsAlJHN1MzM2/yFGB4l8iUua2d3ETyfy/xFEh/SwtGtXE5\n" +
+            "KLz4cpb0fxjeYQZVruBKxzE07kgDO3zOhmP3LJ/KSPHWYImd1DWmpY9iDvoXr6+V7FAnRloaEIyg\n" +
+            "7WwdlSCpo3TXVuIjLwIDAQABozIwMDAdBgNVHQ4EFgQUwmbHo8YbiR463GRKSLL3eIKyvDkwDwYD\n" +
+            "VR0TAQH/BAUwAwIBADANBgkqhkiG9w0BAQUFAAOCAQEAydijH3rbnvpBDB/30w2PCGMT7O0N/XYM\n" +
+            "wBtUidqa4NFumJrNrccx5Ehp4UP66BfP61HW8h2U/EekYfOsZyyWd4KnsDD6ycR8h/WvpK3BC2cn\n" +
+            "I299wbqCEZmk5ZFFaEIDHdLAdgMCuxJkAzy9mMrWEa05Soxi2/ZXdrU9nXo5dzuPGYlirVPDHl7r\n" +
+            "/urBxD6HVX3ObQJRJ7r/nAWyUVdX3/biJaDRsydftOpGU6Gi5c1JK4MWIz8Bsjh6mEjCsVatbPPl\n" +
+            "yygGiJbDZfAvN2XoaVEBii2GDDCWfaFwPVPYlNTvjkUkMP8YThlMsiJ8Q4693XoLOL94GpNlCfUg\n" +
+            "7n+KOQ==";
 
         this.context = Mockito.mock(Context.class);
 
@@ -80,7 +90,7 @@ public class DeviceTest {
         SharedPreferences.Editor editor = deviceSettings.edit();
         editor.putString("deviceName", name);
         editor.putString("deviceType", Device.DeviceType.Phone.toString());
-        editor.putString("publicKey", Base64.encodeToString(keyPair.getPublic().getEncoded(), 0).trim() + "\n");
+        editor.putString("certificate", encodedCertificate);
         editor.apply();
         Mockito.when(context.getSharedPreferences(eq(deviceId), eq(Context.MODE_PRIVATE))).thenReturn(deviceSettings);
 
@@ -115,23 +125,25 @@ public class DeviceTest {
 
     // Basic paired device testing
     @Test
-    public void testDevice() {
+    public void testDevice() throws CertificateException {
         Device device = new Device(context, "testDevice");
 
         assertEquals(device.getDeviceId(), "testDevice");
         assertEquals(device.getDeviceType(), Device.DeviceType.Phone);
         assertEquals(device.getName(), "Test Device");
         assertTrue(device.isPaired());
+        assertNotNull(device.certificate);
     }
 
-    public void testPairingDoneWithCertificate() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+    public void testPairingDone() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException, CertificateException {
 
         NetworkPacket fakeNetworkPacket = new NetworkPacket(NetworkPacket.PACKET_TYPE_IDENTITY);
-        fakeNetworkPacket.set("deviceId", "unpairedTestDevice");
+        String deviceId = "unpairedTestDevice";
+        fakeNetworkPacket.set("deviceId", deviceId);
         fakeNetworkPacket.set("deviceName", "Unpaired Test Device");
         fakeNetworkPacket.set("protocolVersion", DeviceHelper.ProtocolVersion);
         fakeNetworkPacket.set("deviceType", Device.DeviceType.Phone.toString());
-        fakeNetworkPacket.set("certificate",
+        String certificateString =
             "MIIDVzCCAj+gAwIBAgIBCjANBgkqhkiG9w0BAQUFADBVMS8wLQYDVQQDDCZfZGExNzlhOTFfZjA2\n" +
             "NF80NzhlX2JlOGNfMTkzNWQ3NTQ0ZDU0XzEMMAoGA1UECgwDS0RFMRQwEgYDVQQLDAtLZGUgY29u\n" +
             "bmVjdDAeFw0xNTA2MDMxMzE0MzhaFw0yNTA2MDMxMzE0MzhaMFUxLzAtBgNVBAMMJl9kYTE3OWE5\n" +
@@ -147,16 +159,18 @@ public class DeviceTest {
             "I299wbqCEZmk5ZFFaEIDHdLAdgMCuxJkAzy9mMrWEa05Soxi2/ZXdrU9nXo5dzuPGYlirVPDHl7r\n" +
             "/urBxD6HVX3ObQJRJ7r/nAWyUVdX3/biJaDRsydftOpGU6Gi5c1JK4MWIz8Bsjh6mEjCsVatbPPl\n" +
             "yygGiJbDZfAvN2XoaVEBii2GDDCWfaFwPVPYlNTvjkUkMP8YThlMsiJ8Q4693XoLOL94GpNlCfUg\n" +
-            "7n+KOQ==");
+            "7n+KOQ==";
+        byte[] certificateBytes = Base64.decode(certificateString, 0);
+        Certificate certificate = SslHelper.parseCertificate(certificateBytes);
 
         LanLinkProvider linkProvider = Mockito.mock(LanLinkProvider.class);
         Mockito.when(linkProvider.getName()).thenReturn("LanLinkProvider");
         LanLink link = Mockito.mock(LanLink.class);
         Mockito.when(link.getLinkProvider()).thenReturn(linkProvider);
-        Device device = new Device(context, fakeNetworkPacket, link);
+        Device device = new Device(context, deviceId, certificate, fakeNetworkPacket, link);
 
         assertNotNull(device);
-        assertEquals(device.getDeviceId(), "unpairedTestDevice");
+        assertEquals(device.getDeviceId(), deviceId);
         assertEquals(device.getName(), "Unpaired Test Device");
         assertEquals(device.getDeviceType(), Device.DeviceType.Phone);
         assertNotNull(device.certificate);
@@ -180,7 +194,7 @@ public class DeviceTest {
     }
 
     @Test
-    public void testUnpair() {
+    public void testUnpair() throws CertificateException {
         PairingHandler.PairingCallback pairingCallback = Mockito.mock(PairingHandler.PairingCallback.class);
         Device device = new Device(context, "testDevice");
         device.addPairingCallback(pairingCallback);

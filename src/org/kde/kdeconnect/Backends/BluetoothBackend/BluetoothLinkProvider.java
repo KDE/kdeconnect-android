@@ -15,10 +15,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Parcelable;
+import android.util.Base64;
 import android.util.Log;
 
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Helpers.ThreadHelper;
 import org.kde.kdeconnect.NetworkPacket;
 
@@ -27,6 +29,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Reader;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -48,8 +52,12 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
     private ServerRunnable serverRunnable;
     private ClientRunnable clientRunnable;
 
-    private void addLink(NetworkPacket identityPacket, BluetoothLink link) {
+    private void addLink(NetworkPacket identityPacket, BluetoothLink link) throws CertificateException {
         String deviceId = identityPacket.getString("deviceId");
+        String certificateString = identityPacket.getString("certificate");
+        byte[] certificateBytes = Base64.decode(certificateString, 0);
+        Certificate certificate = SslHelper.parseCertificate(certificateBytes);
+
         Log.i("BluetoothLinkProvider", "addLink to " + deviceId);
         BluetoothLink oldLink = visibleComputers.get(deviceId);
         if (oldLink == link) {
@@ -57,7 +65,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
             return;
         }
         visibleComputers.put(deviceId, link);
-        connectionAccepted(identityPacket, link);
+        connectionAccepted(deviceId, certificate, identityPacket, link);
         link.startListening();
         if (oldLink != null) {
             Log.i("BluetoothLinkProvider", "Removing old connection to same device");
@@ -189,6 +197,7 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
                 InputStream inputStream = connection.getDefaultInputStream();
 
                 NetworkPacket np = NetworkPacket.createIdentityPacket(context);
+                np.set("certificate", Base64.encodeToString(SslHelper.certificate.getEncoded(), 0));
                 byte[] message = np.serialize().getBytes(Charsets.UTF_8);
                 outputStream.write(message);
                 outputStream.flush();
@@ -371,7 +380,11 @@ public class BluetoothLinkProvider extends BaseLinkProvider {
                 link.sendPacket(np2, new Device.SendPacketStatusCallback() {
                     @Override
                     public void onSuccess() {
-                        addLink(identityPacket, link);
+                        try {
+                            addLink(identityPacket, link);
+                        } catch (CertificateException e) {
+                            e.printStackTrace();
+                        }
                     }
 
                     @Override

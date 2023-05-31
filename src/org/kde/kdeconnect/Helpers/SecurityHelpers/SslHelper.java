@@ -176,26 +176,29 @@ public class SslHelper {
         return !cert.isEmpty();
     }
 
-    private static SSLContext getSslContext(Context context, String deviceId, boolean isDeviceTrusted) {
+    /**
+     * Returns the stored certificate for a trusted device
+     **/
+    public static Certificate getDeviceCertificate(Context context, String deviceId) throws CertificateException {
+        SharedPreferences devicePreferences = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
+        byte[] certificateBytes = Base64.decode(devicePreferences.getString("certificate", ""), 0);
+        return parseCertificate(certificateBytes);
+    }
+
+    private static SSLContext getSslContextForDevice(Context context, String deviceId, boolean isDeviceTrusted) {
         //TODO: Cache
         try {
             // Get device private key
             PrivateKey privateKey = RsaHelper.getPrivateKey(context);
 
-            // Get remote device certificate if trusted
-            Certificate remoteDeviceCertificate = null;
-            if (isDeviceTrusted) {
-                SharedPreferences devicePreferences = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
-                byte[] certificateBytes = Base64.decode(devicePreferences.getString("certificate", ""), 0);
-                remoteDeviceCertificate = parseCertificate(certificateBytes);
-            }
-
             // Setup keystore
             KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
             keyStore.load(null, null);
             keyStore.setKeyEntry("key", privateKey, "".toCharArray(), new Certificate[]{certificate});
-            // Set certificate if device trusted
-            if (remoteDeviceCertificate != null) {
+
+            // Add device certificate if device trusted
+            if (isDeviceTrusted) {
+                Certificate remoteDeviceCertificate = getDeviceCertificate(context, deviceId);
                 keyStore.setCertificateEntry(deviceId, remoteDeviceCertificate);
             }
 
@@ -239,7 +242,7 @@ public class SslHelper {
     }
 
     public static SSLSocket convertToSslSocket(Context context, Socket socket, String deviceId, boolean isDeviceTrusted, boolean clientMode) throws IOException {
-        SSLSocketFactory sslsocketFactory = SslHelper.getSslContext(context, deviceId, isDeviceTrusted).getSocketFactory();
+        SSLSocketFactory sslsocketFactory = SslHelper.getSslContextForDevice(context, deviceId, isDeviceTrusted).getSocketFactory();
         SSLSocket sslsocket = (SSLSocket) sslsocketFactory.createSocket(socket, socket.getInetAddress().getHostAddress(), socket.getPort(), true);
         SslHelper.configureSslSocket(sslsocket, isDeviceTrusted, clientMode);
         return sslsocket;

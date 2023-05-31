@@ -40,6 +40,7 @@ import org.kde.kdeconnect_tp.R;
 import java.io.IOException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateEncodingException;
+import java.security.cert.CertificateException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -130,18 +131,20 @@ public class Device implements BaseLink.PacketReceiver {
         }
     }
 
-    //Remembered trusted device, we need to wait for a incoming devicelink to communicate
-    Device(Context context, String deviceId) {
-        settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
-
-        //Log.e("Device","Constructor A");
+    // Remembered trusted device, we need to wait for a incoming Link to communicate
+    Device(@NonNull Context context, @NonNull String deviceId) throws CertificateException {
+        Log.i("Device","Loading trusted device");
 
         this.context = context;
+
+        this.settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
+        this.pairingHandler = new PairingHandler(this, pairingCallback, PairingHandler.PairState.Paired);
+
         this.deviceId = deviceId;
         this.name = settings.getString("deviceName", context.getString(R.string.unknown_device));
-        this.pairingHandler = new PairingHandler(this, pairingCallback, PairingHandler.PairState.Paired);
-        this.protocolVersion = DeviceHelper.ProtocolVersion; //We don't know it yet
+        this.protocolVersion = 0; //We don't know it yet
         this.deviceType = DeviceType.FromString(settings.getString("deviceType", "desktop"));
+        this.certificate = SslHelper.getDeviceCertificate(context, deviceId);
 
         //Assume every plugin is supported until addLink is called and we can get the actual list
         supportedPlugins = new Vector<>(PluginFactory.getAvailablePlugins());
@@ -150,21 +153,24 @@ public class Device implements BaseLink.PacketReceiver {
         //reloadPluginsFromSettings();
     }
 
-    //Device known via an incoming connection sent to us via a devicelink, we know everything but we don't trust it yet
-    Device(Context context, NetworkPacket np, BaseLink dl) {
-
-        //Log.e("Device","Constructor B");
+    // Device known via an incoming connection sent to us via a Link, we don't trust it yet
+    Device(@NonNull Context context, @NonNull String deviceId, @NonNull Certificate certificate, @NonNull NetworkPacket identityPacket, @NonNull BaseLink dl) {
+        Log.i("Device","Creating untrusted device");
 
         this.context = context;
-        this.deviceId = np.getString("deviceId");
-        this.name = context.getString(R.string.unknown_device); //We read it in addLink
-        this.pairingHandler= new PairingHandler(this, pairingCallback, PairingHandler.PairState.NotPaired);
-        this.protocolVersion = 0;
+
+        this.settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
+        this.pairingHandler = new PairingHandler(this, pairingCallback, PairingHandler.PairState.NotPaired);
+
+        this.deviceId = deviceId;
+        this.certificate = certificate;
+
+        // The following properties are read from the identityPacket in addLink since they can change in future identity packets
+        this.name = context.getString(R.string.unknown_device);
         this.deviceType = DeviceType.Computer;
+        this.protocolVersion = 0;
 
-        settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
-
-        addLink(np, dl);
+        addLink(identityPacket, dl);
     }
 
     public String getName() {
@@ -255,12 +261,8 @@ public class Device implements BaseLink.PacketReceiver {
             try {
                 String encodedCertificate = Base64.encodeToString(certificate.getEncoded(), 0);
                 editor.putString("certificate", encodedCertificate);
-            } catch (NullPointerException n) {
-                Log.w("PairingHandler", "Certificate is null, remote device does not support SSL", n);
-                return;
-            } catch (CertificateEncodingException c) {
-                Log.e("PairingHandler", "Error encoding certificate", c);
-                return;
+            } catch(CertificateEncodingException e) {
+                throw new RuntimeException(e);
             }
             editor.putString("deviceName", name);
             editor.putString("deviceType", deviceType.toString());
@@ -382,19 +384,6 @@ public class Device implements BaseLink.PacketReceiver {
 
         if (identityPacket.has("deviceType")) {
             this.deviceType = DeviceType.FromString(identityPacket.getString("deviceType", "desktop"));
-        }
-
-        if (identityPacket.has("certificate")) {
-            String certificateString = identityPacket.getString("certificate");
-
-            try {
-                byte[] certificateBytes = Base64.decode(certificateString, 0);
-                certificate = SslHelper.parseCertificate(certificateBytes);
-                Log.i("KDE/Device", "Got certificate ");
-            } catch (Exception e) {
-                Log.e("KDE/Device", "Error getting certificate", e);
-
-            }
         }
 
         Log.i("KDE/Device", "addLink " + link.getLinkProvider().getName() + " -> " + getName() + " active links: " + links.size());

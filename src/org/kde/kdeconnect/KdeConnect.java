@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
@@ -17,6 +19,8 @@ import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.PairingHandler;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -105,9 +109,14 @@ public class KdeConnect extends Application {
         for (String deviceId : trustedDevices) {
             //Log.e("BackgroundService", "Loading device "+deviceId);
             if (preferences.getBoolean(deviceId, false)) {
-                Device device = new Device(this, deviceId);
-                devices.put(deviceId, device);
-                device.addPairingCallback(devicePairingCallback);
+                try {
+                    Device device = new Device(this, deviceId);
+                    devices.put(deviceId, device);
+                    device.addPairingCallback(devicePairingCallback);
+                } catch (CertificateException e) {
+                    Log.e("KdeConnect", "Could not load trusted device, certificate not valid: " + deviceId);
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -136,15 +145,17 @@ public class KdeConnect extends Application {
 
     private final BaseLinkProvider.ConnectionReceiver connectionListener = new BaseLinkProvider.ConnectionReceiver() {
         @Override
-        public void onConnectionReceived(final NetworkPacket identityPacket, final BaseLink link) {
-            String deviceId = identityPacket.getString("deviceId");
+        public void onConnectionReceived(@NonNull final String deviceId,
+                                         @NonNull final Certificate certificate,
+                                         @NonNull final NetworkPacket identityPacket,
+                                         @NonNull final BaseLink link) {
             Device device = devices.get(deviceId);
             if (device != null) {
                 Log.i("KDE/Application", "addLink, known device: " + deviceId);
                 device.addLink(identityPacket, link);
             } else {
                 Log.i("KDE/Application", "addLink,unknown device: " + deviceId);
-                device = new Device(KdeConnect.this, identityPacket, link);
+                device = new Device(KdeConnect.this, deviceId, certificate, identityPacket, link);
                 devices.put(deviceId, device);
                 device.addPairingCallback(devicePairingCallback);
             }
