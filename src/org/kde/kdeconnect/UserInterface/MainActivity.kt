@@ -44,7 +44,7 @@ private const val STATE_SELECTED_DEVICE = "selected_device" //Saved persistently
 class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val mNavigationView: NavigationView by lazy { binding.navigationDrawer }
-    private val mDrawerLayout: DrawerLayout? by lazy { binding.drawerLayout }
+    private var mDrawerLayout: DrawerLayout? = null
 
     private lateinit var mNavViewDeviceName: TextView
 
@@ -76,7 +76,9 @@ class MainActivity : AppCompatActivity(), OnSharedPreferenceChangeListener {
         super.onCreate(savedInstanceState)
         DeviceHelper.initializeDeviceId(this)
 
-        setContentView(binding.root)
+        val root = binding.root
+        setContentView(root)
+        mDrawerLayout = if (root is DrawerLayout) root else null
 
         val mDrawerHeader = mNavigationView.getHeaderView(0)
         mNavViewDeviceName = mDrawerHeader.findViewById(R.id.device_name)

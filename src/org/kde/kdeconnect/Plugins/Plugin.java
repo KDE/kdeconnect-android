@@ -10,10 +10,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 
 import androidx.annotation.CallSuper;
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -109,11 +109,10 @@ public abstract class Plugin {
     }
 
     /**
-     * Return an icon associated to this plugin. This function can
-     * access this.context to load the image from resources.
+     * Return an icon associated to this plugin. Only needed if hasMainActivity() returns true and displayInContextMenu() returns false
      */
-    public @Nullable Drawable getIcon() {
-        return null;
+    public @DrawableRes int getIcon() {
+        return -1;
     }
 
     /**
@@ -156,14 +155,8 @@ public abstract class Plugin {
     /**
      * Return true if the plugin should display something in the Device main view
      */
-    public boolean hasMainActivity(Context context) {
+    public boolean displayAsButton(Context context) {
         return false;
-    }
-
-    /**
-     * Implement here what your plugin should do when clicked
-     */
-    public void startMainActivity(Activity parentActivity) {
     }
 
     /**
@@ -171,6 +164,12 @@ public abstract class Plugin {
      */
     public boolean displayInContextMenu() {
         return false;
+    }
+
+    /**
+     * Implement here what your plugin should do when clicked
+     */
+    public void startMainActivity(Activity parentActivity) {
     }
 
     /**

@@ -8,7 +8,6 @@ package org.kde.kdeconnect.Plugins.RemoteKeyboardPlugin;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -20,8 +19,8 @@ import android.view.inputmethod.ExtractedText;
 import android.view.inputmethod.ExtractedTextRequest;
 import android.view.inputmethod.InputConnection;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.core.util.Pair;
 import androidx.fragment.app.DialogFragment;
 
@@ -153,8 +152,8 @@ public class RemoteKeyboardPlugin extends Plugin implements SharedPreferences.On
     }
 
     @Override
-    public Drawable getIcon() {
-        return ContextCompat.getDrawable(context, R.drawable.ic_action_keyboard_24dp);
+    public @DrawableRes int getIcon() {
+        return R.drawable.ic_action_keyboard_24dp;
     }
 
     @Override

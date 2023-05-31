@@ -12,7 +12,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
-import org.kde.kdeconnect_tp.databinding.ListPluginEntryBinding;
+import org.kde.kdeconnect_tp.databinding.ListCardEntryBinding;
 
 public class EntryItemWithIcon implements ListAdapter.Item {
     protected final String title;
@@ -26,7 +26,7 @@ public class EntryItemWithIcon implements ListAdapter.Item {
     @NonNull
     @Override
     public View inflateView(@NonNull LayoutInflater layoutInflater) {
-        final ListPluginEntryBinding binding = ListPluginEntryBinding.inflate(layoutInflater);
+        final ListCardEntryBinding binding = ListCardEntryBinding.inflate(layoutInflater);
 
         binding.listItemEntryTitle.setText(title);
         binding.listItemEntryIcon.setImageDrawable(icon);

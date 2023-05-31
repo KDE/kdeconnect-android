@@ -7,11 +7,10 @@
 package org.kde.kdeconnect.Plugins.PhotoPlugin;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 
 import org.kde.kdeconnect.Helpers.FilesHelper;
 import org.kde.kdeconnect.NetworkPacket;
@@ -62,8 +61,8 @@ public class PhotoPlugin extends Plugin {
     }
 
     @Override
-    public Drawable getIcon() {
-        return ContextCompat.getDrawable(context, R.drawable.ic_camera);
+    public @DrawableRes int getIcon() {
+        return R.drawable.ic_camera;
     }
 
     void sendCancel() {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <integer name="plugins_columns">3</integer>
     <integer name="mpris_now_playing_orientation">@integer/orientation_horizontal</integer>
     <integer name="mpris_now_playing_album_weight">1</integer>
     <integer name="mpris_now_playing_controls_weight">1</integer>

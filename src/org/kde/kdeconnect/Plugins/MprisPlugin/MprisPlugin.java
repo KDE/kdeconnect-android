@@ -10,11 +10,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 
 import org.kde.kdeconnect.NetworkPacket;
 import org.kde.kdeconnect.Plugins.Plugin;
@@ -250,8 +249,8 @@ public class MprisPlugin extends Plugin {
     }
 
     @Override
-    public Drawable getIcon() {
-        return ContextCompat.getDrawable(context, R.drawable.mpris_plugin_action_24dp);
+    public @DrawableRes int getIcon() {
+        return R.drawable.mpris_plugin_action_24dp;
     }
 
     @Override
@@ -482,7 +481,7 @@ public class MprisPlugin extends Plugin {
     }
 
     @Override
-    public boolean hasMainActivity(Context context) {
+    public boolean displayAsButton(Context context) {
         return true;
     }
 

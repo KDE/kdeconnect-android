@@ -1,51 +1,33 @@
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="org.kde.kdeconnect.UserInterface.DeviceFragment">
+
+    <!-- Shown when device is reachable but not yet paired -->
+    <include
+        android:id="@+id/pair_request"
+        layout="@layout/view_pair_request"
+        tools:visibility="gone"/>
+
+    <!-- Shown when the device is paired but not reachable -->
+    <include
+        android:id="@+id/pair_error"
+        layout="@layout/view_pair_error"
+        tools:visibility="gone"/>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/device_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+         <!-- Shown when the device is paired and reachable -->
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/device_view_compose"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:layout_height="wrap_content" />
 
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                tools:context="org.kde.kdeconnect.UserInterface.DeviceFragment">
-
-            <!-- Layout shown when device is reachable but not yet paired -->
-            <include
-                android:id="@+id/pair_request"
-                layout="@layout/view_pair_request"
-                tools:visibility="gone"/>
-
-            <!-- Layout shown when we can't pair with device or device is not reachable -->
-            <include
-                android:id="@+id/pair_error"
-                layout="@layout/view_pair_error"
-                tools:visibility="gone"/>
-
-            <!-- Layouts shown when device is paired and reachable -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/plugins_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:nestedScrollingEnabled="false"
-                tools:listitem="@layout/list_plugin_entry"
-                tools:layout_height="300dp" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/permissions_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false"
-                tools:context=".DeviceActivity"
-                tools:listitem="@layout/list_item_plugin_header"
-                tools:layout_height="300dp" />
-
-        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </FrameLayout>
+
+

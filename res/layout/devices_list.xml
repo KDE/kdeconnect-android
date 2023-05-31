@@ -14,7 +14,7 @@
         android:divider="@null"
         android:dividerHeight="12dp"
         android:orientation="vertical"
-        tools:listitem="@layout/list_plugin_entry"
+        tools:listitem="@layout/list_card_entry"
         tools:context=".MainActivity" />
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

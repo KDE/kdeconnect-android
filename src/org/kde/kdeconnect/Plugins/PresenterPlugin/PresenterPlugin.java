@@ -12,11 +12,10 @@ import static org.kde.kdeconnect.Plugins.MousePadPlugin.KeyListenerView.SpecialK
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.view.KeyEvent;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.kde.kdeconnect.Device;
@@ -51,8 +50,8 @@ public class PresenterPlugin extends Plugin {
     }
 
     @Override
-    public Drawable getIcon() {
-        return ContextCompat.getDrawable(context, R.drawable.ic_presenter_24dp);
+    public @DrawableRes int getIcon() {
+        return R.drawable.ic_presenter_24dp;
     }
 
     @Override
@@ -61,7 +60,7 @@ public class PresenterPlugin extends Plugin {
     }
 
     @Override
-    public boolean hasMainActivity(Context context) {
+    public boolean displayAsButton(Context context) {
         return true;
     }
 

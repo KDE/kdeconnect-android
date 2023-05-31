@@ -7,17 +7,16 @@
 package org.kde.kdeconnect.Plugins.ClibpoardPlugin;
 
 
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.widget.Toast;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
@@ -130,14 +129,14 @@ public class ClipboardPlugin extends Plugin {
     }
 
     @Override
-    public boolean hasMainActivity(Context context) {
+    public boolean displayAsButton(Context context) {
         return Build.VERSION.SDK_INT > Build.VERSION_CODES.P &&
                 ContextCompat.checkSelfPermission(context, Manifest.permission.READ_LOGS) == PackageManager.PERMISSION_DENIED;
     }
 
     @Override
-    public Drawable getIcon() {
-        return ContextCompat.getDrawable(context, R.drawable.ic_baseline_content_paste_24);
+    public @DrawableRes int getIcon() {
+        return R.drawable.ic_baseline_content_paste_24;
     }
 
     @Override

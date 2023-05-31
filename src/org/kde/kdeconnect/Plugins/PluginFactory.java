@@ -9,9 +9,9 @@ package org.kde.kdeconnect.Plugins;
 import static org.apache.commons.collections4.SetUtils.unmodifiableSet;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -38,7 +38,7 @@ public class PluginFactory {
 
     public static class PluginInfo {
 
-        PluginInfo(@NonNull String displayName, @NonNull String description, @Nullable Drawable icon,
+        PluginInfo(@NonNull String displayName, @NonNull String description, @DrawableRes int icon,
                    boolean enabledByDefault, boolean hasSettings, boolean supportsDeviceSpecificSettings,
                    boolean listenToUnpaired, @NonNull String[] supportedPacketTypes, @NonNull String[] outgoingPacketTypes,
                    @NonNull Class<? extends Plugin> instantiableClass) {
@@ -62,7 +62,7 @@ public class PluginFactory {
             return description;
         }
 
-        public @Nullable Drawable getIcon() {
+        public @DrawableRes int getIcon() {
             return icon;
         }
 
@@ -94,7 +94,7 @@ public class PluginFactory {
 
         private final @NonNull String displayName;
         private final @NonNull String description;
-        private final @Nullable Drawable icon;
+        private final @DrawableRes int icon;
         private final boolean enabledByDefault;
         private final boolean hasSettings;
         private final boolean supportsDeviceSpecificSettings;
