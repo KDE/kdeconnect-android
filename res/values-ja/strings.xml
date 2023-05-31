@@ -120,25 +120,25 @@
     <item quantity="other">%1$d ファイルを %2$s から受信しています</item>
   </plurals>
   <plurals name="incoming_files_text">
-    <item quantity="other">ファイル: %1s</item>
+    <item quantity="other">(%3$d 個中 %2$d 個のファイル) : %1$s</item>
   </plurals>
   <plurals name="outgoing_file_title">
     <item quantity="other">%1$d ファイルを %2$s へ送信中</item>
   </plurals>
   <plurals name="outgoing_files_text">
-    <item quantity="other">ファイル: %1$s</item>
+    <item quantity="other">(%3$d 個中 %2$d 個のファイル) : %1$s</item>
   </plurals>
   <plurals name="received_files_title">
-    <item quantity="other">%1$s からファイルを受信</item>
+    <item quantity="other">%1$s から %2$d ファイルを受信</item>
   </plurals>
   <plurals name="received_files_fail_title">
-    <item quantity="other">%1$s からのファイルの受信に失敗</item>
+    <item quantity="other">%1$s からの %3$d 個中 %2$d 個のファイルの受信に失敗</item>
   </plurals>
   <plurals name="sent_files_title">
-    <item quantity="other">%1$s にファイルを送信済み</item>
+    <item quantity="other">%1$s に %2$d 個のファイルを送信済み</item>
   </plurals>
   <plurals name="send_files_fail_title">
-    <item quantity="other">%1$s へのファイル送信に失敗</item>
+    <item quantity="other">%1$s への %3$d 個中 %2$d 個のファイル送信に失敗</item>
   </plurals>
   <string name="tap_to_open">タップして開く</string>
   <string name="received_file_text">タップして \'%1s\' を開く</string>
