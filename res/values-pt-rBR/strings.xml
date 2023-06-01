@@ -51,11 +51,17 @@
   <string name="remotekeyboard_connected">A conexão ao teclado remoto está ativa</string>
   <string name="remotekeyboard_multiple_connections">Existe mais que uma conexão a teclados remotos. Selecione o dispositivo a configurar</string>
   <string name="open_mousepad">Introdução de dados remota</string>
+  <string name="mousepad_info">Mova um dedo pela tela para mover o ponteiro do mouse. Dê um toque para clicar e use dois/três dedos para os botões da direita e do meio. Use dois dedos para rolar a tela. Use uma pressão longa para arrastar e soltar. A funcionalidade do mouse giroscópio pode ser habilitada nas preferências do plugin.</string>
+  <string name="mousepad_keyboard_input_not_supported">Entrada de teclado não suportada pelo dispositivo emparelhado</string>
+  <string name="mousepad_single_tap_settings_title">Definir ação do toque com um dedo</string>
   <string name="mousepad_double_tap_settings_title">Definir ação do toque com dois dedos</string>
   <string name="mousepad_triple_tap_settings_title">Definir ação do toque com três dedos</string>
   <string name="mousepad_sensitivity_settings_title">Definir sensibilidade do touchpad</string>
+  <string name="mousepad_mouse_buttons_title">Mostrar botões do mouse</string>
   <string name="mousepad_acceleration_profile_settings_title">Definir aceleração do ponteiro</string>
   <string name="mousepad_scroll_direction_title">Direção de rolagem inversa</string>
+  <string name="gyro_mouse_enabled_title">Ativar mouse giroscópio</string>
+  <string name="gyro_mouse_sensitivity_title">Sensibilidade do giroscópio</string>
   <string-array name="mousepad_tap_entries">
     <item>Clique esquerdo</item>
     <item>Clique direito</item>
@@ -78,13 +84,16 @@
     <item>Muito forte</item>
   </string-array>
   <string name="sendkeystrokes_send_to">"Enviar pressionamento de teclas para "</string>
+  <string name="sendkeystrokes_textbox_hint">Enviar pressionamento de teclas para o host</string>
   <string name="sendkeystrokes_disabled_toast">O envio de pressionamento de tecla está desabilitado - habilite-o nas configurações</string>
   <string name="sendkeystrokes_wrong_data">Tipo MIME inválido - precisa ser \'text/x-keystrokes\'</string>
   <string name="sendkeystrokes_sent_text">Enviar %1$s para o dispositivo %2$s</string>
   <string name="sendkeystrokes_pref_category_summary">Este módulo permite a outros aplicativos compartilhar segmentos de texto como pressionamento de teclas que serão enviados para o host conectado</string>
   <string name="sendkeystrokes_pref_category_title">Enviar pressionamento de teclas</string>
   <string name="sendkeystrokes_pref_enabled">Habilitar o envio de pressionamento de teclas</string>
+  <string name="sendkeystrokes_pref_enabled_summary">Ouvir dados com o tipo MIME \'text/x-keystrokes\'</string>
   <string name="sendkeystrokes_safe_text_enabled">Enviar texto seguro imediatamente</string>
+  <string name="sendkeystrokes_safe_text_enabled_summary">Enviar sequências numéricas curtas sem confirmação</string>
   <string name="pref_plugin_mousepad_send_keystrokes">Enviar como pressionamento de teclas</string>
   <string name="mouse_receiver_plugin_description">Receber movimento de mouse remoto</string>
   <string name="mouse_receiver_plugin_name">Receptor de mouse</string>
@@ -211,8 +220,11 @@
   <string name="sftp_action_mode_menu_delete">Excluir</string>
   <string name="sftp_no_storage_locations_configured">Nenhum local de armazenamento configurado</string>
   <string name="sftp_saf_permission_explanation">Para acessar arquivos remotamente você precisa configurar locais de armazenamento</string>
+  <string name="sftp_manage_storage_permission_explanation">Para permitir o acesso remoto aos arquivos neste dispositivo, você precisapermitir que o KDE Connect gerencie o armazenamento.</string>
   <string name="no_players_connected">Nenhum reprodutor encontrado</string>
   <string name="send_files">Enviar arquivos</string>
+  <string name="block_notification_contents">Bloquear os conteúdos das notificações</string>
+  <string name="block_notification_images">Bloquear as imagens das notificações</string>
   <string name="pairing_title">Dispositivos do KDE Connect</string>
   <string name="pairing_description">Outros dispositivos executando o KDE Connect na mesma rede devem aparecer aqui.</string>
   <string name="device_rename_title">Renomear dispositivo</string>
@@ -235,8 +247,10 @@
   <string name="close">Fechar</string>
   <string name="plugins_need_permission">Alguns plugins precisam de permissões para funcionar (toque para mais informações):</string>
   <string name="permission_explanation">Este plugin precisa de permissões para funcionar</string>
+  <string name="all_permissions_granted">Todas as permissões concedidas 🎉</string>
   <string name="optional_permission_explanation">Você precisa conceder permissões extras para ativar todas as funções</string>
   <string name="plugins_need_optional_permission">Alguns plugins possuem recursos desativados devido à falta de permissões (toque para obter mais informações):</string>
+  <string name="share_optional_permission_explanation">Para receber arquivos você precisa permitir o acesso ao armazenamento</string>
   <string name="telepathy_permission_explanation">Para ler e gravar SMS a partir do seu ambiente de trabalho é necessário conceder permissão para SMS</string>
   <string name="telephony_permission_explanation">Para ver as chamadas telefônicas no seu ambiente de trabalho é preciso dar permissões para registro de chamadas telefônicas e do estado do celular</string>
   <string name="telephony_optional_permission_explanation">Para ver o nome de um contato em vez do seu número de telefone é necessário conceder acesso aos contatos do celular</string>
@@ -257,6 +271,7 @@
   <string name="pref_plugin_mprisreceiver">Controle do reprodutor de mídia</string>
   <string name="pref_plugin_mprisreceiver_desc">Controle os reprodutores de mídias do seu celular a partir de outro dispositivo</string>
   <string name="notification_channel_default">Outras notificações</string>
+  <string name="notification_channel_persistent">Indicador persistente</string>
   <string name="notification_channel_media_control">Controle multimídia</string>
   <string name="notification_channel_filetransfer">Transferência de arquivo</string>
   <string name="notification_channel_high_priority">Prioridade alta</string>
@@ -300,6 +315,7 @@
   <string name="empty_trusted_networks_list_text">Você ainda não adicionou nenhuma rede confiável</string>
   <string name="allow_all_networks_text">Permitir tudo</string>
   <string name="location_permission_needed_title">É necessário ter permissão</string>
+  <string name="location_permission_needed_desc">O KDE Connect precisa da permissão de localização em segundo plano para conhecer a rede WiFi à qual você está conectado, mesmo quando o aplicativo está em segundo plano. Isso ocorre porque o nome da rede WiFi ao seu redor pode ser usado para encontrar sua localização, mesmo quando não é isso que o KDE Connect faz.</string>
   <string name="clipboard_android_x_incompat">O Android 10 removeu o acesso à área de transferência para todos os aplicativos. Este plugin ficará desativado.</string>
   <string name="mpris_open_url">Continuar tocando aqui</string>
   <string name="cant_open_url">Não foi possível abrir a URL para continuar tocando</string>
@@ -347,6 +363,7 @@
   <string name="about">Sobre</string>
   <string name="authors">Autores</string>
   <string name="thanks_to">Agradecimentos a</string>
+  <string name="easter_egg">Easter Egg</string>
   <string name="email_contributor">E-mail do colaborador\n%s</string>
   <string name="visit_contributors_homepage">Visite o site do colaborador\n%s</string>
   <string name="version">Versão %s</string>
@@ -354,10 +371,17 @@
   <string name="kde_be_free">KDE - Seja livre!</string>
   <string name="kde">KDE</string>
   <string name="konqi">Konqi</string>
+  <string name="rise_up">Para cima</string>
+  <string name="rise_down">Para baixo</string>
   <string name="click_here_to_type">Toque aqui para digitar</string>
   <string name="clear_compose">Limpar</string>
   <string name="send_compose">Enviar</string>
+  <string name="compose_send_title">Enviar composto</string>
   <string name="open_compose_send">Compor texto</string>
+  <string name="about_kde_about">"&lt;h1&gt;About&lt;/h1&gt; &lt;p&gt;O KDE é uma comunidade mundial de engenheiros de software, artistas, escritores, tradutores e criadores comprometidos com o desenvolvimento de &lt;a href=https://www.gnu.org/philosophy/free-sw.html&gt;Software Livre.&lt;/a&gt;  O KDE produz o ambiente de desktop Plasma, centenas de aplicativos e muitas bibliotecas de software que os suportam.&lt;/p&gt; &lt;p&gt;KDE é uma empresa cooperativa: nenhuma entidade controla sua direção ou produtos. Em vez disso, trabalhamos juntos para alcançar o objetivo comum de construir o melhor software livre do mundo. Todos são bem-vindos para &lt;a href=https://community.kde.org/Get_Involved&gt;participar e contribuir com o KDE&lt;/a&gt; , inclusive você.&lt;/p&gt; Visite &lt;a href=https://www.kde.org/&gt;https://www.kde.org/&lt;/a&gt; para obter mais informações sobre a comunidade KDE e o software que produzimos."</string>
+  <string name="about_kde_report_bugs_or_wishes">&lt;h1&gt;Reportar bugs ou sugestões&lt;/h1&gt; &lt;p&gt; Software sempre pode ser melhorado e a equipe do KDE está pronta para isso. No entanto, você - o usuário - deve nos informar quando algo não funcionar conforme o esperado ou puder ser feito melhor.&lt;/p&gt; &lt;p&gt;KDE possui um sistema de rastreamento de bugs. Visite &lt;a href=https://bugs.kde.org/&gt;https://bugs.kde.org/&lt;/a&gt; ou use o botão \"Relatar erro\" na tela \"sobre\" para relatar bugs.&lt;/p&gt; Se você tiver uma sugestão de melhoria, poderá usar o sistema de rastreamento de bugs para registrar sua solicitação. Certifique-se de usar a opção \"wishlist\" no campo \"severity\".</string>
+  <string name="about_kde_join_kde">&lt;h1&gt;Junte-se ao KDE&lt;/h1&gt; &lt;p&gt; Você não precisa ser um desenvolvedor de software para ser membro da equipe do KDE. Você pode se juntar às equipes nacionais que traduzem interfaces de programas. Você pode fornecer gráficos, temas, sons e documentação aprimorada. Você decide!&lt;/p&gt; &lt;p&gt;Visite &lt;a href=https://community.kde.org/Get_Involved&gt;https://community.kde.org/Get_Involved&lt;/a&gt; para obter informações sobre alguns projetos nos quais você pode participar.&lt;/p&gt; Se você precisar de mais informações ou documentação, uma visita a &lt;a href=https://techbase.kde.org/&gt;https://techbase.kde.org/&lt;/a&gt; fornecerá o que você precisa.</string>
+  <string name="about_kde_support_kde">&lt;h1&gt;Apoie o KDE&lt;/h1&gt; &lt;p&gt;O software do KDE está e sempre estará disponível gratuitamente, mas criá-lo não é gratuito.&lt;/p&gt; &lt;p&gt;Para apoiar o desenvolvimento, a comunidade KDE formou o KDE e.V., uma organização sem fins lucrativos fundada legalmente na Alemanha. KDE e.V. representa a comunidade KDE em questões legais e financeiras. Veja &lt;a href=https://ev.kde.org/&gt;https://ev.kde.org/&lt;/a&gt; para obter informações sobre o KDE e.V.&lt;/p&gt; &lt;p&gt;O KDE se beneficia de muitos tipos de contribuições, inclusive financeiras. Usamos os fundos para reembolsar os membros e outros pelas despesas em que incorrem ao contribuir. Outros fundos são usados para apoio jurídico e organização de conferências e reuniões.&lt;/p&gt; &lt;p&gt;Gostaríamos de incentivá-lo a apoiar nossos esforços com uma doação financeira, usando uma das formas descritas em &lt;a href=https://www.kde.org/community/donations/&gt;https://www.kde.org/community/donations/&lt;/a&gt;.&lt;/p&gt; Muito obrigado antecipadamente por seu apoio.</string>
   <string name="maintainer_and_developer">Mantenedor e desenvolvedor</string>
   <string name="developer">Desenvolvedor</string>
   <string name="apple_support">Suporte ao macOS. Trabalhando no suporte ao iOS</string>
