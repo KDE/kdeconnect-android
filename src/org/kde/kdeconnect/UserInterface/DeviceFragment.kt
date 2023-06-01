@@ -27,6 +27,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import androidx.fragment.app.Fragment
+import com.google.accompanist.themeadapter.material3.Mdc3Theme
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Device
@@ -39,7 +40,6 @@ import org.kde.kdeconnect.Plugins.MprisPlugin.MprisPlugin
 import org.kde.kdeconnect.Plugins.Plugin
 import org.kde.kdeconnect.Plugins.PresenterPlugin.PresenterPlugin
 import org.kde.kdeconnect.Plugins.RunCommandPlugin.RunCommandPlugin
-import org.kde.kdeconnect.UserInterface.compose.AppTheme
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityDeviceBinding
 import org.kde.kdeconnect_tp.databinding.ViewPairErrorBinding
@@ -284,7 +284,7 @@ class DeviceFragment : Fragment() {
                     requireDeviceBinding().deviceView.visibility = View.VISIBLE
                     requireDeviceBinding().deviceViewCompose.apply {
                         setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
-                        setContent { AppTheme { PluginList(device) } }
+                        setContent { Mdc3Theme { PluginList(device) } }
                     }
                     displayBatteryInfoIfPossible()
                 } else {
@@ -383,7 +383,7 @@ class DeviceFragment : Fragment() {
     fun PluginButton(plugin : Plugin, modifier: Modifier) {
         Card(
             shape = MaterialTheme.shapes.medium,
-            modifier = modifier.height(height = 120.dp),
+            modifier = modifier,
             onClick = { plugin.startMainActivity(mActivity) }
         ) {
             Column(
@@ -398,6 +398,7 @@ class DeviceFragment : Fragment() {
                 Text(
                     text = plugin.actionName,
                     maxLines = 2,
+                    minLines = 2,
                     fontSize = 18.sp,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -406,8 +407,7 @@ class DeviceFragment : Fragment() {
     }
 
     @Composable
-    fun PluginButtons(plugins: Iterator<Plugin>, numColumns: Int)
-    {
+    fun PluginButtons(plugins: Iterator<Plugin>, numColumns: Int) {
         Column(modifier = Modifier.padding(horizontal = 16.dp)) {
             while (plugins.hasNext()) {
                 Row(
@@ -432,8 +432,7 @@ class DeviceFragment : Fragment() {
     }
 
     @Composable
-    fun PluginsWithoutPermissions(title : String, plugins: Collection<Plugin>, action : (plugin: Plugin) -> Unit)
-    {
+    fun PluginsWithoutPermissions(title : String, plugins: Collection<Plugin>, action : (plugin: Plugin) -> Unit) {
         Text(
             text = title,
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp)
@@ -448,6 +447,7 @@ class DeviceFragment : Fragment() {
             )
         }
     }
+
     @Composable
     fun PluginList(device : Device) {
 
