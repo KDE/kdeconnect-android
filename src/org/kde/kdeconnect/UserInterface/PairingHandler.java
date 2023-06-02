@@ -121,19 +121,19 @@ public class PairingHandler {
 
         mPairState = PairState.Requested;
 
+        mPairingTimer = new Timer();
+        mPairingTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                Log.w("PairingHandler","Unpairing (timeout after receiving pair request)");
+                mPairState = PairState.NotPaired;
+                mCallback.pairingFailed(mDevice.getContext().getString(R.string.error_timed_out));
+            }
+        }, 30*1000); //Time to wait for the other to accept
+
         Device.SendPacketStatusCallback statusCallback = new Device.SendPacketStatusCallback() {
             @Override
-            public void onSuccess() {
-                mPairingTimer = new Timer();
-                mPairingTimer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        Log.w("PairingHandler","Unpairing (timeout after receiving pair request)");
-                        mPairState = PairState.NotPaired;
-                        mCallback.pairingFailed(mDevice.getContext().getString(R.string.error_timed_out));
-                    }
-                }, 30*1000); //Time to wait for the other to accept
-            }
+            public void onSuccess() { }
 
             @Override
             public void onFailure(Throwable e) {
