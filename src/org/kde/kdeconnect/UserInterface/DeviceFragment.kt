@@ -31,7 +31,6 @@ import com.google.accompanist.themeadapter.material3.Mdc3Theme
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.kde.kdeconnect.BackgroundService
 import org.kde.kdeconnect.Device
-import org.kde.kdeconnect.Device.PairingCallback
 import org.kde.kdeconnect.Device.PluginsChangedListener
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper
 import org.kde.kdeconnect.KdeConnect
@@ -300,8 +299,8 @@ class DeviceFragment : Fragment() {
         }
     }
 
-    private val pairingCallback: PairingCallback = object : PairingCallback {
-        override fun incomingRequest() {
+    private val pairingCallback: PairingHandler.PairingCallback = object : PairingHandler.PairingCallback {
+        override fun incomingPairRequest() {
             mActivity?.runOnUiThread { refreshUI() }
         }
 

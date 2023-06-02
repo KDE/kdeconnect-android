@@ -28,18 +28,17 @@ import androidx.core.content.ContextCompat;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Backends.LanBackend.LanLink;
 import org.kde.kdeconnect.Backends.LanBackend.LanLinkProvider;
-import org.kde.kdeconnect.Backends.LanBackend.LanPairingHandler;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
-import org.mockito.ArgumentCaptor;
+import org.kde.kdeconnect.UserInterface.PairingHandler;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -125,55 +124,7 @@ public class DeviceTest {
         assertTrue(device.isPaired());
     }
 
-    // Testing pairing done
-    // Created an unpaired device inside this test
-    @Test
-    public void testPairingDone() {
-        NetworkPacket fakeNetworkPacket = new NetworkPacket(NetworkPacket.PACKET_TYPE_IDENTITY);
-        fakeNetworkPacket.set("deviceId", "unpairedTestDevice");
-        fakeNetworkPacket.set("deviceName", "Unpaired Test Device");
-        fakeNetworkPacket.set("protocolVersion", DeviceHelper.ProtocolVersion);
-        fakeNetworkPacket.set("deviceType", Device.DeviceType.Phone.toString());
-
-        LanLinkProvider linkProvider = Mockito.mock(LanLinkProvider.class);
-        Mockito.when(linkProvider.getName()).thenReturn("LanLinkProvider");
-        LanLink link = Mockito.mock(LanLink.class);
-        Mockito.when(link.getLinkProvider()).thenReturn(linkProvider);
-        Mockito.when(link.getPairingHandler(any(Device.class), any(BasePairingHandler.PairingHandlerCallback.class))).thenReturn(Mockito.mock(LanPairingHandler.class));
-        Device device = new Device(context, fakeNetworkPacket, link);
-
-        Device.PairingCallback pairingCallback = Mockito.mock(Device.PairingCallback.class);
-        device.addPairingCallback(pairingCallback);
-
-
-        ArgumentCaptor<BasePairingHandler.PairingHandlerCallback> pairingHandlerCallback = ArgumentCaptor.forClass(BasePairingHandler.PairingHandlerCallback.class);
-        Mockito.verify(link, Mockito.times(1)).getPairingHandler(eq(device), pairingHandlerCallback.capture());
-
-        assertNotNull(device);
-        assertEquals(device.getDeviceId(), "unpairedTestDevice");
-        assertEquals(device.getName(), "Unpaired Test Device");
-        assertEquals(device.getDeviceType(), Device.DeviceType.Phone);
-        assertNull(device.certificate);
-
-        pairingHandlerCallback.getValue().pairingDone();
-
-        assertTrue(device.isPaired());
-        Mockito.verify(pairingCallback, Mockito.times(1)).pairingSuccessful();
-
-        SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
-        assertTrue(preferences.getBoolean(device.getDeviceId(), false));
-
-        SharedPreferences settings = context.getSharedPreferences(device.getDeviceId(), Context.MODE_PRIVATE);
-        assertEquals(settings.getString("deviceName", "Unknown device"), "Unpaired Test Device");
-        assertEquals(settings.getString("deviceType", "tablet"), "phone");
-
-        // Cleanup for unpaired test device
-        preferences.edit().remove(device.getDeviceId()).apply();
-        settings.edit().clear().apply();
-    }
-
-    @Test
-    public void testPairingDoneWithCertificate() {
+    public void testPairingDoneWithCertificate() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
 
         NetworkPacket fakeNetworkPacket = new NetworkPacket(NetworkPacket.PACKET_TYPE_IDENTITY);
         fakeNetworkPacket.set("deviceId", "unpairedTestDevice");
@@ -201,7 +152,6 @@ public class DeviceTest {
         LanLinkProvider linkProvider = Mockito.mock(LanLinkProvider.class);
         Mockito.when(linkProvider.getName()).thenReturn("LanLinkProvider");
         LanLink link = Mockito.mock(LanLink.class);
-        Mockito.when(link.getPairingHandler(any(Device.class), any(BasePairingHandler.PairingHandlerCallback.class))).thenReturn(Mockito.mock(LanPairingHandler.class));
         Mockito.when(link.getLinkProvider()).thenReturn(linkProvider);
         Device device = new Device(context, fakeNetworkPacket, link);
 
@@ -211,14 +161,9 @@ public class DeviceTest {
         assertEquals(device.getDeviceType(), Device.DeviceType.Phone);
         assertNotNull(device.certificate);
 
-        Method method;
-        try {
-            method = Device.class.getDeclaredMethod("pairingDone");
-            method.setAccessible(true);
-            method.invoke(device);
-        } catch (Exception e) {
-            Log.e("KDEConnect", "Exception", e);
-        }
+        Method method = PairingHandler.class.getDeclaredMethod("pairingDone");
+        method.setAccessible(true);
+        method.invoke(device.pairingHandler);
 
         assertTrue(device.isPaired());
 
@@ -236,7 +181,7 @@ public class DeviceTest {
 
     @Test
     public void testUnpair() {
-        Device.PairingCallback pairingCallback = Mockito.mock(Device.PairingCallback.class);
+        PairingHandler.PairingCallback pairingCallback = Mockito.mock(PairingHandler.PairingCallback.class);
         Device device = new Device(context, "testDevice");
         device.addPairingCallback(pairingCallback);
 

@@ -16,7 +16,6 @@ import androidx.annotation.WorkerThread;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.kde.kdeconnect.Backends.BaseLink;
-import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
 
@@ -110,11 +109,6 @@ public class BluetoothLink extends BaseLink {
     @Override
     public String getName() {
         return "BluetoothLink";
-    }
-
-    @Override
-    public BasePairingHandler getPairingHandler(Device device, BasePairingHandler.PairingHandlerCallback callback) {
-        return new BluetoothPairingHandler(device, callback);
     }
 
     public void disconnect() {
