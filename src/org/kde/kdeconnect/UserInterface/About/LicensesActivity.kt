@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import org.apache.commons.io.IOUtils
-import org.kde.kdeconnect.UserInterface.ThemeUtil
 import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.ActivityLicensesBinding
 import java.nio.charset.Charset
