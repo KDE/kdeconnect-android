@@ -137,6 +137,7 @@ public class PairingHandler {
 
             @Override
             public void onFailure(Throwable e) {
+                cancelTimer();
                 Log.e("PairingHandler", "Exception sending pairing request", e);
                 mPairState = PairState.NotPaired;
                 mCallback.pairingFailed(mDevice.getContext().getString(R.string.runcommand_notreachable));
