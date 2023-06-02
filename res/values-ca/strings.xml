@@ -108,6 +108,7 @@
   <string name="device_menu_plugins">Arranjament dels connectors</string>
   <string name="device_menu_unpair">Desaparella</string>
   <string name="pair_new_device">Aparella amb un dispositiu nou</string>
+  <string name="cancel_pairing">Cancel·la l\'aparellament</string>
   <string name="unknown_device">Dispositiu desconegut</string>
   <string name="error_not_reachable">No es pot accedir al dispositiu</string>
   <string name="error_already_paired">El dispositiu ja està aparellat</string>

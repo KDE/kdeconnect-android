@@ -108,6 +108,7 @@
   <string name="device_menu_plugins">Configuração do \'plugin\'</string>
   <string name="device_menu_unpair">Desemparelhar</string>
   <string name="pair_new_device">Emparelhar um novo dispositivo</string>
+  <string name="cancel_pairing">Cancelar o emparelhamento</string>
   <string name="unknown_device">Dispositivo desconhecido</string>
   <string name="error_not_reachable">Dispositivo inacessível</string>
   <string name="error_already_paired">O dispositivo já foi emparelhado</string>

@@ -108,6 +108,7 @@
   <string name="device_menu_plugins">Eklenti ayarları</string>
   <string name="device_menu_unpair">Ayır</string>
   <string name="pair_new_device">Yeni bir aygıt eşleştir</string>
+  <string name="cancel_pairing">Eşleşmeyi İptal Et</string>
   <string name="unknown_device">Bİlinmeyen aygıt</string>
   <string name="error_not_reachable">Aygıt ulaşılabilir değil</string>
   <string name="error_already_paired">Aygıt zaten eşleşmiş</string>

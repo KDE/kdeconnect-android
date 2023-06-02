@@ -108,6 +108,7 @@
   <string name="device_menu_plugins">Параметри додатків</string>
   <string name="device_menu_unpair">Скасувати пов’язування</string>
   <string name="pair_new_device">Пов’язати новий пристрій</string>
+  <string name="cancel_pairing">Скасувати пов\'язування</string>
   <string name="unknown_device">Невідомий пристрій</string>
   <string name="error_not_reachable">Немає доступу до пристрою</string>
   <string name="error_already_paired">Пристрій вже пов’язано</string>

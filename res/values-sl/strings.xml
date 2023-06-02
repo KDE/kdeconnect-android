@@ -108,6 +108,7 @@
   <string name="device_menu_plugins">Nastavitve vtičnikov</string>
   <string name="device_menu_unpair">Razkleni par</string>
   <string name="pair_new_device">Upari novo napravo</string>
+  <string name="cancel_pairing">Prekliči uparjanje</string>
   <string name="unknown_device">Neznana naprava</string>
   <string name="error_not_reachable">Naprava ni dosegljiva</string>
   <string name="error_already_paired">Naprava je že uparjena</string>
