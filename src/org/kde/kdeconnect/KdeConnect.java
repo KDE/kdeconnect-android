@@ -14,6 +14,7 @@ import org.kde.kdeconnect.Helpers.SecurityHelpers.RsaHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
+import org.kde.kdeconnect.UserInterface.PairingHandler;
 import org.kde.kdeconnect.UserInterface.ThemeUtil;
 
 import java.util.Set;
@@ -111,9 +112,9 @@ public class KdeConnect extends Application {
         }
     }
 
-    private final Device.PairingCallback devicePairingCallback = new Device.PairingCallback() {
+    private final PairingHandler.PairingCallback devicePairingCallback = new PairingHandler.PairingCallback() {
         @Override
-        public void incomingRequest() {
+        public void incomingPairRequest() {
             onDeviceListChanged();
         }
 

@@ -14,7 +14,6 @@ import androidx.annotation.WorkerThread;
 
 import org.json.JSONObject;
 import org.kde.kdeconnect.Backends.BaseLink;
-import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Helpers.ThreadHelper;
@@ -115,11 +114,6 @@ public class LanLink extends BaseLink {
     @Override
     public String getName() {
         return "LanLink";
-    }
-
-    @Override
-    public BasePairingHandler getPairingHandler(Device device, BasePairingHandler.PairingHandlerCallback callback) {
-        return new LanPairingHandler(device, callback);
     }
 
     //Blocking, do not call from main thread

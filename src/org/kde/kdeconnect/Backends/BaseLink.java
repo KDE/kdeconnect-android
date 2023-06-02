@@ -30,14 +30,13 @@ public abstract class BaseLink {
     private final ArrayList<PacketReceiver> receivers = new ArrayList<>();
 
     protected BaseLink(@NonNull Context context, @NonNull String deviceId, @NonNull BaseLinkProvider linkProvider) {
-        this.context = context;        
+        this.context = context;
         this.linkProvider = linkProvider;
         this.deviceId = deviceId;
     }
 
     /* To be implemented by each link for pairing handlers */
     public abstract String getName();
-    public abstract BasePairingHandler getPairingHandler(@NonNull Device device, @NonNull BasePairingHandler.PairingHandlerCallback callback);
 
     public String getDeviceId() {
         return deviceId;

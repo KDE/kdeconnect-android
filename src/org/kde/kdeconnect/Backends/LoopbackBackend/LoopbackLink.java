@@ -13,7 +13,6 @@ import androidx.annotation.WorkerThread;
 
 import org.kde.kdeconnect.Backends.BaseLink;
 import org.kde.kdeconnect.Backends.BaseLinkProvider;
-import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Device;
 import org.kde.kdeconnect.NetworkPacket;
 
@@ -26,11 +25,6 @@ public class LoopbackLink extends BaseLink {
     @Override
     public String getName() {
         return "LoopbackLink";
-    }
-
-    @Override
-    public BasePairingHandler getPairingHandler(Device device, BasePairingHandler.PairingHandlerCallback callback) {
-        return new LoopbackPairingHandler(device, callback);
     }
 
     @WorkerThread

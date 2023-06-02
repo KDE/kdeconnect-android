@@ -28,23 +28,22 @@ import org.apache.commons.collections4.MultiValuedMap;
 import org.apache.commons.collections4.multimap.ArrayListValuedHashMap;
 import org.apache.commons.lang3.StringUtils;
 import org.kde.kdeconnect.Backends.BaseLink;
-import org.kde.kdeconnect.Backends.BasePairingHandler;
 import org.kde.kdeconnect.Helpers.DeviceHelper;
 import org.kde.kdeconnect.Helpers.NotificationHelper;
 import org.kde.kdeconnect.Helpers.SecurityHelpers.SslHelper;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect.Plugins.PluginFactory;
 import org.kde.kdeconnect.UserInterface.MainActivity;
+import org.kde.kdeconnect.UserInterface.PairingHandler;
 import org.kde.kdeconnect_tp.R;
 
 import java.io.IOException;
 import java.security.cert.Certificate;
+import java.security.cert.CertificateEncodingException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
@@ -59,24 +58,17 @@ public class Device implements BaseLink.PacketReceiver {
     public Certificate certificate;
     private int notificationId;
     private int protocolVersion;
-
     private DeviceType deviceType;
-    private PairStatus pairStatus;
-
-    private final CopyOnWriteArrayList<PairingCallback> pairingCallback = new CopyOnWriteArrayList<>();
-    private final Map<String, BasePairingHandler> pairingHandlers = new HashMap<>();
-
+    PairingHandler pairingHandler;
+    private final CopyOnWriteArrayList<PairingHandler.PairingCallback> pairingCallbacks = new CopyOnWriteArrayList<>();
     private final CopyOnWriteArrayList<BaseLink> links = new CopyOnWriteArrayList<>();
     private DevicePacketQueue packetQueue;
-
     private List<String> supportedPlugins = new ArrayList<>();
     private final ConcurrentHashMap<String, Plugin> plugins = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, Plugin> pluginsWithoutPermissions = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, Plugin> pluginsWithoutOptionalPermissions = new ConcurrentHashMap<>();
     private MultiValuedMap<String, String> pluginsByIncomingInterface = new ArrayListValuedHashMap<>();
-
     private final SharedPreferences settings;
-
     private final CopyOnWriteArrayList<PluginsChangedListener> pluginsChangedListeners = new CopyOnWriteArrayList<>();
     private Set<String> incomingCapabilities = new HashSet<>();
 
@@ -90,11 +82,6 @@ public class Device implements BaseLink.PacketReceiver {
 
     public interface PluginsChangedListener {
         void onPluginsChanged(@NonNull Device device);
-    }
-
-    public enum PairStatus {
-        NotPaired,
-        Paired
     }
 
     public enum DeviceType {
@@ -143,16 +130,6 @@ public class Device implements BaseLink.PacketReceiver {
         }
     }
 
-    public interface PairingCallback {
-        void incomingRequest();
-
-        void pairingSuccessful();
-
-        void pairingFailed(String error);
-
-        void unpaired();
-    }
-
     //Remembered trusted device, we need to wait for a incoming devicelink to communicate
     Device(Context context, String deviceId) {
         settings = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
@@ -162,7 +139,7 @@ public class Device implements BaseLink.PacketReceiver {
         this.context = context;
         this.deviceId = deviceId;
         this.name = settings.getString("deviceName", context.getString(R.string.unknown_device));
-        this.pairStatus = PairStatus.Paired;
+        this.pairingHandler = new PairingHandler(this, pairingCallback, PairingHandler.PairState.Paired);
         this.protocolVersion = DeviceHelper.ProtocolVersion; //We don't know it yet
         this.deviceType = DeviceType.FromString(settings.getString("deviceType", "desktop"));
 
@@ -181,7 +158,7 @@ public class Device implements BaseLink.PacketReceiver {
         this.context = context;
         this.deviceId = np.getString("deviceId");
         this.name = context.getString(R.string.unknown_device); //We read it in addLink
-        this.pairStatus = PairStatus.NotPaired;
+        this.pairingHandler= new PairingHandler(this, pairingCallback, PairingHandler.PairState.NotPaired);
         this.protocolVersion = 0;
         this.deviceType = DeviceType.Computer;
 
@@ -221,143 +198,108 @@ public class Device implements BaseLink.PacketReceiver {
     //
 
     public boolean isPaired() {
-        return pairStatus == PairStatus.Paired;
+        return pairingHandler.getState() == PairingHandler.PairState.Paired;
     }
 
-    /* Asks all pairing handlers that, is pair requested? */
     public boolean isPairRequested() {
-        for (BasePairingHandler ph : pairingHandlers.values()) {
-            if (ph.isPairRequested()) {
-                return true;
-            }
-        }
-        return false;
+        return pairingHandler.getState() == PairingHandler.PairState.Requested;
     }
 
-    /* Asks all pairing handlers that, is pair requested by peer? */
     public boolean isPairRequestedByPeer() {
-        for (BasePairingHandler ph : pairingHandlers.values()) {
-            if (ph.isPairRequestedByPeer()) {
-                return true;
-            }
-        }
-        return false;
+        return pairingHandler.getState() == PairingHandler.PairState.RequestedByPeer;
     }
 
-    public void addPairingCallback(PairingCallback callback) {
-        pairingCallback.add(callback);
+    public void addPairingCallback(PairingHandler.PairingCallback callback) {
+        pairingCallbacks.add(callback);
     }
 
-    public void removePairingCallback(PairingCallback callback) {
-        pairingCallback.remove(callback);
+    public void removePairingCallback(PairingHandler.PairingCallback callback) {
+        pairingCallbacks.remove(callback);
     }
 
     public void requestPairing() {
-
-        Resources res = context.getResources();
-
-        if (isPaired()) {
-            for (PairingCallback cb : pairingCallback) {
-                cb.pairingFailed(res.getString(R.string.error_already_paired));
-            }
-            return;
-        }
-
-        if (!isReachable()) {
-            for (PairingCallback cb : pairingCallback) {
-                cb.pairingFailed(res.getString(R.string.error_not_reachable));
-            }
-            return;
-        }
-
-        for (BasePairingHandler ph : pairingHandlers.values()) {
-            ph.requestPairing();
-        }
-
+        pairingHandler.requestPairing();
     }
 
     public void unpair() {
-
-        for (BasePairingHandler ph : pairingHandlers.values()) {
-            ph.unpair();
-        }
-        unpairInternal(); // Even if there are no pairing handlers, unpair
-    }
-
-    /**
-     * This method does not send an unpair packet, instead it unpairs internally by deleting trusted device info.
-     * Likely to be called after sending packet from pairing handler
-     */
-    private void unpairInternal() {
-
-        //Log.e("Device","Unpairing (unpairInternal)");
-        pairStatus = PairStatus.NotPaired;
-
-        SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
-        preferences.edit().remove(deviceId).apply();
-
-        SharedPreferences devicePreferences = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
-        devicePreferences.edit().clear().apply();
-
-        for (PairingCallback cb : pairingCallback) cb.unpaired();
-
-        reloadPluginsFromSettings();
-
-    }
-
-    /* This method should be called after pairing is done from pairing handler. Calling this method again should not create any problem as most of the things will get over writter*/
-    private void pairingDone() {
-
-        //Log.e("Device", "Storing as trusted, deviceId: "+deviceId);
-
-        hidePairingNotification();
-
-        pairStatus = PairStatus.Paired;
-
-        //Store as trusted device
-        SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
-        preferences.edit().putBoolean(deviceId, true).apply();
-
-        SharedPreferences.Editor editor = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE).edit();
-        editor.putString("deviceName", name);
-        editor.putString("deviceType", deviceType.toString());
-        editor.apply();
-
-        reloadPluginsFromSettings();
-
-        for (PairingCallback cb : pairingCallback) {
-            cb.pairingSuccessful();
-        }
-
+        pairingHandler.unpair();
     }
 
     /* This method is called after accepting pair request form GUI */
     public void acceptPairing() {
-
         Log.i("KDE/Device", "Accepted pair request started by the other device");
-
-        for (BasePairingHandler ph : pairingHandlers.values()) {
-            ph.acceptPairing();
-        }
-
+        pairingHandler.acceptPairing();
     }
 
     /* This method is called after rejecting pairing from GUI */
     public void cancelPairing() {
-
         Log.i("KDE/Device", "This side cancelled the pair request");
-
-        pairStatus = PairStatus.NotPaired;
-
-        for (BasePairingHandler ph : pairingHandlers.values()) {
-            ph.cancelPairing();
-        }
-
-        for (PairingCallback cb : pairingCallback) {
-            cb.pairingFailed(context.getString(R.string.error_canceled_by_user));
-        }
-
+        pairingHandler.cancelPairing();
     }
+
+    PairingHandler.PairingCallback pairingCallback = new PairingHandler.PairingCallback() {
+        @Override
+        public void incomingPairRequest() {
+            displayPairingNotification();
+            for (PairingHandler.PairingCallback cb : pairingCallbacks) {
+                cb.incomingPairRequest();
+            }
+        }
+
+        @Override
+        public void pairingSuccessful() {
+            hidePairingNotification();
+
+            // Store current device certificate so we can check it in the future (TOFU)
+            SharedPreferences.Editor editor = context.getSharedPreferences(getDeviceId(), Context.MODE_PRIVATE).edit();
+            try {
+                String encodedCertificate = Base64.encodeToString(certificate.getEncoded(), 0);
+                editor.putString("certificate", encodedCertificate);
+            } catch (NullPointerException n) {
+                Log.w("PairingHandler", "Certificate is null, remote device does not support SSL", n);
+                return;
+            } catch (CertificateEncodingException c) {
+                Log.e("PairingHandler", "Error encoding certificate", c);
+                return;
+            }
+            editor.putString("deviceName", name);
+            editor.putString("deviceType", deviceType.toString());
+            editor.apply();
+
+            // Store as trusted device
+            SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
+            preferences.edit().putBoolean(deviceId, true).apply();
+
+            reloadPluginsFromSettings();
+
+            for (PairingHandler.PairingCallback cb : pairingCallbacks) {
+                cb.pairingSuccessful();
+            }
+        }
+
+        @Override
+        public void pairingFailed(String error) {
+            hidePairingNotification();
+            for (PairingHandler.PairingCallback cb : pairingCallbacks) {
+                cb.pairingFailed(error);
+            }
+        }
+
+        @Override
+        public void unpaired() {
+            SharedPreferences preferences = context.getSharedPreferences("trusted_devices", Context.MODE_PRIVATE);
+            preferences.edit().remove(deviceId).apply();
+
+            SharedPreferences devicePreferences = context.getSharedPreferences(deviceId, Context.MODE_PRIVATE);
+            devicePreferences.edit().clear().apply();
+
+            for (PairingHandler.PairingCallback cb : pairingCallbacks) {
+                cb.unpaired();
+            }
+
+            reloadPluginsFromSettings();
+        }
+    };
 
     //
     // Notification related methods used during pairing
@@ -414,7 +356,7 @@ public class Device implements BaseLink.PacketReceiver {
     }
 
     //
-    // ComputerLink-related functions
+    // Link-related functions
     //
 
     public boolean isReachable() {
@@ -457,38 +399,8 @@ public class Device implements BaseLink.PacketReceiver {
 
         Log.i("KDE/Device", "addLink " + link.getLinkProvider().getName() + " -> " + getName() + " active links: " + links.size());
 
-        if (!pairingHandlers.containsKey(link.getName())) {
-            BasePairingHandler.PairingHandlerCallback callback = new BasePairingHandler.PairingHandlerCallback() {
-                @Override
-                public void incomingRequest() {
-                    for (PairingCallback cb : pairingCallback) {
-                        cb.incomingRequest();
-                    }
-                }
-
-                @Override
-                public void pairingDone() {
-                    Device.this.pairingDone();
-                }
-
-                @Override
-                public void pairingFailed(String error) {
-                    for (PairingCallback cb : pairingCallback) {
-                        cb.pairingFailed(error);
-                    }
-                }
-
-                @Override
-                public void unpaired() {
-                    unpairInternal();
-                }
-            };
-            pairingHandlers.put(link.getName(), link.getPairingHandler(this, callback));
-        }
-
         Set<String> outgoingCapabilities = identityPacket.getStringSet("outgoingCapabilities", null);
         Set<String> incomingCapabilities = identityPacket.getStringSet("incomingCapabilities", null);
-
 
         if (incomingCapabilities != null && outgoingCapabilities != null) {
             supportedPlugins = new Vector<>(PluginFactory.pluginsForCapabilities(incomingCapabilities, outgoingCapabilities));
@@ -503,18 +415,6 @@ public class Device implements BaseLink.PacketReceiver {
 
     public void removeLink(BaseLink link) {
         //FilesHelper.LogOpenFileCount();
-
-        /* Remove pairing handler corresponding to that link too if it was the only link*/
-        boolean linkPresent = false;
-        for (BaseLink bl : links) {
-            if (bl.getName().equals(link.getName())) {
-                linkPresent = true;
-                break;
-            }
-        }
-        if (!linkPresent) {
-            pairingHandlers.remove(link.getName());
-        }
 
         link.removePacketReceiver(this);
         links.remove(link);
@@ -534,16 +434,8 @@ public class Device implements BaseLink.PacketReceiver {
         DeviceStats.countReceived(getDeviceId(), np.getType());
 
         if (NetworkPacket.PACKET_TYPE_PAIR.equals(np.getType())) {
-
             Log.i("KDE/Device", "Pair packet");
-
-            for (BasePairingHandler ph : pairingHandlers.values()) {
-                try {
-                    ph.packetReceived(np);
-                } catch (Exception e) {
-                    Log.e("PairingPacketReceived", "Exception", e);
-                }
-            }
+            pairingHandler.packetReceived(np);
         } else if (isPaired()) {
             // pluginsByIncomingInterface may not be built yet
             if(pluginsByIncomingInterface.isEmpty()) {
