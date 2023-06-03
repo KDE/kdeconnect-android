@@ -18,7 +18,7 @@ import org.kde.kdeconnect_tp.R
 import org.kde.kdeconnect_tp.databinding.WidgetRemoteCommandPluginDialogBinding
 import kotlin.streams.toList
 
-class RunCommandWidgetConfig : AppCompatActivity() {
+class RunCommandWidgetConfigActivity : AppCompatActivity() {
 
     private var appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID
 

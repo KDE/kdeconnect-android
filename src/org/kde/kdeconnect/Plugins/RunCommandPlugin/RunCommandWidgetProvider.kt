@@ -92,7 +92,7 @@ internal fun updateAppWidget(
     val device: Device? = if (deviceId != null) KdeConnect.getInstance().getDevice(deviceId) else null
 
     val views = RemoteViews(BuildConfig.APPLICATION_ID, R.layout.widget_remotecommandplugin)
-    val setDeviceIntent = Intent(context, RunCommandWidgetConfig::class.java)
+    val setDeviceIntent = Intent(context, RunCommandWidgetConfigActivity::class.java)
     setDeviceIntent.putExtra(EXTRA_APPWIDGET_ID, appWidgetId)
     val setDevicePendingIntent = PendingIntent.getActivity(context, appWidgetId, setDeviceIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
     views.setOnClickPendingIntent(R.id.runcommandWidgetTitleHeader, setDevicePendingIntent)
