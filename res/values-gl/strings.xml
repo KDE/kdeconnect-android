@@ -108,6 +108,7 @@
   <string name="device_menu_plugins">Configuración dos complementos</string>
   <string name="device_menu_unpair">Desemparellarse</string>
   <string name="pair_new_device">Emparellar cun novo dispositivo</string>
+  <string name="cancel_pairing">Cancelar o emparellamento</string>
   <string name="unknown_device">Dispositivo descoñecido</string>
   <string name="error_not_reachable">Dispositivo fóra do alcance</string>
   <string name="error_already_paired">O dispositivo xa está emparellado.</string>

@@ -43,6 +43,7 @@
   <string name="mousepad_double_tap_settings_title">ქმედება ორი თითით შეხებისას</string>
   <string name="mousepad_triple_tap_settings_title">ქმედება სამი თითით შეხებისას</string>
   <string name="mousepad_sensitivity_settings_title">დააყენეთ თაჩპედის მგრძნობიარობა</string>
+  <string name="mousepad_mouse_buttons_title">თაგუნას ღილაკების ჩვენება</string>
   <string name="mousepad_acceleration_profile_settings_title">კურსორის აჩქარების დაყენება</string>
   <string name="mousepad_scroll_direction_title">აწევ-ჩამოწევის მიმართულების რევერსი</string>
   <string name="gyro_mouse_enabled_title">გიროსკოპის თაგუნას დაჩართვა</string>
@@ -82,6 +83,7 @@
   <string name="device_menu_plugins">დამატების პარამეტრები</string>
   <string name="device_menu_unpair">დაწყვილების მოხსნა</string>
   <string name="pair_new_device">ახალი მოწყობილობის დაწყვილება</string>
+  <string name="cancel_pairing">დაწყვილების გაუქმება</string>
   <string name="unknown_device">უცნობი მოწყობილობა</string>
   <string name="error_not_reachable">მოწყობილობა მიუწვდოელია</string>
   <string name="error_already_paired">მოწყობილობა უკვე დაწყვილებულია</string>
