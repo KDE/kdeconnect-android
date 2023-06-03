@@ -64,6 +64,7 @@ public class PairingHandler {
                 case Paired:
                     Log.w("PairingHandler", "Auto-accepting pairing request from a device we already trusted");
                     acceptPairing();
+                    break;
                 case NotPaired:
                     mPairState = PairState.RequestedByPeer;
 
