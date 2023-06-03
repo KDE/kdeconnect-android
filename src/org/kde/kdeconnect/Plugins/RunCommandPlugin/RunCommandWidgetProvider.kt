@@ -19,7 +19,6 @@ import org.kde.kdeconnect_tp.R
 const val RUN_COMMAND_ACTION = "RUN_COMMAND_ACTION"
 const val TARGET_COMMAND = "TARGET_COMMAND"
 const val TARGET_DEVICE = "TARGET_DEVICE"
-private const val SET_CURRENT_DEVICE = "SET_CURRENT_DEVICE"
 
 class RunCommandWidgetProvider : AppWidgetProvider() {
 
@@ -48,14 +47,7 @@ class RunCommandWidgetProvider : AppWidgetProvider() {
     }
 
     override fun onReceive(context: Context, intent: Intent) {
-        super.onReceive(context, intent)
-        Log.d("WidgetProvider", "onReceive " + intent.action)
-
-        val appWidgetId = intent.getIntExtra(EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID)
-        if (appWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID) {
-            Log.e("KDEConnect/Widget", "No widget id extra set")
-            return
-        }
+        Log.e("WidgetProvider", "onReceive " + intent.action)
 
         if (intent.action == RUN_COMMAND_ACTION) {
             val targetCommand = intent.getStringExtra(TARGET_COMMAND)
@@ -67,12 +59,11 @@ class RunCommandWidgetProvider : AppWidgetProvider() {
                 } catch (ex: Exception) {
                     Log.e("RunCommandWidget", "Error running command", ex)
                 }
+            } else {
+                Log.w("RunCommandWidget", "Device not available or runcommand plugin disabled");
             }
-        } else if (intent.action == SET_CURRENT_DEVICE) {
-            val popup = Intent(context, RunCommandWidgetConfig::class.java)
-            popup.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
-            popup.putExtra(EXTRA_APPWIDGET_ID, appWidgetId)
-            context.startActivity(popup)
+        } else {
+            super.onReceive(context, intent);
         }
     }
 }
@@ -95,16 +86,15 @@ internal fun updateAppWidget(
     appWidgetManager: AppWidgetManager,
     appWidgetId: Int
 ) {
-    Log.d("WidgetProvider", "updateAppWidget")
+    Log.i("WidgetProvider", "updateAppWidget: $appWidgetId")
 
     val deviceId = loadWidgetDeviceIdPref(context, appWidgetId)
     val device: Device? = if (deviceId != null) KdeConnect.getInstance().getDevice(deviceId) else null
 
     val views = RemoteViews(BuildConfig.APPLICATION_ID, R.layout.widget_remotecommandplugin)
-    val setDeviceIntent = Intent(context, RunCommandWidgetProvider::class.java)
+    val setDeviceIntent = Intent(context, RunCommandWidgetConfig::class.java)
     setDeviceIntent.putExtra(EXTRA_APPWIDGET_ID, appWidgetId)
-    setDeviceIntent.action = SET_CURRENT_DEVICE
-    val setDevicePendingIntent = PendingIntent.getBroadcast(context,0,setDeviceIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE)
+    val setDevicePendingIntent = PendingIntent.getActivity(context, appWidgetId, setDeviceIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
     views.setOnClickPendingIntent(R.id.runcommandWidgetTitleHeader, setDevicePendingIntent)
 
     if (device == null) {
@@ -125,7 +115,7 @@ internal fun updateAppWidget(
             val runCommandTemplateIntent = Intent(context, RunCommandWidgetProvider::class.java)
             runCommandTemplateIntent.action = RUN_COMMAND_ACTION
             runCommandTemplateIntent.putExtra(EXTRA_APPWIDGET_ID, appWidgetId)
-            val runCommandTemplatePendingIntent = PendingIntent.getBroadcast(context, 0, runCommandTemplateIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE)
+            val runCommandTemplatePendingIntent = PendingIntent.getBroadcast(context, appWidgetId, runCommandTemplateIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_MUTABLE)
             views.setPendingIntentTemplate(R.id.run_commands_list, runCommandTemplatePendingIntent)
         } else {
             views.setViewVisibility(R.id.run_commands_list, View.GONE)

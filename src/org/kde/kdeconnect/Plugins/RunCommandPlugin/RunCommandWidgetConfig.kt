@@ -68,18 +68,18 @@ private const val PREFS_NAME = "org.kde.kdeconnect_tp.WidgetProvider"
 private const val PREF_PREFIX_KEY = "appwidget_"
 
 internal fun saveWidgetDeviceIdPref(context: Context, appWidgetId: Int, deviceName: String) {
-    val prefs = context.getSharedPreferences(PREFS_NAME, 0).edit()
+    val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit()
     prefs.putString(PREF_PREFIX_KEY + appWidgetId, deviceName)
     prefs.apply()
 }
 
 internal fun loadWidgetDeviceIdPref(context: Context, appWidgetId: Int): String? {
-    val prefs = context.getSharedPreferences(PREFS_NAME, 0)
+    val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
     return prefs.getString(PREF_PREFIX_KEY + appWidgetId, null)
 }
 
 internal fun deleteWidgetDeviceIdPref(context: Context, appWidgetId: Int) {
-    val prefs = context.getSharedPreferences(PREFS_NAME, 0).edit()
+    val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit()
     prefs.remove(PREF_PREFIX_KEY + appWidgetId)
     prefs.apply()
 }
