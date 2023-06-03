@@ -80,7 +80,6 @@ public class BackgroundService extends Service {
 
     private void registerLinkProviders() {
         linkProviders.add(new LanLinkProvider(this));
-        linkProviders.add(new LoopbackLinkProvider(this));
         String testLabSetting = Settings.System.getString(getContentResolver(), "firebase.test.lab");
         if ("true".equals(testLabSetting)) {
             linkProviders.add(new LoopbackLinkProvider(this));
