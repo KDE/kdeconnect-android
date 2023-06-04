@@ -7,6 +7,7 @@
 package org.kde.kdeconnect.UserInterface.compose
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -20,21 +21,37 @@ import org.kde.kdeconnect_tp.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun KdeTextField(modifier: Modifier = Modifier, input: MutableState<String>, label: String) {
-    var value by rememberSaveable { input }
-    OutlinedTextField(
-        modifier = modifier,
-        value = value,
-        onValueChange = { userInput -> value = userInput },
-        label = { Text(label) },
-    )
+//    Column() {
+//        var value by rememberSaveable { input }
+//        OutlinedTextField(
+//            modifier = modifier,
+//            value = value,
+//            onValueChange = { userInput -> value = userInput },
+//            label = { Text(label) },
+//        )
+//    }
+
+    Column() {
+        var value by rememberSaveable { input
+        }
+        OutlinedTextField(value = value,
+            onValueChange ={
+                value =it
+            },
+            label ={
+                Text(text = label)
+            }
+        )
+    }
+
 }
 
 @SuppressLint("UnrememberedMutableState")
-@Preview
+@Preview(showSystemUi = true, showBackground = true)
 @Composable
 fun Preview() {
     KdeTextField(
-        input = mutableStateOf("John Doe"),
+        input = mutableStateOf(""),
         label = stringResource(R.string.click_here_to_type),
     )
 }
