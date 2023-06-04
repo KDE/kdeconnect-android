@@ -10,7 +10,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -18,8 +21,8 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.kde.kdeconnect.Device;
+import org.kde.kdeconnect.DeviceStats;
 import org.kde.kdeconnect.KdeConnect;
-import org.kde.kdeconnect.PacketStats;
 import org.kde.kdeconnect.Plugins.Plugin;
 import org.kde.kdeconnect_tp.R;
 
@@ -101,12 +104,16 @@ public class PluginSettingsActivity
             return false; // PacketStats not working in API < 24
         }
         menu.add(R.string.plugin_stats).setOnMenuItemClickListener(item -> {
-            String stats = PacketStats.getStatsForDevice(deviceId);
-            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(PluginSettingsActivity.this);
-            builder.setTitle(R.string.plugin_stats);
-            builder.setPositiveButton(R.string.ok, (dialog, which) -> dialog.dismiss());
-            builder.setMessage(stats);
-            builder.show();
+            String stats = DeviceStats.getStatsForDevice(deviceId);
+            AlertDialog alertDialog = new MaterialAlertDialogBuilder(PluginSettingsActivity.this)
+                    .setTitle(R.string.plugin_stats)
+                    .setPositiveButton(R.string.ok, (dialog, which) -> dialog.dismiss())
+                    .setMessage(stats)
+                    .show();
+            View messageView = alertDialog.findViewById(android.R.id.message);
+            if (messageView instanceof TextView) {
+                ((TextView) messageView).setTextIsSelectable(true);
+            }
             return true;
         });
         return true;

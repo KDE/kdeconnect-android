@@ -2,14 +2,11 @@ package org.kde.kdeconnect;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-@RunWith(PowerMockRunner.class)
-public class PacketStatsTest {
+public class DeviceStatsTest {
 
     @Test
     public void removeOldEvents_cutoutExists() {
@@ -21,7 +18,7 @@ public class PacketStatsTest {
         events.add(20L);
         events.add(30L);
         final long cutout = 20L;
-        PacketStats.removeOldEvents(eventsByType, cutout);
+        DeviceStats.removeOldEvents(eventsByType, cutout);
         ArrayList<Long> eventsAfter = eventsByType.get(key);
         Assert.assertNotNull(eventsAfter);
         Assert.assertEquals(2, eventsAfter.size());
@@ -39,7 +36,7 @@ public class PacketStatsTest {
         events.add(20L);
         events.add(30L);
         final long cutout = 25L;
-        PacketStats.removeOldEvents(eventsByType, cutout);
+        DeviceStats.removeOldEvents(eventsByType, cutout);
         ArrayList<Long> eventsAfter = eventsByType.get(key);
         Assert.assertNotNull(eventsAfter);
         Assert.assertEquals(1, eventsAfter.size());
@@ -55,7 +52,7 @@ public class PacketStatsTest {
         events.add(10L);
         events.add(20L);
         final long cutout = 25L;
-        PacketStats.removeOldEvents(eventsByType, cutout);
+        DeviceStats.removeOldEvents(eventsByType, cutout);
         ArrayList<Long> eventsAfter = eventsByType.get(key);
         Assert.assertNull(eventsAfter);
     }
@@ -68,7 +65,7 @@ public class PacketStatsTest {
         eventsByType.put(key, events);
         events.add(10L);
         final long cutout = 5L;
-        PacketStats.removeOldEvents(eventsByType, cutout);
+        DeviceStats.removeOldEvents(eventsByType, cutout);
         ArrayList<Long> eventsAfter = eventsByType.get(key);
         Assert.assertNotNull(eventsAfter);
         Assert.assertEquals(1, eventsAfter.size());
