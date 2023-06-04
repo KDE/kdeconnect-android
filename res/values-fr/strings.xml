@@ -108,6 +108,7 @@
   <string name="device_menu_plugins">Paramètres des modules externes</string>
   <string name="device_menu_unpair">Dissocier</string>
   <string name="pair_new_device">Associer un nouveau périphérique</string>
+  <string name="cancel_pairing">Annuler la demande d\'association</string>
   <string name="unknown_device">Périphérique inconnu</string>
   <string name="error_not_reachable">Périphérique inaccessible</string>
   <string name="error_already_paired">Périphérique déjà associé</string>
@@ -220,7 +221,7 @@
   <string name="sftp_action_mode_menu_delete">Supprimer</string>
   <string name="sftp_no_storage_locations_configured">Aucun emplacement stockage n\'est configuré</string>
   <string name="sftp_saf_permission_explanation">Vous devez configurer des emplacements de stockage pour accéder aux fichiers à distance</string>
-  <string name="sftp_manage_storage_permission_explanation">Pour permettre l’accès à distance aux fichiers sur ce périphérique, vous devez autoriser KDE Connect à gérer l\'enregistrement.</string>
+  <string name="sftp_manage_storage_permission_explanation">Pour permettre l\'accès à distance aux fichiers sur ce périphérique, vous devez autoriser KDE Connect à gérer l\'enregistrement.</string>
   <string name="no_players_connected">Aucun lecteur trouvé</string>
   <string name="send_files">Envoyer des fichiers</string>
   <string name="block_notification_contents">Bloquer les contenus de notifications</string>
@@ -315,7 +316,7 @@
   <string name="empty_trusted_networks_list_text">Vous n\'avez pas encore ajouté de réseau de confiance</string>
   <string name="allow_all_networks_text">Tout autoriser</string>
   <string name="location_permission_needed_title">Permissions requises</string>
-  <string name="location_permission_needed_desc">KDEConnect a besoin de la permission d\'accéder à la localisation en arrière-plan pour connaître le réseau Wifi sur lequel vous êtes connecté, même si l’application est en arrière-plan. En effet, le nom des réseaux Wifi autour de vous pourrait être utilisé pour trouver votre emplacement, même si ce n’est pas ce que KDEConnect fait.</string>
+  <string name="location_permission_needed_desc">KDEConnect a besoin de la permission d\'accéder à la localisation en arrière-plan pour connaître le réseau Wifi sur lequel vous êtes connecté, même si l\'application est en arrière-plan. En effet, le nom des réseaux Wifi autour de vous pourrait être utilisé pour trouver votre emplacement, même si ce n\'est pas ce que KDEConnect fait.</string>
   <string name="clipboard_android_x_incompat">Android 10 a supprimé l\'accès des applications au presse-papier. Ce module externe sera désactivé.</string>
   <string name="mpris_open_url">Continuer la lecture ici</string>
   <string name="cant_open_url">Impossible d\'ouvrir l\'URL pour continuer la lecture</string>
