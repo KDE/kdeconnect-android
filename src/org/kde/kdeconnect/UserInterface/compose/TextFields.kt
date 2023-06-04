@@ -21,16 +21,6 @@ import org.kde.kdeconnect_tp.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun KdeTextField(modifier: Modifier = Modifier, input: MutableState<String>, label: String) {
-//    Column() {
-//        var value by rememberSaveable { input }
-//        OutlinedTextField(
-//            modifier = modifier,
-//            value = value,
-//            onValueChange = { userInput -> value = userInput },
-//            label = { Text(label) },
-//        )
-//    }
-
     Column() {
         var value by rememberSaveable { input
         }
