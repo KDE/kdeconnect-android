@@ -86,7 +86,7 @@ internal fun updateAppWidget(
     appWidgetManager: AppWidgetManager,
     appWidgetId: Int
 ) {
-    Log.i("WidgetProvider", "updateAppWidget: $appWidgetId")
+    Log.d("WidgetProvider", "updateAppWidget: $appWidgetId")
 
     val deviceId = loadWidgetDeviceIdPref(context, appWidgetId)
     val device: Device? = if (deviceId != null) KdeConnect.getInstance().getDevice(deviceId) else null
@@ -99,6 +99,8 @@ internal fun updateAppWidget(
     // Docs: https://developer.android.com/reference/android/app/PendingIntent.html
     val setDevicePendingIntent = PendingIntent.getActivity(context, appWidgetId, setDeviceIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
     views.setOnClickPendingIntent(R.id.runcommandWidgetTitleHeader, setDevicePendingIntent)
+
+    Log.d("WidgetProvider", "updateAppWidget device: " + if (device == null) "null" else device.name)
 
     if (device == null) {
         views.setTextViewText(R.id.runcommandWidgetTitle, context.getString(R.string.kde_connect))

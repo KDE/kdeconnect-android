@@ -133,7 +133,6 @@ public class Device implements BaseLink.PacketReceiver {
 
     // Remembered trusted device, we need to wait for a incoming Link to communicate
     Device(@NonNull Context context, @NonNull String deviceId) throws CertificateException {
-        Log.i("Device","Loading trusted device");
 
         this.context = context;
 
@@ -145,6 +144,8 @@ public class Device implements BaseLink.PacketReceiver {
         this.protocolVersion = 0; //We don't know it yet
         this.deviceType = DeviceType.FromString(settings.getString("deviceType", "desktop"));
         this.certificate = SslHelper.getDeviceCertificate(context, deviceId);
+
+        Log.i("Device","Loading trusted device: " + this.name);
 
         //Assume every plugin is supported until addLink is called and we can get the actual list
         supportedPlugins = new Vector<>(PluginFactory.getAvailablePlugins());
