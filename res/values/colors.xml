@@ -4,7 +4,7 @@
     <color name="primaryDark">@android:color/white</color>
     <color name="accent">#F67400</color>
     <color name="disabled_grey">#EEEEEE</color>
-    <color name="on_secondary">@android:color/white</color>
+    <color name="on_secondary">#C8C8C8</color>
     <color name="on_high_contrast">@android:color/black</color>
     <color name="text_color_primary">@android:color/black</color>
     <color name="text_color">@android:color/black</color>

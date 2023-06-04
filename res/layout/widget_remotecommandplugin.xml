@@ -1,36 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@color/on_secondary"
+    android:background="@color/activity_background"
     android:theme="@style/KdeConnectTheme"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    tools:ignore="RtlSymmetry">
+
     <LinearLayout
         android:id="@+id/runcommandWidgetTitleHeader"
-        android:background="@color/primary"
+        android:background="@color/on_secondary"
         android:gravity="center_vertical|start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:paddingTop="6dip"
-            android:paddingBottom="6dip"
+            android:padding="8dip"
+            android:paddingEnd="6dip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_kde_48dp"
-            android:contentDescription="@string/device_icon_description"/>
+            android:tint="@color/text_color"
+            android:src="@drawable/ic_kde_24dp"
+            android:contentDescription="@string/device_icon_description"
+            tools:ignore="UseAppTint"/> <!-- can't use app:tint in RemoteView -->
 
         <TextView
             android:id="@+id/runcommandWidgetTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
+            android:textColor="@color/text_color"
+            android:text="@string/kde_connect"
             android:fadingEdge="horizontal"
             android:singleLine="true"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
     </LinearLayout>
+
     <ListView
         android:id="@+id/run_commands_list"
         android:layout_width="match_parent"
@@ -48,5 +54,6 @@
         android:paddingStart="8dip"
         android:text="@string/runcommand_notreachable"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:drawableStart="@drawable/ic_error_outline_48dp"/>
+        android:drawableStart="@drawable/ic_error_outline_48dp"
+        tools:ignore="UseCompatTextViewDrawableXml" />  <!-- can't use app:drawableStart in RemoteView -->
 </LinearLayout>
