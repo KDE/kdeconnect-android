@@ -29,14 +29,18 @@ internal class RunCommandWidgetDataProvider(private val context: Context, val in
     override fun onDataSetChanged() {}
     override fun onDestroy() {}
 
+    private fun getPlugin(): RunCommandPlugin? {
+        return KdeConnect.getInstance().getDevicePlugin(deviceId, RunCommandPlugin::class.java)
+    }
+
     override fun getCount(): Int {
-        return KdeConnect.getInstance().getDevicePlugin(deviceId, RunCommandPlugin::class.java)?.commandItems?.size ?: 0
+        return getPlugin()?.commandItems?.size ?: 0
     }
 
     override fun getViewAt(i: Int): RemoteViews {
         val remoteView = RemoteViews(context.packageName, R.layout.list_item_entry)
 
-        val plugin : RunCommandPlugin? = KdeConnect.getInstance().getDevicePlugin(deviceId, RunCommandPlugin::class.java)
+        val plugin : RunCommandPlugin? = getPlugin()
         if (plugin == null) {
             Log.e("getViewAt", "RunCommandWidgetDataProvider: Plugin not found");
             return remoteView
@@ -67,7 +71,7 @@ internal class RunCommandWidgetDataProvider(private val context: Context, val in
     }
 
     override fun getItemId(i: Int): Long {
-        return KdeConnect.getInstance().getDevicePlugin(deviceId, RunCommandPlugin::class.java)?.commandItems?.get(i)?.key?.hashCode()?.toLong() ?: 0
+        return getPlugin()?.commandItems?.get(i)?.key?.hashCode()?.toLong() ?: 0
     }
 
     override fun hasStableIds(): Boolean {

@@ -208,7 +208,7 @@
             android:launchMode="singleTask"
             android:noHistory="true"
             android:screenOrientation="user"
-            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+            android:theme="@style/Theme.Material3.DayNight.Dialog" />
 
         <service
             android:name="org.kde.kdeconnect.Plugins.RunCommandPlugin.CommandsRemoteViewsService"

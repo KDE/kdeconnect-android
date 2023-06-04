@@ -47,7 +47,7 @@ class RunCommandWidgetProvider : AppWidgetProvider() {
     }
 
     override fun onReceive(context: Context, intent: Intent) {
-        Log.e("WidgetProvider", "onReceive " + intent.action)
+        Log.d("WidgetProvider", "onReceive " + intent.action)
 
         if (intent.action == RUN_COMMAND_ACTION) {
             val targetCommand = intent.getStringExtra(TARGET_COMMAND)
@@ -94,6 +94,9 @@ internal fun updateAppWidget(
     val views = RemoteViews(BuildConfig.APPLICATION_ID, R.layout.widget_remotecommandplugin)
     val setDeviceIntent = Intent(context, RunCommandWidgetConfigActivity::class.java)
     setDeviceIntent.putExtra(EXTRA_APPWIDGET_ID, appWidgetId)
+    // We pass appWidgetId as requestCode even if it's not used to force the creation a new PendingIntent
+    // instead of reusing an existing one, which is what happens if only the "extras" field differs.
+    // Docs: https://developer.android.com/reference/android/app/PendingIntent.html
     val setDevicePendingIntent = PendingIntent.getActivity(context, appWidgetId, setDeviceIntent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
     views.setOnClickPendingIntent(R.id.runcommandWidgetTitleHeader, setDevicePendingIntent)
 
