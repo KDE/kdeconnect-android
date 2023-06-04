@@ -61,6 +61,7 @@ class RunCommandWidgetConfigActivity : AppCompatActivity() {
             setResult(RESULT_OK, resultValue)
             finish()
         }
+        binding.runCommandsDeviceList.emptyView = binding.noDevices
     }
 }
 
