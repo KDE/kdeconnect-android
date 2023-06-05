@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+SPDX-FileCopyrightText: 2022 Arun Parolikkal <actuday6418@gmail.com>
+
+SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+-->
+
 <resources>
     <color name="primary">@android:color/system_accent2_300</color>
     <color name="primaryDark">@android:color/system_neutral1_900</color>

@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2019 Matthijs Tijink <matthijstijink@gmail.com>
+ *
+ * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+*/
+
 package org.kde.kdeconnect.Backends.BluetoothBackend;
 
 import android.bluetooth.BluetoothSocket;

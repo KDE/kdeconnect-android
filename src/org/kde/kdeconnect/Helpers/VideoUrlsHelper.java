@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2020 Soul Trace <S-trace@list.ru>
+ *
+ * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+*/
+
 package org.kde.kdeconnect.Helpers;
 
 import org.apache.commons.lang3.StringUtils;

@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2021 Philip Cohn-Cort <cliabhach@gmail.com>
+ *
+ * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+*/
+
 package org.kde.kdeconnect.Plugins.BatteryPlugin
 
 import org.kde.kdeconnect.NetworkPacket

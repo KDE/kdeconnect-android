@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2018 Philip Cohn-Cort <cliabhach@gmail.com>
+
+SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+-->
+
 <resources>
     <!-- A high-contrast color for important visual elements (for less important elements, use colorControlNormal instead) -->
     <attr name="colorHighContrast" format="color" />
