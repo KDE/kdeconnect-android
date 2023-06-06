@@ -412,4 +412,5 @@
   <string name="everyone_else">Усім іншим, хто робив внесок до KDE Connect протягом років розробки</string>
   <string name="send_clipboard">Надіслати вміст буфера</string>
   <string name="tap_to_execute">Торкніться, щоб виконати</string>
+  <string name="plugin_stats">Статистика щодо додатків</string>
 </resources>

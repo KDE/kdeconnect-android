@@ -106,6 +106,7 @@
   <string name="device_menu_plugins">Modul-Einstellungen</string>
   <string name="device_menu_unpair">Verbindung trennen</string>
   <string name="pair_new_device">Ein neues Gerät verbinden</string>
+  <string name="cancel_pairing">Kopplung abbrechen</string>
   <string name="unknown_device">Unbekanntes Gerät</string>
   <string name="error_not_reachable">Das Gerät ist nicht erreichbar</string>
   <string name="error_already_paired">Das Gerät ist bereits verbunden</string>

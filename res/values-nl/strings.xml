@@ -396,4 +396,5 @@
   <string name="everyone_else">Ieder ander die over de jaren heeft bijgedragen aan KDE Connect</string>
   <string name="send_clipboard">Klembord verzenden</string>
   <string name="tap_to_execute">Tik om uit te voeren</string>
+  <string name="plugin_stats">Plug-in-statistieken</string>
 </resources>

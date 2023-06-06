@@ -412,4 +412,5 @@
   <string name="everyone_else">Vsi ostali, ki so prispevali za KDE Connect v letih razvoja</string>
   <string name="send_clipboard">Pošlji odložišče</string>
   <string name="tap_to_execute">Tapkajte za izvedbo</string>
+  <string name="plugin_stats">Stanje vtičnikov</string>
 </resources>
