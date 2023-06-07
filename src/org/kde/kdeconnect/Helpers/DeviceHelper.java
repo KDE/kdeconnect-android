@@ -95,7 +95,7 @@ public class DeviceHelper {
                             continue;
                         }
                         String buildModel = records[3];
-                        if (Build.MODEL.equals(buildModel)) {
+                        if (Build.MODEL.equalsIgnoreCase(buildModel)) {
                             String deviceName = records[1];
                             Log.i("DeviceHelper", "Got device name: " + deviceName);
                             // Update the shared preference. Places that display the name should be listening to this change and update it
