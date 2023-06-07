@@ -20,7 +20,8 @@ import org.kde.kdeconnect_tp.R
 
 @Composable
 fun KdeTextField(modifier: Modifier = Modifier, input: MutableState<String>, label: String) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally
+            ) {
         var value by rememberSaveable { input
         }
         OutlinedTextField(value = value,
